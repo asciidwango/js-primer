@@ -1,0 +1,135 @@
+Features                                                                  n/10
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Introduc
+  tion#What_is_JavaScript
+- Grammar and types                                                       24
+    - Declarations                                                        13
+        - var                                                             1
+        - let                                                             2
+        - const                                                           4
+        - Knowledge                                                       6
+            - Scope                                                       3
+            - TDZ                                                         1
+            - Hoisting                                                    2
+    - Data Type                                                           11
+        - Boolean                                                         1
+        - null                                                            1
+        - undefined                                                       1
+        - Number                                                          1
+        - String                                                          1
+        - Object                                                          4
+            - Array                                                       1
+            - Object                                                      1
+            - RegExp                                                      2
+                  細かい解説すると終わらない
+        - Symbol                                                          2
+- Control flow and error handling                                         23
+    - if-else                                                             2
+    - switch                                                              2
+        - default                                                         1
+        - break                                                           1
+    - try/catch/finallythrow                                              3
+        - 同期                                                              1
+        - 非同期                                                             2
+    - throw                                                               1
+    - Error                                                               2
+        - new Error or Error                                              1
+        - スタックトレース                                                        1
+    - Promise                                                             13
+        - 値の抽象                                                            5
+        - 非同期コントールフロー                                                     5
+        - エラーハンドリング                                                       3
+- Loops and iteration                                                     15
+    - for                                                                 11
+        - for(C)                                                          6
+            - basic                                                       3
+            - scope                                                       3
+        - for in                                                          2
+            - bad part                                                    2
+        - for of                                                          3
+              Generatorについてが先に必要
+    - while                                                               4
+        - for vs. while                                                   2
+        - do while                                                        1
+        - break/continue                                                  1
+- Functions                                                               29
+    - Defining functions                                                  4
+        - 関数 declaration                                                  1
+        - 関数 expression                                                   3
+    - Calling functions                                                   1
+    - Function Scope                                                      6
+        - ScopeとStack                                                     1
+        - Closure                                                         5
+              envの話とかが必要そう
+    - Arguments                                                           6
+        - arguments オブジェクト                                                2
+        - デフォルト引数                                                         2
+        - Rest parameters                                                 2
+    - this                                                                7
+    - Arrow Function                                                      5
+        - Syntax                                                          1
+        - this                                                            4
+              thisを移譲してる。thisを持てない
+- Expressions and operators                                               37
+    - 代入                                                                  1
+    - 比較                                                                  4
+    - 算術演算子                                                               3
+    - ビット演算子                                                              5
+    - 論理演算子                                                               1
+    - 文字列演算子                                                              1
+        - += "str"                                                        1
+    - 条件（三項）演算子                                                           2
+    - コンマ演算子                                                              1
+    - 単項演算子                                                               9
+        - delete                                                          2
+        - typeof                                                          6
+            - typeof                                                      4
+            - [[class]]                                                   2
+        - void                                                            1
+    - 関係演算子                                                               6
+        - in                                                              3
+        - instanceof                                                      3
+    - Spread operator                                                     2
+    - 演算子の優先順位                                                            2
+        * カッコ                                                             2
+- Numbers and dates
+    - Number
+    - Math
+    - Date
+- Text formatting                                                         23
+    - String                                                              12
+        - literal                                                         2
+        - method                                                          10
+    - Template Strings                                                    3
+    - i18n                                                                5
+    - String to RegExp                                                    3
+- Indexed collections                                                     22
+    - Array                                                               14
+        - literal                                                         4
+        - method                                                          10
+    - TypedArray                                                          8
+- Keyed collections                                                       13
+    * Map                                                                 4
+    - Set                                                                 3
+    - WeakSet                                                             3
+    - WeakSet                                                             3
+- Working with objects                                                    16
+    - Objects and properties
+    - オブジェクトの列挙                                                           4
+    - Creating new objects
+    - Constructor                                                         3
+    - Object.create                                                       3
+          prototypeの話が先にないとわからん
+    - getter/setter                                                       3
+    - Comparing Objects                                                   3
+        - Immutable                                                       2
+        - Shallow Copy                                                    1
+- Details of the object model                                             20
+    - prototype                                                           10
+    - class                                                               10
+- Iterators and generators                                                13
+    - iterator                                                            5
+    - iterable                                                            3
+    - Generator                                                           5
+- Meta programming                                                        12
+    - Proxy                                                               7
+    - Reflect5                                                            5
