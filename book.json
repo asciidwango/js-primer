@@ -1,0 +1,7 @@
+{
+  "gitbook": ">=2.5.2",
+  "plugins": [
+    "include-codeblock",
+    "japanese-support"
+  ]
+}

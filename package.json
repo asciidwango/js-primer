@@ -1,0 +1,46 @@
+{
+  "name": "gitbook-starter-kit",
+  "private": true,
+  "license": "MIT",
+  "version": "1.0.1",
+  "description": "GitBook Starter Kit.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "prepublish": "gitbook install",
+    "start": "gitbook serve",
+    "build": "gitbook build",
+    "eslint": "eslint src/**/*.js",
+    "eslint:md": "eslint -c .md.eslintrc --ext .md ja/**/*.md",
+    "textlint": "gulp textlint",
+    "test:js": "mocha",
+    "test": "npm-run-all --parallel test:js textlint eslint:md eslint build"
+  },
+  "keywords": [
+    "gitbook",
+    "textlint"
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.6.5",
+    "babel-preset-es2015": "^6.6.0",
+    "eslint": "^2.3.0",
+    "eslint-plugin-markdown": "git://github.com/eslint/eslint-plugin-markdown.git",
+    "espower-babel": "^4.0.1",
+    "gitbook-cli": "^2.1.2",
+    "gitbook-plugin-include-codeblock": "^1.4.0",
+    "gitbook-plugin-japanese-support": "0.0.1",
+    "gulp": "^3.9.0",
+    "gulp-textlint": "^1.0.1",
+    "mocha": "^2.2.5",
+    "npm-run-all": "^1.0.0",
+    "power-assert": "^1.0.0",
+    "textlint": "^6.3.0",
+    "textlint-rule-max-ten": "^2.0.1",
+    "textlint-rule-no-mix-dearu-desumasu": "^1.0.1",
+    "textlint-rule-no-start-duplicated-conjunction": "^1.0.3",
+    "textlint-rule-prh": "^2.2.0",
+    "textlint-rule-spellcheck-tech-word": "^5.0.0"
+  }
+}
