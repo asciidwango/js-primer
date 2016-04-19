@@ -1,3 +1,0 @@
-# Meeting Notes
-
-ミーティングノート :memo: 

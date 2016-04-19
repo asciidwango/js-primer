@@ -15,7 +15,7 @@
     "eslint": "eslint src/**/*.js",
     "eslint:md": "eslint -c .md.eslintrc --ext .md ja/**/*.md",
     "textlint": "gulp textlint",
-    "test:js": "mocha",
+    "test:js": "mocha source/**/*-test.js",
     "test": "npm-run-all --parallel test:js textlint eslint:md eslint build"
   },
   "keywords": [
