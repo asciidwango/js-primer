@@ -48,8 +48,6 @@ GitBookのbuildかつWatchをします。
 │       └── test
 ```
 
-
-
 ## Contributing
 
 1. Fork it!
