@@ -5,7 +5,7 @@ JavaScriptはウェブブラウザ、Node.jsを始め、今はIoT(Internet of Th
 - [ ] TODO(azu): 上手く並び替えたい。最初に否定から入るのは良いのかどうか?
 
 しかし、全ての環境で全く同じコードが動くわけではありません。
-その理由の一つとして、JavaScriptは言語の実装であり、JavaScriptという仕様はないからです。
+その理由の一つとして、JavaScriptという仕様があるわけではなく、JavaScriptという実装があるだけだからです。
 
 JavaScriptという言語は、[Ecma International][]によって標準化された[ECMAScript][]という仕様の実装になります。
 そのため、JavaScriptが使える環境でも利用できる機能が異なる事があります。
