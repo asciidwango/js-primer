@@ -58,3 +58,18 @@ rules:
       # 日経ソフトウエア(書名)は変換しない
       - from: 日経ソフトウエア
         to:   日経ソフトウエア
+
+# Project
+  # http://www.ecma-international.org/ecma-262/6.0/#sec-comments
+  # MultiLineComment
+  # SingleLineComment
+  - expected: 一行コメント
+    patterns:
+      - 1行コメント
+      - ワンラインコメント
+  - expected: $1一行コメント
+    patterns: /([^1一数])行コメント/
+  - expected: 複数行コメント
+    patterns:
+      - ブロックコメント
+      - マルチラインコメント
