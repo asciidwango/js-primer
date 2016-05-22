@@ -8,7 +8,7 @@ JavaScriptはウェブブラウザ、Node.jsを始め、今はIoT(Internet of Th
 その理由の一つとして、JavaScriptという仕様があるわけではなく、JavaScriptという実装があるだけだからです。
 
 JavaScriptという言語は、[Ecma International][]によって標準化された[ECMAScript][]という仕様の実装になります。
-そのため、JavaScriptが使える環境でも利用できる機能が異なる事があります。
+そのため、JavaScriptが使える環境でも利用できる機能が異なります。
 
 逆に、[ECMAScript][]という仕様で定義されている機能は、基本的にどの実行環境でも同じ動作をします。
 
