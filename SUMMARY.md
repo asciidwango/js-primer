@@ -1,7 +1,6 @@
+- 書籍の読み方
 - [第1章](source/ch1/README.md)
-    - [はじめに](source/ch1/introduction.md)
-    - 書籍の読み方
-- 基本編
+    - [JavaScriptとは](source/ch1/basic/README.md)
     - 基礎文法
         - 字句構造
         - 型、値、変数
