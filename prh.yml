@@ -11,6 +11,15 @@ rules:
 #   specs: []
 
 # 正規表現で置換もできる
+  - expected: JavaScript
+    patterns:
+      - javascript
+    options:
+      wordBoundary: true
+    specs:
+      - from: javascript
+        to:   JavaScript
+
   - expected: ECMAScript $1
     pattern: /ECMAScript([0-9]+)/
 # 変換結果についてテストも書ける
@@ -49,17 +58,3 @@ rules:
       # 日経ソフトウエア(書名)は変換しない
       - from: 日経ソフトウエア
         to:   日経ソフトウエア
-
-# 単語境界の区別
-  - expected: js
-  # pattern: "/\b[JjＪｊ][SsＳｓ]\b/g" # と等価 \b が前後に付与される
-    options:
-      wordBoundary: true
-    specs:
-      - from: foo JS bar
-        to:   foo js bar
-      - from: foo altJS bar
-        to:   foo altJS bar
-      # 日本語+単語境界の仕様は自分で調べてね…！
-      - from: 今日もJS祭り
-        to:   今日もjs祭り
