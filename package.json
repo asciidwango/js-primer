@@ -12,11 +12,12 @@
     "prepublish": "gitbook install",
     "start": "gitbook serve",
     "build": "gitbook build",
-    "eslint": "eslint src/**/*.js",
+    "eslint:js": "eslint src/**/*.js",
     "eslint:md": "eslint -c .md.eslintrc --ext .md source/**/*.md",
     "textlint": "gulp textlint",
+    "test:example": "find ./source -name '*-example.js' | xargs babel-node",
     "test:js": "mocha './source/**/*-test.js'",
-    "test": "npm-run-all -l --parallel test:js textlint eslint:md eslint build"
+    "test": "npm-run-all -l --parallel test:js textlint eslint:* build"
   },
   "keywords": [
     "gitbook",
