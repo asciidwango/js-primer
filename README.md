@@ -32,21 +32,6 @@ GitBookのbuildかつWatchをします。
 は以下のコマンドで行えます。
 
     npm test
-        
-## ディレクトリ構造
-
-`source` 下に章ごとにディレクトリを切り、
-その下にコード(`src`)、テスト(`test`)、リソース(`img/`)などを配置して扱う。
-
-```
-├── source
-│   └── ch1
-│       ├── README.md
-│       ├── hello-world.md
-│       ├── introduction.md
-│       ├── src
-│       └── test
-```
 
 ## Contributing
 
