@@ -15,14 +15,14 @@ JavaScriptでは、「これは変数です」という宣言をするキーワ�
 
 <!-- 変数名はキャメルケース、日本語はそのまま使える ということを示したい -->
 
+例えば、次のコードでは、`bookTitle`という変数を宣言しています。
+この場合、`bookTitle`は値が代入されていないため、デフォルト値として`undefined`で初期化されます。
+
 ```js
 var bookTitle;
 ```
 
-例えば、上記のコードでは、`bookTitle`という変数を宣言しています。
-この場合、`bookTitle`は値が代入されていないため、デフォルト値として`undefined`で初期化されます。
-
-この`bookTitle`という変数には`=`演算子を使うことで値を代入することができます。
+この`bookTitle`という変数には、`=`演算子を使うことで値を代入することができます。
 
 ```js
 var bookTitle;
@@ -30,28 +30,28 @@ bookTitle = "JavaScriptの本";
 ```
 
 変数宣言と同時に初期値を代入することもできます。
+次の例では、`bookTitle`という変数を宣言し、`"JavaScriptの本"` という文字列を代入しています。
 
 ```js
 var bookTitle = "JavaScriptの本";
 ```
 
-ここでは、`bookTitle`という変数を宣言し、`"JavaScriptの本"` という文字列を代入しています。
-
-また、変数は `,` で区切ることにより、同時に複数宣言することもできます。
+また、変数宣言は `,` で区切ることにより、同時に複数の変数を定義することができます。
+次のコードでは、`bookTitle`と`bookCategory`の変数を順番に定義しています。
 
 ```js
-var bookTitle = "JavaScriptの本", bookCategory = "プログラミング";
+var bookTitle = "JavaScriptの本",
+    bookCategory = "プログラミング";
 ```
 
-上記のコードでは、`bookTitle`と`bookCategory`の変数を順番に定義しています。
-これは以下のように書いた場合と同じ意味になります。
+これは次のように書いた場合と同じ意味になります。
 
 ```js
 var bookTitle = "JavaScriptの本";
 var bookCategory = "プログラミング";
 ```
 
-先ほど書いたように変数の宣言に利用できるキーワードとして、`var`以外にも`let`と`const`があります。
+先ほど紹介したように変数の宣言に利用できるキーワードとして、`var`以外にも`let`と`const`があります。
 どちらもここで紹介した変数宣言については全く同じ扱い方ができます。
 
 次は`let`と`const`について見ていきます。
@@ -74,26 +74,27 @@ let bookTitle = "JavaScriptの本";
 最後に`const`ですが、名前から変わることがない値を宣言するキーワードに見えると思います。
 実際には、再代入できない変数を宣言するキーワードとなっています。
 
+先ほどの`var`や`let`では、変数宣言と代入を別々に行う事ができました。
+
 ```js
 let bookTitle;
-bookTitle = "JavaScriptの本";
+bookTitle = "JavaScriptの本"; // varやletは再代入できる
 ```
 
-先ほどの`var`や`let`では、変数宣言と代入を別々に行う事ができました。
+しかし、`const`での宣言と代入を別々に行うコードは`SyntaxError` つまり構文エラーとなります。
 
 ```js
 const bookTitle; // SyntaxError: missing = in const declaration
 bookTitle = "JavaScriptの本";
 ```
 
-上記のコードは`const`での宣言と代入を分けるコードは`SyntaxError` つまり構文エラーとなります。
 `const`は必ず宣言と代入を同時に行う必要があります。
 
 ```js
 const bookTitle = "JavaScriptの本";
 ```
 
-そして、一度宣言された変数に対して再代入できなくなります。
+そして、一度`const`で宣言された変数には再代入できなくなります。
 
 ```js
 const bookTitle = "JavaScriptの本";
