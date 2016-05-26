@@ -51,10 +51,31 @@ var bookTitle = "JavaScriptの本";
 var bookCategory = "プログラミング";
 ```
 
-先ほど紹介したように変数の宣言に利用できるキーワードとして、`var`以外にも`let`と`const`があります。
-どちらもここで紹介した変数宣言については全く同じ扱い方ができます。
+### 変数名に利用できる文字種
 
-次は`let`と`const`について見ていきます。
+JavaScriptでは変数名として使える文字列には次のルールがあります。
+
+- 先頭の1文字目は `$`、`_`、アルファベット、`\uXXXX` 形式のUnicodeエスケープシーケンス
+    - アルファベットは "A" から "Z"（大文字）と "a" から "z"（小文字)
+- 2文字目以降には、上記に加え数字、一部Unicode文字、U+200C、U+200D
+
+このルールの例外として、予約語として定義されているキーワードは変数名として書くことはできません。
+[JavaScript variable name validator][]でどのような変数が利用可能かをチェックすることができます。
+
+```js
+var $; // OK: $から開始できる
+var _title; // OK: _から開始できる
+var jquery; // OK: アルファベット
+var 2nd; // NG: 数字から始まっている
+var es6; // OK: 数字は先頭以外なら利用できる
+var var; // NG: `var`は予約語であるため利用できない
+var valid日本語; // OK: 先頭以外なら一部Unicode文字も利用可能
+```
+
+先ほど紹介したように変数の宣言に利用できるキーワードとして、`var`以外にも`let`と`const`があります。
+どちらもここで紹介した変数宣言の一種で、構文や利用できる変数名の範囲も同じです。
+
+それでは、次は`let`と`const`について見ていきます。
 
 ## [ES2015] `let`
 
@@ -123,3 +144,5 @@ JavaScriptにおける変数宣言として`var`、`let`、`const`があるこ�
 その事については 第M章 で紹介したいと思います。
 
 - [ ] 第M章は後で設定する必要がある
+
+[JavaScript variable name validator]: https://mothereff.in/js-variables  "JavaScript variable name validator"
