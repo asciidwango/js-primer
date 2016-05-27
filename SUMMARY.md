@@ -2,6 +2,8 @@
 - [第1章](source/ch1/README.md)
     - [JavaScriptとは](source/ch1/basic/README.md)
     - [コメント](source/ch1/comments/README.md)
+    - [変数と宣言](source/ch1/variables/README.md)
+    - [値の評価と表示](source/ch1/read-eval-print/README.md)
     - 基礎文法
         - 字句構造
         - 型、値、変数
