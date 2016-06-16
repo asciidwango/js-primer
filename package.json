@@ -17,7 +17,7 @@
     "textlint": "gulp textlint",
     "test:example": "gulp doc-test >/dev/null",
     "test:js": "mocha './source/**/*-test.js'",
-    "test": "npm-run-all -l --parallel test:js textlint eslint:* build"
+    "test": "npm-run-all -l --parallel test:* textlint eslint:* build"
   },
   "keywords": [
     "gitbook",
