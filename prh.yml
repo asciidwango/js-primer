@@ -73,3 +73,8 @@ rules:
     patterns:
       - ブロックコメント
       - マルチラインコメント
+
+# 文体
+  - expected: どのように
+    patterns:
+      - どうやって

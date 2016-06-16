@@ -15,7 +15,7 @@
     "eslint:js": "eslint src/**/*.js",
     "eslint:md": "eslint -c .md.eslintrc --ext .md source/**/*.md",
     "textlint": "gulp textlint",
-    "test:example": "find ./source -name '*-example.js' | xargs node",
+    "test:example": "gulp doc-test >/dev/null",
     "test:js": "mocha './source/**/*-test.js'",
     "test": "npm-run-all -l --parallel test:js textlint eslint:* build"
   },
@@ -38,6 +38,8 @@
     "mocha": "^2.2.5",
     "npm-run-all": "^2.1.1",
     "power-assert": "^1.3.1",
+    "power-doctest": "^1.1.0",
+    "strict-eval": "^1.0.1",
     "textlint": "^6.3.0",
     "textlint-rule-no-start-duplicated-conjunction": "^1.0.3",
     "textlint-rule-preset-japanese": "^1.3.0",
