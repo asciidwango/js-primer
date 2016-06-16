@@ -1,10 +1,12 @@
-# ECMAScript6 Book
+# ECMAScript6 Book [![Build Status](https://travis-ci.org/asciidwango/ES6book.svg?branch=master)](https://travis-ci.org/asciidwango/ES6book)
 
-この書籍ではJavaScriptについて扱う感じの内容になっています。
+この書籍はES2015時代のJavaScript入門書となる予定です。
 
 ## Installation
 
     npm install
+
+Node.js 6.0.0以上が必要です。
 
 ## Usage
 
