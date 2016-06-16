@@ -3,6 +3,7 @@ var gulp = require("gulp");
 var path = require("path");
 var textlint = require('gulp-textlint');
 var toDoc = require("power-doctest");
+const strictEval = require("strict-eval");
 const Transform = require("stream").Transform;
 const gulpPowerDoc = function () {
     return new Transform({
@@ -34,7 +35,7 @@ gulp.task('doc-test', function () {
             readableObjectMode: true,
             transform: function (file, encoding, next) {
                 try {
-                    eval(String(file.contents));
+                    strictEval(String(file.contents));
                 } catch (error) {
                     console.error(file.path);
                     console.error(error.stack);
