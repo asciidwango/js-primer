@@ -1,6 +1,9 @@
-# ECMAScript6 Book [![Build Status](https://travis-ci.org/asciidwango/ES6book.svg?branch=master)](https://travis-ci.org/asciidwango/ES6book)
+# JavaScriptの本 [![Build Status](https://travis-ci.org/asciidwango/ES6book.svg?branch=master)](https://travis-ci.org/asciidwango/ES6book)
 
-この書籍はES2015時代のJavaScript入門書となる予定です。
+この書籍はES2015以降をベースとしたJavaScript入門書となる予定です。
+
+プログラミングをやったことがあるが、今のJavaScriptがよくわからないという人が、
+今のJavaScriptアプリケーションを読み書きできるようなるもの。
 
 ## Installation
 
