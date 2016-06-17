@@ -1,5 +1,8 @@
 {
   "gitbook": ">=2.5.2",
+  "structure":{
+    "readme": "README.html.md"
+  },
   "plugins": [
     "include-codeblock",
     "japanese-support"
