@@ -1,4 +1,7 @@
 {
+  "filters": {
+    "comments": true
+  },
   "rules": {
     "preset-japanese": true,
     "no-start-duplicated-conjunction": {
