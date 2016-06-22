@@ -1,4 +1,21 @@
+sudo: false
 language: node_js
 node_js: stable
+# gh-pagesへのdeploy向け
+env:
+  global:
+    - GH_USER_EMAIL="azuciao@gmail.com"
+    - GH_USER_NAME="azu"
 script:
   - npm test
+after_success:
+  - |
+
+    $(npm bin)/set-up-ssh --key "$encrypted_55887fb399d9_key" \
+                          --iv "$encrypted_55887fb399d9_iv" \
+                          --path-encrypted-key ".travis/github_deploy_key.enc"
+    $(npm bin)/update-branch --commands "npm run build" \
+                             --commit-message "Deploy GitBook build [skip ci]" \
+                             --directory "_book" \
+                             --distribution-branch "gh-pages" \
+                             --source-branch "master"
