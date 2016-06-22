@@ -73,7 +73,10 @@ rules:
     patterns:
       - ブロックコメント
       - マルチラインコメント
-
+# typo
+  - expected: $1進数
+    patterns:
+      - /(\d+)真数/
 # 文体
   - expected: どのように
     patterns:
