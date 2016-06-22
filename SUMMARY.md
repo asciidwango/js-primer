@@ -4,6 +4,7 @@
     - [コメント](source/ch1/comments/README.md)
     - [変数と宣言](source/ch1/variables/README.md)
     - [値の評価と表示](source/ch1/read-eval-print/README.md)
+    - [データ型とリテラル](source/ch1/data-type/README.md)
     - 基礎文法
         - 字句構造
         - 型、値、変数
