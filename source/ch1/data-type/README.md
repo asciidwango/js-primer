@@ -19,7 +19,7 @@ JavaScriptでは次の6つのプリミティブなデータ型とオブジェク
 
 JavaScriptでは`typeof`演算子を使うことで、次のように値のデータ型を調べる事ができます。
 
-![import, typeof-example.js](src/typeof-example.js)
+[import, typeof-example.js](src/typeof-example.js)
 
 `typeof null; // => "object"`となるのは[The history of “typeof null”][歴史的経緯のある仕様バグ]ですが、
 他のプリミティブ値についてはそれぞれのデータ型を調べる事ができます。
