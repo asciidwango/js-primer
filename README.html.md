@@ -16,7 +16,7 @@
             プログラミングをやったことがあるが、今のJavaScriptがよくわからないという人が、
             今のJavaScriptアプリケーションを読み書きできるようなるもの。
         </p>
-        <form id="js_mail_form" novalidate class="mail-form">
+        <form action="//github.us13.list-manage.com/subscribe/post?u=fc41e11a2b9dc6f05350e0de0&amp;id=7ab1594ae8" method="post" id="js_mail_form" novalidate class="mail-form" target="_blank">
             <h3 class="mg-sm">
                 <span class="fa fa-star"></span>更新情報を購読
             </h3>
@@ -28,7 +28,7 @@
                 <label>
                     メールアドレス
                 </label>
-                <input id="email" class="form-control" type="email" required />
+                <input id="email" class="form-control" name="EMAIL" type="email" required />
             </div>
             <button class="bloc-button btn btn-d btn-lg btn-block" type="submit">
                 登録
