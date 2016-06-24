@@ -3,7 +3,7 @@
 <!-- Main container -->
 <div class="page-container">
 <div class="row main" id="js-main">
-    <a href="https://github.com/asciidwango/ES6book"><img style="position: absolute; top: 0; right: 0; border: 0; z-index:100;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+    <a href="https://github.com/asciidwango/js-primer"><img style="position: absolute; top: 0; right: 0; border: 0; z-index:100;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
     <div class="col-sm-8">
         <h2 class="mg-lg">
             JavaScriptの本
