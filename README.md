@@ -13,7 +13,11 @@
 
 - [[meta] 全体的な設計/ユースケース一覧 #6](https://github.com/asciidwango/js-primer/issues/6 "[meta] 全体的な設計/ユースケース一覧 #6")
 
-更新を追いたい方はリポジトリをWatchしておくか、次のフォームからメールアドレスを登録しておくと更新情報を通知します。
+リポジトリの更新を追いたい方はリポジトリをWatchしてください。
+
+[![Watch button](./source/landing/repo-actions-watch.png)](https://github.com/asciidwango/js-primer/watchers)
+
+また、下記フォームからメールアドレスを登録しておくと更新情報を受け取れます。
 
 - [更新通知を受け取るメールアドレスを登録するフォーム](http://eepurl.com/b674IX)
 
