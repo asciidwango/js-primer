@@ -1,9 +1,9 @@
 {
-  "name": "es6book",
+  "name": "js-primer",
   "private": true,
   "license": "MIT",
   "version": "1.0.0",
-  "description": "ES6 book",
+  "description": "JavaScriptの入門本",
   "main": "index.js",
   "directories": {
     "test": "test"
