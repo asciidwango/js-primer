@@ -298,28 +298,32 @@ numberRegExp.test(123); // => true
 - 真偽値、数値、文字列についてリテラル表現がある
 - オブジェクトではオブジェクトと配列リテラルがある
 
-## [コラム]: undefinedはリテラルではない?
+## [コラム] undefinedはリテラルではない
 
 プリミティブ型として紹介した`undefined`はリテラルではないのかという疑問があるかもしれません。
 `undefined`はただのグローバル変数で、`undefined`という値を持っているだけとなっています。
+
+そのため、`undefined`という名前のローカル変数を定義することができます。
 
 ```js
 var undefined; // undefinedというローカル変数を定義できる
 ```
 
-逆にリテラルである`null`は変数ではなくリテラルであるため再定義することができません。
+一方、リテラルである`null`は変数ではなくリテラルであるため再定義することができません。
 
 ```js
-var null; // "SyntaxError: missing variable name"
+var null; // => SyntaxError
 ```
 
-細かく見ていくと、まず先にnullリテラルが評価されるため、`var null値`のような形になります。
-そうした場合、`var "文字列"`という同じく、`var`の後ろに変数名が存在していないと解釈されます。
+[変数と宣言](../variables/README.md)で解説したように、
+`let`や`const`で定義した変数は再定義することができません。
+一方、`var`やグローバル変数は同じ変数名で再定義することができます。
 
-一方、`undefined`はただのグローバル変数であるため、undefinedという名前のローカル変数を定義することができます。
+また、変数名としてリテラルは利用できない予約語として定義されているため、このような違いが生じています。
 
 ## 参考
 
+- [11.6.2 Reserved Words](http://www.ecma-international.org/ecma-262/7.0/#prod-ReservedWord "Reserved Words")
 - [11.8.3.1Static Semantics: MV](http://www.ecma-international.org/ecma-262/7.0/#sec-static-semantics-mv "11.8.3.1Static Semantics: MV")
 
 [^1]: `0o` は数字のゼロと小文字アルファベットの`o`
