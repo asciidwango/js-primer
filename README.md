@@ -1,4 +1,4 @@
-# JavaScriptの本 [![Build Status](https://travis-ci.org/asciidwango/ES6book.svg?branch=master)](https://travis-ci.org/asciidwango/ES6book)
+# JavaScriptの本 [![Build Status](https://travis-ci.org/asciidwango/js-primer.svg?branch=master)](https://travis-ci.org/asciidwango/js-primer)
 
 この書籍はES2015以降をベースとしたJavaScript入門書となる予定です。
 
