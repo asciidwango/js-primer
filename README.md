@@ -5,6 +5,18 @@
 プログラミングをやったことがあるが、今のJavaScriptがよくわからないという人が、
 今のJavaScriptアプリケーションを読み書きできるようなるもの。
 
+## Status :warning:
+
+この書籍は開発中の内容となっています。
+
+どのような構成になるか興味がある人は次のIssueを見てみると良いです。
+
+- [[meta] 全体的な設計/ユースケース一覧 #6](https://github.com/asciidwango/js-primer/issues/6 "[meta] 全体的な設計/ユースケース一覧 #6")
+
+更新を追いたい方はリポジトリをWatchしておくか、次のフォームからメールアドレスを登録しておくと更新情報を通知します。
+
+- [更新通知を受け取るメールアドレスを登録するフォーム](http://eepurl.com/b674IX)
+
 ## Installation
 
     npm install
