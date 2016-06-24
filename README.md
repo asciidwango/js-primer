@@ -15,7 +15,7 @@
 
 リポジトリの更新を追いたい方はリポジトリをWatchしてください。
 
-[![Watch button](./source/landing/repo-actions-watch.png)](https://github.com/asciidwango/js-primer/watchers)
+[![Watch button](./source/landing/img/repo-actions-watch.png)](https://github.com/asciidwango/js-primer/watchers)
 
 また、下記フォームからメールアドレスを登録しておくと更新情報を受け取れます。
 
