@@ -1,11 +1,13 @@
-# JavaScriptの本 [![Build Status](https://travis-ci.org/asciidwango/js-primer.svg?branch=master)](https://travis-ci.org/asciidwango/js-primer)
+# [WIP] JavaScriptの入門書 [![Build Status](https://travis-ci.org/asciidwango/js-primer.svg?branch=master)](https://travis-ci.org/asciidwango/js-primer)
 
 この書籍はES2015以降をベースとしたJavaScript入門書となる予定です。
 
 プログラミングをやったことがあるが、今のJavaScriptがよくわからないという人が、
-今のJavaScriptアプリケーションを読み書きできるようなるもの。
+今のJavaScriptアプリケーションを読み書きできるようになるもの。
 
-## Status :warning:
+ハッシュタグは [#jsprimer](https://twitter.com/intent/tweet?hashtags=jsprimer) です
+
+## :warning: Status :warning:
 
 この書籍は開発中の内容となっています。
 
