@@ -13,6 +13,10 @@
 
 - [[meta] 全体的な設計/ユースケース一覧 #6](https://github.com/asciidwango/js-primer/issues/6 "[meta] 全体的な設計/ユースケース一覧 #6")
 
+どのような経緯で動いているかはミーティングノートを参照してください。
+
+- [Meeting Notes](https://github.com/asciidwango/js-primer/tree/master/meetings "Meeting Notes")
+
 リポジトリの更新を追いたい方はリポジトリをWatchしてください。
 
 [![Watch button](./source/landing/img/repo-actions-watch.png)](https://github.com/asciidwango/js-primer/watchers)
