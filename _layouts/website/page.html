@@ -1,0 +1,11 @@
+{% extends template.self %}
+
+{% block head %}
+{{ super() }}
+<style>
+    .summary li.chapter > span {
+        cursor: not-allowed;
+        opacity: .3;
+    }
+</style>
+{% endblock %}
