@@ -1,6 +1,7 @@
 version: 1
+imports:
+  - test/techbooster.yml
 rules:
-
 # 大文字小文字全角半角の統一
   - expected: Cookie
 # 以下と等価 正規表現には強制でgフラグが付く
@@ -80,6 +81,15 @@ rules:
   - expected: 同じ変数名を
     patterns:
       - /同じ変数を/
+  - expected: 機会が$1
+    patterns:
+      - /機械が(多い)/
+      - /機械が(ある)/
+      - /機械が(あり)/
+    spec:
+      - from: 機械がある
+        to:   機会がある
+    prh: 機械という単語が出てきたら直します
 # 文体
   - expected: どのように
     patterns:
