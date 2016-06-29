@@ -1,0 +1,231 @@
+# techbooster editor lint!!
+# https://github.com/vvakame/prh/blob/master/misc/techbooster.yml
+version: 1
+rules:
+  - expected: TechBooster
+    pattern: てっくぶーすたー
+    prh: 警告メッセージのカスタマイズができるよ！
+  # ケアレスミス防止用
+  - expected: "@<$1>{$2}" # 先頭 @ はyaml的にアレなのでダブルクォートで囲む
+    pattern:  /@([^{<>]+){([^}]+)}/
+    specs:
+      - from: "@list{foo}"
+        to:   "@<list>{foo}"
+      - from: "@<list>{foo}"
+        to:   "@<list>{foo}"
+    prh: Re:VIEW記法の書き方を間違えていませんか？
+  # 記号
+  # 半角括弧を全角括弧に
+  - expected: （$1）
+    pattern:  /\((.+?)\)/
+    specs:
+      - from: そうですね(笑)
+        to:   そうですね（笑）
+      - from: (@<fn>{test})
+        to:   （@<fn>{test}）
+      - from: "(ほげ)ほげ)"
+        to:   "（ほげ）ほげ)"
+    prh: 半角カッコの代わりに全角カッコを使うこと。文字のバランスが崩れるためです
+  # TODO 英単語の前後の空白を殺す
+
+  # 開き
+  - expected: いえ
+    pattern:  言え
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+  - expected: いう
+    pattern:  言う
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+  - expected: さまざま
+    pattern:  様々
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+  - expected: よい
+    pattern:  /良い(?!例)/
+    prh: 良し悪しを評価する表現は"良い"、しなくていい、など評価でない表現は"よい"を使います
+    specs:
+      - from: 良い
+        to:   よい
+      - from: 良い例
+        to:   良い例
+  - expected: さらに
+    pattern:  /(変)?更に/
+    regexpMustEmpty: $1
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+    specs:
+      - from: 変更に
+        to:   変更に
+  - expected: もつ
+    pattern:  持つ
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+  - expected: とおり
+    pattern:  通り
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります。"どおり"のケースもありえます
+  - expected: ひととおり
+    pattern:  /(一|ひと)通り/
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります。
+  - expected: すでに
+    pattern:  既に
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+  - expected: すべて
+    pattern:  全て
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+  - expected: たとえば
+    pattern:  例えば
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+  - expected: 他の
+    pattern:  ほかの
+    prh: ひらがなで書かず、漢字で書くと読みやすくなります
+  - expected: 分かる
+    pattern:  わかる
+    prh: ひらがなで書かず、漢字で書くと読みやすくなります
+  - expected: $1中
+    pattern:  /(その)なか/
+    prh: ひらがなで書かず、漢字で書くと読みやすくなります
+  - expected: きれい
+    pattern:  綺麗
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+  - expected: こと
+    pattern:  /(記|大|仕)?事(?!情|件|前|後|例|実|体|態|項)/
+    regexpMustEmpty: $1
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+    specs:
+      - from: ある事
+        to:   あること
+      - from: 記事
+        to:   記事
+      - from: 事件
+        to:   事件
+  - expected: $1とき
+    pattern:  /(の)時(?!点|代|々|間)/
+    specs:
+      - from: その時
+        to:   そのとき
+      - from: その時点
+        to:   その時点
+      - from: その時代
+        to:   その時代
+      - from: それまでの時間
+        to:   それまでの時間
+      - from: 同時
+        to:   同時
+      - from: 実行時
+        to:   実行時
+      - from: 利用時
+        to:   利用時
+      - from: 開発時
+        to:   開発時
+      - from: 執筆時
+        to:   執筆時
+      - from: 時点
+        to:   時点
+      - from: 時代
+        to:   時代
+      - from: 時間
+        to:   時間
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+  - expected: でき$1
+    pattern:  /出来(る|て|た|ま|上が)/
+    specs:
+      - from: 出来上がった
+        to:   でき上がった
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+  - expected: したがって
+    pattern:  従って
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+  - expected: $1ように
+    pattern:  /(の)様に/
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+  - expected: 次$1
+    pattern:  /(?:以下|下記)(の|に)/
+    specs:
+      - from: 以下の
+        to:   次の
+      - from: 以下に
+        to:   次に
+      - from: 次回
+        to:   次回
+      - from: 下記の
+        to:   次の
+    prh: 書籍の場合は、以下ではなく次を利用します（常に下にあるとは限らないため）
+  - expected: かかわらず
+    pattern:  /関わ?らず/
+    specs:
+      - from: 関わらず
+        to:   かかわらず
+      - from: 関らず
+        to:   かかわらず
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+  - expected: なる
+    pattern:  成る
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+  - expected: お勧め
+    pattern:  おすすめ
+    prh: ひらがなで書かず、漢字で書くと読みやすくなります
+  - expected: $1あとで
+    pattern:  /(して|した|、)後で/
+    specs:
+      - from: して後で
+        to:   してあとで
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+  - expected: あらかじめ
+    pattern:  予め
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+  - expected: なぜ
+    pattern:  何故
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+  - expected: ゆえに
+    pattern:  故に
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+  - expected: うまく
+    pattern:  巧く
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+  - expected: もっぱら
+    pattern:  専ら
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+  - expected: はやる
+    pattern:  流行る
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+  # 通常は、ひとつ。数詞は１つ、漢数字は数えられる固有名詞を指す場合に利用
+  - expected: ひとつ
+    pattern:  一つ
+    prh: 通常は、ひとつ。数詞は１つ、漢数字は数えられる固有名詞を指す場合に利用します
+  - expected: ふたつ
+    pattern:  二つ
+    prh: 通常は、ふたつ。数詞は１つ、漢数字は数えられる固有名詞を指す場合に利用
+  - expected: もっとも
+    pattern:  最も
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+  - expected: ちょうど
+    pattern:  /(丁度|調度)/
+    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
+  # footnoteの末尾は読点を使わない
+  # タイトル見出しの末尾は読点を使わない
+  # 表、コード見出しの末尾は読点を使わない
+  # 箇条書きの末尾は読点を使わない
+  # 箇条書きの末尾は体言止め、または動詞でとめる、が統一されているか
+  # footnoteの参照は名詞、または末尾にかかっているか（原則、動詞にかからない）
+  # 表、ソースコードへの参照が本体より前に配置されているか。
+  # 文末の参照は（@<img>{id}）。となっているか。@<img>{id}。などはNG
+  # 。（@<list>{manifest_gradle}） などもNG
+  # だいたい、ほとんど、など：曖昧語への注意喚起Lintしたい
+  # listnum記法などあんまり積極的に使いたくない記法を喚起したい
+
+  # 本文中の半角スペースは排除したい
+
+  # 横文字
+  - expected: API Level
+    pattern:  API level
+    prh: APIドキュメントでも揺れてますが、Levelで統一してます
+  - expected: Web
+  - expected: jQuery
+  - expected: Re:VIEW
+    pattern:  /ReVIEW/
+    specs:
+      - from: ReVIEW
+        to:   Re:VIEW
+      - from: review
+        to:   review
+  - expected: ライブラリ
+    pattern:  ラブライブ # C87でやらかした人がいましたね？
+    prh: C87でざきさんがやらかした思い出
+  - expected: superset
+    pattern: super set
