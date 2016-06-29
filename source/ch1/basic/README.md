@@ -1,11 +1,11 @@
 # JavaScriptとは
 
-JavaScriptはウェブブラウザ、Node.jsを始め、今はIoT(Internet of Things)デバイスなど幅広い環境で動作する言語となっています。
+JavaScriptはウェブブラウザ、Node.jsを始め、今はIoT（Internet of Things）デバイスなど幅広い環境で動作する言語となっています。
 
 <!-- TODO(azu): 上手く並び替えたい。最初に否定から入るのは良いのかどうか? -->
 
-しかし、全ての環境で全く同じコードが動くわけではありません。
-その理由の一つとして、JavaScriptという仕様があるわけではなく、JavaScriptという実装があるだけだからです。
+しかし、すべての環境で全く同じコードが動くわけではありません。
+その理由のひとつとして、JavaScriptという仕様があるわけではなく、JavaScriptという実装があるだけだからです。
 
 JavaScriptという言語は、[Ecma International][]によって標準化された[ECMAScript][]という仕様の実装になります。
 そのため、JavaScriptが使える環境でも利用できる機能が異なります。

@@ -6,7 +6,7 @@ JavaScriptには2種類のコメントがあります。
 
 ## 一行コメント
 
-一行コメントは名前の通り、一行づつコメントを書く際に利用します。
+一行コメントは名前のとおり、一行づつコメントを書く際に利用します。
 `//` 以降がコメントとして扱われるため、プログラムとして評価されません。
 
 ```js
@@ -39,7 +39,7 @@ ES2015から後方互換性のための仕様として**HTML-likeコメント**�
 
 基本的に既存のウェブサイトが壊れるような変更をECMAScript仕様には入れることができないためです。
 
-HTML-likeコメントは名前の通り、HTMLのコメントと同じ表記ですが互換性のため仕様となっています。
+HTML-likeコメントは名前のとおり、HTMLのコメントと同じ表記ですが互換性のため仕様となっています。
 
 [import, html-like-comments-example.js](src/html-like-comments-example.js)
 
@@ -59,7 +59,7 @@ HTML-likeコメントは名前の通り、HTMLのコメントと同じ表記で�
 
 [ES6 In Depth: Arrow functions][歴史的経緯]は別として、ECMAScriptではこのように後方互換性が慎重に取り扱われます。
 ECMAScriptは一度入った仕様が使えなくなることは殆どないため、基本文法で覚えたことが使えなくなることはありません。
-一方、新しく入った仕様でより良い機能が増え、それを学び続ける事には変わりありません。
+一方、新しく入った仕様でよりよい機能が増え、それを学び続けることには変わりありません。
 
 [Annex B (normative)]: http://www.ecma-international.org/ecma-262/6.0/#sec-additional-ecmascript-features-for-web-browsers
 [ES6 In Depth: Arrow functions]: https://dev.mozilla.jp/2016/03/es6-in-depth-arrow-functions/ "ES6 In Depth: Arrow functions | Mozilla Developer Street (modest)"
