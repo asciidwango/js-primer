@@ -46,7 +46,7 @@ GitBookのbuildをします
 GitBookのbuildかつWatchをします。
 プレビューをする場合は、ローカルサーバが立つので http://localhost:4000/ へアクセス。
 
-    npm run watch
+    npm run start
     # http://localhost:4000/ へアクセス
 
 **Test**
