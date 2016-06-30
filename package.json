@@ -17,7 +17,7 @@
     "textlint": "gulp textlint",
     "textlint:fix": "textlint --fix source/",
     "test:example": "gulp test:example test:doc-code",
-    "test:js": "mocha './source/**/*-test.js'",
+    "test:js": "mocha './source/*/test/*-test.js'",
     "test": "npm-run-all -l --parallel test:* textlint eslint:* build"
   },
   "keywords": [
