@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="./source/landing/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css" href="./source/landing/css/style.css"/>
 <!-- Main container -->
 <div class="page-container">
