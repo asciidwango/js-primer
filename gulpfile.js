@@ -32,7 +32,7 @@ const gulpPowerDoc = function () {
  * AssertionError(doctestにおける失敗)以外は成功したことにして無視する
  */
 gulp.task('test:doc-code', function () {
-    return gulp.src('./source/**/**.md')
+    return gulp.src(['./source/**/**.md', "!node_modules", '!source/**/node_modules{,/**}'])
         .on('error', function (error) {
             console.error(error);
         })
@@ -74,7 +74,7 @@ gulp.task('test:doc-code', function () {
  * が一致するかのdoctestを行う
  */
 gulp.task('test:example', function () {
-    return gulp.src('./source/**/*-example.js')
+    return gulp.src(['./source/**/*-example.js', "!node_modules", '!source/**/node_modules{,/**}'])
         .on('error', function (error) {
             console.error(error);
         })
@@ -97,7 +97,7 @@ gulp.task('test:example', function () {
 });
 
 gulp.task('textlint', function () {
-    return gulp.src('./source/**/*.md')
+    return gulp.src(['./source/**/**.md', "!node_modules", '!source/**/node_modules{,/**}'])
         .on('error', function (error) {
             console.error(error);
         })
