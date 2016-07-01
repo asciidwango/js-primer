@@ -4,6 +4,7 @@
   },
   "rules": {
     "preset-japanese": true,
+    "ja-no-mixed-period": true,
     "no-start-duplicated-conjunction": {
       "interval": 2
     },
