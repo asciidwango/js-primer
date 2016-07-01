@@ -7,6 +7,7 @@
     - [変数と宣言](source/ch1/variables/README.md)
     - [値の評価と表示](source/ch1/read-eval-print/README.md)
     - [データ型とリテラル](source/ch1/data-type/README.md)
+    - [条件分岐](source/ch1/condition/README.md)
     - 式と演算子
     - 文
     - String
