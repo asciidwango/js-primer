@@ -15,7 +15,7 @@
     "eslint:js": "eslint src/**/*.js",
     "eslint:md": "eslint -c .md.eslintrc --ext .md source/**/*.md",
     "textlint": "gulp textlint",
-    "textlint:fix": "textlint --fix source/",
+    "textlint:fix": "summary-to-path | xargs textlint --fix",
     "test:example": "gulp test:example test:doc-code",
     "test:js": "mocha './source/*/test/*-test.js'",
     "test": "npm-run-all -l --parallel test:* textlint eslint:* build"
@@ -35,6 +35,7 @@
     "gitbook-cli": "^2.1.2",
     "gitbook-plugin-include-codeblock": "^1.4.0",
     "gitbook-plugin-japanese-support": "0.0.1",
+    "gitbook-summary-to-path": "^1.0.1",
     "gulp": "^3.9.0",
     "gulp-textlint": "^2.0.1",
     "gulp-util": "^3.0.7",
