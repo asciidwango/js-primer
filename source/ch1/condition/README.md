@@ -25,9 +25,9 @@ if文の `{` と `}` で囲まれたブロック内が処理されます。
 複数の条件分岐を書く場合は、if文に続けてelse if文を使うことでできます。
 たとえば、次の3つの条件分岐するプログラムを考えます。
 
-- "ES5" ならば "ECMAScript 5" と出力
-- "ES6" ならば "ECMAScript 2015" と出力
-- "ES7" ならば "ECMAScript 2016" と出力
+- `version` が "ES5" ならば "ECMAScript 5" と出力
+- `version` が "ES6" ならば "ECMAScript 2015" と出力
+- `version` が "ES7" ならば "ECMAScript 2016" と出力
 
 次のコードでは、if文とelse if文を使うことで3つの条件を書いています。
 
