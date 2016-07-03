@@ -9,7 +9,7 @@ export default class EventEmitter {
     }
 
     on(type, handler) {
-        if (typeof this._handlers[type] === 'undefined') {
+        if (typeof this._handlers[type] === "undefined") {
             this._handlers[type] = [];
         }
 
