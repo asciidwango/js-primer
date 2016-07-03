@@ -5,13 +5,13 @@
 プログラミングをやったことがあるが、今のJavaScriptがよくわからないという人が、
 今のJavaScriptアプリケーションを読み書きできるようになるもの。
 
-ハッシュタグは [#jsprimer](https://twitter.com/intent/tweet?hashtags=jsprimer) です
+ハッシュタグは [#jsprimer](https://twitter.com/intent/tweet?hashtags=jsprimer) です。
 
 ## :warning: Status :warning:
 
 この書籍は開発中の内容となっています。
 
-どのような構成になるか興味がある人は次のIssueを見てみると良いです。
+どのような構成になるか興味がある人は次のIssueを見てみるとよいです。
 
 - [[meta] 全体的な設計/ユースケース一覧 #6](https://github.com/asciidwango/js-primer/issues/6 "[meta] 全体的な設計/ユースケース一覧 #6")
 
@@ -57,7 +57,7 @@ GitBookのbuildかつWatchをします。
 - [ESLint](http://eslint.org/ "ESLint")によるMarkdown中のインラインコードのLint
 - [Mocha](http://mochajs.org/ "Mocha")による`-test.js`ファイルのテスト実行
 
-は以下のコマンドで行えます。
+は次のコマンドで行えます。
 
     npm test
 

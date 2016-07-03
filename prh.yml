@@ -74,6 +74,19 @@ rules:
     patterns:
       - ブロックコメント
       - マルチラインコメント
+  - expected: うるう年
+    patterns: 閏年
+  - expected: 実行する文
+    patterns:
+      - 処理したい文
+      - 処理する文
+  - expected: case節
+    patterns:
+      - case文
+    prh: "caseは節かブロックです http://www.ecma-international.org/ecma-262/7.0/#prod-CaseClauses"
+  - expected: break文
+    patterns:
+      - break式
 # typo
   - expected: $1進数
     patterns:
@@ -94,3 +107,6 @@ rules:
   - expected: どのように
     patterns:
       - どうやって
+# 漢字開き
+  - expected: もとづ$1
+    patterns: /基づ(く|き)/
