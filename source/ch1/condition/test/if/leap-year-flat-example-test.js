@@ -2,7 +2,7 @@ const assert = require("assert");
 const strictEval = require("strict-eval");
 const fs = require("fs");
 const path = require("path");
-const Code = fs.readFileSync(path.join(__dirname, "../../src/if/leap-year-flat.js"), "utf-8");
+const Code = fs.readFileSync(path.join(__dirname, "../../src/if/leap-year-flat-example.js"), "utf-8");
 const testLeapYear = (year, expectedMessage) => {
     const MockDate = class MockDate {
         getFullYear() {

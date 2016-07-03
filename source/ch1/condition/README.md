@@ -32,7 +32,7 @@ if ( 条件式 ) {
 次のコードでは `year` が `2015` よりも大きな値である場合、
 if文の `{` と `}` で囲まれたブロック内が処理されます。
 
-[import, if.js](src/if/if.js)
+[import, if-example.js](src/if/if-example.js)
 
 ブロックは省略が可能ですが、コードの読みにくさに繋がるため常につけることを推奨します。
 
@@ -47,14 +47,14 @@ if文の `{` と `}` で囲まれたブロック内が処理されます。
 
 次のコードでは、if文とelse if文を使うことで3つの条件を書いています。
 
-[import, else-if.js](src/if/else-if.js)
+[import, else-if-example.js](src/if/else-if-example.js)
 
 ### else文
 
 if文とelse if文では、条件に一致した場合の処理をブロック内に書いていました。
 一方、条件に一致しなかった場合の処理は、else文を使うことでできます。
 
-[import, else.js](src/if/else.js)
+[import, else-example.js](src/if/else-example.js)
 
 #### ネストしたif文
 
@@ -74,14 +74,14 @@ if、else if、else文は`実行する文`としてさらにif文を書きネス
 西暦で示した年は `new Date().getFullYear();` で取得できるため、
 この条件をif文で表現すると次のように書くことができます。
 
-[import, leap-year-nest.js](src/if/leap-year-nest.js)
+[import, leap-year-nest-example.js](src/if/leap-year-nest-example.js)
 
 条件を上から順に書き下したため、ネストが深い文となってしまっています。
 一般にネストは少ない方が、読みやすいコードとなります。
 条件を少し読み解くと、400で割り切れる年は無条件にうるう年であることがわかります。
 そのため、次のようにうるう年の判定はif文をネストしなくて書くことができます。
 
-[import, leap-year-flat.js](src/if/leap-year-flat.js)
+[import, leap-year-flat-example.js](src/if/leap-year-flat-example.js)
 
 ## switch文
 
@@ -172,7 +172,7 @@ switch (式) {
 switch文のcase節では基本的に`break;`を使いswitch文を抜けるようにします。
 この`break;`は省略が可能ですが、省略した場合、後ろに続くcase節が条件に関係なく実行されます。
 
-[import, miss-case.js](./src/switch/miss-case.js)
+[import, miss-case-example.js](./src/switch/miss-case-example.js)
 
 このように`break;`を忘れてしまうと意図しない挙動となります。
 そのため、case節とbreak式が多用されているswitch文が出てきた場合、
@@ -180,9 +180,11 @@ switch文のcase節では基本的に`break;`を使いswitch文を抜けるよ�
 
 一般にswitch文はif文の代用として使うのではなく、関数と組み合わせて値を返すパターンとして使うことが多いです。
 
-[import, switch-return.js](./src/switch/switch-return.js)
+[import, switch-return-example.js](./src/switch/switch-return-example.js)
 
-関数については、 TODO(azu): n章 で詳しく解説します。
+関数については、n章 で詳しく解説します。
+
+- [ ] 関数の章を書いたらn章を変更する。
 
 ## 参考
 
