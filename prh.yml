@@ -84,6 +84,9 @@ rules:
     patterns:
       - case文
     prh: "caseは節かブロックです http://www.ecma-international.org/ecma-262/7.0/#prod-CaseClauses"
+  - expected: break文
+    patterns:
+      - break式
 # typo
   - expected: $1進数
     patterns:

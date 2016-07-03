@@ -107,7 +107,7 @@ switch (式) {
 ```
 
 switch文はif文と同様に`式`の評価結果にもとづく条件分岐を扱います。
-またbreak式は、switch文から抜けswitch文の次の文から実行するためのものです。
+またbreak文は、switch文から抜けswitch文の次の文から実行するためのものです。
 次の例では`version`の評価結果は`"ES6"`となるため、`case "ES6":`に続く文が実行されます。
 
 [import, switch-example.js](./src/switch/switch-example.js)
@@ -154,7 +154,7 @@ switch (式) {
 }
 ```
 
-### break式
+### break文
 
 switch文のcase節では基本的に`break;`を使いswitch文を抜けるようにします。
 この`break;`は省略が可能ですが、省略した場合、後ろに続くcase節が条件に関係なく実行されます。
@@ -162,7 +162,7 @@ switch文のcase節では基本的に`break;`を使いswitch文を抜けるよ�
 [import, miss-case-example.js](./src/switch/miss-case-example.js)
 
 このように`break;`を忘れてしまうと意図しない挙動となります。
-そのため、case節とbreak式が多用されているswitch文が出てきた場合、
+そのため、case節とbreak文が多用されているswitch文が出てきた場合、
 別の方法で書かないかを考えるべきサインとなります。
 
 一般にswitch文はif文の代用として使うのではなく、関数と組み合わせて値を返すパターンとして使うことが多いです。
