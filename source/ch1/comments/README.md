@@ -28,7 +28,7 @@ JavaScriptには2種類のコメントがあります。
 
 複数行コメントをネストすることはできないため、次のようなケースは`SyntaxError`となります。
 
-```js
+```
 /* ネストされた /* 複数行コメント */ SyntaxError */
 ```
 
@@ -49,7 +49,7 @@ JavaScriptをサポートしていないブラウザでは、`<script>`タグを
 それを避けるために`<script>`の中をコメントアウトし、表示はされないが実行されるという回避策が取られていました。
 今は`<script>`タグをサポートしていないブラウザはないため、この回避策は不要です。
 
-```js
+```html
 <script language="javascript">
 <!--
   document.bgColor = "brown";

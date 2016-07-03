@@ -1,0 +1,13 @@
+{
+  "rules": {
+    "no-undef": "off",
+    "no-unused-vars": "off",
+    "no-var": "off"
+  },
+  "plugins": [
+    "markdown"
+  ],
+  "extends": [
+    "./style.eslintconfig.js"
+  ]
+}

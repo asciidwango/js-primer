@@ -3,6 +3,9 @@
     "comments": true
   },
   "rules": {
+    "eslint": {
+      "configFile": "./config/.md.eslintrc.json"
+    },
     "preset-japanese": true,
     "ja-no-mixed-period": true,
     "no-start-duplicated-conjunction": {
