@@ -104,3 +104,6 @@ rules:
   - expected: どのように
     patterns:
       - どうやって
+# 漢字開き
+  - expected: もとづ$1
+    patterns: /基づ(く|き)/
