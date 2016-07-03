@@ -4,7 +4,7 @@ author: azu
 
 # 条件分岐
 
-この章ではif文などの条件分岐について学んでいきます。
+この章ではif文やswitch文を使った条件分岐について学んでいきます。
 
 ## if文
 
@@ -17,6 +17,10 @@ if文は次のように構文が基本形となり、`条件式`の評価結果�
 if ( 条件式 )
     実行する文;
 ```
+
+どのような式が`true`として評価されるかは、[Booleanオブジェクト][]で紹介します。
+
+- [ ] TODO: Booleanオブジェクトのリンク先がない
 
 `実行する文`が複数行である場合は、`{` と `}`で囲みます。
 この`{` と `}`で囲んだ範囲を**ブロック**と呼びます。
@@ -176,3 +180,5 @@ switch文のcase節では基本的に`break;`を使いswitch文を抜けるよ�
 - [どうしてこんなキーワードがあるの？ - あどけない話](http://d.hatena.ne.jp/kazu-yamamoto/20080904/1220495854)
 - [switch - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/switch)
 - [制御フローとエラー処理 - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Control_flow_and_error_handling)
+
+[Booleanオブジェクト]: ../Boolean/README.md "TODO: リンクが未完成"
