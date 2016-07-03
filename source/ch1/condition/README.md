@@ -106,24 +106,7 @@ switch文はif文と同様に`式`の評価結果に基づく条件分岐を扱�
 またbreak式は、switch文から抜けswitch文の次の文から実行するためのものです。
 次の例では`version`の評価結果は`"ES6"`となるため、`case "ES6":`に続く文が実行されます。
 
-```js
-var version = "ES6";
-switch (version) {
-    case "ES5":
-        console.log("ECMAScript 5");
-        break;
-    case "ES6":
-        console.log("ECMAScript 2015");
-        break;
-    case "ES7":
-        console.log("ECMAScript 2016");
-        break;
-    default:
-        console.log("しらないバージョンです");
-        break;
-}
-// "ECMAScript 2015" と出力される
-```
+[import, switch-example.js](./src/switch/switch-example.js)
 
 これはif文で次のように書いた場合と同じ結果になります。
 
