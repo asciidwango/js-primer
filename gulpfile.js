@@ -99,7 +99,7 @@ gulp.task('test:example', function () {
 /**
  * *-invalid.js が実行 または パースエラーとなることをテストする
  **/
-gulp.task('test:example', function () {
+gulp.task('test:invalid', function () {
     return gulp.src(['./source/**/*-invalid.js', '!source/**/node_modules{,/**}'])
         .on('error', function (error) {
             console.error(error);
