@@ -44,26 +44,31 @@ GitBookのbuildをします
 **Watch**
 
 GitBookのbuildかつWatchをします。
-プレビューをする場合は、ローカルサーバが立つので http://localhost:4000/ へアクセス。
+プレビューをする場合は、ローカルサーバを利用してください。
+
+次のコマンドを実行後、 http://localhost:4000/ へアクセスすることでプレビューを見られます。
 
     npm run start
-    # http://localhost:4000/ へアクセス
+    # open http://localhost:4000/
 
-**Test**
 
-- GitBookのビルドテスト
-- [textlint](http://textlint.github.io/ "textlint")による文章のLint
-- [ESLint](http://eslint.org/ "ESLint")によるコードのLint
-- [ESLint](http://eslint.org/ "ESLint")によるMarkdown中のインラインコードのLint
-- [Mocha](http://mochajs.org/ "Mocha")による`-test.js`ファイルのテスト実行
+## Test
 
-は次のコマンドで行えます。
+このプロジェクトでは文章やコードに対してテストを実行しています。
+文章中のインラインコードのテスト、特定のファイル名にもとづくテスト、コメントを使ったDocTestなどが含まれます。
 
-    npm test
+以下のコマンドを実行すると全てのテストが実行されます。
+
+    npm i -d && npm test
+
+
+詳しくは [CONTRIBUTING.md](./CONTRIBUTING.md) を見てください。
 
 ## Contributing
 
-詳しくは [CONTRIBUTING.md](./CONTRIBUTING.md) を見てください。
+小さなtypoでもIssueやPull Requestを歓迎しています。
+
+コントリビュートの方法や確認方法については[CONTRIBUTING.md](./CONTRIBUTING.md)を見てください。
 
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`

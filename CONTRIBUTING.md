@@ -1,11 +1,79 @@
+## Pull Requestの送り方
+
+文章のtypoの修正程度なら、直接GitHub上で編集してPull Requestを送ってください。
+
+- [Editing files in your repository - User Documentation](https://help.github.com/articles/editing-files-in-your-repository/ "Editing files in your repository - User Documentation")
+
+ローカルで編集して送りたい場合は次の手順を試してください。
+
+1. Forkする
+2. Branchを作る: `git checkout -b my-new-feature`
+3. テストする: `npm test`
+3. 変更をコミットする: `git commit -am 'Add some feature'`
+4. Pushする: `git push origin my-new-feature`
+5. Pull Requestを送る :D
+
 ## テスト
 
 `$ npm test` を実行するとコードや文章に対するテストを実行できます。
 
     npm test
 
-`$ npm run textlint` の文章表現のエラーで疑問がある場合は、
+`$ npm run textlint` の文章表現のエラーで疑問がある場合は、とりあえずそのままPull Requestを送ってください。
 IssueやPull Requestでやりとりしそのエラーを直すか無視するかを決定します。
+
+### テストの種類
+
+このプロジェクトでは次のようなテストが `npm test` で実行されています。
+特定のSuffixを持つファイル名を対象にしているテストも存在しています。
+
+- GitBookのビルドテスト
+- [textlint](https://textlint.github.io/)による文章のLint
+- [ESLint](http://eslint.org/ "ESLint")によるコードのLint
+- [textlint](https://textlint.github.io/) + [ESLint](http://eslint.org/ "ESLint")によるMarkdown中のインラインコードブロックのLint
+- Markdown中のインラインコードブロックへのDocTest
+- [Mocha](http://mochajs.org/ "Mocha")による`*-test.js`ファイルのユニットテスト
+- `*-example.js`がJavaScriptとして実行できるかのテスト
+- `*-invalid.js`がJavaScriptとして実行できないかのテスト
+
+
+Markdown中のインラインコードブロックとは次のような`js`言語指定がされたCodeBlockを示しています。
+
+    ```js
+    var foo = "string";
+    ```
+
+### DocTest
+
+`*-example.js`のJavaScriptファイルとMarkdownのインラインコードブロックを対象にDocTestが実行されます。
+
+次のように`// => 値`というコメントを書いた部分に対してDocTestが実行されます。
+
+```js
+let a = 42;
+console.log(42); // => 42
+```
+
+これにより、サンプルコードのコメントに書いた評価結果と実際の出力が一致するかをテストしています。
+
+#### サポートする形式
+
+```
+評価したい式; // => 期待する評価結果
+```
+
+or
+
+```
+console.log(評価したい式); // => 期待する評価結果
+```
+
+**関連**
+
+- [power-assertを使ったDoctestツール power-doctestを書き直した | Web Scratch](http://efcl.info/2015/08/10/power-doctest1.0/)
+- [JavaScriptでdoctestを行う power-doctest を作った | Web Scratch](http://efcl.info/2013/1201/res3494/)
+- [25.2. doctest — 対話的な実行例をテストする — Python 2.7.x ドキュメント](http://docs.python.jp/2/library/doctest.html "25.2. doctest — 対話的な実行例をテストする — Python 2.7.x ドキュメント")
+
 
 ## ディレクトリ構造
 
