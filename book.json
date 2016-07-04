@@ -2,8 +2,10 @@
   "gitbook": ">=2.5.2",
   "title": "JavaScriptの入門書",
   "description": "この書籍はES2015以降をベースとしたJavaScript入門書となる予定",
+  "root": "./source/",
   "structure":{
-    "readme": "README.html.md"
+    "readme": "index.html.md",
+    "summary": "README.md"
   },
   "plugins": [
     "include-codeblock",

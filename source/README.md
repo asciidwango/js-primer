@@ -1,13 +1,15 @@
+# 目次
+
 - 書籍の読み方
-- [基礎文法](source/ch1/README.md)
-    - [JavaScriptとは](source/ch1/basic/README.md)
-    - [コメント](source/ch1/comments/README.md)
+- [基礎文法](basic/README.md)
+    - [JavaScriptとは](basic/introduction/README.md)
+    - [コメント](basic/comments/README.md)
     - 字句構造
     - Strict mode
-    - [変数と宣言](source/ch1/variables/README.md)
-    - [値の評価と表示](source/ch1/read-eval-print/README.md)
-    - [データ型とリテラル](source/ch1/data-type/README.md)
-    - [条件分岐](source/ch1/condition/README.md)
+    - [変数と宣言](basic/variables/README.md)
+    - [値の評価と表示](basic/read-eval-print/README.md)
+    - [データ型とリテラル](basic/data-type/README.md)
+    - [条件分岐](basic/condition/README.md)
     - 式と演算子
     - 文
     - String
@@ -34,7 +36,7 @@
     - Proxy
     - Unicode
     - Intl
-- 応用編(ユースケース)
+- 応用編（ユースケース）
     - Ajaxで通信
     - Node.jsでCLIアプリ
     - TODOアプリ
