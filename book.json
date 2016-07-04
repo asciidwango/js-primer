@@ -1,6 +1,6 @@
 {
   "gitbook": ">=2.5.2",
-  "title": "JavaScriptの入門書",
+  "title": "JavaScriptの入門書 #jsprimer",
   "description": "この書籍はES2015以降をベースとしたJavaScript入門書となる予定",
   "root": "./source/",
   "structure": {
