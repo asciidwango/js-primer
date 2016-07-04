@@ -1,6 +1,7 @@
 "use strict";
 const gulp = require("gulp");
 const gutil = require('gulp-util');
+const assert = require("assert");
 const path = require("path");
 const textlint = require('gulp-textlint');
 const toDoc = require("power-doctest");
@@ -62,7 +63,7 @@ gulp.task('test:doc-code', function () {
                         throw error;
                     }
                 });
-                gutil.log(gutil.colors.green('✔'), "Pass", file.path);
+                gutil.log(gutil.colors.green('✔'), "Pass Doc-Example", file.path);
                 next();
             }
         }))
@@ -90,12 +91,38 @@ gulp.task('test:example', function () {
                     console.error(file.path);
                     throw error;
                 }
-                gutil.log(gutil.colors.green('✔'), "Pass", file.path);
+                gutil.log(gutil.colors.green('✔'), "Pass Example", file.path);
                 next();
             }
-        }))
+        }));
 });
-
+/**
+ * *-invalid.js が実行 または パースエラーとなることをテストする
+ **/
+gulp.task('test:example', function () {
+    return gulp.src(['./source/**/*-invalid.js', '!source/**/node_modules{,/**}'])
+        .on('error', function (error) {
+            console.error(error);
+        })
+        // eval
+        .pipe(new Transform({
+            writableObjectMode: true,
+            readableObjectMode: true,
+            transform: function (file, encoding, next) {
+                try {
+                    strictEval(String(file.contents));
+                    throw new Error("NO_REACH_CODE");
+                } catch (error) {
+                    // evalしようとしたらエラーになっていることが期待値
+                    // "NO_REACH_CODE"になってるのはおかしい
+                    assert.notEqual(error.message, "NO_REACH_CODE", `${file.path}
+This is wrong. It should be SyntaxError(parse error) or EvalError: ${error.message}`);
+                }
+                gutil.log(gutil.colors.green('✔'), "Pass Eval", file.path);
+                next();
+            }
+        }));
+});
 gulp.task('textlint', function () {
     return gulp.src(['./source/**/**.md', "!node_modules", '!source/**/node_modules{,/**}'])
         .on('error', function (error) {

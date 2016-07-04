@@ -68,13 +68,21 @@ JavaScriptでは変数名として使える文字列には次のルールがあ�
 var $; // OK: $から開始できる
 var _title; // OK: _から開始できる
 var jquery; // OK: アルファベット
-var 2nd; // NG: 数字から始まっている
 var es6; // OK: 数字は先頭以外なら利用できる
-var var; // NG: `var`は予約語であるため利用できない
 var valid日本語; // OK: 先頭以外なら一部Unicode文字も利用可能
 // 同じ変数名で再定義も可能
 var es6 = "ES2015";
 ```
+
+次のような変数は上記のルールに反するため、Syntax Errorとなります。
+
+<!-- ESLintのパースエラーを避けるためわざと言語指定をしてない -->
+
+```
+var 2nd; // NG: 数字から始まっている
+var var; // NG: `var`は予約語であるため利用できない
+```
+
 
 先ほど紹介したように変数の宣言に利用できるキーワードとして、`var`以外にも`let`と`const`があります。
 どちらもここで紹介した変数宣言の一種で、構文や利用できる変数名の範囲も同じです。
@@ -117,12 +125,9 @@ let bookTitle;
 bookTitle = "JavaScriptの本"; // varやletは再代入できる
 ```
 
-しかし、`const`での宣言と代入を別々に行うコードは`SyntaxError` つまり構文エラーとなります。
+しかし、`const`での宣言と代入を別々に行うコードは`SyntaxError`、つまり構文エラーとなります。
 
-```js
-const bookTitle; // SyntaxError: missing = in const declaration
-bookTitle = "JavaScriptの本";
-```
+[import, const-without-assign-invalid.js](./src/const-without-assign-invalid.js)
 
 `const`は必ず宣言と代入を同時に行う必要があります。
 

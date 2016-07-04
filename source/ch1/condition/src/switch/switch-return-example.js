@@ -7,7 +7,7 @@ function getECMAScriptName(version) {
         case "ES7":
             return "ECMAScript 2016";
         default:
-            return "しらないバージョンです"
+            return "しらないバージョンです";
     }
 }
 // 関数を実行して`return`された値を得る

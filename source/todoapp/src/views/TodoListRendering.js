@@ -17,7 +17,7 @@ export default class TodoListRendering {
             toggleComplete({
                 id: todo.id,
                 isCompleted
-            })
+            });
         });
         todoItemList.appendChild(todoItemCheckBox);
         todoItemList.appendChild(text);
