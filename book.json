@@ -3,12 +3,19 @@
   "title": "JavaScriptの入門書",
   "description": "この書籍はES2015以降をベースとしたJavaScript入門書となる予定",
   "root": "./source/",
-  "structure":{
+  "structure": {
     "readme": "index.html.md",
     "summary": "README.md"
   },
   "plugins": [
     "include-codeblock",
-    "japanese-support"
-  ]
+    "japanese-support",
+    "edit-link"
+  ],
+  "pluginsConfig": {
+    "edit-link": {
+      "base": "https://github.com/asciidwango/js-primer/edit/master/source/",
+      "label": "このページを編集"
+    }
+  }
 }
