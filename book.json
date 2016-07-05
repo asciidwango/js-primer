@@ -15,7 +15,7 @@
   "pluginsConfig": {
     "edit-link": {
       "base": "https://github.com/asciidwango/js-primer/edit/master/source/",
-      "label": "このページを編集"
+      "label": "Edit"
     }
   }
 }
