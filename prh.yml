@@ -87,6 +87,10 @@ rules:
   - expected: break文
     patterns:
       - break式
+  - expected: 反復処理
+    patterns:
+      - 繰り返し処理
+    prh: 繰り返しがループ的なものか、同じことを何度も繰り返すかが曖昧なので反復処理にする
 # typo
   - expected: $1進数
     patterns:

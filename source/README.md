@@ -10,6 +10,7 @@
     - [値の評価と表示](basic/read-eval-print/README.md)
     - [データ型とリテラル](basic/data-type/README.md)
     - [条件分岐](basic/condition/README.md)
+    - [ループと反復処理](basic/loop/README.md)
     - 式と演算子
     - 文
     - String
