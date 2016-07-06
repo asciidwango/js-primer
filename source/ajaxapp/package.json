@@ -1,0 +1,15 @@
+{
+  "name": "plain-ajax",
+  "version": "1.0.0",
+  "description": "Ajax Example",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "python -m SimpleHTTPServer 3000"
+  },
+  "keywords": [],
+  "author": "laco",
+  "license": "MIT"
+}
