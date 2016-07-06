@@ -1,31 +1,29 @@
 function fetch(url) {
-    const xhr = new XMLHttpRequest();
-    xhr.open("GET", url);
     return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
         xhr.addEventListener("load", (evt) => {
             resolve(evt.target.response);
         });
         xhr.addEventListener("error", (evt) => {
-            reject(evt.target.error);
+            reject(new Error("Network error"));
         });
         xhr.send();
     });
 }
 
-function escapeHTML(str) {
-    return str.replace(/&/g, "&amp;")
+function escapeHTML(strings, ...values) {
+    const escape = (str) => str.replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
-}
 
-function sanitizeHtml(strings, ...values) {
     return strings.map((part, i) => {
         let arg = values[i];
         if (arg) {
             if (typeof arg === "string") {
-                return part + escapeHTML(arg);
+                return part + escape(arg);
             } else {
                 return part + `${arg}`;
             }
@@ -37,7 +35,7 @@ function sanitizeHtml(strings, ...values) {
 
 function buildUserInfoView(userInfo) {
     const view = document.createElement("div");
-    view.innerHTML = sanitizeHtml`
+    view.innerHTML = escapeHTML`
     <h4>${userInfo.name} (@${userInfo.login})</h4>
     <img src="${userInfo.avatar_url}" alt="${userInfo.login}" height="100">
     <dl>
