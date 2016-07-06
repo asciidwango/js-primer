@@ -18,6 +18,7 @@
     "textlint:fix": "summary-to-path ./source/README.md | xargs textlint --fix",
     "test:example": "gulp test:example test:invalid test:doc-code",
     "test:basic": "mocha './source/basic/**/*-test.js'",
+    "test:ajaxapp": "mocha './source/ajaxapp/**/*-test.js'",
     "test": "npm-run-all -l --parallel test:* textlint eslint:* build"
   },
   "keywords": [
