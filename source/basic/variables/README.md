@@ -136,13 +136,12 @@ const bookTitle = "JavaScriptの本";
 ```
 
 そして、一度`const`で宣言された変数には再代入できなくなります。
+そのため、次のコードでは`bookTitle`を上書きしようとして`TypeError`となります。
 
 ```js
 const bookTitle = "JavaScriptの本";
 bookTitle = "上書き"; // TypeError: invalid assignment to const `bookTitle'
 ```
-
-そのため、上記のコードでは`bookTitle`を上書きしようとして`TypeError`となります。
 
 一般に変数への再代入は「変数の値は最初に定義した値と常に同じである」という参照透過性を壊すため、
 バグを発生させやすい要因として知られています。
