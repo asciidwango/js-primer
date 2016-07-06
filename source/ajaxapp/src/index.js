@@ -6,7 +6,7 @@ function fetch(url) {
             resolve(evt.target.response);
         });
         xhr.addEventListener("error", (evt) => {
-            reject(new Error("Network error"));
+            reject("Network error");
         });
         xhr.send();
     });
