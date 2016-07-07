@@ -13,6 +13,21 @@
 4. Pushする: `git push origin my-new-feature`
 5. Pull Requestを送る :D
 
+## 確認方法
+
+`npm start`を実行後、 [http://localhost:4000/](http://localhost:4000/) へアクセスすることでプレビューを見られます。
+
+    npm run start
+    # open http://localhost:4000/
+
+また、Pull Requestを出した際にGitBook.com上でプレビュー用のビルドが公開されます。
+Pull Request下部に表示されるCI Statusからそれぞれプレビュービルドひらくことができます。
+
+![CI Status](https://cloud.githubusercontent.com/assets/19714/16651848/a221c226-4481-11e6-806f-65880da93422.png)
+
+- [プレビュー用 #jsprimer - GitBook](https://www.gitbook.com/book/azu/js-primer/details "プレビュー用 #jsprimer - GitBook")
+    - プレビュー以外には利用しないでください
+
 ## テスト
 
 `$ npm test` を実行するとコードや文章に対するテストを実行できます。
