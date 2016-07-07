@@ -21,7 +21,7 @@
     # open http://localhost:4000/
 
 また、Pull Requestを出した際にGitBook.com上でプレビュー用のビルドが公開されます。
-Pull Request下部に表示されるCI Statusからそれぞれプレビュービルドひらくことができます。
+Pull Request下部に表示されるCI Statusからそれぞれプレビュービルドを見ることができます。
 
 ![CI Status](https://cloud.githubusercontent.com/assets/19714/16651848/a221c226-4481-11e6-806f-65880da93422.png)
 
