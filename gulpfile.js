@@ -123,12 +123,3 @@ This is wrong. It should be SyntaxError(parse error) or EvalError: ${error.messa
             }
         }));
 });
-gulp.task('textlint', function () {
-    return gulp.src(['./source/**/**.md', "!node_modules", '!source/**/node_modules{,/**}'])
-        .on('error', function (error) {
-            console.error(error);
-        })
-        .pipe(textlint({
-            formatterName: "pretty-error"
-        }))
-});
