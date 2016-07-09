@@ -6,11 +6,8 @@ const fs = require("fs");
 const path = require("path");
 const strictEval = require("strict-eval");
 const sourceDir = path.join(__dirname, "..", "source");
-const toDoc = require("power-doctest");
 /**
- * *-example.js を実行しdoctestを行う
- * a // => "aの評価結果"
- * が一致するかのdoctestを行う
+ * `*-invalid.js` が実行 または パースエラーとなることをテストする
  **/
 describe("invalid:js", function() {
     const files = globby.sync([`${sourceDir}/**/*-invalid.js`, `!${sourceDir}/**/node_modules{,/**}`]);

@@ -11,7 +11,10 @@ const remark = require("remark")();
 const select = require('unist-util-select');
 
 /**
- * *.mdのファイル
+ * Markdownファイルの CodeBlock に対してdoctestを行う
+ * CodeBlockは必ず実行できるとは限らないので、
+ * AssertionError(doctestにおける失敗)以外は成功したことにして無視する
+ * 詳細は CONTRIBUTING.md を読む
  **/
 describe("doctest:md", function() {
     const files = globby.sync([`${sourceDir}/**/*.md`, `!${sourceDir}/**/node_modules{,/**}`]);

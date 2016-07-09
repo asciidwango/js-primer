@@ -11,6 +11,7 @@ const toDoc = require("power-doctest");
  * *-example.js を実行しdoctestを行う
  * a // => "aの評価結果"
  * が一致するかのdoctestを行う
+ * 詳細は CONTRIBUTING.md を見る
  **/
 describe("doctest:js", function() {
     const files = globby.sync([`${sourceDir}/**/*-example.js`, `!${sourceDir}/**/node_modules{,/**}`]);
