@@ -47,7 +47,7 @@ console.log(total); // => 55
 
 [import, sum-for-example.js](./src/sum-for-example.js)
 
-一方、反復処理の多くは、配列に入れた値を処理する方法と言い換えることができます。
+反復処理の多くは、配列に入れた値を処理する方法と言いかえることができます。
 そのため、JavaScriptの配列である`Array`オブジェクトには反復処理をするためのメソッドが備わっています。
 
 ## Array.prototype.forEach
