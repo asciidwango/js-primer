@@ -12,14 +12,17 @@
     "prepublish": "gitbook install",
     "start": "gitbook serve",
     "build": "gitbook build",
-    "eslint:js": "eslint source/",
+    "eslint": "eslint source/",
     "eslint:fix": "eslint --fix source/",
     "textlint": "gulp textlint",
     "textlint:fix": "summary-to-path ./source/README.md | xargs textlint --fix",
+    "lint": "npm-run-all --parallel textlint eslint",
+    "lint:fix": "npm-run-all --parallel textlint:fix eslint:fix",
     "test:example": "gulp test:example test:invalid test:doc-code",
     "test:basic": "mocha './source/basic/**/*-test.js'",
     "test:ajaxapp": "mocha './source/ajaxapp/**/*-test.js'",
-    "test": "npm-run-all -l --parallel test:* textlint eslint:* build"
+    "test": "npm-run-all -l --parallel test:* lint",
+    "travis": "npm-run-all -l --parallel test build"
   },
   "keywords": [
     "gitbook",

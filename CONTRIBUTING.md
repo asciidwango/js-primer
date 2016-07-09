@@ -15,7 +15,7 @@
 
 ## 確認方法
 
-`npm start`を実行後、 [http://localhost:4000/](http://localhost:4000/) へアクセスすることでプレビューを見られます。
+`npm start`を実行後、[http://localhost:4000/](http://localhost:4000/)へアクセスすることでプレビューを見られます。
 
     npm run start
     # open http://localhost:4000/
