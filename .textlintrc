@@ -4,7 +4,7 @@
   },
   "rules": {
     "eslint": {
-      "configFile": "./config/.md.eslintrc.json"
+      "configFile": "./config/markdown.eslintrc.js"
     },
     "preset-japanese": true,
     "ja-no-mixed-period": true,

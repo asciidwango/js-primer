@@ -14,6 +14,6 @@
     "sourceType": "module"
   },
   "extends": [
-    "./config/style.eslintconfig.js"
+    "./config/style.eslintrc.js"
   ]
 }

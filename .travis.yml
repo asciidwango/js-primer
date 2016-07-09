@@ -7,7 +7,7 @@ env:
     - GH_USER_EMAIL="azuciao@gmail.com"
     - GH_USER_NAME="azu"
 script:
-  - npm test
+  - npm run travis
 after_success:
   - |
 
