@@ -3,7 +3,6 @@ const gulp = require("gulp");
 const gutil = require('gulp-util');
 const assert = require("assert");
 const path = require("path");
-const textlint = require('gulp-textlint');
 const toDoc = require("power-doctest");
 const strictEval = require("strict-eval");
 const remark = require("remark")();
@@ -122,4 +121,13 @@ This is wrong. It should be SyntaxError(parse error) or EvalError: ${error.messa
                 next();
             }
         }));
+});
+gulp.task('textlint', function () {
+    return gulp.src(['./source/**/**.md', "!node_modules", '!source/**/node_modules{,/**}'])
+        .on('error', function (error) {
+            console.error(error);
+        })
+        .pipe(textlint({
+            formatterName: "pretty-error"
+        }))
 });
