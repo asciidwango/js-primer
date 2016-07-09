@@ -11,7 +11,7 @@ author: azu
 
 ## for文
 
-for文はもっとも基本となるループ処理です。
+for文はもっとも基本的な反復処理です。
 JavaScriptのfor文はC言語やJavaと同様の構文になります。
 
 ```js
