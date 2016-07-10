@@ -92,6 +92,9 @@ rules:
       - 繰り返し処理
       - ループ処理
     prh: 繰り返しがループ的なものか、同じことを何度も繰り返すかが曖昧なので反復処理にする
+  - expected: 浮動小数点数
+    patterns:
+      - 浮動小数点[^あ-ん]
 # typo
   - expected: $1進数
     patterns:

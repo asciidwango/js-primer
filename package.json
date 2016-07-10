@@ -52,9 +52,7 @@
     "textlint": "^7.0.1",
     "textlint-filter-rule-comments": "^1.2.1",
     "textlint-rule-eslint": "^1.1.1",
-    "textlint-rule-ja-no-mixed-period": "^1.0.2",
-    "textlint-rule-no-start-duplicated-conjunction": "^1.0.3",
-    "textlint-rule-preset-japanese": "^1.3.0",
+    "textlint-rule-preset-ja-technical-writing": "^0.1.1",
     "textlint-rule-prh": "^3.0.1",
     "unist-util-select": "^1.5.0"
   }

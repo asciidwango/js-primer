@@ -67,13 +67,13 @@ if、else if、else文は`実行する文`としてさらにif文を書きネス
 ネストしたif文の例として、今年がうるう年かを判定してましょう。
 うるう年の条件は次のとおりです。
 
-<!-- textlint-disable no-start-duplicated-conjunction -->
+<!-- textlint-disable preset-ja-technical-writing/no-start-duplicated-conjunction -->
 
 - 西暦で示した年が4で割り切れる年はうるう年です
 - ただし、西暦で示した年が100で割り切れる年はうるう年ではありません
 - ただし、西暦で示した年が400で割り切れる年はうるう年です
 
-<!-- textlint-enable no-start-duplicated-conjunction -->
+<!-- textlint-enable preset-ja-technical-writing/no-start-duplicated-conjunction -->
 
 西暦で示した年は `new Date().getFullYear();` で取得できるため、
 この条件をif文で表現すると次のように書くことができます。

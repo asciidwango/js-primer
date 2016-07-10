@@ -35,7 +35,7 @@ JavaScriptの多くの実行環境では、Console APIが**コンソール表示
 [import, console-variable-example.js](./src/console-variable-example.js)
 
 Console APIは原始的なプリントデバッグとして利用できるので、
-「この値は何だろ?」と思ったらコンソールに表示してみることで解決する問題は多いです。
+「この値は何だろう」と思ったらコンソールに表示してみることで解決する問題は多いです。
 
 また、JavaScriptの開発環境は高機能化が進んでいるため、デバッガーなどが用意されていることが多く、
 コードに`console.log()`と書かなくても値を見ることもできるようになっています。
