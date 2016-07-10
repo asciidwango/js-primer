@@ -21,8 +21,8 @@ JavaScriptでは`typeof`演算子を使うことで、次のように値のデ�
 
 [import, typeof-example.js](src/typeof-example.js)
 
-`typeof null; // => "object"`となるのは[The history of “typeof null”][歴史的経緯のある仕様バグ]ですが、
-他のプリミティブ値についてはそれぞれのデータ型を調べることができます。
+`typeof null; // => "object"`となるのは[The history of “typeof null”][歴史的経緯のある仕様バグ]です。
+他のプリミティブ値については、`typeof`演算子でそれぞれのデータ型を調べることができます。
 
 オブジェクトと一言にいってもJavaScriptではすべてがオブジェクトであると言われるほど、多くの種類が存在します。
 `typeof`演算子では複合型と言われるオブジェクトの細かい種類を知ることはできません。
@@ -97,7 +97,7 @@ TODO: もっと具体的なイメージの話をしたい。
 
 #### 浮動小数点数リテラル
 
-JavaScriptではIEEE 浮動小数点数形式を採用しています。
+JavaScriptの浮動小数点数は[IEEE 754 方式][]を採用しています。
 浮動小数点数をリテラルと書く場合には次の2種類の表記が利用できます。
 
 - `3.14159` のような `.`（ドット）を含んだ数値
@@ -320,7 +320,7 @@ numberRegExp.test(123); // => true
 
 ## [コラム] undefinedはリテラルではない
 
-プリミティブ型として紹介した`undefined`はリテラルではないのかという疑問があるかもしれません。
+プリミティブ型として紹介した`undefined`はリテラルではありません。
 `undefined`はただのグローバル変数で、`undefined`という値を持っているだけとなっています。
 
 そのため、`undefined`という名前のローカル変数を定義することができます。
@@ -346,3 +346,4 @@ var undefined; // undefinedというローカル変数を定義できる
 
 [^1]: `0o` は数字のゼロと小文字アルファベットの`o`
 [The history of “typeof null”]: http://www.2ality.com/2013/10/typeof-null.html  "The history of “typeof null”"
+[IEEE 754 方式]: https://ja.wikipedia.org/wiki/IEEE_754
