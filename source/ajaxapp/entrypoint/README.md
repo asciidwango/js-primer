@@ -27,12 +27,12 @@ index.jsには、スクリプトが正しく読み込まれたことを確認で
 `file`スキーマでは[Same Origin Policy][]により、多くの場面でアプリケーションは正しく動作しません。
 本章はローカルサーバーを立ち上げた上で、`http`スキーマのURLでアクセスすることを前提としています。
 
-index.htmlにアクセスすると、次のようにログが出力されます。
+index.htmlにアクセスすると、次の画像のようにログが出力されます。
 Console APIで出力したログを確認するには、ウェブブラウザの開発者ツールを開く必要があります。
 ほとんどのブラウザで開発者ツールが同梱されていますが、本章ではFirefoxを使って確認します。
 Firefoxで開発者ツールを開く方法は"[Webコンソールを開く][]"を参照してください。
 
-![Fig.1](img/fig-1.png)
+![ログが表示されているWebコンソール](img/fig-1.png)
 
 [Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy 
 [Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
