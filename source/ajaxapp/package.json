@@ -7,9 +7,15 @@
     "test": "test"
   },
   "scripts": {
-    "start": "python -m SimpleHTTPServer 3000"
+    "start": "static src",
+    "start:entrypoint": "static entrypoint/src",
+    "firefox": "osascript firefox-safemode.applescript",
+    "ss": "osascript screenshot.applescript"
   },
   "keywords": [],
   "author": "laco",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "node-static": "^0.7.7"
+  }
 }

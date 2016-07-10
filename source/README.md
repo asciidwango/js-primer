@@ -38,6 +38,9 @@
     - Unicode
     - Intl
 - 応用編（ユースケース）
-    - Ajaxで通信
+    - [Ajaxで通信](ajaxapp/README.md)
+      - [エントリポイント](ajaxapp/entrypoint/README.md)
+      - Ajaxリクエストを行う
+      - データを表示する
     - Node.jsでCLIアプリ
     - TODOアプリ
