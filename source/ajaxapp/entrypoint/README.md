@@ -23,16 +23,16 @@ index.jsには、スクリプトが正しく読み込まれたことを確認で
 [import index.js](src/index.js)
 
 開発用のローカルサーバーを立ち上げて、ウェブブラウザでindex.htmlにアクセスしてみましょう。
-ローカルサーバーを立ち上げずに直接HTMLファイルを開くこともできますが、
-`file://`スキーマでは[Same Origin]の都合により、多くの場面でアプリケーションは正しく動作しません。
-本章はローカルサーバーを立ち上げた上で、`http://`スキーマでアクセスすることを前提としています。
+ローカルサーバーを立ち上げずに直接HTMLファイルを開くこともできますが、その場合`file:///`から始まるURLになります。
+`file:`プロトコルでは[Same Origin Policy][]により、多くの場面でアプリケーションは正しく動作しません。
+本章はローカルサーバーを立ち上げた上で、`http:`プロトコルでアクセスすることを前提としています。
 
 index.htmlにアクセスすると、次のようにログが出力されます。
 Console APIで出力したログを確認するには、ウェブブラウザの開発者ツールを開く必要があります。
 ほとんどのブラウザで開発者ツールが同梱されていますが、本章ではFirefoxを使って確認します。
-Firefoxで開発者ツールを開く方法は"[Webコンソールを開く]"を参照してください。
+Firefoxで開発者ツールを開く方法は"[Webコンソールを開く][]"を参照してください。
 
 ![Fig.1](img/fig-1.png)
 
-[Same Origin]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy 
+[Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy 
 [Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
