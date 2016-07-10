@@ -7,8 +7,8 @@ author: laco
 エントリポイントとは、アプリケーションの中で一番最初に呼び出される部分のことです。
 アプリケーションを作成するにあたり、まずはエントリポイントを用意しなければなりません。
 
-Webアプリケーションにおいては、常にHTMLファイルがエントリポイントとなります。
-ウェブブラウザによりHTMLファイルが読み込まれたあとに、HTMLファイル中で読み込まれたJavaScriptが実行され、
+Webアプリケーションにおいては、常にHTMLドキュメントがエントリポイントとなります。
+ウェブブラウザによりHTMLドキュメントが読み込まれたあとに、HTMLドキュメント中で読み込まれたJavaScriptが実行され、
 アプリケーションが動作します。
 
 ## HTMLファイルの用意
@@ -22,6 +22,17 @@ index.jsには、スクリプトが正しく読み込まれたことを確認で
 
 [import index.js](src/index.js)
 
-この状態でindex.htmlをブラウザで開くと、次のようにログが出力されます。
+開発用のローカルサーバーを立ち上げて、ウェブブラウザでindex.htmlにアクセスしてみましょう。
+ローカルサーバーを立ち上げずに直接HTMLファイルを開くこともできますが、
+`file://`スキーマでは[Same Origin]の都合により、多くの場面でアプリケーションは正しく動作しません。
+本章はローカルサーバーを立ち上げた上で、`http://`スキーマでアクセスすることを前提としています。
+
+index.htmlにアクセスすると、次のようにログが出力されます。
+Console APIで出力したログを確認するには、ウェブブラウザの開発者ツールを開く必要があります。
+ほとんどのブラウザで開発者ツールが同梱されていますが、本章ではFirefoxを使って確認します。
+Firefoxで開発者ツールを開く方法は"[Webコンソールを開く]"を参照してください。
 
 ![Fig.1](img/fig-1.png)
+
+[Same Origin]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy 
+[Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
