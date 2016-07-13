@@ -9,7 +9,8 @@
   "scripts": {
     "start": "static src",
     "start:entrypoint": "static entrypoint/src",
-    "firefox": "osascript firefox-safemode.applescript",
+    "start:xhr": "static xhr/src",
+    "firefox": "osascript firefox-launch.applescript",
     "ss": "osascript screenshot.applescript"
   },
   "keywords": [],

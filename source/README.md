@@ -40,7 +40,7 @@
 - 応用編（ユースケース）
     - [Ajaxで通信](ajaxapp/README.md)
       - [エントリポイント](ajaxapp/entrypoint/README.md)
-      - Ajaxリクエストを行う
+      - [HTTP通信](ajaxapp/xhr/README.md)
       - データを表示する
     - Node.jsでCLIアプリ
     - TODOアプリ
