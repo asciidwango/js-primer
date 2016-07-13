@@ -165,7 +165,7 @@ switch文のcase節では基本的に`break;`を使いswitch文を抜けるよ�
 そのため、case節とbreak文が多用されているswitch文が出てきた場合、
 別の方法で書かないかを考えるべきサインとなります。
 
-一般にswitch文はif文の代用として使うのではなく、関数と組み合わせて値を返すパターンとして使うことが多いです。
+一般にswitch文はif文の代用として使うのではなく、関数と組み合わせて値を返却するパターンとして使うことが多いです。
 
 [import, switch-return-example.js](./src/switch/switch-return-example.js)
 
