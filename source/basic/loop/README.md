@@ -137,7 +137,6 @@ return文は現在の関数を終了させることができるため、次の�
 ```js
 var array = [1, 2, 3, 4, 5];
 var isPassed = array.some((currentValue, index, array) => {
-    // テストする処理
     // テストをパスするtrue、そうでないならfalseを返す
 });
 ```
@@ -186,7 +185,6 @@ if (isEven(number)) {
 var array = [1, 2, 3, 4, 5];
 // テストをパスしたものを集めた配列
 var filterdArray = array.filter((currentValue, index, array) => {
-    // テストする処理
     // テストをパスするならtrue、そうでないならfalseを返す
 });
 ```
