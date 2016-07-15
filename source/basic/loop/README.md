@@ -158,7 +158,7 @@ while (条件式) {
 }
 ```
 
-次のコードでは配列の要素に含まれている偶数をだけを集めた配列を作り返しています。
+次のコードでは配列の要素に含まれている偶数を集めた配列を作り返しています。
 偶数ではない場合、その文をスキップしています。
 
 [import, continue-filter-even-example.js](src/continue/continue-filter-even-example.js)
