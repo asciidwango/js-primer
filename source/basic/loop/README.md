@@ -95,7 +95,7 @@ array.forEach(コールバック関数);
 
 `forEach`は`条件式`がなく、配列のすべての要素を走査するため、for文よりもシンプルな処理です。
 
-### break文
+## break文
 
 break文は現在実行中の文から抜けて次の文へ移行する制御文です。
 while、do-while、forの中で使い、実行中のループを抜けて次の文へ制御を移します。
@@ -107,7 +107,8 @@ while (true) {
 // *1 次の文
 ```
 
-switch文で出てきたものと同様でそこで文の処理を終了することができます。
+switch文で出てきたものと同様で、処理中のループ文を終了することができます。
+
 次のコードでは配列の要素に1つでも偶数を含んでいるかを判定しています。
 
 [import, break-find-example.js](./src/break/break-find-example.js)
@@ -125,7 +126,7 @@ return文は現在の関数を終了させることができるため、次の�
 
 [import, find-even-return-example.js](./src/break/find-even-return-example.js)
 
-#### Array.prototype.some
+### Array.prototype.some
 
 先ほどの `isEventIncluded` は、ある値を見つけたら `true` を返し、そこで反復処理を終了する処理でした。
 `Array`オブジェクトでは、`some`メソッドで同様のことが行えます。
@@ -137,7 +138,7 @@ return文は現在の関数を終了させることができるため、次の�
 var array = [1, 2, 3, 4, 5];
 var isPassed = array.some((currentValue, index, array) => {
     // テストする処理
-    // テストをパスしたならtrue、そうでないならfalseを返す
+    // テストをパスするtrue、そうでないならfalseを返す
 });
 ```
 
@@ -146,7 +147,55 @@ var isPassed = array.some((currentValue, index, array) => {
 
 [import, some-even-example.js](./src/break/some-even-example.js)
 
-### [コラム] `let`ではなく`const`で反復処理をする
+## continue文
+
+continue文は現在実行中の文をスキップして、そのループの`条件式`と移行する制御文です。
+while、do-while、forの中で使い、実行中のループの`条件式`へ制御を移します。
+
+```js
+while (条件式) {
+    continue; // `条件式` へ
+}
+```
+
+次のコードでは配列の要素に含まれている偶数をだけを集めた配列を作り返しています。
+偶数ではない場合、その文をスキップしています。
+
+[import, continue-filter-even-example.js](src/continue/continue-filter-even-example.js)
+
+もちろん次のように、偶数なら`results`へ追加するという書き方も可能です。
+
+```js
+if (isEven(number)) {
+    results.push(number);
+}
+```
+
+この場合、条件が複雑になってきた場合にネストが深くなってコードが読みにくくなります。
+そのため、[ネストしたif文](../condition/README.md)のうるう年の例でも紹介したように、
+できるだけ早い段階でそれ以上処理を続けない宣言をすることで、複雑なコードになることを避けています。
+
+### Array.prototype.filter
+
+配列から特定の値だけを集めた新しい配列を作るには`filter`メソッドを使うことができます。
+
+`filter`メソッドには、配列の各要素をテストする処理をコールバック関数として渡します。
+コールバック関数が`true`を返した要素のみを集めた新しい配列を返します。
+
+```js
+var array = [1, 2, 3, 4, 5];
+// テストをパスしたものを集めた配列
+var filterdArray = array.filter((currentValue, index, array) => {
+    // テストする処理
+    // テストをパスするならtrue、そうでないならfalseを返す
+});
+```
+
+この`filter`メソッドを使うことで、次のように偶数を取り出す処理を書くことができます。
+
+[import, filter-even-example.js](./src/continue/filter-even-example.js)
+
+## [コラム] `let`ではなく`const`で反復処理をする
 
 先ほどのfor文や`forEach`メソッドでは`let`を`const`に変更することはできませでした。
 なぜなら、for文は一度定義した変数に値の代入を繰り返し行う処理といえるからです。
