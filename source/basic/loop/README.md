@@ -143,7 +143,7 @@ var isPassed = array.some((currentValue, index, array) => {
 ```
 
 `some`メソッドを使うことで、配列に偶数が含まれているかは次のように書くことができます。
-`isEven`関数は、受け取った値が偶数であるかをテストするコールバック関数として渡します。
+受け取った値が偶数であるかをテストするコールバック関数として`isEven`関数を渡します。
 
 [import, some-even-example.js](./src/break/some-even-example.js)
 
