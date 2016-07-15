@@ -1,13 +1,18 @@
-function findFirstEven(numbers) {
-    var result;
-    for (var i = 0; i < numbers.length; i++) {
-        var item = numbers[i];
-        if (item % 2 === 0) {
-            result = item;
+// `number`が偶数ならtrueを返す
+function isEven(number) {
+    return number % 2 === 0;
+}
+// `numbers`に偶数が含まれているならtrueを返す
+function isEvenIncluded(numbers) {
+    let isEventIncluded;
+    for (let i = 0; i < numbers.length; i++) {
+        const number = numbers[i];
+        if (isEven(number)) {
+            isEventIncluded = true;
             break;
         }
     }
-    return result;
+    return isEventIncluded;
 }
 var array = [1, 5, 10, 15, 20];
-console.log(findFirstEven(array)); // => 10
+console.log(isEvenIncluded(array)); // => true

@@ -58,7 +58,7 @@ console.log(total); // => 55
 `forEach`メソッドは次のように書くことができます。
 
 ```js
-const array = [1, 2, 3, 4, 5];
+var array = [1, 2, 3, 4, 5];
 array.forEach((currentValue, index, array) => {
     // 処理する文
 });
@@ -70,7 +70,7 @@ JavaScriptでは、関数はファーストクラスであるため、その場�
 また、`forEach`メソッドのようなコールバック関数を引数として受け取る関数やメソッドのことを**高階関数**と呼びます。
 
 ```js
-const array = [1, 2, 3, 4, 5];
+var array = [1, 2, 3, 4, 5];
 array.forEach(コールバック関数);
 ```
 
@@ -108,18 +108,43 @@ while (true) {
 ```
 
 switch文で出てきたものと同様でそこで文の処理を終了することができます。
-次のコードでは配列の要素から一番最初に見つけた偶数を取り出しています。
+次のコードでは配列の要素に1つでも偶数を含んでいるかを判定しています。
 
 [import, break-find-example.js](./src/break/break-find-example.js)
 
-配列内から最初の偶数を見つけたらfor文での反復処理を終了します。
+1つでもでも偶数があるかが分かればいいため、配列内から最初の偶数を見つけたらfor文での反復処理を終了します。
 このような処理はベタ書きせずに、関数として実装するのが一般的です。
 
-同様の処理を行う `findFirstEven` 関数を実装してみます。
+同様の処理を行う `isEvenIncluded` 関数を実装してみます。
+次のコードでは、break文が実行され、ループを抜けた後にreturn文で結果を返しています。
 
 [import, find-even-break-example.js](./src/break/find-even-break-example.js)
 
-break文が実行され、ループを抜けた後にreturnで結果を返しています。
+return文は現在の関数を終了させることができるため、次のように書くこともできます。
+偶数を見つけたらすぐにreturnすることで一時変数が不要となり、より簡潔に書くことができます。
+
+[import, find-even-return-example.js](./src/break/find-even-return-example.js)
+
+#### Array.prototype.some
+
+先ほどの `isEventIncluded` は、ある値を見つけたら `true` を返し、そこで反復処理を終了する処理でした。
+`Array`オブジェクトでは、`some`メソッドで同様のことが行えます。
+
+`some`メソッドは、配列の各要素をテストする処理をコールバック関数として渡します。
+コールバック関数が一度でも`true`を返した時点で反復処理を終了し、`some`メソッドは`true`を返します。
+
+```js
+var array = [1, 2, 3, 4, 5];
+var isPassed = array.some((currentValue, index, array) => {
+    // テストする処理
+    // テストをパスしたならtrue、そうでないならfalseを返す
+});
+```
+
+`some`メソッドを使うことで、配列に偶数が含まれているかは次のように書くことができます。
+`isEven`関数は、受け取った値が偶数であるかをテストするコールバック関数として渡すことができます。
+
+[import, some-even-example.js](./src/break/some-even-example.js)
 
 ### [コラム] `let`ではなく`const`で反復処理をする
 
