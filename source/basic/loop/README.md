@@ -97,8 +97,8 @@ array.forEach(コールバック関数);
 
 ## break文
 
-break文は現在実行中の文から抜けて次の文へ移行する制御文です。
-while、do-while、forの中で使い、実行中のループを抜けて次の文へ制御を移します。
+break文は処理中の文から抜けて次の文へ移行する制御文です。
+while、do-while、forの中で使い、処理中のループを抜けて次の文へ制御を移します。
 
 ```js
 while (true) {
@@ -149,7 +149,7 @@ var isPassed = array.some((currentValue, index, array) => {
 
 ## continue文
 
-continue文は現在実行中の文をスキップして、そのループの`条件式`と移行する制御文です。
+continue文は処理中の文をスキップして、そのループの`条件式`と移行する制御文です。
 while、do-while、forの中で使い、実行中のループの`条件式`へ制御を移します。
 
 ```js
@@ -159,7 +159,7 @@ while (条件式) {
 ```
 
 次のコードでは配列の要素に含まれている偶数を集めた配列を作り返しています。
-偶数ではない場合、その文をスキップしています。
+偶数ではない場合、処理中の文をスキップしています。
 
 [import, continue-filter-even-example.js](src/continue/continue-filter-even-example.js)
 
