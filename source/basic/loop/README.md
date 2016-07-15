@@ -122,9 +122,10 @@ switch文で出てきたものと同様で、処理中のループ文を終了�
 [import, find-even-break-example.js](./src/break/find-even-break-example.js)
 
 return文は現在の関数を終了させることができるため、次のように書くこともできます。
-偶数を見つけたらすぐにreturnすることで一時変数が不要となり、より簡潔に書くことができます。
 
 [import, find-even-return-example.js](./src/break/find-even-return-example.js)
+
+偶数を見つけたらすぐにreturnすることで一時変数が不要となり、より簡潔に書くことができます。
 
 ### Array.prototype.some
 
