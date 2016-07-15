@@ -45,7 +45,7 @@ console.log(total); // => 55
 関数とブロック文それぞれのスコープがあるので、`var`を`let`に書き換えると間違って同じ変数名を再定義できなくなるのでより安全です。
 <!-- スコープの説明をしてない -->
 
-[import, sum-for-example.js](./src/sum-for-example.js)
+[import, sum-for-example.js](./src/for/sum-for-example.js)
 
 反復処理の多くは、配列に入れた値を処理する方法と言いかえることができます。
 そのため、JavaScriptの配列である`Array`オブジェクトには反復処理をするためのメソッドが備わっています。
@@ -58,7 +58,7 @@ console.log(total); // => 55
 `forEach`メソッドは次のように書くことができます。
 
 ```js
-const array = [1, 2, 3, 4, 5];
+var array = [1, 2, 3, 4, 5];
 array.forEach((currentValue, index, array) => {
     // 処理する文
 });
@@ -70,7 +70,7 @@ JavaScriptでは、関数はファーストクラスであるため、その場�
 また、`forEach`メソッドのようなコールバック関数を引数として受け取る関数やメソッドのことを**高階関数**と呼びます。
 
 ```js
-const array = [1, 2, 3, 4, 5];
+var array = [1, 2, 3, 4, 5];
 array.forEach(コールバック関数);
 ```
 
@@ -91,11 +91,110 @@ array.forEach(コールバック関数);
 
 先ほどのfor文で合計値を計算する`sum`関数を`forEach`メソッドで書いてみます。
 
-[import, sum-forEach-example.js](./src/sum-forEach-example.js)
+[import, sum-forEach-example.js](./src/for/sum-forEach-example.js)
 
 `forEach`は`条件式`がなく、配列のすべての要素を走査するため、for文よりもシンプルな処理です。
 
-### [コラム] `let`ではなく`const`で処理する
+## break文
+
+break文は処理中の文から抜けて次の文へ移行する制御文です。
+while、do-while、forの中で使い、処理中のループを抜けて次の文へ制御を移します。
+
+```js
+while (true) {
+    break; // *1 へ
+}
+// *1 次の文
+```
+
+switch文で出てきたものと同様で、処理中のループ文を終了することができます。
+
+次のコードでは配列の要素に1つでも偶数を含んでいるかを判定しています。
+
+[import, break-find-example.js](./src/break/break-find-example.js)
+
+1つでも偶数があるかが分かればいいため、配列内から最初の偶数を見つけたらfor文での反復処理を終了します。
+このような処理はベタ書きせずに、関数として実装するのが一般的です。
+
+同様の処理を行う `isEvenIncluded` 関数を実装してみます。
+次のコードでは、break文が実行され、ループを抜けた後にreturn文で結果を返しています。
+
+[import, find-even-break-example.js](./src/break/find-even-break-example.js)
+
+return文は現在の関数を終了させることができるため、次のように書くこともできます。
+
+[import, find-even-return-example.js](./src/break/find-even-return-example.js)
+
+偶数を見つけたらすぐにreturnすることで一時変数が不要となり、より簡潔に書くことができます。
+
+### Array.prototype.some
+
+先ほどの `isEventIncluded`は、偶数を見つけたら `true` を返す関数でした。
+`Array`オブジェクトでは、`some`メソッドで同様のことが行えます。
+
+`some`メソッドは、配列の各要素をテストする処理をコールバック関数として渡します。
+コールバック関数が一度でも`true`を返した時点で反復処理を終了し、`some`メソッドは`true`を返します。
+
+```js
+var array = [1, 2, 3, 4, 5];
+var isPassed = array.some((currentValue, index, array) => {
+    // テストをパスするtrue、そうでないならfalseを返す
+});
+```
+
+`some`メソッドを使うことで、配列に偶数が含まれているかは次のように書くことができます。
+受け取った値が偶数であるかをテストするコールバック関数として`isEven`関数を渡します。
+
+[import, some-even-example.js](./src/break/some-even-example.js)
+
+## continue文
+
+continue文は処理中の文をスキップして、そのループの`条件式`と移行する制御文です。
+while、do-while、forの中で使い、実行中のループの`条件式`へ制御を移します。
+
+```js
+while (条件式) {
+    continue; // `条件式` へ
+}
+```
+
+次のコードでは配列の要素に含まれている偶数を集めた配列を作り返しています。
+偶数ではない場合、処理中の文をスキップしています。
+
+[import, continue-filter-even-example.js](src/continue/continue-filter-even-example.js)
+
+もちろん次のように、偶数なら`results`へ追加するという書き方も可能です。
+
+```js
+if (isEven(number)) {
+    results.push(number);
+}
+```
+
+この場合、条件が複雑になってきた場合にネストが深くなってコードが読みにくくなります。
+そのため、[ネストしたif文](../condition/README.md)のうるう年の例でも紹介したように、
+できるだけ早い段階でそれ以上処理を続けない宣言をすることで、複雑なコードになることを避けています。
+
+### Array.prototype.filter
+
+配列から特定の値だけを集めた新しい配列を作るには`filter`メソッドを利用できます。
+
+`filter`メソッドには、配列の各要素をテストする処理をコールバック関数として渡します。
+コールバック関数が`true`を返した要素のみを集めた新しい配列を返します。
+
+```js
+var array = [1, 2, 3, 4, 5];
+// テストをパスしたものを集めた配列
+var filterdArray = array.filter((currentValue, index, array) => {
+    // テストをパスするならtrue、そうでないならfalseを返す
+});
+```
+
+この`filter`メソッドを使うことで、次のように偶数を取り出す処理を書くことができます。
+
+[import, filter-even-example.js](./src/continue/filter-even-example.js)
+
+## [コラム] `let`ではなく`const`で反復処理をする
 
 先ほどのfor文や`forEach`メソッドでは`let`を`const`に変更することはできませでした。
 なぜなら、for文は一度定義した変数に値の代入を繰り返し行う処理といえるからです。
@@ -105,25 +204,25 @@ array.forEach(コールバック関数);
 反復処理からひとつの新しい値を返す方法が必要になります。
 
 反復処理から新しい値を作るArrayメソッドとして`Array.prototype.reduce`があります。
-`array.reduce(コールバック関数, 初期値)`は配列から新しい値を作り返すメソッドです。
+`reduce`メソッドは配列から新しい値を作り返すメソッドです。
 
-さきほどの例である、配列から合計値を返すものを`reduce`メソッドを使い実装してみましょう。
-
-`reduce`メソッドは2つづつの要素を取り出し（左から右へ）、その値を`コールバック関数`を適用し、
+`reduce`メソッドは2つずつの要素を取り出し（左から右へ）、その値を`コールバック関数`を適用し、
 `次の値`として1つの値を返します。
 最終的な、`reduce`メソッドの返り値は、コールバック関数が最後に`return`した値となります。
 
 ```js
-arrayObj.reduce((前回の値, 現在の値) => {
+var result = array.reduce((前回の値, 現在の値) => {
     return 次の値;
 }, 初期値);
 ```
 
+さきほどの例である、配列から合計値を返すものを`reduce`メソッドを使い実装してみましょう。
+
 先ほどの配列の全要素の合計値を計算するものは`reduce`メソッドでは、次のように書くことができます。
 `初期値`に`0`を指定し、`前回の値`と`現在の値`を足していくことで合計を計算できます。
-`初期値`を指定していた場合は、最初の`前回の値`に初期値が、配列の先頭の値が`現在の値`となった常体で開始されます。
+`初期値`を指定していた場合は、最初の`前回の値`に初期値が、配列の先頭の値が`現在の値`となった状態で開始されます。
 
-[import, sum-reduce-example.js](./src/sum-reduce-example.js)
+[import, sum-reduce-example.js](./src/for/sum-reduce-example.js)
 
 `reduce`メソッドを使った例では、そもそも変数宣言をしていないことが分かります。
 `reduce`メソッドでは常に新しい値を返すことで、1つの変数の値を更新していく必要がなくなります。
