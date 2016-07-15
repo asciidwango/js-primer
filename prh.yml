@@ -104,11 +104,8 @@ rules:
     patterns:
       - /同じ変数を/
   - expected: 機会が$1
-    patterns:
-      - /機械が(多い)/
-      - /機械が(ある)/
-      - /機械が(あり)/
-    spec:
+    patterns: /機械が(多い|ある|あり)/
+    specs:
       - from: 機械がある
         to:   機会がある
     prh: 機械という単語が出てきたら直します
@@ -118,6 +115,13 @@ rules:
   - expected: どのように
     patterns:
       - どうやって
+  - expected: $1ずつ
+    patterns: /(\d+[個つ])づつ/
+    specs:
+      - from: 2個づつ
+        to  : 2個ずつ
+      - from: 2つづつ
+        to  : 2つずつ
 # 漢字開き
   - expected: もとづ$1
     patterns: /基づ(く|き)/
