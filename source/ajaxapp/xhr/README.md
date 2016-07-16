@@ -44,9 +44,11 @@ HTTP通信を行っている間はすべての処理がブロックされてし�
 ここで登場するXHRはすべて非同期的とします。
 
 送信したXHRにHTTPレスポンスが返却されると、`load`イベントが発火します。
-イベントのコールバック関数では、コールバック引数の`target`プロパティでXHRのインスタンスを取得できます。
-このXHRの`responseText`プロパティには、HTTPレスポンスの文字列がセットされています。
-また、`status`プロパティにはHTTPレスポンスのステータスコードがセットされています。
+コールバック関数の第１引数には `Event`オブジェクトが渡されます。
+このオブジェクトの`target`プロパティには、[イベントを発生させたオブジェクト][]（[EventTarget][]）である
+XHRのインスタンスがセットされています。
+XHRの`responseText`プロパティからは、HTTPレスポンスが文字列で取得できます。
+また、`status`プロパティからはHTTPレスポンスのステータスコードが取得できます。
 
 ```js
 const request = new XMLHttpRequest();
@@ -108,4 +110,6 @@ index.jsでは関数を定義しているだけで、呼び出しは行ってい
 
 ![開発者ツールでHTTP通信の記録を確認する](img/fig-2.png)
 
+[Eventを発生させたオブジェクト]: https://developer.mozilla.org/ja/docs/Web/API/Event/target
+[EventTarget]: https://dom.spec.whatwg.org/#eventtarget
 [XMLHttpRequest.response]: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/response
