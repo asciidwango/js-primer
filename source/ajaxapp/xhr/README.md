@@ -93,7 +93,7 @@ request.addEventListener("load", (event) => {
 [import, index.js](src/index.js)
 
 index.jsでは関数を定義しているだけで、呼び出しは行っていません。
-ページを読み込むたびにGitHubのAPIを呼び出してしまうと、レートリミットの制限に引っかかるおそれがあります。
+ページを読み込むたびにGitHubのAPIを呼び出してしまうと、呼び出し回数の制限を超えるてしまうおそれがあります。
 そこで`getUserInfo`関数を呼び出すため、HTMLドキュメント側にボタンを追加します。
 ボタンのclickイベントで`getUserInfo`関数を呼び出し、固定のユーザーIDを引数として与えています。
 
