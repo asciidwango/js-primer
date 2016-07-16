@@ -7,8 +7,7 @@ function getUserInfo(userId) {
             return;
         }
         console.log(event.target.status);
-        const responseText = event.target.responseText;
-        console.log(responseText);
+        console.log(event.target.responseText);
     });
     request.addEventListener("error", () => {
         console.error("Network Error");
