@@ -81,7 +81,7 @@ request.addEventListener("error", () => {
 
 ```js
 request.addEventListener("load", (event) => {
-    if (event.target.status != 200) {
+    if (event.target.status !== 200) {
         console.log(`Error: ${event.target.status}`);
         return;
     }
