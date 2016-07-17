@@ -17,7 +17,7 @@ Webアプリケーションにおいては、常にHTMLドキュメントがエ�
 
 [import index.html](src/index.html)
 
-index.jsには、スクリプトが正しく読み込まれたことを確認できるよう、ログを表示する処理だけを書いておきます。
+index.jsには、スクリプトが正しく読み込まれたことを確認できるよう、コンソールにログを出力する処理だけを書いておきます。
 
 [import index.js](src/index.js)
 
