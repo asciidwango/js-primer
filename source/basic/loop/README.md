@@ -4,10 +4,9 @@ author: azu
 
 # ループと反復処理
 
-
 プログラミングにおいて、同じ処理を繰り返すために同じコードを必要はありません。
 ループや再帰呼び出し、イテレータなどを使い、反復処理は抽象化します。
-ここでは、もっとも基本的な反復処理となるループについてを学んでいきます。
+ここでは、もっとも基本的な反復処理と反復処理から抜ける制御文について学んでいきます。
 
 ## while文
 
@@ -137,7 +136,7 @@ array.forEach(コールバック関数);
 ```
 
 `forEach`メソッドのコールバック関数には、配列の先頭から順番に要素が渡されて実行されます。
-つまり、コールバック関数の`currentValue`には1, 2, 3 …という値が順番に渡されて実行されます。
+つまり、コールバック関数の`currentValue`には1, 2, 3, 4, 5という値が順番に渡されて実行されます。
 
 ```js
 [1, 2, 3, 4, 5].forEach(currentValue => {
@@ -255,6 +254,77 @@ var filterdArray = array.filter((currentValue, index, array) => {
 この`filter`メソッドを使うことで、次のように偶数を取り出す処理を書くことができます。
 
 [import, filter-even-example.js](./src/continue/filter-even-example.js)
+
+## for...in文
+
+for...in文はオブジェクトのプロパティに対して、順不同で反復処理を行います。
+
+```js
+for (variable in object)
+    実行する文;
+```
+
+次のコードでは`object`のプロパティ名を`key`変数に代入し反復処理をしています。
+`object`には、"a"、"b"、"c"の3つのプロパティ名があるため３回繰り返されます。
+
+```js
+var object = {
+    "a": 1,つかつ
+    "b": 2,
+    "c": 3
+};
+for (var key in object) {
+    var value = object[key];
+    console.log(`key:${key}, value:${value}`);
+}
+// key:a, value:1
+// key:b, value:2
+// key:c, value:3
+```
+
+オブジェクトに対する反復処理を行うのにfor...in文は有用に見えますが、
+多くの問題を持っているため、使うことを避けたほうがよいでしょう。
+
+for...in文は配列オブジェクトに対しても利用できます。
+しかし、次のようなコードは期待した結果にはなりません。
+配列の要素が列挙されそうですが、実際には配列の添字が列挙されます。
+つまり、0、1という値が`num`に代入されるため、最終的に`total`が`1`となります。
+
+```js
+var numbers = [5, 10];
+var total = 0;
+for (var num in numbers) {
+    total += num;
+}
+console.log(total); // => 1
+```
+
+配列の内容に対して反復処理を行う場合は、for文や`forEach`メソッド、後述するfor...of文を使うべきでしょう。
+
+また、オブジェクトに対してもfor...in文はプロトタイプチェーンにより意図しない挙動を起こすことがあります。
+プロトタイプチェーンについては第n章で詳しく解説します。
+
+オブジェクトに対して列挙を行うには、`Object.keys()`、`Object.values()`、`Object.entries()`などのメソッドを利用します。
+先ほどのオブジェクトのキーと値を列挙するには次のように書くことができます。
+`Object.keys()`は`object`のプロパティ名の配列を返します。
+
+```js
+var object = {
+    "a": 1,つかつ
+    "b": 2,
+    "c": 3
+};
+Object.keys(object).forEach(key => {
+    const value = object[key];
+    console.log(`key:${key}, value:${value}`);
+});
+// key:a, value:1
+// key:b, value:2
+// key:c, value:3
+```
+
+for...in文は正しく扱うのが難しいですが、代わりとなる手段が豊富にあります。
+そのため、for...in文を使うことよりも他の方法を考えた方がよいでしょう。
 
 ## [コラム] `let`ではなく`const`で反復処理をする
 

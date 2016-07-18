@@ -111,6 +111,11 @@ rules:
   - expected: シングルスレッド
     patterns: 
       - 単一スレッド
+  - expected: for...in
+    patterns:
+      - /for\.{1,2}in/
+      - for-in
+      - for/in
 # typo
   - expected: $1進数
     patterns:
