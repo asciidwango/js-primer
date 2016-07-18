@@ -42,7 +42,7 @@ JavaScriptにはより安全な反復処理の書き方があるため、while�
 
 ## do-while文
 
-do-while文はwhile文と殆ど同じですが実行フローの順番ことなります。
+do-while文はwhile文と殆ど同じですが実行順序が異なります。
 
 ```js
 do {
