@@ -305,7 +305,8 @@ console.log(total); // => 1
 
 <!-- TODO: 第n章を埋める -->
 
-オブジェクトに対して列挙を行うには、`Object.keys()`、`Object.values()`、`Object.entries()`などのメソッドを利用します。
+オブジェクトに対して列挙を行うには、`Object.keys()`、`Object.values()`、`Object.entries()`などのメソッドが利用できます。
+
 先ほどのオブジェクトのキーと値を列挙するには次のように書くことができます。
 `Object.keys()`は`object`のプロパティ名の配列を返します。
 
