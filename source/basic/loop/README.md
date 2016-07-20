@@ -368,7 +368,7 @@ JavaScriptではStringオブジェクトもiterableです。
 
 [import, for-of-string-example.js](./src/for-of/for-of-string-example.js)
 
-その他にも、`TypedArray`、`Map`、`Set`、DOM NodeListなど、JavaScriptではiterableなオブジェクトが多くあります。
+その他にも、`TypedArray`、`Map`、`Set`、DOM NodeListなど、iterableなオブジェクトとして実装されているものは多いです。
 for...of文はそれらに対して反復処理を行うことができます。
 
 ## [コラム] `let`ではなく`const`で反復処理をする
