@@ -121,7 +121,7 @@ console.log(total); // => 55
 ```js
 var array = [1, 2, 3, 4, 5];
 array.forEach((currentValue, index, array) => {
-    // 処理する文
+    // 実行する文
 });
 ```
 
@@ -277,9 +277,9 @@ for (var key in object) {
     var value = object[key];
     console.log(`key:${key}, value:${value}`);
 }
-// key:a, value:1
-// key:b, value:2
-// key:c, value:3
+// "key:a, value:1"
+// "key:b, value:2"
+// "key:c, value:3"
 ```
 
 オブジェクトに対する反復処理のためにfor...in文は有用に見えますが、多くの問題を持っています。
@@ -295,7 +295,7 @@ for...in文は、対象となるオブジェクトのプロパティを列挙す
 安全にオブジェクトのプロパティを列挙するには、`Object.keys()`、`Object.values()`、`Object.entries()`などのメソッドが利用できます。
 
 先ほどの例は、オブジェクトのキーと値を列挙するコードは次のように書くことができます。
-`Object.keys()`は`object`自身がもつプロパティ名の配列を返すため、親オブジェクトのプロパティは列挙されません。
+`Object.keys()`は`object`自身がもつプロパティ名の配列を返すため、親オブジェクトのプロパティは列挙されないため安全です。
 
 ```js
 var object = {
@@ -307,9 +307,9 @@ Object.keys(object).forEach(key => {
     const value = object[key];
     console.log(`key:${key}, value:${value}`);
 });
-// key:a, value:1
-// key:b, value:2
-// key:c, value:3
+// "key:a, value:1"
+// "key:b, value:2"
+// "key:c, value:3"
 ```
 
 また、for...in文は配列オブジェクトに対しても利用できますが、こちらも期待した結果にはなりません。
@@ -335,22 +335,22 @@ console.log(total); // => 1
 
 最後にfor...of文についてです。
 
-JavaScriptでは、`Symbol.iterator`という特別な名前のメソッドを実装したオブジェクトをiterableと呼びます。
-iterableオブジェクトはfor...of文で反復処理が可能になります。
+JavaScriptでは、`Symbol.iterator`という特別な名前のメソッドを実装したオブジェクトを**iterable**と呼びます。
+iterableオブジェクトは、for...of文で反復処理できます。
 
 iterableについてはgeneratorと密接な関係がありますが、ここでは反復処理時の動作が定義されたオブジェクトと認識していれば問題ありません。
 
-iterableオブジェクトはfor...of文で値を列挙することができます。
-for...of文では、`iterable`から列挙可能な値を1つ取り出し、`variable`に代入し反復処理されます。
+iterableオブジェクトは反復処理時に次の返す値を定義しています。
+それに対して、for...of文では、`iterable`から列挙可能な値を1つ取り出し、`variable`に代入し反復処理を行います。
 
 ```js
 for (variable of iterable)
-    処理する文;
+    実行する文;
 ```
 
-実はすでにiterableオブジェクトは登場しています。
+実はすでにiterableオブジェクトは登場していて、Arrayはiterableオブジェクトです。
 
-ArrayやStringなどはiterableオブジェクトであるため、次のようにfor...of文で反復処理ができます。
+次のようにfor...of文で、配列から値を取り出し反復処理を行うことができます。
 for...in文とは異なり、添字ではなく値を列挙します。
 
 ```js
@@ -364,7 +364,7 @@ for (var value of array) {
 ```
 
 JavaScriptではStringオブジェクトもiterableです。
-サロゲートペアも考慮し1文字ずつ値を列挙することができます。
+サロゲートペアも考慮し、文字列を1文字ずつ列挙することができます。
 
 ```js
 var string = "吉野家";
@@ -386,7 +386,7 @@ for...of文はそれらに対して反復処理を行うことができます。
 `const` は再代入できない変数を宣言するキーワードであるためfor文とは相性がよくありません。
 
 `let`ではなく`const`を使うためには、一度定義した変数に値を代入しつつ反復処理するのではなく、
-反復処理からひとつの新しい値を返す方法が必要になります。
+反復処理した結果として新しい値を返す方法が必要になります。
 
 反復処理から新しい値を作るArrayメソッドとして`Array.prototype.reduce`があります。
 `reduce`メソッドは配列から新しい値を作り返すメソッドです。
