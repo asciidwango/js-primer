@@ -208,8 +208,8 @@ while (条件式) {
 }
 ```
 
-次のコードでは配列の要素に含まれている偶数を集めた配列を作り返しています。
-偶数ではない場合、処理中の文をスキップしています。
+次のコードでは、配列の中から偶数を集め、新しい配列を作り返しています。
+偶数ではない場合、処理中のfor文をスキップしています。
 
 [import, continue-filter-even-example.js](src/continue/continue-filter-even-example.js)
 
