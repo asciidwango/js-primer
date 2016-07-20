@@ -272,7 +272,7 @@ for...in文は、対象となるオブジェクトのプロパティを列挙す
 
 先ほどの例である、オブジェクトのキーと値を列挙するコードはfor..in文を使わずに書くことができます。
 `Object.keys()`は`object`自身がもつ列挙可能なプロパティ名の配列を返します。
-for...in文とは違い、親オブジェクトのプロパティは列挙されないため、意図しない値が列挙されません。
+そのためfor...in文とは違い、親オブジェクトのプロパティは列挙されません。
 
 [import, object-keys-for-each-example.js](./src/for-in/object-keys-for-each-example.js)
 
