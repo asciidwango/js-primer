@@ -267,20 +267,7 @@ for (variable in object)
 次のコードでは`object`のプロパティ名を`key`変数に代入し反復処理をしています。
 `object`には、3つのプロパティ名があるため３回繰り返されます。
 
-```js
-var object = {
-    "a": 1,
-    "b": 2,
-    "c": 3
-};
-for (var key in object) {
-    var value = object[key];
-    console.log(`key:${key}, value:${value}`);
-}
-// "key:a, value:1"
-// "key:b, value:2"
-// "key:c, value:3"
-```
+[import, for-in-object-example.js](./src/for-in/for-in-object-example.js)
 
 オブジェクトに対する反復処理のためにfor...in文は有用に見えますが、多くの問題を持っています。
 
@@ -297,25 +284,12 @@ for...in文は、対象となるオブジェクトのプロパティを列挙す
 先ほどの例は、オブジェクトのキーと値を列挙するコードは次のように書くことができます。
 `Object.keys()`は`object`自身がもつプロパティ名の配列を返すため、親オブジェクトのプロパティは列挙されないため安全です。
 
-```js
-var object = {
-    "a": 1,
-    "b": 2,
-    "c": 3
-};
-Object.keys(object).forEach(key => {
-    const value = object[key];
-    console.log(`key:${key}, value:${value}`);
-});
-// "key:a, value:1"
-// "key:b, value:2"
-// "key:c, value:3"
-```
+[import, object-keys-for-each-example.js](./src/for-in/object-keys-for-each-example.js)
 
 また、for...in文は配列オブジェクトに対しても利用できますが、こちらも期待した結果にはなりません。
 
 次のコードでは、配列の要素が列挙されそうですが、実際には配列の添字が列挙されます。
-つまり、配列の添字は"0"という文字から始まるため、"0"、"1"という値が順番に`num`へと代入されます。
+配列の添字は"0"という文字から始まるため、"0"、"1"という値が順番に`num`へと代入されます。
 そのため、数値と文字列を加算が行われ、意図した結果にはなりません。
 
 [import, for-in-array-bug-example.js](./src/for-in/for-in-array-bug-example.js)
