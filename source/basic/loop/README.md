@@ -331,6 +331,54 @@ console.log(total); // => 1
 このようにfor...in文は正しく扱うのが難しいですが、代わりとなる手段が豊富にあります。
 そのため、for...in文を使うことよりも他の方法を考えた方がよいでしょう。
 
+## [ES2015] for...of文
+
+最後にfor...of文についてです。
+
+JavaScriptでは、`Symbol.iterator`という特別な名前のメソッドを実装したオブジェクトをiterableと呼びます。
+iterableオブジェクトはfor...of文で反復処理が可能になります。
+
+iterableについてはgeneratorと密接な関係がありますが、ここでは反復処理時の動作が定義されたオブジェクトと認識していれば問題ありません。
+
+iterableオブジェクトはfor...of文で値を列挙することができます。
+for...of文では、`iterable`から列挙可能な値を1つ取り出し、`variable`に代入し反復処理されます。
+
+```js
+for (variable of iterable)
+    処理する文;
+```
+
+実はすでにiterableオブジェクトは登場しています。
+
+ArrayやStringなどはiterableオブジェクトであるため、次のようにfor...of文で反復処理ができます。
+for...in文とは異なり、添字ではなく値を列挙します。
+
+```js
+var array = [1, 2, 3];
+for (var value of array) {
+    console.log(value);
+}
+// 1
+// 2
+// 3
+```
+
+JavaScriptではStringオブジェクトもiterableです。
+サロゲートペアも考慮し1文字ずつ値を列挙する事ができます。
+
+```js
+var string = "吉野家";
+for (var value of string) {
+  console.log(value);
+}
+// "吉"
+// "野"
+// "家"
+```
+
+その他にも、`TypedArray`、`Map`、`Set`、DOM NodeListなど、JavaScriptではiterableなオブジェクトが多くあります。
+for...of文はそれらに対して反復処理を行うことができます。
+
 ## [コラム] `let`ではなく`const`で反復処理をする
 
 先ほどのfor文や`forEach`メソッドでは`let`を`const`に変更することはできませでした。
