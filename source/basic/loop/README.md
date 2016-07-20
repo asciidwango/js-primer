@@ -4,10 +4,9 @@ author: azu
 
 # ループと反復処理
 
-
 プログラミングにおいて、同じ処理を繰り返すために同じコードを必要はありません。
 ループや再帰呼び出し、イテレータなどを使い、反復処理は抽象化します。
-ここでは、もっとも基本的な反復処理となるループについてを学んでいきます。
+ここでは、もっとも基本的な反復処理と制御文について学んでいきます。
 
 ## while文
 
@@ -137,7 +136,7 @@ array.forEach(コールバック関数);
 ```
 
 `forEach`メソッドのコールバック関数には、配列の先頭から順番に要素が渡されて実行されます。
-つまり、コールバック関数の`currentValue`には1, 2, 3 …という値が順番に渡されて実行されます。
+つまり、コールバック関数の`currentValue`には1から5の値が順番に渡されて実行されます。
 
 ```js
 [1, 2, 3, 4, 5].forEach(currentValue => {
@@ -255,6 +254,82 @@ var filterdArray = array.filter((currentValue, index, array) => {
 この`filter`メソッドを使うことで、次のように偶数を取り出す処理を書くことができます。
 
 [import, filter-even-example.js](./src/continue/filter-even-example.js)
+
+## for...in文
+
+for...in文はオブジェクトのプロパティに対して、順不同で反復処理を行います。
+
+```js
+for (variable in object)
+    実行する文;
+```
+
+次のコードでは`object`のプロパティ名を`key`変数に代入し反復処理をしています。
+`object`には、3つのプロパティ名があるため３回繰り返されます。
+
+```js
+var object = {
+    "a": 1,
+    "b": 2,
+    "c": 3
+};
+for (var key in object) {
+    var value = object[key];
+    console.log(`key:${key}, value:${value}`);
+}
+// key:a, value:1
+// key:b, value:2
+// key:c, value:3
+```
+
+オブジェクトに対する反復処理のためにfor...in文は有用に見えますが、多くの問題を持っています。
+
+JavaScriptでは、オブジェクトは何らかのオブジェクトを継承しています。
+for...in文は、対象となるオブジェクトのプロパティを列挙する場合、すべての親オブジェクトまで探索し列挙します。
+そのため、オブジェクト自身が持っていないプロパティも列挙されてしまうことがあります。
+
+この仕組みをプロトタイプチェーンといいますが、詳しくは第n章で解説します。
+
+<!-- TODO: 第n章を埋める -->
+
+安全にオブジェクトのプロパティを列挙するには、`Object.keys()`、`Object.values()`、`Object.entries()`などのメソッドが利用できます。
+
+先ほどの例は、オブジェクトのキーと値を列挙するコードは次のように書くことができます。
+`Object.keys()`は`object`自身がもつプロパティ名の配列を返すため、親オブジェクトのプロパティは列挙されません。
+
+```js
+var object = {
+    "a": 1,
+    "b": 2,
+    "c": 3
+};
+Object.keys(object).forEach(key => {
+    const value = object[key];
+    console.log(`key:${key}, value:${value}`);
+});
+// key:a, value:1
+// key:b, value:2
+// key:c, value:3
+```
+
+また、for...in文は配列オブジェクトに対しても利用できますが、こちらも期待した結果にはなりません。
+
+次のコードでは、配列の要素が列挙されそうですが、実際には配列の添字が列挙されます。
+つまり、配列の添字は0から始まるため、0、1という値が順番に`num`へと代入されます。
+
+```js
+var numbers = [5, 10];
+var total = 0;
+for (var num in numbers) {
+    total += num;
+}
+console.log(total); // => 1
+```
+
+配列の内容に対して反復処理を行う場合は、for文や`forEach`メソッド、後述するfor...of文を使うべきでしょう。
+
+このようにfor...in文は正しく扱うのが難しいですが、代わりとなる手段が豊富にあります。
+そのため、for...in文を使うことよりも他の方法を考えた方がよいでしょう。
 
 ## [コラム] `let`ではなく`const`で反復処理をする
 
