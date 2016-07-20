@@ -55,7 +55,7 @@ while文とは異なり、かならず最初に`実行する文`を処理しま�
 そのため、次のコードのように最初から`条件式`を満たさない場合でも、
 初回の`実行する文`が処理され、コンソールへ`1000`と出力されます。
 
-[import, do-while-example.js](./src/do-while/do-while-example.js)
+[import, do-while-example.js](./src/do-while/do-while-example.js
 
 この仕組みを上手く利用し、ループの開始前とループ中の処理をまとめて書くことができます。
 しかし、while文と同じく他の書き方で解決できないかを考えてからでも遅くはないでしょう。
@@ -141,7 +141,7 @@ array.forEach(コールバック関数);
 
 先ほどのfor文で合計値を計算する`sum`関数を`forEach`メソッドで書いてみます。
 
-[import, sum-forEach-example.js](./src/for/sum-forEach-example.js)
+[import, sum-for-each-example.js](./src/for/sum-for-each-example.js)
 
 `forEach`は`条件式`がなく、配列のすべての要素を走査するため、for文よりもシンプルな処理です。
 
