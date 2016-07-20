@@ -27,13 +27,7 @@ while文の実行フローは次のようになります。
 次のコードでは`x`の値が10未満であるなら、コンソールへ繰り返しログが出力されます。
 また、`実行する文`にて、`x`の値を増やし`条件式`が`false`となるようにしています。
 
-```js
-var x = 0;
-while (x < 10) {
-    console.log(x);
-    x += 1;
-}
-```
+[import, while-add-example.js](./src/while/while-add-example.js)
 
 つまり、`実行する文`の中で`条件式`が`false`となるような処理を書かないと無限ループします。
 JavaScriptにはより安全な反復処理の書き方があるため、while文は使う場面が限られています。
@@ -61,12 +55,7 @@ while文とは異なり、かならず最初に`実行する文`を処理しま�
 そのため、次のコードのように最初から`条件式`を満たさない場合でも、
 初回の`実行する文`が処理され、コンソールへ`1000`と出力されます。
 
-```js
-var x = 1000;
-do {
-    console.log(x);// => 1000
-} while (x < 10);
-```
+[import, do-while-example.js](./src/do-while/do-while-example.js)
 
 この仕組みを上手く利用し、ループの開始前とループ中の処理をまとめて書くことができます。
 しかし、while文と同じく他の書き方で解決できないかを考えてからでも遅くはないでしょう。
@@ -121,7 +110,7 @@ console.log(total); // => 55
 ```js
 var array = [1, 2, 3, 4, 5];
 array.forEach((currentValue, index, array) => {
-    // 処理する文
+    // 実行する文
 });
 ```
 
@@ -152,7 +141,7 @@ array.forEach(コールバック関数);
 
 先ほどのfor文で合計値を計算する`sum`関数を`forEach`メソッドで書いてみます。
 
-[import, sum-forEach-example.js](./src/for/sum-forEach-example.js)
+[import, sum-for-each-example.js](./src/for/sum-for-each-example.js)
 
 `forEach`は`条件式`がなく、配列のすべての要素を走査するため、for文よりもシンプルな処理です。
 
@@ -219,8 +208,8 @@ while (条件式) {
 }
 ```
 
-次のコードでは配列の要素に含まれている偶数を集めた配列を作り返しています。
-偶数ではない場合、処理中の文をスキップしています。
+次のコードでは、配列の中から偶数を集め、新しい配列を作り返しています。
+偶数ではない場合、処理中のfor文をスキップしています。
 
 [import, continue-filter-even-example.js](src/continue/continue-filter-even-example.js)
 
@@ -267,20 +256,7 @@ for (variable in object)
 次のコードでは`object`のプロパティ名を`key`変数に代入し反復処理をしています。
 `object`には、3つのプロパティ名があるため３回繰り返されます。
 
-```js
-var object = {
-    "a": 1,
-    "b": 2,
-    "c": 3
-};
-for (var key in object) {
-    var value = object[key];
-    console.log(`key:${key}, value:${value}`);
-}
-// key:a, value:1
-// key:b, value:2
-// key:c, value:3
-```
+[import, for-in-object-example.js](./src/for-in/for-in-object-example.js)
 
 オブジェクトに対する反復処理のためにfor...in文は有用に見えますが、多くの問題を持っています。
 
@@ -295,41 +271,55 @@ for...in文は、対象となるオブジェクトのプロパティを列挙す
 安全にオブジェクトのプロパティを列挙するには、`Object.keys()`、`Object.values()`、`Object.entries()`などのメソッドが利用できます。
 
 先ほどの例は、オブジェクトのキーと値を列挙するコードは次のように書くことができます。
-`Object.keys()`は`object`自身がもつプロパティ名の配列を返すため、親オブジェクトのプロパティは列挙されません。
+`Object.keys()`は`object`自身がもつ列挙可能なプロパティ名の配列を返します。
+親オブジェクトのプロパティは列挙されないため、意図しない値が列挙されることがありません。
 
-```js
-var object = {
-    "a": 1,
-    "b": 2,
-    "c": 3
-};
-Object.keys(object).forEach(key => {
-    const value = object[key];
-    console.log(`key:${key}, value:${value}`);
-});
-// key:a, value:1
-// key:b, value:2
-// key:c, value:3
-```
+[import, object-keys-for-each-example.js](./src/for-in/object-keys-for-each-example.js)
 
 また、for...in文は配列オブジェクトに対しても利用できますが、こちらも期待した結果にはなりません。
 
 次のコードでは、配列の要素が列挙されそうですが、実際には配列の添字が列挙されます。
-つまり、配列の添字は0から始まるため、0、1という値が順番に`num`へと代入されます。
+for...in文が列挙する配列オブジェクトの添字は"0"、"1"のような**文字列**であるため、その文字列が`num`へと順番に代入されます。
+そのため、数値と文字列の加算が行われ、意図した結果にはなりません。
 
-```js
-var numbers = [5, 10];
-var total = 0;
-for (var num in numbers) {
-    total += num;
-}
-console.log(total); // => 1
-```
+[import, for-in-array-bug-example.js](./src/for-in/for-in-array-bug-example.js)
 
 配列の内容に対して反復処理を行う場合は、for文や`forEach`メソッド、後述するfor...of文を使うべきでしょう。
 
 このようにfor...in文は正しく扱うのが難しいですが、代わりとなる手段が豊富にあります。
 そのため、for...in文を使うことよりも他の方法を考えた方がよいでしょう。
+
+## [ES2015] for...of文
+
+最後にfor...of文についてです。
+
+JavaScriptでは、`Symbol.iterator`という特別な名前のメソッドを実装したオブジェクトを**iterable**と呼びます。
+iterableオブジェクトは、for...of文で反復処理できます。
+
+iterableについてはgeneratorと密接な関係がありますが、ここでは反復処理時の動作が定義されたオブジェクトと認識していれば問題ありません。
+
+iterableオブジェクトは反復処理時に次の返す値を定義しています。
+それに対して、for...of文では、`iterable`から列挙可能な値を1つ取り出し、`variable`に代入し反復処理を行います。
+
+```js
+for (variable of iterable)
+    実行する文;
+```
+
+実はすでにiterableオブジェクトは登場していて、Arrayはiterableオブジェクトです。
+
+次のようにfor...of文で、配列から値を取り出し反復処理を行うことができます。
+for...in文とは異なり、添字ではなく値を列挙します。
+
+[import, for-of-array-example.js](./src/for-of/for-of-array-example.js)
+
+JavaScriptではStringオブジェクトもiterableです。
+サロゲートペアも考慮し、文字列を1文字ずつ列挙することができます。
+
+[import, for-of-string-example.js](./src/for-of/for-of-string-example.js)
+
+その他にも、`TypedArray`、`Map`、`Set`、DOM NodeListなど、iterableなオブジェクトとして実装されているものは多いです。
+for...of文はそれらに対して反復処理を行うことができます。
 
 ## [コラム] `let`ではなく`const`で反復処理をする
 
@@ -337,11 +327,10 @@ console.log(total); // => 1
 なぜなら、for文は一度定義した変数に値の代入を繰り返し行う処理といえるからです。
 `const` は再代入できない変数を宣言するキーワードであるためfor文とは相性がよくありません。
 
-`let`ではなく`const`を使うためには、一度定義した変数に値を代入しつつ反復処理するのではなく、
-反復処理からひとつの新しい値を返す方法が必要になります。
+一度定義した変数に値を代入しつつ反復処理すると、変数へ値の上書きが必要となり`const`を使うことができません。
+そのため、一時的な変数を定義せずに反復処理した結果だけを受け取る方法が必要になります。
 
-反復処理から新しい値を作るArrayメソッドとして`Array.prototype.reduce`があります。
-`reduce`メソッドは配列から新しい値を作り返すメソッドです。
+反復処理により新しい値を作るArrayメソッドとして`Array.prototype.reduce`メソッドがあります。
 
 `reduce`メソッドは2つずつの要素を取り出し（左から右へ）、その値を`コールバック関数`を適用し、
 `次の値`として1つの値を返します。
