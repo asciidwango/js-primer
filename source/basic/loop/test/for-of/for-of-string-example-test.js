@@ -2,7 +2,7 @@ const assert = require("assert");
 const strictEval = require("strict-eval");
 const fs = require("fs");
 const path = require("path");
-const Code = fs.readFileSync(path.join(__dirname, "../../src/for-of/for-of-string.js"), "utf-8");
+const Code = fs.readFileSync(path.join(__dirname, "../../src/for-of/for-of-string-example.js"), "utf-8");
 describe("for-of-string", function() {
     it("can handle サロゲートペア", function() {
         const actualLogs = [];
