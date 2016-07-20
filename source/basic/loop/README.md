@@ -299,7 +299,7 @@ iterableオブジェクトは、for...of文で反復処理できます。
 iterableについてはgeneratorと密接な関係がありますが、ここでは反復処理時の動作が定義されたオブジェクトと認識していれば問題ありません。
 
 iterableオブジェクトは反復処理時に次の返す値を定義しています。
-それに対して、for...of文では、`iterable`から列挙可能な値を1つ取り出し、`variable`に代入し反復処理を行います。
+それに対して、for...of文では、`iterable`から値を1つ取り出し、`variable`に代入し反復処理を行います。
 
 ```js
 for (variable of iterable)
