@@ -2,7 +2,7 @@ const assert = require("assert");
 const strictEval = require("strict-eval");
 const fs = require("fs");
 const path = require("path");
-const Code = fs.readFileSync(require.resolve("../../src/for-in/object-keys-for-each-example-test.js"), "utf-8");
+const Code = fs.readFileSync(require.resolve("../../src/for-in/object-keys-for-each-example.js"), "utf-8");
 describe("object-keys-for-each", function() {
     it("オブジェクトのkey:valueが列挙される", function() {
         const actualLogs = [];
