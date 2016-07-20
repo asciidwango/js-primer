@@ -364,12 +364,12 @@ for (var value of array) {
 ```
 
 JavaScriptではStringオブジェクトもiterableです。
-サロゲートペアも考慮し1文字ずつ値を列挙する事ができます。
+サロゲートペアも考慮し1文字ずつ値を列挙することができます。
 
 ```js
 var string = "吉野家";
 for (var value of string) {
-  console.log(value);
+    console.log(value);
 }
 // "吉"
 // "野"
