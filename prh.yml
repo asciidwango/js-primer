@@ -116,6 +116,11 @@ rules:
       - /for\.{1,2}in/
       - for-in
       - for/in
+  - expected: for...of
+    patterns:
+      - /for\.{1,2}of/
+      - for-of
+      - for/of
 # typo
   - expected: $1進数
     patterns:
@@ -142,6 +147,9 @@ rules:
         to  : 2個ずつ
       - from: 2つづつ
         to  : 2つずつ
+  - expected: 処理を行います
+    patterns:
+      - 処理をします
 # 漢字開き
   - expected: もとづ$1
     patterns: /基づ(く|き)/
