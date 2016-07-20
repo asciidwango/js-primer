@@ -3,4 +3,4 @@ var total = 0;
 for (var num in numbers) {
     total += num;
 }
-console.log(total); // => 1
+console.log(total); // => "001"
