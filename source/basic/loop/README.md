@@ -271,7 +271,8 @@ for...in文は、対象となるオブジェクトのプロパティを列挙す
 安全にオブジェクトのプロパティを列挙するには、`Object.keys()`、`Object.values()`、`Object.entries()`などのメソッドが利用できます。
 
 先ほどの例は、オブジェクトのキーと値を列挙するコードは次のように書くことができます。
-`Object.keys()`は`object`自身がもつプロパティ名の配列を返すため、親オブジェクトのプロパティは列挙されないため安全です。
+`Object.keys()`は`object`自身がもつ列挙可能なプロパティ名の配列を返します。
+親オブジェクトのプロパティは列挙されないため、意図しない値が列挙されることがありません。
 
 [import, object-keys-for-each-example.js](./src/for-in/object-keys-for-each-example.js)
 
