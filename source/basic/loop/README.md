@@ -366,15 +366,7 @@ for (var value of array) {
 JavaScriptではStringオブジェクトもiterableです。
 サロゲートペアも考慮し、文字列を1文字ずつ列挙することができます。
 
-```js
-var string = "吉野家";
-for (var value of string) {
-    console.log(value);
-}
-// "吉"
-// "野"
-// "家"
-```
+[import, for-of-string.js](src/for-of-string.js)
 
 その他にも、`TypedArray`、`Map`、`Set`、DOM NodeListなど、JavaScriptではiterableなオブジェクトが多くあります。
 for...of文はそれらに対して反復処理を行うことができます。
