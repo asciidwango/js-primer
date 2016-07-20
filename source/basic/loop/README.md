@@ -315,16 +315,10 @@ Object.keys(object).forEach(key => {
 また、for...in文は配列オブジェクトに対しても利用できますが、こちらも期待した結果にはなりません。
 
 次のコードでは、配列の要素が列挙されそうですが、実際には配列の添字が列挙されます。
-つまり、配列の添字は0から始まるため、0、1という値が順番に`num`へと代入されます。
+つまり、配列の添字は"0"という文字から始まるため、"0"、"1"という値が順番に`num`へと代入されます。
+そのため、数値と文字列を加算が行われ意図した値にはなりません。
 
-```js
-var numbers = [5, 10];
-var total = 0;
-for (var num in numbers) {
-    total += num;
-}
-console.log(total); // => 1
-```
+[import, for-in-array-bug-example.js](./src/for-in/for-in-array-bug-example.js)
 
 配列の内容に対して反復処理を行う場合は、for文や`forEach`メソッド、後述するfor...of文を使うべきでしょう。
 
@@ -353,15 +347,7 @@ for (variable of iterable)
 次のようにfor...of文で、配列から値を取り出し反復処理を行うことができます。
 for...in文とは異なり、添字ではなく値を列挙します。
 
-```js
-var array = [1, 2, 3];
-for (var value of array) {
-    console.log(value);
-}
-// 1
-// 2
-// 3
-```
+[import, for-of-array-example.js](./src/for-of/for-of-array-example.js)
 
 JavaScriptではStringオブジェクトもiterableです。
 サロゲートペアも考慮し、文字列を1文字ずつ列挙することができます。
