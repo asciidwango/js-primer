@@ -1,3 +1,7 @@
+---
+author: azu
+---
+
 # JavaScriptとは
 
 JavaScriptはウェブブラウザ、Node.jsを始め、今はIoT（Internet of Things）デバイスなど幅広い環境で動作する言語となっています。
