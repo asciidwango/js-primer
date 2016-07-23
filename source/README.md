@@ -41,6 +41,7 @@
     - [Ajaxで通信](ajaxapp/README.md)
       - [エントリポイント](ajaxapp/entrypoint/README.md)
       - [HTTP通信](ajaxapp/xhr/README.md)
-      - データを表示する
+      - [データを表示する](ajaxapp/display/README.md)
+      - Promiseを活用する
     - Node.jsでCLIアプリ
     - TODOアプリ
