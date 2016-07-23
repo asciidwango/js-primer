@@ -15,45 +15,45 @@ author: azu
 
 ## 二項演算子
 
-### プラス (+)
+### プラス （+）
 
 ```js
 1 + 1; // => 2
 ```
 
-### マイナス (-)
+### マイナス （-）
 
 ```js
-42 - 1; => 41
+42 - 1; // => 41
 ```
 
-### 乗算 (*)
+### 乗算 （*）
 
 ```js
 2 * 8; // => 16
 ```
 
-### 除算 (/)
+### 除算 （/）
 
 ```js
 8 / 2; // => 4
 ```
 
-### 剰余 (%)
+### 剰余 （%）
 
 ```js
 8 % 3; // => 2
 ```
 
-### 指数演算子 (**) 
+### 指数演算子 （**） 
 
 ```js
 2 ** 4; // => 2*2*2*2
 ```
 
-## 単項演算子(算術)
+## 単項演算子（算術）
  
-### 単項プラス (+)
+### 単項プラス （+）
 
 ```js
 +1; // => 1
@@ -61,7 +61,7 @@ author: azu
 +"文字列"; // => NaN
 ```
 
-### インクリメント (++)
+### インクリメント （++）
 
 ```js
 var num = 1;
@@ -71,7 +71,7 @@ console.log(num); // => 2
 console.log(num); // => 3
 ```
 
-### デクリメント (--)
+### デクリメント （--）
 
 ```js
 var num = 42;
@@ -83,7 +83,7 @@ console.log(num); // => 40
 
 ## 比較演算子
 
-### 等しい (==)
+### 等しい （==）
 
 ```js
 1 == 1; // => true
@@ -93,7 +93,7 @@ console.log(num); // => 40
 true == true;// => true
 ```
 
-`NaN`はNot a Numberで特殊
+`NaN`はNot a Numberで特殊。
 
 ```js
 NaN == NaN; // => false
@@ -101,7 +101,7 @@ NaN != NaN; // => true
 Number.isNaN(Nan);// => true
 ```
 
-### 等しくない (!=)
+### 等しくない （`!=`）
 
 ```js
 1 != 1; // => false
@@ -111,44 +111,44 @@ Number.isNaN(Nan);// => true
 true != true;// => false
 ```
 
-### 厳密に等しい (===)
+### 厳密に等しい （`===`）
 
-**型変換**おきないため安全
+**型変換**おきないため安全。
 
 ```js
 1 === 1; // => true
 1 === "1"; // => false
 ```
 
-### 厳密に等しくない (!==)
+### 厳密に等しくない （`!==`）
 
 ```js
 1 !== 1; // => false
 1 !== "1"; // => true
 ```
 
-### より大きい (>)
+### より大きい （`>`）
 
 ```js
 42 > 21; // => true
 42 > 42; // => false
 ```
 
-### 以上 (>=)
+### 以上 （`>=`）
 
 ```js
 42 >= 42; // => true
 42 > 42 || 42 == 42; // => true
 ```
 
-### より小さい (<)
+### より小さい （`<`）
 
 ```js
 21 < 42;// => true
 42 < 42; // => false
 ```
 
-### 以下 (<=)
+### 以下 （`<=`）
 
 ```js
 42 <= 42; // => true
@@ -157,40 +157,40 @@ true != true;// => false
 
 ## ビット演算子
 
-### ビット論理積 (AND)
+### ビット論理積 （AND）
 
 ```js
 15     & 9;      // => 9
 0b1111 & 0b1001; // => 0b1001
-//^__^     ^__^
-  0b1111 
+// ^__^     ^__^
+0b1111 
 & 0b1001; // => 0b1001
 //  ^__^
 ```
 
-### ビット論理和 (OR)
+### ビット論理和 （OR）
 
 ```js
 15     | 9;      // => 15
 0b1111 | 0b1001; // => 0b1111
-//^^^^     ^^^^
-  0b1111 
+// ^^^^     ^^^^
+0b1111 
 | 0b1001; // => 0b1111
 //  ^^^^
 ```
 
-### ビット排他的論理和 (XOR)
+### ビット排他的論理和 （XOR）
 
 ```js
 15     ^ 9;      // => 6
 0b1111 ^ 0b1001; // => 0b0110
-//_^^_     _^^_
-  0b1111 
+// _^^_     _^^_
+0b1111 
 ^ 0b1001; // => 0b0110
 //  _^^_
 ```
 
-### ビット否定 (NOT)
+### ビット否定 （NOT）
 
 ```js
 ~15; // => -16
@@ -228,7 +228,7 @@ JavaScriptの`indexOf`は見つからなかった場合に-1を返す。
 ### ゼロ埋め右シフト
 
 ```js
--9.stoString(32); // => 0b11111111111111111111111111110111
+(-9).toString(32);// => 0b11111111111111111111111111110111
 //                      |              32bit             |
 //                      |                               ^^ 捨てられる
 -9 >>> 2;         // => 0b00111111111111111111111111111101
@@ -244,7 +244,7 @@ version = 2016;
 
 ## 条件（三項）演算子
 
-if文的な
+if文的な。
 
 ```js
 var valueAorB = true ? "A" : "B";
@@ -262,11 +262,11 @@ true && false; // => false
 false && true; // => false
 ```
 
-ユースケース
+ユースケース。
 
 ```js
 var value = "str";
-if(typeof value === "string" && value === "str"){
+if (typeof value === "string" && value === "str") {
     console.log(`${value} is string value`);
 }
 ```
@@ -278,10 +278,10 @@ true || false; // => true
 false || true; // => true
 ```
 
-ユースケース
+ユースケースとしてはデフォルト引数。
 
 ```js
-function doSomething(arg){
+function doSomething(arg) {
     var actualValue = arg || true;
     return actualValue;
 }
@@ -291,7 +291,7 @@ actualValue("value"); // => "value"
 
 ## 文字列演算子
 
-文字列の結合
+文字列の結合。
 
 ```js
 var value = "文字列" + "結合";
@@ -299,7 +299,7 @@ console.log(value); // => "文字列結合"
 ```
 
 ```js
-var value = "文字列;
+var value = "文字列";
 value += "結合";
 console.log(value); // => "文字列結合"
 ```
@@ -312,7 +312,7 @@ var a, b, c;
 
 ```js
 var obj = {
-    getThis(){
+    getThis() {
         return this;
     }
 };
@@ -326,10 +326,10 @@ var obj = {
 
 ### delete演算子
 
-オブジェクトのプロパティ または 配列の指定した添字を削除する
+オブジェクトのプロパティ または 配列の指定した添字を削除する。
 
 ```js
-var obj = { key : "value" };
+var obj = { key: "value" };
 delete obj.key;
 console.log(obj.key); // => undefined
 ```
@@ -337,21 +337,24 @@ console.log(obj.key); // => undefined
 ```js
 var array = [5, 10];
 delete array[0];
-console.log(array[0]); //=> undefined
-console.log(array[1]); //=> 10
+console.log(array[0]); // => undefined
+console.log(array[1]); // => 10
 ```
 
-変数を削除する演算子ではない
+変数を削除する演算子ではない。
+
+<!-- textlint-disable -->
 
 ```js
 var foo = "val";
-delete foo; // 何もおきない
-console.log(foo); // => "val"
+delete foo; // => Error
 ```
+
+<!-- textlint-enable -->
 
 ### typeof演算子
 
-説明済み。プリミティブとオブジェクトの判定
+説明済み。プリミティブとオブジェクトの判定について。
 
 ```js
 typeof "value"; // => "string"

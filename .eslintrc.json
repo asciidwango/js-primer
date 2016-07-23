@@ -3,16 +3,6 @@
     "no-console": "off",
     "no-var": "off"
   },
-  "env": {
-    "es6": true,
-    "node": true,
-    "browser": true,
-    "jquery": true,
-    "mocha": true
-  },
-  "parserOptions": {
-    "sourceType": "module"
-  },
   "extends": [
     "./config/style.eslintrc.js"
   ]
