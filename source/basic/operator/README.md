@@ -165,7 +165,7 @@ true != true;// => false
 
 ## ビット演算子
 
-### ビット論理積 （AND）
+### ビット論理積 （`&`）
 
 ```js
 15     & 9;      // => 9
@@ -176,7 +176,7 @@ true != true;// => false
 //  ^__^
 ```
 
-### ビット論理和 （OR）
+### ビット論理和 （`|`）
 
 ```js
 15     | 9;      // => 15
@@ -187,7 +187,7 @@ true != true;// => false
 //  ^^^^
 ```
 
-### ビット排他的論理和 （XOR）
+### ビット排他的論理和 （`^`）
 
 ```js
 15     ^ 9;      // => 6
@@ -198,7 +198,7 @@ true != true;// => false
 //  _^^_
 ```
 
-### ビット否定 （NOT）
+### ビット否定 （`~`）
 
 ```js
 ~15; // => -16
@@ -330,7 +330,7 @@ var obj = {
 
 - [Why is (0,obj.prop)() not a method call?](http://www.2ality.com/2015/12/references.html "Why is (0,obj.prop)() not a method call?")
 
-## 単項演算子
+## 単項演算子（特殊）
 
 ### delete演算子
 
