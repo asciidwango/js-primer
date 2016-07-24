@@ -11,7 +11,8 @@
     "include-codeblock",
     "japanese-support",
     "edit-link",
-    "canonical-link"
+    "canonical-link",
+    "ga"
   ],
   "pluginsConfig": {
     "edit-link": {
@@ -20,6 +21,9 @@
     },
     "canonical-link": {
       "baseURL": "https://asciidwango.github.io/js-primer"
+    },
+    "ga": {
+      "token": "UA-2184335-18"
     }
   }
 }
