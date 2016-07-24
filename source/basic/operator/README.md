@@ -215,7 +215,7 @@ JavaScriptの`indexOf`は見つからなかった場合に-1を返す。
 0b1111 << 2; // => 0b111100
 ```
 
-### 符号維持右シフト
+### 右シフト
 
 
 ```js
@@ -359,6 +359,14 @@ delete foo; // => Error
 ```js
 typeof "value"; // => "string"
 typeof 42; // => "number"
+```
+
+### void演算子
+
+`undefined`を返す特性を利用した圧縮やブックマークレットの仕組みに使われている。
+
+```js
+void 0;// => undefined
 ```
 
 ### グループ演算子
