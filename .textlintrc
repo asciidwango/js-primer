@@ -6,7 +6,9 @@
     "preset-ja-technical-writing": {
       "max-kanji-continuous-len": {
         "allow": [
-          "浮動小数点数"
+          "浮動小数点数",
+          "排他的論理和",
+          "文字列演算子"
         ]
       }
     },

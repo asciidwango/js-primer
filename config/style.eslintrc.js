@@ -1,6 +1,17 @@
 // LICENSE : MIT
 "use strict";
 module.exports = {
+    "env": {
+        "es6": true,
+        "node": true,
+        "browser": true,
+        "jquery": true,
+        "mocha": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 7,
+        "sourceType": "module"
+    },
     rules: {
         "indent": [
             "error", 4, {
