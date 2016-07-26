@@ -29,7 +29,7 @@ function getUserInfo(userId) {
     request.send();
 }
 
-function escape(str) {
+function escapeSpecialChars(str) {
     return str
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
@@ -40,12 +40,12 @@ function escape(str) {
 
 function escapeHTML(strings, ...values) {
     return strings.map((part, i) => {
-        let arg = values[i];
-        if (arg) {
-            if (typeof arg === "string") {
-                return part + escape(arg);
+        const value = values[i];
+        if (value) {
+            if (typeof value === "string") {
+                return part + escapeSpecialChars(value);
             } else {
-                return part + `${arg}`;
+                return part + String(value);
             }
         } else {
             return part;

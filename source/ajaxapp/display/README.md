@@ -87,7 +87,7 @@ JavaScriptによってHTML要素をDOMに追加する方法は、大きく分け
 ひとつは、今回のようにHTML文字列を[Element#innerHTML][]プロパティにセットする方法です。
 もうひとつは、文字列ではなく[Element][]オブジェクトを生成して[手続き的にツリー構造を構築する][]方法です。
 後者はセキュリティ的に安全ですが、コードは少し冗長になります。
-今回は`Element#innerHTML`プロパティを使いつつ、自前でセキュリティのための処理を行うこととします。
+今回は`Element#innerHTML`プロパティを使いつつ、セキュリティのための処理を行うこととします。
 
 ## HTML文字列をエスケープする
 
@@ -96,11 +96,14 @@ JavaScriptによってHTML要素をDOMに追加する方法は、大きく分け
 これを回避するために、文字列をセットする前に、特定の記号を安全な表現に置換する必要があります。
 この処理を一般にHTMLのエスケープと呼びます。
 
-厳密にHTMLのエスケープをしようとすると大変です。
-今回は最低限のエスケープ処理を`escape`関数として宣言します。
+多くのViewライブラリは内部にエスケープ機構を持っていて、動的にHTMLを組み立てるときにはデフォルトでエスケープをしてくれます。
+または、[エスケープ用のライブラリ][]を利用するケースも多いでしょう。
+今回のように独自実装するのは特別なケースで、一般的にはライブラリが提供する機能を使うのがほとんどです。
+
+次のように、特殊な記号に対するエスケープ処理を`escapeSpecialChars`関数として宣言します。
 
 ```js
-function escape(str) {
+function escapeSpecialChars(str) {
     return str
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
@@ -110,9 +113,9 @@ function escape(str) {
 }
 ```
 
-この`escape`関数を、HTML文字列の中で`userInfo`から値を注入しているすべての箇所で行います。
-ただし、テンプレートリテラル中で挿入している部分すべてにいちいち`escape`関数を適用するのは手間ですし、メンテナンス性もよくありません。
-そこで、[テンプレートリテラルをタグ付け][[]することで、明示的に`escape`関数を呼び出すことなくエスケープを行えるようにします。
+この`escapeSpecialChars`関数を、HTML文字列の中で`userInfo`から値を注入しているすべての箇所で行います。
+ただし、テンプレートリテラル中で挿入している部分すべてに関数を適用するのは手間ですし、メンテナンス性もよくありません。
+そこで、[テンプレートリテラルをタグ付け][[]することで、明示的にエスケープ用の関数を呼び出す必要がないようにします。
 タグ付けされたテンプレートリテラルは、テンプレートによる値の埋め込みを関数の呼び出しとして扱えます。
 
 次の`escapeHTML`はテンプレートリテラルにタグ付けするための**タグ関数**です。
@@ -123,12 +126,12 @@ function escape(str) {
 ```js
 function escapeHTML(strings, ...values) {
     return strings.map((part, i) => {
-        let arg = values[i];
-        if (arg) {
-            if (typeof arg === "string") {
-                return part + escape(arg);
+        const value = values[i];
+        if (value) {
+            if (typeof value === "string") {
+                return part + escapeSpecialChars(value);
             } else {
-                return part + `${arg}`;
+                return part + String(value);
             }
         } else {
             return part;
@@ -137,7 +140,7 @@ function escapeHTML(strings, ...values) {
 }
 ```
 
-`escapeHTML`関数はタグ関数なので、通常の`()`による呼び出しではなく、テンプレートリテラルに対してタグ付けして用います。
+`escapeHTML`関数はタグ関数なので、通常の`()`による呼び出しではなく、テンプレートリテラルに対してタグ付けして使います。
 テンプレートリテラルのバッククォート記号の前に関数を書くと、関数がタグ付けされます。
 
 ```js
@@ -172,4 +175,5 @@ result.innerHTML = view;
 [Element#innerHTML]: https://developer.mozilla.org/ja/docs/Web/API/Element/innerHTML
 [Element]: https://developer.mozilla.org/ja/docs/Web/API/Element
 [手続き的にツリー構造を構築する]: https://developer.mozilla.org/ja/docs/Web/API/Node/appendChild
+[エスケープ用のライブラリ]: https://github.com/teppeis/htmlspecialchars
 [テンプレートリテラルをタグ付け]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/template_strings#タグ付けされたTemplate_literals
