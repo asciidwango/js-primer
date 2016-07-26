@@ -47,7 +47,7 @@ const view = `
 
 ```html
 <h4>js-primer example (@js-primer-example)</h4>
-<img src="https://avatars.githubusercontent.com/u/20484824?v=3" alt="js-primer-example" height="100">
+<img src="github.com/js-primer-example.png" alt="js-primer-example" height="100">
 <dl>
     <dt>Location</dt>
     <dd>Japan</dd>
