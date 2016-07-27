@@ -10,6 +10,7 @@
     "start": "static src",
     "start:entrypoint": "static entrypoint/src",
     "start:xhr": "static xhr/src",
+    "start:display": "static display/src",
     "firefox": "osascript firefox-launch.applescript",
     "ss": "osascript screenshot.applescript"
   },
