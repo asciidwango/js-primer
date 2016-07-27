@@ -9,7 +9,6 @@
   },
   "plugins": [
     "include-codeblock",
-    "japanese-support",
     "edit-link",
     "canonical-link",
     "ga"
