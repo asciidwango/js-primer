@@ -552,14 +552,26 @@ number >> bit;
 
 ## 代入演算子（`=`）
 
+代入演算子（`=`）は変数に対して値を代入します。
+詳しくは[変数と宣言](../src/variables/README.md)を参照してください。
+
 ```js
 var version = 2015;
-version = 2016;
 ```
 
 ## 条件（三項）演算子（`?`と`:`）
 
-if文的な。
+条件演算子（`?`と`:`）は三項をとる演算子であるため、三項演算子とも呼ばれます。
+
+条件演算子は`条件式`を評価した結果が`true`ならば、`Trueの時処理する式`の評価結果を返します。
+`条件式`が`false`である場合は、`Falseの時処理する式`の評価結果を返します。
+
+```js
+条件式 ? Trueの時処理する式 : Falseの時処理する式;
+```
+
+if文との違いは、条件演算子は式として書くことができるため値を返します。
+次のように、`条件式`の評価結果により`"A"` または `"B"` どちらかを返します。
 
 ```js
 var valueAorB = true ? "A" : "B";
@@ -568,9 +580,58 @@ var valueAorB = false ? "A" : "B";
 console.log(value); // => "B";
 ```
 
+条件分岐による値を返せるため、条件によって変数の初期値が違う場合などに使われます。
+
+次の例では、`text`文字列に`prefix`となる文字列を先頭に付ける関数を書いています。
+`prefix`の第二引数を省略したり文字列ではないものが指定された場合に、デフォルトの`prefix`を使います。
+（第二引数が省略された場合には、`prefix`に`undefined`が入った状態になります）
+
+条件演算子の評価結果は値を返すので、`const`を使って宣言と同時に代入することができます。
+
+```js
+function addPrefix(text, prefix) {
+    // `prefix`が指定されていない場合は"デフォルト:"を付ける
+    const pre = typeof prefix === "string" ? prefix : "デフォルト:";
+    return pre + text;
+}
+
+addPrefix("文字列"); // => "デフォルト:文字列"
+addPrefix("文字列", "カスタム"); // => "カスタム文字列"
+```
+
+if文を使った場合は、宣言と代入を分ける必要があるため、`const`を使うことができません。
+
+```js
+function addPrefix(text, prefix) {
+    let pre = "デフォルト:";
+    if (typeof prefix === "string") {
+        pre = prefix;
+    }
+    return pre + text;
+}
+
+addPrefix("文字列"); // => "デフォルト:文字列"
+addPrefix("文字列", "カスタム"); // => "カスタム文字列"
+```
+
+ES2015からは関数の仮引数のデフォルト値を指定できるデフォルト引数が使えます。
+そのためデフォルト引数として書ける場合は、次のように書くのが最もシンプルになります。
+
+```js
+function addPrefix(text, prefix = "デフォルト:") {
+    return prefix + text;
+}
+
+addPrefix("文字列"); // => "デフォルト:文字列"
+addPrefix("文字列", "カスタム"); // => "カスタム文字列"
+```
+
 ## 論理演算子
 
-### AND（`&&`）
+論理演算子は基本的に真偽値を扱う演算子で、AND、OR、NOTを表現することができます
+また、これらの演算子は左から順番に評価されることを利用し、短絡評価（ショートサーキット）をすることｗが
+
+### AND演算子（`&&`）
 
 ```js
 true && false; // => false
@@ -603,6 +664,8 @@ function doSomething(arg) {
 doSomething(); // => true
 actualValue("value"); // => "value"
 ```
+
+### NOT（`!`）
 
 ## 文字列演算子（`+`）
 
