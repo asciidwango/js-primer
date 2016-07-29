@@ -14,7 +14,7 @@ author: azu
 
 ```js
 1 + 2;
-```
+```addPrefix
 
 この演算は、次のような1つの演算子に対して、2つのオペランドを前後に置いています。
 このような2つのオペランドを取る演算子を**二項演算子**と呼びます。
@@ -667,7 +667,7 @@ var x = true, y = false;
 // xがtrueなのでyは評価されない
 x || y; // => true
 // yはfalseなのでxを評価した結果を返す
-y || x; // => false
+y || x; // => true
 ```
 
 OR演算子は、左辺の評価結果が`false`である場合に、右辺を評価します。
@@ -758,7 +758,7 @@ var string = "";
 ```js
 var string = "";
 // 空文字でないことを判定
-console.log(string.length > 0); // => true
+console.log(string.length > 0); // => false
 ```
 
 ## 文字列演算子（`+`）
