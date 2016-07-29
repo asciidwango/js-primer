@@ -181,4 +181,4 @@
 
 - https://github.com/asciidwango/js-primer/milestone/3
 
-2016年9月9日 @ ドワンゴ会議室
+2016年9月9日 @ 株式会社ドワンゴ
