@@ -810,5 +810,5 @@ console.log(c); // => 3
 
 一般にカンマ演算子を利用する機会は殆どないため、「カンマで区切った式は左から順に評価される」ということだけを知っていれば問題ありません。[^1]
 
-[^1]: カンマ演算子を活用したテクニックとしてindirect callというものがあります
+[^1]: カンマ演算子を活用したテクニックとしてindirect callというものがあります。
 [演算子の優先順序]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table "演算子の優先順位 - JavaScript | MDN"
