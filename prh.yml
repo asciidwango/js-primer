@@ -121,7 +121,8 @@ rules:
       - /for\.{1,2}of/
       - for-of
       - for/of
-
+  - expected: バッククオート
+    patterns: バックティック
 # typo
   - expected: $1進数
     patterns:
