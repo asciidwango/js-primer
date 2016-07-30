@@ -121,6 +121,7 @@ rules:
       - /for\.{1,2}of/
       - for-of
       - for/of
+
 # typo
   - expected: $1進数
     patterns:
