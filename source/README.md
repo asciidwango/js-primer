@@ -1,6 +1,7 @@
 # 目次
 
 - 書籍の読み方
+- [本書の目的](intro/goal/README.md)
 - [基礎文法](basic/README.md)
     - [JavaScriptとは](basic/introduction/README.md)
     - [コメント](basic/comments/README.md)
