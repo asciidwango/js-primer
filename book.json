@@ -11,8 +11,12 @@
     "include-codeblock",
     "edit-link",
     "canonical-link",
-    "ga"
+    "ga",
+    "js-console"
   ],
+  "variables": {
+    "console": "<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"
+  },
   "pluginsConfig": {
     "edit-link": {
       "base": "https://github.com/asciidwango/js-primer/edit/master/source/",

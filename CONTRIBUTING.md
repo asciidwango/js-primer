@@ -223,6 +223,22 @@ code
 
 ```
 
+### コードのコンソールモード
+
+次の変数をコードブロックの前に書くことで、コードがインタラクティブに実行できるコンソールモードとして表示されます。
+（ウェブのみ)
+
+    {{book.console}}
+    ```js
+    var interactive = "code";
+    ```
+
+importしたコードにも対応しています。
+
+    {{book.console}}
+    [import, example.js](src/example.js)
+
+
 ### ES6 or ES2015
 
 ES2015は正式な名称ですが、ES6も一般によく使われている名称です。
@@ -230,3 +246,4 @@ ES2015は正式な名称ですが、ES6も一般によく使われている名�
 これから出てくる仕様はES2016、ES2017と年号形式であるためそちらに揃えていこうという形です。
 
 - [ES2015 or ES6 どちらを使う? #22](https://github.com/asciidwango/ES6book/issues/22 "ES2015 or ES6 どちらを使う? #22")
+

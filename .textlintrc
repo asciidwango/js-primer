@@ -1,6 +1,11 @@
 {
   "filters": {
-    "comments": true
+    "comments": true,
+    "whitelist": {
+      "allow": [
+        "/{{[a-zA-Z.]*?}}/"
+      ]
+    }
   },
   "rules": {
     "preset-ja-technical-writing": {
