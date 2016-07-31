@@ -11,6 +11,7 @@
     "start:entrypoint": "static entrypoint/src",
     "start:xhr": "static xhr/src",
     "start:display": "static display/src",
+    "start:promise": "static promise/src",
     "firefox": "osascript firefox-launch.applescript",
     "ss": "osascript screenshot.applescript"
   },
