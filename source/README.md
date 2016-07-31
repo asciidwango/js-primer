@@ -12,7 +12,7 @@
     - [データ型とリテラル](basic/data-type/README.md)
     - [条件分岐](basic/condition/README.md)
     - [ループと反復処理](basic/loop/README.md)
-    - [式と演算子](basic/operator/README.md)
+    - [演算子](basic/operator/README.md)
     - 文
     - String
     - Number
