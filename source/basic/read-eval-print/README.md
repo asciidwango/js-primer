@@ -24,6 +24,7 @@ JavaScriptの多くの実行環境では、Console APIが**コンソール表示
 `console.log(引数)`の引数にコンソール表示したい値を入れることで、評価結果がコンソールに表示されます。
 次の例では `"JavaScript"` という文字列を評価した結果がコンソールに表示されます。
 
+{{book.console}}
 [import, console-example.js](./src/console-example.js)
 
 文字列の表示結果はそのままの文字列です。
@@ -31,11 +32,13 @@ JavaScriptの多くの実行環境では、Console APIが**コンソール表示
 次のように引数に式を書いた場合は、先に値を評価してから、その結果をコンソールに表示します。
 そのため、`1 + 1` の評価結果として `2` がコンソールに表示されます。
 
+{{book.console}}
 [import, console-expression-example.js](./src/console-expression-example.js)
 
 同じように引数に変数を渡すこともできます。
 この場合も、まず先に引数である変数を評価してから、その結果をコンソールに表示します。
 
+{{book.console}}
 [import, console-variable-example.js](./src/console-variable-example.js)
 
 Console APIは原始的なプリントデバッグとして利用できるので、

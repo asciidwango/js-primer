@@ -80,6 +80,7 @@ for文の実行フローは次のようになります。
 
 次のコードでは、for文を使い1から10の合計値を計算しています。
 
+{{book.console}}
 ```js
 var total = 0; // 初期値は0
 for (var i = 0; i < 10; i++) {
@@ -93,8 +94,10 @@ console.log(total); // => 55
 
 次のコードでは、任意の数値が入った配列を受け取り、その合計値を返す `sum` 関数を実装しています。
 関数とブロック文それぞれのスコープがあるので、`var`を`let`に書き換えると間違って同じ変数名を再定義できなくなるのでより安全です。
-<!-- スコープの説明をしてない -->
 
+- [ ] TODO: スコープの説明がない
+
+{{book.console}}
 [import, sum-for-example.js](./src/for/sum-for-example.js)
 
 反復処理の多くは、配列に入れた値を処理する方法と言いかえることができます。
@@ -107,6 +110,7 @@ console.log(total); // => 55
 
 `forEach`メソッドは次のように書くことができます。
 
+{{book.console}}
 ```js
 var array = [1, 2, 3, 4, 5];
 array.forEach((currentValue, index, array) => {
@@ -127,6 +131,7 @@ array.forEach(コールバック関数);
 `forEach`メソッドのコールバック関数には、配列の先頭から順番に要素が渡されて実行されます。
 つまり、コールバック関数の`currentValue`には1から5の値が順番に渡されて実行されます。
 
+{{book.console}}
 ```js
 [1, 2, 3, 4, 5].forEach(currentValue => {
     console.log(num);
@@ -161,6 +166,7 @@ switch文で出てきたものと同様で、処理中のループ文を終了�
 
 次のコードでは配列の要素に1つでも偶数を含んでいるかを判定しています。
 
+{{book.console}}
 [import, break-find-example.js](./src/break/break-find-example.js)
 
 1つでも偶数があるかが分かればいいため、配列内から最初の偶数を見つけたらfor文での反復処理を終了します。
@@ -169,10 +175,12 @@ switch文で出てきたものと同様で、処理中のループ文を終了�
 同様の処理を行う `isEvenIncluded` 関数を実装してみます。
 次のコードでは、break文が実行され、ループを抜けた後にreturn文で結果を返しています。
 
+{{book.console}}
 [import, find-even-break-example.js](./src/break/find-even-break-example.js)
 
 return文は現在の関数を終了させることができるため、次のように書くこともできます。
 
+{{book.console}}
 [import, find-even-return-example.js](./src/break/find-even-return-example.js)
 
 偶数を見つけたらすぐにreturnすることで一時変数が不要となり、より簡潔に書くことができます。
@@ -195,6 +203,7 @@ var isPassed = array.some((currentValue, index, array) => {
 `some`メソッドを使うことで、配列に偶数が含まれているかは次のように書くことができます。
 受け取った値が偶数であるかをテストするコールバック関数として`isEven`関数を渡します。
 
+{{book.console}}
 [import, some-even-example.js](./src/break/some-even-example.js)
 
 ## continue文
@@ -211,6 +220,7 @@ while (条件式) {
 次のコードでは、配列の中から偶数を集め、新しい配列を作り返しています。
 偶数ではない場合、処理中のfor文をスキップしています。
 
+{{book.console}}
 [import, continue-filter-even-example.js](src/continue/continue-filter-even-example.js)
 
 もちろん次のように、偶数なら`results`へ追加するという書き方も可能です。
@@ -242,6 +252,7 @@ var filterdArray = array.filter((currentValue, index, array) => {
 
 この`filter`メソッドを使うことで、次のように偶数を取り出す処理を書くことができます。
 
+{{book.console}}
 [import, filter-even-example.js](./src/continue/filter-even-example.js)
 
 ## for...in文
@@ -256,6 +267,7 @@ for (variable in object)
 次のコードでは`object`のプロパティ名を`key`変数に代入し反復処理をしています。
 `object`には、3つのプロパティ名があるため３回繰り返されます。
 
+{{book.console}}
 [import, for-in-object-example.js](./src/for-in/for-in-object-example.js)
 
 オブジェクトに対する反復処理のためにfor...in文は有用に見えますが、多くの問題を持っています。
@@ -274,6 +286,7 @@ for...in文は、対象となるオブジェクトのプロパティを列挙す
 `Object.keys()`は`object`自身がもつ列挙可能なプロパティ名の配列を返します。
 そのためfor...in文とは違い、親オブジェクトのプロパティは列挙されません。
 
+{{book.console}}
 [import, object-keys-for-each-example.js](./src/for-in/object-keys-for-each-example.js)
 
 また、for...in文は配列オブジェクトに対しても利用できますが、こちらも期待した結果にはなりません。
@@ -282,6 +295,7 @@ for...in文は、対象となるオブジェクトのプロパティを列挙す
 for...in文が列挙する配列オブジェクトの添字は"0"、"1"のような**文字列**であるため、その文字列が`num`へと順番に代入されます。
 そのため、数値と文字列の加算が行われ、意図した結果にはなりません。
 
+{{book.console}}
 [import, for-in-array-bug-example.js](./src/for-in/for-in-array-bug-example.js)
 
 配列の内容に対して反復処理を行う場合は、for文や`forEach`メソッド、後述するfor...of文を使うべきでしょう。
@@ -311,11 +325,13 @@ for (variable of iterable)
 次のようにfor...of文で、配列から値を取り出し反復処理を行うことができます。
 for...in文とは異なり、添字ではなく値を列挙します。
 
+{{book.console}}
 [import, for-of-array-example.js](./src/for-of/for-of-array-example.js)
 
 JavaScriptではStringオブジェクトもiterableです。
 サロゲートペアも考慮し、文字列を1文字ずつ列挙することができます。
 
+{{book.console}}
 [import, for-of-string-example.js](./src/for-of/for-of-string-example.js)
 
 その他にも、`TypedArray`、`Map`、`Set`、DOM NodeListなど、iterableなオブジェクトとして実装されているものは多いです。
@@ -348,6 +364,7 @@ var result = array.reduce((前回の値, 現在の値) => {
 `初期値`に`0`を指定し、`前回の値`と`現在の値`を足していくことで合計を計算できます。
 `初期値`を指定していた場合は、最初の`前回の値`に初期値が、配列の先頭の値が`現在の値`となった状態で開始されます。
 
+{{book.console}}
 [import, sum-reduce-example.js](./src/for/sum-reduce-example.js)
 
 `reduce`メソッドを使った例では、そもそも変数宣言をしていないことが分かります。

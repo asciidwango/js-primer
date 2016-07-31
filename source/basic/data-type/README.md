@@ -80,14 +80,17 @@ JavaScriptでは、0から9の数字のみで書かれた数値は10進数とし
 
 `0b`から始まる2進数リテラルは、ビットを表現するのによく利用されています。
 
+{{book.console}}
 [import, binary-example.js](src/binary-example.js)
 
 `0o`から始まる8進数リテラルは、ファイルのパーミッションを表現するのによく利用されています。
 
+{{book.console}}
 [import, octal-example.js](src/octal-example.js)
 
 `0x`から始まる16進数リテラルは、文字のコードポイントやRGB値の表現などに利用されています。
 
+{{book.console}}
 [import, hex-example.js](src/hex-example.js)
 
 TODO: もっと具体的なイメージの話をしたい。
@@ -143,6 +146,7 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は全�
 
 <!-- textlint-disable eslint -->
 
+{{book.console}}
 ```js
 '8 o\'clock'; // => "8 o'clock"
 ```
@@ -151,6 +155,7 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は全�
 
 そのため、文字列内部に出現しないリテラル記号を使うことで、エスケープをせずに書くことができます。
 
+{{book.console}}
 ```js
 "8 o'clock"; // => "8 o'clock"
 ```
@@ -170,7 +175,7 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は全�
 
 改行の代わりに改行記号のエスケープシーケンス（`\n`）を使うことで複数行の文字列を書くことができます。
 
-
+{{book.console}}
 ```js
 "複数行の\n文字列を\n入れたい";
 ```
@@ -185,7 +190,7 @@ Template literalでは、複数行の文字列を改行記号なしに書くこ�
 
 複数行の文字列も`\``で囲めば、そのまま書くことができます。
 
-
+{{book.console}}
 ```js
 `複数行の
 文字列を
@@ -195,6 +200,7 @@ Template literalでは、複数行の文字列を改行記号なしに書くこ�
 また、名前のとおりテンプレートのような機能を持っています。
 Template literal内で`${変数名}`と書いた場合に、その変数の値を埋め込むことができます。
 
+{{book.console}}
 ```js
 var string = "文字列";
 console.log(`これは${string}です`); // => "これは文字列です"
@@ -204,6 +210,7 @@ Template literalも他の文字列リテラルと同様に同じリテラル記�
 
 <!-- textlint-disable eslint -->
 
+{{book.console}}
 ```js
 `This is \`code\``;// => "This is `code`"
 ```
@@ -226,6 +233,7 @@ foo;// "ReferenceError: foo is not defined"
 `null`値を代入することで、`null`値をもつ`foo`という変数を定義することができます。
 これにより、`foo`を値がない変数として定義し、参照できるようになります。
 
+{{book.console}}
 ```js
 var foo = null;
 foo; // => null
@@ -256,6 +264,7 @@ var object = {
 この場合、 `object` は `key` というプロパティを持っていると言います。
 `object` は `key` を参照するには、`.`（ドット）で繋ぎ参照することができます。
 
+{{book.console}}
 ```js
 var object = {
     key: "value"
@@ -284,6 +293,7 @@ var array = [1, 2, 3]; // 値をもった配列を作成
 作成した配列の要素を取得するには、配列に対して`array[index]`でアクセスできます。
 JavaScriptの配列のインデックスは`0`から開始する数値となっています。
 
+{{book.console}}
 ```js
 var array = ["0番目", "1番目", "2番目"]; // 値をもった配列を作成
 console.log(array[0]); // => "0番目"
@@ -303,6 +313,7 @@ console.log(array[array.length - 1]); // => "2番目"
 
 次のコードでは、1文字以上の数字にマッチする正規表現をリテラルで表現することができます。
 
+{{book.console}}
 ```js
 var numberRegExp = /\d+/; // 1文字以上の数字にマッチする正規表現
 // 123が正規表現にマッチするかをテストする
@@ -329,12 +340,14 @@ numberRegExp.test(123); // => true
 
 そのため、`undefined`という名前のローカル変数を定義することができます。
 
+{{book.console}}
 ```js
 var undefined; // undefinedというローカル変数を定義できる
 ```
 
 一方、リテラルである`null`は変数ではなくリテラルであるため再定義することができません。
 
+{{book.console}}
 [import, var-null-invalid.js](./src/var-null-invalid.js)
 
 [変数と宣言](../variables/README.md)で解説したように、
