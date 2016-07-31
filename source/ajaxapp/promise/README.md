@@ -110,9 +110,9 @@ function getUserInfo(userId) {
         });
         request.send();
     })
-    .catch((error) => {
-        console.error(`エラーが発生しました (${error})`);
-    });
+        .catch((error) => {
+            console.error(`エラーが発生しました (${error})`);
+        });
 }
 ```
 
@@ -145,23 +145,23 @@ function getUserInfo(userId) {
         });
         request.send();
     })
-    .then((userInfo) => {
-        try {
-            return createView(userInfo);
-        } catch (error) {
-            throw new Error(`HTML組み立てエラー: ${error}`);
-        }
-    })
-    .then((view) => {
-        try {
-            displayView(view);
-        } catch (error) {
-            throw new Error(`HTML表示エラー: ${error}`);
-        }
-    })
-    .catch((error) => {
-        console.error(`エラーが発生しました (${error})`);
-    });
+        .then((userInfo) => {
+            try {
+                return createView(userInfo);
+            } catch (error) {
+                throw new Error(`HTML組み立てエラー: ${error}`);
+            }
+        })
+        .then((view) => {
+            try {
+                displayView(view);
+            } catch (error) {
+                throw new Error(`HTML表示エラー: ${error}`);
+            }
+        })
+        .catch((error) => {
+            console.error(`エラーが発生しました (${error})`);
+        });
 }
 ```
 

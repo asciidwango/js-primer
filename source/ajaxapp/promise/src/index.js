@@ -1,7 +1,7 @@
 function getUserInfo() {
     const userId = getUserId();
-    
-    new Promise((resolve, reject) => {    
+
+    new Promise((resolve, reject) => {
         const request = new XMLHttpRequest();
         request.open("GET", `https://api.github.com/users/${userId}`);
         request.addEventListener("load", (event) => {
@@ -17,23 +17,23 @@ function getUserInfo() {
         });
         request.send();
     })
-    .then((userInfo) => {
-        try {
-            return createView(userInfo);
-        } catch (error) {
-            throw new Error(`HTML組み立てエラー: ${error}`);
-        }
-    })
-    .then((view) => {
-        try {
-            displayView(view);
-        } catch (error) {
-            throw new Error(`HTML表示エラー: ${error}`);
-        }
-    })
-    .catch((error) => {
-        console.error(`エラーが発生しました (${error})`);
-    });
+        .then((userInfo) => {
+            try {
+                return createView(userInfo);
+            } catch (error) {
+                throw new Error(`HTML組み立てエラー: ${error}`);
+            }
+        })
+        .then((view) => {
+            try {
+                displayView(view);
+            } catch (error) {
+                throw new Error(`HTML表示エラー: ${error}`);
+            }
+        })
+        .catch((error) => {
+            console.error(`エラーが発生しました (${error})`);
+        });
 }
 
 function getUserId() {
