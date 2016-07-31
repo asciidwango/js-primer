@@ -84,7 +84,7 @@ function getUserInfo(userId) {
 ### エラーハンドリング
 
 このままではPromiseに置き換えた意味がないので、エラーハンドリングを行いましょう。
-Promiseのコンテキスト内で発生したエラーは、`Promise.catch`を使って一箇所で受け取れます。
+Promiseのコンテキスト内で発生したエラーは、`Promise#catch`を使って一箇所で受け取れます。
 次のコードでは、XHR処理からデータの表示までに何かのエラーが起きた時にログを出力します。
 `reject`関数に渡したエラーは`catch`のコールバック関数で第1引数として受け取れます。
 
@@ -96,7 +96,7 @@ function getUserInfo(userId) {
         request.open("GET", `https://api.github.com/users/${userId}`);
         request.addEventListener("load", (event) => {
             if (event.target.status !== 200) {
-                reject(`${event.target.status}: ${event.target.statusText}`);
+                reject(new Error(`${event.target.status}: ${event.target.statusText}`));
             }
 
             const userInfo = JSON.parse(event.target.responseText);
@@ -106,7 +106,7 @@ function getUserInfo(userId) {
             resolve();
         });
         request.addEventListener("error", () => {
-            reject("ネットワークエラー");
+            reject(new Error("ネットワークエラー"));
         });
         request.send();
     })
@@ -134,14 +134,14 @@ function getUserInfo(userId) {
         request.open("GET", `https://api.github.com/users/${userId}`);
         request.addEventListener("load", (event) => {
             if (event.target.status !== 200) {
-                reject(`${event.target.status}: ${event.target.statusText}`);
+                reject(new Error(`${event.target.status}: ${event.target.statusText}`));
             }
 
             const userInfo = JSON.parse(event.target.responseText);
             resolve(userInfo);
         });
         request.addEventListener("error", () => {
-            reject("ネットワークエラー");
+            reject(new Error("ネットワークエラー"));
         });
         request.send();
     })
@@ -168,11 +168,11 @@ function getUserInfo(userId) {
 ## 仕上げ
 
 仕上げとして、今まで`js-primer-example`で固定としていたユーザーIDを変更できるようにしましょう。
-index.htmlに`<input>`タグを追加し、`userId`というIDを付与しておきます。
+index.htmlに`<input>`タグを追加し、JavaScriptから値を取得するために`userId`というIDを付与しておきます。
 
 [import, index.html](src/index.html)
 
-index.jsにも`#userId`要素から値を受け取るための処理を追加すると、最終的に次のようになります。
+index.jsにも追加した`<input>`タグから値を受け取るための処理を追加すると、最終的に次のようになります。
 
 [import, index.js](src/index.js)
 

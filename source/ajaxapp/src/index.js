@@ -6,14 +6,14 @@ function getUserInfo() {
         request.open("GET", `https://api.github.com/users/${userId}`);
         request.addEventListener("load", (event) => {
             if (event.target.status !== 200) {
-                reject(`${event.target.status}: ${event.target.statusText}`);
+                reject(new Error(`${event.target.status}: ${event.target.statusText}`));
             }
 
             const userInfo = JSON.parse(event.target.responseText);
             resolve(userInfo);
         });
         request.addEventListener("error", () => {
-            reject("ネットワークエラー");
+            reject(new Error("ネットワークエラー"));
         });
         request.send();
     })
