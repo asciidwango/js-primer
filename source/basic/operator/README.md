@@ -586,7 +586,7 @@ var version = 2015;
 
 ```js
 var num = 1;
-num += 10;
+num += 10; // num = num + 10; と同じ
 console.log(num); // => 11
 ```
 
