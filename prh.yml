@@ -123,6 +123,8 @@ rules:
       - for/of
   - expected: バッククオート
     patterns: バックティック
+  - expected: 匿名関数
+    patterns: 無名関数
 # typo
   - expected: $1進数
     patterns:

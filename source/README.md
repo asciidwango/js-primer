@@ -8,6 +8,7 @@
     - 字句構造
     - Strict mode
     - [変数と宣言](basic/variables/README.md)
+    - [関数と宣言](basic/function-method/README.md)
     - [値の評価と表示](basic/read-eval-print/README.md)
     - [データ型とリテラル](basic/data-type/README.md)
     - [条件分岐](basic/condition/README.md)
