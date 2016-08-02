@@ -321,11 +321,11 @@ null  == undefined; // => true
 ```js
 var value = getValue();
 if (value == null || value === undefined) {
-    console.log("valueがnullまたはundefeindである場合の処理");
+    console.log("valueがnullまたはundefinedである場合の処理");
 }
 // == で書いた場合
 if (value == null) {
-    console.log("valueがnullまたはundefeindである場合の処理");
+    console.log("valueがnullまたはundefinedである場合の処理");
 }
 ```
 
