@@ -160,10 +160,10 @@ var output = function(value) {
     console.log(value);
 };
 array.forEach(output);
+// 次のような実行しているのと同じ
 // output(1); => 1
 // output(2); => 2
 // output(3); => 3
-// と順番に出力される
 ```
 
 関数を定義して、その関数をコールバック関数として毎回渡すのは大変です。
