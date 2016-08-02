@@ -133,14 +133,12 @@ array.forEach(コールバック関数);
 
 {{book.console}}
 ```js
-[1, 2, 3, 4, 5].forEach(currentValue => {
+[1, 2, 3].forEach(currentValue => {
     console.log(num);
 });
 // 1
 // 2
 // 3
-// 4
-// 5
 // と順番に出力される
 ```
 
