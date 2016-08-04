@@ -125,6 +125,8 @@ rules:
     patterns: バックティック
   - expected: 匿名関数
     patterns: 無名関数
+  - expected: Array-like
+    patterns: 配列ライク
 # typo
   - expected: $1進数
     patterns:
