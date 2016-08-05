@@ -48,6 +48,7 @@ function 関数名(仮引数1, 仮引数2) {
 次の例では、引数で受け取った値を2倍にして返す関数を定義しています。
 関数は`return 返り値;`で返り値を返すことができます。
 
+{{book.console}}
 ```js
 function multiple(num) {
     return num * 2;
@@ -58,6 +59,7 @@ multiple(10); // => 20
 
 値を返していない又は空の`return;`と書いた場合、関数は`undefined`を返します。
 
+{{book.console}}
 ```js
 function noop() {
 }
@@ -70,6 +72,7 @@ noop(); // => undefined;
 関数には引数の数が固定ではなく、可変長である場合があります。
 たとえば、`Math.max(...args)`は引数を何個でも受け取り、受け取った引数の中で最大の値を返します。
 
+{{book.console}}
 ```js
 var max = Math.max(1, 5, 10, 20);
 console.log(max); // => 20
@@ -82,6 +85,7 @@ console.log(max); // => 20
 `arguments`は関数の中でのみ参照できる特殊な変数です。
 `arguments`は関数に渡された値が入った**Array-like**なオブジェクトです。
 
+{{book.console}}
 ```js
 function myFunc() {
     console.log(arguments[0]); // => "a" 
@@ -99,6 +103,7 @@ myFunc("a", "b", "c");
 Rest parametersは仮引数名の前に`...`をつけます。
 この仮引数には、関数に渡された値の配列が入ります。
 
+{{book.console}}
 ```js
 function myFunc(...args) {
     console.log(args[0]); // => "a" 
@@ -148,6 +153,7 @@ JavaScriptでは関数を引数に渡す。
 この場合、関数式に付けた名前は関数の外からは呼ぶことができません。
 一方関数の中からは呼ぶことができるため、再帰呼び出しなどに利用されます。
 
+{{book.console}}
 ```js
 // innerFactは外からは見えない名前
 const factorial = function innerFact(n) {
@@ -174,6 +180,7 @@ function 高階関数(コールバック関数) {
 たとえば、`Array#forEach`メソッドはコールバック関数を引数として受け取る高階関数です。
 `Array#forEach`メソッドは、受け取ったコールバック関数を、配列の要素を順番に渡しながら処理します。
 
+{{book.console}}
 ```js
 var array = [1, 2, 3];
 var output = function(value) {
@@ -189,6 +196,7 @@ array.forEach(output);
 関数を定義して、その関数をコールバック関数として毎回渡すのは大変です。
 そこで、関数はファーストクラスであることを利用して、コールバック関数となる関数式をその場で作って渡すことができます。
 
+{{book.console}}
 ```js
 var array = [1, 2, 3];
 array.forEach(function(value) {
@@ -228,6 +236,7 @@ Arrow Functionについては次のような特徴があります。
 `Array#map`は、配列の値を順番にコールバック関数へ渡します。
 コールバック関数が返した値を新しい配列にして返します。
 
+{{book.console}}
 ```js
 var array = [1, 2, 3];
 // 1,2,3と順番に値が渡されコールバック関数（匿名関数）が処理する
@@ -241,6 +250,7 @@ Arrow Functionでは処理が一行である場合に、`return`文を省略し�
 また、仮引数が1つの場合は仮引数を囲むカッコを省略することもできます。
 そのため、function式に比べて短く書くことができ、このような省略はコールバック関数を多用する場合に有用です。
 
+{{book.console}}
 ```js
 var array = [1, 2, 3];
 var doubleArray = array.map(value => value * 2);
@@ -278,6 +288,7 @@ object.method = () => {
 
 メソッドを呼び出す場合は、関数呼び出しと同様に`オブジェクト.メソッド名()`のように呼び出します。
 
+{{book.console}}
 ```js
 var object = {
     method: () => {
@@ -294,6 +305,7 @@ ES2015からは、メソッドとしてプロパティを定義するという�
 
 次のように、`メソッド名(){ /*メソッドの処理*/ }` と書くことができるようになっています。
 
+{{book.console}}
 ```js
 var object = {
     method() {
