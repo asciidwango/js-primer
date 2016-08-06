@@ -79,7 +79,7 @@ new Promise((resolve, reject) => {
 
 Promiseのコンストラクタに渡す関数で、XHRの処理を行います。
 作成されたPromiseは成功か失敗のどちらかで完了させなければなりません。
-非同期処理が成功したら第1引数の`resolve`を、失敗なら第2引数の`reject`を呼び出します。
+非同期処理が成功したら第1引数の`resolve`関数を、失敗なら第2引数の`reject`関数を呼び出します。
 
 作成したPromiseのオブジェクトを`return`することで、`getUserInfo`関数はPromiseを返す関数になりました。
 `getUserInfo`関数がPromiseを返すことで、それを呼び出す`main`関数の方で非同期処理の結果を扱えるようになります。
