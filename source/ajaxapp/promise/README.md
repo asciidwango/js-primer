@@ -12,7 +12,9 @@ author: laco
 まずは、大きくなりすぎた`getUserInfo`関数を整理しましょう。
 この関数では、XHRを使ったデータの取得・HTML文字列の組み立て・組み立てたHTMLの表示を行っています。
 そこで、HTML文字列を組み立てる`createView`関数とHTMLを表示する`displayView`関数を作り、処理を分割します。
-さらに、エントリポイントとして新しく`main`関数を作り、`getUserInfo`関数を呼び出すようにします。
+
+また、後述するエラーハンドリングを行いやすくするため、アプリケーションにエントリポイントを設けます。
+index.jsに新しく`main`関数を作り、その中で`getUserInfo`関数を呼び出すようにします。
 
 ```js
 function main() {
