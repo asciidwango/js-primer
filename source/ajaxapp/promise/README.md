@@ -11,10 +11,34 @@ author: laco
 
 まずは、大きくなりすぎた`getUserInfo`関数を整理しましょう。
 この関数では、XHRを使ったデータの取得・HTML文字列の組み立て・組み立てたHTMLの表示を行っています。
-そこで、HTML文字列を組み立てる`createView`関数とHTMLを表示する`displayView`関数を作り、
-処理を分割します。
+そこで、HTML文字列を組み立てる`createView`関数とHTMLを表示する`displayView`関数を作り、処理を分割します。
+さらに、エントリポイントとして新しく`main`関数を作り、`getUserInfo`関数を呼び出すようにします。
 
 ```js
+function main() {
+    getUserInfo("js-primer-example");
+}
+
+function getUserInfo(userId) {
+    const request = new XMLHttpRequest();
+    request.open("GET", `https://api.github.com/users/${userId}`);
+    request.addEventListener("load", (event) => {
+        if (event.target.status !== 200) {
+            console.log(`${event.target.status}: ${event.target.statusText}`);
+            return;
+        }
+
+        const userInfo = JSON.parse(event.target.responseText);
+
+        const view = createView(userInfo);
+        displayView(view);
+    });
+    request.addEventListener("error", () => {
+        console.error("Network Error");
+    });
+    request.send();
+}
+
 function createView(userInfo) {
     return escapeHTML`
     <h4>${userInfo.name} (@${userInfo.login})</h4>
@@ -53,11 +77,11 @@ new Promise((resolve, reject) => {
 
 作成したPromiseの中でXHRの処理を行います。
 Promiseを完了させるために、非同期処理が成功したら`resolve`を、失敗なら`reject`を呼び出します。
+作成したPromiseは`getUserInfo`関数の戻り値とすることで、`main`関数で非同期処理の結果を扱えるようになります。
 
 ```js
 function getUserInfo(userId) {
-    
-    new Promise((resolve, reject) => {    
+    return new Promise((resolve, reject) => {    
         const request = new XMLHttpRequest();
         request.open("GET", `https://api.github.com/users/${userId}`);
         request.addEventListener("load", (event) => {
@@ -85,13 +109,20 @@ function getUserInfo(userId) {
 
 このままではPromiseに置き換えた意味がないので、エラーハンドリングを行いましょう。
 Promiseのコンテキスト内で発生したエラーは、`Promise#catch`を使って一箇所で受け取れます。
-次のコードでは、XHR処理からデータの表示までに何かのエラーが起きた時にログを出力します。
+次のコードでは、`getUserInfo`関数から返されたPromiseを使い、何かのエラーが起きた時にログを出力します。
 `reject`関数に渡したエラーは`catch`のコールバック関数で第1引数として受け取れます。
 
 ```js
+function main() {
+    getUserInfo("js-primer-example")
+        .catch((error) => {
+            console.error(`エラーが発生しました (${error})`);
+        });
+}
+
 function getUserInfo(userId) {
     
-    new Promise((resolve, reject) => {    
+    return new Promise((resolve, reject) => {    
         const request = new XMLHttpRequest();
         request.open("GET", `https://api.github.com/users/${userId}`);
         request.addEventListener("load", (event) => {
@@ -109,14 +140,11 @@ function getUserInfo(userId) {
             reject(new Error("ネットワークエラー"));
         });
         request.send();
-    })
-        .catch((error) => {
-            console.error(`エラーが発生しました (${error})`);
-        });
+    });
 }
 ```
 
-### Promiseチェーン
+### Promiseチェーンへの置き換え
 
 Promiseは`then`関数を使うことで、複数の非同期処理の連鎖を表現できます。
 たとえ1つのPromiseで済んでしまう処理でも、`then`を使って分けることで見通しが良くなります。
@@ -124,12 +152,19 @@ Promiseは`then`関数を使うことで、複数の非同期処理の連鎖を�
 今の`getUserInfo`ではloadイベントのコールバック関数でHTMLの組み立てと表示も行っています。
 これを`then`を使ったPromiseチェーンに置き換えると次のようになります。
 `resolve`関数に`userInfo`変数を渡し、次の`then`でコールバック関数の引数として受け取っています。
-また、それぞれの処理を別のスコープに分割することで、より詳細なエラーハンドリングを簡潔に書けます。
 
 ```js
+function main() {
+    getUserInfo("js-primer-example")
+        .then((userInfo) => createView(userInfo))
+        .then((view) => displayView(view))
+        .catch((error) => {
+            console.error(`エラーが発生しました (${error})`);
+        });
+}
+
 function getUserInfo(userId) {
-    
-    new Promise((resolve, reject) => {    
+    return new Promise((resolve, reject) => {    
         const request = new XMLHttpRequest();
         request.open("GET", `https://api.github.com/users/${userId}`);
         request.addEventListener("load", (event) => {
@@ -144,24 +179,7 @@ function getUserInfo(userId) {
             reject(new Error("ネットワークエラー"));
         });
         request.send();
-    })
-        .then((userInfo) => {
-            try {
-                return createView(userInfo);
-            } catch (error) {
-                throw new Error(`HTML組み立てエラー: ${error}`);
-            }
-        })
-        .then((view) => {
-            try {
-                displayView(view);
-            } catch (error) {
-                throw new Error(`HTML表示エラー: ${error}`);
-            }
-        })
-        .catch((error) => {
-            console.error(`エラーが発生しました (${error})`);
-        });
+    });
 }
 ```
 
@@ -172,7 +190,7 @@ index.htmlに`<input>`タグを追加し、JavaScriptから値を取得するた
 
 [import, index.html](src/index.html)
 
-index.jsにも追加した`<input>`タグから値を受け取るための処理を追加すると、最終的に次のようになります。
+index.jsにも`<input>`タグから値を受け取るための処理を追加すると、最終的に次のようになります。
 
 [import, index.js](src/index.js)
 

@@ -1,39 +1,30 @@
-function getUserInfo() {
+function main() {
     const userId = getUserId();
+    getUserInfo(userId)
+        .then((userInfo) => createView(userInfo))
+        .then((view) => displayView(view))
+        .catch((error) => {
+            console.error(`エラーが発生しました (${error})`);
+        });
+}
 
-    new Promise((resolve, reject) => {
+function getUserInfo(userId) {
+    return new Promise((resolve, reject) => {    
         const request = new XMLHttpRequest();
         request.open("GET", `https://api.github.com/users/${userId}`);
         request.addEventListener("load", (event) => {
             if (event.target.status !== 200) {
-                reject(`${event.target.status}: ${event.target.statusText}`);
+                reject(new Error(`${event.target.status}: ${event.target.statusText}`));
             }
 
             const userInfo = JSON.parse(event.target.responseText);
             resolve(userInfo);
         });
         request.addEventListener("error", () => {
-            reject("ネットワークエラー");
+            reject(new Error("ネットワークエラー"));
         });
         request.send();
-    })
-        .then((userInfo) => {
-            try {
-                return createView(userInfo);
-            } catch (error) {
-                throw new Error(`HTML組み立てエラー: ${error}`);
-            }
-        })
-        .then((view) => {
-            try {
-                displayView(view);
-            } catch (error) {
-                throw new Error(`HTML表示エラー: ${error}`);
-            }
-        })
-        .catch((error) => {
-            console.error(`エラーが発生しました (${error})`);
-        });
+    });
 }
 
 function getUserId() {
