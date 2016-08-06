@@ -121,7 +121,6 @@ function main() {
 }
 
 function getUserInfo(userId) {
-    
     return new Promise((resolve, reject) => {    
         const request = new XMLHttpRequest();
         request.open("GET", `https://api.github.com/users/${userId}`);
