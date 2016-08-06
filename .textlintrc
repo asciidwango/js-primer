@@ -9,6 +9,9 @@
   },
   "rules": {
     "preset-ja-technical-writing": {
+      "no-exclamation-question-mark": {
+        "allowFullWidthQuestion": true
+      },
       "max-kanji-continuous-len": {
         "max": 6,
         "allow": [
