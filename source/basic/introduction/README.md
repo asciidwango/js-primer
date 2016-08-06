@@ -74,7 +74,7 @@ JavaScriptの実行コンテキストとして"script"と"module"があります
 "module"の実行コンテキストでは、このstrict modeがデフォルトとなっています。
 
 `"use strict"`という文字列をファイルまたは関数の先頭に書くことで、
-そのスコープ次にあるコードはstrict modeで実行されます。
+そのスコープ以下にあるコードはstrict modeで実行されます。
 
 ```js
 "use strict";
