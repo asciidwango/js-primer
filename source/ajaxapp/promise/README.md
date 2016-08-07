@@ -196,7 +196,7 @@ function getUserInfo(userId) {
 }
 ```
 
-## 仕上げ
+## ユーザーIDを変更できるようにする
 
 仕上げとして、今まで`js-primer-example`で固定としていたユーザーIDを変更できるようにしましょう。
 index.htmlに`<input>`タグを追加し、JavaScriptから値を取得するために`userId`というIDを付与しておきます。
