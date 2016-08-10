@@ -327,7 +327,7 @@ for...in文とは異なり、添字ではなく値を列挙します。
 [import, for-of-array-example.js](./src/for-of/for-of-array-example.js)
 
 JavaScriptではStringオブジェクトもiterableです。
-サロゲートペアも考慮し、文字列を1文字ずつ列挙することができます。
+そのため、文字列を1文字ずつ列挙することができます。
 
 {{book.console}}
 [import, for-of-string-example.js](./src/for-of/for-of-string-example.js)
