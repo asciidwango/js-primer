@@ -61,6 +61,9 @@ rules:
         to:   日経ソフトウエア
 
 # Project
+  - expected: 基本文法
+    patterns:
+      - 基礎文法
   # http://www.ecma-international.org/ecma-262/6.0/#sec-comments
   # MultiLineComment
   # SingleLineComment
@@ -68,12 +71,15 @@ rules:
     patterns:
       - 1行コメント
       - ワンラインコメント
+    prh: 仕様的に http://www.ecma-international.org/ecma-262/6.0/#sec-comments
   - expected: $1一行コメント
     patterns: /([^1一数])行コメント/
+    prh: 仕様的に http://www.ecma-international.org/ecma-262/6.0/#sec-comments
   - expected: 複数行コメント
     patterns:
       - ブロックコメント
       - マルチラインコメント
+    prh: 仕様的に http://www.ecma-international.org/ecma-262/6.0/#sec-comments
   - expected: うるう年
     patterns: 閏年
   - expected: 実行する文
@@ -127,6 +133,14 @@ rules:
     patterns: 無名関数
   - expected: Array-like
     patterns: 配列ライク
+  - expected: Promiseチェーン
+    patterns:
+      - /thenチェーン/i
+      - /promise chain/i
+    prh: https://github.com/asciidwango/js-primer/pull/116
+    specs:
+      - from: thenチェーンと言います
+        to  : Promiseチェーンと言います
 # typo
   - expected: $1進数
     patterns:
