@@ -178,3 +178,8 @@ rules:
     specs:
       - from: では、実際にどのように書くかの例を見て行きたいと思います。
         to:   では、実際にどのように書くかの例を見ていきたいと思います。
+  - expected: どのような
+    patterns: /どういう(?!こと)/
+    specs:
+      - from: どういうものがthenableなのか
+        to:   どのようなものがthenableなのか

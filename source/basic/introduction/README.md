@@ -20,7 +20,7 @@ JavaScriptという言語は、[Ecma International][]によって標準化され
 
 この章では、そのような実行環境に依存しないJavaScriptの機能について学んでいきます。
 
-## JavaScriptってどういう言語？
+## JavaScriptってどのような言語？
 
 JavaScriptは、C、Java、Self、Schemaなどの言語の影響を受けています。
 
