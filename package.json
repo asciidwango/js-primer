@@ -40,7 +40,7 @@
     "gitbook-plugin-canonical-link": "^2.0.2",
     "gitbook-plugin-edit-link": "^2.0.2",
     "gitbook-plugin-ga": "^1.0.1",
-    "gitbook-plugin-include-codeblock": "^1.4.0",
+    "gitbook-plugin-include-codeblock": "^2.0.0",
     "gitbook-plugin-js-console": "^1.3.2",
     "gitbook-summary-to-path": "^1.0.1",
     "globby": "^6.0.0",
