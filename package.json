@@ -56,6 +56,9 @@
     "textlint-rule-eslint": "^1.1.1",
     "textlint-rule-preset-ja-technical-writing": "^0.1.1",
     "textlint-rule-prh": "^3.0.1",
-    "unist-util-select": "^1.5.0"
+    "unist-util-select": "^1.5.0",
+    "text-testing-mocha": "^0.2.0"
+  },
+  "dependencies": {
   }
 }
