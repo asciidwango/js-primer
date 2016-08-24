@@ -14,6 +14,7 @@
     - [条件分岐](basic/condition/README.md)
     - [ループと反復処理](basic/loop/README.md)
     - [演算子](basic/operator/README.md)
+    - [暗黙的な型変換](basic/implicit-coercion/README.md)
     - 文
     - String
     - Number
