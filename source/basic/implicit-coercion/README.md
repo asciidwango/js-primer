@@ -95,26 +95,29 @@ y + x + z; // => "213"
 
 ### 数値 -> 文字列
 
-- フォーマッター
+数値から文字列へ明示的に変換する場合は、`String`コンストラクタ関数を使います。
 
-数値から文字列へ明示的に変換する場合は、`String`コンストラクタ関数に値を渡せばよい。
-
+{{book.console}}
 ```js
 String(1); // => "1"
 ```
 
 `String`コンストラクタは、数値以外にも色々な値を文字列へと変換することができます。
 
+{{book.console}}
 ```js
 String("str"); // => "str"
 String(true); // => "true"
 String(null); // => "null"
 String(undefined); // => "undefined"
 String(Symbol("シンボル")); // => "Symbol(シンボル)"
+// プリミティブ型ではない値の場合
 String([1, 2, 3]); // => "1,2,3"
 String({ key: "value" }); // => "[object Object]"
 String(function() {}); // 実装依存の結果
 ```
+
+<!-- TODO(es2017): Function.prototype.toStringはES2017で仕様化される -->
 
 上記の結果からも分かるように`String`コンストラクタ関数での明示的な変換は、万能な方法ではありません。
 真偽値、数値、文字列、undefined、null、シンボルのプリミティブ型の値に対して変換は見た目どおりの文字列を得ることができます。
