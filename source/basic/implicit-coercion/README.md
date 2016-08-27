@@ -2,7 +2,7 @@
 author: azu
 ---
 
-# 型変換
+# 暗黙的な型変換
 
 このセクションでは、明示的な型変換と暗黙的な型変換について学んでいきます。
 
@@ -110,7 +110,7 @@ String("str"); // => "str"
 String(true); // => "true"
 String(null); // => "null"
 String(undefined); // => "undefined"
-String(Symbol("シンボル"))); // => "Symbol(シンボル)"
+String(Symbol("シンボル")); // => "Symbol(シンボル)"
 String([1, 2, 3]); // => "1,2,3"
 String({ key: "value" }); // => "[object Object]"
 String(function() {}); // 実装依存の結果
