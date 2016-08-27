@@ -31,14 +31,12 @@ JavaScriptでは、エラーが発生するのではなく、暗黙的な型変�
 
 そのため、暗黙的な型変換は避けるべき挙動であるといえます。
 
-このセクションでは、
+このセクションでは、次のことについてを見ていきます。
 
 - [ ] TODO: 言葉でまとめる
 - 暗黙的な型変換とはどのようなものなのか
 - 暗黙的ではない明示的な型変換の方法
 - すべてが明示的な変換では解決しない
-
-について見ていきます。
 
 ## 暗黙的な型変換
 
@@ -216,7 +214,7 @@ typeof NaN; // => "number"
 この特徴を利用することで、ある値が`NaN`であるかを判定することもできます。
 
 ```js
-function isNaN(x){
+function isNaN(x) {
     // NaNは自分自身と一致しない
     return x !== x;
 }
@@ -243,12 +241,14 @@ Number型と互換性がない値を数値にしても、`NaN`となってしま
 
 そのため、明示的な変換をする前に、まず変換がそもそも必要なのかを考える必要があります。
 
-
-また、同様に真偽値への変換は明示的な変換では別の判定方法が存在する場合が殆どです。
+また、同様に真偽値への変換は、型変換ではなくより正確な判定方法が存在するはずです。
+たとえば、文字列が空文字なのかを判定したい場合を考えみましょう。
+`""`（空文字）はfalsyな値であるため、明示的に`Boolean`コンストラクタ関数で変換することでも判定は可能です。
+しかし、falsyな値は空文字以外にもあるため、明示的に変換したからといって正しく動くわけではありません。
 
 ```js
 // 空文字かどうかを判定
-function isEmptyString(string){
+function isEmptyString(string) {
     return Boolean(string);
 }
 isEmptyString("");// => true
@@ -258,11 +258,13 @@ isEmptyString(0);// => true
 isEmptyString();// => true
 ```
 
-これはもっと明確に次のように書けるはずです。
+空文字を判定する`isEmptyString`関数はもっと明確に書けるはずです。
+空文字とは、「String型で文字長が0の値」であると定義すれば、
+次のようにより正確な判定を書くことができます。
 
 ```js
 // 空文字かどうかを判定
-function isEmptyString(string){
+function isEmptyString(string) {
     // String型でlengthが0の値が空文字
     return typeof string === "string" && string.length === 0;
 }
@@ -272,5 +274,7 @@ isEmptyString(0);// => false
 isEmptyString();// => false
 ```
 
+`Boolean`を使った型変換は、楽をするための型変換であり、正確に真偽値を得るための方法ではありません。
+そのため、型変換をする前にまず別の方法で解決できないかを考えてみましょう。
 
-[演算子]: ../operator/README.md "演算子のセクション"
+[演算子]: ../operator/README.md	"演算子のセクション"
