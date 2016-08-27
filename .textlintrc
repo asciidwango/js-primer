@@ -3,7 +3,8 @@
     "comments": true,
     "whitelist": {
       "allow": [
-        "/{{[a-zA-Z.]*?}}/"
+        "/{{[a-zA-Z.]*?}}/",
+        "と考えるかもしれません"
       ]
     }
   },
