@@ -14,14 +14,15 @@
     "build": "gitbook build",
     "eslint": "eslint source/",
     "eslint:fix": "eslint --fix source/",
-    "textlint": "summary-to-path ./source/README.md | xargs textlint -f pretty-error",
+    "textlint": "summary-to-path ./source/README.md | file-cache-cli | xargs textlint -f pretty-error",
     "textlint:fix": "summary-to-path ./source/README.md | xargs textlint --fix",
     "lint": "npm-run-all --parallel textlint eslint",
     "lint:fix": "npm-run-all --parallel textlint:fix eslint:fix",
     "test:example": "mocha test/",
     "test:basic": "mocha './source/basic/**/*-test.js'",
     "test:ajaxapp": "mocha './source/ajaxapp/!(node_modules)**/*-test.js'",
-    "test": "npm-run-all -l --parallel test:* lint",
+    "test": "npm-run-all -l clean --parallel test:* lint",
+    "clean": "file-cache-cli-clean",
     "travis": "npm-run-all -l --parallel test build"
   },
   "keywords": [
@@ -35,6 +36,7 @@
     "babel-preset-power-assert": "^1.0.0",
     "babel-register": "^6.7.2",
     "eslint": "^3.0.0",
+    "file-cache-cli": "^1.0.1",
     "front-matter": "^2.1.0",
     "gitbook-cli": "^2.1.2",
     "gitbook-plugin-canonical-link": "^2.0.2",
@@ -50,15 +52,14 @@
     "power-doctest": "^1.1.1",
     "remark": "^5.0.1",
     "strict-eval": "^1.0.1",
+    "text-testing-mocha": "^0.2.0",
     "textlint": "^7.0.1",
     "textlint-filter-rule-comments": "^1.2.1",
     "textlint-filter-rule-whitelist": "^1.0.2",
     "textlint-rule-eslint": "^1.1.1",
     "textlint-rule-preset-ja-technical-writing": "^0.1.1",
     "textlint-rule-prh": "^3.0.1",
-    "unist-util-select": "^1.5.0",
-    "text-testing-mocha": "^0.2.0"
+    "unist-util-select": "^1.5.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
