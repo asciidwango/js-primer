@@ -143,7 +143,6 @@ rules:
         to  : Promiseチェーンと言います
   - expected: 暗黙的な型変換
     patterns: 暗黙的な変換
-
 # typo
   - expected: $1進数
     patterns:
