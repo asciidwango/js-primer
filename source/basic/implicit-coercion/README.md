@@ -323,9 +323,8 @@ JavaScriptではコメントで引数の型を記述する書式として[JSDoc]
  * @returns {number}
  **/
 function sum(...values) {
-    // 第一引数がtrueではない場合、第二引数のメッセージが警告として出る
-    console.assert(values.length > 0, "引数には1つ以上の値を渡してください");
     return values.reduce((total, value) => {
+        // 第一引数の評価結果がtrueではない場合、第二引数のメッセージが警告として出る
         console.assert(Number.isFinite(value), `${value}は有限数ではありません`);
         return total + Number(value);
     }, 0);
