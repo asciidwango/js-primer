@@ -311,7 +311,7 @@ objA == objA; // => true
 // nullの比較はfalseを返す
 0 == null; // => false
 // nullとundefeinedの比較は常にtrueを返す
-null  == undefined; // => true
+null == undefined; // => true
 ```
 
 意図しない挙動となることがあるため、暗黙的な型変換が行われる等価演算子（`==`）を使うべきではありません。
