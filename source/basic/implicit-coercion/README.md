@@ -236,7 +236,7 @@ String(function() {}); // 実装依存の結果
 
 {{book.console}}
 ```js
-"文字列と" + Symbol("シンボルの説明"); // => Error
+"文字列と" + Symbol("シンボルの説明"); // => TypeError
 ```
 
 この問題も`String`コンストラクタ関数を使うことで、シンボルを文字列化することで解決できます。
@@ -426,7 +426,8 @@ function sum(...values) {
     }, 0);
 }
 var x = 1, y, z = 10;
-sum(x, y, z); // => Error
+console.log(x, y, z);
+sum(x, y, z); // => AssertionError
 ```
 
 このように、「想定外の呼び出し方」に対する処理を書いていく手法を**防御的プログラミング**と呼びます。
