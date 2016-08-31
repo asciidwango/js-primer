@@ -62,7 +62,7 @@ JavaScriptでは、エラーが発生するのではなく、暗黙的な型変�
 10 == ["10"]; // => true
 ```
 
-この他にも等価演算子による予想できない結果は、比較する値の組み合わせの数だけあります。
+この他にも等価演算子による予想できない結果は、比較する値と型の組み合わせの数だけあります。
 そのため、等価演算子の比較結果がどうなるかを覚えるのは現実的でありません。
 
 [![JavaScript-Equality-Table](./img/JavaScript-Equality-Table.png)](https://dorey.github.io/JavaScript-Equality-Table/)
