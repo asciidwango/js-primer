@@ -158,7 +158,7 @@ Boolean(null); // => false
 JavaScriptでは、どの値が`true`でどの値が`false`になるかは、次のルールによって決まります。
 
 - **falsy**な値は`false`になる
-- **falsy**ではない値は`true`になる
+- **falsy**でない値は`true`になる
 
 **falsy**な値とは次の6種類の値のことを言います。
 
@@ -296,6 +296,17 @@ Number.parseFloat("10.0"); // => 10.0
 Number("文字列"); // => NaN
 // 未定義の値はNaNになる
 Number(undefined); // => NaN
+```
+
+そのため、任意の値から数値へ変換した場合は、`NaN`になってしまった場合の処理を書く必要があります。
+変換した結果が`NaN`であるかは`Number.isNaN(x)`メソッドで判定することができます。
+
+```js
+var userInput = "任意の文字列";
+var number = Number.parseInt(userIntput, 10);
+if (!Number.isNan(number)) {
+    console.log("NaNではない値にパースできた", number);
+}
 ```
 
 ### [コラム] NaNはNot a NumberだけどNumber型
