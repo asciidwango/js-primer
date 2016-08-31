@@ -360,6 +360,7 @@ isNaN(NaN); // => true
 ```
 
 同様の処理を行うメソッドとして`Number.isNaN(x)`があります。
+実際に値が`NaN`かどうかを判定する際には、`Number.isNaN(x)`を利用するとよいでしょう。
 
 {{book.console}}
 ```js
