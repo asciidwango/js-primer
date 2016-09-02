@@ -67,8 +67,9 @@ JavaScriptでは、エラーが発生するのではなく、暗黙的な型変�
 [![JavaScript-Equality-Table](./img/JavaScript-Equality-Table.png)](https://dorey.github.io/JavaScript-Equality-Table/)
 
 しかし、等価演算子については暗黙的な型変換を避ける簡単な方法があります。
-常に厳密等価演算子（`===`）を使うことです。
-値を比較する際は、常に厳密等価演算子を使うことで、暗黙型変換を避けることができます。
+
+それは、常に厳密等価演算子（`===`）を使うことです。
+値を比較する際は、常に厳密等価演算子を使うことで、暗黙型変換をせずに値を比較できます。
 
 {{book.console}}
 ```js
