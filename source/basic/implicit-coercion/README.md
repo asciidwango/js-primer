@@ -250,7 +250,7 @@ String(function() {}); // 実装依存の結果
 {{book.console}}
 ```js
 // ユーザー入力を文字列として受け取る
-var input = window.confirm("数字を入力してください");
+var input = window.prompt("数字を入力してください", "42");
 // 文字列を数値に変換する
 var number = Number(input);
 console.log(typeof number); // => "number";
