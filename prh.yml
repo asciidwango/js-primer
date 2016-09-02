@@ -141,6 +141,8 @@ rules:
     specs:
       - from: thenチェーンと言います
         to  : Promiseチェーンと言います
+  - expected: 暗黙的な型変換
+    patterns: 暗黙的な変換
 # typo
   - expected: $1進数
     patterns:
@@ -156,6 +158,8 @@ rules:
     prh: 機械という単語が出てきたら直します
   - expected: 状態で
     patterns: 常体で
+  - expected: する場合は
+    patterns: する倍は
 # 文体
   - expected: どのように
     patterns:
