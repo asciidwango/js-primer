@@ -143,18 +143,6 @@ Boolean(""); // => false
 Boolean(null); // => false
 ```
 
-同様のことを行うイディオムとしてNOT演算子を２つ重ねた`!!`も広く使われています。
-これは、NOT演算子（`!`）はオペランドを真偽値へ暗黙的に変換する性質を利用しています。
-
-{{book.console}}
-```js
-!!null; // => false
-// !null は 真偽値を返す => true
-// !true => false と必ず真偽値となる
-```
-
-
-
 JavaScriptでは、どの値が`true`でどの値が`false`になるかは、次のルールによって決まります。
 
 - **falsy**な値は`false`になる
