@@ -426,7 +426,7 @@ JavaScriptではコメントで引数の型を記述する書式として[JSDoc]
 function sum(...values) {
     return values.reduce((total, value) => {
         // 第一引数の評価結果がtrueではない場合、第二引数のメッセージが警告として出る
-        console.assert(Number.isFinite(value), `${value}は有限数ではありません`);
+        console.assert(typeof value === "number", `${value}はNumber型ではありません`);
         return total + Number(value);
     }, 0);
 }
