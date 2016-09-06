@@ -292,7 +292,7 @@ Number(undefined); // => NaN
 ```js
 var userInput = "任意の文字列";
 var number = Number.parseInt(userIntput, 10);
-if (!Number.isNan(number)) {
+if (!Number.isNaN(number)) {
     console.log("NaNではない値にパースできた", number);
 }
 ```
