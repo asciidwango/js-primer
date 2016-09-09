@@ -197,7 +197,7 @@
 - @azu: modulesが全然決まらない問題があるので、どうしようかな? 
 - @vvakame, @laco: モジュール…
 - @azu: ブラウザとかNode.jsで未だに動かすのが大変そう
-- @vvakame: es modules weeeklyが欲しい
+- @vvakame: ES modules weeklyが欲しい
 - @vvakame: Node.jsの方が先に入る?
 - @azu: ブラウザはモジュールの後方互換性はないけど、NodeはあるからNodeの方が大変そう
 - ES6といったらmoduleという部分はありそうなので省きにくい
