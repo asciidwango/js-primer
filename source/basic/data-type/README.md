@@ -104,7 +104,7 @@ TODO: もっと具体的なイメージの話をしたい。
 
 #### 浮動小数点数リテラル
 
-JavaScriptの浮動小数点数は[IEEE 754 方式][]を採用しています。
+JavaScriptの浮動小数点数は[IEEE 754][]を採用しています。
 浮動小数点数をリテラルと書く場合には次の2種類の表記が利用できます。
 
 - `3.14159` のような `.`（ドット）を含んだ数値
@@ -363,4 +363,4 @@ var undefined; // undefinedというローカル変数を定義できる
 
 [^1]: `0o` は数字のゼロと小文字アルファベットの`o`
 [The history of “typeof null”]: http://www.2ality.com/2013/10/typeof-null.html  "The history of “typeof null”"
-[IEEE 754 方式]: https://ja.wikipedia.org/wiki/IEEE_754
+[IEEE 754]: https://ja.wikipedia.org/wiki/IEEE_754
