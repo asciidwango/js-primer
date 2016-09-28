@@ -43,7 +43,11 @@ function 関数名(仮引数1, 仮引数2) {
 - 仮引数 - 引数と共に呼ばれた場合に値が入る変数
 - 関数の処理 - `{`と`}`で囲んだ関数の処理
 
+<!-- textlint-disable no-js-function-paren -->
+
 宣言した関数は、`関数名()`と書くことで呼び出すことができます。
+
+<!-- textlint-enable no-js-function-paren -->
 
 次の例では、引数で受け取った値を2倍にして返す関数を定義しています。
 関数は`return 返り値;`で返り値を返すことができます。
@@ -286,7 +290,11 @@ object.method = () => {
 };
 ```
 
+<!-- textlint-disable no-js-function-paren -->
+
 メソッドを呼び出す場合は、関数呼び出しと同様に`オブジェクト.メソッド名()`のように呼び出します。
+
+<!-- textlint-enable no-js-function-paren -->
 
 {{book.console}}
 ```js
