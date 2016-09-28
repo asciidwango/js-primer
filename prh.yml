@@ -141,6 +141,14 @@ rules:
     specs:
       - from: thenチェーンと言います
         to  : Promiseチェーンと言います
+  - expected: Statement
+    patterns: ステートメント
+    options:
+      wordBoundary: true
+  - expected: Expression
+    patterns: エクスプレッション
+    options:
+      wordBoundary: true
   - expected: 暗黙的な型変換
     patterns: 暗黙的な変換
 # typo
