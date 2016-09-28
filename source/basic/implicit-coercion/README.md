@@ -300,8 +300,11 @@ if (!Number.isNaN(number)) {
 ### [コラム] NaNはNot a NumberだけどNumber型
 
 `NaN`はNot a Numberの略称で、特殊な性質をもつNumber型のデータです。
-Number型と互換性のない性質のデータをNumber型へ変換した結果は`NaN`となります。
 
+この`NaN`というデータの性質については[IEEE 754][]で規定されており、
+JavaScriptだけの性質ではありません。
+
+`NaN`という値をつくる方法は簡単で、Number型と互換性のない性質のデータをNumber型へ変換した結果は`NaN`となります。
 たとえば、オブジェクトは数値とは互換性の無いデータです。
 そのため、オブジェクトを明示的に変換したとしても結果は`NaN`になります。
 
@@ -495,3 +498,4 @@ isEmptyString();// => false
 
 [演算子]: ../operator/README.md	"演算子のセクション"
 [JSDoc]: http://usejsdoc.org/  "Use JSDoc: Index"
+[IEEE 754]: https://ja.wikipedia.org/wiki/IEEE_754
