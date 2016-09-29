@@ -67,9 +67,13 @@ function displayView(view) {
 コールバック関数を使うと、ソースコードのネストが深くなったり、例外処理が複雑になったりします。
 Promiseを用いることで、可読性を保ちながらエラーハンドリングを簡単に行えます。
 
+<!-- textlint-disable no-js-function-paren -->
+
 コールバック関数を使う形式のAPIをPromiseに置き換えるのは、次のコードのように`new Promise()`を用いるのが一般的です。
 Promiseのコンストラクタには、`resolve`と`reject`の2つの関数オブジェクトを引数とする関数を渡します。
 ひとつめの引数は非同期処理が成功したときに呼び出す関数で、ふたつめは失敗した時に呼び出す関数です。
+
+<!-- textlint-enable no-js-function-paren -->
 
 ```js
 new Promise((resolve, reject) => {
