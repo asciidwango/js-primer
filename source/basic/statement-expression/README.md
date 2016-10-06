@@ -66,7 +66,7 @@ if (isTrue) {
 
 [import, statement-not-expression-invalid.js](src/statement-not-expression-invalid.js)
 
-### 文式
+### 式文
 
 一方、**式**（Expression）は**文**（Statement）になることができます。
 文となった式のことを**式文**と呼び、基本的に文が書ける場所には式を書くことができます。
@@ -151,7 +151,7 @@ var read = fn;
 
 - JavaScriptは**文**（Statement）と**式**（Expression）から構成される
 - 文は式になることができない
-- 式は文になることができる（**文式**）
+- 式は文になることができる（**式文**）
 - 文の末尾にはセミコロンを付ける
 - ブロックで終わる文は例外的にセミコロンを付けなくてよい
 

@@ -29,4 +29,4 @@ See [はじめに/本書の目的 · Issue #103 · asciidwango/js-primer](https:
     - 完全なプログラミング初心者は対象ではない
     - JavaScript以外の言語をやったことがある人
     - JavaScriptを触ったことがある人
-    - 古いJavaScriptをしってるいるが、今のJavaScriptはよくわからない人
+    - 古いJavaScriptを知っているが、今のJavaScriptはよくわからない人
