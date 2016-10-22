@@ -28,7 +28,8 @@ function getUserInfo(userId) {
 }
 
 function getUserId() {
-    return document.getElementById("userId").value;
+    const value = document.getElementById("userId").value;
+    return encodeURIComponent(value);
 }
 
 function createView(userInfo) {
