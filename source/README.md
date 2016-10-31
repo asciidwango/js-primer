@@ -2,7 +2,7 @@
 
 - 書籍の読み方
 - [本書の目的](intro/goal/README.md)
-- [基礎文法](basic/README.md)
+- [第1部: 基礎文法](basic/README.md)
     - [JavaScriptとは](basic/introduction/README.md)
     - [コメント](basic/comments/README.md)
     - 字句構造
@@ -27,20 +27,20 @@
     - クラス
     - 正規表現
     - Generator/Iterable/Iterator
-- ビルトインオブジェクト
-    - JSON
-    - Date
-    - Map/WeakMap
-    - Set/WeakSet
-    - Symbol
-    - Promise
-- Note
-    - ECMAScript策定プロセス
-    - Reflect API
-    - Proxy
-    - Unicode
-    - Intl
-- 応用編（ユースケース）
+    - ビルトインオブジェクト
+        - JSON
+        - Date
+        - Map/WeakMap
+        - Set/WeakSet
+        - Symbol
+        - Promise
+    - Note
+        - ECMAScript策定プロセス
+        - Reflect API
+        - Proxy
+        - Unicode
+        - Intl
+- 第2部: 応用編（ユースケース）
     - [Ajaxで通信](ajaxapp/README.md)
       - [エントリポイント](ajaxapp/entrypoint/README.md)
       - [HTTP通信](ajaxapp/xhr/README.md)

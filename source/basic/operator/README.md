@@ -151,7 +151,7 @@ Number.isNaN(NaN); // => true
 ```
 
 しかし、単項演算子の`+`は文字列から数値への変換に使うべきではありません。
-`Number`コンストラクタ関数や`parseInt`関数などの明示的な変換方法が存在するためですが、詳細は次のセクションで解説します。
+`Number`コンストラクタ関数や`parseInt`関数などの明示的な変換方法が存在するためですが、詳細は[暗黙的な型変換][]の章で解説します。
 
 ### 単項マイナス演算子（`-`）
 
@@ -917,6 +917,7 @@ console.log(c); // => 3
 
 一般にカンマ演算子を利用する機会は殆どないため、「カンマで区切った式は左から順に評価される」ということだけを知っていれば問題ありません。[^1]
 
+[暗黙的な型変換]: ../implicit-coercion/README "暗黙的な型変換について解説する章"
 [^1]: カンマ演算子を活用したテクニックとしてindirect callというものがあります。
 [演算子の優先順序]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table "演算子の優先順位 - JavaScript | MDN"
 [分割代入]: . "TODO: リンクをつける"
