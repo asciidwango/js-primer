@@ -21,7 +21,7 @@
     "lint:fix": "npm-run-all --parallel textlint:fix eslint:fix",
     "test:example": "mocha test/",
     "test:basic": "mocha './source/basic/**/*-test.js'",
-    "test:ajaxapp": "mocha './source/ajaxapp/!(node_modules)**/*-test.js'",
+    "test:ajaxapp": "mocha './source/use-case/ajaxapp/!(node_modules)**/*-test.js'",
     "test": "npm-run-all -l clean --parallel test:* lint",
     "clean": "file-cache-cli-clean",
     "travis": "npm-run-all -l --parallel test build"
