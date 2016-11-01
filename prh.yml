@@ -10,7 +10,7 @@ rules:
 #   options:
 #     wordBoundary: false
 #   specs: []
-
+  - expected: Markdown
 # 正規表現で置換もできる
   - expected: JavaScript
     patterns:
