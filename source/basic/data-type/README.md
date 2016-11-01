@@ -163,15 +163,7 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は全�
 ダブルクオートとシングルクオートどちらも改行をそのまま入力することはできません。
 次のように改行を含んだ文字列を定義使用すると `Syntax Error` となります。
 
-<!-- textlint-disable eslint -->
-
-```js
-"複数行の
-文字列を
-入れたい"; // Syntax Error
-```
-
-<!-- textlint-enable eslint -->
+[import, multiple-line-string-invalid.js](src/multiple-line-string-invalid.js)
 
 改行の代わりに改行記号のエスケープシーケンス（`\n`）を使うことで複数行の文字列を書くことができます。
 
