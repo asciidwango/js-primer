@@ -110,10 +110,7 @@ let bookTitle = "JavaScriptの本";
 次のように同じ変数名で再定義しようとするSyntaxErrorになります。
 そのため、間違えて変数を二重に定義してしまうというミスを防ぐことができます。
 
-```js
-let a; // "a"を定義する
-let a; // 同じ"a"を定義すると SyntaxError となる
-```
+[import, let-duplicated-define-invalid.js](src/let-duplicated-define-invalid.js)
 
 ## [ES2015] `const`
 
@@ -142,10 +139,7 @@ const bookTitle = "JavaScriptの本";
 そして、一度`const`で宣言された変数には再代入できなくなります。
 そのため、次のコードでは`bookTitle`を上書きしようとして`TypeError`となります。
 
-```js
-const bookTitle = "JavaScriptの本";
-bookTitle = "上書き"; // TypeError: invalid assignment to const `bookTitle'
-```
+[import, const-do-not-assign-invalid.js](src/const-do-not-assign-invalid.js)
 
 一般に変数への再代入は「変数の値は最初に定義した値と常に同じである」という参照透過性を壊すため、
 バグを発生させやすい要因として知られています。

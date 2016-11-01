@@ -24,21 +24,23 @@ describe("doctest:md", function() {
             const content = fs.readFileSync(filePath, "utf-8");
             const markdownAST = remark.parse(content);
             const codeBlocks = [].concat(select(markdownAST, 'code[lang="js"]'), select(markdownAST, 'code[lang="javascript"]'));
-            const codes = codeBlocks.map(codeBlock => {
-                return codeBlock.value;
-            }).filter(code => code.length > 0);
             // try to eval
-            codes.forEach(code => {
+            codeBlocks.forEach((codeBlock, index) => {
                 try {
-                    const poweredCode = toDoc.convertCode(code, filePath);
+                    const poweredCode = toDoc.convertCode(codeBlock.value, filePath);
                     strictEval(poweredCode);
                 } catch (error) {
-                    // AssertionError以外は無視する
-                    if (error.name !== "AssertionError") {
+                    // ReferenceErrorはOK
+                    if (error.name === "ReferenceError") {
+                        return;
+                    }
+                    // ** はNode.jv 7 >=
+                    if (error.message === "Line 1: Unexpected token *") {
                         return;
                     }
                     // Stack Trace like
-                    console.info(code);
+                    console.log(`${filePath}:${codeBlock.position.start.line}:${codeBlock.position.start.column}`);
+                    console.log(codeBlock.value);
                     console.error(`StrictEvalError: strict eval is failed
     at strictEval (${filePath}:1:1)`);
                     throw error;
