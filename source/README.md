@@ -47,7 +47,7 @@
       - [データを表示する](use-case/ajaxapp/display/README.md)
       - [Promiseを活用する](use-case/ajaxapp/promise/README.md)
     - [Node.jsでCLIアプリ](use-case/nodecli/README.md)
-      - Node.jsでHello World
+      - [Node.jsでHello World](use-case/nodecli/helloworld/README.md)
       - コマンドライン引数を処理する
       - ファイルを読み込む
       - MarkdownをHTMLに変換する
