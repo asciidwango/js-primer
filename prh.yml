@@ -151,6 +151,16 @@ rules:
       wordBoundary: true
   - expected: 暗黙的な型変換
     patterns: 暗黙的な変換
+  - expected: プリミティブ型
+    patterns:
+      - プリミティブなデータ型
+      - プリミティブデータ型
+    prh: StringやNumberなどのプリミティブ値の型のこと
+  - expected: プリミティブ型の値
+    patterns:
+      - プリミティブ値
+    prh: 仕様におけるprimitive valueのこと
+
 # typo
   - expected: $1進数
     patterns:
