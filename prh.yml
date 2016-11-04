@@ -155,11 +155,11 @@ rules:
     patterns:
       - プリミティブなデータ型
       - プリミティブデータ型
-    prh: StringやNumberなどのプリミティブ値の型のこと
+    prh: StringやNumberといったtypeのこと。プリミティブ値の型を示す
   - expected: プリミティブ型の値
     patterns:
       - プリミティブ値
-    prh: 仕様におけるprimitive valueのこと
+    prh: 仕様におけるprimitive valueのこと。 strや1といったプリミティブ型の値を示す
 
 # typo
   - expected: $1進数
