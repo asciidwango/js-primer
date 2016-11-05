@@ -35,3 +35,30 @@
 	- 辞書の順は charCode という数値
 	- そもそも文字は CharCode の表現があり、それを表示する側が文字として出してる
 - ユニコード
+	- [What every JavaScript developer should know about Unicode](https://rainsoft.io/what-every-javascript-developer-should-know-about-unicode/)
+	- [Unicode のサロゲートペアとは何か - ひだまりソケットは壊れない](http://vividcode.hatenablog.com/entry/unicode/surrogate-pair)
+	- Charater
+		- いわゆる文字
+	- Code unit
+		- [ ]もっと分かりやすく調べる
+	- Code point
+		- Unicodeにおける
+	- 2つのCode unitからなる文字のCode unitの連なりをサロゲートペアと呼ぶ
+	- [String.prototype.codePointAt()](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt "String.prototype.codePointAt()")
+		- サロゲートペア考慮してn番目のcode pointをencodeして返してくれる
+		- 言い換えるとn番目のCode unitを返す
+	- [String.prototype.charAt()](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/charAt "String.prototype.charAt()")
+		- サロゲートペア考慮しないでn番目のcharaterを返す
+		- `"string"[0]`はこれと同じ
+	- [String.prototype.charCodeAt()](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt "String.prototype.charCodeAt()")
+		- サロゲートペア考慮しないでn番目のcharaterのcode pointを返す
+## 配列 
+## 未使用
+- プリミティブと参照型について
+	- [data-type: プリミティブと参照型についてを追加する · Issue #145 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/145 "data-type: プリミティブと参照型についてを追加する · Issue #145 · asciidwango/js-primer")
+	- 値自体の特性 @done
+		- プリミティブ型はImmutable
+		- オブジェクトはMustable
+	- 値の受け渡し `function`
+	- コピー `=` (特にこれはオブジェクト側に統一した方法がないという問題がある)
+	- 比較 `===` @done
