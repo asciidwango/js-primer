@@ -52,7 +52,43 @@
 		- `"string"[0]`はこれと同じ
 	- [String.prototype.charCodeAt()](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt "String.prototype.charCodeAt()")
 		- サロゲートペア考慮しないでn番目のcharaterのcode pointを返す
-## 配列 
+## 配列
+- 配列の宣言には `[]` リテラルが使える
+- `new Array` は`length`を指定した配列を作る
+	- 疎の配列は基本的に扱いにくく誤解の元となるため避ける
+	- パフォーマンス的にも問題になりやすい
+- 破壊せずに扱うならコピーするか破棄せずに変更を加える事ができるメソッドを使う
+- 配列の追加する方法としては次の3つがある
+	- `Array#concat`
+	- `Array#push`
+	- `Array#unshift`
+- 配列から要素を削除する方法も色々ある。
+- 基本的には`Array#splice`を使うのが簡単だけど、これは破壊的な操作
+	- 削除と追加を同時に行うという特殊な感じのメソッド
+- 空の配列を作りたいなら `.length = 0`を使うこともある
+- けど、普通は新しい配列を作って変数を上書きしちゃうのが楽です。
+- とにかく配列メソッド(操作)には一貫性がないような感じなので、自分で一貫性を持った扱い方を決めた方が良い。
+- 配列は参照型
+	- 配列はオブジェクトであるため参照型
+	- 破壊的な変更は参照先にも影響を与えしまう
+	- 配列は基本的に破壊的な操作になってることが多い
+		- [Array methods - Immutable or Mutable](https://gist.github.com/azu/30b1ff6831c3bbf7fbd5501d6a2bdfb0 "Array methods - Immutable or Mutable")
+- 配列から検索
+	- 配列に含まれているかは`Array#includes` や `Array#some` で見つけられる
+	- 配列から取り出す場合は `Array#find` や `Array#findIndex` や `Array#indexOf` を使うことで実体やindexを取ることができる
+- Arrayと高階関数
+	- これについてはLoopのところで少しやっているが、基本的に配列の中身をすべて走査するため一見処理コストはあるが、膨大な数にやセンシティブな状況でなければこれらの高階関数で配列を扱ったほうが安全で読みやすいコードになる。
+	- なぜ読みやすいコードになるかというと、手続きではなく、処理を関数(大体は無名関数だが)にして扱うため処理のまとまりが生まれやすい。
+	- また null を返すパターンなどが減るため、常に配列を受け取り/必要なら配列を返すというパターンが出来上がるところが良いところ。
+	- nullを渡すな空の配列を渡せ、nullを返すな空の配列を返せ
+- 配列から他のデータ型にする場合で考えるのは、ほぼ文字列ぐらいなので`Array#join`と`Array#map`を使うなどが定番のやり方
+- Arrayのパターン
+	- Array -> Array
+	- Array -> String
+	- Array -> Boolean
+	- Array -> void(破壊的)
+	- Other -> Array
+		- `Array#from`、`Array#of`
 ## 未使用
 - プリミティブと参照型について
 	- [data-type: プリミティブと参照型についてを追加する · Issue #145 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/145 "data-type: プリミティブと参照型についてを追加する · Issue #145 · asciidwango/js-primer")
