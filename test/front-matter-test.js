@@ -13,7 +13,7 @@ describe("front-matter", function() {
         `!${sourceDir}/**/node_modules{,/**}`,
         // 目次は除く
         `!${sourceDir}/index.html.md`,
-        `!${sourceDir}/README.md`
+        `!${sourceDir}/README.md`,
         `!${sourceDir}/OUTLINE.md`
     ]);
     context("author", function() {
