@@ -14,6 +14,7 @@ describe("front-matter", function() {
         // 目次は除く
         `!${sourceDir}/index.html.md`,
         `!${sourceDir}/README.md`
+        `!${sourceDir}/OUTLINE.md`
     ]);
     context("author", function() {
         files.forEach(filePath => {
