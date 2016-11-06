@@ -14,8 +14,8 @@ Node.jsでCLIアプリケーションを開発するにあたり、まずはじ�
 - オープンソースで開発されている
 - OSを問わずクロスプラットフォームで動作する
 
-Node.jsはもともとWebサーバーを構築するために開発されましたが、
-今ではコマンドラインツールの開発や、Webアプリケーションの開発ツールの作成にもよく使われています。
+Node.jsはもともとサーバーサイドで使う目的で開発されました。
+しかし今ではコマンドラインツールや[Electron][]のように、Webブラウザに依存しないJavaScript実行環境として幅広い用途で使われています。
 
 ## Node.jsのインストール
 
@@ -66,4 +66,5 @@ Node.jsの基本は、エントリポイントとなるJavaScriptファイルを
 
 [Node.js]: https://nodejs.org/ja/
 [Chrome V8]: https://developers.google.com/v8/
+[Electron]: http://electron.atom.io/
 [ダウンロードページ]: https://nodejs.org/ja/download/
