@@ -11,8 +11,9 @@ author: azu
 See [はじめに/本書の目的 · Issue #103 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/103 "はじめに/本書の目的 · Issue #103 · asciidwango/js-primer")
 
 - 本書がやらないこと
-    - 文法をまとめるのが目的ではない
-    - DOMについて学ぶのは目的ではない
+    - すべての文法や機能を網羅するのが目的ではない
+    - DOMについて学ぶのが目的ではない
+    - 他の言語と比較するのが目的ではない
     - Node.jsの使い方をマスターするのが目的ではない
     - JavaScriptのリファレンスを目指すものではない
         - 詳しくはMDNを参照すればよい
