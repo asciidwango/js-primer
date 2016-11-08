@@ -13,11 +13,37 @@
 ## [条件分岐](./basic/condition/README.md)
 ## [ループと反復処理](./basic/loop/README.md)
 ## [演算子](./basic/operator/README.md)
+## オブジェクト
+- オブジェクトとハッシュ
+- Objectとprototype
+- すべては`Object`に通じる
+- 関数、正規表現、文字列オブジェクト、数値オブジェクト、真偽値オブジェクト、配列、Map、Setとにかく何でも
+	- プリミティブ値はオブジェクトではないけど、プリミティブ値にもラッパーオブジェクトというオブジェクト版がややこしい。
+	- ラッパーオブジェクトについては基本的に使い道がほぼないので気にしなくて良い。
+	- プリミティブのラッパーオブジェクトは型変換ぐらいしか利用しない。
+- `Object.assign({})`でコピー
+- `Object.keys`、`Object.values`、`Object.entries`
+	- こいつらはIterableじゃなくて普通に配列を返す
+- 殆どのオブジェクトが文字列にできるのも`Object#toString()`が継承されているから
+- この継承の仕組みがprototypeチェーンであり、それについてはFunctionで詳しくやるのでココでは解説しませんが、クラス継承をJavaScriptではどのようなしくみでうごいているかという点について
 ## 配列
+- この章では、配列とは何かまた配列ではないものを配列として扱う方法?について考える
+- 配列は特殊なオブジェクトです。
+	- 要素を順番に格納できます。
+	- 格納した要素はキーに数字を使って取り出せます。
+	- `array[num]` 添字
+	- arrayの添字は `0` から開始されます。
 - 配列の宣言には `[]` リテラルが使える
 - `new Array` は`length`を指定した配列を作る
 	- 疎の配列は基本的に扱いにくく誤解の元となるため避ける
 	- パフォーマンス的にも問題になりやすい
+- Array-likeについても知っておくと良いはず
+	- `length` を持っているけど配列ではない要素
+	- `Array#from` で正しく配列にできる
+	- そもそもなんでArray-likeというのか。配列の`length`は特殊な性質を持っているため。
+	- 配列の中身に対して動的に返す値が切り替わる
+	- 存在しない配列の添字に代入できるという点
+	- [How ECMAScript 5 still does not allow to subclass array — Perfection Kills](http://perfectionkills.com/how-ecmascript-5-still-does-not-allow-to-subclass-an-array/ "How ECMAScript 5 still does not allow to subclass array — Perfection Kills")
 - 破壊せずに扱うならコピーするか破棄せずに変更を加える事ができるメソッドを使う
 - 配列の追加する方法としては次の3つがある
 	- `Array#concat`
@@ -45,11 +71,38 @@
 - 配列から他のデータ型にする場合で考えるのは、ほぼ文字列ぐらいなので`Array#join`と`Array#map`を使うなどが定番のやり方
 - Arrayのパターン
 	- Array -> Array
-	- Array -> String
-	- Array -> Boolean
+		- slice、concat、mapなどに代表されるコピーを作って返す操作
 	- Array -> void(破壊的)
+		- pushやshiftに代表されるArrayに破壊的な操作
+	- Array -> String
+		- joinなどの文字列
+	- Array -> Boolean
+		- indexOfやincludes等の操作
+		- `Array.isArray`は特殊なものでArrayかどうかを判定できる
+			- Realmが異なるとArrayはinstanceofでも一致しなくなるため
+	- Array -> any
+		- findなどのArrayからものを取り出す操作
+		- 探索処理を書く際には必須だが
+		- JavaScriptのデフォルトは大体が線形探索担ってる
 	- Other -> Array
 		- `Array#from`、`Array#of`
+		- Array-likeという概念がある
+		- これもやっぱりArrayは特殊なオブジェクトであるから
+		- exitic objectについて
+
+### Array - Arrayの基礎
+- 作成
+- 参照
+- 追加
+- 検索
+- 削除
+### Array - 参照系
+- Array-like
+	- Other(Array-like) -> Array
+- コピー
+	- Array -> Array
+- 高階関数
+- パターン: null or empty array
 
 ## String
 - 文字列の宣言は、リテラルを使う
