@@ -35,28 +35,42 @@
 	- そして、配列は破壊的な操作と非破壊的な操作が混在する分かりにくい部分を持ち合わせています。そのため、非破壊的に扱う方法を学ぶことでより安全な配列を利用できます。
 	- また配列は 0以上の値を扱うことができるため、空の配列を使うことで値が無い場合とある場合にも同じ操作ができるためパターンとして優れています。
 	- そのためには色々なものを配列にする方法を見ていきましょう
+- アウトラインの流れ
+	- 配列の基礎
+		- 読み込み
+		- 書き込み
+	- 配列の応用
+		- 配列と他のオブジェクトでのやり取り
 - アウトライン
 	- 配列は特殊なオブジェクト
+		- 配列とは値に順序つけて格納したもの
+		- 配列の中身の値のことを**要素**、それぞれの要素の位置のことを**インデックス**という
 		- 配列は可変な配列のみ
-		- 配列かどうかを判定
+		- `length`は自動的に追従する
+		- typeof をすると "object"
+			- 分類としてはオブジェクト
+		- 配列かどうかを判定 `Array.isArray` を使う
 		- 密な配列とは限らない
-		- 要素を順番に格納できます。
-	- 配列の作成
+	- [コラム] TypedArray
+		- TypedArrayとは
+		- Arrayとの違い
+	- 配列の作成とアクセス
 		- 配列の宣言には `[]` リテラルが使える
-	- 配列の要素へのアクセス
 		- `array[num]` でアクセスできる
-		- arrayの添字は `0` から開始されます
+		- arrayのインデックスは `0` から開始されます
+		- 配列の末尾の要素へのアクセスは `length - 1` を使う
+		- 存在しないインデックスへのアクセスは`undefined`が返される
+		- オブジェクトで存在しないプロパティへアクセスしたのと同じ
 	- 配列から要素を検索
-		- 配列に含まれているかは`Array#includes` や `Array#some` で見つけられる
+		- 配列に含まれているかは`Array#includes` で見つけられる
 		- 配列から取り出す場合は `Array#find` や `Array#findIndex` や `Array#indexOf` を使うことで実体やindexを取ることができる
-	- 配列へ要素を追加
-		- 配列の追加する方法としては次の3つがある
-			- `Array#concat`
+	- 配列へ要素を追加と削除
+		- 末尾
 			- `Array#push`
+			- `Array#pop`
+		- 先頭
 			- `Array#unshift`
-	- 配列から要素を取り出す
-		- `Array#pop`
-		- `ARray#shift`
+			- `Array#shift`
 	- 配列から要素を削除
 		- 配列から要素を削除する方法も色々ある。
 		- 基本的には`Array#splice`を使うのが簡単だけど、これは破壊的な操作
@@ -71,6 +85,8 @@
 			- パフォーマンス的にも問題になりやすい
 	- Array-likeとは何か
 		- `length`と順番をもったオブジェクトのこと
+		- ただし `length` が配列のように自動的に更新されない
+		- また、Array.prototypeではないのでArrayのメソッドをもっていない
 		- Arrayのようなオブジェクトのこと
 		- DOM Node、arugmnent
 		- `Array#from`で配列にできる
@@ -89,16 +105,15 @@
 		- また null を返すパターンなどが減るため、常に配列を受け取り/必要なら配列を返すというパターンが出来上がるところが良いところ。
 		- nullを渡すな空の配列を渡せ、nullを返すな空の配列を返せ
 - 未整理
+	- Arrayの要素がないことは `hasOwnProperty`を使うことで判定できます。
 	- 配列は特殊なオブジェクトです。
 	- 格納した要素はキーに数字を使って取り出せます。
-		- `length`は自動的に追従する
-		- `length` を持ってて、連番な格納できるオブジェクト。
-		- 配列ではない要素
 		- `Array#from` で正しく配列にできる
 		- そもそもなんでArray-likeというのか。配列の`length`は特殊な性質を持っているため。
 		- 配列の中身に対して動的に返す値が切り替わる
 		- 存在しない配列の添字に代入できるという点
 		- [How ECMAScript 5 still does not allow to subclass array — Perfection Kills](http://perfectionkills.com/how-ecmascript-5-still-does-not-allow-to-subclass-an-array/ "How ECMAScript 5 still does not allow to subclass array — Perfection Kills")
+	- - `Array#concat` = 新しい配列
 	- とにかく配列メソッド(操作)には一貫性がないような感じなので、自分で一貫性を持った扱い方を決めた方が良い。
 			- [Array methods - Immutable or Mutable](https://gist.github.com/azu/30b1ff6831c3bbf7fbd5501d6a2bdfb0 "Array methods - Immutable or Mutable")
 	- Arrayと高階関数
