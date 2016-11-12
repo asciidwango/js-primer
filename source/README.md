@@ -18,7 +18,7 @@
     - [暗黙的な型変換](basic/implicit-coercion/README.md)
     - String
     - Number
-    - 配列
+    - [配列](./basic/array/README.md)
     - オブジェクト
     - Destructuring
     - 関数/Arrow Function

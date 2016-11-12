@@ -160,6 +160,10 @@ rules:
     patterns:
       - プリミティブ値
     prh: 仕様におけるprimitive valueのこと。 strや1といったプリミティブ型の値を示す
+  - expected: インデックス
+    patterns:
+      - 添字
+    prh: 配列では添字ではなく、インデックスを使います。
 
 # typo
   - expected: $1進数
