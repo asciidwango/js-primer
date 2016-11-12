@@ -18,6 +18,7 @@
     - [暗黙的な型変換](basic/implicit-coercion/README.md)
     - String
     - Number
+    - [オブジェクト](./basic/object/README.md)
     - [配列](./basic/array/README.md)
     - オブジェクト
     - Destructuring
