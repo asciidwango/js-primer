@@ -4,7 +4,8 @@ author: laco
 
 # Node.jsでHello World
 
-Node.jsでCLIアプリケーションを開発するにあたり、まずはじめにNode.jsについての簡単な解説を行い、Hello Worldアプリケーションを作成します。
+実際にアプリケーションを作成するまえに、まずはNode.jsについて簡単に解説します。
+その後、Hello Worldアプリケーションを通じてNode.jsのCLIアプリケーションの基本を学びましょう。
 
 ## Node.jsとは
 
