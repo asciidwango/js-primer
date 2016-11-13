@@ -142,7 +142,7 @@ console.log(object[100]); // => undefined
 
 ```js
 // 未定義の要素が1つ含まれる疎の配列
-var sparselyArray = [1,,3];
+var sparselyArray = [1,, 3];
 console.log(sparselyArray.length); // => 3 
 // 1番目の要素は存在しないため undefined が返る
 console.log(sparselyArray[1]); // => undefined
@@ -154,13 +154,74 @@ console.log(sparselyArray[1]); // => undefined
 
 ## 配列から要素を検索
 
+- [x] find
+- [x] includes
+- [x] indexOf
 
-## 配列へ要素を追加
-## 配列から要素を取り出す
+## 追加と削除
+
+配列は可変長であるため、生成後に要素を追加したり、削除することができます。
+
+要素を配列の末尾へ追加するには`Array#push`が利用できます。
+逆に、配列の末尾から要素を削除するには`Array#pop`が利用できます。
+
+```js
+var array = ["A", "B", "C"];
+array.push("D"); // "D"を末尾に追加
+console.log(array); // => ["A", "B", "C", "D"]
+var popedItem = array.pop(); // 最末尾の要素を削除し、その要素を返す 
+console.log(popedItem); // => "D"
+console.log(array); // => ["A", "B", "C"]
+```
+
+要素を配列の先頭へ追加するには`Array#unshift`が利用できます。
+逆に、配列の先頭から要素を削除するには`Array#shift`が利用できます。
+
+```js
+var array = ["A", "B", "C"];
+array.unshift("S"); // "S"を先頭に追加
+console.log(array); // => ["S", "A", "B", "C"]
+var shiftedItem = array.shift(); // 先頭の要素を削除 
+console.log(shiftedItem); // => "S"
+console.log(array); // => ["A", "B", "C"]
+```
+
 ## 配列から要素を削除
 ## 配列を使ってLRU
 ## 疎の配列を作る
 ## Array-likeとは何か
 ## 配列をコピー
+
+どのメソッドも`array`変数が参照する配列そのものを変更している操作であることが分かります。
+次のような例を見てみると分かるように、`myArray`に対して要素を追加した場合にも、
+`myArray`の参照値のコピーを持った`yourArray`にも影響がでているということが分かります。
+
+```js
+var myArray = ["A", "B", "C"];
+var yourArray = myArray;
+myArray.push("D");
+console.log(yourArray); // => ["A", "B", "C"]
+```
+
+これは、`myArray`と`yourArray`が同じ配列オブジェクトへの参照を持っているためです。
+オブジェクトは値への参照を使い操作されるため参照型のデータであるため（[データ型とリテラル](../data-type/README.md)を参照）、
+どちらの変数も同じ配列オブジェクトの参照となっています。
+
+これを回避するためには配列を明示的にコピーしたものを`yourArray`に代入する必要があります。
+JavaScriptには残念ながら copyメソッドというような分かりやすい名前のメソッドは存在していませんが、
+配列の参照をコピーする機能を持つメソッドが代用されています。
+
+`Array#slice`と`Array#concat`がコピーの代用として使われているメソッドです。
+
+```js
+var myArray = ["A", "B", "C"];
+var yourArray = myArray.slice(); // `myArray`のコピーを返す
+myArray.push("D");
+console.log(yourArray); // => ["A", "B", "C"]
+```
+
+
+- [ ] MutableとImmutable
+
 ## 高階関数とメソッドチェーン
 ## パターン: nullを返さずに配列を返す
