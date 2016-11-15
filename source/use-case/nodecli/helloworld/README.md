@@ -11,12 +11,12 @@ author: laco
 
 [Node.js][]はサーバーサイドJavaScript実行環境のひとつで、次のような特徴があります。
 
-- WebブラウザのChromeと同じ、[V8][]JavaScriptエンジンで動作する
+- WebブラウザのChromeと同じ、[V8][] JavaScriptエンジンで動作する
 - オープンソースで開発されている
 - OSを問わずクロスプラットフォームで動作する
 
 Node.jsはサーバーサイドで使うために開発されました。
-しかし今ではコマンドラインツールや[Electron][]などのクライアントサイドにおいても、Webブラウザに依存しないJavaScript実行環境として幅広い用途で使われています。
+しかし今ではコマンドラインツールや[Electron][]など、クライアントサイドにおいてもWebブラウザに依存しないJavaScript実行環境として幅広い用途で使われています。
 
 ## Node.jsのインストール
 
@@ -34,7 +34,7 @@ Node.jsには常に2つのリリース版が存在します。ひとつは**LTS�
 
 ```
 $ node -v 
-v6.9.1      
+v6.9.1
 ```
 
 ## Hello World
@@ -67,6 +67,6 @@ Node.jsの基本は、エントリポイントとなるJavaScriptファイルを
 これらを踏まえた上で、次のセクションからCLIアプリケーションの開発をはじめていきましょう。
 
 [Node.js]: https://nodejs.org/ja/
-[Chrome V8]: https://developers.google.com/v8/
+[V8]: https://developers.google.com/v8/
 [Electron]: http://electron.atom.io/
 [ダウンロードページ]: https://nodejs.org/ja/download/
