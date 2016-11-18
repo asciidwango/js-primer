@@ -18,7 +18,7 @@ JavaScriptはプリミティブ型のデータ以外はすべてオブジェク�
 このことは、`typeof`演算子の結果を見てみることでもわかります。
 
 ```js
-typeof ["配列", "は", "オブジェクト"]; // => "object"
+typeof ["A", "B", "C"]; // => "object"
 ```
 
 しかし、`Object`から作られるオブジェクトとは異なる特殊な動作やメソッドを持っています。
@@ -32,10 +32,10 @@ var array = ["文字列", 42, { key: "value" }];
 console.log(array.length); // => 3
 ```
 
-`length`プロパティは配列の要素の数を返します。
+`length`プロパティはその配列の要素数を返します。
 
 また、`length`プロパティへ値を代入することができます。
-これは配列の要素を削除することに利用されますが、特殊な動作となっているため後ほど詳しく解説します。
+これは配列の要素を削除することに利用されますが、特殊な動作となっているため、後ほど解説します。
 
 ```js
 var array = ["文字列", 42, { key: "value" }];
@@ -131,39 +131,103 @@ var object = {
     "2": "three",
     "length": 3
 };
+// object[100]はobject["100"]としてアクセスされる
 // objectにはプロパティ名が"100"のものがないため、undefinedが返る
 console.log(object[100]); // => undefined
 ```
 
 また、配列は常に`length`の数だけ要素を持っているとは限りません。
 次のように、配列リテラルでは値を省略することで、未定義の要素を含めることができます。
-このような、配列の中に隙間があるものを**疎の配列**と呼びます。
-一方、隙間がなくすべてのインデックスに要素がある配列を**密の配列**と呼びます。
+このような、配列の中に隙間があるものを**疎な配列**と呼びます。
+一方、隙間がなくすべてのインデックスに要素がある配列を**密な配列**と呼びます。
 
 ```js
-// 未定義の要素が1つ含まれる疎の配列
-var sparselyArray = [1,, 3];
-console.log(sparselyArray.length); // => 3 
+// 未定義の箇所が1つ含まれる疎な配列
+var sparseArray = [1,, 3];
+console.log(sparseArray.length); // => 3 
 // 1番目の要素は存在しないため undefined が返る
-console.log(sparselyArray[1]); // => undefined
+console.log(sparseArray[1]); // => undefined
 ```
 
-### コラム: 値がない要素と未定義の要素の違い
+## 値がない要素と未定義の要素の違い
 
 - [ ] hasOwnPropertyについて
 
 ## 配列から要素を検索
 
+配列からある要素があるかを探索したい場合に、
+主に次の3つの目的があると思います。
+
+- その要素のインデックスが欲しい場合
+- その要素自体が欲しい場合
+- その要素が含まれているかという真偽値が欲しい場合
+
+配列にはそれぞれに対応したメソッドが用意されているため、
+目的別に見ていきます。
+
+### インデックスを取得
+
+ある要素が配列のどの位置にあるかを知りたい場合、`Array#indexOf`メソッドや`Array#findIndex`メソッドを利用します。
+要素の位置のことを**インデックス**（`index`）と呼ぶため、メソッド名にも`index`という名前が入っています。
+
+次のコードでは、`Array#indexOf`メソッドを利用して、配列の中から`"JavaScript"`という文字列のインデックスを取得しています。
+`indexOf`メソッドは引数と厳密等価演算子（`===`）で一致する要素があるなら、その要素のインデックスを返し、該当する要素がない場合は`-1`を返します。
+`indexOf`メソッドは先頭から探索して見つかった要素のインデックスを返します。
+`indexOf`メソッドには対となる`Array#lastIndexOf`メソッドがあり、`lastIndexOf`メソッドは末尾から探索した結果を得ることができます。
+
+```js
+var array = ["Java", "JavaScript", "Ruby"];
+var indexOfJS = array.indexOf("JavaScript");
+console.log(indexOfJS); // => 1
+console.log(array[indexOfJS]); // => "JavaScript"
+// "JS" という要素はないため `-1` が返される
+console.log(array.indexOf("JS")); // => -1
+```
+
+`indexOf`メソッドは配列からプリミティブな要素は発見できますが、オブジェクトは持っているプロパティが同じでも別オブジェクトだと異なるものとして扱われます。
+次の例を見ると、同じプロパティを持つ異なるオブジェクトは`indexOf`では見つけることができないことが分かります。
+これは、異なるオブジェクト同士は`===`で比較しても一致しないことと同様の理由です。
+
+```js
+var object = { key : "value" };
+var array = ["A", "B", object];
+console.log(array.indexOf({ key : "value" })); // => -1
+// リテラルは新しいオブジェクトを作るため異なるオブジェクトを比較している
+console.log(object === { key : "value" }); // => false
+// 等価のオブジェクト
+console.log(array.indexOf(object)); // => 2
+```
+
+このように、異なるオブジェクトだが値が同じものを見つけたい場合には、`Array#findIndex`メソッドが利用できます。
+`findIndex`メソッドは関数には配列の各要素をテストする関数をコールバック関数として渡します。
+`indexOf`メソッドとは異なり、テストする処理を自由に書くことができます。
+これにより、異なるオブジェクトだが値が同じという要素を配列から見つけて、その要素のインデックスを得ることができます。
+
+```
+var object = { key : "value" };
+var array = ["A", "B", object];
+// オブジェクトの"key"の値が"value"であるなら`true`を返す
+var isKeyValue = (object) => {
+    return object["key"] === "value";
+};
+// `isKeyValue`で`true`を返した最初の要素のインデックス
+console.log(array.findIndex(isKeyValue)); // => 2
+```
+
+### 要素を取得
+
+### 真偽値を取得
+
+- [x] indexOf/findIndex
+- [x] includes/some
 - [x] find
-- [x] includes
-- [x] indexOf
 
 ## 追加と削除
 
 配列は可変長であるため、生成後に要素を追加したり、削除することができます。
 
 要素を配列の末尾へ追加するには`Array#push`が利用できます。
-逆に、配列の末尾から要素を削除するには`Array#pop`が利用できます。
+一方、末尾から要素を削除するには`Array#pop`が利用できます。
 
 ```js
 var array = ["A", "B", "C"];
@@ -175,7 +239,7 @@ console.log(array); // => ["A", "B", "C"]
 ```
 
 要素を配列の先頭へ追加するには`Array#unshift`が利用できます。
-逆に、配列の先頭から要素を削除するには`Array#shift`が利用できます。
+一方、配列の先頭から要素を削除するには`Array#shift`が利用できます。
 
 ```js
 var array = ["A", "B", "C"];
@@ -187,29 +251,82 @@ console.log(array); // => ["A", "B", "C"]
 ```
 
 ## 配列から要素を削除
+
+配列の先頭や末尾の要素を削除する場合は`Array#shift`や`Array#pop`で行えます。
+しかし、配列の任意のインデックスにある要素を削除することはできません。
+配列の任意のインデックスの要素削除するには`Array#splice`を利用できます。
+
+`Array#splice`メソッドを利用すると、削除した要素を自動で詰めることができます。
+`Array#splice`メソッドは、`index`番目から`削除する数`だけ要素を取り除き、必要ならば要素を同時に追加できます。
+
+```js
+var array = [];
+array.splice(インデックス, 削除する要素数);
+// 削除と同時に要素の追加もできる
+array.splice(インデックス, 削除する要素数, ...追加する要素);
+```
+
+たとえば、配列のインデックスが`1`の要素を削除するには、インデックス`1`から`1`つの要素を削除するという指定をする必要があります。
+このとき、削除した要素は自動で詰められるため、疎な配列にはなりません。
+
+```js
+var array = [1, 2, 3];
+array.splice(1, 1);
+console.log(array); // => [1, 3]
+console.log(array.length); // => 2
+console.log(array[1]); // => 3
+```
+
+配列のすべての要素を削除する場合も`array.splice(0, array.length);`で行うことができますが、
+配列の`length`プロパティへの代入を利用した方法も存在します。
+
+```js
+var array = [1, 2, 3];
+array.length = 0; // 配列を空にする
+console.log(array); // => []
+```
+
+配列の`length`プロパティへ`要素数`を代入すると、その要素数に配列が切り詰められます。
+つまり、`length`プロパティへ`0`を代入すると、インデックスが`0`以降の要素がすべて削除されます。
+
 ## 配列を使ってLRU
-## 疎の配列を作る
+## 疎な配列を作る
 ## Array-likeとは何か
 ## 配列をコピー
 
 どのメソッドも`array`変数が参照する配列そのものを変更している操作であることが分かります。
-次のような例を見てみると分かるように、`myArray`に対して要素を追加した場合にも、
-`myArray`の参照値のコピーを持った`yourArray`にも影響がでているということが分かります。
+次のような例を見てみると分かるように、`myArray`に対して要素を追加したとき、`yourArray`にも影響がでているということが分かります。
 
 ```js
 var myArray = ["A", "B", "C"];
 var yourArray = myArray;
 myArray.push("D");
-console.log(yourArray); // => ["A", "B", "C"]
+console.log(yourArray); // => ["A", "B", "C", "D"]
 ```
 
 これは、`myArray`と`yourArray`が同じ配列オブジェクトへの参照を持っているためです。
 オブジェクトは値への参照を使い操作されるため参照型のデータであるため（[データ型とリテラル](../data-type/README.md)を参照）、
 どちらの変数も同じ配列オブジェクトの参照となっています。
 
+たとえば、`removeAtIndex`という関数がある場合に、次のように渡した配列に対して影響を与えることは予測しにくい場合があります。
+
+```js
+function removeAtIndex(array, index) {
+    array.splice(index, 1);
+}
+var array = ["A", "B", "C"];
+removeAtIndex(array, 1);
+console.log(array); // => ["A", "C"]
+```
+
+`removeAtIndex`関数は、引数で受け取った`array`から要素を削除しているため、それ以降の`array`自体に影響を与えています。
+このような、ある機能が受け取った値そのものに影響を与えることを**破壊的**操作と呼びます。
+
+- [ ] `Array` の比較について
+
 これを回避するためには配列を明示的にコピーしたものを`yourArray`に代入する必要があります。
 JavaScriptには残念ながら copyメソッドというような分かりやすい名前のメソッドは存在していませんが、
-配列の参照をコピーする機能を持つメソッドが代用されています。
+配列の参照をコピーする機能をもつメソッドが代用されています。
 
 `Array#slice`と`Array#concat`がコピーの代用として使われているメソッドです。
 
@@ -221,7 +338,15 @@ console.log(yourArray); // => ["A", "B", "C"]
 ```
 
 
-- [ ] MutableとImmutable
+```js
+function removeAtIndex(array, index) {
+    array.splice(index, 1);
+}
+var array = ["A", "B", "C"];
+removeAtIndex(array, 1);
+console.log(array); // => ["A", "B"]
+```
+
 
 ## 高階関数とメソッドチェーン
 ## パターン: nullを返さずに配列を返す
