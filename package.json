@@ -61,7 +61,7 @@
     "textlint-rule-eslint": "^1.1.1",
     "textlint-rule-max-comma": "^1.0.4",
     "textlint-rule-no-js-function-paren": "^1.0.1",
-    "textlint-rule-preset-ja-technical-writing": "^0.1.2",
+    "textlint-rule-preset-ja-technical-writing": "^1.0.0",
     "textlint-rule-prh": "^3.0.1",
     "travis-after-all": "^1.4.4",
     "unist-util-select": "^1.5.0"
