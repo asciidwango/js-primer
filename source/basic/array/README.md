@@ -156,14 +156,13 @@ console.log(sparseArray[1]); // => undefined
 ## 配列から要素を検索
 
 配列からある要素があるかを探索したい場合に、
-主に次の3つの目的があると思います。
+主に次の3つの目的に分類できます。
 
 - その要素のインデックスが欲しい場合
 - その要素自体が欲しい場合
 - その要素が含まれているかという真偽値が欲しい場合
 
-配列にはそれぞれに対応したメソッドが用意されているため、
-目的別に見ていきます。
+配列にはそれぞれに対応したメソッドが用意されているため、目的別に見ていきます。
 
 ### インデックスを取得
 
@@ -185,15 +184,15 @@ console.log(array.indexOf("JS")); // => -1
 ```
 
 `indexOf`メソッドは配列からプリミティブな要素は発見できますが、オブジェクトは持っているプロパティが同じでも別オブジェクトだと異なるものとして扱われます。
-次の例を見ると、同じプロパティを持つ異なるオブジェクトは`indexOf`では見つけることができないことが分かります。
+次の例を見ると、同じプロパティをもつ異なるオブジェクトは`indexOf`では見つけることができないことが分かります。
 これは、異なるオブジェクト同士は`===`で比較しても一致しないことと同様の理由です。
 
 ```js
-var object = { key : "value" };
+var object = { key: "value" };
 var array = ["A", "B", object];
-console.log(array.indexOf({ key : "value" })); // => -1
+console.log(array.indexOf({ key: "value" })); // => -1
 // リテラルは新しいオブジェクトを作るため異なるオブジェクトを比較している
-console.log(object === { key : "value" }); // => false
+console.log(object === { key: "value" }); // => false
 // 等価のオブジェクト
 console.log(array.indexOf(object)); // => 2
 ```
@@ -203,24 +202,77 @@ console.log(array.indexOf(object)); // => 2
 `indexOf`メソッドとは異なり、テストする処理を自由に書くことができます。
 これにより、異なるオブジェクトだが値が同じという要素を配列から見つけて、その要素のインデックスを得ることができます。
 
-```
-var object = { key : "value" };
-var array = ["A", "B", object];
-// オブジェクトの"key"の値が"value"であるなら`true`を返す
-var isKeyValue = (object) => {
-    return object["key"] === "value";
-};
-// `isKeyValue`で`true`を返した最初の要素のインデックス
-console.log(array.findIndex(isKeyValue)); // => 2
+```js
+// colorプロパティを持つオブジェクトの配列
+var colors = [
+    { "color": "red" },
+    { "color": "green" },
+    { "color": "blue" }
+];
+// `color`プロパティが"blue"のオブジェクトのインデックスを取得
+var indexOfBlue = colors.findIndex((object) => {
+    return object.color === "blue";
+});
+console.log(colors[indexOfBlue]); // => 1
 ```
 
 ### 要素を取得
 
+配列から要素を取得する方法としてインデックスを使うこともできます。
+先ほどのように`findIndex`メソッドでインデックスを取得、そのインデックスで配列へアクセスすればよいだけです。
+
+しかし、`findIndex`メソッドを使い要素を取得するケースでは、
+そのインデックスが欲しいのか、またはその要素自体が欲しいのかがコードとしては明確ではありません。
+
+より明確に要素自体が欲しいということを表現するには、`Array#find`を使うことができます。
+`find`メソッドは、`findIndex`メソッドと同様にテストする関数をコールバック関数として渡します。
+`find`メソッドの返り値は、要素そのものとなり、要素が存在しない場合は`undefined`を返します。
+
+```js
+// colorプロパティを持つオブジェクトの配列
+var colors = [
+    { "color": "red" },
+    { "color": "green" },
+    { "color": "blue" }
+];
+// `color`プロパティが"blue"のオブジェクトを取得
+var blueColor = colors.find((object) => {
+    return object.color === "blue";
+});
+console.log(blueColor); // => { "color": "blue" }
+// 該当する要素がない場合は`undefined`を返す
+console.log(array.find((object) => object.color === "white" )); // => undefined
+```
+
 ### 真偽値を取得
 
-- [x] indexOf/findIndex
-- [x] includes/some
-- [x] find
+最後に、ある要素が配列に含まれているかどうかだけを知る方法について見ていきます。
+インデックスや要素が取得できれば、その要素は配列に含まれているということは分かります。
+
+しかし、ある要素が含まれているかだけ知りたい場合に、
+`Array#findIndex`メソッドや`Array#find`メソッドを利用すると、
+そのコードを読んだ人は取得したインデックスや要素を何かに使うのか分かりません。
+
+次のコードは、`Array#indexOf`メソッドを使い該当する要素が含まれているかを判定するイディオムです。
+
+```js
+var array = ["Java", "JavaScript", "Ruby"];
+// `indexOf`メソッドは含まれていないときのみ`-1`を返すことを利用
+if (array.indexOf("JavaScript") !== -1) {
+    console.log("配列にJavaScriptが含まれている");
+}
+```
+
+しかし、ES2015からは`Array#includes`メソッドという、ある要素が含まれているかどうかという真偽値を返すものが利用できます。
+そのため、前述のコードは次のように`includes`メソッドを使うべきでしょう。
+
+```js
+var array = ["Java", "JavaScript", "Ruby"];
+// `includes`は含まれているなら`true`を返す
+if (array.includes("JavaScript")) {
+    console.log("配列にJavaScriptが含まれている");
+}
+```
 
 ## 追加と削除
 

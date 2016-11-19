@@ -4,7 +4,7 @@ import EventEmitter from "./../EventEmitter";
 // unique id
 let todoIdx = 0;
 export class TodoItemModel {
-    constructor({title, completed = false} = {}) {
+    constructor({ title, completed = false } = {}) {
         this.id = todoIdx++;
         this.title = title;
         this.completed = completed;
@@ -32,7 +32,7 @@ export class TodoListModel extends EventEmitter {
         };
     }
 
-    changeComplete({id, isCompleted}) {
+    changeComplete({ id, isCompleted }) {
         // state change
         const todoItem = this.todoList.find(todo => todo.id === id);
         if (!todoItem) {

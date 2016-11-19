@@ -52,6 +52,7 @@
     "power-assert": "^1.3.1",
     "power-doctest": "^1.1.1",
     "remark": "^5.0.1",
+    "rewire": "^2.5.2",
     "strict-eval": "^1.0.1",
     "text-testing-mocha": "^0.2.0",
     "textlint": "^7.0.1",
@@ -60,7 +61,7 @@
     "textlint-rule-eslint": "^1.1.1",
     "textlint-rule-max-comma": "^1.0.4",
     "textlint-rule-no-js-function-paren": "^1.0.1",
-    "textlint-rule-preset-ja-technical-writing": "^0.1.1",
+    "textlint-rule-preset-ja-technical-writing": "^0.1.2",
     "textlint-rule-prh": "^3.0.1",
     "travis-after-all": "^1.4.4",
     "unist-util-select": "^1.5.0"

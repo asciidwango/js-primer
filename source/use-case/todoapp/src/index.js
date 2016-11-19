@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import {TodoListModel} from "./models/TodoListModel";
+import { TodoListModel } from "./models/TodoListModel";
 import TodoListRendering from "./views/TodoListRendering";
 // Entry Point
 function onLoad() {
@@ -11,12 +11,12 @@ function onLoad() {
 
     const rendering = new TodoListRendering(TODOListArea);
     const todoListModel = new TodoListModel();
-    const toggleComplete = ({id, isCompleted}) => {
-        todoListModel.changeComplete({id, isCompleted});
+    const toggleComplete = ({ id, isCompleted }) => {
+        todoListModel.changeComplete({ id, isCompleted });
     };
     const addTodo = (title) => {
         if (title.length > 0) {
-            todoListModel.addTodo({title});
+            todoListModel.addTodo({ title });
         }
     };
     form.addEventListener("submit", (event) => {

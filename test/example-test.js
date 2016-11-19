@@ -8,13 +8,16 @@ const strictEval = require("strict-eval");
 const sourceDir = path.join(__dirname, "..", "source");
 const toDoc = require("power-doctest");
 /**
- * *-example.js を実行しdoctestを行う
+ * *-example.js または dir/example/*.js を実行しdoctestを行う
  * a // => "aの評価結果"
  * が一致するかのdoctestを行う
  * 詳細は CONTRIBUTING.md を見る
  **/
 describe("doctest:js", function() {
-    const files = globby.sync([`${sourceDir}/**/*-example.js`, `!${sourceDir}/**/node_modules{,/**}`]);
+    const files = globby.sync([
+        `${sourceDir}/**/*-example.js`, // *-example.js
+        `${sourceDir}/**/example/*.js`, // path/example/*.js
+        `!${sourceDir}/**/node_modules{,/**}`]);
     files.forEach(filePath => {
         const normalizeFilePath = filePath.replace(sourceDir, "");
         it(`can eval ${normalizeFilePath}`, function(done) {
