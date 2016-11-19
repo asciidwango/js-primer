@@ -213,7 +213,8 @@ var colors = [
 var indexOfBlue = colors.findIndex((object) => {
     return object.color === "blue";
 });
-console.log(colors[indexOfBlue]); // => 1
+console.log(indexOfBlue); // => 2
+console.log(colors[indexOfBlue]); // => { "color": "blue" }
 ```
 
 ### 要素を取得
@@ -429,7 +430,7 @@ function removeAtIndex(array, index) {
 }
 var array = ["A", "B", "C"];
 removeAtIndex(array, 1);
-console.log(array); // => ["A", "B"]
+console.log(array); // => ["A", "C"]
 ```
 
 

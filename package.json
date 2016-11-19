@@ -36,6 +36,7 @@
     "babel-preset-jsdoc-to-assert": "^2.0.1",
     "babel-preset-power-assert": "^1.0.0",
     "babel-register": "^6.7.2",
+    "comment-to-assert": "^1.4.0",
     "eslint": "^3.0.0",
     "file-cache-cli": "^1.0.1",
     "front-matter": "^2.1.0",
