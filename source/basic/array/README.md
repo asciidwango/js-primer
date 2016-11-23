@@ -24,8 +24,7 @@ typeof ["A", "B", "C"]; // => "object"
 しかし、`Object`から作られるオブジェクトとは異なる特殊な動作やメソッドを持っています。
 
 その特殊な動作であるのが`length`プロパティです。
-配列には複数の要素を格納することができます。
-格納している要素数は `length`プロパティで知ることができます。
+配列には複数の要素を格納することができますが、格納している要素数を`length`プロパティで知ることができます。
 
 ```js
 var array = ["文字列", 42, { key: "value" }];
@@ -45,9 +44,11 @@ console.log(array); // => []
 
 ### オブジェクトが配列かどうかを判定する
 
-配列は特殊なオブジェクトですが、私たちは`length`プロパティを持ったオブジェクトを作ることができます。
+配列の`length`プロパティは特殊な動作をしますが、独自の`length`プロパティを持ったオブジェクトを作ることができます。
+この２つのオブジェクトの違いはどのように見分ければいいのでしょうか？
 
 ```js
+var array = [];
 var object = {
     length: 0
 };
@@ -149,9 +150,31 @@ console.log(sparseArray.length); // => 3
 console.log(sparseArray[1]); // => undefined
 ```
 
-## 値がない要素と未定義の要素の違い
+## [コラム] undefinedの要素と未定義の要素の違い
 
-- [ ] hasOwnPropertyについて
+疎な配列で該当するインデックスに要素がない場合は`undefined`を返します。
+しかし、JavaScriptに`undefined`値も存在するため、配列に`undefined`値が要素がある場合に区別ができません。
+
+```js
+// 要素として`undefined`を持つ密な配列
+var denseArray = [1, undefined, 3];
+// 要素そのものがない疎な配列
+var sparseArray = [1, , 3];
+console.log(denseArray[1]); // => undefined
+console.log(sparseArray[1]); // => undefined
+```
+
+この違いを見つける方法として利用できるのが`Object#hasOwnProperty`メソッドです。
+`hasOwnProperty`メソッドを使うことで、配列の指定したインデックスに要素自体が存在するかを判定することができます。
+
+```js
+var denseArray = [1, undefined, 3];
+var sparseArray = [1, , 3];
+// 要素自体は`undefined`値が存在する
+console.log(denseArray.hasOwnProperty(1)); // => true
+// 要素自体がない
+console.log(sparseArray.hasOwnProperty(1)); // => false
+```
 
 ## 配列から要素を検索
 
