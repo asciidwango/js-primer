@@ -153,7 +153,7 @@ console.log(sparseArray[1]); // => undefined
 ## [コラム] undefinedの要素と未定義の要素の違い
 
 疎な配列で該当するインデックスに要素がない場合は`undefined`を返します。
-しかし、JavaScriptに`undefined`値も存在するため、配列に`undefined`値が要素がある場合に区別ができません。
+しかし、JavaScriptに`undefined`値も存在するため、配列に`undefined`値が要素がある場合に区別できません。
 
 ```js
 // 要素として`undefined`を持つ密な配列
