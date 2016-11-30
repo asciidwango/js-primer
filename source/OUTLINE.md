@@ -15,6 +15,7 @@
 ## [演算子](./basic/operator/README.md)
 ## オブジェクト
 - 目的
+	- オブジェクトの作り方、アクセス方法について学ぶ
 	- オブジェクトはすべてのオブジェクトの元となっていることを学ぶ。
 	- Objectのインスタンスメソッドの使い方と継承について学ぶ
 	- Objectの静的メソッドの使い方について学ぶ
@@ -27,38 +28,72 @@
 	- そのため、それぞれのプリミティブ値もオブジェクトコンストラクタのインスタンスメソッドとして定義されているものは利用できるようになっています。
 	- そのため、Objectのインスタンスが利用できるメソッドはObjectを通じて利用できます。
 	- また、Objectの静的メソッドは便利なものが用意されているので、簡単な使い方を見てみます。
-- オブジェクトはプロパティの集合
-	- 連想配列とかハッシュとか言われることがある
-	- キーには文字列かSymbolしか使うことができない
-	- プロパティ名は常に"文字列"となる
-		- これは数値を渡した場合に勝手に文字列化される
-	- キーにオブジェクトが使えるのはMap
-		- そのため連想配列とは若干違う
-- プロパティへのアクセス方法が2種類ある
-	- 既に知っているドットを繋げてのアクセス方法と
-	- ブラケット記号によるアクセス方法
-		- ブラケットは変数をプロパティ名に利用できたし、ドットでは書けない文字列もプロパティにできる
-- JavaScriptのほぼすべてのオブジェクトは`Object`クラスを継承している
-	- これをprototype継承と呼ぶが詳しくはあとで
-	- Objectのインスタンスが持つメソッドは他のオブジェクトからも利用できるということ
-- 殆どのオブジェクトが文字列にできるのも`Object#toString()`が継承されているから
-- プロパティがあるかを確認する方法としては `in` 演算子 か hasOwnPropertyが利用できる
-	- `in`演算子は継承元(親)が持っている場合も`true`を返す
-		- `toString`などは親が持っているのでtrue
-	- `hasOwnProperty` はオブジェクト自身が持っているなら`true`を返す
-		- `{}.hasOwnProperty("toString")// false`ということ
-	- すべては`Object`に通じる
-- 関数、正規表現、文字列オブジェクト、数値オブジェクト、真偽値オブジェクト、配列、Map、Setとにかく何でも
-	- プリミティブ値はオブジェクトではないけど、プリミティブ値にもラッパーオブジェクトというオブジェクト版がややこしい。
-	- ラッパーオブジェクトについては基本的に使い道がほぼないので気にしなくて良い。
-	- プリミティブのラッパーオブジェクトは型変換ぐらいしか利用しない。
-- ObjectのStatic method
-	- `Object.assign({})`でコピー
-	- `Object.keys`、`Object.values`、`Object.entries`
-		- こいつらはIterableじゃなくて普通に配列を返す
-	- `Object.is`
-		- `===`では`+0`と`-0`は区別しない、また`NaN`は区別される
-- この継承の仕組みがprototypeチェーンであり、それについてはFunctionで詳しくやるのでココでは解説しませんが、クラス継承をJavaScriptではどのようなしくみでうごいているかという点について
+- アウトライン
+	- オブジェクトとは
+		- オブジェクトはプロパティの集合
+		- オブジェクトリテラルで作成できる
+		- 値は何でも格納できるけど、キーはプロパティ名は"文字列"となる
+			- これは数値を渡した場合に勝手に文字列化される
+		- 連想配列とかハッシュとか言われることがある
+		- キーにオブジェクトが使えるのはMap
+			- そのため連想配列とは若干違う
+	- オブジェクトへのアクセス
+		- プロパティへのアクセス方法が2種類ある
+			- 簡単で分かりやすい方法
+				- ドットを繋げてのアクセス方法
+			- 読みにくいけど動的な方法
+				- ブラケット記号によるアクセス方法
+				- ブラケットは変数をプロパティ名に利用できたし、ドットでは書けない文字列もプロパティにできる
+		- オブジェクトへの追加
+			- 変数をプロパティ名に利用する
+			- ブラケット記法の 対となる Computed Property
+		- オブジェクトのショートカット
+			- `{ key }`
+	- コンストラクタとリテラル
+		- new演算子
+		- コンストラクタ
+		- リテラル
+	- オブジェクトの静的メソッド
+		- `Object.keys`、`Object.values`、`Object.entries`
+			- こいつらはIterableじゃなくて普通に配列を返す
+			- Object.keysでマージ？
+		- `Object.assign({})`でコピー
+		- `Object.is`
+			- `===`では`+0`と`-0`は区別しない、また`NaN`は区別される
+			- このメソッド自体は重要ではないが、この比較ロジックが他でも利用されている
+	- オブジェクトのインスタンスメソッド
+		- プロパティの存在確認
+		- プロパティがあるかを確認する方法としては `in` 演算子 か hasOwnPropertyが利用できる
+			- `in`演算子は継承元(親)が持っている場合も`true`を返す
+				- `toString`などは親が持っているのでtrue
+			- `hasOwnProperty` はオブジェクト自身が持っているなら`true`を返す
+				- `{}.hasOwnProperty("toString")// false`ということ
+	- オブジェクトはすべての元
+		- JavaScriptのほぼすべてのオブジェクトは`Object`クラスを継承している
+			- `Object`のインスタンスは`Object.prototype`を継承
+			- `Array`のインスタンスは`Array.prototype`を継承
+			- `Array.prototype`は`Object.prototype`を継承
+			- これをprototype継承と呼ぶが詳しくはあとで
+			- 結果として、Objectのインスタンスが持つメソッドは、他のオブジェクトからも利用できるということ
+		- 殆どのオブジェクトが文字列にできるのも`Object#toString()`が継承されているから
+		- 関数、正規表現、文字列オブジェクト、数値オブジェクト、真偽値オブジェクト、配列、Map、Setとにかく何でも
+	- [コラム] Object.create(null)
+		- Objectはすべてのオブジェクトの元といったけど例外があります。
+		- それが`Object.create(null)`です。
+		- プロパティの値が関数であるものがメソッドと学びました
+		- そしてObjectのインスタンスは`toString`などのメソッドを始めから持っていることを知りました
+		- ここである問題があることに気づきます。
+		- 任意の文字列をキーにするオブジェクトを作るときに `toString` 始めからプロパティとして存在することが分かります。
+		- この問題を解決するには、オブジェクトではなくMapを使うか、もしくはメソッドを持たないObjectを作れば良いはずです。
+		- `var object = Object.create(null)` です
+- 未使用
+	- new 演算子とインスタンス
+	- ラッパーオブジェクト
+		- プリミティブ値はオブジェクトではないけど、プリミティブ値にもラッパーオブジェクトというオブジェクト版がややこしい。
+		- ラッパーオブジェクトについては基本的に使い道がほぼないので気にしなくて良い。
+		- プリミティブのラッパーオブジェクトは型変換ぐらいしか利用しない。
+	- ObjectのStatic method
+	- この継承の仕組みがprototypeチェーンであり、それについてはFunctionで詳しくやるのでココでは解説しませんが、クラス継承をJavaScriptではどのようなしくみでうごいているかという点について
 
 ## 配列
 - この章では、配列の基本的な操作と配列を扱う場合においてのパターンについて学びます。
@@ -82,10 +117,10 @@
 		- 配列の中身の値のことを**要素**、それぞれの要素の位置のことを**インデックス**という
 		- 配列は可変な配列のみ
 		- `length`は自動的に追従する
+			- `array[array.length] = 1`で`length`が自動で増える
 		- typeof をすると "object"
 			- 分類としてはオブジェクト
 		- 配列かどうかを判定 `Array.isArray` を使う
-		- 密な配列とは限らない
 	- [コラム] TypedArray
 		- TypedArrayとは
 		- Arrayとの違い
@@ -188,44 +223,59 @@
 			- exitic objectについて
 
 ## String
-- 文字列の宣言は、リテラルを使う
-	- `""`
-	- `''`
-	- `\`\``
-	- の３つがある
-- 文字列の追加には、 `string += "String"` を使う
-- 文字列の検索方法は、 `String#include` や `String#indexOf`、`String#search`などがある。
-- `String#search(regExp)` は正規表現を使う
-- 文字列の削除は、`String#replace`を使う
-- 文字列はImmutableな値であるので、削除も新しく文字列を作って返すようになってる
-- Immutableであることがオブジェクトとの大きな違い
-- 文字列をコピーするメソッドは必要ない
-	- コピーは `var x = str` や `fn(str)` とというときにコピーされるということ
-- 文字列の比較 `===` でできる
-	- 文字毎に一個づつ比較して全部比較される
-	- 参照の比較ではない
-- 文字列の比較 `>`
-	- こっちは辞書の順で比較される
-	- 辞書の順は charCode という数値
-	- そもそも文字は CharCode の表現があり、それを表示する側が文字として出してる
-- ユニコード
-	- [What every JavaScript developer should know about Unicode](https://rainsoft.io/what-every-javascript-developer-should-know-about-unicode/)
-	- [Unicode のサロゲートペアとは何か - ひだまりソケットは壊れない](http://vividcode.hatenablog.com/entry/unicode/surrogate-pair)
-	- Charater
-		- いわゆる文字
-	- Code unit
-	- - [ ] もっと分かりやすく調べる
-	- Code point
-		- Unicodeにおける
-	- 2つのCode unitからなる文字のCode unitの連なりをサロゲートペアと呼ぶ
-	- [String.prototype.codePointAt()](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt "String.prototype.codePointAt()")
-		- サロゲートペア考慮してn番目のcode pointをencodeして返してくれる
-		- 言い換えるとn番目のCode unitを返す
-	- [String.prototype.charAt()](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/charAt "String.prototype.charAt()")
-		- サロゲートペア考慮しないでn番目のcharaterを返す
-		- `"string"[0]`はこれと同じ
-	- [String.prototype.charCodeAt()](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt "String.prototype.charCodeAt()")
-		- サロゲートペア考慮しないでn番目のcharaterのcode pointを返す
+
+- 未使用
+	- 文字列の宣言は、リテラルを使う
+		- `""`
+		- `''`
+		- `\`\``
+		- の３つがある
+	- 文字列の追加には、 `string += "String"` を使う
+	- 文字列の検索方法は、 `String#include` や `String#indexOf`、`String#search`などがある。
+	- `String#search(regExp)` は正規表現を使う
+	- 文字列の削除は、`String#replace`を使う
+	- 文字列はImmutableな値であるので、削除も新しく文字列を作って返すようになってる
+	- Immutableであることがオブジェクトとの大きな違い
+	- 文字列をコピーするメソッドは必要ない
+		- コピーは `var x = str` や `fn(str)` とというときにコピーされるということ
+	- 文字列の比較 `===` でできる
+		- 文字毎に一個づつ比較して全部比較される
+		- 参照の比較ではない
+	- 文字列の比較 `>`
+		- こっちは辞書の順で比較される
+		- 辞書の順は charCode という数値
+		- そもそも文字は CharCode の表現があり、それを表示する側が文字として出してる
+	- ユニコード
+		- [What every JavaScript developer should know about Unicode](https://rainsoft.io/what-every-javascript-developer-should-know-about-unicode/)
+		- [Unicode のサロゲートペアとは何か - ひだまりソケットは壊れない](http://vividcode.hatenablog.com/entry/unicode/surrogate-pair)
+		- Charater
+			- いわゆる文字
+		- Code unit
+		- - [ ] もっと分かりやすく調べる
+		- Code point
+			- Unicodeにおける
+		- 2つのCode unitからなる文字のCode unitの連なりをサロゲートペアと呼ぶ
+		- [String.prototype.codePointAt()](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt "String.prototype.codePointAt()")
+			- サロゲートペア考慮してn番目のcode pointをencodeして返してくれる
+			- 言い換えるとn番目のCode unitを返す
+		- [String.prototype.charAt()](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/charAt "String.prototype.charAt()")
+			- サロゲートペア考慮しないでn番目のcharaterを返す
+			- `"string"[0]`はこれと同じ
+		- [String.prototype.charCodeAt()](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt "String.prototype.charCodeAt()")
+			- サロゲートペア考慮しないでn番目のcharaterのcode pointを返す
+- 文字列の知りたいこと分類
+	- 作成と取得
+		- リテラル、結合、インデックス
+	- フォーマット
+		- テンプレート、trim
+	- 検索/置換
+		- search、replace、startsWith、includes
+		- 正規表現
+	- ユニコード
+		- サロゲートペア
+		- UTF-16
+		- 文字
+
 ## 正規表現
 
 - 正規表現は正規表現リテラルと正規表現オブジェクトがある
