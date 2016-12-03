@@ -161,7 +161,7 @@ while (true) {
 // *1 次の文
 ```
 
-switch文で出てきたものと同様で、処理中のループ文を終了することができます。
+switch文で出てきたものと同様で、処理中のループ文を終了できます。
 
 次のコードでは配列の要素に1つでも偶数を含んでいるかを判定しています。
 
@@ -328,7 +328,7 @@ for...in文とは異なり、添字ではなく値を列挙します。
 [import, for-of-array-example.js](./src/for-of/for-of-array-example.js)
 
 JavaScriptではStringオブジェクトもiterableです。
-そのため、文字列を1文字ずつ列挙することができます。
+そのため、文字列を1文字ずつ列挙できます。
 
 {{book.console}}
 [import, for-of-string-example.js](./src/for-of/for-of-string-example.js)

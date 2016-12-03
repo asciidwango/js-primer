@@ -9,8 +9,11 @@
     }
   },
   "rules": {
+    "ja-no-redundant-expression": true,
     "no-js-function-paren": {
-        "allow": ["Symbol"]
+      "allow": [
+        "Symbol"
+      ]
     },
     "preset-ja-technical-writing": {
       "no-exclamation-question-mark": {
