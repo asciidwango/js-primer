@@ -19,7 +19,7 @@ describe("EventEmitter", function() {
     describe("#emit", function() {
         it("should pass data to the handlers", function(done) {
             var key = "event-key";
-            var passingData = {"key": "value"};
+            var passingData = { "key": "value" };
             emitter.on(key, function(data) {
                 assert.deepEqual(data, passingData);
                 done();

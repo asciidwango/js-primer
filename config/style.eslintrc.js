@@ -33,7 +33,7 @@ module.exports = {
         "no-whitespace-before-property": "error",
         // Object
         "object-curly-newline": ["off", "always"],
-        "object-curly-spacing": ["off", "always"],
+        "object-curly-spacing": ["error", "always"],
         "key-spacing": "error",
         "keyword-spacing": "error",
         "linebreak-style": ["error", "unix"],

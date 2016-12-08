@@ -24,7 +24,7 @@ export default class TodoListRendering {
         return todoItemList;
     }
 
-    render(todoItemList, {toggleComplete}) {
+    render(todoItemList, { toggleComplete }) {
         const listTags = todoItemList.map(todoItem => {
             return this._createTodoElement(todoItem, toggleComplete);
         });

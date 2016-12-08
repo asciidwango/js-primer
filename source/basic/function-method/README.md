@@ -99,7 +99,7 @@ function myFunc() {
 myFunc("a", "b", "c");
 ```
 
-**Array-like**なオブジェクトは、配列のように添字で値へアクセスできます。
+**Array-like**なオブジェクトは、配列のようにインデックスで要素へアクセスできます。
 しかし、`Array`を継承していないため、`Array`のメソッドが使えない特殊なオブジェクトです。
 
 ### Rest parameters
