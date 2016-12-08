@@ -356,6 +356,8 @@ console.log(array); // => ["A", "B", "C"]
 
 ## 配列から要素を削除
 
+### `Array#splice`
+
 配列の先頭や末尾の要素を削除する場合は`Array#shift`や`Array#pop`で行えます。
 しかし、配列の任意のインデックスにある要素を削除することはできません。
 配列の任意のインデックスの要素削除するには`Array#splice`を利用できます。
@@ -375,14 +377,20 @@ array.splice(インデックス, 削除する要素数, ...追加する要素);
 
 ```js
 var array = [1, 2, 3];
+// 1番目から1つの要素を削除
 array.splice(1, 1);
 console.log(array); // => [1, 3]
 console.log(array.length); // => 2
 console.log(array[1]); // => 3
+// すべて削除
+array.splice(0, array.length);
+console.log(array.length); // => 0
 ```
 
-配列のすべての要素を削除する場合も`array.splice(0, array.length);`で行うことができますが、
-配列の`length`プロパティへの代入を利用した方法も存在します。
+### `length`プロパティへの代入
+
+配列のすべての要素を削除することは`Array#splice`で行うことができますが、
+配列の`length`プロパティへの代入を利用した方法もあります。
 
 ```js
 var array = [1, 2, 3];
@@ -392,6 +400,25 @@ console.log(array); // => []
 
 配列の`length`プロパティへ`要素数`を代入すると、その要素数に配列が切り詰められます。
 つまり、`length`プロパティへ`0`を代入すると、インデックスが`0`以降の要素がすべて削除されます。
+
+### 空の配列を代入
+
+さいごに、その配列の要素を削除するのではなく、新しい空の配列を変数へ代入する方法です。
+次のコードでは、`array`変数に空の配列を代入することで、`array`は空の配列を参照させることができます。
+
+```js
+var array = [1, 2, 3];
+console.log(array.length); // => 3
+// 新しい配列で変数を上書き
+array = [];
+console.log(array.length); // => 0
+```
+
+元々、`array`変数が参照していた`[1, 2, 3]`はどこからも参照されなくなり、ガベージコレクションによりメモリから解放されます。
+
+もちろん、`var`で宣言していた変数を`const`にすると再代入することができないためエラーとなります。
+
+[import, const-empty-array-invalid.js](./src/const-empty-array-invalid.js)
 
 -------
 
