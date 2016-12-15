@@ -15,7 +15,7 @@ JavaScriptでは、「これは変数です」という宣言をするキーワ�
 
 - [ ] グローバル変数について書く（use strictの説明が先に欲しい）
 
-## `var`
+## `var` {#var}
 
 `var` というキーワードを使い**変数宣言**をできます。
 
@@ -93,7 +93,7 @@ var var; // NG: `var`は予約語であるため利用できない
 
 それでは、次は`let`と`const`について見ていきます。
 
-## [ES2015] `let`
+## [ES2015] `let` {#let}
 
 `let`は、現在のブロックスコープに対して変数宣言するキーワードです。
 ブロックスコープについて N章 で扱うため、現時点では「よりよい`var`」ということだけ覚えておくとよいです。
@@ -112,7 +112,7 @@ let bookTitle = "JavaScriptの本";
 
 [import, let-duplicated-define-invalid.js](src/let-duplicated-define-invalid.js)
 
-## [ES2015] `const`
+## [ES2015] `const` {#const}
 
 
 最後に`const`ですが、`let`に対してさらに制約をつけた変数宣言という位置づけになります。

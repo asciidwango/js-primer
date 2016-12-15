@@ -7,10 +7,9 @@ author: azu
 ## オブジェクトとは {#what-is-object}
 
 オブジェクトはプロパティの集合です。プロパティとはキー（名前）と値から構成されるものを言います。
-キーには文字列かSymbolのみが利用でき、値には任意のデータが利用できます。
+キーには文字列またはSymbolが利用でき、値には任意のデータが利用できます。
 
 オブジェクトを作成するには、オブジェクトリテラル（`{}`）を利用する方法が簡単です。
-オブジェクトのプロパティ名（キー）には、文字列かSymbolのみが利用できます。
 また、オブジェクトリテラルのプロパティ名はクオート（`"`や`'`）を省略することが可能です。
 
 ```js
@@ -35,7 +34,7 @@ console.log(obejct.key); // => "value"
 console.log(obejct["key"]); // => "value"
 ```
 
-ドット記法（`.`）では、プロパティ名が変数名と同じく識別子の命名規則を満たす必要があります。（[変数と宣言][]を参照）
+ドット記法（`.`）では、プロパティ名が変数名と同じく識別子の命名規則を満たす必要があります。（「[変数と宣言][]」を参照）
 
 [import, prop-dot-invalid.js](./src/prop-dot-invalid.js)
 
@@ -73,16 +72,79 @@ console.log(obejct.key); // => "value"
 ```
 
 先ほども紹介したように、ドット記法は変数の識別子として利用可能なプロパティ名しか利用できません。
-一方、ブラケット記法は`[式]`の`式`の評価結果である文字列をプロパティ名として利用できます。
+一方、ブラケット記法は`object[式]`の`式`の評価結果である文字列をプロパティ名として利用できます。
 そのため、変数や識別子として扱えない文字列をプロパティとして扱う場合にはブラケット記法を利用します。
 
 {{book.console}}
 ```js
 var key = "key-string";
+var object = {};
 // `key`の評価結果 "key-string" をプロパティ名に利用
 obejct[key] = "value";
 // 取り出すときも同じく`key`変数を利用
 console.log(obejct[key]); // => "value"
+```
+
+ブラケット記法を用いたプロパティ定義は、オブジェクトリテラルの中でも利用できます。
+オブジェクトリテラル内でのブラケット記法を使ったプロパティ名は**Computed property names**と呼ばれます。
+Computed property namesはES2015から導入された記法ですが、`式`の評価結果をプロパティ名に使う点はブラケット記法と同じです。
+
+{{book.console}}
+```js
+var key = "key-string";
+// Computed Propertyでプロパティを定義する
+var object = {
+    [key]: "value"
+};
+console.log(obejct[key]); // => "value"
+```
+
+JavaScriptのオブジェクトは、変更不可能と明示しない限り変更可能なmutableの特性をもつことを紹介しました。
+そのため、関数が受け取ったオブジェクトに対して、勝手にプロパティを追加することもできてしまいます。
+
+```js
+function doSomething(object) {
+    object.key = "value";
+    // 色々な処理...
+}
+const object = {};
+doSomething(object); // objectが変更されている
+console.log(object.key); // => "value"
+```
+
+このように、プロパティを初期化時以外に追加してしまうと、そのオブジェクトがどのようなプロパティをもつのかがわかりにくくなります。
+そのため、できる限りプロパティは初期化時、つまりオブジェクトリテラルの中で明示したほうがよいといえるでしょう。
+
+### [コラム] constしたのにオブジェクトが変更可能
+
+先ほどのコード例で、`const`で宣言したオブジェクトのプロパティがエラーなく変更できていることが分かります。
+次の例をみると、値であるオブジェクトのプロパティが変更できていることが分かります。
+
+{{book.console}}
+```js
+const object = { key: "value" };
+object.key = "Hi!"; // constで定義したobjectが変更できる
+console.log(object.key); // => "Hi!"
+```
+
+これは、JavaScriptの`const`は値を固定するのではなく、変数への再代入を防ぐためのものです。
+そのため、次のような`object`変数への再代入は防ぐことができますが、変数に代入された値であるオブジェクトの変更は防ぐことができません。（「[変数と宣言][ ../variables/README.md#const]」を参照）
+
+```js
+const object = { key: "value" };
+object = {}; // => SyntaxError
+```
+
+作成したオブジェクトのプロパティの変更を防止するには`Object.freeze`メソッドを利用する必要があります。
+ただし、Strict modeでないと例外が発生せず、無言で変更を無視するだけとなります。
+そのため、`Object.freeze`メソッドを利用する場合は必ずStrict modeと合わせて使います。
+
+{{book.console}}
+```js
+"use strict";
+const object = Object.freeze({ key: "value" });
+// freezeしたオブジェクトにプロパティを追加や変更できない
+object.key = "value"; // => TypeError
 ```
 
 ## プロパティの存在を確認する
@@ -186,7 +248,7 @@ if (object.hasOwnProperty("key")) {
 ## `Object#toString`メソッド
 
 `Object#toString`メソッドは、オブジェクト自身を文字列化するメソッドです。
-すでに、`String`コンストラクタ関数を使った文字列化できますが、どのような違いがあるのでしょうか？([暗黙的な型変換](../implicit-coercion/README.md#to-string)を参照）
+すでに、`String`コンストラクタ関数を使った文字列化できますが、どのような違いがあるのでしょうか？(「[暗黙的な型変換](../implicit-coercion/README.md#to-string)」を参照）
 
 実は`String`コンストラクタ関数は、引数のオブジェクトの`toString`メソッドを呼び出しています。
 
@@ -342,7 +404,7 @@ ES2015からは、本物の`Map`が利用できるため`Object.create(null)`を
 
 オブジェクトはプロパティの集合です。
 そのオブジェクトのプロパティを列挙する方法として、`Object.keys`メソッド、`Object.values`メソッド、`Object.entries`メソッドがあります。
-これらのメソッドは、そのオブジェクト自身がもつ列挙可能なプロパティだけを扱います。（[ループと反復処理][]を参照）
+これらのメソッドは、そのオブジェクト自身がもつ列挙可能なプロパティだけを扱います。（「[ループと反復処理][]」を参照）
 
 それぞれ、オブジェクトのキー、値、キーと値の組み合わせを配列にして返します。
 
