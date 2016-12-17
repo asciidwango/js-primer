@@ -140,12 +140,7 @@ object = {}; // => SyntaxError
 そのため、`Object.freeze`メソッドを利用する場合は必ずStrict modeと合わせて使います。
 
 {{book.console}}
-```js
-"use strict";
-const object = Object.freeze({ key: "value" });
-// freezeしたオブジェクトにプロパティを追加や変更できない
-object.key = "value"; // => TypeError
-```
+[import, freeze-property-invalid.js](./src/freeze-property-invalid.js)
 
 ## プロパティの存在を確認する
 
