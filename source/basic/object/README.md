@@ -336,7 +336,7 @@ console.log(object.hasOwnProperty === Object.prototype.hasOwnProperty); // => tr
 {{book.console}}
 ```js
 var object = {};
-// `object`インスタンス自体に`toString`メソッドが定義されているわけではない
+// `object`のインスタンス自体に`toString`メソッドが定義されているわけではない
 console.log(object.hasOwnProperty("toString")); // => false
 // `in`演算子は指定されたプロパティ名が見つかるまで親を辿るため、`Object.prototype`まで見に行く
 console.log("toString" in object); // => true
