@@ -57,7 +57,6 @@ console.log(obejct[myLang]); // => "日本語"
 
 オブジェクトは、一度作成した後もその値自体を変更できるためミュータブル（mutable）の特性を持ちます。
 そのため、作成したオブジェクトに対して後からプロパティを追加することが可能です。
-（**TODO**: `Object.freeze`メソッドなど追加を禁止する方法も存在しますが詳細はオブジェクトの後半で）
 
 プロパティの追加の仕方は単純で、作成したいプロパティ名へ値を代入するだけです。
 プロパティ名のアクセスはドット記法、ブラケット記法どちらでも可能です。
@@ -243,9 +242,10 @@ if (object.hasOwnProperty("key")) {
 ## `Object#toString`メソッド
 
 `Object#toString`メソッドは、オブジェクト自身を文字列化するメソッドです。
-すでに、`String`コンストラクタ関数を使った文字列化できますが、どのような違いがあるのでしょうか？(「[暗黙的な型変換](../implicit-coercion/README.md#to-string)」を参照）
+`String`コンストラクタ関数を使うことでも文字列にすることできますが、どのような違いがあるのでしょうか？(「[暗黙的な型変換](../implicit-coercion/README.md#to-string)」を参照）
 
-実は`String`コンストラクタ関数は、引数のオブジェクトの`toString`メソッドを呼び出しています。
+実は`String`コンストラクタ関数は、引数に渡されたオブジェクトの`toString`メソッドを呼び出しています。
+そのため、`String`コンストラクタ関数と`toString`メソッドの結果はどちらも同じになります。
 
 ```js
 var object = { key: "value" };
@@ -254,8 +254,9 @@ console.log(object.toString()); // => "[object Object]"
 console.log(String(object)); // => "[object Object]"
 ```
 
-このことは、オブジェクトに`toString`メソッドを定義し、`Object#toString`メソッドを再定義してみると分かります。
-そのオブジェクトを`String`コンストラクタ関数で文字列化すると、再定義した`toString`メソッドの返り値が使われています。
+このことは、オブジェクトに`toString`メソッドを再定義してみると分かります。
+独自の`toString`メソッドを定義したオブジェクトを`String`コンストラクタ関数で文字列化してみます。
+すると、再定義した`toString`メソッドの返り値が、`String`コンストラクタ関数の返り値になることが分かります。
 
 ```js
 // 独自のtoStringメソッドを定義
@@ -271,16 +272,15 @@ console.log(String(object)); // => "value"
 そのため、それぞれのオブジェクトで`toString`メソッドの結果は異なります。
 
 ```js
-var number = 42;
-// Numberインスタンスを文字列化
-console.log(number.toString()); // => "42";
-console.log(String(number)); // => "42";
+var number = [1, 2, 3];
+// Array#toStringが定義されているため、`Object#toString`とは異なる形式となる
+console.log(number.toString()); // => "1,2,3";
 ```
 
-## オブジェクトはすべての元
+## Object`はすべての元
 
 ここまでは、`Object`自身の機能について見てきましたが、
-`Object`には、他の`Array`や`String`、`Function`といったオブジェクトとは異なる特徴があります。
+`Object`には、他の`Array`や`String`、`Function`といった他のオブジェクトとは異なる特徴があります。
 
 すべてのオブジェクトは`Object`コンストラクタの`prototype`オブジェクトを継承しています。
 `prototype`オブジェクトはすべてのオブジェクトに備わっている特別なオブジェクトです。
