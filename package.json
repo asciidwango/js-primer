@@ -22,7 +22,7 @@
     "test:example": "mocha test/",
     "test:basic": "mocha './source/basic/**/*-test.js'",
     "test:ajaxapp": "mocha './source/use-case/ajaxapp/!(node_modules)**/*-test.js'",
-    "test": "npm-run-all -l clean --parallel test:* lint",
+    "test": "npm-run-all -l --parallel test:* lint",
     "travis": "npm-run-all -l --parallel test build"
   },
   "keywords": [
