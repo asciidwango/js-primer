@@ -209,6 +209,7 @@ if (object.key !== undefined) {
 
 次のように、`object`に`key`プロパティが存在するなら、`true`を返します。
 
+{{book.console}}
 ```js
 var object = { key: undefined };
 // `key`プロパティを持っているならtrue
@@ -249,6 +250,7 @@ if (object.hasOwnProperty("key")) {
 実は`String`コンストラクタ関数は、引数に渡されたオブジェクトの`toString`メソッドを呼び出しています。
 そのため、`String`コンストラクタ関数と`toString`メソッドの結果はどちらも同じになります。
 
+{{book.console}}
 ```js
 var object = { key: "value" };
 console.log(object.toString()); // => "[object Object]"
@@ -260,6 +262,7 @@ console.log(String(object)); // => "[object Object]"
 独自の`toString`メソッドを定義したオブジェクトを`String`コンストラクタ関数で文字列化してみます。
 すると、再定義した`toString`メソッドの返り値が、`String`コンストラクタ関数の返り値になることが分かります。
 
+{{book.console}}
 ```js
 // 独自のtoStringメソッドを定義
 var customObject = {
@@ -273,6 +276,7 @@ console.log(String(object)); // => "value"
 `Object`以外の`Array`や`Number`などもそれぞれ独自の`toString`メソッドを定義しています。
 そのため、それぞれのオブジェクトで`toString`メソッドの結果は異なります。
 
+{{book.console}}
 ```js
 var number = [1, 2, 3];
 // Array#toStringが定義されているため、`Object#toString`とは異なる形式となる
@@ -302,7 +306,6 @@ console.log(typeof Object.prototype.hasOwnProperty); // => "function"
 この`Object.prototype.hasOwnProperty`メソッドの定義は、
 `Object`の`prototype`オブジェクトがデフォルトで持っているため、あまり意識する必要はありません。
 
-{{book.console}}
 ```js
 // このような定義が自動的に行われているイメージ
 // `Object`の`prototype`オブジェクトに`hasOwnProperty`メソッドの定義を行う
@@ -315,7 +318,7 @@ Object.prototype.hasOwnProperty = (propertyName) => {
 つまり、オブジェクトリテラルや`new Object`でインスタンス化したオブジェクトは、`Object.prototype`に定義されたものが利用できるということです。
 
 {{book.console}}
-```
+```js
 // var object = new Object()も同じ
 var object = {};
 // インスタンスがprototypeオブジェクトに定義されたものを継承する
@@ -353,6 +356,7 @@ console.log("toString" in object); // => true
 先ほど、オブジェクトリテラルは`Object.prototype`オブジェクトを自動的に継承したオブジェクトを作成していることがわかりました。
 オブジェクトリテラルで作成する新しいオブジェクトは、`Object.create`メソッドを使うことで次のように書くことができます。
 
+{{book.console}}
 ```js
 // var object = {} と同じ
 var object = Object.create(Object.prototype);
@@ -371,6 +375,7 @@ console.log(object.hasOwnProperty === Object.prototype.hasOwnProperty); // => tr
 `Object.create`メソッドを使って`Array`と`Object`の関係をコードとして表現してみます。
 `Array`コンストラクタの実装などは実際のものとは異なるので、あくまで関係の例示でしかないことに注意してください。
 
+{{book.console}}
 ```js
 // `Array`コンストラクタ自身は関数でもある
 var Array = function() {};
@@ -419,6 +424,7 @@ console.log(object.hasOwnProperty); // => undefined
 `Object.create`メソッドはES5から導入され、`Object.create(null)`というイディオムは、一部ライブラリなどで`Map`（連想配列とも言われる）の代わりとして利用されています。
 `Map`はあらゆる文字列をキー名にできますが、`Object`のインスタンスはデフォルトで`Object.protptype`にあるものがキーとして存在してしまうためです。
 
+{{book.console}}
 ```js
 // ただのオブジェクト
 var object = {};
@@ -432,6 +438,7 @@ console.log(mapLike["toString"]); // => undefined
 
 しかし、ES2015からは、本物の`Map`が利用できるため、`Object.create(null)`を`Map`の代わりに利用する必要はありません。
 
+{{book.console}}
 ```js
 var map = new Map();
 // toStringキーは存在しない
@@ -450,6 +457,7 @@ console.log(map.has("toString")); // => false
 
 それぞれ、オブジェクトのキー、値、キーと値の組み合わせを配列にして返します。
 
+{{book.console}}
 ```js
 var object = {
     "one": 1,
@@ -484,6 +492,7 @@ Object.assign(target, ...sources);
 次のコードでは、新しく作った空のオブジェクトを`target`にしています。
 この`target`に対して、`objectA`と`objectB`をマージしたものが`Object.assign`メソッドの返り値となります。
 
+{{book.console}}
 ```js
 var objectA = { a: "a" };
 var objectB = { b: "b" };
@@ -494,6 +503,7 @@ console.log(merged); // => { a: "a", b: "b" }
 第一引数には、空のオブジェクトではなく、既存のオブジェクトを指定することもできます。
 しかし、次のコードを見ると第一引数に指定された`objectA`
 
+{{book.console}}
 ```js
 var objectA = { a: "a" };
 var objectB = { b: "b" };
@@ -511,6 +521,7 @@ console.log(merged === objectA); // => true
 JavaScriptでは、基本的な処理は左から順番に行います。
 そのため左から順にオブジェクトが代入されていくと考えるとよいです。
 
+{{book.console}}
 ```js
 // `version`のプロパティ名が被っている
 var objectA = { version: "a" };
@@ -522,10 +533,15 @@ console.log(merged); // => { version: "b" }
 
 #### オブジェクトの複製
 
+<!-- textlint-disable preset-ja-technical-writing/max-ten -->
+
 JavaScriptには、オブジェクトを複製する関数は用意されていません。
 しかし、新しく空のオブジェクトを作成し、そこへ既存のオブジェクトのプロパティをコピーすれば、それはオブジェクトの複製しているといえます。
 次のように、`Object.assign`メソッドを使うことでオブジェクトを複製できます。
 
+<!-- textlint-enable preset-ja-technical-writing/max-ten -->
+
+{{book.console}}
 ```js
 // `object`を浅く複製したオブジェクトを返す
 const shallowClone = (object) => {
@@ -560,6 +576,7 @@ console.log(cloneObject.nest === object.nest); // => true
 shallowな実装を使い再帰的に処理することで、deepな実装を実現できます。
 次のコードでは、`shallowClone`を使い、`deepClone`を実現しています。
 
+{{book.console}}
 ```js
 // `object`を浅く複製したオブジェクトを返す
 const shallowClone = (object) => {
@@ -589,7 +606,7 @@ console.log(cloneObject.nest === object.nest); // => false
 言語としては最低限の機能を提供し、より複雑な機能はユーザー側で実装するという形になることが多いｄす。
 これにより言語として提供するコア機能を小さくできます。
 
-一方、このような思想であるため、ユーザーが実装した小さなライブラリが数多く公開され、中には同じようなものが多いです。
+一方、このような思想であるため、実装した小さなライブラリが数多く公開され、中には同じようなものが多いです。
 それらのライブラリは`npm`と呼ばれるJavaScriptのパッケージ管理ツールで公開され、JavaScriptのエコシステムを築いています。
 
 [ループと反復処理]: ../loop/README.md "ループと反復処理"
