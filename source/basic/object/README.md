@@ -14,7 +14,7 @@ author: azu
 
 ```js
 // プロパティ名はクオートを省略することが可能
-var obejct = {
+var object = {
     key: "value"
 };
 ```
@@ -25,13 +25,13 @@ var obejct = {
 
 {{book.console}}
 ```js
-var obejct = {
+var object = {
     key: "value"
 };
 // ドット記法で参照
-console.log(obejct.key); // => "value"
+console.log(object.key); // => "value"
 // ブラケット記法で参照
-console.log(obejct["key"]); // => "value"
+console.log(object["key"]); // => "value"
 ```
 
 ドット記法（`.`）では、プロパティ名が変数名と同じく識別子の命名規則を満たす必要があります。（「[変数と宣言][]」を参照）
@@ -43,12 +43,12 @@ console.log(obejct["key"]); // => "value"
 
 {{book.console}}
 ```js
-var obejct = {
+var object = {
     "ja": "日本語",
     "en": "英語"
 };
 var myLang = "ja";
-console.log(obejct[myLang]); // => "日本語"
+console.log(object[myLang]); // => "日本語"
 ```
 
 基本的にはドット記法（`.`）を使い、ドット記法で書けない場合はブラケット記法（`[]`）を使うとよいでしょう。
@@ -64,10 +64,10 @@ console.log(obejct[myLang]); // => "日本語"
 {{book.console}}
 ```js
 // 空のオブジェクト
-var obejct = {};
+var object = {};
 // `key`プロパティを追加し値を代入
-obejct.key = "value";
-console.log(obejct.key); // => "value"
+object.key = "value";
+console.log(object.key); // => "value"
 ```
 
 先ほども紹介したように、ドット記法は変数の識別子として利用可能なプロパティ名しか利用できません。
@@ -79,9 +79,9 @@ console.log(obejct.key); // => "value"
 var key = "key-string";
 var object = {};
 // `key`の評価結果 "key-string" をプロパティ名に利用
-obejct[key] = "value";
+object[key] = "value";
 // 取り出すときも同じく`key`変数を利用
-console.log(obejct[key]); // => "value"
+console.log(object[key]); // => "value"
 ```
 
 ブラケット記法を用いたプロパティ定義は、オブジェクトリテラルの中でも利用できます。
@@ -95,7 +95,7 @@ var key = "key-string";
 var object = {
     [key]: "value"
 };
-console.log(obejct[key]); // => "value"
+console.log(object[key]); // => "value"
 ```
 
 JavaScriptのオブジェクトは、変更不可能と明示しない限り変更可能なmutableの特性をもつことを紹介しました。
@@ -127,7 +127,7 @@ console.log(object.key); // => "Hi!"
 ```
 
 これは、JavaScriptの`const`は値を固定するのではなく、変数への再代入を防ぐためのものです。
-そのため、次のような`object`変数への再代入は防ぐことができますが、変数に代入された値であるオブジェクトの変更は防ぐことができません。（「[変数と宣言][ ../variables/README.md#const]」を参照）
+そのため、次のような`object`変数への再代入は防ぐことができますが、変数に代入された値であるオブジェクトの変更は防ぐことができません。（「[変数と宣言][../variables/README.md#const]」を参照）
 
 ```js
 const object = { key: "value" };
@@ -153,7 +153,7 @@ console.log(object.notFound); // => undefined
 ```
 
 このように、JavaScriptでは存在しないプロパティへアクセスした場合に例外が発生しません。
-そのため、プロパティ名を間違えた場合などに気づきにくいという問題があります。
+そのため、プロパティ名を間違えた場合に`undefined`が返るため、気づきにくいという問題があります。
 オブジェクトはネストできるため、次のようなプロパティ名を途中で間違えていた場合にも気づきにくいという問題が起きやすいです。
 
 {{book.console}}
@@ -168,8 +168,10 @@ console.log(widget.windw); // => undefined
 // `undefined.title`と書いたのと同じなので、この時初めて例外が投げられる
 // "widget.windw is undefined"などの例外が発生する
 console.log(widget.windw.title); // => TypeError
+// 例外が発生した文以降は実行されない
 ```
 
+`undefined`や`null`はオブジェクトではないため、存在しないプロパティへアクセスする例外が発生してしまいます。
 このような場合に、あるオブジェクトがあるプロパティを持っているを確認する方法がいくつかあります。
 
 ### undefinedとの比較
@@ -282,29 +284,28 @@ console.log(number.toString()); // => "1,2,3";
 ここまでは、`Object`自身の機能について見てきましたが、
 `Object`には、他の`Array`や`String`、`Function`といった他のオブジェクトとは異なる特徴があります。
 
-すべてのオブジェクトは`Object`コンストラクタの`prototype`オブジェクトを継承しています。
+すべてのオブジェクトは`Object`の`prototype`オブジェクトを継承しています。
 `prototype`オブジェクトはすべてのオブジェクトに備わっている特別なオブジェクトです。
 そのため、`Object`はすべてのオブジェクトが共通して利用できるプロパティやメソッドを提供するベースのオブジェクトともいえます。
 
 ![他のオブジェクトは`Object`の`prototype`を継承している](./img/object-prototype.png)
 
 具体的にどういうことかを見てみます。
-先ほども登場した、`Object#hasOwnProperty`メソッドは、`Object`の`prototype`に`hasOwnProperty`メソッドの定義があります。
+先ほども登場した、`Object#hasOwnProperty`メソッドは、`Object`の`prototype`オブジェクトに`hasOwnProperty`メソッドの定義があります。
 
 {{book.console}}
 ```js
-// `Object`の`prototype`に`hasOwnProperty`メソッドの定義がある
+// `Object`の`prototype`オブジェクトに`hasOwnProperty`メソッドの定義がある
 console.log(typeof Object.prototype.hasOwnProperty); // => "function"
 ```
 
 この`Object.prototype.hasOwnProperty`メソッドの定義は、
-`Object`の`prototype`がデフォルトで持っているため、あまり意識する必要はありません。
-
+`Object`の`prototype`オブジェクトがデフォルトで持っているため、あまり意識する必要はありません。
 
 {{book.console}}
 ```js
 // このような定義が自動的に行われているイメージ
-// `Object`の`prototype`に`hasOwnProperty`メソッドの定義を行う
+// `Object`の`prototype`オブジェクトに`hasOwnProperty`メソッドの定義を行う
 Object.prototype.hasOwnProperty = (propertyName) => {
     // hasOwnPropertyの処理
 };
@@ -315,7 +316,7 @@ Object.prototype.hasOwnProperty = (propertyName) => {
 
 {{book.console}}
 ```
-// var object = new Object(); と同じ
+// var object = new Object()も同じ
 var object = {};
 // インスタンスがprototypeオブジェクトに定義されたものを継承する
 console.log(object.hasOwnProperty === Object.prototype.hasOwnProperty); // => true
@@ -326,7 +327,13 @@ console.log(object.hasOwnProperty === Object.prototype.hasOwnProperty); // => tr
 
 > `Object`のインスタンス -> `Object.prototype`
 
+
+### `in`演算子と`Object#hasOwnProperty`メソッドの違い
+
 先ほど学んだ`in`演算子と`Object#hasOwnProperty`メソッドの違いからもここから生じています。
+
+`hasOwnProperty`メソッドは、そのオブジェクト自身が指定したプロパティを持っているかを判定します。
+一方、`in`演算子はオブジェクト自身が持っていなければ、そのオブジェクトの親オブジェクトまで順番に探索して持っているかを判定します。
 
 {{book.console}}
 ```js
@@ -337,12 +344,46 @@ console.log(object.hasOwnProperty("toString")); // => false
 console.log("toString" in object); // => true
 ```
 
-同様に、`Array`コンストラクタなども`Array.prototype`を持っているため、`Array`のインスタンスは`Array.prototype`を継承します。
+これにより`Object`のインスタンス自身が`toString`メソッドを持っているわけではなく、`Object.prototype`が`toString`メソッドを持っていることが分かります。
+
+### オブジェクトの継承元を明示する`Object.create`メソッド
+
+`Object.create`メソッドを使うと、第一引数に指定した`prototype`オブジェクトを継承した新しいオブジェクトを作成できます。
+
+先ほど、オブジェクトリテラルは`Object.prototype`オブジェクトを自動的に継承したオブジェクトを作成していることがわかりました。
+オブジェクトリテラルで作成する新しいオブジェクトは、`Object.create`メソッドを使うことで次のように書くことができます。
+
+```js
+// var object = {} と同じ
+var object = Object.create(Object.prototype);
+// `object`は`Object.prototype`を継承している
+console.log(object.hasOwnProperty === Object.prototype.hasOwnProperty); // => true
+```
+
+### ArrayもObjectを継承している
+
+`Object`と`Object.prototype`の関係と同じく、`Array`コンストラクタも`Array.prototype`を持っています。
+そのため、`Array`コンストラクタのインスタンスは`Array.prototype`を継承します。
 さらに、`Array.prototype`は`Object.prototype`を継承しているため、`Array`のインスタンスは`Object.prototype`も継承しているのです。
 
 > `Array`のインスタンス -> `Array.prototype` -> `Object.prototype`
 
-そのため、`Array`のインスタンスも`hasOwnProperty`メソッドを利用できます。
+`Object.create`メソッドを使って`Array`と`Object`の関係をコードとして表現してみます。
+`Array`コンストラクタの実装などは実際のものとは異なるので、あくまで関係の例示でしかないことに注意してください。
+
+```js
+// `Array`コンストラクタ自身は関数でもある
+var Array = function() {};
+// `Array.prototype`は`Object.prototype`を継承している
+Array.prototype = Object.create(Object.prototype);
+// `Array`のインスタンスは、`Array.prototype`を継承している
+var array = Object.create(Array.prototype);
+// `array`は`Object.prototype`を継承している
+console.log(array.hasOwnProperty === Object.prototype.hasOwnProperty); // => true
+```
+
+このように、`Array`のインスタンスも`Object.prototype`を継承しているため、
+`Object.prototype`に定義されているメソッドを利用できます。
 
 {{book.console}}
 ```
@@ -353,7 +394,9 @@ console.log(array.hasOwnProperty === Object.prototype.hasOwnProperty); // => tru
 ```
 
 この継承の仕組みは、**prototype継承**と呼ばれるJavaScriptのコアとなる概念です。
-詳しくは、第n章の"関数"についてで詳しく解説します。
+詳しくは、第n章の"関数"で詳しく解説します。
+
+- [ ] TODO: 関数の章を書いたら変更する
 
 ここでは、`Object`はすべてのオブジェクトの親となるオブジェクトであることだけを覚えておくだけで問題ありません。
 これにより、`Array`や`String`などのインスタンスも`Object.prototype`がもつメソッドを利用できる点を覚えておきましょう。
@@ -361,7 +404,6 @@ console.log(array.hasOwnProperty === Object.prototype.hasOwnProperty); // => tru
 ## [コラム] `Object.prototype`を継承しないオブジェクト
 
 `Object`はすべてのオブジェクトの親となるオブジェクトである言いましたが、例外もあります。
-`Object.create`メソッドでは、オブジェクトを作る際に親となるオブジェクトを指定できます。
 
 イディオムに近いのですが、`Object.create(null)`とすることで`Object.prototype`を継承しないオブジェクトを作ることができます。
 これにより、プロパティやメソッドをなどを全く持たない本当に**空のオブジェクト**を作ることができます。
@@ -374,22 +416,27 @@ var object = Object.create(null);
 console.log(object.hasOwnProperty); // => undefined
 ```
 
-逆をいえば、オブジェクトリテラルは、`Object.create(Object.prototype)`のようにオブジェクトを作成しているといえます。
+`Object.create`メソッドはES5から導入され、`Object.create(null)`というイディオムは、一部ライブラリなどで`Map`（連想配列とも言われる）の代わりとして利用されています。
+`Map`はあらゆる文字列をキー名にできますが、`Object`のインスタンスはデフォルトで`Object.protptype`にあるものがキーとして存在してしまうためです。
 
-{{book.console}}
 ```js
-// var object = {}; と同じ
-var object = Object.create(Object.prototype);
-console.log(typeof object.hasOwnProperty); // => "function"
+// ただのオブジェクト
+var object = {};
+// "toString"という値を定義してないのに、"toString"が存在している
+console.log(object["toString"]);// Function 
+// Mapのようなオブジェクト
+var mapLike = Object.create(null);
+// toStringキーは存在しない
+console.log(mapLike["toString"]); // => undefined
 ```
 
-<!-- textlint-disable preset-ja-technical-writing/ja-no-weak-phrase -->
+しかし、ES2015からは、本物の`Map`が利用できるため、`Object.create(null)`を`Map`の代わりに利用する必要はありません。
 
-`Object.create`メソッドはES5から導入され、`Object.create(null)`というイディオムは一部ライブラリなどで`Map`の代わりとして利用されています。
-ES2015からは、本物の`Map`が利用できるため`Object.create(null)`を直接利用するケースは今後少なくなっていくかもしれません。
-
-<!-- textlint-enable preset-ja-technical-writing/ja-no-weak-phrase -->
-
+```js
+var map = new Map();
+// toStringキーは存在しない
+console.log(map.has("toString")); // => false
+```
 
 ## オブジェクトの静的メソッド
 

@@ -16,7 +16,7 @@
     "eslint:fix": "eslint --fix source/",
     "textlint": "summary-to-path ./source/README.md | xargs textlint -f pretty-error",
     "textlint:cached": "summary-to-path ./source/README.md | file-cache-cli | xargs textlint -f pretty-error",
-    "textlint:fix": "summary-to-path ./source/README.md | xargs textlint --fix",
+    "textlint:fix": "summary-to-path ./source/README.md | xargs textlint --fix --cache",
     "lint": "npm-run-all --parallel textlint eslint",
     "lint:fix": "npm-run-all --parallel textlint:fix eslint:fix",
     "test:example": "mocha test/",
