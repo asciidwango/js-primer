@@ -534,6 +534,7 @@ console.log(merged); // => { version: "b" }
 #### オブジェクトの複製
 
 <!-- textlint-disable preset-ja-technical-writing/max-ten -->
+<!-- Object.assignの引数と、で並び順を合わせるため例外的 -->
 
 JavaScriptには、オブジェクトを複製する関数は用意されていません。
 しかし、新しく空のオブジェクトを作成し、そこへ既存のオブジェクトのプロパティをコピーすれば、それはオブジェクトの複製しているといえます。
