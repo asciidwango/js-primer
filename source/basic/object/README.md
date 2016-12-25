@@ -111,7 +111,7 @@ doSomething(object); // objectが変更されている
 console.log(object.key); // => "value"
 ```
 
-このように、プロパティを初期化時以外に追加してしまうと、そのオブジェクトがどのようなプロパティをもつのかがわかりにくくなります。
+このように、プロパティを初期化時以外に追加してしまうと、そのオブジェクトがどのようなプロパティを持っているかがわかりにくくなります。
 そのため、できる限りプロパティは初期化時、つまりオブジェクトリテラルの中で明示したほうがよいといえるでしょう。
 
 ### [コラム] constしたのにオブジェクトが変更可能
@@ -466,12 +466,23 @@ console.log(Object.entries(object)); // => [["one", 1], ["two", 2], ["three", 3]
 
 ### オブジェクトのコピー/マージ
 
-`Object.assign`を使うことで、あるオブジェクトを別のオブエジェクトに代入（assign）できます。
-`Object.assign`メソッドを使うことで、オブジェクトのコピーやオブジェクト同士のマージを行うできます。
+`Object.assign`を使うことで、あるオブジェクトを別のオブジェクトに代入（assign）できます。
+これを使うことでオブジェクトのコピーやオブジェクト同士のマージを行うできます。
+
+`Object.assign`メソッドは、`target`オブジェクトに対して、1つ以上の`sources`オブジェクトを指定します。
+`sources`オブジェクト自身がもつ列挙可能なプロパティを第一引数の`target`オブジェクトに対してコピーします。
+`Object.assign`メソッドの返り値は、`target`オブジェクトになります。
 
 ```js
 Object.assign(target, ...sources);
 ````
+
+#### オブジェクトのマージ
+
+具体的なオブジェクトのマージの例を見ていきます。
+
+次のコードでは、新しく作った空のオブジェクトを`target`にしています。
+この`target`に対して、`objectA`と`objectB`をマージしたものが`Object.assign`メソッドの返り値となります。
 
 ```js
 var objectA = { a: "a" };
@@ -480,8 +491,25 @@ var merged = Object.assign({}, objectA, objectB);
 console.log(merged); // => { a: "a", b: "b" }
 ```
 
+第一引数には、空のオブジェクトではなく、既存のオブジェクトを指定することもできます。
+しかし、次のコードを見ると第一引数に指定された`objectA`
+
+```js
+var objectA = { a: "a" };
+var objectB = { b: "b" };
+var merged = Object.assign(objectA, objectB);
+console.log(merged); // => { a: "a", b: "b" }
+// `objectA`が変更されている
+console.log(objectA); // => { a: "a", b: "b" }
+console.log(merged === objectA); // => true
+```
+
+空のオブジェクトを`target`にすることで、既存のオブジェクトには影響を与えずマージしたオブジェクトを作ることができます。
+そのため、`Object.assign`メソッドの第一引数には、空のオブジェクトリテラルを指定するのが典型的な利用方法です。
+
 このとき、プロパティ名が重複した場合は、後ろのオブジェクトにより上書きされます。
-JavaScriptでは、基本的な処理は左から順番に行います、そのため左から順にオブジェクトが代入されていくと考えるとよいです。
+JavaScriptでは、基本的な処理は左から順番に行います。
+そのため左から順にオブジェクトが代入されていくと考えるとよいです。
 
 ```js
 // `version`のプロパティ名が被っている
@@ -492,12 +520,77 @@ var merged = Object.assign({}, objectA, objectB);
 console.log(merged); // => { version: "b" }
 ```
 
-- `Object.assign({})`でコピー
-- `Object.keys`、`Object.values`、`Object.entries`
-    - こいつらはIterableじゃなくて普通に配列を返す
-- `Object.is`
-    - `===`では`+0`と`-0`は区別しない、また`NaN`は区別される
+#### オブジェクトの複製
 
+JavaScriptには、オブジェクトを複製する関数は用意されていません。
+しかし、新しく空のオブジェクトを作成し、そこへ既存のオブジェクトのプロパティをコピーすれば、それはオブジェクトの複製しているといえます。
+次のように、`Object.assign`メソッドを使うことでオブジェクトを複製できます。
+
+```js
+// `object`を浅く複製したオブジェクトを返す
+const shallowClone = (object) => {
+    return Object.assign({}, object);
+};
+var object = { a: "a" };
+var cloneObject = shallowClone(object);
+console.log(cloneObject); // => { a: "a" }
+console.log(object === cloneObject); // => false
+```
+
+注意点として、`Object.assign`メソッドは`sources`オブジェクトのプロパティを浅くコピー（shallow copy）する点です。
+`sources`オブジェクト自身が持っている列挙できるプロパティをコピーするだけです。
+そのプロパティの値がオブジェクトである場合に、そのオブジェクトまでも複製するわけではありません。
+
+```js
+const shallowClone = (object) => {
+    return Object.assign({}, object);
+};
+var object = { 
+    level: 1,
+    nest: {
+        level: 2
+    },
+};
+var cloneObject = shallowClone(object);
+// `nest`オブジェクトは複製されていない
+console.log(cloneObject.nest === object.nest); // => true
+```
+
+このような浅いコピーのことをshallow copyと呼び、逆にプロパティの値までも再帰的に複製してコピーすることを深いコピー（deep copy）と呼びます。
+shallowな実装を使い再帰的に処理することで、deepな実装を実現することができます。
+次のコードでは、`shallowClone`を使い、`deepClone`を実現しています。
+
+```js
+// `object`を浅く複製したオブジェクトを返す
+const shallowClone = (object) => {
+    return Object.assign({}, object);
+};
+// `object`を深く複製したオブジェクトを返す
+function deepClone(object) {
+    const newObject = shallowClone(object);
+    // プロパティがオブジェクト型であるなら、再帰的に複製する
+    Object.keys(newObject)
+    .filter(k => typeof newObject[k] === "object")
+    .forEach(k => newObject[k] = deepClone(newObject[k]));
+    return newObject;
+}
+var object = { 
+    level: 1,
+    nest: {
+        level: 2
+    }
+};
+var cloneObject = deepClone(object);
+// `nest`オブジェクトも再帰的に複製されている
+console.log(cloneObject.nest === object.nest); // => false
+```
+
+このように、JavaScriptのビルトインメソッドは浅い（shallow）な実装のみを提供し、深い（deep）な実装は提供していません。
+言語としては最低限の機能を提供し、より複雑な機能はユーザー側で実装するという形になることが多いｄす。
+これにより言語として提供するコア機能を小さくすることができます。
+
+一方、このような思想であるため、ユーザーが実装した小さなライブラリが数多く公開され、中には同じようなものが多いです。
+それらのライブラリは`npm`と呼ばれるJavaScriptのパッケージ管理ツールで公開され、JavaScriptのエコシステムを築いています。
 
 [ループと反復処理]: ../loop/README.md "ループと反復処理"
 [変数と宣言]: ../variables/README.md "変数と宣言"
