@@ -534,7 +534,7 @@ console.log(merged); // => { version: "b" }
 #### オブジェクトの複製
 
 <!-- textlint-disable preset-ja-technical-writing/max-ten -->
-<!-- Object.assignの引数と、で並び順を合わせるため例外的 -->
+<!-- Object.assignの引数と、で並び順を合わせるため例外的に許可 -->
 
 JavaScriptには、オブジェクトを複製する関数は用意されていません。
 しかし、新しく空のオブジェクトを作成し、そこへ既存のオブジェクトのプロパティをコピーすれば、それはオブジェクトの複製しているといえます。
@@ -558,6 +558,7 @@ console.log(object === cloneObject); // => false
 `sources`オブジェクト自身が持っている列挙できるプロパティをコピーするだけです。
 そのプロパティの値がオブジェクトである場合に、そのオブジェクトまでも複製するわけではありません。
 
+{{book.console}}
 ```js
 const shallowClone = (object) => {
     return Object.assign({}, object);
