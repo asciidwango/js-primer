@@ -11,9 +11,16 @@ const remark = require("remark")();
 const select = require('unist-util-select');
 
 /**
+ * 指定した文字列を含んだコードは実行環境によってはサポートされてないので無視する
+ * 具体的にはNode.js v6でES2016~のコードが実行できない
+ * @type {string[]}
+ */
+const ESVersions = ["ES2016", "ES2017"];
+/**
  * Markdownファイルの CodeBlock に対してdoctestを行う
  * CodeBlockは必ず実行できるとは限らないので、
  * AssertionError(doctestにおける失敗)以外は成功したことにして無視する
+ * Node.js v6はES2016-が実行できないのでスルーする
  * 詳細は CONTRIBUTING.md を読む
  **/
 describe("doctest:md", function() {
@@ -26,6 +33,10 @@ describe("doctest:md", function() {
             const codeBlocks = [].concat(select(markdownAST, 'code[lang="js"]'), select(markdownAST, 'code[lang="javascript"]'));
             // try to eval
             codeBlocks.forEach((codeBlock, index) => {
+                const codeValue = codeBlock.value;
+                const isIgnoredCode = ESVersions.some(version => {
+                    return codeValue.includes(version);
+                });
                 try {
                     const poweredCode = toDoc.convertCode(codeBlock.value, filePath);
                     strictEval(poweredCode);
@@ -34,8 +45,9 @@ describe("doctest:md", function() {
                     if (error.name === "ReferenceError") {
                         return;
                     }
-                    // ** はNode.jv 7 >=
-                    if (error.message === "Line 1: Unexpected token *") {
+                    // Node.jsのバージョンによっては実行できないコードならスルー
+                    if (isIgnoredCode) {
+                        console.log(`Skip this code in ${process.version}`);
                         return;
                     }
                     // Stack Trace like
