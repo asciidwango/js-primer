@@ -112,6 +112,7 @@ console.log(object[key]); // => "value"
 JavaScriptのオブジェクトは、変更不可能と明示しない限り変更可能なmutableの特性をもつことを紹介しました。
 そのため、関数が受け取ったオブジェクトに対して、勝手にプロパティを追加することもできてしまいます。
 
+{{book.console}}
 ```js
 function doSomething(object) {
     object.key = "value";
