@@ -295,9 +295,9 @@ console.log(object["key"]); // => "value"
 var object = {
     "123": "value"
 };
-// NG: ドット記法では識別子がエラー
+// NG: ドット記法では、数値から始まる識別子は利用できない
 obj.123
-// OK: ブラケット記法では参照可能
+// OK: ブラケット記法では、文字列として書くことができる
 console.log(object["123"]); // => "value"
 ```
 
