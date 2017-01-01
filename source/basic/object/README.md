@@ -193,7 +193,7 @@ console.log(widget.windw.title); // => TypeError
 {{book.console}}
 ```js
 var object = { key: "value" };
-// `key`プロパティが`undefined`でないならtrue
+// `key`プロパティが`undefined`ではないなら、プロパティが存在する?
 if (object.key !== undefined) {
     console.log("`key`プロパティの値は`undefined`");
 }
