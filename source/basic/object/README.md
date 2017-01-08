@@ -139,7 +139,7 @@ console.log(object.key); // => "Hi!"
 ```
 
 これは、JavaScriptの`const`は値を固定するのではなく、変数への再代入を防ぐためのものです。
-そのため、次のような`object`変数への再代入は防ぐことができますが、変数に代入された値であるオブジェクトの変更は防ぐことができません。（「[変数と宣言][../variables/README.md#const]」を参照）
+そのため、次のような`object`変数への再代入は防ぐことができますが、変数に代入された値であるオブジェクトの変更は防ぐことができません。（「[変数と宣言](../variables/README.md#const)」を参照）
 
 ```js
 const object = { key: "value" };
@@ -156,7 +156,7 @@ object = {}; // => SyntaxError
 ## プロパティの存在を確認する
 
 JavaScriptでは、存在しないプロパティに対してアクセスした場合に例外ではなく`undefined`を返します。
-次のコードでは、`object`には存在しない`notFound`プロパティにアクセスしていますが、結果として`undefined`という値が返ってきます。
+次のコードでは、`object`には存在しない`notFound`プロパティにアクセスしていますが、結果として`undehfined`という値が返ってきます。
 
 {{book.console}}
 ```js
@@ -495,7 +495,7 @@ console.log(Object.entries(object)); // => [["one", 1], ["two", 2], ["three", 3]
 
 ```js
 Object.assign(target, ...sources);
-````
+```
 
 #### オブジェクトのマージ
 
