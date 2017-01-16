@@ -164,6 +164,10 @@ rules:
     patterns:
       - 添字
     prh: 配列では添字ではなく、インデックスを使います。
+  - expected: インデックス
+    patterns:
+      - 添字
+    prh: 配列では添字ではなく、インデックスを使います。
   - expected: 疎な配列
     patterns: 疎の配列
     prh: sparse arrayのこと
