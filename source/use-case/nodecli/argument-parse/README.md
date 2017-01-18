@@ -18,14 +18,14 @@ author: laco
 例えば次のようなコマンドでNode.jsのスクリプトを実行したとき、
 
 ```
-$ node process.js one two=three four
+$ node main.js one two=three four
 ```
 
 `process.argv`配列の中身は次のようになります。
 
 ```
 0: /usr/local/bin/node
-1: /Users/laco/work/node/process.js
+1: /Users/laco/work/nodecli/main.js
 2: one
 3: two=three
 4: four
@@ -39,6 +39,7 @@ $ node process.js one two=three four
 取得したコマンドライン引数は標準出力に出力します。
 
 ```js
+// main.js
 const args = process.argv.slice(2);
 console.log(args);
 ```
@@ -54,23 +55,30 @@ $ node main.js foo bar
 
 `process.argv`配列を使えばコマンドライン引数を取得できますが、取得できるのは文字列の配列です。
 真偽値や数値、フラグとパラメータの区別など、アプリケーションが使いやすい形にするにはコマンドライン引数をパースして整形する必要があります。
-文字列処理を自前で行うこともできますが、このような一般的な処理はすでにあるライブラリを使うと簡単に書けます。
+文字列処理を自前で行うこともできますが、このような一般的な処理は既存のライブラリを使うと簡単に書けます。
 今回は[commander][]というライブラリを使ってコマンドライン引数をパースします。
 
 ### npmを使ってパッケージをインストールする
 
 Node.jsのライブラリの多くは[npm][]というパッケージマネージャーを使ってインストールできます。
+npmや`npm`コマンドについての詳細は[公式ドキュメント](https://docs.npmjs.com/)や[npmのGitHubリポジトリ][]を参照してください。
 Node.jsをインストールすると、`node`コマンドだけでなく`npm`コマンドも使えるようになっています。
+ただし、`npm`コマンドのバージョンが古い場合があるので、次のコマンドで最新の安定版をインストールしましょう。
 
+```
+$ npm -g install npm@latest
+```
 
-npmでパッケージをインストールするまでに、まずは次のコマンドでnpmのパッケージ管理環境を作りましょう。
-コマンドを実行すると`package.json`というファイルが生成されています。
+npmでパッケージをインストールする前に、まずは次のコマンドでnpmのパッケージ管理環境を作りましょう。
+npmでは`package.json`というファイルを使って、依存するパッケージの種類やバージョンを管理します。
+まずは次のコマンドを実行して、デフォルト設定の`package.json`を生成します。
 
 ```
 $ npm init -y
 ```
 
 さらに次のコマンドを実行して、commanderパッケージをインストールします。
+`--save`オプションを付与すると、`package.json`にインストールしたパッケージを記録します。
 
 ```
 $ npm install --save commander
@@ -93,6 +101,7 @@ commanderは`parse`メソッドを使ってコマンドライン引数をパー�
 値を持たない真偽値だけの引数（フラグ）をパースするには、次のように`main.js`を記述します。
 
 ```js
+// main.js
 const program = require("commander");
 program.option("--foo");
 program.parse(process.argv);
@@ -109,6 +118,7 @@ true
 フラグだけでなく、対応する値を受け取る場合は、次のように`main.js`を記述します。
 
 ```js
+// main.js
 const program = require("commander");
 program.option("--foo <text>");
 program.parse(process.argv);
@@ -127,4 +137,5 @@ bar
 
 [commander]: https://github.com/tj/commander.js/
 [npm]: https://www.npmjs.com/
+[npmのGitHubリポジトリ]: https://github.com/npm/npm
 [require関数]: https://nodejs.org/dist/latest-v6.x/docs/api/modules.html#modules_loading_from_node_modules_folders
