@@ -16,10 +16,10 @@
     - [ループと反復処理](basic/loop/README.md)
     - [演算子](basic/operator/README.md)
     - [暗黙的な型変換](basic/implicit-coercion/README.md)
-    - String
     - Number
     - [オブジェクト](./basic/object/README.md)
     - [配列](./basic/array/README.md)
+    - [文字列](./basic/string/README.md)
     - オブジェクト
     - Destructuring
     - 関数/Arrow Function

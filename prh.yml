@@ -173,6 +173,12 @@ rules:
     prh: sparse arrayのこと
   - expected: 密な配列
     patterns: 密の配列
+  - expected: テンプレートリテラル
+    patterns: /Template\s*Literal/i
+  - expected: テンプレート文字列
+    patterns: /Template\s*Strings/i
+  - expected: タグ付きテンプレートリテラル
+    patterns: /Tagged\s*template\s*literals?/i
 
 # typo
   - expected: $1進数
