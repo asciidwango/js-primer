@@ -79,9 +79,61 @@ console.log(`Hello ${name}!`);// => "Hello JavaScript!"
 - [ ] 文字列と要素（文字）
 - [ ] 文字
 
-## 部分文字列の取得 {#slice}
 ## 文字列の分解と結合 {#split-join}
 ## 文字列の比較 {#compare}
 ## 文字列の検索 {#search}
 ## 文字列の置換/削除 {#replace-delete}
+## 部分文字列の取得 {#slice}
+
+文字列からその一部を取り出したい場合には、`String#slice`メソッドや`String#substring`メソッドが利用できます。
+
+`slice`メソッドについては、すでに配列で学んでいますが、基本的な動作は文字列でも同様です。
+まずは`slice`メソッドについて見ていきます。
+
+`String#slice`メソッドは、第一引数に開始位置、第二引数に終了位置を指定しその範囲を取り出した新しい文字列を返します。
+第二引数は省略でき、省略した場合は文字列の最後までを取り出します。
+
+位置にマイナスの値を指定した場合は文字列の末尾から数えた位置となります。
+また、第一引数の位置が第二引数の位置より小さい場合、常に空の文字列を返します。
+
+```js
+var string = "ABCDE";
+console.log(string.slice(1)); // => "BCDE"
+// マイナスを指定すると後ろからの位置となる
+console.log(string.slice(-1)); // => "E"
+// 位置:1-4の範囲を取り出す
+console.log(string.slice(1, 4)); // => "BCD"
+// 第一引数 > 第二引数の場合、常に空文字を返す
+console.log(string.slice(4, 1)); // => ""
+```
+
+`String#substring`メソッドは、第一引数に開始位置、第二引数に終了位置を指定しその範囲を取り出した新しい文字列を返します。
+また、`slice`メソッドと同じく第二引数は省略でき、省略した場合は字列の最後までを取り出します。
+
+位置にマイナスの値を指定した場合は常に`0`として扱われます。
+また、第一引数の位置が第二引数の位置より小さい場合の挙動が`slice`メソッドとは異なります。
+この時、第一引数と第二引数が入れ替わるという予想しにくい挙動となります。
+
+```js
+var string = "ABCDE";
+console.log(string.substring(1)); // => "BCDE"
+// マイナスを指定すると0として扱われる
+console.log(string.substring(-1)); // => "ABCDE"
+// 位置:1から3文字取り出す
+console.log(string.substring(1, 4)); // => "BCD"
+// 第一引数 > 第二引数の場合、引数が入れ替わる
+// string.substring(1, 4)と同じ結果になる
+console.log(string.substring(4, 1)); // => "BCD"
+```
+
+実際には`String#slice`メソッドと`String#substring`メソッドは、直接`1`や`4`といった位置を指定することはあまり多くはないはずです。
+次のように、`String#indexOf`メソッドなど位置を取得するものと組み合わせて使うことが多いでしょう。
+
+```js
+var url = "https://example.com?param=1";
+var indexOfQuery = url.indexOf("?");
+var queryString = url.slice(indexOfQuery);
+console.log(queryString); // => "?param=1"
+```
+
 ## 文字列の組み立て {#built}
