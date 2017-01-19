@@ -75,7 +75,7 @@ console.log(`Hello ${name}!`);// => "Hello JavaScript!"
 
 ## 文字とは
 
-- [ ] 文字列と要素(文字)
+- [ ] 文字列と要素（文字）
 - [ ] 文字
 
 ## 部分文字列の取得 {#slice}
