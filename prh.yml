@@ -199,6 +199,8 @@ rules:
     patterns: する倍は
   - expected: 式文
     patterns: 文式
+  - expected: 宣言的
+    patterns: 宣言亭
 # 文体
   - expected: どのように
     patterns:
