@@ -15,41 +15,30 @@ author: laco
 詳細は[公式ドキュメント](https://nodejs.org/dist/latest-v6.x/docs/api/process.html#process_process)を参照してください。
 
 コマンドライン引数へのアクセスを提供するのは、`process`オブジェクトの`argv`プロパティで、文字列の配列になっています。
-例えば次のようなコマンドでNode.jsのスクリプトを実行したとき、
+例として、次のように`process-argv.js`を記述します。
+
+[import process-argv.js](src/process-argv.js)
+
+このスクリプトを次のようなコマンドで実行したとき、
+
+```shell-session
+$ node process-argv.js one two=three four
+```
+
+出力結果は次のようになります。
 
 ```
-$ node main.js one two=three four
-```
-
-`process.argv`配列の中身は次のようになります。
-
-```
-0: /usr/local/bin/node
-1: /Users/laco/work/nodecli/main.js
-2: one
-3: two=three
-4: four
+[ 
+  '/usr/local/bin/node', // Node.jsの実行プロセスのパス
+  '/Users/laco/nodecli/argument-parse/src/process-argv.js', // 実行したスクリプトファイルのパス
+  'one', // 1番目の引数
+  'two=three', // 2番目
+  'four'  // 3番目
+]
 ```
 
 1番目と2番目の要素は常に`node`コマンドと実行されたスクリプトのファイルパスになります。
 つまりアプリケーションがコマンドライン引数として使うのは、3番目以降の要素です。
-
-それでは前のセクションで作った`main.js`で、コマンドライン引数を受け取ってみましょう。
-`Array#slice`メソッドを使って、`process.argv`配列の3番目以降の要素を取得します。
-取得したコマンドライン引数は標準出力に出力します。
-
-```js
-// main.js
-const args = process.argv.slice(2);
-console.log(args);
-```
-
-`main.js`を次のコマンドで実行すると、コマンドライン引数が取得できていることがわかります。
-
-```
-$ node main.js foo bar
-[ 'foo', 'bar' ]
-```
 
 ## コマンドライン引数をパースする
 
@@ -65,7 +54,7 @@ npmや`npm`コマンドについての詳細は[公式ドキュメント](https:
 Node.jsをインストールすると、`node`コマンドだけでなく`npm`コマンドも使えるようになっています。
 ただし、`npm`コマンドのバージョンが古い場合があるので、次のコマンドで最新の安定版をインストールしましょう。
 
-```
+```shell-session
 $ npm -g install npm@latest
 ```
 
@@ -73,14 +62,14 @@ npmでパッケージをインストールする前に、まずは次のコマ�
 npmでは`package.json`というファイルを使って、依存するパッケージの種類やバージョンを管理します。
 まずは次のコマンドを実行して、デフォルト設定の`package.json`を生成します。
 
-```
-$ npm init -y
+```shell-session
+$ npm init --yes
 ```
 
 さらに次のコマンドを実行して、commanderパッケージをインストールします。
 `--save`オプションを付与すると、`package.json`にインストールしたパッケージを記録します。
 
-```
+```shell-session
 $ npm install --save commander
 ```
 
@@ -90,45 +79,32 @@ $ npm install --save commander
 
 `node_modules`ディレクトリに配置されたパッケージをNode.jsのスクリプト中に読み込むには、[require関数][]を使います。
 `require`関数はNode.js環境のグローバル関数のひとつで、指定したパッケージのモジュールを読み込めます。
-
-次のように`main.js`でcommanderパッケージを読み込みます。
+commanderパッケージを読み込むには、次のように記述します。
 
 ```js
 const program = require("commander");
 ```
 
 commanderは`parse`メソッドを使ってコマンドライン引数をパースします。
-値を持たない真偽値だけの引数（フラグ）をパースするには、次のように`main.js`を記述します。
+次の`commander-flag.js`では、値を持たない引数（フラグ）を真偽値にパースしています。
 
-```js
-// main.js
-const program = require("commander");
-program.option("--foo");
-program.parse(process.argv);
-console.log(program.foo);
-```
+[import commander-flag.js](src/commander-flag.js)
 
 このスクリプトを次のように実行すると、`--foo`という引数がパースされ、`program.foo`プロパティとして扱えるようになっています。
 
-```
-$ node main.js --foo
+```shell-session
+$ node commander-flag.js --foo
 true
 ```
 
-フラグだけでなく、対応する値を受け取る場合は、次のように`main.js`を記述します。
+フラグだけでなく、対応する値を受け取る場合は、次の`commander-param.js`のように記述します。
 
-```js
-// main.js
-const program = require("commander");
-program.option("--foo <text>");
-program.parse(process.argv);
-console.log(program.foo);
-```
+[import commander-param.js](src/commander-param.js)
 
 `--foo`フラグに値を与えて実行すれば、文字列が`program.foo`プロパティにセットされていることがわかります。
 
-```
-$ node main.js --foo bar
+```shell-session
+$ node commander-param.js --foo bar
 bar
 ```
 
