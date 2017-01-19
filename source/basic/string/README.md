@@ -21,7 +21,6 @@ author: azu
 <!-- textlint-disable eslint -->
 
 {{book.console}}
-
 ```js
 var double = "文字列";
 console.log(double); // => "文字列"
@@ -37,7 +36,6 @@ console.log(double === single);// => true
 `\"`のように`\`を使いエスケープする必要があります。
 
 {{book.console}}
-
 ```js
 var string = "This book is \"js-primer\"";
 console.log(string); // => 'This book is "js-primer"'
