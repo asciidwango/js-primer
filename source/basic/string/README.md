@@ -47,6 +47,7 @@ console.log(string); // => 'This book is "js-primer"'
 
 文字列を結合する簡単な方法は文字列結合演算子（`+`）を使う方法です。
 
+{{book.console}}
 ```js
 var string = "a" + "b";
 console.log(string); // => "ab"
@@ -54,6 +55,7 @@ console.log(string); // => "ab"
 
 変数と文字列を結合したい場合も文字列結合演算子で行うことができます。
 
+{{book.console}}
 ```js
 var name = "JavaScript";
 console.log("Hello " + name + "!");// => "Hello JavaScript!"
@@ -68,6 +70,7 @@ console.log("Hello " + name + "!");// => "Hello JavaScript!"
 テンプレートリテラル中に`${変数名}`で書かれた変数は評価時に展開されます。
 つまり、先ほどの文字列結合は次のように書くことができます。
 
+{{book.console}}
 ```js
 var name = "JavaScript";
 console.log(`Hello ${name}!`);// => "Hello JavaScript!"
