@@ -82,6 +82,51 @@ console.log(`Hello ${name}!`);// => "Hello JavaScript!"
 ## 部分文字列の取得 {#slice}
 ## 文字列の分解と結合 {#split-join}
 ## 文字列の比較 {#compare}
+## 文字列と正規表現 {#string-and-regexp}
+
+JavaScriptの文字列は正規表現とも関わりが深いです。
+Stringインスタンスメソッドの多くは引数として文字列だけではなく、正規表現を受け付けています。
+
+たとえば、`String#search`は引数の文字列が含まれているかを検索し、含まれているなら`true`を返します。
+
+```js
+var string = "JavaScript is an implementation of ECMAScript.";
+var isIncluded = string.search("ECMAScript");
+console.log(isIncluded); // => true
+```
+
+`String#search`は引数に文字列だけではなく、正規表現オブジェクトも受け取ることができます。
+これを利用することで、引数に文字列を渡すだけではできなかった曖昧な検索を行うことができます。
+
+```js
+var string = "JavaScript is an implementation of ES";
+// "ES"または"ECMAScript"にマッチする正規表現で検索
+var isIncluded = string.search(/(ES|ECMAScript)/);
+console.log(isIncluded); // => true
+```
+
+一方、正規表現インスタンスメソッドにも同様のことを行う`RegExp#test`メソッドが存在します。
+レシーバーが正規表現オブジェクトになっている点を除けば、真偽値を返す点も同様です。
+
+```js
+// "ES"または"ECMAScript"にマッチする正規表現
+var regExp = /(ES|ECMAScript)/;
+var string = "JavaScript is an implementation of ES";
+console.log(regExp.test(string)); // => true
+```
+
+| String    | RegExp |
+| --------- | ------ |
+| match     | exec   |
+| search    | test   |
+| startWith | test   |
+| endWith   | test   |
+
 ## 文字列の検索 {#search}
+
+- その要素のインデックスが欲しい場合（indexOf）
+- その要素自体が欲しい場合（match, slice）
+- その要素が含まれているかという真偽値が欲しい場合（includes, test）
+
 ## 文字列の置換/削除 {#replace-delete}
 ## 文字列の組み立て {#built}
