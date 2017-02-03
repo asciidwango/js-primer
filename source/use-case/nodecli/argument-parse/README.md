@@ -92,7 +92,7 @@ const program = require("commander");
 ```
 
 commanderは`parse`メソッドを使ってコマンドライン引数をパースします。
-次の`commander-flag.js`では、値を持たないオプションを真偽値にパースしています。
+次の`commander-flag.js`では、値をもたないオプションを真偽値にパースしています。
 
 [import commander-flag.js](src/commander-flag.js)
 
@@ -110,7 +110,7 @@ true
 Error: Cannot find module 'commander'
 ```
 
-値を持つオプションをパースする場合は、次の`commander-param.js`のように記述します。
+値をもつオプションをパースする場合は、次の`commander-param.js`のように記述します。
 
 [import commander-param.js](src/commander-param.js)
 
