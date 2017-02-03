@@ -43,7 +43,7 @@ $ node process-argv.js one two=three four
 ## コマンドライン引数をパースする
 
 `process.argv`配列を使えばコマンドライン引数を取得できますが、取得できるのは文字列の配列です。
-真偽値や数値、フラグとパラメータの区別など、アプリケーションが扱いやすくするためには、コマンドライン引数をパースして整形する必要があります。
+そのままではアプリケーションから扱いにくいため、コマンドライン引数をパースして整形する必要があります。
 文字列処理を自前で行うこともできますが、このような一般的な処理は既存のライブラリを使うと簡単に書けます。
 今回は[commander][]というライブラリを使ってコマンドライン引数をパースします。
 
@@ -81,22 +81,22 @@ const program = require("commander");
 ```
 
 commanderは`parse`メソッドを使ってコマンドライン引数をパースします。
-次の`commander-flag.js`では、値を持たない引数（フラグ）を真偽値にパースしています。
+次の`commander-flag.js`では、値を持たないオプションを真偽値にパースしています。
 
 [import commander-flag.js](src/commander-flag.js)
 
-このスクリプトを次のように実行すると、`--foo`という引数がパースされ、`program.foo`プロパティとして扱えるようになっています。
+このスクリプトを次のように実行すると、`--foo`オプションがパースされ、`program.foo`プロパティとして扱えるようになっています。
 
 ```shell-session
 $ node commander-flag.js --foo
 true
 ```
 
-フラグだけでなく、対応する値を受け取る場合は、次の`commander-param.js`のように記述します。
+値を持つオプションをパースする場合は、次の`commander-param.js`のように記述します。
 
 [import commander-param.js](src/commander-param.js)
 
-`--foo`フラグに値を与えて実行すれば、文字列が`program.foo`プロパティにセットされていることがわかります。
+`--foo`オプションに値を与えて実行すれば、文字列が`program.foo`プロパティにセットされていることがわかります。
 
 ```shell-session
 $ node commander-param.js --foo bar
