@@ -53,25 +53,36 @@ Node.jsのライブラリの多くは[npm][]というパッケージマネージ
 npmや`npm`コマンドについての詳細は[公式ドキュメント](https://docs.npmjs.com/)や[npmのGitHubリポジトリ][]を参照してください。
 Node.jsをインストールすると、`node`コマンドだけでなく`npm`コマンドも使えるようになっています。
 
-npmでパッケージをインストールする前に、まずは次のコマンドでnpmのパッケージ管理環境を作りましょう。
-npmでは`package.json`というファイルを使って、依存するパッケージの種類やバージョンを管理します。
+npmでパッケージをインストールする前に、まずはnpmのパッケージ管理環境を作りましょう。
+npmでは`package.json`というファイルを使って、依存するパッケージの種類やバージョンなどの情報を記録します。
+`npm init`コマンドは、`package.json`ファイルを生成してパッケージ管理環境を初期化します。
+初期化する際の各設定は対話式のプロンプトによって変更できますが、`--yes`オプションによってすべてをデフォルト値にできます。
 次のコマンドを実行して、デフォルト設定の`package.json`を生成します。
 
 ```shell-session
 $ npm init --yes
 ```
 
-さらに次のコマンドを実行して、commanderパッケージをインストールします。
-`--save`オプションを付与すると、`package.json`にインストールしたパッケージを記録します。
+生成された`package.json`ファイルは次のようになっています。
+
+[import package.json](src/package.init.json)
+
+`package.json`ファイルが用意できたら、`npm install`コマンドを使ってcommanderパッケージをインストールします。
+このコマンドの引数にはインストールするパッケージの名前とそのバージョンを指定できます。
+`package.json`にインストールしたパッケージの情報を保存するためには`--save`オプションを付与する必要があることに注意しましょう。
+次のコマンドを実行して、commanderのバージョン2.9をインストールします。
 
 ```shell-session
-$ npm install --save commander
+$ npm install --save commander@2.9
 ```
 
-インストールされたパッケージは、`node_modules`というディレクトリの中に配置されています。
+インストールが完了すると、`package.json`ファイルは次のようになっています。
+
+[import package.json](src/package.json)
 
 ### commanderパッケージを使う
 
+`npm install`コマンドでインストールされたパッケージは、`node_modules`というディレクトリの中に配置されています。
 `node_modules`ディレクトリに配置されたパッケージは、[require関数][]を使ってスクリプト中に読み込みます。
 `require`関数はNode.js環境のグローバル関数のひとつで、指定したパッケージのモジュールを読み込めます。
 commanderパッケージを読み込むには、次のように記述します。
@@ -90,6 +101,13 @@ commanderは`parse`メソッドを使ってコマンドライン引数をパー�
 ```shell-session
 $ node commander-flag.js --foo
 true
+```
+
+もし、次のようなエラーが表示されたときは、commanderパッケージのインストールに失敗しています。
+パッケージのインストールからやり直してみましょう。
+
+```
+Error: Cannot find module 'commander'
 ```
 
 値を持つオプションをパースする場合は、次の`commander-param.js`のように記述します。
