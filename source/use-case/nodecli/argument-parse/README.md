@@ -52,11 +52,6 @@ $ node process-argv.js one two=three four
 Node.jsのライブラリの多くは[npm][]というパッケージマネージャーを使ってインストールできます。
 npmや`npm`コマンドについての詳細は[公式ドキュメント](https://docs.npmjs.com/)や[npmのGitHubリポジトリ][]を参照してください。
 Node.jsをインストールすると、`node`コマンドだけでなく`npm`コマンドも使えるようになっています。
-ただし、Node.jsに同梱された`npm`コマンドのバージョンは古い場合があるので、次のコマンドで最新の安定版をインストールしましょう。
-
-```shell-session
-$ npm -g install npm@latest
-```
 
 npmでパッケージをインストールする前に、まずは次のコマンドでnpmのパッケージ管理環境を作りましょう。
 npmでは`package.json`というファイルを使って、依存するパッケージの種類やバージョンを管理します。
