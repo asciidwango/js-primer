@@ -43,7 +43,7 @@ $ node process-argv.js one two=three four
 ## コマンドライン引数をパースする
 
 `process.argv`配列を使えばコマンドライン引数を取得できますが、取得できるのは文字列の配列です。
-真偽値や数値、フラグとパラメータの区別など、アプリケーションが扱いやすくするためには、コマンドライン引数をパースして整形する必要があります。
+そのままではアプリケーションから扱いにくいため、コマンドライン引数をパースして整形する必要があります。
 文字列処理を自前で行うこともできますが、このような一般的な処理は既存のライブラリを使うと簡単に書けます。
 今回は[commander][]というライブラリを使ってコマンドライン引数をパースします。
 
@@ -52,31 +52,38 @@ $ node process-argv.js one two=three four
 Node.jsのライブラリの多くは[npm][]というパッケージマネージャーを使ってインストールできます。
 npmや`npm`コマンドについての詳細は[公式ドキュメント](https://docs.npmjs.com/)や[npmのGitHubリポジトリ][]を参照してください。
 Node.jsをインストールすると、`node`コマンドだけでなく`npm`コマンドも使えるようになっています。
-ただし、Node.jsに同梱された`npm`コマンドのバージョンは古い場合があるので、次のコマンドで最新の安定版をインストールしましょう。
 
-```shell-session
-$ npm -g install npm@latest
-```
-
-npmでパッケージをインストールする前に、まずは次のコマンドでnpmのパッケージ管理環境を作りましょう。
-npmでは`package.json`というファイルを使って、依存するパッケージの種類やバージョンを管理します。
-次のコマンドを実行して、デフォルト設定の`package.json`を生成します。
+npmでパッケージをインストールする前に、まずはnpmのパッケージ管理環境を作りましょう。
+npmでは`package.json`というファイルを使って、依存するパッケージの種類やバージョンなどの情報を記録します。
+`npm init`コマンドは、`package.json`ファイルを生成してパッケージ管理環境を初期化するものです。
+通常は初期化するための値を対話式のプロンプトによって設定しますが、`--yes`オプションを付与するとすべてをデフォルト値にします。
+次のコマンドを実行して、`package.json`を生成します。
 
 ```shell-session
 $ npm init --yes
 ```
 
-さらに次のコマンドを実行して、commanderパッケージをインストールします。
-`--save`オプションを付与すると、`package.json`にインストールしたパッケージを記録します。
+生成された`package.json`ファイルは次のようになっています。
+
+[import package.json](src/package.init.json)
+
+`package.json`ファイルが用意できたら、`npm install`コマンドを使ってcommanderパッケージをインストールします。
+このコマンドの引数にはインストールするパッケージの名前とそのバージョンを`@`記号でつなげて指定できます。
+バージョンを指定せずにインストールすれば、その時点での最新の安定版が自動的に選択されます。
+`package.json`にインストールしたパッケージの情報を保存するためには`--save`オプションを付与する必要があることに注意しましょう。
+次のコマンドを実行して、commanderのバージョン2.9をインストールします。
 
 ```shell-session
-$ npm install --save commander
+$ npm install --save commander@2.9
 ```
 
-インストールされたパッケージは、`node_modules`というディレクトリの中に配置されています。
+インストールが完了すると、`package.json`ファイルは次のようになっています。
+
+[import package.json](src/package.json)
 
 ### commanderパッケージを使う
 
+`npm install`コマンドでインストールされたパッケージは、`node_modules`というディレクトリの中に配置されています。
 `node_modules`ディレクトリに配置されたパッケージは、[require関数][]を使ってスクリプト中に読み込みます。
 `require`関数はNode.js環境のグローバル関数のひとつで、指定したパッケージのモジュールを読み込めます。
 commanderパッケージを読み込むには、次のように記述します。
@@ -86,22 +93,29 @@ const program = require("commander");
 ```
 
 commanderは`parse`メソッドを使ってコマンドライン引数をパースします。
-次の`commander-flag.js`では、値を持たない引数（フラグ）を真偽値にパースしています。
+次の`commander-flag.js`では、値をもたないオプションを真偽値にパースしています。
 
 [import commander-flag.js](src/commander-flag.js)
 
-このスクリプトを次のように実行すると、`--foo`という引数がパースされ、`program.foo`プロパティとして扱えるようになっています。
+このスクリプトを次のように実行すると、`--foo`オプションがパースされ、`program.foo`プロパティとして扱えるようになっています。
 
 ```shell-session
 $ node commander-flag.js --foo
 true
 ```
 
-フラグだけでなく、対応する値を受け取る場合は、次の`commander-param.js`のように記述します。
+もし、次のようなエラーが表示されたときは、commanderパッケージが`node_modules`ディレクトリ内にないことを示しています。
+commanderパッケージのインストールに失敗しているので、パッケージのインストールからやり直してみましょう。
+
+```
+Error: Cannot find module 'commander'
+```
+
+値をもつオプションをパースする場合は、次の`commander-param.js`のように記述します。
 
 [import commander-param.js](src/commander-param.js)
 
-`--foo`フラグに値を与えて実行すれば、文字列が`program.foo`プロパティにセットされていることがわかります。
+`--foo`オプションに値を与えて実行すれば、文字列が`program.foo`プロパティにセットされていることがわかります。
 
 ```shell-session
 $ node commander-param.js --foo bar
