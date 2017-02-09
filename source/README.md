@@ -50,7 +50,7 @@
     - [Node.jsでCLIアプリ](use-case/nodecli/README.md)
       - [Node.jsでHello World](use-case/nodecli/helloworld/README.md)
       - [コマンドライン引数を処理する](use-case/nodecli/argument-parse/README.md)
-      - ファイルを読み込む
+      - [ファイルを読み込む](use-case/nodecli/read-file/README.md)
       - MarkdownをHTMLに変換する
       - ユニットテストを記述する
     - TODOアプリ
