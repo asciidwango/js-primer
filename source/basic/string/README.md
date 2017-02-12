@@ -141,7 +141,7 @@ var queryString = url.slice(indexOfQuery);
 console.log(queryString); // => "?param=1"
 ```
 
-また、配列とは異なりプリミティブ値である文字列は、`slice`メソッドと`substring`メソッド共に非破壊的です。
+また、配列とは異なりプリミティブ型の値である文字列は、`slice`メソッドと`substring`メソッド共に非破壊的です。
 機能的な違いが殆どないため、どちらを利用するかは好みの問題となるでしょう。
 
 ## 文字列の組み立て {#built}
