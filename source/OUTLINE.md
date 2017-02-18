@@ -255,12 +255,17 @@
 		- `''`
 		- テンプレートリテラル
 	- 文字とはなにか
+		- UTF-16 code unitsのシーケンスである
+		- Code unitは `\uHHHH` と表現することができる
+		- またCode Unitはサロゲートペアの問題がある。
+		- Code Pointは`\u{HHHHHH}`として表現できる
+			- これは1個または2個のCode Unitをまとめたもの
 		- char
 		- charCode
 		- code unit
-	- 文字列とはなにか
-		- Immutableである
-	- 文字列とインデックス
+	- 文字列の分解
+		- インデックスでのアクセス
+		- String#slice, String#substring
 	- 文字列の結合
 		- 加算演算子
 		- `string += "String"`
@@ -315,7 +320,7 @@
 	- 作成と取得
 		- リテラル、インデックス
 		- sliceとstubstring
-		- leftStart/leftEnd
+		- padStart/padEnd
 		- コラム なぜ start/end?
 		- 結合、分解
 	- 文字列組み立て
