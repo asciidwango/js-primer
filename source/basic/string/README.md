@@ -108,11 +108,58 @@ console.log(string); // => "赤、青、緑"
 これを利用すると、次のように文字列をスペースで区切るような処理が簡単に書くことができます。
 
 ```
-// 文字列を1つ以上のスペースで分解する
+// 文字列を1つ以上のスペースを区切りにして分解する
 var strings = "a b    c      d".splice(/¥s+/);  
 console.log(strings); // => ["a", "b", "c", "d"] 
 ```
 
+### `String#split`と空文字
+
+`String#split`メソッドでは、空文字を区切り文字として指定し、文字列を**文字**の配列にする方法として紹介されることがあります。
+
+```js
+// 空文字("")で文字列を分解する
+var characters = "文字列".split("");
+console.log(characters); // => ["文", "字", "列"]
+```
+
+しかし、この空文字での区切り方には問題があります。
+
+JavaScriptにおいて、メソッド名に`CodePoint`が含まれているものやIteratorを扱うもの**以外**は、すべてCode Unit単位で扱われます。
+つまり、`split`メソッドもCode Unit単位で文字列を分解しています。
+
+次のコードを見ると、`split("")`は**文字**単位で分解するのではなく、**Code Unit**単位で分解していることが分かります。
+
+```js
+// サロゲートペアを含む文字列をCode Unit単位で分解
+var codeUnitElements = "𩸽のひらき".split("");
+// サロゲートペアをCodeUnit単位に分解したため、文字化けしている
+console.log(codeUnitElements); // ["�", "�", "の", "ひ", "ら", "き"] 
+```
+
+サロゲートペアを含んだ文字列を**Code Point**単位で分解するには、Iteratorを利用するが簡単です。
+文字列はIteratorを実装しているIterableという特性をもち、また文字列のIteratorはCode Point単位で列挙します。
+
+そのため、Iterableを扱える`Array.from`メソッドや`...`（spread operator）を利用することで、
+文字列をCode Point単位で分解できます。
+
+```js
+var string = "𩸽のひらき";
+// Array.fromメソッドで文字列を分解
+console.log(Array.from(string)); // => ["𩸽", "の", "ひ", "ら", "き"]
+// ...（spread operator）で文字列を展開しものを配列にする
+console.log([...string]); // => ["𩸽", "の", "ひ", "ら", "き"]
+// for...ofを使うことでCode Point単位で列挙できる
+for (var codePoint of string) {
+    console.log(codePoint);
+}
+```
+
+**Code Unit**単位で扱うと絵文字などサロゲートペアを含む文字列が化けてしまうなどの問題が発生します。
+Iteratorを利用すれば**Code Point**単位で扱うことができ、サロゲートペアの問題を解決できます。
+
+しかし、JavaScriptにおいて、見た目どおりの**文字**単位で処理を行う標準的な方法は用意されていません。
+結合文字などを考慮した**文字**について、詳しくは[JavaScript has a Unicode problem · Mathias Bynens][]を参照してください。
 
 ## 文字列の比較 {#compare}
 ## 文字列の検索 {#search}
@@ -179,3 +226,6 @@ console.log(queryString); // => "?param=1"
 機能的な違いが殆どないため、どちらを利用するかは好みの問題となるでしょう。
 
 ## 文字列の組み立て {#built}
+
+
+[JavaScript has a Unicode problem · Mathias Bynens]: https://mathiasbynens.be/notes/javascript-unicode  "JavaScript has a Unicode problem · Mathias Bynens"
