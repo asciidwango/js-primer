@@ -131,6 +131,7 @@ JavaScriptにおいて、メソッド名に`CodePoint`が含まれているも�
 次のコードを見ると、`split("")`は**文字**単位で分解するのではなく、**Code Unit**単位で分解していることが分かります。
 
 ```js
+// "𩸽"はサロゲートペアであるため2つのCode Unit（\uD867\uDE3D）からなる
 // サロゲートペアを含む文字列をCode Unit単位で分解
 var codeUnitElements = "𩸽のひらき".split("");
 // サロゲートペアをCodeUnit単位に分解したため、文字化けしている
@@ -155,11 +156,11 @@ for (var codePoint of string) {
 }
 ```
 
-**Code Unit**単位で扱うと絵文字などサロゲートペアを含む文字列が化けてしまうなどの問題が発生します。
-Iteratorを利用すれば**Code Point**単位で扱うことができ、サロゲートペアの問題を解決できます。
+絵文字などサロゲートペアを含む文字列を**Code Unit**単位で扱うと化けてしまうなどの問題が発生します。
+Iteratorを利用すればサロゲートペアも**Code Point**単位で扱うことができます。
 
 しかし、JavaScriptにおいて、見た目どおりの**文字**単位で処理を行う標準的な方法は用意されていません。
-結合文字などを考慮した**文字**について、詳しくは[JavaScript has a Unicode problem · Mathias Bynens][]を参照してください。
+結合文字やなどを考慮した**文字**について、詳しくは[JavaScript has a Unicode problem · Mathias Bynens][]を参照してください。
 
 ## 文字列の比較 {#compare}
 ## 文字列の検索 {#search}
@@ -227,5 +228,9 @@ console.log(queryString); // => "?param=1"
 
 ## 文字列の組み立て {#built}
 
+## 参考
+
+- [What every JavaScript developer should know about Unicode](https://rainsoft.io/what-every-javascript-developer-should-know-about-unicode/)
+- [「文字数」ってなぁに？〜String, NSString, Unicodeの基本〜 - Qiita](http://qiita.com/takasek/items/19438ecf7e60c8d53bbc)
 
 [JavaScript has a Unicode problem · Mathias Bynens]: https://mathiasbynens.be/notes/javascript-unicode  "JavaScript has a Unicode problem · Mathias Bynens"
