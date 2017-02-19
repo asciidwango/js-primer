@@ -149,7 +149,7 @@ var string = "𩸽のひらき";
 console.log(Array.from(string)); // => ["𩸽", "の", "ひ", "ら", "き"]
 // ...（spread operator）で文字列を展開しものを配列にする
 console.log([...string]); // => ["𩸽", "の", "ひ", "ら", "き"]
-// for...ofを使うことでCode Point単位で列挙できる
+// for...ofもIteratorを列挙するため、Code Point単位で列挙できる
 for (var codePoint of string) {
     console.log(codePoint);
 }
