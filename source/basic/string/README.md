@@ -115,7 +115,7 @@ console.log(strings); // => ["a", "b", "c", "d"]
 
 ### `String#split`と空文字
 
-`String#split`メソッドでは、空文字を区切り文字として指定し、文字列を**文字**の配列にする方法として紹介されることがあります。
+`String#split`メソッドでは、空文字（`""`）を区切り文字として指定し、文字列を**文字**の配列にする方法として紹介されることがあります。
 
 ```js
 // 空文字("")で文字列を分解する
@@ -128,7 +128,7 @@ console.log(characters); // => ["文", "字", "列"]
 JavaScriptにおいて、メソッド名に`CodePoint`が含まれているものやIteratorを扱うもの**以外**は、すべてCode Unit単位で扱われます。
 つまり、`split`メソッドもCode Unit単位で文字列を分解しています。
 
-次のコードを見ると、`split("")`は**文字**単位で分解するのではなく、**Code Unit**単位で分解していることが分かります。
+次のコードを見ると、`string.split("")`は**文字**単位で分解するのではなく、**Code Unit**単位で分解していることが分かります。
 
 ```js
 // "𩸽"はサロゲートペアであるため2つのCode Unit（\uD867\uDE3D）からなる
@@ -160,7 +160,7 @@ for (var codePoint of string) {
 Iteratorを利用すればサロゲートペアも**Code Point**単位で扱うことができます。
 
 しかし、JavaScriptにおいて、見た目どおりの**文字**単位で処理を行う標準的な方法は用意されていません。
-結合文字やなどを考慮した**文字**について、詳しくは[JavaScript has a Unicode problem · Mathias Bynens][]を参照してください。
+結合文字などを考慮した**文字**について、詳しくは[JavaScript has a Unicode problem · Mathias Bynens][]を参照してください。
 
 ## 文字列の比較 {#compare}
 ## 文字列の検索 {#search}
@@ -232,5 +232,11 @@ console.log(queryString); // => "?param=1"
 
 - [What every JavaScript developer should know about Unicode](https://rainsoft.io/what-every-javascript-developer-should-know-about-unicode/)
 - [「文字数」ってなぁに？〜String, NSString, Unicodeの基本〜 - Qiita](http://qiita.com/takasek/items/19438ecf7e60c8d53bbc)
+- [プログラマのための文字コード技術入門 | Gihyo Digital Publishing … 技術評論社の電子書籍](https://gihyo.jp/dp/ebook/2014/978-4-7741-7087-9)
+- [文字コード「超」研究　改訂第2版【委託】 - 達人出版会](http://tatsu-zine.com/books/moji-code)
+- [Unicode のサロゲートペアとは何か - ひだまりソケットは壊れない](http://vividcode.hatenablog.com/entry/unicode/surrogate-pair)
+- [文字って何かね？ - Qiita](http://qiita.com/matarillo/items/91b9656428bed7a1a797)
+- [ものかの >> archive >> Unicode正規化　その１](http://tama-san.com/old/document03.html)
+- [結合文字列をUnicode正規化で合成する方法の危険性 - Qiita](http://qiita.com/monokano/items/d4c37d9bc9833eaeda6e)
 
 [JavaScript has a Unicode problem · Mathias Bynens]: https://mathiasbynens.be/notes/javascript-unicode  "JavaScript has a Unicode problem · Mathias Bynens"
