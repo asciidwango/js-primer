@@ -179,6 +179,13 @@ rules:
     patterns: /Template\s*Strings/i
   - expected: タグ付きテンプレートリテラル
     patterns: /Tagged\s*template\s*literals?/i
+  # Code Unit/ Code Point
+  - expected: Code Unit
+  - expected: Code Poiint
+  - expected: 各Code Unitごとに
+    patterns: Code Unit単位
+  - expected: 各Code Pointごとに
+    patterns: Code Point単位
 
 # typo
   - expected: $1進数

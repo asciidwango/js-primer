@@ -125,24 +125,24 @@ console.log(characters); // => ["文", "字", "列"]
 
 しかし、この空文字での区切り方には問題があります。
 
-JavaScriptにおいて、メソッド名に`CodePoint`が含まれているものやIteratorを扱うもの**以外**は、すべてCode Unit単位で扱われます。
-つまり、`split`メソッドもCode Unit単位で文字列を分解しています。
+JavaScriptにおいて、メソッド名に`CodePoint`が含まれているものやIteratorを扱うもの**以外**は、すべてCode Unitが並んでいるものとして扱われます。
+つまり、`split`メソッドも各Code Unitごとに文字列を分解しています。
 
-次のコードを見ると、`string.split("")`は**文字**単位で分解するのではなく、**Code Unit**単位で分解していることが分かります。
+次のコードを見ると、`string.split("")`は各**文字**ごとで分解するのではなく、各**Code Unit**ごとに分解していることが分かります。
 
 ```js
 // "𩸽"はサロゲートペアであるため2つのCode Unit（\uD867\uDE3D）からなる
-// サロゲートペアを含む文字列をCode Unit単位で分解
+// サロゲートペアを含む文字列を各Code Unitに分解
 var codeUnitElements = "𩸽のひらき".split("");
-// サロゲートペアをCodeUnit単位に分解したため、文字化けしている
+// サロゲートペアを各CodeUnitに分解したため、文字化けしている
 console.log(codeUnitElements); // ["�", "�", "の", "ひ", "ら", "き"] 
 ```
 
-サロゲートペアを含んだ文字列を**Code Point**単位で分解するには、Iteratorを利用するが簡単です。
-文字列はIteratorを実装しているIterableという特性をもち、また文字列のIteratorはCode Point単位で列挙します。
+サロゲートペアを含んだ文字列をそれぞれの**Code Point**へ分解するには、Iteratorを利用するが簡単です。
+文字列はIteratorを実装しているIterableという特性をもち、また文字列のIteratorはそれぞれのCode Pointごとに列挙します。
 
 そのため、Iterableを扱える`Array.from`メソッドや`...`（spread operator）を利用することで、
-文字列をCode Point単位で分解できます。
+文字列をそれぞれのCode Pointごとに分解できます。
 
 ```js
 var string = "𩸽のひらき";
@@ -150,16 +150,16 @@ var string = "𩸽のひらき";
 console.log(Array.from(string)); // => ["𩸽", "の", "ひ", "ら", "き"]
 // ...（spread operator）で文字列を展開しものを配列にする
 console.log([...string]); // => ["𩸽", "の", "ひ", "ら", "き"]
-// for...ofもIteratorを列挙するため、Code Point単位で列挙できる
+// for...ofもIteratorを列挙するため、Code Pointごとで列挙できる
 for (var codePoint of string) {
     console.log(codePoint);
 }
 ```
 
-絵文字などサロゲートペアを含む文字列を**Code Unit**単位で扱うと化けてしまうなどの問題が発生します。
-Iteratorを利用すればサロゲートペアも**Code Point**単位で扱うことができます。
+絵文字などサロゲートペアを含む文字列をそれぞれの**Code Unit**で分解すると、加工して結合すると化けてしまうなどの問題が発生しやすいです。
+Iteratorを利用すればサロゲートペアもそれぞれの**Code Point**で扱うことができます。
 
-しかし、JavaScriptにおいて、見た目どおりの**文字**単位で処理を行う標準的な方法は用意されていません。
+しかし、JavaScriptにおいて、見た目どおりの**文字**ごとに処理を行う標準的な方法は用意されていません。
 結合文字などを考慮した**文字**について、詳しくは[JavaScript has a Unicode problem · Mathias Bynens][]を参照してください。
 
 ## 文字列の比較 {#compare}
