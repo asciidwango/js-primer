@@ -80,6 +80,88 @@ console.log(`Hello ${name}!`);// => "Hello JavaScript!"
 - [ ] 文字
 
 ## 文字列の分解と結合 {#split-join}
+
+文字列を配列へ分解するには`String#split`メソッドを利用できます。
+一方、配列の要素を結合し文字列にするは`Array#join`メソッドが利用できます。
+
+この２つはよく組み合わせて利用されるため、あわせてみていきます。
+
+`String#split`メソッドは、第一引数に指定した区切り文字で文字列を分解した配列を返します。
+次のコードでは、文字列を`・`で区切った配列を作成しています。
+
+```js
+var strings = "赤・青・緑".split("・");
+console.log(strings); // => ["赤", "青", "緑"]
+```
+
+分解してできた文字列の配列を結合して文字列を作る際に、`Array#join`メソッドがよく利用されます。
+`Array#join`メソッドの第一引数には区切り文字を指定し、その区切り文字で結合した文字列を返します。
+
+この２つを合わせれば、区切り文字を`・`から`、`へ変換する処理を次のように書くことができます。
+
+```js
+var string = "赤・青・緑".split("・").join("、");
+console.log(string); // => "赤、青、緑"
+```
+
+`String#split`メソッドの第一引数には正規表現を指定することもできます。
+これを利用すると、次のように文字列をスペースで区切るような処理が簡単に書くことができます。
+
+```
+// 文字列を1つ以上のスペースを区切りにして分解する
+var strings = "a b    c      d".splice(/¥s+/);  
+console.log(strings); // => ["a", "b", "c", "d"] 
+```
+
+### `String#split`と空文字
+
+`String#split`メソッドでは、空文字（`""`）を区切り文字として指定し、文字列を**文字**の配列にする方法として紹介されることがあります。
+
+```js
+// 空文字("")で文字列を分解する
+var characters = "文字列".split("");
+console.log(characters); // => ["文", "字", "列"]
+```
+
+しかし、この空文字での区切り方には問題があります。
+
+JavaScriptにおいて、メソッド名に`CodePoint`が含まれているものやIteratorを扱うもの**以外**は、すべてCode Unitが並んでいるものとして扱われます。
+つまり、`split`メソッドも各Code Unitごとに文字列を分解しています。
+
+次のコードを見ると、`string.split("")`は各**文字**ごとで分解するのではなく、各**Code Unit**ごとに分解していることが分かります。
+
+```js
+// "𩸽"はサロゲートペアであるため2つのCode Unit（\uD867\uDE3D）からなる
+// サロゲートペアを含む文字列を各Code Unitに分解
+var codeUnitElements = "𩸽のひらき".split("");
+// サロゲートペアを各CodeUnitに分解したため、文字化けしている
+console.log(codeUnitElements); // ["�", "�", "の", "ひ", "ら", "き"] 
+```
+
+サロゲートペアを含んだ文字列をそれぞれの**Code Point**へ分解するには、Iteratorを利用するが簡単です。
+文字列はIteratorを実装しているIterableという特性をもち、また文字列のIteratorはそれぞれのCode Pointごとに列挙します。
+
+そのため、Iterableを扱える`Array.from`メソッドや`...`（spread operator）を利用することで、
+文字列をそれぞれのCode Pointごとに分解できます。
+
+```js
+var string = "𩸽のひらき";
+// Array.fromメソッドで文字列を分解
+console.log(Array.from(string)); // => ["𩸽", "の", "ひ", "ら", "き"]
+// ...（spread operator）で文字列を展開しものを配列にする
+console.log([...string]); // => ["𩸽", "の", "ひ", "ら", "き"]
+// for...ofもIteratorを列挙するため、Code Pointごとで列挙できる
+for (var codePoint of string) {
+    console.log(codePoint);
+}
+```
+
+絵文字などサロゲートペアを含む文字列をそれぞれの**Code Unit**で分解すると、加工して結合すると化けてしまうなどの問題が発生しやすいです。
+Iteratorを利用すればサロゲートペアもそれぞれの**Code Point**で扱うことができます。
+
+しかし、JavaScriptにおいて、見た目どおりの**文字**ごとに処理を行う標準的な方法は用意されていません。
+結合文字などを考慮した**文字**について、詳しくは[JavaScript has a Unicode problem · Mathias Bynens][]を参照してください。
+
 ## 文字列の比較 {#compare}
 ## 文字列の検索 {#search}
 ## 文字列の置換/削除 {#replace-delete}
@@ -145,3 +227,16 @@ console.log(queryString); // => "?param=1"
 機能的な違いが殆どないため、どちらを利用するかは好みの問題となるでしょう。
 
 ## 文字列の組み立て {#built}
+
+## 参考
+
+- [What every JavaScript developer should know about Unicode](https://rainsoft.io/what-every-javascript-developer-should-know-about-unicode/)
+- [「文字数」ってなぁに？〜String, NSString, Unicodeの基本〜 - Qiita](http://qiita.com/takasek/items/19438ecf7e60c8d53bbc)
+- [プログラマのための文字コード技術入門 | Gihyo Digital Publishing … 技術評論社の電子書籍](https://gihyo.jp/dp/ebook/2014/978-4-7741-7087-9)
+- [文字コード「超」研究　改訂第2版【委託】 - 達人出版会](http://tatsu-zine.com/books/moji-code)
+- [Unicode のサロゲートペアとは何か - ひだまりソケットは壊れない](http://vividcode.hatenablog.com/entry/unicode/surrogate-pair)
+- [文字って何かね？ - Qiita](http://qiita.com/matarillo/items/91b9656428bed7a1a797)
+- [ものかの >> archive >> Unicode正規化　その１](http://tama-san.com/old/document03.html)
+- [結合文字列をUnicode正規化で合成する方法の危険性 - Qiita](http://qiita.com/monokano/items/d4c37d9bc9833eaeda6e)
+
+[JavaScript has a Unicode problem · Mathias Bynens]: https://mathiasbynens.be/notes/javascript-unicode  "JavaScript has a Unicode problem · Mathias Bynens"
