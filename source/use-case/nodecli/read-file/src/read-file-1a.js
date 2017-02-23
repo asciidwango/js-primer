@@ -4,11 +4,6 @@ const fs = require("fs");
 program.parse(process.argv);
 const filePath = program.args[0];
 
-fs.readFile(filePath, "utf8", (err, file) => {
-    if (err) {
-        console.error(err.toString());
-        process.exit(err.code);
-        return;
-    }
+fs.readFile(filePath, (err, file) => {
     console.log(file);
 });
