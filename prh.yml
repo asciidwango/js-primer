@@ -186,7 +186,11 @@ rules:
     patterns: Code Unit単位
   - expected: 各Code Pointごとに
     patterns: Code Point単位
-
+  # ファイルの読み書き / ファイルI/O
+  - expected: ファイルの読み書き
+    patterns:  
+      - ファイルI/0
+      - ファイルI0
 # typo
   - expected: $1進数
     patterns:
