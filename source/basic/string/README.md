@@ -320,7 +320,7 @@ Iteratorを利用すればサロゲートペアもそれぞれの**Code Point**�
 
 これは、`文字列.split("").length`と同じ結果です。
 
-### Code Pointの数 {#code-point-size}
+### Code Pointの数 {#code-points-length}
 
 一般に言われる**文字列の長さ**とは視覚的な文字の数を表すことが多いため、
 `String#length`だけでは**文字列の長さ**を得ることが難しいです。
