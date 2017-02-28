@@ -211,7 +211,7 @@ JavaScriptでは基本的にStringメソッドは、文字列をCode Unitが並�
 
 ### 文字列とCode UnitとCode Point {#string-code-unit-code-point}
 
-ここまでを踏まえて、文字列とは何かということをまとめると次のように言い表せます。
+ここまでを踏まえて、JavaScriptにおける文字列とは何かということをまとめると次のように言い表せます。
 
 - 「文字列」とは「Code Unit」が順番に並んだもの
 - 「文字列」を「Code Point」ごとに扱う方法が別途用意されている
