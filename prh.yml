@@ -179,6 +179,10 @@ rules:
     patterns: /Template\s*Strings/i
   - expected: タグ付きテンプレートリテラル
     patterns: /Tagged\s*template\s*literals?/i
+  - expected: Unicode
+    patterns: ユニコード
+  - expected: UTF-16
+    patterns: /UTF16/i
   # Code Unit/ Code Point
   - expected: Code Unit
   - expected: Code Poiint
