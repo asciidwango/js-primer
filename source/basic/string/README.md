@@ -314,13 +314,13 @@ Iteratorを利用すればサロゲートペアもそれぞれの**Code Point**�
 "文字列".length; // => 3
 // 評価結果の文字列の要素数（Code Unit数)であるため1つ
 "\u{3042}".length; // => 1
-// サロゲートペアを含むためCode Unitは5つ
-"𩸽のひらき"; // => 5
+// サロゲートペアを含むためCode Unitは6つ
+"𩸽のひらき".length; // => 6
 ```
 
 これは、`文字列.split("").length`と同じ結果です。
 
-### Code Pointでの文字列の長さ
+### Code Pointの数 {#code-point-size}
 
 一般に言われる**文字列の長さ**とは視覚的な文字の数を表すことが多いため、
 `String#length`だけでは**文字列の長さ**を得ることが難しいです。
@@ -329,8 +329,8 @@ Iteratorを利用すればサロゲートペアもそれぞれの**Code Point**�
 そのため、絵文字などサロゲートペアを含む文字列が日常的に使われるようになった今では、
 Code Unitの数を文字列の長さとしたときに直感と反する場合が増えていています。
 
-たとえば、Twitterにおける140文字の**文字数**制限はCode Pointの数が元になっています。（[twitter-text][]というライブラリとして公開されています。）
-Iteratorを利用すれば、Code Pointごとに文字列を列挙できるため、Code Pointの数は次のようにして取得できます。
+たとえば、Twitterにおける140文字の**文字数**にはCode Pointの数をベースにしています。（[twitter-text][]というライブラリとして公開されています。）
+`Array.from`メソッドを利用すれば、文字列におけるCode Pointの数は次のようにして取得できます。
 
 ```js
 // Code Pointごとの配列にする
@@ -339,10 +339,14 @@ var codePoints = Array.from("𩸽のひらき");
 console.log(codePoints.length); // => 5
 ```
 
-**文字列の長さ**を正確に求めることはとても難しいです。
-Code Pointの数を数えた場合も、結合文字や視覚的に見えないゼロ幅接合子（zero width joiner）などを1と数えてしてしまいます。
+Code Pointの数を数えた場合も、結合文字や視覚的に見えないゼロ幅接合子（zero width joiner）などを1つと数えてしてしまいます。そのため、文字として数えたくないものは正規表現で取り除く必要があるなど、視覚的な**文字列の長さ**を数えるにはさらなる工夫が必要になります。
 
-そのため、文字として数えたくないものは正規表現で取り除く必要があるなど、意図した**文字列の長さ**を数えるにはさらなる工夫が必要になるでしょう。
+<!-- textlint-disable preset-ja-technical-writing/no-doubled-joshi -->
+
+ECMAScriptが参照するUnicodeの仕様も更新されて続けています。
+そのため、文字列の長さを正確に測るにはある程度の妥協が必要になります。
+
+<!-- textlint-enable preset-ja-technical-writing/no-doubled-joshi -->
 
 ## 文字列の比較 {#compare}
 ## 文字列の検索 {#search}
