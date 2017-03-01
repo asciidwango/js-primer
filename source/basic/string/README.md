@@ -339,7 +339,7 @@ var codePoints = Array.from("𩸽のひらき");
 console.log(codePoints.length); // => 5
 ```
 
-Code Pointの数を数えた場合も、結合文字や視覚的に見えないゼロ幅接合子（zero width joiner）などを1つと数えてしてしまいます。そのため、文字として数えたくないものは正規表現で取り除く必要があるなど、視覚的な**文字列の長さ**を数えるにはさらなる工夫が必要になります。
+Code Pointの数を数えた場合も、結合文字など視覚的に見えないものを1つと数えてしてしまいます。そのため、文字として数えたくないものは正規表現で取り除く必要があるなど、視覚的な**文字列の長さ**を数えるにはさらなる工夫が必要になります。
 
 <!-- textlint-disable preset-ja-technical-writing/no-doubled-joshi -->
 
