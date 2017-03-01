@@ -325,7 +325,7 @@ Iteratorを利用すればサロゲートペアもそれぞれの**Code Point**�
 一般に言われる**文字列の長さ**とは視覚的な文字の数を表すことが多いため、
 `String#length`だけでは**文字列の長さ**を得ることが難しいです。
 
-絵文字なども[Unicode Emoji][]として定められており、これらはサロゲートペアとして表現されています。
+絵文字などもUnicodeとして定められており、これらはサロゲートペアとして表現されています。
 そのため、絵文字などサロゲートペアを含む文字列が日常的に使われるようになった今では、
 Code Unitの数を文字列の長さとしたときに直感と反する場合が増えていています。
 
@@ -424,8 +424,9 @@ console.log(queryString); // => "?param=1"
 - [文字って何かね？ - Qiita](http://qiita.com/matarillo/items/91b9656428bed7a1a797)
 - [ものかの >> archive >> Unicode正規化　その１](http://tama-san.com/old/document03.html)
 - [結合文字列をUnicode正規化で合成する方法の危険性 - Qiita](http://qiita.com/monokano/items/d4c37d9bc9833eaeda6e)
+- [Unicode（絵文字） - CyberLibrarian](http://www.asahi-net.or.jp/~ax2s-kmtn/ref/unicode/emoji.html "Unicode（絵文字） - CyberLibrarian")
+- [Unicode Emoji](http://unicode.org/emoji/ "Unicode Emoji")
 
-[Unicode Emoji]: http://unicode.org/emoji/  "Unicode Emoji"
 [twitter-text]: https://github.com/twitter/twitter-text  "twitter/twitter-text: Twitter Text Libraries"
 [JavaScript has a Unicode problem · Mathias Bynens]: https://mathiasbynens.be/notes/javascript-unicode  "JavaScript has a Unicode problem · Mathias Bynens"
 [プログラマのための文字コード技術入門]: https://gihyo.jp/magazine/wdpress/plus/978-4-7741-4164-0  "プログラマのための文字コード技術入門（WEB+DB PRESS plusシリーズ）｜gihyo.jp … 技術評論社"

@@ -116,6 +116,7 @@
 		- `+0`と`-0`の違いが必要になる場面で必要だけど滅多にない
 
 ## 配列
+
 - この章では、配列の基本的な操作と配列を扱う場合においてのパターンについて学びます。
 - 配列の作り方、取り出し方、データ探索、削除について学んでいきます。
 - サマリ
@@ -201,46 +202,46 @@
 	- パターン: nullを返さずに配列を返す
 		- また null を返すパターンなどが減るため、常に配列を受け取り/必要なら配列を返すというパターンが出来上がるところが良いところ。
 		- nullを渡すな空の配列を渡せ、nullを返すな空の配列を返せ
-- 未整理
-	- push/pop/shift/unshift
-		- スタックとキューを実装する?
-		- キューはEventEmitterを実装する際に使うような気がするけど、キューじゃなく参照か
-		- `class`が欲しいのでここだと微妙
-		- [unshift, shift, pop, pushが混乱するので、絵で整理した - maeharin log](http://maeharin.hatenablog.com/entry/20130122/unshift_shift_pop_push)
-		- [JavaScript による一番簡単なスタックとキューの実装方法 - Web/DB プログラミング徹底解説](http://keicode.com/script/scr25.php)
-	- Arrayの要素がないことは `hasOwnProperty`を使うことで判定できます。
-	- 配列は特殊なオブジェクトです。
-	- 格納した要素はキーに数字を使って取り出せます。
-		- `Array#from` で正しく配列にできる
-		- そもそもなんでArray-likeというのか。配列の`length`は特殊な性質を持っているため。
-		- 配列の中身に対して動的に返す値が切り替わる
-		- 存在しない配列の添字に代入できるという点
-		- [How ECMAScript 5 still does not allow to subclass array — Perfection Kills](http://perfectionkills.com/how-ecmascript-5-still-does-not-allow-to-subclass-an-array/ "How ECMAScript 5 still does not allow to subclass array — Perfection Kills")
-	- - `Array#concat` = 新しい配列
-	- とにかく配列メソッド(操作)には一貫性がないような感じなので、自分で一貫性を持った扱い方を決めた方が良い。
-			- [Array methods - Immutable or Mutable](https://gist.github.com/azu/30b1ff6831c3bbf7fbd5501d6a2bdfb0 "Array methods - Immutable or Mutable")
-	- Arrayと高階関数
-	- 配列から他のデータ型にする場合で考えるのは、ほぼ文字列ぐらいなので`Array#join`と`Array#map`を使うなどが定番のやり方
-	- Arrayのパターン
-		- Array -> Array
-			- slice、concat、mapなどに代表されるコピーを作って返す操作
-		- Array -> void(破壊的)
-			- pushやshiftに代表されるArrayに破壊的な操作
-		- Array -> String
-			- joinなどの文字列
-		- Array -> Boolean
-			- indexOfやincludes等の操作
-			- `Array.isArray`は特殊なものでArrayかどうかを判定できる
-				- Realmが異なるとArrayはinstanceofでも一致しなくなるため
-		- Array -> any
-			- findなどのArrayからものを取り出す操作
-			- 探索処理を書く際には必須だが
-			- JavaScriptのデフォルトは大体が線形探索担ってる
-		- Other -> Array
-			- `Array#from`、`Array#of`
-			- Array-likeという概念がある
-			- これもやっぱりArrayは特殊なオブジェクトであるから
-			- exitic objectについて
+    - 未整理
+        - push/pop/shift/unshift
+            - スタックとキューを実装する?
+            - キューはEventEmitterを実装する際に使うような気がするけど、キューじゃなく参照か
+            - `class`が欲しいのでここだと微妙
+            - [unshift, shift, pop, pushが混乱するので、絵で整理した - maeharin log](http://maeharin.hatenablog.com/entry/20130122/unshift_shift_pop_push)
+            - [JavaScript による一番簡単なスタックとキューの実装方法 - Web/DB プログラミング徹底解説](http://keicode.com/script/scr25.php)
+        - Arrayの要素がないことは `hasOwnProperty`を使うことで判定できます。
+        - 配列は特殊なオブジェクトです。
+        - 格納した要素はキーに数字を使って取り出せます。
+            - `Array#from` で正しく配列にできる
+            - そもそもなんでArray-likeというのか。配列の`length`は特殊な性質を持っているため。
+            - 配列の中身に対して動的に返す値が切り替わる
+            - 存在しない配列の添字に代入できるという点
+            - [How ECMAScript 5 still does not allow to subclass array — Perfection Kills](http://perfectionkills.com/how-ecmascript-5-still-does-not-allow-to-subclass-an-array/ "How ECMAScript 5 still does not allow to subclass array — Perfection Kills")
+        - - `Array#concat` = 新しい配列
+        - とにかく配列メソッド(操作)には一貫性がないような感じなので、自分で一貫性を持った扱い方を決めた方が良い。
+                - [Array methods - Immutable or Mutable](https://gist.github.com/azu/30b1ff6831c3bbf7fbd5501d6a2bdfb0 "Array methods - Immutable or Mutable")
+        - Arrayと高階関数
+        - 配列から他のデータ型にする場合で考えるのは、ほぼ文字列ぐらいなので`Array#join`と`Array#map`を使うなどが定番のやり方
+        - Arrayのパターン
+            - Array -> Array
+                - slice、concat、mapなどに代表されるコピーを作って返す操作
+            - Array -> void(破壊的)
+                - pushやshiftに代表されるArrayに破壊的な操作
+            - Array -> String
+                - joinなどの文字列
+            - Array -> Boolean
+                - indexOfやincludes等の操作
+                - `Array.isArray`は特殊なものでArrayかどうかを判定できる
+                    - Realmが異なるとArrayはinstanceofでも一致しなくなるため
+            - Array -> any
+                - findなどのArrbayからものを取り出す操作
+                - 探索処理を書く際には必須だが
+                - JavaScriptのデフォルトは大体が線形探索担ってる
+            - Other -> Array
+                - `Array#from`、`Array#of`
+                - Array-likeという概念がある
+                - これもやっぱりArrayは特殊なオブジェクトであるから
+                - exitic objectについて
 
 ## String
 
@@ -291,50 +292,25 @@
 	- Immutableであることがオブジェクトとの大きな違い
 	- 文字列をコピーするメソッドは必要ない
 		- コピーは `var x = str` や `fn(str)` とというときにコピーされるということ
-	- 文字列の比較 `===` でできる
-		- 文字毎に一個づつ比較して全部比較される
-		- 参照の比較ではない
-	- 文字列の比較 `>`
-		- こっちは辞書の順で比較される
-		- 辞書の順は charCode という数値
-		- そもそも文字は CharCode の表現があり、それを表示する側が文字として出してる
-	- ユニコード
-		- [What every JavaScript developer should know about Unicode](https://rainsoft.io/what-every-javascript-developer-should-know-about-unicode/)
-		- [Unicode のサロゲートペアとは何か - ひだまりソケットは壊れない](http://vividcode.hatenablog.com/entry/unicode/surrogate-pair)
-		- Charater
-			- いわゆる文字
-		- Code unit
-		- - [ ] もっと分かりやすく調べる
-		- Code point
-			- Unicodeにおける
-		- 2つのCode unitからなる文字のCode unitの連なりをサロゲートペアと呼ぶ
-		- [String.prototype.codePointAt()](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt "String.prototype.codePointAt()")
-			- サロゲートペア考慮してn番目のcode pointをencodeして返してくれる
-			- 言い換えるとn番目のCode unitを返す
-		- [String.prototype.charAt()](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/charAt "String.prototype.charAt()")
-			- サロゲートペア考慮しないでn番目のcharaterを返す
-			- `"string"[0]`はこれと同じ
-		- [String.prototype.charCodeAt()](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt "String.prototype.charCodeAt()")
-			- サロゲートペア考慮しないでn番目のcharaterのcode pointを返す
-- 文字列の知りたいこと分類
-	- 作成と取得
-		- リテラル、インデックス
-		- sliceとstubstring
-		- padStart/padEnd
-		- コラム なぜ start/end?
-		- 結合、分解
-	- 文字列組み立て
-		- URL、Path、HTMLなど
-		- タグ付きテンプレート
-	- フォーマット
-		- テンプレート、trim
-	- 検索/置換
-		- search、replace、startsWith、includes
-		- <=> 正規表現
-	- ユニコード
-		- サロゲートペア
-		- UTF-16
-		- 文字 = `.` `/regexp/u`
+    - 文字列の知りたいこと分類
+        - 作成と取得
+            - リテラル、インデックス
+            - sliceとstubstring
+            - padStart/padEnd
+            - コラム なぜ start/end?
+            - 結合、分解
+        - 文字列組み立て
+            - URL、Path、HTMLなど
+            - タグ付きテンプレート
+        - フォーマット
+            - テンプレート、trim
+        - 検索/置換
+            - search、replace、startsWith、includes
+            - <=> 正規表現
+        - ユニコード
+            - サロゲートペア
+            - UTF-16
+            - 文字 = `.` `/regexp/u`
 
 ## 正規表現
 
