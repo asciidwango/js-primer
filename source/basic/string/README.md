@@ -512,6 +512,7 @@ console.log(queryString); // => "?param=1"
     - [Intl - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_identification_and_negotiation)
     - [andyearnshaw/Intl.js: Compatibility implementation of the ECMAScript Internationalization API (ECMA-402) for JavaScript](https://github.com/andyearnshaw/Intl.js/)
     - [ECMAScript® 2017 Internationalization API Specification](https://tc39.github.io/ecma402/)
+    - [ウェブサイトをグローバル化するために便利なIntl APIの話 - Qiita](http://qiita.com/teyosh/items/b126f21a16b795885067 "ウェブサイトをグローバル化するために便利なIntl APIの話 - Qiita")
 
 [twitter-text]: https://github.com/twitter/twitter-text  "twitter/twitter-text: Twitter Text Libraries"
 [JavaScript has a Unicode problem · Mathias Bynens]: https://mathiasbynens.be/notes/javascript-unicode  "JavaScript has a Unicode problem · Mathias Bynens"
