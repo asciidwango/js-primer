@@ -508,6 +508,10 @@ console.log(queryString); // => "?param=1"
 - [結合文字列をUnicode正規化で合成する方法の危険性 - Qiita](http://qiita.com/monokano/items/d4c37d9bc9833eaeda6e)
 - [Unicode（絵文字） - CyberLibrarian](http://www.asahi-net.or.jp/~ax2s-kmtn/ref/unicode/emoji.html "Unicode（絵文字） - CyberLibrarian")
 - [Unicode Emoji](http://unicode.org/emoji/ "Unicode Emoji")
+- 国際化APIについて
+    - [Intl - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_identification_and_negotiation)
+    - [andyearnshaw/Intl.js: Compatibility implementation of the ECMAScript Internationalization API (ECMA-402) for JavaScript](https://github.com/andyearnshaw/Intl.js/)
+    - [ECMAScript® 2017 Internationalization API Specification](https://tc39.github.io/ecma402/)
 
 [twitter-text]: https://github.com/twitter/twitter-text  "twitter/twitter-text: Twitter Text Libraries"
 [JavaScript has a Unicode problem · Mathias Bynens]: https://mathiasbynens.be/notes/javascript-unicode  "JavaScript has a Unicode problem · Mathias Bynens"
