@@ -350,6 +350,87 @@ ECMAScriptが参照するUnicodeの仕様も更新されて続けています。
 <!-- textlint-enable preset-ja-technical-writing/no-doubled-joshi -->
 
 ## 文字列の比較 {#compare}
+
+文字列の比較には`===`（厳密比較演算子）を利用します。
+
+```js
+"文字列" === "文字列"; // => true
+// 文字列の評価結果を比較するため、評価結果の文字列はどちらも同じ
+"𩸽のひらき" === "\u{29e3d}のひらき"; // => true
+// 一致しなければfalseとなる
+"JS" === "ES"; // => false
+```
+
+この比較演算子による文字列比較は、次のような比較が行われています。
+
+- 文字列の要素であるCode Unitが同じ順番で並んでいる
+- オペランドの文字列は同じ長さである
+
+同様に`>`や`<`などの比較演算子で文字列同士を比較することもできます。
+このときに比較されるのもCode Unitを数値化した値を順番に比較します。
+しかし、これらの比較演算子は暗黙的な型変換を行うため事前に文字列同士であるかのチェックが必要です。
+
+```js
+// "A"（65）は"B"（66）よりCode Unitの値が小さい
+"A" > "B"; // => false
+// 先頭から順番に比較し C > D が falseであるため
+"ABC" > "ABD"; // => false
+```
+
+文字列同士に対する`>`（大なり演算子）は次のような処理が行われていると考えられます。
+
+```js
+// 文字列を対象にした > の実装
+function largeThan(a, b) { 
+    // Code Unitごとに1つづつ > で比較する
+    return a.split("").some((codeUnit, index) => {
+        return codeUnit > b[index];
+    });
+}
+largeThan("ABC", "ABD"); // => false
+```
+
+このように、JavaScriptの文字列比較はCode Unitがベースとなります。
+
+この先頭から順番に比較するという仕様は、数字の文字列を数値としての大きさでソートしたい時などに問題が起きます。
+次のように、`["10", "2", "1"]`の数字をソートした場合、直感的には`["1", "2", "10"]`となって欲しいですが、実際の結果は異なります。
+
+```js
+var numberStrings = ["10", "2", "1"];
+numberStrings.sort(); // => ["1", "10", "2"]
+```
+
+これは、`"10" < "2"`を比較した場合に、先頭から文字（Code Unit）を順番に比較されるためです。
+つまり まず`"10"[0] < "2"[0]`が比較され、この結果は`true`となります。
+
+```js
+"10" < "2";// => true
+```
+
+また、文字列の並びは国ごとの言語によって異なる場合があります。
+このように、Code Unitの比較は必ずしも期待する結果とは異なる場合があります。
+
+このように文字列の処理は、国ごとに自然となる形が異なるため、地域化（ローカライズ）する必要があります。
+JavaScriptでは、ECMAScriptの関連仕様として国際化APIが用意されています。
+
+この書籍では詳しく紹介しませんが、国際化APIは`Intl`オブジェクトにあり、言語に依存した整形や比較などが利用できます。
+`Intl`オブジェクトはECMAScriptの関連する仕様という立ち位置であるため、すべての実行環境で実装されているわけではありません。
+
+ブラウザにおけるサポート状況については[Can I use...][]で見ることができます。
+
+先ほどの数字のソートについては、国際化APIのひとつである`Intl.Collator`コンストラクタを利用することで地域化できます。
+`Intl.Collator`はさまざまなオプションを持ちますが、`numeric`オプションを`true`にすることで数字を数値として比較できます。
+
+```js
+// numericをtrueとすると数字が数値として比較されるようになる
+var collator = new Intl.Collator("ja", { numeric: true });
+// collator.compareはsortに渡せる関数となっている
+["1", "10", "2"].sort(collator.compare); // => ["1", "2", "10"]
+```
+
+文字列の比較においては、単純な比較であれば、`===`（厳密比較演算子）や`>`（大なり演算子）を利用します。
+その国においてのより自然な形を求める場合は、地域化するために国際化APIなどを利用できます。
+
 ## 文字列の検索 {#search}
 ## 文字列の置換/削除 {#replace-delete}
 ## 部分文字列の取得 {#slice}
@@ -431,3 +512,4 @@ console.log(queryString); // => "?param=1"
 [twitter-text]: https://github.com/twitter/twitter-text  "twitter/twitter-text: Twitter Text Libraries"
 [JavaScript has a Unicode problem · Mathias Bynens]: https://mathiasbynens.be/notes/javascript-unicode  "JavaScript has a Unicode problem · Mathias Bynens"
 [プログラマのための文字コード技術入門]: https://gihyo.jp/magazine/wdpress/plus/978-4-7741-4164-0  "プログラマのための文字コード技術入門（WEB+DB PRESS plusシリーズ）｜gihyo.jp … 技術評論社"
+[Can I use...]: http://caniuse.com/#feat=internationalization  "Can I use... Support tables for HTML5, CSS3, etc"
