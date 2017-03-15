@@ -204,10 +204,11 @@ JavaScriptでは基本的にStringメソッドは、文字列をCode Unitが並�
 "𩸽"[0]; // => "\uD867"
 ```
 
-次の2つは例外として、文字列をCode Pointが並んでいるように扱います。
+次の3つは例外として、文字列をCode Pointが並んでいるように扱います。
 
 - Iterator（`for...or`や`Array.from`など)
 - メソッドに`CodePoint`という名前を含むもの
+- `u`（Unicode）フラグが有効化されている正規表現
 
 ### 文字列とCode UnitとCode Point {#string-code-unit-code-point}
 
@@ -267,7 +268,7 @@ console.log(characters); // => ["文", "字", "列"]
 
 しかし、この空文字での区切り方には問題があります。
 
-JavaScriptにおいて、メソッド名に`CodePoint`が含まれているものやIteratorを扱うもの**以外**は、すべてCode Unitが並んでいるものとして扱われます。
+一部を除いた文字列操作は、基本的に文字列をCode Unitが並んでいるものとして扱います。
 つまり、`split`メソッドも各Code Unitごとに文字列を分解しています。
 
 次のコードを見ると、`string.split("")`は各**文字**ごとで分解するのではなく、各**Code Unit**ごとに分解していることが分かります。
