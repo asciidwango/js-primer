@@ -350,7 +350,63 @@ ECMAScriptが参照するUnicodeの仕様も更新されて続けています。
 <!-- textlint-enable preset-ja-technical-writing/no-doubled-joshi -->
 
 ## 文字列の比較 {#compare}
+## 文字列と正規表現 {#string-and-regexp}
+
+Stringのインスタンスメソッドは、引数として文字列だけではなく、正規表現を渡せるものも多いです。
+
+たとえば、`String#search`も引数に正規表現を渡せるメソッドのひとつです。
+`search`メソッドは、引数の文字列が含まれているかを検索し、含まれているなら`true`を返します。
+
+```js
+var string = "JavaScript is an implementation of ECMAScript.";
+var isIncluded = string.search("ECMAScript");
+console.log(isIncluded); // => true
+```
+
+`String#search`は引数に文字列だけではなく、正規表現オブジェクトを渡すことができ、
+引数に文字列を渡すだけではできなかった曖昧な検索を行うことができます。
+
+```js
+var string = "JavaScript is an implementation of ES";
+// "ES"または"ECMAScript"にマッチする正規表現で検索
+var isIncluded = string.search(/(ES|ECMAScript)/);
+console.log(isIncluded); // => true
+```
+
+一方、RegExpには`RegExp#test`メソッドという`String#search`メソッドと同様のことを行うものが存在します。
+レシーバーが正規表現オブジェクトになっている点を除けば、真偽値を返す点も同様です。
+
+```js
+// "ES"または"ECMAScript"にマッチする正規表現
+var regExp = /(ES|ECMAScript)/;
+var string = "JavaScript is an implementation of ES";
+console.log(regExp.test(string)); // => true
+```
+
+このように、Stringのインスタンスメソッドの引数に正規表現オブジェクトを渡せるものがあり、
+逆にRegExpのインスタンスメソッドに文字列を渡せるなど、文字列と正規表現は関連が深いです。
+
+多くの処理は正規表現を利用すれば書くことができますが、Stringにはより明示的なメソッドが存在するケースもあります。
+例えば、文字列の先頭が"ECMAScript"から始まるかを判定したい場合、正規表現を使えば次のように書くことができます。
+
+```js
+"ECMAScript is specification".search(/^ECMAScript/);
+```
+
+これはは`String#ECMAScript`を使って書くこともできます。
+
+```js
+"ECMAScript is specification".startWith("ECMAScript");
+```
+
+- [ ] もっと正規表現が複雑な例?
+
 ## 文字列の検索 {#search}
+
+- その要素のインデックスが欲しい場合（indexOf）
+- その要素自体が欲しい場合（match, slice）
+- その要素が含まれているかという真偽値が欲しい場合（includes, search, test）
+
 ## 文字列の置換/削除 {#replace-delete}
 ## 部分文字列の取得 {#slice}
 
