@@ -21,6 +21,10 @@ $ npm install --save marked
 
 [import main.js](src/main-0.js)
 
+markedパッケージから取得した`marked`オブジェクトは、Markdown文字列を引数に取りHTML文字列を返す関数です。
+次のように`readFile`関数で読み込んだファイルの文字列を引数として渡せば、HTMLに変換できます。
+
+[import main.js](src/main-1.js)
 
 ## 変換オプションを作成する
 
