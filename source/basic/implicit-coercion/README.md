@@ -270,7 +270,7 @@ Number.parseInt("1", 10); // => 1;
 Number.parseInt("42px", 10); // => 42
 Number.parseInt("10.0", 10); // => 10
 Number.parseFloat("1"); // => 1
-Number.parseInt("42.0px"); // => 42.0
+Number.parseFloat("42.0px"); // => 42.0
 Number.parseFloat("10.0"); // => 10.0
 ```
 
