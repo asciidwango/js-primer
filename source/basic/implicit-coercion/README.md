@@ -268,10 +268,10 @@ console.log(number); // 入力された文字列を数値に変換したもの
 Number.parseInt("1", 10); // => 1;
 // 余計な文字はパース時に無視して取り出す
 Number.parseInt("42px", 10); // => 42
-Number.parseInt("10.0", 10); // => 10
+Number.parseInt("10.5", 10); // => 10
 Number.parseFloat("1"); // => 1
-Number.parseInt("42.0px"); // => 42.0
-Number.parseFloat("10.0"); // => 10.0
+Number.parseFloat("42.5px"); // => 42.5
+Number.parseFloat("10.5"); // => 10.5
 ```
 
 しかし、ユーザーが数字を入力するとは限りません。
