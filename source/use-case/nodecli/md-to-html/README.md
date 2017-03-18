@@ -37,7 +37,7 @@ markedにはMarkdownの[変換オプション][]があり、オプションの�
 
 ### gfmオプション
 
-`gfm`オプションは、GitHubにおけるMarkdownの仕様([GitHub Flavored Markdown][], GFM)に従って変換するかどうかを決めるオプションです。
+`gfm`オプションは、GitHubにおけるMarkdownの仕様([GitHub Flavored Markdown][], GFM)に合わせて変換するかを決めるオプションです。
 markedのデフォルトでは`true`になっています。GFMは標準的なMarkdownにいくつかの拡張を加えたもので、代表的な拡張がURLの自動リンク化です。
 例として、次のようなMarkdownファイルを用意し、先ほどのスクリプトと、`gfm`オプションを`false`にしたスクリプトで結果の違いを見てみましょう。
 
@@ -117,8 +117,8 @@ https://asciidwango.github.io/js-primer/</p>
 
 ```js
 program
-    .option('--gfm <flag>', 'GFMを有効にする')
-    .option('-S, --sanitize <flag>', 'サニタイズを行う');
+    .option("--gfm <flag>", "GFMを有効にする")
+    .option("-S, --sanitize <flag>", "サニタイズを行う");
 
 program.parse(process.argv);
 ```
@@ -140,7 +140,7 @@ const markedOptions = Object.assign({}, {
 }, program);
 ```
 
-あとは`markedOptions`オブジェクトをもとにmarkedにオプションを渡すだけです。
+あとは`markedOptions`オブジェクトからmarkedにオプションを渡すだけです。
 スクリプト全体は次のようになります。
 
 [import main.js](src/main-4.js)
