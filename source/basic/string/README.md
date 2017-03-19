@@ -430,6 +430,67 @@ var collator = new Intl.Collator("ja", { numeric: true });
 その地域や言語においてのより自然な形を求める場合は、ローカライズするために国際化APIなどを利用できます。
 
 ## 文字列の検索 {#search}
+
+文字列の検索方法として、大きく分けて文字列による検索と正規表現による検索があります。
+
+### 文字列による検索
+
+文字列による検索は「文字列」から「部分文字列」を検索できます。
+Stringメソッドには検索したい状況に応じたものが用意されています。
+
+- `文字列.startsWith("部分文字列")`: 先頭にあるかの真偽値を返す[ES2015]
+- `文字列.endsWith("部分文字列")`: 終端にあるかの真偽値を返す[ES2015]
+- `文字列.includes("部分文字列")`: 含むかの真偽値を返す[ES2015]
+- `文字列.indexOf("部分文字列")`: 先頭からの検索し、インデックスを返す
+- `文字列.lastIndexOf("部分文字列")`: 末尾から検索し、インデックスを返す
+
+固定文字列による検索は、指定した部分文字列が見つかった時点で探索は終了します。
+そのため、先頭から検索する`String#indexOf`メソッドと末尾から検索する`String#lastIndexOf`メソッドのように分かれているものがあります。
+
+具体的な例をいくつか見てみましょう。
+
+```js
+// 検索対象となる文字列
+var string = "にわにはにわにわとりがいる";
+// startsWith - 部分文字列が先頭ならtrue
+console.log(string.startsWith("にわ")); // => true
+console.log(string.startsWith("いる")); // => false
+// endsWith - 部分文字列が末尾ならtrue
+console.log(string.endsWith("にわ")); // => false
+console.log(string.endsWith("いる")); // => true
+// includes - 部分文字列が含まれるならtrue
+console.log(string.includes("にわ")); // => true
+console.log(string.includes("いる")); // => true
+// indexOf と lastIndexOf はインデックス(0から始まる位置)を返す
+console.log("にわにはにわにわとりがいる".indexOf("にわ")); // => 0
+console.log("にわにはにわにわとりがいる".lastIndexOf("にわ")); // => 6
+```
+
+ES2015より前では`String#indexOf`メソッドしか固定文字列の検索できませんでした。
+そのため、`String#inclues`メソッドを`indexOf`メソッドで表現するイディオムがありました。
+しかし、ES2015以降は`String#includes`メソッドなど、より適切なメソッドが追加されているのでそちらを利用しましょう。
+
+```js
+// includesをindexOfで表現するイディオム
+console.log("にわにはにわとりがいる".indexOf("にわ") !== -1); // => true
+console.log("にわにはにわとりがいる".includes("にわ")); // => true
+```
+
+### 正規表現による検索
+
+正規表現による検索は、RegExp（正規表現オブジェクト）のメソッドを利用します。
+
+- `String#startsWith`: `/^部分文字列/.test(文字列)`
+- `String#endsWith`: `/部分文字列$/.test(文字列)`
+- `String#includes`: `/部分文字列/.test(文字列)`
+- `String#indexOf`: `文字列.search(/部分文字列/)`
+
+### どちらを使うべきか
+
+- 固定文字列は意図が表明できる
+- 正規表現はコメントや変数で説明しないと意図が残らない
+- 正規表現で何でもは行わない
+
 ## 文字列の置換/削除 {#replace-delete}
 ## 部分文字列の取得 {#slice}
 
