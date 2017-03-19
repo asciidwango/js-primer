@@ -202,46 +202,46 @@
 	- パターン: nullを返さずに配列を返す
 		- また null を返すパターンなどが減るため、常に配列を受け取り/必要なら配列を返すというパターンが出来上がるところが良いところ。
 		- nullを渡すな空の配列を渡せ、nullを返すな空の配列を返せ
-    - 未整理
-        - push/pop/shift/unshift
-            - スタックとキューを実装する?
-            - キューはEventEmitterを実装する際に使うような気がするけど、キューじゃなく参照か
-            - `class`が欲しいのでここだと微妙
-            - [unshift, shift, pop, pushが混乱するので、絵で整理した - maeharin log](http://maeharin.hatenablog.com/entry/20130122/unshift_shift_pop_push)
-            - [JavaScript による一番簡単なスタックとキューの実装方法 - Web/DB プログラミング徹底解説](http://keicode.com/script/scr25.php)
-        - Arrayの要素がないことは `hasOwnProperty`を使うことで判定できます。
-        - 配列は特殊なオブジェクトです。
-        - 格納した要素はキーに数字を使って取り出せます。
-            - `Array#from` で正しく配列にできる
-            - そもそもなんでArray-likeというのか。配列の`length`は特殊な性質を持っているため。
-            - 配列の中身に対して動的に返す値が切り替わる
-            - 存在しない配列の添字に代入できるという点
-            - [How ECMAScript 5 still does not allow to subclass array — Perfection Kills](http://perfectionkills.com/how-ecmascript-5-still-does-not-allow-to-subclass-an-array/ "How ECMAScript 5 still does not allow to subclass array — Perfection Kills")
-        - - `Array#concat` = 新しい配列
-        - とにかく配列メソッド(操作)には一貫性がないような感じなので、自分で一貫性を持った扱い方を決めた方が良い。
-                - [Array methods - Immutable or Mutable](https://gist.github.com/azu/30b1ff6831c3bbf7fbd5501d6a2bdfb0 "Array methods - Immutable or Mutable")
-        - Arrayと高階関数
-        - 配列から他のデータ型にする場合で考えるのは、ほぼ文字列ぐらいなので`Array#join`と`Array#map`を使うなどが定番のやり方
-        - Arrayのパターン
-            - Array -> Array
-                - slice、concat、mapなどに代表されるコピーを作って返す操作
-            - Array -> void(破壊的)
-                - pushやshiftに代表されるArrayに破壊的な操作
-            - Array -> String
-                - joinなどの文字列
-            - Array -> Boolean
-                - indexOfやincludes等の操作
-                - `Array.isArray`は特殊なものでArrayかどうかを判定できる
-                    - Realmが異なるとArrayはinstanceofでも一致しなくなるため
-            - Array -> any
-                - findなどのArrbayからものを取り出す操作
-                - 探索処理を書く際には必須だが
-                - JavaScriptのデフォルトは大体が線形探索担ってる
-            - Other -> Array
-                - `Array#from`、`Array#of`
-                - Array-likeという概念がある
-                - これもやっぱりArrayは特殊なオブジェクトであるから
-                - exitic objectについて
+- 未整理
+	- push/pop/shift/unshift
+		- スタックとキューを実装する?
+		- キューはEventEmitterを実装する際に使うような気がするけど、キューじゃなく参照か
+		- `class`が欲しいのでここだと微妙
+		- [unshift, shift, pop, pushが混乱するので、絵で整理した - maeharin log](http://maeharin.hatenablog.com/entry/20130122/unshift_shift_pop_push)
+		- [JavaScript による一番簡単なスタックとキューの実装方法 - Web/DB プログラミング徹底解説](http://keicode.com/script/scr25.php)
+	- Arrayの要素がないことは `hasOwnProperty`を使うことで判定できます。
+	- 配列は特殊なオブジェクトです。
+	- 格納した要素はキーに数字を使って取り出せます。
+		- `Array#from` で正しく配列にできる
+		- そもそもなんでArray-likeというのか。配列の`length`は特殊な性質を持っているため。
+		- 配列の中身に対して動的に返す値が切り替わる
+		- 存在しない配列の添字に代入できるという点
+		- [How ECMAScript 5 still does not allow to subclass array — Perfection Kills](http://perfectionkills.com/how-ecmascript-5-still-does-not-allow-to-subclass-an-array/ "How ECMAScript 5 still does not allow to subclass array — Perfection Kills")
+	- - `Array#concat` = 新しい配列
+	- とにかく配列メソッド(操作)には一貫性がないような感じなので、自分で一貫性を持った扱い方を決めた方が良い。
+			- [Array methods - Immutable or Mutable](https://gist.github.com/azu/30b1ff6831c3bbf7fbd5501d6a2bdfb0 "Array methods - Immutable or Mutable")
+	- Arrayと高階関数
+	- 配列から他のデータ型にする場合で考えるのは、ほぼ文字列ぐらいなので`Array#join`と`Array#map`を使うなどが定番のやり方
+	- Arrayのパターン
+		- Array -> Array
+			- slice、concat、mapなどに代表されるコピーを作って返す操作
+		- Array -> void(破壊的)
+			- pushやshiftに代表されるArrayに破壊的な操作
+		- Array -> String
+			- joinなどの文字列
+		- Array -> Boolean
+			- indexOfやincludes等の操作
+			- `Array.isArray`は特殊なものでArrayかどうかを判定できる
+				- Realmが異なるとArrayはinstanceofでも一致しなくなるため
+		- Array -> any
+			- findなどのArrbayからものを取り出す操作
+			- 探索処理を書く際には必須だが
+			- JavaScriptのデフォルトは大体が線形探索担ってる
+		- Other -> Array
+			- `Array#from`、`Array#of`
+			- Array-likeという概念がある
+			- これもやっぱりArrayは特殊なオブジェクトであるから
+			- exitic objectについて
 
 ## String
 
@@ -275,10 +275,23 @@
 		- `===`で文字列を比較する
 		- また`>`は辞書順
 	- 文字列の検索
-		- 文字列の検索方法は、 `String#include` や `String#indexOf`、`String#search`などがある。
-		- `String#search(regExp)` は正規表現を使う
+		- 固定文字列の検索
+			- `対象文字列.startsWith("検索文字列")`: 先頭にあるか
+			- `対象文字列.endsWith("検索文字列")`: 終端にあるか
+			- `対象文字列.includes("検索文字列")`: 含むか
+			- `対象文字列.indexOf("検索文字列")`: インデックス
+		- 正規表現の検索
+			- `String#startsWith`: `/^検索文字列/.test(対象文字列)`
+			- `String#endsWith`: `/検索文字列$/.test(対象文字列)`
+			- `String#includes`: `/検索文字列/.test(対象文字列)`
+			- `String#indexOf`: `対象文字列.search(/検索文字列/)`
+		- 文字列と正規表現の違い
+			- 意図の表明
+			- コメントが必要
 	- 文字列の置換/削除
 		- `String#replace`を使う
+	- [コラム] 文字列と正規表現
+		- Symbolで同じ処理を共有している
 	- 文字列の組み立て
 		- 文字列を操作してやりたいことは最終的に目的の文字列を組み立てることです。
 		- 多くは文字列の結合や削除だけで目的を満たせますが、構造的な意味を持つ文字列の場合は、専用の処理を書く必要が出てくる場合があります。
