@@ -433,19 +433,59 @@ var collator = new Intl.Collator("ja", { numeric: true });
 
 文字列の検索方法として、大きく分けて文字列による検索と正規表現による検索があります。
 
-### 文字列による検索
+<!-- Note: 検索はある目的を持って探すこと、探索は目的外の有益な情報も探すことを含んでいる -->
+<!-- ここでは目的が決まっているので"検索" -->
+<!-- http://www.st38.net/chigaino-zatugaku/z0174.html -->
+
+### 文字列による検索 {#search-by-string}
 
 文字列による検索は「文字列」から「部分文字列」を検索できます。
 Stringメソッドには検索したい状況に応じたものが用意されています。
 
-- `文字列.startsWith("部分文字列")`: 先頭にあるかの真偽値を返す[ES2015]
-- `文字列.endsWith("部分文字列")`: 終端にあるかの真偽値を返す[ES2015]
-- `文字列.includes("部分文字列")`: 含むかの真偽値を返す[ES2015]
+#### インデックスの取得 {#search-index-by-string}
+
+検索して結果「部分文字列」の開始インデックスを取得する`String#indexOf`メソッドがあります。
+これは、配列の`Array#indexOf`メソッドと同じで、厳密等価演算子（`===`）で一致する文字列のインデックスを取得します。
+
 - `文字列.indexOf("部分文字列")`: 先頭からの検索し、インデックスを返す
 - `文字列.lastIndexOf("部分文字列")`: 末尾から検索し、インデックスを返す
 
-固定文字列による検索は、指定した部分文字列が見つかった時点で探索は終了します。
-そのため、先頭から検索する`String#indexOf`メソッドと末尾から検索する`String#lastIndexOf`メソッドのように分かれているものがあります。
+固定文字列による検索は、指定した部分文字列が見つかった時点で検索は終了します。
+そのため、先頭から検索する`String#indexOf`メソッドと末尾から検索する`String#lastIndexOf`メソッドのように検索方向でメソッドが分かれています。
+
+```js
+// 検索対象となる文字列
+var string = "にわにはにわにわとりがいる";
+// indexOfは先頭から検索しインデックスを返す - "**にわ**にはにわにわとりがいる"
+// "にわ"の先頭のインデックスを返すため 0 となる
+console.log(string.indexOf("にわ")); // => 0
+// lastIndexOfは末尾から検索しインデックスを返す- "にわにはにわ**にわ**とりがいる"
+console.log(string.lastIndexOf("にわ")); // => 6
+// 該当する部分文字列が見つからない場合は -1 を返す
+console.log(string.indexOf("キーワード")); // => -1
+```
+
+検索している部分文字列は固定長であるため、一致した文字列は自明ですが、
+`String#slice`と取得したインデックスを組み合わせることで検索結果を取得できます。
+
+```js
+var string = "JavaScript";
+var searchWord = "Script";
+var index = string.indexOf("Script");
+if (index !== -1) {
+    console.log(string.slice(index, index + searchWord.length)); // => searchWord
+} else {
+    console.log(`${searchWord}は見つかりませんでした`);
+}
+```
+
+#### 真偽値の取得 {#test-by-string}
+
+「文字列」に「部分文字列」が含まれているかを検索する方法がいくつか用意されています。
+
+- `文字列.startsWith("部分文字列")`: 先頭にあるかの真偽値を返す[ES2015]
+- `文字列.endsWith("部分文字列")`: 終端にあるかの真偽値を返す[ES2015]
+- `文字列.includes("部分文字列")`: 含むかの真偽値を返す[ES2015]
 
 具体的な例をいくつか見てみましょう。
 
@@ -461,9 +501,6 @@ console.log(string.endsWith("いる")); // => true
 // includes - 部分文字列が含まれるならtrue
 console.log(string.includes("にわ")); // => true
 console.log(string.includes("いる")); // => true
-// indexOf と lastIndexOf はインデックス(0から始まる位置)を返す
-console.log("にわにはにわにわとりがいる".indexOf("にわ")); // => 0
-console.log("にわにはにわにわとりがいる".lastIndexOf("にわ")); // => 6
 ```
 
 ES2015より前では`String#indexOf`メソッドしか固定文字列の検索できませんでした。
@@ -476,20 +513,181 @@ console.log("にわにはにわとりがいる".indexOf("にわ") !== -1); // =>
 console.log("にわにはにわとりがいる".includes("にわ")); // => true
 ```
 
-### 正規表現による検索
+### 正規表現による検索 {#search-by-regexp}
 
-正規表現による検索は、RegExp（正規表現オブジェクト）のメソッドを利用します。
+正規表現による検索は、正規表現オブジェクトを利用します。
+
+正規表現オブジェクトは正規表現リテラルや`RegExp`コンストラクタを使うことで生成できます。
+`RegExp`コンストラクタは、動的に正規表現オブジェクトを生成するために利用されます。
+
+正規表現リテラルは、`/`と`/`のリテラル内に正規表現のパターンを書くことで、正規表現オブジェクトを静的に生成します。
+正規表現のパターン内では、`+`や`\`（バックスラッシュ）から始まる特殊文字が特別な意味を持ちます。
+
+次のコードでは、スペースやタブにマッチする特殊文字である`\s`を使い、3つ連続するホワイトスペースにマッチする正規表現を生成しています。
+
+```js
+// 3つの連続するスペースにマッチする正規表現
+var pattern = /\s{3}/;
+```
+
+一方、`RegExp`コンストラクタは、変数などを使った正規表現オブジェクトを動的に生成できます。
+注意点として、`\`（バックスラッシュ）自体が、文字列中ではエスケープ文字であることに注意してください。
+そのため、文字列として正規表現を書く際には、バックスラッシュから始まる特殊文字はバックスラッシュを2つにする必要があります。
+
+```js
+var spaceCount = 3;
+// `/\s{3}/`の正規表現を動的に生成する
+// "\"がエスケープ文字であるため、"\"自身を文字列として書くには、"\\"のように2つ書く
+var pattern = new RegExp(`\\s{${spaceCount}}`);
+```
+
+`RegExp`コンストラクタは動的に正規表現オブジェクトを生成できますが、正規表現の特殊文字のエスケープが必要になるため、
+とても読みにくい正規表現となります。
+そのため、正規表現リテラルで表現できる場合は、リテラルで表現することをお勧めします。
+
+#### マッチした文字列を取得 {#match-by-regexp}
+
+文字列による検索は、検索しマッチした文字列は固定長であるため`indexOf`メソッドでインデックスを取得することに意味がありました。
+しかし、正規表現による検索は、パターンによる検索であるため、検索しマッチした文字列は固定長でない場合があります。
+つまり、インデックスのみを取得しても、実際にマッチした文字列が分かりません。
+
+そのため、`String#indexOf`メソッドの正規表現を引数に取れるバージョンである`String#search`メソッドは殆ど利用されません。
+
+- `String#indexOf(部分文字列)`: 部分文字列にマッチした文字列のインデックスを返す
+- `String#search(/パターン/)`: 正規表現のパターンにマッチした文字列のインデックスを返す
+
+代わりにマッチした文字列そのものを取得できる`RegExp#exec`メソッドか`String#match`メソッドが利用されます。
+これらのメソッドは、正規表現の繰り返す`g`フラグ（global searchの略称）と組み合わせてよく利用されます。
+
+- `String#match(正規表現)`: 文字列中で一致するものを検索する。
+    - マッチした文字列の配列を返す。
+    - マッチしない場合は null を返す。 
+    - `g`フラグが有効化されている時は、マッチしたすべての結果を配列で返す。
+- `RegExp#exec(文字列)`: 文字列中で一致するものを検索する。
+    - マッチした文字列の配列を返す。
+    - マッチしない場合は null を返す。 
+    - `g`フラグが有効化されている時は、正規表現オブジェクト自身が最後にマッチしたインデックスを記憶する
+
+通常の検索では、検索結果が見つかった時点で検索が終了します。
+しかし、正規表現の`g`フラグを有効化することで、検索結果を見つけた場合も検索を続けることができます。
+
+たとえば、`/[a-zA-Z]+/`という正規表現は`a`から`Z`のどれかの文字が1つ以上連続しているものにマッチします。
+`String#match`メソッドは、`g`フラグのなしではマッチする最初の結果のみを取得しますが、`g`フラグありではすべての結果を取得します。
+
+<!-- matchの結果は配列だがindexプロパティを持つためdeepEqualが失敗する -->
+<!-- disable-doc-test -->
+
+```js
+var string = "ABC あいう DE えお";
+// gフラグなしでは、最初の結果のみを持つ配列を返す
+var results = string.match(/[a-zA-Z]+/);
+console.log(results); // => ["ABC"]
+// aからZのどれかの文字が1つ以上連続するパターンにマッチするものを繰り返した（gフラグ)結果を返す
+var resultsWithG = string.match(/[a-zA-Z]+/g);
+console.log(resultsWithG); // => ["ABC", "DE"]
+```
+
+`RegExp#exec`メソッドも、`g`フラグの有無によって挙動が変化します。
+`g`フラグなしではマッチする最初の結果のみを取得します。
+しかし、`g`フラグありでは最後にマッチした末尾のインデックスを正規表現オブジェクトの`lastIndex`プロパティに記憶します。
+次に、`exec`メソッドを呼び出すと最後にマッチした末尾のインデックスから検索が開始されます。
+
+<!-- disable-doc-test -->
+
+```js
+var string = "ABC あいう DE えお";
+// gフラグなしでは、最初の結果のみを持つ配列を返す
+var results = /[a-zA-Z]+/.exec(string);
+console.log(results); // => ["ABC"]
+// gフラグが有効化されているパターン
+var alphabetsPattern = /[a-zA-Z]+/g;
+// まだ一度も検索していないので、lastIndexは0となり先頭から検索開始される
+console.log(alphabetsPattern.lastIndex); // => 0
+// gフラグありでも、一回目の結果は同じだが、`lastIndex`プロパティが更新される
+console.log(alphabetsPattern.exec(string)); // => ["ABC"]
+console.log(alphabetsPattern.lastIndex); // => 3
+// 2回目の検索が、`lastIndex`の値のインデックスから開始される
+console.log(alphabetsPattern.exec(string)); // => ["DE"]
+```
+
+どちらのメソッドも`g`フラグによって返す値も変わり、`RegExp#exec`メソッドに至っては副作用をもちます。
+実際に色々なパターンを試して見てなれるのがよいでしょう。
+
+どちらのメソッドも正規表現のパターンに`(`と`)`で囲んだ文字列を取得できます。
+この`(pattern)`のような括弧のことをキャプチャリングと呼びます。
+正規表現のパターン全体の文字列は不要だが、`()`で囲んだ部分（キャプチャした部分）の文字列だけが欲しい場合に利用できます。
+
+```js
+// "ECMAScript (数字+)"にマッチするが、欲しい文字列は数字の部分のみ
+var pattern = /ECMAScript (\d+)/i;
+// 返り値は0番目がマッチした全体、1番目がキャプチャの1番目というように対応している
+// [マッチした全部の文字列, キャプチャ1, キャプチャ2 ....]
+var [all, capture1] = "ECMAScript 6".match(pattern);
+console.log(all); // => "ECMAScript 6"
+console.log(capture1); // => "6"
+```
+
+#### 真偽値を取得 {#test-by-regexp}
+
+正規表現オブジェクトを使い、そのパターンにマッチするかをテストするには、`RegExp#test`メソッドを利用できます。
+
+正規表現のパターンには、位置を指定する特殊文字があります。
+そのため、「文字列による検索」で登場したメソッドは、すべての特殊文字と`RegExp#test`メソッドで表現できます。
 
 - `String#startsWith`: `/^部分文字列/.test(文字列)`
 - `String#endsWith`: `/部分文字列$/.test(文字列)`
 - `String#includes`: `/部分文字列/.test(文字列)`
-- `String#indexOf`: `文字列.search(/部分文字列/)`
 
-### どちらを使うべきか
+具体的な例を見てみましょう。
 
-- 固定文字列は意図が表明できる
-- 正規表現はコメントや変数で説明しないと意図が残らない
-- 正規表現で何でもは行わない
+```js
+// 検索対象となる文字列
+var string = "にわにはにわにわとりがいる";
+// ^ - 部分文字列が先頭ならtrue
+console.log(/^にわ/.test(string)); // => true
+console.log(/^いる/.test(string)); // => false
+// $ - 部分文字列が末尾ならtrue
+console.log(/にわ$/.test(string)); // => false
+console.log(/いる$/.test(string)); // => true
+// 部分文字列が含まれるならtrue
+console.log(/にわ/.test(string)); // => true
+console.log(/いる/.test(string)); // => true
+```
+
+その他にも、正規表現では繰り返しやホワイトスペースなどを特殊文字で表現できるため、
+Stringメソッドによる検索より曖昧検索が簡単に書くことができます。
+
+### 文字列と正規表現どちらを使うべきか
+
+Stringメソッドでできることは正規表現でもできることがわかりました。
+Stringメソッドと正規表現で同じ結果が得られる場合はどちらを利用するのがよいでしょうか？
+
+正規表現は曖昧な検索に強く、特殊文字を使うことで柔軟な検索結果を得ることができます。
+一方、曖昧であるため、コードを見ても何を検索しているかが正規表現のパターン自体から分からないことがあります。
+
+次の例は、`/`から始まり`/`で終わる文字列かを判定する正規表現とStringメソッドを使った方法を比べたものです。
+（これは意図的に正規表現に不利な例となっています）
+
+正規表現の場合、`/^\/.*\/$/`のパターンそのものを見ても何をしたいのかがパッと見でわかりにくいです。
+Stringメソッドの場合は、`/`から始まり`/`で終わるかを判定してることがそのままコードにあらわれています。
+
+```js
+var string = "/regexp like/";
+// 正規表現で`/`から始まり`/`で終わる文字列のパターン
+var regExpLikePattern = /^\/.*\/$/;
+console.log(regExpLikePattern.test(string)); // => true
+// Stringメソッドで同等の判定をする関数
+var isRegExpLikeString = (string) => {
+    return string.startsWith("/") && string.endsWith("/");
+};
+console.log(isRegExpLikeString(string)); // => true
+```
+
+このように、正規表現は柔軟で便利ですが、コード上から意図が消えてしまいやすいです。
+そのため、正規表現を扱う際にはコメントや変数名で具体的な意図を補足する必要があります。
+
+「Stringメソッドと正規表現で同じ結果が得られる場合はどちらを利用するのがよいでしょうか？」という疑問に戻ります。
+Stringメソッドで表現できることはStringメソッドで表現し、柔軟性や曖昧な検索が必要な場合はコメントとともに正規表現を利用するという方針を推奨します。
 
 ## 文字列の置換/削除 {#replace-delete}
 ## 部分文字列の取得 {#slice}
@@ -578,3 +776,5 @@ console.log(queryString); // => "?param=1"
 [JavaScript has a Unicode problem · Mathias Bynens]: https://mathiasbynens.be/notes/javascript-unicode  "JavaScript has a Unicode problem · Mathias Bynens"
 [プログラマのための文字コード技術入門]: https://gihyo.jp/magazine/wdpress/plus/978-4-7741-4164-0  "プログラマのための文字コード技術入門（WEB+DB PRESS plusシリーズ）｜gihyo.jp … 技術評論社"
 [Can I use...]: http://caniuse.com/#feat=internationalization  "Can I use... Support tables for HTML5, CSS3, etc"
+[正規表現 - JavaScript | MDN]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions  "正規表現 - JavaScript | MDN"
+[regex101]: https://regex101.com/  "Online regex tester and debugger: PHP, PCRE, Python, Golang and JavaScript"

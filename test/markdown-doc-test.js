@@ -17,6 +17,20 @@ const select = require('unist-util-select');
  */
 const ESVersions = ["ES2016", "ES2017"];
 /**
+ * CodeBlockの手前に該当するHTMLコメントがある場合は無視する
+ * @example
+ * 以下のは実行されないのでOKになる
+ *
+ * <!-- disable-doc-test -->
+ * ```js
+ * 1; // => 2
+ * ```
+ *
+ *
+ * @type {String}
+ */
+const disableComment = "disable-doc-test";
+/**
  * Markdownファイルの CodeBlock に対してdoctestを行う
  * CodeBlockは必ず実行できるとは限らないので、
  * AssertionError(doctestにおける失敗)以外は成功したことにして無視する
@@ -25,12 +39,16 @@ const ESVersions = ["ES2016", "ES2017"];
  **/
 describe("doctest:md", function() {
     const files = globby.sync([`${sourceDir}/**/*.md`, `!${sourceDir}/**/node_modules{,/**}`]);
+    const notPrefix = `*:not(html[value*="${disableComment}"])`;
     files.forEach(filePath => {
         const normalizeFilePath = filePath.replace(sourceDir, "");
         it(`can eval ${normalizeFilePath}`, function() {
             const content = fs.readFileSync(filePath, "utf-8");
             const markdownAST = remark.parse(content);
-            const codeBlocks = [].concat(select(markdownAST, 'code[lang="js"]'), select(markdownAST, 'code[lang="javascript"]'));
+            const codeBlocks = [].concat(
+                select(markdownAST, `${notPrefix} + code[lang="js"]`),
+                select(markdownAST, `${notPrefix} + code[lang="javascript"]`)
+            );
             // try to eval
             codeBlocks.forEach((codeBlock, index) => {
                 const codeValue = codeBlock.value;
