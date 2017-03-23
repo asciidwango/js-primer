@@ -145,11 +145,11 @@ Math.pow(2, 4); // => 16
 {{book.console}}
 ```js
 // 自分自身とも一致しない
-NaN === NaN; // => false
+console.log(NaN === NaN); // => false
 // Number型である
-typeof NaN; // => "number"
+console.log(typeof NaN); // => "number"
 // Number.isNaNでNaNかどうかを判定
-Number.isNaN(NaN); // => true
+console.log(Number.isNaN(NaN)); // => true
 ```
 
 しかし、単項演算子の`+`は文字列から数値への変換に使うべきではありません。

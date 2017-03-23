@@ -73,8 +73,8 @@ TODO: リテラルとはプログラム上で数値や文字列など、直接�
 それぞれは`true`と`false`の値を返すリテラルとなります。
 
 ```js
-true; // => true
-false; // => false
+console.log(true); // => true
+console.log(false); // => false
 ```
 
 ### 数値（Number）
@@ -127,10 +127,10 @@ JavaScriptの浮動小数点数は[IEEE 754][]を採用しています。
 - `3.14159` のような `.`（ドット）を含んだ数値
 - `2e8` のような `e` または `E` を含んだ数値
 
-`0`から始まる浮動小数点数は、`0`を省略し書くことができます。
+`0`から始まる浮動小数点数は、`0`を省略して書くことができます。
 
 ```js
-.123; // => 0.123
+console.log(.123); // => 0.123
 ```
 
 しかし、JavaScriptでは`.`をオブジェクトにおいて利用する機会が多いため、
@@ -165,7 +165,7 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は全�
 
 {{book.console}}
 ```js
-'8 o\'clock'; // => "8 o'clock"
+console.log('8 o\'clock'); // => "8 o'clock"
 ```
 
 <!-- textlint-enable eslint -->
@@ -174,7 +174,7 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は全�
 
 {{book.console}}
 ```js
-"8 o'clock"; // => "8 o'clock"
+console.log("8 o'clock"); // => "8 o'clock"
 ```
 
 ダブルクオートとシングルクオートどちらも改行をそのまま入力することはできません。
@@ -201,9 +201,9 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は全�
 
 {{book.console}}
 ```js
-`複数行の
+console.log(`複数行の
 文字列を
-入れたい`; // => "複数行の\n文字列を\n入れたい"
+入れたい`); // => "複数行の\n文字列を\n入れたい"
 ```
 
 また、名前のとおりテンプレートのような機能を持っています。
@@ -245,7 +245,7 @@ foo;// "ReferenceError: foo is not defined"
 {{book.console}}
 ```js
 var foo = null;
-foo; // => null
+console.log(foo); // => null
 ```
 
 ### オブジェクトリテラル {#object}
@@ -343,7 +343,7 @@ console.log(array[array.length - 1]); // => "2番目"
 ```js
 var numberRegExp = /\d+/; // 1文字以上の数字にマッチする正規表現
 // 123が正規表現にマッチするかをテストする
-numberRegExp.test(123); // => true
+console.log(numberRegExp.test(123)); // => true
 ```
 
 文字列から正規表現オブジェクトを作成することもできますが、
