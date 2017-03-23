@@ -479,6 +479,17 @@ if (index !== -1) {
 }
 ```
 
+ES2015より前では`String#indexOf`メソッドしか固定文字列の検索できませんでした。
+そのため、`string.indexOf("検索文字列") !== -1`で`"検索文字列"`が含まれているかを表現するイディオムがありました。
+しかし、ES2015以降は`String#includes`メソッドなど、より適切な真偽値を取得するメソッドが追加されています。
+
+```js
+// indexOfで含まれているかを判定する表現するイディオム
+console.log("にわにはにわとりがいる".indexOf("にわ") !== -1); // => true
+// String#includesによる同等の表現
+console.log("にわにはにわとりがいる".includes("にわ")); // => true
+```
+
 #### 真偽値の取得 {#test-by-string}
 
 「文字列」に「部分文字列」が含まれているかを検索する方法がいくつか用意されています。
@@ -501,16 +512,6 @@ console.log(string.endsWith("いる")); // => true
 // includes - 部分文字列が含まれるならtrue
 console.log(string.includes("にわ")); // => true
 console.log(string.includes("いる")); // => true
-```
-
-ES2015より前では`String#indexOf`メソッドしか固定文字列の検索できませんでした。
-そのため、`String#inclues`メソッドを`indexOf`メソッドで表現するイディオムがありました。
-しかし、ES2015以降は`String#includes`メソッドなど、より適切なメソッドが追加されているのでそちらを利用しましょう。
-
-```js
-// includesをindexOfで表現するイディオム
-console.log("にわにはにわとりがいる".indexOf("にわ") !== -1); // => true
-console.log("にわにはにわとりがいる".includes("にわ")); // => true
 ```
 
 ### 正規表現による検索 {#search-by-regexp}
@@ -615,7 +616,7 @@ console.log(alphabetsPattern.exec(string)); // => ["DE"]
 
 どちらのメソッドも正規表現のパターンに`(`と`)`で囲んだ文字列を取得できます。
 この`(pattern)`のような括弧のことをキャプチャリングと呼びます。
-正規表現のパターン全体の文字列は不要だが、`()`で囲んだ部分（キャプチャした部分）の文字列だけが欲しい場合に利用できます。
+正規表現のパターン全体の文字列は必要ないけど、`()`で囲んだ部分（キャプチャした部分）の文字列だけが欲しいという場合に利用できます。
 
 ```js
 // "ECMAScript (数字+)"にマッチするが、欲しい文字列は数字の部分のみ
