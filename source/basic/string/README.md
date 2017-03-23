@@ -619,7 +619,7 @@ console.log(alphabetsPattern.lastIndex); // => 3
 console.log(alphabetsPattern.exec(string)); // => ["DE"]
 ```
 
-どちらのメソッドも`g`フラグによって返す値も変わり、`RegExp#exec`メソッドに`lastIndex`プロパティを変更するという副作用を持ちます。
+どちらのメソッドも`g`フラグによって挙動が変わり、`RegExp#exec`メソッドに`lastIndex`プロパティを変更するという副作用を持ちます。
 
 #### マッチした一部の文字列を取得 {#match-capture-by-regexp}
 
