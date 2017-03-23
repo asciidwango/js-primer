@@ -3,7 +3,7 @@
 const path = require("path");
 const ignoreFileList = [
     // 演算子はいいかな
-    "source/basic/operator",
+    // "source/basic/operator",
     // 文字列リテラルそのものなので無視
     "source/basic/string",
     // これもリテラルの話なので…

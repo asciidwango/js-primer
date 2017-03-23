@@ -53,7 +53,7 @@ num++;
 
 {{book.console}}
 ```js
-1 + 1; // => 2
+console.log(1 + 1); // => 2
 ```
 
 ### マイナス演算子（`-`）
@@ -62,7 +62,7 @@ num++;
 
 {{book.console}}
 ```js
-1 - 1; // => 0
+console.log(1 - 1); // => 0
 ```
 
 ### 乗算演算子（`*`）
@@ -71,7 +71,7 @@ num++;
 
 {{book.console}}
 ```js
-2 * 8; // => 16
+console.log(2 * 8); // => 16
 ```
 
 ### 除算演算子（`/`）
@@ -80,7 +80,7 @@ num++;
 
 {{book.console}}
 ```js
-8 / 2; // => 4
+console.log(8 / 2); // => 4
 ```
 
 ### 剰余演算子（`%`）
@@ -89,7 +89,7 @@ num++;
 
 {{book.console}}
 ```js
-8 % 3; // => 2
+console.log(8 % 3); // => 2
 ```
 
 ### [ES2016] べき乗演算子（`**`） 
@@ -100,14 +100,14 @@ num++;
 {{book.console}}
 ```js
 // べき乗演算子（ES2016）で2の4乗を計算
-2 ** 4; // => 16
+console.log(2 ** 4); // => 16
 ```
 
 べき乗演算子は同じ動作をする`Math.pow`メソッドも存在しています。
 
 {{book.console}}
 ```js
-Math.pow(2, 4); // => 16
+console.log(Math.pow(2, 4)); // => 16
 ```
 
 べき乗演算子はES2016で後から追加された演算子であるため、関数と演算子それぞれ存在しています。
@@ -125,7 +125,7 @@ Math.pow(2, 4); // => 16
 
 {{book.console}}
 ```js
-+1; // => 1
+console.log(+1); // => 1
 ```
 
 また、単項プラス演算子は、数値以外も数値へと変換します。
@@ -135,8 +135,8 @@ Math.pow(2, 4); // => 16
 
 {{book.console}}
 ```js
-+"1"; // => 1
-+"文字列"; // => NaN
+console.log(+"1"); // => 1
+console.log(+"文字列"); // => NaN
 ```
 
 `NaN`は"Not-a-Number"の略称で、数値ではないがNumber型の値を表現しています。
@@ -145,9 +145,9 @@ Math.pow(2, 4); // => 16
 {{book.console}}
 ```js
 // 自分自身とも一致しない
-console.log(NaN === NaN); // => false
+console.log(console.log(NaN === NaN)); // => false
 // Number型である
-console.log(typeof NaN); // => "number"
+console.log(console.log(typeof NaN)); // => "number"
 // Number.isNaNでNaNかどうかを判定
 console.log(Number.isNaN(NaN)); // => true
 ```
@@ -163,7 +163,7 @@ console.log(Number.isNaN(NaN)); // => true
 
 {{book.console}}
 ```js
--1; // => -1
+console.log(-1); // => -1
 ```
 
 また、単項マイナス演算子はマイナスの数値を反転できます。
@@ -171,7 +171,7 @@ console.log(Number.isNaN(NaN)); // => true
 
 {{book.console}}
 ```js
--(-1); // => 1
+console.log(-(-1)); // => 1
 ```
 
 単項マイナス演算子も文字列などを数値へ変換します。
@@ -179,8 +179,8 @@ console.log(Number.isNaN(NaN)); // => true
 
 {{book.console}}
 ```js
--"1"; // => -1
--"文字列"; // => NaN
+console.log(-"1"); // => -1
+console.log(-"文字列"); // => NaN
 ```
 
 ### インクリメント演算子（`++`）
@@ -210,11 +210,11 @@ num++;
 {{book.console}}
 ```js
 var x = 1;
-x++; // => 1
-console.log(x); // => 2
+console.log(x++); // => 1
+console.log(console.log(x)); // => 2
 var y = 1;
-++y; // => 2
-console.log(y); // => 2
+console.log(++y); // => 2
+console.log(console.log(y)); // => 2
 ```
 
 ### デクリメント演算子（`--`）
@@ -234,11 +234,11 @@ num--;
 {{book.console}}
 ```js
 var x = 1;
-x--; // => 1
-console.log(x); // => 0
+console.log(x--); // => 1
+console.log(console.log(x)); // => 0
 var y = 1;
---y; // => 0
-console.log(y); // => 0
+console.log(--y); // => 0
+console.log(console.log(y)); // => 0
 ```
 
 ## 比較演算子
@@ -252,8 +252,8 @@ console.log(y); // => 0
 
 {{book.console}}
 ```js
-1 === 1; // => true
-1 === "1"; // => false
+console.log(1 === 1); // => true
+console.log(1 === "1"); // => false
 ```
 
 また、オペランドがどちらもオブジェクトである時は、
@@ -263,9 +263,9 @@ console.log(y); // => 0
 ```js
 // {} は新しいオブジェクトを作成している
 var objA = {}, objB = {};
-objA === objB; // => false
+console.log(objA === objB); // => false
 // 同じ参照を比較している場合
-objA === objA; // => true
+console.log(objA === objA); // => true
 ```
 
 ### 厳密不等価演算子（`!==`）
@@ -275,8 +275,8 @@ objA === objA; // => true
 
 {{book.console}}
 ```js
-1 !== 1; // => false
-1 !== "1"; // => true
+console.log(1 !== 1); // => false
+console.log(1 !== "1"); // => true
 ```
 
 
@@ -287,14 +287,14 @@ objA === objA; // => true
 
 {{book.console}}
 ```js
-1 == 1; // => true
-"str" == "str"; // => true
-"JavaScript" == "ECMAScript"; // => false
+console.log(1 == 1); // => true
+console.log("str" == "str"); // => true
+console.log("JavaScript" == "ECMAScript"); // => false
 // オブジェクトは参照が一致しているならtrueを返す
 // {} は新しいオブジェクトを作成している
 var objA = {}, objB = {};
-objA == objB; // => false
-objA == objA; // => true
+console.log(objA == objB); // => false
+console.log(objA == objA); // => true
 ```
 
 しかし、等価演算子（`==`）はオペランド同士が異なる型の値であった場合に、
@@ -305,15 +305,15 @@ objA == objA; // => true
 {{book.console}}
 ```js
 // 文字列を数値に変換してから比較
-1 == "1"; // => true
+console.log(1 == "1"); // => true
 // "01"を数値にすると`1`となる
-1 == "01"; // => true
+console.log(1 == "01"); // => true
 // 真偽値を数値に変換してから比較
-0 == false; // => true
+console.log(0 == false); // => true
 // nullの比較はfalseを返す
-0 == null; // => false
+console.log(0 == null); // => false
 // nullとundefeinedの比較は常にtrueを返す
-null == undefined; // => true
+console.log(null == undefined); // => true
 ```
 
 意図しない挙動となることがあるため、暗黙的な型変換が行われる等価演算子（`==`）を使うべきではありません。
@@ -344,24 +344,24 @@ if (value == null) {
 
 {{book.console}}
 ```js
-1 != 1; // => false
-"str" != "str"; // => false
-"JavaScript" != "ECMAScript"; // => true
-true != true;// => false
+console.log(1 != 1); // => false
+console.log("str" != "str"); // => false
+console.log("JavaScript" != "ECMAScript"); // => true
+console.log(true != true); // => false
 // オブジェクトは参照が一致していないならtrueを返す
 var objA = {}, objB = {};
-objA != objB; // => true
-objA != objA; // => false
+console.log(objA != objB); // => true
+console.log(objA != objA); // => false
 ```
 
 不等価演算子も、等価演算子（`==`）と同様に異なる型のオペランドを比較する際に、暗黙的な型変換を行ってから比較します。
 
 {{book.console}}
 ```js
-1 != "1"; // => false
-0 != false; // => false
-0 != null; // => true
-null  == undefined; // => true
+console.log(1 != "1"); // => false
+console.log(0 != false); // => false
+console.log(0 != null); // => true
+console.log(null  == undefined); // => true
 ```
 
 そのため、不等価演算子（`!=`）は、利用するべきではありません。
@@ -373,8 +373,8 @@ null  == undefined; // => true
 
 {{book.console}}
 ```js
-42 > 21; // => true
-42 > 42; // => false
+console.log(42 > 21); // => true
+console.log(42 > 42); // => false
 ```
 
 ### 大なりイコール演算子/以上（`>=`）
@@ -383,8 +383,8 @@ null  == undefined; // => true
 
 {{book.console}}
 ```js
-42 >= 42; // => true
-42 > 42 || 42 === 42; // => true
+console.log(42 >= 42); // => true
+console.log(42 > 42 || 42 === 42); // => true
 ```
 
 ### 小なり演算子/より小さい（`<`）
@@ -393,8 +393,8 @@ null  == undefined; // => true
 
 {{book.console}}
 ```js
-21 < 42;// => true
-42 < 42; // => false
+console.log(21 < 42); // => true
+console.log(42 < 42); // => false
 ```
 
 ### 小なりイコール演算子/以下（`<=`）
@@ -403,8 +403,8 @@ null  == undefined; // => true
 
 {{book.console}}
 ```js
-42 <= 42; // => true
-42 < 42 || 42 === 42;// => true
+console.log(42 <= 42); // => true
+console.log(42 < 42 || 42 === 42); // => true
 ```
 
 ## ビット演算子
@@ -419,18 +419,18 @@ JavaScriptでは、数値は内部的にIEEE 754方式の浮動小数点数と�
 
 {{book.console}}
 ```js
-0b0000000000000000000000000001001; // => 9
+console.log(0b0000000000000000000000000001001); // => 9
 // Number#toStringメソッドを使うことで2進数表記の文字列を取得できる
-(9).toString(2); // => "1001"
+console.log((9).toString(2)); // => "1001"
 ```
 
 また、`-9`という数値は、ビッグエンディアンの2の補数形式で表現されるため、次のようになります。
 
 {{book.console}}
 ```js
-0b11111111111111111111111111110111; // => 4294967287
+console.log(0b11111111111111111111111111110111); // => 4294967287
 // ゼロ桁埋め右シフトをしてからNumber#toStringで2進数表記を取得できる
-(-9 >>> 0).toString(2); // => "11111111111111111111111111110111"
+console.log((-9 >>> 0).toString(2)); // => "11111111111111111111111111110111"
 ```
 
 ### ビット論理積（`&`）
@@ -439,8 +439,8 @@ JavaScriptでは、数値は内部的にIEEE 754方式の浮動小数点数と�
 
 {{book.console}}
 ```js
-15     & 9;      // => 9
-0b1111 & 0b1001; // => 0b1001
+console.log(15     & 9); // => 9
+console.log(0b1111 & 0b1001); // => 0b1001
 ```
 
 ### ビット論理和（`|`）
@@ -449,8 +449,8 @@ JavaScriptでは、数値は内部的にIEEE 754方式の浮動小数点数と�
 
 {{book.console}}
 ```js
-15     | 9;      // => 15
-0b1111 | 0b1001; // => 0b1111
+console.log(15     | 9); // => 15
+console.log(0b1111 | 0b1001); // => 0b1111
 ```
 
 ### ビット排他的論理和（`^`）
@@ -459,8 +459,8 @@ JavaScriptでは、数値は内部的にIEEE 754方式の浮動小数点数と�
 
 {{book.console}}
 ```js
-15     ^ 9;      // => 6
-0b1111 ^ 0b1001; // => 0b0110
+console.log(15     ^ 9); // => 6
+console.log(0b1111 ^ 0b1001); // => 0b0110
 ```
 
 ### ビット否定（`~`）
@@ -470,8 +470,8 @@ JavaScriptでは、数値は内部的にIEEE 754方式の浮動小数点数と�
 
 {{book.console}}
 ```js
-~15; // => -16
-~0b1111; // => -0b10000
+console.log(~15); // => -16
+console.log(~0b1111); // => -0b10000
 ```
 
 否定演算子（`~`）はビット演算以外でも使われていることがあります。
@@ -483,17 +483,17 @@ JavaScriptの`String#indexOf(string)`は、文字列中にある`string`の位�
 ```js
 var string = "森森本森森";
 // 見つかった場合はindex値を返す
-string.indexOf("本"); // => 2
+console.log(string.indexOf("本")); // => 2
 // 見つからない場合は-1を返す
-string.indexOf("火"); // => -1
+console.log(string.indexOf("火")); // => -1
 ```
 
 否定演算子（`~`）は1の補数を返すため、`~(-1)`の`0`となります。
 
 {{book.console}}
 ```js
-~0; // => -1
-~(-1); // => 0
+console.log(~0); // => -1
+console.log(~(-1)); // => 0
 ```
 
 JavaScriptでは`0`もif文では`false`として扱われます。
@@ -538,8 +538,8 @@ number << bit;
 
 {{book.console}}
 ```js
-     9 << 2; // => 36
-0b1111 << 2; // => 0b111100
+console.log(     9 << 2); // => 36
+console.log(0b1111 << 2); // => 0b111100
 ```
 
 ### 右シフト演算子（`>>`）
@@ -556,8 +556,8 @@ number >> bit;
 
 {{book.console}}
 ```js
-(-9) >> 2; // => -3
-// 0b11111111111111111111111111110111 >> 2; // => 0b11111111111111111111111111111101
+console.log((-9) >> 2); // => -3
+console.log(// 0b11111111111111111111111111110111 >> 2); // => 0b11111111111111111111111111111101
 ```
 
 ### ゼロ埋め右シフト演算子（`>>>`）
@@ -570,7 +570,7 @@ number >> bit;
 
 {{book.console}}
 ```js
-(-9) >>> 2; // => 1073741821
+console.log((-9) >>> 2); // => 1073741821
 // 0b11111111111111111111111111110111 >>> 2; // => 0b00111111111111111111111111111101
 ```
 
@@ -593,7 +593,7 @@ var version = 2015;
 ```js
 var num = 1;
 num += 10; // num = num + 10; と同じ
-console.log(num); // => 11
+console.log(console.log(num)); // => 11
 ```
 
 ### [ES2015] 分割代入（Destructuring assignment）
@@ -610,8 +610,8 @@ var array = [1, 2];
 // aには0番目の値、bには1番目の値
 // var a = array[0], b = array[1];
 var [a, b] = array;
-console.log(a); // => 1
-console.log(b); // => 2
+console.log(console.log(a)); // => 1
+console.log(console.log(b)); // => 2
 ```
 
 同様にオブジェクトも分割代入できます。
@@ -625,7 +625,7 @@ var object = {
 // プロパティ名へ対応する変数へ代入
 // var key = object.key;
 var { key } = object;
-console.log(key); // => "value"
+console.log(console.log(key)); // => "value"
 ```
 
 分割代入は、代入演算子のみではなく、関数の仮引数やモジュールでも利用できます。
@@ -648,9 +648,9 @@ if文との違いは、条件演算子は式として書くことができるた
 {{book.console}}
 ```js
 var valueAorB = true ? "A" : "B";
-console.log(value); // => "A";
+console.log(console.log(value)); // => "A";
 var valueAorB = false ? "A" : "B";
-console.log(value); // => "B";
+console.log(console.log(value)); // => "B";
 ```
 
 条件分岐による値を返せるため、条件によって変数の初期値が違う場合などに使われます。
@@ -669,8 +669,8 @@ function addPrefix(text, prefix) {
     return pre + text;
 }
 
-addPrefix("文字列"); // => "デフォルト:文字列"
-addPrefix("文字列", "カスタム"); // => "カスタム文字列"
+console.log(addPrefix("文字列")); // => "デフォルト:文字列"
+console.log(addPrefix("文字列", "カスタム")); // => "カスタム文字列"
 ```
 
 if文を使った場合は、宣言と代入を分ける必要があるため、`const`を使うことができません。
@@ -685,8 +685,8 @@ function addPrefix(text, prefix) {
     return pre + text;
 }
 
-addPrefix("文字列"); // => "デフォルト:文字列"
-addPrefix("文字列", "カスタム"); // => "カスタム文字列"
+console.log(addPrefix("文字列")); // => "デフォルト:文字列"
+console.log(addPrefix("文字列", "カスタム")); // => "カスタム文字列"
 ```
 
 ## 論理演算子
@@ -704,10 +704,10 @@ AND演算子（`&&`）は、左辺の値の評価結果が`true`であるなら�
 ```js
 var x = true, y = false;
 // x -> y の順に評価される
-x && y; // => false
+console.log(x && y); // => false
 // 左辺がfalsyであるなら常にfalse
 // xは評価されない
-y && x; // => false
+console.log(y && x); // => false
 ```
 
 AND演算子は、if文とよく組み合わせて利用します。
@@ -744,9 +744,9 @@ AND演算子（`&&`）とは逆に、左辺が`true`である場合は、右辺�
 ```js
 var x = true, y = false;
 // xがtrueなのでyは評価されない
-x || y; // => true
+console.log(x || y); // => true
 // yはfalseなのでxを評価した結果を返す
-y || x; // => true
+console.log(y || x); // => true
 ```
 
 OR演算子は、左辺の評価結果が`false`である場合に、右辺を評価します。
@@ -779,8 +779,8 @@ function addPrefix(text, prefix) {
     return pre + text;
 }
 
-addPrefix("文字列"); // => "デフォルト:文字列"
-addPrefix("文字列", "カスタム"); // => "カスタム文字列"
+console.log(addPrefix("文字列")); // => "デフォルト:文字列"
+console.log(addPrefix("文字列", "カスタム")); // => "カスタム文字列"
 ```
 
 しかし、この書き方にはひとつ問題があります。
@@ -796,7 +796,7 @@ function addPrefix(text, prefix) {
     return pre + text;
 }
 
-addPrefix("文字列", ""); // => "デフォルト:文字列"
+console.log(addPrefix("文字列", "")); // => "デフォルト:文字列"
 ```
 
 このような意図しない挙動を避けて、デフォルト値を扱うには先ほどの条件演算子を活用する方法などがあります。
@@ -810,8 +810,8 @@ function addPrefix(text, prefix = "デフォルト:") {
     return prefix + text;
 }
 
-addPrefix("文字列"); // => "デフォルト:文字列"
-addPrefix("文字列", "カスタム"); // => "カスタム文字列"
+console.log(addPrefix("文字列")); // => "デフォルト:文字列"
+console.log(addPrefix("文字列", "カスタム")); // => "カスタム文字列"
 ```
 
 デフォルト引数とは、関数呼び出しの際に指定した引数が省略された時に、引数にデフォルト値を設定する機能です。
@@ -823,8 +823,8 @@ NOT演算子（`!`）は、`オペランド`の評価結果が`true`であるな
 
 {{book.console}}
 ```js
-!false; // => true
-!true; // => false
+console.log(!false); // => true
+console.log(!true); // => false
 ```
 
 NOT演算子は必ず真偽値を返すため、次のように2つNOT演算子を重ねて真偽値へ変換するという使い方も見かけます。
@@ -833,7 +833,7 @@ NOT演算子は必ず真偽値を返すため、次のように2つNOT演算子�
 ```js
 var string = "";
 // 空文字はfalsyな値
-!!string; // => false
+console.log(!!string); // => false
 ```
 
 このようなケースの多くは、比較演算子を使うなどより明示的な方法で、真偽値を得ることができます。
@@ -843,7 +843,7 @@ var string = "";
 ```js
 var string = "";
 // 空文字でないことを判定
-console.log(string.length > 0); // => false
+console.log(console.log(string.length > 0)); // => false
 ```
 
 ### グループ演算子（`(`と`)`）
@@ -858,7 +858,7 @@ var a = 1;
 var b = 2;
 var c = 3;
 a + b * c; // 7
-(a + b) * c; // => 9
+console.log((a + b) * c); // => 9
 ```
 
 [演算子の優先順序][]はECMAScript仕様で定義されていますが、多様な演算子が出てきた場合に見分けるのは難しいです。
@@ -894,7 +894,7 @@ if (a || (b && c)) {
 {{book.console}}
 ```js
 var value = "文字列" + "結合";
-console.log(value); // => "文字列結合"
+console.log(console.log(value)); // => "文字列結合"
 ```
 
 ## カンマ演算子（`,`）
@@ -914,7 +914,7 @@ console.log(value); // => "文字列結合"
 {{book.console}}
 ```js
 var a = 1, b = 2, c = a + b;
-console.log(c); // => 3
+console.log(console.log(c)); // => 3
 ```
 
 一般にカンマ演算子を利用する機会は殆どないため、「カンマで区切った式は左から順に評価される」ということだけを知っていれば問題ありません。[^1]
