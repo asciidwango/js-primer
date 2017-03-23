@@ -16,6 +16,6 @@ describe("md2html", () => {
 <p>これはHTMLです</p>
 `.trim();
 
-        assert.deepStrictEqual(md2html(markdown), expected);
+        assert(md2html(markdown) === expected);
     });
 });
