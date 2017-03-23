@@ -465,7 +465,7 @@ console.log(string.lastIndexOf("にわ")); // => 6
 console.log(string.indexOf("キーワード")); // => -1
 ```
 
-検索している部分文字列は長さは固定であるため、一致した文字列は自明ですが、
+検索している部分文字列の長さは固定であるため、一致した文字列は自明ですが、
 `String#slice`と取得したインデックスを組み合わせることで検索結果を取得できます。
 
 ```js
@@ -554,7 +554,7 @@ var pattern = new RegExp(`\\s{${spaceCount}}`);
 - `String#search(/パターン/)`: 正規表現のパターンにマッチした文字列のインデックスを返す
 
 文字列による検索は、検索しマッチした文字列の長さが決まっているため、`indexOf`メソッドでインデックスを取得することに意味がありました。
-しかし、正規表現による検索は、パターンによる検索であるため、検索しマッチした文字列は長さは固定ではありません。
+しかし、正規表現による検索は、パターンによる検索であるため、検索しマッチした文字列の長さは固定ではありません。
 つまり、次のように`String#search`メソッドでインデックスのみを取得しても、実際にマッチした文字列が分かりません。
 
 ```js
@@ -792,7 +792,7 @@ console.log(queryString); // => "?param=1"
     - [Unicode Emoji](http://unicode.org/emoji/ "Unicode Emoji")
 - 国際化APIについて
     - [Intl - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_identification_and_negotiation)
-    - [andyearnshaw/Intl.js: Compatibility implementation of the ECMAScript Internationalization API (ECMA-402) for JavaScript](https://github.com/andyearnshaw/Intl.js/)
+    - [andyearnshaw/Intl.js](https://github.com/andyearnshaw/Intl.js/)
     - [ECMAScript® 2017 Internationalization API Specification](https://tc39.github.io/ecma402/)
     - [ウェブサイトをグローバル化するために便利なIntl APIの話 - Qiita](http://qiita.com/teyosh/items/b126f21a16b795885067 "ウェブサイトをグローバル化するために便利なIntl APIの話 - Qiita")
     - [カスタムの大文字と小文字の対応規則および並べ替え規則](https://msdn.microsoft.com/ja-jp/library/xk2wykcz(v=vs.110).aspx "カスタムの大文字と小文字の対応規則および並べ替え規則")
