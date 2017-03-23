@@ -726,8 +726,7 @@ Strict modeでは削除出来ないプロパティを削除しようとするエ
 ```js
 "use strict";
 var string = "文字列";
-// 文字列の0番目を削除を試みる
-// strict modeでは削除できないプロパティを削除しようとするとエラーが発生
+// 文字列の0番目を削除を試みるがStrict modeは例外が発生
 delete string[0]; // Error
 ```
 
@@ -744,8 +743,7 @@ delete string[0]; // Error
 
 ```js
 var string = "文字列";
-// String#replaceで"文字"を削除する
-// "文字"を""（空文字）へ置換することで削除を表現
+// "文字"を""（空文字）へ置換することで"削除"を表現
 var newString = string.replace("文字", "");
 console.log(newString); // => "列"
 ```
@@ -766,13 +764,13 @@ console.log(string.replace(/にわ/g, "niwa")); // => "niwaにはniwaniwaとり�
 
 `replace`メソッドでは、キャプチャした文字列を利用しさらに複雑な置換処理をおこなうこともできます。
 
-`replace`メソッドの第二引数にはコールバック関数を渡すことができ、このコールバック関数の返り値が置換した結果となります。
+`replace`メソッドの第二引数にはコールバック関数を渡すことができ、第一引数にマッチした部分がコールバック関数の返り値で置換されます。
 コールバック関数の仮引数は`String#match`メソッドの返り値と似ています。
 第一引数に一致した文字列全体、第二引数以降へキャプチャした文字列が順番に続きます。
 
 ```js
-文字列.replace(/(pattern)/, (all, ...captures) => {
-    return 置換した結果の文字列;
+var 置換した結果の文字列 = 文字列.replace(/(pattern)/, (all, ...captures) => {
+    return 置換したい文字列;
 });
 ```
 
@@ -788,7 +786,7 @@ function toDateJa(dateString) {
 // マッチしない文字列はそのまま返す
 console.log(toDateJa("本日ハ晴天ナリ")); // => "本日ハ晴天ナリ"
 // マッチした場合は置換した結果を返す
-console.log(toDateJa("2017-03-01")); // => "2017年03月01日"
+console.log(toDateJa("今日は2017-03-01です")); // => "今日は2017年03月01日です"
 ```
 
 ## 部分文字列の取得 {#slice}
