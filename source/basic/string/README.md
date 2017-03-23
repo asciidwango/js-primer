@@ -430,6 +430,289 @@ var collator = new Intl.Collator("ja", { numeric: true });
 その地域や言語においてのより自然な形を求める場合は、ローカライズするために国際化APIなどを利用できます。
 
 ## 文字列の検索 {#search}
+
+文字列の検索方法として、大きく分けて文字列による検索と正規表現による検索があります。
+
+<!-- Note: 検索はある目的を持って探すこと、探索は目的外の有益な情報も探すことを含んでいる -->
+<!-- ここでは目的が決まっているので"検索" -->
+<!-- http://www.st38.net/chigaino-zatugaku/z0174.html -->
+
+### 文字列による検索 {#search-by-string}
+
+文字列による検索は「文字列」から「部分文字列」を検索できます。
+Stringメソッドには検索したい状況に応じたものが用意されています。
+
+#### インデックスの取得 {#search-index-by-string}
+
+検索して結果「部分文字列」の開始インデックスを取得する`String#indexOf`メソッドがあります。
+これは、配列の`Array#indexOf`メソッドと同じで、厳密等価演算子（`===`）で一致する文字列のインデックスを取得します。
+
+- `文字列.indexOf("部分文字列")`: 先頭からの検索し、インデックスを返す
+- `文字列.lastIndexOf("部分文字列")`: 末尾から検索し、インデックスを返す
+
+固定文字列による検索は、指定した部分文字列が見つかった時点で検索は終了します。
+そのため、先頭から検索する`String#indexOf`メソッドと末尾から検索する`String#lastIndexOf`メソッドのように検索方向でメソッドが分かれています。
+
+```js
+// 検索対象となる文字列
+var string = "にわにはにわにわとりがいる";
+// indexOfは先頭から検索しインデックスを返す - "**にわ**にはにわにわとりがいる"
+// "にわ"の先頭のインデックスを返すため 0 となる
+console.log(string.indexOf("にわ")); // => 0
+// lastIndexOfは末尾から検索しインデックスを返す- "にわにはにわ**にわ**とりがいる"
+console.log(string.lastIndexOf("にわ")); // => 6
+// 該当する部分文字列が見つからない場合は -1 を返す
+console.log(string.indexOf("キーワード")); // => -1
+```
+
+検索している部分文字列の長さは固定であるため、一致した文字列は自明ですが、
+`String#slice`と取得したインデックスを組み合わせることで検索結果を取得できます。
+
+```js
+var string = "JavaScript";
+var searchWord = "Script";
+var index = string.indexOf("Script");
+if (index !== -1) {
+    console.log(string.slice(index, index + searchWord.length)); // => searchWord
+} else {
+    console.log(`${searchWord}は見つかりませんでした`);
+}
+```
+
+ES2015より前では`String#indexOf`メソッドしか固定文字列の検索できませんでした。
+そのため、`string.indexOf("検索文字列") !== -1`で`"検索文字列"`が含まれているかを表現するイディオムがありました。
+しかし、ES2015以降は`String#includes`メソッドなど、より適切な真偽値を取得するメソッドが追加されています。
+
+```js
+// indexOfで含まれているかを判定する表現するイディオム
+console.log("にわにはにわとりがいる".indexOf("にわ") !== -1); // => true
+// String#includesによる同等の表現
+console.log("にわにはにわとりがいる".includes("にわ")); // => true
+```
+
+#### 真偽値の取得 {#test-by-string}
+
+「文字列」に「部分文字列」が含まれているかを検索する方法がいくつか用意されています。
+
+- `文字列.startsWith("部分文字列")`: 先頭にあるかの真偽値を返す[ES2015]
+- `文字列.endsWith("部分文字列")`: 終端にあるかの真偽値を返す[ES2015]
+- `文字列.includes("部分文字列")`: 含むかの真偽値を返す[ES2015]
+
+具体的な例をいくつか見てみましょう。
+
+```js
+// 検索対象となる文字列
+var string = "にわにはにわにわとりがいる";
+// startsWith - 部分文字列が先頭ならtrue
+console.log(string.startsWith("にわ")); // => true
+console.log(string.startsWith("いる")); // => false
+// endsWith - 部分文字列が末尾ならtrue
+console.log(string.endsWith("にわ")); // => false
+console.log(string.endsWith("いる")); // => true
+// includes - 部分文字列が含まれるならtrue
+console.log(string.includes("にわ")); // => true
+console.log(string.includes("いる")); // => true
+```
+
+### 正規表現による検索 {#search-by-regexp}
+
+正規表現による検索は、正規表現オブジェクトを利用します。
+
+正規表現オブジェクトは正規表現リテラルや`RegExp`コンストラクタを使うことで生成できます。
+`RegExp`コンストラクタは、動的に正規表現オブジェクトを生成するために利用されます。
+
+正規表現リテラルは、`/`と`/`のリテラル内に正規表現のパターンを書くことで、正規表現オブジェクトを静的に生成します。
+正規表現のパターン内では、`+`や`\`（バックスラッシュ）から始まる特殊文字が特別な意味を持ちます。
+
+次のコードでは、スペースやタブにマッチする特殊文字である`\s`を使い、3つ連続するホワイトスペースにマッチする正規表現を生成しています。
+
+```js
+// 3つの連続するスペースにマッチする正規表現
+var pattern = /\s{3}/;
+```
+
+一方、`RegExp`コンストラクタは、パターンに変数を埋め込んだ正規表現オブジェクトを動的に生成できます。
+注意点として、`\`（バックスラッシュ）自体が、文字列中ではエスケープ文字であることに注意してください。
+そのため、文字列として正規表現を書く際には、バックスラッシュから始まる特殊文字はバックスラッシュを2つにする必要があります。
+
+```js
+var spaceCount = 3;
+// `/\s{3}/`の正規表現を動的に生成する
+// "\"がエスケープ文字であるため、"\"自身を文字列として書くには、"\\"のように2つ書く
+var pattern = new RegExp(`\\s{${spaceCount}}`);
+```
+
+`RegExp`コンストラクタは動的に正規表現オブジェクトを生成できますが、正規表現の特殊文字のエスケープが必要になります。
+そのため、正規表現リテラルで表現できる場合は、リテラルを利用したほうが簡潔です。
+パターンに変数を利用するなど動的でないと表現できないものは`RegExp`コンストラクタを利用します。
+
+#### マッチした文字列を取得 {#match-by-regexp}
+
+`String#indexOf`メソッドの正規表現を引数に取れるバージョンである`String#search`メソッドがあります。
+
+- `String#indexOf(部分文字列)`: 部分`文字列にマッチした文字列のインデックスを返す
+- `String#search(/パターン/)`: 正規表現のパターンにマッチした文字列のインデックスを返す
+
+文字列による検索は、検索しマッチした文字列の長さが決まっているため、`indexOf`メソッドでインデックスを取得することに意味がありました。
+しかし、正規表現による検索は、パターンによる検索であるため、検索しマッチした文字列の長さは固定ではありません。
+つまり、次のように`String#search`メソッドでインデックスのみを取得しても、実際にマッチした文字列が分かりません。
+
+```js
+var string = "abc123def";
+var searchPattern = /\d+/;
+var index = string.search(searchPattern); // 3
+// `index` だけではマッチした文字列が分からない
+string.slice(index, index + マッチした文字列の長さ); // マッチした文字列はとれない
+```
+
+そのため、マッチした文字列そのものを取得するには`RegExp#exec`メソッドか`String#match`メソッドを利用します。
+これらのメソッドは、正規表現の繰り返す`g`フラグ（globalの略称）と組み合わせてよく利用されます。
+
+- `String#match(正規表現)`: 文字列中でマッチするものを検索する
+    - マッチした文字列の配列を返す
+    - マッチしない場合は null を返す。 
+    - `g`フラグが有効化されている時は、マッチしたすべての結果を配列で返す
+- `RegExp#exec(文字列)`: 文字列中でマッチするものを検索する
+    - マッチした文字列の配列を返す
+    - マッチしない場合は null を返す
+    - `g`フラグが有効化されている時は、正規表現オブジェクト自身が最後にマッチしたインデックスを記憶する
+
+通常の検索では、検索結果が見つかった時点で検索が終了します。
+しかし、正規表現の`g`フラグを有効化することで、検索結果を見つけた場合も検索を続けることができます。
+
+たとえば、`/[a-zA-Z]+/`という正規表現は`a`から`Z`のどれかの文字が1つ以上連続しているものにマッチします。
+`String#match`メソッドは、`g`フラグのなしではマッチする最初の結果のみを取得しますが、`g`フラグありではすべての結果を取得します。
+
+<!-- matchの結果は配列だがindexプロパティを持つためdeepEqualが失敗する -->
+<!-- disable-doc-test -->
+
+```js
+var string = "ABC あいう DE えお";
+// gフラグなしでは、最初の結果のみを持つ配列を返す
+var results = string.match(/[a-zA-Z]+/);
+console.log(results); // => ["ABC"]
+// aからZのどれかの文字が1つ以上連続するパターンにマッチするものを繰り返した（gフラグ)結果を返す
+var resultsWithG = string.match(/[a-zA-Z]+/g);
+console.log(resultsWithG); // => ["ABC", "DE"]
+```
+
+`RegExp#exec`メソッドも、`g`フラグの有無によって挙動が変化します。
+`g`フラグなしではマッチした最初の結果のみを取得します。
+しかし、`g`フラグありでは最後にマッチした末尾のインデックスを正規表現オブジェクトの`lastIndex`プロパティに記憶します。
+次に、`exec`メソッドを呼び出すと最後にマッチした末尾のインデックスから検索が開始されます。
+
+<!-- disable-doc-test -->
+
+```js
+var string = "ABC あいう DE えお";
+// gフラグなしでは、最初の結果のみを持つ配列を返す
+var results = /[a-zA-Z]+/.exec(string);
+console.log(results); // => ["ABC"]
+// gフラグが有効化されているパターン
+var alphabetsPattern = /[a-zA-Z]+/g;
+// まだ一度も検索していないので、lastIndexは0となり先頭から検索開始される
+console.log(alphabetsPattern.lastIndex); // => 0
+// gフラグありでも、一回目の結果は同じだが、`lastIndex`プロパティが更新される
+console.log(alphabetsPattern.exec(string)); // => ["ABC"]
+console.log(alphabetsPattern.lastIndex); // => 3
+// 2回目の検索が、`lastIndex`の値のインデックスから開始される
+console.log(alphabetsPattern.exec(string)); // => ["DE"]
+```
+
+どちらのメソッドも`g`フラグによって挙動が変わり、`RegExp#exec`メソッドに`lastIndex`プロパティを変更するという副作用を持ちます。
+
+#### マッチした一部の文字列を取得 {#match-capture-by-regexp}
+
+どちらのメソッドも正規表現のパターンに`(`と`)`で囲んだ文字列を取得できます。
+この`/(pattern)/`のような括弧のことをキャプチャリングと呼びます。
+
+正規表現のパターン全体の文字列は必要ないが、`()`で囲んだ部分（キャプチャした部分）の文字列だけが欲しいという場合に利用できます。
+`String#match`メソッド、`RegExp#exec`メソッドどちらもマッチした結果として配列を返します。
+
+そのマッチしてるパターンにキャプチャが含まれている場合は、次のように返り値の配列へキャプチャした部分が追加されていきます。
+
+```js
+var [マッチした文字列, ...キャプチャされた文字列] = 文字列.match(/パターン(キャプチャ)/);
+```
+
+具体的な例を見てみましょう。
+
+```js
+// "ECMAScript (数字+)"にマッチするが、欲しい文字列は数字の部分のみ
+var pattern = /ECMAScript (\d+)/i;
+// 返り値は0番目がマッチした全体、1番目がキャプチャの1番目というように対応している
+// [マッチした全部の文字列, キャプチャの1番目, キャプチャの2番目 ....]
+// `pattern.exec("ECMAScript 6")`も返り値は同じ
+var [all, capture1] = "ECMAScript 6".match(pattern);
+console.log(all); // => "ECMAScript 6"
+console.log(capture1); // => "6"
+```
+
+#### 真偽値を取得 {#test-by-regexp}
+
+正規表現オブジェクトを使い、そのパターンにマッチするかをテストするには、`RegExp#test`メソッドを利用できます。
+
+正規表現のパターンには、位置を指定する特殊文字があります。
+そのため、「文字列による検索」で登場したメソッドは、すべての特殊文字と`RegExp#test`メソッドで表現できます。
+
+- `String#startsWith`: `/^パターン/.test(文字列)`
+- `String#endsWith`: `/パターン$/.test(文字列)`
+- `String#includes`: `/パターン/.test(文字列)`
+
+具体的な例を見てみましょう。
+
+```js
+// 検索対象となる文字列
+var string = "にわにはにわにわとりがいる";
+// ^ - 部分文字列が先頭ならtrue
+console.log(/^にわ/.test(string)); // => true
+console.log(/^いる/.test(string)); // => false
+// $ - 部分文字列が末尾ならtrue
+console.log(/にわ$/.test(string)); // => false
+console.log(/いる$/.test(string)); // => true
+// 部分文字列が含まれるならtrue
+console.log(/にわ/.test(string)); // => true
+console.log(/いる/.test(string)); // => true
+```
+
+その他にも、正規表現では繰り返しや文字の集合などを特殊文字で表現できるため、
+Stringメソッドによる検索より曖昧検索が簡単に書くことができます。
+
+### 文字列と正規表現どちらを使うべきか
+
+Stringメソッドでの検索と同等のことは、正規表現でもできることがわかりました。
+Stringメソッドと正規表現で同じ結果が得られる場合はどちらを利用するのがよいでしょうか？
+
+正規表現は曖昧な検索に強く、特殊文字を使うことで柔軟な検索結果を得ることができます。
+一方、曖昧であるため、コードを見ても何を検索しているかが正規表現のパターン自体から分からないことがあります。
+
+次の例は、`/`から始まり`/`で終わる文字列かを判定する正規表現とStringメソッドを使った方法を比べたものです。
+（これは意図的に正規表現に不利な例となっています）
+
+正規表現の場合、`/^\/.*\/$/`のパターンそのものを見ても何をしたいのかがパッと見でわかりにくいです。
+Stringメソッドの場合は、`/`から始まり`/`で終わるかを判定してることがそのままコードにあらわれています。
+
+```js
+var string = "/正規表現のような文字列/";
+// 正規表現で`/`から始まり`/`で終わる文字列のパターン
+var regExpLikePattern = /^\/.*\/$/;
+// RegExp#testメソッドでパターンにマッチするかを判定
+console.log(regExpLikePattern.test(string)); // => true
+// Stringメソッドで同等の判定をする関数
+var isRegExpLikeString = (string) => {
+    return string.startsWith("/") && string.endsWith("/");
+};
+console.log(isRegExpLikeString(string)); // => true
+```
+
+このように、正規表現は柔軟で便利ですが、コード上から意図が消えてしまいやすいです。
+そのため、正規表現を扱う際にはコメントや変数名で具体的な意図を補足する必要があります。
+
+「Stringメソッドと正規表現で同じ結果が得られる場合はどちらを利用するのがよいでしょうか？」という疑問に戻ります。
+Stringメソッドで表現できることはStringメソッドで表現し、柔軟性や曖昧な検索が必要な場合はコメントとともに正規表現を利用するという方針を推奨します。
+
+正規表現についてより詳しくは[正規表現 - JavaScript | MDN][]や、コンソールで実行しながら試せる[regex101][]のようなサイトを参照してください。
+
 ## 文字列の置換/削除 {#replace-delete}
 ## 部分文字列の取得 {#slice}
 
@@ -497,23 +780,28 @@ console.log(queryString); // => "?param=1"
 ## 参考
 
 - [What every JavaScript developer should know about Unicode](https://rainsoft.io/what-every-javascript-developer-should-know-about-unicode/)
-- [「文字数」ってなぁに？〜String, NSString, Unicodeの基本〜 - Qiita](http://qiita.com/takasek/items/19438ecf7e60c8d53bbc)
-- [プログラマのための文字コード技術入門 | Gihyo Digital Publishing … 技術評論社の電子書籍](https://gihyo.jp/dp/ebook/2014/978-4-7741-7087-9)
-- [文字コード「超」研究　改訂第2版【委託】 - 達人出版会](http://tatsu-zine.com/books/moji-code)
-- [Unicode のサロゲートペアとは何か - ひだまりソケットは壊れない](http://vividcode.hatenablog.com/entry/unicode/surrogate-pair)
-- [文字って何かね？ - Qiita](http://qiita.com/matarillo/items/91b9656428bed7a1a797)
-- [ものかの >> archive >> Unicode正規化　その１](http://tama-san.com/old/document03.html)
-- [結合文字列をUnicode正規化で合成する方法の危険性 - Qiita](http://qiita.com/monokano/items/d4c37d9bc9833eaeda6e)
-- [Unicode（絵文字） - CyberLibrarian](http://www.asahi-net.or.jp/~ax2s-kmtn/ref/unicode/emoji.html "Unicode（絵文字） - CyberLibrarian")
-- [Unicode Emoji](http://unicode.org/emoji/ "Unicode Emoji")
+- Unicodeについて
+    - [「文字数」ってなぁに？〜String, NSString, Unicodeの基本〜 - Qiita](http://qiita.com/takasek/items/19438ecf7e60c8d53bbc)
+    - [プログラマのための文字コード技術入門 | Gihyo Digital Publishing … 技術評論社の電子書籍](https://gihyo.jp/dp/ebook/2014/978-4-7741-7087-9)
+    - [文字コード「超」研究　改訂第2版【委託】 - 達人出版会](http://tatsu-zine.com/books/moji-code)
+    - [Unicode のサロゲートペアとは何か - ひだまりソケットは壊れない](http://vividcode.hatenablog.com/entry/unicode/surrogate-pair)
+    - [文字って何かね？ - Qiita](http://qiita.com/matarillo/items/91b9656428bed7a1a797)
+    - [ものかの >> archive >> Unicode正規化　その１](http://tama-san.com/old/document03.html)
+    - [結合文字列をUnicode正規化で合成する方法の危険性 - Qiita](http://qiita.com/monokano/items/d4c37d9bc9833eaeda6e)
+    - [Unicode（絵文字） - CyberLibrarian](http://www.asahi-net.or.jp/~ax2s-kmtn/ref/unicode/emoji.html "Unicode（絵文字） - CyberLibrarian")
+    - [Unicode Emoji](http://unicode.org/emoji/ "Unicode Emoji")
 - 国際化APIについて
     - [Intl - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_identification_and_negotiation)
-    - [andyearnshaw/Intl.js: Compatibility implementation of the ECMAScript Internationalization API (ECMA-402) for JavaScript](https://github.com/andyearnshaw/Intl.js/)
+    - [andyearnshaw/Intl.js](https://github.com/andyearnshaw/Intl.js/)
     - [ECMAScript® 2017 Internationalization API Specification](https://tc39.github.io/ecma402/)
     - [ウェブサイトをグローバル化するために便利なIntl APIの話 - Qiita](http://qiita.com/teyosh/items/b126f21a16b795885067 "ウェブサイトをグローバル化するために便利なIntl APIの話 - Qiita")
     - [カスタムの大文字と小文字の対応規則および並べ替え規則](https://msdn.microsoft.com/ja-jp/library/xk2wykcz(v=vs.110).aspx "カスタムの大文字と小文字の対応規則および並べ替え規則")
+- 文字列の検索について
+    - [四章第一回　文字列の操作 — JavaScript初級者から中級者になろう — uhyohyo.net](http://uhyohyo.net/javascript/4_1.html "四章第一回　文字列の操作 — JavaScript初級者から中級者になろう — uhyohyo.net")
 
 [twitter-text]: https://github.com/twitter/twitter-text  "twitter/twitter-text: Twitter Text Libraries"
 [JavaScript has a Unicode problem · Mathias Bynens]: https://mathiasbynens.be/notes/javascript-unicode  "JavaScript has a Unicode problem · Mathias Bynens"
 [プログラマのための文字コード技術入門]: https://gihyo.jp/magazine/wdpress/plus/978-4-7741-4164-0  "プログラマのための文字コード技術入門（WEB+DB PRESS plusシリーズ）｜gihyo.jp … 技術評論社"
 [Can I use...]: http://caniuse.com/#feat=internationalization  "Can I use... Support tables for HTML5, CSS3, etc"
+[正規表現 - JavaScript | MDN]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions  "正規表現 - JavaScript | MDN"
+[regex101]: https://regex101.com/  "Online regex tester and debugger: PHP, PCRE, Python, Golang and JavaScript"

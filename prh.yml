@@ -195,6 +195,17 @@ rules:
     patterns:  
       - ファイルI/0
       - ファイルI0
+  # 一致とマッチ
+  ## 一致は ===
+  - expected: $1一致
+    patterns: 
+      - /(正規表現に)一致/
+      - /(パターンに)一致/
+  - expected: $1マッチ
+    patterns:
+      - /(パターンに)一致/
+      - /(正規表現に)一致/
+      
 # typo
   - expected: $1進数
     patterns:
