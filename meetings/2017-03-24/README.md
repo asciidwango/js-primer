@@ -64,7 +64,7 @@ function escapeHTML(strings, ...values) {
 - @azu: 明確な基準ななくてむずかしいのがなやみどころ
 - 一案的には評価式が変数を含んでいるならconsole.log
 - @laco: `console.log(a); // => 結果` だと console.logの結果が右側っぽく見える
-- あと、Node.jsだとaがおジェクトだと"[object Object]"になって意味が違う?
+- あと、Node.jsだとaがオブジェクトだと"[object Object]"になって意味が違う?
 - @azu: REPLで試してみたらNode.jsは`console.log({});// {} `となってた
 - いつのまにかinspectした結果を出すようになってる
 - @laco: ホントだ
