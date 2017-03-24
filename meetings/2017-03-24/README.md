@@ -100,7 +100,7 @@ undefined
     - [comment: => についてを説明する · Issue #215 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/215 "comment: =&gt; についてを説明する · Issue #215 · asciidwango/js-primer")
 - 不要なところについてはconsole.logは省いても良い
     - 場合によって使いわけ
-    - 明確な今日は見えず
+    - 明確な使い分けは見えず
     
     
 ## ラベルの管理方法について
