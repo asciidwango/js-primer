@@ -5,7 +5,6 @@
 - [第1部: 基礎文法](basic/README.md)
     - [JavaScriptとは](basic/introduction/README.md)
     - [コメント](basic/comments/README.md)
-    - 字句構造
     - Strict mode
     - [変数と宣言](basic/variables/README.md)
     - [値の評価と表示](basic/read-eval-print/README.md)
@@ -16,17 +15,18 @@
     - [ループと反復処理](basic/loop/README.md)
     - [演算子](basic/operator/README.md)
     - [暗黙的な型変換](basic/implicit-coercion/README.md)
-    - Number
     - [オブジェクト](./basic/object/README.md)
     - [配列](./basic/array/README.md)
     - [文字列](./basic/string/README.md)
-    - オブジェクト
-    - Destructuring
-    - 関数/Arrow Function
-    - Spread Operator
-    - Error/Throw
+    - Number/Math
+    - 関数
+        - スコープ
+        - Arrow Function
+        - Destructuring
+        - Spread Operator
     - クラス
-    - 正規表現
+    - Error/Throw
+    - Promise
     - Generator/Iterable/Iterator
     - ビルトインオブジェクト
         - JSON
@@ -34,13 +34,9 @@
         - Map/WeakMap
         - Set/WeakSet
         - Symbol
-        - Promise
-    - Note
-        - ECMAScript策定プロセス
-        - Reflect API
-        - Proxy
-        - Unicode
-        - Intl
+    - Proxy/Reflect API
+    - 非推奨の機能
+    - ECMAScript策定プロセス
 - [第2部: 応用編（ユースケース）](use-case/README.md)
     - [Ajaxで通信](use-case/ajaxapp/README.md)
       - [エントリポイント](use-case/ajaxapp/entrypoint/README.md)
