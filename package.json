@@ -62,6 +62,7 @@
     "textlint-rule-ja-no-redundant-expression": "^1.0.1",
     "textlint-rule-max-comma": "^1.0.4",
     "textlint-rule-no-js-function-paren": "^1.0.1",
+    "textlint-rule-period-in-list-item": "^0.2.0",
     "textlint-rule-preset-ja-technical-writing": "^1.0.0",
     "textlint-rule-prh": "^3.0.1",
     "travis-after-all": "^1.4.4",
