@@ -16,7 +16,7 @@ const markedOptions = Object.assign({}, {
 
 fs.readFile(filePath, "utf8", (err, file) => {
     if (err) {
-        console.error(err.toString());
+        console.error(err);
         process.exit(err.code);
         return;
     }
