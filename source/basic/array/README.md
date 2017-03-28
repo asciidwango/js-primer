@@ -18,7 +18,7 @@ JavaScriptでは、プリミティブ型のデータ以外はすべてオブジ�
 このことは、`typeof`演算子の結果を見てみることでもわかります。
 
 ```js
-console.log(typeof ["A", "B", "C"]); // => "object"
+typeof ["A", "B", "C"]; // => "object"
 ```
 
 しかし、`Object`のインスタンスにはない`Array#map`などのメソッドや特殊な動作を持っています。

@@ -44,13 +44,7 @@ describe("doctest:md", function() {
                 });
                 try {
                     // console.logと// => の書式をチェック
-                    const lines = codeBlock.value.split("\n");
-                    lines.forEach(line => {
-                        const error = shouldConsoleWithComment(line, filePath);
-                        if (error instanceof Error) {
-                            throw error;
-                        }
-                    });
+                    shouldConsoleWithComment(codeBlock.value, filePath);
                     const poweredCode = toDoc.convertCode(codeBlock.value, filePath);
                     strictEval(poweredCode);
                 } catch (error) {

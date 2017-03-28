@@ -32,30 +32,45 @@ const isIncludeVariableInExpression = (AST) => {
  * - リテラルや変数が登場しないコードでは`console.log`を省いても良い
  *
  * lineが問題ある行ならばErrorオブジェクトを返す
- * @param {string} line
+ * @param {string} text
  * @param {string} filePath ファイルパスは無視したい対象の指定に使う
  * @returns {Error|undefined}
  */
-module.exports = function shouldConsoleWithComment(line, filePath) {
-    if (isIgnored) {
+module.exports = function shouldConsoleWithComment(text, filePath) {
+    const lines = text.split("\n");
+    // 1行以下なら無視する
+    if (lines.length <= 1) {
         return;
     }
-    if (!/\/\/\s*=>\s*/.test(line)) {
+    lines.forEach(line => {
+        const error = checkLineThatShouldHaveComment(line, filePath);
+        if (error instanceof Error) {
+            throw error;
+        }
+    });
+};
+/**
+ * @param {string} line
+ * @param {string} filePath
+ * @returns {Error|undefined}
+ */
+function checkLineThatShouldHaveComment(line, filePath) {
+    if (!/\/\/\s*=>\s*/.test(text)) {
         return;
     }
-    if (line.includes("console.")) {
+    if (text.includes("console.")) {
         return;
     }
     // エラーの場合は無視
-    if (/=>.*Error/.test(line)) {
+    if (/=>.*Error/.test(text)) {
         return;
     }
     // template literalっぽいのは無視
-    if (line.includes("`")) {
+    if (text.includes("`")) {
         return;
     }
 
-    const AST = esprima.parse(line);
+    const AST = esprima.parse(text);
     // 変数を含まないリテラルのみであるならパスする
     if (!isIncludeVariableInExpression(AST)) {
         return;
@@ -64,9 +79,9 @@ module.exports = function shouldConsoleWithComment(line, filePath) {
     const isIgnored = ignoreFileList.some(ignoreFilePath => {
         return filePath.includes(path.normalize(ignoreFilePath));
     });
-    if(isIgnored) {
+    if (isIgnored) {
         return;
     }
     return new Error(`console.log(式); // => 評価結果 にそろえてください
-該当コード: ${line}`);
-};
+該当コード: ${text}`);
+}
