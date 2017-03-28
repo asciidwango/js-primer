@@ -24,6 +24,13 @@ const isIncludeVariableInExpression = (AST) => {
     return false;
 };
 /**
+ * コードで `評価式; // => 評価値` を利用している箇所で
+ * `console.log`を付けるかどうかを判定する
+ * https://github.com/asciidwango/js-primer/issues/195
+ *
+ * - 基本的にはconsole.logを利用する
+ * - リテラルや変数が登場しないコードでは`console.log`を省いても良い
+ *
  * lineが問題ある行ならばErrorオブジェクトを返す
  * @param {string} line
  * @param {string} filePath ファイルパスは無視したい対象の指定に使う
