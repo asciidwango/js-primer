@@ -73,8 +73,8 @@ TODO: リテラルとはプログラム上で数値や文字列など、直接�
 それぞれは`true`と`false`の値を返すリテラルとなります。
 
 ```js
-console.log(true); // => true
-console.log(false); // => false
+true; // => true
+false; // => false
 ```
 
 ### 数値（Number）
@@ -130,7 +130,7 @@ JavaScriptの浮動小数点数は[IEEE 754][]を採用しています。
 `0`から始まる浮動小数点数は、`0`を省略して書くことができます。
 
 ```js
-console.log(.123); // => 0.123
+.123; // => 0.123
 ```
 
 しかし、JavaScriptでは`.`をオブジェクトにおいて利用する機会が多いため、
@@ -165,7 +165,7 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は全�
 
 {{book.console}}
 ```js
-console.log('8 o\'clock'); // => "8 o'clock"
+'8 o\'clock'; // => "8 o'clock"
 ```
 
 <!-- textlint-enable eslint -->
@@ -174,7 +174,7 @@ console.log('8 o\'clock'); // => "8 o'clock"
 
 {{book.console}}
 ```js
-console.log("8 o'clock"); // => "8 o'clock"
+"8 o'clock"; // => "8 o'clock"
 ```
 
 ダブルクオートとシングルクオートどちらも改行をそのまま入力することはできません。
@@ -201,9 +201,9 @@ console.log("8 o'clock"); // => "8 o'clock"
 
 {{book.console}}
 ```js
-console.log(`複数行の
+`複数行の
 文字列を
-入れたい`); // => "複数行の\n文字列を\n入れたい"
+入れたい`; // => "複数行の\n文字列を\n入れたい"
 ```
 
 また、名前のとおりテンプレートのような機能を持っています。
