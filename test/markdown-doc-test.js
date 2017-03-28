@@ -9,6 +9,7 @@ const sourceDir = path.join(__dirname, "..", "source");
 const toDoc = require("power-doctest");
 const remark = require("remark")();
 const select = require('unist-util-select');
+const shouldConsoleWithComment = require('./lib/console-comment');
 
 /**
  * 指定した文字列を含んだコードは実行環境によってはサポートされてないので無視する
@@ -35,7 +36,11 @@ const disableComment = "disable-doc-test";
  * CodeBlockは必ず実行できるとは限らないので、
  * AssertionError(doctestにおける失敗)以外は成功したことにして無視する
  * Node.js v6はES2016-が実行できないのでスルーする
- * 詳細は CONTRIBUTING.md を読む
+ *
+ * `console.log(式); // => 結果` の書式で書かれているをチェックする
+ * https://github.com/asciidwango/js-primer/issues/195
+ *
+ * その他詳細は CONTRIBUTING.md を読む
  **/
 describe("doctest:md", function() {
     const files = globby.sync([`${sourceDir}/**/*.md`, `!${sourceDir}/**/node_modules{,/**}`]);
@@ -56,6 +61,8 @@ describe("doctest:md", function() {
                     return codeValue.includes(version);
                 });
                 try {
+                    // console.logと// => の書式をチェック
+                    shouldConsoleWithComment(codeBlock.value, filePath);
                     const poweredCode = toDoc.convertCode(codeBlock.value, filePath);
                     strictEval(poweredCode);
                 } catch (error) {

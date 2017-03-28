@@ -112,14 +112,14 @@ ES2015で追加された`String#codePointAt`メソッドを使うことで、そ
 
 ```js
 // 文字列"あ"の0番目のCode Pointを取得
-"あ".codePointAt(0); // => 12354
+console.log("あ".codePointAt(0)); // => 12354
 ```
 
 逆に、`String.fromCodePoint`メソッドを使うことで、指定したCode Pointの文字を取得できます。
 
 ```js
 // 符号位置12354の文字を取得する
-String.fromCodePoint(12354); // => "あ"
+console.log(String.fromCodePoint(12354)); // => "あ"
 ```
 
 また、文字列リテラル中にはUnicodeエスケープシーケンスで、直接Code Pointを書くこともできます。
@@ -128,7 +128,7 @@ Code Pointは`\u{Code Pointの16進数の値}`で書くことができます。
 ```js
 // "あ"のCode Pointは12354
 // 12354の16進数表現は3042
-"\u{3042}"; // => "あ"
+console.log("\u{3042}"); // => "あ"
 ```
 
 Code Pointの16進数表現は次のようにして求めることができます。
@@ -139,7 +139,7 @@ var codePointOfあ = "あ".codePointAt(0);
 // 12354の16進数表現は"3042"
 var hexOfCodePoint = codePointOfあ.toString(16);
 // \はエスケープシーケンスであるため、\自体を表現するにはエスケープが必要
-"\\u{" + hexOfCodePoint + "}"; // => "\\u{3042}"
+console.log("\\u{" + hexOfCodePoint + "}"); // => "\\u{3042}"
 ```
 
 直接キーボードから入力が難しい特殊な文字や絵文字などは、Unicodeエスケープシーケンスを使うことでソースコード上に安全に書くことができます。
@@ -423,7 +423,8 @@ JavaScriptでは、ECMAScriptの関連仕様として国際化API（ECMAScript I
 // numericをtrueとすると数字が数値として比較されるようになる
 var collator = new Intl.Collator("ja", { numeric: true });
 // collator.compareはsortに渡せる関数となっている
-["1", "10", "2"].sort(collator.compare); // => ["1", "2", "10"]
+var sortedValues = ["1", "10", "2"].sort(collator.compare);
+console.log(sortedValues);  // => ["1", "2", "10"]
 ```
 
 文字列の比較においては、単純な比較であれば、`===`（厳密比較演算子）や`>`（大なり演算子）を利用します。

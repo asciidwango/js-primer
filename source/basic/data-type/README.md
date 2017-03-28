@@ -127,7 +127,7 @@ JavaScriptの浮動小数点数は[IEEE 754][]を採用しています。
 - `3.14159` のような `.`（ドット）を含んだ数値
 - `2e8` のような `e` または `E` を含んだ数値
 
-`0`から始まる浮動小数点数は、`0`を省略し書くことができます。
+`0`から始まる浮動小数点数は、`0`を省略して書くことができます。
 
 ```js
 .123; // => 0.123
@@ -245,7 +245,7 @@ foo;// "ReferenceError: foo is not defined"
 {{book.console}}
 ```js
 var foo = null;
-foo; // => null
+console.log(foo); // => null
 ```
 
 ### オブジェクトリテラル {#object}
@@ -344,7 +344,7 @@ console.log(array[array.length - 1]); // => "2番目"
 ```js
 var numberRegExp = /\d+/; // 1文字以上の数字にマッチする正規表現
 // 123が正規表現にマッチするかをテストする
-numberRegExp.test(123); // => true
+console.log(numberRegExp.test(123)); // => true
 ```
 
 `RegExp`今ストラクを使うことで文字列から正規表現オブジェクトを作成することもできますが、

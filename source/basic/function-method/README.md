@@ -58,7 +58,7 @@ function multiple(num) {
     return num * 2;
 }
 
-multiple(10); // => 20
+console.log(multiple(10)); // => 20
 ```
 
 値を返していない又は空の`return;`と書いた場合、関数は`undefined`を返します。
@@ -68,7 +68,7 @@ multiple(10); // => 20
 function noop() {
 }
 
-noop(); // => undefined;
+console.log(noop()); // => undefined;
 ```
 
 ### 可変長引数

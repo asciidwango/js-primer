@@ -83,8 +83,12 @@ or
 console.log(評価したい式); // => 期待する評価結果
 ```
 
+基本的には、`console.log(式); // => 期待する評価結果`を利用し、
+`console.log`が冗長な場合は `式; // => 期待する評価結果`と書いても良い。
+
 **関連**
 
+- [console.logと// => の使い分け · Issue #195 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/195 "console.logと// =&gt; の使い分け · Issue #195 · asciidwango/js-primer")
 - [power-assertを使ったDoctestツール power-doctestを書き直した | Web Scratch](http://efcl.info/2015/08/10/power-doctest1.0/)
 - [JavaScriptでdoctestを行う power-doctest を作った | Web Scratch](http://efcl.info/2013/1201/res3494/)
 - [25.2. doctest — 対話的な実行例をテストする — Python 2.7.x ドキュメント](http://docs.python.jp/2/library/doctest.html "25.2. doctest — 対話的な実行例をテストする — Python 2.7.x ドキュメント")
