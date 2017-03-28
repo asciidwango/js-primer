@@ -16,7 +16,7 @@ describe("front-matter", function() {
         `!${sourceDir}/README.md`,
         `!${sourceDir}/OUTLINE.md`,
         // サンプルコードの一部
-        `!${sourceDir}/use-case/nodecli/**/src/sample*.md`,
+        `!${sourceDir}/use-case/nodecli/**/src/**/sample*.md`,
     ]);
     context("author", function() {
         files.forEach(filePath => {

@@ -1,21 +1,10 @@
 const assert = require("assert");
+const fs = require("fs");
 const md2html = require("../md2html");
 
-const markdown = `
-これはサンプルです。
-https://asciidwango.github.io/js-primer/
+it("default options", () => {
+    const sample = fs.readFileSync("test/fixtures/sample.md", "utf8");
+    const expected = fs.readFileSync("test/fixtures/expected.html", "utf8");
 
-<p>これはHTMLです</p>
-`.trim();
-
-describe("md2html", () => {
-    it("default options", () => {
-        const expected = `
-<p>これはサンプルです。
-<a href="https://asciidwango.github.io/js-primer/">https://asciidwango.github.io/js-primer/</a></p>
-<p>これはHTMLです</p>
-`.trim();
-
-        assert(md2html(markdown) === expected);
-    });
+    assert(md2html(sample) === expected);
 });
