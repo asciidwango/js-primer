@@ -1,14 +1,28 @@
 // MIT © 2017 azu
 "use strict";
+const esprima = require("esprima");
+const esquery = require("esquery");
 const path = require("path");
 const ignoreFileList = [
     // 演算子はいいかな
     "source/basic/operator",
-    // 文字列リテラルそのものなので無視
-    "source/basic/string",
     // これもリテラルの話なので…
     "source/basic/implicit-coercion"
 ];
+/**
+ * 変数を含んでいるか
+ * @param {Object} AST
+ * @returns {boolean}
+ */
+const isIncludeVariableInExpression = (AST) => {
+    // 例外
+    // call({ x : 1})
+    const Identifiers = esquery(AST, "*:not(Property) Identifier");
+    if (Identifiers.length > 0) {
+        return true;
+    }
+    return false;
+};
 /**
  * lineが問題ある行ならばErrorオブジェクトを返す
  * @param {string} line
@@ -16,9 +30,6 @@ const ignoreFileList = [
  * @returns {Error|undefined}
  */
 module.exports = function shouldConsoleWithComment(line, filePath) {
-    const isIgnored = ignoreFileList.some(ignoreFilePath => {
-        return filePath.includes(path.normalize(ignoreFilePath));
-    });
     if (isIgnored) {
         return;
     }
@@ -34,6 +45,19 @@ module.exports = function shouldConsoleWithComment(line, filePath) {
     }
     // template literalっぽいのは無視
     if (line.includes("`")) {
+        return;
+    }
+
+    const AST = esprima.parse(line);
+    // 変数を含まないリテラルのみであるならパスする
+    if (!isIncludeVariableInExpression(AST)) {
+        return;
+    }
+    // 無視リストに含まれているなら無視
+    const isIgnored = ignoreFileList.some(ignoreFilePath => {
+        return filePath.includes(path.normalize(ignoreFilePath));
+    });
+    if(isIgnored) {
         return;
     }
     return new Error(`console.log(式); // => 評価結果 にそろえてください

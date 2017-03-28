@@ -423,7 +423,8 @@ JavaScriptでは、ECMAScriptの関連仕様として国際化API（ECMAScript I
 // numericをtrueとすると数字が数値として比較されるようになる
 var collator = new Intl.Collator("ja", { numeric: true });
 // collator.compareはsortに渡せる関数となっている
-["1", "10", "2"].sort(collator.compare); // => ["1", "2", "10"]
+var sortedValues = ["1", "10", "2"].sort(collator.compare);
+console.log(sortedValues);  // => ["1", "2", "10"]
 ```
 
 文字列の比較においては、単純な比較であれば、`===`（厳密比較演算子）や`>`（大なり演算子）を利用します。
