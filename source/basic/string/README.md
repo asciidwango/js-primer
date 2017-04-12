@@ -617,7 +617,7 @@ var pattern = new RegExp(`\\s{${spaceCount}}`);
 
 #### マッチした文字列を取得 {#match-by-regexp}
 
-`String#indexOf`メソッドの正規表現を引数に取れるバージョンである`String#search`メソッドがあります。
+`String#indexOf`メソッドの正規表現版ともいえる`String#search`メソッドがあります。
 
 - `String#indexOf(部分文字列)`: 部分`文字列にマッチした文字列のインデックスを返す
 - `String#search(/パターン/)`: 正規表現のパターンにマッチした文字列のインデックスを返す
