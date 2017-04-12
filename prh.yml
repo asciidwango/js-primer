@@ -227,6 +227,8 @@ rules:
     patterns: 文式
   - expected: 宣言的
     patterns: 宣言亭
+  - expected: コンストラクタ
+    patterns: 今ストラク
 # 文体
   - expected: どのように
     patterns:
