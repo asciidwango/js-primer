@@ -415,7 +415,8 @@ JavaScriptでは、ECMAScriptの関連仕様として国際化API（ECMAScript I
 （Internationalizationは長いためしばしばi18nと省略されることがあります）
 
 この書籍では詳しく紹介しませんが、国際化APIは`Intl`オブジェクトにあり、言語に依存した整形や比較などが利用できます。
-`Intl`オブジェクトはECMAScriptの関連する仕様、すべての実行環境で実装されているわけではありません。
+`Intl`オブジェクトはECMAScriptの仕様ではなく、[ECMA-402][]と呼ばれる「ECMAScriptに関連する仕様」という位置づけになっています。
+そのため、すべての実行環境で実装されているわけではありません。
 
 ブラウザにおけるサポート状況については[Can I use...][]で見ることができます。
 
@@ -896,3 +897,4 @@ console.log(toDateJa("今日は2017-03-01です")); // => "今日は2017年03月
 [正規表現 - JavaScript | MDN]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions  "正規表現 - JavaScript | MDN"
 [regex101]: https://regex101.com/  "Online regex tester and debugger: PHP, PCRE, Python, Golang and JavaScript"
 [データ型とリテラル]: ../data-type/README.md
+[ECMA-402]: https://www.ecma-international.org/publications/standards/Ecma-402.htm  "Standard ECMA-402"
