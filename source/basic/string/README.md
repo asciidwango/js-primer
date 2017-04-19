@@ -868,6 +868,81 @@ console.log(toDateJa("今日は2017-03-01です")); // => "今日は2017年03月
 
 ## 文字列の組み立て {#built}
 
+最後に文字列の組み立てについて見ていきましょう。
+最初に述べたようにこのセクションの目的は、「自由な文字列を作れるようになること」です。
+
+文字列そのものの変更は単純に結合したり置換することで作れることがわかりました。
+一方、構造的文字列の場合は単純に結合するだけでは意味が異なってしまうことがあります。
+
+ここでの構造的な文字列とは、URL文字列やファイルパス文字列といった構造をもつ文字列です。
+これらの文字列を作成する場合は、文字列結合演算子（`+`）で単純に結合するよりも専用の関数を用意する方が安全です。
+
+たとえば、次のように`baseURL`と`pathname`を渡し、それらを結合したURLにあるリソースを取得する`getResource`関数があるとします。
+この`getResource`関数には、ベースURLとベースURLからのパスを引数にそれぞれ渡して使うことが分かります。
+
+```js
+function getResource(baseURL, pathname) {
+    var url = baseURL + pathname;
+    console.log(url); // => "http://example.com/resouces/example.js"
+    // 省略) リソースを取得する処理...
+}
+var baseURL = "http://example.com/resouces";
+var pathname = "/example.js";
+// `baseURL`と`pathname`にあるリソースを取得する
+getResource(baseURL, pathname);
+```
+
+しかし、人によっては、`baseURL`の末尾には`/`が含むと考える場合もあります。
+この場合は`getResource`関数の内部で、`baseURL`と`pathname`を結合しできたURL先が異なります。
+そのため、意図しないURLからリソースを取得するという問題が発生します。
+
+```js
+function getResource(baseURL, pathname) {
+    var url = baseURL + pathname;
+    // `/` と `/` が２つ重なってしまっている
+    console.log(url); // => "http://example.com/resouces//example.js"
+    // 省略) リソースを取得する処理...
+}
+var baseURL = "http://example.com/resouces/";
+var pathname = "/example.js";
+// `baseURL`と`pathname`にあるリソースを取得する
+getResource(baseURL, pathname);
+```
+
+この問題が難しいところは、結合してできた`url`は文字列としては正しいためエラーではないということです。
+つまり、一見すると問題ないように見えますが、実際に動かしてみて初めて分かるような問題が生じやすいです。
+
+そのため、このような構造的な意味をもつ文字列を扱う場合は、専用の関数や専用のオブジェクトを利用することがより安全な文字列の処理につながります。
+
+先ほどのような、文字列結合を安全に行うには、入力される文字列の揺れを吸収する仕組みを作成します。
+次の`baseJoin`関数はベースURLとパスを結合した文字列を返しますが、ベースURLの末尾に`/`があるかの揺れを吸収しています。
+
+```js
+// ベースURLとパスを結合した文字列を返す
+function baseJoin(baseURL, pathname) {
+    var stripSlashBaseURl = baseURL.replace(/\/$/, "");
+    return stripSlashBaseURl + pathname;
+}
+function getResource(baseURL, pathname) {
+    var url = baseJoin(baseURL, pathname);
+    // baseURLの末尾に`/`があっても問題なくなる
+    console.log(url); // => "http://example.com/resouces/example.js"
+    // 省略) リソースを取得する処理...
+}
+var baseURL = "http://example.com/resouces/";
+var pathname = "/example.js";
+// `baseURL`と`pathname`にあるリソースを取得する
+getResource(baseURL, pathname);
+```
+
+ECMAScriptの範囲ではありませんが、
+このような構造を持ったURLを扱うものとしてブラウザ上のAPIである[URL][]オブジェクト、
+Node.jsのコアモジュールである[Path][]モジュールなどがあります。
+
+### タグ付きテンプレート関数
+
+- [ ] HTMLエスケープ
+
 ## 参考
 
 - [What every JavaScript developer should know about Unicode](https://rainsoft.io/what-every-javascript-developer-should-know-about-unicode/)
@@ -898,3 +973,5 @@ console.log(toDateJa("今日は2017-03-01です")); // => "今日は2017年03月
 [regex101]: https://regex101.com/  "Online regex tester and debugger: PHP, PCRE, Python, Golang and JavaScript"
 [データ型とリテラル]: ../data-type/README.md
 [ECMA-402]: https://www.ecma-international.org/publications/standards/Ecma-402.htm  "Standard ECMA-402"
+[URL]: https://developer.mozilla.org/ja/docs/Web/API/URL  "URL - Web API インターフェイス | MDN"
+[Path]: https://nodejs.org/api/path.html  "Path | Node.js v7.9.0 Documentation"
