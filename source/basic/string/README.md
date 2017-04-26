@@ -890,6 +890,7 @@ scheme      host     pathname
 この`getResource`関数には、ベースURLとベースURLからのパスを引数にそれぞれ渡して利用します。
 
 ```js
+// `baseURL`と`pathname`にあるリソースを取得する
 function getResource(baseURL, pathname) {
     var url = baseURL + pathname;
     console.log(url); // => "http://example.com/resouces/example.js"
@@ -897,7 +898,6 @@ function getResource(baseURL, pathname) {
 }
 var baseURL = "http://example.com/resouces";
 var pathname = "/example.js";
-// `baseURL`と`pathname`にあるリソースを取得する
 getResource(baseURL, pathname);
 ```
 
@@ -906,6 +906,7 @@ getResource(baseURL, pathname);
 そのため、意図しないURLからリソースを取得するという問題が発生します。
 
 ```js
+// `baseURL`と`pathname`にあるリソースを取得する
 function getResource(baseURL, pathname) {
     var url = baseURL + pathname;
     // `/` と `/` が２つ重なってしまっている
@@ -914,16 +915,15 @@ function getResource(baseURL, pathname) {
 }
 var baseURL = "http://example.com/resouces/";
 var pathname = "/example.js";
-// `baseURL`と`pathname`にあるリソースを取得する
 getResource(baseURL, pathname);
 ```
 
 この問題が難しいところは、結合してできた`url`は文字列としては正しいためエラーではないということです。
 つまり、一見すると問題ないように見えますが、実際に動かしてみて初めて分かるような問題が生じやすいです。
 
-そのため、このような構造的な文字列を扱う場合は、専用の関数や専用のオブジェクトを利用することがより安全な文字列の処理につながります。
+そのため、このような構造的な文字列を扱う場合は、専用の関数や専用のオブジェクトを利用することでより安全に文字列を処理できます。
 
-先ほどのような、URL文字列の結合を安全に行うには、入力される文字列の揺れを吸収する仕組みを作成します。
+先ほどのような、URL文字列の結合を安全に行うには、入力される`baseURL`文字列の揺れを吸収する仕組みを作成します。
 次の`baseJoin`関数はベースURLとパスを結合した文字列を返しますが、ベースURLの末尾に`/`があるかの揺れを吸収しています。
 
 ```js
@@ -933,6 +933,7 @@ function baseJoin(baseURL, pathname) {
     var stripSlashBaseURl = baseURL.replace(/\/$/, "");
     return stripSlashBaseURl + pathname;
 }
+// `baseURL`と`pathname`にあるリソースを取得する
 function getResource(baseURL, pathname) {
     var url = baseJoin(baseURL, pathname);
     // baseURLの末尾に`/`あってもなくても同じ結果となる
@@ -945,7 +946,7 @@ getResource(baseURL, pathname);
 ```
 
 ECMAScriptの範囲ではありませんが、URLやファイルパスといった典型的なものに対してはすでに専用のものがあります。
-URLを扱うものとしてブラウザ上のAPIである[URL][]オブジェクト、Node.jsのコアモジュールである[Path][]モジュールなどがあります。
+URLを扱うものとしてブラウザ上のAPIである[URL][]オブジェクト、Node.jsのコアモジュールである[Path][]モジュールなどがあります。構造が決まっている文字列において、それ向けの仕組みがある場合はそちらを利用することをお勧めします。
 
 ### タグ付きテンプレート関数
 
