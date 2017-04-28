@@ -950,7 +950,97 @@ URLを扱うものとしてブラウザ上のAPIである[URL][]オブジェク�
 
 ### タグ付きテンプレート関数
 
-- [ ] HTMLエスケープ
+文字列操作を行う場合に構造を持った文字列では気をつける必要があることがわかりました。
+しかし、文字列処理をする際に毎回関数で囲んで書くには分かりにくい場合もあります。
+
+たとえば、次の例はHTMLを組み立てる架空の関数です。
+
+```js
+function h(tagName, children) {
+    const tag = document.createElement(tagName);
+    children.forEach((child) => tag.appendChild(typeof child === "string" ? document.createTextNode(child) : child));
+    return tag;
+};
+const HTML = h("div", [
+    h("p", [
+        "text"  
+    ])
+]);
+```
+
+同等のHTMLをテンプレートリテラルでただの文字列として書いてみます。
+
+```js
+const HTML = `<div>
+    <p>text</p>
+</div>`;
+```
+
+しかし、このテンプレートリテラルも次のように`text`をユーザー入力など外部から受け取る場合には問題が発生します。
+次のように、ユーザー入力にタグ文字列が含まれていた場合に、そのタグも評価されてしまいます。
+タグには`<script>`要素を使い任意のJavaScriptも書くことができるため、任意のコードが実行できるのと同じことを意味しています。
+このような意図しないコード実行をXSS（クロスサイトスクリプティング）と呼びます。
+
+```js
+// userInputにはタグも入れることができ、そのままタグとして扱われてしまう
+var userInput = "<b>ユーザー入力</b>";
+const HTML = `<div>
+    <p>${userInput}</p>
+</div>`;
+```
+
+ここで実現したいことは、変数経由の文字列はエスケープすることで、`userInput`にタグなどが入ってもただの文字列としてあつかえるようにすることです。
+
+タグ付きテンプレートリテラル（Tagged Template Litera）を使うことで、先ほどのような宣言的な表現にコンテキストに基づいたエスケープ処理を変数に書けることができます。
+
+タグ付きテンプレートとは、テンプレートリテラルを引数に受け取る特別の関数です。
+少し特殊な引数となっていますが、基本的な扱い方のパターンがあります。
+
+この関数の呼び出し方も特殊で通常の`関数()`ではなく、``` 関数`` ```のように、関数の後にバッククオートでテンプレートリテラルを書くことで呼び出せます。
+
+```js
+// タグ付きテンプレートを扱う関数
+// 引数を順番どおりに結合した文字列を返す
+function tag(strings, ...values) {
+    console.log(strings); // ["template", "literal"]
+    console.log(values); // [0, 1]
+    return strings.reduce((result, string, i) => {
+        return result + values[i - 1] + string;
+    }); 
+}
+// 関数`テンプレートリテラル` という形で呼び出す
+tag`template ${0} literal ${1}`; // "template 0 literal 1"
+```
+
+これを利用することで、先ほどのテンプレートリテラルで`userInput`のような変数で渡って来た文字列をHTMLエスケープする処理を行うタグ付きテンプレートを書くことができます。
+
+```js
+function escapeSpecialChars(string) {
+    return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+function escapeHTML(strings, ...values) {
+    return strings.reduce((result, string, i) => {
+        return result + values[i - 1] + string;
+    });  
+}
+
+// `userInput`はHTMLエスケープが行われる
+var userInput = "<b>ユーザー入力</b>";
+const HTML = escapeHTML `<div>
+    <p>${userInput}</p>
+</div>`;
+console.log(HTML);
+// <div>
+//  <p>&lt;b&gt;ユーザー入力&lt;/b&gt;</p>
+// </div>`
+```
+
+このよｎタグ付きテンプレートをつかうことで、表現はそのままにコンテキストにモドづいた処理を文字列に行うことができます。
 
 ## 参考
 
