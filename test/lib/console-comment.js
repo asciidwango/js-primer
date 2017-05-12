@@ -50,19 +50,23 @@ module.exports = function shouldConsoleWithComment(text, filePath) {
     });
 };
 /**
- * @param {string} line
+ * @param {string} text
  * @param {string} filePath
  * @returns {Error|undefined}
  */
-function checkLineThatShouldHaveComment(line, filePath) {
+function checkLineThatShouldHaveComment(text, filePath) {
     if (!/\/\/\s*=>\s*/.test(text)) {
         return;
     }
-    if (!text.includes("console.")) {
+    if (text.includes("console.")) {
         return;
     }
     // エラーの場合は無視
     if (/=>.*Error/.test(text)) {
+        return;
+    }
+    // template literalっぽいのは無視
+    if (text.includes("`")) {
         return;
     }
 

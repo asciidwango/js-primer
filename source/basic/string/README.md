@@ -997,11 +997,11 @@ tag(`template ${0} literal ${1}`);
 ```js
 function tag(strings, ...values) {
     // stringsには文字列部分が${}で区切られて順番に入る
-    console.log(strings); // ["template", "literal"]
+    console.log(strings); // => ["template "," literal ",""]
     // valuesには${}の評価値が順番に入る
-    console.log(values); // [0, 1]
+    console.log(values); // => [0, 1]
 }
-tag(`template ${0} literal ${1}`);
+tag`template ${0} literal ${1}`;
 ```
 
 タグ関数はかなり特殊なので形に慣れるため、次のようにタグ付きテンプレートの内容をそのまま返す`stringRaw`というタグ関数を実装してみます。
