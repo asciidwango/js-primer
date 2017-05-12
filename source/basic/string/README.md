@@ -953,46 +953,29 @@ URLを扱うものとしてブラウザ上のAPIである[URL][]オブジェク�
 文字列操作を行う場合に構造を持った文字列では気をつける必要があります。
 しかし、文字列処理をする際に毎回関数で囲んで書くと分かりにくい場合もあります。
 
-たとえば、次の例はHTMLを組み立てる架空の関数です。
+たとえば、URLのクエリをエスケープすることを考えてみましょう。
+JavaScriptでは、`encodeURIComponent`関数を使うことで文字列をURLを壊さないように文字列へエスケープできます。
+
+次のような検索クエリをもつURLを考えてみましょう。
 
 ```js
-function h(tagName, children) {
-    const tag = document.createElement(tagName);
-    children.forEach((child) => tag.appendChild(typeof child === "string" ? document.createTextNode(child) : child));
-    return tag;
-};
-const HTML = h("div", [
-    h("p", [
-        "text"  
-    ])
-]);
+var searchURL = "https://example.com/search?q=test&sort=desc";
 ```
 
-同等のHTMLをテンプレートリテラルでただの文字列として書いてみます。
-先ほどの独自のHTMLを組み立てる関数よりも、テンプレートリテラルで実際のHTML文字列の方が見慣れたものとなります。
+この`q`のパラメータをユーザー入力など外部から受け取る場合には、`encodeURIComponent`関数などでURLエスケープする必要があります。なぜなら、ユーザー入力に`&`などが含まれているとURLの意味合いが壊れてしまうためです。
 
 ```js
-const HTML = `<div>
-    <p>text</p>
-</div>`;
+var input = "A&B";
+// URLエスケープせずに結合した場合
+var noEscapedURL = `https://example.com/search?q=${input}&sort=desc`;
+console.log(noEscapedURL); // => "https://example.com/search?q=A&B&sort=desc"
+// URLエスケープして結合した場合
+var escapedURL = `https://example.com/search?q=${encodeURIComponent(input)}&sort=desc`;
+console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
 ```
 
-しかし、このテンプレートリテラルも次のように`text`をユーザー入力など外部から受け取りたい場合には問題が発生します。
-
-次のように、ユーザー入力にタグ文字列が含まれていた場合に、そのタグも評価されてしまいます。
-タグには`<script>`要素を使い任意のJavaScriptも書くことができるため、任意のコードが実行できるのと同じことを意味しています。
-このような意図しないコード実行をXSS（クロスサイトスクリプティング）と呼びます。
-
-```js
-// userInputにはタグも入れることができ、そのままタグとして扱われてしまう
-var userInput = "<b>ユーザー入力</b>";
-const HTML = `<div>
-    <p>${userInput}</p>
-</div>`;
-```
-
-ここで実現したいことは、変数経由の文字列はHTMLエスケープすることで、`userInput`にタグなどが入ってもただの文字列として扱えるようにすることです。
-文字列を受け取りHTMLエスケープする関数を利用してもよいのですが、テンプレートリテラルにはより宣言的に行う方法があります。
+ここで実現したいことは、変数経由の文字列はURLエスケープすることで、`input`にURLとして特別な意味がある文字（`&`や`?`など）を安全にURL中に埋め込むことです。
+変数をURLエスケープしてから文字列結合してもよいのですが、テンプレートリテラルにはより宣言的に行う方法があります。
 
 タグ付きテンプレート（Tagged Template）を使うことで、先ほどのような宣言的なテンプレートリテラルにエスケープ処理を加えることができます。
 
@@ -1041,41 +1024,26 @@ stringRaw`template ${0} literal ${1}`; // "template 0 literal 1"
 String.raw`template ${0} literal ${1}`; // "template 0 literal 1"
 ```
 
-先ほどのHTML文字列中の変数をエスケープするタグ付きテンプレートを実装してみましょう。
-まずはHTMLのタグ要素をエスケープする`escapeSpecialChars`関数を定義し、それを利用したHTML文字列をエスケープする`escapeHTML`タグ関数を定義します。
+先ほどの文字列中の変数をURLエスケープするタグ付きテンプレートを実装してみましょう。
+`encodeURIComponent`関数を利用し、変数をURLエスケープする`escapeURL`タグ関数を定義します。
+このタグ関数を使うことで、テンプレートリテラル中の変数がURLエスケープできます。
 
 ```js
-function escapeSpecialChars(string) {
-    return str
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-function escapeHTML(strings, ...values) {
+// 変数をURLエスケープするタグ関数
+function escapeURL(strings, ...values) {
     return strings.reduce((result, string, i) => {
-        return result + values[i - 1] + string;
+        return result + encodeURIComponent(values[i - 1]) + string;
     });  
 }
 
-// `userInput`はHTMLエスケープが行われる
-var userInput = "<b>ユーザー入力</b>";
-// escapeHTMLタグ関数を使ったタグ付きテンプレート
-const HTML = escapeHTML`<div>
-    <p>${userInput}</p>
-</div>`;
-console.log(HTML);
-// <div>
-//  <p>&lt;b&gt;ユーザー入力&lt;/b&gt;</p>
-// </div>`
-// エスケープする関数を使う場合
-const HTML_2 = `<div>
-    <p>${escapeSpecialChars(userInput)}</p>
-</div>`;
-// 両者の結果は同じ
-console.log(HTML === HTML_2); // => true
+var input = "A&B";
+// escapeURLタグ関数を使ったタグ付きテンプレート
+const escapedURL = escapeURL`https://example.com/search?q=${input}&sort=desc`;
+console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
 ```
+
+このようにタグ付きテンプレートリテラルを使うことで、文脈に応じた処理を付け加えることができます。
+この機能はJavaScript内にHTMLなどの別の言語を埋め込む際などに利用されます。
 
 ## おわりに
 
