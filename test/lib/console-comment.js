@@ -58,15 +58,11 @@ function checkLineThatShouldHaveComment(line, filePath) {
     if (!/\/\/\s*=>\s*/.test(text)) {
         return;
     }
-    if (text.includes("console.")) {
+    if (!text.includes("console.")) {
         return;
     }
     // エラーの場合は無視
     if (/=>.*Error/.test(text)) {
-        return;
-    }
-    // template literalっぽいのは無視
-    if (text.includes("`")) {
         return;
     }
 
