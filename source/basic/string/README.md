@@ -965,6 +965,7 @@ var searchURL = "https://example.com/search?q=test&sort=desc";
 この`q`のパラメータをユーザー入力など外部から受け取る場合には、`encodeURIComponent`関数などでURLエスケープする必要があります。なぜなら、ユーザー入力に`&`などが含まれているとURLの意味合いが壊れてしまうためです。
 
 ```js
+// ユーザ入力
 var input = "A&B";
 // URLエスケープせずに結合した場合
 var noEscapedURL = `https://example.com/search?q=${input}&sort=desc`;
@@ -974,7 +975,7 @@ var escapedURL = `https://example.com/search?q=${encodeURIComponent(input)}&sort
 console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
 ```
 
-ここで実現したいことは、変数経由の文字列はURLエスケープすることで、`input`にURLとして特別な意味がある文字（`&`や`?`など）を安全にURL中に埋め込むことです。
+ここで実現したいことは、変数経由の文字列をURLエスケープすることで、`input`（ユーザ入力）を安全にURL中に埋め込むことです。
 変数をURLエスケープしてから文字列結合してもよいのですが、変数の数だけURLエスケープの関数を呼ぶ必要があります。
 そのため、ひとつでも変数をURLエスケープし忘れると安全ではなくなります。
 
