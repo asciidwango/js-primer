@@ -953,34 +953,45 @@ URLを扱うものとしてブラウザ上のAPIである[URL][]オブジェク�
 文字列操作を行う場合にコンテキストをもつ文字列では気をつける必要があります。
 しかし、文字列処理をする際に毎回関数で囲んで書くとコードの見た目が分かりにくい場合もあります。
 
-たとえば、URLのクエリをエスケープすることを考えてみましょう。
-JavaScriptでは、`encodeURIComponent`関数を使うことで文字列をURLを壊さないように文字列へエスケープできます。
-
-次のような検索クエリをもつURLを考えてみましょう。
+次のようなユーザー入力を受け取り構築されるURLを考えてみましょう。
+次の`input`にはユーザー入力、つまり外部から受け取った任意の文字列が入ります。
 
 ```js
-var searchURL = "https://example.com/search?q=test&sort=desc";
+// ユーザー入力
+var input = "test";
+// ユーザー入力を使ってURLを構築
+var searchURL = `https://example.com/search?query=${input}&sort=desc`;
 ```
 
-この`q`のパラメータをユーザー入力など外部から受け取る場合には、`encodeURIComponent`関数などでURLエスケープする必要があります。なぜなら、ユーザー入力に`&`などが含まれているとURLの意味合いが壊れてしまうためです。
+このとき、単純な文字列結合だとユーザー入力によってはURLが壊れてしまいます。
+なぜなら、ユーザー入力に`&`や`/`などが含まれているとURLの意味合いが変わってしまったり、
+URLには含められない文字列があるためです。
 
 ```js
 // ユーザ入力
-var input = "A&B";
+var input = "/";
 // URLエスケープせずに結合した場合
-var noEscapedURL = `https://example.com/search?q=${input}&sort=desc`;
-console.log(noEscapedURL); // => "https://example.com/search?q=A&B&sort=desc"
-// URLエスケープして結合した場合
-var escapedURL = `https://example.com/search?q=${encodeURIComponent(input)}&sort=desc`;
-console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
+var URL = `https://example.com/search?q=${input}&sort=desc`;
+// `query`のパラメータのはずがパスの区切り文字と解釈されてしまう
+console.log(URL); // => "https://example.com/search?query=/&sort=desc"
 ```
 
-ここで実現したいことは、変数経由の文字列をURLエスケープすることで、`input`（ユーザ入力）を安全にURL中に埋め込むことです。
-変数をURLエスケープしてから文字列結合してもよいのですが、変数の数だけURLエスケープの関数を呼ぶ必要があります。
-そのため、ひとつでも変数をURLエスケープし忘れると安全ではなくなります。
+そのため、URLのパラメータなどにユーザー入力を含めるためにはURLエスケープする必要があります。
+JavaScriptでは、`encodeURIComponent`関数を使うことで文字列をURLを安全な文字列へエスケープできます。
+
+```js
+// ユーザ入力
+var input = "/";
+// URLエスケープして結合した場合
+var URL = `https://example.com/search?q=${encodeURIComponent(input)}&sort=desc`;
+// `/`が`%2F`へURLエスケープされている
+console.log(URL); // => "https://example.com/search?query=%2F&sort=desc"
+```
+
+このように、変数（ユーザー入力など）をURLエスケープしてから文字列結合してもよいのですが、変数の数だけURLエスケープの関数を書く必要があります。そのため、変数をひとつでもURLエスケープし忘れると安全ではなくなります。
 
 このようなエスケープ忘れなどの問題は、デフォルトを安全側に倒すことでコーディングミスが起きても問題をレベルを小さくする工夫が必要です。
-ここでは、タグ付きテンプレート（Tagged Template）を使うことで、テンプレート中の変数を自動でエスケープする処理を加えることができます。
+ここでは、タグ付きテンプレート（Tagged Template）を使い、テンプレート中の変数を自動でエスケープする処理を加えることができます。
 
 タグ付きテンプレートとは、``` タグ関数`テンプレート` ```という形式で記述する関数とテンプレートリテラルをあわせた表現です。
 関数の呼び出しに```タグ関数(`テンプレート`)```ではなく、``` タグ関数`テンプレート` ```という書式を使っていることに注意してください。
