@@ -983,7 +983,7 @@ JavaScriptでは、`encodeURIComponent`関数を使うことで文字列をURL�
 // ユーザ入力
 var input = "/";
 // URLエスケープして結合した場合
-var URL = `https://example.com/search?q=${encodeURIComponent(input)}&sort=desc`;
+var URL = `https://example.com/search?query=${encodeURIComponent(input)}&sort=desc`;
 // `/`が`%2F`へURLエスケープされている
 console.log(URL); // => "https://example.com/search?query=%2F&sort=desc"
 ```
