@@ -971,7 +971,7 @@ URLには含められない文字列があるためです。
 // ユーザ入力
 var input = "/";
 // URLエスケープせずに結合した場合
-var URL = `https://example.com/search?q=${input}&sort=desc`;
+var URL = `https://example.com/search?query=${input}&sort=desc`;
 // `query`のパラメータのはずがパスの区切り文字と解釈されてしまう
 console.log(URL); // => "https://example.com/search?query=/&sort=desc"
 ```
