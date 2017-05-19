@@ -977,7 +977,7 @@ console.log(URL); // => "https://example.com/search?query=/&sort=desc"
 ```
 
 そのため、URLのパラメータなどにユーザー入力を含めるためにはURLエスケープする必要があります。
-JavaScriptでは、`encodeURIComponent`関数を使うことで文字列をURLを安全な文字列へエスケープできます。
+JavaScriptでは、`encodeURIComponent`関数を使うことで文字列をURL中に埋め込んでも安全な文字列へエスケープできます。
 
 ```js
 // ユーザ入力
