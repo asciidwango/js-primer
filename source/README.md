@@ -19,6 +19,7 @@
     - [配列](./basic/array/README.md)
     - [文字列](./basic/string/README.md)
     - Number/Math
+    - [ラッパーオブジェクト](./basic/wrapper-object)
     - 関数
         - スコープ
         - Arrow Function
