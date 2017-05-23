@@ -70,7 +70,8 @@ markedパッケージや、そのオプションに関する記述がひとつ�
 
 ユニットテストの実行にはさまざまな方法がありますが、
 このセクションではテスティングフレームワークとして[Mocha][]を使って、ユニットテストの実行環境を作成します。
-Mochaの詳細については、[JavaScript Promiseの本][]よりテストの章を参照してください。
+Mochaが提供するテスト実行環境では、グローバルに`it`や`describe`などの関数が定義されます。
+ユニットテストを実行するには、Mochaが提供する`mocha`コマンドを使います。
 
 Mochaによるテスト環境を作るために、まずは次のコマンドで`mocha`パッケージをインストールします。
 
@@ -81,13 +82,15 @@ $ npm install --save-dev mocha
 `--save-dev`オプションは、パッケージを`devDependencies`としてインストールするためのものです。
 package.jsonの`devDependencies`には、そのパッケージを開発するときだけ必要な依存ライブラリを記述します。
 
-Mochaをインストールした後、package.jsonの`scripts`を次のように記述します。
+Mochaをインストールした後、package.jsonの`scripts`プロパティを次のように記述します。
 
 ```json
 {
+    ...
     "scripts": {
         "test": "mocha"
-    }
+    },
+    ...
 }
 ```
 
@@ -115,6 +118,10 @@ Mochaのユニットテストは`test`ディレクトリの中にJavaScriptフ�
 `test/fixtures`ディレクトリにはユニットテストで用いるファイルを配置しています。
 今回は変換元のMarkdownファイルと、期待する変換結果のHTMLファイルの2つが存在します。
 
+`assert`関数は、Node.jsの標準モジュールのひとつである[assertモジュール][]から提供される関数です。
+この関数は引数の評価結果がfalseであるとき、実行時にエラーを発生します。
+Mochaの`it`関数はその内部でエラーが発生したとき、そのテストを失敗として扱います。
+
 ユニットテストを記述したら、もう一度改めて`npm test`コマンドを実行しましょう。1件のテストが通れば成功です。
 
 ```shell-session
@@ -128,4 +135,4 @@ $ npm test
 
 [moduleオブジェクト]: https://nodejs.org/api/modules.html#modules_the_module_object
 [Mocha]: http://mochajs.org/
-[JavaScript Promiseの本]: http://azu.github.io/promises-book/#chapter3-promise-testing
+[assertモジュール]: https://nodejs.org/api/assert.html
