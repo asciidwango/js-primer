@@ -1,3 +1,8 @@
+---
+author: azu
+---
+
+
 # ラッパーオブジェクト
 
 JavaScriptのデータ型は大きくプリミティブ型とオブジェクトに分けられることを説明しました。
@@ -48,7 +53,7 @@ string.toLocaleUpperCase(); // => "STRING"
 var string = "string";
 console.log(typeof string); // => "string";
 var stringWrapper = new String("string");
-console.log(typeof string); // => "object";
+console.log(typeof stringWrapper); // => "object";
 ```
 
 ## プリミティブとラッパーオブジェクトの相互変換
@@ -82,6 +87,30 @@ console.log(stringWrapper.valueOf()); // => "string"
 
 ```js
 var stringWrapper = new String("string");
-// valueOfメソッドを読んでいないのにプリミティブ型の値が評価結果となる
+// valueOfメソッドを呼び出してないが、評価結果はプリミティブ型の値
 console.log(stringWrapper); // => "string"
 ```
+
+JavaScriptにおいて、プリミティブ型の値とラッパーオブジェクトの相互変換は多くのケースで自動的に行われます。
+また、`new String("string")`のようにラッパーオブジェクトのインスタンスを生成することは現実的にほぼありません。
+ラッパーオブジェクトを利用した際に`typeof`の結果が、プリミティブ型ではなく`"object"`となり混乱を招くのも避けるべき理由です。
+
+プリミティブ型のデータは常にリテラルを使うことを推奨します。
+そうすることで、コードを書く際にこれらのラッパーオブジェクトは意識する必要がなくなります。
+
+```js
+// OK: リテラルを使う
+"string";
+// NG: ラッパーオブジェクトを使う
+new String("string");
+```
+
+## まとめ
+
+この章では、プリミティブ型の値がなぜメソッド呼び出しできるのかについて解説しました。
+その仕組みの背景にはプリミティブ型に対応したラッパーオブジェクトの存在があります。
+プリミティブ型の値が評価される際に自動的にラッパーオブジェクトへ変換されることでメソッド呼び出しなどが可能となっています。
+
+「JavaScriptはすべてがオブジェクトである」と言われることがあります。
+プリミティブ型はオブジェクトではありませんが、プリミティブ型に対応したラッパーオブジェクトが用意されています。（`null`と`undefined`を除く）
+そのため、「すべてがオブジェクトのように見える」というのが正しい認識となるでしょう。
