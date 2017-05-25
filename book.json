@@ -9,6 +9,7 @@
   },
   "plugins": [
     "include-codeblock",
+    "anchors",
     "edit-link",
     "canonical-link",
     "ga",

@@ -40,6 +40,7 @@
     "esquery": "^1.0.0",
     "front-matter": "^2.1.0",
     "gitbook-cli": "^2.1.2",
+    "gitbook-plugin-anchors": "^0.7.1",
     "gitbook-plugin-canonical-link": "^2.0.2",
     "gitbook-plugin-edit-link": "^2.0.2",
     "gitbook-plugin-ga": "^2.0.0",
