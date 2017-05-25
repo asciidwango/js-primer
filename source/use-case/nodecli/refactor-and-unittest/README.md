@@ -32,7 +32,7 @@ module.exports = function greet(name) {
 
 ```js
 const greet = require("./greet");
-greet("World"); // => Hello World!
+greet("World"); // "Hello World!"
 ```
 
 `module.exports`オブジェクトに直接代入するのではなく、そのプロパティとして任意の値をエクスポートすることもできます。

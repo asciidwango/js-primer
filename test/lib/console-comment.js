@@ -7,7 +7,8 @@ const ignoreFileList = [
     // 演算子はいいかな
     "source/basic/operator",
     // これもリテラルの話なので…
-    "source/basic/implicit-coercion"
+    "source/basic/implicit-coercion",
+    "source/use-case/nodecli/refactor-and-unittest"
 ];
 /**
  * 変数を含んでいるか
