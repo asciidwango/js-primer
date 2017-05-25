@@ -950,7 +950,129 @@ URLを扱うものとしてブラウザ上のAPIである[URL][]オブジェク�
 
 ### タグ付きテンプレート関数
 
-- [ ] HTMLエスケープ
+文字列操作を行う場合にコンテキストをもつ文字列では気をつける必要があります。
+しかし、文字列処理をする際に毎回関数で囲んで書くとコードの見た目が分かりにくい場合もあります。
+
+次のようなユーザー入力を受け取り構築されるURLを考えてみましょう。
+次の`input`にはユーザー入力、つまり外部から受け取った任意の文字列が入ります。
+
+```js
+// ユーザー入力
+var input = "test";
+// ユーザー入力を使ってURLを構築
+var searchURL = `https://example.com/search?query=${input}&sort=desc`;
+```
+
+このとき、単純な文字列結合だとユーザー入力によってはURLが壊れてしまいます。
+なぜなら、ユーザー入力に`&`や`/`などが含まれているとURLの意味合いが変わってしまったり、
+URLには含められない文字列があるためです。
+
+```js
+// ユーザ入力
+var input = "/";
+// URLエスケープせずに結合した場合
+var URL = `https://example.com/search?query=${input}&sort=desc`;
+// `query`のパラメータのはずがパスの区切り文字と解釈されてしまう
+console.log(URL); // => "https://example.com/search?query=/&sort=desc"
+```
+
+そのため、URLのパラメータなどにユーザー入力を含めるためにはURLエスケープする必要があります。
+JavaScriptでは、`encodeURIComponent`関数を使うことで文字列をURL中に埋め込んでも安全な文字列へエスケープできます。
+
+```js
+// ユーザ入力
+var input = "/";
+// URLエスケープして結合した場合
+var URL = `https://example.com/search?query=${encodeURIComponent(input)}&sort=desc`;
+// `/`が`%2F`へURLエスケープされている
+console.log(URL); // => "https://example.com/search?query=%2F&sort=desc"
+```
+
+このように、変数（ユーザー入力など）をURLエスケープしてから文字列結合してもよいのですが、変数の数だけURLエスケープの関数を書く必要があります。そのため、変数をひとつでもURLエスケープし忘れると安全ではなくなります。
+
+このようなエスケープ忘れなどの問題は、デフォルトを安全側に倒すことでコーディングミスが起きても問題をレベルを小さくする工夫が必要です。
+ここでは、タグ付きテンプレート（Tagged Template）を使い、テンプレート中の変数を自動でエスケープする処理を加えることができます。
+
+タグ付きテンプレートとは、``` タグ関数`テンプレート` ```という形式で記述する関数とテンプレートリテラルをあわせた表現です。
+関数の呼び出しに```タグ関数(`テンプレート`)```ではなく、``` タグ関数`テンプレート` ```という書式を使っていることに注意してください。
+
+通常の関数として呼び出した場合、引数にはただの文字列が渡ってきます。
+
+```js
+function tag(string) {
+    console.log(string); // => "template 0 literal 1"
+}
+tag(`template ${0} literal ${1}`);
+```
+
+しかし、`()`ではなく ``` タグ関数`テンプレート` ``` と記述することで、`タグ関数`が受け取る引数にはタグ付きテンプレート向けの値が渡ってきます。
+そのため、タグ付きテンプレートで利用する関数のことを、タグ関数（Tag function）と呼び分けることにします。
+
+```js
+// タグ関数は引数の形が決まっていること以外は関数と同じ
+function tag(strings, ...values) {
+    // stringsには文字列部分が${}で区切られて順番に入る
+    console.log(strings); // => ["template "," literal ",""]
+    // valuesには${}の評価値が順番に入る
+    console.log(values); // => [0, 1]
+}
+tag`template ${0} literal ${1}`;
+```
+
+タグ関数の引数は特殊な形をしていることが分かります。
+引数をどう扱うかを見ていくために、タグ付きテンプレートの内容をそのまま結合して返す`stringRaw`というタグ関数を実装してみます。
+`Array#reduce`メソッドを使うことで、テンプレートの文字列と変数を順番に結合できます。
+
+```js
+// テンプレートを順番どおりに結合した文字列を返すタグ関数
+function stringRaw(strings, ...values) {
+    return strings.reduce((result, string, i) => {
+        return result + values[i - 1] + string;
+    }); 
+}
+// 関数`テンプレートリテラル` という形で呼び出す
+stringRaw`template ${0} literal ${1}`; // => "template 0 literal 1"
+```
+
+ここで実装した`stringRaw`関数と同様のものが、`String.raw`という名前でビルトイン関数として提供されています。
+
+```js
+String.raw`template ${0} literal ${1}`; // => "template 0 literal 1"
+```
+
+
+それでは、テンプレート中の変数をURLエスケープするタグ付きテンプレートを実装してみましょう。
+`encodeURIComponent`関数を利用し、変数をURLエスケープする`escapeURL`タグ関数を定義します。
+このタグ関数を使うことで、テンプレートリテラル中の変数がURLエスケープできます。
+
+```js
+// 変数をURLエスケープするタグ関数
+function escapeURL(strings, ...values) {
+    return strings.reduce((result, string, i) => {
+        return result + encodeURIComponent(values[i - 1]) + string;
+    });  
+}
+
+var input = "A&B";
+// escapeURLタグ関数を使ったタグ付きテンプレート
+const escapedURL = escapeURL`https://example.com/search?q=${input}&sort=desc`;
+console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
+```
+
+このようにタグ付きテンプレートリテラルを使うことで、コンテキストに応じた処理を付け加えることができます。
+この機能はJavaScript内にHTMLなどの別の言語やDSL（ドメイン固有言語）を埋め込む際に利用されることが多いです。
+
+## おわりに
+
+この章では、JavaScriptにおける文字列とは何かやUnicodeとの関係について紹介しました。
+文字列処理を行うStringメソッドにはさまざまなものがあり、正規表現との組み合わせ使うものも含まれます。
+
+正規表現については、正規表現のみでひとつの本が作れるようなJavaScript言語内にある別言語です。
+詳細は[正規表現 - JavaScript | MDN][]などを参照してください。
+
+文字列は一見単純なオブジェクトに見えますが、多くの場合コンテキストを含んでいるため扱い方はさまざまです。
+タグ付きテンプレートリテラルを利用することで、テンプレート中の変数は自動でエスケープするといったコンテキストを実現できます。
+文字列を安全に扱うためには、コンテキストに応じた処理が必要になります。
 
 ## 参考
 

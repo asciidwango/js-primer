@@ -50,11 +50,11 @@ module.exports = function shouldConsoleWithComment(text, filePath) {
     });
 };
 /**
- * @param {string} line
+ * @param {string} text
  * @param {string} filePath
  * @returns {Error|undefined}
  */
-function checkLineThatShouldHaveComment(line, filePath) {
+function checkLineThatShouldHaveComment(text, filePath) {
     if (!/\/\/\s*=>\s*/.test(text)) {
         return;
     }
