@@ -205,6 +205,10 @@ rules:
     patterns:
       - /(パターンに)一致/
       - /(正規表現に)一致/
+  - expected: ビルトイン$1
+    patterns:
+      - /ネイティブ(関数)/
+      - /ネイティブ(メソッド)/
       
 # typo
   - expected: $1進数

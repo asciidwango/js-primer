@@ -1034,7 +1034,7 @@ function stringRaw(strings, ...values) {
 stringRaw`template ${0} literal ${1}`; // => "template 0 literal 1"
 ```
 
-ここで実装した`stringRaw`関数と同様のものが、`String.raw`という名前のネイティブ関数が提供されています。
+ここで実装した`stringRaw`関数と同様のものが、`String.raw`という名前でビルトイン関数として提供されています。
 
 ```js
 String.raw`template ${0} literal ${1}`; // => "template 0 literal 1"
