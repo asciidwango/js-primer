@@ -20,38 +20,21 @@ Node.jsでは、複数のJavaScriptファイル間で変数や関数などをや
 `module.exports`オブジェクトは、そのファイルからエクスポートされるオブジェクトを格納します。
 次のコードは簡単な関数をエクスポートするモジュールの例です。
 
-```js
-// greet.js
-module.exports = function greet(name) {
-    return `Hello ${name}!`;
-};
-```
+[import, greet.js](src/example/greet.js)
 
 `require`関数は別のJavaScriptファイルをモジュールとしてインポートできます。
 次の例では先ほどのモジュールをインポートして、エクスポートされた関数を取得しています。
 
-```js
-const greet = require("./greet");
-greet("World"); // "Hello World!"
-```
+[import, greet-index.js](src/example/greet-index.js)
 
 `module.exports`オブジェクトに直接代入するのではなく、そのプロパティとして任意の値をエクスポートすることもできます。
 次の例では2つの関数を同じファイルからエクスポートしています。
 
-
-```js
-// functions.js
-module.exports.foo = function() { /**/ };
-module.exports.bar = function() { /**/ };
-```
+[import, functions.js](src/example/functions.js)
 
 このようにエクスポートされたオブジェクトは、`require`関数の戻り値のプロパティとしてアクセス可能になります。
 
-```js
-const functions = require("./functions");
-functions.foo();
-functions.bar();
-```
+[import, functions-index.js](src/example/functions-index.js)
 
 それではCLIアプリケーションのソースコードをモジュールに分割してみましょう。
 `md2html.js`という名前のJavaScriptファイルを作成し、次のようにMarkdownの変換処理を記述します。
