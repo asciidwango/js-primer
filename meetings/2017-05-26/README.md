@@ -178,8 +178,7 @@
 - @azu: ECMA 404の方。これ構文のみだから微妙だけど
 - https://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf
 
-
-###　結論
+### 結論
 
 - @laco: 次はここをやっていく
 - [Map/Setの章 · Issue #238 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/238 "Map/Setの章 · Issue #238 · asciidwango/js-primer")をやる
