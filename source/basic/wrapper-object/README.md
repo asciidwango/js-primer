@@ -69,10 +69,11 @@ JavaScriptでは、プリミティブ型の値に対してプロパティアク�
 
 ```js
 var str = "string";
-str.toLocaleUpperCase(); // => "STRING";
-// `str`へアクセスした際に、"string"に対応するラッパーオブジェクトへ変換される
+// プリミティブ型の値に対してメソッド呼び出しを行うとき、次のような変換が行われる
+str.toLocaleUpperCase();
+// `str`へアクセスする際に、"string"がラッパーオブジェクトへ変換される
 // ラッパーオブジェクトはStringのインスタンスなのでメソッドを呼び出せる
-new String(str).toLocaleUpperCase(); // => "STRING";
+new String(str).toLocaleUpperCase();
 ```
 
 一方、ラッパーオブジェクトからプリミティブ型の値を取りだすこともできます。
