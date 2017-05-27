@@ -40,27 +40,31 @@ string.toLocaleUpperCase(); // => "STRING"
 
 ラッパーオブジェクトとプリミティブ型の対応は次のとおりです。
 
-- `Boolean` - `true`/`false`
-- `Number` - `1`/`2`など
-- `String` - `"文字列"`など
-- `Symbol` - `Symbol("説明")`など
-- `undefined`と`null`は対応するラッパーオブジェクトがない
+
+| ラッパーオブジェクト | プリミティブ型 |
+| ---------- | ---------------------- |
+| `Boolean`  | 真偽値 - `true`/`false`        |
+| `Number`   | 数値 - `1`/`2`など            |
+| `String`   | 文字列 - `"文字列"`など          |
+| `Symbol`   | シンボル - `Symbol("説明")`など   |
+
+注記: `undefined`と`null`に対応するラッパーオブジェクトはありません
 
 ひとつ注意点として、ラッパーオブジェクトは名前のとおりオブジェクトです。
 そのため、次のように`typeof`演算子でラッパーオブジェクトを見ると`"object"`です。
 
 ```js
-var string = "string";
+var string = "文字列";
 console.log(typeof string); // => "string";
-var stringWrapper = new String("string");
+var stringWrapper = new String("文字列");
 console.log(typeof stringWrapper); // => "object";
 ```
 
 ## プリミティブとラッパーオブジェクトの相互変換
 
-プリミティブ型の値である文字列が`String`のインスタンスメソッドを呼び出せる仕組みには、先ほど紹介したラッパーオブジェクトが関係します。
-JavaScriptでは、プリミティブ型の値に対してプロパティアクセスする時、自動で対応するラッパーオブジェクトに変換してから処理されます。
-つまり、`"string"`という文字列へアクセスした際に自動で、`new String("string")`のようなラッパーオブジェクトへ変換されています。
+ラッパーオブジェクトがプリミティブ型の値である文字列が`String`のインスタンスメソッドを呼び出せる仕組みに関係しています。
+JavaScriptでは、プリミティブ型の値に対してプロパティアクセスする時、自動で対応するラッパーオブジェクトに変換されます。
+つまり、`"string"`という文字列は、自動的に`new String("string")`のようなラッパーオブジェクトへ変換されています。
 これにより、プリミティブ型の値である文字列が`String`のインスタンスメソッドを呼び出すことができます。
 
 ```js
@@ -71,15 +75,15 @@ str.toLocaleUpperCase(); // => "STRING";
 new String(str).toLocaleUpperCase(); // => "STRING";
 ```
 
-一方、ラッパーオブジェクトからプリミティブ型の値を取り出せます。
+一方、ラッパーオブジェクトからプリミティブ型の値を取りだすこともできます。
 
 `ラッパーオブジェクト.valueOf`メソッドを呼び出すことで、ラッパーオブジェクトから値を取り出せます。
-たとえば、次のように文字列のラッパーオブジェクトから`valueOf`メソッドで文字列を取り出すことができます。
+たとえば、次のように文字列のラッパーオブジェクトから`valueOf`メソッドで文字列を取りだせます。
 
 ```js
-var stringWrapper = new String("string");
+var stringWrapper = new String("文字列");
 // プリミティブ型の値を取得する
-console.log(stringWrapper.valueOf()); // => "string"
+console.log(stringWrapper.valueOf()); // => "文字列"
 ```
 
 しかし、実際には`valueOf`メソッドを明示的に呼び出す必要はありません。
@@ -87,23 +91,24 @@ console.log(stringWrapper.valueOf()); // => "string"
 そのため、先ほどの例は`valueOf`メソッドを呼び出さなくても評価結果が自動的に文字列（オブジェクトではなく）となります。
 
 ```js
-var stringWrapper = new String("string");
+var stringWrapper = new String("文字列");
 // valueOfメソッドを呼び出してないが、評価結果はプリミティブ型の値
-console.log(stringWrapper); // => "string"
+console.log(stringWrapper); // => "文字列"
 ```
 
 このように、プリミティブ型の値とラッパーオブジェクトの相互変換は殆どのケースで自動的に行われます。[^1]
-これにより、`new String("string")`のようにラッパーオブジェクトのインスタンスを生成することは現実的にほぼありません。
-ラッパーオブジェクトを利用した際に`typeof`の結果が、プリミティブ型ではなく`"object"`となり混乱を招くのも避けるべき理由です。
 
-プリミティブ型のデータは常にリテラルを使うことを推奨します。
-そうすることで、コードを書く際にこれらのラッパーオブジェクトは意識する必要がなくなります。
+文字列などのプリミティブ型のデータを作成する方法として、リテラルを使う方法とラッパーオブジェクトを使う方法があります。
+しかし、常にリテラルを使うことを推奨します。なぜなら、`new String("string")`のようにラッパーオブジェクトのインスタンスを生成する利点はありません。
+ラッパーオブジェクトを`typeof`演算子で評価した結果が、プリミティブ型ではなく`"object"`となり、混乱を招くのも避けるべき理由です。
+
+常にリテラルで書くことで、コードを書く際にこれらのラッパーオブジェクトは意識する必要がなくなります。
 
 ```js
 // OK: リテラルを使う
-"string";
+var string = "文字列";
 // NG: ラッパーオブジェクトを使う
-new String("string");
+var stringWrraper = new String("文字列");
 ```
 
 ## まとめ
