@@ -8,6 +8,7 @@ author: azu
 JavaScriptのデータ型は大きくプリミティブ型とオブジェクトに分けられることを説明しました。（「[データ型とリテラル][]」を参照）
 しかし、JavaScriptではプリミティブ型の値においてもメソッドを呼び出すことができます。
 
+{{book.console}}
 ```js
 // String#toLocaleUpperCaseを呼び出している
 "string".toLocaleUpperCase(); // => "STRING"
@@ -28,6 +29,7 @@ JavaScriptのデータ型は大きくプリミティブ型とオブジェクト�
 
 <!-- textlint-enable -->
 
+{{book.console}}
 ```js
 // "string"の値をラップしたStringのインスタンスを生成
 var string = new String("string");
@@ -52,6 +54,7 @@ string.toLocaleUpperCase(); // => "STRING"
 ひとつ注意点として、ラッパーオブジェクトは名前のとおりオブジェクトです。
 そのため、次のように`typeof`演算子でラッパーオブジェクトを見ると`"object"`です。
 
+{{book.console}}
 ```js
 var string = "文字列";
 console.log(typeof string); // => "string";
@@ -80,6 +83,7 @@ new String(str).toLocaleUpperCase();
 `ラッパーオブジェクト.valueOf`メソッドを呼び出すことで、ラッパーオブジェクトから値を取り出せます。
 たとえば、次のように文字列のラッパーオブジェクトから`valueOf`メソッドで文字列を取りだせます。
 
+{{book.console}}
 ```js
 var stringWrapper = new String("文字列");
 // プリミティブ型の値を取得する
