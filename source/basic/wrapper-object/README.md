@@ -10,8 +10,8 @@ JavaScriptのデータ型は大きくプリミティブ型とオブジェクト�
 
 {{book.console}}
 ```js
-// String#toLocaleUpperCaseを呼び出している
-"string".toLocaleUpperCase(); // => "STRING"
+// String#toUpperCaseを呼び出している
+"string".toUpperCase(); // => "STRING"
 ```
 
 しかし、プリミティブ型の値である文字列は`String`オブジェクトのインスタンスではありません。
@@ -33,8 +33,8 @@ JavaScriptのデータ型は大きくプリミティブ型とオブジェクト�
 ```js
 // "string"の値をラップしたStringのインスタンスを生成
 var string = new String("string");
-// StringのインスタンスメソッドであるtoLocaleUpperCaseを呼び出す
-string.toLocaleUpperCase(); // => "STRING"
+// StringのインスタンスメソッドであるtoUpperCaseを呼び出す
+string.toUpperCase(); // => "STRING"
 ```
 
 このようにインスタンス化されたものは、プリミティブ型の値を包んだ（ラップした）オブジェクトといえます。
@@ -72,10 +72,10 @@ JavaScriptでは、プリミティブ型の値に対してプロパティアク�
 ```js
 var str = "string";
 // プリミティブ型の値に対してメソッド呼び出しを行うとき、次のような変換が行われる
-str.toLocaleUpperCase();
+str.toUpperCase();
 // `str`へアクセスする際に、"string"がラッパーオブジェクトへ変換される
 // ラッパーオブジェクトはStringのインスタンスなのでメソッドを呼び出せる
-new String(str).toLocaleUpperCase();
+new String(str).toUpperCase();
 ```
 
 一方、明示的に作成したラッパーオブジェクトからプリミティブ型の値を取りだすこともできます。
