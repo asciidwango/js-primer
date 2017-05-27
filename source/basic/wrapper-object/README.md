@@ -84,7 +84,7 @@ new String(str).toUpperCase();
 たとえば、次のように文字列のラッパーオブジェクトから`valueOf`メソッドで文字列を取りだせます。
 
 {{book.console}}
-```js
+```jsmd2html-test.js
 var stringWrapper = new String("文字列");
 // プリミティブ型の値を取得する
 console.log(stringWrapper.valueOf()); // => "文字列"
