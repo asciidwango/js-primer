@@ -13,12 +13,16 @@
     "edit-link",
     "canonical-link",
     "ga",
-    "js-console"
+    "js-console",
+    "github-issue-feedback"
   ],
   "variables": {
     "console": "<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"
   },
   "pluginsConfig": {
+    "github-issue-feedback": {
+      "repo": "asciidwango/js-primer"
+    },
     "edit-link": {
       "base": "https://github.com/asciidwango/js-primer/edit/master/source/",
       "label": "Edit"
