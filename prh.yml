@@ -190,6 +190,8 @@ rules:
     patterns: Code Unit単位
   - expected: 各Code Pointごとに
     patterns: Code Point単位
+  - expected: strict mode
+    prh: strict modeでひとつなので常に小文字
   # ファイルの読み書き / ファイルI/O
   - expected: ファイルの読み書き
     patterns:  
