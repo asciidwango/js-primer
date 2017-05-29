@@ -5,7 +5,6 @@
 - [第1部: 基礎文法](basic/README.md)
     - [JavaScriptとは](basic/introduction/README.md)
     - [コメント](basic/comments/README.md)
-    - Strict mode
     - [変数と宣言](basic/variables/README.md)
     - [値の評価と表示](basic/read-eval-print/README.md)
     - [データ型とリテラル](basic/data-type/README.md)

@@ -46,6 +46,7 @@ JavaScriptは、Unicodeで定義された文字を扱い、大文字小文字を
 ```js
 // `name`という名前の変数を宣言
 const name = "azu";
+// `NAME`という名前の変数を宣言
 const NAME = "azu";
 ```
 
@@ -73,20 +74,28 @@ JavaScriptの実行コンテキストとして"script"と"module"があります
 名前のとおり厳格な実行モードで、古く安全でない構文や機能が一部禁止されています。
 "module"の実行コンテキストでは、このstrict modeがデフォルトとなっています。
 
-`"use strict"`という文字列をファイルまたは関数の先頭に書くことで、
-そのスコープ上のコードはstrict modeで実行されます。
+`"use strict"`という文字列をファイルまたは関数の先頭に書くことで、そのスコープにあるコードはstrict modeで実行されます。
 
 ```js
 "use strict";
 // このコードはstrict modeで実行される
 ```
 
-strict modeでは、`eval`や`with`といった構文が禁止されています。
-しかし、strict modeではないコードを書くケースは存在しません。
-そのため、常にstrict modeで実行できるコードを書くことが、より安全なコードにつながります。
+strict modeでは、`eval`や`with`といったレガシーな機能を禁止します。
+また、あきらかな問題を含んだコードに対しては早期的に例外を投げることで、開発者が間違いに気づきやすくしてくれます。
+たとえば、次のような`var`などのキーワードを含まずに変数を宣言しようとした場合に、strict modeでは例外が発生します。
+（strict modeでない場合は、例外が発生せずにグローバル変数が作られていました。）
+
+```js
+"use strict";
+mistypedVaraible = 42; // => ReferenceError
+```
+
+このように、strict modeでは開発者が安全にコードを書けるように、JavaScriptの落とし穴を一部ふさいでくれます。
+そのため、常にstrict modeで実行できるコードを書くことがより安全なコードにつながります。
 
 本書では、明示的に「strict modeではない」ことを宣言した場合を除き、
-すべてstrict modeを前提として実行できるコードについて紹介しています。
+すべてstrict modeとして実行できるコードを扱います。
 
 [^1]: Automatic Semicolon Insertionと呼ばれる仕組みです。
 

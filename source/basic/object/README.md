@@ -147,8 +147,8 @@ object = {}; // => SyntaxError
 ```
 
 作成したオブジェクトのプロパティの変更を防止するには`Object.freeze`メソッドを利用する必要があります。
-ただし、Strict modeでないと例外が発生せず、無言で変更を無視するだけとなります。
-そのため、`Object.freeze`メソッドを利用する場合は必ずStrict modeと合わせて使います。
+ただし、strict modeでないと例外が発生せず、無言で変更を無視するだけとなります。
+そのため、`Object.freeze`メソッドを利用する場合は必ずstrict modeと合わせて使います。
 
 {{book.console}}
 [import, freeze-property-invalid.js](./src/freeze-property-invalid.js)
