@@ -46,6 +46,7 @@ JavaScriptは、Unicodeで定義された文字を扱い、大文字小文字を
 ```js
 // `name`という名前の変数を宣言
 const name = "azu";
+// `NAME`という名前の変数を宣言
 const NAME = "azu";
 ```
 
@@ -73,7 +74,7 @@ JavaScriptの実行コンテキストとして"script"と"module"があります
 名前のとおり厳格な実行モードで、古く安全でない構文や機能が一部禁止されています。
 "module"の実行コンテキストでは、このstrict modeがデフォルトとなっています。
 
-`"use strict"`という文字列をファイルまたは関数の先頭に書くことで、その領域にあるコードはstrict modeで実行されます。
+`"use strict"`という文字列をファイルまたは関数の先頭に書くことで、そのスコープにあるコードはstrict modeで実行されます。
 
 ```js
 "use strict";
