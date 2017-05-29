@@ -41,7 +41,7 @@ JavaScriptは動的型付け言語に分類される言語であるため、
 
 [import, typeof-example.js](src/typeof-example.js)
 
-`typeof null; // => "object"`となるのは[The history of “typeof null”][歴史的経緯のある仕様バグ]です。
+残念ながら`typeof null; // => "object"`となるのは歴史的経緯のある仕様バグ[^1]です。
 他のプリミティブ型の値については、`typeof`演算子でそれぞれのデータ型を調べることができます。
 
 オブジェクトと一言にいってもJavaScriptではすべてがオブジェクトであると言われるほど、多くの種類が存在します。
@@ -88,7 +88,7 @@ false; // => false
 - 10進数: 先頭が`0`ではない数値 - `10`
 - 2進数: `0b` または `0B` - `0b1`
     - `0b` の後ろには`0`または`1` の数値
-- 8進数: `0o` または `0O` - `0o7` [^1]
+- 8進数: `0o` または `0O` - `0o7` [^2]
     - `0o` の後ろには `0`から`7` までの数値
 - 16進数: `0x` または `0X` - `0x15`
     - `0x` の後ろには `0`から`15`までの数値
@@ -388,6 +388,6 @@ var undefined; // undefinedというローカル変数を定義できる
 - [11.6.2 Reserved Words](http://www.ecma-international.org/ecma-262/7.0/#prod-ReservedWord "Reserved Words")
 - [11.8.3.1Static Semantics: MV](http://www.ecma-international.org/ecma-262/7.0/#sec-static-semantics-mv "11.8.3.1Static Semantics: MV")
 
-[^1]: `0o` は数字のゼロと小文字アルファベットの`o`
-[The history of “typeof null”]: http://www.2ality.com/2013/10/typeof-null.html  "The history of “typeof null”"
+[^1]: JavaScriptが最初にNetscapeで実装された際に`typeof null === "object"`となるバグがありました。このバグを修正するとすでにこの挙動に依存しているコードは壊れるため、修正が見送られ現在の挙動が仕様となりました。 <http://2ality.com/2013/10/typeof-null.html>を参照
+[^2]: `0o` は数字のゼロと小文字アルファベットの`o`
 [IEEE 754]: https://ja.wikipedia.org/wiki/IEEE_754
