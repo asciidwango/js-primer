@@ -67,7 +67,7 @@ JavaScriptは、文（Statement）ごとに処理していき、文はセミコ�
 JavaScriptの実行コンテキストとして"script"と"module"があります。
 この2つの実行コンテキストの違いは意識しなくても問題ありません。
 
-"module"はJavaScriptをモジュールとして実行するために、ECMAScript 2015で後から導入されたものです。
+"module"はJavaScriptをモジュールとして実行するために、ECMAScript 2015で導入されたものです。
 "module"の実行コンテキストでは古く安全でない構文や機能は一部禁止されているものがあります。
 
 最後に、JavaScriptには**strict mode**という実行モードが存在しています。
