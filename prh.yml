@@ -192,6 +192,11 @@ rules:
     patterns: Code Point単位
   - expected: strict mode
     prh: strict modeでひとつなので常に小文字
+  - expected: $1分割代入$2
+    patterns:
+      - /[^(分割代入（)]Destructuring assignment/i
+      - /[^(分割代入（)]Destructuring(\S)/i
+
   # ファイルの読み書き / ファイルI/O
   - expected: ファイルの読み書き
     patterns:  

@@ -22,7 +22,7 @@
     - 関数
         - スコープ
         - Arrow Function
-        - Destructuring
+        - 分割代入（Destructuring assignment）
         - Spread Operator
     - クラス
     - Error/Throw
