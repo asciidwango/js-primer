@@ -32,6 +32,7 @@
 	- オブジェクトとは
 		- オブジェクトはプロパティの集合
 		- オブジェクトリテラルで作成できる
+		- ショートハンドで書ける
 		- 値は何でも格納できるけど、キーはプロパティ名は"文字列"となる
 			- これは数値や関数を渡した場合に勝手に文字列化される
 		- 連想配列とかハッシュとか言われることがある
@@ -162,25 +163,27 @@
 		- なぜそれぞれの方法が用意されているのか?
 		- 読む人のコストの低い明示的な書き方と処理コストが主な理由
 		- `indexOf`と`includes`の比較
-	- 配列へ要素を追加と削除
+	- 配列と破壊的、非破壊的
+		- MutableかImmutableか
+		- 基本的に破壊的なAPIと非破壊的なAPIが混在している
+	- 配列へ要素を追加と削除(破壊的)
 		- 末尾
 			- `Array#push`
 			- `Array#pop`
 		- 先頭
 			- `Array#unshift`
 			- `Array#shift`
-	- 配列から要素を削除
+	- 配列から要素を削除(破壊的)
 		- 配列から要素を削除する方法も色々ある。
 		- 基本的には`Array#splice`を使うのが簡単だけど、これは破壊的な操作
 			- 削除と追加を同時に行うという特殊な感じのメソッド
 		- 空の配列を作りたいなら `.length = 0`を使うこともある
 		- けど、普通は新しい配列を作って変数を上書きしちゃうのが楽です。
-	- 配列を使ってLRU
-		- 判定、追加、削除
 	- 疎の配列を作る
 		- `new Array` は`length`を指定した配列を作る
 			- 疎の配列は基本的に扱いにくく誤解の元となるため避ける
 			- パフォーマンス的にも問題になりやすい
+			- Array.ofかリテラルを使う
 	- Array-likeとは何か
 		- `length`と順番をもったオブジェクトのこと
 		- ただし `length` が配列のように自動的に更新されない
@@ -217,7 +220,8 @@
 		- 配列の中身に対して動的に返す値が切り替わる
 		- 存在しない配列の添字に代入できるという点
 		- [How ECMAScript 5 still does not allow to subclass array — Perfection Kills](http://perfectionkills.com/how-ecmascript-5-still-does-not-allow-to-subclass-an-array/ "How ECMAScript 5 still does not allow to subclass array — Perfection Kills")
-	- - `Array#concat` = 新しい配列
+		- [class extends構文を使わずにArrayを継承する | Web Scratch](http://efcl.info/2016/11/23/array-subclass-by-reflect/ "class extends構文を使わずにArrayを継承する | Web Scratch")
+	- `Array#concat`、`Array#slice` = 新しい配列
 	- とにかく配列メソッド(操作)には一貫性がないような感じなので、自分で一貫性を持った扱い方を決めた方が良い。
 			- [Array methods - Immutable or Mutable](https://gist.github.com/azu/30b1ff6831c3bbf7fbd5501d6a2bdfb0 "Array methods - Immutable or Mutable")
 	- Arrayと高階関数
@@ -242,6 +246,8 @@
 			- Array-likeという概念がある
 			- これもやっぱりArrayは特殊なオブジェクトであるから
 			- exitic objectについて
+		- `new Array`は引数の数で壊れてる
+			- `Array.of`を使ってリテラルのように配列を作る
 
 ## String
 
