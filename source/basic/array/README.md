@@ -319,7 +319,7 @@ var colors = [
     { "color": "green" },
     { "color": "blue" }
 ];
-// `color`プロパティが"blue"のオブジェクとがあるかどうか
+// `color`プロパティが"blue"のオブジェクトがあるかどうか
 var isIncludedBlueColor = colors.some((object) => {
     return object.color === "blue";
 });
@@ -328,7 +328,7 @@ console.log(isIncludedBlueColor); // => true
 
 ## 追加と削除
 
-配列は可変長であるため、生成後に要素を追加したり、削除できます。
+配列は可変長であるため、生成後に要素を追加、削除できます。
 
 要素を配列の末尾へ追加するには`Array#push`が利用できます。
 一方、末尾から要素を削除するには`Array#pop`が利用できます。
@@ -423,11 +423,6 @@ console.log(array.length); // => 0
 
 -------
 
-- [ ] ここまでが配列の基礎
-
--------
-
-## 配列を使ってLRU
 ## 疎な配列を作る
 ## Array-likeとは何か
 ## 配列をコピー
