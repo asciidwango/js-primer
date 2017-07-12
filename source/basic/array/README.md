@@ -328,7 +328,7 @@ console.log(isIncludedBlueColor); // => true
 
 ## 追加と削除
 
-配列は可変長であるため、生成後に要素を追加、削除できます。
+配列は可変長であるため、作成後の配列に対して要素を追加、削除できます。
 
 要素を配列の末尾へ追加するには`Array#push`が利用できます。
 一方、末尾から要素を削除するには`Array#pop`が利用できます。
@@ -354,9 +354,27 @@ console.log(shiftedItem); // => "S"
 console.log(array); // => ["A", "B", "C"]
 ```
 
+## 配列同士を結合 {#concat}
+
+`Array#concat`メソッドを使うことで配列と配列を結合した新しい配列を作成できます。
+
+```js
+var array = ["A", "B", "C"];
+var newArray = array.concat(["D", "E"]);
+console.log(newArray); // => ["A", "B", "C", "D", "E"]
+```
+
+また、`concat`メソッドは配列だけではなく任意の値を要素として結合できます。
+
+```js
+var array = ["A", "B", "C"];
+var newArray = array.concat("新しい要素");
+console.log(newArray); // => ["A", "B", "C", "新しい要素"]
+```
+
 ## 配列から要素を削除
 
-### `Array#splice`
+### `Array#splice` {#splice}
 
 配列の先頭や末尾の要素を削除する場合は`Array#shift`や`Array#pop`で行えます。
 しかし、配列の任意のインデックスにある要素を削除することはできません。
@@ -387,7 +405,7 @@ array.splice(0, array.length);
 console.log(array.length); // => 0
 ```
 
-### `length`プロパティへの代入
+### `length`プロパティへの代入 {#assign-to-length}
 
 配列のすべての要素を削除することは`Array#splice`で行うことができますが、
 配列の`length`プロパティへの代入を利用した方法もあります。
@@ -401,7 +419,7 @@ console.log(array); // => []
 配列の`length`プロパティへ`要素数`を代入すると、その要素数に配列が切り詰められます。
 つまり、`length`プロパティへ`0`を代入すると、インデックスが`0`以降の要素がすべて削除されます。
 
-### 空の配列を代入
+### 空の配列を代入 {#assign-empty-array}
 
 さいごに、その配列の要素を削除するのではなく、新しい空の配列を変数へ代入する方法です。
 次のコードでは、`array`変数に空の配列を代入することで、`array`は空の配列を参照させることができます。
@@ -421,65 +439,110 @@ console.log(array.length); // => 0
 
 [import, const-empty-array-invalid.js](./src/const-empty-array-invalid.js)
 
--------
 
-## 疎な配列を作る
-## Array-likeとは何か
 ## 配列をコピー
 
-どのメソッドも`array`変数が参照する配列そのものを変更している操作であることが分かります。
+これまで紹介してきた配列のメソッドには破壊的なものと非破壊的なものが混在しています。
+破壊的なものの例として、要素を追加する`Array#push`メソッドの処理結果を見るとわかります。
 次のような例を見てみると分かるように、`myArray`に対して要素を追加したとき、`yourArray`にも影響がでているということが分かります。
 
 ```js
 var myArray = ["A", "B", "C"];
 var yourArray = myArray;
 myArray.push("D");
+// `myArray`だけではなく`yourArray`にも影響がでている
 console.log(yourArray); // => ["A", "B", "C", "D"]
+// `myArray`と`yourArray`は同じ配列を参照していてる
+console.log(myArray === yourArray); // => true
 ```
 
 これは、`myArray`と`yourArray`が同じ配列オブジェクトへの参照を持っているためです。
-オブジェクトは値への参照を使い操作されるため参照型のデータであるため（[データ型とリテラル](../data-type/README.md)を参照）、
-どちらの変数も同じ配列オブジェクトの参照となっています。
+オブジェクトは参照型のデータであるため、どちらの変数の値も同じ配列オブジェクトの参照となっています。（[データ型とリテラル](../data-type/README.md)を参照）
 
-たとえば、`removeAtIndex`という関数がある場合に、次のように渡した配列に対して影響を与えることは予測しにくい場合があります。
+この破壊的な操作は思わぬ副作用を作ってしまうことがあります。
+
+たとえば、配列から特定のインデックスの値を削除する`removeAtIndex`という関数があるとします。
+このときに、渡した配列から値を削除した**新しい**配列を返すことが期待されます。
+しかし、次のように破壊的な操作である`Array#splice`メソッドで直接削除すると、引数として受け取った配列にも影響を与えてしまいます。
 
 ```js
+// `array`の`index`番目の値を削除した配列を返す関数
 function removeAtIndex(array, index) {
     array.splice(index, 1);
+    return array;
 }
 var array = ["A", "B", "C"];
-removeAtIndex(array, 1);
+// 新しい配列を返すことを期待する
+var newArray = removeAtIndex(array, 1);
+console.log(newArray); // => ["A", "C"]
 console.log(array); // => ["A", "C"]
 ```
 
-`removeAtIndex`関数は、引数で受け取った`array`から要素を削除しているため、それ以降の`array`自体に影響を与えています。
 このような、ある機能が受け取った値そのものに影響を与えることを**破壊的**操作と呼びます。
 
 - [ ] `Array` の比較について
+- [ ] 先にconcatとsliceの説明をしておく
 
-これを回避するためには配列を明示的にコピーしたものを`yourArray`に代入する必要があります。
+`Array#push`メソッドなどが破壊的操作である一方、配列のメソッドには非破壊的なものも混在します。
+その一例が`Array#concat`メソッドや`Array#slice`メソッドです。
+
+さきほどの`push`メソッドによる要素の追加と`concat`メソッドによる要素を結合の違いを見ると一目瞭然です。
+`push`メソッドは`myArray`自体を変更しているのに対して、`concat`メソッドは`myArray`のコピーに対して要素を結合した新しい配列を返しています。
+
+```js
+var myArray = ["A", "B", "C"];
+var newARray = myArray.concat("D");
+console.log(newARray); // => ["A", "B", "C", "D"]
+// `myArray`は変更されていない
+console.log(myArray); // => ["A", "B", "C"]
+// `newARray`と`myArray`は異なる配列オブジェクト
+console.log(myArray === newARray); // => false
+```
+
+この`push`メソッドによる破壊的操作を防ぐには、配列をコピーして`yourArray`に代入する必要があります。
 JavaScriptには残念ながら copyメソッドというような分かりやすい名前のメソッドは存在していませんが、
 配列の参照をコピーする機能をもつメソッドが代用されています。
 
 `Array#slice`と`Array#concat`がコピーの代用として使われているメソッドです。
+`slice`メソッドと`concat`メソッドは引数なしで呼び出すと、結果的にその配列のコピーを返してくれます。
 
 ```js
 var myArray = ["A", "B", "C"];
-var yourArray = myArray.slice(); // `myArray`のコピーを返す
+// `myArray`のコピーを返す - `myArray.concat()`でも同じ
+var yourArray = myArray.slice(); 
 myArray.push("D");
-console.log(yourArray); // => ["A", "B", "C"]
+console.log(yourArray); // => ["A", "B", "C", "D"]
+// コピー元の`myArray`には影響がない
+console.log(myArray); // => ["A", "B", "C"]
 ```
 
+このように配列を破壊的に操作したくない場合は、配列のコピーをしてから処理する必要があります。
+JavaScriptの配列は破壊的、非破壊的なメソッドが混在しています。
+破壊的メソッドは次のとおりで、これらは覚えることでしか区別できません。
 
-```js
-function removeAtIndex(array, index) {
-    array.splice(index, 1);
-}
-var array = ["A", "B", "C"];
-removeAtIndex(array, 1);
-console.log(array); // => ["A", "C"]
-```
+| メッソド名                                    | 返り値           |
+| ---------------------------------------- | ------------- |
+| [`Array.prototype.pop`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/pop) | 配列の末尾の値       |
+| [`Array.prototype.push`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/push) | 変更後の配列のlength |
+| [`Array.prototype.splice`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) | 取り除かれた要素を含む配列 |
+| [`Array.prototype.reverse`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse) | 反転した配列        |
+| [`Array.prototype.shift`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/shift) | 配列の先頭の値       |
+| [`Array.prototype.sort`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) | ソートした配列       |
+| [`Array.prototype.unshift`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift) | 変更後の配列のlength |
+| [`Array.prototype.copyWithin`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin) | 変更後の配列        |
+| [`Array.prototype.fill`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/fill) | 変更後の配列        |
 
+
+このような背景もあるため、JavaScriptにはさまざまな配列を扱うライブラリが存在します。
+[immutable-array-prototype][]は破壊的なメソッドを非破壊的にしたものを提供し、[Lodash][]のように標準にはない便利なメソッドを提供し、[Immutable.js][]のようにより効率的なデータ構造を提供するなどさまざまです。
+
+
+## 疎な配列を作る
+## Array-likeとは何か
 
 ## 高階関数とメソッドチェーン
 ## パターン: nullを返さずに配列を返す
+
+[immutable-array-prototype]: https://github.com/azu/immutable-array-prototype  "azu/immutable-array-prototype: A collection of Immutable Array prototype methods(Per method packages)."
+[Lodash]: https://lodash.com/  "Lodash"
+[Immutable.js]: https://facebook.github.io/immutable-js/  "Immutable.js"
