@@ -125,18 +125,14 @@ function escapeSpecialChars(str) {
 
 ```js
 function escapeHTML(strings, ...values) {
-    return strings.map((part, i) => {
-        const value = values[i];
-        if (value) {
-            if (typeof value === "string") {
-                return part + escapeSpecialChars(value);
-            } else {
-                return part + String(value);
-            }
+    return strings.reduce((result, string, i) => {
+        const value = values[i - 1];
+        if (typeof value === "string") {
+            return result + escapeSpecialChars(value) + string;
         } else {
-            return part;
+            return result + String(value) + string;
         }
-    }).join("");
+    });  
 }
 ```
 
