@@ -47,7 +47,7 @@ const view = `
 
 ```html
 <h4>js-primer example (@js-primer-example)</h4>
-<img src="github.com/js-primer-example.png" alt="js-primer-example" height="100">
+<img src="https://github.com/js-primer-example.png" alt="js-primer-example" height="100">
 <dl>
     <dt>Location</dt>
     <dd>Japan</dd>
@@ -125,18 +125,14 @@ function escapeSpecialChars(str) {
 
 ```js
 function escapeHTML(strings, ...values) {
-    return strings.map((part, i) => {
-        const value = values[i];
-        if (value) {
-            if (typeof value === "string") {
-                return part + escapeSpecialChars(value);
-            } else {
-                return part + String(value);
-            }
+    return strings.reduce((result, string, i) => {
+        const value = values[i - 1];
+        if (typeof value === "string") {
+            return result + escapeSpecialChars(value) + string;
         } else {
-            return part;
+            return result + String(value) + string;
         }
-    }).join("");
+    });  
 }
 ```
 
