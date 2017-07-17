@@ -188,7 +188,7 @@ console.log(sparseArray.hasOwnProperty(1)); // => false
 
 配列にはそれぞれに対応したメソッドが用意されているため、目的別に見ていきます。
 
-### インデックスを取得
+### インデックスを取得 {#indexof}
 
 ある要素が配列のどの位置にあるかを知りたい場合、`Array#indexOf`メソッドや`Array#findIndex`メソッドを利用します。
 要素の位置のことを**インデックス**（`index`）と呼ぶため、メソッド名にも`index`という名前が入っています。
@@ -241,7 +241,7 @@ console.log(indexOfBlue); // => 2
 console.log(colors[indexOfBlue]); // => { "color": "blue" }
 ```
 
-### 要素を取得
+### 条件に一致する要素を取得 {#find}
 
 配列から要素を取得する方法としてインデックスを使うこともできます。
 先ほどのように`findIndex`メソッドでインデックスを取得、そのインデックスで配列へアクセスすればよいだけです。
@@ -267,6 +267,24 @@ var blueColor = colors.find((object) => {
 console.log(blueColor); // => { "color": "blue" }
 // 該当する要素がない場合は`undefined`を返す
 console.log(array.find((object) => object.color === "white")); // => undefined
+```
+
+### 指定範囲の要素を取得 {#slice}
+
+配列から指定範囲の要素を取り出す方法として`Array#slice`メソッドが利用できます。
+`slice`メソッドは第一引数に開始位置、第二引数に終了位置を指定することで、その範囲を取り出した新しい配列を返します。
+第二引数は省略でき、省略した場合は配列の末尾が終了位置となります。
+
+```js
+var array = ["A", "B", "C", "D", "E"];
+// インデックス1から4の範囲を取り出す
+console.log(array.slice(1, 4)); // => ["B", "C", "D"]
+// 第二引数を省略した場合は、第一引数から末尾の要素までを取り出す
+console.log(array.slice(1)); // => ["B", "C", "D", "E"]
+// マイナスを指定すると後ろからの数えた位置となる
+console.log(array.slice(-1)); // => ["E"]
+// 第一引数 > 第二引数の場合、常に空配列を返す
+console.log(array.slice(4, 1)); // => []
 ```
 
 ### 真偽値を取得
