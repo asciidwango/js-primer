@@ -439,55 +439,38 @@ console.log(array.length); // => 0
 
 [import, const-empty-array-invalid.js](./src/const-empty-array-invalid.js)
 
+## 破壊的なメソッドと非破壊的なメソッド {#mutable-immutable}
 
-## 配列をコピー
+配列の破壊的なメソッドと非破壊的メソッドの違いについてを知ることは重要です。
+破壊的なメソッドとは、配列オブジェクトのプロパティそのものを変更し、配列または変更箇所を返すメソッドです。
+非破壊的メソッドとは、配列オブジェクトのコピーを作成してから値を変更し、作成した配列のコピーを返すメソッドです。
+これまで紹介してきた配列の要素を変更するメソッドには、破壊的メソッドと非破壊的メソッドが混在しています。
 
-これまで紹介してきた配列のメソッドには破壊的なものと非破壊的なものが混在しています。
-破壊的なものの例として、要素を追加する`Array#push`メソッドの処理結果を見るとわかります。
-次のような例を見てみると分かるように、`myArray`に対して要素を追加したとき、`yourArray`にも影響がでているということが分かります。
+<!-- 具体例:破壊的なメソッド -->
+
+破壊的なメソッドの例として、配列に要素を追加する`Array#push`メソッドがあります。
+次のコードでは、`myArray`に対して`push`メソッドで要素を追加しています。
+このとき`myArray`を参照する`yourArray`にも影響がでていることが分かります。
 
 ```js
 var myArray = ["A", "B", "C"];
+// `myArray`の参照を代入している
 var yourArray = myArray;
-myArray.push("D");
+myArray.push("D"); // pushの返り値は追加後の配列のlength
 // `myArray`だけではなく`yourArray`にも影響がでている
 console.log(yourArray); // => ["A", "B", "C", "D"]
-// `myArray`と`yourArray`は同じ配列を参照していてる
+// `myArray`と`yourArray`は同じ配列を参照している
 console.log(myArray === yourArray); // => true
 ```
 
 これは、`myArray`と`yourArray`が同じ配列オブジェクトへの参照を持っているためです。
 オブジェクトは参照型のデータであるため、どちらの変数の値も同じ配列オブジェクトの参照となっています。（[データ型とリテラル](../data-type/README.md)を参照）
 
-この破壊的な操作は思わぬ副作用を作ってしまうことがあります。
+<!-- 具体例:非破壊的メソッド -->
 
-たとえば、配列から特定のインデックスの値を削除する`removeAtIndex`という関数があるとします。
-このときに、渡した配列から値を削除した**新しい**配列を返すことが期待されます。
-しかし、次のように破壊的な操作である`Array#splice`メソッドで直接削除すると、引数として受け取った配列にも影響を与えてしまいます。
-
-```js
-// `array`の`index`番目の値を削除した配列を返す関数
-function removeAtIndex(array, index) {
-    array.splice(index, 1);
-    return array;
-}
-var array = ["A", "B", "C"];
-// 新しい配列を返すことを期待する
-var newArray = removeAtIndex(array, 1);
-console.log(newArray); // => ["A", "C"]
-console.log(array); // => ["A", "C"]
-```
-
-このような、ある機能が受け取った値そのものに影響を与えることを**破壊的**操作と呼びます。
-
-- [ ] `Array` の比較について
-- [ ] 先にconcatとsliceの説明をしておく
-
-`Array#push`メソッドなどが破壊的操作である一方、配列のメソッドには非破壊的なものも混在します。
-その一例が`Array#concat`メソッドや`Array#slice`メソッドです。
-
-さきほどの`push`メソッドによる要素の追加と`concat`メソッドによる要素を結合の違いを見ると一目瞭然です。
-`push`メソッドは`myArray`自体を変更しているのに対して、`concat`メソッドは`myArray`のコピーに対して要素を結合した新しい配列を返しています。
+非破壊的なメソッドの例として、配列に要素を結合する`Array#concat`メソッドがあります。
+次のコードでは、`myArray`に対して`concat`メソッドで要素を結合しています。
+`concat`メソッドで要素を追加した際に`myArray`は変更されていないことが分かります。
 
 ```js
 var myArray = ["A", "B", "C"];
@@ -499,28 +482,14 @@ console.log(myArray); // => ["A", "B", "C"]
 console.log(myArray === newARray); // => false
 ```
 
-この`push`メソッドによる破壊的操作を防ぐには、配列をコピーして`yourArray`に代入する必要があります。
-JavaScriptには残念ながら copyメソッドというような分かりやすい名前のメソッドは存在していませんが、
-配列の参照をコピーする機能をもつメソッドが代用されています。
+これは、`concat`メソッドは、`myArray`のコピーを作成してから要素結合した配列を返すためです。
 
-`Array#slice`と`Array#concat`がコピーの代用として使われているメソッドです。
-`slice`メソッドと`concat`メソッドは引数なしで呼び出すと、結果的にその配列のコピーを返してくれます。
+<!--　必要性  -->
 
-```js
-var myArray = ["A", "B", "C"];
-// `myArray`のコピーを返す - `myArray.concat()`でも同じ
-var yourArray = myArray.slice(); 
-myArray.push("D");
-console.log(yourArray); // => ["A", "B", "C", "D"]
-// コピー元の`myArray`には影響がない
-console.log(myArray); // => ["A", "B", "C"]
-```
+配列における破壊的なメソッドと非破壊的メソッドを名前から区別方法はありません。
+具体的には次のメソッドは破壊的なメソッドであり、その他のメソッドは非破壊的なメソッドです。
 
-このように配列を破壊的に操作したくない場合は、配列のコピーをしてから処理する必要があります。
-JavaScriptの配列は破壊的、非破壊的なメソッドが混在しています。
-破壊的メソッドは次のとおりで、これらは覚えることでしか区別できません。
-
-| メッソド名                                    | 返り値           |
+| メソッド名                                    | 返り値           |
 | ---------------------------------------- | ------------- |
 | [`Array.prototype.pop`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/pop) | 配列の末尾の値       |
 | [`Array.prototype.push`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/push) | 変更後の配列のlength |
@@ -533,9 +502,66 @@ JavaScriptの配列は破壊的、非破壊的なメソッドが混在してい�
 | [`Array.prototype.fill`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/fill) | 変更後の配列        |
 
 
+非破壊的メソッドは配列のコピーを作成するため元々の配列に対して影響はないため安全です。
+しかし、破壊的メソッドは思わぬ副作用を与えてしまうことがあるため、そのことを意識して利用する必要があります。
+
+たとえば、配列から特定のインデックスの値を削除する`removeAtIndex`という関数があるとします。
+この関数は、渡した配列から値を削除した**新しい**配列を返すことが期待されます。
+しかし、次のように破壊的な操作である`Array#splice`メソッドで直接削除すると、引数として受け取った配列にも影響を与えてしまいます。
+（`splice`メソッドは破壊的なメソッドです）
+
+```js
+// `array`の`index`番目の要素を削除した配列を返す関数
+function removeAtIndex(array, index) {
+    array.splice(index, 1);
+    return array;
+}
+var array = ["A", "B", "C"];
+// `array`から1番目の要素を削除した配列を取得
+var newArray = removeAtIndex(array, 1);
+console.log(newArray); // => ["A", "C"]
+// `array`自体にも影響を与えている
+console.log(array); // => ["A", "C"]
+```
+
+これを回避するためには、`removeAtIndex`関数は受け取った配列をコピーしてから変更を加える必要があります。
+残念ながら JavaScriptにはcopyメソッドのようなメソッドは存在していませんが、
+配列をコピーする機能をもつメソッドが代用できるメソッド存在します。
+
+配列のコピー方法として`Array#slice`メソッドと`Array#concat`メソッドがよく利用されています。
+`slice`メソッドと`concat`メソッドは引数なしで呼び出すと、その配列のコピーを返します。
+
+```js
+var myArray = ["A", "B", "C"];
+// `myArray`のコピーを返す - `myArray.concat()`でも同じ
+var yourArray = myArray.slice(); 
+myArray.push("D");
+console.log(yourArray); // => ["A", "B", "C", "D"]
+// コピー元の`myArray`には影響がない
+console.log(myArray); // => ["A", "B", "C"]
+```
+
+先ほどの`removeAtIndex`関数も引数として受け取った配列をコピーしてから、要素を削除することで意図した動作となります。
+
+```js
+// `array`の`index`番目の要素を削除した配列を返す関数
+function removeAtIndex(array, index) {
+    // コピーを作成から変更
+    var copiedArray = array.slice();
+    copiedArray.splice(index, 1);
+    return copiedArray;
+}
+var array = ["A", "B", "C"];
+// `array`から1番目の要素を削除した配列を取得
+var newArray = removeAtIndex(array, 1);
+console.log(newArray); // => ["A", "C"]
+// `array`には影響ないため元のまま
+console.log(array); // => "A", "B", "C"
+```
+
+このように、JavaScriptの配列には破壊的なメソッドと非破壊的メソッドが混在しています。
 このような背景もあるため、JavaScriptにはさまざまな配列を扱うライブラリが存在します。
 [immutable-array-prototype][]は破壊的なメソッドを非破壊的にしたものを提供し、[Lodash][]は標準にはない便利なメソッドを提供し、[Immutable.js][]は効率的なデータ構造を提供するなどさまざまです。
-
 
 ## 疎な配列を作る
 ## Array-likeとは何か
