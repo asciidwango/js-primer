@@ -535,9 +535,11 @@ var myArray = ["A", "B", "C"];
 // `myArray`のコピーを返す - `myArray.concat()`でも同じ
 var yourArray = myArray.slice(); 
 myArray.push("D");
-console.log(yourArray); // => ["A", "B", "C", "D"]
-// コピー元の`myArray`には影響がない
 console.log(myArray); // => ["A", "B", "C", "D"]
+// `array`のコピーである`yourArray`には影響がない
+console.log(yourArray); // => ["A", "B", "C"]
+// コピーであるため参照は異なる
+console.log(array === myArray); // => false
 ```
 
 先ほどの`removeAtIndex`関数も引数として受け取った配列をコピーしてから、要素を削除することで意図した動作となります。
@@ -554,8 +556,8 @@ var array = ["A", "B", "C"];
 // `array`から1番目の要素を削除した配列を取得
 var newArray = removeAtIndex(array, 1);
 console.log(newArray); // => ["A", "C"]
-// `array`には影響ないため元のまま
-console.log(array); // => "A", "B", "C"
+// 元の`array`には影響がない
+console.log(array); // => ["A", "B", "C"]
 ```
 
 このように、JavaScriptの配列には破壊的なメソッドと非破壊的メソッドが混在しています。
