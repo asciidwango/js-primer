@@ -537,7 +537,7 @@ var yourArray = myArray.slice();
 myArray.push("D");
 console.log(yourArray); // => ["A", "B", "C", "D"]
 // コピー元の`myArray`には影響がない
-console.log(myArray); // => ["A", "B", "C"]
+console.log(myArray); // => ["A", "B", "C", "D"]
 ```
 
 先ほどの`removeAtIndex`関数も引数として受け取った配列をコピーしてから、要素を削除することで意図した動作となります。
