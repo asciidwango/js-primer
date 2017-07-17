@@ -547,7 +547,7 @@ console.log(array === myArray); // => false
 ```js
 // `array`の`index`番目の要素を削除した配列を返す関数
 function removeAtIndex(array, index) {
-    // コピーを作成から変更
+    // コピーを作成してから変更する
     var copiedArray = array.slice();
     copiedArray.splice(index, 1);
     return copiedArray;
