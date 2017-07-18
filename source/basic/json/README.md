@@ -11,29 +11,21 @@ JSONの仕様は[ECMA-404][]によって標準化されています。
 人間にとって読み書きが容易で、マシンにとっても簡単にパースや生成を行なえる形式になっているため、
 多くのプログラミング言語がJSONを扱う機能を備えています。
 
-JSONの構造はオブジェクトと配列を組み合わせたものを基にしています。
-JSONのオブジェクトは次のようにキー（名前）と値のペアの集まりを`{}`記号で囲ったものです。
-JavaScriptのオブジェクトリテラルと似ていますが、キーはダブルクオートで囲まれた文字列でなければいけません。
-
-```json
-{ "id": 1, "name": "js-primer" }
-```
-
-JSONの配列は次のように順序付けられたカンマ区切りの値を`[]`記号で囲ったものです。
-こちらはJavaScriptの配列リテラルとほとんど同じですが、末尾のカンマは認められません。
-
-```json
-[ 1, 2, 3 ]
-```
-
-オブジェクトと配列は自由に組み合わせることができます。
+JSONはJavaScriptのオブジェクトリテラル、配列リテラル、各種プリミティブ型の値を組み合わせたものです。
+ただしJSONとJavaScriptは一部の構文に違いがあります。
+たとえばJSONでは、オブジェクトリテラルのキーを必ずダブルクオートで囲まなければいけません。
+また、小数点から書き始める数値リテラルや、先頭がゼロから始まる数値リテラルも使えません。
+これらは機械がパースしやすくするために仕様で定められた制約です。
 
 ```json
 {
-    "items": [
-        { "id": 1 },
-        { "id": 2 }
-    ]
+    "object": { 
+        "number": 1, 
+        "string": "js-primer",
+        "boolean": true,
+        "null": null,
+        "array": [1, 2, 3]
+    }
 }
 ```
 
@@ -48,7 +40,7 @@ JavaScriptでJSONを扱うには、ビルトインの[JSONオブジェクト][]�
 ### JSON文字列をオブジェクトに変換する {#json-parse}
 
 [JSON.parseメソッド][]は引数に与えられた文字列をJSONとしてパースし、その結果をJavaScriptのオブジェクトとして返す関数です。
-次のコードは簡単なJSON形式の文字列をオブジェクトに変換する例です。
+次のコードは簡単なJSON形式の文字列をJavaScriptのオブジェクトに変換する例です。
 
 {{book.console}}
 ```js
@@ -58,7 +50,7 @@ console.log(obj.id); // => 1
 console.log(obj.name); // => "js-primer"
 ```
 
-文字列がJSONの配列を表す場合は、`JSON.parse`メソッドの戻り値も配列になります。
+文字列がJSONの配列を表す場合は、`JSON.parse`メソッドの返り値も配列になります。
 
 {{book.console}}
 ```js
@@ -66,14 +58,14 @@ var json = "[1, 2, 3]";
 console.log(JSON.parse(json)); // => [1, 2, 3]
 ```
 
-与えられた文字列がJSON形式でパースできない場合はエラーが投げられます。
+与えられた文字列がJSON形式でパースできない場合は例外が投げられます。
 また、実際のアプリケーションでJSONを扱うのは、外部のプログラムとデータを交換する用途がほとんどです。
 外部のプログラムが送ってくるデータが常にJSONとして正しい保証はないので、`JSON.parse`メソッドは基本的にtry-catch文で例外処理をするべきです。
 
 ### オブジェクトをJSON文字列に変換する {#json-format}
 
 [JSON.stringifyメソッド][]は第1引数に与えられたオブジェクトをJSON形式の文字列に変換して返す関数です。
-次のコードは簡単なオブジェクトをJSON形式の文字列に変換する例です。
+次のコードはJavaScriptのオブジェクトをJSON形式の文字列に変換する例です。
 
 {{book.console}}
 ```js
@@ -83,15 +75,15 @@ console.log(JSON.stringify(obj)); // => '{"id":1,"name":"js-primer","bio":null}'
 
 `JSON.stringify`メソッドにはオプショナルな引数が2つあります。
 第2引数はreplacer引数とも呼ばれ、変換後のJSONに含まれるプロパティ関数あるいは配列を渡せます。
-関数を渡した場合は引数にプロパティのキーと値が渡され、その戻り値によって文字列に変換される際の挙動をコントロールできます。
+関数を渡した場合は引数にプロパティのキーと値が渡され、その返り値によって文字列に変換される際の挙動をコントロールできます。
 次の例は値がnullであるプロパティを除外してJSONに変換するreplacer引数の例です。
+replacer引数の関数でundefinedが返されたプロパティは、変換後のJSONに含まれなくなります。
 
 {{book.console}}
 ```js
 var obj = { id: 1, name: "js-primer", bio: null };
 var replacer = (key, value) => {
-    // undefinedを返したプロパティは変換後のJSONに含まれない
-    if (value == null) {
+    if (value === null) {
         return undefined;
     }
     return value;
@@ -99,7 +91,8 @@ var replacer = (key, value) => {
 console.log(JSON.stringify(obj, replacer)); // => '{"id":1,"name":"js-primer"}'
 ```
 
-replacer引数に配列を渡した場合は、その配列に含まれる名前のプロパティだけが変換されるホワイトリストになります。
+replacer引数に配列を渡した場合はプロパティのホワイトリストとして使われ、
+その配列に含まれる名前のプロパティだけが変換されます。
 
 {{book.console}}
 ```js
@@ -118,11 +111,11 @@ var obj = { id: 1, name: "js-primer" };
 // replacer引数を使わない場合はnullを渡すのが一般的です
 console.log(JSON.stringify(obj, null, 2)); 
 /*
- * {
- *    "id": 1,
- *    "name": "js-primer"
- * }
- **/
+{
+   "id": 1,
+   "name": "js-primer"
+}
+*/
 ```
 
 また、次のコードはタブ文字でインデントされたJSONを得る例です。
@@ -132,19 +125,21 @@ console.log(JSON.stringify(obj, null, 2));
 var obj = { id: 1, name: "js-primer" };
 console.log(JSON.stringify(obj, null, "\t")); 
 /*
- * {
- *    "id": 1,
- *    "name": "js-primer"
- * }
- **/
+{
+   "id": 1,
+   "name": "js-primer"
+}
+*/
 ```
 
 ## [コラム] JSON文字列にシリアライズできないオブジェクト
 
 `JSON.stringify`メソッドはJSONで表現可能な値だけをシリアライズします。
-そのため、値が関数か`Symbol`、あるいは`undefined`であるプロパティは変換されません。
+そのため、値が関数や`Symbol`、あるいは`undefined`であるプロパティなどは変換されません。
 ただし、配列の値としてそれらが見つかったときには例外的に`null`に置き換えられます。
 またキーが`Symbol`である場合にもシリアライズの対象外になります。
+
+さらに正規表現、Map、Setなど一部のオブジェクトは空のオブジェクトに変換されることにも注意しましょう。
 
 {{book.console}}
 ```js
@@ -158,17 +153,19 @@ console.log(JSON.stringify({ x: undefined })); // => '{}'
 console.log(JSON.stringify({ x: [10, function() {}] })); // => '{"x":[10,null]}'
 // キーがSymbolのプロパティ
 JSON.stringify({ [Symbol("foo")]: "foo" }); // => '{}'
+// 値が正規表現のプロパティ
+console.log(JSON.stringify({ x: /foo/ })); // => '{"x":{}}'
 ```
 
 `JSON.stringify`メソッドがシリアライズに失敗することもあります。
-よくあるのは、参照が循環しているオブジェクトをシリアライズしようとしたときにエラーが投げられるケースです。
+よくあるのは、参照が循環しているオブジェクトをシリアライズしようとしたときに例外が投げられるケースです。
 たとえば次の例のように、あるオブジェクトのプロパティを再帰的に辿って自分自身が見つかるような場合はシリアライズが不可能となります。
 
 [import circular-reference.js](src/circular-reference.js)
 
 ## [コラム] `toJSON`メソッドを使ったシリアライズ
 
-オブジェクトが`toJSON`メソッドを持っている場合、`JSON.stringify`メソッドは既定の文字列変換ではなくその戻り値を使います。
+オブジェクトが`toJSON`メソッドを持っている場合、`JSON.stringify`メソッドは既定の文字列変換ではなく`toJSON`メソッドの返り値を使います。
 次の例のように、引数に直接渡されたときだけでなく引数のプロパティとして登場したときにも再帰的に処理されます。
 
 {{book.console}}
@@ -182,6 +179,8 @@ var obj = {
 console.log(JSON.stringify(obj)); // => '"bar"'
 console.log(JSON.stringify({ x: obj })); // => '{"x":"bar"}'
 ```
+
+`toJSON`メソッドは自作のクラスを特殊な形式でシリアライズする目的などに使われます。
 
 [ECMA-404]: http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf
 [json.orgの日本語ドキュメント]: http://www.json.org/json-ja.html
