@@ -128,15 +128,9 @@ rules:
       - for-of
       - for/of
   - expected: バッククオート
-    patterns: 
-      - バックティック
-      - バッククォート
+    patterns: バックティック
   - expected: 匿名関数
     patterns: 無名関数
-  - expected: 返り値
-    patterns: 戻り値
-  - expected: 例外が投げられ
-    patterns: エラーが投げられ
   - expected: Array-like
     patterns: 配列ライク
   - expected: Promiseチェーン
