@@ -503,7 +503,7 @@ console.log(myArray === newArray); // => false
 
 ```js
 // `array`の`index`番目の要素を削除した配列を返す関数
-function removeAtIndex(array, index){ /* 実装 */ }
+function removeAtIndex(array, index) { /* 実装 */ }
 ```
 
 `removeAtIndex`関数の利用者は、関数のインタフェースとコメントを見たときに、この関数が破壊的なものか非破壊的なものかの判断ができないという問題があります。次のように破壊的なメソッドである`Array#splice`メソッドで要素を削除すると、引数として受け取った配列にも影響を与えます。
