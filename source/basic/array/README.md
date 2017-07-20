@@ -442,7 +442,7 @@ console.log(array.length); // => 0
 ## 破壊的なメソッドと非破壊的なメソッド {#mutable-immutable}
 
 これまで紹介してきた配列を変更するメソッドには、破壊的なメソッドと非破壊的メソッドという大きな分類があります。
-この破壊的なメソッドと非破壊的メソッドの違いについてを知ることは、意図しない結果を避けるために重要です。
+この破壊的なメソッドと非破壊的メソッドの違いを知ることは、意図しない結果を避けるために重要です。
 破壊的なメソッドとは、配列オブジェクトのプロパティそのものを変更し、変更した配列または変更箇所を返すメソッドです。
 非破壊的メソッドとは、配列オブジェクトのコピーを作成してから変更し、コピーした配列を返すメソッドです。
 
@@ -469,12 +469,12 @@ console.log(myArray); // => ["A", "B", "C", "D"]
 
 ```js
 var myArray = ["A", "B", "C"];
-var newARray = myArray.concat("D");
-console.log(newARray); // => ["A", "B", "C", "D"]
+var newArray = myArray.concat("D");
+console.log(newArray); // => ["A", "B", "C", "D"]
 // `myArray`は変更されていない
 console.log(myArray); // => ["A", "B", "C"]
-// `newARray`と`myArray`は異なる配列オブジェクト
-console.log(myArray === newARray); // => false
+// `newArray`と`myArray`は異なる配列オブジェクト
+console.log(myArray === newArray); // => false
 ```
 
 これは、`concat`メソッドは、`myArray`のコピーを作成してから要素結合した配列を返すためです。
@@ -497,15 +497,22 @@ console.log(myArray === newARray); // => false
 | [`Array.prototype.fill`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/fill) | 変更後の配列        |
 
 
-非破壊的メソッドは配列のコピーを作成するため元々の配列に対して影響はないため安全です。
-しかし、破壊的メソッドは思わぬ副作用を与えてしまうことがあるため、そのことを意識して利用する必要があります。
-
-たとえば、配列から特定のインデックスの要素を削除する`removeAtIndex`という関数があるとします。
-この関数は、渡した配列から要素を削除した**新しい**配列を返すことが期待されます。
-しかし、次のように破壊的なメソッドである`Array#splice`メソッドで直接削除すると、引数として受け取った配列にも影響を与えてしまいます。
+破壊的メソッドは思わぬ副作用を与えてしまうことがあるため、そのことを意識して利用する必要があります。
+一方、非破壊的メソッドは配列のコピーを作成するため元々の配列に対して影響はないため安全です。
+たとえば、配列から特定のインデックスの要素を削除する`removeAtIndex`という関数を提供したいとします。
 
 ```js
 // `array`の`index`番目の要素を削除した配列を返す関数
+function removeAtIndex(array, index){ /* 実装 */ }
+```
+
+`removeAtIndex`関数の利用者は、関数のインタフェースとコメントを見たときに、この関数が破壊的なものか非破壊的なものかの判断ができないという問題があります。次のように破壊的なメソッドである`Array#splice`メソッドで要素を削除すると、引数として受け取った配列にも影響を与えます。
+そのため、`removeAtIndex`関数には副作用があるため、破壊的であることについてのコメントがあると親切です。
+
+
+```js
+// `array`の`index`番目の要素を削除した配列を返す関数
+// 引数の`array`は破壊的に変更される
 function removeAtIndex(array, index) {
     array.splice(index, 1);
     return array;
@@ -518,9 +525,8 @@ console.log(newArray); // => ["A", "C"]
 console.log(array); // => ["A", "C"]
 ```
 
-これを回避するためには、`removeAtIndex`関数は受け取った配列をコピーしてから変更を加える必要があります。
-残念ながら JavaScriptには`copy`メソッドは存在していませんが、
-配列をコピーする機能をもつ代用できるメソッド存在します。
+この`removeAtIndex`関数を非破壊的ものにするには、受け取った配列をコピーしてから変更を加える必要があります。
+JavaScriptには`copy`メソッドは存在しませんが、配列をコピーする機能をもつ代用できるメソッド存在します。
 
 配列のコピー方法として`Array#slice`メソッドと`Array#concat`メソッドがよく利用されています。
 `slice`メソッドと`concat`メソッドは引数なしで呼び出すと、その配列のコピーを返します。
@@ -537,7 +543,7 @@ console.log(yourArray); // => ["A", "B", "C"]
 console.log(array === myArray); // => false
 ```
 
-先ほどの`removeAtIndex`関数も引数として受け取った配列をコピーしてから、要素を削除することで意図した動作となります。
+先ほどの`removeAtIndex`関数も引数として受け取った配列をコピーしてから、要素を削除することで`removeAtIndex`関数は非破壊的なものとなりました。非破壊的であれば引数の配列への副作用がないので、特別なコメントは不要です。
 
 ```js
 // `array`の`index`番目の要素を削除した配列を返す関数
@@ -555,8 +561,7 @@ console.log(newArray); // => ["A", "C"]
 console.log(array); // => ["A", "B", "C"]
 ```
 
-このように、JavaScriptの配列には破壊的なメソッドと非破壊的メソッドが混在しているため、統一されたインタフェースではありません。
-このような背景もあるため、JavaScriptには配列を扱うためのさまざまライブラリが存在します。
+このように、JavaScriptの配列には破壊的なメソッドと非破壊的メソッドが混在していまいます。そのため、統一的なインタフェースで扱えないのが現状です。このような背景もあるため、JavaScriptには配列を扱うためのさまざまライブラリが存在します。
 [immutable-array-prototype][]は破壊的なメソッドを非破壊的にしたものを提供し、[Lodash][]は標準にはない便利なメソッドを提供し、[Immutable.js][]は効率的なデータ構造を提供するなどさまざまです。
 
 ## 疎な配列を作る
