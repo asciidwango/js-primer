@@ -540,7 +540,7 @@ console.log(yourArray); // => ["A", "B", "C"]
 console.log(array === myArray); // => false
 ```
 
-`Array#slice`メソッドを使うことで`removeAtIndex`関数は非破壊的な関数として実装できます。
+コピーした配列に変更を加えることで、`removeAtIndex`関数を非破壊的な関数として実装できます。
 非破壊的であれば引数の配列への副作用がないので、注意させるようなコメントは不要です。
 
 ```js
