@@ -450,7 +450,7 @@ console.log(array.length); // => 0
 
 破壊的なメソッドの例として、配列に要素を追加する`Array#push`メソッドがあります。
 次のコードでは、`myArray`に対して`push`メソッドで要素を追加しています。
-このとき、`myArray`の参照する配列そのものが変更されています。
+`push`メソッドは破壊的であるため、`myArray`の参照する配列そのものが変更されています。
 
 ```js
 var myArray = ["A", "B", "C"];
@@ -465,7 +465,7 @@ console.log(myArray); // => ["A", "B", "C", "D"]
 
 非破壊的なメソッドの例として、配列に要素を結合する`Array#concat`メソッドがあります。
 次のコードでは、`myArray`に対して`concat`メソッドで要素を結合しています。
-このとき、`myArray`が参照する配列そのものは変更されません。
+`concat`メソッドは非破壊的であるため、`myArray`の参照する配列そのものは変更されません。
 
 ```js
 var myArray = ["A", "B", "C"];
@@ -476,8 +476,6 @@ console.log(myArray); // => ["A", "B", "C"]
 // `newArray`と`myArray`は異なる配列オブジェクト
 console.log(myArray === newArray); // => false
 ```
-
-これは、`concat`メソッドは、`myArray`のコピーを作成してから要素結合した配列を返すためです。
 
 <!--　必要性  -->
 
@@ -525,7 +523,7 @@ console.log(array); // => ["A", "C"]
 ```
 
 この`removeAtIndex`関数を非破壊的ものにするには、受け取った配列をコピーしてから変更を加える必要があります。
-JavaScriptには`copy`メソッドは存在しませんが、配列をコピーする機能をもつ代用できるメソッド存在します。
+JavaScriptには`copy`メソッドは存在しませんが、配列をコピーする機能をもつメソッドが存在します。
 
 配列のコピー方法として`Array#slice`メソッドと`Array#concat`メソッドがよく利用されています。
 `slice`メソッドと`concat`メソッドは引数なしで呼び出すと、その配列のコピーを返します。
