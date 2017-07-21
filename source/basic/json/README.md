@@ -44,8 +44,8 @@ JavaScriptでJSONを扱うには、ビルトインの[JSONオブジェクト][]�
 
 {{book.console}}
 ```js
-var json = "{ \"id\": 1, \"name\": \"js-primer\" }";
-var obj = JSON.parse(json);
+const json = "{ \"id\": 1, \"name\": \"js-primer\" }";
+const obj = JSON.parse(json);
 console.log(obj.id); // => 1
 console.log(obj.name); // => "js-primer"
 ```
@@ -54,7 +54,7 @@ console.log(obj.name); // => "js-primer"
 
 {{book.console}}
 ```js
-var json = "[1, 2, 3]";
+const json = "[1, 2, 3]";
 console.log(JSON.parse(json)); // => [1, 2, 3]
 ```
 
@@ -65,11 +65,13 @@ console.log(JSON.parse(json)); // => [1, 2, 3]
 ### オブジェクトをJSON文字列に変換する {#json-format}
 
 [JSON.stringifyメソッド][]は第1引数に与えられたオブジェクトをJSON形式の文字列に変換して返す関数です。
+HTTP通信でサーバーにデータを送信するときや、
+アプリケーションが保持している状態を外部に保存するときなどに必要になります。
 次のコードはJavaScriptのオブジェクトをJSON形式の文字列に変換する例です。
 
 {{book.console}}
 ```js
-var obj = { id: 1, name: "js-primer", bio: null };
+const obj = { id: 1, name: "js-primer", bio: null };
 console.log(JSON.stringify(obj)); // => '{"id":1,"name":"js-primer","bio":null}'
 ```
 
@@ -81,8 +83,8 @@ replacer引数の関数でundefinedが返されたプロパティは、変換後
 
 {{book.console}}
 ```js
-var obj = { id: 1, name: "js-primer", bio: null };
-var replacer = (key, value) => {
+const obj = { id: 1, name: "js-primer", bio: null };
+const replacer = (key, value) => {
     if (value === null) {
         return undefined;
     }
@@ -96,8 +98,8 @@ replacer引数に配列を渡した場合はプロパティのホワイトリス
 
 {{book.console}}
 ```js
-var obj = { id: 1, name: "js-primer", bio: null };
-var replacer = ["id", "name"];
+const obj = { id: 1, name: "js-primer", bio: null };
+const replacer = ["id", "name"];
 console.log(JSON.stringify(obj, replacer)); // => '{"id":1,"name":"js-primer"}'
 ```
 
@@ -107,8 +109,8 @@ console.log(JSON.stringify(obj, replacer)); // => '{"id":1,"name":"js-primer"}'
 
 {{book.console}}
 ```js
-var obj = { id: 1, name: "js-primer" };
-// replacer引数を使わない場合はnullを渡すのが一般的です
+const obj = { id: 1, name: "js-primer" };
+// replacer引数を使わない場合はnullを渡して省略するのが一般的です
 console.log(JSON.stringify(obj, null, 2)); 
 /*
 {
@@ -122,7 +124,7 @@ console.log(JSON.stringify(obj, null, 2));
 
 {{book.console}}
 ```js
-var obj = { id: 1, name: "js-primer" };
+const obj = { id: 1, name: "js-primer" };
 console.log(JSON.stringify(obj, null, "\t")); 
 /*
 {
@@ -138,8 +140,19 @@ console.log(JSON.stringify(obj, null, "\t"));
 そのため、値が関数や`Symbol`、あるいは`undefined`であるプロパティなどは変換されません。
 ただし、配列の値としてそれらが見つかったときには例外的に`null`に置き換えられます。
 またキーが`Symbol`である場合にもシリアライズの対象外になります。
+代表的な変換の例を次の表とサンプルコードに示します。
 
-さらに正規表現、Map、Setなど一部のオブジェクトは空のオブジェクトに変換されることにも注意しましょう。
+| シリアライズ前の値 | シリアライズ後の値 |
+| ---             |  ---            | 
+| 文字列・数値・真偽値 |  対応する値       | 
+| null            |  null           | 
+| 配列             |  配列           | 
+| オブジェクト      |  オブジェクト     | 
+| 関数             |  変換されない（配列のときはnull）     | 
+| undefined       |  変換されない（配列のときはnull）     | 
+| Symbol          |  変換されない（配列のときはnull）     | 
+| RegExp          |  {}             | 
+| Map, Set        |  {}             | 
 
 {{book.console}}
 ```js
@@ -155,11 +168,19 @@ console.log(JSON.stringify({ x: [10, function() {}] })); // => '{"x":[10,null]}'
 JSON.stringify({ [Symbol("foo")]: "foo" }); // => '{}'
 // 値が正規表現のプロパティ
 console.log(JSON.stringify({ x: /foo/ })); // => '{"x":{}}'
+// 値がMapのプロパティ
+const map = new Map();
+map.set("foo", "foo");
+console.log(JSON.stringify({ x: map })); // => '{"x":{}}'
 ```
 
-`JSON.stringify`メソッドがシリアライズに失敗することもあります。
+オブジェクトがシリアライズされる際は、そのオブジェクトの列挙可能なプロパティだけが再帰的にシリアライズされます。
+RegExpやMap、Setなどは列挙可能なプロパティを持たないため、空のオブジェクトに変換されます。
+
+また、`JSON.stringify`メソッドがシリアライズに失敗することもあります。
 よくあるのは、参照が循環しているオブジェクトをシリアライズしようとしたときに例外が投げられるケースです。
 たとえば次の例のように、あるオブジェクトのプロパティを再帰的に辿って自分自身が見つかるような場合はシリアライズが不可能となります。
+`JSON.parse`メソッドだけでなく、`JSON.stringify`メソッドも例外処理をおこなって安全に使いましょう。
 
 [import circular-reference.js](src/circular-reference.js)
 
