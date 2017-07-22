@@ -82,8 +82,8 @@ for文の実行フローは次のようになります。
 
 {{book.console}}
 ```js
-var total = 0; // 初期値は0
-for (var i = 0; i < 10; i++) {
+let total = 0; // 初期値は0
+for (let i = 0; i < 10; i++) {
     total += i + 1; // 1...10
 }
 console.log(total); // => 55
@@ -112,7 +112,7 @@ console.log(total); // => 55
 
 {{book.console}}
 ```js
-var array = [1, 2, 3, 4, 5];
+const array = [1, 2, 3, 4, 5];
 array.forEach((currentValue, index, array) => {
     // 実行する文
 });
@@ -124,7 +124,7 @@ JavaScriptでは、関数はファーストクラスであるため、その場�
 また、`forEach`メソッドのようなコールバック関数を引数として受け取る関数やメソッドのことを**高階関数**と呼びます。
 
 ```js
-var array = [1, 2, 3, 4, 5];
+const array = [1, 2, 3, 4, 5];
 array.forEach(コールバック関数);
 ```
 
@@ -193,8 +193,8 @@ return文は現在の関数を終了させることができるため、次の�
 コールバック関数が一度でも`true`を返した時点で反復処理を終了し、`some`メソッドは`true`を返します。
 
 ```js
-var array = [1, 2, 3, 4, 5];
-var isPassed = array.some((currentValue, index, array) => {
+const array = [1, 2, 3, 4, 5];
+const isPassed = array.some((currentValue, index, array) => {
     // テストをパスするtrue、そうでないならfalseを返す
 });
 ```
@@ -242,9 +242,9 @@ if (isEven(number)) {
 コールバック関数が`true`を返した要素のみを集めた新しい配列を返します。
 
 ```js
-var array = [1, 2, 3, 4, 5];
+const array = [1, 2, 3, 4, 5];
 // テストをパスしたものを集めた配列
-var filterdArray = array.filter((currentValue, index, array) => {
+const filterdArray = array.filter((currentValue, index, array) => {
     // テストをパスするならtrue、そうでないならfalseを返す
 });
 ```
@@ -352,7 +352,7 @@ for...of文はそれらに対して反復処理を行うことができます。
 最終的な、`reduce`メソッドの返り値は、コールバック関数が最後に`return`した値となります。
 
 ```js
-var result = array.reduce((前回の値, 現在の値) => {
+const result = array.reduce((前回の値, 現在の値) => {
     return 次の値;
 }, 初期値);
 ```

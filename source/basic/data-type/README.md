@@ -211,7 +211,7 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は同�
 
 {{book.console}}
 ```js
-var string = "文字列";
+const string = "文字列";
 console.log(`これは${string}です`); // => "これは文字列です"
 ```
 
@@ -244,7 +244,7 @@ foo;// "ReferenceError: foo is not defined"
 
 {{book.console}}
 ```js
-var foo = null;
+const foo = null;
 console.log(foo); // => null
 ```
 
@@ -255,7 +255,7 @@ JavaScriptにおいてあらゆるものの基礎となるのがオブジェク�
 オブジェクトリテラルは`{}`（中括弧）を書くことで、新しいオブジェクトを作成できます。
 
 ```js
-var object = {}; // 中身が空のオブジェクトを作成
+const object = {}; // 中身が空のオブジェクトを作成
 ```
 
 オブジェクトリテラルはオブジェクトの作成と同時に中身を定義できます。
@@ -265,7 +265,7 @@ var object = {}; // 中身が空のオブジェクトを作成
 キー名には、文字列またはSymbolを指定し、値にはプリミティブ型の値からオブジェクトまで何でも入れることができます。
 
 ```js
-var object = {
+const object = {
     key: "value"
 };
 ```
@@ -278,7 +278,7 @@ var object = {
 
 {{book.console}}
 ```js
-var object = {
+const object = {
     "key": "value"
 };
 // ドット記法
@@ -312,8 +312,8 @@ console.log(object["123"]); // => "value"
 配列リテラルは`[`と`]`で値をカンマ区切りで囲み、Arrayオブジェクトを作成します。
 
 ```js
-var emptyArray = []; // 空の配列を作成
-var array = [1, 2, 3]; // 値をもった配列を作成
+const emptyArray = []; // 空の配列を作成
+const array = [1, 2, 3]; // 値をもった配列を作成
 ```
 
 作成した配列の要素を取得するには、配列に対して`array[index]`でアクセスできます。
@@ -321,9 +321,9 @@ JavaScriptの配列のインデックスは`0`から開始する数値となっ�
 
 {{book.console}}
 ```js
-var array = ["0番目", "1番目", "2番目"]; // 値をもった配列を作成
-console.log(array[0]); // => "0番目"
-console.log(array[array.length - 1]); // => "2番目"
+const array = ["index-0", "index-1", "index-2"];
+console.log(array[0]); // => "index-0"
+console.log(array[array.length - 1]); // => "index-2"
 ```
 
 配列もオブジェクトの一種ですが、アプリケーションを書くこと場合に多く使われます。
@@ -342,7 +342,7 @@ console.log(array[array.length - 1]); // => "2番目"
 
 {{book.console}}
 ```js
-var numberRegExp = /\d+/; // 1文字以上の数字にマッチする正規表現
+const numberRegExp = /\d+/; // 1文字以上の数字にマッチする正規表現
 // 123が正規表現にマッチするかをテストする
 console.log(numberRegExp.test(123)); // => true
 ```
@@ -350,7 +350,7 @@ console.log(numberRegExp.test(123)); // => true
 `RegExp`コンストラクタを使うことで文字列から正規表現オブジェクトを作成することもできますが、
 特殊文字の二重エスケープが必要になり直感的に書くことが難しくなります。
 
-正規表現オブジェクトについて詳しくは、第n章で紹介します。
+正規表現オブジェクトについて詳しくは、[文字列の章][]で紹介します。
 
 ## まとめ
 
@@ -363,31 +363,38 @@ console.log(numberRegExp.test(123)); // => true
 ## [コラム] undefinedはリテラルではない
 
 プリミティブ型として紹介した`undefined`はリテラルではありません。
-`undefined`はただのグローバル変数で、`undefined`という値を持っているだけとなっています。
+`undefined`はただのグローバル変数で、`undefined`という値を持っているだけです。
 
-そのため、`undefined`という名前のローカル変数を定義できます。
+そのため、同じ変数名を重複して定義することが許可されている`var`ならば`undefined`という名前のローカル変数を定義できます。
+もちろん`let`や`const`では、同名の変数は再定義できないため`undefined`の再定義はできません。
+
+<!-- textlint-disable eslint -->
 
 {{book.console}}
 ```js
-var undefined; // undefinedというローカル変数を定義できる
+let undefined = "独自の未定義値"; // undefinedというローカル変数を定義できる
+console.log(undefined); // => "独自の未定義値"
 ```
 
-一方、リテラルである`null`は変数ではなくリテラルであるため再定義できません。
+<!-- textlint-enable eslint -->
+
+これに対して`null`は変数ではなくリテラルであるため、`var`を使っても再定義できません。
+リテラルは変数名として利用できない予約語であるため、このような違いが生じています。
 
 {{book.console}}
 [import, var-null-invalid.js](./src/var-null-invalid.js)
 
-[変数と宣言](../variables/README.md)で解説したように、
-`let`や`const`で定義した変数は再定義できません。
-一方、`var`やグローバル変数は同じ変数名で再定義できます。
-
-また、変数名としてリテラルは利用できない予約語として定義されているため、このような違いが生じています。
+このコラムでは、説明のために`undefined`というローカル変数を宣言しましたが、現実ではこのような使い方は非推奨です。
+無用な混乱を生むだけなので避けるべきです。また`const`や`let`を利用した場合はそもそも定義できません。
 
 ## 参考
 
 - [11.6.2 Reserved Words](http://www.ecma-international.org/ecma-262/7.0/#prod-ReservedWord "Reserved Words")
 - [11.8.3.1Static Semantics: MV](http://www.ecma-international.org/ecma-262/7.0/#sec-static-semantics-mv "11.8.3.1Static Semantics: MV")
+- [no-undefined - Rules - ESLint - Pluggable JavaScript linter](http://eslint.org/docs/rules/no-undefined "no-undefined - Rules - ESLint - Pluggable JavaScript linter")
+    - `undefined`の宣言を禁止するESLintルール
 
 [^1]: JavaScriptが最初にNetscapeで実装された際に`typeof null === "object"`となるバグがありました。このバグを修正するとすでにこの挙動に依存しているコードは壊れるため、修正が見送られ現在の挙動が仕様となりました。 <http://2ality.com/2013/10/typeof-null.html>を参照
 [^2]: `0o` は数字のゼロと小文字アルファベットの`o`
 [IEEE 754]: https://ja.wikipedia.org/wiki/IEEE_754
+[文字列の章]: ../string/README.md

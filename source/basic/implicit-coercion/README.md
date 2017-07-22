@@ -115,7 +115,7 @@ JavaScriptには、文字列に対するマイナス演算子（`-`）の定義�
 
 {{book.console}}
 ```js
-var x = 1, y = "2", z = 3;
+let x = 1, y = "2", z = 3;
 console.log(x + y + z); // => "123"
 console.log(y + x + z); // => "213"
 ```
@@ -163,7 +163,7 @@ JavaScriptでは、どの値が`true`でどの値が`false`になるかは、次
 {{book.console}}
 ```js
 // x は undefined
-var x; 
+let x; 
 if (!x) {
     console.log("falsyな値なら表示", x); 
 }
@@ -174,7 +174,7 @@ if (!x) {
 
 ```js
 // x は undefined
-var x;
+let x;
 if (x === undefined) {
     console.log("xがundefinedなら表示", x); 
 }
@@ -250,9 +250,9 @@ String(function() {}); // 実装依存の結果
 {{book.console}}
 ```js
 // ユーザー入力を文字列として受け取る
-var input = window.prompt("数字を入力してください", "42");
+const input = window.prompt("数字を入力してください", "42");
 // 文字列を数値に変換する
-var number = Number(input);
+const number = Number(input);
 console.log(typeof number); // => "number";
 console.log(number); // 入力された文字列を数値に変換したもの
 ```
@@ -290,8 +290,8 @@ Number(undefined); // => NaN
 変換した結果が`NaN`であるかは`Number.isNaN(x)`メソッドで判定できます。
 
 ```js
-var userInput = "任意の文字列";
-var number = Number.parseInt(userIntput, 10);
+const userInput = "任意の文字列";
+const number = Number.parseInt(userIntput, 10);
 if (!Number.isNaN(number)) {
     console.log("NaNではない値にパースできた", number);
 }
@@ -318,9 +318,9 @@ Number({}); // => NaN
 
 {{book.console}}
 ```js
-var x = 10;
-var y = x + NaN;
-var z = y + 20;
+const x = 10;
+const y = x + NaN;
+const z = y + 20;
 console.log(x); // => 10
 console.log(y); // => NaN
 console.log(z); // => NaN
@@ -372,7 +372,7 @@ function sum(...values) {
         return total + value;
     }, 0);
 }
-var x = 1, y, z = 10;
+let x = 1, y, z = 10;
 sum(x, y, z); // => NaN
 ```
 
@@ -397,7 +397,7 @@ function sum(...values) {
         return total + Number(value);
     }, 0);
 }
-var x = 1, y, z = 10;
+let x = 1, y, z = 10;
 sum(x, y, z); // => NaN
 ```
 
@@ -433,7 +433,7 @@ function sum(...values) {
         return total + Number(value);
     }, 0);
 }
-var x = 1, y, z = 10;
+let x = 1, y, z = 10;
 console.log(x, y, z);
 sum(x, y, z); // => AssertionError
 ```

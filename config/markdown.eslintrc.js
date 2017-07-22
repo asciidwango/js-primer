@@ -1,10 +1,9 @@
 module.exports = {
     "rules": {
         "no-undef": "off",
-        "no-unused-vars": "off",
-        "no-var": "off"
+        "no-unused-vars": "off"
     },
     "extends": [
-        "./style.eslintrc.js"
+        "./base.eslintrc.js"
     ]
 };

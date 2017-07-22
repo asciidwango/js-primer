@@ -31,7 +31,7 @@ export default class TodoListRendering {
         const orderListTag = document.createElement("ul");
         listTags.forEach(listTag => orderListTag.appendChild(listTag));
         // clean up
-        var range = document.createRange();
+        const range = document.createRange();
         range.selectNodeContents(this.containerNode);
         range.deleteContents();
         // render

@@ -32,7 +32,7 @@ JavaScriptのデータ型は大きくプリミティブ型とオブジェクト�
 {{book.console}}
 ```js
 // "string"の値をラップしたStringのインスタンスを生成
-var string = new String("string");
+const string = new String("string");
 // StringのインスタンスメソッドであるtoUpperCaseを呼び出す
 string.toUpperCase(); // => "STRING"
 ```
@@ -56,9 +56,9 @@ string.toUpperCase(); // => "STRING"
 
 {{book.console}}
 ```js
-var string = "文字列";
+const string = "文字列";
 console.log(typeof string); // => "string";
-var stringWrapper = new String("文字列");
+const stringWrapper = new String("文字列");
 console.log(typeof stringWrapper); // => "object";
 ```
 
@@ -70,7 +70,7 @@ JavaScriptでは、プリミティブ型の値に対してプロパティアク�
 これにより、プリミティブ型の値である文字列が`String`のインスタンスメソッドを呼び出すことができます。
 
 ```js
-var str = "string";
+const str = "string";
 // プリミティブ型の値に対してメソッド呼び出しを行うとき、次のような変換が行われる
 str.toUpperCase();
 // `str`へアクセスする際に、"string"がラッパーオブジェクトへ変換される
@@ -84,8 +84,8 @@ new String(str).toUpperCase();
 たとえば、次のように文字列のラッパーオブジェクトから`valueOf`メソッドで文字列を取りだせます。
 
 {{book.console}}
-```jsmd2html-test.js
-var stringWrapper = new String("文字列");
+```js
+const stringWrapper = new String("文字列");
 // プリミティブ型の値を取得する
 console.log(stringWrapper.valueOf()); // => "文字列"
 ```
@@ -105,9 +105,9 @@ JavaScriptでは、リテラルを使ったプリミティブ型の文字列と�
 
 ```js
 // OK: リテラルを使う
-var string = "文字列";
+const string = "文字列";
 // NG: ラッパーオブジェクトを使う
-var stringWrraper = new String("文字列");
+const stringWrraper = new String("文字列");
 ```
 
 

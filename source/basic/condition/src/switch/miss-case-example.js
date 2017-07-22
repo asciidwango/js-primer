@@ -1,4 +1,4 @@
-var version = "ES6";
+const version = "ES6";
 switch (version) {
     case "ES5":
         console.log("ECMAScript 5");

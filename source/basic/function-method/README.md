@@ -82,7 +82,7 @@ console.log(noop()); // => undefined;
 
 {{book.console}}
 ```js
-var max = Math.max(1, 5, 10, 20);
+const max = Math.max(1, 5, 10, 20);
 console.log(max); // => 20
 ```
 
@@ -190,8 +190,8 @@ function 高階関数(コールバック関数) {
 
 {{book.console}}
 ```js
-var array = [1, 2, 3];
-var output = function(value) {
+const array = [1, 2, 3];
+const output = function(value) {
     console.log(value);
 };
 array.forEach(output);
@@ -206,7 +206,7 @@ array.forEach(output);
 
 {{book.console}}
 ```js
-var array = [1, 2, 3];
+const array = [1, 2, 3];
 array.forEach(function(value) {
     console.log(value);
 });
@@ -246,9 +246,9 @@ Arrow Functionについては次のような特徴があります。
 
 {{book.console}}
 ```js
-var array = [1, 2, 3];
+const array = [1, 2, 3];
 // 1,2,3と順番に値が渡されコールバック関数（匿名関数）が処理する
-var doubleArray = array.map(function(value) {
+const doubleArray = array.map(function(value) {
     return value * 2; // 返した値をまとめた配列ができる
 });
 console.log(doubleArray); // => [2, 4, 6];
@@ -260,8 +260,8 @@ Arrow Functionでは処理が一行である場合に、`return`文を省略し�
 
 {{book.console}}
 ```js
-var array = [1, 2, 3];
-var doubleArray = array.map(value => value * 2);
+const array = [1, 2, 3];
+const doubleArray = array.map(value => value * 2);
 console.log(doubleArray); // => [2, 4, 6];
 ```
 
@@ -302,7 +302,7 @@ object.method = () => {
 
 {{book.console}}
 ```js
-var object = {
+const object = {
     method: () => {
         return "this is method";
     }
@@ -319,7 +319,7 @@ ES2015からは、メソッドとしてプロパティを定義するという�
 
 {{book.console}}
 ```js
-var object = {
+const object = {
     method() {
         return "this is method";
     }

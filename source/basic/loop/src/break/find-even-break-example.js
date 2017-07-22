@@ -14,5 +14,5 @@ function isEvenIncluded(numbers) {
     }
     return isEventIncluded;
 }
-var array = [1, 5, 10, 15, 20];
+const array = [1, 5, 10, 15, 20];
 console.log(isEvenIncluded(array)); // => true

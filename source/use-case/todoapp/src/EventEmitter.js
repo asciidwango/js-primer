@@ -17,17 +17,17 @@ export default class EventEmitter {
     }
 
     emit(type, data) {
-        var handlers = this._handlers[type] || [];
-        for (var i = 0; i < handlers.length; i++) {
-            var handler = handlers[i];
+        const handlers = this._handlers[type] || [];
+        for (let i = 0; i < handlers.length; i++) {
+            const handler = handlers[i];
             handler.call(this, data);
         }
     }
 
     off(type, handler) {
-        var handlers = this._handlers[type] || [];
-        for (var i = 0; i < handlers.length; i++) {
-            var ownHandler = handlers[i];
+        const handlers = this._handlers[type] || [];
+        for (let i = 0; i < handlers.length; i++) {
+            const ownHandler = handlers[i];
             if (ownHandler === handler) {
                 handlers.splice(i, 1);
             }

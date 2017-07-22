@@ -28,7 +28,7 @@ author: azu
 たとえば、次のような数値をインクリメントする`++`演算子は、前後どちらかにオペランドを置きます。
 
 ```js
-var num = 1;
+let num = 1;
 num++;
 // または
 ++num;
@@ -190,7 +190,7 @@ console.log(Number.isNaN(NaN)); // => true
 
 {{book.console}}
 ```js
-var num = 1;
+let num = 1;
 num++;
 // 次のようにした場合と結果は同じ
 // num = num + 1;
@@ -209,10 +209,10 @@ num++;
 
 {{book.console}}
 ```js
-var x = 1;
+let x = 1;
 x++; // => 1
 console.log(x); // => 2
-var y = 1;
+let y = 1;
 ++y; // => 2
 console.log(y); // => 2
 ```
@@ -223,7 +223,7 @@ console.log(y); // => 2
 
 {{book.console}}
 ```js
-var num = 1;
+let num = 1;
 num--;
 // 次のようにした場合と結果は同じ
 // num = num - 1;
@@ -233,10 +233,10 @@ num--;
 
 {{book.console}}
 ```js
-var x = 1;
+let x = 1;
 x--; // => 1
 console.log(x); // => 0
-var y = 1;
+let y = 1;
 --y; // => 0
 console.log(y); // => 0
 ```
@@ -262,7 +262,7 @@ console.log(y); // => 0
 {{book.console}}
 ```js
 // {} は新しいオブジェクトを作成している
-var objA = {}, objB = {};
+let objA = {}, objB = {};
 objA === objB; // => false
 // 同じ参照を比較している場合
 objA === objA; // => true
@@ -292,7 +292,7 @@ objA === objA; // => true
 "JavaScript" == "ECMAScript"; // => false
 // オブジェクトは参照が一致しているならtrueを返す
 // {} は新しいオブジェクトを作成している
-var objA = {}, objB = {};
+let objA = {}, objB = {};
 objA == objB; // => false
 objA == objA; // => true
 ```
@@ -325,7 +325,7 @@ null == undefined; // => true
 
 {{book.console}}
 ```js
-var value = getValue();
+const value = getValue();
 if (value == null || value === undefined) {
     console.log("valueがnullまたはundefinedである場合の処理");
 }
@@ -349,7 +349,7 @@ if (value == null) {
 "JavaScript" != "ECMAScript"; // => true
 true != true;// => false
 // オブジェクトは参照が一致していないならtrueを返す
-var objA = {}, objB = {};
+let objA = {}, objB = {};
 objA != objB; // => true
 objA != objA; // => false
 ```
@@ -481,7 +481,7 @@ JavaScriptの`String#indexOf(string)`は、文字列中にある`string`の位�
 
 {{book.console}}
 ```js
-var string = "森森本森森";
+const string = "森森本森森";
 // 見つかった場合はindex値を返す
 string.indexOf("本"); // => 2
 // 見つからない場合は-1を返す
@@ -501,7 +501,7 @@ JavaScriptでは`0`もif文では`false`として扱われます。
 
 {{book.console}}
 ```js
-var string = "森森本森森";
+const string = "森森本森森";
 if (string.indexOf("火") === -1) {
     // 見つからなかった場合の処理
 }
@@ -516,7 +516,7 @@ ES2015以降では`String#includes`で真偽値を取得できるため、分か
 
 {{book.console}}
 ```js
-var string = "森森本森森";
+const string = "森森本森森";
 // `String#includes`は"火"があるならtrueを返す
 if (!string.includes("火")) {
     // 見つからなかった場合の処理
@@ -583,7 +583,7 @@ number >> bit;
 
 {{book.console}}
 ```js
-var version = 2015;
+const version = 2015;
 ```
 
 また、それぞれの二項演算子と代入演算子は組み合わせて利用できます。
@@ -591,7 +591,7 @@ var version = 2015;
 次のように、演算した結果を代入できます。
 
 ```js
-var num = 1;
+let num = 1;
 num += 10; // num = num + 10; と同じ
 console.log(num); // => 11
 ```
@@ -606,10 +606,10 @@ console.log(num); // => 11
 
 {{book.console}}
 ```js
-var array = [1, 2];
+const array = [1, 2];
 // aには0番目の値、bには1番目の値
 // var a = array[0], b = array[1];
-var [a, b] = array;
+const [a, b] = array;
 console.log(a); // => 1
 console.log(b); // => 2
 ```
@@ -619,12 +619,12 @@ console.log(b); // => 2
 
 {{book.console}}
 ```js
-var object = {
+const object = {
     "key": "value"
 };
 // プロパティ名へ対応する変数へ代入
 // var key = object.key;
-var { key } = object;
+const { key } = object;
 console.log(key); // => "value"
 ```
 
@@ -702,7 +702,7 @@ AND演算子（`&&`）は、左辺の値の評価結果が`true`であるなら�
 
 {{book.console}}
 ```js
-var x = true, y = false;
+let x = true, y = false;
 // x -> y の順に評価される
 x && y; // => false
 // 左辺がfalsyであるなら常にfalse
@@ -715,7 +715,7 @@ AND演算子は、if文とよく組み合わせて利用します。
 
 {{book.console}}
 ```js
-var value = "str";
+const value = "str";
 if (typeof value === "string" && value === "str") {
     console.log(`${value} is string value`);
 }
@@ -742,7 +742,7 @@ AND演算子（`&&`）とは逆に、左辺が`true`である場合は、右辺�
 
 {{book.console}}
 ```js
-var x = true, y = false;
+let x = true, y = false;
 // xがtrueなのでyは評価されない
 x || y; // => true
 // yはfalseなのでxを評価した結果を返す
@@ -831,7 +831,7 @@ NOT演算子は必ず真偽値を返すため、次のように2つNOT演算子�
 
 {{book.console}}
 ```js
-var string = "";
+const string = "";
 // 空文字はfalsyな値
 !!string; // => false
 ```
@@ -841,7 +841,7 @@ var string = "";
 
 {{book.console}}
 ```js
-var string = "";
+const string = "";
 // 空文字でないことを判定
 console.log(string.length > 0); // => false
 ```
@@ -854,9 +854,9 @@ console.log(string.length > 0); // => false
 
 {{book.console}}
 ```js
-var a = 1;
-var b = 2;
-var c = 3;
+const a = 1;
+const b = 2;
+const c = 3;
 a + b * c; // 7
 (a + b) * c; // => 9
 ```
@@ -893,7 +893,7 @@ if (a || (b && c)) {
 
 {{book.console}}
 ```js
-var value = "文字列" + "結合";
+const value = "文字列" + "結合";
 console.log(value); // => "文字列結合"
 ```
 
@@ -913,7 +913,7 @@ console.log(value); // => "文字列結合"
 
 {{book.console}}
 ```js
-var a = 1, b = 2, c = a + b;
+let a = 1, b = 2, c = a + b;
 console.log(c); // => 3
 ```
 

@@ -53,7 +53,7 @@ Console APIは原始的なプリントデバッグとして利用できるので
 このコメントは、その左辺にある値を評価した結果またはConsole APIで表示した結果を掲載しています。
 
 ```js
-var total = 42 + 42;
+const total = 42 + 42;
 // totalの評価結果は84
 total; // => 84
 // Console APIの表示結果は"JavaScript"
