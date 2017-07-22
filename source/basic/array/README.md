@@ -346,7 +346,7 @@ console.log(isIncludedBlueColor); // => true
 
 ## 追加と削除
 
-配列は可変長であるため、生成後に要素を追加、削除できます。
+配列は可変長であるため、作成後の配列に対して要素を追加、削除できます。
 
 要素を配列の末尾へ追加するには`Array#push`が利用できます。
 一方、末尾から要素を削除するには`Array#pop`が利用できます。
@@ -372,9 +372,27 @@ console.log(shiftedItem); // => "S"
 console.log(array); // => ["A", "B", "C"]
 ```
 
+## 配列同士を結合 {#concat}
+
+`Array#concat`メソッドを使うことで配列と配列を結合した新しい配列を作成できます。
+
+```js
+var array = ["A", "B", "C"];
+var newArray = array.concat(["D", "E"]);
+console.log(newArray); // => ["A", "B", "C", "D", "E"]
+```
+
+また、`concat`メソッドは配列だけではなく任意の値を要素として結合できます。
+
+```js
+var array = ["A", "B", "C"];
+var newArray = array.concat("新しい要素");
+console.log(newArray); // => ["A", "B", "C", "新しい要素"]
+```
+
 ## 配列から要素を削除
 
-### `Array#splice`
+### `Array#splice` {#splice}
 
 配列の先頭や末尾の要素を削除する場合は`Array#shift`や`Array#pop`で行えます。
 しかし、配列の任意のインデックスにある要素を削除することはできません。
@@ -405,7 +423,7 @@ array.splice(0, array.length);
 console.log(array.length); // => 0
 ```
 
-### `length`プロパティへの代入
+### `length`プロパティへの代入 {#assign-to-length}
 
 配列のすべての要素を削除することは`Array#splice`で行うことができますが、
 配列の`length`プロパティへの代入を利用した方法もあります。
@@ -419,7 +437,7 @@ console.log(array); // => []
 配列の`length`プロパティへ`要素数`を代入すると、その要素数に配列が切り詰められます。
 つまり、`length`プロパティへ`0`を代入すると、インデックスが`0`以降の要素がすべて削除されます。
 
-### 空の配列を代入
+### 空の配列を代入 {#assign-empty-array}
 
 さいごに、その配列の要素を削除するのではなく、新しい空の配列を変数へ代入する方法です。
 次のコードでは、`array`変数に空の配列を代入することで、`array`は空の配列を参照させることができます。
@@ -439,65 +457,135 @@ console.log(array.length); // => 0
 
 [import, const-empty-array-invalid.js](./src/const-empty-array-invalid.js)
 
--------
+## 破壊的なメソッドと非破壊的なメソッド {#mutable-immutable}
+
+これまで紹介してきた配列を変更するメソッドには、破壊的なメソッドと非破壊的メソッドがあります。この破壊的なメソッドと非破壊的メソッドの違いを知ることは、意図しない結果を避けるために重要です。
+破壊的なメソッドとは、配列オブジェクトそのものを変更し、変更した配列または変更箇所を返すメソッドです。
+非破壊的メソッドとは、配列オブジェクトのコピーを作成してから変更し、そのコピーの配列を返すメソッドです。
+
+<!-- 具体例:破壊的なメソッド -->
+
+破壊的なメソッドの例として、配列に要素を追加する`Array#push`メソッドがあります。
+`push`メソッドは、`myArray`の配列そのものへ要素を追加しています。
+その結果`myArray`の参照する配列が変更されるため破壊的なメソッドです。
+
+```js
+var myArray = ["A", "B", "C"];
+var result = myArray.push("D"); 
+// `push`の返り値は配列ではなく、追加後の配列のlength
+console.log(result); // => 4
+// `myArray`が参照する配列そのものが変更されている
+console.log(myArray); // => ["A", "B", "C", "D"]
+```
+
+<!-- 具体例:非破壊的メソッド -->
+
+非破壊的なメソッドの例として、配列に要素を結合する`Array#concat`メソッドがあります。
+`concat`メソッドは、`myArray`をコピーした配列に対して要素を結合しその配列を返します。
+その結果`myArray`の参照する配列は変更されないため非破壊的なメソッドです。
+
+```js
+var myArray = ["A", "B", "C"];
+// `concat`の返り値は結合済みの新しい配列
+var newArray = myArray.concat("D");
+console.log(newArray); // => ["A", "B", "C", "D"]
+// `myArray`は変更されていない
+console.log(myArray); // => ["A", "B", "C"]
+// `newArray`と`myArray`は異なる配列オブジェクト
+console.log(myArray === newArray); // => false
+```
+
+<!--　必要性  -->
+
+JavaScriptにおいて破壊的なメソッドと非破壊的メソッドを名前から見分ける方法はありません。
+また、返り値が配列の破壊的なメソッドもあるため、返り値からも判別できません。たとえば、`Array#sort`メソッドは返り値がソート済みの配列ですが破壊的です。
+次に紹介するメソッドは破壊的なメソッドであり、その他のメソッドは非破壊的なメソッドです。
+
+| メソッド名                                    | 返り値           |
+| ---------------------------------------- | ------------- |
+| [`Array.prototype.pop`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/pop) | 配列の末尾の値       |
+| [`Array.prototype.push`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/push) | 変更後の配列のlength |
+| [`Array.prototype.splice`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) | 取り除かれた要素を含む配列 |
+| [`Array.prototype.reverse`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse) | 反転した配列        |
+| [`Array.prototype.shift`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/shift) | 配列の先頭の値       |
+| [`Array.prototype.sort`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) | ソートした配列       |
+| [`Array.prototype.unshift`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift) | 変更後の配列のlength |
+| [`Array.prototype.copyWithin`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin) | 変更後の配列        |
+| [`Array.prototype.fill`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/fill) | 変更後の配列        |
+
+
+破壊的メソッドは意図せぬ副作用を与えてしまうことがあるため、そのことを意識して利用する必要があります。たとえば、配列から特定のインデックスの要素を削除する`removeAtIndex`という関数を提供したいとします。
+
+```js
+// `array`の`index`番目の要素を削除した配列を返す関数
+function removeAtIndex(array, index) { /* 実装 */ }
+```
+
+次のように破壊的なメソッドである`Array#splice`メソッドで要素を削除すると、引数として受け取った配列にも影響を与えます。この場合`removeAtIndex`関数には副作用があるため、破壊的であることについてのコメントがあると親切です。
+
+
+```js
+// `array`の`index`番目の要素を削除した配列を返す関数
+// 引数の`array`は破壊的に変更される
+function removeAtIndex(array, index) {
+    array.splice(index, 1);
+    return array;
+}
+var array = ["A", "B", "C"];
+// `array`から1番目の要素を削除した配列を取得
+var newArray = removeAtIndex(array, 1);
+console.log(newArray); // => ["A", "C"]
+// `array`自体にも影響を与える
+console.log(array); // => ["A", "C"]
+```
+
+一方、非破壊的メソッドは配列のコピーを作成するため元々の配列に対して影響はありません。
+この`removeAtIndex`関数を非破壊的ものにするには、受け取った配列をコピーしてから変更を加える必要があります。
+JavaScriptには`copy`メソッドは存在しませんが、配列をコピーする機能をもつメソッドが存在します。
+
+配列のコピー方法として`Array#slice`メソッドと`Array#concat`メソッドがよく利用されています。
+`slice`メソッドと`concat`メソッドは引数なしで呼び出すと、その配列のコピーを返します。
+
+```js
+var myArray = ["A", "B", "C"];
+// `slice`は`myArray`のコピーを返す - `myArray.concat()`でも同じ
+var copiedArray = myArray.slice(); 
+myArray.push("D");
+console.log(myArray); // => ["A", "B", "C", "D"]
+// `array`のコピーである`copiedArray`には影響がない
+console.log(copiedArray); // => ["A", "B", "C"]
+// コピーであるため参照は異なる
+console.log(copiedArray === myArray); // => false
+```
+
+コピーした配列に変更を加えることで、`removeAtIndex`関数を非破壊的な関数として実装できます。
+非破壊的であれば引数の配列への副作用がないので、注意させるようなコメントは不要です。
+
+```js
+// `array`の`index`番目の要素を削除した配列を返す関数
+function removeAtIndex(array, index) {
+    // コピーを作成してから変更する
+    var copiedArray = array.slice();
+    copiedArray.splice(index, 1);
+    return copiedArray;
+}
+var array = ["A", "B", "C"];
+// `array`から1番目の要素を削除した配列を取得
+var newArray = removeAtIndex(array, 1);
+console.log(newArray); // => ["A", "C"]
+// 元の`array`には影響がない
+console.log(array); // => ["A", "B", "C"]
+```
+
+このようにJavaScriptの配列には破壊的なメソッドと非破壊的メソッドが混在しています。そのため、統一的なインタフェースで扱えないのが現状です。このような背景もあるため、JavaScriptには配列を扱うためのさまざまライブラリが存在します。
+[immutable-array-prototype][]は破壊的なメソッドを非破壊的にしたものを提供し、[Lodash][]は標準にはない便利なメソッドを提供し、[Immutable.js][]は効率的なデータ構造を提供するなどさまざまです。
 
 ## 疎な配列を作る
 ## Array-likeとは何か
-## 配列をコピー
-
-どのメソッドも`array`変数が参照する配列そのものを変更している操作であることが分かります。
-次のような例を見てみると分かるように、`myArray`に対して要素を追加したとき、`yourArray`にも影響がでているということが分かります。
-
-```js
-var myArray = ["A", "B", "C"];
-var yourArray = myArray;
-myArray.push("D");
-console.log(yourArray); // => ["A", "B", "C", "D"]
-```
-
-これは、`myArray`と`yourArray`が同じ配列オブジェクトへの参照を持っているためです。
-オブジェクトは値への参照を使い操作されるため参照型のデータであるため（[データ型とリテラル](../data-type/README.md)を参照）、
-どちらの変数も同じ配列オブジェクトの参照となっています。
-
-たとえば、`removeAtIndex`という関数がある場合に、次のように渡した配列に対して影響を与えることは予測しにくい場合があります。
-
-```js
-function removeAtIndex(array, index) {
-    array.splice(index, 1);
-}
-var array = ["A", "B", "C"];
-removeAtIndex(array, 1);
-console.log(array); // => ["A", "C"]
-```
-
-`removeAtIndex`関数は、引数で受け取った`array`から要素を削除しているため、それ以降の`array`自体に影響を与えています。
-このような、ある機能が受け取った値そのものに影響を与えることを**破壊的**操作と呼びます。
-
-- [ ] `Array` の比較について
-
-これを回避するためには配列を明示的にコピーしたものを`yourArray`に代入する必要があります。
-JavaScriptには残念ながら copyメソッドというような分かりやすい名前のメソッドは存在していませんが、
-配列の参照をコピーする機能をもつメソッドが代用されています。
-
-`Array#slice`と`Array#concat`がコピーの代用として使われているメソッドです。
-
-```js
-var myArray = ["A", "B", "C"];
-var yourArray = myArray.slice(); // `myArray`のコピーを返す
-myArray.push("D");
-console.log(yourArray); // => ["A", "B", "C"]
-```
-
-
-```js
-function removeAtIndex(array, index) {
-    array.splice(index, 1);
-}
-var array = ["A", "B", "C"];
-removeAtIndex(array, 1);
-console.log(array); // => ["A", "C"]
-```
-
 
 ## 高階関数とメソッドチェーン
 ## パターン: nullを返さずに配列を返す
+
+[immutable-array-prototype]: https://github.com/azu/immutable-array-prototype  "azu/immutable-array-prototype: A collection of Immutable Array prototype methods(Per method packages)."
+[Lodash]: https://lodash.com/  "Lodash"
+[Immutable.js]: https://facebook.github.io/immutable-js/  "Immutable.js"
