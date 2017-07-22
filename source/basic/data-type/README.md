@@ -365,13 +365,15 @@ console.log(numberRegExp.test(123)); // => true
 プリミティブ型として紹介した`undefined`はリテラルではありません。
 `undefined`はただのグローバル変数で、`undefined`という値を持っているだけです。
 
-そのため、同じ変数名を重複して定義することが許可されている`var`ならば`undefined`という名前のローカル変数を定義できます。
+これを証明するために、`var`を使って`undefined`という名前のローカル変数を宣言してみます。
+次のようにstrict modeではない環境においては、`undefined`というローカル変数を`var`で定義できます。
 もちろん`let`や`const`では、同名の変数は再定義できないため`undefined`の再定義はできません。
 
 <!-- textlint-disable eslint -->
 
 {{book.console}}
 ```js
+// strict modeではない実行環境
 var undefined = "独自の未定義値"; // undefinedというローカル変数を定義できる
 console.log(undefined); // => "独自の未定義値"
 ```
@@ -385,7 +387,7 @@ console.log(undefined); // => "独自の未定義値"
 [import, var-null-invalid.js](./src/var-null-invalid.js)
 
 このコラムでは、説明のために`undefined`というローカル変数を宣言しましたが、現実ではこのような使い方は非推奨です。
-無用な混乱を生むだけなので避けるべきです。また`const`や`let`を利用した場合はそもそも定義できません。
+無用な混乱を生むだけなので避けるべきです。またstrict modeの場合や、`const`、`let`を利用した場合はそもそも定義できません。
 
 ## 参考
 
