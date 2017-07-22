@@ -262,7 +262,7 @@ console.log(y); // => 0
 {{book.console}}
 ```js
 // {} は新しいオブジェクトを作成している
-let objA = {}, objB = {};
+const objA = {}, objB = {};
 objA === objB; // => false
 // 同じ参照を比較している場合
 objA === objA; // => true
@@ -292,7 +292,7 @@ objA === objA; // => true
 "JavaScript" == "ECMAScript"; // => false
 // オブジェクトは参照が一致しているならtrueを返す
 // {} は新しいオブジェクトを作成している
-let objA = {}, objB = {};
+const objA = {}, objB = {};
 objA == objB; // => false
 objA == objA; // => true
 ```
@@ -349,7 +349,7 @@ if (value == null) {
 "JavaScript" != "ECMAScript"; // => true
 true != true;// => false
 // オブジェクトは参照が一致していないならtrueを返す
-let objA = {}, objB = {};
+const objA = {}, objB = {};
 objA != objB; // => true
 objA != objA; // => false
 ```
@@ -647,9 +647,9 @@ if文との違いは、条件演算子は式として書くことができるた
 
 {{book.console}}
 ```js
-var valueAorB = true ? "A" : "B";
+const valueA = true ? "A" : "B";
 console.log(value); // => "A";
-var valueAorB = false ? "A" : "B";
+const valueB = false ? "A" : "B";
 console.log(value); // => "B";
 ```
 
@@ -702,7 +702,7 @@ AND演算子（`&&`）は、左辺の値の評価結果が`true`であるなら�
 
 {{book.console}}
 ```js
-let x = true, y = false;
+const x = true, y = false;
 // x -> y の順に評価される
 x && y; // => false
 // 左辺がfalsyであるなら常にfalse
@@ -742,7 +742,7 @@ AND演算子（`&&`）とは逆に、左辺が`true`である場合は、右辺�
 
 {{book.console}}
 ```js
-let x = true, y = false;
+const x = true, y = false;
 // xがtrueなのでyは評価されない
 x || y; // => true
 // yはfalseなのでxを評価した結果を返す
@@ -913,7 +913,7 @@ console.log(value); // => "文字列結合"
 
 {{book.console}}
 ```js
-let a = 1, b = 2, c = a + b;
+const a = 1, b = 2, c = a + b;
 console.log(c); // => 3
 ```
 

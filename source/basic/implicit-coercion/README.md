@@ -115,7 +115,7 @@ JavaScriptには、文字列に対するマイナス演算子（`-`）の定義�
 
 {{book.console}}
 ```js
-let x = 1, y = "2", z = 3;
+const x = 1, y = "2", z = 3;
 console.log(x + y + z); // => "123"
 console.log(y + x + z); // => "213"
 ```
@@ -291,7 +291,7 @@ Number(undefined); // => NaN
 
 ```js
 const userInput = "任意の文字列";
-const number = Number.parseInt(userIntput, 10);
+const number = Number.parseInt(userInput, 10);
 if (!Number.isNaN(number)) {
     console.log("NaNではない値にパースできた", number);
 }
@@ -364,6 +364,7 @@ Number.isNaN(NaN); // => true
 
 たとえば、次の`sum`関数は可変長引数（任意の個数の引数）を受け取り、その合計値を返します。
 しかし、`sum(x, y, z)`と呼び出した時の結果が`NaN`になってしまいました。
+これは、引数の中に`undefined`（未定義の値）が含まれているためです。
 
 ```js
 // 任意の個数の数値を受け取り、その合計値を返す関数
@@ -372,12 +373,13 @@ function sum(...values) {
         return total + value;
     }, 0);
 }
-let x = 1, y, z = 10;
+const x = 1, z = 10;
+let y; // `y`はundefined
 sum(x, y, z); // => NaN
 ```
 
-よく注意して見ると、`y`の値が未定義となっています。
 そのため、`sum(x, y, z);`は次のように呼ばれていたのと同じ結果になります。
+`undefined`に数値を加算すると結果は`NaN`となります。
 
 ```js
 sum(1, undefined, 10); // => NaN
@@ -386,18 +388,19 @@ sum(1, undefined, 10); // => NaN
 NaN + 10; // => NaN
 ```
 
-これは、`sum関数`において引数を明示的にNumber型へ変換したとしても回避することはできません。
+これは、`sum`関数において引数を明示的にNumber型へ変換したとしても回避することはできません。
 つまり、次のように明示的な型変換しても解決できない問題あることが分かります。
 
 {{book.console}}
 ```js
-// `value`をNumberで明示的に変換して扱ったバージョン
 function sum(...values) {
     return values.reduce((total, value) => {
+        // `value`をNumberで明示的に数値へ変換してから加算する
         return total + Number(value);
     }, 0);
 }
-let x = 1, y, z = 10;
+const x = 1, z = 10;
+let y; // `y`はundefined
 sum(x, y, z); // => NaN
 ```
 
@@ -433,7 +436,8 @@ function sum(...values) {
         return total + Number(value);
     }, 0);
 }
-let x = 1, y, z = 10;
+const x = 1, z = 10;
+let y; // `y`はundefined
 console.log(x, y, z);
 sum(x, y, z); // => AssertionError
 ```

@@ -19,16 +19,16 @@ const object = {
 };
 ```
 
-またES2015からは、プロパティ名と値となる変数名が同じ場合は次のように省略して書くことができます。
+またES2015からは、プロパティ名と値となる変数名が同じ場合は`{ name }`のように省略して書くことができます。
 
 ```js
 const name = "名前";
 // `name`というプロパティ名で`name`の変数を値に設定
-var object = {
+const objectA = {
     name
 };
 // 次のように書いた場合と同じ
-var object = {
+const objectB = {
     name: name
 };
 ```
