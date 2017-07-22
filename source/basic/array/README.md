@@ -530,14 +530,14 @@ JavaScriptには`copy`メソッドは存在しませんが、配列をコピー�
 
 ```js
 var myArray = ["A", "B", "C"];
-// `myArray`のコピーを返す - `myArray.concat()`でも同じ
-var yourArray = myArray.slice(); 
+// `slice`は`myArray`のコピーを返す - `myArray.concat()`でも同じ
+var copiedArray = myArray.slice(); 
 myArray.push("D");
 console.log(myArray); // => ["A", "B", "C", "D"]
-// `array`のコピーである`yourArray`には影響がない
-console.log(yourArray); // => ["A", "B", "C"]
+// `array`のコピーである`copiedArray`には影響がない
+console.log(copiedArray); // => ["A", "B", "C"]
 // コピーであるため参照は異なる
-console.log(array === myArray); // => false
+console.log(copiedArray === myArray); // => false
 ```
 
 コピーした配列に変更を加えることで、`removeAtIndex`関数を非破壊的な関数として実装できます。
