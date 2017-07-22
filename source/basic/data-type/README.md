@@ -321,9 +321,9 @@ JavaScriptの配列のインデックスは`0`から開始する数値となっ�
 
 {{book.console}}
 ```js
-const array = ["index-0", "index-1", "index-2"];
-console.log(array[0]); // => "index-0"
-console.log(array[array.length - 1]); // => "index-2"
+const array = ["index:0", "index:1", "index:2"];
+console.log(array[0]); // => "index:0"
+console.log(array[array.length - 1]); // => "index:2"
 ```
 
 配列もオブジェクトの一種ですが、アプリケーションを書くこと場合に多く使われます。
