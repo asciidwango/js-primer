@@ -372,7 +372,7 @@ console.log(numberRegExp.test(123)); // => true
 
 {{book.console}}
 ```js
-let undefined = "独自の未定義値"; // undefinedというローカル変数を定義できる
+var undefined = "独自の未定義値"; // undefinedというローカル変数を定義できる
 console.log(undefined); // => "独自の未定義値"
 ```
 
