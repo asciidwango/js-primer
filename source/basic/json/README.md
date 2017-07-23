@@ -134,7 +134,7 @@ console.log(JSON.stringify(obj, null, "\t"));
 */
 ```
 
-## [コラム] JSON文字列にシリアライズできないオブジェクト
+## [コラム] JSONにシリアライズできないオブジェクト
 
 `JSON.stringify`メソッドはJSONで表現可能な値だけをシリアライズします。
 そのため、値が関数や`Symbol`、あるいは`undefined`であるプロパティなどは変換されません。
@@ -166,7 +166,7 @@ console.log(JSON.stringify({ x: undefined })); // => '{}'
 console.log(JSON.stringify({ x: [10, function() {}] })); // => '{"x":[10,null]}'
 // キーがSymbolのプロパティ
 JSON.stringify({ [Symbol("foo")]: "foo" }); // => '{}'
-// 値が正規表現のプロパティ
+// 値がRegExpのプロパティ
 console.log(JSON.stringify({ x: /foo/ })); // => '{"x":{}}'
 // 値がMapのプロパティ
 const map = new Map();
@@ -175,7 +175,7 @@ console.log(JSON.stringify({ x: map })); // => '{"x":{}}'
 ```
 
 オブジェクトがシリアライズされる際は、そのオブジェクトの列挙可能なプロパティだけが再帰的にシリアライズされます。
-RegExpやMap、Setなどは列挙可能なプロパティを持たないため、空のオブジェクトに変換されます。
+RegExpやMap、Setなどのインスタンスは列挙可能なプロパティを持たないため、空のオブジェクトに変換されます。
 
 また、`JSON.stringify`メソッドがシリアライズに失敗することもあります。
 よくあるのは、参照が循環しているオブジェクトをシリアライズしようとしたときに例外が投げられるケースです。
