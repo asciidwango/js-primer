@@ -29,7 +29,7 @@
     - Promise
     - Generator/Iterable/Iterator
     - ビルトインオブジェクト
-        - JSON
+        - [JSON](./basic/json/README.md)
         - Date
         - Map/WeakMap
         - Set/WeakSet
