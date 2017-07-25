@@ -2,7 +2,7 @@
 author: azu
 ---
 
-# String
+# 文字列
 
 この章ではJavaScriptにおける文字列について学んでいきます。
 文字列の表現やその背景にあるUnicodeを見ていき、文字列の操作方法について学びます。
@@ -37,7 +37,7 @@ console.log(double === single);// => true
 
 {{book.console}}
 ```js
-var string = "This book is \"js-primer\"";
+const string = "This book is \"js-primer\"";
 console.log(string); // => 'This book is "js-primer"'
 ```
 
@@ -47,7 +47,7 @@ console.log(string); // => 'This book is "js-primer"'
 
 {{book.console}}
 ```js
-var string = "a" + "b";
+const string = "a" + "b";
 console.log(string); // => "ab"
 ```
 
@@ -55,7 +55,7 @@ console.log(string); // => "ab"
 
 {{book.console}}
 ```js
-var name = "JavaScript";
+const name = "JavaScript";
 console.log("Hello " + name + "!");// => "Hello JavaScript!"
 ```
 
@@ -70,7 +70,7 @@ console.log("Hello " + name + "!");// => "Hello JavaScript!"
 
 {{book.console}}
 ```js
-var name = "JavaScript";
+const name = "JavaScript";
 console.log(`Hello ${name}!`);// => "Hello JavaScript!"
 ```
 
@@ -85,7 +85,7 @@ console.log(`Hello ${name}!`);// => "Hello JavaScript!"
 `文字列[インデックス]`という記述することでアクセスでき、インデックスの値は`0`以上`2^53 - 1`未満の整数が指定できます。
 
 ```js
-var string = "文字列";
+const string = "文字列";
 // 配列と同じようにインデックスでアクセスできる
 console.log(string[1]); // => "字"
 ```
@@ -135,9 +135,9 @@ Code Pointの16進数表現は次のようにして求めることができま�
 
 ```js
 // "あ"のCode Pointは12354
-var codePointOfあ = "あ".codePointAt(0);
+const codePointOfあ = "あ".codePointAt(0);
 // 12354の16進数表現は"3042"
-var hexOfCodePoint = codePointOfあ.toString(16);
+const hexOfCodePoint = codePointOfあ.toString(16);
 // \はエスケープシーケンスであるため、\自体を表現するにはエスケープが必要
 console.log("\\u{" + hexOfCodePoint + "}"); // => "\\u{3042}"
 ```
@@ -233,7 +233,7 @@ Unicodeについて詳しくは[プログラマのための文字コード技術
 次のコードでは、文字列を`・`で区切った配列を作成しています。
 
 ```js
-var strings = "赤・青・緑".split("・");
+const strings = "赤・青・緑".split("・");
 console.log(strings); // => ["赤", "青", "緑"]
 ```
 
@@ -243,7 +243,7 @@ console.log(strings); // => ["赤", "青", "緑"]
 この２つを合わせれば、区切り文字を`・`から`、`へ変換する処理を次のように書くことができます。
 
 ```js
-var string = "赤・青・緑".split("・").join("、");
+const string = "赤・青・緑".split("・").join("、");
 console.log(string); // => "赤、青、緑"
 ```
 
@@ -262,7 +262,7 @@ console.log(strings); // => ["a", "b", "c", "d"]
 
 ```js
 // 空文字("")で文字列を分解する
-var characters = "文字列".split("");
+const characters = "文字列".split("");
 console.log(characters); // => ["文", "字", "列"]
 ```
 
@@ -276,7 +276,7 @@ console.log(characters); // => ["文", "字", "列"]
 ```js
 // "𩸽"はサロゲートペアであるため2つのCode Unit（\uD867\uDE3D）からなる
 // サロゲートペアを含む文字列を各Code Unitに分解
-var codeUnitElements = "𩸽のひらき".split("");
+const codeUnitElements = "𩸽のひらき".split("");
 // サロゲートペアを各CodeUnitに分解したため、文字化けしている
 console.log(codeUnitElements); // ["�", "�", "の", "ひ", "ら", "き"] 
 ```
@@ -288,13 +288,13 @@ console.log(codeUnitElements); // ["�", "�", "の", "ひ", "ら", "き"]
 文字列をそれぞれのCode Pointごとに分解できます。
 
 ```js
-var string = "𩸽のひらき";
+const string = "𩸽のひらき";
 // Array.fromメソッドで文字列を分解
 console.log(Array.from(string)); // => ["𩸽", "の", "ひ", "ら", "き"]
 // ...（spread operator）で文字列を展開しものを配列にする
 console.log([...string]); // => ["𩸽", "の", "ひ", "ら", "き"]
 // for...ofもIteratorを列挙するため、Code Pointごとで列挙できる
-for (var codePoint of string) {
+for (const codePoint of string) {
     console.log(codePoint);
 }
 ```
@@ -336,7 +336,7 @@ Code Unitの数を文字列の長さとしたときに直感と反する場合�
 ```js
 // Code Pointごとの配列にする
 // Array.fromメソッドはIteratorを配列にする
-var codePoints = Array.from("𩸽のひらき");
+const codePoints = Array.from("𩸽のひらき");
 console.log(codePoints.length); // => 5
 ```
 
@@ -391,7 +391,7 @@ console.log("ABC" > "ABD"); // => false
 しかし、実際の結果は`["1", "10", "2"]`となります。
 
 ```js
-var numberStrings = ["10", "2", "1"];
+const numberStrings = ["10", "2", "1"];
 // Array#sortは、デフォルトでは配列の要素を`<`で比較する
 // 文字列同士を`<`で比較し、Code Unitの値で昇順にした配列を返している
 console.log(numberStrings.sort()); // => ["1", "10", "2"]
@@ -425,9 +425,9 @@ JavaScriptでは、ECMAScriptの関連仕様として国際化API（ECMAScript I
 
 ```js
 // numericをtrueとすると数字が数値として比較されるようになる
-var collator = new Intl.Collator("ja", { numeric: true });
+const collator = new Intl.Collator("ja", { numeric: true });
 // collator.compareはsortに渡せる関数となっている
-var sortedValues = ["1", "10", "2"].sort(collator.compare);
+const sortedValues = ["1", "10", "2"].sort(collator.compare);
 console.log(sortedValues);  // => ["1", "2", "10"]
 ```
 
@@ -448,7 +448,7 @@ console.log(sortedValues);  // => ["1", "2", "10"]
 また、第一引数の位置が第二引数の位置より大きい場合、常に空の文字列を返します。
 
 ```js
-var string = "ABCDE";
+const string = "ABCDE";
 console.log(string.slice(1)); // => "BCDE"
 console.log(string.slice(1, 5)); // => "BCDE"
 // マイナスを指定すると後ろからの位置となる
@@ -466,7 +466,7 @@ console.log(string.slice(4, 1)); // => ""
 また、第一引数の位置が第二引数の位置より大きい場合、第一引数と第二引数が入れ替わるという予想しにくい挙動となります。
 
 ```js
-var string = "ABCDE";
+const string = "ABCDE";
 console.log(string.substring(1)); // => "BCDE"
 console.log(string.substring(1, 5)); // => "BCDE"
 // マイナスを指定すると0として扱われる
@@ -486,9 +486,9 @@ console.log(string.substring(4, 1)); // => "BCD"
 次のように、`String#indexOf`メソッドなど位置を取得するものと組み合わせて使うことが多いでしょう。
 
 ```js
-var url = "https://example.com?param=1";
-var indexOfQuery = url.indexOf("?");
-var queryString = url.slice(indexOfQuery);
+const url = "https://example.com?param=1";
+const indexOfQuery = url.indexOf("?");
+const queryString = url.slice(indexOfQuery);
 console.log(queryString); // => "?param=1"
 ```
 
@@ -521,7 +521,7 @@ Stringメソッドには検索したい状況に応じたものが用意され�
 
 ```js
 // 検索対象となる文字列
-var string = "にわにはにわにわとりがいる";
+const string = "にわにはにわにわとりがいる";
 // indexOfは先頭から検索しインデックスを返す - "**にわ**にはにわにわとりがいる"
 // "にわ"の先頭のインデックスを返すため 0 となる
 console.log(string.indexOf("にわ")); // => 0
@@ -535,9 +535,9 @@ console.log(string.indexOf("キーワード")); // => -1
 `String#slice`と取得したインデックスを組み合わせることで検索結果を取得できます。
 
 ```js
-var string = "JavaScript";
-var searchWord = "Script";
-var index = string.indexOf("Script");
+const string = "JavaScript";
+const searchWord = "Script";
+const index = string.indexOf("Script");
 if (index !== -1) {
     console.log(string.slice(index, index + searchWord.length)); // => searchWord
 } else {
@@ -568,7 +568,7 @@ console.log("にわにはにわとりがいる".includes("にわ")); // => true
 
 ```js
 // 検索対象となる文字列
-var string = "にわにはにわにわとりがいる";
+const string = "にわにはにわにわとりがいる";
 // startsWith - 部分文字列が先頭ならtrue
 console.log(string.startsWith("にわ")); // => true
 console.log(string.startsWith("いる")); // => false
@@ -595,7 +595,7 @@ console.log(string.includes("いる")); // => true
 
 ```js
 // 3つの連続するスペースにマッチする正規表現
-var pattern = /\s{3}/;
+const pattern = /\s{3}/;
 ```
 
 一方、`RegExp`コンストラクタは、文字列から正規表現オブジェクトを動的に生成できます。
@@ -606,10 +606,10 @@ var pattern = /\s{3}/;
 そのため、`RegExp`コンストラクタの引数のパターン文字列において、バックスラッシュから始まる特殊文字はバックスラッシュを2つにする必要があります。
 
 ```js
-var spaceCount = 3;
+const spaceCount = 3;
 // `/\s{3}/`の正規表現を動的に生成する
 // "\"がエスケープ文字であるため、"\"自身を文字列として書くには、"\\"のように2つ書く
-var pattern = new RegExp(`\\s{${spaceCount}}`);
+const pattern = new RegExp(`\\s{${spaceCount}}`);
 ```
 
 `RegExp`コンストラクタは動的に正規表現オブジェクトを生成できますが、正規表現の特殊文字のエスケープが必要になります。
@@ -628,9 +628,9 @@ var pattern = new RegExp(`\\s{${spaceCount}}`);
 つまり、次のように`String#search`メソッドでインデックスのみを取得しても、実際にマッチした文字列が分かりません。
 
 ```js
-var string = "abc123def";
-var searchPattern = /\d+/;
-var index = string.search(searchPattern); // 3
+const string = "abc123def";
+const searchPattern = /\d+/;
+const index = string.search(searchPattern); // 3
 // `index` だけではマッチした文字列が分からない
 // そのため`マッチした文字列の長さ`が`String#search`では分からない
 string.slice(index, index + マッチした文字列の長さ); // マッチした文字列は取得できない
@@ -658,12 +658,12 @@ string.slice(index, index + マッチした文字列の長さ); // マッチし�
 <!-- disable-doc-test -->
 
 ```js
-var string = "ABC あいう DE えお";
+const string = "ABC あいう DE えお";
 // gフラグなしでは、最初の結果のみを持つ配列を返す
-var results = string.match(/[a-zA-Z]+/);
+const results = string.match(/[a-zA-Z]+/);
 console.log(results); // => ["ABC"]
 // aからZのどれかの文字が1つ以上連続するパターンにマッチするものを繰り返した（gフラグ)結果を返す
-var resultsWithG = string.match(/[a-zA-Z]+/g);
+const resultsWithG = string.match(/[a-zA-Z]+/g);
 console.log(resultsWithG); // => ["ABC", "DE"]
 ```
 
@@ -675,12 +675,12 @@ console.log(resultsWithG); // => ["ABC", "DE"]
 <!-- disable-doc-test -->
 
 ```js
-var string = "ABC あいう DE えお";
+const string = "ABC あいう DE えお";
 // gフラグなしでは、最初の結果のみを持つ配列を返す
-var results = /[a-zA-Z]+/.exec(string);
+const results = /[a-zA-Z]+/.exec(string);
 console.log(results); // => ["ABC"]
 // gフラグが有効化されているパターン
-var alphabetsPattern = /[a-zA-Z]+/g;
+const alphabetsPattern = /[a-zA-Z]+/g;
 // まだ一度も検索していないので、lastIndexは0となり先頭から検索開始される
 console.log(alphabetsPattern.lastIndex); // => 0
 // gフラグありでも、一回目の結果は同じだが、`lastIndex`プロパティが更新される
@@ -703,18 +703,18 @@ console.log(alphabetsPattern.exec(string)); // => ["DE"]
 そのマッチしてるパターンにキャプチャが含まれている場合は、次のように返り値の配列へキャプチャした部分が追加されていきます。
 
 ```js
-var [マッチした文字列, ...キャプチャされた文字列] = 文字列.match(/パターン(キャプチャ)/);
+const [マッチした文字列, ...キャプチャされた文字列] = 文字列.match(/パターン(キャプチャ)/);
 ```
 
 具体的な例を見てみましょう。
 
 ```js
 // "ECMAScript (数字+)"にマッチするが、欲しい文字列は数字の部分のみ
-var pattern = /ECMAScript (\d+)/i;
+const pattern = /ECMAScript (\d+)/i;
 // 返り値は0番目がマッチした全体、1番目がキャプチャの1番目というように対応している
 // [マッチした全部の文字列, キャプチャの1番目, キャプチャの2番目 ....]
 // `pattern.exec("ECMAScript 6")`も返り値は同じ
-var [all, capture1] = "ECMAScript 6".match(pattern);
+const [all, capture1] = "ECMAScript 6".match(pattern);
 console.log(all); // => "ECMAScript 6"
 console.log(capture1); // => "6"
 ```
@@ -734,7 +734,7 @@ console.log(capture1); // => "6"
 
 ```js
 // 検索対象となる文字列
-var string = "にわにはにわにわとりがいる";
+const string = "にわにはにわにわとりがいる";
 // ^ - 部分文字列が先頭ならtrue
 console.log(/^にわ/.test(string)); // => true
 console.log(/^いる/.test(string)); // => false
@@ -764,13 +764,13 @@ Stringメソッドと正規表現で同じ結果が得られる場合はどち�
 Stringメソッドの場合は、`/`から始まり`/`で終わるかを判定してることがそのままコードにあらわれています。
 
 ```js
-var string = "/正規表現のような文字列/";
+const string = "/正規表現のような文字列/";
 // 正規表現で`/`から始まり`/`で終わる文字列のパターン
-var regExpLikePattern = /^\/.*\/$/;
+const regExpLikePattern = /^\/.*\/$/;
 // RegExp#testメソッドでパターンにマッチするかを判定
 console.log(regExpLikePattern.test(string)); // => true
 // Stringメソッドで同等の判定をする関数
-var isRegExpLikeString = (string) => {
+const isRegExpLikeString = (string) => {
     return string.startsWith("/") && string.endsWith("/");
 };
 console.log(isRegExpLikeString(string)); // => true
@@ -796,7 +796,7 @@ strict modeでは削除出来ないプロパティを削除しようとするエ
 
 ```js
 "use strict";
-var string = "文字列";
+const string = "文字列";
 // 文字列の0番目を削除を試みるがStrict modeは例外が発生
 delete string[0]; // => Error
 ```
@@ -813,9 +813,9 @@ delete string[0]; // => Error
 次のように、`replace`メソッドで、削除したい部分を空文字へ置換することで、文字列を削除できます。
 
 ```js
-var string = "文字列";
+const string = "文字列";
 // "文字"を""（空文字）へ置換することで"削除"を表現
-var newString = string.replace("文字", "");
+const newString = string.replace("文字", "");
 console.log(newString); // => "列"
 ```
 
@@ -824,7 +824,7 @@ console.log(newString); // => "列"
 
 ```js
 // 検索対象となる文字列
-var string = "にわにはにわにわとりがいる";
+const string = "にわにはにわにわとりがいる";
 // 文字列を指定した場合は、最初に一致したものだけが置換される
 console.log(string.replace("にわ", "niwa")); // => "niwaにはにわにわとりがいる"
 // `g`フラグなしの場合は、最初に一致したものだけが置換される
@@ -840,7 +840,7 @@ console.log(string.replace(/にわ/g, "niwa")); // => "niwaにはniwaniwaとり�
 コールバック関数の第一引数には`パターン`に一致した文字列全体、第二引数以降へキャプチャした文字列が順番に入ります。
 
 ```js
-var 置換した結果の文字列 = 文字列.replace(/(パターン)/, (all, ...captures) => {
+const 置換した結果の文字列 = 文字列.replace(/(パターン)/, (all, ...captures) => {
     return 置換したい文字列;
 });
 ```
@@ -892,12 +892,12 @@ scheme      host     pathname
 ```js
 // `baseURL`と`pathname`にあるリソースを取得する
 function getResource(baseURL, pathname) {
-    var url = baseURL + pathname;
+    const url = baseURL + pathname;
     console.log(url); // => "http://example.com/resouces/example.js"
     // 省略) リソースを取得する処理...
 }
-var baseURL = "http://example.com/resouces";
-var pathname = "/example.js";
+const baseURL = "http://example.com/resouces";
+const pathname = "/example.js";
 getResource(baseURL, pathname);
 ```
 
@@ -908,13 +908,13 @@ getResource(baseURL, pathname);
 ```js
 // `baseURL`と`pathname`にあるリソースを取得する
 function getResource(baseURL, pathname) {
-    var url = baseURL + pathname;
+    const url = baseURL + pathname;
     // `/` と `/` が２つ重なってしまっている
     console.log(url); // => "http://example.com/resouces//example.js"
     // 省略) リソースを取得する処理...
 }
-var baseURL = "http://example.com/resouces/";
-var pathname = "/example.js";
+const baseURL = "http://example.com/resouces/";
+const pathname = "/example.js";
 getResource(baseURL, pathname);
 ```
 
@@ -930,18 +930,18 @@ getResource(baseURL, pathname);
 // ベースURLとパスを結合した文字列を返す
 function baseJoin(baseURL, pathname) {
     // 末尾に / がある場合はそれを削除してから結合する
-    var stripSlashBaseURl = baseURL.replace(/\/$/, "");
+    const stripSlashBaseURl = baseURL.replace(/\/$/, "");
     return stripSlashBaseURl + pathname;
 }
 // `baseURL`と`pathname`にあるリソースを取得する
 function getResource(baseURL, pathname) {
-    var url = baseJoin(baseURL, pathname);
+    const url = baseJoin(baseURL, pathname);
     // baseURLの末尾に`/`あってもなくても同じ結果となる
     console.log(url); // => "http://example.com/resouces/example.js"
     // 省略) リソースを取得する処理...
 }
-var baseURL = "http://example.com/resouces/";
-var pathname = "/example.js";
+const baseURL = "http://example.com/resouces/";
+const pathname = "/example.js";
 getResource(baseURL, pathname);
 ```
 
@@ -958,9 +958,9 @@ URLを扱うものとしてブラウザ上のAPIである[URL][]オブジェク�
 
 ```js
 // ユーザー入力
-var input = "test";
+const input = "test";
 // ユーザー入力を使ってURLを構築
-var searchURL = `https://example.com/search?query=${input}&sort=desc`;
+const searchURL = `https://example.com/search?query=${input}&sort=desc`;
 ```
 
 このとき、単純な文字列結合だとユーザー入力によってはURLが壊れてしまいます。
@@ -969,9 +969,9 @@ URLには含められない文字列があるためです。
 
 ```js
 // ユーザ入力
-var input = "/";
+const input = "/";
 // URLエスケープせずに結合した場合
-var URL = `https://example.com/search?query=${input}&sort=desc`;
+const URL = `https://example.com/search?query=${input}&sort=desc`;
 // `query`のパラメータのはずがパスの区切り文字と解釈されてしまう
 console.log(URL); // => "https://example.com/search?query=/&sort=desc"
 ```
@@ -981,9 +981,9 @@ JavaScriptでは、`encodeURIComponent`関数を使うことで文字列をURL�
 
 ```js
 // ユーザ入力
-var input = "/";
+const input = "/";
 // URLエスケープして結合した場合
-var URL = `https://example.com/search?query=${encodeURIComponent(input)}&sort=desc`;
+const URL = `https://example.com/search?query=${encodeURIComponent(input)}&sort=desc`;
 // `/`が`%2F`へURLエスケープされている
 console.log(URL); // => "https://example.com/search?query=%2F&sort=desc"
 ```
@@ -1053,7 +1053,7 @@ function escapeURL(strings, ...values) {
     });  
 }
 
-var input = "A&B";
+const input = "A&B";
 // escapeURLタグ関数を使ったタグ付きテンプレート
 const escapedURL = escapeURL`https://example.com/search?q=${input}&sort=desc`;
 console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"

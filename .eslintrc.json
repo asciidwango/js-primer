@@ -1,9 +1,8 @@
 {
   "rules": {
-    "no-console": "off",
-    "no-var": "off"
+    "no-console": "off"
   },
   "extends": [
-    "./config/style.eslintrc.js"
+    "./config/base.eslintrc.js"
   ]
 }

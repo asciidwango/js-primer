@@ -82,7 +82,7 @@ console.log(noop()); // => undefined;
 
 {{book.console}}
 ```js
-var max = Math.max(1, 5, 10, 20);
+const max = Math.max(1, 5, 10, 20);
 console.log(max); // => 20
 ```
 
@@ -167,7 +167,7 @@ JavaScriptでは関数を引数に渡す。
 const factorial = function innerFact(n) {
     if (n === 0) {
         return 1;
-    };
+    }
     return n * innerFact(n - 1); // 再帰呼び出し
 };
 console.log(factorial(3)); // => 6
@@ -190,8 +190,8 @@ function 高階関数(コールバック関数) {
 
 {{book.console}}
 ```js
-var array = [1, 2, 3];
-var output = function(value) {
+const array = [1, 2, 3];
+const output = function(value) {
     console.log(value);
 };
 array.forEach(output);
@@ -206,7 +206,7 @@ array.forEach(output);
 
 {{book.console}}
 ```js
-var array = [1, 2, 3];
+const array = [1, 2, 3];
 array.forEach(function(value) {
     console.log(value);
 });
@@ -246,9 +246,9 @@ Arrow Functionについては次のような特徴があります。
 
 {{book.console}}
 ```js
-var array = [1, 2, 3];
+const array = [1, 2, 3];
 // 1,2,3と順番に値が渡されコールバック関数（匿名関数）が処理する
-var doubleArray = array.map(function(value) {
+const doubleArray = array.map(function(value) {
     return value * 2; // 返した値をまとめた配列ができる
 });
 console.log(doubleArray); // => [2, 4, 6];
@@ -260,8 +260,8 @@ Arrow Functionでは処理が一行である場合に、`return`文を省略し�
 
 {{book.console}}
 ```js
-var array = [1, 2, 3];
-var doubleArray = array.map(value => value * 2);
+const array = [1, 2, 3];
+const doubleArray = array.map(value => value * 2);
 console.log(doubleArray); // => [2, 4, 6];
 ```
 
@@ -281,28 +281,32 @@ function式を使うケースの殆どはArrow Functionで実装できます。
 ## メソッド
 
 メソッドとは、オブジェクトのプロパティである関数のことをいいます。
-つまり、オブジェクトのプロパティの値として関数が代入されているものです。
+次のコードにおける`object`の`method`プロパティを**メソッド**といいます。
 
 ```js
-var object = {
+const object = {
     method: () => {
     }
 };
-// 次のように書いても同じ
-var object = {};
+```
+
+次のように空の`object`を宣言してから、`method`プロパティへ関数を代入しても同様です。
+
+```js
+const object = {};
 object.method = () => {
 };
 ```
 
 <!-- textlint-disable no-js-function-paren -->
 
-メソッドを呼び出す場合は、関数呼び出しと同様に`オブジェクト.メソッド名()`のように呼び出します。
+メソッドを呼び出す場合は、関数呼び出しと同様に`オブジェクト.メソッド名()`と書くことで呼び出せます。
 
 <!-- textlint-enable no-js-function-paren -->
 
 {{book.console}}
 ```js
-var object = {
+const object = {
     method: () => {
         return "this is method";
     }
@@ -313,13 +317,13 @@ console.log(object.method()); // => "this is method"
 ### [ES2015] メソッドの短縮記法
 
 先ほどの方法では、プロパティに関数を代入するという書き方になっていました。
-ES2015からは、メソッドとしてプロパティを定義するという書き方が追加されています。
+ES2015からは、メソッドとしてプロパティを定義するための短縮した書き方が追加されています。
 
-次のように、`メソッド名(){ /*メソッドの処理*/ }` と書くことができるようになっています。
+次のように、オブジェクトリテラルの中で `メソッド名(){ /*メソッドの処理*/ }` と書くことができます。
 
 {{book.console}}
 ```js
-var object = {
+const object = {
     method() {
         return "this is method";
     }

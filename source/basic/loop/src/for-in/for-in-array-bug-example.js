@@ -1,6 +1,6 @@
-var numbers = [5, 10];
-var total = 0;
-for (var num in numbers) {
+const numbers = [5, 10];
+let total = 0;
+for (const num in numbers) {
     total += num;
 }
 console.log(total); // => "001"

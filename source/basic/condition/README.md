@@ -123,7 +123,7 @@ switch文はif文と同様に`式`の評価結果にもとづく条件分岐を�
 
 {{book.console}}
 ```js
-var version = "ES6";
+const version = "ES6";
 if (version === "ES5") {
     console.log("ECMAScript 5");
 } else if (version === "ES6") {

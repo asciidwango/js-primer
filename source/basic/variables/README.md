@@ -2,6 +2,8 @@
 author: azu
 ---
 
+<!-- textlint-disable eslint -->
+
 # 変数と宣言
 
 プログラミング言語には、数値などのデータに名前を付けたり繰り返し利用するために、データを保持するための**変数**があります。
@@ -107,13 +109,12 @@ let bookTitle = "JavaScriptの本";
 ```
 
 また、`let`と`const`は同一スコープ内で同じ変数名を再定義できません。
-次のように同じ変数名で再定義しようとするSyntaxErrorになります。
+次のように同じ変数名で再定義しようとする`SyntaxError`になります。
 そのため、間違えて変数を二重に定義してしまうというミスを防ぐことができます。
 
 [import, let-duplicated-define-invalid.js](src/let-duplicated-define-invalid.js)
 
 ## [ES2015] `const` {#const}
-
 
 最後に`const`ですが、`let`に対してさらに制約をつけた変数宣言という位置づけになります。
 名前から変わることがない**値**を宣言するキーワードのように見えます。
@@ -147,7 +148,7 @@ const bookTitle = "JavaScriptの本";
 すでにJavaScriptには多くのケースで代替できる表現を持っています。
 
 つまり、多くのケースでは`var`や`let`ではなく`const`で書くことできます。
-それにより、早い段階でバグに気づくことができるため、`const`が利用できる際は積極的に利用していくことを推奨しています。
+それにより、早い段階でバグに気づくことができるため、`const`を積極的に利用していくことを推奨しています。
 
 ## まとめ
 
@@ -160,6 +161,8 @@ JavaScriptにおける変数宣言として`var`、`let`、`const`があるこ�
 一方、JavaScriptには変更できない値を作成する機能も存在します。
 そのことについては 第M章 で紹介します。
 
-- [ ] 第M章は後で設定する必要がある
+- [ ] 第M章は後で設定する必要がある Object.freeze
 
 [JavaScript variable name validator]: https://mothereff.in/js-variables  "JavaScript variable name validator"
+
+<!-- textlint-enable eslint -->

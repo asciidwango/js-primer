@@ -251,3 +251,9 @@ ES2015は正式な名称ですが、ES6も一般によく使われている名�
 
 - [ES2015 or ES6 どちらを使う? #22](https://github.com/asciidwango/ES6book/issues/22 "ES2015 or ES6 どちらを使う? #22")
 
+### var vs. let/const
+
+基本的にコードでは`let`または`const`を利用します。
+`var`の機能を説明する場合においては`var`を利用します。
+
+- [サンプルコードを `var` から `const` に置き換える · Issue #264 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/264 "サンプルコードを `var` から `const` に置き換える · Issue #264 · asciidwango/js-primer")

@@ -61,6 +61,9 @@ module.exports = {
                     "istanbul",
                 ],
             }
-        ]
+        ],
+        // const
+        "prefer-const": "error",
+        "no-var": "error"
     }
 };

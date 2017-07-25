@@ -27,7 +27,7 @@ typeof ["A", "B", "C"]; // => "object"
 配列には複数の要素を格納できますが、`length`プロパティはその配列の要素数を返します。
 
 ```js
-var array = ["A", "B", "C"];
+const array = ["A", "B", "C"];
 console.log(array.length); // => 3
 ```
 
@@ -36,7 +36,7 @@ console.log(array.length); // => 3
 配列の`length`プロパティは特殊な動作となっているため、後ほど解説します。
 
 ```js
-var array = ["A", "B", "C"];
+const array = ["A", "B", "C"];
 array.length = 0; // 配列を空にする
 console.log(array); // => []
 ```
@@ -48,9 +48,9 @@ console.log(array); // => []
 
 ```js
 // 配列
-var array = [];
+const array = [];
 // `length`を持つオブジェクト
-var object = {
+const object = {
     length: 0
 };
 ```
@@ -62,10 +62,10 @@ var object = {
 `Array.isArray`メソッドは引数が配列ならば`true`を返します。
 
 ```js
-var array = [];
+const array = [];
 console.log(Array.isArray(array)); // => true
 // 配列のようなオブジェクト
-var object = {
+const object = {
     length: 0
 };
 console.log(Array.isArray(object)); // => false
@@ -90,9 +90,9 @@ JavaScriptで配列といった場合には`Array`を示します。
 配列リテラル（`[`と`]`）の中に要素をカンマ（`,`）区切りで記述するだけです。
 
 ```js
-var emptyArray = [];
-var numbers = [1, 2, 3];
-var matrix = [
+const emptyArray = [];
+const numbers = [1, 2, 3];
+const matrix = [
     [0, 1],
     [0, 1]
 ]; // ２次元配列
@@ -103,7 +103,7 @@ var matrix = [
 配列の先頭要素のインデックスは`0`となります。配列のインデックスは、`0`以上`2^32 - 1`未満の整数となります。
 
 ```js
-var array = ["one", "two", "three"];
+const array = ["one", "two", "three"];
 console.log(array[0]); // => "one"
 ```
 
@@ -111,7 +111,7 @@ console.log(array[0]); // => "one"
 そのため、配列の最後の要素へアクセスするには `array.length - 1` をインデックスとして指定します。
 
 ```js
-var array = ["one", "two", "three"];
+const array = ["one", "two", "three"];
 console.log(array[array.length - 1]); // => "three"
 ```
 
@@ -119,7 +119,7 @@ console.log(array[array.length - 1]); // => "three"
 多くの言語では、配列の存在しないインデックスへアクセスするとエラーなりますが、JavaScriptでは`undefined`が返ってきます。
 
 ```js
-var array = ["one", "two", "three"];
+const array = ["one", "two", "three"];
 console.log(array[100]); // => undefined
 ```
 
@@ -127,7 +127,7 @@ console.log(array[100]); // => undefined
 オブジェクトでも、存在しないプロパティへのアクセスした場合には`undefined`が返ってきます。
 
 ```js
-var object = {
+const object = {
     "0": "one",
     "1": "two",
     "2": "three",
@@ -145,7 +145,7 @@ console.log(object[100]); // => undefined
 
 ```js
 // 未定義の箇所が1つ含まれる疎な配列
-var sparseArray = [1,, 3];
+const sparseArray = [1,, 3];
 console.log(sparseArray.length); // => 3 
 // 1番目の要素は存在しないため undefined が返る
 console.log(sparseArray[1]); // => undefined
@@ -158,9 +158,9 @@ console.log(sparseArray[1]); // => undefined
 
 ```js
 // 要素として`undefined`を持つ密な配列
-var denseArray = [1, undefined, 3];
+const denseArray = [1, undefined, 3];
 // 要素そのものがない疎な配列
-var sparseArray = [1, , 3];
+const sparseArray = [1, , 3];
 console.log(denseArray[1]); // => undefined
 console.log(sparseArray[1]); // => undefined
 ```
@@ -169,8 +169,8 @@ console.log(sparseArray[1]); // => undefined
 `hasOwnProperty`メソッドを使うことで、配列の指定したインデックスに要素自体が存在するかを判定できます。
 
 ```js
-var denseArray = [1, undefined, 3];
-var sparseArray = [1, , 3];
+const denseArray = [1, undefined, 3];
+const sparseArray = [1, , 3];
 // 要素自体は`undefined`値が存在する
 console.log(denseArray.hasOwnProperty(1)); // => true
 // 要素自体がない
@@ -199,8 +199,8 @@ console.log(sparseArray.hasOwnProperty(1)); // => false
 `indexOf`メソッドには対となる`Array#lastIndexOf`メソッドがあり、`lastIndexOf`メソッドは末尾から探索した結果を得ることができます。
 
 ```js
-var array = ["Java", "JavaScript", "Ruby"];
-var indexOfJS = array.indexOf("JavaScript");
+const array = ["Java", "JavaScript", "Ruby"];
+const indexOfJS = array.indexOf("JavaScript");
 console.log(indexOfJS); // => 1
 console.log(array[indexOfJS]); // => "JavaScript"
 // "JS" という要素はないため `-1` が返される
@@ -212,8 +212,8 @@ console.log(array.indexOf("JS")); // => -1
 これは、異なる参照をもつオブジェクト同士は`===`で比較しても一致しないためです。
 
 ```js
-var object = { key: "value" };
-var array = ["A", "B", object];
+const object = { key: "value" };
+const array = ["A", "B", object];
 console.log(array.indexOf({ key: "value" })); // => -1
 // リテラルは新しいオブジェクトを作るため異なるオブジェクトを比較している
 console.log(object === { key: "value" }); // => false
@@ -228,13 +228,13 @@ console.log(array.indexOf(object)); // => 2
 
 ```js
 // colorプロパティを持つオブジェクトの配列
-var colors = [
+const colors = [
     { "color": "red" },
     { "color": "green" },
     { "color": "blue" }
 ];
 // `color`プロパティが"blue"のオブジェクトのインデックスを取得
-var indexOfBlue = colors.findIndex((object) => {
+const indexOfBlue = colors.findIndex((object) => {
     return object.color === "blue";
 });
 console.log(indexOfBlue); // => 2
@@ -255,13 +255,13 @@ console.log(colors[indexOfBlue]); // => { "color": "blue" }
 
 ```js
 // colorプロパティを持つオブジェクトの配列
-var colors = [
+const colors = [
     { "color": "red" },
     { "color": "green" },
     { "color": "blue" }
 ];
 // `color`プロパティが"blue"のオブジェクトを取得
-var blueColor = colors.find((object) => {
+const blueColor = colors.find((object) => {
     return object.color === "blue";
 });
 console.log(blueColor); // => { "color": "blue" }
@@ -276,7 +276,7 @@ console.log(array.find((object) => object.color === "white")); // => undefined
 第二引数は省略でき、省略した場合は配列の末尾が終了位置となります。
 
 ```js
-var array = ["A", "B", "C", "D", "E"];
+const array = ["A", "B", "C", "D", "E"];
 // インデックス1から4の範囲を取り出す
 console.log(array.slice(1, 4)); // => ["B", "C", "D"]
 // 第二引数を省略した場合は、第一引数から末尾の要素までを取り出す
@@ -301,9 +301,9 @@ console.log(array.slice(4, 1)); // => []
 コードを隅々まで読まないといけないため、意図が明確ではなくコードの読みづらさにつながります。
 
 ```js
-var array = ["Java", "JavaScript", "Ruby"];
+const array = ["Java", "JavaScript", "Ruby"];
 // `indexOf`メソッドは含まれていないときのみ`-1`を返すことを利用
-var indexOfJS = array.indexOf("JavaScript");
+const indexOfJS = array.indexOf("JavaScript");
 if (indexOfJS !== -1) {
     console.log("配列にJavaScriptが含まれている");
     // ... 色々な処理 ...
@@ -317,7 +317,7 @@ if (indexOfJS !== -1) {
 そのため、前述のコードは次のように`includes`メソッドを使うべきでしょう。
 
 ```js
-var array = ["Java", "JavaScript", "Ruby"];
+const array = ["Java", "JavaScript", "Ruby"];
 // `includes`は含まれているなら`true`を返す
 if (array.includes("JavaScript")) {
     console.log("配列にJavaScriptが含まれている");
@@ -332,13 +332,13 @@ if (array.includes("JavaScript")) {
 
 ```js
 // colorプロパティを持つオブジェクトの配列
-var colors = [
+const colors = [
     { "color": "red" },
     { "color": "green" },
     { "color": "blue" }
 ];
 // `color`プロパティが"blue"のオブジェクトがあるかどうか
-var isIncludedBlueColor = colors.some((object) => {
+const isIncludedBlueColor = colors.some((object) => {
     return object.color === "blue";
 });
 console.log(isIncludedBlueColor); // => true
@@ -352,10 +352,10 @@ console.log(isIncludedBlueColor); // => true
 一方、末尾から要素を削除するには`Array#pop`が利用できます。
 
 ```js
-var array = ["A", "B", "C"];
+const array = ["A", "B", "C"];
 array.push("D"); // "D"を末尾に追加
 console.log(array); // => ["A", "B", "C", "D"]
-var popedItem = array.pop(); // 最末尾の要素を削除し、その要素を返す 
+const popedItem = array.pop(); // 最末尾の要素を削除し、その要素を返す 
 console.log(popedItem); // => "D"
 console.log(array); // => ["A", "B", "C"]
 ```
@@ -364,10 +364,10 @@ console.log(array); // => ["A", "B", "C"]
 一方、配列の先頭から要素を削除するには`Array#shift`が利用できます。
 
 ```js
-var array = ["A", "B", "C"];
+const array = ["A", "B", "C"];
 array.unshift("S"); // "S"を先頭に追加
 console.log(array); // => ["S", "A", "B", "C"]
-var shiftedItem = array.shift(); // 先頭の要素を削除 
+const shiftedItem = array.shift(); // 先頭の要素を削除 
 console.log(shiftedItem); // => "S"
 console.log(array); // => ["A", "B", "C"]
 ```
@@ -377,16 +377,16 @@ console.log(array); // => ["A", "B", "C"]
 `Array#concat`メソッドを使うことで配列と配列を結合した新しい配列を作成できます。
 
 ```js
-var array = ["A", "B", "C"];
-var newArray = array.concat(["D", "E"]);
+const array = ["A", "B", "C"];
+const newArray = array.concat(["D", "E"]);
 console.log(newArray); // => ["A", "B", "C", "D", "E"]
 ```
 
 また、`concat`メソッドは配列だけではなく任意の値を要素として結合できます。
 
 ```js
-var array = ["A", "B", "C"];
-var newArray = array.concat("新しい要素");
+const array = ["A", "B", "C"];
+const newArray = array.concat("新しい要素");
 console.log(newArray); // => ["A", "B", "C", "新しい要素"]
 ```
 
@@ -402,7 +402,7 @@ console.log(newArray); // => ["A", "B", "C", "新しい要素"]
 `Array#splice`メソッドは、`index`番目から`削除する数`だけ要素を取り除き、必要ならば要素を同時に追加できます。
 
 ```js
-var array = [];
+const array = [];
 array.splice(インデックス, 削除する要素数);
 // 削除と同時に要素の追加もできる
 array.splice(インデックス, 削除する要素数, ...追加する要素);
@@ -412,7 +412,7 @@ array.splice(インデックス, 削除する要素数, ...追加する要素);
 このとき、削除した要素は自動で詰められるため、疎な配列にはなりません。
 
 ```js
-var array = [1, 2, 3];
+const array = [1, 2, 3];
 // 1番目から1つの要素を削除
 array.splice(1, 1);
 console.log(array); // => [1, 3]
@@ -429,7 +429,7 @@ console.log(array.length); // => 0
 配列の`length`プロパティへの代入を利用した方法もあります。
 
 ```js
-var array = [1, 2, 3];
+const array = [1, 2, 3];
 array.length = 0; // 配列を空にする
 console.log(array); // => []
 ```
@@ -443,7 +443,7 @@ console.log(array); // => []
 次のコードでは、`array`変数に空の配列を代入することで、`array`は空の配列を参照させることができます。
 
 ```js
-var array = [1, 2, 3];
+let array = [1, 2, 3];
 console.log(array.length); // => 3
 // 新しい配列で変数を上書き
 array = [];
@@ -470,8 +470,8 @@ console.log(array.length); // => 0
 その結果`myArray`の参照する配列が変更されるため破壊的なメソッドです。
 
 ```js
-var myArray = ["A", "B", "C"];
-var result = myArray.push("D"); 
+const myArray = ["A", "B", "C"];
+const result = myArray.push("D"); 
 // `push`の返り値は配列ではなく、追加後の配列のlength
 console.log(result); // => 4
 // `myArray`が参照する配列そのものが変更されている
@@ -485,9 +485,9 @@ console.log(myArray); // => ["A", "B", "C", "D"]
 その結果`myArray`の参照する配列は変更されないため非破壊的なメソッドです。
 
 ```js
-var myArray = ["A", "B", "C"];
+const myArray = ["A", "B", "C"];
 // `concat`の返り値は結合済みの新しい配列
-var newArray = myArray.concat("D");
+const newArray = myArray.concat("D");
 console.log(newArray); // => ["A", "B", "C", "D"]
 // `myArray`は変更されていない
 console.log(myArray); // => ["A", "B", "C"]
@@ -531,9 +531,9 @@ function removeAtIndex(array, index) {
     array.splice(index, 1);
     return array;
 }
-var array = ["A", "B", "C"];
+const array = ["A", "B", "C"];
 // `array`から1番目の要素を削除した配列を取得
-var newArray = removeAtIndex(array, 1);
+const newArray = removeAtIndex(array, 1);
 console.log(newArray); // => ["A", "C"]
 // `array`自体にも影響を与える
 console.log(array); // => ["A", "C"]
@@ -547,9 +547,9 @@ JavaScriptには`copy`メソッドは存在しませんが、配列をコピー�
 `slice`メソッドと`concat`メソッドは引数なしで呼び出すと、その配列のコピーを返します。
 
 ```js
-var myArray = ["A", "B", "C"];
+const myArray = ["A", "B", "C"];
 // `slice`は`myArray`のコピーを返す - `myArray.concat()`でも同じ
-var copiedArray = myArray.slice(); 
+const copiedArray = myArray.slice(); 
 myArray.push("D");
 console.log(myArray); // => ["A", "B", "C", "D"]
 // `array`のコピーである`copiedArray`には影響がない
@@ -565,13 +565,13 @@ console.log(copiedArray === myArray); // => false
 // `array`の`index`番目の要素を削除した配列を返す関数
 function removeAtIndex(array, index) {
     // コピーを作成してから変更する
-    var copiedArray = array.slice();
+    const copiedArray = array.slice();
     copiedArray.splice(index, 1);
     return copiedArray;
 }
-var array = ["A", "B", "C"];
+const array = ["A", "B", "C"];
 // `array`から1番目の要素を削除した配列を取得
-var newArray = removeAtIndex(array, 1);
+const newArray = removeAtIndex(array, 1);
 console.log(newArray); // => ["A", "C"]
 // 元の`array`には影響がない
 console.log(array); // => ["A", "B", "C"]

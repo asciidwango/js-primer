@@ -1,4 +1,4 @@
-var string = "JavaScript";
+const string = "JavaScript";
 if (string.length > 0) {
     console.log(`文字列 "${string}" があります`);
 } else {

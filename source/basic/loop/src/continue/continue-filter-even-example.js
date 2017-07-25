@@ -16,5 +16,5 @@ function filterEven(numbers) {
     }
     return results;
 }
-var array = [1, 5, 10, 15, 20];
+const array = [1, 5, 10, 15, 20];
 console.log(filterEven(array)); // => [10, 20]

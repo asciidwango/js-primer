@@ -5,6 +5,7 @@ const globby = require('globby');
 const fs = require("fs");
 const path = require("path");
 const strictEval = require("strict-eval");
+const { NodeVM } = require('vm2');
 const sourceDir = path.join(__dirname, "..", "source");
 const toDoc = require("power-doctest");
 const remark = require("remark")();
@@ -65,7 +66,17 @@ describe("doctest:md", function() {
                     // ミスマッチが多いので無効化
                     // shouldConsoleWithComment(codeBlock.value, filePath);
                     const poweredCode = toDoc.convertCode(codeBlock.value, filePath);
-                    strictEval(poweredCode);
+                    if (/strict modeではない/.test(codeBlock.value)) {
+                        // non-strict modeのコード
+                        const vm = new NodeVM({
+                            require: {
+                                external: true
+                            }
+                        });
+                        vm.run(poweredCode, filePath);
+                    } else {
+                        strictEval(poweredCode);
+                    }
                 } catch (error) {
                     // ReferenceErrorはOK
                     if (error.name === "ReferenceError") {

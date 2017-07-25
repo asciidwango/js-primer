@@ -14,21 +14,21 @@ author: azu
 
 ```js
 // プロパティ名はクオートを省略することが可能
-var object = {
+const object = {
     key: "value"
 };
 ```
 
-またES2015からは、プロパティ名と値となる変数名が同じ場合は次のように省略して書くことができます。
+またES2015からは、プロパティ名と値となる変数名が同じ場合は`{ name }`のように省略して書くことができます。
 
 ```js
-var name = "名前";
+const name = "名前";
 // `name`というプロパティ名で`name`の変数を値に設定
-var object = {
+const objectA = {
     name
 };
 // 次のように書いた場合と同じ
-var object = {
+const objectB = {
     name: name
 };
 ```
@@ -42,7 +42,7 @@ var object = {
 
 {{book.console}}
 ```js
-var object = {
+const object = {
     key: "value"
 };
 // ドット記法で参照
@@ -61,11 +61,11 @@ console.log(object["key"]); // => "value"
 
 {{book.console}}
 ```js
-var object = {
+const object = {
     "ja": "日本語",
     "en": "英語"
 };
-var myLang = "ja";
+const myLang = "ja";
 console.log(object[myLang]); // => "日本語"
 ```
 
@@ -84,7 +84,7 @@ console.log(object[myLang]); // => "日本語"
 {{book.console}}
 ```js
 // 空のオブジェクト
-var object = {};
+const object = {};
 // `key`プロパティを追加し値を代入
 object.key = "value";
 console.log(object.key); // => "value"
@@ -100,14 +100,14 @@ console.log(object.key); // => "value"
 
 {{book.console}}
 ```js
-var key = "key-string";
-var object = {};
+const key = "key-string";
+const object = {};
 // `key`の評価結果 "key-string" をプロパティ名に利用
 object[key] = "value of key";
 // 取り出すときも同じく`key`変数を利用
 console.log(object[key]); // => "value of key"
 // Symbolは例外的に文字列化されず扱える
-var symbolKey = Symbol("シンボルは一意な値");
+const symbolKey = Symbol("シンボルは一意な値");
 object[symbolKey] = "value of symbol";
 console.log(object[symbolKey]); // => "value of symbol"
 ```
@@ -118,9 +118,9 @@ Computed property namesはES2015から導入された記法ですが、`式`の�
 
 {{book.console}}
 ```js
-var key = "key-string";
+const key = "key-string";
 // Computed Propertyでプロパティを定義する
-var object = {
+const object = {
     [key]: "value"
 };
 console.log(object[key]); // => "value"
@@ -177,7 +177,7 @@ JavaScriptでは、存在しないプロパティに対してアクセスした�
 
 {{book.console}}
 ```js
-var object = {};
+const object = {};
 console.log(object.notFound); // => undefined
 ```
 
@@ -187,7 +187,7 @@ console.log(object.notFound); // => undefined
 
 {{book.console}}
 ```js
-var widget = {
+const widget = {
     window: {
         title: "ウィジェットのタイトル"
     }
@@ -209,7 +209,7 @@ console.log(widget.windw.title); // => TypeError
 
 {{book.console}}
 ```js
-var object = { key: "value" };
+const object = { key: "value" };
 // `key`プロパティが`undefined`ではないなら、プロパティが存在する?
 if (object.key !== undefined) {
     console.log("`key`プロパティの値は`undefined`");
@@ -221,7 +221,7 @@ if (object.key !== undefined) {
 
 {{book.console}}
 ```js
-var object = { key: undefined };
+const object = { key: undefined };
 // `key`プロパティの値が`undefined`
 if (object.key !== undefined) {
     // 実行されない文
@@ -240,7 +240,7 @@ if (object.key !== undefined) {
 
 {{book.console}}
 ```js
-var object = { key: undefined };
+const object = { key: undefined };
 // `key`プロパティを持っているならtrue
 if ("key" in object) {
     console.log("`key`プロパティは存在する");
@@ -264,7 +264,7 @@ if ("key" in object) {
 
 {{book.console}}
 ```js
-var object = { key: "value" };
+const object = { key: "value" };
 // `object`が`key`プロパティを持っているならtrue
 if (object.hasOwnProperty("key")) {
     console.log("`object`は`key`プロパティを持っている");
@@ -281,7 +281,7 @@ if (object.hasOwnProperty("key")) {
 
 {{book.console}}
 ```js
-var object = { key: "value" };
+const object = { key: "value" };
 console.log(object.toString()); // => "[object Object]"
 // `String`コンストラクタ関数は`toString`メソッドを呼んでいる
 console.log(String(object)); // => "[object Object]"
@@ -294,7 +294,7 @@ console.log(String(object)); // => "[object Object]"
 {{book.console}}
 ```js
 // 独自のtoStringメソッドを定義
-var customObject = {
+const customObject = {
     toString() {
         return "value";
     }
@@ -307,7 +307,7 @@ console.log(String(object)); // => "value"
 
 {{book.console}}
 ```js
-var number = [1, 2, 3];
+const number = [1, 2, 3];
 // Array#toStringが定義されているため、`Object#toString`とは異なる形式となる
 console.log(number.toString()); // => "1,2,3";
 ```
@@ -349,7 +349,7 @@ Object.prototype.hasOwnProperty = (propertyName) => {
 {{book.console}}
 ```js
 // var object = new Object()も同じ
-var object = {};
+const object = {};
 // インスタンスがprototypeオブジェクトに定義されたものを継承する
 console.log(object.hasOwnProperty === Object.prototype.hasOwnProperty); // => true
 ```
@@ -369,7 +369,7 @@ console.log(object.hasOwnProperty === Object.prototype.hasOwnProperty); // => tr
 
 {{book.console}}
 ```js
-var object = {};
+const object = {};
 // `object`のインスタンス自体に`toString`メソッドが定義されているわけではない
 console.log(object.hasOwnProperty("toString")); // => false
 // `in`演算子は指定されたプロパティ名が見つかるまで親を辿るため、`Object.prototype`まで見に行く
@@ -388,7 +388,7 @@ console.log("toString" in object); // => true
 {{book.console}}
 ```js
 // var object = {} と同じ
-var object = Object.create(Object.prototype);
+const object = Object.create(Object.prototype);
 // `object`は`Object.prototype`を継承している
 console.log(object.hasOwnProperty === Object.prototype.hasOwnProperty); // => true
 ```
@@ -407,11 +407,11 @@ console.log(object.hasOwnProperty === Object.prototype.hasOwnProperty); // => tr
 {{book.console}}
 ```js
 // `Array`コンストラクタ自身は関数でもある
-var Array = function() {};
+const Array = function() {};
 // `Array.prototype`は`Object.prototype`を継承している
 Array.prototype = Object.create(Object.prototype);
 // `Array`のインスタンスは、`Array.prototype`を継承している
-var array = Object.create(Array.prototype);
+const array = Object.create(Array.prototype);
 // `array`は`Object.prototype`を継承している
 console.log(array.hasOwnProperty === Object.prototype.hasOwnProperty); // => true
 ```
@@ -445,7 +445,7 @@ console.log(array.hasOwnProperty === Object.prototype.hasOwnProperty); // => tru
 {{book.console}}
 ```js
 // 親がnull、つまり親がいないオブジェクトを作る
-var object = Object.create(null);
+const object = Object.create(null);
 // Object.prototypeを継承しないため、hasOwnPropertyが存在しない
 console.log(object.hasOwnProperty); // => undefined
 ```
@@ -456,11 +456,11 @@ console.log(object.hasOwnProperty); // => undefined
 {{book.console}}
 ```js
 // ただのオブジェクト
-var object = {};
+const object = {};
 // "toString"という値を定義してないのに、"toString"が存在している
 console.log(object["toString"]);// Function 
 // Mapのようなオブジェクト
-var mapLike = Object.create(null);
+const mapLike = Object.create(null);
 // toStringキーは存在しない
 console.log(mapLike["toString"]); // => undefined
 ```
@@ -469,7 +469,7 @@ console.log(mapLike["toString"]); // => undefined
 
 {{book.console}}
 ```js
-var map = new Map();
+const map = new Map();
 // toStringキーは存在しない
 console.log(map.has("toString")); // => false
 ```
@@ -488,7 +488,7 @@ console.log(map.has("toString")); // => false
 
 {{book.console}}
 ```js
-var object = {
+const object = {
     "one": 1,
     "two": 2,
     "three": 3
@@ -523,9 +523,9 @@ Object.assign(target, ...sources);
 
 {{book.console}}
 ```js
-var objectA = { a: "a" };
-var objectB = { b: "b" };
-var merged = Object.assign({}, objectA, objectB);
+const objectA = { a: "a" };
+const objectB = { b: "b" };
+const merged = Object.assign({}, objectA, objectB);
 console.log(merged); // => { a: "a", b: "b" }
 ```
 
@@ -534,9 +534,9 @@ console.log(merged); // => { a: "a", b: "b" }
 
 {{book.console}}
 ```js
-var objectA = { a: "a" };
-var objectB = { b: "b" };
-var merged = Object.assign(objectA, objectB);
+const objectA = { a: "a" };
+const objectB = { b: "b" };
+const merged = Object.assign(objectA, objectB);
 console.log(merged); // => { a: "a", b: "b" }
 // `objectA`が変更されている
 console.log(objectA); // => { a: "a", b: "b" }
@@ -553,9 +553,9 @@ JavaScriptでは、基本的な処理は左から順番に行います。
 {{book.console}}
 ```js
 // `version`のプロパティ名が被っている
-var objectA = { version: "a" };
-var objectB = { version: "b" };
-var merged = Object.assign({}, objectA, objectB);
+const objectA = { version: "a" };
+const objectB = { version: "b" };
+const merged = Object.assign({}, objectA, objectB);
 // 後ろにある`objectB`のプロパティで上書きされる
 console.log(merged); // => { version: "b" }
 ```
@@ -577,8 +577,8 @@ JavaScriptには、オブジェクトを複製する関数は用意されてい�
 const shallowClone = (object) => {
     return Object.assign({}, object);
 };
-var object = { a: "a" };
-var cloneObject = shallowClone(object);
+const object = { a: "a" };
+const cloneObject = shallowClone(object);
 console.log(cloneObject); // => { a: "a" }
 console.log(object === cloneObject); // => false
 ```
@@ -592,13 +592,13 @@ console.log(object === cloneObject); // => false
 const shallowClone = (object) => {
     return Object.assign({}, object);
 };
-var object = { 
+const object = { 
     level: 1,
     nest: {
         level: 2
     },
 };
-var cloneObject = shallowClone(object);
+const cloneObject = shallowClone(object);
 // `nest`オブジェクトは複製されていない
 console.log(cloneObject.nest === object.nest); // => true
 ```
@@ -618,17 +618,17 @@ function deepClone(object) {
     const newObject = shallowClone(object);
     // プロパティがオブジェクト型であるなら、再帰的に複製する
     Object.keys(newObject)
-    .filter(k => typeof newObject[k] === "object")
-    .forEach(k => newObject[k] = deepClone(newObject[k]));
+        .filter(k => typeof newObject[k] === "object")
+        .forEach(k => newObject[k] = deepClone(newObject[k]));
     return newObject;
 }
-var object = { 
+const object = { 
     level: 1,
     nest: {
         level: 2
     }
 };
-var cloneObject = deepClone(object);
+const cloneObject = deepClone(object);
 // `nest`オブジェクトも再帰的に複製されている
 console.log(cloneObject.nest === object.nest); // => false
 ```

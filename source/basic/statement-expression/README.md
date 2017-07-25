@@ -27,9 +27,9 @@ console.log(1); // => 1
 // 1 + 1という式の評価値を表示
 console.log(1 + 1); // => 2
 // 式の評価値を変数に代入
-var total = 1 + 1;
+const total = 1 + 1;
 // 関数式の評価値(関数オブジェクト)を変数に代入
-var fn = function() {
+const fn = function() {
     return 1;
 };
 // fn() という式の評価値を表示
@@ -53,7 +53,7 @@ JavaScriptでは、文の末尾にセミコロン(`;`)を置くことで文と�
 次のように、文の処理の一部として式を含むことがあります。
 
 ```js
-var isTrue = true;
+const isTrue = true;
 // isTrueという式がif文の中に出てくる
 if (isTrue) {
 }
@@ -118,7 +118,7 @@ functionキーワードから文を開始する**関数宣言**と、変数へ**
 function learn() {
 }
 // 関数式をread変数へ代入
-var read = function() {
+const read = function() {
 };
 ```
 
@@ -142,7 +142,7 @@ var read = function() {
 ```js
 function fn() {}
 // fn(式)の評価値を代入する変数宣言の文
-var read = fn;
+const read = fn;
 ```
 
 ## まとめ
