@@ -191,7 +191,7 @@ RegExpやMap、Setなどのインスタンスは列挙可能なプロパティ�
 
 {{book.console}}
 ```js
-var obj = {
+const obj = {
     foo: "foo",
     toJSON() {
         return "bar";

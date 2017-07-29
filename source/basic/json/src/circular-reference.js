@@ -1,4 +1,4 @@
-var obj = { foo: "foo" };
+const obj = { foo: "foo" };
 obj.self = obj;
 try {
     JSON.stringify(obj);
