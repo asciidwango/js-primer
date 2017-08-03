@@ -607,7 +607,7 @@ function myFunc() {
 myFunc("a", "b", "c");
 ```
 
-Array-likeオブジェクトか配列なのかを見分けるには`Array.isArray`メソッドを利用できます。
+Array-likeオブジェクトか配列なのかを判別するには`Array.isArray`メソッドを利用できます。
 `Array-like`は配列ではないので結果は`false`となります。
 
 {{book.console}}
