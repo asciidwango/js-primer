@@ -608,7 +608,7 @@ myFunc("a", "b", "c");
 ```
 
 Array-likeオブジェクトか配列なのかを判別するには`Array.isArray`メソッドを利用できます。
-`Array-like`は配列ではないので結果は`false`となります。
+`Array-like`オブジェクトは配列ではないので結果は常に`false`となります。
 
 {{book.console}}
 ```js
@@ -619,14 +619,13 @@ function myFunc() {
 myFunc("a", "b", "c");
 ```
 
-Array-likeオブジェクトはただのオブジェクトであるため、`map`メソッドを持ったArray-likeオブジェクトを作ることもできます。その場合も`Array.isArray`メソッドは、Arrayメソッドを持っているかではなく配列のインスタンスなのかで判定するため、簡単で確実な方法です。
-
 Array-likeオブジェクトは配列のようで配列ではないというもどかしさをもつオブジェクトです。そのため、`Array.from`メソッドを使い
 Array-likeをオブジェクト配列に変換して扱うことができます。一度配列に変換してしまえばArrayメソッドも利用できます。
 
 {{book.console}}
 ```js
 function myFunc() {
+    // Array-likeオブジェクトを配列へ変換
     const argumentsArray = Array.from(arguments);
     console.log(Array.isArray(argumentsArray)); // => true
     // 配列のメソッドを利用できる
@@ -637,10 +636,10 @@ function myFunc() {
 myFunc("a", "b", "c");
 ```
 
-Array-likeオブジェクトは一種のインターフェースとして考えられます。
-インターフェースとは、特定の機能や特定の名前を定義したものです。Array-likeオブジェクトの場合は「インデックスアクセス」と「`length`プロパティ」というインターフェースとなります。
+Array-likeは一種のインターフェースとして考えられます。
+インターフェースとは、特定の機能や特定の名前を定義したものです。Array-likeは「インデックスアクセスできる値をもつ」かつ「`length`プロパティをもつ」というインターフェースです。つまり、Array-likeオブジェクトとはこのインターフェースを実装しているオブジェクトのことです。
 
-他にもこのようなインターフェースが存在し、ひとつのオブジェクトが複数のインターフェースを実装している場合もあります。たとえば`Symbol.iterator`というインターフェースを実装したオブジェクトをiterableオブジェクトと呼びます。文字列はArray-likeオブジェクトでありつつ、iterableオブジェクトでもあるため、複数のインターフェースを実装しているといえます。
+JavaScriptにはJavaの`interface`のようなインターフェースを宣言する言語機能は持っていませんが、`Array.from`メソッドのように特定の定義に対応しているメソッドがあることは知っておくとよいでしょう。
 
 ## 高階関数とメソッドチェーン
 ## パターン: nullを返さずに配列を返す
