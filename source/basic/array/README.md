@@ -580,8 +580,60 @@ console.log(array); // => ["A", "B", "C"]
 このようにJavaScriptの配列には破壊的なメソッドと非破壊的メソッドが混在しています。そのため、統一的なインタフェースで扱えないのが現状です。このような背景もあるため、JavaScriptには配列を扱うためのさまざまライブラリが存在します。
 [immutable-array-prototype][]は破壊的なメソッドを非破壊的にしたものを提供し、[Lodash][]は標準にはない便利なメソッドを提供し、[Immutable.js][]は効率的なデータ構造を提供するなどさまざまです。
 
-## 疎な配列を作る
-## Array-likeとは何か
+## [コラム] Array-likeオブジェクト {#array-like}
+
+配列のように扱えるが配列ではないオブジェクトのことを、Array-likeオブジェクトと呼びます。
+Array-likeオブジェクトとは配列のようにインデックスにアクセスでき、配列のように`length`プロパティも持っています。しかし、配列のインスタンスではないため、Arrayメソッドは持っていないオブジェクトのことです。
+
+| 機能                             | Array-likeオブジェクト | 配列    |
+| ------------------------------ | ---------------- | ----- |
+| インデックスアクセス（`array[0]`)         | できる              | できる   |
+| 長さ（`array.length`) 　      | 持っている            | 持っている |
+| Arrayメソッド(`Array#map`など) | 持っていない場合もある      | 持っている |
+
+Array-likeオブジェクトの例として`arguments`があります。
+`aguments`オブジェクトは、`function`で宣言した関数の中から参照できる変数です。
+`aguments`オブジェクトには関数の引数に渡された値が順番に格納されていて、配列のように引数へアクセスできます。
+
+{{book.console}}
+```js
+function myFunc() {
+    console.log(arguments[0]); // => "a" 
+    console.log(arguments[1]); // => "b" 
+    console.log(arguments[2]); // => "c" 
+    // 配列ではないため、配列のメソッドは持っていない
+    console.log(typeof arguments.map); // => "undefined"
+}
+myFunc("a", "b", "c");
+```
+
+Array-likeオブジェクトか配列なのかを判別するには`Array.isArray`メソッドを利用できます。
+`Array-like`オブジェクトは配列ではないので結果は常に`false`となります。
+
+{{book.console}}
+```js
+function myFunc() {
+    console.log(Array.isArray([1, 2, 3])); // => true
+    console.log(Array.isArray(arguments)); // => false
+}
+myFunc("a", "b", "c");
+```
+
+Array-likeオブジェクトは配列のようで配列ではないというもどかしさをもつオブジェクトです。`Array.from`メソッドを使うことでArray-likeをオブジェクト配列に変換して扱うことができます。一度配列に変換してしまえばArrayメソッドも利用できます。
+
+{{book.console}}
+```js
+function myFunc() {
+    // Array-likeオブジェクトを配列へ変換
+    const argumentsArray = Array.from(arguments);
+    console.log(Array.isArray(argumentsArray)); // => true
+    // 配列のメソッドを利用できる
+    argumentsArray.forEach(arg => {
+        console.log(arg);
+    });
+}
+myFunc("a", "b", "c");
+```
 
 ## 高階関数とメソッドチェーン
 ## パターン: nullを返さずに配列を返す
