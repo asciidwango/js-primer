@@ -120,12 +120,12 @@ rules:
   - expected: for...in
     patterns:
       - /for\.{1,2}in/
-      - for-in
+      - /for\-in/
       - for/in
   - expected: for...of
     patterns:
       - /for\.{1,2}of/
-      - for-of
+      - /for\-of/
       - for/of
   - expected: バッククオート
     patterns: バックティック
