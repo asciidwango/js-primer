@@ -312,7 +312,7 @@ const number = [1, 2, 3];
 console.log(number.toString()); // => "1,2,3";
 ```
 
-## Object`はすべての元
+## `Object`はすべての元
 
 ここまでは、`Object`自身の機能について見てきましたが、
 `Object`には、他の`Array`や`String`、`Function`といった他のオブジェクトとは異なる特徴があります。
