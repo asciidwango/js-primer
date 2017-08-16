@@ -657,7 +657,7 @@ const abcArray = abArray.concat("c");
 console.log(abcArray); // => ["a", "b", "c"]
 ```
 
-メソッドチェーンを利用することで処理の見た目が簡潔にできます。メソッドチェーンを利用した場合も最終的な処理結果は同じですが、途中の一時的な変数を省略できます。先ほどの例では`abArray`という一時的な変数をメソッドチェーンでは省略できています。
+メソッドチェーンを利用することで処理の見た目を簡潔にできます。メソッドチェーンを利用した場合も最終的な処理結果は同じですが、途中の一時的な変数を省略できます。先ほどの例では`abArray`という一時的な変数をメソッドチェーンでは省略できています。
 
 メソッドチェーンは配列に限ったものではありませんが、配列では頻出するパターンです。なぜなら、配列に含まれるデータを表示する際には、最終的に文字列や数値など別のデータへ加工することが殆どであるためです。配列には配列を返す高階関数が多く実装されているため、配列を柔軟に加工できます。配列を返すことができる高階関数（関数を引数に受け取るメソッド）としては`Array#map`、`Array#filter`などがあります。
 
@@ -679,7 +679,7 @@ const ecmascriptVersions = [
 // メソッドチェーンで必要な加工処理を並べている
 const versionNames = ecmascriptVersions
     // 2000年以下のデータに絞り込み
-    .filter(ecmascript => ecmascript.version <= 2000)
+    .filter(ecmascript => ecmascript.year <= 2000)
     // それぞれの要素から`name`プロパティを取り出す
     .map(ecmacript => ecmascript.name);
 console.log(versionNames); // => ["ECMAScript 1", "ECMAScript 2", "ECMAScript 3"]
