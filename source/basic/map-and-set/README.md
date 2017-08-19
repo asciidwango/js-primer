@@ -283,13 +283,56 @@ console.log(results); // => ["1:1","2:2"]
 
 ## WeakMap/WeakSet
 
-### Weakとは
+[WeakMap][]と[WeakSet][]は、それぞれ`Map`と`Set`に対応したデータ構造を提供するビルトインオブジェクトです。
+Weakと名付けられているとおり、これらは**弱参照**（Weak Reference）を扱うためにカスタマイズされたマップとセットです。
 
-### ユースケース
+[弱参照][]とは、参照先のオブジェクトをガベージコレクションの対象外にしないための仕組みです。
+あるオブジェクトへの参照がすべて弱参照のとき、そのオブジェクトはいつでもガベージコレクタによって解放できます。
+弱参照は不要になったオブジェクトを参照し続けるときに発生するメモリリークを防ぐために使われます。
 
+### WeakMap
+
+`WeakMap`はキーへの参照を弱参照とするマップです。
+キーが解放されたときにエントリーも自動で削除されるので、不要なエントリーが残り続けることによるメモリリークを防ぐことができます。
+`WeakMap`のAPIはほとんど`Map`と変わりませんが、iterableではないので`keys`メソッドや`forEach`メソッドなどは存在しません。
+
+`WeakMap`のユースケースとしては、あるオブジェクトに紐づくデータの格納があります。
+親となるオブジェクトが自分自身をキーとしてデータを保持することで、親オブジェクトに依存するデータをメモリリークの心配なく保持できます。
+たとえば次のように、あるDOM要素に紐づくデータを`WeakMap`で保持しておけば、
+DOM要素が削除されたときに自動的にデータも削除されます。
+
+```js
+const weakMap = new WeakMap();
+const element = document.createElement("div");
+weakMap.set(element, {
+    createdAt: Date.now()
+});
+```
+
+### WeakSet
+
+`WeakSet`は値への参照を弱参照とするセットです。
+格納された値をガベージコレクタから保護しないので、不要な値が残り続けることによるメモリリークを防ぐことができます。
+`WeakSet`のAPIはほとんど`Set`と変わりませんが、`WeakMap`と同様にiterableではないので`keys`メソッドや`forEach`メソッドなどは存在しません。
+
+`WeakSet`のユースケースとしては、イベントエミッターのような仕組みを実装する際のイベントリスナーの格納があります。
+次の例のようにイベントリスナーを弱参照で管理しておけば、
+イベントエミッターのオブジェクトが解放されたときに自動的にイベントリスナーも解放できます。
+
+```js
+class EventEmitter {
+    constructor() {
+        this.listeners = new WeakSet();
+    }
+    addEventListener(listener) {
+        this.listeners.add(listener);
+    }
+}
+```
 
 [Map]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Map
 [same-value]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Equality_comparisons_and_when_to_use_them#Same-value_equality
 [Set]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Set
 [WeakMap]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/WeakMap
 [WeakSet]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/WeakSet
+[弱参照]: https://ja.wikipedia.org/wiki/%E5%BC%B1%E3%81%84%E5%8F%82%E7%85%A7
