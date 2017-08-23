@@ -8,7 +8,7 @@
     - [変数と宣言](basic/variables/README.md)
     - [値の評価と表示](basic/read-eval-print/README.md)
     - [データ型とリテラル](basic/data-type/README.md)
-    - [関数と宣言](basic/function-method/README.md)
+    - [関数と宣言](basic/function-declaration/README.md)
     - [文と式](basic/statement-expression/README.md)
     - [条件分岐](basic/condition/README.md)
     - [ループと反復処理](basic/loop/README.md)
