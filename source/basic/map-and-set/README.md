@@ -7,7 +7,7 @@ author: laco
 ## Map
 
 [Map][]はマップ型のデータ構造を提供するビルトインオブジェクトです。
-マップ型とは、ユニークなキーに値をマッピングして保持するコレクションのことをいいます。
+マップとは、キーと値の組み合わせを保持するコレクションのことをいいます。
 
 ### マップの作成とアクセス
 
@@ -183,13 +183,15 @@ console.log(map.get(NaN)); // => "value"
 ## Set
 
 [Set][]はユニークな値を格納するセット型のデータ構造を提供するビルトインオブジェクトです。
-セットと配列は似ていますが、セットはインデックスによるアクセスができない点と、
-同じ値は1つしか保持されない点が大きな違いです。
+セットとは、重複する値がないことを保証したコレクションのことをいいます。
+複数の値を保持するという点でセットは配列と似ています。
+ただし、重複する値を追加できない点と、インデックスで値にアクセスできない点が配列と違います。
 
 ### セットの作成とアクセス
 
 新しいセットを作成するには、`Set`のコンストラクタを使います。
-作成されたばかりのセットには何も保存されていないので、マップのサイズを返す`Set#size`プロパティは0を返します。
+作成されたばかりのセットは何ももっていません。
+そのため、セットのサイズを返す`Set#size`プロパティは0を返します。
 
 {{book.console}}
 ```js
@@ -201,20 +203,20 @@ console.log(set.size); // => 0
 
 セットにデータを追加するには、`Map#add`メソッドを使います。
 ただし、同一の値を存在する場合は無視されます。
-ある値がセットに保存されているかを確かめるには`Set#has`メソッドを使います。
+セットがある値をもっていることを確かめるには`Set#has`メソッドを使います。
 
 {{book.console}}
 ```js
 const set = new Set();
 // 値の追加
-set.add(1);
+set.add("a");
 console.log(set.size); // => 1
 // 重複する値は追加されない
-set.add(1);
+set.add("a");
 console.log(set.size); // => 1
 // キーの存在確認
-console.log(set.has(1)); // => true
-console.log(set.has(2)); // => false
+console.log(set.has("a")); // => true
+console.log(set.has("b")); // => false
 ```
 
 セットから特定の値を削除するには、`Set#delete`メソッドを使います。
@@ -223,64 +225,65 @@ console.log(set.has(2)); // => false
 {{book.console}}
 ```js
 const set = new Set();
-set.add(1);
-set.add(2);
+set.add("a");
+set.add("b");
 console.log(set.size); // => 2
-set.delete(1);
+set.delete("a");
 console.log(set.size); // => 1
 set.clear();
 console.log(set.size); // => 0
 ```
 
-#### データ全体へのアクセス
+#### セットを列挙する
 
-`Set`オブジェクトも、`Map`オブジェクトと同じようにデータ全体に反復処理を行うためのいくつかのメソッドを提供します。
+`Set`オブジェクトは配列と同じように、中身のデータを列挙するいくつかのメソッドを提供します。
 
-`Set#forEach`メソッドはセットに保存されたすべての値を挿入順に反復します。
-コールバック関数には引数として値、Setのインスタンスの2つが与えられます。
+`Set#forEach`メソッドはセットがもつすべての値を追加順に反復します。
+コールバック関数には引数として値、Setのインスタンスの2つが渡されます。
 
 {{book.console}}
 ```js
 const set = new Set();
-set.add(1);
-set.add(2);
+set.add("a");
+set.add("b");
 const results = [];
 set.forEach((value) => {
     results.push(value); 
 });
-console.log(results); // => [1,2]
+console.log(results); // => ["a","b"]
 ```
 
-`Set`オブジェクトはietrableオブジェクトなので、そのままfor...of文で反復できます。
+また、Setはiterableオブジェクトなので、for...of文を使って反復処理を行うこともできます。
+for...of文で`Set`のインスタンスを反復したときは、追加順に値が取り出されます。
 
 {{book.console}}
 ```js
 const set = new Set();
-set.add(1);
-set.add(2);
+set.add("a");
+set.add("b");
 const results = [];
 for (const value of set) {
     results.push(value);
 }
-console.log(results); // => [1,2]
+console.log(results); // => ["a","b"]
 ```
 
-`Map`オブジェクトと同じように`Set#keys`メソッドと`Set#values`メソッドがありますが、
-どちらの戻り値も値を挿入順に並べたIteratorオブジェクトで、for...of文で反復されるものと違いはありません。
+`Map`オブジェクトと同じように、`Set#keys`メソッドと`Set#values`メソッドがあります。
+ただし、どちらの戻り値も値を挿入順に並べたIteratorオブジェクトで、for...of文で反復されるものと違いはありません。
 
-`Set#entries`メソッドも`Map#entries`メソッドと同じようにエントリーのIteratorオブジェクトを返しますが、
-エントリーのキーは値と同じになります。
+`Set#entries`メソッドも`Map#entries`メソッドと同じようにエントリーのIteratorオブジェクトを返します。
+ただし、エントリーのキーは値と同じになります。
 
 {{book.console}}
 ```js
 const set = new Set();
-set.add(1);
-set.add(2);
+set.add("a");
+set.add("b");
 const results = [];
 for (const [key, value] of set.entries()) {
     results.push(`${key}:${value}`);
 }
-console.log(results); // => ["1:1","2:2"]
+console.log(results); // => ["a:a","b:b"]
 ```
 
 ## WeakMap/WeakSet
