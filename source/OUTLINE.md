@@ -361,6 +361,10 @@
 	- 値の受け渡し `function`
 	- コピー `=` (特にこれはオブジェクト側に統一した方法がないという問題がある)
 	- 比較 `===` @done
+- 関数名
+	- https://asciidwango.github.io/js-primer/basic/function-method/
+	- 関数名を取得するFunction#nameについては触れていない
+	- これはReflection APIなのでminifyで壊れることについては触れたい
 
 ## ラッパーオブジェクト
 
@@ -414,10 +418,9 @@ console.log(array.slice(4, 1)); // => []
     - 対策: ライブラリを利用した方法
 	    - immutable-array-prototypeやlodash、immutable.jsなど多用なライブラリが存在しています。
 
-## Array-like
+## 配列: Array-like
 
 - 目的: Arrayのようなオブジェクトについて知る
-<<<<<<< Updated upstream
 - 問題点: JavaScriptには配列のように扱えるが配列ではない、Array-likeと呼ばれるオブジェクトがあります。Array-likeオブジェクトとは配列のようにインデックスでアクセスでき、配列のように`length`プロパティも持っていますが、配列のメソッドは持っていないただのオブジェクトのことを言います。
 	- 具体的なコード例
 - 具体例: Array-likeオブジェクトの例として`arguments`があります。
@@ -433,26 +436,14 @@ console.log(array.slice(4, 1)); // => []
 	- なぜ: Array-likeは配列の便利なメソッドがないため、forループなどで展開しないといけないの手間となるため。
 	- Array-likeを配列に変換することで配列と同じように便利なメソッドがりようできるので配列に変換してから処理することが多い。
 
-## map/filter/reduce
+## 配列: map/filter/reduce
 
 - [ ] map
 - [x] forEach
-=======
-- 問題点: 配列はオブジェクトの一種だが、オブジェクトで配列のようなオブジェクトも存在する。これをArray-likeと呼ぶ
-	- 具体例: `arguments`やHTML
-	- `Array.isArray`を使うことで実際の配列かどうかを判定できるが
-- Array-likeは配列用にプロパティへアクセスできるけど、Arrayのメソッドを持っていない
-- そのため配列に変換することで簡単に扱える
-
-## forEach/map/filter/reduce
-
-- [x] forEach
-- [ ] map
->>>>>>> Stashed changes
 - [x] filter
 - [x] reduce
 
-## メソッドチェーン
+## 配列: メソッドチェーン
 
 - 目的: 配列でよく見かけるパターンであるメソッドチェーンがどのような原理で動いてるかを知る。
 - 配列でメソッドチェーンを利用するのは処理を一つのまとまりとして定義し、繋げることができるから
@@ -466,15 +457,197 @@ console.log(array.slice(4, 1)); // => []
 - 有名なところではjQueryはメソッドチェーンを多用したライブラリです。
 - 配列には配列を返すメソッドとしてArray#mapやArray#filterがありこれを利用した配列の加工処理がメソッドチェーンで書かれることが多いです。
 
-<<<<<<< Updated upstream
-=======
+
+-----
+
+## 関数
+
+関数の宣言については[関数と宣言 · JavaScriptの入門書 #jsprimer](https://asciidwango.github.io/js-primer/basic/function-method/ "関数と宣言 · JavaScriptの入門書 #jsprimer")で紹介している。
+宣言は単なるシンタックスなので、関数の機能や挙動についてを目的にした章。
+
+- [[meta] function/関数 · Issue #112 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/112 "[meta] function/関数 · Issue #112 · asciidwango/js-primer")
+- 関数の役割
+- https://github.com/bpesquet/thejsway/blob/master/manuscript/chapter05.md#introduction-the-role-of-functions
+
+
+## 関数の目的
+
+- 目的: なぜ関数学ぶ必要があるのか
+- アプリケーションを作る場合において、用意された処理だけでは足りません。
+- そのため目的に沿った関数を自分で作成する必要があります
+- そもそも関数とはある入力に対してある出力を作り出し返すものです
+- 目的に沿ったものを作れるようになるには、様々な関数の機能を知ることが大切です。
+- またある目的ことにパターンが存在し、これはオブジェクト指向プログラミングや関数型プログラミングなど
+- **目的: 関数を使った小さなユースケースを満たすプログラミングを考える**
+
+## 関数の章の分解
+
+- [x] 関数の宣言
+- 関数とスコープ
+	- var,let,const
+- 関数の呼び出し
+	- this,new.target
+- クラス
+	- prototype
+
+## スコープ: var,let,const
+
+- 目的: 関数の中から変数へアクセスするとどのような動きをするのかを理解する
+
+### スコープの要素
+
+- 機能: 関数はスコープを作り出します
+- スコープを賢く使うことで読みやすいコードを書くことができ、また意図しない
+- 命名：そのときにブロックを使っているこれがいわゆるスコープ
+- 名前解決: スコープの中にある変数は外からアクセスできない
+	- 引数はスコープの中にある変数?なので外からはアクセスできない
+		- 例外: argument.callee.caller
+- 機能: 逆にスコープの中から外にある変数へアクセスすることはできる
+- 具体例: swithchをスコープに閉じ込めて結果だけを取り返す方法
+- 誤解: スコープの中にある変数は、その関数が終了したから消えるわけではない。
+- 実際: アクセスがなくなったときに初めて消える = ガーベージコレクション
+	- 確認: ガーベージコレクションは仕様ではどのような表現?
+- 分類: 静的なスコープと動的なスコープ
+	- ある変数がどのスコープにあるのかは見て分かる
+	- スコープには関数スコープ、catchのスコープなど何種類化ある
+	- 基本的には `{ }`で囲まれたブロック
+	- スコープにLexiacal Envという変数が作成され、変数はこのEnvに紐付けられる
+	- 静的なスコープ
+		- functionや
+	- http://azu.github.io/annotation-memo/es6-draft/
+- 関連: スコープと変数宣言
+	- スコープと変数宣言には大きな関連があります。
+	- なぜなら`let`や`const`、`function`文などはすべてそのスコープへ変数を宣言して値を関連付けるたです
+- 分類: グローバルスコープ
+	- global
+	- [x] 確認: 仕様ではどのような言及
+	- https://tc39.github.io/ecma262/#sec-global-environment-records
+- 分類: ブロックスコープ
+- 機能: スコープチェイン
+- 名前解決: スコープ間で同じ変数の定義とshadowing
+- [コラム] スコープは小さく、変数の影響範囲は小さく
+	- 変数を不用意にグローバルに書いてしまうと影響範囲がお多い
+	- そのため必要なスコープで必要な変数を定義する
+	- 複数のスコープで共有する変数は?
+		- => いわゆるデザインパターンの世界
+	- 必要なスコープで必要な変数を定義する
+- 活用: クロージャー
+	- 変数の生きてる例
+	- クロージャーはファクトリと言えるかも
+		- <http://www.sbcr.jp/products/4797388640.html>
+	- ファクトリをその場で作って定義は捨てるIIFE
+	- 正規表現の初期化
+- [コラム] hoisting、funcitionとvar fn =function、TDZ
+- 未使用
+	- 参照できない変数を参照した時のエラー
+
+**Note**:
+
+スコープの説明パターン
+
+- コードで説明する
+	- 初めてのJavaScript
+- 図で説明する
+	- JavaScript本格入門
+	- [You-Dont-Know-JS/ch1.md at 31e1d4ff600d88cc2ce243903ab8a3a9d15cce15 · getify/You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS/blob/31e1d4ff600d88cc2ce243903ab8a3a9d15cce15/scope%20%26%20closures/ch1.md "You-Dont-Know-JS/ch1.md at 31e1d4ff600d88cc2ce243903ab8a3a9d15cce15 · getify/You-Dont-Know-JS")
+- 擬似コードで説明する
+	- 仕様をコードにする
+
+
+## 関数とスコープ: なぜスコープは大事？
+
+- スコープと名前解決
+    - プログラミングで重要な概念は値を変数に保存して、必要なときに取り出して使うことです
+    - 関数も値であるので、関数を変数に保存して、必要な処理を再利用できます
+    - しかし変数は同じ名前をスコープに宣言することはできません
+    - 何かアプリケーションを作成する際に、あらゆるところから取り出す必要がある値よりも一時的な値、つまり一時的な変数の方が多いです
+    - つまり、ひとつのグローバルスコープへすべての変数を定義する必要性はありません
+    - むしろ変数は必要なスコープの中でのみ扱い、その中で完結することが見た目どおりのコードへつながります
+- 関数とプログラミング
+    - 関数を使わなくてもプログラミングはできます
+    - 多くのプログラミング言語は人間が書くために作られたものです
+    - すべての処理を関数を使わずに書くこともできその処理結果は同等です
+    - しかし次のように関数を使うことで人間が読んで分かるコードを書きやすくなる
+
+
+
+## 関数とスコープ: 未使用
+
+- スコープは**静的**に決定される
+	- そのため見た目よりははるかに分かりやすい
+	- 開眼JavaScript参照
+- ScopeとEnviroment
+	- scopeによって定義されたenviroment
+	- EnvironmentはRecordから構成される
+	- inner env -> outer envによりスコープチェインという現象が起きる
+	- <https://tc39.github.io/ecma262/#sec-lexical-environments>
+- Scope chain
+	- https://tc39.github.io/ecma262/#sec-newdeclarativeenvironment
+	- スコープを作成するときにouter lexicale envへのリファレンスを
+- A global environment is a Lexical Environment
+	- GlobalもLexicalの一種
+	- globalはouterがnull
+- Envの種類
+	- <https://tc39.github.io/ecma262/#table-23>
+	- LexicalEnv
+		- letやconst、classはこちらに登録する
+		- https://tc39.github.io/ecma262/#sec-let-and-const-declarations
+	- VariableEnv
+		- varはこちらに登録する
+		- https://tc39.github.io/ecma262/#sec-variable-statement
+	- この２つのenvは同じことがあり、実行Contextに紐づく
+- module environment もあるよ
+	- module envはglobal envとなることがある
+- function environment は`this`の新しいバインディングを作成する
+- GlobalとLocal Scope?
+	- Localという言葉を使うことでの矛盾が起きるかどうか
+	- 仕様ではLocalはない、Globalはある
+	- lexical scopeという分類のうち、色々あるという体後
+	- var 命令を使わずに宣言された変数はすべてグローバル変数と見なす
+- Global scopeのメタファ
+	- https://github.com/getify/You-Dont-Know-JS/blob/31e1d4ff600d88cc2ce243903ab8a3a9d15cce15/scope%20%26%20closures/ch1.md#building-on-metaphors
+
+擬似コードでのスコープ
 
 ```js
-var items = [
-	{ name: "JavaScriptの本", age: 1997 },
-    { name: "hana", age: 32}	
-];
-var age30Over = persons.filter(person => person.age > 30);
-var names = age30Over.map(person => person.name);
+const globalScope = {
+    outer: null, // <= globalより外側のスコープはないためnull
+    envRec: new Map(), // <= envRecはスコープ毎に作られる
+};
+// globalスコープには`outer`変数が定義されていり
+// 変数はglobalスコープのenvRecに記録される
+globalScope.envRec.set("outer", "out");
+
+// function宣言により関数fnのスコープを作成する
+const fnScope = {
+    outer: globalScope, // <= 現在の実装スコープ = globalScope
+    envRec: new Map() // <= envRecはスコープ毎に作られる
+};
+// function fnの中の変数処理
+// `arg` 仮引数はfnScopeのenvRecに記録される
+fnScope.envRec.set("arg", 1);
+// 関数スコープ内で宣言された`inter`変数もfnScopeのenvRecにされる
+fnScope.envRec.set("inter", "in");
+// fnScopeのなかで`outer`変数を参照する
+// この時のcurrentScopeはfnScope
+getValue("outer", fnScope);
+
+function getValue(variableName, currentScope) {
+    if (!currentScope) {
+        throw new Error(`変数:${variableName}は定義されていません`);
+    }
+    // 現在のScopeのenvRecに変数が定義されているならそのenvRecから取り出す
+    if (currentScope.envRec.has(variableName)) {
+        return currentScope.envRec.get(variableName);
+    } else {
+        // ない場合は、outerのscopeに訪ねに行く
+        return getValue(variableName, currentScope.outer);
+    }
+}
 ```
->>>>>>> Stashed changes
+
+## Arrow Functionとthis
+
+- Arrow Functionでは`this`が`[[ThisMode]]`が`lexical`になる
+- https://tc39.github.io/ecma262/#sec-functioninitialize
+- lexicalではもっとも近いfunctionを参照するようになる = 
