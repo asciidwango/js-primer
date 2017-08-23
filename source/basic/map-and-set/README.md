@@ -289,17 +289,31 @@ console.log(results); // => ["a:a","b:b"]
 ## WeakMap/WeakSet
 
 [WeakMap][]と[WeakSet][]は、それぞれ`Map`と`Set`に対応したデータ構造を提供するビルトインオブジェクトです。
-Weakと名付けられているとおり、これらは**弱参照**（Weak Reference）を扱うためにカスタマイズされたマップとセットです。
+Weakと名付けられているとおり、これらはマップとセットに**弱い参照**（Weak Reference）を導入したものです。
 
-[弱参照][]とは、参照先のオブジェクトをガベージコレクションの対象外にしないための仕組みです。
-あるオブジェクトへの参照がすべて弱参照のとき、そのオブジェクトはいつでもガベージコレクタによって解放できます。
-弱参照は不要になったオブジェクトを参照し続けるときに発生するメモリリークを防ぐために使われます。
+[弱い参照][]とは、参照先のオブジェクトをガベージコレクションの対象外にしないための仕組みです。
+あるオブジェクトへの参照がすべて弱い参照のとき、そのオブジェクトはいつでもガベージコレクタによって解放できます。
+弱い参照は不要になったオブジェクトを参照し続けるときに発生するメモリリークを防ぐために使われます。
 
 ### WeakMap
 
-`WeakMap`はキーへの参照を弱参照とするマップです。
-キーが解放されたときにエントリーも自動で削除されるので、不要なエントリーが残り続けることによるメモリリークを防ぐことができます。
+`WeakMap`はキーへの参照を弱い参照とするマップです。
 `WeakMap`のAPIはほとんど`Map`と変わりませんが、iterableではないので`keys`メソッドや`forEach`メソッドなどは存在しません。
+次の例のように、キーが解放されたときにエントリーも自動で削除されます。
+そのため、不要なエントリーが残り続けることによるメモリリークを防ぐことができます。
+
+{{book.console}}
+```js
+let key = {};
+const weakMap = new WeakMap();
+weakMap.set(key, "value");
+// keyが参照するオブジェクトはまだ存在する
+console.log(weakMap.has(key)); // => true
+// keyが参照するオブジェクトが変わった
+key = {};
+// 自動的にweakMapから消える
+console.log(weakMap.has(key)); // => false
+```
 
 `WeakMap`のユースケースとしては、あるオブジェクトに紐づくデータの格納があります。
 親となるオブジェクトが自分自身をキーとしてデータを保持することで、親オブジェクトに依存するデータをメモリリークの心配なく保持できます。
@@ -316,12 +330,26 @@ weakMap.set(element, {
 
 ### WeakSet
 
-`WeakSet`は値への参照を弱参照とするセットです。
-格納された値をガベージコレクタから保護しないので、不要な値が残り続けることによるメモリリークを防ぐことができます。
-`WeakSet`のAPIはほとんど`Set`と変わりませんが、`WeakMap`と同様にiterableではないので`keys`メソッドや`forEach`メソッドなどは存在しません。
+`WeakSet`は値への参照を弱い参照とするセットです。
+`WeakSet`のAPIはほとんど`Set`と変わりませんが、iterableではないので`keys`メソッドや`forEach`メソッドなどは存在しません。
+次の例のように、格納された値が解放されたときに自動で削除されます。
+そのため、不要な値が残り続けることによるメモリリークを防ぐことができます。
+
+{{book.console}}
+```js
+let value = {};
+const weakSet = new WeakSet();
+weakSet.add(value);
+// valueが参照するオブジェクトはまだ存在する
+console.log(weakSet.has(value)); // => true
+// valueが参照するオブジェクトが変わった
+value = {};
+// 自動的にweakSetから消える
+console.log(weakSet.has(value)); // => false
+```
 
 `WeakSet`のユースケースとしては、イベントエミッターのような仕組みを実装する際のイベントリスナーの格納があります。
-次の例のようにイベントリスナーを弱参照で管理しておけば、
+次の例のようにイベントリスナーを弱い参照で保持しておけば、
 イベントエミッターのオブジェクトが解放されたときに自動的にイベントリスナーも解放できます。
 
 ```js
@@ -340,4 +368,4 @@ class EventEmitter {
 [Set]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Set
 [WeakMap]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/WeakMap
 [WeakSet]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/WeakSet
-[弱参照]: https://ja.wikipedia.org/wiki/%E5%BC%B1%E3%81%84%E5%8F%82%E7%85%A7
+[弱い参照]: https://ja.wikipedia.org/wiki/%E5%BC%B1%E3%81%84%E5%8F%82%E7%85%A7
