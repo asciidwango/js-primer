@@ -21,7 +21,7 @@ JavaScriptでは、プリミティブ型のデータ以外はすべてオブジ�
 typeof ["A", "B", "C"]; // => "object"
 ```
 
-しかし、`Object`のインスタンスにはない`Array#map`などのメソッドや特殊な動作を持っています。
+しかし、`Object`のインスタンスにはない`Array#forEach`などのメソッドや特殊な動作を持っています。
 
 その特殊な動作が`length`プロパティです。
 配列には複数の要素を格納できますが、`length`プロパティはその配列の要素数を返します。
@@ -589,7 +589,7 @@ Array-likeオブジェクトとは配列のようにインデックスにアク�
 | ------------------------------ | ---------------- | ----- |
 | インデックスアクセス（`array[0]`)         | できる              | できる   |
 | 長さ（`array.length`) 　      | 持っている            | 持っている |
-| Arrayメソッド(`Array#map`など) | 持っていない場合もある      | 持っている |
+| Arrayメソッド(`Array#forEach`など) | 持っていない場合もある      | 持っている |
 
 Array-likeオブジェクトの例として`arguments`があります。
 `aguments`オブジェクトは、`function`で宣言した関数の中から参照できる変数です。
@@ -602,7 +602,7 @@ function myFunc() {
     console.log(arguments[1]); // => "b" 
     console.log(arguments[2]); // => "c" 
     // 配列ではないため、配列のメソッドは持っていない
-    console.log(typeof arguments.map); // => "undefined"
+    console.log(typeof arguments.forEach); // => "undefined"
 }
 myFunc("a", "b", "c");
 ```
@@ -635,9 +635,59 @@ function myFunc() {
 myFunc("a", "b", "c");
 ```
 
-## 高階関数とメソッドチェーン
-## パターン: nullを返さずに配列を返す
+## メソッドチェーンと高階関数
+
+配列で頻出するパターンとしてメソッドチェーンがあります。
+メソッドチェーンとは名前のとおり、メソッドの呼び出しを行いその結果の値に対してさらにメソッドを呼び出すパターンのことを言います。
+次のコードでは、`Array#concat`メソッドの返り値、つまり配列に対してさらに`concat`メソッドを呼び出すというメソッドチェーンが行われています。
+
+```js
+const array = ["a"].concat("b").concat("c");
+console.log(array); // => ["a", "b", "c"]
+```
+
+このコードの`concat`メソッドの呼び出しを分解してみると何がおこなわれているのか分かりやすいです。
+`concat`メソッドの返り値は結合した新しい配列です。先ほどのメソッドチェーンでは、その新しい配列に対してさらに`concat`メソッドで値を結合しているということが分かります。
+
+```js
+// メソッドチェーンを分解した例
+const abArray = ["a"].concat("b");
+console.log(abArray); // => ["a", "b"]
+const abcArray = abArray.concat("c");
+console.log(abcArray); // => ["a", "b", "c"]
+```
+
+メソッドチェーンを利用することで処理の見た目を簡潔にできます。メソッドチェーンを利用した場合も最終的な処理結果は同じですが、途中の一時的な変数を省略できます。先ほどの例では`abArray`という一時的な変数をメソッドチェーンでは省略できています。
+
+メソッドチェーンは配列に限ったものではありませんが、配列では頻出するパターンです。なぜなら、配列に含まれるデータを表示する際には、最終的に文字列や数値など別のデータへ加工することが殆どであるためです。配列には配列を返す高階関数が多く実装されているため、配列を柔軟に加工できます。配列を返すことができる高階関数（関数を引数に受け取るメソッド）としては`Array#map`、`Array#filter`などがあります。
+
+次のコードでは、ECMAScriptのバージョン名と発行年数が定義された`ecmascriptVersions`という配列が定義されています。この配列から`2000`年以前に発行されたECMAScriptのバージョン名の一覧を取り出すことを考えてみます。目的の一覧を取り出すには「2000年以前のデータに絞り込む」と「データから`name`を取り出す」という2つの加工処理を組み合わせる必要があります。
+それぞれ、`Array#filter`メソッドで配列から`2000`年以前というルールで絞り込み、`Array#map`メソッドでそれぞれの要素から`name`プロパティを取り出せます。どちらのメソッドも配列を返すのでメソッドチェーンで処理を繋げることができます。
+
+```js
+// ECMAScriptのバージョン名と発行年
+const ecmascriptVersions = [
+    { name: "ECMAScript 1", year: 1997 },
+    { name: "ECMAScript 2", year: 1998 },
+    { name: "ECMAScript 3", year: 1999 },
+    { name: "ECMAScript 5", year: 2009 },
+    { name: "ECMAScript 5.1", year: 2011 },
+    { name: "ECMAScript 2015", year: 2015 },
+    { name: "ECMAScript 2016", year: 2016 },
+    { name: "ECMAScript 2017", year: 2017 },
+];
+// メソッドチェーンで必要な加工処理を並べている
+const versionNames = ecmascriptVersions
+    // 2000年以下のデータに絞り込み
+    .filter(ecmascript => ecmascript.year <= 2000)
+    // それぞれの要素から`name`プロパティを取り出す
+    .map(ecmacript => ecmascript.name);
+console.log(versionNames); // => ["ECMAScript 1", "ECMAScript 2", "ECMAScript 3"]
+```
+
+メソッドチェーンを使うことで複数の処理からなるものをひとつのまとった処理のように見せることができます。長過ぎるメソッドチェーンは長すぎる関数と同じように読みにくくなりますが、適度な単位のメソッドチェーンは処理をスッキリ見せるパターンとして利用されています。配列以外にもメソッドチェーンは利用されることがあり[jQuery][]はDOM APIに対する処理をメソッドチェーンで書けるようにしたライブラリとして著名です。
 
 [immutable-array-prototype]: https://github.com/azu/immutable-array-prototype  "azu/immutable-array-prototype: A collection of Immutable Array prototype methods(Per method packages)."
 [Lodash]: https://lodash.com/  "Lodash"
 [Immutable.js]: https://facebook.github.io/immutable-js/  "Immutable.js"
+[jQuery]: http://jquery.com/  "jQuery"
