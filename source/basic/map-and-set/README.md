@@ -214,7 +214,7 @@ console.log(set.size); // => 1
 // 重複する値は追加されない
 set.add("a");
 console.log(set.size); // => 1
-// キーの存在確認
+// 値の存在確認
 console.log(set.has("a")); // => true
 console.log(set.has("b")); // => false
 ```
