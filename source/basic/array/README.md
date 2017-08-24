@@ -17,6 +17,7 @@ JavaScriptでは、プリミティブ型のデータ以外はすべてオブジ�
 そのため、配列もオブジェクトの一種です。
 このことは、`typeof`演算子の結果を見てみることでもわかります。
 
+{{book.console}}
 ```js
 typeof ["A", "B", "C"]; // => "object"
 ```
@@ -26,6 +27,7 @@ typeof ["A", "B", "C"]; // => "object"
 その特殊な動作が`length`プロパティです。
 配列には複数の要素を格納できますが、`length`プロパティはその配列の要素数を返します。
 
+{{book.console}}
 ```js
 const array = ["A", "B", "C"];
 console.log(array.length); // => 3
@@ -35,6 +37,7 @@ console.log(array.length); // => 3
 `length`プロパティへ値を代入は配列の要素を削除することに利用されることがあります。
 配列の`length`プロパティは特殊な動作となっているため、後ほど解説します。
 
+{{book.console}}
 ```js
 const array = ["A", "B", "C"];
 array.length = 0; // 配列を空にする
@@ -46,6 +49,7 @@ console.log(array); // => []
 配列の`length`プロパティは特殊な動作をしますが、独自の`length`プロパティを持ったオブジェクトを作ることができます。
 この２つのオブジェクトの違いはどのように見分ければいいのでしょうか？
 
+{{book.console}}
 ```js
 // 配列
 const array = [];
@@ -61,6 +65,7 @@ const object = {
 そのため、あるオブジェクトが配列なのかを知りたい場合には、`Array.isArray`メソッドを利用します。
 `Array.isArray`メソッドは引数が配列ならば`true`を返します。
 
+{{book.console}}
 ```js
 const array = [];
 console.log(Array.isArray(array)); // => true
@@ -89,6 +94,7 @@ JavaScriptで配列といった場合には`Array`を示します。
 配列の作成には配列リテラルを使うのが簡単です。
 配列リテラル（`[`と`]`）の中に要素をカンマ（`,`）区切りで記述するだけです。
 
+{{book.console}}
 ```js
 const emptyArray = [];
 const numbers = [1, 2, 3];
@@ -102,6 +108,7 @@ const matrix = [
 そのインデックスにある要素を配列から読み取ることができます。
 配列の先頭要素のインデックスは`0`となります。配列のインデックスは、`0`以上`2^32 - 1`未満の整数となります。
 
+{{book.console}}
 ```js
 const array = ["one", "two", "three"];
 console.log(array[0]); // => "one"
@@ -110,6 +117,7 @@ console.log(array[0]); // => "one"
 先ほど学んだように、配列の`length`プロパティは配列の要素の数を返します。
 そのため、配列の最後の要素へアクセスするには `array.length - 1` をインデックスとして指定します。
 
+{{book.console}}
 ```js
 const array = ["one", "two", "three"];
 console.log(array[array.length - 1]); // => "three"
@@ -118,6 +126,7 @@ console.log(array[array.length - 1]); // => "three"
 一方、存在しないインデックスにアクセスした場合はどうなるでしょうか？
 多くの言語では、配列の存在しないインデックスへアクセスするとエラーなりますが、JavaScriptでは`undefined`が返ってきます。
 
+{{book.console}}
 ```js
 const array = ["one", "two", "three"];
 console.log(array[100]); // => undefined
@@ -126,6 +135,7 @@ console.log(array[100]); // => undefined
 これは、配列がオブジェクトであることを考えると、次のように存在しないプロパティへのアクセスと同じということが分かります。
 オブジェクトでも、存在しないプロパティへのアクセスした場合には`undefined`が返ってきます。
 
+{{book.console}}
 ```js
 const object = {
     "0": "one",
@@ -143,6 +153,7 @@ console.log(object[100]); // => undefined
 このような、配列の中に隙間があるものを**疎な配列**と呼びます。
 一方、隙間がなくすべてのインデックスに要素がある配列を**密な配列**と呼びます。
 
+{{book.console}}
 ```js
 // 未定義の箇所が1つ含まれる疎な配列
 const sparseArray = [1,, 3];
@@ -156,6 +167,7 @@ console.log(sparseArray[1]); // => undefined
 疎な配列で該当するインデックスに要素がない場合は`undefined`を返します。
 しかし、JavaScriptに`undefined`値も存在するため、配列に`undefined`値がある場合に区別できません。
 
+{{book.console}}
 ```js
 // 要素として`undefined`を持つ密な配列
 const denseArray = [1, undefined, 3];
@@ -168,6 +180,7 @@ console.log(sparseArray[1]); // => undefined
 この違いを見つける方法として利用できるのが`Object#hasOwnProperty`メソッドです。
 `hasOwnProperty`メソッドを使うことで、配列の指定したインデックスに要素自体が存在するかを判定できます。
 
+{{book.console}}
 ```js
 const denseArray = [1, undefined, 3];
 const sparseArray = [1, , 3];
@@ -198,6 +211,7 @@ console.log(sparseArray.hasOwnProperty(1)); // => false
 `indexOf`メソッドは先頭から探索して見つかった要素のインデックスを返します。
 `indexOf`メソッドには対となる`Array#lastIndexOf`メソッドがあり、`lastIndexOf`メソッドは末尾から探索した結果を得ることができます。
 
+{{book.console}}
 ```js
 const array = ["Java", "JavaScript", "Ruby"];
 const indexOfJS = array.indexOf("JavaScript");
@@ -211,6 +225,7 @@ console.log(array.indexOf("JS")); // => -1
 次のコードを見ると、同じプロパティをもつ異なるオブジェクトは、`indexOf`メソッドでは見つけることができません。
 これは、異なる参照をもつオブジェクト同士は`===`で比較しても一致しないためです。
 
+{{book.console}}
 ```js
 const object = { key: "value" };
 const array = ["A", "B", object];
@@ -226,6 +241,7 @@ console.log(array.indexOf(object)); // => 2
 `indexOf`メソッドとは異なり、テストする処理を自由に書くことができます。
 これにより、異なるオブジェクトだが値が同じという要素を配列から見つけて、その要素のインデックスを得ることができます。
 
+{{book.console}}
 ```js
 // colorプロパティを持つオブジェクトの配列
 const colors = [
@@ -253,6 +269,7 @@ console.log(colors[indexOfBlue]); // => { "color": "blue" }
 `find`メソッドは、`findIndex`メソッドと同様にテストする関数をコールバック関数として渡します。
 `find`メソッドの返り値は、要素そのものとなり、要素が存在しない場合は`undefined`を返します。
 
+{{book.console}}
 ```js
 // colorプロパティを持つオブジェクトの配列
 const colors = [
@@ -275,6 +292,7 @@ console.log(array.find((object) => object.color === "white")); // => undefined
 `slice`メソッドは第一引数に開始位置、第二引数に終了位置を指定することで、その範囲を取り出した新しい配列を返します。
 第二引数は省略でき、省略した場合は配列の末尾が終了位置となります。
 
+{{book.console}}
 ```js
 const array = ["A", "B", "C", "D", "E"];
 // インデックス1から4の範囲を取り出す
@@ -300,6 +318,7 @@ console.log(array.slice(4, 1)); // => []
 `indexOf`メソッドの結果を`indexOfJS`に代入していますが、含まれているかを判定する以外には利用していません。
 コードを隅々まで読まないといけないため、意図が明確ではなくコードの読みづらさにつながります。
 
+{{book.console}}
 ```js
 const array = ["Java", "JavaScript", "Ruby"];
 // `indexOf`メソッドは含まれていないときのみ`-1`を返すことを利用
@@ -316,6 +335,7 @@ if (indexOfJS !== -1) {
 `includes`メソッドは真偽値を返すので、`indexOf`メソッドを使った場合に比べて意図が明確になります。
 そのため、前述のコードは次のように`includes`メソッドを使うべきでしょう。
 
+{{book.console}}
 ```js
 const array = ["Java", "JavaScript", "Ruby"];
 // `includes`は含まれているなら`true`を返す
@@ -330,6 +350,7 @@ if (array.includes("JavaScript")) {
 `Array#some`メソッドはテストする関数をコールバック関数にマッチする要素があるなら`true`を返し、存在しない場合は`false`を返します。
 （[ループと反復処理](../loop/README.md#array-some)を参照）
 
+{{book.console}}
 ```js
 // colorプロパティを持つオブジェクトの配列
 const colors = [
@@ -351,6 +372,7 @@ console.log(isIncludedBlueColor); // => true
 要素を配列の末尾へ追加するには`Array#push`が利用できます。
 一方、末尾から要素を削除するには`Array#pop`が利用できます。
 
+{{book.console}}
 ```js
 const array = ["A", "B", "C"];
 array.push("D"); // "D"を末尾に追加
@@ -363,6 +385,7 @@ console.log(array); // => ["A", "B", "C"]
 要素を配列の先頭へ追加するには`Array#unshift`が利用できます。
 一方、配列の先頭から要素を削除するには`Array#shift`が利用できます。
 
+{{book.console}}
 ```js
 const array = ["A", "B", "C"];
 array.unshift("S"); // "S"を先頭に追加
@@ -376,6 +399,7 @@ console.log(array); // => ["A", "B", "C"]
 
 `Array#concat`メソッドを使うことで配列と配列を結合した新しい配列を作成できます。
 
+{{book.console}}
 ```js
 const array = ["A", "B", "C"];
 const newArray = array.concat(["D", "E"]);
@@ -384,6 +408,7 @@ console.log(newArray); // => ["A", "B", "C", "D", "E"]
 
 また、`concat`メソッドは配列だけではなく任意の値を要素として結合できます。
 
+{{book.console}}
 ```js
 const array = ["A", "B", "C"];
 const newArray = array.concat("新しい要素");
@@ -401,6 +426,7 @@ console.log(newArray); // => ["A", "B", "C", "新しい要素"]
 `Array#splice`メソッドを利用すると、削除した要素を自動で詰めることができます。
 `Array#splice`メソッドは、`index`番目から`削除する数`だけ要素を取り除き、必要ならば要素を同時に追加できます。
 
+{{book.console}}
 ```js
 const array = [];
 array.splice(インデックス, 削除する要素数);
@@ -411,6 +437,7 @@ array.splice(インデックス, 削除する要素数, ...追加する要素);
 たとえば、配列のインデックスが`1`の要素を削除するには、インデックス`1`から`1`つの要素を削除するという指定をする必要があります。
 このとき、削除した要素は自動で詰められるため、疎な配列にはなりません。
 
+{{book.console}}
 ```js
 const array = [1, 2, 3];
 // 1番目から1つの要素を削除
@@ -428,6 +455,7 @@ console.log(array.length); // => 0
 配列のすべての要素を削除することは`Array#splice`で行うことができますが、
 配列の`length`プロパティへの代入を利用した方法もあります。
 
+{{book.console}}
 ```js
 const array = [1, 2, 3];
 array.length = 0; // 配列を空にする
@@ -442,6 +470,7 @@ console.log(array); // => []
 さいごに、その配列の要素を削除するのではなく、新しい空の配列を変数へ代入する方法です。
 次のコードでは、`array`変数に空の配列を代入することで、`array`は空の配列を参照させることができます。
 
+{{book.console}}
 ```js
 let array = [1, 2, 3];
 console.log(array.length); // => 3
@@ -469,6 +498,7 @@ console.log(array.length); // => 0
 `push`メソッドは、`myArray`の配列そのものへ要素を追加しています。
 その結果`myArray`の参照する配列が変更されるため破壊的なメソッドです。
 
+{{book.console}}
 ```js
 const myArray = ["A", "B", "C"];
 const result = myArray.push("D"); 
@@ -484,6 +514,7 @@ console.log(myArray); // => ["A", "B", "C", "D"]
 `concat`メソッドは、`myArray`をコピーした配列に対して要素を結合しその配列を返します。
 その結果`myArray`の参照する配列は変更されないため非破壊的なメソッドです。
 
+{{book.console}}
 ```js
 const myArray = ["A", "B", "C"];
 // `concat`の返り値は結合済みの新しい配列
@@ -516,7 +547,7 @@ JavaScriptにおいて破壊的なメソッドと非破壊的メソッドを名�
 
 破壊的メソッドは意図せぬ副作用を与えてしまうことがあるため、そのことを意識して利用する必要があります。たとえば、配列から特定のインデックスの要素を削除する`removeAtIndex`という関数を提供したいとします。
 
-```js
+```
 // `array`の`index`番目の要素を削除した配列を返す関数
 function removeAtIndex(array, index) { /* 実装 */ }
 ```
@@ -524,6 +555,7 @@ function removeAtIndex(array, index) { /* 実装 */ }
 次のように破壊的なメソッドである`Array#splice`メソッドで要素を削除すると、引数として受け取った配列にも影響を与えます。この場合`removeAtIndex`関数には副作用があるため、破壊的であることについてのコメントがあると親切です。
 
 
+{{book.console}}
 ```js
 // `array`の`index`番目の要素を削除した配列を返す関数
 // 引数の`array`は破壊的に変更される
@@ -541,11 +573,10 @@ console.log(array); // => ["A", "C"]
 
 一方、非破壊的メソッドは配列のコピーを作成するため元々の配列に対して影響はありません。
 この`removeAtIndex`関数を非破壊的ものにするには、受け取った配列をコピーしてから変更を加える必要があります。
-JavaScriptには`copy`メソッドは存在しませんが、配列をコピーする機能をもつメソッドが存在します。
 
-配列のコピー方法として`Array#slice`メソッドと`Array#concat`メソッドがよく利用されています。
-`slice`メソッドと`concat`メソッドは引数なしで呼び出すと、その配列のコピーを返します。
+JavaScriptには`copy`メソッドはそのもの存在しませんが、配列をコピーする方法として`Array#slice`メソッドと`Array#concat`メソッドが利用されています。`slice`メソッドと`concat`メソッドは引数なしで呼び出すと、その配列のコピーを返します。
 
+{{book.console}}
 ```js
 const myArray = ["A", "B", "C"];
 // `slice`は`myArray`のコピーを返す - `myArray.concat()`でも同じ
@@ -561,6 +592,7 @@ console.log(copiedArray === myArray); // => false
 コピーした配列に変更を加えることで、`removeAtIndex`関数を非破壊的な関数として実装できます。
 非破壊的であれば引数の配列への副作用がないので、注意させるようなコメントは不要です。
 
+{{book.console}}
 ```js
 // `array`の`index`番目の要素を削除した配列を返す関数
 function removeAtIndex(array, index) {
@@ -582,7 +614,7 @@ console.log(array); // => ["A", "B", "C"]
 
 ## [コラム] Array-likeオブジェクト {#array-like}
 
-配列のように扱えるが配列ではないオブジェクトのことを、Array-likeオブジェクトと呼びます。
+配列のように扱えるが配列ではないオブジェクトのことを、**Array-likeオブジェクト**と呼びます。
 Array-likeオブジェクトとは配列のようにインデックスにアクセスでき、配列のように`length`プロパティも持っています。しかし、配列のインスタンスではないため、Arrayメソッドは持っていないオブジェクトのことです。
 
 | 機能                             | Array-likeオブジェクト | 配列    |
@@ -639,8 +671,10 @@ myFunc("a", "b", "c");
 
 配列で頻出するパターンとしてメソッドチェーンがあります。
 メソッドチェーンとは名前のとおり、メソッドの呼び出しを行いその結果の値に対してさらにメソッドを呼び出すパターンのことを言います。
+
 次のコードでは、`Array#concat`メソッドの返り値、つまり配列に対してさらに`concat`メソッドを呼び出すというメソッドチェーンが行われています。
 
+{{book.console}}
 ```js
 const array = ["a"].concat("b").concat("c");
 console.log(array); // => ["a", "b", "c"]
@@ -649,8 +683,10 @@ console.log(array); // => ["a", "b", "c"]
 このコードの`concat`メソッドの呼び出しを分解してみると何がおこなわれているのか分かりやすいです。
 `concat`メソッドの返り値は結合した新しい配列です。先ほどのメソッドチェーンでは、その新しい配列に対してさらに`concat`メソッドで値を結合しているということが分かります。
 
+{{book.console}}
 ```js
 // メソッドチェーンを分解した例
+// 一時的な`abArray`という変数が増えている
 const abArray = ["a"].concat("b");
 console.log(abArray); // => ["a", "b"]
 const abcArray = abArray.concat("c");
@@ -662,8 +698,10 @@ console.log(abcArray); // => ["a", "b", "c"]
 メソッドチェーンは配列に限ったものではありませんが、配列では頻出するパターンです。なぜなら、配列に含まれるデータを表示する際には、最終的に文字列や数値など別のデータへ加工することが殆どであるためです。配列には配列を返す高階関数が多く実装されているため、配列を柔軟に加工できます。配列を返すことができる高階関数（関数を引数に受け取るメソッド）としては`Array#map`、`Array#filter`などがあります。
 
 次のコードでは、ECMAScriptのバージョン名と発行年数が定義された`ecmascriptVersions`という配列が定義されています。この配列から`2000`年以前に発行されたECMAScriptのバージョン名の一覧を取り出すことを考えてみます。目的の一覧を取り出すには「2000年以前のデータに絞り込む」と「データから`name`を取り出す」という2つの加工処理を組み合わせる必要があります。
-それぞれ、`Array#filter`メソッドで配列から`2000`年以前というルールで絞り込み、`Array#map`メソッドでそれぞれの要素から`name`プロパティを取り出せます。どちらのメソッドも配列を返すのでメソッドチェーンで処理を繋げることができます。
 
+それぞれの加工処理は`Array#filter`メソッドと`Array#map`メソッドで実現できます。`filter`メソッドで配列から`2000`年以前というルールで絞り込み、`map`メソッドでそれぞれの要素から`name`プロパティを取り出せます。どちらのメソッドも配列を返すのでメソッドチェーンで処理を繋げることができます。
+
+{{book.console}}
 ```js
 // ECMAScriptのバージョン名と発行年
 const ecmascriptVersions = [
@@ -685,9 +723,8 @@ const versionNames = ecmascriptVersions
 console.log(versionNames); // => ["ECMAScript 1", "ECMAScript 2", "ECMAScript 3"]
 ```
 
-メソッドチェーンを使うことで複数の処理からなるものをひとつのまとった処理のように見せることができます。長過ぎるメソッドチェーンは長すぎる関数と同じように読みにくくなりますが、適度な単位のメソッドチェーンは処理をスッキリ見せるパターンとして利用されています。配列以外にもメソッドチェーンは利用されることがあり[jQuery][]はDOM APIに対する処理をメソッドチェーンで書けるようにしたライブラリとして著名です。
+メソッドチェーンを使うことで複数の処理からなるものをひとつのまとった処理のように見せることができます。長過ぎるメソッドチェーンは長すぎる関数と同じように読みにくくなりますが、適度な単位のメソッドチェーンは処理をスッキリ見せるパターンとして利用されています。
 
 [immutable-array-prototype]: https://github.com/azu/immutable-array-prototype  "azu/immutable-array-prototype: A collection of Immutable Array prototype methods(Per method packages)."
 [Lodash]: https://lodash.com/  "Lodash"
 [Immutable.js]: https://facebook.github.io/immutable-js/  "Immutable.js"
-[jQuery]: http://jquery.com/  "jQuery"
