@@ -5,8 +5,6 @@
 - [@vvakame](https://github.com/vvakame)
 - [@laco0416](https://github.com/laco0416)
 
-@ 会議室。
-
 ## アジェンダ
 
 - [2017-08-24 ミーティングアジェンダ · Issue #275 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/275 "2017-08-24 ミーティングアジェンダ · Issue #275 · asciidwango/js-primer")
