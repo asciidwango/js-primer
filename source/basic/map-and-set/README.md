@@ -248,12 +248,64 @@ function login(id, password) {
 }
 ```
 
+### WeakMap
+
+[WeakMap][]は、`Map`と同じくマップを扱うためのビルトインオブジェクトです。
+`Map`と違う点は、キーを**弱い参照**（Weak Reference）でもつことです。
+
+[弱い参照][]とは、参照先のオブジェクトをガベージコレクションの対象外にしないための仕組みです。
+あるオブジェクトへの参照がすべて弱い参照のとき、そのオブジェクトはいつでもガベージコレクタによって解放できます。
+弱い参照は、不要になったオブジェクトを参照し続けて発生するメモリリークを防ぐために使われます。
+`WeakMap`では不要になったキーとそれに紐づく値が自動的に削除されるため、メモリリークを引き起こす心配がありません。
+
+`WeakMap`は`Map`と似ていますがiterableではありません。
+そのため、キーを列挙する`keys`メソッドや、データの数を返す`size`プロパティなどは存在しません。
+また、キーを弱い参照でもつ特性上、プリミティブな値はキーとして使えないことも大きな違いです。
+
+`WeakMap`の主な使い方のひとつは、あるオブジェクトに依存するデータを格納することです。
+たとえば次の例では、オブジェクトが発火するイベントのコールバック関数を管理するために、
+そのオブジェクトをキーとして`WeakMap`を使っています。
+
+```js
+const listenersMap = new WeakMap();
+
+function addListener(targetObj, listener) {
+    if (!listenersMap.has(targetObj)) {
+        listenersMap.set(targetObj, []);
+    }
+    listenersMap.set(targetObj, listenersMap.get(targetObj).concat(listener));
+}
+function triggerListeners(targetObj) {
+    if (listenersMap.has(targetObj)) {
+        listenersMap.get(targetObj)
+            .forEach((listener) => listener());
+    }
+}
+```
+
+また、あるオブジェクトから計算した結果をキャッシュする用途でもよく使われます。
+次の例ではDOM要素の高さを計算した結果をキャッシュして、2回目以降に同じ計算をしないようにしています。
+
+```js
+const cache = new WeakMap();
+
+function getHeight(element) {
+    if (cache.has(element)) {
+        return cache.get(element);
+    }
+    const height = element.getBoundingClientRect().height;
+    cache.set(element, height);
+    return height;
+}
+```
+
 ### [コラム] キーの等価性とNaNオブジェクト
 
 `Map`に値をセットする際のキーにはあらゆるオブジェクトが使えますが、一部のオブジェクトについては扱いに注意が必要です。
 
 与えられたキーがすでに存在するか、つまり挿入と上書きの判定は基本的に`===`演算子と同じ挙動をしますが、`NaN`は常に等価であるとみなされます。
-この挙動は[same-value][]アルゴリズムと呼ばれるものです。
+また、`+0`と`-0`は等価であるとみなされます。
+この挙動は[Same-value-zero][]アルゴリズムと呼ばれます。
 
 {{book.console}}
 ```js
@@ -264,16 +316,15 @@ console.log(map.get(NaN)); // => "value"
 
 ## Set
 
-[Set][]はユニークな値を格納するセット型のデータ構造を提供するビルトインオブジェクトです。
+[Set][]はセット型のコレクションを扱うためのビルトインオブジェクトです。
 セットとは、重複する値がないことを保証したコレクションのことをいいます。
-複数の値を保持するという点でセットは配列と似ています。
-ただし、重複する値を追加できない点と、インデックスで値にアクセスできない点が配列と違います。
+そのため、値が重複しないことを保証する配列のようなものとしてよく使われます。
 
-### セットの作成とアクセス
+## マップの作成と初期化
 
-新しいセットを作成するには、`Set`のコンストラクタを使います。
+`Set`オブジェクトを`new`することで、新しいセットを作ることができます。
 作成されたばかりのセットは何ももっていません。
-そのため、セットのサイズを返す`Set#size`プロパティは0を返します。
+そのため、セットのサイズを返す`size`プロパティは0を返します。
 
 {{book.console}}
 ```js
@@ -281,11 +332,23 @@ const set = new Set();
 console.log(set.size); // => 0
 ```
 
-#### データの追加・削除
+`Set`オブジェクトを`new`で初期化するときに、コンストラクタに初期値を渡すことができます。
+コンストラクタ引数として渡すことができるのはiterableオブジェクトです。
 
-セットにデータを追加するには、`Map#add`メソッドを使います。
-ただし、同一の値を存在する場合は無視されます。
-セットがある値をもっていることを確かめるには`Set#has`メソッドを使います。
+{{book.console}}
+```js
+const set = new Set(["value1", "value2", "value2"]);
+// "value2"が重複しているので、セットのサイズは2になる
+console.log(set.size); // => 2
+```
+
+### データの格納と取り出し
+
+作成したセットにデータを追加するには`add`メソッドを使います。
+また、ある値が格納されているかどうかを確認する`has`メソッドがあります。
+
+セットに格納される値は一意なので、同じ値を追加することはできません。
+同じ値で複数回`add`メソッドを呼び出した場合は無視されます。
 
 {{book.console}}
 ```js
@@ -301,8 +364,9 @@ console.log(set.has("a")); // => true
 console.log(set.has("b")); // => false
 ```
 
-セットから特定の値を削除するには、`Set#delete`メソッドを使います。
-また、すべての値を削除したいときには`Set#clear`メソッドを使います。
+セットからデータを削除するには、`delete`メソッドを使います。
+`delete`メソッドに渡された値がセットから削除されます。
+また、セットに格納されているすべてのデータを削除するための`clear`メソッドがあります。
 
 {{book.console}}
 ```js
@@ -316,12 +380,12 @@ set.clear();
 console.log(set.size); // => 0
 ```
 
-#### セットを列挙する
+### セットの反復処理
 
-`Set`オブジェクトは配列と同じように、中身のデータを列挙するいくつかのメソッドを提供します。
+セットに格納されたすべてのデータを列挙して、反復処理を行うためのメソッドが用意されています。
 
-`Set#forEach`メソッドはセットがもつすべての値を追加順に反復します。
-コールバック関数には引数として値、Setのインスタンスの2つが渡されます。
+`forEach`メソッドはセットに格納されたすべての値を、セットへの追加順に反復します。
+コールバック関数には引数として値とセットの2つが渡されます。
 
 {{book.console}}
 ```js
@@ -335,8 +399,8 @@ set.forEach((value) => {
 console.log(results); // => ["a","b"]
 ```
 
-また、Setはiterableオブジェクトなので、for...of文を使って反復処理を行うこともできます。
-for...of文で`Set`のインスタンスを反復したときは、追加順に値が取り出されます。
+また、セットはfor...of文で反復することもできます。
+for...of文でセットを反復したときは、セットへの追加順に値が取り出されます。
 
 {{book.console}}
 ```js
@@ -350,103 +414,15 @@ for (const value of set) {
 console.log(results); // => ["a","b"]
 ```
 
-`Map`オブジェクトと同じように、`Set#keys`メソッドと`Set#values`メソッドがあります。
-ただし、どちらの戻り値も値を挿入順に並べたIteratorオブジェクトで、for...of文で反復されるものと違いはありません。
-
-`Set#entries`メソッドも`Map#entries`メソッドと同じようにエントリーのIteratorオブジェクトを返します。
-ただし、エントリーのキーは値と同じになります。
-
-{{book.console}}
-```js
-const set = new Set();
-set.add("a");
-set.add("b");
-const results = [];
-for (const [key, value] of set.entries()) {
-    results.push(`${key}:${value}`);
-}
-console.log(results); // => ["a:a","b:b"]
-```
-
-## WeakMap/WeakSet
-
-[WeakMap][]と[WeakSet][]は、それぞれ`Map`と`Set`に対応したデータ構造を提供するビルトインオブジェクトです。
-Weakと名付けられているとおり、これらはマップとセットに**弱い参照**（Weak Reference）を導入したものです。
-
-[弱い参照][]とは、参照先のオブジェクトをガベージコレクションの対象外にしないための仕組みです。
-あるオブジェクトへの参照がすべて弱い参照のとき、そのオブジェクトはいつでもガベージコレクタによって解放できます。
-弱い参照は不要になったオブジェクトを参照し続けるときに発生するメモリリークを防ぐために使われます。
-
-### WeakMap
-
-`WeakMap`はキーへの参照を弱い参照とするマップです。
-`WeakMap`のAPIはほとんど`Map`と変わりませんが、iterableではないので`keys`メソッドや`forEach`メソッドなどは存在しません。
-次の例のように、キーが解放されたときにエントリーも自動で削除されます。
-そのため、不要なエントリーが残り続けることによるメモリリークを防ぐことができます。
-
-{{book.console}}
-```js
-let key = {};
-const weakMap = new WeakMap();
-weakMap.set(key, "value");
-// keyが参照するオブジェクトはまだ存在する
-console.log(weakMap.has(key)); // => true
-// keyが参照するオブジェクトが変わった
-key = {};
-// 自動的にweakMapから消える
-console.log(weakMap.has(key)); // => false
-```
-
-`WeakMap`のユースケースとしては、あるオブジェクトに紐づくデータの格納があります。
-親となるオブジェクトが自分自身をキーとしてデータを保持することで、親オブジェクトに依存するデータをメモリリークの心配なく保持できます。
-たとえば次のように、あるDOM要素に紐づくデータを`WeakMap`で保持しておけば、
-DOM要素が削除されたときに自動的にデータも削除されます。
-
-```js
-const weakMap = new WeakMap();
-const element = document.createElement("div");
-weakMap.set(element, {
-    createdAt: Date.now()
-});
-```
-
 ### WeakSet
 
-`WeakSet`は値への参照を弱い参照とするセットです。
-`WeakSet`のAPIはほとんど`Set`と変わりませんが、iterableではないので`keys`メソッドや`forEach`メソッドなどは存在しません。
-次の例のように、格納された値が解放されたときに自動で削除されます。
-そのため、不要な値が残り続けることによるメモリリークを防ぐことができます。
-
-{{book.console}}
-```js
-let value = {};
-const weakSet = new WeakSet();
-weakSet.add(value);
-// valueが参照するオブジェクトはまだ存在する
-console.log(weakSet.has(value)); // => true
-// valueが参照するオブジェクトが変わった
-value = {};
-// 自動的にweakSetから消える
-console.log(weakSet.has(value)); // => false
-```
-
-`WeakSet`のユースケースとしては、イベントエミッターのような仕組みを実装する際のイベントリスナーの格納があります。
-次の例のようにイベントリスナーを弱い参照で保持しておけば、
-イベントエミッターのオブジェクトが解放されたときに自動的にイベントリスナーも解放できます。
-
-```js
-class EventEmitter {
-    constructor() {
-        this.listeners = new WeakSet();
-    }
-    addEventListener(listener) {
-        this.listeners.add(listener);
-    }
-}
-```
+[WeakSet][]は値への参照を弱い参照とするセットです。
+`WeakSet`は`Set`と似ていますが、iterableではないので追加した値を反復できません。
+つまり、`WeakSet`は値の追加と削除、存在確認以外のことができません。
+データの格納ではなく、データの一意性を確認することに特化したセットといえるでしょう。
 
 [Map]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Map
-[same-value]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Equality_comparisons_and_when_to_use_them#Same-value_equality
+[Same-value-zero]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Equality_comparisons_and_when_to_use_them#Same-value-zero_equality
 [Set]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Set
 [WeakMap]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/WeakMap
 [WeakSet]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/WeakSet
