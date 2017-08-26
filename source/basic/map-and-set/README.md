@@ -5,7 +5,7 @@ author: laco
 # Map/Set
 
 JavaScriptでデータの集まりを扱うコレクションは配列だけではありません。
-この章では、マップ型のデータを扱うための`Map`と、セット型のデータを扱うための`Set`について学びます。
+この章では、マップ型のコレクションである`Map`と、セット型のコレクションである`Set`について学びます。
 
 ## Map
 
@@ -134,44 +134,119 @@ const entries = [];
 for (const key of map.keys()) {
     keys.push(key);
 }
+console.log(keys); // => ["key1","key2"]
 for (const value of map.values()) {
     values.push(value);
 }
+console.log(values); // => ["value1","value2"]
 for (const [key, value] of map.entries()) {
     entries.push(`${key}:${value}`);
 }
-console.log(keys); // => ["key1","key2"]
-console.log(values); // => ["value1","value2"]
 console.log(entries); // => ["key1:value1","key2:value2"]
 ```
 
-### ObjectとMapの違い
+### マップとしてのObjectとMap
 
-ES2015で`Map`が導入されるまで、JavaScriptにおいてキーと値のマップを実現するために`Object`が利用されてきました。
+ES2015で`Map`が導入されるまで、JavaScriptにおいてマップ型を実現するために`Object`が利用されてきました。
 何かをキーにして値にアクセスするという点で、`Map`と`Object`はよく似ています。
-ただし、マップとしての`Object`と`Map`オブジェクトにはいくつかの違いがあります。
+ただし、マップとしての`Object`にはいくつかの問題があります。
 
-`Object`をマップとして使うとき、`Object`はプロトタイプをもつため既定のキーがマップ中に存在します。
-また、プロパティとしてデータを保持するため、キーとして使えるのは文字列か`Symbol`に限られます。
+- `Object`にはプロトタイプがあるため、継承されたプロパティによる意図しないマッピング
+- また、プロパティとしてデータを格納するため、キーとして使えるのは文字列か`Symbol`に限られます
 
-たとえば`constructor`というキーは`Object.prototype.constructor`プロパティと衝突してしまうため、マップのキーとして使えません。
-（ただし、この問題はマップとして使う`Object`のインスタンスを`Object.create(null)`のように作成すれば回避できます。）
+`Object`にはプロトタイプがあるため、いくつかのプロパティは初期化されたときから存在します。
+`Object`をマップとして使うと、そのプロパティと同じ名前のキーを使おうとしたときに問題があります。
+たとえば`constructor`という文字列は`Object.prototype.constructor`プロパティと衝突してしまうため、
+オブジェクトのキーに使うことで意図しないマッピングを生じる危険性があります。
+この問題はマップとして使う`Object`のインスタンスを`Object.create(null)`のように初期化して作ることで回避されてきました。
 
 {{book.console}}
 ```js
 const map = {};
-// 既定のキーのプロパティが存在する
-console.log(typeof map["constructor"] !== undefined); // => true
+// マップがキーをもつことを確認する
+function has(key) {
+    return typeof map[key] !== "undefined";
+}
+console.log(has("foo")); // => false
+// Objectのプロパティが存在する
+console.log(has("constructor")); // => true
 ```
 
-一方、`Map`オブジェクトはプロパティとは別の空間にデータを保持します。
-そのため、`Map`のプロトタイプがもつキーと衝突することがありません。
-また、キーにはあらゆるオブジェクトを使うことができます。
+これらの問題を解決するために`Map`が導入されました。
+`Map`はプロパティとは異なる仕組みでデータを格納します。
+そのため、`Map`のプロトタイプがもつメソッドやプロパティとキーが衝突することはありません。
+また、`Map`はマップのキーとしてあらゆるオブジェクトを使うことができます。
 
-このように、マップとして`Object`を使った際に起きる多くの問題は、`Map`オブジェクトを使うことで解決しますが、
-常に`Map`が`Object`の代替になるわけではありません。
-たとえば関数の引数として渡されるようないくつかのデータをまとめるための簡易なマップとしては、
-リテラル表現がある`Object`のほうが使いやすいでしょう。
+他にも`Map`には次のような利点があります。
+
+- マップのサイズを簡単に知ることができる
+- マップが格納するデータを簡単に列挙できる
+- オブジェクトをキーにすると参照ごとに違うマッピングができる
+
+たとえばショッピングカートのような仕組みを作るとき、次のように`Map`を使って商品のオブジェクトと注文数をマッピングできます。
+
+{{book.console}}
+```js
+// ショッピングカートを表現するマップ
+const shoppingCart = new Map();
+
+// 商品クラス
+class ShopItem {
+    constructor(name) {
+        this.name = name;
+    }
+
+    addToCart() {
+        if (!shoppingCart.has(this)) {
+            shoppingCart.set(this, 0);
+        }
+        shoppingCart.set(this, shoppingCart.get(this) + 1);
+    }
+}
+// 商品一覧
+const shopItems = [
+    new ShopItem("りんご"),
+    new ShopItem("みかん"),
+];
+
+// カートに商品を追加する
+shopItems[0].addToCart();
+shopItems[0].addToCart();
+shopItems[1].addToCart();
+
+// 注文数を合計する
+const totalCount = Array.from(shoppingCart.values()).reduce((total, count) => total + count, 0);
+console.log(totalCount); // => 3
+// カートの中身を表示
+const cartItems = [];
+for (const [item, count] of shoppingCart) {
+    cartItems.push(`${item.name}:${count}`);
+}
+console.log(cartItems); // => ["りんご:2","みかん:1"]
+```
+
+`Object`をマップとして使うときに起きる多くの問題は、`Map`オブジェクトを使うことで解決しますが、
+常に`Map`が`Object`の代わりになるわけではありません。
+マップとしての`Object`には次のような利点があります。
+
+- リテラル表現があるため作成しやすい
+- 規定のJSON表現があるため、`JSON.stringify`関数を使ってJSONに変換するのが簡単である
+- ネイティブAPI・外部ライブラリを問わず、多くの関数がマップとして`Object`を渡される設計になっている
+
+たとえば次のようにバックエンドのサーバーにJSONデータを送るような場合は、`Object`を使った簡易なマップのほうが適切でしょう。
+
+```js
+function login(id, password) {
+    // JSONに変換されるマップ
+    const data = { id, password };
+    const body = JSON.stringify(data);
+
+    const httpRequest = new XMLHttpRequest();
+    httpRequest.setRequestHeader("Content-Type", "application/json");
+    httpRequest.send(body);
+    httpRequest.open("POST", "/api/login");
+}
+```
 
 ### [コラム] キーの等価性とNaNオブジェクト
 
