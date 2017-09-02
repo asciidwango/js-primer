@@ -33,27 +33,27 @@ console.log(map.size); // => 0
 {{book.console}}
 ```js
 const map = new Map([["key1", "value1"], ["key2", "value2"]]);
-// 2個のエントリーで初期化されている
+// 2つのエントリーで初期化されている
 console.log(map.size); // => 2
 ```
 
-### データの格納と取り出し
+### 要素の追加と取り出し
 
-作成したマップにはデータを追加して格納できます。
-`set`メソッドにキーと値を渡してデータを格納し、`get`メソッドにキーを渡して値を取り出すのが基本的な使い方です。
-また、あるキーに紐付いた値が格納されているかどうかを確認する`has`メソッドがあります。
+`Map`には新しい要素を追加したり、追加した要素を取り出したりするためのメソッドがあります。
+`set`メソッドは特定のキーと値をもつ要素をマップに追加します。
+このとき、同じキーで複数回`set`メソッドを呼び出した場合は、後から追加された値で上書きされます。
 
-マップに格納されるキーは一意なので、同じキーと複数の値を紐付けることはできません。
-同じキーで複数回`set`メソッドを呼び出した場合は、後から追加された値で上書きされます。
+`get`メソッドは特定のキーに紐付いた値を取り出します。
+また、特定のキーに紐付いた値をもっているかどうかを確認する`has`メソッドがあります。
 
 {{book.console}}
 ```js
 const map = new Map();
-// データの追加
+// 新しい要素の追加
 map.set("key", "value1");
-console.log(map.get("key")); // => "value1"
 console.log(map.size); // => 1
-// 値の上書き
+console.log(map.get("key")); // => "value1"
+// 要素の上書き
 map.set("key", "value2");
 console.log(map.get("key")); // => "value2"
 // キーの存在確認
@@ -61,9 +61,9 @@ console.log(map.has("key")); // => true
 console.log(map.has("foo")); // => false
 ```
 
-マップからデータを削除するには、`delete`メソッドを使います。
+`delete`メソッドは追加した要素を削除します。
 `delete`メソッドに渡されたキーと、そのキーに紐付いた値がマップから削除されます。
-また、マップに格納されているすべてのデータを削除するための`clear`メソッドがあります。
+また、マップがもつすべての要素を削除するための`clear`メソッドがあります。
 
 {{book.console}}
 ```js
@@ -79,17 +79,16 @@ console.log(map.size); // => 0
 
 ### マップの反復処理
 
-マップの使い道は個別のデータを格納したり、取り出したりするだけではありません。
-格納されたすべてのデータを列挙して、反復処理を行うためのメソッドが用意されています。
+マップがもつ要素を列挙するメソッドとして、`forEach`、`keys`、`values`、`entries`があります。
 
-`forEach`メソッドはマップに格納されたすべてのデータを、マップへの追加順に反復します。
+`forEach`メソッドはマップがもつすべての要素を、マップへの追加順に反復します。
 コールバック関数には引数として値、キー、マップの3つが渡されます。
+配列の`forEach`メソッドと似ていますが、インデックスの代わりにキーが渡されます。
+配列は順序により要素を特定しますが、マップはキーにより要素を特定するためです。
 
 {{book.console}}
 ```js
-const map = new Map();
-map.set("key1", "value1");
-map.set("key2", "value2");
+const map = new Map([["key1", "value1"], ["key2", "value2"]]);
 const results = [];
 map.forEach((value, key) => {
     results.push(`${key}:${value}`);
@@ -97,37 +96,18 @@ map.forEach((value, key) => {
 console.log(results); // => ["key1:value1","key2:value2"]
 ```
 
-また、マップはfor...of文で反復することもできます。
-マップを反復したときは、エントリーがマップへの追加順に取り出されます。
+`keys`メソッドはマップがもつすべての要素のキーを挿入順に並べた**Iterator**オブジェクトを返します。
+同様に、`values`メソッドはマップがもつすべての要素の値を挿入順に並べたIteratorオブジェクトを返します。
+これらの戻り値はIteratorオブジェクトであって配列ではありません。
+そのため、for...of文で反復処理をおこなったり、`Array.from`メソッドに渡して配列に変換して使ったりします。
+
+`entries`メソッドはマップがもつすべての要素をエントリーとして挿入順に並べたIteratorオブジェクトを返します。
 先述のとおりエントリーは`[キー, 値]`のような配列です。
 そのため、配列の分割代入を使うとエントリーからキーと値を簡潔に取り出せます。
 
 {{book.console}}
 ```js
-const map = new Map();
-map.set("key1", "value1");
-map.set("key2", "value2");
-const results = [];
-for (const [key, value] of map) {
-    results.push(`${key}:${value}`);
-}
-console.log(results); // => ["key1:value1","key2:value2"]
-```
-
-`forEach`メソッドのほかにも、マップを反復するためのメソッドが提供されています。
-`keys`メソッドはマップに格納されたすべてのキーを挿入順に並べた**Iterator**オブジェクトを返します。
-このIteratorオブジェクトは配列ではないので、`length`プロパティや`forEach`メソッドはもっていません。
-基本的にはfor文やfor...of文で反復処理を行うために使われます。
-同様に、`values`メソッドはマップに格納されたすべての値を挿入順に並べた**Iterator**オブジェクトを返します。
-
-`entries`メソッドはマップに対してfor...of文を使ったときと同じく、
-すべてのエントリーを列挙する**Iterator**オブジェクトを返します。
-
-{{book.console}}
-```js
-const map = new Map();
-map.set("key1", "value1");
-map.set("key2", "value2");
+const map = new Map([["key1", "value1"], ["key2", "value2"]]);
 const keys = [];
 const values = [];
 const entries = [];
@@ -145,14 +125,28 @@ for (const [key, value] of map.entries()) {
 console.log(entries); // => ["key1:value1","key2:value2"]
 ```
 
+また、マップはiterableなオブジェクトなので、for...of文で反復できます。
+マップをfor...of文で反復したときは、すべての要素をエントリーとして挿入順に反復します。
+つまり、`entries`メソッドの戻り値を反復するときと同じ結果が得られます。
+
+{{book.console}}
+```js
+const map = new Map([["key1", "value1"], ["key2", "value2"]]);
+const results = [];
+for (const [key, value] of map) {
+    results.push(`${key}:${value}`);
+}
+console.log(results); // => ["key1:value1","key2:value2"]
+```
+
 ### マップとしてのObjectとMap
 
 ES2015で`Map`が導入されるまで、JavaScriptにおいてマップ型を実現するために`Object`が利用されてきました。
 何かをキーにして値にアクセスするという点で、`Map`と`Object`はよく似ています。
 ただし、マップとしての`Object`にはいくつかの問題があります。
 
-- `Object`にはプロトタイプがあるため、継承されたプロパティによる意図しないマッピング
-- また、プロパティとしてデータを格納するため、キーとして使えるのは文字列か`Symbol`に限られます
+- `Object`のプロトタイプから継承されたプロパティによって、意図しないマッピングを生じる危険性があります
+- また、プロパティとしてデータをもつため、キーとして使えるのは文字列か`Symbol`に限られます
 
 `Object`にはプロトタイプがあるため、いくつかのプロパティは初期化されたときから存在します。
 `Object`をマップとして使うと、そのプロパティと同じ名前のキーを使おうとしたときに問題があります。
@@ -180,49 +174,53 @@ console.log(has("constructor")); // => true
 他にも`Map`には次のような利点があります。
 
 - マップのサイズを簡単に知ることができる
-- マップが格納するデータを簡単に列挙できる
+- マップがもつ要素を簡単に列挙できる
 - オブジェクトをキーにすると参照ごとに違うマッピングができる
 
 たとえばショッピングカートのような仕組みを作るとき、次のように`Map`を使って商品のオブジェクトと注文数をマッピングできます。
 
 {{book.console}}
 ```js
-// ショッピングカートを表現するマップ
-const shoppingCart = new Map();
-
-// 商品クラス
-class ShopItem {
-    constructor(name) {
-        this.name = name;
+// ショッピングカートを表現するクラス
+class ShoppingCart {
+    constructor() {
+        // 商品とその数をもつマップ
+        this.items = new Map();
     }
-
-    addToCart() {
-        if (!shoppingCart.has(this)) {
-            shoppingCart.set(this, 0);
-        }
-        shoppingCart.set(this, shoppingCart.get(this) + 1);
+    // カートに商品を追加する
+    addItem(item) {
+        const count = this.items.get(item) || 0;
+        this.items.set(item, count + 1);
+    }
+    // カート内の合計金額を返す
+    getTotalPrice() {
+        return Array.from(this.items).reduce((total, [item, count]) => {
+            return total + item.price * count;
+        }, 0);
+    }
+    // カートの中身を文字列にして返す
+    toString() {
+        return Array.from(this.items).map(([item, count]) => {
+            return `${item.name}:${count}`;
+        }).join(",");
     }
 }
+const shoppingCart = new ShoppingCart();
 // 商品一覧
 const shopItems = [
-    new ShopItem("りんご"),
-    new ShopItem("みかん"),
+    { name: "みかん", price: 100 },
+    { name: "りんご", price: 200 },
 ];
 
 // カートに商品を追加する
-shopItems[0].addToCart();
-shopItems[0].addToCart();
-shopItems[1].addToCart();
+shoppingCart.addItem(shopItems[0]);
+shoppingCart.addItem(shopItems[0]);
+shoppingCart.addItem(shopItems[1]);
 
-// 注文数を合計する
-const totalCount = Array.from(shoppingCart.values()).reduce((total, count) => total + count, 0);
-console.log(totalCount); // => 3
-// カートの中身を表示
-const cartItems = [];
-for (const [item, count] of shoppingCart) {
-    cartItems.push(`${item.name}:${count}`);
-}
-console.log(cartItems); // => ["りんご:2","みかん:1"]
+// 合計金額を表示する
+console.log(shoppingCart.getTotalPrice()); // => 400
+// カートの中身を表示する
+console.log(shoppingCart.toString()); // => "みかん:2,りんご:1"
 ```
 
 `Object`をマップとして使うときに起きる多くの問題は、`Map`オブジェクトを使うことで解決しますが、
@@ -233,18 +231,23 @@ console.log(cartItems); // => ["りんご:2","みかん:1"]
 - 規定のJSON表現があるため、`JSON.stringify`関数を使ってJSONに変換するのが簡単である
 - ネイティブAPI・外部ライブラリを問わず、多くの関数がマップとして`Object`を渡される設計になっている
 
-たとえば次のようにバックエンドのサーバーにJSONデータを送るような場合は、`Object`を使った簡易なマップのほうが適切でしょう。
+次の例では、ログインフォームのsubmitイベントを受け取ったあと、サーバーにPOSTリクエストを送信しています。
+サーバーにJSON文字列を送るために、`JSON.stringify`関数を使います。
+そのため、`Object`のマップを作ってフォームの入力内容をもたせています。
+このような簡易なマップにおいては、`Object`を使うほうが適切でしょう。
 
 ```js
-function login(id, password) {
-    // JSONに変換されるマップ
-    const data = { id, password };
-    const body = JSON.stringify(data);
-
+function onLoginFormSubmit(e) {
+    const form = e.target;
+    const data = {
+        userName: form.elements.userName,
+        password: form.elements.password,
+    };
     const httpRequest = new XMLHttpRequest();
     httpRequest.setRequestHeader("Content-Type", "application/json");
-    httpRequest.send(body);
+    httpRequest.send(JSON.stringify(data));
     httpRequest.open("POST", "/api/login");
+    return false;
 }
 ```
 
@@ -253,28 +256,29 @@ function login(id, password) {
 [WeakMap][]は、`Map`と同じくマップを扱うためのビルトインオブジェクトです。
 `Map`と違う点は、キーを**弱い参照**（Weak Reference）でもつことです。
 
-[弱い参照][]とは、参照先のオブジェクトをガベージコレクションの対象外にしないための仕組みです。
+[弱い参照][]とは、ガベージコレクタによるオブジェクトの解放を妨げないための特殊な参照です。
 あるオブジェクトへの参照がすべて弱い参照のとき、そのオブジェクトはいつでもガベージコレクタによって解放できます。
 弱い参照は、不要になったオブジェクトを参照し続けて発生するメモリリークを防ぐために使われます。
-`WeakMap`では不要になったキーとそれに紐づく値が自動的に削除されるため、メモリリークを引き起こす心配がありません。
+`WeakMap`では不要になったキーとそれに紐付いた値が自動的に削除されるため、メモリリークを引き起こす心配がありません。
 
 `WeakMap`は`Map`と似ていますがiterableではありません。
 そのため、キーを列挙する`keys`メソッドや、データの数を返す`size`プロパティなどは存在しません。
-また、キーを弱い参照でもつ特性上、プリミティブな値はキーとして使えないことも大きな違いです。
+また、キーを弱い参照でもつ特性上、キーとして使えるのは参照型のオブジェクトだけです。
 
-`WeakMap`の主な使い方のひとつは、あるオブジェクトに依存するデータを格納することです。
-たとえば次の例では、オブジェクトが発火するイベントのコールバック関数を管理するために、
-そのオブジェクトをキーとして`WeakMap`を使っています。
+`WeakMap`の主な使い方のひとつは、あるオブジェクトに紐付くオブジェクトを管理することです。
+たとえば次の例では、オブジェクトが発火するイベントのリスナー関数を、弱い参照でもつために`WeakMap`を使っています。
+これにより、`addListener`関数に渡された`listener`は`targetObj`が解放された際、自動的に解放されます。
 
 ```js
+// イベントリスナーを管理するマップ
 const listenersMap = new WeakMap();
 
+// 渡されたオブジェクトに紐付くリスナー関数を追加する
 function addListener(targetObj, listener) {
-    if (!listenersMap.has(targetObj)) {
-        listenersMap.set(targetObj, []);
-    }
-    listenersMap.set(targetObj, listenersMap.get(targetObj).concat(listener));
+    const listeners = listenersMap.get(targetObj) || [];
+    listenersMap.set(targetObj, listeners.concat(listener));
 }
+// 渡されたオブジェクトに紐付くリスナー関数を呼び出す
 function triggerListeners(targetObj) {
     if (listenersMap.has(targetObj)) {
         listenersMap.get(targetObj)
@@ -283,8 +287,8 @@ function triggerListeners(targetObj) {
 }
 ```
 
-また、あるオブジェクトから計算した結果をキャッシュする用途でもよく使われます。
-次の例ではDOM要素の高さを計算した結果をキャッシュして、2回目以降に同じ計算をしないようにしています。
+また、あるオブジェクトから計算した結果を保存する用途でもよく使われます。
+次の例ではDOM要素の高さを計算した結果を保存して、2回目以降に同じ計算をしないようにしています。
 
 ```js
 const cache = new WeakMap();
@@ -294,6 +298,7 @@ function getHeight(element) {
         return cache.get(element);
     }
     const height = element.getBoundingClientRect().height;
+    // elementオブジェクトに対して高さを紐付けて保存している
     cache.set(element, height);
     return height;
 }
@@ -303,14 +308,17 @@ function getHeight(element) {
 
 `Map`に値をセットする際のキーにはあらゆるオブジェクトが使えますが、一部のオブジェクトについては扱いに注意が必要です。
 
-与えられたキーがすでに存在するか、つまり挿入と上書きの判定は基本的に`===`演算子と同じ挙動をしますが、`NaN`は常に等価であるとみなされます。
-また、`+0`と`-0`は等価であるとみなされます。
+マップが特定のキーをすでにもっているか、つまり挿入と上書きの判定は基本的に`===`演算子と同じです。
+ただし`NaN`オブジェクトの扱いだけが例外的に違います。`Map`におけるキーの比較では、`NaN`同士は常に等価であるとみなされます。
 この挙動は[Same-value-zero][]アルゴリズムと呼ばれます。
 
 {{book.console}}
 ```js
 const map = new Map();
 map.set(NaN, "value");
+// NaNは===で比較した場合は常にfalse
+console.log(NaN === NaN); // = false
+// MapはNaN同士を比較できる
 console.log(map.get(NaN)); // => "value"
 ```
 
@@ -318,9 +326,10 @@ console.log(map.get(NaN)); // => "value"
 
 [Set][]はセット型のコレクションを扱うためのビルトインオブジェクトです。
 セットとは、重複する値がないことを保証したコレクションのことをいいます。
-そのため、値が重複しないことを保証する配列のようなものとしてよく使われます。
+`Set`は追加した値を列挙できるので、値が重複しないことを保証する配列のようなものとしてよく使われます。
+ただし、配列と違って要素は順序をもたず、インデックスによるアクセスはできません。
 
-## マップの作成と初期化
+## セットの作成と初期化
 
 `Set`オブジェクトを`new`することで、新しいセットを作ることができます。
 作成されたばかりのセットは何ももっていません。
@@ -334,6 +343,7 @@ console.log(set.size); // => 0
 
 `Set`オブジェクトを`new`で初期化するときに、コンストラクタに初期値を渡すことができます。
 コンストラクタ引数として渡すことができるのはiterableオブジェクトです。
+次の例ではiterableオブジェクトである配列を初期値として渡しています。
 
 {{book.console}}
 ```js
@@ -342,13 +352,13 @@ const set = new Set(["value1", "value2", "value2"]);
 console.log(set.size); // => 2
 ```
 
-### データの格納と取り出し
+### 値の追加と取り出し
 
-作成したセットにデータを追加するには`add`メソッドを使います。
-また、ある値が格納されているかどうかを確認する`has`メソッドがあります。
+作成したセットに値を追加するには`add`メソッドを使います。
+先述のとおり、セットは重複する値をもたないことが保証されます。
+そのため、すでにセットがもっている値を`add`メソッドに渡した際は無視されます。
 
-セットに格納される値は一意なので、同じ値を追加することはできません。
-同じ値で複数回`add`メソッドを呼び出した場合は無視されます。
+また、セットが特定の値をもっているかどうかを確認する`has`メソッドがあります。
 
 {{book.console}}
 ```js
@@ -364,9 +374,9 @@ console.log(set.has("a")); // => true
 console.log(set.has("b")); // => false
 ```
 
-セットからデータを削除するには、`delete`メソッドを使います。
+セットから値を削除するには、`delete`メソッドを使います。
 `delete`メソッドに渡された値がセットから削除されます。
-また、セットに格納されているすべてのデータを削除するための`clear`メソッドがあります。
+また、セットがもつすべての値を削除するための`clear`メソッドがあります。
 
 {{book.console}}
 ```js
@@ -382,24 +392,7 @@ console.log(set.size); // => 0
 
 ### セットの反復処理
 
-セットに格納されたすべてのデータを列挙して、反復処理を行うためのメソッドが用意されています。
-
-`forEach`メソッドはセットに格納されたすべての値を、セットへの追加順に反復します。
-コールバック関数には引数として値とセットの2つが渡されます。
-
-{{book.console}}
-```js
-const set = new Set();
-set.add("a");
-set.add("b");
-const results = [];
-set.forEach((value) => {
-    results.push(value); 
-});
-console.log(results); // => ["a","b"]
-```
-
-また、セットはfor...of文で反復することもできます。
+セットがもつすべての値を反復するにはfor...of文を使います。
 for...of文でセットを反復したときは、セットへの追加順に値が取り出されます。
 
 {{book.console}}
@@ -414,12 +407,20 @@ for (const value of set) {
 console.log(results); // => ["a","b"]
 ```
 
+セットがもつ要素を列挙するメソッドとして、`forEach`、`keys`、`values`、`entries`があります。
+これらは`Map`との類似性のために存在しますが、セットにはマップにおけるキー相当のものがありません。
+そのため、`keys`メソッドは`values`メソッドのエイリアスになっており、セットがもつすべての値を挿入順に列挙するIteratorオブジェクトを返します。
+また、`entries`メソッドは`[値, 値]`という形のエントリーを挿入順に列挙するIteratorオブジェクトを返します。
+ただし、`Set`自身がiterableであるため、これらのメソッドが必要になることはないでしょう。
+
 ### WeakSet
 
-[WeakSet][]は値への参照を弱い参照とするセットです。
+[WeakSet][]は弱い参照で値をもつセットです。
 `WeakSet`は`Set`と似ていますが、iterableではないので追加した値を反復できません。
 つまり、`WeakSet`は値の追加と削除、存在確認以外のことができません。
 データの格納ではなく、データの一意性を確認することに特化したセットといえるでしょう。
+
+また、弱い参照で値をもつ特性上、値として使えるのは参照型のオブジェクトだけです。
 
 [Map]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Map
 [Same-value-zero]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Equality_comparisons_and_when_to_use_them#Same-value-zero_equality
