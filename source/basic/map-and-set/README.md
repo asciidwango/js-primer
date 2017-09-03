@@ -99,7 +99,21 @@ console.log(results); // => ["key1:value1","key2:value2"]
 `keys`メソッドはマップがもつすべての要素のキーを挿入順に並べた**Iterator**オブジェクトを返します。
 同様に、`values`メソッドはマップがもつすべての要素の値を挿入順に並べたIteratorオブジェクトを返します。
 これらの戻り値はIteratorオブジェクトであって配列ではありません。
-そのため、for...of文で反復処理をおこなったり、`Array.from`メソッドに渡して配列に変換して使ったりします。
+そのため次の例のように、for...of文で反復処理をおこなったり、`Array.from`メソッドに渡して配列に変換して使ったりします。
+
+{{book.console}}
+```js
+const map = new Map([["key1", "value1"], ["key2", "value2"]]);
+const keys = [];
+// keysメソッドの戻り値を反復する
+for (const key of map.keys()) {
+    keys.push(key);
+}
+console.log(keys); // => ["key1","key2"]
+// keysメソッドの戻り値から配列を作る
+const keysArray = Array.from(map.keys());
+console.log(keysArray); // => ["key1","key2"]
+```
 
 `entries`メソッドはマップがもつすべての要素をエントリーとして挿入順に並べたIteratorオブジェクトを返します。
 先述のとおりエントリーは`[キー, 値]`のような配列です。
@@ -108,24 +122,14 @@ console.log(results); // => ["key1:value1","key2:value2"]
 {{book.console}}
 ```js
 const map = new Map([["key1", "value1"], ["key2", "value2"]]);
-const keys = [];
-const values = [];
 const entries = [];
-for (const key of map.keys()) {
-    keys.push(key);
-}
-console.log(keys); // => ["key1","key2"]
-for (const value of map.values()) {
-    values.push(value);
-}
-console.log(values); // => ["value1","value2"]
 for (const [key, value] of map.entries()) {
     entries.push(`${key}:${value}`);
 }
 console.log(entries); // => ["key1:value1","key2:value2"]
 ```
 
-また、マップはiterableなオブジェクトなので、for...of文で反復できます。
+また、マップ自身もiterableなオブジェクトなので、for...of文で反復できます。
 マップをfor...of文で反復したときは、すべての要素をエントリーとして挿入順に反復します。
 つまり、`entries`メソッドの戻り値を反復するときと同じ結果が得られます。
 
@@ -237,17 +241,21 @@ console.log(shoppingCart.toString()); // => "みかん:2,りんご:1"
 このような簡易なマップにおいては、`Object`を使うほうが適切でしょう。
 
 ```js
-function onLoginFormSubmit(e) {
-    const form = e.target;
+// URLとObjectのマップを受け取ってPOSTリクエストを送る関数
+function sendPOSTRequest(url, data) {
+    const httpRequest = new XMLHttpRequest();
+    httpRequest.setRequestHeader("Content-Type", "application/json");
+    httpRequest.send(JSON.stringify(data));
+    httpRequest.open("/api/login");
+}
+
+function onLoginFormSubmit(event) {
+    const form = event.target;
     const data = {
         userName: form.elements.userName,
         password: form.elements.password,
     };
-    const httpRequest = new XMLHttpRequest();
-    httpRequest.setRequestHeader("Content-Type", "application/json");
-    httpRequest.send(JSON.stringify(data));
-    httpRequest.open("POST", "/api/login");
-    return false;
+    sendPOSTRequest("/api/login", data);
 }
 ```
 
@@ -266,25 +274,37 @@ function onLoginFormSubmit(e) {
 また、キーを弱い参照でもつ特性上、キーとして使えるのは参照型のオブジェクトだけです。
 
 `WeakMap`の主な使い方のひとつは、あるオブジェクトに紐付くオブジェクトを管理することです。
-たとえば次の例では、オブジェクトが発火するイベントのリスナー関数を、弱い参照でもつために`WeakMap`を使っています。
-これにより、`addListener`関数に渡された`listener`は`targetObj`が解放された際、自動的に解放されます。
+たとえば次の例では、オブジェクトが発火するイベントのリスナー関数（イベントリスナー）をマップで管理しています。
+イベントリスナーとは、イベントが発火したときに呼び出される関数のことです。
+このマップを`Map`で実装してしまうと、`targetObj`がマップから削除されるまでイベントリスナーはメモリ上に残り続けます。
+ここで`WeakMap`を使うと、`addListener`関数に渡された`listener`は`targetObj`が解放された際、自動的に解放されます。
 
 ```js
 // イベントリスナーを管理するマップ
 const listenersMap = new WeakMap();
 
-// 渡されたオブジェクトに紐付くリスナー関数を追加する
+// 渡されたオブジェクトに紐付くイベントリスナーを追加する
 function addListener(targetObj, listener) {
     const listeners = listenersMap.get(targetObj) || [];
     listenersMap.set(targetObj, listeners.concat(listener));
 }
-// 渡されたオブジェクトに紐付くリスナー関数を呼び出す
+// 渡されたオブジェクトに紐付くイベントリスナーを呼び出す
 function triggerListeners(targetObj) {
     if (listenersMap.has(targetObj)) {
         listenersMap.get(targetObj)
             .forEach((listener) => listener());
     }
 }
+
+let eventTarget = {};
+// イベントリスナーを追加する
+addListener(eventTarget, () => {
+    console.log("イベントが発火しました");
+});
+// eventTargetに紐付いたイベントリスナーが呼び出される
+triggerListeners(eventTarget);
+// eventTargetの参照が変われば自動的にイベントリスナーが解放される
+eventTarget = null;
 ```
 
 また、あるオブジェクトから計算した結果を保存する用途でもよく使われます。
@@ -317,7 +337,7 @@ function getHeight(element) {
 const map = new Map();
 map.set(NaN, "value");
 // NaNは===で比較した場合は常にfalse
-console.log(NaN === NaN); // = false
+console.log(NaN === NaN); // => false
 // MapはNaN同士を比較できる
 console.log(map.get(NaN)); // => "value"
 ```
