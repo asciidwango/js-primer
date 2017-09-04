@@ -243,12 +243,14 @@ console.log(shoppingCart.toString()); // => "みかん:2,りんご:1"
 ```js
 // URLとObjectのマップを受け取ってPOSTリクエストを送る関数
 function sendPOSTRequest(url, data) {
+    // XMLHttpRequestを使ってPOSTリクエストを送る
     const httpRequest = new XMLHttpRequest();
     httpRequest.setRequestHeader("Content-Type", "application/json");
     httpRequest.send(JSON.stringify(data));
-    httpRequest.open("/api/login");
+    httpRequest.open("POST", "/api/login");
 }
 
+// formのsubmitイベントを受け取る関数
 function onLoginFormSubmit(event) {
     const form = event.target;
     const data = {
@@ -295,6 +297,8 @@ function triggerListeners(targetObj) {
             .forEach((listener) => listener());
     }
 }
+
+// 上記関数の実行例
 
 let eventTarget = {};
 // イベントリスナーを追加する
