@@ -31,8 +31,7 @@
     - ビルトインオブジェクト
         - [JSON](./basic/json/README.md)
         - Date
-        - Map/WeakMap
-        - Set/WeakSet
+        - [Map/Set](./basic/map-and-set/README.md)
         - Symbol
     - Proxy/Reflect API
     - 非推奨の機能

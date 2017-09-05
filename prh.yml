@@ -183,6 +183,8 @@ rules:
     patterns: ユニコード
   - expected: UTF-16
     patterns: /UTF16/i
+  - expected: 弱い参照
+    patterns: 弱参照
   # Code Unit/ Code Point
   - expected: Code Unit
   - expected: Code Poiint
