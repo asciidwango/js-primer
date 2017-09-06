@@ -576,6 +576,10 @@ console.log(array.slice(4, 1)); // => []
 - スコープは**静的**に決定される
 	- そのため見た目よりははるかに分かりやすい
 	- 開眼JavaScript参照
+	- スコープチェインの参照は動的(実行時に)おこなわれる
+- クロージャー
+	- クロージャを一言で表すと「スコープチェーンに存在する変数への参照を(囲い込んで)保持している関数」と言えます。
+	- 開眼JavaScript参照
 - ScopeとEnviroment
 	- scopeによって定義されたenviroment
 	- EnvironmentはRecordから構成される
