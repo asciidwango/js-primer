@@ -44,7 +44,11 @@ const disableComment = "disable-doc-test";
  * その他詳細は CONTRIBUTING.md を読む
  **/
 describe("doctest:md", function() {
-    const files = globby.sync([`${sourceDir}/**/*.md`, `!${sourceDir}/**/node_modules{,/**}`]);
+    const files = globby.sync([
+        `${sourceDir}/**/*.md`, 
+        `!${sourceDir}/**/node_modules{,/**}`,
+        `!**/OUTLINE.md`
+    ]);
     const notPrefix = `*:not(html[value*="${disableComment}"])`;
     files.forEach(filePath => {
         const normalizeFilePath = filePath.replace(sourceDir, "");
