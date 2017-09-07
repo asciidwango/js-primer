@@ -14,7 +14,7 @@ describe("front-matter", function() {
         // 目次は除く
         `!${sourceDir}/index.html.md`,
         `!${sourceDir}/README.md`,
-        `!${sourceDir}/OUTLINE.md`,
+        `!${sourceDir}/**/OUTLINE.md`,
         // サンプルコードの一部
         `!${sourceDir}/use-case/nodecli/**/src/**/sample*.md`,
     ]);
