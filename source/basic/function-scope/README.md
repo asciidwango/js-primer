@@ -75,15 +75,15 @@ console.log(arg); // => ReferenceError: arg is not defined
 [import, identifier-duplicated-invalid](./src/identifier-duplicated-invalid)
 
 一方、スコープが異なれば同じ識別子で変数を宣言できます。
-なぜなら変数は宣言した場所のスコープに紐付くためです。
+次の例では、`fnA`関数と`fnB`関数という異なるスコープで、それぞれ変数`x`を定義できていることが分かります。
 
 ```js
-// 異なる関数のスコープには同じ"a"を定義できる
-function x() {
-    let a;
+// 異なる関数のスコープには同じ"x"を定義できる
+function fnA() {
+    let x;
 }
-function y() {
-    let a;
+function fnB() {
+    let x;
 }
 ```
 
