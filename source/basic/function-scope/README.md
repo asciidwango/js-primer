@@ -74,7 +74,7 @@ console.log(arg); // => ReferenceError: arg is not defined
 [変数と宣言](../variables/README.md)の章にて、`let`や`const`は同じスコープ内に同じ識別子で二重に定義できないという話をしました。
 これは、各スコープには同じ識別子の変数は1つしか宣言できないためです。（`var`やfunction宣言は例外的に可能ですが、詳細は後述します）
 
-[import, identifier-duplicated-invalid](./src/identifier-duplicated-invalid)
+[import, identifier-duplicated-invalid](./src/identifier-duplicated-invalid.js)
 
 一方、スコープが異なれば同じ識別子で変数を宣言できます。
 次の例では、`fnA`関数と`fnB`関数という異なるスコープで、それぞれ変数`x`を定義できていることが分かります。
