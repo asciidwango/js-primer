@@ -19,11 +19,9 @@
     - [文字列](./basic/string/README.md)
     - Number/Math
     - [ラッパーオブジェクト](./basic/wrapper-object/README.md)
-    - 関数
-        - スコープ
-        - Arrow Function
-        - 分割代入（Destructuring assignment）
-        - Spread Operator
+    - [関数とスコープ](./basic/function-scope/README.md)
+    - this
+    - 関数オブジェクト
     - クラス
     - Error/Throw
     - Promise

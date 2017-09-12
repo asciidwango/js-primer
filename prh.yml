@@ -260,6 +260,10 @@ rules:
   - expected: 処理を行います
     patterns:
       - 処理をします
+  - expected: 紐付けて定義
+    patterns:
+      - 紐付けられて定義
+    prh: 能動的に書いてください
 # 漢字開き
   - expected: もとづ$1
     patterns: /基づ(く|き)/
