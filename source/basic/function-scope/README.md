@@ -141,6 +141,14 @@ for (const element of array) {
 console.log(element); // => ReferenceError: element is not defined
 ```
 
+<!-- Note: forとブロックスコープの仕様
+
+- 仕様ではforをIterateする際に`CreatePerIterationEnvironment`で新しい NewDeclarativeEnvironmentを作成している
+- [9. Variables and scoping](http://exploringjs.com/es6/ch_variables.html#sec_let-const-loop-heads)
+- [ECMAScript 2015 Language Specification – ECMA-262 6th Edition](http://www.ecma-international.org/ecma-262/6.0/#sec-createperiterationenvironment)
+
+ -->
+
 ## スコープチェーン
 
 - スコープは入れ子にできる
