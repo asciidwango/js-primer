@@ -159,7 +159,7 @@ console.log(element); // => ReferenceError: element is not defined
 - 大きなスコープに変数を定義することはそれだけ依存や影響範囲を広げている
 - 小さなスコープに必要な変数を定義する or 引数で必要な変数を受け取るのが基本
 
-## varの例外
+## varとfunction宣言の例外
 
 この章では意図的に`var`についての解説を省いています。なぜなら`var`を使うべきケースはないからです。
 これから各コードは必ず`let`か`const`を利用してください。
@@ -175,10 +175,6 @@ console.log(element); // => ReferenceError: element is not defined
 
 - ファクトリとしての関数
 - IIFE
-
-## [コラム] グローバルオブジェクト
-
-- [9. Variables and scoping](http://exploringjs.com/es6/ch_variables.html#sect_global-object "9. Variables and scoping")
 
 [変数と宣言]: ../variables/README.md
 [文と式]: ../statement-expression/README.md
