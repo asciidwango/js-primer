@@ -28,7 +28,7 @@
     - Generator/Iterable/Iterator
     - ビルトインオブジェクト
         - [JSON](./basic/json/README.md)
-        - Date
+        - [Date](./basic/date/README.md)
         - [Map/Set](./basic/map-and-set/README.md)
         - Symbol
     - Proxy/Reflect API
