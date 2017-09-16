@@ -42,7 +42,7 @@ console.log(now.toISOString());
 // 時刻のミリ秒値を直接指定する形式
 // 1136214245999はUTCで2006年1月2日15時04分05秒999を表す
 const date = new Date(1136214245999);
-console.log(date.toISOString()); // => 2006-01-02T15:04:05.999Z
+console.log(date.toISOString()); // => "2006-01-02T15:04:05.999Z"
 ```
 
 現在時刻のミリ秒値を返す[Date.now][]メソッドと併用すると、引数なしの場合と同じ結果になります。
@@ -68,11 +68,11 @@ const fromMs = new Date(ms);
 
 // UTCで2006年1月2日15時04分05秒999を表す文字列
 const inUTC = new Date("2006-01-02T15:04:05.999Z");
-console.log(inUTC.toISOString()); // => 2006-01-02T15:04:05.999Z
+console.log(inUTC.toISOString()); // => "2006-01-02T15:04:05.999Z"
 // タイムゾーンの記述がないと実行環境のタイムゾーンを使う
 // Asia/Tokyoで実行すると9時間分ずれる
 const inLocal = new Date("2006-01-02T15:04:05.999");
-console.log(inLocal.toISOString()); // 2006-01-02T06:04:05.999Z (Asia/Tokyoの場合)
+console.log(inLocal.toISOString()); // "2006-01-02T06:04:05.999Z" (Asia/Tokyoの場合)
 ```
 
 このコンストラクタにおける文字列から時刻へのパース処理は、[Date.parse][]メソッドと共通しています。
@@ -102,7 +102,7 @@ const fromMs = new Date(ms);
 // 実行環境に置ける2006年1月2日15時04分05秒999を表す
 // タイムゾーンを指定することはできない
 const date = new Date(2006, 0, 2, 15, 4, 5, 999);
-console.log(date.toISOString()); // 2006-01-02T06:04:05.999Z (Asia/Tokyoの場合)
+console.log(date.toISOString()); // "2006-01-02T06:04:05.999Z" (Asia/Tokyoの場合)
 ```
 
 このコンストラクタと似たメソッドとして、[Date.UTC][]があります。
@@ -138,7 +138,7 @@ function formatDate(date) {
 }
 
 const date = new Date("2006-01-02T15:04:05.999Z");
-console.log(formatDate(date)); // => 2006/01/02
+console.log(formatDate(date)); // => "2006/01/02"
 ```
 
 `getTimezoneOffset`メソッドは、実行環境のタイムゾーンのUTC**からの**オフセット値を**分**単位の数値で返します。
