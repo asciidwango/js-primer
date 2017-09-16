@@ -129,12 +129,17 @@ const fromMs = new Date(ms);
 
 {{book.console}}
 ```js
+// YYYY/MM/DD形式の文字列に変換する関数
 function formatDate(date) {
-    return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDays()}`;
+    const yyyy = new String(date.getFullYear());
+    // String#padStartメソッドで2桁に0埋めする
+    const mm = new String(date.getMonth() + 1).padStart(2, '0');
+    const dd = new String(date.getDay()).padStart(2, '0');
+    return `${yyyy}/${mm}/${dd}`;
 }
 
 const date = new Date('2006-01-02T15:04:05.999Z');
-console.log(formatDate(date)); // =>2006/1/2
+console.log(formatDate(date)); // =>2006/01/02
 ```
 
 `getTimezoneOffset`メソッドは、実行環境のタイムゾーンのUTC**からの**オフセット値を**分**単位の数値で返します。
