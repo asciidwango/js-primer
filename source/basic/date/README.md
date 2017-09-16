@@ -12,7 +12,7 @@ author: laco
 そのため、スクリプト中のどこからでも呼び出して使えます。
 
 `Date`オブジェクトをインスタンス化することで、ある特定の日付や時刻を表すオブジェクトが得られます。
-それぞれのインスタンスオブジェクトはUTCにおける1970年1月1日から始まるミリ秒値をもち、
+それぞれのインスタンスオブジェクトはUTCにおける1970年1月1日を基準としたミリ秒値をもち、
 その時刻値をもとに日付や時刻を計算するメソッドを提供します。
 
 ### インスタンスの作成
@@ -70,9 +70,9 @@ const fromMs = new Date(ms);
 const inUTC = new Date("2006-01-02T15:04:05.999Z");
 console.log(inUTC.toISOString()); // => 2006-01-02T15:04:05.999Z
 // タイムゾーンの記述がないと実行環境のタイムゾーンを使う
-// 日本で実行すると9時間分ずれる
+// Asia/Tokyoで実行すると9時間分ずれる
 const inLocal = new Date("2006-01-02T15:04:05.999");
-console.log(inLocal.toISOString()); // => 2006-01-02T06:04:05.999Z
+console.log(inLocal.toISOString()); // 2006-01-02T06:04:05.999Z (Asia/Tokyoの場合)
 ```
 
 このコンストラクタにおける文字列から時刻へのパース処理は、[Date.parse][]メソッドと共通しています。
@@ -102,7 +102,7 @@ const fromMs = new Date(ms);
 // 実行環境に置ける2006年1月2日15時04分05秒999を表す
 // タイムゾーンを指定することはできない
 const date = new Date(2006, 0, 2, 15, 4, 5, 999);
-console.log(date.toISOString()); // => 2006-01-02T06:04:05.999Z
+console.log(date.toISOString()); // 2006-01-02T06:04:05.999Z (Asia/Tokyoの場合)
 ```
 
 このコンストラクタと似たメソッドとして、[Date.UTC][]があります。
@@ -138,7 +138,7 @@ function formatDate(date) {
 }
 
 const date = new Date("2006-01-02T15:04:05.999Z");
-console.log(formatDate(date)); // =>2006/01/02
+console.log(formatDate(date)); // => 2006/01/02
 ```
 
 `getTimezoneOffset`メソッドは、実行環境のタイムゾーンのUTC**からの**オフセット値を**分**単位の数値で返します。

@@ -285,6 +285,6 @@ rules:
     specs:
       - from: どういうものがthenableなのか
         to:   どのようなものがthenableなのか
-  # techboostern.ymlでは'時刻'が認められないので'刻'を追加
+  # techbooster.ymlでは'時刻'が認められないので'刻'を追加
   - expected: $1とき
     pattern:  /(の)時(?!点|代|々|間|刻)/
