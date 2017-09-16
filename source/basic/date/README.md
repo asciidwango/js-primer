@@ -133,11 +133,11 @@ function formatDate(date) {
     const yyyy = new String(date.getFullYear());
     // String#padStartメソッドで2桁に0埋めする
     const mm = new String(date.getMonth() + 1).padStart(2, "0");
-    const dd = new String(date.getDay()).padStart(2, "0");
+    const dd = new String(date.getDate()).padStart(2, "0");
     return `${yyyy}/${mm}/${dd}`;
 }
 
-const date = new Date("2006-01-02T15:04:05.999Z");
+const date = new Date("2006-01-02T15:04:05.999");
 console.log(formatDate(date)); // => "2006/01/02"
 ```
 
