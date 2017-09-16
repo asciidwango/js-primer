@@ -285,3 +285,5 @@ rules:
     specs:
       - from: どういうものがthenableなのか
         to:   どのようなものがthenableなのか
+  - expected: $1とき
+    pattern:  /(の)時(?!点|代|々|間|刻)/

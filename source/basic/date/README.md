@@ -12,7 +12,7 @@ author: laco
 そのため、スクリプト中のどこからでも呼び出して使えます。
 
 `Date`オブジェクトをインスタンス化することで、ある特定の日付や時刻を表すオブジェクトが得られます。
-それぞれのインスタンスオブジェクトは内部的にUTCタイムゾーンにおける1970年1月1日から始まるミリ秒値をもっており、
+それぞれのインスタンスオブジェクトはUTCにおける1970年1月1日から始まるミリ秒値をもち、
 その時刻値をもとに日付や時刻を計算するメソッドを提供します。
 
 ### インスタンスの作成
@@ -59,7 +59,7 @@ const fromMs = new Date(ms);
 
 2つめは、時刻を文字列として渡してインスタンスを作成する方法です。
 [RFC2822][]や[ISO 8601][]の形式にしたがった文字列を渡すことができます。
-ただし、渡された文字列のパースについて、ブラウザごとに動作が異なり一貫性がないことに注意しましょう。
+ただし、渡された文字列のパースはブラウザごとに動作が異なることに注意しましょう。
 また、文字列からタイムゾーンが読み取れないとき、自動的に実行環境のタイムゾーンによって計算されることにも注意が必要です。
 
 {{book.console}}
@@ -67,11 +67,11 @@ const fromMs = new Date(ms);
 // ISO 8601形式の文字列
 
 // UTCで2006年1月2日15時04分05秒999を表す文字列
-const inUTC = new Date('2006-01-02T15:04:05.999Z');
+const inUTC = new Date("2006-01-02T15:04:05.999Z");
 console.log(inUTC.toISOString()); // => 2006-01-02T15:04:05.999Z
 // タイムゾーンの記述がないと実行環境のタイムゾーンを使う
 // 日本で実行すると9時間分ずれる
-const inLocal = new Date('2006-01-02T15:04:05.999');
+const inLocal = new Date("2006-01-02T15:04:05.999");
 console.log(inLocal.toISOString()); // => 2006-01-02T06:04:05.999Z
 ```
 
@@ -82,9 +82,9 @@ console.log(inLocal.toISOString()); // => 2006-01-02T06:04:05.999Z
 {{book.console}}
 ```js
 // 1. 文字列から直接Dateオブジェクトのインスタンスを得る
-const fromString = new Date('2006-01-02T15:04:05.999Z');
+const fromString = new Date("2006-01-02T15:04:05.999Z");
 // 2. Date.parseメソッドを使って文字列をミリ秒値に変換してから渡す
-const ms = Date.parse('2006-01-02T15:04:05.999Z');
+const ms = Date.parse("2006-01-02T15:04:05.999Z");
 const fromMs = new Date(ms);
 ```
 
@@ -93,7 +93,7 @@ const fromMs = new Date(ms);
 日を表す第3引数から後ろの引数は省略可能ですが、日付だけはデフォルトで1が設定され、その他は0が設定されます。
 また、月を表す第2引数は0から11までの数値で指定することにも注意しましょう。
 
-この方法では、タイムゾーンを指定することができません。
+この方法では、タイムゾーンを指定できません。
 渡した数値は常にローカルのタイムゾーンにおける時刻とみなされます。
 タイムゾーンを考慮するときには、あらかじめ計算済みの数値を渡す必要があります。
 
@@ -106,14 +106,13 @@ console.log(date.toISOString()); // => 2006-01-02T06:04:05.999Z
 ```
 
 このコンストラクタと似たメソッドとして、[Date.UTC][]があります。
-渡す引数の形式はコンストラクタと同じですが、`Date.UTC`メソッドはその名の通りUTCを使って渡された数値を認識し、
-その時刻のミリ秒値を返します。
+渡す引数の形式はコンストラクタと同じですが、`Date.UTC`メソッドは渡された数値をUTCにおける時刻として扱い、その時刻のミリ秒値を返します。
 つまり、次のコードは同じ意味をもちます。
 
 {{book.console}}
 ```js
 // 1. 文字列から直接Dateオブジェクトのインスタンスを得る
-const fromString = new Date('2006-01-02T15:04:05.999Z');
+const fromString = new Date("2006-01-02T15:04:05.999Z");
 // 2. Date.UTCを使ってUTCの時刻をミリ秒値に変換してから渡す
 const ms = Date.UTC(2006, 0, 2, 15, 4, 5, 999);
 const fromMs = new Date(ms);
@@ -125,7 +124,7 @@ const fromMs = new Date(ms);
 ほとんどは`getHours`と`setHours`のような、時刻の各部分についてのゲッターとセッターです。
 
 次の例は、日付を決まった形式の文字列に変換しています。
-`getMonth`メソッドや`setMonth`メソッドのように月を数値で扱うメソッドは、0から11の数値で指定することに注意しましょう。ある`Date`のインスタンスが表す時刻が何月かを表示するには、`getMonth`メソッドの戻り値に1を足す必要があります。
+`getMonth`メソッドや`setMonth`メソッドのように月を数値で扱うメソッドは、0から11の数値で指定することに注意しましょう。ある`Date`のインスタンスの時刻が何月かを表示するには、`getMonth`メソッドの戻り値に1を足す必要があります。
 
 {{book.console}}
 ```js
@@ -133,12 +132,12 @@ const fromMs = new Date(ms);
 function formatDate(date) {
     const yyyy = new String(date.getFullYear());
     // String#padStartメソッドで2桁に0埋めする
-    const mm = new String(date.getMonth() + 1).padStart(2, '0');
-    const dd = new String(date.getDay()).padStart(2, '0');
+    const mm = new String(date.getMonth() + 1).padStart(2, "0");
+    const dd = new String(date.getDay()).padStart(2, "0");
     return `${yyyy}/${mm}/${dd}`;
 }
 
-const date = new Date('2006-01-02T15:04:05.999Z');
+const date = new Date("2006-01-02T15:04:05.999Z");
 console.log(formatDate(date)); // =>2006/01/02
 ```
 
