@@ -160,10 +160,22 @@ console.log(`Hours in UTC: ${now.getHours() + timezoneOffsetInHours}`);
 多くのユースケースにおいては機能が不十分です。
 たとえば次のような場合に、`Date`では直感的に記述できません。
 
-- 例を挙げる
+- 任意の書式の文字列から時刻に変換するメソッドがない
+- 「時刻を1時間進める」のように時刻を前後にずらす操作を提供するメソッドがない
+- 任意のタイムゾーンにおける時刻を計算するメソッドがない
+- `YYYY/MM/DD`のようなフォーマットに基づいた文字列への変換を提供するメソッドがない
 
-- moment.jsやdate-fnsなど、日付を便利に扱うためのライブラリを使うのが一般的
+そのため、JavaScriptにおける日付・時刻の処理は、標準のDateではなくライブラリを使うことが一般的になっています。
+代表的なライブラリとしては、[moment.js][]や[js-joda][]、[date-fns][]などがあります。
 
+```js
+// moment.jsで現在時刻を得る
+const now = moment();
+// addメソッドで10分進める
+const future = now.add(10, "minutes");
+// formatメソッドで任意の書式の文字列に変換する
+console.log(future.format("YYYY/MM/DD")); 
+```
 
 [Date]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date
 [Date.parse]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date/parse
@@ -171,3 +183,6 @@ console.log(`Hours in UTC: ${now.getHours() + timezoneOffsetInHours}`);
 [Date.UTC]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date/UTC
 [RFC2822]: https://tools.ietf.org/html/rfc2822#section-3.3
 [ISO 8601]: https://ja.wikipedia.org/wiki/ISO_8601
+[moment.js]: https://momentjs.com/
+[js-joda]: https://github.com/js-joda/js-joda
+[date-fns]: https://date-fns.org/
