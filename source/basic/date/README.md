@@ -131,7 +131,7 @@ const fromMs = new Date(ms);
 // YYYY/MM/DD形式の文字列に変換する関数
 function formatDate(date) {
     const yyyy = new String(date.getFullYear());
-    // String#padStartメソッドで2桁に0埋めする
+    // ES2017で導入されるString#padStartメソッドで2桁に0埋めする
     const mm = new String(date.getMonth() + 1).padStart(2, "0");
     const dd = new String(date.getDate()).padStart(2, "0");
     return `${yyyy}/${mm}/${dd}`;
