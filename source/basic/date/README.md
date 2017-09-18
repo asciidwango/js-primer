@@ -35,13 +35,13 @@ ISO 8601とは国際規格となっている文字列の形式で、`2006-01-02T
 ```js
 // 現在の時刻を表すインスタンスを作成する
 const now = new Date();
+// 時刻値だけが欲しい場合にはDate.nowメソッドを使う
+console.log(Date.now());
+
 // 時刻値を取得する
 console.log(now.getTime());
 // 時刻をISO 8601形式の文字列で表示する
 console.log(now.toISOString());
-
-// 時刻値だけが欲しい場合にはDate.nowメソッドを使う
-console.log(Date.now());
 ```
 
 #### 任意の時刻をインスタンス化する
