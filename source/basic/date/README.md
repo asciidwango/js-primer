@@ -80,6 +80,7 @@ console.log(date.toISOString()); // => "2006-01-02T15:04:05.999Z"
 // UTCにおける2006年1月2日15時04分05秒999を表す文字列
 const inUTC = new Date("2006-01-02T15:04:05.999Z");
 console.log(inUTC.toISOString()); // => "2006-01-02T15:04:05.999Z"
+
 // タイムゾーンの記述がないと実行環境のタイムゾーンを使う
 // Asia/Tokyo(+09:00)で実行すると、UTCにおける表記は9時間前の06時04分05秒になる
 const inLocal = new Date("2006-01-02T15:04:05.999");
@@ -111,7 +112,7 @@ console.log(date1.toISOString()); // "2006-01-02T06:04:05.999Z" (Asia/Tokyoの�
 const ms = Date.UTC(2006, 0, 2, 15, 4, 5, 999);
 // 時刻値を渡すコンストラクタと併用する
 const date2 = new Date(ms);
-console.log(date1.toISOString()); // "2006-01-02T15:04:05.999Z"
+console.log(date2.toISOString()); // => "2006-01-02T15:04:05.999Z"
 ```
 
 ### Dateのインスタンスメソッド
