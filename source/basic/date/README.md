@@ -108,7 +108,7 @@ new Date(year, month, day, hour, minutes, seconds, milliseconds);
 
 {{book.console}}
 ```js
-// 実行環境に置ける2006年1月2日15時04分05秒999を表す
+// 実行環境における2006年1月2日15時04分05秒999を表す
 // タイムゾーンを指定することはできない
 const date1 = new Date(2006, 0, 2, 15, 4, 5, 999);
 console.log(date1.toISOString()); // "2006-01-02T06:04:05.999Z" (Asia/Tokyoの場合)
