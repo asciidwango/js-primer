@@ -181,7 +181,7 @@ console.log(`Hours in UTC: ${now.getHours() + timezoneOffsetInHours}`);
 代表的なライブラリとしては、[moment.js][]や[js-joda][]、[date-fns][]などがあります。
 
 ```js
-// moment.jsで現在時刻を得る
+// moment.jsで現在時刻のmomentオブジェクトを作る
 const now = moment();
 // addメソッドで10分進める
 const future = now.add(10, "minutes");
