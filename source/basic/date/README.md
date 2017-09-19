@@ -75,7 +75,7 @@ console.log(date.toISOString()); // => "2006-01-02T15:04:05.999Z"
 次のコードでは、ISO 8601形式の文字列を渡して`Date`のインスタンスを作成します。
 タイムゾーンを含む文字列の場合は、そのタイムゾーンにおける時刻として時刻値を計算します。
 文字列からタイムゾーンが読み取れない場合は、実行環境のタイムゾーンによって時刻値を計算するため注意が必要です。
-また、渡された文字列のパースはブラウザごとに動作が異なることに注意しましょう。
+また、ISO 8601形式以外の文字列のパースは、ブラウザごとに異なる結果を返す可能性があるため注意しましょう。
 
 {{book.console}}
 ```js
@@ -160,7 +160,7 @@ console.log(formatDate(date)); // => "2006/01/02"
 ```js
 // getTimezoneOffsetはインスタンスメソッドなので、インスタンスが必要
 const now = new Date();
-// 時間単位のタイムゾーンオフセット
+// 時間単位にしたタイムゾーンオフセット
 const timezoneOffsetInHours = now.getTimezoneOffset() / 60;
 // UTCの現在の時間を計算できる
 console.log(`Hours in UTC: ${now.getHours() + timezoneOffsetInHours}`);
