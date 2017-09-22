@@ -254,10 +254,20 @@ fn();
 
 <!-- textlint-disable preset-ja-technical-writing/sentence-length -->
 
-グローバルスコープには自分で定義したグローバル変数以外に、実行環境が定義するグローバルオブジェクトとビルトインオブジェクトがあります。
-グローバルオブジェクトとは、元々グローバルスコープに定義されている`undefined`のような変数（「[undefinedはリテラルではない][]」を参照）や`isNaN`のような関数のことをいいます。
-ビルトインオブジェクトとは、元々グローバルに定義されている`Array`や`RegExp`などのコンストラクタ関数のことをいいます。
+グローバルスコープには自分で定義したグローバル変数以外に、プログラム実行時に自動的に定義されるビルトインオブジェクトがあります。
+ビルトインオブジェクトには大きく分けて2種類のものがあります。
+1つ目はECMAScript仕様が定義する`undefined`のような変数（「[undefinedはリテラルではない][]」を参照）や`isNaN`のような関数、`Array`や`RegExp`などのコンストラクタ関数です。もう一方は実行環境（ブラウザやNode.jsなど）が定義する`document`や`module`といったオブジェクトです。
 どちらもグローバルスコープに自動的に定義されているという点で大きな使い分けはないため、この章ではどちらも**ビルトインオブジェクト**と呼ぶことにします。
+
+<!-- Notes: global objectとbuilt-in object
+
+- global object: https://tc39.github.io/ecma262/#sec-global-object
+    - `global`でアクセスできる予定 https://github.com/tc39/proposal-global
+    - Arrayなどもglobal objectのプロパティの一種
+- builtin object: https://tc39.github.io/ecma262/#sec-built-in-object
+    - ECMAScriptの定義したものと実装が加えたオブジェクトをまとめた用語
+
+ -->
 
 <!-- textlint-enable preset-ja-technical-writing/sentence-length -->
 
@@ -274,7 +284,8 @@ console.log(Array); // => undefined
 つまり次のようにビルトインオブジェクト同じ名前の変数を定義すると、定義した変数が参照されます。
 
 ```js
-console.log(Array); // ビルトインオブジェクトのArray
+// ビルトインオブジェクトのArray
+console.log(Array);
 // "Array"という名前の変数を定義
 const Array = 1;
 // 自分で定義した変数がビルトインオブジェクトより優先される
