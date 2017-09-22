@@ -360,7 +360,7 @@ console.log(numberRegExp.test(123)); // => true
 - 真偽値、数値、文字列についてリテラル表現がある
 - オブジェクトではオブジェクトと配列リテラルがある
 
-## [コラム] undefinedはリテラルではない
+## [コラム] undefinedはリテラルではない {#undefined-not-literal}
 
 プリミティブ型として紹介した`undefined`はリテラルではありません。
 `undefined`はただのグローバル変数で、`undefined`という値を持っているだけです。

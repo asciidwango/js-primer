@@ -228,10 +228,79 @@ console.log(element); // => ReferenceError: element is not defined
 
 ## グローバルスコープ
 
-- グローバルスコープ
-- グローバル変数
-- ビルトイン関数
-- シャドーイングの実害
+今までコードをプログラム直下に書いていましたが、ここにも暗黙的な**グローバルスコープ**（大域スコープ）と呼ばれるスコープが存在します。
+グローバルスコープとは名前のとおりもっとも外側にあるスコープで、プログラム実行時に暗黙的に作成されます。
+
+```js
+// プログラム直下はグローバルスコープ
+const x = "x";
+console.log(x);
+```
+
+グローバルスコープに定義した変数は**グローバル変数**と呼ばれ、グローバル変数はあらゆるスコープから参照できる変数となります。
+なぜなら、スコープチェーンの仕組みにより、最終的にもっとも外側のグローバルスコープに定義されている変数を参照できるためです。
+
+```js
+// グローバル変数はどのスコープからも参照できる
+const globalVariable = "グローバル";
+
+{   
+    // ブロックスコープ内には該当する変数が定義されてない -> 外側のスコープへ
+    console.log(globalVariable); // => "グローバル"
+}
+function fn() {
+    // 関数ブロックスコープ内には該当する変数が定義されてない -> 外側のスコープへ
+    console.log(globalVariable); // => "グローバル"
+}
+fn();
+```
+
+<!-- textlint-disable preset-ja-technical-writing/sentence-length -->
+
+グローバルスコープには自分で定義したグローバル変数以外に、プログラム実行時に自動的に定義されるビルトインオブジェクトがあります。
+ビルトインオブジェクトには大きく分けて2種類のものがあります。
+1つ目はECMAScript仕様が定義する`undefined`のような変数（「[undefinedはリテラルではない][]」を参照）や`isNaN`のような関数、`Array`や`RegExp`などのコンストラクタ関数です。もう一方は実行環境（ブラウザやNode.jsなど）が定義するオブジェクトで`document`や`module`などがあります。
+どちらもグローバルスコープに自動的に定義されているという点で大きな使い分けはないため、この章ではどちらも**ビルトインオブジェクト**と呼ぶことにします。
+
+<!-- Notes: global objectとbuilt-in object
+
+- global object: https://tc39.github.io/ecma262/#sec-global-object
+    - `global`でアクセスできる予定 https://github.com/tc39/proposal-global
+    - Arrayなどもglobal objectのプロパティの一種
+- builtin object: https://tc39.github.io/ecma262/#sec-built-in-object
+    - ECMAScriptの定義したものと実装が加えたオブジェクトをまとめた用語
+- 仕様どおりの定義で言えば、紹介してる`undefined`などはあくまでglobal objectのプロパティ
+- `global`を使ってプロパティとしてアクセスする方法は言及していないので省略している
+
+ -->
+
+<!-- textlint-enable preset-ja-technical-writing/sentence-length -->
+
+ビルトインオブジェクトは、プログラム開始時にグローバルスコープへ自動的に定義されているためどのスコープからも参照できます。
+
+```js
+// ビルトインオブジェクトは実行環境が自動的に定義している
+// どこのスコープから参照してもReferenceErrorにはならない
+console.log(undefined); // => undefined
+console.log(Array); // => Array
+```
+
+自分で定義したグローバル変数とビルトインオブジェクトでは、グローバル変数が優先して参照されます。
+つまり次のようにビルトインオブジェクト同じ名前の変数を定義すると、定義した変数が参照されます。
+
+```js
+// ビルトインオブジェクトのArray
+console.log(Array); // => Array
+// "Array"という名前の変数を定義
+const Array = 1;
+// 自分で定義した変数がビルトインオブジェクトより優先される
+console.log(Array); // => 1
+```
+
+ビルトインオブジェクトと同じ名前の変数を定義したことにより、ビルトインオブジェクトを参照できなくなる問題は**変数の隠蔽**（shadowing）とも呼ばれます。
+この問題を回避する方法としては、むやみにグローバルスコープへ変数を定義しないことです。グローバルスコープでビルトインオブジェクトと名前が衝突するとすべてのスコープへ影響を与えますが、関数のスコープ内ではその関数の中だけの影響範囲はとどまります。
+
+ビルトインオブジェクトと同じ名前を避けることは難しいです。なぜならビルトインオブジェクトは実行環境（ブラウザやNode.jsなど）がそれぞれ独自に定義したものも多く存在します。そのため、関数などを活用し小さなスコープを中心にしてプログラムを書くことで、ビルトインオブジェクトと同じ名前の変数があっても影響範囲が限定的な状態にすることが望ましいです。
 
 ## [コラム] スコープは小さく
 
@@ -257,3 +326,4 @@ console.log(element); // => ReferenceError: element is not defined
 
 [変数と宣言]: ../variables/README.md
 [文と式]: ../statement-expression/README.md
+[undefinedはリテラルではない]: ../data-type/README.md##undefined-not-literal
