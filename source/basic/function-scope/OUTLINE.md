@@ -353,7 +353,7 @@ function doTask(callback){
 doTask(task);
 ```
 
-一度しか実行できない関数
+一度しか実行できない関数(クロージャが必要)
 
 ```js
 // Before: グローバルにsubmmitedというフラグが見えている
