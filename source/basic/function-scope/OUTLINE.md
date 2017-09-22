@@ -321,3 +321,48 @@ console.log(a) // => 2
 ## [コラム] スコープを小さく
 
 - スコープを小さく書くことで何が良くなるのかを例題から学ぶ
+- グローバル変数に限らす変数のスコープを小さくすることはいいこと
+- モジュールもモジュールのスコープを持つため、モジュールに分けることもスコープを小さくすることにつながる
+
+```
+var 消費税 = 0.8;
+function multiple(){
+	return x * 消費税;
+}
+function add(){
+
+}
+```
+
+
+不要な一時的な変数をグローバル変数にするのを避ける
+
+```js
+// before
+const start = Date.now();
+task();
+const end = Date.now();
+console.log(end - start);
+
+// after
+function doTask(callback){
+	const start = Date.now();
+	callback();
+	return Date.now() - start;
+}
+doTask(task);
+```
+
+一度しか実行できない関数
+
+```js
+// Before: グローバルにsubmmitedというフラグが見えている
+let submmitted = false
+function submit(data){
+	if(submitted){
+		return
+	}
+	// ... データを処理 ...
+	submmitted = true;
+}
+```
