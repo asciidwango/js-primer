@@ -256,7 +256,7 @@ fn();
 
 グローバルスコープには自分で定義したグローバル変数以外に、プログラム実行時に自動的に定義されるビルトインオブジェクトがあります。
 ビルトインオブジェクトには大きく分けて2種類のものがあります。
-1つ目はECMAScript仕様が定義する`undefined`のような変数（「[undefinedはリテラルではない][]」を参照）や`isNaN`のような関数、`Array`や`RegExp`などのコンストラクタ関数です。もう一方は実行環境（ブラウザやNode.jsなど）が定義する`document`や`module`といったオブジェクトです。
+1つ目はECMAScript仕様が定義する`undefined`のような変数（「[undefinedはリテラルではない][]」を参照）や`isNaN`のような関数、`Array`や`RegExp`などのコンストラクタ関数です。もう一方は実行環境（ブラウザやNode.jsなど）が定義するオブジェクトで`document`や`module`などがあります。
 どちらもグローバルスコープに自動的に定義されているという点で大きな使い分けはないため、この章ではどちらも**ビルトインオブジェクト**と呼ぶことにします。
 
 <!-- Notes: global objectとbuilt-in object
@@ -266,6 +266,8 @@ fn();
     - Arrayなどもglobal objectのプロパティの一種
 - builtin object: https://tc39.github.io/ecma262/#sec-built-in-object
     - ECMAScriptの定義したものと実装が加えたオブジェクトをまとめた用語
+- 仕様どおりの定義で言えば、紹介してる`undefined`などはあくまでglobal objectのプロパティ
+- `global`を使ってプロパティとしてアクセスする方法は言及していないので省略している
 
  -->
 
@@ -277,7 +279,7 @@ fn();
 // ビルトインオブジェクトは実行環境が自動的に定義している
 // どこのスコープから参照してもReferenceErrorにはならない
 console.log(undefined); // => undefined
-console.log(Array); // => undefined
+console.log(Array); // => Array
 ```
 
 自分で定義したグローバル変数とビルトインオブジェクトでは、グローバル変数が優先して参照されます。
@@ -285,7 +287,7 @@ console.log(Array); // => undefined
 
 ```js
 // ビルトインオブジェクトのArray
-console.log(Array);
+console.log(Array); // => Array
 // "Array"という名前の変数を定義
 const Array = 1;
 // 自分で定義した変数がビルトインオブジェクトより優先される
