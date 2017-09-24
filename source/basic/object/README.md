@@ -173,7 +173,7 @@ object = {}; // => SyntaxError
 ## プロパティの存在を確認する
 
 JavaScriptでは、存在しないプロパティに対してアクセスした場合に例外ではなく`undefined`を返します。
-次のコードでは、`object`には存在しない`notFound`プロパティにアクセスしていますが、結果として`undehfined`という値が返ってきます。
+次のコードでは、`object`には存在しない`notFound`プロパティにアクセスしていますが、結果として`undefined`という値が返ってきます。
 
 {{book.console}}
 ```js
