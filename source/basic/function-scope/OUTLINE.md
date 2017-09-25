@@ -86,7 +86,8 @@ console.log(obj);// => {}
 	- @応用 ファクトリをその場で作って定義は捨てるIIFE
 	- @具体的 正規表現の初期化コスト
 - 未使用
-	- 参照できない変数を参照した時のエラー
+	- 関数の仮引数は上書きして宣言できない
+	- [9.6 Parameters as variables](http://exploringjs.com/es6/ch_variables.html#sec_parameters-as-variables "9.6 Parameters as variables")
 
 **Note**:
 
@@ -374,3 +375,62 @@ function submit(data){
 	submmitted = true;
 }
 ```
+
+
+## 関数スコープとvarの巻き上げ
+
+- @目的 varは巻き上げにより関数スコープに紐づくという特殊な動作を理解する
+- @前提 すべてを今から新しく書くなら`var`を使う理由は一つもありません
+	- `let`か`const`を常に使います
+	- しかし、既存のコードやライブラリなどでは`var`が使われていることがあります
+- @命名 `var`にはもっとも近くの関数またはグローバルスコープへ紐づくという**巻き上げ**と呼ばれる特性があります。
+- @具体例 巻き上げの動作を順番に見ていきます
+	- letやconstは宣言より前にその変数を参照することができません(TDZ)
+		- [JavaScript variables hoisting in details](https://dmitripavlutin.com/javascript-hoisting-in-details/)
+		- [9. Variables and scoping](http://exploringjs.com/es6/ch_variables.html#sec_temporal-dead-zone)
+	- 一方varでは、宣言より前にその変数を参照することができます。
+		- ただし、その評価結果は常に`undefined`となります。
+	- これは`let`が変数の宣言と初期化が同時に起きるのに対して、`var`は変数の宣言と初期化が異なるタイミングで行われることにより発生しています。
+	- varによる変数宣言を分解してされる
+		- 宣言
+		- 代入
+		- Notes:
+			- Effective JavaScriptでは変数(var)宣言の振る舞いは、宣言と代入の2つで構成されていると理解すれば巻き上げの説明がし易い
+			- これは`var`、`let`どちらも同じ(TDZはこれの互換性のために定義された仕様っぽい感じはある)
+			- https://twitter.com/azu_re/status/911872145252159488
+			- https://twitter.com/azu_re/status/911874213971034112
+			- varで宣言された変数はLetのLexicalEnviromentとは異なり、VariableEnvironmentに紐づく
+			- https://tc39.github.io/ecma262/#sec-execution-contexts``
+	- @具体例 巻き上げられた処理の擬似コード
+	- @事実 巻き上げはもっとも近くの関数スコープまたはグローバルスコープに変数が紐づく
+		- つまりブロックスコープを無視します
+		- @具体例 次のようにforループとvarを組み合わせ組み合わせるとおきる問題があります
+		- @反例 一方ブロックスコープがあるletではこの問題がおきません。
+- @まとめ この結果varを使った場合の問題としては次のものがあります。
+	- 宣言された文より前に変数にアクセスすることがでる
+		- typeofもTDZではReferenceError
+		- 「変数の隠蔽」と組み合わさることで問題が複雑化する
+	- ブロックスコープを無視する
+		- hoistingはもっと近いfunctionまで巻き上がる
+		- ifやforなどでブロックスコープの中にあるものがvarだと外から見えてしまう
+- @事実 「varにはブロックスコープがない」
+	- @事実 ES2015より前は`var`しかありませんでした
+	- @事実「ES2015より前にブロックスコープはない」はただしい
+	- @事実 ES2015以降はブロックスコープがあるので「ES2015以降はブロックスコープがある」
+	- @仕様 ES2015で、`var`と`let`と`const`が両立できるように`var`は特別扱いされるルールが追加されている
+- @分類 また`var`ほど問題にはなりませんがfunction宣言も似た動作を持っています
+- 未使用
+	- varとletの違い
+		- varで宣言した変数は、宣言する前でも参照できる
+		- varで宣言した変数は、ブロックスコープを無視するように振る舞う
+		- varは同一のスコープに同じ名前で変数を宣言できる
+
+### varで宣言した変数は、宣言する前でも参照できる
+
+
+## function宣言（文）とfunction式のhoisting
+
+- function宣言もES2015より前に導入された宣言方法です
+- これもvarと同様にhoistingされます
+- しかしvarとはことなり大きな問題となることはあまりありません
+- なぜなら undefined で初期化されることはなく、宣言された文よりまえでも正しく呼び出すことができるからです。

@@ -7,6 +7,17 @@
 ## [変数と宣言](./basic/variables/README.md)
 ## [値の評価と表示](./basic/read-eval-print/README.md)
 ## [データ型とリテラル](./basic/data-type/README.md)
+
+- @未使用
+	- ガーベジコレクションの簡単な説明
+
+```js
+let array = [ 1,2,4];
+array = [10,2,3,0];
+// この時最初に代入されていた配列のオブジェクトは参照できなくなる
+// => GCされる
+```
+
 ## [関数と宣言](./basic/function-method/README.md)
 ## [文と式](./basic/statement-expression/README.md)
 ## [暗黙的な型変換](./basic/implicit-coercion/README.md)
