@@ -379,7 +379,7 @@ var_x = "varのx";
 
 `let`では、変数を**宣言する前**にその変数を参照すると`ReferenceError`となります。
 次のコードでは、変数を宣言する前に、変数`x`を参照したため`ReferenceError`となっています。
-エラーメッセージから、変数`x`が存在しないからエラーになっているのではなく、初期化より前に参照したためエラーとなることが分かります。[^TDZ]
+エラーメッセージから、変数`x`が存在しないからエラーになっているのではなく、実際に宣言した行より前に参照したためエラーとなることが分かります。[^TDZ]
 
 ```js
 console.log(x); // => ReferenceError: can't access lexical declaration `x' before initialization
