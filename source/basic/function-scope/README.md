@@ -456,6 +456,8 @@ fn();
 
 ## 関数宣言と巻き上げ {#function-declaration-hoisting}
 
+<!-- textlint-disable eslint -->
+
 `function`キーワードを使った関数宣言も`var`と同様に、もっと近い関数またはグローバルスコープの先頭に**巻き上げ**されます。
 次のコードでは、実際に`hello`関数を宣言した行より前に関数を呼び出せています。
 
@@ -493,6 +495,8 @@ var hello = function(){
     return "Hello";
 }
 ```
+
+<!-- textlint-enable eslint -->
 
 ## ローカル変数の寿命とガーベッジコレクション
 
