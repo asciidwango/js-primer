@@ -49,7 +49,7 @@
     "gitbook-plugin-js-console": "^1.3.2",
     "gitbook-summary-to-path": "^1.0.1",
     "globby": "^6.0.0",
-    "mocha": "^3.0.2",
+    "mocha": "^4.0.0",
     "npm-run-all": "^4.0.0",
     "power-assert": "^1.3.1",
     "power-doctest": "^1.3.0",
@@ -66,7 +66,7 @@
     "textlint-rule-no-js-function-paren": "^1.0.1",
     "textlint-rule-period-in-list-item": "^0.2.0",
     "textlint-rule-preset-ja-technical-writing": "^1.0.0",
-    "textlint-rule-prh": "^4.0.1",
+    "textlint-rule-prh": "^5.0.1",
     "unist-util-select": "^1.5.0",
     "vm2": "^3.4.6"
   },
