@@ -74,7 +74,7 @@ console.log(arg); // => ReferenceError: arg is not defined
 この関数によるスコープのことを**関数スコープ**と呼びます。
 
 [変数と宣言][]の章にて、`let`や`const`は同じスコープ内に同じ名前の変数を二重に定義できないという話をしました。
-これは、各スコープには同じ名前の変数は1つしか宣言できないためです。（`var`とfunction宣言文は例外的に可能です）
+これは、各スコープには同じ名前の変数は1つしか宣言できないためです。（`var`と`function`による関数宣言は例外的に可能です）
 
 [import, identifier-duplicated-invalid](./src/identifier-duplicated-invalid.js)
 
@@ -454,6 +454,49 @@ fn();
 
 <!-- textlint-enable eslint -->
 
+## 関数宣言と巻き上げ {#function-declaration-hoisting}
+
+<!-- textlint-disable eslint -->
+
+`function`キーワードを使った関数宣言も`var`と同様に、もっと近い関数またはグローバルスコープの先頭に**巻き上げ**されます。
+次のコードでは、実際に`hello`関数を宣言した行より前に関数を呼び出せます。
+
+```js
+// `hello`関数の宣言より前に呼び出せる
+hello(); // => "Hello"
+
+function hello(){
+    return "Hello";
+}
+```
+
+これは、関数宣言は**宣言**そのものであるため、`hello`関数そのものがスコープの先頭に巻き上げされます。
+つまり、先ほどのコードは実際の実行時には、次のように解釈されて実行されていると考えられます。
+
+```js
+// 解釈されたコード
+// `hello`関数の宣言が巻き上げされる
+function hello(){
+    return "Hello";
+}
+
+hello(); // => "Hello"
+```
+
+注意点として、`var`や`let`などで宣言された変数へ関数を代入した場合は`var`のルールで巻き上げされます。
+そのため、`var`で変数へ関数を代入する関数式では、`hello`変数が巻き上げにより`undefined`となるため呼び出すことができません。（「[関数と宣言（関数式）][]」を参照）
+
+```js
+// `hello`変数は巻き上げされ、暗黙的に`undefined`となる
+hello(); // => TypeError: hello is not a function
+
+// `hello`変数へ関数を代入している
+var hello = function(){
+    return "Hello";
+}
+```
+
+<!-- textlint-enable eslint -->
 
 ## ローカル変数の寿命とガーベッジコレクション
 
@@ -464,6 +507,7 @@ fn();
 
 [変数と宣言]: ../variables/README.md
 [変数と宣言#let]: ../variables/README.md#let
+[関数と宣言（関数式）]: ../function-declaration/README.md#function-expression
 [文と式]: ../statement-expression/README.md
 [undefinedはリテラルではない]: ../data-type/README.md##undefined-not-literal
 [^TDZ]: この仕組みはTemporal Dead Zoneと呼ばれます。
