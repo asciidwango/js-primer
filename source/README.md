@@ -1,5 +1,6 @@
 # 目次
 
+- [この書籍について](./index.html.md)
 - 本書の読み方
 - [本書の目的](intro/goal/README.md)
 - [第1部: 基礎文法](basic/README.md)
