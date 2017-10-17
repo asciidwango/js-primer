@@ -498,12 +498,38 @@ var hello = function(){
 
 <!-- textlint-enable eslint -->
 
-## ローカル変数の寿命とガーベッジコレクション
-
 ## クロージャー
 
-- ファクトリとしての関数
-- IIFE
+最後にこの章ではクロージャーと呼ばれる関数とスコープに関わる性質について見ていきます。
+クロージャーとは、「関数が外側のスコープにある変数への参照を保持できる」という関数がもつ性質のことです。
+
+具体的にクロージャーの性質を使った処理を見ていきます。
+
+次の例では、`createCounter`関数は、関数内で`count`変数と`countUp`関数を定義し、`countUp`関数を返しています。
+つまり、`createCounter`関数の実行結果は`countUp`関数そのものです。
+そして、`countUp`関数を代入した`counter`変数を実行すると、現在の`count`変数に`+ 1`した値を返します。
+
+```js
+// `countUp`関数を定義し返す関数
+function createCounter() {
+    let count = 0;
+    // `countUp`関数は`count`変数を参照
+    function countUp() {
+        count = count + 1;
+        return count++;
+    };
+    return countUp;
+}
+// `counter`は`countUp`関数
+const counter = createCounter();
+counter(); // => 1
+counter(); // => 2
+counter(); // => 3
+```
+
+スコープの仕組みに置いて、外側のスコープから内側のスコープにある変数は参照出来ないことを学びました。
+しかし、この例では外側のスコープ（`counter`があるグローバルスコープ）から内側のスコープ（`createCounter`関数スコープ)にある`count`変数を参照できています。ただし直接`count`変数を参照するのではなく、`countUp`関数を経由して`count`変数を参照しています。
+この`countUp`関数が`count`変数への参照を保持する性質のことをクロージャーと呼びます。
 
 [変数と宣言]: ../variables/README.md
 [変数と宣言#let]: ../variables/README.md#let
