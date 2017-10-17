@@ -516,7 +516,7 @@ function createCounter() {
     // `countUp`関数は`count`変数を参照
     function countUp() {
         count = count + 1;
-        return count++;
+        return count;
     };
     return countUp;
 }
