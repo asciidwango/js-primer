@@ -198,7 +198,11 @@ rules:
     patterns:
       - /[^(分割代入（)]Destructuring assignment/i
       - /[^(分割代入（)]Destructuring(\S)/i
-
+  - expected: ガベージコレクション
+    patterns:
+      - ガーベッジコレクション
+      - ガッベッジコレクション
+  
   # ファイルの読み書き / ファイルI/O
   - expected: ファイルの読み書き
     patterns:  
