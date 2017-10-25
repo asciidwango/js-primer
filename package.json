@@ -43,7 +43,6 @@
     "gitbook-plugin-anchors": "^0.7.1",
     "gitbook-plugin-canonical-link": "^2.0.2",
     "gitbook-plugin-edit-link": "^2.0.2",
-    "gitbook-plugin-ga": "^2.0.0",
     "gitbook-plugin-github-issue-feedback": "^1.1.1",
     "gitbook-plugin-include-codeblock": "^3.0.0",
     "gitbook-plugin-js-console": "^1.3.2",
@@ -57,7 +56,7 @@
     "rewire": "^2.5.2",
     "strict-eval": "^1.0.2",
     "text-testing-mocha": "^0.4.0",
-    "textlint": "^8.3.0-alpha.6a53d00c",
+    "textlint": "^8.2.1",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-filter-rule-whitelist": "^1.0.2",
     "textlint-rule-eslint": "^2.0.0",
@@ -70,7 +69,5 @@
     "unist-util-select": "^1.5.0",
     "vm2": "^3.4.6"
   },
-  "dependencies": {
-    "gitbook-plugin-ga": "^1.0.1"
-  }
+  "dependencies": {}
 }
