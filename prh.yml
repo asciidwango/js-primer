@@ -202,7 +202,10 @@ rules:
     patterns:
       - ガーベッジコレクション
       - ガッベッジコレクション
-  
+  - expected: クロージャー
+    patterns:
+      - /クロージャ(!?ー)/
+
   # ファイルの読み書き / ファイルI/O
   - expected: ファイルの読み書き
     patterns:  
