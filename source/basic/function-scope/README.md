@@ -765,7 +765,7 @@ newCountUp(); // => 1
 ```js
 const createCounter = () => {
     // 外のスコープから`privateCount`を直接参照できない
-    const privateCount = 0;
+    let privateCount = 0;
     return () => {
         privateCount++;
         return `${privateCount}回目`;
