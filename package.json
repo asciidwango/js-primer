@@ -43,6 +43,7 @@
     "gitbook-plugin-anchors": "^0.7.1",
     "gitbook-plugin-canonical-link": "^2.0.2",
     "gitbook-plugin-edit-link": "^2.0.2",
+    "gitbook-plugin-ga": "^2.0.0",
     "gitbook-plugin-github-issue-feedback": "^1.1.1",
     "gitbook-plugin-include-codeblock": "^3.0.0",
     "gitbook-plugin-js-console": "^1.3.2",
