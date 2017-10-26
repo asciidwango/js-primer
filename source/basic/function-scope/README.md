@@ -299,8 +299,6 @@ console.log(Array); // => Array
 つまり次のようにビルトインオブジェクト同じ名前の変数を定義すると、定義した変数が参照されます。
 
 ```js
-// ビルトインオブジェクトのArray
-console.log(Array); // => Array
 // "Array"という名前の変数を定義
 const Array = 1;
 // 自分で定義した変数がビルトインオブジェクトより優先される
@@ -323,10 +321,13 @@ console.log(Array); // => 1
 `Date.now`メソッドは現在の時刻をミリ秒にして返す関数で、**実行後の時刻**から**実行前の時刻**を引くことで間に行われた処理の実行時間を得ることができます。
 
 ```js
+function doHeavyTask(){
+    // 計測したい処理
+}
 const startTime = Date.now();
 doHeavyTask();
 const endTime = Date.now();
-console.log(`実行時間は${endTime - start}ミリ秒`);
+console.log(`実行時間は${endTime - startTime}ミリ秒`);
 ```
 
 このコードでは、計測処理以外で利用しない`startTime`と`endTime`という変数がグローバルスコープに定義されています。
@@ -339,8 +340,11 @@ const measureTask = (taskFn) => {
     const startTime = Date.now();
     taskFn();
     const endTime = Date.now();
-    console.log(`実行時間は${endTime - start}ミリ秒`);
+    console.log(`実行時間は${endTime - startTime}ミリ秒`);
 };
+function doHeavyTask(){
+    // 計測したい処理
+}
 measureTask(doHeavyTask);
 ```
 
@@ -646,7 +650,7 @@ function printX() {
 }
 
 printX();
-// この時点で`x`を参照するものはなくなる => 解放される
+// この時点で`x`を参照するものはなくなる -> 解放される
 ```
 
 次に、関数の実行が終了しても解放されない値の例です。
@@ -661,8 +665,8 @@ function createArray() {
     return tempArray;
 }
 const array = createArray();
-console.log(x); // => [1, 2, 3]
-// 変数`array`が`[1, 2, 3]`という値を参照してる => 解放されない
+console.log(array); // => [1, 2, 3]
+// 変数`array`が`[1, 2, 3]`という値を参照してる -> 解放されない
 ```
 
 つまり、関数の実行終了と値が解放されるかどうかは直接関係ないことが分かります。
@@ -785,9 +789,9 @@ function greaterThan(n) {
         return m > n; 
     };
 }
-const gereterThan5 = greaterThan(5);
-gereterThan42(5); // => false
-gereterThan42(6); // => true
+const greaterThan5 = greaterThan(5);
+greaterThan5(5); // => false
+greaterThan5(6); // => true
 ```
 
 ### [コラム] 状態をもつ関数オブジェクト {#closure-vs-function-object}

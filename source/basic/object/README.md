@@ -299,7 +299,7 @@ const customObject = {
         return "value";
     }
 };
-console.log(String(object)); // => "value"
+console.log(String(customObject)); // => "value"
 ```
 
 `Object`以外の`Array`や`Number`などもそれぞれ独自の`toString`メソッドを定義しています。

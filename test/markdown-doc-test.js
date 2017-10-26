@@ -45,14 +45,14 @@ const disableComment = "disable-doc-test";
  **/
 describe("doctest:md", function() {
     const files = globby.sync([
-        `${sourceDir}/**/*.md`, 
+        `${sourceDir}/**/*.md`,
         `!${sourceDir}/**/node_modules{,/**}`,
         `!**/OUTLINE.md`
     ]);
     const notPrefix = `*:not(html[value*="${disableComment}"])`;
     files.forEach(filePath => {
         const normalizeFilePath = filePath.replace(sourceDir, "");
-        it(`can eval ${normalizeFilePath}`, function() {
+        describe(`${normalizeFilePath}`, function() {
             const content = fs.readFileSync(filePath, "utf-8");
             const markdownAST = remark.parse(content);
             const codeBlocks = [].concat(
@@ -65,39 +65,52 @@ describe("doctest:md", function() {
                 const isIgnoredCode = ESVersions.some(version => {
                     return codeValue.includes(version);
                 });
-                try {
-                    // console.logと// => の書式をチェック
-                    // ミスマッチが多いので無効化
-                    // shouldConsoleWithComment(codeBlock.value, filePath);
-                    const poweredCode = toDoc.convertCode(codeBlock.value, filePath);
-                    if (/strict modeではない/.test(codeBlock.value)) {
-                        // non-strict modeのコード
-                        const vm = new NodeVM({
-                            require: {
-                                external: true
-                            }
-                        });
-                        vm.run(poweredCode, filePath);
-                    } else {
-                        strictEval(poweredCode);
+                it(codeValue.slice(0, 20), function() {
+                    try {
+                        // console.logと// => の書式をチェック
+                        // ミスマッチが多いので無効化
+                        // shouldConsoleWithComment(codeBlock.value, filePath);
+                        const poweredCode = toDoc.convertCode(codeBlock.value, filePath);
+                        if (/strict modeではない/.test(codeBlock.value)) {
+                            // non-strict modeのコード
+                            const vm = new NodeVM({
+                                require: {
+                                    external: true
+                                }
+                            });
+                            vm.run(poweredCode, filePath);
+                        } else {
+                            strictEval(poweredCode, {
+                                require,
+                                console
+                            });
+                        }
+                    } catch (error) {
+                        const filePathLineColumn = `${filePath}:${codeBlock.position.start.line}:${codeBlock.position.start.column}`;
+                        // ReferenceErrorはSkipする
+                        // 説明で存在しない変数を書くため
+                        if (error.name === "ReferenceError") {
+                            console.log(filePathLineColumn);
+                            console.log("ReferenceErrorのためSkip");
+                            console.log(error);
+                            this.skip();
+                            return;
+                        }
+                        // Node.jsのバージョンによっては実行できないコードならスルー
+                        if (isIgnoredCode) {
+                            console.log(filePathLineColumn);
+                            console.log(`Skip this code in ${process.version}`);
+                            this.skip();
+                            return;
+                        }
+                        // Stack Trace like
+                        console.log(filePathLineColumn);
+                        console.log(codeBlock.value);
+                        console.error(`StrictEvalError: strict eval is failed
+    at strictEval (${filePathLineColumn})`);
+                        throw error;
                     }
-                } catch (error) {
-                    // ReferenceErrorはOK
-                    if (error.name === "ReferenceError") {
-                        return;
-                    }
-                    // Node.jsのバージョンによっては実行できないコードならスルー
-                    if (isIgnoredCode) {
-                        console.log(`Skip this code in ${process.version}`);
-                        return;
-                    }
-                    // Stack Trace like
-                    console.log(`${filePath}:${codeBlock.position.start.line}:${codeBlock.position.start.column}`);
-                    console.log(codeBlock.value);
-                    console.error(`StrictEvalError: strict eval is failed
-    at strictEval (${filePath}:1:1)`);
-                    throw error;
-                }
+                });
             });
         });
     });
