@@ -321,7 +321,7 @@ console.log(Array); // => 1
 `Date.now`メソッドは現在の時刻をミリ秒にして返す関数で、**実行後の時刻**から**実行前の時刻**を引くことで間に行われた処理の実行時間を得ることができます。
 
 ```js
-function doHeavyTask(){
+function doHeavyTask() {
     // 計測したい処理
 }
 const startTime = Date.now();
@@ -342,7 +342,7 @@ const measureTask = (taskFn) => {
     const endTime = Date.now();
     console.log(`実行時間は${endTime - startTime}ミリ秒`);
 };
-function doHeavyTask(){
+function doHeavyTask() {
     // 計測したい処理
 }
 measureTask(doHeavyTask);
