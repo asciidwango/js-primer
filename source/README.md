@@ -18,7 +18,8 @@
     - [オブジェクト](./basic/object/README.md)
     - [配列](./basic/array/README.md)
     - [文字列](./basic/string/README.md)
-    - Number/Math
+    - Number
+    - [Math](./basic/math/README.md)
     - [ラッパーオブジェクト](./basic/wrapper-object/README.md)
     - [関数とスコープ](./basic/function-scope/README.md)
     - this
