@@ -252,7 +252,7 @@ console.log(string); // => "赤、青、緑"
 
 ```
 // 文字列を1つ以上のスペースを区切りにして分解する
-var strings = "a b    c      d".splice(/¥s+/);  
+var strings = "a b    c      d".split(/¥s+/);  
 console.log(strings); // => ["a", "b", "c", "d"] 
 ```
 
