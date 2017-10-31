@@ -250,9 +250,9 @@ console.log(string); // => "赤、青、緑"
 `String#split`メソッドの第一引数には正規表現を指定することもできます。
 これを利用すると、次のように文字列をスペースで区切るような処理が簡単に書くことができます。
 
-```
+```js
 // 文字列を1つ以上のスペースを区切りにして分解する
-var strings = "a b    c      d".split(/¥s+/);  
+const strings = "a b    c      d".split(/\s+/);
 console.log(strings); // => ["a", "b", "c", "d"] 
 ```
 
