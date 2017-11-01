@@ -258,7 +258,7 @@ rules:
     patterns:
       - どうやって
   - expected: $1ずつ
-    patterns: /(\d+[個つ])づつ/
+    patterns: /(\d+[個つ]?)づつ/
     specs:
       - from: 2個づつ
         to  : 2個ずつ
