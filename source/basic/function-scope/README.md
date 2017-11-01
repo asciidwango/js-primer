@@ -524,7 +524,7 @@ function createCounter() {
     function countUp() {
         count = count + 1;
         return count;
-    };
+    }
     return countUp;
 }
 // `counter`は`createCounter`が返した関数を参照
