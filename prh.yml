@@ -199,9 +199,8 @@ rules:
       - /[^(分割代入（)]Destructuring assignment/i
       - /[^(分割代入（)]Destructuring(\S)/i
   - expected: ガベージコレクション
-    patterns:
-      - ガーベッジコレクション
-      - ガッベッジコレクション
+    patterns: 
+      - /ガーベッジコレクション|ガーベッジコレクション|ガーベジコレクション/
   - expected: クロージャー
     patterns:
       - /クロージャ(!?ー)/
