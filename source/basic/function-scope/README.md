@@ -510,22 +510,22 @@ var hello = function(){
 クロージャーは言葉で説明しただけでは分かりにくい性質です。
 このセクションでは、クロージャを使ったコードがどのようにして動くのかを理解することを目標にします。
 
-次の例では`createCounter`関数は、関数内で定義した`countUp`関数を返しています。
-その返された`countUp`関数を`counter`変数を代入しています。この`counter`変数を実行するたびに1,2,3と1ずつ増えた値を返しています。
+次の例では`createCounter`関数は、関数内で定義した`increment`関数を返しています。
+その返された`increment`関数を`counter`変数を代入しています。この`counter`変数を実行するたびに1,2,3と1ずつ増えた値を返しています。
 
 さらに、もう一度`createCounter`関数を実行しその返り値を`newCounter`変数に代入します。
 `newCounter`変数も実行するたびに1ずつ増えていますが、`counter`変数とその値を共有しているわけではないことが分かります。
 
 ```js
-// `countUp`関数を定義し返す関数
+// `increment`関数を定義し返す関数
 function createCounter() {
     let count = 0;
-    // `countUp`関数は`count`変数を参照
-    function countUp() {
+    // `increment`関数は`count`変数を参照
+    function increment() {
         count = count + 1;
         return count;
     }
-    return countUp;
+    return increment;
 }
 // `counter`は`createCounter`が返した関数を参照
 const counter = createCounter();
@@ -694,61 +694,67 @@ console.log(array); // => [1, 2, 3]
 ```js
 const createCounter = () => {
     let count = 0;
-    return function countUp() {
-        // `countUp`関数は外のスコープの変数`count`を参照している
+    return function increment() {
+        // `increment`関数は外のスコープの変数`count`を参照している
         // これがクロージャーと呼ばれる
         count = count + 1;
         return count;
     };
 };
-// createCounter()の実行結果は、内側で定義されていた`countUp`関数
-const counter = createCounter();
-// counter関数の実行結果は`count`の評価結果
-counter(); // => 1
-counter(); // => 2
+// createCounter()の実行結果は、内側で定義されていた`increment`関数
+const myCounter = createCounter();
+// myCounter関数の実行結果は`count`の評価結果
+myCounter(); // => 1
+myCounter(); // => 2
 ```
 
 コードが実行される順番に見ていきましょう。
 
-まずは、`counter`変数についてです。
+まずは、`myCounter`変数についてです。
 
-1. `counter`変数の初期値は`createCounter`関数の実行結果
+1. `myCounter`変数の初期値は`createCounter`関数の実行結果となる
 
 `createCounter`関数は次のことを行っています。
 
 1. 新しく`count`変数を定義し初期値を0となる
-2. 新しく`countUp`関数を定義し返す
+2. 新しく`increment`関数を定義し返す
 
-`countUp`関数は次のことを行っています。
+`increment`関数は次のことを行っています。
 
-1. `createCounter`が定義した`count`変数の値を1増加させる
+1. `createCounter`関数内で定義した`count`変数の値を1増加させる
 2. `count`変数の評価結果を返す
 
-`countUp`関数は（`countUp`関数から見ると）外側のスコープにある`count`変数を参照しています。
-また、`counter`変数は`createCounter`関数の返り値である`countUp`関数を参照しています。
-つまり、`counter`変数は間接的に`count`変数を参照しているため、`count`変数は自動的に解放されません。
+つまり次のような参照の関係が`myCounter`変数と`count`変数の間にはあることがわかります。
+
+-` myCounter`変数は`createCounter`関数の返り値である`increment`関数を参照している
+- `myCounter`変数は`increment`関数を経由して`count`変数を参照している
+- `myCounter`変数実行した後も`count`変数を参照している
+
+このように`count`変数を参照するものがいるため、`count`変数は自動的に解放されません。
+そのため、`count`変数の値は実行のたびに1ずつ大きくなっていきます。
 
 <!-- 参照の方向の図 -->
 
-> `counter` -> `countUp` -> `count`
+> `myCounter` -> `increment` -> `count`
 
-このように`count`変数が自動解放されずに保持できているのは「（`countUp`）関数が外側のスコープにある（`count`）変数への参照を保持できる」ためです。
-このような性質のことをクロージャー(関数閉包）と呼びます。クロージャーは静的スコープと変数は参照され続けていればデータは保持されるという2つの性質によって成り立っています。JavaScriptの関数は常にこの2つの性質をもっています。そのため、ある意味ではすべての関数がクロージャーとなりますが、ここでは関数が特定の変数を参照することで関数が状態をもっていることを指すことにします。
+このように`count`変数が自動解放されずに保持できているのは「（`increment`）関数が外側のスコープにある（`count`）変数への参照を保持できる」ためです。このような性質のことをクロージャー(関数閉包）と呼びます。クロージャーは静的スコープと変数は参照され続けていればデータは保持されるという2つの性質によって成り立っています。
 
-先ほどの例では`createCounter`関数を実行するたびに、それぞれ`count`と`CountUp`関数が定義しています。そのため、`createCounter`関数の実行するとそれぞれ別々の`countUp`関数が定義され、別々の`count`変数を参照しています。
+JavaScriptの関数は静的スコープとメモリ管理という2つの性質を常に持っています。そのため、ある意味ではすべての関数がクロージャーとなりますが、ここでは関数が特定の変数を参照することで関数が状態をもっていることを指すことにします。
+
+先ほどの例では`createCounter`関数を実行するたびに、それぞれ`count`と`increment`関数が定義しています。そのため、`createCounter`関数の実行するとそれぞれ別々の`increment`関数が定義され、別々の`count`変数を参照しています。
 
 次のように`createCounter`関数を複数回呼び出してみると、別々の状態を持っていることが確認できます。
 
 ```js
 const createCounter = () => {
     let count = 0;
-    return function countUp() {
+    return function increment() {
         // 変数`count`を参照し続けている
         count = count + 1;
         return count;
     };
 };
-// countUpとnewCountUpはそれぞれ別のcountUp関数(内側にあるのも別のcount変数)
+// countUpとnewCountUpはそれぞれ別のincrement関数(内側にあるのも別のcount変数)
 const countUp = createCounter();
 const newCountUp = createCounter();
 // 参照してる関数(オブジェクト)は別であるため===は一致しない
@@ -811,7 +817,7 @@ function countUp() {
     // countプロパティを参照して変更する
     countUp.count = countUp.count + 1;
     return countUp.count;
-};
+}
 // 関数オブジェクトにプロパティとして値を代入する
 countUp.count = 0;
 // 呼び出すことにcountが更新される
@@ -828,7 +834,7 @@ function countUp() {
     // countプロパティを参照して変更する
     countUp.count = countUp.count + 1;
     return countUp.count;
-};
+}
 countUp.count = 0;
 // 呼び出すことにcountが更新される
 countUp(); // => 1
