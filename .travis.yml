@@ -4,6 +4,7 @@ node_js:
 - 6
 - 8
 - 'stable'
+cache: yarn
 # gh-pagesへのdeploy向け
 env:
   global:
@@ -16,7 +17,10 @@ jobs:
       node_js: 'stable'
       script: npm run travis
     - stage: test
-      node_js: 'lts/*'
+      node_js: '6'
+      script: npm test
+    - stage: test
+      node_js: '8'
       script: npm test
     # deploy
     - stage: deploy
