@@ -283,7 +283,7 @@ const blueColor = colors.find((object) => {
 });
 console.log(blueColor); // => { "color": "blue" }
 // 該当する要素がない場合は`undefined`を返す
-console.log(array.find((object) => object.color === "white")); // => undefined
+console.log(colors.find((object) => object.color === "white")); // => undefined
 ```
 
 ### 指定範囲の要素を取得 {#slice}
@@ -704,7 +704,7 @@ console.log(abcArray); // => ["a", "b", "c"]
 {{book.console}}
 ```js
 // ECMAScriptのバージョン名と発行年
-const ecmascriptVersions = [
+const ECMAScriptVersions = [
     { name: "ECMAScript 1", year: 1997 },
     { name: "ECMAScript 2", year: 1998 },
     { name: "ECMAScript 3", year: 1999 },
@@ -715,11 +715,11 @@ const ecmascriptVersions = [
     { name: "ECMAScript 2017", year: 2017 },
 ];
 // メソッドチェーンで必要な加工処理を並べている
-const versionNames = ecmascriptVersions
+const versionNames = ECMAScriptVersions
     // 2000年以下のデータに絞り込み
-    .filter(ecmascript => ecmascript.year <= 2000)
+    .filter(ECMAScript => ECMAScript.year <= 2000)
     // それぞれの要素から`name`プロパティを取り出す
-    .map(ecmacript => ecmascript.name);
+    .map(ECMAScript => ECMAScript.name);
 console.log(versionNames); // => ["ECMAScript 1", "ECMAScript 2", "ECMAScript 3"]
 ```
 

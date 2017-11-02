@@ -198,6 +198,12 @@ rules:
     patterns:
       - /[^(分割代入（)]Destructuring assignment/i
       - /[^(分割代入（)]Destructuring(\S)/i
+  - expected: ガベージコレクション
+    patterns: 
+      - /ガーベッジコレクション|ガーベッジコレクション|ガーベジコレクション/
+  - expected: クロージャー
+    patterns:
+      - /クロージャ(!?ー)/
 
   # ファイルの読み書き / ファイルI/O
   - expected: ファイルの読み書き
@@ -251,7 +257,7 @@ rules:
     patterns:
       - どうやって
   - expected: $1ずつ
-    patterns: /(\d+[個つ])づつ/
+    patterns: /(\d+[個つ]?)づつ/
     specs:
       - from: 2個づつ
         to  : 2個ずつ
