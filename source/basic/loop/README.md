@@ -134,7 +134,7 @@ array.forEach(コールバック関数);
 {{book.console}}
 ```js
 [1, 2, 3].forEach(currentValue => {
-    console.log(num);
+    console.log(currentValue);
 });
 // 1
 // 2
