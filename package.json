@@ -9,7 +9,7 @@
     "test": "test"
   },
   "scripts": {
-    "prepublish": "gitbook install",
+    "prepare": "gitbook install",
     "start": "gitbook serve",
     "build": "gitbook build",
     "eslint": "eslint source/ --cache",
