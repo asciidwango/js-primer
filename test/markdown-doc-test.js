@@ -91,15 +91,15 @@ describe("doctest:md", function() {
                         // 説明で存在しない変数を書くため
                         if (error.name === "ReferenceError") {
                             console.log(filePathLineColumn);
-                            console.log("ReferenceErrorのためSkip");
-                            console.log(error);
+                            console.log("# ReferenceErrorのためSkip");
+                            console.log(error.message);
                             this.skip();
                             return;
                         }
                         // Node.jsのバージョンによっては実行できないコードならスルー
                         if (isIgnoredCode) {
                             console.log(filePathLineColumn);
-                            console.log(`Skip this code in ${process.version}`);
+                            console.log(`# Node.jsのバージョンによりSkip: ${process.version}`);
                             this.skip();
                             return;
                         }
