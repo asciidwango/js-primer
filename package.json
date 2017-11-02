@@ -9,7 +9,8 @@
     "test": "test"
   },
   "scripts": {
-    "prepare": "gitbook install",
+    "prepublish": "npm run install:gitbook",
+    "install:gitbook": "gitbook install",
     "start": "gitbook serve",
     "build": "gitbook build",
     "eslint": "eslint source/ --cache",

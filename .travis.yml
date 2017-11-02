@@ -35,7 +35,7 @@ jobs:
                                 --path-encrypted-key ".travis/github_deploy_key.enc"
       script:
         - |
-          npm run prepare
+          npm run install:gitbook
           $(npm bin)/update-branch --commands "npm run build" \
                              --commit-message "Deploy GitBook build [skip ci]" \
                              --directory "_book" \
