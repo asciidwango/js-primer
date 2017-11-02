@@ -511,10 +511,10 @@ var hello = function(){
 このセクションでは、クロージャを使ったコードがどのようにして動くのかを理解することを目標にします。
 
 次の例では`createCounter`関数は、関数内で定義した`increment`関数を返しています。
-その返された`increment`関数を`counter`変数を代入しています。この`counter`変数を実行するたびに1,2,3と1ずつ増えた値を返しています。
+その返された`increment`関数を`myCounter`変数を代入しています。この`myCounter`変数を実行するたびに1,2,3と1ずつ増えた値を返しています。
 
 さらに、もう一度`createCounter`関数を実行しその返り値を`newCounter`変数に代入します。
-`newCounter`変数も実行するたびに1ずつ増えていますが、`counter`変数とその値を共有しているわけではないことが分かります。
+`newCounter`変数も実行するたびに1ずつ増えていますが、`myCounter`変数とその値を共有しているわけではないことが分かります。
 
 ```js
 // `increment`関数を定義し返す関数
@@ -527,16 +527,16 @@ function createCounter() {
     }
     return increment;
 }
-// `counter`は`createCounter`が返した関数を参照
-const counter = createCounter();
-counter(); // => 1
-counter(); // => 2
+// `myCounter`は`createCounter`が返した関数を参照
+const myCounter = createCounter();
+myCounter(); // => 1
+myCounter(); // => 2
 // 新しく`newCounter`を定義する
 const newCounter = createCounter();
 newCounter(); // => 1
 newCounter(); // => 2
-// `counter`と`newCounter`は別々の状態持っている
-counter(); // => 3
+// `myCounter`と`newCounter`は別々の状態持っている
+myCounter(); // => 3
 newCounter(); // => 3
 ```
 
@@ -710,30 +710,14 @@ myCounter(); // => 1
 myCounter(); // => 2
 ```
 
-コードが実行される順番に見ていきましょう。
-
-まずは、`myCounter`変数についてです。
-
-1. `myCounter`変数の初期値は`createCounter`関数の実行結果となる
-
-`createCounter`関数は次のことを行っています。
-
-1. 新しく`count`変数を定義し初期値を0となる
-2. 新しく`increment`関数を定義し返す
-
-`increment`関数は次のことを行っています。
-
-1. `createCounter`関数内で定義した`count`変数の値を1増加させる
-2. `count`変数の評価結果を返す
-
 つまり次のような参照の関係が`myCounter`変数と`count`変数の間にはあることがわかります。
 
 - `myCounter`変数は`createCounter`関数の返り値である`increment`関数を参照している
 - `myCounter`変数は`increment`関数を経由して`count`変数を参照している
 - `myCounter`変数実行した後も`count`変数を参照している
 
-このように`count`変数を参照するものがいるため、`count`変数は自動的に解放されません。
-そのため、`count`変数の値は実行のたびに1ずつ大きくなっていきます。
+`count`変数を参照するものがいるため、`count`変数は自動的に解放されません。
+そのため`count`変数の値は保持され続け、`myCounter`変数を実行するたびに1ずつ大きくなっていきます。
 
 <!-- 参照の方向の図 -->
 
