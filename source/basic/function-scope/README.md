@@ -726,7 +726,7 @@ myCounter(); // => 2
 
 つまり次のような参照の関係が`myCounter`変数と`count`変数の間にはあることがわかります。
 
--` myCounter`変数は`createCounter`関数の返り値である`increment`関数を参照している
+- `myCounter`変数は`createCounter`関数の返り値である`increment`関数を参照している
 - `myCounter`変数は`increment`関数を経由して`count`変数を参照している
 - `myCounter`変数実行した後も`count`変数を参照している
 
