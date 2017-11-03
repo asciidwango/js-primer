@@ -9,7 +9,6 @@
     }
   },
   "rules": {
-    "ja-no-redundant-expression": true,
     // 箇条書きには。を付けない
     "period-in-list-item": {
       "periodMark": ""

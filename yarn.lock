@@ -1575,7 +1575,7 @@ editor@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/editor/-/editor-1.0.0.tgz#60c7f87bd62bcc6a894fa8ccd6afb7823a24f742"
 
-emoji-regex@^6.1.0, emoji-regex@^6.4.1:
+emoji-regex@^6.4.1:
   version "6.5.1"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-6.5.1.tgz#9baea929b155565c11ea41c6626eaa65cef992c2"
 
@@ -5167,14 +5167,14 @@ textlint-rule-ja-no-abusage@^1.1.1:
     morpheme-match "^1.0.1"
     textlint-rule-prh "^3.1.1"
 
-textlint-rule-ja-no-mixed-period@^1.0.2:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/textlint-rule-ja-no-mixed-period/-/textlint-rule-ja-no-mixed-period-1.1.0.tgz#d13c721e913404d7a61b9625aee8f4e8f75daf6f"
+textlint-rule-ja-no-mixed-period@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/textlint-rule-ja-no-mixed-period/-/textlint-rule-ja-no-mixed-period-2.0.0.tgz#240dd04536327eff5e12b3e9d0be69f5ad10a851"
   dependencies:
-    emoji-regex "^6.1.0"
+    check-ends-with-period "^1.0.1"
     textlint-rule-helper "^2.0.0"
 
-textlint-rule-ja-no-redundant-expression@^1.0.1:
+textlint-rule-ja-no-redundant-expression@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/textlint-rule-ja-no-redundant-expression/-/textlint-rule-ja-no-redundant-expression-1.0.3.tgz#08b4146b99f756d8c0ec56bd3b7111425a3f0d8c"
   dependencies:
@@ -5300,12 +5300,13 @@ textlint-rule-period-in-list-item@^0.2.0:
     check-ends-with-period "^1.0.1"
     unist-util-select "^1.5.0"
 
-textlint-rule-preset-ja-technical-writing@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/textlint-rule-preset-ja-technical-writing/-/textlint-rule-preset-ja-technical-writing-1.0.0.tgz#aa762d3f31b805e7d48b70fa837d5fc46840e92d"
+textlint-rule-preset-ja-technical-writing@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/textlint-rule-preset-ja-technical-writing/-/textlint-rule-preset-ja-technical-writing-2.0.0.tgz#63bb67086a22b559082510807ca3fb7868806aea"
   dependencies:
     textlint-rule-ja-no-abusage "^1.1.1"
-    textlint-rule-ja-no-mixed-period "^1.0.2"
+    textlint-rule-ja-no-mixed-period "^2.0.0"
+    textlint-rule-ja-no-redundant-expression "^1.0.3"
     textlint-rule-ja-no-successive-word "^1.0.1"
     textlint-rule-ja-no-weak-phrase "^1.0.2"
     textlint-rule-max-comma "^1.0.2"
