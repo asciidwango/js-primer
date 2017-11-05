@@ -234,6 +234,7 @@ nullリテラルは`null`値を返すリテラルです。
 次のように、未定義の変数を参照した場合は、
 参照できないため`ReferenceError`の例外が投げられます。
 
+<!-- doctest: ReferenceError -->
 ```js
 foo;// "ReferenceError: foo is not defined"
 ```

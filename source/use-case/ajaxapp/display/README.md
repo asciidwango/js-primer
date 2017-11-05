@@ -11,6 +11,8 @@ XHRを使ってサーバーからデータを取得できたので、データ�
 まずはGitHub APIからのデータをJavaScriptで扱うために、レスポンス文字列をオブジェクトに変換します。
 GitHub APIのレスポンスはJSON形式なので、オブジェクトへの変換には[JSON.parse()][]を使います。
 
+<!-- 実際にはrequestできない -->
+<!-- doctest:disable -->
 ```js
 request.addEventListener("load", (event) => {
     if (event.target.status !== 200) {
@@ -30,6 +32,8 @@ HTML文字列の生成にはテンプレートリテラルを使います。
 
 次のコードではGitHubのユーザー情報から組み立てるHTMLのテンプレートを宣言しています。
 
+<!-- 差分コードなので -->
+<!-- doctest:disable -->
 ```js
 const view = `
 <h4>${userInfo.name} (@${userInfo.login})</h4>
@@ -78,6 +82,8 @@ const view = `
 [document.getElementById][]メソッドを使い、id属性が設定された要素にアクセスします。
 `div#result`要素が取得できたら、先ほど生成したHTML文字列を`innerHTML`プロパティにセットします。
 
+<!-- 差分コードなので -->
+<!-- doctest:disable -->
 ```js
 const result = document.getElementById("result");
 result.innerHTML = view;
@@ -139,6 +145,8 @@ function escapeHTML(strings, ...values) {
 `escapeHTML`関数はタグ関数なので、通常の`()`による呼び出しではなく、テンプレートリテラルに対してタグ付けして使います。
 テンプレートリテラルのバッククォート記号の前に関数を書くと、関数がタグ付けされます。
 
+<!-- 差分コードなので -->
+<!-- doctest:disable -->
 ```js
 const view = escapeHTML`
 <h4>${userInfo.name} (@${userInfo.login})</h4>

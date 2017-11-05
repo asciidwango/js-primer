@@ -627,10 +627,12 @@ const pattern = new RegExp(`\\s{${spaceCount}}`);
 しかし、正規表現による検索は、パターンによる検索であるため、検索しマッチした文字列の長さは固定ではありません。
 つまり、次のように`String#search`メソッドでインデックスのみを取得しても、実際にマッチした文字列が分かりません。
 
+{{book.console}}
+<!-- doctest:disable -->
 ```js
 const string = "abc123def";
 const searchPattern = /\d+/;
-const index = string.search(searchPattern); // 3
+const index = string.search(searchPattern); // => 3
 // `index` だけではマッチした文字列が分からない
 // そのため`マッチした文字列の長さ`が`String#search`では分からない
 string.slice(index, index + マッチした文字列の長さ); // マッチした文字列は取得できない
@@ -654,9 +656,8 @@ string.slice(index, index + マッチした文字列の長さ); // マッチし�
 たとえば、`/[a-zA-Z]+/`という正規表現は`a`から`Z`のどれかの文字が1つ以上連続しているものにマッチします。
 `String#match`メソッドは、`g`フラグのなしではマッチする最初の結果のみを返しますが、`g`フラグありではすべての結果を返します。
 
-<!-- matchの結果は配列だがindexプロパティを持つためdeepEqualが失敗する -->
-<!-- disable-doc-test -->
-
+{{book.console}}
+<!-- doctest:disable -->
 ```js
 const string = "ABC あいう DE えお";
 // gフラグなしでは、最初の結果のみを持つ配列を返す
@@ -664,7 +665,8 @@ const results = string.match(/[a-zA-Z]+/);
 console.log(results); // => ["ABC"]
 // aからZのどれかの文字が1つ以上連続するパターンにマッチするものを繰り返した（gフラグ)結果を返す
 const resultsWithG = string.match(/[a-zA-Z]+/g);
-console.log(resultsWithG); // => ["ABC", "DE"]
+console.log(resultsWithG[0]); // => "ABC"
+console.log(resultsWithG[1]); // => "DE"
 ```
 
 `RegExp#exec`メソッドも、`g`フラグの有無によって挙動が変化します。
@@ -672,8 +674,9 @@ console.log(resultsWithG); // => ["ABC", "DE"]
 しかし、`g`フラグありでは最後にマッチした末尾のインデックスを正規表現オブジェクトの`lastIndex`プロパティに記憶します。
 次に、`exec`メソッドを呼び出すと最後にマッチした末尾のインデックスから検索が開始されます。
 
-<!-- disable-doc-test -->
-
+{{book.console}}
+<!-- execの結果は配列に色々なプロパティが入っているためdoctest=deepEqualは失敗する -->
+<!-- doctest:disable -->
 ```js
 const string = "ABC あいう DE えお";
 // gフラグなしでは、最初の結果のみを持つ配列を返す
@@ -702,6 +705,7 @@ console.log(alphabetsPattern.exec(string)); // => ["DE"]
 
 そのマッチしてるパターンにキャプチャが含まれている場合は、次のように返り値の配列へキャプチャした部分が追加されていきます。
 
+<!-- doctest:disable -->
 ```js
 const [マッチした文字列, ...キャプチャされた文字列] = 文字列.match(/パターン(キャプチャ)/);
 ```
@@ -805,6 +809,7 @@ delete string[0]; // => Error
 `replace`メソッドは、**文字列**から第一引数の`検索文字列`また正規表現にマッチする部分を、第二引数の`置換文字列`へ置換します。
 第一引数には、文字列または正規表現を指定できます。
 
+<!-- doctest: ReferenceError -->
 ```js
 文字列.replace("検索文字列", "置換文字列");
 文字列.replace(/パターン/, "置換文字列");
@@ -839,6 +844,7 @@ console.log(string.replace(/にわ/g, "niwa")); // => "niwaにはniwaniwaとり�
 第一引数の`パターン`にマッチした部分がコールバック関数の返り値で置換されます。
 コールバック関数の第一引数には`パターン`に一致した文字列全体、第二引数以降へキャプチャした文字列が順番に入ります。
 
+<!-- doctest:disable -->
 ```js
 const 置換した結果の文字列 = 文字列.replace(/(パターン)/, (all, ...captures) => {
     return 置換したい文字列;

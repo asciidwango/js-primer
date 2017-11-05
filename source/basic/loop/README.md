@@ -12,6 +12,7 @@ author: azu
 
 while文は`条件式`が`true`であるならば、反復処理を行います。
 
+<!-- doctest:disable -->
 ```js
 while (条件式)
     実行する文;
@@ -38,6 +39,7 @@ JavaScriptにはより安全な反復処理の書き方があるため、while�
 
 do-while文はwhile文と殆ど同じですが実行順序が異なります。
 
+<!-- doctest:disable -->
 ```js
 do {
     実行する文;
@@ -64,6 +66,7 @@ while文とは異なり、かならず最初に`実行する文`を処理しま�
 
 for文は繰り返す範囲を指定した反復処理を書くことができます。
 
+<!-- doctest:disable -->
 ```js
 for (初期化式; 条件式; 増分式)
     実行する文;
@@ -123,6 +126,7 @@ JavaScriptでは、関数はファーストクラスであるため、その場�
 引数として渡される関数のことを**コールバック関数**と呼びます。
 また、`forEach`メソッドのようなコールバック関数を引数として受け取る関数やメソッドのことを**高階関数**と呼びます。
 
+<!-- doctest: ReferenceError -->
 ```js
 const array = [1, 2, 3, 4, 5];
 array.forEach(コールバック関数);
@@ -210,6 +214,7 @@ const isPassed = array.some((currentValue, index, array) => {
 continue文は処理中の文をスキップして、そのループの`条件式`と移行する制御文です。
 while、do-while、forの中で使い、実行中のループの`条件式`へ制御を移します。
 
+<!-- doctest:disable -->
 ```js
 while (条件式) {
     continue; // `条件式` へ
@@ -224,6 +229,7 @@ while (条件式) {
 
 もちろん次のように、偶数なら`results`へ追加するという書き方も可能です。
 
+<!-- doctest:disable -->
 ```js
 if (isEven(number)) {
     results.push(number);
@@ -258,6 +264,7 @@ const filterdArray = array.filter((currentValue, index, array) => {
 
 for...in文はオブジェクトのプロパティに対して、順不同で反復処理を行います。
 
+<!-- doctest:disable -->
 ```js
 for (variable in object)
     実行する文;
@@ -314,6 +321,7 @@ iterableについてはgeneratorと密接な関係がありますが、ここで
 iterableオブジェクトは反復処理時に次の返す値を定義しています。
 それに対して、for...of文では、`iterable`から値を1つ取り出し、`variable`に代入し反復処理を行います。
 
+<!-- doctest:disable -->
 ```js
 for (variable of iterable)
     実行する文;
@@ -351,6 +359,7 @@ for...of文はそれらに対して反復処理を行うことができます。
 `次の値`として1つの値を返します。
 最終的な、`reduce`メソッドの返り値は、コールバック関数が最後に`return`した値となります。
 
+<!-- doctest:disable -->
 ```js
 const result = array.reduce((前回の値, 現在の値) => {
     return 次の値;

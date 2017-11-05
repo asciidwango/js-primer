@@ -220,6 +220,7 @@ String(function() {}); // 実装依存の結果
 プラス演算子を文字列に利用した場合、文字列の結合を優先します。
 「片方が文字列なら、もう片方のオペランドとは関係なく、結果は文字列となるのでは？」と考えるかもしれません。
 
+<!-- doctest:disable -->
 ```js
 "文字列" + x; // 文字列となる？
 ```
@@ -248,6 +249,8 @@ String(function() {}); // 実装依存の結果
 文字列から数値へ明示的に変換するには`Number`コンストラクタ関数が利用できます。
 
 {{book.console}}
+<!-- window.promptはないため -->
+<!-- doctest: ReferenceError -->
 ```js
 // ユーザー入力を文字列として受け取る
 const input = window.prompt("数字を入力してください", "42");
@@ -381,9 +384,10 @@ sum(x, y, z); // => NaN
 そのため、`sum(x, y, z);`は次のように呼ばれていたのと同じ結果になります。
 `undefined`に数値を加算すると結果は`NaN`となります。
 
+<!-- doctest: ReferenceError -->
 ```js
 sum(1, undefined, 10); // => NaN
-// 計算中にNaNとなったため最終結果もNaNになった
+// 計算中にNaNとなるため、最終結果もNaNになる
 1 + undefined; // => NaN
 NaN + 10; // => NaN
 ```

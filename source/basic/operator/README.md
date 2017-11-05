@@ -325,7 +325,7 @@ null == undefined; // => true
 
 {{book.console}}
 ```js
-const value = getValue();
+const value = null; /* または undefined */
 if (value == null || value === undefined) {
     console.log("valueがnullまたはundefinedである場合の処理");
 }
@@ -530,6 +530,7 @@ if (!string.includes("火")) {
 左シフト演算子は、`number`を`bit`の数だけ左へシフトします。
 左にあふれたビットは破棄され、`0`のビットを右から詰めます。
 
+<!-- doctest:disable -->
 ```js
 number << bit;
 ```
@@ -547,6 +548,7 @@ number << bit;
 右シフト演算子は、`number`を`bit`の数だけ右へシフトします。
 右にあふれたビットは破棄され、左端のビットのコピーを左から詰めます。
 
+<!-- doctest:disable -->
 ```js
 number >> bit;
 ```
@@ -638,6 +640,7 @@ console.log(key); // => "value"
 条件演算子は`条件式`を評価した結果が`true`ならば、`Trueの時処理する式`の評価結果を返します。
 `条件式`が`false`である場合は、`Falseの時処理する式`の評価結果を返します。
 
+<!-- doctest:disable -->
 ```js
 条件式 ? Trueの時処理する式 : Falseの時処理する式;
 ```
@@ -648,9 +651,9 @@ if文との違いは、条件演算子は式として書くことができるた
 {{book.console}}
 ```js
 const valueA = true ? "A" : "B";
-console.log(value); // => "A";
+console.log(valueA); // => "A";
 const valueB = false ? "A" : "B";
-console.log(value); // => "B";
+console.log(valueB); // => "B";
 ```
 
 条件分岐による値を返せるため、条件によって変数の初期値が違う場合などに使われます。
@@ -868,6 +871,7 @@ a + b * c; // 7
 次のようなグループを演算子を使わずに書いたコードを見てみましょう。
 `a`が`true`または、`b`かつ`c`が`true`であるときに処理されます。
 
+<!-- doctest:disable -->
 ```js
 if (a || b && c) {
     // a が true または
@@ -878,6 +882,7 @@ if (a || b && c) {
 ひとつの式に複数の種類の演算子が出てくると読みにくくなる傾向があります。
 このような場合にはグループ演算子を使い、結合順を明示して書くようにしましょう。
 
+<!-- doctest:disable -->
 ```js
 if (a || (b && c)) {
     // a が true または

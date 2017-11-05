@@ -116,6 +116,8 @@ https://asciidwango.github.io/js-primer/</p>
 それぞれの変換オプションについて、コマンドライン引数で制御できるようにします。
 `gfm`オプションは`--gfm`、`sanitize`オプションは`--sanitize`と`-S`でコマンドラインから設定できるようにします。
 
+<!-- 差分コードなので -->
+<!-- doctest:disable -->
 ```js
 program
     .option("--gfm <flag>", "GFMを有効にする")
@@ -134,6 +136,8 @@ markedのオプションはオブジェクトを渡す形式です。
 オブジェクトのデフォルト値を明示的な値で上書きするときには`Object.assign`メソッドを使うと便利です。([オブジェクトのコピー・マージ](../../../basic/object/README.md)を参照)
 次のようにデフォルトのオプションを表現したオブジェクトに対して、コマンドライン引数をパースして得られたオブジェクトを上書きします。
 
+<!-- 差分コードなので -->
+<!-- doctest:disable -->
 ```js
 const markedOptions = Object.assign({}, {
     gfm: true,

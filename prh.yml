@@ -61,6 +61,7 @@ rules:
         to:   日経ソフトウエア
 
 # Project
+  - expected: Doctest
   - expected: 基本文法
     patterns:
       - 基礎文法
