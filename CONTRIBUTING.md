@@ -46,7 +46,7 @@ IssueやPull Requestでやりとりしそのエラーを直すか無視するか
 - [textlint](https://textlint.github.io/)による文章のLint
 - [ESLint](http://eslint.org/ "ESLint")によるコードのLint
 - [textlint](https://textlint.github.io/) + [ESLint](http://eslint.org/ "ESLint")によるMarkdown中のインラインコードブロックのLint
-- Markdown中のインラインコードブロックへのDocTest
+- Markdown中のインラインコードブロックへのDoctest
 - [Mocha](http://mochajs.org/ "Mocha")による`*-test.js`ファイルのユニットテスト
 - `*-example.js`がJavaScriptとして実行できるかのテスト
 - `*-invalid.js`がJavaScriptとして実行できないかのテスト
@@ -58,11 +58,11 @@ Markdown中のインラインコードブロックとは次のような`js`言�
     var foo = "string";
     ```
 
-### DocTest
+### Doctest
 
-`*-example.js`のJavaScriptファイルとMarkdownのインラインコードブロックを対象にDocTestが実行されます。
+`*-example.js`のJavaScriptファイルとMarkdownのインラインコードブロックを対象にDoctestが実行されます。
 
-次のように`// => 値`というコメントを書いた部分に対してDocTestが実行されます。
+次のように`// => 値`というコメントを書いた部分に対してDoctestが実行されます。
 
 ```js
 const a = 42;
@@ -87,9 +87,9 @@ console.log(評価したい式); // => 期待する評価結果
 `console.log`が冗長な場合は `式; // => 期待する評価結果`と書いても良い。
 
 
-#### DocTestエラーのテスト
+#### Doctestエラーのテスト
 
-DocTestの正常系は実行結果と期待結果が一致することです。
+Doctestの正常系は実行結果と期待結果が一致することです。
 一方、そのコードの実行結果がエラーになることを期待する場合もあります。
 エラーを期待する場合は、`doctest: 期待するエラー名`をHTMLコメントに書きます。
 
@@ -109,7 +109,7 @@ DocTestの正常系は実行結果と期待結果が一致することです。
     NO_DEFINE++; // => ReferenceError
     ```
 
-#### DocTestの無視
+#### Doctestの無視
 
 CodeBlockの手前に`<!-- doctest:disable -->`というHTMLコメントがある場合はDoctestをしません。
 Node.jsで実行できないビルドインオブジェクトを使うパターンや例外的なケースに利用できます。
