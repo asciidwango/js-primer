@@ -10,28 +10,26 @@ const sourceDir = path.join(__dirname, "..", "source");
 const toDoc = require("power-doctest");
 const remark = require("remark")();
 const select = require('unist-util-select');
-const shouldConsoleWithComment = require('./lib/console-comment');
-
+const attachParents = require('unist-util-parents');
+const findAllBetween = require('unist-util-find-all-between');
+const findBefore = require('unist-util-find-before');
+const DocTestController = require("./lib/DocTestController");
+const getComments = (parentNode, codeNode) => {
+    const nonHtmlNode = findBefore(parentNode, codeNode, (node) => {
+        return node.type !== "html";
+    });
+    const startNode = nonHtmlNode ? nonHtmlNode : parentNode.children[0];
+    const htmlNodes = findAllBetween(parentNode, startNode, codeNode, 'html');
+    return htmlNodes.map(htmlNode => {
+        return htmlNode.value.replace(/^<!--/, "").replace(/-->$/, "")
+    })
+};
 /**
  * 指定した文字列を含んだコードは実行環境によってはサポートされてないので無視する
  * 具体的にはNode.js v6でES2016~のコードが実行できない
  * @type {string[]}
  */
 const ESVersions = ["ES2016", "ES2017"];
-/**
- * CodeBlockの手前に該当するHTMLコメントがある場合は無視する
- * @example
- * 以下のは実行されないのでOKになる
- *
- * <!-- disable-doc-test -->
- * ```js
- * 1; // => 2
- * ```
- *
- *
- * @type {String}
- */
-const disableComment = "disable-doc-test";
 /**
  * Markdownファイルの CodeBlock に対してdoctestを行う
  * CodeBlockは必ず実行できるとは限らないので、
@@ -49,15 +47,14 @@ describe("doctest:md", function() {
         `!${sourceDir}/**/node_modules{,/**}`,
         `!**/OUTLINE.md`
     ]);
-    const notPrefix = `*:not(html[value*="${disableComment}"])`;
     files.forEach(filePath => {
         const normalizeFilePath = filePath.replace(sourceDir, "");
         describe(`${normalizeFilePath}`, function() {
             const content = fs.readFileSync(filePath, "utf-8");
-            const markdownAST = remark.parse(content);
+            const markdownAST = attachParents(remark.parse(content));
             const codeBlocks = [].concat(
-                select(markdownAST, `${notPrefix} + code[lang="js"]`),
-                select(markdownAST, `${notPrefix} + code[lang="javascript"]`)
+                select(markdownAST, `code[lang="js"]`),
+                select(markdownAST, `code[lang="javascript"]`)
             );
             // try to eval
             codeBlocks.forEach((codeBlock, index) => {
@@ -65,6 +62,11 @@ describe("doctest:md", function() {
                 const isIgnoredCode = ESVersions.some(version => {
                     return codeValue.includes(version);
                 });
+                const comments = getComments(codeBlock.parent, codeBlock);
+                const docTestController = new DocTestController(comments);
+                if (docTestController.isDisabled) {
+                    return;
+                }
                 it(codeValue.slice(0, 20), function() {
                     try {
                         // console.logと// => の書式をチェック
@@ -87,14 +89,15 @@ describe("doctest:md", function() {
                         }
                     } catch (error) {
                         const filePathLineColumn = `${filePath}:${codeBlock.position.start.line}:${codeBlock.position.start.column}`;
-                        // ReferenceErrorはSkipする
-                        // 説明で存在しない変数を書くため
-                        if (error.name === "ReferenceError") {
-                            console.log(filePathLineColumn);
-                            console.log("# ReferenceErrorのためSkip");
-                            console.log(error.message);
-                            this.skip();
-                            return;
+                        if (docTestController.hasExpectedError) {
+                            if (docTestController.isExpectedError(error)) {
+                                return;
+                            } else {
+                                console.log(`Error type mismatch:
+    Expected: ${docTestController.expectedErrorName}
+    Actual  : ${error.name}
+`);
+                            }
                         }
                         // Node.jsのバージョンによっては実行できないコードならスルー
                         if (isIgnoredCode) {
@@ -104,10 +107,13 @@ describe("doctest:md", function() {
                             return;
                         }
                         // Stack Trace like
-                        console.log(filePathLineColumn);
-                        console.log(codeBlock.value);
-                        console.error(`StrictEvalError: strict eval is failed
-    at strictEval (${filePathLineColumn})`);
+                        console.log(`Doctest: Failed`);
+                        console.log(`   at ${filePathLineColumn}`);
+                        console.log(`Code:
+---
+${codeBlock.value}
+---
+`);
                         throw error;
                     }
                 });

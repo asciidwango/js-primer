@@ -67,6 +67,9 @@
     "textlint-rule-period-in-list-item": "^0.2.0",
     "textlint-rule-preset-ja-technical-writing": "^2.0.0",
     "textlint-rule-prh": "^5.0.1",
+    "unist-util-find-all-between": "^1.0.1",
+    "unist-util-find-before": "^2.0.1",
+    "unist-util-parents": "^1.0.0",
     "unist-util-select": "^1.5.0",
     "vm2": "^3.4.6"
   },

@@ -65,13 +65,13 @@ Markdown中のインラインコードブロックとは次のような`js`言�
 次のように`// => 値`というコメントを書いた部分に対してDocTestが実行されます。
 
 ```js
-let a = 42;
+const a = 42;
 console.log(42); // => 42
 ```
 
 これにより、サンプルコードのコメントに書いた評価結果と実際の出力が一致するかをテストしています。
 
-#### サポートする形式
+#### サポートする書式
 
 ```
 評価したい式; // => 期待する評価結果
@@ -86,13 +86,57 @@ console.log(評価したい式); // => 期待する評価結果
 基本的には、`console.log(式); // => 期待する評価結果`を利用し、
 `console.log`が冗長な場合は `式; // => 期待する評価結果`と書いても良い。
 
+
+#### DocTestエラーのテスト
+
+DocTestの正常系は実行結果と期待結果が一致することです。
+一方、そのコードの実行結果がエラーになることを期待する場合もあります。
+エラーを期待する場合は、`doctest: 期待するエラー名`をHTMLコメントに書きます。
+
+例) 実行結果が`ReferenceError`となることを期待するテスト
+
+`条件式`という変数が定義されていないためエラーとなる。
+
+    <!-- doctest: ReferenceError -->
+    ```js
+    if (条件式)
+        実行する文;
+    ```
+    
+個別の行がエラーとなることを期待する場合は、正常系のDoctestでも書けるためそちらを推奨します。
+
+    ```js
+    NO_DEFINE++; // => ReferenceError
+    ```
+
+#### DocTestの無視
+
+CodeBlockの手前に`<!-- doctest:disable -->`というHTMLコメントがある場合はDoctestをしません。
+Node.jsで実行できないビルドインオブジェクトを使うパターンや例外的なケースに利用できます。
+
+例) 無視するケース
+
+次の例はAPIの説明のための擬似コードであるため無視しています。
+
+    <!-- doctest:disable -->
+    ```js
+    array.map(コールバック関数);
+    ```
+
+
+**別の手法**:
+
+ファイル名が`*-invalid.js`のコードは実行できないことを検証できます。(エラーになるとテストが通る)
+これを`[include]`することでより正確に表現できます。
+
+- `*-invalid.js`がJavaScriptとして実行できないかのテスト
+
 **関連**
 
 - [console.logと// => の使い分け · Issue #195 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/195 "console.logと// =&gt; の使い分け · Issue #195 · asciidwango/js-primer")
 - [power-assertを使ったDoctestツール power-doctestを書き直した | Web Scratch](http://efcl.info/2015/08/10/power-doctest1.0/)
 - [JavaScriptでdoctestを行う power-doctest を作った | Web Scratch](http://efcl.info/2013/1201/res3494/)
 - [25.2. doctest — 対話的な実行例をテストする — Python 2.7.x ドキュメント](http://docs.python.jp/2/library/doctest.html "25.2. doctest — 対話的な実行例をテストする — Python 2.7.x ドキュメント")
-
 
 ## ディレクトリ構造
 
