@@ -427,6 +427,7 @@ console.log(newArray); // => ["A", "B", "C", "新しい要素"]
 `Array#splice`メソッドは、`index`番目から`削除する数`だけ要素を取り除き、必要ならば要素を同時に追加できます。
 
 {{book.console}}
+<!-- doctest: ReferenceError -->
 ```js
 const array = [];
 array.splice(インデックス, 削除する要素数);

@@ -91,6 +91,7 @@ console.log(inLocal.toISOString()); // "2006-01-02T06:04:05.999Z" (Asia/Tokyoの
 
 3つめは、時刻を次のように、年・月・日などの部分ごとの数値で指定する方法です。
 
+<!-- doctest:disable -->
 ```js
 new Date(year, month, day, hour, minutes, seconds, milliseconds);
 ```
@@ -180,6 +181,8 @@ console.log(`Hours in UTC: ${now.getHours() + timezoneOffsetInHours}`);
 そのため、JavaScriptにおける日付・時刻の処理は、標準のDateではなくライブラリを使うことが一般的になっています。
 代表的なライブラリとしては、[moment.js][]や[js-joda][]、[date-fns][]などがあります。
 
+<!-- momentが参照できない -->
+<!-- doctest:disable -->
 ```js
 // moment.jsで現在時刻のmomentオブジェクトを作る
 const now = moment();

@@ -232,6 +232,7 @@ if (object.key !== undefined) {
 
 `in`演算子は、指定したオブジェクト上に指定したプロパティがあるかを判定できます。
 
+<!-- doctest:disable -->
 ```js
 "プロパティ名" in オブジェクト; // true or false
 ```
@@ -256,6 +257,7 @@ if ("key" in object) {
 
 `Object#hasOwnProperty`メソッドを使うことで、オブジェクト自身が指定したプロパティを持っているかを判定できます。
 
+<!-- doctest:disable -->
 ```js
 オブジェクト.hasOwnProperty("プロパティ名"); // true or false
 ```
@@ -510,6 +512,7 @@ console.log(Object.entries(object)); // => [["one", 1], ["two", 2], ["three", 3]
 `sources`オブジェクト自身がもつ列挙可能なプロパティを第一引数の`target`オブジェクトに対してコピーします。
 `Object.assign`メソッドの返り値は、`target`オブジェクトになります。
 
+<!-- doctest:disable -->
 ```js
 Object.assign(target, ...sources);
 ```

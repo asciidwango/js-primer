@@ -29,6 +29,7 @@ fn.property = "value";
 JavaScriptでは、関数宣言を`function`キーワードを使うことで行えます。
 `function`から始まる文は関数宣言と呼び、次のように関数を宣言をできます。
 
+<!-- doctest:disable -->
 ```js
 // 関数定義
 function 関数名(仮引数1, 仮引数2) {

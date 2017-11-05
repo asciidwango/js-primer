@@ -19,6 +19,8 @@ GitHubが提供している、ユーザー情報を取得するためのWebAPI�
 URLをテンプレート文字列にしているのは、変数でユーザーIDを設定するためです。
 URLをオープンして組み立てられたXHRは、最後に`send`することでサーバーとの通信を開始します。
 
+<!-- XHRがないため -->
+<!-- doctest:disable -->
 ```js
 const request = new XMLHttpRequest();
 request.open("GET", `https://api.github.com/users/${userId}`);
@@ -50,6 +52,8 @@ XHRのインスタンスがセットされています。
 XHRの`responseText`プロパティからは、HTTPレスポンスが文字列で取得できます。
 また、`status`プロパティからはHTTPレスポンスのステータスコードが取得できます。
 
+<!-- XHRがないため -->
+<!-- doctest:disable -->
 ```js
 const request = new XMLHttpRequest();
 request.open("GET", `https://api.github.com/users/${userId}`);
@@ -73,6 +77,8 @@ HTTP通信にはエラーがつきものです。
 XHRではレスポンスの受け取りと同じように、イベントリスナによってエラーのハンドリングが可能です。
 サーバーとの通信に際してエラーが発生した場合は、`error`イベントが発火されます。
 
+<!-- XHRがないため -->
+<!-- doctest:disable -->
 ```js
 request.addEventListener("error", () => {
     console.log("Network Error!");
@@ -82,6 +88,8 @@ request.addEventListener("error", () => {
 注意すべき点は、サーバーがレスポンスとして返却するエラーは、通常のレスポンスと同様に`load`イベントで受け取ることです。
 たとえば、ステータスコードが200以外である場合のハンドリングは次のように行います。
 
+<!-- XHRがないため -->
+<!-- doctest:disable -->
 ```js
 request.addEventListener("load", (event) => {
     if (event.target.status !== 200) {
