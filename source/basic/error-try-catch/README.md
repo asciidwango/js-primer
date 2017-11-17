@@ -11,7 +11,7 @@ author: laco
 [try...catch][]構文は例外が発生しうるブロックをマークし、例外が発生したときの処理を記述するための構文です。
 次の例のように、`try`文にはひとつの`try`ブロックがあり、`try`ブロック内で発生した例外を`catch`節でキャッチします。
 `try`ブロック内で例外が発生すると、それ以降の文は実行されず`catch`節に処理が移ります。
-`finally`節が存在するときには、例外が発生してもしなくてもかならず`try`文の最後に実行されます。
+`finally`節が存在するときには、例外がなげられたかどうかにかかわらず、かならず`try`文の最後に実行されます。
 `catch`節は必須ですが、`finally`節は省略可能です。
 
 {{book.console}}
@@ -33,7 +33,7 @@ try {
 
 [throw][]文を使うとユーザーが例外を投げることができます。
 例外として投げられたオブジェクトは、`catch`節で関数の引数のようにアクセスできます。
-このオブジェクトは[例外識別子][]と呼ばれます
+このオブジェクトは[例外識別子][]と呼ばれます。
 
 
 {{book.console}}
@@ -49,8 +49,8 @@ try {
 
 ## エラーオブジェクト
 
-`try`文や`throw`文ではあらゆるオブジェクトが例外として扱われますが、
-ほとんどの場合において実際に例外として使われるのは[Error][]オブジェクトとそこから派生するエラーオブジェクトです。
+`try`文や`throw`文ではあらゆるオブジェクトを例外として扱えます。
+ただし、実際の開発において例外として投げられるのは、[Error][]オブジェクトとそこから派生するエラーオブジェクトです。
 
 ### ビルトインエラー
 
@@ -68,6 +68,7 @@ try {
 } catch (error) {
     console.log(error instanceof ReferenceError); // => true
     console.log(error.name); // => "ReferenceError"
+    console.log(error.message); // エラーの内容が表示される
 }
 ```
 
@@ -83,6 +84,7 @@ try {
 } catch (error) {
     console.log(error instanceof SyntaxError); // => true
     console.log(error.name); // => "SyntaxError"
+    console.log(error.message); // エラーの内容が表示される
 }
 ```
 
@@ -98,25 +100,62 @@ try {
 } catch (error) {
     console.log(error instanceof TypeError); // => true
     console.log(error.name); // => "TypeError"
+    console.log(error.message); // エラーの内容が表示される
 }
 ```
 
 ### 独自エラー
 
-エラーオブジェクトはユーザーが独自に作成することもできます。
+`Error`オブジェクトのインスタンスはユーザーが独自に作成することもできます。
+`Error`を`new`することで、任意のエラーをあわらすインスタンスを作成できます。
+コンストラクタの第一引数には、エラーの内容をあらわす文字列を渡します。
+渡した文字列は`Error#message`プロパティに格納されます。
+
+次の例では、`assertPositiveNumber`関数で独自のエラーを作成し、例外として`throw`しています。
+ビルトインエラーと同様にcatch節の例外識別子としてオブジェクトを取得し、エラーメッセージを確認できます。
+
+{{book.console}}
+```js
+// 渡された数値が0未満であれば例外を投げる関数
+function assertPositiveNumber(num) {
+    if (num < 0) {
+        throw new Error(`${num} is not positive.`);
+    }
+}
+
+try {
+    assertPositiveNumber(-1);
+} catch (error) {
+    console.log(error instanceof Error); // => true
+    console.log(error.message); // => "-1 is not positive."
+}
+```
 
 ## エラーとデバッグ
 
 JavaScript開発においてデバッグ中に発生したエラーを理解することは非常に重要です。
-エラーには**種類**と**メッセージ**と**スタックトレース**があり、これらを活用することで、
-ソースコードのどこでどのようなエラーが発生したのか知ることができます。
+エラーがもつ情報を活用することで、ソースコードのどこでどのような例外が投げられたのか知ることができます。
 
-ビルトインエラーはすべて`Error`オブジェクトを拡張したオブジェクトで宣言されており、エラーの名前をあらわす`name`プロパティと内容をあらわす`message`プロパティをもっています。
+ビルトインエラーはすべて`Error`オブジェクトを拡張したオブジェクトで宣言されています。
+つまり、エラーの名前をあらわす`name`プロパティと内容をあらわす`message`プロパティをもっています。
 この2つのプロパティを確認することで、多くの場面で開発の助けとなるでしょう。
 
+次のコードではtry文で囲っていない部分で例外を投げています。
 
+[import, error.js](src/error.js)
 
-ビルトインエラーの名前と内容については、[JavaScriptエラーリファレンス][]に網羅されています。開発中にビルトインエラーが発生したときには、リファレンスを見て解決方法を探しましょう。
+このスクリプトをブラウザで読み込むと、投げられた例外がコンソールに出力されます。
+まず目に入るのは`ReferenceError: x is not defined`というメッセージです。
+ここにはエラーの種類とメッセージが示されています。
+そしてメッセージの後には例外のスタックトレースが表示されています。
+スタックトレースには、例外が発生した場所の情報が記録されています。
+この例では、`error.js`ファイルの3行目、5列目で例外が投げられたことを表示しています。
+
+![コンソールでのエラー表示](images/error.png)
+
+このように、コンソールに表示されるエラーログには多くの情報が含まれています。
+MDNの[JavaScriptエラーリファレンス][]には、ブラウザが投げるビルトインのエラーについて種類とメッセージが網羅されています。
+開発中にビルトインエラーが発生したときには、リファレンスを見て解決方法を探すとよいでしょう。
 
 
 [try...catch]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/try...catch
