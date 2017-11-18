@@ -205,6 +205,9 @@ rules:
   - expected: クロージャー
     patterns:
       - /クロージャ(!?ー)/
+  - expected: 静的に
+    patterns:
+      - レキシカルに
 
   # ファイルの読み書き / ファイルI/O
   - expected: ファイルの読み書き
