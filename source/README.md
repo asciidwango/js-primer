@@ -25,7 +25,7 @@
     - this
     - 関数オブジェクト
     - クラス
-    - Error/Throw
+    - [例外処理](./basic/error-try-catch/README.md)
     - Promise
     - Generator/Iterable/Iterator
     - ビルトインオブジェクト
