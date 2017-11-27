@@ -134,11 +134,11 @@ Arrow Function以外の関数における`this`は実行時に決まる値とな
 `this`が参照先は「関数を呼び出す際にその関数が所属するオブジェクト」となります。
 つまり、`arguments`などのように呼び出し方によって変わる値ということには注意が必要です。
 
-まずは、メソッドではない関数の場合を見ていきます。
+まずは、関数宣言や関数式の場合を見ていきます。
 
 次の例では、関数宣言と関数式で定義した関数の中の`this`をコンソールに出力しています。
 このとき、`fn1`と`fn2`はメソッドではないのでどのオブジェクトにも所属していません。
-つまり、この関数の中での`this`が参照するオブジェクトはないため、`this`は`undefined`となります。
+つまり、この関数の中での`this`が参照するオブジェクトはないため、`this`は`undefined`となります。[^var]
 
 ```js
 // `fn1`はどのオブジェクトのプロパティではない
@@ -191,16 +191,22 @@ const person = {
 console.log(person.sayName()); // => "Brendan Eich"
 ```
 
+このように`this`は所属する別のプロパティを、`オブジェクト名.プロパティ名`の代わりに`this.プロパティ名`で参照できます。
+
 #### 実行時に所属するオブジェクト
 
 `this`は関数やメソッドを実行するときに、その関数やメソッドが所属しているオブジェクトを参照することがわかりました。
-JavaScriptでは、関数やメソッドはただの関数オブジェクトという値の一種に過ぎません。
-そのため、メソッドとして定義した関数も別の変数に代入して呼び出されることがあります。
-これは、メソッドとして定義した関数であっても、所属するオブジェクトは後から変わることがあるということです。
+しかし、JavaScriptでは関数やメソッドが所属するオブジェクトは変わることがあります。
+なぜなら、関数やメソッドはただの関数オブジェクトという値の一種であるため、別のオブジェクトのプロパティへ代入できるためです。
 
-具体的に、実行時に所属するオブジェクトが変わる、つまり`this`が変わる例を見ていましょう。
-次の例では、`person.sayName`メソッドを変数`sayName`に代入してから実行しています。
-このときの`this`は`undefined`となってしまうため、`undefined.fullName`は参照できずに例外をなげます。
+そのため、メソッドとして定義した関数も別の変数に代入して呼び出されることがあります。
+この場合には、メソッドとして定義した関数であっても、実行時には別の変数に代入されているため所属するオブジェクトが変わっています。
+これは`this`も実行時に変わるということを意味しています。
+
+具体的に、`this`が実行時に変わる例を見ていましょう。
+次の例では、`person.sayName`メソッドを変数`say`に代入してから実行しています。
+このときの`say`関数(`sayName`メソッドを参照)はどのオブジェクトにも所属していません。
+そのため、`this`は`undefined`となり、`undefined.fullName`は参照できずに例外をなげます。
 
 ```js
 const person = {
@@ -213,7 +219,7 @@ const person = {
 // `sayName`メソッドは`person`オブジェクトに所属する
 // `this`は`person`オブジェクトとなる
 person.sayName(); // => "Brendan Eich"
-// `person.sayName`を別の変数に代入する
+// `person.sayName`を`say`変数に代入する
 const say = person.sayName;
 // 代入したメソッドを関数として呼ぶ
 // この`say`関数はどのオブジェクトにも所属していない
@@ -221,39 +227,139 @@ const say = person.sayName;
 say(); // => TypeError: Cannot read property 'fullName' of undefined
 ```
 
-先ほどの`sayName`関数が何故例外を投げてしまうかを詳しく見てみましょう。
+先ほどの`say`関数がなぜ例外を投げてしまうかを詳しく見てみましょう。
 
 `person.sayName`メソッドを呼び出すとき、`sayName`メソッドは`person`オブジェクトに所属するため、`this`は`person`オブジェクトになります。
 一方、`const say = person.sayName;`することで、`say`変数は`person.sayName`メソッドの実体である関数を参照しています。
-つまり、`say`変数（関数）はメソッドではなくただの関数です。
-そのため、`say`変数（関数）の中では`this`は`undefined`となるため、例外を投げてしまいます。
+つまり、`say`変数（関数）はメソッドではなくただの関数です。どのオブジェクトにも所属しない関数の`this`は`undefined`となります。
+そのため、`say`変数（関数）の中では`this`は`undefined`となり、例外を投げています。
 
 ```js
 // const sayName = person.sayName; は次のようなイメージ
-const say = function(){
+const say = function() {
     return this.fullName;
-}
+};
 // `this`は`undefined`となるため例外をなげる
 say(); // => TypeError: Cannot read property 'fullName' of undefined
 ```
 
-Arrow Function以外の関数においては、`this`は定義時ではなくあくまで実行時に決定されます。
-通常、関数を呼び出すときに`this`は暗黙的に決定されますが、明示的に指定して関数を実行する方法もあります。
+このように、Arrow Function以外の関数において、`this`は定義した時ではなく実行した時に決定されます。
+そのため、関数に`this`を含んでいる場合、その関数は意図した呼ばれ方がされないと間違った結果が発生するという問題があります。
+
+#### call、apply、bind {#call-apply-bind}
+
+関数やメソッドの`this`を明示的に指定して関数を実行する方法もあります。
 `Function`（関数オブジェクト）には`call`、`apply`、`bind`といった明示的に`this`を指定して関数を実行するメソッドが用意されています。
 
-#### call、apply
+`call`メソッドは第一引数に`this`としたい値を指定し、残りの引数は呼び出す関数の引数となります。
 
-#### bind
+<!-- doctest:disable -->
+```js
+関数.call(thisの値, ...関数の引数);
+```
 
-### thisとメソッド
+次の例では`this`に`person`オブジェクトを指定した状態で`say`関数を呼び出しています。
+`call`メソッドの第二引数で指定した値が、`say`関数の仮引数`message`に入ります。
 
-メソッドにおける`this`は暗黙的に決まる値となります。
-つまり、`arguments`のように呼び出し方によって`this`に入る値が変わります。
-最初に述べたように`this`はArrow Functionとそれ以外の関数で分けられます。
+```js
+function say(message) {
+    return `${message} ${this.fullName}！`; 
+}
+const person = {
+    fullName: "Brendan Eich"
+};
+// `this`を`person`にして`say`関数を呼びだす
+say.call(person, "こんにちは"); // => "こんにちは Brendan Eich！"
+// `say`関数をそのまま呼び出すと`this`は`undefined`となるため例外が発生
+say("こんにちは"); // => TypeError: Cannot read property 'fullName' of undefined
+```
 
-### thisは動的
+<!-- 
+この例を見ると`this`が暗黙的に関数に渡される仮引数の一種のよう扱われていることが分かります。
+他の言語とは異なり`this`が実行時に決定されることは、定義時点ではthisの値が何になるのか分からないという曖昧さがあることを示しています。
+-->
 
-### thisの名前解決
+`apply`メソッドは第一引数に`this`としたい値を指定し、第二引数に関数の引数を配列として渡します。
+
+<!-- doctest:disable -->
+```js
+関数.apply(thisの値, [関数の引数1, 関数の引数2]);
+```
+
+次の例では`this`に`person`オブジェクトを指定した状態で`say`関数を呼び出しています。
+`apply`メソッドの第二引数で指定した配列は、自動的に展開されて`say`関数の仮引数`message`に入ります。
+
+```js
+function say(message) {
+    return `${message} ${this.fullName}！`; 
+}
+const person = {
+    fullName: "Brendan Eich"
+};
+// `this`を`person`にして`say`関数を呼びだす
+// callとは異なり引数を配列として渡す
+say.apply(person, ["こんにちは"]); // => "こんにちは Brendan Eich！"
+// `say`関数をそのまま呼び出すと`this`は`undefined`となるため例外が発生
+say("こんにちは"); // => TypeError: Cannot read property 'fullName' of undefined
+```
+
+`call`メソッドと`apply`メソッドの違いは、関数の引数への値の渡し方が異なるだけです。
+また、どちらのメソッドも`this`の値が不要な場合は`null`を渡すのが一般的です。
+
+```js
+function add(x, y) {
+    return x + y;
+}
+// `this`は不要なのでnullを渡す
+add.apply(null, [1, 2]); // => 3
+add.call(null, 1, 2); // => 3
+```
+
+最後に`bind`メソッドは、名前のとおり`this`の値を束縛（bind）した新しい関数を作成します。
+
+<!-- doctest:disable -->
+```js
+関数.bind(thisの値, ...関数の引数); // => thisや引数がbindされた関数
+```
+
+次の例では`this`を`person`オブジェクトに束縛した`say`関数の関数を作っています。
+`bind`メソッドの第二引数以降に値を渡すことで、束縛した関数の引数も束縛できます。
+
+```js
+function say(message) {
+    return `${message} ${this.fullName}！`; 
+}
+const person = {
+    fullName: "Brendan Eich"
+};
+// `this`を`person`に束縛した`say`関数をラップした関数を作る
+const sayPerson = say.bind(person, "こんにちは");
+sayPerson(); // => "こんにちは Brendan Eich！"
+```
+
+この`bind`メソッドをただの関数で表現すると次のように書けます。
+`bind`は`this`や引数を束縛した関数を作るメソッドということがわかります。
+
+```js
+function say(message) {
+    return `${message} ${this.fullName}！`; 
+}
+const person = {
+    fullName: "Brendan Eich"
+};
+// `this`を`person`に束縛した`say`関数をラップした関数を作る
+//  say.bind(person, "こんにちは"); は次のようなラップ関数を作る
+const sayPerson = () => {
+    return say.call(person, "こんにちは");
+};
+sayPerson(); // => "こんにちは Brendan Eich！"
+```
+
+`call`、`apply`、`bind`を使うことで`this`を明示的に指定した状態で関数を呼び出せます。
+しかし、毎回関数を呼び出すたびにこれらのメソッドを使うのは、関数を呼び出すための関数が必要になってしまい手間がかかります。
+
+そのため、ES2015ではこの`this`の問題を解決するためにArrow Functionという新しい関数の定義方法を導入しました。
+そもそも`call`、`apply`、`bind`が必要となるのは「`this`が呼び出し方によって暗黙的に決まる」という問題があるためです。
 
 ### thisを使う理由
 
@@ -272,6 +378,7 @@ Arrow Functionのときは`[[ThisMode]]`が`lexical`となる。
 - `Arrow` のときは`[[ThisMode]]`が`lexical`となる
 - <https://tc39.github.io/ecma262/#sec-functioninitialize>
 
+[^var]: `var`で宣言された関数式は特別でグローバルオブジェクトのプロパティとして扱われるため例外的に`this`はグローバルオブジェクトを示します。
 [^strict mode]: この書籍では注釈がないコードはstrict modeとして扱います。strict modeではない場合`this`はグローバルオブジェクトを返します。
 [関数と宣言]: ../function-declaration/README.md
 [動的スコープ]: ../function-scope/README.md#dynamic-scope
