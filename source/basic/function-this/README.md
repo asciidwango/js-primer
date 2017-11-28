@@ -196,7 +196,7 @@ console.log(person.sayName()); // => "Brendan Eich"
 
 このように`this`は所属する別のプロパティを、`オブジェクト名.プロパティ名`の代わりに`this.プロパティ名`で参照できます。
 
-#### 実行時に所属するオブジェクト
+### 実行時に所属するオブジェクト
 
 `this`は関数やメソッドを実行するときに、その関数やメソッドが所属しているオブジェクトを参照することがわかりました。
 しかし、JavaScriptでは関数やメソッドが所属するオブジェクトは変わることがあります。
@@ -249,7 +249,7 @@ say(); // => TypeError: Cannot read property 'fullName' of undefined
 このように、Arrow Function以外の関数において、`this`は定義した時ではなく実行した時に決定されます。
 そのため、関数に`this`を含んでいる場合、その関数は意図した呼ばれ方がされないと間違った結果が発生するという問題があります。
 
-#### call、apply、bind {#call-apply-bind}
+### call、apply、bindメソッド {#call-apply-bind}
 
 関数やメソッドの`this`を明示的に指定して関数を実行する方法もあります。
 `Function`（関数オブジェクト）には`call`、`apply`、`bind`といった明示的に`this`を指定して関数を実行するメソッドが用意されています。
