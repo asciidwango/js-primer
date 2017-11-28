@@ -34,7 +34,7 @@
         - [Map/Set](./basic/map-and-set/README.md)
         - Symbol
     - Proxy/Reflect API
-    - 非推奨の機能
+    - [非推奨の機能](./basic/bad-parts/README.md)
     - ECMAScript策定プロセス
 - [第2部: 応用編（ユースケース）](use-case/README.md)
     - [Ajaxで通信](use-case/ajaxapp/README.md)
