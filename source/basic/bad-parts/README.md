@@ -14,7 +14,7 @@ ECMAScriptのアップデートによって不要になったり非推奨にな�
 
 ## 即時実行関数
 
-- `let`/`const`による変数宣言
+- 代替方法: `let`/`const`による変数宣言
 
 即時実行関数（**IIEF**, _Immediately-Invoked Function Expression_）は、
 グローバルスコープの汚染を避けるために生まれたイディオムです。
