@@ -134,7 +134,7 @@ object.method();
 ## Arrow Function以外の関数における`this` {#function-without-arrow-function-this}
 
 Arrow Function以外の関数における`this`は実行時に決まる値となります。
-`this`が参照先は「関数を呼び出す際にその関数が所属するオブジェクト」となります。
+`this`の参照先は「関数を呼び出す際にその関数が所属するオブジェクト」となります。
 つまり、`arguments`などのように呼び出し方によって変わる値ということには注意が必要です。
 
 まずは、関数宣言や関数式の場合を見ていきます。
@@ -366,6 +366,49 @@ sayPerson(); // => "こんにちは Brendan Eich！"
 
 ## thisとArrow Function
 
+Arrow Functionで定義された関数やメソッドにおける`this`は常に静的に決定されます。
+`this`の参照先は「Arrow Functionを除いて、自身より外側のスコープにあるもっとも近い関数またはグローバルオブジェクト」となります。
+
+[関数とスコープ][]の章において、スコープは[静的スコープ][]という性質をもつため、実行する前にスコープ間の関係が決まるという話をしました。
+つまりArrow Functionにおける`this`は、スコープと同じように実行する前にどの値を参照するかが分かるということです。
+
+具体的な例を元にArrow Functionにおける`this`の動きを見ていきましょう。
+
+まずは、関数式のArrow Functionを見ていきます。
+
+次の例では、関数式で定義したArrow Functionの中の`this`をコンソールに出力しています。
+このとき、`fn`の外側には関数はないため、「自身より外側のスコープにあるもっとも近い関数」の条件にあてはまるものはありません。
+つまり、このArrow Functionの中での`this`が参照するのはグローバルオブジェクトとなります。
+グローバルオブジェクトは、実行環境において異なるものが定義されていますが、ブラウザなら`window`、Node.jsなら`global`となります。
+
+```js
+// Arrow Functionで定義した関数
+const fn = () => {
+    // この関数の外側には関数は存在しない
+    // `this`はグローバルオブジェクトを参照する
+    return this; 
+};
+// グローバルオブジェクトはブラウザならwindow、Node.jsならglobal
+fn(); // => global
+```
+
+次の例のように、Arrow Functionを包むように別の関数が定義されている場合はどうでしょうか。
+
+```js
+function outer() {
+    // Arrow Functionで定義した関数を返す
+    return () => {
+        // この関数の外側には`outer`関数が存在する
+        // `this`は`outer`関数を参照する
+        return this; 
+    };
+}
+// `outer`関数の返り値はArrow Functionて定義された関数
+const innerArrowFunction = outer();
+console.log(innerArrowFunction()); // => outer;
+```
+
+
 Arrow Functionのときは`[[ThisMode]]`が`lexical`となる。
 
 - <https://tc39.github.io/ecma262/#sec-arrow-function-definitions-runtime-semantics-evaluation>
@@ -376,4 +419,6 @@ Arrow Functionのときは`[[ThisMode]]`が`lexical`となる。
 [^var]: `var`で宣言された関数式は特別でグローバルオブジェクトのプロパティとして扱われるため例外的に`this`はグローバルオブジェクトを示します。
 [^strict mode]: この書籍では注釈がないコードはstrict modeとして扱います。strict modeではない場合`this`はグローバルオブジェクトを返します。
 [関数と宣言]: ../function-declaration/README.md
+[関数とスコープ]: ../function-scope/README.md
+[静的スコープ]: ../function-scope/README.md#static-scope
 [動的スコープ]: ../function-scope/README.md#dynamic-scope
