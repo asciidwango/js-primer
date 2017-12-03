@@ -11,7 +11,11 @@ author: azu
 `this`の参照先は主に次の条件によって変わります。
 
 - グローバルにおける`this`
+    - 実行コンテキストが"Script"
+    - 実行コンテキストが"Module"
+- コンストラクタにおける`this`
 - Arrow Function以外の関数における`this`
+    - strict modeの有無
 - Arrow Functionにおける`this`
 - `Function#call`、`Function#apply`での関数呼び出しにおける`this`
 
@@ -22,18 +26,49 @@ author: azu
 
 この章では、さまざまな条件下で変わる`this`の挙動と関数やArrow Functionとの関係を見ていきます。
 
-## グローバルにおける`this` {#global-this}
+## コード直下における`this`
 
-グローバル、つまりプログラム直下における`this`は`undefined`となります。[^strict mode]
-そのため、グローバルにおいて`this`を使う理由はありません。
+最初に[JavaScriptとは][]の章において、JavaScriptには実行コンテキストとして"Script"と"Module"があるという話をしました。
+コードのトップレベルにある`this`は、この実行コンテキストによって値が異なります。
+実行コンテキストの違いは意識しにくい部分であり、コードのトップレベルにある`this`を使うことは混乱を生むことになります。
+そのため、コードのトップレベルにおいては`this`を使うべきではありませんが、それぞれの実行コンテキストにおける動作を紹介します。
 
-```js
-console.log(this); // => undefined
+## スクリプトにおける`this` {#global-this}
+
+実行コンテキストが"Script"である場合、そのコード直下に書かれた`this`はグローバルオブジェクトを参照します。
+グローバルオブジェクトとは、実行環境において異なるものが定義されています。
+ブラウザなら`window`オブジェクト、Node.jsなら`global`オブジェクトとなります。
+
+ブラウザでは、`script`要素の`type`属性を指定してない場合は実行コンテキストが"Script"として実行されます。
+この`script`要素の直下に書いた`this`はグローバルオブジェクトである`window`オブジェクトとなります。
+
+```html
+<script>
+// 実行コンテキストは"Script"
+console.log(this); // => window
+</script>
 ```
+
+## モジュールにおける`this` {#module-this}
+
+実行コンテキストが"Module"である場合、そのコード直下に書かれた`this`は常に`undefined`となります。
+
+ブラウザでは、`script`要素の`type="module"`属性がついた場合は実行コンテキストが"Module"として実行されます。
+この`script`要素の直下に書いた`this`は`undefined`となります。
+
+```html
+<script type="module">
+// 実行コンテキストは"Module"
+console.log(this); // => undefined
+</script>
+```
+
+このように、コード直下の`this`は実行コンテキストによって`undefined`となる場合があります。
+単純にグローバルオブジェクトを参照したい場合は、`this`ではなく`window`などのグローバルオブジェクトを直接参照した方がよいです。
 
 ## 関数における`this`
 
-**関数**を定義する方法として、`function`キーワード関数宣言、式として関数式、Arrow Functionなどがあります。
+**関数**を定義する方法として、`function`キーワードによる関数宣言と関数式、Arrow Functionなどがあります。
 `this`が参照先を決めるルールはArrow Functionとそれ以外の方法で異なります。
 
 そのため、まずは関数定義の種類についてを振り返ってから、それぞれの`this`について見ていきます。
@@ -134,14 +169,33 @@ object.method();
 ## Arrow Function以外の関数における`this` {#function-without-arrow-function-this}
 
 Arrow Function以外の関数における`this`は実行時に決まる値となります。
-`this`の参照先は「関数を呼び出す際にその関数が所属するオブジェクト」となります。
-つまり、`arguments`などのように呼び出し方によって変わる値ということには注意が必要です。
+言い方をかえると`this`は関数に渡される暗黙的な引数のようなもので、その渡される値は関数を実行する時に決まります。
+
+次のコードは擬似的なものです。
+関数の中に書かれた`this`は、関数の呼び出し元から暗黙的に渡される値を参照することになります。
+このルールは関数やメソッドで共通した仕組みとなります。Arrow Functionで定義した関数やメソッドはこのルールとは別の仕組みとなります。
+
+<!-- doctest:disable -->
+```js
+// 擬似的な`this`の値の仕組み
+function fn(仮引数, 暗黙的渡されるthisの値) {
+    console.log(this); // => 暗黙的渡されるthisの値
+}
+fn(引数, 暗黙的に渡すthisの値);
+```
+
+`this`の基本的な参照先（暗黙的に関数に渡す`this`の値）は「関数を呼び出す際にその関数が所属するオブジェクト」となります。
+「基本的な」と書いたのは、`this`が何を参照するかの基本的なルールは存在します。
+しかし、関数の呼び出し方によっては、`this`が参照するものは変わります。これは、後述する「`this`が問題となるパターン」で詳しく紹介します。
+つまり、Arrow Function以外の関数の定義だけを見て、この関数内にかかれた`this`は何かということは決定できない点には注意が必要です。
+
+### 関数における`this` {#function-this}
 
 まずは、関数宣言や関数式の場合を見ていきます。
 
 次の例では、関数宣言と関数式で定義した関数の中の`this`をコンソールに出力しています。
-このとき、`fn1`と`fn2`はメソッドではないのでどのオブジェクトにも所属していません。
-つまり、この関数の中での`this`が参照するオブジェクトはないため、`this`は`undefined`となります。[^var]
+このとき、`fn1`と`fn2`はメソッドではないのでどのオブジェクトにも所属していません（どのオブジェクトのプロパティではない）。
+つまり、この関数の中での`this`が参照するオブジェクトはないため、`this`は`undefined`となります。[^strict mode]
 
 ```js
 // `fn1`はどのオブジェクトのプロパティではない
@@ -156,6 +210,24 @@ const fn2 = function() {
 fn1(); // => undefined
 fn2(); // => undefined
 ```
+
+これは、関数の中に関数を定義して呼び出す場合も同じです。
+
+```js
+// `fn1`はどのオブジェクトのプロパティではない
+function outer() {
+    console.log(this); // => undefined
+    function inner() {
+        console.log(this); // => undefined  
+    }
+    // `inner`関数はどのオブジェクト
+    inner();
+}
+outer();
+```
+
+
+### メソッドにおける`this` {#method-this}
 
 次に、メソッドの場合を見ていきます。
 メソッドの場合は、そのメソッドは何かしらのオブジェクトに所属しています。
@@ -194,9 +266,40 @@ const person = {
 console.log(person.sayName()); // => "Brendan Eich"
 ```
 
-このように`this`は所属する別のプロパティを、`オブジェクト名.プロパティ名`の代わりに`this.プロパティ名`で参照できます。
+このように所属するオブジェクトのプロパティを、`オブジェクト名.プロパティ名`の代わりに`this.プロパティ名`で参照できます。
 
-### 実行時に所属するオブジェクト
+オブジェクトは何重にもネストできます。
+そのため、ネストしたオブジェクトのメソッドの場合の「メソッドの所属するオブジェクト」についてを明確にしておきます。
+所属するオブジェクトとは「メソッドを呼ぶ際に、そのメソッドのドット演算子またはブラケット演算子の左にあるオブジェクト」のことを言います。
+
+```js
+obj1.obj2.obj3.method();
+obj1["obj2"]["obj3"]["method"]();
+// methodはobj3オブジェクトに所属
+// ドット演算子、ブラケット演算子どちらも同じ
+```
+
+次のコードを見てみると、ネストしたオブジェクトにおいてメソッド内の`this`が「所属するオブジェクト」である`obj3`を参照していることが分かります。
+
+```js
+const obj1 = {
+    obj2: {
+        obj3: {
+            method() {
+                return this;
+            }
+        }
+    } 
+};
+// `obj1.obj2.obj3.method`メソッドの`this`は`obj3`を参照
+console.log(obj1.obj2.obj3.method()); // => obj1.obj2.obj3
+```
+
+`this`は所属するオブジェクトを直接書く代わりとして利用できますが、一方`this`には色々な問題があります。
+この問題の原因は`this`が状況によって暗黙的にどの値を参照するかが決まるという性質に由来します。
+問題となるパターンの代表例として、「`this`を含むメソッドを変数に代入」した場合と「メソッドの中の入れ子関数における`this`」についてを見ていきます。
+
+## `this`が問題となるパターン {#this-problem}
 
 `this`は関数やメソッドを実行するときに、その関数やメソッドが所属しているオブジェクトを参照することがわかりました。
 しかし、JavaScriptでは関数やメソッドが所属するオブジェクトは変わることがあります。
@@ -205,6 +308,8 @@ console.log(person.sayName()); // => "Brendan Eich"
 そのため、メソッドとして定義した関数も別の変数に代入して呼び出されることがあります。
 この場合には、メソッドとして定義した関数であっても、実行時には別の変数に代入されているため所属するオブジェクトが変わっています。
 これは`this`も実行時に変わるということを意味しています。
+
+### `this`を含むメソッドを変数に代入した場合 {#assign-this-function}
 
 具体的に、`this`が実行時に変わる例を見ていましょう。
 次の例では、`person.sayName`メソッドを変数`say`に代入してから実行しています。
@@ -248,6 +353,10 @@ say(); // => TypeError: Cannot read property 'fullName' of undefined
 
 このように、Arrow Function以外の関数において、`this`は定義した時ではなく実行した時に決定されます。
 そのため、関数に`this`を含んでいる場合、その関数は意図した呼ばれ方がされないと間違った結果が発生するという問題があります。
+
+この問題の対処方法としては大きく分けて2つあります。
+ひとつはメソッドとして定義されている関数はメソッドとして呼ぶということです。
+もうひとつは、`this`の値を指定して関数を呼べるメソッドで関数を実行する方法です。
 
 ### call、apply、bindメソッド {#call-apply-bind}
 
@@ -358,11 +467,21 @@ const sayPerson = () => {
 sayPerson(); // => "こんにちは Brendan Eich！"
 ```
 
-`call`、`apply`、`bind`を使うことで`this`を明示的に指定した状態で関数を呼び出せます。
+このように`call`、`apply`、`bind`メソッドを使うことで`this`を明示的に指定した状態で関数を呼び出せます。
 しかし、毎回関数を呼び出すたびにこれらのメソッドを使うのは、関数を呼び出すための関数が必要になってしまい手間がかかります。
+そのため、基本的には「メソッドとして定義されている関数はメソッドとして呼ぶこと」でこの問題を回避するほうがよいでしょう。
+その中で、どうしても`this`を固定したい場合には`call`、`apply`、`bind`メソッドを利用するのがよいです。
 
+<!-- 
 そのため、ES2015ではこの`this`の問題を解決するためにArrow Functionという新しい関数の定義方法を導入しました。
-そもそも`call`、`apply`、`bind`が必要となるのは「`this`が呼び出し方によって暗黙的に決まる」という問題があるためです。
+そもそも`call`、`apply`、`bind`が必要となるのは「`this`が呼び出し方によって暗黙的に決まる」という問題があるためです。 
+-->
+
+### メソッドの中の関数における`this`
+
+- Array#map
+- 回避方法としてのthat = this
+- もっと当たり前の回避方法としてのthisとArrow Function
 
 ## thisとArrow Function
 
@@ -379,7 +498,6 @@ Arrow Functionで定義された関数やメソッドにおける`this`は常に
 次の例では、関数式で定義したArrow Functionの中の`this`をコンソールに出力しています。
 このとき、`fn`の外側には関数はないため、「自身より外側のスコープにあるもっとも近い関数」の条件にあてはまるものはありません。
 つまり、このArrow Functionの中での`this`が参照するのはグローバルオブジェクトとなります。
-グローバルオブジェクトは、実行環境において異なるものが定義されていますが、ブラウザなら`window`、Node.jsなら`global`となります。
 
 ```js
 // Arrow Functionで定義した関数
@@ -395,29 +513,60 @@ fn(); // => global
 次の例のように、Arrow Functionを包むように別の関数が定義されている場合はどうでしょうか。
 
 ```js
+"use strict";
 function outer() {
     // Arrow Functionで定義した関数を返す
     return () => {
         // この関数の外側には`outer`関数が存在する
-        // `this`は`outer`関数を参照する
+        // `outer`関数に`this`を書いた場合と同じ
         return this; 
     };
 }
-// `outer`関数の返り値はArrow Functionて定義された関数
+// `outer`関数の返り値はArrow Functionにて定義された関数
 const innerArrowFunction = outer();
-console.log(innerArrowFunction()); // => outer;
+console.log(innerArrowFunction()); // => undefined;
 ```
 
+Arrow Functionは「自身の外側の関数スコープにおける`this`」となります。
+つまり、先ほどのコードは次のように評価されたのと同じです。
 
-Arrow Functionのときは`[[ThisMode]]`が`lexical`となる。
+```js
+"use strict";
+function outer() {
+    // `outer`関数直下の`this`
+    const that = this;
+    // Arrow Functionで定義した関数を返す
+    return () => {
+        // Arrow Function自身は`this`を持たない
+        // `outer`関数に`this`を書いた場合と同じ
+        return that; 
+    };
+}
+// `outer()`と呼び出した時の`outer`関数直下の`this`は`undefined`
+const innerArrowFunction = outer();
+console.log(innerArrowFunction()); // => undefined;
+```
 
-- <https://tc39.github.io/ecma262/#sec-arrow-function-definitions-runtime-semantics-evaluation>
-- `Arrow` のときは、Functionが作られる
-- `Arrow` のときは`[[ThisMode]]`が`lexical`となる
-- <https://tc39.github.io/ecma262/#sec-functioninitialize>
+### メソッドの中の関数
 
-[^var]: `var`で宣言された関数式は特別でグローバルオブジェクトのプロパティとして扱われるため例外的に`this`はグローバルオブジェクトを示します。
+Arrow Functionがもっと活用できるパターンです。
+この例は、`var that = this`のパターンで回避していました。
+しかし、Arrow Functionでは単純に`this`と書くことで問題なくなります。
+なぜならArrow Functionの中に書かれた`this`はArrow Functionの外側の関数に書かれた`this`と同じ扱いになるためです。
+次の例では、Arrow Functionの中での`this`は`obj.show`の呼び出しもとである`obj`を示します。
+
+```js
+const obj = {
+    show() {
+        setTimeout(() => {
+            this.count++;
+        }, 100);
+    }
+};
+```
+
 [^strict mode]: この書籍では注釈がないコードはstrict modeとして扱います。strict modeではない場合`this`はグローバルオブジェクトを返します。
+[JavaScriptとは]: ../introduction/README.md
 [関数と宣言]: ../function-declaration/README.md
 [関数とスコープ]: ../function-scope/README.md
 [静的スコープ]: ../function-scope/README.md#static-scope
