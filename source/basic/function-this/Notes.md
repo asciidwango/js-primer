@@ -1,3 +1,7 @@
+---
+author: azu
+---
+
 ## Table
 
 - <https://azu.github.io/what-is-this/>
@@ -11,7 +15,8 @@ Notes: `const fn = () => this` はChrome64.0.3282.3では壊れている
 | Script | NO     | `const fn = () => this`                 | global    |
 | Script | NO     | `const fn = function(){ return this; }` | global    |
 | Script | YES    | `this`                                  | global    |
-| Script | YES    | `const fn = () => this`                 | global    |
+| Script | YES    | `cons
+t fn = () => this`                 | global    |
 | Script | YES    | `const fn = function(){ return this; }` | undefined |
 | Module | YES    | `this`                                  | undefined |
 | Module | YES    | `const fn = () => this`                 | undefined |
