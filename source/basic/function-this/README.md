@@ -189,19 +189,19 @@ fn(引数, 暗黙的に渡すthisの値);
 たとえば、`fn()`という呼び出し方ならば、この`fn`関数を呼び出したオブジェクトはいないため、`this`は`undefiend`となります。
 一方、`obj.method()`のような呼び出し方ならば、この`obj.method`メソッドは`obj`オブジェクトが呼び出したため、`this`は`obj`となります。
 
-この「関数を呼び出したオブジェクト」のことはレシーバーオブジェクトと呼ぶことがあります。
-レシーバーオブジェクトとは「メソッドを呼ぶ際に、そのメソッドのドット演算子またはブラケット演算子のひとつ左にあるオブジェクト」のことを言います。
-つまり、メソッドではない`fn()`のような関数呼び出しにはそもそもレシーバーオブジェクトはありません。
+この「メソッドを呼び出したオブジェクト」のことベースオブジェクトと呼びます。
+ベースオブジェクトとは「メソッドを呼ぶ際に、そのメソッドのドット演算子またはブラケット演算子のひとつ左にあるオブジェクト」のことを言います。
+つまり、メソッドではない`fn()`のような関数呼び出しにはそもそもベースオブジェクトはありません。
 
 <!-- textlint-enable no-js-function-paren -->
 
 <!-- doctest:disable -->
 ```js
-// `fn`関数はメソッドではないのでレシーバーオブジェクトはない
+// `fn`関数はメソッドではないのでベースオブジェクトはない
 fn();
-// `obj.method`メソッドのレシーバーオブジェクトは`obj`
+// `obj.method`メソッドのベースオブジェクトは`obj`
 obj.method();
-// `obj1.obj2.method`メソッドのレシーバーオブジェクトは`obj2`
+// `obj1.obj2.method`メソッドのベースオブジェクトは`obj2`
 // ドット演算子、ブラケット演算子どちらも結果は同じ
 obj1.obj2.method();
 obj1["obj2"]["method"]();
@@ -215,20 +215,20 @@ obj1["obj2"]["method"]();
 まずは、関数宣言や関数式の場合を見ていきます。
 
 次の例では、関数宣言と関数式で定義した関数の中の`this`をコンソールに出力しています。
-このとき、`fn1`と`fn2`はメソッドではなくただの関数呼び出されいるため、レシーバーオブジェクトはありません。
+このとき、`fn1`と`fn2`はメソッドではなくただの関数呼び出されいるため、ベースオブジェクトはありません。
 つまり、この関数の中での`this`が参照するオブジェクトはないため、`this`は`undefined`となります。[^strict mode]
 
 ```js
 function fn1() {
-    return this; 
+    return this;
 }
 const fn2 = function() {
     return this;
 };
 // 関数の中の`this`が参照する値は呼び出し方によって決まる
 // `fn1`と`fn2`どちらもただの関数として呼び出している
-// メソッドとして呼び出していないためレシーバーオブジェクトはない
-// レシーバーオブジェクトがない場合、`this`は`undefined`となる
+// メソッドとして呼び出していないためベースオブジェクトはない
+// ベースオブジェクトがない場合、`this`は`undefined`となる
 fn1(); // => undefined
 fn2(); // => undefined
 ```
@@ -237,11 +237,11 @@ fn2(); // => undefined
 
 ```js
 function outer() {
-    // `outer`関数のレシーバーオブジェクトはない
+    // `outer`関数のベースオブジェクトはない
     console.log(this); // => undefined
     function inner() {
-        // `inner`関数のレシーバーオブジェクトはない
-        console.log(this); // => undefined  
+        // `inner`関数のベースオブジェクトはない
+        console.log(this); // => undefined
     }
     inner();
 }
@@ -256,7 +256,7 @@ outer();
 なぜなら、JavaScriptではオブジェクトのプロパティとして指定される関数のことをメソッドと呼ぶためです。
 
 次の例では`method1`と`method2`は`object`というオブジェクトのプロパティです。
-それぞれをメソッド呼び出しにした場合、それぞれのメソッド内では`this`はレシーバーオブジェクトである`object`を参照します。
+それぞれをメソッド呼び出しにした場合、それぞれのメソッド内では`this`はベースオブジェクトである`object`を参照します。
 
 ```js
 const object = {
@@ -269,8 +269,8 @@ const object = {
         return this;
     }
 };
-// メソッド呼び出しの場合、それぞれの`this`はレシーバーオブジェクト(`object`)を参照する
-// メソッド呼び出しの`.`の左にあるオブジェクトがレシーバーオブジェクト
+// メソッド呼び出しの場合、それぞれの`this`はベースオブジェクト(`object`)を参照する
+// メソッド呼び出しの`.`の左にあるオブジェクトがベースオブジェクト
 object.method1(); // => object
 object.method2(); // => object
 ```
@@ -292,8 +292,8 @@ console.log(person.sayName()); // => "Brendan Eich"
 このようにメソッドが所属するオブジェクトのプロパティを、`オブジェクト名.プロパティ名`の代わりに`this.プロパティ名`で参照できます。
 
 オブジェクトは何重にもネストできます。
-そのため、ネストしたオブジェクトのメソッドの場合の「レシーバーオブジェクト」についてを明確にしておきます。
-レシーバーオブジェクトとは「メソッドを呼ぶ際に、そのメソッドのドット演算子またはブラケット演算子の左にあるオブジェクト」のことを言います。
+そのため、ネストしたオブジェクトのメソッドの場合の「ベースオブジェクト」についてを明確にしておきます。
+ベースオブジェクトとは「メソッドを呼ぶ際に、そのメソッドのドット演算子またはブラケット演算子の左にあるオブジェクト」のことを言います。
 
 <!-- doctest:disable -->
 ```js
@@ -303,8 +303,8 @@ obj1["obj2"]["obj3"]["method"]();
 // ドット演算子、ブラケット演算子どちらも同じ
 ```
 
-次のコードを見てみると、ネストしたオブジェクトにおいてメソッド内の`this`がレシーバーオブジェクトである`obj3`を参照していることが分かります。
-このときのレシーバーオブジェクトはドットで繋いだ一番左の`obj1`ではなく、メソッドから見てひとつ左の`obj3`となります。
+次のコードを見てみると、ネストしたオブジェクトにおいてメソッド内の`this`がベースオブジェクトである`obj3`を参照していることが分かります。
+このときのベースオブジェクトはドットで繋いだ一番左の`obj1`ではなく、メソッドから見てひとつ左の`obj3`となります。
 
 ```js
 const obj1 = {
@@ -314,7 +314,7 @@ const obj1 = {
                 return this;
             }
         }
-    } 
+    }
 };
 // `obj1.obj2.obj3.method`メソッドの`this`は`obj3`を参照
 console.log(obj1.obj2.obj3.method()); // => obj1.obj2.obj3
@@ -322,7 +322,7 @@ console.log(obj1.obj2.obj3.method()); // => obj1.obj2.obj3
 
 ## `this`が問題となるパターン {#this-problem}
 
-`this`はその関数（メソッドも含む）呼び出しのレシーバーオブジェクトを参照することがわかりました。
+`this`はその関数（メソッドも含む）呼び出しのベースオブジェクトを参照することがわかりました。
 `this`は所属するオブジェクトを直接書く代わりとして利用できますが、一方`this`には色々な問題があります。
 
 この問題の原因は`this`が関数の呼び出し時に、どの値を参照するかが決まるという性質に由来します。
@@ -401,7 +401,7 @@ say(); // => TypeError: Cannot read property 'fullName' of undefined
 
 ```js
 function say(message) {
-    return `${message} ${this.fullName}！`; 
+    return `${message} ${this.fullName}！`;
 }
 const person = {
     fullName: "Brendan Eich"
@@ -412,7 +412,7 @@ say.call(person, "こんにちは"); // => "こんにちは Brendan Eich！"
 say("こんにちは"); // => TypeError: Cannot read property 'fullName' of undefined
 ```
 
-<!-- 
+<!--
 この例を見ると`this`が暗黙的に関数に渡される仮引数の一種のよう扱われていることが分かります。
 他の言語とは異なり`this`が実行時に決定されることは、定義時点ではthisの値が何になるのか分からないという曖昧さがあることを示しています。
 -->
@@ -429,7 +429,7 @@ say("こんにちは"); // => TypeError: Cannot read property 'fullName' of unde
 
 ```js
 function say(message) {
-    return `${message} ${this.fullName}！`; 
+    return `${message} ${this.fullName}！`;
 }
 const person = {
     fullName: "Brendan Eich"
@@ -465,7 +465,7 @@ add.call(null, 1, 2); // => 3
 
 ```js
 function say(message) {
-    return `${message} ${this.fullName}！`; 
+    return `${message} ${this.fullName}！`;
 }
 const person = {
     fullName: "Brendan Eich"
@@ -480,7 +480,7 @@ sayPerson(); // => "こんにちは Brendan Eich！"
 
 ```js
 function say(message) {
-    return `${message} ${this.fullName}！`; 
+    return `${message} ${this.fullName}！`;
 }
 const person = {
     fullName: "Brendan Eich"
@@ -498,9 +498,9 @@ sayPerson(); // => "こんにちは Brendan Eich！"
 そのため、基本的には「メソッドとして定義されている関数はメソッドとして呼ぶこと」でこの問題を回避するほうがよいでしょう。
 その中で、どうしても`this`を固定したい場合には`call`、`apply`、`bind`メソッドを利用するのがよいです。
 
-<!-- 
+<!--
 そのため、ES2015ではこの`this`の問題を解決するためにArrow Functionという新しい関数の定義方法を導入しました。
-そもそも`call`、`apply`、`bind`が必要となるのは「`this`が呼び出し方によって暗黙的に決まる」という問題があるためです。 
+そもそも`call`、`apply`、`bind`が必要となるのは「`this`が呼び出し方によって暗黙的に決まる」という問題があるためです。
 -->
 
 ### コールバック関数と`this`
@@ -510,55 +510,104 @@ JavaScriptでコールバック関数の中で`this`を参照することはよ�
 このとき、コールバック関数はメソッドではなく関数として呼ばれてることに注目してください。
 
 具体的に、コールバック関数における`this`が問題となっている例を見てみましょう。
-次のコードでは〜コールバック関数の中で、`person`オブジェクトを参照するつもりで`this`を参照しています。
-しかし、このコールバック関数内の`this`は`undefined`となり、ReferenceErrorが発生します。
+次のコードでは`Array#map`メソッドのコールバック関数の中で、`Prefixer`オブジェクトを参照するつもりで`this`を参照しています。
+しかし、このコールバック関数における`this`はグローバルオブジェクトを参照、`this.prefix`は`undefined`となっています。
+なぜなら、グローバルオブジェクトには`prefix`というプロパティは存在しないため、プロパティが存在しない場合は`undefined`となります。
 
 ```js
-const person = {
-    fullName: "Brendan Eich",
-    delaySayName: function() {
-        // 1000ミリ秒(1秒)後に
-        setTimeout(function() {
-            console.log(this.fullName);// => ReferenceError
-        }, 1000);
+const Prefixer = {
+    prefix: "pre",
+    /**
+     * `strings`配列の各要素にprefixをつける
+     */
+    prefixArray(strings) {
+        return strings.map(function(string) {
+            // `this`がグローバルオブジェクトを示す
+            // そのため`this.prefix`は`undefined`となる
+            return this.prefix + "-" + string;
+        });
     }
 };
-
-person.delaySayName();
+const prefixedStrings = Prefixer.prefixArray(["a", "b", "c"]);
+console.log(prefixedStrings); // => ["undefined-a", "undefined-b", "undefined-c"]
 ```
 
+そもそも、なぜ`this`はグローバルオブジェクトを参照するかを見ていきます。
 コールバック関数としてその場で定義した匿名関数を渡していることに注目してください。
 このコードは次のように一度`callback`変数に関数を代入したのと同じことになっています。
 
 <!-- textlint-disable no-js-function-paren -->
 
 このとき、1秒後に呼び出される`callback`関数は、`callback()`のように関数呼び出しされた場合と同じです。
-つまり、`callback`変数はどのオブジェクトにも所属していません。そのため`callback`関数の`this`は`undefined`となります。
+つまり、`callback`変数を関数として呼び出すとき、この関数にはベースオブジェクトはありません。
+そのため`callback`関数の`this`は`undefined`となります。
 
 <!-- textlint-enable no-js-function-paren -->
 
-
 ```js
-const person = {
-    fullName: "Brendan Eich",
-    delaySayName: function() {
-        const callback = function() {
-            console.log(this.fullName);// => ReferenceError
-        };
-        // 1000ミリ秒(1秒)後に`callback`関数を呼び出す
-        setTimeout(callback, 1000);
+const Prefixer = {
+    prefix: "pre",
+    prefixArray(strings) {
+        return strings.map(function(string) {
+            // `this`がグローバルオブジェクトを示す
+            // そのため`this.prefix`は`undefined`となる
+            return this.prefix + "-" + string;
+        });
     }
 };
-
-person.delaySayName();
+const prefixedStrings = Prefixer.prefixArray(["a", "b", "c"]);
+console.log(prefixedStrings); // => ["undefined-a", "undefined-b", "undefined-c"]
 ```
 
+この問題への対処法として広く知られているのは、`this`を別の変数に代入し、その`this`の参照先を保持するという方法です。
+`this`は呼び出し元で変化し、その参照先は呼び出し元におけるベースオブジェクトです。
+関数の中で関数を定義してそれを呼び出すとまた別の関数呼び出しとなるため`this`が代わってしまう問題がありました。
+そのため、最初の関数呼び出しに置ける`this`の参照先を変数に保持しておいて、内側の関数からはその変数を参照することで`this`の値を維持できます。
 
+もちろん`.call(this)`などと明示的に`this`を渡して関数を呼び出すこともできます。
+実際に`this`を引数として渡せる仕組みを持っているメソッドなどもあります。
+ただ、メソッドや関数によって使い方が異なるよりは単純に保持していた`this`を変数として参照することでこの問題を解決できています。
+
+しかし、この解決方法は`this`が変わることを意識して書く必要があるため、いつのまにか`this`が変わっているということが起きやすいというのが問題です。
+コールバック関数で`this`が代わってしまうのが色々と問題であるため、これを解決するためにArrow Functionが導入されました。
+
+Arrow Functionで先ほどのコールバック関数を定義すると、何もせずにコールバック関数内の`this`がそのまま`person`オブジェクトを参照します。
+Arrow Functionは暗黙的な`this`という変数を持っていません、そのため`this`を外側の関数(この場合は`delaySayName`)に探索します。
+これにより、Arrow Functionにおいては`this`が実行時に変わることなく、外側の`this`をそのまま利用できています。
+
+```js
+const Prefixer = {
+    prefix: "pre",
+    prefixArray(strings) {
+        return strings.map((string) => {
+            // `this`は一つ外側の`prefixArray`関数がもつ`this`を参照する
+            // そのため`this.prefix`は"pre"となる
+            return this.prefix + "-" + string;
+        });
+    }
+};
+// この時、`prefixArray`のベースオブジェクトは`Prefixer`となる
+// つまり、`prefixArray`メソッド内の`this`は`Prefixer`を参照する
+const prefixedStrings = Prefixer.prefixArray(["a", "b", "c"]);
+console.log(prefixedStrings); // => ["pre-a", "pre-b", "pre-c"]
+```
+
+詳しいArrow Function解説を見ていきます。
 
 ## thisとArrow Function
 
 Arrow Functionで定義された関数やメソッドにおける`this`は常に静的に決定されます。
-`this`の参照先は「Arrow Functionを除いて、自身より外側のスコープにあるもっとも近い関数またはグローバルオブジェクト」となります。
+`this`の参照先は「Arrow Function自身の外側のスコープにあるもっとも近い関数の`this`の値」となります。
+
+Arrow Functionとそれ以外の関数で大きく違うことは、Arrow Functionは`this`を暗黙的な引数として受け付けないということです。
+そのため、Arrow Functionで定義した関数内での`this`は呼び出し方によって変わることがあります。
+
+一方、Arrow Function内の`this`はどのように値を決めるのかというと、その仕組みはスコープチェーンとよく似ています。
+Arrow Functionにおける`this`は関数に限定したスコープチェーンのような挙動をします。
+スコープチェーンでは、同じスコープ内に同じ識別子の変数や関数がなければ、外側のスコープへ探索していくという仕組みについて学びました。
+Arrow Function自身は`this`を持っていないため、常に外側の関数（スコープ）に定義されている`this`を参照しにいきます。
+そして、スコープの性質として、スコープは静的に決まります。
+つまり、スコープと同じような仕組みで動くArrow Function内の`this`は静的に決定されるということになります。
 
 [関数とスコープ][]の章において、スコープは[静的スコープ][]という性質をもつため、実行する前にスコープ間の関係が決まるという話をしました。
 つまりArrow Functionにおける`this`は、スコープと同じように実行する前にどの値を参照するかが分かるということです。
@@ -569,16 +618,15 @@ Arrow Functionで定義された関数やメソッドにおける`this`は常に
 
 次の例では、関数式で定義したArrow Functionの中の`this`をコンソールに出力しています。
 このとき、`fn`の外側には関数はないため、「自身より外側のスコープにあるもっとも近い関数」の条件にあてはまるものはありません。
-つまり、このArrow Functionの中での`this`が参照するのはグローバルオブジェクトとなります。
+このArrow Functionの中での`this`が参照するのはグローバルオブジェクトとなります。
 
 ```js
 // Arrow Functionで定義した関数
 const fn = () => {
     // この関数の外側には関数は存在しない
-    // `this`はグローバルオブジェクトを参照する
-    return this; 
+    return this;
 };
-fn(); // グローバルオブジェクトはブラウザならwindow、Node.jsならglobal
+fn();
 ```
 
 次の例のように、Arrow Functionを包むように別の関数が定義されている場合はどうでしょうか。
@@ -590,7 +638,7 @@ function outer() {
     return () => {
         // この関数の外側には`outer`関数が存在する
         // `outer`関数に`this`を書いた場合と同じ
-        return this; 
+        return this;
     };
 }
 // `outer`関数の返り値はArrow Functionにて定義された関数
@@ -610,7 +658,7 @@ function outer() {
     return () => {
         // Arrow Function自身は`this`を持たない
         // `outer`関数に`this`を書いた場合と同じ
-        return that; 
+        return that;
     };
 }
 // `outer()`と呼び出した時の`outer`関数直下の`this`は`undefined`
@@ -635,6 +683,26 @@ const obj = {
     }
 };
 ```
+
+### Arrow Functionにはcall,apply,bindが効かない
+
+これは、Arrow Functionが`this`を持てないことを象徴する仕様です。
+次のようにArrow Functionで定義した関数に対して`call`で`this`をしても、`this`の参照先が代わっていないことが分かります。
+これは、`apply`や`bind`メソッドを使った場合も`this`の参照先が代わりません。
+
+```js
+const fn = () => {
+    return this;
+};
+// Scriptコンテキストの場合、スクリプト直下のArrow Functionのthisはグローバルオブジェクト
+console.log(fn()); // => global
+// callで`{}`を参照させようとしても結果は変わらない
+fn.call({}); // => global
+```
+
+最初に述べたように通常の関数は実行時にベースオブジェクトが暗黙的な引数のように`this`の値として渡されます。
+一方、Arrow Functionの関数は実行時に`this`を受け取らずに、定義時のArrow Functionにおける`this`の参照先が静的に決定されます。
+
 
 [^strict mode]: この書籍では注釈がないコードはstrict modeとして扱います。strict modeではない場合`this`はグローバルオブジェクトを参照します。
 [JavaScriptとは]: ../introduction/README.md
