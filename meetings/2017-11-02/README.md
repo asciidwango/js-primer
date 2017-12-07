@@ -2,7 +2,7 @@
 
 - [@azu](https://github.com/azu)
 - [@kahei](https://github.com/kahei)
-- [@laco0416](https://github.com/laco0416)
+- [@lacolaco](https://github.com/lacolaco)
 
 ## アジェンダ
 

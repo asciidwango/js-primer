@@ -2,7 +2,7 @@
 
 - [@azu](https://github.com/azu)
 - [@kahei](https://github.com/kahei)
-- [@laco0416](https://github.com/laco0416)
+- [@lacolaco](https://github.com/lacolaco)
 
 @ 株式会社ドワンゴ会議室
 
@@ -110,7 +110,7 @@ ES2015をメインにする
 
 
 ## Ajaxユースケース
-https://github.com/laco0416/plain-ajax
+https://github.com/lacolaco/plain-ajax
 
 関連: [Ajaxで何か #9](https://github.com/asciidwango/ES6book/issues/9 "Ajaxで何か #9")
 
@@ -136,7 +136,7 @@ https://github.com/laco0416/plain-ajax
 - モジュールはその他のユースケースにまかせる
 
 ## Node.js CLI ユースケース
-https://github.com/laco0416/plain-node-cli
+https://github.com/lacolaco/plain-node-cli
 
 関連: [Node.jsのCLIアプリ #7](https://github.com/asciidwango/ES6book/issues/7 "Node.jsのCLIアプリ #7")
 

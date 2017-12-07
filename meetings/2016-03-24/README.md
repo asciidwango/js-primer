@@ -3,7 +3,7 @@
 - [@azu](https://github.com/azu)
 - [@kahei](https://github.com/kahei)
 - [@vvakame](https://github.com/vvakame)
-- [@laco0416](https://github.com/laco0416)
+- [@lacolaco](https://github.com/lacolaco)
 
 @ ドイツ料理のお店
 
@@ -55,10 +55,10 @@
 
 ## ツール/AltJS
 
-- laco0416: ツールの解説はいるのか?
+- lacolaco: ツールの解説はいるのか?
     - Babelは不要かもしれないで、ブラウザで動かすならBrowserifyやwebpackのようなbundlerは必要になるのでは
     - azu: Agree
-- laco0416: AltJSについて触れるのか?
+- lacolaco: AltJSについて触れるのか?
     - 現状のAltJSはTypeScriptぐらいしかない
     - そのためAltJSというくくりで触れる必然性は薄い
 
@@ -73,7 +73,7 @@
 
 - AjaxはJavaScriptの楽しさを伝えるために必要な気がしている
 - StableなAPIとして何があるのか
-- laco0416: Wikipedia
+- lacolaco: Wikipedia
 - azu: https://httpbin.org/
 - Ajaxの説明をするなSOPの話は一緒にしないとハマってしまう
     - `file:///`で動かない問題

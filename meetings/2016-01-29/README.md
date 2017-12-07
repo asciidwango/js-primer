@@ -3,7 +3,7 @@
 - [@azu](https://github.com/azu)
 - [@kahei](https://github.com/kahei)
 - [@vvakame](https://github.com/vvakame)
-- [@laco0416](https://github.com/laco0416)
+- [@lacolaco](https://github.com/lacolaco)
 
 ## 書籍の対象について
 
@@ -28,7 +28,7 @@
 -----
 
 - @azu: arrow_double_up:が付いてる人ぐらいを対象するのが良いのでは
-- @laco0416: ライブラリを作るのは中級者なのでは?
+- @lacolaco: ライブラリを作るのは中級者なのでは?
 - @azu, @vvakame: 上級者なのでは
 - 完全な初心者を対象にすると分量が増えてしまう
     - `if`や変数などプログラミング的な知識は知っている前提とする
@@ -68,7 +68,7 @@
 ## 今後
 
 - TODOアプリをユースケースとして作ってみる
-- @laco0416: アイデアを書くリポジトリ/Issueなどが欲しい
+- @lacolaco: アイデアを書くリポジトリ/Issueなどが欲しい
 - => https://github.com/asciidwango/ES6book
 - ひとまず、アイデアなどはここへ書き込む
 

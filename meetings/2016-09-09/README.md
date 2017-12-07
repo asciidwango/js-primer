@@ -3,7 +3,7 @@
 - [@azu](https://github.com/azu)
 - [@kahei](https://github.com/kahei)
 - [@vvakame](https://github.com/vvakame)
-- [@laco0416](https://github.com/laco0416)
+- [@lacolaco](https://github.com/lacolaco)
 
 @ 会議室
 
