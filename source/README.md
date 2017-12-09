@@ -37,6 +37,7 @@
     - [非推奨の機能](./basic/bad-parts/README.md)
     - ECMAScript策定プロセス
 - [第2部: 応用編（ユースケース）](use-case/README.md)
+    - モジュール
     - [Ajaxで通信](use-case/ajaxapp/README.md)
       - [エントリポイント](use-case/ajaxapp/entrypoint/README.md)
       - [HTTP通信](use-case/ajaxapp/xhr/README.md)
