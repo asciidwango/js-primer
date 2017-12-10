@@ -503,16 +503,16 @@ sayPerson(); // => "こんにちは Brendan Eich！"
 そもそも`call`、`apply`、`bind`が必要となるのは「`this`が呼び出し方によって暗黙的に決まる」という問題があるためです。
 -->
 
-### コールバック関数と`this`
+### 問題: コールバック関数と`this`
 
-JavaScriptでコールバック関数の中で`this`を参照することはよくあります。
-なぜなら、JavaScriptが元々もつ関数には、`Array#map`メソッドなどの関数を引数として受け取る高階関数が多くあるためです。
-このとき、コールバック関数はメソッドではなく関数として呼ばれてることに注目してください。
+コールバック関数の中で`this`を参照すると問題となる場合があります。
+この問題は、メソッドの中で`Array#map`メソッドなどコールバック関数を扱う処理をする場合に発生しやすいです。
 
 具体的に、コールバック関数における`this`が問題となっている例を見てみましょう。
-次のコードでは`Array#map`メソッドのコールバック関数の中で、`Prefixer`オブジェクトを参照するつもりで`this`を参照しています。
-しかし、このコールバック関数における`this`はグローバルオブジェクトを参照、`this.prefix`は`undefined`となっています。
-なぜなら、グローバルオブジェクトには`prefix`というプロパティは存在しないため、プロパティが存在しない場合は`undefined`となります。
+次のコードでは`prefixArray`メソッドの中で`Array#map`メソッドを使っています。
+このとき、`Array#map`メソッドのコールバック関数の中で、`Prefixer`オブジェクトを参照するつもりで`this`を参照しています。
+
+しかし、このコールバック関数における`this`は`undefined`となり、`this.prefix`は`undefined.prefix`であるためTypeErrorとなります。
 
 ```js
 const Prefixer = {
@@ -522,65 +522,125 @@ const Prefixer = {
      */
     prefixArray(strings) {
         return strings.map(function(string) {
-            // `this`がグローバルオブジェクトを示す
-            // そのため`this.prefix`は`undefined`となる
+            // コールバック関数における`this`は`undefined`となる(strict mode)
+            // そのため`this.prefix`は`undefined.prefix`となり例外が発生する
             return this.prefix + "-" + string;
         });
     }
 };
-const prefixedStrings = Prefixer.prefixArray(["a", "b", "c"]);
-console.log(prefixedStrings); // => ["undefined-a", "undefined-b", "undefined-c"]
+// `prefixArray`メソッドにおける`this`は`Prefixer`
+Prefixer.prefixArray(["a", "b", "c"]); // => TypeError: Cannot read property 'prefix' of undefined
 ```
 
-そもそも、なぜ`this`はグローバルオブジェクトを参照するかを見ていきます。
-コールバック関数としてその場で定義した匿名関数を渡していることに注目してください。
-このコードは次のように一度`callback`変数に関数を代入したのと同じことになっています。
+なぜコールバック関数の`this`は`undefined`となるのかを見ていきます。
+`Array#map`メソッドにはコールバック関数として、その場で定義した匿名関数を渡していることに注目してください。
 
 <!-- textlint-disable no-js-function-paren -->
 
-このとき、1秒後に呼び出される`callback`関数は、`callback()`のように関数呼び出しされた場合と同じです。
-つまり、`callback`変数を関数として呼び出すとき、この関数にはベースオブジェクトはありません。
+このとき、`Array#map`メソッドに渡しているコールバック関数は`callback()`のようにただの関数として呼び出されます。
+つまり、コールバック関数として呼び出すとき、この関数にはベースオブジェクトはありません。
 そのため`callback`関数の`this`は`undefined`となります。
 
+先ほどの匿名関数をコールバック関数として渡しているのは、一度`callback`変数に入れてから渡しても同じです。
+
 <!-- textlint-enable no-js-function-paren -->
+
 
 ```js
 const Prefixer = {
     prefix: "pre",
+    /**
+     * `strings`配列の各要素にprefixをつける
+     */
     prefixArray(strings) {
-        return strings.map(function(string) {
-            // `this`がグローバルオブジェクトを示す
-            // そのため`this.prefix`は`undefined`となる
+        // コールバック関数は`callback()`のように呼び出される
+        // そのためコールバック関数における`this`は`undefined`となる(strict mode)
+        const callback = function(string) {
             return this.prefix + "-" + string;
+        };
+        return strings.map(callback);
+    }
+};
+// `prefixArray`メソッドにおける`this`は`Prefixer`
+Prefixer.prefixArray(["a", "b", "c"]); // => TypeError: Cannot read property 'prefix' of undefined
+```
+
+#### 対処法: `this`を一時変数へ代入する
+
+コールバック関数内での`this`の参照先が変わる問題への対処法として、`this`を別の変数に代入し、その`this`の参照先を保持するという方法があります。
+
+`this`は呼び出し元で変化し、その参照先は呼び出し元におけるベースオブジェクトです。
+`prefixArray`メソッドの呼び出しにおいては、`this`は`Prefixer`オブジェクトです。
+しかし、コールバック関数はあらためて関数として呼び出されるため`this`が`undefined`となってしまうのが問題でした。
+
+そのため、最初の`prefixArray`メソッド呼び出しにおける`this`の参照先を一時変数として保存することでこの問題を回避できます。
+つぎのように、`prefixArray`メソッドの`this`を`that`変数に保持しています。
+コールバック関数からは`this`の代わりに`that`変数を参照することで、コールバック関数からも`prefixArray`メソッド呼び出しと同じ`this`を参照できます。
+
+```js
+const Prefixer = {
+    prefix: "pre",
+    /**
+     * `strings`配列の各要素にprefixをつける
+     */
+    prefixArray(strings) {
+        // `that`は`prefixArray`メソッド呼び出しにおける`this`となる
+        // つまり`that`は`Prefixer`オブジェクトを参照する
+        const that = this;
+        return strings.map(function() {
+            // `this`ではなく`that`を参照する
+            return that.prefix + "-" + string;
         });
     }
 };
+// `prefixArray`メソッドにおける`this`は`Prefixer`
 const prefixedStrings = Prefixer.prefixArray(["a", "b", "c"]);
-console.log(prefixedStrings); // => ["undefined-a", "undefined-b", "undefined-c"]
+console.log(prefixedStrings); // => ["pre-a", "pre-b", "pre-c"]
 ```
 
-この問題への対処法として広く知られているのは、`this`を別の変数に代入し、その`this`の参照先を保持するという方法です。
-`this`は呼び出し元で変化し、その参照先は呼び出し元におけるベースオブジェクトです。
-関数の中で関数を定義してそれを呼び出すとまた別の関数呼び出しとなるため`this`が代わってしまう問題がありました。
-そのため、最初の関数呼び出しに置ける`this`の参照先を変数に保持しておいて、内側の関数からはその変数を参照することで`this`の値を維持できます。
+もちろん`Function#call`メソッドなどで明示的に`this`を渡して関数を呼び出すこともできます。
+また、`Arry#map`メソッドなどは`this`となる値引数として渡せる仕組みを持っています。
+そのため、つぎのように第二引数に`this`となる値を渡すことでも解決できます。
 
-もちろん`.call(this)`などと明示的に`this`を渡して関数を呼び出すこともできます。
-実際に`this`を引数として渡せる仕組みを持っているメソッドなどもあります。
-ただ、メソッドや関数によって使い方が異なるよりは単純に保持していた`this`を変数として参照することでこの問題を解決できています。
+```js
+const Prefixer = {
+    prefix: "pre",
+    /**
+     * `strings`配列の各要素にprefixをつける
+     */
+    prefixArray(strings) {
+        return strings.map(function() {
+            // `this`が第二引数の値と同じになる
+            // つまり`prefixArray`メソッドと同じ`this`となる
+            return this.prefix + "-" + string;
+        }, this);
+    }
+};
+// `prefixArray`メソッドにおける`this`は`Prefixer`
+const prefixedStrings = Prefixer.prefixArray(["a", "b", "c"]);
+console.log(prefixedStrings); // => ["pre-a", "pre-b", "pre-c"]
+```
 
-しかし、この解決方法は`this`が変わることを意識して書く必要があるため、いつのまにか`this`が変わっているということが起きやすいというのが問題です。
-コールバック関数で`this`が代わってしまうのが色々と問題であるため、これを解決するためにArrow Functionが導入されました。
+しかし、これら解決方法は`this`が変わることを意識して書く必要があります。
+そもそもの問題としてコールバック関数の中では`this`が変わってしまうのが問題でした。
+ES2015では`this`を変えずにコールバック関数を定義する方法として、Arrow Functionが導入されました。
 
-Arrow Functionで先ほどのコールバック関数を定義すると、何もせずにコールバック関数内の`this`がそのまま`person`オブジェクトを参照します。
-Arrow Functionは暗黙的な`this`という変数を持っていません、そのため`this`を外側の関数(この場合は`delaySayName`)に探索します。
-これにより、Arrow Functionにおいては`this`が実行時に変わることなく、外側の`this`をそのまま利用できています。
+### 対処法: Arrow Functionでコールバック関数を扱う
+
+通常の関数やメソッドは呼び出し時に暗黙的に`this`の値を受け取り、関数内の`this`はその値を参照します。
+一方、Arrow Functionはこの暗黙的な`this`の値を受け取りません。
+そのためArrow Function内の`this`は、スコープチェーンの仕組みと同様で外側の関数(この場合は`prefixArray`メソッド)に探索します。
+これにより、Arrow Functionで定義したコールバック関数の`this`が実行時に変わることなく、外側の関数の`this`をそのまま利用できます。
+
+Arrow Functionを使うことで、先ほどのコードは次のように書くことができます。
 
 ```js
 const Prefixer = {
     prefix: "pre",
     prefixArray(strings) {
         return strings.map((string) => {
-            // `this`は一つ外側の`prefixArray`関数がもつ`this`を参照する
+            // Arrow Function自体は`this`を持たない
+            // `this`は外側の`prefixArray`関数がもつ`this`を参照する
             // そのため`this.prefix`は"pre"となる
             return this.prefix + "-" + string;
         });
@@ -592,25 +652,26 @@ const prefixedStrings = Prefixer.prefixArray(["a", "b", "c"]);
 console.log(prefixedStrings); // => ["pre-a", "pre-b", "pre-c"]
 ```
 
-詳しいArrow Function解説を見ていきます。
+このように、コールバック関数における`this`の変化がなくなるため簡潔です。
+そのため、コールバック関数と`this`の対処法として色々と紹介しましたが、ES2015からはArrow Functionを使うのがもっとも簡潔です。
 
-## thisとArrow Function
+このArrow Functionと`this`の関係についてもっと詳しく見ていきます。
 
-Arrow Functionで定義された関数やメソッドにおける`this`は常に静的に決定されます。
-`this`の参照先は「Arrow Function自身の外側のスコープにあるもっとも近い関数の`this`の値」となります。
+## Arrow Functionと`this`
+
+Arrow Functionで定義された関数やメソッドにおける`this`がどの値を参照するかは関数の定義時（静的）に決まります。
+一方、Arrow Functionではない関数においては、`this`は呼び出し元に依存するため関数の実行時（動的）に決まります。
 
 Arrow Functionとそれ以外の関数で大きく違うことは、Arrow Functionは`this`を暗黙的な引数として受け付けないということです。
-そのため、Arrow Functionで定義した関数内での`this`は呼び出し方によって変わることがあります。
+そのため、Arrow Function内には`this`が定義されていないため、常に`this`の参照先を外側のスコープへ探索しに行きます。（詳細は[スコープチェーン][]を参照）
+また、`this`は読み取り専用のキーワードであるため、ユーザーが`this`という変数を定義できません。
 
-一方、Arrow Function内の`this`はどのように値を決めるのかというと、その仕組みはスコープチェーンとよく似ています。
-Arrow Functionにおける`this`は関数に限定したスコープチェーンのような挙動をします。
-スコープチェーンでは、同じスコープ内に同じ識別子の変数や関数がなければ、外側のスコープへ探索していくという仕組みについて学びました。
-Arrow Function自身は`this`を持っていないため、常に外側の関数（スコープ）に定義されている`this`を参照しにいきます。
-そして、スコープの性質として、スコープは静的に決まります。
-つまり、スコープと同じような仕組みで動くArrow Function内の`this`は静的に決定されるということになります。
+```js
+const this = "thisは読み取り専用"; // => SyntaxError: Unexpected token this
+```
 
-[関数とスコープ][]の章において、スコープは[静的スコープ][]という性質をもつため、実行する前にスコープ間の関係が決まるという話をしました。
-つまりArrow Functionにおける`this`は、スコープと同じように実行する前にどの値を参照するかが分かるということです。
+これにより、Arrow Functionにおける`this`は通常の変数と同じようにどの値を参照するかが静的に決まるという性質があります。（詳細は[静的スコープ][]を参照）
+これを言い換えると、Arrow Functionにおける`this`の参照先は「Arrow Function自身の外側のスコープにあるもっとも近い関数の`this`の値」となります。
 
 具体的な例を元にArrow Functionにおける`this`の動きを見ていきましょう。
 
@@ -708,5 +769,6 @@ fn.call({}); // => global
 [JavaScriptとは]: ../introduction/README.md
 [関数と宣言]: ../function-declaration/README.md
 [関数とスコープ]: ../function-scope/README.md
+[スコープチェーン]: ../function-scope/README.md##scope-chain}
 [静的スコープ]: ../function-scope/README.md#static-scope
 [動的スコープ]: ../function-scope/README.md#dynamic-scope

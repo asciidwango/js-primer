@@ -165,7 +165,7 @@ console.log(element); // => ReferenceError: element is not defined
 
  -->
 
-## スコープチェーン
+## スコープチェーン {#scope-chain}
 
 関数やブロックはネスト（入れ子）して書けますが、同様にスコープもネストできます。
 次のコードではブロックの中にブロックを書いています。
