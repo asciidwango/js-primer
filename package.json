@@ -32,6 +32,7 @@
   ],
   "devDependencies": {
     "@alrra/travis-scripts": "^3.0.1",
+    "@textlint-rule/textlint-rule-no-invalid-control-character": "^1.0.1",
     "babel-preset-env": "^1.6.1",
     "babel-preset-jsdoc-to-assert": "^4.0.0",
     "babel-preset-power-assert": "^1.0.0",
