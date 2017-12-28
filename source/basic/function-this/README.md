@@ -26,14 +26,14 @@ author: azu
 
 この章では、さまざまな条件下で変わる`this`の挙動と関数やArrow Functionとの関係を見ていきます。
 
-## コード直下における`this`
+## 実行コンテキストと`this` {#execution-context-this}
 
 最初に[JavaScriptとは][]の章において、JavaScriptには実行コンテキストとして"Script"と"Module"があるという話をしました。
-コードのトップレベルにある`this`は、この実行コンテキストによって値が異なります。
-実行コンテキストの違いは意識しにくい部分であり、コードのトップレベルにある`this`を使うことは混乱を生むことになります。
+トップレベル（スクリプトの直下）にある`this`は、実行コンテキストによって値が異なります。
+実行コンテキストの違いは意識しにくい部分であり、トップレベルで`this`を使うことは混乱を生むことになります。
 そのため、コードのトップレベルにおいては`this`を使うべきではありませんが、それぞれの実行コンテキストにおける動作を紹介します。
 
-## スクリプトにおける`this` {#global-this}
+## スクリプトにおける`this` {#script-this}
 
 実行コンテキストが"Script"である場合、そのコード直下に書かれた`this`はグローバルオブジェクトを参照します。
 グローバルオブジェクトとは、実行環境において異なるものが定義されています。
@@ -587,7 +587,7 @@ const Prefixer = {
         // `that`は`prefixArray`メソッド呼び出しにおける`this`となる
         // つまり`that`は`Prefixer`オブジェクトを参照する
         const that = this;
-        return strings.map(function() {
+        return strings.map(function(string) {
             // `this`ではなく`that`を参照する
             return that.prefix + "-" + string;
         });
@@ -609,7 +609,8 @@ const Prefixer = {
      * `strings`配列の各要素にprefixをつける
      */
     prefixArray(strings) {
-        return strings.map(function() {
+        // `Array#map`メソッドは第二引数に`this`となる値を渡せる
+        return strings.map(function(string) {
             // `this`が第二引数の値と同じになる
             // つまり`prefixArray`メソッドと同じ`this`となる
             return this.prefix + "-" + string;
@@ -622,7 +623,7 @@ console.log(prefixedStrings); // => ["pre-a", "pre-b", "pre-c"]
 ```
 
 しかし、これら解決方法は`this`が変わることを意識して書く必要があります。
-そもそもの問題としてコールバック関数の中では`this`が変わってしまうのが問題でした。
+そもそもの問題としてコールバック関数の中では、コールバック関数が呼ばれることで`this`が変わってしまうのが問題でした。
 ES2015では`this`を変えずにコールバック関数を定義する方法として、Arrow Functionが導入されました。
 
 ### 対処法: Arrow Functionでコールバック関数を扱う
@@ -630,7 +631,7 @@ ES2015では`this`を変えずにコールバック関数を定義する方法�
 通常の関数やメソッドは呼び出し時に暗黙的に`this`の値を受け取り、関数内の`this`はその値を参照します。
 一方、Arrow Functionはこの暗黙的な`this`の値を受け取りません。
 そのためArrow Function内の`this`は、スコープチェーンの仕組みと同様で外側の関数(この場合は`prefixArray`メソッド)に探索します。
-これにより、Arrow Functionで定義したコールバック関数の`this`が実行時に変わることなく、外側の関数の`this`をそのまま利用できます。
+これにより、Arrow Functionで定義したコールバック関数は呼び出し方には関係なく、常に外側の関数の`this`をそのまま利用します。
 
 Arrow Functionを使うことで、先ほどのコードは次のように書くことができます。
 
@@ -652,8 +653,9 @@ const prefixedStrings = Prefixer.prefixArray(["a", "b", "c"]);
 console.log(prefixedStrings); // => ["pre-a", "pre-b", "pre-c"]
 ```
 
-このように、コールバック関数における`this`の変化がなくなるため簡潔です。
-そのため、コールバック関数と`this`の対処法として色々と紹介しましたが、ES2015からはArrow Functionを使うのがもっとも簡潔です。
+このように、Arrow Functionでのコールバック関数における`this`は簡潔です。
+そのため、コールバック関数内での`this`の対処法として`this`を代入する方法を紹介しましたが、
+ES2015からはArrow Functionを使うのがもっとも簡潔です。
 
 このArrow Functionと`this`の関係についてもっと詳しく見ていきます。
 
@@ -666,12 +668,10 @@ Arrow Functionとそれ以外の関数で大きく違うことは、Arrow Functi
 そのため、Arrow Function内には`this`が定義されていないため、常に`this`の参照先を外側のスコープへ探索しに行きます。（詳細は[スコープチェーン][]を参照）
 また、`this`は読み取り専用のキーワードであるため、ユーザーが`this`という変数を定義できません。
 
-```js
-const this = "thisは読み取り専用"; // => SyntaxError: Unexpected token this
-```
+[import, this-is-readonly](./src/this-is-readonly-invalid.js)
 
-これにより、Arrow Functionにおける`this`は通常の変数と同じようにどの値を参照するかが静的に決まるという性質があります。（詳細は[静的スコープ][]を参照）
-これを言い換えると、Arrow Functionにおける`this`の参照先は「Arrow Function自身の外側のスコープにあるもっとも近い関数の`this`の値」となります。
+これにより、Arrow Functionにおける`this`は通常の変数と同じようにどの値を参照するかが静的に決まるという性質があります（詳細は[静的スコープ][]を参照）。
+つまりArrow Functionにおける`this`の参照先は「Arrow Function自身の外側のスコープにあるもっとも近い関数の`this`の値」となります。
 
 具体的な例を元にArrow Functionにおける`this`の動きを見ていきましょう。
 
@@ -679,18 +679,22 @@ const this = "thisは読み取り専用"; // => SyntaxError: Unexpected token th
 
 次の例では、関数式で定義したArrow Functionの中の`this`をコンソールに出力しています。
 このとき、`fn`の外側には関数はないため、「自身より外側のスコープにあるもっとも近い関数」の条件にあてはまるものはありません。
-このArrow Functionの中での`this`が参照するのはグローバルオブジェクトとなります。
+このときの`this`はトップレベルに書かれた`this`と同じ値になります。
 
 ```js
 // Arrow Functionで定義した関数
 const fn = () => {
     // この関数の外側には関数は存在しない
+    // トップレベルの`this`と同じ値
     return this;
 };
-fn();
+fn() === this; // => true
 ```
 
-次の例のように、Arrow Functionを包むように別の関数が定義されている場合はどうでしょうか。
+トップレベルに書かれた`this`の値は[実行コンテキスト](#execution-context-this)によって異なることを紹介しました。
+`this`の値は、実行コンテキストが"Script"ならばグローバルオブジェクトとなり、"Module"ならば`undefined`となります。
+
+次の例のように、Arrow Functionを包むように通常の関数が定義されている場合はどうでしょうか。
 
 ```js
 "use strict";
@@ -707,8 +711,8 @@ const innerArrowFunction = outer();
 console.log(innerArrowFunction()); // => undefined;
 ```
 
-Arrow Functionは「自身の外側の関数スコープにおける`this`」となります。
-つまり、先ほどのコードは次のように評価されたのと同じです。
+Arrow Functionにおける`this`は「自身の外側のスコープにあるもっとも近い関数の`this`の値」となります。
+つまり、このArrow Functionにおける`this`は`outer`関数で`this`を参照した場合と同じ値になります。
 
 ```js
 "use strict";
@@ -722,32 +726,62 @@ function outer() {
         return that;
     };
 }
-// `outer()`と呼び出した時の`outer`関数直下の`this`は`undefined`
+// `outer()`と呼び出した時の`this`は`undefined`(strict mode)
 const innerArrowFunction = outer();
 console.log(innerArrowFunction()); // => undefined;
 ```
 
-### メソッドの中の関数
+### メソッドとコールバック関数とArrow Function
 
-Arrow Functionがもっと活用できるパターンです。
-この例は、`var that = this`のパターンで回避していました。
-しかし、Arrow Functionでは単純に`this`と書くことで問題なくなります。
-なぜならArrow Functionの中に書かれた`this`はArrow Functionの外側の関数に書かれた`this`と同じ扱いになるためです。
-次の例では、Arrow Functionの中での`this`は`obj.show`の呼び出しもとである`obj`を示します。
+メソッド内におけるコールバック関数はArrow Functionがもっと活用できるパターンです。
+`function`キーワードでコールバック関数を定義すると、`this`の値はコールバック関数の呼ばれ方を意識する必要があります。
+なぜなら、`function`キーワードで定義した関数における`this`は呼び出し方によって変わるためです。
+
+コールバック関数側から見ると、どのように呼ばれるかによって変わる`this`を使うことはエラーとなる場合もあるため使えません。
+そのため、コールバック関数の外側のスコープで`this`を一時変数に代入し、それを使うという回避を取っていました。
 
 ```js
-const obj = {
-    show() {
-        setTimeout(() => {
-            this.count++;
-        }, 100);
+// `callback`関数を受け取り呼び出す関数
+const callCallback = (callback) => {
+    // `callback`を呼び出す実装
+};
+
+const object = {
+    method() {
+        callCallback(function() {
+            // ここでの `this` は`callCallback`の実装に依存する
+            // `callback()`のように単純に呼び出されるなら`this`は`undefined`になる
+            // `Function#call`などを使い特定のオブジェクトを指定するかもしれない
+            // この問題を回避するために`const that = this`のような一時変数を使う
+        });
     }
 };
 ```
 
-### Arrow Functionにはcall,apply,bindが効かない
+一方、Arrow Functionでコールバック関数を定義した場合は、1つ外側の関数の`this`を参照します。
+このときのArrow Functionで定義したコールバック関数における`this`は呼び出し方によって変化しません。
+そのため、`this`を一時変数に代入するなどの回避方法は必要ありません。
 
-これは、Arrow Functionが`this`を持てないことを象徴する仕様です。
+```js
+// `callback`関数を受け取り呼び出す関数
+const callCallback = (callback) => {
+    // `callback`を呼び出す実装
+};
+
+const object = {
+    method() {
+        callCallback(() => {
+            // ここでの`this`は1つ外側の関数における`this`と同じ
+        });
+    }
+};
+```
+
+### Arrow Functionは`this`をbindできない
+
+Arrow Functionで定義した関数には`call`、`apply`、`bind`を使った`this`の指定は単に無視されます。
+これは、Arrow Functionは`this`をもつことができないためです。
+
 次のようにArrow Functionで定義した関数に対して`call`で`this`をしても、`this`の参照先が代わっていないことが分かります。
 これは、`apply`や`bind`メソッドを使った場合も`this`の参照先が代わりません。
 
@@ -755,15 +789,35 @@ const obj = {
 const fn = () => {
     return this;
 };
-// Scriptコンテキストの場合、スクリプト直下のArrow Functionのthisはグローバルオブジェクト
-console.log(fn()); // => global
-// callで`{}`を参照させようとしても結果は変わらない
-fn.call({}); // => global
+// Scriptコンテキストの場合、スクリプト直下のArrow Functionの`this`はグローバルオブジェクト
+console.log(fn()); // グローバルオブジェクト
+// callで`this`を`{}`にしようとしても、`this`は変わらない
+fn.call({}); // グローバルオブジェクト
 ```
 
-最初に述べたように通常の関数は実行時にベースオブジェクトが暗黙的な引数のように`this`の値として渡されます。
-一方、Arrow Functionの関数は実行時に`this`を受け取らずに、定義時のArrow Functionにおける`this`の参照先が静的に決定されます。
+最初に述べたよう`function`キーワードで定義した関数は呼び出し時に、ベースオブジェクトが暗黙的な引数のように`this`の値として渡されます。
+一方、Arrow Functionの関数は呼び出し時に`this`を受け取らずに、定義時のArrow Functionにおける`this`の参照先が静的に決定されます。
 
+<!-- textlint-disable -->
+
+また、`this`が変わらないのはあくまでArrow Functionで定義した関数だけで、Arrow Functionの`this`が参照する「自身の外側のスコープにあるもっとも近い関数の`this`の値」は`call`メソッドで変更できます。
+
+<!-- textlint-enable -->
+
+```js
+const object = {
+    method() {
+        const arrowFunction = () => {
+            return this;
+        };
+        return arrowFunction();
+    }
+};
+// 通常の`this`は`object.method`の`this`と同じ
+console.log(object.method()); // => object
+// `object.method`の`this`を変更すれば、Arrow Functionの`this`も変更される
+console.log(object.method.call("THAT")); // => "THAT"
+```
 
 [^strict mode]: この書籍では注釈がないコードはstrict modeとして扱います。strict modeではない場合`this`はグローバルオブジェクトを参照します。
 [JavaScriptとは]: ../introduction/README.md
