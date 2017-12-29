@@ -73,6 +73,7 @@ console.log(this); // => undefined
 [関数と宣言][]で詳しくは紹介していますが、関数の定義方法と呼び出し方について改めて振り返ってみましょう。
 **関数**を定義する場合には、次の3つの方法を利用します。
 
+{{book.console}}
 ```js
 // `function`キーワードから始める関数宣言
 function fn1() {}
@@ -88,6 +89,7 @@ const fn3 = () => {};
 
 <!-- textlint-enable no-js-function-paren -->
 
+{{book.console}}
 ```js
 // 関数宣言
 function fn() {}
@@ -102,6 +104,7 @@ JavaScriptではオブジェクトのプロパティが関数である場合に�
 
 メソッドを定義する場合には、オブジェクトのプロパティに関数式を定義するだけです。
 
+{{book.console}}
 ```js
 const object = {
     // `function`キーワードを使ったメソッド
@@ -116,6 +119,7 @@ const object = {
 これに加えてメソッドには短縮記法があります。
 オブジェクトリテラルの中で `メソッド名(){ /*メソッドの処理*/ }`と書くことで、メソッドを定義できます。
 
+{{book.console}}
 ```js
 const object = {
     // メソッドの短縮記法で定義したメソッド
@@ -130,6 +134,7 @@ const object = {
 
 <!-- textlint-enable no-js-function-paren -->
 
+{{book.console}}
 ```js
 const object = {
     // メソッドの定義
@@ -207,6 +212,7 @@ Arrow Function以外の関数では、関数の定義だけを見て`this`の値
 このとき、`fn1`と`fn2`はただの関数として呼び出されています。
 つまり、ベースオブジェクトがないため`this`は`undefined`となります。[^strict mode]
 
+{{book.console}}
 ```js
 function fn1() {
     return this;
@@ -224,6 +230,7 @@ fn2(); // => undefined
 
 これは、関数の中に関数を定義して呼び出す場合も同じです。
 
+{{book.console}}
 ```js
 function outer() {
     console.log(this); // => undefined
@@ -246,6 +253,7 @@ outer();
 次の例では`method1`と`method2`はそれぞれメソッドとして呼び出されています。
 このとき、それぞれのベースオブジェクトは`object`となり、`this`は`object`となります。
 
+{{book.console}}
 ```js
 const object = {
     // 関数式をプロパティの値にしたメソッド
@@ -265,6 +273,7 @@ object.method2(); // => object
 
 これを利用すれば、メソッドの中から同じオブジェクトに所属する別のプロパティを`this`で参照できます。
 
+{{book.console}}
 ```js
 const person = {
     fullName: "Brendan Eich",
@@ -284,6 +293,7 @@ console.log(person.sayName()); // => "Brendan Eich"
 次のコードを見てみると、ネストしたオブジェクトにおいてメソッド内の`this`がベースオブジェクトである`obj3`を参照していることが分かります。
 このときのベースオブジェクトはドットで繋いだ一番左の`obj1`ではなく、メソッドから見てひとつ左の`obj3`となります。
 
+{{book.console}}
 ```js
 const obj1 = {
     obj2: {
@@ -303,23 +313,24 @@ console.log(obj1.obj2.obj3.method()); // => obj1.obj2.obj3
 `this`はその関数（メソッドも含む）呼び出しのベースオブジェクトを参照することがわかりました。
 `this`は所属するオブジェクトを直接書く代わりとして利用できますが、一方`this`には色々な問題があります。
 
-この問題の原因は`this`が関数の呼び出し時に、どの値を参照するかが決まるという性質に由来します。
+この問題の原因は`this`がどの値を参照するかは関数の呼び出し時に決まるという性質に由来します。
 この`this`の性質が問題となるパターンの代表的な2つの例とそれぞれの対策についてを見ていきます。
-
 
 ### `this`を含むメソッドを変数に代入した場合 {#assign-this-function}
 
-JavaScriptでは関数やメソッドが所属するオブジェクトは変わることがあります。
-なぜなら、関数やメソッドは関数オブジェクトという値の一種であるため、別の変数やオブジェクトのプロパティへ代入できるためです。
+JavaScriptではメソッドとして定義したものが、後からただの関数として呼び出されることがあります。
+なぜなら、メソッドは関数を値に持つプロパティのことで、プロパティは変数に代入し直すことができるためです。
+
 そのため、メソッドとして定義した関数も、別の変数に代入してただの関数として呼び出されることがあります。
-この場合には、メソッドとして定義した関数であっても、実行時にはただの関数であるため所属するオブジェクトが変わっています。
-これは`this`も関数の実行時に変わるということを意味しています。
+この場合には、メソッドとして定義した関数であっても、実行時にはただの関数であるためベースオブジェクトが変わっています。
+これは`this`が定義した時点では決まらずに実行した時に決まるという性質そのものです。
 
 具体的に、`this`が実行時に変わる例を見ていましょう。
 次の例では、`person.sayName`メソッドを変数`say`に代入してから実行しています。
-このときの`say`関数(`sayName`メソッドを参照)はどのオブジェクトにも所属していません。
+このときの`say`関数(`sayName`メソッドを参照)のベースオブジェクトはありません。
 そのため、`this`は`undefined`となり、`undefined.fullName`は参照できずに例外をなげます。
 
+{{book.console}}
 ```js
 const person = {
     fullName: "Brendan Eich",
@@ -339,13 +350,10 @@ const say = person.sayName;
 say(); // => TypeError: Cannot read property 'fullName' of undefined
 ```
 
-先ほどの`say`関数がなぜ例外を投げてしまうかを詳しく見てみましょう。
+結果的には、次のようなコードが実行されているのと同じです。
+そのため、`undefined.fullName`を参照しようとして例外が発生しています。
 
-`person.sayName`メソッドを呼び出すとき、`sayName`メソッドは`person`オブジェクトに所属するため、`this`は`person`オブジェクトになります。
-一方、`const say = person.sayName;`することで、`say`変数は`person.sayName`メソッドの実体である関数を参照しています。
-つまり、`say`変数（関数）はメソッドではなくただの関数です。どのオブジェクトにも所属しない関数の`this`は`undefined`となります。
-そのため、`say`変数（関数）の中では`this`は`undefined`となり、例外を投げています。
-
+{{book.console}}
 ```js
 // const sayName = person.sayName; は次のようなイメージ
 const say = function() {
@@ -359,7 +367,10 @@ say(); // => TypeError: Cannot read property 'fullName' of undefined
 そのため、関数に`this`を含んでいる場合、その関数は意図した呼ばれ方がされないと間違った結果が発生するという問題があります。
 
 この問題の対処方法としては大きく分けて2つあります。
+
 ひとつはメソッドとして定義されている関数はメソッドとして呼ぶということです。
+メソッドをわざわざただの関数として呼ばなければそもそもこの問題は発生しません。
+
 もうひとつは、`this`の値を指定して関数を呼べるメソッドで関数を実行する方法です。
 
 ### call、apply、bindメソッド {#call-apply-bind}
@@ -368,6 +379,7 @@ say(); // => TypeError: Cannot read property 'fullName' of undefined
 `Function`（関数オブジェクト）には`call`、`apply`、`bind`といった明示的に`this`を指定して関数を実行するメソッドが用意されています。
 
 `call`メソッドは第一引数に`this`としたい値を指定し、残りの引数は呼び出す関数の引数となります。
+暗黙的に渡される`this`の値を明示的に渡せるメソッドと言えます。
 
 <!-- doctest:disable -->
 ```js
@@ -377,6 +389,7 @@ say(); // => TypeError: Cannot read property 'fullName' of undefined
 次の例では`this`に`person`オブジェクトを指定した状態で`say`関数を呼び出しています。
 `call`メソッドの第二引数で指定した値が、`say`関数の仮引数`message`に入ります。
 
+{{book.console}}
 ```js
 function say(message) {
     return `${message} ${this.fullName}！`;
@@ -395,7 +408,7 @@ say("こんにちは"); // => TypeError: Cannot read property 'fullName' of unde
 他の言語とは異なり`this`が実行時に決定されることは、定義時点ではthisの値が何になるのか分からないという曖昧さがあることを示しています。
 -->
 
-`apply`メソッドは第一引数に`this`としたい値を指定し、第二引数に関数の引数を配列として渡します。
+`apply`メソッドは第一引数に`this`にしたい値を指定し、第二引数に関数の引数を配列として渡します。
 
 <!-- doctest:disable -->
 ```js
@@ -405,6 +418,7 @@ say("こんにちは"); // => TypeError: Cannot read property 'fullName' of unde
 次の例では`this`に`person`オブジェクトを指定した状態で`say`関数を呼び出しています。
 `apply`メソッドの第二引数で指定した配列は、自動的に展開されて`say`関数の仮引数`message`に入ります。
 
+{{book.console}}
 ```js
 function say(message) {
     return `${message} ${this.fullName}！`;
@@ -422,16 +436,18 @@ say("こんにちは"); // => TypeError: Cannot read property 'fullName' of unde
 `call`メソッドと`apply`メソッドの違いは、関数の引数への値の渡し方が異なるだけです。
 また、どちらのメソッドも`this`の値が不要な場合は`null`を渡すのが一般的です。
 
+{{book.console}}
 ```js
 function add(x, y) {
     return x + y;
 }
-// `this`は不要なのでnullを渡す
-add.apply(null, [1, 2]); // => 3
+// `this`は不要な場合はnullを渡す
 add.call(null, 1, 2); // => 3
+add.apply(null, [1, 2]); // => 3
 ```
 
-最後に`bind`メソッドは、名前のとおり`this`の値を束縛（bind）した新しい関数を作成します。
+最後に`bind`メソッドについてです。
+名前のとおり`this`の値を束縛（bind）した新しい関数を作成します。
 
 <!-- doctest:disable -->
 ```js
@@ -441,6 +457,7 @@ add.call(null, 1, 2); // => 3
 次の例では`this`を`person`オブジェクトに束縛した`say`関数の関数を作っています。
 `bind`メソッドの第二引数以降に値を渡すことで、束縛した関数の引数も束縛できます。
 
+{{book.console}}
 ```js
 function say(message) {
     return `${message} ${this.fullName}！`;
@@ -456,6 +473,7 @@ sayPerson(); // => "こんにちは Brendan Eich！"
 この`bind`メソッドをただの関数で表現すると次のように書けます。
 `bind`は`this`や引数を束縛した関数を作るメソッドということがわかります。
 
+{{book.console}}
 ```js
 function say(message) {
     return `${message} ${this.fullName}！`;
@@ -474,7 +492,7 @@ sayPerson(); // => "こんにちは Brendan Eich！"
 このように`call`、`apply`、`bind`メソッドを使うことで`this`を明示的に指定した状態で関数を呼び出せます。
 しかし、毎回関数を呼び出すたびにこれらのメソッドを使うのは、関数を呼び出すための関数が必要になってしまい手間がかかります。
 そのため、基本的には「メソッドとして定義されている関数はメソッドとして呼ぶこと」でこの問題を回避するほうがよいでしょう。
-その中で、どうしても`this`を固定したい場合には`call`、`apply`、`bind`メソッドを利用するのがよいです。
+その中で、どうしても`this`を固定したい場合には`call`、`apply`、`bind`メソッドを利用します。
 
 <!--
 そのため、ES2015ではこの`this`の問題を解決するためにArrow Functionという新しい関数の定義方法を導入しました。
@@ -492,6 +510,7 @@ sayPerson(); // => "こんにちは Brendan Eich！"
 
 しかし、このコールバック関数における`this`は`undefined`となり、`this.prefix`は`undefined.prefix`であるためTypeErrorとなります。
 
+{{book.console}}
 ```js
 const Prefixer = {
     prefix: "pre",
@@ -510,8 +529,19 @@ const Prefixer = {
 Prefixer.prefixArray(["a", "b", "c"]); // => TypeError: Cannot read property 'prefix' of undefined
 ```
 
-なぜコールバック関数の`this`は`undefined`となるのかを見ていきます。
+なぜコールバック関数の中での`this`が`undefined`となるのかを見ていきます。
 `Array#map`メソッドにはコールバック関数として、その場で定義した匿名関数を渡していることに注目してください。
+
+```js
+// ...
+    prefixArray(strings) {
+        // 匿名関数をコールバック関数として渡している
+        return strings.map(function(string) {
+            return this.prefix + "-" + string;
+        });
+    }
+// ...
+```
 
 <!-- textlint-disable no-js-function-paren -->
 
@@ -519,11 +549,11 @@ Prefixer.prefixArray(["a", "b", "c"]); // => TypeError: Cannot read property 'pr
 つまり、コールバック関数として呼び出すとき、この関数にはベースオブジェクトはありません。
 そのため`callback`関数の`this`は`undefined`となります。
 
-先ほどの匿名関数をコールバック関数として渡しているのは、一度`callback`変数に入れてから渡しても同じです。
+先ほどの匿名関数をコールバック関数として渡しているのは、一度`callback`変数に入れてから渡しても結果は同じです。
 
 <!-- textlint-enable no-js-function-paren -->
 
-
+{{book.console}}
 ```js
 const Prefixer = {
     prefix: "pre",
@@ -547,7 +577,7 @@ Prefixer.prefixArray(["a", "b", "c"]); // => TypeError: Cannot read property 'pr
 
 コールバック関数内での`this`の参照先が変わる問題への対処法として、`this`を別の変数に代入し、その`this`の参照先を保持するという方法があります。
 
-`this`は呼び出し元で変化し、その参照先は呼び出し元におけるベースオブジェクトです。
+`this`は関数の呼び出し元で変化し、その参照先は呼び出し元におけるベースオブジェクトです。
 `prefixArray`メソッドの呼び出しにおいては、`this`は`Prefixer`オブジェクトです。
 しかし、コールバック関数はあらためて関数として呼び出されるため`this`が`undefined`となってしまうのが問題でした。
 
@@ -555,6 +585,7 @@ Prefixer.prefixArray(["a", "b", "c"]); // => TypeError: Cannot read property 'pr
 つぎのように、`prefixArray`メソッドの`this`を`that`変数に保持しています。
 コールバック関数からは`this`の代わりに`that`変数を参照することで、コールバック関数からも`prefixArray`メソッド呼び出しと同じ`this`を参照できます。
 
+{{book.console}}
 ```js
 const Prefixer = {
     prefix: "pre",
@@ -580,6 +611,7 @@ console.log(prefixedStrings); // => ["pre-a", "pre-b", "pre-c"]
 また、`Arry#map`メソッドなどは`this`となる値引数として渡せる仕組みを持っています。
 そのため、つぎのように第二引数に`this`となる値を渡すことでも解決できます。
 
+{{book.console}}
 ```js
 const Prefixer = {
     prefix: "pre",
@@ -600,8 +632,8 @@ const prefixedStrings = Prefixer.prefixArray(["a", "b", "c"]);
 console.log(prefixedStrings); // => ["pre-a", "pre-b", "pre-c"]
 ```
 
-しかし、これら解決方法は`this`が変わることを意識して書く必要があります。
-そもそもの問題としてコールバック関数の中では、コールバック関数が呼ばれることで`this`が変わってしまうのが問題でした。
+しかし、これら解決方法はコールバック関数において`this`が変わることを意識して書く必要があります。
+そもそもの問題としてメソッド呼び出しとその中でのコールバック関数における`this`が変わってしまうのが問題でした。
 ES2015では`this`を変えずにコールバック関数を定義する方法として、Arrow Functionが導入されました。
 
 ### 対処法: Arrow Functionでコールバック関数を扱う
@@ -613,6 +645,7 @@ ES2015では`this`を変えずにコールバック関数を定義する方法�
 
 Arrow Functionを使うことで、先ほどのコードは次のように書くことができます。
 
+{{book.console}}
 ```js
 const Prefixer = {
     prefix: "pre",
@@ -643,12 +676,15 @@ Arrow Functionで定義された関数やメソッドにおける`this`がどの
 一方、Arrow Functionではない関数においては、`this`は呼び出し元に依存するため関数の実行時（動的）に決まります。
 
 Arrow Functionとそれ以外の関数で大きく違うことは、Arrow Functionは`this`を暗黙的な引数として受け付けないということです。
-そのため、Arrow Function内には`this`が定義されていないため、常に`this`の参照先を外側のスコープへ探索しに行きます。（詳細は[スコープチェーン][]を参照）
+そのため、Arrow Function内には`this`が定義されていません。このときの`this`は外側のスコープ(関数)の`this`を参照します。
+
+なぜなら、スコープチェーンの性質として、そのスコープに同じ名前の変数が定義されていない場合には外側のスコープを探索するためです。
+そのため、Arrow Function内の`this`の参照先は、常に外側のスコープ（関数）へと探索しに行きます（詳細は[スコープチェーン][]を参照）。
 また、`this`は読み取り専用のキーワードであるため、ユーザーが`this`という変数を定義できません。
 
 [import, this-is-readonly](./src/this-is-readonly-invalid.js)
 
-これにより、Arrow Functionにおける`this`は通常の変数と同じようにどの値を参照するかが静的に決まるという性質があります（詳細は[静的スコープ][]を参照）。
+これにより、Arrow Functionにおける`this`は通常の変数と同じように、どの値を参照するかは静的に決まるという性質があります（詳細は[静的スコープ][]を参照）。
 つまりArrow Functionにおける`this`の参照先は「Arrow Function自身の外側のスコープにあるもっとも近い関数の`this`の値」となります。
 
 具体的な例を元にArrow Functionにおける`this`の動きを見ていきましょう。
@@ -659,6 +695,7 @@ Arrow Functionとそれ以外の関数で大きく違うことは、Arrow Functi
 このとき、`fn`の外側には関数はないため、「自身より外側のスコープにあるもっとも近い関数」の条件にあてはまるものはありません。
 このときの`this`はトップレベルに書かれた`this`と同じ値になります。
 
+{{book.console}}
 ```js
 // Arrow Functionで定義した関数
 const fn = () => {
@@ -674,6 +711,7 @@ fn() === this; // => true
 
 次の例のように、Arrow Functionを包むように通常の関数が定義されている場合はどうでしょうか。
 
+{{book.console}}
 ```js
 "use strict";
 function outer() {
@@ -692,6 +730,7 @@ console.log(innerArrowFunction()); // => undefined;
 Arrow Functionにおける`this`は「自身の外側のスコープにあるもっとも近い関数の`this`の値」となります。
 つまり、このArrow Functionにおける`this`は`outer`関数で`this`を参照した場合と同じ値になります。
 
+{{book.console}}
 ```js
 "use strict";
 function outer() {
@@ -711,7 +750,7 @@ console.log(innerArrowFunction()); // => undefined;
 
 ### メソッドとコールバック関数とArrow Function
 
-メソッド内におけるコールバック関数はArrow Functionがもっと活用できるパターンです。
+メソッド内におけるコールバック関数はArrow Functionをもっと活用できるパターンです。
 `function`キーワードでコールバック関数を定義すると、`this`の値はコールバック関数の呼ばれ方を意識する必要があります。
 なぜなら、`function`キーワードで定義した関数における`this`は呼び出し方によって変わるためです。
 
@@ -755,6 +794,25 @@ const object = {
 };
 ```
 
+このArrow Functionにおける`this`は呼び出し方の影響を受けません。
+そのため、コールバック関数がどのように呼ばれるかという実装についてを考えることなく`this`を扱うことができます。
+
+{{book.console}}
+```js
+const Prefixer = {
+    prefix: "pre",
+    prefixArray(strings) {
+        return strings.map((string) => {
+            // `Prefixer.prefixArray()` と呼び出されたとき
+            // `this`は常に`Prefixer`を参照する
+            return this.prefix + "-" + string;
+        });
+    }
+};
+const prefixedStrings = Prefixer.prefixArray(["a", "b", "c"]);
+console.log(prefixedStrings); // => ["pre-a", "pre-b", "pre-c"]
+```
+
 ### Arrow Functionは`this`をbindできない
 
 Arrow Functionで定義した関数には`call`、`apply`、`bind`を使った`this`の指定は単に無視されます。
@@ -763,6 +821,7 @@ Arrow Functionで定義した関数には`call`、`apply`、`bind`を使った`t
 次のようにArrow Functionで定義した関数に対して`call`で`this`をしても、`this`の参照先が代わっていないことが分かります。
 これは、`apply`や`bind`メソッドを使った場合も`this`の参照先が代わりません。
 
+{{book.console}}
 ```js
 const fn = () => {
     return this;
@@ -782,6 +841,7 @@ fn.call({}); // グローバルオブジェクト
 
 <!-- textlint-enable -->
 
+{{book.console}}
 ```js
 const object = {
     method() {
