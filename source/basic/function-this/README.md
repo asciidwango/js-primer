@@ -14,10 +14,9 @@ author: azu
 - 関数とメソッドにおける`this`
 - Arrow Functionにおける`this`
 
+コンストラクタにおける`this`は次章のクラスについてで扱います。
 もっとも直感的ではない挙動をするのは「関数とメソッドにおける`this`」です。
-この関数やメソッドは次の章で紹介する**クラス**も同様の挙動となります。
-なぜならJavaScriptにおいてのクラスはES2015で後から追加された概念で、クラスは関数の一種と考えられるためです。
-そのため、この章で学んだ`this`の挙動はそのままクラスにおいても適応されます。
+そのためこの章では関数と`this`についてを中心に解説していきます。
 
 この章では、さまざまな条件下で変わる`this`の挙動と関数やArrow Functionとの関係を見ていきます。
 
@@ -860,7 +859,18 @@ console.log(object.method()); // => object
 console.log(object.method.call("THAT")); // => "THAT"
 ```
 
+## まとめ
+
+`this`は状況によって異なる値を参照する性質を持ったキーワードであることについてを紹介しました。
+`this`はオブジェクト指向プログラミングの文脈でJavaScriptに導入されました。[^awbjs]
+そのため、メソッド以外のただの関数においては`this`を使うべきではありません。
+
+また、メソッドにおいても`this`は呼び出し方によって異なる値となり、それにより発生する問題と対処法についてを紹介しました。
+コールバック関数における`this`はArrow Functionを使うことで分かりやすく解決できます。
+この背景にはArrow Functionで定義した関数は`this`を持たないという性質があります。
+
 [^strict mode]: この書籍では注釈がないコードはstrict modeとして扱います。strict modeではない場合`this`はグローバルオブジェクトを参照します。
+[^awbjs]: ES 2015の仕様策定者であるAllen Wirfs-Brock‏さんもただの関数においては使うべきではないと言っている <https://twitter.com/awbjs/status/938272440085446657>
 [JavaScriptとは]: ../introduction/README.md
 [関数と宣言]: ../function-declaration/README.md
 [関数とスコープ]: ../function-scope/README.md
