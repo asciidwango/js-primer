@@ -870,7 +870,7 @@ console.log(object.method.call("THAT")); // => "THAT"
 この背景にはArrow Functionで定義した関数は`this`を持たないという性質があります。
 
 [^strict mode]: この書籍では注釈がないコードはstrict modeとして扱います。strict modeではない場合`this`はグローバルオブジェクトを参照します。
-[^awbjs]: ES 2015の仕様策定者であるAllen Wirfs-Brock‏さんもただの関数においては使うべきではないと言っている <https://twitter.com/awbjs/status/938272440085446657>
+[^awbjs]: ES 2015の仕様策定者であるAllen Wirfs-Brock‏氏もただの関数においては`this`を使うべきではないと述べている。<https://twitter.com/awbjs/status/938272440085446657>;
 [JavaScriptとは]: ../introduction/README.md
 [関数と宣言]: ../function-declaration/README.md
 [関数とスコープ]: ../function-scope/README.md
