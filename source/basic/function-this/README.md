@@ -315,7 +315,7 @@ console.log(obj1.obj2.obj3.method() === obj1.obj2.obj3); // => true
 この問題の原因は`this`がどの値を参照するかは関数の呼び出し時に決まるという性質に由来します。
 この`this`の性質が問題となるパターンの代表的な2つの例とそれぞれの対策についてを見ていきます。
 
-### `this`を含むメソッドを変数に代入した場合 {#assign-this-function}
+### 問題: `this`を含むメソッドを変数に代入した場合 {#assign-this-function}
 
 JavaScriptではメソッドとして定義したものが、後からただの関数として呼び出されることがあります。
 なぜなら、メソッドは関数を値にもつプロパティのことで、プロパティは変数に代入し直すことができるためです。
@@ -372,7 +372,7 @@ say(); // => TypeError: Cannot read property 'fullName' of undefined
 
 もうひとつは、`this`の値を指定して関数を呼べるメソッドで関数を実行する方法です。
 
-### call、apply、bindメソッド {#call-apply-bind}
+### 対処法: call、apply、bindメソッド {#call-apply-bind}
 
 関数やメソッドの`this`を明示的に指定して関数を実行する方法もあります。
 `Function`（関数オブジェクト）には`call`、`apply`、`bind`といった明示的に`this`を指定して関数を実行するメソッドが用意されています。
