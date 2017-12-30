@@ -30,9 +30,9 @@
 ### アウトラインパターン1
 
 - タイトル: 関数と`this`
-- 目的: `this`についてを理解する
-- 目的: `this`には3種類の扱いがあり、それぞれの動作についてを理解する
-- 目的: `this`の安定した扱い方についてを理解し、クラスにおける用法へ備える
+- 目的: `this`にはいくつか扱いがあり、それぞれの動作についてを理解する
+- 目的: `this`の原理についてを理解する
+- 目的: クラスにおける用法へ備える
 - thisは特別なキーワード
 	- オブジェクトのように振る舞うがthisは読み取り専用
 - thisは暗黙的
@@ -44,8 +44,10 @@
 	- ThisModeという視点だと`this`は三種類
 		- `global` = undefined
 		- `strict` = dynamic
-		- `lexical` = Arrow Function
+		- `lexical` = static/Arrow Function
 - グローバルと`this`
+	- Script
+	- Module
 - 関数と`this`
 	- 関数の定義方法
 		- Functionキーワード
@@ -57,35 +59,146 @@
 	- thisにおいてはArrow Functionとそれ以外に分類される
 - Arrow Function以外の関数
 	- 関数では`this`は動的に決定される
-	- `this`は所属するオブジェクトを示す
-	- 関数定義
-	- メソッド
-	- 短縮記法のメソッド
-	- メソッドの中の関数
-		- `array.forEach(function(){ this.name })`
-	- `var that = this`
-	- [Note] varはグローバルのプロパティ
-		- `var fn = function(){ return this }` はグローバルプロパティを示す
-	- call
-	- apply
-	- bind
+	- 基本ルール: `this`はベースオブジェクトを示す
+	- ベースオブジェクトは関数の呼び方のときのオブジェクトのこと
+	- `this`はあくまで実行時に決まる
+		- これは関数を実行するときにその関数の環境へ`this`の値が設定される
+		- つまり `fn(this = XXX, 実際の引数)`というように呼ばれている
+	- 関数宣言における`this`
+		- ネストした場合の`this`
+			- 所属するオブジェクトとは「ドット演算あるいはブラケット演算でオブジェクトのメソッドを呼んだ時、演算子の左辺に指定したオブジェクト」
+			- 関数宣言/関数定義における`this`
+	- メソッドにおける`this`
+		- メソッドにおいては`this`はベースオブジェクトを示す
+		- 短縮記法のメソッドも同じ
+		- ネストしたメソッドの場合
+	- `this`が問題となるパターン
+		- 問題: メソッドを変数に代入した場合
+			- 対処法:
+				- thisを使わない
+				- メソッドはメソッドとして呼ぶ
+				- call,apply,bindする
+		- 問題: コールバック関数と`this`
+			- 問題: コールバック関数の中で`this`を参照するとその`this`が参照するものが代わっていることに気づきにくい問題があります。
+			- 対処法:
+				- `this`を変数に代入して参照を保持する
+					- `that = this`
+				- bind
+				- Arrow Function
 - Arrow Function
 	- Arrow Functionでは`this`は静的モードとなる
 	- 暗黙的ではなく、静的に`this`が決まる
-	- 1つ外側の関数またはグローバルオブジェクトとなる
+	- 1つ外側の関数における`this`の値となる
+		- 外側の関数がない場合はグローバルオブジェクト or undefinedとなる
 	- また`arguments`も束縛しない
-	- 関数定義
-	- メソッド
-	- メソッドの中の関数
-		- `array.forEach(() => this.name )`
+	- `this`とスコープチェーン
+		- Arrow Functionの場合は`this`は設定できないので、スコープチェーンのように外側のスコープへ探索していく
+	- 関数呼び出し
+		- グローバルオブジェクト or undeined
+	- 関数の入れ子
+		- これも関数呼び出しなので同じ
+	- メソッド呼び出し
+		- メソッド呼び出しの
+	- コールバック関数と`this`
+		- `this`を持つコールバック関数にはArrow Functionを使うことで問題を回避できる
 	- call,apply,bindは効かない
 		- `If thisMode is lexical, return NormalCompletion(undefined).`という回避ステップがある
+- 結論
+	- メソッドはメソッドとして呼ぶ
+	- コールバック関数はArrow Functionを使うこと良い
 - 未使用
 	- 関数
 		- `argument`、`super`、`this`、`new.target`を束縛
 	- Arrow Function
 		- `argument`、`super`、`this`、`new.target`を束縛しない
 		- <https://tc39.github.io/ecma262/#prod-asi-rules-ArrowFunction>
+	- Strict Mode、Module Contextの細かい違い
+		- Top Levelの`this`が違う
+
+
+### アウトラインパターン -メソッドのみ
+
+- タイトル: メソッドと`this`
+- 目的: `this`にはいくつか扱いがあり、それぞれの動作についてを理解する
+- 目的: `this`の原理についてを理解する
+- 目的: クラスにおける用法へ備える
+- thisはメソッド用
+	- 元々OOPのものとして導入された
+	- しかし、JavaScriptでは関数とメソッドの区別がない
+	- そのため、`this`はどこでも使えてしまう
+	- しかし、現実的には`this`はメソッドの中でのみ利用するキーワード
+- thisは特別なキーワード
+	- オブジェクトのように振る舞うがthisは読み取り専用
+- thisは暗黙的
+	- argumentsのように呼び出し元によってどのような値になるかが決まる
+	- 関数はargumentsを束縛する
+	- thisは暗黙的だから使う
+	- ただしArrow Functionは
+- `this`という話
+	- ThisModeという視点だと`this`は三種類
+		- `global` = undefined
+		- `strict` = dynamic
+		- `lexical` = static/Arrow Function
+- グローバルと`this`
+	- Script
+	- Module
+- 関数と`this`
+	- 関数の定義方法
+		- Functionキーワード
+		- Arrow Function
+	- メソッドの定義方法
+		- 関数式
+		- 短縮記法
+		- Arrow Function
+	- thisにおいてはArrow Functionとそれ以外に分類される
+- Arrow Function以外の関数
+	- 関数では`this`は動的に決定される
+	- 基本ルール: `this`はベースオブジェクトを示す
+	- ベースオブジェクトは関数の呼び方のときのオブジェクトのこと
+	- `this`はあくまで実行時に決まる
+		- これは関数を実行するときにその関数の環境へ`this`の値が設定される
+		- つまり `fn(this = XXX, 実際の引数)`というように呼ばれている
+	- 関数宣言における`this`
+		- ネストした場合の`this`
+			- 所属するオブジェクトとは「ドット演算あるいはブラケット演算でオブジェクトのメソッドを呼んだ時、演算子の左辺に指定したオブジェクト」
+			- 関数宣言/関数定義における`this`
+	- メソッドにおける`this`
+		- メソッドにおいては`this`はベースオブジェクトを示す
+		- 短縮記法のメソッドも同じ
+		- ネストしたメソッドの場合
+	- `this`が問題となるパターン
+		- 問題: メソッドを変数に代入した場合
+			- 対処法:
+				- thisを使わない
+				- メソッドはメソッドとして呼ぶ
+				- call,apply,bindする
+		- 問題: コールバック関数と`this`
+			- 対処法:
+				- `this`を変数に代入して参照を保持する
+					- `that = this`
+				- bind
+				- Arrow Function
+- Arrow Function
+	- Arrow Functionでは`this`は静的モードとなる
+	- 暗黙的ではなく、静的に`this`が決まる
+	- 1つ外側の関数における`this`の値となる
+		- 外側の関数がない場合はグローバルオブジェクト or undefinedとなる
+	- また`arguments`も束縛しない
+	- `this`とスコープチェーン
+		- Arrow Functionの場合は`this`は設定できないので、スコープチェーンのように外側のスコープへ探索していく
+	- 関数呼び出し
+		- グローバルオブジェクト or undeined
+	- 関数の入れ子
+		- これも関数呼び出しなので同じ
+	- メソッド呼び出し
+		- メソッド呼び出しの
+	- コールバック関数と`this`
+		- `this`を持つコールバック関数にはArrow Functionを使うことで問題を回避できる
+	- call,apply,bindは効かない
+		- `If thisMode is lexical, return NormalCompletion(undefined).`という回避ステップがある
+- 結論
+	- メソッドはメソッドとして呼ぶ
+	- コールバック関数はArrow Functionを使うこと良い
 
 ### アウトライン - パターン2
 
@@ -234,16 +347,14 @@ Read: `this`を読み取るときは、次のステップで探索する。
 	- ただし、Arrow Functionは`[[ThisValue]]`を持たないので必ずスキップされる
 	- つまり、もっと近いコンテキストの`[[ThisValue]]`の値が`this`となる
 
-
-簡略化した説明
+## 簡略化した説明
 
 -  Arrow Function以外の関数においては
 	- thisの値はその関数が所属していたオブジェクトとなる
 - Arrow Functionにおいては
 	- <del>1つ外側の関数またはグローバルオブジェクトとなる</del>
 
-
-説明
+## 説明
 
 -  Arrow Function以外の関数において
 	- `var`はグローバルオブジェクトに変数が付く => windowになる
@@ -252,7 +363,22 @@ Read: `this`を読み取るときは、次のステップで探索する。
 	- グローバル
 	- or 関数
 
+
+
 ## Note
+
+
+### `this`は暗黙的な引数
+
+関数においては`this`は暗黙的に渡されるような引数となる。
+つまり`fn`という関数を呼ぶときに自動で`this`を`fn(実際の引数, this = XXX)` のように渡している。
+一方、Arrow Functionの場合は`this`を持たない(引数に渡さない)ため、そのArrow Functionの中では`this`はスコープチェーンのように外側の(関数)スコープへ探索する。
+(スコープチェーンとは異なり、`this`は関数スコープまたはグローバルスコープにしか定義されていないため、関数スコープを辿るような挙動をする)
+
+仕様としても`[[Call]]`には`this`を引数として渡している。
+これは`call`メソッドを使うことで明示的に渡すことができる。
+
+- https://tc39.github.io/ecma262/#sec-call
 
 
 ### `this` in the future
