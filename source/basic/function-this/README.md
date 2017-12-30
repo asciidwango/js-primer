@@ -304,7 +304,7 @@ const obj1 = {
     }
 };
 // `obj1.obj2.obj3.method`メソッドの`this`は`obj3`を参照
-console.log(obj1.obj2.obj3.method()); // => obj1.obj2.obj3
+console.log(obj1.obj2.obj3.method() === obj1.obj2.obj3); // => true
 ```
 
 ## `this`が問題となるパターン {#this-problem}
