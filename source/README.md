@@ -22,8 +22,7 @@
     - [Math](./basic/math/README.md)
     - [ラッパーオブジェクト](./basic/wrapper-object/README.md)
     - [関数とスコープ](./basic/function-scope/README.md)
-    - this
-    - 関数オブジェクト
+    - [関数とthis](./basic/function-this/README.md)
     - クラス
     - [例外処理](./basic/error-try-catch/README.md)
     - Promise
