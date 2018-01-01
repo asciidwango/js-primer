@@ -8,19 +8,27 @@
 	    - 実際に`typeof`は`function`
 	    - しかし `[[Call]]`はできないように仕様で規定されている
     - new
+	    - newした時の`this`の仕組み
     - メソッド
-        - インスタンスメソッド
-	        - Computed Varibale
-        - getter/setter
+		- インスタンスメソッド
+	- getter/setter
+		- Computed Varibale
+		- アクセス制御
+		- WeakSet
     - prototype
+	    - ES2015以前
+	    - ES2015以後
     - 継承
 	    - super
 	    - multiple extends
 	    - カスタムクラス
 	    - ネイティブクラス
 		    - Error, HTMLElement
-    - mixin
     - 静的メソッド
+- 発展的利用方法
+	- classは値
+	- mixin
+	- 列挙
 - 将来の発展性についてを軽く触れる
     - [コラム] minimal maximal
     - Symbol
@@ -42,10 +50,14 @@
 
 - 状態を持つクラス
 - Point
-- Person
+	- クラス
 - Counter
 - EventEmitter
-- EventEmitterの継承
+	- 継承の例
+	- DOMはEventTarget、NodeはEventEmitter
+	- https://github.com/mysticatea/event-target-shim
+	- https://blog.jxck.io/entries/2017-07-10/subclassible-eventtarget.html
+- Person
 
 
 -----
@@ -76,3 +88,21 @@ class Dog extends (Animal, Barky, Bitey) { };
 ```
 
 はできないという話
+
+
+## 初めてのJavaScript
+
+
+- `Car`
+- getter/setter
+	- 本当の制御はWeakMapで
+- StaticメソッドはID生成の例
+
+```
+let _id = 0;
+class Car { static createUUID(){ return _id++ } }
+Car.createUUID()
+```
+
+
+- 継承 `Vehicle` -> `Car`
