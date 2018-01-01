@@ -20,7 +20,7 @@
 	    - ES2015以後
     - 継承
 	    - super
-	    - multiple extends
+	    - instanceof
 	    - カスタムクラス
 	    - ネイティブクラス
 		    - Error, HTMLElement
@@ -28,6 +28,7 @@
 - 発展的利用方法
 	- classは値
 	- mixin
+	- multiple extends
 	- 列挙
 - 将来の発展性についてを軽く触れる
     - [コラム] minimal maximal
@@ -64,7 +65,9 @@
 
 ## [Understanding ECMAScript 6](https://leanpub.com/understandinges6/read#leanpub-auto-introducing-javascript-classes "Understanding ECMAScript 6")
 
-- 最初から最後まで`PersonClass`
+- `PersonClass`
+- `Rectangle` -> `Square`
+	- instanceof
 
 ## Exploring JS
 
