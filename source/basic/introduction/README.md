@@ -22,7 +22,7 @@ JavaScriptという言語は、[Ecma International][]によって標準化され
 
 ## JavaScriptってどのような言語？
 
-JavaScriptは、C、Java、Self、Schemaなどの言語の影響を受けています。
+JavaScriptは、C、Java、Self、Schemeなどの言語の影響を受けています。
 
 また、JavaScriptはクラスベースではなくプロトタイプベースの言語です。
 ECMAScript 2015から`class`構文が追加されましたが、このクラスもプロトタイプベースの上で実現されています。
