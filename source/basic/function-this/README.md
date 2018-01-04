@@ -521,6 +521,7 @@ sayPerson(); // => "こんにちは Brendan Eich！"
 
 {{book.console}}
 ```js
+"use strict";
 const Prefixer = {
     prefix: "pre",
     /**
@@ -567,6 +568,7 @@ Prefixer.prefixArray(["a", "b", "c"]); // => TypeError: Cannot read property 'pr
 
 {{book.console}}
 ```js
+"use strict";
 const Prefixer = {
     prefix: "pre",
     prefixArray(strings) {
@@ -596,6 +598,7 @@ Prefixer.prefixArray(["a", "b", "c"]); // => TypeError: Cannot read property 'pr
 
 {{book.console}}
 ```js
+"use strict";
 const Prefixer = {
     prefix: "pre",
     prefixArray(strings) {
@@ -619,6 +622,7 @@ console.log(prefixedStrings); // => ["pre-a", "pre-b", "pre-c"]
 
 {{book.console}}
 ```js
+"use strict";
 const Prefixer = {
     prefix: "pre",
     prefixArray(strings) {
@@ -650,6 +654,7 @@ Arrow Functionを使うことで、先ほどのコードは次のように書く
 
 {{book.console}}
 ```js
+"use strict";
 const Prefixer = {
     prefix: "pre",
     prefixArray(strings) {
@@ -865,7 +870,7 @@ console.log(object.method.call("THAT")); // => "THAT"
 `this`は状況によって異なる値を参照する性質を持ったキーワードであることを紹介しました。
 その`this`の評価結果をまとめると次の表のようになります。
 
-| 実行コンテキスト   | strict mode | コード                   | thisの評価結果 |
+| 実行コンテキスト   | strict mode | コード                   | `this`の評価結果 |
 | ------ | ------ | ---------------------------------------- | --------- |
 | Script | NO     | `this`                                   | global    |
 | Script | NO     | `const fn = () => this`                  | global    |
@@ -878,10 +883,8 @@ console.log(object.method.call("THAT")); // => "THAT"
 | Module | YES    | `const fn = function(){ return this; }`  | undefined |
 | ＊      | ＊      | `const obj = { method(){ return this; } }` | `obj`     |
 | ＊      | ＊      | `const obj = { method: function(){ return this; } }` | `obj`     |
-| Script | ＊      | `const obj = { method: () => { return this; } }` | global    |
-| Module | ＊      | `const obj = { method: () => { return this; } }` | undefined |
 
-> `＊`はどの場合でも結果に影響しないということを示しています
+> ＊はどの場合でも`this`の評価結果に影響しないということを示しています
 
 <!-- textlint-disable -->
 
