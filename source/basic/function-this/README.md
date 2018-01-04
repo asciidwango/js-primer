@@ -687,15 +687,15 @@ Arrow Functionとそれ以外の関数で大きく違うことは、Arrow Functi
 
 [import, this-is-readonly](./src/this-is-readonly-invalid.js)
 
-これにより、Arrow Functionにおける`this`は通常の変数と同じように、どの値を参照するかは静的に決まるという性質があります（詳細は[静的スコープ][]を参照）。
-つまりArrow Functionにおける`this`の参照先は「Arrow Function自身の外側のスコープにあるもっとも近い関数の`this`の値」となります。
+これにより、通常の変数のように`this`がどの値を参照するかは静的（定義時）に決定できます（詳細は[静的スコープ][]を参照）。
+つまり、Arrow Functionにおける`this`は「Arrow Function自身の外側のスコープに定義されたもっとも近い関数の`this`の値」となります。
 
 具体的な例を元にArrow Functionにおける`this`の動きを見ていきましょう。
 
 まずは、関数式のArrow Functionを見ていきます。
 
 次の例では、関数式で定義したArrow Functionの中の`this`をコンソールに出力しています。
-このとき、`fn`の外側には関数はないため、「自身より外側のスコープにあるもっとも近い関数」の条件にあてはまるものはありません。
+このとき、`fn`の外側には関数はないため、「自身より外側のスコープ定義されたもっとも近い関数」の条件にあてはまるものはありません。
 このときの`this`はトップレベルに書かれた`this`と同じ値になります。
 
 {{book.console}}
