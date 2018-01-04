@@ -5,9 +5,8 @@ author: azu
 # 関数とthis
 
 この章では`this`という特殊な動作をするキーワードについてを見ていきます。
-`this`は基本的にはメソッドの中で利用し、それ以外では利用しません。
-しかし、`this`は読み取り専用のグローバル変数のようなものでどこにでも書くことができます。
-また、`this`の参照先は条件によってさまざまです。
+`this`は基本的にはメソッドの中で利用しますが、`this`は読み取り専用のグローバル変数のようなものでどこにでも書くことができます。
+加えて、`this`の参照先（評価結果）は条件によって異なります。
 
 `this`の参照先は主に次の条件によって変化します。
 
@@ -25,7 +24,7 @@ author: azu
 ## 実行コンテキストと`this` {#execution-context-this}
 
 最初に[JavaScriptとは][]の章において、JavaScriptには実行コンテキストとして"Script"と"Module"があるという話をしました。
-トップレベル（どのスコープ）にある`this`は、実行コンテキストによって値が異なります。
+トップレベル（外側がグローバルスコープの場所）にある`this`は、実行コンテキストによって値が異なります。
 実行コンテキストの違いは意識しにくい部分であり、トップレベルで`this`を使うことは混乱を生むことになります。
 そのため、コードのトップレベルにおいては`this`を使うべきではありませんが、それぞれの実行コンテキストにおける動作を紹介します。
 
@@ -86,7 +85,7 @@ const fn3 = () => {};
 
 <!-- textlint-disable no-js-function-paren -->
 
-それぞれ定義した関数は`関数名()`と書くことで呼び出すことができます。
+それぞれ定義した関数は`関数名()`と書くことで呼びだすことができます。
 
 <!-- textlint-enable no-js-function-paren -->
 
@@ -131,7 +130,7 @@ const object = {
 
 <!-- textlint-disable no-js-function-paren -->
 
-これらのメソッドは、`オブジェクト名.メソッド名()`と書くことで呼び出すことができます。
+これらのメソッドは、`オブジェクト名.メソッド名()`と書くことで呼びだすことができます。
 
 <!-- textlint-enable no-js-function-paren -->
 
@@ -183,7 +182,7 @@ fn(暗黙的に渡すthisの値, 引数);
 
 関数における`this`の基本的な参照先（暗黙的に関数に渡す`this`の値）は**ベースオブジェクト**となります。
 ベースオブジェクトとは「メソッドを呼ぶ際に、そのメソッドのドット演算子またはブラケット演算子のひとつ左にあるオブジェクト」のことを言います。
-つまり、メソッドではない`fn()`のような関数呼び出しにはそもそもベースオブジェクトはありません。
+ベースオブジェクトがない場合の`this`は`undefined`となります。
 
 たとえば、`fn()`のように関数を呼び出したとき、この`fn`関数呼び出しのベースオブジェクトはないため、`this`は`undefiend`となります。
 一方、`obj.method()`のようにメソッドを呼び出したとき、この`obj.method`メソッド呼び出しのベースオブジェクトは`obj`オブジェクトとなり、`this`は`obj`となります。
@@ -230,7 +229,7 @@ fn1(); // => undefined
 fn2(); // => undefined
 ```
 
-これは、関数の中に関数を定義して呼び出す場合も同じです。
+これは、関数の中に関数を定義して呼びだす場合も同じです。
 
 {{book.console}}
 ```js
@@ -340,6 +339,7 @@ JavaScriptではメソッドとして定義したものが、後からただの�
 
 {{book.console}}
 ```js
+"use strict";
 const person = {
     fullName: "Brendan Eich",
     sayName: function() {
@@ -359,10 +359,11 @@ say(); // => TypeError: Cannot read property 'fullName' of undefined
 ```
 
 結果的には、次のようなコードが実行されているのと同じです。
-そのため、`undefined.fullName`を参照しようとして例外が発生しています。
+次のコードでは、`undefined.fullName`を参照しようとして例外が発生しています。
 
 {{book.console}}
 ```js
+"use strict";
 // const sayName = person.sayName; は次のようなイメージ
 const say = function() {
     return this.fullName;
@@ -374,7 +375,7 @@ say(); // => TypeError: Cannot read property 'fullName' of undefined
 このように、Arrow Function以外の関数において、`this`は定義した時ではなく実行した時に決定されます。
 そのため、関数に`this`を含んでいる場合、その関数は意図した呼ばれ方がされないと間違った結果が発生するという問題があります。
 
-この問題の対処方法としては大きく分けて2つあります。
+この問題の対処法としては大きく分けて2つあります。
 
 ひとつはメソッドとして定義されている関数はメソッドとして呼ぶということです。
 メソッドをわざわざただの関数として呼ばなければそもそもこの問題は発生しません。
@@ -386,7 +387,7 @@ say(); // => TypeError: Cannot read property 'fullName' of undefined
 関数やメソッドの`this`を明示的に指定して関数を実行する方法もあります。
 `Function`（関数オブジェクト）には`call`、`apply`、`bind`といった明示的に`this`を指定して関数を実行するメソッドが用意されています。
 
-`call`メソッドは第一引数に`this`としたい値を指定し、残りの引数は呼び出す関数の引数となります。
+`call`メソッドは第一引数に`this`としたい値を指定し、残りの引数は呼びだす関数の引数となります。
 暗黙的に渡される`this`の値を明示的に渡せるメソッドといえます。
 
 <!-- doctest:disable -->
@@ -498,7 +499,7 @@ sayPerson(); // => "こんにちは Brendan Eich！"
 ```
 
 このように`call`、`apply`、`bind`メソッドを使うことで`this`を明示的に指定した状態で関数を呼び出せます。
-しかし、毎回関数を呼び出すたびにこれらのメソッドを使うのは、関数を呼び出すための関数が必要になってしまい手間がかかります。
+しかし、毎回関数を呼びだすたびにこれらのメソッドを使うのは、関数を呼びだすための関数が必要になってしまい手間がかかります。
 そのため、基本的には「メソッドとして定義されている関数はメソッドとして呼ぶこと」でこの問題を回避するほうがよいでしょう。
 その中で、どうしても`this`を固定したい場合には`call`、`apply`、`bind`メソッドを利用します。
 
@@ -510,7 +511,7 @@ sayPerson(); // => "こんにちは Brendan Eich！"
 ### 問題: コールバック関数と`this`
 
 コールバック関数の中で`this`を参照すると問題となる場合があります。
-この問題は、メソッドの中で`Array#map`メソッドなどコールバック関数を扱う処理をする場合に発生しやすいです。
+この問題は、メソッドの中で`Array#map`メソッドなどコールバック関数を扱う場合に発生しやすいです。
 
 具体的に、コールバック関数における`this`が問題となっている例を見てみましょう。
 次のコードでは`prefixArray`メソッドの中で`Array#map`メソッドを使っています。
@@ -557,7 +558,7 @@ Prefixer.prefixArray(["a", "b", "c"]); // => TypeError: Cannot read property 'pr
 <!-- textlint-disable no-js-function-paren -->
 
 このとき、`Array#map`メソッドに渡しているコールバック関数は`callback()`のようにただの関数として呼び出されます。
-つまり、コールバック関数として呼び出すとき、この関数にはベースオブジェクトはありません。
+つまり、コールバック関数として呼びだすとき、この関数にはベースオブジェクトはありません。
 そのため`callback`関数の`this`は`undefined`となります。
 
 先ほどの匿名関数をコールバック関数として渡しているのは、一度`callback`変数に入れてから渡しても結果は同じです。
@@ -568,9 +569,6 @@ Prefixer.prefixArray(["a", "b", "c"]); // => TypeError: Cannot read property 'pr
 ```js
 const Prefixer = {
     prefix: "pre",
-    /**
-     * `strings`配列の各要素にprefixをつける
-     */
     prefixArray(strings) {
         // コールバック関数は`callback()`のように呼び出される
         // そのためコールバック関数における`this`は`undefined`となる(strict mode)
@@ -600,9 +598,6 @@ Prefixer.prefixArray(["a", "b", "c"]); // => TypeError: Cannot read property 'pr
 ```js
 const Prefixer = {
     prefix: "pre",
-    /**
-     * `strings`配列の各要素にprefixをつける
-     */
     prefixArray(strings) {
         // `that`は`prefixArray`メソッド呼び出しにおける`this`となる
         // つまり`that`は`Prefixer`オブジェクトを参照する
@@ -618,7 +613,7 @@ const prefixedStrings = Prefixer.prefixArray(["a", "b", "c"]);
 console.log(prefixedStrings); // => ["pre-a", "pre-b", "pre-c"]
 ```
 
-もちろん`Function#call`メソッドなどで明示的に`this`を渡して関数を呼び出すこともできます。
+もちろん`Function#call`メソッドなどで明示的に`this`を渡して関数を呼びだすこともできます。
 また、`Arry#map`メソッドなどは`this`となる値引数として渡せる仕組みを持っています。
 そのため、つぎのように第二引数に`this`となる値を渡すことでも解決できます。
 
@@ -626,9 +621,6 @@ console.log(prefixedStrings); // => ["pre-a", "pre-b", "pre-c"]
 ```js
 const Prefixer = {
     prefix: "pre",
-    /**
-     * `strings`配列の各要素にprefixをつける
-     */
     prefixArray(strings) {
         // `Array#map`メソッドは第二引数に`this`となる値を渡せる
         return strings.map(function(string) {
@@ -689,8 +681,8 @@ Arrow Functionで定義された関数やメソッドにおける`this`がどの
 Arrow Functionとそれ以外の関数で大きく違うことは、Arrow Functionは`this`を暗黙的な引数として受け付けないということです。
 そのため、Arrow Function内には`this`が定義されていません。このときの`this`は外側のスコープ（関数）の`this`を参照します。
 
-なぜなら、スコープチェーンの性質として、そのスコープに同じ名前の変数が定義されていない場合には外側のスコープを探索するためです。
-そのため、Arrow Function内の`this`の参照先は、常に外側のスコープ（関数）へと探索しに行きます（詳細は[スコープチェーン][]を参照）。
+これは、変数におけるスコープチェーンの仕組みと同様で、そのスコープに`this`が定義されていない場合には外側のスコープを探索するのと同じです。
+そのため、Arrow Function内の`this`の参照先は、常に外側のスコープ（関数）へと`this`の定義を探索しに行きます（詳細は[スコープチェーン][]を参照）。
 また、`this`は読み取り専用のキーワードであるため、ユーザーが`this`という変数を定義できません。
 
 [import, this-is-readonly](./src/this-is-readonly-invalid.js)
@@ -721,6 +713,7 @@ fn() === this; // => true
 `this`の値は、実行コンテキストが"Script"ならばグローバルオブジェクトとなり、"Module"ならば`undefined`となります。
 
 次の例のように、Arrow Functionを包むように通常の関数が定義されている場合はどうでしょうか。
+Arrow Functionにおける`this`は「自身の外側のスコープにあるもっとも近い関数の`this`の値」となるのは同じです。
 
 {{book.console}}
 ```js
@@ -738,7 +731,6 @@ const innerArrowFunction = outer();
 console.log(innerArrowFunction()); // => undefined;
 ```
 
-Arrow Functionにおける`this`は「自身の外側のスコープにあるもっとも近い関数の`this`の値」となります。
 つまり、このArrow Functionにおける`this`は`outer`関数で`this`を参照した場合と同じ値になります。
 
 {{book.console}}
@@ -806,7 +798,7 @@ const object = {
 ```
 
 このArrow Functionにおける`this`は呼び出し方の影響を受けません。
-そのため、コールバック関数がどのように呼ばれるかという実装についてを考えることなく`this`を扱うことができます。
+つまり、コールバック関数がどのように呼ばれるかという実装についてを考えることなく`this`を扱うことができます。
 
 {{book.console}}
 ```js
@@ -830,7 +822,7 @@ Arrow Functionで定義した関数には`call`、`apply`、`bind`を使った`t
 これは、Arrow Functionは`this`をもつことができないためです。
 
 次のようにArrow Functionで定義した関数に対して`call`で`this`をしても、`this`の参照先が代わっていないことが分かります。
-これは、`apply`や`bind`メソッドを使った場合も`this`の参照先が代わりません。
+同様に`apply`や`bind`メソッドを使った場合も`this`の参照先が変わりません。
 
 {{book.console}}
 ```js
@@ -870,7 +862,7 @@ console.log(object.method.call("THAT")); // => "THAT"
 
 ## まとめ
 
-`this`は状況によって異なる値を参照する性質を持ったキーワードであることについてを紹介しました。
+`this`は状況によって異なる値を参照する性質を持ったキーワードであることを紹介しました。
 その`this`の評価結果をまとめると次の表のようになります。
 
 | 実行コンテキスト   | strict mode | コード                   | thisの評価結果 |
@@ -889,7 +881,7 @@ console.log(object.method.call("THAT")); // => "THAT"
 | Script | ＊      | `const obj = { method: () => { return this; } }` | global    |
 | Module | ＊      | `const obj = { method: () => { return this; } }` | undefined |
 
-> `＊`はどの場合でも結果に影響しないということを示す
+> `＊`はどの場合でも結果に影響しないということを示しています
 
 <!-- textlint-disable -->
 
@@ -899,7 +891,7 @@ console.log(object.method.call("THAT")); // => "THAT"
 
 `this`はオブジェクト指向プログラミングの文脈でJavaScriptに導入されました。[^awbjs]
 メソッド以外においても`this`は評価できますが、実行コンテキストやstrict modeなどによって結果が異なり混乱の元となります。
-そのため、メソッド以外で`this`を使うべきではありません。
+そのため、メソッドではない通常の関数においては`this`を使うべきではありません。
 
 また、メソッドにおいても`this`は呼び出し方によって異なる値となり、それにより発生する問題と対処法についてを紹介しました。
 コールバック関数における`this`はArrow Functionを使うことで分かりやすく解決できます。
