@@ -5,7 +5,9 @@ author: azu
 # 関数とthis
 
 この章では`this`という特殊な動作をするキーワードについてを見ていきます。
-`this`は基本的にはメソッドの中で利用します。`this`は読み取り専用の変数のようなもので、その参照先は条件によって異なります。
+`this`は基本的にはメソッドの中で利用し、それ以外では利用しません。
+しかし、`this`は読み取り専用のグローバル変数のようなものでどこにでも書くことができます。
+また、`this`の参照先は条件によってさまざまです。
 
 `this`の参照先は主に次の条件によって変化します。
 
@@ -14,11 +16,11 @@ author: azu
 - 関数とメソッドにおける`this`
 - Arrow Functionにおける`this`
 
-コンストラクタにおける`this`は次章のクラスについてで扱います。
-もっとも直感的ではない挙動をするのは「関数とメソッドにおける`this`」です。
-そのためこの章では関数と`this`についてを中心に解説していきます。
+コンストラクタにおける`this`は次章のクラスで扱います。
+もっとも複雑な条件が存在するのは「関数とメソッドにおける`this`」です。
+そのためこの章では関数と`this`の関係を主に扱います。
 
-この章では、さまざまな条件下で変わる`this`の挙動と関数やArrow Functionとの関係を見ていきます。
+この章では、さまざまな条件下で変わる`this`の参照先と関数やArrow Functionとの関係を見ていきます。
 
 ## 実行コンテキストと`this` {#execution-context-this}
 
@@ -209,10 +211,11 @@ Arrow Function以外の関数では、関数の定義だけを見て`this`の値
 
 次の例では、関数宣言と関数式で定義した関数の中の`this`をコンソールに出力しています。
 このとき、`fn1`と`fn2`はただの関数として呼び出されています。
-つまり、ベースオブジェクトがないため`this`は`undefined`となります。[^strict mode]
+つまり、ベースオブジェクトがないため`this`は`undefined`となります。
 
 {{book.console}}
 ```js
+"use strict";
 function fn1() {
     return this;
 }
@@ -231,6 +234,7 @@ fn2(); // => undefined
 
 {{book.console}}
 ```js
+"use strict";
 function outer() {
     console.log(this); // => undefined
     function inner() {
@@ -242,6 +246,11 @@ function outer() {
 // `outer`関数呼び出しのベースオブジェクトはない
 outer();
 ```
+
+この書籍では注釈がないコードはstrict modeとして扱いますが、コード例に`"use strict";`とあらためてstrict modeの明示しています。
+なぜなら、strict modeではない場合`this`は`undefined`ではなくグローバルオブジェクトとなってしまう問題があるためです（「[JavaScriptとは][]を参照）。
+これは、strict modeではない通常の関数呼び出しのみの問題であり、メソッドではこの暗黙的な型変換は行われません。
+これも、`this`をメソッド以外で使うべきではない理由の１つとなります。
 
 ### メソッド呼び出しにおける`this` {#method-this}
 
@@ -672,7 +681,7 @@ ES2015からはArrow Functionを使うのがもっとも簡潔です。
 
 このArrow Functionと`this`の関係についてもっと詳しく見ていきます。
 
-## Arrow Functionと`this`
+## Arrow Functionと`this` {#arrow-function-this}
 
 Arrow Functionで定義された関数やメソッドにおける`this`がどの値を参照するかは関数の定義時（静的）に決まります。
 一方、Arrow Functionではない関数においては、`this`は呼び出し元に依存するため関数の実行時（動的）に決まります。
@@ -862,14 +871,40 @@ console.log(object.method.call("THAT")); // => "THAT"
 ## まとめ
 
 `this`は状況によって異なる値を参照する性質を持ったキーワードであることについてを紹介しました。
+その`this`の評価結果をまとめると次の表のようになります。
+
+| 実行コンテキスト   | strict mode | コード                   | thisの評価結果 |
+| ------ | ------ | ---------------------------------------- | --------- |
+| Script | NO     | `this`                                   | global    |
+| Script | NO     | `const fn = () => this`                  | global    |
+| Script | NO     | `const fn = function(){ return this; }`  | global    |
+| Script | YES    | `this`                                   | global    |
+| Script | YES    | `const fn = () => this`                  | global    |
+| Script | YES    | `const fn = function(){ return this; }`  | undefined |
+| Module | YES    | `this`                                   | undefined |
+| Module | YES    | `const fn = () => this`                  | undefined |
+| Module | YES    | `const fn = function(){ return this; }`  | undefined |
+| ＊      | ＊      | `const obj = { method(){ return this; } }` | `obj`     |
+| ＊      | ＊      | `const obj = { method: function(){ return this; } }` | `obj`     |
+| Script | ＊      | `const obj = { method: () => { return this; } }` | global    |
+| Module | ＊      | `const obj = { method: () => { return this; } }` | undefined |
+
+> `＊`はどの場合でも結果に影響しないということを示す
+
+<!-- textlint-disable -->
+
+実際にブラウザで実行した結果は[What is `this` value in JavaScript?][]というサイトで確認できます。
+
+<!-- textlint-enable -->
+
 `this`はオブジェクト指向プログラミングの文脈でJavaScriptに導入されました。[^awbjs]
-そのため、メソッド以外のただの関数においては`this`を使うべきではありません。
+メソッド以外においても`this`は評価できますが、実行コンテキストやstrict modeなどによって結果が異なり混乱の元となります。
+そのため、メソッド以外で`this`を使うべきではありません。
 
 また、メソッドにおいても`this`は呼び出し方によって異なる値となり、それにより発生する問題と対処法についてを紹介しました。
 コールバック関数における`this`はArrow Functionを使うことで分かりやすく解決できます。
 この背景にはArrow Functionで定義した関数は`this`を持たないという性質があります。
 
-[^strict mode]: この書籍では注釈がないコードはstrict modeとして扱います。strict modeではない場合`this`はグローバルオブジェクトを参照します。
 [^awbjs]: ES 2015の仕様策定者であるAllen Wirfs-Brock‏氏もただの関数においては`this`を使うべきではないと述べている。<https://twitter.com/awbjs/status/938272440085446657>;
 [JavaScriptとは]: ../introduction/README.md
 [関数と宣言]: ../function-declaration/README.md
@@ -877,3 +912,4 @@ console.log(object.method.call("THAT")); // => "THAT"
 [スコープチェーン]: ../function-scope/README.md##scope-chain}
 [静的スコープ]: ../function-scope/README.md#static-scope
 [動的スコープ]: ../function-scope/README.md#dynamic-scope
+[What is `this` value in JavaScript？]: https://azu.github.io/what-is-this/  "What is `this` value in JavaScript?"
