@@ -23,7 +23,7 @@
     - [ラッパーオブジェクト](./basic/wrapper-object/README.md)
     - [関数とスコープ](./basic/function-scope/README.md)
     - [関数とthis](./basic/function-this/README.md)
-    - クラス
+    - [クラス](./basic/class/README.md)
     - [例外処理](./basic/error-try-catch/README.md)
     - Promise
     - Generator/Iterable/Iterator
