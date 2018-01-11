@@ -152,7 +152,7 @@ ES2015より前はこれらのクラスを`class`構文ではなく、関数で�
 
 ```js
 // コンストラクタ関数
-function Point(x, y){
+function Point(x, y) {
     // 新しいインスタンスオブジェクトを作成する
     const instance = Object.create(Function.prototype);
     // インスタンスの初期化処理
@@ -182,7 +182,7 @@ console.log(typeof MyClass); // => "function"
 class MyClass {
 }
 // 関数でのクラス表現
-function MyClassLike(){
+function MyClassLike() {
 }
 // 関数なので関数として呼び出せる
 MyClassLike(); 
