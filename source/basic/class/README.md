@@ -163,17 +163,12 @@ ES2015より前はこれらのクラスを`class`構文ではなく、関数で�
 この関数でのクラス表現は、継承の仕組みなどは省かれていますが、`class`構文とよく似ています。
 
 ```js
-// `PointClass`関数を定義し、その場で実行している（クロージャー）
-// 結果的に`Point`変数に入るのは中の`Constructor`関数
-const Point = function PointClass() {
-    // コンストラクタ関数
-    function Constructor(x, y) {
-        // インスタンスの初期化処理
-        this.x = x;
-        this.y = y;
-    }
-    return Constructor;
-}(); // 定義した後、すぐに実行していることに注意
+// コンストラクタ関数
+const Point = function PointConstructor(x, y) {
+    // インスタンスの初期化処理
+    this.x = x;
+    this.y = y;
+};
 
 // `new`演算子でコンストラクタ関数から新しいインスタンスを作成
 const point = new Point(3, 4);
