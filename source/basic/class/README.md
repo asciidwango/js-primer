@@ -193,4 +193,217 @@ MyClass(); // => TypeError: class constructors must be invoked with |new|
 
 このように、`class`構文で定義したクラスは一種の関数ですが、そのクラスはクラス以外には利用できないようになっています。
 
+## クラスのメソッドの定義
+
+クラスのインスタンスに値（プロパティ）を定義するのはコンストラクタ関数(`constructor`)で行います。
+JavaScriptではプロパティに値として関数も代入できるため、それぞれのインスタンスにメソッドを追加することも可能です。
+次の例では`Counter`クラスのコンストラクタ関数で、インスタンスに`increment`メソッドを定義しています。
+
+```js
+class Counter {
+    constructor() {
+        this.count = 0;
+        this.increment = () => {
+            // `this`は`constructor`メソッドにおける`this`を参照する
+            this.count++;
+        };
+    }
+}
+const counter = new Counter();
+counter.increment();
+console.log(counter.count); // => 1;
+```
+
+インスタンスに対して直接メソッドを定義することもできますが、毎回同じ挙動の関数を定義していることが分かります。
+つまり、インスタンス化するたびに同じ挙動の関数を新しく定義して、インスタンスへ代入しているため無駄にも見えます。
+
+----
+
+### Note: なぜインスタンスへの代入はクラスの動作とはいえないか
+
+最初にクラスとは**構造**、**動作**（メソッド）、**状態**ものであると言いました。
+コンストラクタへのインスタンスオブジェクトに対して定義は、このクラスのインスタンスが必ずこの動作（メソッド）をもつということにはなりません。
+
+具体的には、コンストラクタの初期化処理ならば次のコードのようにメソッドを定義するかを分岐することが可能です。
+この場合、`Counter`クラスであっても、`increment`メソッドをもたないということになります。
+つまり、コンストラクタ関数の中でインスタンスオブジェクトに対してメソッドを定義することは、クラスとしての動作を宣言的に定義しているとはいえません。
+
+```js
+class Counter {
+    // `hasDefineIncrement`に`true`を渡したときだけ`increment`メソッドを定義する
+    constructor(hasDefineIncrement) {
+        this.count = 0;
+        if (hasDefineIncrement) {
+            this.increment = () => {
+                // `this`は`constructor`メソッドにおける`this`を参照する
+                this.count++;
+            };
+        }
+    }
+}
+const counter = new Counter();
+// Counterのインスタンスであるが`increment`メソッドをもっていない
+counter.increment(); // => TypeError: counter.increment is not a function 
+```
+
+----
+
+`class`構文ではクラスに対して宣言的にメソッドを定義できます。
+このクラスに対して定義したメソッドは、クラスの各インスタンスから**共有されるメソッド**となります。
+このインスタンス間で共有されるメソッドのことを**プロトタイプメソッド**と呼びます。
+
+`class`構文では次のようにクラスに対してプロトタイプメソッドを定義できます。
+`constructor`メソッド同じように、`class`に対して短縮記法でメソッドを定義します。
+
+```js
+class Counter {
+    constructor() {
+        this.count = 0;
+    }
+    // `increment`メソッドをクラスに定義する
+    increment() {
+        // `this`はベースオブジェクトを参照する
+        this.count++;
+    }
+}
+const counter = new Counter();
+// `counter.increment()`のベースオブジェクトは`counter`
+counter.increment();
+console.log(counter.count); // => 1;
+
+// 各インスタンスで同じメソッドを参照している
+const counter1 = new Counter();
+const counter2 = new Counter();
+console.log(counter1.increment === counter2.increment); // => true
+```
+
+プロトタイプメソッドはクラスの継承の仕組みとも関連するため後ほど詳細に解説します。
+現時点では、クラスに対してメソッドを宣言的に定義するものと認識していれば十分です。
+
+## クラスのアクセッサの定義
+
+クラスに対してメソッドを定義できますが、メソッドは`()`で呼び出す必要があります。
+クラスでは、プロパティのように参照するだけで呼び出せるgetterやsetterと呼ばれる**アクセッサプロパティ**を定義できます。
+アクセッサプロパティとは、メソッドの前に`get`または`set`を付けたメソッドのことを示します。
+このアクセッサプロパティは、通常のプロパティの参照（`get`）、プロパティへの代入（`set`）する際に呼び出されるメソッドを定義できます。
+
+getterとsetterは次のように同じプロパティ名に対してそれぞれ`get`と`set`を付けたメソッドで定義できます。
+getterには仮引数はありませんが、必ず値を返す必要があります。
+setterには仮引数としてプロパティ名へ代入された値が入りますが、値を返す必要はありません。
+
+<!-- doctest:disable -->
+```js
+class クラス {
+    get プロパティ名() {
+        return 値;
+    }
+    set プロパティ名(仮引数) {
+        // setterの処理
+    }
+}
+const インスタンス = new クラス();
+インスタンス.プロパティ名; // getterが呼び出される
+インスタンス.プロパティ名 = 値; // setterが呼び出される
+```
+
+次のコードでは、`NumberValue#value`への値を読み書きをするそれぞれの`value`メソッドを定義しています。
+`number.value`へアクセスした際にそれぞれ定義したgetterとsetterが呼ばれていることが分かります。
+
+```js
+class NumberValue {
+    constructor(value) {
+        this._value = value;
+    }
+    get value() {
+        console.log("getter");
+        return this._value;
+    }
+    set value(newValue) {
+        console.log("setter");
+        this._value = newValue;
+    }
+}
+
+const number = new NumberValue(1);
+console.log(number.value); // => 1
+// "getter"がコンソールに表示される
+number.value = 42;
+// "setter"がコンソールに表示される
+console.log(number.value); // => 42
+```
+
+### [コラム] プライベートプロパティ {#private-property}
+
+`NumberValue#value`のgetterとsetterで実際に読み書きしているのは`_value`プロパティとなっています。
+このように、外から直接読み書きしてほしくないプロパティを`_`（アンダーバー）で開始するのはただの習慣であるため、構文としての意味はありません。
+
+現時点（ES2018）には外から原理的に見ることができないプライベートプロパティ（hard private）を定義する構文はJavaScriptにはありません。
+プライベートプロパティについてはECMAScriptの提案が行われており導入が検討[^Class field declarations for JavaScript]されています。
+また、現時点でも`WeakSet`などを使うことで擬似的なプライベートプロパティ（soft private）を実現できます。
+擬似的なプライベートプロパティ（soft private）については「[Map/Set][]」の章について解説します。
+
+### `Array#length`をアクセッサプロパティで再現
+
+getterやsetterを利用しないと再現が難しいものとして`Array#length`プロパティがあります。
+`Array#length`プロパティへ値を代入すると、そのインデックス以降の値は自動的に削除される仕様があります。
+
+```js
+const array = [1, 2, 3, 4, 5];
+// インデックス2以降の要素が削除される
+array.length = 2;
+console.log(array); // => [1, 2]
+// 足りない部分は`undefined`で埋められる
+array.length = 5;
+console.log(array); // => [1, 2, undefined, undefined, undefined]
+```
+
+この`length`プロパティの挙動を再現する`ArrayLike`クラスを実装してみます。
+`Array#length`プロパティは、`length`プロパティへ値を代入した際に次のようなことを行っています。
+
+- 現在要素数より小さな**要素数**が指定された場合、その**要素数**になるように配列の末尾の要素を削除する
+- 現在要素数より大きな**要素数**が指定された場合、その**要素数**になるように配列の末尾に`undefined`を追加する
+
+つまり、`ArrayLike#length`のsetterでこの処理を実装することで配列のような`length`プロパティを実装できます。
+
+```js
+/**
+ * 配列のようなlengthを持つクラス
+ */
+class ArrayLike {
+    constructor(items = []) {
+        this.items = items;
+    }
+
+    get length() {
+        return this.items.length;
+    }
+
+    set length(newLength) {
+        const currentItemLength = this.items.length;
+        // 現在要素数より小さな`newLength`が指定された場合
+        if (newLength < currentItemLength) {
+            // そのサイズになるように末尾をカット
+            this.items = this.items.slice(0, newLength);
+        } else if (newLength > currentItemLength) {
+            // 現在要素数より大きな`newLength`が指定された場合
+            // そのサイズになるように`currentItemLength`から`newLength`までを`undefined`で埋める
+            for (let i = currentItemLength; i < newLength; i++) {
+                this.items[i] = undefined;
+            }
+        }
+    }
+}
+
+const arrayLike = new ArrayLike([1, 2, 3, 4, 5]);
+// インデックス2以降の要素が削除される
+arrayLike.length = 2;
+console.log(arrayLike.items); // => [1, 2]
+// 足りない部分は`undefined`で埋められる
+arrayLike.length = 5;
+console.log(arrayLike.items); // => [1, 2, undefined, undefined, undefined]
+```
+
 [^糖衣構文]: `class`構文でのみしか実現できない機能はなく、読みやすさや分かりやさのために導入された構文という側面もあるためJavaScriptの`class`構文は糖衣構文と呼ばれることがあります。
+[^Class field declarations for JavaScript]: <https://github.com/tc39/proposal-class-fields>においてECMAScriptへ提案と議論が行われている。
+
+[Map/Set]: ../map-and-set/README.md
