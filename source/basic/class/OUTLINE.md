@@ -85,13 +85,14 @@
 - クラスのインスタンス化
 	- `new`演算子でインスタンス化してそのインスタンスを使います。
 	- なぜならクラスのコンストラクタは関数として呼ぶことはできないため。
-- クラスの初期値とメソッドの定義
+- インスタンスの初期値
 	- クラスの初期化は`constructor`関数で行います。
 	- `new`演算子の引数で渡したものが`constructor`関数の仮引数に渡されます。
 	- この時のコンストラクタ関数の`this`はクラスのインスタンスになります
 	- つまり次のようにコンストラクタで`this.x`のように代入すれば、それはインスタンスが持つ`x`プロパティに値が入るという事になります。
 	- インスタンスのプロパティとして定義した値はデフォルトで外から読み書きが可能です。
 	- 具体例: `Point`
+- クラスのメソッドの定義
 	- また、`class`構文でコンストラクタ以外にもそのクラスが持つメソッドを定義できます。
 	- 後述しますが、このメソッドはインスタンス(`this`)ではなく、クラスの`prototype`に定義されることで、各インスタンスからも呼び出すことが共通のメソッドを定義できます。
 	- 具体例: `Counter`
@@ -128,8 +129,9 @@
 		    - ここでは触れない?
 	- この違いから、prototypeへの導入の説明
     - prototype
-	    - ES2015以前
-	    - ES2015以後
+	    - クラスのメソッド定義はprototypeメソッド
+	    - prototypeメソッドはインスタンス間で同じものを示す
+		    - 共有しているとも言える
     - [コラム] クラスは関数の一種
 	- typeof の結果はfunctionです
 	- また関数として呼び出せません。また詳しくは解説しませんが、手順は複雑ですが`Reflect`メソッドや`prototype`オブジェクトを使うことでクラスと同等のことを関数で表現できます。
@@ -155,10 +157,16 @@
     - Private
     - これらの拡張の基盤について
 - 未使用
+	- new演算子は何をやっているのかについて
+	- メソッドはnewできない件について
+	- クラスとtypeofの結果
 	- `[prop]()`で定義できるよという話
 		- Symbolとの併せわざ
 	- オブジェクトにもgetterやsetterがあるよ
 	- `Object.freeze`でのimmutable class
+	- アクセスレベル
+		- pubilc, private, computed
+		- [ES proposal: class fields](http://2ality.com/2017/07/class-fields.html "ES proposal: class fields")
 
 
 
@@ -211,6 +219,44 @@ C(); // => TypeError
 	- このコンストラクタ関数の`[[FunctionKind]]`が`classConstructor`になる
 - [`[[Call]] ( thisArgument, argumentsList )`](https://tc39.github.io/ecma262/#sec-ecmascript-function-objects-call-thisargument-argumentslist)
 	- `[[FunctionKind]]`が`classConstructor`な関数は`TypeError`を投げる
+
+
+## クラスの構成要素
+
+- クラス
+	- コンストラクタ
+	- プロトタイプ.プロパティ
+	- フィールド
+	- プロパティ
+	- アクセッサ
+	- static
+- インスタンス
+
+----
+
+# 関数とクラス
+
+
+```js
+class MyClass {
+    constructor() {
+        this.name = "MyClass";
+    }
+    field = "field";
+    method() { }
+}
+
+const FnClass = function FnClass() {
+    function Constructor() {
+        this.name = "FnClass";
+        this.field = "field"
+    }
+    Constructor.prototype.method = function () {
+    }
+    return Constructor;
+}();
+
+```
 
 
 -----
