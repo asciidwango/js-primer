@@ -342,28 +342,37 @@ console.log(number.value); // => 42
 また、現時点でも`WeakSet`などを使うことで擬似的なプライベートプロパティ（soft private）を実現できます。
 擬似的なプライベートプロパティ（soft private）については「[Map/Set][]」の章について解説します。
 
-### `Array#length`をアクセッサプロパティで再現
+### `Array#length`をアクセッサプロパティで再現 {#array-like-length}
 
-getterやsetterを利用しないと再現が難しいものとして`Array#length`プロパティがあります。
+getterやsetterを利用しないと実現が難しいものとして`Array#length`プロパティがあります。
 `Array#length`プロパティへ値を代入すると、そのインデックス以降の値は自動的に削除される仕様があります。
+
+次のコードでは、配列の要素数(`length`プロパティ)を小さくすると配列の要素が削除されています。
 
 ```js
 const array = [1, 2, 3, 4, 5];
-// インデックス2以降の要素が削除される
+// 要素数を減らすと、インデックス以降の要素が削除される
 array.length = 2;
-console.log(array); // => [1, 2]
-// 足りない部分は`undefined`で埋められる
+console.log(array.join(", ")); // => "1, 2"
+// 要素数だけを増やしても、配列の中身は空要素が増えるだけ
 array.length = 5;
-console.log(array); // => [1, 2, undefined, undefined, undefined]
+console.log(array.join(", ")); // => "1, 2, , , "
 ```
 
 この`length`プロパティの挙動を再現する`ArrayLike`クラスを実装してみます。
 `Array#length`プロパティは、`length`プロパティへ値を代入した際に次のようなことを行っています。
 
-- 現在要素数より小さな**要素数**が指定された場合、その**要素数**になるように配列の末尾の要素を削除する
-- 現在要素数より大きな**要素数**が指定された場合、その**要素数**になるように配列の末尾に`undefined`を追加する
+- 現在要素数より小さな**要素数**が指定された場合、その**要素数**を変更し、配列の末尾の要素を削除する
+- 現在要素数より大きな**要素数**が指定された場合、その**要素数**だけを変更し、配列の実際の要素はそのままにする
 
-つまり、`ArrayLike#length`のsetterでこの処理を実装することで配列のような`length`プロパティを実装できます。
+<!-- Note:
+
+- 仕様的にもIf newLen ≥ oldLenでは`length`だけを変更している
+- <https://tc39.github.io/ecma262/#sec-arraysetlength>
+
+-->
+
+つまり、`ArrayLike#length`のsetterで要素の追加や削除を実装することで、配列のような`length`プロパティを実装できます。
 
 ```js
 /**
@@ -371,37 +380,39 @@ console.log(array); // => [1, 2, undefined, undefined, undefined]
  */
 class ArrayLike {
     constructor(items = []) {
-        this.items = items;
+        this._items = items;
+    }
+
+    get items() {
+        return this._items;
     }
 
     get length() {
-        return this.items.length;
+        return this._items.length;
     }
 
     set length(newLength) {
         const currentItemLength = this.items.length;
-        // 現在要素数より小さな`newLength`が指定された場合
+        // 現在要素数より小さな`newLength`が指定された場合、指定した要素数となるように末尾を削除する
         if (newLength < currentItemLength) {
-            // そのサイズになるように末尾をカット
-            this.items = this.items.slice(0, newLength);
+            this._items = this.items.slice(0, newLength);
         } else if (newLength > currentItemLength) {
-            // 現在要素数より大きな`newLength`が指定された場合
-            // そのサイズになるように`currentItemLength`から`newLength`までを`undefined`で埋める
-            for (let i = currentItemLength; i < newLength; i++) {
-                this.items[i] = undefined;
-            }
+            // 現在要素数より大きな`newLength`が指定された場合、指定した要素数となるように末尾に空要素を追加する
+            this._items = this.items.concat(new Array(newLength - currentItemLength));
         }
     }
 }
 
 const arrayLike = new ArrayLike([1, 2, 3, 4, 5]);
-// インデックス2以降の要素が削除される
+// インデックス以降の要素が削除される
 arrayLike.length = 2;
-console.log(arrayLike.items); // => [1, 2]
-// 足りない部分は`undefined`で埋められる
+console.log(arrayLike.items.join(", ")); // => "1, 2"
+// 要素数を増やすと
 arrayLike.length = 5;
-console.log(arrayLike.items); // => [1, 2, undefined, undefined, undefined]
+console.log(arrayLike.items.join(", ")); // => "1, 2, , , "
 ```
+
+このようにアクセッサプロパティは、プロパティのように振る舞いつつ実際にアクセスした際には他のプロパティなどと連動する動作を実現できます。
 
 [^糖衣構文]: `class`構文でのみしか実現できない機能はなく、読みやすさや分かりやさのために導入された構文という側面もあるためJavaScriptの`class`構文は糖衣構文と呼ばれることがあります。
 [^Class field declarations for JavaScript]: <https://github.com/tc39/proposal-class-fields>においてECMAScriptへ提案と議論が行われている。
