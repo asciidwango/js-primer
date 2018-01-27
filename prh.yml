@@ -255,7 +255,9 @@ rules:
   - expected: 宣言的
     patterns: 宣言亭
   - expected: コンストラクタ
-    patterns: 今ストラク
+    patterns: 
+      - 今ストラク
+      - コンストラスト
   - expected: 関数内に
     patterns: 
       - 関数中に
