@@ -68,6 +68,7 @@ class MyClassB {
 
 クラスは`new`演算子でインスタンスであるオブジェクトを作成できます。
 `class`構文で定義したクラスからインスタンスを作成することを**インスタンス化**と呼びます。
+あるインスタンスが指定したクラスから作成されたものかを判定するには`instanceof`演算子が利用できます。
 
 ```js
 class MyClass {
@@ -78,6 +79,9 @@ const myClass = new MyClass();
 const myClassAnother = new MyClass();
 // それぞれのインスタンスの参照は異なる
 console.log(myClass === myClassAnother); // => false
+// クラスのインスタンスかどうかは`instanceof`演算子で判定できる
+console.log(myClass instanceof MyClass); // => true
+console.log(myClassAnother instanceof MyClass); // => true
 ```
 
 このままでは何もできない空のクラスなので、値を持ったクラスを定義してみましょう。
@@ -102,7 +106,7 @@ class Point {
 ```
 
 この`Point`クラスのインスタンスを作成するには`new`演算子を使います。
-`new`演算子には関数と同じように引数を渡すことができます。
+`new`演算子には関数呼び出しと同じように引数を渡すことができます。
 `new`演算子の引数はクラスの`constructor`メソッド（コンストラクタ関数）の仮引数に渡されます。
 そして、コンストラクタのなかではインスタンスオブジェクト(`this`）の初期化処理を行います。
 
@@ -124,23 +128,36 @@ console.log(point.x); // => 3
 console.log(point.y); // => 4
 ```
 
-コンストラクタ（`construtor`メソッド)の中では明示的に`return`文が出てきていません。
-通常の関数とは異なり、コンストラクタ関数は暗黙的に`this`（インスタンスオブジェクト）を返します。
-明示的に`return`文を書くこともできますが、通常はコンストラクタ関数内で`return`文は書きません。
+コンストラクタはインスタンス（`this`）の初期化する場所であり、通常の関数とは役割が異なります。
+これは、クラスは通常の関数として呼ぶことができず、`new`演算子でないと呼び出せないことからも分かります。
 
 ```js
+class MyClass {
+    construtor() { }
+}
+// クラスは関数として呼び出すことはできない
+MyClass(); // => TypeError: class constructors must be invoked with |new|
+```
+
+コンストラクタは初期化処理を書く場所であり、`return`文で値を返すべきではありません。
+JavaScriptでは、コンストラクタで任意のオブジェクトを返すことが可能ですが行うべきではありません。
+なぜなら、コンストラクタは`new`演算子で呼び出され、その評価結果はクラスのインスタンスを期待するのが一般的であるためです。
+
+```js
+// 非推奨の例: コンストラクタで値を返すべきではない
 class Point {
     constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        // コンストラクタ関数内では暗黙的に`this`が返される
-        return this;
+        // `this`の代わりにただのオブジェクトを返せる
+        return { x, y };
     }
 }
 
+// `point`はコンストラクタ関数が返したただのオブジェクト
+// Pointのインスタンスではないことに注意
 const point = new Point(3, 4);
-console.log(point.x); // => 3
-console.log(point.y); // => 4
+console.log(point); // => { x: 3, y: 4}
+// Pointクラスのインスタンスではない
+console.log(point instanceof Point); // => false
 ```
 
 ### [Note] クラス名は大文字で始める {#class-name-start-upper-case}
