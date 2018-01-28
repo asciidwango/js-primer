@@ -351,7 +351,7 @@ class PrototypeClass {
         return this;
     };
 }
-const instance = new ArrowClass();
+const instance = new PrototypeClass();
 const method = instance.method;
 method(); // => undefined
 ```
