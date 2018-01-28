@@ -200,9 +200,11 @@ MyClass(); // => TypeError: class constructors must be invoked with |new|
 `class`構文ではクラスに対して宣言的にメソッドを定義できます。
 このクラスに対して定義したメソッドは、クラスの各インスタンスから**共有されるメソッド**となります。
 このインスタンス間で共有されるメソッドのことを**プロトタイプメソッド**と呼びます。
+また、プロトタイプメソッドはインスタンスから呼び出せるメソッドであるため**インスタンスメソッド**とも呼ばれます。
 
-`class`構文では次のようにクラスに対してプロトタイプメソッドを定義できます。
-次のように、クラスに対して任意のメソッドを定義できます。
+この書籍では、プロトタイプメソッド（インスタンスメソッド)を`クラス#メソッド名`のように表記します。
+
+次のように`class`構文ではクラスに対してプロトタイプメソッドを定義できます。
 メソッドの中からクラスのインスタンスを参照するには、`construtor`メソッドと同じく`this`を使います。
 このクラスのメソッドにおける`this`は「[関数とthis][]の章」で学んだメソッドと同じくベースオブジェクトを参照します。
 
@@ -210,17 +212,17 @@ MyClass(); // => TypeError: class constructors must be invoked with |new|
 ```js
 class クラス {
     メソッド() {
-        // メソッドの動作
         // ここでの`this`はベースオブジェクトを参照
     }
 }
 
 const インスタンス = new クラス();
-// メソッド呼び出しのベースオブジェクト(`this`)はインスタンスとなる
+// メソッド呼び出しのベースオブジェクト(`this`)は`インスタンス`となる
 インスタンス.メソッド();
 ```
 
-一方、オブジェクトにおけるメソッドとは異なり、クラスではプロパティのように`key : value`のように`:`区切りでメソッドを定義できないことに注意してください。つぎのような書き方はSyntax Errorとなります。
+クラスのプロトタイプメソッド定義では、オブジェクトにおけるメソッドとは異なり`key : value`のように`:`区切りでメソッドを定義できないことに注意してください。
+つまり、次のような書き方はSyntax Errorとなります。
 
 <!-- textlint-disable -->
 <!-- doctest:disable -->
@@ -235,7 +237,7 @@ class クラス {
 ```
 <!-- textlint-enable -->
 
-次のコードでは、`Counter`クラスに`increment`メソッドを定義しています。
+次のコードでは、`Counter`クラスに`increment`メソッド（`Counter#increment`メソッド）を定義しています。
 `Counter`クラスのインスタンスはそれぞれ別々の状態（`count`プロパティ）を持ちます。
 一方、`increment`メソッドはプロトタイプメソッドとして定義されているため、各インスタンス間から参照先が同じとなります。
 
@@ -250,15 +252,15 @@ class Counter {
         this.count++;
     }
 }
-const counter1 = new Counter();
-const counter2 = new Counter();
-// `counter1.increment()`のベースオブジェクトは`counter1`インスタンス
-counter1.increment();
+const counterA = new Counter();
+const counterB = new Counter();
+// `counterA.increment()`のベースオブジェクトは`counterA`インスタンス
+counterA.increment();
 // 各インスタンスのもつプロパティ(状態)は異なる
-console.log(counter1.count); // => 1;
-console.log(counter2.count); // => 0
+console.log(counterA.count); // => 1;
+console.log(counterB.count); // => 0
 // 各インスタンスのメソッドは共有されている(同じ関数を参照している)
-console.log(counter1.increment === counter2.increment); // => true
+console.log(counterA.increment === counterB.increment); // => true
 ```
 
 プロトタイプメソッドはクラスの継承の仕組みとも関連するため後ほど詳細に解説します。
@@ -284,14 +286,14 @@ class Counter {
         };
     }
 }
-const counter1 = new Counter();
-const counter2 = new Counter();
-counter1.increment();
+const counterA = new Counter();
+const counterB = new Counter();
+counterA.increment();
 // 各インスタンスのもつプロパティ(状態)は異なる
-console.log(counter1.count); // => 1;
-console.log(counter2.count); // => 0
+console.log(counterA.count); // => 1;
+console.log(counterB.count); // => 0
 // 各インスタンスのもつメソッドも異なる
-console.log(counter1.increment === counter2.increment); // => false
+console.log(counterA.increment === counterB.increment); // => false
 ```
 
 インスタンスからメソッドを参照できるのは同じですが、`Counter`というクラス自体へのメソッド定義ではない点がことなります。
@@ -359,21 +361,26 @@ method(); // => undefined
 
 ## クラスのアクセッサプロパティの定義 {#class-accessor-property}
 
-クラスに対してメソッドを定義できますが、メソッドは`()`で呼び出す必要があります。
+<!-- textlint-disable no-js-function-paren -->
+
+クラスに対してメソッドを定義できますが、メソッドは`メソッド名()`のように呼び出す必要があります。
 クラスでは、プロパティのように参照するだけで呼び出せるgetterやsetterと呼ばれる**アクセッサプロパティ**を定義できます。
 アクセッサプロパティとは、メソッドの前に`get`または`set`を付けたメソッドのことを示します。
-このアクセッサプロパティは、通常のプロパティの参照（`get`）、プロパティへの代入（`set`）する際に呼び出されるメソッドを定義できます。
 
-getterとsetterは次のように同じプロパティ名に対してそれぞれ`get`と`set`を付けたメソッドで定義できます。
-getterには仮引数はありませんが、必ず値を返す必要があります。
-setterには仮引数としてプロパティ名へ代入された値が入りますが、値を返す必要はありません。
+<!-- textlint-enable no-js-function-paren -->
+
+次のコードでは、プロパティの参照（getter）、プロパティへの代入（setter）に対するアクセッサプロパティを定義しています。
+getter（`get`）には仮引数はありませんが、必ず値を返す必要があります。
+setter（`set`）の仮引数にはプロパティへ代入された値が入りますが、値を返す必要はありません。
 
 <!-- doctest:disable -->
 ```js
 class クラス {
+    // getter
     get プロパティ名() {
         return 値;
     }
+    // setter
     set プロパティ名(仮引数) {
         // setterの処理
     }
@@ -383,7 +390,7 @@ const インスタンス = new クラス();
 インスタンス.プロパティ名 = 値; // setterが呼び出される
 ```
 
-次のコードでは、`NumberValue#value`への値を読み書きをするそれぞれの`value`メソッドを定義しています。
+次のコードでは、`NumberValue#value`への値を読み書きをする`value`アクセッサプロパティを定義しています。
 `number.value`へアクセスした際にそれぞれ定義したgetterとsetterが呼ばれていることが分かります。
 
 ```js
@@ -402,19 +409,20 @@ class NumberValue {
 }
 
 const number = new NumberValue(1);
+// "getter"とコンソールに表示される
 console.log(number.value); // => 1
-// "getter"がコンソールに表示される
+// "setter"とコンソールに表示される
 number.value = 42;
-// "setter"がコンソールに表示される
+// "getter"とコンソールに表示される
 console.log(number.value); // => 42
 ```
 
 ### [コラム] プライベートプロパティ {#private-property}
 
-`NumberValue#value`のgetterとsetterで実際に読み書きしているのは`_value`プロパティとなっています。
+`NumberValue#value`のアクセッサプロパティで実際に読み書きしているのは、`_value`プロパティです。
 このように、外から直接読み書きしてほしくないプロパティを`_`（アンダーバー）で開始するのはただの習慣であるため、構文としての意味はありません。
 
-現時点（ES2018）には外から原理的に見ることができないプライベートプロパティ（hard private）を定義する構文はJavaScriptにはありません。
+現時点（ES2018）には外から原理的に見ることができないプライベートプロパティ（hard private）を定義する構文はありません。
 プライベートプロパティについてはECMAScriptの提案が行われており導入が検討[^Proposal]されています。
 また、現時点でも`WeakSet`などを使うことで擬似的なプライベートプロパティ（soft private）を実現できます。
 擬似的なプライベートプロパティ（soft private）については「[Map/Set][]」の章について解説します。
