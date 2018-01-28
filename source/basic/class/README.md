@@ -152,8 +152,7 @@ class Point {
     }
 }
 
-// `point`はコンストラクタ関数が返したただのオブジェクト
-// Pointのインスタンスではないことに注意
+// `new`演算子の結果はコンストラクタ関数が返したただのオブジェクト
 const point = new Point(3, 4);
 console.log(point); // => { x: 3, y: 4}
 // Pointクラスのインスタンスではない
