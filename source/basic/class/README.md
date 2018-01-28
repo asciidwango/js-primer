@@ -77,7 +77,7 @@ class MyClass {
 const myClass = new MyClass();
 // 毎回新しいインスタンス(オブジェクト)を作成する
 const myClassAnother = new MyClass();
-// それぞれのインスタンスの参照は異なる
+// それぞれのインスタンスは異なるオブジェクト
 console.log(myClass === myClassAnother); // => false
 // クラスのインスタンスかどうかは`instanceof`演算子で判定できる
 console.log(myClass instanceof MyClass); // => true
