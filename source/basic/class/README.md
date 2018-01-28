@@ -267,7 +267,7 @@ console.log(counterA.increment === counterB.increment); // => true
 
 ### [コラム] インスタンスに対して動作を定義する {#class-instance-method}
 
-`class`構文でメソッドを定義するとそのメソッドはプロトタイプメソッドとなり、インスタンス間で共有されます。
+`class`構文でのメソッド定義はプロトタイプメソッドとなり、インスタンス間で共有されます。
 
 一方、クラスのインスタンスに対して直接メソッドを定義することも可能です。
 これは、コンストラクタ関数内でインスタンスに対してメソッドを定義するだけです。
@@ -301,6 +301,7 @@ console.log(counterA.increment === counterB.increment); // => false
 
 次のコードは、同じ`Counter`クラスのインスタンスでも`increment`メソッドを持たない場合がある実装例です。
 コンストラクタの初期化処理ならば、インスタンスにメソッドを定義するかをif文で分岐できます。
+しかし、このように同じクラスのインスタンスに対してメソッドを定義するかを分岐することは、混乱を生むためするべきではないでしょう。
 
 ```js
 class Counter {
@@ -320,9 +321,7 @@ const counter = new Counter();
 counter.increment(); // => TypeError: counter.increment is not a function 
 ```
 
-つまり、コンストラクタ関数の中でインスタンスオブジェクトに対してメソッドを定義することは、クラスとしての**動作**を宣言的に定義しているとはいえません。
-
-一方、プロトタイプメソッドとはことなり、Arrow Functionでメソッドを定義できるという違いがあります。
+また、プロトタイプメソッドとはことなり、インスタンスへのメソッド定義ではArrow Functionでメソッドを定義できるという違いがあります。
 Arrow Functionには`this`が静的に決まるという性質があります。
 そのため、Arrow Functionで定義した`increment`メソッドはどんな呼び出し方をしても、必ず`this`は`Counter`のインスタンスを参照することが保証できます。（「[Arrow Functionでコールバック関数を扱う][]」を参照）
 
