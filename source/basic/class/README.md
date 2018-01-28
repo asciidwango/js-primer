@@ -195,17 +195,18 @@ MyClass(); // => TypeError: class constructors must be invoked with |new|
 
 ## クラスのメソッドの定義 {#class-method-definition}
 
-クラスという構造の**動作**はメソッドによって定義できます。
+クラスにおける**動作**はメソッドによって定義できます。
 
 `class`構文ではクラスに対して宣言的にメソッドを定義できます。
 このクラスに対して定義したメソッドは、クラスの各インスタンスから**共有されるメソッド**となります。
 このインスタンス間で共有されるメソッドのことを**プロトタイプメソッド**と呼びます。
 
 `class`構文では次のようにクラスに対してプロトタイプメソッドを定義できます。
-次のように、`class`に対して短縮記法で任意のメソッドを定義できます。
+次のように、クラスに対して任意のメソッドを定義できます。
 メソッドの中からクラスのインスタンスを参照するには、`construtor`メソッドと同じく`this`を使います。
 このクラスのメソッドにおける`this`は「[関数とthis][]の章」で学んだメソッドと同じくベースオブジェクトを参照します。
 
+<!-- doctest:disable -->
 ```js
 class クラス {
     メソッド() {
@@ -218,6 +219,21 @@ const インスタンス = new クラス();
 // メソッド呼び出しのベースオブジェクト(`this`)はインスタンスとなる
 インスタンス.メソッド();
 ```
+
+一方、オブジェクトにおけるメソッドとは異なり、クラスではプロパティのように`key : value`のように`:`区切りでメソッドを定義できないことに注意してください。つぎのような書き方はSyntax Errorとなります。
+
+<!-- textlint-disable -->
+<!-- doctest:disable -->
+```js
+// クラスでは次のようにメソッドを定義できない
+class クラス {
+   // Syntax Error
+   メソッド: () => {}
+   // Syntax Error
+   メソッド: function(){}
+}
+```
+<!-- textlint-enable -->
 
 次のコードでは、`Counter`クラスに`increment`メソッドを定義しています。
 `Counter`クラスのインスタンスはそれぞれ別々の状態（`count`プロパティ）を持ちます。
@@ -249,11 +265,13 @@ console.log(counter1.increment === counter2.increment); // => true
 
 ### [コラム] インスタンスに対して動作を定義する {#class-instance-method}
 
-クラスのコンストラクタ関数(`constructor`)でインスタンスに値（プロパティ）の初期値を定義できます。
-JavaScriptではプロパティに値として関数も代入できるため、それぞれのインスタンスにメソッドを追加することも可能です。
+`class`構文でメソッドを定義するとそのメソッドはプロトタイプメソッドとなり、インスタンス間で共有されます。
+
+一方、クラスのインスタンスに対して直接メソッドを定義することも可能です。
+これは、コンストラクタ関数内でインスタンスに対してメソッドを定義するだけです。
 
 次の例では`Counter`クラスのコンストラクタ関数で、インスタンスに`increment`メソッドを定義しています。
-インスタンスに対して関数を値として代入することでメソッドを定義しています。
+コンストラクタ関数内でインスタンス(`this`)に対してメソッドを定義しています。
 コンストラクタで毎回同じ挙動の関数（オブジェクト）を新しく定義しているため、各インスタンスからのメソッドの参照先も異なります。
 
 ```js
@@ -276,11 +294,11 @@ console.log(counter2.count); // => 0
 console.log(counter1.increment === counter2.increment); // => false
 ```
 
-最初にクラスとは**構造**、**動作**、**状態**をもつことができるものであると言いました。
-コンストラクタでのインスタンスに対するメソッド定義は、このクラスのインスタンスが必ずこの動作（メソッド）をもつということにはなりません。
+インスタンスからメソッドを参照できるのは同じですが、`Counter`というクラス自体へのメソッド定義ではない点がことなります。
+これは、`Counter`クラスのインスタンスであっても同じ動作（`increment`メソッド）をもたない場合があるという違いあります。
 
-具体的に、コンストラクタの初期化処理ならば次のコードのようにメソッドを定義するかを動的に分岐することが可能です。
-次のコードのように、`Counter`クラスであっても`increment`メソッドをもたない場合があります。
+次のコードは、同じ`Counter`クラスのインスタンスでも`increment`メソッドを持たない場合がある実装例です。
+コンストラクタの初期化処理ならば、インスタンスにメソッドを定義するかをif文で分岐できます。
 
 ```js
 class Counter {
@@ -300,10 +318,44 @@ const counter = new Counter();
 counter.increment(); // => TypeError: counter.increment is not a function 
 ```
 
-つまり、コンストラクタ関数の中でインスタンスオブジェクトに対してメソッドを定義することは、クラスとしての**動作**を宣言的に定義しているとはいえません。一方、プロトタイプメソッドとはことなりArrow Functionでメソッドを定義できるという違いがあります。
+つまり、コンストラクタ関数の中でインスタンスオブジェクトに対してメソッドを定義することは、クラスとしての**動作**を宣言的に定義しているとはいえません。
 
-Arrow Functionでは`this`が静的に決まるという性質があります。
-そのため、この`increment`メソッドはどんな呼び出し方をしても必ず`this`は`Counter`のインスタンスを参照することが保証できます。（「[Arrow Functionでコールバック関数を扱う][]」を参照）
+一方、プロトタイプメソッドとはことなり、Arrow Functionでメソッドを定義できるという違いがあります。
+Arrow Functionには`this`が静的に決まるという性質があります。
+そのため、Arrow Functionで定義した`increment`メソッドはどんな呼び出し方をしても、必ず`this`は`Counter`のインスタンスを参照することが保証できます。（「[Arrow Functionでコールバック関数を扱う][]」を参照）
+
+```js
+"use strict";
+class ArrowClass {
+    constructor() {
+        this.method = () => {
+            // Arrow Functionにおける`this`は静的に決まる
+            // そのため`this`は常にインスタンスを参照する
+            return this;
+        };
+    }
+}
+const instance = new ArrowClass();
+const method = instance.method;
+method(); // => instance
+```
+
+一方、プロトタイプメソッドにおける`this`は呼び出し時のベースオブジェクトを参照します。
+そのためプロトタイプメソッドは呼び出し方によって`this`の参照先が異なります。（[`this`を含むメソッドを変数に代入した場合の問題][]を参照）
+
+```js
+"use strict";
+class PrototypeClass {
+    method() {
+        // `this`はベースオブジェクトを参照する
+        return this;
+    };
+}
+const instance = new ArrowClass();
+const method = instance.method;
+method(); // => undefined
+```
+
 
 ## クラスのアクセッサプロパティの定義 {#class-accessor-property}
 
@@ -444,5 +496,6 @@ console.log(arrayLike.items.join(", ")); // => "1, 2, , , "
 
 
 [Arrow Functionでコールバック関数を扱う]: ../functiont-this/README.md#arrow-function-callback
+[`this`を含むメソッドを変数に代入した場合の問題]: ../functiont-this/README.md#assign-this-function}
 [関数とthis]: ../functiont-this/README.md
 [Map/Set]: ../map-and-set/README.md
