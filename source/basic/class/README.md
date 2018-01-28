@@ -281,7 +281,7 @@ console.log(counterA.increment === counterB.increment); // => true
 
 プロトタイプメソッドはクラスの継承の仕組みとも関連するため後ほど詳細に解説します。
 
-### [コラム] インスタンスに対して動作を定義する {#class-instance-method}
+### クラスのインスタンスに対してメソッドを定義する {#class-instance-method}
 
 `class`構文でのメソッド定義はプロトタイプメソッドとなり、インスタンス間で共有されます。
 
@@ -372,7 +372,6 @@ const instance = new PrototypeClass();
 const method = instance.method;
 method(); // => undefined
 ```
-
 
 ## クラスのアクセッサプロパティの定義 {#class-accessor-property}
 
