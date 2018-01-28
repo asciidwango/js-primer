@@ -154,7 +154,7 @@ class Point {
 
 // `new`演算子の結果はコンストラクタ関数が返したただのオブジェクト
 const point = new Point(3, 4);
-console.log(point); // => { x: 3, y: 4}
+console.log(point); // => { x: 3, y: 4 }
 // Pointクラスのインスタンスではない
 console.log(point instanceof Point); // => false
 ```
@@ -506,10 +506,10 @@ class ArrayLike {
 }
 
 const arrayLike = new ArrayLike([1, 2, 3, 4, 5]);
-// インデックス以降の要素が削除される
+// 要素数を減らすとインデックス以降の要素が削除される
 arrayLike.length = 2;
 console.log(arrayLike.items.join(", ")); // => "1, 2"
-// 要素数を増やすと
+// 要素数を増やすと末尾に空要素が追加される
 arrayLike.length = 5;
 console.log(arrayLike.items.join(", ")); // => "1, 2, , , "
 ```
