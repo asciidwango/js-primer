@@ -389,18 +389,21 @@ const インスタンス = new クラス();
 インスタンス.プロパティ名 = 値; // setterが呼び出される
 ```
 
-次のコードでは、`NumberValue#value`への値を読み書きをする`value`アクセッサプロパティを定義しています。
+次のコードでは、`NumberValue#value`をアクセッサプロパティとして定義しています。
 `number.value`へアクセスした際にそれぞれ定義したgetterとsetterが呼ばれていることが分かります。
+このアクセッサプロパティで実際に読み書きされているのは、`NumberValue`インスタンスの`_value`プロパティとなります。
 
 ```js
 class NumberValue {
     constructor(value) {
         this._value = value;
     }
+    // `_value`プロパティの値を返すgetter
     get value() {
         console.log("getter");
         return this._value;
     }
+    // `_value`プロパティに値を代入するsetter
     set value(newValue) {
         console.log("setter");
         this._value = newValue;
