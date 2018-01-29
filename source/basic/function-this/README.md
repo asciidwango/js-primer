@@ -643,7 +643,7 @@ console.log(prefixedStrings); // => ["pre-a", "pre-b", "pre-c"]
 そもそもの問題としてメソッド呼び出しとその中でのコールバック関数における`this`が変わってしまうのが問題でした。
 ES2015では`this`を変えずにコールバック関数を定義する方法として、Arrow Functionが導入されました。
 
-### 対処法: Arrow Functionでコールバック関数を扱う
+### 対処法: Arrow Functionでコールバック関数を扱う {#arrow-function-callback}
 
 通常の関数やメソッドは呼び出し時に暗黙的に`this`の値を受け取り、関数内の`this`はその値を参照します。
 一方、Arrow Functionはこの暗黙的な`this`の値を受け取りません。
