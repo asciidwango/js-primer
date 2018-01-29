@@ -1,7 +1,8 @@
 // LICENSE : MIT
 "use strict";
-import { TodoListModel } from "./models/TodoListModel";
-import TodoListRendering from "./views/TodoListRendering";
+import { TodoListModel } from "./models/TodoListModel.js";
+import { TodoListRendering } from "./views/TodoListRendering.js";
+
 // Entry Point
 function onLoad() {
     // add event to DOM elements
@@ -30,10 +31,12 @@ function onLoad() {
 
     const unbindHandler = todoListModel.onChange(() => {
         const todoItemList = todoListModel.getAllTodoList();
-        console.log("changed", todoItemList);
         rendering.render(todoItemList, {
             toggleComplete
         });
     });
+
+    window.addEventListener("unload", unbindHandler);
 }
+
 window.addEventListener("load", onLoad);

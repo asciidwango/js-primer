@@ -1,9 +1,10 @@
 // LICENSE : MIT
 "use strict";
+
 /*
-    Simple EventEmitter
+ *  Simple EventEmitter
  */
-export default class EventEmitter {
+export class EventEmitter {
     constructor() {
         this._handlers = {};
     }
