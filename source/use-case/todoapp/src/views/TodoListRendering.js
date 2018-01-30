@@ -1,7 +1,6 @@
-// LICENSE : MIT
 "use strict";
-// rendering
-export default class TodoListRendering {
+// Rendering Todo List
+export class TodoListRendering {
     constructor(containerNode) {
         this.containerNode = containerNode;
     }

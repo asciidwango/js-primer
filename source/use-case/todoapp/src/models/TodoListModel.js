@@ -1,8 +1,9 @@
 // LICENSE : MIT
 "use strict";
-import EventEmitter from "./../EventEmitter";
+import { EventEmitter } from "../EventEmitter.js";
 // unique id
 let todoIdx = 0;
+
 export class TodoItemModel {
     constructor({ title, completed = false } = {}) {
         this.id = todoIdx++;
@@ -14,6 +15,7 @@ export class TodoItemModel {
         return this.completed;
     }
 }
+
 // model
 export class TodoListModel extends EventEmitter {
     constructor(todoList = []) {
