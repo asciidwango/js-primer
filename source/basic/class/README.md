@@ -29,6 +29,7 @@ JavaScriptでは関数で学んだことの多くはクラスでもそのまま�
 クラスは必ずコンストラクタを持ち、`constructor`という名前のメソッドとして定義します。
 コンストラクタとは、そのクラスからインスタンスを作成する際にインスタンスに関する**状態**の初期化を行うメソッドです。
 
+{{book.console}}
 ```js
 class MyClass {
     constructor() {
@@ -40,6 +41,7 @@ class MyClass {
 もうひとつの定義方法であるクラス式は、クラスを値として定義する方法です。
 クラス式ではクラス名を省略できます。これは関数式における匿名関数と同じです。
 
+{{book.console}}
 ```js
 const MyClass = class MyClass {
     constructor() {}
@@ -71,6 +73,7 @@ class MyClassB {
 `class`構文で定義したクラスからインスタンスを作成することを**インスタンス化**と呼びます。
 あるインスタンスが指定したクラスから作成されたものかを判定するには`instanceof`演算子が利用できます。
 
+{{book.console}}
 ```js
 class MyClass {
 }
@@ -94,6 +97,7 @@ console.log(myClassAnother instanceof MyClass); // => true
 次のコードでは`x`座標と`y`座標の値をもつ`Point`というクラスを定義しています。
 コンストラクタ関数(`constructor`)の中でインスタンスオブジェクト（`this`）の`x`と`y`プロパティに値を代入して初期化しています。
 
+{{book.console}}
 ```js
 class Point {
     // コンストラクタ関数の仮引数として`x`と`y`を定義
@@ -111,6 +115,7 @@ class Point {
 `new`演算子の引数はクラスの`constructor`メソッド（コンストラクタ関数）の仮引数に渡されます。
 そして、コンストラクタのなかではインスタンスオブジェクト(`this`）の初期化処理を行います。
 
+{{book.console}}
 ```js
 class Point {
     // 2. コンストラクタ関数の仮引数として`x`には`3`、`y`には`4`が渡る
@@ -134,6 +139,7 @@ console.log(point.y); // => 4
 一方、クラスは通常の関数として呼ぶことができません。
 これは、クラスのコンストラクタはインスタンス（`this`）の初期化する場所であり、通常の関数とは役割が異なるためです。
 
+{{book.console}}
 ```js
 class MyClass {
     construtor() { }
@@ -146,6 +152,7 @@ MyClass(); // => TypeError: class constructors must be invoked with |new|
 JavaScriptでは、コンストラクタで任意のオブジェクトを返すことが可能ですが行うべきではありません。
 なぜなら、コンストラクタは`new`演算子で呼び出び、その評価結果はクラスのインスタンスを期待するのが一般的であるためです。
 
+{{book.console}}
 ```js
 // 非推奨の例: コンストラクタで値を返すべきではない
 class Point {
@@ -181,6 +188,7 @@ ES2015より前はこれらのクラスを`class`構文ではなく、関数で�
 次のコードでは先ほどの`class`構文でのクラスを簡略化した関数での1つの実装例です。
 この関数でのクラス表現は、継承の仕組みなどは省かれていますが、`class`構文とよく似ています。
 
+{{book.console}}
 ```js
 // コンストラクタ関数
 const Point = function PointConstructor(x, y) {
@@ -197,6 +205,7 @@ const point = new Point(3, 4);
 クラスは`new`演算子でインスタンス化して使うものなので、これはクラスの誤用を防ぐ仕様です。
 一方、関数でのクラス表現はただの関数なので、当然関数として呼び出せます。
 
+{{book.console}}
 ```js
 // `class`構文でのクラス
 class MyClass {
@@ -260,6 +269,7 @@ class クラス {
 `Counter`クラスのインスタンスはそれぞれ別々の状態（`count`プロパティ）を持ちます。
 一方、`increment`メソッドはプロトタイプメソッドとして定義されているため、各インスタンス間から参照先が同じとなります。
 
+{{book.console}}
 ```js
 class Counter {
     constructor() {
@@ -295,6 +305,7 @@ console.log(counterA.increment === counterB.increment); // => true
 コンストラクタ関数内でインスタンス(`this`)に対してメソッドを定義しています。
 コンストラクタで毎回同じ挙動の関数（オブジェクト）を新しく定義しているため、各インスタンスからのメソッドの参照先も異なります。
 
+{{book.console}}
 ```js
 class Counter {
     constructor() {
@@ -322,6 +333,7 @@ console.log(counterA.increment === counterB.increment); // => false
 コンストラクタの初期化処理ならば、インスタンスにメソッドを定義するかをif文で分岐できます。
 しかし、このように同じクラスのインスタンスに対してメソッドを定義するかを分岐することは、混乱を生むためするべきではないでしょう。
 
+{{book.console}}
 ```js
 class Counter {
     // `hasDefineIncrement`に`true`を渡したときだけ`increment`メソッドを定義する
@@ -344,6 +356,7 @@ counter.increment(); // => TypeError: counter.increment is not a function
 Arrow Functionには`this`が静的に決まるという性質があります。
 そのため、Arrow Functionで定義した`increment`メソッドはどんな呼び出し方をしても、必ず`this`は`Counter`のインスタンスを参照することが保証できます。（「[Arrow Functionでコールバック関数を扱う][]」を参照）
 
+{{book.console}}
 ```js
 "use strict";
 class ArrowClass {
@@ -363,6 +376,7 @@ method(); // => instance
 一方、プロトタイプメソッドにおける`this`は呼び出し時のベースオブジェクトを参照します。
 そのためプロトタイプメソッドは呼び出し方によって`this`の参照先が異なります。（[`this`を含むメソッドを変数に代入した場合の問題][]を参照）
 
+{{book.console}}
 ```js
 "use strict";
 class PrototypeClass {
@@ -411,6 +425,7 @@ const インスタンス = new クラス();
 `number.value`へアクセスした際にそれぞれ定義したgetterとsetterが呼ばれていることが分かります。
 このアクセッサプロパティで実際に読み書きされているのは、`NumberValue`インスタンスの`_value`プロパティとなります。
 
+{{book.console}}
 ```js
 class NumberValue {
     constructor(value) {
@@ -454,6 +469,7 @@ getterやsetterを利用しないと実現が難しいものとして`Array#leng
 
 次のコードでは、配列の要素数(`length`プロパティ)を小さくすると配列の要素が削除されています。
 
+{{book.console}}
 ```js
 const array = [1, 2, 3, 4, 5];
 // 要素数を減らすと、インデックス以降の要素が削除される
@@ -479,6 +495,7 @@ console.log(array.join(", ")); // => "1, 2, , , "
 
 つまり、`ArrayLike#length`のsetterで要素の追加や削除を実装することで、配列のような`length`プロパティを実装できます。
 
+{{book.console}}
 ```js
 /**
  * 配列のようなlengthを持つクラス
