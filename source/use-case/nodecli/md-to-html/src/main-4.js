@@ -9,10 +9,11 @@ program
 program.parse(process.argv);
 const filePath = program.args[0];
 
-const markedOptions = Object.assign({}, {
+const markedOptions = {
     gfm: true,
-    sanitize: false
-}, program);
+    sanitize: false,
+    ...program
+};
 
 fs.readFile(filePath, "utf8", (err, file) => {
     if (err) {
