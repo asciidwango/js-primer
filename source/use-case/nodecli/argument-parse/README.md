@@ -81,6 +81,11 @@ $ npm install --save commander@2.9
 
 [import package.json](src/package.json)
 
+また、npmのバージョンが5以上であれば `package-lock.json`ファイルが生成されています。
+このファイルはnpmがインストールしたパッケージの、実際のバージョンを記録するためのものです。
+さきほどcommanderのバージョンは`2.9`としましたが、実際にインストールされるのは`2.9.x`に一致する最新のバージョンです。
+`package-lock.json`ファイルには実際にインストールされたバージョンが記録されており、ふたたび`npm install`を実行したときに違うバージョンがインストールされることを防ぎます。
+
 ### commanderパッケージを使う
 
 `npm install`コマンドでインストールされたパッケージは、`node_modules`というディレクトリの中に配置されています。
