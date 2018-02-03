@@ -119,6 +119,6 @@ index.jsでは関数を定義しているだけで、呼び出しは行ってい
 
 ![開発者ツールでHTTP通信の記録を確認する](img/fig-2.png)
 
-[Eventを発生させたオブジェクト]: https://developer.mozilla.org/ja/docs/Web/API/Event/target
+[イベントを発生させたオブジェクト]: https://developer.mozilla.org/ja/docs/Web/API/Event/target
 [EventTarget]: https://dom.spec.whatwg.org/#eventtarget
 [XMLHttpRequest.response]: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/response
