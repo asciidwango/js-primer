@@ -85,7 +85,7 @@ const fn3 = () => {};
 
 <!-- textlint-disable no-js-function-paren -->
 
-それぞれ定義した関数は`関数名()`と書くことで呼びだすことができます。
+それぞれ定義した関数は`関数名()`と書くことで呼び出すことができます。
 
 <!-- textlint-enable no-js-function-paren -->
 
@@ -130,7 +130,7 @@ const object = {
 
 <!-- textlint-disable no-js-function-paren -->
 
-これらのメソッドは、`オブジェクト名.メソッド名()`と書くことで呼びだすことができます。
+これらのメソッドは、`オブジェクト名.メソッド名()`と書くことで呼び出すことができます。
 
 <!-- textlint-enable no-js-function-paren -->
 
@@ -229,7 +229,7 @@ fn1(); // => undefined
 fn2(); // => undefined
 ```
 
-これは、関数の中に関数を定義して呼びだす場合も同じです。
+これは、関数の中に関数を定義して呼び出す場合も同じです。
 
 {{book.console}}
 ```js
@@ -387,7 +387,7 @@ say(); // => TypeError: Cannot read property 'fullName' of undefined
 関数やメソッドの`this`を明示的に指定して関数を実行する方法もあります。
 `Function`（関数オブジェクト）には`call`、`apply`、`bind`といった明示的に`this`を指定して関数を実行するメソッドが用意されています。
 
-`call`メソッドは第一引数に`this`としたい値を指定し、残りの引数は呼びだす関数の引数となります。
+`call`メソッドは第一引数に`this`としたい値を指定し、残りの引数は呼び出す関数の引数となります。
 暗黙的に渡される`this`の値を明示的に渡せるメソッドといえます。
 
 <!-- doctest:disable -->
@@ -499,7 +499,7 @@ sayPerson(); // => "こんにちは Brendan Eich！"
 ```
 
 このように`call`、`apply`、`bind`メソッドを使うことで`this`を明示的に指定した状態で関数を呼び出せます。
-しかし、毎回関数を呼びだすたびにこれらのメソッドを使うのは、関数を呼びだすための関数が必要になってしまい手間がかかります。
+しかし、毎回関数を呼び出すたびにこれらのメソッドを使うのは、関数を呼び出すための関数が必要になってしまい手間がかかります。
 そのため、基本的には「メソッドとして定義されている関数はメソッドとして呼ぶこと」でこの問題を回避するほうがよいでしょう。
 その中で、どうしても`this`を固定したい場合には`call`、`apply`、`bind`メソッドを利用します。
 
@@ -559,7 +559,7 @@ Prefixer.prefixArray(["a", "b", "c"]); // => TypeError: Cannot read property 'pr
 <!-- textlint-disable no-js-function-paren -->
 
 このとき、`Array#map`メソッドに渡しているコールバック関数は`callback()`のようにただの関数として呼び出されます。
-つまり、コールバック関数として呼びだすとき、この関数にはベースオブジェクトはありません。
+つまり、コールバック関数として呼び出すとき、この関数にはベースオブジェクトはありません。
 そのため`callback`関数の`this`は`undefined`となります。
 
 先ほどの匿名関数をコールバック関数として渡しているのは、一度`callback`変数に入れてから渡しても結果は同じです。
@@ -616,7 +616,7 @@ const prefixedStrings = Prefixer.prefixArray(["a", "b", "c"]);
 console.log(prefixedStrings); // => ["pre-a", "pre-b", "pre-c"]
 ```
 
-もちろん`Function#call`メソッドなどで明示的に`this`を渡して関数を呼びだすこともできます。
+もちろん`Function#call`メソッドなどで明示的に`this`を渡して関数を呼び出すこともできます。
 また、`Arry#map`メソッドなどは`this`となる値引数として渡せる仕組みを持っています。
 そのため、つぎのように第二引数に`this`となる値を渡すことでも解決できます。
 
