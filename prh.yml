@@ -288,6 +288,8 @@ rules:
 
 
 # 漢字開き
+  - expected: 呼び出す
+    patterns: 呼びだす
   - expected: もとづ$1
     patterns: /基づ(く|き)/
   - expected: 見てい$1
