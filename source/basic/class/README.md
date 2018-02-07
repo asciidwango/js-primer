@@ -697,7 +697,7 @@ class MyClass {
         console.log("プロトタイプのメソッド");
     }
 }
-const instance = newInstance(MyClass);
+const instance = new MyClass();
 // instanceの`[[Prototype]]`内部プロパティは`MyClass.prototype`と一致する
 const Prototype = Object.getPrototypeOf(instance);
 console.log(Prototype === MyClass.prototype); // => true
