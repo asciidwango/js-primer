@@ -742,7 +742,7 @@ console.log(instance.method === Prototype.method); // => true
 ```
 
 <!-- textlint-disable no-js-function-paren -->
-つまり、`instance.method()`のように`instance`オブジェクトの`method`プロパティを参照する際には、次のような順番で`method`プロパティを探索しています。
+つまり、`instance.method()`は、次のような順番で`method`プロパティを探索しています。
 <!-- textlint-enable  no-js-function-paren -->
 
 1. `instance`オブジェクト自身
