@@ -640,26 +640,7 @@ console.log(MyClass.prototype.constructor === MyClass); // => true
 ```
 
 このように、プロトタイプメソッドとインスタンスのメソッドはそれぞれ異なるオブジェクトに定義されていることが分かります。
-そのため、２つの方法でメソッドを定義しても上書きされずに定義できていました。
-
-しかし、インスタンスからクラスのプロトタイプメソッドを呼び出せるということになります。
-
-```js
-class MyClass {
-    method() {
-        console.log("プロトタイプメソッド");
-    }
-}
-const instance = new MyClass();
-// `instance`から`MyClass.prototype.method`を呼び出せている
-instance.method();// "プロトタイプメソッド"
-// `method`プロパティの参照先はプロトタイプメソッドと一致する
-console.log(instance.method === MyClass.prototype.method); // => true
-```
-
-これは、プロトタイプオブジェクトと関連した**プロトタイプチェーン**という仕組みによって、
-インスタンス自身にはないメソッドが呼び出せています。
-次はなぜ、プロトタイプチェーンがどのようにインスタンスからクラスのプロトタイプメソッドを呼びだしているかを見ていきます。
+そのため、２つの方法でメソッドを定義しても上書きされずにそれぞれ定義されます。
 
 ## プロトタイプチェーン {#prototype-chain}
 
@@ -713,8 +694,8 @@ console.log(Prototype === MyClass.prototype); // => true
 一方、`Object.setPrototypeOf(object, prototypeObject)`で`object`の`[[Prototype]]`に`prototypeObject`を保存できます。
 また、`[[Prototype]]`内部プロパティを通常のプロパティのように扱える`__proto__`という特殊なアクセッサプロパティが存在します。
 
-しかしながら、これらの`[[Prototype]]`内部プロパティを直接読み書きすることは通常の用途ではありません。
-なぜなら、既存のビルトインオブジェクトの動作なども変更できるため、不用意に扱うべきではないでしょう。
+しかし、これらの`[[Prototype]]`内部プロパティを直接読み書きすることは通常の用途では行いません。
+また、既存のビルトインオブジェクトの動作なども変更できるため、不用意に扱うべきではないでしょう。
 
 ----
 
