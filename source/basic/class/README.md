@@ -709,8 +709,12 @@ console.log(Prototype === MyClass.prototype); // => true
 
 #### Note: `[[Prototype]]`内部プロパティを読み書きする
 
-しかし、`Object.getPrototypeOf(object)`で`object`の`[[Prototype]]`を読み取ることができます。
-また、`Object.setPrototypeOf(object, prototypeObject)`で`object`の`[[Prototype]]`に`prototypeObject`を保存できます。
+`Object.getPrototypeOf(object)`で`object`の`[[Prototype]]`を読み取ることができます。
+一方、`Object.setPrototypeOf(object, prototypeObject)`で`object`の`[[Prototype]]`に`prototypeObject`を保存できます。
+また、`[[Prototype]]`内部プロパティを通常のプロパティのように扱える`__proto__`という特殊なアクセッサプロパティが存在します。
+
+しかしながら、これらの`[[Prototype]]`内部プロパティを直接読み書きすることは通常の用途ではありません。
+なぜなら、既存のビルトインオブジェクトの動作なども変更できるため、不用意に扱うべきではないでしょう。
 
 ----
 
