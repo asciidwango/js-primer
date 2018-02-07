@@ -699,8 +699,8 @@ class MyClass {
 }
 const instance = newInstance(MyClass);
 // instanceの`[[Prototype]]`内部プロパティは`MyClass.prototype`と一致する
-const prototype = Object.getPrototypeOf(instance);
-console.log(protoype === MyClass.prototype); // => true
+const Prototype = Object.getPrototypeOf(instance);
+console.log(Prototype === MyClass.prototype); // => true
 ```
 
 ここで重要なのは、インスタンスはどのクラスから作られたかやそのクラスのプロトタイプオブジェクトを知っているということです。
@@ -720,7 +720,8 @@ console.log(protoype === MyClass.prototype); // => true
 オブジェクトの`[[Prototype]]`内部プロパティのプロトタイプオブジェクトに対しても探索を続けます。
 これは、スコープに指定した識別子の変数がなかった場合に外側のスコープへと探索するスコープチェインと良く似た仕組みです。
 
-次のコードでは、オブジェクト自身が指定したプロパティを持っているかを判定する`hasOwnProperty`メソッドを使い確認できます。
+次のコードでは、インスタンスオブジェクト自身は`method`プロパティを持っていません。
+そのため、実際参照してるのはクラスのプロトタイプオブジェクトの`method`プロパティです。
 
 ```js
 class MyClass {
@@ -729,15 +730,11 @@ class MyClass {
     }
 }
 const instance = new MyClass();
-// インスタンス自身は`method`プロパティを持っていない
-// `hasOwnProperty`メソッドは自身が指定されたプロパティを持っているかを判定するメソッド
-console.log(instance.hasOwnProperty("method")); // => false
-// インスタンスの`[[Prototype]]`に保存されているプロトタイプオブジェクトにを取得
-const PrototypeOfInstance = Object.getPrototypeOf(instnace);
-// プロトタイプオブジェクトには`method`プロパティが定義されている
-console.log(instance.hasOwnProperty("method"));// => true
-// `[[Prototype]]`のメソッドはインスタンスにメソッドがない場合に呼び出される
+// インスタンスには`method`プロパティがないため、プロトタイプオブジェクトの`method`が参照される
 instance.method(); // "プロトタイプのメソッド"
+// `instance.method`の参照はプロトタイプオブジェクトの`method`と一致する
+const Prototype = Object.getPrototypeOf(instance);
+console.log(instance.method === Prototype.method); // => true
 ```
 
 <!-- textlint-disable no-js-function-paren -->
@@ -747,8 +744,8 @@ instance.method(); // "プロトタイプのメソッド"
 1. `instance`オブジェクト自身
 2. `instance`オブジェクトの`[[Prototype]]`の参照先（プロトタイプオブジェクト）
 
-そのため、インスタンスに`method`が定義されていなくてもクラスのプロトタイプオブジェクトに`method`が定義されていれば呼び出すことができました。
-このプロパティ（またはメソッド）を参照する際に、インスタンス自身から`[[Prototype]]`を順番に参照する仕組みのことを**プロトタイプチェーン**と呼びます。
+この仕組みにより、インスタンス（オブジェクト）に`method`が定義されていなくてもクラスのプロトタイプオブジェクトの`method`を呼びだすことができます。
+このプロパティを参照する際に、オブジェクト自身から`[[Prototype]]`へと順番に探す仕組みのことを**プロトタイプチェーン**と呼びます。
 
 プロトタイプチェーンの仕組みを擬似的なコードとして表現すると次のような動きをしています。
 
@@ -775,10 +772,11 @@ if (instance.hasOwnProperty("method")) {
 }
 ```
 
+プロトタイプチェーンの仕組みによって、プロトタイプオブジェクトに定義したプロトタイプメソッドがインスタンスから呼びだすことができています。
 
-普段は、インスタンスオブジェクトの`[[Prototype]]`内部プロパティやクラスの`prototype`プロパティを意識する必要はありません。
-このような内部的なプロトタイプチェーンの仕組みを意識しなくても、`class`構文を使えばクラスを利用できるためです。
-しかしながら、プロトタイプベースである言語のJavaScriptではクラスをこのようなプロトタイプを使い表現しています。
+普段は、プロトタイプオブジェクトやプロトタイプチェーンといった仕組みを意識する必要はありません。
+`class`構文はこのようなプロトタイプを意識せずにクラスを利用できるように導入された構文です。
+しかし、プロトタイプベースである言語のJavaScriptではクラスをこのようなプロトタイプを使い表現していることは知っておくとよいでしょう。
 
 <!-- Note
 
