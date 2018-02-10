@@ -1,18 +1,17 @@
 class EventEmitter {
     constructor() {
-        this.handlers = [];
+        this.eventHandlers = [];
     }
 
-    addEventLister(handler) {
-        this.handlers.push(handler);
+    addEventLister(eventHandler) {
+        this.eventHandlers.push(eventHandler);
     }
 
     emit(...args) {
-        this.handlers.forEach(handler => {
+        this.eventHandlers.forEach(handler => {
             handler(...args);
         });
     }
-
 }
 
 const event = new EventEmitter();

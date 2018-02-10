@@ -1,31 +1,26 @@
 class EventEmitter {
     constructor() {
-        this.handlers = [];
+        this.eventHandlers = [];
     }
 
     addEventLister(handler) {
-        this.handlers.push(handler);
+        this.eventHandlers.push(handler);
     }
 
     emit(...args) {
-        this.handlers.forEach(handler => {
+        this.eventHandlers.forEach(handler => {
             handler(...args);
         });
     }
-
 }
 
 class ObservableValue extends EventEmitter {
-    constructor(defaultValue) {
-        // superは必ず呼ばないといけない
-        // この形式は省略できる
-        super();
-
-        this._value = defaultValue;
+    constructor(...args) {
+        super(...args);
     }
 
-    onChange(handler) {
-        this.addEventLister(handler);
+    onChange(onChangeHandler) {
+        this.addEventLister(onChangeHandler);
     }
 
     get value() {
@@ -43,10 +38,12 @@ class ObservableValue extends EventEmitter {
 }
 
 
-const observable = new ObservableValue(1);
+const observable = new ObservableValue();
 observable.onChange((prevValue, newValue) => {
-    console.log(prevValue); // => 1
+    console.log(prevValue); // => undefined
     console.log(newValue); // => 2
 });
 // 新しい値変更する
 observable.value = 2;
+console.log(observable.value); // => 2
+observable.value = 3;
