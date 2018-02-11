@@ -9,7 +9,7 @@ class MyArray extends Array {
 
     get last() {
         if (this.length === 0) {
-            return undefined
+            return undefined;
         } else {
             return this[this.length - 1];
         }
