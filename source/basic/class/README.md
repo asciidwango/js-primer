@@ -813,7 +813,7 @@ class Parent {
 }
 // Parentを継承したChildクラスの定義
 class Child extends Parent {
-    constuructor() {
+    constructor() {
         // Parentのコンストラクタ処理を呼びだす
         super();
         console.log("Childコンストラクタの処理");
