@@ -1060,20 +1060,22 @@ class ObservableValue extends EventEmitter {
     }
     // 値を更新した時にコールバック関数を呼び出すアクセッサプロパティ
     set value(newValue) {
+        const prevValue = this._value;
         // 値が変わっていない場合は無視する
-        if (this._value === newValue) {
+        if (prevValue === newValue) {
             return;
         }
         this._value = newValue;
         // 値が変わったらコールバック関数(`handler`)を呼ぶ
-        this.emit(newValue);
+        this.emit(prevValue, newValue);
     }
 }
 
 // 1. 初期値は`1`のインスタンスを作成する
 const observable = new ObservableValue(1);
-observable.onChange((newValue) => {
+observable.onChange((prevValue, newValue) => {
     // 3. 登録済みのコールバック関数が呼ばれる
+    console.log(prevValue); // => 1
     console.log(newValue); // => 2
 });
 // 2. 値を更新する
