@@ -46,4 +46,3 @@ observable.onChange((prevValue, newValue) => {
 // 新しい値変更する
 observable.value = 2;
 console.log(observable.value); // => 2
-observable.value = 3;
