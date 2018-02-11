@@ -1,12 +1,15 @@
 class EventEmitter {
     constructor() {
+        // 登録済みのイベントハンドラーの状態
         this.eventHandlers = [];
     }
 
+    // `handler`(コールバック関数)を登録する
     addEventLister(handler) {
         this.eventHandlers.push(handler);
     }
 
+    // 登録済みのイベントハンドラーに対して引数`...args`を渡して呼び出す
     emit(...args) {
         this.eventHandlers.forEach(handler => {
             handler(...args);

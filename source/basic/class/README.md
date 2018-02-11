@@ -935,6 +935,8 @@ instance.method(); // "Parent#method"
 このようにJavaScriptでは`class`構文と`extends`キーワードを使うことでクラスの"機能"を継承できます。
 継承の仕組みとしてプロトタイプオブジェクトプロトタイプチェーンを使うため、この継承の仕組みを**プロトタイプ継承**と呼びます。
 
+<!-- TODO: 2から3を呼びだす例 -->
+
 ### 継承の判定 {#instanceof}
 
 あるクラスが指定したクラスをプロトタイプ継承しているかは`instanceof`演算子を使って判定できます。
@@ -956,10 +958,127 @@ console.log(child instanceof Parent); // => true
 console.log(child instanceof Child); // => true
 ```
 
-### 継承のユースケース
+### 継承のユースケース {#extends-usecase}
 
 ここまでで`extends`キーワードや`super`を使ったプロトタイプ継承の仕組みについてを見ていきました。
 主に仕組みの話が中心であったため、具体的なコードを使った継承のサンプルを見てみましょう。
+
+ここでは値（`value`プロパティ）を更新されたときに指定したコールバック関数を呼び出すクラスを作ることを目標にします。
+現在の値をコンソールへ出力するコールバック関数を登録すれば、`value`プロパティが変化するたびにその結果が自動的にコンソールに表示すると言ったことが実現できます。
+
+「値を更新されたときに指定したコールバック関数を呼び出すクラス」を作れば目的は達成されますが、ここでは継承の練習としてその機能をもっとバラバラに考えてみましょう。
+
+「値（`value`プロパティ）を更新されたとき」というのはアクセッサプロパティのsetterを定義すればできそうです。
+それとは別に「何かが起きた時に指定したコールバック関数を呼び出すクラス」というのも必要そうです。
+
+クラスでは親クラスになるほど概念的（抽象的）なものが多くなり、子クラスほど具体的になる傾向があります。
+概念的な親クラスは必ずしもインスタンス化せずに単純に継承するために定義されることがあります。
+一方、子クラスはインスタンス化して利用するので用途がより明確なものなるためと考えられます。
+
+「値（`value`プロパティ）が更新されたとき」というのは`value`プロパティという部分が具体的です。
+「何かした時にコールバック関数を呼び出すクラス」というのはやや抽象的です。
+
+そのため、「何かした時にコールバック関数を呼び出すクラス」を親クラスとして定義し、
+子クラスとして「値を更新した時にコールバック関数を呼び出すクラス」を定義してみます。
+
+まずは、親クラスとなる「何かした時にコールバック関数を呼び出すクラス」を定義します。
+
+次の`EventEmitter`というクラスを見てみます。
+このクラスはコールバック関数を`addEventLister`メソッドで登録し、
+登録済みのコールバック関数を`emit`メソッドによって呼びだせます。
+
+これによって、`emit`メソッドを呼び出すと登録済みのコールバック関数を呼び出すことができます。
+このようなパターンをObserverパターンと呼び、ブラウザやNode.jsなど多くの実行環境で似た実装が使われています。
+
+{{book.console}}
+```js
+class EventEmitter {
+    constructor() {
+        // 登録済みのイベントハンドラーの状態
+        this.eventHandlers = [];
+    }
+    // `handler`(コールバック関数)を登録する
+    addEventLister(handler) {
+        this.eventHandlers.push(handler);
+    }
+    // 登録済みのイベントハンドラーに対して引数`...args`を渡して呼び出す
+    emit(...args) {
+        this.eventHandlers.forEach(handler => {
+            handler(...args);
+        });
+    }
+}
+
+const event = new EventEmitter();
+// コールバック関数を登録
+event.addEventLister(() => console.log("Hello!"));
+event.addEventLister((...args) => console.log("Hi", ...args));
+// コールバック関数をまとめて呼びだす
+event.emit("a", "b", "c");
+// コールバック関数がそれぞれよびだされ、コンソールには次のように出力される
+// "Hello!"
+// "Hi", "a", "b", "c"
+```
+
+次は、この`EventEmitter`クラスを継承して「値（`value`プロパティ）を更新した時にコールバック関数を呼び出すクラス」を実装します。
+
+次の`ObservableValue`というクラスを見てみます。
+`ObservableValue`は先ほど定義した`EventEmitter`クラスを継承しています。
+これにより、`ObservableValue`クラスのプロトタイプメソッド内では、`EventEmitter`クラスのプロトタイプメソッドを呼び出せます。
+
+`ObservableValue#onChange`メソッドでは継承した`addEventLister`メソッドを使い、値を更新した時のコールバック関数を登録できます。
+また、`value`プロパティのsetterでは、値が実際に更新されているなら登録されたコールバック関数を`emit`メソッドで呼び出しています。
+
+これにより、値が更新される度に新しい値をコンソールに出力するコールバック関数を呼び出す実装ができました。
+
+```js
+class EventEmitter {
+    constructor() {
+        this.eventHandlers = [];
+    }
+    addEventLister(handler) {
+        this.eventHandlers.push(handler);
+    }
+    emit(...args) {
+        this.eventHandlers.forEach(handler => {
+            handler(...args);
+        });
+    }
+}
+
+class ObservableValue extends EventEmitter {
+    constructor(defaultValue) {
+        super();
+        this._value = defaultValue;
+    }
+    // 値が変わったときに呼ばれる`handler`（コールバック関数）を登録する
+    onChange(handler) {
+        this.addEventLister(handler);
+    }
+    get value() {
+        return this._value;
+    }
+    // 値を更新した時にコールバック関数を呼び出すアクセッサプロパティ
+    set value(newValue) {
+        // 値が変わっていない場合は無視する
+        if (this._value === newValue) {
+            return;
+        }
+        this._value = newValue;
+        // 値が変わったらコールバック関数(`handler`)を呼ぶ
+        this.emit(newValue);
+    }
+}
+
+// 1. 初期値は`1`のインスタンスを作成する
+const observable = new ObservableValue(1);
+observable.onChange((newValue) => {
+    // 3. 登録済みのコールバック関数が呼ばれる
+    console.log(newValue); // => 2
+});
+// 2. 値を更新する
+observable.value = 2;
+```
 
 
 [^糖衣構文]: `class`構文でのみしか実現できない機能はなく、読みやすさや分かりやさのために導入された構文という側面もあるためJavaScriptの`class`構文は糖衣構文と呼ばれることがあります。
