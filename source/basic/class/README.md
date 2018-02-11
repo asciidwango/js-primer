@@ -775,7 +775,7 @@ if (instance.hasOwnProperty("method")) {
 
 ## 継承 {#extends}
 
-`extends`キーワードを使うことで既存のクラスの機能を継承できます。
+`extends`キーワードを使うことで既存のクラスの**構造**や**機能**を継承できます。
 ここでの継承とはクラスの機能や構造を引き継いだ新しいクラスを定義することを言います。
 
 ### 継承したクラスの定義 {#class-extends}
@@ -791,6 +791,20 @@ class 子クラス extends 親クラス {
 }
 ```
 
+次のコードでは、`Parent`クラスを継承した`Child`クラスを定義しています。
+子クラスである`Child`クラスのインスタンス化は通常のクラスと同じく`new`演算子を使って行います。
+
+{{book.console}}
+```js
+class Parent {
+
+}
+class Child extends Parent {
+
+}
+const instance = new Child();
+```
+
 ### `super` {#class-super}
 
 `extends`を使って定義した子クラスから親クラスを参照するには`super`というキーワードを利用します。
@@ -804,50 +818,65 @@ class 子クラス extends 親クラス {
 次のコードでは、`Parent`クラスを継承した`Child`クラスのコンストラクタで、`super()`を呼び出しています。
 `super()`は子クラスから親クラスの`constructor`メソッドを呼び出します。（`super()`は子クラスのコンストラクタ以外では書くことができません）
 
+{{book.console}}
 ```js
 // 親クラス
 class Parent {
-    constructor() {
-        console.log("Parentコンストラクタの処理");
+    constructor(...args) {
+        console.log("Parentコンストラクタの処理", ...args);
     }
 }
 // Parentを継承したChildクラスの定義
 class Child extends Parent {
-    constructor() {
+    constructor(...args) {
         // Parentのコンストラクタ処理を呼びだす
-        super();
-        console.log("Childコンストラクタの処理");
+        super(...args);
+        console.log("Childコンストラクタの処理", ...args);
     }
 }
-const child = new Child();
-// "Parentコンストラクタの処理"
-// "Childコンストラクタの処理"
+const child = new Child("引数1", "引数2");
+// "Parentコンストラクタの処理", "引数1", "引数2"
+// "Childコンストラクタの処理", "引数1", "引数2"
 ```
 
-`class`構文でのクラス定義では、`constrctor`メソッド（コンストラクタ）で何も処理を行う必要がない場合は省略できることを紹介しました。
+`class`構文でのクラス定義では、`constrctor`メソッド（コンストラクタ）で何も処理を行わない場合は省略できることを紹介しました。
 これは、継承した子クラスでも同じです。
 
 次のコードでは、`Child`クラスのコンストラクタでは何も処理を行っていません。
 そのため、`Child`クラスの`constructor`メソッドの定義を省略できます。
 
+{{book.console}}
 ```js
-class Parent {
-}
+class Parent {}
+class Child extends Parent {}
+```
+
+このように子クラスで`constructor`を省略した場合は次のように書いた場合と同じ意味になります。
+
+{{book.console}}
+```js
+class Parent {}
 class Child extends Parent {
+    constructor(...args) {
+        super(...args); // 親クラスに引数をそのまま渡す
+    }
 }
 ```
 
-### 継承したクラスのインスタンス化 {#derived-class-instance}
+### コンストラクタの処理順は親クラスから子クラスへ {#constructor-order}
 
-小クラスのインスタンス化には通常のクラス（親クラス）と同じく`new`演算子を使います。
-インスタンス化の方法に関しての違いはありませんが、コンストラクタの処理順は親クラスから子クラスと順番が決まっています。
+コンストラクタの処理順は親クラスから子クラスへと順番が決まっています。
 
-次のコードでは、`Parent`と`Child`でそれぞれインスタンスの`name`プロパティに値を書き込んでいます。
-`class`構文ではかならず`Parent`のコンストラクタ処理（`super()`）を先に行い、その次に`Child`のコンストラクタ処理を行います。
+`class`構文ではかならず親クラスのコンストラクタ処理（`super()`を呼び）を先に行い、その次に子クラスのコンストラクタ処理を行います。
 子クラスのコンストラクタでは、`this`を触る前に`super()`で親クラスのコンストラクタ処理を呼び出さないとSyntaxErrorとなるためです。
+
+次のコードでは、`Parent`と`Child`でそれぞれインスタンス（`this`）の`name`プロパティに値を書き込んでいます。
+子クラスでは先に`super()`を呼び出す前に、`this`に触ることはできません。
+そのため、コンストラクタの処理順は`Parent`から`Child`という順番に限定されます。
 
 <!-- textlint-enable no-js-function-paren -->
 
+{{book.console}}
 ```js
 class Parent {
     constructor() {
@@ -874,6 +903,7 @@ console.log(child.name); // => "Child";
 次のコードでは`extends`キーワードを使い`Parent`クラスを継承した`Child`クラスを定義しています。
 `Parent`クラスでは`method`を定義しているため、これを継承している`Child`クラスのインスタンスからも呼び出せます。
 
+{{book.console}}
 ```js
 class Parent {
     method() {
@@ -884,11 +914,12 @@ class Parent {
 class Child extends Parent {
     // methodの定義はない
 }
+// `Child`のインスタンスは`Parent`のプロトタイプメソッドを継承している
 const instance = new Child();
 instance.method(); // "Parent#method"
 ```
 
-このように、子クラスのインスタンスから親クラスのプロトタイプメソッドもプロトタイプチェーンによって呼びだせます。
+このように、子クラスのインスタンスから親クラスのプロトタイプメソッドもプロトタイプチェーンの仕組みによって呼びだせます。
 
 `extends`によって継承したクラス間でもプロトタイプチェーンの仕組みが働くように`[[Prototype]]`の値が設定されます。
 この例では、`Child.prototype`オブジェクトの`[[Prototype]]`内部プロパティには`Parent.prototype`が設定されます。
@@ -904,10 +935,31 @@ instance.method(); // "Parent#method"
 このようにJavaScriptでは`class`構文と`extends`キーワードを使うことでクラスの"機能"を継承できます。
 継承の仕組みとしてプロトタイプオブジェクトプロトタイプチェーンを使うため、この継承の仕組みを**プロトタイプ継承**と呼びます。
 
+### 継承の判定 {#instanceof}
+
+あるクラスが指定したクラスをプロトタイプ継承しているかは`instanceof`演算子を使って判定できます。
+
+次のコードでは、`Child`のインスタンスは`Child`クラスと`Parent`クラスを継承したオブジェクトであることを確認しています。
+
+{{book.console}}
+```js
+class Parent {}
+class Child extends Parent {}
+
+const parent = new Parent();
+const child = new Child();
+// `Parent`のインスタンスは`Parent`のみを継承したインスタンス
+console.log(parent instanceof Parent); // => true
+console.log(parent instanceof Child); // => false
+// `Child`のインスタンスは`Child`と`Parent`を継承したインスタンス
+console.log(child instanceof Parent); // => true
+console.log(child instanceof Child); // => true
+```
+
 ### 継承のユースケース
 
-ここまでで`extends`キーワードや`super`を使った継承について見てきました。
-主に仕組みの話が中心であったため、具体的な継承を使った小さなコードをみてみましょう。
+ここまでで`extends`キーワードや`super`を使ったプロトタイプ継承の仕組みについてを見ていきました。
+主に仕組みの話が中心であったため、具体的なコードを使った継承のサンプルを見てみましょう。
 
 
 [^糖衣構文]: `class`構文でのみしか実現できない機能はなく、読みやすさや分かりやさのために導入された構文という側面もあるためJavaScriptの`class`構文は糖衣構文と呼ばれることがあります。
