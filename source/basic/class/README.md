@@ -935,7 +935,42 @@ instance.method(); // "Parent#method"
 このようにJavaScriptでは`class`構文と`extends`キーワードを使うことでクラスの"機能"を継承できます。
 継承の仕組みとしてプロトタイプオブジェクトプロトタイプチェーンを使うため、この継承の仕組みを**プロトタイプ継承**と呼びます。
 
-<!-- TODO: 2から3を呼びだす例 -->
+### `super`プロパティ {#super-property}
+
+<!-- textlint-disable no-js-function-paren -->
+
+子クラスから親クラスのコンストラクタ処理を呼び出すには`super()`を使います。
+同じように、子クラスのプロトタイプメソッドからは、`super.プロパティ名`で親クラスのプロトタイプメソッドを参照できます。
+
+次のコードでは、`Child#method`の中で`super.method()`と書くことで`Parent#method`を呼び出しています。
+このように、子クラスから継承元の親クラスのプロトタイプメソッドは`super.プロパティ名`で参照できます。
+
+<!-- textlint-enable no-js-function-paren -->
+
+{{book.console}}
+```js
+class Parent {
+    method() {
+        console.log("Parent#method");
+    }
+}
+class Child extends Parent {
+    method() {
+        // `this.method()`だと自分(`this`)のmethodを呼び出して無限ループする
+        // そのため明示的に`super.method()`とParent#methodを呼びだす
+        super.method();
+        console.log("Child#method");
+    }
+}
+const instance = new Child();
+instance.method(); 
+// コンソールには次のように出力される
+// "Parent#method"
+// "Child#method"
+```
+
+プロトタイプチェーンでは、インスタンス -> `Child` -> `Parent`と継承関係をさかのぼるようにメソッドを探索すると紹介しました。
+そのため`Child#method`が定義されている場合に、`Child`のインスタンスから`method`を呼び出すと`Child#method`が呼び出されます。
 
 ### 継承の判定 {#instanceof}
 
@@ -957,6 +992,15 @@ console.log(parent instanceof Child); // => false
 console.log(child instanceof Parent); // => true
 console.log(child instanceof Child); // => true
 ```
+
+<!-- Note:
+
+- `instanceof`演算子は`[[Prototype]]`プロパティを見ている
+- <https://tc39.github.io/ecma262/#sec-ordinaryhasinstance>
+- `Symbol.hasInstance`によって詳細は変わるため絶対とは言い切れない
+- <https://tc39.github.io/ecma262/#sec-symbol.hasinstance>
+
+-->
 
 ### 継承のユースケース {#extends-usecase}
 
