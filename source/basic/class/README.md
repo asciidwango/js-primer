@@ -546,6 +546,7 @@ console.log(arrayLike.items.join(", ")); // => "1, 2, , , "
 これらの2つの方法を同時に使い、1つのクラスに同じ名前でメソッドを定義した場合はどうなるでしょうか？
 次の`ConflictClass`ではプロトタイプメソッドとインスタンスに対して同じ`method`という名前のメソッドを定義しています。
 
+{{book.console}}
 ```js
 class ConflictClass {
     constructor() {
@@ -568,6 +569,7 @@ conflict.method(); // どちらの`method`が呼び出される？
 結論から述べるとこの場合はインスタンス自身に定義した`method`が呼び出されます。
 このとき、インスタンスの`method`プロパティを`delete`演算子で削除すると、今度はプロトタイプメソッドの`method`が呼び出されます。
 
+{{book.console}}
 ```js
 class ConflictClass {
     constructor() {
@@ -630,6 +632,7 @@ console.log(typeof MyClass.prototype === "object"); // => true
 また、クラスには`constructor`メソッド（コンストラクタ）が必ず定義されます。
 この`constructor`プロパティはクラス自身を参照します。
 
+{{book.console}}
 ```js
 class MyClass {
     method() { }
@@ -647,6 +650,7 @@ console.log(MyClass.prototype.constructor === MyClass); // => true
 `class`構文で定義したプロトタイプメソッドはプロトタイプオブジェクトに定義されます。
 しかし、インスタンス自身にはメソッドが定義されていないのに、インスタンスからクラスのプロトタイプメソッドを呼び出すことができます。
 
+{{book.console}}
 ```js
 class MyClass {
     method() {
@@ -672,6 +676,7 @@ instance.method(); // "プロトタイプのメソッド"
 しかし、`Object.getPrototypeOf(object)`メソッドで`object`の`[[Prototype]]`内部プロパティを読み取れます。
 次のコードでは、インスタンスの`[[Prototype]]`内部プロパティがクラスのプロトタイプオブジェクトを参照していることを確認できます。
 
+{{book.console}}
 ```js
 class MyClass {
     method() {
@@ -714,6 +719,7 @@ console.log(Prototype === MyClass.prototype); // => true
 次のコードでは、インスタンスオブジェクト自身は`method`プロパティを持っていません。
 そのため、実際参照してるのはクラスのプロトタイプオブジェクトの`method`プロパティです。
 
+{{book.console}}
 ```js
 class MyClass {
     method() {
@@ -733,6 +739,7 @@ console.log(instance.method === Prototype.method); // => true
 
 プロトタイプチェーンの仕組みを擬似的なコードとして表現すると次のような動きをしています。
 
+{{book.console}}
 ```js
 // プロトタイプチェーンの擬似的な動作の擬似的なコード
 class MyClass {
