@@ -956,17 +956,17 @@ class Parent {
 }
 class Child extends Parent {
     method() {
+        console.log("Child#method");
         // `this.method()`だと自分(`this`)のmethodを呼び出して無限ループする
         // そのため明示的に`super.method()`とParent#methodを呼びだす
         super.method();
-        console.log("Child#method");
     }
 }
 const instance = new Child();
 instance.method(); 
 // コンソールには次のように出力される
-// "Parent#method"
 // "Child#method"
+// "Parent#method"
 ```
 
 プロトタイプチェーンでは、インスタンス -> `Child` -> `Parent`と継承関係をさかのぼるようにメソッドを探索すると紹介しました。
