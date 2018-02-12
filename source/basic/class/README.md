@@ -546,6 +546,7 @@ console.log(arrayLike.items.join(", ")); // => "1, 2, , , "
 これらの2つの方法を同時に使い、1つのクラスに同じ名前でメソッドを定義した場合はどうなるでしょうか？
 次の`ConflictClass`ではプロトタイプメソッドとインスタンスに対して同じ`method`という名前のメソッドを定義しています。
 
+{{book.console}}
 ```js
 class ConflictClass {
     constructor() {
@@ -568,6 +569,7 @@ conflict.method(); // どちらの`method`が呼び出される？
 結論から述べるとこの場合はインスタンス自身に定義した`method`が呼び出されます。
 このとき、インスタンスの`method`プロパティを`delete`演算子で削除すると、今度はプロトタイプメソッドの`method`が呼び出されます。
 
+{{book.console}}
 ```js
 class ConflictClass {
     constructor() {
@@ -630,6 +632,7 @@ console.log(typeof MyClass.prototype === "object"); // => true
 また、クラスには`constructor`メソッド（コンストラクタ）が必ず定義されます。
 この`constructor`プロパティはクラス自身を参照します。
 
+{{book.console}}
 ```js
 class MyClass {
     method() { }
@@ -647,6 +650,7 @@ console.log(MyClass.prototype.constructor === MyClass); // => true
 `class`構文で定義したプロトタイプメソッドはプロトタイプオブジェクトに定義されます。
 しかし、インスタンス自身にはメソッドが定義されていないのに、インスタンスからクラスのプロトタイプメソッドを呼び出すことができます。
 
+{{book.console}}
 ```js
 class MyClass {
     method() {
@@ -672,6 +676,7 @@ instance.method(); // "プロトタイプのメソッド"
 しかし、`Object.getPrototypeOf(object)`メソッドで`object`の`[[Prototype]]`内部プロパティを読み取れます。
 次のコードでは、インスタンスの`[[Prototype]]`内部プロパティがクラスのプロトタイプオブジェクトを参照していることを確認できます。
 
+{{book.console}}
 ```js
 class MyClass {
     method() {
@@ -714,6 +719,7 @@ console.log(Prototype === MyClass.prototype); // => true
 次のコードでは、インスタンスオブジェクト自身は`method`プロパティを持っていません。
 そのため、実際参照してるのはクラスのプロトタイプオブジェクトの`method`プロパティです。
 
+{{book.console}}
 ```js
 class MyClass {
     method() {
@@ -733,6 +739,7 @@ console.log(instance.method === Prototype.method); // => true
 
 プロトタイプチェーンの仕組みを擬似的なコードとして表現すると次のような動きをしています。
 
+{{book.console}}
 ```js
 // プロトタイプチェーンの擬似的な動作の擬似的なコード
 class MyClass {
@@ -772,6 +779,362 @@ if (instance.hasOwnProperty("method")) {
 - しかし、`class`構文を利用する場合にはこれを意識して触ることはありません
 
 -->
+
+## 継承 {#extends}
+
+`extends`キーワードを使うことで既存のクラスを継承できます。
+ここでの継承とはクラスの**構造**や**機能**を引き継いだ新しいクラスを定義することを言います。
+
+### 継承したクラスの定義 {#class-extends}
+
+`extends`キーワードを使って既存のクラスを継承した新しいクラスを定義してみます。
+`class`構文の右辺に`extends`キーワードで継承元となる**親クラス**（基底クラス）を指定することで、
+親クラスを継承した**子クラス**（派生クラス）を定義できます。
+
+<!-- doctest:disable -->
+```js
+class 子クラス extends 親クラス {
+
+}
+```
+
+次のコードでは、`Parent`クラスを継承した`Child`クラスを定義しています。
+子クラスである`Child`クラスのインスタンス化は通常のクラスと同じく`new`演算子を使って行います。
+
+{{book.console}}
+```js
+class Parent {
+
+}
+class Child extends Parent {
+
+}
+const instance = new Child();
+```
+
+### `super` {#class-super}
+
+`extends`を使って定義した子クラスから親クラスを参照するには`super`というキーワードを利用します。
+もっともシンプルな`super`を使う例としてコンストラクタの処理を見ていきます。
+
+`class`構文でも紹介しましたが、クラスは必ず`constrctor`メソッド（コンストラクタ）をもちます。
+これは、継承した子クラスでも同じです。
+
+<!-- textlint-disable no-js-function-paren -->
+
+次のコードでは、`Parent`クラスを継承した`Child`クラスのコンストラクタで、`super()`を呼び出しています。
+`super()`は子クラスから親クラスの`constructor`メソッドを呼び出します。（`super()`は子クラスのコンストラクタ以外では書くことができません）
+
+{{book.console}}
+```js
+// 親クラス
+class Parent {
+    constructor(...args) {
+        console.log("Parentコンストラクタの処理", ...args);
+    }
+}
+// Parentを継承したChildクラスの定義
+class Child extends Parent {
+    constructor(...args) {
+        // Parentのコンストラクタ処理を呼びだす
+        super(...args);
+        console.log("Childコンストラクタの処理", ...args);
+    }
+}
+const child = new Child("引数1", "引数2");
+// "Parentコンストラクタの処理", "引数1", "引数2"
+// "Childコンストラクタの処理", "引数1", "引数2"
+```
+
+`class`構文でのクラス定義では、`constrctor`メソッド（コンストラクタ）で何も処理を行わない場合は省略できることを紹介しました。
+これは、継承した子クラスでも同じです。
+
+次のコードでは、`Child`クラスのコンストラクタでは何も処理を行っていません。
+そのため、`Child`クラスの`constructor`メソッドの定義を省略できます。
+
+{{book.console}}
+```js
+class Parent {}
+class Child extends Parent {}
+```
+
+このように子クラスで`constructor`を省略した場合は次のように書いた場合と同じ意味になります。
+
+{{book.console}}
+```js
+class Parent {}
+class Child extends Parent {
+    constructor(...args) {
+        super(...args); // 親クラスに引数をそのまま渡す
+    }
+}
+```
+
+### コンストラクタの処理順は親クラスから子クラスへ {#constructor-order}
+
+コンストラクタの処理順は親クラスから子クラスへと順番が決まっています。
+
+`class`構文ではかならず親クラスのコンストラクタ処理（`super()`を呼び）を先に行い、その次に子クラスのコンストラクタ処理を行います。
+子クラスのコンストラクタでは、`this`を触る前に`super()`で親クラスのコンストラクタ処理を呼び出さないとSyntaxErrorとなるためです。
+
+次のコードでは、`Parent`と`Child`でそれぞれインスタンス（`this`）の`name`プロパティに値を書き込んでいます。
+子クラスでは先に`super()`を呼び出す前に、`this`に触ることはできません。
+そのため、コンストラクタの処理順は`Parent`から`Child`という順番に限定されます。
+
+<!-- textlint-enable no-js-function-paren -->
+
+{{book.console}}
+```js
+class Parent {
+    constructor() {
+        this.name = "Parent";
+    }
+}
+class Child extends Parent {
+    constructor() {
+        // 子クラスでは`super()`を`this`に触る前に呼び出さなければならない
+        super();
+        // 子クラスのコンストラクタ処理
+        // 親クラスで書き込まれた`name`は上書きされる
+        this.name = "Child";
+    }
+}
+const parent = new Parent();
+console.log(parent.name); // => "Parent";
+const child = new Child();
+console.log(child.name); // => "Child";
+```
+
+### プロトタイプ継承 {#prototype-inheritance}
+
+次のコードでは`extends`キーワードを使い`Parent`クラスを継承した`Child`クラスを定義しています。
+`Parent`クラスでは`method`を定義しているため、これを継承している`Child`クラスのインスタンスからも呼び出せます。
+
+{{book.console}}
+```js
+class Parent {
+    method() {
+        console.log("Parent#method");
+    }
+}
+// `Parent`を継承した`Child`を定義
+class Child extends Parent {
+    // methodの定義はない
+}
+// `Child`のインスタンスは`Parent`のプロトタイプメソッドを継承している
+const instance = new Child();
+instance.method(); // "Parent#method"
+```
+
+このように、子クラスのインスタンスから親クラスのプロトタイプメソッドもプロトタイプチェーンの仕組みによって呼びだせます。
+
+`extends`によって継承したクラス間でもプロトタイプチェーンの仕組みが働くように`[[Prototype]]`の値が設定されます。
+この例では、`Child.prototype`オブジェクトの`[[Prototype]]`内部プロパティには`Parent.prototype`が設定されます。
+
+これにより、プロパティを探索する場合には次のような順番でオブジェクトを探索しています。
+
+1. `instance`オブジェクト自身
+2. `Child.prototype`（`instance`オブジェクトの`[[Prototype]]`の参照先）
+3. `Parent.prototype`（`Child.prototype`オブジェクトの`[[Prototype]]`の参照先）
+
+このプロトタイプチェーンの仕組みより、`method`プロパティは`Parent.prototype`オブジェクトに定義されたものを参照します。
+
+このようにJavaScriptでは`class`構文と`extends`キーワードを使うことでクラスの"機能"を継承できます。
+継承の仕組みとしてプロトタイプオブジェクトプロトタイプチェーンを使うため、この継承の仕組みを**プロトタイプ継承**と呼びます。
+
+### `super`プロパティ {#super-property}
+
+<!-- textlint-disable no-js-function-paren -->
+
+子クラスから親クラスのコンストラクタ処理を呼び出すには`super()`を使います。
+同じように、子クラスのプロトタイプメソッドからは、`super.プロパティ名`で親クラスのプロトタイプメソッドを参照できます。
+
+次のコードでは、`Child#method`の中で`super.method()`と書くことで`Parent#method`を呼び出しています。
+このように、子クラスから継承元の親クラスのプロトタイプメソッドは`super.プロパティ名`で参照できます。
+
+<!-- textlint-enable no-js-function-paren -->
+
+{{book.console}}
+```js
+class Parent {
+    method() {
+        console.log("Parent#method");
+    }
+}
+class Child extends Parent {
+    method() {
+        console.log("Child#method");
+        // `this.method()`だと自分(`this`)のmethodを呼び出して無限ループする
+        // そのため明示的に`super.method()`とParent#methodを呼びだす
+        super.method();
+    }
+}
+const instance = new Child();
+instance.method(); 
+// コンソールには次のように出力される
+// "Child#method"
+// "Parent#method"
+```
+
+プロトタイプチェーンでは、インスタンス -> `Child` -> `Parent`と継承関係をさかのぼるようにメソッドを探索すると紹介しました。
+そのため`Child#method`が定義されている場合に、`Child`のインスタンスから`method`を呼び出すと`Child#method`が呼び出されます。
+
+### 継承の判定 {#instanceof}
+
+あるクラスが指定したクラスをプロトタイプ継承しているかは`instanceof`演算子を使って判定できます。
+
+次のコードでは、`Child`のインスタンスは`Child`クラスと`Parent`クラスを継承したオブジェクトであることを確認しています。
+
+{{book.console}}
+```js
+class Parent {}
+class Child extends Parent {}
+
+const parent = new Parent();
+const child = new Child();
+// `Parent`のインスタンスは`Parent`のみを継承したインスタンス
+console.log(parent instanceof Parent); // => true
+console.log(parent instanceof Child); // => false
+// `Child`のインスタンスは`Child`と`Parent`を継承したインスタンス
+console.log(child instanceof Parent); // => true
+console.log(child instanceof Child); // => true
+```
+
+<!-- Note:
+
+- `instanceof`演算子は`[[Prototype]]`プロパティを見ている
+- <https://tc39.github.io/ecma262/#sec-ordinaryhasinstance>
+- `Symbol.hasInstance`によって詳細は変わるため絶対とは言い切れない
+- <https://tc39.github.io/ecma262/#sec-symbol.hasinstance>
+
+-->
+
+### 継承のユースケース {#extends-usecase}
+
+ここまでで`extends`キーワードや`super`を使ったプロトタイプ継承の仕組みについてを見ていきました。
+主に仕組みの話が中心であったため、具体的なコードを使った継承のサンプルを見てみましょう。
+
+継承のサンプルとして値（`value`プロパティ）を更新されたときに指定したコールバック関数を呼び出すクラスを作ることを目標にします。
+現在の値をコンソールへ出力するコールバック関数を登録すれば、`value`プロパティが変化するたびにその結果が自動的にコンソールに表示すると言ったことが実現できます。
+
+「値を更新されたときに指定したコールバック関数を呼び出すクラス」を作れば目的は達成されますが、ここでは継承の練習としてその機能をもっとバラバラに考えてみましょう。
+
+「値（`value`プロパティ）を更新されたとき」というのはアクセッサプロパティのsetterを定義すればできそうです。
+それとは別に「何かが起きた時に指定したコールバック関数を呼び出すクラス」というのも必要そうです。
+
+クラスでは親クラスになるほど概念的（抽象的）なものが多くなり、子クラスほど具体的になる傾向があります。
+概念的な親クラスはインスタンス化せずに単純に継承するために定義されることがあります。
+一方、子クラスはインスタンス化して利用するので用途がより明確なものなるため、このような傾向が考えられます。
+
+「値（`value`プロパティ）が更新されたとき」というのは`value`プロパティという部分が具体的です。
+「何かした時にコールバック関数を呼び出すクラス」というのはやや抽象的です。
+
+そのため、「何かした時にコールバック関数を呼び出すクラス」を親クラスとして定義し、
+子クラスとして「値を更新した時にコールバック関数を呼び出すクラス」を定義してみます。
+
+- 親クラス: 何かした時にコールバック関数を呼び出すクラス
+- 子クラス: 値を更新した時にコールバック関数を呼び出すクラス
+
+まずは、親クラスとなる「何かした時にコールバック関数を呼び出すクラス」を定義します。
+
+次の`EventEmitter`というクラスを見てみます。
+このクラスはコールバック関数を`addEventLister`メソッドで登録し、
+登録済みのコールバック関数を`emit`メソッドによって呼びだせます。
+
+これによって、`emit`メソッドを呼び出すと登録済みのコールバック関数を呼び出すことができます。
+このようなパターンをObserverパターンと呼び、ブラウザやNode.jsなど多くの実行環境で似た実装が使われています。
+
+{{book.console}}
+```js
+class EventEmitter {
+    constructor() {
+        // 登録済みのイベントハンドラーの状態
+        this.eventHandlers = [];
+    }
+    // `handler`(コールバック関数)を登録する
+    addEventLister(handler) {
+        this.eventHandlers.push(handler);
+    }
+    // 登録済みのイベントハンドラーに対して引数`...args`を渡して呼び出す
+    emit(...args) {
+        this.eventHandlers.forEach(handler => {
+            handler(...args);
+        });
+    }
+}
+
+const event = new EventEmitter();
+// コールバック関数を登録
+event.addEventLister(() => console.log("Hello!"));
+event.addEventLister((...args) => console.log("Hi", ...args));
+// コールバック関数をまとめて呼びだす
+event.emit("a", "b", "c");
+// コールバック関数がそれぞれよびだされ、コンソールには次のように出力される
+// "Hello!"
+// "Hi", "a", "b", "c"
+```
+
+次は、この`EventEmitter`クラスを継承して「値（`value`プロパティ）を更新した時にコールバック関数を呼び出すクラス」を実装します。
+
+次の`ObservableValue`というクラスを見てみます。
+`ObservableValue`は先ほど定義した`EventEmitter`クラスを継承しています。
+これにより、`ObservableValue`クラスのプロトタイプメソッド内では、`EventEmitter`クラスのプロトタイプメソッドを呼び出せます。
+
+`ObservableValue#onChange`メソッドでは継承した`addEventLister`メソッドを使い、値を更新した時のコールバック関数を登録できます。
+また、`value`プロパティのsetterでは、値が実際に更新されているなら登録されたコールバック関数を`emit`メソッドで呼び出しています。
+
+これにより、値が更新される度に新しい値をコンソールに出力するコールバック関数を呼び出す実装ができました。
+
+```js
+class EventEmitter {
+    constructor() {
+        this.eventHandlers = [];
+    }
+    addEventLister(handler) {
+        this.eventHandlers.push(handler);
+    }
+    emit(...args) {
+        this.eventHandlers.forEach(handler => {
+            handler(...args);
+        });
+    }
+}
+
+class ObservableValue extends EventEmitter {
+    constructor(defaultValue) {
+        super();
+        this._value = defaultValue;
+    }
+    // 値が変わったときに呼ばれる`handler`（コールバック関数）を登録する
+    onChange(handler) {
+        this.addEventLister(handler);
+    }
+    get value() {
+        return this._value;
+    }
+    // 値を更新した時にコールバック関数を呼び出すアクセッサプロパティ
+    set value(newValue) {
+        const prevValue = this._value;
+        // 値が変わっていない場合は無視する
+        if (prevValue === newValue) {
+            return;
+        }
+        this._value = newValue;
+        // 値が変わったらコールバック関数(`handler`)を呼ぶ
+        this.emit(prevValue, newValue);
+    }
+}
+
+// 1. 初期値は`1`のインスタンスを作成する
+const observable = new ObservableValue(1);
+observable.onChange((prevValue, newValue) => {
+    // 3. 登録済みのコールバック関数が呼ばれる
+    console.log(prevValue); // => 1
+    console.log(newValue); // => 2
+});
+// 2. 値を更新する
+observable.value = 2;
+```
 
 
 [^糖衣構文]: `class`構文でのみしか実現できない機能はなく、読みやすさや分かりやさのために導入された構文という側面もあるためJavaScriptの`class`構文は糖衣構文と呼ばれることがあります。

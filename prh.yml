@@ -261,6 +261,10 @@ rules:
   - expected: 関数内に
     patterns: 
       - 関数中に
+  - expected: 子クラス
+    patterns:
+      - 小クラス
+
 # 文体
   - expected: どのように
     patterns:
