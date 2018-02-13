@@ -2,7 +2,7 @@
 author: azu
 ---
 
-# JavaScriptとは
+# JavaScriptとは {#what-is-javascript}
 
 JavaScriptはウェブブラウザ、Node.jsを始め、今はIoT（Internet of Things）デバイスなど幅広い環境で動作する言語となっています。
 
@@ -20,7 +20,7 @@ JavaScriptという言語は、[Ecma International][]によって標準化され
 
 この章では、そのような実行環境に依存しないJavaScriptの機能について学んでいきます。
 
-## JavaScriptってどのような言語？
+## JavaScriptってどのような言語？ {#about-javascript}
 
 JavaScriptは、C、Java、Self、Schemeなどの言語の影響を受けています。
 
