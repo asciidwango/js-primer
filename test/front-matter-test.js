@@ -12,7 +12,7 @@ describe("front-matter", function() {
         `${sourceDir}/**/*.md`,
         `!${sourceDir}/**/node_modules{,/**}`,
         // 目次は除く
-        `!${sourceDir}/index.html.md`,
+        `!${sourceDir}/index.md`,
         `!${sourceDir}/README.md`,
         `!${sourceDir}/OUTLINE.md`,
         `!${sourceDir}/**/OUTLINE.md`,
