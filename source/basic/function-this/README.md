@@ -382,7 +382,7 @@ say(); // => TypeError: Cannot read property 'fullName' of undefined
 
 もうひとつは、`this`の値を指定して関数を呼べるメソッドで関数を実行する方法です。
 
-### 対処法: call、apply、bindメソッド {#call-apply-bind}
+#### 対処法: call、apply、bindメソッド {#call-apply-bind}
 
 関数やメソッドの`this`を明示的に指定して関数を実行する方法もあります。
 `Function`（関数オブジェクト）には`call`、`apply`、`bind`といった明示的に`this`を指定して関数を実行するメソッドが用意されています。
@@ -643,7 +643,7 @@ console.log(prefixedStrings); // => ["pre-a", "pre-b", "pre-c"]
 そもそもの問題としてメソッド呼び出しとその中でのコールバック関数における`this`が変わってしまうのが問題でした。
 ES2015では`this`を変えずにコールバック関数を定義する方法として、Arrow Functionが導入されました。
 
-### 対処法: Arrow Functionでコールバック関数を扱う {#arrow-function-callback}
+#### 対処法: Arrow Functionでコールバック関数を扱う {#arrow-function-callback}
 
 通常の関数やメソッドは呼び出し時に暗黙的に`this`の値を受け取り、関数内の`this`はその値を参照します。
 一方、Arrow Functionはこの暗黙的な`this`の値を受け取りません。
