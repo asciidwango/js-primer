@@ -900,7 +900,7 @@ console.log(object.method.call("THAT")); // => "THAT"
 コールバック関数における`this`はArrow Functionを使うことで分かりやすく解決できます。
 この背景にはArrow Functionで定義した関数は`this`を持たないという性質があります。
 
-[^awbjs]: ES 2015の仕様策定者であるAllen Wirfs-Brock‏氏もただの関数においては`this`を使うべきではないと述べている。<https://twitter.com/awbjs/status/938272440085446657>;
+[^awbjs]: ES 2015の仕様編集者であるAllen Wirfs-Brock‏氏もただの関数においては`this`を使うべきではないと述べている。<https://twitter.com/awbjs/status/938272440085446657>;
 [JavaScriptとは]: ../introduction/README.md
 [関数と宣言]: ../function-declaration/README.md
 [関数とスコープ]: ../function-scope/README.md
