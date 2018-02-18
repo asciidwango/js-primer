@@ -174,6 +174,7 @@ ECMAScriptにおいては策定プロセスという形でどのような段階�
 [^2]: [Inactive Proposals](https://github.com/tc39/proposals/blob/master/inactive-proposals.md)に策定を中止したプロポーザルの一覧が公開されています。
 [^process]: この策定プロセスは<https://tc39.github.io/process-document/>に詳細が書かれています。
 [^ES4]: ECMAScript 4は複雑で大きな変更が含まれており、合意を得ることできずに仕様策定が破棄されました。
+
 [Ecma International]: http://www.ecma-international.org/  "Ecma International"
 [Standard ECMA-262]: https://www.ecma-international.org/publications/standards/Ecma-262.htm "Standard ECMA-262"
 [tc39/proposals]: https://github.com/tc39/proposals  "tc39/proposals: Tracking ECMAScript Proposals"
