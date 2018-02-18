@@ -141,6 +141,11 @@ JavaScriptは広く使われているため、いけんもさまざまです。
 基本的にProposalの進捗とそのログには事実です。
 このような事実を踏まると応用が聞きます。
 
+策定プロセスを知ることをは知識そのものよりも調べ方を知ることが重要であるためです。
+JavaScriptと一言にいっても今はECMAScript、ブラウザ、Node.js、WebAssembly、WebGL、WebRTCなどかなり幅広い分野があります。
+そのためすべてのことを知っている必要性はありませんし知っている人もおそらくはいないでしょう。
+
+このような状況下においては、知識そのものよりもそれについて知りたいと思ったときに調べる方法を持っていることが重要です。
 
 [^1]: ES2015の仕様編集者であるAllen Wirfs-Brock氏の書いた[Programming Language Standardization](http://wirfs-brock.com/allen/files/papers/standpats-asianplop2016.pdf)に詳細が書かれています。
 [^2]: [Inactive Proposals](https://github.com/tc39/proposals/blob/master/inactive-proposals.md)に策定を中止したプロポーザルの一覧が公開されています。
