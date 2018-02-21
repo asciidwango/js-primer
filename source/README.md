@@ -33,7 +33,7 @@
         - Symbol
     - Proxy/Reflect API
     - [非推奨の機能](./basic/bad-parts/README.md)
-    - ECMAScript策定プロセス
+    - [ECMAScript](./basic/ecmascript/README.md)
 - [第2部: 応用編（ユースケース）](./use-case/README.md)
     - モジュール
     - [Ajaxで通信](./use-case/ajaxapp/README.md)

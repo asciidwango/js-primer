@@ -1000,7 +1000,7 @@ console.log(child instanceof Parent); // => true
 console.log(child instanceof Child); // => true
 ```
 
-<!-- Note:
+<!-- Note: instanceof演算子とは`[[Prototype]]`プロパティ
 
 - `instanceof`演算子は`[[Prototype]]`プロパティを見ている
 - <https://tc39.github.io/ecma262/#sec-ordinaryhasinstance>

@@ -840,7 +840,7 @@ console.log(fn()); // グローバルオブジェクト
 fn.call({}); // グローバルオブジェクト
 ```
 
-最初に述べたよう`function`キーワードで定義した関数は呼び出し時に、ベースオブジェクトが暗黙的な引数のように`this`の値として渡されます。
+最初に述べたように`function`キーワードで定義した関数は呼び出し時に、ベースオブジェクトが暗黙的な引数のように`this`の値として渡されます。
 一方、Arrow Functionの関数は呼び出し時に`this`を受け取らずに、定義時のArrow Functionにおける`this`の参照先が静的に決定されます。
 
 <!-- textlint-disable -->
@@ -900,7 +900,7 @@ console.log(object.method.call("THAT")); // => "THAT"
 コールバック関数における`this`はArrow Functionを使うことで分かりやすく解決できます。
 この背景にはArrow Functionで定義した関数は`this`を持たないという性質があります。
 
-[^awbjs]: ES 2015の仕様策定者であるAllen Wirfs-Brock‏氏もただの関数においては`this`を使うべきではないと述べている。<https://twitter.com/awbjs/status/938272440085446657>;
+[^awbjs]: ES 2015の仕様編集者であるAllen Wirfs-Brock‏氏もただの関数においては`this`を使うべきではないと述べている。<https://twitter.com/awbjs/status/938272440085446657>;
 [JavaScriptとは]: ../introduction/README.md
 [関数と宣言]: ../function-declaration/README.md
 [関数とスコープ]: ../function-scope/README.md

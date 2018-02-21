@@ -264,6 +264,9 @@ rules:
   - expected: 子クラス
     patterns:
       - 小クラス
+  - expected: されています
+    patterns:
+      - されいます
 
 # 文体
   - expected: どのように

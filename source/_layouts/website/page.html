@@ -1,28 +1,35 @@
-{% extends template.self %}
-{% block head %}
-{{ super() }}
-<meta name="google-site-verification" content="bMotEbgYwkzA3k4PkuyK_NUdz0bKh-Phz0oUwNmRSVo"/>
+{% extends template.self %} {% block head %} {{ super() }}
+<meta name="google-site-verification" content="bMotEbgYwkzA3k4PkuyK_NUdz0bKh-Phz0oUwNmRSVo" />
 <style>
     /* DocSearch
     https://blog.uilicious.com/gitbook-made-better-with-algolia-docsearch-ff1b909ddb0b */
+    .book {
+        overflow: hidden;
+    }
+
     .book-summary {
         overflow-y: inherit;
     }
 
-    nav[role="navigation"], .summary {
+    nav[role="navigation"],
+    .summary {
         height: 100%;
     }
-    .summary{
+
+    .summary {
         overflow-y: auto;
     }
 
     /* deny access chapter */
-    .summary li.chapter > span {
+
+    .summary li.chapter>span {
         cursor: not-allowed;
         opacity: .3;
     }
 
     /* console ui */
+
+
     .mirror-console-attach-button-wrapper {
         margin-top: -1.275em;
         margin-bottom: 1.275em
