@@ -245,16 +245,16 @@ const インスタンス = new クラス();
 ```
 
 クラスのプロトタイプメソッド定義では、オブジェクトにおけるメソッドとは異なり`key : value`のように`:`区切りでメソッドを定義できないことに注意してください。
-つまり、次のような書き方はSyntax Errorとなります。
+つまり、次のような書き方は構文エラー（`SyntaxError`）となります。
 
 <!-- textlint-disable -->
 <!-- doctest:disable -->
 ```js
 // クラスでは次のようにメソッドを定義できない
 class クラス {
-   // Syntax Error
+   // SyntaxError
    メソッド: () => {}
-   // Syntax Error
+   // SyntaxError
    メソッド: function(){}
 }
 ```
