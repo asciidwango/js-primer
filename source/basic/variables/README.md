@@ -74,7 +74,7 @@ var es6; // OK: 数字は先頭以外なら利用できる
 var valid日本語; // OK: 先頭以外なら一部Unicode文字も利用可能
 ```
 
-次のような変数は上記のルールに反するため、構文エラー（`Syntax Error`）となります。
+次のような変数は上記のルールに反するため、構文エラー（`SyntaxError`）となります。
 
 <!-- doctest:disable -->
 ```js
