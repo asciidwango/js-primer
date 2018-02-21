@@ -70,7 +70,7 @@ JavaScriptでは変数名として使える識別子には次のルールがあ�
 var $; // OK: $から開始できる
 var _title; // OK: _から開始できる
 var jquery; // OK: アルファベット
-var es6; // OK: 数字は先頭以外なら利用できる
+var es2015; // OK: 数字は先頭以外なら利用できる
 var valid日本語; // OK: 先頭以外なら一部Unicode文字も利用可能
 ```
 
