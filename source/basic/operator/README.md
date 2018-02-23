@@ -326,7 +326,7 @@ null == undefined; // => true
 {{book.console}}
 ```js
 const value = null; /* または undefined */
-if (value == null || value === undefined) {
+if (value === null || value === undefined) {
     console.log("valueがnullまたはundefinedである場合の処理");
 }
 // == で書いた場合
