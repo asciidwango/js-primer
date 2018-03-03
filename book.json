@@ -10,7 +10,7 @@
   "plugins": [
     "-search",
     "-lunr",
-    "docsearch-temp",
+    "docsearch",
     "include-codeblock",
     "anchors",
     "edit-link",
