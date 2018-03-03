@@ -566,7 +566,7 @@ console.log(arrayLike.items.join(", ")); // => "1, 2, , , "
 ```js
 class ConflictClass {
     constructor() {
-        // インスタンス自身に`method`を定義
+        // インスタンスオブジェクトに`method`を定義
         this.method = () => {
             console.log("インスタンスオブジェクトのメソッド");
         };
@@ -582,7 +582,7 @@ const conflict = new ConflictClass();
 conflict.method(); // どちらの`method`が呼び出される？
 ```
 
-結論から述べるとこの場合はインスタンス自身に定義した`method`が呼び出されます。
+結論から述べるとこの場合はインスタンスオブジェクトに定義した`method`が呼び出されます。
 このとき、インスタンスの`method`プロパティを`delete`演算子で削除すると、今度はプロトタイプメソッドの`method`が呼び出されます。
 
 {{book.console}}
@@ -662,7 +662,7 @@ console.log(MyClass.prototype.constructor === MyClass); // => true
 ## プロトタイプチェーン {#prototype-chain}
 
 `class`構文で定義したプロトタイプメソッドはプロトタイプオブジェクトに定義されます。
-しかし、インスタンス自身にはメソッドが定義されていないのに、インスタンスからクラスのプロトタイプメソッドを呼び出すことができます。
+しかし、インスタンス（オブジェクト）にはメソッドが定義されていないのに、インスタンスからクラスのプロトタイプメソッドを呼び出すことができます。
 
 {{book.console}}
 ```js
