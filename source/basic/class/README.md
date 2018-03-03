@@ -366,8 +366,8 @@ console.log(counterA.increment === counterB.increment); // => false
 ```
 
 また、プロトタイプメソッドとはことなり、インスタンスオブジェクトへのメソッド定義はArrow Functionが利用できます。
-Arrow Functionには`this`が静的に決まるという性質がありため、`this`は`Counter`のインスタンスを参照することが保証できます。
-なぜならArrow Functionで定義した`increment`メソッドはどんな呼び出し方をしても、必ず`constructor`における`this`となるためです。（「[Arrow Functionでコールバック関数を扱う][]」を参照）
+Arrow Functionには`this`が静的に決まるという性質があるため、メソッドにおける`this`の参照先をインスタンスに固定できます。
+なぜならArrow Functionで定義した`increment`メソッドはどのような呼び出し方をしても、必ず`constructor`における`this`となるためです。（「[Arrow Functionでコールバック関数を扱う][]」を参照）
 
 {{book.console}}
 ```js
