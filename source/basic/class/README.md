@@ -412,12 +412,13 @@ method(); // => undefined
 <!-- textlint-disable no-js-function-paren -->
 
 クラスに対してメソッドを定義できますが、メソッドは`メソッド名()`のように呼び出す必要があります。
-クラスでは、プロパティのように参照するだけで呼び出せるgetterやsetterと呼ばれる**アクセッサプロパティ**を定義できます。
-アクセッサプロパティとは、プロパティの参照（getter）、プロパティへの代入（setter）に対応するメソッドのことです。
+クラスでは、プロパティの参照（getter）、プロパティへの代入（setter）時に呼び出される特殊なメソッドを定義できます。
+このメソッドはプロパティのように振る舞うため**アクセッサプロパティ**と呼ばれます。
 
 <!-- textlint-enable no-js-function-paren -->
 
-次のコードでは、プロパティの参照（getter）、プロパティへの代入（setter）に対するアクセッサプロパティ（`get`と`set`)を定義しています。
+次のコードでは、プロパティの参照（getter）、プロパティへの代入（setter）に対するアクセッサプロパティを定義しています。
+アクセッサプロパティはメソッド名（プロパティ名）の前に`get`または`set`をつけるだけです。
 getter（`get`）には仮引数はありませんが、必ず値を返す必要があります。
 setter（`set`）の仮引数にはプロパティへ代入された値が入りますが、値を返す必要はありません。
 
@@ -468,6 +469,11 @@ number.value = 42;
 // "getter"とコンソールに表示される
 console.log(number.value); // => 42
 ```
+
+<!-- Note: インスタンスオブジェクトのアクセッサプロパティ
+インスタンスオブジェクトへも定義できるが、メソッドとは異なり意味の違いがでることはないため省略。
+またフィールドとして定義することはできないため対比は意味がない。
+-->
 
 ### [コラム] プライベートプロパティ {#private-property}
 
@@ -553,9 +559,83 @@ console.log(arrayLike.items.join(", ")); // => "1, 2, , , "
 
 このようにアクセッサプロパティは、プロパティのようありながら実際にアクセスした際には他のプロパティなどと連動する動作を実現できます。
 
-## 2種類のインスタンスメソッドを同時にした場合にどうなるか {#two-instance-method-definition}
+## 静的メソッド {#static-method}
 
-クラスでは、2種類のインスタンスメソッドの定義方法について見てきました。
+インスタンスメソッドはクラスをインスタンス化して利用します。
+一方、クラスをインスタンス化せずに利用できる静的メソッド（クラスメソッド）もあります。
+
+静的メソッドの定義方法はメソッド名の前に、`static`をつけるだけです。
+
+<!-- doctest:disable -->
+```js
+class クラス {
+    static メソッド() {
+        // 静的メソッドの処理
+    }
+}
+// 静的メソッドの呼び出し
+クラス.メソッド();
+```
+
+次のコードでは、配列をラップする`ArrayWrapper`というクラスを定義しています。
+`ArrayWrapper`はコンストラクタの引数として配列を受け取り初期化しています。
+このクラスに配列ではなく要素そのものを引数に受け取りインスタンス化できる`ArrayWrapper.of`という静的メソッドを定義しています。
+
+{{book.console}}
+```js
+class ArrayWrapper {
+    constructor(array = []) {
+        this.array = array;
+    }
+
+    // rest parametersとして要素を受け付ける
+    static of(...items) {
+        return new ArrayWrapper(items);
+    }
+
+    get length() {
+        return this.array.length;
+    }
+}
+
+// 配列を引数として渡している
+const arrayWrapperA = new ArrayWrapper([1, 2, 3]);
+// 要素を引数として渡している
+const arrayWrapperB = ArrayWrapper.of(1, 2, 3);
+console.log(arrayWrapperA.length); // => 3
+console.log(arrayWrapperA.length); // => 3
+```
+
+クラスの静的メソッドにおける`this`は、そのクラス自身を参照します。
+そのため、先ほどのコードは`new ArrayWrapper`の代わりに`new this`と書くこともできます。
+
+{{book.console}}
+```js
+class ArrayWrapper {
+    constructor(array = []) {
+        this.array = array;
+    }
+
+    static of(...items) {
+        // `this`は`ArrayWrapper`を参照する
+        return new this(items);
+    }
+
+    get length() {
+        return this.array.length;
+    }
+}
+
+const arrayWrapper = ArrayWrapper.of(1, 2, 3);
+console.log(arrayWrapper.length); // => 3
+```
+
+このように静的メソッドでの`this`はクラス自身を参照するため、インスタンスメソッドのようにインスタンスを参照することはできません。
+そのため静的メソッドは、クラスのインスタンスを作成する処理やクラスに関係する処理を書くために利用されます。
+
+## 2種類のインスタンスメソッドの定義 {#two-instance-method-definition}
+
+クラスでは、2種類のインスタンスメソッドの定義方法があります。
 `class`構文を使ったインスタンス間で共有されるプロトタイプメソッドの定義と、
 インスタンスオブジェクトに対するメソッドの定義です。
 
