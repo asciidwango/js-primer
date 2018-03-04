@@ -566,18 +566,22 @@ console.log(arrayLike.items.join(", ")); // => "1, 2, , , "
 
 静的メソッドの定義方法はメソッド名の前に、`static`をつけるだけです。
 
+<!-- doctest:disable -->
 ```js
 class クラス {
     static メソッド() {
         // 静的メソッドの処理
     }
 }
+// 静的メソッドの呼び出し
+クラス.メソッド()
 ```
 
 次のコードでは、配列をラップする`ArrayWrapper`というクラスを定義しています。
 `ArrayWrapper`はコンストラクタの引数として配列を受け取り初期化しています。
 このクラスに配列ではなく要素そのものを引数に受け取りインスタンス化できる`ArrayWrapper.of`という静的メソッドを定義しています。
 
+{{book.console}}
 ```js
 class ArrayWrapper {
     constructor(array = []) {
@@ -605,6 +609,7 @@ console.log(arrayWrapperA.length); // => 3
 クラスの静的メソッドにおける`this`は、そのクラス自身を参照します。
 そのため、先ほどのコードは`new ArrayWrapper`の代わりに`new this`と書くこともできます。
 
+{{book.console}}
 ```js
 class ArrayWrapper {
     constructor(array = []) {
