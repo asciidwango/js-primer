@@ -208,6 +208,11 @@ rules:
   - expected: 静的に
     patterns:
       - レキシカルに
+  - expected: つけるだけ
+    prh: つけるに統一する
+    patterns:
+      - 漬けるだけ
+      - 付けるだけ
 
   # ファイルの読み書き / ファイルI/O
   - expected: ファイルの読み書き
