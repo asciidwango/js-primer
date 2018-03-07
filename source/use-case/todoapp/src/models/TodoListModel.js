@@ -34,7 +34,7 @@ export class TodoListModel extends EventEmitter {
         };
     }
 
-    emitChange(){
+    emitChange() {
         this.emit("change");
     }
 
