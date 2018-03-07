@@ -34,6 +34,10 @@ export class TodoListModel extends EventEmitter {
         };
     }
 
+    emitChange(){
+        this.emit("change");
+    }
+
     changeComplete({ id, isCompleted }) {
         // state change
         const todoItem = this.todoList.find(todo => todo.id === id);
@@ -41,12 +45,18 @@ export class TodoListModel extends EventEmitter {
             return;
         }
         todoItem.completed = isCompleted;
-        this.emit("change");
+        this.emitChange();
     }
 
     addTodo(todo) {
         this.todoList.push(new TodoItemModel(todo));
-        // emit change
-        this.emit("change");
+        this.emitChange();
+    }
+
+    deleteTodo({ id }) {
+        this.todoList = this.todoList.filter(todoItem => {
+            return todoItem.id !== id;
+        });
+        this.emitChange();
     }
 }
