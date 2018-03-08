@@ -1179,6 +1179,7 @@ event.emit("a", "b", "c");
 
 これにより、値が更新される度に新しい値をコンソールに出力するコールバック関数を呼び出す実装ができました。
 
+{{book.console}}
 ```js
 class EventEmitter {
     constructor() {
@@ -1230,6 +1231,45 @@ observable.onChange((prevValue, newValue) => {
 observable.value = 2;
 ```
 
+## ビルトインオブジェクトの継承 {#extends-built-in}
+
+ここまで自身が定義したクラスを継承してきましたが、ビルトインオブジェクトのコンストラクタも継承できます。
+ビルトインオブジェクトには`Array`、`String`、`Object`、`Number`、`Error`、`Date`などのコンストラクタがあります。
+`class`構文ではこれらのビルトインオブジェクトを継承できます。
+
+次のコードでは、ビルトインオブジェクトである`Array`を継承して独自のメソッドを加えた`MyArray`クラスを定義しています。
+継承した`MyArray`は`Array`の性質 – つまりメソッドや状態管理についての仕組みを継承しています。
+継承した性質に加えて、`MyArray#first`や`MyArray#last`といったアクセッサプロパティを追加しています。
+
+{{book.console}}
+```js
+class MyArray extends Array {
+    get first() {
+        if (this.length === 0) {
+            return undefined;
+        } else {
+            return this[0];
+        }
+    }
+
+    get last() {
+        if (this.length === 0) {
+            return undefined;
+        } else {
+            return this[this.length - 1];
+        }
+    }
+}
+
+// Arrayを継承しているのでArray.fromも継承している
+// Array.fromはIterableなオブジェクトから配列インスタンスを作成する
+const array = MyArray.from([1, 2, 3, 4, 5]);
+console.log(array.length); // => 5
+console.log(array.first); // => 1
+console.log(array.last); // => 5
+```
+
+`Array`を継承した`MyArray`は、`Array`が元々もつ`length`プロパティや`Array.from`メソッドなどを継承し利用できます。
 
 [^糖衣構文]: `class`構文でのみしか実現できない機能はなく、読みやすさや分かりやさのために導入された構文という側面もあるためJavaScriptの`class`構文は糖衣構文と呼ばれることがあります。
 [^Proposal]: <https://github.com/tc39/proposal-class-fields>においてHard Privateの仕様についての提案と議論が行われている。
