@@ -240,7 +240,7 @@ if (isEven(number)) {
 そのため、[ネストしたif文](../condition/README.md)のうるう年の例でも紹介したように、
 できるだけ早い段階でそれ以上処理を続けない宣言をすることで、複雑なコードになることを避けています。
 
-### Array.prototype.filter
+### Array#filter {#array-filter}
 
 配列から特定の値だけを集めた新しい配列を作るには`filter`メソッドを利用できます。
 
