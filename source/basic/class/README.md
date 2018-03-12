@@ -7,7 +7,8 @@ author: azu
 「クラス」と一言にいってもさまざまであるため、ここでは**構造**、**動作**、**状態**を定義できるものを示すことにします。
 また、この章では概念を示す場合は**クラス**と呼び、クラスに関する構文（記述するコード）のことを`class`構文と呼びます。
 
-**クラス**とは、**動作**を持った**構造**を定義でき、その構造からインスタンスを作成し、そのインスタンスは**状態**をもてるものです。
+**クラス**とは**動作**や**状態**の初期値を定義した**構造**をことを言います。
+クラスからはインスタンスと呼ばれるオブジェクトを作成でき、インスタンスはクラスに定義した**動作**を継承し、**状態**は動作によって変化します。
 とても抽象的なことに見えますが、これは今までオブジェクトや関数を使って表現してきたものにも見えます。
 実際にJavaScriptではES2015より前までは`class`構文はなく、関数を使いクラスのようなものを表現して扱っていました。
 
@@ -761,7 +762,7 @@ instance.method(); // "プロトタイプのメソッド"
 - インスタンスを作成時に、インスタンスの`[[Prototype]]`内部プロパティへプロトタイプオブジェクトの参照を保存する処理
 - インスタンスからプロパティ（またはメソッド）を参照する時に、`[[Prototype]]`内部プロパティまで探索する処理
 
-### インスタンス作成時 {#create-instance}
+### インスタンス作成とプロトタイプチェーン {#write-prototype-chain}
 
 クラスから`new`演算子によってインスタンスを作成する際に、インスタンスにはクラスのプロトタイプオブジェクトの参照が保存されます。
 このとき、インスタンスからクラスのプロトタイプオブジェクトへの参照は、インスタンスオブジェクトの`[[Prototype]]`という内部プロパティに保存されます。
@@ -798,7 +799,7 @@ console.log(Prototype === MyClass.prototype); // => true
 
 ----
 
-### プロパティを参照する時 {#refer-property}
+### プロパティを参照とプロトタイプチェーン {#read-prototype-chain}
 
 オブジェクトのプロパティを参照するときに、オブジェクト自身がプロパティを持っていない場合でもそこで探索が終わるわけではありません。
 オブジェクトの`[[Prototype]]`内部プロパティのプロトタイプオブジェクトに対しても探索を続けます。
@@ -969,10 +970,10 @@ class Child extends Parent {
 コンストラクタの処理順は親クラスから子クラスへと順番が決まっています。
 
 `class`構文ではかならず親クラスのコンストラクタ処理（`super()`を呼び）を先に行い、その次に子クラスのコンストラクタ処理を行います。
-子クラスのコンストラクタでは、`this`を触る前に`super()`で親クラスのコンストラクタ処理を呼び出さないとSyntaxErrorとなるためです。
+子クラスのコンストラクタでは、`this`を触る前に`super()`で親クラスのコンストラクタ処理を呼び出さないと`SyntaxError`となるためです。
 
 次のコードでは、`Parent`と`Child`でそれぞれインスタンス（`this`）の`name`プロパティに値を書き込んでいます。
-子クラスでは先に`super()`を呼び出す前に、`this`に触ることはできません。
+子クラスでは先に`super()`を呼び出してからでないと`this`を参照することはできません。
 そのため、コンストラクタの処理順は`Parent`から`Child`という順番に限定されます。
 
 <!-- textlint-enable no-js-function-paren -->
@@ -1022,10 +1023,10 @@ instance.method(); // "Parent#method"
 
 このように、子クラスのインスタンスから親クラスのプロトタイプメソッドもプロトタイプチェーンの仕組みによって呼びだせます。
 
-`extends`によって継承したクラス間でもプロトタイプチェーンの仕組みが働くように`[[Prototype]]`の値が設定されます。
-この例では、`Child.prototype`オブジェクトの`[[Prototype]]`内部プロパティには`Parent.prototype`が設定されます。
+`extends`によって継承した場合、子クラスのプロトタイプオブジェクトの`[[Prototype]]`内部プロパティには親クラスのプロトタイプオブジェクトが設定されます。
+このコードでは、`Child.prototype`オブジェクトの`[[Prototype]]`内部プロパティには`Parent.prototype`が設定されます。
 
-これにより、プロパティを探索する場合には次のような順番でオブジェクトを探索しています。
+これにより、プロパティを参照する場合には次のような順番でオブジェクトを探索しています。
 
 1. `instance`オブジェクト自身
 2. `Child.prototype`（`instance`オブジェクトの`[[Prototype]]`の参照先）
@@ -1033,8 +1034,37 @@ instance.method(); // "Parent#method"
 
 このプロトタイプチェーンの仕組みより、`method`プロパティは`Parent.prototype`オブジェクトに定義されたものを参照します。
 
-このようにJavaScriptでは`class`構文と`extends`キーワードを使うことでクラスの"機能"を継承できます。
-継承の仕組みとしてプロトタイプオブジェクトプロトタイプチェーンを使うため、この継承の仕組みを**プロトタイプ継承**と呼びます。
+このようにJavaScriptでは`class`構文と`extends`キーワードを使うことでクラスの**機能**を継承できます。
+`class`構文ではプロトタイプオブジェクトと参照する仕組みによって継承が行われています。
+そのため、この継承の仕組みを**プロトタイプ継承**と呼びます。
+
+### 静的メソッドの継承 {#static-inheritance}
+
+インスタンスはクラスのプロトタイプオブジェクトとの間にプロトタイプチェーンがあります。
+クラス自身（クラスのコンストラクタ）も親クラス自身（親クラスのコンストラクタ）との間にプロトタイプチェーンがあります。
+
+これは簡単にいえば、静的メソッドも継承されるということです。
+
+{{book.console}}
+```js
+class Parent {
+    static hello() {
+        return "Hello";
+    }
+}
+class Child extends Parent {}
+console.log(Child.hello()); // => "Hello"
+```
+
+`extends`によって継承した場合、子クラスのコンストラクタの`[[Prototype]]`内部プロパティには親クラスのコンストラクタが設定されます。
+このコードでは、`Child`コンストラクタの`[[Prototype]]`内部プロパティに`Parent`コンストラクタが設定されます。
+
+つまり、先ほどのコードでは`Child.hello`プロパティを参照した場合には次のような順番でオブジェクトを探索しています。
+
+1. `Child`コンストラクタ
+2. `Parent`コンストラクタ（`Child`コンストラクタの`[[Prototype]]`の参照先）
+
+クラスのコンストラクタ同士にもプロトタイプチェーンの仕組みがあるため、子クラスは親クラスの静的メソッドを呼び出せます。
 
 ### `super`プロパティ {#super-property}
 
@@ -1045,8 +1075,6 @@ instance.method(); // "Parent#method"
 
 次のコードでは、`Child#method`の中で`super.method()`と書くことで`Parent#method`を呼び出しています。
 このように、子クラスから継承元の親クラスのプロトタイプメソッドは`super.プロパティ名`で参照できます。
-
-<!-- textlint-enable no-js-function-paren -->
 
 {{book.console}}
 ```js
@@ -1063,15 +1091,41 @@ class Child extends Parent {
         super.method();
     }
 }
-const instance = new Child();
-instance.method(); 
+const child = new Child();
+child.method(); 
 // コンソールには次のように出力される
 // "Child#method"
 // "Parent#method"
 ```
 
-プロトタイプチェーンでは、インスタンス -> `Child` -> `Parent`と継承関係をさかのぼるようにメソッドを探索すると紹介しました。
-そのため`Child#method`が定義されている場合に、`Child`のインスタンスから`method`を呼び出すと`Child#method`が呼び出されます。
+プロトタイプチェーンでは、インスタンスからクラス、さらに親のクラスと継承関係をさかのぼるようにメソッドを探索すると紹介しました。
+このコードでは`Child#method`が定義されているため、`child.method`は`Child#method`を呼び出します。
+そして`Child#method`は`super.method`を呼び出しているため、`Parent#method`が呼び出されます。
+
+クラスの静的メソッド同士も同じように`super.method()`と書くことで呼び出せます。
+次のコードでは、`Parent`を継承した`Child`から親クラスの静的メソッドを呼び出しています。
+
+<!-- textlint-enable no-js-function-paren -->
+
+{{book.console}}
+```js
+class Parent {
+    static method() {
+        console.log("Parent.method");
+    }
+}
+class Child extends Parent {
+    static method() {
+        console.log("Child.method");
+        // `super.method()`で`Parent.method`を呼びだす
+        super.method();
+    }
+}
+Child.method(); 
+// コンソールには次のように出力される
+// "Child.method"
+// "Parent.method"
+```
 
 ### 継承の判定 {#instanceof}
 
