@@ -216,17 +216,17 @@ Arrow Function以外の関数では、関数の定義だけを見て`this`の値
 ```js
 "use strict";
 function fn1() {
-    console.log(this);
+    return this;
 }
 const fn2 = function() {
-    console.log(this);
+    return this;
 };
 // 関数の中の`this`が参照する値は呼び出し方によって決まる
 // `fn1`と`fn2`どちらもただの関数として呼び出している
 // メソッドとして呼び出していないためベースオブジェクトはない
 // ベースオブジェクトがない場合、`this`は`undefined`となる
-fn1(); // => undefined
-fn2(); // => undefined
+console.log(fn1()); // => undefined
+console.log(fn2()); // => undefined
 ```
 
 これは、関数の中に関数を定義して呼び出す場合も同じです。
