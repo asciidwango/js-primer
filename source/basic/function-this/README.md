@@ -216,10 +216,10 @@ Arrow Function以外の関数では、関数の定義だけを見て`this`の値
 ```js
 "use strict";
 function fn1() {
-    return this;
+    console.log(this);
 }
 const fn2 = function() {
-    return this;
+    console.log(this);
 };
 // 関数の中の`this`が参照する値は呼び出し方によって決まる
 // `fn1`と`fn2`どちらもただの関数として呼び出している
@@ -265,11 +265,11 @@ outer();
 const object = {
     // 関数式をプロパティの値にしたメソッド
     method1: function() {
-        return this;
+        console.log(this);
     },
     // 短縮記法で定義したメソッド
     method2() {
-        return this;
+        console.log(this);
     }
 };
 // メソッド呼び出しの場合、それぞれの`this`はベースオブジェクト(`object`)を参照する
@@ -286,7 +286,7 @@ const person = {
     fullName: "Brendan Eich",
     sayName: function() {
         // `person.fullName`と書いているのと同じ
-        return this.fullName;
+        console.log(this.fullName);
     }
 };
 // `person.fullName`を出力する
@@ -344,7 +344,7 @@ const person = {
     fullName: "Brendan Eich",
     sayName: function() {
         // `this`は呼び出し元によってことなる
-        return this.fullName;
+        console.log(this.fullName);
     }
 };
 // `sayName`メソッドは`person`オブジェクトに所属する
@@ -400,8 +400,9 @@ say(); // => TypeError: Cannot read property 'fullName' of undefined
 
 {{book.console}}
 ```js
+"use strict";
 function say(message) {
-    return `${message} ${this.fullName}！`;
+    console.log(`${message} ${this.fullName}！`);
 }
 const person = {
     fullName: "Brendan Eich"
@@ -429,8 +430,9 @@ say("こんにちは"); // => TypeError: Cannot read property 'fullName' of unde
 
 {{book.console}}
 ```js
+"use strict";
 function say(message) {
-    return `${message} ${this.fullName}！`;
+    console.log(`${message} ${this.fullName}！`);
 }
 const person = {
     fullName: "Brendan Eich"
