@@ -265,11 +265,11 @@ outer();
 const object = {
     // 関数式をプロパティの値にしたメソッド
     method1: function() {
-        console.log(this);
+        return this;
     },
     // 短縮記法で定義したメソッド
     method2() {
-        console.log(this);
+        return this;
     }
 };
 // メソッド呼び出しの場合、それぞれの`this`はベースオブジェクト(`object`)を参照する
@@ -286,7 +286,7 @@ const person = {
     fullName: "Brendan Eich",
     sayName: function() {
         // `person.fullName`と書いているのと同じ
-        console.log(this.fullName);
+        return this.fullName;
     }
 };
 // `person.fullName`を出力する
@@ -344,7 +344,7 @@ const person = {
     fullName: "Brendan Eich",
     sayName: function() {
         // `this`は呼び出し元によってことなる
-        console.log(this.fullName);
+        return this.fullName;
     }
 };
 // `sayName`メソッドは`person`オブジェクトに所属する
@@ -402,7 +402,7 @@ say(); // => TypeError: Cannot read property 'fullName' of undefined
 ```js
 "use strict";
 function say(message) {
-    console.log(`${message} ${this.fullName}！`);
+    return `${message} ${this.fullName}！`;
 }
 const person = {
     fullName: "Brendan Eich"
@@ -432,7 +432,7 @@ say("こんにちは"); // => TypeError: Cannot read property 'fullName' of unde
 ```js
 "use strict";
 function say(message) {
-    console.log(`${message} ${this.fullName}！`);
+    return `${message} ${this.fullName}！`;
 }
 const person = {
     fullName: "Brendan Eich"
