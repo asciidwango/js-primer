@@ -349,7 +349,7 @@ const person = {
 };
 // `sayName`メソッドは`person`オブジェクトに所属する
 // `this`は`person`オブジェクトとなる
-person.sayName(); // => "Brendan Eich"
+console.log(person.sayName()); // => "Brendan Eich"
 // `person.sayName`を`say`変数に代入する
 const say = person.sayName;
 // 代入したメソッドを関数として呼ぶ
@@ -408,7 +408,7 @@ const person = {
     fullName: "Brendan Eich"
 };
 // `this`を`person`にして`say`関数を呼びだす
-say.call(person, "こんにちは"); // => "こんにちは Brendan Eich！"
+console.log(say.call(person, "こんにちは")); // => "こんにちは Brendan Eich！"
 // `say`関数をそのまま呼び出すと`this`は`undefined`となるため例外が発生
 say("こんにちは"); // => TypeError: Cannot read property 'fullName' of undefined
 ```
@@ -439,7 +439,7 @@ const person = {
 };
 // `this`を`person`にして`say`関数を呼びだす
 // callとは異なり引数を配列として渡す
-say.apply(person, ["こんにちは"]); // => "こんにちは Brendan Eich！"
+console.log(say.apply(person, ["こんにちは"])); // => "こんにちは Brendan Eich！"
 // `say`関数をそのまま呼び出すと`this`は`undefined`となるため例外が発生
 say("こんにちは"); // => TypeError: Cannot read property 'fullName' of undefined
 ```
