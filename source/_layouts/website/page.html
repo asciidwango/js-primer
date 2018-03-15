@@ -1,11 +1,22 @@
 {% extends template.self %} {% block head %} {{ super() }}
 <meta name="google-site-verification" content="bMotEbgYwkzA3k4PkuyK_NUdz0bKh-Phz0oUwNmRSVo" />
 <style>
-    /* DocSearch
-    https://blog.uilicious.com/gitbook-made-better-with-algolia-docsearch-ff1b909ddb0b */
-    .book {
-        overflow: hidden;
+    /*
+    Disable antialias
+    */
+
+    * {
+        -webkit-font-smoothing: initial!important
     }
+
+    body {
+        text-rendering: initial!important;
+        font-smoothing: initial!important;
+    }
+
+    /* DocSearch
+        https://blog.uilicious.com/gitbook-made-better-with-algolia-docsearch-ff1b909ddb0b
+    */
 
     .book-summary {
         overflow-y: inherit;
@@ -28,7 +39,6 @@
     }
 
     /* console ui */
-
 
     .mirror-console-attach-button-wrapper {
         margin-top: -1.275em;
