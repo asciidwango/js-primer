@@ -2,7 +2,7 @@
 author: azu
 description: 関数の宣言方法とメソッドについて
 ---
-# 関数と宣言
+# 関数と宣言 {#function-and-declaration}
 
 JavaScriptでは、処理をまとめる際に関数やメソッド、クラスを使います。
 これらは関数オブジェクトと言われる関数として使えるオブジェクトの一種です。
@@ -24,7 +24,7 @@ fn.property = "value";
 
 そのため、まずは関数オブジェクトではなく関数について見ていきましょう。
 
-## 関数宣言
+## 関数宣言 {#function-declaration}
 
 JavaScriptでは、関数宣言を`function`キーワードを使うことで行えます。
 `function`から始まる文は関数宣言と呼び、次のように関数を宣言できます。
@@ -76,7 +76,7 @@ function noop() {
 console.log(noop()); // => undefined;
 ```
 
-### 可変長引数
+### 可変長引数 {#variable-arguments}
 
 関数には引数の数が固定ではなく、可変長である場合があります。
 たとえば、`Math.max(...args)`は引数を何個でも受け取り、受け取った引数の中で最大の値を返します。
@@ -89,7 +89,7 @@ console.log(max); // => 20
 
 可変長引数を実現するためには、引数がすべて入った`arguments`か、Rest parametersを使用します。
 
-#### `arguments`
+#### `arguments` {#arguments}
 
 `arguments`は関数の中でのみ参照できる特殊な変数です。
 `arguments`は関数に渡された値が入った**Array-like**なオブジェクトです。
@@ -107,7 +107,7 @@ myFunc("a", "b", "c");
 **Array-like**なオブジェクトは、配列のようにインデックスで要素へアクセスできます。
 しかし、`Array`を継承していないため、`Array`のメソッドが使えない特殊なオブジェクトです。
 
-### Rest parameters
+### Rest parameters {#rest-parameters}
 
 Rest parametersは仮引数名の前に`...`をつけます。
 この仮引数には、関数に渡された値の配列が入ります。
@@ -125,7 +125,7 @@ myFunc("a", "b", "c");
 `arguments`は後述するArrow Functionでは利用できないことや、**Array-like**なオブジェクトであるため扱いにくいです。
 そのため、可変長引数が必要な場合はRest parametersでの実装を検討した方がよいでしょう。
 
-## ファーストクラスファンクション
+## ファーストクラスファンクション {#first-class-function}
 
 関数が値として扱えることをファーストクラスファンクション（第一級関数）と呼びます。
 JavaScriptは他のオブジェクトと同じように関数を値として扱えるため、ファーストクラスファンクションの性質を持っています。
@@ -308,7 +308,7 @@ JavaScriptを扱うブラウザやNode.jsでは、非同期処理がデフォル
 
 そのため、JavaScriptではコールバック関数が重要な概念となっています。
 
-## メソッド
+## メソッド {#method}
 
 メソッドとは、オブジェクトのプロパティである関数のことをいいます。
 次のコードにおける`object`の`method`プロパティを**メソッド**といいます。
@@ -344,7 +344,7 @@ const object = {
 console.log(object.method()); // => "this is method"
 ```
 
-### [ES2015] メソッドの短縮記法
+### [ES2015] メソッドの短縮記法 {#shorthand-for-method}
 
 先ほどの方法では、プロパティに関数を代入するという書き方になっていました。
 ES2015からは、メソッドとしてプロパティを定義するための短縮した書き方が追加されています。
@@ -364,7 +364,7 @@ console.log(object.method()); // => "this is method"
 この書き方はオブジェクトのメソッドだけではなく、クラスのメソッドと共通の書き方となっています。
 そのため、メソッドを定義する場合は、できるだけこの短縮記法に統一した方がよいでしょう。
 
-## まとめ
+## まとめ {#function-declaration-summary}
 
 この章では、次のことについて学びました。
 
