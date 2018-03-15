@@ -2,13 +2,13 @@
 author: azu
 ---
 
-# 文と式
+# 文と式 {#statement-and-expression}
 
 本格的に基本文法について学ぶ前に、JavaScriptというプログラミング言語がどのような要素からできているかを見ていきましょう。
 
 JavaScriptは、**文**（Statement）と**式**（Expression）から構成されています。
 
-## 式
+## 式 {#expression}
 
 **式**（Expression）を簡潔に述べると、値を生成し、変数に代入できるものを言います。
 
@@ -36,7 +36,7 @@ const fn = function() {
 console.log(fn()); // => 1
 ```
 
-## 文
+## 文 {#statement}
 
 **文**（Statement）を簡潔に述べると、処理を実行する1ステップが1つの文といえます。
 JavaScriptでは、文の末尾にセミコロン(`;`)を置くことで文と文に区切りを付けます。
@@ -67,7 +67,7 @@ if (isTrue) {
 
 [import, statement-not-expression-invalid.js](src/statement-not-expression-invalid.js)
 
-### 式文
+### 式文 {#expression-statement}
 
 一方、**式**（Expression）は**文**（Statement）になることができます。
 文となった式のことを**式文**と呼び、基本的に文が書ける場所には式を書くことができます。
@@ -82,7 +82,7 @@ if (isTrue) {
 
 式は文となることができますが、先ほどのif文のように文は式となることができません。
 
-### ブロック文
+### ブロック文 {#block-statement}
 
 次のような、文を`{`と`}`で囲んだ部分を**ブロック**と言います。
 ブロックには、複数の**文**を書くことができます。
@@ -109,7 +109,7 @@ if (true) {
 }
 ```
 
-## function宣言（文）とfunction式
+## function宣言（文）とfunction式 {#function-statement-and-function-expression}
 
 [関数と宣言][]の章において、関数を定義する方法を学びました。
 functionキーワードから文を開始する**関数宣言**と、変数へ**関数式**を代入する方法があります。
@@ -148,7 +148,7 @@ function fn() {}
 const read = fn;
 ```
 
-## まとめ
+## まとめ {#statement-expression-summary}
 
 この章では次のことについて学びました。
 
