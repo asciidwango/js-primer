@@ -188,7 +188,7 @@ return文は現在の関数を終了させることができるため、次の�
 
 偶数を見つけたらすぐにreturnすることで一時変数が不要となり、より簡潔に書くことができます。
 
-### Array#some {#array-some} 
+### Array#some {#array-some}
 
 先ほどの `isEventIncluded`は、偶数を見つけたら `true` を返す関数でした。
 `Array`オブジェクトでは、`some`メソッドで同様のことが行えます。
