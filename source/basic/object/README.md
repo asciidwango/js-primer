@@ -2,7 +2,7 @@
 author: azu
 ---
 
-# オブジェクト
+# オブジェクト {#object}
 
 ## オブジェクトとは {#what-is-object}
 
@@ -184,7 +184,7 @@ console.log(object.key); // => "value"
 このように、プロパティを初期化時以外に追加してしまうと、そのオブジェクトがどのようなプロパティを持っているかがわかりにくくなります。
 そのため、できる限りプロパティは初期化時、つまりオブジェクトリテラルの中で明示したほうがよいといえるでしょう。
 
-### [コラム] constしたオブジェクトが変更可能
+### [コラム] constしたオブジェクトが変更可能 {#changeable-object}
 
 先ほどのコード例で、`const`で宣言したオブジェクトのプロパティがエラーなく変更できていることが分かります。
 次の例をみると、値であるオブジェクトのプロパティが変更できていることが分かります。
@@ -211,7 +211,7 @@ object = {}; // => SyntaxError
 {{book.console}}
 [import, freeze-property-invalid.js](./src/freeze-property-invalid.js)
 
-## プロパティの存在を確認する
+## プロパティの存在を確認する {#confirm-property}
 
 JavaScriptでは、存在しないプロパティに対してアクセスした場合に例外ではなく`undefined`を返します。
 次のコードでは、`object`には存在しない`notFound`プロパティにアクセスしているため、`undefined`という値が返ってきます。
@@ -244,7 +244,7 @@ console.log(widget.windw.title); // => TypeError
 `undefined`や`null`はオブジェクトではないため、存在しないプロパティへアクセスする例外が発生してしまいます。
 このような場合に、あるオブジェクトがあるプロパティを持っているを確認する方法がいくつかあります。
 
-### undefinedとの比較
+### undefinedとの比較 {#compare-to-undefined}
 
 存在しないプロパティへアクセスした場合に、`undefined`を返すため実際にアクセスして比較することでも判定できます。
 
@@ -269,7 +269,7 @@ if (object.key !== undefined) {
 }
 ```
 
-### in演算子を使う
+### in演算子を使う {#in-operator}
 
 `in`演算子は、指定したオブジェクト上に指定したプロパティがあるかを判定できます。
 
@@ -294,7 +294,7 @@ if ("key" in object) {
 
 `object`自身がそのプロパティを持っているかを判定するには、`Object#hasOwnProperty`メソッドを使うのが確実です。
 
-### `Object#hasOwnProperty`メソッド
+### `Object#hasOwnProperty`メソッド {#hasOwnProperty-method}
 
 `Object#hasOwnProperty`メソッドを使うことで、オブジェクト自身が指定したプロパティを持っているかを判定できます。
 
@@ -314,7 +314,7 @@ if (object.hasOwnProperty("key")) {
 }
 ```
 
-## `Object#toString`メソッド
+## `Object#toString`メソッド {#toString-method}
 
 `Object#toString`メソッドは、オブジェクト自身を文字列化するメソッドです。
 `String`コンストラクタ関数を使うことでも文字列にすることできますが、どのような違いがあるのでしょうか？(「[暗黙的な型変換](../implicit-coercion/README.md#to-string)」を参照）
@@ -355,7 +355,7 @@ const number = [1, 2, 3];
 console.log(number.toString()); // => "1,2,3";
 ```
 
-## `Object`はすべての元
+## `Object`はすべての元 {#object-is-origin}
 
 ここまでは、`Object`自身の機能について見てきましたが、
 `Object`には、他の`Array`や`String`、`Function`といった他のオブジェクトとは異なる特徴があります。
@@ -403,7 +403,7 @@ console.log(object.hasOwnProperty === Object.prototype.hasOwnProperty); // => tr
 > `Object`のインスタンス -> `Object.prototype`
 
 
-### `in`演算子と`Object#hasOwnProperty`メソッドの違い
+### `in`演算子と`Object#hasOwnProperty`メソッドの違い {#diff-in-operator-and-hasOwnProperty}
 
 先ほど学んだ`in`演算子と`Object#hasOwnProperty`メソッドの違いからもここから生じています。
 
@@ -421,7 +421,7 @@ console.log("toString" in object); // => true
 
 これにより`Object`のインスタンス自身が`toString`メソッドを持っているわけではなく、`Object.prototype`が`toString`メソッドを持っていることが分かります。
 
-### オブジェクトの継承元を明示する`Object.create`メソッド
+### オブジェクトの継承元を明示する`Object.create`メソッド {#create-method}
 
 `Object.create`メソッドを使うと、第一引数に指定した`prototype`オブジェクトを継承した新しいオブジェクトを作成できます。
 
@@ -436,7 +436,7 @@ const object = Object.create(Object.prototype);
 console.log(object.hasOwnProperty === Object.prototype.hasOwnProperty); // => true
 ```
 
-### ArrayもObjectを継承している
+### ArrayもObjectを継承している {#inherit-object}
 
 `Object`と`Object.prototype`の関係と同じく、`Array`コンストラクタも`Array.prototype`を持っています。
 そのため、`Array`コンストラクタのインスタンスは`Array.prototype`を継承します。
@@ -478,7 +478,7 @@ console.log(array.hasOwnProperty === Object.prototype.hasOwnProperty); // => tru
 ここでは、`Object`はすべてのオブジェクトの親となるオブジェクトであることだけを覚えておくだけで問題ありません。
 これにより、`Array`や`String`などのインスタンスも`Object.prototype`がもつメソッドを利用できる点を覚えておきましょう。
 
-## [コラム] `Object.prototype`を継承しないオブジェクト
+## [コラム] `Object.prototype`を継承しないオブジェクト #{not-inherit-object}
 
 `Object`はすべてのオブジェクトの親となるオブジェクトである言いましたが、例外もあります。
 
@@ -517,11 +517,11 @@ const map = new Map();
 console.log(map.has("toString")); // => false
 ```
 
-## オブジェクトの静的メソッド
+## オブジェクトの静的メソッド {#static-method}
 
 最後に`Object`の静的メソッドについて見ていきましょう。
 
-### オブジェクトの列挙
+### オブジェクトの列挙 {#enumeration}
 
 オブジェクトはプロパティの集合です。
 そのオブジェクトのプロパティを列挙する方法として、`Object.keys`メソッド、`Object.values`メソッド、`Object.entries`メソッドがあります。
@@ -544,7 +544,7 @@ console.log(Object.values(object)); // => ["1", "2", "3"]
 console.log(Object.entries(object)); // => [["one", 1], ["two", 2], ["three", 3]]
 ```
 
-### オブジェクトのコピー/マージ
+### オブジェクトのコピー/マージ {#copy-and-merge}
 
 `Object.assign`を使うことで、あるオブジェクトを別のオブジェクトに代入（assign）できます。
 これを使うことでオブジェクトのコピーやオブジェクト同士のマージを行うできます。
@@ -558,7 +558,7 @@ console.log(Object.entries(object)); // => [["one", 1], ["two", 2], ["three", 3]
 Object.assign(target, ...sources);
 ```
 
-#### オブジェクトのマージ
+#### オブジェクトのマージ {#merge}
 
 具体的なオブジェクトのマージの例を見ていきます。
 
@@ -604,7 +604,7 @@ const merged = Object.assign({}, objectA, objectB);
 console.log(merged); // => { version: "b" }
 ```
 
-#### オブジェクトの複製
+#### オブジェクトの複製 {#copy}
 
 <!-- textlint-disable preset-ja-technical-writing/max-ten -->
 <!-- Object.assignの引数と、で並び順を合わせるため例外的に許可 -->
