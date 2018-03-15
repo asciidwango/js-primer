@@ -4,7 +4,7 @@ author: azu
 
 <!-- textlint-disable eslint -->
 
-# 変数と宣言
+# 変数と宣言 {#variable-and-declaration}
 
 プログラミング言語には、数値などのデータに名前を付けたり繰り返し利用するために、データを保持するための**変数**があります。
 
@@ -150,7 +150,7 @@ const bookTitle = "JavaScriptの本";
 しかし、多くのケースで代替できる表現があるため必ずしも`var`や`let`を使わなくても実現できます。
 `const`を使うことでバグに気づきやすくなるため、`const`を積極的に利用していくことを推奨しています。
 
-## まとめ
+## まとめ {#variales-summary}
 
 JavaScriptにおける変数宣言として`var`、`let`、`const`があることについて学びました。
 
