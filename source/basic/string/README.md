@@ -2,7 +2,7 @@
 author: azu
 ---
 
-# 文字列
+# 文字列 {#string}
 
 この章ではJavaScriptにおける文字列について学んでいきます。
 文字列の表現やその背景にあるUnicodeを見ていき、文字列の操作方法について学びます。
@@ -74,7 +74,7 @@ const name = "JavaScript";
 console.log(`Hello ${name}!`);// => "Hello JavaScript!"
 ```
 
-## 文字列とは
+## 文字列とは {#what-is-string}
 
 今まで何気なく「文字列」という言葉を利用していましたが、ここでいう文字列とはどのようなものでしょうか？
 
@@ -102,7 +102,7 @@ console.log(string[1]); // => "字"
 
 まとめるとJavaScriptはUnicodeのUTF-16を採用しており、文字列はUTF-16でエンコードされたデータとしてやり取りされます。
 
-### Code Point
+### Code Point {#code-point}
 
 Unicodeでは、文字と1対1で対応するビット列を表のようなもので管理されています。
 たとえば、"A"という文字は表の56の位置にあるといった、文字とビット列の対応位置が決められています。
@@ -144,7 +144,7 @@ console.log("\\u{" + hexOfCodePoint + "}"); // => "\\u{3042}"
 
 直接キーボードから入力が難しい特殊な文字や絵文字などは、Unicodeエスケープシーケンスを使うことでソースコード上に安全に書くことができます。
 
-### Code Unit
+### Code Unit {#code-unit}
 
 符号単位（Code Unit）は、文字を構成する最小の単位ですが、解説をする前にまずUnicodeの歴史を振り返る必要があります。
 
@@ -256,7 +256,7 @@ const strings = "a b    c      d".split(/\s+/);
 console.log(strings); // => ["a", "b", "c", "d"] 
 ```
 
-### `String#split`と空文字
+### `String#split`と空文字 {#split-and-empty-string}
 
 `String#split`メソッドでは、空文字（`""`）を区切り文字として指定し、文字列を**文字**の配列にする方法として紹介されることがあります。
 
@@ -753,7 +753,7 @@ console.log(/いる/.test(string)); // => true
 その他にも、正規表現では繰り返しや文字の集合などを特殊文字で表現できるため、
 Stringメソッドによる検索より曖昧検索が簡単に書くことができます。
 
-### 文字列と正規表現どちらを使うべきか
+### 文字列と正規表現どちらを使うべきか {#string-or-regexp}
 
 Stringメソッドでの検索と同等のことは、正規表現でもできることがわかりました。
 Stringメソッドと正規表現で同じ結果が得られる場合はどちらを利用するのがよいでしょうか？
@@ -954,7 +954,7 @@ getResource(baseURL, pathname);
 ECMAScriptの範囲ではありませんが、URLやファイルパスといった典型的なものに対してはすでに専用のものがあります。
 URLを扱うものとしてブラウザ上のAPIである[URL][]オブジェクト、Node.jsのコアモジュールである[Path][]モジュールなどがあります。構造が決まっている文字列において、それ向けの仕組みがある場合はそちらを利用することをお勧めします。
 
-### タグ付きテンプレート関数
+### タグ付きテンプレート関数 {#template-function-with-tag}
 
 文字列操作を行う場合にコンテキストをもつ文字列では気をつける必要があります。
 しかし、文字列処理をする際に毎回関数で囲んで書くとコードの見た目が分かりにくい場合もあります。
@@ -1068,7 +1068,7 @@ console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
 このようにタグ付きテンプレートリテラルを使うことで、コンテキストに応じた処理を付け加えることができます。
 この機能はJavaScript内にHTMLなどの別の言語やDSL（ドメイン固有言語）を埋め込む際に利用されることが多いです。
 
-## おわりに
+## おわりに {#string-summary}
 
 この章では、JavaScriptにおける文字列とは何かやUnicodeとの関係について紹介しました。
 文字列処理を行うStringメソッドにはさまざまなものがあり、正規表現との組み合わせ使うものも含まれます。
@@ -1080,7 +1080,7 @@ console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
 タグ付きテンプレートリテラルを利用することで、テンプレート中の変数は自動でエスケープするといったコンテキストを実現できます。
 文字列を安全に扱うためには、コンテキストに応じた処理が必要になります。
 
-## 参考
+## 参考 {#reference-for-string}
 
 - [What every JavaScript developer should know about Unicode](https://rainsoft.io/what-every-javascript-developer-should-know-about-unicode/)
 - Unicodeについて
