@@ -2,13 +2,13 @@
 author: azu
 ---
 
-# ループと反復処理
+# ループと反復処理 {#loop-and-iteration}
 
 プログラミングにおいて、同じ処理を繰り返すために同じコードを書く必要はありません。
 ループや再帰呼び出し、イテレータなどを使い、反復処理は抽象化します。
 ここでは、もっとも基本的な反復処理と制御文について学んでいきます。
 
-## while文
+## while文 {#while-statement}
 
 while文は`条件式`が`true`であるならば、反復処理を行います。
 
@@ -35,7 +35,7 @@ JavaScriptにはより安全な反復処理の書き方があるため、while�
 
 安易にwhile文を使うよりも、他の書き方で解決できないかを考えてからでも遅くはないでしょう。
 
-## do-while文
+## do-while文 {#do-while-statement}
 
 do-while文はwhile文と殆ど同じですが実行順序が異なります。
 
@@ -62,7 +62,7 @@ while文とは異なり、かならず最初に`実行する文`を処理しま�
 この仕組みを上手く利用し、ループの開始前とループ中の処理をまとめて書くことができます。
 しかし、while文と同じく他の書き方で解決できないかを考えてからでも遅くはないでしょう。
 
-## for文
+## for文 {#for-statement}
 
 for文は繰り返す範囲を指定した反復処理を書くことができます。
 
@@ -106,7 +106,7 @@ console.log(total); // => 55
 反復処理の多くは、配列に入れた値を処理する方法と言いかえることができます。
 そのため、JavaScriptの配列である`Array`オブジェクトには反復処理のためのメソッドが備わっています。
 
-## Array#forEach
+## Array#forEach {#array-foreach}
 
 `Array`オブジェクトは、`map`、`reduce`などの反復処理のためのメソッドが用意されています。
 `forEach`メソッドもそのひとつでfor文に近い反復処理を行います。
@@ -153,7 +153,7 @@ array.forEach(コールバック関数);
 
 `forEach`は`条件式`がなく、配列のすべての要素を走査するため、for文よりもシンプルな処理です。
 
-## break文
+## break文 {#break-statement}
 
 break文は処理中の文から抜けて次の文へ移行する制御文です。
 while、do-while、forの中で使い、処理中のループを抜けて次の文へ制御を移します。
@@ -188,7 +188,7 @@ return文は現在の関数を終了させることができるため、次の�
 
 偶数を見つけたらすぐにreturnすることで一時変数が不要となり、より簡潔に書くことができます。
 
-### Array#some {#array-some}
+### Array#some {#array-some} 
 
 先ほどの `isEventIncluded`は、偶数を見つけたら `true` を返す関数でした。
 `Array`オブジェクトでは、`some`メソッドで同様のことが行えます。
@@ -209,7 +209,7 @@ const isPassed = array.some((currentValue, index, array) => {
 {{book.console}}
 [import, some-even-example.js](./src/break/some-even-example.js)
 
-## continue文
+## continue文 {#continue-statement}
 
 continue文は処理中の文をスキップして、そのループの`条件式`と移行する制御文です。
 while、do-while、forの中で使い、実行中のループの`条件式`へ制御を移します。
@@ -240,7 +240,7 @@ if (isEven(number)) {
 そのため、[ネストしたif文](../condition/README.md)のうるう年の例でも紹介したように、
 できるだけ早い段階でそれ以上処理を続けない宣言をすることで、複雑なコードになることを避けています。
 
-### Array.prototype.filter
+### Array.prototype.filter {#array-prototype-filter}
 
 配列から特定の値だけを集めた新しい配列を作るには`filter`メソッドを利用できます。
 
@@ -260,7 +260,7 @@ const filterdArray = array.filter((currentValue, index, array) => {
 {{book.console}}
 [import, filter-even-example.js](./src/continue/filter-even-example.js)
 
-## for...in文
+## for...in文 {#for-in-statement}
 
 for...in文はオブジェクトのプロパティに対して、順不同で反復処理を行います。
 
@@ -309,7 +309,7 @@ for...in文が列挙する配列オブジェクトのプロパティ名は、要
 このようにfor...in文は正しく扱うのが難しいですが、代わりとなる手段が豊富にあります。
 そのため、for...in文を使うことよりも他の方法を考えた方がよいでしょう。
 
-## [ES2015] for...of文
+## [ES2015] for...of文 {#for-of-statement}
 
 最後にfor...of文についてです。
 
@@ -344,7 +344,7 @@ JavaScriptではStringオブジェクトもiterableです。
 その他にも、`TypedArray`、`Map`、`Set`、DOM NodeListなど、iterableなオブジェクトとして実装されているものは多いです。
 for...of文はそれらに対して反復処理を行うことができます。
 
-## [コラム] `let`ではなく`const`で反復処理をする
+## [コラム] `let`ではなく`const`で反復処理をする {#const-iteration}
 
 先ほどのfor文や`forEach`メソッドでは`let`を`const`に変更することはできませんでした。
 なぜなら、for文は一度定義した変数に値の代入を繰り返し行う処理といえるからです。
