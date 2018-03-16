@@ -2,11 +2,11 @@
 author: azu
 ---
 
-# 条件分岐
+# 条件分岐 {#conditional-branch}
 
 この章ではif文やswitch文を使った条件分岐について学んでいきます。
 
-## if文
+## if文 {#if-statement}
 
 if文を使うことで、プログラム内に条件分岐を書くことができます。
 
@@ -43,7 +43,7 @@ if文の `{` と `}` で囲まれたブロック内が処理されます。
 
 `実行する文`が1行のみである場合、ブロックは省略が可能ですが、コードの読みにくさに繋がるため常につけることを推奨します。
 
-### else if文
+### else if文 {#else-if-statement}
 
 複数の条件分岐を書く場合は、if文に続けてelse if文を使うことでできます。
 たとえば、次の3つの条件分岐するプログラムを考えます。
@@ -57,7 +57,7 @@ if文の `{` と `}` で囲まれたブロック内が処理されます。
 {{book.console}}
 [import, else-if-example.js](src/if/else-if-example.js)
 
-### else文
+### else文 {#else-statement}
 
 if文とelse if文では、条件に一致した場合の処理をブロック内に書いていました。
 一方、条件に一致しなかった場合の処理は、else文を使うことでできます。
@@ -65,7 +65,7 @@ if文とelse if文では、条件に一致した場合の処理をブロック�
 {{book.console}}
 [import, else-example.js](src/if/else-example.js)
 
-#### ネストしたif文
+#### ネストしたif文 {#nested-if-statement}
 
 if、else if、else文は`実行する文`としてさらにif文を書きネストできます。
 
@@ -96,7 +96,7 @@ if、else if、else文は`実行する文`としてさらにif文を書きネス
 {{book.console}}
 [import, leap-year-flat-example.js](src/if/leap-year-flat-example.js)
 
-## switch文
+## switch文 {#switch-statement}
 
 switch文は次のような構文を持ち、`式`の評価結果が指定した値である場合に行う処理を並べて書きます。
 
@@ -167,7 +167,7 @@ switch (式) {
 }
 ```
 
-### break文
+### break文 {#break-statement}
 
 switch文のcase節では基本的に`break;`を使いswitch文を抜けるようにします。
 この`break;`は省略が可能ですが、省略した場合、後ろに続くcase節が条件に関係なく実行されます。
@@ -188,7 +188,7 @@ switch文のcase節では基本的に`break;`を使いswitch文を抜けるよ�
 
 - [ ] 関数の章を書いたらn章を変更する
 
-## 参考
+## 参考 {#reference-for-condition}
 
 - [閏年 - Wikipedia](https://ja.wikipedia.org/wiki/%E9%96%8F%E5%B9%B4)
 - [C言語入門：うるう年判定プログラム:Geekなぺーじ](http://www.geekpage.jp/programming/c/leap-year.php)
