@@ -2,18 +2,18 @@
 author: laco
 ---
 
-# Map/Set
+# Map/Set {#map-and-set}
 
 JavaScriptでデータの集まりを扱うコレクションは配列だけではありません。
 この章では、マップ型のコレクションである`Map`と、セット型のコレクションである`Set`について学びます。
 
-## Map
+## Map {#map}
 
 [Map][]はマップ型のコレクションを扱うためのビルトインオブジェクトです。
 マップとは、キーと値の組み合わせからなる抽象データ型です。
 他のプログラミング言語の文脈では辞書やハッシュマップ、連想配列などと呼ばれることもあります。
 
-### マップの作成と初期化
+### マップの作成と初期化 {#create-and-init-for-map}
 
 `Map`オブジェクトを`new`することで、新しいマップを作ることができます。
 作成されたばかりのマップは何ももっていません。
@@ -37,7 +37,7 @@ const map = new Map([["key1", "value1"], ["key2", "value2"]]);
 console.log(map.size); // => 2
 ```
 
-### 要素の追加と取り出し
+### 要素の追加と取り出し {#add-and-take-out-for-map}
 
 `Map`には新しい要素を追加したり、追加した要素を取り出したりするためのメソッドがあります。
 `set`メソッドは特定のキーと値をもつ要素をマップに追加します。
@@ -77,7 +77,7 @@ map.clear();
 console.log(map.size); // => 0
 ```
 
-### マップの反復処理
+### マップの反復処理 {#map-iteration}
 
 マップがもつ要素を列挙するメソッドとして、`forEach`、`keys`、`values`、`entries`があります。
 
@@ -143,7 +143,7 @@ for (const [key, value] of map) {
 console.log(results); // => ["key1:value1","key2:value2"]
 ```
 
-### マップとしてのObjectとMap
+### マップとしてのObjectとMap {#object-and-map}
 
 ES2015で`Map`が導入されるまで、JavaScriptにおいてマップ型を実現するために`Object`が利用されてきました。
 何かをキーにして値にアクセスするという点で、`Map`と`Object`はよく似ています。
@@ -261,7 +261,7 @@ function onLoginFormSubmit(event) {
 }
 ```
 
-### WeakMap
+### WeakMap {#weakmap}
 
 [WeakMap][]は、`Map`と同じくマップを扱うためのビルトインオブジェクトです。
 `Map`と違う点は、キーを**弱い参照**（Weak Reference）でもつことです。
@@ -328,7 +328,7 @@ function getHeight(element) {
 }
 ```
 
-### [コラム] キーの等価性とNaNオブジェクト
+### [コラム] キーの等価性とNaNオブジェクト {#key-and-nan}
 
 `Map`に値をセットする際のキーにはあらゆるオブジェクトが使えますが、一部のオブジェクトについては扱いに注意が必要です。
 
@@ -346,14 +346,14 @@ console.log(NaN === NaN); // => false
 console.log(map.get(NaN)); // => "value"
 ```
 
-## Set
+## Set {#set}
 
 [Set][]はセット型のコレクションを扱うためのビルトインオブジェクトです。
 セットとは、重複する値がないことを保証したコレクションのことをいいます。
 `Set`は追加した値を列挙できるので、値が重複しないことを保証する配列のようなものとしてよく使われます。
 ただし、配列と違って要素は順序をもたず、インデックスによるアクセスはできません。
 
-## セットの作成と初期化
+## セットの作成と初期化 {#create-and-init-for-set}
 
 `Set`オブジェクトを`new`することで、新しいセットを作ることができます。
 作成されたばかりのセットは何ももっていません。
@@ -376,7 +376,7 @@ const set = new Set(["value1", "value2", "value2"]);
 console.log(set.size); // => 2
 ```
 
-### 値の追加と取り出し
+### 値の追加と取り出し {#add-and-take-out-for-set}
 
 作成したセットに値を追加するには`add`メソッドを使います。
 先述のとおり、セットは重複する値をもたないことが保証されます。
@@ -414,7 +414,7 @@ set.clear();
 console.log(set.size); // => 0
 ```
 
-### セットの反復処理
+### セットの反復処理 {#set-iteration}
 
 セットがもつすべての値を反復するにはfor...of文を使います。
 for...of文でセットを反復したときは、セットへの追加順に値が取り出されます。
@@ -437,7 +437,7 @@ console.log(results); // => ["a","b"]
 また、`entries`メソッドは`[値, 値]`という形のエントリーを挿入順に列挙するIteratorオブジェクトを返します。
 ただし、`Set`自身がiterableであるため、これらのメソッドが必要になることはないでしょう。
 
-### WeakSet
+### WeakSet {#weakset}
 
 [WeakSet][]は弱い参照で値をもつセットです。
 `WeakSet`は`Set`と似ていますが、iterableではないので追加した値を反復できません。
