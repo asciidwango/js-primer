@@ -3,7 +3,7 @@ author: azu
 ---
 
 
-# ラッパーオブジェクト
+# ラッパーオブジェクト {#wrapper-object}
 
 JavaScriptのデータ型はプリミティブ型とオブジェクトにわけられます。（詳細は「[データ型とリテラル][]」を参照）
 
@@ -21,7 +21,7 @@ JavaScriptのデータ型はプリミティブ型とオブジェクトにわけ�
 
 この章では、プリミティブ型の値がなぜオブジェクトのメソッドを呼び出せるのかについて解説します。
 
-## プリミティブ型とラッパーオブジェクト
+## プリミティブ型とラッパーオブジェクト {#primitive-type-and-wrapper-object}
 
 <!--　textlint-disable preset-ja-technical-writing/max-ten -->
 
@@ -65,7 +65,7 @@ const stringWrapper = new String("文字列");
 console.log(typeof stringWrapper); // => "object";
 ```
 
-## プリミティブ型の値からラッパーオブジェクトへの自動変換
+## プリミティブ型の値からラッパーオブジェクトへの自動変換 {#convert-primitive-to-wrapper}
 
 JavaScriptでは、プリミティブ型の値に対してプロパティアクセスする時、自動で対応するラッパーオブジェクトに変換されます。
 たとえば`"string"`という文字列は、自動的に`new String("string")`のようなラッパーオブジェクトへ変換されています。
@@ -112,7 +112,7 @@ const string = "文字列";
 const stringWrraper = new String("文字列");
 ```
 
-## まとめ
+## まとめ {#wrapper-object-summary}
 
 この章では、プリミティブ型の値がなぜメソッド呼び出しできるのかについて解説しました。
 その仕組みの背景にはプリミティブ型に対応したラッパーオブジェクトの存在があります。
