@@ -2,11 +2,11 @@
 author: laco
 ---
 
-# Date
+# Date {#date}
 
 この章では、JavaScriptで日付や時刻を扱うための[Date][]について学びます。
 
-## Dateオブジェクト
+## Dateオブジェクト {#date-object}
 
 `Date`オブジェクトは`String`や`Array`などと同じく、ビルトインのグローバルオブジェクトです。
 そのため、スクリプト中のどこからでも呼び出して使えます。
@@ -16,13 +16,13 @@ author: laco
 このミリ秒の値のことを、本章では「時刻値」と呼びます。
 `Date`オブジェクトのインスタンスはそれぞれがひとつの時刻値をもち、その時刻値をもとに日付や時・分などを扱うメソッドを提供します。
 
-### インスタンスの作成
+### インスタンスの作成 {#create-instance}
 
 `Date`オブジェクトのインスタンスは、常にnew演算子を使って作成します。
 `Date`オブジェクトのインスタンス作成には、大きく分けて2つの種類があります。
 ひとつは現在の時刻をインスタンス化するもの、もうひとつは任意の時刻をインスタンス化するものです。
 
-#### 現在の時刻をインスタンス化する
+#### 現在の時刻をインスタンス化する {#instance-current-time}
 
 `Date`をnewするときにコンストラクタ引数を何も渡さない場合、作成されるインスタンスは現在の時刻を表すものになります。
 `Date`オブジェクトのインスタンスではなく現在の時刻の時刻値だけが欲しい場合には、`Date.now`メソッドの戻り値を使います。
@@ -44,7 +44,7 @@ console.log(now.getTime());
 console.log(now.toISOString());
 ```
 
-#### 任意の時刻をインスタンス化する
+#### 任意の時刻をインスタンス化する {#instance-any-time}
 
 コンストラクタ引数を渡すことで、任意の時刻を表すインスタンスを作成できます。
 `Date`のコンストラクタ関数はオーバーロードされており、渡す引数によって時刻の指定方法が変わります。
@@ -131,7 +131,7 @@ console.log(invalid.getTime()); // => NaN
 console.log(invalid.toString()); // => "Invalid Date"
 ```
 
-### Dateのインスタンスメソッド
+### Dateのインスタンスメソッド {#instance-method}
 
 `Date`オブジェクトのインスタンスは多くのメソッドをもっていますが、
 ほとんどは`getHours`と`setHours`のような、時刻の各部分を取得・更新するためのメソッドです。
@@ -167,7 +167,7 @@ const timezoneOffsetInHours = now.getTimezoneOffset() / 60;
 console.log(`Hours in UTC: ${now.getHours() + timezoneOffsetInHours}`);
 ```
 
-## 現実のユースケースとDate
+## 現実のユースケースとDate {#usecase}
 
 ここまで`Date`オブジェクトとインスタンスメソッドについて述べましたが、
 多くのユースケースにおいては機能が不十分です。
