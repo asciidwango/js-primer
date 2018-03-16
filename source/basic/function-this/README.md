@@ -2,7 +2,7 @@
 author: azu
 ---
 
-# 関数とthis
+# 関数とthis {#function-this}
 
 この章では`this`という特殊な動作をするキーワードについてを見ていきます。
 `this`は基本的にはメソッドの中で利用しますが、`this`は読み取り専用のグローバル変数のようなものでどこにでも書くことができます。
@@ -61,14 +61,14 @@ console.log(this); // => undefined
 このように、コード直下の`this`は実行コンテキストによって`undefined`となる場合があります。
 単純にグローバルオブジェクトを参照したい場合は、`this`ではなく`window`などのグローバルオブジェクトを直接参照した方がよいです。
 
-## 関数とメソッドにおける`this`
+## 関数とメソッドにおける`this` {#function-and-method-this}
 
 **関数**を定義する方法として、`function`キーワードによる関数宣言と関数式、Arrow Functionなどがあります。
 `this`が参照先を決めるルールはArrow Functionとそれ以外の方法で異なります。
 
 そのため、まずは関数定義の種類についてを振り返ってから、それぞれの`this`について見ていきます。
 
-### 関数の種類
+### 関数の種類 {#type-of-function}
 
 [関数と宣言][]で詳しくは紹介していますが、関数の定義方法と呼び出し方について改めて振り返ってみましょう。
 **関数**を定義する場合には、次の3つの方法を利用します。
@@ -97,7 +97,7 @@ function fn() {}
 fn();
 ```
 
-### メソッドの種類
+### メソッドの種類 {#type-of-method}
 
 JavaScriptではオブジェクトのプロパティが関数である場合にそれを**メソッド**と呼びます。
 一般的にはメソッドも含めたものを**関数**といい、関数宣言などとプロパティである関数を区別する場合に**メソッド**と呼びます。
@@ -204,7 +204,7 @@ obj1["obj2"]["method"]();
 `this`は関数の定義ではなく呼び出し方で参照する値が異なります。これは、後述する「`this`が問題となるパターン」で詳しく紹介します。
 Arrow Function以外の関数では、関数の定義だけを見て`this`の値が何かということは決定できない点には注意が必要です。
 
-### 関数宣言や関数式における`this` {#function-this}
+### 関数宣言や関数式における`this` {#function-declaration-expression-this}
 
 まずは、関数宣言や関数式の場合を見ていきます。
 
@@ -510,7 +510,7 @@ sayPerson(); // => "こんにちは Brendan Eich！"
 そもそも`call`、`apply`、`bind`が必要となるのは「`this`が呼び出し方によって暗黙的に決まる」という問題があるためです。
 -->
 
-### 問題: コールバック関数と`this`
+### 問題: コールバック関数と`this` {#callback-and-this}
 
 コールバック関数の中で`this`を参照すると問題となる場合があります。
 この問題は、メソッドの中で`Array#map`メソッドなどコールバック関数を扱う場合に発生しやすいです。
@@ -586,7 +586,7 @@ const Prefixer = {
 Prefixer.prefixArray(["a", "b", "c"]); // => TypeError: Cannot read property 'prefix' of undefined
 ```
 
-#### 対処法: `this`を一時変数へ代入する
+#### 対処法: `this`を一時変数へ代入する {#substitute-this}
 
 コールバック関数内での`this`の参照先が変わる問題への対処法として、`this`を別の変数に代入し、その`this`の参照先を保持するという方法があります。
 
@@ -758,7 +758,7 @@ const innerArrowFunction = outer();
 console.log(innerArrowFunction()); // => undefined;
 ```
 
-### メソッドとコールバック関数とArrow Function
+### メソッドとコールバック関数とArrow Function {#method-callback-arrow-function}
 
 メソッド内におけるコールバック関数はArrow Functionをもっと活用できるパターンです。
 `function`キーワードでコールバック関数を定義すると、`this`の値はコールバック関数の呼ばれ方を意識する必要があります。
@@ -823,7 +823,7 @@ const prefixedStrings = Prefixer.prefixArray(["a", "b", "c"]);
 console.log(prefixedStrings); // => ["pre-a", "pre-b", "pre-c"]
 ```
 
-### Arrow Functionは`this`をbindできない
+### Arrow Functionは`this`をbindできない {#not-bind-arrow-function}
 
 Arrow Functionで定義した関数には`call`、`apply`、`bind`を使った`this`の指定は単に無視されます。
 これは、Arrow Functionは`this`をもつことができないためです。
@@ -867,7 +867,7 @@ console.log(object.method()); // => object
 console.log(object.method.call("THAT")); // => "THAT"
 ```
 
-## まとめ
+## まとめ {#function-this-summary}
 
 `this`は状況によって異なる値を参照する性質を持ったキーワードであることを紹介しました。
 その`this`の評価結果をまとめると次の表のようになります。
