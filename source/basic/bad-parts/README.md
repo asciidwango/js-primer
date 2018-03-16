@@ -4,7 +4,7 @@ author: laco
 
 <!-- textlint-disable eslint -->
 
-# 非推奨の機能 {#deprecate-function}
+# 非推奨の機能 {#deprecated-feature}
 
 JavaScriptのイディオム（慣用的な書き方）や文法のなかには、
 ECMAScriptのアップデートによって不要になったり非推奨になったりした古い書き方がいくつもあります。
