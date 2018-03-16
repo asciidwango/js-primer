@@ -2,7 +2,7 @@
 author: laco
 ---
 
-# JSON
+# JSON {#json}
 
 ## JSONとは {#what-is-json}
 
@@ -134,7 +134,7 @@ console.log(JSON.stringify(obj, null, "\t"));
 */
 ```
 
-## [コラム] JSONにシリアライズできないオブジェクト
+## [コラム] JSONにシリアライズできないオブジェクト {#not-serialization-object}
 
 `JSON.stringify`メソッドはJSONで表現可能な値だけをシリアライズします。
 そのため、値が関数や`Symbol`、あるいは`undefined`であるプロパティなどは変換されません。
@@ -184,7 +184,7 @@ RegExpやMap、Setなどのインスタンスは列挙可能なプロパティ�
 
 [import circular-reference.js](src/circular-reference.js)
 
-## [コラム] `toJSON`メソッドを使ったシリアライズ
+## [コラム] `toJSON`メソッドを使ったシリアライズ {#serialization-by-toJSON}
 
 オブジェクトが`toJSON`メソッドを持っている場合、`JSON.stringify`メソッドは既定の文字列変換ではなく`toJSON`メソッドの返り値を使います。
 次の例のように、引数に直接渡されたときだけでなく引数のプロパティとして登場したときにも再帰的に処理されます。
