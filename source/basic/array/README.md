@@ -2,7 +2,7 @@
 author: azu
 ---
 
-# 配列
+# 配列 {#array}
 
 この章では、配列の基本的な操作と配列を扱う場合においてのパターンについて学びます。
 配列はJavaScriptの中でもよく使われるオブジェクトです。
@@ -11,7 +11,7 @@ author: azu
 配列に格納したそれぞれの値のことを**要素**、それぞれの要素の位置のことを**インデックス**（`index`）と呼びます。
 また、JavaScriptの配列は可変長の配列のみとなっています。
 
-## 配列は特別なオブジェクト
+## 配列は特別なオブジェクト {#array-is-special-object}
 
 JavaScriptでは、プリミティブ型のデータ以外はすべてオブジェクトです。
 そのため、配列もオブジェクトの一種です。
@@ -44,7 +44,7 @@ array.length = 0; // 配列を空にする
 console.log(array); // => []
 ```
 
-### オブジェクトが配列かどうかを判定する
+### オブジェクトが配列かどうかを判定する {#detect-array}
 
 配列の`length`プロパティは特殊な動作をしますが、独自の`length`プロパティを持ったオブジェクトを作ることができます。
 この２つのオブジェクトの違いはどのように見分ければいいのでしょうか？
@@ -77,7 +77,7 @@ console.log(Array.isArray(object)); // => false
 ```
 
 
-### [コラム] TypedArray
+### [コラム] TypedArray {#typed-array}
 
 JavaScriptの配列は可変長のみですが、`TypedArray`という固定長でかつ型付きの配列を扱う別のオブジェクトが存在します。
 `TypedArray`はバイナリデータを扱うためのオブジェクトで、WebGLやバイナリを扱う場面で利用されます。
@@ -86,7 +86,7 @@ JavaScriptの配列は可変長のみですが、`TypedArray`という固定長�
 
 JavaScriptで配列といった場合には`Array`を示します。
 
-## 配列の作成とアクセス
+## 配列の作成とアクセス {#create-and-access}
 
 配列の作成と要素へのアクセス方法は[データ型とリテラル](../data-type/#array)ですでに紹介していますが、
 もう一度振り返ってみましょう。
@@ -162,7 +162,7 @@ console.log(sparseArray.length); // => 3
 console.log(sparseArray[1]); // => undefined
 ```
 
-## [コラム] undefinedの要素と未定義の要素の違い
+## [コラム] undefinedの要素と未定義の要素の違い {#diff-undefined-and-no-element}
 
 疎な配列で該当するインデックスに要素がない場合は`undefined`を返します。
 しかし、JavaScriptに`undefined`値も存在するため、配列に`undefined`値がある場合に区別できません。
@@ -190,7 +190,7 @@ console.log(denseArray.hasOwnProperty(1)); // => true
 console.log(sparseArray.hasOwnProperty(1)); // => false
 ```
 
-## 配列から要素を検索
+## 配列から要素を検索 {#search-element}
 
 配列からある要素があるかを探索したい場合に、
 主に次の3つの目的に分類できます。
@@ -305,7 +305,7 @@ console.log(array.slice(-1)); // => ["E"]
 console.log(array.slice(4, 1)); // => []
 ```
 
-### 真偽値を取得
+### 真偽値を取得 {#get-boolean}
 
 最後に、ある要素が配列に含まれているかを知る方法について見ていきます。
 インデックスや要素が取得できれば、その要素は配列に含まれているということは分かります。
@@ -365,7 +365,7 @@ const isIncludedBlueColor = colors.some((object) => {
 console.log(isIncludedBlueColor); // => true
 ```
 
-## 追加と削除
+## 追加と削除 {#add-and-delete}
 
 配列は可変長であるため、作成後の配列に対して要素を追加、削除できます。
 
@@ -415,7 +415,7 @@ const newArray = array.concat("新しい要素");
 console.log(newArray); // => ["A", "B", "C", "新しい要素"]
 ```
 
-## 配列から要素を削除
+## 配列から要素を削除 {#delete-element}
 
 ### `Array#splice` {#splice}
 
@@ -668,7 +668,7 @@ function myFunc() {
 myFunc("a", "b", "c");
 ```
 
-## メソッドチェーンと高階関数
+## メソッドチェーンと高階関数 {#method-chain-and-high-order-function}
 
 配列で頻出するパターンとしてメソッドチェーンがあります。
 メソッドチェーンとは名前のとおり、メソッドの呼び出しを行いその結果の値に対してさらにメソッドを呼び出すパターンのことを言います。
