@@ -2,12 +2,12 @@
 author: laco 
 ---
 
-# MarkdownをHTMLに変換する
+# MarkdownをHTMLに変換する {#md-to-html}
 
 前のセクションではコマンドライン引数で受け取ったファイルを読み込み、標準出力に表示しました。
 次は読み込んだMarkdownファイルをHTMLに変換して、その結果を標準出力に表示してみましょう。
 
-## markedパッケージを使う
+## markedパッケージを使う {#use-marked-package}
 
 JavaScriptでMarkdownをHTMLへ変換するために、今回は[marked][]というライブラリを使用します。
 markedのパッケージはnpmで配布されているので、commanderと同様に`npm install`コマンドでパッケージをインストールしましょう。
@@ -26,7 +26,7 @@ markedパッケージから取得した`marked`オブジェクトは、Markdown�
 
 [import main.js](src/main-1.js)
 
-## 変換オプションを作成する
+## 変換オプションを作成する {#create-covnert-option}
 
 markedにはMarkdownの[変換オプション][]があり、オプションの設定によって変換後のHTMLが変化します。
 いくつかのオプションについてアプリケーション中でのデフォルトの設定を決め、さらにコマンドライン引数から設定を切り替えられるようにしてみましょう。
@@ -35,7 +35,7 @@ markedにはMarkdownの[変換オプション][]があり、オプションの�
 * gfm
 * sanitize
 
-### gfmオプション
+### gfmオプション {#gfm-option}
 
 `gfm`オプションは、GitHubにおけるMarkdownの仕様([GitHub Flavored Markdown][], GFM)に合わせて変換するかを決めるオプションです。
 markedのデフォルトでは`true`になっています。GFMは標準的なMarkdownにいくつかの拡張を加えたもので、代表的な拡張がURLの自動リンク化です。
@@ -71,7 +71,7 @@ https://asciidwango.github.io/js-primer/</p>
 
 自動リンクの他にもいくつかの拡張がありますが、詳しくは[GitHub Flavored Markdown][]のドキュメンテーションを参照してください。
 
-### sanitizeオプション
+### sanitizeオプション {#sanitize-option}
 
 `sanitize`オプションは出力されるHTMLを安全な形にサニタイズするためのオプションです。
 `sanitize`オプションが有効なとき、Markdownファイル中に書かれたHTMLタグはエスケープされ、単なる文字列として出力されます。
@@ -111,7 +111,7 @@ https://asciidwango.github.io/js-primer/</p>
 </ul>
 ```
 
-### コマンドライン引数からオプションを受け取る
+### コマンドライン引数からオプションを受け取る {#receive-option}
 
 それぞれの変換オプションについて、コマンドライン引数で制御できるようにします。
 `gfm`オプションは`--gfm`、`sanitize`オプションは`--sanitize`と`-S`でコマンドラインから設定できるようにします。
@@ -126,7 +126,7 @@ program
 program.parse(process.argv);
 ```
 
-### デフォルト設定を定義する
+### デフォルト設定を定義する {#declare-default}
 
 毎回すべての設定を明示的に入力させるのは不便なので、それぞれの変換オプションのデフォルト設定を定義します。
 今回は`gfm`オプションを`true`、`sanitize`オプションを`false`にします。
