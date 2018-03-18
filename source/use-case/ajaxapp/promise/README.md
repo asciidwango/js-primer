@@ -2,12 +2,12 @@
 author: laco
 ---
 
-# Promiseを活用する
+# Promiseを活用する {#use-promise}
 
 ここまでで、XHRを使ってAjax通信を行い、サーバーから取得したデータを表示できました。
 最後に、**Promise**を使ってソースコードを整理することで、エラーハンドリングをしっかり行います。
 
-## 関数の分割
+## 関数の分割 {#split-function}
 
 まずは、大きくなりすぎた`getUserInfo`関数を整理しましょう。
 この関数では、XHRを使ったデータの取得・HTML文字列の組み立て・組み立てたHTMLの表示を行っています。
@@ -60,7 +60,7 @@ function displayView(view) {
 }
 ```
 
-## XHRをPromiseでラップする
+## XHRをPromiseでラップする {#wrap-xhr}
 
 次に、`getUserInfo`関数で行っているXHRの処理を整理します。
 これまではXHRのコールバック関数の中で処理を行っていましたが、これを**Promise**を使った処理に書き換えます。
@@ -114,7 +114,7 @@ function getUserInfo(userId) {
 }
 ```
 
-### エラーハンドリング
+### エラーハンドリング {#error-handling}
 
 このままではPromiseに置き換えた意味がないので、Promiseを使ったエラーハンドリングを行いましょう。
 Promiseのコンテキスト内で発生したエラーは、`Promise#catch`メソッドを使って一箇所で受け取れます。
@@ -152,7 +152,7 @@ function getUserInfo(userId) {
 }
 ```
 
-### Promiseチェーンへの置き換え
+### Promiseチェーンへの置き換え {#replace-to-promise-chain}
 
 Promiseは`Promise#then`メソッドを使うことで、複数の処理の連鎖を表現できます。
 複数の処理を`then`で分割し、連鎖させたものを、ここでは**[Promiseチェーン][]**と呼びます。
@@ -201,7 +201,7 @@ function getUserInfo(userId) {
 }
 ```
 
-## ユーザーIDを変更できるようにする
+## ユーザーIDを変更できるようにする {#changeable-userid}
 
 仕上げとして、今まで`js-primer-example`で固定としていたユーザーIDを変更できるようにしましょう。
 index.htmlに`<input>`タグを追加し、JavaScriptから値を取得するために`userId`というIDを付与しておきます。
