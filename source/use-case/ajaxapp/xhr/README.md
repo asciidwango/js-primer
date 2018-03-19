@@ -2,13 +2,13 @@
 author: laco
 ---
 
-# HTTP通信
+# HTTP通信 {#http-communication}
 
 アプリケーションが実行できるようになったので、次はGitHubのAPIを呼び出す処理を実装していきます。
 当然ですが、GitHubのAPIを呼び出すためにはHTTP通信を行う必要があります。
 ウェブブラウザ上でJavaScriptからHTTP通信を行うには`XMLHttpRequest`という機能を使います。
 
-## `XMLHttpRequest`
+## `XMLHttpRequest` {#xml-http-request}
 
 `XMLHttpRequest`（**XHR**）はクライアントとサーバー間でデータをやり取りするためのAPIです。
 XHRを使うことで、ページ全体を再読み込みすることなくURLからデータを取得できます。
@@ -33,7 +33,7 @@ request.send();
 2. URLをオープン
 3. リクエストを送信
 
-## レスポンスの受け取り
+## レスポンスの受け取り {#receive-response}
 
 GitHubのAPIに対してHTTPリクエストを送信しましたが、まだレスポンスを受け取る処理を書いていません。
 次はサーバーから返却されたレスポンスのログをコンソールに出力する処理を実装します。
@@ -70,7 +70,7 @@ HTTPレスポンスの内容によらず、`responseText`は常に文字列と�
 `response`プロパティは便利なAPIなのですが、サーバー側の実装やブラウザの実装などに依存するため、本章では扱いません。
 興味があれば、詳細については[XMLHttpRequest.response][]を参照してください。
 
-## エラーハンドリング
+## エラーハンドリング {#error-handling}
 
 HTTP通信にはエラーがつきものです。
 もちろんXHRを使った通信においても、エラーをハンドリングする方法があります。
