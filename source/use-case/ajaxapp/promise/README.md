@@ -152,7 +152,7 @@ function getUserInfo(userId) {
 }
 ```
 
-### Promiseチェーンへの置き換え {#replace-to-promise-chain}
+### Promiseチェーンへの置き換え {#rewrite-to-promise-chain}
 
 Promiseは`Promise#then`メソッドを使うことで、複数の処理の連鎖を表現できます。
 複数の処理を`then`で分割し、連鎖させたものを、ここでは**[Promiseチェーン][]**と呼びます。

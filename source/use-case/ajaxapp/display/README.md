@@ -24,7 +24,7 @@ request.addEventListener("load", (event) => {
 });
 ```
 
-## HTMLを組み立てる {#assemble-html}
+## HTMLを組み立てる {#markup-html}
 
 HTML文字列の生成にはテンプレートリテラルを使います。
 テンプレートリテラルは文字列中の改行が可能なため、HTMLのインデントを表現できて見通しが良くなります。
@@ -60,7 +60,7 @@ const view = `
 </dl>
 ```
 
-## HTML文字列をDOMに追加する {#add-string-to-dom}
+## HTML文字列をDOMに追加する {#html-to-dom}
 
 次に、生成したHTML文字列をDOMツリーに追加して表示します。
 まずは動的にHTMLをセットするために、目印となる要素をindex.htmlに追加します。
@@ -95,7 +95,7 @@ JavaScriptによってHTML要素をDOMに追加する方法は、大きく分け
 後者はセキュリティ的に安全ですが、コードは少し冗長になります。
 今回は`Element#innerHTML`プロパティを使いつつ、セキュリティのための処理を行うこととします。
 
-## HTML文字列をエスケープする {#escape-string}
+## HTML文字列をエスケープする {#escape-html}
 
 `Element#innerHTML`に文字列をセットすると、その文字列はHTMLとして解釈されます。
 たとえばGitHubのユーザー名に`<`記号や`>`記号が含まれていると、意図しない構造のHTMLになる可能性があります。
