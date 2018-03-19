@@ -2,12 +2,12 @@
 author: laco 
 ---
 
-# Node.jsでHello World
+# Node.jsでHello World {#hello-world-by-nodejs}
 
 実際にアプリケーションを作成するまえに、まずはNode.jsについて簡単に解説します。
 その後、Hello Worldアプリケーションを通じてNode.jsのCLIアプリケーションの基本を学びましょう。
 
-## Node.jsとは
+## Node.jsとは {What-is-nodejs}
 
 [Node.js][]はサーバーサイドJavaScript実行環境のひとつで、次のような特徴があります。
 
@@ -18,7 +18,7 @@ author: laco
 Node.jsはサーバーサイドで使うために開発されました。
 しかし今ではコマンドラインツールや[Electron][]など、Webブラウザに依存しないクライアントサイドのJavaScript実行環境としても幅広く使われています。
 
-## Node.jsのインストール
+## Node.jsのインストール {#install-nodejs}
 
 Node.jsは多くの他のプログラミング言語と同じように、実行環境をマシンにインストールすることで使用できます。
 公式の[ダウンロードページ][]から、開発用のマシンに合わせたインストーラをダウンロードして、インストールしましょう。
@@ -37,7 +37,7 @@ $ node -v
 v6.9.1
 ```
 
-## Hello World
+## Hello World {#hello-world}
 
 <!-- textlint-disable preset-ja-technical-writing/no-exclamation-question-mark -->
 
