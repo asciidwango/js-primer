@@ -26,7 +26,7 @@ markedパッケージから取得した`marked`オブジェクトは、Markdown�
 
 [import main.js](src/main-1.js)
 
-## 変換オプションを作成する {#create-covnert-option}
+## 変換オプションを作成する {#create-convert-option}
 
 markedにはMarkdownの[変換オプション][]があり、オプションの設定によって変換後のHTMLが変化します。
 いくつかのオプションについてアプリケーション中でのデフォルトの設定を決め、さらにコマンドライン引数から設定を切り替えられるようにしてみましょう。
