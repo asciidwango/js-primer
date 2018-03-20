@@ -7,7 +7,7 @@ author: laco
 実際にアプリケーションを作成するまえに、まずはNode.jsについて簡単に解説します。
 その後、Hello Worldアプリケーションを通じてNode.jsのCLIアプリケーションの基本を学びましょう。
 
-## Node.jsとは {What-is-nodejs}
+## Node.jsとは {#what-is-nodejs}
 
 [Node.js][]はサーバーサイドJavaScript実行環境のひとつで、次のような特徴があります。
 

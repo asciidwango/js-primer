@@ -10,6 +10,7 @@
     }
   },
   "rules": {
+    "@textlint-rule/require-header-id": true,
     "@textlint-rule/no-invalid-control-character": true,
     // 箇条書きには。を付けない
     "period-in-list-item": {

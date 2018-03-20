@@ -478,7 +478,7 @@ console.log(array.hasOwnProperty === Object.prototype.hasOwnProperty); // => tru
 ここでは、`Object`はすべてのオブジェクトの親となるオブジェクトであることだけを覚えておくだけで問題ありません。
 これにより、`Array`や`String`などのインスタンスも`Object.prototype`がもつメソッドを利用できる点を覚えておきましょう。
 
-## [コラム] `Object.prototype`を継承しないオブジェクト #{not-inherit-object}
+## [コラム] `Object.prototype`を継承しないオブジェクト {#not-inherit-object}
 
 `Object`はすべてのオブジェクトの親となるオブジェクトである言いましたが、例外もあります。
 
