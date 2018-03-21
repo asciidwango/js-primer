@@ -4,25 +4,23 @@
   "license": "MIT",
   "private": true,
   "version": "1.0.0",
-  "description": "TODO MVC like in ES6",
+  "description": "TODO MVC like in ES2015",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "mocha test/"
+    "test": "mocha test/ && npm run test:e2e",
+    "start": "static . -p 3030",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run --browser chrome",
+    "test:e2e": "start-server-and-test start http://localhost:3030 cy:run"
   },
-  "browserify": {
-    "transform": [
-      "babelify"
-    ]
-  },
-  "keywords": [
-    "todo",
-    "es6"
-  ],
   "devDependencies": {
     "@std/esm": "^0.20.0",
-    "mocha": "^2.5.3"
+    "mocha": "^2.5.3",
+    "cypress": "^2.1.0",
+    "node-static": "^0.7.7",
+    "start-server-and-test": "^1.1.0"
   }
 }
