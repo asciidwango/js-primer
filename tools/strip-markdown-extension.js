@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 "use strict";
-
+const execFileSync = require("child_process").execFileSync;
+const includeCodeBlock = require.resolve(".bin/include-codeblock");
 /**
  * contentからからjs-primerで使ってるMarkdownの拡張を取り除く
  * @param {string} content
@@ -20,12 +21,11 @@ function stripMarkdownExtension(content) {
  * 標準出力にいらないものを削ったMarkdownを出力
  */
 if (!module.parent) {
-    const fs = require("fs");
     const path = require("path");
     if (!process.argv[2]) {
         throw new Error("node strip-markdown-extension.js /path/to/file.md");
     }
     const filePath = path.resolve(process.cwd(), process.argv[2]);
-    const content = fs.readFileSync(filePath, "utf-8");
-    console.log(stripMarkdownExtension(content));
+    const includedContent = execFileSync('node', [includeCodeBlock, filePath]);
+    console.log(stripMarkdownExtension(String(includedContent)));
 }
