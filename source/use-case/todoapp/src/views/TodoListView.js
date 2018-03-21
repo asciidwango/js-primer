@@ -1,20 +1,19 @@
 "use strict";
-import { html } from "./html-util.js";
+import { element } from "./html-util.js";
 
-export class TodoListItem {
-    html(todoItem, { onToggle, onDelete }) {
+export class TodoItemView {
+    createElement(todoItem, { onToggle, onDelete }) {
         // 完了済み or 未完了
         const checkBox = todoItem.completed
-            ? html`<li>
+            ? element`<li>
 <input type="checkbox" checked><s>${todoItem.title}</s></input>
 <button>[削除]</button>
 </li>`
-            : html`<li>
+            : element`<li>
 <input type="checkbox">${todoItem.title}</input>
 <button>[削除]</button>
 </li>`;
         checkBox.querySelector("input").addEventListener("change", () => {
-            console.log(todoItem);
             onToggle({
                 id: todoItem.id,
                 isCompleted: !todoItem.completed
@@ -29,12 +28,12 @@ export class TodoListItem {
     }
 }
 
-export class TodoList {
-    html(todoItemList, handlers) {
-        const ul = html`<ul />`;
+export class TodoListView {
+    createElement(todoItemList, handlers) {
+        const ul = element`<ul />`;
         todoItemList.forEach(todoItem => {
-            const item = new TodoListItem();
-            ul.appendChild(item.html(todoItem, {
+            const item = new TodoItemView();
+            ul.appendChild(item.createElement(todoItem, {
                 onToggle: handlers.onToggle,
                 onDelete: handlers.onDelete
             }));

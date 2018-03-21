@@ -16,10 +16,10 @@ export function htmlToElement(html) {
 }
 
 /**
- * HTMLのNodeを返す
+ * HTML文字列からDOM Nodeを作成して返す
  * @return {DocumentFragment}
  */
-export function html(strings, ...values) {
+export function element(strings, ...values) {
     const htmlString = strings.reduce((result, string, i) => {
         const value = values[i - 1];
         if (typeof value === "string") {
@@ -32,7 +32,9 @@ export function html(strings, ...values) {
 }
 
 
-export function render(htmlString, container) {
-    container.innerHTML = "";
-    container.appendChild(htmlString);
+export function render(bodyElement, rootElement) {
+    // rootElementの中身を空にする
+    rootElement.innerHTML = "";
+    // rootElementの直下にbodyElementを追加する
+    rootElement.appendChild(bodyElement);
 }

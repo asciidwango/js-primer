@@ -1,6 +1,4 @@
-// LICENSE : MIT
 "use strict";
-
 /*
  *  Simple EventEmitter
  */

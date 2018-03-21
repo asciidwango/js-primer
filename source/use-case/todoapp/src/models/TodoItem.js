@@ -9,8 +9,4 @@ export class TodoItem {
         this.title = title;
         this.completed = completed;
     }
-
-    get isCompleted() {
-        return this.completed;
-    }
 }

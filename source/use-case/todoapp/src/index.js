@@ -1,24 +1,24 @@
 // LICENSE : MIT
 "use strict";
 import { render } from "./views/html-util.js";
-import { TodoList } from "./views/TodoList.js";
+import { TodoListView } from "./views/TodoListView.js";
 import { TodoItem } from "./models/TodoItem.js";
-import { TodoListModel } from "./models/TodoListModel.js";
+import { TodoList } from "./models/TodoList.js";
 
 class App {
     mount() {
         const form = document.getElementById("js-form");
         const inputElement = document.getElementById("js-form-input");
-        const todoListElement = document.getElementById("js-todo-list");
-        const rendering = new TodoList();
-        const todoListModel = new TodoListModel();
+        const todoListRoot = document.getElementById("js-todo-list");
+        const todoListView = new TodoListView();
+        const todoListModel = new TodoList();
         const toggleComplete = ({ id, isCompleted }) => {
             todoListModel.changeComplete({ id, isCompleted });
         };
-        const deleteTodo = ({ id }) => {
+        const onDeleteTodo = ({ id }) => {
             todoListModel.deleteTodo({ id });
         };
-        const addTodo = (title) => {
+        const onAddTodo = (title) => {
             if (title.length > 0) {
                 todoListModel.addTodo(new TodoItem({ title }));
             }
@@ -27,18 +27,18 @@ class App {
             // prevent submit action
             event.preventDefault();
             // try to add
-            addTodo(inputElement.value);
+            onAddTodo(inputElement.value);
             // clear text
             inputElement.value = "";
         });
 
         this.unbindHandler = todoListModel.onChange(() => {
             const todoItemList = todoListModel.getAllTodoList();
-            const html = rendering.html(todoItemList, {
+            const todoListElement = todoListView.createElement(todoItemList, {
                 onToggle: toggleComplete,
-                onDelete: deleteTodo
+                onDelete: onDeleteTodo
             });
-            render(html, todoListElement);
+            render(todoListElement, todoListRoot);
         });
     }
 

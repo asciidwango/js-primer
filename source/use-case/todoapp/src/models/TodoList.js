@@ -3,7 +3,7 @@
 import { EventEmitter } from "../EventEmitter.js";
 
 // model
-export class TodoListModel extends EventEmitter {
+export class TodoList extends EventEmitter {
     constructor(todoList = []) {
         super();
         this.todoList = todoList;
