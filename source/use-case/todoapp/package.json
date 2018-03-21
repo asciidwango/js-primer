@@ -10,16 +10,17 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha test/",
+    "test": "mocha test/ && npm run test:e2e",
     "start": "static . -p 3030",
     "cy:open": "cypress open",
-    "cy:run": "cypress run",
+    "cy:run": "cypress run --browser chrome",
     "test:e2e": "start-server-and-test start http://localhost:3030 cy:run"
   },
   "devDependencies": {
     "@std/esm": "^0.20.0",
     "mocha": "^2.5.3",
     "cypress": "^2.1.0",
-    "node-static": "^0.7.7"
+    "node-static": "^0.7.7",
+    "start-server-and-test": "^1.1.0"
   }
 }
