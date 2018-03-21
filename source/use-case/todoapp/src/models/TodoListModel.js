@@ -1,26 +1,12 @@
 // LICENSE : MIT
 "use strict";
 import { EventEmitter } from "../EventEmitter.js";
-// unique id
-let todoIdx = 0;
-
-export class TodoItemModel {
-    constructor({ title, completed = false } = {}) {
-        this.id = todoIdx++;
-        this.title = title;
-        this.completed = completed;
-    }
-
-    get isCompleted() {
-        return this.completed;
-    }
-}
 
 // model
 export class TodoListModel extends EventEmitter {
     constructor(todoList = []) {
         super();
-        this.todoList = todoList.map(todoItem => new TodoItemModel(todoItem));
+        this.todoList = todoList;
     }
 
     getAllTodoList() {
@@ -49,7 +35,7 @@ export class TodoListModel extends EventEmitter {
     }
 
     addTodo(todo) {
-        this.todoList.push(new TodoItemModel(todo));
+        this.todoList.push(todo);
         this.emitChange();
     }
 

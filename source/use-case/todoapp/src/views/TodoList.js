@@ -2,7 +2,7 @@
 import { html } from "./html-util.js";
 
 export class TodoListItem {
-    html(todoItem, { onChange: onToggle, onDelete }) {
+    html(todoItem, { onToggle, onDelete }) {
         // 完了済み or 未完了
         const checkBox = todoItem.completed
             ? html`<li>
@@ -14,6 +14,7 @@ export class TodoListItem {
 <button>[削除]</button>
 </li>`;
         checkBox.querySelector("input").addEventListener("change", () => {
+            console.log(todoItem);
             onToggle({
                 id: todoItem.id,
                 isCompleted: !todoItem.completed

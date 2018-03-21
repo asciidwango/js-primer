@@ -2,6 +2,7 @@
 "use strict";
 import { render } from "./views/html-util.js";
 import { TodoList } from "./views/TodoList.js";
+import { TodoItem } from "./models/TodoItem.js";
 import { TodoListModel } from "./models/TodoListModel.js";
 
 class App {
@@ -19,7 +20,7 @@ class App {
         };
         const addTodo = (title) => {
             if (title.length > 0) {
-                todoListModel.addTodo({ title });
+                todoListModel.addTodo(new TodoItem({ title }));
             }
         };
         form.addEventListener("submit", (event) => {
