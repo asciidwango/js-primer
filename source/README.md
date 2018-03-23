@@ -45,6 +45,6 @@
       - [Node.jsでHello World](./use-case/nodecli/helloworld/README.md)
       - [コマンドライン引数を処理する](./use-case/nodecli/argument-parse/README.md)
       - [ファイルを読み込む](./use-case/nodecli/read-file/README.md)
-      - [MarkdownをHTMLに変換する](./se-case/nodecli/md-to-html/README.md)
+      - [MarkdownをHTMLに変換する](./use-case/nodecli/md-to-html/README.md)
       - [ユニットテストを記述する](./use-case/nodecli/refactor-and-unittest/README.md)
     - TODOアプリ
