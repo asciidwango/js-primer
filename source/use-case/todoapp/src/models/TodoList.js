@@ -4,15 +4,27 @@ import { EventEmitter } from "../EventEmitter.js";
 
 // model
 export class TodoList extends EventEmitter {
-    constructor(todoList = []) {
+    /**
+     * @param {TodoItem[]} items
+     */
+    constructor(items) {
         super();
-        this.todoList = todoList;
+        this.items = items;
     }
 
-    getAllTodoList() {
-        return this.todoList;
+    /**
+     * 表示できるTodoItemの配列を返す
+     * @returns {TodoItem[]}
+     */
+    getAllTodoItems() {
+        return this.items;
     }
 
+    /**
+     * TodoListの状態が更新されたときに呼び出されるハンドラを登録する
+     * @param {Function} handler
+     * @returns {Function}
+     */
     onChange(handler) {
         this.on("change", handler);
         return () => {
@@ -24,24 +36,33 @@ export class TodoList extends EventEmitter {
         this.emit("change");
     }
 
-    changeComplete({ id, isCompleted }) {
+    addTodo(todo) {
+        this.items.push(todo);
+        this.emitChange();
+    }
+
+    /**
+     * 指定したidのTodoのcompletedを更新する
+     * @param {string} id
+     * @param {boolean} completed
+     */
+    updateTodoCompleted({ id, completed }) {
         // state change
-        const todoItem = this.todoList.find(todo => todo.id === id);
+        const todoItem = this.items.find(todo => todo.id === id);
         if (!todoItem) {
             return;
         }
-        todoItem.completed = isCompleted;
+        todoItem.completed = completed;
         this.emitChange();
     }
 
-    addTodo(todo) {
-        this.todoList.push(todo);
-        this.emitChange();
-    }
-
+    /**
+     * 指定したidのTODOを削除する
+     * @param {string} id
+     */
     deleteTodo({ id }) {
-        this.todoList = this.todoList.filter(todoItem => {
-            return todoItem.id !== id;
+        this.items = this.items.filter(todo => {
+            return todo.id !== id;
         });
         this.emitChange();
     }
