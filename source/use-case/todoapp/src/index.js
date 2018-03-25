@@ -11,17 +11,18 @@ class App {
         const inputElement = document.getElementById("js-form-input");
         const todoListRoot = document.getElementById("js-todo-list");
         const todoListView = new TodoListView();
-        const todoListModel = new TodoList();
-        const toggleComplete = ({ id, isCompleted }) => {
-            todoListModel.changeComplete({ id, isCompleted });
+        const todoListModel = new TodoList([]);
+
+        const onAddTodo = (title) => {
+            if (title.length > 0) {
+                todoListModel.addTodo(new TodoItem({ title, completed: false }));
+            }
+        };
+        const toggleComplete = ({ id, completed }) => {
+            todoListModel.updateTodoCompleted({ id, completed });
         };
         const onDeleteTodo = ({ id }) => {
             todoListModel.deleteTodo({ id });
-        };
-        const onAddTodo = (title) => {
-            if (title.length > 0) {
-                todoListModel.addTodo(new TodoItem({ title }));
-            }
         };
         form.addEventListener("submit", (event) => {
             // prevent submit action
@@ -33,7 +34,7 @@ class App {
         });
 
         this.unbindHandler = todoListModel.onChange(() => {
-            const todoItemList = todoListModel.getAllTodoList();
+            const todoItemList = todoListModel.getAllTodoItems();
             const todoListElement = todoListView.createElement(todoItemList, {
                 onToggle: toggleComplete,
                 onDelete: onDeleteTodo

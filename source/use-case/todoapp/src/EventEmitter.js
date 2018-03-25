@@ -1,35 +1,34 @@
 "use strict";
+
 /*
  *  Simple EventEmitter
  */
 export class EventEmitter {
     constructor() {
-        this._handlers = {};
+        this._handlers = new Map();
     }
 
     on(type, handler) {
-        if (typeof this._handlers[type] === "undefined") {
-            this._handlers[type] = [];
+        if (!this._handlers.has(type)) {
+            this._handlers.set(type, new Set());
         }
-
-        this._handlers[type].push(handler);
+        const handlerSet = this._handlers.get(type);
+        handlerSet.add(handler);
     }
 
-    emit(type, data) {
-        const handlers = this._handlers[type] || [];
-        for (let i = 0; i < handlers.length; i++) {
-            const handler = handlers[i];
-            handler.call(this, data);
-        }
+    emit(type, payload) {
+        const handlerSet = this._handlers.get(type);
+        handlerSet.forEach(handler => {
+            handler.call(this, payload);
+        });
     }
 
     off(type, handler) {
-        const handlers = this._handlers[type] || [];
-        for (let i = 0; i < handlers.length; i++) {
-            const ownHandler = handlers[i];
+        const handlerSet = this._handlers.get(type);
+        handlerSet.forEach(ownHandler => {
             if (ownHandler === handler) {
-                handlers.splice(i, 1);
+                handlerSet.delete(handler);
             }
-        }
+        });
     }
 }
