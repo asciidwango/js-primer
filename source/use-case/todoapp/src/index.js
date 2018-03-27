@@ -1,5 +1,3 @@
-// LICENSE : MIT
-"use strict";
 import { render } from "./views/html-util.js";
 import { TodoListView } from "./views/TodoListView.js";
 import { TodoItem } from "./models/TodoItem.js";

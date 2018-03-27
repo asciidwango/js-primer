@@ -1,6 +1,4 @@
-"use strict";
 import { element } from "./html-util.js";
-
 export class TodoItemView {
     createElement(todoItem, { onToggle, onDelete }) {
         // 完了済み or 未完了

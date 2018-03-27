@@ -1,5 +1,3 @@
-// LICENSE : MIT
-"use strict";
 import { EventEmitter } from "../EventEmitter.js";
 
 // model

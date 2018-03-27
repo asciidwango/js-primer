@@ -1,5 +1,3 @@
-// MIT © 2018 azu
-"use strict";
 // unique id
 let todoIdx = 0;
 
