@@ -41,7 +41,7 @@ const view = `
 <dl>
     <dt>Location</dt>
     <dd>${userInfo.location}</dd>
-    <dt>Repositries</dt>
+    <dt>Repositories</dt>
     <dd>${userInfo.public_repos}</dd>
 </dl>
 `;
@@ -55,7 +55,7 @@ const view = `
 <dl>
     <dt>Location</dt>
     <dd>Japan</dd>
-    <dt>Repositries</dt>
+    <dt>Repositories</dt>
     <dd>1</dd>
 </dl>
 ```
@@ -154,7 +154,7 @@ const view = escapeHTML`
 <dl>
     <dt>Location</dt>
     <dd>${userInfo.location}</dd>
-    <dt>Repositries</dt>
+    <dt>Repositories</dt>
     <dd>${userInfo.public_repos}</dd>
 </dl>
 `;

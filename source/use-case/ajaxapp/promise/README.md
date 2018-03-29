@@ -48,7 +48,7 @@ function createView(userInfo) {
     <dl>
         <dt>Location</dt>
         <dd>${userInfo.location}</dd>
-        <dt>Repositries</dt>
+        <dt>Repositories</dt>
         <dd>${userInfo.public_repos}</dd>
     </dl>
     `;

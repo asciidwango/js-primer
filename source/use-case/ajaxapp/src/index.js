@@ -9,7 +9,7 @@ function main() {
 }
 
 function getUserInfo(userId) {
-    return new Promise((resolve, reject) => {    
+    return new Promise((resolve, reject) => {
         const request = new XMLHttpRequest();
         request.open("GET", `https://api.github.com/users/${userId}`);
         request.addEventListener("load", (event) => {
@@ -39,7 +39,7 @@ function createView(userInfo) {
     <dl>
         <dt>Location</dt>
         <dd>${userInfo.location}</dd>
-        <dt>Repositries</dt>
+        <dt>Repositories</dt>
         <dd>${userInfo.public_repos}</dd>
     </dl>
     `;
@@ -67,5 +67,5 @@ function escapeHTML(strings, ...values) {
         } else {
             return result + String(value) + string;
         }
-    });  
+    });
 }

@@ -15,7 +15,7 @@ function getUserInfo(userId) {
         <dl>
             <dt>Location</dt>
             <dd>${userInfo.location}</dd>
-            <dt>Repositries</dt>
+            <dt>Repositories</dt>
             <dd>${userInfo.public_repos}</dd>
         </dl>
         `;
@@ -46,5 +46,5 @@ function escapeHTML(strings, ...values) {
         } else {
             return result + String(value) + string;
         }
-    });  
+    });
 }
