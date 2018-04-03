@@ -213,7 +213,13 @@ rules:
     patterns:
       - 漬けるだけ
       - 付けるだけ
-
+  - expected: Todoアプリ
+    patterns:
+      - /todoアプリ/i
+  - expected: Todoアイテム
+    patterns:
+      - /todoアイテム/i
+    
   # ファイルの読み書き / ファイルI/O
   - expected: ファイルの読み書き
     patterns:  
