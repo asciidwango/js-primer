@@ -15,7 +15,7 @@ Webアプリケーションにおいては、常にHTMLドキュメントがエ�
 しかし、多くの場合はエントリポイントとなる1つのJavaScriptモジュールを読み込み、
 そのJavaScriptから他のモジュールを読み込み利用します。
 
-つまり、今回作成するTodoアプリでは、すべてのエントリポイントとなるHTMLとモジュールをにおけるエントリポイントとなるJavaScriptの2つを用意します。
+つまり、今回作成するTodoアプリでは、すべてのエントリポイントとなるHTMLとモジュールにおけるエントリポイントとなるJavaScriptの2つを用意します。
 このセクションでは、この2つのエントリポイントを作成し読み込むところまでを確認します。
 
 ## プロジェクトディレクトリを作成 {#project-directory}
@@ -31,11 +31,11 @@ Webアプリケーションにおいては、常にHTMLドキュメントがエ�
 エントリポイントとなるHTMLとして`index.html`を作成し、次のような内容にします。
 `body`要素の一番下で`<script>`タグを使い読み込んでいる`index.js`が、今回のアプリケーションの処理を記述するJavaScriptファイルです。
 
-[import index.html](./index.html)
+[import, index.html](./index.html)
 
 `index.js`には、スクリプトが正しく読み込まれたことを確認できるように、コンソールにログを出力する処理だけを書いておきます。
 
-[import src/index.js](./src/index.js)
+[import:1-1, src/index.js](./index.js)
 
 次はこのHTMLをブラウザで開きコンソールにログが出力されることを確認していきます。
 
@@ -85,7 +85,7 @@ serving "." at http://127.0.0.1:3030
 ```
 
 最後にローカルサーバのURL（`http://127.0.0.1:3030`）にブラウザでアクセスしてみましょう。
-ブラウザには`index.html`の内容が表示され、開発者ツールのコンソールに`index.js: loaded`とというログが出力されています。
+ブラウザには`index.html`の内容が表示され、開発者ツールのコンソールに`index.js: loaded`というログが出力されています。
 
 <!-- ![ログが表示されているWebコンソール](img/fig-1.png) -->
 
@@ -95,7 +95,7 @@ serving "." at http://127.0.0.1:3030
 
 Console APIで出力したログを確認するには、ウェブブラウザの開発者ツールを開く必要があります。
 ほとんどのブラウザで開発者ツールが同梱されていますが、本章ではFirefoxを使って確認します。
-開発者ツールの**コンソール**タブを開くと`index.js: loaded`というログが出ていることが確認できれば、`index.js`が正しく読み込まれています。
+開発者ツールの**コンソール**タブを開くとConsole APIで出力したログを確認できます。
 
 Firefoxの開発者ツールは次のいずれかの方法で開きます。
 
@@ -104,8 +104,80 @@ Firefoxの開発者ツールは次のいずれかの方法で開きます。
 
 詳細は"[Webコンソールを開く][]"を参照してください。
 
+### コンソールログが表示されない {#error-not-display-console-log}
+
+HTMLは表示されるがコンソールログに`index.js: loaded`が表示されない場合は次のような問題であるかを確認して見てください。
+
+- `index.js`の読み込みに失敗している
+- JavaScriptモジュールに非対応のブラウザを利用している
+
+> `index.js`の読み込みに失敗している
+
+scirptタグに指定した`index.js`のパスにファイルが存在しているかを確認してください。
+`<script type="module" src="index.js">`としてした場合は`index.html`と`index.js`は同じディレクトリに配置する必要があります。
+
+また、 *CORS policy Invalid*のようなエラーがコンソールに表示されている場合は、[Same Origin Policy][]により`index.js`の読み込みが失敗しています。
+先ほども書いたように、`file:`から始まるURLでは、JavaScriptモジュールの読み込みができないブラウザもあります。
+そのため、ローカルサーバを起動し、ローカルサーバ(`http:`から始まるURL)にアクセスしていることを確認してください。
+
+> JavaScriptモジュールに非対応のブラウザを利用している
+
+JavaScriptモジュールはまだ新しい機能であるため、非対応のブラウザがあり、Firefoxは60から対応しています。
+そのため、Firefox 60未満のブラウザを利用している場合には`index.js`が読み込まれないためログは出力されません。
+
+今回のTodoアプリでは、ローカルサーバ以外のツールを使わないため、ネイティブでJavaScriptモジュールに対応しているブラウザが必要です。
+[Can I Use][]にてネイティブでJavaScriptモジュールに対応しているブラウザがまとめられています。
+非対応のブラウザでもBundlerと呼ばれるツールを使うことで対応できますが、本章では省略します。
+
 ----
+
+## モジュールのエントリポイントの作成 {#module-entry-point}
+
+最後にエントリポイントとなる`index.js`から別のJavaScriptファイルをモジュールとして読み込んで見ましょう。
+今回は`App.js`というファイルを作成し、これを`index.js`から読み込みます。
+
+`App.js`というファイルで次のような内容のモジュールを作成します。
+モジュールは、基本的には何かしらを外部に公開(`export`）します。
+`App.js`は`App`というクラスを公開するモジュールで、今回はコンソールログを出力するだけです。
+
+[import, src/App.js](./src/App.js)
+
+次に、この`App.js`モジュールを`index.js`から読み込み(`import`)します。
+`index.js`を次のように書き換え、`App.js`を読み込み`App`クラスをインスタンス化します。
+
+[import, index.js](./index.js)
+
+再度ローカルサーバのURL（`http://127.0.0.1:3030`）にブラウザでアクセスし、リロードしてみましょう。
+コンソールログには、次のように処理の順番どおりのログが出力されます。
+
+```
+index.js: loaded
+App.js loaded
+App initialized
+```
+
+### App.jsの読み込みに失敗する {#error-import-app-js}
+
+
+> SyntaxError: import declarations may only appear at top level of a module
+
+`import`宣言はモジュールのトップレベルでしか利用できないというエラーがでています。
+このエラーがでているということは、`import`宣言を使う条件を満たしていないということです。
+つまり、`import`宣言がトップレベルではない所に書かれている、またはモジュールではない実行コンテキストで実行されているということです。
+
+`import`宣言がトップレベルではない所に書かれているというのは、関数の中などに`import`宣言を行っています。
+この場合は`import`宣言をトップレベル（ファイルの直下）に移動させてみてください。
+
+モジュールではない実行コンテキストで実行されているというのは、裏を返せば実行コンテキストがScriptとなっているということです。
+JavaScriptには実行コンテキストとしてScriptとModuleがあります。
+`import`宣言は実行コンテキストがModuleでないと利用できません。
+そのため、scriptタグの`type`指定を忘れていないかをチェックしてみてください。
+
+実行コンテキストをモジュールとして実行するには`<script type="module" src="index.js">`のように`type=module`を指定する必要があります。
+（`index.js`から`import`宣言で読み込んだ`App.js`は実行コンテキストを引き継ぐため、モジュールの実行コンテキストで処理されます。）
+
 
 [Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy 
 [Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
 [npmを使ってパッケージをインストールする]: ../../nodecli/argument-parse/README.md#use-npm
+[Can I Use]: https://caniuse.com/#feat=es6-module
