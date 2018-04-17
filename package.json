@@ -42,7 +42,6 @@
     "babel-preset-jsdoc-to-assert": "^4.0.0",
     "babel-preset-power-assert": "^1.0.0",
     "babel-register": "^6.7.2",
-    "browserify": "^16.2.0",
     "eslint": "^4.3.0",
     "esprima": "^4.0.0",
     "esquery": "^1.0.0",
