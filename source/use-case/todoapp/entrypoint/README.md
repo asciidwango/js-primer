@@ -134,16 +134,17 @@ JavaScriptモジュールはまだ新しい機能であるため、非対応の�
 ## モジュールのエントリポイントの作成 {#module-entry-point}
 
 最後にエントリポイントとなる`index.js`から別のJavaScriptファイルをモジュールとして読み込んで見ましょう。
-今回は`App.js`というファイルを作成し、これを`index.js`から読み込みます。
+このアプリではJavaScriptモジュールが複数登場するため`src/`というディレクトリを作り、`src/`の下にJavaScriptモジュールを書くことにします。
+今回は`src/App.js`にファイルを作成し、これを`index.js`から読み込みます。
 
-`App.js`というファイルで次のような内容のモジュールを作成します。
+`src/App.js`というファイルで次のような内容のモジュールを作成します。
 モジュールは、基本的には何かしらを外部に公開(`export`）します。
-`App.js`は`App`というクラスを公開するモジュールで、今回はコンソールログを出力するだけです。
+`App.js`は`App`というクラスを公開するモジュールとして、今回はコンソールログを出力するだけです。
 
 [import, src/App.js](./src/App.js)
 
-次に、この`App.js`モジュールを`index.js`から読み込み(`import`)します。
-`index.js`を次のように書き換え、`App.js`を読み込み`App`クラスをインスタンス化します。
+次に、この`src/App.js`を`index.js`から読み込み(`import`)します。
+`index.js`を次のように書き換え、`App.js`を読み込み`App`クラスを取り出しインスタンス化します。
 
 [import, index.js](./index.js)
 
@@ -156,12 +157,30 @@ App.js loaded
 App initialized
 ```
 
+まず、`index.js`が読み込まれ、次に`src/App.js`が読み込まれ、最後に`App`クラスがインスタンス化されています。
+
+最終的に現在の`todoapp`ディレクトリは次のような構造になっています。
+
+```
+todoapp
+├── index.html
+├── index.js
+├── node_modules
+├── package.json
+└── src
+    └── App.js
+```
+
 ### App.jsの読み込みに失敗する {#error-import-app-js}
 
+ディレクトリ構造や`import`宣言で指定したファイルパスが異なると、ファイルを読み込むことができずにエラーとなってしまいます。
+この場合は開発者ツールを開き、コンソールにエラーが出ていないかを確認して見てください。
+
+`import`宣言を使ったJavaScriptモジュール読み込むで起きる典型的なエラーと対処を次にまとめています。
 
 > SyntaxError: import declarations may only appear at top level of a module
 
-`import`宣言はモジュールのトップレベルでしか利用できないというエラーがでています。
+「`import`宣言はモジュールのトップレベルでしか利用できません」というエラーがでています。
 このエラーがでているということは、`import`宣言を使う条件を満たしていないということです。
 つまり、`import`宣言がトップレベルではない所に書かれている、またはモジュールではない実行コンテキストで実行されているということです。
 
@@ -175,6 +194,27 @@ JavaScriptには実行コンテキストとしてScriptとModuleがあります�
 
 実行コンテキストをモジュールとして実行するには`<script type="module" src="index.js">`のように`type=module`を指定する必要があります。
 （`index.js`から`import`宣言で読み込んだ`App.js`は実行コンテキストを引き継ぐため、モジュールの実行コンテキストで処理されます。）
+
+> モジュールのソース “http://localhost:8080/src/App” の読み込みに失敗しました。
+
+`App.js`が読み込めていないというエラーがでています。
+エラーメッセージをよく見ると`App`となっていて`App.js`ではありません。
+
+`import`宣言では、読み込むファイルの拡張子を省略しません。
+そのため、`App`のように拡張子（`.js）を省略して書いている場合はこのエラーが発生します。
+
+```js
+// エラーとなる例
+import { App } from "./src/App";
+```
+
+正しくは次のように拡張子まで含またパスを記述します。
+また指定したパスに`App.js`が存在するかを確認して見てください。
+
+```js
+// 正しい例
+import { App } from "./src/App.js";
+```
 
 
 [Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy 
