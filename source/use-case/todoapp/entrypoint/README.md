@@ -203,6 +203,7 @@ JavaScriptには実行コンテキストとしてScriptとModuleがあります�
 `import`宣言では、読み込むファイルの拡張子を省略しません。
 そのため、`App`のように拡張子（`.js`）を省略して書いている場合はこのエラーが発生します。
 
+<!-- doctest:disable -->
 ```js
 // エラーとなる例
 import { App } from "./src/App";
@@ -211,6 +212,7 @@ import { App } from "./src/App";
 正しくは次のように拡張子まで含またパスを記述します。
 また指定したパスに`App.js`が存在するかを確認して見てください。
 
+<!-- doctest:disable -->
 ```js
 // 正しい例
 import { App } from "./src/App.js";
