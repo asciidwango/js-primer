@@ -247,7 +247,7 @@ function sendPOSTRequest(url, data) {
     const httpRequest = new XMLHttpRequest();
     httpRequest.setRequestHeader("Content-Type", "application/json");
     httpRequest.send(JSON.stringify(data));
-    httpRequest.open("POST", "/api/login");
+    httpRequest.open("POST", url);
 }
 
 // formのsubmitイベントを受け取る関数
