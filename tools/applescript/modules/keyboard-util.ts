@@ -30,7 +30,7 @@ export function sendKeyStroke(key: string, modifierOption: ModifierOption) {
     const modifiers = createModifier(modifierOption);
     return runJxa((key, modifiers) => {
         const SystemEvents = Application("System Events");
-        const Firefox = Application("Firefox");
+        const Firefox = Application("FirefoxDeveloperEdition");
         Firefox.activate();
         delay(1.0); // wait for active
         SystemEvents.keystroke(key, { using: modifiers });

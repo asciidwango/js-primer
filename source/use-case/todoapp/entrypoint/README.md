@@ -5,17 +5,22 @@ author: azu
 # エントリポイント {#entrypoint}
 
 エントリポイントとは、アプリケーションの中で一番最初に呼び出される部分のことです。
-アプリケーションを作成するにあたり、まずはエントリポイントを用意しなければなりません。
 
-Webアプリケーションにおいては、常にHTMLドキュメントがエントリポイントとなります。
-ウェブブラウザによりHTMLドキュメントが読み込まれたあとに、HTMLドキュメント中で読み込まれたJavaScriptが実行されます。
+[Ajax通信:エントリポイント][]のユースケースでは、エントリポイントはHTML（`index.html`)のみでした。
+まずHTMLが読み込まれ、次にHTMLの中に書かれているJavaScriptファイルが読み込まれます。
 
-また、今回作成するTodoアプリは処理をモジュール化し、それぞれのモジュールを別々のJavaScriptとして作成していきます。
-それぞれのJavaScriptモジュールをHTMLから別々に読み込むこともできます。
-しかし、多くの場合はエントリポイントとなる1つのJavaScriptモジュールを読み込み、
-そのJavaScriptから他のモジュールを読み込み利用します。
+今回のTodoアプリは処理をモジュール化し、それぞれのモジュールを別々のJavaScriptファイルとして作成していきます。
+そのため複数のJavaScriptファイルが必要となるため、HTMLにすべて読み込むJavaScriptファイルを書くよりも、
+JavaScript間で必要なモジュールをそれぞれ読み込み利用します。
 
-つまり、今回作成するTodoアプリでは、すべてのエントリポイントとなるHTMLとモジュールにおけるエントリポイントとなるJavaScriptの2つを用意します。
+そのため、HTMLから読み込むのは1つのJavaScriptファイル(`index.js`)として、このJavaScriptファイルから他のモジュールを読み込み利用します。
+このJavaScriptファイル（`index.js`）をJavaScriptにおけるエントリポイントとします。
+
+つまり、今回作成するTodoアプリではエントリポイントとしてHTMLとJavaScriptの2つを用意します。
+
+- `index.html`: 最も最初に読み込まれるファイル
+- `index.js`: `index.html`から読み込まれ、JavaScript間においては最初に読み込まれるファイル
+
 このセクションでは、この2つのエントリポイントを作成し読み込むところまでを確認します。
 
 ## プロジェクトディレクトリを作成 {#project-directory}
@@ -84,10 +89,10 @@ $ npm start
 serving "." at http://127.0.0.1:3030
 ```
 
-最後にローカルサーバのURL（`http://127.0.0.1:3030`）にブラウザでアクセスしてみましょう。
-ブラウザには`index.html`の内容が表示され、開発者ツールのコンソールに`index.js: loaded`というログが出力されています。
+起動したローカルサーバのURL（`http://127.0.0.1:3030`）にブラウザでアクセスしてみましょう。
+ブラウザには`index.html`の内容が表示され、開発者ツールのコンソールに`index.js: loaded`というログが出力されていることが確認できます。
 
-<!-- ![ログが表示されているWebコンソール](img/fig-1.png) -->
+![ログが表示されているWebコンソール](img/entry-point.png)
 
 ----
 
@@ -104,7 +109,7 @@ Firefoxの開発者ツールは次のいずれかの方法で開きます。
 
 詳細は"[Webコンソールを開く][]"を参照してください。
 
-### コンソールログが表示されない {#error-not-display-console-log}
+### [エラー例] コンソールログが表示されない {#error-not-display-console-log}
 
 HTMLは表示されるがコンソールログに`index.js: loaded`が表示されない場合は次のような問題であるかを確認して見てください。
 
@@ -135,31 +140,9 @@ JavaScriptモジュールはまだ新しい機能であるため、非対応の�
 
 最後にエントリポイントとなる`index.js`から別のJavaScriptファイルをモジュールとして読み込んで見ましょう。
 このアプリではJavaScriptモジュールが複数登場するため`src/`というディレクトリを作り、`src/`の下にJavaScriptモジュールを書くことにします。
-今回は`src/App.js`にファイルを作成し、これを`index.js`から読み込みます。
+今回は`src/App.js`にファイルを作成し、これを`index.js`からモジュールとして読み込みます。
 
-`src/App.js`というファイルで次のような内容のモジュールを作成します。
-モジュールは、基本的には何かしらを外部に公開(`export`）します。
-`App.js`は`App`というクラスを公開するモジュールとして、今回はコンソールログを出力するだけです。
-
-[import, src/App.js](./src/App.js)
-
-次に、この`src/App.js`を`index.js`から読み込み(`import`)します。
-`index.js`を次のように書き換え、`App.js`を読み込み`App`クラスを取り出しインスタンス化します。
-
-[import, index.js](./index.js)
-
-再度ローカルサーバのURL（`http://127.0.0.1:3030`）にブラウザでアクセスし、リロードしてみましょう。
-コンソールログには、次のように処理の順番どおりのログが出力されます。
-
-```
-index.js: loaded
-App.js loaded
-App initialized
-```
-
-まず、`index.js`が読み込まれ、次に`src/App.js`が読み込まれ、最後に`App`クラスがインスタンス化されています。
-
-最終的に現在の`todoapp`ディレクトリは次のような構造になっています。
+最終的に現在の`todoapp`ディレクトリは次のような構造になります。
 
 ```
 todoapp
@@ -171,7 +154,33 @@ todoapp
     └── App.js
 ```
 
-### App.jsの読み込みに失敗する {#error-import-app-js}
+
+`src/App.js`にファイルを作成し、次のような内容のJavaScriptモジュールとします。
+モジュールは、基本的には何かしらを外部に公開(`export`）します。
+`App.js`は`App`というクラスを公開するモジュールとして、今回はコンソールログを出力するだけです。
+
+[import, src/App.js](./src/App.js)
+
+次に、この`src/App.js`を`index.js`から取り込み(`import`)します。
+`index.js`を次のように書き換え、`App.js`から`App`クラスを取り込みインスタンス化します。
+
+[import, index.js](./index.js)
+
+再度ローカルサーバのURL（`http://127.0.0.1:3030`）にブラウザでアクセスし、リロードしてみましょう。
+コンソールログには、次のように処理の順番どおりのログが出力されます。
+
+```
+index.js: loaded
+App.js: loaded
+App initialized
+```
+
+まず`index.js`が読み込まれ、次に`src/App.js`が読み込まれています。
+そして、最後に`App`クラスがインスタンス化されていることがログから確認できます。
+
+これでHTMLとJavaScriptそれぞれのエントリポイントの作成と動作を確認できました。
+
+### [エラー例] App.jsの読み込みに失敗する {#error-import-app-js}
 
 ディレクトリ構造や`import`宣言で指定したファイルパスが異なると、ファイルを読み込むことができずにエラーとなってしまいます。
 この場合は開発者ツールを開き、コンソールにエラーが出ていないかを確認して見てください。
@@ -219,6 +228,7 @@ import { App } from "./src/App.js";
 ```
 
 
+[Ajax通信:エントリポイント]: ../ajaxapp/entrypoint/README.md
 [Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy 
 [Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
 [npmを使ってパッケージをインストールする]: ../../nodecli/argument-parse/README.md#use-npm

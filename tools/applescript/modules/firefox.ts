@@ -4,14 +4,14 @@ export function launchFirefox({ url, profileName }: { url: string, profileName: 
     return runJxa((url, profileName) => {
         var app = Application.currentApplication();
         app.includeStandardAdditions = true;
-        app.doShellScript(`open -a /Applications/Firefox.app --args -no-remote -CreateProfile '${profileName}'`);
-        app.doShellScript(`open -a /Applications/Firefox.app --args -private-window '${url}' -no-remote -P '${profileName}'`);
+        app.doShellScript(`open -a /Applications/FirefoxDeveloperEdition.app --args -no-remote -CreateProfile '${profileName}'`);
+        app.doShellScript(`open -a /Applications/FirefoxDeveloperEdition.app --args -private-window '${url}' -no-remote -P '${profileName}'`);
     })(url, profileName);
 }
 
 export function quitFirefox() {
     return runJxa(() => {
-        const Firefox = Application("Firefox");
+        const Firefox = Application("FirefoxDeveloperEdition");
         Firefox.quit();
     })();
 }
@@ -21,7 +21,7 @@ export function screenshotFirefox(outputFilePath: string) {
     return runJxa((outputFilePath) => {
         const app = Application.currentApplication();
         app.includeStandardAdditions = true;
-        const Firefox = Application("Firefox");
+        const Firefox = Application("FirefoxDeveloperEdition");
         Firefox.activate();
         delay(0.3);
         const window = Firefox.windows[0];
