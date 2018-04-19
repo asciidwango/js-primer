@@ -30,6 +30,8 @@ JavaScriptモジュールはHTMLから`<script type="module">`で読み込むこ
 
 ## プロジェクトディレクトリを作成 {#project-directory}
 
+<!-- ソースコードは first-entry/ -->
+
 今回作成するアプリにはHTMLやCSS、JavaScriptなど複数のファイル必要となります。
 そのため、まずそれらを配置するディレクトリを作成します。
 
@@ -41,11 +43,11 @@ JavaScriptモジュールはHTMLから`<script type="module">`で読み込むこ
 エントリポイントとなるHTMLとして`index.html`を作成し、次のような内容にします。
 `body`要素の一番下で`<script>`タグを使い読み込んでいる`index.js`が、今回のアプリケーションの処理を記述するJavaScriptファイルです。
 
-[import, index.html](./index.html)
+[import, index.html](first-entry/index.html)
 
 `index.js`には、スクリプトが正しく読み込まれたことを確認できるように、コンソールにログを出力する処理だけを書いておきます。
 
-[import:1-1, src/index.js](./index.js)
+[import, src/index.js](first-entry/index.js)
 
 次はこのHTMLをブラウザで開きコンソールにログが出力されることを確認していきます。
 
@@ -143,6 +145,8 @@ JavaScriptモジュールはまだ新しい機能であるため、非対応の�
 
 ## モジュールのエントリポイントの作成 {#module-entry-point}
 
+<!-- ソースコードは module-entry/ -->
+
 最後にエントリポイントとなる`index.js`から別のJavaScriptファイルをモジュールとして読み込んで見ましょう。
 このアプリではJavaScriptモジュールが複数登場するため`src/`というディレクトリを作り、`src/`の下にJavaScriptモジュールを書くことにします。
 今回は`src/App.js`にファイルを作成し、これを`index.js`からモジュールとして読み込みます。
@@ -164,12 +168,12 @@ todoapp
 モジュールは、基本的には何かしらを外部に公開(`export`）します。
 `App.js`は`App`というクラスを公開するモジュールとして、今回はコンソールログを出力するだけです。
 
-[import, src/App.js](./src/App.js)
+[import, src/App.js](module-entry/src/App.js)
 
 次に、この`src/App.js`を`index.js`から取り込み(`import`)します。
 `index.js`を次のように書き換え、`App.js`から`App`クラスを取り込みインスタンス化します。
 
-[import, index.js](./index.js)
+[import, index.js](module-entry/index.js)
 
 再度ローカルサーバのURL（`http://127.0.0.1:3030`）にブラウザでアクセスし、リロードしてみましょう。
 コンソールログには、次のように処理の順番どおりのログが出力されます。
