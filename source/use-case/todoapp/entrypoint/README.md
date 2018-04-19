@@ -13,7 +13,7 @@ author: azu
 JavaScriptモジュールはHTMLから`<script type="module">`で読み込むことができますが、`script`タグ毎に別々のモジュールスコープを持ちます。
 そのため、JavaScriptモジュールを別々の`script`タグで読み込むとモジュール同士でスコープが異なるため、モジュール同士で連携できません。
 
-次のコードは、それぞれの`<script type="modiule">`同士のスコープが異なるため、別の`script`タグで定義した変数にアクセス出来ないことを示しています。
+次のコードは、それぞれの`<script type="modiule">`同士のスコープが異なるため、別の`script`タグで定義した変数にアクセス出来ないことを示しています。これはJavaScriptのコードをファイルにして`src`属性で読み込んだ場合も同様です。
 
 [import:"marker"](./module-scope/index.html)
 
