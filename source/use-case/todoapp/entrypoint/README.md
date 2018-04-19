@@ -10,16 +10,21 @@ author: azu
 まずHTMLが読み込まれ、次にHTMLの中に書かれているJavaScriptファイルが読み込まれます。
 
 今回のTodoアプリは処理をモジュール化し、それぞれのモジュールを別々のJavaScriptファイルとして作成していきます。
-そのため複数のJavaScriptファイルが必要となるため、HTMLにすべて読み込むJavaScriptファイルを書くよりも、
-JavaScript間で必要なモジュールをそれぞれ読み込み利用します。
+JavaScriptモジュールはHTMLから`<script type="module">`で読み込むことができますが、`script`タグ毎に別々のモジュールスコープを持ちます。
+そのため、JavaScriptモジュールを別々の`script`タグで読み込むとモジュール同士でスコープが異なるため、モジュール同士で連携できません。
 
-そのため、HTMLから読み込むのは1つのJavaScriptファイル(`index.js`)として、このJavaScriptファイルから他のモジュールを読み込み利用します。
-このJavaScriptファイル（`index.js`）をJavaScriptにおけるエントリポイントとします。
+次のコードは、それぞれの`<script type="modiule">`同士のスコープが異なるため、別の`script`タグで定義した変数にアクセス出来ないことを示しています。
+
+[import:"marker"](./module-scope/index.html)
+
+そのため、HTMLから読み込むのは1つのJavaScriptファイル(`index.js`)として、この`index.js`から他のモジュールを読み込み利用します。
+このようにすることでモジュール間は1つの`<script type="modiule">`のスコープ内に収まるため、モジュール同士で連携できます。
+このHTMLから読み込むJavaScriptファイル（`index.js`）をJavaScriptにおけるエントリポイントとします。
 
 つまり、今回作成するTodoアプリではエントリポイントとしてHTMLとJavaScriptの2つを用意します。
 
-- `index.html`: もっとも最初に読み込まれるファイル
-- `index.js`: `index.html`から読み込まれ、JavaScript間においては最初に読み込まれるファイル
+- `index.html`: もっとも最初に読み込まれるファイル、`index.js`を読み込む
+- `index.js`: `index.html`から読み込れるファイル、JavaScript間においては最初に読み込まれる
 
 このセクションでは、この2つのエントリポイントを作成し読み込むところまでを確認します。
 
