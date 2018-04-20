@@ -25,7 +25,8 @@
     "test:ajaxapp": "mocha './source/use-case/ajaxapp/!(node_modules)**/*-test.js'",
     "test:todoapp": "cd ./source/use-case/todoapp && npm install && npm test",
     "test": "npm-run-all -l --parallel test:* lint",
-    "travis": "npm-run-all -l --parallel test build"
+    "travis": "npm-run-all -l --parallel test build",
+    "build:applescript": "tsc -p tools/applescript"
   },
   "keywords": [
     "gitbook",
@@ -33,8 +34,10 @@
   ],
   "devDependencies": {
     "@alrra/travis-scripts": "^3.0.1",
+    "@jxa/global-type": "^0.2.2",
     "@textlint-rule/textlint-rule-no-invalid-control-character": "^1.0.1",
     "@textlint-rule/textlint-rule-require-header-id": "^1.0.1",
+    "@types/node": "^9.6.5",
     "babel-preset-env": "^1.6.1",
     "babel-preset-jsdoc-to-assert": "^4.0.0",
     "babel-preset-power-assert": "^1.0.0",
@@ -57,6 +60,7 @@
     "globby": "^6.0.0",
     "mocha": "^4.0.0",
     "npm-run-all": "^4.0.0",
+    "osa2": "^0.2.3",
     "power-assert": "^1.3.1",
     "power-doctest": "^1.3.1",
     "remark": "^8.0.0",
@@ -72,6 +76,7 @@
     "textlint-rule-period-in-list-item": "^0.2.0",
     "textlint-rule-preset-ja-technical-writing": "^2.0.0",
     "textlint-rule-prh": "^5.0.1",
+    "typescript": "^2.8.1",
     "unist-util-find-all-between": "^1.0.1",
     "unist-util-find-before": "^2.0.1",
     "unist-util-parents": "^1.0.0",

@@ -228,6 +228,11 @@ rules:
   - expected: オブジェクト
     patterns:
       - オブジェクと
+  - expected: macOS
+    patterns:
+      - MacOS
+      - Mac OS X
+      - OS X
 
   # 一致とマッチ
   ## 一致は ===

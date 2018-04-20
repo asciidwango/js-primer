@@ -1,5 +1,5 @@
 {
-  "name": "plain-todo",
+  "name": "todoapp",
   "author": "azu",
   "license": "MIT",
   "private": true,
@@ -11,10 +11,10 @@
   },
   "scripts": {
     "test": "mocha test/ && npm run test:e2e",
-    "start": "static . -p 3030",
+    "start": "static . -p 8080",
     "cy:open": "cypress open",
     "cy:run": "cypress run --browser chrome",
-    "test:e2e": "start-server-and-test start http://localhost:3030 cy:run"
+    "test:e2e": "start-server-and-test start http://localhost:8080 cy:run"
   },
   "devDependencies": {
     "@std/esm": "^0.20.0",
