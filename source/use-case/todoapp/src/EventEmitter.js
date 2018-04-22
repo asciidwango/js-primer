@@ -16,6 +16,9 @@ export class EventEmitter {
 
     emit(type, payload) {
         const handlerSet = this._handlers.get(type);
+        if (!handlerSet) {
+            return;
+        }
         handlerSet.forEach(handler => {
             handler.call(this, payload);
         });
@@ -23,6 +26,9 @@ export class EventEmitter {
 
     off(type, handler) {
         const handlerSet = this._handlers.get(type);
+        if (!handlerSet) {
+            return;
+        }
         handlerSet.forEach(ownHandler => {
             if (ownHandler === handler) {
                 handlerSet.delete(handler);

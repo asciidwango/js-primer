@@ -3,9 +3,9 @@ import { EventEmitter } from "../EventEmitter.js";
 // model
 export class TodoList extends EventEmitter {
     /**
-     * @param {TodoItem[]} items
+     * @param {TodoItem[]} [items]
      */
-    constructor(items) {
+    constructor(items = []) {
         super();
         this.items = items;
     }
@@ -45,7 +45,7 @@ export class TodoList extends EventEmitter {
 
     /**
      * 指定したidのTodoのcompletedを更新する
-     * @param {string} id
+     * @param {number} id
      * @param {boolean} completed
      */
     updateTodo({ id, completed }) {
@@ -60,7 +60,7 @@ export class TodoList extends EventEmitter {
 
     /**
      * 指定したidのTODOを削除する
-     * @param {string} id
+     * @param {number} id
      */
     deleteTodo({ id }) {
         this.items = this.items.filter(todo => {

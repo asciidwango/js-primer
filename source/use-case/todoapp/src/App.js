@@ -23,7 +23,7 @@ export class App {
 
     /**
      * Todoの状態を更新時に呼ばれるハンドラ
-     * @param {string} id
+     * @param {number} id
      * @param {boolean} completed
      */
     handleUpdate({ id, completed }) {
@@ -32,7 +32,7 @@ export class App {
 
     /**
      * Todoを削除時に呼ばれるハンドラ
-     * @param {string} id
+     * @param {number} id
      */
     handleDelete({ id }) {
         this.todoListModel.deleteTodo({ id });
