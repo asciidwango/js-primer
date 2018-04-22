@@ -1,6 +1,6 @@
 import { element } from "./html-util.js";
 export class TodoItemView {
-    createElement(todoItem, { onToggle, onDelete }) {
+    createElement(todoItem, { onUpdate, onDelete }) {
         // 完了済み or 未完了
         const checkBox = todoItem.completed
             ? element`<li>
@@ -12,7 +12,7 @@ export class TodoItemView {
 <button class="delete">×</button>
 </li>`;
         checkBox.querySelector("input").addEventListener("change", () => {
-            onToggle({
+            onUpdate({
                 id: todoItem.id,
                 completed: !todoItem.completed
             });
@@ -32,7 +32,7 @@ export class TodoListView {
         todoItemList.forEach(todoItem => {
             const item = new TodoItemView();
             ul.appendChild(item.createElement(todoItem, {
-                onToggle: handlers.onToggle,
+                onUpdate: handlers.onUpdate,
                 onDelete: handlers.onDelete
             }));
         });
