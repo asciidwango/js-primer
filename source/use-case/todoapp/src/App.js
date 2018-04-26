@@ -55,8 +55,8 @@ export class App {
         });
 
         this.releaseHandler = this.todoListModel.onChange(() => {
-            const todoItemList = this.todoListModel.getAllTodoItems();
-            const todoListElement = this.todoListView.createElement(todoItemList, {
+            const todoItems = this.todoListModel.getAllTodoItems();
+            const todoListElement = this.todoListView.createElement(todoItems, {
                 // コールバック関数の`this`が変化しないように`bind`して`this`をAppのインスタンスに固定する
                 onUpdate: this.handleUpdate.bind(this),
                 onDelete: this.handleDelete.bind(this)
