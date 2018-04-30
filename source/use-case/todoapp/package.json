@@ -17,9 +17,9 @@
     "test:e2e": "start-server-and-test start http://localhost:8080 cy:run"
   },
   "devDependencies": {
-    "@std/esm": "^0.20.0",
-    "mocha": "^2.5.3",
+    "@std/esm": "^0.26.0",
     "cypress": "^2.1.0",
+    "mocha": "^5.1.1",
     "node-static": "^0.7.7",
     "start-server-and-test": "^1.1.0"
   }
