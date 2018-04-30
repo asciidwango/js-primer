@@ -511,4 +511,4 @@ isEmptyString();// => false
 [演算子]: ../operator/README.md	"演算子について解説した章"
 [JSDoc]: http://usejsdoc.org/  "Use JSDoc: Index"
 [IEEE 754]: https://ja.wikipedia.org/wiki/IEEE_754
-[例外処理]: source/basic/error-try-catch/README.md
+[例外処理]: ../error-try-catch/README.md
