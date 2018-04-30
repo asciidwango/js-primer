@@ -10,11 +10,9 @@
   "plugins": [
     "-search",
     "-lunr",
-    "docsearch",
     "page-toc-button",
     "include-codeblock",
     "anchors",
-    "edit-link",
     "canonical-link",
     "ga",
     "js-console",
