@@ -443,7 +443,7 @@ function sum(...values) {
 const x = 1, z = 10;
 let y; // `y`はundefined
 console.log(x, y, z);
-sum(x, y, z); // => AssertionError
+sum(x, y, z); // => Error
 ```
 
 このように、`sum`関数はどのように使うべきかを明示することで、
