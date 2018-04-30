@@ -422,7 +422,8 @@ sum(x, y, z); // => NaN
 引数に数値以外の値がある場合は例外を投げるという処理を追加するといった形です。
 
 JavaScriptではコメントで引数の型を記述する書式として[JSDoc][]が有名です。
-また、値をチェックし例外または警告を表示する関数として`console.assert(条件式, メッセージ)`メソッドが多くの実行環境で利用できます。
+また、実行時に値がNumber型であるかをチェックし`throw`文で例外をなげることで、`sum`関数の利用者に使い方を明示できます。
+（`throw`文については「[例外処理][]」の章で解説します）
 
 この２つを利用して`sum`関数の前提条件を詳細に実装したものは次のようになります。
 
@@ -435,14 +436,17 @@ JavaScriptではコメントで引数の型を記述する書式として[JSDoc]
  **/
 function sum(...values) {
     return values.reduce((total, value) => {
-        // 第一引数の評価結果がtrueではない場合、第二引数のメッセージが警告として出る
-        console.assert(typeof value === "number", `${value}はNumber型ではありません`);
+        // 値がNumber型ではない場合に、例外を投げる
+        if (typeof value !== "number") {
+            throw new Error(`${value}はNumber型ではありません`);
+        }
         return total + Number(value);
     }, 0);
 }
 const x = 1, z = 10;
 let y; // `y`はundefined
 console.log(x, y, z);
+// Number型の値ではない`y`を渡しているため例外が発生する
 sum(x, y, z); // => Error
 ```
 
@@ -507,3 +511,4 @@ isEmptyString();// => false
 [演算子]: ../operator/README.md	"演算子について解説した章"
 [JSDoc]: http://usejsdoc.org/  "Use JSDoc: Index"
 [IEEE 754]: https://ja.wikipedia.org/wiki/IEEE_754
+[例外処理]: source/basic/error-try-catch/README.md
