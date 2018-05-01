@@ -112,34 +112,3 @@ body {
     text-align: center;
     border-top: 1px solid #e6e6e6;
 }
-
-/*
-.filters {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    position: absolute;
-    right: 0;
-    left: 0;
-}
-
-.filters li {
-    display: inline;
-}
-
-.filters li button {
-    color: inherit;
-    padding: 3px 7px;
-    text-decoration: none;
-    border: 1px solid transparent;
-    border-radius: 3px;
-}
-
-.filters li button:hover {
-    border-color: rgba(175, 47, 47, 0.1);
-}
-
-.filters li button.selected {
-    border-color: rgba(175, 47, 47, 0.2);
-}
-*/
