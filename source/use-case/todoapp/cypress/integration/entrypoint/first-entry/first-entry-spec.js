@@ -3,7 +3,7 @@ const visitWithConsole = require("../../../helper/visit-with-console").visitWith
 describe(URL, function() {
     it("ロードするとログが表示される", function() {
         visitWithConsole(URL).then(({ logSpy }) => {
-            expect(logSpy).to.be.calledWith("index.js: loaded")
+            expect(logSpy).to.be.calledWith("index.js: loaded");
         });
     });
 });
