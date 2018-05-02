@@ -7,10 +7,11 @@ const addNewTodo = (title) => {
     cy.get("#js-form").submit();
 };
 
+const URL = "/final/final";
 describe("Todo", function() {
     it("追加と削除", function() {
         // https://on.cypress.io/visit
-        cy.visit("/");
+        cy.visit(URL);
 
         addNewTodo("新しいTODO 1");
         cy.get("li").should(items => {
@@ -28,7 +29,7 @@ describe("Todo", function() {
     });
     it("チェックの付け外し", function() {
         // https://on.cypress.io/visit
-        cy.visit("/");
+        cy.visit(URL);
         addNewTodo("新しいTODO 1");
         // check
         cy.get("li > input[type=\"checkbox\"]").check();
