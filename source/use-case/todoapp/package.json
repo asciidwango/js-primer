@@ -10,7 +10,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha test/ && npm run test:e2e",
+    "test": "mocha final/final/test/ && npm run test:e2e",
     "start": "static . -p 8080",
     "cy:open": "cypress open",
     "cy:run": "cypress run --browser chrome",
