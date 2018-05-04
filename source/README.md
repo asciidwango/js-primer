@@ -25,15 +25,12 @@
     - [クラス](./basic/class/README.md)
     - [例外処理](./basic/error-try-catch/README.md)
     - Promise
-    - Generator/Iterable/Iterator
-    - ビルトインオブジェクト
-        - [JSON](./basic/json/README.md)
-        - [Date](./basic/date/README.md)
-        - [Map/Set](./basic/map-and-set/README.md)
-        - Symbol
-    - Proxy/Reflect API
+    - [JSON](./basic/json/README.md)
+    - [Date](./basic/date/README.md)
+    - [Map/Set](./basic/map-and-set/README.md)
     - [非推奨の機能](./basic/bad-parts/README.md)
     - [ECMAScript](./basic/ecmascript/README.md)
+    - 高度なAPI
 - [第2部: 応用編（ユースケース）](./use-case/README.md)
     - モジュール
     - [Ajaxで通信](./use-case/ajaxapp/README.md)

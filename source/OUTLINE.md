@@ -666,3 +666,11 @@ function getValue(variableName, currentScope) {
 - Arrow Functionでは`this`が`[[ThisMode]]`が`lexical`になる
 - https://tc39.github.io/ecma262/#sec-functioninitialize
 - lexicalではもっとも近いfunctionを参照するようになる = 
+
+## 削った章
+
+- Number
+- Generator/Iterable/Iterator
+- ビルトインオブジェクト
+    - Symbol
+- Proxy/Reflect API
