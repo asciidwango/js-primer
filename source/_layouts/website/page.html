@@ -1,30 +1,20 @@
 {% extends template.self %} {% block head %} {{ super() }}
-<meta name="google-site-verification" content="bMotEbgYwkzA3k4PkuyK_NUdz0bKh-Phz0oUwNmRSVo" />
+<meta name="google-site-verification" content="bMotEbgYwkzA3k4PkuyK_NUdz0bKh-Phz0oUwNmRSVo"/>
 <style>
     /*
     Disable antialias
     */
-
     * {
-        -webkit-font-smoothing: initial!important
+        -webkit-font-smoothing: initial !important
     }
 
     body {
-        text-rendering: initial!important;
-        font-smoothing: initial!important;
-    }
-
-    /* DocSearch
-        https://blog.uilicious.com/gitbook-made-better-with-algolia-docsearch-ff1b909ddb0b
-    */
-
-    .book-summary {
-        overflow-y: inherit;
+        text-rendering: initial !important;
+        font-smoothing: initial !important;
     }
 
     /* deny access chapter */
-
-    .summary li.chapter>span {
+    .summary li.chapter > span {
         cursor: not-allowed;
         opacity: .3;
     }
