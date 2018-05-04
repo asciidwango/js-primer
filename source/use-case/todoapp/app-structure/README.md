@@ -99,6 +99,7 @@ CSSセレクタではタグ名、`id`属性や構造などに対する指定も�
 
 次のコードでは、`document.querySelector(CSSセレクタ)`を利用し、特定のid属性名の要素を取得しています。
 
+<!-- doctest:disable -->
 ```js
 // id属性の値が"js-form"である要素を取得する
 const form = document.querySelector("#js-form");
