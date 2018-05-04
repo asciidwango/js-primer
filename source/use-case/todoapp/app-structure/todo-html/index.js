@@ -1,2 +1,2 @@
-import { App } from "./src/App";
+import { App } from "./src/App.js";
 const app = new App();

@@ -1,7 +1,7 @@
-import { render } from "./views/html-util.js";
-import { TodoListView } from "./views/TodoListView.js";
-import { TodoItem } from "./models/TodoItem.js";
-import { TodoList } from "./models/TodoList.js";
+import { render } from "./view/html-util.js";
+import { TodoListView } from "./view/TodoListView.js";
+import { TodoItem } from "./model/TodoItem.js";
+import { TodoList } from "./model/TodoList.js";
 
 export class App {
     constructor() {
@@ -42,9 +42,9 @@ export class App {
      * `containerElement`に対してTodoListを描画する
      * @param {HTMLElement} containerElement
      */
-    render(containerElement) {
-        const form = document.getElementById("js-form");
-        const inputElement = document.getElementById("js-form-input");
+    mount(containerElement) {
+        const form = document.querySelector("#js-form");
+        const inputElement = document.querySelector("#js-form-input");
         form.addEventListener("submit", (event) => {
             // prevent submit action
             event.preventDefault();
