@@ -101,7 +101,7 @@ CSSセレクタではタグ名、`id`属性や構造などに対する指定も�
 先ほどのCSSセレクタはCSSから要素を指定するだけではなく、JavaScriptから要素を指定する際にも利用できます。
 ブラウザのDOM APIの`document.querySelector` APIではCSSセレクタを使い要素を選択できます。
 
-次のコードでは、`document.querySelector(CSSセレクタ)`を利用し、特定のid属性名の要素を取得しています。
+次のコードでは、`document.querySelector("CSSセレクタ")`を利用し、特定のid属性名の要素を取得しています。
 
 <!-- doctest:disable -->
 ```js
