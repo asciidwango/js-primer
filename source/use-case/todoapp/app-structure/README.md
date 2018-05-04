@@ -47,7 +47,7 @@ JavaScriptは動的にHTMLやCSSを定義できるため、役割が明確に見
 HTMLの内容を変更後にブラウザでアクセスすると次のような表示になります。
 この段階では動作となるJavaScriptは定義していませんが、見た目だけのTodoアプリはこれで完成です。
 
-![todo-html.png](./img/todo-html.png)
+![todo-html](./img/todo-html.png)
 
 実際に変更したHTMLを上から順番に見てみましょう。
 
