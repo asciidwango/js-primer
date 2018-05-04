@@ -49,4 +49,4 @@
       - [ユニットテストを記述する](./use-case/nodecli/refactor-and-unittest/README.md)
     - [Todoアプリ](./use-case/todoapp/README.md)
       - [エントリポイント](./use-case/todoapp/entrypoint/README.md)
-      - [Todoアプリの構成要素](./use-case/todoapp/app-structure/README.md)
+      - [アプリの構成要素](./use-case/todoapp/app-structure/README.md)
