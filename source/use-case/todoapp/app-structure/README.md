@@ -64,9 +64,10 @@ CSSに定義したスタイルを正しく適応するには、`class`属性やH
 
 ### 2. class属性をCSSのために指定 {#comment-class-for-css}
 
-`div`タグの`class`属性に`todoapp`という値（クラス名）を設定しています。（JavaScriptの`class`構文とは無関係です）
+`div`タグの`class`属性に`todoapp`という値（クラス名）を設定しています。
 `class`属性は基本的にはCSSから装飾するための目印として利用されます。
 また、1ページの中で同じクラス名は複数の要素に対して設定できます。
+HTMLの`class`属性はJavaScriptの`class`構文とは無関係な事には注意が必要です。
 
 今回の`todoapp`というクラス名をもつ要素を、CSSから`.todoapp`というCSSセレクタで指定できます。
 [CSSセレクタ][]とは要素を指定するために利用される小さな言語のようなものです。
