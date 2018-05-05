@@ -53,7 +53,7 @@ console.log(inputElement.value); // => "input要素の入力内容"
 これらを組み合わせて`App.js`に「入力内容をコンソールに表示」する機能を実装してみましょう。
 `App`クラスに`mount`というメソッドを定義して、その中に処理を書いていきましょう。
 
-次のようにフォーム（`#js-form`）をEnteで送信すると、input要素（`#js-form-input`)に書かれた内容が開発者ツールのコンソールに表示するという実装を行います。
+次のようにフォーム（`#js-form`）をEnterで送信すると、input要素（`#js-form-input`)に書かれた内容が開発者ツールのコンソールに表示するという実装を行います。
 
 [import, title:"src/App.js"](./prevent-event/src/App.js)
 
