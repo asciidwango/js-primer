@@ -158,7 +158,7 @@ todoapp
 
 現在のTodoアプリは次のURLで実際に確認できます。
 
-- [https://asciidwango.github.io/js-primer/use-case/todoapp/app-structure/todo-html/]
+- [https://asciidwango.github.io/js-primer/use-case/todoapp/form-event/add-todo-item/](./add-todo-item/)
 
 ## まとめ {#conclusion}
 
