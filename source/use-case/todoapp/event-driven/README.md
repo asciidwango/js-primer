@@ -50,11 +50,11 @@ console.log(inputElement.value); // => "input要素の入力内容"
 `App`クラスに`mount`というメソッドを定義して、次のようにform要素の`submit`イベントを受け取ります。
 フォーム（`#js-form`）でEnterを押し送信すると、input要素（`#js-form-input`)に書かれていた内容が開発者ツールのコンソールに表示するという実装です。
 
-[import, src/App.js](./prevent-event/src/App.js)
+[import, title:"src/App.js"](./prevent-event/src/App.js)
 
 `index.js`も合わせて変更して、`App`クラスの`mount`メソッドを呼び出すようにします。
 
-[import, index.js](./prevent-event/index.js)
+[import, title:"index.js"](./prevent-event/index.js)
 
 これらの変更後にブラウザでページをリロードすると、`App#mount`が実行されるようになります。
 `submit`イベントが監視されているので、入力欄に何か入力してEnterで送信してみるとその内容がコンソールに表示されます。
@@ -115,7 +115,7 @@ ajaxappでの`escapeHTML`タグ関数では出力は**HTML文字列**でした�
 また、HTML文字列に対しては`addEventListener`でイベントを監視するということはできません。
 そのため、チェックボックスの状態が変わったことや削除ボタンが押されたことを知る必要があるTodoアプリでは要素が必要になります。
 
-[import, add-todo-item/src/view/html-util.js](./add-todo-item/src/view/html-util.js)
+[import, title:"src/view/html-util.js"](./add-todo-item/src/view/html-util.js)
 
 `element`タグ関数では、同じファイルに定義した`htmlToElement`関数を使ってHTML文字列からHTML要素を作成しています。
 `htmlToElement`関数の中で利用している[template要素][]はHTML5で追加された、HTML文字列の断片からHTML要素を作成できる要素です。
@@ -137,7 +137,7 @@ document.body.appendChild(newElement);
 先ほどの`html-util.js`から`element`タグ関数を`App.js`に`import`します。
 そして、`submit`イベントのコールバックでTodoアイテムを表現する要素を作成し、Todoリスト(`#js-todo-list`)に対して追加します。
 
-[import, add-todo-item/src/App.js](./add-todo-item/src/App.js)
+[import, title:"src/App.js"](./add-todo-item/src/App.js)
 
 これらの変更後にブラウザでページをリロードすると、入力内容を送信するたびにTodoリスト下へTodoアイテムが追加されます。
 
