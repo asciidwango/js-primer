@@ -1,0 +1,24 @@
+const addNewTodo = require("../../../helper/todo-helper").addNewTodo;
+const URL = "/event-driven/add-todo-item";
+describe(URL, function() {
+    it("入力欄を埋めて送信するとTodoアイテム(li)のみが追加される", function() {
+        cy.visit(URL);
+        const inputText = "test";
+        addNewTodo(inputText).then(() => {
+            // ulはない
+            cy.get("#js-todo-list ul").should(items => {
+                expect(items).to.have.length(0);
+            });
+            // liはある
+            cy.get("#js-todo-list li").should(items => {
+                expect(items).to.have.length(1);
+            });
+        });
+        addNewTodo(inputText).then(() => {
+            // liが増える
+            cy.get("#js-todo-list li").should(items => {
+                expect(items).to.have.length(2);
+            });
+        });
+    });
+});
