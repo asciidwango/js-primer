@@ -1,5 +1,5 @@
 const addNewTodo = require("../../../helper/todo-helper").addNewTodo;
-const URL = "/event-driven/add-todo-item";
+const URL = "/form-event/add-todo-item";
 describe(URL, function() {
     it("入力欄を埋めて送信するとTodoアイテム(li)のみが追加される", function() {
         cy.visit(URL);
