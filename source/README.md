@@ -47,4 +47,4 @@
     - [Todoアプリ](./use-case/todoapp/README.md)
       - [エントリポイント](./use-case/todoapp/entrypoint/README.md)
       - [アプリの構成要素](./use-case/todoapp/app-structure/README.md)
-      - [アプリとイベント](./use-case/todoapp/event-driven/README.md)
+      - [アプリとイベント](./use-case/todoapp/form-event/README.md)

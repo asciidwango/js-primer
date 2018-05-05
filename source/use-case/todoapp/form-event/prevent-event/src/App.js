@@ -1,7 +1,4 @@
 export class App {
-    constructor() {
-        console.log("App initialized");
-    }
     mount() {
         const formElement = document.querySelector("#js-form");
         const inputElement = document.querySelector("#js-form-input");

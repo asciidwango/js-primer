@@ -1,4 +1,4 @@
-# Todoアプリとイベント駆動 {#todo-app-event-driven}
+# フォームとイベント {#form-event}
 
 ここからはJavaScriptでTodoアプリの動作を実際に作っていきます。
 
@@ -141,7 +141,7 @@ document.body.appendChild(newElement);
 
 これらの変更後にブラウザでページをリロードすると、入力内容を送信するたびにTodoリスト下へTodoアイテムが追加されます。
 
-ここでの変更点は次のとおりです。
+このセクションでの変更点は次のとおりです。
 
 ```
 todoapp
@@ -149,10 +149,25 @@ todoapp
 ├── index.js
 ├── package.json
 └── src
-    ├── App.js(Todoアイテムの表示)
+    ├── App.js(Todoアイテムの表示の実装)
     └── view
         └── html-util.js(追加)
 ```
+
+
+現在のTodoアプリは次のURLで実際に確認できます。
+
+- [https://asciidwango.github.io/js-primer/use-case/todoapp/app-structure/todo-html/]
+
+## まとめ {#conclusion}
+
+このセクションではform要素の`submit`イベントを監視し、入力内容を元にTodoアイテムをTodoリストの追加を実装しました。
+今回のTodoアイテムの追加のように多くのウェブアプリは、何らかのイベントが発生うぃ、そのイベントを監視してJavaScriptで処理し表示を更新します。
+このようなイベントが発生したことを元に処理を進める方法を**イベント駆動**（イベントドリブン）と呼びます。
+
+今回のTodoアイテムの追加では、`submit`イベントを入力にして、**直接**Todoリスト要素の内容を更新という出力をしていました。
+このような直接DOMを更新するという方法はコードが短くなりますが、柔軟性になくなるという問題があります。
+次のセクションではこの問題点を解消するために、今回扱ったイベントの仕組みをより深く見ていきます。
 
 [ajaxapp: HTML文字列をDOMに追加する]: ../../ajaxapp/display/README.md#html-to-dom
 [template要素]: https://developer.mozilla.org/ja/docs/Web/HTML/Element/template
