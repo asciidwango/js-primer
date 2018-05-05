@@ -33,11 +33,3 @@ export function element(strings, ...values) {
     });
     return htmlToElement(htmlString);
 }
-
-
-export function render(bodyElement, rootElement) {
-    // rootElementの中身を空にする
-    rootElement.innerHTML = "";
-    // rootElementの直下にbodyElementを追加する
-    rootElement.appendChild(bodyElement);
-}

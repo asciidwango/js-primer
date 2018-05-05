@@ -1,20 +1,15 @@
 import { element } from "./view/html-util.js";
 
 export class App {
-    mount(containerElement) {
+    mount() {
         const formElement = document.querySelector("#js-form");
         const inputElement = document.querySelector("#js-form-input");
+        const containerElement = document.querySelector("#js-todo-list");
         formElement.addEventListener("submit", (event) => {
             // 本来のsubmitイベントの動作を止める
             event.preventDefault();
-            // 追加するTodoアイテムの要素を作成する
-            const title = inputElement.value;
-            const todoItemElement = element`<li>
-<!-- Todoアイテムの完了状態を表すチェックボックス -->
-<input type="checkbox" class="toggle">${title}addEventListener</input>
-<!-- 削除ボタン-->
-<button class="delete">x</button>
-</li>`;
+            // 追加するTodoアイテムの要素(li要素)を作成する
+            const todoItemElement = element`<li>>${inputElement.value}</li>`;
             // Todoアイテムをcontainerに追加する
             containerElement.appendChild(todoItemElement);
             // 入力欄を空文字にしてリセットする

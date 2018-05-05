@@ -86,6 +86,73 @@ formElement.addEventListener("submit", (event) => {
 });
 ```
 
+ここまでで`todoapp`ディレクトリは次のような変更を加えました。
+
+```
+todoapp
+├── index.html
+├── index.js (App#mountの呼び出し)
+├── package.json
+└── src
+    └── App.js (App#mountの実装)
+```
+
+
 ## 入力内容をTodoリストに表示 {#input-to-todolist}
 
-フォーム送信時に入力内容を取得する方法が分かったら、次はその入力内容をTodoリスト(`#js-todo-list`)に表示します。
+フォーム送信時に入力内容を取得する方法が分かったので、次はその入力内容をTodoリスト(`#js-todo-list`)に表示します。
+HTMLではリストのアイテムを記述する際には`<li>`タグを使います。
+またTodoリストに表示するTodoアイテムには、完了状態を表すチェックボックスや削除ボタンなども含めたいです。
+
+直接DOM APIで複雑な要素を作成すると見通しが悪くなるため、HTML文字列からHTML要素を生成するユーティリティモジュールを作成しましょう。
+
+次の`html-util.js`を`src/view/html-util.js`というパスに作成します。
+
+この`html-util.js`は[ajaxapp: HTML文字列をDOMに追加する][]でも利用した`escapeSpecialChars`をベースにしています。
+ajaxappでの`escapeHTML`タグ関数では出力は**HTML文字列**でしたが、今回作成する`element`タグ関数の出力はHTML要素（Element）です。
+
+これはTodoリスト(`#js-todo-list`)というすでに存在する要素に対して要素を**追加**するには、HTML文字列ではなく要素が必要になります。
+また、HTML文字列に対しては`addEventListener`でイベントを監視するということはできません。
+そのため、チェックボックスの状態が変わったことや削除ボタンが押されたことを知る必要があるTodoアプリでは要素が必要になります。
+
+[import, add-todo-item/src/view/html-util.js](./add-todo-item/src/view/html-util.js)
+
+`element`タグ関数では、同じファイルに定義した`htmlToElement`関数を使ってHTML文字列からHTML要素を作成しています。
+`htmlToElement`関数の中で利用している[template要素][]はHTML5で追加された、HTML文字列の断片からHTML要素を作成できる要素です。
+
+この`element`タグ関数を使うことで、次のようにHTML文字列からHTML要素を作成できます。
+作成した要素は、`appendChild`メソッドなどで既存の要素に子要素として追加できます。
+
+<!-- doctest:disable -->
+```js
+// HTML文字列からHTML要素を作成
+const newElement = element`<ul>
+    <li>新しい要素</li>
+</ul>`;
+// 作成した要素を既存の要素に追加（appendChild）する
+document.body.appendChild(newElement);
+```
+
+次に、この`element`タグ関数を使い`App.js`で送信された入力内容をTodoリストに要素として追加してみます。
+先ほどの`html-util.js`から`element`タグ関数を`App.js`に`import`します。
+そして、`submit`イベントのコールバックでTodoアイテムを表現する要素を作成し、Todoリスト(`#js-todo-list`)に対して追加します。
+
+[import, add-todo-item/src/App.js](./add-todo-item/src/App.js)
+
+これらの変更後にブラウザでページをリロードすると、入力内容を送信するたびにTodoリスト下へTodoアイテムが追加されます。
+
+ここでの変更点は次のとおりです。
+
+```
+todoapp
+├── index.html
+├── index.js
+├── package.json
+└── src
+    ├── App.js(Todoアイテムの表示)
+    └── view
+        └── html-util.js(追加)
+```
+
+[ajaxapp: HTML文字列をDOMに追加する]: ../../ajaxapp/display/README.md#html-to-dom
+[template要素]: https://developer.mozilla.org/ja/docs/Web/HTML/Element/template
