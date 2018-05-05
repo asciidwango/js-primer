@@ -1,3 +1,7 @@
+---
+author: azu
+---
+
 # フォームとイベント {#form-event}
 
 ここからはJavaScriptでTodoアプリの動作を実際に作っていきます。
@@ -78,6 +82,7 @@ formElement.addEventListener("submit", (event) => {
 現在のURLに対してフォームを送信が行われると、結果的にページがリロードされてしまいます。
 これは`event.preventDefault();`をコメントアウトすると、ページがリロードされていることが確認できます。
 
+<!-- doctest:disable -->
 ```js
 formElement.addEventListener("submit", (event) => {
     // preventDefaultしないとページがリロードされてしまう
