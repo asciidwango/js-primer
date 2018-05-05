@@ -134,6 +134,7 @@ document.body.appendChild(newElement);
 ```
 
 次に、この`element`タグ関数を使い`App.js`で送信された入力内容をTodoリストに要素として追加してみます。
+
 先ほどの`html-util.js`から`element`タグ関数を`App.js`に`import`します。
 そして、`submit`イベントのコールバックでTodoアイテムを表現する要素を作成し、Todoリスト(`#js-todo-list`)に対して追加します。
 
