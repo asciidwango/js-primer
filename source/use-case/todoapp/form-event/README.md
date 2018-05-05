@@ -6,17 +6,17 @@ author: azu
 
 ここからはJavaScriptでTodoアプリの動作を実際に作っていきます。
 
-まずは、先ほどHTMLに目印を付けたTodoリスト(`#js-todo-list`)に対してTodoアイテムを追加する処理を作っていきます。
+このセクションでは、前のセクションでHTMLに目印を付けたTodoリスト(`#js-todo-list`)に対してTodoアイテムを追加する処理を作っていきます。
 
 ## Todoアイテムの追加 {#add-todo-item}
 
-Todoアイテムを追加するには、ユーザーが次のような操作によって追加します。
+ユーザーが次のような操作を行い、Todoアイテムを追加します。
 
 1. 入力欄にTodoアイテムのタイトルを入力する
 2. 入力欄でEnterを押し送信する
 3. TodoリストにTodoアイテムが追加される
 
-これをJavaScriptで処理するには次のことが必要です。
+これをJavaScriptで実現するには次のことが必要です。
 
 - form要素から送信（`submit`）されたことをイベントで受け取る
 - input要素（入力欄）に入力された内容を取得する
@@ -51,12 +51,14 @@ console.log(inputElement.value); // => "input要素の入力内容"
 ```
 
 これらを組み合わせて`App.js`に「入力内容をコンソールに表示」する機能を実装してみましょう。
-`App`クラスに`mount`というメソッドを定義して、次のようにform要素の`submit`イベントを受け取ります。
-フォーム（`#js-form`）でEnterを押し送信すると、input要素（`#js-form-input`)に書かれていた内容が開発者ツールのコンソールに表示するという実装です。
+`App`クラスに`mount`というメソッドを定義して、その中に処理を書いていきましょう。
+
+次のようにフォーム（`#js-form`）でEnterを押し送信すると、input要素（`#js-form-input`)に書かれていた内容が開発者ツールのコンソールに表示するという実装を`App#mount`内に行います。
 
 [import, title:"src/App.js"](./prevent-event/src/App.js)
 
-`index.js`も合わせて変更して、`App`クラスの`mount`メソッドを呼び出すようにします。
+このままでは、`App#mount`は呼び出されないため何も行われません。
+そんのため、`index.js`も変更して、`App`クラスの`mount`メソッドを呼び出すようにします。
 
 [import, title:"index.js"](./prevent-event/index.js)
 
@@ -65,9 +67,9 @@ console.log(inputElement.value); // => "input要素の入力内容"
 
 ![入力内容がコンソールに表示される](./img/event-driven.png)
 
-先ほどの`App.js`で発火されたsubmitイベントの`event.preventDefault();`を呼び出しています。
-これは、`submit`イベントが発火されたフォーム本来の動作をキャンセルするメソッドです。
-フォーム本来の処理とは、フォームの内容を指定したURLへ送信するといった処理です。
+先ほどの`App#mount`では、発火された`submit`イベントのコールバック関数内で`event.preventDefault();`を呼び出しています。
+`preventDefault`メソッドは`submit`イベントが発火されたフォーム本来の動作をキャンセルするメソッドです。
+フォーム本来の処理とは、フォームの内容を指定したURLへ送信するという動作です。
 ここでは`form`要素に送信先が指定されていないため、現在のURLに対してフォームを送信が行われるのをキャンセルしています。
 
 <!-- doctest:disable -->
@@ -79,8 +81,8 @@ formElement.addEventListener("submit", (event) => {
 });
 ```
 
-現在のURLに対してフォームを送信が行われると、結果的にページがリロードされてしまいます。
-これは`event.preventDefault();`をコメントアウトすると、ページがリロードされていることが確認できます。
+現在のURLに対してフォームを送信が行われると、結果的にページがリロードされてしまうため、`preventDefault()`を呼び出していました。
+これは`event.preventDefault();`をコメントアウトすると、ページがリロードされてしまうことが確認できます。
 
 <!-- doctest:disable -->
 ```js
@@ -110,10 +112,10 @@ todoapp
 ## 入力内容をTodoリストに表示 {#input-to-todolist}
 
 フォーム送信時に入力内容を取得する方法が分かったので、次はその入力内容をTodoリスト(`#js-todo-list`)に表示します。
-HTMLではリストのアイテムを記述する際には`<li>`タグを使います。
-またTodoリストに表示するTodoアイテムには、完了状態を表すチェックボックスや削除ボタンなども含めたいです。
 
-直接DOM APIで複雑な要素を作成すると見通しが悪くなるため、HTML文字列からHTML要素を生成するユーティリティモジュールを作成しましょう。
+HTMLではリストのアイテムを記述する際には`<li>`タグを使います。
+また後ほどTodoリストに表示するTodoアイテムの要素には、完了状態を表すチェックボックスや削除ボタンなども含めたいです。
+これらの要素を含むものを手続き的にDOM APIで作成すると見通しが悪くなるため、HTML文字列からHTML要素を生成するユーティリティモジュールを作成しましょう。
 
 次の`html-util.js`を`src/view/html-util.js`というパスに作成します。
 
@@ -142,10 +144,10 @@ const newElement = element`<ul>
 document.body.appendChild(newElement);
 ```
 
-次に、この`element`タグ関数を使い`App.js`で送信された入力内容をTodoリストに要素として追加してみます。
+次に、この`element`タグ関数を使い、フォームから送信された入力内容をTodoリストに要素として追加してみます。
 
-先ほどの`html-util.js`から`element`タグ関数を`App.js`に`import`します。
-そして、`submit`イベントのコールバックでTodoアイテムを表現する要素を作成し、Todoリスト(`#js-todo-list`)に対して追加します。
+`App.js`から先ほど作成した`html-util.js`の`element`タグ関数を`import`します。
+そして`submit`イベントのコールバック関数で、Todoアイテムを表現する要素を作成し、Todoリスト(`#js-todo-list`)の子要素として追加（`appendChild`）します。
 
 [import, title:"src/App.js"](./add-todo-item/src/App.js)
 
@@ -176,7 +178,8 @@ todoapp
 このようなイベントが発生したことを元に処理を進める方法を**イベント駆動**（イベントドリブン）と呼びます。
 
 今回のTodoアイテムの追加では、`submit`イベントを入力にして、**直接**Todoリスト要素の内容を更新という出力をしていました。
-このような直接DOMを更新するという方法はコードが短くなりますが、柔軟性になくなるという問題があります。
+このように直接DOMを更新するという方法はコードが短くなりますが、柔軟性がなくなるという問題があります。
+
 次のセクションではこの問題点を解消するために、今回扱ったイベントの仕組みをより深く見ていきます。
 
 [ajaxapp: HTML文字列をDOMに追加する]: ../../ajaxapp/display/README.md#html-to-dom
