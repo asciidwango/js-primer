@@ -99,7 +99,7 @@ serving "." at http://127.0.0.1:3030
 起動したローカルサーバのURL（`http://127.0.0.1:3030`）にブラウザでアクセスしてみましょう。
 ブラウザには`index.html`の内容が表示され、開発者ツールのコンソールに`index.js: loaded`というログが出力されていることが確認できます。
 
-![ログが表示されているWebコンソール](img/entry-point.png)
+![ログが表示されているWebコンソール](img/first-entry.png)
 
 ----
 
@@ -236,7 +236,7 @@ import { App } from "./src/App.js";
 ```
 
 
-[Ajax通信:エントリポイント]: ../ajaxapp/entrypoint/README.md
+[Ajax通信:エントリポイント]: ../../ajaxapp/entrypoint/README.md
 [Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy 
 [Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
 [npmを使ってパッケージをインストールする]: ../../nodecli/argument-parse/README.md#use-npm
