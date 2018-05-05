@@ -1,8 +1,8 @@
 // LICENSE : MIT
 "use strict";
 const assert = require("assert");
-import { TodoItem } from "../src/models/TodoItem.js";
-import { TodoList } from "../src/models/TodoList.js";
+import { TodoItem } from "../src/model/TodoItem.js";
+import { TodoList } from "../src/model/TodoList.js";
 
 const assertTodo = (todo) => {
     assert.ok(typeof todo.id === "number");

@@ -1,11 +1,4 @@
-/**
- * Add new Todo
- * @param {string} title
- */
-const addNewTodo = (title) => {
-    cy.get("#js-form-input").type(title);
-    cy.get("#js-form").submit();
-};
+const addNewTodo = require("../../../helper/todo-helper").addNewTodo;
 
 const URL = "/final/final";
 describe("Todo", function() {
