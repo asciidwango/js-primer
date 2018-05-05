@@ -98,6 +98,11 @@ todoapp
 ```
 
 
+ここまでのTodoアプリは次のURLで実際に確認できます。
+
+- [https://asciidwango.github.io/js-primer/use-case/todoapp/form-event/prevent-event/](./prevent-event/)
+
+
 ## 入力内容をTodoリストに表示 {#input-to-todolist}
 
 フォーム送信時に入力内容を取得する方法が分かったので、次はその入力内容をTodoリスト(`#js-todo-list`)に表示します。
