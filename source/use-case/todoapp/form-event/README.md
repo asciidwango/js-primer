@@ -108,8 +108,8 @@ HTMLではリストのアイテムを記述する際には`<li>`タグを使い�
 
 次の`html-util.js`を`src/view/html-util.js`というパスに作成します。
 
-この`html-util.js`は[ajaxapp: HTML文字列をDOMに追加する][]でも利用した`escapeSpecialChars`をベースにしています。
-ajaxappでの`escapeHTML`タグ関数では出力は**HTML文字列**でしたが、今回作成する`element`タグ関数の出力はHTML要素（Element）です。
+この`html-util.js`は「[ajaxapp: HTML文字列をDOMに追加する][]」でも利用した`escapeSpecialChars`をベースにしています。
+ajaxappでの`escapeHTML`タグ関数では出力は**HTML文字列**でしたが、今回作成する`element`タグ関数の出力は**HTML要素**（Element）です。
 
 これはTodoリスト(`#js-todo-list`)というすでに存在する要素に対して要素を**追加**するには、HTML文字列ではなく要素が必要になります。
 また、HTML文字列に対しては`addEventListener`でイベントを監視するということはできません。
