@@ -53,7 +53,7 @@ console.log(inputElement.value); // => "input要素の入力内容"
 これらを組み合わせて`App.js`に「入力内容をコンソールに表示」する機能を実装してみましょう。
 `App`クラスに`mount`というメソッドを定義して、その中に処理を書いていきましょう。
 
-次のようにフォーム（`#js-form`）でEnterを押し送信すると、input要素（`#js-form-input`)に書かれていた内容が開発者ツールのコンソールに表示するという実装を`App#mount`内に行います。
+次のようにフォーム（`#js-form`）をEnteで送信すると、input要素（`#js-form-input`)に書かれた内容が開発者ツールのコンソールに表示するという実装を行います。
 
 [import, title:"src/App.js"](./prevent-event/src/App.js)
 
@@ -81,8 +81,12 @@ formElement.addEventListener("submit", (event) => {
 });
 ```
 
-現在のURLに対してフォームを送信が行われると、結果的にページがリロードされてしまうため、`preventDefault()`を呼び出していました。
-これは`event.preventDefault();`をコメントアウトすると、ページがリロードされてしまうことが確認できます。
+<!-- textlint-disable no-js-function-paren -->
+
+現在のURLに対してフォームを送信が行われると、結果的にページがリロードされてしまうため、`event.preventDefault()`を呼び出していました。
+これは`event.preventDefault()`をコメントアウトすると、ページがリロードされてしまうことが確認できます。
+
+<!-- textlint-enable no-js-function-paren -->
 
 <!-- doctest:disable -->
 ```js
@@ -147,7 +151,7 @@ document.body.appendChild(newElement);
 次に、この`element`タグ関数を使い、フォームから送信された入力内容をTodoリストに要素として追加してみます。
 
 `App.js`から先ほど作成した`html-util.js`の`element`タグ関数を`import`します。
-そして`submit`イベントのコールバック関数で、Todoアイテムを表現する要素を作成し、Todoリスト(`#js-todo-list`)の子要素として追加（`appendChild`）します。
+そして`submit`イベントのハンドラで、Todoアイテムを表現する要素を作成し、Todoリスト(`#js-todo-list`)の子要素として追加（`appendChild`）します。
 
 [import, title:"src/App.js"](./add-todo-item/src/App.js)
 
