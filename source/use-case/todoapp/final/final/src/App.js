@@ -38,14 +38,12 @@ export class App {
         this.todoListModel.deleteTodo({ id });
     };
 
-    /**
-     * `containerElement`に対してTodoListを描画する
-     * @param {HTMLElement} containerElement
-     */
-    mount(containerElement) {
-        const form = document.querySelector("#js-form");
+    mount() {
+        const formElement = document.querySelector("#js-form");
         const inputElement = document.querySelector("#js-form-input");
-        form.addEventListener("submit", (event) => {
+        const todoCountElement = document.querySelector("#js-todo-count");
+        const todoListContainerElement = document.querySelector("#js-todo-list");
+        formElement.addEventListener("submit", (event) => {
             // prevent submit action
             event.preventDefault();
             // try to add
@@ -61,7 +59,9 @@ export class App {
                 onUpdate: this.handleUpdate.bind(this),
                 onDelete: this.handleDelete.bind(this)
             });
-            render(todoListElement, containerElement);
+            render(todoListElement, todoListContainerElement);
+            // アイテム数の表示を更新
+            todoCountElement.textContent = `Todoアイテム数: ${this.todoListModel.totalCount}`;
         });
     }
 
