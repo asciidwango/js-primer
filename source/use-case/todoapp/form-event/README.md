@@ -65,7 +65,7 @@ console.log(inputElement.value); // => "input要素の入力内容"
 これらの変更後にブラウザでページをリロードすると、`App#mount`が実行されるようになります。
 `submit`イベントが監視されているので、入力欄に何か入力してEnterで送信してみるとその内容がコンソールに表示されます。
 
-![入力内容がコンソールに表示される](./img/event-driven.png)
+![入力内容がコンソールに表示される](./img/form-event.png)
 
 先ほどの`App#mount`では、発火された`submit`イベントのコールバック関数内で`event.preventDefault();`を呼び出しています。
 `preventDefault`メソッドは`submit`イベントが発火されたフォーム本来の動作をキャンセルするメソッドです。
@@ -158,6 +158,8 @@ document.body.appendChild(newElement);
 
 これらの変更後にブラウザでページをリロードすると、入力内容を送信するたびにTodoリスト下へTodoアイテムが追加されます。
 また、入力内容を送信するたびに`todoItemCount`が加算され、**Todoアイテム数**の表示も更新されます。
+
+![Todoリストへアイテムを追加](./img/add-todo-item.png)
 
 このセクションでの変更点は次のとおりです。
 
