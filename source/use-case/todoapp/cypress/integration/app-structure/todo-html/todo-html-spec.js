@@ -6,6 +6,9 @@ describe(URL, function() {
             const position = win.getComputedStyle(win.document.querySelector(".todoapp")).position;
             expect(position).to.equal("relative");
         });
+        cy.get("#js-todo-count").should(count => {
+            expect(count).to.contain("0");
+        });
     });
     it("ロードするとApp.jsのログが表示される", function() {
         visitWithConsole(URL).then(({ logSpy }) => {

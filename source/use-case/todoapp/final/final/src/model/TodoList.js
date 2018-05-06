@@ -10,6 +10,10 @@ export class TodoList extends EventEmitter {
         this.items = items;
     }
 
+    get totalCount() {
+        return this.items.length;
+    }
+
     /**
      * 表示できるTodoItemの配列を返す
      * @returns {TodoItem[]}

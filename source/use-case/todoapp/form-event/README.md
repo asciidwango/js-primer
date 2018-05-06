@@ -148,14 +148,16 @@ const newElement = element`<ul>
 document.body.appendChild(newElement);
 ```
 
-次に、この`element`タグ関数を使い、フォームから送信された入力内容をTodoリストに要素として追加してみます。
+最後に、この`element`タグ関数を使い、フォームから送信された入力内容をTodoリストに要素として追加してみます。
 
 `App.js`から先ほど作成した`html-util.js`の`element`タグ関数を`import`します。
 そして`submit`イベントのハンドラで、Todoアイテムを表現する要素を作成し、Todoリスト(`#js-todo-list`)の子要素として追加（`appendChild`）します。
+合わせてTodoアイテム数（`#js-todo-count`）に表示されているテキスト(`textContent`)を更新します。
 
 [import, title:"src/App.js"](./add-todo-item/src/App.js)
 
 これらの変更後にブラウザでページをリロードすると、入力内容を送信するたびにTodoリスト下へTodoアイテムが追加されます。
+また、入力内容を送信するたびに`todoItemCount`が加算され、**Todoアイテム数**の表示も更新されます。
 
 このセクションでの変更点は次のとおりです。
 
@@ -178,13 +180,13 @@ todoapp
 ## まとめ {#conclusion}
 
 このセクションではform要素の`submit`イベントを監視し、入力内容を元にTodoアイテムをTodoリストの追加を実装しました。
-今回のTodoアイテムの追加のように多くのウェブアプリは、何らかのイベントが発生うぃ、そのイベントを監視してJavaScriptで処理し表示を更新します。
+今回のTodoアイテムの追加のように多くのウェブアプリは、何らかのイベントが発生し、そのイベントを監視してJavaScriptで処理し表示を更新します。
 このようなイベントが発生したことを元に処理を進める方法を**イベント駆動**（イベントドリブン）と呼びます。
 
-今回のTodoアイテムの追加では、`submit`イベントを入力にして、**直接**Todoリスト要素の内容を更新という出力をしていました。
-このように直接DOMを更新するという方法はコードが短くなりますが、柔軟性がなくなるという問題があります。
+今回のTodoアイテムの追加では、`submit`イベントを入力にして、**直接**Todoリスト要素を追加するという方法を取っていました。
+このように直接DOMを更新するという方法はコードが短くなりますが、DOMのみにしか状態は残らないため柔軟性がなくなるという問題があります。
 
-次のセクションではこの問題点を解消するために、今回扱ったイベントの仕組みをより深く見ていきます。
+次のセクションではどのような問題がおきるかや、それを解決するための仕組みを見ていきます。
 
 [ajaxapp: HTML文字列をDOMに追加する]: ../../ajaxapp/display/README.md#html-to-dom
 [template要素]: https://developer.mozilla.org/ja/docs/Web/HTML/Element/template

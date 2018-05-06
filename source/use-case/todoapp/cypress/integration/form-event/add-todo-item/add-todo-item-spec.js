@@ -13,11 +13,18 @@ describe(URL, function() {
             cy.get("#js-todo-list li").should(items => {
                 expect(items).to.have.length(1);
             });
+            // countは増える
+            cy.get("#js-todo-count").should(count => {
+                expect(count).to.contain("1");
+            });
         });
         addNewTodo(inputText).then(() => {
             // liが増える
             cy.get("#js-todo-list li").should(items => {
                 expect(items).to.have.length(2);
+            });
+            cy.get("#js-todo-count").should(count => {
+                expect(count).to.contain("2");
             });
         });
     });
