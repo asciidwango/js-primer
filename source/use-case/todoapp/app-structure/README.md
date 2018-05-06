@@ -123,10 +123,10 @@ const form = document.querySelector("#js-form");
 
 初期表示時はTodoリストの中身がまだ空であるため、何も表示されていません。（HTMLコメントは見た目には表示されません）
 
-### 4. Todoアイテム数の表示 {#comment-todo-count}
+### 5. Todoアイテム数の表示 {#comment-todo-count}
 
 `js-todo-count`という`id`属性を付けた`span`要素は、現在のTodoリストのアイテム数を表示します。
-初期表示時はTodoリストは空であるため0コとなりますが、Todoアイテムを追加や削除する際には合わせて更新する必要があります。
+初期表示時はTodoリストが空であるため0コとなりますが、Todoアイテムを追加や削除する際には合わせて更新する必要があります。
 
 ## まとめ {#conclusion}
 
