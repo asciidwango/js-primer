@@ -10,7 +10,7 @@ export class TodoList extends EventEmitter {
         this.items = items;
     }
 
-    get totalCount(){
+    get totalCount() {
         return this.items.length;
     }
 
