@@ -1186,7 +1186,7 @@ console.log(child instanceof Child); // => true
 まずは、親クラスとなる「何かした時にコールバック関数を呼び出すクラス」を定義します。
 
 次の`EventEmitter`というクラスを見てみます。
-このクラスはコールバック関数を`addEventLister`メソッドで登録し、
+このクラスはコールバック関数を`addEventListener`メソッドで登録し、
 登録済みのコールバック関数を`emit`メソッドによって呼びだせます。
 
 これによって、`emit`メソッドを呼び出すと登録済みのコールバック関数を呼び出すことができます。
@@ -1200,7 +1200,7 @@ class EventEmitter {
         this.eventHandlers = [];
     }
     // `handler`(コールバック関数)を登録する
-    addEventLister(handler) {
+    addEventListener(handler) {
         this.eventHandlers.push(handler);
     }
     // 登録済みのイベントハンドラーに対して引数`...args`を渡して呼び出す
@@ -1213,8 +1213,8 @@ class EventEmitter {
 
 const event = new EventEmitter();
 // コールバック関数を登録
-event.addEventLister(() => console.log("Hello!"));
-event.addEventLister((...args) => console.log("Hi", ...args));
+event.addEventListener(() => console.log("Hello!"));
+event.addEventListener((...args) => console.log("Hi", ...args));
 // コールバック関数をまとめて呼びだす
 event.emit("a", "b", "c");
 // コールバック関数がそれぞれよびだされ、コンソールには次のように出力される
@@ -1228,7 +1228,7 @@ event.emit("a", "b", "c");
 `ObservableValue`は先ほど定義した`EventEmitter`クラスを継承しています。
 これにより、`ObservableValue`クラスのプロトタイプメソッド内では、`EventEmitter`クラスのプロトタイプメソッドを呼び出せます。
 
-`ObservableValue#onChange`メソッドでは継承した`addEventLister`メソッドを使い、値を更新した時のコールバック関数を登録できます。
+`ObservableValue#onChange`メソッドでは継承した`addEventListener`メソッドを使い、値を更新した時のコールバック関数を登録できます。
 また、`value`プロパティのsetterでは、値が実際に更新されているなら登録されたコールバック関数を`emit`メソッドで呼び出しています。
 
 これにより、値が更新される度に新しい値をコンソールに出力するコールバック関数を呼び出す実装ができました。
@@ -1239,7 +1239,7 @@ class EventEmitter {
     constructor() {
         this.eventHandlers = [];
     }
-    addEventLister(handler) {
+    addEventListener(handler) {
         this.eventHandlers.push(handler);
     }
     emit(...args) {
@@ -1256,7 +1256,7 @@ class ObservableValue extends EventEmitter {
     }
     // 値が変わったときに呼ばれる`handler`（コールバック関数）を登録する
     onChange(handler) {
-        this.addEventLister(handler);
+        this.addEventListener(handler);
     }
     get value() {
         return this._value;
