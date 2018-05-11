@@ -5,7 +5,7 @@ class EventEmitter {
     }
 
     // `handler`(コールバック関数)を登録する
-    addEventLister(handler) {
+    addEventListener(handler) {
         this.eventHandlers.push(handler);
     }
 
@@ -23,7 +23,7 @@ class ObservableValue extends EventEmitter {
     }
 
     onChange(onChangeHandler) {
-        this.addEventLister(onChangeHandler);
+        this.addEventListener(onChangeHandler);
     }
 
     get value() {

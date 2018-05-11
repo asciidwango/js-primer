@@ -3,7 +3,7 @@ class EventEmitter {
         this.eventHandlers = [];
     }
 
-    addEventLister(eventHandler) {
+    addEventListener(eventHandler) {
         this.eventHandlers.push(eventHandler);
     }
 
@@ -16,7 +16,7 @@ class EventEmitter {
 
 const event = new EventEmitter();
 // listen
-event.addEventLister(() => console.log("Hi"));
-event.addEventLister((...args) => console.log("Hello", ...args));
+event.addEventListener(() => console.log("Hi"));
+event.addEventListener((...args) => console.log("Hello", ...args));
 // emit
 event.emit("John");
