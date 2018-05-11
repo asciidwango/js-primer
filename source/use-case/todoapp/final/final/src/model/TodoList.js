@@ -28,9 +28,9 @@ export class TodoList extends EventEmitter {
      * @returns {Function}
      */
     onChange(handler) {
-        this.on("change", handler);
+        this.addEventLister("change", handler);
         return () => {
-            this.off("change", handler);
+            this.removeEventLister("change", handler);
         };
     }
 
