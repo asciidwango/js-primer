@@ -2,7 +2,7 @@ import { EventEmitter } from "../EventEmitter.js";
 
 export class TodoList extends EventEmitter {
     /**
-     * @param {TodoItem[]} [items]
+     * @param {TodoItem[]} [items] 初期アイテム一覧（デフォルトは空の配列）
      */
     constructor(items = []) {
         super();
@@ -38,7 +38,7 @@ export class TodoList extends EventEmitter {
     }
 
     /**
-     * 状態が変更されたときに呼び出し、登録済みのハンドラを呼び出す
+     * 状態が変更されたときに呼ぶ。登録済みのハンドラを呼び出す
      */
     emitChange() {
         this.emit("change");

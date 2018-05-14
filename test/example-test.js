@@ -9,6 +9,7 @@ const { NodeVM } = require('vm2');
 const sourceDir = path.join(__dirname, "..", "source");
 const toDoc = require("power-doctest");
 const { transform } = require("babel-core");
+
 function strictfy(code) {
     var strictRegExp = /["']use strict["']/;
     if (strictRegExp.test(code)) {
@@ -16,11 +17,22 @@ function strictfy(code) {
     }
     return '"use strict";\n' + code;
 }
+
 function transformModule(code) {
+    // 必要なもの以外(es modulesぐらいがベスト)は変換しないように
     return transform(code, {
-        presets: ["env"]
+        presets: [
+            [
+                "env", {
+                "targets": {
+                    "node": "current"
+                }
+            }
+            ]
+        ]
     }).code
 }
+
 /**
  * *-example.js または dir/example/*.js を実行しdoctestを行う
  * a // => "aの評価結果"
