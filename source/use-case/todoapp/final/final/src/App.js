@@ -43,15 +43,6 @@ export class App {
         const inputElement = document.querySelector("#js-form-input");
         const todoCountElement = document.querySelector("#js-todo-count");
         const todoListContainerElement = document.querySelector("#js-todo-list");
-        formElement.addEventListener("submit", (event) => {
-            // prevent submit action
-            event.preventDefault();
-            // try to add
-            this.handleAdd(inputElement.value);
-            // clear text
-            inputElement.value = "";
-        });
-
         this.releaseHandler = this.todoListModel.onChange(() => {
             const todoItems = this.todoListModel.getTodoItems();
             const todoListElement = this.todoListView.createElement(todoItems, {
@@ -62,6 +53,15 @@ export class App {
             render(todoListElement, todoListContainerElement);
             // アイテム数の表示を更新
             todoCountElement.textContent = `Todoアイテム数: ${this.todoListModel.totalCount}`;
+        });
+
+        formElement.addEventListener("submit", (event) => {
+            // prevent submit action
+            event.preventDefault();
+            // try to add
+            this.handleAdd(inputElement.value);
+            // clear text
+            inputElement.value = "";
         });
     }
 

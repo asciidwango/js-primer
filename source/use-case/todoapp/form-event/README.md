@@ -144,8 +144,23 @@ ajaxappでの`escapeHTML`タグ関数では出力は**HTML文字列**でした�
 const newElement = element`<ul>
     <li>新しい要素</li>
 </ul>`;
-// 作成した要素を既存の要素に追加（appendChild）する
+// 作成した要素を`document.body`の子要素として追加（appendChild）する
 document.body.appendChild(newElement);
+```
+
+ブラウザが提供する`appendChild`メソッドは子要素を追加するだけであるため、すでに別の要素がある場合は末尾に追加されます。
+
+このセクションではまだ利用しませんが、`html-util.js`には`render`という関数を定義しています。
+`render`関数は指定したコンテナ要素（親となる要素）の子要素を上書きする関数となります。
+動作的には一度子要素をすべて消したあとに`appendChild`で子要素として追加しています。
+
+<!-- doctest:disable -->
+```js
+// `ul`要素の空タグを作成
+const newElement = element`<ul />`;
+// `newElement`を`document.body`の子要素として追加する
+// 既に`document.body`以下に要素がある場合は上書きされる
+render(newElement, document.body);
 ```
 
 最後に、この`element`タグ関数を使い、フォームから送信された入力内容をTodoリストに要素として追加してみます。

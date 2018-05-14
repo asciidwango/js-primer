@@ -5,18 +5,19 @@ author: azu
 # イベントとモデル {#event-model}
 
 Todoアイテムを追加する機能を実装しましたが、イベントを受け取り直接DOMを更新する方法は柔軟性がなくなるという問題があります。
+また「Todoアイテムの更新」という機能を実装するには追加したTodoアイテム要素を識別する方法が必要です。
+具体的には`id`属性などユニークな識別子などがどこにもないため、特定のアイテムを指定する更新や削除が実装できません。
 
-まずは実際にどのような点で問題が起きやすかについて考えていきます。
-その後、柔軟性を確保するために**モデル**という概念を加えて、あらためてTodoアイテムの追加機能を見ていきます。
+まずはどのような点で柔軟性の問題が起きやすかについてを見ていきます。
+その後、柔軟性や識別子の問題を解決するために**モデル**という概念を導入し、あらためて「Todoアイテムの追加」の機能を見ていきます。
 
 ## 直接DOMを更新する問題 {#direct-dom-modification-issue}
 
-[前のセクション][]では、操作した結果発生したイベントの発火という入力に対して、DOM（表示）の更新という出力が1対1でおこなわれていました。
+[前回のセクション][]では、操作した結果発生したイベントの発火という入力に対して、DOM（表示）の更新という出力が1対1でおこなわれていました。
 つまりTodoリストにTodoアイテムが何個あるか、どのようなアイテムがあるかという状態がDOM上にしか存在しないことになります。
 
 そのため、Todoアイテムの状態を更新するには、DOM要素にTodoアイテムの情報（タイトルや識別子となるidなど）をすべて埋め込む必要があります。
-一方、DOM要素に対して文字列でしか情報を入れることができません。
-そのため、直接DOM要素に状態を持たせると、Todoアイテムに含まれるデータは文字列にできないといけないという制限が発生します。
+しかし、DOM要素に対して文字列しか埋め込めないため、Todoアイテムのデータを文字列にしないといけないという制限が発生します。
 
 また操作と表示が1対1で更新される場合、1つの操作に対して複数の箇所の表示が更新されることもあります。
 今回のTodoアプリでもTodoリスト(`#js-todo-list`)とTodoアイテム数（`#js-todo-count`)の2箇所を更新する必要があることからも分かります。
@@ -26,8 +27,8 @@ Todoアイテムを追加する機能を実装しましたが、イベントを�
 | 機能               | 操作                       | 表示                                                                                                                   |
 | ------------------ | -------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | Todoアイテムの追加 | フォームを入力し送信       | Todoリスト(`#js-todo-list`)にTodoアイテム要素を作成し子要素として追加。合わせてTodoアイテム数（`#js-todo-count`)を更新 |
-| Todoアイテムの更新 | チェックボックスをクリック | Todoリスト(`#js-todo-list`)次の指定したTodoアイテム要素のチェック状態を更新                                            |
-| Todoアイテムの削除 | 削除ボタンをクリック       | Todoリスト(`#js-todo-list`)次の指定したTodoアイテム要素を削除。合わせてTodoアイテム数（`#js-todo-count`)を更新         |
+| Todoアイテムの更新 | チェックボックスをクリック | Todoリスト(`#js-todo-list`)にある指定したTodoアイテム要素のチェック状態を更新                                            |
+| Todoアイテムの削除 | 削除ボタンをクリック       | Todoリスト(`#js-todo-list`)にある指定したTodoアイテム要素を削除。合わせてTodoアイテム数（`#js-todo-count`)を更新         |
 
 これは表示を更新しなければいけない箇所が増えるほど、操作に対する処理が複雑化していくことが予想できます。
 
@@ -54,11 +55,11 @@ TodoリストにはTodoアイテムを追加できるので`TodoListModel#addIte
 **操作**に対する**モデルの処理**はさまざまですが、**操作**に対する**表示**の処理はどの場合も同じになります。
 これは表示箇所が増えた場合も**表示**の処理の複雑さが一定に保てることを意味しています。
 
-| 機能               | 操作                       | モデルの処理                           | 表示                     |
-| ------------------ | -------------------------- | -------------------------------------- | ------------------------ |
-| Todoアイテムの追加 | フォームを入力し送信       | `TodoListModel`へ新しい`TodoItemModel`を追加             | `TodoListModel`を元に表示を更新 |
+| 機能               | 操作                       | モデルの処理                                                                            | 表示                            |
+| ------------------ | -------------------------- | --------------------------------------------------------------------------------------- | ------------------------------- |
+| Todoアイテムの追加 | フォームを入力し送信       | `TodoListModel`へ新しい`TodoItemModel`を追加                                            | `TodoListModel`を元に表示を更新 |
 | Todoアイテムの更新 | チェックボックスをクリック | `TodoListModel`の指定した`TodoItemModel``の状態を更新 | `TodoListModel`を元に表示を更新 |
-| Todoアイテムの削除 | 削除ボタンをクリック       | `TodoListModel`から指定の`TodoItemModel`を削除       | `TodoListModel`を元に表示を更新 |
+| Todoアイテムの削除 | 削除ボタンをクリック       | `TodoListModel`から指定の`TodoItemModel`を削除                                          | `TodoListModel`を元に表示を更新 |
 
 この表を元にあらためて先ほどの問題点を見ていきましょう。
 
@@ -176,7 +177,7 @@ event.emit();
 [import, title:"src/model/TodoListModel.js"](./event-emitter/src/model/TodoListModel.js)
 
 次のコードは`TodoListModel`クラスを取り込み、新しい`TodoItemModel`を追加するサンプルコードです。
-`TodoListModel#addTodo`メソッドで新しい`TodoItemModel`を追加した時に、`TodoListModel#onChange`で登録したイベントハンドラが呼び出されていることが確認できます。
+`TodoListModel#addTodo`メソッドで新しいTodoアイテムを追加した時に、`TodoListModel#onChange`で登録したイベントハンドラが呼び出されます。
 
 [import, "src/model/TodoListModel.example.js"](./event-emitter/src/model/TodoListModel.example.js)
 
@@ -187,11 +188,110 @@ event.emit();
 
 さきほど作成した`TodoListModel`と`TodoItemModel`クラスを使い、Todoアイテムの追加を書き直してみます。
 
+前回のセクションでは、フォームを送信すると直接DOMへ要素を追加しています。
+今回のセクションでは、フォームを送信すると`TodoListModel`へ`TodoItemModel`を追加します。
+`TodoListModel`に新しいTodoアイテムが増えると、`onChange`に登録したイベントハンドラが呼び出されるため、
+そのハンドラ内でDOM（表示）を更新します。
+
 まずは書き換え後の`App.js`を見ていきます。
 
-[import, "src/model/TodoListModel.example.js"](./event-emitter/src/model/TodoListModel.example.js)
+[import, "src/App.js"](./event-emitter/src/App.js)
+
+変更後の`App.js`では大きく分けて3つの部分が変更されているので順番に見ていきます。
+
+### 1. TodoListの初期化 {#app-todolist-initialize}
+
+作成した`TodoListModel`と`TodoItemModel`を取り込んでいます。
+
+<!-- doctest:disable -->
+```js
+import { TodoListModel } from "./model/TodoListModel.js";
+import { TodoItemModel } from "./model/TodoItemModel.js";
+```
+
+そして、`App`クラスのコンストラクタ内で`TodoListModel`を初期化しています。
+`App`のコンストラクタで`TodoListModel`を初期化しているのは、
+このTodoアプリでは開始時にTodoリストの中身が空の状態で開始されるのに合わせるためです。
+
+<!-- doctest:disable -->
+```js
+class App {
+    constructor() {
+        // 1. TodoListの初期化
+        this.todoListModel = new TodoListModel();
+    }
+    // ...省略..
+}
+```
+
+### 2. TodoListModelの状態が更新されたら表示を更新する {#app-todolist-onchange}
+
+`mount`メソッド内で`TodoListModel`が更新されたら表示を更新するという処理を実装します。
+`TodoListModel#onChange`で登録したハンドラは、`TodoListModel`の状態が更新されたら呼び出されます。
+
+このハンドラ内では`TodoListModel#getTodoItems`でTodoアイテムを取得し、
+この一覧から次のような要素（`todoListElement`）を作成しています。
+
+```html
+<!-- todoListElementの実質的な中身 -->
+<ul>
+    <li>Todoアイテム 1のタイトル</li>
+    <li>Todoアイテム 2のタイトル</li>
+</ul>
+```
+
+この作成した`todoListElement`要素を前回作成した、`html-util.js`の`render`関数を使い`containerElement`の中身を上書きしてます。
+また、アイテム数は`TodoListModel#totalCount`で取得できるため、アイテム数だけを管理していた`todoItemCount`という変数は削除できます。
+
+<!-- doctest:disable -->
+```js
+// render関数をimportに追加する
+import { element, render } from "./view/html-util.js";
+// ...省略...
+// `containerElement`の中身を`todoListElement`で上書きして表示を更新
+render(todoListElement, containerElement);
+// アイテム数の表示を更新
+todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.totalCount}`;
+```
+
+### 3. フォームを送信したら、新しいTodoItemを追加する {#app-add-new-todoitem}
+
+前回のセクションでは、フォームを送信（`submit`）が行われると直接DOMへ要素を追加していました。
+今回のセクションでは、`TodoListModel`の状態が更新されたら表示を更新する仕組みがすでにできています。
+
+そのため、`submit`イベントのハンドラ内では`TodoListModel`に対して新しい`TodoItemModel`を追加するだけで表示が更新されます。
+直接DOMへ`appendChild`していた部分を`TodoListModel#addTodo`メソッドを使いモデルを更新する処理へ置き換えるだけです。
+
+## まとめ {#conclusion}
+
+今回のセクションでは、[前回のセクション][]と同等の機能をモデルとイベントの仕組みを使うようにリファクタリングしました。
+コード量は増えましたが、次に実装する「Todoアイテムの更新」や「Todoアイテムの削除」も同様の仕組みで実装できます。
+前回のセクションのように操作に対してDOMを直接更新した場合、追加は簡単ですが既存の要素を指定する必要がある更新や削除は難しくなります。
+
+次のセクションでは、今回のモデルと同じように「表示」に関しても整理を行い、残りの「Todoアイテムの更新」や「Todoアイテムの削除」の機能を実装しています。
 
 
-- [ ] renderは事前にかいていてう
+このセクションでの変更点は次のとおりです。
 
-[前のセクション]: ../form-event/README.md
+```
+todoapp
+├── index.html
+├── index.js
+├── package.json
+└── src
+    ├── App.js（modelを使うように変更）
+    ├── EventEmitter.js（追加）
+    ├── model
+    │   ├── TodoItemModel.js（追加）
+    │   └── TodoListModel.js（追加）
+    └── view
+        └── html-util.js
+```
+
+
+現在のTodoアプリは次のURLで実際に確認できます。
+
+<a href="./event-emitter/" target="_blank">https://asciidwango.github.io/js-primer/use-case/todoapp/event-model/event-emitter/</a>
+
+
+[前回のセクション]: ../form-event/README.md
