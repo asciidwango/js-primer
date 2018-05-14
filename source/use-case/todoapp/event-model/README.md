@@ -39,16 +39,16 @@ Todoアイテムを追加する機能を実装しましたが、イベントを�
 ## モデルを導入する {#introduce-model}
 
 この問題を避けるために、Todoアイテムという情報をただのJavaScriptクラスとしてモデル化します。
-ここでのモデルとはTodoItemやTodolistといった**もの**をクラスで表現し、操作や状態をもたせたオブジェクトという意味です。
+ここでのモデルとはTodoアイテムやTodoリストといった**もの**をクラスで表現し、操作や状態をもたせたオブジェクトという意味です。
 
-たとえば、Todoリストを表現するモデルとして`TodoList`クラスを考えます。
-TodoリストにはTodoアイテムを追加できるので`TodoList#addItem`メソッドを実装する必要があります。
-また、Todoリストからアイテムの一覧を取得できる必要もあるので`TodoList#getAllItems`メソッドも必要です。
-このようにTodoリストをクラスで表現する際にオブジェクトがどのような処理や状態をもつかを考え実装することをモデル化とよびます。
+たとえば、Todoリストを表現するモデルとして`TodoListModel`クラスを考えます。
+TodoリストにはTodoアイテムを追加できるので`TodoListModel#addItem`メソッドを実装する必要があります。
+また、Todoリストからアイテムの一覧を取得できる必要もあるので`TodoListModel#getAllItems`メソッドも必要です。
+このようにTodoリストをクラスで表現する際にオブジェクトがどのような処理や状態をもつかを考え実装します。
 
 このようにモデルを考え、先ほどの操作と表示の間にモデルを入れることを考えてみます。
-「フォームを入力し送信」という**操作**を行った場合、`TodoList`という**モデル**に対して`TodoItem`を追加します。
-そして、`TodoList`というモデルからアイテムの一覧を取得し、DOMを組み立て**表示**を更新します。
+「フォームを入力し送信」という**操作**を行った場合、`TodoListModel`という**モデル**に対して`TodoItemModel`を追加します。
+そして、`TodoListModel`からアイテムの一覧を取得し、DOMを組み立て**表示**を更新します。
 
 先ほどの表にモデルをいれてみます。
 **操作**に対する**モデルの処理**はさまざまですが、**操作**に対する**表示**の処理はどの場合も同じになります。
@@ -56,9 +56,9 @@ TodoリストにはTodoアイテムを追加できるので`TodoList#addItem`メ
 
 | 機能               | 操作                       | モデルの処理                           | 表示                     |
 | ------------------ | -------------------------- | -------------------------------------- | ------------------------ |
-| Todoアイテムの追加 | フォームを入力し送信       | TodoListへ新しいTodoItemを追加             | TodoListを元に表示を更新 |
-| Todoアイテムの更新 | チェックボックスをクリック | TodoListの指定したTodoItemの状態を更新 | TodoListを元に表示を更新 |
-| Todoアイテムの削除 | 削除ボタンをクリック       | TodoListから指定のTodoItemを削除       | TodoListを元に表示を更新 |
+| Todoアイテムの追加 | フォームを入力し送信       | `TodoListModel`へ新しい`TodoItemModel`を追加             | `TodoListModel`を元に表示を更新 |
+| Todoアイテムの更新 | チェックボックスをクリック | `TodoListModel`の指定した`TodoItemModel``の状態を更新 | `TodoListModel`を元に表示を更新 |
+| Todoアイテムの削除 | 削除ボタンをクリック       | `TodoListModel`から指定の`TodoItemModel`を削除       | `TodoListModel`を元に表示を更新 |
 
 この表を元にあらためて先ほどの問題点を見ていきましょう。
 
@@ -74,18 +74,18 @@ TodoリストにはTodoアイテムを追加できるので`TodoList#addItem`メ
 
 そのため操作したタイミングではなく、モデルの状態が変化したタイミングで表示を更新すればよいはずです。
 具体的には「フォームを入力し送信」されたから表示を更新するのではなく、
-「`TodoList`というモデルの状態が変化」したから表示を更新すればいいはずです。
+「`TodoListModel`というモデルの状態が変化」したから表示を更新すればいいはずです。
 
-そのためには、`TodoList`というモデルの状態が変化したことを表示側から知る必要があります。
+そのためには、`TodoListModel`というモデルの状態が変化したことを表示側から知る必要があります。
 ここで再び出てくるのがイベントです。
 
 ## モデルの変化を伝えるイベント {#model-and-event}
 
 フォームを送信したらform要素から`submit`イベントが発火されます。
-これと同じように`TodoList`モデルの状態が変化したら`change`イベントを発火すれば、
+これと同じように`TodoListModel`の状態が変化したら`change`イベントを発火すれば、
 表示はそのイベントを監視してイベントが発火したら表示を更新すればよいはずです。
 
-`TodoList`モデルの状態の変化とは、「`TodoList`に新しい`TodoItem`が追加される」などが該当します。
+`TodoListModel`の状態の変化とは、「`TodoListModel`に新しい`TodoItemModel`が追加される」などが該当します。
 先ほど表の「モデルの処理」は何かしら状態が変化しているので、表示を更新する必要があるわけです。
 
 DOM APIのイベントの仕組みをモデルでも利用できれば、モデルが更新されたら表示を更新する仕組みを作れそうです。
@@ -96,19 +96,19 @@ DOM APIのイベントの仕組みをモデルでも利用できれば、モデ�
 
 ## EventEmitter {#event-emitter}
 
-イベントの仕組みとはイベントを発火する側（Publisher）とイベントを監視する側（Subscriber）の2つの面から成り立ちます。
+イベントの仕組みとはイベントを発火する側とイベントを監視する側の2つの面から成り立ちます。
 場合によっては、自分自身へイベントを発火し自分自身でイベントを監視することもあります。
 
 このイベントを仕組みをコード的に表現してみると「特定の関数を呼び出した（イベントを発火）ときに登録されている（イベントを監視側の）コールバック関数を呼び出す」となります。
 
-モデルが更新されたら表示を更新するには「`TodoList`モデルが更新したときに指定したコールバック関数を呼び出すクラス」を作れば目的は達成できます。
-しかし、「`TodoList`モデルが更新されたとき」というのはとても具体的な処理であるため、モデルを増やすたびに同じ処理をそれぞれのモデルへ実装する必要があります。
+モデルが更新されたら表示を更新するには「`TodoListModel`が更新したときに指定したコールバック関数を呼び出すクラス」を作れば目的は達成できます。
+しかし、「`TodoListModel`が更新されたとき」というのはとても具体的な処理であるため、モデルを増やすたびに同じ処理をそれぞれのモデルへ実装する必要があります。
 
 そのため、先ほどのイベントの仕組みを持った概念として`EventEmitter`というクラスを作成します。
-そして`TodoList`モデルは作成した`EventEmitter`を継承することでイベントの仕組みを導入していきます。
+そして`TodoListModel`は作成した`EventEmitter`を継承することでイベントの仕組みを導入していきます。
 
-- 親クラス（`EventEmitter`): イベントを発火した時、登録されているコールバックを呼び出すクラス
-- 子クラス（`TodoList`）: 値を更新した時にコールバック関数を呼び出すクラス
+- 親クラス（`EventEmitter`): イベントを発火した時、登録されているコールバック関数を呼び出すクラス
+- 子クラス（`TodoListModel`）: 値を更新した時、登録されているコールバック関数を呼び出すクラス
 
 クラスでは親クラスになるほど概念的（抽象的）なものが多くなり、子クラスほど具体的になる傾向があります。
 概念的な親クラスはインスタンス化せずに単純に継承するために定義されることがあります。
@@ -146,50 +146,50 @@ event.emit();
 
 ## EventEmitterを継承したTodoListモデル {#event-emitter-todolist-model}
 
-次に作成した`EventEmitter`クラスを継承した`TodoList`を表現するモデルクラスを作成しています。
+次に作成した`EventEmitter`クラスを継承した`TodoListModel`を表現するモデルクラスを作成しています。
 `src/model/`ディレクトリを新たに作成し、このディレクトリに各モデルクラスを実装したファイルを作成します。
 
-作成するモデルは、Todoリストを表現する`TodoList`モデルと各Todoアイテムを表現する`TodoItem`モデルです。
-`TodoList`モデルが複数の`TodoItem`を保持することでTodoリストを表現することになります。
+作成するモデルは、Todoリストを表現する`TodoListModel`と各Todoアイテムを表現する`TodoItemModel`です。
+`TodoListModel`が複数の`TodoItemModel`を保持することでTodoリストを表現することになります。
 
-まずは`TodoItem`モデルを`src/model/TodoItem.js`へ作成します。
+まずは`TodoItemModel`を`src/model/TodoItemModel.js`へ作成します。
 
-`TodoItem`クラスは各Todoアイテムに必要な情報を定義します。
+`TodoItemModel`クラスは各Todoアイテムに必要な情報を定義します。
 各Todoアイテムにはタイトル（`title`)、アイテムの完了状態（`completed`)、またそれぞれのアイテムを識別するユニークな`id`をもたせます。
-ただのデータの集合であるため、クラスではなくオブジェクトでも違いはありませんが、今回は`TodoItem`クラスとして作成します。
+ただのデータの集合であるため、クラスではなくオブジェクトでも問題はありませんが、今回はクラスとして作成します。
 
-次のように`TodoItem`クラスを定義します。
+次のように`TodoItemModel`クラスを定義します。
 
-[import, title:"src/model/TodoItem.js"](./event-emitter/src/model/TodoItem.js)
+[import, title:"src/model/TodoItemModel.js"](./event-emitter/src/model/TodoItemModel.js)
 
-次のコードでは`TodoItem`クラスはインスタンス化でき、それぞれの`id`が自動的に異なる値となっていることが確認できます。
+次のコードでは`TodoItemModel`クラスはインスタンス化でき、それぞれの`id`が自動的に異なる値となっていることが確認できます。
 この`id`は後ほど特定のTodoアイテムを指定した更新する処理際に、アイテムを区別する識別子として利用します。
 
-[import src/model/TodoItem.example.js](./event-emitter/src/model/TodoItem.example.js)
+[import src/model/TodoItemModel.example.js](./event-emitter/src/model/TodoItemModel.example.js)
 
-次に`TodoList`モデルを`src/model/TodoList.js`へ作成します。
+次に`TodoListModel`を`src/model/TodoListModel.js`へ作成します。
 
-`TodoList`クラスは、先ほど作成した`EventEmitter`クラスを継承します。
-`TodoList`クラスは`TodoItem`の配列を保持し、新しいTodoアイテムを追加する際はその配列に追加します。
-このとき`TodoList`の状態が変わるため変更を通知するために自分自身へ`change`イベントを発火します。
+`TodoListModel`クラスは、先ほど作成した`EventEmitter`クラスを継承します。
+`TodoListModel`クラスは`TodoItemModel`の配列を保持し、新しいTodoアイテムを追加する際はその配列に追加します。
+このとき`TodoListModel`の状態が変更したことを通知するために自分自身へ`change`イベントを発火します。
 
-[import, title:"src/model/TodoList.js"](./event-emitter/src/model/TodoList.js)
+[import, title:"src/model/TodoListModel.js"](./event-emitter/src/model/TodoListModel.js)
 
-次のコードは`TodoList`クラスを取り込み、新しい`TodoItem`を追加するサンプルコードです。
-`TodoList#addTodo`メソッドで新しい`TodoItem`を追加した時に、`TodoList#onChange`で登録したイベントハンドラが呼び出されていることが確認できます。
+次のコードは`TodoListModel`クラスを取り込み、新しい`TodoItemModel`を追加するサンプルコードです。
+`TodoListModel#addTodo`メソッドで新しい`TodoItemModel`を追加した時に、`TodoListModel#onChange`で登録したイベントハンドラが呼び出されていることが確認できます。
 
-[import, "src/model/TodoList.example.js"](./event-emitter/src/model/TodoList.example.js)
+[import, "src/model/TodoListModel.example.js"](./event-emitter/src/model/TodoListModel.example.js)
 
 これで、Todoリストに必要なそれぞれのモデルクラスが作成できました。
 次は、これらのモデルを使って実際に表示の更新を行いましょう。
 
 ## モデルを使って表示を更新する {#model-update-view}
 
-さきほど作成した`TodoList`と`TodoItem`クラスを使い、Todoアイテムの追加を書き直してみます。
+さきほど作成した`TodoListModel`と`TodoItemModel`クラスを使い、Todoアイテムの追加を書き直してみます。
 
 まずは書き換え後の`App.js`を見ていきます。
 
-[import, "src/model/TodoList.example.js"](./event-emitter/src/model/TodoList.example.js)
+[import, "src/model/TodoListModel.example.js"](./event-emitter/src/model/TodoListModel.example.js)
 
 
 - [ ] renderは事前にかいていてう
