@@ -15,7 +15,7 @@ describe("TodoList", function() {
         it("should add new Todo Item", () => {
             const list = new TodoList();
             list.addTodo(new TodoItem({ title: "test", completed: false }));
-            const todoItems = list.getAllTodoItems();
+            const todoItems = list.getTodoItems();
             assert.strictEqual(todoItems.length, 1);
             assertTodo(todoItems[0]);
         });
@@ -26,7 +26,7 @@ describe("TodoList", function() {
             const todoItem = new TodoItem({ title: "test", completed: false });
             list.addTodo(todoItem);
             list.updateTodo({ id: todoItem.id, completed: true });
-            const todoItems = list.getAllTodoItems();
+            const todoItems = list.getTodoItems();
             assert.strictEqual(todoItems[0].completed, true);
         });
     });
@@ -36,7 +36,7 @@ describe("TodoList", function() {
             const todoItem = new TodoItem({ title: "test", completed: false });
             list.addTodo(todoItem);
             list.deleteTodo({ id: todoItem.id });
-            const todoItems = list.getAllTodoItems();
+            const todoItems = list.getTodoItems();
             assert.ok(todoItems.length === 0);
         });
     });

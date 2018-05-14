@@ -8,12 +8,18 @@ const strictEval = require("strict-eval");
 const { NodeVM } = require('vm2');
 const sourceDir = path.join(__dirname, "..", "source");
 const toDoc = require("power-doctest");
+const { transform } = require("babel-core");
 function strictfy(code) {
     var strictRegExp = /["']use strict["']/;
     if (strictRegExp.test(code)) {
         return code;
     }
     return '"use strict";\n' + code;
+}
+function transformModule(code) {
+    return transform(code, {
+        presets: ["env"]
+    }).code
 }
 /**
  * *-example.js または dir/example/*.js を実行しdoctestを行う
@@ -29,7 +35,8 @@ describe("doctest:js", function() {
     });
     const files = globby.sync([
         `${sourceDir}/**/*-example.js`, // *-example.js
-        `${sourceDir}/**/example/*.js`, // path/example/*.js
+        `${sourceDir}/**/*.example.js`, // *.example.js
+        `${sourceDir}/**/example/*.js`, // example/*.js
         `!${sourceDir}/**/node_modules{,/**}`
     ]);
     files.forEach(filePath => {
@@ -38,13 +45,13 @@ describe("doctest:js", function() {
             const content = fs.readFileSync(filePath, "utf-8");
             try {
                 const powerCode = toDoc.convertCode(content, filePath);
-                vm.run(strictfy(powerCode), filePath);
+                vm.run(strictfy(transformModule(powerCode)), filePath);
                 done();
             } catch (error) {
                 // Stack Trace like
                 console.error(`StrictEvalError: strict eval is failed
     at strictEval (${filePath}:1:1)`);
-                done(error);
+                done(new Error(error.message));
             }
         });
     });

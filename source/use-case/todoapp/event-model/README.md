@@ -1,3 +1,7 @@
+---
+author: azu
+---
+
 # イベントとモデル {#event-model}
 
 Todoアイテムを追加する機能を実装しましたが、イベントを受け取り直接DOMを更新する方法は柔軟性がなくなるという問題があります。
@@ -139,5 +143,27 @@ event.emit();
 // "One!"
 // "Two!"
 ```
+
+## EventEmitterを継承したTodoListモデル {#event-emitter-todolist-model}
+
+次に作成した`EventEmitter`クラスを継承した`TodoList`を表現するモデルクラスを作成しています。
+`src/model/`ディレクトリを新たに作成し、このディレクトリに各モデルクラスを実装したファイルを作成します。
+
+作成するモデルは、Todoリストを表現する`TodoList`モデルと各Todoアイテムを表現する`TodoItem`モデルです。
+`TodoList`モデルが複数の`TodoItem`を保持することでTodoリストを表現することになります。
+
+まずは`TodoItem`モデルを`src/model/TodoItem.js`へ作成します。
+
+`TodoItem`クラスは各Todoアイテムに必要な情報を定義します。
+各Todoアイテムにはタイトル（`title`)、アイテムの完了状態（`completed`)、またそれぞれのアイテムを識別するユニークな`id`をもたせます。
+ただのデータの集合であるため、クラスではなくオブジェクトでも違いはありませんが、今回は`TodoItem`クラスとして作成します。
+
+次のように`TodoItem`クラスを定義します。
+
+[import, title:"src/model/TodoItem.js"](./event-emitter/src/model/TodoItem.js)
+
+この`TodoItem`クラスは次のようにインスタンス化でき、それぞれの`id`が自動的に異なる値となっていることが分かります。
+この`id`は後ほど特定のTodoアイテムを指定した更新する処理際に、アイテムを区別する識別子として利用します。
+
 
 [前のセクション]: ../form-event/README.md

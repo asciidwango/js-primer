@@ -7,6 +7,7 @@ export class TodoItem {
      * @param {boolean} completed Todoアイテムが完了済みならばtrue、そうでない場合はfalse 
      */
     constructor({ title, completed }) {
+        // idは自動的に連番となりそれぞれのインスタンス毎に異なるものとする
         this.id = todoIdx++;
         this.title = title;
         this.completed = completed;
