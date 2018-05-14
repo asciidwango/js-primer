@@ -1,13 +1,13 @@
 import { render } from "./view/html-util.js";
 import { TodoListView } from "./view/TodoListView.js";
-import { TodoItem } from "./model/TodoItem.js";
-import { TodoList } from "./model/TodoList.js";
+import { TodoItemModel } from "./model/TodoItemModel.js";
+import { TodoListModel } from "./model/TodoListModel.js";
 
 export class App {
     constructor() {
         // ViewとModelを初期化する
         this.todoListView = new TodoListView();
-        this.todoListModel = new TodoList([]);
+        this.todoListModel = new TodoListModel([]);
     }
 
     /**
@@ -18,7 +18,7 @@ export class App {
         if (title.length === 0) {
             return;
         }
-        this.todoListModel.addTodo(new TodoItem({ title, completed: false }));
+        this.todoListModel.addTodo(new TodoItemModel({ title, completed: false }));
     };
 
     /**

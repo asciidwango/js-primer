@@ -1,8 +1,8 @@
 import { EventEmitter } from "../EventEmitter.js";
 
-export class TodoList extends EventEmitter {
+export class TodoListModel extends EventEmitter {
     /**
-     * @param {TodoItem[]} [items] 初期アイテム一覧（デフォルトは空の配列）
+     * @param {TodoItemModel[]} [items] 初期アイテム一覧（デフォルトは空の配列）
      */
     constructor(items = []) {
         super();
@@ -19,7 +19,7 @@ export class TodoList extends EventEmitter {
 
     /**
      * 表示できるTodoItemの配列を返す
-     * @returns {TodoItem[]}
+     * @returns {TodoItemModel[]}
      */
     getTodoItems() {
         return this.items;
@@ -46,10 +46,36 @@ export class TodoList extends EventEmitter {
 
     /**
      * TodoItemを追加する
-     * @param {TodoItem} todoItem
+     * @param {TodoItemModel} todoItem
      */
     addTodo(todoItem) {
         this.items.push(todoItem);
+        this.emitChange();
+    }
+
+    /**
+     * 指定したidのTodoItemのcompletedを更新する
+     * @param {number} id
+     * @param {boolean} completed
+     */
+    updateTodo({ id, completed }) {
+        // state change
+        const todoItem = this.items.find(todo => todo.id === id);
+        if (!todoItem) {
+            return;
+        }
+        todoItem.completed = completed;
+        this.emitChange();
+    }
+
+    /**
+     * 指定したidのTodoItemを削除する
+     * @param {number} id
+     */
+    deleteTodo({ id }) {
+        this.items = this.items.filter(todo => {
+            return todo.id !== id;
+        });
         this.emitChange();
     }
 }

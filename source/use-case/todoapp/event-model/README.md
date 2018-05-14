@@ -185,4 +185,13 @@ event.emit();
 
 ## モデルを使って表示を更新する {#model-update-view}
 
+さきほど作成した`TodoList`と`TodoItem`クラスを使い、Todoアイテムの追加を書き直してみます。
+
+まずは書き換え後の`App.js`を見ていきます。
+
+[import, "src/model/TodoList.example.js"](./event-emitter/src/model/TodoList.example.js)
+
+
+- [ ] renderは事前にかいていてう
+
 [前のセクション]: ../form-event/README.md

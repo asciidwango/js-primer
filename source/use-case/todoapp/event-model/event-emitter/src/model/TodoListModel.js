@@ -1,8 +1,8 @@
 import { EventEmitter } from "../EventEmitter.js";
 
-export class TodoList extends EventEmitter {
+export class TodoListModel extends EventEmitter {
     /**
-     * @param {TodoItem[]} [items] 初期アイテム一覧（デフォルトは空の配列）
+     * @param {TodoItemModel[]} [items] 初期アイテム一覧（デフォルトは空の配列）
      */
     constructor(items = []) {
         super();
@@ -19,7 +19,7 @@ export class TodoList extends EventEmitter {
 
     /**
      * 表示できるTodoItemの配列を返す
-     * @returns {TodoItem[]}
+     * @returns {TodoItemModel[]}
      */
     getTodoItems() {
         return this.items;
@@ -46,7 +46,7 @@ export class TodoList extends EventEmitter {
 
     /**
      * TodoItemを追加する
-     * @param {TodoItem} todoItem
+     * @param {TodoItemModel} todoItem
      */
     addTodo(todoItem) {
         this.items.push(todoItem);

@@ -7,11 +7,6 @@ export function escapeSpecialChars(str) {
         .replace(/'/g, "&#039;");
 }
 
-/**
- * HTML文字列からDOM要素へ変換する
- * @param {string} html
- * @returns {DocumentFragment}
- */
 export function htmlToElement(html) {
     const template = document.createElement("template");
     template.innerHTML = html;
@@ -19,8 +14,8 @@ export function htmlToElement(html) {
 }
 
 /**
- * HTML文字列からDOM要素を作成して返すタグ関数
- * @return {DocumentFragment}
+ * HTML文字列からDOM Nodeを作成して返す
+ * @return {HTMLElement}
  */
 export function element(strings, ...values) {
     const htmlString = strings.reduce((result, string, i) => {
@@ -32,4 +27,16 @@ export function element(strings, ...values) {
         }
     });
     return htmlToElement(htmlString);
+}
+
+/**
+ * コンテナ要素の中身をbodyElementで上書きする
+ * @param {HTMLElement} bodyElement コンテナ要素の中身となる要素
+ * @param {HTMLElement} containerElement コンテナ要素
+ */
+export function render(bodyElement, containerElement) {
+    // rootElementの中身を空にする
+    containerElement.innerHTML = "";
+    // rootElementの直下にbodyElementを追加する
+    containerElement.appendChild(bodyElement);
 }
