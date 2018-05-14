@@ -26,7 +26,7 @@ describe("EventEmitter", function() {
             assert.ok(isHandlerCalled, "handler should be called");
         });
     });
-    describe("#off", function() {
+    describe("#removeEventLister", function() {
         it("should unset event handler ", function(done) {
             const emitter = new EventEmitter();
             const key = "event-key";
