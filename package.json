@@ -13,6 +13,8 @@
     "install:gitbook": "gitbook install",
     "start": "gitbook serve",
     "build": "gitbook build",
+    "postbuild": "npm run workbox",
+    "workbox": "workbox injectManifest workbox-config.js",
     "eslint": "eslint source/ --cache",
     "eslint:fix": "eslint --fix source/ --cache",
     "textlint": "summary-to-path ./source/README.md | xargs textlint -f pretty-error --cache",
@@ -81,7 +83,8 @@
     "unist-util-find-before": "^2.0.1",
     "unist-util-parents": "^1.0.0",
     "unist-util-select": "^1.5.0",
-    "vm2": "^3.4.6"
+    "vm2": "^3.4.6",
+    "workbox-cli": "^3.2.0"
   },
   "dependencies": {}
 }

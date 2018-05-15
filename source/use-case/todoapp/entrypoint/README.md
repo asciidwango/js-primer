@@ -13,12 +13,12 @@ author: azu
 JavaScriptモジュールはHTMLから`<script type="module">`で読み込むことができますが、`script`タグ毎に別々のモジュールスコープを持ちます。
 そのため、JavaScriptモジュールを別々の`script`タグで読み込むとモジュール同士でスコープが異なるため、モジュール同士で連携できません。
 
-次のコードは、それぞれの`<script type="modiule">`同士のスコープが異なるため、別の`script`タグで定義した変数にアクセス出来ないことを示しています。これはJavaScriptのコードをファイルにして`src`属性で読み込んだ場合も同様です。
+次のコードは、それぞれの`<script type="module">`同士のスコープが異なるため、別の`script`タグで定義した変数にアクセス出来ないことを示しています。これはJavaScriptのコードをファイルにして`src`属性で読み込んだ場合も同様です。
 
 [import:"marker"](./module-scope/index.html)
 
 そのため、HTMLから読み込むのは1つのJavaScriptファイル(`index.js`)として、この`index.js`から他のモジュールを読み込み利用します。
-このようにすることでモジュール間は1つの`<script type="modiule">`のスコープ内に収まるため、モジュール同士で連携できます。
+このようにすることでモジュール間は1つの`<script type="module">`のスコープ内に収まるため、モジュール同士で連携できます。
 このHTMLから読み込むJavaScriptファイル（`index.js`）をJavaScriptにおけるエントリポイントとします。
 
 つまり、今回作成するTodoアプリではエントリポイントとしてHTMLとJavaScriptの2つを用意します。
