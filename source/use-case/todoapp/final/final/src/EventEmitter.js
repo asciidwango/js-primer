@@ -6,8 +6,8 @@ export class EventEmitter {
 
     /**
      * 指定したイベントが実行されたときに呼び出されるハンドラを登録する
-     * @param {string} type
-     * @param {Function} handler
+     * @param {string} type イベント名
+     * @param {Function} handler イベントハンドラ
      */
     addEventLister(type, handler) {
         // 指定したイベントに対応するSetを作成しハンドラを登録する
@@ -20,7 +20,7 @@ export class EventEmitter {
 
     /**
      * 指定したイベントを発火する
-     * @param {string} type
+     * @param {string} type イベント名
      */
     emit(type) {
         // 指定したイベントに対応するSetを取り出し、すべてのハンドラを呼び出す
@@ -35,8 +35,8 @@ export class EventEmitter {
 
     /**
      * 指定したイベントに監視するハンドラを解除する
-     * @param {string} type
-     * @param {Function} handler
+     * @param {string} type イベント名
+     * @param {Function} handler イベントハンドラ
      */
     removeEventLister(type, handler) {
         // 指定したイベントに対応するSetを取り出し、該当するハンドラを削除する
