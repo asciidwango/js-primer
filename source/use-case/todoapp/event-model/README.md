@@ -297,5 +297,4 @@ todoapp
 
 <a href="./event-emitter/" target="_blank">https://asciidwango.github.io/js-primer/use-case/todoapp/event-model/event-emitter/</a>
 
-
 [前回のセクション]: ../form-event/README.md
