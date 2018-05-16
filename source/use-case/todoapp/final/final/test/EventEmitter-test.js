@@ -4,40 +4,39 @@ const assert = require("assert");
 import { EventEmitter } from "../src/EventEmitter.js";
 
 describe("EventEmitter", function() {
-    let emitter;
-    beforeEach(function() {
-        emitter = new EventEmitter();
-    });
-    describe("#on", function() {
+    describe("#addEventLister", function() {
         it("should set event handler to the key", function(done) {
+            const emitter = new EventEmitter();
             const key = "event-key";
-            emitter.on(key, function() {
+            emitter.addEventLister(key, function() {
                 done();
             });
             emitter.emit(key);
         });
     });
     describe("#emit", function() {
-        it("should pass data to the handlers", function(done) {
+        it("should pass data to the handlers", function() {
+            const emitter = new EventEmitter();
             const key = "event-key";
-            const passingData = { "key": "value" };
-            emitter.on(key, function(data) {
-                assert.deepEqual(data, passingData);
-                done();
+            let isHandlerCalled = false;
+            emitter.addEventLister(key, function() {
+                isHandlerCalled = true;
             });
-            emitter.emit(key, passingData);
+            emitter.emit(key);
+            assert.ok(isHandlerCalled, "handler should be called");
         });
     });
-    describe("#off", function() {
+    describe("#removeEventLister", function() {
         it("should unset event handler ", function(done) {
+            const emitter = new EventEmitter();
             const key = "event-key";
             const handler = function() {
                 done(new Error("should not called"));
             };
-            emitter.on(key, handler);
-            emitter.off(key, handler);
+            emitter.addEventLister(key, handler);
+            emitter.removeEventLister(key, handler);
             emitter.emit(key);
-            emitter.on(key, done);
+            emitter.addEventLister(key, done);
             emitter.emit(key);
         });
     });

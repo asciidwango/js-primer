@@ -41,6 +41,7 @@
     "@textlint-rule/textlint-rule-require-header-id": "^1.0.1",
     "@types/meow": "^4.0.1",
     "@types/node": "^9.6.7",
+    "babel-core": "^6.26.3",
     "babel-preset-env": "^1.6.1",
     "babel-preset-jsdoc-to-assert": "^4.0.0",
     "babel-preset-power-assert": "^1.0.0",

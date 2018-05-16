@@ -29,10 +29,14 @@ export function element(strings, ...values) {
     return htmlToElement(htmlString);
 }
 
-
-export function render(bodyElement, rootElement) {
+/**
+ * コンテナ要素の中身をbodyElementで上書きする
+ * @param {HTMLElement} bodyElement コンテナ要素の中身となる要素
+ * @param {HTMLElement} containerElement コンテナ要素
+ */
+export function render(bodyElement, containerElement) {
     // rootElementの中身を空にする
-    rootElement.innerHTML = "";
+    containerElement.innerHTML = "";
     // rootElementの直下にbodyElementを追加する
-    rootElement.appendChild(bodyElement);
+    containerElement.appendChild(bodyElement);
 }

@@ -48,3 +48,4 @@
       - [エントリポイント](./use-case/todoapp/entrypoint/README.md)
       - [アプリの構成要素](./use-case/todoapp/app-structure/README.md)
       - [フォームとイベント](./use-case/todoapp/form-event/README.md)
+      - [イベントとモデル](./use-case/todoapp/event-model/README.md)

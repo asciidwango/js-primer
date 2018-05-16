@@ -1,54 +1,60 @@
 import { EventEmitter } from "../EventEmitter.js";
 
-// model
-export class TodoList extends EventEmitter {
+export class TodoListModel extends EventEmitter {
     /**
-     * @param {TodoItem[]} [items]
+     * @param {TodoItemModel[]} [items] 初期アイテム一覧（デフォルトは空の配列）
      */
     constructor(items = []) {
         super();
         this.items = items;
     }
 
+    /**
+     * TodoItemの合計数を返す
+     * @returns {number}
+     */
     get totalCount() {
         return this.items.length;
     }
 
     /**
      * 表示できるTodoItemの配列を返す
-     * @returns {TodoItem[]}
+     * @returns {TodoItemModel[]}
      */
-    getAllTodoItems() {
+    getTodoItems() {
         return this.items;
     }
 
     /**
      * TodoListの状態が更新されたときに呼び出されるハンドラを登録する
      * @param {Function} handler
-     * @returns {Function}
+     * @returns {Function} イベントハンドラの登録を解除する関数を返す
      */
     onChange(handler) {
-        this.on("change", handler);
+        this.addEventLister("change", handler);
         return () => {
-            this.off("change", handler);
+            this.removeEventLister("change", handler);
         };
     }
 
+    /**
+     * 状態が変更されたときに呼ぶ。登録済みのハンドラを呼び出す
+     */
     emitChange() {
         this.emit("change");
     }
 
     /**
-     * Todoを追加する
-     * @param {TodoItem} todo
+     * TodoItemを追加する
+     * @param {TodoItemModel} todoItem
      */
-    addTodo(todo) {
-        this.items.push(todo);
+    addTodo(todoItem) {
+        this.items.push(todoItem);
         this.emitChange();
     }
 
     /**
-     * 指定したidのTodoのcompletedを更新する
+     * 指定したidのTodoItemのcompletedを更新する
      * @param {number} id
      * @param {boolean} completed
      */
@@ -63,7 +69,7 @@ export class TodoList extends EventEmitter {
     }
 
     /**
-     * 指定したidのTODOを削除する
+     * 指定したidのTodoItemを削除する
      * @param {number} id
      */
     deleteTodo({ id }) {

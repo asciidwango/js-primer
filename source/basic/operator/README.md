@@ -581,7 +581,7 @@ number >> bit;
 ## 代入演算子（`=`） {#assignment-operator}
 
 代入演算子（`=`）は変数に対して値を代入します。
-詳しくは[変数と宣言](../src/variables/README.md)を参照してください。
+詳しくは[変数と宣言](../variables/README.md)を参照してください。
 
 {{book.console}}
 ```js
