@@ -233,7 +233,10 @@ rules:
       - MacOS
       - Mac OS X
       - OS X
-
+  - expected: HTML要素
+    patterns:
+      - DOM要素
+    
   # 一致とマッチ
   ## 一致は ===
   - expected: $1一致
