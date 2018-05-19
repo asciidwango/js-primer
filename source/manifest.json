@@ -1,0 +1,45 @@
+{
+  "short_name": "js primer",
+  "name": "JavaScriptの入門書",
+  "start_url": "https://asciidwango.github.io/js-primer/",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "./icons/icon-36.png",
+      "sizes": "36x36",
+      "type": "image\/png"
+    },
+    {
+      "src": "./icons/icon-48.png",
+      "sizes": "48x48",
+      "type": "image\/png"
+    },
+    {
+      "src": "./icons/icon-72.png",
+      "sizes": "72x72",
+      "type": "image\/png"
+    },
+    {
+      "src": "./icons/icon-96.png",
+      "sizes": "96x96",
+      "type": "image\/png"
+    },
+    {
+      "src": "./icons/icon-144.png",
+      "sizes": "144x144",
+      "type": "image\/png"
+    },
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image\/png"
+    }
+  ],
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
