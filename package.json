@@ -13,7 +13,7 @@
     "install:gitbook": "gitbook install",
     "start": "gitbook serve",
     "build": "gitbook build",
-    "postbuild": "npm-run-all workbox build:add-resource",
+    "postbuild": "npm-run-all build:add-resource workbox",
     "workbox": "workbox injectManifest workbox-config.js",
     "build:add-resource": "node tools/gitbook/copy-favicon.js",
     "eslint": "eslint source/ --cache",
