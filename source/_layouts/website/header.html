@@ -7,6 +7,20 @@
         flex-direction: row;
     }
 
+    /* Mobdile header fixed */
+    @media (max-width: 768px) {
+        /* Headerを固定する */
+        .book-header {
+            position: fixed;
+            background-color: #fff;
+            width: 100%;
+        }
+        /* Header分のズレを入れる */
+        .page-wrapper {
+            padding-top: 60px;
+        }
+    }
+
     /* Dynamic created by GitBook*/
     .btn.pull-left.js-toolbar-action {
         order: 1;
@@ -77,7 +91,7 @@
 
     @media (max-width: 768px) {
         .sbx-custom {
-            width: 120px !important;
+            width: 150px !important;
             padding: initial !important;
         }
     }
@@ -85,7 +99,7 @@
     .sbx-custom {
         display: inline-block;
         position: relative;
-        min-width: 120px;
+        min-width: 150px;
         width: 300px;
         max-width: 300px;
         height: 33px;
