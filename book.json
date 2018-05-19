@@ -16,14 +16,12 @@
     "canonical-link",
     "ga",
     "js-console",
-    "github-issue-feedback",
-    "custom-favicon"
+    "github-issue-feedback"
   ],
   "variables": {
     "console": "<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"
   },
   "pluginsConfig": {
-    "favicon": "source/gitbook/icons/favicon.ico",
     "page-toc-button": {
       "maxTocDepth": 2,
       "minTocSize": 2

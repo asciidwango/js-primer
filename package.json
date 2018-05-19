@@ -13,8 +13,9 @@
     "install:gitbook": "gitbook install",
     "start": "gitbook serve",
     "build": "gitbook build",
-    "postbuild": "npm run workbox",
+    "postbuild": "npm-run-all workbox build:add-resource",
     "workbox": "workbox injectManifest workbox-config.js",
+    "build:add-resource": "node tools/gitbook/copy-favicon.js",
     "eslint": "eslint source/ --cache",
     "eslint:fix": "eslint --fix source/ --cache",
     "textlint": "summary-to-path ./source/README.md | xargs textlint -f pretty-error --cache",
@@ -53,7 +54,6 @@
     "gitbook-cli": "^2.1.2",
     "gitbook-plugin-anchors": "^0.7.1",
     "gitbook-plugin-canonical-link": "^2.0.2",
-    "gitbook-plugin-custom-favicon": "0.0.4",
     "gitbook-plugin-ga": "^1.0.0",
     "gitbook-plugin-github-issue-feedback": "^1.1.1",
     "gitbook-plugin-include-codeblock": "^3.0.0",
@@ -88,5 +88,7 @@
     "vm2": "^3.4.6",
     "workbox-cli": "^3.2.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "gitbook-plugin-custom-favicon": "0.0.4"
+  }
 }
