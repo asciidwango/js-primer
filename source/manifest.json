@@ -3,7 +3,7 @@
   "short_name": "js-primer",
   "theme_color": "#000000",
   "background_color": "#ffffff",
-  "display": "browser",
+  "display": "standalone",
   "start_url": "https://asciidwango.github.io/js-primer/",
   "icons": [
     {
