@@ -274,26 +274,12 @@ todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.to
 
 次のセクションでは、今回のモデルと同じように「表示」に関しても整理を行い、残りの「Todoアイテムの更新」や「Todoアイテムの削除」の機能を実装しています。
 
+## このセクションのチェックボックス {#section-checkbox}
 
-このセクションでの変更点は次のとおりです。
-
-```
-todoapp
-├── index.html
-├── index.js
-├── package.json
-└── src
-    ├── App.js（modelを使うように変更）
-    ├── EventEmitter.js（追加）
-    ├── model
-    │   ├── TodoItemModel.js（追加）
-    │   └── TodoListModel.js（追加）
-    └── view
-        └── html-util.js
-```
-
-
-現在のTodoアプリは次のURLで実際に確認できます。
+- [x] 直接DOMを更新する問題について理解した
+- [x] `EventEmitter`クラスでイベントの仕組みを実装した
+- [x] `TodoListModel`を`EventEmitter`クラスを継承して実装した 
+- [x] 「Todoアイテムの追加」の機能をでモデルを使ってリファクタリングした
 
 <a href="./event-emitter/" target="_blank">https://asciidwango.github.io/js-primer/use-case/todoapp/event-model/event-emitter/</a>
 
