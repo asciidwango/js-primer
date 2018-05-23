@@ -281,6 +281,8 @@ todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.to
 - [x] `TodoListModel`を`EventEmitter`クラスを継承して実装した 
 - [x] 「Todoアイテムの追加」の機能をでモデルを使ってリファクタリングした
 
+ここまでのTodoアプリは次のURLで確認できます。
+
 <a href="./event-emitter/" target="_blank">https://asciidwango.github.io/js-primer/use-case/todoapp/event-model/event-emitter/</a>
 
 [前回のセクション]: ../form-event/README.md
