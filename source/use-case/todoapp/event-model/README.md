@@ -279,7 +279,7 @@ todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.to
 - [x] 直接DOMを更新する問題について理解した
 - [x] `EventEmitter`クラスでイベントの仕組みを実装した
 - [x] `TodoListModel`を`EventEmitter`クラスを継承して実装した 
-- [x] 「Todoアイテムの追加」の機能をでモデルを使ってリファクタリングした
+- [x] Todoアイテムの追加の機能をモデルを使ってリファクタリングした
 
 ここまでのTodoアプリは次のURLで確認できます。
 
