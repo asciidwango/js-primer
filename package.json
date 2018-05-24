@@ -73,7 +73,7 @@
     "text-testing-mocha": "^0.4.0",
     "textlint": "^10.1.3",
     "textlint-filter-rule-comments": "^1.2.2",
-    "textlint-filter-rule-whitelist": "^1.2.2",
+    "textlint-filter-rule-whitelist": "^2.0.0",
     "textlint-rule-eslint": "^2.0.0",
     "textlint-rule-max-comma": "^1.0.4",
     "textlint-rule-no-js-function-paren": "^1.0.1",
