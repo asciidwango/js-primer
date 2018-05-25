@@ -8,3 +8,8 @@ workbox.clientsClaim();
 
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute([]);
+
+workbox.routing.registerRoute(
+    /\.(js|html|css)/,
+    workbox.strategies.networkFirst()
+);
