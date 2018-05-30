@@ -73,25 +73,11 @@ body {
     border-bottom: none;
 }
 
-.todo-list li .toggle {
+.todo-list li input[type="checkbox"] {
     width: 40px;
-    /* auto, since non-WebKit browsers doesn't support input styling */
     height: auto;
     margin: auto 0;
-    border: none; /* Mobile Safari */
-}
-
-.todo-list li label {
-    word-break: break-all;
-    padding: 15px 15px 15px 60px;
-    display: block;
-    line-height: 1.2;
-    transition: color 0.4s;
-}
-
-.todo-list li.completed label {
-    color: #d9d9d9;
-    text-decoration: line-through;
+    border: none;
 }
 
 .todo-list li .delete {
