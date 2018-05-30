@@ -1,0 +1,45 @@
+import { TodoListModel } from "./model/TodoListModel.js";
+import { TodoItemModel } from "./model/TodoItemModel.js";
+import { element, render } from "./view/html-util.js";
+
+export class App {
+    constructor() {
+        this.todoListModel = new TodoListModel();
+    }
+    mount() {
+        const formElement = document.querySelector("#js-form");
+        const inputElement = document.querySelector("#js-form-input");
+        const containerElement = document.querySelector("#js-todo-list");
+        const todoItemCountElement = document.querySelector("#js-todo-count");
+        this.todoListModel.onChange(() => {
+            const todoListElement = element`<ul />`;
+            /// [checkbox]
+            const todoItems = this.todoListModel.getTodoItems();
+            todoItems.forEach(item => {
+                // 完了済みならchecked属性をつけ、未完了ならchecked属性を外す
+                const todoItemElement = item.checked
+                    ? element`<li><input type="checkbox" checked><s>${item.title}</s></input></li>`
+                    : element`<li><input type="checkbox">${item.title}</input></li>`
+                todoItemElement.querySelector("input").addEventListener("change", () => {
+                    // 指定したTodoアイテムの完了状態を反転させる
+                    this.todoListModel.updateTodoItem({
+                        id: item.id,
+                        completed: !item.completed
+                    });
+                });
+                todoListElement.appendChild(todoItemElement);
+            });
+            /// [checkbox]
+            render(todoListElement, containerElement);
+            todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.totalCount}`;
+        });
+        formElement.addEventListener("submit", (event) => {
+            event.preventDefault();
+            this.todoListModel.addTodo(new TodoItemModel({
+                title: inputElement.value,
+                completed: false
+            }));
+            inputElement.value = "";
+        });
+    }
+}

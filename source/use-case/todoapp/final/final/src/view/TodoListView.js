@@ -5,11 +5,11 @@ export class TodoItemView {
         // 完了済み or 未完了
         const checkBox = todoItem.completed
             ? element`<li>
-<input type="checkbox" class="toggle" checked><s>${todoItem.title}</s></input>
+<input type="checkbox" checked><s>${todoItem.title}</s></input>
 <button class="delete">×</button>
 </li>`
             : element`<li>
-<input type="checkbox" class="toggle">${todoItem.title}</input>
+<input type="checkbox">${todoItem.title}</input>
 <button class="delete">×</button>
 </li>`;
         checkBox.querySelector("input").addEventListener("change", () => {

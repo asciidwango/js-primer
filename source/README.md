@@ -48,3 +48,4 @@
       - [アプリの構成要素](./use-case/todoapp/app-structure/README.md)
       - [フォームとイベント](./use-case/todoapp/form-event/README.md)
       - [イベントとモデル](./use-case/todoapp/event-model/README.md)
+      - [Todoアイテムの更新と削除を実装する](./use-case/todoapp/update-delete/README.md)
