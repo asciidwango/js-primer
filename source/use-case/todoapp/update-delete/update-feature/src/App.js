@@ -18,9 +18,10 @@ export class App {
             todoItems.forEach(item => {
                 // 完了済みならchecked属性をつけ、未完了ならchecked属性を外す
                 const todoItemElement = item.checked
-                    ? element`<li><input type="checkbox" checked><s>${item.title}</s></input></li>`
-                    : element`<li><input type="checkbox">${item.title}</input></li>`
-                todoItemElement.querySelector("input").addEventListener("change", () => {
+                    ? element`<li><input type="checkbox" class="checkbox" checked><s>${item.title}</s></input></li>`
+                    : element`<li><input type="checkbox" class="checkbox">${item.title}</input></li>`
+                const inputCheckboxElement = todoItemElement.querySelector(".checkbox");
+                inputCheckboxElement.addEventListener("change", () => {
                     // 指定したTodoアイテムの完了状態を反転させる
                     this.todoListModel.updateTodoItem({
                         id: item.id,

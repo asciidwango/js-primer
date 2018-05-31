@@ -67,7 +67,7 @@ inputCheckboxElement.addEventListener("change", () => {
 
 ###  `TodoListModel`に指定したTodoアイテムの更新処理を追加する {#TodoListModel-updateTodo}
 
-まずは、モデルの状態を更新するメソッドを`TodoListModel`に実装します。
+まずは、`TodoListModel`に指定したTodoアイテムを更新するメソッドを追加します
 次のように、`TodoListModel`に`updateTodo`メソッドを追加します。
 `TodoListModel#updateTodo`メソッドは、指定したidと一致するTodoアイテムの完了状態(`completed`プロパティ)を更新します。
 
@@ -81,6 +81,54 @@ inputCheckboxElement.addEventListener("change", () => {
 
 [import, marker:"checkbox",unindent:"true"](./update-feature/src/App.js)
 
-これで、表示とモデルが同期でき「Todoアイテムの更新処理」が実装できました。
+`TodoListModel#updateTodo`メソッド内では`emitChange`メソッドによって、`TodoListModel`の変更が通知されます。
+これによって`TodoListModel#onChange`で登録されているイベントハンドラがよびだされ、表示が更新されます。
+
+これで表示とモデルが同期でき「Todoアイテムの更新処理」が実装できました。
 
 ## 削除機能 {#delete}
+
+次は「Todoアイテムの削除機能」を実装していきます。
+
+基本的な流れは「Todoアイテムの更新機能」と同じです。
+`TodoListMode`にTodoアイテムを削除する処理を実装し、削除ボタンがクリックされたときのイベントハンドラ内で指定アイテムを削除する処理を呼び出すだけです。
+
+###  `TodoListModel`に指定したTodoアイテムの削除する処理を追加する {#TodoListModel-deleteTodo}
+
+まずは、`TodoListModel`に指定したTodoアイテムを削除するメソッドを追加します。
+次のように、`TodoListModel`に`deleteTodo`メソッドを追加します。
+`TodoListModel#deleteTodo`メソッドは、指定したidと一致するTodoアイテムを削除します。
+
+[import, marker:"add-point",unindent:"true"](./update-feature/src/model/TodoListModel.js)
+
+### 削除ボタンの`click`イベントが発生したら、Todoアイテムを削除する {#onChange-update-model}
+
+そして次に`input`要素の`change`イベントのイベントハンドラにモデルの更新処理を登録します。
+次のように`App.js`で`button`要素の`todoItemElement`へ追加します。
+追加する`button`要素には`delete`というクラス名をつけておき、この要素がクリック（`click`）されたときに呼び出されるイベントハンドラを登録します。
+このイベントハンドラの中で`TodoListModel#deleteTodo`メソッドを呼びだし該当するTodoアイテムを削除します。
+
+[import, marker:"checkbox",unindent:"true"](./update-feature/src/App.js)
+
+`TodoListModel#deleteTodo`メソッド内では`emitChange`メソッドによって、`TodoListModel`の変更が通知されます。
+これにより表示が`TodoListModel`と同期するように更新され、表示からもTodoアイテムが削除できます。
+
+これで「Todoアイテムの削除機能」が実装できました。
+
+## まとめ {#conclusion}
+
+このセクションでは次のことできるようになりました。
+
+- [x] Todoアイテムの完了状態を`<input type="checkbox">`を追加した
+- [x] チェックボックスが更新時の`change`イベントのハンドラでTodoアイテムの更新した
+- [x] Todoアイテムを削除するボタンを`<button class="delete">x</button>`を追加した
+- [x] 削除ボタンの`click`イベントのハンドラでTodoアイテムを削除した
+- [x] Todoアイテムの追加、更新、削除の機能が動作するのを確認できた
+
+このセクションでTodoアプリに必要な要件が実装できました。
+
+- Todoアイテムを追加できる
+- Todoアイテムの完了状態を更新できる
+- Todoアプリムを削除できる
+
+最後のセクションでは、`App.js`や表示に関するリファクタリングを行い、継続的に開発しやすいアプリの作り方についてを見ていきます。
