@@ -77,7 +77,7 @@ inputCheckboxElement.addEventListener("change", () => {
 
 そして次に`input`要素の`change`イベントのイベントハンドラにモデルの更新処理を登録します。
 次のように`App.js`で`input`要素の`change`イベントが呼び出されたら、`TodoListModel#updateTodo`メソッドを呼び出すようにします。
-チェックをつけたり外したりするたびに呼び出されるので、`completed`には現在の状態を反転（トグル）した値を渡します。
+チェックがトグルするたびに呼び出されるので、`completed`には現在の状態を反転（トグル）した値を渡します。
 
 [import, marker:"checkbox",unindent:"true"](./update-feature/src/App.js)
 
