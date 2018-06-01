@@ -51,7 +51,7 @@ module.exports = {
         "space-unary-ops": "error",
         "spaced-comment": [
             "error", "always", {
-                "exceptions": ["-", "="],
+                "exceptions": ["-", "=", "!"],
                 "markers": [
                     "eslint",
                     "eslint-env",
@@ -62,6 +62,7 @@ module.exports = {
                     "exported",
                     "globals",
                     "istanbul",
+                    "!"
                 ],
             }
         ],

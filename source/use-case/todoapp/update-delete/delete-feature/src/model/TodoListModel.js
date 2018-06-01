@@ -44,7 +44,7 @@ export class TodoListModel extends EventEmitter {
         this.emit("change");
     }
 
-    /// [add-point]
+    //! [add-point]
     /**
      * TodoItemを追加する
      * @param {TodoItemModel} todoItem
@@ -79,5 +79,5 @@ export class TodoListModel extends EventEmitter {
         });
         this.emitChange();
     }
-    /// [add-point]
+    //! [add-point]
 }
