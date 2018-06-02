@@ -49,8 +49,8 @@ Todoアイテム要素である`<li>`要素中に次のように`<input>`要素�
 `input`要素の`change`イベントを監視は次のようにかけます。
 
 まずは`todoItemElement`要素の下にある`input`要素を`querySelector`メソッドで探索します。
-以前は`document.querySlector`で`document`以下からCSSセレクタで探索していました。
-`todoItemElement.querySelector`メソッドを使うことで、`todoItemElement`下にある要素だけを対象にして探索できます。
+以前は`document.querySlector`で`document`以下からCSSセレクタにマッチする要素探索していました。
+`todoItemElement.querySelector`メソッドを使うことで、`todoItemElement`下にある要素だけを対象に探索できます。
 
 見つけた`input`要素に対して`addEventListener`メソッドで`change`イベントハンドラを登録できます。
 
