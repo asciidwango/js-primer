@@ -10,9 +10,18 @@ todoListModel.onChange(() => {
 });
 // 新しいTodoアイテムを追加する
 // => `onChange`で登録したイベントハンドラが呼び出される
-todoListModel.addTodo(new TodoItemModel({
+const todoItemModel = new TodoItemModel({
     title: "新しいTodoアイテム",
     completed: false
-}));
+});
+todoListModel.addTodo(todoItemModel);
 // Todoリストにアイテムが増える
-console.log(todoListModel.totalCount); // => 1;
+console.log(todoListModel.totalCount); // => 1
+// 完了状態を更新する
+todoListModel.updateTodo({
+    id: todoItemModel.id,
+    completed: true
+});
+todoListModel.getTodoItems().forEach(item => {
+    console.log(item.completed); // => true
+});

@@ -82,5 +82,5 @@ export class TodoListModel extends EventEmitter {
         });
         this.emitChange();
     }
-    //! [add-point]
 }
+//! [add-point]
