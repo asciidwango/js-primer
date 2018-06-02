@@ -25,24 +25,23 @@ HTMLの[`<input type="checkbox">`](https://developer.mozilla.org/ja/docs/Web/HTM
 ![input要素のchecked属性の違い](./img/input-checkbox.png)
 
 Todoアイテム要素である`<li>`要素中に次のように`<input>`要素を追加しチェックボックスを表示に追加します。
+チェックボックスである`<input>`要素にはスタイルのために`class`属性を`checkbox`とします。
 合わせて完了済みの場合は`<s>`要素を使い打ち消し線を表示しています。
 
 [import marker:"checkbox",unindent:"true"](./add-checkbox/src/App.js)
 
-`<input type="checkbox">`要素はクリックすると自動でチェックの表示が切り替わりますが、
-このままでは表示とモデルの状態にずれが発生してしまいます。
-たとえば、表示上はチェックが付いているのに、モデルの`TodoItemModel`の`completed`プロパティが`false`となるようなバグが発生してしまいます。
-
+`<input type="checkbox">`要素はクリックするとチェックの表示がトグルします。
+しかし、モデルである`TodoItemModel`の`completed`プロパティの状態は自動では切り替わりません。
 そのため、`<input type="checkbox">`要素がチェックされたらモデルの状態を更新する必要があります。
+
 `<input type="checkbox">`要素はチェックされたときに`change`イベントを発火します。
 この`change`イベントを監視して、TodoItemモデルの状態を更新すればモデルと表示の状態を同期できます。
 
 `input`要素の`change`イベントを監視は次のようにかけます。
 
-`input`要素は`todoItemElement`要素の下にあります。
-`input`要素には目印として`class`属性に`checkbox`とつけておき、これを`querySelector`メソッドで探索します。
+まずは`todoItemElement`要素の下にある`input`要素を`querySelector`メソッドで探索します。
 以前は`document.querySlector`で`document`以下からCSSセレクタで探索していました。
-`todoItemElement.querySelector`メソッドを使うことで、`todoItemElement`下にある要素を探索できます。
+`todoItemElement.querySelector`メソッドを使うことで、`todoItemElement`下にある要素だけを対象にして探索できます。
 
 見つけた`input`要素に対して`addEventListener`メソッドで`change`イベントハンドラを登録できます。
 
