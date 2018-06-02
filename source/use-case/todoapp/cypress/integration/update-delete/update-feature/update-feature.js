@@ -15,9 +15,9 @@ describe(URL, function() {
             });
             // checkedは 1コでトグルできる
             cy.get(".checkbox").check();
-            cy.get(".checkbox").should('be.checked');
+            cy.get(".checkbox").should("be.checked");
             cy.get(".checkbox").uncheck();
-            cy.get(".checkbox").should('not.be.checked');
+            cy.get(".checkbox").should("not.be.checked");
             cy.get(".checkbox").check();
         });
         addNewTodo(inputText).then(() => {
@@ -32,7 +32,7 @@ describe(URL, function() {
             });
             // すべてチェックできる
             cy.get(".checkbox").check();
-            cy.get(".checkbox").should('be.checked');
+            cy.get(".checkbox").should("be.checked");
         });
     });
 });

@@ -35,6 +35,6 @@ describe(URL, function() {
                     expect(items).to.have.length(0);
                 });
             });
-        })
+        });
     });
 });

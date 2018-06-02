@@ -15,7 +15,7 @@ describe(URL, function() {
             });
             // checkedは 1コ
             cy.get(".checkbox").check();
-            cy.get(".checkbox").should('be.checked')
+            cy.get(".checkbox").should("be.checked");
         });
         addNewTodo(inputText).then(() => {
             // 新しく追加するとcheckedが消える
