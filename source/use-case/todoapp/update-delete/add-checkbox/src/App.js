@@ -18,7 +18,7 @@ export class App {
             todoItems.forEach(item => {
                 // 完了済みならchecked属性をつけ、未完了ならchecked属性を外す
                 // input要素にはcheckboxクラスをつける
-                const todoItemElement = item.checked
+                const todoItemElement = item.completed
                     ? element`<li><input type="checkbox" class="checkbox" checked><s>${item.title}</s></input></li>`
                     : element`<li><input type="checkbox" class="checkbox">${item.title}</input></li>`;
                 todoListElement.appendChild(todoItemElement);
