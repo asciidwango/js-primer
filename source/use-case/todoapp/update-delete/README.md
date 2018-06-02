@@ -19,8 +19,8 @@ author: azu
 そのため、まずはTodoアイテムが完了済みかを表示する必要があります。
 HTMLの[`<input type="checkbox">`](https://developer.mozilla.org/ja/docs/Web/HTML/Element/Input/checkbox)要素を使いチェックボックスを表示し、Todoアイテムごとの完了状態を表現します。
 
-`<input type="checkbox" checked>`のように`checked`属性がある場合はチェックが付きます。
-一方、`<input type="checkbox">`のように`checked`属性がない場合はチェックが外れます。
+`<input type="checkbox">`は`checked`属性がない場合はチェックが外れた状態のチェックボックスとなります。
+一方`<input type="checkbox" checked>`のように`checked`属性がある場合はチェックがついたチェックボックスとなります。
 
 ![input要素のchecked属性の違い](./img/input-checkbox.png)
 
