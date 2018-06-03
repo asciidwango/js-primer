@@ -20,9 +20,6 @@ jobs:
       node_js: 'stable'
       script: npm run travis
     - stage: test
-      node_js: '6'
-      script: npm test
-    - stage: test
       node_js: '8'
       script: npm test
     # deploy
