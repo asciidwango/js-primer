@@ -76,7 +76,7 @@ console.log(arg); // => ReferenceError: arg is not defined
 この関数によるスコープのことを**関数スコープ**と呼びます。
 
 [変数と宣言][]の章にて、`let`や`const`は同じスコープ内に同じ名前の変数を二重に定義できないという話をしました。
-これは、各スコープには同じ名前の変数は1つしか宣言できないためです。（`var`と`function`による関数宣言は例外的に可能です）
+これは、各スコープには同じ名前の変数は1つしか宣言できないためです。（`var`による変数宣言と`function`による関数宣言は例外的に可能です）
 
 [import, identifier-duplicated-invalid](./src/identifier-duplicated-invalid.js)
 
