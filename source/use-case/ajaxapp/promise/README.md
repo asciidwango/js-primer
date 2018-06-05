@@ -204,8 +204,9 @@ function getUserInfo(userId) {
 ## [コラム] Fetch API {#fetch-api}
 
 [Fetch API][]とは、ページの外部からリソースを取得するためのインターフェースを定義した、Webブラウザの標準APIです。
-Fetchの特徴はPromiseをベースとしたインターフェースになっていることです。
-たとえば、本章で扱ったXHRによる`getUserInfo`関数は、Fetchを使うと次のようになります。
+Fetch APIは`fetch`関数など、リソースを取得するためのAPIを定義しています。
+`fetch`関数はPromiseを返すのが特徴です。
+たとえば、本章で扱ったXHRによる`getUserInfo`関数は、`fetch`関数を使うと次のようになります。
 
 ```js
 function getUserInfo(userId) {
@@ -216,7 +217,7 @@ function getUserInfo(userId) {
             if (!response.status !== 200) {
                 throw new Error(`${response.status}: ${response.statusText}`);
             }
-            // レスポンスボディをパースしたJSONオブジェクトのPromiseを返すjsonメソッド
+            // jsonメソッドは、レスポンスボディをJSONとしてパースしたPromiseオブジェクトを返す
             return response.json();
         }, error => {
             throw new Error("ネットワークエラー");
