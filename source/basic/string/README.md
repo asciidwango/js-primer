@@ -284,14 +284,14 @@ console.log(codeUnitElements); // ["�", "�", "の", "ひ", "ら", "き"]
 サロゲートペアを含んだ文字列をそれぞれの**Code Point**へ分解するには、Iteratorを利用するが簡単です。
 文字列はIteratorを実装しているIterableという特性をもち、また文字列のIteratorはそれぞれのCode Pointごとに列挙します。
 
-そのため、Iterableを扱える`Array.from`メソッドや`...`（spread operator）を利用することで、
+そのため、Iterableを扱える`Array.from`メソッドや`...`（spread構文）を利用することで、
 文字列をそれぞれのCode Pointごとに分解できます。
 
 ```js
 const string = "𩸽のひらき";
 // Array.fromメソッドで文字列を分解
 console.log(Array.from(string)); // => ["𩸽", "の", "ひ", "ら", "き"]
-// ...（spread operator）で文字列を展開しものを配列にする
+// ...（spread構文）で文字列を展開しものを配列にする
 console.log([...string]); // => ["𩸽", "の", "ひ", "ら", "き"]
 // for...ofもIteratorを列挙するため、Code Pointごとで列挙できる
 for (const codePoint of string) {
