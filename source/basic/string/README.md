@@ -22,9 +22,9 @@ author: azu
 
 {{book.console}}
 ```js
-var double = "文字列";
+const double = "文字列";
 console.log(double); // => "文字列"
-var single = '文字列';
+const single = '文字列';
 console.log(single); // => '文字列'
 // どちらも同じ文字列
 console.log(double === single);// => true
