@@ -201,6 +201,36 @@ function getUserInfo(userId) {
 }
 ```
 
+## [コラム] Fetch API {#fetch-api}
+
+[Fetch API][]とは、ページの外部からリソースを取得するためのインターフェースを定義した、Webブラウザの標準APIです。
+Fetch APIは`fetch`関数など、リソースを取得するためのAPIを定義しています。
+`fetch`関数はPromiseを返すのが特徴です。
+たとえば、本章で扱ったXHRによる`getUserInfo`関数は、`fetch`関数を使うと次のようになります。
+
+```js
+function getUserInfo(userId) {
+    // 暗黙にGETリクエストとなる
+    // Responseオブジェクトがthenに渡される
+    return fetch(`https://api.github.com/users/${userId}`)
+        .then(response => {
+            if (!response.status !== 200) {
+                throw new Error(`${response.status}: ${response.statusText}`);
+            }
+            // jsonメソッドは、レスポンスボディをJSONとしてパースしたPromiseオブジェクトを返す
+            return response.json();
+        }, error => {
+            throw new Error("ネットワークエラー");
+        });
+}
+```
+
+今回のユースケースではFetchへの置き換えが可能ですが、コールバック関数をPromiseでラップする手法を学ぶために、あえてXHRを利用しています。
+また、プログレスイベントやリクエストの中断などXHRでしか使えない機能もあるため、常にFetchで置き換えられるわけではありません。
+
+Fetchの詳しい使い方については[Fetchに関するドキュメント][]を参照してください。
+
+
 ## ユーザーIDを変更できるようにする {#changeable-userid}
 
 仕上げとして、今まで`js-primer-example`で固定としていたユーザーIDを変更できるようにしましょう。
@@ -219,3 +249,5 @@ index.jsにも`<input>`タグから値を受け取るための処理を追加す
 
 
 [Promiseチェーン]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise/then#%E3%83%81%E3%82%A7%E3%83%BC%E3%83%B3
+[Fetch API]: https://developer.mozilla.org/ja/docs/Web/API/Fetch_API
+[Fetchに関するドキュメント]: https://developer.mozilla.org/ja/docs/Web/API/Fetch_API/Using_Fetch
