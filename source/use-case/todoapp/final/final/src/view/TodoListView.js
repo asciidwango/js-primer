@@ -2,7 +2,6 @@ import { element } from "./html-util.js";
 
 export class TodoItemView {
     createElement(todoItem, { onUpdate, onDelete }) {
-        // 完了済み or 未完了
         const checkBox = todoItem.completed
             ? element`<li>
 <input type="checkbox" checked><s>${todoItem.title}</s></input>

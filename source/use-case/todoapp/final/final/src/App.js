@@ -46,9 +46,13 @@ export class App {
         this.releaseHandler = this.todoListModel.onChange(() => {
             const todoItems = this.todoListModel.getTodoItems();
             const todoListElement = this.todoListView.createElement(todoItems, {
-                // コールバック関数の`this`が変化しないように`bind`して`this`をAppのインスタンスに固定する
-                onUpdate: this.handleUpdate.bind(this),
-                onDelete: this.handleDelete.bind(this)
+                // Appに定義したハンドラを呼び出す
+                onUpdateTodo: ({ id, completed }) => {
+                    this.handleUpdate({ id, completed });
+                },
+                onDeleteTodo: ({ id }) => {
+                    this.handleDelete({ id });
+                }
             });
             render(todoListElement, todoListContainerElement);
             // アイテム数の表示を更新
@@ -58,7 +62,7 @@ export class App {
         formElement.addEventListener("submit", (event) => {
             // prevent submit action
             event.preventDefault();
-            // try to add
+             // Appに定義したハンドラを呼び出す
             this.handleAdd(inputElement.value);
             // clear text
             inputElement.value = "";
