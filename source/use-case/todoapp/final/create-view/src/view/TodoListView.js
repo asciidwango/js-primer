@@ -20,7 +20,7 @@ export class TodoListView {
                 onDeleteTodo,
                 onUpdateTodo
             });
-            todoListElement.appendChild(todoItemElement)
+            todoListElement.appendChild(todoItemElement);
         });
         // todoListElementを返す
         return todoListElement;

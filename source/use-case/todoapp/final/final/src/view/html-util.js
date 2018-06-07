@@ -15,7 +15,7 @@ export function htmlToElement(html) {
 
 /**
  * HTML文字列からDOM Nodeを作成して返す
- * @return {DocumentFragment}
+ * @return {HTMLElement}
  */
 export function element(strings, ...values) {
     const htmlString = strings.reduce((result, string, i) => {

@@ -1,42 +1,28 @@
+// MIT © 2018 azu
 import { element } from "./html-util.js";
-
-export class TodoItemView {
-    createElement(todoItem, { onUpdate, onDelete }) {
-        const checkBox = todoItem.completed
-            ? element`<li>
-<input type="checkbox" checked><s>${todoItem.title}</s></input>
-<button class="delete">×</button>
-</li>`
-            : element`<li>
-<input type="checkbox">${todoItem.title}</input>
-<button class="delete">×</button>
-</li>`;
-        checkBox.querySelector("input").addEventListener("change", () => {
-            onUpdate({
-                id: todoItem.id,
-                completed: !todoItem.completed
-            });
-        });
-        checkBox.querySelector("button").addEventListener("click", () => {
-            onDelete({
-                id: todoItem.id
-            });
-        });
-        return checkBox;
-    }
-}
+import { TodoItemView } from "./TodoItemView.js";
 
 export class TodoListView {
-    createElement(todoItems, handlers) {
-        const listElement = element`<ul />`;
+    /**
+     * `todoItems`に対応するTodoリストのHTML要素を作成して返す
+     * @param {TodoItemModel[]} todoItems
+     * @param {function({id:string, completed: boolean})} onUpdateTodo チェックボックスが更新されたときに呼ばれるコールバック関数
+     * @param {function({id:string)}} onDeleteTodo 削除ボタンがクリックされたときに呼ばれるコールバック関数
+     * @returns {HTMLElement}
+     */
+    createElement(todoItems, { onUpdateTodo, onDeleteTodo }) {
+        const todoListElement = element`<ul />`;
+        // todoItemsは引数として受け取る
         todoItems.forEach(todoItem => {
-            const item = new TodoItemView();
-            const itemElement = item.createElement(todoItem, {
-                onUpdate: handlers.onUpdate,
-                onDelete: handlers.onDelete
+            const todoItemView = new TodoItemView();
+            // todoItemに対応したHTML要素を作成する
+            const todoItemElement = todoItemView.createElement(todoItem, {
+                onDeleteTodo,
+                onUpdateTodo
             });
-            listElement.appendChild(itemElement);
+            todoListElement.appendChild(todoItemElement);
         });
-        return listElement;
+        // todoListElementを返す
+        return todoListElement;
     }
 }

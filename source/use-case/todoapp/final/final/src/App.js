@@ -5,7 +5,6 @@ import { TodoListModel } from "./model/TodoListModel.js";
 
 export class App {
     constructor() {
-        // ViewとModelを初期化する
         this.todoListView = new TodoListView();
         this.todoListModel = new TodoListModel([]);
     }
@@ -55,16 +54,15 @@ export class App {
                 }
             });
             render(todoListElement, todoListContainerElement);
-            // アイテム数の表示を更新
             todoCountElement.textContent = `Todoアイテム数: ${this.todoListModel.totalCount}`;
         });
 
         formElement.addEventListener("submit", (event) => {
-            // prevent submit action
             event.preventDefault();
-             // Appに定義したハンドラを呼び出す
-            this.handleAdd(inputElement.value);
-            // clear text
+            this.todoListModel.addTodo(new TodoItemModel({
+                title: inputElement.value,
+                completed: false
+            }));
             inputElement.value = "";
         });
     }
