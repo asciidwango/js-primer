@@ -48,7 +48,7 @@ Todoリストの表示は次の2つの部品（コンポーネント）から成
 
 次は`view/TodoListView.js`ファイルを作成して、次のような`TodoListView`クラスを`export`します。
 この`TodoListView`は`TodoItemModel`の配列に対応するTodoリストのHTML要素を返す`createElement`メソッドを持ちます。
-[import, titlt:"src/view/TodoListView.js"](./create-view/src/view/TodoListView.js)
+[import, title:"src/view/TodoListView.js"](./create-view/src/view/TodoListView.js)
 
 
 `TodoListView#createElement`メソッドは`TodoItemView`を使いTodoアイテムのHTML要素作り、`<li>`要素に追加していきます。
