@@ -14,9 +14,6 @@ export class App {
      * @param {string} title
      */
     handleAdd(title) {
-        if (title.length === 0) {
-            return;
-        }
         this.todoListModel.addTodo(new TodoItemModel({ title, completed: false }));
     };
 

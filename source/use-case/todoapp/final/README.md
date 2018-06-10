@@ -58,6 +58,7 @@ Todoリストの表示は次の2つの部品（コンポーネント）から成
 この`TodoListView`は`TodoItemModel`の配列に対応するTodoリストのHTML要素を返す`createElement`メソッドを持ちます。
 [import, title:"src/view/TodoListView.js"](./create-view/src/view/TodoListView.js)
 
+
 `TodoListView#createElement`メソッドは`TodoItemView`を使いTodoアイテムのHTML要素作り、`<li>`要素に追加していきます。
 この`TodoListView#createElement`メソッドも`onUpdateTodo`と`onDeleteTodo`のハンドラ関数を受け取ります。
 しかし、`TodoListView`ではこのハンドラ関数は`TodoItemView`にそのまま渡しています。
