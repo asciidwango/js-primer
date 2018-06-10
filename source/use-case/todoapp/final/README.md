@@ -133,6 +133,6 @@ JavaScriptという変化していく言語やそれを利用する環境にお�
 
 
 [TodoMVC]: http://todomvc.com/
-[ECMAScript]: ../../basic/ecmascript/README.md
+[ECMAScript]: ../../../basic/ecmascript/README.md
 
 [^vanilajs]: ライブラリやフレームワークをつかわずに実装したJavaScriptをVanilla JSと呼ぶことがあります。
