@@ -5,8 +5,8 @@ export class TodoListView {
     /**
      * `todoItems`に対応するTodoリストのHTML要素を作成して返す
      * @param {TodoItemModel[]} todoItems TodoItemModelの配列
-     * @param {function({id:string, completed: boolean})} onUpdateTodo チェックボックスが更新されたときに呼ばれるコールバック関数
-     * @param {function({id:string)}} onDeleteTodo 削除ボタンがクリックされたときに呼ばれるコールバック関数
+     * @param {function({id:string, completed: boolean})} onUpdateTodo チェックボックスの更新イベントハンドラ
+     * @param {function({id:string)}} onDeleteTodo 削除ボタンのクリックイベントハンドラ
      * @returns {HTMLElement} TodoItemModelの配列に対応したリストのHTML要素
      */
     createElement(todoItems, { onUpdateTodo, onDeleteTodo }) {
