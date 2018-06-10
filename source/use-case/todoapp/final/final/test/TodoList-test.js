@@ -1,5 +1,3 @@
-// LICENSE : MIT
-"use strict";
 const assert = require("assert");
 import { TodoItemModel } from "../src/model/TodoItemModel.js";
 import { TodoListModel } from "../src/model/TodoListModel.js";

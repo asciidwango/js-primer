@@ -11,7 +11,7 @@ export class TodoListView {
      */
     createElement(todoItems, { onUpdateTodo, onDeleteTodo }) {
         const todoListElement = element`<ul />`;
-        // todoItemsは引数として受け取る
+        // todoItemsに対応するアイテム要素を作りリストへ追加する
         todoItems.forEach(todoItem => {
             const todoItemView = new TodoItemView();
             // todoItemに対応したHTML要素を作成する

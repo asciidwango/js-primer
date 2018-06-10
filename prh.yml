@@ -116,7 +116,7 @@ rules:
       - /浮動小数点([ぁ-ん])/
     prh: "浮動小数点ではなく浮動小数点数を使ってください"
   - expected: シングルスレッド
-    patterns: 
+    patterns:
       - 単一スレッド
   - expected: for...in
     patterns:
@@ -200,7 +200,7 @@ rules:
       - /[^(分割代入（)]Destructuring assignment/i
       - /[^(分割代入（)]Destructuring(\S)/i
   - expected: ガベージコレクション
-    patterns: 
+    patterns:
       - /ガーベッジコレクション|ガーベッジコレクション|ガーベジコレクション/
   - expected: クロージャー
     patterns:
@@ -219,10 +219,10 @@ rules:
   - expected: Todoアイテム
     patterns:
       - /todoアイテム/i
-    
+
   # ファイルの読み書き / ファイルI/O
   - expected: ファイルの読み書き
-    patterns:  
+    patterns:
       - ファイルI/0
       - ファイルI0
   - expected: オブジェクト
@@ -236,11 +236,11 @@ rules:
   - expected: HTML要素
     patterns:
       - DOM要素
-    
+
   # 一致とマッチ
   ## 一致は ===
   - expected: $1一致
-    patterns: 
+    patterns:
       - /(正規表現に)一致/
       - /(パターンに)一致/
   - expected: $1マッチ
@@ -251,7 +251,7 @@ rules:
     patterns:
       - /ネイティブ(関数)/
       - /ネイティブ(メソッド)/
-      
+
 # typo
   - expected: $1進数
     patterns:
@@ -274,11 +274,11 @@ rules:
   - expected: 宣言的
     patterns: 宣言亭
   - expected: コンストラクタ
-    patterns: 
+    patterns:
       - 今ストラク
       - コンストラスト
   - expected: 関数内に
-    patterns: 
+    patterns:
       - 関数中に
   - expected: 子クラス
     patterns:
@@ -311,6 +311,8 @@ rules:
     specs:
       - from: 仮引数はその関数の中からのみ参照が可能で、関数の外からは参照できません。
         to: 仮引数はその関数の中でのみ参照が可能で、関数の外からは参照できません。
+  - expected: 実装できました
+    patterns: 実装ができました
 
 
 # 漢字開き
