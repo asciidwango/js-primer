@@ -4,7 +4,7 @@ author: azu
 
 # Todoアプリのリファクタリング {#todo-app-refactoring}
 
-前のセクションでTodoaアプリの機能の実装ができました。
+前のセクションでTodoaアプリの機能の実装できました。
 しかし、App.jsを見てみるとほとんどがHTML要素の作成処理になっています。
 このようなHTML要素の作成処理は表示する内容が増えるほど行数が線形的に増えていきます。
 このままTodoアプリを拡張していくとApp.jsが肥大化してコードが読みにくく、メンテナンス性が低下してしまいます。
@@ -30,6 +30,8 @@ Todoリストの表示は次の2つの部品（コンポーネント）から成
 - `TodoItemView`: Todoアイテムコンポーネント
 - `TodoListView`: Todoリストコンポーネント
 
+### TodoItemViewを作成する {#TodoItemView}
+
 まずは、Todoアイテムに対応する`TodoItemView`から作成しています。
 
 `view/TodoItemView.js`ファイルを作成して、次のような`TodoItemView`クラスを`export`します。
@@ -37,19 +39,24 @@ Todoリストの表示は次の2つの部品（コンポーネント）から成
 
 [import, title:"src/view/TodoItemView.js"](./create-view/src/view/TodoItemView.js)
 
-`TodoItemView#createElement`メソッドの中身は元々`App`クラスで利用していたTodoアイテムのHTML要素を作成するコードを元にしています。
+`TodoItemView#createElement`メソッドの中身は元々`App`クラスでのHTML要素を作成する部分を元にしています。
 `createElement`メソッドは、`TodoItemMode`のインスタンスだけではなく`onUpdateTodo`と`onDeleteTodo`のハンドラ関数を受け取っています。
 この受け取ったハンドラ関数はそれぞれ対応するイベントが発生した際に呼びだします。
+
 このように引数としてハンドラ関数を外から受け取ることで、イベントが発生したときの具体的な処理はViewクラスの外側に定義できます。
 
-この`TodoItemView`クラスは次のように対応する`TodoItemModel`のインスタンスとイベントハンドラのオブジェクトを受け取り、TodoアイテムのHTML要素を返します。
+たとえば、この`TodoItemView`クラスは次のように利用できます。
+`TodoItemModel`のインスタンスとイベントハンドラのオブジェクトを受け取り、TodoアイテムのHTML要素を返します。
 
 [import, marker:"main"](./create-view/src/view/TodoItemView.example.js)
 
-次は`view/TodoListView.js`ファイルを作成して、次のような`TodoListView`クラスを`export`します。
+### TodoListViewを作成する {#TodoListView}
+
+次はTodoリストに対応する`TodoListView`を作成します。
+
+`view/TodoListView.js`には次のような`TodoListView`クラスを`export`します。
 この`TodoListView`は`TodoItemModel`の配列に対応するTodoリストのHTML要素を返す`createElement`メソッドを持ちます。
 [import, title:"src/view/TodoListView.js"](./create-view/src/view/TodoListView.js)
-
 
 `TodoListView#createElement`メソッドは`TodoItemView`を使いTodoアイテムのHTML要素作り、`<li>`要素に追加していきます。
 この`TodoListView#createElement`メソッドも`onUpdateTodo`と`onDeleteTodo`のハンドラ関数を受け取ります。
