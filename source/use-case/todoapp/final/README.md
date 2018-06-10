@@ -106,6 +106,10 @@ Todoリストの表示は次の2つの部品（コンポーネント）から成
 - [x] Todoアプリの機能と対応するハンドラを`App`クラスのメソッドへ移動した
 - [x] Todoアプリを完成させた
 
+完成したTodoアプリは次のURLで確認できます。
+
+- <https://asciidwango.github.io/js-primer/use-case/todoapp/final/final/>
+
 ## Todoアプリのまとめ {#todo-conclusion}
 
 今回は、Todoアプリを構成する要素をModelとViewという単位でモジュールに分けていました。
