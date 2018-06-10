@@ -2,7 +2,7 @@
 author: azu
 ---
 
-# Todoアイテムの更新と削除を実装する {#todo-item-update-and-delete}
+# Todoの更新と削除を実装する {#todo-item-update-and-delete}
 
 このセクションではTodoアプリの残りの機能である「Todoアイテムの更新」と「Todoアイテムの削除」を実装していきます。
 
