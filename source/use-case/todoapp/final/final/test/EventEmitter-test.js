@@ -1,5 +1,3 @@
-// LICENSE : MIT
-"use strict";
 const assert = require("assert");
 import { EventEmitter } from "../src/EventEmitter.js";
 

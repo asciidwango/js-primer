@@ -1,4 +1,3 @@
-// MIT © 2018 azu
 import { element } from "./html-util.js";
 import { TodoItemView } from "./TodoItemView.js";
 
