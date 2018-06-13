@@ -222,7 +222,7 @@ import { App } from "./src/App.js";
 - [x] `todoapp`という名前のプロジェクトディレクトリを作成した
 - [x] エントリポイントとなる`index.html`を作成した
 - [x] JavaScriptのエントリポイントとなる`index.js`を作成し`index.html`から読み込んだ
-- [x] ローカルサーバを使って`index.html`と`index.js`が読み込めるのを確認した
+- [x] ローカルサーバを使って`index.html`が表示できた
 - [x] `src/App.js`を作成し、`index.js`から`import`文で読み込めるのを確認した
 
 現在のTodoアプリは次のURLで確認できます。
