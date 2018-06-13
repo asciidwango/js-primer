@@ -109,7 +109,7 @@ scirptタグに指定した`index.js`のパスにファイルが存在してい�
 `<script type="module" src="index.js">`としてした場合は`index.html`と`index.js`は同じディレクトリに配置する必要があります。
 
 また、 *CORS policy Invalid*のようなエラーがコンソールに表示されている場合は、[Same Origin Policy][]により`index.js`の読み込みが失敗しています。
-先ほども書いたように、`file:`から始まるURLでは、JavaScriptモジュールの読み込みができないブラウザもあります。
+先ほども書いたように、`file:`から始まるページ上からはJavaScriptモジュールを読み込めないブラウザもあります。
 そのため、ローカルサーバを起動し、ローカルサーバ(`http:`から始まるURL)にアクセスしていることを確認してください。
 
 > JavaScriptモジュールに非対応のブラウザを利用している
