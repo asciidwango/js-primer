@@ -11,10 +11,10 @@
   },
   "scripts": {
     "test": "mocha \"./final/final/test/*.js\" && npm run test:e2e",
-    "start": "npx @js-primer/local-server --port 8080",
+    "start": "npx @js-primer/local-server --port 3000",
     "cy:open": "cypress open",
     "cy:run": "cypress run --browser chrome",
-    "test:e2e": "start-server-and-test start http://localhost:8080/README.md cy:run"
+    "test:e2e": "start-server-and-test start http://localhost:3000/README.md cy:run"
   },
   "devDependencies": {
     "@std/esm": "^0.26.0",

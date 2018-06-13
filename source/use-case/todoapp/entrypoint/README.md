@@ -58,45 +58,25 @@ JavaScriptモジュールはHTMLから`<script type="module">`で読み込むこ
 `file`スキーマでは[Same Origin Policy][]により、JavaScriptモジュールを始め多くのAPIに制限がありアプリケーションは正しく動作しません。
 本章はローカルサーバーを立ち上げた上で、`http`スキーマのURLでアクセスすることを前提としています。
 
-コマンドラインで`todoapp`プロジェクトのディレクトリを開き、`npm init`コマンドで`package.json`を作成します。
+コマンドラインで`todoapp`ディレクトリへ移動し、次のコマンドでローカルサーバを起動します。
+`npx`コマンドを使い、この書籍用に作成された`@js-primer/local-server`というローカルサーバモジュールをダウンロードと同時に実行します。
+
+<!-- TODO: npxの解説へのリンクを貼る -->
 
 ```shell-session
-$ npm init --yes
-```
+# todoapp/ディレクトリに移動する
+$ cd todoapp/
+# todoapp/をルートにしたローカルサーバを起動する
+$ npx @js-primer/local-server
 
-`pacakge.json`ファイルが作成できたら、次はローカルサーバを立ち上げるために`node-static`をインストールします。
+todoappのローカルサーバを起動しました。
+次のURLをブラウザで開いてください。
 
-<!-- TODO: node-staticのバージョン指定か別モジュールの検討 -->
-
-```
-$ npm install --save-dev node-static
-```
-
-インストールが完了したら、`package.json`の`scripts`プロパティにローカルサーバを起動するための`start`スクリプトを追加します。
-次のような記述をすることで、`npm start`というコマンドを実行時に`node-static`が現在ディレクトリ(`./`)をベースにしたローカルサーバを起動します。
-
-```json
-{
-    ...
-    "scripts": {
-        "start": "static ./"
-    },
-    ...
-}
-```
-
-`start`スクリプトを追加したら、`npm start`コマンドを実行してローカルサーバを起動してみましょう。
+  URL: http://localhost:3000
 
 ```
-$ npm start
 
-> todoapp@1.0.0 start /Users/project/todoapp
-> static . -p 3030
-
-serving "." at http://127.0.0.1:3030
-```
-
-起動したローカルサーバのURL（`http://127.0.0.1:3030`）にブラウザでアクセスしてみましょう。
+起動したローカルサーバのURL（`http://localhost:3000`）へブラウザでアクセスしてみましょう。
 ブラウザには`index.html`の内容が表示され、開発者ツールのコンソールに`index.js: loaded`というログが出力されていることが確認できます。
 
 ![ログが表示されているWebコンソール](img/first-entry.png)
@@ -212,7 +192,7 @@ JavaScriptには実行コンテキストとしてScriptとModuleがあります�
 実行コンテキストをモジュールとして実行するには`<script type="module" src="index.js">`のように`type=module`を指定する必要があります。
 （`index.js`から`import`宣言で読み込んだ`App.js`は実行コンテキストを引き継ぐため、モジュールの実行コンテキストで処理されます。）
 
-> モジュールのソース “http://localhost:8080/src/App” の読み込みに失敗しました。
+> モジュールのソース “http://localhost:3000/src/App” の読み込みに失敗しました。
 
 `App.js`が読み込めていないというエラーがでています。
 エラーメッセージをよく見ると`App`となっていて`App.js`ではありません。
@@ -235,9 +215,22 @@ import { App } from "./src/App";
 import { App } from "./src/App.js";
 ```
 
+## まとめ {#conclusion}
+
+このセクションでは次のことを行いました。
+
+- [x] `todoapp`という名前のプロジェクトディレクトリを作成した
+- [x] エントリポイントとなる`index.html`を作成した
+- [x] JavaScriptのエントリポイントとなる`index.js`を作成し`index.html`から読み込んだ
+- [x] ローカルサーバを使って`index.html`と`index.js`が読み込めるのを確認した
+- [x] `src/App.js`を作成し、`index.js`から`import`文で読み込めるのを確認した
+
+現在のTodoアプリは次のURLで確認できます。
+
+- <https://asciidwango.github.io/js-primer/use-case/todoapp/entrypoint/module-entry/>
 
 [Ajax通信:エントリポイント]: ../../ajaxapp/entrypoint/README.md
-[Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy 
+[Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy
 [Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
 [npmを使ってパッケージをインストールする]: ../../nodecli/argument-parse/README.md#use-npm
 [Can I Use]: https://caniuse.com/#feat=es6-module
