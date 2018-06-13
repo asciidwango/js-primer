@@ -9,12 +9,12 @@ declare screenshotOnly="${projectDir}/tools/applescript/lib/src/screenshot-only.
 # マニュアル操作が必要なもの
 # formの内容をコンソールに表示するスクショ
 mkdir -p "${currentDir}/form-event/img/"
-node "${launchFirefox}" --devTools --url "http://localhost:8080/form-event/prevent-event/"
+node "${launchFirefox}" --devTools --url "http://localhost:3000/form-event/prevent-event/"
 echo "入力欄に入力してEnterを押す"
 sleep 5
 node "${screenshotOnly}" --output  "${currentDir}/form-event/img/form-event.png"
 # 入力してTodoアイテムを追加
-node "${launchFirefox}" --url "http://localhost:8080/form-event/add-todo-item/"
+node "${launchFirefox}" --url "http://localhost:3000/form-event/add-todo-item/"
 echo "入力欄に入力してEnterを押す - アイテムを追加"
 sleep 5
 node "${screenshotOnly}" --output  "${currentDir}/form-event/img/add-todo-item.png"
