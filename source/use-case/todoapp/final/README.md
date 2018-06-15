@@ -72,8 +72,8 @@ Todoリストの表示は次の2つの部品（コンポーネント）から成
 `onChange`のハンドラのコールバック関数で`TodoListView`クラスを使いTodoリストのHTML要素を作るように変更します。
 このとき`TodoListView#createElement`メソッドには次のようにそれぞれ対応するコールバック関数をわたします。
 
-- `onUpdateTodo`のコールバック関数では`TodoListModelu#pdateTodo`メソッドを呼ぶ
-- `onDeleteTodo`のコールバック関数では`TodoListModelu#deleteTodo`メソッドを呼ぶ
+- `onUpdateTodo`のコールバック関数では`TodoListModel#pdateTodo`メソッドを呼ぶ
+- `onDeleteTodo`のコールバック関数では`TodoListModel#deleteTodo`メソッドを呼ぶ
 
 [import, title:"src/App.js"](./create-view/src/App.js)
 
