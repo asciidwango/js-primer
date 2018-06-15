@@ -34,7 +34,7 @@ export class EventEmitter {
     }
 
     /**
-     * 指定したイベントに監視するハンドラを解除する
+     * 指定したイベントのイベントハンドラを解除する
      * @param {string} type イベント名
      * @param {Function} handler イベントハンドラ
      */
