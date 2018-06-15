@@ -26,16 +26,16 @@ author: azu
 
 ## 入力内容をコンソールに表示 {#input-to-console}
 
-form要素でEnterを押し送信すると`submit`イベントが発火されます。
+form要素でEnterを押し送信すると`submit`イベントが発生されます。
 この`submit`イベントは`addEventListener`メソッドを利用することで受け取れます。
 
 <!-- doctest:disable -->
 ```js
 // id="js-form`の要素を取得
 const formElement = document.querySelector("#js-form");
-// form要素から発火されたsubmitイベントを受け取る
+// form要素から発生したsubmitイベントを受け取る
 formElement.addEventListener("submit", (event) => {
-    // イベントが発火された時に呼ばれるコールバック関数
+    // イベントが発生した時に呼ばれるコールバック関数
 });
 ```
 
@@ -63,14 +63,16 @@ console.log(inputElement.value); // => "input要素の入力内容"
 [import, title:"index.js"](./prevent-event/index.js)
 
 これらの変更後にブラウザでページをリロードすると、`App#mount`が実行されるようになります。
-`submit`イベントが監視されているので、入力欄に何か入力してEnterで送信してみるとその内容がコンソールに表示されます。
+`submit`イベントがリッスンされているので、入力欄に何か入力してEnterで送信してみるとその内容がコンソールに表示されます。
 
 ![入力内容がコンソールに表示される](./img/form-event.png)
 
-先ほどの`App#mount`では、発火された`submit`イベントのコールバック関数内で`event.preventDefault();`を呼び出しています。
-`preventDefault`メソッドは`submit`イベントが発火されたフォーム本来の動作をキャンセルするメソッドです。
-フォーム本来の処理とは、フォームの内容を指定したURLへ送信するという動作です。
-ここでは`form`要素に送信先が指定されていないため、現在のURLに対してフォームを送信が行われるのをキャンセルしています。
+先ほどの`App#mount`では、`submit`イベントのイベントハンドラ内で`event.preventDefault();`を呼び出しています。
+`event.preventDefault`メソッドは、`submit`イベントの発生元であるフォームがもつデフォルトの動作をキャンセルするメソッドです。
+
+フォームがもつデフォルトの動作とは、フォームの内容を指定したURLへ送信するという動作です。
+ここでは`form`要素に送信先が指定されていないため、現在のURLに対してフォームを送信が行われます。
+`event.preventDefault`メソッドを呼び出すことで、このデフォルトの動作をキャンセルしています。
 
 <!-- doctest:disable -->
 ```js

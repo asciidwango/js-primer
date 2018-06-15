@@ -244,6 +244,9 @@ rules:
     patterns:
       - イベントを発火
     prh: https://github.com/asciidwango/js-primer/issues/455
+  - expected: イベントが発生
+    patterns:
+      - イベントが発火
 
   # 一致とマッチ
   ## 一致は ===

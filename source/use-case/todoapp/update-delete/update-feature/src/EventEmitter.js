@@ -19,7 +19,7 @@ export class EventEmitter {
     }
 
     /**
-     * 指定したイベントを発火する
+     * 指定したイベントをディスパッチする
      * @param {string} type イベント名
      */
     emit(type) {
