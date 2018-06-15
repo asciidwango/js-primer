@@ -236,6 +236,14 @@ rules:
   - expected: HTML要素
     patterns:
       - DOM要素
+  - expected: イベントをリッスン
+    patterns:
+      - イベントを監視
+    prh: https://github.com/asciidwango/js-primer/issues/455
+  - expected: イベントをディスパッチ
+    patterns:
+      - イベントを発火
+    prh: https://github.com/asciidwango/js-primer/issues/455
 
   # 一致とマッチ
   ## 一致は ===

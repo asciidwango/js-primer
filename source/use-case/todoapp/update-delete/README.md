@@ -43,10 +43,10 @@ Todoアイテム要素である`<li>`要素中に次のように`<input>`要素�
 
 この問題を避けるためにも、`<input type="checkbox">`要素がチェックされたらモデルの状態を更新する必要があります。
 
-`<input type="checkbox">`要素はチェックされたときに`change`イベントを発火します。
-この`change`イベントを監視して、TodoItemモデルの状態を更新すればモデルと表示の状態を同期できます。
+`<input type="checkbox">`要素はチェックされたときに`change`イベントをディスパッチします。
+この`change`イベントをリッスンして、TodoItemモデルの状態を更新すればモデルと表示の状態を同期できます。
 
-`input`要素の`change`イベントを監視は次のようにかけます。
+`input`要素からディスパッチされる`change`イベントをリッスンする処理は次のようにかけます。
 
 まずは`todoItemElement`要素の下にある`input`要素を`querySelector`メソッドで探索します。
 以前は`document.querySlector`で`document`以下からCSSセレクタにマッチする要素を探索していました。
