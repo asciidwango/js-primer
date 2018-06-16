@@ -67,7 +67,7 @@ console.log(inputElement.value); // => "input要素の入力内容"
 
 ![入力内容がコンソールに表示される](./img/form-event.png)
 
-先ほどの`App#mount`では、発火された`submit`イベントのコールバック関数内で`event.preventDefault();`を呼び出しています。
+先ほどの`App#mount`では、発火された`submit`イベントのコールバック関数内で`event.preventDefault`メソッドを呼び出しています。
 `preventDefault`メソッドは`submit`イベントが発火されたフォーム本来の動作をキャンセルするメソッドです。
 フォーム本来の処理とは、フォームの内容を指定したURLへ送信するという動作です。
 ここでは`form`要素に送信先が指定されていないため、現在のURLに対してフォームを送信が行われるのをキャンセルしています。

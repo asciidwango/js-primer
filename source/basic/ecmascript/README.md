@@ -102,8 +102,8 @@ Transpilerでは、`class`構文を含むソースコードを`function`キー�
 Transpilerとしては[Babel][]や[TypeScript][]などが有名です。
 
 Polyfillとは、新しい関数やメソッドなどの仕様を満たすような実装を提供するライブラリのことです。
-たとえば、ES2016では`Array#inclues`というメソッドが追加されました。
-構文とは異なり`Array#inclues`のようなメソッドはビルトインオブジェクトを書き換えることで実装できます。
+たとえば、ES2016では`Array#includes`というメソッドが追加されました。
+構文とは異なり`Array#includes`のようなメソッドはビルトインオブジェクトを書き換えることで実装できます。
 Polyfillを提供するものとしては[core-js][]や[polyfill.io][]などが有名です。
 
 注意点としてはTranspilerやPolyfillはあくまで既存の機能で新しい機能を再現を試みているだけに過ぎません。
