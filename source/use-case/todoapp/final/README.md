@@ -40,7 +40,7 @@ Todoリストの表示は次の2つの部品（コンポーネント）から成
 [import, title:"src/view/TodoItemView.js"](./create-view/src/view/TodoItemView.js)
 
 `TodoItemView#createElement`メソッドの中身は元々`App`クラスでのHTML要素を作成する部分を元にしています。
-`createElement`メソッドは、`TodoItemMode`のインスタンスだけではなく`onUpdateTodo`と`onDeleteTodo`のハンドラ関数を受け取っています。
+`createElement`メソッドは、`TodoItemModel`のインスタンスだけではなく`onUpdateTodo`と`onDeleteTodo`のハンドラ関数を受け取っています。
 この受け取ったハンドラ関数はそれぞれ対応するイベントが発生した際に呼びだします。
 
 このように引数としてハンドラ関数を外から受け取ることで、イベントが発生したときの具体的な処理はViewクラスの外側に定義できます。
@@ -72,7 +72,7 @@ Todoリストの表示は次の2つの部品（コンポーネント）から成
 `onChange`のハンドラのコールバック関数で`TodoListView`クラスを使いTodoリストのHTML要素を作るように変更します。
 このとき`TodoListView#createElement`メソッドには次のようにそれぞれ対応するコールバック関数をわたします。
 
-- `onUpdateTodo`のコールバック関数では`TodoListModel#pdateTodo`メソッドを呼ぶ
+- `onUpdateTodo`のコールバック関数では`TodoListModel#updateTodo`メソッドを呼ぶ
 - `onDeleteTodo`のコールバック関数では`TodoListModel#deleteTodo`メソッドを呼ぶ
 
 [import, title:"src/App.js"](./create-view/src/App.js)

@@ -494,7 +494,7 @@ console.log(object.hasOwnProperty); // => undefined
 ```
 
 `Object.create`メソッドはES5から導入され、`Object.create(null)`というイディオムは、一部ライブラリなどで`Map`（連想配列とも言われる）の代わりとして利用されています。
-`Map`はあらゆる文字列をキー名にできますが、`Object`のインスタンスはデフォルトで`Object.protptype`にあるものがキーとして存在してしまうためです。
+`Map`はあらゆる文字列をキー名にできますが、`Object`のインスタンスはデフォルトで`Object.prototype`にあるものがキーとして存在してしまうためです。
 
 {{book.console}}
 ```js
