@@ -20,6 +20,7 @@
     "todo"
   ],
   "variables": {
+    "esversion": "2018",
     "console": "<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"
   },
   "pluginsConfig": {
