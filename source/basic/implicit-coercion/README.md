@@ -205,7 +205,7 @@ String({ key: "value" }); // => "[object Object]"
 String(function() {}); // 実装依存の結果
 ```
 
-<!-- TODO(es2017): Function.prototype.toStringはES2017で仕様化される -->
+<!-- TODO(es2018): Function.prototype.toStringはES2018で仕様化される -->
 
 上記の結果からも分かるように`String`コンストラクタ関数での明示的な変換は、万能な方法ではありません。
 真偽値、数値、文字列、undefined、null、シンボルのプリミティブ型の値に対して変換は見た目どおりの文字列を得ることができます。
