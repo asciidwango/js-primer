@@ -71,10 +71,10 @@ Pull Requestはいつでも歓迎しています。
     npm run start
     # open http://localhost:4000/
 
-また、Pull Requestを出した際に[Netlify](https://www.netlify.com/)上にプレビュー用のサイトが公開されます。
+また、Pull Requestを出した際に[Netlify](https://www.netlify.com/)上へプレビュー用のサイトが公開されます。
 Pull Request下部に表示されるCI Statusからプレビュー用のサイトを見られるため、GitBook上での表示を確認できます。
 
-![CI Status](https://monosnap.com/direct/mqsRXPY9b0mE6SUD9wwSjx2OrLiRjw)
+![CI Status](https://user-images.githubusercontent.com/19714/41819398-ac93bcf6-77fa-11e8-9f06-173613d940e8.png)
 
 ## テスト
 
