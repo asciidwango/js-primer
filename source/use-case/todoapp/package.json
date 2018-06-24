@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@std/esm": "^0.26.0",
-    "cypress": "^2.1.0",
+    "cypress": "^3.0.1",
     "mocha": "^5.1.1",
     "start-server-and-test": "^1.1.0"
   }
