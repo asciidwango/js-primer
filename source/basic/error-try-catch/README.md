@@ -6,13 +6,13 @@ author: laco
 
 この章ではJavaScriptにおける例外処理について学びます。
 
-## try...catch構文とthrow文 {#try-catch-throw}
+## try...catch構文 {#try-catch}
 
 [try...catch][]構文は例外が発生しうるブロックをマークし、例外が発生したときの処理を記述するための構文です。
 次の例のように、`try`文にはひとつの`try`ブロックがあり、`try`ブロック内で発生した例外を`catch`節でキャッチします。
+
 `try`ブロック内で例外が発生すると、それ以降の文は実行されず`catch`節に処理が移ります。
 `finally`節が存在するときには、例外がなげられたかどうかにかかわらず、かならず`try`文の最後に実行されます。
-`catch`節と`finally`節のうち、片方が存在していれば、もう片方の節は省略できます。
 
 {{book.console}}
 ```js
@@ -32,10 +32,33 @@ try {
 }
 ```
 
+また、`catch`節と`finally`節のうち、片方が存在していれば、もう片方の節は省略できます。
+`finally`節のみを書いた場合は例外がキャッチされないため、`finally`節を実行後に例外が発生します。
+
+{{book.console}}
+<!-- doctest: ReferenceError -->
+```js
+// catch節のみ
+try {
+    undefinedFunction();
+} catch (error) {
+    console.log(error);
+}
+// finally節のみ
+try {
+    undefinedFunction();
+} finally {
+    console.log("この文は実行されます");
+}
+// 上記のtry-finnalyで例外がキャッチされていないため
+console.log("この文は実行されません");
+```
+
+## throw文 {#throw}
+
 [throw][]文を使うとユーザーが例外を投げることができます。
 例外として投げられたオブジェクトは、`catch`節で関数の引数のようにアクセスできます。
-このオブジェクトは[例外識別子][]と呼ばれます。
-
+`catch`節でオブジェクトを参照できる識別子を[例外識別子][]と呼びます。
 
 {{book.console}}
 ```js
@@ -50,9 +73,7 @@ try {
 
 ## エラーオブジェクト {#error-object}
 
-`try`文や`throw`文ではあらゆるオブジェクトを例外識別子として扱えます。
-しかし、実際の開発において例外として投げられるのは、[Error][]オブジェクトとそこから派生するエラーオブジェクトです。
-
+`throw`文ではエラーオブジェクトを例外として投げることができます。
 
 ### Error {#error}
 
@@ -61,7 +82,7 @@ try {
 渡した文字列は`Error#message`プロパティに格納されます。
 
 次の例では、`assertPositiveNumber`関数でエラーオブジェクトを作成し、例外として`throw`しています。
-投げられたオブジェクトはcatch節の例外識別子として取得され、エラーメッセージが確認できます。
+投げられたオブジェクトはcatch節の例外識別子から取得でき、エラーメッセージが確認できます。
 
 {{book.console}}
 ```js
