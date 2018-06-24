@@ -102,7 +102,7 @@ commanderは`parse`メソッドを使ってコマンドライン引数をパー�
 
 [import commander-flag.js](src/commander-flag.js)
 
-このスクリプトを次のように実行すると、`--foo`オプションがパースされ、`program.foo`プロパティとして扱えるようになっています。
+このスクリプトを次のように実行すると、`--foo`オプションがパースされ、`options.foo`プロパティとして扱えるようになっています。
 
 ```shell-session
 $ node commander-flag.js --foo
@@ -120,7 +120,7 @@ Error: Cannot find module 'commander'
 
 [import commander-param.js](src/commander-param.js)
 
-`--foo`オプションに値を与えて実行すれば、文字列が`program.foo`プロパティにセットされていることがわかります。
+`--foo`オプションに値を与えて実行すれば、文字列が`options.foo`プロパティにセットされていることがわかります。
 
 ```shell-session
 $ node commander-param.js --foo bar

@@ -134,7 +134,7 @@ program.parse(process.argv);
 
 markedのオプションはオブジェクトを渡す形式です。
 オブジェクトのデフォルト値を明示的な値で上書きするときにはspreadプロパティを使うと便利です。([オブジェクトのコピー・マージ](../../../basic/object/README.md#copy-and-merge)を参照)
-次のようにデフォルトのオプションを表現したオブジェクトに対して、コマンドライン引数をパースして得られたオブジェクトを上書きします。
+次のようにデフォルトのオプションを表現したオブジェクトに対して、`program.opts`メソッドの戻り値で上書きします。
 
 <!-- 差分コードなので -->
 <!-- doctest:disable -->
@@ -142,7 +142,8 @@ markedのオプションはオブジェクトを渡す形式です。
 const markedOptions = {
     gfm: false,
     sanitize: false,
-    ...program
+    // オプションのkey-valueオブジェクトをマージする
+    ...program.opts()
 };
 ```
 

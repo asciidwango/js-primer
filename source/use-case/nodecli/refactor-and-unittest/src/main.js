@@ -15,6 +15,6 @@ fs.readFile(filePath, "utf8", (err, file) => {
         process.exit(err.code);
         return;
     }
-    const html = md2html(file, program);
+    const html = md2html(file, program.opts());
     console.log(html);
 });

@@ -12,7 +12,7 @@ const filePath = program.args[0];
 const markedOptions = {
     gfm: false,
     sanitize: false,
-    ...program
+    ...program.opts()
 };
 
 fs.readFile(filePath, "utf8", (err, file) => {
