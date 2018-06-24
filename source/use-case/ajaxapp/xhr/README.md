@@ -29,7 +29,7 @@ request.send();
 
 このように、XHRを使ったHTTP通信は基本的に3ステップで行われます。
 
-1. XHRのインスタンスを生成（`new XMLHttpRequest()`）
+1. XHRのインスタンスを生成（`new XMLHttpRequest`）
 2. リクエストを初期化（`request.open`メソッド）
 3. リクエストを送信（`request.send`メソッド）
 
