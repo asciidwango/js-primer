@@ -1,6 +1,56 @@
-## Pull Requestの送り方
+# Contribution Guide
 
-文章のtypoの修正程度なら、直接GitHub上で編集してPull Requestを送ってください。
+この書籍へのコントリビュート方法についてガイドラインです。
+
+## GitBook
+
+この書籍は[GitBook](https://www.gitbook.com/)で作成されています。
+また、文章はMarkdownで書かれおり、Markdownの記法についてはGitBookのヘルプを参照してください。
+
+- [Markdown · GitBook Toolchain Documentation](https://toolchain.gitbook.com/syntax/markdown.html)
+
+一部、`{{book.console}}`やHTMLコメントを使った仕組みも含まれているため、詳しくはこのガイドで紹介します。
+
+## Issues
+
+次のIssueを受け付けています。
+
+- 書籍や内容に対する質問 => [こちらから質問できます](https://github.com/asciidwango/js-primer/issues/new?template=question.md)
+- 内容のエラーや問題の報告 => [こちらからバグ報告できます](https://github.com/asciidwango/js-primer/issues/new?template=bug_report.md)
+- 内容をもっと詳細に解説の提案 => [こちらから提案できます](https://github.com/asciidwango/js-primer/issues/new?template=feature_request.md)
+- 新しいトピックなどの提案 => [こちらから提案できます](https://github.com/asciidwango/js-primer/issues/new?template=feature_request.md)
+
+[その他のIssue](https://github.com/asciidwango/js-primer/issues/new?template=other.md)も歓迎しています。
+
+## Pull Request
+
+Pull Requestはいつでも歓迎しています。
+
+**受け入れるPull Request**
+
+次の種類のPull Requestを受け付けています。
+基本的なPull Request（特に細かいもの）は、Issueを立てずにPull Requestを送ってもらって問題ありません。
+
+「このような修正/改善はどうでしょう？」という疑問がある場合は、Issueを立てて相談してください。
+
+- 誤字の修正
+- サンプルコードやスペルの修正
+- 別の説明方法の提案や修正
+- 文章をわかりやすくするように改善
+- ウェブサイトの改善
+- テストの改善
+
+:memo: **Note:** Pull Requestを受け入れるとあなたの貢献が[Contributorsリストに追加されます。
+また、Pull Requestを送った内容はこの書籍の[ライセンス](./LICENSE)（MIT and CC BY-NC）が適応されます。
+これは、あなたの貢献がこの書籍への努力的な寄付となることを意味しています。
+
+**受け入れていないPull Request**
+
+- [CODE OF CONDUCT](./.github/CODE_OF_CONDUCT.md)に反する内容を含むもの
+
+## 修正の送り方
+
+文章の誤字の修正程度なら、直接GitHub上で編集してPull Requestを送ってください。
 
 - [Editing files in your repository - User Documentation](https://help.github.com/articles/editing-files-in-your-repository/ "Editing files in your repository - User Documentation")
 
@@ -8,25 +58,23 @@
 
 1. Forkする
 2. Branchを作る: `git checkout -b my-new-feature`
-3. テストする: `npm test`
+3. テストする: `npm install && npm test`
 3. 変更をコミットする: `git commit -am 'Add some feature'`
 4. Pushする: `git push origin my-new-feature`
 5. Pull Requestを送る :D
 
-## 確認方法
+## 修正の確認方法
 
-`npm start`を実行後、[http://localhost:4000/](http://localhost:4000/)へアクセスすることでプレビューを見られます。
+この書籍は[GitBook](https://www.gitbook.com/)で作成されています。
+`npm start`を実行後、[http://localhost:4000/](http://localhost:4000/)へアクセスすることで、GitBookのプレビュー表示ができます。
 
     npm run start
     # open http://localhost:4000/
 
-また、Pull Requestを出した際にGitBook.com上でプレビュー用のビルドが公開されます。
-Pull Request下部に表示されるCI Statusからそれぞれプレビュービルドを見ることができます。
+また、Pull Requestを出した際に[Netlify](https://www.netlify.com/)上へプレビュー用のサイトが公開されます。
+Pull Request下部に表示されるCI Statusからプレビュー用のサイトを見られるため、GitBook上での表示を確認できます。
 
-![CI Status](https://cloud.githubusercontent.com/assets/19714/16651848/a221c226-4481-11e6-806f-65880da93422.png)
-
-- [プレビュー用 #jsprimer - GitBook](https://www.gitbook.com/book/azu/js-primer/details "プレビュー用 #jsprimer - GitBook")
-    - プレビュー以外には利用しないでください
+![CI Status](https://user-images.githubusercontent.com/19714/41819398-ac93bcf6-77fa-11e8-9f06-173613d940e8.png)
 
 ## テスト
 
@@ -294,6 +342,19 @@ ES2015は正式な名称ですが、ES6も一般によく使われている名�
 これから出てくる仕様はES2016、ES2017と年号形式であるためそちらに揃えていこうという形です。
 
 - [ES2015 or ES6 どちらを使う? #22](https://github.com/asciidwango/ES6book/issues/22 "ES2015 or ES6 どちらを使う? #22")
+
+### 現在のECMAScriptバージョンを参照するとき
+
+この書籍では"最新版のECMAScript"という定義は変更される場合があります。
+2017年においてはECMAScript 2017ですが、2018年では異なります。
+
+そのため、現在のECMAScriptバージョンを扱うときは`{{book.esversion}}`という変数を利用します。
+
+```markdown
+現在のECMAScriptの最新版はECMAScript {{book.esversion}}です。
+```
+
+この変数は[`book.json`](./book.json)に定義されています。
 
 ### var vs. let/const
 
