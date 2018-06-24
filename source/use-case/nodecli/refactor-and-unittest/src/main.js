@@ -3,8 +3,8 @@ const fs = require("fs");
 const md2html = require("./md2html");
 
 program
-    .option("--gfm <flag>", "GFMを有効にする")
-    .option("-S, --sanitize <flag>", "サニタイズを行う");
+    .option("--gfm", "GFMを有効にする")
+    .option("-S, --sanitize", "サニタイズを行う");
 
 program.parse(process.argv);
 const filePath = program.args[0];

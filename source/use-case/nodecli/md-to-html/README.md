@@ -120,8 +120,8 @@ https://asciidwango.github.io/js-primer/</p>
 <!-- doctest:disable -->
 ```js
 program
-    .option("--gfm <flag>", "GFMを有効にする")
-    .option("-S, --sanitize <flag>", "サニタイズを行う");
+    .option("--gfm", "GFMを有効にする")
+    .option("-S, --sanitize", "サニタイズを行う");
 
 program.parse(process.argv);
 ```
@@ -129,8 +129,8 @@ program.parse(process.argv);
 ### デフォルト設定を定義する {#declare-default}
 
 毎回すべての設定を明示的に入力させるのは不便なので、それぞれの変換オプションのデフォルト設定を定義します。
-今回は`gfm`オプションを`true`、`sanitize`オプションを`false`にします。
-markedのデフォルト設定と同じですが、アプリケーション側でデフォルト設定を持っておくことで、将来的にmarkedの挙動が変わったときにも影響を受けにくくなります。
+今回は`gfm`オプションと`sanitize`オプションをどちらもデフォルトで`false`にします。
+アプリケーション側でデフォルト設定を持っておくことで、将来的にmarkedの挙動が変わったときにも影響を受けにくくなります。
 
 markedのオプションはオブジェクトを渡す形式です。
 オブジェクトのデフォルト値を明示的な値で上書きするときにはspreadプロパティを使うと便利です。([オブジェクトのコピー・マージ](../../../basic/object/README.md#copy-and-merge)を参照)
@@ -140,7 +140,7 @@ markedのオプションはオブジェクトを渡す形式です。
 <!-- doctest:disable -->
 ```js
 const markedOptions = {
-    gfm: true,
+    gfm: false,
     sanitize: false,
     ...program
 };
@@ -154,8 +154,10 @@ const markedOptions = {
 定義したコマンドライン引数を使って、Markdownファイルを変換してみましょう。
 
 ```shell-session
-$ node main.js --gfm false sample.md
-$ node main.js -S true sample.md
+# gfmオプションを有効にする
+$ node main.js --gfm sample.md
+# sanitizeオプションを短縮形で有効にする
+$ node main.js -S sample.md
 ```
 
 これでMarkdown変換の設定をコマンドライン引数でオプションとして与えられるようになりました。

@@ -3,14 +3,14 @@ const fs = require("fs");
 const marked = require("marked");
 
 program
-    .option("--gfm <flag>", "GFMを有効にする")
-    .option("-S, --sanitize <flag>", "サニタイズを行う");
+    .option("--gfm", "GFMを有効にする")
+    .option("-S, --sanitize", "サニタイズを行う");
 
 program.parse(process.argv);
 const filePath = program.args[0];
 
 const markedOptions = {
-    gfm: true,
+    gfm: false,
     sanitize: false,
     ...program
 };
