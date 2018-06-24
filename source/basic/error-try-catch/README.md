@@ -6,13 +6,13 @@ author: laco
 
 この章ではJavaScriptにおける例外処理について学びます。
 
-## try...catch構文とthrow文 {#try-catch-throw}
+## try...catch構文 {#try-catch}
 
 [try...catch][]構文は例外が発生しうるブロックをマークし、例外が発生したときの処理を記述するための構文です。
 次の例のように、`try`文にはひとつの`try`ブロックがあり、`try`ブロック内で発生した例外を`catch`節でキャッチします。
+
 `try`ブロック内で例外が発生すると、それ以降の文は実行されず`catch`節に処理が移ります。
 `finally`節が存在するときには、例外がなげられたかどうかにかかわらず、かならず`try`文の最後に実行されます。
-`catch`節と`finally`節のうち、片方が存在していれば、もう片方の節は省略できます。
 
 {{book.console}}
 ```js
@@ -31,6 +31,28 @@ try {
     console.log("この文は実行されます");
 }
 ```
+
+また、`catch`節と`finally`節のうち、片方が存在していれば、もう片方の節は省略できます。
+`finally`節のみを書いた場合は例外がキャッチされないため、`finnally`節を実行後に例外が発生します。
+
+```js
+// catch節のみ
+try {
+    undefinedFunction();
+} catch (error) {
+    console.log(error);
+}
+// finally節のみ
+try {
+    undefinedFunction();
+} finally {
+    console.log("この文は実行されます");
+}
+// 上記のtry-finnalyで例外がキャッチされていないため
+console.log("この文は実行されません");
+```
+
+## throw文 {#throw}
 
 [throw][]文を使うとユーザーが例外を投げることができます。
 例外として投げられたオブジェクトは、`catch`節で関数の引数のようにアクセスできます。
