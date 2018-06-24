@@ -98,6 +98,7 @@ const program = require("commander");
 ```
 
 commanderは`parse`メソッドを使ってコマンドライン引数をパースします。
+パースした後に`opts`メソッドを呼び出すと、定義したオプションと与えられた値をマップオブジェクトとして取り出すことができます。
 次の`commander-flag.js`では、値をもたないオプションを真偽値にパースしています。
 
 [import commander-flag.js](src/commander-flag.js)
