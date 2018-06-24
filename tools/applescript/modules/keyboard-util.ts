@@ -1,4 +1,4 @@
-const runJxa: (fn: (...args: any[]) => any) => (...args: any[]) => Promise<void> = require('osa2');
+import { run } from "@jxa/run";
 
 export type ModifierOption = {
     shift?: boolean;
@@ -28,11 +28,11 @@ function createModifier(modifierOption: ModifierOption) {
 
 export function sendKeyStroke(key: string, modifierOption: ModifierOption) {
     const modifiers = createModifier(modifierOption);
-    return runJxa((key, modifiers) => {
+    return run((key, modifiers) => {
         const SystemEvents = Application("System Events");
-        const Firefox = Application("FirefoxDeveloperEdition");
+        const Firefox = Application("Firefox");
         Firefox.activate();
         delay(1.0); // wait for active
         SystemEvents.keystroke(key, { using: modifiers });
-    })(key, modifiers);
+    }, key, modifiers);
 }
