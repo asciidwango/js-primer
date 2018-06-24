@@ -35,6 +35,9 @@ try {
 また、`catch`節と`finally`節のうち、片方が存在していれば、もう片方の節は省略できます。
 `finally`節のみを書いた場合は例外がキャッチされないため、`finally`節を実行後に例外が発生します。
 
+<!-- 例外が発生するので実行はしない -->
+<!-- doctest:disable -->
+{{book.console}}
 ```js
 // catch節のみ
 try {
