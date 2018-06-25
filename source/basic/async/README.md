@@ -114,6 +114,7 @@ setTimeout(() => {
 }, 10);
 console.log("重たい同期処理を実行します");
 new Array(10e6).fill(0);
+console.log("重たい同期処理を実行しました");
 ```
 
 どの程度遅れるかは実行している端末にもよりますが、MacBook Pro 2017モデルでは、非同期処理のコールバックが呼ばれるまで1500ミリ秒かかりました。
@@ -139,6 +140,10 @@ ECMAScriptの仕様ではJobQueueと呼ばれるキューで次の行うタス�
 非同期処理の中にも例外的にメインスレッドとは別のスレッドで実行できるAPIが実行環境で提供されている場合があります。
 ブラウザでは[Web Worker][] APIはメインスレッドではないところでJavaScriptを実行できため、非同期処理を**並列（Parallel）**に処理できます。
 このように、非同期処理ですべてをひとくくりにはできませんが、基本的な非同期処理（タイマーなど）はメインスレッドで実行されているという性質を知ることは大切です。
+
+## 非同期処理と例外処理 {#async-processing-and-error-handling}
+
+
 
 [文と式]: ../statement-expression/README.md
 [Web Worker]: https://developer.mozilla.org/ja/docs/Web/API/Web_Workers_API/Using_web_workers
