@@ -3,7 +3,7 @@ try {
     // setTimeoutはこのスコープではなくグローバルスコープで実行される
     setTimeout(() => {
         throw new Error("message");
-    })
+    });
 } catch (error) {
     console.log(error); // => Error: message
 }

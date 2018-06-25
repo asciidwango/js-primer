@@ -8,7 +8,7 @@ const ThrowFn = (callback) => {
 try {
     ThrowFn(() => {
         throw new Error("message");
-    })
+    });
 } catch (error) {
     console.log(error); // => Error: message
 }

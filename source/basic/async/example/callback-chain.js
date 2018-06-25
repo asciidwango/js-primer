@@ -37,7 +37,7 @@ asyncDo((error, message) => {
         console.log(message);
     });
 
-    doTask()
+    doTask();
 });
 
 

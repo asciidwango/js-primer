@@ -3,7 +3,7 @@ const ThrowFn = (callback) => {
     callback();
 };
 try {
-    ThrowFn(() => {})
+    ThrowFn(() => {});
 } catch (error) {
     console.log(error); // => Error: message
 }

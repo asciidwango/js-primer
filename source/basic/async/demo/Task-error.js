@@ -19,8 +19,8 @@ try {
 // ng
 // task.invoke();
 // ok
-try{
+try {
     task.invoke();
-}catch(error){
+} catch (error) {
     console.log("catch", error);
 }
