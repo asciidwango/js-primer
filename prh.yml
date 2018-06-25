@@ -236,8 +236,11 @@ rules:
   - expected: HTML要素
     patterns:
       - DOM要素
+  - expected: 同期処理
+    patterns:
+      - 動機処理
 
-  # 一致とマッチ
+      # 一致とマッチ
   ## 一致は ===
   - expected: $1一致
     patterns:
