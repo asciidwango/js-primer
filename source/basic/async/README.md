@@ -143,7 +143,69 @@ ECMAScriptの仕様ではJobQueueと呼ばれるキューで次の行うタス�
 
 ## 非同期処理と例外処理 {#async-processing-and-error-handling}
 
+非同期処理は処理の流れが同期処理とは異なることについて紹介しましたが、
+これは例外処理においても大きな影響を与えます。
 
+同期処理では、`try...catch`構文を使うことで同期的に発生した例外はキャッチできます。（詳細は「[例外処理][]」の章を参照）
+
+{{book.console}}
+```js
+try {
+    throw new Error("同期的なエラー");
+} catch (error) {
+    console.log("同期的なエラーをキャッチできる");
+}
+console.log("この文は実行されます");
+```
+
+非同期処理では、`try...catch`構文を使っても非同期的に発生した例外をキャッチできません。
+次のコードでは、10ミリ秒後に非同期的なエラーを発生させています。
+しかし、`try...catch`構文では次のような非同期エラーをキャッチすることはできません。
+
+{{book.console}}
+<!-- doctest: Error -->
+```js
+try {
+    setTimeout(() => {
+        throw new Error("非同期的なエラー");
+    }, 10);
+} catch (error) {
+    console.log("非同期手なエラーはキャッチできない");
+}
+console.log("この文は実行されます");
+```
+
+コード的には`try`ブロックの中で、`setTimeout`関数によってタイマーへコールバック関数が登録されます。
+`try`ブロックはそのブロック内で起きた同期的なエラーのみをキャッチする構文です。
+しかし、登録されたコールバック関数が実際に実行され例外を投げるのは、すべての同期処理が終わった後となります。
+つまり、`try`ブロックで例外が発生しうるとマークした**範囲外**で例外が発生します。
+
+そのため、`setTimeout`関数のコールバック関数における例外は、次のようにコールバック関数内で同期的なエラーとしてキャッチする必要があります。
+
+{{book.console}}
+```js
+try {
+    setTimeout(() => {
+        try {
+            // setTimeoutの外側からは非同期なエラーという扱い
+            // setTimeoutの内側からは同期的なエラーという扱い
+            throw new Error("エラー");
+        } catch (error) {
+            console.log("同期的なエラーをキャッチできる");
+        }
+    }, 10);
+} catch (error) {
+    console.log("非同期的なエラーはキャッチできない");
+}
+
+console.log("この文は実行されます");
+```
+
+このような非同期処理では、setTimeoutの内側の例外をキャッチできますが、setTimeoutの外側からは例外は発生したかわかりません。
+
+JavaScriptでは、この非同期処理と例外処理を扱う方法としてさまざまなパターンが存在しています。
+次の章では、そのパターンとしてエラーファーストコールバック、Promise、Async Functionについてを見ていきます。
 
 [文と式]: ../statement-expression/README.md
+[例外処理]: ../error-try-catch/README.md
 [Web Worker]: https://developer.mozilla.org/ja/docs/Web/API/Web_Workers_API/Using_web_workers
