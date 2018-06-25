@@ -98,11 +98,12 @@ const program = require("commander");
 ```
 
 commanderは`parse`メソッドを使ってコマンドライン引数をパースします。
+パースした後に`opts`メソッドを呼び出すと、定義したオプションと与えられた値をオブジェクトとして取り出すことができます。
 次の`commander-flag.js`では、値をもたないオプションを真偽値にパースしています。
 
 [import commander-flag.js](src/commander-flag.js)
 
-このスクリプトを次のように実行すると、`--foo`オプションがパースされ、`program.foo`プロパティとして扱えるようになっています。
+このスクリプトを次のように実行すると、`--foo`オプションがパースされ、`options.foo`プロパティとして扱えるようになっています。
 
 ```shell-session
 $ node commander-flag.js --foo
@@ -120,7 +121,7 @@ Error: Cannot find module 'commander'
 
 [import commander-param.js](src/commander-param.js)
 
-`--foo`オプションに値を与えて実行すれば、文字列が`program.foo`プロパティにセットされていることがわかります。
+`--foo`オプションに値を与えて実行すれば、文字列が`options.foo`プロパティにセットされていることがわかります。
 
 ```shell-session
 $ node commander-param.js --foo bar
