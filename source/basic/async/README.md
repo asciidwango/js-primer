@@ -28,6 +28,7 @@ author: azu
 しかし、`createLargeArray`関数は1000万回の`0`を代入するというとても重たい処理です。
 そのため、`createLargeArray`関数を呼び出したあとの次の処理が呼ばれるまでには時間がかかります。
 
+{{book.console}}
 ```js
 // 重たい処理の例として10の6乗コの要素を持つ配列を0に初期化し返す
 function createLargeArray() {
@@ -56,6 +57,8 @@ console.log(array.length); // => 10e6
 JavaScriptにおいて代表的な非同期処理を行う関数として`setTimeout`関数があります。
 `setTimeout`関数は`delay`ミリ秒後に、`コールバック関数`を呼び出すようにタイマーへ登録する非同期処理です。
 
+<!-- doctest:disable -->
+
 ```js
 setTimeout(コールバック関数, delay);
 ```
@@ -64,6 +67,7 @@ setTimeout(コールバック関数, delay);
 `setTimeout`関数のコールバックは非同期で呼ばれます。
 そのため、次の行に書かれている同期的処理は非同期処理よりも先に評価されます。
 
+{{book.console}}
 ```js
 console.log("1. 重たい処理を10ミリ秒後に実行します");
 setTimeout(() => {
@@ -97,6 +101,7 @@ JavaScriptはブラウザにおいてはメインスレッドで実行される�
 コールバック関数はメインスレッドの重たい処理の影響は受けないはずです。
 しかし、実際にはメインスレッドの重たいの影響を受けるため、タイマーに登録した時間より遅れて非同期でコールバック関数が呼び出されます。
 
+{{book.console}}
 ```js
 const startTime = Date.now();
 // 10ミリ秒後にコールバック関数を呼び出すようにタイマーに登録する
