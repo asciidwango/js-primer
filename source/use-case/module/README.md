@@ -12,7 +12,7 @@ JavaScriptにおいて、モジュールはひとつのJavaScriptファイルで
 あるモジュールシステムではモジュールとして使えるファイルが、別のモジュールシステムでは使えないこともあります。
 モジュールシステムはJavaScriptの実行環境によって異なるため、それぞれの違いを知っておく必要があります。
 
-この章ではJavaScriptの代表的なモジュールシステムである **ECMAScriptモジュール** と **CommonJSモジュール** について、それぞれの概要を見ていきます。
+この章ではJavaScriptの代表的なモジュールシステムである **ECMAScriptモジュール（ESモジュール）** と **CommonJSモジュール** について、それぞれの概要を見ていきます。
 
 ## ECMAScriptモジュール {#es-modules}
 
@@ -191,7 +191,18 @@ import { default as otherDefault, foo } from "other.js";
 import "other.js";
 ```
 
-### script type module
+### WebブラウザでECMAScriptモジュールを実行する
+
+Webブラウザは、通常のスクリプトとECMAScriptモジュールを区別してJavaScriptファイルを読み込みます。
+ECMAScriptモジュールとしてJavaScriptファイルを読み込むためには、`script`タグに`type="module"`という属性を付与します。
+`type="module"`属性が付与されない場合はスクリプトとして扱われ、ECMAScriptモジュールの機能は使えません。
+スクリプトとして読み込まれたJavaScriptで`import`・`export`文を使用すると、シンタックスエラーが発生します。
+
+
+```html
+<!-- myModule.jsをECMAScriptモジュールとして読み込む -->
+<script type="module" src="./myModule.js"></script>
+```
 
 
 ## Node.jsとCommonJS {#module-system}
