@@ -15,6 +15,14 @@
 - ECMAScriptには非同期処理を行うコールバックを取るものがない
 - `setTimeout`関数を利用する
 
+## 仕様
+
+- PendingJob
+- https://tc39.github.io/ecma262/#sec-enqueuejob
+- https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-settimeout
+- ECMAScript と　DOM
+     - https://html.spec.whatwg.org/multipage/webappapis.html#integration-with-the-javascript-job-queue
+
 ## 紹介する項目
 
 - 非同期処理
@@ -105,18 +113,13 @@ try{
     - 実行する処理を分けて細かく切り替えて実行する
     - 並行的に処理することで非同期処理をしている
         - これのメリットはロックしなくてもなんとなく動くこと
-    - TODO: AgentとJob Queueと実行コンテキスト解説
-    - <https://twitter.com/azu_re/status/1009093690172715009>
-    - async/awaitはgeneratorによって現在の実行コンテキスっとのスタックを置き換える
-    - なので実行コンテキスト的には継続しているためtry-catchできる?
-    - [ ] Generatorを使ったJob Queuesの解説
-- 非同期処理と例外処理
+- 非同期処理では例外がキャッチできない
     - 今までやってきた処理はすべて同期処理でした
     - そのため、関数を呼び出しもtry-catchできました
     - 非同期処理のコールバックはtry-catchできない
     - try-catchは実行したタイミングでのエラーをキャッチできるもの
         - なぜなら、コールバック関数が実際に実装するときにはすでにtry-catchのマークしたエリアを抜けているためです。
-    - [ ] コード例: settimeout
+    - [x] コード例: settimeout
 - 非同期処理でのエラーの考え方
     - setTimeoutは非同期処理ですが、それ自体は必ずコールバック関数を呼び出す(成功するため)、
     - 確率的に失敗する次のような非同期関数を例に考えていきましょう。
@@ -159,7 +162,12 @@ try{
     - 見た目も同期的に書けるのに加えて、async function内ではPromiseの非同期処理に対してtry-catchが行えます。
     - これはawait式がPromiseが解決されるまで待ち、resolvedの場合は値を返し、rejectの場合は例外をthrowし直すためです。
     - そのため、await式はPromiseをunwrapする構文と言えるでしょう
-
+- 未使用
+    - TODO: AgentとJob Queueと実行コンテキスト解説
+    - <https://twitter.com/azu_re/status/1009093690172715009>
+    - async/awaitはgeneratorによって現在の実行コンテキスっとのスタックを置き換える
+    - なので実行コンテキスト的には継続しているためtry-catchできる?
+    - [ ] Generatorを使ったJob Queuesの解説
 
 ```
 {signal: [
