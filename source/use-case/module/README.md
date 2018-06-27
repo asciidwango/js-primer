@@ -4,15 +4,10 @@ author: laco
 
 # モジュール {#module}
 
-JavaScriptにおいて、モジュールはひとつのJavaScriptファイルです。
+この章では **ECMAScriptモジュール** について見ていきます。
+ECMAScriptモジュールは、JavaScriptファイルをモジュールとして扱うための機能です。
 モジュールは、変数や関数などを外部にエクスポートします。
 また、別のモジュールで宣言された変数や関数などをインポートして使うことができます。
-
-モジュールのふるまいは**モジュールシステム**によって決められます。
-あるモジュールシステムではモジュールとして使えるファイルが、別のモジュールシステムでは使えないこともあります。
-モジュールシステムはJavaScriptの実行環境によって異なるため、それぞれの違いを知っておく必要があります。
-
-この章ではJavaScriptの代表的なモジュールシステムである **ECMAScriptモジュール（ESモジュール）** と **CommonJSモジュール** について、それぞれの概要を見ていきます。
 
 ## ECMAScriptモジュール {#es-modules}
 
@@ -191,25 +186,55 @@ import { default as otherDefault, foo } from "other.js";
 import "other.js";
 ```
 
-### WebブラウザでECMAScriptモジュールを実行する
+## モジュールの解決と実行環境
 
-Webブラウザは、通常のスクリプトとECMAScriptモジュールを区別してJavaScriptファイルを読み込みます。
-ECMAScriptモジュールとしてJavaScriptファイルを読み込むためには、`script`タグに`type="module"`という属性を付与します。
-`type="module"`属性が付与されない場合はスクリプトとして扱われ、ECMAScriptモジュールの機能は使えません。
-スクリプトとして読み込まれたJavaScriptで`import`・`export`文を使用すると、シンタックスエラーが発生します。
+ECMAScriptが言語仕様として定めているのは、モジュールを扱うための構文だけです。
+`import`文や`export`文の`from`に渡されたモジュール名は、実行環境がもつ **モジュールシステム** によって解釈され、対応するファイルが決定されます。
+つまり、あるモジュールシステムでモジュールとして使えるファイルが、別のモジュールシステムでは使えないこともあります。
+モジュールシステムはJavaScriptの実行環境によって異なるため、それぞれの違いを知っておく必要があります。
 
+### Webブラウザのモジュールシステム
+
+Webブラウザは`script`タグによってJavaScriptファイルを読み込み、実行します。
+ECMAScriptモジュールとしてJavaScriptファイルを読み込むためには、次のように`script`タグに`type="module"`という属性を付与します。
 
 ```html
 <!-- myModule.jsをECMAScriptモジュールとして読み込む -->
 <script type="module" src="./myModule.js"></script>
+<!-- インラインでも同じ -->
+<script type="module">
+import { foo } from "./other.js";
+</script>
 ```
 
+`type="module"`属性が付与されない場合はスクリプトとして扱われ、ECMAScriptモジュールの機能は使えません。
+スクリプトとして読み込まれたJavaScriptで`import`・`export`文を使用すると、シンタックスエラーが発生します。
+
+また、Webブラウザにはファイルシステムがないため、モジュールの取得はネットワーク経由で解決されます。
+そのため、モジュール名は実際のファイルの絶対URLあるいは相対URLを指定する必要があります。
+
+### モジュールバンドラー
+
+長い間Webブラウザにはモジュールシステムがなかったため、JavaScriptの開発ではモジュール化されたソースコードを **バンドル** してひとつのファイルに結合するのが一般的でした。
+モジュールのバンドルには **モジュールバンドラー** と呼ばれるツールを使います。
+モジュールバンドラーは起点となるモジュールが依存するモジュールを次々にたどり、適切な順序になるように結合します。
+
+[JavaScriptモジュールについてのドキュメント][]では、
+WebにおけるJavaScriptのモジュールと、バンドルする目的などについて詳しくまとめられています。
 
 ## Node.jsとCommonJS {#module-system}
 
-## バンドル
+[Node.js][]はWebブラウザ以外の主要なJavaScript実行環境のひとつです。
+Node.jsには[CommonJS][]という別のモジュールシステムがあります。
+ECMAScriptモジュールについてもサポートされる予定ですが、現在はまだ安定した機能としてサポートされていません。
 
+commonjsの話
+
+node_modulesから読んだり、拡張子が暗黙に補完される話
 
 
 [export文]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export
 [import文]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import
+[JavaScriptモジュールについてのドキュメント]: https://developers.google.com/web/fundamentals/primers/modules
+[Node.js]: https://nodejs.org/ja/
+
