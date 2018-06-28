@@ -24,21 +24,21 @@ author: azu
 一方、同期処理でとても重たい処理が行われていた場合には問題があります。
 同期処理ではひとつの処理（重たい処理）が終わるまで次の処理を行うことができないためです。
 
-次のコードでは`createLargeArray`関数で巨大な配列を作り初期化したものを返しています。
-しかし、`createLargeArray`関数は1000万回の`0`を代入するという重たい処理です。（実際にどの程度が重たいかは実行する端末の性能で変化します）
-そのため、`createLargeArray`関数を呼び出すとその処理が完了するまで、次の処理（次の行）が呼ばれません。
+次のコードの`doHeavyTask`関数では1000万回の`0`を代入するという**重たい処理**を意図的に行っています。（実際にどの程度が重たいかは実行する端末の性能で変化します）そのため、`doHeavyTask`関数を呼び出すとその処理が完了するまで、次の処理（次の行）が呼ばれません。
+`Date.now`メソッドで時間を取得し、**重たい処理**がどの程度処理をブロッキングしているかを計測しています。
 
 {{book.console}}
 ```js
 // 重たい処理の例として10の6乗コの要素を持つ配列を0に初期化し返す
-function createLargeArray() {
+function doHeavyTask() {
     console.log("重たい処理を実行します");
     return new Array(10e6).fill(0);
 }
 
-const array = createLargeArray();
-// "重たい処理"が終わるまで次の処理は実行されない
-console.log(array.length); // => 10e6
+const startTime = Date.now();
+doHeavyTask(); // 重たい処理を実行する
+const endTime = Date.now();
+console.log(`"重たい処理"が完了するまで${endTime - startTime}ミリ秒かかりました`);
 ```
 
 同期処理は直感的な処理順ですが、このような重たい処理や終わるかわからない処理がある場合に問題となります。
