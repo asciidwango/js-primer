@@ -32,7 +32,7 @@ author: azu
 // 重たい処理の例として10の6乗コの要素を持つ配列を0に初期化し返す
 function doHeavyTask() {
     console.log("重たい処理を実行します");
-    return new Array(10e6).fill(0);
+    new Array(10e6).fill(0);
 }
 
 const startTime = Date.now();
