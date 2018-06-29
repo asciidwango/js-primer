@@ -48,7 +48,7 @@ const successTask = () => {
 };
 const failtureTask = () => {
     throw new Error("タスクが失敗しました");
-}
+};
 
 callTaskAsync(successTask, (error, result) => {
     if (error) {
