@@ -239,7 +239,110 @@ console.log("この文は実行されます");
 この章では主要な非同期処理と例外の扱い方としてエラーファーストコールバック、Promise、Async Functionの3つを見ていきます。
 現実のコードではすべてのパターンが実用的です。そのため、非同期処理の選択肢を増やす意味でも理解することは重要です。
 
+## エラーファーストコールバック {#error-first-callback}
+
+**非同期処理の中**で例外を発生した場合に、その例外を**非同期処理の外**へ伝える方法として**エラーファーストコールバック**があります。
+エラーファーストコールバックとは、例外が発生したときはそエラーファーストコールバックのエラーをコールバック関数の最初の引数に入れて呼び出すという手法です。
+このエラーファーストコールバックはNode.jsで好んで使われ、Node.jsの標準APIにおいても非同期処理を行う関数では利用されています。
+
+たとえば、Node.jsでは`fs.readFile`関数というファイルシステムからファイルをロードする非同期処理を行う関数があります。
+指定したパスのデータを読むため、ファイルが存在しない場合やアクセス権限の問題から読み取りに失敗することがあります。
+そのため、`fs.readFile`関数の第2引数にわたすコールバック関数にはエラーファーストコールバックを指定します。
+
+ファイルを読み込むことに失敗した場合には、
+コールバック関数の1番目の引数にはErrorオブジェクトが渡されます。
+ファイルを読み込むことに成功した場合には、コールバック関数の1番目の引数には`null`、2番目の引数に読み込んだデータを渡します。
+
+```js
+fs.readFile("./example.txt", (error, data) => {
+    if (error) {
+        // 読み込み中にエラーが発生しました
+    } else {
+        // データを読み込むことができた
+    }
+});
+```
+
+実際にエラーファーストコールバック関数を扱う処理を作りながら見ていきましょう。
+
+次のコードの`callTaskAsync`関数は、第1引数に非同期的に呼び出すタスクとなる関数を受け取り、第2引数にエラーファーストコールバック関数を受け取ります。
+第1引数のタスクとなる関数が失敗（例外を投げた）場合には、第2引数にエラーファーストコールバック関数にはエラーオブジェクトを渡して呼び出します。
+一方、タスクとなる関数が成功（例外を投げなかった）場合には、第2引数にエラーファーストコールバック関数には`null`とそのタスクの返り値を渡して呼び出します。
+
+```js
+/**
+ * `task`を実行して、成功なら`callback(null, タスクの返り値)`と呼び出す
+ * 失敗なら`callback(error)`と呼び出す
+ * @param {Function} task 
+ * @param {(error: null|Error, result: *)} callback 
+ */
+function callTaskAsync(task, callback) {
+    // タスクを非同期的に呼び出して、結果によってcallbackを呼び分ける
+    setTimeout(() => {
+        try {
+            const result = task();
+            callback(null, result);
+        } catch (error) {
+            callback(error);
+        }
+    }, 10);
+}
+
+const successTask = () => {
+    return "タスクが成功しました";
+};
+const failtureTask = () => {
+    throw new Error("タスクが失敗しました");
+};
+// sucessTaskは成功するため、`error`は`null`となり、`result`に値が入る
+callTaskAsync(successTask, (error, result) => {
+    if (error) {
+        console.log(error); // 呼ばれない
+    } else {
+        console.log(result); // => "タスクが成功しました"
+    }
+});
+// failtureTaskは失敗するため、`error`にはErrorオブジェクトが入る
+callTaskAsync(successTask, (error, result) => {
+    if (error) {
+        console.log(error); // => Error: タスクが失敗しました
+    } else {
+        console.log(result); // 呼ばれない
+    }
+});
+```
+
+このように最初の引数にはエラーオブジェクトまたは`null`を入れ、それ以降の引数にデータを入れるというルール化したものをエラーファーストコールバック関数と呼びます。Node.jsでは標準APIの非同期処理においてエラーファーストコールバック関数が採用されています。
+詳しい扱い方については[ユースケース: Node.jsでCLIアプリケーション][]について紹介します。
+
+コールバック関数でエラー結果を受け取る方法は他にもやり方があります。
+たとえば、成功したときに呼び出すコールバック関数と失敗したときに呼び出すコールバック関数の2つを受け取る方法があります。
+さきほどの`callTaskAsync`をその形に変更すると次のような実装になります。
+
+```js
+/**
+ * `task`を実行して、成功なら`successCallback(タスクの返り値)`と呼び出す
+ * 失敗なら`failureCallback(error)`と呼び出す
+ */
+function callTaskAsync(task, successCallback, failureCallback) {
+    setTimeout(() => {
+        try {
+            const result = task();
+            successCallback(result);
+        } catch (error) {
+            failureCallback(error);
+        }
+    }, 10);
+}
+```
+
+このように、**非同期処理の中**で例外を発生した場合に、その例外を**非同期処理の外**へ伝える方法はさまざまな手段が考えられます。
+エラーファーストコールバックはその形を決めた**ただの共通のルール**です。そのため、必ずしもこのパターンがすべてにおいて正しいわけではありません。
+一方で、非同期処理における例外処理のパターンを決めることのメリットとして、エラーハンドリングの共通化や書きやすさなどがあります。
+
+次のセクションでは、エラーファーストコールバックでは**ただの共通のルール**であったエラーハンドリングを、**統一的なインターフェース**として扱えるようにしたPromiseを見ていきます。
 
 [文と式]: ../statement-expression/README.md
 [例外処理]: ../error-try-catch/README.md
 [Web Worker]: https://developer.mozilla.org/ja/docs/Web/API/Web_Workers_API/Using_web_workers
+[ユースケース: Node.jsでCLIアプリケーション]: ../../use-case/node-cli/README.md
