@@ -22,6 +22,12 @@ jobs:
     - stage: test
       node_js: '8'
       script: npm test
+    # E2E
+    - stage: e2e
+      # masterのみ実行
+      if: branch = master AND type != pull_request
+      node_js: 'stable'
+      script: npm run e2e
     # deploy
     - stage: deploy
       node_js: 'stable'
