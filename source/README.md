@@ -24,7 +24,7 @@
     - [関数とthis](./basic/function-this/README.md)
     - [クラス](./basic/class/README.md)
     - [例外処理](./basic/error-try-catch/README.md)
-    - Promise
+    - [非同期処理](./basic/async/README.md)
     - [JSON](./basic/json/README.md)
     - [Date](./basic/date/README.md)
     - [Map/Set](./basic/map-and-set/README.md)

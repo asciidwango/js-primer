@@ -84,7 +84,8 @@ describe("doctest:md", function() {
                         } else {
                             strictEval(poweredCode, {
                                 require,
-                                console
+                                console,
+                                setTimeout
                             });
                         }
                     } catch (error) {
