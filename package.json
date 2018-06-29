@@ -29,6 +29,7 @@
     "test:todoapp": "cd ./source/use-case/todoapp && npm install && npm test",
     "test:e2e:todoapp": "cd ./source/use-case/todoapp && npm install && npm run e2e",
     "test": "npm-run-all -l --parallel test:* lint",
+    "test:e2e": "npm-run-all -l --parallel test:e2e:*",
     "travis": "npm-run-all -l --parallel test build",
     "build:applescript": "tsc -p tools/applescript"
   },

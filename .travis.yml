@@ -25,9 +25,9 @@ jobs:
     # E2E
     - stage: e2e
       # masterか(todoapp)がスコープの時だけ実行する
-      if: (branch = master) OR (commit_message !~ /(todo)/ )
+      if: (branch = master) OR (commit_message =~ /(todo)/)
       node_js: 'stable'
-      script: npm run e2e
+      script: npm run test:e2e
     # deploy
     - stage: deploy
       node_js: 'stable'
