@@ -236,11 +236,12 @@ rules:
   - expected: HTML要素
     patterns:
       - DOM要素
-  - expected: 同期処理
+  - expected: エラーファーストコールバック
     patterns:
-      - 動機処理
+      - エラーファーストコールバック関数
+    
 
-      # 一致とマッチ
+  # 一致とマッチ
   ## 一致は ===
   - expected: $1一致
     patterns:
@@ -289,6 +290,9 @@ rules:
   - expected: されています
     patterns:
       - されいます
+  - expected: 同期処理
+    patterns:
+      - 動機処理
 
 # 文体
   - expected: どのように
