@@ -329,8 +329,8 @@ callTaskAsync(successTask, (error, result) => {
 
 ```js
 /**
- * `task`を実行して、成功なら`successCallback(タスクの返り値)`と呼び出す
- * 失敗なら`failureCallback(error)`と呼び出す
+ * `task`を実行して、成功なら`successCallback(タスクの返り値)`を呼び出す
+ * 失敗なら`failureCallback(error)`を呼び出す
  */
 function callTaskAsync(task, successCallback, failureCallback) {
     setTimeout(() => {
@@ -346,7 +346,7 @@ function callTaskAsync(task, successCallback, failureCallback) {
 
 このように、**非同期処理の中**で例外を発生した場合に、その例外を**非同期処理の外**へ伝える方法はさまざまな手段が考えられます。
 エラーファーストコールバックはその形を決めた**ただの共通のルール**の1つです。そのため、エラーファーストコールバック以外の方法が使われていることも多いです。
-一方で、非同期処理における例外処理のパターンを決めることのメリットとして、エラーハンドリングの共通化できることや書きやすさなどがあります。
+一方で、非同期処理における例外処理のルールを決めることのメリットとして、エラーハンドリングのパターン化ができることなどがあります。
 
 エラーファーストコールバックは非同期処理におけるエラーハンドリングの**ただの共通のルール**でした。
 次のセクションでは、ES2015で導入されたPromiseという非同期処理を**統一的なインターフェース**として扱えるようにしたものを見ていきます。
