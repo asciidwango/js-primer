@@ -354,4 +354,4 @@ function callTaskAsync(task, successCallback, failureCallback) {
 [文と式]: ../statement-expression/README.md
 [例外処理]: ../error-try-catch/README.md
 [Web Worker]: https://developer.mozilla.org/ja/docs/Web/API/Web_Workers_API/Using_web_workers
-[ユースケース: Node.jsでCLIアプリケーション]: ../../use-case/node-cli/README.md
+[ユースケース: Node.jsでCLIアプリケーション]: ../../use-case/nodecli/README.md
