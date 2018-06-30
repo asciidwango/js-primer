@@ -291,33 +291,34 @@ function callTaskAsync(task, callback) {
 const successTask = () => {
     return "タスクが成功しました";
 };
-const failtureTask = () => {
-    throw new Error("タスクが失敗しました");
-};
 // sucessTaskは成功するため、`error`は`null`となり、`result`に値が入る
 callTaskAsync(successTask, (error, result) => {
     if (error) {
-        console.log(error); // 呼ばれない
+        console.log(error); // この文は実行されません
     } else {
         console.log(result); // => "タスクが成功しました"
     }
 });
+const failtureTask = () => {
+    throw new Error("タスクが失敗しました");
+};
 // failtureTaskは失敗するため、`error`にはErrorオブジェクトが入る
-callTaskAsync(successTask, (error, result) => {
+callTaskAsync(failtureTask, (error, result) => {
     if (error) {
         console.log(error); // => Error: タスクが失敗しました
     } else {
-        console.log(result); // 呼ばれない
+        console.log(result); // この文は実行されません
     }
 });
 ```
 
-このように最初の引数にはエラーオブジェクトまたは`null`を入れ、それ以降の引数にデータを入れるというルール化したものをエラーファーストコールバック関数と呼びます。Node.jsでは標準APIの非同期処理においてエラーファーストコールバック関数が採用されています。
+このように最初の引数にはエラーオブジェクトまたは`null`を入れ、それ以降の引数にデータを入れるというルール化したものをエラーファーストコールバック関数と呼びます。
+Node.jsにおける標準APIの非同期処理においてエラーファーストコールバック関数が利用されています。
 詳しい扱い方については[ユースケース: Node.jsでCLIアプリケーション][]について紹介します。
 
 コールバック関数でエラー結果を受け取る方法は他にもやり方があります。
 たとえば、成功したときに呼び出すコールバック関数と失敗したときに呼び出すコールバック関数の2つを受け取る方法があります。
-さきほどの`callTaskAsync`をその形に変更すると次のような実装になります。
+さきほどの`callTaskAsync`を2種類のコールバック関数を受け取る形に変更すると次のような実装になります。
 
 ```js
 /**
