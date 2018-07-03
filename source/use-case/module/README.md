@@ -16,7 +16,7 @@ ESモジュールは、ECMAScriptの`import`、`export`構文を使って記述�
 
 まずは`export`文について見ていきましょう。
 
-### export文` {#export-syntax}
+### export文 {#export-syntax}
 
 `export`文は変数や関数などのシンボルをエクスポートし、別のモジュールから参照できるようにします。
 エクスポートの方法は、名前付きとデフォルトの2種類があります。
