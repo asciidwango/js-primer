@@ -29,25 +29,16 @@ ESモジュールは、ECMAScriptの`import`、`export`構文を使って記述�
 `export`文のあとに続けて`{}`を書き、その中にエクスポートする変数を入れます。
 このエクスポート方法では、変数名がそのまま他のモジュールからインポートする際の名前になります。
 
-[import, myModule.js](src/export-1.js)
+[import, exportExample.js](src/export-1.js)
 
 エクスポートする時にエイリアスをつけるには、次のような構文を使います。`as`のあとにエクスポートしたい名前を記述します。
 
-[import, myModule.js](src/export-2.js)
+[import, exportExample.js](src/export-2.js)
 
 次の構文では、変数や関数、クラスなどを宣言するのと同時にエクスポートできます。
 この構文では宣言された名前がそのままエクスポートされます。
 
-```js
-// 変数の宣言のみ
-export let foo; // varも使用可
-// 宣言と代入
-export const bar = "bar"; // var, letも使用可
-// 関数の宣言
-export function fn() { }
-// クラスの宣言
-export class ClassName { }
-```
+[import, exportExample.js](src/export-3.js)
 
 #### デフォルトエクスポート {#default-export}
 
@@ -56,34 +47,28 @@ export class ClassName { }
 ひとつめは、すでに宣言されている変数をエクスポートする構文です。
 `export default`文のあとに続けてエクスポートする式を記述します。
 
-[import, myModule.js](src/export-4.js)
+[import, exportExample.js](src/export-default-1.js)
 
 名前付きと同じように宣言と同時にエクスポートできますが、関数とクラスに限られます。
 
 
-```js
-// 関数の宣言
-export default function fn() { } // classも使用可
-```
+[import, exportExample.js](src/export-default-2.js)
 
 また、このとき関数やクラスは名前を省略できます。
 
-```js
-// 名前は省略可能
-export default function() { } // classも使用可
-```
+[import, exportExample.js](src/export-default-3.js)
 
 名前付きとデフォルトを同時にエクスポートする際は、次のようにデフォルトエクスポートしたいシンボルに`as default`を付与します。
 
 
-[import, myModule.js](src/export-5.js)
+[import, exportExample.js](src/export-default-4.js)
 
 #### 再エクスポート {#re-export}
 
 再エクスポートとは、別のモジュールからエクスポートされたものを、改めて自分自身からエクスポートしなおすことです。
 再エクスポートするは次のように`export`文のあとに`from`を続けて、別のモジュール名を指定します。
 
-[import, myModule.js](src/re-export-invalid.js)
+[import, exportExample.js](src/re-export-invalid.js)
 
 ### import文 {#import-syntax}
 
@@ -97,56 +82,35 @@ export default function() { } // classも使用可
 名前付きインポートは、指定したモジュールが名前付きでエクスポートしているシンボルを選択してインポートします。
 次の例では、`./myModule.js`モジュールから名前付きエクスポートされた`foo`と`bar`をインポートしています。
 
-```js
-// 名前付きエクスポートされたfooとbarをインポートする
-import { foo, bar } from "./myModule.js";
-```
+[import, importExample.js](src/import-1.js)
 
 エクスポートするときと同じように、インポートするときにもエイリアスをつけて名前を変えることができます。
 
-```js
-// fooとして名前付きエクスポートされたシンボルをmyModuleFooとしてインポートする
-import { foo as myModuleFoo } from "./myModule.js";
-```
+[import, importExample.js](src/import-2.js)
 
 すべての名前付きエクスポートをまとめてインポートするための、`import * as`という構文もあります。
 この方法でインポートしたオブジェクトは、名前付きエクスポートされたシンボルをすべてプロパティとしてもちます。
 このオブジェクトにはデフォルトエクスポートは含まれません。
 
-```js
-// すべての名前付きエクスポートをmyModuleオブジェクトとしてまとめてインポートする
-import * as myModule from "./myModule.js";
-// fooとして名前付きエクスポートされたシンボルにアクセスする
-console.log(myModule.foo);
-```
+[import, importExample.js](src/import-3.js)
 
 #### デフォルトインポート {#default-import}
 
 デフォルトエクスポートされたシンボルは専用の構文を使ってインポートします。
 `import`のあとに任意の名前をつけてデフォルトエクスポートされたシンボルをインポートします。
 
-```js
-// myModuleDefaultとしてデフォルトエクスポートをインポートする
-import myModuleDefault from "./myModule.js";
-```
+[import, importExample.js](src/import-default-1.js)
 
 または、デフォルトエクスポートは`default`という名前の名前付きエクスポートとして扱うこともできます。
 次のように、名前付きインポートの構文で`default`を指定し、エイリアスをつけてインポートできます。
 ただし、`default`は予約語なので、この方法では必ず`as`構文を使ってエイリアスをつける必要があります。
 
-```js
-// myModuleDefaultとしてデフォルトエクスポートをインポートする
-import { default as myModuleDefault } from "./myModule.js";
-```
+[import, importExample.js](src/import-default-2.js)
 
 デフォルトインポートと名前付きインポートは同時に記述できます。
 次のようにデフォルトインポートの構文と名前付きインポートを構文をカンマでつなげます。
 
-```js
-// myModuleDefaultとしてデフォルトエクスポートをインポートし、
-// 名前付きエクスポートされたfooをインポートする
-import myModuleDefault, { foo } from "./myModule.js";
-```
+[import, importExample.js](src/import-default-3.js)
 
 #### 付随効果のためのインポート {#import-for-side-effect}
 
@@ -154,10 +118,7 @@ import myModuleDefault, { foo } from "./myModule.js";
 そのようなモジュールをインポートするには、付随効果のためのインポート構文を使います。
 この構文では、モジュールのグローバルコードを実行するだけで、シンボルを何もインポートしません。
 
-```js
-// ./myModule.jsのグローバルコードが実行される
-import "./myModule.js";
-```
+[import, importExample.js](src/import-side-effects.js)
 
 ## ESモジュールを実行する {#run-es-modules}
 
@@ -189,18 +150,12 @@ CommonJSモジュールはNode.jsのグローバル変数である`module`変数
 次のように`module.exports`プロパティに代入されたオブジェクトが、そのJavaScriptファイルからエクスポートされます。
 複数のシンボルをエクスポートできるESモジュールと違い、CommonJSでは`module.exports`プロパティに代入されたオブジェクトだけがエクスポートの対象です。
 
-```js
-module.exports = {
-    foo: "foo"
-};
-```
+[import, commonjsExport.js](src/cjs-export.js)
 
 モジュールをインポートするには、`require`グローバル関数を使います。
 次のように`require`関数にモジュール名を渡し、戻り値としてエクスポートされたオブジェクトを受け取ります。
 
-```js
-const myModule = require("./myModule.js");
-```
+[import, commonjsImport.js](src/cjs-import.js)
 
 Node.jsではESモジュールもサポートする予定ですが、現在はまだ安定した機能としてサポートされていません。
 
