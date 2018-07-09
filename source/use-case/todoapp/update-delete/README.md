@@ -44,7 +44,7 @@ Todoアイテム要素である`<li>`要素中に次のように`<input>`要素�
 この問題を避けるためにも、`<input type="checkbox">`要素がチェックされたらモデルの状態を更新する必要があります。
 
 `<input type="checkbox">`要素はチェックされたときに`change`イベントをディスパッチします。
-この`change`イベントをリッスンして、TodoItemモデルの状態を更新すればモデルと表示の状態を同期できます。
+この`change`イベントをリッスン（listen）して、TodoItemモデルの状態を更新すればモデルと表示の状態を同期できます。
 
 `input`要素からディスパッチされる`change`イベントをリッスンする処理は次のようにかけます。
 
@@ -52,7 +52,9 @@ Todoアイテム要素である`<li>`要素中に次のように`<input>`要素�
 以前は`document.querySlector`で`document`以下からCSSセレクタにマッチする要素を探索していました。
 `todoItemElement.querySelector`メソッドを使うことで、`todoItemElement`下にある要素だけを対象に探索できます。
 
-見つけた`input`要素に対して`addEventListener`メソッドで`change`イベントのリスナー関数を登録できます。
+見つけた`input`要素に対して`addEventListener`メソッドで`change`イベントが発生したときに呼ばれるコールバック関数を登録できます。この`addEventListener`メソッドは`XMLHttpRequest`の場合と同じくイベント名とコールバック関数を渡すことで、指定したイベントを受け取れます。（「[ユースケース: Ajax通信][]」を参照）
+
+このようなイベントが発生した際に呼ばれるコールバック関数のことを**イベントリスナー**（イベントをリッスンするものという意味）と呼びます。またイベントリスナーはイベントハンドラーとも呼ばれることがありますが、この書籍ではこの2つの言葉は同じ意味として扱います。
 
 <!-- doctest:disable -->
 ```js
@@ -144,3 +146,5 @@ inputCheckboxElement.addEventListener("change", () => {
 - [x] Todoアプリムを削除できる
 
 最後のセクションでは、`App.js`のリファクタリングを行い継続的に開発できるアプリの作り方についてを見ていきます。
+
+[ユースケース: Ajax通信]: ../ajaxapp/xhr/#xml-http-request
