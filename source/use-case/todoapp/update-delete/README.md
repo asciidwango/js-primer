@@ -82,7 +82,7 @@ inputCheckboxElement.addEventListener("change", () => {
 
 ### チェックボックスの`change`イベントが発生したら、Todoアイテムの完了状態を更新する {#onChange-update-model}
 
-次に`input`要素の`change`イベントのハンドラで、Todoアイテムの完了状態を更新します。
+次に`input`要素の`change`イベントのリスナー関数で、Todoアイテムの完了状態を更新します。
 
 `App.js`で`todoItemElement`の子要素として`checkbox`というクラス名をつけた`input`要素を追加します。
 この`input`要素の`change`イベントが発生したら、`TodoListModel#updateTodo`メソッドを呼び出すようにします。
@@ -114,7 +114,7 @@ inputCheckboxElement.addEventListener("change", () => {
 
 ### 削除ボタンの`click`イベントが発生したら、Todoアイテムを削除する {#onChange-update-model}
 
-次に`button`要素の`click`イベントのハンドラでTodoアイテムを削除する処理を呼び出します。
+次に`button`要素の`click`イベントのリスナー関数でTodoアイテムを削除する処理を呼び出します。
 
 `App.js`で`todoItemElement`の子要素として`delete`というクラス名をつけた`button`要素を追加します。
 この要素がクリック（`click`）されたときに呼び出されるイベントリスナーを`addEventListener`メソッドで登録します。
@@ -132,9 +132,9 @@ inputCheckboxElement.addEventListener("change", () => {
 このセクションでは次のことできるようになりました。
 
 - [x] Todoアイテムの完了状態として`<input type="checkbox">`を表示に追加した
-- [x] チェックボックスが更新時の`change`イベントのハンドラでTodoアイテムの更新した
+- [x] チェックボックスが更新時の`change`イベントのリスナー関数でTodoアイテムの更新した
 - [x] Todoアイテムを削除するボタンとして`<button class="delete">x</button>`を表示に追加した
-- [x] 削除ボタンの`click`イベントのハンドラでTodoアイテムを削除した
+- [x] 削除ボタンの`click`イベントのリスナー関数でTodoアイテムを削除した
 - [x] Todoアイテムの追加、更新、削除の機能が動作するのを確認できた
 
 このセクションでTodoアプリに必要な要件が実装できました。
