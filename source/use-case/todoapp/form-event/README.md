@@ -26,7 +26,7 @@ author: azu
 
 ## 入力内容をコンソールに表示 {#input-to-console}
 
-form要素でEnterを押し送信すると`submit`イベントが発生されます。
+form要素でEnterを押し送信すると`submit`イベントが発生します。
 この`submit`イベントは`addEventListener`メソッドを利用することで受け取れます。
 
 <!-- doctest:disable -->
