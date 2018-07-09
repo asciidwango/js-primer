@@ -233,8 +233,8 @@ class App {
 `mount`メソッド内で`TodoListModel`が更新されたら表示を更新するという処理を実装します。
 `TodoListModel#onChange`で登録したリスナー関数は、`TodoListModel`の状態が更新されたら呼び出されます。
 
-このリスナー関数内では`TodoListModel#getTodoItems`でTodoアイテムを取得し、
-この一覧から次のような要素（`todoListElement`）を作成しています。
+このリスナー関数内では`TodoListModel#getTodoItems`でTodoアイテムを取得しています。
+そして、アイテム一覧から次のようなリスト要素（`todoListElement`）を作成しています。
 
 ```html
 <!-- todoListElementの実質的な中身 -->

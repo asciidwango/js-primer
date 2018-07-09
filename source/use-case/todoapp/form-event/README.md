@@ -168,8 +168,8 @@ render(newElement, document.body);
 最後に、この`element`タグ関数を使い、フォームから送信された入力内容をTodoリストに要素として追加してみます。
 
 `App.js`から先ほど作成した`html-util.js`の`element`タグ関数を`import`します。
-そして`submit`イベントのリスナー関数で、Todoアイテムを表現する要素を作成し、Todoリスト(`#js-todo-list`)の子要素として追加（`appendChild`）します。
-合わせてTodoアイテム数（`#js-todo-count`）に表示されているテキスト(`textContent`)を更新します。
+次に`submit`イベントのリスナー関数で、Todoアイテムを表現する要素を作成し、Todoリスト(`#js-todo-list`)の子要素として追加（`appendChild`）します。
+最後にTodoアイテム数（`#js-todo-count`）のテキスト(`textContent`)を更新します。
 
 [import, title:"src/App.js"](./add-todo-item/src/App.js)
 
