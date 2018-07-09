@@ -3,16 +3,17 @@ const fs = require("fs");
 const marked = require("marked");
 
 program
-    .option("--gfm <flag>", "GFMを有効にする")
-    .option("-S, --sanitize <flag>", "サニタイズを行う");
+    .option("--gfm", "GFMを有効にする")
+    .option("-S, --sanitize", "サニタイズを行う");
 
 program.parse(process.argv);
 const filePath = program.args[0];
 
-const markedOptions = Object.assign({}, {
-    gfm: true,
-    sanitize: false
-}, program);
+const markedOptions = {
+    gfm: false,
+    sanitize: false,
+    ...program.opts()
+};
 
 fs.readFile(filePath, "utf8", (err, file) => {
     if (err) {

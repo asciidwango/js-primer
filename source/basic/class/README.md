@@ -143,7 +143,7 @@ console.log(point.y); // => 4
 {{book.console}}
 ```js
 class MyClass {
-    construtor() { }
+    constructor() { }
 }
 // クラスのコンストラクタ関数として呼び出すことはできない
 MyClass(); // => TypeError: class constructors must be invoked with |new|
@@ -229,7 +229,7 @@ MyClass(); // => TypeError: class constructors must be invoked with |new|
 このクラスに定義したメソッドは各インスタンスがもつ動作となります。
 
 次のように`class`構文ではクラスに対してメソッドを定義できます。
-メソッドの中からクラスのインスタンスを参照するには、`construtor`メソッドと同じく`this`を使います。
+メソッドの中からクラスのインスタンスを参照するには、`constructor`メソッドと同じく`this`を使います。
 このクラスのメソッドにおける`this`は「[関数とthis][]の章」で学んだメソッドと同じくベースオブジェクトを参照します。
 
 <!-- doctest:disable -->
@@ -481,10 +481,8 @@ console.log(number.value); // => 42
 `NumberValue#value`のアクセッサプロパティで実際に読み書きしているのは、`_value`プロパティです。
 このように、外から直接読み書きしてほしくないプロパティを`_`（アンダーバー）で開始するのはただの習慣であるため、構文としての意味はありません。
 
-現時点（ES2018）には外から原理的に見ることができないプライベートプロパティ（hard private）を定義する構文はありません。
-プライベートプロパティについてはECMAScriptの提案が行われており導入が検討[^Proposal]されています。
-また、現時点でも`WeakSet`などを使うことで擬似的なプライベートプロパティ（soft private）を実現できます。
-擬似的なプライベートプロパティ（soft private）については「[Map/Set][]」の章について解説します。
+現時点（ECMAScript {{book.esversion}}）外から原理的に見ることができないプライベートプロパティ（hard private）を定義する構文はありません。
+また、現時点でも`WeakSet`などを使うことで擬似的なプライベートプロパティ（soft private）を実現できます。`WeakSet`については「[Map/Set][]」の章で解説します。
 
 ### `Array#length`をアクセッサプロパティで再現する {#array-like-length}
 
@@ -912,7 +910,7 @@ const instance = new Child();
 `extends`を使って定義した子クラスから親クラスを参照するには`super`というキーワードを利用します。
 もっともシンプルな`super`を使う例としてコンストラクタの処理を見ていきます。
 
-`class`構文でも紹介しましたが、クラスは必ず`constrctor`メソッド（コンストラクタ）をもちます。
+`class`構文でも紹介しましたが、クラスは必ず`constructor`メソッド（コンストラクタ）をもちます。
 これは、継承した子クラスでも同じです。
 
 <!-- textlint-disable no-js-function-paren -->
@@ -941,7 +939,7 @@ const child = new Child("引数1", "引数2");
 // "Childコンストラクタの処理", "引数1", "引数2"
 ```
 
-`class`構文でのクラス定義では、`constrctor`メソッド（コンストラクタ）で何も処理を行わない場合は省略できることを紹介しました。
+`class`構文でのクラス定義では、`constructor`メソッド（コンストラクタ）で何も処理を行わない場合は省略できることを紹介しました。
 これは、継承した子クラスでも同じです。
 
 次のコードでは、`Child`クラスのコンストラクタでは何も処理を行っていません。

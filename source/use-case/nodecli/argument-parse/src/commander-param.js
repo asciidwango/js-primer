@@ -1,4 +1,5 @@
 const program = require("commander");
 program.option("--foo <text>");
 program.parse(process.argv);
-console.log(program.foo);
+const options = program.opts();
+console.log(options.foo);

@@ -21,6 +21,7 @@ JavaScriptでは、「これは変数です」という宣言をするキーワ�
 
 たとえば、次のコードでは、`bookTitle`という変数を宣言しています。
 この場合、`bookTitle`は値が代入されていないため、デフォルト値として`undefined`で初期化されます。
+（`undefined`は値が代入されてないことを表す値です）
 
 ```js
 var bookTitle;

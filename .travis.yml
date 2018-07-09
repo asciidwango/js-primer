@@ -2,12 +2,6 @@ sudo: required
 addons:
   chrome: stable
 language: node_js
-cache: yarn
-before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.6.0
-  - export PATH=$HOME/.yarn/bin:$PATH
-install:
-  - yarn install --ignore-scripts
 env:
   global:
     # gh-pagesへのdeploy向け
@@ -22,6 +16,12 @@ jobs:
     - stage: test
       node_js: '8'
       script: npm test
+    # E2E
+    - stage: e2e
+      # masterのみ実行
+      if: branch = master AND type != pull_request
+      node_js: 'stable'
+      script: npm run e2e
     # deploy
     - stage: deploy
       node_js: 'stable'

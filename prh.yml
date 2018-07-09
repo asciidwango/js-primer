@@ -247,6 +247,10 @@ rules:
   - expected: イベントが発生
     patterns:
       - イベントが発火
+  - expected: エラーファーストコールバック
+    patterns:
+      - エラーファーストコールバック関数
+
 
   # 一致とマッチ
   ## 一致は ===
@@ -297,6 +301,9 @@ rules:
   - expected: されています
     patterns:
       - されいます
+  - expected: 同期処理
+    patterns:
+      - 動機処理
 
 # 文体
   - expected: どのように

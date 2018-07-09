@@ -2,6 +2,7 @@
 
 - [この書籍について](./index.md)
 - [本書の目的](./intro/goal/README.md)
+- [文章の間違いに気づいたら](./intro/feedback/README.md)
 - [第1部: 基礎文法](./basic/README.md)
     - [JavaScriptとは](./basic/introduction/README.md)
     - [コメント](./basic/comments/README.md)
@@ -23,7 +24,7 @@
     - [関数とthis](./basic/function-this/README.md)
     - [クラス](./basic/class/README.md)
     - [例外処理](./basic/error-try-catch/README.md)
-    - Promise
+    - [非同期処理](./basic/async/README.md)
     - [JSON](./basic/json/README.md)
     - [Date](./basic/date/README.md)
     - [Map/Set](./basic/map-and-set/README.md)

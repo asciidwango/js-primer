@@ -62,7 +62,7 @@ if (isTrue) {
 
 一方、if文などは文であり式になることはできません。
 
-**式**ではないため、if文の評価結果をfor文に代入するといったことはできません。
+**式**ではないため、if文を変数へ代入することはできません。
 そのため、次のようなコードは`SyntaxError`となります。
 
 [import, statement-not-expression-invalid.js](src/statement-not-expression-invalid.js)
