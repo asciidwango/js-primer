@@ -247,6 +247,10 @@ rules:
   - expected: イベントが発生
     patterns:
       - イベントが発火
+  - expected: イベントリスナー
+    patterns:
+      - /イベントハンドラ(!?ー)?/
+      - /イベントリスナ(!?ー)/
   - expected: エラーファーストコールバック
     patterns:
       - エラーファーストコールバック関数

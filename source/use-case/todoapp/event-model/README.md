@@ -103,7 +103,7 @@ Node.jsでは`events`と呼ばれるモジュールでAPIは異なりますが�
 イベントの仕組みとは「イベントをディスパッチする側」と「イベントをリッスンする側」の2つの面から成り立ちます。
 場合によっては自分自身へのイベントをディスパッチし、自分自身でイベントをリッスンすることもあります。
 
-このイベントの仕組みを言い換えると「イベントをディスパッチした（イベントが発生）ときにイベントをリッスンしているコールバック関数（イベントハンドラ）を呼び出す」となります。
+このイベントの仕組みを言い換えると「イベントをディスパッチした（イベントが発生）ときにイベントをリッスンしているコールバック関数（イベントリスナー）を呼び出す」となります。
 
 モデルが更新されたら表示を更新するには「`TodoListModel`が更新したときに指定したコールバック関数を呼び出すクラス」を作れば目的は達成できます。
 しかし、「`TodoListModel`が更新されたとき」というのはとても具体的な処理であるため、モデルを増やすたびに同じ処理をそれぞれのモデルへ実装する必要があります。
@@ -111,7 +111,7 @@ Node.jsでは`events`と呼ばれるモジュールでAPIは異なりますが�
 そのため、先ほどのイベントの仕組みを持った概念として`EventEmitter`というクラスを作成します。
 そして`TodoListModel`は作成した`EventEmitter`を継承することでイベントの仕組みを導入していきます。
 
-- 親クラス（`EventEmitter`）: イベントをディスパッチした時、登録されているコールバック関数（イベントハンドラ）を呼び出すクラス
+- 親クラス（`EventEmitter`）: イベントをディスパッチした時、登録されているコールバック関数（イベントリスナー）を呼び出すクラス
 - 子クラス（`TodoListModel`）: 値を更新した時、登録されているコールバック関数を呼び出すクラス
 
 まずは、親クラスとなる`EventEmitter`を作成していきます。
@@ -129,8 +129,8 @@ Node.jsでは`events`と呼ばれるモジュールでAPIは異なりますが�
 [import, title:"src/EventEmitter.js"](./event-emitter/src/EventEmitter.js)
 
 この`EventEmitter`は次のようにイベントのリッスンとイベントのディスパッチの機能が利用できます。
-リッスン側は`addEventLister`メソッドでイベントの種類（`type`）に対するイベントハンドラ（`handler`）を登録します。
-ディスパッチ側は`emit`メソッドでイベントをディスパッチし、イベントハンドラを呼び出します。
+リッスン側は`addEventLister`メソッドでイベントの種類（`type`）に対するイベントリスナー（`handler`）を登録します。
+ディスパッチ側は`emit`メソッドでイベントをディスパッチし、イベントリスナーを呼び出します。
 
 <!-- doctest:disable -->
 ```js
@@ -181,7 +181,7 @@ event.emit();
 [import, title:"src/model/TodoListModel.js"](./event-emitter/src/model/TodoListModel.js)
 
 次のコードは`TodoListModel`クラスを取り込み、新しい`TodoItemModel`を追加するサンプルコードです。
-`TodoListModel#addTodo`メソッドで新しいTodoアイテムを追加した時に、`TodoListModel#onChange`で登録したイベントハンドラが呼び出されます。
+`TodoListModel#addTodo`メソッドで新しいTodoアイテムを追加した時に、`TodoListModel#onChange`で登録したイベントリスナーが呼び出されます。
 
 [import, "src/model/TodoListModel.example.js"](./event-emitter/src/model/TodoListModel.example.js)
 
@@ -194,7 +194,7 @@ event.emit();
 
 前回のセクションでは、フォームを送信すると直接DOMへ要素を追加しています。
 今回のセクションでは、フォームを送信すると`TodoListModel`へ`TodoItemModel`を追加します。
-`TodoListModel`に新しいTodoアイテムが増えると、`onChange`に登録したイベントハンドラが呼び出されるため、
+`TodoListModel`に新しいTodoアイテムが増えると、`onChange`に登録したイベントリスナーが呼び出されるため、
 そのハンドラ内でDOM（表示）を更新します。
 
 まずは書き換え後の`App.js`を見ていきます。

@@ -46,7 +46,7 @@ Todoリストの表示は次の2つの部品（コンポーネント）から成
 このように引数としてハンドラ関数を外から受け取ることで、イベントが発生したときの具体的な処理はViewクラスの外側に定義できます。
 
 たとえば、この`TodoItemView`クラスは次のように利用できます。
-`TodoItemModel`のインスタンスとイベントハンドラのオブジェクトを受け取り、TodoアイテムのHTML要素を返します。
+`TodoItemModel`のインスタンスとイベントリスナーのオブジェクトを受け取り、TodoアイテムのHTML要素を返します。
 
 [import, marker:"main"](./create-view/src/view/TodoItemView.example.js)
 

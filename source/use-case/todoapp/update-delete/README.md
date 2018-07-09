@@ -52,7 +52,7 @@ Todoアイテム要素である`<li>`要素中に次のように`<input>`要素�
 以前は`document.querySlector`で`document`以下からCSSセレクタにマッチする要素を探索していました。
 `todoItemElement.querySelector`メソッドを使うことで、`todoItemElement`下にある要素だけを対象に探索できます。
 
-見つけた`input`要素に対して`addEventListener`メソッドで`change`イベントハンドラを登録できます。
+見つけた`input`要素に対して`addEventListener`メソッドで`change`イベントのリスナー関数を登録できます。
 
 <!-- doctest:disable -->
 ```js
@@ -91,7 +91,7 @@ inputCheckboxElement.addEventListener("change", () => {
 [import, marker:"checkbox",unindent:"true"](./update-feature/src/App.js)
 
 `TodoListModel#updateTodo`メソッド内では`emitChange`メソッドによって、`TodoListModel`の変更が通知されます。
-これによって`TodoListModel#onChange`で登録されているイベントハンドラがよびだされ、表示が更新されます。
+これによって`TodoListModel#onChange`で登録されているイベントリスナーがよびだされ、表示が更新されます。
 
 これで表示とモデルが同期でき「Todoアイテムの更新処理」が実装できました。
 
@@ -117,8 +117,8 @@ inputCheckboxElement.addEventListener("change", () => {
 次に`button`要素の`click`イベントのハンドラでTodoアイテムを削除する処理を呼び出します。
 
 `App.js`で`todoItemElement`の子要素として`delete`というクラス名をつけた`button`要素を追加します。
-この要素がクリック（`click`）されたときに呼び出されるイベントハンドラを`addEventListener`メソッドで登録します。
-このイベントハンドラの中で`TodoListModel#deleteTodo`メソッドを呼び指定したidのTodoアイテムを削除します。
+この要素がクリック（`click`）されたときに呼び出されるイベントリスナーを`addEventListener`メソッドで登録します。
+このイベントリスナーの中で`TodoListModel#deleteTodo`メソッドを呼び指定したidのTodoアイテムを削除します。
 
 [import, marker:"checkbox",unindent:"true"](./delete-feature/src/App.js)
 

@@ -67,7 +67,7 @@ console.log(inputElement.value); // => "input要素の入力内容"
 
 ![入力内容がコンソールに表示される](./img/form-event.png)
 
-先ほどの`App#mount`では、`submit`イベントのイベントハンドラ内で`event.preventDefault`メソッドを呼び出しています。
+先ほどの`App#mount`では、`submit`イベントのイベントリスナー内で`event.preventDefault`メソッドを呼び出しています。
 `event.preventDefault`メソッドは、`submit`イベントの発生元であるフォームがもつデフォルトの動作をキャンセルするメソッドです。
 
 フォームがもつデフォルトの動作とは、フォームの内容を指定したURLへ送信するという動作です。
