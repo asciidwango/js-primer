@@ -26,19 +26,19 @@ export class TodoListModel extends EventEmitter {
     }
 
     /**
-     * TodoListの状態が更新されたときに呼び出されるハンドラを登録する
-     * @param {Function} handler
-     * @returns {Function} イベントハンドラの登録を解除する関数を返す
+     * TodoListの状態が更新されたときに呼び出されるリスナー関数を登録する
+     * @param {Function} listener
+     * @returns {Function} イベントリスナーの登録を解除する関数を返す
      */
-    onChange(handler) {
-        this.addEventLister("change", handler);
+    onChange(listener) {
+        this.addEventLister("change", listener);
         return () => {
-            this.removeEventLister("change", handler);
+            this.removeEventLister("change", listener);
         };
     }
 
     /**
-     * 状態が変更されたときに呼ぶ。登録済みのハンドラを呼び出す
+     * 状態が変更されたときに呼ぶ。登録済みのリスナー関数を呼び出す
      */
     emitChange() {
         this.emit("change");

@@ -79,16 +79,16 @@ Todoリストの表示は次の2つの部品（コンポーネント）から成
 
 これで`App`クラスからHTML要素の作成処理がViewクラスに移動でき、`App`クラスにはModelとView間のイベントを管理するだけになりました。
 
-### Appのハンドラを整理する {#app-handler}
+### Appのイベントリスナーを整理する {#app-event-listener}
 
-`App`クラスで登録しているイベントのハンドラを見てみると次の4種類となっています。
+`App`クラスで登録しているイベントのリスナー関数を見てみると次の4種類となっています。
 
 | イベントの流れ    | ハンドラ                                           | 役割                                    |
 | ----------------- | -------------------------------------------------- | --------------------------------------- |
-| `Model` -> `View` | ` this.todoListModel.onChange(handler)`            | `TodoListModel`が変更イベントを受け取る |
-| `View` -> `Model` | ` formElement.addEventListener("submit", handler)` | フォームの送信イベントを受け取る        |
-| `View` -> `Model` | ` onUpdateTodo: handler`                           | Todoアイテムのチェックボックスの更新イベントを受け取る    |
-| `View` -> `Model` | `onDeleteTodo: handler`                            | Todoアイテムの削除イベントを受け取る    |
+| `Model` -> `View` | ` this.todoListModel.onChange(listener)`            | `TodoListModel`が変更イベントを受け取る |
+| `View` -> `Model` | ` formElement.addEventListener("submit", listener)` | フォームの送信イベントを受け取る        |
+| `View` -> `Model` | ` onUpdateTodo: listener`                           | Todoアイテムのチェックボックスの更新イベントを受け取る    |
+| `View` -> `Model` | `onDeleteTodo: listener`                            | Todoアイテムの削除イベントを受け取る    |
 
 イベントの流れがViewからModelとなっているハンドラが3箇所あり、それぞれハンドラの処理が書かれている場所がコード上バラバラです。
 また、それぞれのハンドラはTodoアプリの機能と対応していることがわかります。

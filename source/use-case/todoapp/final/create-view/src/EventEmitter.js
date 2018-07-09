@@ -1,21 +1,21 @@
 export class EventEmitter {
     constructor() {
-        // 登録する [イベント名, Set(ハンドラ)] を管理するMap
-        this._handlers = new Map();
+        // 登録する [イベント名, Set(リスナー関数)] を管理するMap
+        this._listeners = new Map();
     }
 
     /**
-     * 指定したイベントが実行されたときに呼び出されるハンドラを登録する
+     * 指定したイベントが実行されたときに呼び出されるリスナー関数を登録する
      * @param {string} type イベント名
-     * @param {Function} handler イベントハンドラ
+     * @param {Function} listener イベントリスナー
      */
-    addEventLister(type, handler) {
-        // 指定したイベントに対応するSetを作成しハンドラを登録する
-        if (!this._handlers.has(type)) {
-            this._handlers.set(type, new Set());
+    addEventLister(type, listener) {
+        // 指定したイベントに対応するSetを作成しリスナー関数を登録する
+        if (!this._listeners.has(type)) {
+            this._listeners.set(type, new Set());
         }
-        const handlerSet = this._handlers.get(type);
-        handlerSet.add(handler);
+        const listenerSet = this._listeners.get(type);
+        listenerSet.add(listener);
     }
 
     /**
@@ -23,30 +23,30 @@ export class EventEmitter {
      * @param {string} type イベント名
      */
     emit(type) {
-        // 指定したイベントに対応するSetを取り出し、すべてのハンドラを呼び出す
-        const handlerSet = this._handlers.get(type);
-        if (!handlerSet) {
+        // 指定したイベントに対応するSetを取り出し、すべてのリスナー関数を呼び出す
+        const listenerSet = this._listeners.get(type);
+        if (!listenerSet) {
             return;
         }
-        handlerSet.forEach(handler => {
-            handler.call(this);
+        listenerSet.forEach(listener => {
+            listener.call(this);
         });
     }
 
     /**
-     * 指定したイベントのイベントハンドラを解除する
+     * 指定したイベントのイベントリスナーを解除する
      * @param {string} type イベント名
-     * @param {Function} handler イベントハンドラ
+     * @param {Function} listener イベントリスナー
      */
-    removeEventLister(type, handler) {
-        // 指定したイベントに対応するSetを取り出し、該当するハンドラを削除する
-        const handlerSet = this._handlers.get(type);
-        if (!handlerSet) {
+    removeEventLister(type, listener) {
+        // 指定したイベントに対応するSetを取り出し、該当するリスナー関数を削除する
+        const listenerSet = this._listeners.get(type);
+        if (!listenerSet) {
             return;
         }
-        handlerSet.forEach(ownHandler => {
-            if (ownHandler === handler) {
-                handlerSet.delete(handler);
+        listenerSet.forEach(ownListener => {
+            if (ownListener === listener) {
+                listenerSet.delete(listener);
             }
         });
     }

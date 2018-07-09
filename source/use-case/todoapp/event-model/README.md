@@ -129,14 +129,14 @@ Node.jsでは`events`と呼ばれるモジュールでAPIは異なりますが�
 [import, title:"src/EventEmitter.js"](./event-emitter/src/EventEmitter.js)
 
 この`EventEmitter`は次のようにイベントのリッスンとイベントのディスパッチの機能が利用できます。
-リッスン側は`addEventLister`メソッドでイベントの種類（`type`）に対するイベントリスナー（`handler`）を登録します。
+リッスン側は`addEventLister`メソッドでイベントの種類（`type`）に対するイベントリスナー（`listener`）を登録します。
 ディスパッチ側は`emit`メソッドでイベントをディスパッチし、イベントリスナーを呼び出します。
 
 <!-- doctest:disable -->
 ```js
 import { EventEmitter } from "./src/EventEmitter.js";
 const event = new EventEmitter();
-// コールバック関数を登録
+// イベントリスナー（コールバック関数）を登録
 event.addEventLister(() => console.log("One!"));
 event.addEventLister(() => console.log("Two!"));
 // コールバック関数をまとめて呼びだす
@@ -195,7 +195,7 @@ event.emit();
 前回のセクションでは、フォームを送信すると直接DOMへ要素を追加しています。
 今回のセクションでは、フォームを送信すると`TodoListModel`へ`TodoItemModel`を追加します。
 `TodoListModel`に新しいTodoアイテムが増えると、`onChange`に登録したイベントリスナーが呼び出されるため、
-そのハンドラ内でDOM（表示）を更新します。
+そのリスナー関数内でDOM（表示）を更新します。
 
 まずは書き換え後の`App.js`を見ていきます。
 
@@ -231,9 +231,9 @@ class App {
 ### 2. TodoListModelの状態が更新されたら表示を更新する {#app-todolist-onchange}
 
 `mount`メソッド内で`TodoListModel`が更新されたら表示を更新するという処理を実装します。
-`TodoListModel#onChange`で登録したハンドラは、`TodoListModel`の状態が更新されたら呼び出されます。
+`TodoListModel#onChange`で登録したリスナー関数は、`TodoListModel`の状態が更新されたら呼び出されます。
 
-このハンドラ内では`TodoListModel#getTodoItems`でTodoアイテムを取得し、
+このリスナー関数内では`TodoListModel#getTodoItems`でTodoアイテムを取得し、
 この一覧から次のような要素（`todoListElement`）を作成しています。
 
 ```html
@@ -263,7 +263,7 @@ todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.to
 前回のセクションでは、フォームを送信（`submit`）が行われると直接DOMへ要素を追加していました。
 今回のセクションでは、`TodoListModel`の状態が更新されたら表示を更新する仕組みがすでにできています。
 
-そのため、`submit`イベントのハンドラ内では`TodoListModel`に対して新しい`TodoItemModel`を追加するだけで表示が更新されます。
+そのため、`submit`イベントのリスナー関数内では`TodoListModel`に対して新しい`TodoItemModel`を追加するだけで表示が更新されます。
 直接DOMへ`appendChild`していた部分を`TodoListModel#addTodo`メソッドを使いモデルを更新する処理へ置き換えるだけです。
 
 ## まとめ {#conclusion}

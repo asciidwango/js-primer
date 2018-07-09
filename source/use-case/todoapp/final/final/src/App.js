@@ -10,7 +10,7 @@ export class App {
     }
 
     /**
-     * Todoを追加時に呼ばれるハンドラ
+     * Todoを追加時に呼ばれるリスナー関数
      * @param {string} title
      */
     handleAdd(title) {
@@ -18,7 +18,7 @@ export class App {
     };
 
     /**
-     * Todoの状態を更新時に呼ばれるハンドラ
+     * Todoの状態を更新時に呼ばれるリスナー関数
      * @param {number} id
      * @param {boolean} completed
      */
@@ -27,7 +27,7 @@ export class App {
     };
 
     /**
-     * Todoを削除時に呼ばれるハンドラ
+     * Todoを削除時に呼ばれるリスナー関数
      * @param {number} id
      */
     handleDelete({ id }) {
@@ -39,10 +39,10 @@ export class App {
         const inputElement = document.querySelector("#js-form-input");
         const todoCountElement = document.querySelector("#js-todo-count");
         const todoListContainerElement = document.querySelector("#js-todo-list");
-        this.releaseHandler = this.todoListModel.onChange(() => {
+        this.todoListModel.onChange(() => {
             const todoItems = this.todoListModel.getTodoItems();
             const todoListElement = this.todoListView.createElement(todoItems, {
-                // Appに定義したハンドラを呼び出す
+                // Appに定義したリスナー関数を呼び出す
                 onUpdateTodo: ({ id, completed }) => {
                     this.handleUpdate({ id, completed });
                 },
@@ -62,11 +62,5 @@ export class App {
             }));
             inputElement.value = "";
         });
-    }
-
-    release() {
-        if (typeof this.releaseHandler === "function") {
-            this.releaseHandler();
-        }
     }
 }

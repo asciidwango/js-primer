@@ -59,7 +59,7 @@ Todoアイテム要素である`<li>`要素中に次のように`<input>`要素�
 const todoItemElement = element`<li><input type="checkbox" class="checkbox">${item.title}</input></li>`;
 // クラス名checkboxを持つ要素を取得
 const inputCheckboxElement = todoItemElement.querySelector(".checkbox");
-// `<input type="checkbox">`のチェックが変更されたときに呼ばれるイベントハンドラを登録
+// `<input type="checkbox">`のチェックが変更されたときに呼ばれるイベントリスナーを登録
 inputCheckboxElement.addEventListener("change", () => {
     // チェックボックスの表示が変わったタイミングで呼び出される処理
     // TODO: ここでモデルを更新する処理を呼ぶ

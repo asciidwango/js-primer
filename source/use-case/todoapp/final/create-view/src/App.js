@@ -18,11 +18,11 @@ export class App {
             const todoListView = new TodoListView();
             // todoItemsに対応するTodoListViewを作成する
             const todoListElement = todoListView.createElement(todoItems, {
-                // Todoアイテムが更新イベントが発生したときによばれるハンドラ
+                // Todoアイテムが更新イベントが発生したときによばれるリスナー関数
                 onUpdateTodo: ({ id, completed }) => {
                     this.todoListModel.updateTodo({ id, completed });
                 },
-                // Todoアイテムが削除イベントが発生したときによばれるハンドラ
+                // Todoアイテムが削除イベントが発生したときによばれるリスナー関数
                 onDeleteTodo: ({ id }) => {
                     this.todoListModel.deleteTodo({ id });
                 }
