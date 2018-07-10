@@ -236,10 +236,34 @@ rules:
   - expected: HTML要素
     patterns:
       - DOM要素
+  - expected: イベントをリッスン
+    patterns:
+      - イベントを監視
+    prh: https://github.com/asciidwango/js-primer/issues/455
+  - expected: イベントをディスパッチ
+    patterns:
+      - イベントを発火
+    prh: https://github.com/asciidwango/js-primer/issues/455
+  - expected: イベントが発生
+    patterns:
+      - イベントが発火
+  - expected: イベントリスナー
+    patterns:
+      - /イベントハンドラ(!?関数)/
+      - /イベントハンドラー(!?関数)/
+  - expected: イベントリスナー関数
+    patterns:
+    - イベントハンドラ関数
+    - イベントハンドラー関数
+  - expected: リスナー関数
+    patterns:
+    - ハンドラー関数
+    - ハンドラ関数
+    - ハンドラ
   - expected: エラーファーストコールバック
     patterns:
       - エラーファーストコールバック関数
-    
+
 
   # 一致とマッチ
   ## 一致は ===

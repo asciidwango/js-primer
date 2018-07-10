@@ -13,7 +13,7 @@ Todoアイテムを追加する機能を実装しましたが、イベントを�
 
 ## 直接DOMを更新する問題 {#direct-dom-modification-issue}
 
-[前回のセクション][]では、操作した結果発生したイベントの発火という入力に対して、DOM（表示）の更新という出力が1対1でおこなわれていました。
+[前回のセクション][]では、操作した結果発生したイベントという入力に対して、DOM（表示）の更新という出力が1対1でおこなわれていました。
 つまりTodoリストにTodoアイテムが何個あるか、どのようなアイテムがあるかという状態がDOM上にしか存在しないことになります。
 
 そのため、Todoアイテムの状態を更新するには、HTML要素にTodoアイテムの情報（タイトルや識別子となるidなど）をすべて埋め込む必要があります。
@@ -84,9 +84,9 @@ TodoリストにはTodoアイテムを追加できるので`TodoListModel#addIte
 
 ## モデルの変化を伝えるイベント {#model-and-event}
 
-フォームを送信したらform要素から`submit`イベントが発火されます。
-これと同じように`TodoListModel`の状態が変化したら`change`イベントを発火し、
-表示側はそのイベントを監視してイベントが発火したら表示を更新すればよいはずです。
+フォームを送信したらform要素から`submit`イベントが発生します。
+これと同じように`TodoListModel`の状態が変化したら自分自身へ`change`イベントをディスパッチします。
+表示側はそのイベントをリッスンしてイベントが発生したら表示を更新すればよいはずです。
 
 `TodoListModel`の状態の変化とは、「`TodoListModel`に新しい`TodoItemModel`が追加される」などが該当します。
 先ほど表の「モデルの処理」は何かしら状態が変化しているので、表示を更新する必要があるわけです。
@@ -94,16 +94,16 @@ TodoリストにはTodoアイテムを追加できるので`TodoListModel#addIte
 DOM APIのイベントの仕組みをモデルでも利用できれば、モデルが更新されたら表示を更新する仕組みを作れそうです。
 ブラウザのDOM APIではこのようなイベント仕組みをDOM Eventsと呼びます。
 Node.jsでは`events`と呼ばれるモジュールでAPIは異なりますが同様のイベントの仕組みが利用できます。
-ここではイベントの仕組みを理解するために、イベントの発火と監視する機能をもつクラスを作ってみましょう。
+ここではイベントの仕組みを理解するために、イベントのディスパッチとリッスンする機能をもつクラスを作ってみましょう。
 
 とても難しく聞こえますが、今まで学んだクラスやコールバック関数などを使えば実現できます。
 
 ## EventEmitter {#event-emitter}
 
-イベントの仕組みとは「イベントを発火する側」と「イベントを監視する側」の2つの面から成り立ちます。
-場合によっては自分自身へイベントを発火し、自分自身でイベントを監視することもあります。
+イベントの仕組みとは「イベントをディスパッチする側」と「イベントをリッスンする側」の2つの面から成り立ちます。
+場合によっては自分自身へのイベントをディスパッチし、自分自身でイベントをリッスンすることもあります。
 
-このイベントの仕組みをコード的に表現してみると「特定の関数を呼び出した（イベントを発火）ときに登録されている（イベントを監視側の）コールバック関数を呼び出す」となります。
+このイベントの仕組みを言い換えると「イベントをディスパッチした（イベントが発生）ときにイベントをリッスンしているコールバック関数（イベントリスナー）を呼び出す」となります。
 
 モデルが更新されたら表示を更新するには「`TodoListModel`が更新したときに指定したコールバック関数を呼び出すクラス」を作れば目的は達成できます。
 しかし、「`TodoListModel`が更新されたとき」というのはとても具体的な処理であるため、モデルを増やすたびに同じ処理をそれぞれのモデルへ実装する必要があります。
@@ -111,15 +111,15 @@ Node.jsでは`events`と呼ばれるモジュールでAPIは異なりますが�
 そのため、先ほどのイベントの仕組みを持った概念として`EventEmitter`というクラスを作成します。
 そして`TodoListModel`は作成した`EventEmitter`を継承することでイベントの仕組みを導入していきます。
 
-- 親クラス（`EventEmitter`）: イベントを発火した時、登録されているコールバック関数を呼び出すクラス
+- 親クラス（`EventEmitter`）: イベントをディスパッチした時、登録されているコールバック関数（イベントリスナー）を呼び出すクラス
 - 子クラス（`TodoListModel`）: 値を更新した時、登録されているコールバック関数を呼び出すクラス
 
 まずは、親クラスとなる`EventEmitter`を作成していきます。
 
-`EventEmitter`はイベントの仕組みで書いた発火側と監視側の機能を持ったクラスとなります。
+`EventEmitter`はイベントの仕組みで書いたディスパッチ側とリッスン側の機能を持ったクラスとなります。
 
-- 監視側: `addEventLister`メソッドは、指定した`イベント名`に任意のコールバック関数を登録できる
-- 発火側: `emit`メソッドは、指定された`イベント名`に登録済みのすべてのコールバック関数を呼び出す
+- ディスパッチ側: `addEventLister`メソッドは、指定した`イベント名`に任意のコールバック関数を登録できる
+- リッスン側: `emit`メソッドは、指定された`イベント名`に登録済みのすべてのコールバック関数を呼び出す
 
 これによって、`emit`メソッドを呼び出すと指定したイベントに関係する登録済みのコールバック関数を呼び出せます。
 このようなパターンはObserverパターンとも呼ばれ、ブラウザやNode.jsなど多くの実行環境で類似するAPIが存在します。
@@ -128,15 +128,15 @@ Node.jsでは`events`と呼ばれるモジュールでAPIは異なりますが�
 
 [import, title:"src/EventEmitter.js"](./event-emitter/src/EventEmitter.js)
 
-この`EventEmitter`は次のようにイベントの監視とイベントの発火の機能が利用できます。
-監視側は`addEventLister`メソッドでイベントの種類（`type`）に対するイベントハンドラ（`handler`）を登録します。
-発火側は`emit`メソッドでイベントを発火し、イベントハンドラを呼び出します。
+この`EventEmitter`は次のようにイベントのリッスンとイベントのディスパッチの機能が利用できます。
+リッスン側は`addEventLister`メソッドでイベントの種類（`type`）に対するイベントリスナー（`listener`）を登録します。
+ディスパッチ側は`emit`メソッドでイベントをディスパッチし、イベントリスナーを呼び出します。
 
 <!-- doctest:disable -->
 ```js
 import { EventEmitter } from "./src/EventEmitter.js";
 const event = new EventEmitter();
-// コールバック関数を登録
+// イベントリスナー（コールバック関数）を登録
 event.addEventLister(() => console.log("One!"));
 event.addEventLister(() => console.log("Two!"));
 // コールバック関数をまとめて呼びだす
@@ -176,12 +176,12 @@ event.emit();
 
 `TodoListModel`クラスは、先ほど作成した`EventEmitter`クラスを継承します。
 `TodoListModel`クラスは`TodoItemModel`の配列を保持し、新しいTodoアイテムを追加する際はその配列に追加します。
-このとき`TodoListModel`の状態が変更したことを通知するために自分自身へ`change`イベントを発火します。
+このとき`TodoListModel`の状態が変更したことを通知するために自分自身へ`change`イベントをディスパッチします。
 
 [import, title:"src/model/TodoListModel.js"](./event-emitter/src/model/TodoListModel.js)
 
 次のコードは`TodoListModel`クラスを取り込み、新しい`TodoItemModel`を追加するサンプルコードです。
-`TodoListModel#addTodo`メソッドで新しいTodoアイテムを追加した時に、`TodoListModel#onChange`で登録したイベントハンドラが呼び出されます。
+`TodoListModel#addTodo`メソッドで新しいTodoアイテムを追加した時に、`TodoListModel#onChange`で登録したイベントリスナーが呼び出されます。
 
 [import, "src/model/TodoListModel.example.js"](./event-emitter/src/model/TodoListModel.example.js)
 
@@ -194,8 +194,8 @@ event.emit();
 
 前回のセクションでは、フォームを送信すると直接DOMへ要素を追加しています。
 今回のセクションでは、フォームを送信すると`TodoListModel`へ`TodoItemModel`を追加します。
-`TodoListModel`に新しいTodoアイテムが増えると、`onChange`に登録したイベントハンドラが呼び出されるため、
-そのハンドラ内でDOM（表示）を更新します。
+`TodoListModel`に新しいTodoアイテムが増えると、`onChange`に登録したイベントリスナーが呼び出されるため、
+そのリスナー関数内でDOM（表示）を更新します。
 
 まずは書き換え後の`App.js`を見ていきます。
 
@@ -231,10 +231,10 @@ class App {
 ### 2. TodoListModelの状態が更新されたら表示を更新する {#app-todolist-onchange}
 
 `mount`メソッド内で`TodoListModel`が更新されたら表示を更新するという処理を実装します。
-`TodoListModel#onChange`で登録したハンドラは、`TodoListModel`の状態が更新されたら呼び出されます。
+`TodoListModel#onChange`で登録したリスナー関数は、`TodoListModel`の状態が更新されたら呼び出されます。
 
-このハンドラ内では`TodoListModel#getTodoItems`でTodoアイテムを取得し、
-この一覧から次のような要素（`todoListElement`）を作成しています。
+このリスナー関数内では`TodoListModel#getTodoItems`でTodoアイテムを取得しています。
+そして、アイテム一覧から次のようなリスト要素（`todoListElement`）を作成しています。
 
 ```html
 <!-- todoListElementの実質的な中身 -->
@@ -263,7 +263,7 @@ todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.to
 前回のセクションでは、フォームを送信（`submit`）が行われると直接DOMへ要素を追加していました。
 今回のセクションでは、`TodoListModel`の状態が更新されたら表示を更新する仕組みがすでにできています。
 
-そのため、`submit`イベントのハンドラ内では`TodoListModel`に対して新しい`TodoItemModel`を追加するだけで表示が更新されます。
+そのため、`submit`イベントのリスナー関数内では`TodoListModel`に対して新しい`TodoItemModel`を追加するだけで表示が更新されます。
 直接DOMへ`appendChild`していた部分を`TodoListModel#addTodo`メソッドを使いモデルを更新する処理へ置き換えるだけです。
 
 ## まとめ {#conclusion}
@@ -278,7 +278,7 @@ todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.to
 
 - [x] 直接DOMを更新する問題について理解した
 - [x] `EventEmitter`クラスでイベントの仕組みを実装した
-- [x] `TodoListModel`を`EventEmitter`クラスを継承して実装した 
+- [x] `TodoListModel`を`EventEmitter`クラスを継承して実装した
 - [x] Todoアイテムの追加の機能をモデルを使ってリファクタリングした
 
 ここまでのTodoアプリは次のURLで確認できます。

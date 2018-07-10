@@ -26,16 +26,16 @@ author: azu
 
 ## 入力内容をコンソールに表示 {#input-to-console}
 
-form要素でEnterを押し送信すると`submit`イベントが発火されます。
+form要素でEnterを押し送信すると`submit`イベントが発生します。
 この`submit`イベントは`addEventListener`メソッドを利用することで受け取れます。
 
 <!-- doctest:disable -->
 ```js
 // id="js-form`の要素を取得
 const formElement = document.querySelector("#js-form");
-// form要素から発火されたsubmitイベントを受け取る
+// form要素から発生したsubmitイベントを受け取る
 formElement.addEventListener("submit", (event) => {
-    // イベントが発火された時に呼ばれるコールバック関数
+    // イベントが発生した時に呼ばれるコールバック関数
 });
 ```
 
@@ -63,14 +63,16 @@ console.log(inputElement.value); // => "input要素の入力内容"
 [import, title:"index.js"](./prevent-event/index.js)
 
 これらの変更後にブラウザでページをリロードすると、`App#mount`が実行されるようになります。
-`submit`イベントが監視されているので、入力欄に何か入力してEnterで送信してみるとその内容がコンソールに表示されます。
+`submit`イベントがリッスンされているので、入力欄に何か入力してEnterで送信してみるとその内容がコンソールに表示されます。
 
 ![入力内容がコンソールに表示される](./img/form-event.png)
 
-先ほどの`App#mount`では、発火された`submit`イベントのコールバック関数内で`event.preventDefault`メソッドを呼び出しています。
-`preventDefault`メソッドは`submit`イベントが発火されたフォーム本来の動作をキャンセルするメソッドです。
-フォーム本来の処理とは、フォームの内容を指定したURLへ送信するという動作です。
-ここでは`form`要素に送信先が指定されていないため、現在のURLに対してフォームを送信が行われるのをキャンセルしています。
+先ほどの`App#mount`では、`submit`イベントのイベントリスナー内で`event.preventDefault`メソッドを呼び出しています。
+`event.preventDefault`メソッドは、`submit`イベントの発生元であるフォームがもつデフォルトの動作をキャンセルするメソッドです。
+
+フォームがもつデフォルトの動作とは、フォームの内容を指定したURLへ送信するという動作です。
+ここでは`form`要素に送信先が指定されていないため、現在のURLに対してフォームを送信が行われます。
+`event.preventDefault`メソッドを呼び出すことで、このデフォルトの動作をキャンセルしています。
 
 <!-- doctest:disable -->
 ```js
@@ -127,7 +129,7 @@ HTMLではリストのアイテムを記述する際には`<li>`タグを使い�
 ajaxappでの`escapeHTML`タグ関数では出力は**HTML文字列**でしたが、今回作成する`element`タグ関数の出力は**HTML要素**（Element）です。
 
 これはTodoリスト(`#js-todo-list`)というすでに存在する要素に対して要素を**追加**するには、HTML文字列ではなく要素が必要になります。
-また、HTML文字列に対しては`addEventListener`でイベントを監視するということはできません。
+また、HTML文字列に対しては`addEventListener`でイベントをリッスンできません。
 そのため、チェックボックスの状態が変わったことや削除ボタンが押されたことを知る必要があるTodoアプリでは要素が必要になります。
 
 [import, title:"src/view/html-util.js"](./add-todo-item/src/view/html-util.js)
@@ -166,8 +168,8 @@ render(newElement, document.body);
 最後に、この`element`タグ関数を使い、フォームから送信された入力内容をTodoリストに要素として追加してみます。
 
 `App.js`から先ほど作成した`html-util.js`の`element`タグ関数を`import`します。
-そして`submit`イベントのハンドラで、Todoアイテムを表現する要素を作成し、Todoリスト(`#js-todo-list`)の子要素として追加（`appendChild`）します。
-合わせてTodoアイテム数（`#js-todo-count`）に表示されているテキスト(`textContent`)を更新します。
+次に`submit`イベントのリスナー関数で、Todoアイテムを表現する要素を作成し、Todoリスト(`#js-todo-list`)の子要素として追加（`appendChild`）します。
+最後にTodoアイテム数（`#js-todo-count`）のテキスト(`textContent`)を更新します。
 
 [import, title:"src/App.js"](./add-todo-item/src/App.js)
 
@@ -196,8 +198,8 @@ todoapp
 
 ## まとめ {#conclusion}
 
-このセクションではform要素の`submit`イベントを監視し、入力内容を元にTodoアイテムをTodoリストの追加を実装しました。
-今回のTodoアイテムの追加のように多くのウェブアプリは、何らかのイベントが発生し、そのイベントを監視してJavaScriptで処理し表示を更新します。
+このセクションではform要素の`submit`イベントをリッスンし、入力内容を元にTodoアイテムをTodoリストの追加を実装しました。
+今回のTodoアイテムの追加のように多くのウェブアプリは、何らかのイベントが発生し、そのイベントをリッスンして表示を更新します。
 このようなイベントが発生したことを元に処理を進める方法を**イベント駆動**（イベントドリブン）と呼びます。
 
 今回のTodoアイテムの追加では、`submit`イベントを入力にして、**直接**Todoリスト要素を追加するという方法を取っていました。

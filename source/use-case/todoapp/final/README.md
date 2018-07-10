@@ -40,13 +40,13 @@ Todoリストの表示は次の2つの部品（コンポーネント）から成
 [import, title:"src/view/TodoItemView.js"](./create-view/src/view/TodoItemView.js)
 
 `TodoItemView#createElement`メソッドの中身は元々`App`クラスでのHTML要素を作成する部分を元にしています。
-`createElement`メソッドは、`TodoItemModel`のインスタンスだけではなく`onUpdateTodo`と`onDeleteTodo`のハンドラ関数を受け取っています。
-この受け取ったハンドラ関数はそれぞれ対応するイベントが発生した際に呼びだします。
+`createElement`メソッドは、`TodoItemModel`のインスタンスだけではなく`onUpdateTodo`と`onDeleteTodo`のリスナー関数を受け取っています。
+この受け取ったリスナー関数はそれぞれ対応するイベントが発生した際に呼びだします。
 
-このように引数としてハンドラ関数を外から受け取ることで、イベントが発生したときの具体的な処理はViewクラスの外側に定義できます。
+このように引数としてリスナー関数を外から受け取ることで、イベントが発生したときの具体的な処理はViewクラスの外側に定義できます。
 
 たとえば、この`TodoItemView`クラスは次のように利用できます。
-`TodoItemModel`のインスタンスとイベントハンドラのオブジェクトを受け取り、TodoアイテムのHTML要素を返します。
+`TodoItemModel`のインスタンスとイベントリスナーのオブジェクトを受け取り、TodoアイテムのHTML要素を返します。
 
 [import, marker:"main"](./create-view/src/view/TodoItemView.example.js)
 
@@ -60,8 +60,8 @@ Todoリストの表示は次の2つの部品（コンポーネント）から成
 
 
 `TodoListView#createElement`メソッドは`TodoItemView`を使いTodoアイテムのHTML要素作り、`<li>`要素に追加していきます。
-この`TodoListView#createElement`メソッドも`onUpdateTodo`と`onDeleteTodo`のハンドラ関数を受け取ります。
-しかし、`TodoListView`ではこのハンドラ関数は`TodoItemView`にそのまま渡しています。
+この`TodoListView#createElement`メソッドも`onUpdateTodo`と`onDeleteTodo`のリスナー関数を受け取ります。
+しかし、`TodoListView`ではこのリスナー関数を`TodoItemView`にそのまま渡しています。
 なぜなら具体的なDOMイベントを発生させる要素が作られるのは`TodoItemView`の中となるためです。
 
 ## Appのリファクタリング {#app-refactoring}
@@ -69,7 +69,7 @@ Todoリストの表示は次の2つの部品（コンポーネント）から成
 最後に作成した`TodoItemView`クラスと`TodoListView`クラスを使い`App`クラスをリファクタリングしていきます。
 
 `App.js`を次のように`TodoListView`クラスを使うように書き換えます。
-`onChange`のハンドラのコールバック関数で`TodoListView`クラスを使いTodoリストのHTML要素を作るように変更します。
+`onChange`のリスナー関数で`TodoListView`クラスを使いTodoリストのHTML要素を作るように変更します。
 このとき`TodoListView#createElement`メソッドには次のようにそれぞれ対応するコールバック関数をわたします。
 
 - `onUpdateTodo`のコールバック関数では`TodoListModel#updateTodo`メソッドを呼ぶ
@@ -79,31 +79,31 @@ Todoリストの表示は次の2つの部品（コンポーネント）から成
 
 これで`App`クラスからHTML要素の作成処理がViewクラスに移動でき、`App`クラスにはModelとView間のイベントを管理するだけになりました。
 
-### Appのハンドラを整理する {#app-handler}
+### Appのイベントリスナーを整理する {#app-event-listener}
 
-`App`クラスで登録しているイベントのハンドラを見てみると次の4種類となっています。
+`App`クラスで登録しているイベントのリスナー関数を見てみると次の4種類となっています。
 
-| イベントの流れ    | ハンドラ                                           | 役割                                    |
+| イベントの流れ    | リスナー関数                                           | 役割                                    |
 | ----------------- | -------------------------------------------------- | --------------------------------------- |
-| `Model` -> `View` | ` this.todoListModel.onChange(handler)`            | `TodoListModel`が変更イベントを受け取る |
-| `View` -> `Model` | ` formElement.addEventListener("submit", handler)` | フォームの送信イベントを受け取る        |
-| `View` -> `Model` | ` onUpdateTodo: handler`                           | Todoアイテムのチェックボックスの更新イベントを受け取る    |
-| `View` -> `Model` | `onDeleteTodo: handler`                            | Todoアイテムの削除イベントを受け取る    |
+| `Model` -> `View` | ` this.todoListModel.onChange(listener)`            | `TodoListModel`が変更イベントを受け取る |
+| `View` -> `Model` | ` formElement.addEventListener("submit", listener)` | フォームの送信イベントを受け取る        |
+| `View` -> `Model` | ` onUpdateTodo: listener`                           | Todoアイテムのチェックボックスの更新イベントを受け取る    |
+| `View` -> `Model` | `onDeleteTodo: listener`                            | Todoアイテムの削除イベントを受け取る    |
 
-イベントの流れがViewからModelとなっているハンドラが3箇所あり、それぞれハンドラの処理が書かれている場所がコード上バラバラです。
-また、それぞれのハンドラはTodoアプリの機能と対応していることがわかります。
-これらのハンドラがTodo**アプリ`の扱っている機能であるということをわかりやすくするため、ハンドラを`App`クラスのメソッドとして定義しなおしてみましょう。
+イベントの流れがViewからModelとなっているリスナー関数が3箇所あり、それぞれリスナー関数はコード上バラバラな位置に書かれています。
+また、それぞれのリスナー関数はTodoアプリの機能と対応していることがわかります。
+これらのリスナー関数がTodoアプリの扱っている機能であるということをわかりやすくするため、リスナー関数を`App`クラスのメソッドとして定義しなおしてみましょう。
 
 [import, title:"src/App.js"](./final/src/App.js)
 
-このように`App`クラスのメソッドとしてハンドラを並べることで、Todoアプリの機能がコード上の見た目としてわかりやすくなりました。
+このように`App`クラスのメソッドとしてリスナー関数を並べることで、Todoアプリの機能がコード上の見た目としてわかりやすくなりました。
 
 ## セクションのまとめ {#section-conclusion}
 
 このセクションでは、次のことを行いました。
 
 - [x] ModelとViewをモジュールに分割した
-- [x] Todoアプリの機能と対応するハンドラを`App`クラスのメソッドへ移動した
+- [x] Todoアプリの機能と対応するリスナー関数を`App`クラスのメソッドへ移動した
 - [x] Todoアプリを完成させた
 
 完成したTodoアプリは次のURLで確認できます。

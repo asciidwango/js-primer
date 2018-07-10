@@ -3,7 +3,7 @@ import { EventEmitter } from "../src/EventEmitter.js";
 
 describe("EventEmitter", function() {
     describe("#addEventLister", function() {
-        it("should set event handler to the key", function(done) {
+        it("should set event listener to the key", function(done) {
             const emitter = new EventEmitter();
             const key = "event-key";
             emitter.addEventLister(key, function() {
@@ -13,26 +13,26 @@ describe("EventEmitter", function() {
         });
     });
     describe("#emit", function() {
-        it("should pass data to the handlers", function() {
+        it("should pass data to the listeners", function() {
             const emitter = new EventEmitter();
             const key = "event-key";
-            let isHandlerCalled = false;
+            let isListenerCalled = false;
             emitter.addEventLister(key, function() {
-                isHandlerCalled = true;
+                isListenerCalled = true;
             });
             emitter.emit(key);
-            assert.ok(isHandlerCalled, "handler should be called");
+            assert.ok(isListenerCalled, "listener should be called");
         });
     });
     describe("#removeEventLister", function() {
-        it("should unset event handler ", function(done) {
+        it("should unset event listener ", function(done) {
             const emitter = new EventEmitter();
             const key = "event-key";
-            const handler = function() {
+            const listener = function() {
                 done(new Error("should not called"));
             };
-            emitter.addEventLister(key, handler);
-            emitter.removeEventLister(key, handler);
+            emitter.addEventLister(key, listener);
+            emitter.removeEventLister(key, listener);
             emitter.emit(key);
             emitter.addEventLister(key, done);
             emitter.emit(key);

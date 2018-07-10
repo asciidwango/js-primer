@@ -13,10 +13,10 @@ const todoItemModel = new TodoItemModel({
 // TodoItemModelからHTML要素を作成する
 const todoItemElement = todoItemView.createElement(todoItemModel, {
     onUpdateTodo: () => {
-        // チェックボックスが更新されたときに呼ばれるハンドラ
+        // チェックボックスが更新されたときに呼ばれるリスナー関数
     },
     onDeleteTodo: () => {
-        // 削除ボタンがクリックされたときによばれるハンドラ
+        // 削除ボタンがクリックされたときによばれるリスナー関数
     }
 });
 console.log(todoItemElement); // <li>要素が入る

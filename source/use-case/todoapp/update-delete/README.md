@@ -43,23 +43,29 @@ Todoアイテム要素である`<li>`要素中に次のように`<input>`要素�
 
 この問題を避けるためにも、`<input type="checkbox">`要素がチェックされたらモデルの状態を更新する必要があります。
 
-`<input type="checkbox">`要素はチェックされたときに`change`イベントを発火します。
-この`change`イベントを監視して、TodoItemモデルの状態を更新すればモデルと表示の状態を同期できます。
+`<input type="checkbox">`要素はチェックされたときに`change`イベントをディスパッチします。
+この`change`イベントをリッスン（listen）して、TodoItemモデルの状態を更新すればモデルと表示の状態を同期できます。
 
-`input`要素の`change`イベントを監視は次のようにかけます。
+`input`要素からディスパッチされる`change`イベントをリッスンする処理は次のようにかけます。
 
 まずは`todoItemElement`要素の下にある`input`要素を`querySelector`メソッドで探索します。
 以前は`document.querySlector`で`document`以下からCSSセレクタにマッチする要素を探索していました。
 `todoItemElement.querySelector`メソッドを使うことで、`todoItemElement`下にある要素だけを対象に探索できます。
 
-見つけた`input`要素に対して`addEventListener`メソッドで`change`イベントハンドラを登録できます。
+見つけた`input`要素に対して`addEventListener`メソッドで`change`イベントが発生したときに呼ばれるコールバック関数を登録できます。この`addEventListener`メソッドは`XMLHttpRequest`の場合と同じくイベント名とコールバック関数を渡すことで、指定したイベントを受け取れます。（「[ユースケース: Ajax通信][]」を参照）
+
+<!-- textlint-disable prh -->
+
+このようなイベントが発生した際に呼ばれるコールバック関数のことを**イベントリスナー**（イベントをリッスンするものという意味）と呼びます。またイベントリスナーはイベントハンドラーとも呼ばれることがありますが、この書籍ではこの2つの言葉は同じ意味として扱います。
+
+<!-- textlint-enable prh -->
 
 <!-- doctest:disable -->
 ```js
 const todoItemElement = element`<li><input type="checkbox" class="checkbox">${item.title}</input></li>`;
 // クラス名checkboxを持つ要素を取得
 const inputCheckboxElement = todoItemElement.querySelector(".checkbox");
-// `<input type="checkbox">`のチェックが変更されたときに呼ばれるイベントハンドラを登録
+// `<input type="checkbox">`のチェックが変更されたときに呼ばれるイベントリスナーを登録
 inputCheckboxElement.addEventListener("change", () => {
     // チェックボックスの表示が変わったタイミングで呼び出される処理
     // TODO: ここでモデルを更新する処理を呼ぶ
@@ -82,7 +88,7 @@ inputCheckboxElement.addEventListener("change", () => {
 
 ### チェックボックスの`change`イベントが発生したら、Todoアイテムの完了状態を更新する {#onChange-update-model}
 
-次に`input`要素の`change`イベントのハンドラで、Todoアイテムの完了状態を更新します。
+次に`input`要素の`change`イベントのリスナー関数で、Todoアイテムの完了状態を更新します。
 
 `App.js`で`todoItemElement`の子要素として`checkbox`というクラス名をつけた`input`要素を追加します。
 この`input`要素の`change`イベントが発生したら、`TodoListModel#updateTodo`メソッドを呼び出すようにします。
@@ -91,7 +97,7 @@ inputCheckboxElement.addEventListener("change", () => {
 [import, marker:"checkbox",unindent:"true"](./update-feature/src/App.js)
 
 `TodoListModel#updateTodo`メソッド内では`emitChange`メソッドによって、`TodoListModel`の変更が通知されます。
-これによって`TodoListModel#onChange`で登録されているイベントハンドラがよびだされ、表示が更新されます。
+これによって`TodoListModel#onChange`で登録されているイベントリスナーがよびだされ、表示が更新されます。
 
 これで表示とモデルが同期でき「Todoアイテムの更新処理」が実装できました。
 
@@ -114,11 +120,11 @@ inputCheckboxElement.addEventListener("change", () => {
 
 ### 削除ボタンの`click`イベントが発生したら、Todoアイテムを削除する {#onChange-update-model}
 
-次に`button`要素の`click`イベントのハンドラでTodoアイテムを削除する処理を呼び出します。
+次に`button`要素の`click`イベントのリスナー関数でTodoアイテムを削除する処理を呼び出します。
 
 `App.js`で`todoItemElement`の子要素として`delete`というクラス名をつけた`button`要素を追加します。
-この要素がクリック（`click`）されたときに呼び出されるイベントハンドラを`addEventListener`メソッドで登録します。
-このイベントハンドラの中で`TodoListModel#deleteTodo`メソッドを呼び指定したidのTodoアイテムを削除します。
+この要素がクリック（`click`）されたときに呼び出されるイベントリスナーを`addEventListener`メソッドで登録します。
+このイベントリスナーの中で`TodoListModel#deleteTodo`メソッドを呼び指定したidのTodoアイテムを削除します。
 
 [import, marker:"checkbox",unindent:"true"](./delete-feature/src/App.js)
 
@@ -132,9 +138,9 @@ inputCheckboxElement.addEventListener("change", () => {
 このセクションでは次のことできるようになりました。
 
 - [x] Todoアイテムの完了状態として`<input type="checkbox">`を表示に追加した
-- [x] チェックボックスが更新時の`change`イベントのハンドラでTodoアイテムの更新した
+- [x] チェックボックスが更新時の`change`イベントのリスナー関数でTodoアイテムの更新した
 - [x] Todoアイテムを削除するボタンとして`<button class="delete">x</button>`を表示に追加した
-- [x] 削除ボタンの`click`イベントのハンドラでTodoアイテムを削除した
+- [x] 削除ボタンの`click`イベントのリスナー関数でTodoアイテムを削除した
 - [x] Todoアイテムの追加、更新、削除の機能が動作するのを確認できた
 
 このセクションでTodoアプリに必要な要件が実装できました。
@@ -144,3 +150,5 @@ inputCheckboxElement.addEventListener("change", () => {
 - [x] Todoアプリムを削除できる
 
 最後のセクションでは、`App.js`のリファクタリングを行い継続的に開発できるアプリの作り方についてを見ていきます。
+
+[ユースケース: Ajax通信]: ../ajaxapp/xhr/#xml-http-request
