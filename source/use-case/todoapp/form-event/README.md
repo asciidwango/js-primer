@@ -113,7 +113,7 @@ todoapp
 
 ここまでのTodoアプリは次のURLで実際に確認できます。
 
-<a href="./prevent-event//" target="_blank">https://asciidwango.github.io/js-primer/use-case/todoapp/form-event/prevent-event/</a>
+> <a href="./prevent-event/" target="_blank">https://asciidwango.github.io/js-primer/use-case/todoapp/form-event/prevent-event/</a>
 
 ## 入力内容をTodoリストに表示 {#input-to-todolist}
 
@@ -194,7 +194,7 @@ todoapp
 
 現在のTodoアプリは次のURLで実際に確認できます。
 
-<a href="./add-todo-item/" target="_blank">https://asciidwango.github.io/js-primer/use-case/todoapp/form-event/add-todo-item/</a>
+> <a href="./add-todo-item/" target="_blank">https://asciidwango.github.io/js-primer/use-case/todoapp/form-event/add-todo-item/</a>
 
 ## まとめ {#conclusion}
 

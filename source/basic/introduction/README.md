@@ -34,9 +34,8 @@ ECMAScript 2015から`class`構文が追加されましたが、このクラス�
 実行環境が定義しているオブジェクトとしては、
 ブラウザがもつDOM（Document Object Model） APIやNode.jsがもつコアAPIなどがあります。
 
-第一部の基本文法ではECMAScriptの定義する構文やビルトインオブジェクトを扱い、
-第二部のユースケースではブラウザが定義するDOM APIやNode.jsのコアAPIを使いながら、
-JavaScriptについて学んでいきます。
+第一部の基本文法ではECMAScriptの定義する構文やビルトインオブジェクトを扱います。
+第二部のユースケースではブラウザが定義するDOM APIやNode.jsのコアAPIを扱い小さなアプリケーションを作成します。
 
 JavaScriptの言語的な特徴を簡単に紹介すると、JavaScriptは大文字小文字を区別します。
 

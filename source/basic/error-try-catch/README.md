@@ -141,18 +141,25 @@ try {
 ```
 
 #### SyntaxError {#syntax-error}
+
 [SyntaxError][]は構文的に不正なコードを解釈しようとした場合のエラーです。
-たとえば次のようなコードを実行すると、`SyntaxError`例外が投げられます。
-`SyntaxError`例外はJavaScriptを実行する前のパース段階で発生するので、
-実行されているスクリプト自身の構文エラーを`try...catch`構文でcatchすることはできません。
+`SyntaxError`例外はJavaScriptを実行する前のパース段階で発生します。
+この構文エラーは`try...catch`文でcatchすることはできません。
+
+```
+// 正しくない構文
+foo! bar!
+```
+
+たとえば次のようなコードを実行すると、`SyntaxError`例外が発生します。
 ここでは`eval`関数を使って動的にJavaScriptを解釈することで、実行時に`SyntaxError`を発生させています。
 
 {{book.console}}
 ```js
 try {
     // eval関数は渡した文字列をJavaScriptとして実行する関数
-    // 正しくない構文を解釈する
-    eval("foo bar");
+    // 正しくない構文をパースさせ、SyntaxErrorを実行時に発生させる
+    eval("foo! bar!");
 } catch (error) {
     console.log(error instanceof SyntaxError); // => true
     console.log(error.name); // => "SyntaxError"

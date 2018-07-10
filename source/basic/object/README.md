@@ -115,7 +115,7 @@ console.log(object[myLang]); // => "日本語"
 ## プロパティの作成 {#property-created}
 
 オブジェクトは、一度作成した後もその値自体を変更できるためミュータブル（mutable）の特性を持ちます。
-そのため、作成したオブジェクトに対して、後からプロパティを追加することが可能です。
+そのため、作成したオブジェクトに対して、後からプロパティを追加できます。
 
 プロパティの追加方法は単純で、作成したいプロパティ名へ値を代入するだけです。
 そのとき、オブジェクトに指定したプロパティが存在しないなら、自動的にプロパティが作成されます。
@@ -375,8 +375,8 @@ console.log(number.toString()); // => "1,2,3";
 console.log(typeof Object.prototype.hasOwnProperty); // => "function"
 ```
 
-この`Object.prototype.hasOwnProperty`メソッドの定義は、
-`Object`の`prototype`オブジェクトがデフォルトで持っているため、あまり意識する必要はありません。
+この`Object.prototype.hasOwnProperty`メソッドは、`Object`の`prototype`オブジェクトに定義されています。
+そのため、ほとんどのオブジェクトは`hasOwnProperty`メソッドを持っています。
 
 ```js
 // このような定義が自動的に行われているイメージ
@@ -493,8 +493,10 @@ const object = Object.create(null);
 console.log(object.hasOwnProperty); // => undefined
 ```
 
-`Object.create`メソッドはES5から導入され、`Object.create(null)`というイディオムは、一部ライブラリなどで`Map`（連想配列とも言われる）の代わりとして利用されています。
-`Map`はあらゆる文字列をキー名にできますが、`Object`のインスタンスはデフォルトで`Object.prototype`にあるものがキーとして存在してしまうためです。
+`Object.create`メソッドはES5から導入されました。
+`Object.create`メソッドは`Object.create(null)`というイディオムで、一部ライブラリなどで`Map`オブジェクトの代わりとして利用されています。
+`Object`のインスタンスはデフォルトで`Object.prototype`を継承するため、`toString`などのプロパティ名がオブジェクトを作成した時点で存在します。
+`Object.create(null)`をつかうことで`Object.prototype`を継承しないオブジェクトを作成できるため、何もプロパティをもたないオブジェクトを作成できます。
 
 {{book.console}}
 ```js

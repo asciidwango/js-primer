@@ -154,12 +154,12 @@ object.method();
 | Arrow Function(`const fn = () => {}`)       | ✔    | ✔    |
 | メソッドの短縮記法(`const obj = { method(){} }`) | x    | ✔    |
 
-そして、最初に書いたように`this`の挙動は、Arrow Functionの関数定義とそれ以外（`function`キーワードやメソッドの短縮記法)の関数定義で異なります。
+そして、最初に書いたように`this`の挙動は、Arrow Functionの関数定義とそれ以外（`function`キーワードやメソッドの短縮記法）の関数定義で異なります。
 そのため、まずは**Arrow Function以外**の関数やメソッドにおける`this`を見ていきます。
 
 ## Arrow Function以外の関数における`this` {#function-without-arrow-function-this}
 
-Arrow Function以外の関数（メソッドも含む)における`this`は実行時に決まる値となります。
+Arrow Function以外の関数（メソッドも含む）における`this`は実行時に決まる値となります。
 言い方をかえると`this`は関数に渡される暗黙的な引数のようなもので、その渡される値は関数を実行する時に決まります。
 
 次のコードは擬似的なものです。

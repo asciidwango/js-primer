@@ -6,7 +6,7 @@ author: azu
 
 エントリポイントとは、アプリケーションの中で一番最初に呼び出される部分のことです。
 
-[Ajax通信:エントリポイント][]のユースケースでは、エントリポイントはHTML（`index.html`)のみでした。
+[Ajax通信:エントリポイント][]のユースケースでは、エントリポイントはHTML（`index.html`）のみでした。
 まずHTMLが読み込まれ、次にHTMLの中に書かれているJavaScriptファイルが読み込まれます。
 
 今回のTodoアプリは処理をモジュール化し、それぞれのモジュールを別々のJavaScriptファイルとして作成していきます。
@@ -108,7 +108,7 @@ HTMLは表示されるがコンソールログに`index.js: loaded`が表示さ�
 scirptタグに指定した`index.js`のパスにファイルが存在しているかを確認してください。
 `<script type="module" src="index.js">`としてした場合は`index.html`と`index.js`は同じディレクトリに配置する必要があります。
 
-また、 *CORS policy Invalid*のようなエラーがコンソールに表示されている場合は、[Same Origin Policy][]により`index.js`の読み込みが失敗しています。
+また、*CORS policy Invalid*のようなエラーがコンソールに表示されている場合は、[Same Origin Policy][]により`index.js`の読み込みが失敗しています。
 先ほども書いたように、`file:`から始まるページ上からはJavaScriptモジュールを読み込めないブラウザもあります。
 そのため、ローカルサーバを起動し、ローカルサーバ(`http:`から始まるURL)にアクセスしていることを確認してください。
 
