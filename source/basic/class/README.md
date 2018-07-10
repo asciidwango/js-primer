@@ -789,7 +789,7 @@ console.log(Prototype === MyClass.prototype); // => true
 #### Note: `[[Prototype]]`内部プロパティを読み書きする {#inner-property}
 
 `Object.getPrototypeOf(object)`で`object`の`[[Prototype]]`を読み取ることができます。
-一方、`Object.setPrototypeOf(object, prototypeObject)`で`object`の`[[Prototype]]`に`prototypeObject`を保存できます。
+一方、`Object.setPrototypeOf(object, prototype)`で`object`の`[[Prototype]]`に`prototype`オブジェクトを書き込めます。
 また、`[[Prototype]]`内部プロパティを通常のプロパティのように扱える`__proto__`という特殊なアクセッサプロパティが存在します。
 
 しかし、これらの`[[Prototype]]`内部プロパティを直接読み書きすることは通常の用途では行いません。
@@ -1198,7 +1198,6 @@ console.log(array.last); // => 5
 `Array`を継承した`MyArray`は、`Array`が元々もつ`length`プロパティや`Array.from`メソッドなどを継承し利用できます。
 
 [^糖衣構文]: `class`構文でのみしか実現できない機能はなく、読みやすさや分かりやさのために導入された構文という側面もあるためJavaScriptの`class`構文は糖衣構文と呼ばれることがあります。
-[^Proposal]: <https://github.com/tc39/proposal-class-fields>においてHard Privateの仕様についての提案と議論が行われている。
 
 
 [Arrow Functionでコールバック関数を扱う]: ../functiont-this/README.md#arrow-function-callback
