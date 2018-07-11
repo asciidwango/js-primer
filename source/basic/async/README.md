@@ -274,49 +274,42 @@ fs.readFile("./example.txt", (error, data) => {
 
 実際にエラーファーストコールバックで非同期な例外処理を扱うコードを書いてみましょう。
 
-次のコードの`callTaskAsync`関数は、第1引数に非同期的に呼び出すタスクとなる関数を受け取り、第2引数にエラーファーストコールバックスタイルの関数を受け取ります。
-第1引数のタスクとなる関数が失敗（例外を投げた）場合には、第2引数のコールバック関数にはエラーオブジェクトを渡して呼び出します。
-一方、タスクとなる関数が成功（例外を投げなかった）場合には、第2引数のコールバック関数には`null`とそのタスクの返り値を渡して呼び出します。
+次のコードの`dummyFetch`関数は、擬似的なリソーreスの取得を行う非同期な処理です。
+第1引数に任意のパスを受け取り、第2引数にエラーファーストコールバックスタイルの関数を受け取ります。
+第1引数の任意のパスにマッチするリソースがある場合には、第2引数のコールバック関数には`null`とレスポンスオブジェクトを渡して呼び出します。
+一方、任意のパスにマッチするリソースがない場合には、第2引数のコールバック関数にはエラーオブジェクトを渡して呼び出します。
 
 {{book.console}}
 ```js
 /**
- * `task`を実行して、成功なら`callback(null, タスクの返り値)`と呼び出す
- * 失敗なら`callback(error)`と呼び出す
+ * 0~100ミリ秒のランダムなライミングでレスポンスを擬似的なデータ取得関数
+ * 指定した`path`にデータがあるなら`callback(null, レスポンス)`を呼ぶ
+ * データがない場合はNOT FOUNDとなり`callback(エラー)`を呼ぶ
  */
-function callTaskAsync(task, callback) {
-    // タスクを非同期的に呼び出して、結果によってcallbackを呼び分ける
+function dummyFetch(path, callback) {
     setTimeout(() => {
-        try {
-            const result = task();
-            callback(null, result);
-        } catch (error) {
-            callback(error);
+        // /success から始まるパスにはリソースがあるという設定
+        if (path.startWith("/sucesss")) {
+            callback(null, { body: `Response body of ${path}` });
+        } else {
+            callback(new Error("NOT FOUND"));
         }
-    }, 10);
+    }, 100 * Math.random());
 }
-// 非同期処理が失敗する場合
-const failtureTask = () => {
-    throw new Error("タスクが失敗しました");
-};
-// failtureTaskは失敗するため、`error`にはErrorオブジェクトが入る
-callTaskAsync(failtureTask, (error, result) => {
-    if (error) {
-        console.log(error); // => Error: タスクが失敗しました
-    } else {
-        console.log(result); // この文は実行されません
-    }
-});
-// 非同期処理が成功する場合
-const successTask = () => {
-    return "タスクが成功しました";
-};
-// sucessTaskは成功するため、`error`は`null`となり、`result`に値が入る
-callTaskAsync(successTask, (error, result) => {
+// /success/data にリソースが存在するので、`response`にはデータが入る
+dummyFetch("/success/data", (error, response) => {
     if (error) {
         console.log(error); // この文は実行されません
     } else {
-        console.log(result); // => "タスクが成功しました"
+        console.log(result); // => { body: "Response body of /success/data" }
+    }
+});
+// /failure/data にリソースは存在しないので、`error`にはエラーオブジェクトが入る
+dummyFetch("/failure/data", (error, response) => {
+    if (error) {
+        console.log(error); // => Error: NOT FOUND
+    } else {
+        console.log(response); // この文は実行されません
     }
 });
 ```
@@ -325,22 +318,21 @@ callTaskAsync(successTask, (error, result) => {
 
 非同期処理中に例外が発生して生じたエラーをコールバック関数で受け取る方法は他にもやり方があります。
 たとえば、成功したときに呼び出すコールバック関数と失敗したときに呼び出すコールバック関数の2つを受け取る方法があります。
-さきほどの`callTaskAsync`を2種類のコールバック関数を受け取る形に変更すると次のような実装になります。
+さきほどの`dummyFetch`関数を2種類のコールバック関数を受け取る形に変更すると次のような実装になります。
 
 ```js
 /**
- * `task`を実行して、成功なら`successCallback(タスクの返り値)`を呼び出す
+ * `task`を実行して、成功なら`successCallback(レスポンス)`を呼び出す
  * 失敗なら`failureCallback(error)`を呼び出す
  */
-function callTaskAsync(task, successCallback, failureCallback) {
+function dummyFetch(task, successCallback, failureCallback) {
     setTimeout(() => {
-        try {
-            const result = task();
-            successCallback(result);
-        } catch (error) {
-            failureCallback(error);
+        if (path.startWith("/sucesss")) {
+            successCallback({ body: `Response body of ${path}` });
+        } else {
+            failureCallback(new Error("NOT FOUND"));
         }
-    }, 10);
+    }, 100 * Math.random());
 }
 ```
 
