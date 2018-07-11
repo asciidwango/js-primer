@@ -25,4 +25,9 @@ dummyFetch("/failure/data", (error, response) => {
 // nest
 dummyFetch("/success/data", (error, response) => {
     console.log(error, response);
+    // nest
+    dummyFetch("/failure/data", (error, response) => {
+        console.log(error, response);
+    });
+
 });
