@@ -9,6 +9,8 @@
 - for await? generator?
 - 非同期処理は、今までの書いた通りの動きではなく、どのように処理されているかの動きを元にハンドリングしないといけなません。
     - 上から順ではなくなっている
+- どういうときにどの非同期処理を使うかを考えられるようにする
+    - で結局どれを使えばいいのという答えを得られるようにする
 
 ## 非同期処理
 
@@ -73,6 +75,11 @@ try{
     - ブラウザ main threadでJavaScriptが実行されるから
     - 例えば、通信処理で、通信してデータが取得できるまでUIをブロッキングするわけにはいかないため
 
+## Term
+
+- 重たい処理 -> 同期的にブロックする処理
+- 非同期処理 -> 非同期的なタイミングで実行する処理
+
 ## 全体的な流れ
 
 - 同期エラーはスコープチェインのように伝播する
@@ -120,13 +127,14 @@ try{
     - try-catchは実行したタイミングでのエラーをキャッチできるもの
         - なぜなら、コールバック関数が実際に実装するときにはすでにtry-catchのマークしたエリアを抜けているためです。
     - [x] コード例: settimeout
-- 非同期処理でのエラーの考え方
-    - setTimeoutは非同期処理ですが、それ自体は必ずコールバック関数を呼び出す(成功するため)、
-    - 確率的に失敗する次のような非同期関数を例に考えていきましょう。
-    - [ ] 処理時間に依存したエラー処理
-- 非同期処理のエラーハンドリング
-    - この問題を解決するために、非同期処理内でエラーがおきた場合にコールバックを呼ぶときにどのようにエラーがおきたかを伝える必要がでてきた
-    - 方法としては、エラーのときに呼ばれるコールバックと正常なときのコールバックを2つ登録する方法
+- 非同期処理でのエラーの考え方: エラーファーストコールバック
+    - 非同期処理のエラーは内部でキャッチしても外側に伝えことができないといいう話をしました
+    - ここで内部で発生したエラーをそとに伝える方法としてもっと単純な仕組みがコールバック関数を使うことです。
+    - コールバック関数を非同期処理が失敗（エラー）、成功したときにそれぞれ呼び出すという単純な方法です。
+    - 失敗のコールバックと成功のコールバックを2つに分けて、それぞれを受け取るという方法もあります。
+        - 方法としては、エラーのときに呼ばれるコールバックと正常なときのコールバックを2つ登録する方法
+        - これはブラウザのイベントAPIなどがその方法をとっている
+    - この方法でよく使われているのはエラーファーストコールバックという手法です
         - これはブラウザで使われるDOM APIのイベントリスナーなどでも利用されている
     - もう一つはエラーファーストコールバックというNode.jsで使われる手法
         - これはコールバック関数の最初に引数はエラーが発生したときのプレースホルダーとしておき
@@ -134,9 +142,13 @@ try{
         - エラーが発生しなかったときはnullをいれるという手法
         - `(error, ...args) => { if (error){} }`
         - これについてはユースケースのNode.jsで詳細を解説しています
-    - どちらもコールバック関数というただの関数でエラーがおきたかどうか伝えるルールを決めて行っているだけに過ぎません。
-    - また、非同期処理はネストするように呼ばれることがあり、
+        - その他にも複数のコールバック関数を使う方法もあります。
+        - どちらもコールバック関数というただの関数でエラーがおきたかどうか伝えるルールを決めて行っているだけに過ぎません。
+- コールバックの問題点
+    - 非同期処理が連続する場合もあります。
+    - 次のようにAが取得できたらBを取得して、Cを取得するというような直列的なものをコールバックで書くとネストしてしまいます。
     - この際にコールバック関数は必ずネストを1段作ってしまうため、工夫して書かないと簡単に複雑なコードを作ってしまいます
+    - この問題はコールバックの実行順序を管理する関数を作ることで回避できますが、頻出するパターンであるため
 - Promise
     - この問題を解決するためにES2015で導入されたのが、非同期処理を扱うオブジェクトを定義する手法です
     - Promiseは非同期処理における成功、失敗時の処理を定義したオブジェクトです
@@ -193,3 +205,121 @@ try{
   }
 }
 ```
+
+----
+
+## Promise
+
+Promise本から抽出した内容
+
+- [1.1. What Is Promise](http://azu.github.io/promises-book/#what-is-promise)
+    - Promiseは非同期処理を抽象化したオブジェクトとそれを操作する仕組みのことをいいます
+    - コールバックとPromiseを使った書き方の違い
+    - Promiseは統一したインタフェースがあることについて
+- [1.2. Promise Overview](http://azu.github.io/promises-book/#promises-overview)
+    - コンストラクタ、インスタンスメソッド、静的メソッド
+    - Promiseの3つの状態 [`[[PromiseState]]`](https://tc39.github.io/ecma262/#table-59)
+        - fulfilled => onFulfilled
+        - rejected => onRejectedの対応
+        - Pending
+- [1.3. Promiseの書き方](http://azu.github.io/promises-book/#how-to-write-promise)
+    - `new Promise`
+- [2.1. Promise.resolve](http://azu.github.io/promises-book/#ch2-promise-resolve)
+    - `Promise.resolve`
+- [2.2. Promise.reject](http://azu.github.io/promises-book/#ch2-promise-reject)
+    - reject insteadof throw
+    - [4.3. throwしないで、rejectしよう](http://azu.github.io/promises-book/#not-throw-use-reject)
+- [2.3. コラム: Promiseは常に非同期?](http://azu.github.io/promises-book/#promise-is-always-async)
+    - 自動的にresolveされることについて
+- [2.4. Promise#then](http://azu.github.io/promises-book/#ch2-promise.then)
+- [2.5. Promise#catch](http://azu.github.io/promises-book/#ch2-promise-catch)
+    - [2.10. then or catch?](http://azu.github.io/promises-book/#then-or-catch)
+    - catchを書く場所
+- - Promise#finally
+- [2.6. コラム: thenは常に新しいpromiseオブジェクトを返す](http://azu.github.io/promises-book/#then-return-new-promise)
+    - メソッドチェーンの仕組み
+    - [4.7. Promiseとメソッドチェーン](http://azu.github.io/promises-book/#promise-and-method-chain)
+- [2.8. Promise.all](http://azu.github.io/promises-book/#ch2-promise-all)
+    - 並列処理
+    - 直列処理 [4.8. Promiseによる逐次処理](http://azu.github.io/promises-book/#promise-sequence)
+- [2.9. Promise.race](http://azu.github.io/promises-book/#ch2-promise-race)
+    - タイムアウト処理
+    - [4.5. Promise.raceとdelayによるXHRのキャンセル](http://azu.github.io/promises-book/#race-delay-timeout)
+- 省略
+    - Promise/A+、thenable
+
+## [例外処理 · JavaScriptの入門書 #jsprimer](https://asciidwango.github.io/js-primer/basic/error-try-catch/)
+
+- 例外とは?
+    - 例外とは、この書籍での定義
+    - エラーが発生する
+    - エラーは伝播すること
+    - [Chapter 14. Exception Handling](http://speakingjs.com/es5/ch14.html)にあたるもの
+- try
+- catch
+- finnally
+- Error
+- throw
+- エラースタック
+
+## 関連
+
+- コールバックをPromiseに変換
+    - [Promiseを活用する · JavaScriptの入門書 #jsprimer](https://asciidwango.github.io/js-primer/use-case/ajaxapp/promise/)
+- try-catchの例
+    - JSON.parse
+- async await
+    -　ない => Promise本
+
+
+----
+
+https://classroom.udacity.com/courses/ud898
+
+- Status
+- new Promise
+    - resolve二回はできない
+- Promiseはtry-catchされている
+- resolve, reject
+- then, catch
+- Fetchを使った例
+- then.catchは両方の可能性、thenの場合は片方だけ
+- コントールフロー
+- 直列、Concurrent
+
+---
+
+## async
+
+- 定義
+    - 関数宣言
+    - 関数式
+    - メソッド
+    - arraow function
+- async function return promise
+- awaitはunwrapする
+- async await
+    - async promise
+    - If the Promise is fulfilled, the result of await is the fulfillment value.
+    - If the Promise is rejected, await throws the rejection value.
+    - Promiseで書いた例
+    - あくまでasync functionの中でのみ利用できる
+- try catch
+- callback と async
+    - asyncはかくまでasyncの直下じゃないと使えない
+    - mapとの組み合わせについて
+    - http://exploringjs.com/es2016-es2017/ch_async-functions.html#_async-functions-and-callbacks
+- asyncはpromiseがコアの概念であくまでシンタックスにちかい
+- async function内でのthrow
+
+```js
+async function foo() {
+    throw new Error('Problem!');
+}
+foo().catch(error => console.log("catch", 
+
+error));
+```
+
+- Promiseは1つの非同期処理の結果を表現するオブジェクト
+    - <https://www.w3.org/2001/tag/doc/promises-guide>
