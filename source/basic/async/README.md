@@ -289,7 +289,7 @@ fs.readFile("./example.txt", (error, data) => {
 function dummyFetch(path, callback) {
     setTimeout(() => {
         // /success から始まるパスにはリソースがあるという設定
-        if (path.startWith("/sucesss")) {
+        if (path.startWith("/success")) {
             callback(null, { body: `Response body of ${path}` });
         } else {
             callback(new Error("NOT FOUND"));
@@ -327,7 +327,7 @@ dummyFetch("/failure/data", (error, response) => {
  */
 function dummyFetch(task, successCallback, failureCallback) {
     setTimeout(() => {
-        if (path.startWith("/sucesss")) {
+        if (path.startWith("/success")) {
             successCallback({ body: `Response body of ${path}` });
         } else {
             failureCallback(new Error("NOT FOUND"));
