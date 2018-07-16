@@ -4,7 +4,7 @@ function isEven(number) {
 }
 // `numbers`に偶数が含まれているならtrueを返す
 function isEvenIncluded(numbers) {
-    let isEventIncluded;
+    let isEventIncluded = false;
     for (let i = 0; i < numbers.length; i++) {
         const number = numbers[i];
         if (isEven(number)) {
