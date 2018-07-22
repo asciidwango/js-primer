@@ -79,7 +79,7 @@
     "rewire": "^2.5.2",
     "strict-eval": "^1.0.2",
     "text-testing-mocha": "^0.4.0",
-    "textlint": "^10.1.3",
+    "textlint": "^10.3.0-alpha.0f2fd6f9",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-filter-rule-whitelist": "^2.0.0",
     "textlint-rule-eslint": "^3.0.0",
