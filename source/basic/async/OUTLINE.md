@@ -156,17 +156,9 @@ try{
         - Promiseにはビルトインオブジェクトなのでインスタンスメソッドや静的メソッドが存在します
         - まずはPromiseの3つの状態について理解します
         - settleの節目
-        - また、PromiseはImmutableの特性を持っています
-    - Promiseオブジェクトの作成
-        - `new Promise` でのPromiseオブジェクトを作成します
-        - resolve => fulfilled => onFulfilledを呼び出す
-        - reject => rejected => onRejectedを呼び出す
-        - then = catch
-    - Promiseの状態変化とメソッド
-        - 一度変化したPromiseの状態は2度と変化しない。つまりresolve -> rejectとしてもresolveがsettleとなる
-    - 初期化処理は同期、コールバックの呼び出しは非同期処理
-        - つまりはthenは常に非同期で呼ばれるということに注意する・
-    - Promiseの変化済みのオブジェクト作成
+        - [未使用] また、PromiseはImmutableの特性を持っています
+        -　重要なのはこのsettleのpromiseインスタンスに対しても`then`でコールバック関数を登録できる点です。
+    - Promiseの変化済み(settle)のオブジェクト作成
         - すでにfulfilled/rejected済みのオブジェクトを作ることができる
         - これらに対しても`then`や`catch`を使うことでコールバックを登録できる
         - Promiseではすでにsettleとなったオブジェクトに対して登録したコールバックも呼ばれる
@@ -175,10 +167,32 @@ try{
         - Promise.reject()
             - thenの中で返すとrejectを通知できる
         - これらに対してthenやcatchしてもコールバック関数が呼ばれる
+    - Promiseオブジェクトの作成
+        - `new Promise` でのPromiseオブジェクトを作成します
+        - resolve => fulfilled => onFulfilledを呼び出す
+        - reject => rejected => onRejectedを呼び出す
+        - then = catch
+    - Promiseの状態変化とメソッド
+        - 一度変化したPromiseの状態は2度と変化しない。つまりresolve -> rejectとしてもresolveがsettleとなる
+    - thenとcatch
+        - thenは２つの引数があるがどちらも省略が可能
+        - 多くの場合はthenではsucessの処理をだけを書く
+            - suscessの例: delay
+        - 失敗の処理を書くには `then(undefined, onRejected)` としないといけない
+        - この表記の代わりに `catch(onRejected)`と書ける
+            - catchの例: dummyFetch
+        - thenとcatchはどちらも新しいPromiseインスタンスを作って変えてしている
+        - そのためpromiseのメソッドチェーンが可能 => promiseチェーン
+    - 初期化処理は同期、コールバックの呼び出しは非同期処理
+        - つまりはthenは常に非同期で呼ばれるということに注意する・
     - Promiseは自動的にcatchされる
         - Promiseのコンストラクタでは自動的にtry-catchされる
         - 例外が発生すると自動的にcatchが呼ばれる
         - これに頼らずにrejectしよう
+    - thenの返り値
+        - thenの返り値は何を返してもPromise
+        - undefinedならundefinedになる
+        - つまりPromiseでラップしたものは基本的にラップしたまま扱う
     - thenとchain
         - thenの中で返された値は次のthenのコールバックに渡される
         - Promiseチェーン
