@@ -201,7 +201,7 @@ NPMによって多くのJavaScriptライブラリがNode.js向けに配布され
 モジュールバンドラーにはCommonJSだけでなくESモジュールにも対応したものもあります。
 また、バンドルする際にJavaScriptコードの最適化を行うなどバンドル以外の機能をもつものもあります。
 [JavaScriptモジュールについてのドキュメント][]では、
-+WebにおけるJavaScriptのモジュールと、バンドルする目的などについて詳しくまとめられています。
+WebにおけるJavaScriptのモジュールと、バンドルする目的などについて詳しくまとめられています。
 
 [export文]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export
 [import文]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import
