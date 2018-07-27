@@ -32,7 +32,7 @@
     - [ECMAScript](./basic/ecmascript/README.md)
     - 高度なAPI
 - [第2部: 応用編（ユースケース）](./use-case/README.md)
-    - モジュール
+    - [モジュール](./use-case/module/README.md)
     - [Ajaxで通信](./use-case/ajaxapp/README.md)
       - [エントリポイント](./use-case/ajaxapp/entrypoint/README.md)
       - [HTTP通信](./use-case/ajaxapp/xhr/README.md)

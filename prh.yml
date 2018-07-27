@@ -329,6 +329,13 @@ rules:
         to  : 2個ずつ
       - from: 2つづつ
         to  : 2つずつ
+  - expected: 箇所
+    patterns: /[ヶか]所/
+    specs:
+      - from: 一ヶ所
+        to  : 一箇所
+      - from: 2か所
+        to  : 2箇所
   - expected: 処理を行います
     patterns:
       - 処理をします
