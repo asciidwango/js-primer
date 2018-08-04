@@ -434,27 +434,14 @@ promise.then(onFulfilled, onRejected);
 - `reject`（失敗）した時
     - `onRejected` が呼ばれる
 
-### Promiseの状態 {#promise-status}
-
-`Promise`インスタンスには、内部的に次の3つの状態が存在します。
-
-- Fulfilled
-    - `resolve`（成功）したときの状態。このとき`onFulfilled`が呼ばれる
-- Rejected
-    - `reject`（失敗）したときの状態。このとき`onRejected`が呼ばれる
-- Pending
-    - FulfilledまたはRejectedではない状態。Promiseインスタンスの初期状態
-
-これらの状態はECMAScriptの仕様として内部的に定められている状態です。
-しかし、この状態をPromiseのインスタンスから取り出す方法はありません。
-そのため、APIとしてこの状態を直接扱うことはできませんが、Promiseについて理解するのに役に立ちます。
-
 ### `Promise#then`と`Promise#catch` {#promise-then-and-catch}
 
-`Promise`のようにコンストラクタに関数を渡すパターンは今までなかったので、具体的な例を見ていきます。
+`Promise`のようにコンストラクタに関数を渡すパターンは今までなかったので、`then`メソッドの使い方について具体的な例を見ていきます。
+また、`then`メソッドのエイリアスでもある`catch`メソッドについても見ていきます。
 
 次のコードの`dymmyFetch`関数は`Promise`のインスタンスを作成して返します。
-`dummyFetch`関数はリソースの取得に成功した`resolve`関数を呼び、失敗した場合は`reject`関数を呼びます。
+`dummyFetch`関数はリソースの取得に成功した場合は`resolve`関数を呼び、失敗した場合は`reject`関数を呼びます。
+
 `resolve`に渡した値は、`then`メソッドの1番目のコールバック関数（`onFulfilled`）に渡されます。
 `reject`に渡したエラーオブジェクトは、`then`メソッドの2番目のコールバック関数（`onRejected`）に渡されます。
 
@@ -490,10 +477,10 @@ dummyFetch("/failure/data").then(function onFulfilled(response) {
 });
 ```
 
-`Promise#then`メソッドは成功と失敗のコールバック関数の2つを受け取りますが、どちらの引数も省略できます。
+`Promise#then`メソッドは成功（`onFulfilled`）と失敗（`onRejected`）のコールバック関数の2つを受け取りますが、どちらの引数も省略できます。
 
 次のコードの`delay`関数は一定時間後に解決（`resolve`）されるPromiseインスタンスを返します。
-このPromiseインスタンスに対して`then`メソッドで成功時のコールバック関数だけを登録しています。
+このPromiseインスタンスに対して`then`メソッドで**成功時のコールバック関数だけ**を登録しています。
 
 ```js
 function delay(timeoutMs) {
@@ -511,10 +498,10 @@ delay(1000).then(() => {
 
 一方、`then`メソッドでは失敗時のコールバック関数だけの登録もできます。
 このとき`then(undefined, onRejected)`のように第1引数には`undefined`を渡す必要があります。
-同様のことを行う方法として`Promise`には失敗時のコールバック関数だけを登録する`Promise#catch`メソッドが用意されています。
+`then(undefined, onRejected)`と同様のことを行う方法として`Promise#catch`メソッドが用意されています。
 
 次のコードでは`then`メソッドと`catch`メソッドで失敗時のエラー処理をしていますが、どちらも同じ意味となります。
-`then`メソッドに`undefined`を渡すのはわかりにくいため、失敗時の処理だけを行う場合は`catch`メソッドの利用を推奨します。
+`then`メソッドに`undefined`を渡すのはわかりにくいため、失敗時の処理だけを登録する場合は`catch`メソッドの利用を推奨しています。
 
 ```js
 function errorPromise(message) {
@@ -522,15 +509,86 @@ function errorPromise(message) {
         reject(new Error(message));
     });
 }
-// `then`メソッドで失敗時のコールバック関数だけを登録
+// 非推奨: `then`メソッドで失敗時のコールバック関数だけを登録
 errorPromise("thenでエラーハンドリング").then(undefined, (error) => {
     console.log(error); // => Error: thenでエラーハンドリング
 });
-// `catch`メソッドで失敗時のコールバック関数を登録
-errorPromise("catchでエラーハンドリング").then(undefined, (error) => {
+// 推奨: `catch`メソッドで失敗時のコールバック関数を登録
+errorPromise("catchでエラーハンドリング").cath(error => {
     console.log(error); // => Error: catchでエラーハンドリング
 });
 ```
+
+### Promiseの状態 {#promise-status}
+
+Promiseの`then`メソッドや`catch`メソッドによる処理がわかったところで、`Promise`インスタンスの状態について整理していきます。
+
+`Promise`インスタンスには、内部的に次の3つの状態が存在します。
+
+- **Fulfilled**
+    - `resolve`（成功）したときの状態。このとき`onFulfilled`が呼ばれる
+- **Rejected**
+    - `reject`（失敗）したときの状態。このとき`onRejected`が呼ばれる
+- **Pending**
+    - FulfilledまたはRejectedではない状態
+    - `new Promise`でインスタンスを作成したときの初期状態
+
+これらの状態はECMAScriptの仕様として内部的に定められている状態です。
+しかし、この状態をPromiseのインスタンスから取り出す方法はありません。
+そのため、APIとしてこの状態を直接扱うことはできませんが、Promiseについて理解するのに役に立ちます。
+
+<!-- textlint-disable preset-ja-technical-writing/no-doubled-conjunction -->
+
+`Promise`インスタンスの状態は作成時に**Pending**となり、一度でも**Fulfilled**または**Rejected**へ変化すると、そのそれ以降状態は変化しなくなります。そのため、**Fulfilled**または**Rejected**の状態であることを**Settled**（不変）と表現することがあります。
+
+<!-- textlint-enable preset-ja-technical-writing/no-doubled-conjunction -->
+
+一度でも**Settled**となった`Promise`インスタンスは、それ以降へ別の状態には変化しません。
+そのため、`resolve`を呼び出した後に`reject`を呼び出しても、その`Promise`インスタンスは最初に呼び出した`resolve`によって**Fulfilled**のままとなります。
+
+`then`メソッドで登録したコールバック関数は状態が変化した時に呼び出されます。
+次のコードでは、`reject`を呼び出しても状態が変化しないため、`then`で登録したonRejectedのコールバック関数は呼び出されません。
+
+{{book.console}}
+```js
+const promise = new Promise((resolve, reject) => {
+    // 非同期でresolveする
+    setTimeout(() => {
+        resolve();
+        reject(new Error("エラー")); // 既にresolveされているため無視される
+    }, 16);
+});
+promise.then(() => {
+    console.log("Fulfilledとなった");
+}, (error) => {
+    // この行は呼び出されない
+});
+```
+
+同じように、`Promise`コンストラクタ内で`resolve`を何度呼び出しても、その`Promise`インスタンスの状態は一度しか変化しません。そのため、次のように`resolve`を何度呼び出しても、`then`で登録したコールバック関数は1度しか呼び出されません。
+
+{{book.console}}
+```js
+const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve();
+        resolve(); // 2度目以降のresolveやrejectは無視される
+    }, 16);
+});
+promise.then(() => {
+    console.log("最初のresolve時の1度しか呼ばれない");
+}, (error) => {
+    // この行は呼び出されない
+});
+```
+
+このように`Promise`インスタンスの状態が変化した時に、一度だけ呼ばれる関数を登録するのが`then`や`catch`メソッドとなります。
+
+また`then`や`catch`メソッドはすでにSettledへと状態が変化した`Promise`インスタンスに対してコールバック関数を登録できます。Promiseには静的メソッドとして、状態が変化済みの`Promise`インスタンスを作成する`Promise.resolve`と`Promise.reject`メソッドがあります。
+
+### `Promise.resolve` {#promise-resolve}
+
+
 
 [文と式]: ../statement-expression/README.md
 [例外処理]: ../error-try-catch/README.md
