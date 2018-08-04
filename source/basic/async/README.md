@@ -482,6 +482,7 @@ dummyFetch("/failure/data").then(function onFulfilled(response) {
 次のコードの`delay`関数は一定時間後に解決（`resolve`）されるPromiseインスタンスを返します。
 このPromiseインスタンスに対して`then`メソッドで**成功時のコールバック関数だけ**を登録しています。
 
+{{book.console}}
 ```js
 function delay(timeoutMs) {
     return new Promise((resolve) => {
@@ -503,6 +504,7 @@ delay(1000).then(() => {
 次のコードでは`then`メソッドと`catch`メソッドで失敗時のエラー処理をしていますが、どちらも同じ意味となります。
 `then`メソッドに`undefined`を渡すのはわかりにくいため、失敗時の処理だけを登録する場合は`catch`メソッドの利用を推奨しています。
 
+{{book.console}}
 ```js
 function errorPromise(message) {
     return new Promise((resolve, reject) => {
@@ -584,11 +586,91 @@ promise.then(() => {
 
 このように`Promise`インスタンスの状態が変化した時に、一度だけ呼ばれる関数を登録するのが`then`や`catch`メソッドとなります。
 
-また`then`や`catch`メソッドはすでにSettledへと状態が変化した`Promise`インスタンスに対してコールバック関数を登録できます。Promiseには静的メソッドとして、状態が変化済みの`Promise`インスタンスを作成する`Promise.resolve`と`Promise.reject`メソッドがあります。
+また`then`や`catch`メソッドはすでにSettledへと状態が変化した`Promise`インスタンスに対してコールバック関数を登録できます。状態が変化済みの`Promise`インスタンスを作成方法として`Promise.resolve`と`Promise.reject`メソッドがあります。
+これらのメソッドの使い方をみながら、状態が変化済みの`Promise`インスタンスに`then`メソッドで登録したコールバック関数がどのようなタイミングでよびだされるかを見ていきます。
 
 ### `Promise.resolve` {#promise-resolve}
 
+`Promise.resolve`メソッドは**Fulfilled**の状態となった`Promise`インスタンスを作成します。
 
+```js
+const fullFilledPromise = Promise.resolve();
+```
+
+`Promise.resolve`メソッドは`new Promise`の糖衣構文（シンタックスシュガー）です。
+そのため、`Promise.resolve`メソッドは次のコードと同じ意味になります。
+
+```js
+const fullFilledPromise = new Promise((resolve) => {
+    resolve();
+});
+```
+
+`Promise.resolve`メソッドは引数に`resolve`される値を渡すこともできます。
+
+```js
+// `resolve(42)`されたPromiseインスタンスを作成する
+const fullFilledPromise = Promise.resolve(42);
+```
+
+`Promise.resolve`メソッドで作成した**Fulfilled**の状態となった`Promise`インスタンスに対しても`then`メソッドでコールバック関数を登録できます。
+状態が変化済みの`Promise`インスタンスに`then`メソッドで登録したコールバック関数は、常に非同期なタイミングで実行されます。
+
+{{book.console}}
+```js
+Promise.resolve().then(() => {
+    console.log("2. コールバック関数が実行されました");
+});
+console.log("1. 同期的な処理が実行されました");
+```
+
+このコードの実行すると、すべての同期的な処理が実行された後に、`then`メソッドのコールバック関数が非同期なタイミングで実行されることがわかります。
+
+`Promise.resolve`メソッドは`new Promise`の糖衣構文であるため、この実行順序は`new Promise`を使った場合も同じです。次のコードはさきほどの`Promise.resolve`メソッドを使ったものと同じ動作になります。
+
+{{book.console}}
+```js
+const promise = new Promise((resolve) => {
+    console.log("1. Promiseインスタンスをresolveします");
+    resolve();
+});
+promise.then(() => {
+    console.log("3. コールバック関数が実行されました");
+});
+console.log("2. 同期的な処理が実行されました");
+```
+
+このコードの実行すると、まず`Promise`のコンストラクタ関数が実行され、続いて同期的な処理が実行されます。最後に`then`メソッドで登録していたコールバック関数が非同期に呼ばれることがわかります。
+
+## `Promise.reject` {#promise-reject}
+
+`Promise.reject`メソッドは **Rejected**の状態となった`Promise`インスタンスを作成します。
+
+```js
+const rejectedPromise = Promise.reject(new Error("エラー"));
+```
+
+`Promise.reject`メソッドは`new Promise`の糖衣構文（シンタックスシュガー）です。
+そのため、`Promise.reject`メソッドは次のコードと同じ意味になります。
+
+```js
+const rejectedPromise = new Promise((resolve, reject) => {
+    reject(new Error("エラー"));
+});
+```
+
+`Promise.reject`メソッドで作成した**Rejected**状態の`Promise`インスタンスに対しても`then`や`catch`メソッドでコールバック関数を登録できます。
+状態が変化済みの`Promise`インスタンスに登録したコールバック関数は、常に非同期なタイミングで実行されます。これは**Fulfilled**の場合と同様です。
+
+{{book.console}}
+```js
+Promise.reject(new Error("エラー")).catch(() => {
+    console.log("2. コールバック関数が実行されました");
+});
+console.log("1. 同期的な処理が実行されました");
+```
+
+`Promise.resolve`や`Promise.reject`は短くかけるため、 テストコードなどで利用されることがあります。
 
 [文と式]: ../statement-expression/README.md
 [例外処理]: ../error-try-catch/README.md
