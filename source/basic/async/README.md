@@ -611,6 +611,9 @@ const fullFilledPromise = new Promise((resolve) => {
 ```js
 // `resolve(42)`されたPromiseインスタンスを作成する
 const fullFilledPromise = Promise.resolve(42);
+fullFilledPromise.then(value => {
+    console.log(value); // => 42
+});
 ```
 
 `Promise.resolve`メソッドで作成した**Fulfilled**の状態となった`Promise`インスタンスに対しても`then`メソッドでコールバック関数を登録できます。
@@ -618,7 +621,8 @@ const fullFilledPromise = Promise.resolve(42);
 
 {{book.console}}
 ```js
-Promise.resolve().then(() => {
+const promise = Promise.resolve();
+promise.then(() => {
     console.log("2. コールバック関数が実行されました");
 });
 console.log("1. 同期的な処理が実行されました");
@@ -674,7 +678,196 @@ console.log("1. 同期的な処理が実行されました");
 
 ### Promiseチェーン {#promise-chain}
 
+Promiseは非同期処理における統一的なインターフェイスを提供するビルトインオブジェクトです。
+Promiseによる統一的な処理方法は複数の非同期処理を扱う場合に特に効力を発揮します。
+これまでは、1つの非同期処理（Promiseインスタンス）に対して`then`や`catch`メソッドで1組のコールバック処理を登録するだけでした。
 
+この`then`や`catch`メソッドは常に新しい`Promise`インスタンスを作成して返します。
+そのため`then`の返り値である`Promise`インスタンスに`catch`メソッドを処理を登録するといったような、メソッドチェーンで処理を書くことができます。
+
+次のコードの`asyncTask`関数はランダムでFulfilledまたはRejected状態のPromiseインスタンスを返えします。
+この関数が返すPromiseインスタンスに対して、`then`メソッドで成功時の処理を書いています。
+`then`メソッドの返り値は新しいPromiseインスタンスであるため、続けて`catch`メソッドで失敗時の処理を書けます。
+
+{{book.console}}
+```js
+// ランダムでFulfilledまたはRejectedのPromiseインスタンスを返す関数
+function asyncTask() {
+    return Math.raondom % 2 === 0 
+        ? Promise.resolve("成功")
+        : Promise.reject(new Error("失敗"));
+}
+
+asyncTask().then(function onFulfilled(value) {
+    console.log(value); // => "成功"
+}).catch(function onRejected(error) {
+    console.log(error); // => Error: 失敗
+});
+```
+
+`asyncTask`関数が成功（resolve）した場合は`then`メソッドで登録した成功時の処理だけが呼び出され、`catch`メソッドで登録した失敗時の処理は呼び出されません。
+一方、`asyncTask`関数が失敗（reject）した場合は`then`メソッドで登録した成功時の処理は呼び出されずに、`catch`メソッドで登録した失敗時の処理だけが呼び出されます。
+
+先ほどのコードにおけるPromiseの状態とコールバック関数は次のような処理の流れとなります。
+
+![promise-chain](img/promise-chain.png)
+
+Promiseの状態が**Rejected**となった場合は、失敗時の処理(`catch`または`then`の第二引数)が行われるまで、成功時の処理（`then`の第一引数）はスキップされます。
+
+{{book.console}}
+```js
+// RejectedなPromiseは次の失敗時の処理までスキップする
+const rejectedPromise = Promise.reject(new Error("失敗"));
+rejectedPromise.then(() => {
+    // このthenのコールバック関数は呼び出されません
+}).then(() => {
+    // このthenのコールバック関数は呼び出されません
+}).catch(error =>{
+    console.log(error); // => Error: 失敗
+});
+```
+
+#### コールバック関数で値を返す {#promise-then-return-value}
+
+さきほどのコードでは、`then`や`catch`メソッドに渡したコールバック関数では何も値を返していませんでした。
+
+`then`メソッドのコールバック関数は数値、文字列、オブジェクトなどの値を返せます。
+コールバック関数が返した値は、次の`then`のコールバック関数へ引数として渡されます。
+コールバック関数でどんな値を返しても`then`メソッドは新しい`Promise`インスタンスを返します。
+
+{{book.console}}
+```js
+Promise.resolve(1).then((value) => {
+    console.log(value); // => 1
+    return value * 2;
+}).then(value => {
+    console.log(value); // => 2
+    return value * 2;
+}).then(value => {
+    console.log(value); // => 4
+    // 値を返さない場合は undefined を返すのと同じ
+}).then(value => {
+    console.log(value); // => undefined
+});
+```
+
+ここでは`then`メソッドを元に解説しますが、`catch`メソッドは`then`メソッドの糖衣構文であるため同じ動作となります。
+
+#### コールバック関数で`Promise`インスタンスを返す {#promise-then-return-promise}
+
+`then`メソッドのコールバック関数でどんな値を返しても、`then`メソッドが返すのは**Fulfilled**状態の`Promise`インスタンスです。しかし、コールバック関数で`Promise`インスタンスを返した場合は例外的に異なります。
+コールバック関数で`Promise`インスタンスを返した場合は、その`Promise`インスタンスが`then`メソッドの返り値となります。
+
+つまり`then`メソッドで**Rejected**状態の`Promise`インスタンスを返した場合は、`then`はRejectedなPromiseを返します。
+
+次のコードでは、`then`メソッドのコールバック関数で`Promise.reject`メソッドを使い**Rejected**な`Promise`インスタンスを返しています。
+**Rejected**な`Promise`インスタンスは、次の`catch`メソッドで登録した失敗時の処理を呼び出すまで、`then`メソッドの成功時の処理をスキップします。
+
+{{book.console}}
+```js
+Promise.resolve().then(function onFulfilledA() {
+    return Promise.reject(new Error("失敗"));
+}).then(function onFulfilledB() {
+    // onFulfilledBは呼び出されません
+}).catch(function onRejected(error) {
+    console.log(error); // => Error: 失敗
+}).then(function onFulfilledC() {
+    console.log("この行は呼び出されます");
+});
+```
+
+このコードにおけるPromiseの状態とコールバック関数は次のような処理の流れとなります。
+
+![then-rejected-promise.png](./img/then-rejected-promise.png)
+
+このようにPromiseではメソッドチェーンを使った処理の流れを書けます。
+この書籍ではPromiseをメソッドチェーンでつなぐことを**Promiseチェーン**と呼びます。
+
+### Promiseチェーンで直列処理 {#promise-sequential}
+
+Promiseチェーンで非同期処理の流れを書く大きなメリットは、非同期処理のさまざまなパターンに対応できることです。
+
+ここでは、典型的な例として複数の非同期処理を順番に処理していく直列処理を考えていきましょう。
+Promiseで直列的な処理と言っても難しいことはなく、単純に`then`で非同期処理をつないでいくだけです。
+
+次のコードでは、Resource AとResource Bを順番に取得しています。
+それぞれ取得したリソースを変数`results`に追加し、すべて取得し終わったらコンソールに出力します。
+
+```js
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+
+const results = [];
+// Resource Aを取得する
+dummyFetch("/resource/A").then(response => {
+    results.push(response.body);
+    // Resource Bを取得する
+    return dummyFetch("/resource/B");
+}).then(response => {
+    results.push(response.body);
+}).then(() => {
+    console.log(results); // => ["Response body of /resource/A", "Response body of /resource/B"]
+});
+```
+
+### Promise.allで並列処理 {#promise-concurrent}
+
+複数のPromiseを使った非同期処理を同時に行いたい場合は、`Promise.all`メソッドが利用できます。
+
+`Promise.all`メソッドは Promiseインスタンスの配列を受け取り、新しいPromiseインスタンスを返します。
+その配列のすべてのPromiseインスタンスが**Fulfilled**となった場合は、返り値のPromiseインスタンスも**Fulfilled**となります。
+その配列のPromiseインスタンスがひとつでも **Rejected**となった場合は、返り値のPromiseインスタンスも **Rejected**となります。
+
+返り値のPromiseインスタンスに`then`メソッドで登録したコールバック関数には、Promiseの結果をまとめた配列が渡されます。このときの配列の要素の順番は`Promise.all`メソッドに渡した配列のPromiseの要素の順番と同じになります。
+
+```js
+const promise1 = Promise.resolve(1);
+const promise2 = Promise.resolve(2);
+const promise3 = new Promise(function(resolve, reject) {
+    setTimeout(() => {
+        resolve(3);
+    }, 16);
+});
+
+Promise.all([promise1, promise2, promise3]).then(function(values) {
+    console.log(values); // => [1, 2, 3]
+});
+```
+
+先程のリソースを取得する例では、Resource AとResource Bはどちらを先に取得してよいものでした。
+そのため、`Promise.all`を使いResource AとBを同時に取得すればより早い時間で処理が完了します。
+
+```js
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+
+const fetchedPromise = Promise.all([
+    dummyFetch("/resource/A"),
+    dummyFetch("/resource/B")
+]);
+fetchedPromise.then(([responseA, responseB]) => {
+    console.log(responseA); // => "Response body of /resource/A"
+    console.log(responseA); // => "Response body of /resource/B"
+});
+```
 
 [文と式]: ../statement-expression/README.md
 [例外処理]: ../error-try-catch/README.md
