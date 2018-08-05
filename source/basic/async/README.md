@@ -363,6 +363,7 @@ function dummyFetch(path, successCallback, failureCallback) {
 エラーファーストコールバックでは、非同期処理に成功した場合は1番目の引数へ`null`を渡し、2番目以降の引数に結果を渡します。
 一方、非同期処理に失敗した場合は1番目の引数にはエラーオブジェクトを渡すというルールでした。
 
+<!-- doctest:disable -->
 ```js
 asyncTask((error, result) => {
     if (error) {
@@ -380,6 +381,7 @@ Promiseでは、非同期処理に成功したときの処理を`then`メソッ�
 エラーファーストコールバックとはことなり、非同期処理（`asyncTask`関数）は`Promise`インスタンスを返しています。
 その返された`Promise`インスタンスに対して成功と失敗それぞれのコールバック関数を渡すという形になります。
 
+<!-- doctest:disable -->
 ```js
 asyncTask().then(()=> {
     // 非同期処理が成功したときの処理
@@ -793,6 +795,7 @@ Promiseで直列的な処理と言っても難しいことはなく、単純に`
 次のコードでは、Resource AとResource Bを順番に取得しています。
 それぞれ取得したリソースを変数`results`に追加し、すべて取得し終わったらコンソールに出力します。
 
+{{book.console}}
 ```js
 function dummyFetch(path) {
     return new Promise((resolve, reject) => {
@@ -829,6 +832,7 @@ dummyFetch("/resource/A").then(response => {
 
 返り値のPromiseインスタンスに`then`メソッドで登録したコールバック関数には、Promiseの結果をまとめた配列が渡されます。このときの配列の要素の順番は`Promise.all`メソッドに渡した配列のPromiseの要素の順番と同じになります。
 
+{{book.console}}
 ```js
 const promise1 = Promise.resolve(1);
 const promise2 = Promise.resolve(2);
@@ -846,6 +850,7 @@ Promise.all([promise1, promise2, promise3]).then(function(values) {
 先程のリソースを取得する例では、Resource AとResource Bはどちらを先に取得してよいものでした。
 そのため、`Promise.all`を使いResource AとBを同時に取得すればより早い時間で処理が完了します。
 
+{{book.console}}
 ```js
 function dummyFetch(path) {
     return new Promise((resolve, reject) => {
