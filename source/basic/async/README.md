@@ -516,7 +516,7 @@ errorPromise("thenでエラーハンドリング").then(undefined, (error) => {
     console.log(error); // => Error: thenでエラーハンドリング
 });
 // 推奨: `catch`メソッドで失敗時のコールバック関数を登録
-errorPromise("catchでエラーハンドリング").cath(error => {
+errorPromise("catchでエラーハンドリング").catch(error => {
     console.log(error); // => Error: catchでエラーハンドリング
 });
 ```
@@ -670,7 +670,11 @@ Promise.reject(new Error("エラー")).catch(() => {
 console.log("1. 同期的な処理が実行されました");
 ```
 
-`Promise.resolve`や`Promise.reject`は短くかけるため、 テストコードなどで利用されることがあります。
+`Promise.resolve`や`Promise.reject`を使うことで短くかけるため、テストコードなどで利用されることがあります。また、`Promise.reject`は次に解説するPromiseチェーンにおいて、Promiseの状態を操作することに利用できます。
+
+### Promiseチェーン {#promise-chain}
+
+
 
 [文と式]: ../statement-expression/README.md
 [例外処理]: ../error-try-catch/README.md
