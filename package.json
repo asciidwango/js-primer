@@ -86,7 +86,7 @@
     "textlint-rule-max-comma": "^1.0.4",
     "textlint-rule-no-js-function-paren": "^1.0.1",
     "textlint-rule-period-in-list-item": "^0.2.0",
-    "textlint-rule-preset-ja-technical-writing": "^3.0.1",
+    "textlint-rule-preset-ja-technical-writing": "^3.1.0",
     "textlint-rule-prh": "^5.0.1",
     "typescript": "^2.8.3",
     "unist-util-find-all-between": "^1.0.1",
