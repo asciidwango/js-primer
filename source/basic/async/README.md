@@ -1028,6 +1028,7 @@ racePromise.then(value => {
 
 この2つの`Promise`インスタンスを競争させて、`dummyFetch`が先に完了すれば処理は成功、`timeout`が先に完了すれば処理は失敗というタイムアウト処理が実現できます。
 
+{{book.console}}
 ```js
 // `timeoutMs`ミリ秒後にresolveする
 function timeout(timeoutMs) {
