@@ -397,9 +397,9 @@ asyncTask().then(()=> {
 
 ### `Promise`インスタンスの作成 {#promise-instance}
 
-`Promise`はコンストラクタから`new`演算子で`Promise`のインスタンスを作成して利用します。
-このときのコンストラクタには`resolve`と`reject`の2つの引数を取る`executor`関数を渡します。
-`executor`関数で非同期処理を開始し、非同期処理が成功した場合は`resolve`関数を呼び、失敗した場合は`reject`関数を呼だします。
+Promiseは`new`演算子で`Promise`のインスタンスを作成して利用します。
+このときのコンストラクタには`resolve`と`reject`の2つの引数を取る`executor`とよばれる関数を渡します。
+`executor`関数の中で非同期処理を行い、非同期処理が成功した場合は`resolve`関数を呼び、失敗した場合は`reject`関数を呼だします。
 
 ```js
 const executor = (resolve, reject) => {
@@ -437,7 +437,7 @@ promise.then(onFulfilled, onRejected);
 
 ### `Promise#then`と`Promise#catch` {#promise-then-and-catch}
 
-`Promise`のようにコンストラクタに関数を渡すパターンは今までなかったので、`then`メソッドの使い方について具体的な例を見ていきます。
+`Promise`のようにコンストラクタに関数を渡すパターンは今までなかったので、`then`メソッドの使い方について具体的な例を紹介します。
 また、`then`メソッドのエイリアスでもある`catch`メソッドについても見ていきます。
 
 次のコードの`dymmyFetch`関数は`Promise`のインスタンスを作成して返します。
@@ -512,20 +512,21 @@ function errorPromise(message) {
         reject(new Error(message));
     });
 }
-// 推奨: `catch`メソッドで失敗時のコールバック関数を登録
-errorPromise("catchでエラーハンドリング").catch(error => {
-    console.log(error); // => Error: catchでエラーハンドリング
-});
 // 非推奨: `then`メソッドで失敗時のコールバック関数だけを登録
 errorPromise("thenでエラーハンドリング").then(undefined, (error) => {
     console.log(error); // => Error: thenでエラーハンドリング
+});
+// 推奨: `catch`メソッドで失敗時のコールバック関数を登録
+errorPromise("catchでエラーハンドリング").catch(error => {
+    console.log(error); // => Error: catchでエラーハンドリング
 });
 ```
 
 ### Promiseと例外 {#promsie-exception}
 
 Promiseではコンストラクタの処理で例外が発生した場合に自動的に例外がキャッチされます。
-このとき、`Promise`インスタンスに対して`then`メソッドの第二引数や`catch`メソッドで登録したエラー時のコールバック関数が呼び出されます。
+例外が発生した`Promise`インスタンスは`reject`関数を呼びだしたのと同じように失敗したものとして扱われます。
+そのため、Promise内で例外が発生すると`then`メソッドの第二引数や`catch`メソッドで登録したエラー時のコールバック関数が呼び出されます。
 
 {{book.console}}
 ```js
@@ -544,11 +545,10 @@ throwPromise().catch(error => {
 ```
 
 このようにPromiseにおける処理では`try...catch`構文を使わなくても、自動的に例外がキャッチされます。
-例外が発生した`Promise`インスタンスは`reject`関数を呼び出した場合と同じように、失敗時の処理を呼び出します。
 
 ### Promiseの状態 {#promise-status}
 
-Promiseの`then`メソッドや`catch`メソッドによる処理がわかったところで、`Promise`インスタンスの状態について整理していきます。
+Promiseの`then`メソッドや`catch`メソッドによる処理がわかったところで、`Promise`インスタンスの状態について整理していきます。
 
 `Promise`インスタンスには、内部的に次の3つの状態が存在します。
 
@@ -562,16 +562,16 @@ Promiseの`then`メソッドや`catch`メソッドによる処理がわかった
 
 これらの状態はECMAScriptの仕様として内部的に定められている状態です。
 しかし、この状態をPromiseのインスタンスから取り出す方法はありません。
-そのため、APIとしてこの状態を直接扱うことはできませんが、Promiseについて理解するのに役に立ちます。
+そのためAPIとしてこの状態を直接扱うことはできませんが、Promiseについて理解するのに役に立ちます。
 
 <!-- textlint-disable preset-ja-technical-writing/no-doubled-conjunction -->
 
-`Promise`インスタンスの状態は作成時に**Pending**となり、一度でも**Fulfilled**または**Rejected**へ変化すると、そのそれ以降状態は変化しなくなります。
-そのため、**Fulfilled**または**Rejected**の状態であることを**Settled**（不変）と表現することがあります。
+`Promise`インスタンスの状態は作成時に**Pending**となり、一度でも**Fulfilled**または**Rejected**へ変化すると、それ以降状態は変化しなくなります。
+そのため、**Fulfilled**または**Rejected**の状態であることを**Settled**（不変）と呼びます。
 
 <!-- textlint-enable preset-ja-technical-writing/no-doubled-conjunction -->
 
-一度でも**Settled**となった`Promise`インスタンスは、それ以降へ別の状態には変化しません。
+一度でも**Settled**（**Fulfilled**または**Rejected**）となった`Promise`インスタンスは、それ以降へ別の状態には変化しません。
 そのため、`resolve`を呼び出した後に`reject`を呼び出しても、その`Promise`インスタンスは最初に呼び出した`resolve`によって**Fulfilled**のままとなります。
 
 `then`メソッドで登録したコールバック関数は状態が変化した時に呼び出されます。
