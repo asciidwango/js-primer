@@ -969,7 +969,7 @@ const fetchedPromise = Promise.all([
 fetchedPromise.then(([responseA, responseB]) => {
     console.log("この行は呼び出されません");
 }).catch(error => {
-    console.log(error); // Error: NOT FOUND1
+    console.log(error); // Error: NOT FOUND
 });
 ```
 
