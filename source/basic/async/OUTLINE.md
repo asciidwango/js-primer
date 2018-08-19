@@ -1,3 +1,5 @@
+<!-- textlint-disable -->
+
 # Promise
 
 ## 目的
@@ -146,17 +148,38 @@ try{
         - どちらもコールバック関数というただの関数でエラーがおきたかどうか伝えるルールを決めて行っているだけに過ぎません。
 - Promise
     - この問題を解決するためにES2015で導入されたのが、非同期処理を扱うオブジェクトを定義する手法です
+    - Promsieとコールバックの比較
+    - コールバックでは次のように非同期処理をしていました
+    - 例) エラーファーストの非同期処理
+    - Promiseの非同期処理
     - Promiseは非同期処理に抽象化したビルトインオブジェクトで成功、失敗時の処理を定義できます。
-    - 例) エラーファーストとPromiseのコード比較
     - 各非同期処理はこのPromiseオブジェクトを返すことで、同じインタフェースで成功、失敗を扱うことができるようになります。
     - 非同期処理を行う関数はPromiseオブジェクトを返すだけで、利用者はその返されたPromiseオブジェクトに対して成功時、失敗時のコールバック関数を登録します。
     - エラーファーストコールバックと同じようにコールバック関数を使うのは同じですが、`then`や`catch`などのメソッドを持つビルトインオブジェクトを定義しています。
     - これによってエラーファーストコールバックではただのルール（破っても何も言われない）だったものが統一したインタフェースとして扱える（破ると正しく動かない）ものとなります。
+    - Promiseオブジェクトの作成
+        - `new Promise` でのPromiseオブジェクトを作成します
+        - resolve => fulfilled => onFulfilledを呼び出す
+        - reject => rejected => onRejectedを呼び出す
+        - then = catch
+    - `Promise#then`と`Promise#catch`
+        - thenは２つの引数があるがどちらも省略が可能
+        - 多くの場合はthenではsucessの処理をだけを書く
+            - suscessの例: delay
+        - 失敗の処理を書くには `then(undefined, onRejected)` としないといけない
+        - この表記の代わりに `catch(onRejected)`と書ける
+            - catchの例: dummyFetch
+        - [=> promiseチェーン] thenとcatchはどちらも新しいPromiseインスタンスを作って変えてしている
+        - そのためpromiseのメソッドチェーンが可能 => promiseチェーン
     - Promiseの状態
-        - Promiseにはビルトインオブジェクトなのでインスタンスメソッドや静的メソッドが存在します
         - まずはPromiseの3つの状態について理解します
-        - settleの節目
+        - Pending
+        - Fullfilled
+        - Rejected
         - [未使用] また、PromiseはImmutableの特性を持っています
+        - また、一度変化したPromiseの状態は2度と変化しない。つまりresolve -> rejectとしてもresolveとなます。
+        - この一度PendingからFullfilled/Rejectどちらかに変化した状態はそれ以降変化しません。
+        - そのためFullfilledとRejectedどちらかの状態になったことをSettleと呼びます。
         -　重要なのはこのsettleのpromiseインスタンスに対しても`then`でコールバック関数を登録できる点です。
     - Promiseの変化済み(settle)のオブジェクト作成
         - すでにfulfilled/rejected済みのオブジェクトを作ることができる
@@ -167,46 +190,69 @@ try{
         - Promise.reject()
             - thenの中で返すとrejectを通知できる
         - これらに対してthenやcatchしてもコールバック関数が呼ばれる
-    - Promiseオブジェクトの作成
-        - `new Promise` でのPromiseオブジェクトを作成します
-        - resolve => fulfilled => onFulfilledを呼び出す
-        - reject => rejected => onRejectedを呼び出す
-        - then = catch
-    - Promiseの状態変化とメソッド
-        - 一度変化したPromiseの状態は2度と変化しない。つまりresolve -> rejectとしてもresolveがsettleとなる
-    - thenとcatch
-        - thenは２つの引数があるがどちらも省略が可能
-        - 多くの場合はthenではsucessの処理をだけを書く
-            - suscessの例: delay
-        - 失敗の処理を書くには `then(undefined, onRejected)` としないといけない
-        - この表記の代わりに `catch(onRejected)`と書ける
-            - catchの例: dummyFetch
-        - thenとcatchはどちらも新しいPromiseインスタンスを作って変えてしている
-        - そのためpromiseのメソッドチェーンが可能 => promiseチェーン
-    - 初期化処理は同期、コールバックの呼び出しは非同期処理
-        - つまりはthenは常に非同期で呼ばれるということに注意する・
-    - Promiseは自動的にcatchされる
-        - Promiseのコンストラクタでは自動的にtry-catchされる
-        - 例外が発生すると自動的にcatchが呼ばれる
-        - これに頼らずにrejectしよう
-    - thenの返り値
-        - thenの返り値は何を返してもPromise
-        - undefinedならundefinedになる
-        - つまりPromiseでラップしたものは基本的にラップしたまま扱う
-    - thenとchain
-        - thenの中で返された値は次のthenのコールバックに渡される
-        - Promiseチェーン
+    - [コラム] 初期化処理は同期、コールバックの呼び出しは非同期処理
+        - つまりはthenは常に非同期で呼ばれるということに注意する
+    - Promiseチェーン（直列処理）
+        - Promiseチェーンと呼ばれる仕組みを理解する
+        - Promiseでは、`then`や`catch`メソッドが新しいPromiseインスタンスを返します。
+        - これによって、`then`メソッドを使ってメソッドチェーンが行えます。
+        - 普通の値を返す場合
+            - 自動的に**Fulfilled**なPromiseにして返される
+        - promiseを返す場合
+            - thenやcatchの中で新しいPromiseインスタンスを返すと、その結果に応じてPromiseチェーンの分岐が変化します。
+            - thenやcatchの中では何もせずに処理が終わった場合は成功として扱われFulfilledとなります。
+            - thenやcatchの中で、RejectedなPromiseをreturnすると失敗として扱われRejectedとなります。
+        - Promiseチェーンのパターン
+            - S -> S
+            - S -> F -> S
+            - F -> S -> S
+            - S -> S -> F
+            - F -> F
+        - そのため、 A -> B という非同期処理は次のように書くことができます。
+        - さらにこのA->Bのどちらかでエラーが発生したい場合にエラーハンドリングをしたい場合は、最後に`catch`メソッド追加するだけで扱えます。
+        - Promiseが **Rejected**となった場合は、そのエラーがキャッチ(`catch`または`then`の第二引数)されるまで、promiseインスタンスの状態が伝搬します
+        - このようにPromiseはメソッドチェーンで処理を書くことができ、また状態もチェーンを通じて伝わります。この書籍ではPromiseをメソッドチェーンでつなぐことをPromiseチェーンと呼びます。
+        - thenの返り値            
+            - thenの返り値は何を返してもPromise(つまりPromise.resolveされているようなもの)
+            - undefinedならundefinedになる
+            - つまりPromiseでラップしたものは基本的にラップしたまま扱う
+            - 返した値は次のthenのコールバック関数に渡される
+        - errorの返り値
+            - エラーを返してもPromiseは **Rejected**となるわけではない
+            -  **Rejected**なPromiseを返すことで **Rejected**となる
+            - thenのコールバック関数で問題があり、エラーとしたいならば
+            - Promise.rejectを返す
+        - 大きな流れ
+            - 正常系はすべてのthenを順番に実行する
+            - 異常系が起きた場合は次のcatchまでスキップし実行し、catchの返り値は正常なPromise
+            - 明示的に失敗させたい場合はthrowではなくPromise.rejectを返す
+        - 非同期処理が1つだけならば、Promiseとコールバックは書き方が少し違うだけで、大きな違いはありません。
+        - Promiseが非同期処理として使い勝手がよくなるのは、複数の非同期処理を扱う場合に大きなメリットがあります。
+        - 次のようにAを取得し、Bを取得するといったように非同期処理を連続的に行う場合を考えてみましょう
         - コールバックでのネストとの比較
+        - コールバック関数では、複数の非同期処理を順番に行うコードを単純に書くとネストがどんどん深くなってしまいます。
+            - ネストが深くなるのは、工夫によって避けることができますが、それは別途非同期処理を管理する仕組みを作る必要があります
+    - Promiseと例外
+        - 例外: Promiseは自動的にcatchされる
+        - Promiseのコンストラクタやthenのコールバック関数では自動的にtry-catchされる
+        - 例外が発生すると自動的にcatchが呼ばれる
+        - PromiseチェーンでPromise.rejectを使ってrejectするほうが良い
+        - throwで例外を投げるとデバッガーが反応してしまうため
     - [コラム] thenやcatchは常に新しいpromiseオブジェクトを返す
-    - PromiseチェーンでPromise.rejectを使ってrejectする
-    - Promise.allですべてを実行待ち
+    - Promise.allで同時に実行
+        - まとめて実行してすべての結果を待つ
     - Promise.raceでタイムアウト
-- コールバックの問題点
+        - Promise同士を競争させて最初に終わるのを待つ
+        - 特性を利用してタイムアウトを実装する
+    - [未使用] Promise#finnalyで最後に実行
+        - リソースを開放したい場合
+        - try...finallyと同じ意図
+- [未使用] コールバックの問題点
     - 非同期処理が連続する場合もあります。
     - 次のようにAが取得できたらBを取得して、Cを取得するというような直列的なものをコールバックで書くとネストしてしまいます。
     - この際にコールバック関数は必ずネストを1段作ってしまうため、工夫して書かないと簡単に複雑なコードを作ってしまいます
     - この問題はコールバックの実行順序を管理する関数を作ることで回避できますが、頻出するパターンであるため
-- async await
+- Async await
     - Promiseが導入されたことで、非同期処理をPromiseという単位で扱えるようになりました。
     - しかし、Promiseは実際にはただのオブジェクトです。
     - JavaScriptで現実的なプログラミングをすると高頻度で非同期処理がでてきます。
