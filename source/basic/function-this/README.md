@@ -619,7 +619,7 @@ console.log(prefixedStrings); // => ["pre-a", "pre-b", "pre-c"]
 ```
 
 もちろん`Function#call`メソッドなどで明示的に`this`を渡して関数を呼び出すこともできます。
-また、`Array#map`メソッドなどは`this`となる値引数として渡せる仕組みを持っています。
+また、`Array#map`メソッドなどは`this`となる値を引数として渡せる仕組みを持っています。
 そのため、つぎのように第二引数に`this`となる値を渡すことでも解決できます。
 
 {{book.console}}
