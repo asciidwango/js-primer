@@ -440,7 +440,7 @@ promise.then(onFulfilled, onRejected);
 `Promise`のようにコンストラクタに関数を渡すパターンは今までなかったので、`then`メソッドの使い方について具体的な例を紹介します。
 また、`then`メソッドのエイリアスでもある`catch`メソッドについても見ていきます。
 
-次のコードの`dymmyFetch`関数は`Promise`のインスタンスを作成して返します。
+次のコードの`dummyFetch`関数は`Promise`のインスタンスを作成して返します。
 `dummyFetch`関数はリソースの取得に成功した場合は`resolve`関数を呼び、失敗した場合は`reject`関数を呼びます。
 
 `resolve`に渡した値は、`then`メソッドの1番目のコールバック関数（`onFulfilled`）に渡されます。
