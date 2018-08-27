@@ -15,6 +15,6 @@ author: azu
 
 - Todoアイテムを追加できる
 - Todoアイテムの完了状態を更新できる
-- Todoアプリムを削除できる
+- Todoアイテムを削除できる
 
 [Ajax通信]: ../ajaxapp/README.md
