@@ -947,9 +947,9 @@ dummyFetch("/resource/A").then(response => {
 });
 ```
 
-### `Promise.all`で並列処理 {#promise-concurrent}
+### `Promise.all`で複数のPromiseをまとめる {#promise-all}
 
-`Promise.all`を使うことで複数のPromiseを使った非同期処理をひとつの非同期処理として扱えます。
+`Promise.all`を使うことで複数のPromiseを使った非同期処理をひとつのPromiseとして扱えます。
 
 `Promise.all`メソッドは `Promise`インスタンスの配列を受け取り、新しい`Promise`インスタンスを返します。
 その配列のすべての`Promise`インスタンスが**Fulfilled**となった場合は、返り値の`Promise`インスタンスも**Fulfilled**となります。
@@ -974,7 +974,7 @@ Promise.all([promise1, promise2, promise3]).then(function(values) {
 ```
 
 先程のPromiseチェーンでリソースを取得する例では、Resource Aを取得し終わってからResource Bを取得というように逐次的でした。
-しかし、Resource AとBどちらを先に取得しても問題ない場合は、`Promise.all`メソッドを使いAとBを取得する非同期処理としてまとめられます。
+しかし、Resource AとBどちらを先に取得しても問題ない場合は、`Promise.all`メソッドを使い2つのPromiseを1つのPromiseとしてまとめられます。
 また、Resource AとBを同時に取得すればより早い時間で処理が完了します。
 
 次のコードでは、Resource AとBを同時に取得開始しています。
@@ -1042,11 +1042,11 @@ fetchedPromise.then(([responseA, responseB]) => {
 - 配列のなかでも一番最初に**Settle**となったPromiseが**Fulfilled**の場合は、新しい`Promise`インスタンスも**Fulfilled**へ
 - 配列のなかでも一番最初に**Settle**となったPromiseが**Rejected**の場合は、新しい`Promise`インスタンスも **Rejected**へ
 
-つまり、複数のPromiseによる非同期処理を同時に実行して競争（race）させて、一番最初に完了した`Promise`インスタンスに対する次の処理を呼び出すという形になります。
+つまり、複数のPromiseによる非同期処理を同時に実行して競争（race）させて、一番最初に完了した`Promise`インスタンスに対する次の処理を呼び出します。
 
 次のコードでは、`delay`関数という`timeoutMs`ミリ秒後に**Fulfilled**となる`Promise`インスタンスを返す関数を定義しています。
 `Promise.race`メソッドは1ミリ秒、32ミリ秒、64ミリ秒、128ミリ秒後に完了する`Promise`インスタンスの配列を受け取っています。
-この配列の中でも一番最初に**Settle**状態となるのは、1ミリ秒後に**Fulfilled**となる`Promise`インスタンスです。
+この配列の中でも一番最初に完了するのは、1ミリ秒後に**Fulfilled**となる`Promise`インスタンスです。
 
 {{book.console}}
 ```js
@@ -1071,7 +1071,8 @@ racePromise.then(value => {
 });
 ```
 
-このときに、一番最初に`resolve`された値で`racePromise`も`resolve`されます。そのため、`then`メソッドのコールバック関数に`1`という値が渡されます。
+このときに、一番最初に`resolve`された値で`racePromise`も`resolve`されます。
+そのため、`then`メソッドのコールバック関数に`1`という値が渡されます。
 
 他の`timeout`関数が作成した`Promise`インスタンスも32ミリ秒、64ミリ秒、128ミリ秒後に`resolve`されます。
 しかし、`Promise`インスタンスは一度**Settled**（**Fulfilled**または**Rejected**）となると、それ以降は状態も変化せず`then`のコールバック関数も呼び出しません。
