@@ -409,11 +409,11 @@ const executor = (resolve, reject) => {
 const promise = new Promise(executor);
 ```
 
-このPromiseインスタンスの`Promise#then`メソッドで、Promiseが`resolve`（成功）、`reject`（失敗）したときに呼ばれるコールバック関数を登録します。
+この`Promise`インスタンスの`Promise#then`メソッドで、Promiseが`resolve`（成功）、`reject`（失敗）したときに呼ばれるコールバック関数を登録します。
 `then`メソッドでは2つの引数を渡すことができ、第一引数には`resolve`（成功）に呼ばれるコールバック関数、第二引数には`reject`（失敗）に呼ばれるコールバック関数を渡します。
 
 ```js
-// Promiseインスタンスを作成
+// `Promise`インスタンスを作成
 const promise = new Promise((resolve, reject) => {
     // 非同期の処理が成功したときはresolveを呼ぶ
     // または、非同期の処理が失敗したときにはrejectを呼ぶ
@@ -480,8 +480,8 @@ dummyFetch("/failure/data").then(function onFulfilled(response) {
 
 `Promise#then`メソッドは成功（`onFulfilled`）と失敗（`onRejected`）のコールバック関数の2つを受け取りますが、どちらの引数も省略できます。
 
-次のコードの`delay`関数は一定時間後に解決（`resolve`）されるPromiseインスタンスを返します。
-このPromiseインスタンスに対して`then`メソッドで**成功時のコールバック関数だけ**を登録しています。
+次のコードの`delay`関数は一定時間後に解決（`resolve`）される`Promise`インスタンスを返します。
+この`Promise`インスタンスに対して`then`メソッドで**成功時のコールバック関数だけ**を登録しています。
 
 {{book.console}}
 ```js
@@ -637,7 +637,7 @@ const fullFilledPromise = new Promise((resolve) => {
 `Promise.resolve`メソッドは引数に`resolve`される値を渡すこともできます。
 
 ```js
-// `resolve(42)`されたPromiseインスタンスを作成する
+// `resolve(42)`された`Promise`インスタンスを作成する
 const fullFilledPromise = Promise.resolve(42);
 fullFilledPromise.then(value => {
     console.log(value); // => 42
@@ -663,7 +663,7 @@ console.log("1. 同期的な処理が実行されました");
 {{book.console}}
 ```js
 const promise = new Promise((resolve) => {
-    console.log("1. Promiseインスタンスをresolveします");
+    console.log("1. resolveします");
     resolve();
 });
 promise.then(() => {
@@ -708,32 +708,32 @@ console.log("1. 同期的な処理が実行されました");
 
 Promiseは非同期処理における統一的なインターフェイスを提供するビルトインオブジェクトです。
 Promiseによる統一的な処理方法は複数の非同期処理を扱う場合に特に効力を発揮します。
-これまでは、1つの非同期処理（Promiseインスタンス）に対して`then`や`catch`メソッドで1組のコールバック処理を登録するだけでした。
+これまでは、1つの非同期処理（`Promise`インスタンス）に対して`then`や`catch`メソッドで1組のコールバック処理を登録するだけでした。
 
 この`then`や`catch`メソッドは常に新しい`Promise`インスタンスを作成して返します。
 そのため`then`の返り値である`Promise`インスタンスに`catch`メソッドを処理を登録するといったような、メソッドチェーンで処理を書くことができます。
 この書籍ではPromiseをメソッドチェーンでつなぐことを**Promiseチェーン**と呼びます。
 
-次のコードの`asyncTask`関数はランダムでFulfilledまたはRejected状態のPromiseインスタンスを返します。
-この関数が返すPromiseインスタンスに対して、`then`メソッドで成功時の処理を書いています。
-`then`メソッドの返り値は新しいPromiseインスタンスであるため、続けて`catch`メソッドで失敗時の処理を書けます。
+次のコードの`asyncTask`関数はランダムでFulfilledまたはRejected状態の`Promise`インスタンスを返します。
+この関数が返す`Promise`インスタンスに対して、`then`メソッドで成功時の処理を書いています。
+`then`メソッドの返り値は新しい`Promise`インスタンスであるため、続けて`catch`メソッドで失敗時の処理を書けます。
 
 {{book.console}}
 ```js
-// ランダムでFulfilledまたはRejectedのPromiseインスタンスを返す関数
+// ランダムでFulfilledまたはRejectedの`Promise`インスタンスを返す関数
 function asyncTask() {
     return Math.raondom % 2 === 0 
         ? Promise.resolve("成功")
         : Promise.reject(new Error("失敗"));
 }
 
-// asyncTask関数は新しいPromiseインスタンスを返す
+// asyncTask関数は新しい`Promise`インスタンスを返す
 asyncTask()
-    // thenメソッドは新しいPromiseインスタンスを返す
+    // thenメソッドは新しい`Promise`インスタンスを返す
     .then(function onFulfilled(value) {　
         console.log(value); // => "成功"
     })
-    // catchメソッドは新しいPromiseインスタンスを返す
+    // catchメソッドは新しい`Promise`インスタンスを返す
     .catch(function onRejected(error) {
         console.log(error); // => Error: 失敗
     });
@@ -766,7 +766,7 @@ rejectedPromise.then(() => {
 ```
 
 Promiseのコンストラクタの処理と場合と同様に、`then`や`catch`のコールバック関数内で発生した例外は自動的にキャッチされます。
-例外が発生したとき、`then`や`catch`メソッドは**Rejected**なPromiseインスタンスを返します。
+例外が発生したとき、`then`や`catch`メソッドは**Rejected**な`Promise`インスタンスを返します。
 そのため、例外が発生するともっとも近くの失敗時の処理(`catch`または`then`の第二引数)が呼び出されます。
 
 {{book.console}}
@@ -782,6 +782,40 @@ Promise.resolve().then(() => {
 ```
 
 このように`Promise#then`メソッドや`Promise#catch`メソッドをつないで、成功時や失敗時の処理を書いていくことをPromiseチェーンと呼びます。
+
+#### Promiseチェーンの最後で処理を書く {#promise-finally}
+
+`Promise#finllay`メソッドは成功時、失敗時どちらの場合でも呼び出すコールバック関数を登録できます。
+`try...catch...finally`構文の`finally`節と同様の役割をもつメソッドです。
+
+次のコードでは、リソースを取得して`then`で成功時の処理、`catch`で失敗時の登録しています。
+また、リソースを取得中かどうかを判定するためのフラグを`isLoading`という変数で管理しています。
+成功失敗どちらにもかかわらず、取得が終わったら`isLoading`は`false`にします。
+このとき`then`や`catch`それぞれの処理で`isLoading`へ`false`を代入もできますが、`Promise#finally`メソッドを使うことで一箇所にまとめられます。
+
+```js
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+// リソースを取得中かどうかのフラグ
+let isLoading = true;
+dummyFetch().then(response => {
+    console.log(response);
+}).catch(error => {
+    console.log(error);
+}).finally(() => {
+    isLoading = false;
+    console.log("Promise#finally");
+});
+```
 
 #### コールバック関数で値を返す {#promise-then-return-value}
 
@@ -915,13 +949,13 @@ dummyFetch("/resource/A").then(response => {
 
 ### `Promise.all`で並列処理 {#promise-concurrent}
 
-複数のPromiseを使った非同期処理を同時に行いたい場合は、`Promise.all`メソッドが利用できます。
+`Promise.all`を使うことで複数のPromiseを使った非同期処理をひとつの非同期処理として扱えます。
 
-`Promise.all`メソッドは Promiseインスタンスの配列を受け取り、新しいPromiseインスタンスを返します。
-その配列のすべてのPromiseインスタンスが**Fulfilled**となった場合は、返り値のPromiseインスタンスも**Fulfilled**となります。
-その配列のPromiseインスタンスがひとつでも **Rejected**となった場合は、返り値のPromiseインスタンスも **Rejected**となります。
+`Promise.all`メソッドは `Promise`インスタンスの配列を受け取り、新しい`Promise`インスタンスを返します。
+その配列のすべての`Promise`インスタンスが**Fulfilled**となった場合は、返り値の`Promise`インスタンスも**Fulfilled**となります。
+一方で、ひとつでも**Rejected**となった場合は、返り値の`Promise`インスタンスも**Rejected**となります。
 
-返り値のPromiseインスタンスに`then`メソッドで登録したコールバック関数には、Promiseの結果をまとめた配列が渡されます。
+返り値の`Promise`インスタンスに`then`メソッドで登録したコールバック関数には、Promiseの結果をまとめた配列が渡されます。
 このときの配列の要素の順番は`Promise.all`メソッドに渡した配列のPromiseの要素の順番と同じになります。
 
 {{book.console}}
@@ -939,8 +973,12 @@ Promise.all([promise1, promise2, promise3]).then(function(values) {
 });
 ```
 
-先程のリソースを取得する例では、Resource AとResource Bはどちらを先に取得してよいものでした。
-そのため、`Promise.all`を使いResource AとBを同時に取得すればより早い時間で処理が完了します。
+先程のPromiseチェーンでリソースを取得する例では、Resource Aを取得し終わってからResource Bを取得というように逐次的でした。
+しかし、Resource AとBどちらを先に取得しても問題ない場合は、`Promise.all`メソッドを使いAとBを取得する非同期処理としてまとめられます。
+また、Resource AとBを同時に取得すればより早い時間で処理が完了します。
+
+次のコードでは、Resource AとBを同時に取得開始しています。
+両方のリソースの取得が完了すると、`then`のコールバック関数にはAとBの結果が配列として渡されます。
 
 {{book.console}}
 ```js
@@ -998,13 +1036,13 @@ fetchedPromise.then(([responseA, responseB]) => {
 `Promise.all`メソッドは複数のPromiseがすべて完了するまで待つ処理でした。
 `Promise.race`メソッドでは複数のPromiseを受け取りますが、Promiseが1つでも完了した（Settle状態となった）時点で次の処理を実行します。
 
-`Promise.race`メソッドはPromiseインスタンスの配列を受け取り、新しいPromiseインスタンスを返します。
-この新しいPromiseインスタンスは配列のなかでも一番最初に**Settle**状態へとなったPromiseインスタンスと同じ状態になります。
+`Promise.race`メソッドは`Promise`インスタンスの配列を受け取り、新しい`Promise`インスタンスを返します。
+この新しい`Promise`インスタンスは配列のなかでも一番最初に**Settle**状態へとなった`Promise`インスタンスと同じ状態になります。
 
-- 配列のなかでも一番最初に**Settle**となったPromiseが**Fulfilled**の場合は、新しいPromiseインスタンスも**Fulfilled**へ
-- 配列のなかでも一番最初に**Settle**となったPromiseが**Rejected**の場合は、新しいPromiseインスタンスも **Rejected**へ
+- 配列のなかでも一番最初に**Settle**となったPromiseが**Fulfilled**の場合は、新しい`Promise`インスタンスも**Fulfilled**へ
+- 配列のなかでも一番最初に**Settle**となったPromiseが**Rejected**の場合は、新しい`Promise`インスタンスも **Rejected**へ
 
-つまり、複数のPromiseによる非同期処理を同時に実行して競争（race）させて、一番最初に完了したPromiseインスタンスに対する次の処理を呼び出すという形になります。
+つまり、複数のPromiseによる非同期処理を同時に実行して競争（race）させて、一番最初に完了した`Promise`インスタンスに対する次の処理を呼び出すという形になります。
 
 次のコードでは、`delay`関数という`timeoutMs`ミリ秒後に**Fulfilled**となる`Promise`インスタンスを返す関数を定義しています。
 `Promise.race`メソッドは1ミリ秒、32ミリ秒、64ミリ秒、128ミリ秒後に完了する`Promise`インスタンスの配列を受け取っています。
