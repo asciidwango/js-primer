@@ -746,7 +746,11 @@ asyncTask()
 
 ![promise-chain](img/promise-chain.png)
 
-Promiseの状態が**Rejected**となった場合は、失敗時の処理(`catch`または`then`の第二引数)が行われるまで、成功時の処理（`then`の第一引数）はスキップされます。
+Promiseの状態が**Rejected**となった場合は、もっとも近い失敗時の処理(`catch`または`then`の第二引数)が呼び出されます。
+このとき間にある成功時の処理（`then`の第一引数）はスキップされます。
+
+次のコードでは、**Rejected**のPromiseに対して`then` -> `then` -> `catch`とPromiseチェーンで処理を記述しています。
+このときもっとも近い失敗時の処理(`catch`）が呼び出されますが、間にある2つのる成功時の処理（`then`）は実行されません。
 
 {{book.console}}
 ```js
@@ -758,6 +762,22 @@ rejectedPromise.then(() => {
     // このthenのコールバック関数は呼び出されません
 }).catch(error =>{
     console.log(error); // => Error: 失敗
+});
+```
+
+Promiseのコンストラクタの処理と場合と同様に、`then`や`catch`のコールバック関数内で発生した例外は自動的にキャッチされます。
+例外が発生したとき、`then`や`catch`メソッドは**Rejected**なPromiseインスタンスを返します。
+そのため、例外が発生するともっとも近くの失敗時の処理(`catch`または`then`の第二引数)が呼び出されます。
+
+{{book.console}}
+```js
+Promis.resolve().then(() => { 
+    // 例外が発生すると、thenメソッドはRejectedなPromiseを返す
+    throw new Error("例外");
+}).then(() => {
+    // このthenのコールバック関数は呼び出されません
+}).catch(error =>{
+    console.log(error); // => Error: 例外
 });
 ```
 
