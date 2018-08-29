@@ -771,7 +771,7 @@ Promiseのコンストラクタの処理と場合と同様に、`then`や`catch`
 
 {{book.console}}
 ```js
-Promis.resolve().then(() => { 
+Promise.resolve().then(() => { 
     // 例外が発生すると、thenメソッドはRejectedなPromiseを返す
     throw new Error("例外");
 }).then(() => {
