@@ -1154,7 +1154,7 @@ function timeout(timeoutMs) {
     return new Promise((resolve) => {
         setTimeout(() => {
             reject(new Error(`Timeout: ${timeoutMs}ミリ秒経過`));
-        }, delay);
+        }, timeoutMs);
     });
 }
 function dummyFetch(path) {
