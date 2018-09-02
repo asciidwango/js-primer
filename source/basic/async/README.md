@@ -1016,13 +1016,17 @@ dummyFetch("/resource/A").then(response => {
 
 {{book.console}}
 ```js
-const promise1 = Promise.resolve(1);
-const promise2 = Promise.resolve(2);
-const promise3 = new Promise(function(resolve, reject) {
-    setTimeout(() => {
-        resolve(3);
-    }, 16);
-});
+// `timeoutMs`ミリ秒後にresolveする
+function delay(timeoutMs) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(timeoutMs);
+        }, timeoutMs);
+    });
+}
+const promise1 = delay(1);
+const promise2 = delay(2);
+const promise3 = delay(3);
 
 Promise.all([promise1, promise2, promise3]).then(function(values) {
     console.log(values); // => [1, 2, 3]
@@ -1110,8 +1114,8 @@ fetchedPromise.then(([responseA, responseB]) => {
 function delay(timeoutMs) {
     return new Promise((resolve) => {
         setTimeout(() => {
-            resolve(delay);
-        }, delay);
+            resolve(timeoutMs);
+        }, timeoutMs);
     });
 }
 // 一つでもresolveまたはrejectした時点で次の処理を呼び出す
