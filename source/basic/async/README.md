@@ -1165,4 +1165,4 @@ Promise.race([
 [Web Worker]: https://developer.mozilla.org/ja/docs/Web/API/Web_Workers_API/Using_web_workers
 [Promise]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise
 [ユースケース: Node.jsでCLIアプリケーション]: ../../use-case/nodecli/README.md
-[配列のメソッドチェーン]: ../array/README.md##method-chain-and-high-order-function}
+[配列]: ../array/README.md##method-chain-and-high-order-function
