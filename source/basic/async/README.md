@@ -821,7 +821,7 @@ Promise.resolve().then(() => {
 
 このように`Promise#then`メソッドや`Promise#catch`メソッドをつないで、成功時や失敗時の処理を書いていくことをPromiseチェーンと呼びます。
 
-#### コールバック関数で値を返す {#promise-then-return-value}
+#### Promiseチェーンで値を返す {#promise-chain-value}
 
 さきほどのコードでは、`then`や`catch`メソッドに渡したコールバック関数では何も値を返していませんでした。
 
