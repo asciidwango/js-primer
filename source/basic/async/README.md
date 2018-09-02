@@ -880,7 +880,7 @@ Promiseチェーンで一度キャッチすると、次に呼ばれるのは成�
 これは、コールバック関数で任意を値を返すと、その値で`resolve`された**Fulfilled**状態の`Promise`インスタンスを作成するためです。
 しかし、コールバック関数で`Promise`インスタンスを返した場合は例外的に異なります。
 
-コールバック関数で`Promise`インスタンスを返した場合は、その`Promise`インスタンスが`then`や`catch`メソッドの返り値となります。
+コールバック関数で`Promise`インスタンスを返した場合は、同じ状態をもつ`Promise`インスタンスが`then`や`catch`メソッドの返り値となります。
 つまり`then`メソッドで**Rejected**状態の`Promise`インスタンスを返した場合は、次に呼ばれるのは失敗時の処理となります。
 
 次のコードでは、`then`メソッドのコールバック関数で`Promise.reject`メソッドを使い**Rejected**な`Promise`インスタンスを返しています。
@@ -895,7 +895,7 @@ Promise.resolve().then(function onFulfilledA() {
 }).catch(function onRejected(error) {
     console.log(error); // => Error: 失敗
 }).then(function onFulfilledC() {
-    console.log("この行は呼び出されます");
+    console.log("onFulfilledCは呼び出されます");
 });
 ```
 
@@ -903,7 +903,9 @@ Promise.resolve().then(function onFulfilledA() {
 
 ![then-rejected-promise.png](./img/then-rejected-promise.png)
 
-Promiseチェーン上でPromiseの状態を変えずに処理を挟めるため、デバッグなどに利用できます。
+通常は一度`catch`すると次に呼び出されるのは成功時の処理でした。
+この`Promise`インスタンスを返す仕組みを使うことで、`catch`してもそのまま**Rejected**な状態を継続するために利用できます。
+
 次のコードでは`catch`メソッドでログを出力しつつ`Promise.reject`メソッドを使って**Rejected**な`Promise`インスタンスを返しています。
 これによって、`asyncFunction`で発生したエラーのログを取りながら、Promiseチェーンはエラーのまま処理を継続できます。
 
