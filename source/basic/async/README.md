@@ -925,6 +925,9 @@ main().then(() => {
 成功失敗どちらにもかかわらず、取得が終わったら`isLoading`は`false`にします。
 このとき`then`や`catch`それぞれの処理で`isLoading`へ`false`を代入もできますが、`Promise#finally`メソッドを使うことで一箇所にまとめられます。
 
+<!-- doctest:disable -->
+<!-- Node.js 8で動作しないため -->
+{{book.console}}
 ```js
 function dummyFetch(path) {
     return new Promise((resolve, reject) => {
