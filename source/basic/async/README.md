@@ -721,6 +721,7 @@ Promiseではこのような複数の非同期処理からなる一連の非同�
 これはメソッドチェーンと呼ばれる仕組みですが、この書籍ではPromiseをメソッドチェーンでつなぐことを**Promiseチェーン**と呼びます（詳細は「[配列][]」の章を参照）。
 
 次のコードでは、`then`メソッドでPromiseチェーンをしています。
+Promiseチェーンでは、Promiseが失敗（**Rejected**な状態）しない限り、順番に`then`メソッドで登録した成功時のコールバック関数を呼び出します。
 
 ```js
 // Promiseインスタンスでメソッドチェーン
@@ -819,6 +820,18 @@ Promise.resolve().then(() => {
 });
 ```
 
+また、Promiseチェーンで失敗を`catch`メソッドなどでキャッチすると、次に呼ばれるのは成功時の処理です。
+これは、`then`や`catch`メソッドは**Fulfilled**状態のPromiseインスタンスを作成して返すためです。
+そのため、一度キャッチするとそこからはもとの`then`で登録した処理が呼ばれるPromiseチェーンに戻ります。
+
+```js
+Promise.reject(new Error("エラー")).catch(error => {
+    console.log(error); // Error: エラー
+}).then(() => {
+    console.log("thenのコールバック関数が呼び出される");
+});
+```
+
 このように`Promise#then`メソッドや`Promise#catch`メソッドをつないで、成功時や失敗時の処理を書いていくことをPromiseチェーンと呼びます。
 
 #### Promiseチェーンで値を返す {#promise-chain-value}
@@ -845,7 +858,8 @@ Promise.resolve(1).then((value) => {
 ```
 
 ここでは`then`メソッドを元に解説しますが、`catch`メソッドは`then`メソッドの糖衣構文であるため同じ動作となります。
-つまり、Promiseチェーンで一度キャッチすると、次に呼ばれるのは成功時の処理となります。
+Promiseチェーンで一度キャッチすると、次に呼ばれるのは成功時の処理となります。
+そのため、`catch`メソッドで返した値は次の`then`メソッドのコールバック関数に引数として渡されます。
 
 {{book.console}}
 ```js
