@@ -750,8 +750,7 @@ console.log(firstPromise === secondPromise); // => false
 console.log(secondPromise === thridPromise); // => false
 ```
 
-
-まずはもっとよく使うPromiseチェーンの例を見ていきましょう。
+もう少し具体的なPromiseチェーンの例を見ていきましょう。
 
 次のコードの`asyncTask`関数はランダムでFulfilledまたはRejected状態の`Promise`インスタンスを返します。
 この関数が返す`Promise`インスタンスに対して、`then`メソッドで成功時の処理を書いています。
