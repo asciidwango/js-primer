@@ -1179,9 +1179,20 @@ Promise.race([
 });
 ```
 
+このようにPromiseを使うことで非同期処理のさまざまなパターンが形成できます。
+より詳しいPromiseの使い方については[JavaScript Promiseの本][]というオンラインで公開されている文書にまとめられています。
+
+一方でPromiseはただのビルトインオブジェクトであるため、非同期処理間の連携を行うにはPromiseチェーンのように少し特殊な書き方や見た目になります。また、エラーハンドリングについても`Promise#catch`メソッドや`Promise#finally`メソッドなど`try...catch`構文とよく似た名前を使います。
+しかし、Promiseは構文ではなくただのオブジェクトであるため、それらをメソッドチェーンとして実現しないといけないといった制限があります。
+
+ES2017ではこのPromiseの若干奇妙な見た目を、分かりやすい構文として書けるAscyn Functionが導入されました。
+重要こととしてAsync FunctionはPromiseの上に作られた構文です。
+そのためAsync Functionを理解するにはPromiseを理解する必要があることに注意してください。
+
 [文と式]: ../statement-expression/README.md
 [例外処理]: ../error-try-catch/README.md
 [Web Worker]: https://developer.mozilla.org/ja/docs/Web/API/Web_Workers_API/Using_web_workers
 [Promise]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise
 [ユースケース: Node.jsでCLIアプリケーション]: ../../use-case/nodecli/README.md
 [配列]: ../array/README.md##method-chain-and-high-order-function
+[JavaScript Promiseの本]: http://azu.github.io/promises-book/
