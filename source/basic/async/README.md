@@ -282,9 +282,9 @@ fs.readFile("./example.txt", (error, data) => {
 {{book.console}}
 ```js
 /**
- * 100ミリ秒未満のランダムなライミングでレスポンスを擬似的なデータ取得関数
- * 指定した`path`にデータがあるなら`callback(null, レスポンス)`を呼ぶ
- * データがない場合はNOT FOUNDとなり`callback(エラー)`を呼ぶ
+ * 1000ミリ秒未満のランダムなライミングでレスポンスを擬似的なデータ取得関数
+ * 指定した`path`にデータがある場合は`callback(null, レスポンス)`を呼ぶ
+ * 指定した`path`にデータがない場合は`callback(エラー)`を呼ぶ
  */
 function dummyFetch(path, callback) {
     setTimeout(() => {
@@ -294,7 +294,7 @@ function dummyFetch(path, callback) {
         } else {
             callback(new Error("NOT FOUND"));
         }
-    }, 100 * Math.random());
+    }, 1000 * Math.random());
 }
 // /success/data にリソースが存在するので、`response`にはデータが入る
 dummyFetch("/success/data", (error, response) => {
@@ -322,28 +322,877 @@ dummyFetch("/failure/data", (error, response) => {
 
 ```js
 /**
- * `task`を実行して、成功なら`successCallback(レスポンス)`を呼び出す
- * 失敗なら`failureCallback(error)`を呼び出す
+ * リソースの取得に成功した場合は`successCallback(レスポンス)`を呼び出す
+ * リソースの取得に失敗した場合は`failureCallback(エラー)`を呼び出す
  */
-function dummyFetch(task, successCallback, failureCallback) {
+function dummyFetch(path, successCallback, failureCallback) {
     setTimeout(() => {
         if (path.startWith("/success")) {
             successCallback({ body: `Response body of ${path}` });
         } else {
             failureCallback(new Error("NOT FOUND"));
         }
-    }, 100 * Math.random());
+    }, 1000 * Math.random());
 }
 ```
 
 このように**非同期処理の中**で例外が発生した場合に、その例外を**非同期処理の外**へ伝える方法はさまざまな手段が考えられます。
-エラーファーストコールバックはその形を決めた**ただの共通のルール**の1つです。そのため、エラーファーストコールバック以外の方法が使われていることも多いです。
+エラーファーストコールバックはその形を決めた**ただの共通のルール**の1つです。そのため、非同期処理ではエラーファーストコールバック以外の方法が使われていることもあります。
 一方で、非同期処理における例外処理のルールを決めることのメリットとして、エラーハンドリングのパターン化ができることなどがあります。
 
 エラーファーストコールバックは非同期処理におけるエラーハンドリングの**ただの共通のルール**でした。
-次のセクションでは、ES2015で導入されたPromiseという非同期処理を**統一的なインターフェース**として扱えるようにしたものを見ていきます。
+そのためエラーファーストコールバックというルールを破っても、構文として問題があるわけではありません。
+
+しかしながら、最初に書いたようにJavaScriptでは非同期処理は頻出する問題です。
+ただのルールではなく、ECMAScriptの仕様として非同期処理を扱う方法が求められていました。
+そこで、ES2015では`Promise`という非同期処理を扱えるようにするビルトインオブジェクトが導入されました。
+
+次のセクションでは、ES2015で導入された`Promise`について見ていきます。
+
+## [ES2015] Promise {#promise}
+
+[Promise][]はES2015で導入された非同期処理の結果を表現するビルドインオブジェクトです。
+
+エラーファーストコールバックは非同期処理を扱うコールバック関数の最初の引数にエラーオブジェクトを渡すというルールでした。`Promise`はこれを発展させたもので、単なるルールではなくオブジェクトという形にして非同期処理を統一的なインタフェースで扱うことを目的にしています。
+
+`Promise`はビルトインオブジェクトであるためさまざまなメソッドを持ちますが、
+まずはエラーファーストコールバックと`Promise`での非同期処理のコード例を見てみます。
+
+次のコードの`asyncTask`関数はエラーファーストコールバックを受け取る非同期処理の例です。
+
+エラーファーストコールバックでは、非同期処理に成功した場合は1番目の引数へ`null`を渡し、2番目以降の引数に結果を渡します。
+一方、非同期処理に失敗した場合は1番目の引数にはエラーオブジェクトを渡すというルールでした。
+
+<!-- doctest:disable -->
+```js
+// asyncTask関数はエラーファーストコールバックを受け取る
+asyncTask((error, result) => {
+    if (error) {
+        // 非同期処理が失敗したときの処理
+    } else {
+        // 非同期処理が成功したときの処理
+    }
+});
+```
+
+次のコードの`asyncTask`関数は`Promise`インスタンスを返す非同期処理の例です。
+Promiseでは、非同期処理に成功したときの処理を`then`メソッドへコールバック関数を渡し、
+失敗したときの処理を`catch`メソッドへコールバック関数を渡します。
+
+エラーファーストコールバックとはことなり、非同期処理（`asyncTask`関数）は`Promise`インスタンスを返しています。
+その返された`Promise`インスタンスに対して成功と失敗それぞれのコールバック関数を渡すという形になります。
+
+<!-- doctest:disable -->
+```js
+// asyncTask関数はPromiseインスタンスを返す
+asyncTask().then(()=> {
+    // 非同期処理が成功したときの処理
+}).catch(() => {
+    // 非同期処理が失敗したときの処理
+});
+```
+
+`Promise`インスタンスのメソッドによって引数に渡せるものが決められているため、非同期処理の流れも一定のやり方に統一されます。また非同期処理（`asyncTask`関数）はコールバック関数を受け取るのではなく、`Promise`インスタンスを返すという形に変わっています。この`Promise`という統一されたインターフェースがあることで、 さまざまな非同期処理のパターンを形成できます。
+
+つまり、複雑な非同期処理等を上手くパターン化できるというのが`Promise`の役割であり、 Promiseを使う理由のひとつであるといえるでしょう。
+このセクションでは、非同期処理を扱うビルトインオブジェクトである`Promise`について見ていきます。
+
+### `Promise`インスタンスの作成 {#promise-instance}
+
+Promiseは`new`演算子で`Promise`のインスタンスを作成して利用します。
+このときのコンストラクタには`resolve`と`reject`の2つの引数を取る`executor`とよばれる関数を渡します。
+`executor`関数の中で非同期処理を行い、非同期処理が成功した場合は`resolve`関数を呼び、失敗した場合は`reject`関数を呼だします。
+
+```js
+const executor = (resolve, reject) => {
+    // 非同期の処理が成功したときはresolveを呼ぶ
+    // または、非同期の処理が失敗したときにはrejectを呼ぶ
+};
+const promise = new Promise(executor);
+```
+
+この`Promise`インスタンスの`Promise#then`メソッドで、Promiseが`resolve`（成功）、`reject`（失敗）したときに呼ばれるコールバック関数を登録します。
+`then`メソッドでは2つの引数を渡すことができ、第一引数には`resolve`（成功）に呼ばれるコールバック関数、第二引数には`reject`（失敗）に呼ばれるコールバック関数を渡します。
+
+```js
+// `Promise`インスタンスを作成
+const promise = new Promise((resolve, reject) => {
+    // 非同期の処理が成功したときはresolveを呼ぶ
+    // または、非同期の処理が失敗したときにはrejectを呼ぶ
+});
+const onFulfilled = () => {
+    console.log("resolveされたときに呼ばれる");
+};
+const onRejected = () => {
+    console.log("rejectされたときに呼ばれる");
+};
+// `then`メソッドで成功時と失敗時に呼ばれるコールバック関数を登録
+promise.then(onFulfilled, onRejected);
+```
+
+`Promise`コンストラクタの`resolve`と`reject`、`then`メソッドの`onFulfilled`と`onRejected`は次のような関係となります。
+
+- `resolve`（成功）した時
+    - `onFulfilled`が呼ばれる
+- `reject`（失敗）した時
+    - `onRejected` が呼ばれる
+
+### `Promise#then`と`Promise#catch` {#promise-then-and-catch}
+
+`Promise`のようにコンストラクタに関数を渡すパターンは今までなかったので、`then`メソッドの使い方について具体的な例を紹介します。
+また、`then`メソッドのエイリアスでもある`catch`メソッドについても見ていきます。
+
+次のコードの`dummyFetch`関数は`Promise`のインスタンスを作成して返します。
+`dummyFetch`関数はリソースの取得に成功した場合は`resolve`関数を呼び、失敗した場合は`reject`関数を呼びます。
+
+`resolve`に渡した値は、`then`メソッドの1番目のコールバック関数（`onFulfilled`）に渡されます。
+`reject`に渡したエラーオブジェクトは、`then`メソッドの2番目のコールバック関数（`onRejected`）に渡されます。
+
+```js
+/**
+ * 1000ミリ秒未満のランダムなライミングでレスポンスを擬似的なデータ取得関数
+ * 指定した`path`にデータがある場合は成功として`resolve`を呼ぶ
+ * 指定した`path`にデータがない場合は失敗として`reject`を呼ぶ
+ */
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startWith("/success")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+// `then`メソッドで成功時と失敗時に呼ばれるコールバック関数を登録
+// /success/data のリソースは存在するので成功しonFulfilledが呼ばれる
+dummyFetch("/success/data").then(function onFulfilled(response) {
+    console.log(response); // => { body: "Response body of /success/data" }
+}, function onRejected(error) {
+    console.log(error); // この文は実行されません
+});
+// /failure/data のリソースは存在しないのでonRejectedが呼ばれる
+dummyFetch("/failure/data").then(function onFulfilled(response) {
+    console.log(response); // この文は実行されません
+}, function onRejected(error) {
+    console.log(error); // Error: "NOT FOUND"
+});
+```
+
+`Promise#then`メソッドは成功（`onFulfilled`）と失敗（`onRejected`）のコールバック関数の2つを受け取りますが、どちらの引数も省略できます。
+
+次のコードの`delay`関数は一定時間後に解決（`resolve`）される`Promise`インスタンスを返します。
+この`Promise`インスタンスに対して`then`メソッドで**成功時のコールバック関数だけ**を登録しています。
+
+{{book.console}}
+```js
+function delay(timeoutMs) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve();
+        }, timeoutMs);
+    });
+}
+// `then`メソッドで成功時のコールバック関数だけを登録
+delay(1000).then(() => {
+    console.log("1000ミリ秒後に呼ばれる");
+});
+```
+
+一方、`then`メソッドでは失敗時のコールバック関数だけの登録もできます。
+このとき`then(undefined, onRejected)`のように第1引数には`undefined`を渡す必要があります。
+`then(undefined, onRejected)`と同様のことを行う方法として`Promise#catch`メソッドが用意されています。
+
+次のコードでは`then`メソッドと`catch`メソッドで失敗時のエラー処理をしていますが、どちらも同じ意味となります。
+`then`メソッドに`undefined`を渡すのはわかりにくいため、失敗時の処理だけを登録する場合は`catch`メソッドの利用を推奨しています。
+
+{{book.console}}
+```js
+function errorPromise(message) {
+    return new Promise((resolve, reject) => {
+        reject(new Error(message));
+    });
+}
+// 非推奨: `then`メソッドで失敗時のコールバック関数だけを登録
+errorPromise("thenでエラーハンドリング").then(undefined, (error) => {
+    console.log(error); // => Error: thenでエラーハンドリング
+});
+// 推奨: `catch`メソッドで失敗時のコールバック関数を登録
+errorPromise("catchでエラーハンドリング").catch(error => {
+    console.log(error); // => Error: catchでエラーハンドリング
+});
+```
+
+### Promiseと例外 {#promsie-exception}
+
+Promiseではコンストラクタの処理で例外が発生した場合に自動的に例外がキャッチされます。
+例外が発生した`Promise`インスタンスは`reject`関数を呼びだしたのと同じように失敗したものとして扱われます。
+そのため、Promise内で例外が発生すると`then`メソッドの第二引数や`catch`メソッドで登録したエラー時のコールバック関数が呼び出されます。
+
+{{book.console}}
+```js
+function throwPromise() {
+    return new Promise((resolve, reject) => {
+        // Promiseコンストラクタの中で例外は自動的にキャッチされrejectを呼ぶ
+        throw new Error("例外が発生");
+        // 例外が発生するとそれ以降の処理は実行されない
+        console.log("この文は実行されません");
+    });
+}
+
+throwPromise().catch(error => {
+    console.log(error); // => Error: 例外が発生
+});
+```
+
+このようにPromiseにおける処理では`try...catch`構文を使わなくても、自動的に例外がキャッチされます。
+
+### Promiseの状態 {#promise-status}
+
+Promiseの`then`メソッドや`catch`メソッドによる処理がわかったところで、`Promise`インスタンスの状態について整理していきます。
+
+`Promise`インスタンスには、内部的に次の3つの状態が存在します。
+
+- **Fulfilled**
+    - `resolve`（成功）したときの状態。このとき`onFulfilled`が呼ばれる
+- **Rejected**
+    - `reject`（失敗）または例外が発生したときの状態。このとき`onRejected`が呼ばれる
+- **Pending**
+    - FulfilledまたはRejectedではない状態
+    - `new Promise`でインスタンスを作成したときの初期状態
+
+これらの状態はECMAScriptの仕様として決められている内部的な状態です。
+しかし、この状態をPromiseのインスタンスから取り出す方法はありません。
+そのためAPIとしてこの状態を直接扱うことはできませんが、Promiseについて理解するのに役に立ちます。
+
+<!-- textlint-disable preset-ja-technical-writing/no-doubled-conjunction -->
+
+`Promise`インスタンスの状態は作成時に**Pending**となり、一度でも**Fulfilled**または**Rejected**へ変化すると、それ以降状態は変化しなくなります。
+そのため、**Fulfilled**または**Rejected**の状態であることを**Settled**（不変）と呼びます。
+
+<!-- textlint-enable preset-ja-technical-writing/no-doubled-conjunction -->
+
+一度でも**Settled**（**Fulfilled**または**Rejected**）となった`Promise`インスタンスは、それ以降へ別の状態には変化しません。
+そのため、`resolve`を呼び出した後に`reject`を呼び出しても、その`Promise`インスタンスは最初に呼び出した`resolve`によって**Fulfilled**のままとなります。
+
+次のコードでは、`reject`を呼び出しても状態が変化しないため、`then`で登録したonRejectedのコールバック関数は呼び出されません。
+`then`メソッドで登録したコールバック関数は状態が変化した場合に一度だけ呼び出されます。
+
+{{book.console}}
+```js
+const promise = new Promise((resolve, reject) => {
+    // 非同期でresolveする
+    setTimeout(() => {
+        resolve();
+        // 既にresolveされているため無視される
+        reject(new Error("エラー"));
+    }, 16);
+});
+promise.then(() => {
+    console.log("Fulfilledとなった");
+}, (error) => {
+    // この行は呼び出されない
+});
+```
+
+同じように、`Promise`コンストラクタ内で`resolve`を何度呼び出しても、その`Promise`インスタンスの状態は一度しか変化しません。
+そのため、次のように`resolve`を何度呼び出しても、`then`で登録したコールバック関数は一度しか呼び出されません。
+
+{{book.console}}
+```js
+const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve();
+        resolve(); // 2度目以降のresolveやrejectは無視される
+    }, 16);
+});
+promise.then(() => {
+    console.log("最初のresolve時の一度しか呼ばれない");
+}, (error) => {
+    // この行は呼び出されない
+});
+```
+
+このように`Promise`インスタンスの状態が変化した時に、一度だけ呼ばれるコールバック関数を登録するのが`then`や`catch`メソッドとなります。
+
+また`then`や`catch`メソッドはすでにSettledへと状態が変化済みの`Promise`インスタンスに対してもコールバック関数を登録できます。
+状態が変化済みの`Promise`インスタンスを作成方法として`Promise.resolve`と`Promise.reject`メソッドがあります。
+
+### `Promise.resolve` {#promise-resolve}
+
+`Promise.resolve`メソッドは**Fulfilled**の状態となった`Promise`インスタンスを作成します。
+
+```js
+const fullFilledPromise = Promise.resolve();
+```
+
+`Promise.resolve`メソッドは`new Promise`の糖衣構文（シンタックスシュガー）です。
+そのため、`Promise.resolve`メソッドは次のコードと同じ意味になります。
+
+```js
+const fullFilledPromise = new Promise((resolve) => {
+    resolve();
+});
+```
+
+`Promise.resolve`メソッドは引数に`resolve`される値を渡すこともできます。
+
+{{book.console}}
+```js
+// `resolve(42)`された`Promise`インスタンスを作成する
+const fullFilledPromise = Promise.resolve(42);
+fullFilledPromise.then(value => {
+    console.log(value); // => 42
+});
+```
+
+`Promise.resolve`メソッドで作成した**Fulfilled**の状態となった`Promise`インスタンスに対しても`then`メソッドでコールバック関数を登録できます。
+状態が変化済みの`Promise`インスタンスに`then`メソッドで登録したコールバック関数は、常に非同期なタイミングで実行されます。
+
+{{book.console}}
+```js
+const promise = Promise.resolve();
+promise.then(() => {
+    console.log("2. コールバック関数が実行されました");
+});
+console.log("1. 同期的な処理が実行されました");
+```
+
+このコードの実行すると、すべての同期的な処理が実行された後に、`then`メソッドのコールバック関数が非同期なタイミングで実行されることがわかります。
+
+`Promise.resolve`メソッドは`new Promise`の糖衣構文であるため、この実行順序は`new Promise`を使った場合も同じです。次のコードはさきほどの`Promise.resolve`メソッドを使ったものと同じ動作になります。
+
+{{book.console}}
+```js
+const promise = new Promise((resolve) => {
+    console.log("1. resolveします");
+    resolve();
+});
+promise.then(() => {
+    console.log("3. コールバック関数が実行されました");
+});
+console.log("2. 同期的な処理が実行されました");
+```
+
+このコードの実行すると、まず`Promise`のコンストラクタ関数が実行され、続いて同期的な処理が実行されます。最後に`then`メソッドで登録していたコールバック関数が非同期に呼ばれることがわかります。
+
+## `Promise.reject` {#promise-reject}
+
+`Promise.reject`メソッドは **Rejected**の状態となった`Promise`インスタンスを作成します。
+
+```js
+const rejectedPromise = Promise.reject(new Error("エラー"));
+```
+
+`Promise.reject`メソッドは`new Promise`の糖衣構文（シンタックスシュガー）です。
+そのため、`Promise.reject`メソッドは次のコードと同じ意味になります。
+
+```js
+const rejectedPromise = new Promise((resolve, reject) => {
+    reject(new Error("エラー"));
+});
+```
+
+`Promise.reject`メソッドで作成した**Rejected**状態の`Promise`インスタンスに対しても`then`や`catch`メソッドでコールバック関数を登録できます。
+ **Rejected**状態へ変化済みの`Promise`インスタンスに登録したコールバック関数は、常に非同期なタイミングで実行されます。これは**Fulfilled**の場合と同様です。
+
+{{book.console}}
+```js
+Promise.reject(new Error("エラー")).catch(() => {
+    console.log("2. コールバック関数が実行されました");
+});
+console.log("1. 同期的な処理が実行されました");
+```
+
+`Promise.resolve`や`Promise.reject`を使うことで短くかけるため、テストコードなどで利用されることがあります。また、`Promise.reject`は次に解説するPromiseチェーンにおいて、Promiseの状態を操作することに利用できます。
+
+### Promiseチェーン {#promise-chain}
+
+Promiseは非同期処理における統一的なインターフェイスを提供するビルトインオブジェクトです。
+Promiseによる統一的な処理方法は複数の非同期処理を扱う場合に特に効力を発揮します。
+これまでは、1つの`Promise`インスタンスに対して`then`や`catch`メソッドで1組のコールバック処理を登録するだけでした。
+
+非同期処理が終わったら次の非同期処理というように、複数の非同期処理を順番に扱いたい場合もあります。
+Promiseではこのような複数の非同期処理からなる一連の非同期処理を簡単に書く方法が用意されています。
+
+この仕組みのキーとなるのが`then`や`catch`メソッドは常に新しい`Promise`インスタンスを作成して返すという仕様です。
+そのため`then`メソッドの返り値である`Promise`インスタンスにさらに`then`メソッドを処理を登録できます。
+これはメソッドチェーンと呼ばれる仕組みですが、この書籍ではPromiseをメソッドチェーンでつなぐことを**Promiseチェーン**と呼びます（詳細は「[配列][]」の章を参照）。
+
+次のコードでは、`then`メソッドでPromiseチェーンをしています。
+Promiseチェーンでは、Promiseが失敗（**Rejected**な状態）しない限り、順番に`then`メソッドで登録した成功時のコールバック関数を呼び出します。
+
+```js
+// Promiseインスタンスでメソッドチェーン
+Promise.resolve()
+    // thenメソッドは新しい`Promise`インスタンスを返す
+    .then(() => {
+        console.log(1);
+    })
+    .then(() => {
+        console.log(2);
+    });
+```
+
+このPromiseチェーンは、次のコードのように毎回新しい変数に入れて処理をつなげるのと結果的には同じ意味となります。
+
+```js
+// Promiseチェーンを変数に入れた場合
+const firstPromise = Promise.resolve();
+const secondPromise = firstPromise.then(() => {
+    console.log(1);
+});
+const thridPromise = secondPromise.then(() => {
+    console.log(2);
+});
+// それぞれ新しいPromiseインスタンスが作成される
+console.log(firstPromise === secondPromise); // => false
+console.log(secondPromise === thridPromise); // => false
+```
+
+もう少し具体的なPromiseチェーンの例を見ていきましょう。
+
+次のコードの`asyncTask`関数はランダムでFulfilledまたはRejected状態の`Promise`インスタンスを返します。
+この関数が返す`Promise`インスタンスに対して、`then`メソッドで成功時の処理を書いています。
+`then`メソッドの返り値は新しい`Promise`インスタンスであるため、続けて`catch`メソッドで失敗時の処理を書けます。
+
+{{book.console}}
+```js
+// ランダムでFulfilledまたはRejectedの`Promise`インスタンスを返す関数
+function asyncTask() {
+    return Math.raondom % 2 === 0 
+        ? Promise.resolve("成功")
+        : Promise.reject(new Error("失敗"));
+}
+
+// asyncTask関数は新しい`Promise`インスタンスを返す
+asyncTask()
+    // thenメソッドは新しい`Promise`インスタンスを返す
+    .then(function onFulfilled(value) {　
+        console.log(value); // => "成功"
+    })
+    // catchメソッドは新しい`Promise`インスタンスを返す
+    .catch(function onRejected(error) {
+        console.log(error); // => Error: 失敗
+    });
+```
+
+`asyncTask`関数が成功（resolve）した場合は`then`メソッドで登録した成功時の処理だけが呼び出され、`catch`メソッドで登録した失敗時の処理は呼び出されません。
+一方、`asyncTask`関数が失敗（reject）した場合は`then`メソッドで登録した成功時の処理は呼び出されずに、`catch`メソッドで登録した失敗時の処理だけが呼び出されます。
+
+先ほどのコードにおけるPromiseの状態とコールバック関数は次のような処理の流れとなります。
+
+![promise-chain](img/promise-chain.png)
+
+Promiseの状態が**Rejected**となった場合は、もっとも近い失敗時の処理(`catch`または`then`の第二引数)が呼び出されます。
+このとき間にある成功時の処理（`then`の第一引数）はスキップされます。
+
+次のコードでは、**Rejected**のPromiseに対して`then` -> `then` -> `catch`とPromiseチェーンで処理を記述しています。
+このときもっとも近い失敗時の処理(`catch`）が呼び出されますが、間にある2つのある成功時の処理（`then`）は実行されません。
+
+{{book.console}}
+```js
+// RejectedなPromiseは次の失敗時の処理までスキップする
+const rejectedPromise = Promise.reject(new Error("失敗"));
+rejectedPromise.then(() => {
+    // このthenのコールバック関数は呼び出されません
+}).then(() => {
+    // このthenのコールバック関数は呼び出されません
+}).catch(error =>{
+    console.log(error); // => Error: 失敗
+});
+```
+
+Promiseのコンストラクタの処理と場合と同様に、`then`や`catch`のコールバック関数内で発生した例外は自動的にキャッチされます。
+例外が発生したとき、`then`や`catch`メソッドは**Rejected**な`Promise`インスタンスを返します。
+そのため、例外が発生するともっとも近くの失敗時の処理(`catch`または`then`の第二引数)が呼び出されます。
+
+{{book.console}}
+```js
+Promise.resolve().then(() => { 
+    // 例外が発生すると、thenメソッドはRejectedなPromiseを返す
+    throw new Error("例外");
+}).then(() => {
+    // このthenのコールバック関数は呼び出されません
+}).catch(error =>{
+    console.log(error); // => Error: 例外
+});
+```
+
+また、Promiseチェーンで失敗を`catch`メソッドなどでキャッチすると、次に呼ばれるのは成功時の処理です。
+これは、`then`や`catch`メソッドは**Fulfilled**状態のPromiseインスタンスを作成して返すためです。
+そのため、一度キャッチするとそこからはもとの`then`で登録した処理が呼ばれるPromiseチェーンに戻ります。
+
+```js
+Promise.reject(new Error("エラー")).catch(error => {
+    console.log(error); // Error: エラー
+}).then(() => {
+    console.log("thenのコールバック関数が呼び出される");
+});
+```
+
+このように`Promise#then`メソッドや`Promise#catch`メソッドをつないで、成功時や失敗時の処理を書いていくことをPromiseチェーンと呼びます。
+
+#### Promiseチェーンで値を返す {#promise-chain-value}
+
+Promiseチェーンではコールバックで返した値を次のコールバックへ引数として渡せます。
+
+`then`や`catch`メソッドのコールバック関数は数値、文字列、オブジェクトなどの任意の値を返せます。
+このコールバック関数が返した値は、次の`then`のコールバック関数へ引数として渡されます。
+
+{{book.console}}
+```js
+Promise.resolve(1).then((value) => {
+    console.log(value); // => 1
+    return value * 2;
+}).then(value => {
+    console.log(value); // => 2
+    return value * 2;
+}).then(value => {
+    console.log(value); // => 4
+    // 値を返さない場合は undefined を返すのと同じ
+}).then(value => {
+    console.log(value); // => undefined
+});
+```
+
+ここでは`then`メソッドを元に解説しますが、`catch`メソッドは`then`メソッドの糖衣構文であるため同じ動作となります。
+Promiseチェーンで一度キャッチすると、次に呼ばれるのは成功時の処理となります。
+そのため、`catch`メソッドで返した値は次の`then`メソッドのコールバック関数に引数として渡されます。
+
+{{book.console}}
+```js
+Promise.reject(new Error("失敗")).catch(error => { 
+    // 一度catchすれば、次に呼ばれるのは成功時のコールバック
+    return 1;
+}).then(value => {
+    console.log(value); // => 2
+    return value * 2;
+}).then(value => {
+    console.log(value); // => 4
+});
+```
+
+#### コールバック関数で`Promise`インスタンスを返す {#promise-then-return-promise}
+
+Promiseチェーンで一度キャッチすると、次に呼ばれるのは成功時の処理(`then`メソッド)でした。
+これは、コールバック関数で任意を値を返すと、その値で`resolve`された**Fulfilled**状態の`Promise`インスタンスを作成するためです。
+しかし、コールバック関数で`Promise`インスタンスを返した場合は例外的に異なります。
+
+コールバック関数で`Promise`インスタンスを返した場合は、同じ状態をもつ`Promise`インスタンスが`then`や`catch`メソッドの返り値となります。
+つまり`then`メソッドで**Rejected**状態の`Promise`インスタンスを返した場合は、次に呼ばれるのは失敗時の処理となります。
+
+次のコードでは、`then`メソッドのコールバック関数で`Promise.reject`メソッドを使い**Rejected**な`Promise`インスタンスを返しています。
+**Rejected**な`Promise`インスタンスは、次の`catch`メソッドで登録した失敗時の処理を呼び出すまで、`then`メソッドの成功時の処理をスキップします。
+
+{{book.console}}
+```js
+Promise.resolve().then(function onFulfilledA() {
+    return Promise.reject(new Error("失敗"));
+}).then(function onFulfilledB() {
+    console.log("onFulfilledBは呼び出されません");
+}).catch(function onRejected(error) {
+    console.log(error); // => Error: 失敗
+}).then(function onFulfilledC() {
+    console.log("onFulfilledCは呼び出されます");
+});
+```
+
+このコードにおけるPromiseの状態とコールバック関数は次のような処理の流れとなります。
+
+![then-rejected-promise.png](./img/then-rejected-promise.png)
+
+通常は一度`catch`すると次に呼び出されるのは成功時の処理でした。
+この`Promise`インスタンスを返す仕組みを使うことで、`catch`してもそのまま**Rejected**な状態を継続するために利用できます。
+
+次のコードでは`catch`メソッドでログを出力しつつ`Promise.reject`メソッドを使って**Rejected**な`Promise`インスタンスを返しています。
+これによって、`asyncFunction`で発生したエラーのログを取りながら、Promiseチェーンはエラーのまま処理を継続できます。
+
+{{book.console}}
+```js
+function asyncFunction() {
+    return Promise.reject(new Error("エラー"));
+}
+function main() {
+    return asyncFunction().catch(error => {
+        // asyncFunctionで発生したエラーのログを出力する
+        console.log(error);
+        // Promiseチェーンはそのままエラーを継続させる
+        return Promise.reject(error);
+    });
+}
+// mainはRejectedなPromiseを返す
+main().then(() => {
+    console.log("メインの処理が成功"); // この行は呼ばれません
+}).catch(error => {
+    console.log("メインの処理が失敗した");
+});
+```
+
+#### Promiseチェーンの最後で処理を書く {#promise-finally}
+
+`Promise#finllay`メソッドは成功時、失敗時どちらの場合でも呼び出すコールバック関数を登録できます。
+`try...catch...finally`構文の`finally`節と同様の役割をもつメソッドです。
+
+次のコードでは、リソースを取得して`then`で成功時の処理、`catch`で失敗時の登録しています。
+また、リソースを取得中かどうかを判定するためのフラグを`isLoading`という変数で管理しています。
+成功失敗どちらにもかかわらず、取得が終わったら`isLoading`は`false`にします。
+このとき`then`や`catch`それぞれの処理で`isLoading`へ`false`を代入もできますが、`Promise#finally`メソッドを使うことで一箇所にまとめられます。
+
+{{book.console}}
+<!-- doctest:disable -->
+```js
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+// リソースを取得中かどうかのフラグ
+let isLoading = true;
+dummyFetch().then(response => {
+    console.log(response);
+}).catch(error => {
+    console.log(error);
+}).finally(() => {
+    isLoading = false;
+    console.log("Promise#finally");
+});
+```
+
+### Promiseチェーンで直列処理 {#promise-sequential}
+
+Promiseチェーンで非同期処理の流れを書く大きなメリットは、非同期処理のさまざまなパターンに対応できることです。
+
+ここでは、典型的な例として複数の非同期処理を順番に処理していく直列処理を考えていきましょう。
+Promiseで直列的な処理と言っても難しいことはなく、単純に`then`で非同期処理をつないでいくだけです。
+
+次のコードでは、Resource AとResource Bを順番に取得しています。
+それぞれ取得したリソースを変数`results`に追加し、すべて取得し終わったらコンソールに出力します。
+
+{{book.console}}
+```js
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+
+const results = [];
+// Resource Aを取得する
+dummyFetch("/resource/A").then(response => {
+    results.push(response.body);
+    // Resource Bを取得する
+    return dummyFetch("/resource/B");
+}).then(response => {
+    results.push(response.body);
+}).then(() => {
+    console.log(results); // => ["Response body of /resource/A", "Response body of /resource/B"]
+});
+```
+
+### `Promise.all`で複数のPromiseをまとめる {#promise-all}
+
+`Promise.all`を使うことで複数のPromiseを使った非同期処理をひとつのPromiseとして扱えます。
+
+`Promise.all`メソッドは `Promise`インスタンスの配列を受け取り、新しい`Promise`インスタンスを返します。
+その配列のすべての`Promise`インスタンスが**Fulfilled**となった場合は、返り値の`Promise`インスタンスも**Fulfilled**となります。
+一方で、ひとつでも**Rejected**となった場合は、返り値の`Promise`インスタンスも**Rejected**となります。
+
+返り値の`Promise`インスタンスに`then`メソッドで登録したコールバック関数には、Promiseの結果をまとめた配列が渡されます。
+このときの配列の要素の順番は`Promise.all`メソッドに渡した配列のPromiseの要素の順番と同じになります。
+
+{{book.console}}
+```js
+// `timeoutMs`ミリ秒後にresolveする
+function delay(timeoutMs) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(timeoutMs);
+        }, timeoutMs);
+    });
+}
+const promise1 = delay(1);
+const promise2 = delay(2);
+const promise3 = delay(3);
+
+Promise.all([promise1, promise2, promise3]).then(function(values) {
+    console.log(values); // => [1, 2, 3]
+});
+```
+
+先程のPromiseチェーンでリソースを取得する例では、Resource Aを取得し終わってからResource Bを取得というように逐次的でした。
+しかし、Resource AとBどちらを先に取得しても問題ない場合は、`Promise.all`メソッドを使い2つのPromiseを1つのPromiseとしてまとめられます。
+また、Resource AとBを同時に取得すればより早い時間で処理が完了します。
+
+次のコードでは、Resource AとBを同時に取得開始しています。
+両方のリソースの取得が完了すると、`then`のコールバック関数にはAとBの結果が配列として渡されます。
+
+{{book.console}}
+```js
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+
+const fetchedPromise = Promise.all([
+    dummyFetch("/resource/A"),
+    dummyFetch("/resource/B")
+]);
+fetchedPromise.then(([responseA, responseB]) => {
+    console.log(responseA); // => "Response body of /resource/A"
+    console.log(responseA); // => "Response body of /resource/B"
+});
+```
+
+渡したPromiseがひとつでも**Rejected**となった場合は、失敗時の処理が呼び出されます。
+
+{{book.console}}
+```js
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+
+const fetchedPromise = Promise.all([
+    dummyFetch("/resource/A"),
+    dummyFetch("/not_found/B") // Bは存在しないため失敗する
+]);
+fetchedPromise.then(([responseA, responseB]) => {
+    console.log("この行は呼び出されません");
+}).catch(error => {
+    console.log(error); // Error: NOT FOUND
+});
+```
+
+### `Promise.race` {#promise-race}
+
+`Promise.all`メソッドは複数のPromiseがすべて完了するまで待つ処理でした。
+`Promise.race`メソッドでは複数のPromiseを受け取りますが、Promiseが1つでも完了した（Settle状態となった）時点で次の処理を実行します。
+
+`Promise.race`メソッドは`Promise`インスタンスの配列を受け取り、新しい`Promise`インスタンスを返します。
+この新しい`Promise`インスタンスは配列のなかでも一番最初に**Settle**状態へとなった`Promise`インスタンスと同じ状態になります。
+
+- 配列のなかでも一番最初に**Settle**となったPromiseが**Fulfilled**の場合は、新しい`Promise`インスタンスも**Fulfilled**へ
+- 配列のなかでも一番最初に**Settle**となったPromiseが**Rejected**の場合は、新しい`Promise`インスタンスも **Rejected**へ
+
+つまり、複数のPromiseによる非同期処理を同時に実行して競争（race）させて、一番最初に完了した`Promise`インスタンスに対する次の処理を呼び出します。
+
+次のコードでは、`delay`関数という`timeoutMs`ミリ秒後に**Fulfilled**となる`Promise`インスタンスを返す関数を定義しています。
+`Promise.race`メソッドは1ミリ秒、32ミリ秒、64ミリ秒、128ミリ秒後に完了する`Promise`インスタンスの配列を受け取っています。
+この配列の中でも一番最初に完了するのは、1ミリ秒後に**Fulfilled**となる`Promise`インスタンスです。
+
+{{book.console}}
+```js
+// `timeoutMs`ミリ秒後にresolveする
+function delay(timeoutMs) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(timeoutMs);
+        }, timeoutMs);
+    });
+}
+// 一つでもresolveまたはrejectした時点で次の処理を呼び出す
+const racePromise = Promise.race([
+    delay(1),
+    delay(32),
+    delay(64),
+    delay(128)
+]);
+racePromise.then(value => {
+    // もっとも早く完了するのは1ミリ秒
+    console.log(value); // => 1
+});
+```
+
+このときに、一番最初に`resolve`された値で`racePromise`も`resolve`されます。
+そのため、`then`メソッドのコールバック関数に`1`という値が渡されます。
+
+他の`timeout`関数が作成した`Promise`インスタンスも32ミリ秒、64ミリ秒、128ミリ秒後に`resolve`されます。
+しかし、`Promise`インスタンスは一度**Settled**（**Fulfilled**または**Rejected**）となると、それ以降は状態も変化せず`then`のコールバック関数も呼び出しません。
+そのため、`racePromise`は何度も`resolve`されますが、初回以外は無視されるため`then`のコールバック関数は一度しか呼び出されません。
+
+`Promise.race`メソッドを使うことでPromiseを使った非同期処理のタイムアウトが実装できます。
+タイムアウトとは、一定時間経過しても処理が終わっていないならエラーとして扱う処理のことを言います。
+
+次のコードでは`timeout`関数と`dummyFetch`関数が返す`Promise`インスタンスを`Promise.race`メソッドで競争させています。
+`dummyFetch`関数のランダムな時間をかけてリソースを取得し`resolve`する`Promise`インスタンスを返します。
+`timeout`関数は指定ミリ秒経過すると`reject`する`Promise`インスタンスを返します。
+
+この2つの`Promise`インスタンスを競争させて、`dummyFetch`が先に完了すれば処理は成功、`timeout`が先に完了すれば処理は失敗というタイムアウト処理が実現できます。
+
+{{book.console}}
+```js
+// `timeoutMs`ミリ秒後にresolveする
+function timeout(timeoutMs) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            reject(new Error(`Timeout: ${timeoutMs}ミリ秒経過`));
+        }, timeoutMs);
+    });
+}
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+// 5000ミリ秒以内に取得できなければ失敗時の処理が呼ばれる
+Promise.race([
+    dummyFetch("/resource/data"),
+    timeout(5000),
+]).then(value => {
+    console.log(value); // => "Response body of /resource/data"
+}).catch(error => {
+    console.log(error); // Timeout: 5000ミリ秒経過
+});
+```
+
+このようにPromiseを使うことで非同期処理のさまざまなパターンが形成できます。
+より詳しいPromiseの使い方については[JavaScript Promiseの本][]というオンラインで公開されている文書にまとめられています。
+
+一方でPromiseはただのビルトインオブジェクトであるため、非同期処理間の連携を行うにはPromiseチェーンのように少し特殊な書き方や見た目になります。また、エラーハンドリングについても`Promise#catch`メソッドや`Promise#finally`メソッドなど`try...catch`構文とよく似た名前を使います。
+しかし、Promiseは構文ではなくただのオブジェクトであるため、それらをメソッドチェーンとして実現しないといけないといった制限があります。
+
+ES2017ではこのPromiseの若干奇妙な見た目を解決するためにAscyn Functionと呼ばれる構文が導入されました。
+重要なこととしてAsync FunctionはPromiseの上に作られた構文です。
+そのためAsync Functionを理解するにはPromiseを理解する必要があることに注意してください。
 
 [文と式]: ../statement-expression/README.md
 [例外処理]: ../error-try-catch/README.md
 [Web Worker]: https://developer.mozilla.org/ja/docs/Web/API/Web_Workers_API/Using_web_workers
+[Promise]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise
 [ユースケース: Node.jsでCLIアプリケーション]: ../../use-case/nodecli/README.md
+[配列]: ../array/README.md##method-chain-and-high-order-function
+[JavaScript Promiseの本]: http://azu.github.io/promises-book/

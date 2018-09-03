@@ -1,5 +1,5 @@
 /**
- * 100ミリ秒未満のランダムなライミングでレスポンスを擬似的なデータ取得関数
+ * 1000ミリ秒未満のランダムなライミングでレスポンスを擬似的なデータ取得関数
  * 指定した`path`にデータがあるなら`callback(null, レスポンス)`を呼ぶ
  * データがない場合はNOT FOUNDとなり`callback(エラー)`を呼ぶ
  */
@@ -11,7 +11,7 @@ function dummyFetch(path, callback) {
         } else {
             callback(new Error("NOT FOUND"));
         }
-    }, 100 * Math.random());
+    }, 1000 * Math.random());
 }
 
 dummyFetch("/success/data", (error, response) => {

@@ -263,7 +263,9 @@ rules:
   - expected: エラーファーストコールバック
     patterns:
       - エラーファーストコールバック関数
-
+  - expected: 一度
+    patterns:
+      - 1度
 
   # 一致とマッチ
   ## 一致は ===

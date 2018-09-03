@@ -42,6 +42,9 @@
           "排他的論理和演算子",
           "文字列結合演算子"
         ]
+      },
+      "no-invalid-control-character": {
+        "checkCode": true
       }
     },
     "eslint": {
