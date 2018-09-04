@@ -514,7 +514,7 @@ function errorPromise(message) {
         reject(new Error(message));
     });
 }
-// 非推奨: `then`メソッドで失敗時のコールバック関数だけを登録
+// 非推奨: `then`メソッドで失敗時のコールバック関数だけを登録
 errorPromise("thenでエラーハンドリング").then(undefined, (error) => {
     console.log(error); // => Error: thenでエラーハンドリング
 });
@@ -608,7 +608,7 @@ const promise = new Promise((resolve, reject) => {
     }, 16);
 });
 promise.then(() => {
-    console.log("最初のresolve時の一度しか呼ばれない");
+    console.log("最初のresolve時の一度しか呼ばれない");
 }, (error) => {
     // この行は呼び出されない
 });
@@ -654,7 +654,7 @@ fullFilledPromise.then(value => {
 ```js
 const promise = Promise.resolve();
 promise.then(() => {
-    console.log("2. コールバック関数が実行されました");
+    console.log("2. コールバック関数が実行されました");
 });
 console.log("1. 同期的な処理が実行されました");
 ```
@@ -670,7 +670,7 @@ const promise = new Promise((resolve) => {
     resolve();
 });
 promise.then(() => {
-    console.log("3. コールバック関数が実行されました");
+    console.log("3. コールバック関数が実行されました");
 });
 console.log("2. 同期的な処理が実行されました");
 ```
@@ -700,7 +700,7 @@ const rejectedPromise = new Promise((resolve, reject) => {
 {{book.console}}
 ```js
 Promise.reject(new Error("エラー")).catch(() => {
-    console.log("2. コールバック関数が実行されました");
+    console.log("2. コールバック関数が実行されました");
 });
 console.log("1. 同期的な処理が実行されました");
 ```
