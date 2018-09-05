@@ -225,12 +225,9 @@ try{
         - 大きな流れ
             - 正常系はすべてのthenを順番に実行する
             - 異常系が起きた場合は次のcatchまでスキップし実行し、catchの返り値は正常なPromise
-            - 明示的に失敗させたい場合はthrowではなくPromise.rejectを返す
-        - 非同期処理が1つだけならば、Promiseとコールバックは書き方が少し違うだけで、大きな違いはありません。
-        - Promiseが非同期処理として使い勝手がよくなるのは、複数の非同期処理を扱う場合に大きなメリットがあります。
-        - 次のようにAを取得し、Bを取得するといったように非同期処理を連続的に行う場合を考えてみましょう
-        - コールバックでのネストとの比較
-        - コールバック関数では、複数の非同期処理を順番に行うコードを単純に書くとネストがどんどん深くなってしまいます。
+            - 明示的に失敗させたい場合はthrowではなくPromise.rejectを返す´
+        - [未使用] コールバックでのネストとの比較
+            - コールバック関数では、複数の非同期処理を順番に行うコードを単純に書くとネストがどんどん深くなってしまいます。
             - ネストが深くなるのは、工夫によって避けることができますが、それは別途非同期処理を管理する仕組みを作る必要があります
     - Promiseと例外
         - 例外: Promiseは自動的にcatchされる
@@ -239,20 +236,23 @@ try{
         - PromiseチェーンでPromise.rejectを使ってrejectするほうが良い
         - throwで例外を投げるとデバッガーが反応してしまうため
     - [コラム] thenやcatchは常に新しいpromiseオブジェクトを返す
+    - Promiseで直列処理
+        - 非同期処理が1つだけならば、Promiseとコールバックは書き方が少し違うだけで、大きな違いはありません。
+        - Promiseが非同期処理として使い勝手がよくなるのは、複数の非同期処理を扱う場合に大きなメリットがあります。
+        - 次のようにAを取得し、Bを取得するといったように非同期処理を連続的に行う場合を考えてみましょう
     - Promise.allで同時に実行
-        - まとめて実行してすべての結果を待つ
+        - すべてのPromiseが終わるまで待つPRomiseを作る
     - Promise.raceでタイムアウト
         - Promise同士を競争させて最初に終わるのを待つ
         - 特性を利用してタイムアウトを実装する
-    - [未使用] Promise#finnalyで最後に実行
-        - リソースを開放したい場合
-        - try...finallyと同じ意図
+    - [未使用] Promiseの失敗時の処理をハンドリングしなかった場合はどうなるか
+            - Unhandled Rejectionについて
 - [未使用] コールバックの問題点
     - 非同期処理が連続する場合もあります。
     - 次のようにAが取得できたらBを取得して、Cを取得するというような直列的なものをコールバックで書くとネストしてしまいます。
     - この際にコールバック関数は必ずネストを1段作ってしまうため、工夫して書かないと簡単に複雑なコードを作ってしまいます
     - この問題はコールバックの実行順序を管理する関数を作ることで回避できますが、頻出するパターンであるため
-- Async await
+- Async Function
     - Promiseが導入されたことで、非同期処理をPromiseという単位で扱えるようになりました。
     - しかし、Promiseは実際にはただのオブジェクトです。
     - JavaScriptで現実的なプログラミングをすると高頻度で非同期処理がでてきます。
@@ -268,6 +268,26 @@ try{
     - 見た目も同期的に書けるのに加えて、async function内ではPromiseの非同期処理に対してtry-catchが行えます。
     - これはawait式がPromiseが解決されるまで待ち、resolvedの場合は値を返し、rejectの場合は例外をthrowし直すためです。
     - そのため、await式はPromiseをunwrapする構文と言えるでしょう
+    - アウトライン
+        - `async function`という構文で非同期処理を行う関数を定義できます
+            - Async function declarations: async function foo() {}
+            - Async function expressions: const foo = async function () {};
+            - Async method definitions: let obj = { async foo() {} }
+            - Async arrow functions: const foo = async () => {};
+        - Async FunctionはPromiseを返す話
+            - 値を返してFullfilled
+            - 例外を投げてRejected
+            - Promiseを返してRejected
+        - thenの直列処理awaitで書く
+        - 並列をpromise.allする例
+        - コールバック関数にはasyncをつけないといけない、関数に閉じてるよという説明
+        - エラーハンドリング
+        - return or awaitについて
+    - 仕様
+        - `async function`では`[[FunctionKind]]`が`async`の関数を作成する
+        - https://tc39.github.io/ecma262/#sec-createdynamicfunction
+        - 必ずPromiseを返す
+        - <https://tc39.github.io/ecma262/#sec-async-function-definitions-EvaluateBody>
 - 未使用
     - TODO: AgentとJob Queueと実行コンテキスト解説
     - <https://twitter.com/azu_re/status/1009093690172715009>
