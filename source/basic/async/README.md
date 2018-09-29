@@ -1189,6 +1189,8 @@ ES2017ではこのPromiseの若干奇妙な見た目を解決するためにAsyn
 重要なこととしてAsync FunctionはPromiseの上に作られた構文です。
 そのためAsync Functionを理解するにはPromiseを理解する必要があることに注意してください。
 
+## Async Function {#async-function}
+
 [文と式]: ../statement-expression/README.md
 [例外処理]: ../error-try-catch/README.md
 [Web Worker]: https://developer.mozilla.org/ja/docs/Web/API/Web_Workers_API/Using_web_workers
