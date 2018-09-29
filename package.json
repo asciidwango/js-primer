@@ -50,7 +50,7 @@
     "babel-preset-jsdoc-to-assert": "^4.0.0",
     "babel-preset-power-assert": "^1.0.0",
     "babel-register": "^6.7.2",
-    "eslint": "^4.3.0",
+    "eslint": "^5.6.1",
     "esprima": "^4.0.0",
     "esquery": "^1.0.0",
     "front-matter": "^2.1.0",

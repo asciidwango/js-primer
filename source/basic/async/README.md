@@ -624,14 +624,14 @@ promise.then(() => {
 `Promise.resolve`メソッドは**Fulfilled**の状態となった`Promise`インスタンスを作成します。
 
 ```js
-const fullFilledPromise = Promise.resolve();
+const fulFilledPromise = Promise.resolve();
 ```
 
 `Promise.resolve`メソッドは`new Promise`の糖衣構文（シンタックスシュガー）です。
 そのため、`Promise.resolve`メソッドは次のコードと同じ意味になります。
 
 ```js
-const fullFilledPromise = new Promise((resolve) => {
+const fulFilledPromise = new Promise((resolve) => {
     resolve();
 });
 ```
@@ -641,8 +641,8 @@ const fullFilledPromise = new Promise((resolve) => {
 {{book.console}}
 ```js
 // `resolve(42)`された`Promise`インスタンスを作成する
-const fullFilledPromise = Promise.resolve(42);
-fullFilledPromise.then(value => {
+const fulFilledPromise = Promise.resolve(42);
+fulFilledPromise.then(value => {
     console.log(value); // => 42
 });
 ```
@@ -1190,6 +1190,105 @@ ES2017ではこのPromiseの若干奇妙な見た目を解決するためにAsyn
 そのためAsync Functionを理解するにはPromiseを理解する必要があることに注意してください。
 
 ## Async Function {#async-function}
+
+Async Functionとは非同期処理を行う関数を定義する構文です。
+Async Functionは通常の関数とは異なり、必ず`Promise`インスタンスを返す関数を定義します。
+
+Async Functionは次のように関数の前に`async`をつけることで定義できますが、この`doAsync`関数は常に`Promise`インスタンスを返します。
+
+```js
+async function doAsync() {
+    return "値";
+}
+// doAsync関数はPromiseを返す
+doAsync().then(value => {
+    console.log(value); // => "値"
+});
+```
+
+このAsync Functionは次のように書いた場合と同じ意味になります。
+Async Functionでは`return`した値の代わりに、`Promise.resolve(返り値)`のように返り値をラップした`Promise`インスタンスを返します。
+
+```js
+// 通常の関数でPromiseインスタンスを返している
+function doAsync() {
+    return Promise.resolve("値");
+}
+doAsync().then(value => {
+    console.log(value); // => "値"
+});
+```
+
+また、Async Function内では`await`式というPromiseを使った非同期処理が完了するまで待つ構文が利用できます。`await`式を使うことで非同期処理を同期処理のように扱えるため、Promiseチェーンで実現していた処理の流れを読みやすくかけます。
+
+このセクションではAsync Functionと`await`式について見ていきます。
+
+## Async Functionの定義 {#declare-async-function}
+
+Async Functionは関数の定義に`async`をつけることで定義できます。
+JavaScriptの関数定義には関数宣言や関数式、Arrow Function、メソッドの短縮記法などがあります。
+どの定義方法でも`async`を前につけるだけでAsync Functionとして定義できます。
+
+```js
+// 関数宣言のAsync Function版
+async function fn1() {}
+// 関数式のAsync Function版
+const fn2 = async function() {};
+// Arrow FunctionのAsync Function版
+const foo = async() => {};
+// メソッドの短縮記法のAsync Function版
+const メソッド = { async foo() {} };
+```
+
+これらのAsync Functionは、必ずPromiseを返すこととその関数の中では`await`式が利用できる点以外は通常の関数と同じ性質を持ちます。
+
+## Async FunctionはPromiseを返す {#async-function-return-promise}
+
+Async Functionとして定義した関数はどんな場合でも必ず`Promise`インスタンスを返します。
+具体的には次の3つのケースが考えられます。基本的には`then`メソッドの返り値とコールバック関数の関係とほとんど同じです。
+
+- Async Functionは値をreturnした場合、その返り値の**Fulfilled**なPromiseを返します
+- Async FunctionがPromiseをreturnした場合、その返り値のPromiseをそのまま返します
+- Async Function内で例外が発生した場合は、そのエラー内容の**Rejected**なPromiseを返します
+
+次のコードでは、これらのAsync Functionと返り値によってどのような`Promise`インスタンスを返すかがわかります。
+
+```js
+// resolveFnは値を返している
+// 何もreturnしていない場合はundefinedを返したのと同じ扱いとなる
+async function resolveFn() {
+    return "値";
+}
+resolveFn().then(value => {
+    console.log(value); // => "値"
+});
+
+// rejectFnはPromiseインスタンスを返している
+function rejectFn() {
+    return Promise.reject(new Error("エラー"));
+}
+
+// rejectFnはRejectedなPromiseを返すのでcatchできる
+resolveError().catch(error => {
+    console.log(error); // => "エラー"
+});
+
+// exceptionFnは例外を投げている
+async function exceptionFn() {
+    throw new Error("例外が発生");
+}
+
+// Async Functionで例外が発生するとRejectedなPromiseが返される
+exceptionFn().catch(error => {
+    console.log(error); // => "例外が発生"
+});
+```
+
+このようにAsync Functionを呼び出す側から見れば、Async FunctionはPromiseを返すただの関数と何も変わりません。
+
+## `await`式 {#await-expression}
+
+Async Functionでもっとも重要な機能は`await`式です。
 
 [文と式]: ../statement-expression/README.md
 [例外処理]: ../error-try-catch/README.md
