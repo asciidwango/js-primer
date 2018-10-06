@@ -1288,7 +1288,109 @@ exceptionFn().catch(error => {
 
 ## `await`式 {#await-expression}
 
-Async Functionでもっとも重要な機能は`await`式です。
+Async Functionの関数内では`await`式を利用できます。
+`await`式は右辺の`Promise`インスタンスが**Fulfilled**または**Rejected**になるまで、その場で非同期処理の完了を待ちます。`Promise`インスタンスの状態が変わると、次の行の処理を再開します。
+
+<!-- doctest:disable -->
+```js
+async function asyncMain() {
+    // PromiseがFulfilledまたはRejectedとなるまで待つ
+    await Promiseインスタンス;
+    // Promiseインスタンスの状態が変わったら処理を再開する
+}
+```
+
+通常は非同期処理を実行した場合にその非同期処理の完了を待つことなく、次の行（次の文）を実行します。
+しかし`await`式では非同期処理を実行しその非同期処理の完了するまで、次の行（次の文）を実行しません。
+そのため`await`式を使うことで非同期処理が同期処理のように上から下へと順番に実行するような見た目でコードを書けます。
+
+<!-- doctest:disable -->
+```js
+// async functionは必ずPromiseを返す
+async function doAsync() {
+    // 非同期処理
+}
+async function asyncMain() {
+    await doAsync();
+    // 次の行はdoAsyncの非同期処理が完了されるまで実行されない
+    console.log("この行は非同期処理が完了後に実行される");
+}
+```
+
+`await`式は**式**であるため右辺（`Promise`インスタンス）の評価結果を値として返します（**式**については「[文と式][]」を参照）。
+
+`await`式の右辺のPromiseが**Fulfilled**となった場合は、resolveされた値が`await`式の返り値となります。
+
+次のコードでは、`await`式の右辺にある`Promise`インスタンスは`42`という値でresolveされています。
+そのため`await`式の返り値は`42`となり、`value`変数にもその値が入ります。
+
+{{book.console}}
+```js
+async function asyncMain() {
+    const value = await Promise.resolve(42);
+    console.log(value); // => 42
+}
+asyncMain();
+```
+
+これはAsync Functionを使わずに書くと次のコードと同様の意味となります。
+`await`式を使うことで非同期処理の流れがPromiseだけの場合に比べてわかりやすくかけます。
+
+{{book.console}}
+```js
+function asyncMain() {
+    return Promise.resolve(42).then(value => {
+        console.log(value); // => 42
+    });
+}
+asyncMain();
+```
+
+`await`式の右辺のPromiseが**Rejected**となった場合は、その場でエラーを`throw`します。
+またAsync Functionでは関数内で発生した例外は自動的にキャッチされます。
+そのため`await`式でPromiseが**Rejected**となった場合は、そのAsync Functionが**Rejected**なPromiseを返すことになります。
+
+次のコードでは、`await`式の右辺にある`Promise`インスタンスが**Rejected**の状態になっています。
+そのため`await`式は`エラー`を`throw`するため、`asyncMain`関数は**Rejected**なPromiseを返します。
+
+{{book.console}}
+```js
+async function asyncMain() {
+    const value = await Promise.reject(new Error("エラー"));
+    console.log("この行は実行されません");
+}
+// Async Functionは自動的に例外をキャッチできる
+asyncMain().catch(error => {
+    console.log(error); // => Error: エラー
+});
+```
+
+`await`式がエラーを`throw`するということは、そのエラーは`try...catch`構文でキャッチできます（詳細は「[try...catch構文][]」の章を参照）。
+通常の非同期処理が完了するまでに次の行が実行されてしまうため`try...catch`構文ではエラーをキャッチできませんでした。そのためPromiseでは`catch`メソッドを使いPromise内で発生したエラーをキャッチしていました。しかし、`await`式では**Rejected**状態のPromiseのエラーを元にその場でエラーを`throw`します。
+
+次のコードでは、`await`式で発生した例外を`try...catch`構文でキャッチしています。
+
+{{book.console}}
+```js
+async function asyncMain() {
+    // await式のエラーはtry...catchできる
+    try {
+        const value = await Promise.reject(new Error("エラー"));
+        console.log("この行は実行されません");
+    } catch (error) {
+        console.log(error); // => Error: エラー
+    }
+}
+asyncMain().catch(error => {
+    console.log("この行は実行されません");
+});
+```
+
+このように`await`式を使うことで、`try...catch`構文のように非同期処理を同期処理と同じ構文を使って扱えます。またコードの見た目も同期処理と同じように、その行（その文）の処理が完了するまで次の行を評価しないという分かりやすい形になるのは大きな利点です。
+
+### `await`式はAsync Functionの中でのみ利用可能 {#await-in-async-function}
+
+
 
 [文と式]: ../statement-expression/README.md
 [例外処理]: ../error-try-catch/README.md
@@ -1297,3 +1399,4 @@ Async Functionでもっとも重要な機能は`await`式です。
 [ユースケース: Node.jsでCLIアプリケーション]: ../../use-case/nodecli/README.md
 [配列]: ../array/README.md##method-chain-and-high-order-function
 [JavaScript Promiseの本]: http://azu.github.io/promises-book/
+[try...catch構文]: ../error-try-catch/README.md#try-catch
