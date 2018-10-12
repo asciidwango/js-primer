@@ -1330,7 +1330,7 @@ async function asyncMain() {
     const value = await Promise.resolve(42);
     console.log(value); // => 42
 }
-asyncMain();
+asyncMain(); // => Promise
 ```
 
 これはAsync Functionを使わずに書くと次のコードと同様の意味となります。
@@ -1390,7 +1390,40 @@ asyncMain().catch(error => {
 
 ### `await`式はAsync Functionの中でのみ利用可能 {#await-in-async-function}
 
+`await`式はAsync Functionの関数内のみで利用可能です。
+Async Functionではない通常の関数で`await`式を使うとSyntax Errorとなります。
 
+{{book.console}}
+<!-- doctest: Syntax Error -->
+```js
+function main(){
+    // Syntax Error
+    await Promise.resolve();
+}
+```
+
+Async Functionは関数内で`await`を使っているのとは関係なく、必ず関数自体はPromiseを返します。
+Async Functionは外から見ればただのPromiseを返す関数です。
+その関数内で`await`式を使って処理を待っている間も、関数の外側では普通に処理が進んでいます。
+
+```js
+async function asyncMain() {
+    // 中でawaitしても、Async Functionの外側の処理まで止まるわけではない
+    await new Promise((resolve) => {
+        setTimeout(resolve, 1000);
+    });
+};
+// async functionは外から見れば単なるpromiseを返す関数
+asyncMain().then(() => {
+    console.log("1秒後");
+});
+// async functionの外側の処理は次の行へ進む
+console.log("すぐに次の行は同期的に呼び出される");
+```
+
+つまり、Async Functionの中で`await`を使い非同期処理を止めたとしても、外からは単なるひとつの非同期処理が行われているという認識になります。
+
+これは`await`式がAsync Functionの中でのみ利用できる制限がついている理由の一つです。
 
 [文と式]: ../statement-expression/README.md
 [例外処理]: ../error-try-catch/README.md
