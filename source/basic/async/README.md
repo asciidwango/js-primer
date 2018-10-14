@@ -1393,6 +1393,8 @@ asyncMain().catch(error => {
 `await`式はAsync Functionの関数内のみで利用可能です。
 Async Functionではない通常の関数で`await`式を使うとSyntax Errorとなります。
 
+<!-- textlint-disable -->
+
 {{book.console}}
 <!-- doctest: Syntax Error -->
 ```js
@@ -1401,6 +1403,8 @@ function main(){
     await Promise.resolve();
 }
 ```
+<!-- textlint-enable eslint -->
+
 
 Async Functionは関数内で`await`を使っているのとは関係なく、必ず関数自体はPromiseを返します。
 Async Functionは外から見ればただのPromiseを返す関数です。
@@ -1423,7 +1427,125 @@ console.log("すぐに次の行は同期的に呼び出される");
 
 つまり、Async Functionの中で`await`を使い非同期処理を止めたとしても、外からは単なるひとつの非同期処理が行われているという認識になります。
 
-これは`await`式がAsync Functionの中でのみ利用できる制限がついている理由の一つです。
+これは`await`式がAsync Functionの中でのみ利用できる制限がついている理由のひとつです。
+
+## Promiseチェーンを`await`式で表現する {#promise-chain-to-async-function}
+
+Async Functionと`await`式を使うことでPromiseチェーンとして表現していた非同期処理を同期処理のような見た目でかけます。
+
+たとえば、次のようなリソースAとリソースBを順番に取得する処理をPromiseチェーンで書くと次のようになります。
+
+{{book.console}}
+```js
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+// リソースAとリソースBを順番に取得する
+function fetchResources() {
+    const results = [];
+    return dummyFetch("/resource/A").then(response => {
+        results.push(response.body);
+        return dummyFetch("/resource/B");
+    }).then(response => {
+        results.push(response.body);
+    }).then(() => {
+        return results;
+    });
+}
+// リソースを取得して出力する
+fetchResources().then(() => {
+    console.log(results); // => ["Response body of /resource/A", "Response body of /resource/B"]
+});
+```
+
+このコードと同じ処理をAsync Functionと`await`式で書くと次のように書けます。
+
+{{book.console}}
+```js
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+// リソースAとリソースBを順番に取得する
+async function fetchResources() {
+    const results = [];
+    const responseA = await dummyFetch("/resource/A");
+    results.push(responseA.body);
+    const responseB = await dummyFetch("/resource/B");
+    results.push(responseB.body);
+    return results;
+}
+// リソースを取得して出力する
+fetchResources().then(() => {
+    console.log(results); // => ["Response body of /resource/A", "Response body of /resource/B"]
+});
+```
+
+Promiseチェーンで`fetchResources`関数書いた場合はコールバックの中で処理を行うためややこしい見た目になりがちです。
+一方、Async Functionと`await`式で書いた場合は、取得と追加を順番に行うだけとなりネストがなく見た目はシンプルです。
+
+このようにPromiseチェーンはAsync Functionと`await`式でも同様の処理を同期処理のような見た目で書けます。
+一方で同期処理のような見た目となるため、複数の非同期処理を順番に行うようなケースで無駄な待ち時間を作ってしまうコードを書いてしまいます。
+
+先ほど`fetchResources`ではリソースAを取得し終わってからリソースBを取得していました。
+特に取得順が問題出ない場合はリソースAとリソースBを同時に取得できます。
+
+Promiseチェーンでは`Promise.all`メソッドを使い、リソースAとリソースBを取得する非同期処理を1つの`Promise`インスタンスにまとめることで同時に取得していました。
+`await`式が評価するのは`Promise`インスタンスであるため、`await`式は`Promise.all`メソッドなど`Promise`インスタンスを返す処理と組み合わせて利用できます。
+
+そのため、先ほど`fetchResources`でリソースを同時に取得する場合は、次のように書けます。
+`Promise.all`メソッドは複数のPromiseを配列で受け取り、それを1つのPromiseとしてまとめたものを返す関数です。
+`Promise.all`メソッドの返す`Promise`インスタンスを`await`することで、非同期処理の結果を配列としてまとめて取得できます。
+
+{{book.console}}
+```js
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+// リソースAとリソースBを同時に取得する
+async function fetchResources() {
+    // Promise.allは [ResponseA, ResponseB] のように結果を配列にしたPromiseインスタンスを返す
+    const responses = await Promise.all([
+        dummyFetch("/resource/A"),
+        dummyFetch("/resource/B")
+    ]);
+    return responses.map(response => {
+        return response.body;
+    });
+}
+// リソースを取得して出力する
+fetchResources().then(() => {
+    console.log(results); // => ["Response body of /resource/A", "Response body of /resource/B"]
+});
+```
+
+このようにAsync Functionや`await`式は既存のPromiseと組み合わせて利用できます。
+Async Functionも内部的にPromiseの仕組みを利用しているため、両者は対立関係ではなく共存関係です。
+
+## コールバック関数とAsync Function {#callback-and-async-function}
 
 [文と式]: ../statement-expression/README.md
 [例外処理]: ../error-try-catch/README.md
