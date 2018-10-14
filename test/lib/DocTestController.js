@@ -2,7 +2,7 @@
 "use strict";
 
 const DISABLE_PATTERN = /doctest:\s*disable/;
-const ERROR_TYPE_PATTERN = /doctest:\s*(\w+Error)/;
+const ERROR_TYPE_PATTERN = /doctest:\s*([\w\s]*?Error)/;
 
 /**
  * CodeBlockの手前に該当するHTMLコメントはdoctestの制御コードとして扱える

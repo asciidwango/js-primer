@@ -1269,7 +1269,7 @@ function rejectFn() {
 }
 
 // rejectFnはRejectedなPromiseを返すのでcatchできる
-resolveError().catch(error => {
+rejectFn().catch(error => {
     console.log(error); // => "エラー"
 });
 
@@ -1330,7 +1330,7 @@ async function asyncMain() {
     const value = await Promise.resolve(42);
     console.log(value); // => 42
 }
-asyncMain(); // => Promise
+asyncMain(); // Promiseインスタンスを返す
 ```
 
 これはAsync Functionを使わずに書くと次のコードと同様の意味となります。
@@ -1343,7 +1343,7 @@ function asyncMain() {
         console.log(value); // => 42
     });
 }
-asyncMain();
+asyncMain(); // Promiseインスタンスを返す
 ```
 
 `await`式の右辺のPromiseが**Rejected**となった場合は、その場でエラーを`throw`します。
@@ -1396,7 +1396,7 @@ Async Functionではない通常の関数で`await`式を使うとSyntax Error�
 <!-- textlint-disable -->
 
 {{book.console}}
-<!-- doctest: Syntax Error -->
+<!-- doctest: Error -->
 ```js
 function main(){
     // Syntax Error
