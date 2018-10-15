@@ -289,7 +289,7 @@ fs.readFile("./example.txt", (error, data) => {
 function dummyFetch(path, callback) {
     setTimeout(() => {
         // /success から始まるパスにはリソースがあるという設定
-        if (path.startWith("/success")) {
+        if (path.startsWith("/success")) {
             callback(null, { body: `Response body of ${path}` });
         } else {
             callback(new Error("NOT FOUND"));
@@ -327,7 +327,7 @@ dummyFetch("/failure/data", (error, response) => {
  */
 function dummyFetch(path, successCallback, failureCallback) {
     setTimeout(() => {
-        if (path.startWith("/success")) {
+        if (path.startsWith("/success")) {
             successCallback({ body: `Response body of ${path}` });
         } else {
             failureCallback(new Error("NOT FOUND"));
@@ -457,7 +457,7 @@ promise.then(onFulfilled, onRejected);
 function dummyFetch(path) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            if (path.startWith("/success")) {
+            if (path.startsWith("/success")) {
                 resolve({ body: `Response body of ${path}` });
             } else {
                 reject(new Error("NOT FOUND"));
@@ -932,7 +932,7 @@ main().then(() => {
 
 #### Promiseチェーンの最後で処理を書く {#promise-finally}
 
-`Promise#finllay`メソッドは成功時、失敗時どちらの場合でも呼び出すコールバック関数を登録できます。
+`Promise#finallay`メソッドは成功時、失敗時どちらの場合でも呼び出すコールバック関数を登録できます。
 `try...catch...finally`構文の`finally`節と同様の役割をもつメソッドです。
 
 次のコードでは、リソースを取得して`then`で成功時の処理、`catch`で失敗時の登録しています。
@@ -946,7 +946,7 @@ main().then(() => {
 function dummyFetch(path) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            if (path.startWith("/resource")) {
+            if (path.startsWith("/resource")) {
                 resolve({ body: `Response body of ${path}` });
             } else {
                 reject(new Error("NOT FOUND"));
@@ -956,7 +956,7 @@ function dummyFetch(path) {
 }
 // リソースを取得中かどうかのフラグ
 let isLoading = true;
-dummyFetch().then(response => {
+dummyFetch("/resource/A").then(response => {
     console.log(response);
 }).catch(error => {
     console.log(error);
@@ -981,7 +981,7 @@ Promiseで直列的な処理と言っても難しいことはなく、単純に`
 function dummyFetch(path) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            if (path.startWith("/resource")) {
+            if (path.startsWith("/resource")) {
                 resolve({ body: `Response body of ${path}` });
             } else {
                 reject(new Error("NOT FOUND"));
@@ -1045,7 +1045,7 @@ Promise.all([promise1, promise2, promise3]).then(function(values) {
 function dummyFetch(path) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            if (path.startWith("/resource")) {
+            if (path.startsWith("/resource")) {
                 resolve({ body: `Response body of ${path}` });
             } else {
                 reject(new Error("NOT FOUND"));
@@ -1071,7 +1071,7 @@ fetchedPromise.then(([responseA, responseB]) => {
 function dummyFetch(path) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            if (path.startWith("/resource")) {
+            if (path.startsWith("/resource")) {
                 resolve({ body: `Response body of ${path}` });
             } else {
                 reject(new Error("NOT FOUND"));
@@ -1160,7 +1160,7 @@ function timeout(timeoutMs) {
 function dummyFetch(path) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            if (path.startWith("/resource")) {
+            if (path.startsWith("/resource")) {
                 resolve({ body: `Response body of ${path}` });
             } else {
                 reject(new Error("NOT FOUND"));
