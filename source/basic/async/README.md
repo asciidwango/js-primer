@@ -1736,8 +1736,7 @@ main();
 
 Async Functionは非同期処理のコードフローを分かりやすくしますが、コールバック関数に利用した際には分かりにくくする場合もあります。
 そのため、無理してすべてをAsync Functionで書かずにPromiseの仕組みそのものを利用することも重要です。
-Async FunctionはPromiseの上に作られた仕組みであるため、両者は一緒に利用することも考えて見てください。
-
+Async FunctionはPromiseの上に作られた仕組みであるため、両者は一緒に利用することも考えてみてください。
 
 [文と式]: ../statement-expression/README.md
 [例外処理]: ../error-try-catch/README.md
