@@ -1652,7 +1652,7 @@ async function saveUsers(users){
         // コールバック関数ではないので、`saveUsers`関数の処理もここで一時停止する
         await storage.save(user.id, user);
         console.log(`2. UserId:${user.id}を保存しました`);
-    });
+    };
     console.log("3. saveUsers関数終了");
 }
 ```
@@ -1661,6 +1661,7 @@ async function saveUsers(users){
 Async FunctionはそれぞれPromiseを返すため、すべてのPromiseの完了を明示的に待てばよいはずです。
 複数のPromiseの完了を待つには`Promise.all`メソッドで1つのPromiseにまとめて`await`式でそのPromiseの完了を待てば良いだけです。
 
+<!-- doctest:disable -->
 ```js
 async function saveUsers(users){
     console.log("1. saveUsers関数開始");
@@ -1675,6 +1676,7 @@ async function saveUsers(users){
 
 `storage.save`メソッドはもともとPromiseを返すため、次のようにAsync Functionをコールバック関数にしなくても動作は同じです。
 
+<!-- doctest:disable -->
 ```js
 async function saveUsers(users){
     const promises = users.map(user => {

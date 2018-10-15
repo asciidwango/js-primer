@@ -14,6 +14,7 @@ const attachParents = require('unist-util-parents');
 const findAllBetween = require('unist-util-find-all-between');
 const findBefore = require('unist-util-find-before');
 const DocTestController = require("./lib/DocTestController");
+const makeConsoleMock = require("consolemock");
 const getComments = (parentNode, codeNode) => {
     const nonHtmlNode = findBefore(parentNode, codeNode, (node) => {
         return node.type !== "html";
@@ -41,7 +42,7 @@ const ESVersions = ["ES2016", "ES2017"];
  *
  * その他詳細は CONTRIBUTING.md を読む
  **/
-describe("doctest:md", function() {
+describe("doctest:md", function () {
     const files = globby.sync([
         `${sourceDir}/**/*.md`,
         `!${sourceDir}/**/node_modules{,/**}`,
@@ -49,7 +50,7 @@ describe("doctest:md", function() {
     ]);
     files.forEach(filePath => {
         const normalizeFilePath = filePath.replace(sourceDir, "");
-        describe(`${normalizeFilePath}`, function() {
+        describe(`${normalizeFilePath}`, function () {
             const content = fs.readFileSync(filePath, "utf-8");
             const markdownAST = attachParents(remark.parse(content));
             const codeBlocks = [].concat(
@@ -67,7 +68,8 @@ describe("doctest:md", function() {
                 if (docTestController.isDisabled) {
                     return;
                 }
-                it(codeValue.slice(0, 20), function() {
+                const testCaseName = codeValue.slice(0, 32).replace(/[\r\n]/g, "_");
+                it(testCaseName, function () {
                     try {
                         // console.logと// => の書式をチェック
                         // ミスマッチが多いので無効化
@@ -84,7 +86,7 @@ describe("doctest:md", function() {
                         } else {
                             strictEval(poweredCode, {
                                 require,
-                                console,
+                                console: !!process.env.ENABLE_CONSOLE ? console : makeConsoleMock(),
                                 setTimeout
                             });
                         }
