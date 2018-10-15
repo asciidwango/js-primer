@@ -9,11 +9,8 @@ module.exports = {
         "mocha": true
     },
     "parserOptions": {
-        "ecmaVersion": 7,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "experimentalObjectRestSpread": true
-        }
+        "ecmaVersion": 2018,
+        "sourceType": "module"
     },
     rules: {
         "indent": [
