@@ -1547,6 +1547,196 @@ Async Functionも内部的にPromiseの仕組みを利用しているため、�
 
 ## コールバック関数とAsync Function {#callback-and-async-function}
 
+Async Functionと`await`式はPromiseチェーンに比べてコードを読みやすくしますが、すべてのケースでそうとは言えません。
+ここでは`await`式はAsync Functionの直下のスコープのみでしか使えないという性質について見ていきます。
+この`await`式の仕組みはコールバック関数において直感的ではない動作をします。
+
+次のコードは`AsyncStorage`という擬似的に非同期で読み書きするストレージクラスを使う例です。
+`main`関数では`saveUsers`関数でユーザーデータを保存し、保存が完了後にユーザーデータが読み出せるかをチェックしています。
+
+{{book.console}}
+```js
+class AsyncStorage {
+    constructor(){
+        this.dataMap = new Map();
+    }
+    async save(key, value){
+        return new Promise(resolve => {
+            setTimeout(() => {
+                this.dataMap.set(key, value);
+                resolve();
+            }, 100);
+        });
+    }
+    async load(key){
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve(this.dataMap.get(key));
+            }, 50);
+        });
+    }
+}
+// Async Storageを作成する
+const storage = new AsyncStorage();
+// 1. AsyncStorageにデータを保存する
+async function saveUsers(users){
+    users.forEach(async (user) => {
+        await storage.save(user.id, user);
+    });
+}
+// 2. AsyncStorageからデータを読み取る
+async function loadUser(userId){
+    return storage.load(userId);
+}
+async function main(){
+    const users = [{ id: 1, name: "John" }, { id: 5, name: "Smith"}, { id: 7, name: "Ayo"}];
+    await saveUsers(users);
+    // idが5のユーザーデータを取り出す
+    const user = await loadUser(5);
+    // しかしまだ保存が完了していないためundeinedとなる
+    console.log(user); // => undefined
+}
+main();
+```
+
+このコードは`users`（ユーザーデータ）をストレージに保存し、保存が完了後にすぐ読み出せることを意図しています。
+しかし、`saveUsers`関数を呼び出し後に`loadUser`でユーザーデータを読み出しても`undefined`が返されます。
+これは保存が完了する前に、ユーザーデータを読み取ろうとしてしまったため空の値である`undefined`が返されています。
+
+なぜ意図したように動いていないかというと`saveUser`関数の実装に問題があるためです。
+
+`saveUser`関数を詳しく見ていきます。
+`forEach`メソッドのコールバック関数としてAsync Functionを渡しています。
+Async Functionの中で`await`式を利用して非同期処理の完了を待っています。
+しかし、この非同期処理の完了を待つのAsync Functionの中だけで、外側では`save`メソッドの完了を待つことなく進みます。
+
+次のように`saveUsers`関数にコンソール出力を入れてみると動作が分かりやすいでしょう。
+`forEach`メソッドのコールバック関数が完了するのは、`saveUsers`関数の呼び出しが全て終わったあとになることがわかります。
+そのため、`await saveUsers()`のように`saveUsers`関数の完了を待ったつもりでも、その時点ではStorageに値が保存されていないかなたのです。
+
+```js
+async function saveUsers(users){
+    console.log("1. saveUsers関数開始");
+    users.forEach(async (user) => {
+        // 非同期処理が完了するまで待つ
+        await storage.save(user.id, user);
+        console.log(`3. UserId:${user.id}を保存しました`);
+    });
+    console.log("2. saveUsers関数終了");
+}
+```
+
+この`saveUsers`関数はPromiseで書いてみると次のように書いているのと同じとなります。
+
+```js
+async function saveUsers(users){
+    console.log("1. saveUsers関数開始");
+    users.forEach((user) => {
+        return storage.save(user.id, user).then(() => {
+            console.log(`3. UserId:${user.id}を保存しました`);
+        });
+    });
+    console.log("2. saveUsers関数終了");
+}
+```
+
+これを修正する方法はいくつかあります。
+もっとも簡単な方法はAsync Functionをコールバックに利用しない方法です。
+次のコードのように`forEach`メソッドではなくforループを利用すれば、特別な工夫をせずに順番にユーザーデータを保存できます。
+
+```js
+async function saveUsers(users){
+    console.log("1. saveUsers関数開始");
+    for(let i=0; i < user.length; i++){
+        const user = users[i];
+        // コールバック関数ではないので、`saveUsers`関数の処理もここで一時停止する
+        await storage.save(user.id, user);
+        console.log(`2. UserId:${user.id}を保存しました`);
+    });
+    console.log("3. saveUsers関数終了");
+}
+```
+
+もう一つの方法としては、`Array#forEach`メソッドではなく`Array#map`メソッドを使いAsync Functionのコールバック関数の返り値を考慮する方法です。
+Async FunctionはそれぞれPromiseを返すため、すべてのPromiseの完了を明示的に待てばよいはずです。
+複数のPromiseの完了を待つには`Promise.all`メソッドで1つのPromiseにまとめて`await`式でそのPromiseの完了を待てば良いだけです。
+
+```js
+async function saveUsers(users){
+    console.log("1. saveUsers関数開始");
+    const promises = users.map(async user => {
+        await storage.save(user.id, user);
+        console.log(`2. UserId:${user.id}を保存しました`);
+    });
+    await Promise.all(promises);
+    console.log("3. saveUsers関数終了");
+}
+```
+
+`storage.save`メソッドはもともとPromiseを返すため、次のようにAsync Functionをコールバック関数にしなくても動作は同じです。
+
+```js
+async function saveUsers(users){
+    const promises = users.map(user => {
+        return storage.save(user.id, user);
+    });
+    await Promise.all(promises);
+}
+```
+
+この`saveUsers`関数の問題を修正することで、`saveUsers`関数の完了時にユーザーデータがストレージに保存されていることがわかります。
+`await saveUsers(ユーザーデータ)`で完了を待つことで、次行でストレージからデータを取り出したときに意図したようにデータを取得できています。
+
+{{book.console}}
+```js
+class AsyncStorage {
+    constructor(){
+        this.dataMap = new Map();
+    }
+    async save(key, value){
+        return new Promise(resolve => {
+            setTimeout(() => {
+                this.dataMap.set(key, value);
+                resolve();
+            }, 100);
+        });
+    }
+    async load(key){
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve(this.dataMap.get(key));
+            }, 50);
+        });
+    }
+}
+// Async Storageを作成する
+const storage = new AsyncStorage();
+// 1. AsyncStorageにデータを保存する
+async function saveUsers(users){
+    // Storege#saveはそれぞれPromiseを返すためAsync Functionをコールバックにしなくても良い
+    const promises = users.map(user => storage.save(user.id, user));
+    await Promise.all(promises);
+    return; // 返り値は明示的になしにしているため、undefinedでresolveされるPromiseを返す
+}
+// 2. AsyncStorageからデータを読み取る
+async function loadUser(userId){
+    return storage.load(userId);
+}
+async function main(){
+    const users = [{ id: 1, name: "John" }, { id: 5, name: "Smith" }, { id: 7, name: "Ayo" }];
+    await saveUsers(users);
+    // idが5のユーザーデータを取り出す
+    const user = await loadUser(5);
+    console.log(user); // => { id: 5, name: "Smith" }
+}
+main();
+```
+
+Async Functionは非同期処理のコードフローを分かりやすくしますが、コールバック関数に利用した際には分かりにくくする場合もあります。
+そのため、無理してすべてをAsync Functionで書かずにPromiseの仕組みそのものを利用することも重要です。
+Async FunctionはPromiseの上に作られた仕組みであるため、両者は一緒に利用することも考えて見てください。
+
+
 [文と式]: ../statement-expression/README.md
 [例外処理]: ../error-try-catch/README.md
 [Web Worker]: https://developer.mozilla.org/ja/docs/Web/API/Web_Workers_API/Using_web_workers
