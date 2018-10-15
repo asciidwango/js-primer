@@ -761,7 +761,7 @@ console.log(secondPromise === thridPromise); // => false
 ```js
 // ランダムでFulfilledまたはRejectedの`Promise`インスタンスを返す関数
 function asyncTask() {
-    return Math.raondom % 2 === 0 
+    return Math.random % 2 === 0 
         ? Promise.resolve("成功")
         : Promise.reject(new Error("失敗"));
 }
