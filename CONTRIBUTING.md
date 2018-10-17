@@ -157,6 +157,27 @@ Doctestの正常系は実行結果と期待結果が一致することです。
     NO_DEFINE++; // => ReferenceError
     ```
 
+#### Doctest非同期のテスト
+
+DoctestでPromiseやAsync Functionを使った非同期のテストも書けます。
+非同期処理を期待する場合は、`doctest:async:タイムアウトミリ秒`をHTMLコメントに書きます。
+
+例) 実行結果が`1000`ミリ秒以内に完了する非同期処理をテストする
+
+    <!-- doctest:async:1000 -->
+    ```js
+    function wait(ms){
+        return new Promise((resolve) => {
+            setTimeout(() => resolve(ms), ms)
+        })
+    }
+    wait(1000).then(() => {
+        console.log(value); // => 1000 
+    });
+    ```
+
+Note: `vm`モジュールの制約からタイムアウト指定の時間が正しく指定させていることが前提となっています。
+    
 #### Doctestの無視
 
 CodeBlockの手前に`<!-- doctest:disable -->`というHTMLコメントがある場合はDoctestをしません。

@@ -75,6 +75,7 @@ Promiseのコンストラクタには、`resolve`と`reject`の2つの関数オ�
 
 <!-- textlint-enable no-js-function-paren -->
 
+<!-- doctest:async:16 -->
 ```js
 new Promise((resolve, reject) => {
     // ここで非同期処理を行う
@@ -88,6 +89,7 @@ Promiseのコンストラクタに渡す関数で、XHRの処理を行います�
 作成したPromiseのオブジェクトを`return`することで、`getUserInfo`関数はPromiseを返す関数になりました。
 `getUserInfo`関数がPromiseを返すことで、それを呼び出す`main`関数の方で非同期処理の結果を扱えるようになります。
 
+<!-- doctest:async:16 -->
 ```js
 function getUserInfo(userId) {
     return new Promise((resolve, reject) => {    
@@ -121,6 +123,7 @@ Promiseのコンテキスト内で発生したエラーは、`Promise#catch`メ�
 次のコードでは、`getUserInfo`関数から返されたPromiseオブジェクトを使い、エラーが起きた時にログを出力します。
 `reject`関数に渡したエラーは`catch`のコールバック関数で第1引数として受け取れます。
 
+<!-- doctest:async:16 -->
 ```js
 function main() {
     getUserInfo("js-primer-example")
@@ -171,6 +174,7 @@ Promiseチェーンで処理を分けることで、それぞれの処理が簡�
 `getUserInfo`関数では、`resolve`関数に`userInfo`を渡し、次の`then`でコールバック関数の引数として受け取っています。
 同じように、`userInfo`を受け取った関数は`createView`関数を呼び出し、その戻り値を次の`then`に渡しています。
 
+<!-- doctest:async:16 -->
 ```js
 function main() {
     getUserInfo("js-primer-example")
@@ -208,6 +212,7 @@ Fetch APIは`fetch`関数など、リソースを取得するためのAPIを定�
 `fetch`関数はPromiseを返すのが特徴です。
 たとえば、本章で扱ったXHRによる`getUserInfo`関数は、`fetch`関数を使うと次のようになります。
 
+<!-- doctest:async:16 -->
 ```js
 function getUserInfo(userId) {
     // 暗黙にGETリクエストとなる
