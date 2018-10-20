@@ -1,8 +1,9 @@
 // MIT © 2017 azu
 "use strict";
 
-const DISABLE_PATTERN = /doctest:\s*disable/;
-const ERROR_TYPE_PATTERN = /doctest:\s*(\w+Error)/;
+const DISABLE_PATTERN = /doctest:\s*?disable/;
+const ASYNC_TIME_PATTERN = /doctest:\w*?async:(\d+)/;
+const ERROR_TYPE_PATTERN = /doctest:\s*([\w\s]*?Error)/;
 
 /**
  * CodeBlockの手前に該当するHTMLコメントはdoctestの制御コードとして扱える
@@ -56,6 +57,30 @@ class DocTestController {
      */
     get hasExpectedError() {
         return this.expectedErrorName !== undefined;
+    }
+
+    /**
+     * @returns {boolean}
+     */
+    get isAsyncTesting() {
+        return this.comments.some(comment => {
+            return ASYNC_TIME_PATTERN.test(comment);
+        });
+    }
+
+    get asyncTestTimeoutMillSeconds(){
+        const timeoutComment = this.comments.find(comment => {
+            return ASYNC_TIME_PATTERN.test(comment);
+        });
+        if (!timeoutComment) {
+            return;
+        }
+        const match = timeoutComment.match(ASYNC_TIME_PATTERN);
+        const timeoutMillSecAsString = Number(match && match[1]);
+        if(Number.isNaN(timeoutMillSecAsString)){
+            throw new Error(`AsyncDocTest: wrong timout format: ${timeoutComment}`);
+        }
+        return timeoutMillSecAsString;
     }
 
     /**

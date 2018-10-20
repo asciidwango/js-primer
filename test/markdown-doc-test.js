@@ -14,6 +14,7 @@ const attachParents = require('unist-util-parents');
 const findAllBetween = require('unist-util-find-all-between');
 const findBefore = require('unist-util-find-before');
 const DocTestController = require("./lib/DocTestController");
+const makeConsoleMock = require("consolemock");
 const getComments = (parentNode, codeNode) => {
     const nonHtmlNode = findBefore(parentNode, codeNode, (node) => {
         return node.type !== "html";
@@ -67,32 +68,24 @@ describe("doctest:md", function() {
                 if (docTestController.isDisabled) {
                     return;
                 }
-                it(codeValue.slice(0, 20), function() {
-                    try {
-                        // console.logと// => の書式をチェック
-                        // ミスマッチが多いので無効化
-                        // shouldConsoleWithComment(codeBlock.value, filePath);
-                        const poweredCode = toDoc.convertCode(codeBlock.value, filePath);
-                        if (/strict modeではない/.test(codeBlock.value)) {
-                            // non-strict modeのコード
-                            const vm = new NodeVM({
-                                require: {
-                                    external: true
-                                }
-                            });
-                            vm.run(poweredCode, filePath);
-                        } else {
-                            strictEval(poweredCode, {
-                                require,
-                                console,
-                                setTimeout
-                            });
+                const testCaseName = codeValue.slice(0, 32).replace(/[\r\n]/g, "_");
+                it(testCaseName, function(_done) {
+                    let isCalled = false;
+                    const done = (error) => {
+                        if (isCalled) {
+                            return;
                         }
-                    } catch (error) {
+                        isCalled = true;
+                        _done(error);
+                    };
+                    /**
+                     * エラーの内容をみて意図してないものならテストを失敗させる。
+                     */
+                    const reportErrorIfUnexpected = (error) => {
                         const filePathLineColumn = `${filePath}:${codeBlock.position.start.line}:${codeBlock.position.start.column}`;
                         if (docTestController.hasExpectedError) {
                             if (docTestController.isExpectedError(error)) {
-                                return;
+                                return done();
                             } else {
                                 console.log(`Error type mismatch:
     Expected: ${docTestController.expectedErrorName}
@@ -105,7 +98,7 @@ describe("doctest:md", function() {
                             console.log(filePathLineColumn);
                             console.log(`# Node.jsのバージョンによりSkip: ${process.version}`);
                             this.skip();
-                            return;
+                            return done();
                         }
                         // Stack Trace like
                         console.log(`Doctest: Failed`);
@@ -115,7 +108,60 @@ describe("doctest:md", function() {
 ${codeBlock.value}
 ---
 `);
-                        throw error;
+                        done(error);
+
+                    };
+                    try {
+                        // console.logと// => の書式をチェック
+                        // ミスマッチが多いので無効化
+                        // shouldConsoleWithComment(codeBlock.value, filePath);
+                        const poweredCode = toDoc.convertCode(codeBlock.value, filePath);
+                        const unhandledRejectionHandler = (reason) => {
+                            done(reason);
+                        };
+                        const uncaughtException = (error) => {
+                            reportErrorIfUnexpected(error);
+                        };
+                        if (/strict modeではない/.test(codeBlock.value)) {
+                            // non-strict modeのコード
+                            const vm = new NodeVM({
+                                require: {
+                                    external: true
+                                }
+                            });
+                            vm.run(poweredCode, filePath);
+                            done();
+                        } else {
+                            process.once("unhandledRejection", unhandledRejectionHandler);
+                            process.once("uncaughtException", uncaughtException);
+                            strictEval(poweredCode, {
+                                require,
+                                console: !!process.env.ENABLE_CONSOLE ? console : makeConsoleMock(),
+                                setTimeout,
+                            });
+                            if (docTestController.isAsyncTesting) {
+                                const PADDING_TIME = 16;
+                                setTimeout(() => {
+                                    process.removeListener("unhandledRejection", unhandledRejectionHandler);
+                                    process.removeListener("uncaughtException", uncaughtException);
+                                    done();
+                                }, docTestController.asyncTestTimeoutMillSeconds + PADDING_TIME);
+                            } else {
+                                const mayBeAsync = /Promise|async |then\(|setTimeout/;
+                                if (mayBeAsync.test(codeValue)) {
+                                    const filePathLineColumn = `${filePath}:${codeBlock.position.start.line}:${codeBlock.position.start.column}`;
+                                    console.log(`Doctest: Failed`);
+                                    console.log(`   at ${filePathLineColumn}`);
+                                    done(new Error(`doctest:asyncをつけ忘れている可能性が高いです at ${filePathLineColumn}`));
+                                    return;
+                                }
+                                process.removeListener("unhandledRejection", unhandledRejectionHandler);
+                                process.removeListener("uncaughtException", uncaughtException);
+                                done();
+                            }
+                        }
+                    } catch (error) {
+                        reportErrorIfUnexpected(error);
                     }
                 });
             });
