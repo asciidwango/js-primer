@@ -1748,7 +1748,7 @@ async function saveUsers(users) {
 
 この問題を修正する方法はいくつかありますが、ここでは2種類の方法を見ていきます。
 
-もっとも簡単な方法はAsync Functionをコールバック関数に利用しない方法です。
+1つめの方法は、Async Functionをコールバック関数に利用しない方法です。
 次のコードのように`forEach`メソッドではなくforループを利用すれば、特別な工夫をせずにユーザーデータを保存できます。
 
 <!-- doctest:disable -->
@@ -1765,7 +1765,7 @@ async function saveUsers(users) {
 }
 ```
 
-もう1つの方法としては、Async Functionを使ったコールバック関数の結果のPromiseをすべて完了するまで方法です。
+2つめの方法は、Async Functionを使ったコールバック関数の結果のPromiseがすべて完了するのを待つ方法です。
 Async FunctionはそれぞれPromiseを返すため、すべてのPromiseの完了を明示的に待てばよいはずです。
 複数のPromiseの完了を待つには`Promise.all`メソッドで1つのPromiseにまとめて`await`式でそのPromiseの完了を待てばよいだけです。
 
