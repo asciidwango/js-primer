@@ -1534,6 +1534,7 @@ async function asynMain(){
 このコードを動作するように書くには次のようにコールバック関数に対して`async`キーワードをつける必要があります。
 
 {{book.console}}
+<!-- doctest:async:16 -->
 ```js
 // 正しいAsync Functionとコールバック関数の書き方
 async function asynMain() {

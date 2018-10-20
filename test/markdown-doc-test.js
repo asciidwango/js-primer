@@ -84,7 +84,6 @@ describe("doctest:md", function() {
                     const reportErrorIfUnexpected = (error) => {
                         const filePathLineColumn = `${filePath}:${codeBlock.position.start.line}:${codeBlock.position.start.column}`;
                         if (docTestController.hasExpectedError) {
-                            console.log("docTestController.hasExpectedError", docTestController.hasExpectedError);
                             if (docTestController.isExpectedError(error)) {
                                 return done();
                             } else {
