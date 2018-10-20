@@ -6,7 +6,7 @@ author: azu
 
 ここからはJavaScriptでTodoアプリの動作を実際に作っていきます。
 
-このセクションでは、前のセクションでHTMLに目印を付けたTodoリスト(`#js-todo-list`)に対してTodoアイテムを追加する処理を作っていきます。
+このセクションでは、前のセクションでHTMLに目印を付けたTodoリスト（`#js-todo-list`）に対してTodoアイテムを追加する処理を作っていきます。
 
 ## Todoアイテムの追加 {#add-todo-item}
 
@@ -53,7 +53,7 @@ console.log(inputElement.value); // => "input要素の入力内容"
 これらを組み合わせて`App.js`に「入力内容をコンソールに表示」する機能を実装してみましょう。
 `App`クラスに`mount`というメソッドを定義して、その中に処理を書いていきましょう。
 
-次のようにフォーム（`#js-form`）をEnterで送信すると、input要素（`#js-form-input`)の内容が開発者ツールのコンソールに表示されるという実装を行います。
+次のようにフォーム（`#js-form`）をEnterで送信すると、input要素（`#js-form-input`）の内容が開発者ツールのコンソールに表示されるという実装を行います。
 
 [import, title:"src/App.js"](./prevent-event/src/App.js)
 
@@ -169,7 +169,7 @@ render(newElement, document.body);
 
 `App.js`から先ほど作成した`html-util.js`の`element`タグ関数を`import`します。
 次に`submit`イベントのリスナー関数で、Todoアイテムを表現する要素を作成し、Todoリスト(`#js-todo-list`)の子要素として追加（`appendChild`）します。
-最後にTodoアイテム数（`#js-todo-count`）のテキスト(`textContent`)を更新します。
+最後にTodoアイテム数（`#js-todo-count`）のテキスト（`textContent`）を更新します。
 
 [import, title:"src/App.js"](./add-todo-item/src/App.js)
 

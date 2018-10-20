@@ -197,7 +197,7 @@ console.log(object.key); // => "Hi!"
 ```
 
 これは、JavaScriptの`const`は値を固定するのではなく、変数への再代入を防ぐためのものです。
-そのため、次のような`object`変数への再代入は防ぐことができますが、変数に代入された値であるオブジェクトの変更は防ぐことができません。（「[変数と宣言](../variables/README.md#const)」を参照）
+そのため、次のような`object`変数への再代入は防ぐことができますが、変数に代入された値であるオブジェクトの変更は防ぐことができません。（「[変数と宣言](../variables/README.md#const）」を参照）
 
 ```js
 const object = { key: "value" };
@@ -317,7 +317,7 @@ if (object.hasOwnProperty("key")) {
 ## `Object#toString`メソッド {#toString-method}
 
 `Object#toString`メソッドは、オブジェクト自身を文字列化するメソッドです。
-`String`コンストラクタ関数を使うことでも文字列にすることできますが、どのような違いがあるのでしょうか？(「[暗黙的な型変換](../implicit-coercion/README.md#to-string)」を参照）
+`String`コンストラクタ関数を使うことでも文字列にすることできますが、どのような違いがあるのでしょうか？（「[暗黙的な型変換](../implicit-coercion/README.md#to-string)」を参照）
 
 実は`String`コンストラクタ関数は、引数に渡されたオブジェクトの`toString`メソッドを呼び出しています。
 そのため、`String`コンストラクタ関数と`toString`メソッドの結果はどちらも同じになります。
