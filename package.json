@@ -42,6 +42,7 @@
     "@jxa/global-type": "^1.0.1",
     "@jxa/run": "^1.0.3",
     "@textlint-rule/textlint-rule-no-invalid-control-character": "^1.0.1",
+    "@textlint-rule/textlint-rule-no-unmatched-pair": "^1.0.7",
     "@textlint-rule/textlint-rule-require-header-id": "^1.0.1",
     "@types/meow": "^4.0.1",
     "@types/node": "^9.6.7",

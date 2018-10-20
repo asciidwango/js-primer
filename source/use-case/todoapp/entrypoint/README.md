@@ -145,7 +145,7 @@ todoapp
 
 
 `src/App.js`にファイルを作成し、次のような内容のJavaScriptモジュールとします。
-モジュールは、基本的には何かしらを外部に公開(`export`）します。
+モジュールは、基本的には何かしらを外部に公開（`export`）します。
 `App.js`は`App`というクラスを公開するモジュールとして、今回はコンソールログを出力するだけです。
 
 [import, src/App.js](module-entry/src/App.js)
