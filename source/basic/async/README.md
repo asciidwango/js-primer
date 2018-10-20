@@ -1517,7 +1517,7 @@ Async Function外の処理も停止できてしまうと、JavaScriptでは基�
 <!-- textlint-disable -->
 
 {{book.console}}
-<!-- textlint-disable -->
+<!-- doctest:disable -->
 ```js
 // コールバック関数で構文エラーとなる例
 async function asynMain(){
