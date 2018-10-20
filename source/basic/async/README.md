@@ -1225,12 +1225,11 @@ Promise.race([
 このようにPromiseを使うことで非同期処理のさまざまなパターンが形成できます。
 より詳しいPromiseの使い方については[JavaScript Promiseの本][]というオンラインで公開されている文書にまとめられています。
 
-一方でPromiseはただのビルトインオブジェクトであるため、非同期処理間の連携を行うにはPromiseチェーンのように少し特殊な書き方や見た目になります。また、エラーハンドリングについても`Promise#catch`メソッドや`Promise#finally`メソッドなど`try...catch`構文とよく似た名前を使います。
+一方でPromiseはただのビルトインオブジェクトであるため、非同期処理間の連携を行うにはPromiseチェーンのように少し特殊な書き方や見た目になります。
+また、エラーハンドリングについても`Promise#catch`メソッドや`Promise#finally`メソッドなど`try...catch`構文とよく似た名前を使います。
 しかし、Promiseは構文ではなくただのオブジェクトであるため、それらをメソッドチェーンとして実現しないといけないといった制限があります。
 
-ES2017ではこのPromiseの若干奇妙な見た目を解決するためにAsync Functionと呼ばれる構文が導入されました。
-重要なこととしてAsync FunctionはPromiseの上に作られた構文です。
-そのためAsync Functionを理解するにはPromiseを理解する必要があることに注意してください。
+ES2017ではこのPromiseチェーンの不格好な見た目を解決するためにAsync Functionと呼ばれる構文が導入されました。
 
 ## Async Function {#async-function}
 
@@ -1266,16 +1265,21 @@ doAsync().then(value => {
 });
 ```
 
-また、Async Function内では`await`式というPromiseを使った非同期処理が完了するまで待つ構文が利用できます。`await`式を使うことで非同期処理を同期処理のように扱えるため、Promiseチェーンで実現していた処理の流れを読みやすくかけます。
+重要なこととしてAsync FunctionはPromiseの上に作られた構文です。
+そのためAsync Functionを理解するには、Promiseを理解する必要があることに注意してください。
+
+またAsync Function内では`await`式というPromiseを使った非同期処理が完了するまで待つ構文が利用できます。
+`await`式を使うことで非同期処理を同期処理のように扱えるため、Promiseチェーンで実現していた処理の流れを読みやすくかけます。
 
 このセクションではAsync Functionと`await`式について見ていきます。
 
 ## Async Functionの定義 {#declare-async-function}
 
-Async Functionは関数の定義に`async`をつけることで定義できます。
+Async Functionは関数の定義に`async`キーワードをつけることで定義できます。
 JavaScriptの関数定義には関数宣言や関数式、Arrow Function、メソッドの短縮記法などがあります。
-どの定義方法でも`async`を前につけるだけでAsync Functionとして定義できます。
+どの定義方法でも`async`キーワードを前につけるだけでAsync Functionとして定義できます。
 
+{{book.console}}
 <!-- doctest:async:16 -->
 ```js
 // 関数宣言のAsync Function版
@@ -1288,7 +1292,7 @@ const foo = async() => {};
 const メソッド = { async foo() {} };
 ```
 
-これらのAsync Functionは、必ずPromiseを返すこととその関数の中では`await`式が利用できる点以外は通常の関数と同じ性質を持ちます。
+これらのAsync Functionは必ずPromiseを返すこととその関数の中では`await`式が利用できる点以外は、通常の関数と同じ性質を持ちます。
 
 ## Async FunctionはPromiseを返す {#async-function-return-promise}
 
