@@ -104,9 +104,9 @@ console.log("2. 同期的な処理を実行します");
 
 このように、非同期処理（`setTimeout`のコールバック関数）は、コードの見た目上の並びとは異なる順番で実行されることがわかります。
 
-## JavaScriptはメインスレッドで実行される {#JavaScript-and-main-thread}
+## 非同期処理はメインスレッドで実行される {#async-and-main-thread}
 
-ブラウザにおいて、JavaScriptはメインスレッドで実行されます。
+JavaScriptにおいて多くの非同期処理はメインスレッドで実行されます。
 メインスレッドはUIスレッドとも呼ばれ、重たいJavaScriptの処理はメインスレッドで実行する他の処理（画面の更新など）をブロックする問題について紹介しました。（ECMAScriptの仕様として規定されているわけではないため、すべてがメインスレッドで実行されているわけではありません）
 
 非同期処理は名前から考えるとメインスレッド以外で実行されるように見えますが、
@@ -152,6 +152,8 @@ console.log("ブロックする処理が完了しました");
 
 JavaScriptでは一部の例外を除き非同期処理が**並行処理（concurrent）**として扱われます。
 並行処理とは、処理を一定の単位ごとに分けて処理を切り替えながら実行することです。
+
+<!-- TODO: 仕様に合わせてexecution context stackに変更する -->
 
 ECMAScriptの仕様では**JobQueue**と呼ばれるキューで後で行うタスクが管理されています。
 次に処理するタスクをキューから1つ取り出し、タスクの処理が終わったら次のタスクを取り出りだすというのを繰り返してプログラムを評価しています。
@@ -1296,28 +1298,37 @@ const メソッド = { async foo() {} };
 
 ## Async FunctionはPromiseを返す {#async-function-return-promise}
 
-Async Functionとして定義した関数はどんな場合でも必ず`Promise`インスタンスを返します。
-具体的には次の3つのケースが考えられます。基本的には`then`メソッドの返り値とコールバック関数の関係とほとんど同じです。
+Async Functionとして定義した関数は必ず`Promise`インスタンスを返します。
+具体的にはAsync Functionが返す値は次の3つのケースが考えられます。
 
-- Async Functionは値をreturnした場合、その返り値の**Fulfilled**なPromiseを返します
-- Async FunctionがPromiseをreturnした場合、その返り値のPromiseをそのまま返します
-- Async Function内で例外が発生した場合は、そのエラー内容の**Rejected**なPromiseを返します
+1. Async Functionは値をreturnした場合、その返り値をもつ**Fulfilled**なPromiseを返します
+2. Async FunctionがPromiseをreturnした場合、その返り値のPromiseをそのまま返します
+3. Async Function内で例外が発生した場合は、そのエラーをもつ**Rejected**なPromiseを返します
 
-次のコードでは、これらのAsync Functionと返り値によってどのような`Promise`インスタンスを返すかがわかります。
+次のコードでは、Async Functionがそれぞれの返り値によってどのような`Promise`インスタンスを返すかを確認できます。
+この1から3の挙動は`Promise#then`メソッドの返り値とそのコールバック関数の関係とほぼ同じです。
+
+<!-- 字の文で書く場合
+
+値を単純に`return`した場合は、その値でresolveされるPromiseが返されていることがわかります。
+Promiseを返した場合は、その返したPromiseの状態とAsync Functionの返すPromiseとなります。
+最後にAsync Function内で例外が発生した場合は、その場で関数の処理は終了し**Rejected**なPromiseを返します。
+
+-->
 
 {{book.console}}
 <!-- doctest:async:16 -->
 ```js
-// resolveFnは値を返している
+// 1. resolveFnは値を返している
 // 何もreturnしていない場合はundefinedを返したのと同じ扱いとなる
 async function resolveFn() {
-    return "値";
+    return "返り値";
 }
 resolveFn().then(value => {
-    console.log(value); // => "値"
+    console.log(value); // => "返り値"
 });
 
-// rejectFnはPromiseインスタンスを返している
+// 2. rejectFnはPromiseインスタンスを返している
 function rejectFn() {
     return Promise.reject(new Error("エラーメッセージ"));
 }
@@ -1327,23 +1338,26 @@ rejectFn().catch(error => {
     console.log(error.message); // => "エラーメッセージ"
 });
 
-// exceptionFnは例外を投げている
+// 3. exceptionFnは例外を投げている
 async function exceptionFn() {
-    throw new Error("例外が発生");
+    throw new Error("例外が発生しました");
+    console.log("この行は呼ばれません");
 }
 
 // Async Functionで例外が発生するとRejectedなPromiseが返される
 exceptionFn().catch(error => {
-    console.log(error.message); // => "例外が発生"
+    console.log(error.message); // => "例外が発生しました"
 });
 ```
 
+どの場合でもAsync Functionは必ずPromiseを返すことがわかります。
 このようにAsync Functionを呼び出す側から見れば、Async FunctionはPromiseを返すただの関数と何も変わりません。
 
 ## `await`式 {#await-expression}
 
 Async Functionの関数内では`await`式を利用できます。
-`await`式は右辺の`Promise`インスタンスが**Fulfilled**または**Rejected**になるまで、その場で非同期処理の完了を待ちます。`Promise`インスタンスの状態が変わると、次の行の処理を再開します。
+`await`式は右辺の`Promise`インスタンスが**Fulfilled**または**Rejected**になるまでその場で非同期処理の完了を待ちます。
+そして`Promise`インスタンスの状態が変わると、次の行の処理を再開します。
 
 <!-- doctest:disable -->
 ```js
@@ -1354,9 +1368,9 @@ async function asyncMain() {
 }
 ```
 
-通常は非同期処理を実行した場合にその非同期処理の完了を待つことなく、次の行（次の文）を実行します。
-しかし`await`式では非同期処理を実行しその非同期処理の完了するまで、次の行（次の文）を実行しません。
-そのため`await`式を使うことで非同期処理が同期処理のように上から下へと順番に実行するような見た目でコードを書けます。
+普通の処理の流れでは非同期処理を実行した場合にその非同期処理の完了を待つことなく、次の行（次の文）を実行します。
+しかし`await`式では非同期処理を実行し完了するまで、次の行（次の文）を実行しません。
+そのため`await`式を使うことで非同期処理が同期処理のように上から下へと順番に実行するような処理順で書けます。
 
 <!-- doctest:disable -->
 ```js
@@ -1365,6 +1379,7 @@ async function doAsync() {
     // 非同期処理
 }
 async function asyncMain() {
+    // doAsyncの非同期処理が完了するまでまつ
     await doAsync();
     // 次の行はdoAsyncの非同期処理が完了されるまで実行されない
     console.log("この行は非同期処理が完了後に実行される");
@@ -1372,6 +1387,7 @@ async function asyncMain() {
 ```
 
 `await`式は**式**であるため右辺（`Promise`インスタンス）の評価結果を値として返します（**式**については「[文と式][]」を参照）。
+この`await`式の評価方法は評価するPromiseの状態（**Fulfilled**または**Rejected**）によって異なります。
 
 `await`式の右辺のPromiseが**Fulfilled**となった場合は、resolveされた値が`await`式の返り値となります。
 
@@ -1388,8 +1404,8 @@ async function asyncMain() {
 asyncMain(); // Promiseインスタンスを返す
 ```
 
-これはAsync Functionを使わずに書くと次のコードと同様の意味となります。
-`await`式を使うことで非同期処理の流れがPromiseだけの場合に比べてわかりやすくかけます。
+これはPromiseを使って書くと次のコードと同様の意味となります。
+`await`式を使うことでコールバック関数を使わずに非同期処理の流れを表現できていることがわかります。
 
 {{book.console}}
 <!-- doctest:async:16 -->
@@ -1423,7 +1439,7 @@ asyncMain().catch(error => {
 ```
 
 `await`式がエラーを`throw`するということは、そのエラーは`try...catch`構文でキャッチできます（詳細は「[try...catch構文][]」の章を参照）。
-通常の非同期処理が完了するまでに次の行が実行されてしまうため`try...catch`構文ではエラーをキャッチできませんでした。そのためPromiseでは`catch`メソッドを使いPromise内で発生したエラーをキャッチしていました。しかし、`await`式では**Rejected**状態のPromiseのエラーを元にその場でエラーを`throw`します。
+通常の非同期処理では完了する前に次の行が実行されてしまうため`try...catch`構文ではエラーをキャッチできませんでした。そのためPromiseでは`catch`メソッドを使いPromise内で発生したエラーをキャッチしていました。
 
 次のコードでは、`await`式で発生した例外を`try...catch`構文でキャッチしています。
 
@@ -1444,7 +1460,8 @@ asyncMain().catch(error => {
 });
 ```
 
-このように`await`式を使うことで、`try...catch`構文のように非同期処理を同期処理と同じ構文を使って扱えます。またコードの見た目も同期処理と同じように、その行（その文）の処理が完了するまで次の行を評価しないという分かりやすい形になるのは大きな利点です。
+このように`await`式を使うことで、`try...catch`構文のように非同期処理を同期処理と同じ構文を使って扱えます。
+またコードの見た目も同期処理と同じように、その行（その文）の処理が完了するまで次の行を評価しないという分かりやすい形になるのは大きな利点です。
 
 ### `await`式はAsync Functionの中でのみ利用可能 {#await-in-async-function}
 
@@ -1465,8 +1482,7 @@ function main(){
 
 
 Async Functionは関数内で`await`を使っているのとは関係なく、必ず関数自体はPromiseを返します。
-Async Functionは外から見ればただのPromiseを返す関数です。
-その関数内で`await`式を使って処理を待っている間も、関数の外側では普通に処理が進んでいます。
+そのAsync Function内で`await`式を使って処理を待っている間も、関数の外側では通常通り処理が進んでいます。
 
 {{book.console}}
 <!-- doctest:async:16 -->
@@ -1477,17 +1493,20 @@ async function asyncMain() {
         setTimeout(resolve, 16);
     });
 };
+console.log("1. asyncMain関数を呼び出します");
 // async functionは外から見れば単なるpromiseを返す関数
 asyncMain().then(() => {
-    console.log("16ミリ秒後");
+    console.log("3. asyncMain関数が完了しました");
 });
 // async functionの外側の処理は次の行へ進む
-console.log("すぐに次の行は同期的に呼び出される");
+console.log("2.  asyncMain関数外では、次の行が同期的に呼び出される");
 ```
 
-つまり、Async Functionの中で`await`を使い非同期処理を止めたとしても、外からは単なるひとつの非同期処理が行われているという認識になります。
+このように`await`式を非同期処理を一時停止しても、Async Function外の処理が停止するわけではありません。
+Async Function外の処理も停止できてしまうと、JavaScriptでは基本的にメインスレッドで多くの処理をするためのUIを含めた他の処理が止まってしまいます。
+これが`await`式がAsync Functionの範囲外で利用できない理由の一つです。
 
-これは`await`式がAsync Functionの中でのみ利用できる制限がついている理由のひとつです。
+<!-- 仕様的にはAsync Execution Contextという特殊なものだけで使えるという話になる -->
 
 ## Promiseチェーンを`await`式で表現する {#promise-chain-to-async-function}
 
