@@ -6,16 +6,36 @@
     .book-header {
         display: flex;
         flex-direction: row;
+        background-color: #333;
     }
 
-    /* Mobdile header fixed */
+    /* link color */
+    .book-header a {
+        color: #fff;
+    }
+
+    /* hover color */
+    .book-header .btn:hover, .book-header .btn:focus, .book-header a:focus, .book-header a:hover {
+        color: hsla(0, 0%, 100%, 0.75) !important;
+    }
+
+    /* Mobile header fixed */
     @media (max-width: 768px) {
         /* Headerを固定する */
         .book-header {
             position: fixed;
-            background-color: #fff;
             width: 100%;
         }
+
+        /* Icon only */
+        .book-header-title-img {
+            margin: auto 18px auto 0 !important;
+        }
+
+        .book-header-title-h {
+            display: none;
+        }
+
         /* Header分のズレを入れる */
         .page-wrapper {
             padding-top: 60px;
@@ -27,8 +47,32 @@
         order: 1;
     }
 
-    .header-center {
+    .book-header-title {
         order: 2;
+        display: inline-flex;
+        flex-direction: row;
+        color: #fff;
+    }
+
+    .book-header-title:hover {
+        color: hsla(0, 0%, 100%, 0.75);
+    }
+
+    .book-header-title-img {
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        margin: auto 10px auto 0;
+    }
+
+    .book-header-title-h {
+        font-size: 20px;
+        margin: auto;
+        padding: 0;
+    }
+
+    .header-center {
+        order: 3;
         display: inline-flex;
         flex-direction: column;
         justify-content: center;
@@ -39,13 +83,17 @@
     }
 
     .header-right {
-        order: 3;
+        order: 4;
         display: inline-flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         /* icon size */
         font-size: 24px;
+    }
+
+    .github-link {
+        color: #fff;
     }
 
     /* Desktop */
@@ -272,9 +320,15 @@
 </style>
 <div class="book-header" role="navigation">
     {% if glossary.path %}
-    <a href="{{ ('/' + glossary.path)|resolveFile }}" class="btn pull-left" aria-label="{{ " GLOSSARY_OPEN"|t }}"><i
-        class="fa fa-sort-alpha-asc"></i></a>
+    <a href="{{ ('/' + glossary.path)|resolveFile }}" class="btn pull-left book-header-menu-button"
+       aria-label="{{'GLOSSARY_OPEN'|t }}"><i
+            class="fa fa-sort-alpha-asc"></i></a>
     {% endif %}
+    <a class="book-header-title" href="{{ ('/')|resolveFile }}">
+        <img class="book-header-title-img" alt="js-primer"
+             src="{{ ('./gitbook/icons/icon-128x128.png')|resolveFile }}"/>
+        <h2 class="book-header-title-h" title="js-primer - JavaScriptの入門書">js-primer</h2>
+    </a>
     <div class="searchbarWrapper header-center">
         <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
             <symbol xmlns="http://www.w3.org/2000/svg" id="sbx-icon-search-8" viewBox="0 0 40 40">
@@ -305,7 +359,8 @@
         </form>
     </div>
     <div class="header-right">
-        <a title="GitHub: asciidwango/js-primer" href="https://github.com/asciidwango/js-primer" target="_blank"><i
+        <a class="github-link" title="GitHub: asciidwango/js-primer" href="https://github.com/asciidwango/js-primer"
+           target="_blank"><i
                 class="fa fa-github fa-fw"></i></a>
     </div>
 </div>
