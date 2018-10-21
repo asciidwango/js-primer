@@ -4,7 +4,7 @@
   "theme_color": "#000000",
   "background_color": "#ffffff",
   "display": "standalone",
-  "start_url": "https://asciidwango.github.io/js-primer/",
+  "start_url": "https://jsprimer.net/",
   "icons": [
     {
       "src": "./gitbook/icons/icon-72x72.png",

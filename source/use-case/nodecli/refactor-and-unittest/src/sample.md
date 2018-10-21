@@ -1,7 +1,7 @@
 # サンプルファイル
 
 これはサンプルです。
-https://asciidwango.github.io/js-primer/
+https://jsprimer.net/
 
 - サンプル1
 - サンプル2

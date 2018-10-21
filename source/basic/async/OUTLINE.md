@@ -362,7 +362,7 @@ Promise本から抽出した内容
 - 省略
     - Promise/A+、thenable
 
-## [例外処理 · JavaScriptの入門書 #jsprimer](https://asciidwango.github.io/js-primer/basic/error-try-catch/)
+## [例外処理 · JavaScriptの入門書 #jsprimer](https://jsprimer.net/basic/error-try-catch/)
 
 - 例外とは?
     - 例外とは、この書籍での定義
@@ -379,7 +379,7 @@ Promise本から抽出した内容
 ## 関連
 
 - コールバックをPromiseに変換
-    - [Promiseを活用する · JavaScriptの入門書 #jsprimer](https://asciidwango.github.io/js-primer/use-case/ajaxapp/promise/)
+    - [Promiseを活用する · JavaScriptの入門書 #jsprimer](https://jsprimer.net/use-case/ajaxapp/promise/)
 - try-catchの例
     - JSON.parse
 - async await

@@ -373,7 +373,7 @@ array = [10,2,3,0];
 	- コピー `=` (特にこれはオブジェクト側に統一した方法がないという問題がある)
 	- 比較 `===` @done
 - 関数名
-	- https://asciidwango.github.io/js-primer/basic/function-method/
+	- https://jsprimer.net/basic/function-method/
 	- 関数名を取得するFunction#nameについては触れていない
 	- これはReflection APIなのでminifyで壊れることについては触れたい
 
@@ -473,7 +473,7 @@ console.log(array.slice(4, 1)); // => []
 
 ## 関数
 
-関数の宣言については[関数と宣言 · JavaScriptの入門書 #jsprimer](https://asciidwango.github.io/js-primer/basic/function-method/ "関数と宣言 · JavaScriptの入門書 #jsprimer")で紹介している。
+関数の宣言については[関数と宣言 · JavaScriptの入門書 #jsprimer](https://jsprimer.net/basic/function-method/ "関数と宣言 · JavaScriptの入門書 #jsprimer")で紹介している。
 宣言は単なるシンタックスなので、関数の機能や挙動についてを目的にした章。
 
 - [[meta] function/関数 · Issue #112 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/112 "[meta] function/関数 · Issue #112 · asciidwango/js-primer")

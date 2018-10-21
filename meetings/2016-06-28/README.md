@@ -18,7 +18,7 @@
 
 Travis CIでビルドしてGitBookをgh-pagesとして公開するようになった。
 
-- [https://asciidwango.github.io/js-primer/](https://asciidwango.github.io/js-primer/) で参照可能
+- [https://jsprimer.net/](https://jsprimer.net/) で参照可能
 
 masterにマージされると自動的にgh-pagesへデプロイされる。
 

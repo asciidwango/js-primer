@@ -108,7 +108,7 @@ Todoリストの表示は次の2つの部品（コンポーネント）から成
 
 完成したTodoアプリは次のURLで確認できます。
 
-- <https://asciidwango.github.io/js-primer/use-case/todoapp/final/final/>
+- <https://jsprimer.net/use-case/todoapp/final/final/>
 
 ## Todoアプリのまとめ {#todo-conclusion}
 

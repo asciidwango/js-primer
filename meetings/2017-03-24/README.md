@@ -33,7 +33,7 @@ path`/tags/${tagName}`
 - @azu: URLのpathnameを安全にエスケープするという話
 - ajaxのAPI叩くパスでもでてきてたかも
 - それの布石的なのでよさそうかも
-- https://asciidwango.github.io/js-primer/use-case/ajaxapp/promise/
+- https://jsprimer.net/use-case/ajaxapp/promise/
 - 後、[use-case/ajaxapp/display](https://github.com/asciidwango/js-primer/blob/master/source/use-case/ajaxapp/display/README.md "use-case/ajaxapp/display")の方も書き方を揃えたい
 - Array#reduceがまさにこれにマッチした使い方
 - `strings`が空配列にならないから`Arrry#reduce`で例外にならなくてすごい

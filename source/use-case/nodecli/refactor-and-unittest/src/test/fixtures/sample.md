@@ -1,4 +1,4 @@
 これはサンプルです。
-https://asciidwango.github.io/js-primer/
+https://jsprimer.net/
 
 <p>これはHTMLです</p>

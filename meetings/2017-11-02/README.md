@@ -13,10 +13,10 @@
 - @azu: Node CLIでcallbackだけになっている
 - けど最近のNode.jsは`util.promisify`を持っている
 - そのためcallback -> promiseとする方法について触れておくといいのでは?
-- https://asciidwango.github.io/js-primer/use-case/nodecli/
+- https://jsprimer.net/use-case/nodecli/
 - 全体を書き換えるというイメージよりはNodeスタイルのコールバックはこうやってPromiseに書き換えできるよ、さらにutil.promisifyというよという1行程度で終わるような説明
 - @laco: コールバックを使っているのは fs の部分だけ
-- https://asciidwango.github.io/js-primer/use-case/nodecli/read-file/
+- https://jsprimer.net/use-case/nodecli/read-file/
 - @laco: `util`ってユーザーが使っていいものなんでしたっけ?
 - @azu: 公式ではStability: 2 - Stableとなっているので使っていいものとして公開してそう
 - [Util | Node.js v9.0.0 Documentation](https://nodejs.org/api/util.html "Util | Node.js v9.0.0 Documentation")
@@ -28,7 +28,7 @@
 
 ### 結論
 
-- https://asciidwango.github.io/js-primer/use-case/nodecli/read-file/
+- https://jsprimer.net/use-case/nodecli/read-file/
 - fsのreadFileの紹介のところでさくっと util/promisify を紹介しておいて、NodeにもPromiseがあることを述べておく
 - [node-cli: util.promisifyについて触れる · Issue #311 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/311 "node-cli: util.promisifyについて触れる · Issue #311 · asciidwango/js-primer")
 - Assign: @laco
@@ -62,7 +62,7 @@
 - package-lock.jsonが自動生成される
 - どこかで出力されるファイルを触れていたっけ?
 - @laco: npm使う所でpackage.jsonが出てきてる
-- [コマンドライン引数を処理する · JavaScriptの入門書 #jsprimer](https://asciidwango.github.io/js-primer/use-case/nodecli/argument-parse/ "コマンドライン引数を処理する · JavaScriptの入門書 #jsprimer")
+- [コマンドライン引数を処理する · JavaScriptの入門書 #jsprimer](https://jsprimer.net/use-case/nodecli/argument-parse/ "コマンドライン引数を処理する · JavaScriptの入門書 #jsprimer")
 - @azu: package-lock.jsonもできるかもという追加が必要そう
 - なにこれ?って思われると思うので、
 - バージョンを固定するためのファイルです的な説明
@@ -124,7 +124,7 @@
 ```
 
 - @azu: エラーの読み方は最初のコンソールのところでもいるのかなー
-- https://asciidwango.github.io/js-primer/basic/read-eval-print/
+- https://jsprimer.net/basic/read-eval-print/
 - エラーで詰まったときにエラーの章を読みますって人がどれくらいいるのか?
 - @kahei: うーん
 - @azu: なので、コンソールのところにエラーの章への誘導みたいのはいるのかもしれない

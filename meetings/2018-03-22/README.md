@@ -18,7 +18,7 @@
 - Thanks to @nd-02110114 @yumetodo
 - azu: レビューしててきになったところ
 - map/setの所
-    - https://asciidwango.github.io/js-primer/basic/map-and-set/#add-and-take-out-for-map
+    - https://jsprimer.net/basic/map-and-set/#add-and-take-out-for-map
     - deleteがタイトルにはないなーと思った
 -  "要素の追加と取り出し"
 - 削除がない
@@ -105,14 +105,14 @@
 - azu: 一貫性ある形にしないとダメそう。同じ言葉なのに実装が色々ある
 - kahei: それは確かに不親切そう
 - azu: 今の実装をまとめると
-    - Class: https://asciidwango.github.io/js-primer/basic/class/
-    - Map/Set: https://asciidwango.github.io/js-primer/basic/map-and-set/
+    - Class: https://jsprimer.net/basic/class/
+    - Map/Set: https://jsprimer.net/basic/map-and-set/
     - Todo
 - azu: クラスではユーザーが作ったクラスの継承の現実例として書いた
 - laco: Errorとかではダメなの?
 - azu: ビルトインは他にあるので、現実的なユースケースとして
     - Polygonとか継承してもうれしくないし抽象的
-- laco: https://asciidwango.github.io/js-primer/basic/class/#extends-usecase ここのEventEmitterは配列でハンドラ管理してる
+- laco: https://jsprimer.net/basic/class/#extends-usecase ここのEventEmitterは配列でハンドラ管理してる
 - azu: たしかに
     - ここではMapがまだないから使ってなかった気がする
 - azu: クラスのEventEmitterをTodoアプリの方に移動しよう

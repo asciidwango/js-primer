@@ -98,7 +98,7 @@
 
 ## Bad Parts - laco
 
-- @laco: [非推奨の機能 · JavaScriptの入門書 #jsprimer](https://asciidwango.github.io/js-primer/basic/bad-parts/ "非推奨の機能 · JavaScriptの入門書 #jsprimer")を作った
+- @laco: [非推奨の機能 · JavaScriptの入門書 #jsprimer](https://jsprimer.net/basic/bad-parts/ "非推奨の機能 · JavaScriptの入門書 #jsprimer")を作った
 - @laco: `Array.from` の話も欲しいかも
 - @azu: sliceするやつ?
 - @laco: それ

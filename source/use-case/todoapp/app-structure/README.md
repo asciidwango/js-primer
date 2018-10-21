@@ -59,7 +59,7 @@ HTMLの内容を変更後にブラウザでアクセスすると次のような�
 `head`要素の中で`link`タグを使い、外部のCSSファイルを読み込んでいます。
 今回読み込んでいるCSSファイルには、Todoアプリらしい表示に必要なCSSを定義したファイルになっています。
 
-- <https://asciidwango.github.io/js-primer/use-case/todoapp/final/final/index.css>
+- <https://jsprimer.net/use-case/todoapp/final/final/index.css>
 
 このCSSは動作には影響がないため、今回のユースケースでは外部ファイルをそのまま取り込むだけにし解説は省略します。
 CSSに定義したスタイルを正しく適応するには、`class`属性やHTML要素の構造が一致している必要があります。
@@ -147,7 +147,7 @@ todoapp
 
 現在のTodoアプリは次のURLで実際に確認できます。
 
-- <https://asciidwango.github.io/js-primer/use-case/todoapp/app-structure/todo-html/>
+- <https://jsprimer.net/use-case/todoapp/app-structure/todo-html/>
 
 [エントリポイント]: ../entrypoint/README.md
 [CSSセレクタ]: https://developer.mozilla.org/ja/docs/Learn/CSS/Introduction_to_CSS/Selectors
