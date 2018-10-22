@@ -28,7 +28,7 @@ author: azu
 
 ### ブラウザの開発者ツールのコンソール上でJavaScriptコードを評価する方法 {#repl-on-browser}
 
-ブラウザやNode.jsなど多くの実行環境には、コードを評価してその結果を表示するREPL（read–eval–print loop）と呼ばれる機能があります。
+ブラウザやNode.jsなど多くの実行環境には、コードを評価してその結果を表示するREPL（read–eval–print loop）と呼ばれる開発者向けの機能があります。
 Firefoxでは開発者ツールの**Webコンソール**と呼ばれる機能にREPL機能が含まれています。
 
 Firefoxの開発者ツールは次のいずれかの方法で開きます。
@@ -74,7 +74,7 @@ Shift + Enterで改行もできるため、まとめて複数行の入力もで�
 
 注意点としては、REPLではそのREPLを終了するまで`const`キーワードなどで宣言した変数が残り続けます。
 たとえば、`const`での変数宣言は同じ変数名を二度定義できないというルールでした。
-そのため、1行づつ実行しても同じ変数名の定義を行うとSyntaxErrorとなります。
+そのため、1行づつ実行しても同じ変数名の定義を行うと構文エラー（`SyntaxError`）となります。
 
 ```
 » const bookTitle = "JavaScriptの本";
@@ -88,37 +88,64 @@ SyntaxError: redeclaration of const bookTitle
 
 ### HTMLファイルを作成しJavaScriptコードを読み込む方法 {#js-in-html}
 
-REPLなどは自動で評価結果のコンソール表示まで行いますが、アプリケーションコードで勝手に評価結果を表示されることはありません。
-あくまで自動表示はREPLの機能なので、アプリケーションコードでは**コンソール表示**するためのAPIが存在しています。
+REPLはあくまで開発者向けの機能であるため、実際のJavaScriptはHTMLからスクリプトとして読み込み実行します。
+
+ここでは`index.html`と`index.js`というファイル名で2つのファイルを作成して、JavaScriptを読み込みかたを見ていきます。
+ファイルを作成するため[Atom][]や[Visual Studio Code][]などのJavaScriptなどに対応したエディタを用意しておくとスムーズです。
+エディタはどんなものでも問題ありませんが、必ずUTF-8の文字コードでファイルを保存してください。
+
+ファイルを作成するディレクトリはどんな場所でも問題ありませんが、ここでは`example`という名前のディレクトリにファイルを作成していきます。
+
+まずはJavaScriptファイルとして`index.js`ファイルを`example/index.js`というパスに作成します。
+`index.js`の中には次のようなコードを書いておきます。
+
+```js
+1;
+```
+
+次はHTMLファイルとして`index.html`ファイルを`example/index.html`というパスに作成します。
+このHTMLファイルから先ほど作成した`index.js`ファイルを読み込み実行します。
+`index.html`の中には次のようなコードを書いておきます。
+
+[include, title:"index.html"](src/example/index.html)
+
+重要なのは`<script src="./index.js"></script>`という記述です。
+これは同じディレクトリになる`index.js`という名前のJavaScriptファイルをスクリプトとして読み込むという意味になります。
+
+そして、最後にブラウザで`index.html`を開きます。
+HTMLファイルはブラウザにドラッグアンドドロップしたり、ファイルメニューからHTMLファイルを選択することで開けます。
+このときのアドレスバーには`file:///`から始まるローカルファイルのファイルパスが表示されます。
+
+この状態で、先ほどと同じ手順で"Web コンソール"を開いても何も表示されていないはずです。
+REPLでは自動で評価結果のコンソール表示まで行いますが、JavaScriptコードとして読み込んだ場合は勝手に評価結果を表示されることはありません。
+あくまで自動表示はREPLの機能なのです。そのため多くの実行環境では**コンソール表示**するためのAPI（機能）が存在しています。
 
 ## Console API {#console-api}
 
 JavaScriptの多くの実行環境では、Console APIが**コンソール表示**を行うAPIとなっています。
 `console.log(引数)`の引数にコンソール表示したい値を入れることで、評価結果がコンソールに表示されます。
-次の例では `"JavaScript"` という文字列を評価した結果がコンソールに表示されます。
+
+先ほどの`index.js`の中身を次のように書きかえます。
+そしてページをリロードする `1` という値を評価した結果がWebコンソールに表示されます。
 
 {{book.console}}
 [import, console-example.js](./src/console-example.js)
 
-文字列の表示結果はそのままの文字列です。
-
-次のように引数に式を書いた場合は、先に値を評価してから、その結果をコンソールに表示します。
+次のように引数に式を書いた場合は先に引数（`(`と`)`の間に書かれたもの）の式を評価してから、その結果をコンソールに表示します。
 そのため、`1 + 1` の評価結果として `2` がコンソールに表示されます。
 
 {{book.console}}
 [import, console-expression-example.js](./src/console-expression-example.js)
 
 同じように引数に変数を渡すこともできます。
-この場合も、まず先に引数である変数を評価してから、その結果をコンソールに表示します。
+この場合もまず先に引数である変数を評価してから、その結果をコンソールに表示します。
 
 {{book.console}}
 [import, console-variable-example.js](./src/console-variable-example.js)
 
 Console APIは原始的なプリントデバッグとして利用できるので、
 「この値は何だろう」と思ったらコンソールに表示してみることで解決する問題は多いです。
-
-また、JavaScriptの開発環境は高機能化が進んでいるため、デバッガーを使うことで、
-コードに`console.log`メソッドを書かなくても値を見ることができます。
+またJavaScriptの開発環境は高機能化が進んでいるため、デバッガーと呼ばれるより高度な機能もあります。
 
 この書籍では、コード例において評価結果を表示する場合はConsole APIを利用していきます。
 
@@ -136,3 +163,5 @@ console.log("JavaScript"); // => "JavaScript"
 
 [Firefox]: https://www.mozilla.org/ja/firefox/
 [Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
+[Atom]: https://atom.io/
+[Visual Studio Code]: https://code.visualstudio.com/
