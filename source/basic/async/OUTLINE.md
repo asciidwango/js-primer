@@ -253,41 +253,90 @@ try{
     - この際にコールバック関数は必ずネストを1段作ってしまうため、工夫して書かないと簡単に複雑なコードを作ってしまいます
     - この問題はコールバックの実行順序を管理する関数を作ることで回避できますが、頻出するパターンであるため
 - Async Function
+    - [目的] Async FunctionはPromiseを定義する関数であることを知る
     - Promiseが導入されたことで、非同期処理をPromiseという単位で扱えるようになりました。
     - しかし、Promiseは実際にはただのオブジェクトです。
     - JavaScriptで現実的なプログラミングをすると高頻度で非同期処理がでてきます。
     - また、Promiseでそれぞれの非同期処理を書くことは簡潔になりましたが、非同期処理のコントロールフローはメソッドチェーンでつないで行く必要がありました
     - そのためES2017で構文として非同期処理をコントロールフローを管理できるasync functionが導入されました
-    - async functionはPromiseとGeneratorを使ったシンタックスシュガーであるともいえます。
+    - [未使用] async functionはPromiseとGeneratorを使ったシンタックスシュガーであるともいえます。
     - async functionはawait式を使うことでPromiseが解決されるまで、その式でまつことができます
     - これによって、非同期処理が見た目どおり上から下へとコードと同じ似ため通りのコントロールフローで書くことができます。
     - 注意点: async functionの中だけでしか適応されないので、async functionの中でコールバック関数を使った場合は問題が..
     - これはasync functionが必ずPromiseを返すという非同期処理として定義されており、その非同期処理の中においてはどのようなコントロールフローであっても、
     - 最終的にPromiseを返すという結果が同じだから実現できています。
-    - なのでasync functionは非同期処理のコントロールフローをまとめる処理と言えるでしょう
+    - つまりAscyn Functionは外から見ればただのPromiseを返す関数を定義する構文です
+    - そのため、Async functionはその関数の中における非同期処理のコントロールフローをまとめる処理と言えるでしょう
     - 見た目も同期的に書けるのに加えて、async function内ではPromiseの非同期処理に対してtry-catchが行えます。
     - これはawait式がPromiseが解決されるまで待ち、resolvedの場合は値を返し、rejectの場合は例外をthrowし直すためです。
     - そのため、await式はPromiseをunwrapする構文と言えるでしょう
     - アウトライン
-        - `async function`という構文で非同期処理を行う関数を定義できます
-            - Async function declarations: async function foo() {}
-            - Async function expressions: const foo = async function () {};
-            - Async method definitions: let obj = { async foo() {} }
-            - Async arrow functions: const foo = async () => {};
+        - Async Functionとは
+            - async functionは非同期処理を行う関数宣言を行う構文
+            - async functionとして定義された関数は必ずPromiseを返す
+            - Promiseでは通常の関数でPromiseを返すことで非同期処理を行う関数を定義していましたが、`async function`構文ではそれを明治できます。
+            - また`async function`では`await`式というPromiseを使った非同期処理が完了するまで待つ構文が利用できます。
+            - `await`式を使うことで非同期処理を同期処理のように扱えるため、非同期処理の流れを読みやすくかけます。
+            - このセクションではAsync Functionと`await`式について見ていきます。
+        - 構文
+            - `async function`という構文で非同期処理を行う関数を定義できます
+            - 基本的には関数宣言や関数式の前に`async`をつけるとその関数がAsync Functionとして定義できます。
+            - Async function declarations: `async function foo() {}`
+            - Async function expressions: `const foo = async function () {};`
+            - Async method definitions: `let obj = { async foo() {} }`
+            - Async arrow functions: `const foo = async () => {};`
+            - Async Functionは必ずPromiseを返すこととその関数の中では`await`式が利用できる点以外は通常の関数と同じ性質を持ちます。
         - Async FunctionはPromiseを返す話
-            - 値を返してFullfilled
-            - 例外を投げてRejected
-            - Promiseを返してRejected
-        - thenの直列処理awaitで書く
-        - 並列をpromise.allする例
-        - コールバック関数にはasyncをつけないといけない、関数に閉じてるよという説明
-        - エラーハンドリング
-        - return or awaitについて
+            - 値を返してFullfilled = `Promise.resolve()`
+            - 例外を投げてRejected = `new Promise(() => throw new Error())`
+            - Promiseを返してRejected = `Promise.reject()`
+            - 参考: [async/await 入門（JavaScript） - Qiita](https://qiita.com/soarflat/items/1a9613e023200bbebcb3)
+            - Async Functionを外から見た場合、その関数はPromiseを返す関数と何も変わらないことを覚えておきます
+        - `await`式
+            - Async Functionのもっとも重要な機能は`await`式です。
+            - `await`式ではPromiseがSettleとなるまで、その式で非同期処理を待つことができる = 一時停止できる
+            - どういうことかというと、通常の非同期処理はそのまま次の行に進むのに対して、
+            - `await`式ではそのPromiseが`Resolve` or `Reject` になるまで、その行でとどまり続けます。
+            - そして右辺のPromiseがResolveされると、その値が`await`式の返り値となります(つまり変数にはresolveされた値が代入されます)
+            - 具体的な例を見ていきます。
+                - awaitのコード例
+            - このコードはPromiseは次のように書いた場合と同じ結果になります
+                - Promiseのコード例
+        - [コラム] Async Functionの直下では`await`式が利用できます(重要なのはスコープではなく、そのAsync Functionの中だけです)
+            - 通常の関数では`await`はSyntax Errorとなります
+            - 例: 通常の関数では`await`式はエラーとなる
+                - [未使用] またTop Level Awaitはできない(現在)
+        - `await`式とエラーハンドリング
+            - `await`式で待ったPromiseがrejectした場合は、その式で例外をthrowします
+            - この例外はtry-catchでキャッチできます
+            - これは通常のその部分で処理が終わりのまち(await)し、Promiseがrejectedとなった場合は`throw`されるためです
+            - tryキャッチしていない場合も、Async Functionは常にPromiseを返すので、RejectedなPromiseを返すようになるだけです。
+            - そのためAsync Function全体は自動的にtry-catchされていると考えても良いでしょう。
+            - promiseとの大きな違いはtry-catchという同期処理と同様の構文が使えるというの大きな違いです
+            - 参考: [Async/await](https://javascript.info/async-await#error-handling)
+        - `await`式とPromise
+            - このように`await`を使うことで、非同期処理が同期処理のように書けます。
+            - このAsync Functionによってもっともメリットがあるのが、非同期処理のコントロールフローを見た目にもわかりやすく書けることです。
+            - thenのPromiseチェーンをawaitを使って書き直してみます
+            - 同様にpromise.allした結果をawaitすることで複数の処理にも対応できます。
+            - このようにAsync Functionを使うことで複数の非同期処理のコントールフローが管理しやすくなります。
+            - PromiseとAsync Functionは協調関係にあるため、どちらか一方だけを使うような対立関係ではありません。
+        - [未使用] Async Funcionのエラーハンドリングについて
+            - また、最初に述べたようにAsync Functionは実行する側からみれば、Promiseを返す関数です
+                - そのためAsync Function内でtry-catchしなくても、実行側でエラーをキャッチできます
+                - より細かい粒度でエラーを扱う必要がある場合のみにtry-catchするなどの工夫が必要です
+                - また、re-throwするかPromise.rejectするかという問題もあます。
+            - 同期で呼ばれて、非同期に終わる
+                - [5. Async functions](http://exploringjs.com/es2016-es2017/ch_async-functions.html#_async-functions-are-started-synchronously-settled-asynchronously)
+        - [トラブルシュート]
+            - コールバック関数にはasyncをつけないといけない、関数に閉じてるよという説明
+            - return or awaitについて
     - 仕様
         - `async function`では`[[FunctionKind]]`が`async`の関数を作成する
         - https://tc39.github.io/ecma262/#sec-createdynamicfunction
         - 必ずPromiseを返す
         - <https://tc39.github.io/ecma262/#sec-async-function-definitions-EvaluateBody>
+        - Generatorで再現できるけど、Async FunctionはGeneratorとは関係ない仕様
 - 未使用
     - TODO: AgentとJob Queueと実行コンテキスト解説
     - <https://twitter.com/azu_re/status/1009093690172715009>
