@@ -39,7 +39,7 @@
 ## Math
 
 - @laco: 他に残っているビルトインオブジェクトは
-- – <https://asciidwango.github.io/js-primer/> をみながら –
+- – <https://jsprimer.net/> をみながら –
 - Promise、エラーハンドリング、Math/Number
 - [Math · Issue #100 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/100 "Math · Issue #100 · asciidwango/js-primer")
 - Mathはどうします?

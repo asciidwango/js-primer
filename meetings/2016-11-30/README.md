@@ -25,7 +25,7 @@ function foo() {
 - @azu: 文はセミコロンをつけろという話しか書いてない
 - 書くなら、コラム的な位置か[Lint/非推奨の章](https://github.com/asciidwango/js-primer/issues/142 "Lint/非推奨の章")?
 - 改行で自動セミコロンが入る問題は、関数を出さないとできない。
-- セミコロンは[文と式](https://asciidwango.github.io/js-primer/basic/statement-expression/ "文と式 · JavaScriptの入門書 #jsprimer")の段階で出てくるので、まだ関数がでてきてない場所。
+- セミコロンは[文と式](https://jsprimer.net/basic/statement-expression/ "文と式 · JavaScriptの入門書 #jsprimer")の段階で出てくるので、まだ関数がでてきてない場所。
 - なのでコラムはちょっと厳しそうな気がする
 - @laco: Lintで防げかな
 

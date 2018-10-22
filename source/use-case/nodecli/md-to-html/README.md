@@ -48,7 +48,7 @@ markedのデフォルトでは`true`になっています。GFMは標準的なMa
 ```html
 <h1 id="-">サンプルファイル</h1>
 <p>これはサンプルです。
-<a href="https://asciidwango.github.io/js-primer/">https://asciidwango.github.io/js-primer/</a></p>
+<a href="https://jsprimer.net/">https://jsprimer.net/</a></p>
 <ul>
 <li>サンプル1</li>
 <li>サンプル2</li>
@@ -62,7 +62,7 @@ markedのデフォルトでは`true`になっています。GFMは標準的なMa
 ```html
 <h1 id="-">サンプルファイル</h1>
 <p>これはサンプルです。
-https://asciidwango.github.io/js-primer/</p>
+https://jsprimer.net/</p>
 <ul>
 <li>サンプル1</li>
 <li>サンプル2</li>
@@ -84,7 +84,7 @@ https://asciidwango.github.io/js-primer/</p>
 ```html
 <h1 id="-">サンプルファイル</h1>
 <p>これはサンプルです。
-https://asciidwango.github.io/js-primer/</p>
+https://jsprimer.net/</p>
 <p>これはHTMLです</p>
 
 <ul>
@@ -101,7 +101,7 @@ https://asciidwango.github.io/js-primer/</p>
 ```html
 <h1 id="-">サンプルファイル</h1>
 <p>これはサンプルです。
-https://asciidwango.github.io/js-primer/</p>
+https://jsprimer.net/</p>
 <p>&lt;p&gt;これはHTMLです&lt;/p&gt;
 
 </p>

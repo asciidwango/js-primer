@@ -85,7 +85,7 @@
 - イベントハンドラとイベントリスナーの用語の問題がでてきた
 - 感覚的には使い分けるけど、意味の違いは区別しないよという話をしたい
 - @laco: 最初にイベントリスナーの説明をしてるのはどこだっけ
-- @azu: https://asciidwango.github.io/js-primer/basic/map-and-set/#weakmap で登場してる
+- @azu: https://jsprimer.net/basic/map-and-set/#weakmap で登場してる
 - ここで、イベントリスナーとイベントハンドラの使い分けの区別はしないことについて言及?
 - @laco: それとイベントリスナーに統一した方がいいかな
 - Javaでは[What's the difference between Event Listeners & Handlers in Java? - Stack Overflow](https://stackoverflow.com/questions/4725241/whats-the-difference-between-event-listeners-handlers-in-java)という区別らしい- 1:n(リスナー)、1:1（ハンドラー）とのこと

@@ -70,7 +70,7 @@ GitBookのbuildかつWatchをします。
 小さなtypoでもIssueやPull Requestを歓迎しています。
 
 コントリビュートの方法や確認方法については[CONTRIBUTING.md](./CONTRIBUTING.md)を参照してください。
-また[文章の間違いに気づいたら](https://asciidwango.github.io/js-primer/intro/feedback/)も参照してください。
+また[文章の間違いに気づいたら](https://jsprimer.net/intro/feedback/)も参照してください。
 
 1. Fork it!
 2. Create your feature branch: `git checkout -b my-new-feature`

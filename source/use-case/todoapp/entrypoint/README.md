@@ -227,7 +227,7 @@ import { App } from "./src/App.js";
 
 現在のTodoアプリは次のURLで確認できます。
 
-- <https://asciidwango.github.io/js-primer/use-case/todoapp/entrypoint/module-entry/>
+- <https://jsprimer.net/use-case/todoapp/entrypoint/module-entry/>
 
 [Ajax通信:エントリポイント]: ../../ajaxapp/entrypoint/README.md
 [Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy

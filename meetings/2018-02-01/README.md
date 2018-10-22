@@ -68,7 +68,7 @@
 
 - azu: Bad Partsはどうなんだっけ?
 - laco: テンプレと2個ぐらい追加した
-- https://asciidwango.github.io/js-primer/basic/bad-parts/
+- https://jsprimer.net/basic/bad-parts/
 - azu: あとは気になったものを追加していく感じ
 
 ### 結論

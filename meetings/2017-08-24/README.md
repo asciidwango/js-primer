@@ -24,7 +24,7 @@
 - ブラウザにはDOMがあり、NodeにはCoreAPIがあるという簡単な概要
 - [2章: ユースケース · Issue #267 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/267 "2章: ユースケース · Issue #267 · asciidwango/js-primer")
 - ここにイベントをまぜる?
-- @laco: https://asciidwango.github.io/js-primer/basic/function-declaration/#コールバック関数
+- @laco: https://jsprimer.net/basic/function-declaration/#コールバック関数
 
 >  非同期処理ではコールバック関数がとてもよく利用されます
 
