@@ -523,6 +523,60 @@ var hello = function(){
 
 <!-- textlint-enable eslint -->
 
+
+
+### [コラム] 即時実行関数 {#immediate-function}
+
+即時実行関数（**IIEF**, _Immediately-Invoked Function Expression_）は、
+グローバルスコープの汚染を避けるために生まれたイディオムです。
+
+次のように、匿名関数を宣言した直後に呼び出すことで、任意の処理を関数のスコープに閉じて実行できます。
+関数スコープを作ることで`foo`変数は匿名関数の外側からはアクセスできません。
+
+{{book.console}}
+```js
+(function() {
+    // 関数のスコープ内でfoo変数を宣言している
+    var foo = "foo";
+    console.log(foo); // => "foo"
+})();
+// foo変数のスコープ外
+console.log(typeof foo === "undefined"); // => true
+```
+
+関数を**式**として定義しそのまま呼び出しています。
+`function`から始まってしまうとJavaScriptエンジンが**関数宣言**と解釈してしまうため、無害な括弧などで囲み**関数式**として解釈させるのが特徴的な記法です。これは次のように書いた場合と意味は同じですが、匿名関数を定義して実行するためより短く書けます。
+
+{{book.console}}
+```js
+function fn() {
+    var foo = "foo";
+    console.log(foo); // => "foo"
+}
+fn();
+// foo変数のスコープ外
+console.log(typeof foo === "undefined"); // => true
+```
+
+ECMAScript 5までは、変数を宣言する方法は`var`しか存在しません。
+即時実行関数は`var`によるグローバルスコープの汚染を防ぐために必要でした。
+
+しかしECMAScript 2015で導入された`let`と`const`により、ブロックスコープに対して変数宣言できるようになりました。
+そのため、グローバルスコープの汚染を防ぐための即時実行関数は不要です。
+先ほどの即時実行関数は次のように`let`や`const`とブロックスコープで書き換えられます。
+
+{{book.console}}
+```js
+{
+    // ブロックスコープ内でfoo変数を宣言している
+    const foo = "foo";
+    console.log(foo); // => "foo"
+}
+// foo変数のスコープ外
+console.log(typeof foo === "undefined"); // => true
+```
+
+
 ## クロージャー {#closure}
 
 最後にこの章ではクロージャーと呼ばれる関数とスコープに関わる性質について見ていきます。

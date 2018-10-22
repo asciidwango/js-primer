@@ -6,47 +6,13 @@ author: laco
 
 # 非推奨の機能 {#deprecated-feature}
 
+- [ ] この章自体が非推奨となったため、この章も将来消えます
+
 JavaScriptのイディオム（慣用的な書き方）や文法のなかには、
 ECMAScriptのアップデートによって不要になったり非推奨になったりした古い書き方がいくつもあります。
 そのような書き方はこれから書かれるJavaScriptの中で使わないようにすべきですが、
 既存の古いコードのなかで使われていたときに読めなければ困るでしょう。
 この章では、そのような一般的に非推奨とされるJavaScriptの書き方を紹介します。
-
-## 即時実行関数 {#immediate-function}
-
-- 代替方法: `let`/`const`による変数宣言
-
-即時実行関数（**IIEF**, _Immediately-Invoked Function Expression_）は、
-グローバルスコープの汚染を避けるために生まれたイディオムです。
-次のように、匿名関数を宣言した直後に呼び出すことで、任意の処理を関数のスコープに閉じて実行できます。
-
-{{book.console}}
-```js
-(function() {
-    // 関数のスコープ内でfoo変数を宣言している
-    var foo = "foo";
-    console.log(foo); // => "foo"
-})();
-// foo変数のスコープ外
-console.log(typeof foo === "undefined"); // => true
-```
-
-ECMAScript 5までは、変数を宣言する方法は`var`しか存在しません。
-このイディオムは`var`によるグローバルスコープの汚染を防ぐために必要でした。
-しかしECMAScript 2015で導入された`let`と`const`により、ブロックスコープに対して変数宣言できるようになりました。
-そのため、グローバルスコープの汚染を防ぐための即時実行関数は不要です。
-先ほどの即時実行関数は次のように書き換えられます。
-
-{{book.console}}
-```js
-{
-    // ブロックスコープ内でfoo変数を宣言している
-    const foo = "foo";
-    console.log(foo); // => "foo"
-}
-// foo変数のスコープ外
-console.log(typeof foo === "undefined"); // => true
-```
 
 ## `arguments`による可変長引数 {#variable-arguments}
 
