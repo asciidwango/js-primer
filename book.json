@@ -24,7 +24,6 @@
     "console": "<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"
   },
   "pluginsConfig": {
-
     "include-codeblock": {
       "template": "./resources/gitbook-plugin-include-codeblock.hbs"
     },
