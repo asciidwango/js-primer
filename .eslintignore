@@ -5,3 +5,4 @@ build/
 html-like-comments-example.js
 # *-invalid.js はパースエラーとなるため無視する
 *-invalid.js
+**/invalid/**/*.js

@@ -10,7 +10,10 @@ const sourceDir = path.join(__dirname, "..", "source");
  * `*-invalid.js` が実行 または パースエラーとなることをテストする
  **/
 describe("invalid:js", function() {
-    const files = globby.sync([`${sourceDir}/**/*-invalid.js`, `!${sourceDir}/**/node_modules{,/**}`]);
+    const files = globby.sync([
+        `${sourceDir}/**/*-invalid.js`,
+        `${sourceDir}/**/invalid/**/*.js`,
+        `!${sourceDir}/**/node_modules{,/**}`]);
     files.forEach(filePath => {
         const normalizeFilePath = filePath.replace(sourceDir, "");
         it(`Should be invalid ${normalizeFilePath}`, function() {
