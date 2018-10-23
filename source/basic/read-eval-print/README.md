@@ -88,9 +88,10 @@ SyntaxError: redeclaration of const bookTitle
 
 ### HTMLファイルを作成しJavaScriptコードを読み込む方法 {#js-in-html}
 
-REPLはあくまで開発者向けの機能であるため、実際のJavaScriptはHTMLからスクリプトとして読み込み実行します。
+REPLはあくまで開発者向けの機能であるため、ウェブサイトではJavaScriptはHTMLからスクリプトとして読み込み実行します。
+ここでは、HTMLとJavaScriptファイルを使ったJavaScriptコードの実行方法を見ていきます。
 
-ここでは`index.html`と`index.js`というファイル名で2つのファイルを作成して、JavaScriptを読み込みかたを見ていきます。
+HTMLファイルとJavaScriptファイルの2種類を使い、JavaScriptのコードを実行する準備をしていきます。
 ファイルを作成するため[Atom][]や[Visual Studio Code][]などのJavaScriptなどに対応したエディタを用意しておくとスムーズです。
 エディタはどんなものでも問題ありませんが、必ずUTF-8の文字コードでファイルを保存してください。
 
