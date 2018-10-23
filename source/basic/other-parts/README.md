@@ -1,3 +1,7 @@
+---
+author: azu
+---
+
 # 第一部の終わりに {#end-of-basic-grammer}
 
 第一部 基本文法では、ECMAScriptという仕様の範囲でのJavaScriptの文法や使い方について見てきました。
