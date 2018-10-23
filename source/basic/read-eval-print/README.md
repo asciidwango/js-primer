@@ -155,14 +155,14 @@ Console APIは原始的なプリントデバッグとして利用できます。
 
 {{book.console}}
 ```js
-// Console APIの表示結果の例
-console.log("JavaScript"); // => "JavaScript"
-// 式の評価結果の例
+// 式の評価結果の例（コンソールには表示されない）
 1; // => 1
-// 変数の評価結果の例
+// 変数の評価結果の例（コンソールには表示されない）
 const total = 42 + 42;
 // totalの評価結果は84
 total; // => 84
+// Console APIでコンソールに表示する例
+console.log("JavaScript"); // => "JavaScript"
 ```
 
 ## ウェブ版の書籍でコードを実行する {#execute-on-web}
