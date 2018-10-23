@@ -84,7 +84,7 @@ SyntaxError: redeclaration of const bookTitle
 ```
 
 ブラウザでは、ページをリロードするとREPLの実行状態もリセットできます。
-`redeclaration`（再定義）といったエラーメッセージが出た際にはページをリロードしてみてください。
+`redeclaration`（再定義）に関するエラーメッセージが出た際にはページをリロードしてみてください。
 
 ### HTMLファイルを作成しJavaScriptコードを読み込む方法 {#js-in-html}
 
