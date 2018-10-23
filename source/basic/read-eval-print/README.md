@@ -194,7 +194,7 @@ JavaScriptのコードを実行したときにエラーメッセージが表示�
 
 {{book.console}}
 <!-- doctest:Error -->
-[include, title:"index.js"](src/syntax-error/index.js)
+[include, title:"index.js"](src/invalid/syntax-error/index.js)
 
 ![SyntaxError in Console](./img/syntax-error.png)
 
@@ -238,7 +238,7 @@ console.log(1);
 
 {{book.console}}
 <!-- doctest:Error -->
-[include, title:"index.js"](./src/syntax-error-typo/index.js)
+[include, title:"index.js"](./src/invalid/syntax-error-typo/index.js)
 
 > SyntaxError: unexpected token: identifier[詳細] index.js:1:6 
 
