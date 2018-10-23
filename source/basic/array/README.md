@@ -615,7 +615,7 @@ console.log(array); // => ["A", "B", "C"]
 ## 配列を反復処理するメソッド {#array-iterate}
 
 「[ループと反復処理][]の章」において配列を反復処理する方法を一部解説していましたが、あらためて関連するArrayメソッドを見ていきます。
-反復処理の中でもよく利用される`Array#forEach`、`Array#map`、`Array#filter`についてを見ていきます。
+反復処理の中でもよく利用される`Array#forEach`、`Array#map`、`Array#filter`、`Array#reduce`についてを見ていきます。
 どのメソッドも共通して引数にコールバック関数を受け取るため高階関数と呼ばれます。
 
 ### `Array#forEach` {#array-foreach}
@@ -673,6 +673,31 @@ const newArray = array.filter((currentValue, index, array) => {
 });
 console.log(newArray); // => [1, 3]
 ```
+
+
+### `Array#reduce` {#array-reduce}
+
+`Array#reduce`は累積値（アキュムレータ）と配列の要素を順番にコールバック関数へ渡し、1つの累積値を返します。
+配列から配列以外を含む任意の値を作成した場合に利用します。
+
+ここまでで紹介した反復処理のメソッドとはことなり、コールバック関数には`累積値, 要素, インデックス, 配列`を引数として渡します。
+`reduce`メソッドの第二引数には`accumulator`の初期値となる値を渡せます。
+
+次のコードでは、`reduce`メソッドは配列の各要素を加算した1つの数値を返します。
+つまり配列から配列要素の合計値というNumber型の返しています。
+
+{{book.console}}
+```js
+const array = [1, 2, 3];
+// すべての要素を加算した値を返す
+// accumulatorの初期値は`0`
+const totalValue = array.reduce((accumulator, currentValue, index, array) => {
+    return accumulator +  currentValue;
+}, 0);
+console.log(totalValue); // => 1 + 2 + 3
+```
+
+`Array#reduce`メソッドはやや複雜ですが、配列以外の値も返せるという特徴があります。
 
 ## [コラム] Array-likeオブジェクト {#array-like}
 
