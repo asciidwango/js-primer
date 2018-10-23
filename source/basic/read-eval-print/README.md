@@ -104,7 +104,7 @@ HTMLファイルとJavaScriptファイルの2種類を使い、JavaScriptのコ�
 1;
 ```
 
-次はHTMLファイルとして`index.html`ファイルを`example/index.html`というパスに作成します。
+次にHTMLファイルとして`index.html`ファイルを`example/index.html`というパスに作成します。
 このHTMLファイルから先ほど作成した`index.js`ファイルを読み込み実行します。
 `index.html`の中には次のようなコードを書いておきます。
 
