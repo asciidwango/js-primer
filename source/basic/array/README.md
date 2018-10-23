@@ -694,7 +694,7 @@ const array = [1, 2, 3];
 // すべての要素を加算した値を返す
 // accumulatorの初期値は`0`
 const totalValue = array.reduce((accumulator, currentValue, index, array) => {
-    return accumulator +  currentValue;
+    return accumulator + currentValue;
 }, 0);
 console.log(totalValue); // => 0 + 1 + 2 + 3
 ```
