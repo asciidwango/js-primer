@@ -321,5 +321,5 @@ JavaScriptにおいては多くのエラーはすでに類似するケースが�
 [Visual Studio Code]: https://code.visualstudio.com/
 [Google]: https://www.google.com/
 [Stack Overflow]: https://stackoverflow.com/
-[GitHub]: https://github.com
+[GitHub]: https://github.com/
 [JavaScript エラーリファレンス]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Errors
