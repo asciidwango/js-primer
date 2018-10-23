@@ -232,7 +232,7 @@ Firefoxは**[詳細]**というリンクがエラーメッセージによって�
 - <https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Errors/Missing_parenthesis_after_argument_list>
 
 このエラーメッセージや解説ページを読むと、`)`が足りないため構文エラーとなっていることがわかります。
-そのため、次のように足りない`)`を追加することでエラーが解消できます。
+そのため、次のように足りない`)`を追加することでエラーを修正できます。
 
 
 {{book.console}}
