@@ -1,1 +1,1 @@
-console.log("JavaScript"); // => "JavaScript"
+console.log(1); // => 1
