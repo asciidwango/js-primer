@@ -638,7 +638,7 @@ array.forEach((currentValue, index, array) => {
 
 ### `Array#map` {#array-map}
 
-`Array#map`は配列の要素を順番にコールバック関数へ渡し、そのコールバック関数が返した値から新しい配列を返します。
+`Array#map`は配列の要素を順番にコールバック関数へ渡し、コールバック関数が返した値から新しい配列を返す非破壊的なメソッドです。
 配列の各要素を加工したい場合に利用します。
 
 次のようにコールバック関数には`要素, インデックス, 配列`が引数として渡され、配列要素の先頭から順番に反復処理します。
@@ -658,7 +658,7 @@ console.log(array !== newArray); // => true
 
 ### `Array#filter` {#array-filter}
 
-`Array#filter`は配列の要素を順番にコールバック関数へ渡し、そのコールバック関数が`true`を返した要素だけを集めた新しい配列を返します。
+`Array#filter`は配列の要素を順番にコールバック関数へ渡し、コールバック関数が`true`を返した要素だけを集めた新しい配列を返す非破壊的なメソッドです。
 配列から不要な要素を取り除いた配列を作成したい場合に利用します。
 
 次のようにコールバック関数には`要素, インデックス, 配列`が引数として渡され、配列要素の先頭から順番に反復処理します。
@@ -672,6 +672,8 @@ const newArray = array.filter((currentValue, index, array) => {
     return currentValue % 2 === 1;
 });
 console.log(newArray); // => [1, 3]
+// 元の配列とは異なるインスタンス
+console.log(array !== newArray); // => true
 ```
 
 
