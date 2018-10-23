@@ -348,7 +348,7 @@ if (array.includes("JavaScript")) {
 `Array#find`メソッドのようにテストするコールバック関数を利用して、真偽値を得るには`Array#some`メソッドを利用できます。
 
 `Array#some`メソッドはテストする関数をコールバック関数にマッチする要素があるなら`true`を返し、存在しない場合は`false`を返します。
-（[ループと反復処理](../loop/README.md#array-some)を参照）
+（「[ループと反復処理](../loop/README.md#array-some)の章」を参照）
 
 {{book.console}}
 ```js
@@ -527,7 +527,6 @@ console.log(myArray); // => ["A", "B", "C"]
 console.log(myArray === newArray); // => false
 ```
 
-<!--　必要性  -->
 
 JavaScriptにおいて破壊的なメソッドと非破壊的メソッドを名前から見分ける方法はありません。
 また、返り値が配列の破壊的なメソッドもあるため、返り値からも判別できません。たとえば、`Array#sort`メソッドは返り値がソート済みの配列ですが破壊的です。
@@ -613,6 +612,95 @@ console.log(array); // => ["A", "B", "C"]
 このようにJavaScriptの配列には破壊的なメソッドと非破壊的メソッドが混在しています。そのため、統一的なインタフェースで扱えないのが現状です。
 このような背景もあるため、JavaScriptには配列を扱うためのさまざまライブラリが存在します。[immutable-array-prototype][]や[Immutable.js][]など非破壊的に配列を扱う目的のライブラリがあります。
 
+## 配列を反復処理するメソッド {#array-iterate}
+
+「[ループと反復処理][]の章」において配列を反復処理する方法を一部解説していましたが、あらためて関連するArrayメソッドを見ていきます。
+反復処理の中でもよく利用される`Array#forEach`、`Array#map`、`Array#filter`、`Array#reduce`についてを見ていきます。
+どのメソッドも共通して引数にコールバック関数を受け取るため高階関数と呼ばれます。
+
+### `Array#forEach` {#array-foreach}
+
+`Array#forEach`は配列の要素を先頭から順番にコールバック関数へ渡し、反復処理を行うメソッドです。
+
+次のようにコールバック関数には`要素, インデックス, 配列`が引数として渡され、配列要素の先頭から順番に反復処理します。
+
+{{book.console}}
+```js
+const array = [1, 2, 3];
+array.forEach((currentValue, index, array) => {
+    console.log(currentValue, index, array);
+});
+// コンソールの出力
+// 1, 0, [1, 2, 3]
+// 2, 1, [1, 2, 3]
+// 3, 2, [1, 2, 3]
+```
+
+### `Array#map` {#array-map}
+
+`Array#map`は配列の要素を順番にコールバック関数へ渡し、コールバック関数が返した値から新しい配列を返す非破壊的なメソッドです。
+配列の各要素を加工したい場合に利用します。
+
+次のようにコールバック関数には`要素, インデックス, 配列`が引数として渡され、配列要素の先頭から順番に反復処理します。
+`map`メソッドの返り値は、それぞれのコールバック関数が返した値を集めた新しい配列です。
+
+{{book.console}}
+```js
+const array = [1, 2, 3];
+// 各要素に10を乗算した新しい配列を作成する
+const newArray = array.map((currentValue, index, array) => {
+    return currentValue * 10;
+});
+console.log(newArray); // => [10, 20, 30]
+// 元の配列とは異なるインスタンス
+console.log(array !== newArray); // => true
+```
+
+### `Array#filter` {#array-filter}
+
+`Array#filter`は配列の要素を順番にコールバック関数へ渡し、コールバック関数が`true`を返した要素だけを集めた新しい配列を返す非破壊的なメソッドです。
+配列から不要な要素を取り除いた配列を作成したい場合に利用します。
+
+次のようにコールバック関数には`要素, インデックス, 配列`が引数として渡され、配列要素の先頭から順番に反復処理します。
+`filter`メソッドの返り値は、コールバック関数が`true`を返した要素だけを集めた新しい配列です。
+
+{{book.console}}
+```js
+const array = [1, 2, 3];
+// 奇数の値をもつ要素だけを集めた配列を返す
+const newArray = array.filter((currentValue, index, array) => {
+    return currentValue % 2 === 1;
+});
+console.log(newArray); // => [1, 3]
+// 元の配列とは異なるインスタンス
+console.log(array !== newArray); // => true
+```
+
+
+### `Array#reduce` {#array-reduce}
+
+`Array#reduce`は累積値（アキュムレータ）と配列の要素を順番にコールバック関数へ渡し、1つの累積値を返します。
+配列から配列以外を含む任意の値を作成した場合に利用します。
+
+ここまでで紹介した反復処理のメソッドとはことなり、コールバック関数には`累積値, 要素, インデックス, 配列`を引数として渡します。
+`reduce`メソッドの第二引数には`accumulator`の初期値となる値を渡せます。
+
+次のコードでは、`reduce`メソッドは配列の各要素を加算した1つの数値を返します。
+つまり配列から配列要素の合計値というNumber型の返しています。
+
+{{book.console}}
+```js
+const array = [1, 2, 3];
+// すべての要素を加算した値を返す
+// accumulatorの初期値は`0`
+const totalValue = array.reduce((accumulator, currentValue, index, array) => {
+    return accumulator + currentValue;
+}, 0);
+console.log(totalValue); // => 0 + 1 + 2 + 3
+```
+
+`Array#reduce`メソッドはやや複雜ですが、配列以外の値も返せるという特徴があります。
+
 ## [コラム] Array-likeオブジェクト {#array-like}
 
 配列のように扱えるが配列ではないオブジェクトのことを、**Array-likeオブジェクト**と呼びます。
@@ -696,11 +784,11 @@ console.log(abcArray); // => ["a", "b", "c"]
 
 メソッドチェーンを利用することで処理の見た目を簡潔にできます。メソッドチェーンを利用した場合も最終的な処理結果は同じですが、途中の一時的な変数を省略できます。先ほどの例では`abArray`という一時的な変数をメソッドチェーンでは省略できています。
 
-メソッドチェーンは配列に限ったものではありませんが、配列では頻出するパターンです。なぜなら、配列に含まれるデータを表示する際には、最終的に文字列や数値など別のデータへ加工することが殆どであるためです。配列には配列を返す高階関数が多く実装されているため、配列を柔軟に加工できます。配列を返すことができる高階関数（関数を引数に受け取るメソッド）としては`Array#map`、`Array#filter`などがあります。
+メソッドチェーンは配列に限ったものではありませんが、配列では頻出するパターンです。なぜなら、配列に含まれるデータを表示する際には、最終的に文字列や数値など別のデータへ加工することが殆どであるためです。配列には配列を返す高階関数が多く実装されているため、配列を柔軟に加工できます。
 
 次のコードでは、ECMAScriptのバージョン名と発行年数が定義された`ecmascriptVersions`という配列が定義されています。この配列から`2000`年以前に発行されたECMAScriptのバージョン名の一覧を取り出すことを考えてみます。目的の一覧を取り出すには「2000年以前のデータに絞り込む」と「データから`name`を取り出す」という2つの加工処理を組み合わせる必要があります。
 
-それぞれの加工処理は`Array#filter`メソッドと`Array#map`メソッドで実現できます。`filter`メソッドで配列から`2000`年以前というルールで絞り込み、`map`メソッドでそれぞれの要素から`name`プロパティを取り出せます。どちらのメソッドも配列を返すのでメソッドチェーンで処理を繋げることができます。
+この2つの加工処理は`Array#filter`メソッドと`Array#map`メソッドで実現できます。`filter`メソッドで配列から`2000`年以前というルールで絞り込み、`map`メソッドでそれぞれの要素から`name`プロパティを取り出せます。どちらのメソッドも配列を返すのでメソッドチェーンで処理を繋げることができます。
 
 {{book.console}}
 ```js
@@ -726,6 +814,7 @@ console.log(versionNames); // => ["ECMAScript 1", "ECMAScript 2", "ECMAScript 3"
 
 メソッドチェーンを使うことで複数の処理からなるものをひとつのまとった処理のように見せることができます。長過ぎるメソッドチェーンは長すぎる関数と同じように読みにくくなりますが、適度な単位のメソッドチェーンは処理をスッキリ見せるパターンとして利用されています。
 
+[ループと反復処理]: ../loop/README.md
 [immutable-array-prototype]: https://github.com/azu/immutable-array-prototype  "azu/immutable-array-prototype: A collection of Immutable Array prototype methods(Per method packages)."
 [Lodash]: https://lodash.com/  "Lodash"
 [Immutable.js]: https://facebook.github.io/immutable-js/  "Immutable.js"

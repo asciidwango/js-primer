@@ -1755,7 +1755,7 @@ async function saveUsers(users) {
 Async FunctionはそれぞれPromiseを返すため、すべてのPromiseの完了を明示的に待てばよいはずです。
 複数のPromiseの完了を待つには`Promise.all`メソッドで1つのPromiseにまとめて`await`式でそのPromiseの完了を待てばよいだけです。
 
-次のコードでは、`Array#forEach`メソッドではなく`Array#map`メソッドを使いコールバック関数の結果を集めています。
+次のコードは`Array#forEach`メソッドではなく、`Array#map`メソッドを使いコールバック関数の結果を集めています。
 その集めたPromiseを`Promise.all`メソッドで1つのPromiseにして、`await`式で完了するまで待つだけです。
 
 <!-- doctest:disable -->
