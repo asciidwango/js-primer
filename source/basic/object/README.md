@@ -618,6 +618,8 @@ ES2015で配列の要素を展開する`...`（spread構文）はサポートさ
 次のコードでは`objectA`と`objectB`をマージした新しいオブジェクトを返します。
 
 {{book.console}}
+<!-- TODO: esprimaがES2018に対応していない -->
+<!-- doctest:disable -->
 ```js
 const objectA = { a: "a" };
 const objectB = { b: "b" };
@@ -632,6 +634,7 @@ console.log(merged); // => { a: "a", b: "b" }
 そのため同じプロパティ名をもつオブジェクトをマージした場合には、後ろのオブジェクトによってプロパティが上書きされます。
 
 {{book.console}}
+<!-- doctest:disable -->
 ```js
 // `version`のプロパティ名が被っている
 const objectA = { version: "a" };
