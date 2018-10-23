@@ -111,7 +111,7 @@ HTMLファイルとJavaScriptファイルの2種類を使い、JavaScriptのコ�
 [include, title:"index.html"](src/example/index.html)
 
 重要なのは`<script src="./index.js"></script>`という記述です。
-これは同じディレクトリになる`index.js`という名前のJavaScriptファイルをスクリプトとして読み込むという意味になります。
+これは同じディレクトリにある`index.js`という名前のJavaScriptファイルをスクリプトとして読み込むという意味になります。
 
 そして、最後にブラウザで`index.html`を開きます。
 HTMLファイルを開くには、ブラウザにHTMLファイルをドラッグアンドドロップまたはファイルメニューから"ファイルを開く"でHTMLファイルを選択します。
