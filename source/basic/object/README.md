@@ -606,6 +606,8 @@ const merged = Object.assign({}, objectA, objectB);
 console.log(merged); // => { version: "b" }
 ```
 
+#### オブジェクトのspread構文{#object-spread-syntax}
+
 ES2018ではオブジェクトのマージを構文として行える`...`（spread構文）が追加されました。
 ES2015で配列の要素を展開する`...`（spread構文）はサポートされていましたが、オブジェクトに対してもES2018でサポートされました。
 オブジェクトの`...`（spread構文）は、オブジェクトリテラルの中に指定したオブジェクトのプロパティを展開できます。
