@@ -74,7 +74,7 @@ Shift + Enterで改行して複数行の入力もできます。
 
 注意点としては、REPLではそのREPLを終了するまで`const`キーワードなどで宣言した変数が残り続けます。
 たとえば、`const`での変数宣言は同じ変数名を二度定義できないというルールでした。
-そのため、1行づつ実行しても同じ変数名の定義を行うと構文エラー（`SyntaxError`）となります。
+そのため1行づつ実行しても同じ変数名の定義を行うと構文エラー（`SyntaxError`）となります。
 
 ```
 » const bookTitle = "JavaScriptの本";
@@ -84,7 +84,7 @@ SyntaxError: redeclaration of const bookTitle
 ```
 
 ブラウザでは、ページをリロードするとREPLの実行状態もリセットできます。
-そのため、`redeclaration`（再定義）といったエラーメッセージが出た際にはページをリロードしてみてください。
+`redeclaration`（再定義）といったエラーメッセージが出た際にはページをリロードしてみてください。
 
 ### HTMLファイルを作成しJavaScriptコードを読み込む方法 {#js-in-html}
 
