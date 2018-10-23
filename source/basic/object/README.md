@@ -592,7 +592,7 @@ console.log(merged === objectA); // => true
 空のオブジェクトを`target`にすることで、既存のオブジェクトには影響を与えずマージしたオブジェクトを作ることができます。
 そのため、`Object.assign`メソッドの第一引数には、空のオブジェクトリテラルを指定するのが典型的な利用方法です。
 
-このとき、プロパティ名が重複した場合は、後ろのオブジェクトにより上書きされます。
+このとき、プロパティ名が重複した場合は、後ろのオブジェクトのプロパティにより上書きされます。
 JavaScriptでは、基本的な処理は左から順番に行います。
 そのため左から順にオブジェクトが代入されていくと考えるとよいです。
 
@@ -604,6 +604,48 @@ const objectB = { version: "b" };
 const merged = Object.assign({}, objectA, objectB);
 // 後ろにある`objectB`のプロパティで上書きされる
 console.log(merged); // => { version: "b" }
+```
+
+#### オブジェクトのspread構文{#object-spread-syntax}
+
+ES2018ではオブジェクトのマージを構文として行える`...`（spread構文）が追加されました。
+ES2015で配列の要素を展開する`...`（spread構文）はサポートされていましたが、オブジェクトに対してもES2018でサポートされました。
+オブジェクトのspread構文は、オブジェクトリテラルの中に指定したオブジェクトのプロパティを展開できます。
+
+オブジェクトのspread構文は、`Object.assign`とは異なり必ず新しいオブジェクトを作成し返します。
+なぜならspread構文はオブジェクトリテラルの中でのみ記述でき、オブジェクトリテラルは新しいオブジェクトを返すためです。
+
+次のコードでは`objectA`と`objectB`をマージした新しいオブジェクトを返します。
+
+{{book.console}}
+<!-- TODO: esprimaがES2018に対応していない -->
+<!-- doctest:disable -->
+```js
+const objectA = { a: "a" };
+const objectB = { b: "b" };
+const merged = { 
+    ...objectA,
+    ...objectB
+};
+console.log(merged); // => { a: "a", b: "b" }
+```
+
+プロパティ名が被った場合の優先順位は、後ろにあるプロパティほど優先されます。
+そのため同じプロパティ名をもつオブジェクトをマージした場合には、後ろにあるオブジェクトによってプロパティが上書きされます。
+
+{{book.console}}
+<!-- doctest:disable -->
+```js
+// `version`のプロパティ名が被っている
+const objectA = { version: "a" };
+const objectB = { version: "b" };
+const merged = { 
+    ...objectA,
+    ...objectB,
+    other: "other"
+};
+// 後ろにある`objectB`のプロパティで上書きされる
+console.log(merged); // => { version: "b", other: "other" }
 ```
 
 #### オブジェクトの複製 {#copy}
