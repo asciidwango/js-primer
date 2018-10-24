@@ -56,14 +56,25 @@ num++;
 1 + 1; // => 2
 ```
 
+JavaScriptでは、数値は内部的にIEEE 754方式の浮動小数点数として表現されています。
+（ [データ型とリテラル](../data-type/README.md)を参照）
+そのため、整数と浮動小数点数の加算も行えます。
+
+{{book.console}}
+```js
+10 + 0.5; // => 10.5
+```
+
 ### マイナス演算子（`-`） {#minus-operator}
 
 2つの数値を減算する演算子です。
 
 {{book.console}}
 ```js
-1 - 1; // => 0
+console.log(1 - 1); // => 0
+console.log(10 - 0.5); // => 0.95
 ```
+
 
 ### 乗算演算子（`*`） {#multiplication-operator}
 
@@ -71,7 +82,8 @@ num++;
 
 {{book.console}}
 ```js
-2 * 8; // => 16
+console.log(2 * 8); // => 16
+console.log(10 * 0.5); // => 0.5
 ```
 
 ### 除算演算子（`/`）{#division-operator}
@@ -80,7 +92,8 @@ num++;
 
 {{book.console}}
 ```js
-8 / 2; // => 4
+console.log(8 / 2); // => 4
+console.log(10 / 0.5); // => 20
 ```
 
 ### 剰余演算子（`%`） {#modulus-operator}
@@ -89,7 +102,10 @@ num++;
 
 {{book.console}}
 ```js
-8 % 3; // => 2
+console.log(8 % 2); // => 0
+console.log(9 % 2); // => 1
+console.log(10 % 0.5); // => 0
+console.log(10 % 4.5); // => 1
 ```
 
 ### [ES2016] べき乗演算子（`**`） {#pow-operator}
@@ -408,9 +424,6 @@ null != undefined; // => false
 ```
 
 ## ビット演算子 {#bit-operator}
-
-JavaScriptでは、数値は内部的にIEEE 754方式の浮動小数点数として表現されています。
-（ [データ型とリテラル](../data-type/README.md)を参照）
 
 ビット演算子はオペランドを符号付き32bit整数に変換してから演算します。
 ビット演算子による演算結果は10進数の数値を返します。
