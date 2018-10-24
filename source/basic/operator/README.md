@@ -83,7 +83,7 @@ console.log(10 - 0.5); // => 0.95
 {{book.console}}
 ```js
 console.log(2 * 8); // => 16
-console.log(10 * 0.5); // => 0.5
+console.log(10 * 0.5); // => 5
 ```
 
 ### 除算演算子（`/`）{#division-operator}
