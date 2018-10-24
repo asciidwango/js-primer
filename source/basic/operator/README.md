@@ -72,7 +72,7 @@ JavaScriptでは、数値は内部的にIEEE 754方式の浮動小数点数と�
 {{book.console}}
 ```js
 console.log(1 - 1); // => 0
-console.log(10 - 0.5); // => 0.95
+console.log(10 - 0.5); // => 9.5
 ```
 
 
