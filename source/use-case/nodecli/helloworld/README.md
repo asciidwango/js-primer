@@ -4,38 +4,7 @@ author: laco
 
 # Node.jsでHello World {#hello-world-by-nodejs}
 
-実際にアプリケーションを作成するまえに、まずはNode.jsについて簡単に解説します。
-その後、Hello Worldアプリケーションを通じてNode.jsのCLIアプリケーションの基本を学びましょう。
-
-## Node.jsとは {#what-is-nodejs}
-
-[Node.js][]はサーバーサイドJavaScript実行環境のひとつで、次のような特徴があります。
-
-- WebブラウザのChromeと同じ、[V8][] JavaScriptエンジンで動作する
-- オープンソースで開発されている
-- OSを問わずクロスプラットフォームで動作する
-
-Node.jsはサーバーサイドで使うために開発されました。
-しかし今ではコマンドラインツールや[Electron][]など、Webブラウザに依存しないクライアントサイドのJavaScript実行環境としても幅広く使われています。
-
-## Node.jsのインストール {#install-nodejs}
-
-Node.jsは多くの他のプログラミング言語と同じように、実行環境をマシンにインストールすることで使用できます。
-公式の[ダウンロードページ][]から、開発用のマシンに合わせたインストーラをダウンロードして、インストールしましょう。
-
-Node.jsには常に2つのリリース版が存在します。ひとつは**LTS（Long-Term Support）**版で、2年間のメンテナンスとサポートが宣言されたバージョンです。
-具体的には、後方互換性を壊さない範囲でのアップデートと、継続的なセキュリティパッチの提供が行われます。
-もうひとつは最新版で、Node.jsの最新の機能を使用できますが、常に最新のバージョンしかメンテナンスされません。
-ほとんどのユーザーは、LTS版を用いることが推奨されます。Node.jsでの開発が初めてであれば、迷わずにLTS版のインストーラをダウンロードしましょう。
-この章では執筆時点の最新LTS版であるバージョン6.9系で動作するように開発します。
-
-インストールが完了すると、コマンドラインで`node`コマンドが使用可能になっているはずです。
-次のコマンドを実行して、インストールされたNode.jsのバージョンを確認しましょう。
-
-```
-$ node -v 
-v6.9.1
-```
+実際にアプリケーションを作成するまえに、まずはHello Worldアプリケーションを通じてNode.jsのCLIアプリケーションの基本を学びましょう。
 
 ## Hello World {#hello-world}
 
@@ -64,9 +33,33 @@ Hello World!
 
 Node.jsの基本は、エントリポイントとなるJavaScriptファイルを作成し、そのファイルを`node`コマンドの引数に渡して実行するという流れです。
 また、WebブラウザのJavaScriptと同じく、コードは1行目から順に実行されます。
+
+## Node.jsのグローバルオブジェクト {#nodejs-global-objects}
+
+Node.jsはChromeと同じV8エンジンを利用しているため、ECMAScriptで定義されている基本構文はほとんどブラウザと同じように使えます。
+ただし、ブラウザ環境とNode.js環境では利用できるグローバルスコープが違うため、アプリケーションを開発するときにはその違いを理解しなくてはなりません。
+
+ECMAScriptで定義されているグローバルオブジェクトはグローバルスコープにかかわらず存在します。
+たとえば`Boolean`、`String`などのラッパーオブジェクトや、`Map`、`Array`、`Promise`のようなコンストラクターオブジェクトがそれにあたります。
+
+Webブラウザ環境のグローバルスコープは`window`オブジェクトですが、Node.jsでは[global][]と呼ばれるオブジェクトがグローバルスコープになります。
+そのため、`window`オブジェクトがもつプロパティや関数は、Node.jsではグローバルスコープに存在していません。
+たとえば `document`オブジェクトや`confirm`関数などがそれにあたります。
+また、`XMLHttpRequest`のようなWeb APIもNode.jsのグローバルスコープには存在しません。
+
+逆に、Node.jsのグローバルスコープには次のようなグローバルオブジェクトがあります。
+
+- `process`オブジェクト: 実行中のNode.jsプロセスに関する情報やコントロールを提供するAPI
+- `Buffer`オブジェクト: `Buffer`インスタンスを作成するためのコンストラクターオブジェクト
+- `__dirname`・`__filename`: 処理中のスクリプトのディレクトリパスとファイルパスを保持する文字列オブジェクト
+
 これらを踏まえた上で、次のセクションからCLIアプリケーションの開発をはじめていきましょう。
 
 [Node.js]: https://nodejs.org/ja/
 [V8]: https://developers.google.com/v8/
 [Electron]: http://electron.atom.io/
 [ダウンロードページ]: https://nodejs.org/ja/download/
+[DOM API]: https://developer.mozilla.org/ja/docs/DOM/DOM_Reference/Introduction
+[global]: https://nodejs.org/docs/latest-v8.x/api/globals.html
+[process]: https://nodejs.org/docs/latest-v8.x/api/process.html#process_process
+[Buffer]: https://nodejs.org/docs/latest-v8.x/api/buffer.html
