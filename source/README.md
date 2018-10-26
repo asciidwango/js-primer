@@ -30,7 +30,7 @@
     - [Map/Set](./basic/map-and-set/README.md)
     - [非推奨の機能](./basic/bad-parts/README.md)
     - [ECMAScript](./basic/ecmascript/README.md)
-    - 高度なAPI
+    - [おわりに](./basic/other-parts/README.md)
 - [第2部: 応用編（ユースケース）](./use-case/README.md)
     - [モジュール](./use-case/module/README.md)
     - [Ajaxで通信](./use-case/ajaxapp/README.md)
