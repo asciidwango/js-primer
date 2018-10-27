@@ -49,7 +49,7 @@ Todoアイテム要素である`<li>`要素中に次のように`<input>`要素�
 `input`要素からディスパッチされる`change`イベントをリッスンする処理は次のようにかけます。
 
 まずは`todoItemElement`要素の下にある`input`要素を`querySelector`メソッドで探索します。
-以前は`document.querySlector`で`document`以下からCSSセレクタにマッチする要素を探索していました。
+以前は`document.querySelector`で`document`以下からCSSセレクタにマッチする要素を探索していました。
 `todoItemElement.querySelector`メソッドを使うことで、`todoItemElement`下にある要素だけを対象に探索できます。
 
 見つけた`input`要素に対して`addEventListener`メソッドで`change`イベントが発生したときに呼ばれるコールバック関数を登録できます。この`addEventListener`メソッドは`XMLHttpRequest`の場合と同じくイベント名とコールバック関数を渡すことで、指定したイベントを受け取れます。（「[ユースケース: Ajax通信][]」を参照）
