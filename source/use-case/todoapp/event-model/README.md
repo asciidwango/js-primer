@@ -132,19 +132,10 @@ Node.jsでは`events`と呼ばれるモジュールでAPIは異なりますが�
 リッスン側は`addEventLister`メソッドでイベントの種類（`type`）に対するイベントリスナー（`listener`）を登録します。
 ディスパッチ側は`emit`メソッドでイベントをディスパッチし、イベントリスナーを呼び出します。
 
-<!-- doctest:disable -->
-```js
-import { EventEmitter } from "./src/EventEmitter.js";
-const event = new EventEmitter();
-// イベントリスナー（コールバック関数）を登録
-event.addEventLister(() => console.log("One!"));
-event.addEventLister(() => console.log("Two!"));
-// コールバック関数をまとめて呼びだす
-event.emit();
-// コールバック関数がそれぞれ呼び出し、コンソールには次のように出力される
-// "One!"
-// "Two!"
-```
+次のコードでは、`addEventLister`メソッドで`test-event`イベントに対して2つのイベントリスナーを登録しています。
+そのため、`emit`メソッドで`test-event`イベントをディスパッチすると、登録済みのイベントリスナーが呼び出されています。
+
+[import, title:"EventEmitterの実行サンプル"](./event-emitter/src/EventEmitter.example.js)
 
 ## EventEmitterを継承したTodoListモデル {#event-emitter-todolist-model}
 
