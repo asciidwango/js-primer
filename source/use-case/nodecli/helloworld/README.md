@@ -43,23 +43,29 @@ ECMAScriptで定義されているグローバルオブジェクトはブラウ�
 たとえば`Boolean`、`String`などのラッパーオブジェクトや、`Map`、`Array`、`Promise`のようなビルトインオブジェクトがそれにあたります。
 
 Webブラウザ環境のグローバルオブジェクトは`window`オブジェクトですが、Node.jsでは[global][]と呼ばれるオブジェクトがグローバルオブジェクトになります。
-そのため、`window`オブジェクトがもつプロパティや関数は、Node.jsではグローバルスコープに存在していません。
-たとえば `document`オブジェクトや`confirm`関数などがそれにあたります。
-また、`XMLHttpRequest`や`fetch`のようなWeb APIもNode.jsのグローバルスコープには存在しません。
+ブラウザの`window`オブジェクトにはたとえば次のようなプロパティや関数があります。
 
-一方で、Node.jsのグローバルスコープには次のようなグローバルオブジェクトがあります。
+- [document][]
+- [XMLHttpRequest][]
 
-- `process`オブジェクト: 実行中のNode.jsプロセスに関する情報やコントロールを提供するAPI
-- `Buffer`オブジェクト: `Buffer`インスタンスを作成するためのコンストラクターオブジェクト
-- `__dirname`・`__filename`: 処理中のスクリプトのディレクトリパスとファイルパスを保持する文字列オブジェクト
+一方、Node.jsの`global`オブジェクトにはたとえば次のようなプロパティや関数があります。
+
+- [process][]
+- [Buffer][]
+
+それぞれのグローバルオブジェクトにあるプロパティなどは、同じ名前でグローバル変数・関数としてアクセスできるようになっているのが通例です。
+たとえば`window.document`プロパティは、グローバル変数の`document`としてアクセスすることもできます。
+
+また、ECMAScriptで定義されたものではありませんが、ほぼ同等の機能と名前をもつプロパティや関数がブラウザとNode.jsどちらにもある場合もあります。
+たとえば次のようなものです。
+
+- Console API
+- `setTimeout`関数
 
 これらを踏まえた上で、次のセクションからCLIアプリケーションの開発をはじめていきましょう。
 
-[Node.js]: https://nodejs.org/ja/
-[V8]: https://developers.google.com/v8/
-[Electron]: http://electron.atom.io/
-[ダウンロードページ]: https://nodejs.org/ja/download/
-[DOM API]: https://developer.mozilla.org/ja/docs/DOM/DOM_Reference/Introduction
+[document]: https://developer.mozilla.org/ja/docs/Web/API/Document
+[XMLHttpRequest]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest
 [global]: https://nodejs.org/docs/latest-v8.x/api/globals.html
 [process]: https://nodejs.org/docs/latest-v8.x/api/process.html#process_process
 [Buffer]: https://nodejs.org/docs/latest-v8.x/api/buffer.html
