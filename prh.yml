@@ -266,6 +266,9 @@ rules:
   - expected: 一度
     patterns:
       - 1度
+  - expected: サーバーサイド
+    patterns:
+      - サーバサイド
 
   # 一致とマッチ
   ## 一致は ===
