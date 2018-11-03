@@ -68,7 +68,7 @@ $ js-primer-hello-world
 Hello World!
 ```
 
-一方、`npx`コマンドでは、パッケージのインストールとコマンドの実行を1ステップでおこないます。
+一方、`npx`コマンドでは、パッケージのインストールとコマンドの実行を1ステップでおこなえます。
 
 ```
 $ npx @js-primer/hello-world
