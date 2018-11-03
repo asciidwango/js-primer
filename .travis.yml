@@ -11,7 +11,7 @@ jobs:
   include:
     # Unit Tests
     - stage: test
-      node_js: 'stable'
+      node_js: '10'
       script: npm run travis
     - stage: test
       node_js: '8'
@@ -20,11 +20,11 @@ jobs:
     - stage: e2e
       # masterのみ実行
       if: branch = master AND type != pull_request
-      node_js: 'stable'
+      node_js: '10'
       script: npm run e2e
     # deploy
     - stage: deploy
-      node_js: 'stable'
+      node_js: '10'
       if: branch = master AND type != pull_request
       before_script:
         - |
