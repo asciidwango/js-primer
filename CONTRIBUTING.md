@@ -5,7 +5,7 @@
 ## GitBook
 
 この書籍は[GitBook](https://www.gitbook.com/)で作成されています。
-また、文章はMarkdownで書かれおり、Markdownの記法についてはGitBookのヘルプを参照してください。
+また、文章はMarkdownで書かれています。Markdownの記法についてはGitBookのヘルプを参照してください。
 
 - [Markdown · GitBook Toolchain Documentation](https://toolchain.gitbook.com/syntax/markdown.html)
 
