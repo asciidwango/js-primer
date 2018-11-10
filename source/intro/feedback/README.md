@@ -8,20 +8,20 @@ author: azu
 この書籍ではできるだけ間違い（特に技術的な間違い）を減らせるように努力していますが、
 どうしても誤字脱字や技術的な間違い、コード例の間違いなどを見落としている場合があります。
 
-そのためこの書籍を読むときは「技術書には間違いが存在する」と思って読んでいくことを推奨しています。
-そして、あなたがもし間違いを見つけたらぜひ報告してください。
+そのため「この書籍には間違いが存在する」と思って読んでいくことを推奨しています。
+もし、読んでいて間違いを見つけたなら、ぜひ報告してください。
 
 また、意味や意図が読み取れないというわかりにくいため、よくわからないという疑問をもつことがあります。
 そのような疑問もぜひ報告してください。
 
 もし、その疑問が実際には間違いではなく勘違いであっても、回答をもらうことで自分の理解を修正できます。
-そのため疑問を問い合わせても損することはないはずです。
+そのため、疑問を問い合わせても損することはないはずです。
 
-この書籍はGitHubで公開されているため、GitHubのリポジトリへIssueとして報告できます。
+この書籍はGitHub上で公開されているため、GitHubリポジトリのIssueとしてあなたの疑問を報告できます。
 
 - 書籍や内容に対する質問 => [こちらから質問できます](https://github.com/asciidwango/js-primer/issues/new?template=question.md)
 - 内容のエラーや問題の報告 => [こちらからバグ報告できます](https://github.com/asciidwango/js-primer/issues/new?template=bug_report.md)
-- 内容をもっと詳細に解説の提案 => [こちらから提案できます](https://github.com/asciidwango/js-primer/issues/new?template=feature_request.md)
+- 内容をもっと詳細に解説する提案 => [こちらから提案できます](https://github.com/asciidwango/js-primer/issues/new?template=feature_request.md)
 - 新しいトピックなどの提案 => [こちらから提案できます](https://github.com/asciidwango/js-primer/issues/new?template=feature_request.md)
 - その他のIssue => [その他のIssueはこちらから](https://github.com/asciidwango/js-primer/issues/new?template=other.md)
 
@@ -35,15 +35,15 @@ GitHubのアカウントを持っていない方は、次のフォームから�
 
 - <https://github.com/asciidwango/js-primer>
 
-そのため、あなたは問題を報告するだけではなく問題を修正できます。
+そのため、あなたは問題を報告するだけではなく修正することもできます。
 GitHubでソースコードが公開されているため、修正内容を[Pull Request][]することで問題を修正できます。
 
 詳しいPull Requestの送り方は[CONTRIBUTING.md][]にかかれているので参考にしてください。
 
 - <https://github.com/asciidwango/js-primer/blob/master/CONTRIBUTING.md>
 
-誤字を1文字修正するものから、技術的な間違いを修正するものどちらであっても感謝されます。
-ぜひ問題を見つけたら修正することにも挑戦してみてください。
+誤字を1文字修正するものから技術的な間違いを修正するものまで、どのような修正であっても感謝されます。
+問題を見つけたら、ぜひ修正することにも挑戦してみてください。
 
 ## 参考 {#reference}
 
