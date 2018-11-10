@@ -30,7 +30,7 @@
     - [Map/Set](./basic/map-and-set/README.md)
     - [非推奨の機能](./basic/bad-parts/README.md)
     - [ECMAScript](./basic/ecmascript/README.md)
-    - [おわりに](./basic/other-parts/README.md)
+    - [第1部: おわりに](./basic/other-parts/README.md)
 - [第2部: 応用編（ユースケース）](./use-case/README.md)
     - [アプリケーション開発の準備](./use-case/setup-local-env/README.md)
     - [モジュール](./use-case/module/README.md)
