@@ -82,7 +82,7 @@ Hello World!
 [Electron]: http://electron.atom.io/
 [ダウンロードページ]: https://nodejs.org/ja/download/
 [npm]: https://www.npmjs.com/
-[npmのGitHubリポジトリ]: https://github.com/npm/npm
+[npmのGitHubリポジトリ]: https://github.com/npm/cli
 [npx]: https://blog.npmjs.org/post/162869356040/introducing-npx-an-npm-package-runner
 [@js-primer/hello-world]: https://github.com/js-primer/hello-world
 [@js-primer/local-serverパッケージ]: https://github.com/js-primer/local-server
