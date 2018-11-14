@@ -9,7 +9,7 @@ author: azu
 ECMAScriptは[Ecma International][]という団体によって標準化されている仕様です。
 Ecma InternationalはECMAScript以外にもC#やDartなどの標準化作業を行っています。
 Ecma International中のTechnical Committee 39（TC39）という技術委員会が中心となって、ECMAScript仕様についてを議論しています。
-この技術委員会はMicroSoft、Mozilla、Google、AppleといったブラウザベンダーやECMAScriptに関心のある企業などによって構成されます。
+この技術委員会はMicrosoft、Mozilla、Google、AppleといったブラウザベンダーやECMAScriptに関心のある企業などによって構成されます。
 
 ## ECMAScriptのバージョンの歴史 {#history}
 
