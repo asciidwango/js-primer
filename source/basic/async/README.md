@@ -900,7 +900,7 @@ Promise.reject(new Error("失敗")).catch(error => {
 #### コールバック関数で`Promise`インスタンスを返す {#promise-then-return-promise}
 
 Promiseチェーンで一度キャッチすると、次に呼ばれるのは成功時の処理(`then`メソッド)でした。
-これは、コールバック関数で任意を値を返すと、その値で`resolve`された**Fulfilled**状態の`Promise`インスタンスを作成するためです。
+これは、コールバック関数で任意の値を返すと、その値で`resolve`された**Fulfilled**状態の`Promise`インスタンスを作成するためです。
 しかし、コールバック関数で`Promise`インスタンスを返した場合は例外的に異なります。
 
 コールバック関数で`Promise`インスタンスを返した場合は、同じ状態をもつ`Promise`インスタンスが`then`や`catch`メソッドの返り値となります。
