@@ -87,7 +87,7 @@ strict modeでは、`eval`や`with`といったレガシーな機能や構文を
 
 ```js
 "use strict";
-mistypedVaraible = 42; // => ReferenceError
+mistypedVariable = 42; // => ReferenceError
 ```
 
 このように、strict modeでは開発者が安全にコードを書けるように、JavaScriptの落とし穴を一部ふさいでくれます。
