@@ -74,7 +74,7 @@ const userInput = "not json value";
 try {
     const json = JSON.parse(userInput);
 } catch (error) {
-    console.log(error); // => SyntaxError: "JSON.parse: unexpected keyword at line 1 column 1 of the JSON data"
+    console.log("パースできませんでした");
 }
 ```
 
