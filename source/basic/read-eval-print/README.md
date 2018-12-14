@@ -318,9 +318,6 @@ JavaScriptにおいては多くのエラーはすでに類似するケースが�
 エラーがWebコンソールに表示されているならば、そのエラーは修正できます。
 エラーを過度に怖がる必要はありません。エラーメッセージなどのヒントを使ってエラーを修正していけるようにしましょう。
 
-
-
-[第1部 基本文法]: ../README.md
 [Firefox]: https://www.mozilla.org/ja/firefox/
 [Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
 [Atom]: https://atom.io/
