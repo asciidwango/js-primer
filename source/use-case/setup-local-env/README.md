@@ -63,7 +63,7 @@ Node.jsを使ったコマンドラインツールは数多く公開されてお�
 `npm`コマンドでインストールして実行するには、次のように `npm install`コマンドに`--global`フラグを加えて実行します。
 `--global`フラグを使ってインストールされたパッケージは、パスの指定なしに任意の場所から呼び出せます。
 そのパッケージがコマンドラインから呼び出し可能なコマンドを定義している場合は、インストールと同時にパスへ追加されます。
-次の例では `@js-primer/hello-world`パッケージが定義している`js-primer-hello-world`コマンドがパスに追加され、実行できるようになります。
+次の例では`@js-primer/hello-world`パッケージが定義している`js-primer-hello-world`コマンドがパスへ追加され、実行できるようになります。
 
 ```
 $ npm install --global @js-primer/hello-world
