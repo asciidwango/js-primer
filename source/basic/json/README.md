@@ -42,13 +42,18 @@ JavaScriptでJSONを扱うには、ビルトインの[JSONオブジェクト][]�
 [JSON.parseメソッド][]は引数に与えられた文字列をJSONとしてパースし、その結果をJavaScriptのオブジェクトとして返す関数です。
 次のコードは簡単なJSON形式の文字列をJavaScriptのオブジェクトに変換する例です。
 
+<!-- textlint-disable eslint -->
+
 {{book.console}}
 ```js
-const json = "{ \"id\": 1, \"name\": \"js-primer\" }";
+// JSONはダブルクオートのみを許容するため、シングルクォートでJSON文字列を記述
+const json = '{ "id": 1, "name": "js-primer" }';
 const obj = JSON.parse(json);
 console.log(obj.id); // => 1
 console.log(obj.name); // => "js-primer"
 ```
+
+<!-- textlint-enable eslint -->
 
 文字列がJSONの配列を表す場合は、`JSON.parse`メソッドの返り値も配列になります。
 
@@ -60,7 +65,18 @@ console.log(JSON.parse(json)); // => [1, 2, 3]
 
 与えられた文字列がJSON形式でパースできない場合は例外が投げられます。
 また、実際のアプリケーションでJSONを扱うのは、外部のプログラムとデータを交換する用途がほとんどです。
-外部のプログラムが送ってくるデータが常にJSONとして正しい保証はないので、`JSON.parse`メソッドは基本的にtry-catch文で例外処理をするべきです。
+外部のプログラムが送ってくるデータが常にJSONとして正しい保証はありません。
+そのため、`JSON.parse`メソッドは基本的にtry-catch文で例外処理をするべきです。
+
+{{book.console}}
+```js
+const userInput = "not json value";
+try {
+    const json = JSON.parse(userInput);
+} catch (error) {
+    console.log("パースできませんでした");
+}
+```
 
 ### オブジェクトをJSON文字列に変換する {#json-format}
 
