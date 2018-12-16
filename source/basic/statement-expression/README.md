@@ -168,5 +168,5 @@ JavaScriptには、特殊なルールにもとづき、セミコロンがない�
 セミコロンが必要か見分けるにはある程度慣れが必要ですが、ツールを使い静的にチェックすることもできます。
 そのため、ツールなどの支援を受けて経験的に慣れていくこともよい方法といえます。
 
-[関数と宣言]: ../function-method/README.md
+[関数と宣言]: ../function-declaration/README.md
 [ESLint]: http://eslint.org/  "ESLint - Pluggable JavaScript linter"
