@@ -229,6 +229,11 @@
 - laco: あとMathが短すぎるので round/ceil/floorの説明を追加するほうがいいのでは
 - azu: Number/Mathなんだけど、Numberはどこかいったので…
 
+## 結論
+
+- laco: [Math: round/ceil/floorの説明を追加する · Issue #599 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/599)
+- azu: [章構成の入れ替え · Issue #600 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/600)
+
 ----
 
 ## 次回
