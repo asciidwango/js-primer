@@ -1,3 +1,8 @@
+---
+author: azu
+description: JavaScriptのオブジェクトとプロトタイプについて
+---
+
 # プロトタイプオブジェクト {#prototype-object}
 
 ## `Object`はすべての元 {#object-is-origin}
