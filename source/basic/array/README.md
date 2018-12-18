@@ -127,11 +127,12 @@ console.log(array[array.length - 1]); // => "three"
 ```
 
 一方、存在しないインデックスにアクセスした場合はどうなるでしょうか？
-多くの言語では、配列の存在しないインデックスへアクセスするとエラーなりますが、JavaScriptでは`undefined`が返ってきます。
+JavaScriptでは、存在しないインデックスに対してアクセスした場合に例外ではなく`undefined`を返します。
 
 {{book.console}}
 ```js
 const array = ["one", "two", "three"];
+// `array`にはインデックスが100の要素は定義されていない
 console.log(array[100]); // => undefined
 ```
 
@@ -159,16 +160,39 @@ console.log(object[100]); // => undefined
 {{book.console}}
 ```js
 // 未定義の箇所が1つ含まれる疎な配列
+// インデックスが1の値を省略しているので、カンマが2つ続いていることに注意
 const sparseArray = [1,, 3];
 console.log(sparseArray.length); // => 3 
 // 1番目の要素は存在しないため undefined が返る
 console.log(sparseArray[1]); // => undefined
 ```
 
+## 配列と分割代入 {#array-destructuring}
+
+配列の指定したインデックスの値を変数として定義し直す場合には、分割代入（Destructuring assignment）が利用できます。
+
+配列の分割代入では、左辺に配列リテラルのような構文で定義したい変数名を書きます。
+右辺の配列から対応するインデックスの要素が、左辺で定義した変数に代入されます。
+
+次のコードでは、左辺に定義した変数に対して、右辺の配列から対応するインデックスの要素が代入されます。
+`first`にはインデックスが`0`の要素、`second`にはインデックスが`1`の要素、`third`にはインデックスが`2`の要素が代入されます。
+
+{{book.console}}
+```js
+const array = ["one", "two", "three"];
+const [first, second, third] = array;
+console.log(first);  // => "one"
+console.log(second); // => "two"
+console.log(third);  // => "three"
+```
+
 ## [コラム] undefinedの要素と未定義の要素の違い {#diff-undefined-and-no-element}
 
 疎な配列で該当するインデックスに要素がない場合は`undefined`を返します。
-しかし、JavaScriptに`undefined`値も存在するため、配列に`undefined`値がある場合に区別できません。
+しかし、`undefined`という値も存在するため、配列に`undefined`という値がある場合に区別できません。
+
+次のコードでは、`undefined`という値を要素として定義した密な配列と、要素そのものがない疎な配列を定義しています。
+どちらも要素にアクセスした結果は`undefined`となり、区別できていないことが分かります。
 
 {{book.console}}
 ```js

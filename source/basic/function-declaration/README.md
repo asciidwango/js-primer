@@ -125,6 +125,67 @@ myFunc("a", "b", "c");
 `arguments`は後述するArrow Functionでは利用できないことや、**Array-like**なオブジェクトであるため扱いにくいです。
 そのため、可変長引数が必要な場合はRest parametersでの実装を検討した方がよいでしょう。
 
+## 関数の引数と分割代入 {#function-destructuring}
+
+関数の引数においても分割代入（Destructuring assignment）が利用できます。
+
+次のコードでは、関数の引数として`user`オブジェクトを渡し、`id`プロパティをコンソールへ出力しています。
+
+{{book.console}}
+```js
+function printUserId(user) {
+    console.log(user.id); // => 42
+}
+const user = {
+    id: 42
+};
+printUserId(user);
+```
+
+関数の引数に分割代入を使うことで、このコードは次のように書けます。
+次のコードの`printUserId`関数はオブジェクトを引数として受け取ります。
+この受け取った`user`オブジェクトの`id`プロパティを変数`id`として定義しています。
+
+{{book.console}}
+```js
+// 第1引数のオブジェクトから`id`プロパティを変数`id`として定義する
+function printUserId({ id }) {
+    console.log(id); // => 42
+}
+const user = {
+    id: 42
+};
+printUserId(user);
+```
+
+代入演算子（`=`）におけるオブジェクトの分割代入では、左辺に定義したい変数を定義し、右辺のオブジェクトから対応するプロパティを代入していました。関数の仮引数が左辺で、関数に渡す引数を右辺と考えるとほぼ同じ構文であることが分かります。
+
+```js
+const user = {
+    id: 42
+};
+// オブジェクトの分割代入
+const { id } = user;
+console.log(id); // => 42
+// 関数の引数の分割代入
+function printUserId({ id }) {
+    console.log(id); // => 42
+}
+printUserId(user);
+```
+
+この関数の引数における分割代入は、オブジェクトだけではなく配列についても利用できます。
+
+{{book.console}}
+```js
+function print([first, second]) {
+    console.log(first); // => 1
+    console.log(second); // => 2
+}
+const array = [1, 2];
+print(array);
+```
+
 ## ファーストクラスファンクション {#first-class-function}
 
 関数が値として扱えることをファーストクラスファンクション（第一級関数）と呼びます。
