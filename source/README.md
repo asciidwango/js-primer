@@ -16,6 +16,7 @@
     - [条件分岐](./basic/condition/README.md)
     - [ループと反復処理](./basic/loop/README.md)
     - [オブジェクト](./basic/object/README.md)
+    - [プロトタイプオブジェクト](./basic/prototype-object/README.md)
     - [配列](./basic/array/README.md)
     - [文字列](./basic/string/README.md)
     - [Math](./basic/math/README.md)
