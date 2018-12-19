@@ -777,7 +777,8 @@ AND演算子（`&&`）は、左辺の値の評価結果が`true`であるなら�
 
 {{book.console}}
 ```js
-const x = true, y = false;
+const x = true;
+const y = false;
 // x -> y の順に評価される
 console.log(x && y); // => false
 // 左辺がfalsyであるなら、その時点でfalseを返す
@@ -785,7 +786,7 @@ console.log(x && y); // => false
 console.log(y && x); // => false
 ```
 
-AND演算子は、if文とよく組み合わせて利用します。
+AND演算子は、if文と組み合わせて利用することが多い演算子です。
 次のように、`value`がString型で **かつ** 値が`"str"`である場合という条件をひとつの式として書くことができます。
 
 {{book.console}}
@@ -817,80 +818,24 @@ AND演算子（`&&`）とは逆に、左辺が`true`である場合は、右辺�
 
 {{book.console}}
 ```js
-const x = true, y = false;
+const x = true;
+const y = false;
 // xがtrueなのでyは評価されない
 console.log(x || y); // => true
 // yはfalseなのでxを評価した結果を返す
 console.log(y || x); // => true
 ```
 
-OR演算子は、左辺の評価結果が`false`である場合に、右辺を評価します。
-これを言い換えると、左辺の評価結果が`false`である場合に、右辺に定義したデフォルト値を使う。
-
-この特性を理解するためには、評価結果が`false`となるものはどのようなものがあるかを知る必要があります。
-
-JavaScriptでは、次の値は`false`として評価されます。
-このような値はfalseっぽい値ということで **falsy** と呼ばれています。
-
-- `false`
-- `undefined`
-- `null`
-- `0`
-- `NaN`
-- `""`（空文字）
-
-これら以外の値は、`true`として評価されます。
-
-この`undefined`が`false`と評価される特性を利用して、
-次のように仮引数のデフォルト値を定義するという書き方ができます。
-
-- `prefix`の値がある場合は`prefix`の値を代入
-- `prefix`の値が未定義（`undefined`）である場合は、右辺の値を代入
+OR演算子は、if文と組み合わせて利用することが多い演算子です。
+次のように、`value`が`0`または`1`の場合にif文の中身が実行されます。
 
 {{book.console}}
 ```js
-function addPrefix(text, prefix) {
-    const pre = prefix || "デフォルト:";
-    return pre + text;
+const value = 1;
+if (value === 0 || value === 1) {
+    console.log("valueは0または1です。");
 }
-
-console.log(addPrefix("文字列")); // => "デフォルト:文字列"
-console.log(addPrefix("文字列", "カスタム")); // => "カスタム文字列"
 ```
-
-しかし、この書き方にはひとつ問題があります。
-falsyとして評価される値には、空文字や数値の`0`が含まれている点が挙げられます。
-
-そのため、次のように`prefix`に空文字を指定して、`prefix`を空文字を期待する場合に、
-デフォルト値が使われるという意図しない挙動が発生してしまいます。
-
-{{book.console}}
-```js
-function addPrefix(text, prefix) {
-    const pre = prefix || "デフォルト:";
-    return pre + text;
-}
-
-console.log(addPrefix("文字列", "")); // => "デフォルト:文字列"
-```
-
-このような意図しない挙動を避けて、デフォルト値を扱うには先ほどの条件演算子を活用する方法などがあります。
-
-しかし、ES2015からは関数の仮引数のデフォルト値を指定できるデフォルト引数が使えます。
-そのためデフォルト引数として書ける場合は、次のように書くのがもっともシンプルになります。
-
-{{book.console}}
-```js
-function addPrefix(text, prefix = "デフォルト:") {
-    return prefix + text;
-}
-
-console.log(addPrefix("文字列")); // => "デフォルト:文字列"
-console.log(addPrefix("文字列", "カスタム")); // => "カスタム文字列"
-```
-
-デフォルト引数とは、関数呼び出しの際に指定した引数が省略された時に、引数にデフォルト値を設定する機能です。
-これにより、先ほどOR演算子で起きた意図しない挙動を避けることができます。
 
 ### NOT演算子（`!`） {#not-operator}
 

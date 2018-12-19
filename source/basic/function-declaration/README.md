@@ -41,7 +41,7 @@ function 関数名(仮引数1, 仮引数2) {
 
 <!-- textlint-disable no-js-function-paren -->
 
-宣言した関数は、`関数名()`と書くことで呼び出すことができます。
+宣言した関数は、`関数名()`とカッコをつけることで呼び出せます。
 関数を引数と共に呼ぶ際は、`関数名(引数1, 引数2)`とし、引数が複数ある場合は`,`（カンマ）で区切ります。
 
 <!-- textlint-enable no-js-function-paren -->
@@ -92,14 +92,127 @@ JavaScriptは動的な言語であるため、関数の定義した仮引数の�
 
 ### 引数が少ないとき {#function-less-arguments}
 
-### デフォルト引数 {#function-default-arguments}
+定義した関数の仮引数よりも呼び出し時の引数が少ない場合、余った仮引数には`undefined`という値が代入されます。
+
+次のコードの引数として渡した値をそのまま返す`echo`関数を定義しています。
+`echo`関数は仮引数`x`を定義していますが、引数を渡さずに呼び出すと仮引数`x`には`undefined`が入ります。
+
+```js
+function echo(x) {
+    return x;
+}
+
+echo(1); // => 1
+echo(); // => undefined
+```
+
+複数の引数を受け付ける関数でも同様に、余った仮引数には`undefined`が入ります。
+
+次のコードでは、2つの引数を受け取りそれを配列として返す`argumentsToArray`関数を定義しています。
+このとき、引数として1つの値しか渡していない場合、残る仮引数には`undefined`が代入されます。
+
+```js
+function argumentsToArray(x, y) {
+    return [x, y];
+}
+
+argumentsToArray(1, 2); // => [1, 2]
+// 仮引数のxには1、yにはundefinedが入る
+argumentsToArray(1); // => [1, undefined]
+```
+
+### [ES2015] デフォルト引数 {#function-default-arguments}
+
+デフォルト引数は、仮引数に値が渡されずに関数が呼び出されたときに、仮引数にデフォルトで代入される値を指定できます。
+次のように、仮引数に対して`仮引数 = デフォルト値`という構文で、仮引数ごとにデフォルト値を指定できます。
+
+```js
+function 関数名(仮引数1 = デフォルト値1, 仮引数2 = デフォルト値2) {
+
+}
+```
+
+次のコードでは、渡した値をそのまま返す`echo`関数を定義しています。
+さきほどの`echo`関数とは異なり、仮引数`x`に対してデフォルト値を指定しています。
+そのため、引数を渡さずに`echo`関数を呼び出すと、`x`には`"デフォルト値"`が代入されます。
+
+```js
+function echo(x = "デフォルト値") {
+    return x;
+}
+
+echo(1); // => 1
+echo(); // => "デフォルト値"
+```
+
+ES2015でデフォルト引数が導入されるまでは、OR演算子（`||`）を使ったデフォルト値の指定がよく利用されていました。
+
+{{book.console}}
+```js
+function addPrefix(text, prefix) {
+    const pre = prefix || "デフォルト:";
+    return pre + text;
+}
+
+console.log(addPrefix("文字列")); // => "デフォルト:文字列"
+console.log(addPrefix("文字列", "カスタム")); // => "カスタム文字列"
+```
+
+しかし、OR演算子（`||`）を使ったデフォルト値の指定にはひとつ問題があります。
+OR演算子（`||`）では、左辺のオペランドがfalsyな値の場合、右辺のオペランドを評価します。
+falsyな値とは、次のような`false`のような値のことです。
+
+- `false`
+- `undefined`
+- `null`
+- `0`
+- `NaN`
+- `""`（空文字）
+
+そのため、次のように`prefix`に空文字を指定した場合にもデフォルト値が入ります。
+これは書いた人が意図した挙動なのかがとてもわかりにくく、このような挙動はバグにつながることがあります。
+
+{{book.console}}
+```js
+function addPrefix(text, prefix) {
+    const pre = prefix || "デフォルト:";
+    return pre + text;
+}
+
+// falsyな値を渡すとデフォルト値が入ってしまう
+console.log(addPrefix("文字列", "")); // => "デフォルト:文字列"
+console.log(addPrefix("文字列", 0)); // => "デフォルト:文字列"
+console.log(addPrefix("文字列", null)); // => "デフォルト:文字列"
+console.log(addPrefix("文字列", false)); // => "デフォルト:文字列"
+```
+
+そのため、デフォルト引数を使って書くことで、意図しない挙動を減らすことができ安全です。
+デフォルト引数では、引数が渡されなかった場合のみデフォルト値が入ります。
+
+{{book.console}}
+```js
+function addPrefix(text, prefix = "デフォルト:") {
+    return prefix + text;
+}
+
+console.log(addPrefix("文字列")); // => "デフォルト:文字列"
+console.log(addPrefix("文字列", "")); // => "文字列"
+console.log(addPrefix("文字列", "カスタム")); // => "カスタム文字列"
+```
 
 ### 引数が多いとき {#function-more-arguments}
+
+関数の仮引数に対して引数の個数が多い場合、溢れた引数は単純に無視されます。
+
+次コードでは、2つの引数を足し算する`add`関数を定義しています。
+この`add`関数には仮引数が2つしかありません。
+そのため、3つ以上の引数を渡しても3番目以降の引数は単純に無視されます。
 
 ```js
 function add(x, y) {
     return x + y;
 }
+add(1, 3); // => 4
 add(1, 3, 5); // => 4
 ```
 
