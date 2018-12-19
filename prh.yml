@@ -269,6 +269,9 @@ rules:
   - expected: サーバーサイド
     patterns:
       - サーバサイド
+  - expected: プロトタイプオブジェクト
+    patterns:
+      - prototypeオブジェクト
 
   # 一致とマッチ
   ## 一致は ===
