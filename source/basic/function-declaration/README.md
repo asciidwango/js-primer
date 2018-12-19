@@ -87,9 +87,23 @@ console.log(fn()); // => undefined
 
 ## 関数の引数 {#function-arguments}
 
+JavaScriptは動的な言語であるため、関数の定義した仮引数の個数と実際に呼び出されるときの引数の個数が違ってもエラーとなるわけではありません。
+そのため、引数の個数があっていないときの挙動や引数が省略されたときにデフォルトの値を指定するデフォルト引数という機能があります。
 
+### 引数が少ないとき {#function-less-arguments}
 
-### 可変長引数 {#variable-arguments}
+### デフォルト引数 {#function-default-arguments}
+
+### 引数が多いとき {#function-more-arguments}
+
+```js
+function add(x, y) {
+    return x + y;
+}
+add(1, 3, 5); // => 4
+```
+
+## 可変長引数 {#variable-arguments}
 
 関数には引数の数が固定ではなく、可変長である場合があります。
 たとえば、`Math.max(...args)`は引数を何個でも受け取り、受け取った引数の中で最大の値を返します。
@@ -102,7 +116,7 @@ console.log(max); // => 20
 
 可変長引数を実現するためには、引数がすべて入った`arguments`か、Rest parametersを使用します。
 
-#### `arguments` {#arguments}
+### `arguments` {#arguments}
 
 `arguments`は関数の中でのみ参照できる特殊な変数です。
 `arguments`は関数に渡された値が入った**Array-like**なオブジェクトです。
