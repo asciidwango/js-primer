@@ -444,7 +444,7 @@ console.log(factorial(3)); // => 6
 ### [ES2015] Arrow Function {#arrow-function}
 
 関数式にはもうひとつArrow Functionと呼ばれる書き方があります。
-名前があらわすように `=>`（イコールと大なり記号） を使うことで、匿名関数を定義できます。
+名前のとおり`=>`（イコールと大なり記号）で匿名関数を定義する構文です。
 次のように、`function`キーワードを使った関数式とよく似た書き方をします。
 
 ```js
@@ -467,14 +467,14 @@ Arrow Functionには書き方のいくつかパターンがありますが、`fu
 {{book.console}}
 ```js
 // 仮引数の数と定義
-const fnA =     () => { /* 仮引数がないとき */ };
-const fnB =    (x) => { /* 仮引数が1つのみのとき */ };
-const fnC =      x => { /* 仮引数が1つのみのときは()を省略可能 */ };
+const fnA = () => { /* 仮引数がないとき */ };
+const fnB = (x) => { /* 仮引数が1つのみのとき */ };
+const fnC = x => { /* 仮引数が1つのみのときは()を省略可能 */ };
 const fnD = (x, y) => { /* 仮引数が複数の時 */ };
 // 値の返し方
 // 次の２つの定義は同じ意味となる
-const mulA =     x => { return x * x; } // ブロックの中でreturn
-const mulB =     x => x * x;            // 1行のみの場合はreturnとブロックを省略できる
+const mulA = x => { return x * x; } // ブロックの中でreturn
+const mulB = x => x * x;            // 1行のみの場合はreturnとブロックを省略できる
 ```
 
 <!-- textlint-enable eslint -->
@@ -485,7 +485,7 @@ Arrow Functionについては次のような特徴があります。
 - `this`が静的に決定する（詳細は「[関数とスコープ][]」の章で解説します）
 - `function`キーワードに比べて短く書くことができる
 - `new`できない（コンストラクタ関数ではない）
-- `arguments`を持たない
+- `arguments`をもたない
 
 たとえば`function`キーワードの関数式では、値を返すコールバック関数を次のように書きます。
 `Array#map`は配列の要素を順番にコールバック関数へ渡し、そのコールバック関数が返した値を新しい配列にして返します。
@@ -512,13 +512,13 @@ console.log(doubleArray); // => [2, 4, 6];
 ```
 
 Arrow Functionは`function`キーワードに比べて、できることとできないことがはっきりしています。
-これにより、人による解釈や実装の違いが発生しにくくなり、コード行数も短くなります。
-そのため、`function`キーワードよりもArrow Functionを使い実装した方がよいといえるでしょう。
+たとえば、`function`キーワードでは非推奨としていた`arguments`変数を参照できますが、Arrow Functionでは参照できなくなっています。
+Arrow Functionでは、人による解釈や実装の違いが生まれにくくなります。
 
-また、もっとも大きな違いとしてArrow Functionでは`this`の参照先が静的に決定します。
-`function`キーワードの関数における`this`は呼び出し元によって値が異なるため、`this`が含まれるコードはとても読みにくいものとなっていました。
-Arrow Functionでは、`this`がコードを見たまま値が決まるため読みやすいコードとなります。
-詳細はn章で解説しますが、この`this`の問題を解決できるためArrow Functionの利用を推奨しています。
+また、`function`キーワードとArrow Functionの大きな違いとして、`this`という特殊なキーワードに関する挙動の違いあります。
+`this`については「[関数とスコープ][]」の章で解説しますが、Arrow Functionではこの`this`の問題が解決できるという利点があります。
+
+そのため、Arrow Functionで問題ない場合はArrow Functionで書き、そうでない場合は`function`キーワードを使うことを推奨します。
 
 ### コールバック関数 {#callback}
 
@@ -634,11 +634,7 @@ console.log(object.method()); // => "this is method"
 
 基本的な関数の定義や値としての関数について学びました。
 JavaScriptでは、非同期処理を扱うことが多く、その場合にコールバック関数が使われます。
-
 Arrow Functionを使うことで、コールバック関数を短く簡潔に書くことができます。
-
-しかし、コールバック関数が多用されるとコードの動作フローを追うことが難しくなっていきます。
-このような全体的なコントロールフローを管理する方法としてPromiseやGeneratorといったものがあります。
 
 [関数とスコープ]: ../function-scope/README.md
 [非同期処理]: ../async/README.md
