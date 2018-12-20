@@ -196,7 +196,7 @@ function addPrefix(text, prefix = "デフォルト:") {
 // falsyな値を渡してもデフォルト値は代入されない
 console.log(addPrefix("文字列")); // => "デフォルト:文字列"
 console.log(addPrefix("文字列", "")); // => "文字列"
-console.log(addPrefix("文字列", "カスタム:")); // => "カスタム文字列"
+console.log(addPrefix("文字列", "カスタム:")); // => "カスタム:文字列"
 ```
 
 ### 引数が多いとき {#function-more-arguments}
