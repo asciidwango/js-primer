@@ -180,10 +180,9 @@ function addPrefix(text, prefix) {
 }
 
 // falsyな値を渡すとデフォルト値が入ってしまう
+console.log(addPrefix("文字列")); // => "デフォルト:文字列"
 console.log(addPrefix("文字列", "")); // => "デフォルト:文字列"
-console.log(addPrefix("文字列", 0)); // => "デフォルト:文字列"
-console.log(addPrefix("文字列", null)); // => "デフォルト:文字列"
-console.log(addPrefix("文字列", false)); // => "デフォルト:文字列"
+console.log(addPrefix("文字列", "カスタム")); // => "カスタム:文字列"
 ```
 
 そのため、デフォルト引数を使って書くことで、意図しない挙動を減らすことができ安全です。
@@ -194,7 +193,7 @@ console.log(addPrefix("文字列", false)); // => "デフォルト:文字列"
 function addPrefix(text, prefix = "デフォルト:") {
     return prefix + text;
 }
-
+// falsyな値を渡してもデフォルト値は代入されない
 console.log(addPrefix("文字列")); // => "デフォルト:文字列"
 console.log(addPrefix("文字列", "")); // => "文字列"
 console.log(addPrefix("文字列", "カスタム")); // => "カスタム文字列"
