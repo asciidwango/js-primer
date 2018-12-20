@@ -155,7 +155,7 @@ function addPrefix(text, prefix) {
 }
 
 console.log(addPrefix("文字列")); // => "デフォルト:文字列"
-console.log(addPrefix("文字列", "カスタム")); // => "カスタム文字列"
+console.log(addPrefix("文字列", "カスタム:")); // => "カスタム:文字列"
 ```
 
 しかし、OR演算子（`||`）を使ったデフォルト値の指定にはひとつ問題があります。
@@ -182,7 +182,7 @@ function addPrefix(text, prefix) {
 // falsyな値を渡すとデフォルト値が入ってしまう
 console.log(addPrefix("文字列")); // => "デフォルト:文字列"
 console.log(addPrefix("文字列", "")); // => "デフォルト:文字列"
-console.log(addPrefix("文字列", "カスタム")); // => "カスタム:文字列"
+console.log(addPrefix("文字列", "カスタム:")); // => "カスタム:文字列"
 ```
 
 そのため、デフォルト引数を使って書くことで、意図しない挙動を減らすことができ安全です。
@@ -196,7 +196,7 @@ function addPrefix(text, prefix = "デフォルト:") {
 // falsyな値を渡してもデフォルト値は代入されない
 console.log(addPrefix("文字列")); // => "デフォルト:文字列"
 console.log(addPrefix("文字列", "")); // => "文字列"
-console.log(addPrefix("文字列", "カスタム")); // => "カスタム文字列"
+console.log(addPrefix("文字列", "カスタム:")); // => "カスタム文字列"
 ```
 
 ### 引数が多いとき {#function-more-arguments}
