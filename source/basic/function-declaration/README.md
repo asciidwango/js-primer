@@ -36,7 +36,7 @@ function 関数名(仮引数1, 仮引数2) {
 関数は次の3つの要素から構成されています。
 
 - 関数名 - 利用できる文字列は変数名と同じ
-- 仮引数 - 引数と共に呼ばれた場合に値が入る変数。複数ある場合は`,`（カンマ）で区切る
+- 仮引数（パラメータ） - 関数の呼び出し時に渡された値が入る変数。複数ある場合は`,`（カンマ）で区切る
 - 関数の中身 - `{`と`}`で囲んだ関数の処理を書く場所
 
 <!-- textlint-disable no-js-function-paren -->
@@ -121,9 +121,9 @@ argumentsToArray(1, 2); // => [1, 2]
 argumentsToArray(1); // => [1, undefined]
 ```
 
-### [ES2015] デフォルト引数 {#function-default-arguments}
+### [ES2015] デフォルト引数 {#function-default-parameters}
 
-デフォルト引数は、仮引数に値が渡されずに関数が呼び出されたときに、仮引数にデフォルトで代入される値を指定できます。
+デフォルト引数（デフォルトパラメータ）は、仮引数に対応する引数が渡されていない場合に、デフォルトで代入される値を指定できます。
 次のように、仮引数に対して`仮引数 = デフォルト値`という構文で、仮引数ごとにデフォルト値を指定できます。
 
 ```js
@@ -218,56 +218,85 @@ add(1, 3, 5); // => 4
 
 ## 可変長引数 {#variable-arguments}
 
-関数には引数の数が固定ではなく、可変長である場合があります。
-たとえば、`Math.max(...args)`は引数を何個でも受け取り、受け取った引数の中で最大の値を返します。
+関数において引数の数が固定ではなく、任意の個数の引数を受け取りたい場合があります。
+たとえば、`Math.max(...args)`は引数を何個でも受け取り、受け取った引数の中で最大の値を返す関数です。
+このような、任意の個数の引数のことを**可変長引数**とよびます。
 
 {{book.console}}
 ```js
+// Math.maxは可変長引数を受け取る関数
 const max = Math.max(1, 5, 10, 20);
 console.log(max); // => 20
 ```
 
-可変長引数を実現するためには、引数がすべて入った`arguments`か、Rest parametersを使用します。
+可変長引数を実現するためには、Rest parametersか関数の中でのみ参照できる`arguments`という特殊な変数を利用します。
 
-### `arguments` {#arguments}
+### [ES2015] Rest parameters {#rest-parameters}
 
-`arguments`は関数の中でのみ参照できる特殊な変数です。
-`arguments`は関数に渡された値が入った**Array-like**なオブジェクトです。
+Rest parametersは仮引数名の前に`...`をつけた仮引数のことです。
+この仮引数には、関数に渡された値が配列として代入されます。
 
-{{book.console}}
-```js
-function myFunc() {
-    console.log(arguments[0]); // => "a" 
-    console.log(arguments[1]); // => "b" 
-    console.log(arguments[2]); // => "c" 
-}
-myFunc("a", "b", "c");
-```
-
-**Array-like**なオブジェクトは、配列のようにインデックスで要素へアクセスできます。
-しかし、`Array`を継承していないため、`Array`のメソッドが使えない特殊なオブジェクトです。
-
-### Rest parameters {#rest-parameters}
-
-Rest parametersは仮引数名の前に`...`をつけます。
-この仮引数には、関数に渡された値の配列が入ります。
+次のコードでは、`fn`関数に`...args`という仮引数が定義されています。
+この`fn`関数を呼び出したときの引数が、`args`に配列として代入されます。
 
 {{book.console}}
 ```js
-function myFunc(...args) {
+function fn(...args) {
     console.log(args[0]); // => "a" 
     console.log(args[1]); // => "b" 
     console.log(args[2]); // => "c" 
 }
-myFunc("a", "b", "c");
+fn("a", "b", "c");
 ```
 
-`arguments`は後述するArrow Functionでは利用できないことや、**Array-like**なオブジェクトであるため扱いにくいです。
-そのため、可変長引数が必要な場合はRest parametersでの実装を検討した方がよいでしょう。
+Rest parametersは、通常の仮引数と組み合わせても定義できます。
+他の仮引数と組み合わせる際には、必ずRest parametersは末尾の仮引数として定義する必要があります。
+
+次のコードでは、1番目の引数は`arg1`に代入され、残りの引数が`restArgs`に配列として代入されます。
+
+{{book.console}}
+```js
+function fn(arg1, ...restArgs) {
+    console.log(arg1); // => "a"
+    console.log(restArgs); // => ["b", "c"]
+}
+fn("a", "b", "c");
+```
+
+### `arguments` {#arguments}
+
+可変長引数を扱う方法として、`arguments`という関数の中でのみ参照できる特殊な変数があります。
+`arguments`は関数に渡された引数の値がすべて入った**Array-like**なオブジェクトです。
+**Array-like**なオブジェクトは、配列のようにインデックスで要素へアクセスできます。
+しかし、`Array`を継承していないため、実際の配列とは異なり`Array`のメソッドは利用できません。
+
+次のコードでは、`fn`関数に仮引数が定義されていません。
+しかし、関数の内部では`arguments`という変数で、実際に渡された引数を配列のように参照できます。
+
+{{book.console}}
+```js
+function fn() {
+    // `arguments`はインデックスを指定して各要素にアクセスできる
+    console.log(arguments[0]); // => "a" 
+    console.log(arguments[1]); // => "b" 
+    console.log(arguments[2]); // => "c" 
+}
+fn("a", "b", "c");
+```
+
+Rest parametersが利用できる環境では、`arguments`変数を使うべき理由はありません。
+`arguments`変数には次のような問題があります。
+
+- 後述するArrow Functionでは利用できない
+- Array-likeオブジェクトであるため、配列のメソッドを利用できない
+- 関数が可変長引数を受け付けるかが、仮引数だけを見て判断できない（宣言的ではない）
+
+そのため、可変長引数が必要な場合はRest parametersでの実装を推奨します。
 
 ## 関数の引数と分割代入 {#function-destructuring}
 
 関数の引数においても分割代入（Destructuring assignment）が利用できます。
+分割代入はオブジェクトや配列からプロパティを取り出し、変数として定義し直す構文です。
 
 次のコードでは、関数の引数として`user`オブジェクトを渡し、`id`プロパティをコンソールへ出力しています。
 
@@ -298,7 +327,8 @@ const user = {
 printUserId(user);
 ```
 
-代入演算子（`=`）におけるオブジェクトの分割代入では、左辺に定義したい変数を定義し、右辺のオブジェクトから対応するプロパティを代入していました。関数の仮引数が左辺で、関数に渡す引数を右辺と考えるとほぼ同じ構文であることが分かります。
+代入演算子（`=`）におけるオブジェクトの分割代入では、左辺に定義したい変数を定義し、右辺のオブジェクトから対応するプロパティを代入していました。
+関数の仮引数が左辺で、関数に渡す引数を右辺と考えるとほぼ同じ構文であることが分かります。
 
 ```js
 const user = {
