@@ -42,6 +42,7 @@
 </style>
 <meta name="theme-color" content="#ffffff">
 <link rel="manifest" href="{{ "/manifest.json"|resolveFile }}">
+<script src="https://unpkg.com/service-worker-updatefound-refresh-dialog@1.0.1/dist/service-worker-updatefound-refresh-dialog.umd.js"></script>
 <script>
     if ("serviceWorker" in navigator) {
         const isLocalhost = Boolean(
@@ -56,7 +57,10 @@
         );
         if (!isLocalhost) {
             window.addEventListener("load", () => {
-                navigator.serviceWorker.register("{{ '/sw.js'|resolveFile }}");
+                navigator.serviceWorker.register("{{ '/sw.js'|resolveFile }}")
+                    .then(function(registration) {
+                        serviceWorkerUpdatefoundRefreshDialog.register(registration);
+                    });
             });
         }
     }
