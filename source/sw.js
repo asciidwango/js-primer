@@ -3,8 +3,6 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.1/workbox
 
 workbox.core.setCacheNameDetails({ prefix: "js-primer-v1" });
 workbox.googleAnalytics.initialize();
-workbox.skipWaiting();
-workbox.clientsClaim();
 
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute([]);
