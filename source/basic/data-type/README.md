@@ -375,13 +375,16 @@ console.log(numberRegExp.test(123)); // => true
 {{book.console}}
 ```js
 // strict modeではない実行環境
-var undefined = "独自の未定義値"; // undefinedというローカル変数を定義できる
-console.log(undefined); // => "独自の未定義値"
+function fn(){
+    var undefined = "独自の未定義値"; // undefinedと名前の変数をエラーなく定義できる
+    console.log(undefined); // => "独自の未定義値"
+}
+fn();
 ```
 
 <!-- textlint-enable eslint -->
 
-これに対して`null`は変数ではなくリテラルであるため、`var`を使っても再定義できません。
+これに対して`null`はグローバル変数ではなくリテラルであるため、`var`を使っても再定義できません。
 リテラルは変数名として利用できない予約語であるため、このような違いが生じています。
 
 {{book.console}}
