@@ -10,38 +10,94 @@ author: azu
 
 if文を使うことで、プログラム内に条件分岐を書くことができます。
 
-if文は次のような構文が基本形となり、`条件式`の評価結果が`true`であるならば、
-`実行する文`が実行されます。
+if文は次のような構文が基本形となります。
+`条件式`の評価結果が`true`であるならば、`実行する文`が実行されます。
 
 <!-- doctest:ReferenceError -->
 ```js
-if (条件式)
-    実行する文;
-```
-
-どのような式が`true`として評価されるかは、[Booleanオブジェクト][]で紹介します。
-
-- [ ] TODO: Booleanオブジェクトのリンク先がない
-
-`実行する文`が複数行である場合は、`{` と `}`で囲みます。
-この`{` と `}`で囲んだ範囲を**ブロック**と呼びます。
-
-<!-- doctest:disable -->
-```js
 if (条件式) {
-    実行する文;
     実行する文;
 }
 ```
 
-
-次のコードでは `year` が `2015` よりも大きな値である場合、
-if文の `{` と `}` で囲まれたブロック内が処理されます。
+次のコードでは`条件式`が`true`であるため、ifの中身が実行されます。
 
 {{book.console}}
-[import, if-example.js](src/if/if-example.js)
+```js
+if (true) {
+    console.log("この文は実行されます");
+}
+```
 
-`実行する文`が1行のみである場合、ブロックは省略が可能ですが、コードの読みにくさに繋がるため常につけることを推奨します。
+`実行する文`が1行のみの場合は、`{` と `}` のブロックを省略できます。
+しかし、どこまでがif文かがわかりにくくなるため、常にブロックで囲むことを推奨します。
+
+{{book.console}}
+```js
+if (true)
+    console.log("この文は実行されます");
+```
+
+if文は`条件式`に比較演算子などを使い、その比較結果によって処理を分岐するためによく使われます。
+次のコードでは、`x`が`10`よりも大きな値である場合に、if文の中身が実行されます。
+
+{{book.console}}
+```js
+const x = 42;
+if (x > 10) {
+    console.log("xは10より大きな値です");
+}
+```
+
+if文の`条件式`には`true`または`false`といった真偽値以外の値も指定できます。
+真偽値以外の値の場合、その値を暗黙的に真偽値へ変換した評価結果を使い、if文の判定を行います。
+
+真偽値へ変換した結果が`true`となる値の種類は多いため、逆に変換した結果が`false`となる値を覚えるのが簡単です。JavaScriptでは次の値は`false`に変換され、これらの値は**falsy** と呼ばれます。（「[暗黙的な型変換][]の章」を参照）
+
+- `false`
+- `undefined`
+- `null`
+- `0`
+- `NaN`
+- `""`（空文字）
+
+**falsy**以外の値は`true`へ変換されます。
+
+そのため、`true`、`"文字列"`、0以外の数値などを`条件式`に指定した場合は、`true`へと変換されます。
+
+次のコードは、条件式が`true`へと変換されるため、if文の中身は実行されます。
+
+{{book.console}}
+```js
+if (true) {
+    console.log("この文は実行されます");
+}
+if ("文字列") {
+    console.log("この文は実行されます");
+}
+if (42) {
+    console.log("この文は実行されます");
+}
+```
+
+falsyな値を`条件式`に指定した場合は、`false`へと変換されます。
+次のコードは、条件式が`false`へと変換されるため、if文の中身は実行されません。
+
+{{book.console}}
+```js
+if (false) {
+    // この文は実行されません
+}
+if ("") {
+    // この文は実行されません
+}
+if (0) {
+    // この文は実行されません
+}
+if (null) {
+    // この文は実行されません
+}
+```
 
 ### else if文 {#else-if-statement}
 
@@ -196,4 +252,5 @@ switch文のcase節では基本的に`break;`を使いswitch文を抜けるよ�
 - [switch - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/switch)
 - [制御フローとエラー処理 - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Control_flow_and_error_handling)
 
-[Booleanオブジェクト]: ../Boolean/README.md "TODO: リンクが未完成"
+
+[暗黙的な型変換]: ../implicit-coercion/README.md

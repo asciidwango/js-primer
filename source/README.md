@@ -29,7 +29,6 @@
     - [JSON](./basic/json/README.md)
     - [Date](./basic/date/README.md)
     - [Math](./basic/math/README.md)
-    - [非推奨の機能](./basic/bad-parts/README.md)
     - [ECMAScript](./basic/ecmascript/README.md)
     - [第1部: おわりに](./basic/other-parts/README.md)
 - [第2部: 応用編（ユースケース）](./use-case/README.md)
