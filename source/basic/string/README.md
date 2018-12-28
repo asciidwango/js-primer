@@ -206,7 +206,7 @@ JavaScriptでは基本的にStringメソッドは、文字列をCode Unitが並�
 
 次の3つは例外として、文字列をCode Pointが並んでいるように扱います。
 
-- Iterator（`for...or`や`Array.from`など）
+- Iterator（`for...of`や`Array.from`など）
 - メソッドに`CodePoint`という名前を含むもの
 - `u`（Unicode）フラグが有効化されている正規表現
 
