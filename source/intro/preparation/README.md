@@ -62,7 +62,7 @@ hello("名前");
 <!-- textlint-disable -->
 
 *SyntaxError: illegal character*や*SyntaxError: Invalid or unexpected token*のようなエラーメッセージがでている場合は、
-どこかで全角の記号や英数字が混ざっています。
+どこかに全角の記号や全角の英数字が混ざっています。
 
 <!-- textlint-enable -->
 
