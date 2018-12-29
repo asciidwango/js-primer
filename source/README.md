@@ -1,6 +1,7 @@
 # 目次 {#summary}
 
 - [この書籍について](./index.md)
+- [読み始める前の事前準備](./intro/preparation/README.md)
 - [本書の目的](./intro/goal/README.md)
 - [文章の間違いに気づいたら](./intro/feedback/README.md)
 - [第1部: 基礎文法](./basic/README.md)
