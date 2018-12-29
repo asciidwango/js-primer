@@ -12,4 +12,4 @@ workbox.googleAnalytics.initialize();
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute([]);
 
-workbox.routing.registerRoute(/\.+/, workbox.strategies.networkFirst());
+workbox.routing.registerRoute(/\.+/, workbox.strategies.cacheFirst());
