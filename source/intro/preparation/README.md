@@ -16,6 +16,8 @@ author: azu
 
 ブラウザの準備ができたら、次のURLをブラウザでひらいてください。
 
+- <https://jsprimer.net/intro/preparation/>
+
 {% endif %}
 
 次のJavaScriptのサンプルコードを書いて、ブラウザでJavaScriptを実行してみましょう。
