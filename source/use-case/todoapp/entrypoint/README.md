@@ -60,8 +60,7 @@ JavaScriptモジュールはHTMLから`<script type="module">`で読み込むこ
 
 コマンドラインで`todoapp`ディレクトリへ移動し、次のコマンドでローカルサーバを起動します。
 `npx`コマンドを使い、この書籍用に作成された`@js-primer/local-server`というローカルサーバモジュールをダウンロードと同時に実行します。
-
-<!-- TODO: npxの解説へのリンクを貼る -->
+ まだ`npx`コマンドの用意できていなければ、先に[アプリケーション開発の準備][]を参照してください。
 
 ```shell-session
 # todoapp/ディレクトリに移動する
@@ -234,3 +233,4 @@ import { App } from "./src/App.js";
 [Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
 [npmを使ってパッケージをインストールする]: ../../nodecli/argument-parse/README.md#use-npm
 [Can I Use]: https://caniuse.com/#feat=es6-module
+[アプリケーション開発の準備]: ../../setup-local-env/README.md
