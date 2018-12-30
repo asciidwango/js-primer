@@ -58,8 +58,7 @@ export class TodoListModel extends EventEmitter {
     // ===============================
     /**
      * 指定したidのTodoItemのcompletedを更新する
-     * @param {number} id
-     * @param {boolean} completed
+     * @param {{ id:number, completed: boolean }}
      */
     updateTodo({ id, completed }) {
         // `id`が一致するTodoItemを見つけ、あるなら完了状態の値を更新する

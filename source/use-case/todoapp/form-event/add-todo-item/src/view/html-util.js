@@ -15,7 +15,7 @@ export function htmlToElement(html) {
 
 /**
  * HTML文字列からDOM Nodeを作成して返す
- * @return {HTMLElement}
+ * @return {Element}
  */
 export function element(strings, ...values) {
     const htmlString = strings.reduce((result, string, i) => {
@@ -31,8 +31,8 @@ export function element(strings, ...values) {
 
 /**
  * コンテナ要素の中身をbodyElementで上書きする
- * @param {HTMLElement} bodyElement コンテナ要素の中身となる要素
- * @param {HTMLElement} containerElement コンテナ要素
+ * @param {Element} bodyElement コンテナ要素の中身となる要素
+ * @param {Element} containerElement コンテナ要素
  */
 export function render(bodyElement, containerElement) {
     // rootElementの中身を空にする
