@@ -11,19 +11,3 @@ workbox.googleAnalytics.initialize();
 
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute([]);
-
-workbox.routing.registerRoute(/.*/, 
-    workbox.strategies.networkFirst({
-        cacheName: "pages-cache"
-    })
-);
-workbox.routing.registerRoute(/\.(?:png|gif|jpg|svg)$/,
-    workbox.strategies.cacheFirst({
-        cacheName: "images-cache"
-    })
-);
-workbox.routing.registerRoute(/\.(?:js|css)$/,
-    workbox.strategies.staleWhileRevalidate({
-        cacheName: "static-resources"
-    })
-);
