@@ -1,17 +1,8 @@
 {
   "rules": {
-    "no-console": "off",
-    "prettier/prettier": "error"
+    "no-console": "off"
   },
   "extends": [
-    "./config/base.eslintrc.js",
-    "plugin:prettier/recommended"
-  ],
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".html"]
-      }
-    }
-  }
+    "./config/base.eslintrc.js"
+  ]
 }
