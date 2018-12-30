@@ -19,8 +19,7 @@ export class App {
 
     /**
      * Todoの状態を更新時に呼ばれるリスナー関数
-     * @param {number} id
-     * @param {boolean} completed
+     * @param {{ id:number, completed: boolean }}
      */
     handleUpdate({ id, completed }) {
         this.todoListModel.updateTodo({ id, completed });
@@ -28,7 +27,7 @@ export class App {
 
     /**
      * Todoを削除時に呼ばれるリスナー関数
-     * @param {number} id
+     * @param {{ id: number }}
      */
     handleDelete({ id }) {
         this.todoListModel.deleteTodo({ id });
@@ -56,10 +55,7 @@ export class App {
 
         formElement.addEventListener("submit", (event) => {
             event.preventDefault();
-            this.todoListModel.addTodo(new TodoItemModel({
-                title: inputElement.value,
-                completed: false
-            }));
+            this.handleAdd(inputElement.value);
             inputElement.value = "";
         });
     }

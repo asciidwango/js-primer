@@ -13,4 +13,12 @@ export class TodoItemModel {
         this.title = title;
         this.completed = completed;
     }
+
+    /**
+     * タイトルが空文字の場合にtrueを返す
+     * @returns {boolean}
+     */
+    isEmptyTitle() {
+        return this.title.length === 0;
+    }
 }

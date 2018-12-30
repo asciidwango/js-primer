@@ -3,8 +3,9 @@ let todoIdx = 0;
 
 export class TodoItemModel {
     /**
-     * @param {string} title Todoアイテムのタイトル
-     * @param {boolean} completed Todoアイテムが完了済みならばtrue、そうでない場合はfalse
+     * `title`: Todoアイテムのタイトル
+     * `completed`: Todoアイテムが完了済みならばtrue、そうでない場合はfalse
+     * @param {{ title: string, completed: boolean }}
      */
     constructor({ title, completed }) {
         // idは自動的に連番となりそれぞれのインスタンス毎に異なるものとする

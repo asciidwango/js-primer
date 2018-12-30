@@ -45,12 +45,16 @@ export class TodoListModel extends EventEmitter {
      * @param {TodoItemModel} todoItem
      */
     addTodo(todoItem) {
+        // タイトルが空のものは追加しない
+        if (todoItem.isEmptyTitle()) {
+            return;
+        }
         this.items.push(todoItem);
         this.emitChange();
     }
 
     /**
-     * 指定した`id`のTodoItemの`completed`を更新する
+     * 指定したidのTodoItemのcompletedを更新する
      * @param {{ id:number, completed: boolean }}
      */
     updateTodo({ id, completed }) {
@@ -62,10 +66,6 @@ export class TodoListModel extends EventEmitter {
         this.emitChange();
     }
 
-    //! [add-point]
-    // ===============================
-    // TodoItemModel.jsの既存の実装は省略
-    // ===============================
     /**
      * 指定したidのTodoItemを削除する
      * @param {{ id: number }}
@@ -78,4 +78,3 @@ export class TodoListModel extends EventEmitter {
         this.emitChange();
     }
 }
-//! [add-point]
