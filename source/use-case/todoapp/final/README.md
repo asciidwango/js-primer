@@ -125,12 +125,15 @@ Todoリストの表示は次の2つの部品（コンポーネント）から成
 ウェブページにも`load`というページ読み込みが完了した時に発生するイベントと、`unload`というページを破棄した時に発生するイベントがあります。
 Todoアプリも`mount`と`unmount`を実装し、次のようにウェブページのライフサイクルに合わせられます。
 
+<!-- textlint-disable -->
 ```js
 const app = new App();
+// ページのロードが完了したときのイベント
 window.addEventListener("load", () => {
     app.mount();
 });
-window.addEventListener("unload", () => {
+// ページがアンロードされたときのイベント
+window.addEventListener(" unload", () => {
     app.unmount();
 });
 ```
