@@ -4,7 +4,7 @@
 - [読み始める前の事前準備](./intro/preparation/README.md)
 - [本書の目的](./intro/goal/README.md)
 - [文章の間違いに気づいたら](./intro/feedback/README.md)
-- [第1部: 基礎文法](./basic/README.md)
+- [第1部: 基本文法](./basic/README.md)
     - [JavaScriptとは](./basic/introduction/README.md)
     - [コメント](./basic/comments/README.md)
     - [変数と宣言](./basic/variables/README.md)
