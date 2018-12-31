@@ -28,18 +28,14 @@ export class App {
                 }
             });
             render(todoListElement, containerElement);
-            todoItemCountElement.textContent = `Todoアイテム数: ${
-                this.todoListModel.totalCount
-            }`;
+            todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.totalCount}`;
         });
-        formElement.addEventListener("submit", event => {
+        formElement.addEventListener("submit", (event) => {
             event.preventDefault();
-            this.todoListModel.addTodo(
-                new TodoItemModel({
-                    title: inputElement.value,
-                    completed: false
-                })
-            );
+            this.todoListModel.addTodo(new TodoItemModel({
+                title: inputElement.value,
+                completed: false
+            }));
             inputElement.value = "";
         });
     }

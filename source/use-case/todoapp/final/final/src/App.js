@@ -14,10 +14,8 @@ export class App {
      * @param {string} title
      */
     handleAdd(title) {
-        this.todoListModel.addTodo(
-            new TodoItemModel({ title, completed: false })
-        );
-    }
+        this.todoListModel.addTodo(new TodoItemModel({ title, completed: false }));
+    };
 
     /**
      * Todoの状態を更新時に呼ばれるリスナー関数
@@ -25,7 +23,7 @@ export class App {
      */
     handleUpdate({ id, completed }) {
         this.todoListModel.updateTodo({ id, completed });
-    }
+    };
 
     /**
      * Todoを削除時に呼ばれるリスナー関数
@@ -33,15 +31,13 @@ export class App {
      */
     handleDelete({ id }) {
         this.todoListModel.deleteTodo({ id });
-    }
+    };
 
     mount() {
         const formElement = document.querySelector("#js-form");
         const inputElement = document.querySelector("#js-form-input");
         const todoCountElement = document.querySelector("#js-todo-count");
-        const todoListContainerElement = document.querySelector(
-            "#js-todo-list"
-        );
+        const todoListContainerElement = document.querySelector("#js-todo-list");
         this.todoListModel.onChange(() => {
             const todoItems = this.todoListModel.getTodoItems();
             const todoListElement = this.todoListView.createElement(todoItems, {
@@ -54,14 +50,19 @@ export class App {
                 }
             });
             render(todoListElement, todoListContainerElement);
-            todoCountElement.textContent = `Todoアイテム数: ${
-                this.todoListModel.totalCount
-            }`;
+            todoCountElement.textContent = `Todoアイテム数: ${this.todoListModel.totalCount}`;
         });
 
-        formElement.addEventListener("submit", event => {
+        formElement.addEventListener("submit", (event) => {
             event.preventDefault();
+<<<<<<< HEAD
             this.handleAdd(inputElement.value);
+=======
+            this.todoListModel.addTodo(new TodoItemModel({
+                title: inputElement.value,
+                completed: false
+            }));
+>>>>>>> parent of c7ecfe2... fix(ci): Run eslint:fix
             inputElement.value = "";
         });
     }
