@@ -6,7 +6,7 @@ export class TodoItemView {
      * @param {TodoItemModel} todoItem
      * @param {function({id:string, completed: boolean})} onUpdateTodo チェックボックスの更新イベントリスナー
      * @param {function({id:string)}} onDeleteTodo 削除ボタンのクリックイベントリスナー
-     * @returns {HTMLElement}
+     * @returns {Element}
      */
     createElement(todoItem, { onUpdateTodo, onDeleteTodo }) {
         const todoItemElement = todoItem.completed

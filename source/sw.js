@@ -8,8 +8,5 @@ importScripts(
 
 workbox.core.setCacheNameDetails({ prefix: "js-primer-v1" });
 workbox.googleAnalytics.initialize();
-
-workbox.precaching.suppressWarnings();
+// precache
 workbox.precaching.precacheAndRoute([]);
-
-workbox.routing.registerRoute(/\.+/, workbox.strategies.cacheFirst());

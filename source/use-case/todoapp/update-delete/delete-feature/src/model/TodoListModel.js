@@ -28,13 +28,9 @@ export class TodoListModel extends EventEmitter {
     /**
      * TodoListの状態が更新されたときに呼び出されるリスナー関数を登録する
      * @param {Function} listener
-     * @returns {Function} イベントリスナーの登録を解除する関数を返す
      */
     onChange(listener) {
         this.addEventLister("change", listener);
-        return () => {
-            this.removeEventLister("change", listener);
-        };
     }
 
     /**
@@ -54,9 +50,8 @@ export class TodoListModel extends EventEmitter {
     }
 
     /**
-     * 指定したidのTodoItemのcompletedを更新する
-     * @param {number} id
-     * @param {boolean} completed
+     * 指定した`id`のTodoItemの`completed`を更新する
+     * @param {{ id:number, completed: boolean }}
      */
     updateTodo({ id, completed }) {
         const todoItem = this.items.find(todo => todo.id === id);
@@ -73,7 +68,7 @@ export class TodoListModel extends EventEmitter {
     // ===============================
     /**
      * 指定したidのTodoItemを削除する
-     * @param {number} id
+     * @param {{ id: number }}
      */
     deleteTodo({ id }) {
         // `id`が一致するTodoItemを`this.items`から取り除き、削除する
