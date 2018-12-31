@@ -1,4 +1,4 @@
 const foo = "foo";
-function bar() { };
+function bar() {}
 // fooは名前付き、barはデフォルトとしてエクスポートする
 export { foo, bar as default };

@@ -1,5 +1,6 @@
 const URL = "/entrypoint/module-entry";
-const visitWithConsole = require("../../../helper/visit-with-console").visitWithConsole;
+const visitWithConsole = require("../../../helper/visit-with-console")
+    .visitWithConsole;
 describe(URL, function() {
     it("ロードするとApp.jsのログが表示される", function() {
         visitWithConsole(URL).then(({ logSpy }) => {

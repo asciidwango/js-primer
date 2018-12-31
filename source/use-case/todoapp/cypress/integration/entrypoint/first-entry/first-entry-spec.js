@@ -1,5 +1,6 @@
 const URL = "/entrypoint/first-entry";
-const visitWithConsole = require("../../../helper/visit-with-console").visitWithConsole;
+const visitWithConsole = require("../../../helper/visit-with-console")
+    .visitWithConsole;
 describe(URL, function() {
     it("ロードするとログが表示される", function() {
         visitWithConsole(URL).then(({ logSpy }) => {

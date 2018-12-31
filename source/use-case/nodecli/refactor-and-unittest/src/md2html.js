@@ -4,7 +4,7 @@ module.exports = (markdown, options = {}) => {
     const markedOptions = {
         gfm: false,
         sanitize: false,
-        ...options,
+        ...options
     };
 
     return marked(markdown, {

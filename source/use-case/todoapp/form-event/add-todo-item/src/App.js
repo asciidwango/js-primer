@@ -8,7 +8,7 @@ export class App {
         const todoItemCountElement = document.querySelector("#js-todo-count");
         // Todoアイテム数
         let todoItemCount = 0;
-        formElement.addEventListener("submit", (event) => {
+        formElement.addEventListener("submit", event => {
             // 本来のsubmitイベントの動作を止める
             event.preventDefault();
             // 追加するTodoアイテムの要素(li要素)を作成する

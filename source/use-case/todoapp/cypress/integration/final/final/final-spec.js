@@ -42,12 +42,12 @@ describe("Todo", function() {
             expect(count).to.contain("1");
         });
         // check
-        cy.get("li > input[type=\"checkbox\"]").check();
+        cy.get('li > input[type="checkbox"]').check();
         cy.get("li > s").should(items => {
             expect(items).to.have.length(1);
         });
         // uncheck
-        cy.get("li > input[type=\"checkbox\"]").uncheck();
+        cy.get('li > input[type="checkbox"]').uncheck();
         cy.get("li > s").should(items => {
             expect(items).to.have.length(0);
         });

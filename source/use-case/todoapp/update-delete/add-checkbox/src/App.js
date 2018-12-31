@@ -19,20 +19,28 @@ export class App {
                 // 完了済みならchecked属性をつけ、未完了ならchecked属性を外す
                 // input要素にはcheckboxクラスをつける
                 const todoItemElement = item.completed
-                    ? element`<li><input type="checkbox" class="checkbox" checked><s>${item.title}</s></input></li>`
-                    : element`<li><input type="checkbox" class="checkbox">${item.title}</input></li>`;
+                    ? element`<li><input type="checkbox" class="checkbox" checked><s>${
+                          item.title
+                      }</s></input></li>`
+                    : element`<li><input type="checkbox" class="checkbox">${
+                          item.title
+                      }</input></li>`;
                 todoListElement.appendChild(todoItemElement);
             });
             //! [checkbox]
             render(todoListElement, containerElement);
-            todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.totalCount}`;
+            todoItemCountElement.textContent = `Todoアイテム数: ${
+                this.todoListModel.totalCount
+            }`;
         });
-        formElement.addEventListener("submit", (event) => {
+        formElement.addEventListener("submit", event => {
             event.preventDefault();
-            this.todoListModel.addTodo(new TodoItemModel({
-                title: inputElement.value,
-                completed: false
-            }));
+            this.todoListModel.addTodo(
+                new TodoItemModel({
+                    title: inputElement.value,
+                    completed: false
+                })
+            );
             inputElement.value = "";
         });
     }

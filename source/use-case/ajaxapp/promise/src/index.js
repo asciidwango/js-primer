@@ -1,9 +1,9 @@
 function main() {
     const userId = getUserId();
     getUserInfo(userId)
-        .then((userInfo) => createView(userInfo))
-        .then((view) => displayView(view))
-        .catch((error) => {
+        .then(userInfo => createView(userInfo))
+        .then(view => displayView(view))
+        .catch(error => {
             console.error(`エラーが発生しました (${error})`);
         });
 }
@@ -12,9 +12,13 @@ function getUserInfo(userId) {
     return new Promise((resolve, reject) => {
         const request = new XMLHttpRequest();
         request.open("GET", `https://api.github.com/users/${userId}`);
-        request.addEventListener("load", (event) => {
+        request.addEventListener("load", event => {
             if (event.target.status !== 200) {
-                reject(new Error(`${event.target.status}: ${event.target.statusText}`));
+                reject(
+                    new Error(
+                        `${event.target.status}: ${event.target.statusText}`
+                    )
+                );
             }
 
             const userInfo = JSON.parse(event.target.responseText);

@@ -1,3 +1,3 @@
 const foo = "foo";
-function bar() { };
+function bar() {}
 export { foo, bar };

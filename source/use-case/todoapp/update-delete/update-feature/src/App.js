@@ -18,10 +18,16 @@ export class App {
             todoItems.forEach(item => {
                 // 完了済みならchecked属性をつけ、未完了ならchecked属性を外す
                 const todoItemElement = item.completed
-                    ? element`<li><input type="checkbox" class="checkbox" checked><s>${item.title}</s></input></li>`
-                    : element`<li><input type="checkbox" class="checkbox">${item.title}</input></li>`;
+                    ? element`<li><input type="checkbox" class="checkbox" checked><s>${
+                          item.title
+                      }</s></input></li>`
+                    : element`<li><input type="checkbox" class="checkbox">${
+                          item.title
+                      }</input></li>`;
                 // チェックボックスがトグルしたときのイベントにリスナー関数を登録
-                const inputCheckboxElement = todoItemElement.querySelector(".checkbox");
+                const inputCheckboxElement = todoItemElement.querySelector(
+                    ".checkbox"
+                );
                 inputCheckboxElement.addEventListener("change", () => {
                     // 指定したTodoアイテムの完了状態を反転させる
                     this.todoListModel.updateTodo({
@@ -33,14 +39,18 @@ export class App {
             });
             //! [checkbox]
             render(todoListElement, containerElement);
-            todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.totalCount}`;
+            todoItemCountElement.textContent = `Todoアイテム数: ${
+                this.todoListModel.totalCount
+            }`;
         });
-        formElement.addEventListener("submit", (event) => {
+        formElement.addEventListener("submit", event => {
             event.preventDefault();
-            this.todoListModel.addTodo(new TodoItemModel({
-                title: inputElement.value,
-                completed: false
-            }));
+            this.todoListModel.addTodo(
+                new TodoItemModel({
+                    title: inputElement.value,
+                    completed: false
+                })
+            );
             inputElement.value = "";
         });
     }

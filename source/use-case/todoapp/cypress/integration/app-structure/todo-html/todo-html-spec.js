@@ -1,9 +1,12 @@
 const URL = "/app-structure/todo-html";
-const visitWithConsole = require("../../../helper/visit-with-console").visitWithConsole;
+const visitWithConsole = require("../../../helper/visit-with-console")
+    .visitWithConsole;
 describe(URL, function() {
     it(".todoappにスタイルが適応されている", function() {
-        cy.visit(URL).then((win) => {
-            const position = win.getComputedStyle(win.document.querySelector(".todoapp")).position;
+        cy.visit(URL).then(win => {
+            const position = win.getComputedStyle(
+                win.document.querySelector(".todoapp")
+            ).position;
             expect(position).to.equal("relative");
         });
         cy.get("#js-todo-count").should(count => {

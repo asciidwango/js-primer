@@ -1,3 +1,3 @@
 const internalFoo = "foo";
-function internalBar() { };
+function internalBar() {}
 export { internalFoo as foo, internalBar as bar };

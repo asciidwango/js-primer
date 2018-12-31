@@ -10,9 +10,11 @@ todoListModel.onChange(() => {
 });
 // 新しいTodoアイテムを追加する
 // => `onChange`で登録したイベントリスナーが呼び出される
-todoListModel.addTodo(new TodoItemModel({
-    title: "新しいTodoアイテム",
-    completed: false
-}));
+todoListModel.addTodo(
+    new TodoItemModel({
+        title: "新しいTodoアイテム",
+        completed: false
+    })
+);
 // Todoリストにアイテムが増える
 console.log(todoListModel.totalCount); // => 1;

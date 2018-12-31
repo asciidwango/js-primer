@@ -1,6 +1,7 @@
 const addNewTodo = require("../../../helper/todo-helper").addNewTodo;
 const URL = "/form-event/prevent-event";
-const visitWithConsole = require("../../../helper/visit-with-console").visitWithConsole;
+const visitWithConsole = require("../../../helper/visit-with-console")
+    .visitWithConsole;
 describe(URL, function() {
     it("入力欄を埋めて送信するとコンソールログに表示される", function() {
         visitWithConsole(URL).then(({ logSpy }) => {

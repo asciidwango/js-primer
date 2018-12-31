@@ -27,7 +27,9 @@ export class App {
                         <button class="delete">x</button>
                     </input></li>`;
                 // チェックボックスのトグル処理は変更なし
-                const inputCheckboxElement = todoItemElement.querySelector(".checkbox");
+                const inputCheckboxElement = todoItemElement.querySelector(
+                    ".checkbox"
+                );
                 inputCheckboxElement.addEventListener("change", () => {
                     this.todoListModel.updateTodo({
                         id: item.id,
@@ -35,7 +37,9 @@ export class App {
                     });
                 });
                 // 削除ボタン(x)をクリック時にTodoListModelからアイテムを削除する
-                const deleteButtonElement = todoItemElement.querySelector(".delete");
+                const deleteButtonElement = todoItemElement.querySelector(
+                    ".delete"
+                );
                 deleteButtonElement.addEventListener("click", () => {
                     this.todoListModel.deleteTodo({
                         id: item.id
@@ -45,14 +49,18 @@ export class App {
             });
             //! [checkbox]
             render(todoListElement, containerElement);
-            todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.totalCount}`;
+            todoItemCountElement.textContent = `Todoアイテム数: ${
+                this.todoListModel.totalCount
+            }`;
         });
-        formElement.addEventListener("submit", (event) => {
+        formElement.addEventListener("submit", event => {
             event.preventDefault();
-            this.todoListModel.addTodo(new TodoItemModel({
-                title: inputElement.value,
-                completed: false
-            }));
+            this.todoListModel.addTodo(
+                new TodoItemModel({
+                    title: inputElement.value,
+                    completed: false
+                })
+            );
             inputElement.value = "";
         });
     }
