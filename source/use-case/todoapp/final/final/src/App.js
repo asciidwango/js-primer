@@ -55,14 +55,7 @@ export class App {
 
         formElement.addEventListener("submit", (event) => {
             event.preventDefault();
-<<<<<<< HEAD
             this.handleAdd(inputElement.value);
-=======
-            this.todoListModel.addTodo(new TodoItemModel({
-                title: inputElement.value,
-                completed: false
-            }));
->>>>>>> parent of c7ecfe2... fix(ci): Run eslint:fix
             inputElement.value = "";
         });
     }
