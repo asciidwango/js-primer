@@ -5,12 +5,7 @@ import { TodoListModel } from "./model/TodoListModel.js";
 
 export class App {
     // 紐づけするHTML要素を引数として受け取る
-    constructor({
-        formElement,
-        formInputElement,
-        todoListContainerElement,
-        todoCountElement
-    }) {
+    constructor({ formElement, formInputElement, todoListContainerElement, todoCountElement }) {
         this.todoListView = new TodoListView();
         this.todoListModel = new TodoListModel([]);
         // bind to Element
@@ -29,10 +24,8 @@ export class App {
      * @param {string} title
      */
     handleAdd(title) {
-        this.todoListModel.addTodo(
-            new TodoItemModel({ title, completed: false })
-        );
-    }
+        this.todoListModel.addTodo(new TodoItemModel({ title, completed: false }));
+    };
 
     /**
      * Todoの状態を更新時に呼ばれるリスナー関数
@@ -40,7 +33,7 @@ export class App {
      */
     handleUpdate({ id, completed }) {
         this.todoListModel.updateTodo({ id, completed });
-    }
+    };
 
     /**
      * Todoを削除時に呼ばれるリスナー関数
@@ -48,7 +41,7 @@ export class App {
      */
     handleDelete({ id }) {
         this.todoListModel.deleteTodo({ id });
-    }
+    };
 
     /**
      * フォームを送信時に呼ばれるリスナー関数
@@ -78,9 +71,7 @@ export class App {
             }
         });
         render(todoListElement, todoListContainerElement);
-        todoCountElement.textContent = `Todoアイテム数: ${
-            this.todoListModel.totalCount
-        }`;
+        todoCountElement.textContent = `Todoアイテム数: ${this.todoListModel.totalCount}`;
     }
 
     /**
