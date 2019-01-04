@@ -27,7 +27,7 @@ Node.jsでは、複数のJavaScriptファイル間で変数や関数などをや
 
 [import, greet-index.js](src/example/greet-index.js)
 
-`module.exports`オブジェクトに直接代入するのではなく、そのプロパティとして任意の値をエクスポートすることもできます。
+`module.exports`オブジェクトに直接代入するのではなく、そのプロパティとして任意の値をエクスポートできます。
 次の例では2つの関数を同じファイルからエクスポートしています。
 
 [import, functions.js](src/example/functions.js)

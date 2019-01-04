@@ -629,7 +629,7 @@ const arrayWrapper = ArrayWrapper.of(1, 2, 3);
 console.log(arrayWrapper.length); // => 3
 ```
 
-このように静的メソッドでの`this`はクラス自身を参照するため、インスタンスメソッドのようにインスタンスを参照することはできません。
+このように静的メソッドでの`this`はクラス自身を参照するため、インスタンスメソッドのようにインスタンスを参照できません。
 そのため静的メソッドは、クラスのインスタンスを作成する処理やクラスに関係する処理を書くために利用されます。
 
 ## 2種類のインスタンスメソッドの定義 {#two-instance-method-definition}
@@ -971,7 +971,7 @@ class Child extends Parent {
 子クラスのコンストラクタでは、`this`を触る前に`super()`で親クラスのコンストラクタ処理を呼び出さないと`SyntaxError`となるためです。
 
 次のコードでは、`Parent`と`Child`でそれぞれインスタンス（`this`）の`name`プロパティに値を書き込んでいます。
-子クラスでは先に`super()`を呼び出してからでないと`this`を参照することはできません。
+子クラスでは先に`super()`を呼び出してからでないと`this`を参照できません。
 そのため、コンストラクタの処理順は`Parent`から`Child`という順番に限定されます。
 
 <!-- textlint-enable no-js-function-paren -->
