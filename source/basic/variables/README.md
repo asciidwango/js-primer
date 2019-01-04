@@ -34,7 +34,7 @@ var bookTitle;
 bookTitle = "JavaScriptの本";
 ```
 
-変数宣言と同時に初期値を代入することもできます。
+変数宣言と同時に初期値を代入できます。
 次のコードでは、`bookTitle`という変数を宣言し、同時に`"JavaScriptの本"`という文字列で初期化しています。
 
 ```js
