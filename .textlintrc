@@ -46,6 +46,30 @@
       },
       "no-invalid-control-character": {
         "checkCode": true
+      },
+      "ja-no-redundant-expression": {
+        "dictOptions": {
+          "dict1": {
+            "disabled": true
+          },
+          "dict5": {
+            // "処理を行う" は許可する
+            // 非同期処理を行う など
+            "allows": [
+              "/^処理を行(う|い)/",
+              "/^[ァ-ヶ]+を.?行う/",
+              "/^[a-zA-Z]+を.?行う/"
+            ]
+          },
+          "dict6": {
+            // "処理を実行" は許可する
+            "allows": [
+              "/^処理を実行/",
+              "/^[ァ-ヶ]+を.?実行/",
+              "/^[a-zA-Z]+を.?実行/"
+            ]
+          }
+        }
       }
     },
     "eslint": {
