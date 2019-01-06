@@ -72,8 +72,51 @@ console.log(Math.max(...numbers)); // => 5
 console.log(Math.min(...numbers)); // => 1
 ```
 
+### 数値を整数にする {#convert-to-integer}
+
+`Math`オブジェクトには数値を整数に丸めるためのメソッドがいくつかあります。
+代表的なものは、小数点以下を切り捨てる`Math.floor`メソッド、小数点以下を切り上げる`Math.ceil`メソッド、そして四捨五入をおこなう`Math.round`メソッドです。
+
+[Math.floor][]メソッドは、引数として渡した数以下で最大の整数を返します。このような関数は**底関数**と呼ばれます。
+正の数である`1.3`は`1`になりますが、負の数である`-1.3`はより小さい整数の`-2`に丸められます。
+
+次の[Math.ceil][]メソッドは、引数として渡した数以上で最小の整数を返します。このような関数は**天井関数**と呼ばれます。
+正の数である`1.3`は`2`になりますが、負の数である`-1.3`はより大きい整数の`-1`に丸められます。
+
+[Math.round][]メソッドは、一般的な四捨五入の処理をおこないます。
+小数部分が`0.5`よりも小さな場合は切り捨てられ、それ以外は切り上げられます。
+
+{{book.console}}
+```js
+// 底関数
+console.log(Math.floor(1.3)); // => 1
+console.log(Math.floor(-1.3)); // => -2
+// 天井関数
+console.log(Math.ceil(1.3)); // => 2
+console.log(Math.ceil(-1.3)); // => -1
+// 四捨五入
+console.log(Math.round(1.3)); // => 1
+console.log(Math.round(1.6)); // => 2
+console.log(Math.round(-1.3)); // => -1
+```
+
+また、[Math.trunc][]メソッドは、渡された数字の小数点以下を単純に切り落とした整数を返します。
+そのため、引数が正の値の場合は`Math.floor`メソッドと同じになり、そうでない場合は`Math.ceil`メソッドと同じになります。
+
+{{book.console}}
+```js
+// 単純に小数部分を切り落とす
+console.log(Math.trunc(1.3)); // => 1
+console.log(Math.trunc(-1.3)); // => -1
+```
+
+
 [Math]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math
 [MDNのリファレンス]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math
 [Math.random]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 [Math.max]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/max
 [Math.min]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/min
+[Math.floor]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/floor
+[Math.ceil]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil
+[Math.round]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/round
+[Math.trunc]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc
