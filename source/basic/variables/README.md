@@ -152,6 +152,37 @@ const bookTitle = "JavaScriptの本";
 しかし、多くのケースで代替できる表現があるため、必ずしも`var`や`let`を使わなくても実現できます。
 `const`を使うことでバグに気づきやすくなるため、`const`を積極的に利用していくことを推奨しています。
 
+## [コラム] `const`は定数以外も宣言する {#const-is-not-constant}
+
+JavaScriptでは、定数以外の値であっても`const`宣言します。
+
+`const`宣言は、他のプログラミング言語では定数を宣言するための構文として扱われることが多いです。
+定数とは、一度定義した名前（変数名）が常に同じ値を示すものです。
+JavaScriptでも、次のように大文字と`_`（アンダースコア）で構成される名前をつけて、定数として定義することはあります。
+
+```js
+// TEN_NUMBERという変数は常に10という値を示す
+const TEN_NUMBER = 10;
+```
+
+しかし、JavaScriptでは次のようなオブジェクトなども`const`宣言できます。
+このオブジェクトという値そのものは変更できます。
+
+```js
+// `const`でオブジェクトを定義している
+const object = {
+    key: "値"
+};
+// オブジェクトそのものは変更できてしまう
+object.key = "新しい値";
+```
+
+このように、`const`で宣言していても変数が常に同じ値と示すとは限らないため、定数とは呼べません。
+（詳細は「[オブジェクト][]」の章で解説します）
+
+また、`const`には、変数名の命名規則はなく、代入できる値にも制限はありません。
+そのため、`const`宣言の特性として「再代入できない変数」を定義すると理解しておくのがよいでしょう。
+
 ## まとめ {#variales-summary}
 
 JavaScriptにおける変数宣言として`var`、`let`、`const`があることについて学びました。
@@ -169,3 +200,4 @@ JavaScriptにおける変数宣言として`var`、`let`、`const`があるこ�
 
 [関数とスコープ]: ../function-scope/README.md
 [JavaScript variable name validator]: https://mothereff.in/js-variables  "JavaScript variable name validator"
+[オブジェクト]: ../object/README.md#const-and-object
