@@ -157,8 +157,9 @@ const bookTitle = "JavaScriptの本";
 `const`は「再代入できない変数」を定義する変数宣言であり、必ずしも定数を定義するわけではありません。
 定数とは、一度定義した名前（変数名）が常に同じ値を示すものです。
 
-JavaScriptでも、`const`キーワードを使い定数に近い変数を定義することはあります。
-次のように、`const`キーワードで数値や文字列など変更できないプリミティブな値で初期化すれば、それは実質的に定数です。
+JavaScriptでも、`const`宣言によって定数に近い変数を定義できます。
+次のように、`const`宣言によって定義した変数を、変更できないプリミティブな値で初期化すれば、それは実質的に定数です。
+プリミティブな値とは、数値や文字列などオブジェクト以外のデータです。（詳細は「[データ型とリテラル][]」の章で解説します）
 
 ```js
 // TEN_NUMBERという変数は常に10という値を示す
@@ -200,4 +201,5 @@ JavaScriptにおける変数宣言として`var`、`let`、`const`があるこ�
 
 [関数とスコープ]: ../function-scope/README.md
 [JavaScript variable name validator]: https://mothereff.in/js-variables  "JavaScript variable name validator"
+[データ型とリテラル]: ../data-type/README.md
 [オブジェクト]: ../object/README.md#const-and-object
