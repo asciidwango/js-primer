@@ -152,7 +152,7 @@ const bookTitle = "JavaScriptの本";
 しかし、多くのケースで代替できる表現があるため、必ずしも`var`や`let`を使わなくても実現できます。
 `const`を使うことでバグに気づきやすくなるため、`const`を積極的に利用していくことを推奨しています。
 
-## [コラム] `const`は定数以外も宣言する {#const-is-not-constant}
+## [コラム] `const`は定数以外も定義する {#const-is-not-constant}
 
 JavaScriptでは、定数以外の値であっても`const`宣言します。
 
