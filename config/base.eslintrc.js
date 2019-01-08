@@ -12,7 +12,7 @@ module.exports = {
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
-    rules: {
+    "rules": {
         "indent": [
             "error", 4, {
                 "SwitchCase": 1
@@ -60,7 +60,7 @@ module.exports = {
                     "globals",
                     "istanbul",
                     "!"
-                ],
+                ]
             }
         ],
         // const

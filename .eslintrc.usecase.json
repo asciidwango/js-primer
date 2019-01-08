@@ -1,0 +1,10 @@
+{
+  "rules": {
+    "no-console": "off",
+    "prettier/prettier": "error"
+  },
+  "extends": [
+    "./config/base.eslintrc.js",
+    "plugin:prettier/recommended"
+  ]
+}
