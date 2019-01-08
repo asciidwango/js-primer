@@ -353,7 +353,7 @@ isNaN([]); // => false
 isNaN(NaN); // => true
 ```
 
-同様の処理する方法として`Number.isNaN(x)`メソッドがあります。
+同様の処理をする方法として`Number.isNaN(x)`メソッドがあります。
 実際に値が`NaN`かを判定する際には、`Number.isNaN(x)`メソッドを利用するとよいでしょう。
 
 {{book.console}}
