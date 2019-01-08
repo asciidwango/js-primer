@@ -3,17 +3,16 @@ author: azu
 description: JavaScriptのオブジェクトとプロトタイプについて
 ---
 
-# プロトタイプオブジェクト {#prototype-object}
+# `Object`のプロトタイプオブジェクト {#prototype-object}
 
 ## `Object`はすべての元 {#object-is-origin}
 
-ここまでは、`Object`自身の機能について見てきましたが、
 `Object`には、他の`Array`や`String`、`Function`などの他のオブジェクトとは異なる特徴があります。
 それは、他のオブジェクトはすべて`Object`を継承しているという点です。
 
-厳密には、すべてのオブジェクトは`Object`の`prototype`オブジェクトを継承しています。
+正確には、ほとんどすべてのオブジェクトは`Object`の`prototype`オブジェクトを継承しています。
 `prototype`オブジェクトはすべてのオブジェクトに備わっている特別なオブジェクトです。
-そのため、`Object`はすべてのオブジェクトが共通して利用できるプロパティやメソッドを提供するベースのオブジェクトともいえます。
+そのため、`Object`の`prototype`オブジェクトは、すべてのオブジェクトから利用できるメソッドなどを提供するベースオブジェクトともいえます。
 
 ![すべてのオブジェクトは`Object`の`prototype`を継承している](./img/object-prototype.png)
 
