@@ -533,13 +533,14 @@ console.log(~0b1111); // => -0b10000
 
 否定演算子（`~`）はビット演算以外でも使われていることがあります。
 
-JavaScriptの`String#indexOf(string)`は、文字列中にある`string`の位置を見つけて返すメソッドです。
-この`indexOf`メソッドは、検索対象が見つからない場合に、`-1`を返します。
+文字列（Stringオブジェクト）がもつ`indexOf`メソッドは、マッチする文字列を見つけて、そのインデックス（位置）を返すメソッドです。
+この`indexOf`メソッドは、検索対象が見つからない場合には`-1`を返します。
 
 {{book.console}}
 ```js
 const string = "森森本森森";
-// 見つかった場合はindex値を返す
+// 見つかった場合はインデックスを返す
+// JavaScriptのインデックスは0から開始するので2を返す
 console.log(string.indexOf("本")); // => 2
 // 見つからない場合は-1を返す
 console.log(string.indexOf("火")); // => -1
@@ -553,32 +554,36 @@ console.log(~0); // => -1
 console.log(~(-1)); // => 0
 ```
 
-JavaScriptでは`0`もif文では`false`として扱われます。
-そのため、`~indexOfの結果`が`0`となることを利用して書くイディオムが一部では使われています。
+JavaScriptでは`0`も、if文では`false`として扱われます。
+そのため、`~indexOfの結果`が`0`となるのは、その文字列が見つからなかった場合だけとなります。
+次のコードのような否定演算子（`~`）と`indexOf`メソッドを使ったイディオムが一部では使われていました。
 
 {{book.console}}
 ```js
-const string = "森森本森森";
-if (string.indexOf("火") === -1) {
-    // 見つからなかった場合の処理
+const string = "森森木森森";
+// indexOfメソッドは見つからなかった場合は -1 を返す
+if (string.indexOf("木") !== -1) {
+    console.log("木を見つけました");
 }
-// 否定演算子（`~`）で類似表現
-if (~string.indexOf("火")) {
-    // 見つからなかった場合の処理
+// 否定演算子（`~`）で同じ動作を実装
+// (~(-1)) は 0 となるため、見つからなかった場合はif文の中身は実行されない
+if (~string.indexOf("木")) {
+    console.log("木を見つけました");
 }
 ```
 
-このイディオムは文字列を検索した結果を真偽値で取得できれば不要となるケースが殆どです。
-ES2015以降では`String#includes`で真偽値を取得できるため、分かりにくいだけのイディオムとなりつつあります。
+ES2015では、文字列（Stringオブジェクト）`includes`メソッドが実装されました。
+`includes`メソッドは指定した文字列が含まれているかを真偽値で返します。
 
 {{book.console}}
 ```js
-const string = "森森本森森";
-// `String#includes`は"火"があるならtrueを返す
-if (!string.includes("火")) {
-    // 見つからなかった場合の処理
+const string = "森森木森森";
+if (string.includes("火")) {
+    console.log("木を見つけました");
 }
 ```
+
+そのため、`indexOf`メソッドと否定演算子（`~`）の組み合わたイディオムは、`includes`メソッドに置き換えられます。
 
 <!-- textlint-disable eslint -->
 
