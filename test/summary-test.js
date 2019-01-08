@@ -8,15 +8,17 @@ const { matchPatterns } = require("@textlint/regexp-string-matcher");
 describe("SUMMARY", function() {
     it("prototypeメソッドの説明をする前にObject#methodの表記を利用してはいけない", () => {
         return getFilePathListAsync(OUTLINE).then(summaryList => {
+            // 許可リスト(読み方の解説など)
+            const allowFilePathList = [];
             const prototypeChapter = path.join(sourceDir, "basic/prototype-object/README.md");
             const prototypeChapterIndex = summaryList.indexOf(prototypeChapter);
             const beforeFilePathList = summaryList.slice(0, prototypeChapterIndex);
-            beforeFilePathList.forEach(filePath => {
+            beforeFilePathList.filter(filePath => !allowFilePathList.includes(filePath)).forEach(filePath => {
                 const inputText = fs.readFileSync(filePath, "utf-8");
                 const results = matchPatterns(inputText, ["/\\`[a-zA-Z]+#[a-zA-Z]*\\`/"]);
                 const normalizedFilePath = filePath.replace(sourceDir, "");
                 if (results.length > 0) {
-                    throw new Error(`${normalizedFilePath}が使ってる。
+                    throw new Error(`${normalizedFilePath}が使っているので、確認してください。
 ${results.map(result => inputText.substring(result.startIndex, result.endIndex)).join("\n")}
 `);
                 }
