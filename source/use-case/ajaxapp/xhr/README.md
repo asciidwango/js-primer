@@ -5,7 +5,7 @@ author: laco
 # HTTP通信 {#http-communication}
 
 アプリケーションが実行できるようになったので、次はGitHubのAPIを呼び出す処理を実装していきます。
-当然ですが、GitHubのAPIを呼び出すためにはHTTP通信する必要があります。
+当然ですが、GitHubのAPIを呼び出すためにはHTTP通信をする必要があります。
 ウェブブラウザ上で、JavaScriptからHTTP通信するには`XMLHttpRequest`という機能を使います。
 
 ## `XMLHttpRequest` {#xml-http-request}
