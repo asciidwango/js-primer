@@ -35,7 +35,7 @@ GitHubのアカウントを持っていない方は、次のフォームから�
 
 - <https://github.com/asciidwango/js-primer>
 
-そのため、あなたは問題を報告するだけではなく修正できます。
+そのため、問題を報告するだけではなく修正もできます。
 GitHubでソースコードが公開されているため、修正内容を[Pull Request][]することで問題を修正できます。
 
 詳しいPull Requestの送り方は[CONTRIBUTING.md][]に書かれているので参考にしてください。
