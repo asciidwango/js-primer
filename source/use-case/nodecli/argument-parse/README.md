@@ -47,17 +47,16 @@ $ node process-argv.js one two=three four
 文字列処理を自前で行うこともできますが、このような一般的な処理は既存のライブラリを使うと簡単に書けます。
 今回は[commander][]というライブラリを使ってコマンドライン引数をパースします。
 
-### npmを使ってパッケージをインストールする {#use-npm}
+### commanderパッケージをインストールする {#install-commander}
 
-Node.jsのライブラリの多くは[npm][]というパッケージマネージャーを使ってインストールできます。
-npmや`npm`コマンドについての詳細は[公式ドキュメント](https://docs.npmjs.com/)や[npmのGitHubリポジトリ][]を参照してください。
-Node.jsをインストールすると、`node`コマンドだけでなく`npm`コマンドも使えるようになっています。
+commanderは[npm][]の`npm install`コマンドを使ってインストールできます。
+まだnpmの実行環境を用意できていなければ、先に[アプリケーション開発の準備][]を参照してください。
 
-npmでパッケージをインストールする前に、まずはnpmのパッケージ管理環境を作りましょう。
-npmでは`package.json`というファイルを使って、依存するパッケージの種類やバージョンなどの情報を記録します。
-`npm init`コマンドは、`package.json`ファイルを生成してパッケージ管理環境を初期化するものです。
-通常は初期化するための値を対話式のプロンプトによって設定しますが、`--yes`オプションを付与するとすべてをデフォルト値にします。
-次のコマンドを実行して、`package.json`を生成します。
+npmでパッケージをインストールする前に、まずは`pacakge.json`というファイルを作成しましょう。
+`package.json`とは、アプリケーションが依存するパッケージの種類やバージョンなどの情報を記録するJSON形式のファイルです。
+`package.json`ファイルのひな形は、`npm init`コマンドで生成できます。
+通常は対話式のプロンプトによって情報を設定しますが、ここではすべてデフォルト値で問題ないため、`--yes`オプションを付与します。
+次のコマンドを実行して`pacakge.json`を作成しましょう。
 
 ```shell-session
 $ npm init --yes
@@ -70,11 +69,10 @@ $ npm init --yes
 `package.json`ファイルが用意できたら、`npm install`コマンドを使ってcommanderパッケージをインストールします。
 このコマンドの引数にはインストールするパッケージの名前とそのバージョンを`@`記号でつなげて指定できます。
 バージョンを指定せずにインストールすれば、その時点での最新の安定版が自動的に選択されます。
-`package.json`にインストールしたパッケージの情報を保存するためには`--save`オプションを付与する必要があることに注意しましょう。
-次のコマンドを実行して、commanderのバージョン2.9をインストールします。
+次のコマンドを実行して、commanderのバージョン2.9をインストールします。[^saveオプション]
 
 ```shell-session
-$ npm install --save commander@2.9
+$ npm install commander@2.9
 ```
 
 インストールが完了すると、`package.json`ファイルは次のようになっています。
@@ -136,3 +134,5 @@ bar
 [npm]: https://www.npmjs.com/
 [npmのGitHubリポジトリ]: https://github.com/npm/npm
 [require関数]: https://nodejs.org/dist/latest-v6.x/docs/api/modules.html#modules_loading_from_node_modules_folders
+[アプリケーション開発の準備]: ../../setup-local-env/README.md
+[^saveオプション]: --saveオプションをつけてインストールしたのと同じ意味。npm 5.0.0からは--saveがデフォルトオプションとなりました。
