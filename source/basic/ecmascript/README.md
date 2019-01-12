@@ -7,7 +7,7 @@ author: azu
 ここまでJavaScriptの基本文法について見ていきましたが、その文法を定めるECMAScriptという仕様自体がどのように変化していくのかを見ていきましょう。
 
 ECMAScriptは[Ecma International][]という団体によって標準化されている仕様です。
-Ecma InternationalはECMAScript以外にもC#やDartなどの標準化作業を行っています。
+Ecma InternationalはECMAScript以外にもC#やDartなどの標準化作業をしています。
 Ecma International中のTechnical Committee 39（TC39）という技術委員会が中心となって、ECMAScript仕様についてを議論しています。
 この技術委員会はMicrosoft、Mozilla、Google、AppleといったブラウザベンダーやECMAScriptに関心のある企業などによって構成されます。
 
@@ -97,7 +97,7 @@ ECMAScriptの策定プロセスのステージ4に「2つ以上の実装が存�
 またTranspilerやPolyfillといった手段で、プロポーザルの機能をエミュレートできる場合があります。
 
 Transpilerとは、新しい構文を既存の機能で再現できるようにソースコードを変換するツールのことです。
-たとえば、ES2015で`class`構文が導入されましたが、ES5では`class`は予約語であるため構文エラーとなり実行することはできません。
+たとえば、ES2015で`class`構文が導入されましたが、ES5では`class`は予約語であるため構文エラーとなり実行できません。
 Transpilerでは、`class`構文を含むソースコードを`function`キーワードを使い擬似的に再現するコードへ変換します。
 Transpilerとしては[Babel][]や[TypeScript][]などが有名です。
 

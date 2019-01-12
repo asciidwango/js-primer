@@ -21,9 +21,13 @@ while (条件式)
 while文の実行フローは次のようになります。
 最初から`条件式`が`false`である場合は、何も実行せずwhile文は終了します。
 
+<!-- textlint-disable preset-ja-technical-writing/ja-no-redundant-expression -->
+
 1. `条件式` の評価結果が`true`なら処理を続け、`false`なら終了
 2. `実行する文`を実行
 3. ステップ1へ戻る
+
+<!-- textlint-enable preset-ja-technical-writing/ja-no-redundant-expression -->
 
 次のコードでは`x`の値が10未満であるなら、コンソールへ繰り返しログが出力されます。
 また、`実行する文`にて、`x`の値を増やし`条件式`が`false`となるようにしています。
@@ -172,7 +176,7 @@ switch文で出てきたものと同様で、処理中のループ文を終了�
 1つでも偶数があるかが分かればいいため、配列内から最初の偶数を見つけたらfor文での反復処理を終了します。
 このような処理はベタ書きせずに、関数として実装するのが一般的です。
 
-同様の処理を行う `isEvenIncluded` 関数を実装してみます。
+同様の処理をする `isEvenIncluded` 関数を実装してみます。
 次のコードでは、break文が実行され、ループを抜けた後にreturn文で結果を返しています。
 
 {{book.console}}
@@ -343,7 +347,7 @@ for...of文はそれらに対して反復処理を行うことができます。
 
 ## [コラム] `let`ではなく`const`で反復処理をする {#const-iteration}
 
-先ほどのfor文や`forEach`メソッドでは`let`を`const`に変更することはできませんでした。
+先ほどのfor文や`forEach`メソッドでは`let`を`const`に変更できませんでした。
 なぜなら、for文は一度定義した変数に値の代入を繰り返し行う処理といえるからです。
 `const` は再代入できない変数を宣言するキーワードであるためfor文とは相性がよくありません。
 

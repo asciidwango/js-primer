@@ -49,7 +49,7 @@ TodoリストにはTodoアイテムを追加できるので`TodoListModel#addIte
 このようにTodoリストをクラスで表現する際にオブジェクトがどのような処理や状態をもつかを考え実装します。
 
 このようにモデルを考え、先ほどの操作と表示の間にモデルを入れることを考えてみます。
-「フォームを入力し送信」という**操作**を行った場合、`TodoListModel`という**モデル**に対して`TodoItemModel`を追加します。
+「フォームを入力し送信」という**操作**をした場合には、`TodoListModel`という**モデル**に対して`TodoItemModel`を追加します。
 そして、`TodoListModel`からアイテムの一覧を取得し、DOMを組み立て**表示**を更新します。
 
 先ほどの表にモデルをいれてみます。
@@ -177,7 +177,7 @@ Node.jsでは`events`と呼ばれるモジュールでAPIは異なりますが�
 [import, "src/model/TodoListModel.example.js"](./event-emitter/src/model/TodoListModel.example.js)
 
 これでTodoリストに必要なそれぞれのモデルクラスが作成できました。
-次はこれらのモデルを使い表示の更新を行ってみましょう。
+次はこれらのモデルを使い、表示の更新をしてみましょう。
 
 ## モデルを使って表示を更新する {#model-update-view}
 

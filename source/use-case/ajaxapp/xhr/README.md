@@ -5,8 +5,8 @@ author: laco
 # HTTP通信 {#http-communication}
 
 アプリケーションが実行できるようになったので、次はGitHubのAPIを呼び出す処理を実装していきます。
-当然ですが、GitHubのAPIを呼び出すためにはHTTP通信を行う必要があります。
-ウェブブラウザ上でJavaScriptからHTTP通信を行うには`XMLHttpRequest`という機能を使います。
+当然ですが、GitHubのAPIを呼び出すためにはHTTP通信をする必要があります。
+ウェブブラウザ上で、JavaScriptからHTTP通信するには`XMLHttpRequest`という機能を使います。
 
 ## `XMLHttpRequest` {#xml-http-request}
 
@@ -41,7 +41,7 @@ GitHubのAPIに対してHTTPリクエストを送信しましたが、まだレ�
 非同期的なXHRの場合、レスポンスはXHRが発火するイベントのコールバック内で受け取れます。
 実はXHRにはHTTP通信を同期的に実行するモードも存在しますが、一般的にはXHRを同期的に行うことはありません。
 なぜならWebブラウザ上で実行されるJavaScriptはシングルスレッドであり、
-HTTP通信を行っている間はすべての処理がブロックされてしまうからです。
+HTTP通信している間は、すべての処理がブロックされてしまうからです。
 そもそも本章のテーマでもある**AJAX**の根幹はAsynchronous（非同期的）であることなので、
 ここで登場するXHRはすべて非同期的とします。
 
