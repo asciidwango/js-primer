@@ -54,7 +54,25 @@ ${result.matchedTexts.join("\n")}
 ${message}`);
         });
     });
-    it("インスタンスメソッド", () => {
+    it("インスタンスは`Objectのインスタンス`が初出", () => {
+        // 許可リスト(読み方の解説など)
+        const allowFilePathList = [];
+        const searchPatterns = ["/インスタンス/"];
+        const prototypeChapter = path.join(sourceDir, "basic/object/README.md");
+        return findUsage(prototypeChapter, searchPatterns, allowFilePathList).then(results => {
+            if (results.length === 0) {
+                return;
+            }
+            const message = results.map(result => {
+                return `${result.normalizedFilePath} が利用しているので、確認してください。
+${result.matchedTexts.join("\n")}
+`;
+            });
+            throw new Error(`${results.length}件のドキュメントがインスタンスを説明前に利用しています。
+${message}`);
+        });
+    });
+    it("インスタンスメソッドはプロトタイプオブジェクトで説明する", () => {
         // 許可リスト(読み方の解説など)
         const allowFilePathList = [];
         const searchPatterns = ["/インスタンスメソッド/", "/静的メソッド/"];

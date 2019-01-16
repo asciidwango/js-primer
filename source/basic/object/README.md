@@ -287,7 +287,7 @@ console.log(widget.windw.title); // => TypeError: widget.windw is undefined
 `undefined`や`null`はオブジェクトではないため、存在しないプロパティへアクセスする例外が発生してしまいます。
 このような場合に、あるオブジェクトがあるプロパティを持っているを確認する方法がいくつかあります。
 
-### undefinedとの比較 {#compare-to-undefined}
+### プロパティの存在確認: undefinedとの比較 {#compare-to-undefined}
 
 存在しないプロパティへアクセスした場合に、`undefined`を返すため実際にアクセスして比較することでも判定できます。
 
@@ -312,7 +312,7 @@ if (object.key !== undefined) {
 }
 ```
 
-### in演算子を使う {#in-operator}
+### プロパティの存在確認: in演算子を使う {#in-operator}
 
 `in`演算子は、指定したオブジェクト上に指定したプロパティがあるかを判定できます。
 
@@ -337,7 +337,7 @@ if ("key" in object) {
 
 `object`自身がそのプロパティを持っているかを判定するには、`Object#hasOwnProperty`メソッドを使うのが確実です。
 
-### `Object#hasOwnProperty`メソッド {#hasOwnProperty-method}
+### プロパティの存在確認: `Object#hasOwnProperty`メソッド {#hasOwnProperty-method}
 
 `Object#hasOwnProperty`メソッドを使うことで、オブジェクト自身が指定したプロパティを持っているかを判定できます。
 
