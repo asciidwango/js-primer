@@ -3,7 +3,7 @@ author: azu
 description: JavaScriptのオブジェクトとプロトタイプについて
 ---
 
-# `Object`のプロトタイプオブジェクト {#prototype-object}
+# プロトタイプオブジェクト {#prototype-object}
 
 ## `Object`はすべての元 {#object-is-origin}
 
