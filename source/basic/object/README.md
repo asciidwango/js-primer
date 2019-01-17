@@ -268,7 +268,7 @@ const object = {
     key2: "value2"
 };
 // key1プロパティを削除
-delete object.key;
+delete object.key1;
 // key1プロパティが消え、key2プロパティが残る
 console.log(object); // => { "key2": "value2" }
 ```
