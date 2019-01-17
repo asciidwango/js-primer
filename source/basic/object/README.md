@@ -1,5 +1,6 @@
 ---
 author: azu
+description: "JavaScriptのオブジェクトの作成、更新、削除などの基本的な操作について"
 ---
 
 # オブジェクト {#object}
@@ -250,6 +251,23 @@ console.log(object.key); // => "value"
 このように、プロパティを初期化時以外に追加してしまうと、そのオブジェクトがどのようなプロパティを持っているかがわかりにくくなります。
 そのため、できる限り作成後に新しいプロパティは追加しないほうがよいでしょう。
 つまり、オブジェクトの作成時のオブジェクトリテラルの中でプロパティを定義することを推奨します。
+
+### プロパティの削除 {#remove-property}
+
+オブジェクトのプロパティを削除するには`delete`演算子を利用します。
+削除したいプロパティを`delete`演算子の右辺に指定して、プロパティを削除できます。
+
+{{book.console}}
+```js
+const object = {
+    key1: "value1",
+    key2: "value2"
+};
+// key1プロパティを削除
+delete object.key;
+// key1プロパティが消え、key2プロパティが残る
+console.log(object); // => { "key2": "value2" }
+```
 
 ### [コラム] constで定義したオブジェクトは変更可能 {#const-and-object}
 
