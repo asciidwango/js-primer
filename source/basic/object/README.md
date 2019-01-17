@@ -489,10 +489,10 @@ keys.forEach(key => {
 // "three"
 ```
 
-### オブジェクトのコピーとマージ {#copy-and-merge}
+### オブジェクトのマージと複製 {#copy-and-merge}
 
 `Object.assign`メソッドを使うことで、あるオブジェクトを別のオブジェクトに代入（assign）できます。
-このメソッドを使うことで、オブジェクトのコピーやオブジェクト同士のマージができます。
+このメソッドを使うことで、オブジェクトの複製やオブジェクト同士のマージができます。
 
 `Object.assign`メソッドは、`target`オブジェクトに対して、1つ以上の`sources`オブジェクトを指定します。
 `sources`オブジェクト自身がもつ列挙可能なプロパティを第一引数の`target`オブジェクトに対してコピーします。
@@ -551,9 +551,9 @@ const merged = Object.assign({}, objectA, objectB);
 console.log(merged); // => { version: "b" }
 ```
 
-#### オブジェクトのspread構文{#object-spread-syntax}
+#### オブジェクトのspread構文でのマージ {#object-spread-syntax}
 
-ES2018ではオブジェクトのマージを構文として行える`...`（spread構文）が追加されました。
+ES2018ではオブジェクトのマージを行うオブジェクトの`...`（spread構文）が追加されました。
 ES2015で配列の要素を展開する`...`（spread構文）はサポートされていましたが、オブジェクトに対してもES2018でサポートされました。
 オブジェクトのspread構文は、オブジェクトリテラルの中に指定したオブジェクトのプロパティを展開できます。
 
@@ -617,8 +617,8 @@ console.log(object === cloneObject); // => false
 ```
 
 注意点として、`Object.assign`メソッドは`sources`オブジェクトのプロパティを浅くコピー（shallow copy）する点です。
-`sources`オブジェクト自身が持っている列挙できるプロパティをコピーするだけです。
-そのプロパティの値がオブジェクトである場合に、そのオブジェクトまでも複製するわけではありません。
+shallow copyとは、`sources`オブジェクトの直下にあるプロパティだけをコピーするということです。
+そのプロパティの値がオブジェクトである場合に、そのネストした先のオブジェクトまでも複製するわけではありません。
 
 {{book.console}}
 ```js
@@ -636,8 +636,8 @@ const cloneObject = shallowClone(object);
 console.log(cloneObject.nest === object.nest); // => true
 ```
 
-このような浅いコピーのことをshallow copyと呼び、逆にプロパティの値までも再帰的に複製してコピーすることを深いコピー（deep copy）と呼びます。
-shallowな実装を使い再帰的に処理することで、deepな実装を実現できます。
+逆にプロパティの値までも再帰的に複製してコピーすることを、深いコピー（deep copy）と呼びます。
+shallow copyで再帰的にコピー処理することで、deep copyを実現できます。
 次のコードでは、`shallowClone`を使い、`deepClone`を実現しています。
 
 {{book.console}}
@@ -666,14 +666,16 @@ const cloneObject = deepClone(object);
 console.log(cloneObject.nest === object.nest); // => false
 ```
 
-このように、JavaScriptのビルトインメソッドは浅い（shallow）な実装のみを提供し、深い（deep）な実装は提供していません。
-言語としては最低限の機能を提供し、より複雑な機能はユーザー側で実装するという形になることが多いです。
+このように、JavaScriptのビルトインメソッドは浅い（shallow）実装のみを提供し、深い（deep）実装は提供していないことが多いです。
+言語としては最低限の機能を提供し、より複雑な機能はユーザー側で実装するという形式を取ることが多いです。
 
-一方、JavaScriptという言語はコアにある機能が最低限であるため、ユーザーが作成した小さな機能をもつライブラリが数多く公開されています。
-それらのライブラリは`npm`と呼ばれるJavaScriptのパッケージ管理ツールで公開され、JavaScriptのエコシステムを築いています。
+このようにJavaScriptという言語はコアにある機能が最低限であるため、ユーザーが作成した小さな機能をもつライブラリが数多く公開されています。
+それらのライブラリはnpmと呼ばれるJavaScriptのパッケージ管理ツールで公開され、JavaScriptのエコシステムを築いています。
+npmについては「[ユースケース: Node.jsでCLIアプリケーション][]」の章で紹介します。
 
 [ループと反復処理]: ../loop/README.md "ループと反復処理"
 [変数と宣言]: ../variables/README.md "変数と宣言"
 [クラス]: ../class/README.md "クラス"
 [プロトタイプオブジェクト]: ../prototype-object/README.md "クラス"
 [変数と宣言のconstについて]: ../variables/README.md#const
+[ユースケース: Node.jsでCLIアプリケーション]: ../../use-case/nodecli/README.md
