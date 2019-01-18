@@ -20,7 +20,7 @@ try {
     console.log("この文は実行されます");
     // 未定義の関数を呼び出してReferenceError例外が発生する
     undefinedFunction();
-    console.log("この文は実行されません");
+    // この文は実行されません
 } catch (error) {
     // 例外が発生したあとはこのブロックが実行される
     console.log("この文は実行されます");
@@ -51,7 +51,7 @@ try {
     console.log("この文は実行されます");
 }
 // 上記のtry-finnalyで例外がキャッチされていないため
-console.log("この文は実行されません");
+// この文は実行されません
 ```
 
 ## throw文 {#throw}

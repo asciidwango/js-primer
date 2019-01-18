@@ -115,7 +115,8 @@ ${codeBlock.value}
                         // console.logと// => の書式をチェック
                         // ミスマッチが多いので無効化
                         // shouldConsoleWithComment(codeBlock.value, filePath);
-                        const poweredCode = toDoc.convertCode(codeBlock.value, filePath);
+                        const convertedUnreachableCode = codeBlock.value.replace(/^(\W*)\/\/ この文は実行されません$/gm, `$1throw new Error("この文は実行されません");`);
+                        const poweredCode = toDoc.convertCode(convertedUnreachableCode, filePath);
                         const unhandledRejectionHandler = (reason) => {
                             done(reason);
                         };

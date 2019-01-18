@@ -199,7 +199,7 @@ try {
         throw new Error("非同期的なエラー");
     }, 10);
 } catch (error) {
-    console.log("この文は実行されません");
+    // この文は実行されません
 }
 console.log("この文は実行されます");
 ```
@@ -294,7 +294,7 @@ function dummyFetch(path, callback) {
 // /success/data にリソースが存在するので、`response`にはデータが入る
 dummyFetch("/success/data", (error, response) => {
     if (error) {
-        console.log(error); // この文は実行されません
+        // この文は実行されません
     } else {
         console.log(response); // => { body: "Response body of /success/data" }
     }
@@ -304,7 +304,7 @@ dummyFetch("/failure/data", (error, response) => {
     if (error) {
         console.log(error.message); // => "NOT FOUND"
     } else {
-        console.log(response); // この文は実行されません
+        // この文は実行されません
     }
 });
 ```
@@ -471,11 +471,11 @@ function dummyFetch(path) {
 dummyFetch("/success/data").then(function onFulfilled(response) {
     console.log(response); // => { body: "Response body of /success/data" }
 }, function onRejected(error) {
-    console.log(error); // この文は実行されません
+    // この文は実行されません
 });
 // /failure/data のリソースは存在しないのでonRejectedが呼ばれる
 dummyFetch("/failure/data").then(function onFulfilled(response) {
-    console.log(response); // この文は実行されません
+    // この文は実行されません
 }, function onRejected(error) {
     console.log(error); // Error: "NOT FOUND"
 });
@@ -541,7 +541,7 @@ function throwPromise() {
         // Promiseコンストラクタの中で例外は自動的にキャッチされrejectを呼ぶ
         throw new Error("例外が発生");
         // 例外が発生するとそれ以降の処理は実行されない
-        console.log("この文は実行されません");
+        // この文は実行されません
     });
 }
 
