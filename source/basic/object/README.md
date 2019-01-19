@@ -492,6 +492,7 @@ console.log(Object.entries(object)); // => [["one", 1], ["two", 2], ["three", 3]
 これらの列挙する静的メソッドと配列の`forEach`メソッドなどと組み合わせれば、プロパティに対して反復処理ができます。
 次のコードでは、`Object.keys`メソッドで取得したプロパティ名の一覧をコンソールへ出力しています。
 
+{{book.console}}
 ```js
 const object = {
     "one": 1,
