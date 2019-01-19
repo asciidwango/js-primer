@@ -210,8 +210,10 @@ console.log(object.hasOwnProperty); // => undefined
 ```
 
 `Object.create`メソッドはES5から導入されました。
-`Object.create`メソッドは`Object.create(null)`というイディオムで、一部ライブラリなどで`Map`オブジェクトの代わりとして利用されています。
+`Object.create`メソッドは`Object.create(null)`というイディオムで、一部ライブラリなどで`Map`オブジェクトの代わりとして利用されていました。
+Mapとはキーと値の組み合わせを保持するためのオブジェクトです。
 
+ただのオブジェクトもMapとよく似た性質を持っていますが、最初からいくつかのプロパティが存在しアクセスできてしまいます。
 なぜなら、`Object`のインスタンスはデフォルトで`Object.prototype`を継承するため、`toString`などのプロパティ名がオブジェクトを作成した時点で存在します。`Object.create(null)`をつかうことで`Object.prototype`を継承しないオブジェクトを作成できるため、`Map`の代わりとして使われていました。
 
 {{book.console}}
