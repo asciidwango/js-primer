@@ -30,7 +30,8 @@ console.log(object.toString()); // "[object Object]"
 
 具体的にどういうことかを見てみます。
 
-先ほども登場した`toString`メソッドは、実際には`Object`の`prototype`オブジェクトに定義があります。
+先ほども登場した`toString`メソッドは、`Object`の`prototype`オブジェクトに定義があります。
+次のように、`Object.prototype.toString`メソッドの実装自体も参照できます。
 
 {{book.console}}
 ```js
@@ -38,14 +39,16 @@ console.log(object.toString()); // "[object Object]"
 console.log(typeof Object.prototype.toString); // => "function"
 ```
 
-このような`Object`の`prototype`オブジェクトに組み込まれているメソッドは**プロトタイプメソッド**と呼ばれます。この書籍では`Object.prototype.toString`のようなプロトタイプメソッドを`Object#toString`と短縮して表記します。
+このような`Object`の`prototype`オブジェクトに組み込まれているメソッドは**プロトタイプメソッド**と呼ばれます。
+この書籍では`Object.prototype.toString`のようなプロトタイプメソッドを`Object#toString`と短縮して表記します。
 
 > `Object.prototype.toString` = `Object#toString`
 
-`Object`のインスタンスは、この`prototype`オブジェクトに定義されたメソッドやプロパティをインスタンス化時に継承します。
+`Object`のインスタンスは、この`Object.prototype`オブジェクトに定義されたメソッドやプロパティをインスタンス化時に継承します。
 つまり、オブジェクトリテラルや`new Object`でインスタンス化したオブジェクトは、`Object.prototype`に定義されたものが利用できるということです。
 
-次のコードでは、オブジェクトリテラルで作成（インスタンス化）したオブジェクトから、`Object#toString`メソッドを参照できます。
+次のコードでは、オブジェクトリテラルで作成（インスタンス化）したオブジェクトから、`Object#toString`メソッドを参照しています。
+このときに、インスタンスの`toString`メソッドと`Object#toString`は一致しています。
 
 {{book.console}}
 ```js
@@ -60,13 +63,13 @@ console.log(object.toString === Object.prototype.toString); // => true
 console.log(object.toString()); // => "[object Object]"
 ```
 
-このように`Object.prototype`に定義されている`toString`メソッドや`hasOwnProperty`メソッドは、`Object`のインスタンスから呼び出せます。
+このように`Object.prototype`に定義されている`toString`メソッドなどは、インスタンスを作成時に自動的に継承されるため、`Object`のインスタンスから呼び出せます。
 これによりオブジェクトリテラルで作成した空のオブジェクトでも、`Object#toString`メソッドなどを呼び出せるようになっています。
 
-このインスタンスから`prototype`オブジェクト上に定義されたメソッドを自動的に参照する仕組みは**プロトタイプチェーン**と呼びます。
+このインスタンスから`prototype`オブジェクト上に定義されたメソッドを参照できる仕組みは**プロトタイプチェーン**と呼びます。
 プロトタイプチェーンの仕組みについては「[クラス][]」の章で扱うため、ここではインスタンスからプロトタイプメソッドを呼び出せるということがわかっていれば問題ありません。
 
-### プロトタイプメソッドと同じ名前のメソッド {#same-method-name}
+### プロトタイプメソッドと同じ名前のメソッドの優先順位 {#same-method-name}
 
 プロトタイプメソッドと同じ名前のメソッドがインスタンスオブジェクトに定義されている場合もあります。
 その場合には、インスタンスに定義したメソッドが優先して呼び出されます。
@@ -105,6 +108,21 @@ const object = {};
 // `object`のインスタンス自体に`toString`メソッドが定義されているわけではない
 console.log(object.hasOwnProperty("toString")); // => false
 // `in`演算子は指定されたプロパティ名が見つかるまで親を辿るため、`Object.prototype`まで見に行く
+console.log("toString" in object); // => true
+```
+
+次のように、インスタンスが`toString`メソッドを持っている場合は、`hasOwnProperty`メソッドも`true`を返します。
+
+{{book.console}}
+```js
+// オブジェクトのインスタンスにtoStringメソッドを定義
+const customObject = {
+    toString() {
+        return "custom value";
+    }
+};
+// オブジェクトのインスタンスが`toString`メソッドを持っている
+console.log(object.hasOwnProperty("toString")); // => true
 console.log("toString" in object); // => true
 ```
 
