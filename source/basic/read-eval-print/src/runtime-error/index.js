@@ -1,1 +1,2 @@
-console.log(a); // => ReferenceError: a is not defined
+const value = "値";
+console.log(x); // => ReferenceError: x is not defined
