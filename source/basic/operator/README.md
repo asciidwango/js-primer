@@ -572,7 +572,7 @@ if (~string.indexOf("木")) {
 }
 ```
 
-ES2015では、文字列（Stringオブジェクト）`includes`メソッドが実装されました。
+ES2015では、文字列（Stringオブジェクト）に`includes`メソッドが実装されました。
 `includes`メソッドは指定した文字列が含まれているかを真偽値で返します。
 
 {{book.console}}
