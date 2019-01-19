@@ -735,7 +735,7 @@ function outer() {
 }
 // `outer`関数の返り値はArrow Functionにて定義された関数
 const innerArrowFunction = outer();
-console.log(innerArrowFunction()); // => undefined;
+console.log(innerArrowFunction()); // => undefined
 ```
 
 つまり、このArrow Functionにおける`this`は`outer`関数で`this`を参照した場合と同じ値になります。
@@ -755,7 +755,7 @@ function outer() {
 }
 // `outer()`と呼び出した時の`this`は`undefined`(strict mode)
 const innerArrowFunction = outer();
-console.log(innerArrowFunction()); // => undefined;
+console.log(innerArrowFunction()); // => undefined
 ```
 
 ### メソッドとコールバック関数とArrow Function {#method-callback-arrow-function}

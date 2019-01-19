@@ -339,7 +339,7 @@ const counterB = new Counter();
 // `counterA.increment()`のベースオブジェクトは`counterA`インスタンス
 counterA.increment();
 // 各インスタンスのもつプロパティ(状態)は異なる
-console.log(counterA.count); // => 1;
+console.log(counterA.count); // => 1
 console.log(counterB.count); // => 0
 ```
 
@@ -993,9 +993,9 @@ class Child extends Parent {
     }
 }
 const parent = new Parent();
-console.log(parent.name); // => "Parent";
+console.log(parent.name); // => "Parent"
 const child = new Child();
-console.log(child.name); // => "Child";
+console.log(child.name); // => "Child"
 ```
 
 ### プロトタイプ継承 {#prototype-inheritance}

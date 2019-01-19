@@ -514,7 +514,7 @@ const array = [1, 2, 3];
 const doubleArray = array.map(function(value) {
     return value * 2; // 返した値をまとめた配列ができる
 });
-console.log(doubleArray); // => [2, 4, 6];
+console.log(doubleArray); // => [2, 4, 6]
 ```
 
 Arrow Functionでは処理が1つの式だけである場合に、`return`文を省略し暗黙的にその式の評価結果を`return`の返り値とします。
@@ -525,7 +525,7 @@ Arrow Functionでは処理が1つの式だけである場合に、`return`文を
 ```js
 const array = [1, 2, 3];
 const doubleArray = array.map(value => value * 2);
-console.log(doubleArray); // => [2, 4, 6];
+console.log(doubleArray); // => [2, 4, 6]
 ```
 
 Arrow Functionは`function`キーワードの関数式に比べて、できることとできないことがはっきりしています。

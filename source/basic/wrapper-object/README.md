@@ -60,9 +60,9 @@ string.toUpperCase(); // => "STRING"
 {{book.console}}
 ```js
 const string = "文字列";
-console.log(typeof string); // => "string";
+console.log(typeof string); // => "string"
 const stringWrapper = new String("文字列");
-console.log(typeof stringWrapper); // => "object";
+console.log(typeof stringWrapper); // => "object"
 ```
 
 ## プリミティブ型の値からラッパーオブジェクトへの自動変換 {#convert-primitive-to-wrapper}

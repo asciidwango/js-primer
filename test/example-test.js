@@ -1,22 +1,12 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("power-assert");
-const globby = require('globby');
+import { runTestCode, toTestCode } from "./lib/testing-code.js";
+
+const globby = require("globby");
 const fs = require("fs");
 const path = require("path");
-const strictEval = require("strict-eval");
-const { NodeVM } = require('vm2');
 const sourceDir = path.join(__dirname, "..", "source");
-const toDoc = require("power-doctest");
 const { transform } = require("babel-core");
-
-function strictfy(code) {
-    var strictRegExp = /["']use strict["']/;
-    if (strictRegExp.test(code)) {
-        return code;
-    }
-    return '"use strict";\n' + code;
-}
 
 function transformModule(code) {
     // 必要なもの以外(es modulesぐらいがベスト)は変換しないように
@@ -30,7 +20,7 @@ function transformModule(code) {
             }
             ]
         ]
-    }).code
+    }).code;
 }
 
 /**
@@ -40,11 +30,6 @@ function transformModule(code) {
  * 詳細は CONTRIBUTING.md を見る
  **/
 describe("doctest:js", function() {
-    const vm = new NodeVM({
-        require: {
-            external: true
-        }
-    });
     const files = globby.sync([
         `${sourceDir}/**/*-example.js`, // *-example.js
         `${sourceDir}/**/*.example.js`, // *.example.js
@@ -53,17 +38,16 @@ describe("doctest:js", function() {
     ]);
     files.forEach(filePath => {
         const normalizeFilePath = filePath.replace(sourceDir, "");
-        it(`can eval ${normalizeFilePath}`, function(done) {
+        it(`can eval ${normalizeFilePath}`, function() {
             const content = fs.readFileSync(filePath, "utf-8");
             try {
-                const powerCode = toDoc.convertCode(content, filePath);
-                vm.run(strictfy(transformModule(powerCode)), filePath);
-                done();
+                const testCode = toTestCode(content);
+                runTestCode(transformModule(testCode), filePath);
             } catch (error) {
                 // Stack Trace like
                 console.error(`StrictEvalError: strict eval is failed
     at strictEval (${filePath}:1:1)`);
-                done(new Error(error.message));
+                throw new Error(error.message);
             }
         });
     });
