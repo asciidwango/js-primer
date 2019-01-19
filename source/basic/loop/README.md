@@ -152,7 +152,7 @@ array.forEach(currentValue => {
 // と順番に出力される
 ```
 
-先ほどのfor文の例と同様の、任意の数値が入った配列を受け取り、その合計値を返す `sum` 関数を`forEach`メソッドで実装してみます。
+先ほどのfor文の例と同じ数値の合計を返す`sum` 関数を`forEach`メソッドで実装してみます。
 
 {{book.console}}
 [import, sum-for-each-example.js](./src/for/sum-for-each-example.js)
