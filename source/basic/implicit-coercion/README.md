@@ -198,7 +198,7 @@ String("str"); // => "str"
 String(true); // => "true"
 String(null); // => "null"
 String(undefined); // => "undefined"
-String(Symbol("シンボルの説明")); // => "Symbol(シンボルの説明)"
+String(Symbol("シンボルの説明文")); // => "Symbol(シンボルの説明文)"
 // プリミティブ型ではない値の場合
 String([1, 2, 3]); // => "1,2,3"
 String({ key: "value" }); // => "[object Object]"
