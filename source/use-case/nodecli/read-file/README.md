@@ -41,6 +41,7 @@ fsモジュールは、Node.jsでファイルの読み書きをおこなうた�
 
 次のサンプルコードは非同期形式の関数の例です。
 
+<!-- doctest:disable -->
 ```js
 const fs = require("fs");
 
@@ -50,6 +51,7 @@ fs.readFile("sample.md", (err, file) => {
 
 そして、次のサンプルコードは同じ関数の同期形式の例です。
 
+<!-- doctest:disable -->
 ```js
 const fs = require("fs");
 

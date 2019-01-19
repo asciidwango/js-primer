@@ -728,9 +728,9 @@ if文との違いは、条件演算子は式として書くことができるた
 {{book.console}}
 ```js
 const valueA = true ? "A" : "B";
-console.log(valueA); // => "A";
+console.log(valueA); // => "A"
 const valueB = false ? "A" : "B";
-console.log(valueB); // => "B";
+console.log(valueB); // => "B"
 ```
 
 条件分岐による値を返せるため、条件によって変数の初期値が違う場合などに使われます。

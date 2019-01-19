@@ -68,7 +68,7 @@ class DocTestController {
         });
     }
 
-    get asyncTestTimeoutMillSeconds(){
+    get asyncTestTimeoutMillSeconds() {
         const timeoutComment = this.comments.find(comment => {
             return ASYNC_TIME_PATTERN.test(comment);
         });
@@ -77,8 +77,8 @@ class DocTestController {
         }
         const match = timeoutComment.match(ASYNC_TIME_PATTERN);
         const timeoutMillSecAsString = Number(match && match[1]);
-        if(Number.isNaN(timeoutMillSecAsString)){
-            throw new Error(`AsyncDocTest: wrong timout format: ${timeoutComment}`);
+        if (Number.isNaN(timeoutMillSecAsString)) {
+            throw new Error(`AsyncDocTest: wrong timeout format: ${timeoutComment}`);
         }
         return timeoutMillSecAsString;
     }

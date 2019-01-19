@@ -1461,7 +1461,7 @@ Async Functionではない通常の関数で`await`式を使うとSyntax Error�
 <!-- textlint-disable -->
 
 {{book.console}}
-<!-- doctest: Error -->
+<!-- doctest: SyntaxError -->
 ```js
 function main(){
     // Syntax Error

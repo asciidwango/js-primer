@@ -741,7 +741,7 @@ x = "after text";
 ```js
 function printX() {
     const x = "X";
-    console.log(x); // => "X";
+    console.log(x); // => "X"
 }
 
 printX();

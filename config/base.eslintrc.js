@@ -18,7 +18,7 @@ module.exports = {
                 "SwitchCase": 1
             }
         ],
-        "quotes": ["error", "double"],
+        "quotes": ["error", "double", { "allowTemplateLiterals": true }],
         "array-bracket-spacing": [
             "error",
             "never"

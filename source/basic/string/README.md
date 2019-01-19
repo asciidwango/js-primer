@@ -83,6 +83,7 @@ console.log(`Hello ${name}!`);// => "Hello JavaScript!"
 
 `文字列[インデックス]`という記述することでアクセスでき、インデックスの値は`0`以上`2^53 - 1`未満の整数が指定できます。
 
+{{book.console}}
 ```js
 const string = "文字列";
 // 配列と同じようにインデックスでアクセスできる
@@ -109,6 +110,7 @@ Unicodeでは、文字と1対1で対応するビット列を表のようなも�
 
 ES2015で追加された`String#codePointAt`メソッドを使うことで、その文字のCode Pointを取得できます。
 
+{{book.console}}
 ```js
 // 文字列"あ"の0番目のCode Pointを取得
 console.log("あ".codePointAt(0)); // => 12354
@@ -116,6 +118,7 @@ console.log("あ".codePointAt(0)); // => 12354
 
 逆に、`String.fromCodePoint`メソッドを使うことで、指定したCode Pointの文字を取得できます。
 
+{{book.console}}
 ```js
 // 符号位置12354の文字を取得する
 console.log(String.fromCodePoint(12354)); // => "あ"
@@ -124,6 +127,7 @@ console.log(String.fromCodePoint(12354)); // => "あ"
 また、文字列リテラル中にはUnicodeエスケープシーケンスで、直接Code Pointを書くこともできます。
 Code Pointは`\u{Code Pointの16進数の値}`で書くことができます。
 
+{{book.console}}
 ```js
 // "あ"のCode Pointは12354
 // 12354の16進数表現は3042
@@ -132,6 +136,7 @@ console.log("\u{3042}"); // => "あ"
 
 Code Pointの16進数表現は次のようにして求めることができます。
 
+{{book.console}}
 ```js
 // "あ"のCode Pointは12354
 const codePointOfあ = "あ".codePointAt(0);
@@ -231,6 +236,7 @@ Unicodeについて詳しくは[プログラマのための文字コード技術
 `String#split`メソッドは、第一引数に指定した区切り文字で文字列を分解した配列を返します。
 次のコードでは、文字列を`・`で区切った配列を作成しています。
 
+{{book.console}}
 ```js
 const strings = "赤・青・緑".split("・");
 console.log(strings); // => ["赤", "青", "緑"]
@@ -241,6 +247,7 @@ console.log(strings); // => ["赤", "青", "緑"]
 
 この２つを合わせれば、区切り文字を`・`から`、`へ変換する処理を次のように書くことができます。
 
+{{book.console}}
 ```js
 const string = "赤・青・緑".split("・").join("、");
 console.log(string); // => "赤、青、緑"
@@ -249,6 +256,7 @@ console.log(string); // => "赤、青、緑"
 `String#split`メソッドの第一引数には正規表現も指定できます。
 これを利用すると、次のように文字列をスペースで区切るような処理が簡単に書くことができます。
 
+{{book.console}}
 ```js
 // 文字列を1つ以上のスペースを区切りにして分解する
 const strings = "a b    c      d".split(/\s+/);
@@ -259,6 +267,7 @@ console.log(strings); // => ["a", "b", "c", "d"]
 
 `String#split`メソッドでは、空文字（`""`）を区切り文字として指定し、文字列を**文字**の配列にする方法として紹介されることがあります。
 
+{{book.console}}
 ```js
 // 空文字("")で文字列を分解する
 const characters = "文字列".split("");
@@ -272,6 +281,7 @@ console.log(characters); // => ["文", "字", "列"]
 
 次のコードを見ると、`string.split("")`は各**文字**ごとで分解するのではなく、各**Code Unit**ごとに分解していることが分かります。
 
+{{book.console}}
 ```js
 // "𩸽"はサロゲートペアであるため2つのCode Unit（\uD867\uDE3D）からなる
 // サロゲートペアを含む文字列を各Code Unitに分解
@@ -286,6 +296,7 @@ console.log(codeUnitElements); // ["�", "�", "の", "ひ", "ら", "き"]
 そのため、Iterableを扱える`Array.from`メソッドや`...`（spread構文）を利用することで、
 文字列をそれぞれのCode Pointごとに分解できます。
 
+{{book.console}}
 ```js
 const string = "𩸽のひらき";
 // Array.fromメソッドで文字列を分解
@@ -310,12 +321,13 @@ Iteratorを利用すればサロゲートペアもそれぞれの**Code Point**�
 文字列のそれぞれの要素はCode Unitであるため、`length`プロパティはCode Unitの数を返します。
 つまり、サロゲートペアを含む文字列は視覚的な長さとは異なった値になります。
 
+{{book.console}}
 ```js
 console.log("文字列".length); // => 3
 // 評価結果の文字列の要素数（Code Unit数）であるため1つ
 console.log("\u{3042}".length); // => 1
 // サロゲートペアを含むためCode Unitは6つ
-console.log("𩸽のひらき".length); // => 6;
+console.log("𩸽のひらき".length); // => 6
 ```
 
 これは、`文字列.split("").length`と同じ結果です。
@@ -332,6 +344,7 @@ Code Unitの数を文字列の長さとしたときに直感と反する場合�
 たとえば、Twitterにおける140文字の**文字数**にはCode Pointの数をベースにしています。（[twitter-text][]というライブラリとして公開されています。）
 `Array.from`メソッドを利用すれば、文字列におけるCode Pointの数は次のようにして取得できます。
 
+{{book.console}}
 ```js
 // Code Pointごとの配列にする
 // Array.fromメソッドはIteratorを配列にする
@@ -352,6 +365,7 @@ ECMAScriptが参照するUnicodeの仕様も更新されて続けています。
 
 文字列の比較には`===`（厳密比較演算子）を利用します。
 
+{{book.console}}
 ```js
 console.log("文字列" === "文字列"); // => true
 // 文字列の評価結果を比較するため、評価結果の文字列はどちらも同じ
@@ -373,6 +387,7 @@ console.log("JS" === "ES"); // => false
 
 文字列からCode Unitの数値を取得するには`String#charCodeAt`メソッドを利用します。
 
+{{book.console}}
 ```js
 // "A"と"B"のCode Unitは65と66
 console.log("A".charCodeAt(0)); // => 65
@@ -389,6 +404,7 @@ console.log("ABC" > "ABD"); // => false
 次のように、`["10", "2", "1"]`という数字の配列を`Array#sort`メソッドで昇順ソートした場合、直感的には`["1", "2", "10"]`となることを期待します。
 しかし、実際の結果は`["1", "10", "2"]`となります。
 
+{{book.console}}
 ```js
 const numberStrings = ["10", "2", "1"];
 // Array#sortは、デフォルトでは配列の要素を`<`で比較する
@@ -399,6 +415,7 @@ console.log(numberStrings.sort()); // => ["1", "10", "2"]
 なぜなら、`"10" < "2"`を比較した場合に、先頭の文字（Code Unit）から順番に比較されるためです。
 まず`"10"[0] < "2"[0]`が比較され`true`となり、`"10"`が`"2"`より小さいと判定されます。
 
+{{book.console}}
 ```js
 console.log("10" < "2"); // => true
 // 数値同士なら10の方が大きい
@@ -422,6 +439,7 @@ JavaScriptでは、ECMAScriptの関連仕様として国際化API（ECMAScript I
 先ほどの数字のソートについては、国際化APIのひとつである`Intl.Collator`コンストラクタを利用することで地域化できます。
 `Intl.Collator`はさまざまなオプションを持ちますが、`numeric`オプションを`true`にすることで数字を数値として比較できます。
 
+{{book.console}}
 ```js
 // numericをtrueとすると数字が数値として比較されるようになる
 const collator = new Intl.Collator("ja", { numeric: true });
@@ -446,6 +464,7 @@ console.log(sortedValues);  // => ["1", "2", "10"]
 位置にマイナスの値を指定した場合は文字列の末尾から数えた位置となります。
 また、第一引数の位置が第二引数の位置より大きい場合、常に空の文字列を返します。
 
+{{book.console}}
 ```js
 const string = "ABCDE";
 console.log(string.slice(1)); // => "BCDE"
@@ -464,6 +483,7 @@ console.log(string.slice(4, 1)); // => ""
 `slice`メソッドとは異なる点として、位置にマイナスの値を指定した場合は常に`0`として扱われます。
 また、第一引数の位置が第二引数の位置より大きい場合、第一引数と第二引数が入れ替わるという予想しにくい挙動となります。
 
+{{book.console}}
 ```js
 const string = "ABCDE";
 console.log(string.substring(1)); // => "BCDE"
@@ -484,6 +504,7 @@ console.log(string.substring(4, 1)); // => "BCD"
 `slice`メソッドと`substring`メソッドの引数に直接`1`や`4`といった位置を指定することは少ないです。
 次のように、`String#indexOf`メソッドなど位置を取得するものと組み合わせて使うことが多いでしょう。
 
+{{book.console}}
 ```js
 const url = "https://example.com?param=1";
 const indexOfQuery = url.indexOf("?");
@@ -518,6 +539,7 @@ Stringメソッドには検索したい状況に応じたものが用意され�
 
 どちらのメソッドも一致する文字列が複数個ある場合でも、指定した部分文字列を一度見つけた時点で検索は終了します。
 
+{{book.console}}
 ```js
 // 検索対象となる文字列
 const string = "にわにはにわにわとりがいる";
@@ -533,6 +555,7 @@ console.log(string.indexOf("キーワード")); // => -1
 検索している部分文字列の長さは固定であるため、一致した文字列は自明ですが、
 `String#slice`と取得したインデックスを組み合わせることで検索結果を取得できます。
 
+{{book.console}}
 ```js
 const string = "JavaScript";
 const searchWord = "Script";
@@ -548,6 +571,7 @@ ES2015より前では`String#indexOf`メソッドしか固定文字列の検索�
 そのため、`string.indexOf("検索文字列") !== -1`で`"検索文字列"`が含まれているかを表現するイディオムがありました。
 しかし、ES2015以降は`String#includes`メソッドなど、より適切な真偽値を取得するメソッドが追加されています。
 
+{{book.console}}
 ```js
 // indexOfで含まれているかを判定する表現するイディオム
 console.log("にわにはにわとりがいる".indexOf("にわ") !== -1); // => true
@@ -565,6 +589,7 @@ console.log("にわにはにわとりがいる".includes("にわ")); // => true
 
 具体的な例をいくつか見てみましょう。
 
+{{book.console}}
 ```js
 // 検索対象となる文字列
 const string = "にわにはにわにわとりがいる";
@@ -711,6 +736,7 @@ const [マッチした文字列, ...キャプチャされた文字列] = 文字�
 
 具体的な例を見てみましょう。
 
+{{book.console}}
 ```js
 // "ECMAScript (数字+)"にマッチするが、欲しい文字列は数字の部分のみ
 const pattern = /ECMAScript (\d+)/i;
@@ -735,6 +761,7 @@ console.log(capture1); // => "6"
 
 具体的な例を見てみましょう。
 
+{{book.console}}
 ```js
 // 検索対象となる文字列
 const string = "にわにはにわにわとりがいる";
@@ -766,6 +793,7 @@ Stringメソッドと正規表現で同じ結果が得られる場合はどち�
 正規表現の場合、`/^\/.*\/$/`のようにパターンそのものを見ても何をしたいのかはひと目では分かりにくいです。
 Stringメソッドの場合は、`/`から始まり`/`で終わるかを判定してることがそのままコードにあらわれています。
 
+{{book.console}}
 ```js
 const string = "/正規表現のような文字列/";
 // 正規表現で`/`から始まり`/`で終わる文字列のパターン
@@ -797,6 +825,7 @@ Stringメソッドで表現できることはStringメソッドで表現し、�
 strict modeでは削除出来ないプロパティを削除しようとするエラーが発生します。
 （strict modeでない場合はエラーも発生せず単に無視されます。）
 
+{{book.console}}
 ```js
 "use strict";
 const string = "文字列";
@@ -816,6 +845,7 @@ delete string[0]; // => Error
 
 次のように、`replace`メソッドで、削除したい部分を空文字へ置換することで、文字列を削除できます。
 
+{{book.console}}
 ```js
 const string = "文字列";
 // "文字"を""（空文字）へ置換することで"削除"を表現
@@ -826,6 +856,7 @@ console.log(newString); // => "列"
 `replace`メソッドには正規表現も指定できます。
 `g`フラグを有効化した正規表現を渡すことで、文字列からパターンにマッチするものをすべて削除できます。
 
+{{book.console}}
 ```js
 // 検索対象となる文字列
 const string = "にわにはにわにわとりがいる";
@@ -856,6 +887,7 @@ const 置換した結果の文字列 = 文字列.replace(/(パターン)/, (all,
 コールバック関数の`year`、`month`、`day`にはそれぞれキャプチャした文字列が入り、
 マッチした文字列全体がコールバック関数の返り値に置換されます。
 
+{{book.console}}
 ```js
 function toDateJa(dateString) {
     // パターンにマッチしたときのみ、コールバック関数で置換処理が行われる
@@ -894,6 +926,7 @@ scheme      host     pathname
 たとえば、次のように`baseURL`と`pathname`を渡し、それらを結合したURLにあるリソースを取得する`getResource`関数があるとします。
 この`getResource`関数には、ベースURLとベースURLからのパスを引数にそれぞれ渡して利用します。
 
+{{book.console}}
 ```js
 // `baseURL`と`pathname`にあるリソースを取得する
 function getResource(baseURL, pathname) {
@@ -910,6 +943,7 @@ getResource(baseURL, pathname);
 この場合は`getResource`関数の内部で、`baseURL`と`pathname`を結合してできたURLは異なります。
 そのため、意図しないURLからリソースを取得するという問題が発生します。
 
+{{book.console}}
 ```js
 // `baseURL`と`pathname`にあるリソースを取得する
 function getResource(baseURL, pathname) {
@@ -931,6 +965,7 @@ getResource(baseURL, pathname);
 先ほどのような、URL文字列の結合を安全に行うには、入力される`baseURL`文字列の揺れを吸収する仕組みを作成します。
 次の`baseJoin`関数はベースURLとパスを結合した文字列を返しますが、ベースURLの末尾に`/`があるかの揺れを吸収しています。
 
+{{book.console}}
 ```js
 // ベースURLとパスを結合した文字列を返す
 function baseJoin(baseURL, pathname) {
@@ -972,6 +1007,7 @@ const searchURL = `https://example.com/search?query=${input}&sort=desc`;
 なぜなら、ユーザー入力に`&`や`/`などが含まれているとURLの意味合いが変わってしまったり、
 URLには含められない文字列があるためです。
 
+{{book.console}}
 ```js
 // ユーザ入力
 const input = "/";
@@ -984,6 +1020,7 @@ console.log(URL); // => "https://example.com/search?query=/&sort=desc"
 そのため、URLのパラメータなどにユーザー入力を含めるためにはURLエスケープする必要があります。
 JavaScriptでは、`encodeURIComponent`関数を使うことで文字列をURL中に埋め込んでも安全な文字列へエスケープできます。
 
+{{book.console}}
 ```js
 // ユーザ入力
 const input = "/";
@@ -1003,6 +1040,7 @@ console.log(URL); // => "https://example.com/search?query=%2F&sort=desc"
 
 通常の関数として呼び出した場合、引数にはただの文字列が渡ってきます。
 
+{{book.console}}
 ```js
 function tag(string) {
     console.log(string); // => "template 0 literal 1"
@@ -1013,6 +1051,8 @@ tag(`template ${0} literal ${1}`);
 しかし、`()`ではなく ``` タグ関数`テンプレート` ``` と記述することで、`タグ関数`が受け取る引数にはタグ付きテンプレート向けの値が渡ってきます。
 そのため、タグ付きテンプレートで利用する関数のことを、タグ関数（Tag function）と呼び分けることにします。
 
+{{book.console}}
+<!-- doctest:disable -->
 ```js
 // タグ関数は引数の形が決まっていること以外は関数と同じ
 function tag(strings, ...values) {
@@ -1028,6 +1068,7 @@ tag`template ${0} literal ${1}`;
 引数をどう扱うかを見ていくために、タグ付きテンプレートの内容をそのまま結合して返す`stringRaw`というタグ関数を実装してみます。
 `Array#reduce`メソッドを使うことで、テンプレートの文字列と変数を順番に結合できます。
 
+{{book.console}}
 ```js
 // テンプレートを順番どおりに結合した文字列を返すタグ関数
 function stringRaw(strings, ...values) {
@@ -1050,6 +1091,7 @@ String.raw`template ${0} literal ${1}`; // => "template 0 literal 1"
 `encodeURIComponent`関数を利用し、変数をURLエスケープする`escapeURL`タグ関数を定義します。
 このタグ関数を使うことで、テンプレートリテラル中の変数がURLエスケープできます。
 
+{{book.console}}
 ```js
 // 変数をURLエスケープするタグ関数
 function escapeURL(strings, ...values) {

@@ -44,7 +44,16 @@ ECMAScript 2015（ES2015）から後方互換性のための仕様として**HTM
 
 HTML-likeコメントは名前のとおり、HTMLのコメントと同じ表記です。
 
-[import, html-like-comments-example.js](src/html-like-comments-example.js)
+<!-- textlint-disable eslint -->
+<!-- HTML-likeコメントはScript空間のみであるためdoctestしない -->
+<!-- doctest:disable -->
+```js
+<!-- この行はコメントと認識される
+console.log("この行はJavaScript");
+-->  この行もコメントと認識される
+```
+
+<!-- textlint-enable eslint -->
 
 ここでは、 `<!--` と `-->` がそれぞれ一行コメントとして認識されます。
 

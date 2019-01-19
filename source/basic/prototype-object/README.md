@@ -191,7 +191,7 @@ console.log(array.hasOwnProperty === Object.prototype.hasOwnProperty); // => tru
 ```js
 const number = [1, 2, 3];
 // Array#toStringが定義されているため、`Object#toString`とは異なる形式となる
-console.log(number.toString()); // => "1,2,3";
+console.log(number.toString()); // => "1,2,3"
 ```
 
 ## [コラム] `Object.prototype`を継承しないオブジェクト {#not-inherit-object}

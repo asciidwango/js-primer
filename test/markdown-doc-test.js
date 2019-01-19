@@ -1,36 +1,36 @@
 // LICENSE : MIT
 "use strict";
-const assert = require("power-assert");
-const globby = require('globby');
+import { toTestCode, runTestCode } from "./lib/testing-code.js";
+
+const globby = require("globby");
 const fs = require("fs");
 const path = require("path");
-const strictEval = require("strict-eval");
-const { NodeVM } = require('vm2');
 const sourceDir = path.join(__dirname, "..", "source");
-const toDoc = require("power-doctest");
 const remark = require("remark")();
-const select = require('unist-util-select');
-const attachParents = require('unist-util-parents');
-const findAllBetween = require('unist-util-find-all-between');
-const findBefore = require('unist-util-find-before');
+const select = require("unist-util-select");
+const attachParents = require("unist-util-parents");
+const findAllBetween = require("unist-util-find-all-between");
+const findBefore = require("unist-util-find-before");
 const DocTestController = require("./lib/DocTestController");
-const makeConsoleMock = require("consolemock");
 const getComments = (parentNode, codeNode) => {
     const nonHtmlNode = findBefore(parentNode, codeNode, (node) => {
         return node.type !== "html";
     });
     const startNode = nonHtmlNode ? nonHtmlNode : parentNode.children[0];
-    const htmlNodes = findAllBetween(parentNode, startNode, codeNode, 'html');
+    const htmlNodes = findAllBetween(parentNode, startNode, codeNode, "html");
     return htmlNodes.map(htmlNode => {
-        return htmlNode.value.replace(/^<!--/, "").replace(/-->$/, "")
-    })
+        return htmlNode.value.replace(/^<!--/, "").replace(/-->$/, "");
+    });
 };
+
+
 /**
  * 指定した文字列を含んだコードは実行環境によってはサポートされてないので無視する
- * 具体的にはNode.js v6でES2016~のコードが実行できない
+ * 具体的にはNode.js v6でES2016~のコードが実行できない場合がある
+ * .travis.ymlのサポートしているNode.jsバージョンに合わせる
  * @type {string[]}
  */
-const ESVersions = ["ES2016", "ES2017"];
+const ESVersions = ["ES2017"];
 /**
  * Markdownファイルの CodeBlock に対してdoctestを行う
  * CodeBlockは必ず実行できるとは限らないので、
@@ -105,61 +105,44 @@ describe("doctest:md", function() {
                         console.log(`   at ${filePathLineColumn}`);
                         console.log(`Code:
 ---
-${codeBlock.value}
+${codeValue}
 ---
 `);
                         done(error);
 
                     };
                     try {
-                        // console.logと// => の書式をチェック
-                        // ミスマッチが多いので無効化
-                        // shouldConsoleWithComment(codeBlock.value, filePath);
-                        const convertedUnreachableCode = codeBlock.value.replace(/^(\W*)\/\/ この文は実行されません$/gm, `$1throw new Error("この文は実行されません");`);
-                        const poweredCode = toDoc.convertCode(convertedUnreachableCode, filePath);
                         const unhandledRejectionHandler = (reason) => {
                             done(reason);
                         };
                         const uncaughtException = (error) => {
                             reportErrorIfUnexpected(error);
                         };
-                        if (/strict modeではない/.test(codeBlock.value)) {
-                            // non-strict modeのコード
-                            const vm = new NodeVM({
-                                require: {
-                                    external: true
-                                }
-                            });
-                            vm.run(poweredCode, filePath);
-                            done();
-                        } else {
-                            process.once("unhandledRejection", unhandledRejectionHandler);
-                            process.once("uncaughtException", uncaughtException);
-                            strictEval(poweredCode, {
-                                require,
-                                console: !!process.env.ENABLE_CONSOLE ? console : makeConsoleMock(),
-                                setTimeout,
-                            });
-                            if (docTestController.isAsyncTesting) {
-                                const PADDING_TIME = 16;
-                                setTimeout(() => {
-                                    process.removeListener("unhandledRejection", unhandledRejectionHandler);
-                                    process.removeListener("uncaughtException", uncaughtException);
-                                    done();
-                                }, docTestController.asyncTestTimeoutMillSeconds + PADDING_TIME);
-                            } else {
-                                const mayBeAsync = /Promise|async |then\(|setTimeout/;
-                                if (mayBeAsync.test(codeValue)) {
-                                    const filePathLineColumn = `${filePath}:${codeBlock.position.start.line}:${codeBlock.position.start.column}`;
-                                    console.log(`Doctest: Failed`);
-                                    console.log(`   at ${filePathLineColumn}`);
-                                    done(new Error(`doctest:asyncをつけ忘れている可能性が高いです at ${filePathLineColumn}`));
-                                    return;
-                                }
+                        process.once("unhandledRejection", unhandledRejectionHandler);
+                        process.once("uncaughtException", uncaughtException);
+                        // Run Test Code
+                        const testCode = toTestCode(codeValue);
+                        runTestCode(testCode, filePath);
+                        // Async Handling
+                        if (docTestController.isAsyncTesting) {
+                            const PADDING_TIME = 16;
+                            setTimeout(() => {
                                 process.removeListener("unhandledRejection", unhandledRejectionHandler);
                                 process.removeListener("uncaughtException", uncaughtException);
                                 done();
+                            }, docTestController.asyncTestTimeoutMillSeconds + PADDING_TIME);
+                        } else {
+                            const mayBeAsync = /Promise|async |then\(|setTimeout/;
+                            if (mayBeAsync.test(codeValue)) {
+                                const filePathLineColumn = `${filePath}:${codeBlock.position.start.line}:${codeBlock.position.start.column}`;
+                                console.log(`Doctest: Failed`);
+                                console.log(`   at ${filePathLineColumn}`);
+                                done(new Error(`doctest:asyncをつけ忘れている可能性が高いです at ${filePathLineColumn}`));
+                                return;
                             }
+                            process.removeListener("unhandledRejection", unhandledRejectionHandler);
+                            process.removeListener("uncaughtException", uncaughtException);
+                            done();
                         }
                     } catch (error) {
                         reportErrorIfUnexpected(error);

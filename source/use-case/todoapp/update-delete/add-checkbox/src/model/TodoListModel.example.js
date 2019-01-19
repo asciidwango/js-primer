@@ -15,4 +15,4 @@ todoListModel.addTodo(new TodoItemModel({
     completed: false
 }));
 // Todoリストにアイテムが増える
-console.log(todoListModel.totalCount); // => 1;
+console.log(todoListModel.totalCount); // => 1

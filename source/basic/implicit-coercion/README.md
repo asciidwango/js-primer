@@ -256,7 +256,7 @@ String(function() {}); // 実装依存の結果
 const input = window.prompt("数字を入力してください", "42");
 // 文字列を数値に変換する
 const number = Number(input);
-console.log(typeof number); // => "number";
+console.log(typeof number); // => "number"
 console.log(number); // 入力された文字列を数値に変換したもの
 ```
 
@@ -268,7 +268,7 @@ console.log(number); // 入力された文字列を数値に変換したもの
 {{book.console}}
 ```js
 // "1"をパースして10進数として取り出す
-Number.parseInt("1", 10); // => 1;
+Number.parseInt("1", 10); // => 1
 // 余計な文字はパース時に無視して取り出す
 Number.parseInt("42px", 10); // => 42
 Number.parseInt("10.5", 10); // => 10
