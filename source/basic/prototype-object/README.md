@@ -116,7 +116,7 @@ console.log("toString" in object); // => true
 {{book.console}}
 ```js
 // オブジェクトのインスタンスにtoStringメソッドを定義
-const customObject = {
+const object = {
     toString() {
         return "custom value";
     }
