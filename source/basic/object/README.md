@@ -1,13 +1,18 @@
 ---
 author: azu
+description: "JavaScriptのオブジェクトの作成、更新、削除などの基本的な操作について"
 ---
 
 # オブジェクト {#object}
 
-## オブジェクトとは {#what-is-object}
+オブジェクトはプロパティの集合です。プロパティとは名前（キー）と値（バリュー）が対になったものです。
+プロパティのキーには文字列または`Symbol`が利用でき、値には任意のデータが指定できます。
+また、1つのオブジェクトは複数のプロパティを持てるため、1つのオブジェクトで多種多様な値を表現できます。
 
-オブジェクトはプロパティの集合です。プロパティとはキー（名前）と値から構成されるものを言います。
-キーには文字列またはSymbolが利用でき、値には任意のデータが利用できます。
+今までも登場してきた、配列や関数などもオブジェクトの一種です。
+この章では、あらゆるオブジェクトのもととなる`Object`というビルトインオブジェクトについて見ていきます。
+
+## オブジェクトを作成する {#create-object}
 
 オブジェクトを作成するには、オブジェクトリテラル（`{}`）を利用します。
 
@@ -16,7 +21,7 @@ author: azu
 const object = {};
 ```
 
-オブジェクトリテラルでは、任意のプロパティをもつオブジェクトを作成できます。
+オブジェクトリテラルでは、初期値としてプロパティをもつオブジェクトを作成できます。
 プロパティは、オブジェクトリテラル（`{}`）の中にキーと値を`:`（コロン）で区切り記述します。
 
 ```js
@@ -43,10 +48,10 @@ const object = {
 
 ```js
 const color = {
-    // それぞれのキーと値の組み合わせを`,`で区切る
+    // それぞれのプロパティは`,`で区切る
     red: "red",
     green: "green",
-    blue: "blue",
+    blue: "blue"
 };
 ```
 
@@ -62,7 +67,8 @@ const object = {
 console.log(object); // => { name: "名前" }
 ```
 
-またES2015からは、プロパティ名と値に指定する変数名が同じ場合は`{ name }`のように省略して書くことができます。
+またES2015からは、プロパティ名と値に指定する変数名が同じ場合は`{ name }`のように省略して書けます。
+次のコードは、プロパティ名`name`に変数`name`を値にしたプロパティを設定しています。
 
 {{book.console}}
 ```js
@@ -77,9 +83,38 @@ console.log(object); // => { name: "名前" }
 この省略記法は、モジュールや分割代入においても共通した表現です。
 そのため、`{}`の中でプロパティ名が単独で書かれてる場合は、この省略記法を利用していることに注意してください。
 
+### `{}`は`Object`のインスタンスオブジェクト {#object-instance-object}
+
+JavaScriptには`Object`というビルトインオブジェクトがあります。
+オブジェクトリテラル（`{}`）は、このビルトインオブジェクトである`Object`を元にして新しいオブジェクトを作成するための構文です。
+
+<!-- textlint-disable no-js-function-paren -->
+
+オブジェクトリテラル以外の方法として、`new`演算子を使うことで、`Object`から新しいオブジェクトを作成できます。
+次のコードでは、`new Object()`でオブジェクトを作成していますが、これは空のオブジェクトリテラルと同じ意味です。
+
+{{book.console}}
+```js
+// プロパティをもたない空のオブジェクトを作成
+// = `Object`からインスタンスオブジェクトを作成
+const object = new Object();
+console.log(object); // => {}
+```
+
+オブジェクトリテラルの方が明らかに簡潔で、プロパティの初期値も指定できるため、`new Object()`を使う利点はありません。
+
+`new Object()`でオブジェクトを作成することは、「`Object`のインスタンスオブジェクトを作成する」といいます。
+しかしながら、`Object`やインスタンスオブジェクトなどややこしい言葉の使い分けが必要となってしまいます。
+そのため、この書籍ではオブジェクトリテラルと`new Object`どちらの方法であっても、単に「オブジェクトを作成する」と呼びます。
+
+オブジェクトリテラルは、`Object`から新しいインスタンスオブジェクトを作成していることを意識しておくとよいでしょう。
+
+<!-- textlint-enable no-js-function-paren -->
+
 ## プロパティへのアクセス {#property-access}
 
 オブジェクトのプロパティにアクセスする方法として、ドット記法（`.`）を使う方法とブラケット記法（`[]`）があります。
+それぞれの記法で、オブジェクトの右辺へプロパティ名を指定すると、その名前をもったプロパティの値を参照できます。
 
 {{book.console}}
 ```js
@@ -97,10 +132,12 @@ console.log(object["key"]); // => "value"
 [import, prop-dot-invalid.js](./src/prop-dot-invalid.js)
 
 一方、ブラケット記法では、`[`と`]`の間に任意の式を書くことができます。
-その式の評価結果をプロパティ名として利用できるため、プロパティ名に任意の文字列や変数を利用できます。
+そのため、識別子の命名規則とは関係なく、任意の文字列をプロパティ名として指定できます。
 
+[import, brackets-dot-invalid.js](./src/brackets-dot-invalid.js)
+
+また、ブラケット記法ではプロパティ名に変数も利用できます。
 次のコードでは、プロパティ名に`myLang`という変数をブラケット記法で指定しています。
-ドット記法ではプロパティ名に変数は利用できないため、プロパティ名に変数を指定した場合はブラケット記法を利用します。
 
 {{book.console}}
 ```js
@@ -112,7 +149,8 @@ const myLang = "ja";
 console.log(languages[myLang]); // => "日本語"
 ```
 
-基本的にはドット記法（`.`）を使い、ドット記法で書けない場合はブラケット記法（`[]`）を使うとよいでしょう。
+ドット記法ではプロパティ名に変数は利用できないため、プロパティ名に変数を指定した場合はブラケット記法を利用します。
+基本的には簡潔なドット記法（`.`）を使い、ドット記法で書けない場合はブラケット記法（`[]`）を使うとよいでしょう。
 
 ## オブジェクトと分割代入 {#object-destructuring}
 
@@ -154,7 +192,7 @@ console.log(en); // => "英語"
 
 ## プロパティの追加 {#add-property}
 
-オブジェクトは、一度作成した後もその値自体を変更できるためミュータブル（mutable）の特性を持ちます。
+オブジェクトは、一度作成した後もその値自体を変更できるというミュータブル（mutable）の特性を持ちます。
 そのため、作成したオブジェクトに対して、後からプロパティを追加できます。
 
 プロパティの追加方法は単純で、作成したいプロパティ名へ値を代入するだけです。
@@ -225,6 +263,23 @@ console.log(object.key); // => "value"
 そのため、できる限り作成後に新しいプロパティは追加しないほうがよいでしょう。
 つまり、オブジェクトの作成時のオブジェクトリテラルの中でプロパティを定義することを推奨します。
 
+### プロパティの削除 {#remove-property}
+
+オブジェクトのプロパティを削除するには`delete`演算子を利用します。
+削除したいプロパティを`delete`演算子の右辺に指定して、プロパティを削除できます。
+
+{{book.console}}
+```js
+const object = {
+    key1: "value1",
+    key2: "value2"
+};
+// key1プロパティを削除
+delete object.key1;
+// key1プロパティが削除されている
+console.log(object); // => { "key2": "value2" }
+```
+
 ### [コラム] constで定義したオブジェクトは変更可能 {#const-and-object}
 
 先ほどのコード例で、`const`で宣言したオブジェクトのプロパティがエラーなく変更できていることが分かります。
@@ -255,7 +310,7 @@ object = {}; // => SyntaxError
 ## プロパティの存在を確認する {#confirm-property}
 
 JavaScriptでは、存在しないプロパティに対してアクセスした場合に例外ではなく`undefined`を返します。
-次のコードでは、`object`には存在しない`notFound`プロパティにアクセスしているため、`undefined`という値が返ってきます。
+次のコードは、`object`には存在しない`notFound`プロパティにアクセスしているため、`undefined`という値が返ってきます。
 
 {{book.console}}
 ```js
@@ -285,9 +340,13 @@ console.log(widget.windw.title); // => TypeError: widget.windw is undefined
 ```
 
 `undefined`や`null`はオブジェクトではないため、存在しないプロパティへアクセスする例外が発生してしまいます。
-このような場合に、あるオブジェクトがあるプロパティを持っているを確認する方法がいくつかあります。
+このような場合に、あるオブジェクトがあるプロパティを持っているかを確認する方法として、次の3つの方法があります。
 
-### undefinedとの比較 {#compare-to-undefined}
+- `undefined`との比較
+- `in`演算子
+- `hasOwnProperty`メソッド
+
+### プロパティの存在確認: undefinedとの比較 {#compare-to-undefined}
 
 存在しないプロパティへアクセスした場合に、`undefined`を返すため実際にアクセスして比較することでも判定できます。
 
@@ -300,7 +359,7 @@ if (object.key !== undefined) {
 }
 ```
 
-しかし、この方法はプロパティの値が`undefined`であった場合に、プロパティがないから`undefined`なのかが区別できないという問題があります。
+しかし、この方法はプロパティの値が`undefined`であった場合に、プロパティがないため`undefined`なのかが区別できないという問題があります。
 次のような例は、`key`プロパティは存在していますが、値が`undefined`であるため、存在の判定が上手くできていないことがわかります。
 
 {{book.console}}
@@ -312,7 +371,9 @@ if (object.key !== undefined) {
 }
 ```
 
-### in演算子を使う {#in-operator}
+このような問題があるため、プロパティがあるかどうかだけを判定するには`in`演算子か`hasOwnProperty`メソッドを利用します。
+
+### プロパティの存在確認: in演算子を使う {#in-operator}
 
 `in`演算子は、指定したオブジェクト上に指定したプロパティがあるかを判定できます。
 
@@ -321,7 +382,8 @@ if (object.key !== undefined) {
 "プロパティ名" in オブジェクト; // true or false
 ```
 
-次のように、`object`に`key`プロパティが存在するなら、`true`を返します。
+次のコードでは`object`に`key`プロパティが存在するかを判定しています。
+`in`演算子は、プロパティの値は関係なく、プロパティが存在した場合に`true`を返します。
 
 {{book.console}}
 ```js
@@ -332,21 +394,19 @@ if ("key" in object) {
 }
 ```
 
-しかし、`in`演算子は、`for...in`文と同じく、対象となるオブジェクトのプロパティを列挙する場合、親オブジェクトまで探索し列挙します。
-そのため、`object`自身が持っていなくても、親オブジェクトが持っているならば`true`を返してしまいます。
+### プロパティの存在確認: `hasOwnProperty`メソッド {#hasOwnProperty-method}
 
-`object`自身がそのプロパティを持っているかを判定するには、`Object#hasOwnProperty`メソッドを使うのが確実です。
-
-### `Object#hasOwnProperty`メソッド {#hasOwnProperty-method}
-
-`Object#hasOwnProperty`メソッドを使うことで、オブジェクト自身が指定したプロパティを持っているかを判定できます。
+オブジェクトの`hasOwnProperty`メソッドは、オブジェクト自身が指定したプロパティを持っているかを判定できます。
+この`hasOwnProperty`メソッドの引数には、存在を判定したいプロパティ名を渡します。
 
 <!-- doctest:disable -->
 ```js
-オブジェクト.hasOwnProperty("プロパティ名"); // true or false
+const object = {};
+object.hasOwnProperty("プロパティ名"); // true or false
 ```
 
-`hasOwnProperty`メソッドは引数に存在を判定したいプロパティ名を渡し、該当するプロパティを持っている場合は`true`を返します。
+次のコードでは`object`に`key`プロパティが存在するかを判定しています。
+`hasOwnProperty`メソッドも、プロパティの値は関係なく、オブジェクトが指定したプロパティを持っている場合に`true`を返します。
 
 {{book.console}}
 ```js
@@ -357,10 +417,15 @@ if (object.hasOwnProperty("key")) {
 }
 ```
 
-## `Object#toString`メソッド {#toString-method}
+`in`演算子と`hasOwnProperty`メソッドは同じ結果を返していますが、厳密には動作が異なるケースもあります。
+この動作の違いを知るにはまずプロトタイプオブジェクトという特殊なオブジェクトについて理解する必要があります。
+次の章の「[プロトタイプオブジェクト][]」で詳しく解説するため、次の章で`in`演算子と`hasOwnProperty`メソッドの違いを見ていきます。
 
-`Object#toString`メソッドは、オブジェクト自身を文字列化するメソッドです。
-`String`コンストラクタ関数を使うことでも文字列にすることできますが、どのような違いがあるのでしょうか？（「[暗黙的な型変換](../implicit-coercion/README.md#to-string)」を参照）
+## `toString`メソッド {#toString-method}
+
+オブジェクトの`toString`メソッドは、オブジェクト自身を文字列化するメソッドです。
+`String`コンストラクタ関数を使うことでも文字列にすることできます。
+この2つにはどのような違いがあるのでしょうか？（`String`コンストラクタ関数については「[暗黙的な型変換](../implicit-coercion/README.md#to-string)」を参照）
 
 実は`String`コンストラクタ関数は、引数に渡されたオブジェクトの`toString`メソッドを呼び出しています。
 そのため、`String`コンストラクタ関数と`toString`メソッドの結果はどちらも同じになります。
@@ -382,31 +447,30 @@ console.log(String(object)); // => "[object Object]"
 // 独自のtoStringメソッドを定義
 const customObject = {
     toString() {
-        return "value";
+        return "custom value";
     }
 };
-console.log(String(customObject)); // => "value"
-```
-
-`Object`以外の`Array`や`Number`などもそれぞれ独自の`toString`メソッドを定義しています。
-そのため、それぞれのオブジェクトで`toString`メソッドの結果は異なります。
-
-{{book.console}}
-```js
-const number = [1, 2, 3];
-// Array#toStringが定義されているため、`Object#toString`とは異なる形式となる
-console.log(number.toString()); // => "1,2,3";
+console.log(String(customObject)); // => "custom value"
 ```
 
 ## オブジェクトの静的メソッド {#static-method}
 
-最後に`Object`の静的メソッドについて見ていきましょう。
+最後にビルトインオブジェクトである`Object`の静的メソッドについて見ていきましょう。
+**静的メソッド**（スタティックメソッド）とは、インスタンスの元となるオブジェクトから呼び出せるメソッドのことです。
+
+これまでの`toString`メソッドなどは、`Object`のインスタンスオブジェクトから呼び出すメソッドでした。
+これに対して、静的メソッドは`Object`そのものから呼び出せるメソッドです。
+
+ここでは、オブジェクトの処理でよく利用されるいくつかの**静的メソッド**を紹介します。
 
 ### オブジェクトの列挙 {#enumeration}
 
-オブジェクトはプロパティの集合です。
-そのオブジェクトのプロパティを列挙する方法として、`Object.keys`メソッド、`Object.values`メソッド、`Object.entries`メソッドがあります。
-これらのメソッドは、そのオブジェクト自身がもつ列挙可能なプロパティだけを扱います。（「[ループと反復処理][]」を参照）
+最初に紹介したように、オブジェクトはプロパティの集合です。
+そのオブジェクトのプロパティを列挙する方法として、次の3つの静的メソッドがあります。
+
+- `Object.keys`メソッド: オブジェクトのプロパティ名の配列にして返す
+- `Object.values`メソッド: オブジェクトの値の配列にして返す
+- `Object.entries`メソッド: オブジェクトのプロパティ名と値の配列の配列を返す
 
 それぞれ、オブジェクトのキー、値、キーと値の組み合わせを配列にして返します。
 
@@ -425,10 +489,30 @@ console.log(Object.values(object)); // => ["1", "2", "3"]
 console.log(Object.entries(object)); // => [["one", 1], ["two", 2], ["three", 3]]
 ```
 
-### オブジェクトのコピー/マージ {#copy-and-merge}
+これらの列挙する静的メソッドと配列の`forEach`メソッドなどと組み合わせれば、プロパティに対して反復処理ができます。
+次のコードでは、`Object.keys`メソッドで取得したプロパティ名の一覧をコンソールへ出力しています。
 
-`Object.assign`を使うことで、あるオブジェクトを別のオブジェクトに代入（assign）できます。
-これを使うことでオブジェクトのコピーやオブジェクト同士のマージを行うできます。
+{{book.console}}
+```js
+const object = {
+    "one": 1,
+    "two": 2,
+    "three": 3
+};
+const keys = Object.keys(object);
+keys.forEach(key => {
+    console.log(key);
+});
+// 次の値が順番に出力される
+// "one"
+// "two"
+// "three"
+```
+
+### オブジェクトのマージと複製 {#copy-and-merge}
+
+`Object.assign`メソッドは、あるオブジェクトを別のオブジェクトに代入（assign）できます。
+このメソッドを使うことで、オブジェクトの複製やオブジェクト同士のマージができます。
 
 `Object.assign`メソッドは、`target`オブジェクトに対して、1つ以上の`sources`オブジェクトを指定します。
 `sources`オブジェクト自身がもつ列挙可能なプロパティを第一引数の`target`オブジェクトに対してコピーします。
@@ -436,7 +520,7 @@ console.log(Object.entries(object)); // => [["one", 1], ["two", 2], ["three", 3]
 
 <!-- doctest:disable -->
 ```js
-Object.assign(target, ...sources);
+const object = Object.assign(target, ...sources);
 ```
 
 #### オブジェクトのマージ {#merge}
@@ -444,7 +528,7 @@ Object.assign(target, ...sources);
 具体的なオブジェクトのマージの例を見ていきます。
 
 次のコードでは、新しく作った空のオブジェクトを`target`にしています。
-この`target`に対して、`objectA`と`objectB`をマージしたものが`Object.assign`メソッドの返り値となります。
+この空のオブジェクト（`target`）に`objectA`と`objectB`をマージしたものが、`Object.assign`メソッドの返り値となります。
 
 {{book.console}}
 ```js
@@ -455,9 +539,9 @@ console.log(merged); // => { a: "a", b: "b" }
 ```
 
 第一引数には空のオブジェクトではなく、既存のオブジェクトも指定できます。
-第一引数に既存のオブジェクトを指定した場合は、指定されたオブジェクトのプロパティが変更されます。
+第一引数に既存のオブジェクトを指定した場合は、そのオブジェクトのプロパティが変更されます。
 
-次のコードでは第一引数に指定された`objectA`に対してプロパティが追加されています。
+次のコードでは、第一引数に指定された`objectA`に対してプロパティが追加されています。
 
 {{book.console}}
 ```js
@@ -474,8 +558,8 @@ console.log(merged === objectA); // => true
 そのため、`Object.assign`メソッドの第一引数には、空のオブジェクトリテラルを指定するのが典型的な利用方法です。
 
 このとき、プロパティ名が重複した場合は、後ろのオブジェクトのプロパティにより上書きされます。
-JavaScriptでは、基本的な処理は左から順番に行います。
-そのため左から順にオブジェクトが代入されていくと考えるとよいです。
+JavaScriptでは、基本的に処理は先頭から後ろへと順番に行います。
+そのため、空のオブジェクトへ`objectA`を代入してから、その結果に`objectB`を代入するという形になります。
 
 {{book.console}}
 ```js
@@ -487,9 +571,9 @@ const merged = Object.assign({}, objectA, objectB);
 console.log(merged); // => { version: "b" }
 ```
 
-#### オブジェクトのspread構文{#object-spread-syntax}
+#### オブジェクトのspread構文でのマージ {#object-spread-syntax}
 
-ES2018ではオブジェクトのマージを構文として行える`...`（spread構文）が追加されました。
+ES2018では、オブジェクトのマージを行うオブジェクトの`...`（spread構文）が追加されました。
 ES2015で配列の要素を展開する`...`（spread構文）はサポートされていましたが、オブジェクトに対してもES2018でサポートされました。
 オブジェクトのspread構文は、オブジェクトリテラルの中に指定したオブジェクトのプロパティを展開できます。
 
@@ -549,12 +633,13 @@ const shallowClone = (object) => {
 const object = { a: "a" };
 const cloneObject = shallowClone(object);
 console.log(cloneObject); // => { a: "a" }
+// オブジェクトを複製しているので、異なるオブジェクトとなる
 console.log(object === cloneObject); // => false
 ```
 
 注意点として、`Object.assign`メソッドは`sources`オブジェクトのプロパティを浅くコピー（shallow copy）する点です。
-`sources`オブジェクト自身が持っている列挙できるプロパティをコピーするだけです。
-そのプロパティの値がオブジェクトである場合に、そのオブジェクトまでも複製するわけではありません。
+shallow copyとは、`sources`オブジェクトの直下にあるプロパティだけをコピーするということです。
+そのプロパティの値がオブジェクトである場合に、ネストした先のオブジェクトまでも複製するわけではありません。
 
 {{book.console}}
 ```js
@@ -572,8 +657,8 @@ const cloneObject = shallowClone(object);
 console.log(cloneObject.nest === object.nest); // => true
 ```
 
-このような浅いコピーのことをshallow copyと呼び、逆にプロパティの値までも再帰的に複製してコピーすることを深いコピー（deep copy）と呼びます。
-shallowな実装を使い再帰的に処理することで、deepな実装を実現できます。
+逆にプロパティの値までも再帰的に複製してコピーすることを、深いコピー（deep copy）と呼びます。
+shallow copyで再帰的にコピー処理することで、deep copyを実現できます。
 次のコードでは、`shallowClone`を使い、`deepClone`を実現しています。
 
 {{book.console}}
@@ -602,13 +687,16 @@ const cloneObject = deepClone(object);
 console.log(cloneObject.nest === object.nest); // => false
 ```
 
-このように、JavaScriptのビルトインメソッドは浅い（shallow）な実装のみを提供し、深い（deep）な実装は提供していません。
-言語としては最低限の機能を提供し、より複雑な機能はユーザー側で実装するという形になることが多いです。
+このように、JavaScriptのビルトインメソッドは浅い（shallow）実装のみを提供し、深い（deep）実装は提供していないことが多いです。
+言語としては最低限の機能を提供し、より複雑な機能はユーザー側で実装するという形式を取るためです。
 
-一方、JavaScriptという言語はコアにある機能が最低限であるため、ユーザーが作成した小さな機能をもつライブラリが数多く公開されています。
-それらのライブラリは`npm`と呼ばれるJavaScriptのパッケージ管理ツールで公開され、JavaScriptのエコシステムを築いています。
+このようにJavaScriptという言語はコアにある機能が最低限であるため、ユーザーが作成した小さな機能をもつライブラリが数多く公開されています。
+それらのライブラリはnpmと呼ばれるJavaScriptのパッケージ管理ツールで公開され、JavaScriptのエコシステムを築いています。
+npmについては「[ユースケース: Node.jsでCLIアプリケーション][]」の章で紹介します。
 
 [ループと反復処理]: ../loop/README.md "ループと反復処理"
 [変数と宣言]: ../variables/README.md "変数と宣言"
 [クラス]: ../class/README.md "クラス"
+[プロトタイプオブジェクト]: ../prototype-object/README.md "クラス"
 [変数と宣言のconstについて]: ../variables/README.md#const
+[ユースケース: Node.jsでCLIアプリケーション]: ../../use-case/nodecli/README.md
