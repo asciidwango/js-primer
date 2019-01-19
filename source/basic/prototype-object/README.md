@@ -214,7 +214,7 @@ console.log(object.hasOwnProperty); // => undefined
 Mapとはキーと値の組み合わせを保持するためのオブジェクトです。
 
 ただのオブジェクトもMapとよく似た性質を持っていますが、最初からいくつかのプロパティが存在しアクセスできてしまいます。
-なぜなら、`Object`のインスタンスはデフォルトで`Object.prototype`を継承するため、`toString`などのプロパティ名がオブジェクトを作成した時点で存在します。`Object.create(null)`をつかうことで`Object.prototype`を継承しないオブジェクトを作成できるため、`Map`の代わりとして使われていました。
+なぜなら、`Object`のインスタンスはデフォルトで`Object.prototype`を継承するため、`toString`などのプロパティ名がオブジェクトを作成した時点で存在するためです。そのため、`Object.create(null)`で`Object.prototype`を継承しないオブジェクトを作成し、そのオブジェクトが`Map`の代わりとして使われていました。
 
 {{book.console}}
 ```js
