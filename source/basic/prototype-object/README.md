@@ -145,8 +145,8 @@ console.log(object.hasOwnProperty === Object.prototype.hasOwnProperty); // => tr
 
 ### ArrayもObjectを継承している {#inherit-object}
 
-`Object`と`Object.prototype`の関係と同じく、`Array`コンストラクタも`Array.prototype`を持っています。
-そのため、`Array`のインスタンスは`Array.prototype`を継承します。
+`Object`と`Object.prototype`の関係と同じように、ビルトインオブジェクト`Array`も`Array.prototype`を持っています。
+同じように、配列（`Array`）のインスタンスは`Array.prototype`を継承します。
 さらに、`Array.prototype`は`Object.prototype`を継承しているため、`Array`のインスタンスは`Object.prototype`も継承してます。
 
 > `Array`のインスタンス -> `Array.prototype` -> `Object.prototype`
@@ -154,7 +154,6 @@ console.log(object.hasOwnProperty === Object.prototype.hasOwnProperty); // => tr
 `Object.create`メソッドを使って`Array`と`Object`の関係をコードとして表現してみます。
 `Array`コンストラクタの実装などは実際のものとは異なるので、あくまで関係の例示でしかないことに注意してください。
 
-{{book.console}}
 ```js
 // このコードはイメージです！
 // `Array`コンストラクタ自身は関数でもある
@@ -185,7 +184,7 @@ console.log(array.hasOwnProperty === Object.prototype.hasOwnProperty); // => tru
 これにより、`Array`や`String`などのインスタンスも`Object.prototype`がもつメソッドを利用できる点を覚えておきましょう。
 
 また、`Array.prototype`などもそれぞれ独自のメソッドを定義しています。
-`Array#toString`メソッドもそのひとつです。
+たとえば、`Array#toString`メソッドもそのひとつです。
 そのため、配列のインスタンスで`toString`メソッドを呼び出すと`Array#toString`が優先して呼び出されます。
 
 {{book.console}}
@@ -200,7 +199,7 @@ console.log(number.toString()); // => "1,2,3";
 `Object`はすべてのオブジェクトの親となるオブジェクトである言いましたが、例外もあります。
 
 イディオム（慣習的な書き方）ですが、`Object.create(null)`とすることで`Object.prototype`を継承しないオブジェクトを作成できます。
-これにより、プロパティやメソッドをなどを全く持たない本当に**空のオブジェクト**を作ることができます。
+これにより、プロパティやメソッドを全く持たない本当に**空のオブジェクト**を作ることができます。
 
 {{book.console}}
 ```js
@@ -213,7 +212,7 @@ console.log(object.hasOwnProperty); // => undefined
 `Object.create`メソッドはES5から導入されました。
 `Object.create`メソッドは`Object.create(null)`というイディオムで、一部ライブラリなどで`Map`オブジェクトの代わりとして利用されています。
 
-なぜなら、`Object`のインスタンスはデフォルトで`Object.prototype`を継承するため、`toString`などのプロパティ名がオブジェクトを作成した時点で存在します。`Object.create(null)`をつかうことで`Object.prototype`を継承しないオブジェクトを作成できるため、何もプロパティをもたないオブジェクトを作成できます。
+なぜなら、`Object`のインスタンスはデフォルトで`Object.prototype`を継承するため、`toString`などのプロパティ名がオブジェクトを作成した時点で存在します。`Object.create(null)`をつかうことで`Object.prototype`を継承しないオブジェクトを作成できるため、`Map`の代わりとして使われていました。
 
 {{book.console}}
 ```js
