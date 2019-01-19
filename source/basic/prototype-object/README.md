@@ -100,7 +100,7 @@ console.log(customObject.toString()); // => "custom value"
 つまり、`in`演算子はインスタンスに実装されたメソッドなのか、プロトタイプオブジェクトに実装されたメソッドなのかは区別しません。
 
 次のコードでは、空のオブジェクトが`toString`メソッドを持っているかを`Object#hasOwnProperty`メソッドと`in`演算子でそれぞれ判定しています。
-`hasOwnProperty`メソッドが`false`を返し、`in`演算子では`toString`メソッドがインスタンスまたはプロトタイプオブジェクトに存在するため`true`を返します。
+`hasOwnProperty`メソッドは`false`を返し、`in`演算子は`toString`メソッドがプロトタイプオブジェクトに存在するため`true`を返します。
 
 {{book.console}}
 ```js
