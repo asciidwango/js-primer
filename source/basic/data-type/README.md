@@ -39,7 +39,18 @@ JavaScriptは動的型付け言語に分類される言語であるため、
 
 `typeof`演算子を使うことで、次のようにデータ型を調べることができます。
 
-[import, typeof-example.js](src/typeof-example.js)
+{{book.console}}
+```js
+console.log(typeof true);// => "boolean"
+console.log(typeof 42); // => "number"
+console.log(typeof "JavaScript"); // => "string"
+console.log(typeof Symbol("シンボル"));// => "symbol"
+console.log(typeof undefined); // => "undefined"
+console.log(typeof null); // => "object"
+console.log(typeof ["配列"]); // => "object"
+console.log(typeof { "key": "value" }); // => "object"
+console.log(typeof function() {}); // => "function"
+```
 
 残念ながら`typeof null`が`"object"`となるのは、歴史的経緯のある仕様のバグ[^1]です。
 他のプリミティブ型の値については、`typeof`演算子でそれぞれのデータ型を調べることができます。
@@ -84,8 +95,9 @@ JavaScriptは動的型付け言語に分類される言語であるため、
 ### 真偽値（Boolean）{#boolean}
 
 真偽値は`true`と`false`のリテラルがあります。
-それぞれは`true`と`false`の値を返すリテラルとなります。
+それぞれは`true`と`false`の値を返すリテラルで、見た目どおりの意味となります。
 
+{{book.console}}
 ```js
 true; // => true
 false; // => false
@@ -141,6 +153,7 @@ JavaScriptの浮動小数点数は[IEEE 754][]を採用しています。
 
 `0`から始まる浮動小数点数は、`0`を省略して書くことができます。
 
+{{book.console}}
 ```js
 .123; // => 0.123
 ```
@@ -157,10 +170,11 @@ JavaScriptの浮動小数点数は[IEEE 754][]を採用しています。
 
 <!-- textlint-disable eslint -->
 
+{{book.console}}
 ```js
-"文字列";
-'文字列';
-`文字列`;
+console.log("文字列"); // => "文字列"
+console.log('文字列'); // => "文字列"
+console.log(`文字列`); // => "文字列"
 ```
 
 <!-- textlint-enable eslint -->
@@ -335,15 +349,16 @@ console.log(object["key"]); // => "value"
 ドット記法では、プロパティ名が変数名と同じく識別子である必要があります。
 そのため、次のように識別子として利用できないプロパティ名はドット記法として書くことができません。
 
+{{book.console}}
 ```Js
 // プロパティ名は文字列の"123"
 var object = {
     "123": "value"
 };
-// NG: ドット記法では、数値から始まる識別子は利用できない
-object.123
 // OK: ブラケット記法では、文字列として書くことができる
 console.log(object["123"]); // => "value"
+// NG: ドット記法では、数値から始まる識別子は利用できない
+object.123
 ```
 
 オブジェクトはとても重要で、これから紹介する配列や正規表現もこのオブジェクトが元となっています。
