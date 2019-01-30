@@ -243,6 +243,12 @@ switch文のcase節では基本的に`break;`を使いswitch文を抜けるよ�
 
 関数については「[関数と宣言][]」の章で紹介します。
 
+## まとめ {#conclusion}
+
+JavaScriptにおける条件分岐にはif文やswitch文を利用します。
+複雑な条件を定義する場合には、if文のネストが深くなりやすいです。
+そのような場合には、条件式自体を見直してよりシンプルな条件にできないかを考えてみることも重要です。
+
 ## 参考 {#reference-for-condition}
 
 - [閏年 - Wikipedia](https://ja.wikipedia.org/wiki/%E9%96%8F%E5%B9%B4)
