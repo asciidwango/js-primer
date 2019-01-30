@@ -834,6 +834,7 @@ Arrow Functionで定義した関数には`call`、`apply`、`bind`を使った`t
 同様に`apply`や`bind`メソッドを使った場合も`this`の参照先が変わりません。
 
 {{book.console}}
+<!-- doctest:disable -->
 ```js
 const fn = () => {
     return this;
@@ -841,7 +842,7 @@ const fn = () => {
 // Scriptコンテキストの場合、スクリプト直下のArrow Functionの`this`はグローバルオブジェクト
 console.log(fn()); // グローバルオブジェクト
 // callで`this`を`{}`にしようとしても、`this`は変わらない
-fn.call({}); // グローバルオブジェクト
+console.log(fn.call({})); // グローバルオブジェクト
 ```
 
 最初に述べたように`function`キーワードで定義した関数は呼び出し時に、ベースオブジェクトが暗黙的な引数のように`this`の値として渡されます。
