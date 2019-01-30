@@ -11,7 +11,7 @@ const testLeapYear = (year, expectedMessage) => {
     };
     const console = {
         log(message) {
-            assert.equal(message, expectedMessage, `year: ${year}`);
+            assert.equal(message, expectedMessage(year), `year: ${year}`);
         }
     };
     strictEval(Code, {
@@ -22,8 +22,7 @@ const testLeapYear = (year, expectedMessage) => {
 describe("leap-year-nest", function() {
     context("うるう年であるならば", function() {
         it("should return \"うるう年です\"", function() {
-            const year = new Date().getFullYear();
-            const message = `${year}年はうるう年です`;
+            const message = (year) => `${year}年はうるう年です`;
             testLeapYear(0, message);
             testLeapYear(4, message);
             testLeapYear(400, message);
@@ -34,8 +33,7 @@ describe("leap-year-nest", function() {
     });
     context("うるう年でないならば", function() {
         it("should return \"うるう年ではありません\"", function() {
-            const year = new Date().getFullYear();
-            const message = `${year}年ではありません`;
+            const message = (year) => `${year}年ではありません`;
             testLeapYear(100, message);
             testLeapYear(200, message);
             testLeapYear(1234, message);
