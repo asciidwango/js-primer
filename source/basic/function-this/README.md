@@ -706,6 +706,8 @@ Arrow Functionとそれ以外の関数で大きく違うことは、Arrow Functi
 このときの`this`はトップレベルに書かれた`this`と同じ値になります。
 
 {{book.console}}
+<!-- TypeError: 'getOwnPropertyDescriptor' on proxy: trap returned descriptor for property 'global' that is incompatible with the existing property in the proxy target を回避する -->
+<!-- doctest:disable -->
 ```js
 // Arrow Functionで定義した関数
 const fn = () => {
@@ -713,7 +715,7 @@ const fn = () => {
     // トップレベルの`this`と同じ値
     return this;
 };
-fn() === this; // => true
+console.log(fn() === this); // => true
 ```
 
 トップレベルに書かれた`this`の値は[実行コンテキスト](#execution-context-this)によって異なることを紹介しました。
