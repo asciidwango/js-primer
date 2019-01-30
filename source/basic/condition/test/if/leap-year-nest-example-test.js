@@ -33,7 +33,7 @@ describe("leap-year-nest", function() {
     });
     context("うるう年でないならば", function() {
         it("should return \"うるう年ではありません\"", function() {
-            const message = (year) => `${year}年ではありません`;
+            const message = (year) => `${year}年はうるう年ではありません`;
             testLeapYear(100, message);
             testLeapYear(200, message);
             testLeapYear(1234, message);
