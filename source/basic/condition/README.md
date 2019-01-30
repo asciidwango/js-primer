@@ -5,6 +5,7 @@ author: azu
 # 条件分岐 {#conditional-branch}
 
 この章ではif文やswitch文を使った条件分岐について学んでいきます。
+条件分岐を使うことで、特定の条件を満たすか否かで行う処理を変更できます。
 
 ## if文 {#if-statement}
 
