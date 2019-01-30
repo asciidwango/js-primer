@@ -137,14 +137,14 @@ if、else if、else文は`実行する文`としてさらにif文を書きネス
 
 <!-- textlint-enable preset-ja-technical-writing/no-start-duplicated-conjunction -->
 
-西暦で示した年は `new Date().getFullYear();` で取得できるため、
-この条件をif文で表現すると次のように書くことができます。
+西暦での現在の年は `new Date().getFullYear();` で取得できます。
+このうるう年の条件をif文で表現すると次のように書くことができます。
 
 {{book.console}}
 [import, leap-year-nest-example.js](src/if/leap-year-nest-example.js)
 
 条件を上から順に書き下したため、ネストが深い文となってしまっています。
-一般にネストは少ない方が、読みやすいコードとなります。
+一般的にはネストは浅い方が、読みやすいコードとなります。
 
 条件を少し読み解くと、400で割り切れる年は無条件にうるう年であることがわかります。
 そのため、条件を並び替えることで、ネストするif文なしに書くことができます。
@@ -240,9 +240,7 @@ switch文のcase節では基本的に`break;`を使いswitch文を抜けるよ�
 {{book.console}}
 [import, switch-return-example.js](./src/switch/switch-return-example.js)
 
-関数については、n章 で詳しく解説します。
-
-- [ ] 関数の章を書いたらn章を変更する
+関数については「[関数と宣言][]」の章で紹介します。
 
 ## 参考 {#reference-for-condition}
 
@@ -254,3 +252,4 @@ switch文のcase節では基本的に`break;`を使いswitch文を抜けるよ�
 
 
 [暗黙的な型変換]: ../implicit-coercion/README.md
+[関数と宣言]: ../function-declaration/README.md
