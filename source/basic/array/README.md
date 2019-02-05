@@ -727,6 +727,7 @@ const array = [1, 2, 3];
 const totalValue = array.reduce((accumulator, currentValue, index, array) => {
     return accumulator + currentValue;
 }, 0);
+// 0 + 1 + 2 + 3という式の結果が返り値になる
 console.log(totalValue); // => 6
 ```
 
