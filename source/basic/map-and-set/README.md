@@ -272,47 +272,55 @@ function onLoginFormSubmit(event) {
 弱い参照は、不要になったオブジェクトを参照し続けて発生するメモリリークを防ぐために使われます。
 `WeakMap`では不要になったキーとそれに紐付いた値が自動的に削除されるため、メモリリークを引き起こす心配がありません。
 
+
+```js
+const map = new WeakMap();
+// キーとなるオブジェクト
+const obj = {};
+// objをキーに値をセットする
+map.set(obj, 'value');
+// objの参照を破棄する
+delete obj;
+// mapからobjをキーとする値が削除されている
+```
+
 `WeakMap`は`Map`と似ていますがiterableではありません。
 そのため、キーを列挙する`keys`メソッドや、データの数を返す`size`プロパティなどは存在しません。
 また、キーを弱い参照でもつ特性上、キーとして使えるのは参照型のオブジェクトだけです。
 
-`WeakMap`の主な使い方のひとつは、あるオブジェクトに紐付くオブジェクトを管理することです。
-たとえば次の例では、オブジェクトが発火するイベントのリスナー関数（イベントリスナー）をマップで管理しています。
+`WeakMap`の主な使い方のひとつは、クラスにプライベートの値を格納することです。
+`this` を `WeakMap` のキーにすることで、外部からはアクセスできない値を保持できます。
+また、クラスインスタンスが参照されなくなったときには自動的に解放されます。
+
+たとえば次の例では、オブジェクトが発火するイベントのリスナー関数（イベントリスナー）を `WeakMap` で管理しています。
 イベントリスナーとは、イベントが発生したときに呼び出される関数のことです。
-このマップを`Map`で実装してしまうと、`targetObj`がマップから削除されるまでイベントリスナーはメモリ上に残り続けます。
-ここで`WeakMap`を使うと、`addListener`関数に渡された`listener`は`targetObj`が解放された際、自動的に解放されます。
+このマップを`Map`で実装してしまうと、明示的に削除されるまでイベントリスナーはメモリ上に残り続けます。
+ここで`WeakMap`を使うと、`addListener`関数に渡された`listener`は `EventEmitter` インスタンスが参照されなくなった際、自動的に解放されます。
 
 ```js
 // イベントリスナーを管理するマップ
 const listenersMap = new WeakMap();
 
-// 渡されたオブジェクトに紐付くイベントリスナーを追加する
-function addListener(targetObj, listener) {
-    const listeners = listenersMap.get(targetObj) || [];
-    listenersMap.set(targetObj, listeners.concat(listener));
-}
-// 渡されたオブジェクトに紐付くイベントリスナーを呼び出す
-function triggerListeners(targetObj) {
-    if (listenersMap.has(targetObj)) {
-        listenersMap.get(targetObj)
-            .forEach((listener) => listener());
+class EventEmitter {
+    addEventListener(listener) {
+        // this に紐付いた
+        const listeners = listenersMap.get(this) || [];
+        listenersMap.set(this, listeners.concat(listener));
     }
 }
 
-// 上記関数の実行例
+// 上記クラスの実行例
 
-let eventTarget = {};
+let eventEmitter = new EventEmitter();
 // イベントリスナーを追加する
-addListener(eventTarget, () => {
+eventEmitter.addListener(() => {
     console.log("イベントが発火しました");
 });
-// eventTargetに紐付いたイベントリスナーが呼び出される
-triggerListeners(eventTarget);
-// eventTargetの参照が変われば自動的にイベントリスナーが解放される
-eventTarget = null;
+// eventEmitterへ参照がなくなったことで自動的にイベントリスナーが解放される
+eventEmitter = null;
 ```
 
-また、あるオブジェクトから計算した結果を保存する用途でもよく使われます。
+また、あるオブジェクトから計算した結果を一時的に保存する用途でもよく使われます。
 次の例ではHTML要素の高さを計算した結果を保存して、2回目以降に同じ計算をしないようにしています。
 
 ```js
