@@ -278,9 +278,9 @@ const map = new WeakMap();
 // キーとなるオブジェクト
 const obj = {};
 // objをキーに値をセットする
-map.set(obj, 'value');
+map.set(obj, "value");
 // objの参照を破棄する
-delete obj;
+obj = null;
 // mapからobjをキーとする値が削除されている
 ```
 
@@ -302,7 +302,7 @@ delete obj;
 const listenersMap = new WeakMap();
 
 class EventEmitter {
-    addEventListener(listener) {
+    addListener(listener) {
         // this に紐付いたリスナーの配列を取得する
         const listeners = listenersMap.get(this) || [];
         // this をキーに新しい配列をセットする
