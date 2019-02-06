@@ -295,7 +295,7 @@ delete obj;
 たとえば次の例では、オブジェクトが発火するイベントのリスナー関数（イベントリスナー）を `WeakMap` で管理しています。
 イベントリスナーとは、イベントが発生したときに呼び出される関数のことです。
 このマップを`Map`で実装してしまうと、明示的に削除されるまでイベントリスナーはメモリ上に残り続けます。
-ここで`WeakMap`を使うと、`addListener`関数に渡された`listener`は `EventEmitter` インスタンスが参照されなくなった際、自動的に解放されます。
+ここで`WeakMap`を使うと、`addListener` メソッドに渡された`listener`は `EventEmitter` インスタンスが参照されなくなった際、自動的に解放されます。
 
 ```js
 // イベントリスナーを管理するマップ
@@ -303,9 +303,10 @@ const listenersMap = new WeakMap();
 
 class EventEmitter {
     addEventListener(listener) {
-        // this に紐付いた
+        // this に紐付いたリスナーの配列を取得する
         const listeners = listenersMap.get(this) || [];
-        listenersMap.set(this, listeners.concat(listener));
+        // this をキーに新しい配列をセットする
+        listenersMap.set(this, [...listeners, listener]);
     }
 }
 
