@@ -543,6 +543,7 @@ function throwPromise() {
         throw new Error("例外が発生");
         // 例外が発生するとそれ以降の処理は実行されない
         // この文は実行されません
+        console.log("実行されない");
     });
 }
 
