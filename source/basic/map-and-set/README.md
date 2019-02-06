@@ -274,7 +274,7 @@ function onLoginFormSubmit(event) {
 
 
 ```js
-const map = new WeakMap();
+let map = new WeakMap();
 // キーとなるオブジェクト
 const obj = {};
 // objをキーに値をセットする
