@@ -50,7 +50,7 @@ export class TodoListModel extends EventEmitter {
     }
     //! [add-point]
     // ===============================
-    // TodoItemModel.jsの既存の実装は省略
+    // TodoListModel.jsの既存の実装は省略
     // ===============================
     /**
      * 指定したidのTodoItemのcompletedを更新する
