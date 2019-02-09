@@ -106,7 +106,7 @@ Polyfillとは、新しい関数やメソッドなどの仕様を満たすよう
 構文とは異なり`Array#includes`のようなメソッドはビルトインオブジェクトを書き換えることで実装できます。
 Polyfillを提供するものとしては[core-js][]や[polyfill.io][]などが有名です。
 
-注意点としてはTranspilerやPolyfillはあくまで既存の機能で新しい機能を再現を試みているだけに過ぎません。
+注意点としてはTranspilerやPolyfillは、あくまで既存の機能を用いて新しい機能の再現を試みているだけに過ぎません。
 そのため、既存の機能で再現ができないプロポーザル（機能）はTranspilerやPolyfillでは再現できません。
 また、完全な再現はできていないことがあるためTranspilerやPolyfillを新しい機能を学ぶために使うべきではありません。
 
@@ -132,7 +132,7 @@ ECMAScriptのバージョンとしてES6ではなくES2015のように西暦を�
 もっとも単純な理由はJavaScriptという言語そのものを学ぶためです。
 言語の詳細を知りたい場合にはECMAScriptという仕様を参照できます。
 
-しかしながら、JavaScriptにおいては言語機能に関しては[MDN Web Docs][]という優れたリファレンスサイトなどがあります。
+しかしながら、JavaScriptの言語機能に関しては[MDN Web Docs][]という優れたリファレンスサイトなどがあります。
 そのため、使い方を覚えたいなどの範囲ではECMAScriptの仕様そのものを参照する機会は少ないでしょう。
 
 ### 言語が進化しているため {#to-progress}
@@ -162,7 +162,7 @@ JavaScriptは幅広く使われている言語であるため、世の中には�
 そのため、問題を見つけた際に該当する仕様やプロポーザルを確認してみることは重要です。
 
 これはECMAScriptにかぎらず、ウェブやブラウザに関する情報に関しては同じことがいえます。
-ブラウザ関してはHTML、DOM API、CSSなどもオープンな仕様とそれぞれ策定プロセスが存在しています。
+ブラウザに関してはHTML、DOM API、CSSなどのオープンな仕様とそれぞれの策定プロセスが存在しています。
 
 ### まとめ {#ecmascript-summary}
 
@@ -179,7 +179,7 @@ ECMAScriptにおいては策定プロセスという形でどのような段階�
 [^1]: ES2015の仕様編集者であるAllen Wirfs-Brock氏の書いた[Programming Language Standardization](http://wirfs-brock.com/allen/files/papers/standpats-asianplop2016.pdf)に詳細が書かれています。
 [^2]: [Inactive Proposals](https://github.com/tc39/proposals/blob/master/inactive-proposals.md)に策定を中止したプロポーザルの一覧が公開されています。
 [^process]: この策定プロセスは<https://tc39.github.io/process-document/>に詳細が書かれています。
-[^ES4]: ECMAScript 4は複雑で大きな変更が含まれており、合意を得ることできずに仕様策定が破棄されました。
+[^ES4]: ECMAScript 4は複雑で大きな変更が含まれており、合意を得ることができずに策定仕様が破棄されました。
 
 [Ecma International]: http://www.ecma-international.org/  "Ecma International"
 [Standard ECMA-262]: https://www.ecma-international.org/publications/standards/Ecma-262.htm "Standard ECMA-262"
