@@ -21,6 +21,9 @@
   ],
   "variables": {
     "esversion": "2018",
+    "nodeversion": "8.12.0",
+    "npmversion": "6.4.1",
+    "triplebackticks": "```",
     "console": "<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"
   },
   "pluginsConfig": {
