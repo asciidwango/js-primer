@@ -267,52 +267,69 @@ function onLoginFormSubmit(event) {
 [WeakMap][]は、`Map`と同じくマップを扱うためのビルトインオブジェクトです。
 `Map`と違う点は、キーを**弱い参照**（Weak Reference）でもつことです。
 
-[弱い参照][]とは、ガベージコレクタによるオブジェクトの解放を妨げないための特殊な参照です。
-あるオブジェクトへの参照がすべて弱い参照のとき、そのオブジェクトはいつでもガベージコレクタによって解放できます。
+[弱い参照][]とは、ガベージコレクション（GC）によるオブジェクトの解放を妨げないための特殊な参照です。
+GCによりメモリから解放できるオブジェクトは、どこからも参照されていないものだけです。
+このときオブジェクトへの弱い参照があったとしてもそのオブジェクトは解放できます。
 弱い参照は、不要になったオブジェクトを参照し続けて発生するメモリリークを防ぐために使われます。
 `WeakMap`では不要になったキーとそれに紐付いた値が自動的に削除されるため、メモリリークを引き起こす心配がありません。
+
+次のコードでは、最初に`obj`には`{}`を設定し、`WeakMap`ではその`obj`をキーにして値(`"value"`)を設定しています。
+次に`obj`に別の値（ここでは`null`）を代入すると、`obj`がもともと参照していた`{}`という値はどこからも参照されなくなります。
+このとき`WeakMap`は`{}`への弱い参照をもっていますが、弱い参照はGCを妨げません。
+そのため`{}`は不要になった値としてGCによりメモリから解放できます。
+また、`WeakMap`は解放されたオブジェクト(`{}`)をキーにして紐づいていた値(`"value"`)を破棄できます。
+ただし、どのタイミングで実際にメモリから解放するかは、JavaScriptエンジンの実装に依存します。
+
+```js
+const map = new WeakMap();
+// キーとなるオブジェクト
+let obj = {};
+// {} への参照をキーに値をセットする
+map.set(obj, "value");
+// {} への参照を破棄する
+obj = null;
+// GCが発生するタイミングでWeakMapから値が破棄される
+```
 
 `WeakMap`は`Map`と似ていますがiterableではありません。
 そのため、キーを列挙する`keys`メソッドや、データの数を返す`size`プロパティなどは存在しません。
 また、キーを弱い参照でもつ特性上、キーとして使えるのは参照型のオブジェクトだけです。
 
-`WeakMap`の主な使い方のひとつは、あるオブジェクトに紐付くオブジェクトを管理することです。
-たとえば次の例では、オブジェクトが発火するイベントのリスナー関数（イベントリスナー）をマップで管理しています。
+`WeakMap`の主な使い方のひとつは、クラスにプライベートの値を格納することです。
+`this` （クラスインスタンス） を `WeakMap` のキーにすることで、インスタンスの外からはアクセスできない値を保持できます。
+また、クラスインスタンスが参照されなくなったときには自動的に解放されます。
+
+たとえば次の例では、オブジェクトが発火するイベントのリスナー関数（イベントリスナー）を `WeakMap` で管理しています。
 イベントリスナーとは、イベントが発生したときに呼び出される関数のことです。
-このマップを`Map`で実装してしまうと、`targetObj`がマップから削除されるまでイベントリスナーはメモリ上に残り続けます。
-ここで`WeakMap`を使うと、`addListener`関数に渡された`listener`は`targetObj`が解放された際、自動的に解放されます。
+このマップを`Map`で実装してしまうと、明示的に削除されるまでイベントリスナーはメモリ上に残り続けます。
+ここで`WeakMap`を使うと、`addListener` メソッドに渡された`listener`は `EventEmitter` インスタンスが参照されなくなった際、自動的に解放されます。
 
 ```js
 // イベントリスナーを管理するマップ
 const listenersMap = new WeakMap();
 
-// 渡されたオブジェクトに紐付くイベントリスナーを追加する
-function addListener(targetObj, listener) {
-    const listeners = listenersMap.get(targetObj) || [];
-    listenersMap.set(targetObj, listeners.concat(listener));
-}
-// 渡されたオブジェクトに紐付くイベントリスナーを呼び出す
-function triggerListeners(targetObj) {
-    if (listenersMap.has(targetObj)) {
-        listenersMap.get(targetObj)
-            .forEach((listener) => listener());
+class EventEmitter {
+    addListener(listener) {
+        // this に紐付いたリスナーの配列を取得する
+        const listeners = listenersMap.get(this) || [];
+        const newListeners = listeners.concat(listener);
+        // this をキーに新しい配列をセットする
+        listenersMap.set(this, newListeners);
     }
 }
 
-// 上記関数の実行例
+// 上記クラスの実行例
 
-let eventTarget = {};
+let eventEmitter = new EventEmitter();
 // イベントリスナーを追加する
-addListener(eventTarget, () => {
+eventEmitter.addListener(() => {
     console.log("イベントが発火しました");
 });
-// eventTargetに紐付いたイベントリスナーが呼び出される
-triggerListeners(eventTarget);
-// eventTargetの参照が変われば自動的にイベントリスナーが解放される
-eventTarget = null;
+// eventEmitterへ参照がなくなったことで自動的にイベントリスナーが解放される
+eventEmitter = null;
 ```
 
-また、あるオブジェクトから計算した結果を保存する用途でもよく使われます。
+また、あるオブジェクトから計算した結果を一時的に保存する用途でもよく使われます。
 次の例ではHTML要素の高さを計算した結果を保存して、2回目以降に同じ計算をしないようにしています。
 
 ```js
