@@ -847,7 +847,7 @@ console.log(fn.call({})); // グローバルオブジェクト
 
 
 最初に述べたようにfunctionキーワードで定義した関数は呼び出し時に、ベースオブジェクトがthisの値として暗黙的な引数のように渡されます。 
-一方、Arrow Functionの関数は呼び出し時にthisを受け取らず、thisの参照先は定義時に静的に決定されます。
+一方、Arrow Functionの関数は呼び出し時に`this`を受け取らず、`this`の参照先は定義時に静的に決定されます。
 
 <!-- textlint-disable -->
 
