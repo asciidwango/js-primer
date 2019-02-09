@@ -34,19 +34,19 @@ Node.jsには**LTS（Long-Term Support）**版と最新版の2つのリリース
 インストールが完了すると、コマンドラインで`node`コマンドが使用可能になっているはずです。
 次のコマンドを実行して、インストールされたNode.jsのバージョンを確認しましょう。
 
-```
+{{book.triplebackticks}}
 $ node -v 
 v{{book.nodeversion}}
-```
+{{book.triplebackticks}}
 
 また、Node.jsには[npm][]というパッケージマネージャーが同梱されています。
 Node.jsをインストールすると、`node`コマンドだけでなくnpmを扱うための`npm`コマンドも使えるようになっています。
 次のコマンドを実行して、インストールされたnpmのバージョンを確認しましょう。
 
-```
+{{book.triplebackticks}}
 $ npm -v 
 {{book.npmversion}}
-```
+{{book.triplebackticks}}
 
 npmや`npm`コマンドについての詳細は[公式ドキュメント](https://docs.npmjs.com/)や[npmのGitHubリポジトリ][]を参照してください。
 Node.jsのライブラリのほとんどはnpmを使ってインストールできます。
