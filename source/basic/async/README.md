@@ -53,11 +53,11 @@ console.log("この行が呼ばれるまで処理が1秒間ブロックされる
 
 ## 非同期処理 {#async-processing}
 
-非同期処理は、コードを順番に文と式を評価したら処理は開始されますが、その評価結果を返しません。
+非同期処理は、コード上の文と式を順番に評価して処理を開始しますが、その評価結果を直ちには返しません。
 （処理が開始されたことを表すオブジェクトなどを返すことはありますが、最終的な評価結果はすぐには手に入りません）
 
 また非同期処理はコードを順番に処理していきますが、ひとつの非同期処理が終わるのを待たずに次の処理を評価します。
-つまり、非同期処理では同時に実行している処理は複数あります。
+つまり、非同期処理では同時に実行している処理が複数あります。
 
 JavaScriptにおいて非同期処理をする代表的な関数として`setTimeout`関数があります。
 `setTimeout`関数は`delay`ミリ秒後に、`コールバック関数`を呼び出すようにタイマーへ登録する非同期処理です。
@@ -372,8 +372,8 @@ asyncTask((error, result) => {
 ```
 
 次のコードの`asyncTask`関数は`Promise`インスタンスを返す非同期処理の例です。
-Promiseでは、非同期処理に成功したときの処理を`then`メソッドへコールバック関数を渡し、
-失敗したときの処理を`catch`メソッドへコールバック関数を渡します。
+Promiseでは、非同期処理に成功したときの処理をコールバック関数として`then`メソッドへ渡し、
+失敗したときの処理を同じくコールバック関数として`catch`メソッドへ渡します。
 
 エラーファーストコールバックとはことなり、非同期処理（`asyncTask`関数）は`Promise`インスタンスを返しています。
 その返された`Promise`インスタンスに対して、成功と失敗時の処理をそれぞれコールバック関数として渡すという形になります。
@@ -964,10 +964,10 @@ main().then(() => {
 `Promise#finally`メソッドは成功時、失敗時どちらの場合でも呼び出すコールバック関数を登録できます。
 `try...catch...finally`構文の`finally`節と同様の役割をもつメソッドです。
 
-次のコードでは、リソースを取得して`then`で成功時の処理、`catch`で失敗時の登録しています。
+次のコードでは、リソースを取得して`then`で成功時の処理、`catch`で失敗時の処理を登録しています。
 また、リソースを取得中かどうかを判定するためのフラグを`isLoading`という変数で管理しています。
 成功失敗どちらにもかかわらず、取得が終わったら`isLoading`は`false`にします。
-このとき`then`や`catch`それぞれの処理で`isLoading`へ`false`を代入もできますが、`Promise#finally`メソッドを使うことで一箇所にまとめられます。
+`then`や`catch`それぞれの処理で`isLoading`へ`false`を代入することもできますが、`Promise#finally`メソッドを使うことで代入を一箇所にまとめられます。
 
 {{book.console}}
 <!-- doctest:disable -->
@@ -1130,7 +1130,7 @@ fetchedPromise.then(([responseA, responseB]) => {
 `Promise.race`メソッドでは複数のPromiseを受け取りますが、Promiseが1つでも完了した（Settle状態となった）時点で次の処理を実行します。
 
 `Promise.race`メソッドは`Promise`インスタンスの配列を受け取り、新しい`Promise`インスタンスを返します。
-この新しい`Promise`インスタンスは配列のなかでも一番最初に**Settle**状態へとなった`Promise`インスタンスと同じ状態になります。
+この新しい`Promise`インスタンスは、配列のなかで一番最初に**Settle**状態へとなった`Promise`インスタンスと同じ状態になります。
 
 - 配列のなかでも一番最初に**Settle**となったPromiseが**Fulfilled**の場合は、新しい`Promise`インスタンスも**Fulfilled**へ
 - 配列のなかでも一番最初に**Settle**となったPromiseが**Rejected**の場合は、新しい`Promise`インスタンスも **Rejected**へ
@@ -1319,7 +1319,7 @@ resolveFn().then(value => {
 });
 
 // 2. rejectFnはPromiseインスタンスを返している
-function rejectFn() {
+async function rejectFn() {
     return Promise.reject(new Error("エラーメッセージ"));
 }
 
@@ -1500,9 +1500,7 @@ Async Function外の処理も停止できてしまうと、JavaScriptでは基�
 
 これと同じ理由で次のようなコールバック関数では`await`式が利用できないことに注意してください。
 
-次のコードでは`await`式は`asynMain`関数の直下ではなく、`forEach`メソッドのコールバック関数にかかれています。
-そのためAsync Functionの直下ではないため、次のコードはSyntax Errorとなります。
-
+次のコードでは`await`式は`asyncMain`関数の直下ではなく、`forEach`メソッドのコールバック関数に書かれているためSyntax Errorとなります。
 
 <!-- textlint-disable -->
 
@@ -1510,7 +1508,7 @@ Async Function外の処理も停止できてしまうと、JavaScriptでは基�
 <!-- doctest:disable -->
 ```js
 // コールバック関数で構文エラーとなる例
-async function asynMain(){
+async function asyncMain(){
     const promises = [Promise.resolve(1), Promise.resolve(2), Promise.resolve(3)];
     promises.forEach(promise => {
         // Syntax Error
@@ -1527,7 +1525,7 @@ async function asynMain(){
 <!-- doctest:async:16 -->
 ```js
 // 正しいAsync Functionとコールバック関数の書き方
-async function asynMain() {
+async function asyncMain() {
     const promises = [Promise.resolve(1), Promise.resolve(2), Promise.resolve(3)];
     promises.forEach(async promise => {
         await promise;
@@ -1718,7 +1716,7 @@ main();
 `saveUsers`関数を詳しく見ていきます。
 `forEach`メソッドのコールバック関数としてAsync Functionを渡しています。
 Async Functionの中で`await`式を利用して非同期処理の完了を待っています。
-しかし、この非同期処理の完了を待つのAsync Functionの中だけで、外側では`save`メソッドの完了を待つことなく進みます。
+しかし、この非同期処理の完了を待つのはAsync Functionの中だけで、外側では`save`メソッドの完了を待つことなく進みます。
 
 次のように`saveUsers`関数にコンソール出力を入れてみると動作が分かりやすいでしょう。
 `forEach`メソッドのコールバック関数が完了するのは、`saveUsers`関数の呼び出しがすべて終わった後になります。
