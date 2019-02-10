@@ -182,7 +182,7 @@ console.log(string[42]); // => undefined
 この文字に対応するIDの一覧表のことを符号化文字集合と呼びます。
 
 次の表は、Unicodeという符号化文字集合の定義からカタカナの一部分を取り出したものです。[^UnicodeTable]
-Unicodeはすべての文字に対してIDを振ることを目的に作成されている仕様です。
+Unicodeはすべての文字に対してID（Code Point）を振ることを目的に作成されている仕様です。
 
 |      | 0    | 1    | 2    | 3    | 4    | 5    | 6    | 7    | 8    | 9    | A    | B    | C    | D    | E    | F    |
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
@@ -193,13 +193,18 @@ Unicodeはすべての文字に対してIDを振ることを目的に作成さ�
 
 JavaScript（ECMAScript）では符号化文字集合としてUnicodeを採用し、文字をエンコードする方式としてUTF-16を採用しています。
 UTF-16はそれぞれの文字を16bitのビット列に変換するエンコード方式です。
-この「1文字」に当たる16bitのビット列をCode Unit（符号単位）と呼びます。
 
-つまり、JavaScriptにおける文字列はCode Unit（16bitのビット列）が順番に並んだものとして内部的に管理されています。
-（あくまでJavaScriptの内部的な表現としてUTF-16を採用しているだけで、JavaScriptファイルのエンコーディングとは関係ありません）
+Unicodeでは、UTF-16以外にもそれぞれの文字を8bitのビット列に変換するUTF-8、32bitのビット列に変換するUTF-32などのエンコード方式があります。
+Unicodeでは「1文字」のことをCode Unit（符号単位）と呼び、UTF-16ではCode Unitを16bitのビット列で表現しています。
 
-次のコードでは、文字列を構成するUTF-16 Code Unitを表示しています。
+<!-- 比較表: http://unicode.org/faq/utf_bom.html#gen6 -->
+
+つまり、JavaScriptにおける文字列は16bitのCode Unitが順番に並んだものとして内部的に管理されています。
+これは、JavaScriptの内部的な表現にUTF-16を採用しているだけで、JavaScriptファイル（ソースコードを書いたファイル）のエンコーディングとは関係はありません。そのため、JavaScriptファイル自体のエンコードはUTF-8であっても問題ありません。
+
+次のコードでは、文字列を構成するUTF-16 Code Unitをhex値（16進数）にして表示しています。
 `String#charCodeAt`メソッドは、文字列の指定インデックスのCode Unitを整数として返します。
+その値は`String#toString`メソッドでhex値（16進数）にしています。
 
 ```js
 const string = "アオイ";
@@ -212,13 +217,16 @@ console.log(string.charCodeAt(2).toString(16));  // => "30a4"
 
 まとめると、この文字列は次のようにUTF-16 Code Unitを要素として順番に持っている値となっています。
 
-| インデックス                 | 0     | 1     | 2     |
-| -------------------------- | ----- | ----- | ----- |
-| 文字列                      | ア    | オ    | イ     |
-| 内部表現（UTF-16 Code Unit） | U+30A2 | U+30AA | U+30A4 |
+| インデックス                       | 0     | 1     | 2     |
+| -------------------------------- | ----- | ----- | ----- |
+| 文字列                            | ア    | オ    | イ     |
+| UTF-16 Code UnitのHex値          | 30A2 | 30AA | 30A4 |
 
-あくまでJavaScriptの内部的な表現であるため、気にする必要がないようにも思えますが、この仕様はこれから見ていくAPIに影響しています。
-ここでは、JavaScriptの文字列はCode Unitという単位で構成されているということだけを覚えておけば十分です。
+UTF-16を利用していることはJavaScriptの内部的な表現であるため、気にする必要がないようにも思えます。
+しかし、このJavaScriptがUTF-16を利用していることは、これから見ていくStringのAPIにも影響しています。
+このUTF-16と文字列について詳しくは次の章である「[文字列とUnicode][]」でみていきます。
+
+ここでは、JavaScriptのUTF-16を採用し、文字列の各要素はUTF-16 Code Unitになっているということだけを覚えておけば十分です。
 
 ## 文字列の分解と結合 {#split-join}
 
@@ -285,7 +293,7 @@ console.log("".length); // => 0
 次の条件を満たしていれば同じ文字列となります。
 
 - 文字列の要素であるCode Unitが同じ順番で並んでいるか
-- 文字列の長さ（length）は同じか∑
+- 文字列の長さ（length）は同じか
 
 {{book.console}}
 ```js
@@ -1001,6 +1009,7 @@ console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
 - 文字列の検索について
     - [四章第一回　文字列の操作 — JavaScript初級者から中級者になろう — uhyohyo.net](http://uhyohyo.net/javascript/4_1.html "四章第一回　文字列の操作 — JavaScript初級者から中級者になろう — uhyohyo.net")
 
+[文字列とUnicode]: ../string-unicode/README.md "TODO: 文字列とUnicodeのリンク"
 [エスケープシーケンス]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String#%E3%82%A8%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%97%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9
 [twitter-text]: https://github.com/twitter/twitter-text  "twitter/twitter-text: Twitter Text Libraries"
 [JavaScript has a Unicode problem · Mathias Bynens]: https://mathiasbynens.be/notes/javascript-unicode  "JavaScript has a Unicode problem · Mathias Bynens"
