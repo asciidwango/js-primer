@@ -200,6 +200,6 @@ JavaScriptにおける変数宣言として`var`、`let`、`const`があるこ�
 <!-- textlint-enable eslint -->
 
 [関数とスコープ]: ../function-scope/README.md
-[JavaScript variable name validator]: https://mothereff.in/js-variables  "JavaScript variable name validator"
+[JavaScript variable name validator]: https://mothereff.in/js-variables
 [データ型とリテラル]: ../data-type/README.md
 [オブジェクト]: ../object/README.md#const-and-object

@@ -6,7 +6,7 @@ description: JavaScriptのプロトタイプオブジェクトについて
 # プロトタイプオブジェクト {#prototype-object}
 
 「[オブジェクト]」の章では、オブジェクトの処理方法について見ていきました。
-その中で、空のオブジェクトであっても`toString`メソッドなどの呼びだせていました。
+その中で、空のオブジェクトであっても`toString`メソッドなどを呼びだせていました。
 
 {{book.console}}
 ```js
@@ -63,7 +63,7 @@ console.log(object.toString === Object.prototype.toString); // => true
 console.log(object.toString()); // => "[object Object]"
 ```
 
-このように`Object.prototype`に定義されている`toString`メソッドなどは、インスタンスを作成時に自動的に継承されるため、`Object`のインスタンスから呼び出せます。
+このように`Object.prototype`に定義されている`toString`メソッドなどは、インスタンス作成時に自動的に継承されるため、`Object`のインスタンスから呼び出せます。
 これによりオブジェクトリテラルで作成した空のオブジェクトでも、`Object#toString`メソッドなどを呼び出せるようになっています。
 
 このインスタンスから`prototype`オブジェクト上に定義されたメソッドを参照できる仕組みは**プロトタイプチェーン**と呼びます。
@@ -196,7 +196,7 @@ console.log(number.toString()); // => "1,2,3"
 
 ## [コラム] `Object.prototype`を継承しないオブジェクト {#not-inherit-object}
 
-`Object`はすべてのオブジェクトの親となるオブジェクトである言いましたが、例外もあります。
+`Object`はすべてのオブジェクトの親になるオブジェクトであると言いましたが、例外もあります。
 
 イディオム（慣習的な書き方）ですが、`Object.create(null)`とすることで`Object.prototype`を継承しないオブジェクトを作成できます。
 これにより、プロパティやメソッドを全く持たない本当に**空のオブジェクト**を作ることができます。

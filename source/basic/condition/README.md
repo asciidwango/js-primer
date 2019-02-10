@@ -5,6 +5,7 @@ author: azu
 # 条件分岐 {#conditional-branch}
 
 この章ではif文やswitch文を使った条件分岐について学んでいきます。
+条件分岐を使うことで、特定の条件を満たすか否かで行う処理を変更できます。
 
 ## if文 {#if-statement}
 
@@ -137,14 +138,14 @@ if、else if、else文は`実行する文`としてさらにif文を書きネス
 
 <!-- textlint-enable preset-ja-technical-writing/no-start-duplicated-conjunction -->
 
-西暦で示した年は `new Date().getFullYear();` で取得できるため、
-この条件をif文で表現すると次のように書くことができます。
+西暦での現在の年は `new Date().getFullYear();` で取得できます。
+このうるう年の条件をif文で表現すると次のように書くことができます。
 
 {{book.console}}
 [import, leap-year-nest-example.js](src/if/leap-year-nest-example.js)
 
 条件を上から順に書き下したため、ネストが深い文となってしまっています。
-一般にネストは少ない方が、読みやすいコードとなります。
+一般的にはネストは浅い方が、読みやすいコードとなります。
 
 条件を少し読み解くと、400で割り切れる年は無条件にうるう年であることがわかります。
 そのため、条件を並び替えることで、ネストするif文なしに書くことができます。
@@ -235,14 +236,18 @@ switch文のcase節では基本的に`break;`を使いswitch文を抜けるよ�
 そのため、case節とbreak文が多用されているswitch文が出てきた場合、
 別の方法で書けないかを考えるべきサインとなります。
 
-一般にswitch文はif文の代用として使うのではなく、関数と組み合わせて値を返すパターンとして使うことが多いです。
+switch文はif文の代用として使うのではなく、次のように関数と組み合わせて条件に対する値を返すパターンとして使うことが多いです。
 
 {{book.console}}
 [import, switch-return-example.js](./src/switch/switch-return-example.js)
 
-関数については、n章 で詳しく解説します。
+関数については「[関数と宣言][]」の章で紹介します。
 
-- [ ] 関数の章を書いたらn章を変更する
+## まとめ {#conclusion}
+
+JavaScriptにおける条件分岐にはif文やswitch文を利用します。
+複雑な条件を定義する場合には、if文のネストが深くなりやすいです。
+そのような場合には、条件式自体を見直してよりシンプルな条件にできないかを考えてみることも重要です。
 
 ## 参考 {#reference-for-condition}
 
@@ -254,3 +259,4 @@ switch文のcase節では基本的に`break;`を使いswitch文を抜けるよ�
 
 
 [暗黙的な型変換]: ../implicit-coercion/README.md
+[関数と宣言]: ../function-declaration/README.md

@@ -236,7 +236,7 @@ Rest parametersは、仮引数名の前に`...`をつけた仮引数のことで
 Rest parametersには、関数に渡された値が配列として代入されます。
 
 次のコードでは、`fn`関数に`...args`というRest parametersが定義されています。
-この`fn`関数を呼び出したときのが、`args`という変数に配列として代入されます。
+この`fn`関数を呼び出したときの引数の値が、`args`という変数に配列として代入されます。
 
 {{book.console}}
 ```js
@@ -472,7 +472,7 @@ const 関数名 = () => {
 };
 ```
 
-Arrow Functionには書き方のいくつかパターンがありますが、`function`キーワードに比べて短く書けるようになっています。
+Arrow Functionには書き方にいくつかのパターンがありますが、`function`キーワードに比べて短く書けるようになっています。
 また、Arrow Functionには省略記法があり、次の場合にはさらに短く書けます。
 
 - 関数の仮引数が1つのときは`()`を省略できる
@@ -490,7 +490,7 @@ const fnC = x => { /* 仮引数が1つのみのときは()を省略可能 */ };
 const fnD = (x, y) => { /* 仮引数が複数の時 */ };
 // 値の返し方
 // 次の２つの定義は同じ意味となる
-const mulA = x => { return x * x; } // ブロックの中でreturn
+const mulA = x => { return x * x; }; // ブロックの中でreturn
 const mulB = x => x * x;            // 1行のみの場合はreturnとブロックを省略できる
 ```
 
@@ -532,7 +532,7 @@ Arrow Functionは`function`キーワードの関数式に比べて、できる�
 たとえば、`function`キーワードでは非推奨としていた`arguments`変数を参照できますが、Arrow Functionでは参照できなくなっています。
 Arrow Functionでは、人による解釈や実装の違いが生まれにくくなります。
 
-また、`function`キーワードとArrow Functionの大きな違いとして、`this`という特殊なキーワードに関する挙動の違いあります。
+また、`function`キーワードとArrow Functionの大きな違いとして、`this`という特殊なキーワードに関する挙動の違いがあります。
 `this`については「[関数とスコープ][]」の章で解説しますが、Arrow Functionではこの`this`の問題の多くを解決できるという利点があります。
 
 そのため、Arrow Functionで問題ない場合はArrow Functionで書き、そうでない場合は`function`キーワードを使うことを推奨します。

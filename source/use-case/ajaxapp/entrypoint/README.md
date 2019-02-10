@@ -46,4 +46,5 @@ Firefoxの開発者ツールは次のいずれかの方法で開きます。
 ![ログが表示されているWebコンソール](img/fig-1.png)
 
 [Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy 
+[アプリケーション開発の準備]: ../../setup-local-env/README.md
 [Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console

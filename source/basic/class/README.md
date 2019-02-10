@@ -48,7 +48,7 @@ const MyClass = class MyClass {
     constructor() {}
 };
 
-const AnnonymousClass = class {
+const AnonymousClass = class {
     constructor() {}
 };
 ```
