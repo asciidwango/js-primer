@@ -196,7 +196,10 @@ Unicodeはすべての文字に対してID（Code Point）を振ることを目�
 JavaScript（ECMAScript）では符号化文字集合としてUnicodeを採用し、文字をエンコードする方式としてUTF-16を採用しています。
 Unicodeでは文字を構成する最小のビット列をCode Unit（符号単位）と呼び、Code Unitのサイズがエンコード方式によって異なります。UTF-16はそれぞれの文字を16bitのビット列に変換するエンコード方式であるため、Code Unitのサイズが16bitとなります。
 
-<!-- 比較表: http://unicode.org/faq/utf_bom.html#gen6 -->
+<!-- 
+- 用語集: http://unicode.org/glossary/
+- 比較表: http://unicode.org/faq/utf_bom.html#gen6
+ -->
 
 JavaScriptにおける文字列は16bitのCode Unitが順番に並んだものとして内部的に管理されています。
 これは、ECMAScriptの仕様としてUTF-16を採用しているだけで、JavaScriptファイル（ソースコードを書いたファイル）のエンコーディングとは関係ありません。そのため、JavaScriptファイル自体のエンコードはUTF-8であっても問題ありません。
