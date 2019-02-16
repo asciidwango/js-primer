@@ -194,15 +194,12 @@ Unicodeはすべての文字に対してID（Code Point）を振ることを目�
 
 
 JavaScript（ECMAScript）では符号化文字集合としてUnicodeを採用し、文字をエンコードする方式としてUTF-16を採用しています。
-UTF-16はそれぞれの文字を16bitのビット列に変換するエンコード方式です。
-
-Unicodeでは、UTF-16以外にもそれぞれの文字を8bitのビット列に変換するUTF-8、32bitのビット列に変換するUTF-32などのエンコード方式があります。
-Unicodeでは「1文字」のことをCode Unit（符号単位）と呼び、UTF-16ではCode Unitが16bitとなります。
+Unicodeでは文字を構成する最小のビット列をCode Unit（符号単位）と呼び、Code Unitのサイズがエンコード方式によって異なります。UTF-16はそれぞれの文字を16bitのビット列に変換するエンコード方式であるため、Code Unitのサイズが16bitとなります。
 
 <!-- 比較表: http://unicode.org/faq/utf_bom.html#gen6 -->
 
-つまり、JavaScriptにおける文字列は16bitのCode Unitが順番に並んだものとして内部的に管理されています。
-これは、JavaScriptの内部的な表現にUTF-16を採用しているだけで、JavaScriptファイル（ソースコードを書いたファイル）のエンコーディングとは関係はありません。そのため、JavaScriptファイル自体のエンコードはUTF-8であっても問題ありません。
+JavaScriptにおける文字列は16bitのCode Unitが順番に並んだものとして内部的に管理されています。
+これは、JavaScriptの内部的な表現としてUTF-16を採用しているだけで、JavaScriptファイル（ソースコードを書いたファイル）のエンコーディングとは関係はありません。そのため、JavaScriptファイル自体のエンコードはUTF-8であっても問題ありません。
 
 次のコードでは、文字列を構成するUTF-16のCode Unitをhex値（16進数）にして表示しています。
 `String#charCodeAt`メソッドは、文字列の指定インデックスのCode Unitを整数として返します。
@@ -217,7 +214,7 @@ console.log(string.charCodeAt(1).toString(16)); // => "30aa"
 console.log(string.charCodeAt(2).toString(16));  // => "30a4"
 ```
 
-まとめると、この文字列は次のようにUTF-16のCode Unitを要素として順番に持っている値となっています。
+この結果をまとめると、この文字列を構成するUTF-16のCode Unitを要素として次のようになります。
 
 | インデックス                       | 0     | 1     | 2     |
 | -------------------------------- | ----- | ----- | ----- |
@@ -228,7 +225,7 @@ UTF-16を利用していることはJavaScriptの内部的な表現であるた�
 しかし、このJavaScriptがUTF-16を利用していることは、これから見ていくStringのAPIにも影響しています。
 このUTF-16と文字列について詳しくは次の章である「[文字列とUnicode][]」でみていきます。
 
-ここでは、JavaScriptの文字列の各要素はUTF-16のCode Unitになっているということだけを覚えておけば十分です。
+ここでは、JavaScriptの文字列の各要素はUTF-16のCode Unitで構成されているということだけを覚えておけば問題ありません。
 
 ## 文字列の分解と結合 {#split-join}
 
