@@ -678,7 +678,7 @@ console.log(prefixedStrings); // => ["pre-a", "pre-b", "pre-c"]
 そのため、コールバック関数内での`this`の対処法として`this`を代入する方法を紹介しましたが、
 ES2015からはArrow Functionを使うのがもっとも簡潔です。
 
-このArrow Functionと`this`の関係についてもっと詳しく見ていきます。
+このArrow Functionと`this`の関係についてより詳しく見ていきます。
 
 ## Arrow Functionと`this` {#arrow-function-this}
 
@@ -762,7 +762,7 @@ console.log(innerArrowFunction()); // => undefined
 
 ### メソッドとコールバック関数とArrow Function {#method-callback-arrow-function}
 
-メソッド内におけるコールバック関数はArrow Functionをもっと活用できるパターンです。
+メソッド内におけるコールバック関数はArrow Functionをより活用できるパターンです。
 `function`キーワードでコールバック関数を定義すると、`this`の値はコールバック関数の呼ばれ方を意識する必要があります。
 なぜなら、`function`キーワードで定義した関数における`this`は呼び出し方によって変わるためです。
 
