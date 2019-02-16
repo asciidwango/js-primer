@@ -791,7 +791,7 @@ scheme      host     pathname
 これらの文字列を作成する場合は、文字列結合演算子（`+`）で単純に結合するよりも専用の関数を用意する方が安全です。
 
 たとえば、次のように`baseURL`と`pathname`を渡し、それらを結合したURLにあるリソースを取得する`getResource`関数があるとします。
-この`getResource`関数には、ベースURL(`baseURL`)とベースURL以下のパス（`pathname`）を引数にそれぞれ渡して利用します。
+この`getResource`関数には、ベースURL(`baseURL`)とパス（`pathname`）を引数にそれぞれ渡して利用します。
 
 {{book.console}}
 ```js
