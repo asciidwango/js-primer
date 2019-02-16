@@ -1,6 +1,6 @@
 ---
 author: azu
-description: "JavaScriptで条件分岐を扱うためのif文やswitch文を紹介します。またネストした条件分岐が読みやすさを妨げる問題をどのように解消するについてを紹介します。"
+description: "JavaScriptで条件分岐を扱うためのif文やswitch文を紹介します。またネストした条件分岐が読みやすさを妨げる問題をどのように解決するについてを紹介します。"
 ---
 
 # 条件分岐 {#conditional-branch}
