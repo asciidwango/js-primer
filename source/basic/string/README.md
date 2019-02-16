@@ -199,7 +199,7 @@ Unicodeでは文字を構成する最小のビット列をCode Unit（符号単�
 <!-- 比較表: http://unicode.org/faq/utf_bom.html#gen6 -->
 
 JavaScriptにおける文字列は16bitのCode Unitが順番に並んだものとして内部的に管理されています。
-これは、JavaScriptの内部的な表現としてUTF-16を採用しているだけで、JavaScriptファイル（ソースコードを書いたファイル）のエンコーディングとは関係はありません。そのため、JavaScriptファイル自体のエンコードはUTF-8であっても問題ありません。
+これは、ECMAScriptの仕様としてUTF-16を採用しているだけで、JavaScriptファイル（ソースコードを書いたファイル）のエンコーディングとは関係ありません。そのため、JavaScriptファイル自体のエンコードはUTF-8であっても問題ありません。
 
 次のコードでは、文字列を構成するUTF-16のCode Unitをhex値（16進数）にして表示しています。
 `String#charCodeAt`メソッドは、文字列の指定インデックスのCode Unitを整数として返します。
