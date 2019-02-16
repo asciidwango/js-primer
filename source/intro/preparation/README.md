@@ -1,6 +1,6 @@
 ---
 author: azu
-desdcription: "この書籍でJavaScriptを学ぶ前に、まずは意味はわからなくてもいいので、JavaScriptを実行できることから確認していきます"
+desdcription: "この書籍でJavaScriptを学ぶ前に、まずは意味はわからなくてもいいので、JavaScriptを実行できることから確認していきます。"
 ---
 
 # 読み始める前の事前準備 {#preparation}
