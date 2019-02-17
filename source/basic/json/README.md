@@ -1,12 +1,13 @@
 ---
 author: laco
+description: "JavaScriptのオブジェクトリテラルをベースに作られたデータフォーマットであるJSONを紹介します。また、JavaScriptからのJSONの読み書きするビルトインオブジェクトの使い方を紹介します。"
 ---
 
 # JSON {#json}
 
 ## JSONとは {#what-is-json}
 
-JSONはJavaScript Object Notationの略で、JavaScriptのオブジェクト表記をベースに作られた軽量なデータフォーマットです。
+JSONはJavaScript Object Notationの略で、JavaScriptのオブジェクトリテラルをベースに作られた軽量なデータフォーマットです。
 JSONの仕様は[ECMA-404][]によって標準化されています。
 人間にとって読み書きが容易で、マシンにとっても簡単にパースや生成を行なえる形式になっているため、
 多くのプログラミング言語がJSONを扱う機能を備えています。
