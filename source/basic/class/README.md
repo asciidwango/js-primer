@@ -1,5 +1,6 @@
 ---
 author: azu
+description: "JavaScriptにおけるクラスの定義方法や継承方法を紹介します。プロトタイプベースの言語であるJavaScriptがどのように継承などを実現しているのかプロトタイプオブジェクトの仕組みととも紹介します。feat"
 ---
 
 # クラス {#class}
