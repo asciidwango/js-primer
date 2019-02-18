@@ -1,5 +1,6 @@
 ---
 author: laco
+description: "JavaScriptのモジュールについて紹介します。ECMAScriptモジュールの基本的な使い方やCommonJSモジュールとの違いについて紹介します。"
 ---
 
 # モジュール {#module}
