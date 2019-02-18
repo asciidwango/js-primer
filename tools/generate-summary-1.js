@@ -27,6 +27,9 @@ const cli = meow(`
         const filePath = path.resolve(path.dirname(OUTLINE), chapter.path);
         const inputText = fs.readFileSync(filePath, "utf-8");
         const frontMatter = parseFrontMatter(inputText);
+        if (!frontMatter.attributes.description) {
+            throw new Error(`frontMatter.attributes.description is not found ${chapter.path}`);
+        }
         if (frontMatter.attributes.description) {
             console.log(`### [${chapter.title}](${path.relative(BasicIndex, filePath)})
 
