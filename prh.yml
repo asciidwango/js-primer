@@ -151,7 +151,7 @@ rules:
     options:
       wordBoundary: true
   - expected: 暗黙的な型変換
-    patterns: 暗黙的な型変換
+    patterns: 暗黙的な変換
   - expected: プリミティブ型
     patterns:
       - プリミティブなデータ型
