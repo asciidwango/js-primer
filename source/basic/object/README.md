@@ -1,6 +1,6 @@
 ---
 author: azu
-description: "JavaScriptのオブジェクトの作成、更新、削除などの基本的な操作について"
+description: "JavaScriptのObjectはオブジェクトの基礎となるものです。オブジェクトとプロパティの作成、更新、削除などの基本的な操作について紹介します。"
 ---
 
 # オブジェクト {#object}
