@@ -48,6 +48,7 @@
     "@textlint/regexp-string-matcher": "^1.0.2",
     "@types/meow": "^4.0.1",
     "@types/node": "^9.6.7",
+    "add-text-to-markdown": "^2.0.0",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.6.1",
     "babel-preset-jsdoc-to-assert": "^4.0.0",

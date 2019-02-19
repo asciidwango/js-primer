@@ -7,6 +7,8 @@ description: "第一部ではJavaScriptの基本的な文法やビルトイン�
 
 第一部ではJavaScriptの基本的な文法やビルトインオブジェクトの使い方を中心解説します。
 
+## 目次 {#summary}
+
 ### [JavaScriptとは](introduction/README.md) {#introduction}
 
 JavaScriptとはどのような用途に使われているプログラミング言語なのか、どのような言語的な特性をもっているのかについてを簡単に紹介します。
