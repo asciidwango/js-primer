@@ -196,23 +196,21 @@ Unicodeはすべての文字に対してID（Code Point）を振ることを目�
 
 
 JavaScript（ECMAScript）では符号化文字集合としてUnicodeを採用し、文字をエンコードする方式としてUTF-16を採用しています。
-Unicodeでは文字を構成する最小のビット列をCode Unit（符号単位）と呼び、Code Unitのサイズがエンコード方式によって異なります。UTF-16はそれぞれの文字を16bitのビット列に変換するエンコード方式であるため、Code Unitのサイズが16bitとなります。
+UTF-16とは、それぞれの文字を16bitのビット列に変換するエンコード方式です。
+Unicodeでは文字を構成する最小のビット列を**Code Unit**（符号単位）と呼び、UTF-16では各Code Unitのサイズが16bit（2バイト）になります。
 
 <!-- 
 - 用語集: http://unicode.org/glossary/
 - 比較表: http://unicode.org/faq/utf_bom.html#gen6
  -->
 
-JavaScriptにおける文字列は16bitのCode Unitが順番に並んだものとして内部的に管理されています。
-これは、ECMAScriptの仕様としてUTF-16を採用しているだけで、JavaScriptファイル（ソースコードを書いたファイル）のエンコーディングとは関係ありません。そのため、JavaScriptファイル自体のエンコードはUTF-8であっても問題ありません。
-
-次のコードでは、文字列を構成するUTF-16のCode Unitをhex値（16進数）にして表示しています。
+次のコードは、文字列を構成するCode Unitをhex値（16進数）にして表示する例です。
 `String#charCodeAt`メソッドは、文字列の指定インデックスのCode Unitを整数として返します。
-その値は`String#toString`メソッドでhex値（16進数）にしています。
+そのCode Unitの整数値を`String#toString`メソッドでhex値（16進数）にしています。
 
 ```js
 const string = "アオイ";
-// それぞれの文字をCode Unitに変換する
+// それぞれの文字をCode Unitのhex値（16進数）に変換する
 // toStringの引数に16を渡すと16進数に変換される
 console.log(string.charCodeAt(0).toString(16)); // => "30a2"
 console.log(string.charCodeAt(1).toString(16)); // => "30aa"
@@ -226,11 +224,14 @@ console.log(string.charCodeAt(2).toString(16));  // => "30a4"
 | 文字列                            | ア    | オ    | イ     |
 | UTF-16のCode Unit（Hex値）          | 30A2 | 30AA | 30A4 |
 
+このように、JavaScriptにおける文字列は16bitのCode Unitが順番に並んだものとして内部的に管理されています。
+これは、ECMAScriptの内部表現としてUTF-16を採用しているだけで、JavaScriptファイル（ソースコードを書いたファイル）のエンコーディングとは関係ありません。そのため、JavaScriptファイル自体のエンコードはUTF-8であっても問題ありません。
+
 UTF-16を利用していることはJavaScriptの内部的な表現であるため、気にする必要がないようにも思えます。
 しかし、このJavaScriptがUTF-16を利用していることは、これから見ていくStringのAPIにも影響しています。
-このUTF-16と文字列について詳しくは次の章である「[文字列とUnicode][]」でみていきます。
+このUTF-16と文字列については、次の章である「[文字列とUnicode][]」で詳しくみていきます。
 
-ここでは、JavaScriptの文字列の各要素はUTF-16のCode Unitで構成されているということだけを覚えておけば問題ありません。
+ここでは、「JavaScriptの文字列の各要素はUTF-16のCode Unitで構成されている」ということだけを覚えておけば問題ありません。
 
 ## 文字列の分解と結合 {#split-join}
 
