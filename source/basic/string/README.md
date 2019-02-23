@@ -185,7 +185,7 @@ console.log(string[42]); // => undefined
 一方で、変換後のビット列が何の文字なのかを管理する表が必要になります。
 この文字に対応するIDの一覧表のことを符号化文字集合と呼びます。
 
-次の表は、Unicodeという符号化文字集合の定義からカタカナの一部分を取り出したものです。[^UnicodeTable]
+次の表は、Unicodeという文字コードにおける符号化文字集合の定義からカタカナの一部分を取り出したものです。[^UnicodeTable]
 Unicodeはすべての文字に対してID（Code Point）を振ることを目的に作成されている仕様です。
 
 |      | 0    | 1    | 2    | 3    | 4    | 5    | 6    | 7    | 8    | 9    | A    | B    | C    | D    | E    | F    |
@@ -195,7 +195,7 @@ Unicodeはすべての文字に対してID（Code Point）を振ることを目�
 | 30C0 | ダ   | チ   | ヂ   | ッ   | ツ   | ヅ   | テ   | デ   | ト   | ド   | ナ   | ニ   | ヌ   | ネ   | ノ   | ハ   |
 
 
-JavaScript（ECMAScript）では符号化文字集合としてUnicodeを採用し、文字をエンコードする方式としてUTF-16を採用しています。
+JavaScript（ECMAScript）は文字コードとしてUnicodeを採用し、文字をエンコードする方式としてUTF-16を採用しています。
 UTF-16とは、それぞれの文字を16bitのビット列に変換するエンコード方式です。
 Unicodeでは文字を構成する最小のビット列を**Code Unit**（符号単位）と呼び、UTF-16では各Code Unitのサイズが16bit（2バイト）になります。
 
@@ -208,6 +208,7 @@ Unicodeでは文字を構成する最小のビット列を**Code Unit**（符号
 `String#charCodeAt`メソッドは、文字列の指定インデックスのCode Unitを整数として返します。
 そのCode Unitの整数値を`String#toString`メソッドでhex値（16進数）にしています。
 
+{{book.console}}
 ```js
 const string = "アオイ";
 // それぞれの文字をCode Unitのhex値（16進数）に変換する
@@ -217,15 +218,25 @@ console.log(string.charCodeAt(1).toString(16)); // => "30aa"
 console.log(string.charCodeAt(2).toString(16));  // => "30a4"
 ```
 
-この結果をまとめると、この文字列を構成するUTF-16のCode Unitを要素として次のようになります。
+逆に、Code Unitをhex値（16進数）から文字へと変換するには`String.fromCharCode`メソッドを使います。
+次のコードでは、16進数の整数リテラルである`0x`で記述したCode Unitから文字列へと変換しています。
+（`0x`リテラルについては「[データ型とリテラル][]」の章を参照）
+
+{{book.console}}
+```js
+const string = String.fromCharCode(0x30a2, 0x30aa, 0x30a4);
+console.log(string); // => "アオイ"
+```
+
+これらの結果をまとめると、この文字列と文字列を構成するUTF-16のCode Unitの関係は次のようになります。
 
 | インデックス                       | 0     | 1     | 2     |
 | -------------------------------- | ----- | ----- | ----- |
 | 文字列                            | ア    | オ    | イ     |
-| UTF-16のCode Unit（Hex値）          | 30A2 | 30AA | 30A4 |
+| UTF-16のCode Unit（16進数）        | 0x30A2 | 0x30AA | 0x30A4 |
 
 このように、JavaScriptにおける文字列は16bitのCode Unitが順番に並んだものとして内部的に管理されています。
-これは、ECMAScriptの内部表現としてUTF-16を採用しているだけで、JavaScriptファイル（ソースコードを書いたファイル）のエンコーディングとは関係ありません。そのため、JavaScriptファイル自体のエンコードはUTF-8であっても問題ありません。
+これは、ECMAScriptの内部表現としてUTF-16を採用しているだけで、JavaScriptファイル（ソースコードを書いたファイル）のエンコーディングとは関係ありません。そのため、JavaScriptファイル自体のエンコードは、UTF-16以外の文字コードであっても問題ありません。
 
 UTF-16を利用していることはJavaScriptの内部的な表現であるため、気にする必要がないようにも思えます。
 しかし、このJavaScriptがUTF-16を利用していることは、これから見ていくStringのAPIにも影響しています。
