@@ -95,9 +95,9 @@ function convertCodePoints(string) {
 
 const string = "アオイ";
 const codeUnits = convertCodeUnits(string);
-console.log(codeUnits); // => ["30A2", "30AA", "30A4"]
+console.log(codeUnits); // => ["30a2", "30aa", "30a4"]
 const codePoints = convertCodePoints(string);
-console.log(codePoints); // => ["30A2", "30AA", "30A4"]
+console.log(codePoints); // => ["30a2", "30aa", "30a4"]
 ```
 
 実行した結果をまとめてみると、この文字列においてはCode PointとCode Unitが同じ値になっていることがわかります。
