@@ -294,8 +294,8 @@ console.log(codePoints.length); // => 4
 ```js
 // 指定した`codePoint`の個数を数える
 function countOfCodePoints(string, codePoint) {
-    return Array.from(string).filter(codePoint => {
-        return codePoint === target;
+    return Array.from(string).filter(item => {
+        return item === codePoint;
     }).length;
 }
 countOfCodePoints("🍎🍇🍎🥕🍒", "🍎"); // => 2
