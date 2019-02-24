@@ -4,13 +4,17 @@
 
 - JavaScriptにおいてUnicodeのUTF-16を意識しないと行けない場面を学ぶ
 - 文字列がCode Unitが並んでいるという事実を知る
-- i18n
-    - 文字列のID sortについて自然な文字列についてを知る
-    - 文字列の自然な区切り
 
 ## 目的ではない
 
 - Unicodeの歴史や用語を正確に学ぶこと
+
+## 扱いきれなかった
+
+- i18n
+    - 文字列のID sortについて自然な文字列についてを知る
+    - 文字列の自然な区切り
+
 
 ## アウトライン
 
@@ -55,24 +59,20 @@
     - メソッドに`CodePoint`という名前を含むもの
     - `u`（Unicode）フラグが有効化されている正規表現
 - 文字列をCode Pointで扱う
-    - Iterator
-        - Array.from、spread、for of
-    - length
-        - 複数のCode Unitで1文字を表現すると、`String#length`への影響もあります。
-        - `length`の数はCode Unitの数です
-        - そのため、先ほどの`length`の値は次のようになります。
-        - 例)
-        - Code Pointの数を数えることで、
     - 正規表現
         - ES2015で`/./u` `u` = unicode フラグ追加された
         - 例) `/(𩸽)のひらき/` -> から $1を取り出したいというとき
-    - split
-        - `split("")` はCode Unitごとに分割するという意味になる
-        - これをCode Pointごとに分割する場合は、`Array.from`や`/./u`などがある
-        - 例): 文字列をreverseしたい場合
-        - 例) 文字列の最後の文字(ここではCode Point)を取りたいというとき
-        - lengthは考慮しないため。。。。 
-- Adbanced
-    - ZWJによる装飾文字(絵文字のスタイル) - これはUnicode
-    - 異体字セレクタ(variation selector) - これはUnicode
-- 文字列と自然なソート
+    - Iterator
+        - Array.from、spread、for of
+        - length
+            - 複数のCode Unitで1文字を表現すると、`String#length`への影響もあります。
+            - `length`の数はCode Unitの数です
+            - そのため、先ほどの`length`の値は次のようになります。
+            - 例)
+            - Code Pointの数を数えることで、
+        - for...of
+- 未使用
+    - Adbanced
+        - ZWJによる装飾文字(絵文字のスタイル) - これはUnicode
+        - 異体字セレクタ(variation selector) - これはUnicode
+    - 文字列と自然なソート
