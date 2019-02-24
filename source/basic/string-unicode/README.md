@@ -38,7 +38,7 @@ ES2015で追加された`String#codePointAt`メソッドは、文字列の指定
 
 {{book.console}}
 ```js
-// 文字列"あ"のインデックスが0（"あ"）のCode Pointを取得
+// 文字列"あ"のCode Pointを取得
 console.log("あ".codePointAt(0)); // => 12354
 ```
 
