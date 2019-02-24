@@ -88,7 +88,7 @@ console.log(string); // => 'This book is "js-primer"'
 
 このエスケープシーケンスを利用することで、先ほどの`"`（ダブルクオート）の中に改行（`\n`）を入力できます。
 
-{{book.console}}`\u{}`
+{{book.console}}
 ```js
 // 改行を\nのエスケープシーケンスとして入力している
 const multiline = "1行目\n2行目\n3行目";
