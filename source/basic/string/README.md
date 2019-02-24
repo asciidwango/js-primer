@@ -83,12 +83,12 @@ console.log(string); // => 'This book is "js-primer"'
 | `\\`                     | バックスラッシュ(`\`そのものを表示する)  |
 | `\n`                     | 改行                                     |
 | `\t`                     | タブ                                     |
-| `\uXXXX`                 | Unicode Code Unit(`\u`と4桁のHexDigit)   |
-| `\u{X}` ... `\u{XXXXXX}` | Unicode Code Point(`\u{}`の中にHexDigit) |
+| `\uXXXX`                 | Code Unit(`\u`と4桁のHexDigit)   |
+| `\u{X}` ... `\u{XXXXXX}` | Code Point(の中にHexDigit) |
 
 このエスケープシーケンスを利用することで、先ほどの`"`（ダブルクオート）の中に改行（`\n`）を入力できます。
 
-{{book.console}}
+{{book.console}}`\u{}`
 ```js
 // 改行を\nのエスケープシーケンスとして入力している
 const multiline = "1行目\n2行目\n3行目";

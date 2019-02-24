@@ -70,10 +70,10 @@ console.log("\u{3042}"); // => "あ"
 
 ## Code PointとCode Unitの違い {#code-point-is-not-code-unit}
 
-Code Point（符号位置）について紹介しましたが、JavaScriptの文字列の構成要素はUTF-16で変換されたCode Unit（符号単位）を要素です。（詳細は「[文字列][]」の章を参照）
-多くの文字列については、Code Point（符号位置）とCode Unit（符号単位）は結果として同じ値となります。
+Code Point（符号位置）について紹介しましたが、JavaScriptの文字列の構成要素はUTF-16で変換されたCode Unit（符号単位）です。（詳細は「[文字列][]」の章を参照）
+大抵の文字列については、Code Point（符号位置）とCode Unit（符号単位）は結果として同じ値となります。
 
-次のコードでは、文字列の各要素をCode PointとCode Unitとして表示しています。
+次のコードでは、`アオイ`という文字列の各要素をCode PointとCode Unitとして表示しています。
 `convertCodeUnits`関数は文字列をCode Unitの配列にし、`convertCodePoints`関数は文字列をCode Pointの配列にしています。それぞれの関数の実装はまだ理解しなくても問題ありません。
 
 {{book.console}}
@@ -137,7 +137,7 @@ console.log(codePoints); // => ["30ea", "30f3", "30b4", "1f34e"]
 ![絵文字を含んだ文字列におけるCode UnitとCode Pointの表](./img/emoji-codeunit-codepoint-table.png)
 
 具体的には、Code Pointの要素数が4つなのに対して、Code Unitの要素数が5つになっています。
-また、Code Pointでは1つのCode Pointが`🍎`に対応していますが、Code Unitでは2つのCode Unitで`🍎`に対応しています。
+また、Code Pointでは1つのCode Pointが`🍎`に対応していますが、Code Unitでは2つのCode Unitで`🍎`に対応しています。JavaScriptでは「文字列はCode Unitが順番に並んだもの」として扱われるためこの文字列の要素数（長さ）はCode Unitの個数である5つとなっています。
 
 ある1つの文字に対応するIDであるCode Pointを、16bit（2バイト）のCode Unitで表現するのがUTF-16というエンコード方式です。しかし、16bit（2バイト）で表現できる範囲は、65536種類（2の16乗）です。
 現在、Unicodeに登録されているCode Pointは10万種類を超えているため、すべての文字とCode Unitを1対1の関係で表すことができません。
@@ -146,9 +146,66 @@ console.log(codePoints); // => ["30ea", "30f3", "30b4", "1f34e"]
 
 ## サロゲートペア {#surrogate-pair}
 
-複数のCode Unitで1つのCode Pointを表すための仕組み。
+サロゲートペアでは、2つCode Unitの組み合わせ（合計4バイト）で1つの文字（1つのCode Point）を表現します。UTF-16では、次の範囲をサロゲートペアに利用する領域として決められています。
 
-## Code Pointの列挙
+- `\uD800`～`\uDBFF`：上位サロゲートの範囲
+- `\uDC00`～`\uDFFF`：下位サロゲートの範囲
+
+これは、文字列中に上位サロゲートであるCode Unitと下位サロゲートが並んだ場合に、2つのCode Unitを組み合わせて1文字（Code Point）とするということです。
+
+次のコードでは、サロゲートペアの文字である「𩸽（ほっけ）」を次の2つのCode Unitで表現しています。
+Code Unitのエスケープシーケンス（`\uXXXX`）を2つ並べることで`𩸽`という文字を表現できます。
+一方で、ES2015からはCode Pointのエスケープシーケンス（`\u{XXXX}`）も書けるため、1つのCode Pointで`𩸽`という文字を表現できることもわかります。
+
+{{book.console}}
+```js
+// 上位サロゲート + 下位サロゲートの組み合わせ
+console.log("\uD867\uDE3D"); // => "𩸽"
+// Code Pointでの表現
+console.log("\u{29e3d}"); // => "𩸽"
+```
+
+先ほどの例で登場した`🍎`（リンゴの絵文字）もサロゲートペアで表現する文字でした。
+
+{{book.console}}
+```js
+// Code Unit（上位サロゲート + 下位サロゲート）
+console.log("\uDF4E\uF83C"); // => "🍎"
+// Code Point
+console.log("\u1F34E"); // => "🍎"
+```
+
+このようにサロゲートペアでは、2つのCode Unitで1つのCode Pointを表現します。
+
+基本的には、文字列はCode Unitが順番に並んでいるものとして扱うため、多くの`String`のメソッドはCode Unitごとに扱います。また、インデックスアクセスもCode Unitごととなります。
+そのため、サロゲートペアで表現している文字列では、上位サロゲートと下位サロゲートそれぞれにインデックスアクセスするため、同じ「文字」に複数回アクセスしてるようにも見えます。
+
+{{book.console}}
+```js
+// 内部的にはCode Unitが並んでいるものとして扱われている
+console.log("\u6587\u5b57\u5217"); // => "文字列"
+// インデックスアクセスもCode Unitごととなる
+console.log("𩸽"[0]); // => "\uD867"
+console.log("𩸽"[1]); // => "\uDE3D"
+```
+
+絵文字や「𩸽（ほっけ）」などのサロゲートペアで表現される文字が文字列中に含まれれると、Code Unitごとに扱う文字列処理は複雑になります。
+
+たとえば、`String#length`プロパティも文字列におけるCode Unitの要素数を数えるため、`"🍎"`の結果は`2`となります。
+
+```js
+console.log("🍎".length); // => 2
+```
+
+このような場合には、Code Pointごとに文字列を処理することを意識する必要があります。
+
+## Code Pointを扱う {#handle-code-point}
+
+次の3つは例外として、文字列をCode Pointが並んでいるように扱います。
+
+- Iterator（`for...of`や`Array.from`など）
+- メソッドに`CodePoint`という名前を含むもの
+- `u`（Unicode）フラグが有効化されている正規表現
 
 ### length
 
