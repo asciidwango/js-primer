@@ -170,7 +170,7 @@ console.log("\u{29e3d}"); // => "𩸽"
 {{book.console}}
 ```js
 // Code Unit（上位サロゲート + 下位サロゲート）
-console.log("\uDF4E\uF83C"); // => "🍎"
+console.log("\uD83C\uDF4E"); // => "🍎"
 // Code Point
 console.log("\u1F34E"); // => "🍎"
 ```
