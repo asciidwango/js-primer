@@ -258,8 +258,8 @@ console.log(fish); // => "𩸽"
 ```js
 // Code Unitの個数を返す
 console.log("🍎".length); // => 2
-console.log("\uDF4E\uF83C"); // => "🍎"
-console.log("\uDF4E\uF83C".length); // => 2
+console.log("\uD83C\uDF4E"); // => "🍎"
+console.log("\uD83C\uDF4E".length); // => 2
 ```
 
 JavaScriptには、文字列におけるCode Pointの個数を数えるメソッドは用意されていません。
