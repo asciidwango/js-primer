@@ -172,7 +172,7 @@ console.log("\u{29e3d}"); // => "𩸽"
 // Code Unit（上位サロゲート + 下位サロゲート）
 console.log("\uD83C\uDF4E"); // => "🍎"
 // Code Point
-console.log("\u1F34E"); // => "🍎"
+console.log("\u{1F34E}"); // => "🍎"
 ```
 
 このようにサロゲートペアでは、2つのCode Unitで1つのCode Pointを表現します。
