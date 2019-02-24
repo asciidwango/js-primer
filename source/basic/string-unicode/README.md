@@ -71,7 +71,7 @@ console.log("\u{3042}"); // => "あ"
 ## Code PointとCode Unitの違い {#code-point-is-not-code-unit}
 
 Code Point（符号位置）について紹介しましたが、JavaScriptの文字列の構成要素はUTF-16で変換されたCode Unit（符号単位）です。（詳細は「[文字列][]」の章を参照）
-大抵の文字列については、Code Point（符号位置）とCode Unit（符号単位）は結果として同じ値となります。
+ある範囲の文字列については、Code Point（符号位置）とCode Unit（符号単位）は結果として同じ値となります。
 
 次のコードでは、`アオイ`という文字列の各要素をCode PointとCode Unitとして表示しています。
 `convertCodeUnits`関数は文字列をCode Unitの配列にし、`convertCodePoints`関数は文字列をCode Pointの配列にしています。それぞれの関数の実装はまだ理解しなくても問題ありません。
