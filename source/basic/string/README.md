@@ -84,7 +84,7 @@ console.log(string); // => 'This book is "js-primer"'
 | `\n`                     | 改行                                     |
 | `\t`                     | タブ                                     |
 | `\uXXXX`                 | Code Unit(`\u`と4桁のHexDigit)   |
-| `\u{X}` ... `\u{XXXXXX}` | Code Point(の中にHexDigit) |
+| `\u{X}` ... `\u{XXXXXX}` | Code Point（`\u{}`の括弧中にHexDigit） |
 
 このエスケープシーケンスを利用することで、先ほどの`"`（ダブルクオート）の中に改行（`\n`）を入力できます。
 

@@ -968,7 +968,7 @@ main().then(() => {
 次のコードでは、リソースを取得して`then`で成功時の処理、`catch`で失敗時の処理を登録しています。
 また、リソースを取得中かどうかを判定するためのフラグを`isLoading`という変数で管理しています。
 成功失敗どちらにもかかわらず、取得が終わったら`isLoading`は`false`にします。
-`then`と`catch`の両方で`isLoading`へ`false`を代入することもできますが、`Promise#finally`メソッドを使うことで代入を一箇所にまとめられます。
+`then`と`catch`の両方で`isLoading`へ`false`を代入できますが、`Promise#finally`メソッドを使うことで代入を一箇所にまとめられます。
 
 {{book.console}}
 <!-- doctest:disable -->

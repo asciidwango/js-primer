@@ -19,7 +19,7 @@ JavaScriptにおけるコメントの書き方を紹介します。コメント�
 
 ### [変数と宣言](variables/README.md) {#variables}
 
-JavaScriptの変数宣言を行う方法についてを紹介します。変数を宣言する方法にはvar、let、constがあり、これらの動作の違いや使い分けについてを紹介します。
+JavaScriptの変数宣言をする方法についてを紹介します。変数を宣言する方法にはvar、let、constがあり、これらの動作の違いや使い分けについてを紹介します。
 
 ### [値の評価と表示](read-eval-print/README.md) {#read-eval-print}
 
