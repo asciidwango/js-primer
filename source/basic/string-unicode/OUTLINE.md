@@ -56,6 +56,7 @@
     - `u`（Unicode）フラグが有効化されている正規表現
 - 文字列をCode Pointで扱う
     - Iterator
+        - Array.from、spread、for of
     - length
         - 複数のCode Unitで1文字を表現すると、`String#length`への影響もあります。
         - `length`の数はCode Unitの数です

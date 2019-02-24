@@ -9,7 +9,7 @@ description: "JavaScriptが採用している文字コードであるUnicodeと�
 この文字コードはJavaScriptの内部的に文字列を扱う際のもの（内部コード）です。
 そのため、コードを書いたファイル自体の文字コード（外部コード）は、基本的にはどのような文字コードでも問題ありません。
 
-次の図はコードを書いたファイルの文字コードがISO/IEC 646（外部コード）であった場合に、JavaScriptエンジンがどのように処理するかを表した図です。
+次の図は、コードを書いたファイルの文字コードがISO/IEC 646（外部コード）であった場合に、JavaScriptエンジンがどのように処理するかを表した図です。
 たとえば、外部コードでは`0x41`として扱われていた`A`という文字は、JavaScriptエンジンで扱う際にはUTF-16で`A`を表すCode Unitの`0x2341`へと変換されます。そして、JavaScriptでの処理が終わったあとは、ふたたび外部コードに合わせた`0x41`という値へと変換され出力されます。
 
 ![外部コードと内部コードのやり取り](./img/extenal-code-and-internal-code.png)
@@ -31,8 +31,8 @@ Unicodeの歴史を含めた文字コード自体について詳しく知りた�
 Unicodeはすべての文字（制御文字などの画面に表示されない文字も含む）に対してIDを定義する目的で策定されている仕様です。
 この「文字」に対する「一意のID」のことを**Code Point**（符号位置）と呼びます。
 
-JavaScriptでは、ECMAScript 2015からこのCode Pointを扱うビルトインメソッドが追加されています。
-これらのメソッドを使うことで、文字列とCode Pointを相互変換できます。
+Code Pointを扱うメソッドなどは、ECMAScript 2015で追加されています。
+ES2015で追加された`String#codePointAt`メソッドや`String.fromCodePoint`メソッドを使うことで、文字列とCode Pointを相互変換できます。
 
 ES2015で追加された`String#codePointAt`メソッドは、文字列の指定インデックスにある文字のCode Pointの値を返します。
 
@@ -197,27 +197,144 @@ console.log("𩸽"[1]); // => "\uDE3D"
 console.log("🍎".length); // => 2
 ```
 
-このような場合には、Code Pointごとに文字列を処理することを意識する必要があります。
+このような場合には、文字列をCode Pointごとに処理することを意識する必要があります。
 
 ## Code Pointを扱う {#handle-code-point}
 
-次の3つは例外として、文字列をCode Pointが並んでいるように扱います。
+文字列をCode Pointが順番に並んだものとして扱うには、Code Pointに対応したメソッドなどを利用する必要があります。JavaScriptの内部的には、文字列はCode Unitが順番に並んだものとして保持されているためです。
 
-- Iterator（`for...of`や`Array.from`など）
-- メソッドに`CodePoint`という名前を含むもの
+ES2015から文字列をCode Pointごとに扱うメソッドや構文が追加されています。
+次に紹介するものは、文字列をCode Pointごとに扱います。
+
+- `CodePoint`を名前に含むメソッド
 - `u`（Unicode）フラグが有効化されている正規表現
+- 文字列をIteratorを扱うもの（Destructuring、`for...of`や`Array.from`メソッドなど）
 
-### length
+これらのCode Pointを扱う処理と具体的な使い方を見ていきます。
 
-実際にサロゲートペアのうむによってどのような影響があるかの例。
+### 正規表現の`.`とUnicode {#regexp-unicode}
 
-### 正規表現の`.`
+ES2015では、正規表現に`u`（Unicode）フラグが追加されました。
+この`u`フラグを付けた正規表現は、文字列をCode Pointが順番に並んだものとして扱います。
 
-### splitによる"Code Unit"の分割
+具体的に`u`フラグの有無による`.`（改行文字以外のどの1文字にもマッチする特殊文字）の動作の違いを見ていきます。
 
-## おわりに
+`/(.)のひらき/`というパターンで`.`にマッチする部分を取り出すことを例に見ていきます。
+
+まずは、`u`フラグを付けていない正規表現と`String#match`メソッドでマッチした範囲を取り出してみます。`match`メソッドの返す値は`[マッチした全体の文字列, キャプチャされた文字列]`です。（詳細は「[文字列][]」の章を参照）
+
+実際にマッチした結果を見てみると、`.`は`𩸽`の下位サロゲートである`\ude3d`にマッチしていることがわかります。
+
+{{book.console}}
+```js
+const [all, fish] = "𩸽のひらき".match(/(.)のひらき/);
+console.log(all); // => "\ude3dのひらき"
+console.log(fish); // => "\ude3d"
+```
+
+つまり、`u`フラグを付けていない正規表現は、文字列をCode Unitが順番に並んだものとして扱っています。
+
+このような意図しない結果を避けるには、正規表現に、`u`フラグを付けます。
+`u`フラグをつけることで、`.`が`𩸽`という文字（Code Point）にマッチします。
+
+{{book.console}}
+```js
+const [all, fish] = "𩸽のひらき".match(/(.)のひらき/u);
+console.log(all); // => "𩸽のひらき"
+console.log(fish); // => "𩸽"
+```
+
+基本的には正規表現に`u`フラグをつけて問題となるケースは少ないはずです。
+なぜなら、サロゲートペアの片方だけにマッチしたい正規表現を書くケース稀であるためです。
+
+<!-- TODO: この文いらない可能性高い -->
+
+### Code Pointの数を数える {#count-of-code-points}
+
+`String#length`プロパティは文字列を構成するCode Unitの個数を表すプロパティです。
+そのため、サロゲートペアを含む文字列では、直感に反した結果となる場合があります。
+
+{{book.console}}
+```js
+// Code Unitの個数を返す
+console.log("🍎".length); // => 2
+console.log("\uDF4E\uF83C"); // => "🍎"
+console.log("\uDF4E\uF83C".length); // => 2
+```
+
+JavaScriptには、文字列におけるCode Pointの個数を数えるメソッドは用意されていません。
+これを行うには、文字列をCode Pointごとに区切った配列へ変換して、配列の長さを数えるのが簡潔です。
+
+`Array.from`メソッドは、引数にIteratorを受け取り、それを元にした新しい配列を返します。
+文字列もIteratorであるため、`Array.from`メソッドによって1文字（厳密にはCode Point）ごと区切った配列へと変換できます。先ほども紹介したように、文字列をIteratorとして扱う処理は、基本的にCode Pointごとに処理を行います。
+
+{{book.console}}
+```js
+// Code Pointごとの配列にする
+// Array.fromメソッドはIteratorを配列にする
+const codePoints = Array.from("リンゴ🍎");
+console.log(codePoints); // => ["リ", "ン", "ゴ", "🍎"]
+// Code Pointの個数を数える
+console.log(codePoints.length); // => 4
+```
+
+しかし、Code Pointの数を数えた場合でも、直感的な結果にならない場合もあります。
+なぜなら、Code Pointには制御文字などの視覚的に見えないもの定義されているためです。
+そのため、文字として数えたくないものは無視するなど、視覚的な**文字列の長さ**を数えるにはさらなる工夫が必要になります。
+
+### Code Pointごとに反覆処理をする {#loop-each-code-point}
+
+先ほど紹介した`Array.from`メソッドを使えば、文字列をCode Pointの配列へと変換できます。
+配列にすれば、あとは「[ループと反復処理][]」の章で学んだ方法を使い、Code Pointごとに反覆処理ができます。
+
+次のコードでは、文字列中に登場する`🍎`の個数を数えています。
+`countOfCodePoints`関数は、`Array.from`でCode Pointごとの配列にし、配列を`codePoint`でフィルターした結果できた配列の要素数を数えています。
+
+{{book.console}}
+```js
+// 指定した`codePoint`の個数を数える
+function countOfCodePoints(string, codePoint) {
+    return Array.from(string).filter(codePoint => {
+        return codePoint === target;
+    }).length;
+}
+countOfCodePoints("🍎🍇🍎🥕🍒", "🍎"); // => 2
+```
+
+`for...of`での反復処理も文字列をCode Pointごとに扱えます。
+これは、`for...of`構文が対象をIteratorとして列挙するためです。
+
+先ほどのコードと同じ`countOfCodePoints`関数を`for...of`を使い実装してみます。
+
+{{book.console}}
+```js
+// 指定した`codePoint`の個数を数える
+function countOfCodePoints(string, codePoint) {
+    let count = 0;
+    for (const item of string) {
+        if (item === codePoint) {
+            count++;
+        }
+    }
+    return count;
+}
+countOfCodePoints("🍎🍇🍎🥕🍒", "🍎"); // => 2
+```
+
+## おわりに {#conclusion}
+
+この章では、文字列とUnicodeの関係について簡潔に紹介しました。
+Unicodeには、この章で紹介しきれなかった表現もあります。
+また、JavaScriptもUnicodeをキレイに扱うAPIが用意されているとは言い切れない部分もあります。
+
+「[文字列][]」の章で紹介したように、Code UnitやCode Pointを意識しなくても柔軟で強力な文字列処理ができます。
+しかし、近年は絵文字を利用するケースが多くなったため、Code Pointを意識したプログラミングが必要となるケースも増えています。
+
+UnicodeはECMAScriptとは独立した仕様であるため、文字列を扱う悩みについては、プログラミング言語を問わずに出てくる共通の課題です。特にJava言語は、JavaScriptと同じくUTF-16をエンコード方式として採用しているため、類似する問題を見れます。
+そのため、JavaScriptで文字列処理の問題にぶつかった場合でも、他の言語ではどうしているかを調べることも重要です。
 
 [文字列]: ../string/README.md
+[ループと反復処理]: ../loop/README.md
 
 [文字コード「超」研究]: http://www.rutles.net/products/detail.php?product_id=298
 [プログラマのための文字コード技術入門]: https://gihyo.jp/book/2019/978-4-297-10291-3
