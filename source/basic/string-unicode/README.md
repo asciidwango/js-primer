@@ -1,6 +1,6 @@
 ---
 author: azu
-description: "JavaScriptが採用している文字コードであるUnicodeと関連するStringのメソッドについて紹介します。Stringのメソッドや文字列を扱う上で、UTF-16をエンコード方式として利用していることを意識する必要がある場合が登場します。"
+description: "JavaScriptが採用している文字コードであるUnicodeと関連するStringのメソッドについて紹介します。Stringのメソッドや文字列を扱う上で、UTF-16でエンコードされていることを意識する場面について紹介します。"
 ---
 
 # 文字列とUnicode {#string-unicode}
