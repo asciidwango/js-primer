@@ -325,6 +325,9 @@ rules:
   - expected: 同期処理
     patterns:
       - 動機処理
+  - expected: 反復処理
+    patterns:
+      - 反覆処理
 
 # 文体
   - expected: どのように
