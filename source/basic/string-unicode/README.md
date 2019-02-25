@@ -292,7 +292,7 @@ console.log(codePoints.length); // => 4
 配列にすれば、あとは「[ループと反復処理][]」の章で学んだ方法を使い、Code Pointごとに反復処理ができます。
 
 次のコードでは、文字列中に登場する`🍎`の個数を数えています。
-`countOfCodePoints`関数は、`Array.from`でCode Pointごとの配列にし、配列を`codePoint`でフィルターした結果できた配列の要素数を数えています。
+`countOfCodePoints`関数は、`Array.from`でCode Pointごとの配列にし、配列を`codePoint`でフィルターした結果できた配列の要素数を返します。
 
 {{book.console}}
 ```js
@@ -302,10 +302,10 @@ function countOfCodePoints(string, codePoint) {
         return item === codePoint;
     }).length;
 }
-countOfCodePoints("🍎🍇🍎🥕🍒", "🍎"); // => 2
+console.log(countOfCodePoints("🍎🍇🍎🥕🍒", "🍎")); // => 2
 ```
 
-`for...of`での反復処理も文字列をCode Pointごとに扱えます。
+`for...of`による反復処理も文字列をCode Pointごとに扱えます。
 これは、`for...of`文が対象をIteratorとして列挙するためです。
 
 先ほどのコードと同じ`countOfCodePoints`関数を`for...of`を使い実装してみます。
@@ -322,7 +322,7 @@ function countOfCodePoints(string, codePoint) {
     }
     return count;
 }
-countOfCodePoints("🍎🍇🍎🥕🍒", "🍎"); // => 2
+console.log(countOfCodePoints("🍎🍇🍎🥕🍒", "🍎")); // => 2
 ```
 
 ## おわりに {#conclusion}
