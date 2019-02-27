@@ -142,11 +142,11 @@ const object = {
     "my-key": "my-value"
 };
 
-console.log(object["key"]); // OK => "value"
+console.log(object["key"]); // => "value"
 // プロパティ名が数字から始まる識別子も利用できる
-console.log(object[123]); // OK => 456
+console.log(object[123]); // => 456
 // プロパティ名にハイフンを含む識別子も利用できる
-console.log(object["my-key"]); // OK => "my-value"
+console.log(object["my-key"]); // => "my-value"
 ```
 
 また、ブラケット記法ではプロパティ名に変数も利用できます。
