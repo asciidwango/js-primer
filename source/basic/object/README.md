@@ -134,7 +134,7 @@ console.log(object["key"]); // => "value"
 一方、ブラケット記法では、`[`と`]`の間に任意の式を書くことができます。
 そのため、識別子の命名規則とは関係なく、任意の文字列をプロパティ名として指定できます。
 
-[import, brackets-dot-valid.js](src/brackets-dot-valid.js)
+[import, brackets-dot-valid.js](./src/brackets-dot-valid.js)
 
 また、ブラケット記法ではプロパティ名に変数も利用できます。
 次のコードでは、プロパティ名に`myLang`という変数をブラケット記法で指定しています。
