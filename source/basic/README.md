@@ -5,7 +5,7 @@ description: "第一部ではJavaScriptの基本的な文法やビルトイン�
 
 # 第一部: 基本文法 {#basic-grammar}
 
-第一部ではJavaScriptの基本的な文法やビルトインオブジェクトの使い方を中心解説します。
+第一部ではJavaScriptの基本的な文法やビルトインオブジェクトの使い方を紹介します。
 
 ## 目次 {#summary}
 
