@@ -39,7 +39,7 @@ JavaScriptの暗黙的な型変換は意図しない挙動を発生する原因�
 
 ### [関数と宣言](function-declaration/README.md) {#function-declaration}
 
-JavaScriptの関数を定義する方法について紹介します。関数を定義する方法して関数宣言、関数式、Arrow Functionについて紹介します。また関数の引数の扱い方や関数とメソッドの違いについても紹介します。
+JavaScriptの関数を定義する方法について紹介します。関数やメソッドを定義する方法として関数宣言、関数式、Arrow Functionについて紹介します。また関数の引数の扱い方や関数とメソッドの違いについても紹介します。
 
 ### [文と式](statement-expression/README.md) {#statement-expression}
 

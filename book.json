@@ -1,7 +1,7 @@
 {
   "gitbook": ">=3.0.0",
   "title": "JavaScriptの入門書 #jsprimer",
-  "description": "JavaScriptの基本的なプログラムの実行方法からアプリケーションの作成などの実例を学ぶための入門書です",
+  "description": "JavaScriptの基本的な文法からアプリケーションの作成などの実例を学ぶJavaScriptの入門書です",
   "root": "./source/",
   "structure": {
     "readme": "index.md",
