@@ -154,19 +154,10 @@ console.log(0o777);  // => 511
 
 次のように、`0`から始まり、`0`から`7`の数字を組み合わせた場合も8進数として扱われます。
 しかし、これは10進数と紛らわしい表現であったため、ES2015で`0o`という8進数リテラルが新たに導入されました。
-そのため、基本的に次のような8進数の書き方は避けるべきです。
-
-<!-- textlint-disable eslint -->
+またstrict modeではこの書き方は例外が発生するため、次のような8進数の書き方は避けるべきです。
 
 {{book.console}}
-```js
-// 非推奨: 8進数の書き方
-console.log(0644);  // => 420
-console.log(0755);  // => 511
-```
-
-<!-- textlint-enable eslint -->
-
+[import, octal-legacy-literal-invalid.js](./src/octal-legacy-literal-invalid.js)
 
 `0x`から始まる16進数リテラルは、文字のコードポイントやRGB値の表現などに利用されています。
 
