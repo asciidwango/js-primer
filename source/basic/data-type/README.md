@@ -112,30 +112,69 @@ false; // => false
 
 整数リテラルは次の4種類があります。
 
-- 10進数: 先頭が`0`ではない数値 - `10`
-- 2進数: `0b` または `0B` - `0b1`
-    - `0b` の後ろには`0`または`1` の数値
-- 8進数: `0o` または `0O` - `0o7` [^2]
-    - `0o` の後ろには `0`から`7` までの数値
-- 16進数: `0x` または `0X` - `0x15`
-    - `0x` の後ろには `0`から`15`までの数値
+<!-- textlint-disable preset-ja-technical-writing/no-doubled-joshi -->
+
+- 10進数: 数字の組み合わせ
+    - ただし、複数の数字の組み合わせの場合に先頭を`0`をつけると8進数として扱われる場合があります
+    - 例）`0`、`2`、`10`
+- 2進数: `0b`（または`0B`）の後ろに、`0`または`1`の数字の組み合わせ
+    - 例）`0b0`、`0b10`、`0b1010`
+- 8進数: `0o`（または`0O`）の後ろに、`0`から`7`までの数字の組み合わせ
+    - `0o` は数字のゼロと小文字アルファベットの`o`
+    - 例）`0o644`、`0o777`
+- 16進数: `0x`（または`0X`）の後ろに、`0`から`9`までの数字と"a"から"f"または"A"から"F"のアルファベットの組み合わせ
+    - アルファベットの大文字・小文字の違いは値には影響しません
+    - 例）`0x30A2`、`0xEEFF`
+
+<!-- textlint-enable preset-ja-technical-writing/no-doubled-joshi -->
 
 JavaScriptでは、0から9の数字のみで書かれた数値は10進数として扱われます。
+
+{{book.console}}
+```js
+console.log(1); // => 1
+console.log(10); // => 10
+```
 
 `0b`から始まる2進数リテラルは、ビットを表現するのによく利用されています。
 
 {{book.console}}
-[import, binary-example.js](src/binary-example.js)
+```js
+console.log(0b1111); // => 15
+console.log(0b10000000000); // => 1024
+```
 
 `0o`から始まる8進数リテラルは、ファイルのパーミッションを表現するのによく利用されています。
 
 {{book.console}}
-[import, octal-example.js](src/octal-example.js)
+```js
+console.log(0o644);  // => 420
+console.log(0o777);  // => 511
+```
+
+次のように、`0`から始まり、`0`から`7`の数字を組み合わせた場合も8進数として扱われます。
+しかし、これは10進数と紛らわしい表現であったため、ES2015で`0o`という8進数リテラルが新たに導入されました。
+そのため、基本的に次のような8進数の書き方は避けるべきです。
+
+<!-- textlint-disable eslint -->
+
+{{book.console}}
+```js
+// 非推奨: 8進数の書き方
+console.log(0644);  // => 420
+console.log(0755);  // => 511
+```
+
+<!-- textlint-enable eslint -->
+
 
 `0x`から始まる16進数リテラルは、文字のコードポイントやRGB値の表現などに利用されています。
 
 {{book.console}}
-[import, hex-example.js](src/hex-example.js)
+```js
+console.log(0xFF); // => 255
+console.log(0x30A2); // => 12450
+```
 
 |        	| 表記例 	| 用途                       |
 |--------	|--------	|----------------------------|
@@ -432,7 +471,6 @@ console.log(numberRegExp.test(123)); // => true
     - `undefined`の宣言を禁止するESLintルール
 
 [^1]: JavaScriptが最初にNetscapeで実装された際に`typeof null === "object"`となるバグがありました。このバグを修正するとすでにこの挙動に依存しているコードは壊れるため、修正が見送られ現在の挙動が仕様となりました。 <http://2ality.com/2013/10/typeof-null.html>を参照
-[^2]: `0o` は数字のゼロと小文字アルファベットの`o`
 [IEEE 754]: https://ja.wikipedia.org/wiki/IEEE_754
 [文字列]: ../string/README.md
 [配列]: ../array/README.md
