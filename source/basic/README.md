@@ -19,7 +19,7 @@ JavaScriptにおけるコメントの書き方を紹介します。コメント�
 
 ### [変数と宣言](variables/README.md) {#variables}
 
-JavaScriptの変数宣言をする方法についてを紹介します。変数を宣言する方法にはvar、let、constがあり、これらの動作の違いや使い分けについてを紹介します。
+JavaScriptの変数宣言する方法についてを紹介します。変数を宣言する方法にはvar、let、constがあり、これらの動作の違いや使い分けについてを紹介します。
 
 ### [値の評価と表示](read-eval-print/README.md) {#read-eval-print}
 
@@ -68,6 +68,10 @@ JavaScriptにはプロトタイプオブジェクトという特殊なオブジ�
 ### [文字列](string/README.md) {#string}
 
 文字列リテラルを使った文字列の作成から検索や置換など基本的な文字列操作について紹介します。また正規表現と組み合わせた文字列操作やタグ付きテンプレート関数を使ったテンプレート処理などについても紹介します。
+
+### [文字列とUnicode](string-unicode/README.md) {#string-unicode}
+
+JavaScriptが採用している文字コードであるUnicodeと関連するStringのメソッドについて紹介します。Stringのメソッドや文字列を扱う上で、UTF-16でエンコードされていることを意識する場面について紹介します。
 
 ### [ラッパーオブジェクト](wrapper-object/README.md) {#wrapper-object}
 
