@@ -16,7 +16,7 @@ const makeConsoleMock = require("consolemock");
  * @returns {string}
  */
 export const toUnreachableCode = (code) => {
-    return code.replace(/^(\W*)\/\/ この行は実行されません$/gm, `$1throw new Error("この行は実行されません");`);
+    return code.replace(/^(\W*)\/\/(.*)この行は実行されません$/gm, `$1throw new Error("$1この行は実行されません");`);
 };
 
 
