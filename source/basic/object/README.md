@@ -349,7 +349,7 @@ console.log(widget.windw); // => undefined
 // さらにネストした場合に、例外が発生する
 // `undefined.title`と書いたのと同じ意味となるため
 console.log(widget.windw.title); // => TypeError: widget.windw is undefined
-// 例外が発生した文以降は実行されない
+// 例外が発生した文以降は実行されません
 ```
 
 `undefined`や`null`はオブジェクトではないため、存在しないプロパティへアクセスする例外が発生してしまいます。
@@ -380,7 +380,7 @@ if (object.key !== undefined) {
 const object = { key: undefined };
 // `key`プロパティの値が`undefined`
 if (object.key !== undefined) {
-    // 実行されない文
+    // この行は実行されません
 }
 ```
 
