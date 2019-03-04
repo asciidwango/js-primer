@@ -6,17 +6,17 @@ const makeConsoleMock = require("consolemock");
 /**
  * 次のコメントが実際に実行されないことをテストできるように変換する
  *
- * // この文は実行されません
+ * // この行は実行されません
  *
  * =>
  *
- * throw new Error("この文は実行されません")
+ * throw new Error("この行は実行されません")
  *
  * @param {string} code
  * @returns {string}
  */
 export const toUnreachableCode = (code) => {
-    return code.replace(/^(\W*)\/\/ この文は実行されません$/gm, `$1throw new Error("この文は実行されません");`);
+    return code.replace(/^(\W*)\/\/(.*)この行は実行されません$/gm, `$1throw new Error("$1この行は実行されません");`);
 };
 
 

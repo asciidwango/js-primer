@@ -50,7 +50,7 @@ HTML-likeコメントは名前のとおり、HTMLのコメントと同じ表記�
 <!-- doctest:disable -->
 ```js
 <!-- この行はコメントと認識される
-console.log("この行はJavaScript");
+console.log("この行はJavaScriptのコードとして実行される");
 -->  この行もコメントと認識される
 ```
 

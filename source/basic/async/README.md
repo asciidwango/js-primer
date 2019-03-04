@@ -159,15 +159,15 @@ JavaScriptでは一部の例外を除き非同期処理が**並行処理（concu
 並行処理とは、処理を一定の単位ごとに分けて処理を切り替えながら実行することです。
 そのため非同期処理の実行中にとても重たい処理があると、非同期処理の切り替えが遅れるという現象を引き起こします。
 
-このようにJavaScriptの非同期処理も基本的には1つのメインスレッドで処理されていると考えても間違いないでしょう。
+このようにJavaScriptの非同期処理も基本的には1つのメインスレッドで処理されています。
 これは`setTimeout`関数のコールバック関数から外側のスコープのデータへのアクセス方法に制限がないことからもわかります。
 もし非同期処理が別スレッドで行われるならば自由なデータへのアクセスは競合状態（レースコンディション）を引き起こしてしまうためです。
 
 ただし、非同期処理の中にもメインスレッドとは別のスレッドで実行できるAPIが実行環境によっては存在します。
 たとえばブラウザでは[Web Worker][] APIを使いメインスレッド以外でJavaScriptを実行できるため、非同期処理を**並列処理（Parallel）**できます。並列処理とは、排他的に複数の処理を同時に実行することです。
 
-Web WorkerでのJavaScriptはメインスレッドのJavaScriptとは異なるスレッドで実行されるため、お互いに同期的なブロックする処理の影響を受けにくくなります。
-ただし、Web Workerとメインスレッドでのデータのやり取りには`postMessage`メソッドを利用する必要があります。そのため、`setTimeout`関数のコールバック関数とは異なりデータへのアクセス方法にも制限がつきます。
+Web Workerではメインスレッドとは異なるWorkerスレッドで実行されるため、メインスレッドはWorkerスレッドの同期的にブロックする処理の影響を受けにくくなります。
+ただし、Web Workerとメインスレッドでのデータのやり取りには`postMessage`というメソッドを利用する必要があります。そのため、`setTimeout`関数のコールバック関数とは異なりデータへのアクセス方法にも制限がつきます。
 
 このように、非同期処理のすべてをひとくくりにはできませんが、基本的な非同期処理（タイマーなど）はメインスレッドで実行されているという性質を知ることは大切です。JavaScriptの大部分の**非同期処理**は**非同期的なタイミングで実行される処理**であると理解しておく必要があります。
 
@@ -185,7 +185,7 @@ try {
 } catch (error) {
     console.log("同期的なエラーをキャッチできる");
 }
-console.log("この文は実行されます");
+console.log("この行は実行されます");
 ```
 
 非同期処理では、`try...catch`構文を使っても非同期的に発生した例外をキャッチできません。
@@ -200,9 +200,9 @@ try {
         throw new Error("非同期的なエラー");
     }, 10);
 } catch (error) {
-    // この文は実行されません
+    // この行は実行されません
 }
-console.log("この文は実行されます");
+console.log("この行は実行されます");
 ```
 
 `try`ブロックはそのブロック内で発生した例外をキャッチする構文です。
@@ -223,7 +223,7 @@ setTimeout(() => {
         console.log("エラーをキャッチできる");
     }
 }, 10);
-console.log("この文は実行されます");
+console.log("この行は実行されます");
 ```
 
 このようにコールバック関数内でエラーをキャッチはできますが、**非同期処理の外**からは**非同期処理の中**で例外が発生したかが分かりません。
@@ -295,7 +295,7 @@ function dummyFetch(path, callback) {
 // /success/data にリソースが存在するので、`response`にはデータが入る
 dummyFetch("/success/data", (error, response) => {
     if (error) {
-        // この文は実行されません
+        // この行は実行されません
     } else {
         console.log(response); // => { body: "Response body of /success/data" }
     }
@@ -305,7 +305,7 @@ dummyFetch("/failure/data", (error, response) => {
     if (error) {
         console.log(error.message); // => "NOT FOUND"
     } else {
-        // この文は実行されません
+        // この行は実行されません
     }
 });
 ```
@@ -472,11 +472,11 @@ function dummyFetch(path) {
 dummyFetch("/success/data").then(function onFulfilled(response) {
     console.log(response); // => { body: "Response body of /success/data" }
 }, function onRejected(error) {
-    // この文は実行されません
+    // この行は実行されません
 });
 // /failure/data のリソースは存在しないのでonRejectedが呼ばれる
 dummyFetch("/failure/data").then(function onFulfilled(response) {
-    // この文は実行されません
+    // この行は実行されません
 }, function onRejected(error) {
     console.log(error); // Error: "NOT FOUND"
 });
@@ -541,8 +541,7 @@ function throwPromise() {
     return new Promise((resolve, reject) => {
         // Promiseコンストラクタの中で例外は自動的にキャッチされrejectを呼ぶ
         throw new Error("例外が発生");
-        // 例外が発生するとそれ以降の処理は実行されない
-        // この文は実行されません
+        // 例外が発生すると、これ以降のコンストラクタの処理は実行されません
     });
 }
 
@@ -954,7 +953,7 @@ function main() {
 }
 // mainはRejectedなPromiseを返す
 main().then(() => {
-    console.log("この行は呼び出されません");
+    // この行は実行されません
 }).catch(error => {
     console.log("メインの処理が失敗した");
 });
@@ -1119,7 +1118,7 @@ const fetchedPromise = Promise.all([
     dummyFetch("/not_found/B") // Bは存在しないため失敗する
 ]);
 fetchedPromise.then(([responseA, responseB]) => {
-    console.log("この行は呼び出されません");
+    // この行は実行されません
 }).catch(error => {
     console.log(error); // Error: NOT FOUND
 });
@@ -1133,8 +1132,8 @@ fetchedPromise.then(([responseA, responseB]) => {
 `Promise.race`メソッドは`Promise`インスタンスの配列を受け取り、新しい`Promise`インスタンスを返します。
 この新しい`Promise`インスタンスは、配列のなかで一番最初に**Settle**状態へとなった`Promise`インスタンスと同じ状態になります。
 
-- 配列のなかでも一番最初に**Settle**となったPromiseが**Fulfilled**の場合は、新しい`Promise`インスタンスも**Fulfilled**へ
-- 配列のなかでも一番最初に**Settle**となったPromiseが**Rejected**の場合は、新しい`Promise`インスタンスも **Rejected**へ
+- 配列の中で一番最初に**Settle**となったPromiseが**Fulfilled**の場合は、新しい`Promise`インスタンスも**Fulfilled**へ
+- 配列の中で一番最初に**Settle**となったPromiseが**Rejected**の場合は、新しい`Promise`インスタンスも **Rejected**へ
 
 つまり、複数のPromiseによる非同期処理を同時に実行して競争（race）させて、一番最初に完了した`Promise`インスタンスに対する次の処理を呼び出します。
 
@@ -1332,7 +1331,7 @@ rejectFn().catch(error => {
 // 3. exceptionFnは例外を投げている
 async function exceptionFn() {
     throw new Error("例外が発生しました");
-    console.log("この行は呼ばれません");
+    // 例外が発生したため、この行は実行されません
 }
 
 // Async Functionで例外が発生するとRejectedなPromiseが返される
@@ -1421,7 +1420,7 @@ asyncMain(); // Promiseインスタンスを返す
 ```js
 async function asyncMain() {
     const value = await Promise.reject(new Error("エラーメッセージ"));
-    console.log("この行は実行されません");
+    // await式で例外が発生したため、この行は実行されません
 }
 // Async Functionは自動的に例外をキャッチできる
 asyncMain().catch(error => {
@@ -1441,13 +1440,13 @@ async function asyncMain() {
     // await式のエラーはtry...catchできる
     try {
         const value = await Promise.reject(new Error("エラーメッセージ"));
-        console.log("この行は実行されません");
+        // await式で例外が発生したため、この行は実行されません
     } catch (error) {
         console.log(error.message); // => "エラーメッセージ"
     }
 }
 asyncMain().catch(error => {
-    console.log("この行は実行されません");
+    // すでにtry...catchされているため、この行は実行されません
 });
 ```
 
