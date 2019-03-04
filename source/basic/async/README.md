@@ -185,7 +185,7 @@ try {
 } catch (error) {
     console.log("同期的なエラーをキャッチできる");
 }
-console.log("この文は実行されます");
+console.log("この行は実行されます");
 ```
 
 非同期処理では、`try...catch`構文を使っても非同期的に発生した例外をキャッチできません。
@@ -200,9 +200,9 @@ try {
         throw new Error("非同期的なエラー");
     }, 10);
 } catch (error) {
-    // この文は実行されません
+    // この行は実行されません
 }
-console.log("この文は実行されます");
+console.log("この行は実行されます");
 ```
 
 `try`ブロックはそのブロック内で発生した例外をキャッチする構文です。
@@ -223,7 +223,7 @@ setTimeout(() => {
         console.log("エラーをキャッチできる");
     }
 }, 10);
-console.log("この文は実行されます");
+console.log("この行は実行されます");
 ```
 
 このようにコールバック関数内でエラーをキャッチはできますが、**非同期処理の外**からは**非同期処理の中**で例外が発生したかが分かりません。
@@ -295,7 +295,7 @@ function dummyFetch(path, callback) {
 // /success/data にリソースが存在するので、`response`にはデータが入る
 dummyFetch("/success/data", (error, response) => {
     if (error) {
-        // この文は実行されません
+        // この行は実行されません
     } else {
         console.log(response); // => { body: "Response body of /success/data" }
     }
@@ -305,7 +305,7 @@ dummyFetch("/failure/data", (error, response) => {
     if (error) {
         console.log(error.message); // => "NOT FOUND"
     } else {
-        // この文は実行されません
+        // この行は実行されません
     }
 });
 ```
@@ -472,11 +472,11 @@ function dummyFetch(path) {
 dummyFetch("/success/data").then(function onFulfilled(response) {
     console.log(response); // => { body: "Response body of /success/data" }
 }, function onRejected(error) {
-    // この文は実行されません
+    // この行は実行されません
 });
 // /failure/data のリソースは存在しないのでonRejectedが呼ばれる
 dummyFetch("/failure/data").then(function onFulfilled(response) {
-    // この文は実行されません
+    // この行は実行されません
 }, function onRejected(error) {
     console.log(error); // Error: "NOT FOUND"
 });
@@ -953,7 +953,7 @@ function main() {
 }
 // mainはRejectedなPromiseを返す
 main().then(() => {
-    console.log("この行は呼び出されません");
+    // この行は実行されません
 }).catch(error => {
     console.log("メインの処理が失敗した");
 });
@@ -1118,7 +1118,7 @@ const fetchedPromise = Promise.all([
     dummyFetch("/not_found/B") // Bは存在しないため失敗する
 ]);
 fetchedPromise.then(([responseA, responseB]) => {
-    console.log("この行は呼び出されません");
+    // この行は実行されません
 }).catch(error => {
     console.log(error); // Error: NOT FOUND
 });
@@ -1331,7 +1331,7 @@ rejectFn().catch(error => {
 // 3. exceptionFnは例外を投げている
 async function exceptionFn() {
     throw new Error("例外が発生しました");
-    console.log("この行は呼ばれません");
+    // 例外が発生したため、この行は実行されません
 }
 
 // Async Functionで例外が発生するとRejectedなPromiseが返される
@@ -1420,7 +1420,7 @@ asyncMain(); // Promiseインスタンスを返す
 ```js
 async function asyncMain() {
     const value = await Promise.reject(new Error("エラーメッセージ"));
-    console.log("この行は実行されません");
+    // await式で例外が発生したため、この行は実行されません
 }
 // Async Functionは自動的に例外をキャッチできる
 asyncMain().catch(error => {
@@ -1440,13 +1440,13 @@ async function asyncMain() {
     // await式のエラーはtry...catchできる
     try {
         const value = await Promise.reject(new Error("エラーメッセージ"));
-        console.log("この行は実行されません");
+        // await式で例外が発生したため、この行は実行されません
     } catch (error) {
         console.log(error.message); // => "エラーメッセージ"
     }
 }
 asyncMain().catch(error => {
-    console.log("この行は実行されません");
+    // すでにtry...catchされているため、この行は実行されません
 });
 ```
 

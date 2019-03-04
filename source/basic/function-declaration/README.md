@@ -67,7 +67,7 @@ console.log(multiple(10)); // => 20
 function fn() {
     // 何も返り値を指定してない場合は`undefined`を返す
     return;
-    // この文は実行されません
+    // この行は実行されません
 }
 console.log(fn()); // => undefined
 ```

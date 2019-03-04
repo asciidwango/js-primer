@@ -18,18 +18,18 @@ description: "JavaScriptにおける例外処理についてを紹介します�
 {{book.console}}
 ```js
 try {
-    console.log("この文は実行されます");
+    console.log("この行は実行されます");
     // 未定義の関数を呼び出してReferenceError例外が発生する
     undefinedFunction();
-    // この文は実行されません
+    // この行は実行されません
 } catch (error) {
     // 例外が発生したあとはこのブロックが実行される
-    console.log("この文は実行されます");
+    console.log("この行は実行されます");
     console.log(error instanceof ReferenceError); // => true
     console.log(error.message); // => "undefinedFunction is not defined"
 } finally {
     // このブロックはかならず実行される
-    console.log("この文は実行されます");
+    console.log("この行は実行されます");
 }
 ```
 
@@ -49,10 +49,10 @@ try {
 try {
     undefinedFunction();
 } finally {
-    console.log("この文は実行されます");
+    console.log("この行は実行されます");
 }
 // 上記のtry-finnalyで例外がキャッチされていないため
-// この文は実行されません
+// この行は実行されません
 ```
 
 ## throw文 {#throw}
