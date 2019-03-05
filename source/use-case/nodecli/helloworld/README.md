@@ -1,5 +1,6 @@
 ---
 author: laco 
+description: "Hello Worldアプリケーションを通じてNode.jsのCLIアプリケーションの基本を学びます。"
 ---
 
 # Node.jsでHello World {#hello-world-by-nodejs}
