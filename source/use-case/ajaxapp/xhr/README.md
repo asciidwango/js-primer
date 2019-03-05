@@ -1,5 +1,6 @@
 ---
 author: laco
+description: "XMLHttpRequestを使ってHTTP通信をおこない、GitHubのAPIを呼び出します。"
 ---
 
 # HTTP通信 {#http-communication}

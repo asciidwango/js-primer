@@ -1,5 +1,6 @@
 ---
 author: laco
+description: "XMLHttpRequestを使って取得したデータをもとにHTMLを組み立ててブラウザ上で表示します。"
 ---
 
 # データを表示する {#display-data}
