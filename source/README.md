@@ -20,6 +20,7 @@
     - [プロトタイプオブジェクト](./basic/prototype-object/README.md)
     - [配列](./basic/array/README.md)
     - [文字列](./basic/string/README.md)
+    - [文字列とUnicode](./basic/string-unicode/README.md)
     - [ラッパーオブジェクト](./basic/wrapper-object/README.md)
     - [関数とスコープ](./basic/function-scope/README.md)
     - [関数とthis](./basic/function-this/README.md)
