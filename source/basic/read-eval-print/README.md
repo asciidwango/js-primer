@@ -13,7 +13,7 @@ description: "JavaScriptでかかれたプログラムをブラウザで実行�
 - `1 + 1` という式を評価したら `2` という結果を返す
 - `bookTitle` という変数を評価したら、変数に代入されている値を返す
 
-この値の評価方法を見ていくため、実行環境でJavaScriptを実行する方法を見ていきます。
+この値の評価方法を確認するために、ブラウザを使ってJavaScriptを実行する方法を見ていきます。
 
 ## ブラウザでJavaScriptを実行する {#execute-js-on-browser}
 
@@ -30,7 +30,7 @@ description: "JavaScriptでかかれたプログラムをブラウザで実行�
 ### ブラウザの開発者ツールのコンソール上でJavaScriptコードを評価する方法 {#repl-on-browser}
 
 ブラウザやNode.jsなど多くの実行環境には、コードを評価してその結果を表示するREPL（read–eval–print loop）と呼ばれる開発者向けの機能があります。
-Firefoxでは開発者ツールの**Webコンソール**と呼ばれる機能にREPL機能が含まれています。
+Firefoxでは、開発者ツールの**Webコンソール**と呼ばれるパネルにREPL機能が含まれています。
 
 Firefoxの開発者ツールは次のいずれかの方法で開きます。
 
