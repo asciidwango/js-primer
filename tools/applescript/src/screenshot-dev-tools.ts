@@ -38,7 +38,7 @@ const outputFilePath = path.resolve(process.cwd(), cli.flags.output);
     await wait(1000);
     await setFirefoxWindowBounds();
     await wait(1000);
-    await sendKeyStroke("i", {
+    await sendKeyStroke("k", {
         command: true,
         option: true
     });

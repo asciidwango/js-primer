@@ -6,8 +6,7 @@ description: "JavaScriptにおけるコメントの書き方を紹介します�
 # コメント {#comment}
 
 コメントはプログラムとして評価されないため、ソースコードの説明を書くために利用されています。
-
-JavaScriptには、大きく分けて2種類のコメントがあります。
+コメントには、一行コメントと複数行コメントの2種類の書き方があります。
 
 ## 一行コメント {#single-line-comment}
 
@@ -21,7 +20,7 @@ JavaScriptには、大きく分けて2種類のコメントがあります。
 
 ## 複数行コメント {#multi-line-comment}
 
-複数行コメントは、複数行のコメントや[JSDoc][]のようなツールのためのアノテーションに利用します。
+複数行コメントは名前のとおり、複数行のコメントを書く際に利用します。
 `/*` と `*/`で囲まれた範囲がコメントとして扱われるため、プログラムとして評価されません。
 
  
@@ -31,8 +30,8 @@ JavaScriptには、大きく分けて2種類のコメントがあります。
  */
 ```
 
-複数行コメントの中に複数行コメントを書くことはできません。
-そのため、次のようなケースは構文エラーとなります。
+複数行コメントの中に、複数行コメントを書くことはできません。
+次のように、複数行のコメントをネストして書いた場合は構文エラーとなります。
 
 ```
 /* ネストされた /* 複数行コメント */ はかけない */
@@ -75,7 +74,7 @@ JavaScriptをサポートしていないブラウザでは、`<script>`タグを
 
 [歴史的経緯][ES6 In Depth: Arrow functions]は別として、ECMAScriptではこのように後方互換性が慎重に取り扱われます。
 ECMAScriptは一度入った仕様が使えなくなることは殆どないため、基本文法で覚えたことが使えなくなることはありません。
-一方、新しく入った仕様でよりよい機能が増え、それを学び続けることには変わりありません。
+一方で、仕様が更新されるたびに新しい機能が増えるため、それを学び続けることには変わりありません。
 
 [Annex B (normative)]: http://www.ecma-international.org/ecma-262/6.0/#sec-additional-ecmascript-features-for-web-browsers
 [ES6 In Depth: Arrow functions]: https://dev.mozilla.jp/2016/03/es6-in-depth-arrow-functions/ "ES6 In Depth: Arrow functions | Mozilla Developer Street (modest)"
