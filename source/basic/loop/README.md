@@ -219,8 +219,11 @@ const isPassed = array.some(currentValue => {
 
 ## continue文 {#continue-statement}
 
-continue文はそれ以降の反復処理をスキップして、ループの`条件式`へと移行する制御文です。
-while、do-while、forの中で使うことができ、`continute`文が実行されるとループの`条件式`へ処理がスキップされます。
+continue文は現在の反復処理を終了して、次の反復処理を行います。
+continute文は、while、do-while、forの中で使うことができます。
+
+たとえば、while文の処理中で`continue`文が実行されると、現在の反復処理はその時点で終了されます。
+そして、次の反復処理で`条件式`を評価するところからループが再開されます。
 
 <!-- doctest:disable -->
 ```js
@@ -237,7 +240,7 @@ while (条件式) {
 {{book.console}}
 [import, continue-filter-even-example.js](src/continue/continue-filter-even-example.js)
 
-もちろん次のように、偶数なら`results`へ追加するという書き方も可能です。
+もちろん、次のように`continue`文を使わずに「偶数なら`results`へ追加する」という書き方も可能です。
 
 <!-- doctest:disable -->
 ```js
