@@ -455,7 +455,7 @@ console.log(string.indexOf("未知のキーワード")); // => -1
 ```js
 const string = "JavaScript";
 const searchWord = "Script";
-const index = string.indexOf("Script");
+const index = string.indexOf(searchWord);
 if (index !== -1) {
     console.log(string.slice(index, index + searchWord.length)); // => "Script"
 } else {
