@@ -282,8 +282,8 @@ const object = {
 };
 // メソッド呼び出しの場合、それぞれの`this`はベースオブジェクト(`object`)を参照する
 // メソッド呼び出しの`.`の左にあるオブジェクトがベースオブジェクト
-object.method1(); // => object
-object.method2(); // => object
+console.log(object.method1()); // => object
+console.log(object.method2()); // => object
 ```
 
 これを利用すれば、メソッドの中から同じオブジェクトに所属する別のプロパティを`this`で参照できます。
