@@ -39,7 +39,7 @@ description: "JavaScriptにおける`this`というキーワードの動作を�
 グローバルオブジェクトとは、実行環境において異なるものが定義されています。
 ブラウザなら`window`オブジェクト、Node.jsなら`global`オブジェクトとなります。
 
-ブラウザでは、`script`要素の`type`属性を指定してない場合は実行コンテキストが"Script"として実行されます。
+ブラウザでは、`script`要素の`type`属性を指定してない場合は、実行コンテキストが"Script"として実行されます。
 この`script`要素の直下に書いた`this`はグローバルオブジェクトである`window`オブジェクトとなります。
 
 ```html
@@ -53,7 +53,7 @@ console.log(this); // => window
 
 実行コンテキストが"Module"である場合、そのコード直下に書かれた`this`は常に`undefined`となります。
 
-ブラウザでは、`script`要素の`type="module"`属性がついた場合は実行コンテキストが"Module"として実行されます。
+ブラウザでは、`script`要素の`type="module"`属性がついた場合は、実行コンテキストが"Module"として実行されます。
 この`script`要素の直下に書いた`this`は`undefined`となります。
 
 ```html
