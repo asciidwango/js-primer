@@ -128,7 +128,7 @@ const matrix = [
     [0, 1],
     [2, 3]
 ];
-console.log(array[0][0]); // => 0
+console.log(matrix[0][0]); // => 0
 ```
 
 先ほど学んだように、配列の`length`プロパティは配列の要素の数を返します。
