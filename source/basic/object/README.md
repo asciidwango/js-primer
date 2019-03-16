@@ -269,7 +269,7 @@ function doSomething(object) {
     // 色々な処理...
 }
 const object = {};
-doSomething(object); // objectが変更されている
+doSomething(object); // objectのプロパティを変更している
 console.log(object.key); // => "value"
 ```
 
