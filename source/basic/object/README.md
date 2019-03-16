@@ -264,12 +264,12 @@ JavaScriptのオブジェクトは、変更不可能と明示しない限り、�
 
 {{book.console}}
 ```js
-function doSomething(object) {
+function changeProperty(object) {
     object.key = "value";
     // 色々な処理...
 }
 const object = {};
-doSomething(object); // objectのプロパティを変更している
+changeProperty(object); // objectのプロパティを変更している
 console.log(object.key); // => "value"
 ```
 
