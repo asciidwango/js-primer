@@ -460,9 +460,9 @@ say("こんにちは"); // => TypeError: Cannot read property 'fullName' of unde
 function add(x, y) {
     return x + y;
 }
-// `this`は不要な場合はnullを渡す
-add.call(null, 1, 2); // => 3
-add.apply(null, [1, 2]); // => 3
+// `this`が不要な場合は、nullを渡す
+console.log(add.call(null, 1, 2)); // => 3
+console.log(add.apply(null, [1, 2])); // => 3
 ```
 
 最後に`bind`メソッドについてです。
@@ -486,7 +486,7 @@ const person = {
 };
 // `this`を`person`に束縛した`say`関数をラップした関数を作る
 const sayPerson = say.bind(person, "こんにちは");
-sayPerson(); // => "こんにちは Brendan Eich！"
+console.log(sayPerson()); // => "こんにちは Brendan Eich！"
 ```
 
 この`bind`メソッドをただの関数で表現すると次のように書けます。
@@ -505,7 +505,7 @@ const person = {
 const sayPerson = () => {
     return say.call(person, "こんにちは");
 };
-sayPerson(); // => "こんにちは Brendan Eich！"
+console.log(sayPerson()); // => "こんにちは Brendan Eich！"
 ```
 
 このように`call`、`apply`、`bind`メソッドを使うことで`this`を明示的に指定した状態で関数を呼び出せます。
@@ -532,6 +532,7 @@ sayPerson(); // => "こんにちは Brendan Eich！"
 {{book.console}}
 ```js
 "use strict";
+// strict modeを明示しているのは、thisがグローバルオブジェクトに暗黙的に変換されるのを防止するため
 const Prefixer = {
     prefix: "pre",
     /**
@@ -579,6 +580,7 @@ Prefixer.prefixArray(["a", "b", "c"]); // => TypeError: Cannot read property 'pr
 {{book.console}}
 ```js
 "use strict";
+// strict modeを明示しているのは、thisがグローバルオブジェクトに暗黙的に変換されるのを防止するため
 const Prefixer = {
     prefix: "pre",
     prefixArray(strings) {
@@ -902,7 +904,7 @@ console.log(object.method.call("THAT")); // => "THAT"
 
 <!-- textlint-disable -->
 
-実際にブラウザで実行した結果は[What is `this` value in JavaScript?][]というサイトで確認できます。
+実際にブラウザで実行した結果は[What is `this` value in JavaScript][]というサイトで確認できます。
 
 <!-- textlint-enable -->
 
@@ -921,4 +923,4 @@ console.log(object.method.call("THAT")); // => "THAT"
 [スコープチェーン]: ../function-scope/README.md##scope-chain}
 [静的スコープ]: ../function-scope/README.md#static-scope
 [動的スコープ]: ../function-scope/README.md#dynamic-scope
-[What is `this` value in JavaScript？]: https://azu.github.io/what-is-this/  "What is `this` value in JavaScript?"
+[What is `this` value in JavaScript]: https://azu.github.io/what-is-this/
