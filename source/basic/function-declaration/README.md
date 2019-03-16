@@ -61,7 +61,7 @@ console.log(multiple(10)); // => 20
 
 関数では`return`文が実行されると、関数内ではそれ以降の処理は行われません。
 また関数が値を返す必要がない場合は、`return`文では返り値を省略できます。
-`return`文の返り値を省略した場合は、`undefined`という値を返します。
+`return`文の返り値を省略した場合は、未定義の値である`undefined`を返します。
 
 ```js
 function fn() {
@@ -89,20 +89,20 @@ JavaScriptでは、関数の定義した仮引数の個数と実際に呼び出�
 そのため、引数の個数があっていないときの挙動を知る必要があります。
 また、引数が省略されたときに、デフォルトの値を指定するデフォルト引数という構文についても見ていきます。
 
-### 引数が少ないとき {#function-less-arguments}
+### 呼び出し時の引数が少ないとき {#function-less-arguments}
 
 定義した関数の仮引数よりも呼び出し時の引数が少ない場合、余った仮引数には`undefined`という値が代入されます。
 
 次のコードでは、引数として渡した値をそのまま返す`echo`関数を定義しています。
-`echo`関数は仮引数`x`を定義していますが、引数を渡さずに呼び出すと仮引数`x`には`undefined`が入ります。
+`echo`関数は仮引数`x`を定義していますが、引数を渡さずに呼び出すと、仮引数`x`には`undefined`が入ります。
 
 ```js
 function echo(x) {
     return x;
 }
 
-echo(1); // => 1
-echo(); // => undefined
+console.log(echo(1)); // => 1
+console.log(echo()); // => undefined
 ```
 
 複数の引数を受け付ける関数でも同様に、余った仮引数には`undefined`が入ります。
@@ -115,9 +115,9 @@ function argumentsToArray(x, y) {
     return [x, y];
 }
 
-argumentsToArray(1, 2); // => [1, 2]
+console.log(argumentsToArray(1, 2)); // => [1, 2]
 // 仮引数のxには1、yにはundefinedが入る
-argumentsToArray(1); // => [1, undefined]
+console.log(argumentsToArray(1)); // => [1, undefined]
 ```
 
 ### [ES2015] デフォルト引数 {#function-default-parameters}
@@ -140,8 +140,8 @@ function echo(x = "デフォルト値") {
     return x;
 }
 
-echo(1); // => 1
-echo(); // => "デフォルト値"
+console.log(echo(1)); // => 1
+console.log(echo()); // => "デフォルト値"
 ```
 
 ES2015でデフォルト引数が導入されるまでは、OR演算子（`||`）を使ったデフォルト値の指定がよく利用されていました。
@@ -198,7 +198,7 @@ console.log(addPrefix("文字列", "")); // => "文字列"
 console.log(addPrefix("文字列", "カスタム:")); // => "カスタム:文字列"
 ```
 
-### 引数が多いとき {#function-more-arguments}
+### 呼び出し時の引数が多いとき {#function-more-arguments}
 
 関数の仮引数に対して引数の個数が多い場合、溢れた引数は単純に無視されます。
 
@@ -289,9 +289,13 @@ Rest parametersが利用できる環境では、`arguments`変数を使うべき
 
 - Arrow Functionでは利用できない（Arrow Functionについては後述）
 - Array-likeオブジェクトであるため、Arrayのメソッドを利用できない
-- 関数が可変長引数を受け付けるのかを仮引数だけを見て判断できない（宣言的ではない）
+- 関数が可変長引数を受け付けるのかを仮引数だけを見て判断できない
 
-そのため、可変長引数が必要な場合はRest parametersでの実装を推奨します。
+`arguments`変数は仮引数の定義とは関係なく、実際に渡された引数が全て含まれています。
+そのため、関数の仮引数の定義部分だけみても、実際に関数が要求する引数がわからないという問題を作りやすいです。
+Rest parametersであれば、仮引数で可変長を受け入れるかが明確になります。
+
+このように、可変長引数が必要な場合は`arguments`変数よりも、Rest parametersでの実装を推奨します。
 
 ## 関数の引数と分割代入 {#function-destructuring}
 
