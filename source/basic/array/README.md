@@ -324,7 +324,10 @@ const blueColor = colors.find((object) => {
 });
 console.log(blueColor); // => { "color": "blue" }
 // 該当する要素がない場合は`undefined`を返す
-console.log(colors.find((object) => object.color === "white")); // => undefined
+const whiteColor = colors.find((object) => {
+    return object.color === "white";
+});
+console.log(whiteColor); // => undefined
 ```
 
 ### 指定範囲の要素を取得 {#slice}
