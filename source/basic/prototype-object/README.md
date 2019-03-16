@@ -53,7 +53,7 @@ console.log(typeof Object.prototype.toString); // => "function"
 つまり、オブジェクトリテラルや`new Object`でインスタンス化したオブジェクトは、`Object.prototype`に定義されたものが利用できるということです。
 
 次のコードでは、オブジェクトリテラルで作成（インスタンス化）したオブジェクトから、`Object#toString`メソッドを参照しています。
-このときに、インスタンスの`toString`メソッドと`Object#toString`は一致しています。
+このときに、インスタンスの`toString`メソッドと`Object#toString`は同じものとなることがわかります。
 
 {{book.console}}
 ```js
