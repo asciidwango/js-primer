@@ -135,6 +135,7 @@ console.log(y + x + z); // => "213"
 
 JavaScriptでは`Boolean`コンストラクタ関数を使うことで、任意の値を`true`または`false`の真偽値に変換できます。
 
+{{book.console}}
 ```js
 Boolean("string"); // => true
 Boolean(1); // => true
@@ -269,13 +270,14 @@ console.log(number); // 入力された文字列を数値に変換したもの
 {{book.console}}
 ```js
 // "1"をパースして10進数として取り出す
-Number.parseInt("1", 10); // => 1
-// 余計な文字はパース時に無視して取り出す
-Number.parseInt("42px", 10); // => 42
-Number.parseInt("10.5", 10); // => 10
-Number.parseFloat("1"); // => 1
-Number.parseFloat("42.5px"); // => 42.5
-Number.parseFloat("10.5"); // => 10.5
+console.log(Number.parseInt("1", 10)); // => 1
+// 余計な文字は無視してパースした結果を返す
+console.log(Number.parseInt("42px", 10)); // => 42
+console.log(Number.parseInt("10.5", 10)); // => 10
+// 文字列をパースして浮動小数点数として取り出す
+console.log(Number.parseFloat("1")); // => 1
+console.log(Number.parseFloat("42.5px")); // => 42.5
+console.log(Number.parseFloat("10.5")); // => 10.5
 ```
 
 しかし、ユーザーが数字を入力するとは限りません。
@@ -335,7 +337,7 @@ console.log(z); // => NaN
 {{book.console}}
 ```js
 // NaNはnumber型
-typeof NaN; // => "number"
+console.log(typeof NaN); // => "number"
 ```
 
 NaNしか持っていない特殊な性質として、自分自身と一致しないという特徴があります。
@@ -347,11 +349,11 @@ function isNaN(x) {
     // NaNは自分自身と一致しない
     return x !== x;
 }
-isNaN(1); // => false
-isNaN("str"); // => false
-isNaN({}); // => false
-isNaN([]); // => false
-isNaN(NaN); // => true
+console.log(isNaN(1)); // => false
+console.log(isNaN("str")); // => false
+console.log(isNaN({})); // => false
+console.log(isNaN([])); // => false
+console.log(isNaN(NaN)); // => true
 ```
 
 同様の処理をする方法として`Number.isNaN(x)`メソッドがあります。
@@ -379,7 +381,7 @@ function sum(...values) {
 }
 const x = 1, z = 10;
 let y; // `y`はundefined
-sum(x, y, z); // => NaN
+console.log(sum(x, y, z)); // => NaN
 ```
 
 そのため、`sum(x, y, z);`は次のように呼ばれていたのと同じ結果になります。
@@ -406,7 +408,7 @@ function sum(...values) {
 }
 const x = 1, z = 10;
 let y; // `y`はundefined
-sum(x, y, z); // => NaN
+console.log(sum(x, y, z)); // => NaN
 ```
 
 この意図しない`NaN`への変換を避ける方法として、大きく分けて２つの方法があります。
@@ -448,7 +450,7 @@ const x = 1, z = 10;
 let y; // `y`はundefined
 console.log(x, y, z);
 // Number型の値ではない`y`を渡しているため例外が発生する
-sum(x, y, z); // => Error
+console.log(sum(x, y, z)); // => Error
 ```
 
 このように、`sum`関数はどのように使うべきかを明示することで、
@@ -481,11 +483,12 @@ JavaScriptの型変換は基本的に情報が減る方向へしか変換でき�
 function isEmptyString(string) {
     return !Boolean(string);
 }
-isEmptyString("");// => true
-// falsyなら値なら、trueを返してしまっている
-isEmptyString(0);// => true
-// undefinedを渡した場合もtrueとなる
-isEmptyString();// => true
+// 空文字列の場合は、trueを返す
+console.log(isEmptyString("")); // => true
+// falsyなら値の場合は、trueを返す
+console.log(isEmptyString(0)); // => true
+// undefinedの場合は、trueを返す
+console.log(isEmptyString()); // => true
 ```
 
 殆どのケースにおいて、真偽値を得るには、型変換ではなく別の方法が存在します。
@@ -500,10 +503,10 @@ function isEmptyString(string) {
     // String型でlengthが0の値が空文字
     return typeof string === "string" && string.length === 0;
 }
-isEmptyString("");// => true
+console.log(isEmptyString("")); // => true
 // falsyな値でも正しく判定できる
-isEmptyString(0);// => false
-isEmptyString();// => false
+console.log(isEmptyString(0)); // => false
+console.log(isEmptyString()); // => false
 ```
 
 `Boolean`を使った型変換は、楽をするための型変換であり、正確に真偽値を得るための方法ではありません。
