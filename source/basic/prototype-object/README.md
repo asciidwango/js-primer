@@ -27,7 +27,7 @@ console.log(object.toString()); // "[object Object]"
 `Object`には、他の`Array`、`String`、`Function`などの他のオブジェクトとは異なる特徴があります。
 それは、他のオブジェクトはすべて`Object`を継承しているという点です。
 
-正確には、ほとんどすべてのオブジェクトは`Object`の`prototype`オブジェクトを継承しています。
+正確には、ほとんどすべてのオブジェクトは`Object.prototype`プロパティに定義された`prototype`オブジェクトを継承しています。
 `prototype`オブジェクトとは、すべてのオブジェクトの作成時に自動的に追加される特殊なオブジェクトです。
 `Object`の`prototype`オブジェクトは、すべてのオブジェクトから利用できるメソッドなどを提供するベースオブジェクトともいえます。
 
@@ -44,7 +44,7 @@ console.log(object.toString()); // "[object Object]"
 console.log(typeof Object.prototype.toString); // => "function"
 ```
 
-このような`Object`の`prototype`オブジェクトに組み込まれているメソッドは**プロトタイプメソッド**と呼ばれます。
+このような`prototype`オブジェクトに組み込まれているメソッドは**プロトタイプメソッド**と呼ばれます。
 この書籍では`Object.prototype.toString`のようなプロトタイプメソッドを`Object#toString`と短縮して表記します。
 
 > `Object.prototype.toString` = `Object#toString`
