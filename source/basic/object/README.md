@@ -127,7 +127,7 @@ console.log(object.key); // => "value"
 console.log(object["key"]); // => "value"
 ```
 
-ドット記法（`.`）では、プロパティ名が変数名と同じく識別子の命名規則を満たす必要があります。（詳細は[変数と宣言][]の章を参照）
+ドット記法（`.`）では、プロパティ名が変数名と同じく識別子の命名規則を満たす必要があります。（詳細は「[変数と宣言][]」の章を参照）
 
 [import, prop-dot-invalid.js](./src/prop-dot-invalid.js)
 

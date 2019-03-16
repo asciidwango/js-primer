@@ -231,7 +231,7 @@ MyClass(); // => TypeError: class constructors must be invoked with |new|
 
 次のように`class`構文ではクラスに対してメソッドを定義できます。
 メソッドの中からクラスのインスタンスを参照するには、`constructor`メソッドと同じく`this`を使います。
-このクラスのメソッドにおける`this`は「[関数とthis][]の章」で学んだメソッドと同じくベースオブジェクトを参照します。
+このクラスのメソッドにおける`this`は「[関数とthis][]」の章で学んだメソッドと同じくベースオブジェクトを参照します。
 
 <!-- doctest:disable -->
 ```js
@@ -1156,7 +1156,7 @@ console.log(child instanceof Child); // => true
 
 -->
 
-より具体的な継承の使い方については「[ユースケース:Todoアプリ][]の章」見ていきます。
+より具体的な継承の使い方については「[ユースケース:Todoアプリ][]」の章見ていきます。
 
 ## ビルトインオブジェクトの継承 {#extends-built-in}
 
