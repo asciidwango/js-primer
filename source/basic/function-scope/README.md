@@ -808,8 +808,8 @@ const createCounter = () => {
 // createCounter()の実行結果は、内側で定義されていた`increment`関数
 const myCounter = createCounter();
 // myCounter関数の実行結果は`count`の評価結果
-myCounter(); // => 1
-myCounter(); // => 2
+console.log(myCounter()); // => 1
+console.log(myCounter()); // => 2
 ```
 
 つまり次のような参照の関係が`myCounter`変数と`count`変数の間にはあることがわかります。
@@ -849,8 +849,8 @@ const newCountUp = createCounter();
 // 参照してる関数(オブジェクト)は別であるため===は一致しない
 console.log(countUp === newCountUp);// false
 // それぞれの状態も別となる
-countUp(); // => 1
-newCountUp(); // => 1
+console.log(countUp()); // => 1
+console.log(newCountUp()); // => 1
 ```
 
 ### クロージャーの用途 {#closure-usecase}
@@ -879,8 +879,8 @@ const createCounter = () => {
     };
 };
 const counter = createCounter();
-counter(); // => "1回目"
-counter(); // => "2回目"
+console.log(counter()); // => "1回目"
+console.log(counter()); // => "2回目"
 ```
 
 また、関数を返す関数のことを高階関数と呼びますが、クロージャの性質を使うことで次のように`n`より大きいかを判定する高階関数を作れます。
@@ -894,8 +894,8 @@ function greaterThan(n) {
     };
 }
 const greaterThan5 = greaterThan(5);
-greaterThan5(5); // => false
-greaterThan5(6); // => true
+console.log(greaterThan5(5)); // => false
+console.log(greaterThan5(6)); // => true
 ```
 
 ### [コラム] 状態をもつ関数オブジェクト {#closure-vs-function-object}
@@ -913,8 +913,8 @@ function countUp() {
 // 関数オブジェクトにプロパティとして値を代入する
 countUp.count = 0;
 // 呼び出すことにcountが更新される
-countUp(); // => 1
-countUp(); // => 2
+console.log(countUp()); // => 1
+console.log(countUp()); // => 2
 ```
 
 しかし、この方法は推奨されていません。なぜなら、関数の外から`count`プロパティが変更できるためです。
@@ -930,10 +930,10 @@ function countUp() {
 }
 countUp.count = 0;
 // 呼び出すことにcountが更新される
-countUp(); // => 1
+console.log(countUp()); // => 1
 // 直接値を変更できてしまう
 countUp.count = 10;
-countUp(); // => 11
+console.log(countUp()); // => 11
 ```
 
 ### クロージャーのまとめ {#closure-conclusion}
