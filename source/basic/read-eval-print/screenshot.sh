@@ -9,4 +9,4 @@ declare screenshotOnly="${projectDir}/tools/applescript/lib/src/screenshot-only.
 
 # entry-pointのスクショ
 mkdir -p "${currentDir}/img/"
-node "${screenshotDevTools}" --url "https://jsprimer.net/" --output "${currentDir}/img/web-console.png"
+node "${screenshotDevTools}" --url "https://jsprimer.net/basic/read-eval-print/src/empty/" --output "${currentDir}/img/web-console.png"
