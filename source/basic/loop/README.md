@@ -285,8 +285,9 @@ for...in文はオブジェクトのプロパティに対して、順不同で反
 
 <!-- doctest:disable -->
 ```js
-for (variable in object)
+for (variable in object) {
     実行する文;
+}
 ```
 
 次のコードでは`object`のプロパティ名を`key`変数に代入し反復処理をしています。
@@ -338,8 +339,9 @@ iterableオブジェクトは反復処理時に次の返す値を定義してい
 
 <!-- doctest:disable -->
 ```js
-for (variable of iterable)
+for (variable of iterable) {
     実行する文;
+}
 ```
 
 実はすでにiterableオブジェクトは登場していて、Arrayはiterableオブジェクトです。

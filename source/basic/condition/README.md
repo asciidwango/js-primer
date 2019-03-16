@@ -178,6 +178,7 @@ switch文はif文と同様に`式`の評価結果にもとづく条件分岐を�
 またbreak文は、switch文から抜けswitch文の次の文から実行するためのものです。
 次の例では`version`の評価結果は`"ES6"`となるため、`case "ES6":`に続く文が実行されます。
 
+[import, switch-example.js](./src/switch/switch-example.js)
 {{book.console}}
 ```js
 const version = "ES6";
