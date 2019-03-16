@@ -23,7 +23,7 @@ JavaScriptでは、プリミティブ型のデータ以外はすべてオブジ�
 
 {{book.console}}
 ```js
-typeof ["A", "B", "C"]; // => "object"
+console.log(typeof ["A", "B", "C"]); // => "object"
 ```
 
 しかし、`Object`のインスタンスにはない`Array#forEach`などのメソッドや特殊な動作を持っています。
@@ -102,10 +102,11 @@ JavaScriptで配列といった場合には`Array`を示します。
 ```js
 const emptyArray = [];
 const numbers = [1, 2, 3];
+// 2次元配列（配列の配列）
 const matrix = [
     [0, 1],
-    [0, 1]
-]; // ２次元配列
+    [2, 3]
+];
 ```
 
 作成した配列の要素へインデックスとなる数値を、`配列[インデックス]`と記述することで、
@@ -118,8 +119,20 @@ const array = ["one", "two", "three"];
 console.log(array[0]); // => "one"
 ```
 
+2次元配列（配列の配列）からの値の読み取りも同様に`配列[インデックス]`でアクセスできます。
+`配列[0][0]`は、配列の`0`番目の要素である配列（`[0, 1]`）の`0`番目の要素を読み取ります。
+
+```js
+// 2次元配列（配列の配列）
+const matrix = [
+    [0, 1],
+    [2, 3]
+];
+console.log(matrix[0][0]); // => 0
+```
+
 先ほど学んだように、配列の`length`プロパティは配列の要素の数を返します。
-そのため、配列の最後の要素へアクセスするには `array.length - 1` をインデックスとして指定します。
+そのため、配列の最後の要素へアクセスするには `array.length - 1` をインデックスとして利用できます。
 
 {{book.console}}
 ```js
@@ -128,7 +141,7 @@ console.log(array[array.length - 1]); // => "three"
 ```
 
 一方、存在しないインデックスにアクセスした場合はどうなるでしょうか？
-JavaScriptでは、存在しないインデックスに対してアクセスした場合に例外ではなく`undefined`を返します。
+JavaScriptでは、存在しないインデックスに対してアクセスした場合に、例外ではなく`undefined`を返します。
 
 {{book.console}}
 ```js
@@ -311,7 +324,10 @@ const blueColor = colors.find((object) => {
 });
 console.log(blueColor); // => { "color": "blue" }
 // 該当する要素がない場合は`undefined`を返す
-console.log(colors.find((object) => object.color === "white")); // => undefined
+const whiteColor = colors.find((object) => {
+    return object.color === "white";
+});
+console.log(whiteColor); // => undefined
 ```
 
 ### 指定範囲の要素を取得 {#slice}
@@ -376,7 +392,7 @@ if (array.includes("JavaScript")) {
 `Array#find`メソッドのようにテストするコールバック関数を利用して、真偽値を得るには`Array#some`メソッドを利用できます。
 
 `Array#some`メソッドはテストする関数をコールバック関数にマッチする要素があるなら`true`を返し、存在しない場合は`false`を返します。
-（「[ループと反復処理](../loop/README.md#array-some)の章」を参照）
+（「[ループと反復処理](../loop/README.md#array-some)」の章を参照）
 
 {{book.console}}
 ```js
@@ -646,7 +662,7 @@ console.log(array); // => ["A", "B", "C"]
 
 ## 配列を反復処理するメソッド {#array-iterate}
 
-「[ループと反復処理][]の章」において配列を反復処理する方法を一部解説していましたが、あらためて関連するArrayメソッドを見ていきます。
+「[ループと反復処理][]」の章において配列を反復処理する方法を一部解説していましたが、あらためて関連するArrayメソッドを見ていきます。
 反復処理の中でもよく利用される`Array#forEach`、`Array#map`、`Array#filter`、`Array#reduce`について見ていきます。
 どのメソッドも共通して引数にコールバック関数を受け取るため高階関数と呼ばれます。
 

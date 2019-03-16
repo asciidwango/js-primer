@@ -14,7 +14,12 @@ const object = {};
 console.log(object.toString()); // "[object Object]"
 ```
 
-この`toString`メソッドなどはJavaScriptに組み込まれたビルトインメソッドですが、これらのメソッドはどこに実装されているのでしょうか？
+オブジェクトリテラルで空のオブジェクトを定義しただけなのに、`toString`メソッドを呼び出せています。
+このメソッドはどこに実装されているのでしょうか？
+
+また、JavaScriptには`toString`以外にも、オブジェクトに自動的に実装されるメソッドがあります。
+これらのオブジェクトに組み込まれたメソッドをビルトインメソッドと呼びます。
+
 この章では、これらのビルトインメソッドがどのように実装され、なぜ`Object`のインスタンスから呼び出せるのかを見ていきます。
 
 ## `Object`はすべての元 {#object-is-origin}
@@ -22,7 +27,7 @@ console.log(object.toString()); // "[object Object]"
 `Object`には、他の`Array`、`String`、`Function`などの他のオブジェクトとは異なる特徴があります。
 それは、他のオブジェクトはすべて`Object`を継承しているという点です。
 
-正確には、ほとんどすべてのオブジェクトは`Object`の`prototype`オブジェクトを継承しています。
+正確には、ほとんどすべてのオブジェクトは`Object.prototype`プロパティに定義された`prototype`オブジェクトを継承しています。
 `prototype`オブジェクトとは、すべてのオブジェクトの作成時に自動的に追加される特殊なオブジェクトです。
 `Object`の`prototype`オブジェクトは、すべてのオブジェクトから利用できるメソッドなどを提供するベースオブジェクトともいえます。
 
@@ -39,7 +44,7 @@ console.log(object.toString()); // "[object Object]"
 console.log(typeof Object.prototype.toString); // => "function"
 ```
 
-このような`Object`の`prototype`オブジェクトに組み込まれているメソッドは**プロトタイプメソッド**と呼ばれます。
+このような`prototype`オブジェクトに組み込まれているメソッドは**プロトタイプメソッド**と呼ばれます。
 この書籍では`Object.prototype.toString`のようなプロトタイプメソッドを`Object#toString`と短縮して表記します。
 
 > `Object.prototype.toString` = `Object#toString`
@@ -48,7 +53,7 @@ console.log(typeof Object.prototype.toString); // => "function"
 つまり、オブジェクトリテラルや`new Object`でインスタンス化したオブジェクトは、`Object.prototype`に定義されたものが利用できるということです。
 
 次のコードでは、オブジェクトリテラルで作成（インスタンス化）したオブジェクトから、`Object#toString`メソッドを参照しています。
-このときに、インスタンスの`toString`メソッドと`Object#toString`は一致しています。
+このときに、インスタンスの`toString`メソッドと`Object#toString`は同じものとなることがわかります。
 
 {{book.console}}
 ```js
@@ -66,7 +71,7 @@ console.log(object.toString()); // => "[object Object]"
 このように`Object.prototype`に定義されている`toString`メソッドなどは、インスタンス作成時に自動的に継承されるため、`Object`のインスタンスから呼び出せます。
 これによりオブジェクトリテラルで作成した空のオブジェクトでも、`Object#toString`メソッドなどを呼び出せるようになっています。
 
-このインスタンスから`prototype`オブジェクト上に定義されたメソッドを参照できる仕組みは**プロトタイプチェーン**と呼びます。
+このインスタンスから`prototype`オブジェクト上に定義されたメソッドを参照できる仕組みを**プロトタイプチェーン**と呼びます。
 プロトタイプチェーンの仕組みについては「[クラス][]」の章で扱うため、ここではインスタンスからプロトタイプメソッドを呼び出せるということがわかっていれば問題ありません。
 
 ### プロトタイプメソッドと同じ名前のメソッドの優先順位 {#same-method-name}
