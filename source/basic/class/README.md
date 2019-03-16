@@ -147,7 +147,7 @@ class MyClass {
     constructor() { }
 }
 // クラスのコンストラクタ関数として呼び出すことはできない
-MyClass(); // => TypeError: class constructors must be invoked with |new|
+MyClass(); // => TypeError: Class constructor MyClass cannot be invoked without 'new'
 ```
 
 コンストラクタは初期化処理を書く場所であるため、`return`文で値を返すべきではありません。
@@ -218,7 +218,7 @@ function MyClassLike() {
 // 関数なので関数として呼び出せる
 MyClassLike(); 
 // クラスは関数として呼び出すと例外が発生する
-MyClass(); // => TypeError: class constructors must be invoked with |new|
+MyClass(); // => TypeError: Class constructor MyClass cannot be invoked without 'new'
 ```
 
 このように、`class`構文で定義したクラスは一種の関数ですが、そのクラスはクラス以外には利用できないようになっています。
