@@ -204,7 +204,7 @@ console.log(element); // => ReferenceError: element is not defined
 1. INNERブロックスコープに変数`x`があるかを確認 => ない
 2. ひとつ外側のOUTERブロックスコープに変数`x`があるかを確認 => ある
 
-一方、現在のスコープも含め、どの外側のスコープにも該当する変数が定義されていない場合は、`ReferenceError`の例外が発生します。
+一方、現在のスコープも含め、外側のどのスコープにも該当する変数が定義されていない場合は、`ReferenceError`の例外が発生します。
 次の例では、どのスコープにも存在しない`xyz`を参照しているため、`ReferenceError`の例外が発生します。
 
 ```js
