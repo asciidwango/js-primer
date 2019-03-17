@@ -21,7 +21,7 @@ JavaScriptという言語は[ECMAScript][]という仕様によって動作が�
 たとえば、ブラウザではUI（ユーザーインターフェース）を操作するためのJavaScriptの機能が定義されていますが、サーバ側の処理を書くNode.jsではそれらの機能は不要です。
 このように、実行環境によって必要な機能は異なるため、それらの機能は実行環境ごとに定義（実装）されています。
 
-そのため、「ECMAScript」はどの実行環境でも共通の部分、「JavaScript」は実行環境特有の機能も含んだ範囲というのがイメージしやすいでしょう。
+そのため、「ECMAScript」はどの実行環境でも共通の部分、「JavaScript」はECMAScriptと実行環境の固有機能も含んだ範囲というのがイメージしやすいでしょう。
 
 ![JavaScriptとECMAScriptの範囲](./img/javascript-ecmascript.png)
 
