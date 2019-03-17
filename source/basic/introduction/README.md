@@ -82,7 +82,7 @@ JavaScriptは、文（Statement）ごとに処理していき、文はセミコ�
 空白文字をいくつ文の中に置いても挙動に違いはありません。
 
 JavaScriptの実行コンテキストとして"Script"と"Module"があります。
-この2つの実行コンテキストの違いは、意識しなくても問題はありません。
+この2つの実行コンテキストの違いは意識しなくても問題はありません。
 
 "Module"の実行コンテキストは、JavaScriptをモジュールとして実行するために、ECMAScript 2015で導入されたものです。
 "Module"の実行コンテキストでは、古く安全でない構文や機能は、一部禁止されています。
@@ -116,8 +116,12 @@ mistypedVariable = 42; // => ReferenceError
 本書では、明示的に「strict modeではない」ことを宣言した場合を除き、
 すべてstrict modeとして実行できるコードを扱います。
 
-[^1]: Automatic Semicolon Insertionと呼ばれる仕組みです。
+最後に、JavaScriptの仕様であるECMAScriptも毎年更新され、JavaScriptには新しい構文や機能が増え続けています。そのため、この書籍では学んだ後もまだまだ知らなかったことが出てくるはずです。
 
+一方で、ECMAScriptは後方互換性が慎重に考慮されているため、過去に書いたJavaScriptのコードが動かなくなる変更はほとんど入りません。そのため、この書籍で学んだことのすべてが無駄になることはありません。
+
+
+[^1]: Automatic Semicolon Insertionと呼ばれる仕組みです。
 
 [Ecma International]: http://www.ecma-international.org/  "Ecma International"
 [ECMAScript]: http://www.ecma-international.org/publications/standards/Ecma-262.htm  "Standard ECMA-262"
