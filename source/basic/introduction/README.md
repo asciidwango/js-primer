@@ -41,7 +41,7 @@ ECMAScriptは2015年にECMAScript 2015（ES2015）として大きくアップデ
 ## JavaScriptってどのような言語？ {#about-javascript}
 
 JavaScriptは、もともとNetscape Navigatorというブラウザのために開発されたプログラミング言語です。
-C、Java、Self、Schemeなどのプログラミング言語の影響を受けています。
+C、Java、Self、Schemeなどのプログラミング言語の影響を受けて作られました。
 
 JavaScriptは、大部分がオブジェクト（値や処理を1つにまとめたものと考えてください）であり、そのオブジェクト同士のコミュニケーションによって成り立っています。
 オブジェクトには、ECMAScriptの仕様として定められたオブジェクト、
