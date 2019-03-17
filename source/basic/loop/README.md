@@ -226,7 +226,7 @@ const isPassed = array.some(currentValue => {
 ## continue文 {#continue-statement}
 
 continue文は現在の反復処理を終了して、次の反復処理を行います。
-continute文は、while、do-while、forの中で使うことができます。
+continue文は、while、do-while、forの中で使うことができます。
 
 たとえば、while文の処理中で`continue`文が実行されると、現在の反復処理はその時点で終了されます。
 そして、次の反復処理で`条件式`を評価するところからループが再開されます。
