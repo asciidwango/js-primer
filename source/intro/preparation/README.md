@@ -107,6 +107,12 @@ JavaScriptという言語は、常に変化している言語としても知ら�
 
 この書籍では、そのような変化していくJavaScriptの学び方についても学んでいきます。
 
+<!-- 参考:
+
+- https://gist.github.com/kwappa/afbfae5d6ce005592d7d2e653729ccac
+
+ -->
+
 [Microsoft Edge]: https://www.microsoft.com/ja-jp/windows/microsoft-edge
 [Firefox]: https://www.mozilla.org/ja/firefox/new/
 [Google Chrome]: https://www.google.com/intl/ja_ALL/chrome/
