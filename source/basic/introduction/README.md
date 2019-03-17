@@ -119,4 +119,4 @@ mistypedVariable = 42; // => ReferenceError
 [Ecma International]: http://www.ecma-international.org/  "Ecma International"
 [ECMAScript]: http://www.ecma-international.org/publications/standards/Ecma-262.htm  "Standard ECMA-262"
 [第一部: 基本文法]: ../README.md
-[第二部: 応用編（ユースケース）]: ../use-case/README.md
+[第二部: 応用編（ユースケース）]: ../../use-case/README.md
