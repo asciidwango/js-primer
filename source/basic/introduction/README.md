@@ -36,7 +36,7 @@ ECMAScriptは2015年にECMAScript 2015（ES2015）として大きくアップデ
 今からJavaScriptを学ぶなら、ES2015以降を基本にしたほうがわかりやすいため、この書籍はES2015に基づいた内容となっています。
 また、既存のコードはES2015より前のバージョンを元にしたものも多いため、それらのコードに関しても解説しています。
 
-まずはJavaScript（ECMAScript）とは、どのような言語なのかを大まかに見ていきます。
+まずは、JavaScript（ECMAScript）とはどのような言語なのかを大まかに見ていきます。
 
 ## JavaScriptってどのような言語？ {#about-javascript}
 
