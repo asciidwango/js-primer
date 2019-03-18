@@ -29,6 +29,7 @@ var bookTitle;
 ```
 
 この`bookTitle`という変数には、`=`演算子を使うことで値を代入できます。
+`=`演算子の右側には変数へ代入する値を書きますが、ここでは`"JavaScriptの本"`という文字列を代入しています。
 
 ```js
 var bookTitle;
@@ -57,31 +58,46 @@ var bookTitle = "JavaScriptの本";
 var bookCategory = "プログラミング";
 ```
 
-### 変数名に利用できる文字種 {#variable-name}
+### 変数名に使える識別子のルール {#variable-name}
 
-JavaScriptでは変数名として使える識別子には次のルールがあります。
+変数名の名前（識別子）には、次のルールがあります。
+このルールは関数の名前も同じです。
 
-- 先頭の1文字目は `$`、`_`、アルファベット、`\uXXXX` 形式のUnicodeエスケープシーケンスのどれか
-    - アルファベットは "A" から "Z"（大文字）と "a" から "z"（小文字）
-- 2文字目以降は、上記に加えて、数字、一部Unicode文字、U+200C、U+200Dのどれか
+1. 半角のアルファベット、`_`（アンダースコア）、`$`（ダラー）、数字を組み合わせた名前にする
+2. 変数名は数字から開始できない
+3. 予約語と被る名前は利用できない
 
-このルールの例外として、予約語として定義されているキーワードは変数名には利用できません。
-[JavaScript variable name validator][]でどのような変数が利用可能かをチェックできます。
+変数の名前は、半角のアルファベットである`A`から`Z`（大文字）と`a`から`z`（小文字）、`_`（アンダースコア）、`$`（ダラー）、数字の`0`から`9`を組み合わせた名前にします。JavaScriptでは、アルファベットの大文字と小文字は区別します。
 
+これらに加えて、ひらがなや一部の漢字なども変数名に利用できますが、全角の文字列が混在するとコードを入力に手間がかかるようになるためお勧めはしません。
+
+{{book.console}}
 ```js
-var $; // OK: $から開始できる
-var _title; // OK: _から開始できる
-var jquery; // OK: アルファベット
+var $; // OK: $が利用できる
+var _title; // OK: _が利用できる
+var jquery; // OK: 小文字のアルファベットが利用できる
+var TITLE; // OK: 大文字のアルファベットが利用できる
 var es2015; // OK: 数字は先頭以外なら利用できる
-var valid日本語; // OK: 先頭以外なら一部Unicode文字も利用可能
+var 日本語の変数名; // OK: 一部の漢字や日本語も利用できる
 ```
 
-次のような変数は上記のルールに反するため、構文エラー（`SyntaxError`）となります。
+変数名に数字を含めることはできますが、変数名を数字から開始はできません。
+これは変数名と値としての数値が区別できなくなってしまうためです。
 
-<!-- doctest:disable -->
+<!-- doctest:SyntaxError -->
 ```js
-var 2nd; // NG: 数字から始まっている
-var var; // NG: `var`は予約語であるため利用できない
+var 1st; // NG: 数字から始まっている
+var 123; // NG: 数字のみで構成されている
+```
+
+また、予約語として定義されているキーワードは変数名には利用できません。
+予約語とは、`var`のように構文として意味をもつキーワードのことです。
+予約語の一覧は[予約語 - JavaScript | MDN][]で確認できますが、基本的には構文として利用される名前が予約されています。
+
+<!-- doctest:SyntaxError -->
+```js
+var var; // NG: `var`は変数宣言のために予約されているので利用できない
+var if; // NG: `if`はif文のために予約されているので利用できない
 ```
 
 先ほど紹介したように変数の宣言に利用できるキーワードとして、`var`以外にも`let`と`const`があります。
@@ -204,3 +220,4 @@ JavaScriptにおける変数宣言として`var`、`let`、`const`があるこ�
 [JavaScript variable name validator]: https://mothereff.in/js-variables
 [データ型とリテラル]: ../data-type/README.md
 [オブジェクト]: ../object/README.md#const-and-object
+[予約語 - JavaScript | MDN]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Reserved_Words
