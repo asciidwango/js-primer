@@ -1,5 +1,6 @@
 ---
 author: azu
+description: "ブラウザで動作するウェブアプリケーションの例としてTodoアプリを作成しながら、モジュールを使ったコード管理について紹介します。"
 ---
 
 # ユースケース: Todoアプリ {#todo-app}
@@ -17,4 +18,32 @@ author: azu
 - Todoアイテムの完了状態を更新できる
 - Todoアイテムを削除できる
 
-[Ajax通信]: ../ajaxapp/README.md
+<!-- 目次のアップデートでreflinkが消えるのでこの位置 -->
+
+[ajax通信]: ../ajaxapp/README.md
+
+## 目次 {#summary}
+
+### [エントリポイント](./entrypoint/README.md) {#entrypoint}
+
+HTMLとJavaScriptモジュールを使い、アプリケーションで一番最初に呼び出されるエントリポイントを作成します。
+
+### [アプリの構成要素](./app-structure/README.md) {#app-structure}
+
+これから実装するTodoアプリの機能と構成要素を見ていきます。
+
+### [フォームとイベント](./form-event/README.md) {#form-event}
+
+TodoアプリへTodoアイテムを追加するフォームを作成していきます。フォームに入力された内容されたと送信イベントをどのようにハンドリングしていくかを見ていきます。
+
+### [イベントとモデル](./event-model/README.md) {#event-model}
+
+操作と更新が密結合になってしまい変更がしにくくなる問題を「モデル」と「イベント」を用いて改善する方法を見ていきます。
+
+### [Todoの更新と削除を実装する](./update-delete/README.md) {#update-delete}
+
+Todoアプリの残りの機能である「Todoアイテムの更新」と「Todoアイテムの削除」を実装していきます。
+
+### [Todoアプリのリファクタリング](./final/README.md) {#final}
+
+1つのファイルに処理が集中するとメンテナンス性が低下するため、Todoアプリの表示要素をコンポーネントという単位に分割するリファクタリングをしていきます。
