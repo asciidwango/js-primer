@@ -1,5 +1,6 @@
 ---
 author: azu
+description: "これから実装するTodoアプリの機能と構成要素を見ていきます。"
 ---
 
 # アプリの構成要素 {#app-structure}
