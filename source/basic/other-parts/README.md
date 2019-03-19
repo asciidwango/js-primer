@@ -32,7 +32,7 @@ MDNにはECMAScriptの機能だけではなく、ブラウザ固有の機能で�
 
 調べ方に正解はありません。しかし、調べたいと思ったときに調べることができるように、調べ方を知っておくことが重要です。
 
-[ECMAScript]: ../ecmascript
+[ECMAScript]: ../ecmascript/README.md
 [Proxy]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Proxy
 [Reflect]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Reflect
 [Object.defineProperty]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
