@@ -1202,7 +1202,7 @@ console.log(array.last); // => 5
 
 
 [Arrow Functionでコールバック関数を扱う]: ../function-this/README.md#arrow-function-callback
-[`this`を含むメソッドを変数に代入した場合の問題]: ../function-this/README.md#assign-this-function}
+[`this`を含むメソッドを変数に代入した場合の問題]: ../function-this/README.md#assign-this-function
 [関数とthis]: ../function-this/README.md
 [Map/Set]: ../map-and-set/README.md
 [ユースケース:Todoアプリ]: ../../use-case/todoapp/README.md
