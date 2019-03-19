@@ -252,7 +252,7 @@ MDNの[JavaScriptエラーリファレンス][]には、ブラウザが投げる
 
 [try...catch]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/try...catch
 [throw]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/throw
-[例外識別子]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/try...catch#.E4.BE.8B.E5.A4.96.E8.AD.98.E5.88.A5.E5.AD.90
+[例外識別子]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/try...catch#The_exception_identifier
 [Error]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Error
 [SyntaxError]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError
 [ReferenceError]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError
