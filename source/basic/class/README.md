@@ -1201,8 +1201,8 @@ console.log(array.last); // => 5
 [^糖衣構文]: `class`構文でのみしか実現できない機能はなく、読みやすさや分かりやさのために導入された構文という側面もあるためJavaScriptの`class`構文は糖衣構文と呼ばれることがあります。
 
 
-[Arrow Functionでコールバック関数を扱う]: ../functiont-this/README.md#arrow-function-callback
-[`this`を含むメソッドを変数に代入した場合の問題]: ../functiont-this/README.md#assign-this-function}
-[関数とthis]: ../functiont-this/README.md
+[Arrow Functionでコールバック関数を扱う]: ../function-this/README.md#arrow-function-callback
+[`this`を含むメソッドを変数に代入した場合の問題]: ../function-this/README.md#assign-this-function}
+[関数とthis]: ../function-this/README.md
 [Map/Set]: ../map-and-set/README.md
-[ユースケース:Todoアプリ]: ../use-case/todoapp/README.md
+[ユースケース:Todoアプリ]: ../../use-case/todoapp/README.md
