@@ -398,7 +398,7 @@ asyncTask().then(()=> {
 
 Promiseは`new`演算子で`Promise`のインスタンスを作成して利用します。
 このときのコンストラクタには`resolve`と`reject`の2つの引数を取る`executor`とよばれる関数を渡します。
-`executor`関数の中で非同期処理を行い、非同期処理が成功した場合は`resolve`関数を呼び、失敗した場合は`reject`関数を呼だします。
+`executor`関数の中で非同期処理を行い、非同期処理が成功した場合は`resolve`関数を呼び、失敗した場合は`reject`関数を呼び出します。
 
 {{book.console}}
 <!-- doctest:async:16 -->
