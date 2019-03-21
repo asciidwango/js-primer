@@ -383,3 +383,15 @@ ES2015は正式な名称ですが、ES6も一般によく使われている名�
 `var`の機能を説明する場合においては`var`を利用します。
 
 - [サンプルコードを `var` から `const` に置き換える · Issue #264 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/264 "サンプルコードを `var` から `const` に置き換える · Issue #264 · asciidwango/js-primer")
+
+
+### 章へのリンク
+
+別の章へのリンクを書くときは`「[章のタイトル][]」の章`という形でリンクする。
+章の途中の場合は`「[章のタイトル][]」の[#付きのリンク][]`という形にする。
+
+```
+真偽値へ変換した結果が`true`となる値の種類は多いため、逆に変換した結果が`false`となる値を覚えるのが簡単です。JavaScriptでは次の値は`false`に変換され、これらの値は**falsy** と呼ばれます。（「[暗黙的な型変換][]」の章を参照）
+```
+
+- [別の章へのリンクの仕方を統一 · Issue #173 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/173)
