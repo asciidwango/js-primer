@@ -55,7 +55,7 @@ JavaScriptは2015年にECMAScript 2015と呼ばれる仕様の大きな更新が
 
 書籍の内容がウェブで公開されているため、書籍の内容を共有したいときにURLを貼れます。 また、[ライセンス]の範囲内で自由に内容やサンプルコードを利用できます。
 
-[github:asciidwango/js-primer]: https://github.com/asciidwango/js-primer
+[asciidwango/js-primer]: https://github.com/asciidwango/js-primer
 [jsprimer.net]: https://jsprimer.net/
 [mdn web docs]: https://developer.mozilla.org/ja/
 [ライセンス]: https://github.com/asciidwango/js-primer/blob/master/LICENSE
