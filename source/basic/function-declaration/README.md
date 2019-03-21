@@ -368,6 +368,8 @@ print(array);
 <!-- textlint-disable eslint -->
 
 {{book.console}}
+<!-- TODO: babelのエラー回避 https://github.com/asciidwango/js-primer/issues/711 -->
+<!-- doctest:disable -->
 ```js
 function fn(){
     return 1;
