@@ -96,7 +96,7 @@ console.log(myClass instanceof MyClass); // => true
 console.log(myClassAnother instanceof MyClass); // => true
 ```
 
-このままでは何もできない空のクラスなので、値を持ったクラスを定義してみましょう。
+このままでは何も処理がない空のクラスなので、値を持ったクラスを定義してみましょう。
 
 クラスではインスタンスの初期化処理をコンストラクタ関数で行います。
 コンストラクタ関数は`new`演算子でインスタンス化する際に自動的に呼び出されます。
@@ -372,7 +372,7 @@ class Counter {
 const counterA = new Counter();
 const counterB = new Counter();
 // 各インスタンスオブジェクトのメソッドの参照先は異なる
-console.log(counterA.increment === counterB.increment); // => false
+console.log(counterA.increment !== counterB.increment); // => true
 ```
 
 また、プロトタイプメソッドとは異なり、インスタンスオブジェクトへのメソッド定義はArrow Functionが利用できます。
@@ -394,12 +394,12 @@ class ArrowClass {
 }
 const instance = new ArrowClass();
 const method = instance.method;
-// ベースオブジェクトに依存しない
-method(); // => instance
+// 呼び出し方法（ベースオブジェクト）に依存しないため、`this`がインスタンスを参照する
+console.log(method()); // => instance
 ```
 
 一方、プロトタイプメソッドにおける`this`はメソッド呼び出し時のベースオブジェクトを参照します。
-そのためプロトタイプメソッドは呼び出し方によって`this`の参照先が異なります。（[`this`を含むメソッドを変数に代入した場合の問題][]を参照）
+そのためプロトタイプメソッドは呼び出し方によって`this`の参照先が異なります。（「[関数とthis][]」の章の「[ `this`を含むメソッドを変数に代入した場合の問題][]」を参照）
 
 {{book.console}}
 ```js
@@ -712,12 +712,12 @@ conflict.method(); // "プロトタイプのメソッド"
 ## プロトタイプオブジェクト {#prototype}
 
 **プロトタイプメソッド**と**インスタンスオブジェクトのメソッド**を同時に定義しても、互いのメソッドは上書きされるわけでありません。
-これは、プロトタイプメソッドは**プロトタイプオブジェクト**へ、インスタンスオブジェクトのメソッドは**インスタンスオブジェクト**へそれぞれ定義されるためです。
+なぜなら、プロトタイプメソッドは**プロトタイプオブジェクト**へ、インスタンスオブジェクトのメソッドは**インスタンスオブジェクト**へそれぞれ定義されるためです。
 
 **プロトタイプオブジェクト**とは、JavaScriptの関数オブジェクトの`prototype`プロパティに自動的に作成される特殊なオブジェクトです。
 クラスも一種の関数オブジェクトであるため、自動的に`prototype`プロパティにプロトタイプオブジェクトが作成されています。
 
-次のコードでは関数やクラス自身の`prototype`プロパティにプロトタイプオブジェクトが自動的に作成されていることが分かります。
+次のコードでは、関数やクラス自身の`prototype`プロパティに、プロトタイプオブジェクトが自動的に作成されていることが分かります。
 
 {{book.console}}
 ```js
@@ -733,9 +733,10 @@ console.log(typeof MyClass.prototype === "object"); // => true
 ```
 
 `class`構文のメソッド定義は、このプロトタイプオブジェクトのプロパティとして定義されます。
+
 次のコードでは、クラスのメソッドがプロトタイプオブジェクトに定義されていることを確認できます。
 また、クラスには`constructor`メソッド（コンストラクタ）が必ず定義されます。
-この`constructor`プロパティはクラス自身を参照します。
+この`constructor`メソッドもプロトタイプオブジェクトに定義されており、この`constructor`プロパティはクラス自身を参照します。
 
 {{book.console}}
 ```js
@@ -744,11 +745,11 @@ class MyClass {
 }
 
 console.log(typeof MyClass.prototype.method === "function"); // => true
+// クラス#constructorはクラス自身を参照する
 console.log(MyClass.prototype.constructor === MyClass); // => true
 ```
 
-このように、プロトタイプメソッドとインスタンスオブジェクトのメソッドはそれぞれ異なるオブジェクトに定義されています。
-そのため、２つの方法でメソッドを定義しても上書きされずにそれぞれ定義されます。
+このように、プロトタイプメソッドはプロトタイプオブジェクトに定義され、インスタンスオブジェクトのメソッドとは異なるオブジェクトに定義されています。そのため、それぞれの方法でメソッドを定義しても、上書きされずにそれぞれ異なるオブジェクトへ定義されます。
 
 ## プロトタイプチェーン {#prototype-chain}
 
@@ -777,7 +778,7 @@ instance.method(); // "プロトタイプのメソッド"
 クラスから`new`演算子によってインスタンスを作成する際に、インスタンスにはクラスのプロトタイプオブジェクトの参照が保存されます。
 このとき、インスタンスからクラスのプロトタイプオブジェクトへの参照は、インスタンスオブジェクトの`[[Prototype]]`という内部プロパティに保存されます。
 
-`[[Prototype]]`内部プロパティは仕様上定められた内部的な表現であるため、通常のプロパティのようにはアクセスできません。
+`[[Prototype]]`内部プロパティはECMAScriptの仕様で定められた内部的な表現であるため、通常のプロパティのようにはアクセスできません。
 しかし、`Object.getPrototypeOf(object)`メソッドで`object`の`[[Prototype]]`内部プロパティを読み取れます。
 
 次のコードでは、インスタンスの`[[Prototype]]`内部プロパティを取得しています。
@@ -815,8 +816,8 @@ console.log(Prototype === MyClass.prototype); // => true
 
 プロトタイプオブジェクトのプロパティがどのようにインスタンスから参照されるかを見ていきます。
 
-オブジェクトのプロパティを参照するときに、オブジェクト自身がプロパティを持っていない場合でもそこで探索が終わるわけではありません。
-オブジェクトの`[[Prototype]]`内部プロパティのプロトタイプオブジェクトに対しても探索を続けます。
+オブジェクトのプロパティを参照するときに、オブジェクト自身がプロパティを持っていない場合でも、そこで探索が終わるわけではありません。
+オブジェクトの`[[Prototype]]`内部プロパティの参照先であるプロトタイプオブジェクトに対しても探索を続けます。
 これは、スコープに指定した識別子の変数がなかった場合に外側のスコープへと探索するスコープチェーンと良く似た仕組みです。
 
 つまり、オブジェクトがプロパティを探索するときは次のような順番で、それぞれのオブジェクトを調べます。
@@ -824,6 +825,7 @@ console.log(Prototype === MyClass.prototype); // => true
 
 1. `instance`オブジェクト自身
 2. `instance`オブジェクトの`[[Prototype]]`の参照先（プロトタイプオブジェクト）
+3. どこにもなかった場合は`undefined`
 
 次のコードでは、インスタンスオブジェクト自身は`method`プロパティを持っていません。
 そのため、実際参照してるのはクラスのプロトタイプオブジェクトの`method`プロパティです。
@@ -857,7 +859,8 @@ class MyClass {
     }
 }
 const instance = new MyClass();
-// `instance.method()`を行う際には、次のような呼び出し処理が行われている
+// `instance.method()`を実行する場合
+// 次のような呼び出し処理が行われている
 // インスタンス自身が`method`プロパティを持っている場合
 if (instance.hasOwnProperty("method")) {
     instance.method();
@@ -933,7 +936,6 @@ const instance = new Child();
 
 次のコードでは、`Parent`クラスを継承した`Child`クラスのコンストラクタで、`super()`を呼び出しています。
 `super()`は子クラスから親クラスの`constructor`メソッドを呼び出します。
-また、`super()`は子クラスのコンストラクタ以外では書くことができません。
 
 {{book.console}}
 ```js
@@ -1075,7 +1077,7 @@ console.log(Child.hello()); // => "Hello"
 `extends`によって継承した場合、子クラスのコンストラクタの`[[Prototype]]`内部プロパティには親クラスのコンストラクタが設定されます。
 このコードでは、`Child`コンストラクタの`[[Prototype]]`内部プロパティに`Parent`コンストラクタが設定されます。
 
-つまり、先ほどのコードでは`Child.hello`プロパティを参照した場合には次のような順番でオブジェクトを探索しています。
+つまり、先ほどのコードでは`Child.hello`プロパティを参照した場合には、次のような順番でオブジェクトを探索しています。
 
 1. `Child`コンストラクタ
 2. `Parent`コンストラクタ（`Child`コンストラクタの`[[Prototype]]`の参照先）
@@ -1182,7 +1184,7 @@ console.log(child instanceof Child); // => true
 `class`構文ではこれらのビルトインオブジェクトを継承できます。
 
 次のコードでは、ビルトインオブジェクトである`Array`を継承して独自のメソッドを加えた`MyArray`クラスを定義しています。
-継承した`MyArray`は`Array`の性質 – つまりメソッドや状態管理についての仕組みを継承しています。
+継承した`MyArray`は`Array`の性質であるメソッドや状態管理についての仕組みを継承しています。
 継承した性質に加えて、`MyArray#first`や`MyArray#last`といったアクセッサプロパティを追加しています。
 
 {{book.console}}
@@ -1216,10 +1218,8 @@ console.log(array.last); // => 5
 `Array`を継承した`MyArray`は、`Array`が元々もつ`length`プロパティや`Array.from`メソッドなどを継承し利用できます。
 
 [^糖衣構文]: `class`構文でのみしか実現できない機能はなく、読みやすさや分かりやさのために導入された構文という側面もあるため、JavaScriptの`class`構文は糖衣構文（シンタックスシュガー）と呼ばれることがあります。
-
-
 [Arrow Functionでコールバック関数を扱う]: ../function-this/README.md#arrow-function-callback
-[`this`を含むメソッドを変数に代入した場合の問題]: ../function-this/README.md#assign-this-function
 [関数とthis]: ../function-this/README.md
+[`this`を含むメソッドを変数に代入した場合の問題]: ../function-this/README.md#assign-this-function
 [Map/Set]: ../map-and-set/README.md
 [ユースケース:Todoアプリ]: ../../use-case/todoapp/README.md
