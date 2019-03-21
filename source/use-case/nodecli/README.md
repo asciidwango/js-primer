@@ -1,5 +1,6 @@
 ---
 author: laco 
+description: "Node.jsでCLI（コマンドラインインターフェース）アプリケーションを開発する例として、MarkdownをHTMLに変換するツールを作成していきます。"
 ---
 
 # ユースケース: Node.jsでCLIアプリケーション {#node-cli}
