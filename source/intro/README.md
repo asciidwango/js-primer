@@ -53,7 +53,14 @@ JavaScriptは、2015年にECMAScript 2015と呼ばれる仕様の大きな更新
 
 この書籍はオープンソースとして文章やソースコードがGitHubの[asciidwango/js-primer][]で公開されています。 また同様の内容が[jsprimer.net]というURLで公開されているため、ウェブブラウザで読むことができ、その場でサンプルコードを実行してJavaScriptを学べます。
 
-書籍の内容がウェブで公開されているため、書籍の内容を共有したいときにURLを貼れます。 また、[ライセンス]の範囲内で自由に内容やサンプルコードを利用できます。
+書籍の内容がウェブで公開されているため、書籍の内容を共有したいときにURLを貼れます。 また、[ライセンス][]の範囲内で自由に内容やサンプルコードを利用できます。
+
+## ライセンス {#license}
+
+この書籍に記述されているすべてのソースコードは、MIT ライセンスに基づいたオープンソースソフトウェアとして提供されます。
+また、この書籍の文章はCreative CommonsのAttribution-NonCommercial 4.0（CC BY-NC 4.0）ライセンスに基づいて提供されます。
+どちらも、著作権表示がされていればある程度自由に利用できるライセンスとなっています。
+
 
 [qasciidwango/js-primer]: https://github.com/asciidwango/js-primer
 [jsprimer.net]: https://jsprimer.net/
