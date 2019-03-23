@@ -101,7 +101,7 @@ request.addEventListener("load", (event) => {
 });
 ```
 
-ここまでの内容をまとめ、GitHubからユーザー情報を取得するの関数を`getUserInfo`という名前で定義します。
+ここまでの内容をまとめ、GitHubからユーザー情報を取得する関数を`getUserInfo`という名前で定義します。
 
 [import, index.js](src/index.js)
 
