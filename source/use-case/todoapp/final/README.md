@@ -18,8 +18,8 @@ App.jsの役割を振り返ってみましょう。
 
 ## コンポーネント {#component}
 
-`App`クラスの大部分の占めているのは`TodoItemModel`の配列に対応するTodoリストのHTML要素を作成する処理です。
-このような表示のための処理を部品ごとのモジュールに分け、`App`クラスから作成したViewモジュールを使うような形にリファクタリングをしていきます。ここでは、表示のための処理を扱うクラスをコンポーネントと呼び、`View`を名前をファイル名の末尾につけることで区別します。
+`App`クラスの大部分を占めているのは`TodoItemModel`の配列に対応するTodoリストのHTML要素を作成する処理です。
+このような表示のための処理を部品ごとのモジュールに分け、`App`クラスから作成したViewモジュールを使うような形にリファクタリングをしていきます。ここでは、表示のための処理を扱うクラスをコンポーネントと呼び、`View`をファイル名の末尾につけることで区別します。
 
 Todoリストの表示は次の2つの部品（コンポーネント）から成り立っています。
 
@@ -60,7 +60,7 @@ Todoリストの表示は次の2つの部品（コンポーネント）から成
 [import, title:"src/view/TodoListView.js"](./create-view/src/view/TodoListView.js)
 
 
-`TodoListView#createElement`メソッドは`TodoItemView`を使いTodoアイテムのHTML要素作り、`<li>`要素に追加していきます。
+`TodoListView#createElement`メソッドは`TodoItemView`を使いTodoアイテムのHTML要素を作り、`<li>`要素に追加していきます。
 この`TodoListView#createElement`メソッドも`onUpdateTodo`と`onDeleteTodo`のリスナー関数を受け取ります。
 しかし、`TodoListView`ではこのリスナー関数を`TodoItemView`にそのまま渡しています。
 なぜなら具体的なDOMイベントを発生させる要素が作られるのは`TodoItemView`の中となるためです。
@@ -134,7 +134,7 @@ window.addEventListener("load", () => {
     app.mount();
 });
 // ページがアンロードされたときのイベント
-window.addEventListener(" unload", () => {
+window.addEventListener("unload", () => {
     app.unmount();
 });
 ```
