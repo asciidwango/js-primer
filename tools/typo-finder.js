@@ -1,13 +1,13 @@
 // LICENSE : MIT
 "use strict";
-const globby = require('globby');
+const globby = require("globby");
 const fs = require("fs");
 const path = require("path");
 const sourceDir = path.join(__dirname, "..", "source");
 const remark = require("remark")();
-const select = require('unist-util-select');
+const select = require("unist-util-select");
 const lodash = require("lodash");
-const levenshtein = require('js-levenshtein');
+const levenshtein = require("js-levenshtein");
 /**
  * Usage: node typo-finder.js
  *
@@ -41,7 +41,7 @@ class Typo {
 
     countOfKey(key) {
         if (key in this.gropupByKey) {
-            return this.gropupByKey[key].length
+            return this.gropupByKey[key].length;
         }
         return 0;
     }
