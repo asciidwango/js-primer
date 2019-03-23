@@ -275,6 +275,10 @@ rules:
   - expected: プロトタイプオブジェクト
     patterns:
       - prototypeオブジェクト
+  - expected: ビルトインオブジェクト
+    patterns:
+      - 組み込みのオブジェクト
+
 
   # 一致とマッチ
   ## 一致は ===
