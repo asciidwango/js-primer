@@ -1,6 +1,6 @@
 ---
 author: laco
-description: "アプリケーション開発のためにNode.jsとnpmのインストールなどの準備方法を紹介します"
+description: "アプリケーション開発のためにNode.jsとnpmのインストールなどの準備方法を紹介します。"
 ---
 
 # アプリケーション開発の準備 {#setup-local-env}

@@ -78,6 +78,7 @@
     "jsdom-global": "3.0.2",
     "lodash": "^4.17.10",
     "meow": "^5.0.0",
+    "micromatch": "^3.1.10",
     "mocha": "^4.0.0",
     "npm-run-all": "^4.0.0",
     "power-assert": "^1.6.1",
