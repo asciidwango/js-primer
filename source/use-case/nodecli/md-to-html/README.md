@@ -165,5 +165,5 @@ $ node main.js -S sample.md
 これでMarkdown変換の設定をコマンドライン引数でオプションとして与えられるようになりました。
 
 [marked]: https://github.com/chjj/marked
-[変換オプション]: https://github.com/chjj/marked#options-1
+[変換オプション]: https://marked.js.org/#/USING_ADVANCED.md#options
 [GitHub Flavored Markdown]: https://github.github.com/gfm/
