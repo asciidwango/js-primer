@@ -51,7 +51,7 @@ try {
 } finally {
     console.log("この行は実行されます");
 }
-// try-finallyでは例外がキャッチされないため、この行は実行されません
+// finally節のみでは例外がキャッチされないため、この行は実行されません
 ```
 
 ## throw文 {#throw}
