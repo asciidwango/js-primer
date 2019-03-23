@@ -32,7 +32,7 @@
     - [Date](./basic/date/README.md)
     - [Math](./basic/math/README.md)
     - [ECMAScript](./basic/ecmascript/README.md)
-    - [第1部: おわりに](./basic/other-parts/README.md)
+    - [第一部: おわりに](./basic/other-parts/README.md)
 - [第二部: 応用編（ユースケース）](./use-case/README.md)
     - [アプリケーション開発の準備](./use-case/setup-local-env/README.md)
     - [モジュール](./use-case/module/README.md)

@@ -331,7 +331,12 @@ rules:
   - expected: 反復処理
     patterns:
       - 反覆処理
-
+  - expected: 第一部
+    patterns:
+      - /第1部/
+  - expected: 第二部
+    patterns:
+      - /第2部/
 # 文体
   - expected: どのように
     patterns:
