@@ -80,5 +80,7 @@ GitBookのbuildかつWatchをします。
 
 ## License
 
-- コードはMITライセンス
-- 文章は[CC BY-NC 4.0](http://creativecommons.org/licenses/by-nc/4.0/ "CC BY-NC 4.0")
+Copyright (c) 2016- azu and Suguru Inatomi
+
+- ソースコード: MITライセンス
+- 文章: [CC BY-NC 4.0](http://creativecommons.org/licenses/by-nc/4.0/)
