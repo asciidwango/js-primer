@@ -51,8 +51,7 @@ try {
 } finally {
     console.log("この行は実行されます");
 }
-// 上記のtry-finnalyで例外がキャッチされていないため
-// この行は実行されません
+// finally節のみでは例外がキャッチされないため、この行は実行されません
 ```
 
 ## throw文 {#throw}
@@ -75,15 +74,16 @@ try {
 ## エラーオブジェクト {#error-object}
 
 `throw`文ではエラーオブジェクトを例外として投げることができます。
+ここでは、`throw`文で例外として投げられるエラーオブジェクトについて見ていきます。
 
 ### Error {#error}
 
 `Error`オブジェクトのインスタンスは`Error`を`new`して作成します。
-コンストラクタの第一引数には、エラーの内容をあらわす文字列を渡します。
-渡した文字列は`Error#message`プロパティに格納されます。
+コンストラクタの第一引数には、エラーメッセージとなる文字列を渡します。
+渡したエラーメッセージは`Error#message`プロパティに格納されます。
 
-次の例では、`assertPositiveNumber`関数でエラーオブジェクトを作成し、例外として`throw`しています。
-投げられたオブジェクトはcatch節の例外識別子から取得でき、エラーメッセージが確認できます。
+次のコードでは、`assertPositiveNumber`関数でエラーオブジェクトを作成し、例外として`throw`しています。
+投げられたオブジェクトは、catch節の例外識別子から取得でき、エラーメッセージが確認できます。
 
 {{book.console}}
 ```js
@@ -95,6 +95,7 @@ function assertPositiveNumber(num) {
 }
 
 try {
+    // 0未満の値を渡しているので、関数が例外を投げる
     assertPositiveNumber(-1);
 } catch (error) {
     console.log(error instanceof Error); // => true
@@ -102,7 +103,7 @@ try {
 }
 ```
 
-`throw`文はあらゆるオブジェクトを例外として投げられますが、基本的には`Error`オブジェクトのインスタンスを投げることが推奨されます。
+`throw`文はあらゆるオブジェクトを例外として投げられますが、基本的に`Error`オブジェクトのインスタンスを投げることが推奨されます。
 その理由は後述する**スタックトレース**のためです。
 `Error`オブジェクトはインスタンスの作成時に、そのインスタンスが作成されたファイル名や行数などのデバッグに役立つ情報をもっています。
 文字列のような`Error`オブジェクトでないオブジェクトを投げてしまうと、スタックトレースが得られません。
@@ -120,14 +121,14 @@ try {
 ### ビルトインエラー {#built-in-error}
 
 JavaScriptエンジンが投げる組み込みのエラーのことをビルトインエラーと呼びます。
-ビルトインエラーとして投げられるエラーオブジェクトは、すべて`Error`オブジェクトから派生したオブジェクトのインスタンスです。
+ビルトインエラーとして投げられるエラーオブジェクトは、すべて`Error`オブジェクトを継承したオブジェクトのインスタンスです。
 そのため、ユーザーが定義したエラーと同じように例外処理できます。
 
 ビルトインエラーはいくつか種類がありますが、ここでは代表的なものを紹介します。
 
 #### ReferenceError {#reference-error}
 [ReferenceError][]は存在しない変数や関数などの識別子が参照された場合のエラーです。
-たとえば次のようなコードを実行すると、`ReferenceError`例外が投げられます。
+次のコードでは、存在しない変数を参照しているため`ReferenceError`例外が投げられます。
 
 {{book.console}}
 ```js
@@ -137,23 +138,24 @@ try {
 } catch (error) {
     console.log(error instanceof ReferenceError); // => true
     console.log(error.name); // => "ReferenceError"
-    console.log(error.message); // エラーの内容が表示される
+    console.log(error.message); // エラーメッセージが表示される
 }
 ```
 
 #### SyntaxError {#syntax-error}
 
 [SyntaxError][]は構文的に不正なコードを解釈しようとした場合のエラーです。
-`SyntaxError`例外はJavaScriptを実行する前のパース段階で発生します。
-この構文エラーは`try...catch`文でcatchできません。
+基本的に`SyntaxError`例外は、JavaScriptを実行する前のパース段階で発生します。
+そのため、実行前に発生する例外である`SyntaxError`を`try...catch`文ではcatchできません。
 
 ```
-// 正しくない構文
+// JavaScriptとして正しくない構文をパースするとSyntaxErrorが発生する
 foo! bar!
 ```
 
-たとえば次のようなコードを実行すると、`SyntaxError`例外が発生します。
-ここでは`eval`関数を使って動的にJavaScriptを解釈することで、実行時に`SyntaxError`を発生させています。
+次のコードでは、`eval`関数を使い実行時に`SyntaxError`を発生させています。
+`eval`関数は渡した文字列をJavaScriptとして実行する関数です。
+実行時に発生した`SyntaxError`は、`try...catch`文でもcatchできます。
 
 {{book.console}}
 ```js
@@ -164,13 +166,14 @@ try {
 } catch (error) {
     console.log(error instanceof SyntaxError); // => true
     console.log(error.name); // => "SyntaxError"
-    console.log(error.message); // エラーの内容が表示される
+    console.log(error.message); // エラーメッセージが表示される
 }
 ```
 
 #### TypeError {#type-error}
+
 [TypeError][]は値が期待される型でない場合のエラーです。
-たとえば次のようなコードを実行すると、`TypeError`例外が投げられます。
+次のコードでは、関数ではないオブジェクトを関数呼び出ししているため、`TypeError`例外が投げられます。
 
 {{book.console}}
 ```js
@@ -181,14 +184,14 @@ try {
 } catch (error) {
     console.log(error instanceof TypeError); // => true
     console.log(error.name); // => "TypeError"
-    console.log(error.message); // エラーの内容が表示される
+    console.log(error.message); // エラーメッセージが表示される
 }
 ```
 
 ### ビルトインエラーを投げる {#throw-built-in-error}
 
-ユーザーはビルトインエラーのインスタンスを作成できます。
-通常の`Error`オブジェクトと同じように、それぞれのエラーオブジェクトをnewします。
+ビルトインエラーのインスタンスを作成し、そのインスタンスを例外として投げることもできます。
+通常の`Error`オブジェクトと同じように、それぞれのビルトインエラーオブジェクトを`new`してインスタンスを作成できます。
 
 たとえば関数の引数を数値に限定したい場合は、次のように`TypeError`例外を投げるとよいでしょう。
 メッセージを確認しなくても、エラーの名前だけで型に関する例外だとすぐにわかります。
@@ -222,7 +225,7 @@ JavaScript開発においてデバッグ中に発生したエラーを理解す�
 つまり、エラーの名前をあらわす`name`プロパティと内容をあらわす`message`プロパティをもっています。
 この2つのプロパティを確認することで、多くの場面で開発の助けとなるでしょう。
 
-次のコードではtry文で囲っていない部分で例外を投げています。
+次のコードでは、`try...catch`文で囲っていない部分で例外が発生しています。
 
 [import, error.js](src/error.js)
 
@@ -239,6 +242,7 @@ JavaScript開発においてデバッグ中に発生したエラーを理解す�
 | `error.js:3:5` | 例外が`error.js`の3行目5列目で発生したこと。つまり`x++;`であること。 |
 
 また、メッセージの後には例外のスタックトレースが表示されています。
+スタックトレースとは、プログラムの実行過程を記録した内容で、どの処理によってエラーが発生したかが書かれています。
 
 - スタックトレースの最初の行が実際に例外が発生した場所です。つまり、3行目の `x++;` で例外が発生しています
 - 次の行には、そのコードの呼び出し元が記録されています。つまり、3行目のコードを実行したのは5行目の`fn`関数の呼び出しです
