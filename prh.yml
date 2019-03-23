@@ -278,7 +278,10 @@ rules:
   - expected: ビルトインオブジェクト
     patterns:
       - 組み込みのオブジェクト
-
+  - expected: プリフィックス
+    patterns:
+      - /prefix/i
+      - /プレフィックス/i
 
   # 一致とマッチ
   ## 一致は ===
