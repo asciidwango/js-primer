@@ -5,7 +5,7 @@ const meow = require("meow");
 const parseFrontMatter = require("front-matter");
 const addTextToMarkdown = require("add-text-to-markdown");
 const sourceDir = path.join(__dirname, "../source");
-const minimatch = require("minimatch");
+const micromatch = require("micromatch");
 const OUTLINE = path.join(sourceDir, "README.md");
 const cli = meow(`
     第一部のサマリを作成するツール
@@ -47,11 +47,13 @@ const cli = meow(`
             const inputText = fs.readFileSync(filePath, "utf-8");
             const frontMatter = parseFrontMatter(inputText);
             const dirName = path.basename(path.dirname(chapter.path));
-            const isBasic = filePath.includes(cli.flags.pattern);
+            const isTargetFile = micromatch.isMatch(filePath, cli.flags.pattern, {
+                dot: true
+            });
             if (filePath === indexReadmePath) {
                 return;
             }
-            if (!isBasic) {
+            if (!isTargetFile) {
                 return;
             }
             if (frontMatter.attributes.description) {
