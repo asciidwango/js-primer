@@ -138,7 +138,7 @@ try {
 } catch (error) {
     console.log(error instanceof ReferenceError); // => true
     console.log(error.name); // => "ReferenceError"
-    console.log(error.message); // => "x is not defined"
+    console.log(error.message); // エラーメッセージが表示される
 }
 ```
 
@@ -166,7 +166,7 @@ try {
 } catch (error) {
     console.log(error instanceof SyntaxError); // => true
     console.log(error.name); // => "SyntaxError"
-    console.log(error.message); // => "unexpected token: '!'"
+    console.log(error.message); // エラーメッセージが表示される
 }
 ```
 
@@ -184,7 +184,7 @@ try {
 } catch (error) {
     console.log(error instanceof TypeError); // => true
     console.log(error.name); // => "TypeError"
-    console.log(error.message); // エラーの内容が表示される
+    console.log(error.message); // エラーメッセージが表示される
 }
 ```
 
