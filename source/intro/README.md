@@ -88,7 +88,7 @@ JavaScriptやブラウザのAPIに関しては、[MDN Web Docs][]（MDN）とい
 どちらも、著作権表示がされていればある程度自由に利用できるライセンスとなっています。
 
 
-[qasciidwango/js-primer]: https://github.com/asciidwango/js-primer
+[asciidwango/js-primer]: https://github.com/asciidwango/js-primer
 [jsprimer.net]: https://jsprimer.net/
 [mdn web docs]: https://developer.mozilla.org/ja/
 [ライセンス]: https://github.com/asciidwango/js-primer/blob/master/LICENSE
