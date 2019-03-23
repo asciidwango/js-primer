@@ -160,7 +160,7 @@ Node.jsでは`events`と呼ばれるモジュールでAPIは異なりますが�
 [import, title:"src/model/TodoItemModel.js"](./event-emitter/src/model/TodoItemModel.js)
 
 次のコードでは`TodoItemModel`クラスはインスタンス化でき、それぞれの`id`が自動的に異なる値となっていることが確認できます。
-この`id`は後ほど特定のTodoアイテムを指定した更新する処理ときに、アイテムを区別する識別子として利用します。
+この`id`は後ほど特定のTodoアイテムを指定して更新する処理のときに、アイテムを区別する識別子として利用します。
 
 [import src/model/TodoItemModel.example.js](./event-emitter/src/model/TodoItemModel.example.js)
 
