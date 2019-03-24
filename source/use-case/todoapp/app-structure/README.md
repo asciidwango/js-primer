@@ -133,21 +133,16 @@ const form = document.querySelector("#js-form");
 このセクションではHTMLでアプリの構造を定義し、CSSでアプリのスタイルを定義しました。
 次のセクションではJavaScriptモジュールを作成していき、現在は空であるTodoリストを更新していきます。
 
-現在のTodoアプリのディレクトリ構造は次のようになります。
+## このセクションのチェックボックス  {#section-checkbox}
 
-```
-todoapp
-├── index.html(今回の変更点)
-├── index.js
-├── node_modules
-├── package.json
-└── src
-    └── App.js
-```
+- [ ] これから実装するTodoアプリの構成要素を理解した
+- [ ] HTML、CSS、JavaScriptの役割の違いを理解した
+- [ ] Todoアプリの見た目をHTMLとCSSを使って定義できた
 
-現在のTodoアプリは次のURLで実際に確認できます。
+ここまでのTodoアプリは次のURLで実際に確認できます。
 
-- <https://jsprimer.net/use-case/todoapp/app-structure/todo-html/>
+> <a href="./app-structure/todo-html/" target="_blank">https://jsprimer.net/use-case/todoapp/app-structure/todo-html/</a>
+
 
 [エントリポイント]: ../entrypoint/README.md
 [CSSセレクタ]: https://developer.mozilla.org/ja/docs/Learn/CSS/Introduction_to_CSS/Selectors
