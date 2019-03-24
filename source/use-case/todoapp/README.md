@@ -32,7 +32,7 @@ HTMLとJavaScriptモジュールを使い、アプリケーションで一番最
 
 これから実装するTodoアプリの機能と構成要素を見ていきます。
 
-### [フォームとイベント](./form-event/README.md) {#form-event}
+### [Todoアイテムの追加を実装する](./form-event/README.md) {#form-event}
 
 TodoアプリへTodoアイテムを追加するフォームを作成していきます。フォームに入力された内容されたと送信イベントをどのようにハンドリングしていくかを見ていきます。
 
@@ -40,7 +40,7 @@ TodoアプリへTodoアイテムを追加するフォームを作成していき
 
 操作と更新が密結合になってしまい変更がしにくくなる問題を「モデル」と「イベント」を用いて改善する方法を見ていきます。
 
-### [Todoの更新と削除を実装する](./update-delete/README.md) {#update-delete}
+### [Todoアイテムの更新と削除を実装する](./update-delete/README.md) {#update-delete}
 
 Todoアプリの残りの機能である「Todoアイテムの更新」と「Todoアイテムの削除」を実装していきます。
 

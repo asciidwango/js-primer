@@ -3,7 +3,7 @@ author: azu
 description: "TodoアプリへTodoアイテムを追加するフォームを作成していきます。フォームに入力された内容されたと送信イベントをどのようにハンドリングしていくかを見ていきます。"
 ---
 
-# Todoの追加機能を実装する {#form-event}
+# Todoアイテムの追加を実装する {#form-event}
 
 ここからはJavaScriptでTodoアプリの機能を実際に作っていきます。
 
@@ -175,7 +175,7 @@ render(newElement, document.body);
 
 [import, title:"src/App.js"](./add-todo-item/src/App.js)
 
-これらの変更後にブラウザでページをリロードすると、入力内容を送信するたびにTodoリスト下へTodoアイテムが追加されます。
+これらの変更後にブラウザでページをリロードしてから、フォームでEnterを押すとTodoリストにTodoアイテムが追加されます。
 また、入力内容を送信するたびに`todoItemCount`が加算され、**Todoアイテム数**の表示も更新されます。
 
 ![Todoリストへアイテムを追加](./img/add-todo-item.png)
