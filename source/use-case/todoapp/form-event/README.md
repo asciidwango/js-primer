@@ -175,7 +175,7 @@ render(newElement, document.body);
 
 [import, title:"src/App.js"](./add-todo-item/src/App.js)
 
-これらの変更後にブラウザでページをリロードしてから、フォームでEnterを押すとTodoリストにTodoアイテムが追加されます。
+これらの変更後にブラウザでページをリロードしてから、フォームに入力してからEnterを押すとTodoリストに**Todoアイテムが追加**されます。
 また、入力内容を送信するたびに`todoItemCount`が加算され、**Todoアイテム数**の表示も更新されます。
 
 ![Todoリストへアイテムを追加](./img/add-todo-item.png)
