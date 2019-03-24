@@ -9,4 +9,5 @@ declare screenshotOnly="${projectDir}/tools/applescript/lib/src/screenshot-only.
 
 # entry-pointのスクショ
 mkdir -p "${currentDir}/entrypoint/img/"
-node "${screenshotDevTools}" --url "http://localhost:3000/entrypoint/first-entry/" --output "${currentDir}/entrypoint/img/first-entry.png"
+# cd source/use-case/todoapp/entrypoint/first-entry/ && npm start
+node "${screenshotDevTools}" --url "http://localhost:3000/" --output "${currentDir}/entrypoint/img/first-entry.png"

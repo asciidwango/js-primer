@@ -8,18 +8,19 @@ description: "HTMLとJavaScriptモジュールを使い、アプリケーショ�
 エントリポイントとは、アプリケーションの中で一番最初に呼び出される部分のことです。
 
 [Ajax通信:エントリポイント][]のユースケースでは、エントリポイントはHTML（`index.html`）のみでした。
-まずHTMLが読み込まれ、次にHTMLの中に書かれているJavaScriptファイルが読み込まれます。
+まずHTMLが読み込まれ、次にHTMLの中に書かれている`script`タグで指定したJavaScriptファイルが読み込まれます。
 
-今回のTodoアプリは処理をモジュール化し、それぞれのモジュールを別々のJavaScriptファイルとして作成していきます。
+今回のTodoアプリはJavaScriptの処理をモジュール化し、それぞれのモジュールを別々のJavaScriptファイルとして作成していきます。
 JavaScriptモジュールはHTMLから`<script type="module">`で読み込むことができますが、`script`タグ毎に別々のモジュールスコープを持ちます。
-そのため、JavaScriptモジュールを別々の`script`タグで読み込むとモジュール同士でスコープが異なるため、モジュール同士で連携できません。
+モジュールスコープとは、モジュールのトップレベルに自動的に作成されるスコープで、グローバルスコープの下に作られます。
+JavaScriptモジュールを別々の`script`タグで読み込むとモジュール同士でスコープが異なるため、モジュール同士で連携できません。
 
 次のコードは、それぞれの`<script type="module">`同士のスコープが異なるため、別の`script`タグで定義した変数にアクセス出来ないことを示しています。これはJavaScriptのコードをファイルにして`src`属性で読み込んだ場合も同様です。
 
 [import:"marker"](./module-scope/index.html)
 
-そのため、HTMLから読み込むのは1つのJavaScriptファイル(`index.js`)として、この`index.js`から他のモジュールを読み込み利用します。
-このようにすることでモジュール間は1つの`<script type="module">`のスコープ内に収まるため、モジュール同士で連携できます。
+そのため、HTMLから読み込むのは1つのJavaScriptファイル(`index.js`)として、この`index.js`から`import`文で他のモジュールを読み込みます。
+`import`文を使うことで、モジュール間は1つの`<script type="module">`のスコープ内に収まるため、モジュール同士で連携できます。
 このHTMLから読み込むJavaScriptファイル（`index.js`）をJavaScriptにおけるエントリポイントとします。
 
 つまり、今回作成するTodoアプリではエントリポイントとしてHTMLとJavaScriptの2つを用意します。
@@ -33,10 +34,10 @@ JavaScriptモジュールはHTMLから`<script type="module">`で読み込むこ
 
 <!-- ソースコードは first-entry/ -->
 
-今回作成するアプリにはHTMLやCSS、JavaScriptなど複数のファイル必要となります。
+今回作成するアプリにはHTML、CSS、JavaScriptなど複数のファイル必要となります。
 そのため、まずそれらを配置するディレクトリを作成します。
 
-任意の名前で問題ありませんが、ここでは`todoapp`という名前のディレクトリを作成します。
+ディレクトリは任意の名前で問題ありませんが、ここでは`todoapp`という名前のディレクトリを作成します。
 
 ## HTMLファイルの用意 {#preparing-html}
 
@@ -44,20 +45,20 @@ JavaScriptモジュールはHTMLから`<script type="module">`で読み込むこ
 エントリポイントとなるHTMLとして`index.html`を作成し、次のような内容にします。
 `body`要素の一番下で`<script>`タグを使い読み込んでいる`index.js`が、今回のアプリケーションの処理を記述するJavaScriptファイルです。
 
-[import, index.html](first-entry/index.html)
+[import, title:"index.html"](first-entry/index.html)
 
 `index.js`には、スクリプトが正しく読み込まれたことを確認できるように、コンソールにログを出力する処理だけを書いておきます。
 
-[import, src/index.js](first-entry/index.js)
+[import, title:"src/index.js"](first-entry/index.js)
 
-次はこのHTMLをブラウザで開きコンソールにログが出力されることを確認していきます。
+次はこの`index.html`をブラウザで開きコンソールにログが出力されることを確認していきます。
 
 ## ローカルサーバでHTMLを確認する {#local-server}
 
-ウェブブラウザで`index.html`を開くために開発用のローカルサーバーを準備します。
+ウェブブラウザで`index.html`を開くために、開発用のローカルサーバーを準備します。
 ローカルサーバーを立ち上げずに直接HTMLファイルを開くこともできますが、その場合`file:///`から始まるURLになります。
 `file`スキーマでは[Same Origin Policy][]により、JavaScriptモジュールを始め多くのAPIに制限がありアプリケーションは正しく動作しません。
-本章はローカルサーバーを立ち上げた上で、`http`スキーマのURLでアクセスすることを前提としています。
+本章はローカルサーバーを立ち上げた上で、`http`から始まるURLでアクセスすることを前提としています。
 
 コマンドラインで`todoapp`ディレクトリへ移動し、次のコマンドでローカルサーバを起動します。
 `npx`コマンドを使い、この書籍用に作成された`@js-primer/local-server`というローカルサーバモジュールをダウンロードと同時に実行します。
@@ -79,7 +80,7 @@ todoappのローカルサーバを起動しました。
 起動したローカルサーバのURL（`http://localhost:3000`）へブラウザでアクセスしてみましょう。
 ブラウザには`index.html`の内容が表示され、開発者ツールのコンソールに`index.js: loaded`というログが出力されていることが確認できます。
 
-![ログが表示されているWebコンソール](img/first-entry.png)
+![Webコンソールにログが表示されている](img/first-entry.png)
 
 ----
 
@@ -94,7 +95,7 @@ Firefoxの開発者ツールは次のいずれかの方法で開きます。
 - Firefox メニュー（メニューバーがある場合やmacOSでは、ツールメニュー）の Web 開発サブメニューで "Web コンソール" を選択する
 - キーボードショートカット`Ctrl+Shift+K`（macOSでは`Command+Option+K`）を押下する
 
-詳細は"[Webコンソールを開く][]"を参照してください。
+詳細はMDNの「[Webコンソールを開く][]」を参照してください。
 
 ### [エラー例] コンソールログが表示されない {#error-not-display-console-log}
 
@@ -131,14 +132,12 @@ JavaScriptモジュールはまだ新しい機能であるため、バージョ�
 このアプリではJavaScriptモジュールが複数登場するため`src/`というディレクトリを作り、`src/`の下にJavaScriptモジュールを書くことにします。
 今回は`src/App.js`にファイルを作成し、これを`index.js`からモジュールとして読み込みます。
 
-最終的に現在の`todoapp`ディレクトリは次のような構造になります。
+最終的に`todoapp`ディレクトリは、次のような構造になるようにファイルを作成していきます。
 
 ```
 todoapp
 ├── index.html
 ├── index.js
-├── node_modules
-├── package.json
 └── src
     └── App.js
 ```
@@ -148,12 +147,12 @@ todoapp
 モジュールは、基本的には何かしらを外部に公開（`export`）します。
 `App.js`は`App`というクラスを公開するモジュールとして、今回はコンソールログを出力するだけです。
 
-[import, src/App.js](module-entry/src/App.js)
+[import, title:"src/App.js"](module-entry/src/App.js)
 
 次に、この`src/App.js`を`index.js`から取り込み(`import`)します。
 `index.js`を次のように書き換え、`App.js`から`App`クラスを取り込みインスタンス化します。
 
-[import, index.js](module-entry/index.js)
+[import, title:"index.js"](module-entry/index.js)
 
 再度ローカルサーバのURL（`http://127.0.0.1:3000`）にブラウザでアクセスし、リロードしてみましょう。
 コンソールログには、次のように処理の順番どおりのログが出力されます。
