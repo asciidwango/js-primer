@@ -136,7 +136,7 @@ const form = document.querySelector("#js-form");
 
 ## このセクションのチェックリスト {#section-checklist}
 
-- [x] これから実装するTodoアプリの構成要素を理解した
+- [x] 実装するTodoアプリの構成要素を理解した
 - [x] HTML、CSS、JavaScriptの役割の違いを理解した
 - [x] Todoアプリの見た目をHTMLとCSSで定義した
 
