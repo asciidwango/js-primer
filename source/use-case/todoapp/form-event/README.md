@@ -113,7 +113,7 @@ todoapp
 ```
 
 
-ここまでのTodoアプリは次のURLで実際に確認できます。
+ここまでのTodoアプリは次のURLで確認できます。
 
 > <a href="./prevent-event/" target="_blank">https://jsprimer.net/use-case/todoapp/form-event/prevent-event/</a>
 
@@ -192,7 +192,7 @@ todoapp
         └── html-util.js(新規追加)
 ```
 
-現在のTodoアプリは次のURLで実際に確認できます。
+ここまでのTodoアプリは次のURLで確認できます。
 
 > <a href="./add-todo-item/" target="_blank">https://jsprimer.net/use-case/todoapp/form-event/add-todo-item/</a>
 
@@ -213,6 +213,12 @@ todoapp
 - [x] HTML文字列からHTML要素を作成する`html-util.js`を実装した
 - [x] フォームからTodoアイテムを追加できた
 - [x] Todoアイテムの追加に合わせてTodoアイテム数を更新できた
+
+このセクションでTodoアプリにTodoアイテムの追加する機能が実装できました。
+
+- [x] Todoアイテムを追加できる
+- [ ] Todoアイテムの完了状態を更新できる
+- [ ] Todoアイテムを削除できる
 
 [ajaxapp: HTML文字列をDOMに追加する]: ../../ajaxapp/display/README.md#html-to-dom
 [template要素]: https://developer.mozilla.org/ja/docs/Web/HTML/Element/template

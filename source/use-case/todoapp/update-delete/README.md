@@ -148,7 +148,11 @@ inputCheckboxElement.addEventListener("change", () => {
 
 - [x] Todoアイテムを追加できる
 - [x] Todoアイテムの完了状態を更新できる
-- [x] Todoアプリムを削除できる
+- [x] Todoアイテムを削除できる
+
+ここまでのTodoアプリは次のURLで確認できます。
+
+> <a href="./event-emitter/" target="_blank">https://jsprimer.net/use-case/todoapp/event-model/event-emitter/</a>
 
 最後のセクションでは、`App.js`のリファクタリングを行い継続的に開発できるアプリの作り方についてを見ていきます。
 

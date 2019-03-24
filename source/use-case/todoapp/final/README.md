@@ -5,21 +5,22 @@ description: "1つのファイルに処理が集中するとメンテナンス�
 
 # Todoアプリのリファクタリング {#todo-app-refactoring}
 
-前のセクションでTodoアプリの機能の実装できました。
-しかし、App.jsを見てみるとほとんどがHTML要素の作成処理になっています。
-このようなHTML要素の作成処理は表示する内容が増えるほど行数が線形的に増えていきます。
+前のセクションで、予定していたTodoアプリの機能はすべて実装できました。
+しかし、App.jsを見てみるとほとんどがHTML要素の処理になっています。
+このようなHTML要素の作成処理は表示する内容が増えるほど、コードの行数が線形的に増えていきます。
 このままTodoアプリを拡張していくとApp.jsが肥大化してコードが読みにくく、メンテナンス性が低下してしまいます。
 
-App.jsの役割を振り返ってみましょう。
+ここで、App.jsの役割を振り返ってみましょう。
 `App`というクラスを持ち、このクラスではModelの初期化やHTML要素とModel間で発生するイベントを中継する役割をもっています。
 表示から発生したイベントをModelに伝え、Modelから発生した変更イベントを表示に伝えているという管理者といえます。
 
-このセクションでは`App`クラスをイベントの管理者という役割に集中させるため、`App`クラスに書かれているHTML要素を作成する処理を別のクラスへ移動させるリファクタリングを行います。
+このセクションでは`App`クラスをイベントの管理者という役割に集中させるため、`App`クラスに書かれているHTML要素を作成する処理を別のクラスへ切り出すリファクタリングを行います。
 
 ## コンポーネント {#component}
 
 `App`クラスの大部分を占めているのは`TodoItemModel`の配列に対応するTodoリストのHTML要素を作成する処理です。
-このような表示のための処理を部品ごとのモジュールに分け、`App`クラスから作成したViewモジュールを使うような形にリファクタリングをしていきます。ここでは、表示のための処理を扱うクラスをコンポーネントと呼び、`View`をファイル名の末尾につけることで区別します。
+このような表示のための処理を部品ごとのモジュールに分け、`App`クラスから作成したViewモジュールを使うような形にリファクタリングをしていきます。
+ここでは、表示のための処理を扱うクラスをコンポーネントと呼び、ここでは`View`をファイル名の末尾につけることで区別します。
 
 Todoリストの表示は次の2つの部品（コンポーネント）から成り立っています。
 
@@ -35,8 +36,9 @@ Todoリストの表示は次の2つの部品（コンポーネント）から成
 
 まずは、Todoアイテムに対応する`TodoItemView`から作成しています。
 
-`view/TodoItemView.js`ファイルを作成して、次のような`TodoItemView`クラスを`export`します。
-この`TodoItemView`はTodoアイテムに対応するHTML要素を返す`createElement`メソッドを持ちます。
+最初にViewのモジュールを格納する`src/view/`ディレクトリを作成しておきます。
+そして、`src/view/TodoItemView.js`ファイルを作成して、次のような`TodoItemView`クラスを`export`します。
+この`TodoItemView`は、Todoアイテムに対応するHTML要素を返す`createElement`メソッドを持ちます。
 
 [import, title:"src/view/TodoItemView.js"](./create-view/src/view/TodoItemView.js)
 
@@ -55,10 +57,10 @@ Todoリストの表示は次の2つの部品（コンポーネント）から成
 
 次はTodoリストに対応する`TodoListView`を作成します。
 
-`view/TodoListView.js`には次のような`TodoListView`クラスを`export`します。
+`src/view/TodoListView.js`ファイルを作成し、次のような`TodoListView`クラスを`export`します。
 この`TodoListView`は`TodoItemModel`の配列に対応するTodoリストのHTML要素を返す`createElement`メソッドを持ちます。
-[import, title:"src/view/TodoListView.js"](./create-view/src/view/TodoListView.js)
 
+[import, title:"src/view/TodoListView.js"](./create-view/src/view/TodoListView.js)
 
 `TodoListView#createElement`メソッドは`TodoItemView`を使いTodoアイテムのHTML要素を作り、`<li>`要素に追加していきます。
 この`TodoListView#createElement`メソッドも`onUpdateTodo`と`onDeleteTodo`のリスナー関数を受け取ります。
@@ -86,9 +88,9 @@ Todoリストの表示は次の2つの部品（コンポーネント）から成
 
 | イベントの流れ    | リスナー関数                                           | 役割                                    |
 | ----------------- | -------------------------------------------------- | --------------------------------------- |
-| `Model` -> `View` | ` this.todoListModel.onChange(listener)`            | `TodoListModel`が変更イベントを受け取る |
-| `View` -> `Model` | ` formElement.addEventListener("submit", listener)` | フォームの送信イベントを受け取る        |
-| `View` -> `Model` | ` onUpdateTodo: listener`                           | Todoアイテムのチェックボックスの更新イベントを受け取る    |
+| `Model` -> `View` | `this.todoListModel.onChange(listener)`            | `TodoListModel`が変更イベントを受け取る |
+| `View` -> `Model` | `formElement.addEventListener("submit", listener)` | フォームの送信イベントを受け取る        |
+| `View` -> `Model` | `onUpdateTodo: listener`                           | Todoアイテムのチェックボックスの更新イベントを受け取る    |
 | `View` -> `Model` | `onDeleteTodo: listener`                            | Todoアイテムの削除イベントを受け取る    |
 
 イベントの流れがViewからModelとなっているリスナー関数が3箇所あり、それぞれリスナー関数はコード上バラバラな位置に書かれています。
@@ -117,13 +119,13 @@ Todoリストの表示は次の2つの部品（コンポーネント）から成
 また、`App#mount`で`TodoListModel#onChange`などのイベントリスナーを登録していますが、そのイベントリスナーを解除していません。
 このTodoアプリではあまり問題にはなりませんが、イベントリスナーは登録したままだとメモリリークに繋がる場合もあります。
 
-そのため、余力がある人は次の残ったTodoを完成させてみてください。
+余力がある人は、次の残ったTodoを完成させてみてください。
 
 - [ ] タイトルが空の場合は、フォームを送信してもTodoアイテムを追加できないようにする
 - [ ] `App#mount`でイベントリスナーを登録に対応して、`App#unmout`を追加しイベントリスナーを解除する
 
-`App#mount`と対応する`App#unmount`を作成するTodoは、アプリケーションのライフサイクルを意識するという課題になります。
-ウェブページにも`load`というページ読み込みが完了した時に発生するイベントと、`unload`というページを破棄した時に発生するイベントがあります。
+`App#mount`と対応する`App#unmount`を作成するというTodoは、アプリケーションのライフサイクルを意識するという課題になります。
+ウェブページにはページ読み込みが完了した時に発生する`load`イベントと、読み込んだページを破棄した時に発生する`unload`イベントがあります。
 Todoアプリも`mount`と`unmount`を実装し、次のようにウェブページのライフサイクルに合わせられます。
 
 <!-- doctest:disable -->
@@ -152,7 +154,7 @@ window.addEventListener("unload", () => {
 
 今回Todoアプリという題材をユースケースに選んだのは、JavaScriptのウェブアプリケーションではよく利用されている題材であるためです。
 さまざまなライブラリを使ったTodoアプリの実装が[TodoMVC][]と呼ばれるサイトにまとめられています。
-今回作成したTodoアプリは、TodoMVCからフィルター機能などを削ったものをライブラリを使わずに実装しました。[^vanilajs]
+今回作成したTodoアプリは、TodoMVCからフィルター機能などを削ったものをライブラリを使わずに実装したものです。[^vanilajs]
 
 現実では、ライブラリを全く使わずウェブアプリケーションを実装することは殆どありません。
 ライブラリを使うことで、`html-util.js`のようなものは自分で書く必要はなくなったり、最後の課題として残ったライフサイクルの問題などは解決しやすくなります。
@@ -160,7 +162,7 @@ window.addEventListener("unload", () => {
 しかし、ライブラリを使って開発する場合でも、第一部の基本文法や第二部のユースケースで紹介したようなJavaScriptの基礎は重要です。
 なぜならライブラリも、これらの基礎の上に実装されているためです。
 
-また作るアプリケーションの種類や目的によって適切なライブラリは異なります。
+また、作るアプリケーションの種類や目的によって適切なライブラリは異なります。
 ライブラリによっては魔法のような機能を提供しているものもありますが、それらも何かしらの基礎となる技術があることは覚えておいてください。
 
 この書籍ではJavaScriptの基礎を中心に紹介しましたが、「[ECMAScript][]」の章で紹介したようにJavaScriptの基礎も年々更新されています。
