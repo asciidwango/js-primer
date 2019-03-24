@@ -61,7 +61,7 @@ console.log(inputElement.value); // => "input要素の入力内容"
 [import, title:"src/App.js"](./prevent-event/src/App.js)
 
 このままでは、`App#mount`は呼び出されないため何も行われません。
-そんのため、`index.js`も変更して、`App`クラスの`mount`メソッドを呼び出すようにします。
+そのため、`index.js`も変更して、`App`クラスの`mount`メソッドを呼び出すようにします。
 
 [import, title:"index.js"](./prevent-event/index.js)
 
