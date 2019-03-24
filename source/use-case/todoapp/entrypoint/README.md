@@ -216,7 +216,9 @@ import { App } from "./src/App.js";
 
 ## まとめ {#conclusion}
 
-このセクションでは次のことを行いました。
+このセクションでは、エントリポイントとなるHTMLを作成し、JavaScriptモジュールのエントリポイントとなるJavaScriptファイルを読み込むところまでを実装しました。
+
+## このセクションのチェックリスト {#section-checklist}
 
 - [x] `todoapp`という名前のプロジェクトディレクトリを作成した
 - [x] エントリポイントとなる`index.html`を作成した

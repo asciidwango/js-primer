@@ -133,7 +133,7 @@ const form = document.querySelector("#js-form");
 このセクションではHTMLでアプリの構造を定義し、CSSでアプリのスタイルを定義しました。
 次のセクションではJavaScriptモジュールを作成していき、現在は空であるTodoリストを更新していきます。
 
-## このセクションのチェックボックス  {#section-checkbox}
+## このセクションのチェックリスト {#section-checklist}
 
 - [x] これから実装するTodoアプリの構成要素を理解した
 - [x] HTML、CSS、JavaScriptの役割の違いを理解した

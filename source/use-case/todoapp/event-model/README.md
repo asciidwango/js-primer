@@ -266,7 +266,7 @@ todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.to
 
 次のセクションでは、今回のモデルと同じように「表示」に関しても整理を行い、残りの「Todoアイテムの更新」や「Todoアイテムの削除」の機能を実装しています。
 
-## このセクションのチェックボックス {#section-checkbox}
+## このセクションのチェックリスト {#section-checklist}
 
 - [x] 直接DOMを更新する問題について理解した
 - [x] `EventEmitter`クラスでイベントの仕組みを実装した
