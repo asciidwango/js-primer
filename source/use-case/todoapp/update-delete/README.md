@@ -152,4 +152,4 @@ inputCheckboxElement.addEventListener("change", () => {
 
 最後のセクションでは、`App.js`のリファクタリングを行い継続的に開発できるアプリの作り方についてを見ていきます。
 
-[ユースケース: Ajax通信]: ../ajaxapp/xhr/#xml-http-request
+[ユースケース: Ajax通信]: ../../ajaxapp/xhr/#xml-http-request
