@@ -224,9 +224,9 @@ import { App } from "./src/App.js";
 - [x] ローカルサーバを使って`index.html`が表示できた
 - [x] `src/App.js`を作成し、`index.js`から`import`文で読み込めるのを確認した
 
-現在のTodoアプリは次のURLで確認できます。
+ここまでのTodoアプリは次のURLで確認できます。
 
-- <https://jsprimer.net/use-case/todoapp/entrypoint/module-entry/>
+> <a href="./module-entry" target="_blank">https://jsprimer.net/use-case/todoapp/entrypoint/module-entry/</a>
 
 [Ajax通信:エントリポイント]: ../../ajaxapp/entrypoint/README.md
 [Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy
