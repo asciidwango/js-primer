@@ -135,14 +135,13 @@ const form = document.querySelector("#js-form");
 
 ## このセクションのチェックボックス  {#section-checkbox}
 
-- [ ] これから実装するTodoアプリの構成要素を理解した
-- [ ] HTML、CSS、JavaScriptの役割の違いを理解した
-- [ ] Todoアプリの見た目をHTMLとCSSを使って定義できた
+- [x] これから実装するTodoアプリの構成要素を理解した
+- [x] HTML、CSS、JavaScriptの役割の違いを理解した
+- [x] Todoアプリの見た目をHTMLとCSSで定義した
 
 ここまでのTodoアプリは次のURLで実際に確認できます。
 
-> <a href="./app-structure/todo-html/" target="_blank">https://jsprimer.net/use-case/todoapp/app-structure/todo-html/</a>
-
+> <a href="./app-structure/todo-html/" target="_blank">https://jsprimer.net/use-case/todoapp/app-structure/todo-html/</a>∑
 
 [エントリポイント]: ../entrypoint/README.md
 [CSSセレクタ]: https://developer.mozilla.org/ja/docs/Learn/CSS/Introduction_to_CSS/Selectors

@@ -3,18 +3,20 @@ author: azu
 description: "TodoアプリへTodoアイテムを追加するフォームを作成していきます。フォームに入力された内容されたと送信イベントをどのようにハンドリングしていくかを見ていきます。"
 ---
 
-# フォームとイベント {#form-event}
+# Todoの追加機能を実装する {#form-event}
 
-ここからはJavaScriptでTodoアプリの動作を実際に作っていきます。
+ここからはJavaScriptでTodoアプリの機能を実際に作っていきます。
 
-このセクションでは、前のセクションでHTMLに目印を付けたTodoリスト（`#js-todo-list`）に対してTodoアイテムを追加する処理を作っていきます。
+このセクションでは、前のセクションでHTMLに目印を付けたTodoリスト（`#js-todo-list`）に対してTodoアイテムを追加する処理を実装していきます。
 
 ## Todoアイテムの追加 {#add-todo-item}
 
-ユーザーが次のような操作を行い、Todoアイテムを追加します。
+まず、Todoアプリではどのような操作をしたら、Todoアイテムを追加できるかを見ていきます。
+
+ユーザーが次のような操作を行ったら、Todoアイテムを追加します。
 
 1. 入力欄にTodoアイテムのタイトルを入力する
-2. 入力欄でEnterを押し送信する
+2. 入力欄でEnterキーを押し送信する
 3. TodoリストにTodoアイテムが追加される
 
 これをJavaScriptで実現するには次のことが必要です。
@@ -27,7 +29,7 @@ description: "TodoアプリへTodoアイテムを追加するフォームを作�
 
 ## 入力内容をコンソールに表示 {#input-to-console}
 
-form要素でEnterを押し送信すると`submit`イベントが発生します。
+form要素でEnterキーを押し送信すると`submit`イベントが発生します。
 この`submit`イベントは`addEventListener`メソッドを利用することで受け取れます。
 
 <!-- doctest:disable -->
@@ -63,12 +65,12 @@ console.log(inputElement.value); // => "input要素の入力内容"
 
 [import, title:"index.js"](./prevent-event/index.js)
 
-これらの変更後にブラウザでページをリロードすると、`App#mount`が実行されるようになります。
+これらの変更後にブラウザでページをリロードすると、`App#mount`メソッドが実行されるようになります。
 `submit`イベントがリッスンされているので、入力欄に何か入力してEnterで送信してみるとその内容がコンソールに表示されます。
 
 ![入力内容がコンソールに表示される](./img/form-event.png)
 
-先ほどの`App#mount`では、`submit`イベントのイベントリスナー内で`event.preventDefault`メソッドを呼び出しています。
+先ほどの`App#mount`メソッドでは、`submit`イベントのイベントリスナー内で`event.preventDefault`メソッドを呼び出しています。
 `event.preventDefault`メソッドは、`submit`イベントの発生元であるフォームがもつデフォルトの動作をキャンセルするメソッドです。
 
 フォームがもつデフォルトの動作とは、フォームの内容を指定したURLへ送信するという動作です。
@@ -106,7 +108,6 @@ formElement.addEventListener("submit", (event) => {
 todoapp
 ├── index.html
 ├── index.js (App#mountの呼び出し)
-├── package.json
 └── src
     └── App.js (App#mountの実装)
 ```
@@ -185,13 +186,11 @@ render(newElement, document.body);
 todoapp
 ├── index.html
 ├── index.js
-├── package.json
 └── src
     ├── App.js(Todoアイテムの表示の実装)
     └── view
-        └── html-util.js(追加)
+        └── html-util.js(新規追加)
 ```
-
 
 現在のTodoアプリは次のURLで実際に確認できます。
 
@@ -207,6 +206,13 @@ todoapp
 このように直接DOMを更新するという方法はコードが短くなりますが、DOMのみにしか状態は残らないため柔軟性がなくなるという問題があります。
 
 次のセクションではどのような問題がおきるかや、それを解決するための仕組みを見ていきます。
+
+## このセクションのチェックボックス  {#section-checkbox}
+
+- [x] フォームの入力内容をイベントで受け取ることができた
+- [x] HTML文字列からHTML要素を作成する`html-util.js`を実装した
+- [x] フォームからTodoアイテムを追加できた
+- [x] Todoアイテムの追加に合わせてTodoアイテム数を更新できた
 
 [ajaxapp: HTML文字列をDOMに追加する]: ../../ajaxapp/display/README.md#html-to-dom
 [template要素]: https://developer.mozilla.org/ja/docs/Web/HTML/Element/template
