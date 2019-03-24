@@ -287,6 +287,6 @@ export class App {
 
 ここまでのTodoアプリは次のURLで確認できます。
 
-> <a href="./event-emitter/" target="_blank">https://jsprimer.net/use-case/todoapp/event-model/event-emitter/</a>
+- <https://jsprimer.net/use-case/todoapp/event-model/event-emitter/>
 
 [Todoアイテムの追加を実装する]: ../form-event/README.md

@@ -141,7 +141,7 @@ const form = document.querySelector("#js-form");
 
 ここまでのTodoアプリは次のURLで実際に確認できます。
 
-> <a href="./todo-html/" target="_blank">https://jsprimer.net/use-case/todoapp/app-structure/todo-html/</a>
+- <https://jsprimer.net/use-case/todoapp/app-structure/todo-html/>
 
 [エントリポイント]: ../entrypoint/README.md
 [CSSセレクタ]: https://developer.mozilla.org/ja/docs/Learn/CSS/Introduction_to_CSS/Selectors

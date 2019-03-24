@@ -115,7 +115,7 @@ todoapp
 
 ここまでのTodoアプリは次のURLで確認できます。
 
-> <a href="./prevent-event/" target="_blank">https://jsprimer.net/use-case/todoapp/form-event/prevent-event/</a>
+- <https://jsprimer.net/use-case/todoapp/form-event/prevent-event/>
 
 ## 入力内容をTodoリストに表示 {#input-to-todolist}
 
@@ -194,7 +194,7 @@ todoapp
 
 ここまでのTodoアプリは次のURLで確認できます。
 
-> <a href="./add-todo-item/" target="_blank">https://jsprimer.net/use-case/todoapp/form-event/add-todo-item/</a>
+- <https://jsprimer.net/use-case/todoapp/form-event/add-todo-item/>
 
 ## まとめ {#conclusion}
 

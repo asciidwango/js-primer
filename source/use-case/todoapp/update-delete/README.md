@@ -152,7 +152,7 @@ inputCheckboxElement.addEventListener("change", () => {
 
 ここまでのTodoアプリは次のURLで確認できます。
 
-> <a href="./event-emitter/" target="_blank">https://jsprimer.net/use-case/todoapp/event-model/event-emitter/</a>
+- <https://jsprimer.net/use-case/todoapp/event-model/event-emitter/>
 
 最後のセクションでは、`App.js`のリファクタリングを行い継続的に開発できるアプリの作り方についてを見ていきます。
 
