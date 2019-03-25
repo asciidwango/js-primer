@@ -6,11 +6,11 @@ description: "1つのファイルに処理が集中するとメンテナンス�
 # Todoアプリのリファクタリング {#todo-app-refactoring}
 
 前のセクションで、予定していたTodoアプリの機能はすべて実装できました。
-しかし、App.jsを見てみるとほとんどがHTML要素の処理になっています。
+しかし、`App.js`を見てみるとほとんどがHTML要素の処理になっています。
 このようなHTML要素の作成処理は表示する内容が増えるほど、コードの行数が線形的に増えていきます。
-このままTodoアプリを拡張していくとApp.jsが肥大化してコードが読みにくく、メンテナンス性が低下してしまいます。
+このままTodoアプリを拡張していくと`App.js`が肥大化してコードが読みにくく、メンテナンス性が低下してしまいます。
 
-ここで、App.jsの役割を振り返ってみましょう。
+ここで、`App.js`の役割を振り返ってみましょう。
 `App`というクラスを持ち、このクラスではModelの初期化やHTML要素とModel間で発生するイベントを中継する役割をもっています。
 表示から発生したイベントをModelに伝え、Modelから発生した変更イベントを表示に伝えているという管理者といえます。
 
@@ -28,6 +28,7 @@ Todoリストの表示は次の2つの部品（コンポーネント）から成
 - TodoアイテムをリストとしてまとめたTodoリストコンポーネント
 
 この部品に対応するように次のViewのモジュールを作成していきます。
+これらのViewのモジュールは、`src/view/`ディレクトリに作成していきます。
 
 - `TodoItemView`: Todoアイテムコンポーネント
 - `TodoListView`: Todoリストコンポーネント
@@ -36,8 +37,7 @@ Todoリストの表示は次の2つの部品（コンポーネント）から成
 
 まずは、Todoアイテムに対応する`TodoItemView`から作成しています。
 
-最初にViewのモジュールを格納する`src/view/`ディレクトリを作成しておきます。
-そして、`src/view/TodoItemView.js`ファイルを作成して、次のような`TodoItemView`クラスを`export`します。
+`src/view/TodoItemView.js`ファイルを作成して、次のような`TodoItemView`クラスを`export`します。
 この`TodoItemView`は、Todoアイテムに対応するHTML要素を返す`createElement`メソッドを持ちます。
 
 [import, title:"src/view/TodoItemView.js"](./create-view/src/view/TodoItemView.js)
