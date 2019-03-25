@@ -16,27 +16,26 @@ Todoアプリは、次のような機能を実装していきます。
 - Todoアイテム数（合計）の表示
 
 また、アプリと呼ぶからには見た目もちょっとしたものにしないと雰囲気が出ません。
-このセクションでは、多くのウェブアプリケーションを構成するHTML、CSS、JavaScriptの役割について見ていきます。
-このセクションで見た目だけで機能がないハリボテのTodoアプリは完成させ、次のセクションから実際にJavaScriptを使ってTodoアプリを実装していきます。
+このセクションでは、まずウェブアプリケーションを構成するHTML、CSS、JavaScriptの役割について見ていきます。
+このセクションで見た目だけで機能がないハリボテのTodoアプリは完成させ、次のセクションから実際にJavaScriptを使ってTodoアプリの機能を実装していきます。
 
 ## HTMLとCSSとJavaScript {#html-css-javascript}
 
 Todoアプリはブラウザで実行する向けに書いていきますが、ウェブアプリを作成するにはHTMLやCSS、JavaScriptを組み合わせて書いていきます。
+今回はHTTP通信などはいらないクライアントサイドのみで解決するウェブアプリなので、サーバーサイドの言語は登場しません。
 
 - HTML: コンテンツの構造を記述するためのマークアップ言語
 - CSS: HTMLの見た目を装飾するスタイルシート言語
 - JavaScript: インタラクションといった動作を扱うプログラミング言語
 
 多くのウェブアプリケーションはHTMLでコンテンツの構造を定義し、CSSで見た目を装飾し、JavaScriptで動作を付けることで実装されます。
-JavaScriptは動的にHTMLやCSSを定義できるため、役割が明確に見えない場合もあります。
-しかし、HTML、CSS、JavaScriptを組み合わせてアプリが作られていることには違いありません。
+そのため、ウェブアプリはHTML、CSS、JavaScriptを組み合わせて作られています。
 
 一方、ブラウザにはiOSやAndroidのようにOSが提供するようなUIフレームワークの標準はありません。
-そのためユーザーの実装したさまざまなUIフレームワークがあります。
-それらのフレームワークを使うか自分でアプリごとに定義してユーザーインターフェースを作成します。
-これはTodoアプリという題材をとってみても、書き方が人によって全く異なる場合があります。
+また、ユーザーが実装したさまざまな種類のUIフレームワークがあります。
+そのため、Todoアプリという題材をとってみても、フレームワークや人によって書き方が全く異なる場合もあります。
 
-今回のTodoアプリは特別なフレームワークを使わずに、そのままのHTML、CSS、JavaScriptを組み合わせて書いていきます。
+今回のTodoアプリは特別なUIフレームワークを使わずに、そのままのHTML、CSS、JavaScriptを組み合わせて書いていきます。
 
 ## Todoアプリの構造をHTMLで定義する {#todo-html}
 
@@ -44,14 +43,14 @@ JavaScriptは動的にHTMLやCSSを定義できるため、役割が明確に見
 ここで定義したHTMLとCSSは最後までこの形のまま利用します。
 次のセクションから変更していくのはJavaScriptだけということになります。
 
-[エントリポイント][]のセクションで作成した`todoapp`ディレクトリの`index.html`を次の内容に変更します。
+「[エントリポイント][]」のセクションで作成した`todoapp`ディレクトリの`index.html`を次の内容に変更します。
 
-[import, todo-html/index.html](./todo-html/index.html)
+[import, title:"index.html"](./todo-html/index.html)
 
 HTMLの内容を変更後にブラウザでアクセスすると次のような表示になります。
-この段階では動作となるJavaScriptは定義していませんが、見た目だけのTodoアプリはこれで完成です。
+まだJavaScriptでTodoアプリの機能は実装していませんが、見た目だけのTodoアプリはこれで完成です。
 
-![todo-html](./img/todo-html.png)
+![todoappのHTMLとCSSによる骨組み](./img/todo-html.png)
 
 実際に変更したHTMLを上から順番に見てみましょう。
 
@@ -122,7 +121,8 @@ const form = document.querySelector("#js-form");
 `js-todo-list`という`id`属性を付けた`div`要素が今回のTodoアプリのメインとなるTodoリストです。
 この`div`要素の中身はJavaScriptで動的に更新されるため、HTMLでは目印となる`id`属性をつけています。
 
-初期表示時はTodoリストの中身がまだ空であるため、何も表示されていません。（HTMLコメントは見た目には表示されません）
+初期表示時はTodoリストの中身がまだ空であるため、何も表示されていません。
+また`<!--`と`-->`で囲まれた範囲はHTMLコメントであるため、表示されません。
 
 ### 5. Todoアイテム数の表示 {#comment-todo-count}
 
@@ -134,19 +134,13 @@ const form = document.querySelector("#js-form");
 このセクションではHTMLでアプリの構造を定義し、CSSでアプリのスタイルを定義しました。
 次のセクションではJavaScriptモジュールを作成していき、現在は空であるTodoリストを更新していきます。
 
-現在のTodoアプリのディレクトリ構造は次のようになります。
+## このセクションのチェックリスト {#section-checklist}
 
-```
-todoapp
-├── index.html(今回の変更点)
-├── index.js
-├── node_modules
-├── package.json
-└── src
-    └── App.js
-```
+- [x] 実装するTodoアプリの構成要素を理解した
+- [x] HTML、CSS、JavaScriptの役割の違いを理解した
+- [x] Todoアプリの見た目をHTMLとCSSで定義した
 
-現在のTodoアプリは次のURLで実際に確認できます。
+ここまでのTodoアプリは次のURLで確認できます。
 
 - <https://jsprimer.net/use-case/todoapp/app-structure/todo-html/>
 

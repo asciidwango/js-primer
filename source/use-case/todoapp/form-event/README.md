@@ -3,18 +3,20 @@ author: azu
 description: "TodoアプリへTodoアイテムを追加するフォームを作成していきます。フォームに入力された内容されたと送信イベントをどのようにハンドリングしていくかを見ていきます。"
 ---
 
-# フォームとイベント {#form-event}
+# Todoアイテムの追加を実装する {#form-event}
 
-ここからはJavaScriptでTodoアプリの動作を実際に作っていきます。
+ここからはJavaScriptでTodoアプリの機能を作成していきます。
 
-このセクションでは、前のセクションでHTMLに目印を付けたTodoリスト（`#js-todo-list`）に対してTodoアイテムを追加する処理を作っていきます。
+このセクションでは、前のセクションでHTMLに目印を付けたTodoリスト（`#js-todo-list`）に対してTodoアイテムを追加する処理を実装します。
 
 ## Todoアイテムの追加 {#add-todo-item}
 
-ユーザーが次のような操作を行い、Todoアイテムを追加します。
+まず、Todoアプリではどのような操作をしたら、Todoアイテムを追加できるかを見ていきます。
+
+Todoアプリでは、ユーザーが次のような操作を行った場合に、Todoアイテムを追加します。
 
 1. 入力欄にTodoアイテムのタイトルを入力する
-2. 入力欄でEnterを押し送信する
+2. 入力欄でEnterキーを押し送信する
 3. TodoリストにTodoアイテムが追加される
 
 これをJavaScriptで実現するには次のことが必要です。
@@ -27,7 +29,7 @@ description: "TodoアプリへTodoアイテムを追加するフォームを作�
 
 ## 入力内容をコンソールに表示 {#input-to-console}
 
-form要素でEnterを押し送信すると`submit`イベントが発生します。
+form要素でEnterキーを押し送信すると`submit`イベントが発生します。
 この`submit`イベントは`addEventListener`メソッドを利用することで受け取れます。
 
 <!-- doctest:disable -->
@@ -59,16 +61,16 @@ console.log(inputElement.value); // => "input要素の入力内容"
 [import, title:"src/App.js"](./prevent-event/src/App.js)
 
 このままでは、`App#mount`は呼び出されないため何も行われません。
-そんのため、`index.js`も変更して、`App`クラスの`mount`メソッドを呼び出すようにします。
+そのため、`index.js`も変更して、`App`クラスの`mount`メソッドを呼び出すようにします。
 
 [import, title:"index.js"](./prevent-event/index.js)
 
-これらの変更後にブラウザでページをリロードすると、`App#mount`が実行されるようになります。
+これらの変更後にブラウザでページをリロードすると、`App#mount`メソッドが実行されるようになります。
 `submit`イベントがリッスンされているので、入力欄に何か入力してEnterで送信してみるとその内容がコンソールに表示されます。
 
 ![入力内容がコンソールに表示される](./img/form-event.png)
 
-先ほどの`App#mount`では、`submit`イベントのイベントリスナー内で`event.preventDefault`メソッドを呼び出しています。
+先ほどの`App#mount`メソッドでは、`submit`イベントのイベントリスナー内で`event.preventDefault`メソッドを呼び出しています。
 `event.preventDefault`メソッドは、`submit`イベントの発生元であるフォームがもつデフォルトの動作をキャンセルするメソッドです。
 
 フォームがもつデフォルトの動作とは、フォームの内容を指定したURLへ送信するという動作です。
@@ -106,15 +108,14 @@ formElement.addEventListener("submit", (event) => {
 todoapp
 ├── index.html
 ├── index.js (App#mountの呼び出し)
-├── package.json
 └── src
     └── App.js (App#mountの実装)
 ```
 
 
-ここまでのTodoアプリは次のURLで実際に確認できます。
+ここまでのTodoアプリは次のURLで確認できます。
 
-> <a href="./prevent-event/" target="_blank">https://jsprimer.net/use-case/todoapp/form-event/prevent-event/</a>
+- <https://jsprimer.net/use-case/todoapp/form-event/prevent-event/>
 
 ## 入力内容をTodoリストに表示 {#input-to-todolist}
 
@@ -174,7 +175,7 @@ render(newElement, document.body);
 
 [import, title:"src/App.js"](./add-todo-item/src/App.js)
 
-これらの変更後にブラウザでページをリロードすると、入力内容を送信するたびにTodoリスト下へTodoアイテムが追加されます。
+これらの変更後にブラウザでページをリロードしてから、フォームに入力してからEnterを押すとTodoリストに**Todoアイテムが追加**されます。
 また、入力内容を送信するたびに`todoItemCount`が加算され、**Todoアイテム数**の表示も更新されます。
 
 ![Todoリストへアイテムを追加](./img/add-todo-item.png)
@@ -185,28 +186,39 @@ render(newElement, document.body);
 todoapp
 ├── index.html
 ├── index.js
-├── package.json
 └── src
     ├── App.js(Todoアイテムの表示の実装)
     └── view
-        └── html-util.js(追加)
+        └── html-util.js(新規追加)
 ```
 
+ここまでのTodoアプリは次のURLで確認できます。
 
-現在のTodoアプリは次のURLで実際に確認できます。
-
-> <a href="./add-todo-item/" target="_blank">https://jsprimer.net/use-case/todoapp/form-event/add-todo-item/</a>
+- <https://jsprimer.net/use-case/todoapp/form-event/add-todo-item/>
 
 ## まとめ {#conclusion}
 
 このセクションではform要素の`submit`イベントをリッスンし、入力内容を元にTodoアイテムをTodoリストの追加を実装しました。
-今回のTodoアイテムの追加のように多くのウェブアプリは、何らかのイベントが発生し、そのイベントをリッスンして表示を更新します。
+今回のTodoアイテムの追加のように多くのウェブアプリは、何らかのイベントをリッスンして表示を更新します。
 このようなイベントが発生したことを元に処理を進める方法を**イベント駆動**（イベントドリブン）と呼びます。
 
-今回のTodoアイテムの追加では、`submit`イベントを入力にして、**直接**Todoリスト要素を追加するという方法を取っていました。
+今回のTodoアイテムの追加では、`submit`イベントを入力にして、Todoリスト要素を**直接HTML要素として追加**するという方法を取っていました。
 このように直接DOMを更新するという方法はコードが短くなりますが、DOMのみにしか状態は残らないため柔軟性がなくなるという問題があります。
 
-次のセクションではどのような問題がおきるかや、それを解決するための仕組みを見ていきます。
+次のセクションでは、実際にどのような問題がおきるかやそれを解決するための仕組みを見ていきます。
+
+## このセクションのチェックリスト {#section-checklist}
+
+- [x] フォームの入力内容をイベントで受け取ることができた
+- [x] HTML文字列からHTML要素を作成する`html-util.js`を実装した
+- [x] フォームからTodoアイテムを追加できた
+- [x] Todoアイテムの追加に合わせてTodoアイテム数を更新できた
+
+このセクションでTodoアプリにTodoアイテムの追加する機能が実装できました。
+
+- [x] Todoアイテムを追加できる
+- [ ] Todoアイテムの完了状態を更新できる
+- [ ] Todoアイテムを削除できる
 
 [ajaxapp: HTML文字列をDOMに追加する]: ../../ajaxapp/display/README.md#html-to-dom
 [template要素]: https://developer.mozilla.org/ja/docs/Web/HTML/Element/template

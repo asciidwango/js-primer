@@ -3,7 +3,7 @@ author: azu
 description: "Todoアプリの残りの機能である「Todoアイテムの更新」と「Todoアイテムの削除」を実装していきます。"
 ---
 
-# Todoの更新と削除を実装する {#todo-item-update-and-delete}
+# Todoアイテムの更新と削除を実装する {#todo-item-update-and-delete}
 
 このセクションではTodoアプリの残りの機能である「Todoアイテムの更新」と「Todoアイテムの削除」を実装していきます。
 
@@ -148,7 +148,11 @@ inputCheckboxElement.addEventListener("change", () => {
 
 - [x] Todoアイテムを追加できる
 - [x] Todoアイテムの完了状態を更新できる
-- [x] Todoアプリムを削除できる
+- [x] Todoアイテムを削除できる
+
+ここまでのTodoアプリは次のURLで確認できます。
+
+- <https://jsprimer.net/use-case/todoapp/event-model/event-emitter/>
 
 最後のセクションでは、`App.js`のリファクタリングを行い継続的に開発できるアプリの作り方についてを見ていきます。
 

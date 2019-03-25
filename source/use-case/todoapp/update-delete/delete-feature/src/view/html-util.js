@@ -14,7 +14,7 @@ export function htmlToElement(html) {
 }
 
 /**
- * HTML文字列からDOM Nodeを作成して返す
+ * HTML文字列からDOM Nodeを作成して返すタグ関数
  * @return {Element}
  */
 export function element(strings, ...values) {
