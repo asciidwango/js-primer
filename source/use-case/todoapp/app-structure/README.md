@@ -140,7 +140,7 @@ const form = document.querySelector("#js-form");
 - [x] HTML、CSS、JavaScriptの役割の違いを理解した
 - [x] Todoアプリの見た目をHTMLとCSSで定義した
 
-ここまでのTodoアプリは次のURLで実際に確認できます。
+ここまでのTodoアプリは次のURLで確認できます。
 
 - <https://jsprimer.net/use-case/todoapp/app-structure/todo-html/>
 
