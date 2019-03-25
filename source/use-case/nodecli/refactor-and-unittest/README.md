@@ -85,14 +85,14 @@ Mochaをインストールした後、package.jsonの`scripts`プロパティを
 
 この記述により、`npm test`コマンドを実行したときに`mocha`コマンドが呼び出されます。
 試しに`npm test`コマンドを実行し、Mochaによるテストが行われることを確認しましょう。
-まだ何もテストを書いていないので、`0 passing`と表示されます。
+まだテストファイルを作っていないので、`Error: No test files found`と表示されます。
 
 
 ```shell-session
 $ npm test
 > mocha
 
- 0 passing (2ms)
+ Error: No test files found
 ```
 
 ## ユニットテストを記述する {#write-unit-test}
