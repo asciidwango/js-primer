@@ -80,7 +80,7 @@ GitBookのbuildかつWatchをします。
 
 ## License
 
-Copyright (c) 2016- azu and Suguru Inatomi
+Copyright (c) 2016-present azu and Suguru Inatomi
 
 - ソースコード: MITライセンス
 - 文章: [CC BY-NC 4.0](http://creativecommons.org/licenses/by-nc/4.0/)
