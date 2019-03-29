@@ -413,7 +413,7 @@ const promise = new Promise(executor);
 ```
 
 この`Promise`インスタンスの`Promise#then`メソッドで、Promiseが`resolve`（成功）、`reject`（失敗）したときに呼ばれるコールバック関数を登録します。
-`then`メソッドでは2つの引数を渡すことができ、第一引数には`resolve`（成功）時に呼ばれるコールバック関数、第二引数には`reject`（失敗）時に呼ばれるコールバック関数を渡します。
+`then`メソッドの第一引数には`resolve`（成功）時に呼ばれるコールバック関数、第二引数には`reject`（失敗）時に呼ばれるコールバック関数を渡します。
 
 {{book.console}}
 <!-- doctest:async:16 -->
@@ -583,7 +583,7 @@ Promiseの`then`メソッドや`catch`メソッドによる処理がわかった
 そのため、`resolve`を呼び出した後に`reject`を呼び出しても、その`Promise`インスタンスは最初に呼び出した`resolve`によって**Fulfilled**のままとなります。
 
 次のコードでは、`reject`を呼び出しても状態が変化しないため、`then`で登録したonRejectedのコールバック関数は呼び出されません。
-`then`メソッドで登録したコールバック関数は状態が変化した場合に一度だけ呼び出されます。
+`then`メソッドで登録したコールバック関数は、状態が変化した場合に一度だけ呼び出されます。
 
 {{book.console}}
 <!-- doctest:async:16 -->
@@ -673,7 +673,8 @@ console.log("1. 同期的な処理が実行されました");
 
 このコードを実行すると、すべての同期的な処理が実行された後に、`then`メソッドのコールバック関数が非同期なタイミングで実行されることがわかります。
 
-`Promise.resolve`メソッドは`new Promise`の糖衣構文であるため、この実行順序は`new Promise`を使った場合も同じです。次のコードはさきほどの`Promise.resolve`メソッドを使ったものと同じ動作になります。
+`Promise.resolve`メソッドは`new Promise`の糖衣構文であるため、この実行順序は`new Promise`を使った場合も同じです。
+次のコードはさきほどの`Promise.resolve`メソッドを使ったものと同じ動作になります。
 
 {{book.console}}
 <!-- doctest:async:16 -->
