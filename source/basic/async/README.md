@@ -333,10 +333,10 @@ function dummyFetch(path, successCallback, failureCallback) {
 ```
 
 このように**非同期処理の中**で例外が発生した場合に、その例外を**非同期処理の外**へ伝える方法はさまざまな手段が考えられます。
-エラーファーストコールバックはその形を決めた**ただの共通のルール**の1つです。そのため、非同期処理ではエラーファーストコールバック以外の方法が使われていることもあります。
-一方で、非同期処理における例外処理のルールを決めることのメリットとして、エラーハンドリングのパターン化ができます。
+エラーファーストコールバックはその形を決めた**ただの共通のルール**の1つです。
+ルールを決めることのメリットとして、エラーハンドリングのパターン化ができます。
 
-しかし、エラーファーストコールバックは非同期処理におけるエラーハンドリングの書き方を決めた**ただのルール**で仕様ではありません。
+しかし、エラーファーストコールバックは非同期処理におけるエラーハンドリングの書き方を決めた**ただのルール**であるため仕様ではありません。
 そのため、エラーファーストコールバックというルールを破っても、問題があるわけではありません。
 
 しかしながら、最初に書いたようにJavaScriptでは非同期処理を扱うケースが多いです。
@@ -420,8 +420,8 @@ const promise = new Promise(executor);
 ```js
 // `Promise`インスタンスを作成
 const promise = new Promise((resolve, reject) => {
-    // 非同期の処理が成功したときはresolveを呼ぶ
-    // または、非同期の処理が失敗したときにはrejectを呼ぶ
+    // 非同期の処理が成功したときはresolve()を呼ぶ
+    // 非同期の処理が失敗したときにはreject()を呼ぶ
 });
 const onFulfilled = () => {
     console.log("resolveされたときに呼ばれる");
@@ -452,6 +452,7 @@ promise.then(onFulfilled, onRejected);
 `reject`に渡したエラーオブジェクトは、`then`メソッドの2番目のコールバック関数（`onRejected`）に渡されます。
 
 <!-- doctest:async:1000 -->
+{{book.console}}
 ```js
 /**
  * 1000ミリ秒未満のランダムなタイミングでレスポンスを擬似的にデータ取得する関数
@@ -616,7 +617,7 @@ const promise = new Promise((resolve, reject) => {
     }, 16);
 });
 promise.then(() => {
-    console.log("最初のresolve時の一度しか呼ばれない");
+    console.log("最初のresolve時に一度だけ呼ばれる");
 }, (error) => {
     // この行は呼び出されない
 });
@@ -637,10 +638,12 @@ const fulFilledPromise = Promise.resolve();
 ```
 
 `Promise.resolve`メソッドは`new Promise`の糖衣構文（シンタックスシュガー）です。
-そのため、`Promise.resolve`メソッドは次のコードと同じ意味になります。
+糖衣構文とは、同じ意味の処理を元の構文よりシンプルに書ける別の書き方のことです。
+`Promise.resolve`メソッドは次のコードの糖衣構文です。
 
 <!-- doctest:async:16 -->
 ```js
+// const fulFilledPromise = Promise.resolve(); と同じ意味
 const fulFilledPromise = new Promise((resolve) => {
     resolve();
 });
@@ -689,7 +692,7 @@ promise.then(() => {
 console.log("2. 同期的な処理が実行されました");
 ```
 
-このコードを実行すると、まず`Promise`のコンストラクタ関数が実行され、続いて同期的な処理が実行されます。最後に`then`メソッドで登録していたコールバック関数が非同期に呼ばれることがわかります。
+このコードを実行すると、まず`Promise`のコンストラクタ関数が実行され、続いて同期的な処理が実行されます。最後に`then`メソッドで登録していたコールバック関数が非同期的に呼ばれることがわかります。
 
 ## `Promise.reject` {#promise-reject}
 
@@ -724,7 +727,8 @@ Promise.reject(new Error("エラー")).catch(() => {
 console.log("1. 同期的な処理が実行されました");
 ```
 
-`Promise.resolve`や`Promise.reject`を使うことで短くかけるため、テストコードなどで利用されることがあります。また、`Promise.reject`は次に解説するPromiseチェーンにおいて、Promiseの状態を操作することに利用できます。
+`Promise.resolve`や`Promise.reject`は短くかけるため、テストコードなどで利用されることがあります。
+また、`Promise.reject`は次に解説するPromiseチェーンにおいて、Promiseの状態を操作することに利用できます。
 
 ### Promiseチェーン {#promise-chain}
 
@@ -846,7 +850,7 @@ Promise.resolve().then(() => {
 });
 ```
 
-また、Promiseチェーンで失敗を`catch`メソッドなどでキャッチすると、次に呼ばれるのは成功時の処理です。
+また、Promiseチェーンで失敗を`catch`メソッドなどで一度キャッチすると、次に呼ばれるのは成功時の処理です。
 これは、`then`や`catch`メソッドは**Fulfilled**状態のPromiseインスタンスを作成して返すためです。
 そのため、一度キャッチするとそこからはもとの`then`で登録した処理が呼ばれるPromiseチェーンに戻ります。
 
@@ -943,26 +947,23 @@ Promise.resolve().then(function onFulfilledA() {
 {{book.console}}
 <!-- doctest:async:16 -->
 ```js
-function asyncFunction() {
+function main() {
     return Promise.reject(new Error("エラー"));
 }
-function main() {
-    return asyncFunction().catch(error => {
-        // asyncFunctionで発生したエラーのログを出力する
-        console.log(error);
-        // Promiseチェーンはそのままエラーを継続させる
-        return Promise.reject(error);
-    });
-}
 // mainはRejectedなPromiseを返す
-main().then(() => {
-    // この行は実行されません
+main().catch(error => {
+    // asyncFunctionで発生したエラーのログを出力する
+    console.log(error);
+    // Promiseチェーンはそのままエラーを継続させる
+    return Promise.reject(error);
+}).then(() => {
+    // 前のcatchでRejectedなPromiseが返されたため、この行は実行されません
 }).catch(error => {
     console.log("メインの処理が失敗した");
 });
 ```
 
-#### Promiseチェーンの最後で処理を書く {#promise-finally}
+#### [ES2018] Promiseチェーンの最後で処理を書く {#promise-finally}
 
 `Promise#finally`メソッドは成功時、失敗時どちらの場合でも呼び出すコールバック関数を登録できます。
 `try...catch...finally`構文の`finally`節と同様の役割をもつメソッドです。
@@ -1218,9 +1219,9 @@ Promise.race([
 ```
 
 このようにPromiseを使うことで非同期処理のさまざまなパターンが形成できます。
-より詳しいPromiseの使い方については[JavaScript Promiseの本][]というオンラインで公開されている文書にまとめられています。
+より詳しいPromiseの使い方については「[JavaScript Promiseの本][]」というオンラインで公開されている文書にまとめられています。
 
-一方でPromiseはただのビルトインオブジェクトであるため、非同期処理間の連携をするにはPromiseチェーンのように少し特殊な書き方や見た目になります。
+一方で、Promiseはただのビルトインオブジェクトであるため、非同期処理間の連携をするにはPromiseチェーンのように少し特殊な書き方や見た目になります。
 また、エラーハンドリングについても`Promise#catch`メソッドや`Promise#finally`メソッドなど`try...catch`構文とよく似た名前を使います。
 しかし、Promiseは構文ではなくただのオブジェクトであるため、それらをメソッドチェーンとして実現しないといけないといった制限があります。
 
@@ -1229,9 +1230,10 @@ ES2017ではこのPromiseチェーンの不格好な見た目を解決するた�
 ## Async Function {#async-function}
 
 Async Functionとは非同期処理を行う関数を定義する構文です。
-Async Functionは通常の関数とは異なり、必ず`Promise`インスタンスを返す関数を定義します。
+Async Functionは通常の関数とは異なり、必ず`Promise`インスタンスを返す関数を定義する構文です。
 
-Async Functionは次のように関数の前に`async`をつけることで定義できますが、この`doAsync`関数は常に`Promise`インスタンスを返します。
+Async Functionは次のように関数の前に`async`をつけることで定義できます。
+この`doAsync`関数は常に`Promise`インスタンスを返します。
 
 {{book.console}}
 <!-- doctest:async:16 -->
@@ -1263,7 +1265,7 @@ doAsync().then(value => {
 重要なこととしてAsync FunctionはPromiseの上に作られた構文です。
 そのためAsync Functionを理解するには、Promiseを理解する必要があることに注意してください。
 
-またAsync Function内では`await`式というPromiseを使った非同期処理が完了するまで待つ構文が利用できます。
+またAsync Function内では`await`式というPromiseの非同期処理が完了するまで待つ構文が利用できます。
 `await`式を使うことで非同期処理を同期処理のように扱えるため、Promiseチェーンで実現していた処理の流れを読みやすくかけます。
 
 このセクションではAsync Functionと`await`式について見ていきます。
@@ -1284,7 +1286,7 @@ const fn2 = async function() {};
 // Arrow FunctionのAsync Function版
 const foo = async() => {};
 // メソッドの短縮記法のAsync Function版
-const メソッド = { async foo() {} };
+const object = { async method() {} };
 ```
 
 これらのAsync Functionは必ずPromiseを返すこととその関数の中では`await`式が利用できる点以外は、通常の関数と同じ性質を持ちます。
@@ -1379,7 +1381,7 @@ async function asyncMain() {
 }
 ```
 
-`await`式は**式**であるため右辺（`Promise`インスタンス）の評価結果を値として返します（**式**については「[文と式][]」を参照）。
+`await`式は**式**であるため右辺（`Promise`インスタンス）の評価結果を値として返します（**式**については「[文と式][]」の章を参照）。
 この`await`式の評価方法は評価するPromiseの状態（**Fulfilled**または**Rejected**）によって異なります。
 
 `await`式の右辺のPromiseが**Fulfilled**となった場合は、resolveされた値が`await`式の返り値となります。
@@ -1412,7 +1414,7 @@ asyncMain(); // Promiseインスタンスを返す
 ```
 
 `await`式の右辺のPromiseが**Rejected**となった場合は、その場でエラーを`throw`します。
-またAsync Functionでは関数内で発生した例外は自動的にキャッチされます。
+またAsync Function内で発生した例外は自動的にキャッチされます。
 そのため`await`式でPromiseが**Rejected**となった場合は、そのAsync Functionが**Rejected**なPromiseを返すことになります。
 
 次のコードでは、`await`式の右辺にある`Promise`インスタンスが**Rejected**の状態になっています。
@@ -1492,7 +1494,7 @@ asyncMain().then(() => {
     console.log("3. asyncMain関数が完了しました");
 });
 // async functionの外側の処理は次の行へ進む
-console.log("2.  asyncMain関数外では、次の行が同期的に呼び出される");
+console.log("2. asyncMain関数外では、次の行が同期的に呼び出される");
 ```
 
 このように`await`式を非同期処理を一時停止しても、Async Function外の処理が停止するわけではありません。
@@ -1501,7 +1503,7 @@ Async Function外の処理も停止できてしまうと、JavaScriptでは基�
 
 <!-- 仕様的にはAsync Execution Contextという特殊なものだけで使えるという話になる -->
 
-これと同じ理由で次のようなコールバック関数では`await`式が利用できないことに注意してください。
+これと同じ理由で、次のようなコールバック関数では`await`式が利用できないことに注意してください。
 
 次のコードでは`await`式は`asyncMain`関数の直下ではなく、`forEach`メソッドのコールバック関数に書かれているためSyntax Errorとなります。
 
@@ -1522,7 +1524,8 @@ async function asyncMain(){
 
 <!-- textlint-enable -->
 
-このコードを動作するように書くには次のようにコールバック関数に対して`async`キーワードをつける必要があります。
+このコードを正しく書くには、次のようにコールバック関数に対して`async`キーワードをつける必要があります。
+この場合は、コールバック関数がAsync Functionとなるため、コールバック関数内で`await`式が利用できます。
 
 {{book.console}}
 <!-- doctest:async:16 -->
