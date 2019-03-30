@@ -1481,7 +1481,7 @@ function main(){
 
 
 次に、Async Function内で`await`式を使って処理を待っている間も、関数の外側では通常通り処理が進みます。
-次のコードを実行してみると、Async Function内で`await`しても、Async Function外の処理はfix停止していないことがわかります。
+次のコードを実行してみると、Async Function内で`await`しても、Async Function外の処理は停止していないことがわかります。
 
 {{book.console}}
 <!-- doctest:async:16 -->
