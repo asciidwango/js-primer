@@ -745,6 +745,7 @@ Promiseではこのような複数の非同期処理からなる一連の非同�
 
 次のコードでは、`then`メソッドでPromiseチェーンをしています。
 Promiseチェーンでは、Promiseが失敗（**Rejected**な状態）しない限り、順番に`then`メソッドで登録した成功時のコールバック関数を呼び出します。
+そのため、次のコードでは、`1`、`2`と順番にコンソールへログが出力されます。
 
 {{book.console}}
 <!-- doctest:async:16 -->
@@ -1136,8 +1137,8 @@ fetchedPromise.then(([responseA, responseB]) => {
 `Promise.race`メソッドは`Promise`インスタンスの配列を受け取り、新しい`Promise`インスタンスを返します。
 この新しい`Promise`インスタンスは、配列のなかで一番最初に**Settle**状態へとなった`Promise`インスタンスと同じ状態になります。
 
-- 配列の中で一番最初に**Settle**となったPromiseが**Fulfilled**の場合は、新しい`Promise`インスタンスも**Fulfilled**へ
-- 配列の中で一番最初に**Settle**となったPromiseが**Rejected**の場合は、新しい`Promise`インスタンスも **Rejected**へ
+- 配列の中で一番最初に**Settle**となったPromiseが**Fulfilled**の場合は、新しい`Promise`インスタンスも**Fulfilled**になる
+- 配列の中で一番最初に**Settle**となったPromiseが**Rejected**の場合は、新しい`Promise`インスタンスも **Rejected**になる
 
 つまり、複数のPromiseによる非同期処理を同時に実行して競争（race）させて、一番最初に完了した`Promise`インスタンスに対する次の処理を呼び出します。
 
@@ -1289,16 +1290,16 @@ const foo = async() => {};
 const object = { async method() {} };
 ```
 
-これらのAsync Functionは必ずPromiseを返すこととその関数の中では`await`式が利用できる点以外は、通常の関数と同じ性質を持ちます。
+これらのAsync Functionは、必ずPromiseを返すことや関数中では`await`式が利用できること以外は、通常の関数と同じ性質を持ちます。
 
 ## Async FunctionはPromiseを返す {#async-function-return-promise}
 
 Async Functionとして定義した関数は必ず`Promise`インスタンスを返します。
 具体的にはAsync Functionが返す値は次の3つのケースが考えられます。
 
-1. Async Functionは値をreturnした場合、その返り値をもつ**Fulfilled**なPromiseを返します
-2. Async FunctionがPromiseをreturnした場合、その返り値のPromiseをそのまま返します
-3. Async Function内で例外が発生した場合は、そのエラーをもつ**Rejected**なPromiseを返します
+1. Async Functionは値をreturnした場合、その返り値をもつ**Fulfilled**なPromiseを返す
+2. Async FunctionがPromiseをreturnした場合、その返り値のPromiseをそのまま返す
+3. Async Function内で例外が発生した場合は、そのエラーをもつ**Rejected**なPromiseを返す
 
 次のコードでは、Async Functionがそれぞれの返り値によってどのような`Promise`インスタンスを返すかを確認できます。
 この1から3の挙動は`Promise#then`メソッドの返り値とそのコールバック関数の関係とほぼ同じです。
@@ -1461,7 +1462,9 @@ asyncMain().catch(error => {
 ### `await`式はAsync Functionの中でのみ利用可能 {#await-in-async-function}
 
 `await`式はAsync Functionの直下でのみで利用可能です。
-Async Functionではない通常の関数で`await`式を使うとSyntax Errorとなります。
+なぜこのような仕様になっているのかを確認していきます。
+
+まず、Async Functionではない通常の関数で`await`式を使うとSyntax Errorとなります。
 
 <!-- textlint-disable -->
 
@@ -1476,8 +1479,8 @@ function main(){
 <!-- textlint-enable eslint -->
 
 
-Async Functionは関数内で`await`を使っているのとは関係なく、必ず関数自体はPromiseを返します。
-そのAsync Function内で`await`式を使って処理を待っている間も、関数の外側では通常通り処理が進んでいます。
+これは、Async Function内で`await`式を使って処理を待っている間も、関数の外側では通常通り処理が進んでいるのと関係する仕様です。
+次のコードを実行してみると、Async Function内で`await`しても、Async Function外の処理は停止していないことがわかります。
 
 {{book.console}}
 <!-- doctest:async:16 -->
@@ -1489,11 +1492,11 @@ async function asyncMain() {
     });
 };
 console.log("1. asyncMain関数を呼び出します");
-// async functionは外から見れば単なるpromiseを返す関数
+// Async Functionは外から見れば単なるPromiseを返す関数
 asyncMain().then(() => {
     console.log("3. asyncMain関数が完了しました");
 });
-// async functionの外側の処理は次の行へ進む
+// Async Functionの外側の処理はそのまま進む
 console.log("2. asyncMain関数外では、次の行が同期的に呼び出される");
 ```
 
@@ -1503,7 +1506,7 @@ Async Function外の処理も停止できてしまうと、JavaScriptでは基�
 
 <!-- 仕様的にはAsync Execution Contextという特殊なものだけで使えるという話になる -->
 
-これと同じ理由で、次のようなコールバック関数では`await`式が利用できないことに注意してください。
+`await`式はAsync Functionの中でのみ利用可能なため、次のようなコールバック関数では`await`式が利用できないことに注意してください。
 
 次のコードでは`await`式は`asyncMain`関数の直下ではなく、`forEach`メソッドのコールバック関数に書かれているためSyntax Errorとなります。
 
@@ -1538,7 +1541,6 @@ async function asyncMain() {
     });
 }
 ```
-
 
 ### Promiseチェーンを`await`式で表現する {#promise-chain-to-async-function}
 
@@ -1612,11 +1614,13 @@ fetchResources().then((results) => {
 Promiseチェーンで`fetchResources`関数書いた場合は、コールバックの中で処理するためややこしい見た目になりがちです。
 一方、Async Functionと`await`式で書いた場合は、取得と追加を順番に行うだけとなりネストがなく見た目はシンプルです。
 
-このようにAsync Functionと`await`式でも非同期処理を同期処理のような見た目で書けます。
+### PromiseとAsync Functionは共存する {#relationship-promise-async-function}
+
+Async Functionと`await`式でも非同期処理を同期処理のような見た目で書けます。
 一方で同期処理のような見た目となるため、複数の非同期処理を順番に行うようなケースでは無駄な待ち時間を作ってしまうコードを書きやすいです。
 
-先ほど`fetchResources`関数ではリソースAを取得し終わってからリソースBを取得していました。
-特に取得順が関係無い場合はリソースAとリソースBを同時に取得できます。
+先ほど`fetchResources`関数ではリソースAを取得し終わってから、リソースBを取得していました。
+このとき、取得順が関係無い場合はリソースAとリソースBを同時に取得できます。
 
 Promiseチェーンでは`Promise.all`メソッドを使い、リソースAとリソースBを取得する非同期処理を1つの`Promise`インスタンスにまとめることで同時に取得していました。
 `await`式が評価するのは`Promise`インスタンスであるため、`await`式は`Promise.all`メソッドなど`Promise`インスタンスを返す処理と組み合わせて利用できます。
