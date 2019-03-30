@@ -451,8 +451,8 @@ promise.then(onFulfilled, onRejected);
 `resolve`に渡した値は、`then`メソッドの1番目のコールバック関数（`onFulfilled`）に渡されます。
 `reject`に渡したエラーオブジェクトは、`then`メソッドの2番目のコールバック関数（`onRejected`）に渡されます。
 
-<!-- doctest:async:1000 -->
 {{book.console}}
+<!-- doctest:async:1000 -->
 ```js
 /**
  * 1000ミリ秒未満のランダムなタイミングでレスポンスを擬似的にデータ取得する関数
