@@ -4,17 +4,19 @@ author: laco
 
 # 付録: 参考リンク集
 
-ここでは本篇で取り上げられなかったJavaScriptの周辺ツールやライブラリなどをいくつか紹介します。
-これらは時流に左右されて古くなりやすい情報であるため、本篇からは独立した付録としてまとめています。
+ここでは本編で取り上げられなかったJavaScriptの周辺ツールやライブラリなどをいくつか紹介します。
+これらは時流に左右されて古くなりやすい情報であるため、本編からは独立した付録としてまとめています。
 
-## 開発を助けるツール
+## 開発を補助するツール
 
 JavaScriptを使った開発に役立つツールをいくつか紹介します。
 
 ### コーディングスタイルの統一
 
-チーム開発において、改行の位置やインデントの幅など、ソースコードのフォーマットは統一する場合がほとんどです。
+複数人での開発において、改行の位置やインデントの幅など、ソースコードのフォーマットは統一します。
+なぜなら、機能には関係ないスタイルの問題はレビューに余計な時間を使ってしまうためです。
 また、使うべきでない古いイディオムやバグを生みやすい危険なコードの混入を防ぎ、品質を保つことも重要です。
+
 これらのコーディングスタイルの統一は、一貫性を持って持続的におこなうことが重要です。
 そのため、ツールを使って自動化することが推奨されます。
 
@@ -36,7 +38,7 @@ JavaScriptやHTML、CSSなどのコーディングに適したエディターを
 #### VSCode
 
 [VSCode][]はMicrosoft社がオープンソースで開発している無料のコードエディターです。
-多くの言語をサポートしており、プラグインによってさまざまな機能を追加できます。
+JavaScriptによってプラグインを書くことができ、さまざまな機能を追加できます。
 
 #### Atom
 
@@ -51,6 +53,12 @@ WebサイトやWebアプリケーションのパフォーマンスを計測、�
 
 [PageSpeed Insights][]はGoogleが提供するWebパフォーマンス計測ツールです。
 計測したいページのURLを入力すると読み込みにかかっている時間や、改善できる項目を提示してくれます。
+
+#### WebPagetest
+
+[WebPagetest][]は、ブラウザ上で利用できる無料のWebパフォーマンス計測ツールです。
+さまざまな地域やブラウザの設定ごとにパフォーマンスを計測できます。
+BSDライセンスの下でオープンソース化されており、ダウンロードして任意のサーバーで実行することもできます。
 
 #### Lighthouse
 
@@ -68,6 +76,11 @@ JavaScriptを使ったプログラムを実行するためのいくつかのプ�
 
 WebサイトやWebアプリケーションをインターネットに公開するためには、どこかのWebサーバーでホスティング（公開）する必要があります。
 ここではホスティングを機能として提供し、簡単にWebサイトを公開できるいくつかの _ホスティングサービス_ を紹介します。
+
+#### GitHub Pages
+
+[GitHub Pages][]は、GitHubが提供する無料のホスティングサービスです。
+GitHubのリポジトリをWebページとして公開して、リポジトリ内に配置したHTMLやCSS、JavaScriptなどの静的ファイルを配信できます。
 
 #### Firebase Hosting
 
@@ -106,7 +119,8 @@ HTMLやCSS、JavaScriptを使ったWebアプリケーションをChromiumブラ�
 #### NW.js
 
 [NW.js][]はIntel社によって開発されているオープンソースのデスクトップアプリケーションフレームワークです。
-Electronと同様にChromiumブラウザをベースにしたアプリケーションを開発できますが、NW.jsはElectronよりもNode.jsの開発エコシステムに親和性が高いのが特徴です。
+Electronと同様にChromiumブラウザをベースにしたアプリケーションを開発できます。
+NW.jsはブラウザの中からNode.jsの開発エコシステムを直接利用できるようにしているのが特徴です。
 
 [ESLint]: https://eslint.org/
 [Prettier]: https://prettier.io/
@@ -116,8 +130,10 @@ Electronと同様にChromiumブラウザをベースにしたアプリケーシ�
 [Atom]: https://atom.io/
 
 [PageSpeed Insights]: https://developers.google.com/speed/pagespeed/insights/
+[WebPagetest]: https://www.webpagetest.org/
 [Lighthouse]: https://developers.google.com/web/tools/lighthouse/?hl=ja
 
+[GitHub Pages]: https://pages.github.com/
 [Firebase Hosting]: https://firebase.google.com/products/hosting/?hl=ja
 [Netlify]: https://www.netlify.com/
 
