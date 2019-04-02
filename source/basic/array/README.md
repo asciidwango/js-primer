@@ -527,7 +527,7 @@ console.log(array.length); // => 0
 元々、`array`変数が参照していた`[1, 2, 3]`はどこからも参照されなくなり、ガベージコレクションによりメモリから解放されます。
 
 また、`var`で宣言していた変数を`const`にした場合は、再代入できないためこの手法は使うことができません。
-そのため、再代入をしたい場合は`let`または`var`で変数する必要があります。
+そのため、再代入をしたい場合は`let`または`var`で変数宣言をする必要があります。
 
 [import, const-empty-array-invalid.js](./src/const-empty-array-invalid.js)
 
