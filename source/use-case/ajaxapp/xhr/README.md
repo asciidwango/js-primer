@@ -83,7 +83,7 @@ XHRではレスポンスの受け取りと同じように、イベントリス�
 <!-- doctest:disable -->
 ```js
 request.addEventListener("error", () => {
-    console.log("Network Error!");
+    console.error("Network Error!");
 });
 ```
 
@@ -95,7 +95,7 @@ request.addEventListener("error", () => {
 ```js
 request.addEventListener("load", (event) => {
     if (event.target.status !== 200) {
-        console.log(`Error: ${event.target.status}`);
+        console.error(`Error: ${event.target.status}`);
         return;
     }
 });

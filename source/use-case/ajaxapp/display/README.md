@@ -17,7 +17,7 @@ GitHub APIのレスポンスはJSON形式なので、オブジェクトへの変
 ```js
 request.addEventListener("load", (event) => {
     if (event.target.status !== 200) {
-        console.log(`${event.target.status}: ${event.target.statusText}`);
+        console.error(`${event.target.status}: ${event.target.statusText}`);
         return;
     }
 
