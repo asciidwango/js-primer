@@ -3,7 +3,7 @@ function getUserInfo(userId) {
     request.open("GET", `https://api.github.com/users/${userId}`);
     request.addEventListener("load", (event) => {
         if (event.target.status !== 200) {
-            console.log(`${event.target.status}: ${event.target.statusText}`);
+            console.error(`${event.target.status}: ${event.target.statusText}`);
             return;
         }
 
