@@ -579,7 +579,7 @@ ES2015では、文字列（Stringオブジェクト）に`includes`メソッド�
 {{book.console}}
 ```js
 const string = "森森木森森";
-if (string.includes("火")) {
+if (string.includes("木")) {
     console.log("木を見つけました");
 }
 ```
