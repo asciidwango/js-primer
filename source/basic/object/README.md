@@ -498,7 +498,7 @@ const object = {
 // `Object.keys`はキーの列挙した配列を返す
 console.log(Object.keys(object)); // => ["one", "two", "three"]
 // `Object.values`（ES2017）は値を列挙した配列を返す
-console.log(Object.values(object)); // => ["1", "2", "3"]
+console.log(Object.values(object)); // => [1, 2, 3]
 // `Object.entries`（ES2017）は[キー, 値]の配列を返す
 console.log(Object.entries(object)); // => [["one", 1], ["two", 2], ["three", 3]]
 ```
