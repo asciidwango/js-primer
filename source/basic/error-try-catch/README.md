@@ -203,7 +203,7 @@ function reverseString(str) {
     if (typeof str !== "string") {
         throw new TypeError(`${str} is not a string`);
     }
-    return str.split("").reverse().join("");
+    return Array.from(str).reverse().join("");
 }
 
 try {
