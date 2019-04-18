@@ -232,7 +232,7 @@ JavaScript開発においてデバッグ中に発生したエラーを理解す�
 このスクリプトを読み込むと、投げられた例外についてのログがコンソールに出力されます。
 ここではFirefoxにおける実行例を示します。
 
-![コンソールでのエラー表示（Firefox）](images/error.png)
+![コンソールでのエラー表示（Firefox）](img/error.png)
 
 このエラーログには次の情報が含まれています。
 
@@ -252,6 +252,24 @@ JavaScript開発においてデバッグ中に発生したエラーを理解す�
 コンソールに表示されるエラーログには多くの情報が含まれています。
 MDNの[JavaScriptエラーリファレンス][]には、ブラウザが投げるビルトインのエラーについて種類とメッセージが網羅されています。
 開発中にビルトインエラーが発生したときには、リファレンスを見て解決方法を探すとよいでしょう。
+
+## `console.error`とスタックトレース {#console.error}
+
+`console.error`メソッドはメッセージと合わせてスタックトレースをコンソールへ出力できます。
+
+次のコードを実行して、`console.log`と`console.error`の出力結果を見比べてみます。
+
+[import, console/index.js](src/console/index.js)
+
+このコードをFirefoxで実行するとコンソール出力は次の図のようになります。
+
+![console.logとconsole.errorの出力結果](./img/console.error.png)
+
+`console.log`はメッセージだけなのに対して、`console.error`ではメッセージと共にスタックトレースが出力されます。
+そのため、エラーが発生した場合のコンソールへのメッセージ出力に`console.error`を利用することでデバッグがしやすくなります。
+
+また、ほとんどのブラウザには`console.log`や`console.error`の出力をフィルタリングできる機能が備わっています。
+単なるメッセージは`console.log`、エラーが発生した際のメッセージは`console.error`と使い分けることでログの重要度が区別しやすくなります。
 
 
 [try...catch]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/try...catch
