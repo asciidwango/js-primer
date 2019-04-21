@@ -13,7 +13,7 @@ description: "コマンドライン引数を受け取り、アプリケーショ
 コマンドライン引数を扱う前に、まずは`process`オブジェクトについて触れておきます。
 `process`オブジェクトはNode.js実行環境のグローバル変数のひとつです。
 `process`オブジェクトが提供するのは、現在のNode.jsの実行プロセスについて、情報の取得と操作をするAPIです。
-詳細は[公式ドキュメント](https://nodejs.org/dist/latest-v6.x/docs/api/process.html#process_process)を参照してください。
+詳細は[公式ドキュメント](https://nodejs.org/dist/latest-v8.x/docs/api/process.html#process_process)を参照してください。
 
 コマンドライン引数へのアクセスを提供するのは、`process`オブジェクトの`argv`プロパティで、文字列の配列になっています。
 例として、次のように`process-argv.js`を記述します。
@@ -134,6 +134,6 @@ bar
 [commander]: https://github.com/tj/commander.js/
 [npm]: https://www.npmjs.com/
 [npmのGitHubリポジトリ]: https://github.com/npm/npm
-[require関数]: https://nodejs.org/dist/latest-v6.x/docs/api/modules.html#modules_loading_from_node_modules_folders
+[require関数]: https://nodejs.org/dist/latest-v8.x/docs/api/modules.html#modules_loading_from_node_modules_folders
 [アプリケーション開発の準備]: ../../setup-local-env/README.md
 [^saveオプション]: --saveオプションをつけてインストールしたのと同じ意味。npm 5.0.0からは--saveがデフォルトオプションとなりました。
