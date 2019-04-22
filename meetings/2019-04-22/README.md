@@ -23,7 +23,7 @@
 - laco: jsprimerプロジェクト
 - azu: プロジェクト名義
 - laco: 今のライセンスってどうなってましたっけ?
-- azu: 今は自分はlacoの名義
+- azu: 今は自分とlacoの名義
 - azu: これもプロジェクト名義にして、CLAもプロジェクトへ著作権の譲渡とするのがよさそう
 - laco: 今の所このCLAが必要なのは?
 - azu: https://github.com/asciidwango/js-primer/pull/679
