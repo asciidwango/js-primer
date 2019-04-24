@@ -972,29 +972,6 @@ console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
 タグ付きテンプレートリテラルを利用することで、テンプレート中の変数は自動でエスケープするといったコンテキストを実現できます。
 文字列を安全に扱うためには、コンテキストに応じた処理が必要になります。
 
-## 参考 {#reference-for-string}
-
-- [What every JavaScript developer should know about Unicode](https://rainsoft.io/what-every-javascript-developer-should-know-about-unicode/)
-- Unicodeについて
-    - [「文字数」ってなぁに？〜String, NSString, Unicodeの基本〜 - Qiita](http://qiita.com/takasek/items/19438ecf7e60c8d53bbc)
-    - [プログラマのための文字コード技術入門 | Gihyo Digital Publishing … 技術評論社の電子書籍](https://gihyo.jp/dp/ebook/2014/978-4-7741-7087-9)
-    - [文字コード「超」研究　改訂第2版【委託】 - 達人出版会](http://tatsu-zine.com/books/moji-code)
-    - [Unicode のサロゲートペアとは何か - ひだまりソケットは壊れない](http://vividcode.hatenablog.com/entry/unicode/surrogate-pair)
-    - [文字って何かね？ - Qiita](http://qiita.com/matarillo/items/91b9656428bed7a1a797)
-    - [ものかの >> archive >> Unicode正規化　その１](http://tama-san.com/old/document03.html)
-    - [結合文字列をUnicode正規化で合成する方法の危険性 - Qiita](http://qiita.com/monokano/items/d4c37d9bc9833eaeda6e)
-    - [Unicode（絵文字） - CyberLibrarian](http://www.asahi-net.or.jp/~ax2s-kmtn/ref/unicode/emoji.html "Unicode（絵文字） - CyberLibrarian")
-    - [Unicode Emoji](http://unicode.org/emoji/ "Unicode Emoji")
-    - [JavaScript における文字コードと「文字数」の数え方 | blog.jxck.io](https://blog.jxck.io/entries/2017-03-02/unicode-in-javascript.html)
-- 国際化APIについて
-    - [Intl - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Intl#Locale_identification_and_negotiation)
-    - [andyearnshaw/Intl.js](https://github.com/andyearnshaw/Intl.js/)
-    - [ECMAScript® 2017 Internationalization API Specification](https://tc39.github.io/ecma402/)
-    - [ウェブサイトをグローバル化するために便利なIntl APIの話 - Qiita](http://qiita.com/teyosh/items/b126f21a16b795885067 "ウェブサイトをグローバル化するために便利なIntl APIの話 - Qiita")
-    - [カスタムの大文字と小文字の対応規則および並べ替え規則](https://msdn.microsoft.com/ja-jp/library/xk2wykcz(v=vs.110).aspx "カスタムの大文字と小文字の対応規則および並べ替え規則")
-- 文字列の検索について
-    - [四章第一回　文字列の操作 — JavaScript初級者から中級者になろう — uhyohyo.net](http://uhyohyo.net/javascript/4_1.html "四章第一回　文字列の操作 — JavaScript初級者から中級者になろう — uhyohyo.net")
-
 [文字列とUnicode]: ../string-unicode/README.md
 [エスケープシーケンス]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String#%E3%82%A8%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%97%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9
 [twitter-text]: https://github.com/twitter/twitter-text  "twitter/twitter-text: Twitter Text Libraries"
