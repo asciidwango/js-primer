@@ -125,7 +125,7 @@ let total = 0; // totalの初期値は0
 // iが10未満（条件式を満たす）ならfor文の処理を実行
 // iに1を足し、再び条件式の判定へ
 for (let i = 0; i < 10; i++) {
-    total += i + 1; // 1...10
+    total += i + 1; // 1から10の値をtotalに加算している
 }
 console.log(total); // => 55
 ```
