@@ -15,6 +15,7 @@ describe("whileの加算", function() {
             console
         });
         assert.deepEqual(actualLogs, [
+            `ループ開始前のxの値: ${0}`,
             0,
             1,
             2,
@@ -24,7 +25,8 @@ describe("whileの加算", function() {
             6,
             7,
             8,
-            9
+            9,
+            `ループ終了後のxの値: ${10}`
         ]);
     });
 });
