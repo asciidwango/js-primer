@@ -45,6 +45,15 @@ JavaScriptによってプラグインを書くことができ、さまざまな�
 [Atom][]はGitHub社がオープンソースで開発している無料のコードエディターです。
 VSCodeと同じようにプラグインによる拡張性が高く、GitHubと連携した機能が特徴です。
 
+### ブラウザの開発者ツール
+
+多くのブラウザは開発者向けの組み込みツールを提供しており、本編で紹介したコンソールもその一部です。
+その他にもJavaScriptコードをステップ実行できるデバッガーや、HTTPの通信ログなど、ブラウザごとにさまざまな機能があります。
+
+- Firefox: [開発ツール | MDN][]
+- Chrome: [Chrome DevTools][]
+- Safari: [Safari Developer Help][]
+
 ### パフォーマンスの改善
 
 WebサイトやWebアプリケーションのパフォーマンスを計測、改善するためのツールを紹介します。
@@ -56,9 +65,9 @@ WebサイトやWebアプリケーションのパフォーマンスを計測、�
 
 #### WebPagetest
 
-[WebPagetest][]は、ブラウザ上で利用できる無料のWebパフォーマンス計測ツールです。
-さまざまな地域やブラウザの設定ごとにパフォーマンスを計測できます。
-BSDライセンスの下でオープンソース化されており、ダウンロードして任意のサーバーで実行することもできます。
+[WebPagetest][]は、ブラウザを利用したWebパフォーマンス計測ツールです。
+さまざまな条件下のブラウザでウェブサイトにアクセスし、パフォーマンスを計測できます。
+BSDライセンスの下でオープンソース化されており、任意のサーバーにインストールして実行することもできます。
 
 #### Lighthouse
 
@@ -128,6 +137,10 @@ NW.jsはブラウザの中からNode.jsの開発エコシステムを直接利�
 
 [VSCode]: https://code.visualstudio.com/
 [Atom]: https://atom.io/
+
+[開発ツール | MDN]: https://developer.mozilla.org/ja/docs/Tools
+[Chrome DevTools]: https://developers.google.com/web/tools/chrome-devtools/?hl=ja
+[Safari Developer Help]: https://support.apple.com/ja-jp/guide/safari-developer/welcome/mac
 
 [PageSpeed Insights]: https://developers.google.com/speed/pagespeed/insights/
 [WebPagetest]: https://www.webpagetest.org/
