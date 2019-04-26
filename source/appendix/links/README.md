@@ -104,7 +104,8 @@ GitHubやBitBucketのようなGitリポジトリサービスと連携してい�
 
 ### Node.jsをサーバーレスに実行する {#serverless}
 
-Node.jsのサーバーを用意しなくても関数単位でNode.jsのスクリプトを実行できる環境として、AWS LambdaやGoogle Cloud Functionsのような[Function as a Service][]（FaaS）の実行プラットフォームがあります。
+AWS LambdaやGoogle Cloud Functionsのような[Function as a Service][]（FaaS）と呼ばれる実行プラットフォームがあります。
+FaaSではNode.jsのサーバーを用意しなくても関数単位でNode.jsのスクリプトを実行できます。
 FaaSにJavaScriptの関数をデプロイすると、クラウド上で管理されているNode.jsサーバーにホストされ、それぞれの関数にエンドポイントが割り当てられます。
 
 #### AWS Lambda {#aws-lambda}
@@ -113,7 +114,7 @@ FaaSにJavaScriptの関数をデプロイすると、クラウド上で管理さ
 
 #### Google Cloud Functions {#google-cloud-functions}
 
-[Google Cloud Functions][]はGoogle Cloud Platform上で提供されるサーバーレスNode.js実行環境です
+[Google Cloud Functions][]はGoogle Cloud Platform上で提供されるサーバーレスNode.js実行環境です。
 
 
 ### デスクトップアプリケーションを作る {#desktop-app}
