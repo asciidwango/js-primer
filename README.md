@@ -3,9 +3,13 @@
 この書籍はES2015以降をベースとしたJavaScript入門書となる予定です。
 
 プログラミングをやったことがあるが、今のJavaScriptがよくわからないという人が、
-今のJavaScriptアプリケーションを読み書きできるようになるもの。
+今のJavaScriptアプリケーションを読み書きできるようになる目的の書籍です。
 
-ハッシュタグは [#jsprimer](https://twitter.com/intent/tweet?hashtags=jsprimer) です。
+次のURLから閲覧できます。
+
+- ウェブ版: <https://jsprimer.net/>
+
+Twitterのハッシュタグは [#jsprimer](https://twitter.com/intent/tweet?hashtags=jsprimer) です。
 
 ## :warning: Status :warning:
 
