@@ -362,30 +362,32 @@ console.log(widget.windw.title); // => TypeError: widget.windw is undefined
 
 ### プロパティの存在確認: undefinedとの比較 {#compare-to-undefined}
 
-存在しないプロパティへアクセスした場合に、`undefined`を返すため実際にアクセスして比較することでも判定できます。
+存在しないプロパティへアクセスした場合に`undefined`を返すため、実際にプロパティアクセスすることでも判定できそうです。
+次のコードでは、`key`プロパティの値が`undefined`ではないという条件式で、プロパティが存在するかを判定しています。
 
 {{book.console}}
 ```js
 const object = { key: "value" };
 // `key`プロパティが`undefined`ではないなら、プロパティが存在する?
 if (object.key !== undefined) {
-    console.log("`key`プロパティの値は`undefined`");
+    // `key`プロパティが存在する?ときの処理
+    console.log("`key`プロパティの値は`undefined`ではない");
 }
 ```
 
-しかし、この方法はプロパティの値が`undefined`であった場合に、プロパティがないため`undefined`なのかが区別できないという問題があります。
-次のような例は、`key`プロパティは存在していますが、値が`undefined`であるため、存在の判定が上手くできていないことがわかります。
+しかし、この方法はプロパティの値が`undefined`であった場合に、プロパティそのものが存在するかを区別できないという問題があります。
+次のコードでは、`key`プロパティの値が`undefined`であるため、プロパティが存在しているにもかかわらずif文の中は実行されません。
 
 {{book.console}}
 ```js
 const object = { key: undefined };
-// `key`プロパティの値が`undefined`
+// `key`プロパティの値が`undefined`である場合
 if (object.key !== undefined) {
     // この行は実行されません
 }
 ```
 
-このような問題があるため、プロパティがあるかどうかだけを判定するには`in`演算子か`hasOwnProperty`メソッドを利用します。
+このような問題があるため、プロパティが存在するかを判定するには`in`演算子か`hasOwnProperty`メソッドを利用します。
 
 ### プロパティの存在確認: in演算子を使う {#in-operator}
 
