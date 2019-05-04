@@ -370,7 +370,7 @@ console.log(widget.windw.title); // => TypeError: widget.windw is undefined
 const object = { key: "value" };
 // `key`プロパティが`undefined`ではないなら、プロパティが存在する?
 if (object.key !== undefined) {
-    // `key`プロパティが存在した?ときの処理
+    // `key`プロパティが存在する?ときの処理
     console.log("`key`プロパティの値は`undefined`ではない");
 }
 ```
