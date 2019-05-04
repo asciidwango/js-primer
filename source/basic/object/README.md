@@ -363,7 +363,7 @@ console.log(widget.windw.title); // => TypeError: widget.windw is undefined
 ### プロパティの存在確認: undefinedとの比較 {#compare-to-undefined}
 
 存在しないプロパティへアクセスした場合に`undefined`を返すため、実際にプロパティアクセスすることでも判定できます。
-次のコードでは、`key`プロパティの値が`undefined`ではないなら、プロパティが存在するかを判定しています。
+次のコードでは、`key`プロパティの値が`undefined`ではないという条件式で、プロパティが存在するかを判定しています。
 
 {{book.console}}
 ```js
