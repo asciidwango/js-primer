@@ -456,8 +456,8 @@ promise.then(onFulfilled, onRejected);
 ```js
 /**
  * 1000ミリ秒未満のランダムなタイミングでレスポンスを擬似的にデータ取得する関数
- * 指定した`path`にデータがある場合は成功として`resolve`を呼ぶ
- * 指定した`path`にデータがない場合は失敗として`reject`を呼ぶ
+ * 指定した`path`にデータがある場合、成功として**Resolved**状態のPromiseオブジェクトを返す
+ * 指定した`path`にデータがない場合、失敗として**Rejected**状態のPromiseオブジェクトを返す
  */
 function dummyFetch(path) {
     return new Promise((resolve, reject) => {
