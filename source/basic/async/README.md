@@ -1285,7 +1285,7 @@ async function fn1() {}
 // 関数式のAsync Function版
 const fn2 = async function() {};
 // Arrow FunctionのAsync Function版
-const foo = async() => {};
+const fn3 = async() => {};
 // メソッドの短縮記法のAsync Function版
 const object = { async method() {} };
 ```
