@@ -51,7 +51,7 @@ JavaScriptモジュールを別々の`script`タグで読み込むと、モジ�
 同じように`index.js`を`todoapp`ディレクトリに作成し、次のような内容にします。
 `index.js`にはスクリプトが正しく読み込まれたことを確認できるように、コンソールにログを出力する処理だけを書いておきます。
 
-[import, title:"src/index.js"](first-entry/index.js)
+[import, title:"index.js"](first-entry/index.js)
 
 ここでの`todoapp`ディレクトリのファイル配置は次のようになっていれば問題ありません。
 
