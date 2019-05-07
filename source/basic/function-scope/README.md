@@ -947,6 +947,6 @@ JavaScriptでは、関数を短く定義できるArrow Functionや高階関数�
 [変数と宣言#let]: ../variables/README.md#let
 [関数と宣言（関数式）]: ../function-declaration/README.md#function-expression
 [文と式]: ../statement-expression/README.md
-[undefinedはリテラルではない]: ../data-type/README.md##undefined-not-literal
+[undefinedはリテラルではない]: ../data-type/README.md#undefined-not-literal
 [^TDZ]: この仕組みはTemporal Dead Zoneと呼ばれます。
 [^GC]: ECMAScriptの仕様ではガベージコレクションの実装の規定はないため、実装依存の処理となります
