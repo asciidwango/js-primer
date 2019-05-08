@@ -121,7 +121,7 @@ Node.jsでは、`events`と呼ばれるモジュールで同様のイベント�
 
 `EventEmitter`はイベントの仕組みで書いたディスパッチ側とリッスン側の機能を持ったクラスとなります。
 
-- ディスパッチ側: `addEventLister`メソッドは、指定した`イベント名`に任意のコールバック関数を登録できる
+- ディスパッチ側: `addEventListener`メソッドは、指定した`イベント名`に任意のコールバック関数を登録できる
 - リッスン側: `emit`メソッドは、指定された`イベント名`に登録済みのすべてのコールバック関数を呼び出す
 
 これによって、`emit`メソッドを呼び出すと指定したイベントに関係する登録済みのコールバック関数を呼び出せます。
@@ -132,10 +132,10 @@ Node.jsでは、`events`と呼ばれるモジュールで同様のイベント�
 [import, title:"src/EventEmitter.js"](./event-emitter/src/EventEmitter.js)
 
 この`EventEmitter`は次のようにイベントのリッスンとイベントのディスパッチの機能が利用できます。
-リッスン側は`addEventLister`メソッドでイベントの種類（`type`）に対するイベントリスナー（`listener`）を登録します。
+リッスン側は`addEventListener`メソッドでイベントの種類（`type`）に対するイベントリスナー（`listener`）を登録します。
 ディスパッチ側は`emit`メソッドでイベントをディスパッチし、イベントリスナーを呼び出します。
 
-次のコードでは、`addEventLister`メソッドで`test-event`イベントに対して2つのイベントリスナーを登録しています。
+次のコードでは、`addEventListener`メソッドで`test-event`イベントに対して2つのイベントリスナーを登録しています。
 そのため、`emit`メソッドで`test-event`イベントをディスパッチすると、登録済みのイベントリスナーが呼び出されています。
 
 [import, title:"EventEmitterの実行サンプル"](./event-emitter/src/EventEmitter.example.js)
