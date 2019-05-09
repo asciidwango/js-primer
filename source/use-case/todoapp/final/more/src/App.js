@@ -87,6 +87,6 @@ export class App {
      */
     unmount() {
         this.todoListModel.offChange(this.handleChange);
-        this.formElement.removeEventLister("submit", this.handleSubmit);
+        this.formElement.removeEventListener("submit", this.handleSubmit);
     }
 }

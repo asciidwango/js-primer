@@ -9,7 +9,7 @@ export class EventEmitter {
      * @param {string} type イベント名
      * @param {Function} listener イベントリスナー
      */
-    addEventLister(type, listener) {
+    addEventListener(type, listener) {
         // 指定したイベントに対応するSetを作成しリスナー関数を登録する
         if (!this._listeners.has(type)) {
             this._listeners.set(type, new Set());
@@ -38,7 +38,7 @@ export class EventEmitter {
      * @param {string} type イベント名
      * @param {Function} listener イベントリスナー
      */
-    removeEventLister(type, listener) {
+    removeEventListener(type, listener) {
         // 指定したイベントに対応するSetを取り出し、該当するリスナー関数を削除する
         const listenerSet = this._listeners.get(type);
         if (!listenerSet) {
