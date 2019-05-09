@@ -1,6 +1,6 @@
-# Contributor License Agreement(CLA)
+# Contributor License Agreement（CLA）
 
-このドキュメントでは、Contributor License Agreement(貢献者ライセンス同意書、以下 CLA)の取り扱いについて書いています。
+このドキュメントでは、Contributor License Agreement（貢献者ライセンス同意書、以下 CLA）の取り扱いについて書いています。
 
 jsprimerプロジェクトは[MITライセンスとCC BY-NC 4.0](./LICENSE)の元で公開されています。
 CLAはjsprimerプロジェクトの生成物となる書籍を販売するための権利をクリアにするために存在します。
@@ -12,18 +12,18 @@ CLAを正確な用語にはなっていない場合があるため、詳細は[�
 
 [著作権譲渡契約書](#legal)では次のようなことに対する同意を求めています。
 
-- **著作権の譲渡**: あなたは、あなたの書いたコードや文章を含んだ内容をjsprimerプロジェクトが商用利用(書籍販売など)できるために、あなたが書いたコードや文章に関する著作権をjsprimerプロジェクトに譲渡してください
+- **著作権の譲渡**: あなたは、あなたの書いたコードや文章を含んだ内容をjsprimerプロジェクトが商用利用（書籍販売など）できるために、あなたが書いたコードや文章に関する著作権をjsprimerプロジェクトに譲渡してください
 - **保証**: あなたが書いた文章をjsprimerプロジェクトのメンバーが修正をすることを許可してください
 
 ## なぜCLAが必要ですか?
 
-CLAは、あなたがjsprimerプロジェクトに新規に追加した文章の著作権の権利関係をクリアにすることが目的です。
+CLAは、あなたがjsprimerプロジェクトへ新規に追加した文章の著作権の権利関係をクリアにすることが目的です。
 jsprimerプロジェクトでは主なコンテンツは文章です。
 些細なtypoの修正などには著作権は発生しませんが、新たに書いた文章の著作権は著作者が持ちます。
 
 CLAに同意すると次のことが明確になります。
 
-- あなたの貢献(書いた文章の著作権)を寄付すること
+- あなたの貢献（書いた文章の著作権）を寄付すること
 - 同意して寄付した貢献を後から取り下げないこと
 - jsprimerプロジェクトがあなたの貢献を含んだものを商用利用できること
 
@@ -36,8 +36,12 @@ Apache Software Foundationプロジェクト、Facebook、Google、Python、Hash
 
 ## CLAに同意する方法
 
+jsprimerプロジェクトへPull Requestすると、jsprimerプロジェクトメンバーからCLAへの同意を求めることがあります。
+その際にjsprimerプロジェクトメンバーがCLAについて案内します。
 
+CLAへの同意は次のページから行えます。
 
+- [jsprimer: 貢献者ライセンス同意書](https://docs.google.com/forms/d/e/1FAIpQLSfysn5ZMYZvk3VGE5flQ9AKxQszmP0cVQar1KnokrRtcrYSVQ/viewform)
 
 ---
 
@@ -63,4 +67,4 @@ Apache Software Foundationプロジェクト、Facebook、Google、Python、Hash
 あなたは、jsprimerプロジェクトまたはjsprimerプロジェクトが指定する第三者に対し、著作者人格権を行使しないものとします。
 
 ## 第５条　通知
-あなたは、上記のいずれかが満たせなくなるような事実または状況が発生した場合には、jsprimerプロジェクトに通知することに同意します。 
+あなたは、上記のいずれかが満たせなくなるような事実または状況が発生した場合には、jsprimerプロジェクトに通知することに同意します。
