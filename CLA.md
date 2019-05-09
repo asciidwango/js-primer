@@ -35,7 +35,7 @@ Apache Software Foundationプロジェクト、Facebook、Google、Python、Hash
 
 ## CLAに同意する方法
 
-jsprimerプロジェクトへPull Requestすると、jsprimerプロジェクトメンバーからCLAへの同意を求めることがあります。
+jsprimerプロジェクトへPull Requestすると、jsprimerプロジェクトメンバーがCLAへの同意を求めることがあります。
 その際にjsprimerプロジェクトメンバーがCLAについて案内します。
 
 CLAへの同意は次のページから行えます。
