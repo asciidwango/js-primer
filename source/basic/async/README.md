@@ -964,7 +964,7 @@ main().catch(error => {
 });
 ```
 
-#### [ES2018] Promiseチェーンの最後で処理を書く {#promise-finally}
+#### [ES2018] Promiseチェーンの最後に処理を書く {#promise-finally}
 
 `Promise#finally`メソッドは成功時、失敗時どちらの場合でも呼び出すコールバック関数を登録できます。
 `try...catch...finally`構文の`finally`節と同様の役割をもつメソッドです。
