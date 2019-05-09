@@ -87,7 +87,7 @@ Copyright (c) 2016-present jsprimer project
 
 ## Project Member
 
-jsprimer projectは次のメンバーで構成されています。
+jsprimerプロジェクトは次のメンバーで構成されています。
 
 - azu([@azu](https://github.com/azu))
 - Suguru Inatomi([@lacolaco](https://github.com/lacolaco))
