@@ -29,7 +29,6 @@ CLAに同意すると次のことが明確になります。
 
 CLAによってあいまいさや不確実性が排除できます。
 それによってjsprimerプロジェクトが継続してコンテンツを提供でき、読む人も安心して読めます。
-また、CLAはjsprimerプロジェクトが[MITライセンスとCC BY-NC 4.0](./LICENSE)で提供することを保証できます。
 
 CLAを求めること自体は多くのOpen Sourceプロジェクトでも行われています。
 Apache Software Foundationプロジェクト、Facebook、Google、Python、HashicorpなどさまざまなOopen SourceプロジェクトがCLAを求めています。
