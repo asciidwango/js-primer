@@ -1,4 +1,4 @@
-import { TodoItemModel } from "./TodoItemModel";
+import { TodoItemModel } from "./TodoItemModel.js";
 const item = new TodoItemModel({
     title: "未完了のTodoアイテム",
     completed: false
