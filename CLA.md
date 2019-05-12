@@ -33,7 +33,7 @@ CLAによってあいまいさや不確実性が排除できます。
 それによってjsprimerプロジェクトが継続してコンテンツを提供でき、読む人も安心して読めます。
 
 CLAを求めること自体は多くのOpen Sourceプロジェクトでも行われています。
-Apache Software Foundationプロジェクト、Facebook、Google、Python、HashicorpなどさまざまなOopen SourceプロジェクトがCLAを求めています。
+Apache Software Foundation、Facebook、Google、Python、HashicorpなどさまざまなOopen SourceプロジェクトがCLAを求めています。
 
 ## CLAに同意する方法
 
