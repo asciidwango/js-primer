@@ -10,7 +10,7 @@ export class TodoListModel extends EventEmitter {
     }
 
     /**
-     * TodoItemの合計数を返す
+     * TodoItemの合計個数を返す
      * @returns {number}
      */
     get totalCount() {

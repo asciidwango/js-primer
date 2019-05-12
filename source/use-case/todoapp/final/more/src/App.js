@@ -71,7 +71,7 @@ export class App {
             }
         });
         render(todoListElement, todoListContainerElement);
-        todoCountElement.textContent = `Todoアイテム数: ${this.todoListModel.totalCount}`;
+        todoCountElement.textContent = `Todoアイテム数: ${this.todoListModel.getTotalCount()}`;
     }
 
     /**

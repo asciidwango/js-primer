@@ -240,7 +240,7 @@ export class App {
 ```
 
 この作成した`todoListElement`要素を前回作成した、`html-util.js`の`render`関数を使い`containerElement`の中身を上書きしてます。
-また、アイテム数は`TodoListModel#totalCount`で取得できるため、アイテム数だけを管理していた`todoItemCount`という変数は削除できます。
+また、アイテム数は`TodoListModel#getTotalCount`メソッドで取得できるため、アイテム数だけを管理していた`todoItemCount`という変数は削除できます。
 
 <!-- doctest:disable -->
 ```js
@@ -255,7 +255,7 @@ export class App {
             // containerElementの中身をtodoListElementで上書きする
             render(todoListElement, containerElement);
             // アイテム数の表示を更新
-            todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.totalCount}`;
+            todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.getTotalCount()}`;
         });
         // ...省略...
     }
