@@ -539,7 +539,7 @@ var hello = function(){
 
 ### [コラム] 即時実行関数 {#immediate-function}
 
-即時実行関数（**IIEF**, _Immediately-Invoked Function Expression_）は、
+即時実行関数（**IIFE**, _Immediately-Invoked Function Expression_）は、
 グローバルスコープの汚染を避けるために生まれたイディオムです。
 
 次のように、匿名関数を宣言した直後に呼び出すことで、任意の処理を関数のスコープに閉じて実行できます。
