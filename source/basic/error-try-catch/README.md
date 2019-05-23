@@ -269,7 +269,7 @@ MDNの[JavaScriptエラーリファレンス][]には、ブラウザが投げる
 そのため、エラーが発生した場合のコンソールへのメッセージ出力に`console.error`を利用することでデバッグがしやすくなります。
 
 また、ほとんどのブラウザには`console.log`や`console.error`の出力をフィルタリングできる機能が備わっています。
-単なるメッセージは`console.log`、エラーが発生した際のメッセージは`console.error`と使い分けることでログの重要度が区別しやすくなります。
+ただのログ出力は`console.log`を使い、エラーに関するログ出力は`console.error`と使い分けることで、ログの重要度が区別しやすくなります。
 
 
 [try...catch]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/try...catch
