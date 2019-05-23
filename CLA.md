@@ -42,7 +42,7 @@ jsprimerプロジェクトへPull Requestすると、jsprimerプロジェクト�
 
 CLAへの署名は次のページから行えます。
 
-- [jsprimer: 貢献者ライセンス同意書](https://docs.google.com/forms/d/e/1FAIpQLSfysn5ZMYZvk3VGE5flQ9AKxQszmP0cVQar1KnokrRtcrYSVQ/viewform)
+- [jsprimer: 貢献者ライセンス同意フォーム](https://docs.google.com/forms/d/e/1FAIpQLSfysn5ZMYZvk3VGE5flQ9AKxQszmP0cVQar1KnokrRtcrYSVQ/viewform)
 
 CLAへの署名は一度のみで問題ありません。署名後にjsprimerプロジェクトへ修正を送る場合に再度署名する必要はありません。
 
