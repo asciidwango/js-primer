@@ -90,4 +90,22 @@ ${result.matchedTexts.join("\n")}
 ${message}`);
         });
     });
+    it("try-catchより前にconsole.errorを利用してはいけない", () => {
+        // 許可リスト(読み方の解説など)
+        const allowFilePathList = [];
+        const searchPatterns = ["console.error"];
+        const tryCatchCahpter = path.join(sourceDir, "basic/error-try-catch/README.md");
+        return findUsage(tryCatchCahpter, searchPatterns, allowFilePathList).then(results => {
+            if (results.length === 0) {
+                return;
+            }
+            const message = results.map(result => {
+                return `${result.normalizedFilePath} が利用しているので、確認してください。
+${result.matchedTexts.join("\n")}
+`;
+            });
+            throw new Error(`${results.length}件のドキュメントがconsole.errorメソッドを説明前に利用しています。
+${message}`);
+        });
+    });
 });
