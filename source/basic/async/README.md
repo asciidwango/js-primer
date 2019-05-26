@@ -1290,7 +1290,10 @@ const fn3 = async() => {};
 const obj = { async method() {} };
 ```
 
-これらのAsync Functionは、必ずPromiseを返すことや関数中では`await`式が利用できること以外は、通常の関数と同じ性質を持ちます。
+これらのAsync Functionは、次の点以外は通常の関数と同じ性質を持ちます。
+
+- Async Functionは必ず`Promise`インスタンスを返す
+- Async Function内では``await``式が利用できる
 
 ## Async FunctionはPromiseを返す {#async-function-return-promise}
 
@@ -1419,12 +1422,13 @@ asyncMain(); // Promiseインスタンスを返す
 そのため`await`式でPromiseが**Rejected**となった場合は、そのAsync Functionが**Rejected**なPromiseを返すことになります。
 
 次のコードでは、`await`式の右辺にある`Promise`インスタンスが**Rejected**の状態になっています。
-そのため`await`式は`エラー`を`throw`するため、`asyncMain`関数は**Rejected**なPromiseを返します。
+そのため`await`式は`エラー`を`throw`します。そのエラーを自動的にキャッチするため`asyncMain`関数は**Rejected**なPromiseを返します。
 
 {{book.console}}
 <!-- doctest:async:16 -->
 ```js
 async function asyncMain() {
+    // `await`式で評価した右辺のPromiseがRejectedとなったため、例外がthrowされる
     const value = await Promise.reject(new Error("エラーメッセージ"));
     // await式で例外が発生したため、この行は実行されません
 }
@@ -1445,6 +1449,7 @@ asyncMain().catch(error => {
 async function asyncMain() {
     // await式のエラーはtry...catchできる
     try {
+        // `await`式で評価した右辺のPromiseがRejectedとなったため、例外がthrowされる
         const value = await Promise.reject(new Error("エラーメッセージ"));
         // await式で例外が発生したため、この行は実行されません
     } catch (error) {
