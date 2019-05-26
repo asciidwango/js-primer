@@ -201,7 +201,7 @@ ES2015から文字列をCode Pointごとに扱うメソッドや構文が追加�
 
 - `CodePoint`を名前に含むメソッド
 - `u`（Unicode）フラグが有効化されている正規表現
-- 文字列をIteratorを扱うもの（Destructuring、`for...of`、`Array.from`メソッドなど）
+- 文字列のIteratorを扱うもの（Destructuring、`for...of`、`Array.from`メソッドなど）
 
 これらのCode Pointを扱う処理と具体的な使い方を見ていきます。
 
