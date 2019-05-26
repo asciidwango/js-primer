@@ -665,7 +665,7 @@ console.log(object.method()); // => "this is method"
 JavaScriptでは、非同期処理を扱うことが多く、その場合にコールバック関数が使われます。
 Arrow Functionを使うことで、コールバック関数を短く簡潔に書くことができます。
 
-JavaScriptでの、メソッドはオブジェクトのプロパティである関数のことです。
+JavaScriptでのメソッドは、オブジェクトのプロパティである関数のことです。
 ES2015からは、メソッドを定義する構文が追加されているため活用していきます。
 
 [関数とスコープ]: ../function-scope/README.md
