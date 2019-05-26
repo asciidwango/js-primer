@@ -734,7 +734,7 @@ console.log(array !== newArray); // => true
 `reduce`メソッドの第二引数には`accumulator`の初期値となる値を渡せます。
 
 次のコードでは、`reduce`メソッドは配列の各要素を加算した1つの数値を返します。
-つまり配列から配列要素の合計値というNumber型の返しています。
+つまり配列から配列要素の合計値というNumber型の値を返しています。
 
 {{book.console}}
 ```js
