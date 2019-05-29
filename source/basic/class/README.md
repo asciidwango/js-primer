@@ -613,7 +613,7 @@ const arrayWrapperA = new ArrayWrapper([1, 2, 3]);
 // 要素を引数として渡している
 const arrayWrapperB = ArrayWrapper.of(1, 2, 3);
 console.log(arrayWrapperA.length); // => 3
-console.log(arrayWrapperA.length); // => 3
+console.log(arrayWrapperB.length); // => 3
 ```
 
 クラスの静的メソッドにおける`this`は、そのクラス自身を参照します。
