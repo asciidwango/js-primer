@@ -128,7 +128,7 @@ JavaScriptの多くの実行環境では、Console APIが**コンソール表示
 `console.log(引数)`の引数にコンソール表示したい値を入れることで、評価結果がコンソールに表示されます。
 
 先ほどの`index.js`の中身を次のように書きかえます。
-そしてページをリロードする `1` という値を評価した結果がWebコンソールに表示されます。
+そしてページをリロードすると、 `1` という値を評価した結果がWebコンソールに表示されます。
 
 {{book.console}}
 [import, console-example.js](./src/console-example.js)
