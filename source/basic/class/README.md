@@ -399,7 +399,7 @@ console.log(method()); // => instance
 ```
 
 一方、プロトタイプメソッドにおける`this`はメソッド呼び出し時のベースオブジェクトを参照します。
-そのためプロトタイプメソッドは呼び出し方によって`this`の参照先が異なります。（「[関数とthis][]」の章の「[ `this`を含むメソッドを変数に代入した場合の問題][]」を参照）
+そのためプロトタイプメソッドは呼び出し方によって`this`の参照先が異なります。（「[関数とthis][]」の章の「[問題: `this`を含むメソッドを変数に代入した場合][]」を参照）
 
 {{book.console}}
 ```js
@@ -1220,6 +1220,6 @@ console.log(array.last); // => 5
 [^糖衣構文]: `class`構文でのみしか実現できない機能はなく、読みやすさや分かりやさのために導入された構文という側面もあるため、JavaScriptの`class`構文は糖衣構文（シンタックスシュガー）と呼ばれることがあります。
 [Arrow Functionでコールバック関数を扱う]: ../function-this/README.md#arrow-function-callback
 [関数とthis]: ../function-this/README.md
-[`this`を含むメソッドを変数に代入した場合の問題]: ../function-this/README.md#assign-this-function
+[問題: `this`を含むメソッドを変数に代入した場合]: ../function-this/README.md#assign-this-function
 [Map/Set]: ../map-and-set/README.md
 [ユースケース:Todoアプリ]: ../../use-case/todoapp/README.md
