@@ -61,6 +61,23 @@ function displayView(view) {
 }
 ```
 
+ボタンのclickイベントで呼び出す関数もこれまでの`getUserInfo`関数から`main`関数に変更します。
+
+```html
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Ajax Example</title>
+  </head>
+  <body>
+    <h2>GitHub User Info</h2>
+    <button onclick="main();">Get user info</button>
+    <div id="result"></div>
+    <script src="index.js"></script>
+  </body>
+</html>
+```
+
 ## XHRをPromiseでラップする {#wrap-xhr}
 
 次に、`getUserInfo`関数で行っているXHRの処理を整理します。
@@ -103,9 +120,9 @@ function getUserInfo(userId) {
             }
 
             const userInfo = JSON.parse(event.target.responseText);
-            
+
             const view = createView(userInfo);
-            displayView(view); 
+            displayView(view);
             resolve(); // 完了
         });
         request.addEventListener("error", () => {
@@ -143,9 +160,9 @@ function getUserInfo(userId) {
             }
 
             const userInfo = JSON.parse(event.target.responseText);
-            
+
             const view = createView(userInfo);
-            displayView(view); 
+            displayView(view);
             resolve();
         });
         request.addEventListener("error", () => {
