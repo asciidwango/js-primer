@@ -547,7 +547,7 @@ console.log(string.indexOf("本")); // => 2
 console.log(string.indexOf("火")); // => -1
 ```
 
-否定演算子（`~`）は1の補数を返すため、`~(-1)`の`0`となります。
+否定演算子（`~`）は1の補数を返すため、`~(-1)`は`0`となります。
 
 {{book.console}}
 ```js
