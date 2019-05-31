@@ -690,7 +690,7 @@ const x = 10; // ＊1
 
 function printX() {
     // この識別子`x`は呼び出し元によってどの変数`x`を参照するかが変わる
-    console.log(x);
+    console.log(this.x);
 }
 
 function run() {
