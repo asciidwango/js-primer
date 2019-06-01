@@ -203,7 +203,7 @@ Unicodeはすべての文字に対してID（Code Point）を振ることを目�
 
 JavaScript（ECMAScript）は文字コードとしてUnicodeを採用し、文字をエンコードする方式としてUTF-16を採用しています。
 UTF-16とは、それぞれの文字を16bitのビット列に変換するエンコード方式です。
-Unicodeでは文字を構成する最小のビット列を**Code Unit**（符号単位）と呼び、UTF-16では各Code Unitのサイズが16bit（2バイト）になります。
+Unicodeでは1文字を表すのに使う最小限のビットの組み合わせを**Code Unit**（符号単位）と呼び、UTF-16では各Code Unitのサイズが16bit（2バイト）です。
 
 <!-- 
 - 用語集: http://unicode.org/glossary/
@@ -454,8 +454,7 @@ console.log(string.lastIndexOf("にわ")); // => 6
 console.log(string.indexOf("未知のキーワード")); // => -1
 ```
 
-検索している部分文字列の長さは固定であるため、一致した文字列は自明ですが、
-`String#slice`と取得したインデックスを組み合わせることで検索結果を取得できます。
+検索している部分文字列の長さは固定であるため、`String#slice`と取得したインデックスと検索した文字列の長さを組み合わせることで検索結果を取得できます。
 
 {{book.console}}
 ```js
