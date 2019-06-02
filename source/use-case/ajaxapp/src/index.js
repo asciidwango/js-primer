@@ -1,5 +1,5 @@
 function getUserId() {
-    const value = document.getElementById('userId').value;
+    const value = document.getElementById("userId").value;
     return encodeURIComponent(value);
 }
 
@@ -10,17 +10,17 @@ function fetchUserInfo(userId) {
 
 function escapeSpecialChars(str) {
     return str
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
 
 function escapeHTML(strings, ...values) {
     return strings.reduce((result, string, i) => {
         const value = values[i - 1];
-        if (typeof value === 'string') {
+        if (typeof value === "string") {
             return result + escapeSpecialChars(value) + string;
         } else {
             return result + String(value) + string;
@@ -42,7 +42,7 @@ function createView(userInfo) {
 }
 
 function displayView(view) {
-    const result = document.getElementById('result');
+    const result = document.getElementById("result");
     result.innerHTML = view;
 }
 
