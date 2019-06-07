@@ -952,4 +952,4 @@ JavaScriptでは、関数を短く定義できるArrow Functionや高階関数�
 [文と式]: ../statement-expression/README.md
 [undefinedはリテラルではない]: ../data-type/README.md#undefined-is-not-literal
 [^1]: この仕組みはTemporal Dead Zone（TDZ）と呼ばれます。
-[^2]: ECMAScriptの仕様ではガベージコレクションの実装の規定はないため、実装依存の処理となります
+[^2]: ECMAScriptの仕様ではガベージコレクションの実装の規定はないため、実装依存の処理となります。
