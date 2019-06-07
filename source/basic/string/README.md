@@ -985,4 +985,4 @@ console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
 [URL]: https://developer.mozilla.org/ja/docs/Web/API/URL  "URL - Web API インターフェイス | MDN"
 [Path]: https://nodejs.org/api/path.html  "Path | Node.js v7.9.0 Documentation"
 
-[^1]: Unicodeのカタカナの一覧 <https://unicode-table.com/jp/#katakana>
+[^1]: Unicodeのカタカナの一覧 <https://unicode-table.com/jp/#katakana> から取り出したテーブルです。
