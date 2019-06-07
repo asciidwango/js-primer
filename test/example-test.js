@@ -6,20 +6,22 @@ const globby = require("globby");
 const fs = require("fs");
 const path = require("path");
 const sourceDir = path.join(__dirname, "..", "source");
-const { transform } = require("babel-core");
+const { transformSync } = require("@babel/core");
 
 function transformModule(code) {
     // 必要なもの以外(es modulesぐらいがベスト)は変換しないように
-    return transform(code, {
+    return transformSync(code, {
         presets: [
             [
-                "env", {
-                "targets": {
-                    "node": "current"
+                "@babel/preset-env", {
+                    "targets": {
+                        "node": "current"
+                    }
                 }
-            }
             ]
-        ]
+        ],
+        babelrc: false,
+        configFile: false
     }).code;
 }
 
@@ -30,6 +32,19 @@ function transformModule(code) {
  * 詳細は CONTRIBUTING.md を見る
  **/
 describe("doctest:js", function() {
+    require("@babel/register")({
+        presets: [
+            [
+                "@babel/preset-env", {
+                    "targets": {
+                        "node": "current"
+                    }
+                }
+            ]
+        ],
+        babelrc: false,
+        configFile: false
+    });
     const files = globby.sync([
         `${sourceDir}/**/*-example.js`, // *-example.js
         `${sourceDir}/**/*.example.js`, // *.example.js
@@ -42,7 +57,8 @@ describe("doctest:js", function() {
             const content = fs.readFileSync(filePath, "utf-8");
             try {
                 const testCode = toTestCode(content);
-                runTestCode(transformModule(testCode), filePath);
+                const transformedCode = transformModule(testCode);
+                runTestCode(transformedCode, filePath);
             } catch (error) {
                 // Stack Trace like
                 console.error(`StrictEvalError: strict eval is failed
