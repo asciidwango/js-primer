@@ -15,7 +15,7 @@ description: "JavaScriptにおけるクラスの定義方法や継承方法を�
 
 ES2015でクラスを表現するための`class`構文が導入されましたが、この`class`構文で定義したクラスは関数オブジェクトの一種です。
 `class`構文ではプロトタイプベースの継承の仕組みの上に関数でクラスを表現しています。
-そのため、`class`構文はクラスを作るための関数定義や継承をパターン化した書き方といえます。[^糖衣構文]
+そのため、`class`構文はクラスを作るための関数定義や継承をパターン化した書き方といえます。[^1]
 
 JavaScriptでは関数で学んだことの多くは、クラスでもそのまま適応されます。
 また、関数の定義方法として関数宣言文と関数式があるように、クラスにもクラス宣言文とクラス式があります。
@@ -1217,9 +1217,9 @@ console.log(array.last); // => 5
 
 `Array`を継承した`MyArray`は、`Array`が元々もつ`length`プロパティや`Array.from`メソッドなどを継承し利用できます。
 
-[^糖衣構文]: `class`構文でのみしか実現できない機能はなく、読みやすさや分かりやさのために導入された構文という側面もあるため、JavaScriptの`class`構文は糖衣構文（シンタックスシュガー）と呼ばれることがあります。
 [Arrow Functionでコールバック関数を扱う]: ../function-this/README.md#arrow-function-callback
 [関数とthis]: ../function-this/README.md
 [問題: `this`を含むメソッドを変数に代入した場合]: ../function-this/README.md#assign-this-function
 [Map/Set]: ../map-and-set/README.md
 [ユースケース:Todoアプリ]: ../../use-case/todoapp/README.md
+[^1]: `class`構文でのみしか実現できない機能はなく、読みやすさや分かりやさのために導入された構文という側面もあるため、JavaScriptの`class`構文は糖衣構文（シンタックスシュガー）と呼ばれることがあります。

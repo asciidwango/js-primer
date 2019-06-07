@@ -912,7 +912,7 @@ console.log(object.method.call("THAT")); // => "THAT"
 
 <!-- textlint-enable -->
 
-`this`はオブジェクト指向プログラミングの文脈でJavaScriptに導入されました。[^awbjs]
+`this`はオブジェクト指向プログラミングの文脈でJavaScriptに導入されました。[^1]
 メソッド以外においても`this`は評価できますが、実行コンテキストやstrict modeなどによって結果が異なり混乱の元となります。
 そのため、メソッドではない通常の関数においては`this`を使うべきではありません。
 
@@ -920,7 +920,7 @@ console.log(object.method.call("THAT")); // => "THAT"
 コールバック関数における`this`はArrow Functionを使うことで分かりやすく解決できます。
 この背景にはArrow Functionで定義した関数は`this`を持たないという性質があります。
 
-[^awbjs]: ES 2015の仕様編集者であるAllen Wirfs-Brock‏氏もただの関数においては`this`を使うべきではないと述べている。<https://twitter.com/awbjs/status/938272440085446657>;
+[^1]: ES 2015の仕様編集者であるAllen Wirfs-Brock‏氏もただの関数においては`this`を使うべきではないと述べている。<https://twitter.com/awbjs/status/938272440085446657>;
 [JavaScriptとは]: ../introduction/README.md
 [関数と宣言]: ../function-declaration/README.md
 [関数とスコープ]: ../function-scope/README.md

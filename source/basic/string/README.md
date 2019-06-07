@@ -191,7 +191,7 @@ console.log(string[42]); // => undefined
 一方で、変換後のビット列が何の文字なのかを管理する表が必要になります。
 この文字に対応するIDの一覧表のことを符号化文字集合と呼びます。
 
-次の表は、Unicodeという文字コードにおける符号化文字集合からカタカナの一部分を取り出したものです。[^UnicodeTable]
+次の表は、Unicodeという文字コードにおける符号化文字集合からカタカナの一部分を取り出したものです。[^1]
 Unicodeはすべての文字に対してID（Code Point）を振ることを目的に作成されている仕様です。
 
 |      | 0    | 1    | 2    | 3    | 4    | 5    | 6    | 7    | 8    | 9    | A    | B    | C    | D    | E    | F    |
@@ -985,4 +985,4 @@ console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
 [URL]: https://developer.mozilla.org/ja/docs/Web/API/URL  "URL - Web API インターフェイス | MDN"
 [Path]: https://nodejs.org/api/path.html  "Path | Node.js v7.9.0 Documentation"
 
-[^UnicodeTable]: Unicodeのカタカナの一覧 <https://unicode-table.com/jp/#katakana>
+[^1]: Unicodeのカタカナの一覧 <https://unicode-table.com/jp/#katakana>

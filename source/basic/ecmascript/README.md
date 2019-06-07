@@ -21,7 +21,7 @@ Ecma International中のTechnical Committee 39（TC39）という技術委員会
 | 1        | 1997年6月  |
 | 2        | 1998年6月  |
 | 3        | 1999年12月 |
-| 4        | 破棄[^ES4] |
+| 4        | 破棄[^1] |
 | 5        | 2009年12月 |
 | 5.1      | 2011年6月  |
 | 2015     | 2015年6月  |
@@ -55,7 +55,7 @@ ES2015以前はすべての仕様の合意が取れるまで延々と議論を�
 この問題を解消するために、TC39は毎年リリースするためにECMAScriptの策定プロセスを変更しました。
 
 この策定プロセスはES2015がリリース後に適応され、このプロセスで初めてリリースされたのがES2016となります。
-ES2016以降では、次のような仕様策定のプロセスで議論を進めて仕様が決定されています。[^process]
+ES2016以降では、次のような仕様策定のプロセスで議論を進めて仕様が決定されています。[^2]
 
 仕様に追加する機能（API、構文など）をそれぞれ個別の**プロポーザル**（提案書）として進めていきます。
 現在策定中のプロポーザルはGitHub上の[tc39/proposals][]に一覧が公開されています。
@@ -82,9 +82,9 @@ ES2016以降では、次のような仕様策定のプロセスで議論を進�
 
 このような合意が取れる最低限の形でプロポーザルを進めていくのには、ES4の苦い失敗が背景にあります。
 ES4ではECMAScriptに多くの変更を入れることを試みましたが、TC39内でも意見が分かれ最終的に合意できませんでした。
-これによりES4の策定に割いた数年分のリソースが無駄となってしまったという経緯があります。[^1]
+これによりES4の策定に割いた数年分のリソースが無駄となってしまったという経緯があります。[^3]
 
-ES2016以降の策定プロセスでも、すべてのプロポーザルが仕様に入るわけではありません。[^2]
+ES2016以降の策定プロセスでも、すべてのプロポーザルが仕様に入るわけではありません。[^4]
 別の代替プロポーザルが出た場合や後方互換性と保てない場合などにプロポーザルの策定を中断する場合があります。
 しかし、この場合でもプロポーザルという単位であるため策定作業の無駄は最小限で済みます。
 このようにモジュール化されたプロポーザルは入れ替えがし易いという性質もあります。
@@ -177,11 +177,6 @@ ECMAScriptにおいては策定プロセスという形でどのような段階�
 
 日々変化しているソフトウェアにおいては、自身に適切な調べ方をもつことが大切です。
 
-[^1]: ES2015の仕様編集者であるAllen Wirfs-Brock氏の書いた[Programming Language Standardization](http://wirfs-brock.com/allen/files/papers/standpats-asianplop2016.pdf)に詳細が書かれています。
-[^2]: [Inactive Proposals](https://github.com/tc39/proposals/blob/master/inactive-proposals.md)に策定を中止したプロポーザルの一覧が公開されています。
-[^process]: この策定プロセスは<https://tc39.github.io/process-document/>に詳細が書かれています。
-[^ES4]: ECMAScript 4は複雑で大きな変更が含まれており、合意を得ることができずに策定仕様が破棄されました。
-
 [Ecma International]: http://www.ecma-international.org/  "Ecma International"
 [Standard ECMA-262]: https://www.ecma-international.org/publications/standards/Ecma-262.htm "Standard ECMA-262"
 [tc39/proposals]: https://github.com/tc39/proposals  "tc39/proposals: Tracking ECMAScript Proposals"
@@ -192,3 +187,7 @@ ECMAScriptにおいては策定プロセスという形でどのような段階�
 [core-js]: https://github.com/zloirock/core-js  "zloirock/core-js: Standard Library"
 [polyfill.io]: https://polyfill.io/v2/docs/  "Polyfill service"
 [MDN Web Docs]: https://developer.mozilla.org/ja/  "MDN Web Docs"
+[^1]: ECMAScript 4は複雑で大きな変更が含まれており、合意を得ることができずに策定仕様が破棄されました。
+[^2]: この策定プロセスは<https://tc39.github.io/process-document/>に詳細が書かれています。
+[^3]: ES2015の仕様編集者であるAllen Wirfs-Brock氏の書いた[Programming Language Standardization](http://wirfs-brock.com/allen/files/papers/standpats-asianplop2016.pdf)に詳細が書かれています。
+[^4]: [Inactive Proposals](https://github.com/tc39/proposals/blob/master/inactive-proposals.md)に策定を中止したプロポーザルの一覧が公開されています。
