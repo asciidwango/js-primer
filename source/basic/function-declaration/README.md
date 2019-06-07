@@ -363,7 +363,9 @@ print(array);
 ## [コラム] 同じ名前の関数宣言は上書きされる {#function-overwrite}
 
 関数宣言で定義した関数は、関数の名前でのみ区別されます。
-また、同じ名前の関数を複数回宣言した場合には、後ろで宣言された関数によって上書きされます。
+そのため、同じ名前の関数を複数回宣言した場合には、後ろで宣言された関数によって上書きされます。
+
+次のコードでは、`fn`という関数名を2つ定義していますが、最後に定義された`fn`関数が優先されています。
 
 <!-- textlint-disable eslint -->
 
@@ -371,18 +373,19 @@ print(array);
 <!-- babelのパースエラーを回避 https://github.com/asciidwango/js-primer/issues/711 -->
 <!-- doctest:disable -->
 ```js
-function fn(){
-    return 1;
+function fn(x, y){
+    return x + y;
 }
-function fn(){
-    return 2;
+function fn(x, y){
+    return x * y;
 }
-console.log(fn()); // => 2
+console.log(fn(2, 10)); // => 20
 ```
 
 <!-- textlint-enable eslint -->
 
-仮引数の定義が異なっていても、関数の名前が同じなら上書きされます。
+このように仮引数の定義が異なっていても、関数の名前が同じなら上書きされます。
+また、`let`や`const`を使った関数式として関数を宣言する場合には、同じ変数名は宣言できないため同じ名前の関数は宣言できません。
 そのため、引数の違いで関数を分けたい場合は、別々の名前で定義するか関数の内部で処理を分岐する必要があります。[^オーバーロード]
 
 ## 関数はオブジェクト {#first-class-function}
@@ -670,4 +673,4 @@ ES2015からは、メソッドを定義する構文が追加されているた�
 
 [関数とスコープ]: ../function-scope/README.md
 [非同期処理]: ../async/README.md
-[^オーバーロード]: JavaScriptにはオーバーロードがありません。
+[^オーバーロード]: JavaScriptにはオーバーロードはありません。
