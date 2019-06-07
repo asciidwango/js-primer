@@ -687,7 +687,7 @@ JavaScriptは静的スコープです。
 ```
 // 動的スコープの擬似的な言語のコード例（JavaScriptではありません）
 // 変数`x`を宣言
-var x = 10; // ＊1
+var x = 10;
 
 // `printX`という関数を定義
 fn printX() {
