@@ -70,7 +70,7 @@ $ npm init --yes
 `package.json`ファイルが用意できたら、`npm install`コマンドを使ってcommanderパッケージをインストールします。
 このコマンドの引数にはインストールするパッケージの名前とそのバージョンを`@`記号でつなげて指定できます。
 バージョンを指定せずにインストールすれば、その時点での最新の安定版が自動的に選択されます。
-次のコマンドを実行して、commanderのバージョン2.9をインストールします。[^saveオプション]
+次のコマンドを実行して、commanderのバージョン2.9をインストールします。[^1]
 
 ```shell-session
 $ npm install commander@2.9
@@ -136,4 +136,4 @@ bar
 [npmのGitHubリポジトリ]: https://github.com/npm/npm
 [require関数]: https://nodejs.org/dist/latest-v8.x/docs/api/modules.html#modules_loading_from_node_modules_folders
 [アプリケーション開発の準備]: ../../setup-local-env/README.md
-[^saveオプション]: --saveオプションをつけてインストールしたのと同じ意味。npm 5.0.0からは--saveがデフォルトオプションとなりました。
+[^1]: --saveオプションをつけてインストールしたのと同じ意味。npm 5.0.0からは--saveがデフォルトオプションとなりました。
