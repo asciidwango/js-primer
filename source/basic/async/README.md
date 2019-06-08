@@ -3,7 +3,7 @@ author: azu
 description: "JavaScriptにおける非同期処理についてを紹介します。同期処理と非同期処理の違いやなぜ非同期処理が重要になるかを紹介します。非同期処理を行う方法としてコールバックスタイル、Promise、Async Functionを紹介します。"
 ---
 
-# 非同期処理 {#async-handling}
+# 非同期処理:コールバック・Promise・Async Function {#async-handling}
 
 この章ではJavaScriptの非同期処理について学んで行きます。
 非同期処理はJavaScriptにおいてはとても重要な概念です。
