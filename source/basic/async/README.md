@@ -1228,9 +1228,9 @@ Promise.race([
 
 ES2017ではこのPromiseチェーンの不格好な見た目を解決するためにAsync Functionと呼ばれる構文が導入されました。
 
-## Async Function {#async-function}
+## [ES2017] Async Function {#async-function}
 
-Async Functionとは非同期処理を行う関数を定義する構文です。
+ES2017では、Async Functionという非同期処理を行う関数を定義する構文が導入されました。
 Async Functionは通常の関数とは異なり、必ず`Promise`インスタンスを返す関数を定義する構文です。
 
 Async Functionは次のように関数の前に`async`をつけることで定義できます。
