@@ -3,7 +3,7 @@ author: azu
 description: "JavaScriptにおける非同期処理についてを紹介します。同期処理と非同期処理の違いやなぜ非同期処理が重要になるかを紹介します。非同期処理を行う方法としてコールバックスタイル、Promise、Async Functionを紹介します。"
 ---
 
-# 非同期処理 {#async-handling}
+# 非同期処理:コールバック/Promise/Async Function {#async-handling}
 
 この章ではJavaScriptの非同期処理について学んで行きます。
 非同期処理はJavaScriptにおいてはとても重要な概念です。
@@ -1228,9 +1228,9 @@ Promise.race([
 
 ES2017ではこのPromiseチェーンの不格好な見た目を解決するためにAsync Functionと呼ばれる構文が導入されました。
 
-## Async Function {#async-function}
+## [ES2017] Async Function {#async-function}
 
-Async Functionとは非同期処理を行う関数を定義する構文です。
+ES2017では、Async Functionという非同期処理を行う関数を定義する構文が導入されました。
 Async Functionは通常の関数とは異なり、必ず`Promise`インスタンスを返す関数を定義する構文です。
 
 Async Functionは次のように関数の前に`async`をつけることで定義できます。
