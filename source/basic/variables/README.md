@@ -126,7 +126,7 @@ bookTitle = "新しいタイトル";
 
 `var`は`let`とよく似ていますが、`var`キーワードは同じ名前の変数を再定義できてしまう問題があります。
 
-`let`や`const`では、同じ名前の変数を再定義しようとすると、次のような構文エラー（`SyntaxError`）となります。
+`let`や`const`では、同じ名前の変数を再定義しようとすると、次のような構文エラー（`SyntaxError`）が発生します。
 
 > SyntaxError: redeclaration of let x
 
