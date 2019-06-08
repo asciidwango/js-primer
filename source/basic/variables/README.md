@@ -53,7 +53,10 @@ const bookCategory = "プログラミング";
 また、`const`は再代入できない変数を宣言するキーワードです。
 そのため、`const`キーワードで宣言した変数に対して、後から値を再代入することはできません。
 
-次のコードでは、`const`で宣言した変数`bookTitle`に対して値を再代入しているため、`TypeError`というエラーが発生します。
+次のコードでは、`const`で宣言した変数`bookTitle`に対して値を再代入しているため、次のようなエラーが発生します。
+
+> TypeError: invalid assignment to const `bookTitle'
+
 エラーが発生するとそれ以降の処理は実行されなくなります。
 
 [import, const-do-not-assign-invalid.js](src/const-do-not-assign-invalid.js)
@@ -123,8 +126,11 @@ bookTitle = "新しいタイトル";
 
 `var`は`let`とよく似ていますが、`var`キーワードは同じ名前の変数を再定義できてしまう問題があります。
 
-`let`や`const`では、同じ名前の変数を再定義しようとすると構文エラー（`SyntaxError`）になります。
-これにより、間違えて変数を二重に定義してしまうというミスを防ぐことができます。
+`let`や`const`では、同じ名前の変数を再定義しようとすると、次のような構文エラー（`SyntaxError`）となります。
+
+> SyntaxError: redeclaration of let x
+
+そのため、間違えて変数を二重に定義してしまうというミスを防ぐことができます。
 
 [import, let-duplicated-define-invalid.js](src/let-duplicated-define-invalid.js)
 
