@@ -10,6 +10,11 @@
     }
   },
   "rules": {
+    // 使っては行けない変数、関数名
+    // 詳細: https://github.com/asciidwango/js-primer/issues/804
+    "inline-code-denylist": {
+      "denylist": ["string", "number", "object", "boolean", "symbol"]
+    },
     "footnote-order": true,
     "@textlint-rule/no-unmatched-pair": true,
     "@textlint-rule/require-header-id": true,
