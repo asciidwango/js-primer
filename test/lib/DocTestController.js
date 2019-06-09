@@ -100,7 +100,7 @@ class DocTestController {
 
     /**
      * Return expected Error name if expected is defined.
-     * @returns {str[]}
+     * @returns {string[]}
      * @returns {string|undefined}
      * @private
      */
