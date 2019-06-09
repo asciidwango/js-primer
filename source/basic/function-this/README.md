@@ -286,8 +286,8 @@ const obj = {
 };
 // メソッド呼び出しの場合、それぞれの`this`はベースオブジェクト(`obj`)を参照する
 // メソッド呼び出しの`.`の左にあるオブジェクトがベースオブジェクト
-console.log(obj.method1()); // => object
-console.log(obj.method2()); // => object
+console.log(obj.method1()); // => obj
+console.log(obj.method2()); // => obj
 ```
 
 これを利用すれば、メソッドの中から同じオブジェクトに所属する別のプロパティを`this`で参照できます。
@@ -880,7 +880,7 @@ const obj = {
     }
 };
 // 通常の`this`は`obj.method`の`this`と同じ
-console.log(obj.method()); // => object
+console.log(obj.method()); // => obj
 // `obj.method`の`this`を変更すれば、Arrow Functionの`this`も変更される
 console.log(obj.method.call("THAT")); // => "THAT"
 ```
