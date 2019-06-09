@@ -373,13 +373,13 @@ print(array);
 <!-- babelのパースエラーを回避 https://github.com/asciidwango/js-primer/issues/711 -->
 <!-- doctest:disable -->
 ```js
-function fn(x, y){
-    return x + y;
+function fn(x, y, z){
+    return x + y + z;
 }
 function fn(x, y){
     return x * y;
 }
-console.log(fn(2, 10)); // => 20
+console.log(fn(2, 10, 3)); // => 20
 ```
 
 <!-- textlint-enable eslint -->
