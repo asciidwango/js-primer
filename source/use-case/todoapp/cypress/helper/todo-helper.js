@@ -2,7 +2,7 @@
 "use strict";
 /**
  * TODOアイテムを追加
- * @param {str} title
+ * @param {string} title
  * @returns {Cypress.Chainable<JQuery<HTMLElement>>}
  */
 const addNewTodo = (title) => {

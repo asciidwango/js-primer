@@ -5,7 +5,7 @@ module.exports = (context, options = {}) => {
         [Syntax.Code](node) {
             const value = node.value;
             const match = denylist.find(item => {
-                return item === value || value.includes(`(${item}`) || value.includes(`${item}.`);
+                return item === value || value.includes(`(${item}`) || value.includes(`${item}.`) || value.includes(`${item} =`);
             });
             if (match) {
                 const rawString = getSource(node);

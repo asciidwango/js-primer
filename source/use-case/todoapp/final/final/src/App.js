@@ -11,7 +11,7 @@ export class App {
 
     /**
      * Todoを追加時に呼ばれるリスナー関数
-     * @param {str} title
+     * @param {string} title
      */
     handleAdd(title) {
         this.todoListModel.addTodo(new TodoItemModel({ title, completed: false }));

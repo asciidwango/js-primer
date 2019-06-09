@@ -6,8 +6,8 @@ const bookJSON = require("../book.json");
 
 /**
  * contentからjs-primerで使ってるMarkdownの拡張を取り除く
- * @param {str} content
- * @returns {str}
+ * @param {string} content
+ * @returns {string}
  */
 function stripMarkdownExtension(content) {
     // {{book.console}} を取り除く

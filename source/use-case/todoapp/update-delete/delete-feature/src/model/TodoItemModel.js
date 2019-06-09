@@ -3,7 +3,7 @@ let todoIdx = 0;
 
 export class TodoItemModel {
     /**
-     * @param {str} title Todoアイテムのタイトル
+     * @param {string} title Todoアイテムのタイトル
      * @param {boolean} completed Todoアイテムが完了済みならばtrue、そうでない場合はfalse
      */
     constructor({ title, completed }) {
