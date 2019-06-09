@@ -46,7 +46,7 @@ class DocTestController {
     }
 
     /**
-     * @returns {str|undefined}
+     * @returns {string|undefined}
      */
     get expectedErrorName() {
         return this._expectedErrorName;
@@ -101,7 +101,7 @@ class DocTestController {
     /**
      * Return expected Error name if expected is defined.
      * @returns {str[]}
-     * @returns {str|undefined}
+     * @returns {string|undefined}
      * @private
      */
     _getExpectedErrorName(comments) {

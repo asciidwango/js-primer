@@ -33,8 +33,8 @@ const isIncludeVariableInExpression = (AST) => {
  * - リテラルや変数が登場しないコードでは`console.log`を省いても良い
  *
  * lineが問題ある行ならばErrorオブジェクトを返す
- * @param {str} text
- * @param {str} filePath ファイルパスは無視したい対象の指定に使う
+ * @param {string} text
+ * @param {string} filePath ファイルパスは無視したい対象の指定に使う
  * @returns {Error|undefined}
  */
 module.exports = function shouldConsoleWithComment(text, filePath) {
@@ -51,8 +51,8 @@ module.exports = function shouldConsoleWithComment(text, filePath) {
     });
 };
 /**
- * @param {str} text
- * @param {str} filePath
+ * @param {string} text
+ * @param {string} filePath
  * @returns {Error|undefined}
  */
 function checkLineThatShouldHaveComment(text, filePath) {

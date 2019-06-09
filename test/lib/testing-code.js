@@ -12,7 +12,7 @@ const makeConsoleMock = require("consolemock");
  *
  * throw new Error("この行は実行されません")
  *
- * @param {str} code
+ * @param {string} code
  * @returns {str}
  */
 export const toUnreachableCode = (code) => {
@@ -40,7 +40,7 @@ ${code}`;
 /**
  * "use strict"を付けた形へ変更する
  * ディレクトリプロローグがあると、power-doctestはうまく動かないので、その対応を行う
- * @param {str} code
+ * @param {string} code
  * @returns {str}
  */
 export const toStrictIfNeeded = (code) => {
@@ -52,7 +52,7 @@ export const toStrictIfNeeded = (code) => {
 };
 /**
  * power-doctestで // => をassertへ経感する
- * @param {str} code
+ * @param {string} code
  * @returns {str}
  */
 export const toPowerDoctest = (code) => {
@@ -60,7 +60,7 @@ export const toPowerDoctest = (code) => {
 };
 /**
  * テストコードをコードを変換する
- * @param {str} code
+ * @param {string} code
  * @returns {str}
  */
 export const toTestCode = (code) => {
@@ -72,8 +72,8 @@ export const toTestCode = (code) => {
 };
 /**
  * テストコードをVMで実行する
- * @param {str} code
- * @param {str} filePath
+ * @param {string} code
+ * @param {string} filePath
  */
 export const runTestCode = (code, filePath) => {
     // Run Test Code
