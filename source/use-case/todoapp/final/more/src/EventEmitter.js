@@ -6,7 +6,7 @@ export class EventEmitter {
 
     /**
      * 指定したイベントが実行されたときに呼び出されるリスナー関数を登録する
-     * @param {string} type イベント名
+     * @param {str} type イベント名
      * @param {Function} listener イベントリスナー
      */
     addEventListener(type, listener) {
@@ -20,7 +20,7 @@ export class EventEmitter {
 
     /**
      * 指定したイベントをディスパッチする
-     * @param {string} type イベント名
+     * @param {str} type イベント名
      */
     emit(type) {
         // 指定したイベントに対応するSetを取り出し、すべてのリスナー関数を呼び出す
@@ -35,7 +35,7 @@ export class EventEmitter {
 
     /**
      * 指定したイベントのイベントリスナーを解除する
-     * @param {string} type イベント名
+     * @param {str} type イベント名
      * @param {Function} listener イベントリスナー
      */
     removeEventListener(type, listener) {

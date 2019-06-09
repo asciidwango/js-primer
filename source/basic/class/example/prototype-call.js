@@ -8,11 +8,11 @@ class MyClass {
 const myInstance = new MyClass();
 
 // 再帰表現
-function call(object, methodName) {
-    if (object.hasOwnProperty(methodName)) {
-        return object[methodName]();
+function call(obj, methodName) {
+    if (obj.hasOwnProperty(methodName)) {
+        return obj[methodName]();
     }
-    const prototypeObject = Object.getPrototypeOf(object);
+    const prototypeObject = Object.getPrototypeOf(obj);
     if (!prototypeObject) {
         return;
     }

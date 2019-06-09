@@ -596,11 +596,11 @@ array.forEach((value) => {
 JavaScriptにおいて、関数とメソッドの機能的な違いはありません。
 しかし、呼び方を区別したほうがわかりやすいため、ここではオブジェクトのプロパティである関数をメソッドと呼びます。
 
-次のコードにおける`object`の`method`プロパティに関数を定義しています。
-この`object.method`プロパティがメソッドです。
+次のコードにおける`obj`の`method`プロパティに関数を定義しています。
+この`obj.method`プロパティがメソッドです。
 
 ```js
-const object = {
+const obj = {
     method1: function() {
         // `function`キーワードでのメソッド
     },
@@ -610,11 +610,11 @@ const object = {
 };
 ```
 
-次のように空の`object`を宣言してから、`method`プロパティへ関数を代入しても同様です。
+次のように空オブジェクトの`obj`を定義してから、`method`プロパティへ関数を代入しても同様です。
 
 ```js
-const object = {};
-object.method = function() {
+const obj = {};
+obj.method = function() {
 };
 ```
 
@@ -626,12 +626,12 @@ object.method = function() {
 
 {{book.console}}
 ```js
-const object = {
+const obj = {
     method: function() {
         return "this is method";
     }
 };
-console.log(object.method()); // => "this is method"
+console.log(obj.method()); // => "this is method"
 ```
 
 ### [ES2015] メソッドの短縮記法 {#shorthand-for-method}
@@ -643,12 +643,12 @@ ES2015からは、メソッドとしてプロパティを定義するための�
 
 {{book.console}}
 ```js
-const object = {
+const obj = {
     method() {
         return "this is method";
     }
 };
-console.log(object.method()); // => "this is method"
+console.log(obj.method()); // => "this is method"
 ```
 
 この書き方はオブジェクトのメソッドだけではなく、クラスのメソッドと共通の書き方となっています。

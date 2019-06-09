@@ -12,8 +12,8 @@ const makeConsoleMock = require("consolemock");
  *
  * throw new Error("この行は実行されません")
  *
- * @param {string} code
- * @returns {string}
+ * @param {str} code
+ * @returns {str}
  */
 export const toUnreachableCode = (code) => {
     return code.replace(/^\s*?\/\/(.*)この行は実行されません$/g, `$1throw new Error("$1この行は実行されません");`);
@@ -40,8 +40,8 @@ ${code}`;
 /**
  * "use strict"を付けた形へ変更する
  * ディレクトリプロローグがあると、power-doctestはうまく動かないので、その対応を行う
- * @param {string} code
- * @returns {string}
+ * @param {str} code
+ * @returns {str}
  */
 export const toStrictIfNeeded = (code) => {
     if (/strict modeではない/.test(code)) {
@@ -52,16 +52,16 @@ export const toStrictIfNeeded = (code) => {
 };
 /**
  * power-doctestで // => をassertへ経感する
- * @param {string} code
- * @returns {string}
+ * @param {str} code
+ * @returns {str}
  */
 export const toPowerDoctest = (code) => {
     return doctest.convertCode(code);
 };
 /**
  * テストコードをコードを変換する
- * @param {string} code
- * @returns {string}
+ * @param {str} code
+ * @returns {str}
  */
 export const toTestCode = (code) => {
     // 次の順番でコードを変換していく
@@ -72,8 +72,8 @@ export const toTestCode = (code) => {
 };
 /**
  * テストコードをVMで実行する
- * @param {string} code
- * @param {string} filePath
+ * @param {str} code
+ * @param {str} filePath
  */
 export const runTestCode = (code, filePath) => {
     // Run Test Code

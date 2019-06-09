@@ -1,13 +1,13 @@
-// `number`が偶数ならtrueを返す
-function isEven(number) {
-    return number % 2 === 0;
+// 引数の`num`が偶数ならtrueを返す
+function isEven(num) {
+    return num % 2 === 0;
 }
-// `numbers`に偶数が含まれているならtrueを返す
+// 引数の`numbers`に偶数が含まれているならtrueを返す
 function isEvenIncluded(numbers) {
     let isEvenIncluded = false;
     for (let i = 0; i < numbers.length; i++) {
-        const number = numbers[i];
-        if (isEven(number)) {
+        const num = numbers[i];
+        if (isEven(num)) {
             isEvenIncluded = true;
             break;
         }

@@ -309,13 +309,13 @@ for...in文はオブジェクトのプロパティに対して、順不同で反
 
 <!-- doctest:disable -->
 ```js
-for (variable in object) {
+for (プロパティ in オブジェクト) {
     実行する文;
 }
 ```
 
-次のコードでは`object`のプロパティ名を`key`変数に代入し反復処理をしています。
-`object`には、3つのプロパティ名があるため３回繰り返されます。
+次のコードでは`obj`のプロパティ名を`key`変数に代入し反復処理をしています。
+`obj`には、3つのプロパティ名があるため３回繰り返されます。
 
 {{book.console}}
 [import, for-in-object-example.js](./src/for-in/for-in-object-example.js)
@@ -329,7 +329,7 @@ for...in文は、対象となるオブジェクトのプロパティを列挙す
 安全にオブジェクトのプロパティを列挙するには、`Object.keys`メソッド、`Object.values`メソッド、`Object.entries`メソッドなどが利用できます。
 
 先ほどの例である、オブジェクトのキーと値を列挙するコードはfor...in文を使わずに書けます。
-`Object.keys`メソッドは`object`自身がもつ列挙可能なプロパティ名の配列を返します。
+`Object.keys`メソッドは引数のオブジェクト自身がもつ列挙可能なプロパティ名の配列を返します。
 そのためfor...in文とは違い、親オブジェクトのプロパティは列挙されません。
 
 {{book.console}}

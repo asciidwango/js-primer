@@ -1,10 +1,10 @@
-function isEven(number) {
-    return number % 2 === 0;
+function isEven(num) {
+    return num % 2 === 0;
 }
 function isEvenIncluded(numbers) {
     for (let i = 0; i < numbers.length; i++) {
-        const number = numbers[i];
-        if (isEven(number)) {
+        const num = numbers[i];
+        if (isEven(num)) {
             return true;
         }
     }

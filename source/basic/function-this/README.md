@@ -111,7 +111,7 @@ JavaScriptではオブジェクトのプロパティが関数である場合に�
 
 {{book.console}}
 ```js
-const object = {
+const obj = {
     // `function`キーワードを使ったメソッド
     method1: function() {
     },
@@ -126,7 +126,7 @@ const object = {
 
 {{book.console}}
 ```js
-const object = {
+const obj = {
     // メソッドの短縮記法で定義したメソッド
     method() {
     }
@@ -141,13 +141,13 @@ const object = {
 
 {{book.console}}
 ```js
-const object = {
+const obj = {
     // メソッドの定義
     method() {
     }
 };
 // メソッド呼び出し
-object.method();
+obj.method();
 ```
 
 関数定義とメソッドの定義についてまとめると、次のような種類があります。
@@ -270,11 +270,11 @@ strict modeは、このような意図しにくい動作を防止するために
 なぜなら、JavaScriptではオブジェクトのプロパティとして指定される関数のことをメソッドと呼ぶためです。
 
 次の例では`method1`と`method2`はそれぞれメソッドとして呼び出されています。
-このとき、それぞれのベースオブジェクトは`object`となり、`this`は`object`となります。
+このとき、それぞれのベースオブジェクトは`obj`となり、`this`は`obj`となります。
 
 {{book.console}}
 ```js
-const object = {
+const obj = {
     // 関数式をプロパティの値にしたメソッド
     method1: function() {
         return this;
@@ -284,10 +284,10 @@ const object = {
         return this;
     }
 };
-// メソッド呼び出しの場合、それぞれの`this`はベースオブジェクト(`object`)を参照する
+// メソッド呼び出しの場合、それぞれの`this`はベースオブジェクト(`obj`)を参照する
 // メソッド呼び出しの`.`の左にあるオブジェクトがベースオブジェクト
-console.log(object.method1()); // => object
-console.log(object.method2()); // => object
+console.log(obj.method1()); // => object
+console.log(obj.method2()); // => object
 ```
 
 これを利用すれば、メソッドの中から同じオブジェクトに所属する別のプロパティを`this`で参照できます。
@@ -543,10 +543,10 @@ const Prefixer = {
      * `strings`配列の各要素にprefixをつける
      */
     prefixArray(strings) {
-        return strings.map(function(string) {
+        return strings.map(function(str) {
             // コールバック関数における`this`は`undefined`となる(strict mode)
             // そのため`this.prefix`は`undefined.prefix`となり例外が発生する
-            return this.prefix + "-" + string;
+            return this.prefix + "-" + str;
         });
     }
 };
@@ -563,8 +563,8 @@ Prefixer.prefixArray(["a", "b", "c"]); // => TypeError: Cannot read property 'pr
 // ...
     prefixArray(strings) {
         // 匿名関数をコールバック関数として渡している
-        return strings.map(function(string) {
-            return this.prefix + "-" + string;
+        return strings.map(function(str) {
+            return this.prefix + "-" + str;
         });
     }
 // ...
@@ -590,8 +590,8 @@ const Prefixer = {
     prefixArray(strings) {
         // コールバック関数は`callback()`のように呼び出される
         // そのためコールバック関数における`this`は`undefined`となる(strict mode)
-        const callback = function(string) {
-            return this.prefix + "-" + string;
+        const callback = function(str) {
+            return this.prefix + "-" + str;
         };
         return strings.map(callback);
     }
@@ -621,9 +621,9 @@ const Prefixer = {
         // `that`は`prefixArray`メソッド呼び出しにおける`this`となる
         // つまり`that`は`Prefixer`オブジェクトを参照する
         const that = this;
-        return strings.map(function(string) {
+        return strings.map(function(str) {
             // `this`ではなく`that`を参照する
-            return that.prefix + "-" + string;
+            return that.prefix + "-" + str;
         });
     }
 };
@@ -643,10 +643,10 @@ const Prefixer = {
     prefix: "pre",
     prefixArray(strings) {
         // `Array#map`メソッドは第二引数に`this`となる値を渡せる
-        return strings.map(function(string) {
+        return strings.map(function(str) {
             // `this`が第二引数の値と同じになる
             // つまり`prefixArray`メソッドと同じ`this`となる
-            return this.prefix + "-" + string;
+            return this.prefix + "-" + str;
         }, this);
     }
 };
@@ -674,11 +674,11 @@ Arrow Functionを使うことで、先ほどのコードは次のように書く
 const Prefixer = {
     prefix: "pre",
     prefixArray(strings) {
-        return strings.map((string) => {
+        return strings.map((str) => {
             // Arrow Function自体は`this`を持たない
             // `this`は外側の`prefixArray`関数がもつ`this`を参照する
             // そのため`this.prefix`は"pre"となる
-            return this.prefix + "-" + string;
+            return this.prefix + "-" + str;
         });
     }
 };
@@ -789,7 +789,7 @@ const callCallback = (callback) => {
     // `callback`を呼び出す実装
 };
 
-const object = {
+const obj = {
     method() {
         callCallback(function() {
             // ここでの `this` は`callCallback`の実装に依存する
@@ -811,7 +811,7 @@ const callCallback = (callback) => {
     // `callback`を呼び出す実装
 };
 
-const object = {
+const obj = {
     method() {
         callCallback(() => {
             // ここでの`this`は1つ外側の関数における`this`と同じ
@@ -828,10 +828,10 @@ const object = {
 const Prefixer = {
     prefix: "pre",
     prefixArray(strings) {
-        return strings.map((string) => {
+        return strings.map((str) => {
             // `Prefixer.prefixArray()` と呼び出されたとき
             // `this`は常に`Prefixer`を参照する
-            return this.prefix + "-" + string;
+            return this.prefix + "-" + str;
         });
     }
 };
@@ -871,7 +871,7 @@ console.log(fn.call({})); // グローバルオブジェクト
 
 {{book.console}}
 ```js
-const object = {
+const obj = {
     method() {
         const arrowFunction = () => {
             return this;
@@ -879,10 +879,10 @@ const object = {
         return arrowFunction();
     }
 };
-// 通常の`this`は`object.method`の`this`と同じ
-console.log(object.method()); // => object
-// `object.method`の`this`を変更すれば、Arrow Functionの`this`も変更される
-console.log(object.method.call("THAT")); // => "THAT"
+// 通常の`this`は`obj.method`の`this`と同じ
+console.log(obj.method()); // => object
+// `obj.method`の`this`を変更すれば、Arrow Functionの`this`も変更される
+console.log(obj.method.call("THAT")); // => "THAT"
 ```
 
 ## まとめ {#function-this-summary}

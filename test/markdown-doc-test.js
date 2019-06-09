@@ -28,7 +28,7 @@ const getComments = (parentNode, codeNode) => {
  * 指定した文字列を含んだコードは実行環境によってはサポートされてないので無視する
  * 具体的にはNode.js v6でES2016~のコードが実行できない場合がある
  * .travis.ymlのサポートしているNode.jsバージョンに合わせる
- * @type {string[]}
+ * @type {str[]}
  */
 const ESVersions = ["ES2017"];
 /**

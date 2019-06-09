@@ -55,7 +55,7 @@ console.log(typeof function() {}); // => "function"
 残念ながら`typeof null`が`"object"`となるのは、歴史的経緯のある仕様のバグ[^1]です。
 他のプリミティブ型の値については、`typeof`演算子でそれぞれのデータ型を調べることができます。
 
-一方で、配列とオブジェクトがどちらも`object`という判定結果になります。
+一方で、配列とオブジェクトがどちらも`"object"`という判定結果になります。
 このように、`typeof`演算子ではすべてのオブジェクトの種類は判定できません。
 
 基本的に`typeof`演算子は、プリミティブ型またはオブジェクトかを判別するものです。
@@ -71,7 +71,7 @@ console.log(typeof function() {}); // => "function"
 
 ```js
 // "と"で囲んだ範囲が文字列リテラル
-const string = "文字列";
+const str = "文字列";
 ```
 
 リテラル表現がない場合は、その値を作る関数に引数を渡して作成する形になります。
@@ -270,8 +270,8 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は同�
 
 {{book.console}}
 ```js
-const string = "文字列";
-console.log(`これは${string}です`); // => "これは文字列です"
+const str = "文字列";
+console.log(`これは${str}です`); // => "これは文字列です"
 ```
 
 テンプレートリテラルも他の文字列リテラルと同様に同じリテラル記号を内包したい場合は、`\`を使いエスケープする必要があります。
@@ -347,7 +347,7 @@ JavaScriptにおいて、オブジェクトはあらゆるものの基礎とな�
 オブジェクトリテラルは`{}`（中括弧）を書くことで、新しいオブジェクトを作成できます。
 
 ```js
-const object = {}; // 中身が空のオブジェクトを作成
+const obj = {}; // 中身が空のオブジェクトを作成
 ```
 
 オブジェクトリテラルはオブジェクトの作成と同時に中身を定義できます。
@@ -357,26 +357,26 @@ const object = {}; // 中身が空のオブジェクトを作成
 キー名には、文字列またはSymbolを指定し、値にはプリミティブ型の値からオブジェクトまで何でも入れることができます。
 
 ```js
-const object = {
+const obj = {
     key: "value"
 };
 ```
 
 このとき、オブジェクトがもつキーのことをプロパティ名と呼びます。
-この場合、 `object` は `key` というプロパティを持っていると言います。
+この場合、 `obj`というオブジェクトは`key`というプロパティを持っていると言います。
 
-`object`の`key`を参照するには、`.`（ドット）で繋ぎ参照する方法と、
+`obj`の`key`を参照するには、`.`（ドット）で繋ぎ参照する方法と、
 `[]`（ブラケット）で参照する方法があります。
 
 {{book.console}}
 ```js
-const object = {
+const obj = {
     "key": "value"
 };
 // ドット記法
-console.log(object.key); // => "value"
+console.log(obj.key); // => "value"
 // ブラケット記法
-console.log(object["key"]); // => "value"
+console.log(obj["key"]); // => "value"
 ```
 
 ドット記法では、プロパティ名が変数名と同じく識別子である必要があります。
@@ -463,11 +463,11 @@ console.log(numberRegExp.test(123)); // => true
 {{book.console}}
 ```js
 // 文字列をラップしたStringラッパーオブジェクト
-const string = new String("文字列");
+const str = new String("文字列");
 // ラッパーオブジェクトは"object"型のデータ
-console.log(typeof string); // => "object"
+console.log(typeof str); // => "object"
 // Stringオブジェクトの`length`プロパティは文字列を長さを返す
-console.log(string.length); // => 3
+console.log(str.length); // => 3
 ```
 
 しかし、明示的にラッパーオブジェクトを使うべき理由はありません。
@@ -477,11 +477,11 @@ console.log(string.length); // => 3
 {{book.console}}
 ```js
 // プリミティブ型の文字列データ
-const string = "文字列";
+const str = "文字列";
 // プリミティブ型の文字列は"string"型のデータ
-console.log(typeof string); // => "string"
+console.log(typeof str); // => "string"
 // プリミティブ型の文字列も`length`プロパティを参照できる
-console.log(string.length); // => 3
+console.log(str.length); // => 3
 ```
 
 これは、プリミティブ型のデータのプロパティへアクセスする際に、対応するラッパーオブジェクトへ暗黙的に変換してからプロパティへアクセスするためです。

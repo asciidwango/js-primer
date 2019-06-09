@@ -539,12 +539,12 @@ console.log(~0b1111); // => -0b10000
 
 {{book.console}}
 ```js
-const string = "森森本森森";
+const str = "森森本森森";
 // 見つかった場合はインデックスを返す
 // JavaScriptのインデックスは0から開始するので2を返す
-console.log(string.indexOf("本")); // => 2
+console.log(str.indexOf("本")); // => 2
 // 見つからない場合は-1を返す
-console.log(string.indexOf("火")); // => -1
+console.log(str.indexOf("火")); // => -1
 ```
 
 否定演算子（`~`）は1の補数を返すため、`~(-1)`は`0`となります。
@@ -561,14 +561,14 @@ JavaScriptでは`0`も、if文では`false`として扱われます。
 
 {{book.console}}
 ```js
-const string = "森森木森森";
+const str = "森森木森森";
 // indexOfメソッドは見つからなかった場合は -1 を返す
-if (string.indexOf("木") !== -1) {
+if (str.indexOf("木") !== -1) {
     console.log("木を見つけました");
 }
 // 否定演算子（`~`）で同じ動作を実装
 // (~(-1)) は 0 となるため、見つからなかった場合はif文の中身は実行されない
-if (~string.indexOf("木")) {
+if (~str.indexOf("木")) {
     console.log("木を見つけました");
 }
 ```
@@ -578,8 +578,8 @@ ES2015では、文字列（Stringオブジェクト）に`includes`メソッド�
 
 {{book.console}}
 ```js
-const string = "森森木森森";
-if (string.includes("木")) {
+const str = "森森木森森";
+if (str.includes("木")) {
     console.log("木を見つけました");
 }
 ```
@@ -590,12 +590,12 @@ if (string.includes("木")) {
 
 ### 左シフト演算子（`<<`） {#left-shift}
 
-左シフト演算子は、`number`を`bit`の数だけ左へシフトします。
+左シフト演算子は、数値である`num`を`bit`の数だけ左へシフトします。
 左にあふれたビットは破棄され、`0`のビットを右から詰めます。
 
 <!-- doctest:disable -->
 ```js
-number << bit;
+num << bit;
 ```
 
 次のコードでは、`9`を2ビット分だけ左へシフトしています。
@@ -608,12 +608,12 @@ console.log(0b1111 << 2); // => 0b111100
 
 ### 右シフト演算子（`>>`） {#right-shift}
 
-右シフト演算子は、`number`を`bit`の数だけ右へシフトします。
+右シフト演算子は、数値である`num`を`bit`の数だけ右へシフトします。
 右にあふれたビットは破棄され、左端のビットのコピーを左から詰めます。
 
 <!-- doctest:disable -->
 ```js
-number >> bit;
+num >> bit;
 ```
 
 次のコードでは、`-9`を2ビット分だけ右へシフトしています。
@@ -627,8 +627,7 @@ console.log((-9) >> 2); // => -3
 
 ### ゼロ埋め右シフト演算子（`>>>`） {#fill-zero-right-shift}
 
-ゼロ埋め右シフト演算子は、`number`を`bit`の数だけ右へシフトするのは右シフト演算子（`>>`）と同じです。
-右にあふれたビットは破棄され、`0`のビットを左から詰めます。
+ゼロ埋め右シフト演算子は、数値である`num`を`bit`の数だけ右へシフトするのは右シフト演算子（`>>`）と同じです。異なる点としては右にあふれたビットは破棄され、`0`のビットを左から詰めます。
 
 次のコードでは、`-9`を2ビット分だけゼロ埋め右シフトしています。
 左端のビットは`0`となるため、常に正の値となります。
@@ -694,24 +693,24 @@ const b = array[1];
 
 {{book.console}}
 ```js
-const object = {
+const obj = {
     "key": "value"
 };
 // プロパティ名`key`の値を、変数`key`として定義する
-const { key } = object;
+const { key } = obj;
 console.log(key); // => "value"
 ```
 
 これは、次のように書いたのと同じ結果になります。
 
 ```js
-const object = {
+const obj = {
     "key": "value"
 };
-const key = object.key;
+const key = obj.key;
 ```
 
-## 条件（三項）演算子（`?`と`:`） {#ternary-perator}
+## 条件（三項）演算子（`?`と`:`） {#ternary-operator}
 
 条件演算子（`?`と`:`）は三項をとる演算子であるため、三項演算子とも呼ばれます。
 
@@ -857,9 +856,9 @@ NOT演算子は必ず真偽値を返すため、次のように2つNOT演算子�
 
 {{book.console}}
 ```js
-const string = "";
+const str = "";
 // 空文字はfalsyな値
-console.log(!!string); // => false
+console.log(!!str); // => false
 ```
 
 このようなケースの多くは、比較演算子を使うなどより明示的な方法で、真偽値を得ることができます。
@@ -867,9 +866,9 @@ console.log(!!string); // => false
 
 {{book.console}}
 ```js
-const string = "";
+const str = "";
 // 空文字でないことを判定
-console.log(string.length > 0); // => false
+console.log(str.length > 0); // => false
 ```
 
 ### グループ演算子（`(`と`)`） {#group-operator}

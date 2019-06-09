@@ -1,7 +1,7 @@
 // MIT © 2018 azu
 "use strict";
 /**
- * @param {string} URL
+ * @param {str} URL
  * @returns {Promise<{ window: Window, logSpy: *}>}
  */
 exports.visitWithConsole = (URL) => {

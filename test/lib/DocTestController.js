@@ -28,7 +28,7 @@ const ERROR_TYPE_PATTERN = /doctest:\s*([\w\s]*?Error)/;
  */
 class DocTestController {
     /**
-     * @param {string[]} comments
+     * @param {str[]} comments
      */
     constructor(comments) {
         this.comments = comments;
@@ -46,7 +46,7 @@ class DocTestController {
     }
 
     /**
-     * @returns {string|undefined}
+     * @returns {str|undefined}
      */
     get expectedErrorName() {
         return this._expectedErrorName;
@@ -100,8 +100,8 @@ class DocTestController {
 
     /**
      * Return expected Error name if expected is defined.
-     * @returns {string[]}
-     * @returns {string|undefined}
+     * @returns {str[]}
+     * @returns {str|undefined}
      * @private
      */
     _getExpectedErrorName(comments) {
