@@ -55,7 +55,7 @@ const bookCategory = "プログラミング";
 
 次のコードでは、`const`で宣言した変数`bookTitle`に対して値を再代入しているため、次のようなエラーが発生します。
 
-> TypeError: invalid assignment to const `bookTitle'
+> TypeError: invalid assignment to const 'bookTitle'
 
 エラーが発生するとそれ以降の処理は実行されなくなります。
 
