@@ -28,7 +28,7 @@ const ERROR_TYPE_PATTERN = /doctest:\s*([\w\s]*?Error)/;
  */
 class DocTestController {
     /**
-     * @param {str[]} comments
+     * @param {string[]} comments
      */
     constructor(comments) {
         this.comments = comments;
