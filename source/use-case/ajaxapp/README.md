@@ -21,7 +21,7 @@ description: "ウェブブラウザ上でAjax通信をするユースケース�
 
 ### [HTTP通信](./http/README.md) {#xhr}
 
-ブラウザ標準のFetch APIを使ってHTTP通信をおこない、GitHubのAPIを呼び出します。
+ウェブ標準のFetch APIを使ってHTTP通信をおこない、GitHubのAPIを呼び出します。
 
 ### [データを表示する](./display/README.md) {#display}
 
