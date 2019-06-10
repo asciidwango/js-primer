@@ -38,9 +38,9 @@
     - [モジュール](./use-case/module/README.md)
     - [Ajaxで通信](./use-case/ajaxapp/README.md)
       - [エントリポイント](./use-case/ajaxapp/entrypoint/README.md)
-      - [HTTP通信](./use-case/ajaxapp/xhr/README.md)
-      - [データを表示する](./use-case/ajaxapp/display/README.md)
-      - [Promiseを活用する](./use-case/ajaxapp/promise/README.md)
+      - [HTTP通信](./use-case/ajaxapp/http/README.md)
+      <!-- - [データを表示する](./use-case/ajaxapp/display/README.md) -->
+      <!-- - [Promiseを活用する](./use-case/ajaxapp/promise/README.md)  -->
     - [Node.jsでCLIアプリ](./use-case/nodecli/README.md)
       - [Node.jsでHello World](./use-case/nodecli/helloworld/README.md)
       - [コマンドライン引数を処理する](./use-case/nodecli/argument-parse/README.md)

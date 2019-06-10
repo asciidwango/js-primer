@@ -19,7 +19,7 @@ description: "ウェブブラウザ上でAjax通信をするユースケース�
 
 アプリケーションの中で一番最初に呼び出されるエントリポイントを作成します。
 
-### [HTTP通信](./http/README.md) {#xhr}
+### [HTTP通信](./http/README.md) {#http-communication}
 
 ウェブ標準のFetch APIを使ってHTTP通信をおこない、GitHubのAPIを呼び出します。
 
