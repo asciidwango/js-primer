@@ -23,8 +23,6 @@ description: "ウェブブラウザ上でAjax通信をするユースケース�
 
 ウェブ標準のFetch APIを使ってHTTP通信をおこない、GitHubのAPIを呼び出します。
 
-<!-- 
-
 ### [データを表示する](./display/README.md) {#display}
 
 XMLHttpRequestを使って取得したデータをもとにHTMLを組み立ててブラウザ上で表示します。
@@ -32,4 +30,3 @@ XMLHttpRequestを使って取得したデータをもとにHTMLを組み立て�
 ### [Promiseを活用する](./promise/README.md) {#promise}
 
 Promiseを活用し、ソースコードの整理とエラーハンドリングを行います。
- -->
