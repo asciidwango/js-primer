@@ -116,3 +116,4 @@ index.jsでは関数を定義しているだけで、呼び出しは行ってい
 
 
 [Fetch API]: https://developer.mozilla.org/ja/docs/Web/API/Fetch_API
+[XMLHttpRequest]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest
