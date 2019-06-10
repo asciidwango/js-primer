@@ -450,13 +450,13 @@ const インスタンス = new クラス();
 インスタンス.プロパティ名 = 値; // setterが呼び出される
 ```
 
-次のコードでは、`NumberValue#value`をアクセッサプロパティとして定義しています。
-`number.value`へアクセスした際にそれぞれ定義したgetterとsetterが呼ばれていることが分かります。
-このアクセッサプロパティで実際に読み書きされているのは、`NumberValue`インスタンスの`_value`プロパティとなります。
+次のコードでは、`NumberWrapper`クラスの`value`プロパティをアクセッサプロパティとして定義しています。
+`value`プロパティへアクセスした際にそれぞれ定義したgetterとsetterが呼ばれていることが分かります。
+このアクセッサプロパティで実際に読み書きされているのは、`NumberWrapper`インスタンスの`_value`プロパティとなります。
 
 {{book.console}}
 ```js
-class NumberValue {
+class NumberWrapper {
     constructor(value) {
         this._value = value;
     }
@@ -472,13 +472,13 @@ class NumberValue {
     }
 }
 
-const number = new NumberValue(1);
+const numberWrapper = new NumberWrapper(1);
 // "getter"とコンソールに表示される
-console.log(number.value); // => 1
+console.log(numberWrapper.value); // => 1
 // "setter"とコンソールに表示される
-number.value = 42;
+numberWrapper.value = 42;
 // "getter"とコンソールに表示される
-console.log(number.value); // => 42
+console.log(numberWrapper.value); // => 42
 ```
 
 <!-- Note: インスタンスオブジェクトのアクセッサプロパティ
@@ -488,7 +488,7 @@ console.log(number.value); // => 42
 
 ### [コラム] プライベートプロパティ {#private-property}
 
-`NumberValue#value`のアクセッサプロパティで実際に読み書きしているのは、`_value`プロパティです。
+`NumberWrapper#value`のアクセッサプロパティで実際に読み書きしているのは、`_value`プロパティです。
 このように、外から直接読み書きしてほしくないプロパティを`_`（アンダーバー）で開始するのはただの習慣であるため、構文としての意味はありません。
 
 現時点（ECMAScript {{book.esversion}}）では、外から原理的に参照できないプライベートプロパティ（hard private）を定義する構文はありません。
@@ -779,7 +779,7 @@ instance.method(); // "プロトタイプのメソッド"
 このとき、インスタンスからクラスのプロトタイプオブジェクトへの参照は、インスタンスオブジェクトの`[[Prototype]]`という内部プロパティに保存されます。
 
 `[[Prototype]]`内部プロパティはECMAScriptの仕様で定められた内部的な表現であるため、通常のプロパティのようにはアクセスできません。
-しかし、`Object.getPrototypeOf(object)`メソッドで`object`の`[[Prototype]]`内部プロパティを読み取れます。
+しかし、`Object.getPrototypeOf(オブジェクト)`メソッドで`オブジェクト`の`[[Prototype]]`内部プロパティを読み取れます。
 
 次のコードでは、インスタンスの`[[Prototype]]`内部プロパティを取得しています。
 その取得した結果がクラスのプロトタイプオブジェクトを参照していることを確認できます。
@@ -792,9 +792,9 @@ class MyClass {
     }
 }
 const instance = new MyClass();
-// instanceの`[[Prototype]]`内部プロパティは`MyClass.prototype`と一致する
-const Prototype = Object.getPrototypeOf(instance);
-console.log(Prototype === MyClass.prototype); // => true
+// `instance`の`[[Prototype]]`内部プロパティは`MyClass.prototype`と一致する
+const MyClassPrototype = Object.getPrototypeOf(instance);
+console.log(MyClassPrototype === MyClass.prototype); // => true
 ```
 
 ここで重要なのは、インスタンスはどのクラスから作られたかやそのクラスのプロトタイプオブジェクトを知っているということです。
@@ -803,8 +803,8 @@ console.log(Prototype === MyClass.prototype); // => true
 
 #### Note: `[[Prototype]]`内部プロパティを読み書きする {#inner-property}
 
-`Object.getPrototypeOf(object)`で`object`の`[[Prototype]]`を読み取ることができます。
-一方、`Object.setPrototypeOf(object, prototype)`で`object`の`[[Prototype]]`に`prototype`オブジェクトを書き込めます。
+`Object.getPrototypeOf(オブジェクト)`で`オブジェクト`の`[[Prototype]]`を読み取ることができます。
+一方、`Object.setPrototypeOf(オブジェクト, プロトタイプオブジェクト)`で`オブジェクト`の`[[Prototype]]`に`プロトタイプオブジェクト`を設定できます。
 また、`[[Prototype]]`内部プロパティを通常のプロパティのように扱える`__proto__`という特殊なアクセッサプロパティが存在します。
 
 しかし、これらの`[[Prototype]]`内部プロパティを直接読み書きすることは通常の用途では行いません。

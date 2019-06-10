@@ -132,12 +132,12 @@ function escapeSpecialChars(str) {
 
 ```js
 function escapeHTML(strings, ...values) {
-    return strings.reduce((result, string, i) => {
+    return strings.reduce((result, str, i) => {
         const value = values[i - 1];
         if (typeof value === "string") {
-            return result + escapeSpecialChars(value) + string;
+            return result + escapeSpecialChars(value) + str;
         } else {
-            return result + String(value) + string;
+            return result + String(value) + str;
         }
     });  
 }

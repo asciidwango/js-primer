@@ -1,10 +1,10 @@
-const object = {
+const obj = {
     "a": 1,
     "b": 2,
     "c": 3
 };
-for (const key in object) {
-    const value = object[key];
+for (const key in obj) {
+    const value = obj[key];
     console.log(`key:${key}, value:${value}`);
 }
 // "key:a, value:1"

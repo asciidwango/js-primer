@@ -34,10 +34,10 @@ JavaScriptのデータ型はプリミティブ型とオブジェクトに分け�
 
 {{book.console}}
 ```js
-// "string"の値をラップしたStringのインスタンスを生成
-const string = new String("string");
+// "input value"の値をラップしたStringのインスタンスを生成
+const str = new String("input value");
 // StringのインスタンスメソッドであるtoUpperCaseを呼び出す
-string.toUpperCase(); // => "STRING"
+str.toUpperCase(); // => "INPUT VALUE"
 ```
 
 このようにインスタンス化されたものは、プリミティブ型の値を包んだ（ラップした）オブジェクトといえます。
@@ -60,8 +60,8 @@ string.toUpperCase(); // => "STRING"
 
 {{book.console}}
 ```js
-const string = "文字列";
-console.log(typeof string); // => "string"
+const str = "文字列";
+console.log(typeof str); // => "string"
 const stringWrapper = new String("文字列");
 console.log(typeof stringWrapper); // => "object"
 ```
@@ -109,7 +109,7 @@ JavaScriptでは、リテラルを使ったプリミティブ型の文字列と�
 
 ```js
 // OK: リテラルを使う
-const string = "文字列";
+const str = "文字列";
 // NG: ラッパーオブジェクトを使う
 const stringWrraper = new String("文字列");
 ```

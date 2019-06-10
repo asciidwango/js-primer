@@ -1,5 +1,5 @@
-const string = "𠮷野家";
-for (const value of string) {
+const str = "𠮷野家";
+for (const value of str) {
     console.log(value);
 }
 // "𠮷"

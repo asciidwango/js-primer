@@ -10,8 +10,8 @@ description: "JavaScriptにはプロトタイプオブジェクトという特�
 
 {{book.console}}
 ```js
-const object = {};
-console.log(object.toString()); // "[object Object]"
+const obj = {};
+console.log(obj.toString()); // "[object Object]"
 ```
 
 オブジェクトリテラルで空のオブジェクトを定義しただけなのに、`toString`メソッドを呼び出せています。
@@ -57,15 +57,14 @@ console.log(typeof Object.prototype.toString); // => "function"
 
 {{book.console}}
 ```js
-// var object = new Object()も同じ
-const object = {
+const obj = {
     "key": "value"
 };
-// インスタンスがprototypeオブジェクトに定義されたものを継承する
-// object.toString.prototype.toStringを参照している
-console.log(object.toString === Object.prototype.toString); // => true
+// `obj`インスタンスは`Object.prototype`に定義されたものを継承する
+// `obj.toString`は継承した`Object.prototype.toString`を参照している
+console.log(obj.toString === Object.prototype.toString); // => true
 // インスタンスからプロトタイプメソッドを呼び出せる
-console.log(object.toString()); // => "[object Object]"
+console.log(obj.toString()); // => "[object Object]"
 ```
 
 このように`Object.prototype`に定義されている`toString`メソッドなどは、インスタンス作成時に自動的に継承されるため、`Object`のインスタンスから呼び出せます。
@@ -109,11 +108,11 @@ console.log(customObject.toString()); // => "custom value"
 
 {{book.console}}
 ```js
-const object = {};
-// `object`のインスタンス自体に`toString`メソッドが定義されているわけではない
-console.log(object.hasOwnProperty("toString")); // => false
+const obj = {};
+// `obj`というオブジェクト自体に`toString`メソッドが定義されているわけではない
+console.log(obj.hasOwnProperty("toString")); // => false
 // `in`演算子は指定されたプロパティ名が見つかるまで親を辿るため、`Object.prototype`まで見に行く
-console.log("toString" in object); // => true
+console.log("toString" in obj); // => true
 ```
 
 次のように、インスタンスが`toString`メソッドを持っている場合は、`hasOwnProperty`メソッドも`true`を返します。
@@ -121,14 +120,14 @@ console.log("toString" in object); // => true
 {{book.console}}
 ```js
 // オブジェクトのインスタンスにtoStringメソッドを定義
-const object = {
+const obj = {
     toString() {
         return "custom value";
     }
 };
 // オブジェクトのインスタンスが`toString`メソッドを持っている
-console.log(object.hasOwnProperty("toString")); // => true
-console.log("toString" in object); // => true
+console.log(obj.hasOwnProperty("toString")); // => true
+console.log("toString" in obj); // => true
 ```
 
 これにより`Object`のインスタンス自身が`toString`メソッドを持っているわけではなく、`Object.prototype`が`toString`メソッドを持っていることが分かります。
@@ -142,10 +141,10 @@ console.log("toString" in object); // => true
 
 {{book.console}}
 ```js
-// const object = {} と同じ
-const object = Object.create(Object.prototype);
-// `object`は`Object.prototype`を継承している
-console.log(object.hasOwnProperty === Object.prototype.hasOwnProperty); // => true
+// const obj = {} と同じ意味
+const obj = Object.create(Object.prototype);
+// `obj`は`Object.prototype`を継承している
+console.log(obj.hasOwnProperty === Object.prototype.hasOwnProperty); // => true
 ```
 
 ### ArrayもObjectを継承している {#inherit-object}
@@ -194,9 +193,9 @@ console.log(array.hasOwnProperty === Object.prototype.hasOwnProperty); // => tru
 
 {{book.console}}
 ```js
-const number = [1, 2, 3];
-// Array#toStringが定義されているため、`Object#toString`とは異なる形式となる
-console.log(number.toString()); // => "1,2,3"
+const numbers = [1, 2, 3];
+// `Array#toString`が定義されているため、`Object#toString`とは異なる形式となる
+console.log(numbers.toString()); // => "1,2,3"
 ```
 
 ## [コラム] `Object.prototype`を継承しないオブジェクト {#not-inherit-object}
@@ -209,9 +208,9 @@ console.log(number.toString()); // => "1,2,3"
 {{book.console}}
 ```js
 // 親がnull、つまり親がいないオブジェクトを作る
-const object = Object.create(null);
+const obj = Object.create(null);
 // Object.prototypeを継承しないため、hasOwnPropertyが存在しない
-console.log(object.hasOwnProperty); // => undefined
+console.log(obj.hasOwnProperty); // => undefined
 ```
 
 `Object.create`メソッドはES5から導入されました。
@@ -223,11 +222,11 @@ Mapとはキーと値の組み合わせを保持するためのオブジェク�
 
 {{book.console}}
 ```js
-// ただのオブジェクト
-const object = {};
+// 空オブジェクトを作成
+const obj = {};
 // "toString"という値を定義してないのに、"toString"が存在している
-console.log(object["toString"]);// Function 
-// Mapのようなオブジェクト
+console.log(obj["toString"]);// Function 
+// Mapのような空オブジェクト
 const mapLike = Object.create(null);
 // toStringキーは存在しない
 console.log(mapLike["toString"]); // => undefined

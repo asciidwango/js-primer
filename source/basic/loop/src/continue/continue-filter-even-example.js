@@ -1,18 +1,18 @@
 // `number`が偶数ならtrueを返す
-function isEven(number) {
-    return number % 2 === 0;
+function isEven(num) {
+    return num % 2 === 0;
 }
 // `numbers`に含まれている偶数だけを取り出す
 function filterEven(numbers) {
     const results = [];
     for (let i = 0; i < numbers.length; i++) {
-        const number = numbers[i];
+        const num = numbers[i];
         // 偶数ではないなら、次のループへ
-        if (!isEven(number)) {
+        if (!isEven(num)) {
             continue;
         }
         // 偶数を`results`に追加
-        results.push(number);
+        results.push(num);
     }
     return results;
 }

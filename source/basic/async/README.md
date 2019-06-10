@@ -1287,7 +1287,7 @@ const fn2 = async function() {};
 // Arrow FunctionのAsync Function版
 const fn3 = async() => {};
 // メソッドの短縮記法のAsync Function版
-const object = { async method() {} };
+const obj = { async method() {} };
 ```
 
 これらのAsync Functionは、必ずPromiseを返すことや関数中では`await`式が利用できること以外は、通常の関数と同じ性質を持ちます。

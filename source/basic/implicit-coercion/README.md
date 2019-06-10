@@ -257,9 +257,9 @@ String(function() {}); // "function() {}"
 // ユーザー入力を文字列として受け取る
 const input = window.prompt("数字を入力してください", "42");
 // 文字列を数値に変換する
-const number = Number(input);
-console.log(typeof number); // => "number"
-console.log(number); // 入力された文字列を数値に変換したもの
+const num = Number(input);
+console.log(typeof num); // => "number"
+console.log(num); // 入力された文字列を数値に変換したもの
 ```
 
 また、文字列から数字を取り出し変換する関数として`Number.parseInt`、`Number.parseFloat`も利用できます。
@@ -297,9 +297,9 @@ Number(undefined); // => NaN
 
 ```js
 const userInput = "任意の文字列";
-const number = Number.parseInt(userInput, 10);
-if (!Number.isNaN(number)) {
-    console.log("NaNではない値にパースできた", number);
+const num = Number.parseInt(userInput, 10);
+if (!Number.isNaN(num)) {
+    console.log("NaNではない値にパースできた", num);
 }
 ```
 
@@ -480,8 +480,8 @@ JavaScriptの型変換は基本的に情報が減る方向へしか変換でき�
 {{book.console}}
 ```js
 // 空文字かどうかを判定
-function isEmptyString(string) {
-    return !Boolean(string);
+function isEmptyString(str) {
+    return !Boolean(str);
 }
 // 空文字列の場合は、trueを返す
 console.log(isEmptyString("")); // => true
@@ -499,9 +499,9 @@ console.log(isEmptyString()); // => true
 {{book.console}}
 ```js
 // 空文字かどうかを判定
-function isEmptyString(string) {
-    // String型でlengthが0の値が空文字
-    return typeof string === "string" && string.length === 0;
+function isEmptyString(str) {
+    // String型でlengthが0の値の場合はtrueを返す
+    return typeof str === "string" && str.length === 0;
 }
 console.log(isEmptyString("")); // => true
 // falsyな値でも正しく判定できる

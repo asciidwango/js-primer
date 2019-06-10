@@ -58,7 +58,7 @@ console.log(array); // => []
 // 配列
 const array = [];
 // `length`を持つオブジェクト
-const object = {
+const obj = {
     length: 0
 };
 ```
@@ -73,13 +73,12 @@ const object = {
 ```js
 const array = [];
 console.log(Array.isArray(array)); // => true
-// 配列のようなオブジェクト
-const object = {
+// 配列のように`length`プロパティをもつオブジェクト
+const obj = {
     length: 0
 };
-console.log(Array.isArray(object)); // => false
+console.log(Array.isArray(obj)); // => false
 ```
-
 
 ### [コラム] TypedArray {#typed-array}
 
@@ -155,15 +154,15 @@ console.log(array[100]); // => undefined
 
 {{book.console}}
 ```js
-const object = {
+const obj = {
     "0": "one",
     "1": "two",
     "2": "three",
     "length": 3
 };
-// object[100]はobject["100"]としてアクセスされる
-// objectにはプロパティ名が"100"のものがないため、undefinedが返る
-console.log(object[100]); // => undefined
+// obj[100]obj["100"]としてアクセスされる
+// objにはプロパティ名が"100"のものがないため、undefinedが返る
+console.log(obj[100]); // => undefined
 ```
 
 また、配列は常に`length`の数だけ要素を持っているとは限りません。
@@ -268,13 +267,13 @@ console.log(array.indexOf("JS")); // => -1
 
 {{book.console}}
 ```js
-const object = { key: "value" };
-const array = ["A", "B", object];
+const obj = { key: "value" };
+const array = ["A", "B", obj];
 console.log(array.indexOf({ key: "value" })); // => -1
-// リテラルは新しいオブジェクトを作るため異なるオブジェクトを比較している
-console.log(object === { key: "value" }); // => false
-// 等価のオブジェクト
-console.log(array.indexOf(object)); // => 2
+// リテラルは新しいオブジェクトを作るため、異なるオブジェクトだと判定される
+console.log(obj === { key: "value" }); // => false
+// 等価のオブジェクトを検索しインデックスを返す
+console.log(array.indexOf(obj)); // => 2
 ```
 
 このように、異なるオブジェクトだが値が同じものを見つけたい場合には、`Array#findIndex`メソッドが利用できます。
@@ -291,8 +290,8 @@ const colors = [
     { "color": "blue" }
 ];
 // `color`プロパティが"blue"のオブジェクトのインデックスを取得
-const indexOfBlue = colors.findIndex((object) => {
-    return object.color === "blue";
+const indexOfBlue = colors.findIndex((obj) => {
+    return obj.color === "blue";
 });
 console.log(indexOfBlue); // => 2
 console.log(colors[indexOfBlue]); // => { "color": "blue" }
@@ -319,13 +318,13 @@ const colors = [
     { "color": "blue" }
 ];
 // `color`プロパティが"blue"のオブジェクトを取得
-const blueColor = colors.find((object) => {
-    return object.color === "blue";
+const blueColor = colors.find((obj) => {
+    return obj.color === "blue";
 });
 console.log(blueColor); // => { "color": "blue" }
 // 該当する要素がない場合は`undefined`を返す
-const whiteColor = colors.find((object) => {
-    return object.color === "white";
+const whiteColor = colors.find((obj) => {
+    return obj.color === "white";
 });
 console.log(whiteColor); // => undefined
 ```
@@ -403,8 +402,8 @@ const colors = [
     { "color": "blue" }
 ];
 // `color`プロパティが"blue"のオブジェクトがあるかどうか
-const isIncludedBlueColor = colors.some((object) => {
-    return object.color === "blue";
+const isIncludedBlueColor = colors.some((obj) => {
+    return obj.color === "blue";
 });
 console.log(isIncludedBlueColor); // => true
 ```

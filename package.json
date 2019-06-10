@@ -89,6 +89,7 @@
     "strict-eval": "^1.0.2",
     "text-testing-mocha": "^0.4.0",
     "textlint": "^11.0.0",
+    "textlint-rule-inline-code-denylist": "file:./textlint/textlint-rule-inline-code-denylist",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-filter-rule-whitelist": "^2.0.0",
     "textlint-rule-eslint": "^3.0.0",

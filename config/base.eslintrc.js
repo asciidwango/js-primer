@@ -13,6 +13,8 @@ module.exports = {
         "sourceType": "module"
     },
     "rules": {
+        // 詳細: https://github.com/asciidwango/js-primer/issues/804
+        "id-blacklist": ["error", "string", "number", "object", "boolean", "symbol"],
         "indent": [
             "error", 4, {
                 "SwitchCase": 1

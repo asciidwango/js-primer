@@ -1,0 +1,9 @@
+{
+  "name": "textlint-rule-inline-code-denylist",
+  "version": "1.0.0",
+  "description": "denylist for inline code",
+  "main": "index.js",
+  "keywords": [],
+  "author": "azu",
+  "license": "MIT"
+}

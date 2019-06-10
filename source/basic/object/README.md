@@ -18,7 +18,7 @@ description: "JavaScriptのObjectはオブジェクトの基礎となるもの�
 
 ```js
 // プロパティをもたない空のオブジェクトを作成
-const object = {};
+const obj = {};
 ```
 
 オブジェクトリテラルでは、初期値としてプロパティをもつオブジェクトを作成できます。
@@ -26,7 +26,7 @@ const object = {};
 
 ```js
 // プロパティをもつオブジェクトを定義する
-const object = {
+const obj = {
     // キー: 値
     "key": "value"
 };
@@ -37,7 +37,7 @@ const object = {
 
 ```js
 // プロパティ名（キー）はクオートを省略することが可能
-const object = {
+const obj = {
     // キー: 値
     key: "value"
 };
@@ -48,7 +48,7 @@ const object = {
 [import, prop-invalid.js](./src/prop-invalid.js)
 
 ```js
-const object = {
+const obj = {
     // キー: 値
     "my-prop": "value" // OK
 };
@@ -71,11 +71,11 @@ const color = {
 {{book.console}}
 ```js
 const name = "名前";
-// `name`プロパティ
-const object = {
+// `name`というプロパティ名で`name`の変数を値に設定したオブジェクト
+const obj = {
     name: name
 };
-console.log(object); // => { name: "名前" }
+console.log(obj); // => { name: "名前" }
 ```
 
 またES2015からは、プロパティ名と値に指定する変数名が同じ場合は`{ name }`のように省略して書けます。
@@ -84,11 +84,11 @@ console.log(object); // => { name: "名前" }
 {{book.console}}
 ```js
 const name = "名前";
-// `name`というプロパティ名で`name`の変数を値に設定
-const object = {
+// `name`というプロパティ名で`name`の変数を値に設定したオブジェクト
+const obj = {
     name
 };
-console.log(object); // => { name: "名前" }
+console.log(obj); // => { name: "名前" }
 ```
 
 この省略記法は、モジュールや分割代入においても共通した表現です。
@@ -108,8 +108,8 @@ JavaScriptには`Object`というビルトインオブジェクトがありま�
 ```js
 // プロパティをもたない空のオブジェクトを作成
 // = `Object`からインスタンスオブジェクトを作成
-const object = new Object();
-console.log(object); // => {}
+const obj = new Object();
+console.log(obj); // => {}
 ```
 
 オブジェクトリテラルの方が明らかに簡潔で、プロパティの初期値も指定できるため、`new Object()`を使う利点はありません。
@@ -129,13 +129,13 @@ console.log(object); // => {}
 
 {{book.console}}
 ```js
-const object = {
+const obj = {
     key: "value"
 };
 // ドット記法で参照
-console.log(object.key); // => "value"
+console.log(obj.key); // => "value"
 // ブラケット記法で参照
-console.log(object["key"]); // => "value"
+console.log(obj["key"]); // => "value"
 ```
 
 ドット記法（`.`）では、プロパティ名が変数名と同じく識別子の命名規則を満たす必要があります。（詳細は「[変数と宣言][]」の章を参照）
@@ -147,17 +147,17 @@ console.log(object["key"]); // => "value"
 
 {{book.console}}
 ```js
-const object = {
+const obj = {
     key: "value",
     123: 456,
     "my-key": "my-value"
 };
 
-console.log(object["key"]); // => "value"
+console.log(obj["key"]); // => "value"
 // プロパティ名が数字から始まる識別子も利用できる
-console.log(object[123]); // => 456
+console.log(obj[123]); // => 456
 // プロパティ名にハイフンを含む識別子も利用できる
-console.log(object["my-key"]); // => "my-value"
+console.log(obj["my-key"]); // => "my-value"
 ```
 
 また、ブラケット記法ではプロパティ名に変数も利用できます。
@@ -227,10 +227,10 @@ console.log(en); // => "英語"
 {{book.console}}
 ```js
 // 空のオブジェクト
-const object = {};
+const obj = {};
 // `key`プロパティを追加し値を代入
-object.key = "value";
-console.log(object.key); // => "value"
+obj.key = "value";
+console.log(obj.key); // => "value"
 ```
 
 先ほども紹介したように、ドット記法は変数の識別子として利用可能なプロパティ名しか利用できません。
@@ -245,15 +245,15 @@ console.log(object.key); // => "value"
 {{book.console}}
 ```js
 const key = "key-string";
-const object = {};
+const obj = {};
 // `key`の評価結果 "key-string" をプロパティ名に利用
-object[key] = "value of key";
+obj[key] = "value of key";
 // 取り出すときも同じく`key`変数を利用
-console.log(object[key]); // => "value of key"
+console.log(obj[key]); // => "value of key"
 // Symbolは例外的に文字列化されず扱える
 const symbolKey = Symbol("シンボルは一意な値");
-object[symbolKey] = "value of symbol";
-console.log(object[symbolKey]); // => "value of symbol"
+obj[symbolKey] = "value of symbol";
+console.log(obj[symbolKey]); // => "value of symbol"
 ```
 
 ブラケット記法を用いたプロパティ定義は、オブジェクトリテラルの中でも利用できます。
@@ -264,10 +264,10 @@ Computed property namesはES2015から導入された記法ですが、`式`の�
 ```js
 const key = "key-string";
 // Computed Propertyでプロパティを定義する
-const object = {
+const obj = {
     [key]: "value"
 };
-console.log(object[key]); // => "value"
+console.log(obj[key]); // => "value"
 ```
 
 JavaScriptのオブジェクトは、変更不可能と明示しない限り、変更可能なmutableの特性をもつことを紹介しました。
@@ -275,13 +275,13 @@ JavaScriptのオブジェクトは、変更不可能と明示しない限り、�
 
 {{book.console}}
 ```js
-function changeProperty(object) {
-    object.key = "value";
+function changeProperty(obj) {
+    obj.key = "value";
     // 色々な処理...
 }
-const object = {};
-changeProperty(object); // objectのプロパティを変更している
-console.log(object.key); // => "value"
+const obj = {};
+changeProperty(obj); // objのプロパティを変更している
+console.log(obj.key); // => "value"
 ```
 
 このように、プロパティを初期化時以外に追加してしまうと、そのオブジェクトがどのようなプロパティを持っているかがわかりにくくなります。
@@ -295,14 +295,14 @@ console.log(object.key); // => "value"
 
 {{book.console}}
 ```js
-const object = {
+const obj = {
     key1: "value1",
     key2: "value2"
 };
 // key1プロパティを削除
-delete object.key1;
+delete obj.key1;
 // key1プロパティが削除されている
-console.log(object); // => { "key2": "value2" }
+console.log(obj); // => { "key2": "value2" }
 ```
 
 ### [コラム] constで定義したオブジェクトは変更可能 {#const-and-object}
@@ -312,17 +312,17 @@ console.log(object); // => { "key2": "value2" }
 
 {{book.console}}
 ```js
-const object = { key: "value" };
-object.key = "Hi!"; // constで定義したobjectが変更できる
-console.log(object.key); // => "Hi!"
+const obj = { key: "value" };
+obj.key = "Hi!"; // constで定義したオブジェクト(`obj`)が変更できる
+console.log(obj.key); // => "Hi!"
 ```
 
 これは、JavaScriptの`const`は値を固定するのではなく、変数への再代入を防ぐためのものです。
-そのため、次のような`object`変数への再代入は防ぐことができますが、変数に代入された値であるオブジェクトの変更は防ぐことができません。（「[変数と宣言のconstについて][]」を参照）
+そのため、次のような`obj`変数への再代入は防ぐことができますが、変数に代入された値であるオブジェクトの変更は防ぐことができません。（「[変数と宣言のconstについて][]」を参照）
 
 ```js
-const object = { key: "value" };
-object = {}; // => SyntaxError
+const obj = { key: "value" };
+obj = {}; // => SyntaxError
 ```
 
 作成したオブジェクトのプロパティの変更を防止するには`Object.freeze`メソッドを利用する必要があります。
@@ -335,12 +335,12 @@ object = {}; // => SyntaxError
 ## プロパティの存在を確認する {#confirm-property}
 
 JavaScriptでは、存在しないプロパティに対してアクセスした場合に例外ではなく`undefined`を返します。
-次のコードは、`object`には存在しない`notFound`プロパティにアクセスしているため、`undefined`という値が返ってきます。
+次のコードは、`obj`には存在しない`notFound`プロパティにアクセスしているため、`undefined`という値が返ってきます。
 
 {{book.console}}
 ```js
-const object = {};
-console.log(object.notFound); // => undefined
+const obj = {};
+console.log(obj.notFound); // => undefined
 ```
 
 このように、JavaScriptでは存在しないプロパティへアクセスした場合に例外が発生しません。
@@ -378,9 +378,11 @@ console.log(widget.windw.title); // => TypeError: widget.windw is undefined
 
 {{book.console}}
 ```js
-const object = { key: "value" };
+const obj = {
+    key: "value"
+};
 // `key`プロパティが`undefined`ではないなら、プロパティが存在する?
-if (object.key !== undefined) {
+if (obj.key !== undefined) {
     // `key`プロパティが存在する?ときの処理
     console.log("`key`プロパティの値は`undefined`ではない");
 }
@@ -391,9 +393,11 @@ if (object.key !== undefined) {
 
 {{book.console}}
 ```js
-const object = { key: undefined };
+const obj = {
+    key: undefined
+};
 // `key`プロパティの値が`undefined`である場合
-if (object.key !== undefined) {
+if (obj.key !== undefined) {
     // この行は実行されません
 }
 ```
@@ -409,14 +413,14 @@ if (object.key !== undefined) {
 "プロパティ名" in オブジェクト; // true or false
 ```
 
-次のコードでは`object`に`key`プロパティが存在するかを判定しています。
+次のコードでは`obj`に`key`プロパティが存在するかを判定しています。
 `in`演算子は、プロパティの値は関係なく、プロパティが存在した場合に`true`を返します。
 
 {{book.console}}
 ```js
-const object = { key: undefined };
+const obj = { key: undefined };
 // `key`プロパティを持っているならtrue
-if ("key" in object) {
+if ("key" in obj) {
     console.log("`key`プロパティは存在する");
 }
 ```
@@ -428,18 +432,18 @@ if ("key" in object) {
 
 <!-- doctest:disable -->
 ```js
-const object = {};
-object.hasOwnProperty("プロパティ名"); // true or false
+const obj = {};
+obj.hasOwnProperty("プロパティ名"); // true or false
 ```
 
-次のコードでは`object`に`key`プロパティが存在するかを判定しています。
+次のコードでは`obj`に`key`プロパティが存在するかを判定しています。
 `hasOwnProperty`メソッドも、プロパティの値は関係なく、オブジェクトが指定したプロパティを持っている場合に`true`を返します。
 
 {{book.console}}
 ```js
-const object = { key: "value" };
-// `object`が`key`プロパティを持っているならtrue
-if (object.hasOwnProperty("key")) {
+const obj = { key: "value" };
+// `obj`が`key`プロパティを持っているならtrue
+if (obj.hasOwnProperty("key")) {
     console.log("`object`は`key`プロパティを持っている");
 }
 ```
@@ -459,10 +463,10 @@ if (object.hasOwnProperty("key")) {
 
 {{book.console}}
 ```js
-const object = { key: "value" };
-console.log(object.toString()); // => "[object Object]"
+const obj = { key: "value" };
+console.log(obj.toString()); // => "[object Object]"
 // `String`コンストラクタ関数は`toString`メソッドを呼んでいる
-console.log(String(object)); // => "[object Object]"
+console.log(String(obj)); // => "[object Object]"
 ```
 
 このことは、オブジェクトに`toString`メソッドを再定義してみると分かります。
@@ -503,17 +507,17 @@ console.log(String(customObject)); // => "custom value"
 
 {{book.console}}
 ```js
-const object = {
+const obj = {
     "one": 1,
     "two": 2,
     "three": 3
 };
 // `Object.keys`はキーの列挙した配列を返す
-console.log(Object.keys(object)); // => ["one", "two", "three"]
+console.log(Object.keys(obj)); // => ["one", "two", "three"]
 // `Object.values`（ES2017）は値を列挙した配列を返す
-console.log(Object.values(object)); // => [1, 2, 3]
+console.log(Object.values(obj)); // => [1, 2, 3]
 // `Object.entries`（ES2017）は[キー, 値]の配列を返す
-console.log(Object.entries(object)); // => [["one", 1], ["two", 2], ["three", 3]]
+console.log(Object.entries(obj)); // => [["one", 1], ["two", 2], ["three", 3]]
 ```
 
 これらの列挙する静的メソッドと配列の`forEach`メソッドなどを組み合わせれば、プロパティに対して反復処理ができます。
@@ -521,12 +525,12 @@ console.log(Object.entries(object)); // => [["one", 1], ["two", 2], ["three", 3]
 
 {{book.console}}
 ```js
-const object = {
+const obj = {
     "one": 1,
     "two": 2,
     "three": 3
 };
-const keys = Object.keys(object);
+const keys = Object.keys(obj);
 keys.forEach(key => {
     console.log(key);
 });
@@ -547,7 +551,7 @@ keys.forEach(key => {
 
 <!-- doctest:disable -->
 ```js
-const object = Object.assign(target, ...sources);
+const obj = Object.assign(target, ...sources);
 ```
 
 #### オブジェクトのマージ {#merge}
@@ -651,15 +655,15 @@ JavaScriptには、オブジェクトを複製する関数は用意されてい�
 
 {{book.console}}
 ```js
-// `object`を浅く複製したオブジェクトを返す
-const shallowClone = (object) => {
-    return Object.assign({}, object);
+// 引数の`obj`を浅く複製したオブジェクトを返す
+const shallowClone = (obj) => {
+    return Object.assign({}, obj);
 };
-const object = { a: "a" };
-const cloneObject = shallowClone(object);
-console.log(cloneObject); // => { a: "a" }
+const obj = { a: "a" };
+const cloneObj = shallowClone(obj);
+console.log(cloneObj); // => { a: "a" }
 // オブジェクトを複製しているので、異なるオブジェクトとなる
-console.log(object === cloneObject); // => false
+console.log(obj === cloneObj); // => false
 ```
 
 注意点として、`Object.assign`メソッドは`sources`オブジェクトのプロパティを浅くコピー（shallow copy）する点です。
@@ -668,18 +672,18 @@ shallow copyとは、`sources`オブジェクトの直下にあるプロパテ�
 
 {{book.console}}
 ```js
-const shallowClone = (object) => {
-    return Object.assign({}, object);
+const shallowClone = (obj) => {
+    return Object.assign({}, obj);
 };
-const object = { 
+const obj = { 
     level: 1,
     nest: {
         level: 2
     },
 };
-const cloneObject = shallowClone(object);
+const cloneObj = shallowClone(obj);
 // `nest`オブジェクトは複製されていない
-console.log(cloneObject.nest === object.nest); // => true
+console.log(cloneObj.nest === obj.nest); // => true
 ```
 
 逆にプロパティの値までも再帰的に複製してコピーすることを、深いコピー（deep copy）と呼びます。
@@ -688,28 +692,28 @@ shallow copyで再帰的にコピー処理することで、deep copyを実現�
 
 {{book.console}}
 ```js
-// `object`を浅く複製したオブジェクトを返す
-const shallowClone = (object) => {
-    return Object.assign({}, object);
+// 引数の`obj`を浅く複製したオブジェクトを返す
+const shallowClone = (obj) => {
+    return Object.assign({}, obj);
 };
-// `object`を深く複製したオブジェクトを返す
-function deepClone(object) {
-    const newObject = shallowClone(object);
+// 引数の`obj`を深く複製したオブジェクトを返す
+function deepClone(obj) {
+    const newObj = shallowClone(obj);
     // プロパティがオブジェクト型であるなら、再帰的に複製する
-    Object.keys(newObject)
-        .filter(k => typeof newObject[k] === "object")
-        .forEach(k => newObject[k] = deepClone(newObject[k]));
-    return newObject;
+    Object.keys(newObj)
+        .filter(k => typeof newObj[k] === "object")
+        .forEach(k => newObj[k] = deepClone(newObj[k]));
+    return newObj;
 }
-const object = { 
+const obj = { 
     level: 1,
     nest: {
         level: 2
     }
 };
-const cloneObject = deepClone(object);
+const cloneObj = deepClone(obj);
 // `nest`オブジェクトも再帰的に複製されている
-console.log(cloneObject.nest === object.nest); // => false
+console.log(cloneObj.nest === obj.nest); // => false
 ```
 
 このように、JavaScriptのビルトインメソッドは浅い（shallow）実装のみを提供し、深い（deep）実装は提供していないことが多いです。

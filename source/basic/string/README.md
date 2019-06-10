@@ -55,8 +55,8 @@ console.log(multiline); // => "1行目\n2行目\n3行目"
 
 {{book.console}}
 ```js
-const string = "This book is \"js-primer\"";
-console.log(string); // => 'This book is "js-primer"'
+const str = "This book is \"js-primer\"";
+console.log(str); // => 'This book is "js-primer"'
 ```
 
 ## エスケープシーケンス {#escape-sequence}
@@ -133,8 +133,8 @@ console.log("¯\\_(ツ)_/¯");
 
 {{book.console}}
 ```js
-const string = "a" + "b";
-console.log(string); // => "ab"
+const str = "a" + "b";
+console.log(str); // => "ab"
 ```
 
 変数と文字列を結合したい場合も文字列結合演算子で行うことができます。
@@ -166,20 +166,20 @@ console.log(`Hello ${name}!`);// => "Hello JavaScript!"
 
 {{book.console}}
 ```js
-const string = "文字列";
+const str = "文字列";
 // 配列と同じようにインデックスでアクセスできる
-console.log(string[0]); // => "文"
-console.log(string[1]); // => "字"
-console.log(string[2]); // => "列"
+console.log(str[0]); // => "文"
+console.log(str[1]); // => "字"
+console.log(str[2]); // => "列"
 ```
 
 また、存在しないインデックスへのアクセスは配列やオブジェクトと同じように`undefined`を返します。
 
 {{book.console}}
 ```js
-const string = "文字列";
+const str = "文字列";
 // 42番目のインデックスは存在しない
-console.log(string[42]); // => undefined
+console.log(str[42]); // => undefined
 ```
 
 ## 文字列とは {#what-is-string}
@@ -216,12 +216,12 @@ Unicodeでは1文字を表すのに使う最小限のビットの組み合わせ
 
 {{book.console}}
 ```js
-const string = "アオイ";
+const str = "アオイ";
 // それぞれの文字をCode Unitのhex値（16進数）に変換する
 // toStringの引数に16を渡すと16進数に変換される
-console.log(string.charCodeAt(0).toString(16)); // => "30a2"
-console.log(string.charCodeAt(1).toString(16)); // => "30aa"
-console.log(string.charCodeAt(2).toString(16));  // => "30a4"
+console.log(str.charCodeAt(0).toString(16)); // => "30a2"
+console.log(str.charCodeAt(1).toString(16)); // => "30aa"
+console.log(str.charCodeAt(2).toString(16));  // => "30a4"
 ```
 
 逆に、Code Unitをhex値（16進数）から文字へと変換するには`String.fromCharCode`メソッドを使います。
@@ -230,12 +230,12 @@ console.log(string.charCodeAt(2).toString(16));  // => "30a4"
 
 {{book.console}}
 ```js
-const string = String.fromCharCode(
+const str = String.fromCharCode(
     0x30a2, // アのCode Unit
     0x30aa, // オのCode Unit
     0x30a4  // イのCode Unit
 );
-console.log(string); // => "アオイ"
+console.log(str); // => "アオイ"
 ```
 
 これらの結果をまとめると、この文字列と文字列を構成するUTF-16のCode Unitの関係は次のようになります。
@@ -278,8 +278,8 @@ console.log(strings); // => ["赤", "青", "緑"]
 
 {{book.console}}
 ```js
-const string = "赤・青・緑".split("・").join("、");
-console.log(string); // => "赤、青、緑"
+const str = "赤・青・緑".split("・").join("、");
+console.log(str); // => "赤、青、緑"
 ```
 
 `String#split`メソッドの第一引数には正規表現も指定できます。
@@ -289,9 +289,9 @@ console.log(string); // => "赤、青、緑"
 {{book.console}}
 ```js
 // 文字間に1つ以上のスペースがある
-const string = "a     b    c      d";
+const str = "a     b    c      d";
 // 1つ以上のスペースにマッチして分解する
-const strings = string.split(/\s+/);
+const strings = str.split(/\s+/);
 console.log(strings); // => ["a", "b", "c", "d"] 
 ```
 
@@ -368,15 +368,15 @@ console.log("ABC" > "ABD"); // => false
 
 {{book.console}}
 ```js
-const string = "ABCDE";
-console.log(string.slice(1)); // => "BCDE"
-console.log(string.slice(1, 5)); // => "BCDE"
+const str = "ABCDE";
+console.log(str.slice(1)); // => "BCDE"
+console.log(str.slice(1, 5)); // => "BCDE"
 // マイナスを指定すると後ろからの位置となる
-console.log(string.slice(-1)); // => "E"
+console.log(str.slice(-1)); // => "E"
 // 位置:1から4の範囲を取り出す
-console.log(string.slice(1, 4)); // => "BCD"
+console.log(str.slice(1, 4)); // => "BCD"
 // 第一引数 > 第二引数の場合、常に空文字を返す
-console.log(string.slice(4, 1)); // => ""
+console.log(str.slice(4, 1)); // => ""
 ```
 
 `String#substring`メソッドは、`slice`メソッドと同じく第一引数に開始位置、第二引数に終了位置を指定しその範囲を取り出し新しい文字列を返します。
@@ -387,16 +387,16 @@ console.log(string.slice(4, 1)); // => ""
 
 {{book.console}}
 ```js
-const string = "ABCDE";
-console.log(string.substring(1)); // => "BCDE"
-console.log(string.substring(1, 5)); // => "BCDE"
+const str = "ABCDE";
+console.log(str.substring(1)); // => "BCDE"
+console.log(str.substring(1, 5)); // => "BCDE"
 // マイナスを指定すると0として扱われる
-console.log(string.substring(-1)); // => "ABCDE"
+console.log(str.substring(-1)); // => "ABCDE"
 // 位置:1から4の範囲を取り出す
-console.log(string.substring(1, 4)); // => "BCD"
+console.log(str.substring(1, 4)); // => "BCD"
 // 第一引数 > 第二引数の場合、引数が入れ替わる
-// string.substring(1, 4)と同じ結果になる
-console.log(string.substring(4, 1)); // => "BCD"
+// str.substring(1, 4)と同じ結果になる
+console.log(str.substring(4, 1)); // => "BCD"
 ```
 
 このように、マイナスの位置や引数が交換される挙動は分かりやすいものとはいえません。
@@ -444,25 +444,25 @@ Stringメソッドには検索したい状況に応じたものが用意され�
 {{book.console}}
 ```js
 // 検索対象となる文字列
-const string = "にわにはにわにわとりがいる";
+const str = "にわにはにわにわとりがいる";
 // indexOfは先頭から検索しインデックスを返す - "**にわ**にはにわにわとりがいる"
 // "にわ"の先頭のインデックスを返すため 0 となる
-console.log(string.indexOf("にわ")); // => 0
+console.log(str.indexOf("にわ")); // => 0
 // lastIndexOfは末尾から検索しインデックスを返す- "にわにはにわ**にわ**とりがいる"
-console.log(string.lastIndexOf("にわ")); // => 6
+console.log(str.lastIndexOf("にわ")); // => 6
 // 該当する部分文字列が見つからない場合は -1 を返す
-console.log(string.indexOf("未知のキーワード")); // => -1
+console.log(str.indexOf("未知のキーワード")); // => -1
 ```
 
 検索している部分文字列の長さは固定であるため、`String#slice`で取得したインデックスと検索した文字列の長さを組み合わせることで検索結果を取得できます。
 
 {{book.console}}
 ```js
-const string = "JavaScript";
+const str = "JavaScript";
 const searchWord = "Script";
-const index = string.indexOf(searchWord);
+const index = str.indexOf(searchWord);
 if (index !== -1) {
-    console.log(string.slice(index, index + searchWord.length)); // => "Script"
+    console.log(str.slice(index, index + searchWord.length)); // => "Script"
 } else {
     console.log(`${searchWord}は見つかりませんでした`);
 }
@@ -481,16 +481,16 @@ if (index !== -1) {
 {{book.console}}
 ```js
 // 検索対象となる文字列
-const string = "にわにはにわにわとりがいる";
+const str = "にわにはにわにわとりがいる";
 // startsWith - 部分文字列が先頭ならtrue
-console.log(string.startsWith("にわ")); // => true
-console.log(string.startsWith("いる")); // => false
+console.log(str.startsWith("にわ")); // => true
+console.log(str.startsWith("いる")); // => false
 // endsWith - 部分文字列が末尾ならtrue
-console.log(string.endsWith("にわ")); // => false
-console.log(string.endsWith("いる")); // => true
+console.log(str.endsWith("にわ")); // => false
+console.log(str.endsWith("いる")); // => true
 // includes - 部分文字列が含まれるならtrue
-console.log(string.includes("にわ")); // => true
-console.log(string.includes("いる")); // => true
+console.log(str.includes("にわ")); // => true
+console.log(str.includes("いる")); // => true
 ```
 
 ### 正規表現による検索 {#search-by-regexp}
@@ -543,12 +543,12 @@ const pattern = new RegExp(`\\s{${spaceCount}}`);
 {{book.console}}
 <!-- doctest:disable -->
 ```js
-const string = "abc123def";
+const str = "abc123def";
 const searchPattern = /\d+/;
-const index = string.search(searchPattern); // => 3
+const index = str.search(searchPattern); // => 3
 // `index` だけではマッチした文字列が分からない
 // そのため`マッチした文字列の長さ`が`String#search`では分からない
-string.slice(index, index + マッチした文字列の長さ); // マッチした文字列は取得できない
+str.slice(index, index + マッチした文字列の長さ); // マッチした文字列は取得できない
 ```
 
 マッチした文字列を取得するには`RegExp#exec`メソッドか`String#match`メソッドを利用します。
@@ -572,12 +572,12 @@ string.slice(index, index + マッチした文字列の長さ); // マッチし�
 {{book.console}}
 <!-- doctest:disable -->
 ```js
-const string = "ABC あいう DE えお";
+const str = "ABC あいう DE えお";
 // gフラグなしでは、最初の結果のみを持つ配列を返す
-const results = string.match(/[a-zA-Z]+/);
+const results = str.match(/[a-zA-Z]+/);
 console.log(results); // => ["ABC"]
 // aからZのどれかの文字が1つ以上連続するパターンにマッチするものを繰り返した（gフラグ）結果を返す
-const resultsWithG = string.match(/[a-zA-Z]+/g);
+const resultsWithG = str.match(/[a-zA-Z]+/g);
 console.log(resultsWithG[0]); // => "ABC"
 console.log(resultsWithG[1]); // => "DE"
 ```
@@ -591,19 +591,19 @@ console.log(resultsWithG[1]); // => "DE"
 <!-- execの結果は配列に色々なプロパティが入っているためdoctest=deepEqualは失敗する -->
 <!-- doctest:disable -->
 ```js
-const string = "ABC あいう DE えお";
+const str = "ABC あいう DE えお";
 // gフラグなしでは、最初の結果のみを持つ配列を返す
-const results = /[a-zA-Z]+/.exec(string);
+const results = /[a-zA-Z]+/.exec(str);
 console.log(results); // => ["ABC"]
 // gフラグが有効化されているパターン
 const alphabetsPattern = /[a-zA-Z]+/g;
 // まだ一度も検索していないので、lastIndexは0となり先頭から検索開始される
 console.log(alphabetsPattern.lastIndex); // => 0
 // gフラグありでも、一回目の結果は同じだが、`lastIndex`プロパティが更新される
-console.log(alphabetsPattern.exec(string)); // => ["ABC"]
+console.log(alphabetsPattern.exec(str)); // => ["ABC"]
 console.log(alphabetsPattern.lastIndex); // => 3
 // 2回目の検索が、`lastIndex`の値のインデックスから開始される
-console.log(alphabetsPattern.exec(string)); // => ["DE"]
+console.log(alphabetsPattern.exec(str)); // => ["DE"]
 ```
 
 どちらのメソッドも`g`フラグによって挙動が変わり、`RegExp#exec`メソッドに`lastIndex`プロパティを変更するという副作用を持ちます。
@@ -654,16 +654,16 @@ console.log(capture1); // => "6"
 {{book.console}}
 ```js
 // 検索対象となる文字列
-const string = "にわにはにわにわとりがいる";
+const str = "にわにはにわにわとりがいる";
 // ^ - 部分文字列が先頭ならtrue
-console.log(/^にわ/.test(string)); // => true
-console.log(/^いる/.test(string)); // => false
+console.log(/^にわ/.test(str)); // => true
+console.log(/^いる/.test(str)); // => false
 // $ - 部分文字列が末尾ならtrue
-console.log(/にわ$/.test(string)); // => false
-console.log(/いる$/.test(string)); // => true
+console.log(/にわ$/.test(str)); // => false
+console.log(/いる$/.test(str)); // => true
 // 部分文字列が含まれるならtrue
-console.log(/にわ/.test(string)); // => true
-console.log(/いる/.test(string)); // => true
+console.log(/にわ/.test(str)); // => true
+console.log(/いる/.test(str)); // => true
 ```
 
 その他にも、正規表現では繰り返しや文字の集合などを特殊文字で表現できるため、
@@ -685,16 +685,16 @@ Stringメソッドの場合は、`/`から始まり`/`で終わるかを判定�
 
 {{book.console}}
 ```js
-const string = "/正規表現のような文字列/";
+const str = "/正規表現のような文字列/";
 // 正規表現で`/`から始まり`/`で終わる文字列のパターン
 const regExpLikePattern = /^\/.*\/$/;
 // RegExp#testメソッドでパターンにマッチするかを判定
-console.log(regExpLikePattern.test(string)); // => true
+console.log(regExpLikePattern.test(str)); // => true
 // Stringメソッドで同等の判定をする関数
-const isRegExpLikeString = (string) => {
-    return string.startsWith("/") && string.endsWith("/");
+const isRegExpLikeString = (str) => {
+    return str.startsWith("/") && str.endsWith("/");
 };
-console.log(isRegExpLikeString(string)); // => true
+console.log(isRegExpLikeString(str)); // => true
 ```
 
 このように、正規表現は柔軟で便利ですが、コード上から意図が消えてしまいやすいです。
@@ -718,9 +718,9 @@ strict modeでは削除出来ないプロパティを削除しようとするエ
 {{book.console}}
 ```js
 "use strict";
-const string = "文字列";
-// 文字列の0番目を削除を試みるがStrict modeは例外が発生
-delete string[0]; // => Error
+const str = "文字列";
+// 文字列の0番目を削除を試みるがStrict modeは例外が発生する
+delete str[0]; // => TypeError: property 0 is non-configurable and can't be deleted
 ```
 
 代わりに、`String#replace`メソッドなどで削除したい文字を取り除いた新しい文字列を返すことで削除を表現します。
@@ -737,10 +737,10 @@ delete string[0]; // => Error
 
 {{book.console}}
 ```js
-const string = "文字列";
+const str = "文字列";
 // "文字"を""（空文字）へ置換することで"削除"を表現
-const newString = string.replace("文字", "");
-console.log(newString); // => "列"
+const newStr = str.replace("文字", "");
+console.log(newStr); // => "列"
 ```
 
 `replace`メソッドには正規表現も指定できます。
@@ -749,13 +749,13 @@ console.log(newString); // => "列"
 {{book.console}}
 ```js
 // 検索対象となる文字列
-const string = "にわにはにわにわとりがいる";
+const str = "にわにはにわにわとりがいる";
 // 文字列を指定した場合は、最初に一致したものだけが置換される
-console.log(string.replace("にわ", "niwa")); // => "niwaにはにわにわとりがいる"
+console.log(str.replace("にわ", "niwa")); // => "niwaにはにわにわとりがいる"
 // `g`フラグなしの場合は、最初に一致したものだけが置換される
-console.log(string.replace(/にわ/, "niwa")); // => "niwaにはにわにわとりがいる"
+console.log(str.replace(/にわ/, "niwa")); // => "niwaにはにわにわとりがいる"
 // `g`フラグで繰り返し置換を行う
-console.log(string.replace(/にわ/g, "niwa")); // => "niwaにはniwaniwaとりがいる"
+console.log(str.replace(/にわ/g, "niwa")); // => "niwaにはniwaniwaとりがいる"
 ```
 
 `replace`メソッドでは、キャプチャした文字列を利用しさらに複雑な置換処理をおこなうこともできます。
@@ -888,9 +888,9 @@ JavaScriptでは、テンプレートとなる文字列に対して一部分だ�
 
 {{book.console}}
 ```js
-function tag(string) {
-    // `string`にはただの文字列が渡ってくる
-    console.log(string); // => "template 0 literal 1"
+function tag(str) {
+    // 引数`str`にはただの文字列が渡ってくる
+    console.log(str); // => "template 0 literal 1"
 }
 tag(`template ${0} literal ${1}`);
 ```
@@ -921,8 +921,8 @@ tag`template ${0} literal ${1}`;
 ```js
 // テンプレートを順番どおりに結合した文字列を返すタグ関数
 function stringRaw(strings, ...values) {
-    return strings.reduce((result, string, i) => {
-        return result + values[i - 1] + string;
+    return strings.reduce((result, str, i) => {
+        return result + values[i - 1] + str;
     }); 
 }
 // 関数`テンプレートリテラル` という形で呼び出す
@@ -945,8 +945,8 @@ String.raw`template ${0} literal ${1}`; // => "template 0 literal 1"
 ```js
 // 変数をURLエスケープするタグ関数
 function escapeURL(strings, ...values) {
-    return strings.reduce((result, string, i) => {
-        return result + encodeURIComponent(values[i - 1]) + string;
+    return strings.reduce((result, str, i) => {
+        return result + encodeURIComponent(values[i - 1]) + str;
     });  
 }
 
