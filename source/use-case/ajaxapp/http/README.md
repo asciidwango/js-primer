@@ -11,8 +11,9 @@ description: "Fetch APIを使ってHTTP通信をおこない、GitHubのAPIを�
 
 ## Fetch API {#fetch-api}
 
-**Fetch API**はクライアントとサーバー間でデータをやり取りするためのAPIです。
+**Fetch API**はHTTP通信を行いリソースを取得するためのAPIです
 Fetch APIを使うことで、ページ全体を再読み込みすることなく指定したURLからデータを取得できます。
+Fetch APIは同じくHTTP通信を扱う[XMLHttpRequest][]と似たAPIですが、より強力で柔軟な操作が可能です。
 
 GitHubが提供している、ユーザー情報を取得するためのWebAPIを呼び出すコードは次のようになります。
 リクエストを送信するためには、グローバルスコープの`fetch()`メソッドを呼び出します。
@@ -30,10 +31,10 @@ fetch(`https://api.github.com/users/${userId}`);
 GitHubのAPIに対してHTTPリクエストを送信しましたが、まだレスポンスを受け取る処理を書いていません。
 次はサーバーから返却されたレスポンスのログをコンソールに出力する処理を実装します。
 
-`fetch()`メソッドはリクエストのレスポンスを表す`Response`オブジェクトの`Promise`を返します 。
+`fetch()`メソッドは`Promise`を返します。これはリクエストのレスポンスを表す`Response`オブジェクトでresolveされます。
 送信したリクエストにレスポンスが返却されると、`then`コールバックが呼び出されます。
 次のように、`Response`オブジェクトの`status`プロパティからはHTTPレスポンスのステータスコードが取得できます。
-また、`json()`メソッドは HTTPレスポンスをJSONとしてパースし、そのオブジェクトを `Promise`で返します。
+また、`json()`メソッドも`Promise`を返します。これは HTTPレスポンスをJSONとしてパースしたオブジェクトでresolveされます。
 
 <!-- fetchがないため -->
 <!-- doctest:disable -->
@@ -42,6 +43,7 @@ fetch(`https://api.github.com/users/${userId}`)
     .then(response => {
         console.log(response.status); // => 200
         response.json().then(userInfo => {
+            // JSONパースされたオブジェクトが渡される
             console.log(userInfo); // => {...}
         });
     });
@@ -51,7 +53,7 @@ fetch(`https://api.github.com/users/${userId}`)
 
 HTTP通信にはエラーがつきものです。
 そのためFetch APIを使った通信においても、エラーをハンドリングする必要があります。
-サーバーとの通信に際してネットワークエラーが発生した場合は、`Promise`の中で例外が投げられます。
+サーバーとの通信に際してネットワークエラーが発生した場合は、ネットワークエラーを表す`NetworkError`オブジェクトでrejectされた`Promise`が返されます。
 すなわち、`then`メソッドの第2引数か`catch`メソッドのコールバック関数が呼び出されます。
 
 <!-- fetchがないため -->
@@ -68,9 +70,9 @@ fetch(`https://api.github.com/users/${userId}`)
     });
 ```
 
-一方で、リクエストがサーバーへ正常に届いたあと、ステータスコード400や500などでレスポンスされたときのサーバーエラーは、`Response`オブジェクトの`ok`プロパティで認識できます。
-`ok`プロパティは、HTTPステータスコードが200番台であれば `true`を返します。
-次のように、`ok`プロパティが`false`であるでサーバーエラーをハンドリングできます。
+一方で、リクエストが成功したかどうかは`Response`オブジェクトの`ok`プロパティで認識できます。
+`ok`プロパティは、HTTPステータスコードが200番台であれば`true`を返し、400や500番台であれば`false`を返します。
+次のように、`ok`プロパティが`false`であるサーバーエラーをハンドリングできます。
 
 <!-- fetchがないため -->
 <!-- doctest:disable -->
