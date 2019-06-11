@@ -366,7 +366,7 @@ console.log(1 == "01"); // => true
 console.log(0 == false); // => true
 // nullの比較はfalseを返す
 console.log(0 == null); // => false
-// nullとundefeinedの比較は常にtrueを返す
+// nullとundefinedの比較は常にtrueを返す
 console.log(null == undefined); // => true
 ```
 
