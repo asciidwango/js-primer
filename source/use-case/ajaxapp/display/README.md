@@ -5,6 +5,8 @@ description: "XMLHttpRequestを使って取得したデータをもとにHTMLを
 
 # データを表示する {#display-data}
 
+> このページは改修作業中です
+
 XHRを使ってサーバーからデータを取得できたので、データをHTMLに整形して表示してみましょう。
 
 ## レスポンスをオブジェクトに変換する {#convert-response-to-object}

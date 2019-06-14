@@ -38,7 +38,8 @@
     - [モジュール](./use-case/module/README.md)
     - [Ajaxで通信](./use-case/ajaxapp/README.md)
       - [エントリポイント](./use-case/ajaxapp/entrypoint/README.md)
-      - [HTTP通信](./use-case/ajaxapp/xhr/README.md)
+      - [HTTP通信](./use-case/ajaxapp/http/README.md)
+      - ↓改修作業中↓
       - [データを表示する](./use-case/ajaxapp/display/README.md)
       - [Promiseを活用する](./use-case/ajaxapp/promise/README.md)
     - [Node.jsでCLIアプリ](./use-case/nodecli/README.md)
