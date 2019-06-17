@@ -94,7 +94,7 @@ JavaScriptは、文（Statement）ごとに処理していき、文はセミコ�
 ```js
 // 式や文の間にスペースがいくつあっても同じ意味となる
 1 + 1;
-1+1;
+1   +   1;
 ```
 
 <!-- textlint-enable eslint -->
