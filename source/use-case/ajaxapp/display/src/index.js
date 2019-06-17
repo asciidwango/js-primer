@@ -4,7 +4,7 @@ function getUserInfo(userId) {
             if (!response.ok) {
                 console.error("サーバーエラー", response);
             } else {
-                response.json().then(userInfo => {
+                return response.json().then(userInfo => {
                     // HTMLの組み立て
                     const view = escapeHTML`
                     <h4>${userInfo.name} (@${userInfo.login})</h4>

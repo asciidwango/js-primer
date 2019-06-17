@@ -5,7 +5,8 @@ description: "Fetch APIを使って取得したデータをもとにHTMLを組�
 
 # データを表示する {#display-data}
 
-Fetch APIを使ってサーバーからデータを取得できたので、データをHTMLに整形して表示してみましょう。
+前のセクションでは、Fetch APIを使ってGitHubのAPIからユーザー情報を取得しました。
+このセクションでは取得したデータをHTMLに整形して、ブラウザに表示してみましょう。
 
 ## HTMLを組み立てる {#markup-html}
 
@@ -150,9 +151,9 @@ result.innerHTML = view;
 これらの処理を前のセクションで作成した `getUserInfo` 関数の中で呼び出します。
 ここまでで、index.jsとindex.htmlは次のようになっています。
 
-[import, index.js](src/index.js)
+[import, title:"index.js"](src/index.js)
 
-[import, index.html](src/index.html)
+[import, title:"index.html"](src/index.html)
 
 アプリケーションを開いてボタンを押すと、次のようにユーザー情報が表示されます。
 
