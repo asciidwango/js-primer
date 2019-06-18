@@ -1,31 +1,12 @@
 ---
 author: laco
-description: "XMLHttpRequestを使って取得したデータをもとにHTMLを組み立ててブラウザ上で表示します。"
+description: "Fetch APIを使って取得したデータをもとにHTMLを組み立ててブラウザ上で表示します。"
 ---
 
 # データを表示する {#display-data}
 
-> このページは改修作業中です
-
-XHRを使ってサーバーからデータを取得できたので、データをHTMLに整形して表示してみましょう。
-
-## レスポンスをオブジェクトに変換する {#convert-response-to-object}
-
-まずはGitHub APIからのデータをJavaScriptで扱うために、レスポンス文字列をオブジェクトに変換します。
-GitHub APIのレスポンスはJSON形式なので、オブジェクトへの変換には[JSON.parse()][]を使います。
-
-<!-- 実際にはrequestできない -->
-<!-- doctest:disable -->
-```js
-request.addEventListener("load", (event) => {
-    if (event.target.status !== 200) {
-        console.error(`${event.target.status}: ${event.target.statusText}`);
-        return;
-    }
-
-    const userInfo = JSON.parse(event.target.responseText);
-});
-```
+前のセクションでは、Fetch APIを使ってGitHubのAPIからユーザー情報を取得しました。
+このセクションでは取得したデータをHTMLに整形して、ブラウザに表示してみましょう。
 
 ## HTMLを組み立てる {#markup-html}
 
@@ -167,17 +148,17 @@ result.innerHTML = view;
 ```
 
 これでHTML文字列の生成とエスケープができました。
+これらの処理を前のセクションで作成した `getUserInfo` 関数の中で呼び出します。
 ここまでで、index.jsとindex.htmlは次のようになっています。
 
-[import, index.js](src/index.js)
+[import, title:"index.js"](src/index.js)
 
-[import, index.html](src/index.html)
+[import, title:"index.html"](src/index.html)
 
 アプリケーションを開いてボタンを押すと、次のようにユーザー情報が表示されます。
 
 ![ユーザー情報の表示](img/fig-1.png)
 
-[JSON.parse()]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse
 [document.getElementById]: https://developer.mozilla.org/ja/docs/Web/API/Document/getElementById
 [Element#innerHTML]: https://developer.mozilla.org/ja/docs/Web/API/Element/innerHTML
 [Element]: https://developer.mozilla.org/ja/docs/Web/API/Element
