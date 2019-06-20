@@ -420,8 +420,8 @@ console.log(isIncludedBlueColor); // => true
 const array = ["A", "B", "C"];
 array.push("D"); // "D"を末尾に追加
 console.log(array); // => ["A", "B", "C", "D"]
-const popedItem = array.pop(); // 最末尾の要素を削除し、その要素を返す 
-console.log(popedItem); // => "D"
+const poppedItem = array.pop(); // 最末尾の要素を削除し、その要素を返す 
+console.log(poppedItem); // => "D"
 console.log(array); // => ["A", "B", "C"]
 ```
 
