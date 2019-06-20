@@ -139,6 +139,9 @@ console.log(255); // => 255
 ```
 
 `0b`から始まる2進数リテラルは、ビットを表現するのによく利用されています。
+`b`は2進数を表すbinaryを意味しています。
+
+<!-- 具体的な言及はないけどSyntaxを参照: https://tc39.es/ecma262/#prod-BinaryIntegerLiteral -->
 
 {{book.console}}
 ```js
@@ -147,6 +150,9 @@ console.log(0b10000000000); // => 1024
 ```
 
 `0o`から始まる8進数リテラルは、ファイルのパーミッションを表現するのによく利用されています。
+`o`は8進数を表すoctalを意味しています。
+
+<!-- https://tc39.es/ecma262/#prod-OctalIntegerLiteral -->
 
 {{book.console}}
 ```js
@@ -162,6 +168,9 @@ console.log(0o777);  // => 511
 [import, octal-legacy-literal-invalid.js](./src/octal-legacy-literal-invalid.js)
 
 `0x`から始まる16進数リテラルは、文字のコードポイントやRGB値の表現などに利用されています。
+`x`は16進数を表すhexを意味しています。
+
+<!-- https://tc39.es/ecma262/#prod-HexIntegerLiteral -->
 
 {{book.console}}
 ```js
@@ -197,6 +206,14 @@ JavaScriptの浮動小数点数は[IEEE 754][]を採用しています。
 `0`から始まる場合でも省略せずに書いたほうが意図しない挙動を減らせるでしょう。
 
 > **Note** 変数名が数字から始めることができないのは、数値リテラルと衝突してしまうことが理由としてあげられます。
+
+`e`は指数（exponent）を意味する記号で、`e`のあとには指数部の値を書きます。
+たとえば、`2e8`は2の8乗となるので、10進数で表すと`200000000`となります。
+
+{{book.console}}
+```js
+2e8; // => 200000000
+```
 
 ### 文字列（String）{#string}
 
