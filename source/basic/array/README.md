@@ -390,7 +390,7 @@ if (array.includes("JavaScript")) {
 `includes`メソッドは、`indexOf`メソッドと同様で、異なるオブジェクトだが値が同じものを見つけたい場合には利用できません。
 `Array#find`メソッドのようにテストするコールバック関数を利用して、真偽値を得るには`Array#some`メソッドを利用できます。
 
-`Array#some`メソッドはテストする関数をコールバック関数にマッチする要素があるなら`true`を返し、存在しない場合は`false`を返します。
+`Array#some`メソッドはテストするコールバック関数にマッチする要素があるなら`true`を返し、存在しない場合は`false`を返します。
 （「[ループと反復処理](../loop/README.md#array-some)」の章を参照）
 
 {{book.console}}
