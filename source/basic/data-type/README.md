@@ -256,7 +256,7 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は同�
 ```
 
 ダブルクオートとシングルクオートどちらも、改行をそのままは入力できません。
-次のように改行を含んだ文字列は定義できないため、次のように構文エラー（`SyntaxError`）となります。
+次のように改行を含んだ文字列は定義できないため、構文エラー（`SyntaxError`）となります。
 
 [import, multiple-line-string-invalid.js](src/multiple-line-string-invalid.js)
 
