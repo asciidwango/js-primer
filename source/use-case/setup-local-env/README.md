@@ -101,7 +101,7 @@ Hello World!
 ### HTMLファイルの用意 {#preparing-html}
 
 まずは`http`スキーマで表示したい、最低限の要素だけを配置したHTMLファイルを作成しましょう。
-`body`要素の一番下でJavaScriptファイルを読み込んでいます。
+作成する`index.html`は`body`要素の一番下でJavaScriptファイルを読み込んでいます。
 
 [import title:"index.html"](src/index.html)
 
