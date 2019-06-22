@@ -130,19 +130,19 @@ JavaScriptの多くの実行環境では、Console APIが**コンソール表示
 そしてページをリロードすると、 `1` という値を評価した結果がWebコンソールに表示されます。
 
 {{book.console}}
-[import, console-example.js](./src/console-example.js)
+[import, title:"index.js"](./src/console-example.js)
 
 次のように引数に式を書いた場合は先に引数（`(`と`)`の間に書かれたもの）の式を評価してから、その結果をコンソールに表示します。
 そのため、`1 + 1` の評価結果として `2` がコンソールに表示されます。
 
 {{book.console}}
-[import, console-expression-example.js](./src/console-expression-example.js)
+[import, title:"index.js"](./src/console-expression-example.js)
 
 同じように引数に変数を渡すこともできます。
 この場合もまず先に引数である変数を評価してから、その結果をコンソールに表示します。
 
 {{book.console}}
-[import, console-variable-example.js](./src/console-variable-example.js)
+[import, title:"index.js"](./src/console-variable-example.js)
 
 Console APIは原始的なプリントデバッグとして利用できます。
 「この値は何だろう」と思ったらコンソールに表示すると解決する問題は多いです。
