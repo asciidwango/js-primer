@@ -40,7 +40,6 @@
       - [エントリポイント](./use-case/ajaxapp/entrypoint/README.md)
       - [HTTP通信](./use-case/ajaxapp/http/README.md)
       - [データを表示する](./use-case/ajaxapp/display/README.md)
-      - ↓改修作業中↓
       - [Promiseを活用する](./use-case/ajaxapp/promise/README.md)
     - [Node.jsでCLIアプリ](./use-case/nodecli/README.md)
       - [Node.jsでHello World](./use-case/nodecli/helloworld/README.md)

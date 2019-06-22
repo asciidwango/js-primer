@@ -5,43 +5,40 @@ description: "Promiseを活用し、ソースコードの整理とエラーハ�
 
 # Promiseを活用する {#use-promise}
 
-> このページは改修作業中です
-
-ここまでで、XHRを使ってAjax通信を行い、サーバーから取得したデータを表示できました。
-最後に、**Promise**を使ってソースコードを整理することで、エラーハンドリングをしっかり行います。
+ここまでのセクションで、Fetch APIを使ってAjax通信を行い、サーバーから取得したデータを表示できました。
+最後に、Fetch APIの戻り値でもある**Promise**を活用してソースコードを整理することで、エラーハンドリングをしっかり行います。
 
 ## 関数の分割 {#split-function}
 
 まずは、大きくなりすぎた`getUserInfo`関数を整理しましょう。
-この関数では、XHRを使ったデータの取得・HTML文字列の組み立て・組み立てたHTMLの表示をしています。
+この関数では、Fetch APIを使ったデータの取得・HTML文字列の組み立て・組み立てたHTMLの表示をしています。
 そこで、HTML文字列を組み立てる`createView`関数とHTMLを表示する`displayView`関数を作り、処理を分割します。
 
 また、後述するエラーハンドリングを行いやすくするため、アプリケーションにエントリポイントを設けます。
 index.jsに新しく`main`関数を作り、その中で`getUserInfo`関数を呼び出すようにします。
 
+<!-- doctest:async:16 -->
 ```js
 function main() {
     getUserInfo("js-primer-example");
 }
 
 function getUserInfo(userId) {
-    const request = new XMLHttpRequest();
-    request.open("GET", `https://api.github.com/users/${userId}`);
-    request.addEventListener("load", (event) => {
-        if (event.target.status !== 200) {
-            console.error(`${event.target.status}: ${event.target.statusText}`);
-            return;
-        }
-
-        const userInfo = JSON.parse(event.target.responseText);
-
-        const view = createView(userInfo);
-        displayView(view);
-    });
-    request.addEventListener("error", () => {
-        console.error("Network Error");
-    });
-    request.send();
+    fetch(`https://api.github.com/users/${userId}`)
+        .then(response => {
+            if (!response.ok) {
+                console.error("サーバーエラー", response);
+            } else {
+                return response.json().then(userInfo => {
+                    // HTMLの組み立て
+                    const view = createView(userInfo);
+                    // HTMLの挿入
+                    displayView(view);
+                });
+            }
+        }).catch(error => {
+            console.error("ネットワークエラー", error);
+        });
 }
 
 function createView(userInfo) {
@@ -80,98 +77,43 @@ function displayView(view) {
 </html>
 ```
 
-## XHRをPromiseでラップする {#wrap-xhr}
+## Promiseのエラーハンドリング {#error-handling}
 
-次に、`getUserInfo`関数で行っているXHRの処理を整理します。
-これまではXHRのコールバック関数の中で処理していましたが、これを**Promise**を使った処理に書き換えます。
-コールバック関数を使うと、ソースコードのネストが深くなったり、例外処理が複雑になったりします。
-Promiseを用いることで、可読性を保ちながらエラーハンドリングを簡単に行えます。
+`getUserInfo`関数で作成したPromiseのオブジェクトをreturnすると、それを呼び出す`main`関数の方で非同期処理の結果を扱えるようになります。
+Promiseのコンテキスト内で投げられたエラーは、`Promise#catch`メソッドを使って一箇所で受け取れます。
 
-<!-- textlint-disable no-js-function-paren -->
-
-コールバック関数を使う形式のAPIをPromiseに置き換えるのは、次のコードのように`new Promise()`を用いるのが一般的です。
-Promiseのコンストラクタには、`resolve`と`reject`の2つの関数オブジェクトを引数とする関数を渡します。
-ひとつめの引数は非同期処理が成功したときに呼び出す関数で、ふたつめは失敗した時に呼び出す関数です。
-
-<!-- textlint-enable no-js-function-paren -->
-
-<!-- doctest:async:16 -->
-```js
-new Promise((resolve, reject) => {
-    // ここで非同期処理を行う
-});
-```
-
-Promiseのコンストラクタに渡す関数で、XHRの処理を行います。
-作成されたPromiseは成功か失敗のどちらかで完了させなければなりません。
-非同期処理が成功したら第1引数の`resolve`関数を、失敗なら第2引数の`reject`関数を呼び出します。
-
-作成したPromiseのオブジェクトを`return`することで、`getUserInfo`関数はPromiseを返す関数になりました。
-`getUserInfo`関数がPromiseを返すことで、それを呼び出す`main`関数の方で非同期処理の結果を扱えるようになります。
-
-<!-- doctest:async:16 -->
-```js
-function getUserInfo(userId) {
-    return new Promise((resolve, reject) => {    
-        const request = new XMLHttpRequest();
-        request.open("GET", `https://api.github.com/users/${userId}`);
-        request.addEventListener("load", (event) => {
-            if (event.target.status !== 200) {
-                console.error(`${event.target.status}: ${event.target.statusText}`);
-                reject(); // ステータスコードが200じゃないので失敗
-            }
-
-            const userInfo = JSON.parse(event.target.responseText);
-
-            const view = createView(userInfo);
-            displayView(view);
-            resolve(); // 完了
-        });
-        request.addEventListener("error", () => {
-            console.error("Network Error");
-            reject(); // 通信エラーが発生したので失敗
-        });
-        request.send();
-    });
-}
-```
-
-### エラーハンドリング {#error-handling}
-
-このままではPromiseに置き換えた意味がないので、Promiseを使ったエラーハンドリングを行いましょう。
-Promiseのコンテキスト内で発生したエラーは、`Promise#catch`メソッドを使って一箇所で受け取れます。
-次のコードでは、`getUserInfo`関数から返されたPromiseオブジェクトを使い、エラーが起きた時にログを出力します。
-`reject`関数に渡したエラーは`catch`のコールバック関数で第1引数として受け取れます。
+次のコードでは、`getUserInfo`関数から返されたPromiseオブジェクトを、`main`関数でエラーハンドリングしてログを出力します。
+`getUserInfo`関数ではネットワークエラーとサーバーエラーを投げています。
+投げられたエラーは`catch`のコールバック関数で第1引数として受け取れます。
 
 <!-- doctest:async:16 -->
 ```js
 function main() {
     getUserInfo("js-primer-example")
         .catch((error) => {
+            // Promiseのコンテキスト内で発生したエラーを受け取る
             console.error(`エラーが発生しました (${error})`);
         });
 }
 
 function getUserInfo(userId) {
-    return new Promise((resolve, reject) => {    
-        const request = new XMLHttpRequest();
-        request.open("GET", `https://api.github.com/users/${userId}`);
-        request.addEventListener("load", (event) => {
-            if (event.target.status !== 200) {
-                reject(new Error(`${event.target.status}: ${event.target.statusText}`));
+    return fetch(`https://api.github.com/users/${userId}`)
+        .then(response => {
+            if (!response.ok) {
+                // サーバーエラーを投げる
+                throw new Error(`${event.target.status}: ${event.target.statusText}`);
+            } else {
+                return response.json().then(userInfo => {
+                    // HTMLの組み立て
+                    const view = createView(userInfo);
+                    // HTMLの挿入
+                    displayView(view);
+                });
             }
-
-            const userInfo = JSON.parse(event.target.responseText);
-
-            const view = createView(userInfo);
-            displayView(view);
-            resolve();
+        }).catch(error => {
+            // ネットワークエラーを投げる
+            throw new Error("ネットワークエラー");
         });
-        request.addEventListener("error", () => {
-            reject(new Error("ネットワークエラー"));
-        });
-        request.send();
-    });
 }
 ```
 
@@ -190,15 +132,18 @@ Promiseチェーンを使って処理を分割する利点は、同期処理と�
 Promiseチェーンで処理を分けることで、それぞれの処理が簡潔になりコードの見通しがよくなります。
 
 さて、今の`getUserInfo`関数ではloadイベントのコールバック関数でHTMLの組み立てと表示も行っています。
-これをPromiseチェーンを使うように書き換えると、次のようにできます。
-`getUserInfo`関数では、`resolve`関数に`userInfo`を渡し、次の`then`でコールバック関数の引数として受け取っています。
+これをPromiseチェーンで次のように書き換えてみましょう。
+`getUserInfo`関数では、`fetch`関数が返すPromiseの`then`メソッドで、`Reponse#json`メソッドの戻り値を返しています。
+`Reponse#json`メソッドの戻り値はPromiseなので、次の`then`ではユーザー情報のJSONオブジェクトが渡されます。
 同じように、`userInfo`を受け取った関数は`createView`関数を呼び出し、その戻り値を次の`then`に渡しています。
 
 <!-- doctest:async:16 -->
 ```js
 function main() {
     getUserInfo("js-primer-example")
+        // ここではJSONオブジェクトで解決されるPromise
         .then((userInfo) => createView(userInfo))
+        // ここではHTML文字列で解決されるPromise
         .then((view) => displayView(view))
         .catch((error) => {
             console.error(`エラーが発生しました (${error})`);
@@ -206,55 +151,44 @@ function main() {
 }
 
 function getUserInfo(userId) {
-    return new Promise((resolve, reject) => {    
-        const request = new XMLHttpRequest();
-        request.open("GET", `https://api.github.com/users/${userId}`);
-        request.addEventListener("load", (event) => {
-            if (event.target.status !== 200) {
-                reject(new Error(`${event.target.status}: ${event.target.statusText}`));
-            }
-
-            const userInfo = JSON.parse(event.target.responseText);
-            resolve(userInfo);
-        });
-        request.addEventListener("error", () => {
-            reject(new Error("ネットワークエラー"));
-        });
-        request.send();
-    });
-}
-```
-
-## [コラム] Fetch API {#fetch-api}
-
-[Fetch API][]とは、ページの外部からリソースを取得するためのインターフェースを定義した、Webブラウザの標準APIです。
-Fetch APIは`fetch`関数など、リソースを取得するためのAPIを定義しています。
-`fetch`関数はPromiseを返すのが特徴です。
-たとえば、本章で扱ったXHRによる`getUserInfo`関数は、`fetch`関数を使うと次のようになります。
-
-<!-- doctest:async:16 -->
-```js
-function getUserInfo(userId) {
-    // 暗黙にGETリクエストとなる
-    // Responseオブジェクトがthenに渡される
     return fetch(`https://api.github.com/users/${userId}`)
         .then(response => {
-            if (!response.status !== 200) {
-                throw new Error(`${response.status}: ${response.statusText}`);
+            if (!response.ok) {
+                throw new Error(`${event.target.status}: ${event.target.statusText}`);
+            } else {
+                // userInfoを解決するPromiseを返す
+                return response.json();
             }
-            // jsonメソッドは、レスポンスボディをJSONとしてパースしたPromiseオブジェクトを返す
-            return response.json();
-        }, error => {
+        }).catch(error => {
             throw new Error("ネットワークエラー");
         });
 }
 ```
 
-今回のユースケースではFetchへの置き換えが可能ですが、コールバック関数をPromiseでラップする手法を学ぶために、あえてXHRを利用しています。
-また、プログレスイベントやリクエストの中断などXHRでしか使えない機能もあるため、常にFetchで置き換えられるわけではありません。
+### Async Functionへの置き換え {#rewrite-to-async-function}
 
-Fetchの詳しい使い方については[Fetchに関するドキュメント][]を参照してください。
+Promiseチェーンによって、Promiseの非同期処理と同じインターフェースで同期処理を記述できるようになりました。
+一方でAsync Functionを使うと、同期処理と同じインターフェースでPromiseの非同期処理を記述できるようになります。
+Promiseの`then`を使うよりも関数の入れ子が少なく、手続き的で可読性が高いコードになります。
+また、エラーハンドリングも同期処理と同じくtry-catch文を使うことができます。
 
+次のように`main`関数の前に`async`をつけると、関数はAsync Functionになります。
+そして`fetchUserInfo`関数の呼び出しに`await`をつけると、Promiseに解決されたJSONオブジェクトを`userInfo`変数に代入できます。
+`fetchUserInfo`関数の中で投げられた例外は、try-catch文で同期処理と同じようにエラーハンドリングできます。
+`main`関数以外の部分は何も変更する必要はありません。あらかじめ非同期処理の関数がPromiseを返すようにしておくと、Async Functionを適用しやすくなります。
+
+<!-- doctest:async:16 -->
+```js
+async function main() {
+    try {
+        const userInfo = await fetchUserInfo("js-primer-example");
+        const view = createView(userInfo);
+        displayView(view);
+    } catch (error) {
+        console.error(`エラーが発生しました (${error})`);
+    }
+}
+```
 
 ## ユーザーIDを変更できるようにする {#changeable-userid}
 
@@ -272,7 +206,50 @@ index.jsにも`<input>`タグから値を受け取るための処理を追加す
 
 ![完成したアプリケーション](img/fig-1.png)
 
+## [コラム] XMLHttpRequest {#xhr}
+
+[XMLHttpRequest][]（**XHR**）はFetch APIと同じくHTTP通信を行うためのAPIです。
+Fetch APIが標準化される以前は、ブラウザとサーバーの間で通信を行うにはXHRを使うのが一般的でした。
+Fetch APIはXHRを置き換えるために作られたもので、多くのユースケースではXHRを使う必要はなくなっています。
+たとえば、本章で扱ったFetch APIによる`getUserInfo`関数は、XHRを使うと次のようになります。
+
+<!-- doctest:async:16 -->
+```js
+function getUserInfo(userId) {
+    // XHRはPromiseを返さないのでラップする
+    return new Promise((resolve, reject) => {
+        // リクエストを作成する
+        const request = new XMLHttpRequest();
+        request.open("GET", `https://api.github.com/users/${userId}`);
+        request.addEventListener("load", (event) => {
+            // ステータス4XXと5XXをサーバーエラーとする
+            if (event.target.status >= 400 || event.target.status <= 599) {
+                reject(new Error(`${event.target.status}: ${event.target.statusText}`));
+            }
+            // レスポンス文字列をJSONオブジェクトにパースする
+            const userInfo = JSON.parse(event.target.responseText);
+            // Promiseを解決する
+            resolve(userInfo);
+        });
+        request.addEventListener("error", () => {
+            reject(new Error("ネットワークエラー"));
+        });
+        // リクエストを送信する
+        request.send();
+    });
+}
+```
+
+ただし、Fetch APIはまだ標準化できていない機能もあり、次のようなケースをサポートしているのはXHRだけです。
+
+* 送信したリクエストを中断する（[XMLHttpRequest#abort][]）
+* リクエスト中の[プログレスイベント][]を受け取る（）
+
+XHRの詳しい使い方については、[XHRの利用についてのドキュメント][]を参照してください。
+
 
 [Promiseチェーン]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise/then#%E3%83%81%E3%82%A7%E3%83%BC%E3%83%B3
-[Fetch API]: https://developer.mozilla.org/ja/docs/Web/API/Fetch_API
-[Fetchに関するドキュメント]: https://developer.mozilla.org/ja/docs/Web/API/Fetch_API/Using_Fetch
+[XMLHttpRequest]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest
+[XMLHttpRequest#abort]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/abort
+[プログレスイベント]: https://developer.mozilla.org/ja/docs/Web/API/ProgressEvent
+[XHRの利用についてのドキュメント]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
