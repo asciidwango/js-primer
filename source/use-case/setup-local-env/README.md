@@ -87,6 +87,52 @@ $ js-primer-hello-world
 Hello World!
 ```
 
+## ローカルサーバのセットアップ {#local-server}
+
+「[値の評価と表示][]」の章では、`index.html`と`index.js`というファイルを作成しブラウザで表示していました。
+このときローカルに作成したHTMLファイルをそのままブラウザで読み込むと、ブラウザのアドレスバーは`file:///`から始まるURLになります。
+`file`スキーマでは[Same Origin Policy][]により、多くの場面でアプリケーションは正しく動作しません。
+
+次のユースケースの章で書いていくアプリケーションは、[Same Origin Policy][]の制限を避けるために、`http`スキーマのURLでアクセスすることを前提としています。
+開発用のローカルサーバーを使うことで、ローカルに作成したHTMLファイルも`http`スキーマのURLで表示できます。
+
+ここでは、次からのユースケースで利用する開発用のローカルサーバーをセットアップする方法を見ていきます。
+
+### HTMLファイルの用意 {#preparing-html}
+
+まずは`http`スキーマで表示したい、最低限の要素だけを配置したHTMLファイルを作成しましょう。
+`body`要素の一番下でJavaScriptファイルを読み込んでいます。
+
+[import title:"index.html"](src/index.html)
+
+`index.js`には、スクリプトが正しく読み込まれたことを確認できるよう、コンソールにログを出力する処理だけを書いておきます。
+
+[import title:"index.js"](src/index.js)
+
+### ローカルサーバを起動する {#js-primer-local-server}
+
+先ほど作成した`index.html`と同じディレクトリで、次の`npx`コマンドを実行します。
+次のコマンドでは、`@js-primer/local-server`というローカルサーバーモジュールをダウンロードと同時に実行します。
+このローカルサーバモジュールでは、`http`スキーマのURLでアクセスできるように実行したディレクトリにあるファイルを配信します。
+
+```shell-session
+$ npx @js-primer/local-server
+```
+ 
+起動したローカルサーバーのURL（`http://localhost:3000`）へブラウザでアクセスすると、先ほどの`index.html`の内容が表示されます。
+
+![ログが表示されているWebコンソール](img/index.png)
+
+また、正しく`index.js`が読み込まれてるかも確認してみましょう。
+Console APIで出力したログを確認するには、ウェブブラウザの開発者ツールを開く必要があります。
+ほとんどのブラウザで開発者ツールが同梱されていますが、この書籍ではFirefoxを使って確認します。
+
+Firefoxの開発者ツールは次のいずれかの方法で開きます。
+
+- Firefox メニュー（メニューバーがある場合や macOS では、ツールメニュー）の Web 開発サブメニューで "Web コンソール" を選択する
+- キーボードショートカット Ctrl+Shift+K（macOS では Command+Option+K）を押下する
+
+詳細は"[Webコンソールを開く][]"を参照してください。
 
 [Node.js]: https://nodejs.org/ja/
 [V8]: https://developers.google.com/v8/
@@ -97,3 +143,5 @@ Hello World!
 [npx]: https://blog.npmjs.org/post/162869356040/introducing-npx-an-npm-package-runner
 [@js-primer/hello-world]: https://github.com/js-primer/hello-world
 [@js-primer/local-serverパッケージ]: https://github.com/js-primer/local-server
+[値の評価と表示]: ../../basic/read-eval-print/README.md
+[Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
