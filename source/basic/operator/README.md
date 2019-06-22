@@ -911,7 +911,7 @@ console.log((a + b) * c); // => 9
 
 <!-- doctest:disable -->
 ```js
-if (a || y && z) {
+if (x || y && z) {
     // x が true または
     // y かつ z が true
 }
