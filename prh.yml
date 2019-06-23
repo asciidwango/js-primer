@@ -128,6 +128,11 @@ rules:
       - /for\.{1,2}of/
       - /for\\-of/
       - for/of
+  - expected: try...catch
+    patterns:
+      - /try\.{1,2}catch/
+      - /try-catch/
+      - try/catch
   - expected: バッククオート
     patterns: バックティック
   - expected: 匿名関数

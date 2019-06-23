@@ -114,6 +114,47 @@ index.jsでは関数を定義しているだけで、呼び出しは行ってい
 
 ![開発者ツールでHTTP通信の記録を確認する](img/fig-2.png)
 
+## [コラム] XMLHttpRequest {#xhr}
+
+[XMLHttpRequest][]（**XHR**）はFetch APIと同じくHTTP通信を行うためのAPIです。
+Fetch APIが標準化される以前は、ブラウザとサーバーの間で通信を行うにはXHRを使うのが一般的でした。
+Fetch APIはXHRを置き換えるために作られたもので、多くのユースケースではXHRを使う必要はなくなっています。
+たとえば、このセクションで扱ったFetch APIによる`getUserInfo`関数は、XHRを使うと次のようになります。
+
+<!-- doctest:async:16 -->
+```js
+function getUserInfo(userId) {
+    // リクエストを作成する
+    const request = new XMLHttpRequest();
+    request.open("GET", `https://api.github.com/users/${userId}`);
+    request.addEventListener("load", () => {
+        // ステータス4XXと5XXをサーバーエラーとする
+        if (request.status >= 400 || request.status <= 599) {
+            console.error("サーバーエラー", request.responseText);
+        } else {
+            // レスポンス文字列をJSONオブジェクトにパースする
+            const userInfo = JSON.parse(request.responseText);
+            console.log(userInfo);
+        }
+    });
+    request.addEventListener("error", () => {
+        console.error("ネットワークエラー");
+    });
+    // リクエストを送信する
+    request.send();
+}
+```
+
+ただし、Fetch APIはまだ標準化できていない機能もあり、次のようなケースをサポートしているのはXHRだけです。
+
+* 送信したリクエストを中断する（[XMLHttpRequest#abort][]）
+* リクエスト中の[プログレスイベント][]を受け取る（）
+
+XHRの詳しい使い方については、[XHRの利用についてのドキュメント][]を参照してください。
+
 
 [Fetch API]: https://developer.mozilla.org/ja/docs/Web/API/Fetch_API
 [XMLHttpRequest]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest
+[XMLHttpRequest#abort]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/abort
+[プログレスイベント]: https://developer.mozilla.org/ja/docs/Web/API/ProgressEvent
+[XHRの利用についてのドキュメント]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest

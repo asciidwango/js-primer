@@ -167,15 +167,17 @@ function getUserInfo(userId) {
 
 ### Async Functionへの置き換え {#rewrite-to-async-function}
 
-Promiseチェーンによって、Promiseの非同期処理と同じインターフェースで同期処理を記述できるようになりました。
-一方でAsync Functionを使うと、同期処理と同じインターフェースでPromiseの非同期処理を記述できるようになります。
-Promiseの`then`を使うよりも関数の入れ子が少なく、手続き的で可読性が高いコードになります。
-また、エラーハンドリングも同期処理と同じくtry-catch文を使うことができます。
+Promiseチェーンによって、Promiseの非同期処理と同じ見た目で同期処理を記述できるようになりました。
+一方でAsync Functionを使うと、同期処理と同じ見た目でPromiseの非同期処理を記述できるようになります。
+Promiseの`then`メソッドによるコールバック関数の入れ子がなくなり、手続き的で可読性が高いコードになります。
+また、エラーハンドリングも同期処理と同じくtry...catch文を使うことができます。
 
-次のように`main`関数の前に`async`をつけると、関数はAsync Functionになります。
-そして`fetchUserInfo`関数の呼び出しに`await`をつけると、Promiseに解決されたJSONオブジェクトを`userInfo`変数に代入できます。
-`fetchUserInfo`関数の中で投げられた例外は、try-catch文で同期処理と同じようにエラーハンドリングできます。
-`main`関数以外の部分は何も変更する必要はありません。あらかじめ非同期処理の関数がPromiseを返すようにしておくと、Async Functionを適用しやすくなります。
+`main`関数を次のように書き換えましょう。まず関数宣言の前に`async`をつけてAsync Functionにしています。
+次に`fetchUserInfo`関数の呼び出しに`await`をつけます。
+これによりPromiseに解決されたJSONオブジェクトを`userInfo`変数に代入できます。
+
+もし`fetchUserInfo`関数の中で例外が投げられた場合は、try...catch文でエラーハンドリングできます。
+あらかじめ非同期処理の関数がPromiseを返すようにしておくと、Async Functionにリファクタリングしやすくなります。
 
 <!-- doctest:async:16 -->
 ```js
@@ -206,50 +208,4 @@ index.jsにも`<input>`タグから値を受け取るための処理を追加す
 
 ![完成したアプリケーション](img/fig-1.png)
 
-## [コラム] XMLHttpRequest {#xhr}
-
-[XMLHttpRequest][]（**XHR**）はFetch APIと同じくHTTP通信を行うためのAPIです。
-Fetch APIが標準化される以前は、ブラウザとサーバーの間で通信を行うにはXHRを使うのが一般的でした。
-Fetch APIはXHRを置き換えるために作られたもので、多くのユースケースではXHRを使う必要はなくなっています。
-たとえば、本章で扱ったFetch APIによる`getUserInfo`関数は、XHRを使うと次のようになります。
-
-<!-- doctest:async:16 -->
-```js
-function getUserInfo(userId) {
-    // XHRはPromiseを返さないのでラップする
-    return new Promise((resolve, reject) => {
-        // リクエストを作成する
-        const request = new XMLHttpRequest();
-        request.open("GET", `https://api.github.com/users/${userId}`);
-        request.addEventListener("load", (event) => {
-            // ステータス4XXと5XXをサーバーエラーとする
-            if (event.target.status >= 400 || event.target.status <= 599) {
-                reject(new Error(`${event.target.status}: ${event.target.statusText}`));
-            }
-            // レスポンス文字列をJSONオブジェクトにパースする
-            const userInfo = JSON.parse(event.target.responseText);
-            // Promiseを解決する
-            resolve(userInfo);
-        });
-        request.addEventListener("error", () => {
-            reject(new Error("ネットワークエラー"));
-        });
-        // リクエストを送信する
-        request.send();
-    });
-}
-```
-
-ただし、Fetch APIはまだ標準化できていない機能もあり、次のようなケースをサポートしているのはXHRだけです。
-
-* 送信したリクエストを中断する（[XMLHttpRequest#abort][]）
-* リクエスト中の[プログレスイベント][]を受け取る（）
-
-XHRの詳しい使い方については、[XHRの利用についてのドキュメント][]を参照してください。
-
-
 [Promiseチェーン]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise/then#%E3%83%81%E3%82%A7%E3%83%BC%E3%83%B3
-[XMLHttpRequest]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest
-[XMLHttpRequest#abort]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/abort
-[プログレスイベント]: https://developer.mozilla.org/ja/docs/Web/API/ProgressEvent
-[XHRの利用についてのドキュメント]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
