@@ -129,7 +129,7 @@ function getUserInfo(userId) {
     request.addEventListener("load", () => {
         // ステータス4XXと5XXをサーバーエラーとする
         if (request.status >= 400 || request.status <= 599) {
-            console.error("サーバーエラー", request.responseText);
+            console.error("サーバーエラー", request.statusText);
         } else {
             // レスポンス文字列をJSONオブジェクトにパースする
             const userInfo = JSON.parse(request.responseText);
