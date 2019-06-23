@@ -509,8 +509,8 @@ Arrow Functionでは処理が1つの式だけである場合に、`return`文を
 {{book.console}}
 ```js
 const array = [1, 2, 3];
-// 仮引数が一つなので`()`を省略できる
-// 処理が1つの式だけなので、`return`文を省略できコールバック関数は`value * 2`を返す
+// 仮引数が1つなので`()`を省略できる
+// 処理が1つの式なので、`return`文を省略できコールバック関数は`value * 2`を返す
 const doubleArray = array.map(value => value * 2);
 console.log(doubleArray); // => [2, 4, 6]
 ```
