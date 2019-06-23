@@ -118,8 +118,7 @@ index.jsでは関数を定義しているだけで、呼び出しは行ってい
 
 [XMLHttpRequest][]（**XHR**）はFetch APIと同じくHTTP通信を行うためのAPIです。
 Fetch APIが標準化される以前は、ブラウザとサーバーの間で通信を行うにはXHRを使うのが一般的でした。
-Fetch APIはXHRを置き換えるために作られたもので、多くのユースケースではXHRを使う必要はなくなっています。
-たとえば、このセクションで扱ったFetch APIによる`getUserInfo`関数は、XHRを使うと次のようになります。
+このセクションで扱ったFetch APIによる`getUserInfo`関数は、XHRを使うと次のようになります。
 
 <!-- doctest:async:16 -->
 ```js
@@ -145,6 +144,7 @@ function getUserInfo(userId) {
 }
 ```
 
+Fetch APIはXHRを置き換えるために作られたもので、多くのユースケースではXHRを使う必要はなくなっています。
 ただし、Fetch APIはまだ標準化できていない機能もあり、次のようなケースをサポートしているのはXHRだけです。
 
 * 送信したリクエストを中断する（[XMLHttpRequest#abort][]）
