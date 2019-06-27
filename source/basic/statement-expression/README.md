@@ -214,6 +214,7 @@ JavaScriptには、特殊なルールにもとづき、セミコロンがない�
 そのため、ツールなどの支援を受けて経験的に慣れていくこともよい方法といえます。
 
 [関数と宣言]: ../function-declaration/README.md
-[ESLint]: http://eslint.org/  "ESLint - Pluggable JavaScript linter"
 [関数とスコープ]: ../function-scope/README.md
+[変数と宣言]: ../variables/README.md
 [`var`の問題]: ../variables/README.md#var-issues
+[ESLint]: http://eslint.org/  "ESLint - Pluggable JavaScript linter"
