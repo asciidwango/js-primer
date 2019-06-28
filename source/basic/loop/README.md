@@ -228,7 +228,7 @@ return文は現在の関数を終了させることができるため、次の�
 {{book.console}}
 [import, find-even-return-example.js](./src/break/find-even-return-example.js)
 
-偶数を見つけたらすぐにreturnすることで一時変数が不要となり、より簡潔に書くことができました。
+偶数を見つけたらすぐにreturnすることで一時的な変数が不要となり、より簡潔に書くことができました。
 
 ### 配列の`some`メソッド {#array-some}
 
