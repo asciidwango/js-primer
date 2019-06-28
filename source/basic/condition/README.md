@@ -136,7 +136,7 @@ if (num > 10) {
 
 #### ネストしたif文 {#nested-if-statement}
 
-if、else if、else文はネストして書くこともできます。
+if文、else if文、else文はネストして書くこともできます。
 次のように複数の条件を満たす場合に実行される文を、if文のネストとして表現することもできます。
 
 <!-- doctest:disable -->
