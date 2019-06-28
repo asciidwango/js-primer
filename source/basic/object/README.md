@@ -159,7 +159,6 @@ const obj = {
 
 console.log(obj["key"]); // => "value"
 // プロパティ名が数字から始まる識別子も利用できる
-//
 console.log(obj[123]); // => 456
 // プロパティ名にハイフンを含む識別子も利用できる
 console.log(obj["my-key"]); // => "my-value"
