@@ -54,7 +54,8 @@ if (x > 10) {
 if文の`条件式`には`true`または`false`といった真偽値以外の値も指定できます。
 真偽値以外の値の場合、その値を暗黙的に真偽値へ変換してから、条件式として判定します。
 
-真偽値へ変換した結果が`true`となる値の種類は多いため、逆に変換した結果が`false`となる値を覚えるのが簡単です。JavaScriptでは次の値は`false`に変換され、これらの値は**falsy** と呼ばれます。（「[暗黙的な型変換][]」の章を参照）
+真偽値へ変換すると`true`となる値の種類は多いため、逆に変換した結果が`false`となる値を覚えるのが簡単です。
+次の値は真偽値へと変換すると`false`となるため、これらの値は**falsy**と呼ばれます。（「[暗黙的な型変換][]」の章を参照）
 
 - `false`
 - `undefined`
@@ -63,9 +64,8 @@ if文の`条件式`には`true`または`false`といった真偽値以外の値
 - `NaN`
 - `""`（空文字）
 
-**falsy**以外の値は`true`へ変換されます。
-
-そのため、`true`、`"文字列"`、0以外の数値などを`条件式`に指定した場合は、`true`へと変換されます。
+これ以外の値は真偽値に変換すると`true`になります。
+そのため、`"文字列"`や0以外の数値などを`条件式`に指定した場合は、`true`へと変換してから条件式として判定します。
 
 次のコードは、条件式が`true`へと変換されるため、if文の中身は実行されます。
 
@@ -103,7 +103,7 @@ if (null) {
 
 ### else if文 {#else-if-statement}
 
-複数の条件分岐を書く場合は、if文に続けてelse if文を使うことでできます。
+複数の条件分岐を書く場合は、if文に続けてelse if文を使うことで書けます。
 たとえば、次の3つの条件分岐するプログラムを考えます。
 
 - `version` が "ES5" ならば "ECMAScript 5" と出力
@@ -111,6 +111,7 @@ if (null) {
 - `version` が "ES7" ならば "ECMAScript 2016" と出力
 
 次のコードでは、if文とelse if文を使うことで3つの条件を書いています。
+変数`version`の値が`"ES6"`であるため、コンソールには"ECMAScript 2015"`が出力されます。
 
 {{book.console}}
 [import, else-if-example.js](src/if/else-if-example.js)
@@ -118,14 +119,33 @@ if (null) {
 ### else文 {#else-statement}
 
 if文とelse if文では、条件に一致した場合の処理をブロック内に書いていました。
-一方、条件に一致しなかった場合の処理は、else文を使うことでできます。
+一方で条件に一致しなかった場合の処理は、else文を使うことで書けます。
+
+次のコードでは、変数`num`の数値が10より大きいかを判定しています。
+`num`の値は10以下であるため、else文で書いた処理が実行されます。
 
 {{book.console}}
-[import, else-example.js](src/if/else-example.js)
+```js
+const num = 1;
+if (num > 10) {
+    console.log(`numは10より大きいです: ${num}`);
+} else {
+    console.log(`numは10以下です: ${num}`);
+}
+```
 
 #### ネストしたif文 {#nested-if-statement}
 
-if、else if、else文は`実行する文`としてさらにif文を書きネストできます。
+if、else if、else文はネストして書くこともできます。
+次のように複数の条件を満たす場合に実行される文を、if文のネストとして表現することもできます。
+
+```js
+if (条件式A) {
+    if (条件式B) {
+        // 条件式Aと条件式Bがtrueならば実行される文
+    }
+}
+```
 
 ネストしたif文の例として、今年がうるう年かを判定してみましょう。
 
@@ -156,7 +176,7 @@ if、else if、else文は`実行する文`としてさらにif文を書きネス
 
 ## switch文 {#switch-statement}
 
-switch文は次のような構文を持ち、`式`の評価結果が指定した値である場合に行う処理を並べて書きます。
+switch文は、次のような構文で`式`の評価結果が指定した値である場合に行う処理を並べて書きます。
 
 <!-- doctest:disable -->
 ```js
@@ -176,7 +196,7 @@ switch (式) {
 
 switch文はif文と同様に`式`の評価結果にもとづく条件分岐を扱います。
 またbreak文は、switch文から抜けswitch文の次の文から実行するためのものです。
-次の例では`version`の評価結果は`"ES6"`となるため、`case "ES6":`に続く文が実行されます。
+次のコードでは、`version`の評価結果は`"ES6"`となるため、`case "ES6":`に続く文が実行されます。
 
 [import, switch-example.js](./src/switch/switch-example.js)
 
@@ -233,23 +253,31 @@ switch文のcase節では基本的に`break;`を使いswitch文を抜けるよ�
 {{book.console}}
 [import, miss-case-example.js](./src/switch/miss-case-example.js)
 
-このように`break;`を忘れてしまうと意図しない挙動となります。
+このように`break;`を忘れてしまうと意図しないcase節が実行されてしまいます。
 そのため、case節とbreak文が多用されているswitch文が出てきた場合、
 別の方法で書けないかを考えるべきサインとなります。
 
 switch文はif文の代用として使うのではなく、次のように関数と組み合わせて条件に対する値を返すパターンとして使うことが多いです。
+関数については「[関数と宣言][]」の章で紹介します。
 
 {{book.console}}
 [import, switch-return-example.js](./src/switch/switch-return-example.js)
 
-関数については「[関数と宣言][]」の章で紹介します。
-
 ## まとめ {#conclusion}
 
-JavaScriptにおける条件分岐にはif文やswitch文を利用します。
+この章では条件分岐について学びました。
+
+- if文、else if文、else文で条件分岐した処理を扱える
+- 条件式に指定した値は真偽値へと変換してから判定される
+- 真偽値に変換すると`false`となる値はfalsyと呼ぶ
+- switch文とcase節、default節を組み合わせて条件分岐した処理を扱える
+- case節でbreak文しない場合は引き続きcase節が実行される
+
+条件分岐にはif文やswitch文を利用します。
 複雑な条件を定義する場合には、if文のネストが深くなりやすいです。
 そのような場合には、条件式自体を見直してよりシンプルな条件にできないかを考えてみることも重要です。
 
+<!--
 ## 参考 {#reference-for-condition}
 
 - [閏年 - Wikipedia](https://ja.wikipedia.org/wiki/%E9%96%8F%E5%B9%B4)
@@ -257,7 +285,7 @@ JavaScriptにおける条件分岐にはif文やswitch文を利用します。
 - [どうしてこんなキーワードがあるの？ - あどけない話](http://d.hatena.ne.jp/kazu-yamamoto/20080904/1220495854)
 - [switch - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/switch)
 - [制御フローとエラー処理 - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Control_flow_and_error_handling)
-
+-->
 
 [暗黙的な型変換]: ../implicit-coercion/README.md
 [関数と宣言]: ../function-declaration/README.md
