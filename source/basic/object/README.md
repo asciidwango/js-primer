@@ -506,7 +506,7 @@ const keyObject1 = { a: 1 };
 const keyObject2 = { b: 2 };
 obj[keyObject1] = "1";
 obj[keyObject2] = "2";
-console.log(object); //  { "[object Object]": "2" }
+console.log(obj); //  { "[object Object]": "2" }
 ```
 
 唯一の例外として、Symbolだけは文字列化されずにオブジェクトのプロパティ名として扱えます。
@@ -651,7 +651,7 @@ ES2015で配列の要素を展開する`...`（spread構文）はサポートさ
 オブジェクトのspread構文は、オブジェクトリテラルの中に指定したオブジェクトのプロパティを展開できます。
 
 オブジェクトのspread構文は、`Object.assign`とは異なり必ず新しいオブジェクトを作成し返します。
-なぜならspread構文はオブジェクトリテラルの中でのみ記述でき、オブジェクトリテラルは新しいオブジェクトを返すためです。
+なぜならspread構文はオブジェクトリテラルの中でのみ記述でき、オブジェクトリテラルは新しいオブジェクトを作成するためです。
 
 次のコードでは`objectA`と`objectB`をマージした新しいオブジェクトを返します。
 
@@ -764,6 +764,11 @@ console.log(cloneObj.nest === obj.nest); // => false
 JavaScriptは言語仕様で定義されている機能が最低限であるため、それを補うようにユーザーが作成した小さな機能をもつライブラリが数多く公開されています。
 それらのライブラリはnpmと呼ばれるJavaScriptのパッケージ管理ツールで公開され、JavaScriptのエコシステムを築いています。
 ライブラリの利用については「[ユースケース: Node.jsでCLIアプリケーション][]」の章で紹介します。
+
+## まとめ {#conclusion}
+
+
+
 
 [ループと反復処理]: ../loop/README.md "ループと反復処理"
 [変数と宣言]: ../variables/README.md "変数と宣言"
