@@ -64,14 +64,14 @@ if (isTrue) {
 一方、if文などは文であり式になることはできません。
 
 **式**ではないため、if文を変数へ代入できません。
-そのため、次のようなコードは`SyntaxError`となります。
+そのため、次のようなコードは構文として問題があるため、構文エラー（`SyntaxError`）となります。
 
 [import, statement-not-expression-invalid.js](src/statement-not-expression-invalid.js)
 
 ### 式文 {#expression-statement}
 
-一方、**式**（Expression）は**文**（Statement）になることができます。
-文となった式のことを**式文**と呼び、基本的に文が書ける場所には式を書くことができます。
+一方、**式**（Expression）は**文**（Statement）になることができます。文となった式のことを**式文**と呼びます。
+基本的に文が書ける場所には式を書くことができます。
 
 その際に、**式文**（Expression statement）は文の一種であるため、セミコロンで文を区切っています。
 
@@ -96,7 +96,16 @@ if (isTrue) {
 }
 ```
 
-if文など文の中には、ブロックで終わるものがあります。
+ブロック文は単独でも書けますが、基本的にはif文やfor文など他の構文と組み合わせて書くことがほとんどです。
+次のコードでは、if文とブロック文を組み合わせることで、if文の処理内容に複数の文をかいています。
+
+```js
+// if文とブロック文の組み合わせ
+if (true) {
+    console.log("文1");
+    console.log("文2");
+}
+```
 
 文の末尾にはセミコロンを付けるとしていましたが、
 例外として**ブロックで終わる文**の末尾には、セミコロンが不要となっています。
@@ -109,6 +118,41 @@ if (true) {
     console.log(true);
 }
 ```
+
+## [コラム] 単独のブロック文の活用 {#isolate-block-statement}
+
+アプリケーションのソースコードにif文などと組み合わせない単独のブロック文を書くことはほとんどありません。
+しかし、REPLで同じコードの一部を変更して実行を繰り返している場合には、単独のブロック文が役に立つ機会もあります。
+
+REPLでは、次のように同じ変数名を再定義すると、構文エラーが発生します。(詳細は「[変数と宣言][]」の章の「[`var`の問題][]」を参照)
+そのため、同じコードを再び実行するには、ブラウザでページをリロードして変数定義をリセットしないといけませんでした。
+
+```
+// REPLでの動作。»はREPLの入力欄
+» const count = 1;
+undefined
+» const count = 2;
+SyntaxError: redeclaration of const count
+```
+
+この問題は単独のブロック文で変数定義を囲むことで回避できます。
+ブロック文（`{}`）の中でletやconstを用いて変数を定義しても、そのブロック文の外には影響しません。
+そのため、次のようにブロック文で囲んでおけば、同じ変数名を定義しても構文エラー（`SyntaxError`）にはなりません。
+
+```
+// REPLでの動作。»はREPLの入力欄
+» {
+    const count = 1;
+}
+undfined // ここでブロック内で定義した変数`count`は参照できなくなる
+» {
+    const count = 1;
+}
+undfined // ここでブロック内で定義した変数`count`は参照できなくなる
+```
+
+これは、ブロックスコープという仕組みによるものですが、詳しい仕組みについては「[関数とスコープ][]」の章で解説します。
+今は、ブロック文を使うとREPLでの試行錯誤がしやすいということだけ知っていれば問題ありません。
 
 ## function宣言（文）とfunction式 {#function-statement-and-function-expression}
 
@@ -170,4 +214,7 @@ JavaScriptには、特殊なルールにもとづき、セミコロンがない�
 そのため、ツールなどの支援を受けて経験的に慣れていくこともよい方法といえます。
 
 [関数と宣言]: ../function-declaration/README.md
+[関数とスコープ]: ../function-scope/README.md
+[変数と宣言]: ../variables/README.md
+[`var`の問題]: ../variables/README.md#var-issues
 [ESLint]: http://eslint.org/  "ESLint - Pluggable JavaScript linter"
