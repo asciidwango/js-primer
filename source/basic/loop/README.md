@@ -5,12 +5,13 @@ description: "for文やwhile文を使った反復処理についてを紹介し�
 
 # ループと反復処理 {#loop-and-iteration}
 
-プログラミングにおいて、同じ処理を繰り返すために同じコードを繰り返し書く必要はありません。
-ループやイテレータなどを使い、反復処理として同じ処理を繰り返し実行できます。
 この章では、while文やfor文などの基本的な反復処理と制御文について学んでいきます。
 
+プログラミングにおいて、同じ処理を繰り返すために同じコードを繰り返し書く必要はありません。
+ループやイテレータなどを使い、反復処理として同じ処理を繰り返し実行できます。
+
 また、for文などのような構文だけではなく、配列のメソッドを利用して反復処理を行う方法もあります。
-配列のメソッドを使った反復処理もよく利用されるため、合わせてみていきます。
+配列のメソッドを使った反復処理もよく利用されるため、あわせて見ていきます。
 
 ## while文 {#while-statement}
 
@@ -28,7 +29,7 @@ while文の実行フローは次のようになります。
 
 <!-- textlint-disable preset-ja-technical-writing/ja-no-redundant-expression -->
 
-1. `条件式` の評価結果が`true`なら処理を続け、`false`なら終了
+1. `条件式` の評価結果が`true`なら次のステップへ、`false`なら終了
 2. `実行する文`を実行
 3. ステップ1へ戻る
 
@@ -83,7 +84,7 @@ do {
 do-while文の実行フローは次のようになります。
 
 1. `実行する文`を実行
-2. `条件式` の評価結果が`true`なら処理を続け、`false`なら終了
+2. `条件式` の評価結果が`true`なら次のステップへ、`false`なら終了
 3. ステップ1へ戻る
 
 while文とは異なり、かならず最初に`実行する文`を処理します。
@@ -91,6 +92,7 @@ while文とは異なり、かならず最初に`実行する文`を処理しま�
 そのため、次のコードのように最初から`条件式`を満たさない場合でも、
 初回の`実行する文`が処理され、コンソールへ`1000`と出力されます。
 
+{{book.console}}
 [import, do-while-example.js](./src/do-while/do-while-example.js)
 
 この仕組みを上手く利用し、ループの開始前とループ中の処理をまとめて書くことができます。
@@ -110,7 +112,7 @@ for (初期化式; 条件式; 増分式) {
 for文の実行フローは次のようになります。
 
 1. `初期化式` で変数の宣言
-2. `条件式` の評価結果が`true`なら処理を続け、`false`なら終了
+2. `条件式` の評価結果が`true`なら次のステップへ、`false`なら終了
 3. `実行する文` を実行
 4. `増分式` で変数を更新
 5. ステップ2へ戻る
@@ -134,6 +136,7 @@ console.log(total); // => 55
 もう少し実用的なものを考えると、任意の数値の入った配列を受け取り、その合計を計算して返すという関数を実装すると良さそうです。
 
 次のコードでは、任意の数値が入った配列を受け取り、その合計値を返す `sum` 関数を実装しています。
+`numbers`配列に含まれている要素を先頭から順番に変数`total`へ加算することで合計値を計算しています。
 
 {{book.console}}
 [import, sum-for-example.js](./src/for/sum-for-example.js)
@@ -211,7 +214,7 @@ switch文で出てきたものと同様で、処理中のループ文を終了�
 [import, break-find-example.js](./src/break/break-find-example.js)
 
 1つでも偶数があるかが分かればいいため、配列内から最初の偶数を見つけたらfor文での反復処理を終了します。
-このような処理はベタ書きせずに、関数として実装するのが一般的です。
+このような処理は使い回せるように、関数として実装するのが一般的です。
 
 同様の処理をする `isEvenIncluded` 関数を実装してみます。
 次のコードでは、break文が実行され、ループを抜けた後にreturn文で結果を返しています。
@@ -220,11 +223,12 @@ switch文で出てきたものと同様で、処理中のループ文を終了�
 [import, find-even-break-example.js](./src/break/find-even-break-example.js)
 
 return文は現在の関数を終了させることができるため、次のように書くこともできます。
+`numbers`にひとつでも偶数が含まれていれば結果は`true`となるため、偶数の値が見つかった時点で`true`を返しています。
 
 {{book.console}}
 [import, find-even-return-example.js](./src/break/find-even-return-example.js)
 
-偶数を見つけたらすぐにreturnすることで一時変数が不要となり、より簡潔に書くことができます。
+偶数を見つけたらすぐにreturnすることで一時的な変数が不要となり、より簡潔に書くことができました。
 
 ### 配列の`some`メソッド {#array-some}
 
@@ -298,7 +302,8 @@ const filteredArray = array.filter((currentValue, index, array) => {
 });
 ```
 
-この`filter`メソッドを使うことで、次のように偶数だけに絞り込む処理を書けます。
+先ほどのcontinue文を使った値の絞り込みは`filter`メソッドを使うとより簡潔に書けます。
+次のコードでは、`filter`メソッドを使い偶数だけに絞り込んでいます。
 
 {{book.console}}
 [import, filter-even-example.js](./src/continue/filter-even-example.js)
@@ -316,6 +321,7 @@ for (プロパティ in オブジェクト) {
 
 次のコードでは`obj`のプロパティ名を`key`変数に代入し反復処理をしています。
 `obj`には、3つのプロパティ名があるため３回繰り返されます。
+（ループのたびに毎回新しいブロックを作成しているため、ループごとに定義する変数`key`は再定義エラーになりません。詳細は「[関数とスコープ][]」の章の「[ブロックスコープ][]」で解説します。）
 
 {{book.console}}
 [import, for-in-object-example.js](./src/for-in/for-in-object-example.js)
@@ -383,7 +389,7 @@ JavaScriptではStringオブジェクトもiterableです。
 [import, for-of-string-example.js](./src/for-of/for-of-string-example.js)
 
 その他にも、`TypedArray`、`Map`、`Set`、DOM NodeListなど、`Symbol.iterator`を実装されているオブジェクトは多いです。
-for...of文はそれらのiterableオブジェクトを反復処理できます。
+for...of文はそれらのiterableオブジェクトとして反復処理できます。
 
 ## [コラム] `let`ではなく`const`で反復処理をする {#const-iteration}
 
@@ -431,3 +437,5 @@ for文などの構文ではcontinue文やbreak文が利用できますが、配�
 また、配列のメソッドについては「[配列][]」の章でも詳しく解説します。
 
 [配列]: ../array/README.md
+[関数とスコープ]: .../function-scope/README.md
+[ブロックスコープ]: .../function-scope/README.md#block-scope
