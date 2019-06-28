@@ -147,6 +147,7 @@ console.log(obj["key"]); // => "value"
 
 一方、ブラケット記法では、`[`と`]`の間に任意の式を書くことができます。
 そのため、識別子の命名規則とは関係なく、任意の文字列をプロパティ名として指定できます。
+ただし、プロパティ名は文字列へと暗黙的に変換されることに注意してください。
 
 {{book.console}}
 ```js
@@ -158,6 +159,7 @@ const obj = {
 
 console.log(obj["key"]); // => "value"
 // プロパティ名が数字から始まる識別子も利用できる
+//
 console.log(obj[123]); // => 456
 // プロパティ名にハイフンを含む識別子も利用できる
 console.log(obj["my-key"]); // => "my-value"
@@ -204,7 +206,7 @@ console.log(en); // => "英語"
 右辺のオブジェクトから対応するプロパティ名が、左辺で定義した変数に代入されます。
 
 次のコードでは、先程のコードと同じように`languages`オブジェクトから`ja`と`en`プロパティを取り出して変数として定義しています。
-代入演算子のオペランドとして左辺と右辺それぞれに`ja`と`en`と書いていたのが、一度で書くだけで済むため短く書けます。
+代入演算子のオペランドとして左辺と右辺それぞれに`ja`と`en`と書いていたのが、分割代入では一箇所に書くことができます。
 
 {{book.console}}
 ```js
@@ -242,7 +244,7 @@ console.log(obj.key); // => "value"
 そのため、次のものをプロパティ名として扱う場合にはブラケット記法を利用します。
 
 - 変数
-- 識別子には使えない文字列を使った名前（詳細は「[変数と宣言][]」の章を参照）
+- 変数の識別子と扱えない文字列（詳細は「[変数と宣言][]」の章を参照）
 - Symbol
 
 {{book.console}}
@@ -253,10 +255,6 @@ const obj = {};
 obj[key] = "value of key";
 // 取り出すときも同じく`key`変数を利用
 console.log(obj[key]); // => "value of key"
-// Symbolは例外的に文字列化されず扱える
-const symbolKey = Symbol("シンボルは一意な値");
-obj[symbolKey] = "value of symbol";
-console.log(obj[symbolKey]); // => "value of symbol"
 ```
 
 ブラケット記法を用いたプロパティ定義は、オブジェクトリテラルの中でも利用できます。
@@ -273,8 +271,10 @@ const obj = {
 console.log(obj[key]); // => "value"
 ```
 
-JavaScriptのオブジェクトは、変更不可能と明示しない限り、変更可能なmutableの特性をもつことを紹介しました。
+JavaScriptのオブジェクトは、デフォルトで変更可能なmutableの特性をもつことを紹介しました。
 そのため、関数が受け取ったオブジェクトに対して、勝手にプロパティを追加できてしまいます。
+
+次のコードは、`changeProperty`関数は引数として受け取ったオブジェクトにプロパティを追加している悪い例です。
 
 {{book.console}}
 ```js
@@ -329,8 +329,10 @@ obj = {}; // => SyntaxError
 ```
 
 作成したオブジェクトのプロパティの変更を防止するには`Object.freeze`メソッドを利用する必要があります。
-ただし、strict modeでないと例外が発生せず、無言で変更を無視するだけとなります。
-そのため、`Object.freeze`メソッドを利用する場合は必ずstrict modeと合わせて使います。
+`Object.freeze`はオブジェクトを凍結します。凍結されたオブジェクトはプロパティの追加や変更を行うと例外が発生するようになります。
+
+ただし、`Object.freeze`メソッドを利用する場合は必ずstrict modeと合わせて使います。
+strict modeではない場合は、凍結されたオブジェクトのプロパティを変更しても例外が発生せずに単純に無視されます。
 
 {{book.console}}
 [import, freeze-property-invalid.js](./src/freeze-property-invalid.js)
@@ -486,6 +488,43 @@ const customObject = {
 };
 console.log(String(customObject)); // => "custom value"
 ```
+
+## [コラム] オブジェクトのプロパティは文字列化される {#object-property-is-to-string}
+
+オブジェクトにプロパティを設定する際に、プロパティ名は暗黙的に文字列に変換されます。
+ブラケット記法では、次のようにオブジェクトをプロパティ名に指定することもできますが、これは意図したようには動作しません。
+なぜなら、オブジェクトを文字列化すると`"[object Object]"`という文字列となるためです。
+
+次のコードでは、`keyObject1`と`keyObject2`をブラケット記法でプロパティに指定しています。
+しかし、`keyObject1`と`keyObject2`はどちらも文字列化すると`"[object Object]"`という同じプロパティ名となります。
+そのため、プロパティは意図せず上書きされてしまいます。
+
+{{book.console}}
+```js
+const obj = {};
+const keyObject1 = { a: 1 };
+const keyObject2 = { b: 2 };
+obj[keyObject1] = "1";
+obj[keyObject2] = "2";
+console.log(object); //  { "[object Object]": "2" }
+```
+
+唯一の例外として、Symbolだけは文字列化されずにオブジェクトのプロパティ名として扱えます。
+
+{{book.console}}
+```js
+const obj = {};
+// Symbolは例外的に文字列化されず扱える
+const symbolKey1 = Symbol("シンボル1");
+const symbolKey2 = Symbol("シンボル2");
+obj[symbolKey1] = "1";
+obj[symbolKey2] = "2";
+console.log(obj[symbolKey1]); // => "1"
+console.log(obj[symbolKey2]); // => "2"
+```
+
+基本的にはオブジェクトのプロパティ名は文字列であると覚えておくとよいでしょう。
+また、`Map`というビルトインオブジェクトはオブジェクトをキーにしてできます。（詳細は「[Map/Set][]」の章で解説します）
 
 ## オブジェクトの静的メソッド {#static-method}
 
@@ -732,3 +771,4 @@ JavaScriptは言語仕様で定義されている機能が最低限であるた�
 [プロトタイプオブジェクト]: ../prototype-object/README.md "クラス"
 [変数と宣言のconstについて]: ../variables/README.md#const
 [ユースケース: Node.jsでCLIアプリケーション]: ../../use-case/nodecli/README.md
+[Map/Set]: ../map-and-set/README.md
