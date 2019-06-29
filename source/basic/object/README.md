@@ -10,7 +10,10 @@ description: "JavaScriptのObjectはオブジェクトの基礎となるもの�
 また、1つのオブジェクトは複数のプロパティを持てるため、1つのオブジェクトで多種多様な値を表現できます。
 
 今までも登場してきた、配列や関数などもオブジェクトの一種です。
-この章では、あらゆるオブジェクトのもととなる`Object`というビルトインオブジェクトについて見ていきます。
+JavaScriptには、あらゆるオブジェクトのもととなる`Object`というビルトインオブジェクトがあります。
+ビルトインオブジェクトとは、どの実行環境でも利用可能な組み込みオブジェクトのことです。
+
+この章では、オブジェクトの作成や扱い方、`Object`というビルトインオブジェクトについて見ていきます。
 
 ## オブジェクトを作成する {#create-object}
 
@@ -144,6 +147,7 @@ console.log(obj["key"]); // => "value"
 
 一方、ブラケット記法では、`[`と`]`の間に任意の式を書くことができます。
 そのため、識別子の命名規則とは関係なく、任意の文字列をプロパティ名として指定できます。
+ただし、プロパティ名は文字列へと暗黙的に変換されることに注意してください。
 
 {{book.console}}
 ```js
@@ -201,7 +205,7 @@ console.log(en); // => "英語"
 右辺のオブジェクトから対応するプロパティ名が、左辺で定義した変数に代入されます。
 
 次のコードでは、先程のコードと同じように`languages`オブジェクトから`ja`と`en`プロパティを取り出して変数として定義しています。
-代入演算子のオペランドとして左辺と右辺それぞれに`ja`と`en`と書いていたのが、一度で書くだけで済むため短く書けます。
+代入演算子のオペランドとして左辺と右辺それぞれに`ja`と`en`と書いていたのが、分割代入では一箇所に書くことができます。
 
 {{book.console}}
 ```js
@@ -239,7 +243,7 @@ console.log(obj.key); // => "value"
 そのため、次のものをプロパティ名として扱う場合にはブラケット記法を利用します。
 
 - 変数
-- 識別子には使えない文字列を使った名前（詳細は「[変数と宣言][]」の章を参照）
+- 変数の識別子として扱えない文字列（詳細は「[変数と宣言][]」の章を参照）
 - Symbol
 
 {{book.console}}
@@ -250,10 +254,6 @@ const obj = {};
 obj[key] = "value of key";
 // 取り出すときも同じく`key`変数を利用
 console.log(obj[key]); // => "value of key"
-// Symbolは例外的に文字列化されず扱える
-const symbolKey = Symbol("シンボルは一意な値");
-obj[symbolKey] = "value of symbol";
-console.log(obj[symbolKey]); // => "value of symbol"
 ```
 
 ブラケット記法を用いたプロパティ定義は、オブジェクトリテラルの中でも利用できます。
@@ -270,8 +270,10 @@ const obj = {
 console.log(obj[key]); // => "value"
 ```
 
-JavaScriptのオブジェクトは、変更不可能と明示しない限り、変更可能なmutableの特性をもつことを紹介しました。
+JavaScriptのオブジェクトは、作成後にプロパティが変更可能というmutableの特性をもつことを紹介しました。
 そのため、関数が受け取ったオブジェクトに対して、勝手にプロパティを追加できてしまいます。
+
+次のコードは、`changeProperty`関数は引数として受け取ったオブジェクトにプロパティを追加している悪い例です。
 
 {{book.console}}
 ```js
@@ -326,8 +328,10 @@ obj = {}; // => SyntaxError
 ```
 
 作成したオブジェクトのプロパティの変更を防止するには`Object.freeze`メソッドを利用する必要があります。
-ただし、strict modeでないと例外が発生せず、無言で変更を無視するだけとなります。
-そのため、`Object.freeze`メソッドを利用する場合は必ずstrict modeと合わせて使います。
+`Object.freeze`はオブジェクトを凍結します。凍結されたオブジェクトはプロパティの追加や変更を行うと例外が発生するようになります。
+
+ただし、`Object.freeze`メソッドを利用する場合は必ずstrict modeと合わせて使います。
+strict modeではない場合は、凍結されたオブジェクトのプロパティを変更しても例外が発生せずに単純に無視されます。
 
 {{book.console}}
 [import, freeze-property-invalid.js](./src/freeze-property-invalid.js)
@@ -364,7 +368,7 @@ console.log(widget.windw.title); // => TypeError: widget.windw is undefined
 // 例外が発生した文以降は実行されません
 ```
 
-`undefined`や`null`はオブジェクトではないため、存在しないプロパティへアクセスする例外が発生してしまいます。
+`undefined`や`null`はオブジェクトではないため、存在しないプロパティへアクセスすると例外が発生してしまいます。
 このような場合に、あるオブジェクトがあるプロパティを持っているかを確認する方法として、次の3つの方法があります。
 
 - `undefined`との比較
@@ -483,6 +487,51 @@ const customObject = {
 };
 console.log(String(customObject)); // => "custom value"
 ```
+
+## [コラム] オブジェクトのプロパティ名は文字列化される {#object-property-is-to-string}
+
+オブジェクトのプロパティへアクセスする際に、指定したプロパティ名は暗黙的に文字列に変換されます。
+ブラケット記法では、オブジェクトをプロパティ名に指定することもできますが、これは意図したようには動作しません。
+なぜなら、オブジェクトを文字列化すると`"[object Object]"`という文字列になるためです。
+
+次のコードでは、`keyObject1`と`keyObject2`をブラケット記法でプロパティ名に指定しています。
+しかし、`keyObject1`と`keyObject2`はどちらも文字列化すると`"[object Object]"`という同じプロパティ名となります。
+そのため、プロパティは意図せず上書きされてしまいます。
+
+{{book.console}}
+```js
+const obj = {};
+const keyObject1 = { a: 1 };
+const keyObject2 = { b: 2 };
+// どちらも同じプロパティ名（"[object Object]"）に代入している
+obj[keyObject1] = "1";
+obj[keyObject2] = "2";
+console.log(obj); //  { "[object Object]": "2" }
+```
+
+唯一の例外として、Symbolだけは文字列化されずにオブジェクトのプロパティ名として扱えます。
+
+{{book.console}}
+```js
+const obj = {};
+// Symbolは例外的に文字列化されず扱える
+const symbolKey1 = Symbol("シンボル1");
+const symbolKey2 = Symbol("シンボル2");
+obj[symbolKey1] = "1";
+obj[symbolKey2] = "2";
+console.log(obj[symbolKey1]); // => "1"
+console.log(obj[symbolKey2]); // => "2"
+```
+
+基本的にはオブジェクトのプロパティ名は文字列として扱われることは覚えておくとよいでしょう。
+また、`Map`というビルトインオブジェクトはオブジェクトをキーとして扱えます。（詳細は「[Map/Set][]」の章で解説します）
+
+<!-- 仕様: ToPropertyKeyによって文字列化されている
+
+- https://github.com/asciidwango/js-primer/pull/854
+- https://tc39.es/ecma262/#sec-topropertykey
+
+ -->
 
 ## オブジェクトの静的メソッド {#static-method}
 
@@ -609,7 +658,7 @@ ES2015で配列の要素を展開する`...`（spread構文）はサポートさ
 オブジェクトのspread構文は、オブジェクトリテラルの中に指定したオブジェクトのプロパティを展開できます。
 
 オブジェクトのspread構文は、`Object.assign`とは異なり必ず新しいオブジェクトを作成し返します。
-なぜならspread構文はオブジェクトリテラルの中でのみ記述でき、オブジェクトリテラルは新しいオブジェクトを返すためです。
+なぜならspread構文はオブジェクトリテラルの中でのみ記述でき、オブジェクトリテラルは新しいオブジェクトを作成するためです。
 
 次のコードでは`objectA`と`objectB`をマージした新しいオブジェクトを返します。
 
@@ -723,9 +772,22 @@ JavaScriptは言語仕様で定義されている機能が最低限であるた�
 それらのライブラリはnpmと呼ばれるJavaScriptのパッケージ管理ツールで公開され、JavaScriptのエコシステムを築いています。
 ライブラリの利用については「[ユースケース: Node.jsでCLIアプリケーション][]」の章で紹介します。
 
+## まとめ {#conclusion}
+
+この章では、オブジェクトについて学びました。
+
+- `Object`というビルトインオブジェクトがある
+- `{}`（オブジェクトリテラル）でのオブジェクトの作成や更新方法
+- プロパティの存在確認する`in`演算子と`hasOwnProperty`メソッド
+- オブジェクトのインスタンスメソッドと静的メソッド
+
+JavaScriptの`Object`は他のオブジェクトのベースとなるオブジェクトです。
+次の「[プロトタイプオブジェクト][]」の章では、`Object`がどのようにベースとして動作しているのかを見ていきます。
+
 [ループと反復処理]: ../loop/README.md "ループと反復処理"
 [変数と宣言]: ../variables/README.md "変数と宣言"
 [クラス]: ../class/README.md "クラス"
 [プロトタイプオブジェクト]: ../prototype-object/README.md "クラス"
 [変数と宣言のconstについて]: ../variables/README.md#const
 [ユースケース: Node.jsでCLIアプリケーション]: ../../use-case/nodecli/README.md
+[Map/Set]: ../map-and-set/README.md
