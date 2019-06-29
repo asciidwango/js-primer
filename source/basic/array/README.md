@@ -105,42 +105,27 @@ console.log(sparseArray.length); // => 3
 console.log(sparseArray[1]); // => undefined
 ```
 
-## 配列は特別なオブジェクト {#array-is-special-object}
+## オブジェクトが配列かどうかを判定する {#detect-array}
+
+あるオブジェクトが配列かどうかを判定するには`Array.isArray`メソッドを利用します。
+`Array.isArray`メソッドは引数が配列ならば`true`を返します。
+
+```js
+const array = [];
+console.log(Array.isArray(array)); // => true
+```
 
 JavaScriptでは、プリミティブ型のデータ以外はすべてオブジェクトです。
 そのため、配列もオブジェクトの一種です。
-このことは`typeof`演算子の結果を見てみることでもわかります。
+このことは`typeof`演算子の結果が`"object"`となることからも分かります。
 
 {{book.console}}
 ```js
 console.log(typeof ["A", "B", "C"]); // => "object"
 ```
 
-しかし、`Object`のインスタンスにはない`Array#forEach`などのメソッドや特殊な動作を持っています。
-
-その特殊な動作のひとつが`length`プロパティです。
-配列には複数の要素を格納できますが、`length`プロパティはその配列の要素数を返します。
-
-{{book.console}}
-```js
-const array = ["A", "B", "C"];
-console.log(array.length); // => 3
-```
-
-また、`length`プロパティへ値を代入できます。
-`length`プロパティへ値（インデックスの値）を代入すると、指定したインデックス以降の要素は配列から削除されます。
-
-{{book.console}}
-```js
-const array = ["A", "B", "C"];
-array.length = 0; // 配列を空にする
-console.log(array); // => []
-```
-
-### オブジェクトが配列かどうかを判定する {#detect-array}
-
-配列の`length`プロパティは特殊な動作をしますが、独自の`length`プロパティを持ったオブジェクトを作ることができます。
-この２つのオブジェクトの違いはどのように見分ければいいのでしょうか？
+配列は`length`プロパティをもちますが、`length`プロパティを持ったオブジェクトを作ることもできます。
+この２つのオブジェクトの違いは、`length`プロパティを持っているかどうかでは見分けることができません。
 
 {{book.console}}
 ```js
@@ -155,8 +140,8 @@ const obj = {
 先ほど示したように`typeof`演算子では、オブジェクトと配列の区別は付きません。
 また、`length`プロパティが存在するかでは、それが配列であるとは判断できません。
 
-そのため、あるオブジェクトが配列なのかを知りたい場合には、`Array.isArray`メソッドを利用します。
-`Array.isArray`メソッドは引数が配列ならば`true`を返します。
+そのため、あるオブジェクトが配列なのかを知りたい場合には、`Array.isArray`メソッドを利用する必要があります。
+`Array.isArray`メソッドは、配列と`length`プロパティをもつオブジェクトを区別できます。
 
 {{book.console}}
 ```js
