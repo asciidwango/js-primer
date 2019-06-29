@@ -488,9 +488,9 @@ const customObject = {
 console.log(String(customObject)); // => "custom value"
 ```
 
-## [コラム] オブジェクトのプロパティは文字列化される {#object-property-is-to-string}
+## [コラム] オブジェクトのプロパティ名は文字列化される {#object-property-is-to-string}
 
-オブジェクトにプロパティを設定する際に、プロパティ名は暗黙的に文字列に変換されます。
+オブジェクトのプロパティへアクセスする際に、プロパティ名は暗黙的に文字列に変換され扱われます。
 ブラケット記法では、次のようにオブジェクトをプロパティ名に指定することもできますが、これは意図したようには動作しません。
 なぜなら、オブジェクトを文字列化すると`"[object Object]"`という文字列となるためです。
 
@@ -503,6 +503,7 @@ console.log(String(customObject)); // => "custom value"
 const obj = {};
 const keyObject1 = { a: 1 };
 const keyObject2 = { b: 2 };
+// どちらも同じプロパティ名（"[object Object]"）に代入している
 obj[keyObject1] = "1";
 obj[keyObject2] = "2";
 console.log(obj); //  { "[object Object]": "2" }
@@ -522,8 +523,16 @@ console.log(obj[symbolKey1]); // => "1"
 console.log(obj[symbolKey2]); // => "2"
 ```
 
+
 基本的にはオブジェクトのプロパティ名は文字列であると覚えておくとよいでしょう。
 また、`Map`というビルトインオブジェクトはオブジェクトをキーとして扱えます。（詳細は「[Map/Set][]」の章で解説します）
+
+<!-- 仕様: ToPropertyKeyによって文字列化されている
+
+- https://github.com/asciidwango/js-primer/pull/854
+- https://tc39.es/ecma262/#sec-topropertykey
+
+ -->
 
 ## オブジェクトの静的メソッド {#static-method}
 
