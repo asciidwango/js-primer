@@ -10,7 +10,7 @@ description: "配列は値を順番に格納できるオブジェクトです。
 
 配列とは値に順序をつけて格納できるオブジェクトです。
 配列に格納したそれぞれの値のことを**要素**、それぞれの要素の位置のことを**インデックス**（`index`）と呼びます。
-インデックスは`0`、`1`、`2`のように`0`から始まる値となります。
+インデックスは先頭の要素から`0`、`1`、`2`のように`0`から始まる値となります。
 
 またJavaScriptにおける配列は可変長です。
 そのため配列を作成後に配列へ要素を追加したり、配列から要素を削除できます。
@@ -266,10 +266,10 @@ console.log(obj === { key: "value" }); // => false
 console.log(array.indexOf(obj)); // => 2
 ```
 
-このように、異なるオブジェクトだが値が同じものを見つけたい場合には、`Array#findIndex`メソッドが利用できます。
+このように、異なるオブジェクトだが値は同じものを見つけたい場合には、`Array#findIndex`メソッドが利用できます。
 `findIndex`メソッドは引数には配列の各要素をテストする関数をコールバック関数として渡します。
 `indexOf`メソッドとは異なり、テストする処理を自由に書くことができます。
-これにより、異なるオブジェクトだが値が同じという要素を配列から見つけて、その要素のインデックスを得ることができます。
+これにより、異なるオブジェクトだが値は同じという要素を配列から見つけて、その要素のインデックスを得ることができます。
 
 {{book.console}}
 ```js
@@ -364,7 +364,7 @@ if (indexOfJS !== -1) {
 
 ```
 
-しかし、ES2015からは`Array#includes`メソッドである要素が含まれているかを判定できます。
+ES2015からは`Array#includes`メソッドである要素が含まれているかを判定できます。
 `includes`メソッドは真偽値を返すので、`indexOf`メソッドを使った場合に比べて意図が明確になります。
 そのため、前述のコードは次のように`includes`メソッドを使うべきでしょう。
 
@@ -457,7 +457,7 @@ console.log(newArray); // => ["A", "B", "C", "新しい要素"]
 配列の任意のインデックスの要素を削除するには`Array#splice`を利用できます。
 
 `Array#splice`メソッドを利用すると、削除した要素を自動で詰めることができます。
-`Array#splice`メソッドは、`index`番目から`削除する数`だけ要素を取り除き、必要ならば要素を同時に追加できます。
+`Array#splice`メソッドは指定したインデックスから、指定した数だけ要素を取り除き、必要ならば要素を同時に追加できます。
 
 {{book.console}}
 <!-- doctest: ReferenceError -->
@@ -713,14 +713,13 @@ console.log(newArray); // => [1, 3]
 console.log(array !== newArray); // => true
 ```
 
-
 ### `Array#reduce` {#array-reduce}
 
 `Array#reduce`は累積値（アキュムレータ）と配列の要素を順番にコールバック関数へ渡し、1つの累積値を返します。
 配列から配列以外を含む任意の値を作成したい場合に利用します。
 
 ここまでで紹介した反復処理のメソッドとは異なり、コールバック関数には`累積値, 要素, インデックス, 配列`を引数として渡します。
-`reduce`メソッドの第二引数には`accumulator`の初期値となる値を渡せます。
+`reduce`メソッドの第二引数には`累積値`の初期値となる値を渡せます。
 
 次のコードでは、`reduce`メソッドは配列の各要素を加算した1つの数値を返します。
 つまり配列から配列要素の合計値というNumber型の値を返しています。
@@ -852,7 +851,20 @@ console.log(versionNames); // => ["ECMAScript 1", "ECMAScript 2", "ECMAScript 3"
 
 メソッドチェーンを使うことで複数の処理からなるものをひとつのまとった処理のように見せることができます。長過ぎるメソッドチェーンは長すぎる関数と同じように読みにくくなりますが、適度な単位のメソッドチェーンは処理をスッキリ見せるパターンとして利用されています。
 
+## まとめ {#conclusion}
+
+この章では配列について学びました。
+
+- 配列は順序を持った要素を格納できるオブジェクトの一種
+- 配列には破壊的なメソッドと非破壊的なメソッドがある
+- 配列には反復処理を行う高階関数となるメソッドがある
+- メソッドチェーンは配列のメソッドが配列を返すことを利用している
+
+配列はJavaScriptの中でもよく使われるオブジェクトで、メソッドの種類も多いです。
+この書籍でもすべてのメソッドは紹介していないため、詳しくは[Arrayについてドキュメント][]も参照してみてください。
+
 [ループと反復処理]: ../loop/README.md
 [immutable-array-prototype]: https://github.com/azu/immutable-array-prototype  "azu/immutable-array-prototype: A collection of Immutable Array prototype methods(Per method packages)."
 [Lodash]: https://lodash.com/  "Lodash"
 [Immutable.js]: https://facebook.github.io/immutable-js/  "Immutable.js"
+[Arrayについてドキュメント]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array
