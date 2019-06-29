@@ -157,7 +157,7 @@ console.log(obj.hasOwnProperty === Object.prototype.hasOwnProperty); // => true
 > `Array`のインスタンス -> `Array.prototype` -> `Object.prototype`
 
 `Object.create`メソッドを使って`Array`と`Object`の関係をコードとして表現してみます。
-`Array`コンストラクタの実装などは実際のものとは異なるので、あくまで関係の例示でしかないことに注意してください。
+この擬似コードは、`Array`コンストラクタの実装などは実際のものとは異なる部分があるため、あくまでイメージであることに注意してください。
 
 ```js
 // このコードはイメージです！
@@ -183,7 +183,7 @@ const array = [];
 console.log(array.hasOwnProperty === Object.prototype.hasOwnProperty); // => true
 ```
 
-この参照が可能なのもプロトタイプチェーンという仕組みによるものです。
+このような`hasOwnProperty`メソッドの参照が可能なのもプロトタイプチェーンという仕組みによるものです。
 
 ここでは、`Object.prototype`はすべてのオブジェクトの親となるオブジェクトであることだけを覚えておくだけで問題ありません。
 これにより、`Array`や`String`などのインスタンスも`Object.prototype`がもつメソッドを利用できる点を覚えておきましょう。
