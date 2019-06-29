@@ -145,16 +145,10 @@ function getUserInfo(userId) {
 ```
 
 Fetch APIはXHRを置き換えるために作られたもので、多くのユースケースではXHRを使う必要はなくなっています。
-ただし、Fetch APIはまだ標準化できていない機能もあり、次のようなケースをサポートしているのはXHRだけです。
-
-* 送信したリクエストを中断する（[XMLHttpRequest#abort][]）
-* リクエスト中の[プログレスイベント][]を受け取る（）
-
+ただし、古いブラウザではFetch APIが実装されていないため、ブラウザの互換性を保つためにXHRを使う場面もまだあります。
 XHRの詳しい使い方については、[XHRの利用についてのドキュメント][]を参照してください。
 
 
 [Fetch API]: https://developer.mozilla.org/ja/docs/Web/API/Fetch_API
 [XMLHttpRequest]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest
-[XMLHttpRequest#abort]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/abort
-[プログレスイベント]: https://developer.mozilla.org/ja/docs/Web/API/ProgressEvent
 [XHRの利用についてのドキュメント]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
