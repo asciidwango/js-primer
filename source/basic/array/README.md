@@ -113,48 +113,21 @@ console.log(sparseArray[1]); // => undefined
 `Array.isArray`メソッドは引数が配列ならば`true`を返します。
 
 ```js
+const obj = {};
 const array = [];
-console.log(Array.isArray(array)); // => true
-```
-
-JavaScriptでは、プリミティブ型のデータ以外はすべてオブジェクトです。
-そのため、配列もオブジェクトの一種です。
-このことは`typeof`演算子の結果が`"object"`となることからも分かります。
-
-{{book.console}}
-```js
-console.log(typeof ["A", "B", "C"]); // => "object"
-```
-
-配列は`length`プロパティをもちますが、`length`プロパティを持ったオブジェクトを作ることもできます。
-この２つのオブジェクトの違いは、`length`プロパティを持っているかどうかでは見分けることができません。
-
-{{book.console}}
-```js
-// 配列
-const array = [];
-// `length`を持つオブジェクト
-const obj = {
-    length: 0
-};
-```
-
-先ほど示したように`typeof`演算子では、オブジェクトと配列の区別は付きません。
-また、`length`プロパティが存在するかでは、それが配列であるとは判断できません。
-
-そのため、あるオブジェクトが配列なのかを知りたい場合には、`Array.isArray`メソッドを利用する必要があります。
-`Array.isArray`メソッドは、配列と`length`プロパティをもつオブジェクトを区別できます。
-
-{{book.console}}
-```js
-const array = [];
-console.log(Array.isArray(array)); // => true
-// 配列のように`length`プロパティをもつオブジェクト
-const obj = {
-    length: 0
-};
 console.log(Array.isArray(obj)); // => false
+console.log(Array.isArray(array)); // => true
 ```
+
+また、`typeof`演算子では配列かどうかは判定することはできません。
+配列もオブジェクトの一種であるため、`typeof`演算子の結果が`"object"`となるためです。
+
+{{book.console}}
+```js
+const array = [];
+console.log(typeof array); // => "object"
+```
+
 
 ### [コラム] TypedArray {#typed-array}
 
