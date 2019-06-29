@@ -79,8 +79,9 @@ function displayView(view) {
 
 ## Promiseのエラーハンドリング {#error-handling}
 
-`getUserInfo`関数で作成したPromiseのオブジェクトをreturnすると、それを呼び出す`main`関数の方で非同期処理の結果を扱えるようになります。
-Promiseのコンテキスト内で投げられたエラーは、`Promise#catch`メソッドを使って一箇所で受け取れます。
+`getUserInfo`関数を変更し、Fetch APIの戻り値でもあるPromiseオブジェクトをreturnします。
+この変更によってそれを呼び出す`main`関数の方で非同期処理の結果を扱えるようになります。
+Promiseチェーンの中で投げられたエラーは、`Promise#catch`メソッドを使って一箇所で受け取れます。
 
 次のコードでは、`getUserInfo`関数から返されたPromiseオブジェクトを、`main`関数でエラーハンドリングしてログを出力します。
 `getUserInfo`関数ではネットワークエラーとサーバーエラーを投げています。
@@ -97,6 +98,7 @@ function main() {
 }
 
 function getUserInfo(userId) {
+    // fetchの戻り値のPromiseをreturnする
     return fetch(`https://api.github.com/users/${userId}`)
         .then(response => {
             if (!response.ok) {
@@ -117,12 +119,10 @@ function getUserInfo(userId) {
 }
 ```
 
-### Promiseチェーンへの置き換え {#rewrite-to-promise-chain}
+### Promiseチェーンのリファクタリング {#refactor-promise-chain}
 
-Promiseは`Promise#then`メソッドを使うことで、複数の処理の連鎖を表現できます。
-複数の処理を`then`で分割し、連鎖させたものを、ここでは**[Promiseチェーン][]**と呼びます。
-基本的に、`then`はコールバック関数の戻り値をそのまま次の`then`へ渡します。
-ただし、コールバック関数の戻り値がPromiseである場合はその完了を待ち、Promiseの結果の値を次の`then`に渡します。
+`Promise#then`メソッドでつながるPromiseチェーンは、`then`に渡されたコールバック関数の戻り値をそのまま次の`then`へ渡します。
+ただし、コールバック関数の戻り値がPromiseである場合はその解決を待ち、解決した値を次の`then`に渡します。
 つまり、`then`のコールバック関数が同期処理から非同期処理に変わったとしても、次の`then`が受け取る値の型は変わらないということです。
 
 Promiseチェーンを使って処理を分割する利点は、同期処理と非同期処理を区別せずに連鎖できることです。
@@ -131,10 +131,10 @@ Promiseチェーンを使って処理を分割する利点は、同期処理と�
 どのように処理を区切るかは、それぞれの関数が受け取る値の型と、返す値の型に注目するのがよいでしょう。
 Promiseチェーンで処理を分けることで、それぞれの処理が簡潔になりコードの見通しがよくなります。
 
-さて、今の`getUserInfo`関数ではloadイベントのコールバック関数でHTMLの組み立てと表示も行っています。
-これをPromiseチェーンで次のように書き換えてみましょう。
-`getUserInfo`関数では、`fetch`関数が返すPromiseの`then`メソッドで、`Reponse#json`メソッドの戻り値を返しています。
-`Reponse#json`メソッドの戻り値はPromiseなので、次の`then`ではユーザー情報のJSONオブジェクトが渡されます。
+さて、今の`getUserInfo`関数ではFetch APIが返したPromiseの`then`でHTMLの組み立てと表示も行っています。
+このPromiseチェーンを次のように書き換えてみましょう。
+`getUserInfo`関数では、Fetch APIが返すPromiseの`then`メソッドで、`Reponse#json`メソッドの戻り値を返しています。
+`Reponse#json`メソッドの戻り値はJSONオブジェクトで解決されるPromiseなので、次の`then`ではユーザー情報のJSONオブジェクトが渡されます。
 同じように、`userInfo`を受け取った関数は`createView`関数を呼び出し、その戻り値を次の`then`に渡しています。
 
 <!-- doctest:async:16 -->
