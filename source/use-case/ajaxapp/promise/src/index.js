@@ -15,7 +15,6 @@ function getUserInfo(userId) {
             if (!response.ok) {
                 throw new Error(`${event.target.status}: ${event.target.statusText}`);
             } else {
-                // userInfoを解決するPromiseを返す
                 return response.json();
             }
         }).catch(error => {
