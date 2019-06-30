@@ -841,7 +841,7 @@ const str = "にわにはにわにわとりがいる";
 console.log(str.replace("にわ", "niwa")); // => "niwaにはにわにわとりがいる"
 // `g`フラグなし正規表現の場合は、最初に一致したものだけが置換される
 console.log(str.replace(/にわ/, "niwa")); // => "niwaにはにわにわとりがいる"
-// `g`フラグの正規表現の場合は、繰り返し置換を行う
+// `g`フラグあり正規表現の場合は、繰り返し置換を行う
 console.log(str.replace(/にわ/g, "niwa")); // => "niwaにはniwaniwaとりがいる"
 ```
 
