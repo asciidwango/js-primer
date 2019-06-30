@@ -1056,23 +1056,20 @@ console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
 
 ## おわりに {#string-summary}
 
-この章では、JavaScriptにおける文字列(`String`)関係について紹介しました。
+この章では、JavaScriptにおける文字列(`String`)について紹介しました。
 文字列処理するStringメソッドにはさまざまなものがあり、正規表現と組み合わせて使うものも含まれます。
 
-正規表現については、正規表現のみでひとつの本が作れるようなJavaScript言語内にある別言語です。
-詳細は[正規表現 - JavaScript | MDN][]などを参照してください。
+正規表現は、正規表現のみでひとつの本が作れるようなJavaScript言語内にある別言語です。
+詳細は[正規表現についてのドキュメント][]なども参照してください。
 
-文字列は一見単純なオブジェクトに見えますが、多くの場合コンテキストを含んでいるため扱い方はさまざまです。
-タグ付きテンプレートリテラルを利用することで、テンプレート中の変数は自動でエスケープするといったコンテキストを実現できます。
-文字列を安全に扱うためには、コンテキストに応じた処理が必要になります。
+文字列は一見単純なオブジェクトに見えますが、文字列にはURLやパスといったコンテキストをもつ文字列もあります。
+それらの文字列を安全に扱うためには、コンテキストに応じた処理が必要になります。
+また、タグ付きテンプレートリテラルを利用することで、テンプレート中の変数を自動でエスケープするといった処理を実現できます。
+
 
 [文字列とUnicode]: ../string-unicode/README.md
 [エスケープシーケンス]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String#%E3%82%A8%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%97%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9
-[twitter-text]: https://github.com/twitter/twitter-text  "twitter/twitter-text: Twitter Text Libraries"
-[JavaScript has a Unicode problem · Mathias Bynens]: https://mathiasbynens.be/notes/javascript-unicode  "JavaScript has a Unicode problem · Mathias Bynens"
-[プログラマのための文字コード技術入門]: https://gihyo.jp/magazine/wdpress/plus/978-4-7741-4164-0  "プログラマのための文字コード技術入門（WEB+DB PRESS plusシリーズ）｜gihyo.jp … 技術評論社"
-[Can I use...]: http://caniuse.com/#feat=internationalization  "Can I use... Support tables for HTML5, CSS3, etc"
-[正規表現 - JavaScript | MDN]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions  "正規表現 - JavaScript | MDN"
+[正規表現についてのドキュメント]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions  "正規表現 - JavaScript | MDN"
 [regex101]: https://regex101.com/  "Online regex tester and debugger: PHP, PCRE, Python, Golang and JavaScript"
 [データ型とリテラル]: ../data-type/README.md
 [ECMA-402]: https://www.ecma-international.org/publications/standards/Ecma-402.htm  "Standard ECMA-402"
