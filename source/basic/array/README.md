@@ -64,6 +64,8 @@ console.log(matrix[0][0]); // => "a"
 {{book.console}}
 ```js
 const array = ["one", "two", "three"];
+console.log(array.length); // => 3
+// 配列の要素数 - 1 が 最後の要素のインデックスとなる
 console.log(array[array.length - 1]); // => "three"
 ```
 
