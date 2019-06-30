@@ -270,7 +270,7 @@ const strings = "赤・青・緑".split("・");
 console.log(strings); // => ["赤", "青", "緑"]
 ```
 
-分解してできた文字列の配列を結合して文字列を作る際に、`Array#join`メソッドがよく利用されます。
+分解してできた文字列の配列を結合して文字列を作る際に、`Array#join`メソッドが利用できます。
 `Array#join`メソッドの第一引数には区切り文字を指定し、その区切り文字で結合した文字列を返します。
 
 この２つを合わせれば、区切り文字を`・`から`、`へ変換する処理を次のように書くことができます。
@@ -322,6 +322,8 @@ console.log("".length); // => 0
 - 文字列の要素であるCode Unitが同じ順番で並んでいるか
 - 文字列の長さ（length）は同じか
 
+難しく書いていますが、同じ文字列同士なら`===`（厳密比較演算子）の結果は`true`となります。
+
 {{book.console}}
 ```js
 console.log("文字列" === "文字列"); // => true
@@ -351,7 +353,12 @@ console.log("A" > "B"); // => false
 console.log("ABC" > "ABD"); // => false
 ```
 
-このように、JavaScriptの文字列比較はCode Unit同士を比較しています。
+このように、関係演算子での文字列比較はCode Unit同士を比較しています。
+この結果を予測することは難しく、また直感的ではない結果が生まれることも多いです。
+文字の順番は国や言語によっても異なるため、国際化（Internationalization）に関する知識も必要です。
+
+JavaScriptにおいても、[ECMA-402][]というECMAScriptと関連する別の仕様として国際化についての取り決めがされています。
+この国際化に関するAPIを定義した[Intl][]というビルトインオブジェクトもありますが、このAPIについての詳細は省かしていただきます。
 
 ## 文字列から一部を取得 {#slice}
 
@@ -985,6 +992,7 @@ console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
 [regex101]: https://regex101.com/  "Online regex tester and debugger: PHP, PCRE, Python, Golang and JavaScript"
 [データ型とリテラル]: ../data-type/README.md
 [ECMA-402]: https://www.ecma-international.org/publications/standards/Ecma-402.htm  "Standard ECMA-402"
+[Intl]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Intl
 [URL Standard]: https://url.spec.whatwg.org/  "URL Standard"
 [URL]: https://developer.mozilla.org/ja/docs/Web/API/URL  "URL - Web API インターフェイス | MDN"
 [Path]: https://nodejs.org/api/path.html  "Path | Node.js v7.9.0 Documentation"
