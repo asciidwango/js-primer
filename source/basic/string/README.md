@@ -1023,7 +1023,7 @@ function stringRaw(strings, ...values) {
 console.log(stringRaw`template ${0} literal ${1}`); // => "template 0 literal 1"
 ```
 
-ここで実装した`stringRaw`タグ関数と同様のものが、`String.raw`という名前でビルトイン関数として提供されています。
+ここで実装した`stringRaw`タグ関数と同様のものが、`String.raw`という静的メソッドとして提供されています。
 
 {{book.console}}
 ```js
