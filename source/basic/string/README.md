@@ -488,7 +488,7 @@ if (index !== -1) {
 「文字列」に「検索文字列」が含まれているかを検索する方法がいくつか用意されています。
 
 - `文字列.startsWith("検索文字列")`: 検索文字列が先頭にあるかの真偽値を返す[ES2015]
-- `文字列.endsWith("検索文字列")`: 検索文字列が終端にあるかの真偽値を返す[ES2015]
+- `文字列.endsWith("検索文字列")`: 検索文字列が末尾にあるかの真偽値を返す[ES2015]
 - `文字列.includes("検索文字列")`: 検索文字列を含むかの真偽値を返す[ES2015]
 
 具体的な例をいくつか見てみましょう。
@@ -679,8 +679,9 @@ console.log(alphabetsPattern.lastIndex); // => 0
 ```js
 const str = "ABC あいう DE えお";
 const alphabetsPattern = /[a-zA-Z]+/g;
+let matches;
 while (matches = alphabetsPattern.exec(str)) {
-    console.log(`match: ${matches[0]}, lastIndex: ${regexp.lastIndex}`);
+    console.log(`match: ${matches[0]}, lastIndex: ${matches.lastIndex}`);
 }
 // コンソールには次のように出力される
 // match: ABC, lastIndex: 3
