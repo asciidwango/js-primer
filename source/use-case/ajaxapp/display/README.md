@@ -161,9 +161,9 @@ result.innerHTML = view;
 
 ## このセクションのチェックリスト {#section-checklist}
 
-- [x] テンプレートリテラルを使ってHTML文字列を組み立てた
+- [x] [テンプレートリテラル][]を使ってHTML文字列を組み立てた
 - [x] `innerHTML`プロパティを使ってHTML文字列をDOMに追加した
-- [x] テンプレートリテラルのタグ関数を使ってHTML文字列をエスケープした
+- [x] [タグ付きテンプレート関数][]を使ってHTML文字列をエスケープした
 - [x] `getUserInfo`関数を呼び出し、HTMLにユーザー情報が表示されることを確認した
 
 [document.getElementById]: https://developer.mozilla.org/ja/docs/Web/API/Document/getElementById
@@ -172,3 +172,5 @@ result.innerHTML = view;
 [手続き的にツリー構造を構築する]: https://developer.mozilla.org/ja/docs/Web/API/Node/appendChild
 [エスケープ用のライブラリ]: https://github.com/teppeis/htmlspecialchars
 [テンプレートリテラルをタグ付け]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/template_strings#タグ付けされたTemplate_literal
+[テンプレートリテラル]: ../../../basic/string/README.md#create
+[タグ付きテンプレート関数]: ../../../basic/string/README.md#tagged-template-function
