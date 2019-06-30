@@ -1025,6 +1025,7 @@ console.log(stringRaw`template ${0} literal ${1}`); // => "template 0 literal 1"
 
 ここで実装した`stringRaw`タグ関数と同様のものが、`String.raw`という名前でビルトイン関数として提供されています。
 
+{{book.console}}
 ```js
 console.log(String.raw`template ${0} literal ${1}`); // => "template 0 literal 1"
 ```
