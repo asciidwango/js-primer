@@ -5,96 +5,23 @@ description: "配列は値を順番に格納できるオブジェクトです。
 
 # 配列 {#array}
 
-この章では、配列の基本的な操作と配列を扱う場合においてのパターンについて学びます。
 配列はJavaScriptの中でもよく使われるオブジェクトです。
 
 配列とは値に順序をつけて格納できるオブジェクトです。
 配列に格納したそれぞれの値のことを**要素**、それぞれの要素の位置のことを**インデックス**（`index`）と呼びます。
-インデックスは`0`、`1`、`2`のように`0`から始まる値となります。
+インデックスは先頭の要素から`0`、`1`、`2`のように`0`から始まる連番となります。
 
 またJavaScriptにおける配列は可変長です。
 そのため配列を作成後に配列へ要素を追加したり、配列から要素を削除できます。
 
-## 配列は特別なオブジェクト {#array-is-special-object}
-
-JavaScriptでは、プリミティブ型のデータ以外はすべてオブジェクトです。
-そのため、配列もオブジェクトの一種です。
-このことは`typeof`演算子の結果を見てみることでもわかります。
-
-{{book.console}}
-```js
-console.log(typeof ["A", "B", "C"]); // => "object"
-```
-
-しかし、`Object`のインスタンスにはない`Array#forEach`などのメソッドや特殊な動作を持っています。
-
-その特殊な動作が`length`プロパティです。
-配列には複数の要素を格納できますが、`length`プロパティはその配列の要素数を返します。
-
-{{book.console}}
-```js
-const array = ["A", "B", "C"];
-console.log(array.length); // => 3
-```
-
-また、`length`プロパティへ値を代入できます。
-`length`プロパティへ値を代入は配列の要素を削除することに利用されることがあります。
-配列の`length`プロパティは特殊な動作となっているため、後ほど解説します。
-
-{{book.console}}
-```js
-const array = ["A", "B", "C"];
-array.length = 0; // 配列を空にする
-console.log(array); // => []
-```
-
-### オブジェクトが配列かどうかを判定する {#detect-array}
-
-配列の`length`プロパティは特殊な動作をしますが、独自の`length`プロパティを持ったオブジェクトを作ることができます。
-この２つのオブジェクトの違いはどのように見分ければいいのでしょうか？
-
-{{book.console}}
-```js
-// 配列
-const array = [];
-// `length`を持つオブジェクト
-const obj = {
-    length: 0
-};
-```
-
-先ほど示したように`typeof`ではオブジェクトと配列の区別は付きません。
-また、`length`プロパティが存在するかでは、それが配列であるとは判断できません。
-
-そのため、あるオブジェクトが配列なのかを知りたい場合には、`Array.isArray`メソッドを利用します。
-`Array.isArray`メソッドは引数が配列ならば`true`を返します。
-
-{{book.console}}
-```js
-const array = [];
-console.log(Array.isArray(array)); // => true
-// 配列のように`length`プロパティをもつオブジェクト
-const obj = {
-    length: 0
-};
-console.log(Array.isArray(obj)); // => false
-```
-
-### [コラム] TypedArray {#typed-array}
-
-JavaScriptの配列は可変長のみですが、`TypedArray`という固定長でかつ型付きの配列を扱う別のオブジェクトが存在します。
-`TypedArray`はバイナリデータを扱うためのオブジェクトで、WebGLやバイナリを扱う場面で利用されます。
-`TypedArray`は文字列や数値などのプリミティブ型の値はそのままでは扱えないため、扱う値はTypedArrayオブジェクトという形式にする必要があります。
-そのため、通常の配列とは異なる使い勝手や用途が存在します。
-
-JavaScriptで配列といった場合には`Array`を示します。
+この章では、配列の基本的な操作と配列を扱う場合においてのパターンについて学びます。
 
 ## 配列の作成とアクセス {#create-and-access}
 
-配列の作成と要素へのアクセス方法は[データ型とリテラル](../data-type/#array)ですでに紹介していますが、
+配列の作成と要素へのアクセス方法は「[データ型とリテラル](../data-type/#array)」の章ですでに紹介していますが、
 もう一度振り返ってみましょう。
 
-配列の作成には配列リテラルを使うのが簡単です。
+配列の作成には配列リテラルを使います。
 配列リテラル（`[`と`]`）の中に要素をカンマ（`,`）区切りで記述するだけです。
 
 {{book.console}}
@@ -103,13 +30,13 @@ const emptyArray = [];
 const numbers = [1, 2, 3];
 // 2次元配列（配列の配列）
 const matrix = [
-    [0, 1],
-    [2, 3]
+    ["a", "b"],
+    ["c", "d"]
 ];
 ```
 
 作成した配列の要素へインデックスとなる数値を、`配列[インデックス]`と記述することで、
-そのインデックスにある要素を配列から読み取ることができます。
+そのインデックスの要素を配列から読み取ることができます。
 配列の先頭要素のインデックスは`0`となります。配列のインデックスは、`0`以上`2^32 - 1`未満の整数となります。
 
 {{book.console}}
@@ -119,23 +46,26 @@ console.log(array[0]); // => "one"
 ```
 
 2次元配列（配列の配列）からの値の読み取りも同様に`配列[インデックス]`でアクセスできます。
-`配列[0][0]`は、配列の`0`番目の要素である配列（`[0, 1]`）の`0`番目の要素を読み取ります。
+`配列[0][0]`は、配列の`0`番目の要素である配列（`["a", "b"]`）の`0`番目の要素を読み取ります。
 
+{{book.console}}
 ```js
 // 2次元配列（配列の配列）
 const matrix = [
-    [0, 1],
-    [2, 3]
+    ["a", "b"],
+    ["c", "d"]
 ];
-console.log(matrix[0][0]); // => 0
+console.log(matrix[0][0]); // => "a"
 ```
 
-先ほど学んだように、配列の`length`プロパティは配列の要素の数を返します。
+配列の`length`プロパティは配列の要素の数を返します。
 そのため、配列の最後の要素へアクセスするには `array.length - 1` をインデックスとして利用できます。
 
 {{book.console}}
 ```js
 const array = ["one", "two", "three"];
+console.log(array.length); // => 3
+// 配列の要素数 - 1 が 最後の要素のインデックスとなる
 console.log(array[array.length - 1]); // => "three"
 ```
 
@@ -149,7 +79,7 @@ const array = ["one", "two", "three"];
 console.log(array[100]); // => undefined
 ```
 
-これは、配列がオブジェクトであることを考えると、次のように存在しないプロパティへのアクセスと同じということが分かります。
+これは、配列がオブジェクトであることを考えると、次のように存在しないプロパティへのアクセスしているのと原理は同じです。
 オブジェクトでも、存在しないプロパティへのアクセスした場合には`undefined`が返ってきます。
 
 {{book.console}}
@@ -160,8 +90,7 @@ const obj = {
     "2": "three",
     "length": 3
 };
-// obj[100]obj["100"]としてアクセスされる
-// objにはプロパティ名が"100"のものがないため、undefinedが返る
+// obj["100"]は定義されていないため、undefinedが返る
 console.log(obj[100]); // => undefined
 ```
 
@@ -179,6 +108,44 @@ console.log(sparseArray.length); // => 3
 // 1番目の要素は存在しないため undefined が返る
 console.log(sparseArray[1]); // => undefined
 ```
+
+## オブジェクトが配列かどうかを判定する {#detect-array}
+
+あるオブジェクトが配列かどうかを判定するには`Array.isArray`メソッドを利用します。
+`Array.isArray`メソッドは引数が配列ならば`true`を返します。
+
+```js
+const obj = {};
+const array = [];
+console.log(Array.isArray(obj)); // => false
+console.log(Array.isArray(array)); // => true
+```
+
+また、`typeof`演算子では配列かどうかは判定することはできません。
+配列もオブジェクトの一種であるため、`typeof`演算子の結果が`"object"`となるためです。
+
+{{book.console}}
+```js
+const array = [];
+console.log(typeof array); // => "object"
+```
+
+
+### [コラム] TypedArray {#typed-array}
+
+JavaScriptの配列は可変長のみですが、`TypedArray`という固定長でかつ型付きの配列を扱う別のオブジェクトが存在します。
+`TypedArray`はバイナリデータのバッファを示すために使われるデータ型で、WebGLやバイナリを扱う場面で利用されます。
+文字列や数値などのプリミティブ型の値はそのままでは扱えないため、通常の配列とは用途や使い勝手が異なります。
+
+また、TypedArrayは`Array.isArray`のメソッドの結果が`false`となることからも別物と考えてよいでしょう。
+
+```js
+// TypedArrayを作成
+const typedArray = new Int8Array(8);
+console.log(Array.isArray(typedArray)); // => false
+```
+
+そのため、JavaScriptで配列といった場合には`Array`を示します。
 
 ## 配列と分割代入 {#array-destructuring}
 
@@ -232,7 +199,7 @@ console.log(sparseArray.hasOwnProperty(1)); // => false
 
 ## 配列から要素を検索 {#search-element}
 
-配列からある要素があるかを探索したい場合に、
+配列から指定した要素があるかを探索したい場合に、
 主に次の3つの目的に分類できます。
 
 - その要素のインデックスが欲しい場合
@@ -243,7 +210,7 @@ console.log(sparseArray.hasOwnProperty(1)); // => false
 
 ### インデックスを取得 {#indexof}
 
-ある要素が配列のどの位置にあるかを知りたい場合、`Array#indexOf`メソッドや`Array#findIndex`メソッドを利用します。
+指定した要素が配列のどの位置にあるかを知りたい場合、`Array#indexOf`メソッドや`Array#findIndex`メソッドを利用します。
 要素の位置のことを**インデックス**（`index`）と呼ぶため、メソッド名にも`index`という名前が入っています。
 
 次のコードでは、`Array#indexOf`メソッドを利用して、配列の中から`"JavaScript"`という文字列のインデックスを取得しています。
@@ -276,10 +243,10 @@ console.log(obj === { key: "value" }); // => false
 console.log(array.indexOf(obj)); // => 2
 ```
 
-このように、異なるオブジェクトだが値が同じものを見つけたい場合には、`Array#findIndex`メソッドが利用できます。
+このように、異なるオブジェクトだが値は同じものを見つけたい場合には、`Array#findIndex`メソッドが利用できます。
 `findIndex`メソッドは引数には配列の各要素をテストする関数をコールバック関数として渡します。
 `indexOf`メソッドとは異なり、テストする処理を自由に書くことができます。
-これにより、異なるオブジェクトだが値が同じという要素を配列から見つけて、その要素のインデックスを得ることができます。
+これにより、異なるオブジェクトだが値は同じという要素を配列から見つけて、その要素のインデックスを得ることができます。
 
 {{book.console}}
 ```js
@@ -350,10 +317,10 @@ console.log(array.slice(4, 1)); // => []
 
 ### 真偽値を取得 {#get-boolean}
 
-最後に、ある要素が配列に含まれているかを知る方法について見ていきます。
+最後に、指定した要素が配列に含まれているかを知る方法について見ていきます。
 インデックスや要素が取得できれば、その要素は配列に含まれているということは分かります。
 
-しかし、ある要素が含まれているか**だけ**を知りたい場合に、
+しかし、指定した要素が含まれているか**だけ**を知りたい場合に、
 `Array#findIndex`メソッドや`Array#find`メソッドは過剰な機能を持っています。
 そのコードを読んだ人は取得したインデックスや要素を何に使うのかが明確ではありません。
 
@@ -374,7 +341,8 @@ if (indexOfJS !== -1) {
 
 ```
 
-しかし、ES2015からは`Array#includes`メソッドである要素が含まれているかを判定できます。
+そこで、ES2015で導入された`Array#includes`メソッドを利用します。
+`Array#includes`メソッドは配列に指定要素が含まれているかを判定できます。
 `includes`メソッドは真偽値を返すので、`indexOf`メソッドを使った場合に比べて意図が明確になります。
 そのため、前述のコードは次のように`includes`メソッドを使うべきでしょう。
 
@@ -463,11 +431,11 @@ console.log(newArray); // => ["A", "B", "C", "新しい要素"]
 ### `Array#splice` {#splice}
 
 配列の先頭や末尾の要素を削除する場合は`Array#shift`や`Array#pop`で行えます。
-しかし、配列の任意のインデックスにある要素を削除できません。
+しかし、配列の任意のインデックスの要素を削除できません。
 配列の任意のインデックスの要素を削除するには`Array#splice`を利用できます。
 
 `Array#splice`メソッドを利用すると、削除した要素を自動で詰めることができます。
-`Array#splice`メソッドは、`index`番目から`削除する数`だけ要素を取り除き、必要ならば要素を同時に追加できます。
+`Array#splice`メソッドは指定したインデックスから、指定した数だけ要素を取り除き、必要ならば要素を同時に追加できます。
 
 {{book.console}}
 <!-- doctest: ReferenceError -->
@@ -723,14 +691,13 @@ console.log(newArray); // => [1, 3]
 console.log(array !== newArray); // => true
 ```
 
-
 ### `Array#reduce` {#array-reduce}
 
 `Array#reduce`は累積値（アキュムレータ）と配列の要素を順番にコールバック関数へ渡し、1つの累積値を返します。
 配列から配列以外を含む任意の値を作成したい場合に利用します。
 
 ここまでで紹介した反復処理のメソッドとは異なり、コールバック関数には`累積値, 要素, インデックス, 配列`を引数として渡します。
-`reduce`メソッドの第二引数には`accumulator`の初期値となる値を渡せます。
+`reduce`メソッドの第二引数には`累積値`の初期値となる値を渡せます。
 
 次のコードでは、`reduce`メソッドは配列の各要素を加算した1つの数値を返します。
 つまり配列から配列要素の合計値というNumber型の値を返しています。
@@ -862,7 +829,20 @@ console.log(versionNames); // => ["ECMAScript 1", "ECMAScript 2", "ECMAScript 3"
 
 メソッドチェーンを使うことで複数の処理からなるものをひとつのまとった処理のように見せることができます。長過ぎるメソッドチェーンは長すぎる関数と同じように読みにくくなりますが、適度な単位のメソッドチェーンは処理をスッキリ見せるパターンとして利用されています。
 
+## まとめ {#conclusion}
+
+この章では配列について学びました。
+
+- 配列は順序を持った要素を格納できるオブジェクトの一種
+- 配列には破壊的なメソッドと非破壊的なメソッドがある
+- 配列には反復処理を行う高階関数となるメソッドがある
+- メソッドチェーンは配列のメソッドが配列を返すことを利用している
+
+配列はJavaScriptの中でもよく使われるオブジェクトで、メソッドの種類も多いです。
+この書籍でもすべてのメソッドは紹介していないため、詳しくは[Arrayについてドキュメント][]も参照してみてください。
+
 [ループと反復処理]: ../loop/README.md
 [immutable-array-prototype]: https://github.com/azu/immutable-array-prototype  "azu/immutable-array-prototype: A collection of Immutable Array prototype methods(Per method packages)."
 [Lodash]: https://lodash.com/  "Lodash"
 [Immutable.js]: https://facebook.github.io/immutable-js/  "Immutable.js"
+[Arrayについてドキュメント]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array
