@@ -80,7 +80,7 @@ function displayView(view) {
 ## Promiseのエラーハンドリング {#error-handling}
 
 `getUserInfo`関数を変更し、Fetch APIの戻り値でもあるPromiseオブジェクトをreturnします。
-この変更によってそれを呼び出す`main`関数の方で非同期処理の結果を扱えるようになります。
+この変更によって、`getUserInfo`関数を呼び出す`main`関数の方で非同期処理の結果を扱えるようになります。
 Promiseチェーンの中で投げられたエラーは、`Promise#catch`メソッドを使って一箇所で受け取れます。
 
 次のコードでは、`getUserInfo`関数から返されたPromiseオブジェクトを、`main`関数でエラーハンドリングしてログを出力します。
