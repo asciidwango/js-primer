@@ -46,6 +46,13 @@ Firefoxの開発者ツールは次のいずれかの方法で開きます。
 
 ![ログが表示されているWebコンソール](img/fig-1.png)
 
+## このセクションのチェックリスト {#section-checklist}
+
+- [x] エントリポイントとなる`index.html`を作成した
+- [x] JavaScriptのエントリポイントとなる`index.js`を作成し`index.html`から読み込んだ
+- [x] ローカルサーバーを使って`index.html`が表示できた
+- [x] `index.js`からコンソールに出力されたログを確認した
+
 [Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy 
 [アプリケーション開発の準備]: ../../setup-local-env/README.md
 [Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
