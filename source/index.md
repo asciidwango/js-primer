@@ -1,7 +1,7 @@
 ---
 author: azu
-title: "JavaScriptの入門書 #jsprimer"
-description: "JavaScriptの基本的なプログラムの実行方法からアプリケーションの作成などの実例を学ぶための入門書です"
+title: "JavaScript Primer #jsprimer"
+description: "JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"
 ---
 
 {% include "./landing/index.html" %}
