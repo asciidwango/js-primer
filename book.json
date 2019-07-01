@@ -20,7 +20,7 @@
     "todo"
   ],
   "variables": {
-    "esversion": "2018",
+    "esversion": "2019",
     "nodeversion": "8.12.0",
     "npmversion": "6.4.1",
     "triplebackticks": "```",
