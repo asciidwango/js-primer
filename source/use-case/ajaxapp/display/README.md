@@ -161,10 +161,10 @@ result.innerHTML = view;
 
 ## このセクションのチェックリスト {#section-checklist}
 
-- [x] [テンプレートリテラル][]を使ってHTML文字列を組み立てた
-- [x] `innerHTML`プロパティを使ってHTML文字列をDOMに追加した
-- [x] [タグ付きテンプレート関数][]を使ってHTML文字列をエスケープした
-- [x] `getUserInfo`関数を呼び出し、HTMLにユーザー情報が表示されることを確認した
+- [テンプレートリテラル][]を使ってHTML文字列を組み立てた
+- `innerHTML`プロパティを使ってHTML文字列をDOMに追加した
+- [タグ付きテンプレート関数][]を使ってHTML文字列をエスケープした
+- `getUserInfo`関数を呼び出し、HTMLにユーザー情報が表示されることを確認した
 
 [document.getElementById]: https://developer.mozilla.org/ja/docs/Web/API/Document/getElementById
 [Element#innerHTML]: https://developer.mozilla.org/ja/docs/Web/API/Element/innerHTML

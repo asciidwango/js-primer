@@ -150,10 +150,10 @@ XHRの詳しい使い方については、[XHRの利用についてのドキュ�
 
 ## このセクションのチェックリスト {#section-checklist}
 
-- [x] [Fetch API][]を使ってHTTPリクエストを送った
-- [x] GitHubのAPIから取得したユーザー情報のJSONオブジェクトをコンソールに出力した
-- [x] Fetch APIの呼び出しに対するエラーハンドリングをおこなった
-- [x] `getUserInfo`関数を宣言し、ボタンのクリックイベントで呼び出した
+- [Fetch API][]を使ってHTTPリクエストを送った
+- GitHubのAPIから取得したユーザー情報のJSONオブジェクトをコンソールに出力した
+- Fetch APIの呼び出しに対するエラーハンドリングをおこなった
+- `getUserInfo`関数を宣言し、ボタンのクリックイベントで呼び出した
 
 [Fetch API]: https://developer.mozilla.org/ja/docs/Web/API/Fetch_API
 [XMLHttpRequest]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest
