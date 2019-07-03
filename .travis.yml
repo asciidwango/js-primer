@@ -11,13 +11,16 @@ jobs:
   include:
     # Unit Tests
     - stage: test
+      name: "Unit Tests on Node.js 10"
       node_js: '10'
       script: npm run travis
     - stage: test
+      name: "Unit Tests on Node.js 8"
       node_js: '8'
       script: npm test
     # E2E
-    - stage: e2e
+    - stage: test
+      name: "E2E Tests"
       # masterのみ実行
       if: branch = master AND type != pull_request
       node_js: '10'
