@@ -230,11 +230,11 @@ import { App } from "./src/App.js";
 
 ## このセクションのチェックリスト {#section-checklist}
 
-- [x] `todoapp`という名前のプロジェクトディレクトリを作成した
-- [x] エントリポイントとなる`index.html`を作成した
-- [x] JavaScriptのエントリポイントとなる`index.js`を作成し`index.html`から読み込んだ
-- [x] ローカルサーバを使って`index.html`が表示できた
-- [x] `src/App.js`を作成し、`index.js`から`import`文で読み込めるのを確認した
+- `todoapp`という名前のプロジェクトディレクトリを作成した
+- エントリポイントとなる`index.html`を作成した
+- JavaScriptのエントリポイントとなる`index.js`を作成し`index.html`から読み込んだ
+- ローカルサーバを使って`index.html`が表示できた
+- `src/App.js`を作成し、`index.js`から`import`文で読み込めるのを確認した
 
 ここまでのTodoアプリは次のURLで確認できます。
 

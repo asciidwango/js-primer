@@ -209,16 +209,19 @@ todoapp
 
 ## このセクションのチェックリスト {#section-checklist}
 
-- [x] フォームの入力内容をイベントで受け取ることができた
-- [x] HTML文字列からHTML要素を作成する`html-util.js`を実装した
-- [x] フォームからTodoアイテムを追加できた
-- [x] Todoアイテムの追加に合わせてTodoアイテム数を更新できた
+- フォームの入力内容をイベントで受け取ることができた
+- HTML文字列からHTML要素を作成する`html-util.js`を実装した
+- フォームからTodoアイテムを追加できた
+- Todoアイテムの追加に合わせてTodoアイテム数を更新できた
 
 このセクションでTodoアプリにTodoアイテムの追加する機能が実装できました。
 
-- [x] Todoアイテムを追加できる
-- [ ] Todoアイテムの完了状態を更新できる
-- [ ] Todoアイテムを削除できる
+- Todoアイテムを追加できる
+
+Todoアプリに実装する残りの機能は次のとおりです。
+
+- Todoアイテムの完了状態を更新できる
+- Todoアイテムを削除できる
 
 [ajaxapp: HTML文字列をDOMに追加する]: ../../ajaxapp/display/README.md#html-to-dom
 [template要素]: https://developer.mozilla.org/ja/docs/Web/HTML/Element/template
