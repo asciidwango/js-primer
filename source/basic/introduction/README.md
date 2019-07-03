@@ -5,11 +5,13 @@ description: "JavaScriptとはどのような用途に使われているプロ�
 
 # JavaScriptとは {#what-is-javascript}
 
+JavaScriptを学び始める前に、まずJavaScriptとはどのようなプログラミング言語なのかを紹介します。
 JavaScriptはウェブブラウザの中で動くプログラミング言語として知られています。
 ウェブサイトで操作をしたら表示が書き換わったり、ウェブサイトのサーバと通信してデータを取得したりと現在のウェブサイトには欠かせないプログラミング言語です。
-このようなJavaScriptを活用してアプリケーションのように操作できるウェブサイトをウェブアプリといいます。
+このようなJavaScriptを活用してアプリケーションのように操作できるウェブサイトをウェブアプリともいいます。
 
-さらに、JavaScriptはウェブブラウザだけではなく、Node.jsというサーバ側のアプリケーションを作る仕組みでも利用されています。また、デスクトップアプリやスマートフォンアプリ、IoT（Internet of Things）デバイスでもJavaScriptを使って動かせるものがあります。
+JavaScriptはウェブブラウザだけではなく、Node.jsというサーバ側のアプリケーションを作る仕組みでも利用されています。
+また、デスクトップアプリやスマートフォンアプリ、IoT（Internet of Things）デバイスでもJavaScriptを使って動かせるものがあります。
 このように、JavaScriptはかなり幅広い環境で動いているプログラミング言語で、さまざまな種類のアプリケーションを作成できます。
 
 ## JavaScriptとECMAScript {#javascript-ecmascript}
