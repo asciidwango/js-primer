@@ -138,17 +138,17 @@ inputCheckboxElement.addEventListener("change", () => {
 
 このセクションでは次のことできるようになりました。
 
-- [x] Todoアイテムの完了状態として`<input type="checkbox">`を表示に追加した
-- [x] チェックボックスが更新時の`change`イベントのリスナー関数でTodoアイテムの更新した
-- [x] Todoアイテムを削除するボタンとして`<button class="delete">x</button>`を表示に追加した
-- [x] 削除ボタンの`click`イベントのリスナー関数でTodoアイテムを削除した
-- [x] Todoアイテムの追加、更新、削除の機能が動作するのを確認できた
+- Todoアイテムの完了状態として`<input type="checkbox">`を表示に追加した
+- チェックボックスが更新時の`change`イベントのリスナー関数でTodoアイテムの更新した
+- Todoアイテムを削除するボタンとして`<button class="delete">x</button>`を表示に追加した
+- 削除ボタンの`click`イベントのリスナー関数でTodoアイテムを削除した
+- Todoアイテムの追加、更新、削除の機能が動作するのを確認できた
 
 このセクションでTodoアプリに必要な要件が実装できました。
 
-- [x] Todoアイテムを追加できる
-- [x] Todoアイテムの完了状態を更新できる
-- [x] Todoアイテムを削除できる
+- Todoアイテムを追加できる
+- Todoアイテムの完了状態を更新できる
+- Todoアイテムを削除できる
 
 ここまでのTodoアプリは次のURLで確認できます。
 

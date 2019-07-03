@@ -280,10 +280,10 @@ export class App {
 
 ## このセクションのチェックリスト {#section-checklist}
 
-- [x] 直接DOMを更新する問題について理解した
-- [x] `EventEmitter`クラスでイベントの仕組みを実装した
-- [x] `TodoListModel`を`EventEmitter`クラスを継承して実装した
-- [x] Todoアイテムの追加の機能をモデルを使ってリファクタリングした
+- 直接DOMを更新する問題について理解した
+- `EventEmitter`クラスでイベントの仕組みを実装した
+- `TodoListModel`を`EventEmitter`クラスを継承して実装した
+- Todoアイテムの追加の機能をモデルを使ってリファクタリングした
 
 ここまでのTodoアプリは次のURLで確認できます。
 
