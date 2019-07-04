@@ -208,4 +208,13 @@ index.jsにも`<input>`タグから値を受け取るための処理を追加す
 
 ![完成したアプリケーション](img/fig-1.png)
 
+## このセクションのチェックリスト {#section-checklist}
+
+- HTMLの組み立てと表示の処理を`createView`関数と`displayView`関数に分離した
+- `main`関数を宣言し、`getUserInfo`関数が返すPromiseのエラーハンドリングをおこなった
+- Promiseチェーンを使って`getUserInfo`関数をリファクタリングした
+- [Async Function][] を使って`main`関数をリファクタリングした
+- `index.html`に`<input>`タグを追加し、`getUserId`関数でユーザーIDを取得した
+
 [Promiseチェーン]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise/then#%E3%83%81%E3%82%A7%E3%83%BC%E3%83%B3
+[Async Function]: ../../../basic/async/README.md#async-function
