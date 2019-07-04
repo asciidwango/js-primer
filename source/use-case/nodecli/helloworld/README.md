@@ -65,6 +65,11 @@ Webブラウザ環境のグローバルオブジェクトは`window`オブジェ
 
 これらを踏まえた上で、次のセクションからCLIアプリケーションの開発をはじめていきましょう。
 
+## このセクションのチェックリスト {#section-checklist}
+
+- `main.js`ファイルを作成した
+- `node`コマンドで`main.js`を実行し、標準出力にログが出力されるのを確認した
+
 [document]: https://developer.mozilla.org/ja/docs/Web/API/Document
 [XMLHttpRequest]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest
 [global]: https://nodejs.org/docs/latest-v8.x/api/globals.html

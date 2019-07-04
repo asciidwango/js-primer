@@ -164,6 +164,12 @@ $ node main.js -S sample.md
 
 これでMarkdown変換の設定をコマンドライン引数でオプションとして与えられるようになりました。
 
+## このセクションのチェックリスト {#section-checklist}
+
+- markedパッケージを使ってMarkdown文字列をHTML文字列に変換した
+- コマンドライン引数でmarkedの変換オプションを設定した
+- デフォルトオプションを定義し、コマンドライン引数で上書きできるようにした
+
 [marked]: https://github.com/chjj/marked
 [変換オプション]: https://marked.js.org/#/USING_ADVANCED.md#options
 [GitHub Flavored Markdown]: https://github.github.com/gfm/
