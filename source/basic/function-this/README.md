@@ -176,8 +176,8 @@ Arrow Function以外の関数（メソッドも含む）における`this`は、
 ```js
 // 擬似的な`this`の値の仕組み
 // 関数は引数として暗黙的に`this`の値を受け取るイメージ
-function fn(暗黙的渡されるthisの値, 仮引数) {
-    console.log(this); // => 暗黙的渡されるthisの値
+function fn(暗黙的に渡されるthisの値, 仮引数) {
+    console.log(this); // => 暗黙的に渡されるthisの値
 }
 // 暗黙的に`this`の値を引数として渡しているイメージ
 fn(暗黙的に渡すthisの値, 引数);
