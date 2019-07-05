@@ -15,7 +15,7 @@ export class App {
      */
     handleAdd(title) {
         this.todoListModel.addTodo(new TodoItemModel({ title, completed: false }));
-    };
+    }
 
     /**
      * Todoの状態を更新時に呼ばれるリスナー関数
@@ -23,7 +23,7 @@ export class App {
      */
     handleUpdate({ id, completed }) {
         this.todoListModel.updateTodo({ id, completed });
-    };
+    }
 
     /**
      * Todoを削除時に呼ばれるリスナー関数
@@ -31,7 +31,7 @@ export class App {
      */
     handleDelete({ id }) {
         this.todoListModel.deleteTodo({ id });
-    };
+    }
 
     mount() {
         const formElement = document.querySelector("#js-form");
