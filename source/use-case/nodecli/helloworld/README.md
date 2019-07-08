@@ -69,6 +69,7 @@ Webブラウザ環境のグローバルオブジェクトは`window`オブジェ
 
 - `main.js`ファイルを作成した
 - `node`コマンドで`main.js`を実行し、標準出力にログが出力されるのを確認した
+- グローバルオブジェクトについて、WebブラウザとNode.jsで実行環境による違いがあることを理解した
 
 [document]: https://developer.mozilla.org/ja/docs/Web/API/Document
 [XMLHttpRequest]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest
