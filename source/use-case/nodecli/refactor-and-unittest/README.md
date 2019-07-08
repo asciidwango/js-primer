@@ -139,6 +139,12 @@ $ npm test
 npmを使ったパッケージ管理や外部モジュールの利用、fsモジュールを使ったファイル操作など、多くの要素が登場しました。
 これらはNode.jsアプリケーション開発においてほとんどのユースケースで応用されるものなので、よく理解しておきましょう。
 
+## このセクションのチェックリスト {#section-checklist}
+
+- Markdownの変換処理をCommonJSモジュールとして`md2html.js`に切り出し、`main.js`から読み込んだ
+- mochaパッケージをインストールし、`npm test`コマンドで`mocha`コマンドを実行できることを確認した
+- `md2html`関数のユニットテストを作成し、テストの実行結果を確認した
+
 [moduleオブジェクト]: https://nodejs.org/api/modules.html#modules_the_module_object
 [Mocha]: https://mochajs.org/
 [assertモジュール]: https://nodejs.org/api/assert.html

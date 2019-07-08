@@ -126,5 +126,11 @@ Error: ENOENT: no such file or directory, open 'notfound.md'
 
 これでコマンドライン引数に指定したファイルを読み込んで標準出力に表示できました。
 
+## このセクションのチェックリスト {#section-checklist}
+
+- commanderを使ってコマンドライン引数からファイルパスを取得した
+- fsモジュールの`readFile`関数を使ってファイルを読み込み、ファイルの中身をログ出力した
+- `readFile`関数の呼び出しにエラーハンドリング処理を記述した
+
 [fsモジュール]: https://nodejs.org/api/fs.html
 [Buffer]: https://nodejs.org/api/buffer.html

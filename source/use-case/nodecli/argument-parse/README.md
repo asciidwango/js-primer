@@ -131,6 +131,13 @@ bar
 このように、`process.argv`配列を直接扱うよりも、commanderのようなライブラリを使うことで簡単にコマンドライン引数を処理できます。
 次のセクションからは、こうして受け取ったコマンドライン引数を使って、CLIアプリケーションを作成していきます。
 
+## このセクションのチェックリスト {#section-checklist}
+
+- `process.argv`配列に`node`コマンドのコマンドライン引数が格納されていることを確認した
+- npmを使ってパッケージをインストールする方法を理解した
+- `require`関数を使ってパッケージのモジュールを読み込めることを確認した
+- commanderを使ってコマンドライン引数をパースできることを確認した
+
 [commander]: https://github.com/tj/commander.js/
 [npm]: https://www.npmjs.com/
 [npmのGitHubリポジトリ]: https://github.com/npm/npm
