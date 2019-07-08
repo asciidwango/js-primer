@@ -86,12 +86,32 @@ $ npm install commander@2.9
 `package-lock.json`ファイルには実際にインストールされたバージョンが記録されています。
 これによって、ふたたび`npm install`を実行したときに異なるバージョンがインストールされることを防ぎます。
 
+### CommonJSモジュール {#commonjs-module}
+
+インストールしたcommanderパッケージを使う前に、**CommonJSモジュール**のことを知っておきましょう。
+[CommonJSモジュール][]とは、[Node.js][]環境で利用されているJavaScriptのモジュール化の仕組みです。
+CommonJSモジュールは基本文法で学んだ[ES Module](../../../basic/module/README.md)の仕様が策定されるよりもずっと古くから使われています。
+Node.jsの標準パッケージやnpmで配布されるパッケージは、CommonJSモジュールとして提供されていることがほとんどです。
+先ほどインストールしたcommanderパッケージも、CommonJSモジュールとして利用できます。
+
+CommonJSモジュールはNode.jsのグローバル変数である`module`変数を使って変数や関数などをエクスポートします。
+次のように`module.exports`プロパティに代入されたオブジェクトが、そのJavaScriptファイルからエクスポートされます。
+複数の名前付きエクスポートが可能なES Moduleと違い、CommonJSでは`module.exports`プロパティの値だけがエクスポートの対象です。
+
+[import, commonjsExport.js](src/cjs-export.js)
+
+CommonJSモジュールをインポートするには、グローバル関数である[require関数][]を使います。
+次のように`require`関数にモジュール名を渡し、戻り値としてエクスポートされた値を受け取ります。
+
+[import, commonjsImport.js](src/cjs-import.js)
+
+このユースケースで今後登場するモジュールはすべてCommonJSモジュールです。
+Node.jsではES Moduleもサポートされる予定ですが、現在はまだ安定した機能としてサポートされていません。
+
 ### commanderパッケージを使う {#use-commander}
 
 `npm install`コマンドでインストールされたパッケージは、`node_modules`というディレクトリの中に配置されています。
-`node_modules`ディレクトリに配置されたパッケージは、[require関数][]を使ってスクリプト中に読み込みます。
-`require`関数はNode.js環境のグローバル関数のひとつで、指定したパッケージのモジュールを読み込めます。
-commanderパッケージを読み込むには、次のように記述します。
+次のように`require`関数を使って、`node_modules`ディレクトリに配置されたcommanderパッケージを読み込みます。
 
 ```js
 const program = require("commander");
@@ -141,6 +161,8 @@ bar
 [commander]: https://github.com/tj/commander.js/
 [npm]: https://www.npmjs.com/
 [npmのGitHubリポジトリ]: https://github.com/npm/npm
+[CommonJSモジュール]: https://nodejs.org/docs/latest/api/modules.html
+[Node.js]: https://nodejs.org/ja/
 [require関数]: https://nodejs.org/dist/latest-v8.x/docs/api/modules.html#modules_loading_from_node_modules_folders
 [アプリケーション開発の準備]: ../../setup-local-env/README.md
 [^1]: --saveオプションをつけてインストールしたのと同じ意味。npm 5.0.0からは--saveがデフォルトオプションとなりました。

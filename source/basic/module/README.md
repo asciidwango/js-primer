@@ -171,42 +171,5 @@ import { foo } from "./myModule.js";
 そのため、モジュール名はJavaScriptファイルの絶対URLあるいは相対URLを指定します。
 詳しくは[Todoアプリのユースケース](../todoapp/README.md)を参照してください。
 
-## CommonJSモジュール {#commonjs-module}
-
-[CommonJSモジュール][]とは、[Node.js][]環境で利用されているモジュール化の仕組みです。
-CommonJSモジュールはESモジュールの仕様が策定されるよりもずっと古くから使われています。
-Node.jsの標準パッケージや[NPM][]で配布されるサードパーティパッケージは、CommonJSモジュールとして提供されていることがほとんどです。
-
-CommonJSモジュールはNode.jsのグローバル変数である`module`変数を使って変数や関数などをエクスポートします。
-次のように`module.exports`プロパティに代入されたオブジェクトが、そのJavaScriptファイルからエクスポートされます。
-複数の名前付きエクスポートが可能なESモジュールと違い、CommonJSでは`module.exports`プロパティの値だけがエクスポートの対象です。
-
-[import, commonjsExport.js](src/cjs-export.js)
-
-モジュールをインポートするには、`require`グローバル関数を使います。
-次のように`require`関数にモジュール名を渡し、戻り値としてエクスポートされたオブジェクトを受け取ります。
-
-[import, commonjsImport.js](src/cjs-import.js)
-
-Node.jsではESモジュールもサポートする予定ですが、現在はまだ安定した機能としてサポートされていません。
-
-## [コラム] モジュールバンドラー {#module-bundler}
-
-**モジュールバンドラー**とは、JavaScriptのモジュール依存関係を解決し、複数のモジュールをひとつのJavaScriptファイルに結合するツールのことです。
-モジュールバンドラーは起点となるモジュールが依存するモジュールを次々にたどり、適切な順序になるように結合（**バンドル**）します。
-
-NPMによって多くのJavaScriptライブラリがNode.js向けに配布されていますが、これらはほぼすべてCommonJSモジュールです。
-それらのライブラリを使ったアプリケーションをWebブラウザで実行するためには、CommonJSモジュールを解決し、ひとつのJavaScriptファイルに結合する必要がありました。
-結果的に、Node.js向けでないアプリケーションもモジュール化することが一般的になり、モジュールバンドラーはJavaScript開発において無くてはならないものになりました。
-
-モジュールバンドラーにはCommonJSだけでなくESモジュールにも対応したものもあります。
-また、バンドルする際にJavaScriptコードの最適化を行うなどバンドル以外の機能をもつものもあります。
-[JavaScriptモジュールについてのドキュメント][]では、
-WebにおけるJavaScriptのモジュールと、バンドルする目的などについて詳しくまとめられています。
-
 [export文]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export
 [import文]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import
-[CommonJSモジュール]: https://nodejs.org/docs/latest/api/modules.html
-[Node.js]: https://nodejs.org/ja/
-[NPM]: https://www.npmjs.com
-[JavaScriptモジュールについてのドキュメント]: https://developers.google.com/web/fundamentals/primers/modules
