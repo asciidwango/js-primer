@@ -1,9 +1,9 @@
 ---
 author: laco
-description: "JavaScriptのモジュールについて紹介します。ECMAScriptモジュールの基本的な使い方やCommonJSモジュールとの違いについて紹介します。"
+description: "JavaScriptのモジュール（ES Module）について紹介します。ECMAScriptモジュールの基本的な使い方やCommonJSモジュールとの違いについて紹介します。"
 ---
 
-# モジュール {#module}
+# ES Module {#module}
 
 JavaScriptにおけるモジュールは、保守性・名前空間・再利用性のために使われます。
 
