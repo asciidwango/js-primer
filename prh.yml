@@ -287,6 +287,9 @@ rules:
     patterns:
       - /prefix/i
       - /プレフィックス/i
+  - expected: ローカルサーバー
+    patterns:
+      - /ローカルサーバ(?!ー)/
 
   # 一致とマッチ
   ## 一致は ===
