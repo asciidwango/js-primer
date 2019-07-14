@@ -177,7 +177,7 @@ $ npx @js-primer/local-server --port 8000
 
 - Node.jsのLTS版をインストールできた
 - npmとnpxでモジュールのインストールと実行ができた
-- `@js-primer/local-server`モジュールを使ってローカルサーバーを起動し、終了できた
+- `@js-primer/local-server`モジュールを使ってローカルサーバーを起動して終了できた
 
 npmではすでに多種多様なローカルサーバーモジュールが公開されています。
 この書籍では、利用するローカルサーバーの機能で違いが出ないように`@js-primer/local-server`というこの書籍用のローカルサーバーモジュールを利用します。
