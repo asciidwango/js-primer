@@ -185,3 +185,4 @@ npmではすでに多種多様なローカルサーバーモジュールが公�
 [@js-primer/local-serverパッケージ]: https://github.com/js-primer/local-server
 [値の評価と表示]: ../../basic/read-eval-print/README.md
 [Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
+[Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy
