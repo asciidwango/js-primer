@@ -136,7 +136,7 @@ js-primerのローカルサーバを起動しました。
 <!-- textlint-disable ja-technical-writing/sentence-length -->
 
 起動したローカルサーバーのURL（`http://localhost:3000`）へブラウザでアクセスすると、先ほどの`index.html`の内容が表示されます。
-多くのサーバでは、`http://localhost:3000`のようにファイルパスを指定せずにアクセスすると、`index`から始まる名前のファイルを配信する機能を持っています。
+多くのサーバでは、`http://localhost:3000`のようにファイルパスを指定せずにアクセスすると、`index.html`を配信する機能を持っています。
 `@js-primer/local-server`もこの機能をもつため、`http://localhost:3000`と`http://localhost:3000/index.html`どちらのURLも同じ`index.html`を配信しています。
 
 <!-- textlint-enable ja-technical-writing/sentence-length -->
