@@ -109,21 +109,33 @@ Hello World!
 
 [import title:"index.js"](src/index.js)
 
-### ローカルサーバーを起動する {#js-primer-local-server}
+### ローカルサーバーを起動する {#open-js-primer-local-server}
 
-先ほど作成した`index.html`と同じディレクトリで、次の`npx`コマンドを実行します。
-次のコマンドでは、`@js-primer/local-server`というローカルサーバーモジュールをダウンロードと同時に実行します。
-このローカルサーバーモジュールでは、`http`スキーマのURLでアクセスできるように実行したディレクトリにあるファイルを配信します。
+先ほど作成した`index.html`と同じディレクトリで、ローカルサーバーを起動します。
+次のコマンドでは、`@js-primer/local-server`というこの書籍用に作成されたローカルサーバーモジュールをダウンロードと同時に実行します。
+このローカルサーバーモジュールは、`http`スキーマのURLでローカルファイルへアクセスできるように、実行したディレクトリにあるファイルを配信する機能を持ちます。
 
 ```shell-session
 $ npx @js-primer/local-server
+
+js-primerのローカルサーバを起動しました。
+次のURLをブラウザで開いてください。
+
+  URL: http://localhost:3000
+
 ```
  
+<!-- textlint-disable ja-technical-writing/sentence-length -->
+
 起動したローカルサーバーのURL（`http://localhost:3000`）へブラウザでアクセスすると、先ほどの`index.html`の内容が表示されます。
+多くのサーバでは、`http://localhost:3000`のようにファイルパスを指定せずにアクセスすると、`index.html`というファイルが配信される機能を持っています。
+`@js-primer/local-server`もこの機能をもつため、`http://localhost:3000`と`http://localhost:3000/index.html`どちらのURLも同じ`index.html`を配信しています。
+
+<!-- textlint-enable ja-technical-writing/sentence-length -->
 
 ![ログが表示されているWebコンソール](img/index.png)
 
-また、正しく`index.js`が読み込まれてるかを確認してみましょう。
+`index.html`にアクセスできたら、正しく`index.js`が読み込まれてるかを確認してみましょう。
 Console APIで出力したログを確認するには、ウェブブラウザの開発者ツールを開く必要があります。
 ほとんどのブラウザで開発者ツールが同梱されていますが、この書籍ではFirefoxを使って確認します。
 
@@ -133,6 +145,34 @@ Firefoxの開発者ツールは次のいずれかの方法で開きます。
 - キーボードショートカット Ctrl+Shift+K（macOS では Command+Option+K）を押下する
 
 詳細は"[Webコンソールを開く][]"を参照してください。
+
+### ローカルサーバーを終了する {#close-js-primer-local-server}
+
+最後に、起動したローカルサーバーを終了します。
+ローカルサーバーを起動したコマンドラインで、`Ctrl+C`を押下することで終了できます。
+
+複数のローカルサーバーを同時に起動することも可能ですが、複数のサーバで同じポート番号を利用することはできません。
+ポートとは、先ほど起動したローカルサーバーの`:3000`となっていた部分のことで、これは3000番ポートでローカルサーバーを起動したことを意味しています。
+
+`@js-primer/local-server`は、デフォルトのポート（3000番ポート）がすでに使用されているなら、自動的にあいているポートを探してローカルサーバーを起動します。また、`--port`オプションで任意のポート番号でローカルサーバーを起動できます。
+
+```
+$ npx @js-primer/local-server --port 8000
+```
+
+この書籍では、`@js-primer/local-server`をデフォルトのポート番号である3000番ポートを利用する前提で進めていきます。
+そのため、使わなくなったローカルサーバーは`Ctrl+C`で終了しておくことで、アクセスするURL（ポート番号）が同じまま進められます。
+
+## まとめ {#conslusion}
+
+この章では、これからのユースケースの章で必要な環境を準備していました。
+
+- Node.jsのLTS版をインストールできた
+- npmとnpxでモジュールのインストールと実行ができた
+- `@js-primer/local-server`モジュールを使ってローカルサーバーを起動でした
+
+npmではすでに多種多様なローカルサーバーモジュールが公開されています。
+この書籍では、利用するローカルサーバーの機能で違いが出ないように`@js-primer/local-server`というこの書籍用のローカルサーバーモジュールを利用します。
 
 [Node.js]: https://nodejs.org/ja/
 [V8]: https://developers.google.com/v8/
