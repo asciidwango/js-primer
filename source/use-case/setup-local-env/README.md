@@ -87,7 +87,7 @@ $ js-primer-hello-world
 Hello World!
 ```
 
-## ローカルサーバのセットアップ {#local-server}
+## ローカルサーバーのセットアップ {#local-server}
 
 「[値の評価と表示][]」の章では、`index.html`と`index.js`というファイルを作成しブラウザで表示していました。
 このときローカルに作成したHTMLファイルをそのままブラウザで読み込むと、ブラウザのアドレスバーは`file:///`から始まるURLになります。
@@ -109,11 +109,11 @@ Hello World!
 
 [import title:"index.js"](src/index.js)
 
-### ローカルサーバを起動する {#js-primer-local-server}
+### ローカルサーバーを起動する {#js-primer-local-server}
 
 先ほど作成した`index.html`と同じディレクトリで、次の`npx`コマンドを実行します。
 次のコマンドでは、`@js-primer/local-server`というローカルサーバーモジュールをダウンロードと同時に実行します。
-このローカルサーバモジュールでは、`http`スキーマのURLでアクセスできるように実行したディレクトリにあるファイルを配信します。
+このローカルサーバーモジュールでは、`http`スキーマのURLでアクセスできるように実行したディレクトリにあるファイルを配信します。
 
 ```shell-session
 $ npx @js-primer/local-server
