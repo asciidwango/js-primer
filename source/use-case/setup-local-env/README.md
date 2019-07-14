@@ -100,12 +100,14 @@ Hello World!
 
 ### HTMLファイルの用意 {#preparing-html}
 
-まずは`http`スキーマで表示したい、最低限の要素だけを配置したHTMLファイルを作成しましょう。
-作成する`index.html`は`body`要素の一番下でJavaScriptファイルを読み込んでいます。
+まずは最低限の要素だけを配置したHTMLファイルを作成しましょう。
+ここでは`index.html`というファイル名で作成し、HTMLファイル内には次のように記述しています。
+このHTMLファイルでは`script`要素を使い`index.js`というファイル名のJavaScriptファイルを読み込んでいます。
 
 [import title:"index.html"](src/index.html)
 
-`index.js`には、スクリプトが正しく読み込まれたことを確認できるよう、コンソールにログを出力する処理だけを書いておきます。
+同じように`index.js`というファイル名でJavaScriptファイルを作成します。
+この`index.js`には、スクリプトが正しく読み込まれたことを確認できるよう、コンソールにログを出力する処理だけを書いておきます。
 
 [import title:"index.js"](src/index.js)
 
@@ -116,6 +118,11 @@ Hello World!
 このローカルサーバーモジュールは、`http`スキーマのURLでローカルファイルへアクセスできるように、実行したディレクトリにあるファイルを配信する機能を持ちます。
 
 ```shell-session
+# から始まる行はコメントなので実行はしなくてよい
+# cdコマンドでファイルがあるディレクトリまで移動
+$ cd "index.htmlがあるディレクトリのパス"
+
+# npx コマンドでローカルサーバを起動
 $ npx @js-primer/local-server
 
 js-primerのローカルサーバを起動しました。
@@ -128,7 +135,7 @@ js-primerのローカルサーバを起動しました。
 <!-- textlint-disable ja-technical-writing/sentence-length -->
 
 起動したローカルサーバーのURL（`http://localhost:3000`）へブラウザでアクセスすると、先ほどの`index.html`の内容が表示されます。
-多くのサーバでは、`http://localhost:3000`のようにファイルパスを指定せずにアクセスすると、`index.html`というファイルが配信される機能を持っています。
+多くのサーバでは、`http://localhost:3000`のようにファイルパスを指定せずにアクセスすると、`index`から始まる名前のファイルを配信する機能を持っています。
 `@js-primer/local-server`もこの機能をもつため、`http://localhost:3000`と`http://localhost:3000/index.html`どちらのURLも同じ`index.html`を配信しています。
 
 <!-- textlint-enable ja-technical-writing/sentence-length -->
@@ -169,7 +176,7 @@ $ npx @js-primer/local-server --port 8000
 
 - Node.jsのLTS版をインストールできた
 - npmとnpxでモジュールのインストールと実行ができた
-- `@js-primer/local-server`モジュールを使ってローカルサーバーを起動でした
+- `@js-primer/local-server`モジュールを使ってローカルサーバーを起動し、終了できた
 
 npmではすでに多種多様なローカルサーバーモジュールが公開されています。
 この書籍では、利用するローカルサーバーの機能で違いが出ないように`@js-primer/local-server`というこの書籍用のローカルサーバーモジュールを利用します。
