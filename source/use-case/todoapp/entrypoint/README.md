@@ -67,8 +67,8 @@ todoapp
 
 ウェブブラウザで`index.html`を開く前に、開発用のローカルサーバーを準備します。
 ローカルサーバーを立ち上げずに直接HTMLファイルを開くこともできますが、その場合`file:///`から始まるURLになります。
-`file`スキーマでは[Same Origin Policy][]により、JavaScriptモジュールなどの動作に制限がありアプリケーションは正しく動作しません。
-本章はローカルサーバーを立ち上げた上で、`http`から始まるURLでアクセスすることを前提としています。
+`file`スキーマでは[Same Origin Policy][]により、JavaScriptモジュールが正しく動作しません。
+そのため、本章はローカルサーバーを立ち上げた上で、`http`から始まるURLでアクセスすることを前提としています。
 
 コマンドラインで`todoapp`ディレクトリへ移動し、次のコマンドでローカルサーバーを起動します。
 `npx`コマンドを使い、この書籍用に作成された`@js-primer/local-server`というローカルサーバーモジュールをダウンロードと同時に実行します。
@@ -107,14 +107,11 @@ Firefoxの開発者ツールは次のいずれかの方法で開きます。
 
 詳細はMDNの「[Webコンソールを開く][]」を参照してください。
 
-### [エラー例] コンソールログが表示されない {#error-not-display-console-log}
+### コンソールログが表示されない {#error-not-display-console-log}
 
-HTMLは表示されるがコンソールログに`index.js: loaded`が表示されない場合は、次のような問題であるかを確認してください。
+HTMLは表示されるがコンソールログに`index.js: loaded`が表示されない場合は、次のような問題に該当してないかを確認してください。
 
-- `index.js`の読み込みに失敗している
-- JavaScriptモジュールに非対応のブラウザを利用している
-
-> `index.js`の読み込みに失敗している
+#### [エラー例] `index.js`の読み込みに失敗している {#fail-to-load-javascript-module}
 
 scirptタグに指定した`index.js`のパスにファイルが存在しているかを確認してください。
 `<script type="module" src="index.js">`としてした場合は`index.html`と`index.js`は同じディレクトリに配置する必要があります。
@@ -123,7 +120,7 @@ scirptタグに指定した`index.js`のパスにファイルが存在してい�
 先ほども書いたように、`file:`から始まるページ上からはJavaScriptモジュールを読み込めないブラウザもあります。
 そのため、ローカルサーバーを起動し、ローカルサーバー(`http:`から始まるURL)にアクセスしていることを確認してください。
 
-> JavaScriptモジュールに非対応のブラウザを利用している
+#### [エラー例] JavaScriptモジュールに非対応のブラウザを利用している {#unsupport-javascript-module}
 
 JavaScriptモジュールはまだ新しい機能であるため、バージョンが60以上のFirefoxが必要です。
 バージョンが60未満のFirefoxでは、JavaScriptモジュールである`index.js`が読み込めないためコンソールログは出力されません。
@@ -177,14 +174,14 @@ App initialized
 
 これでHTMLとJavaScriptそれぞれのエントリポイントの作成と動作を確認できました。
 
-### [エラー例] App.jsの読み込みに失敗する {#error-import-app-js}
+### App.jsの読み込みに失敗する {#error-import-app-js}
 
 ディレクトリ構造や`import`宣言で指定したファイルパスが異なると、ファイルを読み込むことができずにエラーとなってしまいます。
 この場合は開発者ツールを開き、コンソールにエラーが出ていないかを確認してみてください。
 
 `import`宣言を使ったJavaScriptのモジュール読み込み時に起きる典型的なエラーと対処を次にまとめています。
 
-> SyntaxError: import declarations may only appear at top level of a module
+#### [エラー例] SyntaxError: import declarations may only appear at top level of a module {#syntax-error-import-declarations}
 
 「`import`宣言はモジュールのトップレベルでしか利用できません」というエラーがでています。
 このエラーがでているということは、`import`宣言を使える条件を満たしていないということです。
@@ -201,7 +198,7 @@ JavaScriptには実行コンテキストとしてScriptとModuleがあります�
 実行コンテキストをモジュールとして実行するには`<script type="module" src="index.js">`のように`type=module`を指定する必要があります。
 （`index.js`から`import`宣言で読み込んだ`App.js`は実行コンテキストを引き継ぐため、モジュールの実行コンテキストで処理されます。）
 
-> モジュールのソース “http://localhost:3000/src/App” の読み込みに失敗しました。
+#### [エラー例] モジュールのソース “http://localhost:3000/src/App” の読み込みに失敗しました。 {#fail-to-load-src-app}
 
 `App.js`が読み込めていないというエラーがでています。
 エラーメッセージをよく見ると`App`となっていて`App.js`ではありません。
