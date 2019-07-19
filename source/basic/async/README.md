@@ -1810,7 +1810,7 @@ class AsyncStorage {
     constructor() {
         this.dataMap = new Map();
     }
-    async save(key, value) {
+    save(key, value) {
         return new Promise(resolve => {
             setTimeout(() => {
                 this.dataMap.set(key, value);
@@ -1818,7 +1818,7 @@ class AsyncStorage {
             }, 100);
         });
     }
-    async load(key) {
+    load(key) {
         return new Promise(resolve => {
             setTimeout(() => {
                 resolve(this.dataMap.get(key));
