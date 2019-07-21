@@ -1712,7 +1712,7 @@ async function main() {
     await saveUsers(users);
     // idが5のユーザーデータを取り出す
     const user = await loadUser(5);
-    // しかしまだ保存が完了していないためundeinedとなる
+    // しかしまだ保存が完了していないためundefinedとなる
     console.log(user); // => undefined
 }
 main();
