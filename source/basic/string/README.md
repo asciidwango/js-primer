@@ -526,8 +526,6 @@ console.log(str.includes("いる")); // => true
 \ ^ $ . * + ? ( ) [ ] { } |
 ```
 
-### 正規表現オブジェクトの作成 {#create-regexp-object}
-
 正規表現オブジェクトを作成するには、正規表現リテラルと`RegExp`コンストラクタを使う2つの方法があります。
 
 <!-- textlint-disable eslint -->
