@@ -380,7 +380,7 @@ console.log(str.slice(1)); // => "BCDE"
 console.log(str.slice(1, 5)); // => "BCDE"
 // マイナスを指定すると後ろからの位置となる
 console.log(str.slice(-1)); // => "E"
-// 位置:1から4の範囲を取り出す
+// インデックスが1から4の範囲を取り出す
 console.log(str.slice(1, 4)); // => "BCD"
 // 第一引数 > 第二引数の場合、常に空文字を返す
 console.log(str.slice(4, 1)); // => ""
