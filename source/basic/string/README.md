@@ -858,7 +858,7 @@ console.log(isRegExpLikeString(str)); // => true
 「Stringメソッドと正規表現で同じ結果が得られる場合はどちらを利用するのがよいでしょうか？」という疑問に戻ります。
 Stringメソッドで表現できることはStringメソッドで表現し、柔軟性や曖昧な検索が必要な場合はコメントとともに正規表現を利用するという方針を推奨します。
 
-正規表現についてより詳しくは[正規表現 - JavaScript | MDN][]や、コンソールで実行しながら試せる[regex101][]のようなサイトを参照してください。
+正規表現についてより詳しくは[MDNの正規表現ドキュメント][]や、コンソールで実行しながら試せる[regex101][]のようなサイトを参照してください。
 
 ## 文字列の置換/削除 {#replace-delete}
 
@@ -1128,7 +1128,7 @@ console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
 文字列処理するStringメソッドにはさまざまなものがあり、正規表現と組み合わせて使うものも含まれます。
 
 正規表現は、正規表現のみでひとつの本が作れるようなJavaScript言語内にある別言語です。
-詳細は[正規表現についてのドキュメント][]なども参照してください。
+詳細は[MDNの正規表現ドキュメント][]なども参照してください。
 
 文字列は一見単純なオブジェクトに見えますが、文字列にはURLやパスといったコンテキストをもつ文字列もあります。
 それらの文字列を安全に扱うためには、コンテキストに応じた処理が必要になります。
@@ -1137,7 +1137,7 @@ console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
 
 [文字列とUnicode]: ../string-unicode/README.md
 [エスケープシーケンス]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String#%E3%82%A8%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%97%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9
-[正規表現についてのドキュメント]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions  "正規表現 - JavaScript | MDN"
+[MDNの正規表現ドキュメント]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions  "正規表現 - JavaScript | MDN"
 [regex101]: https://regex101.com/  "Online regex tester and debugger: PHP, PCRE, Python, Golang and JavaScript"
 [データ型とリテラル]: ../data-type/README.md
 [ECMA-402]: https://www.ecma-international.org/publications/standards/Ecma-402.htm  "Standard ECMA-402"
