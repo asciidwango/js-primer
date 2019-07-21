@@ -745,6 +745,7 @@ console.log(alphabetsPattern.lastIndex); // => 0
 この`lastIndex`プロパティが検索ごとに更新される仕組みを利用することで、`exec`を反復処理してすべての検索結果を取得できます。
 `exec`メソッドはマッチしなければ`null`を返すため、マッチするものがなくなればwhile文から自動的に脱出します。
 
+{{book.console}}
 ```js
 const str = "ABC あいう DE えお";
 const alphabetsPattern = /[a-zA-Z]+/g;
