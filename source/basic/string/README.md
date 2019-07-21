@@ -551,7 +551,7 @@ const pattern = /a+/;
 次のコードでは、先ほどの正規表現リテラルと同じ意味の`a`が1文字以上連続している文字列にマッチする正規表現オブジェクトを作成しています。
 
 ```js
-const pattern = new Pattern("a+");
+const pattern = new RegExp("a+");
 ```
 
 #### 正規表現リテラルと`RegExp`コンストラクタの違い {#difference-regexp-literal-regexp-constructor}
