@@ -441,6 +441,8 @@ console.log(queryString); // => "?param=1"
 
 ### 文字列による検索 {#search-by-string}
 
+`String`オブジェクトには、文字列を指定した文字列で検索するメソッドが用意されています。
+
 #### 文字列によるインデックスの取得 {#search-index-by-string}
 
 `String#indexOf`メソッドと`String#lastIndexOf`メソッドは、指定した文字列で検索し、その文字列が最初に現れたインデックスを返します。
@@ -509,12 +511,12 @@ console.log(str.includes("にわ")); // => true
 console.log(str.includes("いる")); // => true
 ```
 
-### 正規表現オブジェクト {#regexp-object}
+## 正規表現オブジェクト {#regexp-object}
 
 <!-- パターンと正規表現オブジェクトの用語については https://github.com/asciidwango/js-primer/issues/21#issuecomment-293502813 -->
 
 文字列による検索では、固定の文字列にマッチするものしか検索できません。
-正規表現による検索では、あるパターンにマッチするというより柔軟な検索ができます。
+一方で正規表現による検索では、あるパターンにマッチするという柔軟な検索ができます。
 
 正規表現は正規表現オブジェクト（`RegExp`オブジェクト）として表現されます。
 正規表現オブジェクトはマッチする範囲を決める`パターン`と正規表現のモードを指定する`フラグ`の2つで構成されます。
@@ -524,7 +526,7 @@ console.log(str.includes("いる")); // => true
 \ ^ $ . * + ? ( ) [ ] { } |
 ```
 
-#### 正規表現オブジェクトの作成 {#create-regexp-object}
+### 正規表現オブジェクトの作成 {#create-regexp-object}
 
 正規表現オブジェクトを作成するには、正規表現リテラルと`RegExp`コンストラクタを使う2つの方法があります。
 
@@ -554,7 +556,7 @@ const pattern = /a+/;
 const pattern = new RegExp("a+");
 ```
 
-#### 正規表現リテラルと`RegExp`コンストラクタの違い {#difference-regexp-literal-regexp-constructor}
+### 正規表現リテラルと`RegExp`コンストラクタの違い {#difference-regexp-literal-regexp-constructor}
 
 正規表現リテラルと`RegExp`コンストラクタの違いとして、正規表現のパターンが評価（コンパイル）されるタイミングの違いがあります。
 正規表現リテラルは、コードをロードした段階で正規表現のパターンが評価されます。
