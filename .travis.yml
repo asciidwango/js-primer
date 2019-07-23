@@ -1,6 +1,10 @@
 sudo: required
 addons:
   chrome: stable
+  apt:
+    packages:
+    - libgconf-2-4
+
 language: node_js
 env:
   global:
