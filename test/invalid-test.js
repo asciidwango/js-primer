@@ -28,9 +28,13 @@ describe("invalid:js", function() {
             } catch (error) {
                 // evalしようとしたらエラーになっていることが期待値
                 // "NO_REACH_CODE"になってるのはおかしい
+                
                 assert.notEqual(error.message, "NO_REACH_CODE", `Should be SyntaxError(parse error) or EvalError: ${error.message}
-Please check following file:
-    at InvalidError (${filePath}:1:1)\n`);
+次のファイルをチェックしてください
+    at InvalidError (${filePath}:1:1)\n
+    
+実際に発生したエラー:
+${error}`);
             }
         });
     });
