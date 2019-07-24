@@ -178,6 +178,22 @@ DoctestでPromiseやAsync Functionを使った非同期のテストも書けま�
 
 Note: `vm`モジュールの制約からタイムアウト指定の時間が正しく指定させていることが前提となっています。
     
+
+#### DoctestのECMAScriptバージョン
+
+DoctestはNode.jsで実行されます。
+実行するNode.jsがECMAScriptの最新のバージョンをサポートしていない場合があります。
+そのため、コードのECMAScriptバージョンを指定することで、そのDoctestをスキップできます。
+
+例) DoctestがECMAScript 2019であることを表記する
+
+    <!-- doctest:ecmascript: 2019 -->
+    ```js
+    [1,[2], [3]].flat();
+    ```
+
+DoctestでサポートしてないECMAScriptバージョンのテストは実行されません。
+
 #### Doctestの無視
 
 CodeBlockの手前に`<!-- doctest:disable -->`というHTMLコメントがある場合はDoctestをしません。
