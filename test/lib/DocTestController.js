@@ -4,6 +4,7 @@
 const DISABLE_PATTERN = /doctest:\s*?disable/;
 const ASYNC_TIME_PATTERN = /doctest:\w*?async:(\d+)/;
 const ERROR_TYPE_PATTERN = /doctest:\s*([\w\s]*?Error)/;
+const ES_VERSION = /doctest:ecmascript:\s*?([\d]+)/;
 
 /**
  * CodeBlockの手前に該当するHTMLコメントはdoctestの制御コードとして扱える
@@ -81,6 +82,22 @@ class DocTestController {
             throw new Error(`AsyncDocTest: wrong timeout format: ${timeoutComment}`);
         }
         return timeoutMillSecAsString;
+    }
+
+
+    get ecmascriptVersion() {
+        const version = this.comments.find(comment => {
+            return ES_VERSION.test(comment);
+        });
+        if (!version) {
+            return;
+        }
+        const match = version.match(ES_VERSION);
+        const versionString = match && match[1];
+        if (versionString === undefined) {
+            throw new Error(`AsyncDocTest: ecmascript formatec: ${version}`);
+        }
+        return versionString;
     }
 
     /**
