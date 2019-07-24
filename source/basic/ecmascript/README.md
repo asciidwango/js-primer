@@ -27,7 +27,7 @@ Ecma International中のTechnical Committee 39（TC39）という技術委員会
 | 2015     | 2015年6月  |
 | 2016     | 2016年6月  |
 | 2017     | 2017年6月  |
-| 以下、毎年リリース  |
+| 1ずつアップデート  | 毎年リリース  |
 
 <!-- textlint-disable -->
 
