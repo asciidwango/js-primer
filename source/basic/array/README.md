@@ -426,6 +426,31 @@ const newArray = array.concat("新しい要素");
 console.log(newArray); // => ["A", "B", "C", "新しい要素"]
 ```
 
+## [ES2019] 配列をフラット化 {#flat}
+
+`Array#flat`メソッドを使うことで、2次元配列などフラットな配列に変換できます。
+引数なしでは1段階のみのフラット化ですが、引数にフラット化する深さを渡せます。
+配列をすべてフラット化する場合には、無限を意味する`Infinity`を値と渡すことで実現できます。
+
+{{book.console}}
+```js
+const array = [[["A"], "B"], "C"];
+// 引数なしは 1 を指定した場合と同じ
+console.log(array.flat()); // => [["A"], "B", "C"]
+console.log(array.flat(1)); // => [["A"], "B", "C"]
+// 全てをフラット化するには Inifinity を渡す
+console.log(array.flat(Infinity)); // => ["A", "B", "C"]
+```
+
+また、`Array#flat`メソッドは必ず新しい配列を作成して返すメソッドです。
+そのため、これ以上フラット化できない配列をフラット化しても、同じ要素をもつ新しい配列を返します。
+
+{{book.console}}
+```js
+const array = ["A", "B", "C"];
+console.log(array.flat()); // => ["A", "B", "C"]
+```
+
 ## 配列から要素を削除 {#delete-element}
 
 ### `Array#splice` {#splice}
