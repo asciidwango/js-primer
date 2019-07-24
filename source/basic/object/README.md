@@ -555,6 +555,7 @@ console.log(obj[symbolKey2]); // => "2"
 それぞれ、オブジェクトのキー、値、キーと値の組み合わせを配列にして返します。
 
 {{book.console}}
+<!-- doctest:ecmascript: 2017 -->
 ```js
 const obj = {
     "one": 1,
@@ -563,9 +564,9 @@ const obj = {
 };
 // `Object.keys`はキーの列挙した配列を返す
 console.log(Object.keys(obj)); // => ["one", "two", "three"]
-// `Object.values`（ES2017）は値を列挙した配列を返す
+// `Object.values`は値を列挙した配列を返す
 console.log(Object.values(obj)); // => [1, 2, 3]
-// `Object.entries`（ES2017）は[キー, 値]の配列を返す
+// `Object.entries`は[キー, 値]の配列を返す
 console.log(Object.entries(obj)); // => [["one", 1], ["two", 2], ["three", 3]]
 ```
 

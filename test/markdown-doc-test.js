@@ -30,7 +30,7 @@ const getComments = (parentNode, codeNode) => {
  * .travis.ymlのサポートしているNode.jsバージョンに合わせる
  * @type {string[]}
  */
-const ESVersions = ["ES2017"];
+const ESVersions = ["2017", "2018", "2019"];
 /**
  * Markdownファイルの CodeBlock に対してdoctestを行う
  * CodeBlockは必ず実行できるとは限らないので、
@@ -42,7 +42,7 @@ const ESVersions = ["ES2017"];
  *
  * その他詳細は CONTRIBUTING.md を読む
  **/
-describe("doctest:md", function() {
+describe("doctest:md", function () {
     const files = globby.sync([
         `${sourceDir}/**/*.md`,
         `!${sourceDir}/**/node_modules{,/**}`,
@@ -50,7 +50,7 @@ describe("doctest:md", function() {
     ]);
     files.forEach(filePath => {
         const normalizeFilePath = filePath.replace(sourceDir, "");
-        describe(`${normalizeFilePath}`, function() {
+        describe(`${normalizeFilePath}`, function () {
             const content = fs.readFileSync(filePath, "utf-8");
             const markdownAST = attachParents(remark.parse(content));
             const codeBlocks = [].concat(
@@ -60,16 +60,16 @@ describe("doctest:md", function() {
             // try to eval
             codeBlocks.forEach((codeBlock, index) => {
                 const codeValue = codeBlock.value;
-                const isIgnoredCode = ESVersions.some(version => {
-                    return codeValue.includes(version);
-                });
                 const comments = getComments(codeBlock.parent, codeBlock);
                 const docTestController = new DocTestController(comments);
+                const isIgnoredCode = ESVersions.some(version => {
+                    return codeValue.includes(version) || docTestController.ecmascriptVersion === version;
+                });
                 if (docTestController.isDisabled) {
                     return;
                 }
                 const testCaseName = codeValue.slice(0, 32).replace(/[\r\n]/g, "_");
-                it(testCaseName, function(_done) {
+                it(testCaseName, function (_done) {
                     let isCalled = false;
                     const done = (error) => {
                         if (isCalled) {
