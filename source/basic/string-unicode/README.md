@@ -246,7 +246,7 @@ console.log(fish); // => "𩸽"
 ### Code Pointの数を数える {#count-of-code-points}
 
 `String#length`プロパティは、文字列を構成するCode Unitの個数を表すプロパティです。
-そのため、サロゲートペアを含む文字列では、`length`の結果が見た目より多くなることがあります。
+そのためサロゲートペアを含む文字列では、`length`の結果が見た目より大きな値となる場合があります。。
 
 {{book.console}}
 ```js
