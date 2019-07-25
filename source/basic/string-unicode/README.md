@@ -48,7 +48,7 @@ console.log(String.fromCodePoint(0x3042)); // => "あ"
 また、文字列リテラル中にはUnicodeエスケープシーケンスで、直接Code Pointを書くこともできます。
 Code Pointは`\u{Code Pointの16進数の値}`のようにエスケープシーケンスとして記述できます。
 Unicodeエスケープシーケンスでは、Code Pointの16進数の値が必要となります。
-`Number#toString`メソッドで引数に基数となる`16`を渡すことで、16進数の文字列を取得できます。
+`Number#toString`メソッドの引数に基数となる`16`を渡すことで、16進数の文字列を取得できます。
 
 {{book.console}}
 ```js
