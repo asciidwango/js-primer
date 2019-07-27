@@ -890,19 +890,19 @@ console.log(obj.method.call("THAT")); // => "THAT"
 `this`は状況によって異なる値を参照する性質を持ったキーワードであることを紹介しました。
 その`this`の評価結果をまとめると次の表のようになります。
 
-| 実行コンテキスト   | strict mode | コード                   | `this`の評価結果 |
-| ------ | ------ | ---------------------------------------- | --------- |
-| Script | NO     | `this`                                   | global    |
-| Script | NO     | `const fn = () => this`                  | global    |
-| Script | NO     | `const fn = function(){ return this; }`  | global    |
-| Script | YES    | `this`                                   | global    |
-| Script | YES    | `const fn = () => this`                  | global    |
-| Script | YES    | `const fn = function(){ return this; }`  | undefined |
-| Module | YES    | `this`                                   | undefined |
-| Module | YES    | `const fn = () => this`                  | undefined |
-| Module | YES    | `const fn = function(){ return this; }`  | undefined |
-| ＊      | ＊      | `const obj = { method(){ return this; } }` | `obj`     |
-| ＊      | ＊      | `const obj = { method: function(){ return this; } }` | `obj`     |
+| 実行コンテキスト | strict mode | コード                                               | `this`の評価結果 |
+| ---------------- | ----------- | ---------------------------------------------------- | ---------------- |
+| Script           | ＊          | `this`                                               | global           |
+| Script           | ＊          | `const fn = () => this`                              | global           |
+| Script           | NO          | `const fn = function(){ return this; }`              | global           |
+| Script           | YES         | `const fn = function(){ return this; }`              | undefined        |
+| Script           | ＊          | `const obj = { method: () => { return this; } }`     | global           |
+| Module           | YES         | `this`                                               | undefined        |
+| Module           | YES         | `const fn = () => this`                              | undefined        |
+| Module           | YES         | `const fn = function(){ return this; }`              | undefined        |
+| Module           | YES         | `const obj = { method: () => { return this; } }`     | undefined        |
+| ＊               | ＊          | `const obj = { method(){ return this; } }`           | `obj`            |
+| ＊               | ＊          | `const obj = { method: function(){ return this; } }` | `obj`            |
 
 > ＊はどの場合でも`this`の評価結果に影響しないということを示しています
 
