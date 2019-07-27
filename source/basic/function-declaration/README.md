@@ -577,7 +577,7 @@ const output = (value) => {
     console.log(value);
 };
 array.forEach(output);
-// 次のような実行しているのと同じ
+// 次のように実行しているのと同じ
 // output(1); => 1
 // output(2); => 2
 // output(3); => 3
