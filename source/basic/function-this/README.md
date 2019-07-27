@@ -531,7 +531,7 @@ console.log(sayPerson()); // => "こんにちは Brendan Eich！"
 次のコードでは`prefixArray`メソッドの中で`Array#map`メソッドを使っています。
 このとき、`Array#map`メソッドのコールバック関数の中で、`Prefixer`オブジェクトを参照するつもりで`this`を参照しています。
 
-しかし、このコールバック関数における`this`は`undefined`となり、`this.prefix`は`undefined.prefix`となり参照できないためTypeErrorが発生します。
+しかし、このコールバック関数における`this`は`undefined`となり、`undefined.prefix`は参照できないためTypeErrorの例外が発生します。
 
 {{book.console}}
 ```js
@@ -906,11 +906,7 @@ console.log(obj.method.call("THAT")); // => "THAT"
 
 > ＊はどの場合でも`this`の評価結果に影響しないということを示しています
 
-<!-- textlint-disable -->
-
 実際にブラウザで実行した結果は[What is `this` value in JavaScript][]というサイトで確認できます。
-
-<!-- textlint-enable -->
 
 `this`はオブジェクト指向プログラミングの文脈でJavaScriptに導入されました。
 メソッド以外においても`this`は評価できますが、実行コンテキストやstrict modeなどによって結果が異なり混乱の元となります。
