@@ -16,12 +16,12 @@ description: "JavaScriptにおける`this`というキーワードの動作を�
 - 関数とメソッドにおける`this`
 - Arrow Functionにおける`this`
 
-コンストラクタにおける`this`は次章のクラスで扱います。
+コンストラクタにおける`this`は、次の章である「[クラス][]」で扱います。
 この章ではさまざまな条件での`this`について扱いますが、`this`が実際に使われるのはメソッドにおいてです。
 そのため、あらゆる条件下での`this`の動きを理解する必要はありません。
 
 この章では、さまざまな条件下で変わる`this`の参照先と関数やArrow Functionとの関係を見ていきます。
-また、実際にどのような状況では問題が発生するかを知り、`this`の動きを予測可能にするにはどのようにするかを見ていきます。
+また、実際にどのような状況で問題が発生するかを知り、`this`の動きを予測可能にするにはどのようにするかを見ていきます。
 
 ## 実行コンテキストと`this` {#execution-context-this}
 
@@ -923,6 +923,7 @@ console.log(obj.method.call("THAT")); // => "THAT"
 [^1]: ES 2015の仕様編集者であるAllen Wirfs-Brock‏氏もただの関数においては`this`を使うべきではないと述べている。<https://twitter.com/awbjs/status/938272440085446657>;
 [JavaScriptとは]: ../introduction/README.md
 [関数と宣言]: ../function-declaration/README.md
+[クラス]: ../class/README.md
 [関数とスコープ]: ../function-scope/README.md
 [スコープチェーン]: ../function-scope/README.md##scope-chain}
 [静的スコープ]: ../function-scope/README.md#static-scope
