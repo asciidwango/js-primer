@@ -18,7 +18,7 @@ description: "JavaScriptにおける`this`というキーワードの動作を�
 
 コンストラクタにおける`this`は、次の章である「[クラス][]」で扱います。
 この章ではさまざまな条件での`this`について扱いますが、`this`が実際に使われるのはメソッドにおいてです。
-そのため、あらゆる条件下での`this`の動きを理解する必要はありません。
+そのため、あらゆる条件下での`this`の動きを覚える必要はありません。
 
 この章では、さまざまな条件下で変わる`this`の参照先と関数やArrow Functionとの関係を見ていきます。
 また、実際にどのような状況で問題が発生するかを知り、`this`の動きを予測可能にするにはどのようにするかを見ていきます。
@@ -256,8 +256,7 @@ outer();
 ```
 
 この書籍では注釈がないコードはstrict modeとして扱いますが、コード例に`"use strict";`とあらためてstrict modeを明示しています。
-なぜなら、strict modeではない場合`this`は`undefined`ではなく、グローバルオブジェクトとなってしまう問題があるためです。
-これは、strict modeではない通常の関数呼び出しのみの問題であり、メソッドではこの暗黙的な型変換は行われません。
+なぜなら、strict modeではない状況で`this`が`undefined`の場合は、`this`がグローバルオブジェクトを参照するように変換される問題があるためです。
 
 strict modeは、このような意図しにくい動作を防止するために導入されています。
 しかしながら、strict modeのメソッド以外の関数における`this`は`undefined`となるため使い道がありません。
@@ -531,7 +530,7 @@ console.log(sayPerson()); // => "こんにちは Brendan Eich！"
 次のコードでは`prefixArray`メソッドの中で`Array#map`メソッドを使っています。
 このとき、`Array#map`メソッドのコールバック関数の中で、`Prefixer`オブジェクトを参照するつもりで`this`を参照しています。
 
-しかし、このコールバック関数における`this`は`undefined`となり、`this.prefix`は`undefined.prefix`であるためTypeErrorとなります。
+しかし、このコールバック関数における`this`は`undefined`となり、`undefined.prefix`は参照できないためTypeErrorの例外が発生します。
 
 {{book.console}}
 ```js
@@ -704,14 +703,14 @@ Arrow Functionとそれ以外の関数で大きく違うことは、Arrow Functi
 
 これは、変数におけるスコープチェーンの仕組みと同様で、そのスコープに`this`が定義されていない場合には外側のスコープを探索するのと同じです。
 そのため、Arrow Function内の`this`の参照先は、常に外側のスコープ（関数）へと`this`の定義を探索しに行きます（詳細は[スコープチェーン][]を参照）。
-また、`this`は読み取り専用のキーワードであるため、ユーザーが`this`という変数を定義できません。
+また、`this`はECMAScriptのキーワードであるため、ユーザーが`this`という変数を定義できません。
 
 [import, this-is-readonly](./src/this-is-readonly-invalid.js)
 
 これにより、通常の変数のように`this`がどの値を参照するかは静的（定義時）に決定できます（詳細は[静的スコープ][]を参照）。
 つまり、Arrow Functionにおける`this`は「Arrow Function自身の外側のスコープに定義されたもっとも近い関数の`this`の値」となります。
 
-具体的な例を元にArrow Functionにおける`this`の動きを見ていきましょう。
+具体的なArrow Functionにおける`this`の動きを見ていきましょう。
 
 まずは、関数式のArrow Functionを見ていきます。
 
@@ -885,36 +884,32 @@ console.log(obj.method()); // => obj
 console.log(obj.method.call("THAT")); // => "THAT"
 ```
 
-## まとめ {#function-this-summary}
+## まとめ {#conclusion}
 
 `this`は状況によって異なる値を参照する性質を持ったキーワードであることを紹介しました。
 その`this`の評価結果をまとめると次の表のようになります。
 
-| 実行コンテキスト   | strict mode | コード                   | `this`の評価結果 |
-| ------ | ------ | ---------------------------------------- | --------- |
-| Script | NO     | `this`                                   | global    |
-| Script | NO     | `const fn = () => this`                  | global    |
-| Script | NO     | `const fn = function(){ return this; }`  | global    |
-| Script | YES    | `this`                                   | global    |
-| Script | YES    | `const fn = () => this`                  | global    |
-| Script | YES    | `const fn = function(){ return this; }`  | undefined |
-| Module | YES    | `this`                                   | undefined |
-| Module | YES    | `const fn = () => this`                  | undefined |
-| Module | YES    | `const fn = function(){ return this; }`  | undefined |
-| ＊      | ＊      | `const obj = { method(){ return this; } }` | `obj`     |
-| ＊      | ＊      | `const obj = { method: function(){ return this; } }` | `obj`     |
+| 実行コンテキスト | strict mode | コード                                               | `this`の評価結果 |
+| ---------------- | ----------- | ---------------------------------------------------- | ---------------- |
+| Script           | ＊          | `this`                                               | global           |
+| Script           | ＊          | `const fn = () => this`                              | global           |
+| Script           | NO          | `const fn = function(){ return this; }`              | global           |
+| Script           | YES         | `const fn = function(){ return this; }`              | undefined        |
+| Script           | ＊          | `const obj = { method: () => { return this; } }`     | global           |
+| Module           | YES         | `this`                                               | undefined        |
+| Module           | YES         | `const fn = () => this`                              | undefined        |
+| Module           | YES         | `const fn = function(){ return this; }`              | undefined        |
+| Module           | YES         | `const obj = { method: () => { return this; } }`     | undefined        |
+| ＊               | ＊          | `const obj = { method(){ return this; } }`           | `obj`            |
+| ＊               | ＊          | `const obj = { method: function(){ return this; } }` | `obj`            |
 
 > ＊はどの場合でも`this`の評価結果に影響しないということを示しています
 
-<!-- textlint-disable -->
-
 実際にブラウザで実行した結果は[What is `this` value in JavaScript][]というサイトで確認できます。
 
-<!-- textlint-enable -->
-
-`this`はオブジェクト指向プログラミングの文脈でJavaScriptに導入されました。[^1]
+`this`はオブジェクト指向プログラミングの文脈でJavaScriptに導入されました。
 メソッド以外においても`this`は評価できますが、実行コンテキストやstrict modeなどによって結果が異なり混乱の元となります。
-そのため、メソッドではない通常の関数においては`this`を使うべきではありません。
+そのため、メソッドではない通常の関数においては`this`を使うべきではありません。[^1]
 
 また、メソッドにおいても`this`は呼び出し方によって異なる値となり、それにより発生する問題と対処法についてを紹介しました。
 コールバック関数における`this`はArrow Functionを使うことで分かりやすく解決できます。
