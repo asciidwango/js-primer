@@ -1545,14 +1545,14 @@ Promiseチェーンで`fetchAB`関数書いた場合は、コールバックの�
 
 ## Async Functionと組み合わせ {#async-function-conbination}
 
-これまでで基本的なAsync Functionの動きを見てきましたが、より応用的なAsync Functionの使い方を見ていきましょう。
+これまでで基本的なAsync Functionの動きを見てきましたが、他の構文やPromise APIと組み合わせたAsync Functionの使い方を見ていきましょう。
 
 ### Async Functionと反復処理 {#async-function-array}
 
-複数の非同期処理を行う際にAsync Functionはforループなどの反復処理と組み合わせ利用できます。
+複数の非同期処理を行う際に、Async Functionはforループなどの反復処理と組み合わせることが可能です。
 
-次のコードでは、指定したリソースのパスの配列を渡してそれらを順番に取得する`fetchResource`関数を実装してみます。
-Async Function内でfor文を使った反復処理を行い、forループの中で`await`文を使ってリソースの取得を待って追加しています。
+次のコードでは、指定したリソースのパスの配列を渡してそれらを順番に取得する`fetchResource`関数を実装しています。
+Async Function内でfor文を使った反復処理を行い、forループの中で`await`文を使ってリソースの取得を待ちその結果を追加しています。
 
 {{book.console}}
 <!-- doctest:async:2000 -->
@@ -1573,9 +1573,11 @@ async function fetchResources(resources) {
     const results = [];
     for (let i = 0; i < resources.length; i++) {
         const resource = resources[i];
+        // ループ内で非同期処理の完了を待っている
         const response = await dummyFetch(resource);
         results.push(response.body);
     }
+    // 反復処理が全て終わったら結果を返す(返り値となるPromiseを`results`でresolveする)
     return results;
 }
 // 取得したいリソースのパス配列
@@ -1589,22 +1591,25 @@ fetchResources(resources).then((results) => {
 });
 ```
 
+Async Functionでは、非同期処理であってもforループのような既存の構文と組み合わせて利用することが簡単です。
+Promiseのみの場合は、Promiseチェーンでコールバック関数を使った反復処理を実装する必要があります。
+
 ### Promise APIとAsync Functionを組み合わせる {#relationship-promise-async-function}
 
-Async Functionと`await`式でも非同期処理を同期処理のような見た目で書けます。
-一方で同期処理のような見た目となるため、複数の非同期処理を順番に行うようなケースでは無駄な待ち時間を作ってしまうコードを書きやすいです。
+Async Functionと`await`式を使うことで、非同期処理を同期処理のような見た目で書けます。
+一方で同期処理のような見た目となるため、複数の非同期処理を反復処理する場合に無駄な待ち時間を作ってしまうコードを書きやすいです。
 
 先ほどの`fetchResources`関数ではリソースを順番に1つずつ取得していました。
-そのため、リソースAとBを取得しようとした場合にかかる時間は、リソースAとBの取得時間の合計となります。
-たとえば、リソースAに1秒、リソースBに2秒かかる場合、すべてのリソースを取得するのに3秒かかります。
+たとえば、リソースAとBを取得しようとした場合にかかる時間は、リソースAとBの取得時間の合計となります。
+このとき、リソースAに1秒、リソースBに2秒かかるとした場合、すべてのリソースを取得するのに3秒かかります。
 
-このとき、取得する順番に意味がない場合は、複数のリソースを同時に取得することで余計な待ち時間を解消できます。
-先ほどの例ならば、リソースAとBを同時に取得すれば、もっとも時間のかかるリソースBの2秒程度で済むはずです。
+取得する順番に意味がない場合は、複数のリソースを同時に取得することで余計な待ち時間を解消できます。
+先ほどの例ならば、リソースAとBを同時に取得すれば、最大でもリソースBの取得にかかる2秒程度ですべてのリソースが取得できるはずです。
 
 Promiseチェーンでは`Promise.all`メソッドを使い、複数の非同期処理を1つの`Promise`インスタンスにまとめることで同時に取得していました。
-`await`式が評価するのは`Promise`インスタンスであるため、`await`式でも`Promise.all`メソッドと組み合わせて利用できます。
+`await`式が評価するのは`Promise`インスタンスであるため、`await`式も`Promise.all`メソッドと組み合わせて利用できます。
 
-次のコードでは、`Promise.all`メソッドを使って同時にリソースを取得する`fetchAllResources`関数を実装しています。
+次のコードでは、`Promise.all`メソッドとAsync Functionを組み合わせて、同時にリソースを取得する`fetchAllResources`関数を実装しています。
 `Promise.all`メソッドは複数のPromiseを配列で受け取り、それを1つのPromiseとしてまとめたものを返す関数です。
 `Promise.all`メソッドの返す`Promise`インスタンスを`await`することで、非同期処理の結果を配列としてまとめて取得できます。
 
@@ -1651,7 +1656,7 @@ Async Functionも内部的にPromiseの仕組みを利用しているため、�
 
 ### `await`式はAsync Functionの中でのみ利用可能 {#await-in-async-function}
 
-`await`式を利用する際の注意点として、`await`式はAsync Functionの中でのみ利用可能です。
+`await`式を利用する際の注意点として、`await`式はAsync Functionの中でのみ利用可能な点です。
 
 次のコードのように、Async Functionではない通常の関数で`await`式を使うと構文エラー（`SyntaxError`）となります。
 これは、間違った`await`式の使い方を防止するための仕様です。
@@ -1691,19 +1696,20 @@ asyncMain().then(() => {
 console.log("2. asyncMain関数外では、次の行が同期的に呼び出される");
 ```
 
-このように`await`式を非同期処理を一時停止しても、Async Function外の処理が停止するわけではありません。
+このように`await`式をAsync Function内の非同期処理を一時停止しても、Async Function外の処理が停止するわけではありません。
 Async Function外の処理も停止できてしまうと、JavaScriptでは基本的にメインスレッドで多くの処理をするためのUIを含めた他の処理が止まってしまいます。
 これが`await`式がAsync Functionの外で利用できない理由の一つです。
 
 <!-- 仕様的にはAsync Execution Contextという特殊なものだけで使えるという話になる -->
 
-この仕様は、Async Functionをコールバック関数内で利用しようとしたときに問題となる場合があります。
+この仕様は、Async Functionをコールバック関数内で利用しようとしたときに混乱を生む場合があります。
 具体例として、先ほどの逐次的にリソースを取得する`fetchResources`関数を見てみます。
 
 さきほどの`fetchResources`関数ではforループと`await`式を利用していました。
 このときにforループの代わりに`Array#forEach`メソッドは利用できません。
 
-まず最初に説明したように、単純に`fetchResources`関数のforループから`Array#forEach`メソッドに書き換えて見ると、構文エラー（`SyntaxError`）が発生してしまいます。
+単純に`fetchResources`関数のforループから`Array#forEach`メソッドに書き換えて見ると、構文エラー（`SyntaxError`）が発生してしまいます。
+これは`await`式がAsync Functionの中でのみ利用ができる構文であるためです。
 
 <!-- textlint-disable -->
 <!-- doctest:disable -->
@@ -1723,8 +1729,7 @@ async function fetchResources(resources) {
 
 <!-- textlint-enable -->
 
-これは`await`式がAsync Functionの中でのみ利用ができる構文であるためです。
-そのため、`Array#forEach`メソッドなどのコールバック関数もAsync Functionとして定義しないと、コールバック関数では`await`式が利用できません。
+そのため、`Array#forEach`メソッドのコールバック関数もAsync Functionとして定義しないと、コールバック関数では`await`式が利用できません。
 
 この構文エラーは`Array#forEach`メソッドのコールバック関数をAsync Functionにすることで解決できます。
 しかし、コールバック関数をAsync Functionにしただけでは、`fetchResources`関数は常に空の配列で解決されるPromiseを返すという意図しない挙動となります。
@@ -1746,7 +1751,9 @@ function dummyFetch(path) {
 // リソースを順番に取得する
 async function fetchResources(resources) {
     const results = [];
+    // コールバック関数をAsync Functionに変更
     resources.forEach(async function(resource) {
+        // await式を利用できるようになった
         const response = await dummyFetch(resource);
         results.push(response.body);
     });
@@ -1755,7 +1762,7 @@ async function fetchResources(resources) {
 const resources = ["/resource/A", "/resource/B"];
 // リソースを取得して出力する
 fetchResources(resources).then((results) => {
-    // resultsは空になってしまう
+    // しかし、resultsは空になってしまう
     console.log(results); // => []
 });
 ```
@@ -1763,7 +1770,7 @@ fetchResources(resources).then((results) => {
 なぜこのようになるかを`fetchResources`関数の動きを見てみましょう。
 
 `forEach`メソッドのコールバック関数としてAsync Functionを渡し、コールバック関数中で`await`式を利用して非同期処理の完了を待っています。 
-しかし、この非同期処理の完了を待つのはコールバック関数Async Functionの中だけで、外側では`fetchResources`関数の処理が進んでいます。
+しかし、この非同期処理の完了を待つのはコールバック関数Async Functionの中だけで、コールバック関数の外側では`fetchResources`関数の処理が進んでいます。
 
 次のように`fetchResources`関数にコンソールログを入れてみると動作が分かりやすいでしょう。
 `forEach`メソッドのコールバック関数が完了するのは、`fetchResources`関数の呼び出しがすべて終わった後になります。
@@ -1807,8 +1814,8 @@ fetchResources(resources).then((results) => {
 
 このように、Async Functionとコールバック関数を組み合わせた場合には気をつける必要があります。
 
-この問題を解決する方法として、最初の`fetchResources`関数のようにコールバック関数を使わずに済むforループを使う方法があります。
-また、リソースの取得順が関係ない場合は、`Promise.all`メソッドを使い、複数の非同期処理を1つのPromiseとしてまとめる方法があります。
+この問題を解決する方法として、最初の`fetchResources`関数のように、コールバック関数を使わずに済むforループと`await`式を組み合わせる方法があります。
+また、`fetchAllResources`関数のように、複数の非同期処理を1つのPromiseにまとめることでループ中に`await`式を使わないようにする方法があります。
 
 ## まとめ {#conclusion}
 
