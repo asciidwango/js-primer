@@ -1720,7 +1720,7 @@ async function fetchResources(resources) {
 
 <!-- textlint-enable -->
 
-このように`await`式はAsync Functionの中でのみ利用ができる構文であるためです。
+これは`await`式はAsync Functionの中でのみ利用ができる構文であるためです。
 そのため、`Array#forEach`メソッドなどのコールバック関数もAsync Functionとして定義しないと、コールバック関数では`await`式が利用できません。
 
 この構文エラーは`Array#forEach`メソッドのコールバック関数をAsync Functionにすることで解決できます。
