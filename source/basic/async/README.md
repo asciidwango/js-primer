@@ -1650,7 +1650,7 @@ Async Functionも内部的にPromiseの仕組みを利用しているため、�
 
 `await`式を利用する際の注意点として、`await`式はAsync Functionの中でのみ利用可能です。
 
-次のコードのように、Async Functionではない通常の関数で`await`式を使うとSyntax Errorとなります。
+次のコードのように、Async Functionではない通常の関数で`await`式を使うと構文エラー（`SyntaxError`）となります。
 これは、間違った`await`式の使い方を防止するための仕様です。
 
 <!-- textlint-disable -->
