@@ -1697,7 +1697,7 @@ Async Function外の処理も停止できてしまうと、JavaScriptでは基�
 この仕様は、Async Functionをコールバック関数内で利用しようとしたときに問題となる場合があります。
 具体例として、先ほどの逐次的にリソースを取得する`fetchResources`関数を見てみます。
 
-さきほどの`fetchResources`関数ではforループと`await`4季を利用していました。
+さきほどの`fetchResources`関数ではforループと`await`式を利用していました。
 このときにforループの代わりに`Array#forEach`メソッドは利用できません。
 
 まず最初に説明したように、単純に`fetchResources`関数のforループから`Array#forEach`メソッドに書き換えて見ると、構文エラー（`SyntaxError`）が発生してしまいます。
