@@ -1727,6 +1727,7 @@ async function fetchResources(resources) {
 しかし、コールバック関数をAsync Functionにしただけでは、`fetchResources`関数は常に空の配列で解決されるPromiseを返すという意図しない挙動となります。
 
 {{book.console}}
+<!-- doctest:async:2000 -->
 ```js
 function dummyFetch(path) {
     return new Promise((resolve, reject) => {
@@ -1766,10 +1767,11 @@ fetchResources(resources).then((results) => {
 そのため、`forEach`メソッドのコールバック関数でリソースの取得が完了する前に、`fetchResources`関数はその時点の`results`である空の配列で解決してしまいます。
 
 {{book.console}}
+<!-- doctest:async:2000 -->
 ```js
 function dummyFetch(path) {
     return new Promise((resolve, reject) => {
-        setTimeout(function(){
+        setTimeout(() => {
             if (path.startsWith("/resource")) {
                 resolve({ body: `Response body of ${path}` });
             } else {
