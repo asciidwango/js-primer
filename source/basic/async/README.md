@@ -1070,7 +1070,7 @@ Promise.all([promise1, promise2, promise3]).then(function(values) {
 ```
 
 先程のPromiseチェーンでリソースを取得する例では、Resource Aを取得し終わってからResource Bを取得というように逐次的でした。
-しかし、Resource AとBどちらを先に取得しても問題ない場合は、`Promise.all`メソッドを使い2つのPromiseを1つのPromiseとしてまとめられます。
+しかし、Resource AとBどちらを先に取得しても問題ない場合は、`Promise.all`メソッドを使い複数のPromiseを1つのPromiseとしてまとめられます。
 また、Resource AとBを同時に取得すればより早い時間で処理が完了します。
 
 次のコードでは、Resource AとBを同時に取得開始しています。
@@ -1293,7 +1293,7 @@ const obj = { async method() {} };
 これらのAsync Functionは、次の点以外は通常の関数と同じ性質を持ちます。
 
 - Async Functionは必ず`Promise`インスタンスを返す
-- Async Function内では``await``式が利用できる
+- Async Function内では`await`式が利用できる
 
 ## Async FunctionはPromiseを返す {#async-function-return-promise}
 
@@ -1464,12 +1464,193 @@ asyncMain().catch(error => {
 このように`await`式を使うことで、`try...catch`構文のように非同期処理を同期処理と同じ構文を使って扱えます。
 またコードの見た目も同期処理と同じように、その行（その文）の処理が完了するまで次の行を評価しないという分かりやすい形になるのは大きな利点です。
 
+### Promiseチェーンを`await`式で表現する {#promise-chain-to-async-function}
+
+<!-- Promiseと配列にしなかったのは、Promiseの逐次処理を抽象化するにはArray#reduceがでてくるため -->
+
+Async Functionと`await`式を使うことでPromiseチェーンとして表現していた非同期処理を同期処理のような見た目でかけます。
+まずは、Promiseチェーンで複数の非同期処理を逐次的に行うケースを見ていきます。
+その後に、同様の処理をAsync Functionと`await`式で書き直して比較してみます。
+
+次のコードの`fetchAB`関数はリソースAとリソースBを順番に取得する処理をPromiseチェーンで書いています。
+
+{{book.console}}
+<!-- doctest:async:2000 -->
+```js
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startsWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+// リソースAとリソースBを順番に取得する
+function fetchAB() {
+    const results = [];
+    return dummyFetch("/resource/A").then(response => {
+        results.push(response.body);
+        return dummyFetch("/resource/B");
+    }).then(response => {
+        results.push(response.body);
+        return results;
+    });
+}
+// リソースを取得して出力する
+fetchAB().then((results) => {
+    console.log(results); // => ["Response body of /resource/A", "Response body of /resource/B"]
+});
+```
+
+同様の処理をAsync Functionと`await`式で書くと次のように書けます。
+`await`式を使いリソースが取得できるまで待ち、その結果を変数`results`に追加していくという形で逐次処理が実装できます。
+
+{{book.console}}
+<!-- doctest:async:2000 -->
+```js
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startsWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+// リソースAとリソースBを順番に取得する
+async function fetchAB() {
+    const results = [];
+    const responseA = await dummyFetch("/resource/A");
+    results.push(responseA.body);
+    const responseB = await dummyFetch("/resource/B");
+    results.push(responseB.body);
+    return results;
+}
+// リソースを取得して出力する
+fetchAB().then((results) => {
+    console.log(results); // => ["Response body of /resource/A", "Response body of /resource/B"]
+});
+```
+
+Promiseチェーンで`fetchAB`関数書いた場合は、コールバックの中で処理するためややこしい見た目になりがちです。
+一方、Async Functionと`await`式で書いた場合は、取得と追加を順番に行うだけとなりネストがなく見た目はシンプルです。
+
+## Async Functionと組み合わせ {#async-function-conbination}
+
+これまでで基本的なAsync Functionの動きを見てきましたが、より応用的なAsync Functionの使い方を見ていきましょう。
+
+### Async Functionと反復処理 {#async-function-array}
+
+複数の非同期処理を行う際にAsync Functionはforループなどの反復処理と組み合わせ利用できます。
+
+次のコードでは、指定したリソースのパスの配列を渡してそれらを順番に取得する`fetchResource`関数を実装してみます。
+Async Function内でfor文を使った反復処理を行い、forループの中で`await`文を使ってリソースの取得を待って追加しています。
+
+{{book.console}}
+<!-- doctest:async:2000 -->
+```js
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startsWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+// 複数のリソースを順番に取得する
+async function fetchResources(resources) {
+    const results = [];
+    for (let i = 0; i < resources.length; i++) {
+        const resource = resources[i];
+        const response = await dummyFetch(resource);
+        results.push(response.body);
+    }
+    return results;
+}
+// 取得したいリソースのパス配列
+const resources = [
+    "/resource/A",
+    "/resource/B"
+];
+// リソースを取得して出力する
+fetchResources(resources).then((results) => {
+    console.log(results); // => ["Response body of /resource/A", "Response body of /resource/B"]
+});
+```
+
+### Promise APIとAsync Functionを組み合わせる {#relationship-promise-async-function}
+
+Async Functionと`await`式でも非同期処理を同期処理のような見た目で書けます。
+一方で同期処理のような見た目となるため、複数の非同期処理を順番に行うようなケースでは無駄な待ち時間を作ってしまうコードを書きやすいです。
+
+先ほどの`fetchResources`関数ではリソースを順番に1つずつ取得していました。
+そのため、リソースAとBを取得しようとした場合にかかる時間は、リソースAとBの取得時間の合計となります。
+たとえば、リソースAに1秒、リソースBに2秒かかる場合、すべてのリソースを取得するのに3秒かかります。
+
+このとき、取得する順番に意味がない場合は、複数のリソースを同時に取得することで余計な待ち時間を解消できます。
+先ほどの例ならば、リソースAとBを同時に取得すれば、もっとも時間のかかるリソースBの2秒程度で済むはずです。
+
+Promiseチェーンでは`Promise.all`メソッドを使い、複数の非同期処理を1つの`Promise`インスタンスにまとめることで同時に取得していました。
+`await`式が評価するのは`Promise`インスタンスであるため、`await`式でも`Promise.all`メソッドと組み合わせて利用できます。
+
+次のコードでは、`Promise.all`メソッドを使って同時にリソースを取得する`fetchAllResources`関数を実装しています。
+`Promise.all`メソッドは複数のPromiseを配列で受け取り、それを1つのPromiseとしてまとめたものを返す関数です。
+`Promise.all`メソッドの返す`Promise`インスタンスを`await`することで、非同期処理の結果を配列としてまとめて取得できます。
+
+{{book.console}}
+<!-- doctest:async:1000 -->
+```js
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startsWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+// 複数のリソースをまとめて取得する
+async function fetchAllResources(resources) {
+    // リソースを同時に取得する
+    const promises = resources.map(function(resource) {
+        return dummyFetch(resource);
+    });
+    // すべてのリソースが取得できるまで待つ
+    // Promise.allは [ResponseA, ResponseB] のように結果が配列となる
+    const responses = await Promise.all(promises);
+    // 取得した結果からレスポンスのボディだけを取り出す
+    return responses.map((response) => {
+        return response.body;
+    });
+}
+const resources = [
+    "/resource/A",
+    "/resource/B"
+];
+// リソースを取得して出力する
+fetchAllResources(resources).then((results) => {
+    console.log(results); // => ["Response body of /resource/A", "Response body of /resource/B"]
+});
+```
+
+このようにAsync Functionや`await`式は既存のPromise APIと組み合わせて利用できます。
+Async Functionも内部的にPromiseの仕組みを利用しているため、両者は対立関係ではなく共存関係です。
+
 ### `await`式はAsync Functionの中でのみ利用可能 {#await-in-async-function}
 
-`await`式はAsync Functionの直下でのみで利用可能です。
-なぜこのような仕様になっているのかを確認していきます。
+`await`式を利用する際の注意点として、`await`式はAsync Functionの中でのみ利用可能です。
 
-まず、Async Functionではない通常の関数で`await`式を使うとSyntax Errorとなります。
+次のコードのように、Async Functionではない通常の関数で`await`式を使うとSyntax Errorとなります。
 これは、間違った`await`式の使い方を防止するための仕様です。
 
 <!-- textlint-disable -->
@@ -1477,6 +1658,7 @@ asyncMain().catch(error => {
 {{book.console}}
 <!-- doctest: SyntaxError -->
 ```js
+// asyncではない関数では`await`式は利用できない
 function main(){
     // Syntax Error
     await Promise.resolve();
@@ -1485,7 +1667,7 @@ function main(){
 <!-- textlint-enable eslint -->
 
 
-次に、Async Function内で`await`式を使って処理を待っている間も、関数の外側では通常通り処理が進みます。
+Async Function内で`await`式を使って処理を待っている間も、関数の外側では通常通り処理が進みます。
 次のコードを実行してみると、Async Function内で`await`しても、Async Function外の処理は停止していないことがわかります。
 
 {{book.console}}
@@ -1508,54 +1690,43 @@ console.log("2. asyncMain関数外では、次の行が同期的に呼び出さ�
 
 このように`await`式を非同期処理を一時停止しても、Async Function外の処理が停止するわけではありません。
 Async Function外の処理も停止できてしまうと、JavaScriptでは基本的にメインスレッドで多くの処理をするためのUIを含めた他の処理が止まってしまいます。
-これが`await`式がAsync Functionの範囲外で利用できない理由の一つです。
+これが`await`式がAsync Functionの外で利用できない理由の一つです。
 
 <!-- 仕様的にはAsync Execution Contextという特殊なものだけで使えるという話になる -->
 
-`await`式はAsync Functionの中でのみ利用可能なため、次のようなコールバック関数では`await`式が利用できないことに注意してください。
+この仕様は、Async Functionをコールバック関数内で利用しようとしたときに問題となる場合があります。
+具体例として、先ほどの逐次的にリソースを取得する`fetchResources`関数を見てみます。
 
-次のコードでは`await`式は`asyncMain`関数の直下ではなく、`forEach`メソッドのコールバック関数に書かれているためSyntax Errorとなります。
+さきほどの`fetchResources`関数ではforループと`await`4季を利用していました。
+このときにforループの代わりに`Array#forEach`メソッドは利用できません。
+
+まず最初に説明したように、単純に`fetchResources`関数のforループから`Array#forEach`メソッドに書き換えて見ると、構文エラー（`SyntaxError`）が発生してしまいます。
 
 <!-- textlint-disable -->
-
-{{book.console}}
 <!-- doctest:disable -->
 ```js
-// コールバック関数で構文エラーとなる例
-async function asyncMain(){
-    const promises = [Promise.resolve(1), Promise.resolve(2), Promise.resolve(3)];
-    promises.forEach(promise => {
-        // Syntax Error
-        await promise;
+async function fetchResources(resources) {
+    const results = [];
+    // Syntax Errorとなる例
+    resources.forEach(function(resources) {
+        const resource = resources[i];
+        // Async Functionではないスコープで`await`式を利用しているためSyntax Errorとなる
+        const response = await dummyFetch(resource);
+        results.push(response.body);
     });
+    return results;
 }
 ```
 
 <!-- textlint-enable -->
 
-このコードを正しく書くには、次のようにコールバック関数に対して`async`キーワードをつける必要があります。
-この場合は、コールバック関数がAsync Functionとなるため、コールバック関数内で`await`式が利用できます。
+このように`await`式はAsync Functionの中でのみ利用ができる構文であるためです。
+そのため、`Array#forEach`メソッドなどのコールバック関数もAsync Functionとして定義しないと、コールバック関数では`await`式が利用できません。
+
+この構文エラーは`Array#forEach`メソッドのコールバック関数をAsync Functionにすることで解決できます。
+しかし、コールバック関数をAsync Functionにしただけでは、`fetchResources`関数は常に空の配列で解決されるPromiseを返すという意図しない挙動となります。
 
 {{book.console}}
-<!-- doctest:async:16 -->
-```js
-// 正しいAsync Functionとコールバック関数の書き方
-async function asyncMain() {
-    const promises = [Promise.resolve(1), Promise.resolve(2), Promise.resolve(3)];
-    promises.forEach(async promise => {
-        await promise;
-    });
-}
-```
-
-### Promiseチェーンを`await`式で表現する {#promise-chain-to-async-function}
-
-Async Functionと`await`式を使うことでPromiseチェーンとして表現していた非同期処理を同期処理のような見た目でかけます。
-
-たとえば、次のようなリソースAとリソースBを順番に取得する処理をPromiseチェーンで書くと次のようになります。
-
-{{book.console}}
-<!-- doctest:async:2000 -->
 ```js
 function dummyFetch(path) {
     return new Promise((resolve, reject) => {
@@ -1568,79 +1739,37 @@ function dummyFetch(path) {
         }, 1000 * Math.random());
     });
 }
-// リソースAとリソースBを順番に取得する
-function fetchResources() {
+// リソースを順番に取得する
+async function fetchResources(resources) {
     const results = [];
-    return dummyFetch("/resource/A").then(response => {
+    resources.forEach(async function(resource) {
+        const response = await dummyFetch(resource);
         results.push(response.body);
-        return dummyFetch("/resource/B");
-    }).then(response => {
-        results.push(response.body);
-    }).then(() => {
-        return results;
     });
-}
-// リソースを取得して出力する
-fetchResources().then((results) => {
-    console.log(results); // => ["Response body of /resource/A", "Response body of /resource/B"]
-});
-```
-
-このコードと同じ処理をAsync Functionと`await`式で書くと次のように書けます。
-
-{{book.console}}
-<!-- doctest:async:2000 -->
-```js
-function dummyFetch(path) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            if (path.startsWith("/resource")) {
-                resolve({ body: `Response body of ${path}` });
-            } else {
-                reject(new Error("NOT FOUND"));
-            }
-        }, 1000 * Math.random());
-    });
-}
-// リソースAとリソースBを順番に取得する
-async function fetchResources() {
-    const results = [];
-    const responseA = await dummyFetch("/resource/A");
-    results.push(responseA.body);
-    const responseB = await dummyFetch("/resource/B");
-    results.push(responseB.body);
     return results;
 }
+const resources = ["/resource/A", "/resource/B"];
 // リソースを取得して出力する
-fetchResources().then((results) => {
-    console.log(results); // => ["Response body of /resource/A", "Response body of /resource/B"]
+fetchResources(resources).then((results) => {
+    // resultsは空になってしまう
+    console.log(results); // => []
 });
 ```
 
-Promiseチェーンで`fetchResources`関数書いた場合は、コールバックの中で処理するためややこしい見た目になりがちです。
-一方、Async Functionと`await`式で書いた場合は、取得と追加を順番に行うだけとなりネストがなく見た目はシンプルです。
+なぜこのようになるかを`fetchResources`関数の動きを見てみましょう。
 
-### PromiseとAsync Functionは共存する {#relationship-promise-async-function}
+`forEach`メソッドのコールバック関数としてAsync Functionを渡し、コールバック関数中で`await`式を利用して非同期処理の完了を待っています。 
+しかし、この非同期処理の完了を待つのはコールバック関数Async Functionの中だけで、外側では`fetchResources`関数の処理が進んでいます。
 
-Async Functionと`await`式でも非同期処理を同期処理のような見た目で書けます。
-一方で同期処理のような見た目となるため、複数の非同期処理を順番に行うようなケースでは無駄な待ち時間を作ってしまうコードを書きやすいです。
-
-先ほど`fetchResources`関数ではリソースAを取得し終わってから、リソースBを取得していました。
-このとき、取得順が関係無い場合はリソースAとリソースBを同時に取得できます。
-
-Promiseチェーンでは`Promise.all`メソッドを使い、リソースAとリソースBを取得する非同期処理を1つの`Promise`インスタンスにまとめることで同時に取得していました。
-`await`式が評価するのは`Promise`インスタンスであるため、`await`式は`Promise.all`メソッドなど`Promise`インスタンスを返す処理と組み合わせて利用できます。
-
-そのため、先ほど`fetchResources`関数でリソースを同時に取得する場合は、次のように書けます。
-`Promise.all`メソッドは複数のPromiseを配列で受け取り、それを1つのPromiseとしてまとめたものを返す関数です。
-`Promise.all`メソッドの返す`Promise`インスタンスを`await`することで、非同期処理の結果を配列としてまとめて取得できます。
+次のように`fetchResources`関数にコンソールログを入れてみると動作が分かりやすいでしょう。
+`forEach`メソッドのコールバック関数が完了するのは、`fetchResources`関数の呼び出しがすべて終わった後になります。
+そのため、`forEach`メソッドのコールバック関数でリソースの取得が完了する前に、`fetchResources`関数はその時点の`results`である空の配列で解決してしまいます。
 
 {{book.console}}
-<!-- doctest:async:1000 -->
 ```js
 function dummyFetch(path) {
     return new Promise((resolve, reject) => {
-        setTimeout(() => {
+        setTimeout(function(){
             if (path.startsWith("/resource")) {
                 resolve({ body: `Response body of ${path}` });
             } else {
@@ -1649,216 +1778,46 @@ function dummyFetch(path) {
         }, 1000 * Math.random());
     });
 }
-// リソースAとリソースBを同時に取得する
-async function fetchResources() {
-    // Promise.allは [ResponseA, ResponseB] のように結果を配列にしたPromiseインスタンスを返す
-    const responses = await Promise.all([
-        dummyFetch("/resource/A"),
-        dummyFetch("/resource/B")
-    ]);
-    return responses.map(response => {
-        return response.body;
+// リソースを順番に取得する
+async function fetchResources(resources) {
+    const results = [];
+    console.log("1. fetchResourcesを開始");
+    resources.forEach(async function(resource) {
+        console.log(`2. ${resource}の取得開始`);
+        const response = await dummyFetch(resource);
+        // `dummyFetch`が完了するのは、`fetchResources`関数が返したPromiseが解決された後
+        console.log(`5. ${resource}の取得完了`);
+        results.push(response.body);
     });
+    console.log("3. fetchResourcesを終了");
+    return results;
 }
+const resources = ["/resource/A", "/resource/B"];
 // リソースを取得して出力する
-fetchResources().then((results) => {
-    console.log(results); // => ["Response body of /resource/A", "Response body of /resource/B"]
+fetchResources(resources).then((results) => {
+    console.log("4. fetchResourcesの結果を取得");
+    console.log(results); // => []
 });
 ```
 
-このようにAsync Functionや`await`式は既存のPromiseと組み合わせて利用できます。
-Async Functionも内部的にPromiseの仕組みを利用しているため、両者は対立関係ではなく共存関係です。
+このように、Async Functionとコールバック関数を組み合わせた場合には気をつける必要があります。
 
-## コールバック関数とAsync Function {#callback-and-async-function}
+この問題を解決する方法として、最初の`fetchResources`関数のようにコールバック関数を使わずに済むforループを使う方法があります。
+また、リソースの取得順が関係ない場合は、`Promise.all`メソッドを使い、複数の非同期処理を1つのPromiseとしてまとめる方法があります。
 
-Async Functionと`await`式はPromiseチェーンに比べてコードを読みやすくしますが、すべてのケースでそうとはいえません。
-ここでは`await`式とコールバック関数の組み合わせにおいての直感的ではない動作を紹介します。
+## まとめ {#conclusion}
 
-次のコードは`AsyncStorage`という擬似的に非同期で読み書きするストレージクラスを使う例です。
-`main`関数では`saveUsers`関数でユーザーデータを保存し、保存が完了後にユーザーデータが読み出せるかをチェックしています。
+この章では、非同期処理に関するコールバック関数、Promise、Async Functionについて学びました。
 
-{{book.console}}
-<!-- doctest:async:1000 -->
-```js
-class AsyncStorage {
-    constructor() {
-        this.dataMap = new Map();
-    }
-    async save(key, value) {
-        return new Promise(resolve => {
-            setTimeout(() => {
-                this.dataMap.set(key, value);
-                resolve();
-            }, 100);
-        });
-    }
-    async load(key) {
-        return new Promise(resolve => {
-            setTimeout(() => {
-                resolve(this.dataMap.get(key));
-            }, 50);
-        });
-    }
-}
-// Async Storageを作成する
-const storage = new AsyncStorage();
-// 1. AsyncStorageにデータを保存する
-async function saveUsers(users) {
-    users.forEach(async(user) => {
-        await storage.save(user.id, user);
-    });
-}
-// 2. AsyncStorageからデータを読み取る
-async function loadUser(userId) {
-    return storage.load(userId);
-}
-async function main() {
-    const users = [{ id: 1, name: "John" }, { id: 5, name: "Smith" }, { id: 7, name: "Ayo" }];
-    await saveUsers(users);
-    // idが5のユーザーデータを取り出す
-    const user = await loadUser(5);
-    // しかしまだ保存が完了していないためundefinedとなる
-    console.log(user); // => undefined
-}
-main();
-```
-
-このコードは`users`（ユーザーデータ）をストレージに保存し、保存が完了後にすぐ読み出せることを意図しています。
-しかし、`saveUsers`関数を呼び出し後に`loadUser`でユーザーデータを読み出しても`undefined`が返されます。
-これは保存が完了する前に、ユーザーデータを読み取ろうとしてしまったため空の値である`undefined`が返されています。
-
-なぜ意図したように動いていないかというと`saveUsers`関数の実装に問題があるためです。
-
-`saveUsers`関数を詳しく見ていきます。
-`forEach`メソッドのコールバック関数としてAsync Functionを渡しています。
-Async Functionの中で`await`式を利用して非同期処理の完了を待っています。
-しかし、この非同期処理の完了を待つのはAsync Functionの中だけで、外側では`save`メソッドの完了を待つことなく進みます。
-
-次のように`saveUsers`関数にコンソール出力を入れてみると動作が分かりやすいでしょう。
-`forEach`メソッドのコールバック関数が完了するのは、`saveUsers`関数の呼び出しがすべて終わった後になります。
-そのため`await`式で`saveUsers`関数の完了を待ったつもりでも、その時点ではStorageに値が保存されていません。
-
-<!-- doctest:async:16 -->
-```js
-async function saveUsers(users) {
-    console.log("1. saveUsers関数開始");
-    users.forEach(async(user) => {
-        // 非同期処理が完了するまで待つ
-        await storage.save(user.id, user);
-        console.log(`3. UserId:${user.id}を保存しました`);
-    });
-    console.log("2. saveUsers関数終了");
-}
-```
-
-この問題を修正する方法はいくつかありますが、ここでは2種類の方法を見ていきます。
-
-1つめの方法は、Async Functionをコールバック関数に利用しない方法です。
-次のコードのように`forEach`メソッドではなくforループを利用すれば、特別な工夫をせずにユーザーデータを保存できます。
-
-<!-- doctest:disable -->
-```js
-async function saveUsers(users) {
-    console.log("1. saveUsers関数開始");
-    for (let i = 0; i < user.length; i++) {
-        const user = users[i];
-        // コールバック関数ではないので、`saveUsers`関数の処理もここで一時停止する
-        await storage.save(user.id, user);
-        console.log(`2. UserId:${user.id}を保存しました`);
-    };
-    console.log("3. saveUsers関数終了");
-}
-```
-
-2つめの方法は、Async Functionを使ったコールバック関数の結果のPromiseがすべて完了するのを待つ方法です。
-Async FunctionはそれぞれPromiseを返すため、すべてのPromiseの完了を明示的に待てばよいはずです。
-複数のPromiseの完了を待つには`Promise.all`メソッドで1つのPromiseにまとめて`await`式でそのPromiseの完了を待てばよいだけです。
-
-次のコードは`Array#forEach`メソッドではなく、`Array#map`メソッドを使いコールバック関数の結果を集めています。
-その集めたPromiseを`Promise.all`メソッドで1つのPromiseにして、`await`式で完了するまで待つだけです。
-
-<!-- doctest:disable -->
-```js
-async function saveUsers(users) {
-    console.log("1. saveUsers関数開始");
-    const promises = users.map(async user => {
-        await storage.save(user.id, user);
-        console.log(`2. UserId:${user.id}を保存しました`);
-    });
-    // すべての保存処理のPromiseを完了を待つ
-    await Promise.all(promises);
-    console.log("3. saveUsers関数終了");
-}
-```
-
-`AsyncStorage#save`メソッドはもともとPromiseを返すため、次のようにAsync Functionをコールバック関数にしなくても動作は同じです。
-
-<!-- doctest:disable -->
-```js
-async function saveUsers(users) {
-    const promises = users.map(user => {
-        return storage.save(user.id, user);
-    });
-    await Promise.all(promises);
-}
-```
-
-最後にもともとのコードの`saveUsers`関数を修正し、動作を確認してみます。
-
-次のように`saveUsers`関数の問題を修正することで、`saveUsers`関数の完了する前にユーザーデータがストレージに保存できます。
-`await saveUsers(ユーザーデータ)`で完了を待つことで、次の行でストレージからデータを取り出したときに意図したようにデータを取得できます。
-
-{{book.console}}
-<!-- doctest:async:1000 -->
-```js
-class AsyncStorage {
-    constructor() {
-        this.dataMap = new Map();
-    }
-    save(key, value) {
-        return new Promise(resolve => {
-            setTimeout(() => {
-                this.dataMap.set(key, value);
-                resolve();
-            }, 100);
-        });
-    }
-    load(key) {
-        return new Promise(resolve => {
-            setTimeout(() => {
-                resolve(this.dataMap.get(key));
-            }, 50);
-        });
-    }
-}
-// Async Storageを作成する
-const storage = new AsyncStorage();
-// 1. AsyncStorageにデータを保存する
-async function saveUsers(users) {
-    // Storege#saveはそれぞれPromiseを返すためAsync Functionをコールバックにしなくても良い
-    const promises = users.map(user => storage.save(user.id, user));
-    await Promise.all(promises);
-    return; // 返り値は明示的になしにしているため、undefinedでresolveされるPromiseを返す
-}
-// 2. AsyncStorageからデータを読み取る
-async function loadUser(userId) {
-    return storage.load(userId);
-}
-async function main() {
-    const users = [{ id: 1, name: "John" }, { id: 5, name: "Smith" }, { id: 7, name: "Ayo" }];
-    await saveUsers(users);
-    // idが5のユーザーデータを取り出す
-    const user = await loadUser(5);
-    console.log(user); // => { id: 5, name: "Smith" }
-}
-main();
-```
-
-Async Functionは非同期処理のコードフローを分かりやすくしますが、コールバック関数に利用した際には分かりにくくする場合もあります。
-そのため、無理してすべてをAsync Functionで書く必要はなく、Promiseの仕組みそのものを利用することも重要です。
-Async FunctionはPromiseの上に作られた仕組みであるため、両者を一緒に利用することも考えてみてください。
+- 非同期処理はその処理が終わるの待つ前に次の処理を評価すること
+- 非同期処理であってもメインスレッドで実行されることがある
+- エラーファーストコールバックは、非同期処理での例外を扱うルールの1つ
+- Promiseは、ES2015で導入された非同期処理を扱うビルトインオブジェクト
+- Async Functionは、ES2017で導入された非同期処理を扱う構文
+- Async FunctionはPromiseの上に作られた構文であるため、Promiseと組み合わせて利用する
 
 [文と式]: ../statement-expression/README.md
+[ループと反復処理]: ../loop/README.md
 [例外処理]: ../error-try-catch/README.md
 [Web Worker]: https://developer.mozilla.org/ja/docs/Web/API/Web_Workers_API/Using_web_workers
 [Promise]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise
