@@ -283,7 +283,7 @@ MDNの[JavaScriptエラーリファレンス][]には、ブラウザが投げる
 - `catch`節と`finally`節は、両方またはどちらか片方を記述する
 - `throw`文は例外をなげることができ、一般的に`Error`オブジェクトを例外として投げる
 - `Error`オブジェクトには、ECMAScript仕様や実行環境で定義されたビルトインエラーがある
-- エラーにはスタックトレースが記録されデバッグに役立てられる
+- `Error`オブジェクトには、スタックトレースが記録されデバッグに役立てられる
 
 [try...catch]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/try...catch
 [throw]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/throw
