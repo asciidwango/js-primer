@@ -477,6 +477,16 @@ console.log(results); // => ["a","b"]
 
 また、弱い参照で値をもつ特性上、`WeakSet`の値として使えるのは参照型のオブジェクトだけです。
 
+## まとめ {#conclusion}
+
+この章ではMapとSetについて学びました。
+
+- `Map`はキーと値の組み合わせからなるコレクションを扱うビルトインオブジェクト
+- `Map`のキーはプロトタイプオブジェクトのプロパティと名前が衝突しないため意図しないマッピングを避けられる
+- `WeakMap`はキーを弱い参照でもつ`Map`と同様のビルトインオブジェクト
+- `Set`は重複する値がないことを保証した順序を持たないコレクションを扱うビルトインオブジェクト
+- `WeakSet`は値を弱い参照をもつ`Set`と同様のビルトインオブジェクト
+
 [Map]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Map
 [Same-value-zero]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Equality_comparisons_and_when_to_use_them#Same-value-zero_equality
 [Set]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Set
