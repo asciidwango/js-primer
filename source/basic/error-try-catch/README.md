@@ -10,8 +10,8 @@ description: "JavaScriptにおける例外処理についてを紹介します�
 ## try...catch構文 {#try-catch}
 
 [try...catch][]構文は例外が発生しうるブロックをマークし、例外が発生したときの処理を記述するための構文です。
-次の例のように、`try`文にはひとつの`try`ブロックがあり、`try`ブロック内で発生した例外を`catch`節でキャッチします。
 
+次のコードのように、`try`文にはひとつの`try`ブロックがあり、`try`ブロック内で発生した例外を`catch`節でキャッチします。
 `try`ブロック内で例外が発生すると、それ以降の文は実行されず`catch`節に処理が移ります。
 `finally`節が存在するときには、例外がなげられたかどうかにかかわらず、かならず`try`文の最後に実行されます。
 
@@ -28,7 +28,7 @@ try {
     console.log(error instanceof ReferenceError); // => true
     console.log(error.message); // => "undefinedFunction is not defined"
 } finally {
-    // このブロックはかならず実行される
+    // このブロックは例外の発生に関係なく必ず実行される
     console.log("この行は実行されます");
 }
 ```
@@ -83,11 +83,11 @@ try {
 渡したエラーメッセージは`Error#message`プロパティに格納されます。
 
 次のコードでは、`assertPositiveNumber`関数でエラーオブジェクトを作成し、例外として`throw`しています。
-投げられたオブジェクトは、catch節の例外識別子から取得でき、エラーメッセージが確認できます。
+投げられたオブジェクトは、catch節の例外識別子（`error`）からエラーオブジェクトを取得でき、エラーメッセージが確認できます。
 
 {{book.console}}
 ```js
-// 渡された数値が0未満であれば例外を投げる関数
+// 渡された数値が0以上ではない場合に例外を投げる関数
 function assertPositiveNumber(num) {
     if (num < 0) {
         throw new Error(`${num} is not positive.`);
@@ -103,10 +103,12 @@ try {
 }
 ```
 
-`throw`文はあらゆるオブジェクトを例外として投げられますが、基本的に`Error`オブジェクトのインスタンスを投げることが推奨されます。
+`throw`文はあらゆるオブジェクトを例外として投げられますが、基本的に`Error`オブジェクトのインスタンスを投げることを推奨します。
 その理由は後述する**スタックトレース**のためです。
 `Error`オブジェクトはインスタンスの作成時に、そのインスタンスが作成されたファイル名や行数などのデバッグに役立つ情報をもっています。
 文字列のような`Error`オブジェクトでないオブジェクトを投げてしまうと、スタックトレースが得られません。
+
+そのため、次のように`throw`文で`Error`オブジェクトではないものを投げるのは非推奨です。
 
 {{book.console}}
 ```js
@@ -114,13 +116,15 @@ try {
 try {
     throw "例外が投げられました";
 } catch (error) {
+    // catch節の例外識別子は、投げられた値を参照する
     console.log(error); // => "例外が投げられました"
 }
 ```
 
 ### ビルトインエラー {#built-in-error}
 
-JavaScriptエンジンが投げる組み込みのエラーのことをビルトインエラーと呼びます。
+エラーには状況に合わせたいくつかの種類があり、これらはビルトインエラーとして定義されています。
+ビルトインエラーとは、ECMAScript仕様や実行環境に組み込みで定義されているエラーオブジェクトです。
 ビルトインエラーとして投げられるエラーオブジェクトは、すべて`Error`オブジェクトを継承したオブジェクトのインスタンスです。
 そのため、ユーザーが定義したエラーと同じように例外処理できます。
 
@@ -271,6 +275,15 @@ MDNの[JavaScriptエラーリファレンス][]には、ブラウザが投げる
 また、ほとんどのブラウザには`console.log`や`console.error`の出力をフィルタリングできる機能が備わっています。
 ただのログ出力は`console.log`を使い、エラーに関するログ出力は`console.error`と使い分けることで、ログの重要度が区別しやすくなります。
 
+## まとめ {#conclusion}
+
+この章では、例外処理とエラーオブジェクトについて学びました。
+
+- `try...catch`構文は`try`ブロック内で発生した例外を処理できる
+- `catch`節と`finally`節は両方、またはどちらか片方を記述する
+- `throw`文は例外をなげることができ、一般的に`Error`オブジェクトを例外として投げる
+- `Error`オブジェクトには、ECMAScript仕様や実行環境で定義されたビルトインエラーがある
+- エラーにはスタックトレースが記録されデバッグに役立てられる
 
 [try...catch]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/try...catch
 [throw]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/throw
