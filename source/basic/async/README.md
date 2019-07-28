@@ -1660,7 +1660,7 @@ Async Functionも内部的にPromiseの仕組みを利用しているため、�
 ```js
 // asyncではない関数では`await`式は利用できない
 function main(){
-    // Syntax Error
+    // SyntaxError: await is only valid in async functions
     await Promise.resolve();
 }
 ```
