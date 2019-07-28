@@ -1097,6 +1097,7 @@ const fetchedPromise = Promise.all([
     dummyFetch("/resource/A"),
     dummyFetch("/resource/B")
 ]);
+// fetchedPromiseの結果をDestructuringでresponseA, responseBに代入している
 fetchedPromise.then(([responseA, responseB]) => {
     console.log(responseA.body); // => "Response body of /resource/A"
     console.log(responseB.body); // => "Response body of /resource/B"
@@ -1167,7 +1168,7 @@ const racePromise = Promise.race([
     delay(128)
 ]);
 racePromise.then(value => {
-    // もっとも早く完了するのは1ミリ秒
+    // もっとも早く完了するのは1ミリ秒後
     console.log(value); // => 1
 });
 ```
@@ -1180,7 +1181,7 @@ racePromise.then(value => {
 そのため、`racePromise`は何度も`resolve`されますが、初回以外は無視されるため`then`のコールバック関数は一度しか呼び出されません。
 
 `Promise.race`メソッドを使うことでPromiseを使った非同期処理のタイムアウトが実装できます。
-タイムアウトとは、一定時間経過しても処理が終わっていないならエラーとして扱う処理のことを言います。
+ここでのタイムアウトとは、一定時間経過しても処理が終わっていないならエラーとして扱う処理のことです。
 
 次のコードでは`timeout`関数と`dummyFetch`関数が返す`Promise`インスタンスを`Promise.race`メソッドで競争させています。
 `dummyFetch`関数のランダムな時間をかけてリソースを取得し`resolve`する`Promise`インスタンスを返します。
@@ -1387,12 +1388,12 @@ async function asyncMain() {
 }
 ```
 
-`await`式は**式**であるため右辺（`Promise`インスタンス）の評価結果を値として返します（**式**については「[文と式][]」の章を参照）。
+`await`式は、`await`の右辺（`Promise`インスタンス）の評価結果を値として返します（**式**については「[文と式][]」の章を参照）。
 この`await`式の評価方法は評価するPromiseの状態（**Fulfilled**または**Rejected**）によって異なります。
 
-`await`式の右辺のPromiseが**Fulfilled**となった場合は、resolveされた値が`await`式の返り値となります。
+`await`の右辺のPromiseが**Fulfilled**となった場合は、resolveされた値が`await`式の返り値となります。
 
-次のコードでは、`await`式の右辺にある`Promise`インスタンスは`42`という値でresolveされています。
+次のコードでは、`await`の右辺にある`Promise`インスタンスは`42`という値でresolveされています。
 そのため`await`式の返り値は`42`となり、`value`変数にもその値が入ります。
 
 {{book.console}}
@@ -1423,7 +1424,7 @@ asyncMain(); // Promiseインスタンスを返す
 またAsync Function内で発生した例外は自動的にキャッチされます。
 そのため`await`式でPromiseが**Rejected**となった場合は、そのAsync Functionが**Rejected**なPromiseを返すことになります。
 
-次のコードでは、`await`式の右辺にある`Promise`インスタンスが**Rejected**の状態になっています。
+次のコードでは、`await`の右辺にある`Promise`インスタンスが**Rejected**の状態になっています。
 そのため`await`式は`エラー`を`throw`します。そのエラーを自動的にキャッチするため`asyncMain`関数は**Rejected**なPromiseを返します。
 
 {{book.console}}
@@ -1819,6 +1820,8 @@ fetchResources(resources).then((results) => {
 - Promiseは、ES2015で導入された非同期処理を扱うビルトインオブジェクト
 - Async Functionは、ES2017で導入された非同期処理を扱う構文
 - Async FunctionはPromiseの上に作られた構文であるため、Promiseと組み合わせて利用する
+
+PromiseやAsync Functionの応用パターンについては「[JavaScript Promiseの本][]」も参照してください。
 
 [文と式]: ../statement-expression/README.md
 [ループと反復処理]: ../loop/README.md
