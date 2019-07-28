@@ -486,3 +486,36 @@ error));
 
 - Promiseは1つの非同期処理の結果を表現するオブジェクト
     - <https://www.w3.org/2001/tag/doc/promises-guide>
+
+
+---
+
+## 2019-07-28のアウトライン
+
+- Async FUnction
+    - 構文
+    - Promiseを返す
+- await式
+    - resolve
+    - reject
+    - try-catch
+- await式はAsync Functionの中でのみ利用可能 
+    - [ ] コールバックの罠
+- Promiseチェーンとawait式
+    - 逐次
+    - 並列
+         - Promise.all
+- コールバック関数とAsyn Function
+    - PromiseはAsyncと共存する
+    
+次のような流れにすれば、途切れなくていい感じ
+
+- Promiseチェーンとawait式
+    - 逐次
+    - 並列
+- await式はAsync Functionの中でのみ利用可能 
+    - なぜ?
+    - 仕組み
+    - [具体] 逐次のやつはforEachだと置き換えできないよ
+    - なのでforループやallをつかましょう
+    - コールバックとは若干相性が良くないです。
