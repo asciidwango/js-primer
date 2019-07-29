@@ -52,7 +52,7 @@ const failtureTask = () => {
 
 callTaskAsync(successTask, (error, result) => {
     if (error) {
-        console.log(error); // タスクが失敗した場合
+        console.error(error); // タスクが失敗した場合
     } else {
         console.log(result); // タスクが成功した場合
     }

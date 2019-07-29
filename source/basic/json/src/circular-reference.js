@@ -3,5 +3,5 @@ obj.self = obj;
 try {
     JSON.stringify(obj);
 } catch (error) {
-    console.log(error); // => "TypeError: Converting circular structure to JSON"
+    console.error(error); // => "TypeError: Converting circular structure to JSON"
 }
