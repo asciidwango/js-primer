@@ -5,5 +5,5 @@ const ThrowFn = (callback) => {
 try {
     ThrowFn(() => {});
 } catch (error) {
-    console.log(error); // => Error: message
+    console.error(error); // => Error: message
 }

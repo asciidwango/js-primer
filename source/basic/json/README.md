@@ -5,6 +5,8 @@ description: "JavaScriptのオブジェクトリテラルをベースに作ら�
 
 # JSON {#json}
 
+この章では、JavaScriptと密接な関係にあるJSONというデータフォーマットについて見ていきます。
+
 ## JSONとは {#what-is-json}
 
 JSONはJavaScript Object Notationの略で、JavaScriptのオブジェクトリテラルをベースに作られた軽量なデータフォーマットです。
@@ -34,8 +36,7 @@ JSONの細かい仕様に関しては[json.orgの日本語ドキュメント][]�
 
 ## `JSON`オブジェクト {#json-object}
 
-JavaScriptでJSONを扱うには、ビルトインの[JSONオブジェクト][]を利用します。
-`JSON`オブジェクトはグローバルオブジェクトなので、どのスコープからでもアクセスできます。
+JavaScriptでJSONを扱うには、ビルトインオブジェクトである[JSONオブジェクト][]を利用します。
 `JSON`オブジェクトはJSON形式の文字列とJavaScriptのオブジェクトを相互に変換するための`parse`メソッドと`stringify`メソッドを提供します。
 
 ### JSON文字列をオブジェクトに変換する {#json-parse}
@@ -96,7 +97,7 @@ console.log(JSON.stringify(obj)); // => '{"id":1,"name":"js-primer","bio":null}'
 第2引数はreplacer引数とも呼ばれ、変換後のJSONに含まれるプロパティ関数あるいは配列を渡せます。
 関数を渡した場合は引数にプロパティのキーと値が渡され、その返り値によって文字列に変換される際の挙動をコントロールできます。
 次の例は値がnullであるプロパティを除外してJSONに変換するreplacer引数の例です。
-replacer引数の関数でundefinedが返されたプロパティは、変換後のJSONに含まれなくなります。
+replacer引数の関数で`undefined`が返されたプロパティは、変換後のJSONに含まれなくなります。
 
 {{book.console}}
 ```js
@@ -151,7 +152,7 @@ console.log(JSON.stringify(obj, null, "\t"));
 */
 ```
 
-## [コラム] JSONにシリアライズできないオブジェクト {#not-serialization-object}
+## JSONにシリアライズできないオブジェクト {#not-serialization-object}
 
 `JSON.stringify`メソッドはJSONで表現可能な値だけをシリアライズします。
 そのため、値が関数や`Symbol`、あるいは`undefined`であるプロパティなどは変換されません。
@@ -192,7 +193,7 @@ console.log(JSON.stringify({ x: map })); // => '{"x":{}}'
 ```
 
 オブジェクトがシリアライズされる際は、そのオブジェクトの列挙可能なプロパティだけが再帰的にシリアライズされます。
-RegExpやMap、Setなどのインスタンスは列挙可能なプロパティを持たないため、空のオブジェクトに変換されます。
+`RegExp`や`Map`、`Set`などのインスタンスは列挙可能なプロパティを持たないため、空のオブジェクトに変換されます。
 
 また、`JSON.stringify`メソッドがシリアライズに失敗することもあります。
 よくあるのは、参照が循環しているオブジェクトをシリアライズしようとしたときに例外が投げられるケースです。
@@ -201,7 +202,7 @@ RegExpやMap、Setなどのインスタンスは列挙可能なプロパティ�
 
 [import circular-reference.js](src/circular-reference.js)
 
-## [コラム] `toJSON`メソッドを使ったシリアライズ {#serialization-by-toJSON}
+## `toJSON`メソッドを使ったシリアライズ {#serialization-by-toJSON}
 
 オブジェクトが`toJSON`メソッドを持っている場合、`JSON.stringify`メソッドは既定の文字列変換ではなく`toJSON`メソッドの返り値を使います。
 次の例のように、引数に直接渡されたときだけでなく引数のプロパティとして登場したときにも再帰的に処理されます。
@@ -219,6 +220,15 @@ console.log(JSON.stringify({ x: obj })); // => '{"x":"bar"}'
 ```
 
 `toJSON`メソッドは自作のクラスを特殊な形式でシリアライズする目的などに使われます。
+
+## まとめ {#conclusion}
+
+この章では、JSONについて学びました。
+
+- JSONはJavaScriptのオブジェクトリテラルをベースに作られた軽量なデータフォーマット
+- `JSON`オブジェクトを使ったシリアライズとデシリアライズ
+- JSON形式にシリアライズできないオブジェクトもある
+- `JSON.stringify`はシリアライズ対象の`toJSON`メソッドを利用する
 
 [ECMA-404]: http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf
 [json.orgの日本語ドキュメント]: http://www.json.org/json-ja.html

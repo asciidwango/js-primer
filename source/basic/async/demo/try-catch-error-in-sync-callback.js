@@ -10,5 +10,5 @@ try {
         throw new Error("message");
     });
 } catch (error) {
-    console.log(error); // => Error: message
+    console.error(error); // => Error: message
 }
