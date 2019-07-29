@@ -753,7 +753,7 @@ const str = "ABC あいう DE えお";
 const alphabetsPattern = /[a-zA-Z]+/g;
 let matches;
 while (matches = alphabetsPattern.exec(str)) {
-    console.log(`match: ${matches[0]}, lastIndex: ${matches.lastIndex}`);
+    console.log(`match: ${matches[0]}, lastIndex: ${alphabetsPattern.lastIndex}`);
 }
 // コンソールには次のように出力される
 // match: ABC, lastIndex: 3
