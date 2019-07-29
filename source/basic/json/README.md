@@ -36,8 +36,7 @@ JSONの細かい仕様に関しては[json.orgの日本語ドキュメント][]�
 
 ## `JSON`オブジェクト {#json-object}
 
-JavaScriptでJSONを扱うには、ビルトインの[JSONオブジェクト][]を利用します。
-`JSON`オブジェクトはグローバルオブジェクトなので、どのスコープからでもアクセスできます。
+JavaScriptでJSONを扱うには、ビルトインオブジェクトである[JSONオブジェクト][]を利用します。
 `JSON`オブジェクトはJSON形式の文字列とJavaScriptのオブジェクトを相互に変換するための`parse`メソッドと`stringify`メソッドを提供します。
 
 ### JSON文字列をオブジェクトに変換する {#json-parse}
