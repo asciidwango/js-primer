@@ -111,6 +111,15 @@ console.log(Math.trunc(1.3)); // => 1
 console.log(Math.trunc(-1.3)); // => -1
 ```
 
+## まとめ {#conclusion}
+
+この章では、`Math`オブジェクトについて学びました。
+紹介したメソッドは`Math`オブジェクトの一部にすぎないため、その他にもメソッドが用意されています。
+
+- `Math`は数学的な定数や関数を提供するビルトインオブジェクト
+- `Math`はコンストラクタではないためインスタンス化できない
+- 疑似乱数の生成、数値の比較、数値の計算などを行うメソッドが提供されている
+
 
 [Math]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math
 [MDNのリファレンス]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math
