@@ -48,8 +48,8 @@ console.log(now.toISOString());
 #### 任意の時刻をインスタンス化する {#instance-any-time}
 
 コンストラクタ引数を渡すことで、任意の時刻を表すインスタンスを作成できます。
-`Date`のコンストラクタ関数はオーバーロードされており、渡す引数によって時刻の指定方法が変わります。
-オーバーロードは次の3種類があります。
+`Date`のコンストラクタ関数は渡すデータ型や引数によって時刻の指定方法が変わります。
+`Date`は次の3種類を引数としてサポートしています。
 
 - 時刻値を渡すもの
 - 時刻を示す文字列を渡すもの
@@ -193,6 +193,16 @@ const future = now.add(10, "minutes");
 // formatメソッドで任意の書式の文字列に変換する
 console.log(future.format("YYYY/MM/DD")); 
 ```
+
+## まとめ {#conclusion}
+
+この章では、Dateオブジェクトについて学びました。
+
+- `Date`オブジェクトのインスタンスはある特定の時刻を表すビルトインオブジェクト
+- `Date`における「時刻」は、UTC（協定世界時）の1970年1月1日0時0分0秒を基準とした相対的なミリ秒として保持されている
+- `Date`コンストラクタで任意の時間を表す`Date`インスタンスを作成できる
+- `Date`インスタンスメソッドはさまざまなものがあるが、現実のユースケースでは機能が不十分になりやすい
+- ビルトインオブジェクトの`Date`のみではなく、ライブラリも合わせて利用するのが一般的
 
 [Date]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date
 [Date.parse]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date/parse
