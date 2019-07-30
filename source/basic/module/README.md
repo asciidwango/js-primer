@@ -34,17 +34,19 @@ ESモジュールは、[export文][]によって変数や関数などをエク�
 次の例では、`foo`変数と`bar`関数をそれぞれ名前付きエクスポートしています。
 `export`文のあとに続けて`{}`を書き、その中にエクスポートする変数を入れることで、宣言済みの変数を名前付きエクスポートできます。
 
-[import, title="exportExample-1.js"](src/named-export-1.js)
+[import, title="named-export.js"](src/named-export.js)
 
 また、名前付きエクスポートでは`export`文を宣言の前につけると、宣言と同時に名前付きエクスポートできます。
-[import, title="exportExample-1a.js"](src/named-export-1a.js)
+[import, title="named-export-declare.js"](src/named-export-declare.js)
 
 **名前付きインポート**は、指定したモジュールから名前を指定して選択的にインポートできます。
-次の例では `exportExample-1a.js`から名前付きエクスポートされたオブジェクトの名前を指定して名前付きインポートしています。
+次の例では `my-module.js`から名前付きエクスポートされたオブジェクトの名前を指定して名前付きインポートしています。
 `import`文のあとに続けて`{}`を書き、その中にインポートしたい名前付きエクスポートの名前を入れます。
 複数の値をインポートしたい場合は、それぞれの名前をカンマで区切ります。
 
-[import, title="importExample-1.js"](src/named-import-1.js)
+[import, title="my-module.js"](src/my-module-1.js)
+
+[import, title="named-import.js"](src/named-import.js)
 
 #### 名前付きエクスポート／インポートのエイリアス {#named-export-import-alias}
 
@@ -52,12 +54,12 @@ ESモジュールは、[export文][]によって変数や関数などをエク�
 エイリアスを使うと、宣言済みの変数を違う名前で名前付きエクスポートできます。
 エイリアスをつけるには、次のように`as`のあとにエクスポートしたい名前を記述します。
 
-[import, title="exportExample-2.js"](src/named-export-2.js)
+[import, title="named-export-alias.js"](src/named-export-alias.js)
 
 また、名前付きインポートしたオブジェクトにも別名をつけることができます。
 インポートでも同様に、`as`のあとにインポートしたい名前を記述します。
 
-[import, title="importExample-2.js"](src/named-import-2.js)
+[import, title="named-import-alias.js"](src/named-import-alias.js)
 
 ### デフォルトエクスポート／インポート {#default-export-import}
 
@@ -66,7 +68,7 @@ ESモジュールは、[export文][]によって変数や関数などをエク�
 次の例は、すでに宣言されている変数をデフォルトエクスポートしています。
 `export default`文で、後に続く式の評価結果をデフォルトエクスポートします。
 
-[import, title="exportExample-3.js"](src/default-export-1.js)
+[import, title="default-export.js"](src/default-export.js)
 
 また、`export`文を宣言の前につけると、宣言と同時にデフォルトエクスポートできます。
 このとき関数やクラスは名前を省略できます。
@@ -83,29 +85,31 @@ export default function() {}
 なぜなら、変数宣言はカンマ区切りで複数の変数を定義できてしまうためです。
 次の例は実行できない不正なコードです。
 
-[import, exportExample.js](src/default-export-variables-invalid.js)
+[import, default-export-variables-invalid.js](src/default-export-variables-invalid.js)
 
 **デフォルトインポート**は、指定したモジュールのデフォルトエクスポートに名前をつけてインポートします。
-次の例では `exportExample.js`のデフォルトエクスポートに`myModule`という名前をつけています。
+次の例では `my-module.js`のデフォルトエクスポートに`myModule`という名前をつけています。
 `import`文のあとに任意の名前をつけることで、デフォルトエクスポートをインポートできます。
 
-[import, title="importExample-3.js"](src/default-import-1.js)
+[import, title="my-module.js"](src/my-module-2.js)
+
+[import, title="default-import.js"](src/default-import.js)
 
 実はデフォルトエクスポートは、`default`という固有の名前による名前付きエクスポートと同じものです。
 そのため、名前付きエクスポートで`as default`とエイリアスをつけることでデフォルトエクスポートすることもできます。
 
-[import, title="exportExample-4.js"](src/default-export-2.js)
+[import, title="default-export-alias.js"](src/default-export-alias.js)
 
 同様に、名前付きインポートにおいても`default`という名前がデフォルトインポートに対応しています。
 次のように、名前付きインポートで`default`を指定するとデフォルトインポートできます。
 ただし、`default`は予約語なので、この方法では必ず`as`構文を使ってエイリアスをつける必要があります。
 
-[import, title="importExample-4.js"](src/default-import-2.js)
+[import, title="default-import-alias.js"](src/default-import-alias.js)
 
 また、名前付きインポートとデフォルトインポートの構文は同時に記述できます。
 次のように2つの構文をカンマでつなげます。
 
-[import, importExample.js](src/default-import-3.js)
+[import, title="default-import-with-named.js"](src/default-import-with-named.js)
 
 ESモジュールでは、エクスポートされていないものはインポートできません。
 なぜならESモジュールはJavaScriptのパース段階で依存関係が解決され、インポートする対象が存在しない場合はパースエラーとなるためです。
@@ -123,7 +127,7 @@ ES Moduleには名前付きとデフォルト以外にもいくつかの構文�
 
 再エクスポートは次のように`export`文のあとに`from`を続けて、別のモジュール名を指定します。
 
-[import, exportExample.js](src/re-export-invalid.js)
+[import, re-export-invalid.js](src/re-export-invalid.js)
 
 #### すべてをインポート {#namespace-import}
 
@@ -132,14 +136,16 @@ ES Moduleには名前付きとデフォルト以外にもいくつかの構文�
 エクスポートされた変数や関数などにアクセスするには、その名前空間オブジェクトのプロパティを使います。
 また、先ほどのとおり、`default` という固有名を使うとデフォルトエクスポートにもアクセスできます。
 
-[import, importExample.js](src/namespace-import.js)
+[import, title="my-module.js"](src/my-module.js)
+
+[import, title="namespace-import.js"](src/namespace-import.js)
 
 #### 副作用のためのインポート {#import-for-side-effect}
 
 モジュールの中には、グローバルのコードを実行するだけで何もエクスポートしないものがあります。
 たとえば次のような、グローバル変数を操作するためのモジュールなどです。
 
-[import, sideEffects.js](src/sideEffects.js)
+[import, side-effects.js](src/side-effects.js)
 
 このようなモジュールをインポートするには、副作用のためのインポート構文を使います。
 この構文では、指定したモジュールを読み込んで実行するだけで、何もインポートしません。
@@ -153,11 +159,11 @@ Webブラウザは`script`タグによってJavaScriptファイルを読み込�
 次のように`script`タグに`type="module"`属性を付与すると、WebブラウザはJavaScriptファイルをESモジュールとして読み込みます。
 
 ```html
-<!-- myModule.jsをECMAScriptモジュールとして読み込む -->
-<script type="module" src="./myModule.js"></script>
+<!-- my-module.jsをECMAScriptモジュールとして読み込む -->
+<script type="module" src="./my-module.js"></script>
 <!-- インラインでも同じ -->
 <script type="module">
-import { foo } from "./myModule.js";
+import { foo } from "./my-module.js";
 </script>
 ```
 

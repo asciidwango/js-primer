@@ -1,6 +1,6 @@
 // すべての名前付きエクスポートをmyModuleオブジェクトとしてまとめてインポートする
-import * as myModule from "./myModule.js";
+import * as myModule from "./my-module.js";
 // fooとして名前付きエクスポートされた値にアクセスする
-console.log(myModule.foo);
+console.log(myModule.foo); // => "foo"
 // defaultとしてデフォルトエクスポートされた値にアクセスする
-console.log(myModule.default);
+console.log(myModule.default); // => { baz: "baz" }

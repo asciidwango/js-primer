@@ -1,2 +1,2 @@
-// ./sideEffects.jsのグローバルコードが実行される
-import "./sideEffects.js";
+// ./side-effects.jsのグローバルコードが実行される
+import "./side-effects.js";

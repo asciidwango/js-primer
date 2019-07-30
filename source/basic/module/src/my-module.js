@@ -1,3 +1,5 @@
 export const foo = "foo";
 export function bar() { }
-export default {};
+export default {
+    baz: "baz"
+};
