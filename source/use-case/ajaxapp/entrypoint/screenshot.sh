@@ -14,7 +14,7 @@ serverPID=$!
 echo $serverPID;
 # screenshot
 npx -q wait-on http://localhost:3000 \
-&& node "${screenshot}" --url "http://localhost:3000/" --output "${currentDir}/img/fig-1.png"
+&& node "${screenshotDevTools}" --url "http://localhost:3000/" --output "${currentDir}/img/fig-1.png"
 # server 終了
 function finish {
   echo "Shutting down the server..."
