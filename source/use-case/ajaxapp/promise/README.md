@@ -103,7 +103,7 @@ function getUserInfo(userId) {
         .then(response => {
             if (!response.ok) {
                 // サーバーエラーを投げる
-                throw new Error(`${event.target.status}: ${event.target.statusText}`);
+                throw new Error(`${response.status}: ${response.statusText}`);
             } else {
                 return response.json().then(userInfo => {
                     // HTMLの組み立て
@@ -154,7 +154,7 @@ function getUserInfo(userId) {
     return fetch(`https://api.github.com/users/${userId}`)
         .then(response => {
             if (!response.ok) {
-                throw new Error(`${event.target.status}: ${event.target.statusText}`);
+                throw new Error(`${response.status}: ${response.statusText}`);
             } else {
                 // JSONオブジェクトで解決されるPromiseを返す
                 return response.json();
