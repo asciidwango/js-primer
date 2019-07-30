@@ -13,10 +13,6 @@ description: "第二部では第一部の基本文法で学んだことを応用
 
 アプリケーション開発のためにNode.jsとnpmのインストールなどの準備方法を紹介します。
 
-### [モジュール](./module/README.md) {#module}
-
-JavaScriptのモジュールについて紹介します。ECMAScriptモジュールの基本的な使い方やCommonJSモジュールとの違いについて紹介します。
-
 ### [Ajaxで通信](./ajaxapp/README.md) {#ajaxapp}
 
 ウェブブラウザ上でAjax通信をするユースケースとして、GitHubのユーザーIDからプロフィール情報を取得するアプリケーションを作成しながら、非同期処理について紹介します。
