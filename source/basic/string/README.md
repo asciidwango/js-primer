@@ -614,7 +614,7 @@ const pattern = new RegExp(`\\s{${spaceCount}}`);
 
 正規表現による検索は、正規表現オブジェクトと対応した`String`オブジェクトまたは`RegExp`オブジェクトのメソッドを利用します。
 
-#### 正規表現によりインデックスの取得 {#search-index-by-regexp}
+#### 正規表現によるインデックスの取得 {#search-index-by-regexp}
 
 `String#indexOf`メソッドの正規表現版ともいえる`String#search`メソッドがあります。
 `search`メソッドは正規表現のパターンにマッチした箇所のインデックスを返し、マッチする文字列がない場合は`-1`を返します。
