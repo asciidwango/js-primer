@@ -6,7 +6,6 @@ declare screenshotDevTools="${projectDir}/tools/applescript/lib/src/screenshot-d
 declare screenshot="${projectDir}/tools/applescript/lib/src/screenshot.js";
 declare launchFirefox="${projectDir}/tools/applescript/lib/src/launch-firefox.js";
 declare screenshotOnly="${projectDir}/tools/applescript/lib/src/screenshot-only.js";
-# マニュアル操作が必要なもの
 mkdir -p "${currentDir}/img/"
 # server 起動
 npx -q @js-primer/local-server src/ &
