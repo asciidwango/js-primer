@@ -5,7 +5,7 @@ description: "JavaScriptのモジュール（ECMAScriptモジュール）につ�
 
 # ECMAScriptモジュール {#module}
 
-ES Moduleは[Todoアプリのユースケース][]で実際に動かしながら学ぶため、ここでは構文の説明とモジュールのイメージを掴むのが目的です。
+ECMAScriptモジュールは[Todoアプリのユースケース][]で実際に動かしながら学ぶため、ここでは構文の説明とモジュールのイメージを掴むのが目的です。
 この章のサンプルコードを実際に動かすためにはローカルサーバーなどの準備が必要です。
 そのため、ユースケースの章を先に読んでから戻ってきてもかまいません。
 
@@ -20,9 +20,9 @@ ES Moduleは[Todoアプリのユースケース][]で実際に動かしながら
 この章では **ECMAScriptモジュール（ESモジュール、JSモジュールとも呼ばれる）** について見ていきます。
 ECMAScriptモジュールは、JavaScriptファイルをモジュール化する言語標準の機能です。
 
-## ESモジュール {#es-modules}
+## ECMAScriptモジュールの構文 {#es-module-syntax}
 
-ESモジュールは、[export文][]によって変数や関数などをエクスポートできます。
+ECMAScriptモジュールは、[export文][]によって変数や関数などをエクスポートできます。
 また、[import文][]を使って別のモジュールからエクスポートされたものをインポートできます。
 インポートとエクスポートはそれぞれに **名前付き** と **デフォルト** という2種類の方法があります。
 
@@ -111,14 +111,14 @@ export default function() {}
 
 [import, title="default-import-with-named.js"](src/default-import-with-named.js)
 
-ESモジュールでは、エクスポートされていないものはインポートできません。
-なぜならESモジュールはJavaScriptのパース段階で依存関係が解決され、インポートする対象が存在しない場合はパースエラーとなるためです。
+ECMAScriptモジュールでは、エクスポートされていないものはインポートできません。
+なぜならECMAScriptモジュールはJavaScriptのパース段階で依存関係が解決され、インポートする対象が存在しない場合はパースエラーとなるためです。
 デフォルトインポートは、インポート先のモジュールがデフォルトエクスポートをしている必要があります。
 同様に名前付きインポートは、インポート先のモジュールが指定した名前付きエクスポートをしている必要があります。
 
 ### その他の構文 {#other-syntax}
 
-ES Moduleには名前付きとデフォルト以外にもいくつかの構文があります。
+ECMAScriptモジュールには名前付きとデフォルト以外にもいくつかの構文があります。
 
 #### 再エクスポート {#re-export}
 
@@ -152,11 +152,11 @@ ES Moduleには名前付きとデフォルト以外にもいくつかの構文�
 
 [import, importExample.js](src/import-side-effects.js)
 
-## ESモジュールを実行する {#run-es-modules}
+## ECMAScriptモジュールを実行する {#run-es-modules}
 
-作成したESモジュールを実行するためには、起点となるJavaScriptファイルをESモジュールとしてWebブラウザに読み込ませる必要があります。
+作成したECMAScriptモジュールを実行するためには、起点となるJavaScriptファイルをECMAScriptモジュールとしてWebブラウザに読み込ませる必要があります。
 Webブラウザは`script`タグによってJavaScriptファイルを読み込み、実行します。
-次のように`script`タグに`type="module"`属性を付与すると、WebブラウザはJavaScriptファイルをESモジュールとして読み込みます。
+次のように`script`タグに`type="module"`属性を付与すると、WebブラウザはJavaScriptファイルをECMAScriptモジュールとして読み込みます。
 
 ```html
 <!-- my-module.jsをECMAScriptモジュールとして読み込む -->

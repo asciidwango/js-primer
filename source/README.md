@@ -31,7 +31,7 @@
     - [JSON](./basic/json/README.md)
     - [Date](./basic/date/README.md)
     - [Math](./basic/math/README.md)
-    - [ES Module](./basic/module/README.md)
+    - [ECMAScriptモジュール](./basic/module/README.md)
     - [ECMAScript](./basic/ecmascript/README.md)
     - [第一部: おわりに](./basic/other-parts/README.md)
 - [第二部: 応用編（ユースケース）](./use-case/README.md)
