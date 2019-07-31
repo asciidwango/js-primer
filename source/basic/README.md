@@ -113,7 +113,7 @@ JavaScriptのオブジェクトリテラルをベースに作られたデータ�
 
 数学的な定数や関数を提供するビルトインオブジェクトのMathを紹介します。
 
-### [ES Module](./module/README.md) {#module}
+### [ECMAScriptモジュール](./module/README.md) {#module}
 
 ECMAScriptモジュールの基本的な使い方について紹介します。
 
