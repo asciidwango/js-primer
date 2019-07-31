@@ -1,9 +1,9 @@
 ---
 author: laco
-description: "JavaScriptのモジュール（ES Module）について紹介します。ECMAScriptモジュールの基本的な使い方やCommonJSモジュールとの違いについて紹介します。"
+description: "JavaScriptのモジュール（ECMAScriptモジュール）について紹介します。"
 ---
 
-# ES Module {#module}
+# ECMAScriptモジュール {#module}
 
 ES Moduleは[Todoアプリのユースケース][]で実際に動かしながら学ぶため、ここでは構文の説明とモジュールのイメージを掴むのが目的です。
 この章のサンプルコードを実際に動かすためにはローカルサーバーなどの準備が必要です。
@@ -88,7 +88,7 @@ export default function() {}
 [import, default-export-variables-invalid.js](src/default-export-variables-invalid.js)
 
 **デフォルトインポート**は、指定したモジュールのデフォルトエクスポートに名前をつけてインポートします。
-次の例では `my-module.js`のデフォルトエクスポートに`myModule`という名前をつけています。
+次の例では `my-module.js`のデフォルトエクスポートに`myModule`というという名前をつけてインポートしています。
 `import`文のあとに任意の名前をつけることで、デフォルトエクスポートをインポートできます。
 
 [import, title="my-module.js"](src/my-module-2.js)
@@ -145,7 +145,7 @@ ES Moduleには名前付きとデフォルト以外にもいくつかの構文�
 モジュールの中には、グローバルのコードを実行するだけで何もエクスポートしないものがあります。
 たとえば次のような、グローバル変数を操作するためのモジュールなどです。
 
-[import, side-effects.js](src/side-effects.js)
+[import, title="side-effects.js"](src/side-effects.js)
 
 このようなモジュールをインポートするには、副作用のためのインポート構文を使います。
 この構文では、指定したモジュールを読み込んで実行するだけで、何もインポートしません。
