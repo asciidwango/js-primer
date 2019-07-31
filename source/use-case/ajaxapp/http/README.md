@@ -5,8 +5,8 @@ description: "Fetch APIを使ってHTTP通信をおこない、GitHubのAPIを�
 
 # HTTP通信 {#http-communication}
 
-アプリケーションが実行できるようになったので、次はGitHubのAPIを呼び出す処理を実装していきます。
-当然ですが、GitHubのAPIを呼び出すためにはHTTP通信をする必要があります。
+ローカルサーバーでアプリケーションが実行できるようになったので、次はGitHubのAPIを呼び出す処理を実装していきます。
+GitHubのAPIを呼び出すためにはHTTP通信をする必要があります。
 ウェブブラウザ上でJavaScriptからHTTP通信するために、[Fetch API][]という機能を使います。
 
 ## Fetch API {#fetch-api}
@@ -16,13 +16,14 @@ Fetch APIを使うことで、ページ全体を再読み込みすることな�
 Fetch APIは同じくHTTP通信を扱う[XMLHttpRequest][]と似たAPIですが、より強力で柔軟な操作が可能です。
 
 GitHubが提供している、ユーザー情報を取得するためのWebAPIを呼び出すコードは次のようになります。
-リクエストを送信するためには、グローバルスコープの`fetch`メソッドを呼び出します。
+リクエストを送信するためには、`fetch`メソッドを利用します。
 `fetch`メソッドにURLを与えることで、HTTPリクエストが作成され、サーバーとのHTTP通信を開始します。
 
 
 <!-- fetchがないため -->
 <!-- doctest:disable -->
 ```js
+const userId = "任意のGitHubアカウントID";
 fetch(`https://api.github.com/users/${userId}`);
 ```
 
@@ -31,14 +32,17 @@ fetch(`https://api.github.com/users/${userId}`);
 GitHubのAPIに対してHTTPリクエストを送信しましたが、まだレスポンスを受け取る処理を書いていません。
 次はサーバーから返却されたレスポンスのログをコンソールに出力する処理を実装します。
 
-`fetch`メソッドは`Promise`を返します。これはリクエストのレスポンスを表す`Response`オブジェクトでresolveされます。
+`fetch`メソッドは`Promise`を返します。この`Promise`インスタンスはリクエストのレスポンスを表す`Response`オブジェクトでresolveされます。
 送信したリクエストにレスポンスが返却されると、`then`コールバックが呼び出されます。
-次のように、`Response`オブジェクトの`status`プロパティからはHTTPレスポンスのステータスコードが取得できます。
-また、`json`メソッドも`Promise`を返します。これは HTTPレスポンスをJSONとしてパースしたオブジェクトでresolveされます。
+
+次のように、`Response`オブジェクトの`status`プロパティからは、HTTPレスポンスのステータスコードが取得できます。
+また、`Response`オブジェクトの`json`メソッドも`Promise`を返します。これは、HTTPレスポンスボディをJSONとしてパースしたオブジェクトでresolveされます。
+ここでは、書籍用に用意した`js-primer-example`というGitHubアカウントのユーザー情報を取得しています。
 
 <!-- fetchがないため -->
 <!-- doctest:disable -->
 ```js
+const userId = "js-primer-example";
 fetch(`https://api.github.com/users/${userId}`)
     .then(response => {
         console.log(response.status); // => 200
@@ -59,6 +63,7 @@ HTTP通信にはエラーがつきものです。
 <!-- fetchがないため -->
 <!-- doctest:disable -->
 ```js
+const userId = "js-primer-example";
 fetch(`https://api.github.com/users/${userId}`)
     .then(response => {
         console.log(response.status);
@@ -71,12 +76,22 @@ fetch(`https://api.github.com/users/${userId}`)
 ```
 
 一方で、リクエストが成功したかどうかは`Response`オブジェクトの`ok`プロパティで認識できます。
-`ok`プロパティは、HTTPステータスコードが200番台であれば`true`を返し、400や500番台であれば`false`を返します。
-次のように、`ok`プロパティが`false`であるサーバーエラーをハンドリングできます。
+`ok`プロパティは、HTTPステータスコードが200番台であれば`true`を返し、それ以外の400や500番台などなら`false`を返します。
+次のように、`ok`プロパティが`false`となるサーバーエラーをハンドリングできます。
+
+<!-- Note: Fetch API デフォルトで自動的にリダイレクトする
+そのため、このコード例なら response.status が 30x はこない
+
+```
+fetch("https://httpbin.org/status/301");
+```
+
+-->
 
 <!-- fetchがないため -->
 <!-- doctest:disable -->
 ```js
+const userId = "js-primer-example";
 fetch(`https://api.github.com/users/${userId}`)
     .then(response => {
         console.log(response.status); 
@@ -93,15 +108,18 @@ fetch(`https://api.github.com/users/${userId}`)
     });
 ```
 
-ここまでの内容をまとめ、GitHubからユーザー情報を取得する関数を`getUserInfo`という名前で定義します。
+ここまでの内容をまとめ、GitHubからユーザー情報を取得する関数を`fetchUserInfo`という名前で定義します。
 
 [import, index.js](src/index.js)
 
 index.jsでは関数を定義しているだけで、呼び出しは行っていません。
+
 ページを読み込むたびにGitHubのAPIを呼び出すと、呼び出し回数の制限を超えるおそれがあります。
 呼び出し回数の制限を超えると、APIからのレスポンスがステータスコード403のサーバーエラーになってしまいます。
-そこで`getUserInfo`関数を呼び出すため、HTMLドキュメント側にボタンを追加します。
-ボタンのclickイベントで`getUserInfo`関数を呼び出し、固定のユーザーIDを引数として与えています。
+
+そのため、手動で`fetchUserInfo`関数を呼び出すため、HTMLドキュメント側にボタンを追加します。
+ボタンのclickイベントで`fetchUserInfo`関数を呼び出し、取得したいユーザーIDを引数として与えています。
+例として`js-primer-example`という書籍用に用意したGitHubアカウントを指定しています。
 
 [import, index.html](src/index.html)
 
@@ -110,7 +128,7 @@ index.jsでは関数を定義しているだけで、呼び出しは行ってい
 
 ![Fetchで取得したデータの表示](img/fig-1.png)
 
-また、開発者ツールのネットワーク画面を開くと、確かにGitHubのサーバーに対してHTTP通信が行われていることを確認できます。
+また、開発者ツールのネットワークパネルを開くと、GitHubのサーバーに対してHTTP通信が行われていることを確認できます。
 
 ![開発者ツールでHTTP通信の記録を確認する](img/fig-2.png)
 
@@ -118,22 +136,23 @@ index.jsでは関数を定義しているだけで、呼び出しは行ってい
 
 [XMLHttpRequest][]（**XHR**）はFetch APIと同じくHTTP通信を行うためのAPIです。
 Fetch APIが標準化される以前は、ブラウザとサーバーの間で通信を行うにはXHRを使うのが一般的でした。
-このセクションで扱ったFetch APIによる`getUserInfo`関数は、XHRを使うと次のようになります。
+このセクションで扱ったFetch APIによる`fetchUserInfo`関数は、XHRを使うと次のように書けます。
 
 <!-- doctest:async:16 -->
 ```js
-function getUserInfo(userId) {
+function fetchUserInfo(userId) {
     // リクエストを作成する
     const request = new XMLHttpRequest();
     request.open("GET", `https://api.github.com/users/${userId}`);
     request.addEventListener("load", () => {
-        // ステータス4XXと5XXをサーバーエラーとする
-        if (request.status >= 400 || request.status <= 599) {
-            console.error("サーバーエラー", request.statusText);
-        } else {
+        // リクエストが成功したかを判定する
+        // Fetch APIのresponse.okと同等の意味
+        if (request.status >= 200 && request.status < 300) {
             // レスポンス文字列をJSONオブジェクトにパースする
             const userInfo = JSON.parse(request.responseText);
             console.log(userInfo);
+        } else {
+            console.error("サーバーエラー", request.statusText);
         }
     });
     request.addEventListener("error", () => {
@@ -153,7 +172,7 @@ XHRの詳しい使い方については、[XHRの利用についてのドキュ�
 - [Fetch API][]を使ってHTTPリクエストを送った
 - GitHubのAPIから取得したユーザー情報のJSONオブジェクトをコンソールに出力した
 - Fetch APIの呼び出しに対するエラーハンドリングをおこなった
-- `getUserInfo`関数を宣言し、ボタンのクリックイベントで呼び出した
+- `fetchUserInfo`関数を宣言し、ボタンのクリックイベントで呼び出した
 
 [Fetch API]: https://developer.mozilla.org/ja/docs/Web/API/Fetch_API
 [XMLHttpRequest]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest

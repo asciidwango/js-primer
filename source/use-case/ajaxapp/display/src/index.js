@@ -1,4 +1,4 @@
-function getUserInfo(userId) {
+function fetchUserInfo(userId) {
     fetch(`https://api.github.com/users/${userId}`)
         .then(response => {
             if (!response.ok) {
