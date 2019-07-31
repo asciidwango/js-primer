@@ -10,20 +10,20 @@ description: "Promiseを活用し、ソースコードの整理とエラーハ�
 
 ## 関数の分割 {#split-function}
 
-まずは、大きくなりすぎた`getUserInfo`関数を整理しましょう。
+まずは、大きくなりすぎた`fetchUserInfo`関数を整理しましょう。
 この関数では、Fetch APIを使ったデータの取得・HTML文字列の組み立て・組み立てたHTMLの表示をしています。
 そこで、HTML文字列を組み立てる`createView`関数とHTMLを表示する`displayView`関数を作り、処理を分割します。
 
 また、後述するエラーハンドリングを行いやすくするため、アプリケーションにエントリポイントを設けます。
-index.jsに新しく`main`関数を作り、その中で`getUserInfo`関数を呼び出すようにします。
+index.jsに新しく`main`関数を作り、その中で`fetchUserInfo`関数を呼び出すようにします。
 
 <!-- doctest:async:16 -->
 ```js
 function main() {
-    getUserInfo("js-primer-example");
+    fetchUserInfo("js-primer-example");
 }
 
-function getUserInfo(userId) {
+function fetchUserInfo(userId) {
     fetch(`https://api.github.com/users/${userId}`)
         .then(response => {
             if (!response.ok) {
@@ -60,7 +60,7 @@ function displayView(view) {
 }
 ```
 
-ボタンのclickイベントで呼び出す関数もこれまでの`getUserInfo`関数から`main`関数に変更します。
+ボタンのclickイベントで呼び出す関数もこれまでの`fetchUserInfo`関数から`main`関数に変更します。
 
 ```html
 <html lang="ja">
@@ -79,25 +79,25 @@ function displayView(view) {
 
 ## Promiseのエラーハンドリング {#error-handling}
 
-`getUserInfo`関数を変更し、Fetch APIの戻り値でもあるPromiseオブジェクトをreturnします。
-この変更によって、`getUserInfo`関数を呼び出す`main`関数の方で非同期処理の結果を扱えるようになります。
+`fetchUserInfo`関数を変更し、Fetch APIの戻り値でもあるPromiseオブジェクトをreturnします。
+この変更によって、`fetchUserInfo`関数を呼び出す`main`関数の方で非同期処理の結果を扱えるようになります。
 Promiseチェーンの中で投げられたエラーは、`Promise#catch`メソッドを使って一箇所で受け取れます。
 
-次のコードでは、`getUserInfo`関数から返されたPromiseオブジェクトを、`main`関数でエラーハンドリングしてログを出力します。
-`getUserInfo`関数ではネットワークエラーとサーバーエラーを投げています。
+次のコードでは、`fetchUserInfo`関数から返されたPromiseオブジェクトを、`main`関数でエラーハンドリングしてログを出力します。
+`fetchUserInfo`関数ではネットワークエラーとサーバーエラーを投げています。
 投げられたエラーは`catch`のコールバック関数で第1引数として受け取れます。
 
 <!-- doctest:async:16 -->
 ```js
 function main() {
-    getUserInfo("js-primer-example")
+    fetchUserInfo("js-primer-example")
         .catch((error) => {
             // Promiseのコンテキスト内で発生したエラーを受け取る
             console.error(`エラーが発生しました (${error})`);
         });
 }
 
-function getUserInfo(userId) {
+function fetchUserInfo(userId) {
     // fetchの戻り値のPromiseをreturnする
     return fetch(`https://api.github.com/users/${userId}`)
         .then(response => {
@@ -131,16 +131,16 @@ Promiseチェーンを使って処理を分割する利点は、同期処理と�
 どのように処理を区切るかは、それぞれの関数が受け取る値の型と、返す値の型に注目するのがよいでしょう。
 Promiseチェーンで処理を分けることで、それぞれの処理が簡潔になりコードの見通しがよくなります。
 
-さて、今の`getUserInfo`関数ではFetch APIが返したPromiseの`then`でHTMLの組み立てと表示も行っています。
+さて、今の`fetchUserInfo`関数ではFetch APIが返したPromiseの`then`でHTMLの組み立てと表示も行っています。
 このPromiseチェーンを次のように書き換えてみましょう。
-`getUserInfo`関数では、Fetch APIが返すPromiseの`then`メソッドで、`Reponse#json`メソッドの戻り値を返しています。
+`fetchUserInfo`関数では、Fetch APIが返すPromiseの`then`メソッドで、`Reponse#json`メソッドの戻り値を返しています。
 `Reponse#json`メソッドの戻り値はJSONオブジェクトで解決されるPromiseなので、次の`then`ではユーザー情報のJSONオブジェクトが渡されます。
 同じように、`userInfo`を受け取った関数は`createView`関数を呼び出し、その戻り値を次の`then`に渡しています。
 
 <!-- doctest:async:16 -->
 ```js
 function main() {
-    getUserInfo("js-primer-example")
+    fetchUserInfo("js-primer-example")
         // ここではJSONオブジェクトで解決されるPromise
         .then((userInfo) => createView(userInfo))
         // ここではHTML文字列で解決されるPromise
@@ -150,7 +150,7 @@ function main() {
         });
 }
 
-function getUserInfo(userId) {
+function fetchUserInfo(userId) {
     return fetch(`https://api.github.com/users/${userId}`)
         .then(response => {
             if (!response.ok) {
@@ -211,8 +211,8 @@ index.jsにも`<input>`タグから値を受け取るための処理を追加す
 ## このセクションのチェックリスト {#section-checklist}
 
 - HTMLの組み立てと表示の処理を`createView`関数と`displayView`関数に分離した
-- `main`関数を宣言し、`getUserInfo`関数が返すPromiseのエラーハンドリングをおこなった
-- Promiseチェーンを使って`getUserInfo`関数をリファクタリングした
+- `main`関数を宣言し、`fetchUserInfo`関数が返すPromiseのエラーハンドリングをおこなった
+- Promiseチェーンを使って`fetchUserInfo`関数をリファクタリングした
 - [Async Function][] を使って`main`関数をリファクタリングした
 - `index.html`に`<input>`タグを追加し、`getUserId`関数でユーザーIDを取得した
 

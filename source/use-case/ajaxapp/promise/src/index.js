@@ -9,7 +9,7 @@ async function main() {
     }
 }
 
-function getUserInfo(userId) {
+function fetchUserInfo(userId) {
     return fetch(`https://api.github.com/users/${userId}`)
         .then(response => {
             if (!response.ok) {

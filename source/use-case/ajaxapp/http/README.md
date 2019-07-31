@@ -108,7 +108,7 @@ fetch(`https://api.github.com/users/${userId}`)
     });
 ```
 
-ここまでの内容をまとめ、GitHubからユーザー情報を取得する関数を`getUserInfo`という名前で定義します。
+ここまでの内容をまとめ、GitHubからユーザー情報を取得する関数を`fetchUserInfo`という名前で定義します。
 
 [import, index.js](src/index.js)
 
@@ -117,8 +117,8 @@ index.jsでは関数を定義しているだけで、呼び出しは行ってい
 ページを読み込むたびにGitHubのAPIを呼び出すと、呼び出し回数の制限を超えるおそれがあります。
 呼び出し回数の制限を超えると、APIからのレスポンスがステータスコード403のサーバーエラーになってしまいます。
 
-そのため、手動で`getUserInfo`関数を呼び出すため、HTMLドキュメント側にボタンを追加します。
-ボタンのclickイベントで`getUserInfo`関数を呼び出し、取得したいユーザーIDを引数として与えています。
+そのため、手動で`fetchUserInfo`関数を呼び出すため、HTMLドキュメント側にボタンを追加します。
+ボタンのclickイベントで`fetchUserInfo`関数を呼び出し、取得したいユーザーIDを引数として与えています。
 例として`js-primer-example`という書籍用に用意したGitHubアカウントを指定しています。
 
 [import, index.html](src/index.html)
@@ -136,11 +136,11 @@ index.jsでは関数を定義しているだけで、呼び出しは行ってい
 
 [XMLHttpRequest][]（**XHR**）はFetch APIと同じくHTTP通信を行うためのAPIです。
 Fetch APIが標準化される以前は、ブラウザとサーバーの間で通信を行うにはXHRを使うのが一般的でした。
-このセクションで扱ったFetch APIによる`getUserInfo`関数は、XHRを使うと次のように書けます。
+このセクションで扱ったFetch APIによる`fetchUserInfo`関数は、XHRを使うと次のように書けます。
 
 <!-- doctest:async:16 -->
 ```js
-function getUserInfo(userId) {
+function fetchUserInfo(userId) {
     // リクエストを作成する
     const request = new XMLHttpRequest();
     request.open("GET", `https://api.github.com/users/${userId}`);
@@ -172,7 +172,7 @@ XHRの詳しい使い方については、[XHRの利用についてのドキュ�
 - [Fetch API][]を使ってHTTPリクエストを送った
 - GitHubのAPIから取得したユーザー情報のJSONオブジェクトをコンソールに出力した
 - Fetch APIの呼び出しに対するエラーハンドリングをおこなった
-- `getUserInfo`関数を宣言し、ボタンのクリックイベントで呼び出した
+- `fetchUserInfo`関数を宣言し、ボタンのクリックイベントで呼び出した
 
 [Fetch API]: https://developer.mozilla.org/ja/docs/Web/API/Fetch_API
 [XMLHttpRequest]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest

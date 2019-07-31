@@ -54,7 +54,7 @@ const view = `
 <body>
     <h2>GitHub User Info</h2>
 
-    <button onclick="getUserInfo('js-primer-example');">Get user info</button>
+    <button onclick="fetchUserInfo('js-primer-example');">Get user info</button>
 
     <div id="result"></div>
 
@@ -148,7 +148,7 @@ result.innerHTML = view;
 ```
 
 これでHTML文字列の生成とエスケープができました。
-これらの処理を前のセクションで作成した `getUserInfo` 関数の中で呼び出します。
+これらの処理を前のセクションで作成した `fetchUserInfo` 関数の中で呼び出します。
 ここまでで、index.jsとindex.htmlは次のようになっています。
 
 [import, title:"index.js"](src/index.js)
@@ -164,7 +164,7 @@ result.innerHTML = view;
 - [テンプレートリテラル][]を使ってHTML文字列を組み立てた
 - `innerHTML`プロパティを使ってHTML文字列をDOMに追加した
 - [タグ付きテンプレート関数][]を使ってHTML文字列をエスケープした
-- `getUserInfo`関数を呼び出し、HTMLにユーザー情報が表示されることを確認した
+- `fetchUserInfo`関数を呼び出し、HTMLにユーザー情報が表示されることを確認した
 
 [document.getElementById]: https://developer.mozilla.org/ja/docs/Web/API/Document/getElementById
 [Element#innerHTML]: https://developer.mozilla.org/ja/docs/Web/API/Element/innerHTML
