@@ -515,7 +515,7 @@ function isEmptyString(str) {
 }
 // 空文字列の場合は、trueを返す
 console.log(isEmptyString("")); // => true
-// falsyなら値の場合は、trueを返す
+// falsyの場合は、trueを返す
 console.log(isEmptyString(0)); // => true
 // undefinedの場合は、trueを返す
 console.log(isEmptyString()); // => true
