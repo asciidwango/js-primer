@@ -6,13 +6,13 @@ description: "Fetch APIを使って取得したデータをもとにHTMLを組�
 # データを表示する {#display-data}
 
 前のセクションでは、Fetch APIを使ってGitHubのAPIからユーザー情報を取得しました。
-このセクションでは取得したデータをHTMLに整形して、ブラウザに表示してみましょう。
+このセクションでは取得したデータをHTMLに整形して、アプリケーションにユーザー情報を表示してみましょう。
 
 ## HTMLを組み立てる {#markup-html}
 
 HTML文字列の生成にはテンプレートリテラルを使います。
 テンプレートリテラルは文字列中の改行が可能なため、HTMLのインデントを表現できて見通しが良くなります。
-また、文字列の埋め込みも簡単なため、HTMLのテンプレートに対して動的なデータを当てはめるのに適しています。
+また、変数の埋め込みも簡単なため、HTMLのテンプレートに対して動的なデータを当てはめるのに適しています。
 
 次のコードではGitHubのユーザー情報から組み立てるHTMLのテンプレートを宣言しています。
 
@@ -31,7 +31,7 @@ const view = `
 `;
 ```
 
-このテンプレートに`userInfo`オブジェクトを適用すると、次のようなHTML文字列になります。
+このテンプレートに`userInfo`オブジェクトの値をあてはめると、次のようなHTML文字列になります。
 
 ```html
 <h4>js-primer example (@js-primer-example)</h4>
@@ -47,20 +47,10 @@ const view = `
 ## HTML文字列をDOMに追加する {#html-to-dom}
 
 次に、生成したHTML文字列をDOMツリーに追加して表示します。
-まずは動的にHTMLをセットするために、目印となる要素をindex.htmlに追加します。
+まずは動的にHTMLをセットするために、目印となる要素を`index.html`に追加します。
 今回は`result`というidを持ったdiv要素（以降`div#result`と表記します）を配置します。
 
-```html
-<body>
-    <h2>GitHub User Info</h2>
-
-    <button onclick="fetchUserInfo('js-primer-example');">Get user info</button>
-
-    <div id="result"></div>
-
-    <script src="index.js"></script>
-</body>
-```
+[import, title:"index.html"](./src/index.html)
 
 ここから、`div#result`要素の子要素としてHTML文字列を挿入することになります。
 [document.getElementById][]メソッドを使い、id属性が設定された要素にアクセスします。
@@ -108,7 +98,7 @@ function escapeSpecialChars(str) {
 そこで、[テンプレートリテラルをタグ付け][]することで、明示的にエスケープ用の関数を呼び出す必要がないようにします。
 タグ付けされたテンプレートリテラルは、テンプレートによる値の埋め込みを関数の呼び出しとして扱えます。
 
-次の`escapeHTML`はテンプレートリテラルにタグ付けするための**タグ関数**です。
+次の`escapeHTML`関数はテンプレートリテラルにタグ付けするための**タグ関数**です。
 タグ関数は第一引数に文字列リテラルの配列、第二引数に埋め込まれる値の配列が与えられます。
 `escapeHTML`関数では、文字列リテラルと値が元の順番どおりに並ぶように文字列を組み立てつつ、
 値が文字列型であればエスケープするようにしています。
