@@ -154,9 +154,9 @@ ECMAScriptモジュールには名前付きとデフォルト以外にもいく�
 
 ## ECMAScriptモジュールを実行する {#run-es-modules}
 
-作成したECMAScriptモジュールを実行するためには、起点となるJavaScriptファイルをECMAScriptモジュールとしてWebブラウザに読み込ませる必要があります。
-Webブラウザは`script`タグによってJavaScriptファイルを読み込み、実行します。
-次のように`script`タグに`type="module"`属性を付与すると、WebブラウザはJavaScriptファイルをECMAScriptモジュールとして読み込みます。
+作成したECMAScriptモジュールを実行するためには、起点となるJavaScriptファイルをECMAScriptモジュールとしてウェブブラウザに読み込ませる必要があります。
+ウェブブラウザは`script`タグによってJavaScriptファイルを読み込み、実行します。
+次のように`script`タグに`type="module"`属性を付与すると、ウェブブラウザはJavaScriptファイルをECMAScriptモジュールとして読み込みます。
 
 ```html
 <!-- my-module.jsをECMAScriptモジュールとして読み込む -->
@@ -170,7 +170,7 @@ import { foo } from "./my-module.js";
 `type="module"`属性が付与されない場合は通常のスクリプトとして扱われ、ECMAScriptモジュールの機能は使えません。
 スクリプトとして読み込まれたJavaScriptで`import`文や`export`文を使用すると、シンタックスエラーが発生します。
 
-Webブラウザの環境では、インポートされるモジュールの取得はネットワーク経由で解決されます。
+ウェブブラウザの環境では、インポートされるモジュールの取得はネットワーク経由で解決されます。
 そのため、モジュール名はJavaScriptファイルの絶対URLあるいは相対URLを指定します。
 詳しくは[Todoアプリのユースケース][]を参照してください。
 
