@@ -27,7 +27,7 @@ Node.js環境では、`console.log`関数の出力先は標準出力になりま
 JavaScriptのコードをNode.jsで実行するには、`node`コマンドを使用します。
 次のコマンドを実行して、Node.jsで`main.js`を実行します。
 
-```
+```shell-session
 $ node main.js
 Hello World!
 ```

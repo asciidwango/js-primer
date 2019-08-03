@@ -1,1 +1,2 @@
-const myModule = require("../../../../basic/module/src/myModule.js");
+const myModule = require("./cjs-export.js");
+console.log(myModule.foo); // => "foo"
