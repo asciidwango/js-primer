@@ -167,5 +167,5 @@ ECMAScriptの仕様がどのように策定されているかについては「[
 [変数と宣言]: ../variables/README.md
 [文と式]: ../statement-expression/README.md
 [ECMAScript]: ../ecmascript/README.md
-[モジュール]: ../../use-case/module/README.md
+[モジュール]: ../../basic/module/README.md
 [付録: 参考リンク集]: ../../appendix/links/README.md
