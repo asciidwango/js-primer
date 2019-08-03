@@ -126,10 +126,10 @@ Promiseチェーンを使って処理を分割する利点は、同期処理と�
 どのように処理を区切るかは、それぞれの関数が受け取る値の型と、返す値の型に注目するのがよいでしょう。
 Promiseチェーンで処理を分けることで、それぞれの処理が簡潔になりコードの見通しがよくなります。
 
-`index.js`の`main`関数と`fetchUserInfo`関数を次のように書き換えます。
-`fetchUserInfo`関数では、Fetch APIが返すPromiseの`then`メソッドで、`Reponse#json`メソッドの戻り値を返しています。
+`index.js`の`fetchUserInfo`関数と`main`関数を次のように書き換えます。
+まず、`fetchUserInfo`関数が`Reponse#json`メソッドの戻り値をそのまま返すように変更します。
 `Reponse#json`メソッドの戻り値はJSONオブジェクトで解決されるPromiseなので、次の`then`ではユーザー情報のJSONオブジェクトが渡されます。
-同じように、`userInfo`を受け取った関数は`createView`関数を呼び出し、その戻り値を次の`then`に渡しています。
+次に、`main`関数が`fetchUserInfo`関数のPromiseチェーンで、HTMLの組み立て（`createView`）と表示（`displayView`）を行うように変更します。
 
 <!-- doctest:async:16 -->
 ```js
@@ -139,6 +139,7 @@ function main() {
         .then((userInfo) => createView(userInfo))
         // ここではHTML文字列で解決されるPromise
         .then((view) => displayView(view))
+        // Promiseチェーンでエラーがあった場合はキャッチされる
         .catch((error) => {
             console.error(`エラーが発生しました (${error})`);
         });
