@@ -111,7 +111,7 @@ function fetchUserInfo(userId) {
 <!-- textlint-disable ja-technical-writing/sentence-length -->
 
 現在の`fetchUserInfo`関数は、HTMLの組み立て（`createView`）と表示（`displayView`）も行っています。
-`fetchUserInfo`関数に処理が集中しているため見通しが悪くなるため、`fetchUserInfo`関数はデータの取得だけを行うように変更します。
+`fetchUserInfo`関数に処理が集中していて見通しが悪くなるため、`fetchUserInfo`関数はデータの取得だけを行うように変更します。
 併せて`main`関数で、データの取得（`fetchUserInfo`）、HTMLの組み立て（`createView`）と表示（`displayView`）という一連の流れをPromiseチェーンで行うように変更していきます。
 
 <!-- textlint-enable ja-technical-writing/sentence-length -->
