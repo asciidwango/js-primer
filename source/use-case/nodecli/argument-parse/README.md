@@ -53,11 +53,12 @@ $ node process-argv.js one two=three four
 commanderは[npm][]の`npm install`コマンドを使ってインストールできます。
 まだnpmの実行環境を用意できていなければ、先に[アプリケーション開発の準備][]を参照してください。
 
-npmでパッケージをインストールする前に、まずは`pacakge.json`というファイルを作成しましょう。
+npmでパッケージをインストールする前に、まずは`pacakge.json`というファイルを作成します。
 `package.json`とは、アプリケーションが依存するパッケージの種類やバージョンなどの情報を記録するJSON形式のファイルです。
 `package.json`ファイルのひな形は、`npm init`コマンドで生成できます。
 通常は対話式のプロンプトによって情報を設定しますが、ここではすべてデフォルト値で`pacakge.json`を作成する`--yes`オプションを付与します。
-次のコマンドを実行して`pacakge.json`を作成しましょう。
+
+`nodecli`のディレクトリ内で、`npm init --yes`コマンドを実行して`pacakge.json`を作成しましょう。
 
 ```shell-session
 $ npm init --yes

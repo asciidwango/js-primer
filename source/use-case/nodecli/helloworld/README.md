@@ -7,6 +7,16 @@ description: "Hello Worldアプリケーションを通じてNode.jsのCLIアプ
 
 実際にアプリケーションを作成するまえに、まずはHello Worldアプリケーションを通じてNode.jsのCLIアプリケーションの基本を学びましょう。
 
+## プロジェクトディレクトリの作成 {#create-project}
+
+今回作成するNode.jsのCLIアプリケーションでは、JavaScriptやMarkdownファイルなど種類のファイルを扱います。
+そのため、まずそれらのファイルを置くためのディレクトリを作成します。
+
+ここでは`nodecli`という名前で新しいディレクトリを作成します。
+ここからは作成した`nodecli`ディレクトリ以下で作業していきます。
+
+またこのプロジェクトで作成するファイルは、必ず文字コード（エンコーディング）を**UTF-8**、改行コードを**LF**にしてファイルを保存します。
+
 ## Hello World {#hello-world}
 
 <!-- textlint-disable preset-ja-technical-writing/no-exclamation-question-mark -->
@@ -14,12 +24,12 @@ description: "Hello Worldアプリケーションを通じてNode.jsのCLIアプ
 まずはNode.jsでHello Worldアプリケーションを作ってみましょう。
 具体的には、実行すると標準出力に`"Hello World!"`という文字列を表示するCLIアプリケーションを記述します。
 はじめに用意するのは、アプリケーションのエントリポイントとなるJavaScriptファイルです。
-適当なディレクトリに`main.js`という名前でファイルを作成し、次のように記述します。
+`nodecli`ディレクトリに`main.js`という名前でファイルを作成し、次のように記述します。
 
 [import, title:"main.js"](src/main.js)
 
-ウェブブラウザの実行環境では、`console.log`関数の出力先はブラウザの開発者ツールのコンソールでした。
-Node.js環境では、`console.log`関数の出力先は標準出力になります。
+ウェブブラウザの実行環境では、`console.log`メソッドの出力先はブラウザの開発者ツールのコンソールでした。
+Node.js環境では、`console.log`メソッドの出力先は標準出力になります。
 このコードは、標準出力に`"Hello World!"`という文字列を出力するものです。
 
 <!-- textlint-enable preset-ja-technical-writing/no-exclamation-question-mark -->
