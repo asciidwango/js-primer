@@ -48,7 +48,7 @@ $ node process-argv.js one two=three four
 文字列処理を自前で行うこともできますが、このような一般的な処理は既存のライブラリを使うと簡単に書けます。
 今回は[commander][]というライブラリを使ってコマンドライン引数をパースします。
 
-### commanderパッケージをインストールする {#install-commander}
+### `commander`パッケージをインストールする {#install-commander}
 
 commanderは[npm][]の`npm install`コマンドを使ってインストールできます。
 まだnpmの実行環境を用意できていなければ、先に[アプリケーション開発の準備][]を参照してください。
@@ -68,7 +68,7 @@ $ npm init --yes
 
 [import, title:"package.json"](src/package.init.json)
 
-`package.json`ファイルが用意できたら、`npm install`コマンドを使ってcommanderパッケージをインストールします。
+`package.json`ファイルが用意できたら、`npm install`コマンドを使って`commander`パッケージをインストールします。
 このコマンドの引数にはインストールするパッケージの名前とそのバージョンを`@`記号でつなげて指定できます。
 バージョンを指定せずにインストールすれば、その時点での最新の安定版が自動的に選択されます。
 次のコマンドを実行して、commanderのバージョン2.9をインストールします。[^1]
@@ -89,11 +89,11 @@ $ npm install commander@2.9
 
 ### CommonJSモジュール {#commonjs-module}
 
-インストールしたcommanderパッケージを使う前に、**CommonJSモジュール**のことを知っておきましょう。
+インストールした`commander`パッケージを使う前に、**CommonJSモジュール**のことを知っておきましょう。
 [CommonJSモジュール][]とは、[Node.js][]環境で利用されているJavaScriptのモジュール化の仕組みです。
 CommonJSモジュールは基本文法で学んだ[ECMAScriptモジュール][]の仕様が策定されるより前からNode.jsで使われています。
 Node.jsの標準パッケージやnpmで配布されるパッケージは、CommonJSモジュールとして提供されていることがほとんどです。
-先ほどインストールしたcommanderパッケージも、CommonJSモジュールとして利用できます。
+先ほどインストールした`commander`パッケージも、CommonJSモジュールとして利用できます。
 
 CommonJSモジュールはNode.jsのグローバル変数である`module`変数を使って変数や関数などをエクスポートします。
 CommonJSモジュールでは`module.exports`プロパティに代入されたオブジェクトが、そのJavaScriptファイルからエクスポートされます。
@@ -113,7 +113,7 @@ CommonJSモジュールでは`module.exports`プロパティに代入された�
 `npm install`コマンドでインストールされたパッケージは、`node_modules`というディレクトリの中に配置されています。
 `require`関数にインストールしたパッケージ名を指定することで、`node_modules`ディレクトリに配置されたパッケージを読み込めます。
 
-次の例では、先ほどインストールしたcommanderパッケージを`node_modules`ディレクトリから読み込んでいます。
+次の例では、先ほどインストールした`commander`パッケージを`node_modules`ディレクトリから読み込んでいます。
 
 ```js
 const program = require("commander");
@@ -122,9 +122,9 @@ const program = require("commander");
 このユースケースで今後登場するモジュールはすべてCommonJSモジュールです。
 Node.jsではES Moduleもサポートされる予定ですが、現在はまだ安定した機能としてサポートされていません。
 
-### commanderパッケージを使う {#use-commander}
+### `commander`パッケージを使う {#use-commander}
 
-先ほどインストールしたcommanderパッケージを使ったコマンドライン引数のパース例を見ていきます。
+先ほどインストールした`commander`パッケージを使ったコマンドライン引数のパース例を見ていきます。
 
 次の`commander-flag.js`では、コマンドライン引数の`--foo`オプションを真偽値としてパースしています。
 commanderは`options`メソッドを使って、受け取りたいオプションを定義します。
@@ -140,8 +140,8 @@ $ node commander-flag.js --foo
 true
 ```
 
-もし、次のようなエラーが表示されたときは、commanderパッケージが`node_modules`ディレクトリ内にないことを示しています。
-commanderパッケージのインストールに失敗しているので、パッケージのインストールからやり直してみましょう。
+もし、次のようなエラーが表示されたときは、`commander`パッケージが`node_modules`ディレクトリ内にないことを示しています。
+`commander`パッケージのインストールに失敗しているので、パッケージのインストールからやり直してみましょう。
 
 ```
 Error: Cannot find module 'commander'

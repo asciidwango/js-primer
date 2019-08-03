@@ -15,7 +15,7 @@ description: "Node.jsの`fs`モジュールを使ったファイルの読み込�
 前回のセクションでインストールしたcommanderを使って、コマンドライン引数からファイルパスを取得しましょう。
 
 次のように、`receive-path.js`というファイルを作成しファイルパスを取得して標準出力に表示してみます。
-`commanderでパース後に、オプションとして定義していないコマンドライン引数は`program.args`配列から取得できます。
+`commander`でパース後に、オプションとして定義していないコマンドライン引数は`program.args`配列から取得できます。
 
 [import title:"receive-path.js"](src/receive-path.js)
 
