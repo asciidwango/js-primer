@@ -39,6 +39,7 @@ GitHubのAPIに対してHTTPリクエストを送信しましたが、まだレ�
 また、`Response`オブジェクトの`json`メソッドも`Promise`を返します。これは、HTTPレスポンスボディをJSONとしてパースしたオブジェクトでresolveされます。
 ここでは、書籍用に用意した`js-primer-example`というGitHubアカウントのユーザー情報を取得しています。
 
+{{book.console}}
 <!-- fetchがないため -->
 <!-- doctest:disable -->
 ```js
@@ -60,6 +61,7 @@ HTTP通信にはエラーがつきものです。
 サーバーとの通信に際してネットワークエラーが発生した場合は、ネットワークエラーを表す`NetworkError`オブジェクトでrejectされた`Promise`が返されます。
 すなわち、`then`メソッドの第2引数か`catch`メソッドのコールバック関数が呼び出されます。
 
+{{book.console}}
 <!-- fetchがないため -->
 <!-- doctest:disable -->
 ```js
@@ -88,6 +90,7 @@ fetch("https://httpbin.org/status/301");
 
 -->
 
+{{book.console}}
 <!-- fetchがないため -->
 <!-- doctest:disable -->
 ```js
