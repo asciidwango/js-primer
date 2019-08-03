@@ -146,7 +146,7 @@ JavaScriptの実行コンテキストとして"Script"と"Module"があります
 
 "Module"の実行コンテキストは、JavaScriptをモジュールとして実行するために、ECMAScript 2015で導入されたものです。
 "Module"の実行コンテキストでは、デフォルトがstrict modeとなり、古く安全でない構文や機能は一部禁止されています。
-また、モジュールの機能は"Module"の実行コンテキストでしか利用できません。モジュールについての詳細は「[モジュール][]」の章で解説します。
+また、モジュールの機能は"Module"の実行コンテキストでしか利用できません。モジュールについての詳細は「[ECMAScriptモジュール][]」の章で解説します。
 
 ### JavaScriptの仕様は毎年更新される {#ecmascript-updates}
 
@@ -167,5 +167,5 @@ ECMAScriptの仕様がどのように策定されているかについては「[
 [変数と宣言]: ../variables/README.md
 [文と式]: ../statement-expression/README.md
 [ECMAScript]: ../ecmascript/README.md
-[モジュール]: ../../basic/module/README.md
+[ECMAScriptモジュール]: ../../basic/module/README.md
 [付録: 参考リンク集]: ../../appendix/links/README.md
