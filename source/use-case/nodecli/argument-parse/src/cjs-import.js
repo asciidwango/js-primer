@@ -1,2 +1,2 @@
-const myModule = require("./cjs-export.js");
+const myModule = require("./cjs-export");
 console.log(myModule.foo); // => "foo"
