@@ -1668,7 +1668,7 @@ Async Functionも内部的にPromiseの仕組みを利用しているため、�
 ```js
 // asyncではない関数では`await`式は利用できない
 function main(){
-    // SyntaxError: await is only valid in async functions
+    // SyntaxError: await is only valid in async function
     await Promise.resolve();
 }
 ```
@@ -1821,7 +1821,7 @@ fetchResources(resources).then((results) => {
 
 この章では、非同期処理に関するコールバック関数、Promise、Async Functionについて学びました。
 
-- 非同期処理はその処理が終わるの待つ前に次の処理を評価すること
+- 非同期処理はその処理が終わるのを待つ前に次の処理を評価すること
 - 非同期処理であってもメインスレッドで実行されることがある
 - エラーファーストコールバックは、非同期処理での例外を扱うルールの1つ
 - Promiseは、ES2015で導入された非同期処理を扱うビルトインオブジェクト
