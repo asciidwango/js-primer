@@ -8,58 +8,62 @@ description: "ユニットテストの導入とソースコードのモジュー
 このセクションでは、これまで作成したCLIアプリケーションにユニットテストを導入します。
 ユニットテストの導入とあわせて、ソースコードを整理してテストがしやすくなるようにモジュール化します。
 
-## スクリプトをモジュールに分割する {#split-script}
-
 前のセクションまでは、すべての処理をひとつのJavaScriptファイルに記述していました。
 ユニットテストを行うためにはテスト対象がモジュールとして分割されていなければいけません。
 今回のアプリケーションでは、CLIアプリケーションとしてコマンドライン引数を処理する部分と、MarkdownをHTMLへ変換する部分に分割します。
 
-Node.jsでは、複数のJavaScriptファイル間で変数や関数などをやりとりするために、モジュールという仕組みを利用します。
-モジュールとは変数や関数などを外部にエクスポートするJavaScriptファイルのことです。
-モジュールであるJavaScriptファイルは、別のJavaScriptファイルからインポートできます。
-モジュールからオブジェクトをエクスポートするには、Node.jsのグローバル変数である[moduleオブジェクト][]を利用します。
+## CommonJSでのモジュール化 {#commonjs-module}
+
+実際にアプリケーションのモジュール化する前に、CommonJSでのモジュール化について簡単に振り返ります。
+
+Node.jsでは、複数のJavaScriptファイル間で変数や関数などをやりとりするために、CommonJSモジュールという仕組みを利用します。
+CommonJSモジュールからオブジェクトをエクスポートするには、Node.jsのグローバル変数である[moduleオブジェクト][]を利用します。
 `module.exports`オブジェクトは、そのファイルからエクスポートされるオブジェクトを格納します。
-次のコードは簡単な関数をエクスポートするモジュールの例です。
 
-[import, greet.js](src/example/greet.js)
+次の`greet.js`というファイルは、`greet`関数をエクスポートするモジュールの例です。
 
-`require`関数は別のJavaScriptファイルをモジュールとしてインポートできます。
-次の例では先ほどのモジュールをインポートして、エクスポートされた関数を取得しています。
+[import, title:"greet.js"](src/example/greet.js)
 
-[import, greet-index.js](src/example/greet-index.js)
+`require`関数を使い指定したファイルパスのJavaScriptファイルをモジュールとしてインポートできます。
+次のコードでは先ほどの`greet.js`のパスを指定してモジュールとしてインポートして、エクスポートされた関数を取得しています。
 
-`module.exports`オブジェクトに直接代入するのではなく、そのプロパティとして任意の値をエクスポートできます。
-次の例では2つの関数を同じファイルからエクスポートしています。
+[import, title:"greet-index.js"](src/example/greet-index.js)
 
-[import, functions.js](src/example/functions.js)
+`module.exports`オブジェクトそのものに代入するのではなく、`module.exports`オブジェクトのプロパティに代入することでも任意の値をエクスポートできます。
+次の`functions.js`というファイルでは、`foo`と`bar`の2つの関数を同じファイルからエクスポートしています。
 
-このようにエクスポートされたオブジェクトは、`require`関数の戻り値のプロパティとしてアクセス可能になります。
+[import, title:"functions.js"](src/example/functions.js)
 
-[import, functions-index.js](src/example/functions-index.js)
+このようにエクスポートされたオブジェクトは、`require`関数の戻り値であるオブジェクトのプロパティとしてアクセスできます。
+次のコードでは先ほどの`functions.js`をインポートして取得したオブジェクトから`foo`と`bar`関数をプロパティとして取得しています。
+
+[import, title:"functions-index.js"](src/example/functions-index.js)
+
+## アプリケーションをモジュールに分割する {#split-script}
 
 それではCLIアプリケーションのソースコードをモジュールに分割してみましょう。
 `md2html.js`という名前のJavaScriptファイルを作成し、次のようにMarkdownの変換処理を記述します。
 
-[import md2html.js](./src/md2html.js)
+[import title:"md2html.js](./src/md2html.js)
 
 このモジュールがエクスポートするのは、与えられたオプションをもとにMarkdown文字列をHTMLに変換する関数です。
 アプリケーションのエントリポイントである`main.js`では、次のようにこのモジュールをインポートして使用します。
 
-[import main.js](./src/main.js)
+[import title:"main.js"](./src/main.js)
 
 markedパッケージや、そのオプションに関する記述がひとつの`md2html`関数に隠蔽され、`main.js`がシンプルになりました。
 そして`md2html.js`はアプリケーションから独立したひとつのモジュールとして切り出され、ユニットテストが可能になりました。
 
 ## ユニットテスト実行環境を作る {#create-env}
 
-ユニットテストの実行にはさまざまな方法がありますが、
+ユニットテストの実行にはさまざまな方法があります。
 このセクションではテスティングフレームワークとして[Mocha][]を使って、ユニットテストの実行環境を作成します。
 Mochaが提供するテスト実行環境では、グローバルに`it`や`describe`などの関数が定義されます。
 `it`関数はその内部でエラーが発生したとき、そのテストを失敗として扱います。
 つまり、期待する結果と異なるならエラーを投げ、期待どおりならエラーを投げないというテストコードを書くことになります。
 
-テストコード中でエラーを投げるために、今回はNode.jsの標準モジュールのひとつである[assertモジュール][]から提供される`assert`関数を利用します。
-`assert`関数は引数の評価結果がfalseであるとき、実行時にエラーを投げます。
+今回はNode.jsの標準モジュールのひとつである[assertモジュール][]から提供される`assert.strictEqual`メソッドを利用します。
+`assert.strictEqual`メソッドは第1引数と第2引数の評価結果が`===`で比較して異なる場合に、例外を投げる関数です。
 
 Mochaによるテスト環境を作るために、まずは次のコマンドで`mocha`パッケージをインストールします。
 
@@ -68,25 +72,24 @@ $ npm install --save-dev mocha@6
 ```
 
 `--save-dev`オプションは、パッケージを`devDependencies`としてインストールするためのものです。
-package.jsonの`devDependencies`には、そのパッケージを開発するときだけ必要な依存ライブラリを記述します。
+`package.json`の`devDependencies`には、そのパッケージを開発するときだけ必要な依存ライブラリを記述します。
 
 ユニットテストを実行するには、Mochaが提供する`mocha`コマンドを使います。
-Mochaをインストールした後、package.jsonの`scripts`プロパティを次のように記述します。
+Mochaをインストールした後、`package.json`の`scripts`プロパティを次のように記述します。
 
 ```json
 {
     ...
     "scripts": {
-        "test": "mocha"
+        "test": "mocha test/"
     },
     ...
 }
 ```
 
-この記述により、`npm test`コマンドを実行したときに`mocha`コマンドが呼び出されます。
+この記述により、`npm test`コマンドを実行すると、`mocha`コマンドで`test/`ディレクトリにあるテストファイルを実行します。
 試しに`npm test`コマンドを実行し、Mochaによるテストが行われることを確認しましょう。
-まだテストファイルを作っていないので、`Error: No test files found`と表示されます。
-
+まだテストファイルを作っていないので、`Error: No test files found`というエラーが表示されます。
 
 ```shell-session
 $ npm test
@@ -107,7 +110,15 @@ Mochaのユニットテストは`test`ディレクトリの中にJavaScriptフ�
 `test/fixtures`ディレクトリにはユニットテストで用いるファイルを配置しています。
 今回は変換元のMarkdownファイルと、期待する変換結果のHTMLファイルの2つが存在します。
 
-ユニットテストを記述したら、もう一度改めて`npm test`コマンドを実行しましょう。1件のテストが通れば成功です。
+次のように変換元のMarkdownファイルを`test/fixtures/sample.md`に配置します。
+
+[import, title:"test/fixtures/sample.md"](./src/test/fixtures/sample.md)
+
+そして、期待する変換結果のHTMLファイルを`test/fixtures/expected.html`に配置します。
+
+[import, title:"test/fixtures/expected.html"](./src/test/fixtures/expected.html)
+
+ユニットテストの準備ができたら、もう一度改めて`npm test`コマンドを実行しましょう。1件のテストが通れば成功です。
 
 ```shell-session
 $ npm test
@@ -117,6 +128,12 @@ $ npm test
 
   1 passing (18ms)
 ```
+
+ユニットテストが通らなかった場合は、次のことを確認してみましょう。
+
+- `test/fixtures`ディレクトリに`sample.md`と`expected.html`というファイルを作成したか
+- それぞれのファイルは文字コードがUTF-8で、改行コードがLFになっているか
+- それぞれのファイルの末尾に余計な改行文字がはいっていないか
 
 ## なぜユニットテストをおこなうのか {#reason-for-unit-test}
 
@@ -136,7 +153,7 @@ $ npm test
 ## まとめ {#unit-test-summary}
 
 このユースケースの目標であるNode.jsを使ったCLIアプリケーションの作成と、ユニットテストの導入ができました。
-npmを使ったパッケージ管理や外部モジュールの利用、fsモジュールを使ったファイル操作など、多くの要素が登場しました。
+npmを使ったパッケージ管理や外部モジュールの利用、`fs`モジュールを使ったファイル操作など、多くの要素が登場しました。
 これらはNode.jsアプリケーション開発においてほとんどのユースケースで応用されるものなので、よく理解しておきましょう。
 
 ## このセクションのチェックリスト {#section-checklist}

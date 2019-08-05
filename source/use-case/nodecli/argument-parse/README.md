@@ -16,9 +16,9 @@ description: "コマンドライン引数を受け取り、アプリケーショ
 詳細は[公式ドキュメント](https://nodejs.org/dist/latest-v8.x/docs/api/process.html#process_process)を参照してください。
 
 コマンドライン引数へのアクセスを提供するのは、`process`オブジェクトの`argv`プロパティで、文字列の配列になっています。
-例として、次のように`process-argv.js`を記述します。
+例として、次のように`process.argv`をコンソール出力するだけの`process-argv.js`を作成します。
 
-[import process-argv.js](src/process-argv.js)
+[import title:"process-argv.js"](src/process-argv.js)
 
 このスクリプトを次のようなコマンドで実行します。
 
@@ -26,7 +26,7 @@ description: "コマンドライン引数を受け取り、アプリケーショ
 $ node process-argv.js one two=three four
 ```
 
-すると、出力結果は次のようになります。
+このコマンドの実行結果は次のようになります。
 
 ```
 [ 
@@ -48,16 +48,17 @@ $ node process-argv.js one two=three four
 文字列処理を自前で行うこともできますが、このような一般的な処理は既存のライブラリを使うと簡単に書けます。
 今回は[commander][]というライブラリを使ってコマンドライン引数をパースします。
 
-### commanderパッケージをインストールする {#install-commander}
+### `commander`パッケージをインストールする {#install-commander}
 
 commanderは[npm][]の`npm install`コマンドを使ってインストールできます。
 まだnpmの実行環境を用意できていなければ、先に[アプリケーション開発の準備][]を参照してください。
 
-npmでパッケージをインストールする前に、まずは`pacakge.json`というファイルを作成しましょう。
+npmでパッケージをインストールする前に、まずは`pacakge.json`というファイルを作成します。
 `package.json`とは、アプリケーションが依存するパッケージの種類やバージョンなどの情報を記録するJSON形式のファイルです。
 `package.json`ファイルのひな形は、`npm init`コマンドで生成できます。
-通常は対話式のプロンプトによって情報を設定しますが、ここではすべてデフォルト値で問題ないため、`--yes`オプションを付与します。
-次のコマンドを実行して`pacakge.json`を作成しましょう。
+通常は対話式のプロンプトによって情報を設定しますが、ここではすべてデフォルト値で`pacakge.json`を作成する`--yes`オプションを付与します。
+
+`nodecli`のディレクトリ内で、`npm init --yes`コマンドを実行して`pacakge.json`を作成しましょう。
 
 ```shell-session
 $ npm init --yes
@@ -65,9 +66,9 @@ $ npm init --yes
 
 生成された`package.json`ファイルは次のようになっています。
 
-[import package.json](src/package.init.json)
+[import, title:"package.json"](src/package.init.json)
 
-`package.json`ファイルが用意できたら、`npm install`コマンドを使ってcommanderパッケージをインストールします。
+`package.json`ファイルが用意できたら、`npm install`コマンドを使って`commander`パッケージをインストールします。
 このコマンドの引数にはインストールするパッケージの名前とそのバージョンを`@`記号でつなげて指定できます。
 バージョンを指定せずにインストールすれば、その時点での最新の安定版が自動的に選択されます。
 次のコマンドを実行して、commanderのバージョン2.9をインストールします。[^1]
@@ -78,50 +79,59 @@ $ npm install commander@2.9
 
 インストールが完了すると、`package.json`ファイルは次のようになっています。
 
-[import package.json](src/package.json)
+[import, title:"package.json"](src/package.json)
 
 また、npmのバージョンが5以上であれば `package-lock.json`ファイルが生成されています。
 このファイルはnpmがインストールしたパッケージの、実際のバージョンを記録するためのものです。
 さきほどcommanderのバージョンは`2.9`としましたが、実際にインストールされるのは`2.9.x`に一致する最新のバージョンです。
 `package-lock.json`ファイルには実際にインストールされたバージョンが記録されています。
-これによって、ふたたび`npm install`を実行したときに異なるバージョンがインストールされることを防ぎます。
+これによって、ふたたび`npm install`を実行したときに、異なるバージョンがインストールされることを防ぎます。
 
 ### CommonJSモジュール {#commonjs-module}
 
-インストールしたcommanderパッケージを使う前に、**CommonJSモジュール**のことを知っておきましょう。
+インストールした`commander`パッケージを使う前に、**CommonJSモジュール**のことを知っておきましょう。
 [CommonJSモジュール][]とは、[Node.js][]環境で利用されているJavaScriptのモジュール化の仕組みです。
-CommonJSモジュールは基本文法で学んだ[ES Module](../../../basic/module/README.md)の仕様が策定されるよりもずっと古くから使われています。
+CommonJSモジュールは基本文法で学んだ[ECMAScriptモジュール][]の仕様が策定されるより前からNode.jsで使われています。
 Node.jsの標準パッケージやnpmで配布されるパッケージは、CommonJSモジュールとして提供されていることがほとんどです。
-先ほどインストールしたcommanderパッケージも、CommonJSモジュールとして利用できます。
+先ほどインストールした`commander`パッケージも、CommonJSモジュールとして利用できます。
 
 CommonJSモジュールはNode.jsのグローバル変数である`module`変数を使って変数や関数などをエクスポートします。
-次のように`module.exports`プロパティに代入されたオブジェクトが、そのJavaScriptファイルからエクスポートされます。
-複数の名前付きエクスポートが可能なES Moduleと違い、CommonJSでは`module.exports`プロパティの値だけがエクスポートの対象です。
+CommonJSモジュールでは`module.exports`プロパティに代入されたオブジェクトが、そのJavaScriptファイルからエクスポートされます。
+複数の名前付きエクスポートが可能なES Moduleとは異なり、CommonJSでは`module.exports`プロパティの値だけがエクスポートの対象です。
 
-[import, commonjsExport.js](src/cjs-export.js)
+次の例では、`cjs-export.js`というファイルを作成し、`module.exports`でオブジェクトをエクスポートしています。
 
-CommonJSモジュールをインポートするには、グローバル関数である[require関数][]を使います。
-次のように`require`関数にモジュール名を渡し、戻り値としてエクスポートされた値を受け取ります。
+[import, title:"cjs-export.js"](src/cjs-export.js)
 
-[import, commonjsImport.js](src/cjs-import.js)
+このCommonJSモジュールをインポートするには、グローバル関数である[require関数][]を使います。
+次のように`require`関数にインポートしたいモジュールのファイルパスを渡し、戻り値としてエクスポートされた値をインポートできます。
+インポートするファイルパスに拡張子が必須なES Moduleとは異なり、CommonJSの`require`関数では拡張子である`.js`が省略可能です。
 
-このユースケースで今後登場するモジュールはすべてCommonJSモジュールです。
-Node.jsではES Moduleもサポートされる予定ですが、現在はまだ安定した機能としてサポートされていません。
+[import, title:"cjs-import.js"](src/cjs-import.js)
 
-### commanderパッケージを使う {#use-commander}
-
+また、`require`関数は相対パスや絶対パス以外にもnpmでインストールしたパッケージ名を指定することもできます。
 `npm install`コマンドでインストールされたパッケージは、`node_modules`というディレクトリの中に配置されています。
-次のように`require`関数を使って、`node_modules`ディレクトリに配置されたcommanderパッケージを読み込みます。
+`require`関数にインストールしたパッケージ名を指定することで、`node_modules`ディレクトリに配置されたパッケージを読み込めます。
+
+次の例では、先ほどインストールした`commander`パッケージを`node_modules`ディレクトリから読み込んでいます。
 
 ```js
 const program = require("commander");
 ```
 
-commanderは`parse`メソッドを使ってコマンドライン引数をパースします。
-パースした後に`opts`メソッドを呼び出すと、定義したオプションと与えられた値をオブジェクトとして取り出すことができます。
-次の`commander-flag.js`では、値をもたないオプションを真偽値にパースしています。
+このユースケースで今後登場するモジュールはすべてCommonJSモジュールです。
+Node.jsではES Moduleもサポートされる予定ですが、現在はまだ安定した機能としてサポートされていません。
 
-[import commander-flag.js](src/commander-flag.js)
+### `commander`パッケージを使う {#use-commander}
+
+先ほどインストールした`commander`パッケージを使ったコマンドライン引数のパース例を見ていきます。
+
+次の`commander-flag.js`では、コマンドライン引数の`--foo`オプションを真偽値としてパースしています。
+commanderは`options`メソッドを使って、受け取りたいオプションを定義します。
+オプションの定義後に、`parse`メソッドに`process.argv`を渡してコマンドライン引数をパースします。
+パースした後に`opts`メソッドを呼び出すと、定義したオプションと与えられた値をオブジェクトとして取り出すことができます。
+
+[import title:"commander-flag.js"](src/commander-flag.js)
 
 このスクリプトを次のように実行すると、`--foo`オプションがパースされ、`options.foo`プロパティとして扱えるようになっています。
 
@@ -130,26 +140,27 @@ $ node commander-flag.js --foo
 true
 ```
 
-もし、次のようなエラーが表示されたときは、commanderパッケージが`node_modules`ディレクトリ内にないことを示しています。
-commanderパッケージのインストールに失敗しているので、パッケージのインストールからやり直してみましょう。
+もし、次のようなエラーが表示されたときは、`commander`パッケージが`node_modules`ディレクトリ内にないことを示しています。
+`commander`パッケージのインストールに失敗しているので、パッケージのインストールからやり直してみましょう。
 
 ```
 Error: Cannot find module 'commander'
 ```
 
-値をもつオプションをパースする場合は、次の`commander-param.js`のように記述します。
+次の`commander-param.js`では、コマンドライン引数の`--bar`オプションに渡された値を受け取っています。
 
-[import commander-param.js](src/commander-param.js)
+[import title:"commander-param.js"](src/commander-param.js)
 
-`--foo`オプションに値を与えて実行すれば、文字列が`options.foo`プロパティにセットされていることがわかります。
+`--bar`オプションに値を与えて実行すれば、文字列が`options.bar`プロパティにセットされていることがわかります。
+`options`メソッドで、`--オプション名 <値の種類>`を定義することで、指定したオプション名に渡された値を取得できます。
 
 ```shell-session
-$ node commander-param.js --foo bar
-bar
+$ node commander-param.js --bar "value"
+value
 ```
 
-このように、`process.argv`配列を直接扱うよりも、commanderのようなライブラリを使うことで簡単にコマンドライン引数を処理できます。
-次のセクションからは、こうして受け取ったコマンドライン引数を使って、CLIアプリケーションを作成していきます。
+このように、`process.argv`配列を直接扱うよりも、commanderのようなライブラリを使うことで宣言的にコマンドライン引数を定義し処理できます。
+次のセクションからは、同じようにコマンドライン引数を定義し、CLIアプリケーションを作成していきます。
 
 ## このセクションのチェックリスト {#section-checklist}
 
@@ -165,4 +176,5 @@ bar
 [Node.js]: https://nodejs.org/ja/
 [require関数]: https://nodejs.org/dist/latest-v8.x/docs/api/modules.html#modules_loading_from_node_modules_folders
 [アプリケーション開発の準備]: ../../setup-local-env/README.md
+[ECMAScriptモジュール]: ../../../basic/module/README.md
 [^1]: --saveオプションをつけてインストールしたのと同じ意味。npm 5.0.0からは--saveがデフォルトオプションとなりました。

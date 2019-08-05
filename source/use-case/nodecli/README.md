@@ -26,7 +26,7 @@ Hello Worldアプリケーションを通じてNode.jsのCLIアプリケーシ�
 
 ### [ファイルを読み込む](./read-file/README.md) {#read-file}
 
-Node.jsのfsモジュールを使ったファイルの読み込みについて学びます。
+Node.jsの`fs`モジュールを使ったファイルの読み込みについて学びます。
 
 ### [MarkdownをHTMLに変換する](./md-to-html/README.md) {#md-to-html}
 

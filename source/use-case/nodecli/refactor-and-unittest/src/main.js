@@ -12,7 +12,7 @@ const filePath = program.args[0];
 fs.readFile(filePath, "utf8", (err, file) => {
     if (err) {
         console.error(err);
-        process.exit(err.code);
+        process.exit(1);
         return;
     }
     const html = md2html(file, program.opts());

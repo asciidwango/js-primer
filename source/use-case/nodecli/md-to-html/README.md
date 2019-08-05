@@ -20,29 +20,30 @@ $ npm install --save marked@0.6
 インストールが完了したら、Node.jsのスクリプトから読み込みます。
 前のセクションの最後で書いたスクリプトに、markedパッケージの読み込み処理を追加します。
 
-[import main.js](src/main-0.js)
+[import title:"main.js"](src/main-0.js)
 
-markedパッケージから取得した`marked`オブジェクトは、Markdown文字列を引数に取りHTML文字列を返す関数です。
+markedパッケージをインポートして取得した`marked`関数は、引数のMarkdown文字列をHTML文字列に変換して返します。
 次のように`readFile`関数で読み込んだファイルの文字列を引数として渡せば、HTMLに変換できます。
 
-[import main.js](src/main-1.js)
+[import title:"main.js"](src/main-1.js)
 
 ## 変換オプションを作成する {#create-convert-option}
 
 markedにはMarkdownの[変換オプション][]があり、オプションの設定によって変換後のHTMLが変化します。
 いくつかのオプションについてアプリケーション中でのデフォルトの設定を決め、さらにコマンドライン引数から設定を切り替えられるようにしてみましょう。
-今回扱うオプションは次の2つです。
 
-* gfm
-* sanitize
+今回のアプリケーションでは次の2つのオプションを扱います。
+
+- gfm
+- sanitize
 
 ### gfmオプション {#gfm-option}
 
 `gfm`オプションは、GitHubにおけるMarkdownの仕様([GitHub Flavored Markdown][], GFM)に合わせて変換するかを決めるオプションです。
-markedのデフォルトでは`true`になっています。GFMは標準的なMarkdownにいくつかの拡張を加えたもので、代表的な拡張がURLの自動リンク化です。
+markedではこの`gfm`オプションがデフォルトで`true`になっています。GFMは標準的なMarkdownにいくつかの拡張を加えたもので、代表的な拡張がURLの自動リンク化です。
 例として、次のようなMarkdownファイルを用意し、先ほどのスクリプトと、`gfm`オプションを`false`にしたスクリプトで結果の違いを見てみましょう。
 
-[import sample.md](src/sample.md)
+[import, サンプルMarkdownファイル](src/sample.md)
 
 `gfm`オプションが有効のときは、URLの文字列が自動的に`<a>`タグのリンクに置き換わります。
 
@@ -80,7 +81,8 @@ https://jsprimer.net/</p>
 
 [import sample.md](src/sample-1.md)
 
-`sanitize`オプションのデフォルト値は`false`なので、何も指定しなければMarkdownファイル中のHTMLはそのまま出力されるHTML中でもタグとして残ります。
+`sanitize`オプションのデフォルト値は`false`です。
+そのため、何も指定しなければMarkdownファイル中のHTMLはそのまま出力されるHTML中でもタグとして残ります。
 
 ```html
 <h1 id="-">サンプルファイル</h1>
@@ -94,8 +96,8 @@ https://jsprimer.net/</p>
 </ul>
 ```
 
-ここで次のように`sanitize`オプションを有効にすると、`<`と`>`がエスケープされてHTMLタグとして機能しなくなります。
-自由なHTMLを書かれては困る場合に有用なオプションです。
+次のように`sanitize`オプションを有効にすると、`<`と`>`がエスケープされてHTMLタグとして機能しなくなります。
+自由にHTMLを書かれては困る場合に有用なオプションです。
 
 [import sanitizeオプションを有効にする](src/main-3.js)
 
@@ -134,7 +136,8 @@ program.parse(process.argv);
 アプリケーション側でデフォルト設定を持っておくことで、将来的にmarkedの挙動が変わったときにも影響を受けにくくなります。
 
 markedのオプションはオブジェクトを渡す形式です。
-オブジェクトのデフォルト値を明示的な値で上書きするときには`...`（spread構文）を使うと便利です。([オブジェクトのspread構文](../../../basic/object/README.md#object-spread-syntax)を参照)
+オブジェクトのデフォルト値を明示的な値で上書きするときには`...`（spread構文）を使うと便利です。([オブジェクトのspread構文][]を参照)
+
 次のようにデフォルトのオプションを表現したオブジェクトに対して、`program.opts`メソッドの戻り値で上書きします。
 
 <!-- 差分コードなので -->
@@ -151,7 +154,7 @@ const markedOptions = {
 あとは`markedOptions`オブジェクトからmarkedにオプションを渡すだけです。
 スクリプト全体は次のようになります。
 
-[import main.js](src/main-4.js)
+[import title:"main.js"](src/main-4.js)
 
 定義したコマンドライン引数を使って、Markdownファイルを変換してみましょう。
 
@@ -173,3 +176,4 @@ $ node main.js -S sample.md
 [marked]: https://github.com/chjj/marked
 [変換オプション]: https://marked.js.org/#/USING_ADVANCED.md#options
 [GitHub Flavored Markdown]: https://github.github.com/gfm/
+[オブジェクトのspread構文]: ../../../basic/object/README.md#object-spread-syntax

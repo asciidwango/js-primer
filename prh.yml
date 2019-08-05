@@ -295,6 +295,9 @@ rules:
   - expected: ローカルサーバー
     patterns:
       - /ローカルサーバ(?!ー)/
+  - expected: ウェブブラウザ
+    patterns:
+      - Webブラウザ
 
   # 一致とマッチ
   ## 一致は ===

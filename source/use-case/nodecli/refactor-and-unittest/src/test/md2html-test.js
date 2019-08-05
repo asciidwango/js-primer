@@ -7,5 +7,5 @@ it("converts Markdown to HTML", () => {
     const sample = fs.readFileSync(path.resolve(__dirname, "./fixtures/sample.md"), "utf8");
     const expected = fs.readFileSync(path.resolve(__dirname, "./fixtures/expected.html"), "utf8");
 
-    assert(md2html(sample) === expected);
+    assert.strictEqual(md2html(sample), expected);
 });
