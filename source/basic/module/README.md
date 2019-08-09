@@ -175,6 +175,6 @@ import { foo } from "./my-module.js";
 詳しくは[Todoアプリのユースケース][]を参照してください。
 
 
-[Todoアプリのユースケース]: ../../../use-case/todoapp/README.md
+[Todoアプリのユースケース]: ../../use-case/todoapp/README.md
 [export文]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export
 [import文]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import
