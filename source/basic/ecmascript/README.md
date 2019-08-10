@@ -9,7 +9,7 @@ description: "JavaScriptの仕様であるECMAScriptについてを紹介しま�
 
 ECMAScriptは[Ecma International][]という団体によって標準化されている仕様です。
 Ecma InternationalはECMAScript以外にもC#やDartなどの標準化作業をしています。
-Ecma International中のTechnical Committee 39（TC39）という技術委員会が中心となって、ECMAScript仕様についてを議論しています。
+Ecma Internationalの中のTechnical Committee 39（TC39）という技術委員会が中心となって、ECMAScript仕様についてを議論しています。
 この技術委員会はMicrosoft、Mozilla、Google、AppleといったブラウザベンダーやECMAScriptに関心のある企業などによって構成されます。
 
 ## ECMAScriptのバージョンの歴史 {#history}
@@ -31,7 +31,7 @@ Ecma International中のTechnical Committee 39（TC39）という技術委員会
 
 <!-- textlint-disable -->
 
-ES5.1からES2015がでるまで4年もの歳月がかかっているの対して、ES2015以降は毎年リリースされています。
+ES5.1からES2015がでるまで4年もの歳月がかかっているのに対して、ES2015以降は毎年リリースされています。
 毎年安定したリリースを行えるようになったのは、ES2015以降は仕様策定プロセスの変更が行われたためです。
 
 <!-- textlint-enable -->
