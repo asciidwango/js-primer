@@ -80,7 +80,7 @@ $ node main.js sample.md
 
 [import title:"main.js"](src/main-2.js)
 
-先ほどと同じコマンドをもう一度すると、実行結果は次のようになります。
+先ほどと同じコマンドをもう一度実行すると、実行結果は次のようになります。
 `sample.md`ファイルの中身を文字列として出力できました。
 
 ```shell-session
