@@ -118,6 +118,7 @@ Mochaのユニットテストは`test`ディレクトリの中にJavaScriptフ�
 `gfm`オプションの有無にあわせて、`expected.html`と`expected-gfm.html`の2つを次のように作成しましょう。
 
 [import, title:"test/fixtures/expected.html"](./src/test/fixtures/expected.html)
+
 [import, title:"test/fixtures/expected-gfm.html"](./src/test/fixtures/expected-gfm.html)
 
 ユニットテストの準備ができたら、もう一度改めて`npm test`コマンドを実行しましょう。1件のテストが通れば成功です。

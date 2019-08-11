@@ -116,6 +116,7 @@ CommonJSモジュールでは`module.exports`プロパティに代入された�
 
 次の例では、先ほどインストールした`commander`パッケージを`node_modules`ディレクトリから読み込んでいます。
 
+<!-- doctest:disable -->
 ```js
 const program = require("commander");
 ```
@@ -134,6 +135,7 @@ $ node main.js ./sample.md
 
 commanderでコマンドライン引数をパースするためには、`parse`メソッドにコマンドライン引数を渡します。
 
+<!-- doctest:disable -->
 ```js
 // commanderモジュールをprogramオブジェクトとしてインポートする
 const program = require("commander");

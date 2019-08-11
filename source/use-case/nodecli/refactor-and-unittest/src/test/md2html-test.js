@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const md2html = require("../md2html");
 
-it("converts Markdown to HTML", () => {
+it("converts Markdown to HTML (GFM=false)", () => {
     const sample = fs.readFileSync(path.resolve(__dirname, "./fixtures/sample.md"), "utf8");
     const expected = fs.readFileSync(path.resolve(__dirname, "./fixtures/expected.html"), "utf8");
 
