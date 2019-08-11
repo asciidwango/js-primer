@@ -2,28 +2,26 @@ const program = require("commander");
 const fs = require("fs");
 const marked = require("marked");
 
-program
-    .option("--gfm", "GFMを有効にする")
-    .option("-S, --sanitize", "サニタイズを行う");
-
+// gfmオプションを定義する
+program.option("--gfm", "GFMを有効にする");
 program.parse(process.argv);
 const filePath = program.args[0];
 
-const markedOptions = {
+// コマンドライン引数のオプションを取得し、デフォルトのオプションを上書きする
+const cliOptions = {
     gfm: false,
-    sanitize: false,
-    ...program.opts()
+    ...program.opts(),
 };
 
-fs.readFile(filePath, "utf8", (err, file) => {
+fs.readFile(filePath, { encoding: "utf8" }, (err, file) => {
     if (err) {
-        console.error(err);
+        console.error(err.message);
         process.exit(1);
         return;
     }
     const html = marked(file, {
-        gfm: markedOptions.gfm,
-        sanitize: markedOptions.sanitize
+        // オプションの値を使用する
+        gfm: cliOptions.gfm,
     });
     console.log(html);
 });
