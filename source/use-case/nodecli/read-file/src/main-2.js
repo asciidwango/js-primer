@@ -1,8 +1,6 @@
 const program = require("commander");
-// fsモジュールをfsオブジェクトとしてインポートする
 const fs = require("fs");
 
-// コマンドライン引数からファイルパスを取得する
 program.parse(process.argv);
 const filePath = program.args[0];
 
