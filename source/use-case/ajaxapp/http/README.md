@@ -11,7 +11,7 @@ GitHubのAPIを呼び出すためにはHTTP通信をする必要があります�
 
 ## Fetch API {#fetch-api}
 
-**Fetch API**はHTTP通信を行いリソースを取得するためのAPIです
+**Fetch API**はHTTP通信を行いリソースを取得するためのAPIです。
 Fetch APIを使うことで、ページ全体を再読み込みすることなく指定したURLからデータを取得できます。
 Fetch APIは同じくHTTP通信を扱う[XMLHttpRequest][]と似たAPIですが、より強力で柔軟な操作が可能です。
 
