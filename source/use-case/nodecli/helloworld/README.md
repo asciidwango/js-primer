@@ -9,7 +9,7 @@ description: "Hello Worldアプリケーションを通じてNode.jsのCLIアプ
 
 ## プロジェクトディレクトリの作成 {#create-project}
 
-今回作成するNode.jsのCLIアプリケーションでは、JavaScriptやMarkdownファイルなど種類のファイルを扱います。
+今回作成するNode.jsのCLIアプリケーションでは、JavaScriptやMarkdownファイルなどの種類のファイルを扱います。
 そのため、まずそれらのファイルを置くためのディレクトリを作成します。
 
 ここでは`nodecli`という名前で新しいディレクトリを作成します。
