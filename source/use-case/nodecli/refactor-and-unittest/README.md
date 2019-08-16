@@ -44,7 +44,7 @@ CommonJSモジュールからオブジェクトをエクスポートするには
 それではCLIアプリケーションのソースコードをモジュールに分割してみましょう。
 `md2html.js`という名前のJavaScriptファイルを作成し、次のようにmarkedを使ったMarkdownの変換処理を記述します。
 
-[import title:"md2html.js](./src/md2html.js)
+[import title:"md2html.js"](./src/md2html.js)
 
 このモジュールがエクスポートするのは、与えられたオプションをもとにMarkdown文字列をHTMLに変換する関数です。
 アプリケーションのエントリポイントである`main.js`では、次のようにこのモジュールをインポートして使用します。

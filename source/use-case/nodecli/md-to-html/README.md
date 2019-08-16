@@ -127,8 +127,11 @@ https://jsprimer.net/</p>
 <li>サンプル1</li>
 <li>サンプル2</li>
 </ul>
+```
 
-# gfmオプションを付与する
+また、`gfm`オプションを付与して実行すると次のように出力されるはずです。
+
+```shell-session
 $ node main.js --gfm sample.md 
 <h1 id="サンプルファイル">サンプルファイル</h1>
 <p>これはサンプルです。
