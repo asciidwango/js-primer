@@ -469,7 +469,9 @@ console.log(numberRegExp.test(123)); // => true
 
 ## プリミティブ型とオブジェクト {#primitive-and-wrapper-object}
 
-プリミティブ型は基本的にリテラルで表現しますが、真偽値（Boolean）、数値（Number）文字列（String）はそれぞれオブジェクトとして表現する方法もあります。
+<!--　textlint-disable preset-ja-technical-writing/max-ten -->
+
+プリミティブ型は基本的にリテラルで表現しますが、真偽値（Boolean）、数値（Number）、文字列（String）はそれぞれオブジェクトとして表現する方法もあります。
 これらはプリミティブ型の値をラップしたようなオブジェクトであるため**ラッパーオブジェクト**と呼ばれます。
 
 ラッパーオブジェクトは、`new`演算子と対応するコンストラクタ関数を利用して作成できます。
@@ -478,6 +480,8 @@ console.log(numberRegExp.test(123)); // => true
 次のコードでは、`String`のラッパーオブジェクトを作成しています。
 ラッパーオブジェクトは、名前のとおりオブジェクトの一種であるため`typeof`演算子の結果も`"object"`です。
 また、オブジェクトであるため`length`プロパティなどのオブジェクトがもつプロパティを参照できます。
+
+<!-- textlint-enable -->
 
 {{book.console}}
 ```js
