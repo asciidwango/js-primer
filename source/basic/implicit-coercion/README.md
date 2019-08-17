@@ -148,6 +148,7 @@ JavaScriptには、文字列に対するマイナス演算子（`-`）の定義�
 const x = 1, y = "2", z = 3;
 console.log(x + y + z); // => "123"
 console.log(y + x + z); // => "213"
+console.log(x + z + y); // => "42"
 ```
 
 このように、処理の過程でオペランドの型によって、
