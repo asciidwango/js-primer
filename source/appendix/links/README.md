@@ -12,6 +12,47 @@ description: "ここでは本編で取り上げられなかったJavaScriptの�
 
 JavaScriptを使った開発に役立つツールをいくつか紹介します。
 
+### トランスパイラー {#transpiler}
+
+トランスパイラー（Transpiler）とはある言語で書いたソースコードをJavaScriptのソースコードに変換（Transpile）する機能をもつツールです。
+トランスパイラーはソースコードからソースコードへ変換するコンパイラー（Compiler）の一種です。
+
+#### Babel {#babel}
+
+[Babel][]は、ECMAScriptの新しい構文を古いECMAScriptの構文に変換することを主な機能にしたトランスパイラーです。
+たとえば、Internet Explorerなど古いブラウザはECMAScript 2015をサポートしていないため新しい構文をパースできません。
+BabelでES2015の構文をES5でエミュレートするコードへ変換することで、古い構文しかサポートしていない実行環境でも動かすことができます。
+
+また、「[ECMAScript][]」の章でも紹介したように、最新のプロポーザルの機能を試すツールとしても利用されています。
+
+#### TypeScript {#typescript}
+
+[TypeScript][]は、JavaScriptに静的型付けの構文をくわえた言語とトランスパイラーです。
+TypeScript言語には型注釈などの構文が用意されており、JavaScriptのコードに対して型注釈を付けて静的な型チェックができます。
+また、TypeScriptのコードは型に関する構文などを取り除いたJavaScriptのコードに変換できます。
+
+### モジュールバンドラー {#modulebundler}
+
+モジュールバンドラーとは、JavaScriptのモジュール依存関係を解決し、複数のモジュールをひとつのJavaScriptファイルに結合するツールのことです。
+モジュールバンドラーは起点となるモジュールが依存するモジュールを次々にたどり、適切な順序になるように結合（バンドル）します。
+
+NPMによって多くのJavaScriptライブラリがNode.js向けに配布されていますが、これらはほぼすべてCommonJSモジュールです。
+CommonJSモジュールはNode.jsでの実行を想定したものであったため、そのままではウェブブラウザ上で動作しません。
+そのため、CommonJSモジュールをブラウザでも実行できるようにモジュールの依存関係を解決したりファイルを結合する目的でモジュールバンドラーと呼ばれるツールが登場しました。
+
+#### Webpack {#webpack}
+
+[Webpack][]は、JavaScriptアプリケーション向けのモジュールバンドラーです。
+Webpackは、CommonJSモジュールやECMAScriptモジュールの依存関係を解決し、アプリケーション向けに最適化しながらモジュールを結合できます。
+JavaScriptのモジュール以外にも、画像やCSSなどリソースを読み込む仕組みが用意されており、さまざまな種類のファイルを扱えます。
+また、Webpackにはプラグインで拡張できる仕組みが用意されており、柔軟な変換が可能です。
+
+#### Rollup {#rollup}
+
+[Rollup][]は、JavaScriptライブラリ向けのモジュールバンドラーです。
+Rollupは、ECMAScriptモジュールを主に扱い、モジュールの依存関係を解決し、ライブラリ向けに最適化しながらモジュールを結合できます。
+Rollupも、Webpackと同様にプラグインで拡張でき、柔軟な変換が可能です。
+
 ### コーディングスタイルの統一 {#coding-style}
 
 複数人での開発において、改行の位置やインデントの幅など、ソースコードのフォーマットは統一します。
@@ -132,6 +173,13 @@ HTMLやCSS、JavaScriptを使ったWebアプリケーションをChromiumブラ�
 [NW.js][]はIntel社によって開発されているオープンソースのデスクトップアプリケーションフレームワークです。
 Electronと同様にChromiumブラウザをベースにしたアプリケーションを開発できます。
 NW.jsはブラウザの中からNode.jsの開発エコシステムを直接利用できるようにしているのが特徴です。
+
+[Babel]: https://babeljs.io/
+[ECMAScript]: ../../basic/ecmascript/README.md
+[TypeScript]: https://www.typescriptlang.org/
+
+[Webpack]: https://webpack.js.org/
+[Rollup]: https://rollupjs.org/
 
 [ESLint]: https://eslint.org/
 [Prettier]: https://prettier.io/
