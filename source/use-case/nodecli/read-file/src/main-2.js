@@ -4,11 +4,7 @@ const fs = require("fs");
 program.parse(process.argv);
 const filePath = program.args[0];
 
-fs.readFile(filePath, "utf8", (err, file) => {
-    if (err) {
-        console.error(err);
-        process.exit(1);
-        return;
-    }
+// ファイルをUTF-8として非同期で読み込む
+fs.readFile(filePath, { encoding: "utf8" }, (err, file) => {
     console.log(file);
 });

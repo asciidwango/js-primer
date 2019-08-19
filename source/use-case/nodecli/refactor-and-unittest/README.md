@@ -27,7 +27,7 @@ CommonJSモジュールからオブジェクトをエクスポートするには
 `require`関数を使い指定したファイルパスのJavaScriptファイルをモジュールとしてインポートできます。
 次のコードでは先ほどの`greet.js`のパスを指定してモジュールとしてインポートして、エクスポートされた関数を取得しています。
 
-[import, title:"greet-index.js"](src/example/greet-index.js)
+[import, title:"greet-main.js"](src/example/greet-main.js)
 
 `module.exports`オブジェクトそのものに代入するのではなく、`module.exports`オブジェクトのプロパティに代入することでも任意の値をエクスポートできます。
 次の`functions.js`というファイルでは、`foo`と`bar`の2つの関数を同じファイルからエクスポートしています。
@@ -37,14 +37,14 @@ CommonJSモジュールからオブジェクトをエクスポートするには
 このようにエクスポートされたオブジェクトは、`require`関数の戻り値であるオブジェクトのプロパティとしてアクセスできます。
 次のコードでは先ほどの`functions.js`をインポートして取得したオブジェクトから`foo`と`bar`関数をプロパティとして取得しています。
 
-[import, title:"functions-index.js"](src/example/functions-index.js)
+[import, title:"functions-main.js"](src/example/functions-main.js)
 
 ## アプリケーションをモジュールに分割する {#split-script}
 
 それではCLIアプリケーションのソースコードをモジュールに分割してみましょう。
-`md2html.js`という名前のJavaScriptファイルを作成し、次のようにMarkdownの変換処理を記述します。
+`md2html.js`という名前のJavaScriptファイルを作成し、次のようにmarkedを使ったMarkdownの変換処理を記述します。
 
-[import title:"md2html.js](./src/md2html.js)
+[import title:"md2html.js"](./src/md2html.js)
 
 このモジュールがエクスポートするのは、与えられたオプションをもとにMarkdown文字列をHTMLに変換する関数です。
 アプリケーションのエントリポイントである`main.js`では、次のようにこのモジュールをインポートして使用します。
@@ -108,15 +108,18 @@ Mochaのユニットテストは`test`ディレクトリの中にJavaScriptフ�
 
 `it`関数で定義したユニットテストは、`md2html`関数の変換結果が期待するものになっているかをテストしています。
 `test/fixtures`ディレクトリにはユニットテストで用いるファイルを配置しています。
-今回は変換元のMarkdownファイルと、期待する変換結果のHTMLファイルの2つが存在します。
+今回は変換元のMarkdownファイルと、期待する変換結果のHTMLファイルが存在します。
 
 次のように変換元のMarkdownファイルを`test/fixtures/sample.md`に配置します。
 
 [import, title:"test/fixtures/sample.md"](./src/test/fixtures/sample.md)
 
-そして、期待する変換結果のHTMLファイルを`test/fixtures/expected.html`に配置します。
+そして、期待する変換結果のHTMLファイルも`test/fixtures`ディレクトリに配置します。
+`gfm`オプションの有無にあわせて、`expected.html`と`expected-gfm.html`の2つを次のように作成しましょう。
 
 [import, title:"test/fixtures/expected.html"](./src/test/fixtures/expected.html)
+
+[import, title:"test/fixtures/expected-gfm.html"](./src/test/fixtures/expected-gfm.html)
 
 ユニットテストの準備ができたら、もう一度改めて`npm test`コマンドを実行しましょう。1件のテストが通れば成功です。
 
@@ -125,13 +128,14 @@ $ npm test
 > mocha
 
   ✓ converts Markdown to HTML
+  ✓ converts Markdown to HTML (GFM=true)
 
-  1 passing (18ms)
+  2 passing (31ms)
 ```
 
 ユニットテストが通らなかった場合は、次のことを確認してみましょう。
 
-- `test/fixtures`ディレクトリに`sample.md`と`expected.html`というファイルを作成したか
+- `test/fixtures`ディレクトリに`sample.md`と`expected.html`、`expected-gfm.html`というファイルを作成したか
 - それぞれのファイルは文字コードがUTF-8で、改行コードがLFになっているか
 - それぞれのファイルの末尾に余計な改行文字がはいっていないか
 

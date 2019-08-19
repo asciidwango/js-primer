@@ -5,32 +5,14 @@ description: "Node.jsの`fs`モジュールを使ったファイルの読み込�
 
 # ファイルを読み込む {#read-file}
 
-前のセクションではコマンドライン引数を受け取って、Node.jsのスクリプト中で利用できるようになりました。
-このセクションではコマンドライン引数に指定されたファイルを読み込んで、標準出力に表示してみましょう。
-
-## ファイルパスを受け取る {#receive-file-path}
-
-まずは読み込むファイルのパスを受け取ります。
-
-前回のセクションでインストールしたcommanderを使って、コマンドライン引数からファイルパスを取得しましょう。
-
-次のように、`receive-path.js`というファイルを作成しファイルパスを取得して標準出力に表示してみます。
-`commander`でパース後に、オプションとして定義していないコマンドライン引数は`program.args`配列から取得できます。
-
-[import title:"receive-path.js"](src/receive-path.js)
-
-このスクリプトを次のように実行すると、引数に与えたファイルパスがそのまま表示されます。
-
-```shell-session
-$ node receive-path.js sample.md
-sample.md
-```
+前のセクションではコマンドライン引数からファイルパスを取得して利用できるようになりました。
+このセクションでは渡されたファイルパスをもとにMarkdownファイルを読み込んで、標準出力に表示してみましょう。
 
 ## `fs`モジュールを使ってファイルを読み込む {#read-file-by-fs}
 
-取得したファイルパスをもとに、ファイルを読み込みます。
+前のセクションで取得できるようになったファイルパスをもとに、ファイルを読み込みましょう。
 Node.jsでファイルの読み書きをおこなうには、標準モジュールの[`fs`モジュール][]を使います。
-まずは読み込むためのファイルを作成しましょう。`sample.md`という名前で`receive-path.js`と同じディレクトリに配置します。
+まずは読み込む対象のファイルを作成しましょう。`sample.md`という名前で`main.js`と同じ`nodecli`ディレクトリに配置します。
 
 [import title:"sample.md"](src/sample.md)
 
@@ -77,79 +59,60 @@ Node.jsには`fs`モジュール以外にも多くの非同期APIがあるので
 
 ### readFile関数を使う {#use-readFile}
 
-`fs`モジュールの`readFile`メソッドを使いMarkdownファイルを読み込んでみます。
-`readFile`関数には引数によってファイルの読み込み方を指定できます。
+それでは`fs`モジュールの`readFile`メソッドを使い`sample.md`ファイルを読み込んでみましょう。
+次のように`main.js`を変更し、コマンドライン引数から取得したファイルパスをもとにファイルを読み込んでコンソールに出力します。
 
-次の`read-file-1a.js`では、ファイルパスとコールバック関数だけを渡しています。
-このときのコールバック関数の第2引数にはファイルの中身を表す`Buffer`インスタンスが渡されます。
-
-[import title:"read-file-1a.js"](src/read-file-1a.js)
+[import title:"main.js"](src/main-1.js)
 
 `sample.md`を引数に渡した実行結果は次のようになります。
+文字列になっていないのは、コールバック関数の第2引数にはファイルの中身を表す`Buffer`インスタンスだからです。
 `Buffer`インスタンスはファイルの中身をバイト列として保持しています。
 そのため、そのまま`console.log`メソッドに渡しても人間が読める文字列にはなりません。
 
-`read-file-1a.js`に`sample.md`を引数に渡した実行結果は次のようになります。
-
 ```shell-session
-$ node read-file-1a.js sample.md
+$ node main.js sample.md
 <Buffer 23 20 73 61 6d 70 6c 65>
 ```
 
-`Buffer`インスタンスから文字列を取り出すには、`toString`メソッドを使います。
-`Buffer#toString`メソッドはオプショナルな引数として文字エンコーディングを受け取れますが、
-何も指定しなかった場合は自動的にUTF-8として変換されます。
+`fs.readFile`関数は引数によってファイルの読み込み方を指定できます。
+ファイルのエンコードを第2引数であらかじめ指定しておけば、自動的に文字列に変換された状態でコールバック関数に渡されます。
+次のように`main.js`を変更し、読み込まれるファイルをUTF-8として変換させます。
 
-次の`read-file-1b.js`では、`readFile`メソッドで読み込んだ`Buffer`インスタンスに対して`toString`メソッドを呼び出しています。
-`toString`メソッドを呼び出すことでファイルの中身をUTF-8の文字列へと変換し、その内容をコンソールに出力しています。
+[import title:"main.js"](src/main-2.js)
 
-[import title:"read-file-1b.js"](src/read-file-1b.js)
-
-`read-file-1b.js`に`sample.md`を引数に渡した実行結果は次のようになります。
+先ほどと同じコマンドをもう一度実行すると、実行結果は次のようになります。
+`sample.md`ファイルの中身を文字列として出力できました。
 
 ```shell-session
-$ node read-file-1b.js sample.md
-# sample
-```
-
-毎回、`Buffer#toString`メソッドを呼び出すのは面倒であるため、`readFile`メソッドの引数で読み込むファイルの文字エンコーディングを指定できます。
-
-次の`read-file-2.js`では、`readFile`関数の第2引数で文字エンコーディング形式として`utf8`を指定することで、UTF-8のファイルとして読み込みます。
-このときのコールバック関数の第2引数は、指定した文字エンコーディングでエンコードされた後の文字列が渡されます。
-
-[import title:"read-file-2.js"](src/read-file-2.js)
-
-`read-file-2.js`に`sample.md`を引数に渡した実行結果は次のようになります。
-
-```shell-session
-$ node read-file-2.js sample.md
+$ node main.js sample.md
 # sample
 ```
 
 ### エラーハンドリング {#error-handling}
 
-先ほどの例のように`fs`モジュールのコールバック関数の第1引数には常にエラーオブジェクトが渡されます。
+先ほどの例では触れませんでしたが、`fs`モジュールのコールバック関数の第1引数には常にエラーオブジェクトが渡されます。
 ファイルの読み書きは存在の有無や権限、ファイルシステムの違いなどによって例外が発生しやすいので、必ずエラーハンドリング処理を書きましょう。
 
-次の`read-file-3.js`では、`err`オブジェクトが`null`または`undefined`ではないことだけをチェックするシンプルなエラーハンドリングです。
+次のように`main.js`を変更し、`err`オブジェクトが`null`または`undefined`ではないことだけをチェックするシンプルなエラーハンドリングです。
 エラーが発生していたときには表示し、`process.exit`関数に終了ステータスを指定してプロセスで終了しています。
 ここでは、一般的なエラーを表す終了ステータスの`1`でプロセスを終了しています。
 
-[import title:"read-file-3.js"](src/read-file-3.js)
+[import title:"main.js"](src/main-3.js)
 
-`read-file-3.js`を存在しないファイルである`notfound.md`を引数に渡して実行すると、次のようにエラーが発生して終了します。
+存在しないファイルである`notfound.md`をコマンドライン引数に渡して実行すると、次のようにエラーが発生して終了します。
 
 ```shell-session
-$ node read-file-3.js notfound.md
-Error: ENOENT: no such file or directory, open 'notfound.md'
+$ node main.js notfound.md
+ENOENT: no such file or directory, open 'notfound.md'
 ```
 
 これでコマンドライン引数に指定したファイルを読み込んで標準出力に表示できました。
+次のセクションでは読み込んだMarkdownファイルをHTMLに変換する処理を追加していきます。
 
 ## このセクションのチェックリスト {#section-checklist}
 
-- commanderを使ってコマンドライン引数からファイルパスを取得した
-- `fs`モジュールの`readFile`関数を使ってファイルを読み込み、ファイルの中身をログ出力した
+- `fs`モジュールの`readFile`関数を使ってファイルを読み込んだ
+- UTF-8形式のファイルの中身をコンソールに出力した
 - `readFile`関数の呼び出しにエラーハンドリング処理を記述した
 
 [`fs`モジュール]: https://nodejs.org/api/fs.html

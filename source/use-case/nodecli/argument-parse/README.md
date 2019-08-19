@@ -16,14 +16,14 @@ description: "コマンドライン引数を受け取り、アプリケーショ
 詳細は[公式ドキュメント](https://nodejs.org/dist/latest-v8.x/docs/api/process.html#process_process)を参照してください。
 
 コマンドライン引数へのアクセスを提供するのは、`process`オブジェクトの`argv`プロパティで、文字列の配列になっています。
-例として、次のように`process.argv`をコンソール出力するだけの`process-argv.js`を作成します。
+次のように`main.js`を変更し、`process.argv`をコンソールに出力しましょう。
 
-[import title:"process-argv.js"](src/process-argv.js)
+[import title:"main.js"](src/main-1.js)
 
-このスクリプトを次のようなコマンドで実行します。
+このスクリプトを次のようにコマンドライン引数をつけて実行してみましょう。
 
 ```shell-session
-$ node process-argv.js one two=three four
+$ node main.js one two=three four
 ```
 
 このコマンドの実行結果は次のようになります。
@@ -31,7 +31,7 @@ $ node process-argv.js one two=three four
 ```
 [ 
   '/usr/local/bin/node', // Node.jsの実行プロセスのパス
-  '/Users/laco/nodecli/argument-parse/src/process-argv.js', // 実行したスクリプトファイルのパス
+  '/Users/laco/nodecli/main.js', // 実行したスクリプトファイルのパス
   'one', // 1番目の引数
   'two=three', // 2番目
   'four'  // 3番目
@@ -43,10 +43,12 @@ $ node process-argv.js one two=three four
 
 ## コマンドライン引数をパースする {#parse-args}
 
-`process.argv`配列を使えばコマンドライン引数を取得できますが、取得できるのは文字列の配列です。
-そのままではアプリケーションから扱いにくいため、コマンドライン引数をパースして整形する必要があります。
+`process.argv`配列を使えばコマンドライン引数を取得できますが、取得できる情報にはアプリケーションに不要なものも含まれています。
+また、文字列の配列として渡されるため、フラグのオンオフのような真偽値を受け取るときにも不便です。
+そのため、アプリケーションでコマンドライン引数を扱うときには、一度パースして扱いやすい値に整形するのが一般的です。
+
+今回は[commander][]というライブラリを使ってコマンドライン引数をパースしてみましょう。
 文字列処理を自前で行うこともできますが、このような一般的な処理は既存のライブラリを使うと簡単に書けます。
-今回は[commander][]というライブラリを使ってコマンドライン引数をパースします。
 
 ### `commander`パッケージをインストールする {#install-commander}
 
@@ -99,15 +101,15 @@ CommonJSモジュールはNode.jsのグローバル変数である`module`変数
 CommonJSモジュールでは`module.exports`プロパティに代入されたオブジェクトが、そのJavaScriptファイルからエクスポートされます。
 複数の名前付きエクスポートが可能なES Moduleとは異なり、CommonJSでは`module.exports`プロパティの値だけがエクスポートの対象です。
 
-次の例では、`cjs-export.js`というファイルを作成し、`module.exports`でオブジェクトをエクスポートしています。
+次の例では、`my-module.js`というファイルを作成し、`module.exports`でオブジェクトをエクスポートしています。
 
-[import, title:"cjs-export.js"](src/cjs-export.js)
+[import, title:"my-module.js"](src/my-module.js)
 
-このCommonJSモジュールをインポートするには、グローバル関数である[require関数][]を使います。
+このCommonJSモジュールをインポートするには、Node.js実行環境のグローバル関数である[require関数][]を使います。
 次のように`require`関数にインポートしたいモジュールのファイルパスを渡し、戻り値としてエクスポートされた値をインポートできます。
 インポートするファイルパスに拡張子が必須なES Moduleとは異なり、CommonJSの`require`関数では拡張子である`.js`が省略可能です。
 
-[import, title:"cjs-import.js"](src/cjs-import.js)
+[import](src/cjs-import.js)
 
 また、`require`関数は相対パスや絶対パス以外にもnpmでインストールしたパッケージ名を指定することもできます。
 `npm install`コマンドでインストールされたパッケージは、`node_modules`というディレクトリの中に配置されています。
@@ -115,6 +117,7 @@ CommonJSモジュールでは`module.exports`プロパティに代入された�
 
 次の例では、先ほどインストールした`commander`パッケージを`node_modules`ディレクトリから読み込んでいます。
 
+<!-- doctest:disable -->
 ```js
 const program = require("commander");
 ```
@@ -122,45 +125,43 @@ const program = require("commander");
 このユースケースで今後登場するモジュールはすべてCommonJSモジュールです。
 Node.jsではES Moduleもサポートされる予定ですが、現在はまだ安定した機能としてサポートされていません。
 
-### `commander`パッケージを使う {#use-commander}
+### コマンドライン引数からファイルパスを取得する {#get-file-path}
 
-先ほどインストールした`commander`パッケージを使ったコマンドライン引数のパース例を見ていきます。
-
-次の`commander-flag.js`では、コマンドライン引数の`--foo`オプションを真偽値としてパースしています。
-commanderは`options`メソッドを使って、受け取りたいオプションを定義します。
-オプションの定義後に、`parse`メソッドに`process.argv`を渡してコマンドライン引数をパースします。
-パースした後に`opts`メソッドを呼び出すと、定義したオプションと与えられた値をオブジェクトとして取り出すことができます。
-
-[import title:"commander-flag.js"](src/commander-flag.js)
-
-このスクリプトを次のように実行すると、`--foo`オプションがパースされ、`options.foo`プロパティとして扱えるようになっています。
+先ほどインストールした`commander`パッケージを使って、コマンドライン引数として渡されたファイルパスを取得しましょう。
+このCLIアプリケーションでは、処理の対象とするファイルパスを次のようなコマンドの形式で受け取ります。
 
 ```shell-session
-$ node commander-flag.js --foo
-true
+$ node main.js ./sample.md
 ```
 
-もし、次のようなエラーが表示されたときは、`commander`パッケージが`node_modules`ディレクトリ内にないことを示しています。
-`commander`パッケージのインストールに失敗しているので、パッケージのインストールからやり直してみましょう。
+commanderでコマンドライン引数をパースするためには、`parse`メソッドにコマンドライン引数を渡します。
 
+<!-- doctest:disable -->
+```js
+// commanderモジュールをprogramオブジェクトとしてインポートする
+const program = require("commander");
+// コマンドライン引数をパースする
+program.parse(process.argv);
 ```
-Error: Cannot find module 'commander'
-```
 
-次の`commander-param.js`では、コマンドライン引数の`--bar`オプションに渡された値を受け取っています。
+`parse`メソッドを呼び出すと、コマンドライン引数をパースした結果を`program`オブジェクトから取り出せるようになります。
+今回の例では、ファイルパスは`program.args`配列に格納されています。
+`program.args`配列には`--key=value`のようなオプションや`--flag`のようなフラグを取り除いた残りのコマンドライン引数が順番に格納されています。
 
-[import title:"commander-param.js"](src/commander-param.js)
+それでは`main.js`を次のように変更し、コマンドライン引数で渡されたファイルパスを取得しましょう。
 
-`--bar`オプションに値を与えて実行すれば、文字列が`options.bar`プロパティにセットされていることがわかります。
-`options`メソッドで、`--オプション名 <値の種類>`を定義することで、指定したオプション名に渡された値を取得できます。
+[import title:"main.js"](src/main-2.js)
+
+次のコマンドを実行すると、`program.args`配列に格納された`./sample.md`文字列が取得されてコンソールに出力されます。
+`./sample.md`は`process.argv`配列では3番目に存在していましたが、パース後の`program.args`配列では1番目になって扱いやすくなっています。
 
 ```shell-session
-$ node commander-param.js --bar "value"
-value
+$ node main.js ./sample.md
+./sample.md
 ```
 
 このように、`process.argv`配列を直接扱うよりも、commanderのようなライブラリを使うことで宣言的にコマンドライン引数を定義し処理できます。
-次のセクションからは、同じようにコマンドライン引数を定義し、CLIアプリケーションを作成していきます。
+次のセクションではコマンドライン引数から取得したファイルパスをもとに、ファイルを読み込む処理を追加していきます。
 
 ## このセクションのチェックリスト {#section-checklist}
 
@@ -168,6 +169,7 @@ value
 - npmを使ってパッケージをインストールする方法を理解した
 - `require`関数を使ってパッケージのモジュールを読み込めることを確認した
 - commanderを使ってコマンドライン引数をパースできることを確認した
+- コマンドライン引数で渡されたファイルパスを取得してコンソールに出力できた
 
 [commander]: https://github.com/tj/commander.js/
 [npm]: https://www.npmjs.com/

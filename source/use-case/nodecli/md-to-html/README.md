@@ -14,41 +14,35 @@ JavaScriptでMarkdownをHTMLへ変換するために、今回は[marked][]とい
 markedのパッケージはnpmで配布されているので、commanderと同様に`npm install`コマンドでパッケージをインストールしましょう。
 
 ```shell-session
-$ npm install --save marked@0.6
+$ npm install --save marked@0.7
 ```
 
 インストールが完了したら、Node.jsのスクリプトから読み込みます。
-前のセクションの最後で書いたスクリプトに、markedパッケージの読み込み処理を追加します。
-
-[import title:"main.js"](src/main-0.js)
-
-markedパッケージをインポートして取得した`marked`関数は、引数のMarkdown文字列をHTML文字列に変換して返します。
-次のように`readFile`関数で読み込んだファイルの文字列を引数として渡せば、HTMLに変換できます。
+前のセクションの最後で書いたスクリプトに、markedパッケージの読み込み処理を追加しましょう。
+次のように`main.js`を変更し、読み込んだMarkdownファイルをmarkedを使ってHTMLに変換します。
+markedパッケージをインポートした`marked`関数は、Markdown文字列を引数にとり、HTML文字列に変換して返します。
 
 [import title:"main.js"](src/main-1.js)
 
 ## 変換オプションを作成する {#create-convert-option}
 
 markedにはMarkdownの[変換オプション][]があり、オプションの設定によって変換後のHTMLが変化します。
-いくつかのオプションについてアプリケーション中でのデフォルトの設定を決め、さらにコマンドライン引数から設定を切り替えられるようにしてみましょう。
+そこで、アプリケーション中でオプションのデフォルト値を決め、さらにコマンドライン引数から設定を切り替えられるようにしてみましょう。
 
-今回のアプリケーションでは次の2つのオプションを扱います。
-
-- gfm
-- sanitize
+今回のアプリケーションでは例として`gfm`というmarkedのオプションを扱います。
 
 ### gfmオプション {#gfm-option}
 
 `gfm`オプションは、GitHubにおけるMarkdownの仕様([GitHub Flavored Markdown][], GFM)に合わせて変換するかを決めるオプションです。
 markedではこの`gfm`オプションがデフォルトで`true`になっています。GFMは標準的なMarkdownにいくつかの拡張を加えたもので、代表的な拡張がURLの自動リンク化です。
-例として、次のようなMarkdownファイルを用意し、先ほどのスクリプトと、`gfm`オプションを`false`にしたスクリプトで結果の違いを見てみましょう。
+次のように`sample.md`を変更し、先ほどのスクリプトと`gfm`オプションを`false`にしたスクリプトで結果の違いを見てみましょう。
 
-[import, サンプルMarkdownファイル](src/sample.md)
+[import, title:"sample.md"](src/sample.md)
 
 `gfm`オプションが有効のときは、URLの文字列が自動的に`<a>`タグのリンクに置き換わります。
 
 ```html
-<h1 id="-">サンプルファイル</h1>
+<h1 id="サンプルファイル">サンプルファイル</h1>
 <p>これはサンプルです。
 <a href="https://jsprimer.net/">https://jsprimer.net/</a></p>
 <ul>
@@ -59,10 +53,10 @@ markedではこの`gfm`オプションがデフォルトで`true`になってい
 
 一方、次のように`gfm`オプションを`false`にすると、単なる文字列として扱われ、リンクには置き換わりません。
 
-[import gfmオプションを無効にする](src/main-2.js)
+[import title:"main.js"](src/main-2.js)
 
 ```html
-<h1 id="-">サンプルファイル</h1>
+<h1 id="サンプルファイル">サンプルファイル</h1>
 <p>これはサンプルです。
 https://jsprimer.net/</p>
 <ul>
@@ -73,99 +67,83 @@ https://jsprimer.net/</p>
 
 自動リンクの他にもいくつかの拡張がありますが、詳しくは[GitHub Flavored Markdown][]のドキュメンテーションを参照してください。
 
-### sanitizeオプション {#sanitize-option}
-
-`sanitize`オプションは出力されるHTMLを安全な形にサニタイズするためのオプションです。
-`sanitize`オプションが有効なとき、Markdownファイル中に書かれたHTMLタグはエスケープされ、単なる文字列として出力されます。
-例として次のようなMarkdownファイルの変換が`sanitize`オプションによってどう変わるかを見てみましょう。
-
-[import sample.md](src/sample-1.md)
-
-`sanitize`オプションのデフォルト値は`false`です。
-そのため、何も指定しなければMarkdownファイル中のHTMLはそのまま出力されるHTML中でもタグとして残ります。
-
-```html
-<h1 id="-">サンプルファイル</h1>
-<p>これはサンプルです。
-https://jsprimer.net/</p>
-<p>これはHTMLです</p>
-
-<ul>
-<li>サンプル1</li>
-<li>サンプル2</li>
-</ul>
-```
-
-次のように`sanitize`オプションを有効にすると、`<`と`>`がエスケープされてHTMLタグとして機能しなくなります。
-自由にHTMLを書かれては困る場合に有用なオプションです。
-
-[import sanitizeオプションを有効にする](src/main-3.js)
-
-```html
-<h1 id="-">サンプルファイル</h1>
-<p>これはサンプルです。
-https://jsprimer.net/</p>
-<p>&lt;p&gt;これはHTMLです&lt;/p&gt;
-
-</p>
-<ul>
-<li>サンプル1</li>
-<li>サンプル2</li>
-</ul>
-```
-
 ### コマンドライン引数からオプションを受け取る {#receive-option}
 
-それぞれの変換オプションについて、コマンドライン引数で制御できるようにします。
-`gfm`オプションは`--gfm`、`sanitize`オプションは`--sanitize`と`-S`でコマンドラインから設定できるようにします。
+次に、`gfm`オプションをコマンドライン引数で制御できるようにしましょう。
+アプリケーションのデフォルトでは`gfm`オプションを無効にした上で、次のように`--gfm`オプションを付与してコマンドを実行できるようにします。
+
+```shell-session
+$ node main.js --gfm sample.md
+```
+
+コマンドライン引数で`--gfm`のようなオプションを扱いたいときには、commanderの`option`メソッドを使います。
+次のように必要なオプションを定義してからコマンドライン引数をパースすると、`program.opts`メソッドでパース結果のオブジェクトを取得できます。
 
 <!-- 差分コードなので -->
 <!-- doctest:disable -->
 ```js
-program
-    .option("--gfm", "GFMを有効にする")
-    .option("-S, --sanitize", "サニタイズを行う");
-
+// gfmオプションを定義する
+program.option("--gfm", "GFMを有効にする");
+// コマンドライン引数をパースする
 program.parse(process.argv);
+// オプションのパース結果をオブジェクトとして取得する
+const options = program.opts();
+console.log(options.gfm);
 ```
+
+`--gfm`オプションはファイルパスを指定する`sample.md`の前と後ろどちらに付いていても動作します。
+なぜなら`program.args`配列には`program.option`メソッドで定義したオプションが含まれないためです。
+`process.argv`配列を直接使っているとこのようなオプションの処理が面倒なので、commanderのようなパース処理を挟むのが一般的です。
 
 ### デフォルト設定を定義する {#declare-default}
 
-毎回すべての設定を明示的に入力させるのは不便なので、それぞれの変換オプションのデフォルト設定を定義します。
-今回は`gfm`オプションと`sanitize`オプションをどちらもデフォルトで`false`にします。
 アプリケーション側でデフォルト設定を持っておくことで、将来的にmarkedの挙動が変わったときにも影響を受けにくくなります。
-
-markedのオプションはオブジェクトを渡す形式です。
-オブジェクトのデフォルト値を明示的な値で上書きするときには`...`（spread構文）を使うと便利です。([オブジェクトのspread構文][]を参照)
-
-次のようにデフォルトのオプションを表現したオブジェクトに対して、`program.opts`メソッドの戻り値で上書きします。
+次のようにデフォルトのオプションを表現したオブジェクトに対して、`program.opts`メソッドの戻り値で上書きしましょう。
+オブジェクトのデフォルト値を別のオブジェクトで上書きするときには`...`（spread構文）を使うと便利です。([オブジェクトのspread構文][]を参照)
 
 <!-- 差分コードなので -->
 <!-- doctest:disable -->
 ```js
-const markedOptions = {
+// コマンドライン引数のオプションを取得し、デフォルトのオプションを上書きする
+const cliOptions = {
     gfm: false,
-    sanitize: false,
-    // オプションのkey-valueオブジェクトをマージする
-    ...program.opts()
+    ...program.opts(),
 };
 ```
 
-あとは`markedOptions`オブジェクトからmarkedにオプションを渡すだけです。
-スクリプト全体は次のようになります。
+こうして作成した`cliOptions`オブジェクトから、markedにオプションを渡しましょう。
+`main.js`の全体は次のようになります。
 
-[import title:"main.js"](src/main-4.js)
+[import title:"main.js"](src/main-3.js)
 
 定義したコマンドライン引数を使って、Markdownファイルを変換してみましょう。
 
 ```shell-session
-# gfmオプションを有効にする
-$ node main.js --gfm sample.md
-# sanitizeオプションを短縮形で有効にする
-$ node main.js -S sample.md
+$ node main.js sample.md
+<h1 id="サンプルファイル">サンプルファイル</h1>
+<p>これはサンプルです。
+https://jsprimer.net/</p>
+<ul>
+<li>サンプル1</li>
+<li>サンプル2</li>
+</ul>
+```
+
+また、`gfm`オプションを付与して実行すると次のように出力されるはずです。
+
+```shell-session
+$ node main.js --gfm sample.md 
+<h1 id="サンプルファイル">サンプルファイル</h1>
+<p>これはサンプルです。
+<a href="https://jsprimer.net/">https://jsprimer.net/</a></p>
+<ul>
+<li>サンプル1</li>
+<li>サンプル2</li>
+</ul>
 ```
 
 これでMarkdown変換の設定をコマンドライン引数でオプションとして与えられるようになりました。
+次のセクションではアプリケーションのコードを整理し、最後にユニットテストを導入します。
 
 ## このセクションのチェックリスト {#section-checklist}
 
