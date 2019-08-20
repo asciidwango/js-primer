@@ -298,6 +298,7 @@ rules:
   - expected: ウェブブラウザ
     patterns:
       - Webブラウザ
+  - expected: webpack
 
   # 一致とマッチ
   ## 一致は ===

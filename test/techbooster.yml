@@ -203,7 +203,6 @@ rules:
   - expected: API Level
     pattern:  API level
     prh: APIドキュメントでも揺れてますが、Levelで統一してます
-  - expected: Web
   - expected: jQuery
   - expected: Re:VIEW
     pattern:  /ReVIEW/
