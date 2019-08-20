@@ -27,7 +27,7 @@ BabelでES2015の構文をES5でエミュレートするコードへ変換する
 
 #### TypeScript {#typescript}
 
-[TypeScript][]は、JavaScriptに静的型付けの構文をくわえた言語とトランスパイラーです。
+[TypeScript][]は、JavaScriptに静的型付けの構文を追加した言語とトランスパイラーです。
 TypeScript言語には型注釈などの構文が用意されており、JavaScriptのコードに対して型注釈を付けて静的な型チェックができます。
 また、TypeScriptのコードは型に関する構文などを取り除いたJavaScriptのコードに変換できます。
 
