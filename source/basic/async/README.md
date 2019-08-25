@@ -1145,7 +1145,7 @@ fetchedPromise.then(([responseA, responseB]) => {
 この配列の中でも一番最初に完了するのは、1ミリ秒後に**Fulfilled**となる`Promise`インスタンスです。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 150 } -->
+<!-- doctest:options:{ "timeout": 200 } -->
 ```js
 // `timeoutMs`ミリ秒後にresolveする
 function delay(timeoutMs) {
