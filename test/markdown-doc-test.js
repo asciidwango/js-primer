@@ -66,6 +66,10 @@ describe("doctest:md", function() {
                         const filePathLineColumn = `${error.fileName}:${error.lineNumber}:${error.columnNumber}`;
                         console.error(`Markdown Doctest is failed
   at ${filePathLineColumn}
+
+----------
+${forEach}
+----------
 `);
                         return Promise.reject(error);
                     });
