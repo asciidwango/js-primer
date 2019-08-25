@@ -36,8 +36,8 @@ export class App {
     mount() {
         const formElement = document.querySelector("#js-form");
         const inputElement = document.querySelector("#js-form-input");
-        const todoCountElement = document.querySelector("#js-todo-count");
-        const todoListContainerElement = document.querySelector("#js-todo-list");
+        const todoItemCountElement = document.querySelector("#js-todo-count");
+        const containerElement = document.querySelector("#js-todo-list");
         this.todoListModel.onChange(() => {
             const todoItems = this.todoListModel.getTodoItems();
             const todoListElement = this.todoListView.createElement(todoItems, {
@@ -49,8 +49,8 @@ export class App {
                     this.handleDelete({ id });
                 }
             });
-            render(todoListElement, todoListContainerElement);
-            todoCountElement.textContent = `Todoアイテム数: ${this.todoListModel.getTotalCount()}`;
+            render(todoListElement, containerElement);
+            todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.getTotalCount()}`;
         });
 
         formElement.addEventListener("submit", (event) => {
