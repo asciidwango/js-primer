@@ -69,7 +69,6 @@ setTimeout(コールバック関数, delay);
 そのため`setTimeout`関数の次の行に書かれている同期的処理は、非同期処理よりも先に実行されます。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 1010 } -->
 ```js
 // 指定した`timeout`ミリ秒経過するまで同期的にブロックする関数
 function blockTime(timeout) { 
@@ -124,7 +123,6 @@ JavaScriptにおいて多くの非同期処理はメインスレッドで実行�
 次のコードを実行すると`setTimeout`関数で登録したコールバック関数は、タイマーに登録した時間（10ミリ秒後）よりも大きく遅れて呼び出されます。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 1010 } -->
 ```js
 // 指定した`timeout`ミリ秒経過するまで同期的にブロックする関数
 function blockTime(timeout) { 
@@ -404,7 +402,6 @@ Promiseは`new`演算子で`Promise`のインスタンスを作成して利用�
 `executor`関数の中で非同期処理を行い、非同期処理が成功した場合は`resolve`関数を呼び、失敗した場合は`reject`関数を呼び出します。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 const executor = (resolve, reject) => {
     // 非同期の処理が成功したときはresolveを呼ぶ
@@ -417,7 +414,6 @@ const promise = new Promise(executor);
 `then`メソッドの第一引数には`resolve`（成功）時に呼ばれるコールバック関数、第二引数には`reject`（失敗）時に呼ばれるコールバック関数を渡します。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 // `Promise`インスタンスを作成
 const promise = new Promise((resolve, reject) => {
@@ -491,7 +487,6 @@ dummyFetch("/failure/data").then(function onFulfilled(response) {
 この`Promise`インスタンスに対して`then`メソッドで**成功時のコールバック関数だけ**を登録しています。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 10 } -->
 ```js
 function delay(timeoutMs) {
     return new Promise((resolve) => {
@@ -514,7 +509,6 @@ delay(10).then(() => {
 `then`メソッドに`undefined`を渡すのはわかりにくいため、失敗時の処理だけを登録する場合は`catch`メソッドの利用を推奨しています。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 function errorPromise(message) {
     return new Promise((resolve, reject) => {
@@ -538,7 +532,6 @@ Promiseではコンストラクタの処理で例外が発生した場合に自�
 そのため、Promise内で例外が発生すると`then`メソッドの第二引数や`catch`メソッドで登録したエラー時のコールバック関数が呼び出されます。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 function throwPromise() {
     return new Promise((resolve, reject) => {
@@ -587,7 +580,6 @@ Promiseの`then`メソッドや`catch`メソッドによる処理がわかった
 `then`メソッドで登録したコールバック関数は、状態が変化した場合に一度だけ呼び出されます。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 const promise = new Promise((resolve, reject) => {
     // 非同期でresolveする
@@ -608,7 +600,6 @@ promise.then(() => {
 そのため、次のように`resolve`を何度呼び出しても、`then`で登録したコールバック関数は一度しか呼び出されません。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -632,7 +623,6 @@ promise.then(() => {
 
 `Promise.resolve`メソッドは**Fulfilled**の状態となった`Promise`インスタンスを作成します。
 
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 const fulFilledPromise = Promise.resolve();
 ```
@@ -641,7 +631,6 @@ const fulFilledPromise = Promise.resolve();
 糖衣構文とは、同じ意味の処理を元の構文よりシンプルに書ける別の書き方のことです。
 `Promise.resolve`メソッドは次のコードの糖衣構文です。
 
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 // const fulFilledPromise = Promise.resolve(); と同じ意味
 const fulFilledPromise = new Promise((resolve) => {
@@ -652,7 +641,6 @@ const fulFilledPromise = new Promise((resolve) => {
 `Promise.resolve`メソッドは引数に`resolve`される値を渡すこともできます。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 // `resolve(42)`された`Promise`インスタンスを作成する
 const fulFilledPromise = Promise.resolve(42);
@@ -665,7 +653,6 @@ fulFilledPromise.then(value => {
 状態が変化済みの`Promise`インスタンスに`then`メソッドで登録したコールバック関数は、常に非同期なタイミングで実行されます。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 const promise = Promise.resolve();
 promise.then(() => {
@@ -680,7 +667,6 @@ console.log("1. 同期的な処理が実行されました");
 次のコードは、さきほどの`Promise.resolve`メソッドを使ったものと同じ動作になります。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 const promise = new Promise((resolve) => {
     console.log("1. resolveします");
@@ -719,7 +705,6 @@ const rejectedPromise = new Promise((resolve, reject) => {
  **Rejected**状態へ変化済みの`Promise`インスタンスに登録したコールバック関数は、常に非同期なタイミングで実行されます。これは**Fulfilled**の場合と同様です。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 Promise.reject(new Error("エラー")).catch(() => {
     console.log("2. コールバック関数が実行されました");
@@ -748,7 +733,6 @@ Promiseチェーンでは、Promiseが失敗（**Rejected**な状態）しない
 そのため、次のコードでは、`1`、`2`と順番にコンソールへログが出力されます。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 // Promiseインスタンスでメソッドチェーン
 Promise.resolve()
@@ -764,7 +748,6 @@ Promise.resolve()
 このPromiseチェーンは、次のコードのように毎回新しい変数に入れて処理をつなげるのと結果的には同じ意味となります。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 // Promiseチェーンを変数に入れた場合
 const firstPromise = Promise.resolve();
@@ -821,7 +804,6 @@ Promiseの状態が**Rejected**となった場合は、もっとも近い失敗�
 このときもっとも近い失敗時の処理（`catch`）が呼び出されますが、間にある2つの成功時の処理（`then`）は実行されません。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 // RejectedなPromiseは次の失敗時の処理までスキップする
 const rejectedPromise = Promise.reject(new Error("失敗"));
@@ -839,7 +821,6 @@ Promiseのコンストラクタの処理の場合と同様に、`then`や`catch`
 そのため、例外が発生するともっとも近くの失敗時の処理(`catch`または`then`の第二引数)が呼び出されます。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 Promise.resolve().then(() => { 
     // 例外が発生すると、thenメソッドはRejectedなPromiseを返す
@@ -856,7 +837,6 @@ Promise.resolve().then(() => {
 そのため、一度キャッチするとそこからはもとの`then`で登録した処理が呼ばれるPromiseチェーンに戻ります。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 Promise.reject(new Error("エラー")).catch(error => {
     console.log(error); // Error: エラー
@@ -875,7 +855,6 @@ Promiseチェーンではコールバックで返した値を次のコールバ�
 このコールバック関数が返した値は、次の`then`のコールバック関数へ引数として渡されます。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 Promise.resolve(1).then((value) => {
     console.log(value); // => 1
@@ -896,7 +875,6 @@ Promiseチェーンで一度キャッチすると、次に呼ばれるのは成�
 そのため、`catch`メソッドで返した値は次の`then`メソッドのコールバック関数に引数として渡されます。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 Promise.reject(new Error("失敗")).catch(error => { 
     // 一度catchすれば、次に呼ばれるのは成功時のコールバック
@@ -922,7 +900,6 @@ Promiseチェーンで一度キャッチすると、次に呼ばれるのは成�
 **Rejected**な`Promise`インスタンスは、次の`catch`メソッドで登録した失敗時の処理を呼び出すまで、`then`メソッドの成功時の処理をスキップします。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 Promise.resolve().then(function onFulfilledA() {
     return Promise.reject(new Error("失敗"));
@@ -946,7 +923,6 @@ Promise.resolve().then(function onFulfilledA() {
 これによって、`asyncFunction`で発生したエラーのログを取りながら、Promiseチェーンはエラーのまま処理を継続できます。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 function main() {
     return Promise.reject(new Error("エラー"));
@@ -1233,7 +1209,6 @@ Async Functionは次のように関数の前に`async`をつけることで定�
 この`doAsync`関数は常に`Promise`インスタンスを返します。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 async function doAsync() {
     return "値";
@@ -1248,7 +1223,6 @@ doAsync().then(value => {
 Async Functionでは`return`した値の代わりに、`Promise.resolve(返り値)`のように返り値をラップした`Promise`インスタンスを返します。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 // 通常の関数でPromiseインスタンスを返している
 function doAsync() {
@@ -1274,7 +1248,6 @@ JavaScriptの関数定義には関数宣言や関数式、Arrow Function、メ�
 どの定義方法でも`async`キーワードを前につけるだけでAsync Functionとして定義できます。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 // 関数宣言のAsync Function版
 async function fn1() {}
@@ -1312,7 +1285,6 @@ Promiseを返した場合は、その返したPromiseの状態とAsync Function�
 -->
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 // 1. resolveFnは値を返している
 // 何もreturnしていない場合はundefinedを返したのと同じ扱いとなる
@@ -1390,7 +1362,6 @@ async function asyncMain() {
 そのため`await`式の返り値は`42`となり、`value`変数にもその値が入ります。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 async function asyncMain() {
     const value = await Promise.resolve(42);
@@ -1403,7 +1374,6 @@ asyncMain(); // Promiseインスタンスを返す
 `await`式を使うことでコールバック関数を使わずに非同期処理の流れを表現できていることがわかります。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 function asyncMain() {
     return Promise.resolve(42).then(value => {
@@ -1421,7 +1391,6 @@ asyncMain(); // Promiseインスタンスを返す
 そのため`await`式は`エラー`を`throw`します。そのエラーを自動的にキャッチするため`asyncMain`関数は**Rejected**なPromiseを返します。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 async function asyncMain() {
     // `await`式で評価した右辺のPromiseがRejectedとなったため、例外がthrowされる
@@ -1440,7 +1409,6 @@ asyncMain().catch(error => {
 次のコードでは、`await`式で発生した例外を`try...catch`構文でキャッチしています。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 async function asyncMain() {
     // await式のエラーはtry...catchできる
@@ -1471,7 +1439,6 @@ Async Functionと`await`式を使うことでPromiseチェーンとして表現�
 次のコードの`fetchAB`関数はリソースAとリソースBを順番に取得する処理をPromiseチェーンで書いています。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 2000 } -->
 ```js
 function dummyFetch(path) {
     return new Promise((resolve, reject) => {
@@ -1505,7 +1472,6 @@ fetchAB().then((results) => {
 `await`式を使いリソースが取得できるまで待ち、その結果を変数`results`に追加していくという形で逐次処理が実装できます。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 2000 } -->
 ```js
 function dummyFetch(path) {
     return new Promise((resolve, reject) => {
@@ -1548,7 +1514,6 @@ Promiseチェーンで`fetchAB`関数書いた場合は、コールバックの�
 Async Function内でfor文を使った反復処理を行い、forループの中で`await`文を使ってリソースの取得を待ちその結果を追加しています。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 2000 } -->
 ```js
 function dummyFetch(path) {
     return new Promise((resolve, reject) => {
@@ -1671,7 +1636,6 @@ Async Function内で`await`式を使って処理を待っている間も、関�
 次のコードを実行してみると、Async Function内で`await`しても、Async Function外の処理は停止していないことがわかります。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 16 } -->
 ```js
 async function asyncMain() {
     // 中でawaitしても、Async Functionの外側の処理まで止まるわけではない
@@ -1727,7 +1691,6 @@ async function fetchResources(resources) {
 しかし、コールバック関数をAsync Functionにしただけでは、`fetchResources`関数は常に空の配列で解決されるPromiseを返すという意図しない挙動となります。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 2000 } -->
 ```js
 function dummyFetch(path) {
     return new Promise((resolve, reject) => {
@@ -1769,7 +1732,6 @@ fetchResources(resources).then((results) => {
 そのため、`forEach`メソッドのコールバック関数でリソースの取得が完了する前に、`fetchResources`関数はその時点の`results`である空の配列で解決してしまいます。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 2000 } -->
 ```js
 function dummyFetch(path) {
     return new Promise((resolve, reject) => {
