@@ -68,7 +68,7 @@ describe("doctest:md", function() {
   at ${filePathLineColumn}
 
 ----------
-${forEach}
+${codeValue}
 ----------
 `);
                         return Promise.reject(error);
