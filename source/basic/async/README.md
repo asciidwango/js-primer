@@ -1049,7 +1049,6 @@ dummyFetch("/resource/A").then(response => {
 このときの配列の要素の順番は`Promise.all`メソッドに渡した配列のPromiseの要素の順番と同じになります。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 100 } -->
 ```js
 // `timeoutMs`ミリ秒後にresolveする
 function delay(timeoutMs) {
@@ -1145,7 +1144,6 @@ fetchedPromise.then(([responseA, responseB]) => {
 この配列の中でも一番最初に完了するのは、1ミリ秒後に**Fulfilled**となる`Promise`インスタンスです。
 
 {{book.console}}
-<!-- doctest:options:{ "timeout": 200 } -->
 ```js
 // `timeoutMs`ミリ秒後にresolveする
 function delay(timeoutMs) {
