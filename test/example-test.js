@@ -1,6 +1,7 @@
 // LICENSE : MIT
 "use strict";
-import { runTestCode, toTestCode } from "./lib/testing-code.js";
+import { run } from "@power-doctest/javascript";
+import { toTestCode } from "./lib/testing-code";
 
 const globby = require("globby");
 const fs = require("fs");
@@ -14,10 +15,10 @@ function transformModule(code) {
         presets: [
             [
                 "@babel/preset-env", {
-                    "targets": {
-                        "node": "current"
-                    }
+                "targets": {
+                    "node": "current"
                 }
+            }
             ]
         ],
         babelrc: false,
@@ -36,10 +37,10 @@ describe("doctest:js", function() {
         presets: [
             [
                 "@babel/preset-env", {
-                    "targets": {
-                        "node": "current"
-                    }
+                "targets": {
+                    "node": "current"
                 }
+            }
             ]
         ],
         babelrc: false,
@@ -53,18 +54,19 @@ describe("doctest:js", function() {
     ]);
     files.forEach(filePath => {
         const normalizeFilePath = filePath.replace(sourceDir, "");
-        it(`can eval ${normalizeFilePath}`, function() {
+        it(`doctest:js ${normalizeFilePath}`, function() {
             const content = fs.readFileSync(filePath, "utf-8");
-            try {
-                const testCode = toTestCode(content);
-                const transformedCode = transformModule(testCode);
-                runTestCode(transformedCode, filePath);
-            } catch (error) {
+            return run(content, {
+                filePath,
+                preTransform: (code) => {
+                    return transformModule(toTestCode(code));
+                }
+            }).catch(error => {
                 // Stack Trace like
                 console.error(`StrictEvalError: strict eval is failed
     at strictEval (${filePath}:1:1)`);
-                throw new Error(error.message);
-            }
+                return Promise.reject(error);
+            });
         });
     });
 });

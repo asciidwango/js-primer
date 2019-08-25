@@ -50,22 +50,24 @@ export const toStrictIfNeeded = (code) => {
         return strictfy(code);
     }
 };
+
 /**
- * power-doctestで // => をassertへ経感する
- * @param {string} code
- * @returns {string}
+ * ランダムな非同期処理にかかる時間を減らす
+ * dummyFetchのtimeoutなどはテストではtimeoutを短くする
+ * @param code
+ * @returns {*}
  */
-export const toPowerDoctest = (code) => {
-    return doctest.convertCode(code);
+export const fastRandomTimeout = (code) => {
+    return code.replace("1000 * Math.random()", "10 * Math.random()");
 };
 /**
- * テストコードをコードを変換する
+ * テストコード向けにコードを変換する
  * @param {string} code
  * @returns {string}
  */
 export const toTestCode = (code) => {
     // 次の順番でコードを変換していく
-    const converters = [toStrictIfNeeded, toUnreachableCode, toPowerDoctest];
+    const converters = [toStrictIfNeeded, toUnreachableCode, fastRandomTimeout];
     return converters.reduce((computed, convert) => {
         return convert(computed);
     }, code);

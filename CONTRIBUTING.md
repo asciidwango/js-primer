@@ -109,15 +109,26 @@ Markdown中のインラインコードブロックとは次のような`js`言�
 ### Doctest
 
 `*-example.js`のJavaScriptファイルとMarkdownのインラインコードブロックを対象にDoctestが実行されます。
-
-次のように`// => 値`というコメントを書いた部分に対してDoctestが実行されます。
+次のように`// => 値`というコメントを書いた部分が、`assert`関数に変換されテストされます。
 
 ```js
 const a = 42;
-console.log(42); // => 42
+console.log(a); // => 42
+```
+
+このコードは、は次のようなテストコードに変換されます。
+
+```js
+const assert = requite("assert");
+const a = 42;
+assert.strictEqual(a, 42); // => 42
 ```
 
 これにより、サンプルコードのコメントに書いた評価結果と実際の出力が一致するかをテストしています。
+
+詳しい実装は次のドキュメントを参照してください。
+
+- [@power-doctest/markdown](https://github.com/azu/power-doctest/tree/master/packages/%40power-doctest/markdown)
 
 #### サポートする書式
 
@@ -131,9 +142,8 @@ or
 console.log(評価したい式); // => 期待する評価結果
 ```
 
-基本的には、`console.log(式); // => 期待する評価結果`を利用し、
-`console.log`が冗長な場合は `式; // => 期待する評価結果`と書いても良い。
-
+基本的には、`console.log(式); // => 期待する評価結果`を利用します。
+`console.log`が冗長な場合は `式; // => 期待する評価結果`と書いても良いことにしています。
 
 #### Doctestエラーのテスト
 
@@ -157,14 +167,39 @@ Doctestの正常系は実行結果と期待結果が一致することです。
     NO_DEFINE++; // => ReferenceError
     ```
 
+
+#### 複数のDoctestを扱うケースケース
+
+デフォルトでは、コード上の全てのDoctestが実行されまで結果を待ちます。
+次のコードでは、3つのassertが実行されるまでテストコードの終了を待ちます。
+
+    ```js
+    1; // => 1
+    2; // => 2
+    3; // => 3
+    ```
+    
+次のように条件分岐で片方のassertのみが実行されることを期待する場合は、`doctest:options:{ "runMode": "any" }`を指定してください。
+一つでもassertが実行された時点でテストを終了します。
+
+     <!-- doctest:options:{ "runMode": "any" } -->
+    ```js
+    if (Math.random() < 0.5 ) {
+        console.log(true); // => true
+    } else {
+        console.log(false); // => false
+    }
+    ```
+
 #### Doctest非同期のテスト
 
 DoctestでPromiseやAsync Functionを使った非同期のテストも書けます。
-非同期処理を期待する場合は、`doctest:async:タイムアウトミリ秒`をHTMLコメントに書きます。
+
+非同期処理のタイムアウトを明示的に指定したい場合は`doctest:options:{ "timeout": 1000 }` をHTMLコメントに書きます。
 
 例) 実行結果が`1000`ミリ秒以内に完了する非同期処理をテストする
 
-    <!-- doctest:async:1000 -->
+    <!-- doctest:options:{ "timeout": 1000 } -->
     ```js
     function wait(ms){
         return new Promise((resolve) => {
@@ -187,7 +222,7 @@ DoctestはNode.jsで実行されます。
 
 例) DoctestがECMAScript 2019であることを表記する
 
-    <!-- doctest:ecmascript: 2019 -->
+    <!-- doctest:meta:{ "ECMAScript": "2019" } -->
     ```js
     [1,[2], [3]].flat();
     ```

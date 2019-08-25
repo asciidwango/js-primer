@@ -141,7 +141,7 @@ console.log(invalid.toString()); // => "Invalid Date"
 `getMonth`メソッドや`setMonth`メソッドのように月を数値で扱うメソッドは、0から11の数値で指定することに注意しましょう。ある`Date`のインスタンスの時刻が何月かを表示するには、`getMonth`メソッドの戻り値に1を足す必要があります。
 
 {{book.console}}
-<!-- doctest:ecmascript: 2017 -->
+<!-- doctest:meta:{ "ECMAScript": "2017" } -->
 ```js
 // YYYY/MM/DD形式の文字列に変換する関数
 function formatDate(date) {
