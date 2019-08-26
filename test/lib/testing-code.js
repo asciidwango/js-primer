@@ -1,6 +1,4 @@
 // MIT © 2019 azu
-import * as doctest from "power-doctest";
-
 const { NodeVM } = require("vm2");
 const makeConsoleMock = require("consolemock");
 /**
