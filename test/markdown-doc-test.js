@@ -14,8 +14,7 @@ const sourceDir = path.join(__dirname, "..", "source");
 
 
 /**
- * 指定した文字列を含んだコードは実行環境によってはサポートされてないので無視する
- * 具体的にはNode.js v6でES2016~のコードが実行できない場合がある
+ * 指定したECMASCriptバージョンをmetaにもつコードは実行環境によってはサポートされてないので無視する
  * .travis.ymlのサポートしているNode.jsバージョンに合わせる
  * @type {string[]}
  */
@@ -24,7 +23,6 @@ const AllowECMAScriptVersions = ["2017", "2018", "2019"];
  * Markdownファイルの CodeBlock に対してdoctestを行う
  * CodeBlockは必ず実行できるとは限らないので、
  * AssertionError(doctestにおける失敗)以外は成功したことにして無視する
- * Node.js v6はES2016-が実行できないのでスルーする
  *
  * `console.log(式); // => 結果` の書式で書かれているをチェックする
  * https://github.com/asciidwango/js-primer/issues/195
