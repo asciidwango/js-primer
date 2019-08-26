@@ -433,7 +433,7 @@ console.log(newArray); // => ["A", "B", "C", "新しい要素"]
 配列をすべてフラット化する場合には、無限を意味する`Infinity`を値として渡すことで実現できます。
 
 {{book.console}}
-<!-- doctest:ecmascript: 2019 -->
+<!-- doctest:meta:{ "ECMAScript": "2019" } -->
 ```js
 const array = [[["A"], "B"], "C"];
 // 引数なしは 1 を指定した場合と同じ
@@ -448,7 +448,7 @@ console.log(array.flat(Infinity)); // => ["A", "B", "C"]
 そのため、これ以上フラット化できない配列をフラット化しても、同じ要素をもつ新しい配列を返します。
 
 {{book.console}}
-<!-- doctest:ecmascript: 2019 -->
+<!-- doctest:meta:{ "ECMAScript": "2019" } -->
 ```js
 const array = ["A", "B", "C"];
 console.log(array.flat()); // => ["A", "B", "C"]

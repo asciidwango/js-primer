@@ -17,7 +17,6 @@ description: "Promiseを活用し、ソースコードの整理とエラーハ�
 また、後述するエラーハンドリングを行いやすくするため、アプリケーションにエントリポイントを設けます。
 `index.js`に新しく`main`関数を作り、`main`関数から`fetchUserInfo`関数を呼び出すようにします。
 
-<!-- doctest:async:16 -->
 ```js
 function main() {
     fetchUserInfo("js-primer-example");
@@ -74,7 +73,6 @@ Promiseチェーンの中で投げられたエラーは、`Promise#catch`メソ�
 `fetchUserInfo`関数ではネットワークエラーとサーバーエラーを投げています。
 投げられたエラーは`catch`のコールバック関数で第1引数として受け取れます。
 
-<!-- doctest:async:16 -->
 ```js
 function main() {
     fetchUserInfo("js-primer-example")
@@ -131,7 +129,6 @@ Promiseチェーンで処理を分けることで、それぞれの処理が簡�
 `Reponse#json`メソッドの戻り値はJSONオブジェクトで解決されるPromiseなので、次の`then`ではユーザー情報のJSONオブジェクトが渡されます。
 次に、`main`関数が`fetchUserInfo`関数のPromiseチェーンで、HTMLの組み立て（`createView`）と表示（`displayView`）を行うように変更します。
 
-<!-- doctest:async:16 -->
 ```js
 function main() {
     fetchUserInfo("js-primer-example")
@@ -174,7 +171,6 @@ Promiseの`then`メソッドによるコールバック関数の入れ子がな�
 もし`fetchUserInfo`関数の中で例外が投げられた場合は、`try...catch`構文でエラーハンドリングできます。
 このように、あらかじめ非同期処理の関数がPromiseを返すようにしておくと、Async Functionにリファクタリングしやすくなります。
 
-<!-- doctest:async:16 -->
 ```js
 async function main() {
     try {

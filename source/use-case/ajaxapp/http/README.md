@@ -141,7 +141,6 @@ index.jsでは関数を定義しているだけで、呼び出しは行ってい
 Fetch APIが標準化される以前は、ブラウザとサーバーの間で通信を行うにはXHRを使うのが一般的でした。
 このセクションで扱ったFetch APIによる`fetchUserInfo`関数は、XHRを使うと次のように書けます。
 
-<!-- doctest:async:16 -->
 ```js
 function fetchUserInfo(userId) {
     // リクエストを作成する

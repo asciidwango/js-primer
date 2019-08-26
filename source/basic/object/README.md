@@ -555,7 +555,7 @@ console.log(obj[symbolKey2]); // => "2"
 それぞれ、オブジェクトのキー、値、キーと値の組み合わせを配列にして返します。
 
 {{book.console}}
-<!-- doctest:ecmascript: 2017 -->
+<!-- doctest:meta:{ "ECMAScript": "2017" } -->
 ```js
 const obj = {
     "one": 1,
