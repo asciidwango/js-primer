@@ -1,15 +1,12 @@
 // LICENSE : MIT
 "use strict";
-import { runCodeBlockNode } from "@power-doctest/markdown";
+import { test } from "@power-doctest/tester";
+import { parse } from "@power-doctest/markdown";
 import { toTestCode } from "./lib/testing-code";
 
 const globby = require("globby");
 const fs = require("fs");
 const path = require("path");
-const remark = require("remark")();
-const select = require("unist-util-select");
-const attachParents = require("unist-util-parents");
-const findAllBetween = require("unist-util-find-all-between");
 const sourceDir = path.join(__dirname, "..", "source");
 
 
@@ -39,22 +36,24 @@ describe("doctest:md", function() {
         const normalizeFilePath = filePath.replace(sourceDir, "");
         describe(`${normalizeFilePath}`, function() {
             const content = fs.readFileSync(filePath, "utf-8");
-            const markdownAST = attachParents(remark.parse(content));
-            const codeBlocks = [].concat(
-                select(markdownAST, `code[lang="js"]`),
-                select(markdownAST, `code[lang="javascript"]`)
-            );
+            const parsedCodes = parse({
+                filePath,
+                content
+            });
             // try to eval
             const dirName = path.dirname(filePath).split(path.sep).pop();
-            codeBlocks.forEach((codeBlock, index) => {
-                const codeValue = codeBlock.value;
+            parsedCodes.forEach((parsedCode, index) => {
+                const codeValue = parsedCode.code;
                 const testCaseName = codeValue.slice(0, 32).replace(/[\r\n]/g, "_");
                 it(dirName + ": " + testCaseName, function() {
-                    return runCodeBlockNode(codeBlock, {
-                        filePath: filePath,
-                        preTransform: toTestCode,
-                        // 非同期サンプルは1000ms以内に終わる想定にしている
-                        timeout: 1000 * 2
+                    return test({
+                        ...parsedCode,
+                        code: toTestCode(parsedCode.code)
+                    }, {
+                        defaultDoctestRunnerOptions: {
+                            // Default timeout: 2sec
+                            timeout: 1000 * 2
+                        }
                     }).catch(error => {
                         if (error.meta && AllowECMAScriptVersions.some(version => version === String(error.meta.ECMAScript))) {
                             console.log(`ECMAScript ${error.meta.ECMAScript}が指定されているコードは実行環境がサポートしてない場合があるのでスキップします`);
