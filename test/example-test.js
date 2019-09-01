@@ -1,6 +1,7 @@
 // LICENSE : MIT
 "use strict";
-import { run } from "@power-doctest/javascript";
+import { test } from "@power-doctest/tester";
+import { parse } from "@power-doctest/javascript";
 import { toTestCode } from "./lib/testing-code";
 
 const globby = require("globby");
@@ -56,11 +57,14 @@ describe("doctest:js", function() {
         const normalizeFilePath = filePath.replace(sourceDir, "");
         it(`doctest:js ${normalizeFilePath}`, function() {
             const content = fs.readFileSync(filePath, "utf-8");
-            return run(content, {
-                filePath,
-                preTransform: (code) => {
-                    return transformModule(toTestCode(code));
-                }
+            const parsedResults = parse({
+                content,
+                filePath
+            });
+            const parsedCode = parsedResults[0];
+            return test({
+                ...parsedCode,
+                code: transformModule(toTestCode(parsedCode.code))
             }).catch(error => {
                 // Stack Trace like
                 console.error(`StrictEvalError: strict eval is failed
