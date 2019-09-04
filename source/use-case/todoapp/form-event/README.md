@@ -147,6 +147,7 @@ ajaxappでの`escapeHTML`タグ関数では出力は**HTML文字列**でした�
 この`element`タグ関数を使うことで、次のようにHTML文字列からHTML要素を作成できます。
 作成した要素は、`appendChild`メソッドなどで既存の要素に子要素として追加できます。
 
+<div class="code-filename-block"><p class="code-filename">elementタグ関数のサンプルコード</p></div>
 <!-- doctest:disable -->
 ```js
 // HTML文字列からHTML要素を作成
@@ -163,6 +164,7 @@ document.body.appendChild(newElement);
 `render`関数は指定したコンテナ要素（親となる要素）の子要素を上書きする関数となります。
 動作的には一度子要素をすべて消したあとに`appendChild`で子要素として追加しています。
 
+<div class="code-filename-block"><p class="code-filename">render関数のサンプルコード</p></div>
 <!-- doctest:disable -->
 ```js
 // `ul`要素の空タグを作成
