@@ -332,17 +332,14 @@ console.log(foo); // => null
 プリミティブ型として紹介した`undefined`はリテラルではありません。
 `undefined`はただのグローバル変数で、`undefined`という値を持っているだけです。
 
-これを証明するために、`var`を使って`undefined`という名前のローカル変数を宣言してみます。
-次のようにstrict modeではない環境においては、`undefined`というローカル変数を`var`で定義できます。
-もちろん`let`や`const`では、同名の変数は再定義できないため`undefined`の再定義はできません。
+次のように、`undefined`はただのグローバル変数であるため、同じ`undefined`という名前のローカル変数を宣言できます。
 
 <!-- textlint-disable eslint -->
 
 {{book.console}}
 ```js
-// strict modeではない実行環境
 function fn(){
-    var undefined = "独自の未定義値"; // undefinedと名前の変数をエラーなく定義できる
+    var undefined = "独自の未定義値"; // undefinedという名前の変数をエラーなく定義できる
     console.log(undefined); // => "独自の未定義値"
 }
 fn();
@@ -350,14 +347,14 @@ fn();
 
 <!-- textlint-enable eslint -->
 
-これに対して`null`はグローバル変数ではなくリテラルであるため、`var`を使っても再定義できません。
-リテラルは変数名として利用できない予約語であるため、このような違いが生じています。
+これに対して`true`、`false`、`null`などはグローバル変数ではなくリテラルであるため、同じ名前の変数を定義することはできません。
+リテラルは変数名として利用できない予約語のようなものであるため、再定義しようとすると構文エラー（SyntaxError）となります。
 
 {{book.console}}
 [import, var-null-invalid.js](./src/var-null-invalid.js)
 
-このコラムでは、説明のために`undefined`というローカル変数を宣言しましたが、現実ではこのような使い方は非推奨です。
-無用な混乱を生むだけなので避けるべきです。またstrict modeの場合や、`const`、`let`を利用した場合はそもそも定義できません。
+このコラムでは、説明のために`undefined`というローカル変数を宣言しましたが、`undefined`の再定義は非推奨です。
+無用な混乱を生むだけなので避けるべきです。
 
 ### オブジェクトリテラル {#object}
 
