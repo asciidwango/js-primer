@@ -40,9 +40,16 @@ form要素でEnterキーを押し送信すると`submit`イベントが発生し
 const formElement = document.querySelector("#js-form");
 // form要素から発生したsubmitイベントを受け取る
 formElement.addEventListener("submit", (event) => {
-    // イベントが発生した時に呼ばれるコールバック関数
+    // イベントが発生した時に呼ばれるコールバック関数（イベントリスナー）
 });
 ```
+
+<!-- textlint-disable prh -->
+
+このようなイベントが発生した際に呼ばれるコールバック関数のことを**イベントリスナー**（イベントをリッスンするものという意味）と呼びます。
+またイベントリスナーはイベントハンドラーとも呼ばれることがありますが、この書籍ではこの2つの言葉は同じ意味として扱います。
+
+<!-- textlint-enable prh -->
 
 フォームが送信されたときに入力内容をコンソールに表示するには、
 `addEventListener`コールバック関数内で入力内容をConsole APIで出力すればよいことになります。
