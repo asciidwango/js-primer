@@ -6,7 +6,7 @@ description: "操作と更新が密結合になってしまい変更がしにく
 # イベントとモデル {#event-model}
 
 Todoアイテムを追加する機能を実装しましたが、イベントを受け取り直接DOMを更新する方法は柔軟性がなくなるという問題があります。
-また「Todoアイテムの更新」という機能を実装するには追加したTodoアイテム要素を識別する方法が必要です。
+また「Todoアイテムの更新」という機能を実装するには、追加したTodoアイテム要素を識別する方法が必要です。
 具体的には、Todoアイテムごとに`id`属性などのユニークな識別子がないため、特定のアイテムを指定して更新や削除が実装できません。
 
 このセクションでは、まずどのような点で柔軟性の問題が起きやすいのかを見ていきます。
@@ -43,7 +43,7 @@ Todoアイテムを追加する機能を実装しましたが、イベントを�
 
 この問題を避けるために、Todoアイテムという情報をJavaScriptクラスとしてモデル化します。
 ここでのモデルとはTodoアイテムやTodoリストなどの**モノの状態や操作方法**を定義したオブジェクトという意味です。
-クラスでは操作方法はメソッドとして実装し、状態はインスタンスにプロパティの値で管理できるため、今回はクラスでモデルを表現できます。
+クラスでは操作方法はメソッドとして実装し、状態はインスタンスのプロパティで管理できるため、今回はクラスでモデルを表現します。
 
 たとえば、Todoリストを表現するモデルとして`TodoListModel`クラスを考えます。
 TodoリストにはTodoアイテムを追加できるので、`TodoListModel#addItem`というメソッドがあると良さそうです。
@@ -68,7 +68,7 @@ TodoリストにはTodoアイテムを追加できるので、`TodoListModel#add
 
 > Todoリストの状態がDOM上にしか存在しないため、状態をすべてDOM上に文字列で埋め込まないといけない
 
-モデルであるクラスのインスタンスを参照すれば情報が手に入ります。
+モデルであるクラスのインスタンスを参照すれば、Todoアイテムの情報が手に入ります。
 またモデルはただのJavaScriptクラスであるため、文字列ではない情報も保持できます。
 そのため、DOMにすべての情報を埋め込む必要はありません。
 
@@ -87,7 +87,7 @@ TodoリストにはTodoアイテムを追加できるので、`TodoListModel#add
 ## モデルの変化を伝えるイベント {#model-and-event}
 
 フォームを送信したらform要素から`submit`イベントが発生します。
-これと同じように`TodoListModel`の状態が変化したら自分自身へ`change`イベントをディスパッチします。
+これと同じように`TodoListModel`の状態が変化したら自分自身へ`change`イベントを発生（ディスパッチ）させます。
 表示側はそのイベントをリッスンしてイベントが発生したら表示を更新すればよいはずです。
 
 `TodoListModel`の状態の変化とは、「`TodoListModel`に新しい`TodoItemModel`が追加される」などが該当します。
@@ -95,7 +95,7 @@ TodoリストにはTodoアイテムを追加できるので、`TodoListModel#add
 
 DOM APIのイベントの仕組みをモデルでも利用できれば、モデルが更新されたら表示を更新する仕組みを作れそうです。
 ブラウザのDOM APIでは、DOM Eventsと呼ばれるイベントの仕組みが利用できます。
-Node.jsでは、`events`と呼ばれるモジュールで同様のイベントの仕組みが利用できます。
+Node.jsでは、`events`と呼ばれる組み込みのモジュールで同様のイベントの仕組みが利用できます。
 
 実行環境が提供するイベントの仕組みを利用すると簡潔ですが、ここではイベントの仕組みを理解するために、イベントのディスパッチとリッスンする機能をもつクラスを作ってみましょう。
 
@@ -104,12 +104,12 @@ Node.jsでは、`events`と呼ばれるモジュールで同様のイベント�
 ## EventEmitter {#event-emitter}
 
 イベントの仕組みとは「イベントをディスパッチする側」と「イベントをリッスンする側」の2つの面から成り立ちます。
-場合によっては自分自身へのイベントをディスパッチし、自分自身でイベントをリッスンすることもあります。
+場合によっては自分自身へイベントをディスパッチし、自分自身でイベントをリッスンすることもあります。
 
 このイベントの仕組みを言い換えると「イベントをディスパッチした（イベントが発生）ときにイベントをリッスンしているコールバック関数（イベントリスナー）を呼び出す」となります。
 
 モデルが更新されたら表示を更新するには「`TodoListModel`が更新したときに指定したコールバック関数を呼び出すクラス」を作れば目的は達成できます。
-しかし、「`TodoListModel`が更新されたとき」というのはとても具体的な処理であるため、モデルを増やすたびに同じ処理をそれぞれのモデルへ実装する必要があります。
+しかし、「`TodoListModel`が更新されたとき」というのはとても具体的な処理であるため、モデルを増やすたびに同じ処理をそれぞれのモデルへ実装するの面倒です。
 
 そのため、先ほどのイベントの仕組みを持った概念として`EventEmitter`というクラスを作成します。
 そして`TodoListModel`は作成した`EventEmitter`を継承することでイベントの仕組みを導入していきます。
@@ -151,7 +151,7 @@ Node.jsでは、`events`と呼ばれるモジュールで同様のイベント�
 - `TodoListModel`: Todoリストを表現するモデル
 - `TodoItemModel`: Todoアイテムを表現するモデル
 
-まずは`TodoItemModel`を`src/model/TodoItemModel.js`へ作成します。
+まずは`TodoItemModel`を`src/model/TodoItemModel.js`というファイル名で作成します。
 
 `TodoItemModel`クラスは各Todoアイテムに必要な情報を定義します。
 各Todoアイテムにはタイトル（`title`）、アイテムの完了状態（`completed`）、アイテムごとにユニークな識別子（`id`）をもたせます。
@@ -164,9 +164,9 @@ Node.jsでは、`events`と呼ばれるモジュールで同様のイベント�
 次のコードでは`TodoItemModel`クラスはインスタンス化でき、それぞれの`id`が自動的に異なる値となっていることが確認できます。
 この`id`は後ほど特定のTodoアイテムを指定して更新する処理のときに、アイテムを区別する識別子として利用します。
 
-[import src/model/TodoItemModel.example.js](./event-emitter/src/model/TodoItemModel.example.js)
+[import title:"TodoItemModel.jsを利用するサンプルコード"](./event-emitter/src/model/TodoItemModel.example.js)
 
-次に`TodoListModel`を`src/model/TodoListModel.js`へ作成します。
+次に`TodoListModel`を`src/model/TodoListModel.js`というファイル名で作成します。
 
 `TodoListModel`クラスは、先ほど作成した`EventEmitter`クラスを継承します。
 `TodoListModel`クラスは`TodoItemModel`の配列を保持し、新しいTodoアイテムを追加する際はその配列に追加します。
@@ -174,10 +174,10 @@ Node.jsでは、`events`と呼ばれるモジュールで同様のイベント�
 
 [import, title:"src/model/TodoListModel.js"](./event-emitter/src/model/TodoListModel.js)
 
-次のコードは`TodoListModel`クラスを取り込み、新しい`TodoItemModel`を追加するサンプルコードです。
+次のコードは`TodoListModel`クラスのインスタンスに対して、新しい`TodoItemModel`を追加するサンプルコードです。
 `TodoListModel#addTodo`メソッドで新しいTodoアイテムを追加した時に、`TodoListModel#onChange`で登録したイベントリスナーが呼び出されます。
 
-[import, "src/model/TodoListModel.example.js"](./event-emitter/src/model/TodoListModel.example.js)
+[import, title:"TodoListModel.jsを利用するサンプルコード"](./event-emitter/src/model/TodoListModel.example.js)
 
 これでTodoリストに必要なそれぞれのモデルクラスが作成できました。
 次はこれらのモデルを使い、表示の更新をしてみましょう。
@@ -186,7 +186,7 @@ Node.jsでは、`events`と呼ばれるモジュールで同様のイベント�
 
 さきほど作成した`TodoListModel`と`TodoItemModel`クラスを使い、「Todoアイテムの追加」を書き直してみます。
 
-前回のセクションでは、フォームを送信すると直接DOMへ要素を追加しています。
+前回のセクションでは、フォームを送信すると直接DOMへ要素を追加していました。
 今回のセクションでは、フォームを送信すると`TodoListModel`へ`TodoItemModel`を追加します。
 `TodoListModel`に新しいTodoアイテムが増えると、`onChange`に登録したイベントリスナーが呼び出されるため、
 そのリスナー関数内でDOM（表示）を更新します。
@@ -199,7 +199,7 @@ Node.jsでは、`events`と呼ばれるモジュールで同様のイベント�
 
 ### 1. TodoListの初期化 {#app-todolist-initialize}
 
-作成した`TodoListModel`と`TodoItemModel`を取り込んでいます。
+作成した`TodoListModel`と`TodoItemModel`をインポートしています。
 
 <!-- doctest:disable -->
 ```js
@@ -211,6 +211,7 @@ import { TodoItemModel } from "./model/TodoItemModel.js";
 `App`のコンストラクタで`TodoListModel`を初期化しているのは、
 このTodoアプリでは開始時にTodoリストの中身が空の状態で開始されるのに合わせるためです。
 
+<div class="code-filename-block"><p class="code-filename">src/App.jsより抜粋</p></div>
 <!-- doctest:disable -->
 ```js
 // ...省略...
@@ -242,6 +243,7 @@ export class App {
 この作成した`todoListElement`要素を前回作成した、`html-util.js`の`render`関数を使い`containerElement`の中身を上書きしてます。
 また、アイテム数は`TodoListModel#getTotalCount`メソッドで取得できるため、アイテム数を管理していた`todoItemCount`という変数は削除できます。
 
+<div class="code-filename-block"><p class="code-filename">src/App.jsより抜粋</p></div>
 <!-- doctest:disable -->
 ```js
 // render関数をimportに追加する
@@ -272,7 +274,7 @@ export class App {
 
 ## まとめ {#conclusion}
 
-今回のセクションでは、前セクションの「[Todoアイテムの追加を実装する][]」と同等の機能をモデルとイベントの仕組みを使うようにリファクタリングしました。
+今回のセクションでは、前セクションの「[Todoアイテムの追加を実装する][]」をモデルとイベントの仕組みを使うようにリファクタリングしました。
 コード量は増えましたが、次に実装する「Todoアイテムの更新」や「Todoアイテムの削除」も同様の仕組みで実装できます。
 前回のセクションのように操作に対してDOMを直接更新した場合、追加は簡単ですが既存の要素を指定する必要がある更新や削除は難しくなります。
 
@@ -282,6 +284,7 @@ export class App {
 
 - 直接DOMを更新する問題について理解した
 - `EventEmitter`クラスでイベントの仕組みを実装した
+- TodoリストとTodoアイテムをモデルとして実装した
 - `TodoListModel`を`EventEmitter`クラスを継承して実装した
 - Todoアイテムの追加の機能をモデルを使ってリファクタリングした
 
