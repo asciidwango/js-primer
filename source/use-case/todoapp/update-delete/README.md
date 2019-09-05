@@ -81,7 +81,7 @@ inputCheckboxElement.addEventListener("change", () => {
 まずは、`TodoListModel`に指定したTodoアイテムを更新する`updateTodo`メソッドを追加します。
 `TodoListModel#updateTodo`メソッドは、指定したidと一致するTodoアイテムの完了状態(`completed`プロパティ)を更新します。
 
-[import, marker:"add-point",unindent:"true", title:"src/model/TodoListModel.jsの変更点の抜粋"](./update-feature/src/model/TodoListModel.js)
+[import, marker:"add-point",unindent:"true", title:"src/model/TodoListModel.jsの変更点を抜粋"](./update-feature/src/model/TodoListModel.js)
 
 ### チェックボックスの`change`イベントが発生したら、Todoアイテムの完了状態を更新する {#onChange-update-model}
 
@@ -115,7 +115,7 @@ inputCheckboxElement.addEventListener("change", () => {
 
 `items`というTodoアイテムの配列から指定したidと一致するTodoアイテムを取り除くことで削除しています。
 
-[import, marker:"add-point",unindent:"true", title:"src/model/TodoListModel.jsの変更点の抜粋"](./delete-feature/src/model/TodoListModel.js)
+[import, marker:"add-point",unindent:"true", title:"src/model/TodoListModel.jsの変更点を抜粋"](./delete-feature/src/model/TodoListModel.js)
 
 ### 削除ボタンの`click`イベントが発生したら、Todoアイテムを削除する {#onChange-update-model}
 
