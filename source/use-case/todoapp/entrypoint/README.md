@@ -8,18 +8,20 @@ description: "HTMLとJavaScriptモジュールを使い、アプリケーショ�
 エントリポイントとは、アプリケーションの中で一番最初に呼び出される部分のことです。
 
 「[Ajax通信:エントリポイント][]」のユースケースでは、エントリポイントはHTML（`index.html`）のみでした。
-まずHTMLが読み込まれ、次にHTMLの中に書かれている`script`タグで指定したJavaScriptファイルが読み込まれます。
+まずHTMLが読み込まれ、次にHTMLの中に書かれている`script`要素で指定したJavaScriptファイルが読み込まれます。
 
 今回のTodoアプリはJavaScriptの処理をモジュール化し、それぞれのモジュールを別々のJavaScriptファイルとして作成していきます。
-JavaScriptモジュールはHTMLから`<script type="module">`で読み込むことができますが、`script`タグ毎に別々のモジュールスコープを持ちます。
+JavaScriptモジュールはHTMLから`<script type="module">`で読み込むことができますが、`script`要素毎に別々のモジュールスコープを持ちます。
 モジュールスコープとは、モジュールのトップレベルに自動的に作成されるスコープで、グローバルスコープの下に作られます。
-JavaScriptモジュールを別々の`script`タグで読み込むと、モジュール同士でスコープが異なるため、モジュール同士で連携できません。
+JavaScriptモジュールを別々の`script`要素で読み込むと、モジュール同士でスコープが異なるため、モジュール同士で連携できません。
 
-次のコードは、それぞれの`<script type="module">`同士のスコープが異なるため、別の`script`タグで定義した変数にアクセス出来ないことを示しています。これはJavaScriptのコードをファイルにして`src`属性で読み込んだ場合も同様です。
+次のコードは、それぞれの`<script type="module">`同士のスコープが異なるため、別の`script`要素で定義した変数にアクセス出来ないことを示しています。
+これはJavaScriptモジュールをファイルにして`src`属性で読み込んだ場合も同様です。
 
 [import:"marker"](./module-scope/index.html)
 
-そのため、HTMLから読み込むのは1つのJavaScriptファイル(`index.js`)として、この`index.js`から`import`文で他のモジュールを読み込みます。
+このようにモジュールを別々の`script`要素で扱うとモジュール同士は連携できません。
+そのため、HTMLでは`script`要素で`index.js`のみを読み込み、この`index.js`から`import`文で他のモジュールを読み込みます。
 `import`文を使うことで、モジュール間は1つの`<script type="module">`のスコープ内に収まるため、モジュール同士で連携できます。
 このHTMLから読み込むJavaScriptファイル（`index.js`）をJavaScriptにおけるエントリポイントとします。
 
@@ -33,7 +35,7 @@ JavaScriptモジュールを別々の`script`タグで読み込むと、モジ�
 ## プロジェクトディレクトリを作成 {#project-directory}
 
 今回作成するアプリにはHTMLやJavaScriptなど複数のファイルが必要となります。
-そのため、まずそれらファイルを置くためのディレクトリを作成します。
+そのため、まずそれらのファイルを置くためのディレクトリを作成します。
 
 ここでは`todoapp`という名前で新しいディレクトリを作成します。
 ここからは作成した`todoapp`ディレクトリ以下で作業していきます。
@@ -44,11 +46,11 @@ JavaScriptモジュールを別々の`script`タグで読み込むと、モジ�
 
 エントリポイントとして、まずは最低限の要素だけを配置したHTMLファイルを作成しましょう。
 エントリポイントとなるHTMLとして`index.html`を`todoapp`ディレクトリに作成し、次のような内容にします。
-`body`要素の一番下で`<script>`タグを使い読み込んでいる`index.js`が、今回のアプリケーションの処理を記述するJavaScriptファイルです。
+`body`要素の一番下で`script`要素を使い読み込んでいる`index.js`が、今回のアプリケーションの処理を記述するJavaScriptファイルです。
 
 [import, title:"index.html"](first-entry/index.html)
 
-同じように`index.js`を`todoapp`ディレクトリに作成し、次のような内容にします。
+次に`index.js`を`todoapp`ディレクトリに作成し、次のような内容にします。
 `index.js`にはスクリプトが正しく読み込まれたことを確認できるように、コンソールにログを出力する処理だけを書いておきます。
 
 [import, title:"index.js"](first-entry/index.js)
@@ -92,8 +94,6 @@ todoappのローカルサーバを起動しました。
 
 ![Webコンソールにログが表示されている](img/first-entry.png)
 
-----
-
 ### 開発者ツールでのコンソールログの確認方法 {#view-console-log-in-dev-tools}
 
 Console APIで出力したログを確認するには、ウェブブラウザの開発者ツールを開く必要があります。
@@ -113,11 +113,11 @@ HTMLは表示されるがコンソールログに`index.js: loaded`が表示さ�
 
 #### [エラー例] `index.js`の読み込みに失敗している {#fail-to-load-javascript-module}
 
-scirptタグに指定した`index.js`のパスにファイルが存在しているかを確認してください。
+`scirpt`要素の`src`属性指定した`index.js`のパスにファイルが存在しているかを確認してください。
 `<script type="module" src="index.js">`としてした場合は`index.html`と`index.js`は同じディレクトリに配置する必要があります。
 
 また、*CORS policy Invalid*のようなエラーがコンソールに表示されている場合は、[Same Origin Policy][]により`index.js`の読み込みが失敗しています。
-先ほども書いたように、`file:`から始まるページ上からはJavaScriptモジュールを読み込めないブラウザもあります。
+先ほども紹介したように、`file:`から始まるページ上からはJavaScriptモジュールは正しく動作しません。
 そのため、ローカルサーバーを起動し、ローカルサーバー(`http:`から始まるURL)にアクセスしていることを確認してください。
 
 #### [エラー例] JavaScriptモジュールに非対応のブラウザを利用している {#unsupport-javascript-module}
@@ -139,7 +139,7 @@ JavaScriptモジュールはまだ新しい機能であるため、バージョ�
 このアプリではJavaScriptモジュールが複数登場するため`src/`というディレクトリを作り、`src/`の下にJavaScriptモジュールを書くことにします。
 今回は`src/App.js`にファイルを作成し、これを`index.js`からモジュールとして読み込みます。
 
-ここでの`todoapp`ディレクトリは、次のようなファイル配置となるように`src/App.js`を作成を作成していきます。
+ここでの`todoapp`ディレクトリは、次のようなファイル配置となるように`src/App.js`を作成していきます。
 
 ```
 todoapp
@@ -151,13 +151,13 @@ todoapp
 
 
 `src/App.js`にファイルを作成し、次のような内容のJavaScriptモジュールとします。
-モジュールは、基本的には何かしらを外部に公開（`export`）します。
-`App.js`は`App`というクラスを公開するモジュールとして、今回はコンソールログを出力するだけです。
+`App.js`は`App`というクラスを`export`しているモジュールです。
+また、`App`クラスのコンストラクタにはコンソールログを出力するコードを確認用に書いておきます。
 
 [import, title:"src/App.js"](module-entry/src/App.js)
 
-次に、この`src/App.js`を`index.js`から取り込み(`import`)します。
-`index.js`を次のように書き換え、`App.js`から`App`クラスを取り込みインスタンス化します。
+次に、この`src/App.js`を`index.js`から利用するために`import`します。
+`index.js`を次のように書き換え、`App.js`から`App`クラスをインポートしてインスタンス化します。
 
 [import, title:"index.js"](module-entry/index.js)
 
@@ -169,41 +169,43 @@ App.js: loaded
 App initialized
 ```
 
-まず`index.js`から`src/App.js`の`App`クラスが取り込まれています。
+まず`index.js`から`src/App.js`が`export`している`App`クラスをインポートしています。
 次に`App`クラスがインスタンス化されていることがログから確認できます。
 
 これでHTMLとJavaScriptそれぞれのエントリポイントの作成と動作を確認できました。
 
 ### App.jsの読み込みに失敗する {#error-import-app-js}
 
-ディレクトリ構造や`import`宣言で指定したファイルパスが異なると、ファイルを読み込むことができずにエラーとなってしまいます。
+ここまでのJavaScriptモジュールの読み込みでエラーが発生して動かない場合には次のことを確認します。
+
+ディレクトリ構造や`import`文で指定したファイルパスが異なると、ファイルを読み込むことができずにエラーとなってしまいます。
 この場合は開発者ツールを開き、コンソールにエラーが出ていないかを確認してみてください。
 
-`import`宣言を使ったJavaScriptのモジュール読み込み時に起きる典型的なエラーと対処を次にまとめています。
+`import`文を使ったJavaScriptのモジュール読み込み時に起きる典型的なエラーと対処を次にまとめています。
 
 #### [エラー例] SyntaxError: import declarations may only appear at top level of a module {#syntax-error-import-declarations}
 
 「`import`宣言はモジュールのトップレベルでしか利用できません」というエラーがでています。
-このエラーがでているということは、`import`宣言を使える条件を満たしていないということです。
-つまり、`import`宣言がトップレベルではない所に書かれている、またはモジュールではない実行コンテキストで実行されているということです。
+このエラーがでているということは、`import`文を使える条件を満たしていないということです。
+つまり、`import`文がトップレベルではない所に書かれている、またはモジュールではない実行コンテキストで実行されているということです。
 
 関数の中などに`import`宣言していると、`import`宣言がトップレベルではないためエラーが発生します。
-この場合は`import`宣言をトップレベル（プログラムの直下）に移動させてみてください。
+この場合は`import`文をトップレベル（プログラムの直下）に移動させてみてください。
 
 モジュールではない実行コンテキストで実行されているというのは、裏を返せば実行コンテキストがScriptとなっているということです。
 JavaScriptには実行コンテキストとしてScriptとModuleがあります。
-`import`宣言は実行コンテキストがModuleでないと利用できません。
-そのため、scriptタグの`type`指定を忘れていないかをチェックしてみてください。
+`import`文は実行コンテキストがModuleでないと利用できません。
+そのため、`script`要素の`type`属性に`module`指定を忘れていないかをチェックしてみてください。
 
 実行コンテキストをモジュールとして実行するには`<script type="module" src="index.js">`のように`type=module`を指定する必要があります。
-（`index.js`から`import`宣言で読み込んだ`App.js`は実行コンテキストを引き継ぐため、モジュールの実行コンテキストで処理されます。）
+（`index.js`から`import`文で読み込んだ`App.js`は実行コンテキストを引き継ぐため、モジュールの実行コンテキストで処理されます。）
 
 #### [エラー例] モジュールのソース “http://localhost:3000/src/App” の読み込みに失敗しました。 {#fail-to-load-src-app}
 
 `App.js`が読み込めていないというエラーがでています。
 エラーメッセージをよく見ると`App`となっていて`App.js`ではありません。
 
-`import`宣言では、読み込むファイルの拡張子を省略しません。
+`import`文では、読み込むファイルの拡張子を省略しません。
 そのため、`App`のように拡張子（`.js`）を省略して書いている場合はこのエラーが発生します。
 
 <!-- doctest:disable -->

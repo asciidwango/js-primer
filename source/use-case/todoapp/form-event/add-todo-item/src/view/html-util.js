@@ -7,6 +7,10 @@ export function escapeSpecialChars(str) {
         .replace(/'/g, "&#039;");
 }
 
+/**
+ * HTML文字列からHTML要素を作成して返す
+ * @param {string} html 
+ */
 export function htmlToElement(html) {
     const template = document.createElement("template");
     template.innerHTML = html;
@@ -35,8 +39,8 @@ export function element(strings, ...values) {
  * @param {Element} containerElement コンテナ要素
  */
 export function render(bodyElement, containerElement) {
-    // rootElementの中身を空にする
+    // containerElementの中身を空にする
     containerElement.innerHTML = "";
-    // rootElementの直下にbodyElementを追加する
+    // containerElementの直下にbodyElementを追加する
     containerElement.appendChild(bodyElement);
 }

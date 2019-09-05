@@ -21,16 +21,18 @@ Todoアプリでは、ユーザーが次のような操作を行った場合に�
 
 これをJavaScriptで実現するには次のことが必要です。
 
-- form要素から送信（`submit`）されたことをイベントで受け取る
-- input要素（入力欄）に入力された内容を取得する
+- Todoアイテムのタイトルを取得するために、input要素（入力欄）から内容を取得する
+- Enterキーで送信されたことを知るために、form要素の`submit`イベント（送信）を監視する
 - 入力内容をタイトルにしたTodoアイテムを作成し、Todoリスト(`#js-todo-list`)にTodoアイテム要素を追加する
 
 まずは、form要素から送信されたイベントを受け取り、入力内容をコンソールログに表示してみることから始めてみましょう。
 
-## 入力内容をコンソールに表示 {#input-to-console}
+## 入力内容をコンソールに表示する {#input-to-console}
 
 form要素でEnterキーを押し送信すると`submit`イベントが発生します。
-この`submit`イベントは`addEventListener`メソッドを利用することで受け取れます。
+この`submit`イベントはHTML要素の`addEventListener`メソッドを利用することで受け取れます。
+
+次のコードでは、指定したform要素から`submit`イベントが発生したときに呼び出されるコールバック関数を登録しています。
 
 <!-- doctest:disable -->
 ```js
@@ -38,9 +40,16 @@ form要素でEnterキーを押し送信すると`submit`イベントが発生し
 const formElement = document.querySelector("#js-form");
 // form要素から発生したsubmitイベントを受け取る
 formElement.addEventListener("submit", (event) => {
-    // イベントが発生した時に呼ばれるコールバック関数
+    // イベントが発生した時に呼ばれるコールバック関数（イベントリスナー）
 });
 ```
+
+<!-- textlint-disable prh -->
+
+このようなイベントが発生した際に呼ばれるコールバック関数のことを**イベントリスナー**（イベントをリッスンするものという意味）と呼びます。
+またイベントリスナーはイベントハンドラーとも呼ばれることがありますが、この書籍ではこの2つの言葉は同じ意味として扱います。
+
+<!-- textlint-enable prh -->
 
 フォームが送信されたときに入力内容をコンソールに表示するには、
 `addEventListener`コールバック関数内で入力内容をConsole APIで出力すればよいことになります。
@@ -74,9 +83,10 @@ console.log(inputElement.value); // => "input要素の入力内容"
 `event.preventDefault`メソッドは、`submit`イベントの発生元であるフォームがもつデフォルトの動作をキャンセルするメソッドです。
 
 フォームがもつデフォルトの動作とは、フォームの内容を指定したURLへ送信するという動作です。
-ここでは`form`要素に送信先が指定されていないため、現在のURLに対してフォームを送信が行われます。
-`event.preventDefault`メソッドを呼び出すことで、このデフォルトの動作をキャンセルしています。
+ここでは`form`要素に送信先が指定されていないため、現在のURLに対してフォームの内容を送信します。
+しかしこの動作は邪魔となるため、`event.preventDefault`メソッドを呼び出すことで、このデフォルトの動作をキャンセルしています。
 
+<div class="code-filename-block"><p class="code-filename">src/App.jsより抜粋</p></div>
 <!-- doctest:disable -->
 ```js
 formElement.addEventListener("submit", (event) => {
@@ -88,11 +98,13 @@ formElement.addEventListener("submit", (event) => {
 
 <!-- textlint-disable no-js-function-paren -->
 
-現在のURLに対してフォームを送信が行われると、結果的にページがリロードされてしまうため、`event.preventDefault()`を呼び出していました。
+現在のURLに対してフォームを送信が行われると、結果的にページがリロードされてしまいます。
+そのため、`event.preventDefault()`を呼び出し、デフォルトの動作をキャンセルしていました。
 これは`event.preventDefault()`をコメントアウトすると、ページがリロードされてしまうことが確認できます。
 
 <!-- textlint-enable no-js-function-paren -->
 
+<div class="code-filename-block"><p class="code-filename">src/App.jsから一部をコメントアウトした例</p></div>
 <!-- doctest:disable -->
 ```js
 formElement.addEventListener("submit", (event) => {
@@ -102,7 +114,7 @@ formElement.addEventListener("submit", (event) => {
 });
 ```
 
-ここまでで`todoapp`ディレクトリは次のような変更を加えました。
+ここまでで`todoapp`ディレクトリには、次のような変更を加えました。
 
 ```
 todoapp
@@ -117,7 +129,7 @@ todoapp
 
 - <https://jsprimer.net/use-case/todoapp/form-event/prevent-event/>
 
-## 入力内容をTodoリストに表示 {#input-to-todolist}
+## 入力内容をTodoリストに表示する {#input-to-todolist}
 
 フォーム送信時に入力内容を取得する方法が分かったので、次はその入力内容をTodoリスト(`#js-todo-list`)に表示します。
 
@@ -125,14 +137,14 @@ HTMLではリストのアイテムを記述する際には`<li>`タグを使い�
 また後ほどTodoリストに表示するTodoアイテムの要素には、完了状態を表すチェックボックスや削除ボタンなども含めたいです。
 これらの要素を含むものを手続き的にDOM APIで作成すると見通しが悪くなるため、HTML文字列からHTML要素を生成するユーティリティモジュールを作成しましょう。
 
-次の`html-util.js`を`src/view/html-util.js`というパスに作成します。
+次の`html-util.js`というファイルを`src/view/html-util.js`というパスに作成します。
 
 この`html-util.js`は「[ajaxapp: HTML文字列をDOMに追加する][]」でも利用した`escapeSpecialChars`をベースにしています。
 ajaxappでの`escapeHTML`タグ関数では出力は**HTML文字列**でしたが、今回作成する`element`タグ関数の出力は**HTML要素**（Element）です。
 
-これはTodoリスト(`#js-todo-list`)というすでに存在する要素に対して要素を**追加**するには、HTML文字列ではなく要素が必要になります。
+これはTodoリスト(`#js-todo-list`)というすでに存在する要素に対して要素を**追加**するには、HTML文字列ではなくHTML要素が必要になります。
 また、HTML文字列に対しては`addEventListener`でイベントをリッスンできません。
-そのため、チェックボックスの状態が変わったことや削除ボタンが押されたことを知る必要があるTodoアプリでは要素が必要になります。
+そのため、チェックボックスの状態が変わったことや削除ボタンが押されたことを知る必要があるTodoアプリではHTML要素が必要になります。
 
 [import, title:"src/view/html-util.js"](./add-todo-item/src/view/html-util.js)
 
@@ -142,6 +154,7 @@ ajaxappでの`escapeHTML`タグ関数では出力は**HTML文字列**でした�
 この`element`タグ関数を使うことで、次のようにHTML文字列からHTML要素を作成できます。
 作成した要素は、`appendChild`メソッドなどで既存の要素に子要素として追加できます。
 
+<div class="code-filename-block"><p class="code-filename">elementタグ関数のサンプルコード</p></div>
 <!-- doctest:disable -->
 ```js
 // HTML文字列からHTML要素を作成
@@ -158,6 +171,7 @@ document.body.appendChild(newElement);
 `render`関数は指定したコンテナ要素（親となる要素）の子要素を上書きする関数となります。
 動作的には一度子要素をすべて消したあとに`appendChild`で子要素として追加しています。
 
+<div class="code-filename-block"><p class="code-filename">render関数のサンプルコード</p></div>
 <!-- doctest:disable -->
 ```js
 // `ul`要素の空タグを作成
@@ -209,7 +223,7 @@ todoapp
 
 ## このセクションのチェックリスト {#section-checklist}
 
-- フォームの入力内容をイベントで受け取ることができた
+- フォームの送信を`submit`イベントで受け取り、入力内容を確認できた
 - HTML文字列からHTML要素を作成する`html-util.js`を実装した
 - フォームからTodoアイテムを追加できた
 - Todoアイテムの追加に合わせてTodoアイテム数を更新できた
