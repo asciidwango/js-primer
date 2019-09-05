@@ -113,7 +113,7 @@ HTMLは表示されるがコンソールログに`index.js: loaded`が表示さ�
 
 #### [エラー例] `index.js`の読み込みに失敗している {#fail-to-load-javascript-module}
 
-scirpt要素に指定した`index.js`のパスにファイルが存在しているかを確認してください。
+`scirpt`要素の`src`属性指定した`index.js`のパスにファイルが存在しているかを確認してください。
 `<script type="module" src="index.js">`としてした場合は`index.html`と`index.js`は同じディレクトリに配置する必要があります。
 
 また、*CORS policy Invalid*のようなエラーがコンソールに表示されている場合は、[Same Origin Policy][]により`index.js`の読み込みが失敗しています。
