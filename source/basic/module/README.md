@@ -155,8 +155,8 @@ ECMAScriptモジュールには名前付きとデフォルト以外にもいく�
 ## ECMAScriptモジュールを実行する {#run-es-modules}
 
 作成したECMAScriptモジュールを実行するためには、起点となるJavaScriptファイルをECMAScriptモジュールとしてウェブブラウザに読み込ませる必要があります。
-ウェブブラウザは`script`タグによってJavaScriptファイルを読み込み、実行します。
-次のように`script`タグに`type="module"`属性を付与すると、ウェブブラウザはJavaScriptファイルをECMAScriptモジュールとして読み込みます。
+ウェブブラウザは`script`要素によってJavaScriptファイルを読み込み、実行します。
+次のように`script`要素に`type="module"`属性を付与すると、ウェブブラウザはJavaScriptファイルをECMAScriptモジュールとして読み込みます。
 
 ```html
 <!-- my-module.jsをECMAScriptモジュールとして読み込む -->
