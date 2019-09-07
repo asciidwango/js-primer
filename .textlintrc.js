@@ -68,6 +68,7 @@ module.exports = {
     "no-dead-link": isCI
       ? {
         "concurrency": 2,
+        "keepAlive": true,
         "checkRelative": true,
         "ignore": [
           "https://github.com/asciidwango/js-primer/issues/new?*",
