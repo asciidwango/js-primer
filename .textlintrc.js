@@ -67,8 +67,8 @@ module.exports = {
     // CI時のみ外部URLをチェックする
     "no-dead-link": isCI
       ? {
-        "concurrency": 2,
-        "keepAlive": true,
+        "concurrency": 8,
+        "keepAlive": false,
         "checkRelative": true,
         "ignore": [
           "https://github.com/asciidwango/js-primer/issues/new?*",
@@ -86,4 +86,4 @@ module.exports = {
         "ignore": ["**"]
       }
   }
-}
+};
