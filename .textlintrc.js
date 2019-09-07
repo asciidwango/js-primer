@@ -1,4 +1,4 @@
-const isCI = require("is-ci");
+const IS_LINK_CHECK = !!process.env.LINK_CHECK
 module.exports = {
   "filters": {
     "comments": true,
@@ -64,8 +64,8 @@ module.exports = {
         "prh.yml"
       ]
     },
-    // CI時のみ外部URLをチェックする
-    "no-dead-link": isCI
+    // npm run textlint-linkでのみ外部URLをチェックする
+    "no-dead-link": IS_LINK_CHECK
       ? {
         "concurrency": 8,
         "keepAlive": false,
