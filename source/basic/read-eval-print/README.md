@@ -13,15 +13,24 @@ description: "JavaScriptでかかれたプログラムをブラウザで実行�
 - `1 + 1` という式を評価したら `2` という結果を返す
 - `bookTitle` という変数を評価したら、変数に代入されている値を返す
 
-この値の評価方法を確認するために、ブラウザを使ってJavaScriptを実行する方法を見ていきます。
+この値の評価方法を確認するために、ウェブブラウザ（以下ブラウザ）を使ってJavaScriptを実行する方法を見ていきます。
 
-## ブラウザでJavaScriptを実行する {#execute-js-on-browser}
+## この書籍で利用するブラウザ {#recommended-browser}
 
 まずはブラウザ上でJavaScriptのコードを実行してみましょう。
 この書籍ではブラウザとして[Firefox][]を利用します。
 次のURLからFirefoxをダウンロードし、インストールしてください。
 
 - Firefox: <https://www.mozilla.org/ja/firefox/>
+
+この書籍で紹介するサンプルコードのほとんどは、Google Chrome、Microsoft Edge、Safariなどのブラウザの最新版でも動作します。
+一方で、古いJavaScriptしかサポートしていないInternet Explorerでは多くのコードは動作しません。
+
+また、ブラウザによっては標準化されていないエラーメッセージの細かな違いや開発者ツールの使い方の違いなどもあります。
+この書籍ではFirefoxで実行した結果を記載しています。
+そのため、Firefox以外のブラウザでは細かな違いがあることに注意してください。
+
+## ブラウザでJavaScriptを実行する {#execute-js-on-browser}
 
 ブラウザでJavaScriptを実行する方法としては大きく分けて2つあります。
 1つ目はブラウザの開発者ツールのコンソール上でJavaScriptコードを評価する方法です。
