@@ -69,7 +69,6 @@ module.exports = {
       ? {
         "concurrency": 8,
         "keepAlive": false,
-        "checkRelative": true,
         "ignore": [
           "https://github.com/asciidwango/js-primer/issues/new?*",
           "https://goo.gl/**",
@@ -80,10 +79,6 @@ module.exports = {
           "https:/tc39.github.io/**"
         ]
       }
-      // ローカルで相対パスのチェックのみする
-      : {
-        "checkRelative": true,
-        "ignore": ["**"]
-      }
+      : false
   }
 };
