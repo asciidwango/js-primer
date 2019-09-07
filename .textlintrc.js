@@ -1,4 +1,5 @@
-{
+const IS_LINK_CHECK = !!process.env.LINK_CHECK
+module.exports = {
   "filters": {
     "comments": true,
     "whitelist": {
@@ -62,6 +63,22 @@
       "rulePaths": [
         "prh.yml"
       ]
-    }
+    },
+    // npm run textlint-linkでのみ外部URLをチェックする
+    "no-dead-link": IS_LINK_CHECK
+      ? {
+        "concurrency": 8,
+        "keepAlive": false,
+        "ignore": [
+          "https://github.com/asciidwango/js-primer/issues/new?*",
+          "https://goo.gl/**",
+          "https://forms.gle/**",
+          "http://localhost:3000/**",
+          // .es が正式なのか不明であるため
+          // https://github.com/tc39/ecma262/pull/1576
+          "https:/tc39.github.io/**"
+        ]
+      }
+      : false
   }
-}
+};

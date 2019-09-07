@@ -988,4 +988,4 @@ console.log(c); // => 3
 
 [暗黙的な型変換]: ../implicit-coercion/README "暗黙的な型変換について解説する章"
 [演算子の優先順序]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table "演算子の優先順位 - JavaScript | MDN"
-[^1]: カンマ演算子を活用したテクニックとしてindirect callというものがあります。<http://2ality.com/2014/01/eval.html>
+[^1]: カンマ演算子を活用したテクニックとしてindirect callというものがあります。<https://2ality.com/2014/01/eval.html>
