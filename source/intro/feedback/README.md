@@ -48,8 +48,8 @@ GitHubでソースコードが公開されているため、修正内容を[Pull
 
 ## 参考 {#reference}
 
-- [専門書には間違いもある：柴田 芳樹 (Yoshiki Shibata)：So-netブログ](http://yshibata.blog.so-net.ne.jp/2015-12-23)
-- [技術書の間違いに気付いたら：柴田 芳樹 (Yoshiki Shibata)：So-netブログ](http://yshibata.blog.so-net.ne.jp/2018-06-09)
+- [専門書には間違いもある：柴田 芳樹 (Yoshiki Shibata)：So-netブログ](https://yshibata.blog.so-net.ne.jp/2015-12-23)
+- [技術書の間違いに気付いたら：柴田 芳樹 (Yoshiki Shibata)：So-netブログ](https://yshibata.blog.so-net.ne.jp/2018-06-09)
 
 [Pull Request]: https://help.github.com/articles/about-pull-requests/
 [CONTRIBUTING.md]: https://github.com/asciidwango/js-primer/blob/master/CONTRIBUTING.md

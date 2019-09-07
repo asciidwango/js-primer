@@ -1,4 +1,5 @@
-{
+const isCI = require("is-ci");
+module.exports = {
   "filters": {
     "comments": true,
     "whitelist": {
@@ -62,6 +63,19 @@
       "rulePaths": [
         "prh.yml"
       ]
-    }
+    },
+    // CI時のみ有効化する
+    "no-dead-link": isCI ? {
+      "checkRelative": true,
+      "ignore": [
+        "https://github.com/asciidwango/js-primer/issues/new?*",
+        "https://goo.gl/**",
+        "https://forms.gle/**",
+        "http://localhost:3000/**",
+        // .es が正式なのか不明であるため
+        // https://github.com/tc39/ecma262/pull/1576
+        "https:/tc39.github.io/**"
+      ]
+    } : false
   }
 }
