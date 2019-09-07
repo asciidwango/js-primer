@@ -15,7 +15,7 @@ description: "JavaScriptでかかれたプログラムをブラウザで実行�
 
 この値の評価方法を確認するために、ウェブブラウザ（以下ブラウザ）を使ってJavaScriptを実行する方法を見ていきます。
 
-## この書籍で利用するブラウザ {#recommened-browser}
+## この書籍で利用するブラウザ {#recommended-browser}
 
 まずはブラウザ上でJavaScriptのコードを実行してみましょう。
 この書籍ではブラウザとして[Firefox][]を利用します。
