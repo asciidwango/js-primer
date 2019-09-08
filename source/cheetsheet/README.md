@@ -32,22 +32,22 @@ document.addEventListener('DOMContentLoaded', function(){
 # 付録: JavaScriptチートシート {#cheet-sheet}
 
 * 言語機能
-    * [Comments](#comments)
-    * [Data Structures](#data-structures)
-    * [Literal](#literal)
-    * [String](#string)
-    * [Data Access](#data-access)
-    * [Operator](#operator)
-    * [Functions & Behavior](#functions-behavior)
-    * [Control Flow](#control-flow)
-    * [Modules](#module)
-    * [Miscellaneous](#miscellaneous)
-* Guide
-    * [Project Anatomy](#project-anatomy)
+    * [コメント](#comments)
+    * [データ](#data-structures)
+    * [リテラル](#literal)
+    * [文字列](#string)
+    * [データアクセス](#data-access)
+    * [演算子](#operator)
+    * [関数と挙動](#functions-behavior)
+    * [コントロールフロー](#control-flow)
+    * [モジュール](#module)
+    * [その他](#miscellaneous)
+* ガイド
+    * [プロジェクト構造](#project-anatomy)
 
 ## 言語機能 {#language-feature}
 
-### Comments {#comments}
+### コメント {#comments}
 
 コメントの書き方について。
 
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function(){
 | `<!-- ~~~ -->` | HTML-likeコメント | [コメント][] |
 
 
-### Data Structures {#data-structures}
+### データ構造 {#data-structures}
 
 キーワードを使った変数宣言。
 
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function(){
 | `let x;` | **変数宣言**。`const`と似ているが、`x`に値を再代入できる | [変数と宣言][] |
 | `var x;` | **変数宣言**。レガシーな変数宣言方法 | [変数と宣言][] |
 
-### Literal {#literal}
+### リテラル {#literal}
 
 データ構造を表現するリテラルについて。
 
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function(){
 | `/pattern/` | `pattern`をもつ**正規表現オブジェクト**を作成 | [文字列][] |
 | `null` | `null`リテラル | [データ型とリテラル][] |
 
-### String {#string}
+### 文字列 {#string}
 
 文字列について。
 
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function(){
 | `` `~~~` `` | テンプレート文字列リテラル。改行を含んだ入力が可能 | [文字列][] |
 | <i class="s4"></i> `` `${x}` `` | テンプレート文字列リテラル中の変数`x`の値を展開する | [文字列][] |
 
-### Data Access {#data-access}
+### データアクセス {#data-access}
 
 データへのアクセス。
 
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function(){
 | `f(...array)`| Spread構文での配列の展開 | [Math][] <!-- TODO: 配列で紹介する --> |
 | `f({ ...obj })`| Spread構文でのオブジェクトの展開 | [オブジェクト][] |
 
-### Operator {#operator}
+### 演算子 {#operator}
 
 演算子について。
 
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', function(){
 | `(x)` | グループ演算子 | [演算子][] |
 | `x, y` | カンマ演算子 | [演算子][] |
 
-### Functions & Behavior {#function-behavior}
+### 関数と挙動 {#function-behavior}
 
 関数の定義と挙動について。
 
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function(){
 <!-- textlint-enable -->
 
 
-### Control Flow {#control-flow}
+### コントロールフロー {#control-flow}
 
 コントロールフローの制御構文について。
 
@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function(){
 | `throw new Error("~~~")`  | `throw`文 | [例外処理][] |
 
 
-### Modules {#modules}
+### モジュール {#modules}
 
 ECMAScriptモジュールについて。
 
@@ -216,7 +216,7 @@ ECMAScriptモジュールについて。
 | `export * from "./x.js"` | すべての名前付きエクスポートの**再エクスポート** | [ECMAScriptモジュール][] |
 
 
-### Miscellaneous {#miscellaneous}
+### その他 {#miscellaneous}
 
 | Example | Explanation | Related |
 |---------|-------------|-------------|
@@ -224,9 +224,9 @@ ECMAScriptモジュールについて。
 | `{ }` | ブロック文 | [文と式][] |
 
 
-## Guide {#guide}
+## ガイド {#guide}
 
-### Project Anatomy {#project-anatomy}
+### プロジェクト構造 {#project-anatomy}
 
 JavaScriptにおける基本的なプロジェクトレイアウト、ファイル、フォルダ構造について。
 
