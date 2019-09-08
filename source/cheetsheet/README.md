@@ -3,6 +3,16 @@ author: azu
 description: "JavaScriptチートシート"
 ---
 
+<style>
+.markdown-section table code {
+    padding: 0!important;
+    margin: 0;
+    font-size: .85em;
+    background-color: #f7f7f7;
+    white-space: nowrap;
+}
+</style>
+
 # 付録: JavaScriptチートシート
 
 
@@ -105,18 +115,18 @@ description: "JavaScriptチートシート"
 | `==` | 等価演算子 | [演算子][] |
 | `!=` | 不等価演算子 | [演算子][] |
 | `>` | 大なり演算子/より大きい | [演算子][] |
-| `>=` | 大なりイコール演算子/以上 |
+| `>=` | 大なりイコール演算子/以上 | [演算子][] |
 | `<` | 小なり演算子/より小さい | [演算子][] |
 | `<=` | 小なりイコール演算子/以下 | [演算子][] |
 | `&` | ビット論理積 | [演算子][] |
-| `|` | ビット論理和 | [演算子][] |
+| &#x7C; | ビット論理和 | [演算子][] |
 | `^` | ビット排他的論理和 | [演算子][] |
 | `~` | ビット否定 | [演算子][] |
 | `<<` | 左シフト演算子 | [演算子][] |
 | `>>` | 右シフト演算子 | [演算子][] |
 | `>>>` | ゼロ埋め右シフト演算子 | [演算子][] |
 | `&&` | AND演算子 | [演算子][] |
-| `||` | OR演算子 | [演算子][] |
+| &#x7C;&#x7C; | OR演算子 | [演算子][] |
 | `(x)` | グループ演算子 | [演算子][] |
 | `x, y` | カンマ演算子 | [演算子][] |
 
@@ -131,9 +141,9 @@ description: "JavaScriptチートシート"
 | `function f(){}` | **関数**宣言 | [関数と宣言][] |
 | `const f = function(){};` | **関数**式 | [関数と宣言][] |
 | `const f = () => {};` | **Arrow Function**の宣言 | [関数と宣言][] |
-| `async function f(){}` | **Async Function**の宣言 | [非同期処理:コールバック/Promise/Async Function][] |
-| &nbsp; &nbsp; `const f = async function(){};` | 関数式を使った**Async Function**の宣言 | [非同期処理:コールバック/Promise/Async Function][] |
-| &nbsp; &nbsp; `const f = async () => {};` | Arrow Functionを使った**Async Function**の宣言 | [非同期処理:コールバック/Promise/Async Function][] |
+| `async function f(){}` | **Async Function**の宣言 | [非同期処理][] |
+| &nbsp; &nbsp; `const f = async function(){};` | 関数式を使った**Async Function**の宣言 | [非同期処理][] |
+| &nbsp; &nbsp; `const f = async () => {};` | Arrow Functionを使った**Async Function**の宣言 | [非同期処理][] |
 | `function f(x, y, c){}` | 関数における仮引数の宣言 |  [関数と宣言][] |
 | &nbsp; &nbsp; `function f(x = 1, y = 2){}` | **デフォルト引数**、引数が渡されていない場合の初期値を指定する。 |  [関数と宣言][] |
 | &nbsp; &nbsp; `function f([x, y]){}` | 関数の引数における配列の**分割代入**。引数の配列からインデックスが`0`の値を`x`に、インデックスが`1`の値を`y`に代入する。 |  [関数と宣言][] |
@@ -182,7 +192,7 @@ ECMAScriptモジュールについて。
 | `import { x } from "./x.js"` | **名前付きインポート** | [ECMAScriptモジュール][] |
 | `import { x as y } from "./x.js"` | 名前付きインポートの**エイリアス** | [ECMAScriptモジュール][] |
 | `import * as x from "./x.js"` | **すべての名前付きエクスポートをインポート**してエイリアス | [ECMAScriptモジュール][] |
-| `import "./x.js"` | 副作用のためのインポート |[ ECMAScriptモジュール][] |
+| `import "./x.js"` | 副作用のためのインポート |[ECMAScriptモジュール][] |
 | `export default x` | **デフォルトエクスポート** | [ECMAScriptモジュール][] |
 | `export { x }` | **名前付きエクスポート** | [ECMAScriptモジュール][] |
 | `export { x }` | 名前付きエクスポートのエイリアス | [ECMAScriptモジュール][] |
@@ -239,7 +249,7 @@ JavaScriptにおける基本的なプロジェクトレイアウト、ファイ�
 [関数とthis]: ../basic/function-this/README.md
 [クラス]: ../basic/class/README.md
 [例外処理]: ../basic/error-try-catch/README.md
-[非同期処理:コールバック/Promise/Async Function]: ../basic/async/README.md
+[非同期処理]: ../basic/async/README.md
 [Map/Set]: ../basic/map-and-set/README.md
 [JSON]: ../basic/json/README.md
 [Date]: ../basic/date/README.md
