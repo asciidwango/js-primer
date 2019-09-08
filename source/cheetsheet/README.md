@@ -3,13 +3,29 @@ author: azu
 description: "JavaScriptチートシート"
 ---
 
+<link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('.markdown-section table td:first-child code').forEach(function(block){
+    block.classList.add("javascript");
+    hljs.highlightBlock(block);
+  });
+});
+</script>
 <style>
-.markdown-section table code {
-    padding: 0!important;
-    margin: 0;
-    font-size: .85em;
-    background-color: #f7f7f7;
+.s4::after {
+    content: "    ";
+    white-space: pre;
+}
+.markdown-section table td:first-child code {
     white-space: nowrap;
+    display: inline-block;
+    padding: .1em;
+    border-radius: .3em;
+    white-space: pre;
+    background: #fafafa;
 }
 </style>
 
@@ -65,7 +81,7 @@ description: "JavaScriptチートシート"
 | `0o777` | **8進数**の整数リテラル | [データ型とリテラル][] | 
 | `0x30A2` | **16進数**の整数リテラル | [データ型とリテラル][] | 
 | `{ k: v }` | プロパティ名が`k`、プロパティの値が`v`の**オブジェクト**を作成します | [オブジェクト][] |
-| &nbsp; &nbsp; `{ n }` | プロパティ名が`n`、プロパティの値が`n`の**オブジェクト**を作成します | [オブジェクト][] |
+| <i class="s4"></i> `{ n }` | プロパティ名が`n`、プロパティの値が`n`の**オブジェクト**を作成します | [オブジェクト][] |
 | `[x, y]` | `x`、`y`を初期値にもつ**配列オブジェクト**を作成します | [配列][] |
 | `/pattern/` | `pattern`をもつ**正規表現オブジェクト**を作成します | [文字列][] |
 | `null` | `null`リテラル | [データ型とリテラル][] |
@@ -79,7 +95,7 @@ description: "JavaScriptチートシート"
 | `"~~~"` | **文字列リテラル**。改行などは`\`と特定の文字を組み合わせたエスケープシーケンスとして表現します。 | [文字列][] |
 | `'~~~'` | **文字列リテラル**。`"~~~"`と意味は同じ。 | [文字列][] |
 | `` `~~~` `` | テンプレート文字列リテラル。改行を含んだ入力が可能 | [文字列][] |
-| &nbsp; &nbsp; `` `${x}` `` | テンプレート文字列リテラル中の変数`x`の値を展開する | [文字列][] |
+| <i class="s4"></i> `` `${x}` `` | テンプレート文字列リテラル中の変数`x`の値を展開する | [文字列][] |
 
 ### Data Access {#data-access}
 
@@ -142,22 +158,22 @@ description: "JavaScriptチートシート"
 | `const f = function(){};` | **関数**式 | [関数と宣言][] |
 | `const f = () => {};` | **Arrow Function**の宣言 | [関数と宣言][] |
 | `async function f(){}` | **Async Function**の宣言 | [非同期処理][] |
-| &nbsp; &nbsp; `const f = async function(){};` | 関数式を使った**Async Function**の宣言 | [非同期処理][] |
-| &nbsp; &nbsp; `const f = async () => {};` | Arrow Functionを使った**Async Function**の宣言 | [非同期処理][] |
+| <i class="s4"></i> `const f = async function(){};` | 関数式を使った**Async Function**の宣言 | [非同期処理][] |
+| <i class="s4"></i> `const f = async () => {};` | Arrow Functionを使った**Async Function**の宣言 | [非同期処理][] |
 | `function f(x, y, c){}` | 関数における仮引数の宣言 |  [関数と宣言][] |
-| &nbsp; &nbsp; `function f(x = 1, y = 2){}` | **デフォルト引数**、引数が渡されていない場合の初期値を指定する。 |  [関数と宣言][] |
-| &nbsp; &nbsp; `function f([x, y]){}` | 関数の引数における配列の**分割代入**。引数の配列からインデックスが`0`の値を`x`に、インデックスが`1`の値を`y`に代入する。 |  [関数と宣言][] |
-| &nbsp; &nbsp; `function f({ x, y }){}` | 関数の引数におけるオブジェクトの**分割代入**。引数のオブジェクトから`x`と`y`プロパティを受け取る。 |  [関数と宣言][] |
-| &nbsp; &nbsp; `function f(...args)){}` | **可変長引数**/**Rest parameters**。引数に渡された値を配列として受け取る |  [関数と宣言][] |
+| <i class="s4"></i> `function f(x = 1, y = 2){}` | **デフォルト引数**、引数が渡されていない場合の初期値を指定する。 |  [関数と宣言][] |
+| <i class="s4"></i> `function f([x, y]){}` | 関数の引数における配列の**分割代入**。引数の配列からインデックスが`0`の値を`x`に、インデックスが`1`の値を`y`に代入する。 |  [関数と宣言][] |
+| <i class="s4"></i> `function f({ x, y }){}` | 関数の引数におけるオブジェクトの**分割代入**。引数のオブジェクトから`x`と`y`プロパティを受け取る。 |  [関数と宣言][] |
+| <i class="s4"></i> `function f(...args)){}` | **可変長引数**/**Rest parameters**。引数に渡された値を配列として受け取る |  [関数と宣言][] |
 | `const o = { method: function(){} };` | **メソッド定義** | [関数と宣言][] |
 | `const o = { method(){} };` | **メソッド定義**の短縮記法 | [関数と宣言][] |
 | `class X{}` | **クラス**宣言 | [クラス][] |
 | `const X = class X{};` | **クラス**式 | [クラス][] |
-| &nbsp; &nbsp; `class X{ method(){} }` | クラスの**インスタンスメソッド**定義 | [クラス][] |
-| &nbsp; &nbsp; `class X{ get x(){}, set x(v){} }` | クラスの**アクセッサメソッド**の定義 | [クラス][] |
-| &nbsp; &nbsp; `class X{ static method(){} }` | クラスの**静的メソッド**定義 | [クラス][] |
+| <i class="s4"></i> `class X{ method(){} }` | クラスの**インスタンスメソッド**定義 | [クラス][] |
+| <i class="s4"></i> `class X{ get x(){}, set x(v){} }` | クラスの**アクセッサメソッド**の定義 | [クラス][] |
+| <i class="s4"></i> `class X{ static method(){} }` | クラスの**静的メソッド**定義 | [クラス][] |
 | `class C extends P{}` | クラスの**継承** | [クラス][] |
-| &nbsp; &nbsp; `super` | **親クラス**を参照する | [クラス][] |
+| <i class="s4"></i> `super` | **親クラス**を参照する | [クラス][] |
 | `fn()` | 関数呼び出し | [関数と宣言][] |
 | `` fn`~~~` ``  | タグ関数呼び出し | [文字列][] |
 
@@ -172,7 +188,7 @@ description: "JavaScriptチートシート"
 |---------|-------------|-------------|
 | `while(x){}`  | **whileループ**。`x`が`true`なら反復処理を行う | [ループと反復処理][] |
 | `do{}while(x);`  | **do...whileループ**。`x`が`true`なら反復処理を行う。`x`に関係なく必ず初回は処理が行われる | [ループと反復処理][] |
-| `for(let x=0,x<y;x++){}`  | **forループ**。`x < y`が`true`なら反復処理を行う | [ループと反復処理][] |
+| `for(let x=0;x < y ;x++){}`  | **forループ**。`x < y`が`true`なら反復処理を行う | [ループと反復処理][] |
 | `for(const p in o){}`  | **for...inループ**。オブジェクト（`o`）のプロパティ(`p`)に対して反復処理を行う | [ループと反復処理][] |
 | `for(const x of iter){}`  | ***for...ofループ**。イテレータ(`iter`)の反復処理を行う | [ループと反復処理][] |
 | `if(x){/*A*/}else{/*B*/}`  | **条件式**。`x`が`true`ならAの処理を、それ以外ならBの処理を行う | [条件分岐][] | 
@@ -216,13 +232,13 @@ JavaScriptにおける基本的なプロジェクトレイアウト、ファイ�
 
 | Idiom | Code |
 |--------| ---- |
-| `src/` | プロジェクトのソースコード |
-| &nbsp;&nbsp;  `index.js` | アプリケーションのデフォルトエントリポイント |
-| `test/` | テストコード。`src/`に対するユニットテストを置くことが多い |
-| &nbsp;&nbsp;  `index.test.js` | アプリケーションのユニットテストファイル。例) `index-test.js`、`indexSpec.js`など |
-| `node_modules/` | プロジェクトが依存するnpmモジュールのインストール先 |
-| `package.json` | プロジェクトの設定ファイル。名前、説明、スクリプト、依存モジュールなど |
-| `package-lock.json` | npmの依存関係のロックファイル |
+| src/ | プロジェクトのソースコード |
+| <s class="s4"></s> index.js | アプリケーションのデフォルトエントリポイント |
+| test/ | テストコード。`src/`に対するユニットテストを置くことが多い |
+| <s class="s4"></s> index.test.js | アプリケーションのユニットテストファイル。例) `index-test.js`、`indexSpec.js`など |
+| node_modules/ | プロジェクトが依存するnpmモジュールのインストール先 |
+| package.json | プロジェクトの設定ファイル。名前、説明、スクリプト、依存モジュールなど |
+| package-lock.json | npmの依存関係のロックファイル |
 
 
 <!-- link -->
