@@ -3,6 +3,9 @@ author: azu
 description: "JavaScriptチートシート"
 ---
 
+# 付録: JavaScriptチートシート
+
+
 * 言語機能
     * [Comments](#comments)
     * [Data Structures](#data-structures)
