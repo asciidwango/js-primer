@@ -29,8 +29,7 @@ document.addEventListener('DOMContentLoaded', function(){
 }
 </style>
 
-# 付録: JavaScriptチートシート
-
+# 付録: JavaScriptチートシート {#cheet-sheet}
 
 * 言語機能
     * [Comments](#comments)
