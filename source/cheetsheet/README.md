@@ -7,11 +7,17 @@ description: "JavaScriptチートシート"
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function(){
+function highlightCheetsheetCode(){
   document.querySelectorAll('.markdown-section table td:first-child code').forEach(function(block){
     block.classList.add("javascript");
     hljs.highlightBlock(block);
   });
+}
+document.addEventListener('DOMContentLoaded', function(){
+    highlightCheetsheetCode();
+});
+typeof gitbook === "object" && gitbook.events.bind("page.change", function() {
+    highlightCheetsheetCode();
 });
 </script>
 <style>
