@@ -167,7 +167,7 @@ JavaScriptの構文に関するチートシートです。
 | `async function f(){}` | **Async Function**の宣言 | [非同期処理][] |
 | <i class="s4"></i> `const f = async function(){};` | 関数式を使った**Async Function**の宣言 | [非同期処理][] |
 | <i class="s4"></i> `const f = async () => {};` | Arrow Functionを使った**Async Function**の宣言 | [非同期処理][] |
-| `function f(x, y, c){}` | 関数における仮引数の宣言 |  [関数と宣言][] |
+| `function f(x, y){}` | 関数における仮引数の宣言 |  [関数と宣言][] |
 | <i class="s4"></i> `function f(x = 1, y = 2){}` | **デフォルト引数**、引数が渡されていない場合の初期値を指定する。 |  [関数と宣言][] |
 | <i class="s4"></i> `function f([x, y]){}` | 関数の引数における配列の**分割代入**。引数の配列からインデックスが`0`の値を`x`に、インデックスが`1`の値を`y`に代入する。 |  [関数と宣言][] |
 | <i class="s4"></i> `function f({ x, y }){}` | 関数の引数におけるオブジェクトの**分割代入**。引数のオブジェクトから`x`と`y`プロパティを受け取る。 |  [関数と宣言][] |
