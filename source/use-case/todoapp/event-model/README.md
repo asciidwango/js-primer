@@ -212,6 +212,7 @@ import { TodoItemModel } from "./model/TodoItemModel.js";
 このTodoアプリでは開始時にTodoリストの中身が空の状態で開始されるのに合わせるためです。
 
 <div class="code-filename-block"><p class="code-filename">src/App.jsより抜粋</p></div>
+
 <!-- doctest:disable -->
 ```js
 // ...省略...
@@ -244,6 +245,7 @@ export class App {
 また、アイテム数は`TodoListModel#getTotalCount`メソッドで取得できるため、アイテム数を管理していた`todoItemCount`という変数は削除できます。
 
 <div class="code-filename-block"><p class="code-filename">src/App.jsより抜粋</p></div>
+
 <!-- doctest:disable -->
 ```js
 // render関数をimportに追加する
