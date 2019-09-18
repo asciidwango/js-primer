@@ -87,6 +87,7 @@ console.log(inputElement.value); // => "input要素の入力内容"
 しかしこの動作は邪魔となるため、`event.preventDefault`メソッドを呼び出すことで、このデフォルトの動作をキャンセルしています。
 
 <div class="code-filename-block"><p class="code-filename">src/App.jsより抜粋</p></div>
+
 <!-- doctest:disable -->
 ```js
 formElement.addEventListener("submit", (event) => {
@@ -105,6 +106,7 @@ formElement.addEventListener("submit", (event) => {
 <!-- textlint-enable no-js-function-paren -->
 
 <div class="code-filename-block"><p class="code-filename">src/App.jsから一部をコメントアウトした例</p></div>
+
 <!-- doctest:disable -->
 ```js
 formElement.addEventListener("submit", (event) => {
@@ -155,6 +157,7 @@ ajaxappでの`escapeHTML`タグ関数では出力は**HTML文字列**でした�
 作成した要素は、`appendChild`メソッドなどで既存の要素に子要素として追加できます。
 
 <div class="code-filename-block"><p class="code-filename">elementタグ関数のサンプルコード</p></div>
+
 <!-- doctest:disable -->
 ```js
 // HTML文字列からHTML要素を作成
@@ -172,6 +175,7 @@ document.body.appendChild(newElement);
 動作的には一度子要素をすべて消したあとに`appendChild`で子要素として追加しています。
 
 <div class="code-filename-block"><p class="code-filename">render関数のサンプルコード</p></div>
+
 <!-- doctest:disable -->
 ```js
 // `ul`要素の空タグを作成
