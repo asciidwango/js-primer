@@ -3,21 +3,33 @@ author: azu
 description: "JavaScriptチートシート"
 ---
 
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
 <script>
-function highlightCheetsheetCode(){
-  document.querySelectorAll('.markdown-section table td:first-child code').forEach(function(block){
-    block.classList.add("javascript");
-    hljs.highlightBlock(block);
-  });
+function loadExt(e,t){var s=this;s.files=e,s.js=[],s.head=document.getElementsByTagName("head")[0],s.after=t||function(){},s.loadStyle=function(e){var t=document.createElement("link");t.rel="stylesheet",t.type="text/css",t.href=e,s.head.appendChild(t)},s.loadScript=function(e){var t=document.createElement("script");t.type="text/javascript",t.src=s.js[e];var a=function(){++e<s.js.length?s.loadScript(e):s.after()};t.onload=function(){a()},s.head.appendChild(t)};for(var a=0;a<s.files.length;a++)/\.js$|\.js\?/.test(s.files[a])&&s.js.push(s.files[a]),/\.css$|\.css\?/.test(s.files[a])&&s.loadStyle(s.files[a]);s.js.length>0?s.loadScript(0):s.after()}
+
+function highlightCheetsheetCodes() {
+    document.querySelectorAll('.markdown-section table td:first-child code').forEach(function(block){
+        block.classList.add("javascript");
+        hljs.highlightBlock(block);
+    });   
+}
+function loadSyntaxHighlight(){
+  var files = [
+    "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css",
+    "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js",
+  ];
+  if (typeof hlsjs === "undefined") {
+    new loadExt(files, function(){
+      highlightCheetsheetCodes();
+    });
+  } else {
+    highlightCheetsheetCodes();
+  }
 }
 document.addEventListener('DOMContentLoaded', function(){
-    highlightCheetsheetCode();
+    loadSyntaxHighlight();
 });
 typeof gitbook === "object" && gitbook.events.bind("page.change", function() {
-    highlightCheetsheetCode();
+    loadSyntaxHighlight();
 });
 </script>
 <style>
