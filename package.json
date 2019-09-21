@@ -35,8 +35,8 @@
     "test:basic": "mocha \"./source/basic/**/*-test.js\"",
     "test:ajaxapp": "mocha \"./source/use-case/ajaxapp/!(node_modules)**/*-test.js\"",
     "test:todoapp": "cd ./source/use-case/todoapp && npm install && npm test",
-    "e2e:todoapp": "cd ./source/use-case/todoapp && npm install && npm run e2e",
     "test": "npm-run-all -l --parallel test:* lint",
+    "e2e:todoapp": "cd ./source/use-case/todoapp && npm install && npm run e2e",
     "e2e": "npm-run-all -l --parallel e2e:*",
     "travis": "npm-run-all -l --parallel test build",
     "build:applescript": "tsc -p tools/applescript"

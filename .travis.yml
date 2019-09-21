@@ -1,9 +1,3 @@
-sudo: required
-addons:
-  chrome: stable
-  apt:
-    packages:
-    - libgconf-2-4
 language: node_js
 env:
   global:
@@ -17,24 +11,9 @@ jobs:
       name: "Unit Tests on Node.js 12"
       node_js: '12'
       script: npm run travis
-    - stage: test
-      name: "Unit Tests on Node.js 10"
-      node_js: '10'
-      script: npm run travis
-    - stage: test
-      name: "Unit Tests on Node.js 8"
-      node_js: '8'
-      script: npm test
-    # E2E
-    - stage: test
-      name: "E2E Tests"
-      # masterのみ実行
-      if: branch = master AND type != pull_request
-      node_js: '10'
-      script: npm run e2e
     # deploy
     - stage: deploy
-      node_js: '10'
+      node_js: '12'
       if: branch = master AND type != pull_request
       before_install:
         # https://calibre-ebook.com/download_linux

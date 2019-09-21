@@ -1,0 +1,33 @@
+name: ci
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['12', '10', '8']
+    name: Node $
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - name: Use Node.js $
+        uses: actions/setup-node@v1
+        with:
+          node-version: $
+      - run: yarn install
+      - run: yarn test
+  e2e:
+    runs-on: ubuntu-latest
+    name: Node 12
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - name: Use Node.js 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: yarn install
+      - run: yarn run e2e
