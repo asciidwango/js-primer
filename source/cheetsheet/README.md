@@ -40,7 +40,7 @@ typeof gitbook === "object" && gitbook.events.bind("page.change", function() {
 
 # 付録: JavaScriptチートシート {#cheet-sheet}
 
-JavaScriptの構文に関するチートシートです。
+JavaScriptの言語機能に関するチートシートです。
 
 - 言語機能
     - [コメント](#comments)
