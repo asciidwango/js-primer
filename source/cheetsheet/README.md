@@ -30,7 +30,7 @@ function loadSyntaxHighlight(){
 document.addEventListener('DOMContentLoaded', function(){
     loadSyntaxHighlight();
 });
-typeof gitbook === "object" && gitbook.events.bind("page.change", function() {
+typeof gitbook === "object" && gitbook.events.one("page.change", function() {
     loadSyntaxHighlight();
 });
 </script>
