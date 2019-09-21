@@ -233,10 +233,10 @@ ECMAScriptモジュールについて。
 | `import { x } from "./x.js"` | [ES2015] **名前付きインポート** | [ECMAScriptモジュール][] |
 | `import { x as y } from "./x.js"` | [ES2015] 名前付きインポートの**エイリアス** | [ECMAScriptモジュール][] |
 | `import * as x from "./x.js"` | [ES2015] **すべての名前付きエクスポートをインポート**してエイリアス | [ECMAScriptモジュール][] |
-| `import "./x.js"` | [ES2015] 副作用のためのインポート |[ECMAScriptモジュール][] |
+| `import "./x.js"` | [ES2015] 副作用のための**インポート** |[ECMAScriptモジュール][] |
 | `export default x` | [ES2015] **デフォルトエクスポート** | [ECMAScriptモジュール][] |
 | `export { x }` | [ES2015] **名前付きエクスポート** | [ECMAScriptモジュール][] |
-| `export { x }` | [ES2015] 名前付きエクスポートのエイリアス | [ECMAScriptモジュール][] |
+| `export { x as y }` | [ES2015] 名前付きエクスポートの**エイリアス** | [ECMAScriptモジュール][] |
 | `export { x } from "./x.js"` | [ES2015] 名前付きエクスポートの**再エクスポート** | [ECMAScriptモジュール][] |
 | `export * from "./x.js"` | [ES2015] すべての名前付きエクスポートの**再エクスポート** | [ECMAScriptモジュール][] |
 
