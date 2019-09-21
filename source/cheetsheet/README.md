@@ -19,7 +19,7 @@ function loadSyntaxHighlight(){
     "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css",
     "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js",
   ];
-  if (typeof hlsjs === "undefined") {
+  if (typeof hljs === "undefined") {
     new loadExt(files, function(){
       highlightCheetsheetCodes();
     });
