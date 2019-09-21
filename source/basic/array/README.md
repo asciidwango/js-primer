@@ -426,6 +426,34 @@ const newArray = array.concat("新しい要素");
 console.log(newArray); // => ["A", "B", "C", "新しい要素"]
 ```
 
+## 配列の展開 {#spread}
+
+`...`（Spread構文）をつかうことで、配列リテラル中に既存の配列を展開できます。
+
+次のコードでは、配列リテラルの末尾に配列を展開しています。
+これは、`Array#concat`メソッドで配列同士を結合した場合と同じ結果になります。
+
+{{book.console}}
+```js
+const array = ["A", "B", "C"];
+// Spread構文を使った場合
+const newArray = ["X", "Y", "Z", ...array];
+// concatメソッドの場合
+const newArrayConcat = ["X", "Y", "Z"].concat(array);
+console.log(newArray); // => ["X", "Y", "Z", "A", "B", "C"]
+console.log(newArrayConcat); // => ["X", "Y", "Z", "A", "B", "C"]
+```
+
+Spread構文では、`concat`メソッドとは異なり、配列リテラル中の任意の位置に配列を展開できます。
+そのため、次のように要素の途中に配列を展開することも可能です。
+
+{{book.console}}
+```js
+const array = ["A", "B", "C"];
+const newArray = ["X", ...array, "Z"];
+console.log(newArray); // => ["X", "A", "B", "C", "Z"]
+```
+
 ## [ES2019] 配列をフラット化 {#flat}
 
 `Array#flat`メソッドを使うことで、多次元配列をフラットな配列に変換できます。
