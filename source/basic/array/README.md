@@ -426,7 +426,7 @@ const newArray = array.concat("新しい要素");
 console.log(newArray); // => ["A", "B", "C", "新しい要素"]
 ```
 
-## 配列の展開 {#spread}
+## [ES2015] 配列の展開 {#spread}
 
 `...`（Spread構文）をつかうことで、配列リテラル中に既存の配列を展開できます。
 
