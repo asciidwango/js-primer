@@ -26,11 +26,9 @@ typeof gitbook === "object" && gitbook.events.bind("page.change", function() {
     white-space: pre;
 }
 .markdown-section table td:first-child {
-    min-width: 10em;
-    max-width: 15em;
 }
 .markdown-section table td:first-child code {
-    white-space: break-spaces;
+    white-space: pre;
     display: inline-block;
     padding: .1em;
     border-radius: .3em;
