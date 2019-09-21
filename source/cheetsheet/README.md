@@ -25,12 +25,14 @@ typeof gitbook === "object" && gitbook.events.bind("page.change", function() {
     content: "    ";
     white-space: pre;
 }
+.markdown-section table td:first-child {
+    min-width: 10em;
+}
 .markdown-section table td:first-child code {
-    white-space: nowrap;
+    white-space: break-spaces;
     display: inline-block;
     padding: .1em;
     border-radius: .3em;
-    white-space: pre;
     background: #fafafa;
 }
 </style>
