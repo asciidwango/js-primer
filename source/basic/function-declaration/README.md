@@ -263,6 +263,27 @@ function fn(arg1, ...restArgs) {
 fn("a", "b", "c");
 ```
 
+Rest parametersは引数をまとめた配列を仮引数の定義する構文でした。
+一方で、配列を展開して関数の引数に渡すSpread構文もあります。
+
+Spread構文は、配列の前に`...`をつけた構文のことで、関数には配列の値を展開したものが引数として渡されます。
+次のコードでは、`array`の配列を展開して`fn`関数の引数として渡しています。
+
+{{book.console}}
+```js
+function fn(...args) {
+    // Rest Parametersとして引数を受け取る
+    console.log(args[0]); // => "a" 
+    console.log(args[1]); // => "b" 
+    console.log(args[2]); // => "c" 
+}
+const array = ["a", "b", "c"];
+// Spread構文で配列を引数に展開して関数を呼び出す
+fn(...array);
+// 次のように書いたのと同じ意味
+fn(array[0], array[1], array[2]);
+```
+
 ### `arguments` {#arguments}
 
 可変長引数を扱う方法として、`arguments`という関数の中でのみ参照できる特殊な変数があります。
