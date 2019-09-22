@@ -246,6 +246,7 @@ rules:
       - MacOS
       - Mac OS X
       - OS X
+      - OSX
   - expected: HTML要素
     patterns:
       - DOM要素
