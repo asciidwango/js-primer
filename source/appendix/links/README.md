@@ -161,7 +161,7 @@ FaaSにJavaScriptの関数をデプロイすると、クラウド上で管理さ
 
 ### デスクトップアプリケーションを作る {#desktop-app}
 
-JavaScriptを使ってWindowsやOSX、Linuxなどのデスクトップ環境で動作するGUIアプリケーションを作ることもできます。
+JavaScriptを使ってWindowsやmacOS、Linuxなどのデスクトップ環境で動作するGUIアプリケーションを作ることもできます。
 
 
 #### Electron {#electron}
