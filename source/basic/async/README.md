@@ -754,12 +754,12 @@ const firstPromise = Promise.resolve();
 const secondPromise = firstPromise.then(() => {
     console.log(1);
 });
-const thridPromise = secondPromise.then(() => {
+const thirdPromise = secondPromise.then(() => {
     console.log(2);
 });
 // それぞれ新しいPromiseインスタンスが作成される
 console.log(firstPromise === secondPromise); // => false
-console.log(secondPromise === thridPromise); // => false
+console.log(secondPromise === thirdPromise); // => false
 ```
 
 もう少し具体的なPromiseチェーンの例を見ていきましょう。
