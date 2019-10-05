@@ -927,7 +927,7 @@ function countUp() {
 }
 // 関数オブジェクトにプロパティとして値を代入する
 countUp.count = 0;
-// 呼び出すことにcountが更新される
+// 呼び出すごとにcountが更新される
 console.log(countUp()); // => 1
 console.log(countUp()); // => 2
 ```
@@ -944,7 +944,7 @@ function countUp() {
     return countUp.count;
 }
 countUp.count = 0;
-// 呼び出すことにcountが更新される
+// 呼び出すごとにcountが更新される
 console.log(countUp()); // => 1
 // 直接値を変更できてしまう
 countUp.count = 10;
