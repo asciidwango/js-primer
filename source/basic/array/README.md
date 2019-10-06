@@ -131,7 +131,7 @@ console.log(typeof array); // => "object"
 ```
 
 
-### [コラム] TypedArray {#typed-array}
+### [コラム] TypedArray<sup>[ES2015]</sup> {#typed-array}
 
 JavaScriptの配列は可変長のみですが、`TypedArray`という固定長でかつ型付きの配列を扱う別のオブジェクトが存在します。
 `TypedArray`はバイナリデータのバッファを示すために使われるデータ型で、WebGLやバイナリを扱う場面で利用されます。
@@ -147,7 +147,7 @@ console.log(Array.isArray(typedArray)); // => false
 
 そのため、JavaScriptで配列といった場合には`Array`を示します。
 
-## 配列と分割代入 {#array-destructuring}
+## [ES2015] 配列と分割代入 {#array-destructuring}
 
 配列の指定したインデックスの値を変数として定義し直す場合には、分割代入（Destructuring assignment）が利用できます。
 
@@ -210,7 +210,7 @@ console.log(sparseArray.hasOwnProperty(1)); // => false
 
 ### インデックスを取得 {#indexof}
 
-指定した要素が配列のどの位置にあるかを知りたい場合、`Array#indexOf`メソッドや`Array#findIndex`メソッドを利用します。
+指定した要素が配列のどの位置にあるかを知りたい場合、`Array#indexOf`メソッドや`Array#findIndex`メソッド<sup>[ES2015]</sup>を利用します。
 要素の位置のことを**インデックス**（`index`）と呼ぶため、メソッド名にも`index`という名前が入っています。
 
 次のコードでは、`Array#indexOf`メソッドを利用して、配列の中から`"JavaScript"`という文字列のインデックスを取得しています。
@@ -272,7 +272,7 @@ console.log(colors[indexOfBlue]); // => { "color": "blue" }
 しかし、`findIndex`メソッドを使い要素を取得するケースでは、
 そのインデックスが欲しいのか、またはその要素自体が欲しいのかがコードとして明確ではありません。
 
-より明確に要素自体が欲しいということを表現するには、`Array#find`を使うことができます。
+より明確に要素自体が欲しいということを表現するには、`Array#find`メソッド<sup>[ES2015]</sup>を使うことができます。
 `find`メソッドは、`findIndex`メソッドと同様にテストする関数をコールバック関数として渡します。
 `find`メソッドの返り値は、要素そのものとなり、要素が存在しない場合は`undefined`を返します。
 
@@ -341,7 +341,7 @@ if (indexOfJS !== -1) {
 
 ```
 
-そこで、ES2015で導入された`Array#includes`メソッドを利用します。
+そこで、ES2015で導入された`Array#includes`メソッド<sup>[ES2015]</sup>を利用します。
 `Array#includes`メソッドは配列に指定要素が含まれているかを判定できます。
 `includes`メソッドは真偽値を返すので、`indexOf`メソッドを使った場合に比べて意図が明確になります。
 そのため、前述のコードは次のように`includes`メソッドを使うべきでしょう。
@@ -456,7 +456,7 @@ console.log(newArray); // => ["X", "A", "B", "C", "Z"]
 
 ## [ES2019] 配列をフラット化 {#flat}
 
-`Array#flat`メソッドを使うことで、多次元配列をフラットな配列に変換できます。
+`Array#flat`メソッド<sup>[ES2019]</sup>を使うことで、多次元配列をフラットな配列に変換できます。
 引数を指定しなかった場合は1段階のみのフラット化ですが、引数にわたす数値でフラット化する深さを指定できます。
 配列をすべてフラット化する場合には、無限を意味する`Infinity`を値として渡すことで実現できます。
 
@@ -609,8 +609,8 @@ JavaScriptにおいて破壊的なメソッドと非破壊的メソッドを名�
 | [`Array.prototype.shift`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/shift) | 配列の先頭の値       |
 | [`Array.prototype.sort`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) | ソートした配列       |
 | [`Array.prototype.unshift`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift) | 変更後の配列のlength |
-| [`Array.prototype.copyWithin`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin) | 変更後の配列        |
-| [`Array.prototype.fill`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/fill) | 変更後の配列        |
+| [`Array.prototype.copyWithin`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin)<sup>[ES2015]</sup> | 変更後の配列        |
+| [`Array.prototype.fill`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/fill)<sup>[ES2015]</sup> | 変更後の配列        |
 
 
 破壊的メソッドは意図せぬ副作用を与えてしまうことがあるため、そのことを意識して利用する必要があります。
@@ -811,7 +811,7 @@ function myFunc() {
 myFunc("a", "b", "c");
 ```
 
-Array-likeオブジェクトは配列のようで配列ではないというもどかしさをもつオブジェクトです。`Array.from`メソッドを使うことでArray-likeオブジェクトを配列に変換して扱うことができます。一度配列に変換してしまえばArrayメソッドも利用できます。
+Array-likeオブジェクトは配列のようで配列ではないというもどかしさをもつオブジェクトです。`Array.from`メソッド<sup>[ES2015]</sup>を使うことでArray-likeオブジェクトを配列に変換して扱うことができます。一度配列に変換してしまえばArrayメソッドも利用できます。
 
 {{book.console}}
 ```js

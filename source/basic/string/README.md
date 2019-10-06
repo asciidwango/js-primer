@@ -490,9 +490,9 @@ if (index !== -1) {
 「文字列」に「検索文字列」が含まれているかを検索する方法がいくつか用意されています。
 次の3つのメソッドはES2015で導入されました。
 
-- `文字列.startsWith("検索文字列")`: 検索文字列が先頭にあるかの真偽値を返す
-- `文字列.endsWith("検索文字列")`: 検索文字列が末尾にあるかの真偽値を返す
-- `文字列.includes("検索文字列")`: 検索文字列を含むかの真偽値を返す
+- `String#startsWith(検索文字列)`<sup>[ES2015]</sup>: 検索文字列が先頭にあるかの真偽値を返す
+- `String#endsWith(検索文字列)`<sup>[ES2015]</sup>: 検索文字列が末尾にあるかの真偽値を返す
+- `String#includes(検索文字列)`<sup>[ES2015]</sup>: 検索文字列を含むかの真偽値を返す
 
 具体的な例をいくつか見てみましょう。
 
@@ -1035,7 +1035,7 @@ getResource(baseURL, pathname);
 ECMAScriptの範囲ではありませんが、URLやファイルパスといった典型的なものに対してはすでに専用のものがあります。
 URLを扱うものとしてウェブ標準APIである[URL][]オブジェクト、ファイルパスを扱うものとしてはNode.jsのコアモジュールである[Path][]モジュールなどがあります。専用の仕組みがある場合は、直接`+`演算子で結合するような文字列処理は避けるべきです。
 
-### タグ付きテンプレート関数 {#tagged-template-function}
+### [ES2015] タグ付きテンプレート関数 {#tagged-template-function}
 
 JavaScriptでは、テンプレートとなる文字列に対して一部分だけを変更する処理を行う方法として、タグ付きテンプレート関数があります。
 タグ付きテンプレート関数とは、``` 関数`テンプレート` ```という形式で記述する関数とテンプレートリテラルをあわせた表現です。
@@ -1093,7 +1093,7 @@ function stringRaw(strings, ...values) {
 console.log(stringRaw`template ${0} literal ${1}`); // => "template 0 literal 1"
 ```
 
-ここで実装した`stringRaw`タグ関数と同様のものが、`String.raw`という静的メソッドとして提供されています。
+ここで実装した`stringRaw`タグ関数と同様のものが、`String.raw`メソッド<sup>[ES2015]</sup>として提供されています。
 
 {{book.console}}
 ```js
@@ -1126,7 +1126,7 @@ console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
 
 ## おわりに {#string-summary}
 
-この章では、JavaScriptにおける文字列(`String`)について紹介しました。
+この章では、JavaScriptにおける文字列(`String`オブジェクト)について紹介しました。
 文字列処理するStringメソッドにはさまざまなものがあり、正規表現と組み合わせて使うものも含まれます。
 
 正規表現は、正規表現のみでひとつの本が作れるようなJavaScript言語内にある別言語です。
