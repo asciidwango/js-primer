@@ -71,7 +71,7 @@
     "gitbook-plugin-canonical-link": "^2.0.2",
     "gitbook-plugin-custom-favicon": "0.0.4",
     "gitbook-plugin-ga": "^1.0.0",
-    "gitbook-plugin-github-issue-feedback": "^1.3.4",
+    "gitbook-plugin-github-issue-feedback": "^1.1.1",
     "gitbook-plugin-include-codeblock": "^3.0.0",
     "gitbook-plugin-js-console": "^2.0.4",
     "gitbook-plugin-page-toc-button": "^0.1.1",
@@ -109,7 +109,7 @@
     "unist-util-find-before": "^2.0.4",
     "unist-util-parents": "^1.0.2",
     "unist-util-select": "^1.5.0",
-    "vm2": "^3.8.4",
+    "vm2": "^3.8.2",
     "wait-on": "^3.3.0",
     "workbox-cli": "^3.2.0"
   },
