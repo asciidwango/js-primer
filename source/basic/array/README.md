@@ -341,7 +341,7 @@ if (indexOfJS !== -1) {
 
 ```
 
-そこで、ES2015で導入された`Array#includes`メソッド<sup>[ES2015]</sup>を利用します。
+そこで、ES2016で導入された`Array#includes`メソッド<sup>[ES2016]</sup>を利用します。
 `Array#includes`メソッドは配列に指定要素が含まれているかを判定できます。
 `includes`メソッドは真偽値を返すので、`indexOf`メソッドを使った場合に比べて意図が明確になります。
 そのため、前述のコードは次のように`includes`メソッドを使うべきでしょう。
