@@ -27,7 +27,7 @@ Unicodeはすべての文字（制御文字などの画面に表示されない�
 Code Pointを扱うメソッドの多くは、ECMAScript 2015で追加されています。
 ES2015で追加された`String#codePointAt`メソッドや`String.fromCodePoint`メソッドを使うことで、文字列とCode Pointを相互変換できます。
 
-`String#codePointAt`メソッドは、文字列の指定インデックスにある文字のCode Pointの値を返します。
+`String#codePointAt`メソッド<sup>[ES2015]</sup>は、文字列の指定インデックスにある文字のCode Pointの値を返します。
 
 {{book.console}}
 ```js
@@ -35,7 +35,7 @@ ES2015で追加された`String#codePointAt`メソッドや`String.fromCodePoint
 console.log("あ".codePointAt(0)); // => 12354
 ```
 
-一方の`String.fromCodePoint`メソッドは、指定したCode Pointに対応する文字を返します。
+一方の`String.fromCodePoint`メソッド<sup>[ES2015]</sup>は、指定したCode Pointに対応する文字を返します。
 
 {{book.console}}
 ```js
@@ -259,7 +259,7 @@ console.log("\uD83C\uDF4E".length); // => 2
 JavaScriptには、文字列におけるCode Pointの個数を数えるメソッドは用意されていません。
 これを行うには、文字列をCode Pointごとに区切った配列へ変換して、配列の長さを数えるのが簡潔です。
 
-`Array.from`メソッドは、引数にiterableなオブジェクトを受け取り、それを元にした新しい配列を返します。
+`Array.from`メソッド<sup>[ES2015]</sup>は、引数にiterableなオブジェクトを受け取り、それを元にした新しい配列を返します。
 iterableオブジェクトとは`Symbol.iterator`という特別な名前のメソッドを実装したオブジェクトの総称で、`for...of`文などで反復処理が可能なオブジェクトです。（詳細は「[ループと反復処理のfor...of文][]」を参照）
 
 文字列もiterableオブジェクトであるため、`Array.from`メソッドによって1文字（厳密にはCode Point）ごと区切った配列へと変換できます。先ほども紹介したように、文字列をiterableとして扱う場合はCode Pointごとに処理を行います。

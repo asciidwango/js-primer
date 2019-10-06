@@ -3,7 +3,7 @@ author: laco
 description: "JavaScriptのモジュール（ECMAScriptモジュール）について紹介します。"
 ---
 
-# ECMAScriptモジュール {#module}
+# [ES2015] ECMAScriptモジュール {#module}
 
 ECMAScriptモジュールは[Todoアプリのユースケース][]で実際に動かしながら学ぶため、ここでは構文の説明とモジュールのイメージを掴むのが目的です。
 この章のサンプルコードを実際に動かすためにはローカルサーバーなどの準備が必要です。
@@ -18,7 +18,7 @@ ECMAScriptモジュールは[Todoアプリのユースケース][]で実際に�
 ひとつのJavaScriptモジュールはひとつのJavaScriptファイルに対応します。
 モジュールは変数や関数などを外部にエクスポートできます。また、別のモジュールで宣言された変数や関数などをインポートできます。
 この章では **ECMAScriptモジュール（ESモジュール、JSモジュールとも呼ばれる）** について見ていきます。
-ECMAScriptモジュールは、JavaScriptファイルをモジュール化する言語標準の機能です。
+ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルをモジュール化する言語標準の機能です。
 
 ## ECMAScriptモジュールの構文 {#es-module-syntax}
 

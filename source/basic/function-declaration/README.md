@@ -318,7 +318,7 @@ Rest parametersであれば、仮引数で可変長を受け入れるかが明�
 
 このように、可変長引数が必要な場合は`arguments`変数よりも、Rest parametersでの実装を推奨します。
 
-## 関数の引数と分割代入 {#function-destructuring}
+## [ES2015] 関数の引数と分割代入 {#function-destructuring}
 
 関数の引数においても分割代入（Destructuring assignment）が利用できます。
 分割代入はオブジェクトや配列からプロパティを取り出し、変数として定義し直す構文です。

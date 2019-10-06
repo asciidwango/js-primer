@@ -101,7 +101,7 @@ console.log(Math.round(1.6)); // => 2
 console.log(Math.round(-1.3)); // => -1
 ```
 
-また、[Math.trunc][]メソッドは、渡された数字の小数点以下を単純に切り落とした整数を返します。
+また、[Math.trunc][]メソッド<sup>[ES2015]</sup>は、渡された数字の小数点以下を単純に切り落とした整数を返します。
 そのため、引数が正の値の場合は`Math.floor`メソッドと同じになり、そうでない場合は`Math.ceil`メソッドと同じになります。
 
 {{book.console}}
