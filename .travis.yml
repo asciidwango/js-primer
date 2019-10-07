@@ -42,7 +42,7 @@ jobs:
         - sudo ln -s /opt/calibre/ebook-convert /usr/local/bin/
         # https://ipafont.ipa.go.jp/node26
         - mkdir -p ~/.fonts
-        - cp ./resources/fonts/IPAexfont00301/ipaexm.ttf ~/.fonts/ipaexm.ttf
+        - cp ./resources/fonts/ipaexm00301/ipaexm.ttf ~/.fonts/ipaexm.ttf
         - fc-cache -fv
       before_script:
         - |
