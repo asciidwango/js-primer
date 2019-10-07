@@ -1,4 +1,5 @@
 {% extends template.self %} {% block head %} {{ super() }}
+{% if output.name != "ebook" %}
 <meta name="google-site-verification" content="bMotEbgYwkzA3k4PkuyK_NUdz0bKh-Phz0oUwNmRSVo" />
 <style>
     /*
@@ -65,5 +66,5 @@
         }
     }
 </script>
-
+{% endif %}
 {% endblock %}

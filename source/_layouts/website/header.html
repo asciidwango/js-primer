@@ -1,4 +1,5 @@
 {% block book_header %}
+{% if output.name != "ebook" %}
 <!-- Header -->
 <meta name="keywords" content="JavaScript,入門,チュートリアル,書籍,本,無料,Node.js,ブラウザ" />
 <link rel="author" href="https://www.hatena.ne.jp/efcl/" />
@@ -381,5 +382,6 @@
     });
 </script>
 
+{% endif %}
 {% endblock %}
 
