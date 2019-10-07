@@ -4,7 +4,6 @@ addons:
   apt:
     packages:
     - libgconf-2-4
-
 language: node_js
 env:
   global:
@@ -37,6 +36,14 @@ jobs:
     - stage: deploy
       node_js: '10'
       if: branch = master AND type != pull_request
+      before_install:
+        # https://calibre-ebook.com/download_linux
+        - sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
+        - sudo ln -s /opt/calibre/ebook-convert /usr/local/bin/
+        # https://ipafont.ipa.go.jp/node26
+        - mkdir -p ~/.fonts
+        - cp ./resources/fonts/IPAexfont00301/ipaexm.ttf ~/.fonts/ipaexm.ttf
+        - fc-cache -fv
       before_script:
         - |
 
@@ -46,7 +53,7 @@ jobs:
       script:
         - |
           npm run install:gitbook
-          $(npm bin)/update-branch --commands "npm run build" \
+          $(npm bin)/update-branch --commands "npm run build:all" \
                              --commit-message "Deploy GitBook build [skip ci]" \
                              --directory "_book" \
                              --distribution-branch "gh-pages" \

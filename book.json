@@ -50,5 +50,8 @@
     "ga": {
       "token": "UA-2184335-18"
     }
+  },
+  "pdf": {
+    "fontFamily": "IPAexMincho"
   }
 }
