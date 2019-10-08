@@ -673,7 +673,7 @@ def get_tarball_info():
     raw = get_https_resource_securely(
             'https://code.calibre-ebook.com/tarball-info/' + ('x86_64' if is64bit else 'i686'))
     # !!!!HARD CODE!!!!!
-    signature, calibre_version = ['HASH', '3.47.1']
+    signature, calibre_version = ['HASH', '3.33.1']
 
 
 def download_and_extract(destdir):
