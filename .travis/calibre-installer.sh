@@ -363,6 +363,18 @@ def download_tarball():
     fname = 'calibre-%s-i686.%s'%(calibre_version, 'txz')
     if is64bit:
         fname = fname.replace('i686', 'x86_64')
+    tdir = tempfile.gettempdir()
+    cache = os.path.join(tdir, 'calibre-installer-cache')
+    if not os.path.exists(cache):
+        os.makedirs(cache)
+    clean_cache(cache, fname)
+    dest = os.path.join(cache, fname)
+    raw = check_signature(dest, signature)
+    if raw is not None:
+        print('Using previously downloaded', fname)
+        return raw
+    do_download(dest)
+    prints('Checking downloaded file integrity...')
     raw = check_signature(dest, signature)
     if raw is None:
         os.remove(dest)
