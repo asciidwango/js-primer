@@ -60,8 +60,7 @@ import ssl, socket, stat
 from contextlib import closing
 
 is64bit = platform.architecture()[0] == '64bit'
-DLURL = 'https://calibre-ebook.com/dist/linux'+('64' if is64bit else '32')
-DLURL = os.environ.get('CALIBRE_INSTALLER_LOCAL_URL', DLURL)
+DLURL = 'https://download.calibre-ebook.com/3.48.0/calibre-3.48.0-x86_64.txz'
 py3 = sys.version_info[0] > 2
 enc = getattr(sys.stdout, 'encoding', 'utf-8') or 'utf-8'
 if enc.lower() == 'ascii':
@@ -361,6 +360,7 @@ def do_download(dest):
 
 def download_tarball():
     fname = 'calibre-%s-i686.%s'%(calibre_version, 'txz')
+    prints('fname %s', fname)
     if is64bit:
         fname = fname.replace('i686', 'x86_64')
     tdir = tempfile.gettempdir()
@@ -686,8 +686,6 @@ def extract_tarball(raw, destdir):
 def get_tarball_info():
     global signature, calibre_version
     print ('Downloading tarball signature securely...')
-    raw = get_https_resource_securely(
-            'https://code.calibre-ebook.com/tarball-info/' + ('x86_64' if is64bit else 'i686'))
     # !!!!HARD CODE!!!!!
     signature = "3.33.1HASH".encode('utf-8')
     calibre_version = '3.33.1'
