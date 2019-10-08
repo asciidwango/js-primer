@@ -38,7 +38,8 @@ jobs:
       if: branch = master AND type != pull_request
       before_install:
         # https://calibre-ebook.com/download_linux
-        - sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
+        # Install Calibre 3.48.0 that is hard coded in the shell script
+        - cat .travis/calibre-installer.sh | sudo sh /dev/stdin
         - sudo ln -s /opt/calibre/ebook-convert /usr/local/bin/
         # https://ipafont.ipa.go.jp/node26
         - mkdir -p ~/.fonts
