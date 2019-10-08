@@ -687,7 +687,7 @@ def get_tarball_info():
     global signature, calibre_version
     print ('Downloading tarball signature securely...')
     # !!!!HARD CODE!!!!!
-    signature = 3.48.0-HASH".encode('utf-8')
+    signature = "3.48.0-HASH".encode('utf-8')
     calibre_version = '3.48.0'
 
 
