@@ -693,9 +693,6 @@ def get_tarball_info():
             'https://code.calibre-ebook.com/tarball-info/' + ('x86_64' if is64bit else 'i686'))
     # !!!!HARD CODE!!!!!
     signature, calibre_version = ['1ee5cc8f5ec100c38553e05c67081c5406ceb725eaf14a1b582f29e97ce8e02799e9995db1038bdcc4ef23faa7f25adaf96eb00cc37e9470dcf79588201eaeab', '3.48.0']
-    if not signature or not calibre_version:
-        raise ValueError('Failed to get install file signature, invalid signature returned')
-    calibre_version = calibre_version.decode('utf-8')
 
 
 def download_and_extract(destdir):
