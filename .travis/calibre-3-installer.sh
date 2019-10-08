@@ -373,6 +373,22 @@ def download_tarball():
     if raw is not None:
         print('Using previously downloaded', fname)
         return raw
+    cached_sigf = dest +'.signature'
+    cached_sig = None
+    if os.path.exists(cached_sigf):
+        with open(cached_sigf, 'rb') as sigf:
+            cached_sig = sigf.read()
+    if cached_sig != signature and os.path.exists(dest):
+        os.remove(dest)
+    try:
+        with open(cached_sigf, 'wb') as f:
+            f.write(signature)
+    except IOError as e:
+        if e.errno != errno.EACCES:
+            raise
+        print ('The installer cache directory has incorrect permissions.'
+                ' Delete %s and try again.'%cache)
+        raise SystemExit(1)
     do_download(dest)
     prints('Checking downloaded file integrity...')
     raw = check_signature(dest, signature)
@@ -673,7 +689,8 @@ def get_tarball_info():
     raw = get_https_resource_securely(
             'https://code.calibre-ebook.com/tarball-info/' + ('x86_64' if is64bit else 'i686'))
     # !!!!HARD CODE!!!!!
-    signature, calibre_version = ['HASH', '3.33.1']
+    signature = "3.33.1HASH".encode('utf-8')
+    calibre_version = '3.33.1'
 
 
 def download_and_extract(destdir):
@@ -690,8 +707,6 @@ def download_and_extract(destdir):
 
 def check_version():
     global calibre_version
-    if calibre_version == '%version':
-        calibre_version = urlopen('http://code.calibre-ebook.com/latest').read()
 
 
 def run_installer(install_dir, isolated, bin_dir, share_dir):
