@@ -363,34 +363,6 @@ def download_tarball():
     fname = 'calibre-%s-i686.%s'%(calibre_version, 'txz')
     if is64bit:
         fname = fname.replace('i686', 'x86_64')
-    tdir = tempfile.gettempdir()
-    cache = os.path.join(tdir, 'calibre-installer-cache')
-    if not os.path.exists(cache):
-        os.makedirs(cache)
-    clean_cache(cache, fname)
-    dest = os.path.join(cache, fname)
-    raw = check_signature(dest, signature)
-    if raw is not None:
-        print('Using previously downloaded', fname)
-        return raw
-    cached_sigf = dest +'.signature'
-    cached_sig = None
-    if os.path.exists(cached_sigf):
-        with open(cached_sigf, 'rb') as sigf:
-            cached_sig = sigf.read()
-    if cached_sig != signature and os.path.exists(dest):
-        os.remove(dest)
-    try:
-        with open(cached_sigf, 'wb') as f:
-            f.write(signature)
-    except IOError as e:
-        if e.errno != errno.EACCES:
-            raise
-        print ('The installer cache directory has incorrect permissions.'
-                ' Delete %s and try again.'%cache)
-        raise SystemExit(1)
-    do_download(dest)
-    prints('Checking downloaded file integrity...')
     raw = check_signature(dest, signature)
     if raw is None:
         os.remove(dest)
