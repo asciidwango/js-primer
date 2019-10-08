@@ -41,6 +41,8 @@ jobs:
         # Install Calibre 3.48.0 that is hard coded in the shell script
         - cat .travis/calibre-installer.sh | sudo sh /dev/stdin
         - sudo ln -s /opt/calibre/ebook-convert /usr/local/bin/
+        # version check
+        - ebook-convert --version
         # https://ipafont.ipa.go.jp/node26
         - mkdir -p ~/.fonts
         - cp ./resources/fonts/ipaexm00301/ipaexm.ttf ~/.fonts/ipaexm.ttf
