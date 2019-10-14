@@ -62,7 +62,7 @@ JavaScriptの言語機能に関するチートシートです。
     - [文字列](#string)
     - [データアクセス](#data-access)
     - [演算子](#operator)
-    - [関数と挙動](#functions-behavior)
+    - [関数と挙動](#function-behavior)
     - [コントロールフロー](#control-flow)
     - [モジュール](#module)
     - [その他](#miscellaneous)
@@ -223,7 +223,7 @@ JavaScriptの言語機能に関するチートシートです。
 | `throw new Error("xxx")`  | `throw`文 | [例外処理][] |
 
 
-### モジュール {#modules}
+### モジュール {#module}
 
 ECMAScriptモジュールについて。
 
