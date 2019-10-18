@@ -5,7 +5,5 @@ description: "JavaScriptの基本的な書き方からアプリケーション�
 ---
 <!-- textlint-disable -->
 
-{% if output.name != "ebook" %}
 {% include "./landing/index.html" %}
-{% endif %}
 <!-- TOPページの実際の内容はlandingに書かれています -->
