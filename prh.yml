@@ -2,6 +2,7 @@ version: 1
 imports:
   - test/techbooster.yml
 rules:
+
 # 大文字小文字全角半角の統一
   - expected: Cookie
 # 以下と等価 正規表現には強制でgフラグが付く
@@ -395,7 +396,9 @@ rules:
         to: 仮引数はその関数の中でのみ参照が可能で、関数の外からは参照できません。
   - expected: 実装できました
     patterns: 実装ができました
-
+  - expected: $1個
+    patterns: /([0-9]+)コ/i
+    prh: "https://github.com/asciidwango/js-primer/issues/979"
 
 # 漢字開き
   - expected: 呼び出す
