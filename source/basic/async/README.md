@@ -1161,7 +1161,7 @@ racePromise.then(value => {
 {{book.console}}
 <!-- doctest:options:{ "runMode": "any" } -->
 ```js
-// `timeoutMs`ミリ秒後にresolveする
+// `timeoutMs`ミリ秒後にrejectする
 function timeout(timeoutMs) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
