@@ -99,7 +99,7 @@ formElement.addEventListener("submit", (event) => {
 
 <!-- textlint-disable no-js-function-paren -->
 
-現在のURLに対してフォームを送信が行われると、結果的にページがリロードされてしまいます。
+現在のURLに対してフォームの送信が行われると、結果的にページがリロードされてしまいます。
 そのため、`event.preventDefault()`を呼び出し、デフォルトの動作をキャンセルしていました。
 これは`event.preventDefault()`をコメントアウトすると、ページがリロードされてしまうことが確認できます。
 
