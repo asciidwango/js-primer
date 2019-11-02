@@ -55,7 +55,7 @@ console.log(関数の結果); // => 関数の返り値
 function multiple(num) {
     return num * 2;
 }
-
+// `multiple`関数の返り値は、`num`に`10`を入れて`return`文で返した値
 console.log(multiple(10)); // => 20
 ```
 
@@ -242,9 +242,7 @@ Rest parametersには、関数に渡された値が配列として代入され�
 ```js
 function fn(...args) {
     // argsは引数の値が順番に入った配列
-    console.log(args[0]); // => "a" 
-    console.log(args[1]); // => "b" 
-    console.log(args[2]); // => "c" 
+    console.log(args); // => ["a", "b", "c"]
 }
 fn("a", "b", "c");
 ```
@@ -271,13 +269,12 @@ Spread構文は、配列の前に`...`をつけた構文のことで、関数に
 
 {{book.console}}
 ```js
-function fn(...args) {
-    // Rest Parametersとして引数を受け取る
-    console.log(args[0]); // => "a" 
-    console.log(args[1]); // => "b" 
-    console.log(args[2]); // => "c" 
+function fn(x, y, z) {
+    console.log(x); // => 1 
+    console.log(y); // => 2 
+    console.log(z); // => 3 
 }
-const array = ["a", "b", "c"];
+const array = [1, 2, 3];
 // Spread構文で配列を引数に展開して関数を呼び出す
 fn(...array);
 // 次のように書いたのと同じ意味
@@ -402,7 +399,7 @@ const myFunc = fn;
 myFunc();
 ```
 
-このように関数が値として扱えることを、ファーストクラスファンクション（第一級関数）と呼びます。
+このように関数が値として扱えることを、**ファースト**クラスファンクション**（第一級関数）と呼びます。
 
 さきほどのコードでは、関数宣言をしてから変数へ代入していましたが、最初から関数を値として定義できます。
 関数を値として定義する場合には、関数宣言と同じ`function`キーワードを使った方法とArrow Functionを使った方法があります。
