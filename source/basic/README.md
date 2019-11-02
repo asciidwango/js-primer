@@ -19,11 +19,11 @@ JavaScriptにおけるコメントの書き方を紹介します。コメント�
 
 ### [変数と宣言](./variables/README.md) {#variables}
 
-JavaScriptの変数宣言する方法についてを紹介します。変数を宣言する方法にはvar、let、constがあり、これらの動作の違いや使い分けについてを紹介します。
+JavaScriptの変数宣言する方法についてを紹介します。変数を宣言する方法にはconst,let,varがあります。これらの動作の違いや使い分けについてを紹介します。
 
 ### [値の評価と表示](./read-eval-print/README.md) {#read-eval-print}
 
-JavaScriptでかかれたプログラムをブラウザで実行する方法について紹介します。またプログラムを実行すると遭遇するエラーをどのように解決していくかを紹介します。エラーを大きく2種類に分けて構文エラーと実行時エラーについてそれぞれの問題点と解決の糸口を紹介します。
+ブラウザでJavaScriptコードを実行する方法について紹介します。またプログラムを実行すると遭遇するエラーをどのように解決していくかを紹介します。エラーを大きく2種類に分けて構文エラーと実行時エラーについてそれぞれの問題点と解決の糸口を紹介します。
 
 ### [データ型とリテラル](./data-type/README.md) {#data-type}
 
@@ -93,7 +93,7 @@ JavaScriptにおけるクラスの定義方法や継承方法を紹介します�
 
 JavaScriptにおける例外処理についてを紹介します。try...catch構文の使い方やErrorオブジェクトを紹介します。またエラーが発生した際のエラー文の読み方といったデバッグ方法を紹介します。
 
-### [非同期処理](./async/README.md) {#async}
+### [非同期処理:コールバック/Promise/Async Function](./async/README.md) {#async}
 
 JavaScriptにおける非同期処理についてを紹介します。同期処理と非同期処理の違いやなぜ非同期処理が重要になるかを紹介します。非同期処理を行う方法としてコールバックスタイル、Promise、Async Functionを紹介します。
 
@@ -115,7 +115,7 @@ JavaScriptのオブジェクトリテラルをベースに作られたデータ�
 
 ### [ECMAScriptモジュール](./module/README.md) {#module}
 
-ECMAScriptモジュールの基本的な使い方について紹介します。
+JavaScriptのモジュール（ECMAScriptモジュール）について紹介します。
 
 ### [ECMAScript](./ecmascript/README.md) {#ecmascript}
 
