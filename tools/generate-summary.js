@@ -16,7 +16,7 @@ const cli = meow(`
     --section-name 書き出す位置を決めるセクション名(目次 {#summary}がデフォルト)
 
     Usage
-      $ node generate-summary-1.js
+      $ node generate-summary.js
 `, {
     flags: {
         index: {
