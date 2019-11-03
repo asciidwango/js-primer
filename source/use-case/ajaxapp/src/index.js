@@ -4,7 +4,7 @@ function getUserId() {
 }
 
 function fetchUserInfo(userId) {
-    const url = `https://api.github.com/users/${userId}`;
+    const url = `https://api.github.com/users/${encodeURIComponent(userId)}`;
     return fetch(url).then(response => response.json());
 }
 
