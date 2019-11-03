@@ -76,7 +76,7 @@ fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
             console.log(userInfo);
         });
     }).catch(error => {
-        console.error("ネットワークエラー", error);
+        console.error(error);
     });
 ```
 
@@ -110,7 +110,7 @@ fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
             });
         }
     }).catch(error => {
-        console.error("ネットワークエラー", error);
+        console.error(error);
     });
 ```
 
