@@ -178,7 +178,7 @@ console.log(str[2]); // => "列"
 {{book.console}}
 ```js
 const str = "文字列";
-// 42番目のインデックスは存在しない
+// 42番目の要素は存在しない
 console.log(str[42]); // => undefined
 ```
 
@@ -441,7 +441,7 @@ console.log(queryString); // => "?param=1"
 
 ### 文字列による検索 {#search-by-string}
 
-`String`オブジェクトには、文字列を指定した文字列で検索するメソッドが用意されています。
+`String`オブジェクトには、指定した文字列で検索するメソッドが用意されています。
 
 #### 文字列によるインデックスの取得 {#search-index-by-string}
 
@@ -847,7 +847,7 @@ const str = "/正規表現のような文字列/";
 const regExpLikePattern = /^\/.*\/$/;
 // RegExp#testメソッドでパターンにマッチするかを判定
 console.log(regExpLikePattern.test(str)); // => true
-// Stringメソッドで同等の判定をする関数
+// Stringメソッドで、`/`から始まり`/`で終わる文字列かを判定する関数
 const isRegExpLikeString = (str) => {
     return str.startsWith("/") && str.endsWith("/");
 };
