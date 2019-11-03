@@ -11,7 +11,14 @@ description: "JavaScriptのObjectはオブジェクトの基礎となるもの�
 
 今までも登場してきた、配列や関数などもオブジェクトの一種です。
 JavaScriptには、あらゆるオブジェクトのもととなる`Object`というビルトインオブジェクトがあります。
-ビルトインオブジェクトとは、どの実行環境でも利用可能な組み込みオブジェクトのことです。
+ビルトインオブジェクトはECAMAScriptの仕様で定義されているため、どの実行環境でも利用可能な組み込みオブジェクトのことです。
+
+<!-- Note: ビルトインオブジェクト
+
+- あくまでECMAScriptの定義にあるビルトインオブジェクトをビルトインオブジェクトという
+- https://tc39.es/ecma262/#sec-built-in-object
+
+ -->
 
 この章では、オブジェクトの作成や扱い方、`Object`というビルトインオブジェクトについて見ていきます。
 
@@ -99,7 +106,7 @@ console.log(obj); // => { name: "名前" }
 
 ### `{}`は`Object`のインスタンスオブジェクト {#object-instance-object}
 
-JavaScriptには`Object`というビルトインオブジェクトがあります。
+`Object`はJavaScriptのビルトインオブジェクトです。
 オブジェクトリテラル（`{}`）は、このビルトインオブジェクトである`Object`を元にして新しいオブジェクトを作成するための構文です。
 
 <!-- textlint-disable no-js-function-paren -->
@@ -185,7 +192,7 @@ console.log(languages[myLang]); // => "日本語"
 同じオブジェクトのプロパティを何度もアクセスする場合に、何度も`オブジェクト.プロパティ名`と書くと冗長となりやすいです。
 そのため、短い名前で利用できるように、そのプロパティを変数として定義し直すことがあります。
 
-次のコードでは、`languages`オブジェクトのプロパティをそれぞれ変数`ja`と`en`と定義し直しています。
+次のコードでは、変数`ja`と`en`と定義し、その初期値として`languages`オブジェクトのプロパティを代入しています。
 
 {{book.console}}
 ```js
@@ -260,10 +267,12 @@ console.log(obj[key]); // => "value of key"
 オブジェクトリテラル内でのブラケット記法を使ったプロパティ名は**Computed property names**と呼ばれます。
 Computed property namesはES2015から導入された記法ですが、`式`の評価結果をプロパティ名に使う点はブラケット記法と同じです。
 
+次のコードでは、Computed property namesを使い`key`変数の評価結果である`"key-string"`をプロパティ名にしています。
+
 {{book.console}}
 ```js
 const key = "key-string";
-// Computed Propertyでプロパティを定義する
+// Computed Propertyで`key`の評価結果 "key-string" をプロパティ名に利用
 const obj = {
     [key]: "value"
 };
@@ -658,7 +667,7 @@ ES2018では、オブジェクトのマージを行うオブジェクトの`...`
 ES2015で配列の要素を展開する`...`（spread構文）はサポートされていましたが、オブジェクトに対してもES2018でサポートされました。
 オブジェクトのspread構文は、オブジェクトリテラルの中に指定したオブジェクトのプロパティを展開できます。
 
-オブジェクトのspread構文は、`Object.assign`とは異なり必ず新しいオブジェクトを作成し返します。
+オブジェクトのspread構文は、`Object.assign`とは異なり必ず新しいオブジェクトを作成します。
 なぜならspread構文はオブジェクトリテラルの中でのみ記述でき、オブジェクトリテラルは新しいオブジェクトを作成するためです。
 
 次のコードでは`objectA`と`objectB`をマージした新しいオブジェクトを返します。
@@ -674,7 +683,7 @@ const merged = {
 console.log(merged); // => { a: "a", b: "b" }
 ```
 
-プロパティ名が被った場合の優先順位は、後ろにあるプロパティほど優先されます。
+プロパティ名が被った場合の優先順位は、後ろにあるオブジェクトが優先されます。
 そのため同じプロパティ名をもつオブジェクトをマージした場合には、後ろにあるオブジェクトによってプロパティが上書きされます。
 
 {{book.console}}
@@ -737,8 +746,8 @@ console.log(cloneObj.nest === obj.nest); // => true
 ```
 
 逆にプロパティの値までも再帰的に複製してコピーすることを、深いコピー（deep copy）と呼びます。
-shallow copyで再帰的にコピー処理することで、deep copyを実現できます。
-次のコードでは、`shallowClone`を使い、`deepClone`を実現しています。
+deep copyは、再帰的にshallow copyすることで実現できます。
+次のコードでは、`deepClone`を`shallowClone`を使うことで実現しています。
 
 {{book.console}}
 ```js
