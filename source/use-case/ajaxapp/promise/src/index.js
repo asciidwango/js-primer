@@ -10,7 +10,7 @@ async function main() {
 }
 
 function fetchUserInfo(userId) {
-    return fetch(`https://api.github.com/users/${userId}`)
+    return fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`${response.status}: ${response.statusText}`);

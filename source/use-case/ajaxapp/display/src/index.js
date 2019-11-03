@@ -1,5 +1,5 @@
 function fetchUserInfo(userId) {
-    fetch(`https://api.github.com/users/${userId}`)
+    fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
         .then(response => {
             if (!response.ok) {
                 console.error("サーバーエラー", response);

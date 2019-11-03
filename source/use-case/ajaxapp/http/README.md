@@ -15,16 +15,19 @@ GitHubのAPIを呼び出すためにはHTTP通信をする必要があります�
 Fetch APIを使うことで、ページ全体を再読み込みすることなく指定したURLからデータを取得できます。
 Fetch APIは同じくHTTP通信を扱う[XMLHttpRequest][]と似たAPIですが、より強力で柔軟な操作が可能です。
 
-GitHubが提供している、ユーザー情報を取得するためのWebAPIを呼び出すコードは次のようになります。
 リクエストを送信するためには、`fetch`メソッドを利用します。
 `fetch`メソッドにURLを与えることで、HTTPリクエストが作成され、サーバーとのHTTP通信を開始します。
 
+GitHubにはユーザー情報を取得するAPIとして、`https://api.github.com/users/GitHubユーザーID`というURLが用意されています。
+GitHubのユーザーIDには、英数字と`-`（ハイフン）以外は利用できないため、ユーザーIDは`encodeURIComponent`関数を使ってエスケープしたものを結合します。`encodeURIComponent`は`/`や`%`などURLとして特殊な意味をもつ文字列をただの文字列として扱えるようにエスケープする関数です。
+
+次のコードでは、指定したGitHubユーザーIDの情報を取得するURLに対して`fetch`メソッドで、GETのHTTPリクエストを行っています。
 
 <!-- fetchがないため -->
 <!-- doctest:disable -->
 ```js
-const userId = "任意のGitHubアカウントID";
-fetch(`https://api.github.com/users/${userId}`);
+const userId = "任意のGitHubユーザーID";
+fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`);
 ```
 
 ## レスポンスの受け取り {#receive-response}
@@ -44,7 +47,7 @@ GitHubのAPIに対してHTTPリクエストを送信しましたが、まだレ�
 <!-- doctest:disable -->
 ```js
 const userId = "js-primer-example";
-fetch(`https://api.github.com/users/${userId}`)
+fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
     .then(response => {
         console.log(response.status); // => 200
         response.json().then(userInfo => {
@@ -66,7 +69,7 @@ HTTP通信にはエラーがつきものです。
 <!-- doctest:disable -->
 ```js
 const userId = "js-primer-example";
-fetch(`https://api.github.com/users/${userId}`)
+fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
     .then(response => {
         console.log(response.status);
         response.json().then(userInfo => {
@@ -95,7 +98,7 @@ fetch("https://httpbin.org/status/301");
 <!-- doctest:disable -->
 ```js
 const userId = "js-primer-example";
-fetch(`https://api.github.com/users/${userId}`)
+fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
     .then(response => {
         console.log(response.status); 
         // エラーレスポンスが返されたことを検知する
@@ -145,7 +148,7 @@ Fetch APIが標準化される以前は、ブラウザとサーバーの間で�
 function fetchUserInfo(userId) {
     // リクエストを作成する
     const request = new XMLHttpRequest();
-    request.open("GET", `https://api.github.com/users/${userId}`);
+    request.open("GET", `https://api.github.com/users/${encodeURIComponent(userId)}`);
     request.addEventListener("load", () => {
         // リクエストが成功したかを判定する
         // Fetch APIのresponse.okと同等の意味

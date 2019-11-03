@@ -23,7 +23,7 @@ function main() {
 }
 
 function fetchUserInfo(userId) {
-    fetch(`https://api.github.com/users/${userId}`)
+    fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
         .then(response => {
             if (!response.ok) {
                 console.error("サーバーエラー", response);
@@ -84,7 +84,7 @@ function main() {
 
 function fetchUserInfo(userId) {
     // fetchの戻り値のPromiseをreturnする
-    return fetch(`https://api.github.com/users/${userId}`)
+    return fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
         .then(response => {
             if (!response.ok) {
                 // サーバーエラーを投げる
@@ -143,7 +143,7 @@ function main() {
 }
 
 function fetchUserInfo(userId) {
-    return fetch(`https://api.github.com/users/${userId}`)
+    return fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`${response.status}: ${response.statusText}`);
