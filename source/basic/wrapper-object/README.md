@@ -9,7 +9,7 @@ description: "JavaScriptのプリミティブ型の値がビルトインオブ�
 JavaScriptのデータ型はプリミティブ型とオブジェクトに分けられます。（詳細は「[データ型とリテラル][]」を参照）
 
 次のコードでは文字列リテラルでプリミティブ型の値である文字列を定義しています。
-プリミティブ型の値である文字列は`String`オブジェクトのインスタンスではありません。
+プリミティブ型の値である文字列は`String`オブジェクトのインスタンスオブジェクトではありません。
 しかし、プリミティブ型の文字列においても、`String`オブジェクトのインスタンスメソッドである`toUpperCase`メソッドを呼び出せます。
 
 {{book.console}}
@@ -28,13 +28,13 @@ JavaScriptのデータ型はプリミティブ型とオブジェクトに分け�
 
 プリミティブ型のデータのうち、真偽値（Boolean）、数値（Number） 、文字列（String）、シンボル（Symbol）にはそれぞれ対応するオブジェクトが存在します。たとえば、文字列に対応するオブジェクトとして、`String`オブジェクトがあります。
 
-この`String`オブジェクトを`new`することで`String`オブジェクトのインスタンスを作ることができます。
+この`String`オブジェクトを`new`することで`String`オブジェクトのインスタンスオブジェクトを作ることができます。
 
 <!-- textlint-enable -->
 
 {{book.console}}
 ```js
-// "input value"の値をラップしたStringのインスタンスを生成
+// "input value"の値をラップしたStringのインスタンスオブジェクトを生成
 const str = new String("input value");
 // StringのインスタンスメソッドであるtoUpperCaseを呼び出す
 str.toUpperCase(); // => "INPUT VALUE"
@@ -62,13 +62,15 @@ str.toUpperCase(); // => "INPUT VALUE"
 
  -->
 
-ひとつ注意点として、ラッパーオブジェクトは名前のとおりオブジェクトです。
+注意点として、ラッパーオブジェクトは名前のとおりオブジェクトです。
 そのため、次のように`typeof`演算子でラッパーオブジェクトを見ると`"object"`です。
 
 {{book.console}}
 ```js
+// プリミティブの文字列は"string"型
 const str = "文字列";
 console.log(typeof str); // => "string"
+// ラッパーオブジェクトは"object"型
 const stringWrapper = new String("文字列");
 console.log(typeof stringWrapper); // => "object"
 ```
