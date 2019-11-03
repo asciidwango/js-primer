@@ -79,7 +79,7 @@ JavaScriptやブラウザのAPIに関しては、[MDN Web Docs][]（MDN）とい
 ウェブ版では、その場でサンプルコードを実行してJavaScriptを学べます。
 
 書籍の内容がウェブで公開されているため、書籍の内容を共有したいときにURLを貼れます。
-また、書籍の内容やサンプルコードは[ライセンス][]の範囲内で自由に利用できます。
+また、書籍の内容やサンプルコードは次のライセンスの範囲内で自由に利用できます。
 
 ## ライセンス {#license}
 
@@ -87,10 +87,11 @@ JavaScriptやブラウザのAPIに関しては、[MDN Web Docs][]（MDN）とい
 また、この書籍の文章はCreative CommonsのAttribution-NonCommercial 4.0（CC BY-NC 4.0）ライセンスに基づいて提供されます。
 どちらも、著作権表示がされていればある程度自由に利用できるライセンスとなっています。
 
+ライセンスについての詳細は[ライセンスファイル][]を参照してください。
 
 [asciidwango/js-primer]: https://github.com/asciidwango/js-primer
 [jsprimer.net]: https://jsprimer.net/
 [mdn web docs]: https://developer.mozilla.org/ja/
-[ライセンス]: https://github.com/asciidwango/js-primer/blob/master/LICENSE
+[ライセンスファイル]: https://github.com/asciidwango/js-primer/blob/master/LICENSE
 [第一部:基本文法]: ../basic/README.md
 [第二部:ユースケース]: ../use-case/README.md
