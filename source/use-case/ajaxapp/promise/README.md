@@ -125,8 +125,8 @@ Promiseチェーンを使って処理を分割する利点は、同期処理と�
 Promiseチェーンで処理を分けることで、それぞれの処理が簡潔になりコードの見通しがよくなります。
 
 `index.js`の`fetchUserInfo`関数と`main`関数を次のように書き換えます。
-まず、`fetchUserInfo`関数が`Reponse#json`メソッドの戻り値をそのまま返すように変更します。
-`Reponse#json`メソッドの戻り値はJSONオブジェクトで解決されるPromiseなので、次の`then`ではユーザー情報のJSONオブジェクトが渡されます。
+まず、`fetchUserInfo`関数が`Response#json`メソッドの戻り値をそのまま返すように変更します。
+`Response#json`メソッドの戻り値はJSONオブジェクトで解決されるPromiseなので、次の`then`ではユーザー情報のJSONオブジェクトが渡されます。
 次に、`main`関数が`fetchUserInfo`関数のPromiseチェーンで、HTMLの組み立て（`createView`）と表示（`displayView`）を行うように変更します。
 
 ```js

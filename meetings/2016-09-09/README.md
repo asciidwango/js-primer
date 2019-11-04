@@ -187,8 +187,8 @@
 - @azu: Async/Awaitが来たら解説が必要そう
 - それまではGeneratorはいらない?
 - Generatorは複雑
-- @laco: どの言語でもyeildは複雑
-- @azu: Generatorを省くと、yeild, function *を無くすことができる
+- @laco: どの言語でもyieldは複雑
+- @azu: Generatorを省くと、yield, function *を無くすことができる
 - なくしていく方向で
 - @azu: iterableの概念的な説明は既にしてるのでそれぐらい
 
