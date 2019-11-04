@@ -946,8 +946,9 @@ main().catch(error => {
 `try...catch...finally`構文の`finally`節と同様の役割をもつメソッドです。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2018" } -->
 ```js
-// `prmise`はResolvedまたはRejectedなPromiseインスタンスがランダムで決まる
+// `promise`はResolvedまたはRejectedなPromiseインスタンスがランダムで決まる
 const promise = Math.random() < 0.5 ? Promise.resolve() : Promise.reject();
 promise.then(() => {
     console.log("Promise#thenn");
@@ -965,7 +966,7 @@ promise.then(() => {
 `then`と`catch`の両方で`isLoading`へ`false`を代入できますが、`Promise#finally`メソッドを使うことで代入を一箇所にまとめられます。
 
 {{book.console}}
-<!-- doctest:disable -->
+<!-- doctest:meta:{ "ECMAScript": "2018" } -->
 ```js
 function dummyFetch(path) {
     return new Promise((resolve, reject) => {
