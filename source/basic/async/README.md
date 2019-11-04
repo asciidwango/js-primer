@@ -942,8 +942,22 @@ main().catch(error => {
 
 #### [ES2018] Promiseチェーンの最後に処理を書く {#promise-finally}
 
-`Promise#finally`メソッドは成功時、失敗時どちらの場合でも呼び出すコールバック関数を登録できます。
+`Promise#finally`メソッドは成功時、失敗時どちらの場合でも呼び出されるコールバック関数を登録できます。
 `try...catch...finally`構文の`finally`節と同様の役割をもつメソッドです。
+
+{{book.console}}
+```js
+// `prmise`はResolvedまたはRejectedなPromiseインスタンスがランダムで決まる
+const promise = Math.random() < 0.5 ? Promise.resolve() : Promise.reject();
+promise.then(() => {
+    console.log("Promise#thenn");
+}).catch((error) => {
+    console.log("Promise#catch");
+}).finally(() => {
+    // 成功、失敗どちらの場合でも呼び出される
+    console.log("Promise#finally");
+});
+```
 
 次のコードでは、リソースを取得して`then`で成功時の処理、`catch`で失敗時の処理を登録しています。
 また、リソースを取得中かどうかを判定するためのフラグを`isLoading`という変数で管理しています。
@@ -969,12 +983,13 @@ let isLoading = true;
 dummyFetch("/resource/A").then(response => {
     console.log(response);
 }).catch(error => {
-    console.log(error);
+    console.error(error);
 }).finally(() => {
     isLoading = false;
     console.log("Promise#finally");
 });
 ```
+
 
 ### Promiseチェーンで逐次処理 {#promise-sequential}
 
@@ -1098,7 +1113,7 @@ const fetchedPromise = Promise.all([
 fetchedPromise.then(([responseA, responseB]) => {
     // この行は実行されません
 }).catch(error => {
-    console.log(error); // Error: NOT FOUND
+    console.error(error); // Error: NOT FOUND
 });
 ```
 
@@ -1404,9 +1419,11 @@ asyncMain().catch(error => {
 ```
 
 `await`式がエラーを`throw`するということは、そのエラーは`try...catch`構文でキャッチできます（詳細は「[try...catch構文][]」の章を参照）。
-通常の非同期処理では完了する前に次の行が実行されてしまうため`try...catch`構文ではエラーをキャッチできませんでした。そのためPromiseでは`catch`メソッドを使いPromise内で発生したエラーをキャッチしていました。
+通常の非同期処理では完了する前に次の行が実行されてしまうため`try...catch`構文ではエラーをキャッチできませんでした。
+そのためPromiseでは`catch`メソッドを使いPromise内で発生したエラーをキャッチしていました。
 
 次のコードでは、`await`式で発生した例外を`try...catch`構文でキャッチしています。
+そのため、`asyncMain`関数はResolvedなPromiseを返し、`catch`メソッドは呼び出されません。
 
 {{book.console}}
 ```js
@@ -1420,6 +1437,7 @@ async function asyncMain() {
         console.log(error.message); // => "エラーメッセージ"
     }
 }
+// asyncMainはResolvedなPromiseを返す
 asyncMain().catch(error => {
     // すでにtry...catchされているため、この行は実行されません
 });
