@@ -788,7 +788,7 @@ instance.method(); // "プロトタイプのメソッド"
 
 <!-- textlint-disable ja-technical-writing/sentence-length -->
 
-`[[Prototype]]`内部プロパティへプロパティのようにアクセスはできませんが、`Object.getPrototypeOf`メソッドで`[[Prototype]]`内部プロパティを参照できます。
+`[[Prototype]]`内部プロパティへプロパティのようにはアクセスはできませんが、`Object.getPrototypeOf`メソッドで`[[Prototype]]`内部プロパティを参照できます。
 
 <!-- textlint-enable ja-technical-writing/sentence-length -->
 
