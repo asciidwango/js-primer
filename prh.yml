@@ -363,6 +363,9 @@ rules:
   - expected: 第二部
     patterns:
       - /第2部/
+  - expected: 挿入順
+    patterns:
+      - 追加順
 # 文体
   - expected: どのように
     patterns:
