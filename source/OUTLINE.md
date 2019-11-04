@@ -591,8 +591,8 @@ console.log(array.slice(4, 1)); // => []
 - クロージャー
 	- クロージャを一言で表すと「スコープチェーンに存在する変数への参照を(囲い込んで)保持している関数」と言えます。
 	- 開眼JavaScript参照
-- ScopeとEnviroment
-	- scopeによって定義されたenviroment
+- ScopeとEnvironment
+	- scopeによって定義されたenvironment
 	- EnvironmentはRecordから構成される
 	- inner env -> outer envによりスコープチェインという現象が起きる
 	- <https://tc39.github.io/ecma262/#sec-lexical-environments>

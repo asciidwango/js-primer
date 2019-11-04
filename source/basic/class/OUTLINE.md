@@ -12,7 +12,7 @@
     - メソッド
 		- インスタンスメソッド
 	- getter/setter
-		- Computed Varibale(プロパティ)
+		- Computed Variable(プロパティ)
 			- Public Field
 		- アクセス制御
 		- WeakSet

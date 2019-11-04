@@ -164,7 +164,7 @@ try{
         - then = catch
     - `Promise#then`と`Promise#catch`
         - thenは２つの引数があるがどちらも省略が可能
-        - 多くの場合はthenではsucessの処理をだけを書く
+        - 多くの場合はthenではsuccessの処理をだけを書く
             - suscessの例: delay
         - 失敗の処理を書くには `then(undefined, onRejected)` としないといけない
         - この表記の代わりに `catch(onRejected)`と書ける
@@ -174,12 +174,12 @@ try{
     - Promiseの状態
         - まずはPromiseの3つの状態について理解します
         - Pending
-        - Fullfilled
+        - Fulfilled
         - Rejected
         - [未使用] また、PromiseはImmutableの特性を持っています
         - また、一度変化したPromiseの状態は2度と変化しない。つまりresolve -> rejectとしてもresolveとなます。
-        - この一度PendingからFullfilled/Rejectどちらかに変化した状態はそれ以降変化しません。
-        - そのためFullfilledとRejectedどちらかの状態になったことをSettleと呼びます。
+        - この一度PendingからFulfilled/Rejectどちらかに変化した状態はそれ以降変化しません。
+        - そのためFulfilledとRejectedどちらかの状態になったことをSettleと呼びます。
         -　重要なのはこのsettleのpromiseインスタンスに対しても`then`でコールバック関数を登録できる点です。
     - Promiseの変化済み(settle)のオブジェクト作成
         - すでにfulfilled/rejected済みのオブジェクトを作ることができる
@@ -287,7 +287,7 @@ try{
             - Async arrow functions: `const foo = async () => {};`
             - Async Functionは必ずPromiseを返すこととその関数の中では`await`式が利用できる点以外は通常の関数と同じ性質を持ちます。
         - Async FunctionはPromiseを返す話
-            - 値を返してFullfilled = `Promise.resolve()`
+            - 値を返してFulfilled = `Promise.resolve()`
             - 例外を投げてRejected = `new Promise(() => throw new Error())`
             - Promiseを返してRejected = `Promise.reject()`
             - 参考: [async/await 入門（JavaScript） - Qiita](https://qiita.com/soarflat/items/1a9613e023200bbebcb3)
