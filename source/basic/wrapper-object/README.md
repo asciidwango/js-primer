@@ -9,7 +9,7 @@ description: "JavaScriptのプリミティブ型の値がビルトインオブ�
 JavaScriptのデータ型はプリミティブ型とオブジェクトに分けられます。（詳細は「[データ型とリテラル][]」を参照）
 
 次のコードでは文字列リテラルでプリミティブ型の値である文字列を定義しています。
-プリミティブ型の値である文字列は`String`オブジェクトのインスタンスオブジェクトではありません。
+プリミティブ型の値である文字列は`String`オブジェクトのインスタンスではありません。
 しかし、プリミティブ型の文字列においても、`String`オブジェクトのインスタンスメソッドである`toUpperCase`メソッドを呼び出せます。
 
 {{book.console}}
@@ -28,13 +28,13 @@ JavaScriptのデータ型はプリミティブ型とオブジェクトに分け�
 
 プリミティブ型のデータのうち、真偽値（Boolean）、数値（Number） 、文字列（String）、シンボル（Symbol）にはそれぞれ対応するオブジェクトが存在します。たとえば、文字列に対応するオブジェクトとして、`String`オブジェクトがあります。
 
-この`String`オブジェクトを`new`することで`String`オブジェクトのインスタンスオブジェクトを作ることができます。
+この`String`オブジェクトを`new`することで`String`オブジェクトのインスタンスを作ることができます。
 
 <!-- textlint-enable -->
 
 {{book.console}}
 ```js
-// "input value"の値をラップしたStringのインスタンスオブジェクトを生成
+// "input value"の値をラップしたStringのインスタンスを生成
 const str = new String("input value");
 // StringのインスタンスメソッドであるtoUpperCaseを呼び出す
 str.toUpperCase(); // => "INPUT VALUE"
