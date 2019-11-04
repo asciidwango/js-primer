@@ -11,7 +11,7 @@ description: "JavaScriptにおける例外処理についてを紹介します�
 
 [try...catch][]構文は例外が発生しうるブロックをマークし、例外が発生したときの処理を記述するための構文です。
 
-`try`文の`try`ブロック内で例外が発生すると、それ以降の`try`ブロック内の処理は実行されず、`catch`節に処理が移行します。
+try...catch構文の`try`ブロック内で例外が発生すると、`try`ブロック内のそれ以降の処理は実行されず、`catch`節に処理が移行します。
 `catch`節は、`try`ブロック内で例外が発生すると、発生したエラーオブジェクトとともに呼び出されます。
 `finally`節は、`try`ブロック内で例外が発生したかどうかは関係なく、必ず`try`文の最後に実行されます。
 
@@ -20,18 +20,18 @@ description: "JavaScriptにおける例外処理についてを紹介します�
 {{book.console}}
 ```js
 try {
-    console.log("この行は実行されます");
+    console.log("try節:この行は実行されます");
     // 未定義の関数を呼び出してReferenceError例外が発生する
     undefinedFunction();
     // 例外が発生したため、この行は実行されません
 } catch (error) {
     // 例外が発生したあとはこのブロックが実行される
-    console.log("この行は実行されます");
+    console.log("catch節:この行は実行されます");
     console.log(error instanceof ReferenceError); // => true
     console.log(error.message); // => "undefinedFunction is not defined"
 } finally {
     // このブロックは例外の発生に関係なく必ず実行される
-    console.log("この行は実行されます");
+    console.log("finally節:この行は実行されます");
 }
 ```
 
@@ -62,10 +62,12 @@ try {
 例外として投げられたオブジェクトは、`catch`節で関数の引数のようにアクセスできます。
 `catch`節でオブジェクトを参照できる識別子を[例外識別子][]と呼びます。
 
+次のコードでは、`catch`節の`error`識別子でキャッチしたエラーオブジェクトを参照しています。
+
 {{book.console}}
 ```js
 try {
-    // 独自の例外を投げる
+    // 例外を投げる
     throw new Error("例外が投げられました");
 } catch (error) {
     // catch節のスコープでerrorにアクセスできる
