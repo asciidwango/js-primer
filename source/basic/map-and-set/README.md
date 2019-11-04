@@ -484,8 +484,8 @@ for (const entry of set.entries()) {
 console.log(entryResults); // => [["a","a"], ["b", "b"]]
 ```
 
-セットオブジェクトもiterableなオブジェクトであるため`for...of`文で反復処理できます。
-`for...of`文でセットオブジェクトを反復したときも、セットへの挿入順に値が取り出されます。
+`Set`オブジェクト自身もiterableなオブジェクトであるため`for...of`文で反復処理できます。
+`for...of`文で`Set`オブジェクトを反復したときも、セットへの挿入順に値が取り出されます。
 
 {{book.console}}
 ```js
