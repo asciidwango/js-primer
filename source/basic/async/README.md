@@ -948,7 +948,7 @@ main().catch(error => {
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": "2018" } -->
 ```js
-// `promise`はResolvedまたはRejectedなPromiseインスタンスがランダムで決まる
+// `promise`にはResolvedまたはRejectedなPromiseインスタンスがランダムで入る
 const promise = Math.random() < 0.5 ? Promise.resolve() : Promise.reject();
 promise.then(() => {
     console.log("Promise#thenn");
