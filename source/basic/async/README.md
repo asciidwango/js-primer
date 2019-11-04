@@ -1424,7 +1424,7 @@ asyncMain().catch(error => {
 そのためPromiseでは`catch`メソッドを使いPromise内で発生したエラーをキャッチしていました。
 
 次のコードでは、`await`式で発生した例外を`try...catch`構文でキャッチしています。
-そのため、`asyncMain`関数はResolvedなPromiseを返し、`catch`メソッドは呼び出されません。
+そのため、`asyncMain`関数はResolvedなPromiseを返し、`catch`メソッドのコールバック関数は呼び出されません。
 
 {{book.console}}
 ```js
