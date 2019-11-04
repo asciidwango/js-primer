@@ -62,13 +62,15 @@ str.toUpperCase(); // => "INPUT VALUE"
 
  -->
 
-ひとつ注意点として、ラッパーオブジェクトは名前のとおりオブジェクトです。
+注意点として、ラッパーオブジェクトは名前のとおりオブジェクトです。
 そのため、次のように`typeof`演算子でラッパーオブジェクトを見ると`"object"`です。
 
 {{book.console}}
 ```js
+// プリミティブの文字列は"string"型
 const str = "文字列";
 console.log(typeof str); // => "string"
+// ラッパーオブジェクトは"object"型
 const stringWrapper = new String("文字列");
 console.log(typeof stringWrapper); // => "object"
 ```

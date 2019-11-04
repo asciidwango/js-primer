@@ -84,7 +84,7 @@ console.log(map.size); // => 0
 
 マップがもつ要素を列挙するメソッドとして、`forEach`、`keys`、`values`、`entries`があります。
 
-`forEach`メソッドはマップがもつすべての要素を、マップへの追加順に反復します。
+`forEach`メソッドはマップがもつすべての要素を、マップへの挿入順に反復します。
 コールバック関数には引数として値、キー、マップの3つが渡されます。
 配列の`forEach`メソッドと似ていますが、インデックスの代わりにキーが渡されます。
 配列はインデックスにより要素を特定しますが、マップはキーにより要素を特定するためです。
@@ -447,26 +447,55 @@ console.log(set.size); // => 0
 
 ### セットの反復処理 {#set-iteration}
 
-セットがもつすべての値を反復するには`for...of`文を使います。
-`for...of`文でセットを反復したときは、セットへの追加順に値が取り出されます。
+セットがもつ値を反復処理するには、`forEach`メソッドが利用できます。
+`forEach`メソッドではセットがもつすべての要素を、セットへの挿入順に反復します。
 
 {{book.console}}
 ```js
-const set = new Set();
-set.add("a");
-set.add("b");
+const set = new Set(["a", "b"]);
+const results = [];
+set.forEach((value) => {
+    results.push(value);
+});
+console.log(results); // => ["a","b"]
+```
+
+セットからIteratorオブジェクトを作成するメソッドとして`keys`、`values`、`entries`があります。
+これらは`Map`との類似性のために存在しますが、セットにはマップにおけるキー相当のものがありません。
+そのため、`keys`メソッドは`values`メソッドのエイリアスになっており、セットがもつすべての値を挿入順に列挙するIteratorオブジェクトを返します。
+また、`entries`メソッドは`[値, 値]`という形のエントリーを挿入順に列挙するIteratorオブジェクトを返します。
+ただし、`Set`自身がiterableであるため、これらのメソッドが有用なケースは少ないでしょう。
+
+{{book.console}}
+```js
+const set = new Set(["a", "b"]);
+// keysで列挙
+const keysResults = [];
+for (const value of set.keys()) {
+    keysResults.push(value);
+}
+console.log(keysResults); // => ["a","b"]
+// entriesで列挙
+const entryResults = [];
+for (const entry of set.entries()) {
+    // entryは[値, 値]という配列
+    entryResults.push(entry);
+}
+console.log(entryResults); // => [["a","a"], ["b", "b"]]
+```
+
+`Set`オブジェクト自身もiterableなオブジェクトであるため`for...of`文で反復処理できます。
+`for...of`文で`Set`オブジェクトを反復したときも、セットへの挿入順に値が取り出されます。
+
+{{book.console}}
+```js
+const set = new Set(["a", "b"]);
 const results = [];
 for (const value of set) {
     results.push(value);
 }
 console.log(results); // => ["a","b"]
 ```
-
-セットがもつ要素を列挙するメソッドとして、`forEach`、`keys`、`values`、`entries`があります。
-これらは`Map`との類似性のために存在しますが、セットにはマップにおけるキー相当のものがありません。
-そのため、`keys`メソッドは`values`メソッドのエイリアスになっており、セットがもつすべての値を挿入順に列挙するIteratorオブジェクトを返します。
-また、`entries`メソッドは`[値, 値]`という形のエントリーを挿入順に列挙するIteratorオブジェクトを返します。
-ただし、`Set`自身がiterableであるため、これらのメソッドが必要になることはないでしょう。
 
 ### WeakSet {#weakset}
 

@@ -52,8 +52,8 @@ ECMAScriptはLiving Standardですが、これに加えてECMAScript 2017のよ�
 ## 仕様策定のプロセス {#specification-process}
 
 ES2015以前はすべての仕様の合意が取れるまで延々と議論を続けすべてが決まってからリリースされていました。
-そのため、ES2015がリリースされるまでには6年もの歳月がかかり言語の進化が停滞していました。
-この問題を解消するために、TC39は毎年リリースするためにECMAScriptの策定プロセスを変更しました。
+そのため、ES2015がリリースされるまでには長い時間がかかり言語の進化が停滞していました。
+この問題を解消するために、TC39は毎年リリースする形へとECMAScriptの策定プロセスを変更しました。
 
 この策定プロセスはES2015がリリース後に適応され、このプロセスで初めてリリースされたのがES2016となります。
 ES2016以降では、次のような仕様策定のプロセスで議論を進めて仕様が決定されています。[^2]
@@ -168,7 +168,7 @@ JavaScriptは幅広く使われている言語であるため、世の中には�
 
 ### まとめ {#ecmascript-summary}
 
-JavaScriptと一言にいってもECMAScript、ブラウザ、Node.js、WebAssembly、WebGL、WebRTCなど幅広い分野があります。
+JavaScriptと一言にいってもECMAScript、ウェブブラウザ、Node.js、WebAssembly、WebGL、WebRTCなど幅広い分野があります。
 そのためすべてのことを知っている必要はありませんし、知っている人もおそらくいないでしょう。
 このような状況下においては知識そのものよりも、それについて知りたいと思ったときに調べる方法を持っていることが大切です。
 
@@ -188,7 +188,7 @@ ECMAScriptにおいては策定プロセスという形でどのような段階�
 [core-js]: https://github.com/zloirock/core-js  "zloirock/core-js: Standard Library"
 [polyfill.io]: https://polyfill.io/v2/docs/  "Polyfill service"
 [MDN Web Docs]: https://developer.mozilla.org/ja/  "MDN Web Docs"
-[^1]: ECMAScript 4は複雑で大きな変更が含まれており、合意を得ることができずに策定仕様が破棄されました。
+[^1]: ECMAScript 4は複雑で大きな変更が含まれており、合意を得ることができずに仕様が破棄されました。
 [^2]: この策定プロセスは<https://tc39.github.io/process-document/>に詳細が書かれています。
 [^3]: ES2015の仕様編集者であるAllen Wirfs-Brock氏の書いた[Programming Language Standardization](http://wirfs-brock.com/allen/files/papers/standpats-asianplop2016.pdf)に詳細が書かれています。
 [^4]: [Inactive Proposals](https://github.com/tc39/proposals/blob/master/inactive-proposals.md)に策定を中止したプロポーザルの一覧が公開されています。
