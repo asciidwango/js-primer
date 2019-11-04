@@ -951,7 +951,7 @@ main().catch(error => {
 // `promise`にはResolvedまたはRejectedなPromiseインスタンスがランダムで入る
 const promise = Math.random() < 0.5 ? Promise.resolve() : Promise.reject();
 promise.then(() => {
-    console.log("Promise#thenn");
+    console.log("Promise#then");
 }).catch((error) => {
     console.log("Promise#catch");
 }).finally(() => {
