@@ -82,7 +82,7 @@ fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
 
 一方で、リクエストが成功したかどうかは`Response`オブジェクトの`ok`プロパティで認識できます。
 `ok`プロパティは、HTTPステータスコードが200番台であれば`true`を返し、それ以外の400や500番台などなら`false`を返します。
-次のように、`ok`プロパティが`false`となるサーバーエラーをハンドリングできます。
+次のように、`ok`プロパティが`false`となるエラーレスポンスをハンドリングできます。
 
 <!-- Note: Fetch API デフォルトで自動的にリダイレクトする
 そのため、このコード例なら response.status が 30x はこない
@@ -103,7 +103,7 @@ fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
         console.log(response.status); 
         // エラーレスポンスが返されたことを検知する
         if (!response.ok) {
-            console.error("サーバーエラー", response);
+            console.error("エラーレスポンス", response);
         } else {
             return response.json().then(userInfo => {
                 console.log(userInfo);
@@ -121,7 +121,7 @@ fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
 index.jsでは関数を定義しているだけで、呼び出しは行っていません。
 
 ページを読み込むたびにGitHubのAPIを呼び出すと、呼び出し回数の制限を超えるおそれがあります。
-呼び出し回数の制限を超えると、APIからのレスポンスがステータスコード403のサーバーエラーになってしまいます。
+呼び出し回数の制限を超えると、APIからのレスポンスがステータスコード403のエラーレスポンスになってしまいます。
 
 そのため、手動で`fetchUserInfo`関数を呼び出すため、HTMLドキュメント側にボタンを追加します。
 ボタンのclickイベントで`fetchUserInfo`関数を呼び出し、取得したいユーザーIDを引数として与えています。
@@ -157,7 +157,7 @@ function fetchUserInfo(userId) {
             const userInfo = JSON.parse(request.responseText);
             console.log(userInfo);
         } else {
-            console.error("サーバーエラー", request.statusText);
+            console.error("エラーレスポンス", request.statusText);
         }
     });
     request.addEventListener("error", () => {

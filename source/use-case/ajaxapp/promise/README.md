@@ -26,7 +26,7 @@ function fetchUserInfo(userId) {
     fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
         .then(response => {
             if (!response.ok) {
-                console.error("サーバーエラー", response);
+                console.error("エラーレスポンス", response);
             } else {
                 return response.json().then(userInfo => {
                     // HTMLの組み立て
@@ -71,7 +71,7 @@ Promiseチェーンの中で投げられたエラーは、`Promise#catch`メソ�
 
 次のコードでは、`fetchUserInfo`関数から返されたPromiseオブジェクトを、`main`関数でエラーハンドリングしてログを出力します。
 `fetchUserInfo`関数の`catch`メソッドでハンドリングしていたエラーは、`main`関数の`catch`メソッドでハンドリングされます。
-一方、レスポンスから判断していたサーバーエラーは明示的にエラーを投げなければ`main`関数でハンドリングできません。
+一方、レスポンスから判断していたエラーレスポンスは明示的にエラーを投げなければ`main`関数でハンドリングできません。
 そこで、`Promise.reject`メソッドを使い、RejectedなPromiseを返しPromiseチェーンをエラーの状態にします。
 その結果Promiseチェーンがエラーとなるため、`main`関数の`catch`でハンドリングできます。
 
@@ -89,7 +89,7 @@ function fetchUserInfo(userId) {
     return fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
         .then(response => {
             if (!response.ok) {
-                // サーバーエラーを投げる
+                // エラーレスポンスからRejectedなPromiseを作成して返す
                 return Promise.reject(new Error(`${response.status}: ${response.statusText}`));
             } else {
                 return response.json().then(userInfo => {
