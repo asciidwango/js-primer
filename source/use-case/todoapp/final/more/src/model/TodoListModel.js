@@ -79,7 +79,7 @@ export class TodoListModel extends EventEmitter {
      * @param {{ id: number }}
      */
     deleteTodo({ id }) {
-        // `id`が一致するTodoItemを`this.items`から取り除き、削除する
+        // `id`に一致しないTodoItemだけを残すことで、`id`に一致するTodoItemを削除する
         this.items = this.items.filter(todo => {
             return todo.id !== id;
         });
