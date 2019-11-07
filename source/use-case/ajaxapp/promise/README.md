@@ -36,7 +36,7 @@ function fetchUserInfo(userId) {
                 });
             }
         }).catch(error => {
-            console.error("ネットワークエラー", error);
+            console.error(error);
         });
 }
 
@@ -70,14 +70,16 @@ function displayView(view) {
 Promiseチェーンの中で投げられたエラーは、`Promise#catch`メソッドを使って一箇所で受け取れます。
 
 次のコードでは、`fetchUserInfo`関数から返されたPromiseオブジェクトを、`main`関数でエラーハンドリングしてログを出力します。
-`fetchUserInfo`関数ではネットワークエラーとサーバーエラーを投げています。
-投げられたエラーは`catch`のコールバック関数で第1引数として受け取れます。
+`fetchUserInfo`関数の`catch`メソッドでハンドリングしていたエラーは、`main`関数の`catch`メソッドでハンドリングされます。
+一方、レスポンスから判断していたサーバーエラーは明示的にエラーを投げなければ`main`関数でハンドリングできません。
+そこで、`Promise.reject`メソッドを使い、RejectedなPromiseを返しPromiseチェーンをエラーの状態にします。
+その結果Promiseチェーンがエラーとなるため、`main`関数の`catch`でハンドリングできます。
 
 ```js
 function main() {
     fetchUserInfo("js-primer-example")
         .catch((error) => {
-            // Promiseのコンテキスト内で発生したエラーを受け取る
+            // Promiseチェーンの中で発生したエラーを受け取る
             console.error(`エラーが発生しました (${error})`);
         });
 }
@@ -88,7 +90,7 @@ function fetchUserInfo(userId) {
         .then(response => {
             if (!response.ok) {
                 // サーバーエラーを投げる
-                throw new Error(`${response.status}: ${response.statusText}`);
+                return Promise.reject(new Error(`${response.status}: ${response.statusText}`));
             } else {
                 return response.json().then(userInfo => {
                     // HTMLの組み立て
@@ -97,9 +99,6 @@ function fetchUserInfo(userId) {
                     displayView(view);
                 });
             }
-        }).catch(error => {
-            // ネットワークエラーを投げる
-            throw new Error("ネットワークエラー");
         });
 }
 ```
@@ -146,13 +145,11 @@ function fetchUserInfo(userId) {
     return fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
         .then(response => {
             if (!response.ok) {
-                throw new Error(`${response.status}: ${response.statusText}`);
+                return Promise.reject(new Error(`${response.status}: ${response.statusText}`));
             } else {
                 // JSONオブジェクトで解決されるPromiseを返す
                 return response.json();
             }
-        }).catch(error => {
-            throw new Error("ネットワークエラー");
         });
 }
 ```

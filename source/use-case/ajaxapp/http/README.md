@@ -50,7 +50,7 @@ const userId = "js-primer-example";
 fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
     .then(response => {
         console.log(response.status); // => 200
-        response.json().then(userInfo => {
+        return response.json().then(userInfo => {
             // JSONパースされたオブジェクトが渡される
             console.log(userInfo); // => {...}
         });
@@ -61,7 +61,7 @@ fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
 
 HTTP通信にはエラーがつきものです。
 そのためFetch APIを使った通信においても、エラーをハンドリングする必要があります。
-サーバーとの通信に際してネットワークエラーが発生した場合は、ネットワークエラーを表す`NetworkError`オブジェクトでrejectされた`Promise`が返されます。
+たとえば、サーバーとの通信に際してネットワークエラーが発生した場合は、ネットワークエラーを表す`NetworkError`オブジェクトでrejectされた`Promise`が返されます。
 すなわち、`then`メソッドの第2引数か`catch`メソッドのコールバック関数が呼び出されます。
 
 {{book.console}}
@@ -72,11 +72,11 @@ const userId = "js-primer-example";
 fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
     .then(response => {
         console.log(response.status);
-        response.json().then(userInfo => {
+        return response.json().then(userInfo => {
             console.log(userInfo);
         });
     }).catch(error => {
-        console.error("ネットワークエラー", error);
+        console.error(error);
     });
 ```
 
@@ -105,12 +105,12 @@ fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
         if (!response.ok) {
             console.error("サーバーエラー", response);
         } else {
-            response.json().then(userInfo => {
+            return response.json().then(userInfo => {
                 console.log(userInfo);
             });
         }
     }).catch(error => {
-        console.error("ネットワークエラー", error);
+        console.error(error);
     });
 ```
 

@@ -6,11 +6,11 @@ function fetchUserInfo(userId) {
             if (!response.ok) {
                 console.error("サーバーエラー", response);
             } else {
-                response.json().then(userInfo => {
+                return response.json().then(userInfo => {
                     console.log(userInfo);
                 });
             }
         }).catch(error => {
-            console.error("ネットワークエラー", error);
+            console.error(error);
         });
 }

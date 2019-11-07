@@ -22,7 +22,7 @@ function fetchUserInfo(userId) {
                 });
             }
         }).catch(error => {
-            console.error("ネットワークエラー", error);
+            console.error(error);
         });
 }
 
