@@ -71,7 +71,7 @@ Promiseチェーンの中で投げられたエラーは、`Promise#catch`メソ�
 
 次のコードでは、`fetchUserInfo`関数から返されたPromiseオブジェクトを、`main`関数でエラーハンドリングしてログを出力します。
 `fetchUserInfo`関数の`catch`メソッドでハンドリングしていたエラーは、`main`関数の`catch`メソッドでハンドリングされます。
-一方、レスポンスから判断していたエラーレスポンスは明示的にエラーを投げなければ`main`関数でハンドリングできません。
+一方、`Response#ok`で判定していた400や500などのエラーレスポンスがそのままでは`main`関数でハンドリングできません。
 そこで、`Promise.reject`メソッドを使い、RejectedなPromiseを返しPromiseチェーンをエラーの状態にします。
 その結果Promiseチェーンがエラーとなるため、`main`関数の`catch`でハンドリングできます。
 
