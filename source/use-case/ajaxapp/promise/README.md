@@ -70,7 +70,7 @@ function displayView(view) {
 Promiseチェーンの中で投げられたエラーは、`Promise#catch`メソッドを使って一箇所で受け取れます。
 
 次のコードでは、`fetchUserInfo`関数から返されたPromiseオブジェクトを、`main`関数でエラーハンドリングしてログを出力します。
-`fetchUserInfo`関数の`catch`メソッドでハンドリングしていたネットワークエラーは、`main`関数の`catch`メソッドでハンドリングされます。
+`fetchUserInfo`関数の`catch`メソッドでハンドリングしていたエラーは、`main`関数の`catch`メソッドでハンドリングされます。
 一方、レスポンスから判断していたサーバーエラーは明示的にエラーを投げなければ`main`関数でハンドリングできません。
 そこで、`Promise.reject`メソッドを使い、RejectedなPromiseを返しPromiseチェーンをエラーの状態にします。
 その結果Promiseチェーンがエラーとなるため、`main`関数の`catch`でハンドリングできます。
