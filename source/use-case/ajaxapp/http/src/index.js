@@ -4,7 +4,7 @@ function fetchUserInfo(userId) {
             console.log(response.status);
             // エラーレスポンスが返されたことを検知する
             if (!response.ok) {
-                console.error("サーバーエラー", response);
+                console.error("エラーレスポンス", response);
             } else {
                 return response.json().then(userInfo => {
                     console.log(userInfo);
