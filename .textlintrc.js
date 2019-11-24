@@ -11,6 +11,9 @@ module.exports = {
     }
   },
   "rules": {
+    "@textlint-ja/no-synonyms": {
+      "allows": ["アプリ", "ウェブアプリ"]
+    },
     // 使っては行けない変数、関数名
     // 詳細: https://github.com/asciidwango/js-primer/issues/804
     "inline-code-denylist": {
