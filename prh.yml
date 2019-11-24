@@ -301,6 +301,10 @@ rules:
     patterns:
       - Webブラウザ
   - expected: webpack
+  - expected: インターフェース
+    patterns:
+      - インタフェース
+      - インターフェイス
 
   # 一致とマッチ
   ## 一致は ===
