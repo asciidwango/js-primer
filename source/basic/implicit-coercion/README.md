@@ -537,7 +537,19 @@ function isEmptyString(str) {
     return typeof str === "string" && str.length === 0;
 }
 console.log(isEmptyString("")); // => true
-// falsyな値でも正しく判定できる
+// falsyな値も正しく判定できる
+console.log(isEmptyString(0)); // => false
+console.log(isEmptyString()); // => false
+```
+
+また、次のように`""`（空文字）と比較することでも正しく判定できます。
+
+{{book.console}}
+```js
+function isEmptyString(str) {
+    return str === "";
+}
+console.log(isEmptyString("")); // => true
 console.log(isEmptyString(0)); // => false
 console.log(isEmptyString()); // => false
 ```
