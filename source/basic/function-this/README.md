@@ -518,7 +518,7 @@ console.log(sayPerson()); // => "こんにちは Brendan Eich！"
 
 <!--
 そのため、ES2015ではこの`this`の問題を解決するためにArrow Functionという新しい関数の定義方法を導入しました。
-そもそも`call`、`apply`、`bind`が必要となるのは「`this`が呼び出し方によって暗黙的に決まる」という問題があるためです。
+そもそも`call`、`apply`、`bind`が必要となるのは「`this`が呼び出し方によって暗黙的に決まる」という問題があるためです。
 -->
 
 ### 問題: コールバック関数と`this` {#callback-and-this}
