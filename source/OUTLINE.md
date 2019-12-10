@@ -405,7 +405,7 @@ console.log(array.slice(1, 5)); // => ["B", "C", "D", "E"]
 console.log(array.slice(-1)); // => ["E"]
 // 位置:1から4の範囲を取り出す
 console.log(array.slice(1, 4)); // => ["B", "C", "D"]
-// 第一引数 > 第二引数の場合、常に空文字列を返す
+// 第一引数 > 第二引数の場合、常に空配列を返す
 console.log(array.slice(4, 1)); // => []
 ```
 
