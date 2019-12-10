@@ -15,7 +15,7 @@ export class TodoItemModel {
     }
 
     /**
-     * タイトルが空文字の場合にtrueを返す
+     * タイトルが空文字列の場合にtrueを返す
      * @returns {boolean}
      */
     isEmptyTitle() {

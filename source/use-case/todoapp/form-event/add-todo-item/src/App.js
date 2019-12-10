@@ -18,7 +18,7 @@ export class App {
             // Todoアイテム数を+1し、表示されてるテキストを更新する
             todoItemCount += 1;
             todoItemCountElement.textContent = `Todoアイテム数: ${todoItemCount}`;
-            // 入力欄を空文字にしてリセットする
+            // 入力欄を空文字列にしてリセットする
             inputElement.value = "";
         });
     }

@@ -874,7 +874,7 @@ NOT演算子は必ず真偽値を返すため、次のように2つNOT演算子�
 {{book.console}}
 ```js
 const str = "";
-// 空文字はfalsyな値
+// 空文字列はfalsyな値
 console.log(!!str); // => false
 ```
 
@@ -884,7 +884,7 @@ console.log(!!str); // => false
 {{book.console}}
 ```js
 const str = "";
-// 空文字でないことを判定
+// 空文字列でないことを判定
 console.log(str.length > 0); // => false
 ```
 

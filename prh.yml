@@ -181,7 +181,7 @@ rules:
   - expected: 密な配列
     patterns: 密の配列
   - expected: 検索文字列
-    patterns: 
+    patterns:
       - 部分文字列
       - 指定文字列
     prh: https://github.com/asciidwango/js-primer/issues/208
@@ -305,6 +305,9 @@ rules:
     patterns:
       - インタフェース
       - インターフェイス
+  - expected: 空文字列
+    pattern:
+      - /空文字(?!列)/
 
   # 一致とマッチ
   ## 一致は ===

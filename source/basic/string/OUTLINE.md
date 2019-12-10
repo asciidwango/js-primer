@@ -13,7 +13,7 @@
     - Code Unit
 - 文字列の分解
     - split and join
-    - `String#split`と空文字
+    - `String#split`と空文字列
 - 文字列の長さ
     - 通常の文字列
     - サロゲートペア（視覚とは異なる長さ）
@@ -90,7 +90,7 @@ JavaScriptと内部的な文字コードについて知ること。
     - Iterator
     - サロゲートペアが問題となるのは1文字という視覚に依存した単位を扱う処理のケース
     - 文字列の分解
-        - `String#split`と空文字
+        - `String#split`と空文字列
     - 文字列の長さ
         - サロゲートペア（視覚とは異なる長さ）
         - Code Pointの数
@@ -162,7 +162,7 @@ ref [JavaScript における文字コードと「文字数」の数え方 | blog
     - Code Unit
     - Iterator
     - 文字列の分解
-        - `String#split`と空文字
+        - `String#split`と空文字列
     - 文字列の長さ
         - サロゲートペア（視覚とは異なる長さ）
         - Code Pointの数
