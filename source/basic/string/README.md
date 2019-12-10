@@ -307,7 +307,7 @@ console.log(strings); // => ["a", "b", "c", "d"]
 console.log("文字列".length); // => 3
 ```
 
-また、空文字は要素数が`0`であるため、`length`プロパティの結果も`0`となります。
+また、空文字列は要素数が`0`であるため、`length`プロパティの結果も`0`となります。
  
 {{book.console}}
 ```js
@@ -382,7 +382,7 @@ console.log(str.slice(1, 5)); // => "BCDE"
 console.log(str.slice(-1)); // => "E"
 // インデックスが1から4の範囲を取り出す
 console.log(str.slice(1, 4)); // => "BCD"
-// 第一引数 > 第二引数の場合、常に空文字を返す
+// 第一引数 > 第二引数の場合、常に空文字列を返す
 console.log(str.slice(4, 1)); // => ""
 ```
 
@@ -890,12 +890,12 @@ delete str[0]; // => TypeError: property 0 is non-configurable and can't be dele
 文字列.replace(/パターン/, "置換文字列");
 ```
 
-次のように、`replace`メソッドで、削除したい部分を空文字へ置換することで、文字列を削除できます。
+次のように、`replace`メソッドで、削除したい部分を空文字列へ置換することで、文字列を削除できます。
 
 {{book.console}}
 ```js
 const str = "文字列";
-// "文字"を""（空文字）へ置換することで"削除"を表現
+// "文字"を""（空文字列）へ置換することで"削除"を表現
 const newStr = str.replace("文字", "");
 console.log(newStr); // => "列"
 ```
