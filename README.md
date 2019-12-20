@@ -77,6 +77,8 @@ GitBookのbuildかつWatchをします。
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request :D
 
+[CODE_OF_CONDUCT](https://github.com/asciidwango/js-primer/blob/master/.github/CODE_OF_CONDUCT.md)もあわせて参照してください。
+
 ## License
 
 Copyright (c) 2016-present jsprimer project
