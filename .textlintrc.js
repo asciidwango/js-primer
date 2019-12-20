@@ -33,7 +33,7 @@ module.exports = {
     },
     "preset-ja-technical-writing": {
       "sentence-length": {
-        "max": 90
+        "max": 92 
       },
       "no-exclamation-question-mark": {
         "allowFullWidthQuestion": true
