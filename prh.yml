@@ -410,11 +410,9 @@ rules:
     patterns: /([0-9]+)コ/i
     prh: "https://github.com/asciidwango/js-primer/issues/979"
 
-# 漢字開き
+  # 漢字開き
   - expected: 呼び出す
     patterns: 呼びだす
-  - expected: もとづ$1
-    patterns: /基づ(く|き)/
   - expected: 見てい$1
     patterns: /見て行(く|き)/
     specs:
