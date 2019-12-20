@@ -562,8 +562,8 @@ rules:
     patterns: わける
   - expected: 渡す
     patterns: わたす
-  - expected: うまく
-    patterns: 上手く
+  - expected: うま$
+    patterns: /上手(く|い)/
   - expected: うれしい
     patterns: 嬉しい
   - expected: すばらしい
