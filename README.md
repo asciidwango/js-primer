@@ -52,8 +52,7 @@ GitBookのbuildかつWatchをします。
     npm run start
     # open http://localhost:4000/
 
-
-## Test
+**Test**
 
 このプロジェクトでは文章やコードに対してテストを実行しています。
 文章中のインラインコードのテスト、特定のファイル名にもとづくテスト、コメントを使ったDocTestなどが含まれます。
@@ -91,3 +90,9 @@ jsprimerプロジェクトは次のメンバーで構成されています。
 
 - azu([@azu](https://github.com/azu))
 - Suguru Inatomi([@lacolaco](https://github.com/lacolaco))
+
+## OSS Supporters
+
+<a href="https://www.netlify.com">
+  <img src="https://www.netlify.com/img/global/badges/netlify-color-bg.svg"/>
+</a>
