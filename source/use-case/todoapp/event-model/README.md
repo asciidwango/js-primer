@@ -64,7 +64,7 @@ TodoリストにはTodoアイテムを追加できるので、`TodoListModel#add
 | Todoアイテムの更新 | チェックボックスをクリック | `TodoListModel`の指定した`TodoItemModel`の状態を更新                                    | `TodoListModel`を元に表示を更新 |
 | Todoアイテムの削除 | 削除ボタンをクリック       | `TodoListModel`から指定の`TodoItemModel`を削除                                          | `TodoListModel`を元に表示を更新 |
 
-この表を元にあらためて先ほどの問題点を見ていきましょう。
+この表を元に改めて先ほどの問題点を見ていきましょう。
 
 > Todoリストの状態がDOM上にしか存在しないため、状態をすべてDOM上に文字列で埋め込まないといけない
 
@@ -184,7 +184,7 @@ Node.jsでは、`events`と呼ばれる組み込みのモジュールで同様�
 
 ## モデルを使って表示を更新する {#model-update-view}
 
-さきほど作成した`TodoListModel`と`TodoItemModel`クラスを使い、「Todoアイテムの追加」を書き直してみます。
+先ほど作成した`TodoListModel`と`TodoItemModel`クラスを使い、「Todoアイテムの追加」を書き直してみます。
 
 前回のセクションでは、フォームを送信すると直接DOMへ要素を追加していました。
 今回のセクションでは、フォームを送信すると`TodoListModel`へ`TodoItemModel`を追加します。
@@ -269,7 +269,7 @@ export class App {
 ### 3. フォームを送信したら、新しいTodoItemを追加する {#app-add-new-todoitem}
 
 前回のセクションでは、フォームを送信（`submit`）が行われると直接DOMへ要素を追加していました。
-今回のセクションでは、`TodoListModel`の状態が更新されたら表示を更新する仕組みがすでにできています。
+今回のセクションでは、`TodoListModel`の状態が更新されたら表示を更新する仕組みが既にできています。
 
 そのため、`submit`イベントのリスナー関数内では`TodoListModel`に対して新しい`TodoItemModel`を追加するだけで表示が更新されます。
 直接DOMへ`appendChild`していた部分を`TodoListModel#addTodo`メソッドを使いモデルを更新する処理へ置き換えるだけです。

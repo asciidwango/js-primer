@@ -23,7 +23,7 @@ description: "Hello Worldアプリケーションを通じてNode.jsのCLIアプ
 
 まずはNode.jsでHello Worldアプリケーションを作ってみましょう。
 具体的には、実行すると標準出力に`"Hello World!"`という文字列を表示するCLIアプリケーションを記述します。
-はじめに用意するのは、アプリケーションのエントリポイントとなるJavaScriptファイルです。
+はじめに用意するのは、アプリケーションのエントリーポイントとなるJavaScriptファイルです。
 `nodecli`ディレクトリに`main.js`という名前でファイルを作成し、次のように記述します。
 
 [import, title:"main.js"](src/main.js)
@@ -42,7 +42,7 @@ $ node main.js
 Hello World!
 ```
 
-Node.jsの基本は、エントリポイントとなるJavaScriptファイルを作成し、そのファイルを`node`コマンドの引数に渡して実行するという流れです。
+Node.jsの基本は、エントリーポイントとなるJavaScriptファイルを作成し、そのファイルを`node`コマンドの引数に渡して実行するという流れです。
 また、ウェブブラウザのJavaScriptと同じく、コードは1行目から順に実行されます。
 
 ## Node.jsとブラウザのグローバルオブジェクト {#global-objects}
