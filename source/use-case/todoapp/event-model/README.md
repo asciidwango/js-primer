@@ -269,7 +269,7 @@ export class App {
 ### 3. フォームを送信したら、新しいTodoItemを追加する {#app-add-new-todoitem}
 
 前回のセクションでは、フォームを送信（`submit`）が行われると直接DOMへ要素を追加していました。
-今回のセクションでは、`TodoListModel`の状態が更新されたら表示を更新する仕組みが既にできています。
+今回のセクションでは、`TodoListModel`の状態が更新されたら表示を更新する仕組みがすでにできています。
 
 そのため、`submit`イベントのリスナー関数内では`TodoListModel`に対して新しい`TodoItemModel`を追加するだけで表示が更新されます。
 直接DOMへ`appendChild`していた部分を`TodoListModel#addTodo`メソッドを使いモデルを更新する処理へ置き換えるだけです。

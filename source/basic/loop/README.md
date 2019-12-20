@@ -382,7 +382,7 @@ for (variable of iterable) {
 }
 ```
 
-実は既にiterableオブジェクトは登場していて、Arrayはiterableオブジェクトです。
+実はすでにiterableオブジェクトは登場していて、Arrayはiterableオブジェクトです。
 
 次のようにfor...of文で、配列から値を取り出し反復処理を行うことができます。
 for...in文とは異なり、インデックス値ではなく配列の値を列挙します。

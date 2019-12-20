@@ -144,7 +144,7 @@ HTMLではリストのアイテムを記述する際には`<li>`タグを使い�
 この`html-util.js`は「[ajaxapp: HTML文字列をDOMに追加する][]」でも利用した`escapeSpecialChars`をベースにしています。
 ajaxappでの`escapeHTML`タグ関数では出力は**HTML文字列**でしたが、今回作成する`element`タグ関数の出力は**HTML要素**（Element）です。
 
-これはTodoリスト(`#js-todo-list`)という既に存在する要素に対して要素を**追加**するには、HTML文字列ではなくHTML要素が必要になります。
+これはTodoリスト(`#js-todo-list`)というすでに存在する要素に対して要素を**追加**するには、HTML文字列ではなくHTML要素が必要になります。
 また、HTML文字列に対しては`addEventListener`でイベントをリッスンできません。
 そのため、チェックボックスの状態が変わったことや削除ボタンが押されたことを知る必要があるTodoアプリではHTML要素が必要になります。
 
@@ -168,7 +168,7 @@ const newElement = element`<ul>
 document.body.appendChild(newElement);
 ```
 
-ブラウザが提供する`appendChild`メソッドは子要素を追加するだけであるため、既に別の要素がある場合は末尾に追加されます。
+ブラウザが提供する`appendChild`メソッドは子要素を追加するだけであるため、すでに別の要素がある場合は末尾に追加されます。
 
 このセクションではまだ利用しませんが、`html-util.js`には`render`という関数を定義しています。
 `render`関数は指定したコンテナ要素（親となる要素）の子要素を上書きする関数となります。

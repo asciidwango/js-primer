@@ -616,7 +616,7 @@ promise.then(() => {
 
 このように`Promise`インスタンスの状態が変化した時に、一度だけ呼ばれるコールバック関数を登録するのが`then`や`catch`メソッドとなります。
 
-また`then`や`catch`メソッドは既にSettledへと状態が変化済みの`Promise`インスタンスに対してもコールバック関数を登録できます。
+また`then`や`catch`メソッドはすでにSettledへと状態が変化済みの`Promise`インスタンスに対してもコールバック関数を登録できます。
 状態が変化済みの`Promise`インスタンスを作成する方法として`Promise.resolve`と`Promise.reject`メソッドがあります。
 
 ### `Promise.resolve` {#promise-resolve}

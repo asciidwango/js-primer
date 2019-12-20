@@ -432,9 +432,6 @@ rules:
   - expected: わかる
     pattern:  分かる
     prh: ひらがなに統一します https://github.com/asciidwango/js-primer/issues/1011
-  - expected: 既に
-    pattern:  すでに
-    prh: ひらがなに統一します https://github.com/asciidwango/js-primer/issues/1011
   - expected: エディター
     patterns: /エディタ(?!ー)/
   - expected: エントリー
@@ -584,6 +581,7 @@ rules:
     patterns: かならず
   - expected: すでに
     patterns: 既に
+    prh: ひらがなに統一します https://github.com/asciidwango/js-primer/issues/1011
   - expected: 再び
     patterns: ふたたび
   - expected: ほとんど
