@@ -3,19 +3,6 @@
 version: 1
 rules:
   # 記号
-  # 半角括弧を全角括弧に
-  - expected: （$1）
-    pattern:  /\((.+?)\)/
-    specs:
-      - from: そうですね(笑)
-        to:   そうですね（笑）
-      - from: (@<fn>{test})
-        to:   （@<fn>{test}）
-      - from: "(ほげ)ほげ)"
-        to:   "（ほげ）ほげ)"
-    prh: 半角カッコの代わりに全角カッコを使うこと。文字のバランスが崩れるためです
-  # TODO 英単語の前後の空白を殺す
-
   # 開き
   - expected: いえ
     pattern:  言え
@@ -50,9 +37,6 @@ rules:
   - expected: ひととおり
     pattern:  /(一|ひと)通り/
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります。
-  - expected: すでに
-    pattern:  既に
-    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: すべて
     pattern:  全て
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
@@ -61,9 +45,6 @@ rules:
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: 他の
     pattern:  ほかの
-    prh: ひらがなで書かず、漢字で書くと読みやすくなります
-  - expected: 分かる
-    pattern:  わかる
     prh: ひらがなで書かず、漢字で書くと読みやすくなります
   - expected: $1中
     pattern:  /(その)なか/
@@ -123,7 +104,7 @@ rules:
     pattern:  /(の)様に/
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: 次$1
-    pattern:  /(?:以下|下記)(の|に)/
+    pattern:  /(?:下記|以下)(の|に)/
     specs:
       - from: 以下の
         to:   次の
