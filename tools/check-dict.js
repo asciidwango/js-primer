@@ -1,3 +1,4 @@
+// https://github.com/asciidwango/js-primer/issues/1011 の重複辞書チェック
 const pattern = [
     "エディタ",
     "エントリ",
@@ -18,8 +19,8 @@ const pattern = [
     "先程",
     "全て",
     "付ける",
-    "時 → とき",
-    "所 → ところ",
+    "時",
+    "所",
     "通り",
     "なか",
     "なに",
@@ -78,7 +79,7 @@ const pattern = [
 const fs = require("fs");
 const path = require("path");
 const prh = fs.readFileSync("prh.yml", "utf-8");
-const techbooster = fs.readFileSync("test/techbooster.yml", "utf-8");
+const techbooster = fs.readFileSync(path.join(__dirname, "../test/techbooster.yml", "utf-8"));
 pattern.forEach(item => {
     if (prh.includes(item)) {
         console.log(item, " => prh");
