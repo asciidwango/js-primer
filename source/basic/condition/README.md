@@ -10,7 +10,7 @@ description: "JavaScriptで条件分岐を扱うためのif文やswitch文を紹
 
 ## if文 {#if-statement}
 
-if文を使うことで、プログラム内に条件分岐を書くことができます。
+if文を使うことで、プログラム内に条件分岐を書けます。
 
 if文は次のような構文が基本形となります。
 `条件式`の評価結果が`true`であるならば、`実行する文`が実行されます。
@@ -55,7 +55,7 @@ if文の`条件式`には`true`または`false`といった真偽値以外の値
 真偽値以外の値の場合、その値を暗黙的に真偽値へ変換してから、条件式として判定します。
 
 真偽値へ変換すると`true`となる値の種類は多いため、逆に変換した結果が`false`となる値を覚えるのが簡単です。
-次の値は真偽値へと変換すると`false`となるため、これらの値は**falsy**と呼ばれます。（「[暗黙的な型変換][]」の章を参照）
+次の値は真偽値へと変換すると`false`となるため、これらの値は**falsy**と呼ばれます（「[暗黙的な型変換][]」の章を参照）。
 
 - `false`
 - `undefined`
@@ -67,7 +67,7 @@ if文の`条件式`には`true`または`false`といった真偽値以外の値
 これ以外の値は真偽値に変換すると`true`になります。
 そのため、`"文字列"`や0以外の数値などを`条件式`に指定した場合は、`true`へと変換してから条件式として判定します。
 
-次のコードは、条件式が`true`へと変換されるため、if文の中身は実行されます。
+次のコードは、条件式が`true`へと変換されるため、if文の中身が実行されます。
 
 {{book.console}}
 ```js
@@ -120,7 +120,7 @@ if (null) {
 - `version` が "ES7" ならば "ECMAScript 2016" と出力
 
 次のコードでは、if文とelse if文を使うことで3つの条件を書いています。
-変数`version`の値が`"ES6"`であるため、コンソールには"ECMAScript 2015"`が出力されます。
+変数`version`の値が`"ES6"`であるため、コンソールには`"ECMAScript 2015"`が出力されます。
 
 {{book.console}}
 [import, else-if-example.js](src/if/else-if-example.js)
@@ -145,7 +145,7 @@ if (num > 10) {
 
 #### ネストしたif文 {#nested-if-statement}
 
-if文、else if文、else文はネストして書くこともできます。
+if文、else if文、else文はネストして書けます。
 次のように複数の条件を満たすかどうかをif文のネストとして表現できます。
 
 <!-- doctest:disable -->
@@ -170,13 +170,13 @@ if (条件式A) {
 <!-- textlint-enable preset-ja-technical-writing/no-start-duplicated-conjunction -->
 
 西暦での現在の年は `new Date().getFullYear();` で取得できます。
-このうるう年の条件をif文で表現すると次のように書くことができます。
+このうるう年の条件をif文で表現すると次のように書けます。
 
 {{book.console}}
 [import, leap-year-nest-example.js](src/if/leap-year-nest-example.js)
 
 条件を上から順に書き下したため、ネストが深い文となってしまっています。
-一般的にはネストは浅い方が、読みやすいコードとなります。
+一般的にはネストは浅いほうが、読みやすいコードとなります。
 
 条件を少し読み解くと、400で割り切れる年は無条件にうるう年であることがわかります。
 そのため、条件を並び替えることで、ネストするif文なしに書くことができます。
@@ -195,7 +195,7 @@ switch (式) {
         // `式`の評価結果が`ラベル1`と一致する場合に実行する文
         break;
     case ラベル2:
-        // `式`の評価結果が`ラベル2`である場合に実行する文
+        // `式`の評価結果が`ラベル2`と一致する場合に実行する文
         break;
     default:
         // どのcaseにも該当しない場合の処理
@@ -204,8 +204,8 @@ switch (式) {
 // break; 後はここから実行される
 ```
 
-switch文はif文と同様に`式`の評価結果にもとづく条件分岐を扱います。
-またbreak文は、switch文から抜けswitch文の次の文から実行するためのものです。
+switch文はif文と同様に`式`の評価結果に基づく条件分岐を扱います。
+またbreak文は、switch文から抜けてswitch文の次の文から実行するためのものです。
 次のコードでは、`version`の評価結果は`"ES6"`となるため、`case "ES6":`に続く文が実行されます。
 
 {{book.console}}
@@ -227,7 +227,7 @@ if (version === "ES5") {
 }
 ```
 
-switch文はやや複雑な仕組みであるためどのように処理されているかを見ていきます。
+switch文はやや複雑な仕組みであるため、どのように処理されているかを見ていきます。
 まず `switch (式)` の`式`を評価します。
 
 <!-- doctest:disable -->
@@ -258,7 +258,7 @@ switch (式) {
 
 ### break文 {#break-statement}
 
-switch文のcase節では基本的に`break;`を使いswitch文を抜けるようにします。
+switch文のcase節では基本的に`break;`を使ってswitch文を抜けるようにします。
 この`break;`は省略が可能ですが、省略した場合、後ろに続くcase節が条件に関係なく実行されます。
 
 {{book.console}}
@@ -280,7 +280,7 @@ switch文はif文の代用として使うのではなく、次のように関数
 
 - if文、else if文、else文で条件分岐した処理を扱える
 - 条件式に指定した値は真偽値へと変換してから判定される
-- 真偽値に変換すると`false`となる値はfalsyと呼ぶ
+- 真偽値に変換すると`false`となる値をfalsyと呼ぶ
 - switch文とcase節、default節を組み合わせて条件分岐した処理を扱える
 - case節でbreak文しない場合は引き続きcase節が実行される
 
@@ -291,7 +291,7 @@ switch文はif文の代用として使うのではなく、次のように関数
 <!--
 ## 参考 {#reference-for-condition}
 
-- [閏年 - Wikipedia](https://ja.wikipedia.org/wiki/%E9%96%8F%E5%B9%B4)
+- [うるう年 - Wikipedia](https://ja.wikipedia.org/wiki/%E9%96%8F%E5%B9%B4)
 - [C言語入門：うるう年判定プログラム:Geekなぺーじ](http://www.geekpage.jp/programming/c/leap-year.php)
 - [どうしてこんなキーワードがあるの？ - あどけない話](http://d.hatena.ne.jp/kazu-yamamoto/20080904/1220495854)
 - [switch - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/switch)
