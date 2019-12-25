@@ -305,7 +305,7 @@ JavaScriptにおける基本的なプロジェクトレイアウト、ファイ�
 [第二部: 応用編（ユースケース）]: ../use-case/README.md
 [アプリケーション開発の準備]: ../use-case/setup-local-env/README.md
 [Ajaxで通信]: ../use-case/ajaxapp/README.md
-[エントリポイント]: ../use-case/ajaxapp/entrypoint/README.md
+[エントリーポイント]: ../use-case/ajaxapp/entrypoint/README.md
 [HTTP通信]: ../use-case/ajaxapp/http/README.md
 [データを表示する]: ../use-case/ajaxapp/display/README.md
 [Promiseを活用する]: ../use-case/ajaxapp/promise/README.md
@@ -316,7 +316,7 @@ JavaScriptにおける基本的なプロジェクトレイアウト、ファイ�
 [MarkdownをHTMLに変換する]: ../use-case/nodecli/md-to-html/README.md
 [ユニットテストを記述する]: ../use-case/nodecli/refactor-and-unittest/README.md
 [Todoアプリ]: ../use-case/todoapp/README.md
-[エントリポイント]: ../use-case/todoapp/entrypoint/README.md
+[エントリーポイント]: ../use-case/todoapp/entrypoint/README.md
 [アプリの構成要素]: ../use-case/todoapp/app-structure/README.md
 [Todoアイテムの追加を実装する]: ../use-case/todoapp/form-event/README.md
 [イベントとモデル]: ../use-case/todoapp/event-model/README.md

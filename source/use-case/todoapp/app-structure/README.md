@@ -144,5 +144,5 @@ const form = document.querySelector("#js-form");
 
 - <https://jsprimer.net/use-case/todoapp/app-structure/todo-html/>
 
-[エントリポイント]: ../entrypoint/README.md
+[エントリーポイント]: ../entrypoint/README.md
 [CSSセレクタ]: https://developer.mozilla.org/ja/docs/Learn/CSS/Introduction_to_CSS/Selectors

@@ -523,8 +523,10 @@ rules:
   - expected: 異なる
     patterns: ことなる
   - expected: 過ぎる
+    prh: 「〜にすぎない」はひらがな、「〜過ぎる」などは漢字にします。
     patterns: すぎる
   - expected: すぎない
+    prh: 「〜にすぎない」はひらがな、「〜過ぎる」などは漢字にします。
     patterns: 過ぎない
   - expected: たどる
     patterns: 辿る
@@ -539,8 +541,9 @@ rules:
     prh: だす -> 出す
   # - expected: 直す
   #   patterns: なおす
-  - expected: 投げる
-    patterns: なげる
+  # - expected: 投げる
+  # patterns: なげる
+  # Note: つなげるで誤爆する
   - expected: 入る
     patterns: はいる
   - expected: 開く

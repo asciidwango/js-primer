@@ -24,7 +24,7 @@ description: "ブラウザで動作するウェブアプリケーションの例
 
 ## 目次 {#summary}
 
-### [エントリポイント](./entrypoint/README.md) {#entrypoint}
+### [エントリーポイント](./entrypoint/README.md) {#entrypoint}
 
 HTMLとJavaScriptモジュールを使い、アプリケーションで一番最初に呼び出されるエントリーポイントを作成します。
 

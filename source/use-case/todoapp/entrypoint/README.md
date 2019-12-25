@@ -1,6 +1,6 @@
 ---
 author: azu
-description: "HTMLとJavaScriptモジュールを使い、アプリケーションで一番最初に呼び出されるエントリポイントを作成します。"
+description: "HTMLとJavaScriptモジュールを使い、アプリケーションで一番最初に呼び出されるエントリーポイントを作成します。"
 ---
 
 # エントリーポイント {#entrypoint}
@@ -239,7 +239,7 @@ import { App } from "./src/App.js";
 
 - <https://jsprimer.net/use-case/todoapp/entrypoint/module-entry/>
 
-[Ajax通信:エントリポイント]: ../../ajaxapp/entrypoint/README.md
+[Ajax通信:エントリーポイント]: ../../ajaxapp/entrypoint/README.md
 [Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy
 [Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
 [npmを使ってパッケージをインストールする]: ../../nodecli/argument-parse/README.md#use-npm
