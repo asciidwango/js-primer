@@ -349,9 +349,9 @@ rules:
     patterns:
       - 今ストラク
       - コンストラスト
-  - expected: 関数内に
+  - expected: 関数中に
     patterns:
-      - 関数中に
+      - 関数内に
   - expected: 子クラス
     patterns:
       - 小クラス
@@ -410,11 +410,9 @@ rules:
     patterns: /([0-9]+)コ/i
     prh: "https://github.com/asciidwango/js-primer/issues/979"
 
-# 漢字開き
+  # 漢字開き
   - expected: 呼び出す
     patterns: 呼びだす
-  - expected: もとづ$1
-    patterns: /基づ(く|き)/
   - expected: 見てい$1
     patterns: /見て行(く|き)/
     specs:
@@ -428,3 +426,166 @@ rules:
   # techbooster.ymlでは'時刻'が認められないので'刻'を追加
   - expected: $1とき
     pattern:  /(の)時(?!点|代|々|間|刻)/
+  # https://github.com/asciidwango/js-primer/issues/1011 の追加
+  - expected: わかる
+    pattern:  分かる
+    prh: ひらがなに統一します https://github.com/asciidwango/js-primer/issues/1011
+  - expected: エディター
+    patterns: /エディタ(?!ー)/
+  - expected: エントリー
+    patterns: /エントリ(?!ー)/
+  - expected: クォート
+    patterns: クオート
+  - expected: サーバー
+    patterns: /サーバ(?!ー)/
+  - expected: コンストラクタ
+    patterns: コンストラクター
+  - expected: フィルター
+    patterns: /フィルタ(?!ー)/
+  - expected: ユーザー
+    patterns: /ユーザ(?!ー)/
+  - expected: 明らか
+    patterns: あきらか
+  # - expected: 今
+    # patterns: いま
+  - expected: カッコ
+    patterns: かっこ
+  - expected: カッコ
+    patterns: 括弧
+  - expected: 疑似
+    patterns: 擬似
+  - expected: ループごと
+    patterns: ループ毎
+    prh: 毎 -> ごと
+  - expected: $1際
+    patterns: /(する)さい/
+    prh: さい -> 際
+  - expected: 先ほど
+    patterns: 
+      - 先程
+      - さきほど
+  - expected: すべて
+    patterns: 全て
+  - expected: つける
+    patterns: 付ける
+  # - expected: ところ
+    # patterns: 所
+  # - expected: 中
+  #   patterns: なか
+  - expected: 何
+    patterns: なに
+  - expected: はじめ$1
+    patterns: /始め(に|る)/
+  - expected: $1人
+    patterns: /(する)ひと/
+  # - expected: ほう
+  #   patterns: 方
+  #   prh: ほうと読む場合はひらがなにする
+  - expected: $1方
+    patterns: /(する)かた/
+    prh: かたと読む場合は方にする
+  - expected: 元々
+    patterns: もともと
+    prh: もと -> 元に統一。基づくは例外
+  - expected: 基づく
+    patterns: もとづく
+  - expected: やり取り
+    patterns: やりとり
+  - expected: リンゴ
+    patterns: りんご
+  - expected: あるわけ
+    patterns: ある訳
+    prh: 〜する訳 -> 〜するわけ
+  - expected: あてはめる
+    patterns: 当てはめる
+  - expected: あふれる
+    patterns: 溢れる
+  - expected: 表す
+    patterns: あらわす
+  - expected: 入れる
+    patterns: いれる
+  - expected: 受け取り
+    patterns: 受けとり
+  - expected: 行う
+    patterns: おこなう
+  - expected: を押す
+    patterns: をおす
+    prh: 〜をおす -> 〜を押す
+  - expected: 終わる
+    patterns: おわる
+    prh: おわりに -> 終わりに
+  - expected: 関わる
+    patterns: かかわる
+  - expected: 気づく
+    patterns: 気付く
+  - expected: ください
+    patterns: 下さい
+  - expected: 異なる
+    patterns: ことなる
+  - expected: 過ぎる
+    prh: 「〜にすぎない」はひらがな、「〜過ぎる」などは漢字にします。
+    patterns: すぎる
+  - expected: すぎない
+    prh: 「〜にすぎない」はひらがな、「〜過ぎる」などは漢字にします。
+    patterns: 過ぎない
+  - expected: たどる
+    patterns: 辿る
+  - expected: つなぐ
+    patterns: 繋ぐ
+  - expected: できる
+    patterns: 出来る
+  # - expected: 出す
+  #   patterns: だす
+  - expected: 取り出す
+    patterns: 取りだす
+    prh: だす -> 出す
+  # - expected: 直す
+  #   patterns: なおす
+  # - expected: 投げる
+  # patterns: なげる
+  # Note: つなげるで誤爆する
+  - expected: 入る
+    patterns: はいる
+  - expected: 開く
+    patterns: ひらく
+  - expected: 待つこと
+    patterns: まつこと
+    prh: まつ -> 待つ
+  # - expected: 見る
+  #   patterns: みる
+  # - expected: 持つ
+  #   patterns: もつ
+  # TODO: 持つは要検討
+  - expected: 呼びます
+    patterns: よびます
+    prh: よぶ -> 呼ぶ
+  - expected: わかる
+    patterns: 分かる
+  - expected: 分ける
+    patterns: わける
+  - expected: 渡す
+    patterns: わたす
+  - expected: うま$
+    patterns: /上手(く|い)/
+  - expected: うれしい
+    patterns: 嬉しい
+  - expected: すばらしい
+    patterns: 素晴らしい
+  - expected: 難しい
+    patterns: むずかしい
+  - expected: しやすい
+    patterns: し易い
+    prh: 易い -> やすい
+  - expected: 改めて
+    patterns: あらためて
+  - expected: 必ず
+    patterns: かならず
+  - expected: すでに
+    patterns: 既に
+    prh: ひらがなに統一します https://github.com/asciidwango/js-primer/issues/1011
+  - expected: 再び
+    patterns: ふたたび
+  - expected: ほとんど
+    patterns: 殆ど
+  - expected: まったく
+    patterns: 全く
