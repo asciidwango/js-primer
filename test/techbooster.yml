@@ -15,12 +15,6 @@ rules:
         to:   "（ほげ）ほげ)"
     prh: 半角カッコの代わりに全角カッコを使うこと。文字のバランスが崩れるためです
   # 開き
-  - expected: いえ
-    pattern:  言え
-    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
-  - expected: いう
-    pattern:  言う
-    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: さまざま
     pattern:  様々
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
@@ -39,9 +33,6 @@ rules:
     specs:
       - from: 変更に
         to:   変更に
-  - expected: もつ
-    pattern:  持つ
-    prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: とおり
     pattern:  通り
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります。"どおり"のケースもありえます
@@ -54,9 +45,6 @@ rules:
   - expected: たとえば
     pattern:  例えば
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
-  - expected: 他の
-    pattern:  ほかの
-    prh: ひらがなで書かず、漢字で書くと読みやすくなります
   - expected: $1中
     pattern:  /(その)なか/
     prh: ひらがなで書かず、漢字で書くと読みやすくなります
