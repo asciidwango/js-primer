@@ -64,7 +64,7 @@ TodoリストにはTodoアイテムを追加できるので、`TodoListModel#add
 | Todoアイテムの更新 | チェックボックスをクリック | `TodoListModel`の指定した`TodoItemModel`の状態を更新                                    | `TodoListModel`を元に表示を更新 |
 | Todoアイテムの削除 | 削除ボタンをクリック       | `TodoListModel`から指定の`TodoItemModel`を削除                                          | `TodoListModel`を元に表示を更新 |
 
-この表を元にあらためて先ほどの問題点を見ていきましょう。
+この表を元に改めて先ほどの問題点を見ていきましょう。
 
 > Todoリストの状態がDOM上にしか存在しないため、状態をすべてDOM上に文字列で埋め込まないといけない
 
@@ -184,7 +184,7 @@ Node.jsでは、`events`と呼ばれる組み込みのモジュールで同様�
 
 ## モデルを使って表示を更新する {#model-update-view}
 
-さきほど作成した`TodoListModel`と`TodoItemModel`クラスを使い、「Todoアイテムの追加」を書き直してみます。
+先ほど作成した`TodoListModel`と`TodoItemModel`クラスを使い、「Todoアイテムの追加」を書き直してみます。
 
 前回のセクションでは、フォームを送信すると直接DOMへ要素を追加していました。
 今回のセクションでは、フォームを送信すると`TodoListModel`へ`TodoItemModel`を追加します。

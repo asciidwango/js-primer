@@ -15,9 +15,9 @@ description: "ウェブブラウザ上でAjax通信をするユースケース�
 
 ## 目次 {#summary}
 
-### [エントリポイント](./entrypoint/README.md) {#entrypoint}
+### [エントリーポイント](./entrypoint/README.md) {#entrypoint}
 
-アプリケーションの中で一番最初に呼び出されるエントリポイントを作成します。
+アプリケーションの中で一番最初に呼び出されるエントリーポイントを作成します。
 
 ### [HTTP通信](./http/README.md) {#http-communication}
 

@@ -157,7 +157,7 @@ console.log(obj.hasOwnProperty === Object.prototype.hasOwnProperty); // => true
 > `Array`のインスタンス -> `Array.prototype` -> `Object.prototype`
 
 `Object.create`メソッドを使って`Array`と`Object`の関係をコードとして表現してみます。
-この擬似コードは、`Array`コンストラクタの実装などは実際のものとは異なる部分があるため、あくまでイメージであることに注意してください。
+この疑似コードは、`Array`コンストラクタの実装などは実際のものとは異なる部分があるため、あくまでイメージであることに注意してください。
 
 ```js
 // このコードはイメージです！
@@ -204,7 +204,7 @@ console.log(numbers.toString()); // => "1,2,3"
 `Object`はすべてのオブジェクトの親になるオブジェクトであると言いましたが、例外もあります。
 
 イディオム（慣習的な書き方）ですが、`Object.create(null)`とすることで`Object.prototype`を継承しないオブジェクトを作成できます。
-これにより、プロパティやメソッドを全く持たない本当に**空のオブジェクト**を作ることができます。
+これにより、プロパティやメソッドをまったく持たない本当に**空のオブジェクト**を作ることができます。
 
 {{book.console}}
 ```js

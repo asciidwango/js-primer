@@ -115,8 +115,8 @@ JavaScriptの言語機能に関するチートシートです。
 
 | コード例 | 説明 | 解説 |
 |---------|-------------|-------------|
-| `"xxx"` | ダブルクオートの**文字列リテラル**。改行などは`\`と特定の文字を組み合わせたエスケープシーケンスとして表現します。 | [文字列][] |
-| `'xxx'` | シングルクオートの**文字列リテラル**。`"xxx"`と意味は同じ。 | [文字列][] |
+| `"xxx"` | ダブルクォートの**文字列リテラル**。改行などは`\`と特定の文字を組み合わせたエスケープシーケンスとして表現します。 | [文字列][] |
+| `'xxx'` | シングルクォートの**文字列リテラル**。`"xxx"`と意味は同じ。 | [文字列][] |
 | `` `xxx` `` | [ES2015] テンプレート文字列リテラル。改行を含んだ入力が可能 | [文字列][] |
 | <i class="s4"></i> `` `${x}` `` | [ES2015] テンプレート文字列リテラル中の変数`x`の値を展開する | [文字列][] |
 
@@ -199,7 +199,7 @@ JavaScriptの言語機能に関するチートシートです。
 | <i class="s4"></i> `super` | [ES2015] **親クラス**を参照する | [クラス][] |
 | `fn()` | 関数呼び出し | [関数と宣言][] |
 | `` fn`xxx` ``  | [ES2015] タグ関数呼び出し | [文字列][] |
-| `new X()`  | `new`演算子でのクラス（コンストラクター関数をもつオブジェクト）からインスタンスを作成 | [クラス][] |
+| `new X()`  | `new`演算子でのクラス（コンストラクタ関数をもつオブジェクト）からインスタンスを作成 | [クラス][] |
 
 <!-- textlint-enable -->
 
@@ -258,7 +258,7 @@ JavaScriptにおける基本的なプロジェクトレイアウト、ファイ�
 | 名前 | 説明 |
 |--------| ---- |
 | src/ | プロジェクトのソースコード |
-| <s class="s4"></s> index.js | アプリケーションのデフォルトエントリポイント |
+| <s class="s4"></s> index.js | アプリケーションのデフォルトエントリーポイント |
 | test/ | テストコード。`src/`に対するユニットテストを置くことが多い |
 | <s class="s4"></s> index.test.js | アプリケーションのユニットテストファイル。例) `index-test.js`、`indexSpec.js`など |
 | node_modules/ | プロジェクトが依存するnpmモジュールのインストール先 |
@@ -305,7 +305,7 @@ JavaScriptにおける基本的なプロジェクトレイアウト、ファイ�
 [第二部: 応用編（ユースケース）]: ../use-case/README.md
 [アプリケーション開発の準備]: ../use-case/setup-local-env/README.md
 [Ajaxで通信]: ../use-case/ajaxapp/README.md
-[エントリポイント]: ../use-case/ajaxapp/entrypoint/README.md
+[エントリーポイント]: ../use-case/ajaxapp/entrypoint/README.md
 [HTTP通信]: ../use-case/ajaxapp/http/README.md
 [データを表示する]: ../use-case/ajaxapp/display/README.md
 [Promiseを活用する]: ../use-case/ajaxapp/promise/README.md
@@ -316,7 +316,7 @@ JavaScriptにおける基本的なプロジェクトレイアウト、ファイ�
 [MarkdownをHTMLに変換する]: ../use-case/nodecli/md-to-html/README.md
 [ユニットテストを記述する]: ../use-case/nodecli/refactor-and-unittest/README.md
 [Todoアプリ]: ../use-case/todoapp/README.md
-[エントリポイント]: ../use-case/todoapp/entrypoint/README.md
+[エントリーポイント]: ../use-case/todoapp/entrypoint/README.md
 [アプリの構成要素]: ../use-case/todoapp/app-structure/README.md
 [Todoアイテムの追加を実装する]: ../use-case/todoapp/form-event/README.md
 [イベントとモデル]: ../use-case/todoapp/event-model/README.md

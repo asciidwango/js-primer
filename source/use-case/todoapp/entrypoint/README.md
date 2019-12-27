@@ -1,13 +1,13 @@
 ---
 author: azu
-description: "HTMLとJavaScriptモジュールを使い、アプリケーションで一番最初に呼び出されるエントリポイントを作成します。"
+description: "HTMLとJavaScriptモジュールを使い、アプリケーションで一番最初に呼び出されるエントリーポイントを作成します。"
 ---
 
-# エントリポイント {#entrypoint}
+# エントリーポイント {#entrypoint}
 
-エントリポイントとは、アプリケーションの中で一番最初に呼び出される部分のことです。
+エントリーポイントとは、アプリケーションの中で一番最初に呼び出される部分のことです。
 
-「[Ajax通信:エントリポイント][]」のユースケースでは、エントリポイントはHTML（`index.html`）のみでした。
+「[Ajax通信:エントリーポイント][]」のユースケースでは、エントリーポイントはHTML（`index.html`）のみでした。
 まずHTMLが読み込まれ、次にHTMLの中に書かれている`script`要素で指定したJavaScriptファイルが読み込まれます。
 
 今回のTodoアプリはJavaScriptの処理をモジュール化し、それぞれのモジュールを別々のJavaScriptファイルとして作成していきます。
@@ -23,14 +23,14 @@ JavaScriptモジュールを別々の`script`要素で読み込むと、モジ�
 このようにモジュールを別々の`script`要素で扱うとモジュール同士は連携できません。
 そのため、HTMLでは`script`要素で`index.js`のみを読み込み、この`index.js`から`import`文で他のモジュールを読み込みます。
 `import`文を使うことで、モジュール間は1つの`<script type="module">`のスコープ内に収まるため、モジュール同士で連携できます。
-このHTMLから読み込むJavaScriptファイル（`index.js`）をJavaScriptにおけるエントリポイントとします。
+このHTMLから読み込むJavaScriptファイル（`index.js`）をJavaScriptにおけるエントリーポイントとします。
 
-つまり、今回作成するTodoアプリではエントリポイントとしてHTMLとJavaScriptの2つを用意します。
+つまり、今回作成するTodoアプリではエントリーポイントとしてHTMLとJavaScriptの2つを用意します。
 
 - `index.html`: もっとも最初に読み込まれるファイル、`index.js`を読み込む
 - `index.js`: `index.html`から読み込まれるファイル、JavaScript間においては最初に読み込まれる
 
-このセクションでは、この2つのエントリポイントを作成し読み込むところまでを確認します。
+このセクションでは、この2つのエントリーポイントを作成し読み込むところまでを確認します。
 
 ## プロジェクトディレクトリを作成 {#project-directory}
 
@@ -44,8 +44,8 @@ JavaScriptモジュールを別々の`script`要素で読み込むと、モジ�
 
 ## HTMLファイルの用意 {#preparing-html}
 
-エントリポイントとして、まずは最低限の要素だけを配置したHTMLファイルを作成しましょう。
-エントリポイントとなるHTMLとして`index.html`を`todoapp`ディレクトリに作成し、次のような内容にします。
+エントリーポイントとして、まずは最低限の要素だけを配置したHTMLファイルを作成しましょう。
+エントリーポイントとなるHTMLとして`index.html`を`todoapp`ディレクトリに作成し、次のような内容にします。
 `body`要素の一番下で`script`要素を使い読み込んでいる`index.js`が、今回のアプリケーションの処理を記述するJavaScriptファイルです。
 
 [import, title:"index.html"](first-entry/index.html)
@@ -131,11 +131,11 @@ JavaScriptモジュールはまだ新しい機能であるため、バージョ�
 
 ----
 
-## モジュールのエントリポイントの作成 {#module-entry-point}
+## モジュールのエントリーポイントの作成 {#module-entry-point}
 
 <!-- ソースコードは module-entry/ -->
 
-最後にエントリポイントとなる`index.js`から別のJavaScriptファイルをモジュールとして読み込んでみましょう。
+最後にエントリーポイントとなる`index.js`から別のJavaScriptファイルをモジュールとして読み込んでみましょう。
 このアプリではJavaScriptモジュールが複数登場するため`src/`というディレクトリを作り、`src/`の下にJavaScriptモジュールを書くことにします。
 今回は`src/App.js`にファイルを作成し、これを`index.js`からモジュールとして読み込みます。
 
@@ -172,7 +172,7 @@ App initialized
 まず`index.js`から`src/App.js`が名前付きエクスポートしている`App`クラスを名前付きインポートしています。
 次に`App`クラスがインスタンス化されていることがログから確認できます。
 
-これでHTMLとJavaScriptそれぞれのエントリポイントの作成と動作を確認できました。
+これでHTMLとJavaScriptそれぞれのエントリーポイントの作成と動作を確認できました。
 
 ### App.jsの読み込みに失敗する {#error-import-app-js}
 
@@ -225,13 +225,13 @@ import { App } from "./src/App.js";
 
 ## まとめ {#conclusion}
 
-このセクションでは、エントリポイントとなるHTMLを作成し、JavaScriptモジュールのエントリポイントとなるJavaScriptファイルを読み込むところまでを実装しました。
+このセクションでは、エントリーポイントとなるHTMLを作成し、JavaScriptモジュールのエントリーポイントとなるJavaScriptファイルを読み込むところまでを実装しました。
 
 ## このセクションのチェックリスト {#section-checklist}
 
 - `todoapp`という名前のプロジェクトディレクトリを作成した
-- エントリポイントとなる`index.html`を作成した
-- JavaScriptのエントリポイントとなる`index.js`を作成し`index.html`から読み込んだ
+- エントリーポイントとなる`index.html`を作成した
+- JavaScriptのエントリーポイントとなる`index.js`を作成し`index.html`から読み込んだ
 - ローカルサーバーを使って`index.html`が表示できた
 - `src/App.js`を作成し、`index.js`から`import`文で読み込めるのを確認した
 
@@ -239,7 +239,7 @@ import { App } from "./src/App.js";
 
 - <https://jsprimer.net/use-case/todoapp/entrypoint/module-entry/>
 
-[Ajax通信:エントリポイント]: ../../ajaxapp/entrypoint/README.md
+[Ajax通信:エントリーポイント]: ../../ajaxapp/entrypoint/README.md
 [Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy
 [Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
 [npmを使ってパッケージをインストールする]: ../../nodecli/argument-parse/README.md#use-npm

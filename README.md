@@ -52,8 +52,7 @@ GitBookのbuildかつWatchをします。
     npm run start
     # open http://localhost:4000/
 
-
-## Test
+**Test**
 
 このプロジェクトでは文章やコードに対してテストを実行しています。
 文章中のインラインコードのテスト、特定のファイル名にもとづくテスト、コメントを使ったDocTestなどが含まれます。
@@ -78,6 +77,8 @@ GitBookのbuildかつWatchをします。
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request :D
 
+[CODE_OF_CONDUCT](https://github.com/asciidwango/js-primer/blob/master/.github/CODE_OF_CONDUCT.md)もあわせて参照してください。
+
 ## License
 
 Copyright (c) 2016-present jsprimer project
@@ -91,3 +92,9 @@ jsprimerプロジェクトは次のメンバーで構成されています。
 
 - azu([@azu](https://github.com/azu))
 - Suguru Inatomi([@lacolaco](https://github.com/lacolaco))
+
+## OSS Supporters
+
+<a href="https://www.netlify.com">
+  <img src="https://www.netlify.com/img/global/badges/netlify-color-bg.svg"/>
+</a>
