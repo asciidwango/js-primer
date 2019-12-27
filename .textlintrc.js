@@ -36,7 +36,7 @@ module.exports = {
         "max": 95,
         "exclusionPatterns": [
           // 文末の（...）。はカウントしない
-          "/（.*）。$/"
+          "/（.*?）。$/"
         ]
       },
       "no-exclamation-question-mark": {
