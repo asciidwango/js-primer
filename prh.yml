@@ -589,6 +589,7 @@ rules:
     patterns: 全く
   # techboosterから持ってきた辞書
   # techbooster editor lint!!
+  # https://github.com/vvakame/prh/blob/master/misc/techbooster.yml
   # 記号
   # 半角括弧を全角括弧に
   - expected: （$1）
@@ -649,33 +650,6 @@ rules:
         to:   記事
       - from: 事件
         to:   事件
-  - expected: $1とき
-    pattern:  /(の)時(?!点|代|々|間)/
-    specs:
-      - from: その時
-        to:   そのとき
-      - from: その時点
-        to:   その時点
-      - from: その時代
-        to:   その時代
-      - from: それまでの時間
-        to:   それまでの時間
-      - from: 同時
-        to:   同時
-      - from: 実行時
-        to:   実行時
-      - from: 利用時
-        to:   利用時
-      - from: 開発時
-        to:   開発時
-      - from: 執筆時
-        to:   執筆時
-      - from: 時点
-        to:   時点
-      - from: 時代
-        to:   時代
-      - from: 時間
-        to:   時間
     prh: 漢字で書かず、ひらがなで書くと読みやすくなります
   - expected: でき$1
     pattern:  /出来(る|て|た|ま|上が)/
