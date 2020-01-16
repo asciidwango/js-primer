@@ -106,6 +106,52 @@ Markdown中のインラインコードブロックとは次のような`js`言�
     var foo = "string";
     ```
 
+### textlint
+
+CIではMarkdownの文章に対して[textlint](https://textlint.github.io/)を使ったLintが実行されます。
+
+textlintだけのテストをしたい場合は、次のコマンドを実行してください。
+
+    npm run textlint
+
+#### prhでの用語統一
+
+[prh.yml](./prh.yml)に用語統一用の辞書が定義されています。
+
+この辞書を使ってtextlintで用語の統一しています
+辞書がおかしい場合(誤検知している場合)は、[prh.yml](./prh.yml)を修正してください。
+
+prh.ymlの書き方については次のページを参照してください。
+
+- [prh/prh: proofreading helper](https://github.com/prh/prh)
+
+#### textlintのエラーの無視方法
+
+次のようにHTMLコメントで、特定の範囲のtextlintエラーを無視できます。
+
+```
+<!-- textlint-disable -->
+
+すべてのtextlintエラーを無視する
+
+<!-- textlint-enable -->
+```
+
+できるだけ、特定のルールのエラーを無視するようにコメントを指定してください。
+`textlint-disable ルール名` で特定のルールのエラーだけを無視できます。
+
+```
+<!-- textlint-disable preset-ja-technical-writing/no-doubled-conjunction -->
+
+二重助詞のルールのエラーだけを無視する
+
+<!-- textlint-enable preset-ja-technical-writing/no-doubled-conjunction -->
+```
+
+コメントの詳細は次のページを参照してください。
+
+- [textlint-filter-rule-comments](https://github.com/textlint/textlint-filter-rule-comments)
+
 ### Doctest
 
 `*-example.js`のJavaScriptファイルとMarkdownのインラインコードブロックを対象にDoctestが実行されます。
