@@ -33,7 +33,11 @@ module.exports = {
     },
     "preset-ja-technical-writing": {
       "sentence-length": {
-        "max": 95 
+        "max": 95,
+        "exclusionPatterns": [
+          // 文末の（...）。はカウントしない
+          "/（.*?）。$/"
+        ]
       },
       "no-exclamation-question-mark": {
         "allowFullWidthQuestion": true
