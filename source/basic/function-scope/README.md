@@ -527,9 +527,11 @@ hello(); // => "Hello"
 なぜなら、実際に巻き上げられた関数を呼び出せるためです。
 
 注意点として、`var`や`let`などで宣言された変数へ関数を代入した場合は`var`のルールで巻き上げられます。
+<!-- textlint-enable eslint -->
 <!-- textlint-disable -->
 そのため、`var`で変数へ関数を代入する関数式では、`hello`変数が巻き上げにより`undefined`となるため呼び出せません（「[関数と宣言（関数式）][]」を参照）。
 <!-- textlint-enable -->
+<!-- textlint-disable eslint -->
 
 {{book.console}}
 ```js
