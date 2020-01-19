@@ -895,7 +895,7 @@ console.log(versionNames); // => ["ECMAScript 1", "ECMAScript 2", "ECMAScript 3"
 - メソッドチェーンは配列のメソッドが配列を返すことを利用している
 
 配列はJavaScriptの中でもよく使われるオブジェクトで、メソッドの種類も多いです。
-この書籍でもすべてのメソッドは紹介していないため、詳しくは[Arrayについてドキュメント][]も参照してみてください。
+この書籍でもすべてのメソッドは紹介していないため、詳しくは[Arrayについてのドキュメント][]も参照してみてください。
 
 [ループと反復処理]: ../loop/README.md
 [immutable-array-prototype]: https://github.com/azu/immutable-array-prototype  "azu/immutable-array-prototype: A collection of Immutable Array prototype methods(Per method packages)."
