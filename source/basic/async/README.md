@@ -173,7 +173,9 @@ Web Workerではメインスレッドとは異なるWorkerスレッドで実行�
 非同期処理は処理の流れが同期処理とは異なることについて紹介しました。
 これは非同期処理における**例外処理**においても大きな影響を与えます。
 
-同期処理では、`try...catch`構文を使うことで同期的に発生した例外はキャッチできます（詳細は「[例外処理][]」の章を参照）。
+<!-- textlint-disable -->
+同期処理では、`try...catch`構文を使うことで同期的に発生した例外がキャッチできます（詳細は「[例外処理][]」の章を参照）。
+<!-- textlint-enable -->
 
 {{book.console}}
 ```js
@@ -1123,7 +1125,9 @@ fetchedPromise.then(([responseA, responseB]) => {
 `Promise.race`メソッドでは複数のPromiseを受け取りますが、Promiseが1つでも完了した（Settle状態となった）時点で次の処理を実行します。
 
 `Promise.race`メソッドは`Promise`インスタンスの配列を受け取り、新しい`Promise`インスタンスを返します。
+<!-- textlint-disable -->
 この新しい`Promise`インスタンスは、配列の中で一番最初に**Settle**状態となった`Promise`インスタンスと同じ状態になります。
+<!-- textlint-enable -->
 
 - 配列の中で一番最初に**Settle**となったPromiseが**Fulfilled**の場合は、新しい`Promise`インスタンスも**Fulfilled**になる
 - 配列の中で一番最初に**Settle**となったPromiseが**Rejected**の場合は、新しい`Promise`インスタンスも **Rejected**になる
@@ -1518,7 +1522,9 @@ fetchAB().then((results) => {
 ```
 
 Promiseチェーンで`fetchAB`関数書いた場合は、コールバックの中で処理するためややこしい見た目になりがちです。
+<!-- textlint-disable -->
 一方、Async Functionと`await`式で書いた場合は、取得と追加を順番に行うだけとなり、ネストがなく、見た目はシンプルです。
+<!-- textlint-enable -->
 
 ## Async Functionと組み合わせ {#async-function-conbination}
 
