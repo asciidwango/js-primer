@@ -5,16 +5,16 @@ description: "JavaScriptにおける非同期処理についてを紹介しま�
 
 # 非同期処理:コールバック/Promise/Async Function {#async-handling}
 
-この章ではJavaScriptの非同期処理について学んで行きます。
-非同期処理はJavaScriptにおいてはとても重要な概念です。
-また、JavaScriptを扱うブラウザやNode.jsなどは非同期処理のみのAPIも多いため、非同期処理を避けることはできません。
-そのため、非同期処理を扱うためのエラーファーストコールバックやPromiseというビルトインオブジェクト、さらにはAsync Functionとよばれる構文的なサポートがあります。
+この章ではJavaScriptの非同期処理について学んでいきます。
+非同期処理はJavaScriptにおけるとても重要な概念です。
+また、JavaScriptを扱うブラウザやNode.jsなどのAPIには非同期処理のみのものも多いため、非同期処理を避けることはできません。
+そのため、非同期処理を扱うためのエラーファーストコールバックやPromiseというビルトインオブジェクト、さらにはAsync Functionと呼ばれる構文的なサポートがあります。
 
 この章では非同期処理とはどのようなものかという話から、非同期処理での例外処理、非同期処理の扱い方を見ていきます。
 
 ## 同期処理 {#sync-processing}
 
-多くのプログラミング言語ではコードの評価の仕方として**同期処理**（sync）と**非同期処理**（async）という大きな分類があります。
+多くのプログラミング言語にはコードの評価の仕方として、**同期処理**（sync）と**非同期処理**（async）という大きな分類があります。
 
 今まで書いていたコードは**同期処理**と呼ばれているものです。
 同期処理ではコードを順番に処理していき、ひとつの処理が終わるまで次の処理は行いません。
@@ -23,7 +23,7 @@ description: "JavaScriptにおける非同期処理についてを紹介しま�
 一方、同期的にブロックする処理が行われていた場合には問題があります。
 同期処理ではひとつの処理が終わるまで、次の処理へ進むことができないためです。
 
-次のコードの`blockTime`関数は指定した`timeout`ミリ秒だけ無限ループを行い同期的にブロックする処理です。
+次のコードの`blockTime`関数は指定した`timeout`ミリ秒だけ無限ループを実行し、同期的にブロックする処理です。
 この`blockTime`関数を呼び出すと、指定時間が経過するまで次の処理（次の行）は呼ばれません。
 
 {{book.console}}
@@ -47,7 +47,7 @@ console.log("この行が呼ばれるまで処理が1秒間ブロックされる
 同期的にブロックする処理があると、ブラウザでは大きな問題となります。
 なぜなら、JavaScriptは基本的にブラウザのメインスレッド（UIスレッドとも呼ばれる）で実行されるためです。
 メインスレッドは表示の更新といったUIに関する処理も行っています。
-そのため、メインスレッドが他の処理で専有されると、表示が更新されなくなりフリーズしたような体感となります。
+そのため、メインスレッドが他の処理で専有されると、表示が更新されなくなりフリーズしたようになります。
 
 先ほどの例では1秒間も処理をブロックしているため、1秒間スクロールなどの操作が効かないといった悪影響がでます。
 
@@ -64,7 +64,7 @@ JavaScriptにおいて非同期処理の代表的な関数として`setTimeout`�
 setTimeout(コールバック関数, delay);
 ```
 
-次のコードでは`setTimeout`関数を使い10ミリ秒後に、1秒間ブロックする処理を実行しています。
+次のコードでは`setTimeout`関数を使って10ミリ秒後に、1秒間ブロックする処理を実行しています。
 `setTimeout`関数でタイマーに登録したコールバック関数は非同期的なタイミングで呼ばれます。
 そのため`setTimeout`関数の次の行に書かれている同期的処理は、非同期処理よりも先に実行されます。
 
@@ -107,7 +107,7 @@ console.log("2. 同期的な処理を実行します");
 ## 非同期処理はメインスレッドで実行される {#async-and-main-thread}
 
 JavaScriptにおいて多くの非同期処理はメインスレッドで実行されます。
-メインスレッドはUIスレッドとも呼ばれ、重たいJavaScriptの処理はメインスレッドで実行する他の処理（画面の更新など）をブロックする問題について紹介しました。（ECMAScriptの仕様として規定されているわけではないため、すべてがメインスレッドで実行されているわけではありません）
+メインスレッドはUIスレッドとも呼ばれ、重たいJavaScriptの処理はメインスレッドで実行する他の処理（画面の更新など）をブロックする問題について紹介しました（ECMAScriptの仕様として規定されているわけではないため、すべてがメインスレッドで実行されているわけではありません）。
 
 非同期処理は名前から考えるとメインスレッド以外で実行されるように見えますが、
 基本的には非同期処理も同期処理と同じようにメインスレッドで実行されます。
@@ -117,7 +117,7 @@ JavaScriptにおいて多くの非同期処理はメインスレッドで実行�
 また、`setTimeout`関数でタイマーに登録した次の行で、同期的にブロックする処理を実行しています。
 
 非同期処理（コールバック関数）がメインスレッド以外のスレッドで実行されるならば、
-この非同期処理はメインスレッドでの同期的にブロックする処理の影響を受けないはずです。
+この非同期処理はメインスレッドで同期的にブロックする処理の影響を受けないはずです。
 しかし、実際にはこの非同期処理もメインスレッドで実行された同期的にブロックする処理の影響を受けます。
 
 次のコードを実行すると`setTimeout`関数で登録したコールバック関数は、タイマーに登録した時間（10ミリ秒後）よりも大きく遅れて呼び出されます。
@@ -173,7 +173,9 @@ Web Workerではメインスレッドとは異なるWorkerスレッドで実行�
 非同期処理は処理の流れが同期処理とは異なることについて紹介しました。
 これは非同期処理における**例外処理**においても大きな影響を与えます。
 
-同期処理では、`try...catch`構文を使うことで同期的に発生した例外はキャッチできます。（詳細は「[例外処理][]」の章を参照）
+<!-- textlint-disable -->
+同期処理では、`try...catch`構文を使うことで同期的に発生した例外がキャッチできます（詳細は「[例外処理][]」の章を参照）。
+<!-- textlint-enable -->
 
 {{book.console}}
 ```js
@@ -203,7 +205,7 @@ console.log("この行は実行されます");
 ```
 
 `try`ブロックはそのブロック内で発生した例外をキャッチする構文です。
-しかし、`setTimeout`関数で登録されたコールバック関数が実際に実行され例外を投げるのは、すべての同期処理が終わった後となります。
+しかし、`setTimeout`関数で登録されたコールバック関数が実際に実行されて例外を投げるのは、すべての同期処理が終わった後となります。
 つまり、`try`ブロックで例外が発生しうるとマークした**範囲外**で例外が発生します。
 
 そのため、`setTimeout`関数のコールバック関数における例外は、次のようにコールバック関数内で同期的なエラーとしてキャッチする必要があります。
@@ -223,17 +225,17 @@ setTimeout(() => {
 console.log("この行は実行されます");
 ```
 
-このようにコールバック関数内でエラーをキャッチはできますが、**非同期処理の外**からは**非同期処理の中**で例外が発生したかが分かりません。
-非同期処理の外から例外が起きたのか知るためには、非同期処理の中で例外が発生したことを非同期処理の外へ伝える方法が必要です。
+このようにコールバック関数内でエラーをキャッチできますが、**非同期処理の外**からは**非同期処理の中**で例外が発生したかがわかりません。
+非同期処理の外から例外が起きたことを知るためには、非同期処理の中で例外が発生したことを非同期処理の外へ伝える方法が必要です。
 
 この非同期処理で発生した例外の扱い方についてはさまざまなパターンがあります。
 この章では主要な非同期処理と例外の扱い方としてエラーファーストコールバック、Promise、Async Functionの3つを見ていきます。
-現実のコードではすべてのパターンが使われています。そのため、非同期処理の選択肢を増やす意味でもそれぞれを理解することは重要です。
+現実のコードではすべてのパターンが使われています。そのため、非同期処理の選択肢を増やす意味でもそれぞれを理解することが重要です。
 
 ## エラーファーストコールバック {#error-first-callback}
 
-ECMAScript 2015（ES2015）でPromiseが仕様へ入るまで、非同期処理中に発生した例外を扱う仕様はありませんでした。
-ES2015より前までは、**エラーファーストコールバック**という非同期処理中に発生した例外を扱う方法を決めたルールが広く使われていました。
+ECMAScript 2015（ES2015）でPromiseが仕様に入るまで、非同期処理中に発生した例外を扱う仕様はありませんでした。
+このため、ES2015より前までは、**エラーファーストコールバック**という非同期処理中に発生した例外を扱う方法を決めたルールが広く使われていました。
 
 エラーファーストコールバックとは、次のような非同期処理におけるコールバック関数の呼び出し方を決めたルールです。
 
@@ -269,18 +271,18 @@ fs.readFile("./example.txt", (error, data) => {
 第1引数に任意のパスを受け取り、第2引数にエラーファーストコールバックスタイルの関数を受け取ります。
 
 この`dummyFetch`関数は、任意のパスにマッチするリソースがある場合には、第2引数のコールバック関数に`null`とレスポンスオブジェクトを渡して呼び出します。
-一方、任意のパスにマッチするリソースがない場合には、第2引数のコールバック関数にはエラーオブジェクトを渡して呼び出します。
+一方、任意のパスにマッチするリソースがない場合には、第2引数のコールバック関数にエラーオブジェクトを渡して呼び出します。
 
 {{book.console}}
 ```js
 /**
- * 1000ミリ秒未満のランダムなタイミングでレスポンスを擬似的にデータ取得する関数
+ * 1000ミリ秒未満のランダムなタイミングでレスポンスを疑似的にデータ取得する関数
  * 指定した`path`にデータがある場合は`callback(null, レスポンス)`を呼ぶ
  * 指定した`path`にデータがない場合は`callback(エラー)`を呼ぶ
  */
 function dummyFetch(path, callback) {
     setTimeout(() => {
-        // /success から始まるパスにはリソースがあるという設定
+        // /success からはじまるパスにはリソースがあるという設定
         if (path.startsWith("/success")) {
             callback(null, { body: `Response body of ${path}` });
         } else {
@@ -306,9 +308,9 @@ dummyFetch("/failure/data", (error, response) => {
 });
 ```
 
-このようにコールバック関数の1番目の引数にはエラーオブジェクトまたは`null`を入れ、それ以降の引数にデータを渡すというルール化したものを**エラーファーストコールバック**と呼びます。
+このようにコールバック関数の1番目の引数にはエラーオブジェクトまたは`null`を入れ、それ以降の引数にデータを渡すというルールを**エラーファーストコールバック**と呼びます。
 
-非同期処理中に例外が発生して生じたエラーをコールバック関数で受け取る方法は他にもやり方があります。
+非同期処理中に例外が発生して生じたエラーをコールバック関数で受け取る方法はほかにもあります。
 たとえば、成功したときに呼び出すコールバック関数と失敗したときに呼び出すコールバック関数の2つを受け取る方法があります。
 先ほどの`dummyFetch`関数を2種類のコールバック関数を受け取る形に変更すると次のような実装になります。
 
@@ -329,15 +331,14 @@ function dummyFetch(path, successCallback, failureCallback) {
 }
 ```
 
-このように**非同期処理の中**で例外が発生した場合に、その例外を**非同期処理の外**へ伝える方法はさまざまな手段が考えられます。
-エラーファーストコールバックはその形を決めた**ただの共通のルール**の1つです。
+このように**非同期処理の中**で例外が発生した場合に、その例外を**非同期処理の外**へ伝える方法にはさまざまな手段が考えられます。
+エラーファーストコールバックはその形を決めた**共通のルール**の1つです。
 ルールを決めることのメリットとして、エラーハンドリングのパターン化ができます。
 
-しかし、エラーファーストコールバックは非同期処理におけるエラーハンドリングの書き方を決めた**ただのルール**であるため仕様ではありません。
+しかし、エラーファーストコールバックは非同期処理におけるエラーハンドリングの書き方を決めた**ただのルール**であって仕様ではありません。
 そのため、エラーファーストコールバックというルールを破っても、問題があるわけではありません。
 
-しかしながら、最初に書いたようにJavaScriptでは非同期処理を扱うケースが多いです。
-そのため、ただのルールではなくECMAScriptの仕様として非同期処理を扱う方法が求められていました。
+しかしながら、最初に書いたようにJavaScriptでは非同期処理を扱うケースが多いため、ただのルールではなくECMAScriptの仕様として非同期処理を扱う方法が求められていました。
 そこで、ES2015では`Promise`という非同期処理を扱うビルトインオブジェクトが導入されました。
 
 次のセクションでは、ES2015で導入された`Promise`について見ていきます。
@@ -375,7 +376,7 @@ asyncTask((error, result) => {
 Promiseでは、非同期処理に成功したときの処理をコールバック関数として`then`メソッドへ渡し、
 失敗したときの処理を同じくコールバック関数として`catch`メソッドへ渡します。
 
-エラーファーストコールバックとはことなり、非同期処理（`asyncPromiseTask`関数）は`Promise`インスタンスを返しています。
+エラーファーストコールバックとは異なり、非同期処理（`asyncPromiseTask`関数）は`Promise`インスタンスを返しています。
 その返された`Promise`インスタンスに対して、成功と失敗時の処理をそれぞれコールバック関数として渡すという形になります。
 
 <!-- doctest:disable -->
@@ -392,20 +393,20 @@ asyncPromiseTask().then(()=> {
 また非同期処理（`asyncPromiseTask`関数）はコールバック関数を受け取るのではなく、`Promise`インスタンスを返すという形に変わっています。
 この`Promise`という統一されたインターフェースがあることで、 さまざまな非同期処理のパターンを形成できます。
 
-つまり、複雑な非同期処理をうまくパターン化できるというのが`Promise`の役割であり、 Promiseを使う理由のひとつであるといえるでしょう。
+つまり、複雑な非同期処理をうまくパターン化できるというのが`Promise`の役割であり、 Promiseを使う理由のひとつであると言えるでしょう。
 このセクションでは、非同期処理を扱うビルトインオブジェクトである`Promise`を見ていきます。
 
 ### `Promise`インスタンスの作成 {#promise-instance}
 
 Promiseは`new`演算子で`Promise`のインスタンスを作成して利用します。
-このときのコンストラクタには`resolve`と`reject`の2つの引数を取る`executor`とよばれる関数を渡します。
+このときのコンストラクタには`resolve`と`reject`の2つの引数を取る`executor`と呼ばれる関数を渡します。
 `executor`関数の中で非同期処理を行い、非同期処理が成功した場合は`resolve`関数を呼び、失敗した場合は`reject`関数を呼び出します。
 
 {{book.console}}
 ```js
 const executor = (resolve, reject) => {
     // 非同期の処理が成功したときはresolveを呼ぶ
-    // または、非同期の処理が失敗したときはrejectを呼ぶ
+    // 非同期の処理が失敗したときはrejectを呼ぶ
 };
 const promise = new Promise(executor);
 ```
@@ -432,9 +433,9 @@ promise.then(onFulfilled, onRejected);
 
 `Promise`コンストラクタの`resolve`と`reject`、`then`メソッドの`onFulfilled`と`onRejected`は次のような関係となります。
 
-- `resolve`（成功）した時
+- `resolve`（成功）したとき
     - `onFulfilled`が呼ばれる
-- `reject`（失敗）した時
+- `reject`（失敗）したとき
     - `onRejected` が呼ばれる
 
 ### `Promise#then`と`Promise#catch` {#promise-then-and-catch}
@@ -451,7 +452,7 @@ promise.then(onFulfilled, onRejected);
 {{book.console}}
 ```js
 /**
- * 1000ミリ秒未満のランダムなタイミングでレスポンスを擬似的にデータ取得する関数
+ * 1000ミリ秒未満のランダムなタイミングでレスポンスを疑似的にデータ取得する関数
  * 指定した`path`にデータがある場合、成功として**Resolved**状態のPromiseオブジェクトを返す
  * 指定した`path`にデータがない場合、失敗として**Rejected**状態のPromiseオブジェクトを返す
  */
@@ -528,7 +529,7 @@ errorPromise("catchでエラーハンドリング").catch(error => {
 ### Promiseと例外 {#promsie-exception}
 
 Promiseではコンストラクタの処理で例外が発生した場合に自動的に例外がキャッチされます。
-例外が発生した`Promise`インスタンスは`reject`関数を呼びだしたのと同じように失敗したものとして扱われます。
+例外が発生した`Promise`インスタンスは`reject`関数を呼び出したのと同じように失敗したものとして扱われます。
 そのため、Promise内で例外が発生すると`then`メソッドの第二引数や`catch`メソッドで登録したエラー時のコールバック関数が呼び出されます。
 
 {{book.console}}
@@ -564,7 +565,7 @@ Promiseの`then`メソッドや`catch`メソッドによる処理がわかった
 
 これらの状態はECMAScriptの仕様として決められている内部的な状態です。
 しかし、この状態をPromiseのインスタンスから取り出す方法はありません。
-そのためAPIとしてこの状態を直接扱うことはできませんが、Promiseについて理解するのに役に立ちます。
+そのためAPIとしてこの状態を直接扱うことはできませんが、Promiseについて理解するのに役立ちます。
 
 <!-- textlint-disable preset-ja-technical-writing/no-doubled-conjunction -->
 
@@ -585,7 +586,7 @@ const promise = new Promise((resolve, reject) => {
     // 非同期でresolveする
     setTimeout(() => {
         resolve();
-        // 既にresolveされているため無視される
+        // すでにresolveされているため無視される
         reject(new Error("エラー"));
     }, 16);
 });
@@ -604,7 +605,7 @@ promise.then(() => {
 const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
         resolve();
-        resolve(); // 2度目以降のresolveやrejectは無視される
+        resolve(); // 二度目以降のresolveやrejectは無視される
     }, 16);
 });
 promise.then(() => {
@@ -614,7 +615,7 @@ promise.then(() => {
 });
 ```
 
-このように`Promise`インスタンスの状態が変化した時に、一度だけ呼ばれるコールバック関数を登録するのが`then`や`catch`メソッドとなります。
+このように`Promise`インスタンスの状態が変化したときに、一度だけ呼ばれるコールバック関数を登録するのが`then`や`catch`メソッドとなります。
 
 また`then`や`catch`メソッドはすでにSettledへと状態が変化済みの`Promise`インスタンスに対してもコールバック関数を登録できます。
 状態が変化済みの`Promise`インスタンスを作成する方法として`Promise.resolve`と`Promise.reject`メソッドがあります。
@@ -712,8 +713,8 @@ Promise.reject(new Error("エラー")).catch(() => {
 console.log("1. 同期的な処理が実行されました");
 ```
 
-`Promise.resolve`や`Promise.reject`は短くかけるため、テストコードなどで利用されることがあります。
-また、`Promise.reject`は次に解説するPromiseチェーンにおいて、Promiseの状態を操作することに利用できます。
+`Promise.resolve`や`Promise.reject`は短く書けるため、テストコードなどで利用されることがあります。
+また、`Promise.reject`は次に解説するPromiseチェーンにおいて、Promiseの状態を操作するのに利用できます。
 
 ### Promiseチェーン {#promise-chain}
 
@@ -797,7 +798,7 @@ asyncTask()
 
 ![promise-chain](img/promise-chain.png)
 
-Promiseの状態が**Rejected**となった場合は、もっとも近い失敗時の処理(`catch`または`then`の第二引数)が呼び出されます。
+Promiseの状態が**Rejected**となった場合は、もっとも近い失敗時の処理（`catch`または`then`の第二引数）が呼び出されます。
 このとき間にある成功時の処理（`then`の第一引数）はスキップされます。
 
 次のコードでは、**Rejected**のPromiseに対して`then` -> `then` -> `catch`とPromiseチェーンで処理を記述しています。
@@ -818,7 +819,7 @@ rejectedPromise.then(() => {
 
 Promiseのコンストラクタの処理の場合と同様に、`then`や`catch`のコールバック関数内で発生した例外は自動的にキャッチされます。
 例外が発生したとき、`then`や`catch`メソッドは**Rejected**な`Promise`インスタンスを返します。
-そのため、例外が発生するともっとも近くの失敗時の処理(`catch`または`then`の第二引数)が呼び出されます。
+そのため、例外が発生するともっとも近くの失敗時の処理（`catch`または`then`の第二引数）が呼び出されます。
 
 {{book.console}}
 ```js
@@ -834,7 +835,7 @@ Promise.resolve().then(() => {
 
 また、Promiseチェーンで失敗を`catch`メソッドなどで一度キャッチすると、次に呼ばれるのは成功時の処理です。
 これは、`then`や`catch`メソッドは**Fulfilled**状態のPromiseインスタンスを作成して返すためです。
-そのため、一度キャッチするとそこからはもとの`then`で登録した処理が呼ばれるPromiseチェーンに戻ります。
+そのため、一度キャッチするとそこからは元の`then`で登録した処理が呼ばれるPromiseチェーンに戻ります。
 
 {{book.console}}
 ```js
@@ -889,14 +890,14 @@ Promise.reject(new Error("失敗")).catch(error => {
 
 #### コールバック関数で`Promise`インスタンスを返す {#promise-then-return-promise}
 
-Promiseチェーンで一度キャッチすると、次に呼ばれるのは成功時の処理(`then`メソッド)でした。
+Promiseチェーンで一度キャッチすると、次に呼ばれるのは成功時の処理（`then`メソッド）でした。
 これは、コールバック関数で任意の値を返すと、その値で`resolve`された**Fulfilled**状態の`Promise`インスタンスを作成するためです。
 しかし、コールバック関数で`Promise`インスタンスを返した場合は例外的に異なります。
 
-コールバック関数で`Promise`インスタンスを返した場合は、同じ状態をもつ`Promise`インスタンスが`then`や`catch`メソッドの返り値となります。
-つまり`then`メソッドで**Rejected**状態の`Promise`インスタンスを返した場合は、次に呼ばれるのは失敗時の処理となります。
+コールバック関数で`Promise`インスタンスを返した場合は、同じ状態を持つ`Promise`インスタンスが`then`や`catch`メソッドの返り値となります。
+つまり`then`メソッドで**Rejected**状態の`Promise`インスタンスを返した場合は、次に呼ばれるのは失敗時の処理です。
 
-次のコードでは、`then`メソッドのコールバック関数で`Promise.reject`メソッドを使い**Rejected**な`Promise`インスタンスを返しています。
+次のコードでは、`then`メソッドのコールバック関数で`Promise.reject`メソッドを使って**Rejected**な`Promise`インスタンスを返しています。
 **Rejected**な`Promise`インスタンスは、次の`catch`メソッドで登録した失敗時の処理を呼び出すまで、`then`メソッドの成功時の処理をスキップします。
 
 {{book.console}}
@@ -917,7 +918,7 @@ Promise.resolve().then(function onFulfilledA() {
 ![then-rejected-promise.png](./img/then-rejected-promise.png)
 
 通常は一度`catch`すると次に呼び出されるのは成功時の処理でした。
-この`Promise`インスタンスを返す仕組みを使うことで、`catch`してもそのまま**Rejected**な状態を継続するために利用できます。
+この`Promise`インスタンスを返す仕組みを使うことで、`catch`してもそのまま**Rejected**な状態を継続できます。
 
 次のコードでは`catch`メソッドでログを出力しつつ`Promise.reject`メソッドを使って**Rejected**な`Promise`インスタンスを返しています。
 これによって、`asyncFunction`で発生したエラーのログを取りながら、Promiseチェーンはエラーのまま処理を継続できます。
@@ -943,7 +944,7 @@ main().catch(error => {
 #### [ES2018] Promiseチェーンの最後に処理を書く {#promise-finally}
 
 `Promise#finally`メソッドは成功時、失敗時どちらの場合でも呼び出されるコールバック関数を登録できます。
-`try...catch...finally`構文の`finally`節と同様の役割をもつメソッドです。
+`try...catch...finally`構文の`finally`節と同様の役割を持つメソッドです。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": "2018" } -->
@@ -997,7 +998,7 @@ dummyFetch("/resource/A").then(response => {
 Promiseチェーンで非同期処理の流れを書く大きなメリットは、非同期処理のさまざまなパターンに対応できることです。
 
 ここでは、典型的な例として複数の非同期処理を順番に処理していく逐次処理を考えていきましょう。
-Promiseで逐次的な処理と言っても難しいことはなく、単純に`then`で非同期処理をつないでいくだけです。
+Promiseで逐次的な処理といっても難しいことはなく、単純に`then`で非同期処理をつないでいくだけです。
 
 次のコードでは、Resource AとResource Bを順番に取得しています。
 それぞれ取得したリソースを変数`results`に追加し、すべて取得し終わったらコンソールに出力します。
@@ -1060,7 +1061,7 @@ Promise.all([promise1, promise2, promise3]).then(function(values) {
 ```
 
 先ほどのPromiseチェーンでリソースを取得する例では、Resource Aを取得し終わってからResource Bを取得というように逐次的でした。
-しかし、Resource AとBどちらを先に取得しても問題ない場合は、`Promise.all`メソッドを使い複数のPromiseを1つのPromiseとしてまとめられます。
+しかし、Resource AとBどちらを先に取得しても問題ない場合は、`Promise.all`メソッドを使って複数のPromiseを1つのPromiseとしてまとめられます。
 また、Resource AとBを同時に取得すればより早い時間で処理が完了します。
 
 次のコードでは、Resource AとBを同時に取得開始しています。
@@ -1124,7 +1125,9 @@ fetchedPromise.then(([responseA, responseB]) => {
 `Promise.race`メソッドでは複数のPromiseを受け取りますが、Promiseが1つでも完了した（Settle状態となった）時点で次の処理を実行します。
 
 `Promise.race`メソッドは`Promise`インスタンスの配列を受け取り、新しい`Promise`インスタンスを返します。
-この新しい`Promise`インスタンスは、配列のなかで一番最初に**Settle**状態へとなった`Promise`インスタンスと同じ状態になります。
+<!-- textlint-disable -->
+この新しい`Promise`インスタンスは、配列の中で一番最初に**Settle**状態となった`Promise`インスタンスと同じ状態になります。
+<!-- textlint-enable -->
 
 - 配列の中で一番最初に**Settle**となったPromiseが**Fulfilled**の場合は、新しい`Promise`インスタンスも**Fulfilled**になる
 - 配列の中で一番最初に**Settle**となったPromiseが**Rejected**の場合は、新しい`Promise`インスタンスも **Rejected**になる
@@ -1133,7 +1136,7 @@ fetchedPromise.then(([responseA, responseB]) => {
 
 次のコードでは、`delay`関数という`timeoutMs`ミリ秒後に**Fulfilled**となる`Promise`インスタンスを返す関数を定義しています。
 `Promise.race`メソッドは1ミリ秒、32ミリ秒、64ミリ秒、128ミリ秒後に完了する`Promise`インスタンスの配列を受け取っています。
-この配列の中でも一番最初に完了するのは、1ミリ秒後に**Fulfilled**となる`Promise`インスタンスです。
+この配列の中で一番最初に完了するのは、1ミリ秒後に**Fulfilled**となる`Promise`インスタンスです。
 
 {{book.console}}
 ```js
@@ -1145,7 +1148,7 @@ function delay(timeoutMs) {
         }, timeoutMs);
     });
 }
-// 一つでもresolveまたはrejectした時点で次の処理を呼び出す
+// 1つでもresolveまたはrejectした時点で次の処理を呼び出す
 const racePromise = Promise.race([
     delay(1),
     delay(32),
@@ -1169,7 +1172,7 @@ racePromise.then(value => {
 ここでのタイムアウトとは、一定時間経過しても処理が終わっていないならエラーとして扱う処理のことです。
 
 次のコードでは`timeout`関数と`dummyFetch`関数が返す`Promise`インスタンスを`Promise.race`メソッドで競争させています。
-`dummyFetch`関数のランダムな時間をかけてリソースを取得し`resolve`する`Promise`インスタンスを返します。
+`dummyFetch`関数ではランダムな時間をかけてリソースを取得し`resolve`する`Promise`インスタンスを返します。
 `timeout`関数は指定ミリ秒経過すると`reject`する`Promise`インスタンスを返します。
 
 この2つの`Promise`インスタンスを競争させて、`dummyFetch`が先に完了すれば処理は成功、`timeout`が先に完了すれば処理は失敗というタイムアウト処理が実現できます。
@@ -1214,7 +1217,7 @@ Promise.race([
 また、エラーハンドリングについても`Promise#catch`メソッドや`Promise#finally`メソッドなど`try...catch`構文とよく似た名前を使います。
 しかし、Promiseは構文ではなくただのオブジェクトであるため、それらをメソッドチェーンとして実現しないといけないといった制限があります。
 
-ES2017ではこのPromiseチェーンの不格好な見た目を解決するためにAsync Functionと呼ばれる構文が導入されました。
+ES2017では、このPromiseチェーンの不格好な見た目を解決するためにAsync Functionと呼ばれる構文が導入されました。
 
 ## [ES2017] Async Function {#async-function}
 
@@ -1253,7 +1256,7 @@ doAsync().then(value => {
 そのためAsync Functionを理解するには、Promiseを理解する必要があることに注意してください。
 
 またAsync Function内では`await`式というPromiseの非同期処理が完了するまで待つ構文が利用できます。
-`await`式を使うことで非同期処理を同期処理のように扱えるため、Promiseチェーンで実現していた処理の流れを読みやすくかけます。
+`await`式を使うことで非同期処理を同期処理のように扱えるため、Promiseチェーンで実現していた処理の流れを読みやすく書けます。
 
 このセクションではAsync Functionと`await`式について見ていきます。
 
@@ -1285,9 +1288,9 @@ const obj = { async method() {} };
 Async Functionとして定義した関数は必ず`Promise`インスタンスを返します。
 具体的にはAsync Functionが返す値は次の3つのケースが考えられます。
 
-1. Async Functionは値をreturnした場合、その返り値をもつ**Fulfilled**なPromiseを返す
+1. Async Functionが値をreturnした場合、その返り値を持つ**Fulfilled**なPromiseを返す
 2. Async FunctionがPromiseをreturnした場合、その返り値のPromiseをそのまま返す
-3. Async Function内で例外が発生した場合は、そのエラーをもつ**Rejected**なPromiseを返す
+3. Async Function内で例外が発生した場合は、そのエラーを持つ**Rejected**なPromiseを返す
 
 次のコードでは、Async Functionがそれぞれの返り値によってどのような`Promise`インスタンスを返すかを確認できます。
 この1から3の挙動は`Promise#then`メソッドの返り値とそのコールバック関数の関係とほぼ同じです。
@@ -1352,7 +1355,7 @@ async function asyncMain() {
 ```
 
 普通の処理の流れでは、非同期処理を実行した場合にその非同期処理の完了を待つことなく、次の行（次の文）を実行します。
-しかし`await`式では非同期処理を実行し完了するまで、次の行（次の文）を実行しません。
+しかし`await`式では非同期処理を実行して完了するまで、次の行（次の文）を実行しません。
 そのため`await`式を使うことで非同期処理が同期処理のように上から下へと順番に実行するような処理順で書けます。
 
 <!-- doctest:disable -->
@@ -1421,7 +1424,7 @@ asyncMain().catch(error => {
 
 `await`式がエラーを`throw`するということは、そのエラーは`try...catch`構文でキャッチできます（詳細は「[try...catch構文][]」の章を参照）。
 通常の非同期処理では完了する前に次の行が実行されてしまうため`try...catch`構文ではエラーをキャッチできませんでした。
-そのためPromiseでは`catch`メソッドを使いPromise内で発生したエラーをキャッチしていました。
+そのためPromiseでは`catch`メソッドを使ってPromise内で発生したエラーをキャッチしていました。
 
 次のコードでは、`await`式で発生した例外を`try...catch`構文でキャッチしています。
 そのため、`asyncMain`関数はResolvedなPromiseを返し、`catch`メソッドのコールバック関数は呼び出されません。
@@ -1451,7 +1454,7 @@ asyncMain().catch(error => {
 
 <!-- Promiseと配列にしなかったのは、Promiseの逐次処理を抽象化するにはArray#reduceがでてくるため -->
 
-Async Functionと`await`式を使うことでPromiseチェーンとして表現していた非同期処理を同期処理のような見た目でかけます。
+Async Functionと`await`式を使うことでPromiseチェーンとして表現していた非同期処理を同期処理のような見た目で書けます。
 まずは、Promiseチェーンで複数の非同期処理を逐次的に行うケースを見ていきます。
 その後に、同様の処理をAsync Functionと`await`式で書き直して比較してみます。
 
@@ -1488,7 +1491,7 @@ fetchAB().then((results) => {
 ```
 
 同様の処理をAsync Functionと`await`式で書くと次のように書けます。
-`await`式を使いリソースが取得できるまで待ち、その結果を変数`results`に追加していくという形で逐次処理が実装できます。
+`await`式を使ってリソースが取得できるまで待ち、その結果を変数`results`に追加していくという形で逐次処理が実装できます。
 
 {{book.console}}
 ```js
@@ -1519,7 +1522,9 @@ fetchAB().then((results) => {
 ```
 
 Promiseチェーンで`fetchAB`関数書いた場合は、コールバックの中で処理するためややこしい見た目になりがちです。
-一方、Async Functionと`await`式で書いた場合は、取得と追加を順番に行うだけとなりネストがなく見た目はシンプルです。
+<!-- textlint-disable -->
+一方、Async Functionと`await`式で書いた場合は、取得と追加を順番に行うだけとなり、ネストがなく、見た目はシンプルです。
+<!-- textlint-enable -->
 
 ## Async Functionと組み合わせ {#async-function-conbination}
 
@@ -1530,7 +1535,7 @@ Promiseチェーンで`fetchAB`関数書いた場合は、コールバックの�
 複数の非同期処理を行う際に、Async Functionはforループなどの反復処理と組み合わせることが可能です。
 
 次のコードでは、指定したリソースのパスの配列を渡してそれらを順番に取得する`fetchResource`関数を実装しています。
-Async Function内でfor文を使った反復処理を行い、forループの中で`await`文を使ってリソースの取得を待ちその結果を追加しています。
+Async Function内でfor文を使った反復処理を行い、forループの中で`await`文を使ってリソースの取得を待ち、その結果を追加しています。
 
 {{book.console}}
 ```js
@@ -1554,7 +1559,7 @@ async function fetchResources(resources) {
         const response = await dummyFetch(resource);
         results.push(response.body);
     }
-    // 反復処理が全て終わったら結果を返す(返り値となるPromiseを`results`でresolveする)
+    // 反復処理がすべて終わったら結果を返す(返り値となるPromiseを`results`でresolveする)
     return results;
 }
 // 取得したいリソースのパス配列
@@ -1574,7 +1579,7 @@ Promiseのみの場合は、Promiseチェーンでコールバック関数を使
 ### Promise APIとAsync Functionを組み合わせる {#relationship-promise-async-function}
 
 Async Functionと`await`式を使うことで、非同期処理を同期処理のような見た目で書けます。
-一方で同期処理のような見た目となるため、複数の非同期処理を反復処理する場合に無駄な待ち時間を作ってしまうコードを書きやすいです。
+一方で同期処理のような見た目となるため、複数の非同期処理を反復処理する場合に無駄な待ち時間を作ってしまうコードを書きやすくなります。
 
 先ほどの`fetchResources`関数ではリソースを順番に1つずつ取得していました。
 たとえば、リソースAとBを取得しようとした場合にかかる時間は、リソースAとBの取得時間の合計となります。
@@ -1583,7 +1588,7 @@ Async Functionと`await`式を使うことで、非同期処理を同期処理�
 取得する順番に意味がない場合は、複数のリソースを同時に取得することで余計な待ち時間を解消できます。
 先ほどの例ならば、リソースAとBを同時に取得すれば、最大でもリソースBの取得にかかる2秒程度ですべてのリソースが取得できるはずです。
 
-Promiseチェーンでは`Promise.all`メソッドを使い、複数の非同期処理を1つの`Promise`インスタンスにまとめることで同時に取得していました。
+Promiseチェーンでは`Promise.all`メソッドを使って、複数の非同期処理を1つの`Promise`インスタンスにまとめることで同時に取得していました。
 `await`式が評価するのは`Promise`インスタンスであるため、`await`式も`Promise.all`メソッドと組み合わせて利用できます。
 
 次のコードでは、`Promise.all`メソッドとAsync Functionを組み合わせて、同時にリソースを取得する`fetchAllResources`関数を実装しています。
@@ -1628,11 +1633,11 @@ fetchAllResources(resources).then((results) => {
 ```
 
 このようにAsync Functionや`await`式は既存のPromise APIと組み合わせて利用できます。
-Async Functionも内部的にPromiseの仕組みを利用しているため、両者は対立関係ではなく共存関係です。
+Async Functionも内部的にPromiseの仕組みを利用しているため、両者は対立関係ではなく共存関係になります。
 
 ### `await`式はAsync Functionの中でのみ利用可能 {#await-in-async-function}
 
-`await`式を利用する際の注意点として、`await`式はAsync Functionの中でのみ利用可能な点です。
+`await`式を利用する際には、`await`式はAsync Functionの中でのみ利用可能な点に注意が必要です。
 
 次のコードのように、Async Functionではない通常の関数で`await`式を使うと構文エラー（`SyntaxError`）となります。
 これは、間違った`await`式の使い方を防止するための仕様です。
@@ -1651,7 +1656,7 @@ function main(){
 <!-- textlint-enable eslint -->
 
 
-Async Function内で`await`式を使って処理を待っている間も、関数の外側では通常通り処理が進みます。
+Async Function内で`await`式を使って処理を待っている間も、関数の外側では通常どおり処理が進みます。
 次のコードを実行してみると、Async Function内で`await`しても、Async Function外の処理は停止していないことがわかります。
 
 {{book.console}}
@@ -1671,16 +1676,16 @@ asyncMain().then(() => {
 console.log("2. asyncMain関数外では、次の行が同期的に呼び出される");
 ```
 
-このように`await`式をAsync Function内の非同期処理を一時停止しても、Async Function外の処理が停止するわけではありません。
-Async Function外の処理も停止できてしまうと、JavaScriptでは基本的にメインスレッドで多くの処理をするためのUIを含めた他の処理が止まってしまいます。
-これが`await`式がAsync Functionの外で利用できない理由の一つです。
+このように`await`式でAsync Function内の非同期処理を一時停止しても、Async Function外の処理が停止するわけではありません。
+Async Function外の処理も停止できてしまうと、JavaScriptでは基本的にメインスレッドで多くの処理をするため、UIを含めた他の処理が止まってしまいます。
+これが`await`式がAsync Functionの外で利用できない理由の1つです。
 
 <!-- 仕様的にはAsync Execution Contextという特殊なものだけで使えるという話になる -->
 
 この仕様は、Async Functionをコールバック関数内で利用しようとしたときに混乱を生む場合があります。
 具体例として、先ほどの逐次的にリソースを取得する`fetchResources`関数を見てみます。
 
-さきほどの`fetchResources`関数ではforループと`await`式を利用していました。
+先ほどの`fetchResources`関数ではforループと`await`式を利用していました。
 このときにforループの代わりに`Array#forEach`メソッドは利用できません。
 
 単純に`fetchResources`関数のforループから`Array#forEach`メソッドに書き換えて見ると、構文エラー（`SyntaxError`）が発生してしまいます。
@@ -1746,7 +1751,7 @@ fetchResources(resources).then((results) => {
 `forEach`メソッドのコールバック関数としてAsync Functionを渡し、コールバック関数中で`await`式を利用して非同期処理の完了を待っています。 
 しかし、この非同期処理の完了を待つのはコールバック関数Async Functionの中だけで、コールバック関数の外側では`fetchResources`関数の処理が進んでいます。
 
-次のように`fetchResources`関数にコンソールログを入れてみると動作が分かりやすいでしょう。
+次のように`fetchResources`関数にコンソールログを入れてみると動作がわかりやすいでしょう。
 `forEach`メソッドのコールバック関数が完了するのは、`fetchResources`関数の呼び出しがすべて終わった後になります。
 そのため、`forEach`メソッドのコールバック関数でリソースの取得が完了する前に、`fetchResources`関数はその時点の`results`である空の配列で解決してしまいます。
 
@@ -1787,7 +1792,7 @@ fetchResources(resources).then((results) => {
 
 このように、Async Functionとコールバック関数を組み合わせた場合には気をつける必要があります。
 
-この問題を解決する方法として、最初の`fetchResources`関数のように、コールバック関数を使わずに済むforループと`await`式を組み合わせる方法があります。
+この問題を解決する方法として、最初の`fetchResources`関数のように、コールバック関数を使わずにすむforループと`await`式を組み合わせる方法があります。
 また、`fetchAllResources`関数のように、複数の非同期処理を1つのPromiseにまとめることでループ中に`await`式を使わないようにする方法があります。
 
 ## まとめ {#conclusion}
