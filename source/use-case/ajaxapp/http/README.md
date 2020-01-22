@@ -1,6 +1,6 @@
 ---
 author: laco
-description: "Fetch APIを使ってHTTP通信をおこない、GitHubのAPIを呼び出します。"
+description: "Fetch APIを使ってHTTP通信を行ない、GitHubのAPIを呼び出します。"
 ---
 
 # HTTP通信 {#http-communication}
@@ -11,7 +11,7 @@ GitHubのAPIを呼び出すためにはHTTP通信をする必要があります�
 
 ## Fetch API {#fetch-api}
 
-**Fetch API**はHTTP通信を行いリソースを取得するためのAPIです。
+**Fetch API**はHTTP通信を行ってリソースを取得するためのAPIです。
 Fetch APIを使うことで、ページ全体を再読み込みすることなく指定したURLからデータを取得できます。
 Fetch APIは同じくHTTP通信を扱う[XMLHttpRequest][]と似たAPIですが、より強力で柔軟な操作が可能です。
 
@@ -19,7 +19,7 @@ Fetch APIは同じくHTTP通信を扱う[XMLHttpRequest][]と似たAPIですが�
 `fetch`メソッドにURLを与えることで、HTTPリクエストが作成され、サーバーとのHTTP通信を開始します。
 
 GitHubにはユーザー情報を取得するAPIとして、`https://api.github.com/users/GitHubユーザーID`というURLが用意されています。
-GitHubのユーザーIDには、英数字と`-`（ハイフン）以外は利用できないため、ユーザーIDは`encodeURIComponent`関数を使ってエスケープしたものを結合します。`encodeURIComponent`は`/`や`%`などURLとして特殊な意味をもつ文字列をただの文字列として扱えるようにエスケープする関数です。
+GitHubのユーザーIDには、英数字と`-`（ハイフン）以外は利用できないため、ユーザーIDは`encodeURIComponent`関数を使ってエスケープしたものを結合します。`encodeURIComponent`は`/`や`%`などURLとして特殊な意味を持つ文字列をただの文字列として扱えるようにエスケープする関数です。
 
 次のコードでは、指定したGitHubユーザーIDの情報を取得するURLに対して`fetch`メソッドで、GETのHTTPリクエストを行っています。
 
@@ -62,7 +62,7 @@ fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
 HTTP通信にはエラーがつきものです。
 そのためFetch APIを使った通信においても、エラーをハンドリングする必要があります。
 たとえば、サーバーとの通信に際してネットワークエラーが発生した場合は、ネットワークエラーを表す`NetworkError`オブジェクトでrejectされた`Promise`が返されます。
-すなわち、`then`メソッドの第2引数か`catch`メソッドのコールバック関数が呼び出されます。
+すなわち、`then`メソッドの第二引数か`catch`メソッドのコールバック関数が呼び出されます。
 
 {{book.console}}
 <!-- fetchがないため -->
@@ -123,7 +123,7 @@ index.jsでは関数を定義しているだけで、呼び出しは行ってい
 ページを読み込むたびにGitHubのAPIを呼び出すと、呼び出し回数の制限を超えるおそれがあります。
 呼び出し回数の制限を超えると、APIからのレスポンスがステータスコード403のエラーになってしまいます。
 
-そのため、手動で`fetchUserInfo`関数を呼び出すため、HTMLドキュメント側にボタンを追加します。
+そのため、HTMLドキュメント側に手動で`fetchUserInfo`関数を呼び出すためのボタンを追加します。
 ボタンのclickイベントで`fetchUserInfo`関数を呼び出し、取得したいユーザーIDを引数として与えています。
 例として`js-primer-example`という書籍用に用意したGitHubアカウントを指定しています。
 
@@ -176,7 +176,7 @@ XHRの詳しい使い方については、[XHRの利用についてのドキュ�
 
 - [Fetch API][]を使ってHTTPリクエストを送った
 - GitHubのAPIから取得したユーザー情報のJSONオブジェクトをコンソールに出力した
-- Fetch APIの呼び出しに対するエラーハンドリングをおこなった
+- Fetch APIの呼び出しに対するエラーハンドリングを行った
 - `fetchUserInfo`関数を宣言し、ボタンのクリックイベントで呼び出した
 
 [Fetch API]: https://developer.mozilla.org/ja/docs/Web/API/Fetch_API

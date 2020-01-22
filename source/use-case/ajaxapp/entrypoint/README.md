@@ -46,7 +46,7 @@ ajaxapp
 ## ローカルサーバーでHTMLを確認する {#local-server}
 
 ウェブブラウザで`index.html`を開く前に、開発用のローカルサーバーを準備します。 
-ローカルサーバーを立ち上げずに直接HTMLファイルを開くこともできますが、その場合`file:///`から始まるURLになります。
+ローカルサーバーを立ち上げずに直接HTMLファイルを開くこともできますが、その場合は`file:///`からはじまるURLになります。
 `file`スキーマでは[Same Origin Policy][]のセキュリティ制限により、多くの場面でアプリケーションは正しく動作しません。
 本章はローカルサーバーを立ち上げた上で、`http`スキーマのURLでアクセスすることを前提としています。
 
@@ -77,7 +77,7 @@ Firefoxの開発者ツールは次のいずれかの方法で開きます。
 - `ajaxapp`という名前のプロジェクトディレクトリを作成した
 - エントリーポイントとなる`index.html`を作成した
 - JavaScriptのエントリーポイントとなる`index.js`を作成し`index.html`から読み込んだ
-- ローカルサーバーを使ってブラウザで`index.html`を表示できた
+- ローカルサーバーを使ってブラウザで`index.html`を表示した
 - `index.js`からコンソールに出力されたログを確認した
 
 [Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy 
