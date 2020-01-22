@@ -31,7 +31,7 @@ const view = `
 `;
 ```
 
-このテンプレートに`userInfo`オブジェクトの値を当てはめると、次のようなHTML文字列になります。
+このテンプレートに`userInfo`オブジェクトの値をあてはめると、次のようなHTML文字列になります。
 
 ```html
 <h4>js-primer example (@js-primer-example)</h4>
