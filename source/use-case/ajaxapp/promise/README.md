@@ -66,14 +66,14 @@ function displayView(view) {
 ## Promiseのエラーハンドリング {#error-handling}
 
 次に`fetchUserInfo`関数を変更し、Fetch APIの戻り値でもあるPromiseオブジェクトを`return`します。
-この変更によって、`fetchUserInfo`関数を呼び出す`main`関数の方で非同期処理の結果を扱えるようになります。
+この変更によって、`fetchUserInfo`関数を呼び出す`main`関数のほうで非同期処理の結果を扱えるようになります。
 Promiseチェーンの中で投げられたエラーは、`Promise#catch`メソッドを使って一箇所で受け取れます。
 
 次のコードでは、`fetchUserInfo`関数から返されたPromiseオブジェクトを、`main`関数でエラーハンドリングしてログを出力します。
 `fetchUserInfo`関数の`catch`メソッドでハンドリングしていたエラーは、`main`関数の`catch`メソッドでハンドリングされます。
 一方、`Response#ok`で判定していた400や500などのエラーレスポンスがそのままでは`main`関数でハンドリングできません。
-そこで、`Promise.reject`メソッドを使い、RejectedなPromiseを返しPromiseチェーンをエラーの状態にします。
-その結果Promiseチェーンがエラーとなるため、`main`関数の`catch`でハンドリングできます。
+そこで、`Promise.reject`メソッドを使ってRejectedなPromiseを返し、Promiseチェーンをエラーの状態にします。
+Promiseチェーンがエラーとなるため、`main`関数の`catch`でハンドリングできます。
 
 ```js
 function main() {
@@ -118,8 +118,8 @@ function fetchUserInfo(userId) {
 つまり、`then`のコールバック関数が同期処理から非同期処理に変わったとしても、次の`then`が受け取る値の型は変わらないということです。
 
 Promiseチェーンを使って処理を分割する利点は、同期処理と非同期処理を区別せずに連鎖できることです。
-一般に、同期的に書かれた処理を後から非同期処理へと変更することは、全体を書き換える必要があるため難しいです。
-そのため、最初から処理を分けておき、処理を`then`を使ってつなぐことで、変更に強いコードを書くことができます。
+一般に、同期的に書かれた処理を後から非同期処理へと変更するのは、全体を書き換える必要があるため難しいです。
+そのため、最初から処理を分けておき、処理を`then`を使ってつなぐことで、変更に強いコードを書けます。
 どのように処理を区切るかは、それぞれの関数が受け取る値の型と、返す値の型に注目するのがよいでしょう。
 Promiseチェーンで処理を分けることで、それぞれの処理が簡潔になりコードの見通しがよくなります。
 
@@ -199,7 +199,7 @@ index.jsにも`<input>`タグから値を受け取るための処理を追加す
 ## このセクションのチェックリスト {#section-checklist}
 
 - HTMLの組み立てと表示の処理を`createView`関数と`displayView`関数に分離した
-- `main`関数を宣言し、`fetchUserInfo`関数が返すPromiseのエラーハンドリングをおこなった
+- `main`関数を宣言し、`fetchUserInfo`関数が返すPromiseのエラーハンドリングを行った
 - Promiseチェーンを使って`fetchUserInfo`関数をリファクタリングした
 - [Async Function][] を使って`main`関数をリファクタリングした
 - `index.html`に`<input>`タグを追加し、`getUserId`関数でユーザーIDを取得した

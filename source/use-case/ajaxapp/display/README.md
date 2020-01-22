@@ -63,9 +63,9 @@ const result = document.getElementById("result");
 result.innerHTML = view;
 ```
 
-JavaScriptによってHTML要素をDOMに追加する方法は、大きく分けて２つあります。
-ひとつは、今回のようにHTML文字列を[Element#innerHTML][]プロパティにセットする方法です。
-もうひとつは、文字列ではなく[Element][]オブジェクトを生成して[手続き的にツリー構造を構築する][]方法です。
+JavaScriptによってHTML要素をDOMに追加する方法には、大きく分けて２つあります。
+1つは、今回のようにHTML文字列を[Element#innerHTML][]プロパティにセットする方法です。
+もう1つは、文字列ではなく[Element][]オブジェクトを生成して[手続き的にツリー構造を構築する][]方法です。
 後者はセキュリティ的に安全ですが、コードは少し冗長になります。
 今回は`Element#innerHTML`プロパティを使いつつ、セキュリティのためのエスケープ処理を行います。
 
@@ -95,11 +95,11 @@ function escapeSpecialChars(str) {
 
 この`escapeSpecialChars`関数を、HTML文字列の中で`userInfo`から値を注入しているすべての箇所で行います。
 ただし、テンプレートリテラル中で挿入している部分すべてに関数を適用するのは手間ですし、メンテナンス性もよくありません。
-そこで、[テンプレートリテラルをタグ付け][]することで、明示的にエスケープ用の関数を呼び出す必要がないようにします。
-タグ付けされたテンプレートリテラルは、テンプレートによる値の埋め込みを関数の呼び出しとして扱えます。
+そこで、[テンプレートリテラルをタグづけ][]することで、明示的にエスケープ用の関数を呼び出す必要がないようにします。
+タグづけされたテンプレートリテラルは、テンプレートによる値の埋め込みを関数の呼び出しとして扱えます。
 
-次の`escapeHTML`関数はテンプレートリテラルにタグ付けするための**タグ関数**です。
-タグ関数は第一引数に文字列リテラルの配列、第二引数に埋め込まれる値の配列が与えられます。
+次の`escapeHTML`関数はテンプレートリテラルにタグづけするための**タグ関数**です。
+タグ関数には、第一引数に文字列リテラルの配列、第二引数に埋め込まれる値の配列が与えられます。
 `escapeHTML`関数では、文字列リテラルと値が元の順番どおりに並ぶように文字列を組み立てつつ、
 値が文字列型であればエスケープするようにしています。
 
@@ -116,8 +116,8 @@ function escapeHTML(strings, ...values) {
 }
 ```
 
-`escapeHTML`関数はタグ関数なので、通常の`()`による呼び出しではなく、テンプレートリテラルに対してタグ付けして使います。
-テンプレートリテラルのバッククォート記号の前に関数を書くと、関数がタグ付けされます。
+`escapeHTML`関数はタグ関数なので、通常の`()`による呼び出しではなく、テンプレートリテラルに対してタグづけして使います。
+テンプレートリテラルのバッククォート記号の前に関数を書くと、関数がタグづけされます。
 
 <!-- 差分コードなので -->
 <!-- doctest:disable -->
@@ -153,7 +153,7 @@ result.innerHTML = view;
 
 - [テンプレートリテラル][]を使ってHTML文字列を組み立てた
 - `innerHTML`プロパティを使ってHTML文字列をDOMに追加した
-- [タグ付きテンプレート関数][]を使ってHTML文字列をエスケープした
+- [タグつきテンプレート関数][]を使ってHTML文字列をエスケープした
 - `fetchUserInfo`関数を呼び出し、HTMLにユーザー情報が表示されることを確認した
 
 [document.getElementById]: https://developer.mozilla.org/ja/docs/Web/API/Document/getElementById
@@ -161,6 +161,6 @@ result.innerHTML = view;
 [Element]: https://developer.mozilla.org/ja/docs/Web/API/Element
 [手続き的にツリー構造を構築する]: https://developer.mozilla.org/ja/docs/Web/API/Node/appendChild
 [エスケープ用のライブラリ]: https://github.com/teppeis/htmlspecialchars
-[テンプレートリテラルをタグ付け]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/template_strings#タグ付けされたTemplate_literal
+[テンプレートリテラルをタグづけ]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/template_strings#タグづけされたTemplate_literal
 [テンプレートリテラル]: ../../../basic/string/README.md#create
-[タグ付きテンプレート関数]: ../../../basic/string/README.md#tagged-template-function
+[タグづきテンプレート関数]: ../../../basic/string/README.md#tagged-template-function
