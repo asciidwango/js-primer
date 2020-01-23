@@ -70,7 +70,7 @@ Firefoxの開発者ツールは次のいずれかの方法で開きます。
 
 ![ログが表示されているWebコンソール](img/fig-1.png)
 
-## ウェブブラウザとDOM {#web-browesrs-and-dom}
+## ウェブブラウザとDOM {#web-browsers-and-dom}
 
 HTMLドキュメントをブラウザで読み込むとき、**[DOM][]**と呼ばれるプログラミング用のデータ表現が生成されます。
 **DOM（Document Object Model）** は、HTMLドキュメントのコンテンツと構造をJavaScriptから操作できるオブジェクトです。
