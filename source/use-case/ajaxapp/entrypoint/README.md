@@ -70,6 +70,33 @@ Firefoxの開発者ツールは次のいずれかの方法で開きます。
 
 ![ログが表示されているWebコンソール](img/fig-1.png)
 
+## ウェブブラウザとDOM {#web-browesrs-and-dom}
+
+HTMLドキュメントをブラウザで読み込むとき、**[DOM][]**と呼ばれるプログラミング用のデータ表現が生成されます。
+**DOM（Document Object Model）** は、HTMLドキュメントのコンテンツと構造をJavaScriptから操作できるオブジェクトです。
+DOMが表現するHTMLタグの木構造を **DOMツリー** と呼ぶこともあります。
+たとえば、HTMLドキュメントそのものを表現する `document` グローバルオブジェクトを使うと、次のように `index.html` から作られたDOMツリーを操作できます。
+
+<!-- DOMがないため -->
+<!-- doctest:disable -->
+```js
+// CSSセレクタを使ってDOMツリー中のh2要素を取得する
+const heading = document.querySelector("h2");
+// h2要素に含まれるテキストコンテンツを取得する
+const headingText = heading.textContent;
+
+// button要素を作成する
+const button = document.createElement("button");
+button.textContent = "Push Me";
+// body要素の子要素としてbuttonを挿入する
+document.body.appendChild(button);
+```
+
+動的なWebアプリケーションを作るためには、JavaScriptによるDOMの操作が不可欠です。
+今回のユースケースでもGitHubのAPIから取得したデータを元に、動的にDOMツリーを操作してUIを構築します。
+JavaScriptとDOMはWebアプリケーション開発において切っても切り離せない関係ですが、DOMは言語機能ではなくブラウザが実装しているAPIです。
+そのため、DOMを持たないNode.jsなどの実行環境では使えず、`document`のようなグローバルオブジェクトも存在しないことに注意が必要です。
+
 ## このセクションのチェックリスト {#section-checklist}
 
 このセクションでは、エントリーポイントとなるHTMLを作成し、JavaScriptモジュールのエントリーポイントとなるJavaScriptファイルを読み込むところまでを実装しました。
@@ -83,3 +110,4 @@ Firefoxの開発者ツールは次のいずれかの方法で開きます。
 [Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy 
 [アプリケーション開発の準備]: ../../setup-local-env/README.md
 [Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
+[DOM]: https://developer.mozilla.org/ja/docs/Web/API/Document_Object_Model/Introduction
