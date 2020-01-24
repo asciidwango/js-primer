@@ -16,7 +16,7 @@ const todoItemElement = todoItemView.createElement(todoItemModel, {
         // チェックボックスが更新されたときに呼ばれるリスナー関数
     },
     onDeleteTodo: () => {
-        // 削除ボタンがクリックされたときによばれるリスナー関数
+        // 削除ボタンがクリックされたときに呼ばれるリスナー関数
     }
 });
 console.log(todoItemElement); // <li>要素が入る
