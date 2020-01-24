@@ -34,7 +34,7 @@ export class App {
                         completed: !item.completed
                     });
                 });
-                // 削除ボタン(x)をクリック時にTodoListModelからアイテムを削除する
+                // 削除ボタン(x)がクリックされたときにTodoListModelからアイテムを削除する
                 const deleteButtonElement = todoItemElement.querySelector(".delete");
                 deleteButtonElement.addEventListener("click", () => {
                     this.todoListModel.deleteTodo({
