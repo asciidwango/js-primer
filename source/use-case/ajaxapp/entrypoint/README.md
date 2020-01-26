@@ -76,7 +76,9 @@ HTMLドキュメントをブラウザで読み込むとき、**[DOM][]**と呼�
 **DOM（Document Object Model）** とは、HTMLドキュメントのコンテンツと構造をJavaScriptから操作できるオブジェクトです。
 DOMではHTMLドキュメントのタグの入れ子関係を木構造で表現するため、DOMが表現するHTMLタグの木構造を **DOMツリー** と呼びます。
 
-たとえば、HTMLドキュメントそのものを表現する `document` グローバルオブジェクトを使うと、次のように `index.html` から作られたDOMツリーを操作できます。
+たとえば、HTMLドキュメントそのものを表現する `document` グローバルオブジェクトがあります。
+`document` グローバルオブジェクトには、指定したHTML要素を取得したり、新しくHTML要素を作成するメソッドが実装されています。
+`document` グローバルオブジェクトを使うことで、先ほどの`index.html` に書かれたHTMLをJavaScriptから操作できます。
 
 <!-- DOMがないため -->
 <!-- doctest:disable -->
@@ -93,10 +95,12 @@ button.textContent = "Push Me";
 document.body.appendChild(button);
 ```
 
+JavaScriptとDOMはWebアプリケーション開発において切っても切り離せない関係です。
 動的なWebアプリケーションを作るためには、JavaScriptによるDOMの操作が不可欠です。
 今回のユースケースでもGitHubのAPIから取得したデータを元に、動的にDOMツリーを操作して画面の表示を更新します。
-JavaScriptとDOMはWebアプリケーション開発において切っても切り離せない関係ですが、DOMは言語機能ではなくブラウザが実装しているAPIです。
-そのため、DOMを持たないNode.jsなどの実行環境では使えず、`document`のようなグローバルオブジェクトも存在しないことに注意が必要です。
+
+しかし、DOMは言語機能（ECMAScript）ではなくブラウザが実装しているAPIです。
+そのため、DOMを持たないNode.jsなどの実行環境では使えず、`document`のようなグローバルオブジェクトも存在しないことには注意が必要です。
 
 ## このセクションのチェックリスト {#section-checklist}
 
@@ -107,6 +111,7 @@ JavaScriptとDOMはWebアプリケーション開発において切っても切�
 - JavaScriptのエントリーポイントとなる`index.js`を作成し`index.html`から読み込んだ
 - ローカルサーバーを使ってブラウザで`index.html`を表示した
 - `index.js`からコンソールに出力されたログを確認した
+- JavaScriptからHTMLドキュメントを操作するDOMについて学んだ
 
 [Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy 
 [アプリケーション開発の準備]: ../../setup-local-env/README.md
