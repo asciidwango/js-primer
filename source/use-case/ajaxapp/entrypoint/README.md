@@ -73,7 +73,7 @@ Firefoxの開発者ツールは次のいずれかの方法で開きます。
 ## ウェブブラウザとDOM {#web-browsers-and-dom}
 
 HTMLドキュメントをブラウザで読み込むとき、**[DOM][]**と呼ばれるプログラミング用のデータ表現が生成されます。
-**DOM（Document Object Model）** は、HTMLドキュメントのコンテンツと構造をJavaScriptから操作できるオブジェクトです。
+**DOM（Document Object Model）** とは、HTMLドキュメントのコンテンツと構造をJavaScriptから操作できるオブジェクトです。
 DOMが表現するHTMLタグの木構造を **DOMツリー** と呼ぶこともあります。
 たとえば、HTMLドキュメントそのものを表現する `document` グローバルオブジェクトを使うと、次のように `index.html` から作られたDOMツリーを操作できます。
 
