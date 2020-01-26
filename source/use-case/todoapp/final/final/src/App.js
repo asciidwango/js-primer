@@ -10,7 +10,7 @@ export class App {
     }
 
     /**
-     * Todoを追加時に呼ばれるリスナー関数
+     * Todoを追加するときに呼ばれるリスナー関数
      * @param {string} title
      */
     handleAdd(title) {
@@ -18,7 +18,7 @@ export class App {
     }
 
     /**
-     * Todoの状態を更新時に呼ばれるリスナー関数
+     * Todoの状態を更新したときに呼ばれるリスナー関数
      * @param {{ id:number, completed: boolean }}
      */
     handleUpdate({ id, completed }) {
@@ -26,7 +26,7 @@ export class App {
     }
 
     /**
-     * Todoを削除時に呼ばれるリスナー関数
+     * Todoを削除したときに呼ばれるリスナー関数
      * @param {{ id: number }}
      */
     handleDelete({ id }) {
