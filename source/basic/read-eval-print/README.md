@@ -101,7 +101,7 @@ SyntaxError: redeclaration of const bookTitle
 
 ### HTMLファイルを作成しJavaScriptコードを読み込む方法 {#js-in-html}
 
-REPLはあくまで開発者向けの機能です
+REPLはあくまで開発者向けの機能です。
 ウェブサイトではHTMLに記述した`<script>`タグでJavaScriptを読み込み実行します。
 ここでは、HTMLとJavaScriptファイルを使ったJavaScriptコードの実行方法を見ていきます。
 
