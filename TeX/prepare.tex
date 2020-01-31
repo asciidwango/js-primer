@@ -1,0 +1,127 @@
+\hypertarget{preparation}{%
+\chapter*{読みはじめる前の事前準備}\label{preparation}}
+
+この書籍は、すでに何かしらのプログラミング言語を触ったことがある人向けに書かれています。
+そのため、この書籍でプログラミング言語を初めて学ぶ場合には、まずコードに慣れる必要があります。
+
+JavaScriptのコードは、ブラウザがあれば実行できます。
+
+\{\% if output.name == ``ebook'' \%\}
+
+まずは、ブラウザをインストールしてください。
+ブラウザには\href{https://www.microsoft.com/ja-jp/windows/microsoft-edge}{Microsoft
+Edge}、\href{https://www.mozilla.org/ja/firefox/new/}{Firefox}、\href{https://www.google.com/intl/ja_ALL/chrome/}{Google
+Chrome}、\href{https://www.apple.com/jp/safari/}{Safari}などがありますが、この書籍ではFirefoxを使用していきます。すでにブラウザをインストール済みの場合も、最新のバージョンを使っているかを確認してください。
+
+ブラウザの準備ができたら、次のURLをブラウザで開いてください。
+
+\begin{itemize}
+\item
+  \url{https://jsprimer.net/intro/preparation/}
+\end{itemize}
+
+\{\% endif \%\}
+
+次のJavaScriptのサンプルコードを書き写して、ブラウザでJavaScriptを実行するところから初めてみましょう。
+
+\hypertarget{samplecode}{%
+\section*{サンプルコード}\label{samplecode}}
+
+次のコードが書き写して実行するサンプルコードです。
+今はまだコードの内容が理解できなくても問題ありません。
+まずは、実際にコードを実行してみることが重要です。
+
+\begin{lstlisting}
+function hello(name) {
+    console.log("こんにちは" + name + "さん");
+}
+
+hello("名前");
+\end{lstlisting}
+
+\hypertarget{editor}{%
+\section*{エディター}\label{editor}}
+
+このサンプルコードを、次のエディターに書き写して``実行''ボタンを押して、JavaScriptを実行してみてください。
+\texttt{"}と\texttt{"}で囲まれた\texttt{名前}という文字列は、自分の名前に書き換えてみてください。
+
+\begin{lstlisting}
+// この行を消して、先ほどのコードを書き写して"実行"を押してみよう
+\end{lstlisting}
+
+実行した結果として、次のようなメッセージが表示されているなら実行成功です
+（メッセージの\texttt{名前}の部分は、自分で書いた名前に書き換えて読んでください）。
+
+\begin{quote}
+こんにちは名前さん
+\end{quote}
+
+``ログをクリア''ボタンを押すと、表示されているログを削除できます。
+``終了''ボタンを押すとエディターを終了できます。
+
+``実行''ボタンを押して異なるメッセージがでた場合は、次の注意事項を読んでもう一度挑戦してみてください。
+
+\hypertarget{caution}{%
+\section*{注意事項}\label{caution}}
+
+``実行''したときに、\texttt{SyntaxError}というようなエラーが表示されたなら、コードのどこかを書き間違えています。
+次の点に気をつけて成功するまで試してみてください。
+
+\begin{itemize}
+\item
+  コードは日本語入力をオフにして入力します
+
+  \begin{itemize}
+  \item
+    \texttt{"}と\texttt{"}で囲まれた部分以外は、すべて半角の英数字で入力してください
+  \item
+    \texttt{"}（ダブルクォート）、\texttt{;}（セミコロン）、カッコ、スペースなどの記号も半角になっているかを確認してください
+  \end{itemize}
+\item
+  1行入力するごとにEnterキーを押すことで改行できます
+\item
+  大文字と小文字は区別されます
+
+  \begin{itemize}
+  \item
+    このサンプルコードでは小文字の英数字しか利用していません
+  \end{itemize}
+\item
+  コードの意味はまだわからなくても問題ありません
+
+  \begin{itemize}
+  \item
+    正しくコードを入力して、実行できることが重要です
+  \end{itemize}
+\end{itemize}
+
+\emph{SyntaxError: illegal character}や\emph{SyntaxError: Invalid or
+unexpected token}のようなエラーメッセージが出ている場合は、
+どこかに全角の記号や全角の英数字が混ざっています。
+
+一度すべてのコードを消してから、もう一度入力してみましょう。
+
+\hypertarget{failure}{%
+\section*{コードを実行できない}\label{failure}}
+
+どうしても実行できない場合は、まだこの書籍を読むには少し早いのかもしれません。
+また、書籍は文字を中心とした解説になるため、初めてのプログラミングではイメージするのが難しいこともあります。
+そのため、書籍より情報量の多い動画などを見て、まずはコードを実行できるようにすることからはじめるのがよいかもしれません。
+
+\texttt{"JavaScript 入門 動画"}といったキーワードで検索し、映像で学んで見てからでも遅くはありません。
+
+また、もっとも効率的なのは、身近な知り合いに聞くことです。
+一人で学ぼうとすると、思わぬところで詰まってしまい進めなくなる場合があります。
+特に新しいことは最初の出発点が一番難しいです。
+ほかの人に手伝ってもらうことで意外と簡単に進めるようになるはずです。
+
+\hypertarget{welcome-to-javascript}{%
+\section*{ようこそJavaScriptへ}\label{welcome-to-javascript}}
+
+サンプルコードが実行できたなら、おそらくこの書籍は読めるはずです。
+
+この書籍は、JavaScriptというプログラミング言語の基本的な文法から、実際のウェブアプリケーションで使われるようなパターンについてを学んでいく書籍です。
+JavaScriptという言語は、常に変化している言語としても知られています。
+その意味は、古いコードが動かなくなるのではなく、新しいやり方が常に増えていくという意味での変化です。
+
+この書籍では、そのような変化していくJavaScriptの学び方についても学んでいきます。
