@@ -118,10 +118,10 @@ UTF-16のCode Unit（16進数） & 0x30A2 & 0x30AA & 0x30A4\tabularnewline
 しかし、文字列によってはCode PointとCode
 Unitが異なる値となる場合があります。
 
-先ほどと同じ関数を使い、リンゴ🍎（リンゴの絵文字）という文字列を構成するCode
+先ほどと同じ関数を使い、リンゴ\includegraphics[clip,height=4mm]{fig/apple.eps}（リンゴの絵文字）という文字列を構成するCode
 UnitとCode Pointを見比べてみます。
 
-\begin{lstlisting}
+\begin{lstlisting}[escapechar=@]
 // 文字列をCode Unit(16進数)の配列にして返す
 function convertCodeUnits(str) {
     const codeUnits = [];
@@ -137,7 +137,7 @@ function convertCodePoints(str) {
     });
 }
 
-const str = "リンゴ🍎";
+const str = "リンゴ@\includegraphics[clip,height=4mm]{fig/apple.eps}@";
 const codeUnits = convertCodeUnits(str);
 console.log(codeUnits); // => ["30ea", "30f3", "30b4", "d83c", "df4e"]
 const codePoints = convertCodePoints(str);
@@ -153,7 +153,7 @@ PointとCode Unitが異なる値となることがわかります。
 インデックス & 0 & 1 & 2 & 3 & 4\tabularnewline
 \midrule
 \endhead
-文字列 & リ & ン & ゴ & 🍎 & \tabularnewline
+文字列 & リ & ン & ゴ & \includegraphics[clip,height=4mm]{fig/apple.eps} & \tabularnewline
 UnicodeのCode Point（16進数）& 0x30ea & 0x30f3 & 0x30b4 & 0x1f34e & \tabularnewline
 UTF-16のCode Unit（16進数） & 0x30ea & 0x30f3 & 0x30b4 & 0xd83c & 0xdf4e\tabularnewline
 \bottomrule
@@ -161,9 +161,9 @@ UTF-16のCode Unit（16進数） & 0x30ea & 0x30f3 & 0x30b4 & 0xd83c & 0xdf4e\ta
 
 具体的には、Code Pointの要素数が4つなのに対して、Code
 Unitの要素数が5つになっています。 また、Code Pointでは1つのCode
-Pointが🍎に対応していますが、Code
+Pointが\includegraphics[clip,height=4mm]{fig/apple.eps}に対応していますが、Code
 Unitでは2つのCode
-Unitで🍎に対応しています。JavaScriptでは「文字列はCode
+Unitで\includegraphics[clip,height=4mm]{fig/apple.eps}に対応しています。JavaScriptでは「文字列はCode
 Unitが順番に並んだもの」として扱われるためこの文字列の要素数（長さ）はCode
 Unitの個数である5つとなっています。
 
@@ -211,13 +211,13 @@ console.log("\uD867\uDE3D"); // => "𩸽"
 console.log("\u{29e3d}"); // => "𩸽"
 \end{lstlisting}
 
-先ほどの例で登場した🍎（リンゴの絵文字）もサロゲートペアで表現される文字です。
+先ほどの例で登場した\includegraphics[clip,height=4mm]{fig/apple.eps}（リンゴの絵文字）もサロゲートペアで表現される文字です。
 
-\begin{lstlisting}
+\begin{lstlisting}[escapechar=@]
 // Code Unit（上位サロゲート + 下位サロゲート）
-console.log("\uD83C\uDF4E"); // => "🍎"
+console.log("\uD83C\uDF4E"); // => "@\includegraphics[clip,height=4mm]{fig/apple.eps}@"
 // Code Point
-console.log("\u{1F34E}"); // => "🍎"
+console.log("\u{1F34E}"); // => "@\includegraphics[clip,height=4mm]{fig/apple.eps}@"
 \end{lstlisting}
 
 このようにサロゲートペアでは、2つのCode Unitで1つのCode
@@ -240,10 +240,10 @@ console.log("𩸽"[1]); // => "\uDE3D"
 Unitごとに扱う文字列処理は複雑になります。
 
 たとえば、\texttt{String\#length}プロパティは文字列におけるCode
-Unitの要素数を数えるため、\texttt{"}🍎\texttt{".length}の結果は\texttt{2}となります。
+Unitの要素数を数えるため、\texttt{"}\includegraphics[clip,height=4mm]{fig/apple.eps}\texttt{".length}の結果は\texttt{2}となります。
 
-\begin{lstlisting}
-console.log("🍎".length); // => 2
+\begin{lstlisting}[escapechar=@]
+console.log("@\includegraphics[clip,height=4mm]{fig/apple.eps}@".length); // => 2
 \end{lstlisting}
 
 このような場合には、文字列をCode
@@ -315,10 +315,10 @@ console.log(fish); // => "𩸽"
 Unitの個数を表すプロパティです。
 そのためサロゲートペアを含む文字列では、\texttt{length}の結果が見た目より大きな値となる場合があります。
 
-\begin{lstlisting}
+\begin{lstlisting}[escapechar=@]
 // Code Unitの個数を返す
-console.log("🍎".length); // => 2
-console.log("\uD83C\uDF4E"); // => "🍎"
+console.log("@\includegraphics[clip,height=4mm]{fig/apple.eps}@".length); // => 2
+console.log("\uD83C\uDF4E"); // => "@\includegraphics[clip,height=4mm]{fig/apple.eps}@"
 console.log("\uD83C\uDF4E".length); // => 2
 \end{lstlisting}
 
@@ -334,11 +334,11 @@ iterableオブジェクトとは\texttt{Symbol.iterator}という特別な名前
 Point）ごと区切った配列へと変換できます。先ほども紹介したように、文字列をiterableとして扱う場合はCode
 Pointごとに処理を行います。
 
-\begin{lstlisting}
+\begin{lstlisting}[escapechar=@]
 // Code Pointごとの配列にする
 // Array.fromメソッドはIteratorを配列にする
-const codePoints = Array.from("リンゴ🍎");
-console.log(codePoints); // => ["リ", "ン", "ゴ", "🍎"]
+const codePoints = Array.from("リンゴ@\includegraphics[clip,height=4mm]{fig/apple.eps}@");
+console.log(codePoints); // => ["リ", "ン", "ゴ", "@\includegraphics[clip,height=4mm]{fig/apple.eps}@"]
 // Code Pointの個数を数える
 console.log(codePoints.length); // => 4
 \end{lstlisting}
@@ -358,18 +358,18 @@ Pointで区切った文字の配列へと変換できます。
 配列にすれば、あとは「\href{../loop/README.md}{ループと反復処理}」の章で学んだ方法を使って、Code
 Pointごとに反復処理ができます。
 
-次のコードでは、文字列中に登場する🍎の個数を数えています。
+次のコードでは、文字列中に登場する\includegraphics[clip,height=4mm]{fig/apple.eps}の個数を数えています。
 \texttt{countOfCodePoints}関数は、\texttt{Array.from}でCode
 Pointごとの配列にし、配列を\texttt{codePoint}でフィルターした結果できた配列の要素数を返します。
 
-\begin{lstlisting}
+\begin{lstlisting}[escapechar=@]
 // 指定した`codePoint`の個数を数える
 function countOfCodePoints(str, codePoint) {
     return Array.from(str).filter(item => {
         return item === codePoint;
     }).length;
 }
-console.log(countOfCodePoints("🍎🍇🍎🥕🍒", "🍎")); // => 2
+console.log(countOfCodePoints("@\includegraphics[clip,height=3mm]{fig/fruits.eps}@", "@\includegraphics[clip,height=4mm]{fig/apple.eps}@")); // => 2
 \end{lstlisting}
 
 \texttt{for...of}による反復処理も文字列をCode
@@ -378,7 +378,7 @@ Pointごとに扱えます。
 
 先ほどのコードと同じ\texttt{countOfCodePoints}関数を\texttt{for...of}を使って実装してみます。
 
-\begin{lstlisting}
+\begin{lstlisting}[escapechar=@]
 // 指定した`codePoint`の個数を数える
 function countOfCodePoints(str, codePoint) {
     let count = 0;
@@ -389,7 +389,7 @@ function countOfCodePoints(str, codePoint) {
     }
     return count;
 }
-console.log(countOfCodePoints("🍎🍇🍎🥕🍒", "🍎")); // => 2
+console.log(countOfCodePoints("@\includegraphics[clip,height=3mm]{fig/fruits.eps}@", "@\includegraphics[clip,height=4mm]{fig/apple.eps}@")); // => 2
 \end{lstlisting}
 
 \hypertarget{conclusion}{%
