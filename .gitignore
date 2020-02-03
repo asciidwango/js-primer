@@ -127,5 +127,5 @@ Temporary Items
 /tools/applescript/lib/
 
 # TeX working files
-./TeX/*.aux
-./TeX/*.dvi
+*.aux
+*.dvi
