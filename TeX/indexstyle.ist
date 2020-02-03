@@ -1,0 +1,10 @@
+%group_skip "\bigskip"
+lethead_flag 1
+letter_head 2
+symhead_positive "\\bfseries{記号・数字}"
+
+%lethead_prefix "\n\\hfill{\\bfseries ---"
+%lethead_suffix "---}\\hfill\\hfill\\hfill\\hfill\\par\\nobreak"
+
+lethead_prefix "\n{\\bfseries{\\color[gray]{0.6} ■} "
+lethead_suffix "}\\par\\nobreak"
