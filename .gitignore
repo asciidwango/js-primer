@@ -125,3 +125,7 @@ Temporary Items
 /.textlintcache
 /.eslintcache
 /tools/applescript/lib/
+
+# TeX working files
+./TeX/*.aux
+./TeX/*.dvi
