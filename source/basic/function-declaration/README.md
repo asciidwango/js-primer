@@ -698,6 +698,6 @@ ES2015からは、メソッドを定義する構文が追加されているた�
 
 [関数とスコープ]: ../function-scope/README.md
 [非同期処理]: ../async/README.md
-[変数名に使える名前のルール]: .../variables/README.md#variable-name
+[変数名に使える名前のルール]: ../variables/README.md#variable-name
 
 [^1]: JavaScriptにはオーバーロードと呼ばれる機能はありません。
