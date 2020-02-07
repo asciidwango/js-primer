@@ -1,0 +1,1116 @@
+\hypertarget{node-cli}{%
+\chapter[ユースケース: Node.jsでCLIアプリケーション]{ユースケース: Node.jsで\\CLIアプリケーション}\label{node-cli}}
+
+ここではNode.jsでCLI（コマンドラインインターフェース）アプリケーションを開発します。
+CLIのユースケースとしてMarkdown形式のテキストファイルをHTMLテキストに変換するツールを作成します。
+
+作成するアプリケーションは次の要件を満たすものとします。
+
+\begin{itemize}
+\item
+  コマンドライン引数として変換対象のファイルパスを受け取る
+\item
+  Markdown形式のファイルを読み込み、変換したHTMLを標準出力に表示する
+\item
+  変換の設定をコマンドライン引数でオプションとして与えられる
+\end{itemize}
+
+\hypertarget{hello-world-by-nodejs}{%
+\section{Node.jsでHello World}\label{hello-world-by-nodejs}}
+
+実際にアプリケーションを作成する前に、まずはHello
+Worldアプリケーションを通じてNode.jsのCLIアプリケーションの基本を学びましょう。
+
+\hypertarget{create-project}{%
+\subsection{プロジェクトディレクトリの作成}\label{create-project}}
+
+今回作成するNode.jsのCLIアプリケーションでは、JavaScriptやMarkdownなどのファイルを扱います。
+そのため、まずそれらのファイルを置くためのディレクトリを作成します。
+
+ここでは\texttt{nodecli}という名前で新しいディレクトリを作成します。
+ここからは作成した\texttt{nodecli}ディレクトリ以下で作業していきます。
+
+またこのプロジェクトで作成するファイルは、必ず文字コード（エンコーディング）を\textbf{UTF-8}、改行コードを\textbf{LF}にしてファイルを保存します。
+
+\hypertarget{hello-world}{%
+\subsection{Hello World}\label{hello-world}}
+
+まずはNode.jsでHello Worldアプリケーションを作ってみましょう。
+具体的には、実行すると標準出力に\texttt{"Hello World!"}という文字列を表示するCLIアプリケーションを記述します。
+はじめに用意するのは、アプリケーションのエントリーポイントとなるJavaScriptファイルです。
+\texttt{nodecli}ディレクトリに\texttt{main.js}という名前でファイルを作成し、次のように記述します。
+
+\begin{listtitle}
+main.js
+\end{listtitle}
+\begin{lstlisting}
+console.log("Hello World!");
+\end{lstlisting}
+\listend
+
+ウェブブラウザの実行環境では、\texttt{console.log}メソッドの出力先はブラウザの開発者ツールのコンソールでした。
+Node.js環境では、\texttt{console.log}メソッドの出力先は標準出力になります。
+このコードは、標準出力に\texttt{"Hello World!"}という文字列を出力するものです。
+
+JavaScriptのコードをNode.jsで実行するには、\texttt{node}コマンドを使用します。
+次のコマンドを実行して、Node.jsで\texttt{main.js}を実行します。
+
+\begin{lstlisting}
+$ node main.js
+Hello World!
+\end{lstlisting}
+
+Node.jsでは、エントリーポイントとなるJavaScriptファイルを作成し、そのファイルを\texttt{node}コマンドの引数に渡して実行するのが基本です。
+また、ウェブブラウザのJavaScriptと同じく、コードは1行目から順に実行されます。
+
+\hypertarget{global-objects}{%
+\subsection{Node.jsとブラウザのグローバルオブジェクト}\label{global-objects}}
+
+Node.jsはChromeと同じV8というJavaScriptエンジンを利用しています。
+そのため、ECMAScriptで定義されている基本構文はブラウザと同じように使えます。
+しかし、ブラウザ環境とNode.js環境では利用できるグローバルオブジェクトが違うため、アプリケーションを開発するときにはその違いを理解しなくてはなりません。
+
+ECMAScriptで定義されているグローバルオブジェクトはブラウザとNode.jsどちらの環境にも存在します。
+たとえば\texttt{Boolean}や\texttt{String}などのラッパーオブジェクト、\texttt{Map}や\texttt{Promise}のようなビルトインオブジェクトはどちらの環境にも存在します。
+
+しかし、実行環境によって異なるオブジェクトもあります。
+たとえばウェブブラウザ環境のグローバルオブジェクトは\texttt{window}オブジェクトですが、Node.jsでは\href{https://nodejs.org/docs/latest-v12.x/api/globals.html}{global}と呼ばれるオブジェクトがグローバルオブジェクトになります。
+ブラウザの\texttt{window}オブジェクトには、次のようなプロパティや関数があります。
+
+\begin{itemize}
+\item
+  \href{https://developer.mozilla.org/ja/docs/Web/API/Document}{document}
+\item
+  \href{https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest}{XMLHttpRequest}
+\end{itemize}
+
+一方、Node.jsの\texttt{global}オブジェクトには、たとえば次のようなプロパティや関数があります。
+
+\begin{itemize}
+\item
+  \href{https://nodejs.org/docs/latest-v12.x/api/process.html\#process_process}{process}
+\item
+  \href{https://nodejs.org/docs/latest-v12.x/api/buffer.html}{Buffer}
+\end{itemize}
+
+それぞれのグローバルオブジェクトにあるプロパティなどは、同じ名前でグローバル変数や関数としてアクセスできます。
+たとえば\texttt{window.document}プロパティは、グローバル変数の\texttt{document}としてもアクセスできます。
+
+また、ECMAScriptで定義されたものではありませんが、ほぼ同等の機能と名前を持つプロパティや関数がブラウザとNode.jsのどちらにもある場合があります。
+たとえば次のようなAPIは同等の機能を提供しますが、メソッドの種類や返り値が異なります。
+
+\begin{itemize}
+\item
+  Console API
+\item
+  \texttt{setTimeout}関数
+\end{itemize}
+
+これらを踏まえた上で、次のセクションからCLIアプリケーションの開発をはじめていきましょう。
+
+\hypertarget{section-checklist}{%
+\subsection{このセクションのチェックリスト}\label{section-checklist}}
+
+\begin{itemize}
+\item
+  \texttt{main.js}ファイルを作成した
+\item
+  \texttt{node}コマンドで\texttt{main.js}を実行し、標準出力にログが出力されるのを確認した
+\item
+  グローバルオブジェクトについて、ウェブブラウザとNode.jsで実行環境による違いがあることを理解した
+\end{itemize}
+
+\hypertarget{processing-commandline-args}{%
+\section{コマンドライン引数を処理する}\label{processing-commandline-args}}
+
+このユースケースで作成するCLIアプリケーションの目的は、コマンドライン引数として与えられたファイルを変換することです。
+このセクションではコマンドライン引数を受け取って、それをパースするところまでを行います。
+
+\hypertarget{process-object-and-commandline-args}{%
+\subsection{\texorpdfstring{\texttt{process}オブジェクトとコマンドライン引数}{processオブジェクトとコマンドライン引数}}\label{process-object-and-commandline-args}}
+
+コマンドライン引数を扱う前に、まずは\texttt{process}オブジェクトについて触れておきます。
+\texttt{process}オブジェクトはNode.js実行環境のグローバル変数のひとつです。
+\texttt{process}オブジェクトが提供するのは、現在のNode.jsの実行プロセスについて、情報の取得と操作をするAPIです。
+詳細は\href{https://nodejs.org/dist/latest-v12.x/docs/api/process.html\#process_process}{公式ドキュメント}を参照してください。
+
+コマンドライン引数へのアクセスを提供するのは、\texttt{process}オブジェクトの\texttt{argv}プロパティで、文字列の配列になっています。
+次のように\texttt{main.js}を変更し、\texttt{process.argv}をコンソールに出力しましょう。
+
+\begin{listtitle}
+main.js
+\end{listtitle}
+\begin{lstlisting}
+// コンソールにコマンドライン引数を出力する
+console.log(process.argv);
+\end{lstlisting}
+\listend
+
+このスクリプトを次のようにコマンドライン引数をつけて実行してみましょう。
+
+\begin{lstlisting}
+$ node main.js one two=three four
+\end{lstlisting}
+
+このコマンドの実行結果は次のようになります。
+
+\begin{lstlisting}
+[ 
+  '/usr/local/bin/node', // Node.jsの実行プロセスのパス
+  '/Users/laco/nodecli/main.js', // 実行したスクリプトファイルのパス
+  'one', // 1番目の引数
+  'two=three', // 2番目
+  'four'  // 3番目
+]
+\end{lstlisting}
+
+1番目と2番目の要素は常に\texttt{node}コマンドと実行されたスクリプトのファイルパスになります。
+つまりアプリケーションがコマンドライン引数として使うのは、3番目以降の要素です。
+
+\hypertarget{parse-args}{%
+\subsection{コマンドライン引数をパースする}\label{parse-args}}
+
+\texttt{process.argv}配列を使えばコマンドライン引数を取得できますが、取得できる情報にはアプリケーションに不要なものも含まれています。
+また、文字列の配列として渡されるため、フラグのオンオフのような真偽値を受け取るときにも不便です。
+そのため、アプリケーションでコマンドライン引数を扱うときには、一度パースして扱いやすい値に整形するのが一般的です。
+
+今回は\href{https://github.com/tj/commander.js/}{commander}というライブラリを使ってコマンドライン引数をパースしてみましょう。
+文字列処理を自前で行うこともできますが、このような一般的な処理は既存のライブラリを使うと簡単に書けます。
+
+\hypertarget{install-commander}{%
+\subsubsection{\texorpdfstring{\texttt{commander}パッケージをインストールする}{commanderパッケージをインストールする}}\label{install-commander}}
+
+commanderは\href{https://www.npmjs.com/}{npm}の\texttt{npm install}コマンドを使ってインストールできます。
+まだnpmの実行環境を用意できていなければ、先に\href{../../setup-local-env/README.md}{アプリケーション開発の準備}を参照してください。
+
+npmでパッケージをインストールする前に、まずは\texttt{pacakge.json}というファイルを作成します。
+\texttt{package.json}とは、アプリケーションが依存するパッケージの種類やバージョンなどの情報を記録するJSON形式のファイルです。
+\texttt{package.json}ファイルのひな形は、\texttt{npm init}コマンドで生成できます。
+通常は対話式のプロンプトによって情報を設定しますが、ここではすべてデフォルト値で\texttt{pacakge.json}を作成する\texttt{--yes}オプションを付与します。
+
+\texttt{nodecli}のディレクトリ内で、\texttt{npm init --yes}コマンドを実行して\texttt{pacakge.json}を作成しましょう。
+
+\begin{lstlisting}
+$ npm init --yes
+\end{lstlisting}
+
+生成された\texttt{package.json}ファイルは次のようになっています。
+
+\begin{listtitle}
+package.json
+\end{listtitle}
+\begin{lstlisting}
+{
+  "name": "nodecli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+\end{lstlisting}
+\listend
+
+\texttt{package.json}ファイルが用意できたら、\texttt{npm install}コマンドを使って\texttt{commander}パッケージをインストールします。
+このコマンドの引数にはインストールするパッケージの名前とそのバージョンを\texttt{@}記号でつなげて指定できます。
+バージョンを指定せずにインストールすれば、その時点での最新の安定版が自動的に選択されます。
+次のコマンドを実行して、commanderのバージョン2.9をインストールします。\footnote{--saveオプションをつけてインストールしたのと同じ意味。npm
+  5.0.0からは--saveがデフォルトオプションとなりました。}
+
+\begin{lstlisting}
+$ npm install commander@2.9
+\end{lstlisting}
+
+インストールが完了すると、\texttt{package.json}ファイルは次のようになっています。
+
+\begin{listtitle}
+package.json
+\end{listtitle}
+\begin{lstlisting}
+{
+  "name": "nodecli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.9.0"
+  }
+}
+\end{lstlisting}
+\listend
+
+また、npmのバージョンが5以上であれば
+\texttt{package-lock.json}ファイルが生成されています。
+このファイルはnpmがインストールしたパッケージの、実際のバージョンを記録するためのものです。
+先ほどcommanderのバージョンを\texttt{2.9}としましたが、実際にインストールされるのは\texttt{2.9.x}に一致する最新のバージョンです。
+\texttt{package-lock.json}ファイルには実際にインストールされたバージョンが記録されています。
+これによって、再び\texttt{npm install}を実行したときに、異なるバージョンがインストールされるのを防ぎます。
+
+\hypertarget{commonjs-module}{%
+\subsubsection{CommonJSモジュール}\label{commonjs-module}}
+
+インストールした\texttt{commander}パッケージを使う前に、\textbf{CommonJSモジュール}のことを知っておきましょう。
+\href{https://nodejs.org/docs/latest/api/modules.html}{CommonJSモジュール}とは、\href{https://nodejs.org/ja/}{Node.js}環境で利用されているJavaScriptのモジュール化の仕組みです。
+CommonJSモジュールは基本文法で学んだ\href{../../../basic/module/README.md}{ECMAScriptモジュール}の仕様が策定されるより前からNode.jsで使われています。
+Node.jsの標準パッケージやnpmで配布されるパッケージは、CommonJSモジュールとして提供されていることがほとんどです。
+先ほどインストールした\texttt{commander}パッケージも、CommonJSモジュールとして利用できます。
+
+CommonJSモジュールはNode.jsのグローバル変数である\texttt{module}変数を使って変数や関数などをエクスポートします。
+CommonJSモジュールでは\texttt{module.exports}プロパティに代入されたオブジェクトが、そのJavaScriptファイルからエクスポートされます。
+複数の名前つきエクスポートが可能なES
+Moduleとは異なり、CommonJSでは\texttt{module.exports}プロパティの値だけがエクスポートの対象です。
+
+次の例では、\texttt{my-module.js}というファイルを作成し、\texttt{module.exports}でオブジェクトをエクスポートしています。
+
+\begin{listtitle}
+my-module.js
+\end{listtitle}
+\begin{lstlisting}
+module.exports = {
+    foo: "foo"
+};
+\end{lstlisting}
+\listend
+
+このCommonJSモジュールをインポートするには、Node.js実行環境のグローバル関数である\href{https://nodejs.org/dist/latest-v12.x/docs/api/modules.html\#modules_loading_from_node_modules_folders}{require関数}を使います。
+次のように\texttt{require}関数にインポートしたいモジュールのファイルパスを渡し、戻り値としてエクスポートされた値をインポートできます。
+インポートするファイルパスに拡張子が必須なES
+Moduleとは異なり、CommonJSの\texttt{require}関数では拡張子である\texttt{.js}が省略可能です。
+
+\begin{lstlisting}
+// my-module.jsモジュールをmyModuleオブジェクトとしてインポートする。
+const myModule = require("./my-module");
+console.log(myModule.foo); // => "foo"
+\end{lstlisting}
+
+また、\texttt{require}関数は相対パスや絶対パス以外にもnpmでインストールしたパッケージ名を指定できます。
+\texttt{npm install}コマンドでインストールされたパッケージは、\texttt{node\_modules}というディレクトリの中に配置されています。
+\texttt{require}関数にインストールしたパッケージ名を指定することで、\texttt{node\_modules}ディレクトリに配置されたパッケージを読み込めます。
+
+次の例では、先ほどインストールした\texttt{commander}パッケージを\texttt{node\_modules}ディレクトリから読み込んでいます。
+
+\begin{lstlisting}
+const program = require("commander");
+\end{lstlisting}
+
+このユースケースで今後登場するモジュールはすべてCommonJSモジュールです。
+Node.jsではES
+Moduleもサポートされる予定ですが、現在はまだ安定した機能としてサポートされていません。
+
+\hypertarget{get-file-path}{%
+\subsubsection{コマンドライン引数からファイルパスを取得する}\label{get-file-path}}
+
+先ほどインストールした\texttt{commander}パッケージを使って、コマンドライン引数として渡されたファイルパスを取得しましょう。
+このCLIアプリケーションでは、処理の対象とするファイルパスを次のようなコマンドの形式で受け取ります。
+
+\begin{lstlisting}
+$ node main.js ./sample.md
+\end{lstlisting}
+
+commanderでコマンドライン引数をパースするためには、\texttt{parse}メソッドにコマンドライン引数を渡します。
+
+\begin{lstlisting}
+// commanderモジュールをprogramオブジェクトとしてインポートする
+const program = require("commander");
+// コマンドライン引数をパースする
+program.parse(process.argv);
+\end{lstlisting}
+
+\texttt{parse}メソッドを呼び出すと、コマンドライン引数をパースした結果を\texttt{program}オブジェクトから取り出せるようになります。
+今回の例では、ファイルパスは\texttt{program.args}配列に格納されています。
+\texttt{program.args}配列には\texttt{--key=value}のようなオプションや\texttt{--flag}のようなフラグを取り除いた残りのコマンドライン引数が順番に格納されています。
+
+それでは\texttt{main.js}を次のように変更し、コマンドライン引数で渡されたファイルパスを取得しましょう。
+
+\begin{listtitle}
+main.js
+\end{listtitle}
+\begin{lstlisting}
+// commanderモジュールをprogramとしてインポートする
+const program = require("commander");
+// コマンドライン引数をcommanderでパースする
+program.parse(process.argv);
+
+// ファイルパスをprogram.args配列から取り出す
+const filePath = program.args[0];
+console.log(filePath);
+\end{lstlisting}
+\listend
+
+次のコマンドを実行すると、\texttt{program.args}配列に格納された\texttt{./sample.md}文字列が取得されてコンソールに出力されます。
+\texttt{./sample.md}は\texttt{process.argv}配列では3番目に存在していましたが、パース後の\texttt{program.args}配列では1番目になって扱いやすくなっています。
+
+\begin{lstlisting}
+$ node main.js ./sample.md
+./sample.md
+\end{lstlisting}
+
+このように、\texttt{process.argv}配列を直接扱うよりも、commanderのようなライブラリを使うことで宣言的にコマンドライン引数を定義して処理できます。
+次のセクションではコマンドライン引数から取得したファイルパスを元に、ファイルを読み込む処理を追加していきます。
+
+\hypertarget{section-checklist}{%
+\subsection{このセクションのチェックリスト}\label{section-checklist}}
+
+\begin{itemize}
+\item
+  \texttt{process.argv}配列に\texttt{node}コマンドのコマンドライン引数が格納されていることを確認した
+\item
+  npmを使ってパッケージをインストールする方法を理解した
+\item
+  \texttt{require}関数を使ってパッケージのモジュールを読み込めることを確認した
+\item
+  commanderを使ってコマンドライン引数をパースできることを確認した
+\item
+  コマンドライン引数で渡されたファイルパスを取得してコンソールに出力できた
+\end{itemize}
+
+\hypertarget{read-file}{%
+\section{ファイルを読み込む}\label{read-file}}
+
+前のセクションではコマンドライン引数からファイルパスを取得して利用できるようになりました。
+このセクションでは渡されたファイルパスを元にMarkdownファイルを読み込んで、標準出力に表示してみましょう。
+
+\hypertarget{read-file-by-fs}{%
+\subsection{\texorpdfstring{\texttt{fs}モジュールを使ってファイルを読み込む}{fsモジュールを使ってファイルを読み込む}}\label{read-file-by-fs}}
+
+前のセクションで取得できるようになったファイルパスを元に、ファイルを読み込みましょう。
+Node.jsでファイルの読み書きを行うには、標準モジュールの\href{https://nodejs.org/api/fs.html}{\texttt{fs}モジュール}を使います。
+まずは読み込む対象のファイルを作成しましょう。\texttt{sample.md}という名前で\texttt{main.js}と同じ\texttt{nodecli}ディレクトリに配置します。
+
+\begin{listtitle}
+sample.md
+\end{listtitle}
+\begin{lstlisting}
+# sample
+\end{lstlisting}
+\listend
+
+\hypertarget{fs-module}{%
+\subsubsection{\texorpdfstring{\texttt{fs}モジュール}{fsモジュール}}\label{fs-module}}
+
+\texttt{fs}モジュールは、Node.jsでファイルの読み書きを行うための基本的な関数を提供するモジュールです。
+\texttt{fs}モジュールのメソッドとして非同期形式と同期形式の両方が提供されています。
+
+非同期形式の関数は常にコールバック関数を受け取ります。
+コールバック関数の第一引数は必ずその処理で発生したエラーオブジェクトになり、残りの引数は処理の戻り値となります。
+処理が成功したときには、第一引数は\texttt{null}または\texttt{undefined}になります。
+一方、同期形式の関数が処理に失敗したときは例外を発生させるので、\texttt{try...catch}構文によって例外処理を行えます。
+
+次のサンプルコードは、指定したファイルを読み込む非同期形式の\texttt{readFile}メソッドの例です。
+
+\begin{lstlisting}
+const fs = require("fs");
+
+fs.readFile("sample.md", (err, file) => {
+    if (err) {
+        console.error(err);
+    } else {
+        console.log(file);
+    }
+});
+\end{lstlisting}
+
+そして、次のサンプルコードは、同じく指定したファイルを読み込む同期形式\texttt{readFileSync}メソッドの例です。
+
+\begin{lstlisting}
+const fs = require("fs");
+
+try {
+    const file = fs.readFileSync("sample.md");
+} catch (err) { 
+    // ファイルが読み込めないなどのエラーが発生したときに呼ばれる
+}
+\end{lstlisting}
+
+Node.jsはシングルスレッドなので、他の処理をブロックしにくい非同期形式のAPIを選ぶことがほとんどです。
+Node.jsには\texttt{fs}モジュール以外にも多くの非同期APIがあるので、非同期処理に慣れておきましょう。
+
+\hypertarget{use-readFile}{%
+\subsubsection{readFile関数を使う}\label{use-readFile}}
+
+それでは\texttt{fs}モジュールの\texttt{readFile}メソッドを使って\texttt{sample.md}ファイルを読み込んでみましょう。
+次のように\texttt{main.js}を変更し、コマンドライン引数から取得したファイルパスを元にファイルを読み込んでコンソールに出力します。
+
+\begin{listtitle}
+main.js
+\end{listtitle}
+\begin{lstlisting}
+const program = require("commander");
+// fsモジュールをfsオブジェクトとしてインポートする
+const fs = require("fs");
+
+// コマンドライン引数からファイルパスを取得する
+program.parse(process.argv);
+const filePath = program.args[0];
+
+// ファイルを非同期で読み込む
+fs.readFile(filePath, (err, file) => {
+    console.log(file);
+});
+\end{lstlisting}
+\listend
+
+\texttt{sample.md}を引数に渡した実行結果は次のようになります。
+文字列になっていないのは、コールバック関数の第二引数はファイルの中身を表す\texttt{Buffer}インスタンスだからです。
+\texttt{Buffer}インスタンスはファイルの中身をバイト列として保持しています。
+そのため、そのまま\texttt{console.log}メソッドに渡しても人間が読める文字列にはなりません。
+
+\begin{lstlisting}
+$ node main.js sample.md
+<Buffer 23 20 73 61 6d 70 6c 65>
+\end{lstlisting}
+
+\texttt{fs.readFile}関数は引数によってファイルの読み込み方を指定できます。
+ファイルのエンコードを第二引数であらかじめ指定しておけば、自動的に文字列に変換された状態でコールバック関数に渡されます。
+次のように\texttt{main.js}を変更し、読み込まれるファイルをUTF-8として変換させます。
+
+\begin{listtitle}
+main.js
+\end{listtitle}
+\begin{lstlisting}
+const program = require("commander");
+const fs = require("fs");
+
+program.parse(process.argv);
+const filePath = program.args[0];
+
+// ファイルをUTF-8として非同期で読み込む
+fs.readFile(filePath, { encoding: "utf8" }, (err, file) => {
+    console.log(file);
+});
+\end{lstlisting}
+\listend
+
+先ほどと同じコマンドをもう一度実行すると、実行結果は次のようになります。
+\texttt{sample.md}ファイルの中身を文字列として出力できました。
+
+\begin{lstlisting}
+$ node main.js sample.md
+# sample
+\end{lstlisting}
+
+\hypertarget{error-handling}{%
+\subsubsection{エラーハンドリング}\label{error-handling}}
+
+先ほどの例では触れませんでしたが、\texttt{fs}モジュールのコールバック関数の第一引数には常にエラーオブジェクトが渡されます。
+ファイルの読み書きは存在の有無や権限、ファイルシステムの違いなどによって例外が発生しやすいので、必ずエラーハンドリング処理を書きましょう。
+
+次のように\texttt{main.js}を変更し、\texttt{err}オブジェクトが\texttt{null}または\texttt{undefined}ではないことだけをチェックするシンプルなエラーハンドリングです。
+エラーが発生していたときにはエラーメッセージを表示し、\texttt{process.exit}関数に終了ステータスを指定してプロセスを終了しています。
+ここでは、一般的なエラーを表す終了ステータスの\texttt{1}でプロセスを終了しています。
+
+\begin{listtitle}
+main.js
+\end{listtitle}
+\begin{lstlisting}
+const program = require("commander");
+const fs = require("fs");
+
+program.parse(process.argv);
+const filePath = program.args[0];
+
+// ファイルを非同期で読み込む
+fs.readFile(filePath, { encoding: "utf8" }, (err, file) => {
+    if (err) {
+        console.error(err.message);
+        // 終了ステータス 1（一般的なエラー）としてプロセスを終了する
+        process.exit(1);
+        return;
+    }
+    console.log(file);
+});
+\end{lstlisting}
+\listend
+
+存在しないファイルである\texttt{notfound.md}をコマンドライン引数に渡して実行すると、次のようにエラーが発生して終了します。
+
+\begin{lstlisting}
+$ node main.js notfound.md
+ENOENT: no such file or directory, open 'notfound.md'
+\end{lstlisting}
+
+これでコマンドライン引数に指定したファイルを読み込んで標準出力に表示できました。
+次のセクションでは読み込んだMarkdownファイルをHTMLに変換する処理を追加していきます。
+
+\hypertarget{section-checklist}{%
+\subsection{このセクションのチェックリスト}\label{section-checklist}}
+
+\begin{itemize}
+\item
+  \texttt{fs}モジュールの\texttt{readFile}関数を使ってファイルを読み込んだ
+\item
+  UTF-8形式のファイルの中身をコンソールに出力した
+\item
+  \texttt{readFile}関数の呼び出しにエラーハンドリング処理を記述した
+\end{itemize}
+
+\hypertarget{md-to-html}{%
+\section{MarkdownをHTMLに変換する}\label{md-to-html}}
+
+前のセクションではコマンドライン引数で受け取ったファイルを読み込み、標準出力に表示しました。
+次は読み込んだMarkdownファイルをHTMLに変換して、その結果を標準出力に表示してみましょう。
+
+\hypertarget{use-marked-package}{%
+\subsection{markedパッケージを使う}\label{use-marked-package}}
+
+JavaScriptでMarkdownをHTMLへ変換するために、今回は\href{https://github.com/chjj/marked}{marked}というライブラリを使用します。
+markedのパッケージはnpmで配布されているので、commanderと同様に\texttt{npm install}コマンドでパッケージをインストールしましょう。
+
+\begin{lstlisting}
+$ npm install --save marked@0.7
+\end{lstlisting}
+
+インストールが完了したら、Node.jsのスクリプトから読み込みます。
+前のセクションの最後で書いたスクリプトに、markedパッケージの読み込み処理を追加しましょう。
+次のように\texttt{main.js}を変更し、読み込んだMarkdownファイルをmarkedを使ってHTMLに変換します。
+markedパッケージをインポートした\texttt{marked}関数は、Markdown文字列を引数にとり、HTML文字列に変換して返します。
+
+\begin{listtitle}
+main.js
+\end{listtitle}
+\begin{lstlisting}
+const program = require("commander");
+const fs = require("fs");
+// markedモジュールをmarkedオブジェクトとしてインポートする
+const marked = require("marked");
+
+program.parse(process.argv);
+const filePath = program.args[0];
+
+fs.readFile(filePath, { encoding: "utf8" }, (err, file) => {
+    if (err) {
+        console.error(err.message);
+        process.exit(1);
+        return;
+    }
+    // MarkdownファイルをHTML文字列に変換する
+    const html = marked(file);
+    console.log(html);
+});
+\end{lstlisting}
+\listend
+
+\hypertarget{create-convert-option}{%
+\subsection{変換オプションを作成する}\label{create-convert-option}}
+
+markedにはMarkdownの\href{https://marked.js.org/\#/USING_ADVANCED.md\#options}{変換オプション}があり、オプションの設定によって変換後のHTMLが変化します。
+そこで、アプリケーション中でオプションのデフォルト値を決め、さらにコマンドライン引数から設定を切り替えられるようにしてみましょう。
+
+今回のアプリケーションでは、例として\texttt{gfm}というmarkedのオプションを扱います。
+
+\hypertarget{gfm-option}{%
+\subsubsection{gfmオプション}\label{gfm-option}}
+
+\texttt{gfm}オプションは、GitHubにおけるMarkdownの仕様（\href{https://github.github.com/gfm/}{GitHub
+Flavored Markdown}, GFM）に合わせて変換するかを決めるオプションです。
+markedではこの\texttt{gfm}オプションがデフォルトで\texttt{true}になっています。GFMは標準的なMarkdownにいくつかの拡張を加えたもので、代表的な拡張がURLの自動リンク化です。
+次のように\texttt{sample.md}を変更し、先ほどのスクリプトと\texttt{gfm}オプションを\texttt{false}にしたスクリプトで結果の違いを見てみましょう。
+
+\begin{listtitle}
+sample.md
+\end{listtitle}
+\begin{lstlisting}
+# サンプルファイル
+
+これはサンプルです。
+https://jsprimer.net/
+
+- サンプル1
+- サンプル2
+\end{lstlisting}
+\listend
+
+\texttt{gfm}オプションが有効のときは、URLの文字列が自動的に\texttt{<a>}タグのリンクに置き換わります。
+
+\begin{lstlisting}[language=HTML]
+<h1 id="サンプルファイル">サンプルファイル</h1>
+<p>これはサンプルです。
+<a href="https://jsprimer.net/">https://jsprimer.net/</a></p>
+<ul>
+<li>サンプル1</li>
+<li>サンプル2</li>
+</ul>
+\end{lstlisting}
+
+一方、次のように\texttt{gfm}オプションを\texttt{false}にすると、単なる文字列として扱われ、リンクには置き換わりません。
+
+\begin{listtitle}
+main.js
+\end{listtitle}
+\begin{lstlisting}
+const program = require("commander");
+const fs = require("fs");
+const marked = require("marked");
+
+program.parse(process.argv);
+const filePath = program.args[0];
+
+fs.readFile(filePath, { encoding: "utf8" }, (err, file) => {
+    if (err) {
+        console.error(err.message);
+        process.exit(1);
+        return;
+    }
+    // gfmオプションを無効にする
+    const html = marked(file, {
+        gfm: false
+    });
+    console.log(html);
+});
+\end{lstlisting}
+\listend
+
+\begin{lstlisting}[language=HTML]
+<h1 id="サンプルファイル">サンプルファイル</h1>
+<p>これはサンプルです。
+https://jsprimer.net/</p>
+<ul>
+<li>サンプル1</li>
+<li>サンプル2</li>
+</ul>
+\end{lstlisting}
+
+自動リンクのほかにもいくつかの拡張がありますが、詳しくは\href{https://github.github.com/gfm/}{GitHub
+Flavored Markdown}のドキュメントを参照してください。
+
+\hypertarget{receive-option}{%
+\subsubsection{コマンドライン引数からオプションを受け取る}\label{receive-option}}
+
+次に、\texttt{gfm}オプションをコマンドライン引数で制御できるようにしましょう。
+アプリケーションのデフォルトでは\texttt{gfm}オプションを無効にした上で、次のように\texttt{--gfm}オプションを付与してコマンドを実行できるようにします。
+
+\begin{lstlisting}
+$ node main.js --gfm sample.md
+\end{lstlisting}
+
+コマンドライン引数で\texttt{--gfm}のようなオプションを扱いたいときには、commanderの\texttt{option}メソッドを使います。
+次のように必要なオプションを定義してからコマンドライン引数をパースすると、\texttt{program.opts}メソッドでパース結果のオブジェクトを取得できます。
+
+\begin{lstlisting}
+// gfmオプションを定義する
+program.option("--gfm", "GFMを有効にする");
+// コマンドライン引数をパースする
+program.parse(process.argv);
+// オプションのパース結果をオブジェクトとして取得する
+const options = program.opts();
+console.log(options.gfm);
+\end{lstlisting}
+
+\texttt{--gfm}オプションはファイルパスを指定する\texttt{sample.md}の前後のどちらについていても動作します。
+なぜなら\texttt{program.args}配列には\texttt{program.option}メソッドで定義したオプションが含まれないためです。
+\texttt{process.argv}配列を直接使っているとこのようなオプションの処理が面倒なので、commanderのようなパース処理を挟むのが一般的です。
+
+\hypertarget{declare-default}{%
+\subsubsection{デフォルト設定を定義する}\label{declare-default}}
+
+アプリケーション側でデフォルト設定を持っておくことで、将来的にmarkedの挙動が変わったときにも影響を受けにくくなります。
+次のようにデフォルトのオプションを表現したオブジェクトに対して、\texttt{program.opts}メソッドの戻り値で上書きしましょう。
+オブジェクトのデフォルト値を別のオブジェクトで上書きするときには\texttt{...}（spread構文）を使うと便利です（\href{../../../basic/object/README.md\#object-spread-syntax}{オブジェクトのspread構文}を参照）。
+
+\begin{lstlisting}
+// コマンドライン引数のオプションを取得し、デフォルトのオプションを上書きする
+const cliOptions = {
+    gfm: false,
+    ...program.opts(),
+};
+\end{lstlisting}
+
+こうして作成した\texttt{cliOptions}オブジェクトから、markedにオプションを渡しましょう。
+\texttt{main.js}の全体は次のようになります。
+
+\begin{listtitle}
+main.js
+\end{listtitle}
+\begin{lstlisting}
+const program = require("commander");
+const fs = require("fs");
+const marked = require("marked");
+
+// gfmオプションを定義する
+program.option("--gfm", "GFMを有効にする");
+program.parse(process.argv);
+const filePath = program.args[0];
+
+// コマンドライン引数のオプションを取得し、デフォルトのオプションを上書きする
+const cliOptions = {
+    gfm: false,
+    ...program.opts(),
+};
+
+fs.readFile(filePath, { encoding: "utf8" }, (err, file) => {
+    if (err) {
+        console.error(err.message);
+        process.exit(1);
+        return;
+    }
+    const html = marked(file, {
+        // オプションの値を使用する
+        gfm: cliOptions.gfm,
+    });
+    console.log(html);
+});
+\end{lstlisting}
+\listend
+
+定義したコマンドライン引数を使って、Markdownファイルを変換してみましょう。
+
+\begin{lstlisting}
+$ node main.js sample.md
+<h1 id="サンプルファイル">サンプルファイル</h1>
+<p>これはサンプルです。
+https://jsprimer.net/</p>
+<ul>
+<li>サンプル1</li>
+<li>サンプル2</li>
+</ul>
+\end{lstlisting}
+
+また、\texttt{gfm}オプションを付与して実行すると次のように出力されるはずです。
+
+\begin{lstlisting}
+$ node main.js --gfm sample.md 
+<h1 id="サンプルファイル">サンプルファイル</h1>
+<p>これはサンプルです。
+<a href="https://jsprimer.net/">https://jsprimer.net/</a></p>
+<ul>
+<li>サンプル1</li>
+<li>サンプル2</li>
+</ul>
+\end{lstlisting}
+
+これでMarkdown変換の設定をコマンドライン引数でオプションとして与えられるようになりました。
+次のセクションではアプリケーションのコードを整理し、最後にユニットテストを導入します。
+
+\hypertarget{section-checklist}{%
+\subsection{このセクションのチェックリスト}\label{section-checklist}}
+
+\begin{itemize}
+\item
+  markedパッケージを使ってMarkdown文字列をHTML文字列に変換した
+\item
+  コマンドライン引数でmarkedの変換オプションを設定した
+\item
+  デフォルトオプションを定義し、コマンドライン引数で上書きできるようにした
+\end{itemize}
+
+\hypertarget{unit-test}{%
+\section{ユニットテストを記述する}\label{unit-test}}
+
+このセクションでは、これまで作成したCLIアプリケーションにユニットテストを導入します。
+ユニットテストの導入と合わせて、ソースコードを整理してテストがしやすくなるようにモジュール化します。
+
+前のセクションまでは、すべての処理をひとつのJavaScriptファイルに記述していました。
+ユニットテストを行うためにはテスト対象がモジュールとして分割されていなければいけません。
+今回のアプリケーションでは、CLIアプリケーションとしてコマンドライン引数を処理する部分と、MarkdownをHTMLへ変換する部分に分割します。
+
+\hypertarget{commonjs-module}{%
+\subsection{CommonJSでのモジュール化}\label{commonjs-module}}
+
+実際にアプリケーションのモジュール化をする前に、CommonJSでのモジュール化について簡単に振り返ります。
+
+Node.jsでは、複数のJavaScriptファイル間で変数や関数などをやり取りするために、CommonJSモジュールという仕組みを利用します。
+CommonJSモジュールからオブジェクトをエクスポートするには、Node.jsのグローバル変数である\href{https://nodejs.org/api/modules.html\#modules_the_module_object}{moduleオブジェクト}を利用します。
+\texttt{module.exports}オブジェクトは、そのファイルからエクスポートされるオブジェクトを格納します。
+
+次の\texttt{greet.js}というファイルは、\texttt{greet}関数をエクスポートするモジュールの例です。
+
+\begin{listtitle}
+greet.js
+\end{listtitle}
+\begin{lstlisting}
+// greet.js
+module.exports = function greet(name) {
+    return `Hello ${name}!`;
+};
+\end{lstlisting}
+\listend
+
+\texttt{require}関数を使って、指定したファイルパスのJavaScriptファイルをモジュールとしてインポートできます。
+次のコードでは先ほどの\texttt{greet.js}のパスを指定してモジュールとしてインポートして、エクスポートされた関数を取得しています。
+
+\begin{listtitle}
+greet-main.js
+\end{listtitle}
+\begin{lstlisting}
+const greet = require("./greet");
+greet("World"); // => "Hello World!"
+\end{lstlisting}
+\listend
+
+\texttt{module.exports}オブジェクトそのものに代入するのではなく、\texttt{module.exports}オブジェクトのプロパティに代入することでも任意の値をエクスポートできます。
+次の\texttt{functions.js}というファイルでは、\texttt{foo}と\texttt{bar}の2つの関数を同じファイルからエクスポートしています。
+
+\begin{listtitle}
+functions.js
+\end{listtitle}
+\begin{lstlisting}
+module.exports.foo = function() {
+    console.log("foo関数が呼び出されました");
+};
+module.exports.bar = function() {
+    console.log("bar関数が呼び出されました");
+};
+\end{lstlisting}
+\listend
+
+このようにエクスポートされたオブジェクトは、\texttt{require}関数の戻り値であるオブジェクトのプロパティとしてアクセスできます。
+次のコードでは先ほどの\texttt{functions.js}をインポートして取得したオブジェクトから\texttt{foo}と\texttt{bar}関数をプロパティとして取得しています。
+
+\begin{listtitle}
+functions-main.js
+\end{listtitle}
+\begin{lstlisting}
+const functions = require("./functions");
+functions.foo();
+functions.bar();
+\end{lstlisting}
+\listend
+
+\hypertarget{split-script}{%
+\subsection{アプリケーションをモジュールに分割する}\label{split-script}}
+
+それではCLIアプリケーションのソースコードをモジュールに分割してみましょう。
+\texttt{md2html.js}という名前のJavaScriptファイルを作成し、次のようにmarkedを使ったMarkdownの変換処理を記述します。
+
+\begin{listtitle}
+md2html.js
+\end{listtitle}
+\begin{lstlisting}
+const marked = require("marked");
+
+module.exports = (markdown, cliOptions) => {
+    return marked(markdown, {
+        gfm: cliOptions.gfm,
+    });
+};
+\end{lstlisting}
+\listend
+
+このモジュールがエクスポートするのは、与えられたオプションを元にMarkdown文字列をHTMLに変換する関数です。
+アプリケーションのエントリーポイントである\texttt{main.js}では、次のようにこのモジュールをインポートして使用します。
+
+\begin{listtitle}
+main.js
+\end{listtitle}
+\begin{lstlisting}
+const program = require("commander");
+const fs = require("fs");
+// md2htmlモジュールをインポートする
+const md2html = require("./md2html");
+
+program.option("--gfm", "GFMを有効にする");
+program.parse(process.argv);
+const filePath = program.args[0];
+
+const cliOptions = {
+    gfm: false,
+    ...program.opts(),
+};
+
+fs.readFile(filePath, "utf8", (err, file) => {
+    if (err) {
+        console.error(err);
+        process.exit(1);
+        return;
+    }
+    // md2htmlモジュールを使ってHTMLに変換する
+    const html = md2html(file, cliOptions);
+    console.log(html);
+});
+\end{lstlisting}
+\listend
+
+markedパッケージや、そのオプションに関する記述がひとつの\texttt{md2html}関数に隠蔽され、\texttt{main.js}がシンプルになりました。
+そして\texttt{md2html.js}はアプリケーションから独立したひとつのモジュールとして切り出され、ユニットテストが可能になりました。
+
+\hypertarget{create-env}{%
+\subsection{ユニットテスト実行環境を作る}\label{create-env}}
+
+ユニットテストの実行にはさまざまな方法があります。
+このセクションではテスティングフレームワークとして\href{https://mochajs.org/}{Mocha}を使って、ユニットテストの実行環境を作成します。
+Mochaが提供するテスト実行環境では、グローバルに\texttt{it}や\texttt{describe}などの関数が定義されます。
+\texttt{it}関数はその内部でエラーが発生したとき、そのテストを失敗として扱います。
+つまり、期待する結果と異なるならエラーを投げ、期待どおりならエラーを投げないというテストコードを書くことになります。
+
+今回はNode.jsの標準モジュールのひとつである\href{https://nodejs.org/api/assert.html}{assertモジュール}から提供される\texttt{assert.strictEqual}メソッドを利用します。
+\texttt{assert.strictEqual}メソッドは第一引数と第二引数の評価結果が\texttt{===}で比較して異なる場合に、例外を投げる関数です。
+
+Mochaによるテスト環境を作るために、まずは次のコマンドで\texttt{mocha}パッケージをインストールします。
+
+\begin{lstlisting}
+$ npm install --save-dev mocha@6
+\end{lstlisting}
+
+\texttt{--save-dev}オプションは、パッケージを\texttt{devDependencies}としてインストールするためのものです。
+\texttt{package.json}の\texttt{devDependencies}には、そのパッケージを開発するときだけ必要な依存ライブラリを記述します。
+
+ユニットテストを実行するには、Mochaが提供する\texttt{mocha}コマンドを使います。
+Mochaをインストールした後、\texttt{package.json}の\texttt{scripts}プロパティを次のように記述します。
+
+\begin{lstlisting}
+{
+    ...
+    "scripts": {
+        "test": "mocha test/"
+    },
+    ...
+}
+\end{lstlisting}
+
+この記述により、\texttt{npm test}コマンドを実行すると、\texttt{mocha}コマンドで\texttt{test/}ディレクトリにあるテストファイルを実行します。
+試しに\texttt{npm test}コマンドを実行し、Mochaによるテストが行われることを確認しましょう。
+まだテストファイルを作っていないので、\texttt{Error: No test files found}というエラーが表示されます。
+
+\begin{lstlisting}
+$ npm test
+> mocha
+
+ Error: No test files found
+\end{lstlisting}
+
+\hypertarget{write-unit-test}{%
+\subsection{ユニットテストを記述する}\label{write-unit-test}}
+
+テストの実行環境ができたので、実際にユニットテストを記述します。
+Mochaのユニットテストは\texttt{test}ディレクトリの中にJavaScriptファイルを配置して記述します。
+\texttt{test/md2html-test.js}ファイルを作成し、\texttt{md2html.js}に対するユニットテストを次のように記述します。
+
+\begin{lstlisting}
+const assert = require("assert");
+const fs = require("fs");
+const path = require("path");
+const md2html = require("../md2html");
+
+it("converts Markdown to HTML (GFM=false)", () => {
+    const sample = fs.readFileSync(path.resolve(__dirname, "./fixtures/sample.md"), "utf8");
+    const expected = fs.readFileSync(path.resolve(__dirname, "./fixtures/expected.html"), "utf8");
+
+    assert.strictEqual(md2html(sample, { gfm: false }), expected);
+});
+
+it("converts Markdown to HTML (GFM=true)", () => {
+    const sample = fs.readFileSync(path.resolve(__dirname, "./fixtures/sample.md"), "utf8");
+    const expected = fs.readFileSync(path.resolve(__dirname, "./fixtures/expected-gfm.html"), "utf8");
+
+    assert.strictEqual(md2html(sample, { gfm: true }), expected);
+});
+\end{lstlisting}
+
+\texttt{it}関数で定義したユニットテストは、\texttt{md2html}関数の変換結果が期待するものになっているかをテストしています。
+\texttt{test/fixtures}ディレクトリにはユニットテストで用いるファイルを配置しています。
+今回は変換元のMarkdownファイルと、期待する変換結果のHTMLファイルが存在します。
+
+次のように変換元のMarkdownファイルを\texttt{test/fixtures/sample.md}に配置します。
+
+\begin{listtitle}
+test/fixtures/sample.md
+\end{listtitle}
+\begin{lstlisting}
+# サンプルファイル
+
+これはサンプルです。
+https://jsprimer.net/
+
+- サンプル1
+- サンプル2
+\end{lstlisting}
+\listend
+
+そして、期待する変換結果のHTMLファイルも\texttt{test/fixtures}ディレクトリに配置します。
+\texttt{gfm}オプションの有無にあわせて、\texttt{expected.html}と\texttt{expected-gfm.html}の2つを次のように作成しましょう。
+
+\begin{listtitle}
+test/fixtures/expected.html
+\end{listtitle}
+\begin{lstlisting}
+<h1 id="サンプルファイル">サンプルファイル</h1>
+<p>これはサンプルです。
+https://jsprimer.net/</p>
+<ul>
+<li>サンプル1</li>
+<li>サンプル2</li>
+</ul>
+\end{lstlisting}
+\listend
+
+\begin{listtitle}
+test/fixtures/expected-gfm.html
+\end{listtitle}
+\begin{lstlisting}
+<h1 id="サンプルファイル">サンプルファイル</h1>
+<p>これはサンプルです。
+<a href="https://jsprimer.net/">https://jsprimer.net/</a></p>
+<ul>
+<li>サンプル1</li>
+<li>サンプル2</li>
+</ul>
+\end{lstlisting}
+\listend
+
+ユニットテストの準備ができたら、もう一度改めて\texttt{npm test}コマンドを実行しましょう。1件のテストが通れば成功です。
+
+\begin{lstlisting}[escapechar=@]
+$ npm test
+> mocha
+
+  @\includegraphics[clip,height=2mm]{fig/check.eps}@ converts Markdown to HTML
+  @\includegraphics[clip,height=2mm]{fig/check.eps}@ converts Markdown to HTML (GFM=true)
+
+  2 passing (31ms)
+\end{lstlisting}
+
+ユニットテストが通らなかった場合は、次のことを確認してみましょう。
+
+\begin{itemize}
+\item
+  \texttt{test/fixtures}ディレクトリに\texttt{sample.md}と\texttt{expected.html}、\texttt{expected-gfm.html}というファイルを作成したか
+\item
+  それぞれのファイルは文字コードがUTF-8で、改行コードがLFになっているか
+\item
+  それぞれのファイルの末尾に余計な改行文字が入っていないか
+\end{itemize}
+
+\hypertarget{reason-for-unit-test}{%
+\subsection{なぜユニットテストを行うのか}\label{reason-for-unit-test}}
+
+ユニットテストを実施することには多くの利点があります。
+早期にバグが発見できることや、安心してリファクタリングを行えるようになるのはもちろんですが、
+ユニットテストが可能な状態を保つこと自体に意味があります。
+実際にテストを行わなくてもテストしやすいコードになるよう心がけることが、アプリケーションを適切にモジュール化する指針になります。
+
+またユニットテストには生きたドキュメントとしての側面もあります。
+ドキュメントはこまめにメンテナンスされないとすぐに実際のコードと齟齬が生まれてしまいますが、
+ユニットテストはそのモジュールが満たすべき仕様を表すドキュメントとして機能します。
+
+ユニットテストの記述は手間がかかるだけのようにも思えますが、
+中長期的にアプリケーションをメンテナンスする場合にはかかせないものです。
+そしてよいテストを書くためには、日頃からテストを書く習慣をつけておくことが重要です。
+
+\hypertarget{unit-test-summary}{%
+\subsection{まとめ}\label{unit-test-summary}}
+
+このユースケースの目標であるNode.jsを使ったCLIアプリケーションの作成と、ユニットテストの導入ができました。
+npmを使ったパッケージ管理や外部モジュールの利用、\texttt{fs}モジュールを使ったファイル操作など、多くの要素が登場しました。
+これらはNode.jsアプリケーション開発においてほとんどのユースケースで応用されるものなので、よく理解しておきましょう。
+
+\hypertarget{section-checklist}{%
+\section{このセクションのチェックリスト}\label{section-checklist}}
+
+\begin{itemize}
+\item
+  Markdownの変換処理をCommonJSモジュールとして\texttt{md2html.js}に切り出し、\texttt{main.js}から読み込んだ
+\item
+  mochaパッケージをインストールし、\texttt{npm test}コマンドで\texttt{mocha}コマンドを実行できることを確認した
+\item
+  \texttt{md2html}関数のユニットテストを作成し、テストの実行結果を確認した
+\end{itemize}
