@@ -92,6 +92,26 @@ ECMAScript 2015と呼ばれる仕様の大きな更新が行われた際に、Ja
 
 ライセンスについての詳細は[ライセンスファイル][]を参照してください。
 
+## 謝辞 {#thanks}
+
+この書籍にはさまざまな挑戦が含まれており、そのひとつとしてこの書籍は最初からGitHubに公開した状態で執筆が行われています。
+
+そのため、書いている最中からIssueで問題を指摘やPull Requestで修正を送ってもらうなど、
+さまざまな人の助けによって成り立っています。
+この書籍に対してコントリビュートしてくれた方々に感謝します。
+
+また、この書籍に対するフィードバックやエラーの指摘などをして頂いたレビューアの方々にも感謝します。
+
+<!-- textlint-disable -->
+
+すなわち、mizchi（竹馬光太郎）、中西優介@better_than_i、@tsin1rou、sakito、に感謝を。
+
+<!-- textlint-enable -->
+
+
+
+
+
 [asciidwango/js-primer]: https://github.com/asciidwango/js-primer
 [jsprimer.net]: https://jsprimer.net/
 [mdn web docs]: https://developer.mozilla.org/ja/
