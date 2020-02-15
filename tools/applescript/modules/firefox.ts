@@ -34,6 +34,6 @@ export function screenshotFirefox(outputFilePath: string) {
         delay(0.3);
         const window = Firefox.windows[0];
         const windowId = String(window.id());
-        app.doShellScript(`/usr/sbin/screencapture -l ${windowId} "${outputFilePath}"`);
+        app.doShellScript(`/usr/sbin/screencapture -o -l ${windowId} "${outputFilePath}"`);
     }, outputFilePath);
 }
