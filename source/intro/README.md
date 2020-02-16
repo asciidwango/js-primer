@@ -104,12 +104,9 @@ ECMAScript 2015と呼ばれる仕様の大きな更新が行われた際に、Ja
 
 <!-- textlint-disable -->
 
-すなわち、mizchi（竹馬光太郎）、中西優介@better_than_i_w、@tsin1rou、sakito、に感謝を。
+すなわち、mizchi（竹馬光太郎）、中西優介@better_than_i_w、@tsin1rou、sakito、川上和義、尾上洋介に感謝を。
 
 <!-- textlint-enable -->
-
-
-
 
 
 [asciidwango/js-primer]: https://github.com/asciidwango/js-primer
