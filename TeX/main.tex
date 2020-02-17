@@ -10,6 +10,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage[uplatex,expert,deluxe]{otf}
 \usepackage[dvipdfmx]{hyperref,graphicx,xcolor}
+\usepackage{etoolbox}
+\newcommand{\icon}[1]{\includegraphics[height=5mm]{#1}} % 見出しにアイコンを入れる
 \usepackage{pxjahyper}
 \hypersetup{%
  bookmarksnumbered=true,%
@@ -306,13 +308,14 @@
 \begin{document}
 
 \frontmatter
-\include{front}
 {\pagestyle{frontheadings}
-\tableofcontents}
+\include{front}}
+{\pagestyle{sameheadings}
+\tableofcontents
 \include{intro}
 \include{authors}
 \include{prepare}
-\include{feedback}
+\include{feedback}}
 %\include{aboutthecoverillust}
 \mainmatter
 \include{part1}

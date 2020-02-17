@@ -33,6 +33,14 @@
    \def\@evenhead{}% 偶数ページ
 }
 %
+% 前付けのヘッダ、フッタ（同じ左右ヘッダを出す）
+\def\ps@sameheadings{%
+   \def\@oddfoot{\hfil \thepage}% 奇数ページ
+   \def\@evenfoot{\thepage \hfil}% 偶数ページ
+   \def\@oddhead{\small \hfil \leftmark}% 奇数ページ
+   \def\@evenhead{\small \leftmark \hfil}% 偶数ページ
+}
+%
 % 章トビラのヘッダ、フッタの指定
 \makeatletter
 \renewcommand{\chapter}{%
@@ -53,6 +61,73 @@
 %\renewcommand{\headfont}{\sffamily\bfseries}
 % 見出しフォントを新ゴDBにする
 \renewcommand{\headfont}{\sffamily\bfseries\ebseries}
+%
+% 部の数字をアラビア数字に変更
+% 背景にグラフィックを加える
+\makeatletter
+\renewcommand{\thepart}{\@arabic\c@part}
+
+\renewcommand\part{%
+  \if@openleft
+    \cleardoublepage
+  \else\if@openright
+    \cleardoublepage
+  \else
+    \clearpage
+  \fi\fi
+  \thispagestyle{empty}% 欧文用標準スタイルでは plain
+  \if@twocolumn
+    \onecolumn
+    \@restonecoltrue
+  \else
+    \@restonecolfalse
+  \fi
+  \null\vfil
+  \secdef\@part\@spart}
+\def\@part[#1]#2{%
+  \ifnum \c@secnumdepth >-2\relax
+    \refstepcounter{part}%
+    \addcontentsline{toc}{part}{%
+      \prepartname\thepart\postpartname\hspace{1zw}#1}%
+  \else
+    \addcontentsline{toc}{part}{#1}%
+  \fi
+  \markboth{}{}%
+  {\centering
+      \vbox to 0mm{\vskip 20.0mm
+      \hbox to 0mm{\hskip 0.0mm
+      \includegraphics[height=90.0mm]{part\thepart.eps}
+      \hss
+      }
+    \vss
+    }
+    \vbox{
+        \vskip 10mm
+        {\Huge\headfont \prepartname\thepart\postpartname\hspace{1zw}#2\par}
+        \vskip 0mm
+        \hrulefill
+        \vskip 20mm
+    }
+  }
+  \@endpart}
+\def\@spart#1{{%
+    \centering
+    \interlinepenalty \@M
+    \normalfont
+    \Huge \headfont #1\par}%
+  \@endpart}
+\def\@endpart{\vfil\newpage
+  \if@twoside
+   \if@openleft %% added (2017/02/24)
+    \null\thispagestyle{empty}\newpage
+   \else\if@openright %% added (2016/12/13)
+    \null\thispagestyle{empty}\newpage
+   \fi\fi %% added (2016/12/13, 2017/02/24)
+  \fi
+  \if@restonecol
+    \twocolumn
+  \fi}
+\makeatother
 %
 % 章見出しの背景にグラフィックを入れる
 \makeatletter

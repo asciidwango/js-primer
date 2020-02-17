@@ -1,5 +1,6 @@
 \hypertarget{variable-and-declaration}{%
 \chapter{変数と宣言}\label{variable-and-declaration}}
+\thispagestyle{frontheadings}
 
 プログラミング言語には、文字列や数値などのデータに名前をつけることで、繰り返し利用できるようにする\textbf{変数}という機能があります。
 
@@ -13,7 +14,7 @@ JavaScriptには「これは変数です」という宣言をするキーワー�
 この章では\texttt{const}、\texttt{let}、\texttt{var}の順に、それぞれの方法で宣言した変数の違いについて見ていきます。
 
 \hypertarget{const}{%
-\section{\texttt{const}{$^{\rm ES2015}$}}\label{const}}
+\section[const]{\texttt{const}\protect\icon{fig/es2015.eps}}\label{const}}
 
 \texttt{const}キーワードでは、再代入できない変数の宣言とその変数が参照する値（初期値）を定義できます。
 
@@ -53,7 +54,8 @@ const bookCategory = "プログラミング";
 
 \begin{lstlisting}
 const bookTitle = "JavaScriptの本";
-bookTitle = "新しいタイトル"; // => TypeError: invalid assignment to const 'bookTitle'
+bookTitle = "新しいタイトル"; // => TypeError: invalid assignment to const
+                                  'bookTitle'
 \end{lstlisting}
 
 一般的に変数への再代入は「変数の値は最初に定義した値と常に同じである」という参照透過性と呼ばれるルールを壊すため、バグを発生させやすい要因として知られています。そのため、変数に対して値を再代入する必要がない場合は、\texttt{const}キーワードで変数宣言することを推奨しています。
@@ -62,7 +64,7 @@ bookTitle = "新しいタイトル"; // => TypeError: invalid assignment to cons
 そのような場合には、変数への再代入が可能な\texttt{let}キーワードを利用します。
 
 \hypertarget{let}{%
-\section{\texttt{let}$^{\rm ES2015}$}\label{let}}
+\section[let]{\texttt{let}\protect\icon{fig/es2015.eps}}\label{let}}
 
 \texttt{let}キーワードでは、値の再代入が可能な変数を宣言できます。
 \texttt{let}の使い方は\texttt{const}とほとんど同じです。
