@@ -1,6 +1,6 @@
 ---
 author: azu
-title: "JavaScript Primer #jsprimer"
+fullTitle: "JavaScript Primer - 迷わないための入門書 #jsprimer"
 description: "JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"
 ---
 <!-- textlint-disable -->

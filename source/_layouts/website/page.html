@@ -1,4 +1,6 @@
-{% extends template.self %} {% block head %} {{ super() }}
+{% extends template.self %}
+{% block title %}{% if page.fullTitle %}{{ page.fullTitle }}{% else %}{{ super() }}{% endif %}{% endblock %}
+{% block head %} {{ super() }}
 <meta name="google-site-verification" content="bMotEbgYwkzA3k4PkuyK_NUdz0bKh-Phz0oUwNmRSVo" />
 <style>
     /*
