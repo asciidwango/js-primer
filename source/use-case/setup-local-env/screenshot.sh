@@ -6,10 +6,21 @@ declare screenshotDevTools="${projectDir}/tools/applescript/lib/src/screenshot-d
 declare screenshot="${projectDir}/tools/applescript/lib/src/screenshot.js";
 declare launchFirefox="${projectDir}/tools/applescript/lib/src/launch-firefox.js";
 declare screenshotOnly="${projectDir}/tools/applescript/lib/src/screenshot-only.js";
-# cd src && npx @js-primer/local-server
-# を事前に実行する
 # setup
 mkdir -p "${currentDir}/img/"
+echo "local server 起動"
+npx -q @js-primer/local-server src/ &
+serverPID=$!
 # screenshot
-node "${launchFirefox}" --devTools --url "http://localhost:3000/"
-node "${screenshotOnly}" --output "${currentDir}/img/index.png"
+echo "screenshotを撮影"
+npx -q wait-on http://localhost:3000 \
+&& node "${launchFirefox}" --devTools --url "http://localhost:3000/" \
+&& read -p "コンソールのスクショ: コンソールタブを開く -> Enter" \
+&& node "${screenshotOnly}" --output "${currentDir}/img/index.png" \
+
+# server 終了
+function finish {
+  echo "Shutting down the server..."
+  kill $serverPID
+}
+trap finish INT KILL TERM EXIT
