@@ -77,7 +77,7 @@ console.log(inputElement.value); // => "input要素の入力内容"
 これらの変更後にブラウザでページをリロードすると、`App#mount`メソッドが実行されるようになります。
 `submit`イベントがリッスンされているので、入力欄に何か入力してEnterで送信してみるとその内容がコンソールに表示されます。
 
-![入力内容がコンソールに表示される](./img/form-event.png)
+![入力内容がコンソールに表示される](./img/prevent-event.png)
 
 先ほどの`App#mount`メソッドでは、`submit`イベントのイベントリスナー内で`event.preventDefault`メソッドを呼び出しています。
 `event.preventDefault`メソッドは、`submit`イベントの発生元であるフォームが持つデフォルトの動作をキャンセルするメソッドです。
