@@ -13,7 +13,7 @@ export function setFirefoxWindowBounds() {
     return run(() => {
         const Firefox = Application("Firefox");
         Firefox.activate();
-        Firefox.windows[0].bounds = { "x": 0, "y": 0, "width": 1280, "height": 720 }
+        Firefox.windows[0].bounds = { "x": 0, "y": 0, "width": 768, "height": 480 }
     });
 }
 
