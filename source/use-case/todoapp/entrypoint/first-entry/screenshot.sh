@@ -9,8 +9,15 @@ declare screenshot="${projectDir}/tools/applescript/lib/src/screenshot.js";
 declare launchFirefox="${projectDir}/tools/applescript/lib/src/launch-firefox.js";
 declare screenshotOnly="${projectDir}/tools/applescript/lib/src/screenshot-only.js";
 
-# 事前に npx @js-primer/local-server でサーバを起動
 # スクリーンショット
 mkdir -p "${currentSectionDir}/img/"
-# cd source/use-case/todoapp/entrypoint/first-entry/ && npm start
-node "${screenshotDevTools}" --url "http://localhost:3000/" --output "${currentSectionDir}/img/first-entry.png"
+npx -q @js-primer/local-server . & serverPID=$!
+npx -q wait-on http://localhost:3000 \
+&& node "${screenshotDevTools}" --url "http://localhost:3000/" --output "${currentSectionDir}/img/first-entry.png"
+
+# server 終了
+function finish {
+  echo "Shutting down the server..."
+  kill $serverPID
+}
+trap finish INT KILL TERM EXIT

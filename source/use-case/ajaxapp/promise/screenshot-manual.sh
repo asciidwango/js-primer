@@ -1,19 +1,20 @@
 #!/usr/bin/env bash
 
 declare projectDir=$(git rev-parse --show-toplevel);
-declare todoappDir="${projectDir}/source/use-case/todoapp"
-declare currentSectionDir="${todoappDir}/app-structure"
-declare currentDir="${todoappDir}/app-structure/todo-html"
-declare screenshot="${projectDir}/tools/applescript/lib/src/screenshot.js";
+declare currentDir=$(pwd)
 declare screenshotDevTools="${projectDir}/tools/applescript/lib/src/screenshot-dev-tools.js";
+declare screenshot="${projectDir}/tools/applescript/lib/src/screenshot.js";
 declare launchFirefox="${projectDir}/tools/applescript/lib/src/launch-firefox.js";
 declare screenshotOnly="${projectDir}/tools/applescript/lib/src/screenshot-only.js";
-
-# スクショ
-mkdir -p "${currentSectionDir}/img/"
-npx -q @js-primer/local-server . & serverPID=$!
+mkdir -p "${currentDir}/img/"
+echo "local server 起動"
+npx -q @js-primer/local-server src/ &
+serverPID=$!
+echo "screenshotを撮影"
 npx -q wait-on http://localhost:3000 \
-&& node "${screenshot}" --url "http://localhost:3000/" --output "${currentSectionDir}/img/todo-html.png" 
+&& node "${launchFirefox}" --url "http://localhost:3000/" \
+&& read -p "ユーザー表示後のスクショ: ボタンをクリック -> Enter" \
+&& node "${screenshotOnly}" --output  "${currentDir}/img/fig-1.png" \
 
 # server 終了
 function finish {
