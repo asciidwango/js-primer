@@ -11,6 +11,7 @@
 \usepackage[uplatex,expert,deluxe]{otf}
 \usepackage[dvipdfmx]{hyperref,graphicx,xcolor}
 \usepackage{etoolbox}
+
 \newcommand{\icon}[1]{\includegraphics[height=5mm]{#1}} % 見出しにアイコンを入れる
 \usepackage{pxjahyper}
 \hypersetup{%
@@ -40,12 +41,42 @@
 %  breaklines = true,		%自動で折り返す。
 %  escapeinside={(@_}{_@)},
   }
+
+%
+% \textttのクォーテーションタイプを変更する
+\usepackage{expl3}
+\usepackage{xparse}
+\ExplSyntaxOn
+\RenewDocumentCommand{\texttt}{m}
+{
+  \tl_set:Nn \l_nemgathos_upquotes_tl { #1 }
+  \tl_replace_all:Nnn \l_nemgathos_upquotes_tl { '' } { \textquotedbl }
+  \tl_replace_all:Nnn \l_nemgathos_upquotes_tl { `` } { \textquotedbl }
+  \tl_replace_all:Nnn \l_nemgathos_upquotes_tl { ' } { \textquotesingle }
+  \tl_replace_all:Nnn \l_nemgathos_upquotes_tl { ` } { \textquotesingle }
+{ \ttfamily \tl_use:N \l_nemgathos_upquotes_tl }
+}
+\tl_new:N \l_nemgathos_upquotes_tl
+\ExplSyntaxOff
+
 \usepackage{okumacro}
 \usepackage{setspace}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{amsmath}
 \usepackage{tcolorbox}
+\tcbuselibrary{skins}
+%
+% Note環境の定義
+% 使用するときは、\begin{note}{}〜\end{note}のように
+% 必ず{}をつけること。つけないと本文の1文字目が削除
+% されてしまう。
+\newenvironment{note}[1]{%
+  \begin{tcolorbox}[fontlower=\sffamily\bfseries\small,before skip=4mm,blanker,sidebyside,lefthand width=1cm]%
+  \includegraphics[width=1.5cm]{fig/note.eps}%
+  \tcblower
+  }%
+  {\end{tcolorbox}}
 
 %
 % 索引
@@ -311,11 +342,9 @@
 {\pagestyle{frontheadings}
 \include{front}}
 {\pagestyle{sameheadings}
-\tableofcontents
 \include{intro}
-\include{authors}
-\include{prepare}
-\include{feedback}}
+\include{authors}}
+\tableofcontents
 %\include{aboutthecoverillust}
 \mainmatter
 \include{part1}

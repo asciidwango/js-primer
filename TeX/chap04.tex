@@ -1,5 +1,6 @@
 \hypertarget{read-eval-print}{%
 \chapter{値の評価と表示}\label{read-eval-print}}
+\thispagestyle{frontheadings}
 
 変数宣言を使うことで値に名前をつける方法を学びました。
 次はその値をどのように評価するかについてです。
@@ -53,7 +54,7 @@ Explorerでは多くのコードは動作しません。
 
 ブラウザやNode.jsなど多くの実行環境には、コードを評価してその結果を表示するREPL（read--eval--print
 loop）と呼ばれる開発者向けの機能があります。
-Firefoxでは、開発者ツールの\textbf{Webコンソール}と呼ばれるパネルにREPL機能が含まれています。
+Firefoxでは、開発者ツールの\textbf{\textgt{ウェブコンソール}}と呼ばれるパネルにREPL機能が含まれています。
 REPL機能を使うことで、試したいコードをその場で実行できるため、JavaScriptの動作を理解するのに役立ちます。
 
 REPL機能を使うには、まずFirefoxの開発者ツールを次のいずれかの方法で開きます。
@@ -61,22 +62,22 @@ REPL機能を使うには、まずFirefoxの開発者ツールを次のいずれ
 \begin{itemize}
 \item
   Firefox メニュー（メニューバーがある場合や macOS
-  では、ツールメニュー）の Web 開発サブメニューで ``Web コンソール''
+  では、ツールメニュー）のウェブ開発サブメニューで ``ウェブコンソール''
   を選択する
 \item
-  キーボードショートカット Ctrl+Shift+K（macOS では
-  Command+Option+K）を押下する
+  キーボードショートカット\keytop{Ctrl}+\keytop{Shift}+\keytop{K}（macOS では
+  \keytop{Command}+\keytop{Option}+\keytop{K}）を押下する
 \end{itemize}
 
-詳細は``\href{https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console}{Webコンソールを開く}''を参照してください。
+詳細は``\href{https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console}{ウェブコンソールを開く}''\footnote{\url{https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console}}を参照してください。
 
 \begin{figure}
 \centering
-\includegraphics[width=100mm]{./fig/web-console.png}
+\includegraphics[width=140mm]{./fig/web-console.png}
 \caption{FirefoxでWebコンソールを開いた状態}
 \end{figure}
 
-開発者ツールの``コンソール''タブを選択すると、コマンドライン（二重山カッコ\texttt{>>}からはじまる欄）に任意のコードを入力し評価できます。
+開発者ツールの``コンソール''タブを選択すると、コマンドライン（二重山カッコ\texttt{>>}からはじまる欄）に任意のコードを入力して評価できます。
 このコマンドラインがブラウザにおけるREPL機能です。
 
 REPLに\texttt{1}という値を入力すると、その評価結果である\texttt{1}が次の行に表示されます。
@@ -106,7 +107,7 @@ undefined
 \end{lstlisting}
 
 このようにコマンドラインのREPL機能では、JavaScriptのコードを1行ごとに実行できます。
-Shift + Enterで改行して複数行の入力もできます。
+\keytop{Shift}+\keytop{Enter}で改行して複数行の入力もできます。
 好きな単位でJavaScriptのコードを評価できるため、コードの動きを簡単に試したい場合などに利用できます。
 
 注意点としては、REPLではそのREPLを終了するまで\texttt{const}キーワードなどで宣言した変数が残り続けます。
@@ -124,16 +125,16 @@ SyntaxError: redeclaration of const bookTitle
 \texttt{redeclaration}（再定義）に関するエラーメッセージが出た際にはページをリロードしてみてください。
 
 \hypertarget{js-in-html}{%
-\subsection{HTMLファイルを作成しJavaScriptコードを読み込む方法}\label{js-in-html}}
+\subsection{HTMLファイルを作成してJavaScriptコードを読み込む方法}\label{js-in-html}}
 
-REPLはあくまで開発者向けの機能です
-ウェブサイトではHTMLに記述した\texttt{<script>}タグでJavaScriptを読み込み実行します。
+REPLはあくまで開発者向けの機能です。
+ウェブサイトではHTMLに記述した\texttt{<script>}タグでJavaScriptを読み込んで実行します。
 ここでは、HTMLとJavaScriptファイルを使ったJavaScriptコードの実行方法を見ていきます。
 
-HTMLファイルとJavaScriptファイルの2種類を使い、JavaScriptのコードを実行する準備をしていきます。
-ファイルを作成するため\href{https://atom.io/}{Atom}や\href{https://code.visualstudio.com/}{Visual
+HTMLファイルとJavaScriptファイルの2種類を使って、JavaScriptのコードを実行する準備をしていきます。
+ファイルを作成するため\href{https://atom.io/}{Atom}\footnote{\url{https://atom.io/}}や\href{https://code.visualstudio.com/}{Visual
 Studio
-Code}などのJavaScriptに対応したエディターを用意しておくとスムーズです。
+Code}\footnote{\url{https://code.visualstudio.com/}}などのJavaScriptに対応したエディターを用意しておくとスムーズです。
 エディターはどんなものでも問題ありませんが、必ず文字コード（エンコーディング）は\textbf{UTF-8}、改行コードは\textbf{LF}にしてファイルを保存してください。
 
 ファイルを作成するディレクトリはどんな場所でも問題ありませんが、ここでは\texttt{example}という名前のディレクトリにファイルを作成していきます。
@@ -150,7 +151,7 @@ index.js
 \listend
 
 次にHTMLファイルとして\texttt{index.html}ファイルを\texttt{example/index.html}というパスに作成します。
-このHTMLファイルから先ほど作成した\texttt{index.js}ファイルを読み込み実行します。
+このHTMLファイルから先ほど作成した\texttt{index.js}ファイルを読み込んで実行します。
 \texttt{index.html}の中には次のようなコードを書いておきます。
 
 \begin{listtitle}
@@ -175,8 +176,7 @@ index.html
 HTMLファイルを開くには、ブラウザにHTMLファイルをドラッグアンドドロップするかまたはファイルメニューから``ファイルを開く''でHTMLファイルを選択します。
 HTMLファイルを開いた際に、ブラウザのアドレスバーには\texttt{file:///}からはじまるローカルファイルのファイルパスが表示されます。
 
-先ほどと同じ手順で``Web
-コンソール''を開いてみると、コンソールには何も表示されていないはずです。
+先ほどと同じ手順で``ウェブコンソール''を開いてみると、コンソールには何も表示されていないはずです。
 REPLでは自動で評価結果のコンソール表示まで行いますが、JavaScriptコードとして読み込んだ場合は勝手に評価結果を表示することはありません。
 あくまで自動表示はREPLの機能です。そのため多くの実行環境では\textbf{コンソール表示}するためのAPI（機能）が存在しています。
 
@@ -189,7 +189,7 @@ APIを使って\textbf{コンソールに表示}します。
 
 先ほどの\texttt{index.js}の中身を次のように書き換えます。
 そしてページをリロードすると、 \texttt{1}
-という値を評価した結果がWebコンソールに表示されます。
+という値を評価した結果がウェブコンソールに表示されます。
 
 \begin{listtitle}
 index.js
@@ -268,8 +268,8 @@ JavaScriptのコードを実行したときにエラーメッセージが表示�
 プログラムを書くときに一度もエラーを出さずに書き終えることはほとんどありません。
 特に新しいプログラミング言語を学ぶ際にはトライアンドエラー（試行錯誤）することはとても重要です。
 
-エラーメッセージがWebコンソールに表示された際には、あわてずにそのエラーメッセージを読むことで多くの問題は解決できます。
-またエラーには多く分けて構文エラーと実行時エラーの2種類があります。
+エラーメッセージがウェブコンソールに表示された際には、あわてずにそのエラーメッセージを読むことで多くの問題は解決できます。
+またエラーには大きく分けて構文エラーと実行時エラーの2種類があります。
 ここではエラーメッセージの簡単な読み方を知り、そのエラーを修正する足がかりを見ていきます。
 
 \hypertarget{syntax-error}{%
@@ -292,15 +292,15 @@ console.log(1; // => SyntaxError: missing ) after argument list
 
 \begin{figure}
 \centering
-\includegraphics{./fig/syntax-error.png}
-\caption{SyntaxError in Console}
+\includegraphics[width=140mm]{./fig/syntax-error.png}
+\caption{コンソールに表示されたSyntaxError}
 \end{figure}
 
 Firefoxでこのコードを実行すると次のようなエラーメッセージがコンソールに表示されます。
 
-\begin{quote}
+\begin{lstlisting}
 SyntaxError: missing ) after argument list{[}詳細{]} index.js:1:13
-\end{quote}
+\end{lstlisting}
 
 エラーメッセージはブラウザによって多少の違いはありますが、基本的には同じ形式のメッセージになります。
 このエラーメッセージをパーツごとに見てみると次のようになります。
@@ -312,30 +312,25 @@ SyntaxError: missing ) after argument list[詳細] index.js:1:13
                   エラー内容の説明                 ファイル名
 \end{lstlisting}
 
-\begin{longtable}[]{@{}ll@{}}
-\toprule
-\begin{minipage}[b]{0.47\columnwidth}\raggedright
-メッセージ\strut
-\end{minipage} & \begin{minipage}[b]{0.47\columnwidth}\raggedright
-意味\strut
-\end{minipage}\tabularnewline
-\midrule
+\begin{small}
+\begin{longtable}[l]{p{73mm}|p{67mm}}
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}{\textgt メッセージ} & {\textgt 意味}\tabularnewline
+\hline
 \endhead
-\begin{minipage}[t]{0.47\columnwidth}\raggedright
 \texttt{SyntaxError: missing ) after argument list}\strut
-\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\raggedright
-エラーの種類は\texttt{SyntaxError}で、関数呼び出しの\texttt{)}が足りないこと\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.47\columnwidth}\raggedright
+ & 
+エラーの種類は\texttt{SyntaxError}で、関数呼び出しの\texttt{)}が足りない\strut
+\tabularnewline
 \texttt{index.js:1:13}\strut
-\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\raggedright
-例外が\texttt{index.js}の1行目13列目で発生したこと\strut
-\end{minipage}\tabularnewline
-\bottomrule
+ & 
+例外が\texttt{index.js}の1行目13列目で発生した\strut
+\tabularnewline
+\hline
 \end{longtable}
+\end{small}
 
-Firefoxでは\textbf{{[}詳細{]}}というリンクがエラーメッセージによっては表示されます。
-この\textbf{{[}詳細{]}}リンクはエラーメッセージに関するMDNの解説ページへのリンクとなっています。
+Firefoxでは\textgt{{[}詳細{]}}というリンクがエラーメッセージによっては表示されます。
+この\textgt{{[}詳細{]}}リンクはエラーメッセージに関するMDNの解説ページへのリンクとなっています。
 この例のエラーメッセージでは次の解説ページへリンクされています。
 
 \begin{itemize}
@@ -349,7 +344,7 @@ Firefoxでは\textbf{{[}詳細{]}}というリンクがエラーメッセージ�
 \begin{lstlisting}
 console.log(1);
 \end{lstlisting}
-
+\newpage
 構文エラーによっては少しエラーメッセージから意味が読み取りにくいものもあります。
 
 次のコードでは、\texttt{const}を\texttt{cosnt}とタイプミスしているため構文エラーが発生しています。
@@ -362,31 +357,30 @@ cosnt a = 1;
 \end{lstlisting}
 \listend
 
-\begin{quote}
+\begin{lstlisting}
 SyntaxError: unexpected token: identifier{[}詳細{]} index.js:1:6
-\end{quote}
+\end{lstlisting}
 
-\begin{longtable}[]{@{}ll@{}}
-\toprule
-\begin{minipage}[b]{0.47\columnwidth}\raggedright
-メッセージ\strut
-\end{minipage} & \begin{minipage}[b]{0.47\columnwidth}\raggedright
-意味\strut
-\end{minipage}\tabularnewline
-\midrule
+\begin{small}
+\begin{longtable}[l]{p{73mm}|p{67mm}}
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}
+{\textgt メッセージ}\strut
+ & 
+{\textgt 意味}\strut
+\tabularnewline
+\hline
 \endhead
-\begin{minipage}[t]{0.47\columnwidth}\raggedright
 \texttt{SyntaxError: unexpected token: identifier}\strut
-\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\raggedright
+ & 
 エラーの種類は\texttt{SyntaxError}で、予期しないものが識別子（変数名）に指定されている\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.47\columnwidth}\raggedright
+\tabularnewline
 \texttt{index.js:1:6}\strut
-\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\raggedright
-例外が\texttt{index.js}の1行目6列目で発生したこと\strut
-\end{minipage}\tabularnewline
-\bottomrule
+ & 
+例外が\texttt{index.js}の1行目6列目で発生した\strut
+\tabularnewline
+\hline
 \end{longtable}
+\end{small}
 
 プログラムをパースする際に\texttt{index.js:1:6}で予期しない（構文として解釈できない）識別子が見つかったため、構文エラーが発生したという意味になります。
 1行目6列目（行は1から、列は0からカウントする）である\texttt{a}という文字列がおかしいということになります。
@@ -407,7 +401,7 @@ cosntという変数名 aという変数名 = 1;
 \subsection{実行時エラー}\label{runtime-error}}
 
 実行時エラーはプログラムを実行している最中に発生するエラーです。
-実行時（ランタイム）におきるエラーであるため、ランタイムエラーと呼ばれることもあります。
+実行時（ランタイム）に起きるエラーであるため、ランタイムエラーと呼ばれることもあります。
 APIに渡す値の問題から起きる\texttt{TypeError}や存在しない変数を参照しようとして起きる\texttt{ReferenceError}などさまざまな種類があります。
 
 実行時エラーが発生した場合は、そのコードは構文としては正しい（構文エラーではない）のですが、別のことが原因でエラーが発生しています。
@@ -423,31 +417,30 @@ console.log(x); // => ReferenceError: x is not defined
 \end{lstlisting}
 \listend
 
-\begin{quote}
+\begin{lstlisting}
 ReferenceError: x is not defined{[}詳細{]} index.js:2:1
-\end{quote}
+\end{lstlisting}
 
-\begin{longtable}[]{@{}ll@{}}
-\toprule
-\begin{minipage}[b]{0.47\columnwidth}\raggedright
-メッセージ\strut
-\end{minipage} & \begin{minipage}[b]{0.47\columnwidth}\raggedright
-意味\strut
-\end{minipage}\tabularnewline
-\midrule
+\begin{small}
+\begin{longtable}[l]{p{73mm}|p{67mm}}
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}
+{\textgt メッセージ}\strut
+ & 
+{\textgt 意味}\strut
+\tabularnewline
+\hline
 \endhead
-\begin{minipage}[t]{0.47\columnwidth}\raggedright
 \texttt{ReferenceError: x is not defined}\strut
-\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\raggedright
+ & 
 エラーの種類は\texttt{ReferenceError}で、\texttt{x}という未定義の識別子を参照したため発生\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.47\columnwidth}\raggedright
+\tabularnewline
 \texttt{index.js:2:1}\strut
-\end{minipage} & \begin{minipage}[t]{0.47\columnwidth}\raggedright
-例外が\texttt{index.js}の2行目1列目で発生したこと\strut
-\end{minipage}\tabularnewline
-\bottomrule
+ & 
+例外が\texttt{index.js}の2行目1列目で発生した\strut
+\tabularnewline
+\hline
 \end{longtable}
+\end{small}
 
 \texttt{x}という変数や関数が存在するかは、実行してみないとわかりません。
 そのため、実行して\texttt{x}という識別子を参照したときに、初めて\texttt{x}が存在するかが判明し、\texttt{x}が存在しない場合は\texttt{ReferenceError}となります。
@@ -475,8 +468,7 @@ console.log(value); // => "値"
 \section{まとめ}\label{conclusion}}
 
 ブラウザ上でJavaScriptを実行する方法として開発者ツールを使う方法とHTMLからJavaScriptファイルを読み込む方法を紹介しました。
-「第一部
-基本文法」で紹介するサンプルコードは基本的にこれらの方法で実行できます。
+\hyperlink{basic-grammar}{「第1部 基本文法」}で紹介するサンプルコードは基本的にこれらの方法で実行できます。
 サンプルコードを自分なりに改変して実行してみるとより理解が深くなるため、サンプルコードの動作を自分自身で確認してみてください。
 
 コードを実行してエラーが発生した場合にはエラーメッセージや位置情報などが表示されます。
@@ -484,9 +476,9 @@ console.log(value); // => "値"
 
 JavaScriptにおいては多くのエラーはすでに類似するケースがウェブ上に報告されています。
 構文エラーや実行時エラーの典型的なものはMDNの\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Errors}{JavaScript
-エラーリファレンス}にまとめられています。
-また\href{https://www.google.com/}{Google}、\href{https://github.com/}{GitHub}、\href{https://stackoverflow.com/}{Stack
-Overflow}などでエラーメッセージを検索することで、エラーの原因を見つけられることもあります。
+エラーリファレンス}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Errors}}にまとめられています。
+また\href{https://www.google.com/}{Google}\footnote{\url{https://www.google.com/}}、\href{https://github.com/}{GitHub}\footnote{\url{https://github.com/}}、\href{https://stackoverflow.com/}{Stack
+Overflow}\footnote{\url{https://stackoverflow.com/}}などでエラーメッセージを検索することで、エラーの原因を見つけられることもあります。
 
 エラーがWebコンソールに表示されているならば、そのエラーは修正できます。
 エラーを過度に怖がる必要はありません。エラーメッセージなどのヒントを使ってエラーを修正していけるようにしましょう。

@@ -57,8 +57,8 @@ console.log("この行はJavaScriptのコードとして実行される");
 -->  この行もコメントと認識される
 \end{lstlisting}
 
-ここでは、 \texttt{<!--} と
-\texttt{-->} がそれぞれ一行コメントとして認識されます。
+ここでは、\verb|<!--|と
+\verb|-->|がそれぞれ一行コメントとして認識されます。
 
 JavaScriptをサポートしていないブラウザでは、\texttt{<script>}タグを正しく認識できないために書かれたコードが表示されていました。
 それを避けるために\texttt{<script>}の中をHTMLコメントで囲み、表示はされないが実行されるという回避策が取られていました。
@@ -75,7 +75,7 @@ JavaScriptをサポートしていないブラウザでは、\texttt{<script>}�
 一方、\texttt{<script>}タグ内、つまりJavaScript内にHTMLコメントが書かれているサイトは残っています。
 このようなサイトでもJavaScriptが動作するという、後方互換性のための仕様として追加されています。
 
-\href{https://dev.mozilla.jp/2016/03/es6-in-depth-arrow-functions/}{歴史的経緯}は別として、ECMAScriptではこのように後方互換性が慎重に取り扱われます。
+\href{https://dev.mozilla.jp/2016/03/es6-in-depth-arrow-functions/}{歴史的経緯}\footnote{\url{https://dev.mozilla.jp/2016/03/es6-in-depth-arrow-functions/}}は別として、ECMAScriptではこのように後方互換性が慎重に取り扱われます。
 ECMAScriptは一度入った仕様が使えなくなることはほとんどないため、基本文法で覚えたことが使えなくなることはありません。
 一方で、仕様が更新されるたびに新しい機能が増えるため、それを学び続けることには変わりありません。
 

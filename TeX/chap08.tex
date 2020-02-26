@@ -1,5 +1,6 @@
 \hypertarget{function-and-declaration}{%
 \chapter{関数と宣言}\label{function-and-declaration}}
+\thispagestyle{frontheadings}
 
 関数とは、ある一連の手続き（文の集まり）を1つの処理としてまとめる機能です。
 関数を利用することで、同じ処理を毎回書くのではなく、一度定義した関数を呼び出すことで同じ処理を実行できます。
@@ -31,16 +32,16 @@ console.log(関数の結果); // => 関数の返り値
 
 \begin{itemize}
 \item
-  関数名 -
-  利用できる名前は変数名と同じ（「\href{.../variables/README.md\#variable-name}{変数名に使える名前のルール}」を参照）
+  関数名 ---
+  利用できる名前は変数名と同じ（「\hyperlink{variable-name}{変数名に使える名前のルール}」を参照）
 \item
-  仮引数 -
+  仮引数 ---
   関数の呼び出し時に渡された値が入る変数。複数ある場合は\texttt{,}（カンマ）で区切る
 \item
-  関数の中身 -
+  関数の中身 ---
   \texttt{\{}と\texttt{\}}で囲んだ関数の処理を書く場所
 \item
-  関数の返り値 - 関数を呼び出したときに、呼び出し元へ返される値
+  関数の返り値 --- 関数を呼び出したときに、呼び出し元へ返される値
 \end{itemize}
 
 宣言した関数は、\texttt{関数名()}と関数名にカッコをつけることで呼び出せます。
@@ -56,7 +57,7 @@ console.log(関数の結果); // => 関数の返り値
 function multiple(num) {
     return num * 2;
 }
-// `multiple`関数の返り値は、`num`に`10`を入れて`return`文で返した値
+// multiple関数の返り値は、numに10を入れてreturn文で返した値
 console.log(multiple(10)); // => 20
 \end{lstlisting}
 
@@ -66,7 +67,7 @@ console.log(multiple(10)); // => 20
 
 \begin{lstlisting}
 function fn() {
-    // 何も返り値を指定してない場合は`undefined`を返す
+    // 何も返り値を指定してない場合はundefinedを返す
     return;
     // すでにreturnされているため、この行は実行されません
 }
@@ -123,7 +124,7 @@ console.log(argumentsToArray(1)); // => [1, undefined]
 \end{lstlisting}
 
 \hypertarget{function-default-parameters}{%
-\subsection{デフォルト引数{$^{\rm ES2015}$}}\label{function-default-parameters}}
+\subsection{デフォルト引数\protect\icon{fig/es2015.eps}}\label{function-default-parameters}}
 
 デフォルト引数（デフォルトパラメータ）は、仮引数に対応する引数が渡されていない場合に、デフォルトで代入される値を指定できます。
 次のように、仮引数に対して\texttt{仮引数 = デフォルト値}という構文で、仮引数ごとにデフォルト値を指定できます。
@@ -211,7 +212,7 @@ console.log(addPrefix("文字列", "カスタム:")); // => "カスタム:文字
 
 関数の仮引数に対して引数の個数が多い場合、あふれた引数は単純に無視されます。
 
-次コードでは、2つの引数を足し算した値を返す\texttt{add}関数を定義しています。
+次のコードでは、2つの引数を足し算した値を返す\texttt{add}関数を定義しています。
 この\texttt{add}関数には仮引数が2つしかありません。
 そのため、3つ以上の引数を渡しても3番目以降の引数は単純に無視されます。
 
@@ -228,7 +229,7 @@ add(1, 3, 5); // => 4
 
 関数において引数の数が固定ではなく、任意の個数の引数を受け取りたい場合があります。
 たとえば、\texttt{Math.max(...args)}は引数を何個でも受け取り、受け取った引数の中で最大の数値を返す関数です。
-このような、固定した数ではなく任意の個数の引数を受け取れることを\textbf{可変長引数}と呼びます。
+このような、固定した数ではなく任意の個数の引数を受け取れることを\textbf{\textgt{可変長引数}}と呼びます。
 
 \begin{lstlisting}
 // Math.maxは可変長引数を受け取る関数
@@ -240,7 +241,7 @@ console.log(max); // => 20
 parametersか関数の中でのみ参照できる\texttt{arguments}という特殊な変数を利用します。
 
 \hypertarget{rest-parameters}{%
-\subsection{Rest parameters{$^{\rm ES2015}$}}\label{rest-parameters}}
+\subsection{Rest parameters\protect\icon{fig/es2015.eps}}\label{rest-parameters}}
 
 Rest
 parametersは、仮引数名の前に\texttt{...}をつけた仮引数のことで、残余引数とも呼ばれます。
@@ -304,7 +305,7 @@ fn(array[0], array[1], array[2]);
 
 \begin{lstlisting}
 function fn() {
-    // `arguments`はインデックスを指定して各要素にアクセスできる
+    // argumentsはインデックスを指定して各要素にアクセスできる
     console.log(arguments[0]); // => "a" 
     console.log(arguments[1]); // => "b" 
     console.log(arguments[2]); // => "c" 
@@ -327,13 +328,13 @@ parametersが利用できる環境では、\texttt{arguments}変数を使うべ�
 
 \texttt{arguments}変数は仮引数の定義とは関係なく、実際に渡された引数がすべて含まれています。
 そのため、関数の仮引数の定義部分だけ見ても、実際に関数の要求する引数がわからないという問題を作りやすいです。
-Rest parametersであれば、仮引数で可変長を受け入れるかが明確になります。
+Rest parametersであれば、仮引数で可変長を受け入れることが明確になります。
 
 このように、可変長引数が必要な場合は\texttt{arguments}変数よりも、Rest
 parametersでの実装を推奨します。
 
 \hypertarget{function-destructuring}{%
-\section{関数の引数と分割代入{$^{\rm ES2015}$}}\label{function-destructuring}}
+\section[関数の引数と分割代入]{関数の引数と分割代入\protect\icon{fig/es2015.eps}}\label{function-destructuring}}
 
 関数の引数においても分割代入（Destructuring assignment）が利用できます。
 分割代入はオブジェクトや配列からプロパティを取り出し、変数として定義し直す構文です。
@@ -355,7 +356,7 @@ printUserId(user);
 この受け取った\texttt{user}オブジェクトの\texttt{id}プロパティを変数\texttt{id}として定義しています。
 
 \begin{lstlisting}
-// 第1引数のオブジェクトから`id`プロパティを変数`id`として定義する
+// 第一引数のオブジェクトからidプロパティを変数idとして定義する
 function printUserId({ id }) {
     console.log(id); // => 42
 }
@@ -409,7 +410,7 @@ JavaScriptでは、関数は関数オブジェクトとも呼ばれ、オブジ�
 function fn() {
     console.log("fnが呼び出されました");
 }
-// 関数`fn`を`myFunc`変数に代入している
+// 関数fnをmyFunc変数に代入している
 const myFunc = fn;
 myFunc();
 \end{lstlisting}
@@ -419,7 +420,7 @@ myFunc();
 先ほどのコードでは、関数宣言をしてから変数へ代入していましたが、最初から関数を値として定義できます。
 関数を値として定義する場合には、関数宣言と同じ\texttt{function}キーワードを使った方法とArrow
 Functionを使った方法があります。
-どちらの方法も、関数を式（代入する値）として扱うため\textbf{関数式}と呼びます。
+どちらの方法も、関数を式（代入する値）として扱うため\textbf{\textgt{関数式}}と呼びます。
 
 \hypertarget{function-expression}{%
 \subsection{関数式}\label{function-expression}}
@@ -430,7 +431,7 @@ Functionを使った方法があります。
 
 \begin{lstlisting}
 // 関数式
-const 関数名 = function() {
+const 変数名 = function() {
     // 関数を呼び出したときの処理
     // ...
     return 関数の返り値;
@@ -451,7 +452,7 @@ function 関数名() {
 \end{lstlisting}
 
 このように関数式では、名前を持たない関数を変数に代入できます。
-このような名前を持たない関数を\textbf{匿名関数}（または無名関数）と呼びます。
+このような名前を持たない関数を\textbf{\textgt{匿名関数}}（または無名関数）と呼びます。
 
 もちろん関数式でも関数に名前をつけることができます。
 しかし、この関数の名前は関数の外からは呼ぶことができません。
@@ -471,7 +472,7 @@ console.log(factorial(3)); // => 6
 \end{lstlisting}
 
 \hypertarget{arrow-function}{%
-\subsection{Arrow Function{$^{\rm ES2015}$}}\label{arrow-function}}
+\subsection{Arrow Function\protect\icon{fig/es2015.eps}}\label{arrow-function}}
 
 関数式には\texttt{function}キーワードを使った方法以外に、Arrow
 Functionと呼ばれる書き方があります。
@@ -480,7 +481,7 @@ Functionと呼ばれる書き方があります。
 
 \begin{lstlisting}
 // Arrow Functionを使った関数定義
-const 関数名 = () => {
+const 変数名 = () => {
     // 関数を呼び出したときの処理
     // ...
     return 関数の返す値;
@@ -521,7 +522,7 @@ Arrow Functionについては次のような特徴があります。
 \item
   名前をつけることができない（常に匿名関数）
 \item
-  \texttt{this}が静的に決定できる（詳細は「\href{../function-scope/README.md}{関数とスコープ}」の章で解説します）
+  \texttt{this}が静的に決定できる（詳細は「\hyperlink{function-and-scope}{関数とスコープ}」の章で解説します）
 \item
   \texttt{function}キーワードに比べて短く書くことができる
 \item
@@ -543,7 +544,7 @@ console.log(doubleArray); // => [2, 4, 6]
 \end{lstlisting}
 
 Arrow
-Functionでは処理が1つの式だけである場合に、\texttt{return}文を省略し暗黙的にその式の評価結果を\texttt{return}の返り値とします。
+Functionでは処理が1つの式だけである場合に、\texttt{return}文を省略して暗黙的にその式の評価結果を\texttt{return}の返り値とします。
 また、Arrow
 Functionは仮引数が1つである場合は\texttt{()}を省略できます。
 このような省略はコールバック関数を多用する場合にコードの見通しを良くします。
@@ -552,8 +553,8 @@ Functionは仮引数が1つである場合は\texttt{()}を省略できます。
 
 \begin{lstlisting}
 const array = [1, 2, 3];
-// 仮引数が1つなので`()`を省略できる
-// 関数の処理が1つの式なので`return`文を省略できる
+// 仮引数が1つなので()を省略できる
+// 関数の処理が1つの式なのでreturn文を省略できる
 const doubleArray = array.map(value => value * 2);
 console.log(doubleArray); // => [2, 4, 6]
 \end{lstlisting}
@@ -566,7 +567,7 @@ Functionでは、人による解釈や実装の違いが生まれにくくなり
 
 また、\texttt{function}キーワードとArrow
 Functionの大きな違いとして、\texttt{this}という特殊なキーワードに関する挙動の違いがあります。
-\texttt{this}については「\href{../function-scope/README.md}{関数とスコープ}」の章で解説しますが、Arrow
+\texttt{this}については「\hyperlink{function-and-scope}{関数とスコープ}」の章で解説しますが、Arrow
 Functionではこの\texttt{this}の問題の多くを解決できるという利点があります。
 
 そのため、Arrow Functionで問題ない場合はArrow
@@ -594,15 +595,15 @@ console.log(fn(2, 10)); // => "最後の関数 x: 2, y: 10"
 \texttt{let}や\texttt{const}では同じ変数名の定義はエラーとなるため、このような関数定義の上書きもエラーとなります。
 
 このように、同じ関数名で複数の関数を定義することは基本的に意味がないため避けるべきです。
-引数の違いで関数を呼び分けたい場合は、別々の名前で関数を定義するか関数の内部で引数の値で処理を分岐する必要があります。\footnote{JavaScriptにはオーバーロードと呼ばれる機能はありません。}
+引数の違いで関数を呼び分けたい場合は、別々の名前で関数を定義するか関数の内部で引数の値で処理を分岐する必要があります\footnote{JavaScriptにはオーバーロードと呼ばれる機能はありません。}。
 \end{tcolorbox}
 
 \hypertarget{callback}{%
 \subsection{コールバック関数}\label{callback}}
 
 関数はファーストクラスであるため、その場で作った匿名関数を関数の引数（値）として渡すことができます。
-引数として渡される関数のことを\textbf{コールバック関数}と呼びます。
-一方、コールバック関数を引数として使う関数やメソッドのことを\textbf{高階関数}と呼びます。
+引数として渡される関数のことを\textbf{\textgt{コールバック関数}}と呼びます。
+一方、コールバック関数を引数として使う関数やメソッドのことを\textbf{\textgt{高階関数}}と呼びます。
 
 \begin{lstlisting}
 function 高階関数(コールバック関数) {
@@ -636,12 +637,12 @@ array.forEach((value) => {
 \end{lstlisting}
 
 コールバック関数は非同期処理においてもよく利用されます。
-非同期処理におけるコールバック関数の利用方法については「\href{../async/README.md}{非同期処理}」の章で解説します。
+非同期処理におけるコールバック関数の利用方法については「\hyperlink{async-handling}{非同期処理}」の章で解説します。
 
 \hypertarget{method}{%
 \section{メソッド}\label{method}}
 
-オブジェクトのプロパティである関数を\textbf{メソッド}と呼びます。
+オブジェクトのプロパティである関数を\textbf{\textgt{メソッド}}と呼びます。
 JavaScriptにおいて、関数とメソッドの機能的な違いはありません。
 しかし、呼び方を区別したほうがわかりやすいため、ここではオブジェクトのプロパティである関数をメソッドと呼びます。
 
@@ -651,7 +652,7 @@ JavaScriptにおいて、関数とメソッドの機能的な違いはありま�
 \begin{lstlisting}
 const obj = {
     method1: function() {
-        // `function`キーワードでのメソッド
+        // functionキーワードでのメソッド
     },
     method2: () => {
         // Arrow Functionでのメソッド
@@ -679,7 +680,7 @@ console.log(obj.method()); // => "this is method"
 \end{lstlisting}
 
 \hypertarget{shorthand-for-method}{%
-\subsection{メソッドの短縮記法{$^{\rm ES2015}$}}\label{shorthand-for-method}}
+\subsection{メソッドの短縮記法\protect\icon{fig/es2015.eps}}\label{shorthand-for-method}}
 
 先ほどの方法では、プロパティに関数を代入するという書き方になっていました。
 ES2015からは、メソッドとしてプロパティを定義するための短縮した書き方が追加されています。

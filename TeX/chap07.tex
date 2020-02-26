@@ -1,9 +1,10 @@
 \hypertarget{implicit-coercion}{%
 \chapter{暗黙的な型変換}\label{implicit-coercion}}
+\thispagestyle{frontheadings}
 
 この章では、明示的な型変換と暗黙的な型変換について学んでいきます。
 
-「\href{../operator/README.md}{演算子}」の章にて、
+「\hyperlink{operator}{演算子}」の章にて、
 等価演算子（\texttt{==}）ではなく厳密等価演算子（\texttt{===}）の利用を推奨していました。
 これは厳密等価演算子（\texttt{===}）が\textbf{暗黙的な型変換}を行わずに、値同士を比較できるためです。
 
@@ -11,7 +12,7 @@
 次のコードは、数値の\texttt{1}と文字列の\texttt{"1"}という異なるデータ型を比較しているので、結果は\texttt{false}となります。
 
 \begin{lstlisting}
-// `===`では、異なるデータ型の比較結果はfalse
+// ===では、異なるデータ型の比較結果はfalse
 console.log(1 === "1"); // => false
 \end{lstlisting}
 
@@ -20,7 +21,7 @@ console.log(1 === "1"); // => false
 これは、等価演算子（\texttt{==}）は右辺の文字列\texttt{"1"}を数値の\texttt{1}へと暗黙的な型変換してから、比較を行うためです。
 
 \begin{lstlisting}
-// `==`では、異なるデータ型は暗黙的な型変換をしてから比較される
+// ==では、異なるデータ型は暗黙的な型変換をしてから比較される
 // 暗黙的な型変換によって 1 == 1 のように変換されてから比較される
 console.log(1 == "1"); // => true
 \end{lstlisting}
@@ -62,7 +63,7 @@ JavaScriptでは、エラーが発生するのではなく、暗黙的な型変�
 
 \begin{itemize}
 \item
-  ある処理において、その処理過程で行われる明示的ではない型変換のこと
+  \textgt{ある処理において、その処理過程で行われる明示的ではない型変換のこと}
 \end{itemize}
 
 暗黙的な型変換は、演算子による演算や関数の処理過程で行われます。
@@ -142,11 +143,8 @@ console.log(y + x + z); // => "213"
 console.log(x + z + y); // => "42"
 \end{lstlisting}
 
-このように、処理の過程でオペランドの型によって、
-自動的に変換されることを\textbf{暗黙的な型変換}と呼んでいます。
-
 暗黙的な型変換では、結果の値の型はオペランドの型に依存しています。
-それを避けるには、暗黙的ではない変換 ーー
+それを避けるには、暗黙的ではない変換 ---
 つまり明示的な型変換をする必要があります。
 
 \hypertarget{explicit-coercion}{%
@@ -155,7 +153,7 @@ console.log(x + z + y); // => "42"
 プリミティブ型へ明示的な型変換をする方法を見ていきます。
 
 \hypertarget{any-to-boolean}{%
-\subsection{任意の値 -\textgreater{} 真偽値}\label{any-to-boolean}}
+\subsection{任意の値 → 真偽値}\label{any-to-boolean}}
 
 JavaScriptでは\texttt{Boolean}コンストラクタ関数を使うことで、任意の値を\texttt{true}または\texttt{false}の真偽値に変換できます。
 
@@ -217,7 +215,7 @@ if (x === undefined) {
 \end{lstlisting}
 
 \hypertarget{number-to-string}{%
-\subsection{数値 -\textgreater{} 文字列}\label{number-to-string}}
+\subsection{数値 → 文字列}\label{number-to-string}}
 
 数値から文字列へ明示的に変換する場合は、\texttt{String}コンストラクタ関数を使います。
 
@@ -240,7 +238,7 @@ String(function() {}); // "function() {}"
 \end{lstlisting}
 
 上記の結果からもわかるように\texttt{String}コンストラクタ関数での明示的な変換は、万能な方法ではありません。
-真偽値、数値、文字列、undefined、null、シンボルのプリミティブ型の値に対して変換は見た目どおりの文字列を得ることができます。
+真偽値、数値、文字列、undefined、null、シンボルのプリミティブ型の値に対しての変換では、見た目どおりの文字列を得ることができます。
 
 一方、オブジェクトに対しては、あまり意味のある文字列を返しません。
 オブジェクトに対しては\texttt{String}コンストラクタ関数より適切な方法があるためです。
@@ -248,7 +246,7 @@ String(function() {}); // "function() {}"
 そのため、\texttt{String}コンストラクタ関数での変換は、あくまでプリミティブ型に対してのみに留めるべきです。
 
 \hypertarget{symbol-to-string}{%
-\subsection{シンボル -\textgreater{} 文字列}\label{symbol-to-string}}
+\subsection{シンボル → 文字列}\label{symbol-to-string}}
 
 プラス演算子を文字列に利用した場合、文字列の結合を優先します。
 「片方が文字列なら、もう片方のオペランドとは関係なく、結果は文字列となるのでは？」と考えるかもしれません。
@@ -259,22 +257,23 @@ String(function() {}); // "function() {}"
 
 しかし、ES2015で追加されたプリミティブ型であるシンボルは暗黙的に型変換できません。
 文字列結合演算子をシンボルに対して利用すると例外を投げるようになっています。
-そのため、片方が文字列であるからといってプラス演算子の結果は必ず文字列になるとは限らないことがわかります。
+そのため、片方が文字列であるからといってプラス演算子の結果が必ず文字列になるとは限らないことがわかります。
 
 次のコードでは、シンボルを文字列結合演算子（\texttt{+}）で文字列に変換できないという\texttt{TypeError}が発生しています。
 
 \begin{lstlisting}
-"文字列と" + Symbol("シンボルの説明"); // => TypeError: can't convert symbol to string
+"文字列と" + Symbol("シンボルの説明");
+ // => TypeError: can't convert symbol to string
 \end{lstlisting}
 
-この問題も\texttt{String}コンストラクタ関数を使うことで、シンボルを明示的に文字列化することで解決できます。
+この問題も\texttt{String}コンストラクタ関数を使って、シンボルを明示的に文字列化することで解決できます。
 
 \begin{lstlisting}
 "文字列と" + String(Symbol("シンボルの説明")); // => "文字列とSymbol(シンボルの説明)"
 \end{lstlisting}
 
 \hypertarget{string-to-number}{%
-\subsection{文字列 -\textgreater{} 数値}\label{string-to-number}}
+\subsection{文字列 → 数値}\label{string-to-number}}
 
 文字列から数値に変換する典型的なケースとしては、ユーザー入力として数字を受け取ることがあげられます。
 ユーザー入力は文字列でしか受け取ることができないため、それを数値に変換してから利用する必要があります。
@@ -308,7 +307,7 @@ console.log(Number.parseFloat("10.5")); // => 10.5
 \end{lstlisting}
 
 しかし、ユーザーが数字を入力するとは限りません。
-\texttt{Number}コンストラクタ関数、\texttt{Number.parseInt}、\texttt{Number.parseFloat}は、
+\texttt{Number}コンストラクタ関数、\texttt{Number.parse\\Int}、\texttt{Number.parseFloat}は、
 数字以外の文字列を渡すと\texttt{NaN}（Not a
 Number）を返します。
 
@@ -320,7 +319,7 @@ Number(undefined); // => NaN
 \end{lstlisting}
 
 そのため、任意の値から数値へ変換した場合には、\texttt{NaN}になってしまった場合の処理を書く必要があります。
-変換した結果が\texttt{NaN}であるかは\texttt{Number.isNaN(x)}メソッドで判定できます。
+変換した結果が\texttt{NaN}であるかは\texttt{Number.isNaN}メソッドで判定できます。
 
 \begin{lstlisting}
 const userInput = "任意の文字列";
@@ -338,7 +337,7 @@ if (!Number.isNaN(num)) {
 Numberの略称で、特殊な性質を持つNumber型のデータです。
 
 この\texttt{NaN}というデータの性質については\href{https://ja.wikipedia.org/wiki/IEEE_754}{IEEE
-754}で規定されており、 JavaScriptだけの性質ではありません。
+754}\footnote{\url{https://ja.wikipedia.org/wiki/IEEE_754}}で規定されており、 JavaScriptだけの性質ではありません。
 
 \texttt{NaN}という値を作る方法は簡単で、Number型と互換性のない性質のデータをNumber型へ変換した結果は\texttt{NaN}となります。
 たとえば、オブジェクトは数値とは互換性のないデータです。
@@ -367,7 +366,7 @@ console.log(z); // => NaN
 console.log(typeof NaN); // => "number"
 \end{lstlisting}
 
-NaNしか持っていない特殊な性質として、自分自身と一致しないというものがあります。
+\texttt{NaN}しか持っていない特殊な性質として、自分自身と一致しないというものがあります。
 この特徴を利用することで、ある値が\texttt{NaN}であるかを判定できます。
 
 \begin{lstlisting}
@@ -382,8 +381,8 @@ console.log(isNaN([])); // => false
 console.log(isNaN(NaN)); // => true
 \end{lstlisting}
 
-同様の処理をする方法として\texttt{Number.isNaN(x)}メソッドがあります。
-実際に値が\texttt{NaN}かを判定する際には、\texttt{Number.isNaN(x)}メソッドを利用するとよいでしょう。
+同様の処理をする方法として\texttt{Number.isNaN}メソッドがあります。
+実際に値が\texttt{NaN}かを判定する際には、\texttt{Number.isNaN}メソッドを利用するとよいでしょう。
 
 \begin{lstlisting}
 Number.isNaN(NaN); // => true
@@ -405,7 +404,7 @@ function sum(...values) {
     }, 0);
 }
 const x = 1, z = 10;
-let y; // `y`はundefined
+let y; // yはundefined
 console.log(sum(x, y, z)); // => NaN
 \end{lstlisting}
 
@@ -425,16 +424,16 @@ NaN + 10; // => NaN
 \begin{lstlisting}
 function sum(...values) {
     return values.reduce((total, value) => {
-        // `value`をNumberで明示的に数値へ変換してから加算する
+        // valueをNumberで明示的に数値へ変換してから加算する
         return total + Number(value);
     }, 0);
 }
 const x = 1, z = 10;
-let y; // `y`はundefined
+let y; // yはundefined
 console.log(sum(x, y, z)); // => NaN
 \end{lstlisting}
 
-この意図しない\texttt{NaN}への変換を避ける方法として、大きく分けて２つの方法があります。
+この意図しない\texttt{NaN}への変換を避ける方法として、大きく分けて次の２つがあります。
 
 \begin{itemize}
 \item
@@ -446,14 +445,14 @@ console.log(sum(x, y, z)); // => NaN
 つまり、呼び出す側または呼び出される側で対処するということですが、
 どちらも行うことがより安全なコードにつながります。
 
-そのためには、\texttt{sum}関数が数値のみを受けつけるということを明示する必要があります。
+まずは、\texttt{sum}関数が数値のみを受けつけるということを明示する必要があります。
 
 明示する方法として\texttt{sum}関数のドキュメント（コメント）として記述したり、
 引数に数値以外の値がある場合は例外を投げるという処理を追加するといった形です。
 
-JavaScriptではコメントで引数の型を記述する書式として\href{http://usejsdoc.org/}{JSDoc}が有名です。
+JavaScriptではコメントで引数の型を記述する書式として\href{http://usejsdoc.org/}{JSDoc}\footnote{\url{http://usejsdoc.org/}}が有名です。
 また、実行時に値がNumber型であるかをチェックし\texttt{throw}文で例外を投げることで、\texttt{sum}関数の利用者に使い方を明示できます
-（\texttt{throw}文については「\href{../error-try-catch/README.md}{例外処理}」の章で解説します）。
+（\texttt{throw}文については「\hyperlink{error-handling}{例外処理}」の章で解説します）。
 
 この２つを利用して\texttt{sum}関数の前提条件を詳細に実装したものは次のようになります。
 
@@ -474,9 +473,9 @@ function sum(...values) {
     }, 0);
 }
 const x = 1, z = 10;
-let y; // `y`はundefined
+let y; // yはundefined
 console.log(x, y, z);
-// Number型の値ではない`y`を渡しているため例外が発生する
+// Number型の値ではないyを渡しているため例外が発生する
 console.log(sum(x, y, z)); // => Error
 \end{lstlisting}
 
@@ -492,7 +491,7 @@ JavaScriptは、型エラーに対して暗黙的な型変換をしてしまう�
 
 先ほどの例からもわかるように、あらゆるケースが明示的な変換で解決できるわけではありません。
 Number型と互換性がない値を数値にしても、\texttt{NaN}となってしまいます。
-一度、\texttt{NaN}になってしまうと\texttt{Number.isNaN(x)}で判定して処理を終えるしかありません。
+一度、\texttt{NaN}になってしまうと\texttt{Number.isNaN}で判定して処理を終えるしかありません。
 
 JavaScriptの型変換は基本的に情報が減る方向へしか変換できません。
 そのため、明示的な変換をする前に、まず変換がそもそも必要なのかを考える必要があります。
@@ -509,7 +508,7 @@ JavaScriptの型変換は基本的に情報が減る方向へしか変換でき�
 \begin{lstlisting}
 // 空文字列かどうかを判定
 function isEmptyString(str) {
-    // `str`がfalsyな値なら、`isEmptyString`関数は`true`を返す
+    // strがfalsyな値なら、isEmptyString関数はtrueを返す
     return !Boolean(str);
 }
 // 空文字列列の場合は、trueを返す

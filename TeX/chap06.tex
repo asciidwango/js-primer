@@ -1,5 +1,6 @@
 \hypertarget{operator}{%
 \chapter{演算子}\label{operator}}
+\thispagestyle{frontheadings}
 
 演算子はよく利用する演算処理を記号などで表現したものです。
 たとえば、足し算をする \texttt{+}
@@ -58,7 +59,7 @@ console.log(1 + 1); // => 2
 
 JavaScriptでは、数値は内部的にIEEE
 754方式の浮動小数点数として表現されています （
-\href{../data-type/README.md}{データ型とリテラル}を参照）。
+\hyperlink{data-type-and-literal}{データ型とリテラル}を参照）。
 そのため、整数と浮動小数点数の加算もプラス演算子で行えます。
 
 \begin{lstlisting}
@@ -66,7 +67,7 @@ console.log(10 + 0.5); // => 10.5
 \end{lstlisting}
 
 \hypertarget{string-combination-operator}{%
-\section{\texorpdfstring{文字列結合演算子（\texttt{+}）}{文字列結合演算子（+）}}\label{string-combination-operator}}
+\subsection{\texorpdfstring{文字列結合演算子（\texttt{+}）}{文字列結合演算子（+）}}\label{string-combination-operator}}
 
 数値の加算に利用したプラス演算子（\texttt{+}）は、文字列の結合に利用できます。
 
@@ -112,7 +113,7 @@ console.log(10 / 0.5); // => 20
 \hypertarget{modulus-operator}{%
 \subsection{\texorpdfstring{剰余演算子（\texttt{\%}）}{剰余演算子（\%）}}\label{modulus-operator}}
 
-2つの数値のあまりを求める演算子です。
+2つの数値の余りを求める演算子です。
 
 \begin{lstlisting}
 console.log(8 % 2); // => 0
@@ -122,7 +123,7 @@ console.log(10 % 4.5); // => 1
 \end{lstlisting}
 
 \hypertarget{pow-operator}{%
-\subsection{べき乗演算子（\texttt{**}）{$^{\rm ES2016}$}}\label{pow-operator}}
+\subsection{べき乗演算子（\texttt{**}）\protect\icon{fig/es2016.eps}}\label{pow-operator}}
 
 2つの数値のべき乗を求める演算子です。
 左オペランドを右オペランドでべき乗した値を返します。
@@ -144,7 +145,7 @@ console.log(Math.pow(2, 4)); // => 16
 \hypertarget{unary-operator}{%
 \section{単項演算子（算術）}\label{unary-operator}}
 
-単項演算子は、1つのオペランドを受け取り処理する演算子です。
+単項演算子は、1つのオペランドを受け取って処理する演算子です。
 
 \hypertarget{unary-plus-operator}{%
 \subsection{\texorpdfstring{単項プラス演算子（\texttt{+}）}{単項プラス演算子（+）}}\label{unary-plus-operator}}
@@ -186,7 +187,7 @@ console.log(Number.isNaN(NaN)); // => true
 
 しかし、単項プラス演算子は文字列から数値への変換に使うべきではありません。
 なぜなら、\texttt{Number}コンストラクタ関数や\texttt{parseInt}関数などの明示的な変換方法が存在するためです。
-詳しくは「\href{../implicit-coercion/README}{暗黙的な型変換}」の章で解説します。
+詳しくは「\hyperlink{implicit-coercion}{暗黙的な型変換}」の章で解説します。
 
 \hypertarget{unary-minus-operator}{%
 \subsection{\texorpdfstring{単項マイナス演算子（\texttt{-}）}{単項マイナス演算子（-）}}\label{unary-minus-operator}}
@@ -278,7 +279,7 @@ console.log(x);   // => 2
 \hypertarget{decrement-operator}{%
 \subsection{\texorpdfstring{デクリメント演算子（\texttt{-\/-}）}{デクリメント演算子（-\/-）}}\label{decrement-operator}}
 
-デクリメント演算子（\texttt{--}）は、オペランドの数値を\texttt{-1}する演算子です。
+デクリメント演算子（\texttt{-\/-}）は、オペランドの数値を\texttt{-1}する演算子です。
 
 \begin{lstlisting}
 let num = 1;
@@ -374,7 +375,7 @@ console.log(objA == objA); // => true
 \begin{lstlisting}
 // 文字列を数値に変換してから比較
 console.log(1 == "1"); // => true
-// "01"を数値にすると`1`となる
+// "01"を数値にすると1となる
 console.log(1 == "01"); // => true
 // 真偽値を数値に変換してから比較
 console.log(0 == false); // => true
@@ -407,7 +408,7 @@ if (value == null) {
 \end{lstlisting}
 
 このように等価演算子（\texttt{==}）を使う例外的なケースはありますが、
-等価演算子（\texttt{==}）は\href{../implicit-coercion/README}{暗黙的な型変換}をするため、バグを引き起こしやすいです。
+等価演算子（\texttt{==}）は\hyperlink{implicit-coercion}{暗黙的な型変換}をするため、バグを引き起こしやすいです。
 そのため、仕組みを理解するまでは常に厳密等価演算子（\texttt{===}）を利用することを推奨します。
 
 \hypertarget{not-equal-operator}{%
@@ -484,10 +485,10 @@ console.log(43 <= 42); // => false
 \hypertarget{bit-operator}{%
 \section{ビット演算子}\label{bit-operator}}
 
-ビット演算子はオペランドを符号付き32bit整数に変換してから演算します。
+ビット演算子はオペランドを符号つき32bit整数に変換してから演算します。
 ビット演算子による演算結果は10進数の数値を返します。
 
-たとえば、\texttt{9}という数値は符号付き32bit整数では次のように表現されます。
+たとえば、\texttt{9}という数値は符号つき32bit整数では次のように表現されます。
 
 \begin{lstlisting}
 console.log(0b0000000000000000000000000001001); // => 9
@@ -526,7 +527,7 @@ console.log(0b1111 | 0b1001); // => 0b1111
 \hypertarget{bit-xor}{%
 \subsection{\texorpdfstring{ビット排他的論理和（\texttt{\^{}}）}{ビット排他的論理和（\^{}）}}\label{bit-xor}}
 
-排他的論理和演算子（\texttt{\^}）はビットごとの\textbf{XOR}演算した結果を返します。
+排他的論理和演算子（\texttt{\^{}}）はビットごとの\textbf{XOR}演算した結果を返します。
 
 \begin{lstlisting}
 console.log(15     ^ 9);      // => 6
@@ -536,7 +537,7 @@ console.log(0b1111 ^ 0b1001); // => 0b0110
 \hypertarget{bit-not}{%
 \subsection{\texorpdfstring{ビット否定（\texttt{\textasciitilde{}}）}{ビット否定（\textasciitilde{}）}}\label{bit-not}}
 
-単項演算子の否定演算子（\texttt{\~}）はオペランドを反転した値を返します。
+単項演算子の否定演算子（\lstinline{~}）はオペランドを反転した値を返します。
 これは1の補数として知られている値と同じものです。
 
 \begin{lstlisting}
@@ -544,7 +545,7 @@ console.log(~15); // => -16
 console.log(~0b1111); // => -0b10000
 \end{lstlisting}
 
-否定演算子（\texttt{\~}）はビット演算以外でも使われていることがあります。
+否定演算子（\lstinline{~}）はビット演算以外でも使われていることがあります。
 
 文字列（Stringオブジェクト）が持つ\texttt{indexOf}メソッドは、マッチする文字列を見つけて、そのインデックス（位置）を返すメソッドです。
 この\texttt{indexOf}メソッドは、検索対象が見つからない場合には\texttt{-1}を返します。
@@ -558,7 +559,7 @@ console.log(str.indexOf("本")); // => 2
 console.log(str.indexOf("火")); // => -1
 \end{lstlisting}
 
-否定演算子（\texttt{\~}）は1の補数を返すため、\texttt{\~(-1)}は\texttt{0}となります。
+否定演算子（\lstinline{~}）は1の補数を返すため、\lstinline{~(-1)}は\texttt{0}となります。
 
 \begin{lstlisting}
 console.log(~0); // => -1
@@ -566,8 +567,8 @@ console.log(~(-1)); // => 0
 \end{lstlisting}
 
 JavaScriptでは\texttt{0}も、if文では\texttt{false}として扱われます。
-そのため、\texttt{\~indexOfの結果}が\texttt{0}となるのは、その文字列が見つからなかった場合だけとなります。
-次のコードのような否定演算子（\texttt{\~}）と\texttt{indexOf}メソッドを使ったイディオムが一部では使われていました。
+そのため、\lstinline{~indexOf}の結果が\texttt{0}となるのは、その文字列が見つからなかった場合だけとなります。
+次のコードのような否定演算子（\lstinline{~}）と\texttt{indexOf}メソッドを使ったイディオムが一部では使われていました。
 
 \begin{lstlisting}
 const str = "森森木森森";
@@ -575,7 +576,7 @@ const str = "森森木森森";
 if (str.indexOf("木") !== -1) {
     console.log("木を見つけました");
 }
-// 否定演算子（`~`）で同じ動作を実装
+// 否定演算子（~）で同じ動作を実装
 // (~(-1)) は 0 となるため、見つからなかった場合はif文の中身は実行されない
 if (~str.indexOf("木")) {
     console.log("木を見つけました");
@@ -592,7 +593,7 @@ if (str.includes("木")) {
 }
 \end{lstlisting}
 
-そのため、否定演算子（\texttt{\~}）と\texttt{indexOf}メソッドを使ったイディオムは、\texttt{includes}メソッドに置き換えられます。
+そのため、否定演算子（\lstinline{~}）と\texttt{indexOf}メソッドを使ったイディオムは、\texttt{includes}メソッドに置き換えられます。
 
 \hypertarget{left-shift}{%
 \subsection{\texorpdfstring{左シフト演算子（\texttt{\textless{}\textless{}}）}{左シフト演算子（\textless{}\textless{}）}}\label{left-shift}}
@@ -626,27 +627,29 @@ num >> bit;
 
 \begin{lstlisting}
 console.log((-9) >> 2); // => -3
-// 0b11111111111111111111111111110111 >> 2; // => 0b11111111111111111111111111111101
+//    0b11111111111111111111111111110111 >> 2;
+// => 0b11111111111111111111111111111101
 \end{lstlisting}
 
 \hypertarget{fill-zero-right-shift}{%
 \subsection{\texorpdfstring{ゼロ埋め右シフト演算子（\texttt{\textgreater{}\textgreater{}\textgreater{}}）}{ゼロ埋め右シフト演算子（\textgreater{}\textgreater{}\textgreater{}）}}\label{fill-zero-right-shift}}
 
-ゼロ埋め右シフト演算子は、数値である\texttt{num}を\texttt{bit}の数だけ右へシフトするのは右シフト演算子（\texttt{>>}）と同じです。異なる点としては右にあふれたビットは破棄され、\texttt{0}のビットを左から詰めます。
+ゼロ埋め右シフト演算子は、数値である\texttt{num}を\texttt{bit}の数だけ右へシフトするのは右シフト演算子（\lstinline{>>}）と同じです。異なる点としては右にあふれたビットは破棄され、\texttt{0}のビットを左から詰めます。
 
 次のコードでは、\texttt{-9}を2ビット分だけゼロ埋め右シフトしています。
 左端のビットは\texttt{0}となるため、常に正の値となります。
 
 \begin{lstlisting}
 console.log((-9) >>> 2); // => 1073741821
-// 0b11111111111111111111111111110111 >>> 2; // => 0b00111111111111111111111111111101
+//    0b11111111111111111111111111110111 >>> 2;
+// => 0b00111111111111111111111111111101
 \end{lstlisting}
 
 \hypertarget{assignment-operator}{%
 \section{\texorpdfstring{代入演算子（\texttt{=}）}{代入演算子（=）}}\label{assignment-operator}}
 
 代入演算子（\texttt{=}）は変数に対して値を代入します。
-代入演算子については「\href{../variables/README.md}{変数と宣言}」の章も参照してください。
+代入演算子については「\hyperlink{variable-and-declaration}{変数と宣言}」の章も参照してください。
 
 \begin{lstlisting}
 let x = 1;
@@ -655,7 +658,7 @@ console.log(x); // => 42
 \end{lstlisting}
 
 また、代入演算子は二項演算子と組み合わせて利用できます。
-\texttt{+=}、\texttt{-=}、\texttt{*=}、\texttt{/=}、\texttt{\%=}、\texttt{<<=}、\texttt{>>=}、\texttt{>>>=}、\texttt{\&=}、\texttt{\^=}、\texttt{|=}のように、演算した結果を代入できます。
+\lstinline{+=}、\lstinline{-=}、\lstinline{*=}、\lstinline{/=}、\lstinline{%=}、\lstinline{<<=}、\lstinline{>>=}、\lstinline{>>>=}、\lstinline{&=}、\lstinline{^=}、\lstinline{|=}のように、演算した結果を代入できます。
 
 \begin{lstlisting}
 let num = 1;
@@ -665,7 +668,7 @@ console.log(num); // => 11
 
 \hypertarget{destructuring-assignment}{%
 \subsection{分割代入（Destructuring
-assignment）{$^{\rm ES2015}$}}\label{destructuring-assignment}}
+assignment）\protect\icon{fig/es2015.eps}}\label{destructuring-assignment}}
 
 今まで見てきた代入演算子は1つの変数に値を代入するものでした。
 分割代入を使うことで、配列やオブジェクトの値を複数の変数へ同時に代入できます。
@@ -677,7 +680,7 @@ assignment）{$^{\rm ES2015}$}}\label{destructuring-assignment}}
 
 \begin{lstlisting}
 const array = [1, 2];
-// aには`array`の0番目の値、bには1番目の値が代入される
+// aにはarrayの0番目の値、bには1番目の値が代入される
 const [a, b] = array;
 console.log(a); // => 1
 console.log(b); // => 2
@@ -698,7 +701,7 @@ const b = array[1];
 const obj = {
     "key": "value"
 };
-// プロパティ名`key`の値を、変数`key`として定義する
+// プロパティ名keyの値を、変数keyとして定義する
 const { key } = obj;
 console.log(key); // => "value"
 \end{lstlisting}
@@ -745,7 +748,7 @@ console.log(valueB); // => "B"
 
 \begin{lstlisting}
 function addPrefix(text, prefix) {
-    // `prefix`が指定されていない場合は"デフォルト:"を付ける
+    // prefixが指定されていない場合は"デフォルト:"をつける
     const pre = typeof prefix === "string" ? prefix : "デフォルト:";
     return pre + text;
 }
@@ -884,7 +887,7 @@ console.log(a + b * c); // 7
 console.log((a + b) * c); // => 9
 \end{lstlisting}
 
-\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Operator_Precedence\#Table}{演算子の優先順位}はECMAScript仕様で定義されていますが、演算子の優先度をすべて覚えるのは難しいです。
+\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Operator_Precedence\#Table}{演算子の優先順位}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Operator_Precedence\#Table}}はECMAScript仕様で定義されていますが、演算子の優先度をすべて覚えるのは難しいです。
 演算子の優先順位の中でグループ化演算子は優先される演算子となり、グループ化演算子を使って優先順位を明示できます。
 
 次のようなグループ化演算子を使わずに書いたコードを見てみましょう。
@@ -915,9 +918,10 @@ if (x || (y && z)) {
 グループ化演算子を使い、そのまま1つの条件式で書くことも可能ですが、読みにくくなってしまいます。
 
 \begin{lstlisting}
-if ((typeof a === "string" && typeof b === "string") || (typeof x === "number" && typeof y === "number")) {
-    // `a`と`b`が文字列型 または
-    // `x`と`y`が数値型
+if ((typeof a === "string" && typeof b === "string") || (typeof x === "number"
+ && typeof y === "number")) {
+    // aとbが文字列型 または
+    // xとyが数値型
 }
 \end{lstlisting}
 
@@ -927,8 +931,8 @@ if ((typeof a === "string" && typeof b === "string") || (typeof x === "number" &
 const isAbString = typeof a === "string" && typeof b === "string";
 const isXyNumber = typeof x === "number" && typeof y === "number";
 if (isAbString || isXyNumber) {
-    // `a`と`b`が文字列型 または
-    // `x`と`y`が数値型
+    // aとbが文字列型 または
+    // xとyが数値型
 }
 \end{lstlisting}
 
@@ -955,8 +959,8 @@ const a = 1, b = 2, c = a + b;
 console.log(c); // => 3
 \end{lstlisting}
 
-一般にカンマ演算子を利用する機会はほとんどないため、「カンマで区切った式は左から順に評価される」ということだけを知っていれば問題ありません。\footnote{カンマ演算子を活用したテクニックとしてindirect
-  callというものがあります。\url{https://2ality.com/2014/01/eval.html}}
+一般にカンマ演算子を利用する機会はほとんどないため、「カンマで区切った式は左から順に評価される」ということだけを知っていれば問題ありません\footnote{カンマ演算子を活用したテクニックとしてindirect
+  callというものがあります。\url{https://2ality.com/2014/01/eval.html}}。
 
 \hypertarget{conclusion}{%
 \section{まとめ}\label{conclusion}}

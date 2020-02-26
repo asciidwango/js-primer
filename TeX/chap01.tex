@@ -70,15 +70,15 @@ JavaScriptは、大部分がオブジェクト（値や処理を1つにまとめ
 それぞれは別々の\texttt{name}と\texttt{NAME}という名前の変数として認識されます。
 
 \begin{lstlisting}
-// `name`という名前の変数を宣言
+// nameという名前の変数を宣言
 const name = "azu";
-// `NAME`という名前の変数を宣言
+// NAMEという名前の変数を宣言
 const NAME = "azu";
 \end{lstlisting}
 
 また、大文字で開始しなければならないといった命名規則が意味を持つケースはありません。
 そのため、あくまで別々の名前として認識されるというだけになっています
-（変数についての詳細は「\href{../variables/README.md}{変数と宣言}」の章で解説します）。
+（変数についての詳細は「\hyperlink{variable-and-declaration}{変数と宣言}」の章で解説します）。
 
 \hypertarget{reserved-keyword}{%
 \subsection{予約語を持つ}\label{reserved-keyword}}
@@ -92,10 +92,9 @@ JavaScriptには特別な意味を持つキーワードがあり、これらは�
 \subsection{文はセミコロンで区切られる}\label{statement-semicolon}}
 
 JavaScriptは、文（Statement）ごとに処理していき、文はセミコロン（\texttt{;}）によって区切られます。
-特殊なルールに基づき、セミコロンがない文も、行末に自動でセミコロンが挿入されるという仕組みも持っています。\footnote{Automatic
-  Semicolon Insertionと呼ばれる仕組みです。}
+特殊なルールに基づき、セミコロンがない文も、行末に自動でセミコロンが挿入されるという仕組みも持っています\footnote{Automatic Semicolon Insertionと呼ばれる仕組みです。}。
 しかし、暗黙的なものへ頼ると意図しない挙動が発生するため、セミコロンは常に書くようにします
-（詳細は「\href{../statement-expression/README.md}{文と式}」の章で解説します）。
+（詳細は「\hyperlink{statement-and-expression}{文と式}」の章で解説します）。
 
 また、スペース、タブ文字などは空白文字（ホワイトスペース）と呼ばれます。
 これらの空白文字を文にいくつ置いても挙動に違いはありません。
@@ -108,10 +107,9 @@ JavaScriptは、文（Statement）ごとに処理していき、文はセミコ�
 1   +   1;
 \end{lstlisting}
 
-空白文字の置き方は人によって好みが異なるため、人によって書き方が異なる場合もあります。
+空白文字の置き方には好みがあるため、人によって書き方が異なる場合もあります。
 複数人で開発する場合は、これらの空白文字の置き方を決めたコーディングスタイルを決めるとよいでしょう。
-コーディングスタイルの統一については「\href{../../appendix/links/README.md}{付録:
-参考リンク集}」を参照してください。
+コーディングスタイルの統一については「\hyperlink{reference-links}{付録A 参考リンク集}」を参照してください。
 
 \hypertarget{strict-mode}{%
 \subsection{strict mode}\label{strict-mode}}
@@ -131,7 +129,7 @@ modeがデフォルトとなっています。
 
 strict
 modeでは、\texttt{eval}や\texttt{with}といったレガシーな機能や構文を禁止します。
-また、明らかな問題を含んだコードに対しては早期的に例外を投げることで、開発者が間違いに気づきやすくしてくれます。
+また、明らかな問題を含んだコードに対しては早期に例外を投げることで、開発者が間違いに気づきやすくしてくれます。
 
 たとえば、次のような\texttt{const}などのキーワードを含まずに変数を宣言しようとした場合に、strict
 modeでは例外が発生します。 strict
@@ -164,7 +162,7 @@ modeではありません。
 2015で導入されたものです。
 ``Module''の実行コンテキストでは、デフォルトがstrict
 modeとなり、古く安全でない構文や機能は一部禁止されています。
-また、モジュールの機能は``Module''の実行コンテキストでしか利用できません。モジュールについての詳細は「\href{../../basic/module/README.md}{ECMAScriptモジュール}」の章で解説します。
+また、モジュールの機能は``Module''の実行コンテキストでしか利用できません。モジュールについての詳細は「\hyperlink{module}{ECMAScriptモジュール}」の章で解説します。
 
 \hypertarget{ecmascript-updates}{%
 \subsection{JavaScriptの仕様は毎年更新される}\label{ecmascript-updates}}
@@ -175,4 +173,4 @@ modeとなり、古く安全でない構文や機能は一部禁止されてい�
 一方で、ECMAScriptは後方互換性が慎重に考慮されているため、過去に書いたJavaScriptのコードが動かなくなる変更はほとんど入りません。
 そのため、この書籍で学んだことのすべてが無駄になることはありません。
 
-ECMAScriptの仕様がどのように策定されているかについては「\href{../ecmascript/README.md}{ECMAScript}」の章で解説します。
+ECMAScriptの仕様がどのように策定されているかについては「\hyperlink{ecmascript}{ECMAScript}」の章で解説します。

@@ -1,14 +1,15 @@
 \hypertarget{data-type-and-literal}{%
 \chapter{データ型とリテラル}\label{data-type-and-literal}}
+\thispagestyle{frontheadings}
 
 \hypertarget{data-type}{%
 \section{データ型}\label{data-type}}
 
-JavaScriptは動的型付け言語に分類される言語であるため、静的型付け言語のような\textbf{変数の型}はありません。
-しかし、文字列、数値、真偽値といった\textbf{値の型}は存在します。
-これらの値の型のことを\textbf{データ型}と呼びます。
+JavaScriptは動的型づけ言語に分類される言語であるため、静的型づけ言語のような\textbf{\textgt{変数の型}}はありません。
+しかし、文字列、数値、真偽値といった\textbf{\textgt{値の型}}は存在します。
+これらの値の型のことを\textbf{\textgt{データ型}}と呼びます。
 
-データ型を大きく分けると、\textbf{プリミティブ型}と\textbf{オブジェクト}の2つに分類されます。
+データ型を大きく分けると、\textbf{\textgt{プリミティブ型}}と\textbf{\textgt{オブジェクト}}の2つに分類されます。
 
 プリミティブ型（基本型）は、真偽値や数値などの基本的な値の型のことです。
 プリミティブ型の値は、一度作成したらその値自体を変更できないというイミュータブル（immutable）の特性を持ちます。
@@ -69,12 +70,7 @@ console.log(typeof { "key": "value" }); // => "object"
 console.log(typeof function() {}); // => "function"
 \end{lstlisting}
 
-残念ながら\texttt{typeof null}が\texttt{"object"}となるのは、歴史的経緯のある仕様のバグ\footnote{JavaScriptが最初にNetscapeで実装された際に\texttt{typeof null === "object"}となるバグがありました。このバグを修正するとすでにこの挙動に依存しているコードが壊れるため、修正が見送られ現在の挙動が仕様となりました。
-  詳しくは\url{https://2ality.com/2013/10/typeof-null.html}を参照。
-  {[}IEEE 754{]}: https://ja.wikipedia.org/wiki/IEEE\_754 {[}文字列{]}:
-  ../string/README.md {[}配列{]}: ../array/README.md {[}オブジェクト{]}:
-  ../object/README.md {[}ラッパーオブジェクト{]}:
-  ../wrapper-object/README.md}です。
+残念ながら\texttt{typeof null}が\texttt{"object"}となるのは、歴史的経緯のある仕様のバグ\footnote{JavaScriptが最初にNetscapeで実装された際に\texttt{typeof null === "object"}となるバグがありました。このバグを修正するとすでにこの挙動に依存しているコードが壊れるため、修正が見送られ現在の挙動が仕様となりました。詳しくは\url{https://2ality.com/2013/10/typeof-null.html}を参照。}です。
 他のプリミティブ型の値については、\texttt{typeof}演算子でそれぞれのデータ型を調べることができます。
 
 一方で、配列とオブジェクトがどちらも\texttt{"object"}という判定結果になります。
@@ -142,7 +138,7 @@ false; // => false
 \hypertarget{number}{%
 \subsection{数値（Number）}\label{number}}
 
-数値は大きく分けて\texttt{42}のような整数リテラルと\texttt{3.14159}のような浮動小数点数リテラルがあります。
+数値には大きく分けて\texttt{42}のような整数リテラルと\texttt{3.14159}のような浮動小数点数リテラルがあります。
 
 \hypertarget{integer-literal}{%
 \subsubsection{整数リテラル}\label{integer-literal}}
@@ -236,22 +232,24 @@ console.log(0xff); // => 255
 console.log(0x30A2); // => 12450
 \end{lstlisting}
 
-\begin{longtable}[]{@{}lll@{}}
-\toprule
-名前 & 表記例 & 用途\tabularnewline
-\midrule
+\begin{small}
+\begin{longtable}[l]{p{40mm}|p{40mm}|p{60mm}}
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}
+{\textgt 名前} & {\textgt 表記例} & {\textgt 用途}\tabularnewline
+\hline
 \endhead
 10進数 & 42 & 数値\tabularnewline
 2進数 & 0b0001 & ビット演算など\tabularnewline
 8進数 & 0o777 & ファイルのパーミッションなど\tabularnewline
 16進数 & 0xEEFF & 文字のコードポイント、RGB値など\tabularnewline
-\bottomrule
+\hline
 \end{longtable}
+\end{small}
 
 \hypertarget{floating-point-number-literal}{%
 \subsubsection{浮動小数点数リテラル}\label{floating-point-number-literal}}
 
-JavaScriptの浮動小数点数は{[}IEEE 754{]}{[}{]}を採用しています。
+JavaScriptの浮動小数点数は\href{https://ja.wikipedia.org/wiki/IEEE_754}{IEEE 754}\footnote{\url{https://ja.wikipedia.org/wiki/IEEE_754}}を採用しています。
 浮動小数点数をリテラルとして書く場合には、次の2種類の表記が利用できます。
 
 \begin{itemize}
@@ -272,10 +270,9 @@ JavaScriptの浮動小数点数は{[}IEEE 754{]}{[}{]}を採用しています�
 しかし、JavaScriptでは\texttt{.}をオブジェクトにおいて利用する機会が多いため、
 \texttt{0}からはじまる場合でも省略せずに書いたほうが意図しない挙動を減らせるでしょう。
 
-\begin{quote}
-\textbf{Note}
+\begin{note}{}
 変数名を数字からはじめることができないのは、数値リテラルと衝突してしまうからです。
-\end{quote}
+\end{note}
 
 \texttt{e}は指数（exponent）を意味する記号で、\texttt{e}のあとには指数部の値を書きます。
 たとえば、\texttt{2e8}は2×10の8乗となるので、10進数で表すと\texttt{200000000}となります。
@@ -303,7 +300,7 @@ console.log(`文字列`); // => "文字列"
 PHPやRubyなどとは違い、どちらのリテラルでも評価結果は同じとなります。
 
 文字列リテラルは同じ記号で囲む必要があるため、次のように文字列の中に同じ記号が出現した場合は、
-\texttt{\\'}のように\texttt{\\}（バックスラッシュ）を使ってエスケープしなければなりません。
+\texttt{\textbackslash'}のように\texttt{\textbackslash}（バックスラッシュ）を使ってエスケープしなければなりません。
 
 \begin{lstlisting}
 '8 o\'clock'; // => "8 o'clock"
@@ -324,7 +321,7 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は同�
 入れたい"; // => SyntaxError: "" string literal contains an unescaped line break
 \end{lstlisting}
 
-改行の代わりに改行記号のエスケープシーケンス（\texttt{\\n}）を使うことで複数行の文字列を書くことができます。
+改行の代わりに改行記号のエスケープシーケンス（\texttt{\textbackslash n}）を使うことで複数行の文字列を書くことができます。
 
 \begin{lstlisting}
 "複数行の\n文字列を\n入れたい";
@@ -334,13 +331,13 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は同�
 これに対してES2015から導入されたテンプレートリテラルでは、複数行の文字列を直感的に書くことができます。
 
 \hypertarget{template-literal}{%
-\subsubsection{テンプレートリテラル{$^{\rm ES2015}$}}\label{template-literal}}
+\subsubsection{テンプレートリテラル\protect\icon{fig/es2015.eps}}\label{template-literal}}
 
 テンプレートリテラルは
-\texttt{`}（バッククォート）で囲んだ範囲を文字列とするリテラルです。
-テンプレートリテラルでは、複数行の文字列を改行記号のエスケープシーケンス（\texttt{\\n}）を使わずにそのまま書くことができます。
+\lstinline{`}（バッククォート）で囲んだ範囲を文字列とするリテラルです。
+テンプレートリテラルでは、複数行の文字列を改行記号のエスケープシーケンス（\texttt{\textbackslash n}）を使わずにそのまま書くことができます。
 
-複数行の文字列も\texttt{`}で囲めば、そのまま書くことができます。
+複数行の文字列も\lstinline{`}で囲めば、そのまま書くことができます。
 
 \begin{lstlisting}
 `複数行の
@@ -356,7 +353,7 @@ const str = "文字列";
 console.log(`これは${str}です`); // => "これは文字列です"
 \end{lstlisting}
 
-テンプレートリテラルも他の文字列リテラルと同様に同じリテラル記号を内包したい場合は、\texttt{\\}を使ってエスケープする必要があります。
+テンプレートリテラルも他の文字列リテラルと同様に同じリテラル記号を内包したい場合は、\texttt{\textbackslash}を使ってエスケープする必要があります。
 
 \begin{lstlisting}
 `This is \`code\``;// => "This is `code`"
@@ -393,7 +390,8 @@ console.log(foo); // => null
 
 \begin{lstlisting}
 function fn(){
-    var undefined = "独自の未定義値"; // undefinedという名前の変数をエラーなく定義できる
+    // undefinedという名前の変数をエラーなく定義できる
+    var undefined = "独自の未定義値"; 
     console.log(undefined); // => "独自の未定義値"
 }
 fn();
@@ -469,14 +467,14 @@ object.123
 \end{lstlisting}
 
 オブジェクトはとても重要で、これから紹介する配列や正規表現もこのオブジェクトが元となっています。
-詳細は「{[}オブジェクト{]}{[}{]}」の章で解説します。
+詳細は「\hyperlink{object}{オブジェクト}」の章で解説します。
 ここでは、オブジェクトリテラル（\texttt{\{}と\texttt{\}}）が出てきたら、新しいオブジェクトを作成しているんだなと思ってください。
 
 \hypertarget{array-literal}{%
 \subsection{配列リテラル}\label{array-literal}}
 
 オブジェクトリテラルと並んで、よく使われるリテラルとして配列リテラルがあります。
-配列リテラルは\texttt{[}と\texttt{]}で値をカンマ区切りで囲み、その値を持つArrayオブジェクトを作成します。
+配列リテラルは\texttt{[}と\texttt{]}でカンマ区切りの値を囲み、その値を持つArrayオブジェクトを作成します。
 配列（Arrayオブジェクト）とは、複数の値に順序をつけて格納できるオブジェクトの一種です。
 
 \begin{lstlisting}
@@ -495,16 +493,16 @@ console.log(array[0]); // => "index:0"
 console.log(array[1]); // => "index:1"
 \end{lstlisting}
 
-配列についての詳細は「{[}配列{]}{[}{]}」の章で解説します。
+配列についての詳細は「\hyperlink{array}{配列}」の章で解説します。
 
 \hypertarget{regexp-literal}{%
 \subsection{正規表現リテラル}\label{regexp-literal}}
 
 JavaScriptは正規表現をリテラルで書くことができます。
 正規表現リテラルは\texttt{/}と\texttt{/}で正規表現のパターン文字列を囲みます。
-正規表現のパターン内では、\texttt{+}や\texttt{\\}（バックスラッシュ）からはじまる特殊文字が特別な意味を持ちます。
+正規表現のパターン内では、\texttt{+}や\texttt{\textbackslash}（バックスラッシュ）からはじまる特殊文字が特別な意味を持ちます。
 
-次のコードでは、数字にマッチする特殊文字である\texttt{\\d}を使い、1文字以上の数字にマッチする正規表現をリテラルで表現しています。
+次のコードでは、数字にマッチする特殊文字である\texttt{\textbackslash d}を使い、1文字以上の数字にマッチする正規表現をリテラルで表現しています。
 
 \begin{lstlisting}
 const numberRegExp = /\d+/; // 1文字以上の数字にマッチする正規表現
@@ -515,7 +513,7 @@ console.log(numberRegExp.test(123)); // => true
 \texttt{RegExp}コンストラクタを使うことで、文字列から正規表現オブジェクトを作成できます。
 しかし、特殊文字の二重エスケープが必要になり直感的に書くことが難しくなります。
 
-正規表現オブジェクトについて詳しくは、「{[}文字列{]}{[}{]}」の章で紹介します。
+正規表現オブジェクトについて詳しくは、「\hyperlink{string}{文字列}」の章で紹介します。
 
 \hypertarget{primitive-and-wrapper-object}{%
 \section{プリミティブ型とオブジェクト}\label{primitive-and-wrapper-object}}
@@ -535,7 +533,7 @@ console.log(numberRegExp.test(123)); // => true
 const str = new String("文字列");
 // ラッパーオブジェクトは"object"型のデータ
 console.log(typeof str); // => "object"
-// Stringオブジェクトの`length`プロパティは文字列の長さを返す
+// Stringオブジェクトのlengthプロパティは文字列の長さを返す
 console.log(str.length); // => 3
 \end{lstlisting}
 
@@ -548,7 +546,7 @@ console.log(str.length); // => 3
 const str = "文字列";
 // プリミティブ型の文字列は"string"型のデータ
 console.log(typeof str); // => "string"
-// プリミティブ型の文字列も`length`プロパティを参照できる
+// プリミティブ型の文字列もlengthプロパティを参照できる
 console.log(str.length); // => 3
 \end{lstlisting}
 
@@ -556,7 +554,7 @@ console.log(str.length); // => 3
 また、ラッパーオブジェクトを明示的に作成するには、リテラルに比べて冗長な書き方が必要になります。
 このように、ラッパーオブジェクトを明示的に作成する必要はないため、常にリテラルでプリミティブ型のデータを表現することを推奨します。
 
-このラッパーオブジェクトへの暗黙的な型変換の仕組みについては「{[}ラッパーオブジェクト{]}{[}{]}」の章で解説します。
+このラッパーオブジェクトへの暗黙的な型変換の仕組みについては「\hyperlink{wrapper-object}{ラッパーオブジェクト}」の章で解説します。
 現時点では、プリミティブ型のデータであってもオブジェクトのようにプロパティ（メソッドなども含む）を参照できるということだけを知っていれば問題ありません。
 
 \hypertarget{data-type-summary}{%

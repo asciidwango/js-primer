@@ -14,7 +14,7 @@ JavaScriptには「これは変数です」という宣言をするキーワー�
 この章では\texttt{const}、\texttt{let}、\texttt{var}の順に、それぞれの方法で宣言した変数の違いについて見ていきます。
 
 \hypertarget{const}{%
-\section[const]{\texttt{const}\protect\icon{fig/es2015.eps}}\label{const}}
+\section[\texttt{const}]{\texttt{const}\protect\icon{fig/es2015.eps}}\label{const}}
 
 \texttt{const}キーワードでは、再代入できない変数の宣言とその変数が参照する値（初期値）を定義できます。
 
@@ -64,7 +64,7 @@ bookTitle = "新しいタイトル"; // => TypeError: invalid assignment to cons
 そのような場合には、変数への再代入が可能な\texttt{let}キーワードを利用します。
 
 \hypertarget{let}{%
-\section[let]{\texttt{let}\protect\icon{fig/es2015.eps}}\label{let}}
+\section[\texttt{let}]{\texttt{let}\protect\icon{fig/es2015.eps}}\label{let}}
 
 \texttt{let}キーワードでは、値の再代入が可能な変数を宣言できます。
 \texttt{let}の使い方は\texttt{const}とほとんど同じです。
@@ -83,7 +83,7 @@ let bookTitle = "JavaScriptの本";
 
 \begin{lstlisting}
 let bookTitle;
-// `bookTitle`は自動的に`undefined`という値になる
+// bookTitleは自動的にundefinedという値になる
 \end{lstlisting}
 
 この\texttt{let}で宣言された\texttt{bookTitle}という変数には、代入演算子（\texttt{=}）を使うことで値を代入できます。
@@ -148,7 +148,7 @@ var x = 2;
 \end{lstlisting}
 
 また\texttt{var}には変数の巻き上げと呼ばれる意図しない挙動があり、\texttt{let}や\texttt{const}ではこの問題が解消されています。
-\texttt{var}による変数の巻き上げの問題については「\href{../function-scope/README.md}{関数とスコープ}」の章で解説します。
+\texttt{var}による変数の巻き上げの問題については「\hyperlink{function-and-scope}{関数とスコープ}」の章で解説します。
 そのため、現時点では「\texttt{let}は\texttt{var}を改善したバージョン」ということだけ覚えておくとよいです。
 
 このように、\texttt{var}にはさまざまな問題があります。
@@ -161,8 +161,7 @@ ECMAScript
 2015では、\texttt{var}そのものを改善するのではなく、新しく\texttt{const}と\texttt{let}というキーワードを追加することで、\texttt{var}の問題を回避できるようにしました。\texttt{var}自体の動作を変更しなかったのは、後方互換性のためです。
 
 なぜなら、\texttt{var}の挙動自体を変更してしまうと、すでに\texttt{var}で書かれたコードの動作が変わってしまい、動かなくなるアプリケーションが出てくるためです。
-新しく\texttt{const}や\texttt{let}などのキーワードをECMAScript仕様に追加しても、そのキーワードを使っているソースコードは追加時点では存在しません。\footnote{\texttt{let}や\texttt{const}はECMAScript
-  2015以前に予約語として定義されていたため、既存のコードと衝突する可能性はありませんでした。}
+新しく\texttt{const}や\texttt{let}などのキーワードをECMAScript仕様に追加しても、そのキーワードを使っているソースコードは追加時点では存在しません\footnote{\texttt{let}や\texttt{const}はECMAScript 2015以前に予約語として定義されていたため、既存のコードと衝突する可能性はありませんでした。}。
 そのため、\texttt{const}や\texttt{let}が追加されても後方互換性には影響がありません。
 
 このように、ECMAScriptでは機能を追加する際にも後方互換性を重視しているため、\texttt{var}自体の挙動は変更されませんでした。
@@ -171,7 +170,7 @@ ECMAScript
 \hypertarget{variable-name}{%
 \section{変数名に使える名前のルール}\label{variable-name}}
 
-ここまでで\texttt{const}、\texttt{let}、\texttt{var}での変数宣言とそれぞれの特徴について見てきました。
+ここまで\texttt{const}、\texttt{let}、\texttt{var}での変数宣言とそれぞれの特徴について見てきました。
 どのキーワードにおいても宣言できる変数に利用できる名前のルールは同じです。
 また、このルールは変数の名前や関数の名前といったJavaScriptの識別子において共通するルールとなります。
 
@@ -210,13 +209,12 @@ var 123; // NG: 数字のみで構成されている
 
 また、予約語として定義されているキーワードは変数名には利用できません。
 予約語とは、\texttt{var}のように構文として意味を持つキーワードのことです。
-予約語の一覧は\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Reserved_Words}{予約語
-- JavaScript \textbar{}
-MDN}で確認できますが、基本的には構文として利用される名前が予約されています。
+予約語の一覧は\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Reserved_Words}{「予約語 --- JavaScript \textbar{}
+MDN」}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Reserved_Words}}で確認できますが、基本的には構文として利用される名前が予約されています。
 
 \begin{lstlisting}
-var var; // NG: `var`は変数宣言のために予約されているので利用できない
-var if; // NG: `if`はif文のために予約されているので利用できない
+var var; // NG: varは変数宣言のために予約されているので利用できない
+var if; // NG: ifはif文のために予約されているので利用できない
 \end{lstlisting}
 
 \begin{tcolorbox}[title=\texttt{const}は定数ではない]\label{const-is-not-constant}
@@ -226,7 +224,7 @@ var if; // NG: `if`はif文のために予約されているので利用でき�
 
 JavaScriptでも、\texttt{const}宣言によって定数に近い変数を定義できます。
 次のように、\texttt{const}宣言によって定義した変数を、変更できないプリミティブな値で初期化すれば、それは実質的に定数です。
-プリミティブな値とは、数値や文字列などオブジェクト以外のデータです（詳細は「\href{../data-type/README.md}{データ型とリテラル}」の章で解説します）。
+プリミティブな値とは、数値や文字列などオブジェクト以外のデータです（詳細は「\hyperlink{data-type-and-literal}{データ型とリテラル}」の章で解説します）。
 
 \begin{lstlisting}
 // TEN_NUMBERという変数は常に10という値を示す
@@ -237,7 +235,7 @@ const TEN_NUMBER = 10;
 次のコードのように、オブジェクトという値そのものは、初期化したあとでも変更できます。
 
 \begin{lstlisting}
-// `const`でオブジェクトを定義している
+// constでオブジェクトを定義している
 const object = {
     key: "値"
 };
@@ -246,7 +244,7 @@ object.key = "新しい値";
 \end{lstlisting}
 
 このように、\texttt{const}で宣言した変数が常に同じ値を示すとは限らないため、定数とは呼べません
-（詳細は「\href{../object/README.md\#const-and-object}{オブジェクト}」の章で解説します）。
+（詳細は「\hyperlink{object}{オブジェクト}」の章で解説します）。
 
 また\texttt{const}には、変数名の命名規則はなく、代入できる値にも制限はありません。
 そのため、\texttt{const}宣言の特性として「再代入できない変数」を定義すると理解しておくのがよいでしょう。
