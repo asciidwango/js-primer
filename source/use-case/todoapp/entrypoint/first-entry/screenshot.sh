@@ -13,7 +13,7 @@ declare screenshotOnly="${projectDir}/tools/applescript/lib/src/screenshot-only.
 mkdir -p "${currentSectionDir}/img/"
 npx -q @js-primer/local-server . & serverPID=$!
 npx -q wait-on http://localhost:3000 \
-node "${screenshotDevTools}" --url "http://localhost:3000/" --output "${currentSectionDir}/img/first-entry.png"
+&& node "${screenshotDevTools}" --url "http://localhost:3000/" --output "${currentSectionDir}/img/first-entry.png"
 
 # server 終了
 function finish {
