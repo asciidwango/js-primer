@@ -1,5 +1,6 @@
 \hypertarget{loop-and-iteration}{%
 \chapter{ループと反復処理}\label{loop-and-iteration}}
+\thispagestyle{frontheadings}
 
 この章では、while文やfor文などの基本的な反復処理と制御文について学んでいきます。
 
@@ -35,7 +36,7 @@ while文の実行フローは次のようになります。
 \end{enumerate}
 
 次のコードでは\texttt{x}の値が10未満であるなら、コンソールへ繰り返しログが出力されます。
-また、\texttt{実行する文}にて、\texttt{x}の値を増やし\texttt{条件式}が\texttt{false}となるようにしています。
+また、\texttt{実行する文}にて\texttt{x}の値を増やし、\texttt{条件式}が\texttt{false}となるようにしています。
 
 \begin{lstlisting}
 let x = 0;
@@ -48,7 +49,7 @@ console.log(`ループ終了後のxの値: ${x}`);
 \end{lstlisting}
 
 つまり、\texttt{実行する文}の中で\texttt{条件式}が\texttt{false}となるような処理を書かないと無限ループします。
-JavaScriptにはより安全な反復処理の書き方があるため、while文は使う場面が限られています。
+JavaScriptには、より安全な反復処理の書き方があるため、while文は使う場面が限られています。
 
 安易にwhile文を使うよりも、ほかの書き方で解決できないかを考えてからでも遅くはないでしょう。
 
@@ -70,7 +71,7 @@ while (i > 0) {
 
 ほとんどのブラウザは無限ループが発生した際に、自動的にスクリプトの実行を停止する機能が含まれています。
 また、ブラウザで該当のスクリプトを実行しているページ（タブ）またはブラウザそのものを閉じることで強制的に停止できます。
-Node.jsで実行している場合は\texttt{Ctrl + C}を入力し、終了シグナルを送ることで強制的に停止できます。
+Node.jsで実行している場合は\keytop{Ctrl} \texttt{+} \keytop{C}を入力し、終了シグナルを送ることで強制的に停止できます。
 
 無限ループが発生する原因のほとんどは条件式に関連する実装ミスです。
 まずは条件式の確認をしてみることで問題を解決できるはずです。
@@ -112,13 +113,13 @@ do {
 } while (x < 10);
 \end{lstlisting}
 
-この仕組みをうまく利用し、ループの開始前とループ中の処理をまとめて書くことができます。
+この仕組みをうまく利用して、ループの開始前とループ中の処理をまとめて書けます。
 しかし、while文と同じくほかの書き方で解決できないかを考えてからでも遅くはないでしょう。
 
 \hypertarget{for-statement}{%
 \section{for文}\label{for-statement}}
 
-for文は繰り返す範囲を指定した反復処理を書くことができます。
+for文は繰り返す範囲を指定した反復処理を書けます。
 
 \begin{lstlisting}
 for (初期化式; 条件式; 増分式) {
@@ -195,8 +196,8 @@ array.forEach(currentValue => {
 
 JavaScriptでは、関数がファーストクラスであるため、その場で作った匿名関数（名前のない関数）を引数として渡せます。
 
-引数として渡される関数のことを\textbf{コールバック関数}と呼びます。
-また、コールバック関数を引数として受け取る関数やメソッドのことを\textbf{高階関数}と呼びます。
+引数として渡される関数のことを\textbf{\textgt{コールバック関数}}と呼びます。
+また、コールバック関数を引数として受け取る関数やメソッドのことを\textbf{\textgt{高階関数}}と呼びます。
 
 \begin{lstlisting}
 const array = [1, 2, 3];
@@ -275,11 +276,11 @@ console.log(isEvenIncluded); // => true
 次のコードでは、break文が実行され、ループを抜けた後にreturn文で結果を返しています。
 
 \begin{lstlisting}
-// 引数の`num`が偶数ならtrueを返す
+// 引数のnumが偶数ならtrueを返す
 function isEven(num) {
     return num % 2 === 0;
 }
-// 引数の`numbers`に偶数が含まれているならtrueを返す
+// 引数のnumbersに偶数が含まれているならtrueを返す
 function isEvenIncluded(numbers) {
     let isEvenIncluded = false;
     for (let i = 0; i < numbers.length; i++) {
@@ -295,7 +296,7 @@ const array = [1, 5, 10, 15, 20];
 console.log(isEvenIncluded(array)); // => true
 \end{lstlisting}
 
-return文は現在の関数を終了させることができるため、次のように書くこともできます。
+return文は現在の関数を終了させることができるため、次のようにも書けます。
 \texttt{numbers}に1つでも偶数が含まれていれば結果は\texttt{true}となるため、偶数の値が見つかった時点で\texttt{true}を返しています。
 
 \begin{lstlisting}
@@ -334,7 +335,7 @@ const isPassed = array.some(currentValue => {
 });
 \end{lstlisting}
 
-\texttt{some}メソッドを使うことで、配列に偶数が含まれているかは次のように書くことができます。
+\texttt{some}メソッドを使うことで、配列に偶数が含まれているかは次のように書けます。
 受け取った値が偶数であるかをテストするコールバック関数として\texttt{isEven}関数を渡します。
 
 \begin{lstlisting}
@@ -349,28 +350,28 @@ console.log(numbers.some(isEven)); // => true
 \section{continue文}\label{continue-statement}}
 
 continue文は現在の反復処理を終了して、次の反復処理を行います。
-continue文は、while、do-while、forの中で使うことができます。
+continue文は、while、do-while、forの中で使えます。
 
-たとえば、while文の処理中で\texttt{continue}文が実行されると、現在の反復処理はその時点で終了されます。
-そして、次の反復処理で\texttt{条件式}を評価するところからループが再開されます。
+たとえば、while文の処理中で\texttt{continue}文が実行されると、現在の反復処理はその時点で終了します。
+そして、次の反復処理で\texttt{条件式}を評価するところからループが再開します。
 
 \begin{lstlisting}
 while (条件式) {
     // 実行される処理
-    continue; // `条件式` へ
+    continue; // 条件式へ
     // これ以降の行は実行されません
 }
 \end{lstlisting}
 
-次のコードでは、配列の中から偶数を集め、新しい配列を作り返しています。
-偶数ではない場合、処理中のfor文をスキップしています。
+次のコードでは、配列の中から偶数を集め、新しい配列を作って返しています。
+偶数ではない場合、処理中のfor文をスキップします。
 
 \begin{lstlisting}
-// `number`が偶数ならtrueを返す
+// numberが偶数ならtrueを返す
 function isEven(num) {
     return num % 2 === 0;
 }
-// `numbers`に含まれている偶数だけを取り出す
+// numbersに含まれている偶数だけを取り出す
 function filterEven(numbers) {
     const results = [];
     for (let i = 0; i < numbers.length; i++) {
@@ -379,7 +380,7 @@ function filterEven(numbers) {
         if (!isEven(num)) {
             continue;
         }
-        // 偶数を`results`に追加
+        // 偶数をresultsに追加
         results.push(num);
     }
     return results;
@@ -397,8 +398,8 @@ if (isEven(number)) {
 \end{lstlisting}
 
 この場合、条件が複雑になってきた場合にネストが深くなってコードが読みにくくなります。
-そのため、\href{../condition/README.md}{ネストしたif文}のうるう年の例でも紹介したように、
-できるだけ早い段階でそれ以上処理を続けない宣言をすることで、複雑なコードになることを避けています。
+そのため、\hyperlink{nested-if-statement}{ネストしたif文}のうるう年の例でも紹介したように、
+できるだけ早い段階でそれ以上処理を続けない宣言をして、複雑なコードになることを避けています。
 
 \hypertarget{array-filter}{%
 \subsection{\texorpdfstring{配列の\texttt{filter}メソッド}{配列のfilterメソッド}}\label{array-filter}}
@@ -441,7 +442,7 @@ for (プロパティ in オブジェクト) {
 
 次のコードでは\texttt{obj}のプロパティ名を\texttt{key}変数に代入して反復処理をしています。
 \texttt{obj}には、3つのプロパティ名があるため３回繰り返されます
-（ループのたびに毎回新しいブロックを作成しているため、ループごとに定義する変数\texttt{key}は再定義エラーになりません。詳細は「\href{.../function-scope/README.md}{関数とスコープ}」の章の「\href{.../function-scope/README.md\#block-scope}{ブロックスコープ}」で解説します）。
+（ループのたびに毎回新しいブロックを作成しているため、ループごとに定義する変数\texttt{key}は再定義エラーになりません。詳細は「\hyperlink{function-and-scope}{関数とスコープ}」の章の「\hyperlink{block-scope}{ブロックスコープ}」で解説します）。
 
 \begin{lstlisting}
 const obj = {
@@ -449,7 +450,8 @@ const obj = {
     "b": 2,
     "c": 3
 };
-// 注記: ループのたびに毎回新しいブロックに変数keyが定義されるため、再定義エラーが発生しない
+// 注記: ループのたびに毎回新しいブロックに変数keyが定義されるため、
+// 再定義エラーが発生しない
 for (const key in obj) {
     const value = obj[key];
     console.log(`key:${key}, value:${value}`);
@@ -508,7 +510,7 @@ console.log(total); // => "001"
 そのため、for\ldots{}in文の利用は避け、\texttt{Object.keys}メソッドなどを使って配列として反復処理するなど別の方法を考えたほうがよいでしょう。
 
 \hypertarget{for-of-statement}{%
-\section{for\ldots{}of文{$^{\rm ES2015}$}}\label{for-of-statement}}
+\section[for\ldots{}of文]{for\ldots{}of文\protect\icon{fig/es2015.eps}}\label{for-of-statement}}
 
 最後にfor\ldots{}of文についてです。
 
@@ -603,10 +605,10 @@ sum([1, 2, 3, 4, 5]); // => 15
 \hypertarget{conclusion}{%
 \section{まとめ}\label{conclusion}}
 
-この章では、for文などの構文での反復処理と配列のメソッドを使った反復処理について比較しながら見ていきました。
+この章では、for文などの構文での反復処理と配列のメソッドを使った反復処理について比較しながら見てきました。
 for文などの構文ではcontinue文やbreak文が利用できますが、配列のメソッドではそれらは利用できません。
 一方で配列のメソッドは、一時的な変数を管理する必要がないことや、処理をコールバック関数として書くという違いがあります。
 
 どちらの方法も反復処理においてはよく利用されます。
 どちらが優れているというわけでもないため、どちらの方法も使いこなせるようになることが重要です。
-また、配列のメソッドについては「\href{../array/README.md}{配列}」の章でも詳しく解説します。
+また、配列のメソッドについては「\hyperlink{array}{配列}」の章でも詳しく解説します。

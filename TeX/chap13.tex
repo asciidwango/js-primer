@@ -1,5 +1,6 @@
 \hypertarget{prototype-object}{%
 \chapter{プロトタイプオブジェクト}\label{prototype-object}}
+\thispagestyle{frontheadings}
 
 「\href{../object/README.md}{オブジェクト}」の章では、オブジェクトの処理方法について見てきました。
 その中で、空のオブジェクトであっても\texttt{toString}メソッドなどを呼び出せていました。
@@ -13,10 +14,10 @@ console.log(obj.toString()); // "[object Object]"
 このメソッドはどこに実装されているのでしょうか？
 
 また、JavaScriptには\texttt{toString}以外にも、オブジェクトに自動的に実装されるメソッドがあります。
-これらのオブジェクトに組み込まれたメソッドをビルトインメソッドと呼びます。
+これらのオブジェクトに組み込まれたメソッドを\textbf{\textgt{ビルトインメソッド}}と呼びます。
 
 この章では、これらのビルトインメソッドがどこに実装され、なぜ\texttt{Object}のインスタンスから呼び出せるのかを確認していきます。
-詳しい仕組みについては「\href{../class/README.md}{クラス}」の章で改めて解説するため、この章では大まかな動作の流れを理解することが目的です。
+詳しい仕組みについては「\hyperlink{class}{クラス}」の章で改めて解説するため、この章では大まかな動作の流れを理解することが目的です。
 
 \hypertarget{object-is-origin}{%
 \section{\texorpdfstring{\texttt{Object}はすべての元}{Objectはすべての元}}\label{object-is-origin}}
@@ -30,7 +31,7 @@ console.log(obj.toString()); // "[object Object]"
 
 \begin{figure}
 \centering
-\includegraphics[width=80mm]{./fig/object-prototype.png}
+\includegraphics[width=100mm]{./fig/object-prototype.png}
 \caption{すべてのオブジェクトは\texttt{Object}の\texttt{prototype}を継承している}
 \end{figure}
 
@@ -40,17 +41,16 @@ console.log(obj.toString()); // "[object Object]"
 次のように、\texttt{Object.prototype.toString}メソッドの実装自体も参照できます。
 
 \begin{lstlisting}
-// `Object.prototype`オブジェクトに`toString`メソッドの定義がある
+// Object.prototypeオブジェクトにtoStringメソッドの定義がある
 console.log(typeof Object.prototype.toString); // => "function"
 \end{lstlisting}
 
-このような\texttt{prototype}オブジェクトに組み込まれているメソッドは\textbf{プロトタイプメソッド}と呼ばれます。
+このような\texttt{prototype}オブジェクトに組み込まれているメソッドは\textbf{\textgt{プロトタイプメソッド}}と呼ばれます。
 この書籍では\texttt{Object.prototype.toString}のようなプロトタイプメソッドを\texttt{Object\#toString}と短縮して表記します。
 
-\begin{quote}
-\texttt{Object.prototype.toString} =
-\texttt{Object\#toString}
-\end{quote}
+\begin{lstlisting}
+Object.prototype.toString = Object#toString
+\end{lstlisting}
 
 \texttt{Object}のインスタンスは、この\texttt{Object.prototype}オブジェクトに定義されたメソッドやプロパティをインスタンス化したときに継承します。
 つまり、オブジェクトリテラルや\texttt{new Object}でインスタンス化したオブジェクトは、\texttt{Object.prototype}に定義されたものが利用できるということです。
@@ -62,8 +62,8 @@ console.log(typeof Object.prototype.toString); // => "function"
 const obj = {
     "key": "value"
 };
-// `obj`インスタンスは`Object.prototype`に定義されたものを継承する
-// `obj.toString`は継承した`Object.prototype.toString`を参照している
+// objインスタンスはObject.prototypeに定義されたものを継承する
+// obj.toStringは継承したObject.prototype.toStringを参照している
 console.log(obj.toString === Object.prototype.toString); // => true
 // インスタンスからプロトタイプメソッドを呼び出せる
 console.log(obj.toString()); // => "[object Object]"
@@ -72,8 +72,8 @@ console.log(obj.toString()); // => "[object Object]"
 このように\texttt{Object.prototype}に定義されている\texttt{toString}メソッドなどは、インスタンス作成時に自動的に継承されるため、\texttt{Object}のインスタンスから呼び出せます。
 これによりオブジェクトリテラルで作成した空のオブジェクトでも、\texttt{Object\#toString}メソッドなどを呼び出せるようになっています。
 
-このインスタンスから\texttt{prototype}オブジェクト上に定義されたメソッドを参照できる仕組みを\textbf{プロトタイプチェーン}と呼びます。
-プロトタイプチェーンの仕組みについては「\href{../class/README.md}{クラス}」の章で扱うため、ここではインスタンスからプロトタイプメソッドを呼び出せるということがわかっていれば問題ありません。
+このインスタンスから\texttt{prototype}オブジェクト上に定義されたメソッドを参照できる仕組みを\textbf{\textgt{プロトタイプチェーン}}と呼びます。
+プロトタイプチェーンの仕組みについては「\hyperlink{class}{クラス}」の章で扱うため、ここではインスタンスからプロトタイプメソッドを呼び出せるということがわかっていれば問題ありません。
 
 \hypertarget{same-method-name-order}{%
 \subsection{プロトタイプメソッドとインスタンスメソッドの優先順位}\label{same-method-name-order}}
@@ -99,7 +99,7 @@ console.log(customObject.toString()); // => "custom value"
 \hypertarget{diff-in-operator-and-hasOwnProperty}{%
 \subsection{\texorpdfstring{\texttt{in}演算子と\texttt{Object\#hasOwnProperty}メソッドの違い}{in演算子とObject\#hasOwnPropertyメソッドの違い}}\label{diff-in-operator-and-hasOwnProperty}}
 
-「\href{../object/README.md}{オブジェクト}」の章で学んだ\texttt{Object\#hasOwnProperty}メソッドと\texttt{in}演算子の挙動の違いについて見ていきます。
+「\hyperlink{object}{オブジェクト}」の章で学んだ\texttt{Object\#hasOwnProperty}メソッドと\texttt{in}演算子の挙動の違いについて見ていきます。
 2つの挙動の違いはこの章で紹介したプロトタイプオブジェクトに関係しています。
 
 \texttt{hasOwnProperty}メソッドは、そのオブジェクト自身が指定したプロパティを持っているかを判定します。
@@ -111,9 +111,10 @@ console.log(customObject.toString()); // => "custom value"
 
 \begin{lstlisting}
 const obj = {};
-// `obj`というオブジェクト自体に`toString`メソッドが定義されているわけではない
+// objというオブジェクト自体にtoStringメソッドが定義されているわけではない
 console.log(obj.hasOwnProperty("toString")); // => false
-// `in`演算子は指定されたプロパティ名が見つかるまで親をたどるため、`Object.prototype`まで見にいく
+// in演算子は指定されたプロパティ名が見つかるまで親をたどるため、
+// Object.prototypeまで見にいく
 console.log("toString" in obj); // => true
 \end{lstlisting}
 
@@ -126,7 +127,7 @@ const obj = {
         return "custom value";
     }
 };
-// オブジェクトのインスタンスが`toString`メソッドを持っている
+// オブジェクトのインスタンスがtoStringメソッドを持っている
 console.log(obj.hasOwnProperty("toString")); // => true
 console.log("toString" in obj); // => true
 \end{lstlisting}
@@ -142,7 +143,7 @@ console.log("toString" in obj); // => true
 \begin{lstlisting}
 // const obj = {} と同じ意味
 const obj = Object.create(Object.prototype);
-// `obj`は`Object.prototype`を継承している
+// objはObject.prototypeを継承している
 console.log(obj.hasOwnProperty === Object.prototype.hasOwnProperty); // => true
 \end{lstlisting}
 
@@ -153,25 +154,24 @@ console.log(obj.hasOwnProperty === Object.prototype.hasOwnProperty); // => true
 同じように、配列（\texttt{Array}）のインスタンスは\texttt{Array.prototype}を継承します。
 さらに、\texttt{Array.prototype}は\texttt{Object.prototype}を継承しているため、\texttt{Array}のインスタンスは\texttt{Object.prototype}も継承しています。
 
-\begin{quote}
-\texttt{Array}のインスタンス -\textgreater{}
-\texttt{Array.prototype} -\textgreater{}
-\texttt{Object.prototype}
-\end{quote}
+\begin{lstlisting}
+Arrayのインスタンス -> Array.prototype -> Object.prototype
+\end{lstlisting}
 
 \texttt{Object.create}メソッドを使って\texttt{Array}と\texttt{Object}の関係をコードとして表現してみます。
 この疑似コードは、\texttt{Array}コンストラクタの実装など、実際のものとは異なる部分があるため、あくまでイメージであることに注意してください。
 
 \begin{lstlisting}
 // このコードはイメージです！
-// `Array`コンストラクタ自身は関数でもある
+// Arrayコンストラクタ自身は関数でもある
 const Array = function() {};
-// `Array.prototype`は`Object.prototype`を継承している
+// Array.prototypeはObject.prototypeを継承している
 Array.prototype = Object.create(Object.prototype);
-// `Array`のインスタンスは、`Array.prototype`を継承している
+// Arrayのインスタンスは、Array.prototypeを継承している
 const array = Object.create(Array.prototype);
-// `array`は`Object.prototype`を継承している
-console.log(array.hasOwnProperty === Object.prototype.hasOwnProperty); // => true
+// arrayはObject.prototypeを継承している
+console.log(array.hasOwnProperty === Object.prototype.hasOwnProperty); 
+// => true
 \end{lstlisting}
 
 このように、\texttt{Array}のインスタンスも\texttt{Object.prototype}を継承しているため、
@@ -181,8 +181,9 @@ console.log(array.hasOwnProperty === Object.prototype.hasOwnProperty); // => tru
 
 \begin{lstlisting}
 const array = [];
-// `Array`のインスタンス -> `Array.prototype` -> `Object.prototype`
-console.log(array.hasOwnProperty === Object.prototype.hasOwnProperty); // => true
+// Arrayのインスタンス -> Array.prototype -> Object.prototype
+console.log(array.hasOwnProperty === Object.prototype.hasOwnProperty); 
+// => true
 \end{lstlisting}
 
 このような\texttt{hasOwnProperty}メソッドの参照が可能なのもプロトタイプチェーンという仕組みによるものです。
@@ -196,11 +197,11 @@ console.log(array.hasOwnProperty === Object.prototype.hasOwnProperty); // => tru
 
 \begin{lstlisting}
 const numbers = [1, 2, 3];
-// `Array#toString`が定義されているため、`Object#toString`とは異なる形式となる
+// Array#toStringが定義されているため、Object#toStringとは異なる形式となる
 console.log(numbers.toString()); // => "1,2,3"
 \end{lstlisting}
 
-\begin{tcolorbox}[title=\texttt{Object.prototype}を継承しないオブジェクト]\label{not-inherit-object}
+\begin{tcolorbox}[enhanced jigsaw,breakable,title=\texttt{Object.prototype}を継承しないオブジェクト]\label{not-inherit-object}
 
 \texttt{Object}はすべてのオブジェクトの親になるオブジェクトであると言いましたが、例外もあります。
 
@@ -218,7 +219,7 @@ console.log(obj.hasOwnProperty); // => undefined
 \texttt{Object.create}メソッドは\texttt{Object.create(null)}というイディオムで、一部ライブラリなどで\texttt{Map}オブジェクトの代わりとして利用されていました。
 Mapとはキーと値の組み合わせを保持するためのオブジェクトです。
 
-ただのオブジェクトもMapとよく似た性質を持っていますが、最初からいくつかのプロパティが存在しアクセスできてしまいます。
+ただのオブジェクトもMapとよく似た性質を持っていますが、最初からいくつかのプロパティが存在し、アクセスできてしまいます。
 なぜなら、\texttt{Object}のインスタンスはデフォルトで\texttt{Object.prototype}を継承するため、\texttt{toString}などのプロパティ名がオブジェクトを作成した時点で存在するためです。そのため、\texttt{Object.create(null)}で\texttt{Object.prototype}を継承しないオブジェクトを作成し、そのオブジェクトが\texttt{Map}の代わりとして使われていました。
 
 \begin{lstlisting}
@@ -233,7 +234,7 @@ console.log(mapLike["toString"]); // => undefined
 \end{lstlisting}
 
 しかし、ES2015からは、本物の\texttt{Map}が利用できるため、\texttt{Object.create(null)}を\texttt{Map}の代わりに利用する必要はありません。
-\texttt{Map}については「\href{../map-and-set/README.md}{Map/Set}」の章で詳しく紹介します。
+\texttt{Map}については「\hyperlink{map-and-set}{Map/Set}」の章で詳しく紹介します。
 
 \begin{lstlisting}
 const map = new Map();
@@ -261,4 +262,4 @@ console.log(map.has("toString")); // => false
 \end{itemize}
 
 プロトタイプオブジェクトに定義されているメソッドがどのように参照されているかを確認しました。
-このプロトタイプの詳しい仕組みについては「\href{../class/README.md}{クラス}」の章で改めて解説します。
+このプロトタイプの詳しい仕組みについては「\hyperlink{class}{クラス}」の章で改めて解説します。
