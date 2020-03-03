@@ -94,19 +94,24 @@ ECMAScript 2015と呼ばれる仕様の大きな更新が行われた際に、Ja
 
 ## 謝辞 {#thanks}
 
-この書籍にはさまざまな挑戦が含まれており、そのひとつとしてこの書籍は最初からGitHubに公開した状態で執筆が行われています。
-
-そのため、Issueで問題の報告やPull Requestで修正を送ってもらうなど、さまざまな人の助けによって成り立っています。
-この書籍に対してコントリビュートしてくれた方々に感謝します。
-
-また、この書籍のレビューをしていただいたレビュアーの方々にも感謝します。
+この書籍は次の方々にレビューをしていただきました。
 
 <!-- textlint-disable -->
 
-すなわち、mizchi（竹馬光太郎）、中西優介@better_than_i_w、@tsin1rou、sakito、川上和義、尾上洋介に感謝します。
+- mizchi（竹馬光太郎）
+- 中西優介@better_than_i_w
+- @tsin1rou
+- sakito
+- 川上和義
+- 尾上洋介
 
 <!-- textlint-enable -->
 
+この書籍をよりよいものにできたのは皆さんのご協力のおかげです。
+
+また、この書籍は最初からGitHubに公開した状態で執筆が行われています。
+そのため、Issueで問題の報告やPull Requestで修正を送ってもらうなど、さまざまな人の助けによって成り立っています。
+この書籍に対してコントリビュートしてくれた方々に感謝します。
 
 [asciidwango/js-primer]: https://github.com/asciidwango/js-primer
 [jsprimer.net]: https://jsprimer.net/
