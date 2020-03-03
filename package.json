@@ -113,7 +113,7 @@
     "textlint-rule-prh": "^5.3.0",
     "textlint-rule-sentence-length": "^2.2.0",
     "textstat": "^0.8.0",
-    "typescript": "^2.8.3",
+    "typescript": "~3.7.5",
     "unist-util-find-all-between": "^1.0.6",
     "unist-util-find-before": "^2.0.4",
     "unist-util-parents": "^1.0.2",
