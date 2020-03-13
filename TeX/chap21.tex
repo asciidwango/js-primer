@@ -1,5 +1,6 @@
 \hypertarget{error-handling}{%
 \chapter{例外処理}\label{error-handling}}
+\thispagestyle{frontheadings}
 
 この章ではJavaScriptにおける例外処理について学びます。
 
@@ -243,25 +244,26 @@ fn();
 このスクリプトを読み込むと、投げられた例外についてのログがコンソールに出力されます。
 ここではFirefoxにおける実行例を示します。
 
-\begin{figure}
+\begin{figure}[h]
 \centering
-\includegraphics[width=100mm]{fig/error.png}
+\includegraphics[width=120mm]{fig/error.png}
 \caption{コンソールでのエラー表示（Firefox）}
 \end{figure}
 
 このエラーログには次の情報が含まれています。
 
-\begin{longtable}[]{@{}ll@{}}
-\toprule
-メッセージ & 意味\tabularnewline
-\midrule
+\begin{small}
+\begin{longtable}[l]{p{60mm}|p{80mm}}
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}{\textgt メッセージ} & {\textgt 意味}\tabularnewline
+\hline
 \endhead
 \texttt{ReferenceError: x is not defined} &
 エラーの種類は\texttt{ReferenceError}で、\texttt{x}が未定義であること。\tabularnewline
 \texttt{error.js:3:5} &
 例外が\texttt{error.js}の3行目5列目で発生したこと。つまり\texttt{x++;}であること。\tabularnewline
-\bottomrule
+\hline
 \end{longtable}
+\end{small}
 
 また、メッセージの後には例外のスタックトレースが表示されています。
 スタックトレースとは、プログラムの実行過程を記録した内容で、どの処理によってエラーが発生したかが書かれています。
@@ -273,11 +275,11 @@ fn();
 \item
   次の行には、そのコードの呼び出し元が記録されています。つまり、3行目のコードを実行したのは5行目の\texttt{fn}関数の呼び出しです
 \end{itemize}
-
+\newpage
 このように、スタックトレースは上から下へ呼び出し元をたどれるように記録されています。
 
 コンソールに表示されるエラーログには多くの情報が含まれています。
-MDNの\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Errors}{JavaScriptエラーリファレンス}には、ブラウザが投げるビルトインエラーの種類とメッセージが網羅されています。
+MDNの\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Errors}{JavaScriptエラーリファレンス}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Errors}}には、ブラウザが投げるビルトインエラーの種類とメッセージが網羅されています。
 開発中にビルトインエラーが発生したときには、リファレンスを見て解決方法を探すとよいでしょう。
 
 \hypertarget{console.error}{%
@@ -298,9 +300,9 @@ fn();
 
 このコードをFirefoxで実行するとコンソール出力は次の図のようになります。
 
-\begin{figure}
+\begin{figure}[h]
 \centering
-\includegraphics[width=100mm]{./fig/console-error.png}
+\includegraphics[width=120mm]{./fig/console-error.png}
 \caption{console.logとconsole.errorの出力結果}
 \end{figure}
 

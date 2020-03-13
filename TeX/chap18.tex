@@ -1,5 +1,6 @@
 \hypertarget{function-and-scope}{%
 \chapter{関数とスコープ}\label{function-and-scope}}
+\thispagestyle{frontheadings}
 
 定義された関数はそれぞれのスコープを持っています。スコープとは変数や関数の引数などを参照できる範囲を決めるものです。
 JavaScriptでは、新しい関数を定義するとその関数にひもづけられた新しいスコープが作成されます。関数を定義するということは処理をまとめるというだけではなく、変数が有効な範囲を決める新しいスコープを作っていると言えます。
@@ -30,40 +31,40 @@ JavaScriptのスコープは、ES2015において直感的に理解しやすい�
 \begin{lstlisting}
 function fn() {
     const x = 1;
-    // fn関数のスコープ内から`x`は参照できる
+    // fn関数のスコープ内からxは参照できる
     console.log(x); // => 1
 }
 fn();
-// fn関数のスコープ外から`x`は参照できないためエラー
+// fn関数のスコープ外からxは参照できないためエラー
 console.log(x); // => ReferenceError: x is not defined
 \end{lstlisting}
 
 このコードを見てわかるように、変数\texttt{x}は\texttt{fn}関数のスコープにひもづけて定義されます。
 そのため、変数\texttt{x}は\texttt{fn}関数のスコープ内でのみ参照できます。
 
-関数は\textbf{仮引数}を持てますが、仮引数は関数のスコープにひもづけて定義されます。
+関数は\textbf{\textgt{仮引数}}を持てますが、仮引数は関数のスコープにひもづけて定義されます。
 そのため、仮引数はその関数の中でのみ参照が可能で、関数の外からは参照できません。
 
 \begin{lstlisting}
 function fn(arg) {
-    // fn関数のスコープ内から仮引数`arg`は参照できる
+    // fn関数のスコープ内から仮引数argは参照できる
     console.log(arg); // => 1
 }
 fn(1);
-// fn関数のスコープ外から`arg`は参照できないためエラー
+// fn関数のスコープ外からargは参照できないためエラー
 console.log(arg); // => ReferenceError: arg is not defined
 \end{lstlisting}
 
-このような、関数によるスコープのことを\textbf{関数スコープ}と呼びます。
+このような、関数によるスコープのことを\textbf{\textgt{関数スコープ}}と呼びます。
 
-「\href{../variables/README.md}{変数と宣言}」の章にて、\texttt{let}や\texttt{const}は同じスコープ内に同じ名前の変数を二重に定義できないという話をしました。
+「\hyperlink{variable-and-declaration}{変数と宣言}」の章にて、\texttt{let}や\texttt{const}は同じスコープ内に同じ名前の変数を二重に定義できないという話をしました。
 これは、各スコープには同じ名前の変数は1つしか宣言できないためです（\texttt{var}による変数宣言と\texttt{function}による関数宣言は例外的に可能です）。
 
 \begin{lstlisting}
 // スコープ内に同じ"a"を定義すると SyntaxError となる
 let a;
 let a;
-\end{lstlisgint}
+\end{lstlisting}
 
 一方、スコープが異なれば同じ名前で変数を宣言できます。
 次のコードでは、\texttt{fnA}関数と\texttt{fnB}関数という異なるスコープで、それぞれ変数\texttt{x}を定義できていることがわかります。
@@ -85,7 +86,7 @@ function fnB() {
 \hypertarget{block-scope}{%
 \section{ブロックスコープ}\label{block-scope}}
 
-\texttt{\{}と\texttt{\}}で囲んだ範囲をブロックと呼びます（「\href{../statement-expression/README.md}{文と式}」の章を参照）。
+\texttt{\{}と\texttt{\}}で囲んだ範囲をブロックと呼びます（「\hyperlink{statement-and-expression}{文と式}」の章を参照）。
 ブロックもスコープを作成します。
 ブロック内で宣言された変数は、スコープ内でのみ参照でき、スコープの外側からは参照できません。
 
@@ -95,11 +96,11 @@ function fnB() {
     const x = 1;
     console.log(x); // => 1
 }
-// スコープの外から`x`を参照できないためエラー
+// スコープの外からxを参照できないためエラー
 console.log(x); // => ReferenceError: x is not defined
 \end{lstlisting}
 
-ブロックによるスコープのことを\textbf{ブロックスコープ}と呼びます。
+ブロックによるスコープのことを\textbf{\textgt{ブロックスコープ}}と呼びます。
 
 if文やwhile文などもブロックスコープを作成します。
 単独のブロックと同じく、ブロックの中で宣言した変数は外から参照できません。
@@ -122,7 +123,7 @@ for文は、ループごとに新しいブロックスコープを作成しま�
 const array = [1, 2, 3, 4, 5];
 // ループごとに新しいブロックスコープを作成する
 for (const element of array) {
-    // forのブロックスコープの中でのみ`element`を参照できる
+    // forのブロックスコープの中でのみelementを参照できる
     console.log(element);
 }
 // ループの外からはブロックスコープ内の変数は参照できない
@@ -167,11 +168,9 @@ console.log(element); // => ReferenceError: element is not defined
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  INNERブロックスコープに変数\texttt{x}があるかを確認
-  =\textgreater{} ない
+  INNERブロックスコープに変数\texttt{x}があるかを確認 → ない
 \item
-  ひとつ外側のOUTERブロックスコープに変数\texttt{x}があるかを確認
-  =\textgreater{} ある
+  ひとつ外側のOUTERブロックスコープに変数\texttt{x}があるかを確認 → ある
 \end{enumerate}
 
 一方、現在のスコープも含め、外側のどのスコープにも該当する変数が定義されていない場合は、\texttt{ReferenceError}の例外が発生します。
@@ -194,14 +193,11 @@ console.log(element); // => ReferenceError: element is not defined
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  INNERブロックスコープに変数\texttt{xyz}があるかを確認
-  =\textgreater{} ない
+  INNERブロックスコープに変数\texttt{xyz}があるかを確認 → ない
 \item
-  ひとつ外側のOUTERブロックスコープに変数\texttt{xyz}があるかを確認
-  =\textgreater{} ない
+  ひとつ外側のOUTERブロックスコープに変数\texttt{xyz}があるかを確認 → ない
 \item
-  一番外側のスコープにも変数\texttt{xyz}は定義されていない
-  =\textgreater{} \texttt{ReferenceError}が発生
+  一番外側のスコープにも変数\texttt{xyz}は定義されていない → \texttt{ReferenceError}が発生
 \end{enumerate}
 
 この内側から外側のスコープへと順番に変数が定義されているか探す仕組みのことを\textbf{スコープチェーン}と呼びます。
@@ -217,10 +213,10 @@ console.log(element); // => ReferenceError: element is not defined
     {
         // INNERブロックスコープ
         const x = "inner";
-        // 現在のスコープ(INNERブロックスコープ)にある`x`を参照する
+        // 現在のスコープ(INNERブロックスコープ)にあるxを参照する
         console.log(x); // => "inner"
     }
-    // 現在のスコープ(OUTERブロックスコープ)にある`x`を参照する
+    // 現在のスコープ(OUTERブロックスコープ)にあるxを参照する
     console.log(x); // => "outer"
 }
 \end{lstlisting}
@@ -230,7 +226,7 @@ console.log(element); // => ReferenceError: element is not defined
 \hypertarget{global-scope}{%
 \section{グローバルスコープ}\label{global-scope}}
 
-今までコードをプログラム直下に書いていましたが、ここにも暗黙的な\textbf{グローバルスコープ}（大域スコープ）と呼ばれるスコープが存在します。
+今までコードをプログラム直下に書いていましたが、ここにも暗黙的な\textbf{\textgt{グローバルスコープ}}（大域スコープ）と呼ばれるスコープが存在します。
 グローバルスコープとは名前のとおりもっとも外側にあるスコープで、プログラム実行時に暗黙的に作成されます。
 
 \begin{lstlisting}
@@ -239,7 +235,7 @@ const x = "x";
 console.log(x); // => "x"
 \end{lstlisting}
 
-グローバルスコープで定義した変数は\textbf{グローバル変数}と呼ばれ、グローバル変数はあらゆるスコープから参照できる変数となります。
+グローバルスコープで定義した変数は\textbf{\textgt{グローバル変数}}と呼ばれ、グローバル変数はあらゆるスコープから参照できる変数となります。
 なぜなら、スコープチェーンの仕組みにより、最終的にもっとも外側のグローバルスコープに定義されている変数を参照できるためです。
 
 \begin{lstlisting}
@@ -252,7 +248,7 @@ const globalVariable = "グローバル";
 }
 // 関数スコープ
 function fn() {
-    // 関数ブロックスコープ内には該当する変数が定義されてない -> 外側のスコープへ
+    // 関数スコープ内には該当する変数が定義されてない -> 外側のスコープへ
     console.log(globalVariable); // => "グローバル"
 }
 fn();
@@ -261,7 +257,7 @@ fn();
 グローバルスコープには自分で定義したグローバル変数以外に、プログラム実行時に自動的に定義される\textbf{ビルトインオブジェクト}があります。
 
 ビルトインオブジェクトには、大きく分けて2種類のものがあります。
-1つ目はECMAScript仕様が定義する\texttt{undefined}のような変数（「\href{../data-type/README.md\#undefined-is-not-literal}{undefinedはリテラルではない}」を参照）や\texttt{isNaN}のような関数、\texttt{Array}や\texttt{RegExp}などのコンストラクタ関数です。2つ目は実行環境（ブラウザやNode.jsなど）が定義するオブジェクトで\texttt{document}や\texttt{module}などがあります。
+1つ目はECMAScript仕様が定義する\texttt{undefined}のような変数（「\hyperlink{data-type-and-literal}{データ型とリテラル}」の章の「\hyperlink{undefined-is-not-literal}{undefinedはリテラルではない}」を参照）や\texttt{isNaN}のような関数、\texttt{Array}や\texttt{RegExp}などのコンストラクタ関数です。2つ目は実行環境（ブラウザやNode.jsなど）が定義するオブジェクトで\texttt{document}や\texttt{module}などがあります。
 どちらもグローバルスコープに自動的に定義されているという点で大きな使い分けはないため、この章ではどちらも\textbf{ビルトインオブジェクト}と呼ぶことにします。
 
 ビルトインオブジェクトは、プログラム開始時にグローバルスコープへ自動的に定義されているためどのスコープからも参照できます。
@@ -284,7 +280,7 @@ console.log(Array); // => 1
 \end{lstlisting}
 
 ビルトインオブジェクトと同じ名前の変数を定義したことにより、ビルトインオブジェクトを参照できなくなります。
-このように内側のスコープで外側のスコープと同じ名前の変数を定義することで、外側の変数が参照できなくなることを\textbf{変数の隠蔽}（shadowing）と呼びます。
+このように内側のスコープで外側のスコープと同じ名前の変数を定義することで、外側の変数が参照できなくなることを\textbf{\textgt{変数の隠蔽}}（shadowing）と呼びます。
 
 この問題を回避する方法としては、むやみにグローバルスコープへ変数を定義しないことです。グローバルスコープでビルトインオブジェクトと名前が衝突するとすべてのスコープへ影響を与えますが、関数のスコープ内では影響範囲がその関数の中だけにとどまります。
 
@@ -292,7 +288,7 @@ console.log(Array); // => 1
 なぜならビルトインオブジェクトには実行環境（ブラウザやNode.jsなど）がそれぞれ独自に定義したものが多く存在するためです。
 関数などを活用して小さなスコープを中心にしてプログラムを書くことで、ビルトインオブジェクトと同じ名前の変数があっても影響範囲を限定できます。
 
-\begin{tcolorbox}[title=変数を参照できる範囲を小さくする]\label{reduce-scope}
+\begin{tcolorbox}[breakable,title=変数を参照できる範囲を小さくする]\label{reduce-scope}
 
 グローバル変数に限らず、特定の変数を参照できる範囲を小さくするのはよいことです。
 なぜなら、現在のスコープの変数を参照するつもりがグローバル変数を参照したり、その逆も起きることがあるからです。
@@ -314,7 +310,7 @@ console.log(`実行時間は${endTime - startTime}ミリ秒`);
 \end{lstlisting}
 
 このコードでは、計測処理以外で利用しない\texttt{startTime}と\texttt{endTime}という変数がグローバルスコープに定義されています。
-プログラム全体が短い場合はあまり問題になりませんが、プログラムが長くなっていくにつれ影響の範囲が広がっていきます。
+プログラム全体が短い場合はあまり問題になりませんが、プログラムが長くなっていくにつれ、影響の範囲が広がっていきます。
 この2つの変数を参照できる範囲を小さくする簡単な方法は、この実行時間を計測する処理を関数にすることです。
 
 \begin{lstlisting}
@@ -343,7 +339,7 @@ measureTask(doHeavyTask);
 \section{関数スコープとvarの巻き上げ}\label{hoisting-var}}
 
 変数宣言には\texttt{var}、\texttt{let}、\texttt{const}が利用できます。
-「\href{../variables/README.md}{変数と宣言}」の章において、「\texttt{let}は\texttt{var}を改善したバージョン」と紹介したように、\texttt{let}は\texttt{var}を改善する目的で導入された構文です。\texttt{const}は再代入できないという点以外は\texttt{let}と同じ動作になります。そのため、\texttt{let}が使える場合に\texttt{var}を使う理由はありませんが、既存のコードや既存のライブラリなどでは\texttt{var}が利用されている場面もあるため、\texttt{var}の動作を理解する必要があります。
+「\hyperlink{variable-and-declaration}{変数と宣言}」の章において、「\texttt{let}は\texttt{var}を改善したバージョン」と紹介したように、\texttt{let}は\texttt{var}を改善する目的で導入された構文です。\texttt{const}は再代入できないという点以外は\texttt{let}と同じ動作になります。そのため、\texttt{let}が使える場合に\texttt{var}を使う理由はありませんが、既存のコードや既存のライブラリなどでは\texttt{var}が利用されている場面もあるため、\texttt{var}の動作を理解する必要があります。
 
 まず最初に、\texttt{let}と\texttt{var}で共通する動作を見ていきます。
 \texttt{let}と\texttt{var}どちらも、初期値を指定せずに宣言した変数の評価結果は暗黙的に\texttt{undefined}になります。
@@ -354,7 +350,7 @@ measureTask(doHeavyTask);
 \begin{lstlisting}
 let let_x;
 var var_x;
-// 宣言後にそれぞれの変数を参照すると`undefined`となる
+// 宣言後にそれぞれの変数を参照するとundefinedとなる
 console.log(let_x); // => undefined
 console.log(var_x); // => undefined
 // 宣言後に値を代入できる
@@ -366,11 +362,12 @@ var_x = "varのx";
 
 \texttt{let}では、変数を\textbf{宣言する前}にその変数を参照すると\texttt{ReferenceError}の例外が発生して参照できません。
 次のコードでは、変数を宣言する前に、変数\texttt{x}を参照したため\texttt{ReferenceError}となっています。
-エラーメッセージから、変数\texttt{x}が存在しないからエラーになっているのではなく、実際に宣言した行より前に参照したためエラーとなっているのがわかります。\footnote{この仕組みはTemporal
-  Dead Zone（TDZ）と呼ばれます。}
+エラーメッセージから、変数\texttt{x}が存在しないからエラーになっているのではなく、実際に宣言した行より前に参照したためエラーとなっているのがわかりま\footnote{この仕組みはTemporal
+  Dead Zone（TDZ）と呼ばれます。}。
 
 \begin{lstlisting}
-console.log(x); // => ReferenceError: can't access lexical declaration `x' before initialization
+console.log(x); // => ReferenceError: can't access lexical declaration `x' 
+                //    before initialization
 let x = "letのx";
 \end{lstlisting}
 
@@ -407,7 +404,7 @@ console.log(x); // => "varのx"
 
 \begin{lstlisting}
 function fn() {
-    // 内側のスコープにあるはずの変数`x`が参照できる
+    // 内側のスコープにあるはずの変数xが参照できる
     console.log(x); // => undefined
     {
         var x = "varのx";
@@ -434,7 +431,7 @@ function fn() {
 fn();
 \end{lstlisting}
 
-この変数の\textbf{宣言}部分がもっとも近い関数またはグローバルスコープの先頭に移動しているように見える動作のことを変数の\textbf{巻き上げ}（hoisting）と呼びます。
+この変数の\textbf{\textgt{宣言}}部分がもっとも近い関数またはグローバルスコープの先頭に移動しているように見える動作のことを変数の\textbf{\textgt{巻き上げ}}（hoisting）と呼びます。
 
 このように\texttt{var}は\texttt{let}、\texttt{const}とは異なった動作をしています。
 \texttt{var}は巻き上げによりブロックスコープを無視して、宣言部分を自動的に関数スコープの先頭に移動するという予測しにくい問題を持っています。
@@ -447,7 +444,7 @@ fn();
 次のコードでは、実際に\texttt{hello}関数を宣言した行より前に関数を呼び出せます。
 
 \begin{lstlisting}
-// `hello`関数の宣言より前に呼び出せる
+// hello関数の宣言より前に呼び出せる
 hello(); // => "Hello"
 
 function hello(){
@@ -460,7 +457,7 @@ function hello(){
 
 \begin{lstlisting}
 // 解釈されたコード
-// `hello`関数の宣言が巻き上げられる
+// hello関数の宣言が巻き上げられる
 function hello(){
     return "Hello";
 }
@@ -473,19 +470,19 @@ hello(); // => "Hello"
 なぜなら、実際に巻き上げられた関数を呼び出せるためです。
 
 注意点として、\texttt{var}や\texttt{let}などで宣言された変数へ関数を代入した場合は\texttt{var}のルールで巻き上げられます。
-そのため、\texttt{var}で変数へ関数を代入する関数式では、\texttt{hello}変数が巻き上げにより\texttt{undefined}となるため呼び出せません（「\href{../function-declaration/README.md\#function-expression}{関数と宣言（関数式）}」を参照）。
+そのため、\texttt{var}で変数へ関数を代入する関数式では、\texttt{hello}変数が巻き上げにより\texttt{undefined}となるため呼び出せません（「\hyperlink{function-and-declaration}{関数と宣言}」の章の「\hyperlink{function-expression}{関数式}」を参照）。
 
 \begin{lstlisting}
-// `hello`変数は巻き上げられ、暗黙的に`undefined`となる
+// hello変数は巻き上げられ、暗黙的にundefinedとなる
 hello(); // => TypeError: hello is not a function
 
-// `hello`変数へ関数を代入している
+// hello変数へ関数を代入している
 var hello = function(){
     return "Hello";
 };
 \end{lstlisting}
 
-\begin{tcolorbox}[title=即時実行関数]\label{immediate-function}
+\begin{tcolorbox}[breakable,title=即時実行関数]\label{immediate-function}
 
 即時実行関数（\textbf{IIFE}, \emph{Immediately-Invoked Function
 Expression}）は、
@@ -505,8 +502,8 @@ Expression}）は、
 console.log(typeof foo === "undefined"); // => true
 \end{lstlisting}
 
-関数を\textbf{式}として定義して、そのまま呼び出しています。
-\texttt{function}からはじまってしまうとJavaScriptエンジンが\textbf{関数宣言}と解釈してしまうため、無害なカッコなどで囲んで\textbf{関数式}として解釈させるのが特徴的な記法です。これは次のように書いた場合と意味は同じですが、匿名関数を定義して実行するため短く書くことができ、余計な関数定義がグローバルスコープに残りません。
+関数を\textbf{\textgt{式}}として定義して、そのまま呼び出しています。
+\texttt{function}からはじまってしまうとJavaScriptエンジンが\textbf{\textgt{関数宣言}}と解釈してしまうため、無害なカッコなどで囲んで\textbf{\textgt{関数式}}として解釈させるのが特徴的な記法です。これは次のように書いた場合と意味は同じですが、匿名関数を定義して実行するため短く書くことができ、余計な関数定義がグローバルスコープに残りません。
 
 \begin{lstlisting}
 function fn() {
@@ -555,25 +552,25 @@ console.log(typeof foo === "undefined"); // => true
 \texttt{newCounter}変数も実行するたびに1ずつ増えていますが、\texttt{myCounter}変数とその値を共有しているわけではないことがわかります。
 
 \begin{lstlisting}
-// `increment`関数を定義して返す関数
+// increment関数を定義して返す関数
 function createCounter() {
     let count = 0;
-    // `increment`関数は`count`変数を参照
+    // increment関数はcount変数を参照
     function increment() {
         count = count + 1;
         return count;
     }
     return increment;
 }
-// `myCounter`は`createCounter`が返した関数を参照
+// myCounterはcreateCounterが返した関数を参照
 const myCounter = createCounter();
 myCounter(); // => 1
 myCounter(); // => 2
-// 新しく`newCounter`を定義する
+// 新しくnewCounterを定義する
 const newCounter = createCounter();
 newCounter(); // => 1
 newCounter(); // => 2
-// `myCounter`と`newCounter`は別々の状態持っている
+// myCounterとnewCounterは別々の状態を持っている
 myCounter(); // => 3
 newCounter(); // => 3
 \end{lstlisting}
@@ -599,7 +596,7 @@ JavaScriptのスコープには、どの識別子がどの変数を参照する�
 const x = 10; // ＊1
 
 function printX() {
-    // この識別子`x`は常に ＊1 の変数`x`を参照する
+    // この識別子xは常に＊1の変数xを参照する
     console.log(x); // => 10
 }
 
@@ -624,7 +621,7 @@ run();
 \end{enumerate}
 
 つまり、\texttt{printX}関数中に書かれた\texttt{x}という識別子は、\texttt{run}関数の実行とは関係なく、静的に＊1で定義された変数\texttt{x}を参照することが決定されます。
-このように、どの識別子がどの変数を参照しているかを静的に決定する性質を\textbf{静的スコープ}と呼びます。
+このように、どの識別子がどの変数を参照しているかを静的に決定する性質を\textbf{\textgt{静的スコープ}}と呼びます。
 
 この静的スコープの仕組みは\texttt{function}キーワードを使った関数宣言、メソッド、Arrow
 Functionなどすべての関数で共通する性質です。
@@ -639,18 +636,19 @@ JavaScriptは静的スコープです。
 
 \begin{lstlisting}
 // 動的スコープの疑似的な言語のコード例（JavaScriptではありません）
-// 変数`x`を宣言
+// 変数xを宣言
 var x = 10;
 
-// `printX`という関数を定義
+// printXという関数を定義
 fn printX() {
-    // 動的スコープの言語では、識別子`x`は呼び出し元によってどの変数`x`を参照するかが変わる
-    // `print`関数でコンソールへログ出力する
+    // 動的スコープの言語では、識別子xは呼び出し元によってどの変数xを
+    // 参照するかが変わる
+    // print関数でコンソールへログを出力する
     print(x);
 }
 
 fn run() {
-    // 呼び出し元のスコープで、変数`x`を定義している
+    // 呼び出し元のスコープで、変数xを定義している
     var x = 20;
     printX();
 }
@@ -659,7 +657,7 @@ printX(); // ここでは 10 が出力される
 run(); // ここでは 20 が出力される
 \end{lstlisting}
 
-このように関数呼び出し時に呼び出し元のスコープの変数を参照する仕組みを\textbf{動的スコープ}と呼びます。
+このように関数呼び出し時に呼び出し元のスコープの変数を参照する仕組みを\textbf{\textgt{動的スコープ}}と呼びます。
 
 JavaScriptは変数や関数の参照先は静的スコープで決まるため、上記のような動的スコープではありません。
 しかし、JavaScriptでも\texttt{this}という特別なキーワードだけは、呼び出し元によって動的に参照先が変わります。
@@ -673,7 +671,7 @@ JavaScriptは変数や関数の参照先は静的スコープで決まるため�
 なぜなら、変数や関数を定義すると定義されたデータはメモリ上に確保されますが、ハードウェアのメモリは有限だからです。
 そのため、メモリからデータがあふれないように、必要なタイミングで不要なデータをメモリから解放する必要があります。
 
-不要なデータをメモリから解放する方法は言語によって異なりますが、JavaScriptでは\textbf{ガベージコレクション}が採用されています。
+不要なデータをメモリから解放する方法は言語によって異なりますが、JavaScriptでは\textbf{\textgt{ガベージコレクション}}が採用されています。
 ガベージコレクションとは、どこからも参照されなくなったデータを不要なデータと判断して自動的にメモリ上から解放する仕組みのことです。
 
 JavaScriptにはガベージコレクションがあるため、手動でメモリを解放するコードを書く必要はありません。
@@ -686,11 +684,11 @@ JavaScriptにはガベージコレクションがあるため、手動でメモ�
 
 このとき、最初にメモリ上へ確保した\texttt{"before text"}という文字列のデータはどこからも参照されなくなっています。
 どこからも参照されなくなった時点で不要になったデータと判断されるためガベージコレクションの回収対象となります。
-その後、任意のタイミングでガベージコレクションによって回収されてメモリ上から解放されます。\footnote{ECMAScriptの仕様ではガベージコレクションの実装の規定はないため、実装依存の処理となります。}
+その後、任意のタイミングでガベージコレクションによって回収されてメモリ上から解放されます\footnote{ECMAScriptの仕様ではガベージコレクションの実装の規定はないため、実装依存の処理となります。}。
 
 \begin{lstlisting}
 let x = "before text";
-// 変数`x`に新しいデータを代入する
+// 変数xに新しいデータを代入する
 x = "after text";
 // このとき"before text"というデータはどこからも参照されなくなる
 // その後、ガベージコレクションによってメモリ上から解放される
@@ -715,7 +713,7 @@ function printX() {
 }
 
 printX();
-// この時点で`"X"`を参照するものはなくなる -> 解放される
+// この時点で"X"を参照するものはなくなる -> 解放される
 \end{lstlisting}
 
 次に、関数の実行が終了しても解放されないデータの例です。
@@ -732,7 +730,7 @@ function createArray() {
 }
 const array = createArray();
 console.log(array); // => [1, 2, 3]
-// 変数`array`が`[1, 2, 3]`という値を参照している -> 解放されない
+// 変数arrayが[1, 2, 3]という値を参照している -> 解放されない
 \end{lstlisting}
 
 つまり、関数の実行が終了したことと関数内で定義したデータの解放のタイミングは直接関係ないことがわかります。
@@ -759,19 +757,20 @@ console.log(array); // => [1, 2, 3]
 const createCounter = () => {
     let count = 0;
     return function increment() {
-        // `increment`関数は`createCounter`関数のスコープに定義された`変数`count`を参照している
+        // increment関数はcreateCounter関数のスコープに定義された変数countを
+        // 参照している
         count = count + 1;
         return count;
     };
 };
-// createCounter()の実行結果は、内側で定義されていた`increment`関数
+// createCounter()の実行結果は、内側で定義されていたincrement関数
 const myCounter = createCounter();
-// myCounter関数の実行結果は`count`の評価結果
+// myCounter関数の実行結果はcountの評価結果
 console.log(myCounter()); // => 1
 console.log(myCounter()); // => 2
 \end{lstlisting}
 
-つまり次のような参照の関係が\texttt{myCounter}変数と\texttt{count}変数の間にはあることがわかります。
+つまり次のような参照の関係が\texttt{myCounter}変数と\texttt{count}変数の間にあることがわかります。
 
 \begin{itemize}
 \item
@@ -783,8 +782,8 @@ console.log(myCounter()); // => 2
 \end{itemize}
 
 \begin{quote}
-\texttt{myCounter} -\textgreater{}
-\texttt{increment} -\textgreater{}
+\texttt{myCounter} →
+\texttt{increment} →
 \texttt{count}
 \end{quote}
 
@@ -804,7 +803,7 @@ JavaScriptの関数は静的スコープとメモリ管理という2つの性質
 const createCounter = () => {
     let count = 0;
     return function increment() {
-        // 変数`count`を参照し続けている
+        // 変数countを参照し続けている
         count = count + 1;
         return count;
     };
@@ -832,7 +831,7 @@ console.log(newCountUp()); // => 1
 \item
   グローバル変数を減らす手段として
 \item
-  高階関数の一部部分として
+  高階関数の一部分として
 \end{itemize}
 
 これらはクロージャーの特徴でもあるので、同時に使われることがあります。
@@ -843,7 +842,7 @@ console.log(newCountUp()); // => 1
 
 \begin{lstlisting}
 const createCounter = () => {
-    // 外のスコープから`privateCount`を直接参照できない
+    // 外のスコープからprivateCountを直接参照できない
     let privateCount = 0;
     return () => {
         privateCount++;
@@ -856,7 +855,7 @@ console.log(counter()); // => "2回目"
 \end{lstlisting}
 
 また、関数を返す関数のことを高階関数と呼びますが、クロージャーの性質を使うことで次のように\texttt{n}より大きいかを判定する高階関数を作れます。
-最初から\texttt{greaterThan5}という関数を定義すればよいのですが、高階関数を使うことで条件を後から定義できるなどの柔軟性があります。
+最初から\texttt{greaterThan5}という関数を定義すればよいのですが、高階関数を使うことで条件を後から定義できるなどの柔軟性が得られます。
 
 \begin{lstlisting}
 function greaterThan(n) {

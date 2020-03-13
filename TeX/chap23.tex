@@ -1,5 +1,6 @@
 \hypertarget{map-and-set}{%
-\chapter{Map/Set{$^{\rm ES2015}$}}\label{map-and-set}}
+\chapter[Map/Set]{Map/Set\protect\icon{fig/es2015.eps}}\label{map-and-set}}
+\thispagestyle{frontheadings}
 
 JavaScriptでデータの集まりを扱うコレクションは配列だけではありません。
 この章では、ES2015で導入されたマップ型のコレクションである\texttt{Map}と、セット型のコレクションである\texttt{Set}について学びます。
@@ -154,7 +155,7 @@ ES2015で\texttt{Map}が導入されるまで、JavaScriptにおいてマップ�
 
 \texttt{Object}には\texttt{prototype}オブジェクトがあるため、いくつかのプロパティは初期化されたときから存在します。
 \texttt{Object}をマップとして使うと、そのプロパティと同じ名前のキーを使おうとしたときに問題となります
-（詳細は「\href{../object/README.md}{オブジェクト}」の章の「\href{../object/README.md\#confirm-property}{プロパティの存在を確認する}」を参照）。
+（詳細は「\hyperlink{object}{オブジェクト}」の章の「\hyperlink{confirm-property}{プロパティの存在を確認する}」を参照）。
 
 たとえば\texttt{constructor}という文字列は\texttt{Object.prototype.constructor}プロパティと衝突してしまいます。
 そのため\texttt{constructor}のような文字列をオブジェクトのキーに使うことで意図しないマッピングを生じる危険性があります。
@@ -171,7 +172,7 @@ console.log(has("constructor")); // => true
 \end{lstlisting}
 
 このマップとして使うオブジェクトの問題は、\texttt{Object}のインスタンスを\texttt{Object.create(null)}のように初期化して作ることで回避されてきました
-（詳細は「\href{../prototype-object/README.md}{プロトタイプオブジェクト}」の章の「\href{../prototype-object/README.md\#not-inherit-object}{\texttt{Object.prototype}を継承しないオブジェクト}」を参照）。
+（詳細は「\hyperlink{prototype-object}{プロトタイプオブジェクト}」の章の「\hyperlink{not-inherit-object}{\texttt{Object.prototype}を継承しないオブジェクト}」を参照）。
 
 ES2015では、これらの問題を根本的に解決する\texttt{Map}が導入されました。
 \texttt{Map}はプロパティとは異なる仕組みでデータを格納します。
@@ -366,13 +367,13 @@ function getHeight(element) {
 }
 \end{lstlisting}
 
-\begin{tcolorbox}[title=キーの等価性とNaN]\label{key-and-nan}
+\begin{tcolorbox}[float,title=キーの等価性とNaN]\label{key-and-nan}
 
 \texttt{Map}に値をセットする際のキーにはあらゆるオブジェクトが使えます。
 このときのマップが特定のキーをすでに持っているか、つまり挿入と上書きの判定は基本的に\texttt{===}演算子と同じです。
 
 ただし、キーが\texttt{NaN}の扱いだけが例外的に違います。\texttt{Map}におけるキーの比較では、\texttt{NaN}同士は常に等価であるとみなされます。
-この挙動は\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Equality_comparisons_and_when_to_use_them\#Same-value-zero_equality}{Same-value-zero}アルゴリズムと呼ばれます。
+この挙動は\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Equality_comparisons_and_when_to_use_them\#Same-value-zero_equality}{Same-value-zero}アルゴリズム\footnote{\url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Equality_comparisons_and_when_to_use_them\#Same-value-zero_equality}}と呼ばれます。
 
 次のコードでは、\texttt{NaN}同士の\texttt{===}の比較結果が\texttt{false}になるのに対して、\texttt{Map}のキーでは\texttt{NaN}同士の比較結果が一致していることがわかります。
 

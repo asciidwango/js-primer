@@ -1,7 +1,8 @@
 \hypertarget{module}{%
-\chapter{ECMAScriptモジュール{$^{\rm ES2015}$}}\label{module}}
+\chapter[ECMAScriptモジュール]{ECMAScriptモジュール\protect\icon{fig/es2015.eps}}\label{module}}
+\thispagestyle{frontheadings}
 
-ECMAScriptモジュールは\href{../../use-case/todoapp/README.md}{Todoアプリのユースケース}で実際に動かしながら学ぶため、ここでは構文の説明とモジュールのイメージをつかむのが目的です。
+ECMAScriptモジュールは「\hyperlink{todo-app}{ユースケース: Todoアプリ}」の章で実際に動かしながら学ぶため、ここでは構文の説明とモジュールのイメージをつかむのが目的です。
 この章のサンプルコードを実際に動かすためにはローカルサーバーなどの準備が必要です。
 そのため、ユースケースの章を先に読んでから戻ってきてもかまいません。
 
@@ -31,15 +32,15 @@ ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルを
 
 ECMAScriptモジュールは、\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export}{export文}によって変数や関数などをエクスポートできます。
 また、\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import}{import文}を使って別のモジュールからエクスポートされたものをインポートできます。
-インポートとエクスポートはそれぞれに \textbf{名前つき} と
-\textbf{デフォルト} という2種類の方法があります。
+インポートとエクスポートはそれぞれに \textbf{\textgt{名前つき}} と
+\textbf{\textgt{デフォルト}}という2種類の方法があります。
 
 まずは名前つきエクスポート／インポート文について見ていきましょう。
 
 \hypertarget{named-export-import}{%
 \subsection{名前つきエクスポート／インポート}\label{named-export-import}}
 
-\textbf{名前つきエクスポート}は、モジュールごとに複数の変数や関数などをエクスポートできます。
+\textbf{\textgt{名前つきエクスポート}}は、モジュールごとに複数の変数や関数などをエクスポートできます。
 次の例では、\texttt{foo}変数と\texttt{bar}関数をそれぞれ名前つきエクスポートしています。
 \texttt{export}文のあとに続けて\texttt{\{\}}を書き、その中にエクスポートする変数を入れることで、宣言済みの変数を名前つきエクスポートできます。
 
@@ -64,7 +65,7 @@ export function bar() { };
 \end{lstlisting}
 \listend
 
-\textbf{名前つきインポート}は、指定したモジュールから名前を指定して選択的にインポートできます。
+\textbf{\textgt{名前つきインポート}}は、指定したモジュールから名前を指定して選択的にインポートできます。
 次の例では
 \texttt{my-module.js}から名前つきエクスポートされたオブジェクトの名前を指定して名前つきインポートしています。
 \texttt{import}文のあとに続けて\texttt{\{\}}を書き、その中にインポートしたい名前つきエクスポートの名前を入れます。
@@ -93,7 +94,7 @@ console.log(bar); // => "bar"
 \hypertarget{named-export-import-alias}{%
 \subsubsection{名前つきエクスポート／インポートのエイリアス}\label{named-export-import-alias}}
 
-名前つきエクスポート／インポートには\textbf{エイリアス}の仕組みがあります。
+名前つきエクスポート／インポートには\textbf{\textgt{エイリアス}}の仕組みがあります。
 エイリアスを使うと、宣言済みの変数を違う名前で名前つきエクスポートできます。
 エイリアスをつけるには、次のように\texttt{as}のあとにエクスポートしたい名前を記述します。
 
@@ -124,7 +125,7 @@ console.log(myFoo); // => "foo"
 \subsection{デフォルトエクスポート／インポート}\label{default-export-import}}
 
 次に、デフォルトエクスポート／インポートについて見ていきましょう。
-\textbf{デフォルトエクスポート}は、モジュールごとに1つしかエクスポートできない特殊なエクスポートです。
+\textbf{\textgt{デフォルトエクスポート}}は、モジュールごとに1つしかエクスポートできない特殊なエクスポートです。
 次の例は、すでに宣言されている変数をデフォルトエクスポートしています。
 \texttt{export default}文で、後に続く式の評価結果をデフォルトエクスポートします。
 
@@ -155,7 +156,7 @@ export default function() {}
 export default const foo = "foo", bar = "bar";
 \end{lstlisting}
 
-\textbf{デフォルトインポート}は、指定したモジュールのデフォルトエクスポートに名前をつけてインポートします。
+\textbf{\textgt{デフォルトインポート}}は、指定したモジュールのデフォルトエクスポートに名前をつけてインポートします。
 次の例では
 \texttt{my-module.js}のデフォルトエクスポートに\texttt{myModule}という名前をつけてインポートしています。
 \texttt{import}文のあとに任意の名前をつけることで、デフォルトエクスポートをインポートできます。
@@ -259,7 +260,7 @@ export { foo as default } from "./my-module.js";
 \subsubsection{すべてをインポート}\label{namespace-import}}
 
 \texttt{import * as}構文は、すべての名前つきエクスポートをまとめてインポートします。
-この方法では、モジュールごとの \textbf{名前空間}
+この方法では、モジュールごとの \textbf{\textgt{名前空間}}
 となるオブジェクトを宣言します。
 エクスポートされた変数や関数などにアクセスするには、その名前空間オブジェクトのプロパティを使います。
 また、先ほどのとおり、\texttt{default}
@@ -334,4 +335,4 @@ import { foo } from "./my-module.js";
 
 ウェブブラウザの環境では、インポートされるモジュールの取得はネットワーク経由で解決されます。
 そのため、モジュール名はJavaScriptファイルの絶対URLあるいは相対URLを指定します。
-詳しくは\href{../../use-case/todoapp/README.md}{Todoアプリのユースケース}を参照してください。
+詳しくは「\hyperlink{todo-app}{ユースケース: Todoアプリ}」を参照してください。

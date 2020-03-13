@@ -1,5 +1,6 @@
 \hypertarget{date}{%
 \chapter{Date}\label{date}}
+\thispagestyle{frontheadings}
 
 この章では、JavaScriptで日付や時刻を扱うための\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date}{Date}について学びます。
 
@@ -27,7 +28,7 @@
 \texttt{Date}オブジェクトのインスタンスではなく現在の時刻の時刻値だけが欲しい場合には、\texttt{Date.now}メソッドの戻り値を使います。
 作成したインスタンスが持つ時刻値は、\texttt{getTime}メソッドで取得できます。
 また、\texttt{toISOString}メソッドを使うと、その時刻をUTCにおける\href{https://ja.wikipedia.org/wiki/ISO_8601}{ISO
-8601}形式の文字列に変換できます。 ISO
+8601}形式\footnote{\url{https://ja.wikipedia.org/wiki/ISO_8601}}の文字列に変換できます。 ISO
 8601とは国際規格となっている文字列の形式で、\texttt{2006-01-02T15:04:05.999+09:00}のように時刻を表現します。
 人間が見てもわかりやすい文字列であるため、広く利用されています。
 
@@ -73,7 +74,7 @@ console.log(date.toISOString()); // => "2006-01-02T15:04:05.999Z"
 \end{lstlisting}
 
 2つめは文字列型の引数を渡したときに適用されます。
-\href{https://tools.ietf.org/html/rfc2822\#section-3.3}{RFC2822}や\href{https://ja.wikipedia.org/wiki/ISO_8601}{ISO
+\href{https://tools.ietf.org/html/rfc2822\#section-3.3}{RFC2822}\footnote{\url{https://tools.ietf.org/html/rfc2822\#section-3.3}}や\href{https://ja.wikipedia.org/wiki/ISO_8601}{ISO
 8601}の形式に従った文字列を渡すと、
 その文字列をパースして得られる時刻値を使って、\texttt{Date}のインスタンスを作成します。
 
@@ -92,7 +93,8 @@ console.log(inUTC.toISOString()); // => "2006-01-02T15:04:05.999Z"
 // 上記の例とは異なり、UTCであることを表す'Z'がついていないことに注意
 // Asia/Tokyo(+09:00)で実行すると、UTCにおける表記は9時間前の06時04分05秒になる
 const inLocal = new Date("2006-01-02T15:04:05.999");
-console.log(inLocal.toISOString()); // "2006-01-02T06:04:05.999Z" (Asia/Tokyoの場合)
+console.log(inLocal.toISOString()); 
+// "2006-01-02T06:04:05.999Z" (Asia/Tokyoの場合)
 \end{lstlisting}
 
 3つめは、時刻を次のように、年・月・日などの部分ごとの数値で指定する方法です。
@@ -115,7 +117,8 @@ new Date(year, month, day, hour, minutes, seconds, milliseconds);
 // 実行環境における"2006年1月2日15時04分05秒999"を表す
 // タイムゾーンを指定することはできない
 const date1 = new Date(2006, 0, 2, 15, 4, 5, 999);
-console.log(date1.toISOString()); // "2006-01-02T06:04:05.999Z" (Asia/Tokyoの場合)
+console.log(date1.toISOString()); 
+// "2006-01-02T06:04:05.999Z" (Asia/Tokyoの場合)
 
 // Date.UTCメソッドを使うとUTCに固定できる
 const ms = Date.UTC(2006, 0, 2, 15, 4, 5, 999);
@@ -188,7 +191,7 @@ console.log(`Hours in UTC: ${now.getHours() + timezoneOffsetInHours}`);
 \end{itemize}
 
 そのため、JavaScriptにおける日付・時刻の処理は、標準のDateではなくライブラリを使うことが一般的になっています。
-代表的なライブラリとしては、\href{https://momentjs.com/}{moment.js}や\href{https://github.com/js-joda/js-joda}{js-joda}、\href{https://date-fns.org/}{date-fns}などがあります。
+代表的なライブラリとしては、\href{https://momentjs.com/}{moment.js}\footnote{\url{https://momentjs.com/}}や\href{https://github.com/js-joda/js-joda}{js-joda}\footnote{\url{https://github.com/js-joda/js-joda}}、\href{https://date-fns.org/}{date-fns}\footnote{\url{https://date-fns.org/}}などがあります。
 
 \begin{lstlisting}
 // moment.jsで現在時刻のmomentオブジェクトを作る

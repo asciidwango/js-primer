@@ -1,5 +1,6 @@
 \hypertarget{class}{%
 \chapter{クラス}\label{class}}
+\thispagestyle{frontheadings}
 
 「クラス」と一言にいってもさまざまであるため、ここでは\textbf{構造}、\textbf{動作}、\textbf{状態}を定義できるものを指すことにします。
 また、この章では概念を示す場合は\textbf{クラス}と呼び、クラスに関する構文（記述するコード）のことを\texttt{class}構文と呼びます。
@@ -11,7 +12,7 @@ JavaScriptではES2015より前までは\texttt{class}構文はなく、関数�
 
 ES2015でクラスを表現するための\texttt{class}構文が導入されましたが、この\texttt{class}構文で定義したクラスは関数オブジェクトの一種です。
 \texttt{class}構文ではプロトタイプベースの継承の仕組みを使って関数でクラスを表現しています。
-そのため、\texttt{class}構文はクラスを作るための関数定義や継承をパターン化した書き方と言えます。\footnote{\texttt{class}構文でしか実現できない機能はなく、読みやすさやわかりやさのために導入された構文という側面もあるため、JavaScriptの\texttt{class}構文は糖衣構文（シンタックスシュガー）と呼ばれることがあります。}
+そのため、\texttt{class}構文はクラスを作るための関数定義や継承をパターン化した書き方と言えます\footnote{\texttt{class}構文でしか実現できない機能はなく、読みやすさやわかりやさのために導入された構文という側面もあるため、JavaScriptの\texttt{class}構文は糖衣構文（シンタックスシュガー）と呼ばれることがあります。}。
 
 また、関数の定義方法として関数宣言文と関数式があるように、クラスにもクラス宣言文とクラス式があります。
 このように関数とクラスは似ている部分が多いです。
@@ -73,19 +74,19 @@ class MyClassB {
 \section{クラスのインスタンス化}\label{class-instance}}
 
 クラスは\texttt{new}演算子でインスタンスであるオブジェクトを作成できます。
-\texttt{class}構文で定義したクラスからインスタンスを作成することを\textbf{インスタンス化}と呼びます。
+\texttt{class}構文で定義したクラスからインスタンスを作成することを\textbf{\textgt{インスタンス化}}と呼びます。
 あるインスタンスが指定したクラスから作成されたものかを判定するには\texttt{instanceof}演算子が利用できます。
 
 \begin{lstlisting}
 class MyClass {
 }
-// `MyClass`をインスタンス化する
+// MyClassをインスタンス化する
 const myClass = new MyClass();
 // 毎回新しいインスタンス(オブジェクト)を作成する
 const myClassAnother = new MyClass();
 // それぞれのインスタンスは異なるオブジェクト
 console.log(myClass === myClassAnother); // => false
-// クラスのインスタンスかどうかは`instanceof`演算子で判定できる
+// クラスのインスタンスかどうかはinstanceof演算子で判定できる
 console.log(myClass instanceof MyClass); // => true
 console.log(myClassAnother instanceof MyClass); // => true
 \end{lstlisting}
@@ -101,10 +102,10 @@ console.log(myClassAnother instanceof MyClass); // => true
 
 \begin{lstlisting}
 class Point {
-    // コンストラクタ関数の仮引数として`x`と`y`を定義
+    // コンストラクタ関数の仮引数としてxとyを定義
     constructor(x, y) {
-        // コンストラクタ関数における`this`はインスタンスを示すオブジェクト
-        // インスタンスの`x`と`y`プロパティにそれぞれ値を設定する
+        // コンストラクタ関数におけるthisはインスタンスを示すオブジェクト
+        // インスタンスのxとyプロパティにそれぞれ値を設定する
         this.x = x;
         this.y = y;
     }
@@ -118,18 +119,18 @@ class Point {
 
 \begin{lstlisting}
 class Point {
-    // 2. コンストラクタ関数の仮引数として`x`には`3`、`y`には`4`が渡る
+    // 2. コンストラクタ関数の仮引数としてxには3、yには4が渡る
     constructor(x, y) {
-        // 3. インスタンス(`this`)の`x`と`y`プロパティにそれぞれ値を設定する
+        // 3. インスタンス(this)のxとyプロパティにそれぞれ値を設定する
         this.x = x;
         this.y = y;
         // コンストラクタではreturn文は書かない
     }
 }
 
-// 1. コンストラクタを`new`演算子で引数とともに呼び出す
+// 1. コンストラクタをnew演算子で引数とともに呼び出す
 const point = new Point(3, 4);
-// 4. `Point`のインスタンスである`point`の`x`と`y`プロパティには初期化された値が入る
+// 4. Pointのインスタンスであるpointのxとyプロパティには初期化された値が入る
 console.log(point.x); // => 3
 console.log(point.y); // => 4
 \end{lstlisting}
@@ -158,21 +159,21 @@ JavaScriptでは、コンストラクタ関数が任意のオブジェクトを�
 // 非推奨の例: コンストラクタで値を返すべきではない
 class Point {
     constructor(x, y) {
-        // `this`の代わりにただのオブジェクトを返せる
+        // thisの代わりにただのオブジェクトを返せる
         return { x, y };
     }
 }
 
-// `new`演算子の結果はコンストラクタ関数が返したただのオブジェクト
+// new演算子の結果はコンストラクタ関数が返したただのオブジェクト
 const point = new Point(3, 4);
 console.log(point); // => { x: 3, y: 4 }
 // Pointクラスのインスタンスではない
 console.log(point instanceof Point); // => false
 \end{lstlisting}
 
+\begin{note}{}
 \hypertarget{class-name-start-upper-case}{%
-\subsection{{[}Note{]}
-クラス名は大文字ではじめる}\label{class-name-start-upper-case}}
+\underline{\textgt{クラス名は大文字ではじめる}}\label{class-name-start-upper-case}}
 
 JavaScriptでは慣習としてクラス名には大文字ではじまる名前をつけます。
 これは、変数名にキャメルケースを使う慣習があるのと同じで、名前自体に特別なルールがあるわけではありません。
@@ -182,8 +183,9 @@ JavaScriptでは慣習としてクラス名には大文字ではじまる名前�
 class Thing {}
 const thing = new Thing();
 \end{lstlisting}
+\end{note}
 
-\begin{tcolorbox}[title=\texttt{class}構文と関数でのクラスの違い]\label{class-vs-function}
+\begin{tcolorbox}[breakable,title=\texttt{class}構文と関数でのクラスの違い]\label{class-vs-function}
 
 ES2015より前はこれらのクラスを\texttt{class}構文ではなく、関数で表現していました。
 その表現方法は人によってさまざまで、これも\texttt{class}構文という統一した記法が導入された理由の1つです。
@@ -199,7 +201,7 @@ const Point = function PointConstructor(x, y) {
     this.y = y;
 };
 
-// `new`演算子でコンストラクタ関数から新しいインスタンスを作成
+// new演算子でコンストラクタ関数から新しいインスタンスを作成
 const point = new Point(3, 4);
 \end{lstlisting}
 
@@ -214,7 +216,7 @@ function MyClassLike() {
 // 関数なので関数として呼び出せる
 MyClassLike(); 
 
-// `class`構文でのクラス
+// class構文でのクラス
 class MyClass {
 }
 // クラスは関数として呼び出すと例外が発生する
@@ -228,24 +230,24 @@ MyClass(); // => TypeError: class constructors must be invoked with |new|
 \hypertarget{class-prototype-method-definition}{%
 \section{クラスのプロトタイプメソッドの定義}\label{class-prototype-method-definition}}
 
-クラスの\textbf{動作}はメソッドによって定義できます。
+クラスの\textbf{\textgt{動作}}はメソッドによって定義できます。
 \texttt{constructor}メソッドは初期化時に呼ばれる特殊なメソッドですが、\texttt{class}構文ではクラスに対して自由にメソッドを定義できます。
 このクラスに定義したメソッドは作成したインスタンスが持つ動作となります。
 
 次のように\texttt{class}構文ではクラスに対してメソッドを定義できます。
 メソッドの中からクラスのインスタンスを参照するには、\texttt{constructor}メソッドと同じく\texttt{this}を使います。
-このクラスのメソッドにおける\texttt{this}は「\href{../function-this/README.md}{関数とthis}」の章で学んだメソッドと同じくベースオブジェクトを参照します。
+このクラスのメソッドにおける\texttt{this}は「\hyperlink{function-this}{関数とthis}」の章で学んだメソッドと同じくベースオブジェクトを参照します。
 
-\begin{lstlisting}
+\begin{lstlisting}[escapechar=\%]
 class クラス {
     メソッド() {
-        // ここでの`this`はベースオブジェクトを参照
+        // ここでのthisはベースオブジェクトを参照
     }
 }
 
 const インスタンス = new クラス();
-// メソッド呼び出しのベースオブジェクト(`this`)は`インスタンス`となる
-インスタンス.メソッド();
+// メソッド呼び出しのベースオブジェクト(this)はインスタンスとなる
+インスタンス.%\hbox{}%メソッド();
 \end{lstlisting}
 
 クラスのプロトタイプメソッド定義では、オブジェクトにおけるメソッドとは異なり\texttt{key : value}のように\texttt{:}区切りでメソッドを定義できないことに注意してください。
@@ -261,9 +263,9 @@ class クラス {
 }
 \end{lstlisting}
 
-このようにクラスに対して定義したメソッドは、クラスの各インスタンスから\textbf{共有されるメソッド}となります。
-このインスタンス間で共有されるメソッドのことを\textbf{プロトタイプメソッド}と呼びます。
-また、プロトタイプメソッドはインスタンスから呼び出せるメソッドであるため\textbf{インスタンスメソッド}とも呼ばれます。
+このようにクラスに対して定義したメソッドは、クラスの各インスタンスから\textbf{\textgt{共有されるメソッド}}となります。
+このインスタンス間で共有されるメソッドのことを\textbf{\textgt{プロトタイプメソッド}}と呼びます。
+また、プロトタイプメソッドはインスタンスから呼び出せるメソッドであるため\textbf{\textgt{インスタンスメソッド}}とも呼ばれます。
 
 この書籍では、プロトタイプメソッド（インスタンスメソッド）を\texttt{クラス\#メソッド名}のように表記します。
 
@@ -275,15 +277,15 @@ class Counter {
     constructor() {
         this.count = 0;
     }
-    // `increment`メソッドをクラスに定義する
+    // incrementメソッドをクラスに定義する
     increment() {
-        // `this`は`Counter`のインスタンスを参照する
+        // thisはCounterのインスタンスを参照する
         this.count++;
     }
 }
 const counterA = new Counter();
 const counterB = new Counter();
-// `counterA.increment()`のベースオブジェクトは`counterA`インスタンス
+// counterA.increment()のベースオブジェクトはcounterAインスタンス
 counterA.increment();
 // 各インスタンスの持つプロパティ(状態)は異なる
 console.log(counterA.count); // => 1
@@ -328,14 +330,15 @@ class Counter {
     constructor() {
         this.count = 0;
         this.increment = () => {
-            // `this`は`constructor`メソッドにおける`this`（インスタンスオブジェクト）を参照する
+            // thisはconstructorメソッドにおけるthis（インスタンス
+            // オブジェクト）を参照する
             this.count++;
         };
     }
 }
 const counterA = new Counter();
 const counterB = new Counter();
-// `counterA.increment()`のベースオブジェクトは`counterA`インスタンス
+// counterA.increment()のベースオブジェクトはcounterAインスタンス
 counterA.increment();
 // 各インスタンスの持つプロパティ(状態)は異なる
 console.log(counterA.count); // => 1
@@ -369,36 +372,36 @@ console.log(counterA.increment !== counterB.increment); // => true
 Functionが利用できます。 Arrow
 Functionには\texttt{this}が静的に決まるという性質があるため、メソッドにおける\texttt{this}の参照先をインスタンスに固定できます。
 なぜならArrow
-Functionで定義した\texttt{increment}メソッドはどのような呼び出し方をしても、必ず\texttt{constructor}における\texttt{this}となるためです（「\href{../function-this/README.md\#arrow-function-callback}{Arrow
+Functionで定義した\texttt{increment}メソッドはどのような呼び出し方をしても、必ず\texttt{constructor}における\texttt{this}となるためです（「\hyperlink{function-this}{関数とthis}」の章の「\hyperlink{arrow-function-callback}{対処法: Arrow
 Functionでコールバック関数を扱う}」を参照）。
 
 \begin{lstlisting}
 "use strict";
 class ArrowClass {
     constructor() {
-        // コンストラクタでの`this`は常にインスタンス
+        // コンストラクタでのthisは常にインスタンス
         this.method = () => {
-            // Arrow Functionにおける`this`は静的に決まる
-            // そのため`this`は常にインスタンスを参照する
+            // Arrow Functionにおけるthisは静的に決まる
+            // そのためthisは常にインスタンスを参照する
             return this;
         };
     }
 }
 const instance = new ArrowClass();
 const method = instance.method;
-// 呼び出し方法（ベースオブジェクト）に依存しないため、`this`がインスタンスを参照する
+// 呼び出し方法（ベースオブジェクト）に依存しないため、thisがインスタンスを参照する
 console.log(method()); // => instance
 \end{lstlisting}
 
 一方、プロトタイプメソッドにおける\texttt{this}はメソッド呼び出し時のベースオブジェクトを参照します。
-そのためプロトタイプメソッドは呼び出し方によって\texttt{this}の参照先が異なります（「\href{../function-this/README.md}{関数とthis}」の章の「\href{../function-this/README.md\#assign-this-function}{問題:
+そのためプロトタイプメソッドは呼び出し方によって\texttt{this}の参照先が異なります（「\hyperlink{function-this}{関数とthis}」の章の「\hyperlink{assign-this-function}{問題:
 \texttt{this}を含むメソッドを変数に代入した場合}」を参照）。
 
 \begin{lstlisting}
 "use strict";
 class PrototypeClass {
     method() {
-        // `this`はベースオブジェクトを参照する
+        // thisはベースオブジェクトを参照する
         return this;
     };
 }
@@ -416,14 +419,14 @@ Functionでメソッドを定義することで\texttt{this}の参照先を固�
 
 クラスに対してメソッドを定義できますが、メソッドは\texttt{メソッド名()}のように呼び出す必要があります。
 クラスでは、プロパティの参照（getter）、プロパティへの代入（setter）時に呼び出される特殊なメソッドを定義できます。
-このメソッドはプロパティのように振る舞うため\textbf{アクセッサプロパティ}と呼ばれます。
+このメソッドはプロパティのように振る舞うため\textbf{\textgt{アクセッサプロパティ}}と呼ばれます。
 
 次のコードでは、プロパティの参照（getter）、プロパティへの代入（setter）に対するアクセッサプロパティを定義しています。
 アクセッサプロパティはメソッド名（プロパティ名）の前に\texttt{get}または\texttt{set}をつけるだけです。
 getter（\texttt{get}）には仮引数はありませんが、必ず値を返す必要があります。
 setter（\texttt{set}）の仮引数にはプロパティへ代入する値が入りますが、値を返す必要はありません。
 
-\begin{lstlisting}
+\begin{lstlisting}[escapechar=\%]
 class クラス {
     // getter
     get プロパティ名() {
@@ -435,8 +438,8 @@ class クラス {
     }
 }
 const インスタンス = new クラス();
-インスタンス.プロパティ名; // getterが呼び出される
-インスタンス.プロパティ名 = 値; // setterが呼び出される
+インスタンス.%\hbox{}%プロパティ名; // getterが呼び出される
+インスタンス.%\hbox{}%プロパティ名 = 値; // setterが呼び出される
 \end{lstlisting}
 
 次のコードでは、\texttt{NumberWrapper}クラスの\texttt{value}プロパティをアクセッサプロパティとして定義しています。
@@ -448,12 +451,12 @@ class NumberWrapper {
     constructor(value) {
         this._value = value;
     }
-    // `_value`プロパティの値を返すgetter
+    // _valueプロパティの値を返すgetter
     get value() {
         console.log("getter");
         return this._value;
     }
-    // `_value`プロパティに値を代入するsetter
+    // _valueプロパティに値を代入するsetter
     set value(newValue) {
         console.log("setter");
         this._value = newValue;
@@ -474,11 +477,10 @@ console.log(numberWrapper.value); // => 42
 \texttt{NumberWrapper\#value}のアクセッサプロパティで実際に読み書きしているのは、\texttt{\_value}プロパティです。
 このように、外から直接読み書きしてほしくないプロパティを\texttt{\_}（アンダーバー）で開始するのはただの習慣であるため、構文としての意味はありません。
 
-現時点（ECMAScript
-\{\{book.esversion\}\}）では、外から原理的に参照できないプライベートプロパティ（hard
+現時点（ECMAScript 2019）では、外から原理的に参照できないプライベートプロパティ（hard
 private）を定義する構文はありません。
 しかし、現時点でも\texttt{WeakSet}などを使うことで疑似的なプライベートプロパティを実現できます。
-\texttt{WeakSet}については「\href{../map-and-set/README.md}{Map/Set}」の章で解説します。
+\texttt{WeakSet}については「\hyperlink{map-and-set}{Map/Set}」の章で解説します。
 \end{tcolorbox}
 
 \hypertarget{array-like-length}{%
@@ -530,12 +532,15 @@ class ArrayLike {
 
     set length(newLength) {
         const currentItemLength = this.items.length;
-        // 現在要素数より小さな`newLength`が指定された場合、指定した要素数となるように末尾を削除する
+        // 現在要素数より小さなnewLengthが指定された場合、指定した要素数となるように
+        // 末尾を削除する
         if (newLength < currentItemLength) {
             this._items = this.items.slice(0, newLength);
         } else if (newLength > currentItemLength) {
-            // 現在要素数より大きな`newLength`が指定された場合、指定した要素数となるように末尾に空要素を追加する
-            this._items = this.items.concat(new Array(newLength - currentItemLength));
+            // 現在要素数より大きなnewLengthが指定された場合、指定した要素数となる
+            // ように末尾に空要素を追加する
+            this._items = this.items.concat(new Array(newLength - 
+            currentItemLength));
         }
     }
 }
@@ -559,14 +564,14 @@ console.log(arrayLike.items.join(", ")); // => "1, 2, , , "
 
 静的メソッドの定義方法はメソッド名の前に、\texttt{static}をつけるだけです。
 
-\begin{lstlisting}
+\begin{lstlisting}[escapechar=\%]
 class クラス {
     static メソッド() {
         // 静的メソッドの処理
     }
 }
 // 静的メソッドの呼び出し
-クラス.メソッド();
+クラス.%\hbox{}%メソッド();
 \end{lstlisting}
 
 次のコードでは、配列をラップする\texttt{ArrayWrapper}というクラスを定義しています。
@@ -607,7 +612,7 @@ class ArrayWrapper {
     }
 
     static of(...items) {
-        // `this`は`ArrayWrapper`を参照する
+        // thisはArrayWrapperを参照する
         return new this(items);
     }
 
@@ -637,20 +642,20 @@ console.log(arrayWrapper.length); // => 3
 \begin{lstlisting}
 class ConflictClass {
     constructor() {
-        // インスタンスオブジェクトに`method`を定義
+        // インスタンスオブジェクトにmethodを定義
         this.method = () => {
             console.log("インスタンスオブジェクトのメソッド");
         };
     }
 
-    // クラスのプロトタイプメソッドとして`method`を定義
+    // クラスのプロトタイプメソッドとしてmethodを定義
     method() {
         console.log("プロトタイプのメソッド");
     }
 }
 
 const conflict = new ConflictClass();
-conflict.method(); // どちらの`method`が呼び出される？
+conflict.method(); // どちらのmethodが呼び出される？
 \end{lstlisting}
 
 結論から述べると、この場合はインスタンスオブジェクトに定義した\texttt{method}が呼び出されます。
@@ -671,7 +676,7 @@ class ConflictClass {
 
 const conflict = new ConflictClass();
 conflict.method(); // "インスタンスオブジェクトのメソッド"
-// インスタンスの`method`プロパティを削除
+// インスタンスのmethodプロパティを削除
 delete conflict.method;
 conflict.method(); // "プロトタイプメソッド"
 \end{lstlisting}
@@ -687,20 +692,20 @@ conflict.method(); // "プロトタイプメソッド"
 
 どちらも注意深く意識しないと気づきにくいですが、この挙動はJavaScriptの重要な仕組みであるため理解することは重要です。
 
-この挙動は\textbf{プロトタイプオブジェクト}と呼ばれる特殊なオブジェクトと\textbf{プロトタイプチェーン}と呼ばれる仕組みで成り立っています。
-どちらも\textbf{プロトタイプ}とついていることからわかるように、2つで1組のような仕組みです。
+この挙動は\textbf{\textgt{プロトタイプオブジェクト}}と呼ばれる特殊なオブジェクトと\textbf{\textgt{プロトタイプチェーン}}と呼ばれる仕組みで成り立っています。
+どちらも\textbf{\textgt{プロトタイプ}}とついていることからわかるように、2つで1組のような仕組みです。
 
-このセクションでは、\textbf{プロトタイプオブジェクト}と\textbf{プロトタイプチェーン}とはどのような仕組みなのかを見ていきます。
+このセクションでは、\textbf{\textgt{プロトタイプオブジェクト}}と\textbf{\textgt{プロトタイプチェーン}}とはどのような仕組みなのかを見ていきます。
 
 \hypertarget{prototype}{%
 \section{プロトタイプオブジェクト}\label{prototype}}
 
-\textbf{プロトタイプメソッド}と\textbf{インスタンスオブジェクトのメソッド}を同時に定義しても、互いのメソッドは上書きされるわけでありません。
-なぜなら、プロトタイプメソッドは\textbf{プロトタイプオブジェクト}へ、インスタンスオブジェクトのメソッドは\textbf{インスタンスオブジェクト}へそれぞれ定義されるためです。
+\textbf{\textgt{プロトタイプメソッド}}と\textbf{\textgt{インスタンスオブジェクトのメソッド}}を同時に定義しても、互いのメソッドは上書きされるわけでありません。
+なぜなら、プロトタイプメソッドは\textbf{\textgt{プロトタイプオブジェクト}}へ、インスタンスオブジェクトのメソッドは\textbf{\textgt{インスタンスオブジェクト}}へそれぞれ定義されるためです。
 
-プロトタイプオブジェクトについては「\href{../prototype-object/README.md}{プロトタイプオブジェクト}」の章で簡単に紹介していましたが、改めて解説していきます。
+プロトタイプオブジェクトについては「\hyperlink{prototype-object}{プロトタイプオブジェクト}」の章で簡単に紹介していましたが、改めて解説していきます。
 
-\textbf{プロトタイプオブジェクト}とは、JavaScriptの関数オブジェクトの\texttt{prototype}プロパティに自動的に作成される特殊なオブジェクトです。
+\textbf{\textgt{プロトタイプオブジェクト}}とは、JavaScriptの関数オブジェクトの\texttt{prototype}プロパティに自動的に作成される特殊なオブジェクトです。
 クラスも一種の関数オブジェクトであるため、自動的に\texttt{prototype}プロパティにプロトタイプオブジェクトが作成されています。
 
 次のコードでは、関数やクラス自身の\texttt{prototype}プロパティに、プロトタイプオブジェクトが自動的に作成されていることがわかります。
@@ -708,12 +713,12 @@ conflict.method(); // "プロトタイプメソッド"
 \begin{lstlisting}
 function fn() {
 }
-// `prototype`プロパティにプロトタイプオブジェクトが存在する
+// prototypeプロパティにプロトタイプオブジェクトが存在する
 console.log(typeof fn.prototype === "object"); // => true
 
 class MyClass {
 }
-// `prototype`プロパティにプロトタイプオブジェクトが存在する
+// prototypeプロパティにプロトタイプオブジェクトが存在する
 console.log(typeof MyClass.prototype === "object"); // => true
 \end{lstlisting}
 
@@ -751,7 +756,7 @@ const instance = new MyClass();
 instance.method(); // "プロトタイプのメソッド"
 \end{lstlisting}
 
-インスタンスからプロトタイプメソッドを呼び出せるのは\textbf{プロトタイプチェーン}と呼ばれる仕組みによるものです。
+インスタンスからプロトタイプメソッドを呼び出せるのは\textbf{\textgt{プロトタイプチェーン}}と呼ばれる仕組みによるものです。
 プロトタイプチェーンは2つの処理から成り立ちます。
 
 \begin{itemize}
@@ -770,7 +775,7 @@ instance.method(); // "プロトタイプのメソッド"
 \texttt{[[Prototype]]}内部プロパティはECMAScriptの仕様で定められた内部的な表現であるため、通常のプロパティのようにはアクセスできません。
 ここでは説明のために、\texttt{[[プロパティ名]]}という書式でECMAScriptの仕様上に存在する内部プロパティを表現しています。
 
-\texttt{[[Prototype]]}内部プロパティへプロパティのようにはアクセスできませんが、\texttt{Object.getPrototypeOf}メソッドで\texttt{[[Prototype]]}内部プロパティを参照できます。
+\texttt{[[Prototype]]}内部プロパティへプロパティのようにはアクセスできませんが、\texttt{Object.getProto\\typeOf}メソッドで\texttt{[[Prototype]]}内部プロパティを参照できます。
 
 次のコードでは、\texttt{instance}オブジェクトの\texttt{[[Prototype]]}内部プロパティを取得しています。
 その取得した結果がクラスのプロトタイプオブジェクトを参照していることを確認できます。
@@ -782,16 +787,16 @@ class MyClass {
     }
 }
 const instance = new MyClass();
-// `instance`の`[[Prototype]]`内部プロパティは`MyClass.prototype`と一致する
+// instanceの[[Prototype]]内部プロパティはMyClass.prototypeと一致する
 const MyClassPrototype = Object.getPrototypeOf(instance);
 console.log(MyClassPrototype === MyClass.prototype); // => true
 \end{lstlisting}
 
 ここで重要なのは、インスタンスはどのクラスから作られたかやそのクラスのプロトタイプオブジェクトを知っているということです。
 
+\begin{note}{}
 \hypertarget{inner-property}{%
-\subsubsection{\texorpdfstring{Note:
-\texttt{{[}{[}Prototype{]}{]}}内部プロパティを読み書きする}{Note: {[}{[}Prototype{]}{]}内部プロパティを読み書きする}}\label{inner-property}}
+\underline{\texttt{{[}{[}Prototype{]}{]}}内部プロパティを読み書きする}\label{inner-property}}
 
 \texttt{Object.getPrototypeOf(オブジェクト)}で\texttt{オブジェクト}の\texttt{[[Prototype]]}を読み取ることができます。
 一方、\texttt{Object.setPrototypeOf(オブジェクト, プロトタイプオブジェクト)}で\texttt{オブジェクト}の\texttt{[[Prototype]]}に\texttt{プロトタイプオブジェクト}を設定できます。
@@ -799,6 +804,7 @@ console.log(MyClassPrototype === MyClass.prototype); // => true
 
 しかし、これらの\texttt{[[Prototype]]}内部プロパティを直接読み書きすることは通常の用途では行いません。
 また、既存のビルトインオブジェクトの動作なども変更できるため、不用意に扱うべきではないでしょう。
+\end{note}
 
 \hypertarget{read-prototype-chain}{%
 \subsection{プロパティの参照とプロトタイプチェーン}\label{read-prototype-chain}}
@@ -832,9 +838,10 @@ class MyClass {
     }
 }
 const instance = new MyClass();
-// インスタンスには`method`プロパティがないため、プロトタイプオブジェクトの`method`が参照される
+// インスタンスにはmethodプロパティがないため、プロトタイプオブジェクトのmethodが
+// 参照される
 instance.method(); // "プロトタイプのメソッド"
-// `instance.method`の参照はプロトタイプオブジェクトの`method`と一致する
+// instance.methodの参照はプロトタイプオブジェクトのmethodと一致する
 const Prototype = Object.getPrototypeOf(instance);
 console.log(instance.method === Prototype.method); // => true
 \end{lstlisting}
@@ -852,17 +859,18 @@ class MyClass {
     }
 }
 const instance = new MyClass();
-// `instance.method()`を実行する場合
+// instance.method()を実行する場合
 // 次のような呼び出し処理が行われている
-// インスタンス自身が`method`プロパティを持っている場合
+// インスタンス自身がmethodプロパティを持っている場合
 if (instance.hasOwnProperty("method")) {
     instance.method();
 } else {
-    // インスタンスの`[[Prototype]]`の参照先（`MyClass`のプロトタイプオブジェクト）を取り出す
+    // インスタンスの[[Prototype]]の参照先（MyClassのプロトタイプオブジェクト）を
+    // 取り出す
     const prototypeObject = Object.getPrototypeOf(instance);
-    // プロトタイプオブジェクトが`method`プロパティを持っている場合
+    // プロトタイプオブジェクトがmethodプロパティを持っている場合
     if (prototypeObject.hasOwnProperty("method")) {
-        // `this`はインスタンス自身を指定して呼び出す
+        // thisはインスタンス自身を指定して呼び出す
         prototypeObject.method.call(instance);
     }
 }
@@ -878,14 +886,14 @@ if (instance.hasOwnProperty("method")) {
 \section{継承}\label{extends}}
 
 \texttt{extends}キーワードを使うことで既存のクラスを継承できます。
-継承とは、クラスの\textbf{構造}や\textbf{機能}を引き継いだ新しいクラスを定義することです。
+継承とは、クラスの\textbf{\textgt{構造}}や\textbf{\textgt{機能}}を引き継いだ新しいクラスを定義することです。
 
 \hypertarget{class-extends}{%
 \subsection{継承したクラスの定義}\label{class-extends}}
 
 \texttt{extends}キーワードを使って既存のクラスを継承した新しいクラスを定義してみます。
-\texttt{class}構文の右辺に\texttt{extends}キーワードで継承元となる\textbf{親クラス}（基底クラス）を指定することで、
-親クラスを継承した\textbf{子クラス}（派生クラス）を定義できます。
+\texttt{class}構文の右辺に\texttt{extends}キーワードで継承元となる\textbf{\textgt{親クラス}}（基底クラス）を指定することで、
+親クラスを継承した\textbf{\textgt{子クラス}}（派生クラス）を定義できます。
 
 \begin{lstlisting}
 class 子クラス extends 親クラス {
@@ -981,10 +989,10 @@ class Parent {
 }
 class Child extends Parent {
     constructor() {
-        // 子クラスでは`super()`を`this`に触る前に呼び出さなければならない
+        // 子クラスではsuper()をthisに触る前に呼び出さなければならない
         super();
         // 子クラスのコンストラクタ処理
-        // 親クラスで書き込まれた`name`は上書きされる
+        // 親クラスで書き込まれたnameは上書きされる
         this.name = "Child";
     }
 }
@@ -1006,11 +1014,11 @@ class Parent {
         console.log("Parent#method");
     }
 }
-// `Parent`を継承した`Child`を定義
+// Parentを継承したChildを定義
 class Child extends Parent {
     // methodの定義はない
 }
-// `Child`のインスタンスは`Parent`のプロトタイプメソッドを継承している
+// ChildのインスタンスはParentのプロトタイプメソッドを継承している
 const instance = new Child();
 instance.method(); // "Parent#method"
 \end{lstlisting}
@@ -1034,9 +1042,9 @@ instance.method(); // "Parent#method"
 
 このプロトタイプチェーンの仕組みにより、\texttt{method}プロパティは\texttt{Parent.prototype}オブジェクトに定義されたものを参照します。
 
-このようにJavaScriptでは\texttt{class}構文と\texttt{extends}キーワードを使うことでクラスの\textbf{機能}を継承できます。
+このようにJavaScriptでは\texttt{class}構文と\texttt{extends}キーワードを使うことでクラスの\textbf{\textgt{機能}}を継承できます。
 \texttt{class}構文ではプロトタイプオブジェクトを参照する仕組みによって継承が行われています。
-そのため、この継承の仕組みを\textbf{プロトタイプ継承}と呼びます。
+そのため、この継承の仕組みを\textbf{\textgt{プロトタイプ継承}}と呼びます。
 
 \hypertarget{static-inheritance}{%
 \subsection{静的メソッドの継承}\label{static-inheritance}}
@@ -1075,10 +1083,10 @@ console.log(Child.hello()); // => "Hello"
 \subsection{\texorpdfstring{\texttt{super}プロパティ}{superプロパティ}}\label{super-property}}
 
 子クラスから親クラスのコンストラクタ処理を呼び出すには\texttt{super()}を使います。
-同じように、子クラスのプロトタイプメソッドからは、\texttt{super.プロパティ名}で親クラスのプロトタイプメソッドを参照できます。
+同じように、子クラスのプロトタイプメソッドからは、\texttt{super.\hbox{}プロパティ名}で親クラスのプロトタイプメソッドを参照できます。
 
 次のコードでは、\texttt{Child\#method}の中で\texttt{super.method()}と書くことで\texttt{Parent\#method}を呼び出しています。
-このように、子クラスから継承元の親クラスのプロトタイプメソッドは\texttt{super.プロパティ名}で参照できます。
+このように、子クラスから継承元の親クラスのプロトタイプメソッドは\texttt{super.\hbox{}プロパティ名}で参照できます。
 
 \begin{lstlisting}
 class Parent {
@@ -1089,8 +1097,8 @@ class Parent {
 class Child extends Parent {
     method() {
         console.log("Child#method");
-        // `this.method()`だと自分(`this`)のmethodを呼び出して無限ループする
-        // そのため明示的に`super.method()`とParent#methodを呼び出す
+        // this.method()だと自分(this)のmethodを呼び出して無限ループする
+        // そのため明示的にsuper.method()とParent#methodを呼び出す
         super.method();
     }
 }
@@ -1117,7 +1125,7 @@ class Parent {
 class Child extends Parent {
     static method() {
         console.log("Child.method");
-        // `super.method()`で`Parent.method`を呼びだす
+        // super.method()でParent.methodを呼びだす
         super.method();
     }
 }
@@ -1140,15 +1148,15 @@ class Child extends Parent {}
 
 const parent = new Parent();
 const child = new Child();
-// `Parent`のインスタンスは`Parent`のみを継承したインスタンス
+// ParentのインスタンスはParentのみを継承したインスタンス
 console.log(parent instanceof Parent); // => true
 console.log(parent instanceof Child); // => false
-// `Child`のインスタンスは`Child`と`Parent`を継承したインスタンス
+// ChildのインスタンスはChildとParentを継承したインスタンス
 console.log(child instanceof Parent); // => true
 console.log(child instanceof Child); // => true
 \end{lstlisting}
 
-より具体的な継承の使い方については「\href{../../use-case/todoapp/README.md}{ユースケース:Todoアプリ}」の章で見ていきます。
+より具体的な継承の使い方については「\hyperlink{todo-app}{ユースケース: Todoアプリ}」の章で見ていきます。
 
 \hypertarget{extends-built-in}{%
 \section{ビルトインオブジェクトの継承}\label{extends-built-in}}

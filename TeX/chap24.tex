@@ -1,5 +1,6 @@
 \hypertarget{json}{%
 \chapter{JSON}\label{json}}
+\thispagestyle{frontheadings}
 
 この章では、JavaScriptと密接な関係にあるJSONというデータフォーマットについて見ていきます。
 
@@ -8,7 +9,7 @@
 
 JSONはJavaScript Object
 Notationの略で、JavaScriptのオブジェクトリテラルをベースに作られた軽量なデータフォーマットです。
-JSONの仕様は\href{http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf}{ECMA-404}として標準化されています。
+JSONの仕様は\href{http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf}{ECMA-404}\footnote{\url{http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf}}として標準化されています。
 JSONは、人間にとって読み書きが容易で、マシンにとっても簡単にパースや生成を行える形式になっています。
 そのため、多くのプログラミング言語がJSONを扱う機能を備えています。
 
@@ -30,7 +31,7 @@ JSONはJavaScriptのオブジェクトリテラル、配列リテラル、各種
 }
 \end{lstlisting}
 
-JSONの細かい仕様に関しては\href{http://www.json.org/json-ja.html}{json.orgの日本語ドキュメント}にわかりやすくまとまっているので、参考にするとよいでしょう。
+JSONの細かい仕様に関しては\href{http://www.json.org/json-ja.html}{json.orgの日本語ドキュメント}\footnote{\url{http://www.json.org/json-ja.html}}にわかりやすくまとまっているので、参考にするとよいでしょう。
 
 \hypertarget{json-object}{%
 \section{\texorpdfstring{\texttt{JSON}オブジェクト}{JSONオブジェクト}}\label{json-object}}
@@ -150,10 +151,10 @@ console.log(JSON.stringify(obj, null, "\t"));
 またキーが\texttt{Symbol}である場合にもシリアライズの対象外になります。
 代表的な変換の例を次の表とサンプルコードに示します。
 
-\begin{longtable}[]{@{}ll@{}}
-\toprule
-シリアライズ前の値 & シリアライズ後の値\tabularnewline
-\midrule
+\begin{small}
+\begin{longtable}[l]{p{70mm}|p{70mm}}
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}{\textgt シリアライズ前の値} & {\textgt シリアライズ後の値}\tabularnewline
+\hline
 \endhead
 文字列・数値・真偽値 & 対応する値\tabularnewline
 null & null\tabularnewline
@@ -164,8 +165,9 @@ undefined & 変換されない（配列のときはnull）\tabularnewline
 Symbol & 変換されない（配列のときはnull）\tabularnewline
 RegExp & \{\}\tabularnewline
 Map, Set & \{\}\tabularnewline
-\bottomrule
+\hline
 \end{longtable}
+\end{small}
 
 \begin{lstlisting}
 // 値が関数のプロパティ
@@ -200,7 +202,8 @@ obj.self = obj;
 try {
     JSON.stringify(obj);
 } catch (error) {
-    console.error(error); // => "TypeError: Converting circular structure to JSON"
+    console.error(error); 
+    // => "TypeError: Converting circular structure to JSON"
 }
 \end{lstlisting}
 

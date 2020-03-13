@@ -1,7 +1,8 @@
 \hypertarget{wrapper-object}{%
 \chapter{ラッパーオブジェクト}\label{wrapper-object}}
+\thispagestyle{frontheadings}
 
-JavaScriptのデータ型はプリミティブ型とオブジェクトに分けられます（詳細は「\href{../data-type/README.md}{データ型とリテラル}」を参照）。
+JavaScriptのデータ型はプリミティブ型とオブジェクトに分けられます（詳細は「\hyperlink{data-type-and-literal}{データ型とリテラル}」を参照）。
 
 次のコードでは文字列リテラルでプリミティブ型の値である文字列を定義しています。
 プリミティブ型の値である文字列は\texttt{String}オブジェクトのインスタンスではありません。
@@ -36,10 +37,10 @@ str.toUpperCase(); // => "INPUT VALUE"
 
 ラッパーオブジェクトとプリミティブ型の対応は次のとおりです。
 
-\begin{longtable}[]{@{}lll@{}}
-\toprule
-ラッパーオブジェクト & プリミティブ型 & 例\tabularnewline
-\midrule
+\begin{small}
+\begin{longtable}[l]{p{73mm}|p{30mm}|p{30mm}}
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}{\textgt ラッパーオブジェクト} & {\textgt プリミティブ型} & {\textgt 例}\tabularnewline
+\hline
 \endhead
 \texttt{Boolean} & 真偽値 &
 \texttt{true}や\texttt{false}\tabularnewline
@@ -49,11 +50,14 @@ str.toUpperCase(); // => "INPUT VALUE"
 \texttt{"文字列"}\tabularnewline
 \texttt{Symbol} & シンボル &
 \texttt{Symbol("説明")}\tabularnewline
-\bottomrule
+\hline
 \end{longtable}
+\end{small}
 
+\begin{note}{}
 注記:
 \texttt{undefined}と\texttt{null}に対応するラッパーオブジェクトはありません。
+\end{note}
 
 注意点として、ラッパーオブジェクトは名前のとおりオブジェクトです。
 そのため、次のように\texttt{typeof}演算子でラッパーオブジェクトを見ると\texttt{"object"}です。
@@ -78,7 +82,7 @@ JavaScriptでは、プリミティブ型の値に対してプロパティアク�
 const str = "string";
 // プリミティブ型の値に対してメソッド呼び出しを行う
 str.toUpperCase();
-// `str`へアクセスする際に"string"がラッパーオブジェクトへ変換され、
+// strへアクセスする際に"string"がラッパーオブジェクトへ変換され、
 // ラッパーオブジェクトはStringのインスタンスなのでメソッドを呼び出せる
 // つまり、上のコードは下のコードと同じ意味である
 (new String(str)).toUpperCase();
@@ -95,7 +99,7 @@ const stringWrapper = new String("文字列");
 console.log(stringWrapper.valueOf()); // => "文字列"
 \end{lstlisting}
 
-このように、プリミティブ型の値からラッパーオブジェクトへの変換は自動的に行われます。\footnote{このようなプリミティブ型からオブジェクト型への変換はボックス化（ボクシング）、逆にオブジェクト型からプリミティブ型への変換はボックス化解除（アンボクシング）と呼ばれます。}
+このように、プリミティブ型の値からラッパーオブジェクトへの変換は自動的に行われます\footnote{このようなプリミティブ型からオブジェクト型への変換はボックス化（ボクシング）、逆にオブジェクト型からプリミティブ型への変換はボックス化解除（アンボクシング）と呼ばれます。}。
 
 JavaScriptには、リテラルを使ったプリミティブ型の文字列とラッパーオブジェクトを使った文字列オブジェクトがあります（真偽値や数値についても同様です）。
 この2つを明示的に使い分ける利点はないため、常にリテラルを使うことを推奨します。

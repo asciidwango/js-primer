@@ -1,19 +1,20 @@
 \hypertarget{string-unicode}{%
 \chapter{文字列とUnicode}\label{string-unicode}}
+\thispagestyle{frontheadings}
 
-「\href{../string/README.md}{文字列}」の章で紹介したように、JavaScriptは文字コードとしてUnicodeを採用し、エンコード方式としてUTF-16を採用しています。
+「\hyperlink{string}{文字列}」の章で紹介したように、JavaScriptは文字コードとしてUnicodeを採用し、エンコード方式としてUTF-16を採用しています。
 このUTF-16を採用しているのは、あくまでJavaScriptの内部で文字列を扱う際の文字コード（内部コード）です。
 そのため、コードを書いたファイル自体の文字コード（外部コード）は、UTF-8のようにUTF-16以外の文字コードであっても問題ありません。
 
-「\href{../string/README.md}{文字列}」の章では、これらの文字コードは意識していなかったように、内部的にどのような文字コードで扱っているかは意識せずに文字列処理ができます。
+「\hyperlink{string}{文字列}」の章では、これらの文字コードは意識していなかったように、内部的にどのような文字コードで扱っているかは意識せずに文字列処理ができます。
 しかし、JavaScriptのStringオブジェクトにはこの文字コード（Unicode）に特化したAPIもあります。
 また、絵文字を含む特定の文字を扱う際や「文字数」を数えるという場合には、内部コードであるUTF-16を意識しないといけない場面があります。
 
 この章では、文字列におけるUnicodeを意識しないといけない場面について見ていきます。
-また、Unicode自体もECMAScriptと同じように歴史がある仕様であり、Unicodeのすべてを紹介するには膨大な文字列が必要になります。
+また、Unicode自体もECMAScriptと同じように歴史がある仕様であり、Unicodeのすべてを紹介するには膨大な文章が必要になります。
 そのため、この章はJavaScriptにおけるUnicodeとUTF-16に話を限定しています。
 
-Unicodeの歴史を含めた文字コード自体について詳しく知りたい方は「\href{https://gihyo.jp/book/2019/978-4-297-10291-3}{プログラマのための文字コード技術入門}」や「\href{http://www.rutles.net/products/detail.php?product_id=298}{文字コード「超」研究}」等を参照してください。
+Unicodeの歴史を含めた文字コード自体について詳しく知りたい方は「\href{https://gihyo.jp/book/2019/978-4-297-10291-3}{プログラマのための文字コード技術入門}」\footnote{『［改訂新版］プログラマのための文字コード技術入門』矢野啓介 著、技術評論社}や「\href{http://www.rutles.net/products/detail.php?product_id=298}{文字コード「超」研究}」\footnote{『文字コード「超」研究 改訂第2版』深沢千尋 著、ラトルズ}等を参照してください。
 
 \hypertarget{code-point}{%
 \section{Code Point}\label{code-point}}
@@ -26,7 +27,7 @@ Code Pointを扱うメソッドの多くは、ECMAScript 2015で追加されて�
 ES2015で追加された\texttt{String\#codePointAt}メソッドや\texttt{String.fromCodePoint}メソッドを使うことで、文字列とCode
 Pointを相互変換できます。
 
-\texttt{String\#codePointAt}メソッド{$^{\rm ES2015}$}は、文字列の指定インデックスにある文字のCode
+\texttt{String\#codePointAt}メソッド\protect\icon{fig/es2015.eps}は、文字列の指定インデックスにある文字のCode
 Pointの値を返します。
 
 \begin{lstlisting}
@@ -34,13 +35,13 @@ Pointの値を返します。
 console.log("あ".codePointAt(0)); // => 12354
 \end{lstlisting}
 
-一方の\texttt{String.fromCodePoint}メソッド{$^{\rm ES2015}$}は、指定したCode
+一方の\texttt{String.fromCodePoint}メソッド\protect\icon{fig/es2015.eps}は、指定したCode
 Pointに対応する文字を返します。
 
 \begin{lstlisting}
-// Code Pointが`12354`の文字を取得する
+// Code Pointが12354の文字を取得する
 console.log(String.fromCodePoint(12354)); // => "あ"
-// `12354`を16進数リテラルで表記しても同じ結果
+// 12354を16進数リテラルで表記しても同じ結果
 console.log(String.fromCodePoint(0x3042)); // => "あ"
 \end{lstlisting}
 
@@ -51,12 +52,12 @@ Unicodeエスケープシーケンスでは、Code
 Pointの16進数の値が必要となります。
 \texttt{Number\#toString}メソッドの引数に基数となる\texttt{16}を渡すことで、16進数の文字列を取得できます。
 
-\begin{lstlisting}
+\begin{lstlisting}[escapechar=\%]
 // "あ"のCode Pointは12354
-const codePointOfあ = "あ".codePointAt(0);
+const codePointOf%\hbox{}%あ = "あ".codePointAt(0);
 // 12354の16進数表現は"3042"
-const hexOfあ = codePointOfあ.toString(16);
-console.log(hexOfあ);// => "3042"
+const hexOf%\hbox{}%あ = codePointOf%\hbox{}%あ.toString(16);
+console.log(hexOf%\hbox{}%あ);// => "3042"
 // Unicodeエスケープで"あ"を表現できる
 console.log("\u{3042}"); // => "あ"
 \end{lstlisting}
@@ -67,7 +68,7 @@ Unitの違い}\label{code-point-is-not-code-unit}}
 
 Code
 Point（符号位置）について紹介しましたが、JavaScriptの文字列の構成要素はUTF-16で変換されたCode
-Unit（符号単位）です（詳細は「\href{../string/README.md}{文字列}」の章を参照）。
+Unit（符号単位）です（詳細は「\hyperlink{string}{文字列}」の章を参照）。
 ある範囲の文字列については、Code Point（符号位置）とCode
 Unit（符号単位）は結果として同じ値となります。
 
@@ -103,17 +104,18 @@ console.log(codePoints); // => ["30a2", "30aa", "30a4"]
 実行した結果をまとめてみると、この文字列においてはCode PointとCode
 Unitが同じ値になっていることがわかります。
 
-\begin{longtable}[]{@{}llll@{}}
+\begin{small}
+\begin{longtable}[l]{p{73mm}|p{20mm}|p{20mm}|p{20mm}}
 \caption{文字列におけるCode UnitとCode Pointの表}\\
-\toprule
-インデックス & 0 & 1 & 2\tabularnewline
-\midrule
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}{\textgt インデックス} & \textgt{0} & \textgt{1} & \textgt{2}\tabularnewline
+\hline
 \endhead
 文字列 & ア & オ & イ\tabularnewline
 UnicodeのCode Point（16進数）& 0x30A2 & 0x30AA & 0x30A4\tabularnewline
 UTF-16のCode Unit（16進数） & 0x30A2 & 0x30AA & 0x30A4\tabularnewline
-\bottomrule
+\hline
 \end{longtable}
+\end{small}
 
 しかし、文字列によってはCode PointとCode
 Unitが異なる値となる場合があります。
@@ -147,17 +149,18 @@ console.log(codePoints); // => ["30ea", "30f3", "30b4", "1f34e"]
 実行した結果をまとめてみると、この絵文字を含む文字列においてはCode
 PointとCode Unitが異なる値となることがわかります。
 
-\begin{longtable}[]{@{}llllll@{}}
+\begin{small}
+\begin{longtable}[l]{p{50mm}|p{15mm}|p{15mm}|p{15mm}|p{15mm}|p{15mm}}
 \caption{絵文字を含んだ文字列におけるCode UnitとCode Pointの表}\\
-\toprule
-インデックス & 0 & 1 & 2 & 3 & 4\tabularnewline
-\midrule
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}{\textgt インデックス} & \textgt{0} & \textgt{1} & \textgt{2} & \textgt{3} & \textgt{4}\tabularnewline
+\hline
 \endhead
 文字列 & リ & ン & ゴ & \includegraphics[clip,height=4mm]{fig/apple.eps} & \tabularnewline
 UnicodeのCode Point（16進数）& 0x30ea & 0x30f3 & 0x30b4 & 0x1f34e & \tabularnewline
 UTF-16のCode Unit（16進数） & 0x30ea & 0x30f3 & 0x30b4 & 0xd83c & 0xdf4e\tabularnewline
-\bottomrule
+\hline
 \end{longtable}
+\end{small}
 
 具体的には、Code Pointの要素数が4つなのに対して、Code
 Unitの要素数が5つになっています。 また、Code Pointでは1つのCode
@@ -175,7 +178,7 @@ Unitを1対1の関係で表すことができません。
 
 このような場合に、UTF-16では2つCode
 Unitの組み合わせ（合計4バイト）で1つの文字（1つのCode
-Point）を表現します。この仕組みを\textbf{サロゲートペア}と呼びます。
+Point）を表現します。この仕組みを\textbf{\textgt{サロゲートペア}}と呼びます。
 
 \hypertarget{surrogate-pair}{%
 \section{サロゲートペア}\label{surrogate-pair}}
@@ -226,7 +229,7 @@ Pointを表現します。
 基本的には、文字列はCode
 Unitが順番に並んでいるものとして扱われるため、多くの\texttt{String}のメソッドはCode
 Unitごとに作用します。 また、インデックスアクセスもCode
-Unitごととなります。そのため、サロゲートペアで表現している文字列では、上位サロゲート（0番目）と下位サロゲート（1番目）へのインデックスアクセスになります。
+Unitごととなります。そのため、サロゲートペアで表現されている文字列では、上位サロゲート（0番目）と下位サロゲート（1番目）へのインデックスアクセスになります。
 
 \begin{lstlisting}
 // 内部的にはCode Unitが並んでいるものとして扱われている
@@ -236,7 +239,7 @@ console.log("𩸽"[0]); // => "\uD867"
 console.log("𩸽"[1]); // => "\uDE3D"
 \end{lstlisting}
 
-絵文字や「𩸽（ほっけ）」などのサロゲートペアで表現される文字が文字列中に含まれれると、Code
+絵文字や「𩸽（ほっけ）」などのサロゲートペアで表現される文字が文字列中に含まれると、Code
 Unitごとに扱う文字列処理は複雑になります。
 
 たとえば、\texttt{String\#length}プロパティは文字列におけるCode
@@ -280,7 +283,7 @@ Pointが順番に並んだものとして扱います。
 
 \texttt{/(.)のひらき/}というパターンで\texttt{.}にマッチする部分を取り出すことを例に見ていきます。
 
-まずは、\texttt{u}フラグをつけていない正規表現と\texttt{String\#match}メソッドでマッチした範囲を取り出してみます。\texttt{match}メソッドの返す値は\texttt{[マッチした全体の文字列, キャプチャされた文字列]}です（詳細は「\href{../string/README.md}{文字列}」の章を参照）。
+まずは、\texttt{u}フラグをつけていない正規表現と\texttt{String\#match}メソッドでマッチした範囲を取り出してみます。\texttt{match}メソッドの返す値は\texttt{[マッチした全体の文字列, キャプチャされた文字列]}です（詳細は「\hyperlink{string}{文字列}」の章を参照）。
 
 実際にマッチした結果を見てみると、\texttt{.}は𩸽の下位サロゲートである\texttt{\textbackslash ude3d}にマッチしていることがわかります（\texttt{\textbackslash ude3d}は単独では表示できないため、文字化けのように表示されます）。
 
@@ -325,13 +328,13 @@ console.log("\uD83C\uDF4E".length); // => 2
 JavaScriptには、文字列におけるCode
 Pointの個数を数えるメソッドは用意されていません。
 これを行うには、文字列をCode
-Pointごとに区切った配列へ変換して、配列の長さを数えるのが簡潔です。
+Pointごとに区切った配列へ変換して、配列の長さを数えるのが簡潔なやり方です。
 
-\texttt{Array.from}メソッド{$^{\rm ES2015}$}は、引数にiterableなオブジェクトを受け取り、それを元にした新しい配列を返します。
-iterableオブジェクトとは\texttt{Symbol.iterator}という特別な名前のメソッドを実装したオブジェクトの総称で、\texttt{for...of}文などで反復処理が可能なオブジェクトです（詳細は「\href{../loop/README.md\#for-of-statement}{ループと反復処理のfor\ldots{}of文}」を参照）。
+\texttt{Array.from}メソッド\protect\icon{fig/es2015.eps}は、引数にiterableなオブジェクトを受け取り、それを元にした新しい配列を返します。
+iterableオブジェクトとは\texttt{Symbol.iterator}という特別な名前のメソッドを実装したオブジェクトの総称で、\texttt{for...of}文などで反復処理が可能なオブジェクトです（詳細は「\hyperlink{loop-and-iteration}{ループと反復処理}」の章の「\hyperlink{for-of-statement}{for\ldots{}of文}」を参照）。
 
 文字列もiterableオブジェクトであるため、\texttt{Array.from}メソッドによって1文字（厳密にはCode
-Point）ごと区切った配列へと変換できます。先ほども紹介したように、文字列をiterableとして扱う場合はCode
+Point）ごとに区切った配列へと変換できます。先ほども紹介したように、文字列をiterableとして扱う場合はCode
 Pointごとに処理を行います。
 
 \begin{lstlisting}[escapechar=@]
@@ -355,7 +358,7 @@ Pointには制御文字などの視覚的に見えないものも定義されて
 
 先ほど紹介した\texttt{Array.from}メソッドを使えば、文字列をCode
 Pointで区切った文字の配列へと変換できます。
-配列にすれば、あとは「\href{../loop/README.md}{ループと反復処理}」の章で学んだ方法を使って、Code
+配列にすれば、あとは「\hyperlink{loop-and-iteration}{ループと反復処理}」の章で学んだ方法を使って、Code
 Pointごとに反復処理ができます。
 
 次のコードでは、文字列中に登場する\includegraphics[clip,height=4mm]{fig/apple.eps}の個数を数えています。
@@ -363,13 +366,13 @@ Pointごとに反復処理ができます。
 Pointごとの配列にし、配列を\texttt{codePoint}でフィルターした結果できた配列の要素数を返します。
 
 \begin{lstlisting}[escapechar=@]
-// 指定した`codePoint`の個数を数える
+// 指定したcodePointの個数を数える
 function countOfCodePoints(str, codePoint) {
     return Array.from(str).filter(item => {
         return item === codePoint;
     }).length;
 }
-console.log(countOfCodePoints("@\includegraphics[clip,height=3mm]{fig/fruits.eps}@", "@\includegraphics[clip,height=4mm]{fig/apple.eps}@")); // => 2
+console.log(countOfCodePoints("@\includegraphics[clip,height=3.3mm]{fig/fruits.eps}@", "@\includegraphics[clip,height=4mm]{fig/apple.eps}@")); // => 2
 \end{lstlisting}
 
 \texttt{for...of}による反復処理も文字列をCode
@@ -379,7 +382,7 @@ Pointごとに扱えます。
 先ほどのコードと同じ\texttt{countOfCodePoints}関数を\texttt{for...of}を使って実装してみます。
 
 \begin{lstlisting}[escapechar=@]
-// 指定した`codePoint`の個数を数える
+// 指定したcodePointの個数を数える
 function countOfCodePoints(str, codePoint) {
     let count = 0;
     for (const item of str) {
@@ -389,17 +392,17 @@ function countOfCodePoints(str, codePoint) {
     }
     return count;
 }
-console.log(countOfCodePoints("@\includegraphics[clip,height=3mm]{fig/fruits.eps}@", "@\includegraphics[clip,height=4mm]{fig/apple.eps}@")); // => 2
+console.log(countOfCodePoints("@\includegraphics[clip,height=3.3mm]{fig/fruits.eps}@", "@\includegraphics[clip,height=4mm]{fig/apple.eps}@")); // => 2
 \end{lstlisting}
 
 \hypertarget{conclusion}{%
-\section{終わりに}\label{conclusion}}
+\section{まとめ}\label{conclusion}}
 
 この章では、文字列とUnicodeの関係について簡潔に紹介しました。
 Unicodeにはこの章で紹介しきれなかった表現もあります。
 また、JavaScriptにはUnicodeをキレイに扱うAPIが用意されているとは言い切れない部分もあります。
 
-一方で「\href{../string/README.md}{文字列}」の章で紹介したように、Code
+一方で「\hyperlink{string}{文字列}」の章で紹介したように、Code
 UnitやCode Pointを意識しなくても柔軟で強力な文字列処理ができます。
 しかし、近年は絵文字を利用するケースが多くなったため、Code
 Pointを意識したプログラミングが必要となるケースも増えています。
