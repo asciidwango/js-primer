@@ -353,7 +353,7 @@ fn();
 {{book.console}}
 [import, var-null-invalid.js](./src/var-null-invalid.js)
 
-このコラムでは、説明のために`undefined`というローカル変数を宣言しましたが、`undefined`の再定義は非推奨です。
+ここでは、説明のために`undefined`というローカル変数を宣言しましたが、`undefined`の再定義は非推奨です。
 無用な混乱を生むだけなので避けるべきです。
 
 ### オブジェクトリテラル {#object}
