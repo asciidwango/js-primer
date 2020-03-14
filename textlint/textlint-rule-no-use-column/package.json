@@ -1,0 +1,12 @@
+{
+  "name": "textlint-rule-no-use-column",
+  "version": "1.0.0",
+  "description": "no use コラム",
+  "main": "index.js",
+  "keywords": [],
+  "author": "azu",
+  "license": "MIT",
+  "dependencies": {
+    "textlint-rule-helper": "^2.1.1"
+  }
+}
