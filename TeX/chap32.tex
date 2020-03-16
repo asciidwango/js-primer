@@ -1,12 +1,13 @@
 \hypertarget{todo-app}{%
-\chapter{ユースケース: Todoアプリ}\label{todo-app}}
+\chapter[ユースケース: Todoアプリケーション]{ユースケース: \\Todoアプリケーション}\label{todo-app}}
+\thispagestyle{frontheadings}
 
-ここではブラウザで動作するウェブアプリケーション（以下アプリ）のユースケースとして、Todoアプリを作成していきます。
+ここではブラウザで動作するウェブアプリケーションのユースケースとして、Todoアプリケーション（以下Todoアプリ）を作成していきます。
 ここで作成するTodoアプリは、タスクを入力し、そのタスクの完了状態をチェックボックスで管理するというアプリです。
 
-\href{../ajaxapp/README.md}{Ajax通信}のユースケースではGitHubからデータを取得して表示するだけであったため、状態を管理する部分はほとんどありませんでした。
+「\hyperlink{usecase-ajax}{Ajax通信}」のユースケースではGitHubからデータを取得して表示するだけであったため、状態を管理する部分はほとんどありませんでした。
 しかし、このTodoアプリはタスクの状態管理をするため、アプリとしての状態を管理する必要があります。
-このユースケースを通して、どのように状態を管理し、表示や処理を変更するかといったアプリを作るにあたり必要になる設計や考え方について見ていきます。
+このユースケースを通して、どのように状態を管理し、表示や処理を変更するかといったアプリを作るにあたって必要になる設計や考え方について見ていきます。
 
 作成するアプリは次の要件を満たすものとします。
 
@@ -19,12 +20,12 @@
   Todoアイテムを削除できる
 \end{itemize}
 
-\hypertarget{entrypoint}{%
+\hypertarget{entrypoint_todo}{%
 \section{エントリーポイント}\label{entrypoint}}
 
 エントリーポイントとは、アプリケーションの中で一番最初に呼び出される部分のことです。
 
-「\href{../../ajaxapp/entrypoint/README.md}{Ajax通信:エントリーポイント}」のユースケースでは、エントリーポイントはHTML（\texttt{index.html}）のみでした。
+「\hyperlink{usecase-ajax}{Ajax通信}」のユースケースでは、エントリーポイントはHTML（\texttt{index.html}）のみでした。
 まずHTMLが読み込まれ、次にHTMLの中に書かれている\texttt{script}要素で指定したJavaScriptファイルが読み込まれます。
 
 今回のTodoアプリはJavaScriptの処理をモジュール化し、それぞれのモジュールを別々のJavaScriptファイルとして作成していきます。
@@ -36,13 +37,6 @@ JavaScriptモジュールを別々の\texttt{script}要素で読み込むと、�
 これはJavaScriptモジュールをファイルにして\texttt{src}属性で読み込んだ場合も同様です。
 
 \begin{lstlisting}
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Module Scope</title>
-  </head>
-  <!--![marker]-->
   <script type="module">
     export const scopeA = "A";
   </script>
@@ -50,9 +44,6 @@ JavaScriptモジュールを別々の\texttt{script}要素で読み込むと、�
     // 異なるmoduleスコープの変数には直接アクセスできない
     console.log(scopeA); // => ReferenceError: scopeA is not defined
   </script>
-  <!--![marker]-->
-  <body></body>
-</html>
 \end{lstlisting}
 
 このようにモジュールを別々の\texttt{script}要素で扱うとモジュール同士は連携できません。
@@ -140,7 +131,7 @@ Origin Policy}により、JavaScriptモジュールが正しく動作しませ�
 
 コマンドラインで\texttt{todoapp}ディレクトリへ移動し、次のコマンドでローカルサーバーを起動します。
 \texttt{npx}コマンドを使って、この書籍用に作成された\texttt{@js-primer/local-server}というローカルサーバーモジュールをダウンロードと同時に実行します。
-まだ\texttt{npx}コマンドが用意できていなければ、先に「\href{../../setup-local-env/README.md}{アプリケーション開発の準備}」の章を参照してください。
+まだ\texttt{npx}コマンドが用意できていなければ、先に「\hyperlink{setup-local-env}{アプリケーション開発の準備}」の章を参照してください。
 
 \begin{lstlisting}
 # todoapp/ディレクトリに移動する
@@ -157,7 +148,7 @@ todoappのローカルサーバーを起動しました。
 起動したローカルサーバーのURL（\texttt{http://localhost:3000}）へブラウザでアクセスしてみましょう。
 ブラウザには\texttt{index.html}の内容が表示され、開発者ツールのコンソールに\texttt{index.js: loaded}というログが出力されていることが確認できます。
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=120mm]{fig/first-entry.png}
 \caption{Webコンソールにログが表示されている}
@@ -168,8 +159,8 @@ todoappのローカルサーバーを起動しました。
 
 Console
 APIで出力したログを確認するには、ウェブブラウザの開発者ツールを開く必要があります。
-ほとんどのブラウザに開発者ツールが同梱されていますが、本章ではFirefoxを使って確認します。
-開発者ツールの\textbf{コンソール}タブを開くとConsole
+ほとんどのブラウザに開発者ツールが同梱されていますが、本書ではFirefoxを使って確認します。
+開発者ツールの\textbf{\textgt{コンソール}}タブを開くとConsole
 APIで出力したログを確認できます。
 
 Firefoxの開発者ツールは次のいずれかの方法で開きます。
@@ -177,13 +168,13 @@ Firefoxの開発者ツールは次のいずれかの方法で開きます。
 \begin{itemize}
 \item
   Firefox
-  メニュー（メニューバーがある場合やmacOSでは、ツールメニュー）の Web
-  開発サブメニューで ``ウェブコンソール'' を選択する
+  メニュー（メニューバーがある場合やmacOSでは、ツールメニュー）のウェブ
+  開発サブメニューで``ウェブコンソール''を選択する
 \item
-  キーボードショートカット\texttt{Ctrl+Shift+K}（macOSでは\texttt{Command+Option+K}）を押下する
+  キーボードショートカット\keytop{Ctrl}+\keytop{Shift}+\keytop{K}（macOSでは\keytop{Command}+\keytop{Option}+\keytop{K}）を押下する
 \end{itemize}
 
-詳細はMDNの「{[}ウェブコンソールを開く{]}{[}{]}」を参照してください。
+詳細はMDNの「\href{https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console}{ウェブコンソールを開く}\footnote{\url{https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console}}」を参照してください。
 
 \hypertarget{error-not-display-console-log}{%
 \subsubsection{コンソールログが表示されない}\label{error-not-display-console-log}}
@@ -191,7 +182,7 @@ Firefoxの開発者ツールは次のいずれかの方法で開きます。
 HTMLは表示されるがコンソールログに\texttt{index.js: loaded}が表示されない場合は、次のような問題に該当してないかを確認してください。
 
 \begin{description}
-\item[エラー例] \texttt{index.js}の読み込みに失敗している
+\item[エラー例] \texttt{index.js}\textgt{の読み込みに失敗している}
 
 \texttt{script}要素の\texttt{src}属性に指定した\texttt{index.js}のパスにファイルが存在しているかを確認してください。
 \texttt{<script type="module" src="index.js">}とした場合は\texttt{index.html}と\texttt{index.js}は同じディレクトリに配置する必要があります。
@@ -203,14 +194,14 @@ Policy}により\texttt{index.js}の読み込みが失敗しています。
 先ほども紹介したように、\texttt{file:}からはじまるページ上からはJavaScriptモジュールは正しく動作しません。
 そのため、ローカルサーバーを起動し、ローカルサーバー（\texttt{http:}からはじまるURL）にアクセスしていることを確認してください。
 
-\item[エラー例] JavaScriptモジュールに非対応のブラウザを利用している
+\item[エラー例] \textgt{JavaScriptモジュールに非対応のブラウザを利用している}
 
 JavaScriptモジュールはまだ新しい機能であるため、バージョンが60以上のFirefoxが必要です。
 バージョンが60未満のFirefoxでは、JavaScriptモジュールである\texttt{index.js}が読み込めないためコンソールログは出力されません。
 
 今回のTodoアプリでは、ネイティブでJavaScriptモジュールに対応しているブラウザが必要です。
 \href{https://caniuse.com/\#feat=es6-module}{Can I
-Use}にネイティブでJavaScriptモジュールに対応しているブラウザがまとめられています。
+Use}\footnote{\url{https://caniuse.com/\#feat=es6-module}}にネイティブでJavaScriptモジュールに対応しているブラウザがまとめられています。
 非対応のブラウザでもBundlerと呼ばれるツールを使うことで対応できますが、本章では省略します。
 \end{description}
 
@@ -228,7 +219,7 @@ todoapp
 ├── index.html
 ├── index.js
 └── src
-    └── App.js
+      └── App.js
 \end{lstlisting}
 
 \texttt{src/App.js}ファイルを作成し、次のような内容のJavaScriptモジュールとします。
@@ -284,7 +275,7 @@ App initialized
 \texttt{import}文を使ったJavaScriptのモジュール読み込み時に起きる典型的なエラーと対処を次にまとめています。
 
 \begin{description}
-\item[エラー例] SyntaxError: import declarations may only appear at top level of a module
+\item[エラー例] \textgt{SyntaxError: import declarations may only appear at top level of a module}
 
 「\texttt{import}宣言はモジュールのトップレベルでしか利用できません」というエラーが出ています。
 このエラーが出ているということは、\texttt{import}文を使える条件を満たしていないということです。
@@ -301,7 +292,7 @@ JavaScriptには実行コンテキストとしてScriptとModuleがあります�
 実行コンテキストをモジュールとして実行するには\texttt{<script type="module" src="index.js">}のように\texttt{type=module}を指定する必要があります
 （\texttt{index.js}から\texttt{import}文で読み込んだ\texttt{App.js}は実行コンテキストを引き継ぐため、モジュールの実行コンテキストで処理されます）。
 
-\item[エラー例] モジュールのソース``http://localhost:3000/src/App''の読み込みに失敗しました。
+\item[エラー例] \textgt{モジュールのソース}\texttt{``http://localhost:3000/src/App''}\textgt{の読み込みに失敗しました。}
 
 \texttt{App.js}を読み込めないというエラーが出ています。
 エラーメッセージをよく見ると\texttt{App}となっていて\texttt{App.js}ではありません。
@@ -324,7 +315,7 @@ import { App } from "./src/App.js";
 \end{description}
 
 \hypertarget{conclusion}{%
-\subsection{まとめ}\label{conclusion}}
+\subsection{セクションのまとめ}\label{conclusion}}
 
 このセクションでは、エントリーポイントとなるHTMLを作成し、JavaScriptモジュールのエントリーポイントとなるJavaScriptファイルを読み込むところまでを実装しました。
 
@@ -354,7 +345,7 @@ import { App } from "./src/App.js";
 \hypertarget{app-structure}{%
 \section{アプリの構成要素}\label{app-structure}}
 
-HTMLとJavaScriptの\href{../entrypoint/README.md}{エントリーポイント}を作成しましたが、次はこのTodoアプリの構成要素を改めて見ていきましょう。
+HTMLとJavaScriptの\hyperlink{entrypoint_todo}{エントリーポイント}を作成しましたが、次はこのTodoアプリの構成要素を改めて見ていきましょう。
 
 Todoアプリには、次のような機能を実装していきます。
 Todoアイテムの追加、更新、削除、現在の状態の表示など複数の機能を持っています。
@@ -405,7 +396,7 @@ Todoアプリはブラウザで動くアプリケーションとして作成し�
 ここで定義したHTMLとCSSは最後までこの形のまま利用します。
 次のセクションから変更していくのはJavaScriptだけということになります。
 
-「\href{../entrypoint/README.md}{エントリーポイント}」のセクションで作成した\texttt{todoapp}ディレクトリの\texttt{index.html}を次の内容に変更します。
+「\hyperlink{entrypoint_todo}{エントリーポイント}」のセクションで作成した\texttt{todoapp}ディレクトリの\texttt{index.html}を次の内容に変更します。
 
 \begin{listtitle}
 index.html
@@ -452,7 +443,7 @@ index.html
 HTMLの内容を変更後にブラウザでアクセスすると次のような表示になります。
 まだJavaScriptでTodoアプリの機能は実装していませんが、見た目だけのTodoアプリはこれで完成です。
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=120mm]{./fig/todo-html.png}
 \caption{todoappのHTMLとCSSによる骨組み}
@@ -485,7 +476,7 @@ HTMLの\texttt{class}属性はJavaScriptの\texttt{class}構文とは無関係�
 
 今回の\texttt{todoapp}というクラス名を持つ要素を、CSSから\texttt{.todoapp}というCSSセレクタで指定できます。
 \href{https://developer.mozilla.org/ja/docs/Learn/CSS/Introduction_to_CSS/Selectors}{CSSセレクタ}とはクラス名などを使って、HTML要素を指定できる記法です。
-特定の「クラス名」を持つ要素の場合は\texttt{.クラス名}（クラス名の前にドット）で選択できます。
+特定の「クラス名」を持つ要素の場合は\texttt{.\hbox{}クラス名}（クラス名の前にドット）で選択できます。
 
 次のCSSコードでは、\texttt{todoapp}というクラス名を持つ要素の\texttt{background}プロパティの値を\texttt{black}にしています。
 つまり\texttt{todoapp}クラス名の要素の背景色を黒色にするという意味になります。
@@ -534,7 +525,7 @@ const form = document.querySelector("#js-form");
 この\texttt{div}要素の中身はJavaScriptで動的に更新されるため、HTMLでは目印となる\texttt{id}属性をつけています。
 
 初期表示時はTodoリストの中身がまだ空であるため、何も表示されていません。
-また\texttt{<!--}と\texttt{-->}で囲まれた範囲はHTMLのコメントであるため、表示されません。
+また\texttt{<!-\/-}と\texttt{-\/->}で囲まれた範囲はHTMLのコメントであるため、表示されません。
 
 \hypertarget{comment-todo-count}{%
 \subsubsection{5. Todoアイテム数の表示}\label{comment-todo-count}}
@@ -543,7 +534,7 @@ const form = document.querySelector("#js-form");
 初期表示時はTodoリストが空であるため0個となりますが、Todoアイテムを追加や削除する際には合わせて更新する必要があります。
 
 \hypertarget{conclusion}{%
-\subsection{まとめ}\label{conclusion}}
+\subsection{セクションのまとめ}\label{conclusion}}
 
 このセクションではHTMLでアプリの構造を定義し、CSSでアプリのスタイルを定義しました。
 次のセクションではJavaScriptモジュールを作成していき、現在は空であるTodoリストを更新していきます。
@@ -586,7 +577,7 @@ Todoアプリでは、ユーザーが次のような操作を行った場合に�
 \item
   入力欄にTodoアイテムのタイトルを入力する
 \item
-  入力欄でEnterキーを押して送信する
+  入力欄で\keytop{Enter}キーを押して送信する
 \item
   TodoリストにTodoアイテムが追加される
 \end{enumerate}
@@ -597,7 +588,7 @@ Todoアプリでは、ユーザーが次のような操作を行った場合に�
 \item
   Todoアイテムのタイトルを取得するために、input要素（入力欄）から内容を取得する
 \item
-  Enterキーで送信されたことを知るために、form要素の\texttt{submit}イベント（送信）を監視する
+  \keytop{Enter}キーで送信されたことを知るために、form要素の\texttt{submit}イベント（送信）を監視する
 \item
   入力内容をタイトルにしたTodoアイテムを作成し、Todoリスト（\texttt{\#js-todo-list}）にTodoアイテム要素を追加する
 \end{itemize}
@@ -607,13 +598,13 @@ Todoアプリでは、ユーザーが次のような操作を行った場合に�
 \hypertarget{input-to-console}{%
 \subsection{入力内容をコンソールに表示する}\label{input-to-console}}
 
-form要素でEnterキーを押して送信すると\texttt{submit}イベントが発生します。
+form要素で\keytop{Enter}キーを押して送信すると\texttt{submit}イベントが発生します。
 この\texttt{submit}イベントはHTML要素の\texttt{addEventListener}メソッドを利用することで受け取れます。
 
 次のコードでは、指定したform要素から\texttt{submit}イベントが発生したときに呼び出されるコールバック関数を登録しています。
 
 \begin{lstlisting}
-// `id="js-form`の要素を取得
+// id="js-form"の要素を取得
 const formElement = document.querySelector("#js-form");
 // form要素から発生したsubmitイベントを受け取る
 formElement.addEventListener("submit", (event) => {
@@ -621,7 +612,7 @@ formElement.addEventListener("submit", (event) => {
 });
 \end{lstlisting}
 
-このようなイベントが発生した際に呼ばれるコールバック関数のことを\textbf{イベントリスナー}（イベントをリッスンするものという意味）と呼びます。
+このようなイベントが発生した際に呼ばれるコールバック関数のことを\textbf{\textgt{イベントリスナー}}（イベントをリッスンするものという意味）と呼びます。
 またイベントリスナーはイベントハンドラーとも呼ばれることがありますが、この書籍ではこの2つの言葉は同じ意味として扱います。
 
 フォームが送信されたときに入力内容をコンソールに表示するには、
@@ -636,9 +627,9 @@ console.log(inputElement.value); // => "input要素の入力内容"
 \end{lstlisting}
 
 これらを組み合わせて\texttt{App.js}に「入力内容をコンソールに表示」する機能を実装してみましょう。
-\texttt{App}クラスに\texttt{mount}というメソッドを定義して、その中に処理を書いていきましょう。
+\texttt{App}クラスに\texttt{mount}というメソッドを定義して、その中に処理を書いていきます。
 
-次のコードでは、フォーム（\texttt{\#js-form}）をEnterで送信すると、input要素（\texttt{\#js-form-input}）の内容をコンソールへ表示する処理を実装しています。
+次のコードでは、フォーム（\texttt{\#js-form}）を\keytop{Enter}で送信すると、input要素（\texttt{\#js-form-input}）の内容をコンソールへ表示する処理を実装しています。
 
 \begin{listtitle}
 src/App.js
@@ -672,9 +663,9 @@ app.mount();
 \listend
 
 これらの変更後にブラウザでページをリロードすると、\texttt{App\#mount}メソッドが実行されるようになります。
-\texttt{submit}イベントがリッスンされているので、入力欄に何か入力してEnterで送信してみるとその内容がコンソールに表示されます。
+\texttt{submit}イベントがリッスンされているので、入力欄に何か入力して\keytop{Enter}で送信してみるとその内容がコンソールに表示されます。
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=120mm]{./fig/form-event.png}
 \caption{入力内容がコンソールに表示される}
@@ -722,7 +713,7 @@ todoapp
 ├── index.html
 ├── index.js (App#mountの呼び出し)
 └── src
-    └── App.js (App#mountの実装)
+      └── App.js (App#mountの実装)
 \end{lstlisting}
 
 ここまでのTodoアプリは次のURLで確認できます。
@@ -744,9 +735,8 @@ APIで作成すると見通しが悪くなるため、HTML文字列からHTML要
 
 次の\texttt{html-util.js}というファイルを\texttt{src/view/html-util.js}というパスに作成します。
 
-この\texttt{html-util.js}は「\href{../../ajaxapp/display/README.md\#html-to-dom}{ajaxapp:
-HTML文字列をDOMに追加する}」でも利用した\texttt{escapeSpecialChars}をベースにしています。
-ajaxappでの\texttt{escapeHTML}タグ関数では出力は\textbf{HTML文字列}でしたが、今回作成する\texttt{element}タグ関数の出力は\textbf{HTML要素}（Element）です。
+この\texttt{html-util.js}は「\hyperlink{usecase-ajax}{Ajax通信}」の「\hyperlink{html-to-dom}{HTML文字列をDOMに追加する}」でも利用した\texttt{escapeSpecialChars}をベースにしています。
+ajaxappでの\texttt{escapeHTML}タグ関数では出力は\textbf{\textgt{HTML文字列}}でしたが、今回作成する\texttt{element}タグ関数の出力は\textbf{\textgt{HTML要素}}（Element）です。
 
 Todoリスト（\texttt{\#js-todo-list}）というすでに存在する要素に対して要素を\textbf{追加}するには、HTML文字列ではなくHTML要素が必要になります。
 また、HTML文字列に対しては\texttt{addEventListener}でイベントをリッスンできません。
@@ -819,7 +809,7 @@ elementタグ関数のサンプルコード
 const newElement = element`<ul>
     <li>新しい要素</li>
 </ul>`;
-// 作成した要素を`document.body`の子要素として追加（appendChild）する
+// 作成した要素をdocument.bodyの子要素として追加（appendChild）する
 document.body.appendChild(newElement);
 \end{lstlisting}
 \listend
@@ -834,10 +824,10 @@ document.body.appendChild(newElement);
 render関数のサンプルコード
 \end{listtitle}
 \begin{lstlisting}
-// `ul`要素の空タグを作成
+// ul要素の空タグを作成
 const newElement = element`<ul />`;
-// `newElement`を`document.body`の子要素として追加する
-// すでに`document.body`以下に要素がある場合は上書きされる
+// newElementをdocument.bodyの子要素として追加する
+// すでにdocument.body以下に要素がある場合は上書きされる
 render(newElement, document.body);
 \end{lstlisting}
 \listend
@@ -880,15 +870,16 @@ export class App {
 \end{lstlisting}
 \listend
 
-これらの変更後にブラウザでページをリロードし、フォームに入力してからEnterを押すとTodoリストに\textbf{Todoアイテムが追加}されます。
-また、入力内容を送信するたびに\texttt{todoItemCount}が加算され、\textbf{Todoアイテム数}の表示も更新されます。
+これらの変更後にブラウザでページをリロードし、フォームに入力してから\keytop{Enter}を押すとTodoリストに\textbf{\textgt{Todoアイテムが追加}}されます。
+また、入力内容を送信するたびに\texttt{todoItemCount}が加算され、\textbf{\textgt{Todoアイテム数}}の表示も更新されます。
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=120mm]{./fig/add-todo-item.png}
 \caption{Todoリストへアイテムを追加}
 \end{figure}
 
+\newpage
 このセクションでの変更点は次のとおりです。
 
 \begin{lstlisting}
@@ -896,9 +887,9 @@ todoapp
 ├── index.html
 ├── index.js
 └── src
-    ├── App.js(Todoアイテムの表示の実装)
-    └── view
-        └── html-util.js(新規追加)
+      ├── App.js(Todoアイテムの表示の実装)
+      └── view
+            └── html-util.js(新規追加)
 \end{lstlisting}
 
 ここまでのTodoアプリは次のURLで確認できます。
@@ -909,13 +900,13 @@ todoapp
 \end{itemize}
 
 \hypertarget{conclusion}{%
-\subsection{まとめ}\label{conclusion}}
+\subsection{セクションのまとめ}\label{conclusion}}
 
 このセクションではform要素の\texttt{submit}イベントをリッスンし、入力内容を元にTodoアイテムを作成し、これをTodoリストに追加する機能を実装しました。
 今回のTodoアイテムの追加のように、多くのウェブアプリは何らかのイベントをリッスンして表示を更新します。
-このような、イベントが発生したことを元に処理を進める方法を\textbf{イベント駆動}（イベントドリブン）と呼びます。
+このような、イベントが発生したことを元に処理を進める方法を\textbf{\textgt{イベント駆動}}（イベントドリブン）と呼びます。
 
-今回のTodoアイテムの追加では、\texttt{submit}イベントを入力にして、Todoリスト要素を\textbf{直接HTML要素として追加}するという方法を取っていました。
+今回のTodoアイテムの追加では、\texttt{submit}イベントを入力にして、Todoリスト要素を\textbf{\textgt{直接HTML要素として追加}}するという方法を取っていました。
 このように直接DOMを更新するという方法はコードが短くなりますが、DOMのみにしか状態が残らないため柔軟性がなくなるという問題があります。
 次のセクションでは、実際に起きる問題やそれを解決するための仕組みを見ていきます。
 
@@ -957,12 +948,12 @@ Todoアイテムを追加する機能を実装しましたが、イベントを�
 具体的には、Todoアイテムごとに\texttt{id}属性などのユニークな識別子がないため、特定のアイテムを指定して更新や削除をする機能が実装できません。
 
 このセクションでは、まずどのような点で柔軟性の問題が起きやすいのかを見ていきます。
-そして、柔軟性や識別子の問題を解決するために\textbf{モデル}という概念を導入し、「Todoアイテムの追加」の機能をリファクタリングしていきます。
+そして、柔軟性や識別子の問題を解決するために\textbf{\textgt{モデル}}という概念を導入し、「Todoアイテムの追加」の機能をリファクタリングしていきます。
 
 \hypertarget{direct-dom-modification-issue}{%
 \subsection{直接DOMを更新する問題}\label{direct-dom-modification-issue}}
 
-「\href{../form-event/README.md}{Todoアイテムの追加を実装する}」では、操作した結果発生したイベントという入力に対して、DOM（表示）を直接更新していました。
+「\hyperlink{form-event}{Todoアイテムの追加を実装する}」では、操作した結果発生したイベントという入力に対して、DOM（表示）を直接更新していました。
 そのため、TodoリストにTodoアイテムが何個あるか、どのようなアイテムがあるかという状態がDOM上にしか存在しないことになります。
 
 この場合にTodoアイテムの状態を更新するには、HTML要素にTodoアイテムの情報（タイトルや識別子となるidなど）をすべて埋め込む必要があります。
@@ -973,40 +964,17 @@ Todoアイテムを追加する機能を実装しましたが、イベントを�
 
 次の表に\textbf{操作}に対して更新する\textbf{表示}をまとめてみます。
 
-\begin{longtable}[]{@{}lll@{}}
-\toprule
-\begin{minipage}[b]{0.10\columnwidth}\raggedright
-機能\strut
-\end{minipage} & \begin{minipage}[b]{0.15\columnwidth}\raggedright
-操作\strut
-\end{minipage} & \begin{minipage}[b]{0.66\columnwidth}\raggedright
-表示\strut
-\end{minipage}\tabularnewline
-\midrule
+\begin{small}
+\begin{longtable}[l]{p{30mm}|p{30mm}|p{80mm}}
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}{\textgt 機能} & {\textgt 操作} & {\textgt 表示}\tabularnewline
+\hline
 \endhead
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-Todoアイテムの追加\strut
-\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedright
-フォームを入力して送信\strut
-\end{minipage} & \begin{minipage}[t]{0.66\columnwidth}\raggedright
-Todoリスト（\texttt{\#js-todo-list}）にTodoアイテム要素を作成して子要素として追加。合わせてTodoアイテム数（\texttt{\#js-todo-count}）を更新\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-Todoアイテムの更新\strut
-\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedright
-チェックボックスをクリック\strut
-\end{minipage} & \begin{minipage}[t]{0.66\columnwidth}\raggedright
-Todoリスト（\texttt{\#js-todo-list}）にある指定したTodoアイテム要素のチェック状態を更新\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-Todoアイテムの削除\strut
-\end{minipage} & \begin{minipage}[t]{0.15\columnwidth}\raggedright
-削除ボタンをクリック\strut
-\end{minipage} & \begin{minipage}[t]{0.66\columnwidth}\raggedright
-Todoリスト（\texttt{\#js-todo-list}）にある指定したTodoアイテム要素を削除。合わせてTodoアイテム数（\texttt{\#js-todo-count}）を更新\strut
-\end{minipage}\tabularnewline
-\bottomrule
+Todoアイテムの追加 & フォームを入力して送信 & Todoリスト（\texttt{\#js-todo-list}）にTodoアイテム要素を作成して子要素として追加。合わせてTodoアイテム数（\texttt{\#js-todo-count}）を更新\tabularnewline
+Todoアイテムの更新 & チェックボックスをクリック & Todoリスト（\texttt{\#js-todo-list}）にある指定したTodoアイテム要素のチェック状態を更新\tabularnewline
+Todoアイテムの削除 & 削除ボタンをクリック & Todoリスト（\texttt{\#js-todo-list}）にある指定したTodoアイテム要素を削除。合わせてTodoアイテム数（\texttt{\#js-todo-count}）を更新\tabularnewline
+\hline
 \end{longtable}
+\end{small}
 
 1つの操作に対する表示の更新箇所が増えるほど、操作に対する処理（リスナーの処理）が複雑化していくことが予想できます。
 
@@ -1023,7 +991,7 @@ Todoリスト（\texttt{\#js-todo-list}）にある指定したTodoアイテム�
 \subsection{モデルを導入する}\label{introduce-model}}
 
 この問題を避けるために、Todoアイテムという情報をJavaScriptクラスとしてモデル化します。
-ここでのモデルとはTodoアイテムやTodoリストなどの\textbf{モノの状態や操作方法}を定義したオブジェクトという意味です。
+ここでのモデルとはTodoアイテムやTodoリストなどの\textbf{\textgt{モノの状態や操作方法}}を定義したオブジェクトという意味です。
 クラスでは操作方法はメソッドとして実装し、状態はインスタンスのプロパティで管理できるため、今回はクラスでモデルを表現します。
 
 たとえば、Todoリストを表現するモデルとして\texttt{TodoListModel}クラスを考えます。
@@ -1032,71 +1000,40 @@ TodoリストにはTodoアイテムを追加できるので、\texttt{TodoListMo
 このようにTodoリストをクラスで表現する際に、オブジェクトがどのような処理や状態を持つかを考えて実装します。
 
 このようにモデルを考えた後、先ほどの操作と表示の間にモデルを入れることを考えてみます。
-「フォームを入力して送信」という\textbf{操作}をした場合には、\texttt{TodoListModel}（Todoリスト）に対して\texttt{TodoItemModel}（Todoアイテム）を追加します。
-そして、\texttt{TodoListModel}からTodoアイテムの一覧を取得し、それを元にDOMを組み立て、\textbf{表示}を更新します。
+「フォームを入力して送信」という\textbf{\textgt{操作}}をした場合には、\texttt{TodoListModel}（Todoリスト）に対して\texttt{TodoItemModel}（Todoアイテム）を追加します。
+そして、\texttt{TodoListModel}からTodoアイテムの一覧を取得し、それを元にDOMを組み立て、\textbf{\textgt{表示}}を更新します。
 
 先ほどの表にモデルを入れてみます。
-\textbf{操作}に対する\textbf{モデルの処理}はさまざまですが、\textbf{操作}に対する\textbf{表示}の処理はどの場合も同じになります。
-これは表示箇所が増えた場合でも\textbf{表示}の処理の複雑さが一定に保てることを意味しています。
+\textbf{\textgt{操作}}に対する\textbf{\textgt{モデルの処理}}はさまざまですが、\textbf{\textgt{操作}}に対する\textbf{\textgt{表示}}の処理はどの場合も同じになります。
+これは表示箇所が増えた場合でも\textbf{\textgt{表示}}の処理の複雑さが一定に保てることを意味しています。
 
-\begin{longtable}[]{@{}llll@{}}
-\toprule
-\begin{minipage}[b]{0.10\columnwidth}\raggedright
-機能\strut
-\end{minipage} & \begin{minipage}[b]{0.14\columnwidth}\raggedright
-操作\strut
-\end{minipage} & \begin{minipage}[b]{0.48\columnwidth}\raggedright
-モデルの処理\strut
-\end{minipage} & \begin{minipage}[b]{0.17\columnwidth}\raggedright
-表示\strut
-\end{minipage}\tabularnewline
-\midrule
+\begin{small}
+\begin{longtable}[l]{p{30mm}|p{30mm}|p{50mm}|p{30mm}}
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}{\textgt 機能} & {\textgt 操作} & {\textgt モデルの処理} & {\textgt 表示}\tabularnewline
+\hline
 \endhead
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-Todoアイテムの追加\strut
-\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
-フォームを入力して送信\strut
-\end{minipage} & \begin{minipage}[t]{0.48\columnwidth}\raggedright
-\texttt{TodoListModel}へ新しい\texttt{TodoItemModel}を追加\strut
-\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
-\texttt{TodoListModel}を元に表示を更新\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-Todoアイテムの更新\strut
-\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
-チェックボックスをクリック\strut
-\end{minipage} & \begin{minipage}[t]{0.48\columnwidth}\raggedright
-\texttt{TodoListModel}の指定した\texttt{TodoItemModel}の状態を更新\strut
-\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
-\texttt{TodoListModel}を元に表示を更新\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-Todoアイテムの削除\strut
-\end{minipage} & \begin{minipage}[t]{0.14\columnwidth}\raggedright
-削除ボタンをクリック\strut
-\end{minipage} & \begin{minipage}[t]{0.48\columnwidth}\raggedright
-\texttt{TodoListModel}から指定の\texttt{TodoItemModel}を削除\strut
-\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright
-\texttt{TodoListModel}を元に表示を更新\strut
-\end{minipage}\tabularnewline
-\bottomrule
+Todoアイテムの追加 & フォームを入力して送信 & \texttt{TodoListModel}へ新しい\texttt{TodoItemModel}を追加 & \texttt{TodoListModel}を元に表示を更新\tabularnewline
+Todoアイテムの更新 & チェックボックスをクリック & \texttt{TodoListModel}の指定した\texttt{TodoItemModel}の状態を更新 & \texttt{TodoListModel}を元に表示を更新\tabularnewline
+Todoアイテムの削除 & 削除ボタンをクリック & \texttt{TodoListModel}から指定の\texttt{TodoItemModel}を削除 & \texttt{TodoListModel}を元に表示を更新\tabularnewline
+\hline
 \end{longtable}
+\end{small}
 
 この表を元に改めて先ほどの問題点を見ていきましょう。
 
-\begin{quote}
-Todoリストの状態がDOM上にしか存在しないため、状態をすべてDOM上に文字列で埋め込まないといけない
-\end{quote}
+\begin{itemize}
+\item Todoリストの状態がDOM上にしか存在しないため、状態をすべてDOM上に文字列で埋め込まないといけない
+\end{itemize}
 
 モデルであるクラスのインスタンスを参照すれば、Todoアイテムの情報が手に入ります。
 またモデルはただのJavaScriptクラスであるため、文字列ではない情報も保持できます。
 そのため、DOMにすべての情報を埋め込む必要はありません。
 
-\begin{quote}
-操作に対して更新する表示箇所が増えてくると、表示の処理が複雑化する
-\end{quote}
+\begin{itemize}
+\item 操作に対して更新する表示箇所が増えてくると、表示の処理が複雑化する
+\end{itemize}
 
-表示はモデルの状態を元にしてHTML要素を作成し、表示を更新します。
+モデルの状態を元にしてHTML要素を作成し、表示を更新します。
 モデルの状態が変化していなければ、表示は変わらなくても問題ありません。
 
 そのため操作したタイミングではなく、モデルの状態が変化したタイミングで表示を更新すればよいはずです。
@@ -1138,14 +1075,14 @@ Node.jsでは、\texttt{events}と呼ばれる組み込みのモジュールで�
 しかし、「\texttt{TodoListModel}が更新されたとき」というのはとても具体的な処理であるため、モデルを増やすたびに同じ処理をそれぞれのモデルへ実装するのは大変です。
 
 そのため、先ほどのイベントの仕組みを持った概念として\texttt{EventEmitter}というクラスを作成します。
-そして\texttt{TodoListModel}は作成した\texttt{EventEmitter}を継承することでイベントの仕組みを導入していきます。
+そして\texttt{TodoListModel}には作成した\texttt{EventEmitter}を継承することでイベントの仕組みを導入していきます。
 
 \begin{itemize}
 \item
-  親クラス（\texttt{EventEmitter}）:
+  親クラス（\texttt{EventEmitter}）: 
   イベントをディスパッチしたとき、登録されているコールバック関数（イベントリスナー）を呼び出すクラス
 \item
-  子クラス（\texttt{TodoListModel}）:
+  子クラス（\texttt{TodoListModel}）: 
   値を更新したとき、登録されているコールバック関数を呼び出すクラス
 \end{itemize}
 
@@ -1183,7 +1120,7 @@ export class EventEmitter {
      * @param {Function} listener イベントリスナー
      */
     addEventListener(type, listener) {
-        // 指定したイベントに対応するSetを作成しリスナー関数を登録する
+        // 指定したイベントに対応するSetを作成し、リスナー関数を登録する
         if (!this._listeners.has(type)) {
             this._listeners.set(type, new Set());
         }
@@ -1227,7 +1164,7 @@ export class EventEmitter {
 \end{lstlisting}
 \listend
 
-この\texttt{EventEmitter}では次のようにイベントのリッスンとイベントのディスパッチの機能が利用できます。
+この\texttt{EventEmitter}では、次のようにイベントのリッスンとイベントのディスパッチの機能が利用できます。
 リッスン側は\texttt{addEventListener}メソッドでイベントの種類（\texttt{type}）に対するイベントリスナー（\texttt{listener}）を登録します。
 ディスパッチ側は\texttt{emit}メソッドでイベントをディスパッチし、イベントリスナーを呼び出します。
 
@@ -1258,7 +1195,7 @@ event.emit("test-event");
 \texttt{src/model/}ディレクトリを新たに作成し、このディレクトリに各モデルクラスを実装したファイルを作成します。
 
 作成するモデルは、Todoリストを表現する\texttt{TodoListModel}と各Todoアイテムを表現する\texttt{TodoItemModel}です。
-\texttt{TodoListModel}が複数の\texttt{TodoItemModel}を保持することでTodoリストを表現することになります。
+\texttt{TodoListModel}が複数の\texttt{TodoItemModel}を保持することでTodoリストを表現します。
 
 \begin{itemize}
 \item
@@ -1285,7 +1222,8 @@ let todoIdx = 0;
 export class TodoItemModel {
     /**
      * @param {string} title Todoアイテムのタイトル
-     * @param {boolean} completed Todoアイテムが完了済みならばtrue、そうでない場合はfalse
+     * @param {boolean} completed Todoアイテムが完了済みならばtrue、
+     * そうでない場合はfalse
      */
     constructor({ title, completed }) {
         // idは自動的に連番となりそれぞれのインスタンスごとに異なるものとする
@@ -1313,7 +1251,7 @@ const completedItem = new TodoItemModel({
     title: "完了済みのTodoアイテム",
     completed: true
 });
-// それぞれの`id`は異なる
+// それぞれのidは異なる
 console.log(item.id !== completedItem.id); // => true
 \end{lstlisting}
 \listend
@@ -1400,7 +1338,7 @@ todoListModel.onChange(() => {
     console.log("TodoListの状態が変わりました");
 });
 // 新しいTodoアイテムを追加する
-// => `onChange`で登録したイベントリスナーが呼び出される
+// => onChangeで登録したイベントリスナーが呼び出される
 todoListModel.addTodo(new TodoItemModel({
     title: "新しいTodoアイテム",
     completed: false
@@ -1456,7 +1394,8 @@ export class App {
             // containerElementの中身をtodoListElementで上書きする
             render(todoListElement, containerElement);
             // アイテム数の表示を更新
-            todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.getTotalCount()}`;
+            todoItemCountElement.textContent = `Todoアイテム数: 
+                                      ${this.todoListModel.getTotalCount()}`;
         });
         // 3. フォームを送信したら、新しいTodoItemModelを追加する
         formElement.addEventListener("submit", (event) => {
@@ -1539,7 +1478,8 @@ export class App {
             // containerElementの中身をtodoListElementで上書きする
             render(todoListElement, containerElement);
             // アイテム数の表示を更新
-            todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.getTotalCount()}`;
+            todoItemCountElement.textContent = `Todoアイテム数: 
+                                      ${this.todoListModel.getTotalCount()}`;
         });
         // ...省略...
     }
@@ -1557,9 +1497,9 @@ export class App {
 直接DOMへ\texttt{appendChild}していた部分を\texttt{TodoListModel\#addTodo}メソッドを使ってモデルを更新する処理へ置き換えるだけです。
 
 \hypertarget{conclusion}{%
-\subsection{まとめ}\label{conclusion}}
+\subsection{セクションのまとめ}\label{conclusion}}
 
-今回のセクションでは、前セクションの「\href{../form-event/README.md}{Todoアイテムの追加を実装する}」をモデルとイベントの仕組みを使うようにリファクタリングしました。
+今回のセクションでは、前セクションの「\hyperlink{form-event}{Todoアイテムの追加を実装する}」をモデルとイベントの仕組みを使うようにリファクタリングしました。
 コード量は増えましたが、次に実装する「Todoアイテムの更新」や「Todoアイテムの削除」も同様の仕組みで実装できます。
 前回のセクションのように操作に対してDOMを直接更新した場合、追加は簡単ですが既存の要素を指定する必要がある更新や削除は難しくなります。
 
@@ -1591,7 +1531,7 @@ export class App {
 \hypertarget{todo-item-update-and-delete}{%
 \section{Todoアイテムの更新と削除を実装する}\label{todo-item-update-and-delete}}
 
-このセクションではTodoアプリの残りの機能である「Todoアイテムの更新」と「Todoアイテムの削除」を実装していきます。
+このセクションでは、Todoアプリの残りの機能である「Todoアイテムの更新」と「Todoアイテムの削除」を実装していきます。
 
 「Todoアイテムの更新」とは、チェックボックスをクリックして未完了だったらチェックをつけて完了済みに、逆に完了済みのアイテムを未完了へとトグルする機能のことです。完了状態をTodoアイテムごとに持ち、それぞれのTodoの進捗を管理できる機能です。
 
@@ -1610,7 +1550,7 @@ HTMLの\href{https://developer.mozilla.org/ja/docs/Web/HTML/Element/Input/checkb
 \texttt{<input type="checkbox">}は\texttt{checked}属性がない場合はチェックが外れた状態のチェックボックスとなります。
 一方\texttt{<input type="checkbox" checked>}のように\texttt{checked}属性がある場合はチェックがついたチェックボックスとなります。
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=100mm]{./fig/input-checkbox.png}
 \caption{input要素のchecked属性の違い}
@@ -1633,12 +1573,17 @@ src/App.jsから抜粋
                 // 完了済みならchecked属性をつけ、未完了ならchecked属性を外す
                 // input要素にはcheckboxクラスをつける
                 const todoItemElement = item.completed
-                    ? element`<li><input type="checkbox" class="checkbox" checked><s>${item.title}</s></input></li>`
-                    : element`<li><input type="checkbox" class="checkbox">${item.title}</input></li>`;
+                    ? element`<li><input type="checkbox" 
+                             class="checkbox" checked><s>${item.title}
+                             </s></input></li>`
+                    : element`<li><input type="checkbox" 
+                             class="checkbox">${item.title}
+                             </input></li>`;
                 todoListElement.appendChild(todoItemElement);
             });
             render(todoListElement, containerElement);
-            todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.getTotalCount()}`;
+            todoItemCountElement.textContent = `Todoアイテム数: 
+                                     ${this.todoListModel.getTotalCount()}`;
         });
 \end{lstlisting}
 \listend
@@ -1675,10 +1620,12 @@ src/App.jsから抜粋
 そして、見つけた\texttt{input}要素に対して\texttt{addEventListener}メソッドで\texttt{change}イベントが発生したときに呼ばれるコールバック関数を登録できます。
 
 \begin{lstlisting}
-const todoItemElement = element`<li><input type="checkbox" class="checkbox">${item.title}</input></li>`;
+const todoItemElement = element`<li><input type="checkbox" class="checkbox">
+                               ${item.title}</input></li>`;
 // クラス名checkboxを持つ要素を取得
 const inputCheckboxElement = todoItemElement.querySelector(".checkbox");
-// `<input type="checkbox">`のチェックが変更されたときに呼ばれるイベントリスナーを登録
+// <input type="checkbox">のチェックが変更されたときに呼ばれるイベントリスナーを
+// 登録
 inputCheckboxElement.addEventListener("change", () => {
     // チェックボックスの表示が変わったタイミングで呼び出される処理
     // TODO: ここでモデルを更新する処理を呼ぶ
@@ -1715,7 +1662,7 @@ src/model/TodoListModel.jsの変更点を抜粋
      * @param {{ id:number, completed: boolean }}
      */
     updateTodo({ id, completed }) {
-        // `id`が一致するTodoItemを見つけ、あるなら完了状態の値を更新する
+        // idが一致するTodoItemを見つけ、あるなら完了状態の値を更新する
         const todoItem = this.items.find(todo => todo.id === id);
         if (!todoItem) {
             return;
@@ -1748,10 +1695,14 @@ src/App.jsから変更点を抜粋
             todoItems.forEach(item => {
                 // 完了済みならchecked属性をつけ、未完了ならchecked属性を外す
                 const todoItemElement = item.completed
-                    ? element`<li><input type="checkbox" class="checkbox" checked><s>${item.title}</s></input></li>`
-                    : element`<li><input type="checkbox" class="checkbox">${item.title}</input></li>`;
+                    ? element`<li><input type="checkbox" 
+                             class="checkbox" checked><s>${item.title}
+                             </s></input></li>`
+                    : element`<li><input type="checkbox" class="checkbox">
+                             ${item.title}</input></li>`;
                 // チェックボックスがトグルしたときのイベントにリスナー関数を登録
-                const inputCheckboxElement = todoItemElement.querySelector(".checkbox");
+                const inputCheckboxElement = 
+                                  todoItemElement.querySelector(".checkbox");
                 inputCheckboxElement.addEventListener("change", () => {
                     // 指定したTodoアイテムの完了状態を反転させる
                     this.todoListModel.updateTodo({
@@ -1762,7 +1713,8 @@ src/App.jsから変更点を抜粋
                 todoListElement.appendChild(todoItemElement);
             });
             render(todoListElement, containerElement);
-            todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.getTotalCount()}`;
+            todoItemCountElement.textContent = `Todoアイテム数: 
+                                      ${this.todoListModel.getTotalCount()}`;
         });
 \end{lstlisting}
 \listend
@@ -1773,7 +1725,7 @@ src/App.jsから変更点を抜粋
 これで表示とモデルが同期でき「Todoアイテムの更新処理」が実装できました。
 
 \hypertarget{delete}{%
-\subsection{削除機能}\label{delete}}
+\subsection{Todoアイテムの削除}\label{delete}}
 
 次は「Todoアイテムの削除機能」を実装していきます。
 
@@ -1801,7 +1753,7 @@ src/model/TodoListModel.jsの変更点を抜粋
      * @param {{ id: number }}
      */
     deleteTodo({ id }) {
-        // `id`に一致しないTodoItemだけを残すことで、`id`に一致するTodoItemを削除する
+        // idに一致しないTodoItemだけを残すことで、idに一致するTodoItemを削除する
         this.items = this.items.filter(todo => {
             return todo.id !== id;
         });
@@ -1831,7 +1783,8 @@ src/App.jsから変更点を抜粋
             todoItems.forEach(item => {
                 // 削除ボタン(x)をそれぞれ追加する
                 const todoItemElement = item.completed
-                    ? element`<li><input type="checkbox" class="checkbox" checked>
+                    ? element`<li><input type="checkbox" 
+                        class="checkbox" checked>
                         <s>${item.title}</s>
                         <button class="delete">x</button>
                     </input></li>`
@@ -1840,15 +1793,18 @@ src/App.jsから変更点を抜粋
                         <button class="delete">x</button>
                     </input></li>`;
                 // チェックボックスのトグル処理は変更なし
-                const inputCheckboxElement = todoItemElement.querySelector(".checkbox");
+                const inputCheckboxElement = 
+                                  todoItemElement.querySelector(".checkbox");
                 inputCheckboxElement.addEventListener("change", () => {
                     this.todoListModel.updateTodo({
                         id: item.id,
                         completed: !item.completed
                     });
                 });
-                // 削除ボタン(x)がクリックされたときにTodoListModelからアイテムを削除する
-                const deleteButtonElement = todoItemElement.querySelector(".delete");
+                // 削除ボタン(x)がクリックされたときにTodoListModelからアイテムを
+                // 削除する
+                const deleteButtonElement = 
+                                    todoItemElement.querySelector(".delete");
                 deleteButtonElement.addEventListener("click", () => {
                     this.todoListModel.deleteTodo({
                         id: item.id
@@ -1857,7 +1813,8 @@ src/App.jsから変更点を抜粋
                 todoListElement.appendChild(todoItemElement);
             });
             render(todoListElement, containerElement);
-            todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.getTotalCount()}`;
+            todoItemCountElement.textContent = `Todoアイテム数: 
+                                      ${this.todoListModel.getTotalCount()}`;
         });
 \end{lstlisting}
 \listend
@@ -1959,10 +1916,12 @@ import { element } from "./html-util.js";
 
 export class TodoItemView {
     /**
-     * `todoItem`に対応するTodoアイテムのHTML要素を作成して返す
+     * todoItemに対応するTodoアイテムのHTML要素を作成して返す
      * @param {TodoItemModel} todoItem
-     * @param {function({id:string, completed: boolean})} onUpdateTodo チェックボックスの更新イベントリスナー
-     * @param {function({id:string})} onDeleteTodo 削除ボタンのクリックイベントリスナー
+     * @param {function({id:string, completed: boolean})} onUpdateTodo 
+     * チェックボックスの更新イベントリスナー
+     * @param {function({id:string})} onDeleteTodo 削除ボタンのクリック
+     * イベントリスナー
      * @returns {Element}
      */
     createElement(todoItem, { onUpdateTodo, onDeleteTodo }) {
@@ -2050,10 +2009,12 @@ import { TodoItemView } from "./TodoItemView.js";
 
 export class TodoListView {
     /**
-     * `todoItems`に対応するTodoリストのHTML要素を作成して返す
+     * todoItemsに対応するTodoリストのHTML要素を作成して返す
      * @param {TodoItemModel[]} todoItems TodoItemModelの配列
-     * @param {function({id:string, completed: boolean})} onUpdateTodo チェックボックスの更新イベントリスナー
-     * @param {function({id:string})} onDeleteTodo 削除ボタンのクリックイベントリスナー
+     * @param {function({id:string, completed: boolean})} onUpdateTodo 
+     * チェックボックスの更新イベントリスナー
+     * @param {function({id:string})} onDeleteTodo 削除ボタンのクリック
+     * イベントリスナー
      * @returns {Element} TodoItemModelの配列に対応したリストのHTML要素
      */
     createElement(todoItems, { onUpdateTodo, onDeleteTodo }) {
@@ -2081,7 +2042,7 @@ export class TodoListView {
 \hypertarget{app-refactoring}{%
 \subsection{Appのリファクタリング}\label{app-refactoring}}
 
-最後に作成した\texttt{TodoItemView}クラスと\texttt{TodoListView}クラスを使って\texttt{App}クラスをリファクタリングしていきます。
+最後に、作成した\texttt{TodoItemView}クラスと\texttt{TodoListView}クラスを使って\texttt{App}クラスをリファクタリングしていきます。
 
 \texttt{App.js}を次のように\texttt{TodoListView}クラスを使うように書き換えます。
 \texttt{onChange}のリスナー関数で\texttt{TodoListView}クラスを使ってTodoリストのHTML要素を作るように変更します。
@@ -2128,7 +2089,8 @@ export class App {
                 }
             });
             render(todoListElement, containerElement);
-            todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.getTotalCount()}`;
+            todoItemCountElement.textContent = `Todoアイテム数: 
+                                      ${this.todoListModel.getTotalCount()}`;
         });
         formElement.addEventListener("submit", (event) => {
             event.preventDefault();
@@ -2150,51 +2112,19 @@ export class App {
 
 \texttt{App}クラスで登録しているイベントのリスナー関数を見てみると次の4種類となっています。
 
-\begin{longtable}[]{@{}lll@{}}
-\toprule
-\begin{minipage}[b]{0.15\columnwidth}\raggedright
-イベントの流れ\strut
-\end{minipage} & \begin{minipage}[b]{0.43\columnwidth}\raggedright
-リスナー関数\strut
-\end{minipage} & \begin{minipage}[b]{0.34\columnwidth}\raggedright
-役割\strut
-\end{minipage}\tabularnewline
-\midrule
+\begin{small}
+\begin{longtable}[l]{p{30mm}|p{60mm}|p{50mm}}
+\hline
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}{\textgt イベントの流れ} & {\textgt リスナー関数} & {\textgt 役割}\tabularnewline
+\hline
 \endhead
-\begin{minipage}[t]{0.15\columnwidth}\raggedright
-\texttt{Model} -\textgreater{}
-\texttt{View}\strut
-\end{minipage} & \begin{minipage}[t]{0.43\columnwidth}\raggedright
-\texttt{this.todoListModel.onChange(listener)}\strut
-\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright
-\texttt{TodoListModel}が変更イベントを受け取る\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.15\columnwidth}\raggedright
-\texttt{View} -\textgreater{}
-\texttt{Model}\strut
-\end{minipage} & \begin{minipage}[t]{0.43\columnwidth}\raggedright
-\texttt{formElement.addEventListener("submit", listener)}\strut
-\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright
-フォームの送信イベントを受け取る\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.15\columnwidth}\raggedright
-\texttt{View} -\textgreater{}
-\texttt{Model}\strut
-\end{minipage} & \begin{minipage}[t]{0.43\columnwidth}\raggedright
-\texttt{onUpdateTodo: listener}\strut
-\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright
-Todoアイテムのチェックボックスの更新イベントを受け取る\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.15\columnwidth}\raggedright
-\texttt{View} -\textgreater{}
-\texttt{Model}\strut
-\end{minipage} & \begin{minipage}[t]{0.43\columnwidth}\raggedright
-\texttt{onDeleteTodo: listener}\strut
-\end{minipage} & \begin{minipage}[t]{0.34\columnwidth}\raggedright
-Todoアイテムの削除イベントを受け取る\strut
-\end{minipage}\tabularnewline
-\bottomrule
+\texttt{Model} → \texttt{View} & \texttt{this.todoListModel.onChange(listener)} & \texttt{TodoListModel}が変更イベントを受け取る\tabularnewline
+\texttt{View} → \texttt{Model} & \texttt{formElement.addEventListener("submit", listener)} & フォームの送信イベントを受け取る\tabularnewline
+\texttt{View} → \texttt{Model} & \texttt{onUpdateTodo: listener} & Todoアイテムのチェックボックスの更新イベントを受け取る\tabularnewline
+\texttt{View} → \texttt{Model} & \texttt{onDeleteTodo: listener} & Todoアイテムの削除イベントを受け取る\tabularnewline
+\hline
 \end{longtable}
+\end{small}
 
 イベントの流れがViewからModelとなっているリスナー関数が3箇所あり、それぞれリスナー関数はコード上バラバラな位置に書かれています。
 また、それぞれのリスナー関数はTodoアプリの機能と対応していることがわかります。
@@ -2222,7 +2152,8 @@ export class App {
      * @param {string} title
      */
     handleAdd(title) {
-        this.todoListModel.addTodo(new TodoItemModel({ title, completed: false }));
+        this.todoListModel.addTodo(new TodoItemModel({ title, 
+            completed: false }));
     }
 
     /**
@@ -2258,7 +2189,8 @@ export class App {
                 }
             });
             render(todoListElement, containerElement);
-            todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.getTotalCount()}`;
+            todoItemCountElement.textContent = `Todoアイテム数: 
+                                     ${this.todoListModel.getTotalCount()}`;
         });
 
         formElement.addEventListener("submit", (event) => {
@@ -2296,7 +2228,7 @@ export class App {
 
 実はこのTodoアプリにはまだアプリケーションとして、完成していない部分があります。
 
-入力欄でEnterキーを連打すると、空のTodoアイテムが追加されてしまうのは意図しない挙動です。
+入力欄で\keytop{Enter}キーを連打すると、空のTodoアイテムが追加されてしまうのは意図しない挙動です。
 また、\texttt{App\#mount}で\texttt{TodoListModel\#onChange}などのイベントリスナーを登録していますが、そのイベントリスナーを解除していません。
 このTodoアプリではあまり問題にはなりませんが、イベントリスナーは登録したままだとメモリリークにつながる場合もあります。
 
@@ -2341,20 +2273,20 @@ window.addEventListener("unload", () => {
 このようなモジュールの分け方などの設計には正解はなく、さまざまな考え方があります。
 
 今回Todoアプリという題材をユースケースに選んだのは、JavaScriptのウェブアプリケーションではよく利用されている題材であるためです。
-さまざまなライブラリを使ったTodoアプリの実装が\href{http://todomvc.com/}{TodoMVC}と呼ばれるサイトにまとめられています。
-今回作成したTodoアプリは、TodoMVCからフィルター機能などを削ったものをライブラリを使わずに実装したものです。\footnote{ライブラリやフレームワークを使わずに実装したJavaScriptをVanilla
-  JSと呼ぶことがあります。}
+さまざまなライブラリを使ったTodoアプリの実装が\href{http://todomvc.com/}{TodoMVC}\footnote{\url{http://todomvc.com/}}と呼ばれるサイトにまとめられています。
+今回作成したTodoアプリは、TodoMVCからフィルター機能などを削ったものをライブラリを使わずに実装したものです\footnote{ライブラリやフレームワークを使わずに実装したJavaScriptをVanilla
+  JSと呼ぶことがあります。}。
 
 現実では、ライブラリをまったく使わずウェブアプリケーションを実装することはほとんどありません。
 ライブラリを使うことで、\texttt{html-util.js}のようなものは自分で書く必要がなくなったり、最後の課題として残ったライフサイクルの問題なども解決しやすくなります。
 
-しかし、ライブラリを使って開発する場合でも、第一部の基本文法や第二部のユースケースで紹介したようなJavaScriptの基礎は重要です。
+しかし、ライブラリを使って開発する場合でも、第1部の基本文法や第2部のユースケースで紹介したようなJavaScriptの基礎は重要です。
 なぜならライブラリも、これらの基礎の上に実装されているためです。
 
 また、作るアプリケーションの種類や目的によって適切なライブラリは異なります。
 ライブラリによっては魔法のような機能を提供しているものもありますが、それらも基礎となる技術を使っていることは覚えておいてください。
 
-この書籍ではJavaScriptの基礎を中心に紹介しましたが、「\href{../../../basic/ecmascript/README.md}{ECMAScript}」の章で紹介したようにJavaScriptの基礎も年々更新されています。
+この書籍ではJavaScriptの基礎を中心に紹介しましたが、「\hyperlink{ecmascript}{ECMAScript}」の章で紹介したようにJavaScriptの基礎も年々更新されています。
 基礎が更新されると応用であるライブラリも新しいものが登場し、定番だったものも徐々に変化していきます。
 知らなかったものが出てくるのは、JavaScript自体が成長しているということです。
 

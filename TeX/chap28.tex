@@ -1,10 +1,11 @@
 \hypertarget{ecmascript}{%
 \chapter{ECMAScript}\label{ecmascript}}
+\thispagestyle{frontheadings}
 
 ここまでJavaScriptの基本文法について見てきましたが、その文法を定めるECMAScriptという仕様自体がどのように変化していくのかを見ていきましょう。
 
 ECMAScriptは\href{http://www.ecma-international.org/}{Ecma
-International}という団体によって標準化されている仕様です。 Ecma
+International}\footnote{\url{http://www.ecma-international.org/}}という団体によって標準化されている仕様です。 Ecma
 InternationalはECMAScript以外にもC\#やDartなどの標準化作業をしています。
 Ecma Internationalの中のTechnical Committee
 39（TC39）という技術委員会が中心となって、ECMAScript仕様について議論しています。
@@ -15,10 +16,10 @@ Ecma Internationalの中のTechnical Committee
 
 ここで、簡単にECMAScriptのバージョンの歴史を振り返ってみましょう。
 
-\begin{longtable}[]{@{}ll@{}}
-\toprule
-バージョン & リリース時期\tabularnewline
-\midrule
+\begin{small}
+\begin{longtable}[l]{p{60mm}|p{70mm}}
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}{\textgt バージョン} & {\textgt リリース時期}\tabularnewline
+\hline
 \endhead
 1 & 1997年6月\tabularnewline
 2 & 1998年6月\tabularnewline
@@ -31,8 +32,9 @@ Ecma Internationalの中のTechnical Committee
 2016 & 2016年6月\tabularnewline
 2017 & 2017年6月\tabularnewline
 以下毎年リリース &\tabularnewline
-\bottomrule
+\hline
 \end{longtable}
+\end{small}
 
 ES5.1からES2015がでるまで4年もの歳月がかかっているのに対して、ES2015以降は毎年リリースされています。
 毎年安定したリリースを行えるようになったのは、ES2015以降に仕様策定プロセスの変更が行われたためです。
@@ -40,7 +42,7 @@ ES5.1からES2015がでるまで4年もの歳月がかかっているのに対�
 \hypertarget{living-standard}{%
 \section{Living StandardとなるECMAScript}\label{living-standard}}
 
-現在、ECMAScriptの仕様書のドラフトはGitHub上の\href{https://github.com/tc39/ecma262}{tc39/ecma262}で管理されており、日々更新されています。
+現在、ECMAScriptの仕様書のドラフトはGitHub上の\href{https://github.com/tc39/ecma262}{tc39/ecma262}\footnote{\url{https://github.com/tc39/ecma262}}で管理されており、日々更新されています。
 そのため、本当の意味での最新のECMAScript仕様は\url{https://tc39.github.io/ecma262/}となります。
 このように更新ごとにバージョン番号をつけずに、常に最新版を公開する仕様のことを\textbf{Living
 Standard}と呼びます。
@@ -62,16 +64,16 @@ ES2015以前はすべての仕様の合意が取れるまで延々と議論を�
 この問題を解消するために、TC39は毎年リリースする形へとECMAScriptの策定プロセスを変更しました。
 
 この策定プロセスはES2015のリリース後に適用され、このプロセスで初めてリリースされたのがES2016となります。
-ES2016以降では、次のような仕様策定のプロセスで議論を進めて仕様が決定されています。\footnote{この策定プロセスは\url{https://tc39.github.io/process-document/}に詳細が書かれています。}
+ES2016以降では、次のような仕様策定のプロセスで議論を進めて仕様が決定されています\footnote{この策定プロセスは\url{https://tc39.github.io/process-document/}に詳細が書かれています。}。
 
 仕様に追加する機能（API、構文など）をそれぞれ個別の\textbf{プロポーザル}（提案書）として進めていきます。
 現在策定中のプロポーザルはGitHub上の\href{https://github.com/tc39/proposals}{tc39/proposals}に一覧が公開されています。
 それぞれのプロポーザルは責任者である\textbf{チャンピオン}と\textbf{ステージ}（Stage）と呼ばれる\texttt{0}から\texttt{4}の5段階の状態を持ちます。
 
-\begin{longtable}[]{@{}cl@{}}
-\toprule
-ステージ & ステージの概要\tabularnewline
-\midrule
+\begin{small}
+\begin{longtable}[l]{p{15mm}|p{125mm}}
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}{\textgt ステージ} & {\textgt ステージの概要}\tabularnewline
+\hline
 \endhead
 0 & アイデアの段階\tabularnewline
 1 & 機能提案の段階\tabularnewline
@@ -80,8 +82,9 @@ ES2016以降では、次のような仕様策定のプロセスで議論を進�
 仕様としては完成しており、ブラウザの実装やフィードバックを求める段階\tabularnewline
 4 &
 仕様策定が完了し、2つ以上の実装が存在している正式にECMAScriptにマージできる段階\tabularnewline
-\bottomrule
+\hline
 \end{longtable}
+\end{small}
 
 2ヶ月に一度行われるTC39のミーティングにおいて、プロポーザルごとにステージを進めるかどうかを議論します。
 このミーティングの議事録もGitHub上の\href{https://github.com/tc39/tc39-notes}{tc39/tc39-notes}にて公開されています。
@@ -90,19 +93,19 @@ ES2016以降では、次のような仕様策定のプロセスで議論を進�
 
 この仕様策定プロセスの変更は、ECMAScriptに含まれる機能の形にも影響しています。
 
-たとえば、\texttt{class}構文の策定は\textbf{最大限に最小のクラス}（maximally
+たとえば、\texttt{class}構文の策定は\textbf{\textgt{最大限に最小のクラス}}（maximally
 minimal classes）と呼ばれる形で提案されています。
 これによりES2015で\texttt{class}構文が導入されましたが、クラスとして合意が取れる最低限の機能だけの状態で入りました。
 その他のクラスの機能は別のプロポーザルとして提案され、ES2015以降に持ち越された形で議論が進められています。
 
 このような合意が取れる最低限の形でプロポーザルを進めていくのには、ES4の苦い失敗が背景にあります。
 ES4ではECMAScriptに多くの変更を入れることを試みましたが、TC39内でも意見が分かれ、最終的に合意できませんでした。
-これによりES4の策定に割いた数年分のリソースが無駄になってしまったという経緯があります。\footnote{ES2015の仕様編集者であるAllen
+これによりES4の策定に割いた数年分のリソースが無駄になってしまったという経緯があります\footnote{ES2015の仕様編集者であるAllen
   Wirfs-Brock氏の書いた\href{http://wirfs-brock.com/allen/files/papers/standpats-asianplop2016.pdf}{Programming
-  Language Standardization}に詳細が書かれています。}
+  Language Standardization}に詳細が書かれています（\url{http://wirfs-brock.com/allen/files/papers/standpats-asianplop2016.pdf}）。}。
 
-ES2016以降の策定プロセスでも、すべてのプロポーザルが仕様に入るわけではありません。\footnote{\href{https://github.com/tc39/proposals/blob/master/inactive-proposals.md}{Inactive
-  Proposals}に策定を中止したプロポーザルの一覧が公開されています。}
+ES2016以降の策定プロセスでも、すべてのプロポーザルが仕様に入るわけではありません\footnote{\href{https://github.com/tc39/proposals/blob/master/inactive-proposals.md}{Inactive
+  Proposals}に策定を中止したプロポーザルの一覧が公開されています（\url{https://github.com/tc39/proposals/blob/master/inactive-proposals.md}）。}。
 別の代替プロポーザルが出た場合や後方互換性を保てない場合などにプロポーザルの策定を中断する場合があります。
 しかし、この場合でもプロポーザルという単位であるため策定作業の無駄は最小限で済みます。
 このようにモジュール化されたプロポーザルは入れ替えがしやすいという性質もあります。
@@ -119,12 +122,12 @@ ECMAScriptの策定プロセスのステージ4に「2つ以上の実装が存�
 Transpilerとは、新しい構文を既存の機能で再現できるようにソースコードを変換するツールのことです。
 たとえば、ES2015で\texttt{class}構文が導入されましたが、ES5では\texttt{class}は予約語であるため構文エラーとなり実行できません。
 Transpilerでは、\texttt{class}構文を含むソースコードを\texttt{function}キーワードを使って疑似的に再現するコードへ変換します。
-Transpilerとしては\href{https://babeljs.io/}{Babel}や\href{https://www.typescriptlang.org/}{TypeScript}などが有名です。
+Transpilerとしては\href{https://babeljs.io/}{Babel}\footnote{\url{https://babeljs.io/}}や\href{https://www.typescriptlang.org/}{TypeScript}\footnote{\url{https://www.typescriptlang.org/}}などが有名です。
 
 Polyfillとは、新しい関数やメソッドなどの仕様を満たすような実装を提供するライブラリのことです。
 たとえば、ES2016では\texttt{Array\#includes}というメソッドが追加されました。
 構文とは異なり\texttt{Array\#includes}のようなメソッドはビルトインオブジェクトを書き換えることで実装できます。
-Polyfillを提供するものとしては\href{https://github.com/zloirock/core-js}{core-js}や\href{https://polyfill.io/v2/docs/}{polyfill.io}などが有名です。
+Polyfillを提供するものとしては\href{https://github.com/zloirock/core-js}{core-js}\footnote{\url{https://github.com/zloirock/core-js}}や\href{https://polyfill.io/v2/docs/}{polyfill.io}\footnote{\url{https://polyfill.io/v2/docs/}}などが有名です。
 
 注意点としてはTranspilerやPolyfillは、あくまで既存の機能を用いて新しい機能の再現を試みているだけにすぎません。
 そのため、既存の機能で再現ができないプロポーザル（機能）はTranspilerやPolyfillでは再現できません。
@@ -133,7 +136,7 @@ Polyfillを提供するものとしては\href{https://github.com/zloirock/core-
 \hypertarget{meaning-specification-process}{%
 \section{仕様や策定プロセスを知る意味}\label{meaning-specification-process}}
 
-こうしたECMAScriptという仕様や策定プロセスを知る意味は何があるのでしょうか？　主に次のような理由で知る意味があると考えています。
+こうしたECMAScriptという仕様や策定プロセスを知る意味には何があるのでしょうか？　主に次のような理由で知る意味があると考えています。
 
 \begin{itemize}
 \item
@@ -151,7 +154,7 @@ Polyfillを提供するものとしては\href{https://github.com/zloirock/core-
 言語の詳細を知りたい場合にはECMAScriptという仕様を参照できます。
 
 しかしながら、JavaScriptの言語機能に関しては\href{https://developer.mozilla.org/ja/}{MDN
-Web Docs}という優れたリファレンスサイトなどがあります。
+Web Docs}\footnote{\url{https://developer.mozilla.org/ja/}}という優れたリファレンスサイトなどがあります。
 そのため、使い方を覚えたいなどの範囲ではECMAScriptの仕様そのものを参照する機会は少ないでしょう。
 
 \hypertarget{to-progress}{%

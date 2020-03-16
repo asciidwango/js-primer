@@ -1,5 +1,6 @@
 \hypertarget{usecase-ajax}{%
 \chapter{ユースケース: Ajax通信}\label{usecase-ajax}}
+\thispagestyle{frontheadings}
 
 ここではウェブブラウザ上でAjax通信をするユースケースとして、GitHubのユーザーIDからプロフィール情報を取得するアプリケーションを作成します。
 
@@ -20,7 +21,7 @@
 エントリーポイントとは、アプリケーションの中で一番最初に呼び出される部分のことです。
 アプリケーションを作成するにあたり、まずはエントリーポイントを用意しなければなりません。
 
-Webアプリケーションにおいては、常にHTMLドキュメントがエントリーポイントとなります。
+ウェブアプリケーションにおいては、常にHTMLドキュメントがエントリーポイントとなります。
 ウェブブラウザによりHTMLドキュメントが読み込まれたあとに、HTMLドキュメント中で読み込まれたJavaScriptが実行されます。
 
 \hypertarget{create-project-directory}{%
@@ -68,7 +69,7 @@ console.log("index.js: loaded");
 \end{lstlisting}
 \listend
 
-ここでの\texttt{ajaxapp}ディレクトリのファイル配置は次のようになっていれば問題ありません。
+\texttt{ajaxapp}ディレクトリのファイル配置が次のようになっていれば問題ありません。
 
 \begin{lstlisting}
 ajaxapp
@@ -90,7 +91,7 @@ Policy}のセキュリティ制限により、多くの場面でアプリケー�
 
 コマンドラインで\texttt{ajaxapp}ディレクトリへ移動し、次のコマンドでローカルサーバーを起動します。
 次のコマンドでは、この書籍用に作成された\texttt{@js-primer/local-server}というローカルサーバーモジュールをダウンロードと同時に実行します。
-まだ\texttt{npx}コマンドの用意ができていなければ、先に\href{../../setup-local-env/README.md}{アプリケーション開発の準備}を参照してください。
+まだ\texttt{npx}コマンドの用意ができていなければ、先に「\hyperlink{setup-local-env}{アプリケーション開発の準備}」を参照してください。
 
 \begin{lstlisting}
 $ npx @js-primer/local-server
@@ -104,20 +105,20 @@ Firefoxの開発者ツールは次のいずれかの方法で開きます。
 
 \begin{itemize}
 \item
-  Firefox メニュー（メニューバーがある場合や macOS
-  では、ツールメニュー）の Web 開発サブメニューで ``Web コンソール''
+  Firefoxメニュー（メニューバーがある場合やmacOS
+  では、ツールメニュー）のウェブ開発サブメニューで``ウェブコンソール''
   を選択する
 \item
-  キーボードショートカット Ctrl+Shift+K（macOS では
-  Command+Option+K）を押下する
+  キーボードショートカット\keytop{Ctrl}+\keytop{Shift}+\keytop{K}（macOSでは
+  \keytop{Command}+\keytop{Option}+\keytop{K}）を押下する
 \end{itemize}
 
-詳細は``\href{https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console}{Webコンソールを開く}''を参照してください。
+詳細は``\href{https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console}{ウェブコンソールを開く}''\footnote{\url{https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console}}を参照してください。
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=120mm]{fig/fig-1.png}
-\caption{ログが表示されているWebコンソール}
+\caption{ログが表示されているウェブコンソール}
 \end{figure}
 
 \hypertarget{web-browsers-and-dom}{%
@@ -150,8 +151,8 @@ button.textContent = "Push Me";
 document.body.appendChild(button);
 \end{lstlisting}
 
-JavaScriptとDOMはWebアプリケーション開発において切っても切り離せない関係です。
-動的なWebアプリケーションを作るためには、JavaScriptによるDOMの操作が不可欠です。
+JavaScriptとDOMはウェブアプリケーション開発において切っても切り離せない関係です。
+動的なウェブアプリケーションを作るためには、JavaScriptによるDOMの操作が不可欠です。
 今回のユースケースでもGitHubのAPIから取得したデータを元に、動的にDOMツリーを操作して画面の表示を更新します。
 
 しかし、DOMは言語機能（ECMAScript）ではなくブラウザが実装しているAPIです。
@@ -323,7 +324,7 @@ index.jsでは関数を定義しているだけで、呼び出しは行ってい
 準備ができたら、ローカルサーバーを立ち上げてindex.htmlにアクセスしましょう。
 ボタンを押すとHTTP通信が行われ、コンソールにステータスコードとレスポンスのログが出力されます。
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=120mm]{fig/fig-2.png}
 \caption{Fetchで取得したデータの表示}
@@ -331,7 +332,7 @@ index.jsでは関数を定義しているだけで、呼び出しは行ってい
 
 また、開発者ツールのネットワークパネルを開くと、GitHubのサーバーに対してHTTP通信が行われていることを確認できます。
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=120mm]{fig/fig-3.png}
 \caption{開発者ツールでHTTP通信の記録を確認する}
@@ -349,7 +350,8 @@ APIによる\texttt{fetchUserInfo}関数は、XHRを使うと次のように書�
 function fetchUserInfo(userId) {
     // リクエストを作成する
     const request = new XMLHttpRequest();
-    request.open("GET", `https://api.github.com/users/${encodeURIComponent(userId)}`);
+    request.open("GET", 
+            `https://api.github.com/users/${encodeURIComponent(userId)}`);
     request.addEventListener("load", () => {
         // リクエストが成功したかを判定する
         // Fetch APIのresponse.okと同等の意味
@@ -373,7 +375,7 @@ Fetch
 APIはXHRを置き換えるために作られたもので、多くのユースケースではXHRを使う必要はなくなっています。
 ただし、古いブラウザではFetch
 APIが実装されていないため、ブラウザの互換性を保つためにXHRを使う場面もまだあります。
-XHRの詳しい使い方については、\href{https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest}{XHRの利用についてのドキュメント}を参照してください。
+XHRの詳しい使い方については、\href{https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest}{XHRの利用についてのドキュメント}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest}}を参照してください。
 \end{tcolorbox}
 
 \hypertarget{section-checklist}{%
@@ -424,7 +426,8 @@ const view = `
 
 \begin{lstlisting}[language=HTML]
 <h4>js-primer example (@js-primer-example)</h4>
-<img src="https://github.com/js-primer-example.png" alt="js-primer-example" height="100">
+<img src="https://github.com/js-primer-example.png" alt="js-primer-example" 
+     height="100">
 <dl>
     <dt>Location</dt>
     <dd>Japan</dd>
@@ -463,7 +466,7 @@ index.html
 \listend
 
 ここから、\texttt{div\#result}要素の子要素としてHTML文字列を挿入することになります。
-\href{https://developer.mozilla.org/ja/docs/Web/API/Document/getElementById}{document.getElementById}メソッドを使い、id属性が設定された要素にアクセスします。
+\href{https://developer.mozilla.org/ja/docs/Web/API/Document/getElementById}{\texttt document.getElementById}メソッドを使い、id属性が設定された要素にアクセスします。
 \texttt{div\#result}要素が取得できたら、先ほど生成したHTML文字列を\texttt{innerHTML}プロパティにセットします。
 
 \begin{lstlisting}
@@ -472,8 +475,8 @@ result.innerHTML = view;
 \end{lstlisting}
 
 JavaScriptによってHTML要素をDOMに追加する方法には、大きく分けて２つあります。
-1つは、今回のようにHTML文字列を\href{https://developer.mozilla.org/ja/docs/Web/API/Element/innerHTML}{Element\#innerHTML}プロパティにセットする方法です。
-もう1つは、文字列ではなく\href{https://developer.mozilla.org/ja/docs/Web/API/Element}{Element}オブジェクトを生成して\href{https://developer.mozilla.org/ja/docs/Web/API/Node/appendChild}{手続き的にツリー構造を構築する}方法です。
+1つは、今回のようにHTML文字列を\href{https://developer.mozilla.org/ja/docs/Web/API/Element/innerHTML}{\texttt Element\#innerHTML}プロパティにセットする方法です。
+もう1つは、文字列ではなく\href{https://developer.mozilla.org/ja/docs/Web/API/Element}{\texttt Element}オブジェクトを生成して\href{https://developer.mozilla.org/ja/docs/Web/API/Node/appendChild}{手続き的にツリー構造を構築する}方法です。
 後者はセキュリティ的に安全ですが、コードは少し冗長になります。
 今回は\texttt{Element\#innerHTML}プロパティを使いつつ、セキュリティのためのエスケープ処理を行います。
 
@@ -486,7 +489,7 @@ JavaScriptによってHTML要素をDOMに追加する方法には、大きく分
 この処理を一般にHTMLのエスケープと呼びます。
 
 多くのViewライブラリは内部にエスケープ機構を持っていて、動的にHTMLを組み立てるときにはデフォルトでエスケープをしてくれます。
-または、\href{https://github.com/teppeis/htmlspecialchars}{エスケープ用のライブラリ}を利用するケースも多いでしょう。
+または、\href{https://github.com/teppeis/htmlspecialchars}{エスケープ用のライブラリ}\footnote{\url{https://github.com/teppeis/htmlspecialchars}}を利用するケースも多いでしょう。
 今回のように独自実装するのは特別なケースで、一般的にはライブラリが提供する機能を使うのがほとんどです。
 
 次のように、特殊な記号に対するエスケープ処理を\texttt{escapeSpecialChars}関数として宣言します。
@@ -563,7 +566,8 @@ function fetchUserInfo(userId) {
                     // HTMLの組み立て
                     const view = escapeHTML`
                     <h4>${userInfo.name} (@${userInfo.login})</h4>
-                    <img src="${userInfo.avatar_url}" alt="${userInfo.login}" height="100">
+                    <img src="${userInfo.avatar_url}" alt="${userInfo.login}" 
+                         height="100">
                     <dl>
                         <dt>Location</dt>
                         <dd>${userInfo.location}</dd>
@@ -627,7 +631,7 @@ index.html
 
 アプリケーションを開いてボタンを押すと、次のようにユーザー情報が表示されます。
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=100mm]{fig/fig-4.png}
 \caption{ユーザー情報の表示}
@@ -638,11 +642,11 @@ index.html
 
 \begin{itemize}
 \item
-  \href{../../../basic/string/README.md\#create}{テンプレートリテラル}を使ってHTML文字列を組み立てた
+  \hyperlink{create}{テンプレートリテラル}を使ってHTML文字列を組み立てた
 \item
   \texttt{innerHTML}プロパティを使ってHTML文字列をDOMに追加した
 \item
-  {[}タグつきテンプレート関数{]}{[}{]}を使ってHTML文字列をエスケープした
+  \hyperlink{tagged-template-function}{タグつきテンプレート関数}を使ってHTML文字列をエスケープした
 \item
   \texttt{fetchUserInfo}関数を呼び出し、HTMLにユーザー情報が表示されることを確認した
 \end{itemize}
@@ -762,7 +766,8 @@ function fetchUserInfo(userId) {
         .then(response => {
             if (!response.ok) {
                 // エラーレスポンスからRejectedなPromiseを作成して返す
-                return Promise.reject(new Error(`${response.status}: ${response.statusText}`));
+                return Promise.reject(new Error(`${response.status}: 
+                                                 ${response.statusText}`));
             } else {
                 return response.json().then(userInfo => {
                     // HTMLの組み立て
@@ -814,7 +819,8 @@ function fetchUserInfo(userId) {
     return fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
         .then(response => {
             if (!response.ok) {
-                return Promise.reject(new Error(`${response.status}: ${response.statusText}`));
+                return Promise.reject(new Error(`${response.status}: 
+                                                 ${response.statusText}`));
             } else {
                 // JSONオブジェクトで解決されるPromiseを返す
                 return response.json();
@@ -904,7 +910,8 @@ function fetchUserInfo(userId) {
     return fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
         .then(response => {
             if (!response.ok) {
-                return Promise.reject(new Error(`${response.status}: ${response.statusText}`));
+                return Promise.reject(new Error(`${response.status}: 
+                                                 ${response.statusText}`));
             } else {
                 return response.json();
             }
@@ -959,9 +966,9 @@ function escapeHTML(strings, ...values) {
 アプリケーションを実行すると、次のようになります。
 要件を満たすことができたので、このアプリケーションはこれで完成です。
 
-\begin{figure}
+\begin{figure}[h]
 \centering
-\includegraphics[width=100mm]{fig/fig-5.png}
+\includegraphics[width=120mm]{fig/fig-5.png}
 \caption{完成したアプリケーション}
 \end{figure}
 
@@ -976,7 +983,7 @@ function escapeHTML(strings, ...values) {
 \item
   Promiseチェーンを使って\texttt{fetchUserInfo}関数をリファクタリングした
 \item
-  \href{../../../basic/async/README.md\#async-function}{Async Function}
+  \hyperlink{async-function}{Async Function}
   を使って\texttt{main}関数をリファクタリングした
 \item
   \texttt{index.html}に\texttt{<input>}タグを追加し、\texttt{getUserId}関数でユーザーIDを取得した
