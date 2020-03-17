@@ -1,7 +1,8 @@
 \hypertarget{reference-links}{%
 \chapter{参考リンク集}\label{reference-links}}
+\thispagestyle{frontheadings}
 
-ここでは本編で取り上げられなかったJavaScriptの周辺ツールやライブラリなどをいくつか紹介します。
+ここでは、本編で取り上げられなかったJavaScriptの周辺ツールやライブラリなどをいくつか紹介します。
 これらは時流に左右されて古くなりやすい情報であるため、本編からは独立した付録としてまとめています。
 
 \hypertarget{developer-tools}{%
@@ -23,14 +24,20 @@ JavaScriptを使った開発に役立つツールをいくつか紹介します�
 2015をサポートしていないため新しい構文をパースできません。
 BabelでES2015の構文をES5でエミュレートするコードへ変換することで、古い構文しかサポートしていない実行環境でも動かせます。
 
-また、「\href{../../basic/ecmascript/README.md}{ECMAScript}」の章でも紹介したように、最新のプロポーザルの機能を試すツールとしても利用されています。
+また、「\hyperlink{ecmascript}{ECMAScript}」の章でも紹介したように、最新のプロポーザルの機能を試すツールとしても利用されています。
+\begin{itemize}
+\item Babel: \url{https://babeljs.io/}
+\end{itemize}
 
 \hypertarget{typescript}{%
 \subsubsection{TypeScript}\label{typescript}}
 
 \href{https://www.typescriptlang.org/}{TypeScript}は、JavaScriptに静的型づけの構文を追加した言語とトランスパイラーです。
 TypeScript言語には型注釈などの構文が用意されており、JavaScriptのコードに対して型注釈をつけて静的な型チェックができます。
-また、TypeScriptのコードは型に関する構文などを取り除いたJavaScriptのコードに変換できます。
+また、TypeScriptのコードは型に関する構文などを取り除いたJavaScriptのコードに変換できます。\enlargethispage{\baselineskip}
+\begin{itemize}
+\item TypeScript: \url{https://www.typescriptlang.org/}
+\end{itemize}
 
 \hypertarget{module-bundler}{%
 \subsection{モジュールバンドラー}\label{module-bundler}}
@@ -49,6 +56,9 @@ CommonJSモジュールはNode.jsでの実行を想定したものであった�
 webpackは、CommonJSモジュールやECMAScriptモジュールの依存関係を解決し、アプリケーション向けに最適化しながらモジュールを結合します。
 JavaScriptのモジュール以外にも、画像やCSSなどのリソースを読み込む仕組みが用意されており、さまざまな種類のファイルを扱えます。
 また、webpackにはプラグインで拡張できる仕組みが用意されており、柔軟な変換が可能です。
+\begin{itemize}
+\item webpack: \url{https://webpack.js.org/}
+\end{itemize}
 
 \hypertarget{rollup}{%
 \subsubsection{Rollup}\label{rollup}}
@@ -57,6 +67,9 @@ JavaScriptのモジュール以外にも、画像やCSSなどのリソースを�
 Rollupは、ECMAScriptモジュールを主に扱い、モジュールの依存関係を解決し、ライブラリ向けに最適化しながらモジュールを結合します。
 CommonJS形式やECMAScriptモジュール形式などの複数の形式のファイルを生成するといったライブラリ作成に向いた設定が柔軟にできます。
 またRollupも、webpackと同様にプラグインで拡張でき、柔軟な変換が可能です。
+\begin{itemize}
+\item Rollup: \url{https://rollupjs.org/}
+\end{itemize}
 
 \hypertarget{coding-style}{%
 \subsection{コーディングスタイルの統一}\label{coding-style}}
@@ -73,14 +86,20 @@ CommonJS形式やECMAScriptモジュール形式などの複数の形式のフ�
 
 \href{https://prettier.io/}{Prettier}はJavaScriptをはじめとする多くの言語に対応した汎用的なコードフォーマッターです。
 設定ファイルがなくても利用できるため、導入しやすいのが大きな特徴です。
+\begin{itemize}
+\item Prettier: \url{https://prettier.io/}
+\end{itemize}
 
 \hypertarget{eslint}{%
 \subsubsection{ESLint}\label{eslint}}
 
 \href{https://eslint.org/}{ESLint}はJavaScriptファイル用のLintツールです。
-\emph{Lint}
+\textbf{\textgt{Lint}}
 とは、ソースコードファイルを静的解析して不適切なコードやコーディングスタイルに合わないコードを検知する仕組みのことです。
 Lintを使うことで、チーム内でのコーディングスタイルを機械的に統一できます。
+\begin{itemize}
+\item ESLint: \url{https://eslint.org/}
+\end{itemize}
 
 \hypertarget{code-editor}{%
 \subsection{コードエディター}\label{code-editor}}
@@ -92,12 +111,18 @@ JavaScriptやHTML、CSSなどのコーディングに適したエディターを
 
 \href{https://code.visualstudio.com/}{VSCode}はMicrosoft社がオープンソースで開発している無料のコードエディターです。
 JavaScriptによってプラグインを書くことができ、さまざまな機能を追加できます。
+\begin{itemize}
+\item VSCode: \url{https://code.visualstudio.com/}
+\end{itemize}
 
 \hypertarget{atom}{%
 \subsubsection{Atom}\label{atom}}
 
 \href{https://atom.io/}{Atom}はGitHub社がオープンソースで開発している無料のコードエディターです。
 VSCodeと同じようにプラグインによる拡張性が高く、GitHubと連携した機能が特徴です。
+\begin{itemize}
+\item Atom: \url{https://atom.io/}
+\end{itemize}
 
 \hypertarget{browser-devtools}{%
 \subsection{ブラウザの開発者ツール}\label{browser-devtools}}
@@ -108,15 +133,18 @@ VSCodeと同じようにプラグインによる拡張性が高く、GitHubと�
 \begin{itemize}
 \item
   Firefox: \href{https://developer.mozilla.org/ja/docs/Tools}{開発ツール
-  \textbar{} MDN}
+  \textbar{} MDN}\\
+  \url{https://developer.mozilla.org/ja/docs/Tools}
 \item
   Chrome:
   \href{https://developers.google.com/web/tools/chrome-devtools/?hl=ja}{Chrome
-  DevTools}
+  DevTools}\\
+  \url{https://developers.google.com/web/tools/chrome-devtools/?hl=ja}
 \item
   Safari:
   \href{https://support.apple.com/ja-jp/guide/safari-developer/welcome/mac}{Safari
-  Developer Help}
+  Developer Help}\\
+  \url{https://support.apple.com/ja-jp/guide/safari-developer/welcome/mac}
 \end{itemize}
 
 \hypertarget{performance-improvement}{%
@@ -130,6 +158,9 @@ VSCodeと同じようにプラグインによる拡張性が高く、GitHubと�
 \href{https://developers.google.com/speed/pagespeed/insights/}{PageSpeed
 Insights}はGoogleが提供するウェブパフォーマンス計測ツールです。
 計測したいページのURLを入力すると読み込みにかかっている時間や、改善できる項目を提示してくれます。
+\begin{itemize}
+\item PageSpeed Insights: \url{https://developers.google.com/speed/pagespeed/insights/}
+\end{itemize}
 
 \hypertarget{webpagetest}{%
 \subsubsection{WebPagetest}\label{webpagetest}}
@@ -137,6 +168,9 @@ Insights}はGoogleが提供するウェブパフォーマンス計測ツール�
 \href{https://www.webpagetest.org/}{WebPagetest}は、ブラウザを利用したウェブパフォーマンス計測ツールです。
 さまざまな条件下のブラウザでウェブサイトにアクセスし、パフォーマンスを計測できます。
 BSDライセンスの下でオープンソース化されており、任意のサーバーにインストールして実行することもできます。
+\begin{itemize}
+\item WebPagetest: \url{https://www.webpagetest.org/}
+\end{itemize}
 
 \hypertarget{lighthouse}{%
 \subsubsection{Lighthouse}\label{lighthouse}}
@@ -144,6 +178,9 @@ BSDライセンスの下でオープンソース化されており、任意の�
 \href{https://developers.google.com/web/tools/lighthouse/?hl=ja}{Lighthouse}はGoogleが提供するウェブページの分析ツールです。
 ウェブパフォーマンスだけでなく、アクセシビリティやSEOなどの観点からも分析し、そのスコアを表示します。
 Chromeブラウザの開発者ツールとして組み込まれていますが、npmでパッケージをインストールすればCLIとしても実行できます。
+\begin{itemize}
+\item Lighthouse: \url{https://developers.google.com/web/tools/lighthouse/?hl=ja}
+\end{itemize}
 
 \hypertarget{javascript-platform}{%
 \section{JavaScriptの実行プラットフォーム}\label{javascript-platform}}
@@ -165,6 +202,9 @@ JavaScriptを使ったプログラムを実行するためのいくつかのプ�
 \href{https://pages.github.com/}{GitHub
 Pages}は、GitHubが提供する無料のホスティングサービスです。
 GitHubのリポジトリをウェブページとして公開して、リポジトリ内に配置したHTMLやCSS、JavaScriptなどの静的ファイルを配信できます。
+\begin{itemize}
+\item GitHub Pages: \url{https://pages.github.com/}
+\end{itemize}
 
 \hypertarget{firebase-hosting}{%
 \subsubsection{Firebase Hosting}\label{firebase-hosting}}
@@ -172,12 +212,18 @@ GitHubのリポジトリをウェブページとして公開して、リポジ�
 \href{https://firebase.google.com/products/hosting/?hl=ja}{Firebase
 Hosting}は、GoogleのFirebaseプラットフォームが提供するホスティングサービスです。
 CLIを使ったシンプルなデプロイと、小規模の利用なら無料で利用できることが特徴です。
+\begin{itemize}
+\item Firebase Hosting: \url{https://firebase.google.com/products/hosting/?hl=ja}
+\end{itemize}
 
 \hypertarget{netlify}{%
 \subsubsection{Netlify}\label{netlify}}
 
 \href{https://www.netlify.com/}{Netlify}も無料で利用できるホスティングサービスです。
 GitHubやBitBucketのようなGitリポジトリサービスと連携していて、リモートリポジトリにpushするだけで自動的にデプロイできるのが特徴です。
+\begin{itemize}
+\item Netlify: \url{https://www.netlify.com/}
+\end{itemize}
 
 \hypertarget{serverless}{%
 \subsection{Node.jsをサーバーレスに実行する}\label{serverless}}
@@ -193,6 +239,9 @@ FaaSにJavaScriptの関数をデプロイすると、クラウド上で管理さ
 
 \href{https://aws.amazon.com/jp/lambda/}{AWS Lambda}はAmazon Web
 Services上で提供されるサーバーレスNode.js実行環境です。
+\begin{itemize}
+\item AWS Lambda: \url{https://aws.amazon.com/jp/lambda/}
+\end{itemize}
 
 \hypertarget{google-cloud-functions}{%
 \subsubsection{Google Cloud Functions}\label{google-cloud-functions}}
@@ -200,6 +249,9 @@ Services上で提供されるサーバーレスNode.js実行環境です。
 \href{https://cloud.google.com/functions/}{Google Cloud
 Functions}はGoogle Cloud
 Platform上で提供されるサーバーレスNode.js実行環境です。
+\begin{itemize}
+\item Google Cloud Functions: \url{https://cloud.google.com/functions/}
+\end{itemize}
 
 \hypertarget{desktop-app}{%
 \subsection{デスクトップアプリケーションを作る}\label{desktop-app}}
@@ -211,6 +263,9 @@ JavaScriptを使ってWindowsやmacOS、Linuxなどのデスクトップ環境�
 
 \href{https://electronjs.org/}{Electron}はGitHub社によって開発されているオープンソースのデスクトップアプリケーションフレームワークです。
 HTMLやCSS、JavaScriptを使ったウェブアプリケーションをChromiumブラウザと一緒にパッケージ化して配布可能な実行ファイルを作成できます。
+\begin{itemize}
+\item Electron: \url{https://electronjs.org/}
+\end{itemize}
 
 \hypertarget{nwjs}{%
 \subsubsection{NW.js}\label{nwjs}}
@@ -218,3 +273,7 @@ HTMLやCSS、JavaScriptを使ったウェブアプリケーションをChromium�
 \href{https://nwjs.io/}{NW.js}はIntel社によって開発されているオープンソースのデスクトップアプリケーションフレームワークです。
 Electronと同様にChromiumブラウザをベースにしたアプリケーションを開発できます。
 NW.jsはブラウザの中からNode.jsの開発エコシステムを直接利用できるようにしているのが特徴です。
+\begin{itemize}
+\item NW.js: \url{https://nwjs.io/}
+\end{itemize}
+
