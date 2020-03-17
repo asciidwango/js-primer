@@ -820,7 +820,7 @@ asyncTask()
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=80mm]{fig/promise-chain.png}
+\includegraphics[width=80mm]{fig/promise-chain.eps}
 \end{figure}
 
 Promiseの状態が\textbf{Rejected}となった場合は、もっとも近い失敗時の処理（\texttt{catch}または\texttt{then}の第二引数）が呼び出されます。
@@ -870,7 +870,7 @@ Promise.reject(new Error("エラー")).catch(error => {
 });
 \end{lstlisting}
 
-このように\texttt{Promise\#then}メソッドや\texttt{Promise\#catch}メソッドをつないで、成功時や失敗時の処理を書いていくことをPromiseチェーンと呼びます。
+このように\texttt{Promise\#then}メソッドや\texttt{Promise\#catch}メソッドをつないで、成功時や失敗時の処理を書いていくことをPromiseチェーンと呼びます。\enlargethispage{\baselineskip}
 
 \hypertarget{promise-chain-value}{%
 \subsubsection{Promiseチェーンで値を返す}\label{promise-chain-value}}
@@ -940,7 +940,7 @@ Promise.resolve().then(function onFulfilledA() {
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=60mm]{./fig/then-rejected-promise.png}
+\includegraphics[width=60mm]{./fig/then-rejected-promise.eps}
 \end{figure}
 
 通常は一度\texttt{catch}すると次に呼び出されるのは成功時の処理でした。
