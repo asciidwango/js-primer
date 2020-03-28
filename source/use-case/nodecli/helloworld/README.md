@@ -35,7 +35,8 @@ Node.js環境では、`console.log`メソッドの出力先は標準出力にな
 <!-- textlint-enable preset-ja-technical-writing/no-exclamation-question-mark -->
 
 JavaScriptのコードをNode.jsで実行するには、`node`コマンドを使用します。
-次のコマンドを実行して、Node.jsで`main.js`を実行します。
+コマンドラインで`nodecli`ディレクトリに移動し、次のコマンドを実行して、Node.jsで`main.js`を実行します。
+まだ`node`コマンドの用意ができていなければ、先に[アプリケーション開発の準備][]を参照してください。
 
 ```shell-session
 $ node main.js
@@ -88,3 +89,5 @@ ECMAScriptで定義されているグローバルオブジェクトはブラウ�
 [global]: https://nodejs.org/docs/latest-v12.x/api/globals.html
 [process]: https://nodejs.org/docs/latest-v12.x/api/process.html#process_process
 [Buffer]: https://nodejs.org/docs/latest-v12.x/api/buffer.html
+
+[アプリケーション開発の準備]: ../../setup-local-env/README.md
