@@ -72,13 +72,13 @@ REPLに`1`という値を入力すると、その評価結果である`1`が次�
 
 次に`const`キーワードを使って`bookTitle`という変数を宣言してみると、`undefined`という結果が次の行に表示されます。
 変数宣言は変数名と値を関連づけるだけであるため、変数宣言自体は何も値を返さないという意味で`undefined`が結果になります。
-REPLではそのまま次の入力ができるため、`bookTitle`という入力をすると、先ほど変数に入れた`"JavaScriptの本"`という結果が次の行に表示されます。
+REPLではそのまま次の入力ができるため、`bookTitle`という入力をすると、先ほど変数に入れた`"JavaScript Primer"`という結果が次の行に表示されます。
 
 ```
-» const bookTitle = "JavaScriptの本";
+» const bookTitle = "JavaScript Primer";
 undefined
 » bookTitle
-"JavaScriptの本"
+"JavaScript Primer"
 ```
 
 このようにコマンドラインのREPL機能では、JavaScriptのコードを1行ごとに実行できます。
@@ -90,9 +90,9 @@ Shift + Enterで改行して複数行の入力もできます。
 そのため1行ずつ実行しても、同じ変数名を定義したことになるため構文エラー（`SyntaxError`）となります。
 
 ```
-» const bookTitle = "JavaScriptの本";
+» const bookTitle = "JavaScript Primer";
 undefined
-» const bookTitle = "JavaScriptの本";
+» const bookTitle = "JavaScript Primer";
 SyntaxError: redeclaration of const bookTitle
 ```
 
