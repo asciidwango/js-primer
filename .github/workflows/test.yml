@@ -9,15 +9,15 @@ jobs:
     strategy:
       matrix:
         node-version: ['12', '10']
-    name: Node.js $
+    name: Node.js ${{ matrix.node_version }}
     steps:
       - uses: actions/checkout@v1
         with:
           fetch-depth: 1
-      - name: Use Node.js $
+      - name: Node.js ${{ matrix.node_version }}
         uses: actions/setup-node@v1
         with:
-          node-version: $
+          node-version: ${{ matrix.node_version }}
       - run: npm install
       - run: npm run test:ci
   e2e:
