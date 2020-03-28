@@ -28,10 +28,10 @@ JavaScriptには「これは変数です」という宣言をするキーワー�
 const 変数名 = 初期値;
 ```
 
-次のコードでは`bookTitle`という変数を宣言し、初期値が`"JavaScriptの本"`という文字列であることを定義しています。
+次のコードでは`bookTitle`という変数を宣言し、初期値が`"JavaScript Primer"`という文字列であることを定義しています。
 
 ```js
-const bookTitle = "JavaScriptの本";
+const bookTitle = "JavaScript Primer";
 ```
 
 `const`、`let`、`var`どのキーワードも共通の仕組みですが、変数同士を`,`（カンマ）で区切ることにより、同時に複数の変数を定義できます。
@@ -39,14 +39,14 @@ const bookTitle = "JavaScriptの本";
 次のコードでは、`bookTitle`と`bookCategory`という変数を順番に定義しています。
 
 ```js
-const bookTitle = "JavaScriptの本",
+const bookTitle = "JavaScript Primer",
       bookCategory = "プログラミング";
 ```
 
 これは次のように書いた場合と同じ意味になります。
 
 ```js
-const bookTitle = "JavaScriptの本";
+const bookTitle = "JavaScript Primer";
 const bookCategory = "プログラミング";
 ```
 
@@ -68,10 +68,10 @@ const bookCategory = "プログラミング";
 `let`キーワードでは、値の再代入が可能な変数を宣言できます。
 `let`の使い方は`const`とほとんど同じです。
 
-次のコードでは、`bookTitle`という変数を宣言し、初期値を`"JavaScriptの本"`という文字列であることを定義しています。
+次のコードでは、`bookTitle`という変数を宣言し、初期値を`"JavaScript Primer"`という文字列であることを定義しています。
 
 ```js
-let bookTitle = "JavaScriptの本";
+let bookTitle = "JavaScript Primer";
 ```
 
 `let`は`const`とは異なり、初期値を指定しない変数も定義できます。
@@ -86,11 +86,11 @@ let bookTitle;
 ```
 
 この`let`で宣言された`bookTitle`という変数には、代入演算子（`=`）を使うことで値を代入できます。 
-代入演算子（`=`）の右側には変数へ代入する値を書きますが、ここでは`"JavaScriptの本"`という文字列を代入しています。
+代入演算子（`=`）の右側には変数へ代入する値を書きますが、ここでは`"JavaScript Primer"`という文字列を代入しています。
 
 ```js
 let bookTitle;
-bookTitle = "JavaScriptの本";
+bookTitle = "JavaScript Primer";
 ```
 
 `let`で宣言した変数に対しては何度でも値の代入が可能です。
@@ -108,14 +108,14 @@ count = 3;
 `var`の使い方は`let`とほとんど同じです。
 
 ```js
-var bookTitle = "JavaScriptの本";
+var bookTitle = "JavaScript Primer";
 ```
 
 `var`では、`let`と同じように初期値がない変数を宣言でき、変数に対して値の再代入もできます。
 
 ```js
 var bookTitle;
-bookTitle = "JavaScriptの本";
+bookTitle = "JavaScript Primer";
 bookTitle = "新しいタイトル";
 ```
 
