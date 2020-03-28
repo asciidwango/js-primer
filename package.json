@@ -46,7 +46,6 @@
     "textlint"
   ],
   "devDependencies": {
-    "@alrra/travis-scripts": "^3.0.1",
     "@babel/core": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
     "@babel/register": "^7.6.2",
