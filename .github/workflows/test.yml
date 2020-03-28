@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x, 10.x]
-    name: "Node.js ${{ matrix.node-version }}"
+    name: "Test on Node.js ${{ matrix.node-version }}"
     steps:
       - uses: actions/checkout@v1
       - name: "Node.js ${{ matrix.node-version }}"
