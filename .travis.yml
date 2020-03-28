@@ -6,11 +6,6 @@ env:
     - GH_USER_NAME="azu"
 jobs:
   include:
-    # Unit Tests
-    - stage: test
-      name: "Unit Tests on Node.js 12"
-      node_js: '12'
-      script: npm run travis
     # deploy
     - stage: deploy
       node_js: '12'
