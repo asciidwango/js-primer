@@ -4,6 +4,7 @@ const path = require("path");
 const md2html = require("../md2html");
 
 it("converts Markdown to HTML (GFM=false)", () => {
+    // readFileSync関数はreadFile関数を同期的にしたもの
     const sample = fs.readFileSync(path.resolve(__dirname, "./fixtures/sample.md"), { encoding: "utf8" });
     const expected = fs.readFileSync(path.resolve(__dirname, "./fixtures/expected.html"), { encoding: "utf8" });
 
