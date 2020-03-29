@@ -12,7 +12,7 @@ const cliOptions = {
     ...program.opts(),
 };
 
-fs.readFile(filePath, "utf8", (err, file) => {
+fs.readFile(filePath, { encoding: "utf8" }, (err, file) => {
     if (err) {
         console.error(err);
         process.exit(1);
