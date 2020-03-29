@@ -1,4 +1,4 @@
-# JavaScript Primer [![Build Status](https://travis-ci.org/asciidwango/js-primer.svg?branch=master)](https://travis-ci.org/asciidwango/js-primer)
+# JavaScript Primer [![Actions Status](https://github.com/asciidwango/js-primer/workflows/test/badge.svg)](https://github.com/asciidwango/js-primer/actions?query=workflow%3A"test")
 
 この書籍はES2015以降をベースとしたJavaScriptの入門書です。
 

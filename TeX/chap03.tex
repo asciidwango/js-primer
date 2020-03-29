@@ -24,10 +24,10 @@ JavaScriptには「これは変数です」という宣言をするキーワー�
 const 変数名 = 初期値;
 \end{lstlisting}
 
-次のコードでは\texttt{bookTitle}という変数を宣言し、初期値が\texttt{"JavaScriptの本"}という文字列であることを定義しています。
+次のコードでは\texttt{bookTitle}という変数を宣言し、初期値が\texttt{"JavaScript Primer"}という文字列であることを定義しています。
 
 \begin{lstlisting}
-const bookTitle = "JavaScriptの本";
+const bookTitle = "JavaScript Primer";
 \end{lstlisting}
 
 \texttt{const}、\texttt{let}、\texttt{var}どのキーワードも共通の仕組みですが、変数同士を\texttt{,}（カンマ）で区切ることにより、同時に複数の変数を定義できます。
@@ -35,14 +35,14 @@ const bookTitle = "JavaScriptの本";
 次のコードでは、\texttt{bookTitle}と\texttt{bookCategory}という変数を順番に定義しています。
 
 \begin{lstlisting}
-const bookTitle = "JavaScriptの本",
+const bookTitle = "JavaScript Primer",
       bookCategory = "プログラミング";
 \end{lstlisting}
 
 これは次のように書いた場合と同じ意味になります。
 
 \begin{lstlisting}
-const bookTitle = "JavaScriptの本";
+const bookTitle = "JavaScript Primer";
 const bookCategory = "プログラミング";
 \end{lstlisting}
 
@@ -53,7 +53,7 @@ const bookCategory = "プログラミング";
 エラーが発生するとそれ以降の処理は実行されなくなります。
 
 \begin{lstlisting}
-const bookTitle = "JavaScriptの本";
+const bookTitle = "JavaScript Primer";
 bookTitle = "新しいタイトル"; // => TypeError: invalid assignment to const
                                   'bookTitle'
 \end{lstlisting}
@@ -69,10 +69,10 @@ bookTitle = "新しいタイトル"; // => TypeError: invalid assignment to cons
 \texttt{let}キーワードでは、値の再代入が可能な変数を宣言できます。
 \texttt{let}の使い方は\texttt{const}とほとんど同じです。
 
-次のコードでは、\texttt{bookTitle}という変数を宣言し、初期値を\texttt{"JavaScriptの本"}という文字列であることを定義しています。
+次のコードでは、\texttt{bookTitle}という変数を宣言し、初期値を\texttt{"JavaScript Primer"}という文字列であることを定義しています。
 
 \begin{lstlisting}
-let bookTitle = "JavaScriptの本";
+let bookTitle = "JavaScript Primer";
 \end{lstlisting}
 
 \texttt{let}は\texttt{const}とは異なり、初期値を指定しない変数も定義できます。
@@ -87,11 +87,11 @@ let bookTitle;
 \end{lstlisting}
 
 この\texttt{let}で宣言された\texttt{bookTitle}という変数には、代入演算子（\texttt{=}）を使うことで値を代入できます。
-代入演算子（\texttt{=}）の右側には変数へ代入する値を書きますが、ここでは\texttt{"JavaScriptの本"}という文字列を代入しています。
+代入演算子（\texttt{=}）の右側には変数へ代入する値を書きますが、ここでは\texttt{"JavaScript Primer"}という文字列を代入しています。
 
 \begin{lstlisting}
 let bookTitle;
-bookTitle = "JavaScriptの本";
+bookTitle = "JavaScript Primer";
 \end{lstlisting}
 
 \texttt{let}で宣言した変数に対しては何度でも値の代入が可能です。
@@ -110,14 +110,14 @@ count = 3;
 \texttt{var}の使い方は\texttt{let}とほとんど同じです。
 
 \begin{lstlisting}
-var bookTitle = "JavaScriptの本";
+var bookTitle = "JavaScript Primer";
 \end{lstlisting}
 
 \texttt{var}では、\texttt{let}と同じように初期値がない変数を宣言でき、変数に対して値の再代入もできます。
 
 \begin{lstlisting}
 var bookTitle;
-bookTitle = "JavaScriptの本";
+bookTitle = "JavaScript Primer";
 bookTitle = "新しいタイトル";
 \end{lstlisting}
 

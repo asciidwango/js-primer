@@ -1,4 +1,4 @@
-const IS_LINK_CHECK = !!process.env.LINK_CHECK
+const IS_LINK_CHECK = !!process.env.LINK_CHECK;
 module.exports = {
   "filters": {
     "comments": true,
@@ -19,6 +19,7 @@ module.exports = {
     "inline-code-denylist": {
       "denylist": ["string", "number", "object", "boolean", "symbol"]
     },
+    "no-use-column": true,
     "footnote-order": true,
     "@textlint-rule/no-unmatched-pair": true,
     "@textlint-rule/require-header-id": true,
