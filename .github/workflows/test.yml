@@ -1,5 +1,12 @@
 name: test
-on: [push, pull_request]
+on:
+  push:
+    branches-ignore:
+      - 'publish1' # srcはテストしても意味がないため
+  pull_request:
+    branches-ignore:
+      - 'publish1' # srcはテストしても意味がないため
+
 env:
   CI: true
 
