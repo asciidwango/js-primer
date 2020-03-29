@@ -1,0 +1,10 @@
+version: "3"
+services:
+  ubuntu-texlive-ja:
+    build: .
+    command: sleep infinity
+    volumes:
+      - ../:/workdir
+      - ~/.gitconfig:/root/.gitconfig
+    environment:
+      SHELL: "/bin/bash"

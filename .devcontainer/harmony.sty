@@ -1,0 +1,378 @@
+%% harmony.sty 2007/05/04
+%% Copyright 2005 - 2007
+%% Dagny Wegner <dagny.wegner@t-online.de>
+%% Arnim Wegner <arnim.wegner@t-online.de>
+%
+%  This work may be distributed and/or modified under the
+%  conditions of the LaTeX Project Public License, either
+%  version 1.3 of this license or (at your option) any
+%  later version.
+%  The latest version of this license is in
+%  http://www.latex-project.org/lppl.txt
+%  and version 1.3 or later is part of all distributions
+%  of LaTeX version 2005/12/01 or later.
+%
+%  This work has the LPPL maintenance status `maintained'.
+%
+%  The Current Maintainers of this work are
+%  Dagny Wegner and Arnim Wegner.
+%
+%  This work consists of the files harmony.sty,
+%  harmony.tex, harmony.pdf, and Readme.
+%  ==================================================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{harmony}[2007/05/04]
+\RequirePackage{ifthen}
+\RequirePackage{amssymb}
+\DeclareOption{sf}{\def\FAM{\sffamily}}
+\DeclareOption{rm}{\def\FAM{\rmfamily}}
+\ExecuteOptions{sf}
+\ProcessOptions\relax
+%
+\newdimen\tmpdima
+\newdimen\tmpdimb
+\newdimen\tmpdimc
+\newdimen\tmpdimd
+\newdimen\tmpdime
+\newbox\nbxa
+\newbox\nbxb
+\newbox\nbxc
+\newbox\nbxd
+\newbox\nbxe
+\newbox\nbxf
+\newbox\nbxg
+\newbox\nbxh
+\newbox\nbxi
+\newfont{\KREIS}{lcirclew10}
+\newfont{\NOTEN}{musix13}
+\newfont{\noten}{musix11}% 2007/05/03
+%
+\newcommand{\Ohne}[2][0em]{%
+\setbox\nbxi=\hbox{%
+\FAM%
+\setbox\nbxa=\hbox{\sl\large /}%
+#2%
+\kern-0.8em%
+\kern#1%
+\copy\nbxa%
+\kern-\wd\nbxa%
+\kern0.8em%
+}%
+\unhbox\nbxi%
+}
+%
+\newcommand{\Dohne}{\Ohne{D}}
+%
+\newcommand{\DD}{%
+\setbox\nbxi=\hbox{%
+\FAM%
+\raise0.2ex\hbox{D}%
+\kern-0.5em%
+\lower0.2ex\hbox{D}%
+}%
+\unhbox\nbxi%
+}
+%
+\newcommand{\DS}{%
+\setbox\nbxi=\hbox{%
+\FAM%
+\raise0.27ex\hbox{S}%
+\kern-0.35em%
+\lower0.27ex\hbox{S}%
+}%
+\unhbox\nbxi%
+}
+%
+\newcommand{\Ds}{%
+\setbox\nbxi=\hbox{%
+\FAM%
+\raise0.32ex\hbox{s}%
+\kern-0.24em%
+\lower0.02ex\hbox{s}%
+}%
+\unhbox\nbxi%
+}
+%
+\newcommand{\DDohne}{%
+\setbox\nbxi=\hbox{%
+\FAM%
+\setbox\nbxa=\hbox{\sl\large /}%
+\raise0.2ex\hbox{D}%
+\kern-0.5em%
+\lower0.2ex\hbox{D}%
+\kern-0.9em%
+\copy\nbxa%
+\kern-\wd\nbxa%
+\kern0.9em%
+}%
+\box\nbxi%
+}
+%
+\newcommand{\VM}{%
+\setbox\nbxg=\hbox{>}% 
+\setbox\nbxh=\hbox to \wd\nbxg{%
+\raise0.24ex\hbox{{\boldmath$\scriptscriptstyle{>}$\unboldmath}\hss}}% 2005/05/10
+\box\nbxh}
+%
+\newcommand{\UB}{%
+\setbox\nbxg=\hbox{<}%
+\setbox\nbxh=\hbox to \wd\nbxg{%
+\raise0.24ex\hbox{\boldmath$\scriptscriptstyle{<}$\unboldmath\hss}}% 2005/05/10
+\box\nbxh}
+%
+\newcommand{\HAa}[3]{%
+\setbox\nbxi=\hbox{%
+\FAM%
+\setbox\nbxa=\hbox{#1}%
+\setbox\nbxf=\hbox{\tiny #2}%
+\ifdim\wd\nbxa>\wd\nbxf%
+\setbox\nbxb=\hbox to \wd\nbxa{\hss\tiny #2\hss}%
+\else%
+\setbox\nbxb=\hbox to \wd\nbxa{\tiny #2\hss}%
+\fi%
+\setbox\nbxc=\hbox{\scriptsize #3}%
+\tmpdima=\ht\nbxb\advance\tmpdima by \dp\nbxa\relax%
+\advance\tmpdima by 0.1ex\relax%
+\copy\nbxa%
+\kern-\wd\nbxa%
+\lower\tmpdima\copy\nbxb%
+\raise1ex\copy\nbxc%
+\tmpdima=\wd\nbxf%
+\advance\tmpdima by -\wd\nbxa\relax%
+\advance\tmpdima by -\wd\nbxc\relax%
+\ifdim\tmpdima>\z@%
+\kern\tmpdima%
+\fi%
+}%
+\unhbox\nbxi%
+}
+%
+\newcommand{\HAb}[4]{%
+\setbox\nbxi=\hbox{%
+\FAM%
+\setbox\nbxa=\hbox{#1}%
+\setbox\nbxf=\hbox{\tiny #2}%
+\ifdim\wd\nbxa>\wd\nbxf%
+\setbox\nbxb=\hbox to \wd\nbxa{\hss\tiny #2\hss}%
+\else%
+\setbox\nbxb=\hbox to \wd\nbxa{\tiny #2\hss}%
+\fi%
+\setbox\nbxc=\hbox{\tiny #3\hss}%
+\setbox\nbxd=\hbox{\tiny #4\hss}%
+\ifdim\wd\nbxc>\wd\nbxd%
+\setbox\nbxd=\hbox to \wd\nbxc{\tiny #4\hss}%
+\fi%
+\tmpdima=\ht\nbxb%
+\advance\tmpdima by \dp\nbxb\relax%
+\advance\tmpdima by \dp\nbxa\relax%
+\advance\tmpdima by 0.1ex\relax%
+\copy\nbxa%
+\kern-\wd\nbxa%
+\lower\tmpdima\copy\nbxb%
+\tmpdima=1.4ex%
+\raise\tmpdima\copy\nbxc%
+\kern-\wd\nbxc%
+\advance\tmpdima by -\dp\nbxc\relax%
+\advance\tmpdima by -\ht\nbxd\relax%
+\advance\tmpdima by -0.1ex\relax%
+\raise\tmpdima\copy\nbxd%
+\tmpdima=\wd\nbxf%
+\advance\tmpdima by -\wd\nbxa\relax%
+\advance\tmpdima by -\wd\nbxd\relax\relax%
+\ifdim\tmpdima>\z@%
+\kern\tmpdima%
+\fi%
+}%
+\unhbox\nbxi%
+}
+% 
+\newcommand{\HAc}[5]{%
+\setbox\nbxi=\hbox{%
+\FAM%
+\setbox\nbxa=\hbox{#1}%
+\setbox\nbxf=\hbox{\tiny #2}%
+\ifdim\wd\nbxa>\wd\nbxf%
+\setbox\nbxb=\hbox to \wd\nbxa{\hss\tiny #2\hss}%
+\else%
+\setbox\nbxb=\hbox to \wd\nbxa{\tiny #2\hss}%
+\fi%
+\setbox\nbxc=\hbox{\tiny #3\hss}%
+\setbox\nbxd=\hbox{\tiny #4\hss}%
+\setbox\nbxe=\hbox{\tiny #5\hss}%
+\ifdim\wd\nbxc>\wd\nbxd%
+\setbox\nbxd=\hbox to \wd\nbxc{\tiny #4\hss}%
+\fi%
+\ifdim\wd\nbxd>\wd\nbxf%
+\setbox\nbxf=\hbox to \wd\nbxd{\tiny #5\hss}%
+\fi%
+\tmpdima=\ht\nbxb%
+\advance\tmpdima by \dp\nbxb\relax%
+\advance\tmpdima by \dp\nbxa\relax%
+\advance\tmpdima by 0.1ex\relax%
+\copy\nbxa%
+\kern-\wd\nbxa%
+\lower\tmpdima\copy\nbxb%
+\tmpdima=1.8ex%
+\raise\tmpdima\copy\nbxc%
+\kern-\wd\nbxc%
+\advance\tmpdima by -\dp\nbxc\relax%
+\advance\tmpdima by -\ht\nbxd\relax%
+\advance\tmpdima by -0.1ex\relax%
+\raise\tmpdima\copy\nbxd%
+\kern-\wd\nbxd%
+\advance\tmpdima by -\dp\nbxd\relax%
+\advance\tmpdima by -\ht\nbxe\relax%
+\advance\tmpdima by -0.1ex\relax%
+\raise\tmpdima\copy\nbxe%
+\tmpdima=\wd\nbxf%
+\advance\tmpdima by -\wd\nbxa\relax%
+\advance\tmpdima by -\wd\nbxe\relax%
+\ifdim\tmpdima>\z@%
+\kern\tmpdima%
+\fi%
+}%
+\unhbox\nbxi%
+}
+% 
+\def\HH.#1.#2.#3.#4.#5.{%
+\ifthenelse{\equal{#1}{}}{}{}%
+\ifthenelse{\equal{#5}{}}%
+{\ifthenelse{\equal{#4}{}}%
+{\HAa{#1}{#2}{#3}}%
+{\HAb{#1}{#2}{#3}{#4}}}%
+{\HAc{#1}{#2}{#3}{#4}{#5}}%
+}
+%
+\newcommand{\FERM}[2][0.1pt]{%
+\setbox\nbxi=\hbox{%
+\FAM%
+\setbox\nbxa=\hbox{#2}%
+\setbox\nbxb=\hbox to \wd\nbxa{\hss$\smallfrown$\hss}%
+\setbox\nbxc=\hbox to \wd\nbxa{\hss{\rmfamily .}\hss}%
+\setbox\nbxd=\hbox{%
+\copy\nbxb%
+\kern-\wd\nbxa%
+\raise0.23ex\copy\nbxc%
+}%
+\copy\nbxa%
+\tmpdima=\ht\nbxa%
+\advance\tmpdima by 0.1ex\relax%
+\ifdim\tmpdima<1.452ex \tmpdima=1.452ex\fi\relax%
+\setbox\nbxe=\hbox{$\smallfrown$}%
+\ifdim #1=\z@%
+\tmpdimb=\wd\nbxa\relax% 
+\else%
+\tmpdimb=1.5\wd\nbxa%
+\advance\tmpdimb by -0.5\wd\nbxe\relax%
+\advance\tmpdimb by -#1\relax%
+\fi%
+\kern-\tmpdimb%
+\raise\tmpdima\copy\nbxd%
+\advance\tmpdimb by -\wd\nbxa\relax%
+\kern\tmpdimb
+}%
+\unhbox\nbxi%
+}
+%
+\newcommand{\Fermi}[1]{\FERM[\z@]{#1}}
+\newcommand{\Ferli}[2][0.1pt]{\FERM[#1]{#2}}
+%
+\newcommand{\Umd}[2][0pt]{%
+\setbox\nbxa=\hbox{$\widetilde{\phantom{OO}}$}%
+\setbox\nbxb=\hbox{#2}%
+\tmpdima=0.5\wd\nbxa%
+\advance\tmpdima by 0.5\wd\nbxb\relax%
+\hbox{%
+\raise#1\copy\nbxa%
+\kern-\tmpdima\box\nbxb%
+}}
+%
+\newcommand{\Kr}[1]{%
+\ifthenelse{\equal{\@ptsize}{2}}{\@tempcnta=110}%
+{\ifthenelse{\equal{\@ptsize}{1}}{\@tempcnta=109}%
+{\@tempcnta=108}}%
+\setbox\nbxi=\hbox{%
+\FAM\small%
+\setbox\nbxa=\hbox{#1}%
+\setbox\nbxb=\hbox{\KREIS\char\@tempcnta}%
+\setbox\nbxc=\hbox to \wd\nbxb{\hss #1\hss}%
+\tmpdima=0.5\ht\nbxa%
+\advance\tmpdima by -0.4\dp\nbxa\relax%
+\copy\nbxc%
+\kern-0.5\wd\nbxb%
+\raise\tmpdima\copy\nbxb%
+\kern-0.5\wd\nbxb%
+}%
+\unhbox\nbxi%
+}
+%
+\newcommand{\ueber}[2]{%
+\setbox\nbxi=\hbox{%
+\FAM%
+\setbox\nbxa=\hbox{\scriptsize #1}%
+\setbox\nbxb=\hbox{\scriptsize #2}%
+\ifdim\wd\nbxa>\wd\nbxb%
+\tmpdima=\wd\nbxa%
+\else%
+\tmpdima=\wd\nbxb%
+\fi%
+\setbox\nbxa=\hbox to \tmpdima{\scriptsize\hss#1\hss}%
+\setbox\nbxb=\hbox to \tmpdima{\scriptsize\hss#2\hss}%
+\lower0.3ex\copy\nbxb%
+\kern-\wd\nbxb%
+\raise0.8\ht\nbxb%
+\box\nbxa%
+}%
+\unhbox\nbxi%
+}%
+\newcommand{\Takt}[2]{{%
+\ifthenelse{\equal{#1}{c}}%
+{\ifthenelse{\equal{#2}{0}}{%
+\raisebox{0.58ex}[8pt][2pt]{{\kern-1pt\NOTEN\symbol{83}\kern0.3em}}}%
+{\raisebox{0.58ex}[8pt][2pt]{\kern-1pt\NOTEN\symbol{82}\kern0.3em}}}%
+{\kern0.05em\ueber{#1}{#2}\kern0.05em%
+}}}
+%
+\newcommand{\Ganz}{{\NOTEN\kern0.05em\raisebox{0.5ex}{\symbol{9}}\kern1.35em}}
+\newcommand{\Halb}{{\NOTEN\kern0.05em\raisebox{0.5ex}{\symbol{8}\kern0.936em%
+\raisebox{0.55ex}{\symbol{16}}}\kern0.2em}}
+\newcommand{\Vier}{{\NOTEN\kern0.05em\raisebox{0.5ex}{\symbol{7}\kern0.955em%
+\raisebox{0.55ex}{\symbol{16}}}\kern0.2em}}
+\newcommand{\Acht}{{\NOTEN\kern0.05em\raisebox{0.5ex}{\symbol{7}\kern0.955em%
+\raisebox{0.55ex}{\symbol{16}}}\symbol{40}\kern0.9em}}
+\newcommand{\Sech}{{\NOTEN\kern0.05em\raisebox{0.5ex}{\symbol{7}\kern0.955em%
+\raisebox{0.55ex}{\symbol{16}}}\symbol{41}\kern0.9em}}
+\newcommand{\Zwdr}{{\NOTEN\kern0.05em\raisebox{0.5ex}{\symbol{7}\kern0.955em%
+\raisebox{0.55ex}{\symbol{16}}}\symbol{42}\kern0.9em}}
+\newcommand{\GaPa}{{\NOTEN\kern0.055em\raisebox{0.25ex}{\symbol{60}}\kern0.05em}}
+\newcommand{\HaPa}{{\NOTEN\kern0.055em\raisebox{0.25ex}{\symbol{60}}\kern0.05em}}
+\newcommand{\ViPa}{{\NOTEN\kern0.05em\raisebox{-0.8ex}{\symbol{62}}\kern0.955em}}
+\newcommand{\AcPa}{{\NOTEN\kern0.05em\raisebox{-0.8ex}{\symbol{63}}\kern1.2em}}
+\newcommand{\SePa}{{\NOTEN\kern0.15em\raisebox{-0.4ex}{\symbol{64}}\kern1.3em}}
+\newcommand{\ZwPa}{{\NOTEN\kern0.25em\raisebox{-0.8ex}{\symbol{65}}\kern1.4em}}
+\newcommand{\Pu}{{\NOTEN\kern-0.2em\raisebox{-0.5ex}{\symbol{24}}\kern1em}}
+\newcommand{\AAcht}{\Vier\kern0.1em\Vier{\NOTEN\kern-1.72em\raisebox{3.1ex}%
+{\symbol{61}\kern-0.87em\symbol{61}}}}
+\newcommand{\AchtBL}% 2007/05/03
+{\kern0.135em\Vier%
+{\NOTEN\kern-1.82em\raisebox{3.05ex}{\symbol{61}\kern-0.87em\symbol{61}}\kern0.09em}}
+\newcommand{\SechBL}% 2007/05/03
+{\kern0.135em\Vier%
+{\NOTEN\kern-1.82em\raisebox{3.05ex}{\symbol{61}\kern-0.87em\symbol{61}}%
+\kern-1.63em\raisebox{2.3ex}{\symbol{61}\kern-0.87em\symbol{61}}\kern0.09em}}
+\newcommand{\SechBl}% 2007/05/03
+{\kern0.135em\Vier%
+{\NOTEN\kern-1.82em\raisebox{3.05ex}{\symbol{61}\kern-0.87em\symbol{61}}%
+\kern-1.63em\raisebox{2.3ex}{{\noten\kern0.9em\symbol{61}}}\kern0.09em}}
+\newcommand{\AchtBR}% 2007/05/03
+{\kern0.135em\Vier%
+{\NOTEN\kern-0.1em\raisebox{3.05ex}{\symbol{61}\kern-0.87em\symbol{61}}\kern-1em}}
+\newcommand{\SechBR}% 2007/05/03
+{\kern0.135em\Vier%
+{\NOTEN\kern-0.1em\raisebox{3.05ex}{\symbol{61}\kern-0.87em\symbol{61}}%
+\kern-1.63em\raisebox{2.3ex}{\symbol{61}\kern-0.87em\symbol{61}}\kern-1.01em}}
+\newcommand{\SechBr}% 2007/05/03
+{\kern0.135em\Vier%
+{\NOTEN\kern-0.1em\raisebox{3.05ex}{\symbol{61}\kern-0.87em\symbol{61}}%
+\kern-1.63em\raisebox{2.3ex}{{\noten\kern-0.12em\symbol{61}}}\kern-0.3em}}
+% etc. ... ! Define your own commands!
