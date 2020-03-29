@@ -114,6 +114,15 @@
     .markdown-section sup, .markdown-section sub {
         font-size: 75%;
     }
+
+    .book_footer{
+        text-align: center;
+        color: #000000;
+        background: #ddd;
+        font-size: 16px;
+        margin-top: 16px;
+        padding: 16px;
+    }
 </style>
 <meta name="theme-color" content="#ffffff">
 <link rel="manifest" href="../../manifest.json">
@@ -970,12 +979,12 @@
     <div class="book-body">
         
             <div class="body-inner">
-                
+                 
                     
 
 <!-- Header -->
-<meta name="keywords" content="JavaScript,入門,入門書,チュートリアル,書籍,本,無料,Node.js,ブラウザ" />
-<link rel="author" href="https://www.hatena.ne.jp/efcl/" />
+<meta name="keywords" content="JavaScript,入門,入門書,チュートリアル,書籍,本,無料,Node.js,ブラウザ"/>
+<link rel="author" href="https://www.hatena.ne.jp/efcl/"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
 <style>
@@ -1302,9 +1311,9 @@
 <div class="book-header" role="navigation">
     
     <a class="book-header-title" href="../..">
-        <img class="book-header-title-img" alt="js-primer"
+        <img class="book-header-title-img" alt="JavaScript Primer"
              src="../../gitbook/icons/icon-128x128.png"/>
-        <h2 class="book-header-title-h" title="js-primer - JavaScriptの入門書">js-primer</h2>
+        <h2 class="book-header-title-h" title="JavaScript Primer - 迷わないための入門書">JavaScript Primer</h2>
     </a>
     <div class="searchbarWrapper header-center">
         <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
@@ -1343,19 +1352,18 @@
 </div>
 
 <script type="text/javascript">
-    document.querySelector('.searchbox [type="reset"]').addEventListener('click', function() {
-        this.parentNode.querySelector('input').focus();
+    document.querySelector(".searchbox [type=\"reset\"]").addEventListener("click", function() {
+        this.parentNode.querySelector("input").focus();
     });
 </script>
 <script>
     var search = docsearch({
-        apiKey: 'fd28ebaba94be0c39fb9fa1b2fed4f23', // use a SEARCH-ONLY api key here
-        indexName: 'asciidwango',
-        inputSelector: '.sbx-custom__input',
+        apiKey: "fd28ebaba94be0c39fb9fa1b2fed4f23", // use a SEARCH-ONLY api key here
+        indexName: "asciidwango",
+        inputSelector: ".sbx-custom__input",
         debug: false // set to `true` if you want to inspect the dropdown menu's CSS
     });
 </script>
-
 
 
 
@@ -1613,6 +1621,10 @@ ECMAScript&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306F;&#x3001;ES2015&#x3067;
                         </div>
                     </div>
                 
+<footer class="book_footer">
+    <p>Copyright (c) 2016-present <a href="https://github.com/asciidwango/js-primer">jsprimer project</a></p>
+</footer>
+
             </div>
 
             
@@ -1633,7 +1645,7 @@ ECMAScript&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306F;&#x3001;ES2015&#x3067;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"JavaScriptのモジュール（ECMAScriptモジュール）について紹介します。","title":"ECMAScriptモジュール","level":"1.3.27","depth":2,"next":{"title":"ECMAScript","level":"1.3.28","depth":2,"path":"basic/ecmascript/README.md","ref":"./basic/ecmascript/README.md","articles":[]},"previous":{"title":"Math","level":"1.3.26","depth":2,"path":"basic/math/README.md","ref":"./basic/math/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2019","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/module/README.md","mtime":"2020-03-29T11:11:25.757Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-29T11:12:33.571Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"JavaScriptのモジュール（ECMAScriptモジュール）について紹介します。","title":"ECMAScriptモジュール","level":"1.3.27","depth":2,"next":{"title":"ECMAScript","level":"1.3.28","depth":2,"path":"basic/ecmascript/README.md","ref":"./basic/ecmascript/README.md","articles":[]},"previous":{"title":"Math","level":"1.3.26","depth":2,"path":"basic/math/README.md","ref":"./basic/math/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2019","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/module/README.md","mtime":"2020-03-29T15:29:23.840Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-29T15:30:57.329Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
