@@ -10,7 +10,7 @@ const duplicateGfm = (item) => {
         // --gfmを足したバージョンを作成する
         {
             filePath: item.filePath,
-            args: item.args.concat("--gfm"),
+            args: ["--gfm", ...item.args],
             outputId: item.filePath + "--gfm"
         }
     ];
