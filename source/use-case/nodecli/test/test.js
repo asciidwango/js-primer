@@ -43,18 +43,6 @@ const gfmItems = flatten([
         args: ["sample.md"]
     },
     {
-        filePath: path.join(nodecliDir, "read-file/src/main-1.js"),
-        args: ["sample.md"]
-    },
-    {
-        filePath: path.join(nodecliDir, "read-file/src/main-2.js"),
-        args: ["sample.md"]
-    },
-    {
-        filePath: path.join(nodecliDir, "read-file/src/main-3.js"),
-        args: ["sample.md"]
-    },
-    {
         filePath: path.join(nodecliDir, "refactor-and-unittest/src/main.js"),
         args: ["sample.md"]
     },
@@ -90,6 +78,19 @@ const testTargetFileList = [
     },
     {
         filePath: path.join(nodecliDir, "md-to-html/src/main-2.js"),
+        args: ["sample.md"]
+    },
+
+    {
+        filePath: path.join(nodecliDir, "read-file/src/main-1.js"),
+        args: ["sample.md"]
+    },
+    {
+        filePath: path.join(nodecliDir, "read-file/src/main-2.js"),
+        args: ["sample.md"]
+    },
+    {
+        filePath: path.join(nodecliDir, "read-file/src/main-3.js"),
         args: ["sample.md"]
     },
 ].concat(gfmItems);
