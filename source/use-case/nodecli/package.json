@@ -1,8 +1,8 @@
 {
+  "private": true,
   "name": "nodecli",
   "version": "1.0.0",
-  "description": "snapshot testing",
-  "main": "index.js",
+  "description": "nodecli usecase",
   "scripts": {
     "pretest": "bash bootstrap.sh",
     "updateSnapshot": "UPDATE_SNAPSHOT=1 npm run unitest",
