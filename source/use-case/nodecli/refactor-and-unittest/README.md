@@ -68,7 +68,7 @@ Mochaが提供するテスト実行環境では、グローバルに`it`や`desc
 Mochaによるテスト環境を作るために、まずは次のコマンドで`mocha`パッケージをインストールします。
 
 ```shell-session
-$ npm install --save-dev mocha@6
+$ npm install --save-dev mocha@7
 ```
 
 `--save-dev`オプションは、パッケージを`devDependencies`としてインストールするためのものです。
