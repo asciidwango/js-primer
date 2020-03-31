@@ -76,7 +76,7 @@ $ npm init --yes
 次のコマンドを実行して、commanderのバージョン2.9をインストールします。[^1]
 
 ```shell-session
-$ npm install commander@5
+$ npm install commander@5.0.0
 ```
 
 インストールが完了すると、`package.json`ファイルは次のようになっています。
