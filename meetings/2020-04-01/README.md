@@ -18,6 +18,7 @@
 - kahei: 表紙については既にだしていて
 - kahei: 発売日は4月27日になります。前言っていたのと違って1日早くなりました。
 - azu: Amazonの方はそうなってましたね
+- [JavaScript Primer 迷わないための入門書 | azu, Suguru Inatomi |本 | 通販 | Amazon](https://www.amazon.co.jp/dp/4048930737/)
 - azu: 電子版の方ってどうなる感じですか? 同時?
 - kahei: epubを作らないと行けないので、少し遅れると思います。
 - kahei: PDF版は見本ができたタイミングではできると思います。
