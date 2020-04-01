@@ -103,7 +103,7 @@ console.log(obj[100]); // => undefined
 // 未定義の箇所が1つ含まれる疎な配列
 // インデックスが1の値を省略しているので、カンマが2つ続いていることに注意
 const sparseArray = [1,, 3];
-console.log(sparseArray.length); // => 3 
+console.log(sparseArray.length); // => 3
 // 1番目の要素は存在しないため undefined が返る
 console.log(sparseArray[1]); // => undefined
 ```
@@ -387,7 +387,7 @@ console.log(isIncludedBlueColor); // => true
 const array = ["A", "B", "C"];
 array.push("D"); // "D"を末尾に追加
 console.log(array); // => ["A", "B", "C", "D"]
-const poppedItem = array.pop(); // 最末尾の要素を削除し、その要素を返す 
+const poppedItem = array.pop(); // 最末尾の要素を削除し、その要素を返す
 console.log(poppedItem); // => "D"
 console.log(array); // => ["A", "B", "C"]
 ```
@@ -400,7 +400,7 @@ console.log(array); // => ["A", "B", "C"]
 const array = ["A", "B", "C"];
 array.unshift("S"); // "S"を先頭に追加
 console.log(array); // => ["S", "A", "B", "C"]
-const shiftedItem = array.shift(); // 先頭の要素を削除 
+const shiftedItem = array.shift(); // 先頭の要素を削除
 console.log(shiftedItem); // => "S"
 console.log(array); // => ["A", "B", "C"]
 ```
@@ -467,7 +467,7 @@ const array = [[["A"], "B"], "C"];
 console.log(array.flat()); // => [["A"], "B", "C"]
 console.log(array.flat(1)); // => [["A"], "B", "C"]
 console.log(array.flat(2)); // => ["A", "B", "C"]
-// すべてをフラット化するには Inifinity を渡す
+// すべてをフラット化するには Infinity を渡す
 console.log(array.flat(Infinity)); // => ["A", "B", "C"]
 ```
 
@@ -568,7 +568,7 @@ console.log(array.length); // => 0
 {{book.console}}
 ```js
 const myArray = ["A", "B", "C"];
-const result = myArray.push("D"); 
+const result = myArray.push("D");
 // `push`の返り値は配列ではなく、追加後の配列のlength
 console.log(result); // => 4
 // `myArray`が参照する配列そのものが変更されている
@@ -650,7 +650,7 @@ JavaScriptには`copy`メソッドそのものは存在しませんが、配列�
 ```js
 const myArray = ["A", "B", "C"];
 // `slice`は`myArray`のコピーを返す - `myArray.concat()`でも同じ
-const copiedArray = myArray.slice(); 
+const copiedArray = myArray.slice();
 myArray.push("D");
 console.log(myArray); // => ["A", "B", "C", "D"]
 // `array`のコピーである`copiedArray`には影響がない
@@ -790,9 +790,9 @@ Array-likeオブジェクトの例として`arguments`があります。
 {{book.console}}
 ```js
 function myFunc() {
-    console.log(arguments[0]); // => "a" 
-    console.log(arguments[1]); // => "b" 
-    console.log(arguments[2]); // => "c" 
+    console.log(arguments[0]); // => "a"
+    console.log(arguments[1]); // => "b"
+    console.log(arguments[2]); // => "c"
     // 配列ではないため、配列のメソッドは持っていない
     console.log(typeof arguments.forEach); // => "undefined"
 }
