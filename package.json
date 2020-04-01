@@ -39,7 +39,6 @@
     "test": "npm-run-all -l --parallel test:* lint",
     "e2e:todoapp": "cd ./source/use-case/todoapp && npm install && npm run e2e",
     "e2e": "npm-run-all -l --parallel e2e:*",
-    "ci": "npm-run-all -l --parallel test build",
     "build:applescript": "tsc -p tools/applescript"
   },
   "keywords": [
