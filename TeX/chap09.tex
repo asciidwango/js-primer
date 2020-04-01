@@ -1,10 +1,10 @@
 \hypertarget{statement-and-expression}{%
-\chapter{文と式}\label{statement-and-expression}}
+\chapter{文と式}\label{statement-and-expression}}\index{ぶん@文}\index{しき@式}
 \thispagestyle{frontheadings}
 
 本格的に基本文法について学ぶ前に、JavaScriptというプログラミング言語がどのような要素からできているかを見ていきましょう。
 
-JavaScriptは、\textbf{\textgt{文}}（Statement）と\textbf{\textgt{式}}（Expression）から構成されています。
+JavaScriptは、\textbf{\textgt{文}}（Statement\index{Statement}）と\textbf{\textgt{式}}（Expression\index{Expression}）から構成されています。
 
 \hypertarget{expression}{%
 \section{式}\label{expression}}
@@ -15,7 +15,7 @@ JavaScriptは、\textbf{\textgt{文}}（Statement）と\textbf{\textgt{式}}（E
 また、\texttt{1 + 1}のような式と演算子の組み合わせも式と呼びます。
 
 式の特徴として、式を評価すると結果の値が得られます。
-この結果の値を\textbf{\textgt{評価値}}と呼びます。
+この結果の値を\textbf{\textgt{評価値}}\index{ひょうかち@評価値}と呼びます。
 
 評価した結果を変数に代入できるものは式であるという理解で問題ありません。
 
@@ -35,10 +35,10 @@ console.log(fn()); // => 1
 \end{lstlisting}
 
 \hypertarget{statement}{%
-\section{文}\label{statement}}
+\section{文}\label{statement}}\index{ぶん@文}
 
-\textbf{\textgt{文}}（Statement）を簡潔に述べると、処理する1ステップが1つの文と言えます。
-JavaScriptでは、文の末尾にセミコロン(\texttt{;})を置くことで文と文に区切りをつけます。
+\textbf{\textgt{文}}（Statement\index{Statement}）を簡潔に述べると、処理する1ステップが1つの文と言えます。
+JavaScriptでは、文の末尾にセミコロン\index{せみころん@セミコロン}(\texttt{;}\index{;@\texttt{;}})を置くことで文と文に区切りをつけます。
 
 ソースコードとして書かれた文を上から処理していくことで、プログラムが実行されます。
 
@@ -69,13 +69,13 @@ var forIsNotExpression = if (true) { /* ifは文であるため式にはなれ�
 \end{lstlisting}
 
 \hypertarget{expression-statement}{%
-\subsection{式文}\label{expression-statement}}
+\subsection{式文}\label{expression-statement}}\index{しきぶん@式文}
 
 一方で、式（Expression）は文（Statement）になれます。文となった式のことを\textbf{\textgt{式文}}と呼びます。
 基本的に文が書ける場所には式を書けます。
 
 その際に、\textbf{\textgt{式文}}（Expression
-statement）は文の一種であるため、セミコロンで文を区切っています。
+statement\index{Expression statement}）は文の一種であるため、セミコロンで文を区切っています。
 
 \begin{lstlisting}
 // 式文であるためセミコロンをつけている
@@ -85,9 +85,9 @@ statement）は文の一種であるため、セミコロンで文を区切っ�
 式は文になれますが、先ほどのif文のように文は式になれません。
 
 \hypertarget{block-statement}{%
-\subsection{ブロック文}\label{block-statement}}
+\subsection{ブロック文}\label{block-statement}}\index{ぶろっくぶん@ブロック文}
 
-次のような、文を\texttt{\{}と\texttt{\}}で囲んだ部分を\textbf{\textgt{ブロック}}と言います。
+次のような、文を\texttt{\{}と\texttt{\}}\index{\{\}@\texttt{\{\}}}で囲んだ部分を\textbf{\textgt{ブロック}}\index{ぶろっく@ブロック}と言います。
 ブロックには、複数の文が書けます。
 
 \begin{lstlisting}
@@ -120,7 +120,7 @@ if (true) {
 }
 \end{lstlisting}
 
-\begin{tcolorbox}[floatplacement=t,float,title=単独のブロック文の活用]\label{isolate-block-statement}
+\begin{tcolorbox}[floatplacement=t,float,title=単独のブロック文の活用]\label{isolate-block-statement}\index{ぶろっくぶん@ブロック文}
 
 アプリケーションのソースコードにif文などと組み合わせない単独のブロック文を書くことはほとんどありません。
 しかし、REPLで同じコードの一部を変更して実行を繰り返している場合には、単独のブロック文が役に立つ機会もあります。
@@ -157,10 +157,10 @@ undefined // ここでブロック内で定義した変数countは参照でき�
 \end{tcolorbox}
 
 \hypertarget{function-statement-and-function-expression}{%
-\section{function宣言（文）とfunction式}\label{function-statement-and-function-expression}}
+\section{function宣言（文）とfunction式}\label{function-statement-and-function-expression}}\index{function@\texttt{function}}
 
 「\hyperlink{function-and-declaration}{関数と宣言}」の章において、関数を定義する方法を学びました。
-functionキーワードから文を開始する\textgt{関数宣言}と、変数へ\textgt{関数式}を代入する方法があります。
+functionキーワードから文を開始する\textbf{\textgt{関数宣言}}\index{かんすうせんげん@関数宣言}と、変数へ\textbf{\textgt{関数式}}\index{かんすうしき@関数式}を代入する方法があります。
 
 関数宣言（文）と関数式は、どちらも\texttt{function}というキーワードを利用しています。
 
@@ -177,7 +177,7 @@ const read = function() {
 このような、違いがなぜ生まれるのかは、ここまでの内容から説明できます。
 
 関数宣言（文）で定義した\texttt{learn}関数には、セミコロンがありません。
-これは、\textgt{ブロックで終わる文}にはセミコロンが不要であるためです。
+これは、\textbf{\textgt{ブロックで終わる文}}にはセミコロンが不要であるためです。
 
 一方、関数式を\texttt{read}変数へ代入したものには、セミコロンがあります。
 
@@ -214,7 +214,7 @@ JavaScriptには、特殊なルールに基づき、セミコロンがない文�
 しかし、この仕組みは構文を正しく解析できない場合に、セミコロンを足すという挙動を持っています。
 これにより、意図しない挙動を生むことがあります。そのため、必ず文の末尾にはセミコロンを書くようにします。
 
-エディターやIDEの中にはセミコロンの入力の補助をしてくれるものや、\href{http://eslint.org/}{ESLint}\footnote{\url{http://eslint.org/}}などのLintツールを使うことで、
+エディターやIDEの中にはセミコロンの入力の補助をしてくれるものや、\href{http://eslint.org/}{ESLint}\index{ESLint}\footnote{\url{http://eslint.org/}}などのLintツールを使うことで、
 セミコロンが必要なのかをチェックできます。
 
 セミコロンが必要か見分けるにはある程度慣れが必要ですが、ツールを使って静的にチェックできます。

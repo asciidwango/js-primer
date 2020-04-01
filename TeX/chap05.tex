@@ -1,5 +1,5 @@
 \hypertarget{data-type-and-literal}{%
-\chapter{データ型とリテラル}\label{data-type-and-literal}}
+\chapter{データ型とリテラル}\label{data-type-and-literal}}\index{でーたがた@データ型}\index{りてらる@リテラル}
 \thispagestyle{frontheadings}
 
 \hypertarget{data-type}{%
@@ -9,22 +9,22 @@ JavaScriptは動的型づけ言語に分類される言語であるため、静�
 しかし、文字列、数値、真偽値といった\textbf{\textgt{値の型}}は存在します。
 これらの値の型のことを\textbf{\textgt{データ型}}と呼びます。
 
-データ型を大きく分けると、\textbf{\textgt{プリミティブ型}}と\textbf{\textgt{オブジェクト}}の2つに分類されます。
+データ型を大きく分けると、\textbf{\textgt{プリミティブ型}}\index{ぷりみてぃぶがた@プリミティブ型}と\textbf{\textgt{オブジェクト}}\index{おぶじぇくと@オブジェクト}の2つに分類されます。
 
-プリミティブ型（基本型）は、真偽値や数値などの基本的な値の型のことです。
-プリミティブ型の値は、一度作成したらその値自体を変更できないというイミュータブル（immutable）の特性を持ちます。
+プリミティブ型（基本型\index{きほんがた@基本型}）は、真偽値や数値などの基本的な値の型のことです。
+プリミティブ型の値は、一度作成したらその値自体を変更できないというイミュータブル\index{いみゅーたぶる@イミュータブル}（immutable\index{immutable}）の特性を持ちます。
 JavaScriptでは、文字列も一度作成したら変更できないイミュータブルの特性を持ち、プリミティブ型の一種として扱われます。
 
-一方、プリミティブ型ではないものをオブジェクト（複合型）と呼び、
+一方、プリミティブ型ではないものをオブジェクト（複合型\index{ふくごうがた@複合型}）と呼び、
 オブジェクトは複数のプリミティブ型の値またはオブジェクトからなる集合です。
-オブジェクトは、一度作成した後もその値自体を変更できるためミュータブル（mutable）の特性を持ちます。
-オブジェクトは、値そのものではなく値への参照を経由して操作されるため、参照型のデータとも言います。
+オブジェクトは、一度作成した後もその値自体を変更できるためミュータブル\index{みゅーたぶる@ミュータブル}（mutable\index{mutable}）の特性を持ちます。
+オブジェクトは、値そのものではなく値への参照を経由して操作されるため、参照型\index{さんしょうがた@参照型}のデータとも言います。
 
 データ型を細かく見ていくと、6つのプリミティブ型とオブジェクトからなります。
 
 \begin{itemize}
 \item
-  プリミティブ型（基本型）
+  \textgt{プリミティブ型（基本型）}
 
   \begin{itemize}
   \item
@@ -44,7 +44,7 @@ JavaScriptでは、文字列も一度作成したら変更できないイミュ�
     シンボル（Symbol）: ES2015から追加された一意で不変な値のデータ型
   \end{itemize}
 \item
-  オブジェクト（複合型）
+  \textgt{オブジェクト（複合型）}
 
   \begin{itemize}
   \item
@@ -56,7 +56,7 @@ JavaScriptでは、文字列も一度作成したら変更できないイミュ�
 
 プリミティブ型でないものは、オブジェクトであると覚えていれば問題ありません。
 
-\texttt{typeof}演算子を使うことで、次のようにデータ型を調べることができます。
+\texttt{typeof}\index{typeof@\texttt{typeof}}演算子を使うことで、次のようにデータ型を調べることができます。
 
 \begin{lstlisting}
 console.log(typeof true);// => "boolean"
@@ -70,7 +70,7 @@ console.log(typeof { "key": "value" }); // => "object"
 console.log(typeof function() {}); // => "function"
 \end{lstlisting}
 
-残念ながら\texttt{typeof null}が\texttt{"object"}となるのは、歴史的経緯のある仕様のバグ\footnote{JavaScriptが最初にNetscapeで実装された際に\texttt{typeof null === "object"}となるバグがありました。このバグを修正するとすでにこの挙動に依存しているコードが壊れるため、修正が見送られ現在の挙動が仕様となりました。詳しくは\url{https://2ality.com/2013/10/typeof-null.html}を参照。}です。
+残念ながら\texttt{typeof null}が\texttt{"object"}となるのは、歴史的経緯のある仕様のバグ\index{しようのばぐ@仕様のバグ}\footnote{JavaScriptが最初にNetscapeで実装された際に\texttt{typeof null === "object"}となるバグがありました。このバグを修正するとすでにこの挙動に依存しているコードが壊れるため、修正が見送られ現在の挙動が仕様となりました。詳しくは\url{https://2ality.com/2013/10/typeof-null.html}を参照。}です。
 他のプリミティブ型の値については、\texttt{typeof}演算子でそれぞれのデータ型を調べることができます。
 
 一方で、配列とオブジェクトがどちらも\texttt{"object"}という判定結果になります。
@@ -81,12 +81,12 @@ console.log(typeof function() {}); // => "function"
 各オブジェクトの判定方法については、それぞれのオブジェクトの章で見ていきます。
 
 \hypertarget{literal}{%
-\section{リテラル}\label{literal}}
+\section{リテラル}\label{literal}}\index{りてらる@リテラル}
 
-プリミティブ型の値や一部のオブジェクトは、\textbf{リテラル}を使うことで簡単に定義できるようになっています。
+プリミティブ型の値や一部のオブジェクトは、\textbf{\textgt{リテラル}}を使うことで簡単に定義できるようになっています。
 
 リテラルとはプログラム上で数値や文字列など、データ型の値を直接記述できるように構文として定義されたものです。
-たとえば、\texttt{"}と\texttt{"}で囲んだ範囲が文字列リテラルで、これは文字列型のデータを表現しています。
+たとえば、\texttt{"}と\texttt{"}で囲んだ範囲が文字列リテラル\index{もじれつりてらる@文字列リテラル}で、これは文字列型のデータを表現しています。
 
 次のコードでは、\texttt{"こんにちは"}という文字列型のデータを初期値に持つ変数\texttt{str}を定義しています。
 
@@ -125,9 +125,9 @@ const str = "こんにちは";
 これらのリテラルについて、まずはプリミティブ型から順番に見ていきます。
 
 \hypertarget{boolean}{%
-\subsection{真偽値（Boolean）}\label{boolean}}
+\subsection{真偽値（Boolean）}\label{boolean}}\index{しんぎち@真偽値}\index{Boolean}
 
-真偽値には\texttt{true}と\texttt{false}のリテラルがあります。
+真偽値には\texttt{true}\index{true@\texttt{true}}と\texttt{false}\index{false@\texttt{false}}のリテラルがあります。
 それぞれは\texttt{true}と\texttt{false}の値を返すリテラルで、見た目どおりの意味となります。
 
 \begin{lstlisting}
@@ -136,12 +136,12 @@ false; // => false
 \end{lstlisting}
 
 \hypertarget{number}{%
-\subsection{数値（Number）}\label{number}}
+\subsection{数値（Number）}\label{number}}\index{すうち@数値}\index{Number}
 
 数値には大きく分けて\texttt{42}のような整数リテラルと\texttt{3.14159}のような浮動小数点数リテラルがあります。
 
 \hypertarget{integer-literal}{%
-\subsubsection{整数リテラル}\label{integer-literal}}
+\subsubsection{整数リテラル}\label{integer-literal}}\index{せいすうりてらる@整数リテラル}
 
 整数リテラルには次の4種類があります。
 
@@ -194,7 +194,7 @@ console.log(10); // => 10
 console.log(255); // => 255
 \end{lstlisting}
 
-\texttt{0b}からはじまる2進数リテラルは、ビットを表現するのによく利用されています。
+\texttt{0b}からはじまる2進数リテラル\index{2しんすうりてらる@2進数リテラル}は、ビットを表現するのによく利用されています。
 \texttt{b}は2進数を表すbinaryを意味しています。
 
 \begin{lstlisting}
@@ -202,7 +202,7 @@ console.log(0b1111); // => 15
 console.log(0b10000000000); // => 1024
 \end{lstlisting}
 
-\texttt{0o}からはじまる8進数リテラルは、ファイルのパーミッションを表現するのによく利用されています。
+\texttt{0o}からはじまる8進数リテラル\index{8しんすうりてらる@8進数リテラル}は、ファイルのパーミッションを表現するのによく利用されています。
 \texttt{o}は8進数を表すoctalを意味しています。
 
 \begin{lstlisting}
@@ -222,7 +222,7 @@ console.log(0644);  // => 420
 console.log(0777);  // => 511
 \end{lstlisting}
 
-\texttt{0x}からはじまる16進数リテラルは、文字のコードポイントやRGB値の表現などに利用されています。
+\texttt{0x}からはじまる16進数リテラル\index{16しんすうりてらる@16進数リテラル}は、文字のコードポイントやRGB値の表現などに利用されています。
 \texttt{x}は16進数を表すhexを意味しています。
 
 \begin{lstlisting}
@@ -235,7 +235,7 @@ console.log(0x30A2); // => 12450
 \begin{small}
 \begin{longtable}[l]{p{40mm}|p{40mm}|p{60mm}}
 \hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}
-{\textgt 名前} & {\textgt 表記例} & {\textgt 用途}\tabularnewline
+\textgt{名前} & \textgt{表記例} & \textgt{用途}\tabularnewline
 \hline
 \endhead
 10進数 & 42 & 数値\tabularnewline
@@ -247,7 +247,7 @@ console.log(0x30A2); // => 12450
 \end{small}
 
 \hypertarget{floating-point-number-literal}{%
-\subsubsection{浮動小数点数リテラル}\label{floating-point-number-literal}}
+\subsubsection{浮動小数点数リテラル}\label{floating-point-number-literal}}\index{ふどうしょうすうてんすうりてらる@浮動小数点数リテラル}
 
 JavaScriptの浮動小数点数は\href{https://ja.wikipedia.org/wiki/IEEE_754}{IEEE 754}\footnote{\url{https://ja.wikipedia.org/wiki/IEEE_754}}を採用しています。
 浮動小数点数をリテラルとして書く場合には、次の2種類の表記が利用できます。
@@ -282,25 +282,25 @@ JavaScriptの浮動小数点数は\href{https://ja.wikipedia.org/wiki/IEEE_754}{
 \end{lstlisting}
 
 \hypertarget{string-literal}{%
-\subsection{文字列（String）}\label{string-literal}}
+\subsection{文字列（String）}\label{string-literal}}\index{もじれつ@文字列}\index{String}
 
-文字列リテラル共通のルールとして、同じ記号で囲んだ内容を文字列として扱います。
+文字列リテラル\index{もじれつりてらる@文字列リテラル}共通のルールとして、同じ記号で囲んだ内容を文字列として扱います。
 文字列リテラルとして次の3種類のリテラルがありますが、その評価結果はすべて同じ\texttt{"文字列"}になります。
 
-\begin{lstlisting}
+\begin{lstlisting}[escapechar=\%]
 console.log("文字列"); // => "文字列"
-console.log('文字列'); // => "文字列"
+console.log('%\hbox{}%文字列'); // => "文字列"
 console.log(`文字列`); // => "文字列"
 \end{lstlisting}
 
 \hypertarget{double-quote-and-single-quote}{%
-\subsubsection{ダブルクォートとシングルクォート}\label{double-quote-and-single-quote}}
+\subsubsection{ダブルクォートとシングルクォート}\label{double-quote-and-single-quote}}\index{だぶるくぉーと@ダブルクォート}\index{しんぐるくぉーと@シングルクォート}
 
-\texttt{"}（ダブルクォート）と\texttt{'}（シングルクォート）はまったく同じ意味となります。
+\texttt{"}\index{""@\texttt{""}}（ダブルクォート）と\texttt{'}\index{'@\texttt{'}}（シングルクォート）はまったく同じ意味となります。
 PHPやRubyなどとは違い、どちらのリテラルでも評価結果は同じとなります。
 
 文字列リテラルは同じ記号で囲む必要があるため、次のように文字列の中に同じ記号が出現した場合は、
-\texttt{\textbackslash'}のように\texttt{\textbackslash}（バックスラッシュ）を使ってエスケープしなければなりません。
+\texttt{\textbackslash'}のように\texttt{\textbackslash}\index{\\@\texttt{\textbackslash}}（バックスラッシュ\index{ばっくすらっしゅ@バックスラッシュ}）を使ってエスケープ\index{えすけーぷ@エスケープ}しなければなりません。
 
 \begin{lstlisting}
 '8 o\'clock'; // => "8 o'clock"
@@ -321,7 +321,7 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は同�
 入れたい"; // => SyntaxError: "" string literal contains an unescaped line break
 \end{lstlisting}
 
-改行の代わりに改行記号のエスケープシーケンス（\texttt{\textbackslash n}）を使うことで複数行の文字列を書くことができます。
+改行の代わりに改行記号のエスケープシーケンス\index{えすけーぷしーけんす@エスケープシーケンス}（\texttt{\textbackslash n}\index{\\n@\texttt{\textbackslash n}}）を使うことで複数行の文字列を書くことができます。
 
 \begin{lstlisting}
 "複数行の\n文字列を\n入れたい";
@@ -331,10 +331,10 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は同�
 これに対してES2015から導入されたテンプレートリテラルでは、複数行の文字列を直感的に書くことができます。
 
 \hypertarget{template-literal}{%
-\subsubsection{テンプレートリテラル\protect\icon{fig/es2015.eps}}\label{template-literal}}
+\subsubsection{テンプレートリテラル\,\protect\icon{fig/es2015.eps}}\label{template-literal}}\index{てんぷれーとりてらる@テンプレートリテラル}
 
 テンプレートリテラルは
-\lstinline{`}（バッククォート）で囲んだ範囲を文字列とするリテラルです。
+\lstinline{`}\index{`@\lstinline{`}}（バッククォート\index{ばっくくぉーと@バッククォート}）で囲んだ範囲を文字列とするリテラルです。
 テンプレートリテラルでは、複数行の文字列を改行記号のエスケープシーケンス（\texttt{\textbackslash n}）を使わずにそのまま書くことができます。
 
 複数行の文字列も\lstinline{`}で囲めば、そのまま書くことができます。
@@ -346,7 +346,7 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は同�
 \end{lstlisting}
 
 また、名前のとおりテンプレートのような機能も持っています。
-テンプレートリテラル内で\texttt{\$\{変数名\}}と書いた場合に、その変数の値を埋め込むことができます。
+テンプレートリテラル内で\texttt{\$\{変数名\}}\index{$\{\}@\texttt{\$\{\}}}と書いた場合に、その変数の値を埋め込むことができます。
 
 \begin{lstlisting}
 const str = "文字列";
@@ -360,7 +360,7 @@ console.log(`これは${str}です`); // => "これは文字列です"
 \end{lstlisting}
 
 \hypertarget{null-literal}{%
-\subsection{nullリテラル}\label{null-literal}}
+\subsection{nullリテラル}\label{null-literal}}\index{nullりてらる@nullリテラル}
 
 nullリテラルは\texttt{null}値を返すリテラルです。
 \texttt{null}は「値がない」ということを表現する値です。
@@ -382,7 +382,7 @@ console.log(foo); // => null
 \end{lstlisting}
 
 \hypertarget{undefined-is-not-literal}{%
-\begin{tcolorbox}[title=undefinedはリテラルではない]\label{undefined-is-not-literal}}
+\begin{tcolorbox}[title=undefinedはリテラルではない]\label{undefined-is-not-literal}}\index{undefined}
 
 プリミティブ型として紹介した\texttt{undefined}はリテラルではありません。
 \texttt{undefined}はただのグローバル変数で、\texttt{undefined}という値を持っているだけです。
@@ -410,11 +410,11 @@ var null; // => SyntaxError
 \end{tcolorbox}
 
 \hypertarget{object-literal}{%
-\subsection{オブジェクトリテラル}\label{object-literal}}
+\subsection{オブジェクトリテラル}\label{object-literal}}\index{おぶじぇくとりてらる@オブジェクトリテラル}
 
 JavaScriptにおいて、オブジェクトはあらゆるものの基礎となります。
 そのオブジェクトを作成する方法として、オブジェクトリテラルがあります。
-オブジェクトリテラルは\texttt{\{\}}（中カッコ）を書くことで、新しいオブジェクトを作成できます。
+オブジェクトリテラルは\texttt{\{\}}\index{\{\}@\texttt{\{\}}}（中カッコ）を書くことで、新しいオブジェクトを作成できます。
 
 \begin{lstlisting}
 const obj = {}; // 中身が空のオブジェクトを作成
@@ -436,12 +436,12 @@ const obj = {
 };
 \end{lstlisting}
 
-このとき、オブジェクトが持つキーのことをプロパティ名と呼びます。
+このとき、オブジェクトが持つキーのことをプロパティ\index{ぷろぱてぃ@プロパティ}名と呼びます。
 この場合、
 \texttt{obj}というオブジェクトは\texttt{key}というプロパティを持っていると言います。
 
-\texttt{obj}の\texttt{key}を参照するには、\texttt{.}（ドット）でつないで参照する方法と、
-\texttt{[]}（ブラケット）で参照する方法があります。
+\texttt{obj}の\texttt{key}を参照するには、\texttt{.}\index{.@\texttt{.}}（ドット\index{どっと@ドット}）でつないで参照する方法と、
+\texttt{[]}\index{[]@\texttt{[]}}（ブラケット\index{ぶらけっと@ブラケット}）で参照する方法があります。
 
 \begin{lstlisting}
 const obj = {
@@ -451,7 +451,7 @@ const obj = {
 console.log(obj.key); // => "value"
 // ブラケット記法
 console.log(obj["key"]); // => "value"
-\end{lstlisting}
+\end{lstlisting}\index{どっときほう@ドット記法}\index{ぶらけっときほう@ブラケット記法}
 
 ドット記法では、プロパティ名が変数名と同じく識別子である必要があります。
 そのため、次のように識別子として利用できないプロパティ名はドット記法として書くことができません。
@@ -472,18 +472,18 @@ object.123
 ここでは、オブジェクトリテラル（\texttt{\{}と\texttt{\}}）が出てきたら、新しいオブジェクトを作成しているんだなと思ってください。
 
 \hypertarget{array-literal}{%
-\subsection{配列リテラル}\label{array-literal}}
+\subsection{配列リテラル}\label{array-literal}}\index{はいれつりてらる@配列リテラル}
 
 オブジェクトリテラルと並んで、よく使われるリテラルとして配列リテラルがあります。
 配列リテラルは\texttt{[}と\texttt{]}でカンマ区切りの値を囲み、その値を持つArrayオブジェクトを作成します。
-配列（Arrayオブジェクト）とは、複数の値に順序をつけて格納できるオブジェクトの一種です。
+配列\index{はいれつ@配列}（Array\index{Array}オブジェクト）とは、複数の値に順序をつけて格納できるオブジェクトの一種です。
 
 \begin{lstlisting}
 const emptyArray = []; // 空の配列を作成
 const array = [1, 2, 3]; // 値を持った配列を作成
 \end{lstlisting}
 
-配列は\texttt{0}からはじまるインデックス（添字）に、対応した値を保持しています。
+配列は\texttt{0}からはじまるインデックス\index{いんでっくす@インデックス}（添字\index{そえじ@添字}）に、対応した値を保持しています。
 作成した配列の要素を取得するには、配列に対して\texttt{array[index]}という構文で指定したインデックスの値を参照できます。
 
 \begin{lstlisting}
@@ -497,13 +497,13 @@ console.log(array[1]); // => "index:1"
 配列についての詳細は「\hyperlink{array}{配列}」の章で解説します。
 
 \hypertarget{regexp-literal}{%
-\subsection{正規表現リテラル}\label{regexp-literal}}
+\subsection{正規表現リテラル}\label{regexp-literal}}\index{せいきひょうげんりてらる@正規表現リテラル}
 
 JavaScriptは正規表現をリテラルで書くことができます。
-正規表現リテラルは\texttt{/}と\texttt{/}で正規表現のパターン文字列を囲みます。
+正規表現リテラルは\texttt{/}\index{/@\texttt{/}}と\texttt{/}で正規表現のパターン文字列を囲みます。
 正規表現のパターン内では、\texttt{+}や\texttt{\textbackslash}（バックスラッシュ）からはじまる特殊文字が特別な意味を持ちます。
 
-次のコードでは、数字にマッチする特殊文字である\texttt{\textbackslash d}を使い、1文字以上の数字にマッチする正規表現をリテラルで表現しています。
+次のコードでは、数字にマッチする特殊文字である\texttt{\textbackslash d}\index{\\d@\texttt{\textbackslash d}}を使い、1文字以上の数字にマッチする正規表現をリテラルで表現しています。
 
 \begin{lstlisting}
 const numberRegExp = /\d+/; // 1文字以上の数字にマッチする正規表現
@@ -511,19 +511,19 @@ const numberRegExp = /\d+/; // 1文字以上の数字にマッチする正規表
 console.log(numberRegExp.test(123)); // => true
 \end{lstlisting}
 
-\texttt{RegExp}コンストラクタを使うことで、文字列から正規表現オブジェクトを作成できます。
+\texttt{RegExp}\index{RegExp@\texttt{RegExp}}コンストラクタを使うことで、文字列から正規表現オブジェクトを作成できます。
 しかし、特殊文字の二重エスケープが必要になり直感的に書くことが難しくなります。
 
 正規表現オブジェクトについて詳しくは、「\hyperlink{string}{文字列}」の章で紹介します。
 
 \hypertarget{primitive-and-wrapper-object}{%
-\section{プリミティブ型とオブジェクト}\label{primitive-and-wrapper-object}}
+\section{プリミティブ型とオブジェクト}\label{primitive-and-wrapper-object}}\index{ぷりみてぃぶがた@プリミティブ型}\index{おぶじぇくと@オブジェクト}
 
 プリミティブ型は基本的にリテラルで表現しますが、真偽値（Boolean）、数値（Number）、文字列（String）はそれぞれオブジェクトとして表現する方法もあります。
-これらはプリミティブ型の値をラップしたようなオブジェクトであるため\textbf{ラッパーオブジェクト}と呼ばれます。
+これらはプリミティブ型の値をラップしたようなオブジェクトであるため\textbf{\textgt{ラッパーオブジェクト}}\index{らっぱーおぶじぇくと@ラッパーオブジェクト}と呼ばれます。
 
 ラッパーオブジェクトは、\texttt{new}演算子と対応するコンストラクタ関数を利用して作成できます。
-たとえば、文字列のプリミティブ型に対応するコンストラクタ関数は\texttt{String}となります。
+たとえば、文字列のプリミティブ型に対応するコンストラクタ関数は\texttt{String}\index{String@\texttt{String}}となります。
 
 次のコードでは、\texttt{String}のラッパーオブジェクトを作成しています。
 ラッパーオブジェクトは、名前のとおりオブジェクトの一種であるため\texttt{typeof}演算子の結果も\texttt{"object"}です。

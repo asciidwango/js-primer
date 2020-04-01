@@ -1,17 +1,17 @@
 \hypertarget{conditional-branch}{%
-\chapter{条件分岐}\label{conditional-branch}}
+\chapter{条件分岐}\label{conditional-branch}}\index{じょうけんぶんき@条件分岐}
 \thispagestyle{frontheadings}
 
 この章ではif文やswitch文を使った条件分岐について学んでいきます。
 条件分岐を使うことで、特定の条件を満たすかどうかで行う処理を変更できます。
 
 \hypertarget{if-statement}{%
-\section{if文}\label{if-statement}}
+\section{if文}\label{if-statement}}\index{ifぶん@if文}
 
 if文を使うことで、プログラム内に条件分岐を書けます。
 
 if文は次のような構文が基本形となります。
-\texttt{条件式}の評価結果が\texttt{true}であるならば、\texttt{実行する文}が実行されます。
+\texttt{条件式}\index{じょうけんしき@条件式}の評価結果が\texttt{true}であるならば、\texttt{実行する文}が実行されます。
 
 \begin{lstlisting}
 if (条件式) {
@@ -50,7 +50,7 @@ if文の\texttt{条件式}には\texttt{true}または\texttt{false}といった
 真偽値以外の値の場合、その値を暗黙的に真偽値へ変換してから、条件式として判定します。
 
 真偽値へ変換すると\texttt{true}となる値の種類は多いため、逆に変換した結果が\texttt{false}となる値を覚えるのが簡単です。
-次の値は真偽値へと変換すると\texttt{false}となるため、これらの値は\textbf{falsy}と呼ばれます（「\hyperlink{implicit-coercion}{暗黙的な型変換}」の章を参照）。
+次の値は真偽値へと変換すると\texttt{false}となるため、これらの値は\textbf{falsy}\index{falsy}と呼ばれます（「\hyperlink{implicit-coercion}{暗黙的な型変換}」の章を参照）。
 
 \begin{itemize}
 \item
@@ -112,7 +112,7 @@ if (null) {
 \end{lstlisting}
 
 \hypertarget{else-if-statement}{%
-\subsection{else if文}\label{else-if-statement}}
+\subsection{else if文}\label{else-if-statement}}\index{else ifぶん@else if文}
 
 複数の条件分岐を書く場合は、if文に続けてelse if文を使います。
 たとえば、次の3つの条件分岐するプログラムを考えます。
@@ -144,7 +144,7 @@ if (version === "ES5") {
 \end{lstlisting}
 
 \hypertarget{else-statement}{%
-\subsection{else文}\label{else-statement}}
+\subsection{else文}\label{else-statement}}\index{elseぶん@else文}
 
 if文とelse
 if文では、条件に一致した場合の処理をブロック内に書いていました。
@@ -163,7 +163,7 @@ if (num > 10) {
 \end{lstlisting}
 
 \hypertarget{nested-if-statement}{%
-\subsubsection{ネストしたif文}\label{nested-if-statement}}
+\subsubsection{ネストしたif文}\label{nested-if-statement}}\index{ねすと@ネスト}\index{ifぶん@if文!ねすと@ネスト}
 
 if文、else if文、else文はネストして書けます。
 次のように複数の条件を満たすかどうかをif文のネストとして表現できます。
@@ -230,7 +230,7 @@ if (year % 400 === 0) { // 400で割り切れる
 \end{lstlisting}
 
 \hypertarget{switch-statement}{%
-\section{switch文}\label{switch-statement}}
+\section{switch文}\label{switch-statement}}\index{switchぶん@switch文}
 
 switch文は、次のような構文で\texttt{式}の評価結果が指定した値である場合に行う処理を並べて書きます。
 
@@ -250,7 +250,7 @@ switch (式) {
 \end{lstlisting}
 
 switch文はif文と同様に\texttt{式}の評価結果に基づく条件分岐を扱います。
-またbreak文は、switch文から抜けてswitch文の次の文から実行するためのものです。
+またbreak文\index{breakぶん@break文}は、switch文から抜けてswitch文の次の文から実行するためのものです。
 次のコードでは、\texttt{version}の評価結果は\texttt{"ES6"}となるため、\texttt{case "ES6":}に続く文が実行されます。
 
 \begin{lstlisting}
@@ -298,8 +298,8 @@ switch (式) {
 \end{lstlisting}
 
 次に\texttt{式}の評価結果が厳密等価演算子（\texttt{===}）で一致するラベルを探索します。
-一致するラベルが存在する場合は、そのcase節を実行します。
-一致する\texttt{ラベル}が存在しない場合は、default節が実行されます。
+一致するラベルが存在する場合は、そのcase節\index{caseせつ@case節}を実行します。
+一致する\texttt{ラベル}が存在しない場合は、default節\index{defaultせつ@default節}が実行されます。
 
 \begin{lstlisting}
 switch (式) {
@@ -316,7 +316,7 @@ switch (式) {
 \end{lstlisting}
 
 \hypertarget{break-statement}{%
-\subsection{break文}\label{break-statement}}
+\subsection{break文}\label{break-statement}}\index{breakぶん@break文}
 
 switch文のcase節では基本的に\texttt{break;}を使ってswitch文を抜けるようにします。
 この\texttt{break;}は省略が可能ですが、省略した場合、後ろに続くcase節が条件に関係なく実行されます。

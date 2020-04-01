@@ -1,14 +1,14 @@
 \hypertarget{object}{%
-\chapter{オブジェクト}\label{object}}
+\chapter{オブジェクト}\label{object}}\index{おぶじぇくと@オブジェクト}
 \thispagestyle{frontheadings}
 
-オブジェクトはプロパティの集合です。プロパティとは名前（キー）と値（バリュー）が対になったものです。
+オブジェクトはプロパティの集合です。プロパティ\index{ぷろぱてぃ@プロパティ}とは名前（キー\index{きー@キー}）と値（バリュー\index{ばりゅー@バリュー}）が対になったものです。
 プロパティのキーには文字列または\texttt{Symbol}が利用でき、値には任意のデータを指定できます。
 また、1つのオブジェクトは複数のプロパティを持てるため、1つのオブジェクトで多種多様な値を表現できます。
 
 今までも登場してきた、配列や関数などもオブジェクトの一種です。
-JavaScriptには、あらゆるオブジェクトの元となる\texttt{Object}というビルトインオブジェクトがあります。
-ビルトインオブジェクトは実行環境に組み込まれたオブジェクトのことです。
+JavaScriptには、あらゆるオブジェクトの元となる\texttt{Object}\index{Object@\texttt{Object}}というビルトインオブジェクトがあります。
+ビルトインオブジェクト\index{びるといんおぶじぇくと@ビルトインオブジェクト}は実行環境に組み込まれたオブジェクトのことです。
 \texttt{Object}というビルトインオブジェクトはECMAScriptの仕様で定義されているため、あらゆるJavaScriptの実行環境で利用できます。
 
 この章では、オブジェクトの作成や扱い方、\texttt{Object}というビルトインオブジェクトについて見ていきます。
@@ -16,7 +16,7 @@ JavaScriptには、あらゆるオブジェクトの元となる\texttt{Object}�
 \hypertarget{create-object}{%
 \section{オブジェクトを作成する}\label{create-object}}
 
-オブジェクトを作成するには、オブジェクトリテラル（\texttt{\{\}}）を利用します。
+オブジェクトを作成するには、オブジェクトリテラル\index{おぶじぇくとりてらる@オブジェクトリテラル}（\texttt{\{\}}\index{\{\}@\texttt{\{\}}}）を利用します。
 
 \begin{lstlisting}
 // プロパティを持たない空のオブジェクトを作成
@@ -24,7 +24,7 @@ const obj = {};
 \end{lstlisting}
 
 オブジェクトリテラルでは、初期値としてプロパティを持つオブジェクトを作成できます。
-プロパティは、オブジェクトリテラル（\texttt{\{\}}）の中にキーと値を\texttt{:}（コロン）で区切って記述します。
+プロパティは、オブジェクトリテラル（\texttt{\{\}}）の中にキーと値を\texttt{:}\index{:@\texttt{:}}（コロン\index{ころん@コロン}）で区切って記述します。
 
 \begin{lstlisting}
 // プロパティを持つオブジェクトを定義する
@@ -34,7 +34,7 @@ const obj = {
 };
 \end{lstlisting}
 
-オブジェクトリテラルのプロパティ名（キー）はクォート（\texttt{"}や\texttt{'}）を省略できます。
+オブジェクトリテラルのプロパティ名（キー）はクォート\index{くぉーと@クォート}（\texttt{"}\index{""@\texttt{""}}や\texttt{'}\index{'@\texttt{'}}）を省略できます。
 そのため、次のように書いても同じです。
 
 \begin{lstlisting}
@@ -62,7 +62,7 @@ const obj = {
 \end{lstlisting}
 
 オブジェクトリテラルでは複数のプロパティ（キーと値の組み合わせ）を持つオブジェクトも作成できます。
-複数のプロパティを定義するには、それぞれのプロパティを\texttt{,}（カンマ）で区切ります。
+複数のプロパティを定義するには、それぞれのプロパティを\texttt{,}\index{,@\texttt{,}}（カンマ\index{かんま@カンマ}）で区切ります。
 
 \begin{lstlisting}
 const color = {
@@ -100,12 +100,12 @@ console.log(obj); // => { name: "名前" }
 そのため、\texttt{\{\}}の中でプロパティ名が単独で書かれている場合は、この省略記法を利用していることに注意してください。
 
 \hypertarget{object-instance-object}{%
-\subsection{\texorpdfstring{\texttt{\{\}}は\texttt{Object}のインスタンスオブジェクト}{\{\}はObjectのインスタンスオブジェクト}}\label{object-instance-object}}
+\subsection{\texorpdfstring{\texttt{\{\}}は\texttt{Object}のインスタンスオブジェクト}{\{\}はObjectのインスタンスオブジェクト}}\label{object-instance-object}}\index{\{\}@\texttt{\{\}}}\index{Object@\texttt{Object}}\index{いんすたんすおぶじぇくと@インスタンスオブジェクト}
 
 \texttt{Object}はJavaScriptのビルトインオブジェクトです。
 オブジェクトリテラル（\texttt{\{\}}）は、このビルトインオブジェクトである\texttt{Object}を元にして新しいオブジェクトを作成するための構文です。
 
-オブジェクトリテラル以外の方法として、\texttt{new}演算子を使うことで、\texttt{Object}から新しいオブジェクトを作成できます。
+オブジェクトリテラル以外の方法として、\texttt{new}演算子\index{new@\texttt{new}}を使うことで、\texttt{Object}から新しいオブジェクトを作成できます。
 次のコードでは、\texttt{new Object()}でオブジェクトを作成していますが、これは空のオブジェクトリテラルと同じ意味です。
 
 \begin{lstlisting}
@@ -124,9 +124,9 @@ console.log(obj); // => {}
 オブジェクトリテラルは、\texttt{Object}から新しいインスタンスオブジェクトを作成していることを意識しておくとよいでしょう。
 
 \hypertarget{property-access}{%
-\section{プロパティへのアクセス}\label{property-access}}
+\section{プロパティへのアクセス}\label{property-access}}\index{ぷろぱてぃ@プロパティ!あくせす@アクセス}
 
-オブジェクトのプロパティにアクセスする方法として、ドット記法（\texttt{.}）とブラケット記法（\texttt{[]}）があります。
+オブジェクトのプロパティにアクセスする方法として、ドット記法\index{どっときほう@ドット記法}（\texttt{.}\index{.@\texttt{.}}）とブラケット記法\index{ぶらけっときほう@ブラケット記法}（\texttt{[]}\index{[]@\texttt{[]}}）があります。
 それぞれの記法で、オブジェクトの右辺へプロパティ名を指定すると、その名前を持ったプロパティの値を参照できます。
 
 \begin{lstlisting}
@@ -183,9 +183,9 @@ console.log(languages[myLang]); // => "日本語"
 基本的には簡潔なドット記法（\texttt{.}）を使い、ドット記法で書けない場合はブラケット記法（\texttt{[]}）を使うとよいでしょう。
 
 \hypertarget{object-destructuring}{%
-\section{オブジェクトと分割代入\protect\icon{fig/es2015.eps}}\label{object-destructuring}}
+\section[オブジェクトと分割代入]{オブジェクトと分割代入\,\protect\icon{fig/es2015.eps}}\label{object-destructuring}}\index{ぶんかつだいにゅう@分割代入}\index{おぶじぇくと@オブジェクト!ぶんかつだいにゅう@分割代入}
 
-同じオブジェクトのプロパティを何度もアクセスする場合に、何度も\texttt{オブジェクト.プロパティ名}と書くと冗長となりやすいです。
+同じオブジェクトのプロパティを何度もアクセスする場合に、何度も\texttt{オブジェクト.\hbox{}プロパティ名}と書くと冗長となりやすいです。
 そのため、短い名前で利用できるように、そのプロパティを変数として定義し直すことがあります。
 
 次のコードでは、変数\texttt{ja}と\texttt{en}を定義し、その初期値として\texttt{languages}オブジェクトのプロパティを代入しています。
@@ -202,7 +202,7 @@ console.log(en); // => "英語"
 \end{lstlisting}
 
 このようなオブジェクトのプロパティを変数として定義し直すときには、分割代入（Destructuring
-assignment）が利用できます。
+assignment\index{Destructuring assignment}）が利用できます。
 
 オブジェクトの分割代入では、左辺にオブジェクトリテラルのような構文で変数名を定義します。
 右辺のオブジェクトから対応するプロパティ名が、左辺で定義した変数に代入されます。
@@ -221,9 +221,9 @@ console.log(en); // => "英語"
 \end{lstlisting}
 
 \hypertarget{add-property}{%
-\section{プロパティの追加}\label{add-property}}
+\section{プロパティの追加}\label{add-property}}\index{ぷろぱてぃ@プロパティ!ついか@追加}
 
-オブジェクトは、一度作成した後もその値自体を変更できるというミュータブル（mutable）の特性を持ちます。
+オブジェクトは、一度作成した後もその値自体を変更できるというミュータブル\index{みゅーたぶる@ミュータブル}（mutable\index{mutable}）の特性を持ちます。
 そのため、作成したオブジェクトに対して、後からプロパティを追加できます。
 
 プロパティの追加方法は単純で、作成したいプロパティ名へ値を代入するだけです。
@@ -264,7 +264,7 @@ console.log(obj[key]); // => "value of key"
 
 ブラケット記法を用いたプロパティ定義は、オブジェクトリテラルの中でも利用できます。
 オブジェクトリテラル内でのブラケット記法を使ったプロパティ名は\textbf{Computed
-property names}と呼ばれます。 Computed property
+property names}\index{Computed property names}と呼ばれます。 Computed property
 namesはES2015から導入された記法ですが、\texttt{式}の評価結果をプロパティ名に使う点はブラケット記法と同じです。
 
 次のコードでは、Computed property
@@ -299,9 +299,9 @@ console.log(obj.key); // => "value"
 オブジェクトの作成時のオブジェクトリテラルの中でプロパティを定義することを推奨します。
 
 \hypertarget{remove-property}{%
-\subsection{プロパティの削除}\label{remove-property}}
+\subsection{プロパティの削除}\label{remove-property}}\index{ぷろぱてぃ@プロパティ!さくじょ@削除}
 
-オブジェクトのプロパティを削除するには\texttt{delete}演算子を利用します。
+オブジェクトのプロパティを削除するには\texttt{delete}\index{delete@\texttt{delete}}演算子を利用します。
 削除したいプロパティを\texttt{delete}演算子の右辺に指定して、プロパティを削除できます。
 
 \begin{lstlisting}
@@ -315,7 +315,7 @@ delete obj.key1;
 console.log(obj); // => { "key2": "value2" }
 \end{lstlisting}
 
-\begin{tcolorbox}[float,title=constで定義したオブジェクトは変更可能]\label{const-and-object}
+\begin{tcolorbox}[float,title=constで定義したオブジェクトは変更可能]\label{const-and-object}\index{const@\texttt{const}!おぶじぇくと@オブジェクト}
 
 先ほどのコード例で、\texttt{const}で宣言したオブジェクトのプロパティがエラーなく変更できていることがわかります。
 次のコードを実行してみると、値であるオブジェクトのプロパティが変更できていることがわかります。
@@ -327,18 +327,18 @@ console.log(obj.key); // => "Hi!"
 \end{lstlisting}
 
 JavaScriptの\texttt{const}は値を固定するのではなく、変数への再代入を防ぐためのものです。
-そのため、次のような\texttt{obj}変数への再代入は防げますが、変数に代入された値であるオブジェクトの変更は防げません（「\hyperlink{const-is-not-constant}{\texttt{const}は定数ではない}」を参照）。
+そのため、次のような\texttt{obj}変数への再代入は防げますが、変数に代入された値であるオブジェクトの変更は防げません（3章の「\hyperlink{const-is-not-constant}{\texttt{const}は定数ではない}」を参照）。
 
 \begin{lstlisting}
 const obj = { key: "value" };
 obj = {}; // => SyntaxError
 \end{lstlisting}
 
-作成したオブジェクトのプロパティの変更を防止するには\texttt{Object.freeze}メソッドを利用する必要があります。
-\texttt{Object.freeze}はオブジェクトを凍結します。凍結されたオブジェクトでプロパティの追加や変更を行うと例外が発生するようになります。
+作成したオブジェクトのプロパティの変更を防止するには\texttt{Object.freeze}\index{Object.freeze@\texttt{Object.freeze}}メソッドを利用する必要があります。
+\texttt{Object.freeze}はオブジェクトを凍結\index{おぶじぇくと@オブジェクト!とうけつ@凍結}\index{とうけつ@凍結}します。凍結されたオブジェクトでプロパティの追加や変更を行うと例外が発生するようになります。
 
 ただし、\texttt{Object.freeze}メソッドを利用する場合は必ずstrict
-modeと合わせて使います。 strict
+mode\index{strict mode}と合わせて使います。 strict
 modeでない場合は、凍結されたオブジェクトのプロパティを変更しても例外が発生せずに単純に無視されます。
 
 \begin{lstlisting}
@@ -350,7 +350,7 @@ object.key = "value"; // => TypeError: "key" is read-only
 \end{tcolorbox}
 
 \hypertarget{confirm-property}{%
-\section{プロパティの存在を確認する}\label{confirm-property}}
+\section{プロパティの存在を確認する}\label{confirm-property}}\index{ぷろぱてぃ@プロパティ!そんざいかくにん@存在確認}
 
 JavaScriptでは、存在しないプロパティに対してアクセスした場合に例外ではなく\texttt{undefined}を返します。
 次のコードは、\texttt{obj}には存在しない\texttt{notFound}プロパティにアクセスしているため、\texttt{undefined}という値が返ってきます。
@@ -394,7 +394,7 @@ console.log(widget.windw.title); // => TypeError: widget.windw is undefined
 
 \hypertarget{compare-to-undefined}{%
 \subsection{プロパティの存在確認:
-undefinedとの比較}\label{compare-to-undefined}}
+undefinedとの比較}\label{compare-to-undefined}}\index{undefined@\texttt{undefined}}
 
 存在しないプロパティへアクセスした場合に\texttt{undefined}を返すため、実際にプロパティアクセスすることでも判定できそうです。
 次のコードでは、\texttt{key}プロパティの値が\texttt{undefined}ではないという条件式で、プロパティが存在するかを判定しています。
@@ -426,7 +426,7 @@ if (obj.key !== undefined) {
 このような問題があるため、プロパティが存在するかを判定するには\texttt{in}演算子か\texttt{hasOwnProperty}メソッドを利用します。
 
 \hypertarget{in-operator}{%
-\subsection{プロパティの存在確認: in演算子を使う}\label{in-operator}}
+\subsection{プロパティの存在確認: in演算子を使う}\label{in-operator}}\index{in@\texttt{in}}
 
 \texttt{in}演算子は、指定したオブジェクト上に指定したプロパティがあるかを判定できます。
 
@@ -447,7 +447,7 @@ if ("key" in obj) {
 
 \hypertarget{hasOwnProperty-method}{%
 \subsection{\texorpdfstring{プロパティの存在確認:
-\texttt{hasOwnProperty}メソッド}{プロパティの存在確認: hasOwnPropertyメソッド}}\label{hasOwnProperty-method}}
+\texttt{hasOwnProperty}メソッド}{プロパティの存在確認: hasOwnPropertyメソッド}}\label{hasOwnProperty-method}}\index{hasOwnProperty@\texttt{hasOwnProperty}}
 
 オブジェクトの\texttt{hasOwnProperty}メソッドは、オブジェクト自身が指定したプロパティを持っているかを判定できます。
 この\texttt{hasOwnProperty}メソッドの引数には、存在を判定したいプロパティ名を渡します。
@@ -473,11 +473,11 @@ if (obj.hasOwnProperty("key")) {
 次の章の「\hyperlink{prototype-object}{プロトタイプオブジェクト}」で詳しく解説するため、次の章で\texttt{in}演算子と\texttt{hasOwnProperty}メソッドの違いを見ていきます。
 
 \hypertarget{toString-method}{%
-\section{\texorpdfstring{\texttt{toString}メソッド}{toStringメソッド}}\label{toString-method}}
+\section{\texorpdfstring{\texttt{toString}メソッド}{toStringメソッド}}\label{toString-method}}\index{toString@\texttt{toString}}
 
 オブジェクトの\texttt{toString}メソッドは、オブジェクト自身を文字列化するメソッドです。
 \texttt{String}コンストラクタ関数を使うことでも文字列化できます。
-この2つにはどのような違いがあるのでしょうか？（\texttt{String}コンストラクタ関数については「\hyperlink{implicit-coercion}{暗黙的な型変換}」を参照）
+この2つにはどのような違いがあるのでしょうか？（\texttt{String}\index{String@\texttt{String}}コンストラクタ関数については「\hyperlink{implicit-coercion}{暗黙的な型変換}」の章を参照）
 
 実は\texttt{String}コンストラクタ関数は、引数に渡されたオブジェクトの\texttt{toString}メソッドを呼び出しています。
 そのため、\texttt{String}コンストラクタ関数と\texttt{toString}メソッドの結果はどちらも同じになります。
@@ -503,7 +503,7 @@ const customObject = {
 console.log(String(customObject)); // => "custom value"
 \end{lstlisting}
 
-\begin{tcolorbox}[float,title=オブジェクトのプロパティ名は文字列化される]\label{object-property-is-to-string}
+\begin{tcolorbox}[enhanced jigsaw,breakable,title=オブジェクトのプロパティ名は文字列化される]\label{object-property-is-to-string}\index{ぷろぱてぃ@プロパティ!もじれつか@文字列化}\index{もじれつか@文字列化}
 
 オブジェクトのプロパティへアクセスする際に、指定したプロパティ名は暗黙的に文字列に変換されます。
 ブラケット記法では、オブジェクトをプロパティ名に指定することもできますが、これは意図したようには動作しません。
@@ -523,7 +523,7 @@ obj[keyObject2] = "2";
 console.log(obj); //  { "[object Object]": "2" }
 \end{lstlisting}
 
-唯一の例外として、Symbolだけは文字列化されずにオブジェクトのプロパティ名として扱えます。
+唯一の例外として、Symbol\index{Symbol}だけは文字列化されずにオブジェクトのプロパティ名として扱えます。
 
 \begin{lstlisting}
 const obj = {};
@@ -537,14 +537,14 @@ console.log(obj[symbolKey2]); // => "2"
 \end{lstlisting}
 
 基本的にはオブジェクトのプロパティ名は文字列として扱われることを覚えておくとよいでしょう。
-また、\texttt{Map}というビルトインオブジェクトはオブジェクトをキーとして扱えます（詳細は「\hyperlink{map-and-set}{Map/Set}」の章で解説します）。
+また、\texttt{Map}\index{Map@\texttt{Map}}というビルトインオブジェクトはオブジェクトをキーとして扱えます（詳細は「\hyperlink{map-and-set}{Map/Set}」の章で解説します）。
 \end{tcolorbox}
 
 \hypertarget{static-method}{%
-\section{オブジェクトの静的メソッド}\label{static-method}}
+\section{オブジェクトの静的メソッド}\label{static-method}}\index{おぶじぇくと@オブジェクト!せいてきめそっど@静的メソッド}\index{せいてきめそっど@静的メソッド}
 
-最後にビルトインオブジェクトである\texttt{Object}の静的メソッドについて見ていきましょう。
-\textbf{\textgt{静的メソッド}}（スタティックメソッド）とは、インスタンスの元となるオブジェクトから呼び出せるメソッドのことです。
+最後にビルトインオブジェクトである\texttt{Object}\index{Object@\texttt{Object}}の静的メソッドについて見ていきましょう。
+\textbf{\textgt{静的メソッド}}（スタティックメソッド\index{すたてぃっくめそっど@スタティックメソッド}）とは、インスタンスの元となるオブジェクトから呼び出せるメソッドのことです。
 
 これまでの\texttt{toString}メソッドなどは、\texttt{Object}のインスタンスオブジェクトから呼び出すメソッドでした。
 これに対して、静的メソッドは\texttt{Object}そのものから呼び出せるメソッドです。
@@ -555,17 +555,17 @@ console.log(obj[symbolKey2]); // => "2"
 \subsection{オブジェクトの列挙}\label{enumeration}}
 
 最初に紹介したように、オブジェクトはプロパティの集合です。
-そのオブジェクトのプロパティを列挙する方法として、次の3つの静的メソッドがあります。
+そのオブジェクトのプロパティを列挙\index{ぷろぱてぃ@プロパティ!れっきょ@列挙}する方法として、次の3つの静的メソッドがあります。
 
 \begin{itemize}
 \item
-  \texttt{Object.keys}メソッド:
+  \texttt{Object.keys}\index{Object.keys@\texttt{Object.keys}}メソッド:
   オブジェクトのプロパティ名の配列を返す
 \item
-  \texttt{Object.values}メソッド\protect\icon{fig/es2017.eps}:
+  \texttt{Object.values}\index{Object.values@\texttt{Object.values}}メソッド\,\protect\iconl{fig/es2017.eps}:
   オブジェクトの値の配列を返す
 \item
-  \texttt{Object.entries}メソッド\protect\icon{fig/es2017.eps}:
+  \texttt{Object.entries}\index{Object.entries@\texttt{Object.entries}}メソッド\,\protect\iconl{fig/es2017.eps}:
   オブジェクトのプロパティ名と値の配列の配列を返す
 \end{itemize}
 
@@ -607,7 +607,7 @@ keys.forEach(key => {
 \hypertarget{copy-and-merge}{%
 \subsection{オブジェクトのマージと複製}\label{copy-and-merge}}
 
-\texttt{Object.assign}メソッド\protect\icon{fig/es2015.eps}は、あるオブジェクトを別のオブジェクトに代入（assign）できます。
+\texttt{Object.assign}\index{Object.assign@\texttt{Object.assign}}メソッド\,\protect\iconl{fig/es2015.eps}\,は、あるオブジェクトを別のオブジェクトに代入（assign）できます。
 このメソッドを使うことで、オブジェクトの複製やオブジェクト同士のマージができます。
 
 \texttt{Object.assign}メソッドは、\texttt{target}オブジェクトに対して、1つ以上の\texttt{sources}オブジェクトを指定します。
@@ -619,7 +619,7 @@ const obj = Object.assign(target, ...sources);
 \end{lstlisting}
 
 \hypertarget{merge}{%
-\subsubsection{オブジェクトのマージ}\label{merge}}
+\subsubsection{オブジェクトのマージ}\label{merge}}\index{おぶじぇくと@オブジェクト!まーじ@マージ}
 
 具体的なオブジェクトのマージの例を見ていきます。
 
@@ -665,9 +665,9 @@ console.log(merged); // => { version: "b" }
 \end{lstlisting}
 
 \hypertarget{object-spread-syntax}{%
-\subsubsection{オブジェクトのspread構文でのマージ}\label{object-spread-syntax}}
+\subsubsection{オブジェクトのspread構文でのマージ}\label{object-spread-syntax}}\index{おぶじぇくと@オブジェクト!まーじ@マージ}\index{おぶじぇくと@オブジェクト!spreadこうぶん@spread構文}\index{spreadこうぶん@spread構文}\index{spreadこうぶん@spread構文!まーじ@マージ}
 
-ES2018では、オブジェクトのマージを行うオブジェクトの\texttt{...}（spread構文）が追加されました。
+ES2018では、オブジェクトのマージを行うオブジェクトの\texttt{...}\index{...@\texttt{...}}（spread構文）が追加されました。
 ES2015で配列の要素を展開する\texttt{...}（spread構文）はサポートされていましたが、オブジェクトに対してもES2018でサポートされました。
 オブジェクトのspread構文は、オブジェクトリテラルの中に指定したオブジェクトのプロパティを展開できます。
 
@@ -703,7 +703,7 @@ console.log(merged); // => { version: "b", other: "other" }
 \end{lstlisting}
 
 \hypertarget{copy}{%
-\subsubsection{オブジェクトの複製}\label{copy}}
+\subsubsection{オブジェクトの複製}\label{copy}}\index{おぶじぇくと@オブジェクト!ふくせい@複製}
 
 JavaScriptには、オブジェクトを複製する関数は用意されていません。
 しかし、新しく空のオブジェクトを作成し、そこへ既存のオブジェクトのプロパティをコピーすれば、それはオブジェクトの複製をしていると言えます。
@@ -721,8 +721,8 @@ console.log(cloneObj); // => { a: "a" }
 console.log(obj === cloneObj); // => false
 \end{lstlisting}
 
-注意点として、\texttt{Object.assign}メソッドは\texttt{sources}オブジェクトのプロパティを浅くコピー（shallow
-copy）する点です。 shallow
+注意点として、\texttt{Object.assign}メソッドは\texttt{sources}オブジェクトのプロパティを浅くコピー\index{あさいこぴー@浅いコピー}（shallow
+copy\index{shallow copy}）する点です。 shallow
 copyとは、\texttt{sources}オブジェクトの直下にあるプロパティだけをコピーするということです。
 そのプロパティの値がオブジェクトである場合に、ネストした先のオブジェクトまでも複製するわけではありません。
 
@@ -741,8 +741,8 @@ const cloneObj = shallowClone(obj);
 console.log(cloneObj.nest === obj.nest); // => true
 \end{lstlisting}
 
-逆にプロパティの値までも再帰的に複製してコピーすることを、深いコピー（deep
-copy）と呼びます。 deep copyは、再帰的にshallow
+逆にプロパティの値までも再帰的に複製してコピーすることを、深いコピー\index{ふかいこぴー@深いコピー}（deep
+copy\index{deep copy}）と呼びます。 deep copyは、再帰的にshallow
 copyすることで実現できます。
 次のコードでは、\texttt{deepClone}を\texttt{shallowClone}を使うことで実現しています。
 
@@ -775,7 +775,7 @@ console.log(cloneObj.nest === obj.nest); // => false
 言語としては最低限の機能を提供し、より複雑な機能はユーザー側で実装するという形式を取るためです。
 
 JavaScriptは言語仕様で定義されている機能が最低限であるため、それを補うようにユーザーが作成した小さな機能を持つライブラリが数多く公開されています。
-それらのライブラリはnpmと呼ばれるJavaScriptのパッケージ管理ツールで公開され、JavaScriptのエコシステムを築いています。
+それらのライブラリはnpm\index{npm}と呼ばれるJavaScriptのパッケージ管理ツール\index{ぱっけーじかんりつーる@パッケージ管理ツール}で公開され、JavaScriptのエコシステムを築いています。
 ライブラリの利用については「\hyperlink{node-cli}{ユースケース:
 Node.jsでCLIアプリケーション}」の章で紹介します。
 

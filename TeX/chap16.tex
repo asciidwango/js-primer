@@ -1,10 +1,10 @@
 \hypertarget{string-unicode}{%
-\chapter{文字列とUnicode}\label{string-unicode}}
+\chapter{文字列とUnicode}\label{string-unicode}}\index{もじれつ@文字列}\index{Unicode}
 \thispagestyle{frontheadings}
 
-「\hyperlink{string}{文字列}」の章で紹介したように、JavaScriptは文字コードとしてUnicodeを採用し、エンコード方式としてUTF-16を採用しています。
-このUTF-16を採用しているのは、あくまでJavaScriptの内部で文字列を扱う際の文字コード（内部コード）です。
-そのため、コードを書いたファイル自体の文字コード（外部コード）は、UTF-8のようにUTF-16以外の文字コードであっても問題ありません。
+「\hyperlink{string}{文字列}」の章で紹介したように、JavaScriptは文字コードとしてUnicodeを採用し、エンコード方式としてUTF-16\index{UTF-16}を採用しています。
+このUTF-16を採用しているのは、あくまでJavaScriptの内部で文字列を扱う際の文字コード（内部コード\index{ないぶこーど@内部コード}）です。
+そのため、コードを書いたファイル自体の文字コード（外部コード\index{がいぶこーど@外部コード}）は、UTF-8\index{UTF-8}のようにUTF-16以外の文字コードであっても問題ありません。
 
 「\hyperlink{string}{文字列}」の章では、これらの文字コードは意識していなかったように、内部的にどのような文字コードで扱っているかは意識せずに文字列処理ができます。
 しかし、JavaScriptのStringオブジェクトにはこの文字コード（Unicode）に特化したAPIもあります。
@@ -17,17 +17,17 @@
 Unicodeの歴史を含めた文字コード自体について詳しく知りたい方は「\href{https://gihyo.jp/book/2019/978-4-297-10291-3}{プログラマのための文字コード技術入門}」\footnote{『［改訂新版］プログラマのための文字コード技術入門』矢野啓介 著、技術評論社}や「\href{http://www.rutles.net/products/detail.php?product_id=298}{文字コード「超」研究}」\footnote{『文字コード「超」研究 改訂第2版』深沢千尋 著、ラトルズ}等を参照してください。
 
 \hypertarget{code-point}{%
-\section{Code Point}\label{code-point}}
+\section{Code Point}\label{code-point}}\index{Code Point}
 
 Unicodeはすべての文字（制御文字などの画面に表示されない文字も含む）に対してIDを定義する目的で策定されている仕様です。
 この「文字」に対する「一意のID」のことを\textbf{Code
-Point}（符号位置）と呼びます。
+Point}（符号位置\index{ふごういち@符号位置}）と呼びます。
 
 Code Pointを扱うメソッドの多くは、ECMAScript 2015で追加されています。
 ES2015で追加された\texttt{String\#codePointAt}メソッドや\texttt{String.fromCodePoint}メソッドを使うことで、文字列とCode
 Pointを相互変換できます。
 
-\texttt{String\#codePointAt}メソッド\protect\icon{fig/es2015.eps}は、文字列の指定インデックスにある文字のCode
+\texttt{String\#codePointAt}\index{String\#codePointAt@\texttt{String\#codePointAt}}メソッド\,\protect\iconl{fig/es2015.eps}\,は、文字列の指定インデックスにある文字のCode
 Pointの値を返します。
 
 \begin{lstlisting}
@@ -35,7 +35,7 @@ Pointの値を返します。
 console.log("あ".codePointAt(0)); // => 12354
 \end{lstlisting}
 
-一方の\texttt{String.fromCodePoint}メソッド\protect\icon{fig/es2015.eps}は、指定したCode
+一方の\texttt{String.fromCodePoint}\index{String.fromCodePoint@\texttt{String.fromCodePoint}}メソッド\,\protect\iconl{fig/es2015.eps}\,は、指定したCode
 Pointに対応する文字を返します。
 
 \begin{lstlisting}
@@ -45,9 +45,9 @@ console.log(String.fromCodePoint(12354)); // => "あ"
 console.log(String.fromCodePoint(0x3042)); // => "あ"
 \end{lstlisting}
 
-また、文字列リテラル中にはUnicodeエスケープシーケンスで、直接Code
+また、文字列リテラル中にはUnicodeエスケープシーケンス\index{Unicode!えすけーぷしーけんす@エスケープシーケンス}で、直接Code
 Pointを書くこともできます。 Code
-Pointは\texttt{\textbackslash u\{Code Pointの16進数の値\}}のようにエスケープシーケンスとして記述できます。
+Pointは\texttt{\textbackslash u\{Code Pointの16進数の値\}}\index{\\u@\texttt{\textbackslash u}}のようにエスケープシーケンスとして記述できます。
 Unicodeエスケープシーケンスでは、Code
 Pointの16進数の値が必要となります。
 \texttt{Number\#toString}メソッドの引数に基数となる\texttt{16}を渡すことで、16進数の文字列を取得できます。
@@ -64,11 +64,11 @@ console.log("\u{3042}"); // => "あ"
 
 \hypertarget{code-point-is-not-code-unit}{%
 \section{Code PointとCode
-Unitの違い}\label{code-point-is-not-code-unit}}
+Unitの違い}\label{code-point-is-not-code-unit}}\index{Code Point}\index{Code Unit}
 
 Code
-Point（符号位置）について紹介しましたが、JavaScriptの文字列の構成要素はUTF-16で変換されたCode
-Unit（符号単位）です（詳細は「\hyperlink{string}{文字列}」の章を参照）。
+Point（符号位置\index{ふごういち@符号位置}）について紹介しましたが、JavaScriptの文字列の構成要素はUTF-16で変換されたCode
+Unit（符号単位\index{ふごうたんい@符号単位}）です（詳細は「\hyperlink{string}{文字列}」の章を参照）。
 ある範囲の文字列については、Code Point（符号位置）とCode
 Unit（符号単位）は結果として同じ値となります。
 
@@ -107,7 +107,7 @@ Unitが同じ値になっていることがわかります。
 \begin{small}
 \begin{longtable}[l]{p{73mm}|p{20mm}|p{20mm}|p{20mm}}
 \caption{文字列におけるCode UnitとCode Pointの表}\\
-\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}{\textgt インデックス} & \textgt{0} & \textgt{1} & \textgt{2}\tabularnewline
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}\textgt{インデックス} & \textgt{0} & \textgt{1} & \textgt{2}\tabularnewline
 \hline
 \endhead
 文字列 & ア & オ & イ\tabularnewline
@@ -120,7 +120,7 @@ UTF-16のCode Unit（16進数） & 0x30A2 & 0x30AA & 0x30A4\tabularnewline
 しかし、文字列によってはCode PointとCode
 Unitが異なる値となる場合があります。
 
-先ほどと同じ関数を使い、リンゴ\includegraphics[clip,height=4mm]{fig/apple.eps}（リンゴの絵文字）という文字列を構成するCode
+先ほどと同じ関数を使い、リンゴ\includegraphics[clip,height=4mm]{fig/apple.eps}（リンゴの絵文字\index{えもじ@絵文字}）という文字列を構成するCode
 UnitとCode Pointを見比べてみます。
 
 \begin{lstlisting}[escapechar=@]
@@ -152,7 +152,7 @@ PointとCode Unitが異なる値となることがわかります。
 \begin{small}
 \begin{longtable}[l]{p{50mm}|p{15mm}|p{15mm}|p{15mm}|p{15mm}|p{15mm}}
 \caption{絵文字を含んだ文字列におけるCode UnitとCode Pointの表}\\
-\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}{\textgt インデックス} & \textgt{0} & \textgt{1} & \textgt{2} & \textgt{3} & \textgt{4}\tabularnewline
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}\textgt{インデックス} & \textgt{0} & \textgt{1} & \textgt{2} & \textgt{3} & \textgt{4}\tabularnewline
 \hline
 \endhead
 文字列 & リ & ン & ゴ & \includegraphics[clip,height=4mm]{fig/apple.eps} & \tabularnewline
@@ -181,7 +181,7 @@ Unitの組み合わせ（合計4バイト）で1つの文字（1つのCode
 Point）を表現します。この仕組みを\textbf{\textgt{サロゲートペア}}と呼びます。
 
 \hypertarget{surrogate-pair}{%
-\section{サロゲートペア}\label{surrogate-pair}}
+\section{サロゲートペア}\label{surrogate-pair}}\index{さろげーとぺあ@サロゲートペア}
 
 サロゲートペアでは、2つCode
 Unitの組み合わせ（合計4バイト）で1つの文字（1つのCode
@@ -194,7 +194,7 @@ Point）を表現します。UTF-16では、次の範囲をサロゲートペア
   \texttt{\textbackslash uDC00}～\texttt{\textbackslash uDFFF}：下位サロゲートの範囲
 \end{itemize}
 
-文字列中に上位サロゲートと下位サロゲートのCode
+文字列中に上位サロゲート\index{じょういさろげーと@上位サロゲート}と下位サロゲート\index{かいさろげーと@下位サロゲート}のCode
 Unitが並んだ場合に、2つのCode Unitを組み合わせて1文字（Code
 Point）として扱います。
 
@@ -242,7 +242,7 @@ console.log("𩸽"[1]); // => "\uDE3D"
 絵文字や「𩸽（ほっけ）」などのサロゲートペアで表現される文字が文字列中に含まれると、Code
 Unitごとに扱う文字列処理は複雑になります。
 
-たとえば、\texttt{String\#length}プロパティは文字列におけるCode
+たとえば、\texttt{String\#length}\index{String\#length@\texttt{String\#length}}プロパティは文字列におけるCode
 Unitの要素数を数えるため、\texttt{"}\includegraphics[clip,height=4mm]{fig/apple.eps}\texttt{".length}の結果は\texttt{2}となります。
 
 \begin{lstlisting}[escapechar=@]
@@ -253,7 +253,7 @@ console.log("@\includegraphics[clip,height=4mm]{fig/apple.eps}@".length); // => 
 Pointごとに処理することを考える必要があります。
 
 \hypertarget{handle-code-point}{%
-\section{Code Pointを扱う}\label{handle-code-point}}
+\section{Code Pointを扱う}\label{handle-code-point}}\index{Code Point}
 
 文字列をCode Pointが順番に並んだものとして扱うには、Code
 Pointに対応したメソッドなどを利用する必要があります。
@@ -273,10 +273,10 @@ ES2015から文字列をCode Pointごとに扱うメソッドや構文が追加�
 これらのCode Pointを扱う処理と具体的な使い方を見ていきます。
 
 \hypertarget{regexp-unicode}{%
-\subsection{\texorpdfstring{正規表現の\texttt{.}とUnicode}{正規表現の.とUnicode}}\label{regexp-unicode}}
+\subsection{\texorpdfstring{正規表現の\texttt{.}とUnicode}{正規表現の.とUnicode}}\label{regexp-unicode}}\index{せいきひょうげん@正規表現}\index{Unicode}
 
 ES2015では、正規表現に\texttt{u}（Unicode）フラグが追加されました。
-この\texttt{u}フラグをつけた正規表現は、文字列をCode
+この\texttt{u}フラグ\index{uふらぐ@\texttt{u}フラグ}をつけた正規表現は、文字列をCode
 Pointが順番に並んだものとして扱います。
 
 具体的に\texttt{u}フラグの有無による\texttt{.}（改行文字以外のどの1文字にもマッチする特殊文字）の動作の違いを見ていきます。
@@ -312,7 +312,7 @@ console.log(fish); // => "𩸽"
 なぜなら、サロゲートペアの片方だけにマッチしたい正規表現を書くケースはまれであるためです。
 
 \hypertarget{count-of-code-points}{%
-\subsection{Code Pointの数を数える}\label{count-of-code-points}}
+\subsection{Code Pointの数を数える}\label{count-of-code-points}}\index{Code Point!かぞえる@数える}
 
 \texttt{String\#length}プロパティは、文字列を構成するCode
 Unitの個数を表すプロパティです。
@@ -330,8 +330,8 @@ Pointの個数を数えるメソッドは用意されていません。
 これを行うには、文字列をCode
 Pointごとに区切った配列へ変換して、配列の長さを数えるのが簡潔なやり方です。
 
-\texttt{Array.from}メソッド\protect\icon{fig/es2015.eps}は、引数にiterableなオブジェクトを受け取り、それを元にした新しい配列を返します。
-iterableオブジェクトとは\texttt{Symbol.iterator}という特別な名前のメソッドを実装したオブジェクトの総称で、\texttt{for...of}文などで反復処理が可能なオブジェクトです（詳細は「\hyperlink{loop-and-iteration}{ループと反復処理}」の章の「\hyperlink{for-of-statement}{for\ldots{}of文}」を参照）。
+\texttt{Array.from}\index{Array.from@\texttt{Array.from}}メソッド\,\protect\iconl{fig/es2015.eps}\,は、引数にiterable\index{iterable}なオブジェクトを受け取り、それを元にした新しい配列を返します。
+iterableオブジェクトとは\texttt{Symbol.iterator}\index{Symbol.iterator@\texttt{Symbol.iterator}}という特別な名前のメソッドを実装したオブジェクトの総称で、\texttt{for...of}文などで反復処理が可能なオブジェクトです（詳細は「\hyperlink{loop-and-iteration}{ループと反復処理}」の章の「\hyperlink{for-of-statement}{for\ldots{}of文}」を参照）。
 
 文字列もiterableオブジェクトであるため、\texttt{Array.from}メソッドによって1文字（厳密にはCode
 Point）ごとに区切った配列へと変換できます。先ほども紹介したように、文字列をiterableとして扱う場合はCode
@@ -354,7 +354,7 @@ Pointには制御文字などの視覚的に見えないものも定義されて
 残念ながら、ビルトインメソッドにはこれらを簡単に扱う方法は用意されていません。
 
 \hypertarget{loop-each-code-point}{%
-\subsection{Code Pointごとに反復処理をする}\label{loop-each-code-point}}
+\subsection{Code Pointごとに反復処理をする}\label{loop-each-code-point}}\index{Code Point!はんぷくしょり@反復処理}\index{はんぷくしょり@反復処理}
 
 先ほど紹介した\texttt{Array.from}メソッドを使えば、文字列をCode
 Pointで区切った文字の配列へと変換できます。

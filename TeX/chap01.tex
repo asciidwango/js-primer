@@ -1,5 +1,5 @@
 \hypertarget{what-is-javascript}{%
-\chapter{JavaScriptとは}\label{what-is-javascript}}
+\chapter{JavaScript\index{JavaScript}とは}\label{what-is-javascript}}
 \thispagestyle{frontheadings}
 
 JavaScriptを学びはじめる前に、まずJavaScriptとはどのようなプログラミング言語なのかを紹介します。
@@ -14,7 +14,7 @@ Things）デバイスでもJavaScriptを使って動かせるものがありま�
 このように、JavaScriptはかなり幅広い環境で動いているプログラミング言語で、さまざまな種類のアプリケーションを作成できます。
 
 \hypertarget{javascript-ecmascript}{%
-\section{JavaScriptとECMAScript}\label{javascript-ecmascript}}
+\section{JavaScriptとECMAScript\index{ECMAScript}}\label{javascript-ecmascript}}
 
 JavaScriptという言語は\href{../ecmascript/README.md}{ECMAScript}という仕様によって動作が決められています。
 \href{../ecmascript/README.md}{ECMAScript}という仕様では、どの実行環境でも共通な動作のみが定義されているため、基本的にどの実行環境でも同じ動作をします。
@@ -38,7 +38,7 @@ ECMAScriptの仕様で定義されている機能を学ぶことで、どの実�
 また、このECMAScriptという仕様（共通の部分）も毎年アップデートされ、新しい文法や機能が追加されています。
 そのため、実行環境によっては古いバージョンのECMAScriptを実装したものとなっている場合があります。
 ECMAScriptは2015年にECMAScript
-2015（ES2015）として大きくアップデートされた仕様が公開されました。
+2015\index{ECMAScript 2015}（ES2015\index{ES2015}）として大きくアップデートされた仕様が公開されました。
 
 今からJavaScriptを学ぶなら、ES2015以降を基本にしたほうがわかりやすいため、この書籍はES2015に基づいた内容となっています。
 また、既存のコードはES2015より前のバージョンを元にしたものも多いため、それらのコードに関しても解説しています。
@@ -81,7 +81,7 @@ const NAME = "azu";
 （変数についての詳細は「\hyperlink{variable-and-declaration}{変数と宣言}」の章で解説します）。
 
 \hypertarget{reserved-keyword}{%
-\subsection{予約語を持つ}\label{reserved-keyword}}
+\subsection{予約語\index{よやくご@予約語}を持つ}\label{reserved-keyword}}
 
 JavaScriptには特別な意味を持つキーワードがあり、これらは予約語とも呼ばれます。
 このキーワードと同じ名前の変数や関数は宣言できません。
@@ -89,14 +89,14 @@ JavaScriptには特別な意味を持つキーワードがあり、これらは�
 そのため、\texttt{const}という名前の変数名は宣言できません。
 
 \hypertarget{statement-semicolon}{%
-\subsection{文はセミコロンで区切られる}\label{statement-semicolon}}
+\subsection{文\index{ぶん@文}はセミコロン\index{せみころん@セミコロン}で区切られる}\label{statement-semicolon}}
 
-JavaScriptは、文（Statement）ごとに処理していき、文はセミコロン（\texttt{;}）によって区切られます。
-特殊なルールに基づき、セミコロンがない文も、行末に自動でセミコロンが挿入されるという仕組みも持っています\footnote{Automatic Semicolon Insertionと呼ばれる仕組みです。}。
+JavaScriptは、文（Statement\index{Statement}）ごとに処理していき、文はセミコロン（\texttt{;}\index{;@\texttt{;}}）によって区切られます。
+特殊なルールに基づき、セミコロンがない文も、行末に自動でセミコロンが挿入されるという仕組みも持っています\footnote{Automatic Semicolon Insertion\index{Automatic Semicolon Insertion}と呼ばれる仕組みです。}。
 しかし、暗黙的なものへ頼ると意図しない挙動が発生するため、セミコロンは常に書くようにします
 （詳細は「\hyperlink{statement-and-expression}{文と式}」の章で解説します）。
 
-また、スペース、タブ文字などは空白文字（ホワイトスペース）と呼ばれます。
+また、スペース、タブ文字などは空白文字\index{くうはくもじ@空白文字}（ホワイトスペース\index{ほわいとすぺーす@ホワイトスペース}）と呼ばれます。
 これらの空白文字を文にいくつ置いても挙動に違いはありません。
 
 たとえば、次の\texttt{1}足す\texttt{1}を行う2つの文は、\texttt{+}の前後の空白文字の個数に違いはありますが、動作としてはまったく同じ意味となります。
@@ -108,11 +108,11 @@ JavaScriptは、文（Statement）ごとに処理していき、文はセミコ�
 \end{lstlisting}
 
 空白文字の置き方には好みがあるため、人によって書き方が異なる場合もあります。
-複数人で開発する場合は、これらの空白文字の置き方を決めたコーディングスタイルを決めるとよいでしょう。
+複数人で開発する場合は、これらの空白文字の置き方を決めたコーディングスタイル\index{こーでぃんぐすたいる@コーディングスタイル}を決めるとよいでしょう。
 コーディングスタイルの統一については「\hyperlink{reference-links}{付録A 参考リンク集}」を参照してください。
 
 \hypertarget{strict-mode}{%
-\subsection{strict mode}\label{strict-mode}}
+\subsection{strict mode\index{strict mode}}\label{strict-mode}}
 
 JavaScriptには\textbf{strict mode}という実行モードが存在しています。
 名前のとおり厳格な実行モードで、古く安全でない構文や機能が一部禁止されています。
@@ -149,7 +149,7 @@ modeで実行できるコードを書くことが、より安全なコードに�
 すべてstrict modeとして実行できるコードを扱います。
 
 \hypertarget{script-module}{%
-\subsection{実行コンテキスト: ScriptとModule}\label{script-module}}
+\subsection{実行コンテキスト\index{じっこうこんてきすと@実行コンテキスト}: Script\index{Script}とModule\index{Module}}\label{script-module}}
 
 JavaScriptの実行コンテキストとして``Script''と``Module''があります。
 コードを書く場合には、この2つの実行コンテキストの違いを意識することは多くありません。

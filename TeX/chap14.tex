@@ -1,11 +1,11 @@
 \hypertarget{array}{%
-\chapter{配列}\label{array}}
+\chapter{配列}\label{array}}\index{はいれつ@配列}
 \thispagestyle{frontheadings}
 
 配列はJavaScriptの中でもよく使われるオブジェクトです。
 
 配列とは値に順序をつけて格納できるオブジェクトです。
-配列に格納したそれぞれの値のことを\textbf{\textgt{要素}}、それぞれの要素の位置のことを\textbf{\textgt{インデックス}}（\texttt{index}）と呼びます。
+配列に格納したそれぞれの値のことを\textbf{\textgt{要素}}\index{ようそ@要素}\index{はいれつ@配列!ようそ@要素}、それぞれの要素の位置のことを\textbf{\textgt{インデックス}}\index{いんでっくす@インデックス}\index{はいれつ@配列!いんでっくす@インデックス}（\texttt{index}\index{index}）と呼びます。
 インデックスは先頭の要素から\texttt{0}、\texttt{1}、\texttt{2}のように\texttt{0}からはじまる連番となります。
 
 またJavaScriptにおける配列は可変長です。
@@ -16,11 +16,11 @@
 \hypertarget{create-and-access}{%
 \section{配列の作成とアクセス}\label{create-and-access}}
 
-配列の作成と要素へのアクセス方法は「\hyperlink{array-literal}{データ型とリテラル」の章の「配列リテラル」}ですでに紹介していますが、
+配列の作成と要素へのアクセス方法は「\hyperlink{data-type-and-literal}{データ型とリテラル}」の章の「\hyperlink{array-literal}{配列リテラル}」ですでに紹介していますが、
 もう一度振り返ってみましょう。
 
 配列の作成には配列リテラルを使います。
-配列リテラル（\texttt{[}と\texttt{]}）の中に要素をカンマ（\texttt{,}）区切りで記述するだけです。
+配列リテラル\index{はいれつりてらる@配列リテラル}（\texttt{[}と\texttt{]}\index{[]@\texttt{[]}}）の中に要素をカンマ（\texttt{,}）区切りで記述するだけです。
 
 \begin{lstlisting}
 const emptyArray = [];
@@ -53,7 +53,7 @@ const matrix = [
 console.log(matrix[0][0]); // => "a"
 \end{lstlisting}
 
-配列の\texttt{length}プロパティは配列の要素の数を返します。
+配列の\texttt{length}\index{はいれつ@配列!length@\texttt{length}}\index{length@\texttt{length}}プロパティは配列の要素の数を返します。
 そのため、配列の最後の要素へアクセスするには
 \texttt{array.length - 1}
 をインデックスとして利用できます。
@@ -65,7 +65,7 @@ console.log(array.length); // => 3
 console.log(array[array.length - 1]); // => "three"
 \end{lstlisting}
 
-一方、存在しないインデックスにアクセスした場合はどうなるでしょうか？　JavaScriptでは、存在しないインデックスに対してアクセスした場合に、例外ではなく\texttt{undefined}を返します。
+一方、存在しないインデックスにアクセスした場合はどうなるでしょうか？　JavaScriptでは、存在しないインデックスに対してアクセスした場合に、例外ではなく\texttt{undefined}\index{undefined@\texttt{undefined}}を返します。
 
 \begin{lstlisting}
 const array = ["one", "two", "three"];
@@ -89,8 +89,8 @@ console.log(obj[100]); // => undefined
 
 また、配列は常に\texttt{length}の数だけ要素を持っているとは限りません。
 次のように、配列リテラルでは値を省略することで、未定義の要素を含めることができます。
-このような、配列の中に隙間があるものを\textbf{\textgt{疎な配列}}と呼びます。
-一方、隙間がなくすべてのインデックスに要素がある配列を\textbf{\textgt{密な配列}}と呼びます。
+このような、配列の中に隙間があるものを\textbf{\textgt{疎な配列}}\index{そなはいれつ@疎な配列}\index{はいれつ@配列!そ@疎}と呼びます。
+一方、隙間がなくすべてのインデックスに要素がある配列を\textbf{\textgt{密な配列}}\index{みつなはいれつ@密な配列}\index{はいれつ@配列!みつ@密}と呼びます。
 
 \begin{lstlisting}
 // 未定義の箇所が1つ含まれる疎な配列
@@ -104,7 +104,7 @@ console.log(sparseArray[1]); // => undefined
 \hypertarget{detect-array}{%
 \section{オブジェクトが配列かどうかを判定する}\label{detect-array}}
 
-あるオブジェクトが配列かどうかを判定するには\texttt{Array.isArray}メソッドを利用します。
+あるオブジェクトが配列かどうかを判定するには\texttt{Array.isArray}\index{Array.isArray@\texttt{Array.isArray}}メソッドを利用します。
 \texttt{Array.isArray}メソッドは引数が配列ならば\texttt{true}を返します。
 
 \begin{lstlisting}
@@ -122,7 +122,7 @@ const array = [];
 console.log(typeof array); // => "object"
 \end{lstlisting}
 
-\begin{tcolorbox}[title=TypedArray\protect\icon{fig/es2015.eps}]\label{typed-array}
+\begin{tcolorbox}[title=TypedArray\,\protect\icon{fig/es2015.eps}]\label{typed-array}\index{TypedArray@\texttt{TypedArray}}
 
 JavaScriptの配列は可変長のみですが、\texttt{TypedArray}という固定長でかつ型つきの配列を扱う別のオブジェクトが存在します。
 \texttt{TypedArray}はバイナリデータのバッファを示すために使われるデータ型で、WebGLやバイナリを扱う場面で利用されます。
@@ -140,10 +140,10 @@ console.log(Array.isArray(typedArray)); // => false
 \end{tcolorbox}
 
 \hypertarget{array-destructuring}{%
-\section[配列と分割代入]{配列と分割代入\protect\icon{fig/es2015.eps}}\label{array-destructuring}}
+\section[配列と分割代入]{配列と分割代入\,\protect\icon{fig/es2015.eps}}\label{array-destructuring}}\index{ぶんかつだいにゅう@分割代入}\index{はいれつ@配列!ぶんかつだいにゅう@分割代入}
 
 配列の指定したインデックスの値を変数として定義し直す場合には、分割代入（Destructuring
-assignment）が利用できます。
+assignment\index{Destructuring assignment}）が利用できます。
 
 配列の分割代入では、左辺に配列リテラルのような構文で定義したい変数名を書きます。
 右辺の配列から対応するインデックスの要素が、左辺で定義した変数に代入されます。
@@ -159,7 +159,7 @@ console.log(second); // => "two"
 console.log(third);  // => "three"
 \end{lstlisting}
 
-\begin{tcolorbox}[float,title=undefinedの要素と未定義の要素の違い]\label{diff-undefined-and-no-element}
+\begin{tcolorbox}[enhanced jigsaw,breakable,title=undefinedの要素と未定義の要素の違い]\label{diff-undefined-and-no-element}\index{undefined@\texttt{undefined}}
 
 疎な配列で該当するインデックスに要素がない場合は\texttt{undefined}を返します。
 しかし、\texttt{undefined}という値も存在するため、配列に\texttt{undefined}という値がある場合に区別できません。
@@ -176,8 +176,8 @@ console.log(denseArray[1]); // => undefined
 console.log(sparseArray[1]); // => undefined
 \end{lstlisting}
 
-この違いを見つける方法として利用できるのが\texttt{Object\#hasOwnProperty}メソッドです。
-\texttt{hasOwnProperty}メソッドを使うことで、配列の指定したインデックスに要素自体が存在するかを判定できます。
+この違いを見つける方法として利用できるのが\texttt{Object\#hasOwnProperty}\index{Object\#hasOwnProperty@\texttt{Object\#hasOwnProperty}}メソッドです。
+\texttt{hasOwnProperty}\index{hasOwnProperty@\texttt{hasOwnProperty}}メソッドを使うことで、配列の指定したインデックスに要素自体が存在するかを判定できます。
 
 \begin{lstlisting}
 const denseArray = [1, undefined, 3];
@@ -190,7 +190,7 @@ console.log(sparseArray.hasOwnProperty(1)); // => false
 \end{tcolorbox}
 
 \hypertarget{search-element}{%
-\section{配列から要素を検索}\label{search-element}}
+\section{配列から要素を検索}\label{search-element}}\index{はいれつ@配列!けんさく@検索}
 
 配列から指定した要素を検索する目的には、 主に次の3つがあります。
 
@@ -206,15 +206,15 @@ console.log(sparseArray.hasOwnProperty(1)); // => false
 配列にはそれぞれに対応したメソッドが用意されているため、目的別に見ていきます。
 
 \hypertarget{indexof}{%
-\subsection{インデックスを取得}\label{indexof}}
+\subsection{インデックスを取得}\label{indexof}}\index{いんでっくす@インデックス!しゅとく@取得}
 
-指定した要素が配列のどの位置にあるかを知りたい場合、\texttt{Array\#indexOf}メソッドや\texttt{Array\#findIndex}メソッド\protect\icon{fig/es2015.eps}を利用します。
+指定した要素が配列のどの位置にあるかを知りたい場合、\texttt{Array\#indexOf}\index{Array\#indexOf@\texttt{Array\#indexOf}}メソッドや\texttt{Array\#findIndex}\index{Array\#findIndex@\texttt{Array\#findIndex}}メソッド\,\protect\iconl{fig/es2015.eps}\,を利用します。
 要素の位置のことを\textbf{インデックス}（\texttt{index}）と呼ぶため、メソッド名にも\texttt{index}という名前が入っています。
 
 次のコードでは、\texttt{Array\#indexOf}メソッドを利用して、配列の中から\texttt{"JavaScript"}という文字列のインデックスを取得しています。
 \texttt{indexOf}メソッドは引数と厳密等価演算子（\texttt{===}）で一致する要素があるなら、その要素のインデックスを返し、該当する要素がない場合は\texttt{-1}を返します。
-\texttt{indexOf}メソッドは先頭から検索して見つかった要素のインデックスを返します。
-\texttt{indexOf}メソッドには対となる\texttt{Array\#lastIndexOf}メソッドがあり、\texttt{lastIndexOf}メソッドでは末尾から検索した結果が得られます。
+\texttt{indexOf}\index{indexOf@\texttt{indexOf}}メソッドは先頭から検索して見つかった要素のインデックスを返します。
+\texttt{indexOf}メソッドには対となる\texttt{Array\#lastIndexOf}\index{Array\#lastIndexOf@\texttt{Array\#lastIndexOf}}メソッドがあり、\texttt{lastIndexOf}\index{lastIndexOf@\texttt{lastIndexOf}}メソッドでは末尾から検索した結果が得られます。
 
 \begin{lstlisting}
 const array = ["Java", "JavaScript", "Ruby"];
@@ -239,8 +239,8 @@ console.log(obj === { key: "value" }); // => false
 console.log(array.indexOf(obj)); // => 2
 \end{lstlisting}
 
-このように、異なるオブジェクトだが値は同じものを見つけたい場合には、\texttt{Array\#findIndex}メソッドが利用できます。
-\texttt{findIndex}メソッドの引数には配列の各要素をテストする関数をコールバック関数として渡します。
+このように、異なるオブジェクトだが値は同じものを見つけたい場合には、\texttt{Array\#findIndex}\index{Array\#findIndex@\texttt{Array\#findIndex}}メソッドが利用できます。
+\texttt{findIndex}\index{findIndex@\texttt{findIndex}}メソッドの引数には配列の各要素をテストする関数をコールバック関数として渡します。
 \texttt{indexOf}メソッドとは異なり、テストする処理を自由に書けます。
 これにより、プロパティの値が同じ要素を配列から見つけて、その要素のインデックスが得られます。
 
@@ -268,8 +268,8 @@ console.log(colors[indexOfBlue]); // => { "color": "blue" }
 しかし、\texttt{findIndex}メソッドを使って要素を取得するケースでは、
 そのインデックスが欲しいのか、またはその要素自体が欲しいのかがコードとして明確ではありません。
 
-より明確に要素自体が欲しいということを表現するには、\texttt{Array\#find}メソッド\protect\icon{fig/es2015.eps}が使えます。
-\texttt{find}メソッドには、\texttt{findIndex}メソッドと同様にテストする関数をコールバック関数として渡します。
+より明確に要素自体が欲しいということを表現するには、\texttt{Array\#find}\index{Array\#find@\texttt{Array\#find}}メソッド\,\protect\iconl{fig/es2015.eps}\,が使えます。
+\texttt{find}\index{find@\texttt{find}}メソッドには、\texttt{findIndex}メソッドと同様にテストする関数をコールバック関数として渡します。
 \texttt{find}メソッドの返り値は、要素そのものとなり、要素が存在しない場合は\texttt{undefined}を返します。
 
 \begin{lstlisting}
@@ -294,8 +294,8 @@ console.log(whiteColor); // => undefined
 \hypertarget{slice}{%
 \subsection{指定範囲の要素を取得}\label{slice}}
 
-配列から指定範囲の要素を取り出す方法として\texttt{Array\#slice}メソッドが利用できます。
-\texttt{slice}メソッドは第一引数に開始位置、第二引数に終了位置を指定することで、その範囲を取り出した新しい配列を返します。
+配列から指定範囲の要素を取り出す方法として\texttt{Array\#slice}\index{Array\#slice@\texttt{Array\#slice}}メソッドが利用できます。
+\texttt{slice}\index{slice@\texttt{slice}}メソッドは第一引数に開始位置、第二引数に終了位置を指定することで、その範囲を取り出した新しい配列を返します。
 第二引数は省略でき、省略した場合は配列の末尾が終了位置となります。
 
 \begin{lstlisting}
@@ -311,7 +311,7 @@ console.log(array.slice(4, 1)); // => []
 \end{lstlisting}
 
 \hypertarget{get-boolean}{%
-\subsection{真偽値を取得}\label{get-boolean}}
+\subsection{真偽値を取得}\label{get-boolean}}\index{しんぎち@真偽値}
 
 最後に、指定した要素が配列に含まれているかを知る方法について見ていきます。
 インデックスや要素が取得できれば、その要素は配列に含まれているということはわかります。
@@ -335,9 +335,9 @@ if (indexOfJS !== -1) {
 }
 \end{lstlisting}
 
-そこで、ES2016で導入された\texttt{Array\#includes}メソッド\protect\icon{fig/es2016.eps}を利用します。
+そこで、ES2016で導入された\texttt{Array\#includes}\index{Array\#includes@\texttt{Array\#includes}}メソッド\,\protect\iconl{fig/es2016.eps}\,を利用します。
 \texttt{Array\#includes}メソッドは配列に指定要素が含まれているかを判定します。
-\texttt{includes}メソッドは真偽値を返すので、\texttt{indexOf}メソッドを使った場合に比べて意図が明確になります。
+\texttt{includes}\index{includes@\texttt{includes}}メソッドは真偽値を返すので、\texttt{indexOf}メソッドを使った場合に比べて意図が明確になります。
 前述のコードでは次のように\texttt{includes}メソッドを使うべきでしょう。
 
 \begin{lstlisting}
@@ -349,10 +349,10 @@ if (array.includes("JavaScript")) {
 \end{lstlisting}
 
 \texttt{includes}メソッドは、\texttt{indexOf}メソッドと同様、異なるオブジェクトだが値が同じものを見つけたい場合には利用できません。
-\texttt{Array\#find}メソッドのようにテストするコールバック関数を利用して、真偽値を得るには\texttt{Array\#some}メソッドを利用できます。
+\texttt{Array\#find}メソッドのようにテストするコールバック関数を利用して、真偽値を得るには\texttt{Array\#some}\index{Array\#some@\texttt{Array\#some}}メソッドを利用できます。
 
 \texttt{Array\#some}メソッドはテストするコールバック関数にマッチする要素があるなら\texttt{true}を返し、存在しない場合は\texttt{false}を返します
-（\hyperlink{array-some}{「ループと反復処理」の章の「配列の\texttt{some}メソッド」}を参照）。
+（「\hyperlink{loop-and-iteration}{ループと反復処理}」の章の「\hyperlink{array-some}{配列の\texttt{some}メソッド}」を参照）。
 
 \begin{lstlisting}
 // colorプロパティを持つオブジェクトの配列
@@ -373,8 +373,8 @@ console.log(isIncludedBlueColor); // => true
 
 配列は可変長であるため、作成後の配列に対して要素を追加、削除できます。
 
-要素を配列の末尾へ追加するには\texttt{Array\#push}が利用できます。
-一方、末尾から要素を削除するには\texttt{Array\#pop}が利用できます。
+要素を配列の末尾へ追加するには\texttt{Array\#push}\index{Array\#push@\texttt{Array\#push}}が利用できます。
+一方、末尾から要素を削除するには\texttt{Array\#pop}\index{Array\#pop@\texttt{Array\#pop}}が利用できます。
 
 \begin{lstlisting}
 const array = ["A", "B", "C"];
@@ -385,8 +385,8 @@ console.log(poppedItem); // => "D"
 console.log(array); // => ["A", "B", "C"]
 \end{lstlisting}
 
-要素を配列の先頭へ追加するには\texttt{Array\#unshift}が利用できます。
-一方、配列の先頭から要素を削除するには\texttt{Array\#shift}が利用できます。
+要素を配列の先頭へ追加するには\texttt{Array\#unshift}\index{Array\#unshift@\texttt{Array\#unshift}}が利用できます。
+一方、配列の先頭から要素を削除するには\texttt{Array\#shift}\index{Array\#shift@\texttt{Array\#shift}}が利用できます。
 
 \begin{lstlisting}
 const array = ["A", "B", "C"];
@@ -398,9 +398,9 @@ console.log(array); // => ["A", "B", "C"]
 \end{lstlisting}
 
 \hypertarget{concat}{%
-\section{配列同士を結合}\label{concat}}
+\section{配列同士を結合}\label{concat}}\index{はいれつ@配列!けつごう@結合}
 
-\texttt{Array\#concat}メソッドを使うことで配列と配列を結合した新しい配列を作成できます。
+\texttt{Array\#concat}\index{Array\#concat@\texttt{Array\#concat}}メソッドを使うことで配列と配列を結合した新しい配列を作成できます。
 
 \begin{lstlisting}
 const array = ["A", "B", "C"];
@@ -408,7 +408,7 @@ const newArray = array.concat(["D", "E"]);
 console.log(newArray); // => ["A", "B", "C", "D", "E"]
 \end{lstlisting}
 
-また、\texttt{concat}メソッドは配列だけではなく任意の値を要素として結合できます。
+また、\texttt{concat}\index{concat@\texttt{concat}}メソッドは配列だけではなく任意の値を要素として結合できます。
 
 \begin{lstlisting}
 const array = ["A", "B", "C"];
@@ -417,7 +417,7 @@ console.log(newArray); // => ["A", "B", "C", "新しい要素"]
 \end{lstlisting}
 
 \hypertarget{spread}{%
-\section[配列の展開]{配列の展開\protect\icon{fig/es2015.eps}}\label{spread}}
+\section[配列の展開]{配列の展開\,\protect\icon{fig/es2015.eps}}\label{spread}}\index{はいれつ@配列!てんかい@展開}
 
 \texttt{...}（Spread構文）を使うことで、配列リテラル中に既存の配列を展開できます。
 
@@ -444,11 +444,11 @@ console.log(newArray); // => ["X", "A", "B", "C", "Z"]
 \end{lstlisting}
 
 \hypertarget{flat}{%
-\section[配列をフラット化]{配列をフラット化\protect\icon{fig/es2019.eps}}\label{flat}}
+\section[配列をフラット化]{配列をフラット化\,\protect\icon{fig/es2019.eps}}\label{flat}}\index{はいれつ@配列!ふらっとか@フラット化}\index{ふらっとか@フラット化}
 
-\texttt{Array\#flat}メソッド\protect\icon{fig/es2019.eps}を使うことで、多次元配列をフラットな配列に変換できます。
+\texttt{Array\#flat}\index{Array\#flat@\texttt{Array\#flat}}メソッド\,\protect\iconl{fig/es2019.eps}\,を使うことで、多次元配列をフラットな配列に変換できます。
 引数を指定しなかった場合は1段階のみのフラット化ですが、引数に渡す数値でフラット化する深さを指定できます。
-配列をすべてフラット化する場合には、無限を意味する\texttt{Infinity}を値として渡すことで実現できます。
+配列をすべてフラット化する場合には、無限を意味する\texttt{Infinity}\index{Infinity@\texttt{Infinity}}を値として渡すことで実現できます。
 
 \begin{lstlisting}
 const array = [[["A"], "B"], "C"];
@@ -469,10 +469,10 @@ console.log(array.flat()); // => ["A", "B", "C"]
 \end{lstlisting}
 
 \hypertarget{delete-element}{%
-\section{配列から要素を削除}\label{delete-element}}
+\section{配列から要素を削除}\label{delete-element}}\index{はいれつ@配列!さくじょ@削除}
 
 \hypertarget{splice}{%
-\subsection{\texorpdfstring{\texttt{Array\#splice}}{Array\#splice}}\label{splice}}
+\subsection{\texorpdfstring{\texttt{Array\#splice}}{Array\#splice}}\label{splice}}\index{Array\#splice@\texttt{Array\#splice}}
 
 配列の先頭や末尾の要素を削除する場合は\texttt{Array\#shift}や\texttt{Array\#pop}で行えます。
 しかし、配列の任意のインデックスの要素を削除できません。
@@ -504,7 +504,7 @@ console.log(array.length); // => 0
 \end{lstlisting}
 
 \hypertarget{assign-to-length}{%
-\subsection{\texorpdfstring{\texttt{length}プロパティへの代入}{lengthプロパティへの代入}}\label{assign-to-length}}
+\subsection{\texorpdfstring{\texttt{length}プロパティへの代入}{lengthプロパティへの代入}}\label{assign-to-length}}\index{length@\texttt{length}}\index{はいれつ@配列!length@\texttt{length}}
 
 配列のすべての要素を削除することは\texttt{Array\#splice}で行えますが、
 配列の\texttt{length}プロパティへの代入を利用した方法もあります。
@@ -545,14 +545,14 @@ array = []; // TypeError: invalid assignment to const `array' が発生
 \end{lstlisting}
 
 \hypertarget{mutable-immutable}{%
-\section{破壊的なメソッドと非破壊的なメソッド}\label{mutable-immutable}}
+\section{破壊的なメソッドと非破壊的なメソッド}\label{mutable-immutable}}\index{はかいてきなめそっど@破壊的なメソッド}\index{ひはかいてきなめそっど@非破壊的なメソッド}
 
 これまで紹介してきた配列を変更するメソッドには、破壊的なメソッドと非破壊的メソッドがあります。この破壊的なメソッドと非破壊的メソッドの違いを知ることは、意図しない結果を避けるために重要です。
 破壊的なメソッドとは、配列オブジェクトそのものを変更し、変更した配列または変更箇所を返すメソッドです。
 非破壊的メソッドとは、配列オブジェクトのコピーを作成してから変更し、そのコピーした配列を返すメソッドです。
 
-破壊的なメソッドの例として、配列に要素を追加する\texttt{Array\#push}メソッドがあります。
-\texttt{push}メソッドは、\texttt{myArray}の配列そのものへ要素を追加しています。
+破壊的なメソッドの例として、配列に要素を追加する\texttt{Array\#push}\index{Array\#push@\texttt{Array\#push}}メソッドがあります。
+\texttt{push}\index{push@\texttt{push}}メソッドは、\texttt{myArray}の配列そのものへ要素を追加しています。
 その結果\texttt{myArray}変数の参照する配列が変更されるため破壊的なメソッドです。
 
 \begin{lstlisting}
@@ -564,8 +564,8 @@ console.log(result); // => 4
 console.log(myArray); // => ["A", "B", "C", "D"]
 \end{lstlisting}
 
-非破壊的なメソッドの例として、配列に要素を結合する\texttt{Array\#concat}メソッドがあります。
-\texttt{concat}メソッドは、\texttt{myArray}をコピーした配列に対して要素を結合し、その配列を返します。
+非破壊的なメソッドの例として、配列に要素を結合する\texttt{Array\#concat}\index{Array\#concat@\texttt{Array\#concat}}メソッドがあります。
+\texttt{concat}\index{concat@\texttt{concat}}メソッドは、\texttt{myArray}をコピーした配列に対して要素を結合し、その配列を返します。
 \texttt{myArray}変数の参照する配列は変更されないため非破壊的なメソッドです。
 
 \begin{lstlisting}
@@ -581,7 +581,7 @@ console.log(myArray === newArray); // => false
 
 JavaScriptにおいて破壊的なメソッドと非破壊的メソッドを名前から見分ける方法はありません。
 また、配列を返す破壊的なメソッドもあるため、返り値からも判別できません。
-たとえば、\texttt{Array\#sort}メソッドは返り値がソート済みの配列ですが破壊的メソッドです。
+たとえば、\texttt{Array\#sort}\index{Array\#sort@\texttt{Array\#sort}}メソッドは返り値がソート済みの配列ですが破壊的メソッドです。
 
 次の表で紹介するメソッド\footnote{\url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/}}は破壊的なメソッドです。
 
@@ -604,9 +604,9 @@ JavaScriptにおいて破壊的なメソッドと非破壊的メソッドを名�
 & ソートした配列\tabularnewline
 \href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift}{\texttt{Array.prototype.unshift}}
 & 変更後の配列のlength\tabularnewline
-\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin}{\texttt{Array.prototype.copyWithin}}\protect\icon{fig/es2015.eps}
+\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin}{\texttt{Array.prototype.copyWithin}}\,\protect\iconl{fig/es2015.eps}
 & 変更後の配列\tabularnewline
-\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/fill}{\texttt{Array.prototype.fill}}\protect\icon{fig/es2015.eps}
+\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/fill}{\texttt{Array.prototype.fill}}\,\protect\iconl{fig/es2015.eps}
 & 変更後の配列\tabularnewline
 \hline
 \end{longtable}
@@ -620,7 +620,7 @@ JavaScriptにおいて破壊的なメソッドと非破壊的メソッドを名�
 function removeAtIndex(array, index) { /* 実装 */ }
 \end{lstlisting}
 
-次のように、破壊的なメソッドである\texttt{Array\#splice}メソッドで要素を削除すると、引数として受け取った配列にも影響を与えます。
+次のように、破壊的なメソッドである\texttt{Array\#splice}\index{Array\#splice@\texttt{Array\#splice}}メソッドで要素を削除すると、引数として受け取った配列にも影響を与えます。
 この場合\texttt{removeAtIndex}関数には副作用があるため、破壊的であることについてのコメントがあると親切です。
 
 \begin{lstlisting}
@@ -641,7 +641,7 @@ console.log(array); // => ["A", "C"]
 一方、非破壊的メソッドは配列のコピーを作成するため、元々の配列に対して影響はありません。
 この\texttt{removeAtIndex}関数を非破壊的なものにするには、受け取った配列をコピーしてから変更を加える必要があります。
 
-JavaScriptには\texttt{copy}メソッドそのものは存在しませんが、配列をコピーする方法として\texttt{Array\#slice}メソッドと\texttt{Array\#concat}メソッドが利用されています。\texttt{slice}メソッドと\texttt{concat}メソッドは引数なしで呼び出すと、その配列のコピーを返します。
+JavaScriptには\texttt{copy}メソッドそのものは存在しませんが、配列をコピー\index{はいれつ@配列!こぴー@コピー}する方法として\texttt{Array\#slice}メソッドと\texttt{Array\#concat}メソッドが利用されています。\texttt{slice}メソッドと\texttt{concat}メソッドは引数なしで呼び出すと、その配列のコピーを返します。
 
 \begin{lstlisting}
 const myArray = ["A", "B", "C"];
@@ -676,17 +676,17 @@ console.log(array); // => ["A", "B", "C"]
 
 このようにJavaScriptの配列には破壊的なメソッドと非破壊的メソッドが混在しています。そのため、統一的なインターフェースで扱えないのが現状です。
 このような背景もあるため、JavaScriptには配列を扱うためのさまざまライブラリが存在します。
-非破壊的な配列を扱うライブラリの例として\href{https://github.com/azu/immutable-array-prototype}{immutable-array-prototype}\footnote{\url{https://github.com/azu/immutable-array-prototype}}や\href{https://facebook.github.io/immutable-js/}{Immutable.js}\footnote{\url{https://facebook.github.io/immutable-js/}}などがあります。
+非破壊的な配列を扱うライブラリの例として\href{https://github.com/azu/immutable-array-prototype}{immutable-array-prototype}\index{immutable-array-prototype}\footnote{\url{https://github.com/azu/immutable-array-prototype}}や\href{https://facebook.github.io/immutable-js/}{Immutable.js}\index{Immutable.js}\footnote{\url{https://facebook.github.io/immutable-js/}}などがあります。
 
 \hypertarget{array-iterate}{%
-\section{配列を反復処理するメソッド}\label{array-iterate}}
+\section{配列を反復処理するメソッド}\label{array-iterate}}\index{はいれつ@配列!はんぷくしょり@反復処理}\index{はんぷくしょり@反復処理}
 
 「\hyperlink{loop-and-iteration}{ループと反復処理}」の章において配列を反復処理する方法を一部解説しましたが、改めて関連するArrayメソッドを見ていきます。
 反復処理の中でもよく利用されるのが\texttt{Array\#forEach}、\texttt{Array\#map}、\texttt{Array\#filter}、\texttt{Array\#reduce}です。
 どのメソッドも共通して引数にコールバック関数を受け取るため高階関数と呼ばれます。
 
 \hypertarget{array-foreach}{%
-\subsection{\texorpdfstring{\texttt{Array\#forEach}}{Array\#forEach}}\label{array-foreach}}
+\subsection{\texorpdfstring{\texttt{Array\#forEach}}{Array\#forEach}}\label{array-foreach}}\index{Array\#forEach@\texttt{Array\#forEach}}
 
 \texttt{Array\#forEach}は配列の要素を先頭から順番にコールバック関数へ渡し、反復処理を行うメソッドです。
 
@@ -704,13 +704,13 @@ array.forEach((currentValue, index, array) => {
 \end{lstlisting}
 
 \hypertarget{array-map}{%
-\subsection{\texorpdfstring{\texttt{Array\#map}}{Array\#map}}\label{array-map}}
+\subsection{\texorpdfstring{\texttt{Array\#map}}{Array\#map}}\label{array-map}}\index{Array\#map@\texttt{Array\#map}}
 
 \texttt{Array\#map}は配列の要素を順番にコールバック関数へ渡し、コールバック関数が返した値から新しい配列を返す非破壊的なメソッドです。
 配列の各要素を加工したい場合に利用します。
 
 次のようにコールバック関数には\texttt{要素, インデックス, 配列}が引数として渡され、配列要素の先頭から順番に反復処理します。
-\texttt{map}メソッドの返り値は、それぞれのコールバック関数が返した値を集めた新しい配列です。
+\texttt{map}\index{map@\texttt{map}}メソッドの返り値は、それぞれのコールバック関数が返した値を集めた新しい配列です。
 
 \begin{lstlisting}
 const array = [1, 2, 3];
@@ -724,13 +724,13 @@ console.log(array !== newArray); // => true
 \end{lstlisting}
 
 \hypertarget{array-filter}{%
-\subsection{\texorpdfstring{\texttt{Array\#filter}}{Array\#filter}}\label{array-filter}}
+\subsection{\texorpdfstring{\texttt{Array\#filter}}{Array\#filter}}\label{array-filter}}\index{Array\#filter@\texttt{Array\#filter}}
 
 \texttt{Array\#filter}は配列の要素を順番にコールバック関数へ渡し、コールバック関数が\texttt{true}を返した要素だけを集めた新しい配列を返す非破壊的なメソッドです。
 配列から不要な要素を取り除いた配列を作成したい場合に利用します。
 
 次のようにコールバック関数には\texttt{要素, インデックス, 配列}が引数として渡され、配列要素の先頭から順番に反復処理します。
-\texttt{filter}メソッドの返り値は、コールバック関数が\texttt{true}を返した要素だけを集めた新しい配列です。
+\texttt{filter}\index{filter@\texttt{filter}}メソッドの返り値は、コールバック関数が\texttt{true}を返した要素だけを集めた新しい配列です。
 
 \begin{lstlisting}
 const array = [1, 2, 3];
@@ -744,13 +744,13 @@ console.log(array !== newArray); // => true
 \end{lstlisting}
 
 \hypertarget{array-reduce}{%
-\subsection{\texorpdfstring{\texttt{Array\#reduce}}{Array\#reduce}}\label{array-reduce}}
+\subsection{\texorpdfstring{\texttt{Array\#reduce}}{Array\#reduce}}\label{array-reduce}}\index{Array\#reduce@\texttt{Array\#reduce}}
 
-\texttt{Array\#reduce}は累積値（アキュムレータ）と配列の要素を順番にコールバック関数へ渡し、1つの累積値を返します。
+\texttt{Array\#reduce}は累積値\index{るいせきち@累積値}（アキュムレータ\index{あきゅむれーた@アキュムレータ}）と配列の要素を順番にコールバック関数へ渡し、1つの累積値を返します。
 配列から配列以外を含む任意の値を作成したい場合に利用します。
 
 ここまでで紹介した反復処理のメソッドとは異なり、コールバック関数には\texttt{累積値, 要素, インデックス, 配列}を引数として渡します。
-\texttt{reduce}メソッドの第二引数には\texttt{累積値}の初期値となる値を渡せます。
+\texttt{reduce}\index{reduce@\texttt{reduce}}メソッドの第二引数には\texttt{累積値}の初期値となる値を渡せます。
 
 次のコードでは、\texttt{reduce}メソッドは初期値を0として配列の各要素を加算した1つの数値を返します。
 つまり配列から配列要素の合計値というNumber型の値を返しています。
@@ -768,7 +768,7 @@ console.log(totalValue); // => 6
 
 \texttt{Array\#reduce}メソッドはやや複雜ですが、配列以外の値も返せるという特徴があります。
 
-\begin{tcolorbox}[enhanced jigsaw,breakable,title=Array-likeオブジェクト]\label{array-like}
+\begin{tcolorbox}[enhanced jigsaw,breakable,title=Array-likeオブジェクト]\label{array-like}\index{Array-like}
 \vbox{
 配列のように扱えるが配列ではないオブジェクトのことを、\textbf{\textgt{Array-likeオブジェクト}}と呼びます。
 Array-likeオブジェクトとは配列のようにインデックスにアクセスでき、配列のように\texttt{length}プロパティも持っています。しかし、配列のインスタンスではないため、Arrayメソッドは持っていないオブジェクトのことです。
@@ -788,7 +788,7 @@ Arrayメソッド(\texttt{Array\#forEach}など) &
 \end{longtable}
 \end{small}
 
-Array-likeオブジェクトの例として\texttt{arguments}があります。
+Array-likeオブジェクトの例として\texttt{arguments}\index{arguments@\texttt{arguments}}があります。
 \texttt{arguments}オブジェクトは、\texttt{function}で宣言した関数の中から参照できる変数です。
 \texttt{arguments}オブジェクトには関数の引数に渡された値が順番に格納されていて、配列のように引数へアクセスできます。
 
@@ -803,7 +803,7 @@ function myFunc() {
 myFunc("a", "b", "c");
 \end{lstlisting}
 
-Array-likeオブジェクトか配列なのかを判別するには\texttt{Array.isArray}メソッドを利用できます。
+Array-likeオブジェクトか配列なのかを判別するには\texttt{Array.isArray}\index{Array.isArray@\texttt{Array.isArray}}メソッドを利用できます。
 \texttt{Array-like}オブジェクトは配列ではないので結果は常に\texttt{false}となります。
 
 \begin{lstlisting}
@@ -814,7 +814,7 @@ function myFunc() {
 myFunc("a", "b", "c");
 \end{lstlisting}
 
-Array-likeオブジェクトは配列のようで配列ではないというもどかしさを持つオブジェクトです。\texttt{Array.from}メソッド\protect\icon{fig/es2015.eps}を使うことでArray-likeオブジェクトを配列に変換して扱うことができます。一度配列に変換してしまえばArrayメソッドも利用できます。
+Array-likeオブジェクトは配列のようで配列ではないというもどかしさを持つオブジェクトです。\texttt{Array.from}\index{Array.from@\texttt{Array.from}}メソッド\,\protect\iconl{fig/es2015.eps}\,を使うことでArray-likeオブジェクトを配列に変換して扱うことができます。一度配列に変換してしまえばArrayメソッドも利用できます。
 }
 \begin{lstlisting}
 function myFunc() {
@@ -831,7 +831,7 @@ myFunc("a", "b", "c");
 \end{tcolorbox}
 
 \hypertarget{method-chain-and-high-order-function}{%
-\section{メソッドチェーンと高階関数}\label{method-chain-and-high-order-function}}
+\section{メソッドチェーンと高階関数}\label{method-chain-and-high-order-function}}\index{めそっどちぇーん@メソッドチェーン}\index{こうかいかんすう@高階関数}
 
 配列で頻出するパターンとしてメソッドチェーンがあります。
 メソッドチェーンとは名前のとおり、メソッドを呼び出した返り値に対してメソッド呼び出しをするパターンのことを言います。
@@ -881,7 +881,8 @@ const versionNames = ECMAScriptVersions
     .filter(ECMAScript => ECMAScript.year <= 2000)
     // それぞれの要素からnameプロパティを取り出す
     .map(ECMAScript => ECMAScript.name);
-console.log(versionNames); // => ["ECMAScript 1", "ECMAScript 2", "ECMAScript 3"]
+console.log(versionNames); 
+// => ["ECMAScript 1", "ECMAScript 2", "ECMAScript 3"]
 \end{lstlisting}
 
 メソッドチェーンを使うことで複数の処理からなるものをひとつのまとった処理のように見せることができます。長過ぎるメソッドチェーンは長過ぎる関数と同じように読みにくくなりますが、適度な単位のメソッドチェーンは処理をスッキリ見せるパターンとして利用されています。

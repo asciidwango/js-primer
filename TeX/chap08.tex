@@ -1,5 +1,5 @@
 \hypertarget{function-and-declaration}{%
-\chapter{関数と宣言}\label{function-and-declaration}}
+\chapter{関数と宣言}\label{function-and-declaration}}\index{かんすう@関数}\index{せんげん@宣言}
 \thispagestyle{frontheadings}
 
 関数とは、ある一連の手続き（文の集まり）を1つの処理としてまとめる機能です。
@@ -11,10 +11,10 @@
 この章では、関数の定義方法や呼び出し方について見ていきます。
 
 \hypertarget{function-declaration}{%
-\section{関数宣言}\label{function-declaration}}
+\section{関数宣言}\label{function-declaration}}\index{かんすうせんげん@関数宣言}
 
-JavaScriptでは、関数を定義するために\texttt{function}キーワードを使います。
-\texttt{function}からはじまる文は\textbf{関数宣言}と呼び、次のように関数を定義できます。
+JavaScriptでは、関数を定義するために\texttt{function}\index{function@\texttt{function}}キーワードを使います。
+\texttt{function}からはじまる文は\textbf{\textgt{関数宣言}}と呼び、次のように関数を定義できます。
 
 \begin{lstlisting}
 // 関数宣言
@@ -32,22 +32,22 @@ console.log(関数の結果); // => 関数の返り値
 
 \begin{itemize}
 \item
-  関数名 ---
-  利用できる名前は変数名と同じ（「\hyperlink{variable-name}{変数名に使える名前のルール}」を参照）
+  関数名\index{かんすうめい@関数名} ---
+  利用できる名前は変数名と同じ（3章の「\hyperlink{variable-name}{変数名に使える名前のルール}」を参照）
 \item
-  仮引数 ---
+  仮引数\index{かりひきすう@仮引数} ---
   関数の呼び出し時に渡された値が入る変数。複数ある場合は\texttt{,}（カンマ）で区切る
 \item
   関数の中身 ---
   \texttt{\{}と\texttt{\}}で囲んだ関数の処理を書く場所
 \item
-  関数の返り値 --- 関数を呼び出したときに、呼び出し元へ返される値
+  関数の返り値\index{かえりち@返り値} --- 関数を呼び出したときに、呼び出し元へ返される値
 \end{itemize}
 
 宣言した関数は、\texttt{関数名()}と関数名にカッコをつけることで呼び出せます。
 関数を引数と共に呼ぶ際は、\texttt{関数名(引数1, 引数2)}とし、引数が複数ある場合は\texttt{,}（カンマ）で区切ります。
 
-関数の中身では\texttt{return}文によって、関数の実行結果として任意の値を返せます。
+関数の中身では\texttt{return}\index{return@\texttt{return}}文によって、関数の実行結果として任意の値を返せます。
 
 次のコードでは、引数で受け取った値を2倍にして返す\texttt{multiple}という関数を定義しています。
 \texttt{multiple}関数には\texttt{num}という仮引数が定義されており、\texttt{10}という値を引数として渡して関数を呼び出しています。
@@ -85,7 +85,7 @@ console.log(fn()); // => undefined
 \end{lstlisting}
 
 \hypertarget{function-arguments}{%
-\section{関数の引数}\label{function-arguments}}
+\section{関数の引数}\label{function-arguments}}\index{かんすう@関数}\index{ひきすう@引数}\index{かんすう@関数!ひきすう@引数}
 
 JavaScriptでは、関数に定義した仮引数の個数と実際に呼び出したときの引数の個数が違っても、関数を呼び出せます。
 そのため、引数の個数が合っていないときの挙動を知る必要があります。
@@ -124,7 +124,7 @@ console.log(argumentsToArray(1)); // => [1, undefined]
 \end{lstlisting}
 
 \hypertarget{function-default-parameters}{%
-\subsection{デフォルト引数\protect\icon{fig/es2015.eps}}\label{function-default-parameters}}
+\subsection[デフォルト引数]{デフォルト引数\,\protect\icon{fig/es2015.eps}}\label{function-default-parameters}}\index{でふぉるとひきすう@デフォルト引数}
 
 デフォルト引数（デフォルトパラメータ）は、仮引数に対応する引数が渡されていない場合に、デフォルトで代入される値を指定できます。
 次のように、仮引数に対して\texttt{仮引数 = デフォルト値}という構文で、仮引数ごとにデフォルト値を指定できます。
@@ -160,7 +160,7 @@ console.log(addPrefix("文字列")); // => "デフォルト:文字列"
 console.log(addPrefix("文字列", "カスタム:")); // => "カスタム:文字列"
 \end{lstlisting}
 
-しかし、OR演算子（\texttt{||}）を使ったデフォルト値の指定にはひとつ問題があります。
+しかし、OR演算子\index{ORえんざんし@OR演算子}（\texttt{||}\index{\textbar{}\textbar{}@\texttt{\textbar{}\textbar{}}}）を使ったデフォルト値の指定にはひとつ問題があります。
 OR演算子（\texttt{||}）では、左辺のオペランドがfalsyな値の場合に右辺のオペランドを評価します。
 falsyな値とは、真偽値へと変換すると\texttt{false}となる次のような値のことです。
 
@@ -225,7 +225,7 @@ add(1, 3, 5); // => 4
 \end{lstlisting}
 
 \hypertarget{variable-arguments}{%
-\section{可変長引数}\label{variable-arguments}}
+\section{可変長引数}\label{variable-arguments}}\index{かへんちょうひきすう@可変長引数}
 
 関数において引数の数が固定ではなく、任意の個数の引数を受け取りたい場合があります。
 たとえば、\texttt{Math.max(...args)}は引数を何個でも受け取り、受け取った引数の中で最大の数値を返す関数です。
@@ -241,7 +241,7 @@ console.log(max); // => 20
 parametersか関数の中でのみ参照できる\texttt{arguments}という特殊な変数を利用します。
 
 \hypertarget{rest-parameters}{%
-\subsection{Rest parameters\protect\icon{fig/es2015.eps}}\label{rest-parameters}}
+\subsection[Rest parameters]{Rest parameters\,\protect\icon{fig/es2015.eps}}\label{rest-parameters}}\index{Rest parameters}
 
 Rest
 parametersは、仮引数名の前に\texttt{...}をつけた仮引数のことで、残余引数とも呼ばれます。
@@ -276,7 +276,7 @@ fn("a", "b", "c");
 Rest parametersは、引数をまとめた配列を仮引数に定義する構文でした。
 一方で、配列を展開して関数の引数に渡すSpread構文もあります。
 
-Spread構文は、配列の前に\texttt{...}をつけた構文のことで、関数には配列の値を展開したものが引数として渡されます。
+Spread構文\index{Spreadこうぶん@Spread構文}は、配列の前に\texttt{...}\index{...@\texttt{...}}をつけた構文のことで、関数には配列の値を展開したものが引数として渡されます。
 次のコードでは、\texttt{array}の配列を展開して\texttt{fn}関数の引数として渡しています。
 
 \begin{lstlisting}
@@ -293,10 +293,10 @@ fn(array[0], array[1], array[2]);
 \end{lstlisting}
 
 \hypertarget{arguments}{%
-\subsection{\texorpdfstring{\texttt{arguments}}{arguments}}\label{arguments}}
+\subsection{\texorpdfstring{\texttt{arguments}}{arguments}}\label{arguments}}\index{arguments}
 
 可変長引数を扱う方法として、\texttt{arguments}という関数の中でのみ参照できる特殊な変数があります。
-\texttt{arguments}は関数に渡された引数の値がすべて入った\textbf{Array-like}なオブジェクトです。
+\texttt{arguments}は関数に渡された引数の値がすべて入った\textbf{Array-like}\index{Array-like}なオブジェクトです。
 \textbf{Array-like}なオブジェクトは、配列のようにインデックスで要素へアクセスできます。
 しかし、\texttt{Array}ではないため、実際の配列とは異なり\texttt{Array}のメソッドは利用できないという特殊なオブジェクトです。
 
@@ -334,9 +334,9 @@ Rest parametersであれば、仮引数で可変長を受け入れることが�
 parametersでの実装を推奨します。
 
 \hypertarget{function-destructuring}{%
-\section[関数の引数と分割代入]{関数の引数と分割代入\protect\icon{fig/es2015.eps}}\label{function-destructuring}}
+\section[関数の引数と分割代入]{関数の引数と分割代入\,\protect\icon{fig/es2015.eps}}\label{function-destructuring}}\index{ぶんかつだいにゅう@分割代入}
 
-関数の引数においても分割代入（Destructuring assignment）が利用できます。
+関数の引数においても分割代入（Destructuring assignment\index{Destructuring assignment}）が利用できます。
 分割代入はオブジェクトや配列からプロパティを取り出し、変数として定義し直す構文です。
 
 次のコードでは、関数の引数として\texttt{user}オブジェクトを渡し、\texttt{id}プロパティをコンソールへ出力しています。
@@ -396,10 +396,10 @@ print(array);
 \end{lstlisting}
 
 \hypertarget{first-class-function}{%
-\section{関数はオブジェクト}\label{first-class-function}}
+\section{関数はオブジェクト}\label{first-class-function}}\index{かんすう@関数}\index{おぶじぇくと@オブジェクト}
 
-JavaScriptでは、関数は関数オブジェクトとも呼ばれ、オブジェクトの一種です。
-関数はただのオブジェクトとは異なり、関数名に\texttt{()}をつけることで、関数としてまとめた処理を呼び出すことができます。
+JavaScriptでは、関数は関数オブジェクト\index{かんすうおぶじぇくと@関数オブジェクト}とも呼ばれ、オブジェクトの一種です。
+関数はただのオブジェクトとは異なり、関数名に\texttt{()}\index{()@\texttt{()}}をつけることで、関数としてまとめた処理を呼び出すことができます。
 
 一方で、\texttt{()}をつけて呼び出されなければ、関数をオブジェクトとして参照できます。
 また、関数はほかの値と同じように変数へ代入したり、関数の引数として渡すことが可能です。
@@ -415,7 +415,7 @@ const myFunc = fn;
 myFunc();
 \end{lstlisting}
 
-このように関数が値として扱えることを、\textbf{ファーストクラスファンクション}（第一級関数）と呼びます。
+このように関数が値として扱えることを、\textbf{\textgt{ファーストクラスファンクション}}\index{ふぁーすとくらすふぁんくしょん@ファーストクラスファンクション}（第一級関数\index{だいいっきゅうかんすう@第一級関数}）と呼びます。
 
 先ほどのコードでは、関数宣言をしてから変数へ代入していましたが、最初から関数を値として定義できます。
 関数を値として定義する場合には、関数宣言と同じ\texttt{function}キーワードを使った方法とArrow
@@ -423,7 +423,7 @@ Functionを使った方法があります。
 どちらの方法も、関数を式（代入する値）として扱うため\textbf{\textgt{関数式}}と呼びます。
 
 \hypertarget{function-expression}{%
-\subsection{関数式}\label{function-expression}}
+\subsection{関数式}\label{function-expression}}\index{かんすうしき@関数式}
 
 関数式とは、関数を値として変数へ代入している式のことを言います。
 関数宣言は文でしたが、関数式では関数を値として扱っています。
@@ -438,7 +438,7 @@ const 変数名 = function() {
 };
 \end{lstlisting}
 
-関数式では\texttt{function}キーワードの右辺に書く関数名は省略できます。
+関数式では\texttt{function}\index{function@\texttt{function}}キーワードの右辺に書く関数名は省略できます。
 なぜなら、定義した関数式は変数名で参照できるためです。
 一方、関数宣言では\texttt{function}キーワードの右辺の関数名は省略できません。
 
@@ -452,7 +452,7 @@ function 関数名() {
 \end{lstlisting}
 
 このように関数式では、名前を持たない関数を変数に代入できます。
-このような名前を持たない関数を\textbf{\textgt{匿名関数}}（または無名関数）と呼びます。
+このような名前を持たない関数を\textbf{\textgt{匿名関数}}\index{とくめいかんすう@匿名関数}（または無名関数\index{むめいかんすう@無名関数}）と呼びます。
 
 もちろん関数式でも関数に名前をつけることができます。
 しかし、この関数の名前は関数の外からは呼ぶことができません。
@@ -472,11 +472,11 @@ console.log(factorial(3)); // => 6
 \end{lstlisting}
 
 \hypertarget{arrow-function}{%
-\subsection{Arrow Function\protect\icon{fig/es2015.eps}}\label{arrow-function}}
+\subsection[Arrow Function]{Arrow Function\,\protect\icon{fig/es2015.eps}}\label{arrow-function}}\index{Arrow Function}
 
 関数式には\texttt{function}キーワードを使った方法以外に、Arrow
 Functionと呼ばれる書き方があります。
-名前のとおり矢印のような\texttt{=>}（イコールと大なり記号）を使い、匿名関数を定義する構文です。
+名前のとおり矢印のような\texttt{=>}\index{=>@\texttt{=\textgreater{}}}（イコールと大なり記号）を使い、匿名関数\index{とくめいかんすう@匿名関数}を定義する構文です。
 次のように、\texttt{function}キーワードを使った関数式とよく似た書き方をします。
 
 \begin{lstlisting}
@@ -531,7 +531,7 @@ Arrow Functionについては次のような特徴があります。
   \texttt{arguments}変数を参照できない
 \end{itemize}
 
-たとえば\texttt{function}キーワードの関数式では、値を返すコールバック関数を次のように書きます。
+たとえば\texttt{function}キーワードの関数式では、値を返すコールバック関数\index{こーるばっくかんすう@コールバック関数}を次のように書きます。
 配列の\texttt{map}メソッドは、配列の要素を順番にコールバック関数へ渡し、そのコールバック関数が返した値を新しい配列にして返します。
 
 \begin{lstlisting}
@@ -562,18 +562,18 @@ console.log(doubleArray); // => [2, 4, 6]
 Arrow
 Functionは\texttt{function}キーワードの関数式に比べて、できることとできないことがはっきりしています。
 たとえば、\texttt{function}キーワードでは非推奨としていた\texttt{arguments}変数を参照できますが、Arrow
-Functionでは参照できなくなっています。 Arrow
+Functionでは参照できなくなっています。Arrow
 Functionでは、人による解釈や実装の違いが生まれにくくなります。
 
 また、\texttt{function}キーワードとArrow
-Functionの大きな違いとして、\texttt{this}という特殊なキーワードに関する挙動の違いがあります。
+Functionの大きな違いとして、\texttt{this}\index{this@\texttt{this}}という特殊なキーワードに関する挙動の違いがあります。
 \texttt{this}については「\hyperlink{function-and-scope}{関数とスコープ}」の章で解説しますが、Arrow
 Functionではこの\texttt{this}の問題の多くを解決できるという利点があります。
 
 そのため、Arrow Functionで問題ない場合はArrow
 Functionで書き、そうでない場合は\texttt{function}キーワードを使うことを推奨します。
 
-\begin{tcolorbox}[title=同じ名前の関数宣言は上書きされる]\label{function-overwrite}
+\begin{tcolorbox}[title=同じ名前の関数宣言は上書きされる]\label{function-overwrite}\index{かんすうせんげん@関数宣言}
 
 関数宣言で定義した関数は、関数の名前でのみ区別されます。
 そのため、同じ名前の関数を複数回宣言した場合には、後ろで宣言された関数によって上書きされます。
@@ -595,15 +595,15 @@ console.log(fn(2, 10)); // => "最後の関数 x: 2, y: 10"
 \texttt{let}や\texttt{const}では同じ変数名の定義はエラーとなるため、このような関数定義の上書きもエラーとなります。
 
 このように、同じ関数名で複数の関数を定義することは基本的に意味がないため避けるべきです。
-引数の違いで関数を呼び分けたい場合は、別々の名前で関数を定義するか関数の内部で引数の値で処理を分岐する必要があります\footnote{JavaScriptにはオーバーロードと呼ばれる機能はありません。}。
+引数の違いで関数を呼び分けたい場合は、別々の名前で関数を定義するか関数の内部で引数の値で処理を分岐する必要があります\footnote{JavaScriptにはオーバーロード\index{おーばーろーど@オーバーロード}と呼ばれる機能はありません。}。
 \end{tcolorbox}
 
 \hypertarget{callback}{%
-\subsection{コールバック関数}\label{callback}}
+\subsection{コールバック関数}\label{callback}}\index{こーるばっくかんすう@コールバック関数}
 
 関数はファーストクラスであるため、その場で作った匿名関数を関数の引数（値）として渡すことができます。
 引数として渡される関数のことを\textbf{\textgt{コールバック関数}}と呼びます。
-一方、コールバック関数を引数として使う関数やメソッドのことを\textbf{\textgt{高階関数}}と呼びます。
+一方、コールバック関数を引数として使う関数やメソッドのことを\textbf{\textgt{高階関数}}\index{こうかいかんすう@高階関数}と呼びます。
 
 \begin{lstlisting}
 function 高階関数(コールバック関数) {
@@ -611,7 +611,7 @@ function 高階関数(コールバック関数) {
 }
 \end{lstlisting}
 
-たとえば、配列の\texttt{forEach}メソッドはコールバック関数を引数として受け取る高階関数です。
+たとえば、配列の\texttt{forEach}\index{forEach@\texttt{forEach}}メソッドはコールバック関数を引数として受け取る高階関数です。
 \texttt{forEach}メソッドは、配列の各要素に対してコールバック関数を一度ずつ呼び出します。
 
 \begin{lstlisting}
@@ -640,9 +640,9 @@ array.forEach((value) => {
 非同期処理におけるコールバック関数の利用方法については「\hyperlink{async-handling}{非同期処理}」の章で解説します。
 
 \hypertarget{method}{%
-\section{メソッド}\label{method}}
+\section{メソッド}\label{method}}\index{めそっど@メソッド}
 
-オブジェクトのプロパティである関数を\textbf{\textgt{メソッド}}と呼びます。
+オブジェクトのプロパティ\index{ぷろぱてぃ@プロパティ}である関数を\textbf{\textgt{メソッド}}と呼びます。
 JavaScriptにおいて、関数とメソッドの機能的な違いはありません。
 しかし、呼び方を区別したほうがわかりやすいため、ここではオブジェクトのプロパティである関数をメソッドと呼びます。
 
@@ -668,7 +668,7 @@ obj.method = function() {
 };
 \end{lstlisting}
 
-メソッドを呼び出す場合は、関数呼び出しと同様に\texttt{オブジェクト.メソッド名()}と書くことで呼び出せます。
+メソッドを呼び出す場合は、関数呼び出しと同様に\texttt{オブジェクト.\hbox{}メソッド名()}と書くことで呼び出せます。
 
 \begin{lstlisting}
 const obj = {
@@ -680,7 +680,7 @@ console.log(obj.method()); // => "this is method"
 \end{lstlisting}
 
 \hypertarget{shorthand-for-method}{%
-\subsection{メソッドの短縮記法\protect\icon{fig/es2015.eps}}\label{shorthand-for-method}}
+\subsection[メソッドの短縮記法]{メソッドの短縮記法\,\protect\icon{fig/es2015.eps}}\label{shorthand-for-method}}\index{めそっど@メソッド!たんしゅくきほう@短縮記法}\index{たんしゅくきほう@短縮記法}
 
 先ほどの方法では、プロパティに関数を代入するという書き方になっていました。
 ES2015からは、メソッドとしてプロパティを定義するための短縮した書き方が追加されています。

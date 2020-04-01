@@ -1,18 +1,18 @@
 \hypertarget{class}{%
-\chapter{クラス}\label{class}}
+\chapter{クラス}\label{class}}\index{くらす@クラス}
 \thispagestyle{frontheadings}
 
-「クラス」と一言にいってもさまざまであるため、ここでは\textbf{構造}、\textbf{動作}、\textbf{状態}を定義できるものを指すことにします。
-また、この章では概念を示す場合は\textbf{クラス}と呼び、クラスに関する構文（記述するコード）のことを\texttt{class}構文と呼びます。
+「クラス」と一言にいってもさまざまであるため、ここでは\textbf{\textgt{構造}}、\textbf{\textgt{動作}}、\textbf{\textgt{状態}}を定義できるものを指すことにします。
+また、この章では概念を示す場合は\textbf{\textgt{クラス}}と呼び、クラスに関する構文（記述するコード）のことを\texttt{class}構文\index{classこうぶん@\texttt{class}構文}と呼びます。
 
-\textbf{クラス}とは\textbf{動作}や\textbf{状態}を定義した\textbf{構造}です。
-クラスからはインスタンスと呼ばれるオブジェクトを作成でき、インスタンスはクラスに定義した\textbf{動作}を継承し、\textbf{状態}は動作によって変化します。
+\textbf{\textgt{クラス}}とは\textbf{\textgt{動作}}や\textbf{\textgt{状態}}を定義した\textbf{\textgt{構造}}です。
+クラスからはインスタンスと呼ばれるオブジェクトを作成でき、インスタンスはクラスに定義した\textbf{\textgt{動作}}を継承し、\textbf{\textgt{状態}}は動作によって変化します。
 とても抽象的なことに思えますが、これは今までオブジェクトや関数を使って表現してきたものです。
 JavaScriptではES2015より前までは\texttt{class}構文はなく、関数を使ってクラスのようなものを表現して扱っていました。
 
 ES2015でクラスを表現するための\texttt{class}構文が導入されましたが、この\texttt{class}構文で定義したクラスは関数オブジェクトの一種です。
 \texttt{class}構文ではプロトタイプベースの継承の仕組みを使って関数でクラスを表現しています。
-そのため、\texttt{class}構文はクラスを作るための関数定義や継承をパターン化した書き方と言えます\footnote{\texttt{class}構文でしか実現できない機能はなく、読みやすさやわかりやさのために導入された構文という側面もあるため、JavaScriptの\texttt{class}構文は糖衣構文（シンタックスシュガー）と呼ばれることがあります。}。
+そのため、\texttt{class}構文はクラスを作るための関数定義や継承をパターン化した書き方と言えます\footnote{\texttt{class}構文でしか実現できない機能はなく、読みやすさやわかりやさのために導入された構文という側面もあるため、JavaScriptの\texttt{class}構文は糖衣構文\index{とういこうぶん@糖衣構文}（シンタックスシュガー\index{しんたっくすしゅがー@シンタックスシュガー}）と呼ばれることがあります。}。
 
 また、関数の定義方法として関数宣言文と関数式があるように、クラスにもクラス宣言文とクラス式があります。
 このように関数とクラスは似ている部分が多いです。
@@ -20,17 +20,17 @@ ES2015でクラスを表現するための\texttt{class}構文が導入されま
 この章では、\texttt{class}構文でのクラスの定義や継承、クラスの性質について学んでいきます。
 
 \hypertarget{class-declaration}{%
-\section{クラスの定義}\label{class-declaration}}
+\section{クラスの定義}\label{class-declaration}}\index{くらす@クラス!ていぎ@定義}
 
 クラスを定義するには\texttt{class}構文を使います。
 クラスの定義方法にはクラス宣言文とクラス式があります。
 
 まずは、クラス宣言文によるクラスの定義方法を見ていきます。
 
-クラス宣言文では\texttt{class}キーワードを使い、\texttt{class クラス名\{ \}}のようにクラスの\textbf{構造}を定義できます。
+クラス宣言文\index{くらすせんげんぶん@クラス宣言文}では\texttt{class}\index{class@\texttt{class}}キーワードを使い、\texttt{class クラス名\{ \}}のようにクラスの\textbf{\textgt{構造}}を定義できます。
 
-クラスは必ずコンストラクタを持ち、\texttt{constructor}という名前のメソッドとして定義します。
-コンストラクタとは、そのクラスからインスタンスを作成する際にインスタンスに関する\textbf{状態}の初期化を行うメソッドです。
+クラスは必ずコンストラクタ\index{こんすとらくた@コンストラクタ}を持ち、\texttt{constructor}\index{constructor@\texttt{constructor}}という名前のメソッドとして定義します。
+コンストラクタとは、そのクラスからインスタンスを作成する際にインスタンスに関する\textbf{\textgt{状態}}の初期化を行うメソッドです。
 \texttt{constructor}メソッドに定義した処理は、クラスをインスタンス化したときに自動的に呼び出されます。
 
 \begin{lstlisting}
@@ -42,7 +42,7 @@ class MyClass {
 }
 \end{lstlisting}
 
-もうひとつの定義方法であるクラス式は、クラスを値として定義する方法です。
+もうひとつの定義方法であるクラス式\index{くらすしき@クラス式}は、クラスを値として定義する方法です。
 クラス式ではクラス名を省略できます。これは関数式における匿名関数と同じです。
 
 \begin{lstlisting}
@@ -71,11 +71,11 @@ class MyClassB {
 \end{lstlisting}
 
 \hypertarget{class-instance}{%
-\section{クラスのインスタンス化}\label{class-instance}}
+\section{クラスのインスタンス化}\label{class-instance}}\index{くらす@クラス!いんすたんすか@インスタンス化}
 
-クラスは\texttt{new}演算子でインスタンスであるオブジェクトを作成できます。
+クラスは\texttt{new}\index{new@\texttt{new}}演算子でインスタンスであるオブジェクトを作成できます。
 \texttt{class}構文で定義したクラスからインスタンスを作成することを\textbf{\textgt{インスタンス化}}と呼びます。
-あるインスタンスが指定したクラスから作成されたものかを判定するには\texttt{instanceof}演算子が利用できます。
+あるインスタンスが指定したクラスから作成されたものかを判定するには\texttt{instanceof}\index{instanceof@\texttt{instanceof}}演算子が利用できます。
 
 \begin{lstlisting}
 class MyClass {
@@ -173,7 +173,7 @@ console.log(point instanceof Point); // => false
 
 \begin{note}{}
 \hypertarget{class-name-start-upper-case}{%
-\underline{\textgt{クラス名は大文字ではじめる}}\label{class-name-start-upper-case}}
+\underline{\textgt{クラス名は大文字ではじめる}}\label{class-name-start-upper-case}}\index{くらすめい@クラス名}
 
 JavaScriptでは慣習としてクラス名には大文字ではじまる名前をつけます。
 これは、変数名にキャメルケースを使う慣習があるのと同じで、名前自体に特別なルールがあるわけではありません。
@@ -185,7 +185,7 @@ const thing = new Thing();
 \end{lstlisting}
 \end{note}
 
-\begin{tcolorbox}[breakable,title=\texttt{class}構文と関数でのクラスの違い]\label{class-vs-function}
+\begin{tcolorbox}[enhanced jigsaw,breakable,title=\texttt{class}構文と関数でのクラスの違い]\label{class-vs-function}\index{classこうぶん@\texttt{class}構文}
 
 ES2015より前はこれらのクラスを\texttt{class}構文ではなく、関数で表現していました。
 その表現方法は人によってさまざまで、これも\texttt{class}構文という統一した記法が導入された理由の1つです。
@@ -228,10 +228,10 @@ MyClass(); // => TypeError: class constructors must be invoked with |new|
 \end{tcolorbox}
 
 \hypertarget{class-prototype-method-definition}{%
-\section{クラスのプロトタイプメソッドの定義}\label{class-prototype-method-definition}}
+\section{クラスのプロトタイプメソッドの定義}\label{class-prototype-method-definition}}\index{くらす@クラス!ぷろとたいぷめそっど@プロトタイプメソッド}\index{ぷろとたいぷめそっど@プロトタイプメソッド}
 
 クラスの\textbf{\textgt{動作}}はメソッドによって定義できます。
-\texttt{constructor}メソッドは初期化時に呼ばれる特殊なメソッドですが、\texttt{class}構文ではクラスに対して自由にメソッドを定義できます。
+\texttt{constructor}\index{constructor@\texttt{constructor}}メソッドは初期化時に呼ばれる特殊なメソッドですが、\texttt{class}構文ではクラスに対して自由にメソッドを定義できます。
 このクラスに定義したメソッドは作成したインスタンスが持つ動作となります。
 
 次のように\texttt{class}構文ではクラスに対してメソッドを定義できます。
@@ -265,7 +265,7 @@ class クラス {
 
 このようにクラスに対して定義したメソッドは、クラスの各インスタンスから\textbf{\textgt{共有されるメソッド}}となります。
 このインスタンス間で共有されるメソッドのことを\textbf{\textgt{プロトタイプメソッド}}と呼びます。
-また、プロトタイプメソッドはインスタンスから呼び出せるメソッドであるため\textbf{\textgt{インスタンスメソッド}}とも呼ばれます。
+また、プロトタイプメソッドはインスタンスから呼び出せるメソッドであるため\textbf{\textgt{インスタンスメソッド}}\index{いんすたんすめそっど@インスタンスメソッド}とも呼ばれます。
 
 この書籍では、プロトタイプメソッド（インスタンスメソッド）を\texttt{クラス\#メソッド名}のように表記します。
 
@@ -315,7 +315,7 @@ console.log(counterA.increment === counterB.increment); // => true
 プロトタイプメソッドの仕組みについては後ほど解説します。
 
 \hypertarget{class-instance-method}{%
-\subsection{クラスのインスタンスに対してメソッドを定義する}\label{class-instance-method}}
+\subsection{クラスのインスタンスに対してメソッドを定義する}\label{class-instance-method}}\index{くらす@クラス!いんすたんす@インスタンス}\index{いんすたんす@インスタンス}
 
 \texttt{class}構文でのメソッド定義はプロトタイプメソッドとなり、インスタンス間で共有されます。
 
@@ -415,10 +415,10 @@ method(); // => undefined
 Functionでメソッドを定義することで\texttt{this}の参照先を固定化できます。
 
 \hypertarget{class-accessor-property}{%
-\section{クラスのアクセッサプロパティの定義}\label{class-accessor-property}}
+\section{クラスのアクセッサプロパティの定義}\label{class-accessor-property}}\index{くらす@クラス!あくせっさぷろぱてぃ@アクセッサプロパティ}\index{あくせっさぷろぱてぃ@アクセッサプロパティ}
 
 クラスに対してメソッドを定義できますが、メソッドは\texttt{メソッド名()}のように呼び出す必要があります。
-クラスでは、プロパティの参照（getter）、プロパティへの代入（setter）時に呼び出される特殊なメソッドを定義できます。
+クラスでは、プロパティの参照（getter\index{getter}）、プロパティへの代入（setter\index{setter}）時に呼び出される特殊なメソッドを定義できます。
 このメソッドはプロパティのように振る舞うため\textbf{\textgt{アクセッサプロパティ}}と呼ばれます。
 
 次のコードでは、プロパティの参照（getter）、プロパティへの代入（setter）に対するアクセッサプロパティを定義しています。
@@ -472,24 +472,24 @@ numberWrapper.value = 42;
 console.log(numberWrapper.value); // => 42
 \end{lstlisting}
 
-\begin{tcolorbox}[title=プライベートプロパティ]\label{private-property}
+\begin{tcolorbox}[title=プライベートプロパティ]\label{private-property}\index{ぷらいべーとぷろぱてぃ@プライベートプロパティ}
 
 \texttt{NumberWrapper\#value}のアクセッサプロパティで実際に読み書きしているのは、\texttt{\_value}プロパティです。
-このように、外から直接読み書きしてほしくないプロパティを\texttt{\_}（アンダーバー）で開始するのはただの習慣であるため、構文としての意味はありません。
+このように、外から直接読み書きしてほしくないプロパティを\texttt{\_}\index{_@\texttt{\_}}（アンダーバー\index{あんだーばー@アンダーバー}）で開始するのはただの習慣であるため、構文としての意味はありません。
 
 現時点（ECMAScript 2019）では、外から原理的に参照できないプライベートプロパティ（hard
 private）を定義する構文はありません。
-しかし、現時点でも\texttt{WeakSet}などを使うことで疑似的なプライベートプロパティを実現できます。
+しかし、現時点でも\texttt{WeakSet}\index{WeakSet@\texttt{WeakSet}}などを使うことで疑似的なプライベートプロパティを実現できます。
 \texttt{WeakSet}については「\hyperlink{map-and-set}{Map/Set}」の章で解説します。
 \end{tcolorbox}
 
 \hypertarget{array-like-length}{%
-\subsection{\texorpdfstring{\texttt{Array\#length}をアクセッサプロパティで再現する}{Array\#lengthをアクセッサプロパティで再現する}}\label{array-like-length}}
+\subsection{\texorpdfstring{\texttt{Array\#length}をアクセッサプロパティで再現する}{Array\#lengthをアクセッサプロパティで再現する}}\label{array-like-length}}\index{Array\#length@\texttt{Array\#length}}\index{あくせっさぷろぱてぃ@アクセッサプロパティ}
 
 getterやsetterを利用しないと実現が難しいものとして\texttt{Array\#length}プロパティがあります。
 \texttt{Array\#length}プロパティへ値を代入すると、そのインデックス以降の要素は自動的に削除される仕様になっています。
 
-次のコードでは、配列の要素数（\texttt{length}プロパティ）を小さくすると配列の要素が削除されています。
+次のコードでは、配列の要素数（\texttt{length}\index{length@\texttt{length}}プロパティ）を小さくすると配列の要素が削除されています。
 
 \begin{lstlisting}
 const array = [1, 2, 3, 4, 5];
@@ -506,9 +506,9 @@ console.log(array.join(", ")); // => "1, 2, , , "
 
 \begin{itemize}
 \item
-  現在要素数より小さな\textbf{要素数}が指定された場合、その\textbf{要素数}を変更し、配列の末尾の要素を削除する
+  現在要素数より小さな\textbf{\textgt{要素数}}が指定された場合、その\textbf{\textgt{要素数}}を変更し、配列の末尾の要素を削除する
 \item
-  現在要素数より大きな\textbf{要素数}が指定された場合、その\textbf{要素数}だけを変更し、配列の実際の要素はそのままにする
+  現在要素数より大きな\textbf{\textgt{要素数}}が指定された場合、その\textbf{\textgt{要素数}}だけを変更し、配列の実際の要素はそのままにする
 \end{itemize}
 
 \texttt{ArrayLike\#length}のsetterで要素の追加や削除を実装することで、配列のような\texttt{length}プロパティを実装できます。
@@ -557,12 +557,12 @@ console.log(arrayLike.items.join(", ")); // => "1, 2, , , "
 このようにアクセッサプロパティでは、プロパティのようでありながら実際にアクセスした際には他のプロパティと連動する動作を実現できます。
 
 \hypertarget{static-method}{%
-\section{静的メソッド}\label{static-method}}
+\section{静的メソッド}\label{static-method}}\index{せいてきめそっど@静的メソッド}
 
 インスタンスメソッドは、クラスをインスタンス化して利用します。
-一方、クラスをインスタンス化せずに利用できる静的メソッド（クラスメソッド）もあります。
+一方、クラスをインスタンス化せずに利用できる静的メソッド（クラスメソッド\index{くらすめそっど@クラスメソッド}）もあります。
 
-静的メソッドの定義方法はメソッド名の前に、\texttt{static}をつけるだけです。
+静的メソッドの定義方法はメソッド名の前に、\texttt{static}\index{static@\texttt{static}}をつけるだけです。
 
 \begin{lstlisting}[escapechar=\%]
 class クラス {
@@ -629,10 +629,10 @@ console.log(arrayWrapper.length); // => 3
 そのため静的メソッドは、クラスのインスタンスを作成する処理やクラスに関係する処理を書くために利用されます。
 
 \hypertarget{two-instance-method-definition}{%
-\section{2種類のインスタンスメソッドの定義}\label{two-instance-method-definition}}
+\section{2種類のインスタンスメソッドの定義}\label{two-instance-method-definition}}\index{いんすたんすめそっど@インスタンスメソッド}
 
 クラスでは、2種類のインスタンスメソッドの定義方法があります。
-\texttt{class}構文を使ったインスタンス間で共有されるプロトタイプメソッドの定義と、
+\texttt{class}構文を使ったインスタンス間で共有されるプロトタイプメソッド\index{ぷろとたいぷめそっど@プロトタイプメソッド}の定義と、
 インスタンスオブジェクトに対するメソッドの定義です。
 
 これらの2つの方法を同時に使い、1つのクラスに同じ名前でメソッドを2つ定義した場合はどうなるでしょうか？
@@ -698,15 +698,15 @@ conflict.method(); // "プロトタイプメソッド"
 このセクションでは、\textbf{\textgt{プロトタイプオブジェクト}}と\textbf{\textgt{プロトタイプチェーン}}とはどのような仕組みなのかを見ていきます。
 
 \hypertarget{prototype}{%
-\section{プロトタイプオブジェクト}\label{prototype}}
+\section{プロトタイプオブジェクト}\label{prototype}}\index{ぷろとたいぷおぶじぇくと@プロトタイプオブジェクト}
 
 \textbf{\textgt{プロトタイプメソッド}}と\textbf{\textgt{インスタンスオブジェクトのメソッド}}を同時に定義しても、互いのメソッドは上書きされるわけでありません。
-なぜなら、プロトタイプメソッドは\textbf{\textgt{プロトタイプオブジェクト}}へ、インスタンスオブジェクトのメソッドは\textbf{\textgt{インスタンスオブジェクト}}へそれぞれ定義されるためです。
+なぜなら、プロトタイプメソッドは\textbf{\textgt{プロトタイプオブジェクト}}へ、インスタンスオブジェクトのメソッドは\textbf{\textgt{インスタンスオブジェクト}}\index{いんすたんすおぶじぇくと@インスタンスオブジェクト}へそれぞれ定義されるためです。
 
 プロトタイプオブジェクトについては「\hyperlink{prototype-object}{プロトタイプオブジェクト}」の章で簡単に紹介していましたが、改めて解説していきます。
 
 \textbf{\textgt{プロトタイプオブジェクト}}とは、JavaScriptの関数オブジェクトの\texttt{prototype}プロパティに自動的に作成される特殊なオブジェクトです。
-クラスも一種の関数オブジェクトであるため、自動的に\texttt{prototype}プロパティにプロトタイプオブジェクトが作成されています。
+クラスも一種の関数オブジェクトであるため、自動的に\texttt{prototype}\index{prototype@\texttt{prototype}}プロパティにプロトタイプオブジェクトが作成されています。
 
 次のコードでは、関数やクラス自身の\texttt{prototype}プロパティに、プロトタイプオブジェクトが自動的に作成されていることがわかります。
 
@@ -725,7 +725,7 @@ console.log(typeof MyClass.prototype === "object"); // => true
 \texttt{class}構文のメソッド定義は、このプロトタイプオブジェクトのプロパティとして定義されます。
 
 次のコードでは、クラスのメソッドがプロトタイプオブジェクトに定義されていることを確認できます。
-また、クラスには\texttt{constructor}メソッド（コンストラクタ）が必ず定義されます。
+また、クラスには\texttt{constructor}\index{constructor@\texttt{constructor}}メソッド（コンストラクタ）が必ず定義されます。
 この\texttt{constructor}メソッドもプロトタイプオブジェクトに定義されており、この\texttt{constructor}プロパティはクラス自身を参照します。
 
 \begin{lstlisting}
@@ -741,7 +741,7 @@ console.log(MyClass.prototype.constructor === MyClass); // => true
 このように、プロトタイプメソッドはプロトタイプオブジェクトに定義され、インスタンスオブジェクトのメソッドとは異なるオブジェクトに定義されています。そのため、それぞれの方法でメソッドを定義しても、上書きされることはありません。
 
 \hypertarget{prototype-chain}{%
-\section{プロトタイプチェーン}\label{prototype-chain}}
+\section{プロトタイプチェーン}\label{prototype-chain}}\index{ぷろとたいぷちぇーん@プロトタイプチェーン}
 
 \texttt{class}構文で定義したプロトタイプメソッドはプロトタイプオブジェクトに定義されます。
 しかし、インスタンス（オブジェクト）にはメソッドが定義されていないのに、インスタンスからクラスのプロトタイプメソッドを呼び出せます。
@@ -767,7 +767,7 @@ instance.method(); // "プロトタイプのメソッド"
 \end{itemize}
 
 \hypertarget{write-prototype-chain}{%
-\subsection{インスタンス作成とプロトタイプチェーン}\label{write-prototype-chain}}
+\subsection{インスタンス作成とプロトタイプチェーン}\label{write-prototype-chain}}\index{いんすたんす@インスタンス!さくせい@作成}
 
 クラスから\texttt{new}演算子によってインスタンスを作成する際に、インスタンスにはクラスのプロトタイプオブジェクトへの参照が保存されます。
 このとき、インスタンスからクラスのプロトタイプオブジェクトへの参照は、インスタンスオブジェクトの\texttt{[[Prototype]]}という内部プロパティに保存されます。
@@ -775,7 +775,7 @@ instance.method(); // "プロトタイプのメソッド"
 \texttt{[[Prototype]]}内部プロパティはECMAScriptの仕様で定められた内部的な表現であるため、通常のプロパティのようにはアクセスできません。
 ここでは説明のために、\texttt{[[プロパティ名]]}という書式でECMAScriptの仕様上に存在する内部プロパティを表現しています。
 
-\texttt{[[Prototype]]}内部プロパティへプロパティのようにはアクセスできませんが、\texttt{Object.getProto\\typeOf}メソッドで\texttt{[[Prototype]]}内部プロパティを参照できます。
+\texttt{[[Prototype]]}内部プロパティへプロパティのようにはアクセスできませんが、\texttt{Object.getProto\\typeOf}\index{Object.getPrototypeOf@\texttt{Object.getPrototypeOf}}メソッドで\texttt{[[Prototype]]}内部プロパティを参照できます。
 
 次のコードでは、\texttt{instance}オブジェクトの\texttt{[[Prototype]]}内部プロパティを取得しています。
 その取得した結果がクラスのプロトタイプオブジェクトを参照していることを確認できます。
@@ -798,16 +798,16 @@ console.log(MyClassPrototype === MyClass.prototype); // => true
 \hypertarget{inner-property}{%
 \underline{\texttt{{[}{[}Prototype{]}{]}}内部プロパティを読み書きする}\label{inner-property}}
 
-\texttt{Object.getPrototypeOf(オブジェクト)}で\texttt{オブジェクト}の\texttt{[[Prototype]]}を読み取ることができます。
-一方、\texttt{Object.setPrototypeOf(オブジェクト, プロトタイプオブジェクト)}で\texttt{オブジェクト}の\texttt{[[Prototype]]}に\texttt{プロトタイプオブジェクト}を設定できます。
-また、\texttt{[[Prototype]]}内部プロパティを通常のプロパティのように扱える\texttt{\_\_proto\_\_}という特殊なアクセッサプロパティが存在します。
+\texttt{Object.getPrototypeOf(オブジェクト)}\index{Object.getPrototypeOf@\texttt{Object.getPrototypeOf}}で\texttt{オブジェクト}の\texttt{[[Prototype]]}を読み取ることができます。
+一方、\texttt{Object.setPrototypeOf(オブジェクト, プロトタイプオブジェクト)}\index{Object.setPrototypeOf@\texttt{Object.setPrototypeOf}}で\texttt{オブジェクト}の\texttt{[[Prototype]]}に\texttt{プロトタイプオブジェクト}を設定できます。
+また、\texttt{[[Prototype]]}内部プロパティを通常のプロパティのように扱える\texttt{\_\_proto\_\_}\index{__proto__@\texttt{\_\_proto\_\_}}という特殊なアクセッサプロパティが存在します。
 
 しかし、これらの\texttt{[[Prototype]]}内部プロパティを直接読み書きすることは通常の用途では行いません。
 また、既存のビルトインオブジェクトの動作なども変更できるため、不用意に扱うべきではないでしょう。
 \end{note}
 
 \hypertarget{read-prototype-chain}{%
-\subsection{プロパティの参照とプロトタイプチェーン}\label{read-prototype-chain}}
+\subsection{プロパティの参照とプロトタイプチェーン}\label{read-prototype-chain}}\index{ぷろぱてぃ@プロパティ!さんしょう@参照}
 
 プロトタイプオブジェクトのプロパティがどのようにインスタンスから参照されるかを見ていきます。
 
@@ -847,7 +847,7 @@ console.log(instance.method === Prototype.method); // => true
 \end{lstlisting}
 
 このように、インスタンスオブジェクトに\texttt{method}が定義されていなくても、クラスのプロトタイプオブジェクトの\texttt{method}を呼び出すことができます。
-このプロパティを参照する際に、オブジェクト自身から\texttt{[[Prototype]]}内部プロパティへと順番に探す仕組みのことを\textbf{プロトタイプチェーン}と呼びます。
+このプロパティを参照する際に、オブジェクト自身から\texttt{[[Prototype]]}内部プロパティへと順番に探す仕組みのことを\textbf{\textgt{プロトタイプチェーン}}\index{ぷろとたいぷちぇーん@プロトタイプチェーン}と呼びます。
 
 プロトタイプチェーンの仕組みを疑似的なコードとして表現すると次のような動きをしています。
 
@@ -883,17 +883,17 @@ if (instance.hasOwnProperty("method")) {
 しかし、プロトタイプベースである言語のJavaScriptではクラスをこのようなプロトタイプを使って表現していることは知っておくとよいでしょう。
 
 \hypertarget{extends}{%
-\section{継承}\label{extends}}
+\section{継承}\label{extends}}\index{けいしょう@継承}
 
-\texttt{extends}キーワードを使うことで既存のクラスを継承できます。
+\texttt{extends}\index{extends@\texttt{extends}}キーワードを使うことで既存のクラスを継承できます。
 継承とは、クラスの\textbf{\textgt{構造}}や\textbf{\textgt{機能}}を引き継いだ新しいクラスを定義することです。
 
 \hypertarget{class-extends}{%
 \subsection{継承したクラスの定義}\label{class-extends}}
 
 \texttt{extends}キーワードを使って既存のクラスを継承した新しいクラスを定義してみます。
-\texttt{class}構文の右辺に\texttt{extends}キーワードで継承元となる\textbf{\textgt{親クラス}}（基底クラス）を指定することで、
-親クラスを継承した\textbf{\textgt{子クラス}}（派生クラス）を定義できます。
+\texttt{class}構文の右辺に\texttt{extends}キーワードで継承元となる\textbf{\textgt{親クラス}}\index{おやくらす@親クラス}（基底クラス\index{きていくらす@基底クラス}）を指定することで、
+親クラスを継承した\textbf{\textgt{子クラス}}\index{こくらす@子クラス}（派生クラス\index{はせいくらす@派生クラス}）を定義できます。
 
 \begin{lstlisting}
 class 子クラス extends 親クラス {
@@ -915,7 +915,7 @@ const instance = new Child();
 \end{lstlisting}
 
 \hypertarget{class-super}{%
-\subsection{\texorpdfstring{\texttt{super}}{super}}\label{class-super}}
+\subsection{\texorpdfstring{\texttt{super}}{super}}\label{class-super}}\index{super@\texttt{super}}
 
 \texttt{extends}を使って定義した子クラスから親クラスを参照するには\texttt{super}というキーワードを利用します。
 もっともシンプルな\texttt{super}を使う例としてコンストラクタの処理を見ていきます。
@@ -970,7 +970,7 @@ class Child extends Parent {
 \end{lstlisting}
 
 \hypertarget{constructor-order}{%
-\subsection{コンストラクタの処理順は親クラスから子クラスへ}\label{constructor-order}}
+\subsection{コンストラクタの処理順は親クラスから子クラスへ}\label{constructor-order}}\index{こんすとらくた@コンストラクタ!しょりじゅん@処理順}
 
 コンストラクタの処理順は、親クラスから子クラスへと順番が決まっています。
 
@@ -1003,7 +1003,7 @@ console.log(child.name); // => "Child"
 \end{lstlisting}
 
 \hypertarget{prototype-inheritance}{%
-\subsection{プロトタイプ継承}\label{prototype-inheritance}}
+\subsection{プロトタイプ継承}\label{prototype-inheritance}}\index{ぷろとたいぷけいしょう@プロトタイプ継承}
 
 次のコードでは\texttt{extends}キーワードを使って\texttt{Parent}クラスを継承した\texttt{Child}クラスを定義しています。
 \texttt{Parent}クラスでは\texttt{method}を定義しているため、これを継承している\texttt{Child}クラスのインスタンスからも呼び出せます。
@@ -1047,7 +1047,7 @@ instance.method(); // "Parent#method"
 そのため、この継承の仕組みを\textbf{\textgt{プロトタイプ継承}}と呼びます。
 
 \hypertarget{static-inheritance}{%
-\subsection{静的メソッドの継承}\label{static-inheritance}}
+\subsection{静的メソッドの継承}\label{static-inheritance}}\index{せいてきめそっど@静的メソッド!けいしょう@継承}
 
 インスタンスとクラスのプロトタイプオブジェクトとの間にはプロトタイプチェーンがあります。
 クラス自身（クラスのコンストラクタ）も親クラス自身（親クラスのコンストラクタ）との間にプロトタイプチェーンがあります。
@@ -1080,7 +1080,7 @@ console.log(Child.hello()); // => "Hello"
 クラスのコンストラクタ同士にもプロトタイプチェーンの仕組みがあるため、子クラスは親クラスの静的メソッドを呼び出せます。
 
 \hypertarget{super-property}{%
-\subsection{\texorpdfstring{\texttt{super}プロパティ}{superプロパティ}}\label{super-property}}
+\subsection{\texorpdfstring{\texttt{super}プロパティ}{superプロパティ}}\label{super-property}}\index{super@\texttt{super}!ぷろぱてぃ@プロパティ}
 
 子クラスから親クラスのコンストラクタ処理を呼び出すには\texttt{super()}を使います。
 同じように、子クラスのプロトタイプメソッドからは、\texttt{super.\hbox{}プロパティ名}で親クラスのプロトタイプメソッドを参照できます。
@@ -1136,9 +1136,9 @@ Child.method();
 \end{lstlisting}
 
 \hypertarget{instanceof}{%
-\subsection{継承の判定}\label{instanceof}}
+\subsection{継承の判定}\label{instanceof}}\index{けいしょう@継承!はんてい@判定}
 
-あるクラスが指定したクラスをプロトタイプ継承しているかは\texttt{instanceof}演算子を使って判定できます。
+あるクラスが指定したクラスをプロトタイプ継承しているかは\texttt{instanceof}\index{instanceof@\texttt{instanceof}}演算子を使って判定できます。
 
 次のコードでは、\texttt{Child}のインスタンスは\texttt{Child}クラスと\texttt{Parent}クラスを継承したオブジェクトであることを確認しています。
 
@@ -1159,7 +1159,7 @@ console.log(child instanceof Child); // => true
 より具体的な継承の使い方については「\hyperlink{todo-app}{ユースケース: Todoアプリ}」の章で見ていきます。
 
 \hypertarget{extends-built-in}{%
-\section{ビルトインオブジェクトの継承}\label{extends-built-in}}
+\section{ビルトインオブジェクトの継承}\label{extends-built-in}}\index{びるといんおぶじぇくと@ビルトインオブジェクト!けいしょう@継承}
 
 ここまで自身が定義したクラスを継承してきましたが、ビルトインオブジェクトのコンストラクタも継承できます。
 ビルトインオブジェクトには\texttt{Array}、\texttt{String}、\texttt{Object}、\texttt{Number}、\texttt{Error}、\texttt{Date}などのコンストラクタがあります。

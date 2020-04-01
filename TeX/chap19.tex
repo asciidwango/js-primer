@@ -1,5 +1,5 @@
 \hypertarget{function-this}{%
-\chapter{関数とthis}\label{function-this}}
+\chapter{関数とthis}\label{function-this}}\index{かんすう@関数}\index{this@\texttt{this}}
 \thispagestyle{frontheadings}
 
 この章では\texttt{this}という特殊な動作をするキーワードについて見ていきます。
@@ -28,9 +28,9 @@ Functionとの関係を見ていきます。
 また、実際にどのような状況で問題が発生するかを知り、\texttt{this}の動きを予測可能にするにはどのようにするかを見ていきます。
 
 \hypertarget{execution-context-this}{%
-\section{\texorpdfstring{実行コンテキストと\texttt{this}}{実行コンテキストとthis}}\label{execution-context-this}}
+\section{\texorpdfstring{実行コンテキストと\texttt{this}}{実行コンテキストとthis}}\label{execution-context-this}}\index{じっこうこんてきすと@実行コンテキスト}
 
-最初に「\hyperlink{what-is-javascript}{JavaScriptとは}」の章において、JavaScriptには実行コンテキストとして``Script''と``Module''があるという話をしました。
+最初に「\hyperlink{what-is-javascript}{JavaScriptとは}」の章において、JavaScriptには実行コンテキストとして``Script''\index{Script}と``Module''\index{Module}があるという話をしました。
 どの実行コンテキストでJavaScriptのコードを評価するかは、実行環境によってやり方が異なります。
 この章では、ブラウザの\texttt{script}要素と\texttt{type}属性を使い、それぞれの実行コンテキストを明示しながら\texttt{this}の動きを見ていきます。
 
@@ -39,7 +39,7 @@ Functionとの関係を見ていきます。
 そのため、コードのトップレベルにおいては\texttt{this}を使うべきではありませんが、それぞれの実行コンテキストにおける動作を紹介します。
 
 \hypertarget{script-this}{%
-\subsection{\texorpdfstring{スクリプトにおける\texttt{this}}{スクリプトにおけるthis}}\label{script-this}}
+\subsection{\texorpdfstring{スクリプトにおける\texttt{this}}{スクリプトにおけるthis}}\label{script-this}}\index{すくりぷと@スクリプト}\index{すくりぷと@スクリプト!this@\texttt{this}}
 
 実行コンテキストが``Script''である場合、トップレベルのスコープに書かれた\texttt{this}はグローバルオブジェクトを参照します。
 グローバルオブジェクトには、実行環境ごとに異なるものが定義されています。
@@ -56,7 +56,7 @@ console.log(this); // => window
 \end{lstlisting}
 
 \hypertarget{module-this}{%
-\subsection{\texorpdfstring{モジュールにおける\texttt{this}}{モジュールにおけるthis}}\label{module-this}}
+\subsection{\texorpdfstring{モジュールにおける\texttt{this}}{モジュールにおけるthis}}\label{module-this}}\index{もじゅーる@モジュール}\index{もじゅーる@モジュール!this@\texttt{this}}
 
 実行コンテキストが``Module''である場合、そのトップレベルのスコープに書かれた\texttt{this}は常に\texttt{undefined}となります。
 
@@ -74,7 +74,7 @@ console.log(this); // => undefined
 単純にグローバルオブジェクトを参照したい場合は、\texttt{this}ではなく\texttt{window}などのグローバルオブジェクトを直接参照したほうがよいです。
 
 \hypertarget{function-and-method-this}{%
-\section{\texorpdfstring{関数とメソッドにおける\texttt{this}}{関数とメソッドにおけるthis}}\label{function-and-method-this}}
+\section{\texorpdfstring{関数とメソッドにおける\texttt{this}}{関数とメソッドにおけるthis}}\label{function-and-method-this}}\index{かんすう@関数!めそっど@メソッド}\index{かんすう@関数!this@\texttt{this}}\index{めそっど@メソッド!this@\texttt{this}}
 
 \textbf{関数}を定義する方法として、\texttt{function}キーワードによる関数宣言と関数式、Arrow
 Functionなどがあります。
@@ -137,7 +137,7 @@ const obj = {
 };
 \end{lstlisting}
 
-これらのメソッドは、\texttt{オブジェクト名.メソッド名()}と書くことで呼び出せます。
+これらのメソッドは、\texttt{オブジェクト名.\hbox{}メソッド名()}と書くことで呼び出せます。
 
 \begin{lstlisting}
 const obj = {
@@ -149,7 +149,7 @@ const obj = {
 obj.method();
 \end{lstlisting}
 
-関数定義とメソッドの定義についてまとめると、次のようになります。
+関数定義\index{かんすう@関数!ていぎ@定義}とメソッドの定義\index{めそっど@メソッド!ていぎ@定義}についてまとめると、次のようになります。
 
 \begin{small}
 \begin{longtable}[l]{p{80mm}|p{30mm}|p{30mm}}
@@ -197,7 +197,7 @@ function fn(暗黙的に渡されるthisの値, 仮引数) {
 fn(暗黙的に渡すthisの値, 引数);
 \end{lstlisting}
 
-関数における\texttt{this}の基本的な参照先（暗黙的に関数に渡す\texttt{this}の値）は\textbf{\textgt{ベースオブジェクト}}となります。
+関数における\texttt{this}の基本的な参照先（暗黙的に関数に渡す\texttt{this}の値）は\textbf{\textgt{ベースオブジェクト}}\index{べーすおぶじぇくと@ベースオブジェクト}となります。
 ベースオブジェクトとは「メソッドを呼ぶ際に、そのメソッドのドット演算子またはブラケット演算子のひとつ左にあるオブジェクト」のことを言います。
 ベースオブジェクトがない場合の\texttt{this}は\texttt{undefined}となります。
 
@@ -220,7 +220,7 @@ Arrow
 Function以外の関数では、関数の定義だけを見て\texttt{this}の値が何かということは決定できない点に注意が必要です。
 
 \hypertarget{function-declaration-expression-this}{%
-\subsection{\texorpdfstring{関数宣言や関数式における\texttt{this}}{関数宣言や関数式におけるthis}}\label{function-declaration-expression-this}}
+\subsection{\texorpdfstring{関数宣言や関数式における\texttt{this}}{関数宣言や関数式におけるthis}}\label{function-declaration-expression-this}}\index{かんすうせんげん@関数宣言!this@\texttt{this}}\index{かんすうしき@関数式!this@\texttt{this}}
 
 まずは、関数宣言や関数式の場合を見ていきます。
 
@@ -261,7 +261,7 @@ outer();
 \end{lstlisting}
 
 この書籍では注釈がないコードはstrict
-modeとして扱いますが、コード例に\texttt{"use strict";}と改めてstrict
+mode\index{strict mode}として扱いますが、コード例に\texttt{"use strict";}と改めてstrict
 modeを明示しています。 なぜなら、strict
 modeではない状況で\texttt{this}が\texttt{undefined}の場合は、\texttt{this}がグローバルオブジェクトを参照するように変換される問題があるためです。
 
@@ -272,7 +272,7 @@ modeのメソッド以外の関数における\texttt{this}は\texttt{undefined}
 そのため、メソッド以外で\texttt{this}を使う必要はありません。
 
 \hypertarget{method-this}{%
-\subsection{\texorpdfstring{メソッド呼び出しにおける\texttt{this}}{メソッド呼び出しにおけるthis}}\label{method-this}}
+\subsection{\texorpdfstring{メソッド呼び出しにおける\texttt{this}}{メソッド呼び出しにおけるthis}}\label{method-this}}\index{めそっど@メソッド!this@\texttt{this}}
 
 次に、メソッドの場合を見ていきます。
 メソッドの場合は、そのメソッドが何かしらのオブジェクトに所属しています。
@@ -334,7 +334,7 @@ console.log(obj1.obj2.obj3.method() === obj1.obj2.obj3); // => true
 \end{lstlisting}
 
 \hypertarget{this-problem}{%
-\section{\texorpdfstring{\texttt{this}が問題となるパターン}{thisが問題となるパターン}}\label{this-problem}}
+\section{\texorpdfstring{\texttt{this}が問題となるパターン}{thisが問題となるパターン}}\label{this-problem}}\index{this@\texttt{this}!もんだい@問題}
 
 \texttt{this}はその関数（メソッドも含む）呼び出しのベースオブジェクトを参照することがわかりました。
 \texttt{this}は所属するオブジェクトを直接書く代わりとして利用できますが、一方\texttt{this}にはいろいろな問題があります。
@@ -409,7 +409,7 @@ call、apply、bindメソッド}\label{call-apply-bind}}
 関数やメソッドの\texttt{this}を明示的に指定して関数を実行する方法もあります。
 \texttt{Function}（関数オブジェクト）には\texttt{call}、\texttt{apply}、\texttt{bind}といった明示的に\texttt{this}を指定して関数を実行するメソッドが用意されています。
 
-\texttt{call}メソッドは第一引数に\texttt{this}としたい値を指定し、残りの引数には呼び出す関数の引数を指定します。
+\texttt{call}\index{call@\texttt{call}}メソッドは第一引数に\texttt{this}としたい値を指定し、残りの引数には呼び出す関数の引数を指定します。
 暗黙的に渡される\texttt{this}の値を明示的に渡せるメソッドと言えます。
 
 \begin{lstlisting}
@@ -433,7 +433,7 @@ console.log(say.call(person, "こんにちは")); // => "こんにちは Brendan
 say("こんにちは"); // => TypeError: Cannot read property 'fullName' of undefined
 \end{lstlisting}
 
-\texttt{apply}メソッドは第一引数に\texttt{this}とする値を指定し、第二引数に関数の引数を配列として渡します。
+\texttt{apply}\index{apply@\texttt{apply}}メソッドは第一引数に\texttt{this}とする値を指定し、第二引数に関数の引数を配列として渡します。
 
 \begin{lstlisting}
 関数.apply(thisの値, [関数の引数1, 関数の引数2]);
@@ -469,7 +469,7 @@ console.log(add.call(null, 1, 2)); // => 3
 console.log(add.apply(null, [1, 2])); // => 3
 \end{lstlisting}
 
-最後に\texttt{bind}メソッドについてです。
+最後に\texttt{bind}\index{bind@\texttt{bind}}メソッドについてです。
 名前のとおり\texttt{this}の値を束縛（bind）した新しい関数を作成します。
 
 \begin{lstlisting}
@@ -516,7 +516,7 @@ console.log(sayPerson()); // => "こんにちは Brendan Eich！"
 
 \hypertarget{callback-and-this}{%
 \subsection{\texorpdfstring{問題:
-コールバック関数と\texttt{this}}{問題: コールバック関数とthis}}\label{callback-and-this}}
+コールバック関数と\texttt{this}}{問題: コールバック関数とthis}}\label{callback-and-this}}\index{こーるばっくかんすう@コールバック関数!this@\texttt{this}}
 
 コールバック関数の中で\texttt{this}を参照すると問題となる場合があります。
 この問題は、メソッドの中で\texttt{Array\#map}メソッドなどのコールバック関数を扱う場合に発生しやすいです。
@@ -651,7 +651,7 @@ Functionが導入されました。
 
 \hypertarget{arrow-function-callback}{%
 \subsubsection{対処法: Arrow
-Functionでコールバック関数を扱う}\label{arrow-function-callback}}
+Functionでコールバック関数を扱う}\label{arrow-function-callback}}\index{Arrow Function}
 
 通常の関数やメソッドは呼び出し時に暗黙的に\texttt{this}の値を受け取り、関数内の\texttt{this}はその値を参照します。
 一方、Arrow
@@ -692,7 +692,7 @@ Functionと\texttt{this}の関係についてより詳しく見ていきます�
 
 \hypertarget{arrow-function-this}{%
 \section{\texorpdfstring{Arrow
-Functionと\texttt{this}}{Arrow Functionとthis}}\label{arrow-function-this}}
+Functionと\texttt{this}}{Arrow Functionとthis}}\label{arrow-function-this}}\index{Arrow Function!this@\texttt{this}}
 
 Arrow
 Functionで定義された関数やメソッドにおける\texttt{this}がどの値を参照するかは関数の定義時（静的）に決まります。
@@ -853,10 +853,10 @@ console.log(prefixedStrings); // => ["pre-a", "pre-b", "pre-c"]
 
 \hypertarget{not-bind-arrow-function}{%
 \subsection{\texorpdfstring{Arrow
-Functionは\texttt{this}をbindできない}{Arrow Functionはthisをbindできない}}\label{not-bind-arrow-function}}
+Functionは\texttt{this}をbindできない}{Arrow Functionはthisをbindできない}}\label{not-bind-arrow-function}}\index{Arrow Function!bind@\texttt{bind}}
 
 Arrow
-Functionで定義した関数では\texttt{call}、\texttt{apply}、\texttt{bind}を使った\texttt{this}の指定は単に無視されます。
+Functionで定義した関数では\texttt{call}\index{call@\texttt{call}}、\texttt{apply}\index{apply@\texttt{apply}}、\texttt{bind}\index{bind@\texttt{bind}}を使った\texttt{this}の指定は単に無視されます。
 これは、Arrow
 Functionは\texttt{this}を持てないためです。
 
@@ -906,7 +906,7 @@ console.log(obj.method.call("THAT")); // => "THAT"
 
 \begin{small}
 \begin{longtable}[l]{p{25mm}|p{20mm}|p{66mm}|p{23mm}}
-\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}{\textgt 実行コンテキスト} & {\textgt strict mode} & {\textgt コード} & {\textgt thisの評価結果}\tabularnewline
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}\textgt{実行コンテキスト} & \textgt{strict mode} & \textgt{コード} & \textgt{thisの評価結果}\tabularnewline
 \hline
 \endhead
 Script & ＊\footnote{＊はどの場合でも\texttt{this}の評価結果に影響しないということを示しています。} & \texttt{this} & global\tabularnewline
@@ -946,7 +946,7 @@ value in JavaScript}」\footnote{\url{https://azu.github.io/what-is-this/}}と�
 \texttt{this}はオブジェクト指向プログラミングの文脈でJavaScriptに導入されました。
 メソッド以外においても\texttt{this}は評価できますが、実行コンテキストやstrict
 modeなどによって結果が異なり、混乱の元となります。
-そのため、メソッドではない通常の関数においては\texttt{this}を使うべきではありません\footnote{ES2015の仕様編集者であるAllen Wirfs-Brock‏氏もただの関数においては\texttt{this}を使うべきではないと述べている。\url{https://twitter.com/awbjs/status/938272440085446657}}。
+そのため、メソッドではない通常の関数においては\texttt{this}を使うべきではありません\footnote{ES2015の仕様編集者であるAllen Wirfs-Brock氏もただの関数においては\texttt{this}を使うべきではないと述べている。\url{https://twitter.com/awbjs/status/938272440085446657}}。
 
 また、メソッドにおいても\texttt{this}は呼び出し方によって異なる値となり、それにより発生する問題と対処法について紹介しました。
 コールバック関数における\texttt{this}はArrow

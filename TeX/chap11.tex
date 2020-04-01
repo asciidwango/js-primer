@@ -1,5 +1,5 @@
 \hypertarget{loop-and-iteration}{%
-\chapter{ループと反復処理}\label{loop-and-iteration}}
+\chapter{ループと反復処理}\label{loop-and-iteration}}\index{るーぷ@ループ}\index{はんぷくしょり@反復処理}
 \thispagestyle{frontheadings}
 
 この章では、while文やfor文などの基本的な反復処理と制御文について学んでいきます。
@@ -11,7 +11,7 @@
 配列のメソッドを使った反復処理もよく利用されるため、合わせて見ていきます。
 
 \hypertarget{while-statement}{%
-\section{while文}\label{while-statement}}
+\section{while文}\label{while-statement}}\index{whileぶん@while文}
 
 while文は\texttt{条件式}が\texttt{true}であるならば、反復処理を行います。
 
@@ -53,7 +53,7 @@ JavaScriptには、より安全な反復処理の書き方があるため、whil
 
 安易にwhile文を使うよりも、ほかの書き方で解決できないかを考えてからでも遅くはないでしょう。
 
-\begin{tcolorbox}[title=無限ループ]\label{inifinite-loop}
+\begin{tcolorbox}[title=無限ループ]\label{inifinite-loop}\index{むげんるーぷ@無限ループ}
 
 反復処理を扱う際に、コードの書き間違いや条件式のミスなどから無限ループを引き起こしてしまう場合があります。
 たとえば、次のコードは条件式の評価結果が常に\texttt{true}となってしまうため、無限ループが発生してしまいます。
@@ -69,7 +69,7 @@ while (i > 0) {
 
 無限ループが発生してしまったときは、あわてずにスクリプトを停止してからコードを修正しましょう。
 
-ほとんどのブラウザは無限ループが発生した際に、自動的にスクリプトの実行を停止する機能が含まれています。
+ほとんどのブラウザには無限ループが発生した際に、自動的にスクリプトの実行を停止する機能が含まれています。
 また、ブラウザで該当のスクリプトを実行しているページ（タブ）またはブラウザそのものを閉じることで強制的に停止できます。
 Node.jsで実行している場合は\keytop{Ctrl} \texttt{+} \keytop{C}を入力し、終了シグナルを送ることで強制的に停止できます。
 
@@ -78,7 +78,7 @@ Node.jsで実行している場合は\keytop{Ctrl} \texttt{+} \keytop{C}を入�
 \end{tcolorbox}
 
 \hypertarget{do-while-statement}{%
-\section{do-while文}\label{do-while-statement}}
+\section{do-while文}\label{do-while-statement}}\index{do-whileぶん@do-while文}
 
 do-while文はwhile文とほとんど同じですが実行順序が異なります。
 
@@ -117,7 +117,7 @@ do {
 しかし、while文と同じくほかの書き方で解決できないかを考えてからでも遅くはないでしょう。
 
 \hypertarget{for-statement}{%
-\section{for文}\label{for-statement}}
+\section{for文}\label{for-statement}}\index{forぶん@for文}
 
 for文は繰り返す範囲を指定した反復処理を書けます。
 
@@ -132,14 +132,14 @@ for文の実行フローは次のようになります。
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  \texttt{初期化式} で変数の宣言
+  \texttt{初期化式}\index{しょきかしき@初期化式}で変数の宣言
 \item
   \texttt{条件式}
   の評価結果が\texttt{true}なら次のステップへ、\texttt{false}なら終了
 \item
-  \texttt{実行する文} を実行
+  \texttt{実行する文}を実行
 \item
-  \texttt{増分式} で変数を更新
+  \texttt{増分式}\index{ぞうぶんしき@増分式}で変数を更新
 \item
   ステップ2へ戻る
 \end{enumerate}
@@ -181,7 +181,7 @@ JavaScriptの配列である\texttt{Array}オブジェクトには、反復処�
 そのため、配列のメソッドを使った反復処理も合わせて見ていきます。
 
 \hypertarget{array-foreach}{%
-\section{\texorpdfstring{配列の\texttt{forEach}メソッド}{配列のforEachメソッド}}\label{array-foreach}}
+\section{\texorpdfstring{配列の\texttt{forEach}メソッド}{配列のforEachメソッド}}\label{array-foreach}}\index{はいれつ@配列}\index{はいれつ@配列!forEach@\texttt{forEach}}\index{forEach@\texttt{forEach}}
 
 配列には\texttt{forEach}メソッドというfor文と同じように反復処理を行うメソッドがあります。
 
@@ -196,8 +196,8 @@ array.forEach(currentValue => {
 
 JavaScriptでは、関数がファーストクラスであるため、その場で作った匿名関数（名前のない関数）を引数として渡せます。
 
-引数として渡される関数のことを\textbf{\textgt{コールバック関数}}と呼びます。
-また、コールバック関数を引数として受け取る関数やメソッドのことを\textbf{\textgt{高階関数}}と呼びます。
+引数として渡される関数のことを\textbf{\textgt{コールバック関数}}\index{こーるばっくかんすう@コールバック関数}と呼びます。
+また、コールバック関数を引数として受け取る関数やメソッドのことを\textbf{\textgt{高階関数}}\index{こうかいかんすう@高階関数}と呼びます。
 
 \begin{lstlisting}
 const array = [1, 2, 3];
@@ -234,11 +234,11 @@ function sum(numbers) {
 sum([1, 2, 3, 4, 5]); // => 15
 \end{lstlisting}
 
-\texttt{forEach}はfor文の\texttt{条件式}に相当するものはなく、必ず配列のすべての要素を反復処理します。
+\texttt{forEach}にはfor文の\texttt{条件式}に相当するものはなく、必ず配列のすべての要素を反復処理します。
 変数\texttt{i}といった一時的な値を定義する必要がないため、シンプルに反復処理を書けます。
 
 \hypertarget{break-statement}{%
-\section{break文}\label{break-statement}}
+\section{break文}\label{break-statement}}\index{breakぶん@break文}
 
 break文は処理中の文から抜けて次の文へ移行する制御文です。
 while、do-while、forの中で使い、処理中のループを抜けて次の文へ制御を移します。
@@ -319,7 +319,7 @@ console.log(isEvenIncluded(numbers)); // => true
 偶数を見つけたらすぐにreturnすることで一時的な変数が不要となり、より簡潔に書けました。
 
 \hypertarget{array-some}{%
-\subsection{\texorpdfstring{配列の\texttt{some}メソッド}{配列のsomeメソッド}}\label{array-some}}
+\subsection{\texorpdfstring{配列の\texttt{some}メソッド}{配列のsomeメソッド}}\label{array-some}}\index{はいれつ@配列}\index{はいれつ@配列!some@\texttt{some}}\index{some@\texttt{some}}
 
 先ほどの\texttt{isEvenIncluded}関数は、偶数を見つけたら
 \texttt{true} を返す関数でした。
@@ -347,7 +347,7 @@ console.log(numbers.some(isEven)); // => true
 \end{lstlisting}
 
 \hypertarget{continue-statement}{%
-\section{continue文}\label{continue-statement}}
+\section{continue文}\label{continue-statement}}\index{continueぶん@continue文}
 
 continue文は現在の反復処理を終了して、次の反復処理を行います。
 continue文は、while、do-while、forの中で使えます。
@@ -398,11 +398,11 @@ if (isEven(number)) {
 \end{lstlisting}
 
 この場合、条件が複雑になってきた場合にネストが深くなってコードが読みにくくなります。
-そのため、\hyperlink{nested-if-statement}{ネストしたif文}のうるう年の例でも紹介したように、
+そのため、10章の「\hyperlink{nested-if-statement}{ネストしたif文}」のうるう年の例でも紹介したように、
 できるだけ早い段階でそれ以上処理を続けない宣言をして、複雑なコードになることを避けています。
 
 \hypertarget{array-filter}{%
-\subsection{\texorpdfstring{配列の\texttt{filter}メソッド}{配列のfilterメソッド}}\label{array-filter}}
+\subsection{\texorpdfstring{配列の\texttt{filter}メソッド}{配列のfilterメソッド}}\label{array-filter}}\index{はいれつ@配列}\index{はいれつ@配列!filter@\texttt{filter}}\index{filter@\texttt{filter}}
 
 配列から特定の値だけを集めた新しい配列を作るには\texttt{filter}メソッドを利用できます。
 
@@ -430,7 +430,7 @@ console.log(array.filter(isEven)); // => [10, 20]
 \end{lstlisting}
 
 \hypertarget{for-in-statement}{%
-\section{for\ldots{}in文}\label{for-in-statement}}
+\section{for\ldots{}in文}\label{for-in-statement}}\index{for...inぶん@for...in文}
 
 for\ldots{}in文はオブジェクトのプロパティに対して、順不同で反復処理を行います。
 
@@ -467,7 +467,7 @@ JavaScriptでは、オブジェクトは何らかのオブジェクトを継承�
 for\ldots{}in文は、対象となるオブジェクトのプロパティを列挙する場合に、親オブジェクトまで列挙可能なものがあるかを探索して列挙します。
 そのため、オブジェクト自身が持っていないプロパティも列挙されてしまい、意図しない結果になる場合があります。
 
-安全にオブジェクトのプロパティを列挙するには、\texttt{Object.keys}メソッド、\texttt{Object.values}メソッド、\texttt{Object.entries}メソッドなどが利用できます。
+安全にオブジェクトのプロパティを列挙するには、\texttt{Object.keys}\index{Object.keys@\texttt{Object.keys}}メソッド、\texttt{Object.values}\index{Object.values@\texttt{Object.values}}メソッド、\texttt{Object.entries}\index{Object.entries@\texttt{Object.entries}}メソッドなどが利用できます。
 
 先ほどの例である、オブジェクトのキーと値を列挙するコードはfor\ldots{}in文を使わずに書けます。
 \texttt{Object.keys}メソッドは引数のオブジェクト自身が持つ列挙可能なプロパティ名の配列を返します。
@@ -510,11 +510,11 @@ console.log(total); // => "001"
 そのため、for\ldots{}in文の利用は避け、\texttt{Object.keys}メソッドなどを使って配列として反復処理するなど別の方法を考えたほうがよいでしょう。
 
 \hypertarget{for-of-statement}{%
-\section[for\ldots{}of文]{for\ldots{}of文\protect\icon{fig/es2015.eps}}\label{for-of-statement}}
+\section[for\ldots{}of文]{for\ldots{}of文\,\protect\icon{fig/es2015.eps}}\label{for-of-statement}}\index{for...ofぶん@for...of文}
 
 最後にfor\ldots{}of文についてです。
 
-JavaScriptでは、\texttt{Symbol.iterator}という特別な名前のメソッドを実装したオブジェクトを\textbf{iterable}と呼びます。
+JavaScriptでは、\texttt{Symbol.iterator}\index{Symbol.iterator@\texttt{Symbol.iterator}}という特別な名前のメソッドを実装したオブジェクトを\textbf{iterable}\index{iterable}と呼びます。
 iterableオブジェクトは、for\ldots{}of文で反復処理できます。
 
 iterableについてはgeneratorと密接な関係がありますが、ここでは反復処理時の動作が定義されたオブジェクトと認識していれば問題ありません。
@@ -560,7 +560,7 @@ for (const value of str) {
 NodeListなど、\texttt{Symbol.iterator}が実装されているオブジェクトは多いです。
 for\ldots{}of文は、それらのiterableオブジェクトで反復処理に利用できます。
 
-\begin{tcolorbox}[title=\texttt{let}ではなく\texttt{const}で反復処理をする]\label{const-iteration}
+\begin{tcolorbox}[title=\texttt{let}ではなく\texttt{const}で反復処理をする]\label{const-iteration}\index{let@\texttt{let}}\index{const@\texttt{const}}
 
 先ほどのfor文や\texttt{forEach}メソッドでは\texttt{let}を\texttt{const}に変更できませんでした。
 なぜなら、for文は一度定義した変数に値の代入を繰り返し行う処理と言えるからです。
@@ -570,7 +570,7 @@ for\ldots{}of文は、それらのiterableオブジェクトで反復処理に�
 一度定義した変数に値を代入しつつ反復処理をすると、変数への値の上書きが必要となり\texttt{const}を使うことができません。
 そのため、一時的な変数を定義せずに反復処理した結果だけを受け取る方法が必要になります。
 
-配列には、反復処理をして新しい値を作る\texttt{reduce}メソッドがあります。
+配列には、反復処理をして新しい値を作る\texttt{reduce}\index{reduce@\texttt{reduce}}\index{はいれつ@配列!reduce@\texttt{reduce}}メソッドがあります。
 
 \texttt{reduce}メソッドは2つずつ要素を取り出し（左から右へ）、その値を\texttt{コールバック関数}に適用し、
 \texttt{次の値}として1つの値を返します。
@@ -584,7 +584,7 @@ const result = array.reduce((前回の値, 現在の値) => {
 
 配列から合計値を返す関数を\texttt{reduce}メソッドを使って実装してみましょう。
 
-\texttt{初期値}に\texttt{0}を指定し、\texttt{前回の値}と\texttt{現在の値}を足していくことで合計を計算できます。
+\texttt{初期値}\index{しょきち@初期値}に\texttt{0}を指定し、\texttt{前回の値}と\texttt{現在の値}を足していくことで合計を計算できます。
 \texttt{初期値}を指定していた場合は、最初の\texttt{前回の値}に初期値が、配列の先頭の値が\texttt{現在の値}となった状態で開始されます。
 
 \begin{lstlisting}

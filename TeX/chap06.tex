@@ -1,12 +1,12 @@
 \hypertarget{operator}{%
-\chapter{演算子}\label{operator}}
+\chapter{演算子}\label{operator}}\index{えんざんし@演算子}
 \thispagestyle{frontheadings}
 
 演算子はよく利用する演算処理を記号などで表現したものです。
 たとえば、足し算をする \texttt{+}
 も演算子の一種です。これ以外にも演算子には多くの種類があります。
 
-演算子は演算する対象を持ちます。この演算子の対象のことを\textbf{被演算子（オペランド）}と呼びます。
+演算子は演算する対象を持ちます。この演算子の対象のことを\textbf{\textgt{被演算子（オペランド）}}\index{ひえんざんし@被演算子}\index{おぺらんど@オペランド}と呼びます。
 
 次のコードでは、\texttt{+}演算子が値同士を足し算する加算演算を行っています。
 このとき、\texttt{+}演算子の対象となっている\texttt{1}と\texttt{2}という2つの値がオペランドです。
@@ -16,7 +16,7 @@
 \end{lstlisting}
 
 このコードでは\texttt{+}演算子に対して、前後に合計2つのオペランドがあります。
-このように、2つのオペランドを取る演算子を\textbf{二項演算子}と呼びます。
+このように、2つのオペランドを取る演算子を\textbf{\textgt{二項演算子}}\index{にこうえんざんし@二項演算子}と呼びます。
 
 \begin{lstlisting}
 // 二項演算子とオペランドの関係
@@ -33,23 +33,23 @@ num++;
 ++num;
 \end{lstlisting}
 
-このように、1つのオペランドを取る演算子を\textbf{単項演算子}と呼びます。
+このように、1つのオペランドを取る演算子を\textbf{\textgt{単項演算子}}\index{たんこうえんざんし@単項演算子}と呼びます。
 単項演算子と二項演算子で同じ記号を使うことがあるため、呼び方を変えています。
 
 この章では、演算子ごとにそれぞれの処理について学んでいきます。
-また、演算子の中でも比較演算子は、JavaScriptでも特に挙動が理解しにくい\textbf{暗黙的な型変換}という問題と密接な関係があります。
+また、演算子の中でも比較演算子は、JavaScriptでも特に挙動が理解しにくい\textbf{\textgt{暗黙的な型変換}}\index{あんもくてきなかたへんかん@暗黙的な型変換}という問題と密接な関係があります。
 そのため、演算子をひととおり見た後に、暗黙的な型変換と明示的な型変換について学んでいきます。
 
 演算子の種類は多いため、すべての演算子の動作をここで覚える必要はありません。
 必要となったタイミングで、改めてその演算子の動作を見るのがよいでしょう。
 
 \hypertarget{binary-operator}{%
-\section{二項演算子}\label{binary-operator}}
+\section{二項演算子}\label{binary-operator}}\index{にこうえんざんし@二項演算子}
 
 四則演算など基本的な二項演算子を見ていきます。
 
 \hypertarget{plus-operator}{%
-\subsection{\texorpdfstring{プラス演算子（\texttt{+}）}{プラス演算子（+）}}\label{plus-operator}}
+\subsection{\texorpdfstring{プラス演算子（\texttt{+}）}{プラス演算子（+）}}\label{plus-operator}}\index{ぷらすえんざんし@プラス演算子}\index{+@\texttt{+}}
 
 2つの数値を加算する演算子です。
 
@@ -59,7 +59,7 @@ console.log(1 + 1); // => 2
 
 JavaScriptでは、数値は内部的にIEEE
 754方式の浮動小数点数として表現されています （
-\hyperlink{data-type-and-literal}{データ型とリテラル}を参照）。
+\hyperlink{data-type-and-literal}{「データ型とリテラル」}の章を参照）。
 そのため、整数と浮動小数点数の加算もプラス演算子で行えます。
 
 \begin{lstlisting}
@@ -67,7 +67,7 @@ console.log(10 + 0.5); // => 10.5
 \end{lstlisting}
 
 \hypertarget{string-combination-operator}{%
-\subsection{\texorpdfstring{文字列結合演算子（\texttt{+}）}{文字列結合演算子（+）}}\label{string-combination-operator}}
+\subsection{\texorpdfstring{文字列結合演算子（\texttt{+}）}{文字列結合演算子（+）}}\label{string-combination-operator}}\index{もじれつけつごうえんざんし@文字列結合演算子}\index{+@\texttt{+}}
 
 数値の加算に利用したプラス演算子（\texttt{+}）は、文字列の結合に利用できます。
 
@@ -81,7 +81,7 @@ console.log(value); // => "文字列結合"
 つまり、プラス演算子（\texttt{+}）は数値同士と文字列同士の演算を行います。
 
 \hypertarget{minus-operator}{%
-\subsection{\texorpdfstring{マイナス演算子（\texttt{-}）}{マイナス演算子（-）}}\label{minus-operator}}
+\subsection{\texorpdfstring{マイナス演算子（\texttt{-}）}{マイナス演算子（-）}}\label{minus-operator}}\index{まいなすえんざんし@マイナス演算子}\index{-@\texttt{-}}
 
 2つの数値を減算する演算子です。
 
@@ -91,7 +91,7 @@ console.log(10 - 0.5); // => 9.5
 \end{lstlisting}
 
 \hypertarget{multiplication-operator}{%
-\subsection{\texorpdfstring{乗算演算子（\texttt{*}）}{乗算演算子（*）}}\label{multiplication-operator}}
+\subsection{\texorpdfstring{乗算演算子（\texttt{*}）}{乗算演算子（*）}}\label{multiplication-operator}}\index{じょうざんえんざんし@乗算演算子}\index{*@\texttt{*}}
 
 2つの数値を乗算する演算子です。
 
@@ -101,7 +101,7 @@ console.log(10 * 0.5); // => 5
 \end{lstlisting}
 
 \hypertarget{division-operator}{%
-\subsection{\texorpdfstring{除算演算子（\texttt{/}）}{除算演算子（/）}}\label{division-operator}}
+\subsection{\texorpdfstring{除算演算子（\texttt{/}）}{除算演算子（/）}}\label{division-operator}}\index{じょざんえんざんし@除算演算子}\index{/@\texttt{/}}
 
 2つの数値を除算する演算子です。
 
@@ -111,7 +111,7 @@ console.log(10 / 0.5); // => 20
 \end{lstlisting}
 
 \hypertarget{modulus-operator}{%
-\subsection{\texorpdfstring{剰余演算子（\texttt{\%}）}{剰余演算子（\%）}}\label{modulus-operator}}
+\subsection{\texorpdfstring{剰余演算子（\texttt{\%}）}{剰余演算子（\%）}}\label{modulus-operator}}\index{じょうよえんざんし@剰余演算子}\index{\%@\texttt{\%}}
 
 2つの数値の余りを求める演算子です。
 
@@ -123,7 +123,7 @@ console.log(10 % 4.5); // => 1
 \end{lstlisting}
 
 \hypertarget{pow-operator}{%
-\subsection{べき乗演算子（\texttt{**}）\protect\icon{fig/es2016.eps}}\label{pow-operator}}
+\subsection[べき乗演算子（\texttt{**}）]{べき乗演算子（\texttt{**}）\protect\icon{fig/es2016.eps}}\label{pow-operator}}\index{べきじょうえんざんし@べき乗演算子}\index{**@\texttt{**}}
 
 2つの数値のべき乗を求める演算子です。
 左オペランドを右オペランドでべき乗した値を返します。
@@ -143,12 +143,12 @@ console.log(Math.pow(2, 4)); // => 16
 他の二項演算子は演算子が先に存在していたため、\texttt{Math}には対応するメソッドがありません。
 
 \hypertarget{unary-operator}{%
-\section{単項演算子（算術）}\label{unary-operator}}
+\section{単項演算子（算術）}\label{unary-operator}}\index{たんこうえんざんし@単項演算子}\index{さんじゅつ@算術}
 
 単項演算子は、1つのオペランドを受け取って処理する演算子です。
 
 \hypertarget{unary-plus-operator}{%
-\subsection{\texorpdfstring{単項プラス演算子（\texttt{+}）}{単項プラス演算子（+）}}\label{unary-plus-operator}}
+\subsection{\texorpdfstring{単項プラス演算子（\texttt{+}）}{単項プラス演算子（+）}}\label{unary-plus-operator}}\index{たんこうぷらすえんざんし@単項プラス演算子}\index{+@\texttt{+}}
 
 単項演算子の\texttt{+}はオペランドを数値に変換します。
 
@@ -166,7 +166,7 @@ console.log(+1); // => 1
 console.log(+"1"); // => 1
 \end{lstlisting}
 
-一方、数値に変換できない文字列などは\texttt{NaN}という特殊な値へと変換されます。
+一方、数値に変換できない文字列などは\texttt{NaN}\index{NaN@\texttt{NaN}}という特殊な値へと変換されます。
 
 \begin{lstlisting}
 // 数値ではない文字列はNaNという値に変換される
@@ -174,7 +174,7 @@ console.log(+"文字列"); // => NaN
 \end{lstlisting}
 
 \texttt{NaN}は``Not-a-Number''の略称で、数値ではないがNumber型の値を表現しています。
-\texttt{NaN}はどの値とも（NaN自身に対しても）一致しない特性があり、\texttt{Number.isNaN}メソッドを使うことで\texttt{NaN}の判定を行えます。
+\texttt{NaN}はどの値とも（NaN自身に対しても）一致しない特性があり、\texttt{Number.isNaN}\index{Number.isNaN@\texttt{Number.isNaN}}メソッドを使うことで\texttt{NaN}の判定を行えます。
 
 \begin{lstlisting}
 // 自分自身とも一致しない
@@ -190,7 +190,7 @@ console.log(Number.isNaN(NaN)); // => true
 詳しくは「\hyperlink{implicit-coercion}{暗黙的な型変換}」の章で解説します。
 
 \hypertarget{unary-minus-operator}{%
-\subsection{\texorpdfstring{単項マイナス演算子（\texttt{-}）}{単項マイナス演算子（-）}}\label{unary-minus-operator}}
+\subsection{\texorpdfstring{単項マイナス演算子（\texttt{-}）}{単項マイナス演算子（-）}}\label{unary-minus-operator}}\index{たんこうまいなすえんざんし@単項マイナス演算子}\index{-@\texttt{-}}
 
 単項マイナス演算子はマイナスの数値を記述する場合に利用します。
 
@@ -222,7 +222,7 @@ console.log(-"文字列"); // => NaN
 \end{lstlisting}
 
 \hypertarget{increment-operator}{%
-\subsection{\texorpdfstring{インクリメント演算子（\texttt{++}）}{インクリメント演算子（++）}}\label{increment-operator}}
+\subsection{\texorpdfstring{インクリメント演算子（\texttt{++}）}{インクリメント演算子（++）}}\label{increment-operator}}\index{いんくりめんとえんざんし@インクリメント演算子}\index{++@\texttt{++}}
 
 インクリメント演算子（\texttt{++}）は、オペランドの数値を\texttt{+1}する演算子です。
 オペランドの前後どちらかにインクリメント演算子を置くことで、オペランドに対して値を\texttt{+1}した値を返します。
@@ -277,7 +277,7 @@ console.log(x);   // => 2
 そのため、評価の順番が異なることだけを覚えておけば問題ないと言えます。
 
 \hypertarget{decrement-operator}{%
-\subsection{\texorpdfstring{デクリメント演算子（\texttt{-\/-}）}{デクリメント演算子（-\/-）}}\label{decrement-operator}}
+\subsection{\texorpdfstring{デクリメント演算子（\texttt{-\/-}）}{デクリメント演算子（-\/-）}}\label{decrement-operator}}\index{でくりめんとえんざんし@デクリメント演算子}\index{--@\texttt{-\/-}}
 
 デクリメント演算子（\texttt{-\/-}）は、オペランドの数値を\texttt{-1}する演算子です。
 
@@ -304,12 +304,12 @@ console.log(y);   // => 0
 \end{lstlisting}
 
 \hypertarget{comparison-operator}{%
-\section{比較演算子}\label{comparison-operator}}
+\section{比較演算子}\label{comparison-operator}}\index{ひかくえんざんし@比較演算子}
 
 比較演算子はオペランド同士の値を比較し、真偽値を返す演算子です。
 
 \hypertarget{strict-equal-operator}{%
-\subsection{\texorpdfstring{厳密等価演算子（\texttt{===}）}{厳密等価演算子（===）}}\label{strict-equal-operator}}
+\subsection{\texorpdfstring{厳密等価演算子（\texttt{===}）}{厳密等価演算子（===）}}\label{strict-equal-operator}}\index{げんみつとうかえんざんし@厳密等価演算子}\index{===@\texttt{===}}
 
 厳密等価演算子は、左右の2つのオペランドを比較します。
 同じ型で同じ値である場合に、\texttt{true}を返します。
@@ -337,7 +337,7 @@ console.log(objA === objA); // => true
 \end{lstlisting}
 
 \hypertarget{strict-not-equal-operator}{%
-\subsection{\texorpdfstring{厳密不等価演算子（\texttt{!==}）}{厳密不等価演算子（!==）}}\label{strict-not-equal-operator}}
+\subsection{\texorpdfstring{厳密不等価演算子（\texttt{!==}）}{厳密不等価演算子（!==）}}\label{strict-not-equal-operator}}\index{げんみつふとうかえんざんし@厳密不等価演算子}\index{"!==@\texttt{"!==}}
 
 厳密不等価演算子は、左右の2つのオペランドを比較します。
 異なる型または異なる値である場合に、\texttt{true}を返します。
@@ -350,7 +350,7 @@ console.log(1 !== "1"); // => true
 \texttt{===}を反転した結果を返す演算子となります。
 
 \hypertarget{equal-operator}{%
-\subsection{\texorpdfstring{等価演算子（\texttt{==}）}{等価演算子（==）}}\label{equal-operator}}
+\subsection{\texorpdfstring{等価演算子（\texttt{==}）}{等価演算子（==）}}\label{equal-operator}}\index{とうかえんざんし@等価演算子}\index{==@\texttt{==}}
 
 等価演算子（\texttt{==}）は、2つのオペランドを比較します。
 同じデータ型のオペランドを比較する場合は、厳密等価演算子（\texttt{===}）と同じ結果になります。
@@ -368,7 +368,7 @@ console.log(objA == objA); // => true
 \end{lstlisting}
 
 しかし、等価演算子（\texttt{==}）はオペランド同士が異なる型の値であった場合に、
-同じ型となるように\textbf{暗黙的な型変換}をしてから比較します。
+同じ型となるように\textbf{\textgt{暗黙的な型変換}}\index{あんもくてきなかたへんかん@暗黙的な型変換}をしてから比較します。
 
 そのため、次のような、見た目からは結果を予測できない挙動が多く存在します。
 
@@ -412,7 +412,7 @@ if (value == null) {
 そのため、仕組みを理解するまでは常に厳密等価演算子（\texttt{===}）を利用することを推奨します。
 
 \hypertarget{not-equal-operator}{%
-\subsection{\texorpdfstring{不等価演算子（\texttt{!=}）}{不等価演算子（!=）}}\label{not-equal-operator}}
+\subsection{\texorpdfstring{不等価演算子（\texttt{!=}）}{不等価演算子（!=）}}\label{not-equal-operator}}\index{ふとうかえんざんし@不等価演算子}\index{"!=@\texttt{"!=}}
 
 不等価演算子（\texttt{!=}）は、2つのオペランドを比較し、等しくないなら\texttt{true}を返します。
 
@@ -428,7 +428,7 @@ console.log(objA != objB); // => true
 console.log(objA != objA); // => false
 \end{lstlisting}
 
-不等価演算子も、等価演算子（\texttt{==}）と同様に異なる型のオペランドを比較する際に、暗黙的な型変換をしてから比較します。
+不等価演算子も、等価演算子（\texttt{==}）と同様に異なる型のオペランドを比較する際に、暗黙的な型変換\index{あんもくてきなかたへんかん@暗黙的な型変換}をしてから比較します。
 
 \begin{lstlisting}
 console.log(1 != "1"); // => false
@@ -441,7 +441,7 @@ console.log(null != undefined); // => false
 代わりに暗黙的な型変換をしない厳密不等価演算子（\texttt{!==}）を利用します。
 
 \hypertarget{more-than}{%
-\subsection{\texorpdfstring{大なり演算子/より大きい（\texttt{\textgreater{}}）}{大なり演算子/より大きい（\textgreater{}）}}\label{more-than}}
+\subsection{\texorpdfstring{大なり演算子/より大きい（\texttt{\textgreater{}}）}{大なり演算子/より大きい（\textgreater{}）}}\label{more-than}}\index{だいなりえんざんし@大なり演算子}\index{>@\texttt{\textgreater}}
 
 大なり演算子は、左オペランドが右オペランドより大きいならば、\texttt{true}を返します。
 
@@ -451,7 +451,7 @@ console.log(42 > 42); // => false
 \end{lstlisting}
 
 \hypertarget{more-than-equal}{%
-\subsection{\texorpdfstring{大なりイコール演算子/以上（\texttt{\textgreater{}=}）}{大なりイコール演算子/以上（\textgreater{}=）}}\label{more-than-equal}}
+\subsection{\texorpdfstring{大なりイコール演算子/以上（\texttt{\textgreater{}=}）}{大なりイコール演算子/以上（\textgreater{}=）}}\label{more-than-equal}}\index{だいなりいこーるえんざんし@大なりイコール演算子}\index{>=@\texttt{\textgreater{}=}}
 
 大なりイコール演算子は、左オペランドが右オペランドより大きいまたは等しいならば、\texttt{true}を返します。
 
@@ -462,7 +462,7 @@ console.log(42 >= 43); // => false
 \end{lstlisting}
 
 \hypertarget{less-than}{%
-\subsection{\texorpdfstring{小なり演算子/より小さい（\texttt{\textless{}}）}{小なり演算子/より小さい（\textless{}）}}\label{less-than}}
+\subsection{\texorpdfstring{小なり演算子/より小さい（\texttt{\textless{}}）}{小なり演算子/より小さい（\textless{}）}}\label{less-than}}\index{しょうなりえんざんし@小なり演算子}\index{<@\texttt{\textless}}
 
 小なり演算子は、左オペランドが右オペランドより小さいならば、\texttt{true}を返します。
 
@@ -472,7 +472,7 @@ console.log(42 < 42); // => false
 \end{lstlisting}
 
 \hypertarget{less-than-equal}{%
-\subsection{\texorpdfstring{小なりイコール演算子/以下（\texttt{\textless{}=}）}{小なりイコール演算子/以下（\textless{}=）}}\label{less-than-equal}}
+\subsection{\texorpdfstring{小なりイコール演算子/以下（\texttt{\textless{}=}）}{小なりイコール演算子/以下（\textless{}=）}}\label{less-than-equal}}\index{しょうなりいこーるえんざんし@小なりイコール演算子}\index{<=@\texttt{\textless{}=}}
 
 小なりイコール演算子は、左オペランドが右オペランドより小さいまたは等しいならば、\texttt{true}を返します。
 
@@ -483,7 +483,7 @@ console.log(43 <= 42); // => false
 \end{lstlisting}
 
 \hypertarget{bit-operator}{%
-\section{ビット演算子}\label{bit-operator}}
+\section{ビット演算子}\label{bit-operator}}\index{びっとえんざんし@ビット演算子}
 
 ビット演算子はオペランドを符号つき32bit整数に変換してから演算します。
 ビット演算子による演算結果は10進数の数値を返します。
@@ -505,9 +505,9 @@ console.log((-9 >>> 0).toString(2)); // => "11111111111111111111111111110111"
 \end{lstlisting}
 
 \hypertarget{bit-and}{%
-\subsection{\texorpdfstring{ビット論理積（\texttt{\&}）}{ビット論理積（\&）}}\label{bit-and}}
+\subsection{\texorpdfstring{ビット論理積（\texttt{\&}）}{ビット論理積（\&）}}\label{bit-and}}\index{びっとろんりせき@ビット論理積}\index{&@\texttt{\&}}
 
-論理積演算子（\texttt{\&}）はビットごとの\textbf{AND}演算した結果を返します。
+論理積演算子（\texttt{\&}）はビットごとの\textbf{AND}\index{AND}演算した結果を返します。
 
 \begin{lstlisting}
 console.log(15     & 9);      // => 9
@@ -515,9 +515,9 @@ console.log(0b1111 & 0b1001); // => 0b1001
 \end{lstlisting}
 
 \hypertarget{bit-or}{%
-\subsection{\texorpdfstring{ビット論理和（\texttt{\textbar{}}）}{ビット論理和（\textbar{}）}}\label{bit-or}}
+\subsection{\texorpdfstring{ビット論理和（\texttt{\textbar{}}）}{ビット論理和（\textbar{}）}}\label{bit-or}}\index{びっとろんりわ@ビット論理和}\index{\textbar{}@\texttt{\textbar{}}}
 
-論理和演算子（\texttt{|}）はビットごとの\textbf{OR}演算した結果を返します。
+論理和演算子（\texttt{|}）はビットごとの\textbf{OR}\index{OR}演算した結果を返します。
 
 \begin{lstlisting}
 console.log(15     | 9);      // => 15
@@ -525,9 +525,9 @@ console.log(0b1111 | 0b1001); // => 0b1111
 \end{lstlisting}
 
 \hypertarget{bit-xor}{%
-\subsection{\texorpdfstring{ビット排他的論理和（\texttt{\^{}}）}{ビット排他的論理和（\^{}）}}\label{bit-xor}}
+\subsection{\texorpdfstring{ビット排他的論理和（\texttt{\^{}}）}{ビット排他的論理和（\^{}）}}\label{bit-xor}}\index{びっとはいたてきろんりわ@ビット排他的論理和}\index{^@\texttt{\textasciicircum}}
 
-排他的論理和演算子（\texttt{\^{}}）はビットごとの\textbf{XOR}演算した結果を返します。
+排他的論理和演算子（\texttt{\^{}}）はビットごとの\textbf{XOR}\index{XOR}演算した結果を返します。
 
 \begin{lstlisting}
 console.log(15     ^ 9);      // => 6
@@ -535,7 +535,7 @@ console.log(0b1111 ^ 0b1001); // => 0b0110
 \end{lstlisting}
 
 \hypertarget{bit-not}{%
-\subsection{\texorpdfstring{ビット否定（\texttt{\textasciitilde{}}）}{ビット否定（\textasciitilde{}）}}\label{bit-not}}
+\subsection{\texorpdfstring{ビット否定（\texttt{\textasciitilde{}}）}{ビット否定（\textasciitilde{}）}}\label{bit-not}}\index{びっとひてい@ビット否定}\index{~@\texttt{\textasciitilde}}
 
 単項演算子の否定演算子（\lstinline{~}）はオペランドを反転した値を返します。
 これは1の補数として知られている値と同じものです。
@@ -547,7 +547,7 @@ console.log(~0b1111); // => -0b10000
 
 否定演算子（\lstinline{~}）はビット演算以外でも使われていることがあります。
 
-文字列（Stringオブジェクト）が持つ\texttt{indexOf}メソッドは、マッチする文字列を見つけて、そのインデックス（位置）を返すメソッドです。
+文字列（Stringオブジェクト）が持つ\texttt{indexOf}\index{indexOf@\texttt{indexOf}}メソッドは、マッチする文字列を見つけて、そのインデックス（位置）を返すメソッドです。
 この\texttt{indexOf}メソッドは、検索対象が見つからない場合には\texttt{-1}を返します。
 
 \begin{lstlisting}
@@ -583,7 +583,7 @@ if (~str.indexOf("木")) {
 }
 \end{lstlisting}
 
-ES2015では、文字列（Stringオブジェクト）に\texttt{includes}メソッドが実装されました。
+ES2015では、文字列（Stringオブジェクト）に\texttt{includes}\index{includes@\texttt{includes}}メソッドが実装されました。
 \texttt{includes}メソッドは指定した文字列が含まれているかを真偽値で返します。
 
 \begin{lstlisting}
@@ -596,7 +596,7 @@ if (str.includes("木")) {
 そのため、否定演算子（\lstinline{~}）と\texttt{indexOf}メソッドを使ったイディオムは、\texttt{includes}メソッドに置き換えられます。
 
 \hypertarget{left-shift}{%
-\subsection{\texorpdfstring{左シフト演算子（\texttt{\textless{}\textless{}}）}{左シフト演算子（\textless{}\textless{}）}}\label{left-shift}}
+\subsection{\texorpdfstring{左シフト演算子（\texttt{\textless{}\textless{}}）}{左シフト演算子（\textless{}\textless{}）}}\label{left-shift}}\index{ひだりしふとえんざんし@左シフト演算子}\index{<<@\texttt{\textless{}\textless{}}}
 
 左シフト演算子は、数値である\texttt{num}を\texttt{bit}の数だけ左へシフトします。
 左にあふれたビットは破棄され、\texttt{0}のビットを右から詰めます。
@@ -613,7 +613,7 @@ console.log(0b1111 << 2); // => 0b111100
 \end{lstlisting}
 
 \hypertarget{right-shift}{%
-\subsection{\texorpdfstring{右シフト演算子（\texttt{\textgreater{}\textgreater{}}）}{右シフト演算子（\textgreater{}\textgreater{}）}}\label{right-shift}}
+\subsection{\texorpdfstring{右シフト演算子（\texttt{\textgreater{}\textgreater{}}）}{右シフト演算子（\textgreater{}\textgreater{}）}}\label{right-shift}}\index{みぎしふとえんざんし@右シフト演算子}\index{>>@\texttt{\textgreater{}\textgreater{}}}
 
 右シフト演算子は、数値である\texttt{num}を\texttt{bit}の数だけ右へシフトします。
 右にあふれたビットは破棄され、左端のビットのコピーを左から詰めます。
@@ -632,7 +632,7 @@ console.log((-9) >> 2); // => -3
 \end{lstlisting}
 
 \hypertarget{fill-zero-right-shift}{%
-\subsection{\texorpdfstring{ゼロ埋め右シフト演算子（\texttt{\textgreater{}\textgreater{}\textgreater{}}）}{ゼロ埋め右シフト演算子（\textgreater{}\textgreater{}\textgreater{}）}}\label{fill-zero-right-shift}}
+\subsection{\texorpdfstring{ゼロ埋め右シフト演算子（\texttt{\textgreater{}\textgreater{}\textgreater{}}）}{ゼロ埋め右シフト演算子（\textgreater{}\textgreater{}\textgreater{}）}}\label{fill-zero-right-shift}}\index{ぜろうめみぎしふとえんざんし@ゼロ埋め右シフト演算子}\index{>>>@\texttt{\textgreater{}\textgreater{}\textgreater{}}}
 
 ゼロ埋め右シフト演算子は、数値である\texttt{num}を\texttt{bit}の数だけ右へシフトするのは右シフト演算子（\lstinline{>>}）と同じです。異なる点としては右にあふれたビットは破棄され、\texttt{0}のビットを左から詰めます。
 
@@ -646,7 +646,7 @@ console.log((-9) >>> 2); // => 1073741821
 \end{lstlisting}
 
 \hypertarget{assignment-operator}{%
-\section{\texorpdfstring{代入演算子（\texttt{=}）}{代入演算子（=）}}\label{assignment-operator}}
+\section{\texorpdfstring{代入演算子（\texttt{=}）}{代入演算子（=）}}\label{assignment-operator}}\index{だいにゅうえんざんし@代入演算子}\index{=@\texttt{=}}
 
 代入演算子（\texttt{=}）は変数に対して値を代入します。
 代入演算子については「\hyperlink{variable-and-declaration}{変数と宣言}」の章も参照してください。
@@ -667,8 +667,9 @@ console.log(num); // => 11
 \end{lstlisting}
 
 \hypertarget{destructuring-assignment}{%
-\subsection{分割代入（Destructuring
-assignment）\protect\icon{fig/es2015.eps}}\label{destructuring-assignment}}
+\subsection[分割代入（Destructuring
+assignment）]{分割代入（Destructuring
+assignment）\protect\icon{fig/es2015.eps}}\label{destructuring-assignment}}\index{ぶんかつだいにゅう@分割代入}\index{Destructuring assignment}
 
 今まで見てきた代入演算子は1つの変数に値を代入するものでした。
 分割代入を使うことで、配列やオブジェクトの値を複数の変数へ同時に代入できます。
@@ -716,11 +717,11 @@ const key = obj.key;
 \end{lstlisting}
 
 \hypertarget{ternary-operator}{%
-\section{\texorpdfstring{条件（三項）演算子（\texttt{?}と\texttt{:}）}{条件（三項）演算子（?と:）}}\label{ternary-operator}}
+\section{\texorpdfstring{条件（三項）演算子（\texttt{?}と\texttt{:}）}{条件（三項）演算子（?と:）}}\label{ternary-operator}}\index{?@\texttt{?}}\index{:@\texttt{:}}
 
-条件演算子（\texttt{?}と\texttt{:}）は三項をとる演算子であるため、三項演算子とも呼ばれます。
+条件演算子\index{じょうけんえんざんし@条件演算子}（\texttt{?}と\texttt{:}）は三項をとる演算子であるため、三項演算子\index{さんこうえんざんし@三項演算子}とも呼ばれます。
 
-条件演算子は\texttt{条件式}を評価した結果が\texttt{true}ならば、\texttt{Trueのとき処理する式}の評価結果を返します。
+条件演算子は\texttt{条件式}\index{じょうけんしき@条件式}を評価した結果が\texttt{true}ならば、\texttt{Trueのとき処理する式}の評価結果を返します。
 \texttt{条件式}が\texttt{false}である場合は、\texttt{Falseのとき処理する式}の評価結果を返します。
 
 \begin{lstlisting}
@@ -773,17 +774,17 @@ console.log(addPrefix("文字列", "カスタム")); // => "カスタム文字�
 \end{lstlisting}
 
 \hypertarget{logical-operator}{%
-\section{論理演算子}\label{logical-operator}}
+\section{論理演算子}\label{logical-operator}}\index{ろんりえんざんし@論理演算子}
 
 論理演算子は基本的に真偽値を扱う演算子で、AND、OR、NOTを表現できます。
 
 \hypertarget{and-operator}{%
-\subsection{\texorpdfstring{AND演算子（\texttt{\&\&}）}{AND演算子（\&\&）}}\label{and-operator}}
+\subsection{\texorpdfstring{AND演算子（\texttt{\&\&}）}{AND演算子（\&\&）}}\label{and-operator}}\index{ANDえんざんし@AND演算子}\index{&&@\texttt{\&\&}}
 
 AND演算子（\texttt{\&\&}）は、左辺の値の評価結果が\texttt{true}であるならば、右辺の評価結果を返します。
 左辺の評価が\texttt{true}ではない場合、右辺は評価されません。
 
-このような値が決まった時点でそれ以上評価しないことを\textbf{短絡評価}（ショートサーキット）と呼びます。
+このような値が決まった時点でそれ以上評価しないことを\textbf{\textgt{短絡評価}}\index{たんらくひょうか@短絡評価}（ショートサーキット\index{しょーとさーきっと@ショートサーキット}）と呼びます。
 
 \begin{lstlisting}
 const x = true;
@@ -796,7 +797,7 @@ console.log(y && x); // => false
 \end{lstlisting}
 
 AND演算子は、if文と組み合わせて利用することが多い演算子です。
-次のように、\texttt{value}がString型で \textbf{かつ}
+次のように、\texttt{value}がString型で \textbf{\textgt{かつ}}
 値が\texttt{"str"}である場合という条件をひとつの式として書くことができます。
 
 \begin{lstlisting}
@@ -821,7 +822,7 @@ AND演算子やOR演算子が3つ4つ連続する場合は複雑で読みにく�
 その場合は抽象化ができないかを検討するべきサインとなります。
 
 \hypertarget{or-operator}{%
-\subsection{\texorpdfstring{OR演算子（\texttt{\textbar{}\textbar{}}）}{OR演算子（\textbar{}\textbar{}）}}\label{or-operator}}
+\subsection{\texorpdfstring{OR演算子（\texttt{\textbar{}\textbar{}}）}{OR演算子（\textbar{}\textbar{}）}}\label{or-operator}}\index{ORえんざんし@OR演算子}\index{\textbar{}\textbar{}@\texttt{\textbar{}\textbar{}}}
 
 OR演算子（\texttt{||}）は、左辺の値の評価結果が\texttt{false}であるならば、右辺の評価結果を返します。
 AND演算子（\texttt{\&\&}）とは逆に、左辺が\texttt{true}である場合は、右辺を評価せず\texttt{true}を返します。
@@ -846,7 +847,7 @@ if (value === 0 || value === 1) {
 \end{lstlisting}
 
 \hypertarget{not-operator}{%
-\subsection{\texorpdfstring{NOT演算子（\texttt{!}）}{NOT演算子（!）}}\label{not-operator}}
+\subsection{\texorpdfstring{NOT演算子（\texttt{!}）}{NOT演算子（!）}}\label{not-operator}}\index{NOTえんざんし@NOT演算子}\index{"!@\texttt{"!}}
 
 NOT演算子（\texttt{!}）は、\texttt{オペランド}の評価結果が\texttt{true}であるならば、\texttt{false}を返します。
 
@@ -873,7 +874,7 @@ console.log(str.length > 0); // => false
 \end{lstlisting}
 
 \hypertarget{group-operator}{%
-\subsection{\texorpdfstring{グループ化演算子（\texttt{(}と\texttt{)}）}{グループ化演算子（(と)）}}\label{group-operator}}
+\subsection{\texorpdfstring{グループ化演算子（\texttt{(}と\texttt{)}）}{グループ化演算子（(と)）}}\label{group-operator}}\index{ぐるーぷかえんざんし@グループ化演算子}\index{()@\texttt{()}}
 
 グループ化演算子は複数の二項演算子が組み合わさった場合に、演算子の優先順位を明示できる演算子です。
 
@@ -888,7 +889,7 @@ console.log((a + b) * c); // => 9
 \end{lstlisting}
 
 \href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Operator_Precedence\#Table}{演算子の優先順位}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Operator_Precedence\#Table}}はECMAScript仕様で定義されていますが、演算子の優先度をすべて覚えるのは難しいです。
-演算子の優先順位の中でグループ化演算子は優先される演算子となり、グループ化演算子を使って優先順位を明示できます。
+演算子の優先順位\index{えんざんし@演算子!ゆうせんじゅんい@優先順位}の中でグループ化演算子は優先される演算子となり、グループ化演算子を使って優先順位を明示できます。
 
 次のようなグループ化演算子を使わずに書いたコードを見てみましょう。
 \texttt{x}が\texttt{true}または、\texttt{y}かつ\texttt{z}が\texttt{true}であるときに処理されます。
@@ -940,7 +941,7 @@ if (isAbString || isXyNumber) {
 それぞれの条件を分解して名前をつける（変数として定義する）ことも重要です。
 
 \hypertarget{comma-operator}{%
-\section{\texorpdfstring{カンマ演算子（\texttt{,}）}{カンマ演算子（,）}}\label{comma-operator}}
+\section{\texorpdfstring{カンマ演算子（\texttt{,}）}{カンマ演算子（,）}}\label{comma-operator}}\index{かんまえんざんし@カンマ演算子}\index{,@\texttt{,}}
 
 カンマ演算子（\texttt{,}）は、カンマ（\texttt{,}）で区切った式を左から順に評価し、
 最後の式の評価結果を返します。
@@ -960,7 +961,8 @@ console.log(c); // => 3
 \end{lstlisting}
 
 一般にカンマ演算子を利用する機会はほとんどないため、「カンマで区切った式は左から順に評価される」ということだけを知っていれば問題ありません\footnote{カンマ演算子を活用したテクニックとしてindirect
-  callというものがあります。\url{https://2ality.com/2014/01/eval.html}}。
+  call\index{indirect
+  call}というものがあります。\url{https://2ality.com/2014/01/eval.html}}。
 
 \hypertarget{conclusion}{%
 \section{まとめ}\label{conclusion}}

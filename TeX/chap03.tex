@@ -2,7 +2,7 @@
 \chapter{変数と宣言}\label{variable-and-declaration}}
 \thispagestyle{frontheadings}
 
-プログラミング言語には、文字列や数値などのデータに名前をつけることで、繰り返し利用できるようにする\textbf{変数}という機能があります。
+プログラミング言語には、文字列や数値などのデータに名前をつけることで、繰り返し利用できるようにする\textbf{\textgt{変数}}\index{へんすう@変数}という機能があります。
 
 JavaScriptには「これは変数です」という宣言をするキーワードとして、
 \texttt{const}、\texttt{let}、\texttt{var}の3つがあります。
@@ -14,11 +14,11 @@ JavaScriptには「これは変数です」という宣言をするキーワー�
 この章では\texttt{const}、\texttt{let}、\texttt{var}の順に、それぞれの方法で宣言した変数の違いについて見ていきます。
 
 \hypertarget{const}{%
-\section[\texttt{const}]{\texttt{const}\protect\icon{fig/es2015.eps}}\label{const}}
+\section[\texttt{const}]{\texttt{const}\,\protect\icon{fig/es2015.eps}}\label{const}}\index{const@\texttt{const}}
 
-\texttt{const}キーワードでは、再代入できない変数の宣言とその変数が参照する値（初期値）を定義できます。
+\texttt{const}キーワードでは、再代入できない変数の宣言とその変数が参照する値（初期値\index{しょきち@初期値}）を定義できます。
 
-次のように、\texttt{const}キーワードに続いて\texttt{変数名}を書き、代入演算子（\texttt{=}）の右辺に変数の\texttt{初期値}を書いて変数を定義できます。
+次のように、\texttt{const}キーワードに続いて\texttt{変数名}\index{へんすうめい@変数名}を書き、代入演算子\index{だいにゅうえんざんし@代入演算子}（\texttt{=}\index{=@\texttt{=}}）の右辺に変数の\texttt{初期値}を書いて変数を定義できます。
 
 \begin{lstlisting}
 const 変数名 = 初期値;
@@ -30,7 +30,7 @@ const 変数名 = 初期値;
 const bookTitle = "JavaScriptの本";
 \end{lstlisting}
 
-\texttt{const}、\texttt{let}、\texttt{var}どのキーワードも共通の仕組みですが、変数同士を\texttt{,}（カンマ）で区切ることにより、同時に複数の変数を定義できます。
+\texttt{const}、\texttt{let}、\texttt{var}どのキーワードも共通の仕組みですが、変数同士を\texttt{,}\index{,@\texttt{,}}（カンマ）で区切ることにより、同時に複数の変数を定義できます。
 
 次のコードでは、\texttt{bookTitle}と\texttt{bookCategory}という変数を順番に定義しています。
 
@@ -64,7 +64,7 @@ bookTitle = "新しいタイトル"; // => TypeError: invalid assignment to cons
 そのような場合には、変数への再代入が可能な\texttt{let}キーワードを利用します。
 
 \hypertarget{let}{%
-\section[\texttt{let}]{\texttt{let}\protect\icon{fig/es2015.eps}}\label{let}}
+\section[\texttt{let}]{\texttt{let}\,\protect\icon{fig/es2015.eps}}\label{let}}\index{let@\texttt{let}}
 
 \texttt{let}キーワードでは、値の再代入が可能な変数を宣言できます。
 \texttt{let}の使い方は\texttt{const}とほとんど同じです。
@@ -76,7 +76,7 @@ let bookTitle = "JavaScriptの本";
 \end{lstlisting}
 
 \texttt{let}は\texttt{const}とは異なり、初期値を指定しない変数も定義できます。
-初期値が指定されなかった変数はデフォルト値として\texttt{undefined}という値で初期化されます（\texttt{undefined}は値が未定義ということを表す値です）。
+初期値が指定されなかった変数はデフォルト値として\texttt{undefined}\index{undefined@\texttt{undefined}}という値で初期化されます（\texttt{undefined}は値が未定義ということを表す値です）。
 
 次のコードでは、\texttt{bookTitle}という変数を宣言しています。
 このとき\texttt{bookTitle}には初期値が指定されていないため、デフォルト値として\texttt{undefined}で初期化されます。
@@ -86,7 +86,7 @@ let bookTitle;
 // bookTitleは自動的にundefinedという値になる
 \end{lstlisting}
 
-この\texttt{let}で宣言された\texttt{bookTitle}という変数には、代入演算子（\texttt{=}）を使うことで値を代入できます。
+この\texttt{let}で宣言された\texttt{bookTitle}という変数には、代入演算子\index{だいにゅうえんざんし@代入演算子}（\texttt{=}\index{=@\texttt{=}}）を使うことで値を代入できます。
 代入演算子（\texttt{=}）の右側には変数へ代入する値を書きますが、ここでは\texttt{"JavaScriptの本"}という文字列を代入しています。
 
 \begin{lstlisting}
@@ -104,7 +104,7 @@ count = 3;
 \end{lstlisting}
 
 \hypertarget{var}{%
-\section{\texorpdfstring{\texttt{var}}{var}}\label{var}}
+\section{\texorpdfstring{\texttt{var}}{var}}\index{var@\texttt{var}}\label{var}}
 
 \texttt{var}キーワードでは、値の再代入が可能な変数を宣言できます。
 \texttt{var}の使い方は\texttt{let}とほとんど同じです。
@@ -122,7 +122,7 @@ bookTitle = "新しいタイトル";
 \end{lstlisting}
 
 \hypertarget{var-issues}{%
-\subsection{\texorpdfstring{\texttt{var}の問題}{varの問題}}\label{var-issues}}
+\subsection{\texorpdfstring{\texttt{var}の問題}{varの問題}}\index{var@\texttt{var}!もんだい@問題}\label{var-issues}}
 
 \texttt{var}は\texttt{let}とよく似ていますが、\texttt{var}キーワードには同じ名前の変数を再定義できてしまう問題があります。
 
@@ -155,10 +155,10 @@ var x = 2;
 また、ほとんどすべてのケースで\texttt{var}は\texttt{const}か\texttt{let}に置き換えが可能です。
 そのため、これから書くコードに対して\texttt{var}を利用することは避けたほうがよいでしょう。
 
-\begin{tcolorbox}[title=なぜ\texttt{let}や\texttt{const}は追加されたのか？]\label{why-add-let-and-const}
+\begin{tcolorbox}[title=なぜ\texttt{let}や\texttt{const}は追加されたのか？]\label{why-add-let-and-const}\index{let@\texttt{let}!ついか@追加}\index{const@\texttt{const}!ついか@追加}
 
 ECMAScript
-2015では、\texttt{var}そのものを改善するのではなく、新しく\texttt{const}と\texttt{let}というキーワードを追加することで、\texttt{var}の問題を回避できるようにしました。\texttt{var}自体の動作を変更しなかったのは、後方互換性のためです。
+2015では、\texttt{var}そのものを改善するのではなく、新しく\texttt{const}と\texttt{let}というキーワードを追加することで、\texttt{var}の問題を回避できるようにしました。\texttt{var}自体の動作を変更しなかったのは、後方互換性\index{こうほうごかんせい@後方互換性}のためです。
 
 なぜなら、\texttt{var}の挙動自体を変更してしまうと、すでに\texttt{var}で書かれたコードの動作が変わってしまい、動かなくなるアプリケーションが出てくるためです。
 新しく\texttt{const}や\texttt{let}などのキーワードをECMAScript仕様に追加しても、そのキーワードを使っているソースコードは追加時点では存在しません\footnote{\texttt{let}や\texttt{const}はECMAScript 2015以前に予約語として定義されていたため、既存のコードと衝突する可能性はありませんでした。}。
@@ -168,18 +168,18 @@ ECMAScript
 \end{tcolorbox}
 
 \hypertarget{variable-name}{%
-\section{変数名に使える名前のルール}\label{variable-name}}
+\section{変数名に使える名前のルール}\index{へんすうめい@変数名!なまえのるーる@名前のルール}\index{なまえのるーる@名前のルール}\label{variable-name}}
 
 ここまで\texttt{const}、\texttt{let}、\texttt{var}での変数宣言とそれぞれの特徴について見てきました。
 どのキーワードにおいても宣言できる変数に利用できる名前のルールは同じです。
 また、このルールは変数の名前や関数の名前といったJavaScriptの識別子において共通するルールとなります。
 
-変数名の名前（識別子）には、次のルールがあります。
+変数名の名前（識別子\index{しきべつし@識別子}）には、次のルールがあります。
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  半角のアルファベット、\texttt{\_}（アンダースコア）、\texttt{\$}（ダラー）、数字を組み合わせた名前にする
+  半角のアルファベット、\texttt{\_}\index{_@\texttt{\_}}（アンダースコア）、\texttt{\$}\index{$@\texttt{\$}}（ダラー）、数字を組み合わせた名前にする
 \item
   変数名は数字から開始できない
 \item
@@ -208,17 +208,17 @@ var 123; // NG: 数字のみで構成されている
 \end{lstlisting}
 
 また、予約語として定義されているキーワードは変数名には利用できません。
-予約語とは、\texttt{var}のように構文として意味を持つキーワードのことです。
-予約語の一覧は\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Reserved_Words}{「予約語 --- JavaScript \textbar{}
-MDN」}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Reserved_Words}}で確認できますが、基本的には構文として利用される名前が予約されています。
+予約語\index{よやくご@予約語}とは、\texttt{var}のように構文として意味を持つキーワードのことです。
+予約語の一覧は\nolinebreak\mbox{\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Reserved_Words}{「予約語 --- JavaScript \textbar{}
+MDN」}}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Reserved_Words}}で確認できますが、基本的には構文として利用される名前が予約されています。
 
 \begin{lstlisting}
 var var; // NG: varは変数宣言のために予約されているので利用できない
 var if; // NG: ifはif文のために予約されているので利用できない
-\end{lstlisting}
+\end{lstlisting}\enlargethispage{\baselineskip}
 
 \hypertarget{const-is-not-constant}{%
-\begin{tcolorbox}[title=\texttt{const}は定数ではない]\label{const-is-not-constant}}
+\begin{tcolorbox}[title=\texttt{const}は定数ではない]\label{const-is-not-constant}}\index{const@\texttt{const}!ていすう@定数}\index{ていすう@定数}
 
 \texttt{const}は「再代入できない変数」を定義する変数宣言であり、必ずしも定数を定義するわけではありません。
 定数とは、一度定義した名前（変数名）が常に同じ値を示すものです。

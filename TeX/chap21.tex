@@ -1,17 +1,17 @@
 \hypertarget{error-handling}{%
-\chapter{例外処理}\label{error-handling}}
+\chapter{例外処理}\label{error-handling}}\index{れいがいしょり@例外処理}
 \thispagestyle{frontheadings}
 
 この章ではJavaScriptにおける例外処理について学びます。
 
 \hypertarget{try-catch}{%
-\section{try\ldots{}catch構文}\label{try-catch}}
+\section{try\ldots{}catch構文}\label{try-catch}}\index{try...catchこうぶん@try...catch構文}
 
 \href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/try...catch}{try\ldots{}catch}構文は例外が発生しうるブロックをマークし、例外が発生したときの処理を記述するための構文です。
 
-try\ldots{}catch構文の\texttt{try}ブロック内で例外が発生すると、\texttt{try}ブロック内のそれ以降の処理は実行されず、\texttt{catch}節に処理が移行します。
-\texttt{catch}節は、\texttt{try}ブロック内で例外が発生すると、発生したエラーオブジェクトとともに呼び出されます。
-\texttt{finally}節は、\texttt{try}ブロック内で例外が発生したかどうかには関係なく、必ず\texttt{try}文の最後に実行されます。
+try\ldots{}catch構文の\texttt{try}ブロック\index{tryぶろっく@\texttt{try}ブロック}内で例外が発生すると、\texttt{try}ブロック内のそれ以降の処理は実行されず、\texttt{catch}節に処理が移行します。
+\texttt{catch}節\index{catchせつ@\texttt{catch}節}は、\texttt{try}ブロック内で例外が発生すると、発生したエラーオブジェクトとともに呼び出されます。
+\texttt{finally}節\index{finallyせつ@\texttt{finally}節}は、\texttt{try}ブロック内で例外が発生したかどうかには関係なく、必ず\texttt{try}文の最後に実行されます。
 
 次のコードでは、\texttt{try}ブロックで例外が発生し、\texttt{catch}節の処理が実行され、最後に\texttt{finally}節の処理が実行されます。
 
@@ -52,13 +52,13 @@ try {
 \end{lstlisting}
 
 \hypertarget{throw}{%
-\section{throw文}\label{throw}}
+\section{throw文}\label{throw}}\index{throwぶん@throw文}
 
 \href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/throw}{throw}文を使うとユーザーが例外を投げることができます。
 例外として投げられたオブジェクトは、\texttt{catch}節で関数の引数のようにアクセスできます。
-\texttt{catch}節でオブジェクトを参照できる識別子を\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/try...catch\#The_exception_identifier}{例外識別子}と呼びます。
+\texttt{catch}節でオブジェクトを参照できる識別子を\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/try...catch\#The_exception_identifier}{例外識別子}\index{れいがいしきべつし@例外識別子}と呼びます。
 
-次のコードでは、\texttt{catch}節の\texttt{error}識別子でキャッチしたエラーオブジェクトを参照しています。
+次のコードでは、\texttt{catch}節の\texttt{error}\index{error@\texttt{error}}識別子でキャッチしたエラーオブジェクトを参照しています。
 
 \begin{lstlisting}
 try {
@@ -71,17 +71,17 @@ try {
 \end{lstlisting}
 
 \hypertarget{error-object}{%
-\section{エラーオブジェクト}\label{error-object}}
+\section{エラーオブジェクト}\label{error-object}}\index{えらーおぶじぇくと@エラーオブジェクト}
 
 \texttt{throw}文ではエラーオブジェクトを例外として投げることができます。
 ここでは、\texttt{throw}文で例外として投げられるエラーオブジェクトについて見ていきます。
 
 \hypertarget{error}{%
-\subsection{Error}\label{error}}
+\subsection{Error}\label{error}}\index{Error@\texttt{Error}}
 
 \texttt{Error}オブジェクトのインスタンスは\texttt{Error}を\texttt{new}して作成します。
 コンストラクタの第一引数には、エラーメッセージとなる文字列を渡します。
-渡したエラーメッセージは\texttt{Error\#message}プロパティに格納されます。
+渡したエラーメッセージは\texttt{Error\#message}\index{Error\#message@\texttt{Error\#message}}プロパティに格納されます。
 
 次のコードでは、\texttt{assertPositiveNumber}関数でエラーオブジェクトを作成し、例外として\texttt{throw}しています。
 投げられたオブジェクトは、catch節の例外識別子（\texttt{error}）からエラーオブジェクトを取得でき、エラーメッセージが確認できます。
@@ -121,7 +121,7 @@ try {
 \end{lstlisting}
 
 \hypertarget{built-in-error}{%
-\subsection{ビルトインエラー}\label{built-in-error}}
+\subsection{ビルトインエラー}\label{built-in-error}}\index{びるといんえらー@ビルトインエラー}
 
 エラーには状況に合わせたいくつかの種類があり、これらはビルトインエラーとして定義されています。
 ビルトインエラーとは、ECMAScript仕様や実行環境に組み込みで定義されているエラーオブジェクトです。
@@ -131,7 +131,7 @@ try {
 ビルトインエラーにはいくつか種類がありますが、ここでは代表的なものを紹介します。
 
 \hypertarget{reference-error}{%
-\subsubsection{ReferenceError}\label{reference-error}}
+\subsubsection{ReferenceError}\label{reference-error}}\index{ReferenceError@\texttt{ReferenceError}}
 
 \href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError}{ReferenceError}は存在しない変数や関数などの識別子が参照された場合のエラーです。
 次のコードでは、存在しない変数を参照しているため\texttt{ReferenceError}例外が投げられます。
@@ -148,7 +148,7 @@ try {
 \end{lstlisting}
 
 \hypertarget{syntax-error}{%
-\subsubsection{SyntaxError}\label{syntax-error}}
+\subsubsection{SyntaxError}\label{syntax-error}}\index{SyntaxError@\texttt{SyntaxError}}
 
 \href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError}{SyntaxError}は構文的に不正なコードを解釈しようとした場合のエラーです。
 基本的に\texttt{SyntaxError}例外は、JavaScriptを実行する前のパース段階で発生します。
@@ -159,7 +159,7 @@ try {
 foo! bar!
 \end{lstlisting}
 
-次のコードでは、\texttt{eval}関数を使って実行時に\texttt{SyntaxError}を発生させています。
+次のコードでは、\texttt{eval}\index{eval@\texttt{eval}}関数を使って実行時に\texttt{SyntaxError}を発生させています。
 \texttt{eval}関数は渡した文字列をJavaScriptとして実行する関数です。
 実行時に発生した\texttt{SyntaxError}は、\texttt{try...catch}文でもcatchできます。
 
@@ -176,7 +176,7 @@ try {
 \end{lstlisting}
 
 \hypertarget{type-error}{%
-\subsubsection{TypeError}\label{type-error}}
+\subsubsection{TypeError}\label{type-error}}\index{TypeError@\texttt{TypeError}}
 
 \href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/TypeError}{TypeError}は値が期待される型ではない場合のエラーです。
 次のコードでは、関数ではないオブジェクトを関数呼び出ししているため、\texttt{TypeError}例外が投げられます。
@@ -194,7 +194,7 @@ try {
 \end{lstlisting}
 
 \hypertarget{throw-built-in-error}{%
-\subsection{ビルトインエラーを投げる}\label{throw-built-in-error}}
+\subsection{ビルトインエラーを投げる}\label{throw-built-in-error}}\index{びるといんえらー@ビルトインエラー!なげる@投げる}
 
 ビルトインエラーのインスタンスを作成し、そのインスタンスを例外として投げることもできます。
 通常の\texttt{Error}オブジェクトと同じように、それぞれのビルトインエラーオブジェクトを\texttt{new}してインスタンスを作成できます。
@@ -222,13 +222,13 @@ try {
 \end{lstlisting}
 
 \hypertarget{error-and-debug}{%
-\section{エラーとデバッグ}\label{error-and-debug}}
+\section{エラーとデバッグ}\label{error-and-debug}}\index{えらー@エラー}\index{でばっぐ@デバッグ}
 
 JavaScript開発においてデバッグ中に発生したエラーを理解することは非常に重要です。
 エラーが持つ情報を活用することで、ソースコードのどこでどのような例外が投げられたのかを知ることができます。
 
-エラーはすべて\texttt{Error}オブジェクトを拡張したオブジェクトで宣言されています。
-つまり、エラーの名前を表す\texttt{name}プロパティと内容を表す\texttt{message}プロパティを持っています。
+エラーはすべて\texttt{Error}\index{Error@\texttt{Error}}オブジェクトを拡張したオブジェクトで宣言されています。
+つまり、エラーの名前を表す\texttt{name}\index{name@\texttt{name}}プロパティと内容を表す\texttt{message}\index{message@\texttt{message}}プロパティを持っています。
 この2つのプロパティを確認することで、多くの場面で開発の助けとなるでしょう。
 
 次のコードでは、\texttt{try...catch}文で囲っていない部分で例外が発生しています。
@@ -246,7 +246,7 @@ fn();
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=120mm]{fig/error.png}
+\includegraphics[width=130mm]{fig/error.png}
 \caption{コンソールでのエラー表示（Firefox）}
 \end{figure}
 
@@ -266,7 +266,7 @@ fn();
 \end{small}
 
 また、メッセージの後には例外のスタックトレースが表示されています。
-スタックトレースとは、プログラムの実行過程を記録した内容で、どの処理によってエラーが発生したかが書かれています。
+スタックトレース\index{すたっくとれーす@スタックトレース}とは、プログラムの実行過程を記録した内容で、どの処理によってエラーが発生したかが書かれています。
 
 \begin{itemize}
 \item
@@ -278,16 +278,16 @@ fn();
 \newpage
 このように、スタックトレースは上から下へ呼び出し元をたどれるように記録されています。
 
-コンソールに表示されるエラーログには多くの情報が含まれています。
-MDNの\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Errors}{JavaScriptエラーリファレンス}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Errors}}には、ブラウザが投げるビルトインエラーの種類とメッセージが網羅されています。
+コンソールに表示されるエラーログ\index{えらーろぐ@エラーログ}には多くの情報が含まれています。
+MDN\index{MDN}の\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Errors}{JavaScriptエラーリファレンス}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Errors}}には、ブラウザが投げるビルトインエラーの種類とメッセージが網羅されています。
 開発中にビルトインエラーが発生したときには、リファレンスを見て解決方法を探すとよいでしょう。
 
 \hypertarget{console.error}{%
-\section{\texorpdfstring{\texttt{console.error}とスタックトレース}{console.errorとスタックトレース}}\label{console.error}}
+\section{\texorpdfstring{\texttt{console.error}とスタックトレース}{console.errorとスタックトレース}}\label{console.error}}\index{console.error@\texttt{console.error}}\index{すたっくとれーす@スタックトレース}
 
 \texttt{console.error}メソッドではメッセージと合わせてスタックトレースをコンソールへ出力できます。
 
-次のコードを実行して、\texttt{console.log}と\texttt{console.error}の出力結果を見比べてみます。
+次のコードを実行して、\texttt{console.log}\index{console.log@\texttt{console.log}}と\texttt{console.error}の出力結果を見比べてみます。
 
 \begin{lstlisting}
 function fn() {

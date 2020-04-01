@@ -13,6 +13,8 @@
 \usepackage{etoolbox}
 
 \newcommand{\icon}[1]{\includegraphics[height=5mm]{#1}} % 見出しにアイコンを入れる
+\newcommand{\iconl}[1]{\includegraphics[height=3.5mm]{#1}}
+
 \usepackage{pxjahyper}
 \hypersetup{%
  bookmarksnumbered=true,%
@@ -333,7 +335,7 @@
 }
 
 
-
+\setcounter{tocdepth}{2} % 目次にsubsectionのレベルまで出す
 
 %
 % 本文構成
@@ -347,8 +349,10 @@
 {\pagestyle{sameheadings}
 \include{intro}
 \include{authors}}
-\tableofcontents
-%\include{aboutthecoverillust}
+{\pagestyle{sameheadings}
+{\thispagestyle{frontheadings}
+\tableofcontents}}
+
 \mainmatter
 \include{part1}
 \include{chap01}
@@ -392,7 +396,7 @@
 %\include{appd}
 \backmatter
 %\include{outro}
-%\printindex
+\printindex
 % \include{okuduke}
 
 \end{document}
