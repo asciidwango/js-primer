@@ -92,7 +92,7 @@ ${message}`);
     });
     it("インスタンスメソッドはプロトタイプオブジェクトで説明する", () => {
         // 許可リスト(読み方の解説など)
-        const allowFilePathList = [];
+        const allowFilePathList = [path.join(sourceDir, "basic/object/README.md")];
         const searchPatterns = ["/インスタンスメソッド/", "/静的メソッド/"];
         const prototypeChapter = path.join(sourceDir, "basic/prototype-object/README.md");
         return findUsage(prototypeChapter, searchPatterns, allowFilePathList).then(results => {
