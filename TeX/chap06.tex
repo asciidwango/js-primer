@@ -791,7 +791,7 @@ const x = true;
 const y = false;
 // x -> y の順に評価される
 console.log(x && y); // => false
-// 左辺がfalsyであるなら、その時点でfalseを返す
+// 左辺がfalseであるなら、その時点でfalseを返す
 // xは評価されない
 console.log(y && x); // => false
 \end{lstlisting}
@@ -860,7 +860,7 @@ NOT演算子は必ず真偽値を返すため、次のように2つNOT演算子�
 
 \begin{lstlisting}
 const str = "";
-// 空文字列はfalsyな値
+// 空文字列はfalseへと変換される
 console.log(!!str); // => false
 \end{lstlisting}
 
