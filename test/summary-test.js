@@ -8,7 +8,7 @@ const { matchPatterns } = require("@textlint/regexp-string-matcher");
 function findUsage(actualUseChapter, searchPatterns, allowFilePathList) {
     return getFilePathListAsync(OUTLINE).then(summaryList => {
         const prototypeChapterIndex = summaryList.indexOf(actualUseChapter);
-        const beforeFilePathList = summaryList.slice(0, prototypeChapterIndex - 1);
+        const beforeFilePathList = summaryList.slice(0, prototypeChapterIndex);
         return beforeFilePathList
             .filter(filePath => !allowFilePathList.includes(filePath))
             .map(filePath => {
@@ -36,6 +36,24 @@ function findUsage(actualUseChapter, searchPatterns, allowFilePathList) {
 }
 
 describe("SUMMARY", function() {
+    it("falsyの説明をする前にfalsyの表記を利用してはいけない", () => {
+        // 許可リスト(読み方の解説など)
+        const allowFilePathList = [];
+        const searchPatterns = ["/falsy/gi"];
+        const falsyChapter = path.join(sourceDir, "basic/implicit-coercion/README.md");
+        return findUsage(falsyChapter, searchPatterns, allowFilePathList).then(results => {
+            if (results.length === 0) {
+                return;
+            }
+            const message = results.map(result => {
+                return `${result.normalizedFilePath} が利用しているので、確認してください。
+${result.matchedTexts.join("\n")}
+`;
+            });
+            throw new Error(`${results.length}件のドキュメントがfalsyを説明前に利用しています。
+${message}`);
+        });
+    });
     it("prototypeメソッドの説明をする前にObject#methodの表記を利用してはいけない", () => {
         // 許可リスト(読み方の解説など)
         const allowFilePathList = [];
