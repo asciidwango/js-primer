@@ -1,8 +1,8 @@
 \hypertarget{module}{%
-\chapter[ECMAScriptモジュール]{ECMAScriptモジュール\protect\icon{fig/es2015.eps}}\label{module}}
+\chapter[ECMAScriptモジュール]{ECMAScriptモジュール\,\protect\icon{fig/es2015.eps}}\label{module}}\index{ECMAScriptもじゅーる@ECMAScriptモジュール}
 \thispagestyle{frontheadings}
 
-ECMAScriptモジュールは「\hyperlink{todo-app}{ユースケース: Todoアプリ}」の章で実際に動かしながら学ぶため、ここでは構文の説明とモジュールのイメージをつかむのが目的です。
+ECMAScriptモジュールは「\hyperlink{todo-app}{ユースケース: Todoアプリケーション}」の章で実際に動かしながら学ぶため、ここでは構文の説明とモジュールのイメージをつかむのが目的です。
 この章のサンプルコードを実際に動かすためにはローカルサーバーなどの準備が必要です。
 そのため、ユースケースの章を先に読んでから戻ってきてもかまいません。
 
@@ -10,35 +10,35 @@ ECMAScriptモジュールは「\hyperlink{todo-app}{ユースケース: Todoア�
 
 \begin{itemize}
 \item
-  保守性:
+  \textgt{保守性}:
   依存性の高いコードの集合を一箇所にまとめ、それ以外のモジュールへの依存性を減らせます
 \item
-  名前空間:
+  \textgt{名前空間}:
   モジュールごとに分かれたスコープがあり、グローバルの名前空間を汚染しません
 \item
-  再利用性:
+  \textgt{再利用性}:
   便利な変数や関数を複数の場所にコピーアンドペーストせず、モジュールとして再利用できます
 \end{itemize}
 
 1つのJavaScriptモジュールは1つのJavaScriptファイルに対応します。
 モジュールは変数や関数などを外部にエクスポートできます。また、別のモジュールで宣言された変数や関数などをインポートできます。
 この章では
-\textbf{ECMAScriptモジュール（ESモジュール、JSモジュールとも呼ばれる）}
+\textbf{\textgt{ECMAScriptモジュール（ESモジュール\index{ESもじゅーる@ESモジュール}、JSモジュール\index{JSもじゅーる@JSモジュール}とも呼ばれる）}}
 について見ていきます。
 ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルをモジュール化する言語標準の機能です。
 
 \hypertarget{es-module-syntax}{%
 \section{ECMAScriptモジュールの構文}\label{es-module-syntax}}
 
-ECMAScriptモジュールは、\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export}{export文}によって変数や関数などをエクスポートできます。
-また、\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import}{import文}を使って別のモジュールからエクスポートされたものをインポートできます。
-インポートとエクスポートはそれぞれに \textbf{\textgt{名前つき}} と
+ECMAScriptモジュールは、\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export}{export文}\index{export@\texttt{export}}によって変数や関数などをエクスポート\index{えくすぽーと@エクスポート}できます。
+また、\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import}{import文}\index{import@\texttt{import}}を使って別のモジュールからエクスポートされたものをインポート\index{いんぽーと@インポート}できます。
+インポートとエクスポートはそれぞれに \textbf{\textgt{名前つき}}と
 \textbf{\textgt{デフォルト}}という2種類の方法があります。
 
 まずは名前つきエクスポート／インポート文について見ていきましょう。
 
 \hypertarget{named-export-import}{%
-\subsection{名前つきエクスポート／インポート}\label{named-export-import}}
+\subsection{名前つきエクスポート／インポート}\label{named-export-import}}\index{なまえつきえくすぽーと@名前つきエクスポート}\index{えくすぽーと@エクスポート!なまえつき@名前つき}\index{なまえつきいんぽーと@名前つきインポート}\index{いんぽーと@インポート!なまえつき@名前つき}
 
 \textbf{\textgt{名前つきエクスポート}}は、モジュールごとに複数の変数や関数などをエクスポートできます。
 次の例では、\texttt{foo}変数と\texttt{bar}関数をそれぞれ名前つきエクスポートしています。
@@ -92,11 +92,11 @@ console.log(bar); // => "bar"
 \listend
 
 \hypertarget{named-export-import-alias}{%
-\subsubsection{名前つきエクスポート／インポートのエイリアス}\label{named-export-import-alias}}
+\subsubsection{名前つきエクスポート／インポートのエイリアス}\label{named-export-import-alias}}\index{なまえつきえくすぽーと@名前つきエクスポート!えいりあす@エイリアス}\index{なまえつきいんぽーと@名前つきインポート!えいりあす@エイリアス}\index{えいりあす@エイリアス}
 
 名前つきエクスポート／インポートには\textbf{\textgt{エイリアス}}の仕組みがあります。
 エイリアスを使うと、宣言済みの変数を違う名前で名前つきエクスポートできます。
-エイリアスをつけるには、次のように\texttt{as}のあとにエクスポートしたい名前を記述します。
+エイリアスをつけるには、次のように\texttt{as}\index{as@\texttt{as}}のあとにエクスポートしたい名前を記述します。
 
 \begin{listtitle}
 named-export-alias.js
@@ -122,12 +122,12 @@ console.log(myFoo); // => "foo"
 \listend
 
 \hypertarget{default-export-import}{%
-\subsection{デフォルトエクスポート／インポート}\label{default-export-import}}
+\subsection{デフォルトエクスポート／インポート}\label{default-export-import}}\index{でふぉるとえくすぽーと@デフォルトエクスポート}\index{えくすぽーと@エクスポート!でふぉると@デフォルト}\index{でふぉるといんぽーと@デフォルトインポート}\index{いんぽーと@インポート!でふぉると@デフォルト}
 
 次に、デフォルトエクスポート／インポートについて見ていきましょう。
 \textbf{\textgt{デフォルトエクスポート}}は、モジュールごとに1つしかエクスポートできない特殊なエクスポートです。
 次の例は、すでに宣言されている変数をデフォルトエクスポートしています。
-\texttt{export default}文で、後に続く式の評価結果をデフォルトエクスポートします。
+\texttt{export default}\index{export default@\texttt{export default}}文で、後に続く式の評価結果をデフォルトエクスポートします。
 
 \begin{listtitle}
 default-export.js
@@ -149,7 +149,7 @@ export default function() {}
 
 ただし、変数宣言は宣言とデフォルトエクスポートを同時に行うことはできません。
 なぜなら、変数宣言はカンマ区切りで複数の変数を定義できてしまうためです。
-次の例は実行できない不正なコードです。
+次の例は実行できない不正なコードです。\enlargethispage{\baselineskip}
 
 \begin{lstlisting}
 // 変数宣言と同時にデフォルトエクスポートはできない
@@ -159,7 +159,7 @@ export default const foo = "foo", bar = "bar";
 \textbf{\textgt{デフォルトインポート}}は、指定したモジュールのデフォルトエクスポートに名前をつけてインポートします。
 次の例では
 \texttt{my-module.js}のデフォルトエクスポートに\texttt{myModule}という名前をつけてインポートしています。
-\texttt{import}文のあとに任意の名前をつけることで、デフォルトエクスポートをインポートできます。
+\texttt{import}\index{import@\texttt{import}}文のあとに任意の名前をつけることで、デフォルトエクスポートをインポートできます。
 
 \begin{listtitle}
 my-module.js
@@ -181,8 +181,8 @@ console.log(myModule); // => { baz: "baz" }
 \end{lstlisting}
 \listend
 
-実はデフォルトエクスポートは、\texttt{default}という固有の名前による名前つきエクスポートと同じものです。
-そのため、名前つきエクスポートで\texttt{as default}とエイリアスをつけることでデフォルトエクスポートすることもできます。
+実はデフォルトエクスポートは、\texttt{default}\index{default@\texttt{default}}という固有の名前による名前つきエクスポートと同じものです。
+そのため、名前つきエクスポートで\texttt{as default}とエイリアス\index{えいりあす@エイリアス}をつけることでデフォルトエクスポートすることもできます。
 
 \begin{listtitle}
 default-export-alias.js
@@ -234,12 +234,12 @@ ECMAScriptモジュールでは、エクスポートされていないものは�
 ECMAScriptモジュールには名前つきとデフォルト以外にもいくつかの構文があります。
 
 \hypertarget{re-export}{%
-\subsubsection{再エクスポート}\label{re-export}}
+\subsubsection{再エクスポート}\label{re-export}}\index{さいえくすぽーと@再エクスポート}
 
 再エクスポートとは、別のモジュールからインポートしたものを、改めて自分自身からエクスポートし直すことです。
 複数のモジュールからエクスポートされたものをまとめたモジュールを作るときなどに使われます。
 
-再エクスポートは次のように\texttt{export}文のあとに\texttt{from}を続けて、別のモジュール名を指定します。
+再エクスポートは次のように\texttt{export}文のあとに\texttt{from}\index{from@\texttt{from}}を続けて、別のモジュール名を指定します。
 
 \begin{lstlisting}
 // ./my-module.jsのすべての名前つきエクスポートを再エクスポートする
@@ -257,7 +257,7 @@ export { foo as default } from "./my-module.js";
 \end{lstlisting}
 
 \hypertarget{namespace-import}{%
-\subsubsection{すべてをインポート}\label{namespace-import}}
+\subsubsection{すべてをインポート}\label{namespace-import}}\index{いんぽーと@インポート!すべて}
 
 \texttt{import * as}構文は、すべての名前つきエクスポートをまとめてインポートします。
 この方法では、モジュールごとの \textbf{\textgt{名前空間}}
@@ -307,7 +307,7 @@ window.foo = "foo";
 \listend
 
 このようなモジュールをインポートするには、副作用のためのインポート構文を使います。
-この構文では、指定したモジュールを読み込んで実行するだけで、何もインポートしません。
+この構文では、指定したモジュールを読み込んで実行するだけで、何もインポートしません。\enlargethispage{\baselineskip}
 
 \begin{lstlisting}
 // ./side-effects.jsのグローバルコードが実行される
@@ -335,4 +335,4 @@ import { foo } from "./my-module.js";
 
 ウェブブラウザの環境では、インポートされるモジュールの取得はネットワーク経由で解決されます。
 そのため、モジュール名はJavaScriptファイルの絶対URLあるいは相対URLを指定します。
-詳しくは「\hyperlink{todo-app}{ユースケース: Todoアプリ}」を参照してください。
+詳しくは「\hyperlink{todo-app}{ユースケース: Todoアプリケーション}」を参照してください。

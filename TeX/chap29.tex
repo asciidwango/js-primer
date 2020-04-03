@@ -8,13 +8,13 @@
 このセクションではユースケースの学習へ進むために必要なアプリケーション開発環境の準備を行います。
 
 \hypertarget{install-nodejs}{%
-\section{Node.jsのインストール}\label{install-nodejs}}
+\section{Node.jsのインストール}\label{install-nodejs}}\index{Node.js}
 
 \href{https://nodejs.org/ja/}{Node.js}はサーバーサイドJavaScript実行環境のひとつで、次のような特徴があります。
 
 \begin{itemize}
 \item
-  ウェブブラウザのChromeと同じ\href{https://developers.google.com/v8/}{V8}
+  ウェブブラウザのChromeと同じ\href{https://developers.google.com/v8/}{V8}\index{V8}
   JavaScriptエンジンで動作する
 \item
   オープンソースで開発されている
@@ -23,21 +23,21 @@
 \end{itemize}
 
 Node.jsはサーバーサイドで使うために開発されました。
-しかし今ではコマンドラインツールや\href{http://electron.atom.io/}{Electron}などのデスクトップアプリケーションにも利用されています。
+しかし今ではコマンドラインツールや\href{http://electron.atom.io/}{Electron}\index{Electron}などのデスクトップアプリケーションにも利用されています。
 そのため、Node.jsはサーバーサイドに限らずクライアントサイドのJavaScript実行環境としても幅広く使われています。
 
 Node.jsは多くの他のプログラミング言語と同じように、実行環境をマシンにインストールすることで使用できます。
 公式の\href{https://nodejs.org/ja/download/}{ダウンロードページ}\footnote{\url{https://nodejs.org/ja/download/}}から、開発用のマシンに合わせたインストーラをダウンロードして、インストールしましょう。
 
 Node.jsには\textbf{LTS（Long-Term
-Support）}版と最新版の2つのリリース版があります。 \textbf{LTS（Long-Term
+Support）}版\index{LTSばん@LTS版}\index{Node.js!LTSばん@LTS版}と最新版の2つのリリース版があります。 \textbf{LTS（Long-Term
 Support）}版は2年間のメンテナンスとサポートが宣言されたバージョンです。
 具体的には、後方互換性を壊さない範囲でのアップデートと、継続的なセキュリティパッチの提供が行われます。
 一方で、最新版はNode.jsの最新の機能を使用できますが、常に最新のバージョンしかメンテナンスされません。
 ほとんどのユーザーは、LTS版を用いることが推奨されます。Node.jsでの開発が初めてであれば、迷わずにLTS版のインストーラをダウンロードしましょう。
 この章では執筆時点の最新LTS版であるバージョン12.13.0で動作するように開発します。
 
-インストールが完了すると、コマンドラインで\texttt{node}コマンドが使用可能になっているはずです。
+インストールが完了すると、コマンドラインで\texttt{node}\index{node@\texttt{node}}コマンドが使用可能になっているはずです。
 次のコマンドを実行して、インストールされたNode.jsのバージョンを確認しましょう
 （\texttt{\$}はコマンドラインの入力欄を表す記号であるため、実際に入力する必要はありません）。
 
@@ -46,8 +46,8 @@ $ node -v
 v12.13.0
 \end{lstlisting}
 
-また、Node.jsには\href{https://www.npmjs.com/}{npm}\footnote{\url{https://www.npmjs.com/}}というパッケージマネージャーが同梱されています。
-Node.jsをインストールすると、\texttt{node}コマンドだけでなくnpmを扱うための\texttt{npm}コマンドも使えるようになっています。
+また、Node.jsには\href{https://www.npmjs.com/}{npm}\index{npm}\footnote{\url{https://www.npmjs.com/}}というパッケージマネージャーが同梱されています。
+Node.jsをインストールすると、\texttt{node}コマンドだけでなくnpmを扱うための\texttt{npm}\index{npm@\texttt{npm}}コマンドも使えるようになっています。
 次のコマンドを実行して、インストールされたnpmのバージョンを確認しましょう。
 
 \begin{lstlisting}
@@ -63,7 +63,7 @@ Node.jsのライブラリのほとんどはnpmを使ってインストールで�
 \section{npxコマンドによるnpmパッケージの実行}\label{npx-execution}}
 
 Node.jsを使ったコマンドラインツールは数多く公開されており、npmでインストールすることによりコマンドとして実行できるようになります。
-ところで、Node.jsのインストールにより、\href{https://blog.npmjs.org/post/162869356040/introducing-npx-an-npm-package-runner}{npx}というコマンドも使えるようになっています。
+ところで、Node.jsのインストールにより、\href{https://blog.npmjs.org/post/162869356040/introducing-npx-an-npm-package-runner}{\texttt{npx}}\index{npx@\texttt{npx}}というコマンドも使えるようになっています。
 \texttt{npx}コマンドを使うと、npmで公開されている実行可能なパッケージのインストールと実行をまとめてできます。
 この後のユースケースでも\texttt{npx}コマンドでツールを利用するため、ここでツールの実行を試してみましょう。
 
@@ -79,11 +79,11 @@ Hello World!
 
 このように、\texttt{npx}コマンドを使うことによりnpmで公開されているコマンドラインツールを簡単に実行できます。
 
-\begin{tcolorbox}[title=コマンドラインツールのインストールと実行]\label{command-line-tools-installation}
+\begin{tcolorbox}[title=コマンドラインツールのインストールと実行]\label{command-line-tools-installation}\index{こまんどらいんつーる@コマンドラインツール}
 
 npmで公開されているコマンドラインツールを実行する方法は\texttt{npx}コマンドだけではありません。
 \texttt{npm install}コマンドを使ってパッケージをインストールし、インストールされたパッケージのコマンドを実行する方法があります。
-通常の\texttt{npm install}コマンドは実行したカレントディレクトリにパッケージをインストールしますが、\texttt{-\/-global}フラグを加えるとパッケージをグローバルインストールします。
+通常の\texttt{npm install}コマンドは実行したカレントディレクトリにパッケージをインストールしますが、\texttt{-\/-global}\index{--global@\texttt{-\/-global}}フラグを加えるとパッケージをグローバルインストールします。
 グローバルインストールされたパッケージのコマンドは、\texttt{node}コマンドや\texttt{npm}コマンドと同じように、任意の場所から実行できます。
 
 次の例では\texttt{@js-primer/hello-world}パッケージをグローバルインストールしています。
@@ -97,25 +97,25 @@ Hello World!
 \end{tcolorbox}
 
 \hypertarget{local-server}{%
-\section{ローカルサーバーのセットアップ}\label{local-server}}
+\section{ローカルサーバーのセットアップ}\label{local-server}}\index{ろーかるさーばー@ローカルサーバー}
 
 「\hyperlink{read-eval-print}{値の評価と表示}」の章では、\texttt{index.html}と\texttt{index.js}というファイルを作成してブラウザで表示していました。
 このときローカルに作成したHTMLファイルをそのままブラウザで読み込むと、ブラウザのアドレスバーは\texttt{file:///}からはじまるURLになります。
-\texttt{file}スキーマでは\href{https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy}{Same Origin
-Policy}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy}}というセキュリティ的な制限により、多くの場面でアプリケーションは正しく動作しません。
+\texttt{file}スキーマ\index{fileすきーま@\texttt{file}スキーマ}では\href{https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy}{Same Origin
+Policy}\index{Same Origin Policy}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy}}というセキュリティ的な制限により、多くの場面でアプリケーションは正しく動作しません。
 
 これからユースケースの章で書いていくアプリケーションは、\href{https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy}{Same Origin
-Policy}の制限を避けるために、\texttt{http}スキーマのURLでアクセスすることを前提としています。
+Policy}の制限を避けるために、\texttt{http}スキーマ\index{httpすきーま@\texttt{http}スキーマ}のURLでアクセスすることを前提としています。
 開発用のローカルサーバーを使うことで、ローカルに作成したHTMLファイルも\texttt{http}スキーマのURLで表示できます。
 
 ここでは、これからのユースケースで利用する開発用のローカルサーバーをセットアップする方法を見ていきます。
 
 \hypertarget{preparing-html}{%
-\subsection{HTMLファイルの用意}\label{preparing-html}}
+\subsection{HTMLファイルの用意}\label{preparing-html}}\index{HTMLふぁいる@HTMLファイル}
 
 まずは最低限の要素だけを配置したHTMLファイルを作成しましょう。
 ここでは\texttt{index.html}というファイル名で作成し、HTMLファイル内には次のように記述しています。
-このHTMLファイルでは\texttt{script}要素を使って\texttt{index.js}というファイル名のJavaScriptファイルを読み込んでいます。
+このHTMLファイルでは\texttt{script}\index{script@\texttt{script}}要素を使って\texttt{index.js}というファイル名のJavaScriptファイルを読み込んでいます。
 
 \begin{listtitle}
 index.html
@@ -146,7 +146,7 @@ console.log("index.js: loaded");
 \listend
 
 \hypertarget{open-js-primer-local-server}{%
-\subsection{ローカルサーバーを起動する}\label{open-js-primer-local-server}}
+\subsection{ローカルサーバーを起動する}\label{open-js-primer-local-server}}\index{ろーかるさーばー@ローカルサーバー!きどう@起動}
 
 先ほど作成した\texttt{index.html}と同じディレクトリで、ローカルサーバーを起動します。
 次のコマンドでは、\texttt{@js-primer/local-server}というこの書籍用に作成されたローカルサーバーモジュールをダウンロードと同時に実行します。
@@ -173,7 +173,7 @@ js-primerのローカルサーバーを起動しました。
 \begin{figure}[h]
 \centering
 \includegraphics[width=120mm]{fig/index.png}
-\caption{ログが表示されているWebコンソール}
+\caption{ログが表示されているウェブコンソール}
 \end{figure}
 
 \texttt{index.html}にアクセスできたら、正しく\texttt{index.js}が読み込まれているかを確認してみましょう。
@@ -181,7 +181,7 @@ Console
 APIで出力したログを確認するには、ウェブブラウザの開発者ツールを開く必要があります。
 ほとんどのブラウザで開発者ツールが同梱されていますが、この書籍ではFirefoxを使って確認します。
 
-Firefoxの開発者ツールは次のいずれかの方法で開きます。
+Firefox\index{Firefox}の開発者ツール\index{かいはつしゃつーる@開発者ツール}は次のいずれかの方法で開きます。
 
 \begin{itemize}
 \item
@@ -196,15 +196,15 @@ Firefoxの開発者ツールは次のいずれかの方法で開きます。
 詳細は``\href{https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console}{ウェブコンソールを開く}''\footnote{\url{https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console}}を参照してください。
 
 \hypertarget{close-js-primer-local-server}{%
-\subsection{ローカルサーバーを終了する}\label{close-js-primer-local-server}}
+\subsection{ローカルサーバーを終了する}\label{close-js-primer-local-server}}\index{ろーかるさーばー@ローカルサーバー!しゅうりょう@終了}
 
 最後に、起動したローカルサーバーを終了します。
 ローカルサーバーを起動したコマンドラインで、\keytop{Ctrl}+\keytop{C}を押下することで終了できます。
 
-複数のローカルサーバーを同時に起動することも可能ですが、複数のサーバーで同じポート番号を利用することはできません。
+複数のローカルサーバーを同時に起動することも可能ですが、複数のサーバーで同じポート番号\index{ぽーとばんごう@ポート番号}を利用することはできません。
 ポートとは、先ほど起動したローカルサーバーのURLで\texttt{:3000}となっていた部分のことで、これは3000番ポートでローカルサーバーを起動したことを意味しています。
 
-\texttt{@js-primer/local-server}は、デフォルトのポート（3000番ポート）がすでに使用されているなら、使われていないポートを探してローカルサーバーを起動します。また、\texttt{-\/-port}オプションで任意のポート番号でローカルサーバーを起動できます。
+\texttt{@js-primer/local-server}は、デフォルトのポート（3000番ポート）がすでに使用されているなら、使われていないポートを探してローカルサーバーを起動します。また、\texttt{-\/-port}\index{--port@\texttt{-\/-port}}オプションで任意のポート番号でローカルサーバーを起動できます。
 
 \begin{lstlisting}
 $ npx @js-primer/local-server --port 8000

@@ -1,5 +1,5 @@
 \hypertarget{json}{%
-\chapter{JSON}\label{json}}
+\chapter{JSON}\label{json}}\index{JSON}
 \thispagestyle{frontheadings}
 
 この章では、JavaScriptと密接な関係にあるJSONというデータフォーマットについて見ていきます。
@@ -37,12 +37,12 @@ JSONの細かい仕様に関しては\href{http://www.json.org/json-ja.html}{jso
 \section{\texorpdfstring{\texttt{JSON}オブジェクト}{JSONオブジェクト}}\label{json-object}}
 
 JavaScriptでJSONを扱うには、ビルトインオブジェクトである\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON}{JSONオブジェクト}を利用します。
-\texttt{JSON}オブジェクトはJSON形式の文字列とJavaScriptのオブジェクトを相互に変換するための\texttt{parse}メソッドと\texttt{stringify}メソッドを提供します。
+\texttt{JSON}オブジェクトはJSON形式の文字列とJavaScriptのオブジェクトを相互に変換するための\texttt{parse}\index{parse@\texttt{parse}}メソッドと\texttt{stringify}\index{stringify@\texttt{stringify}}メソッドを提供します。
 
 \hypertarget{json-parse}{%
 \subsection{JSON文字列をオブジェクトに変換する}\label{json-parse}}
 
-\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse}{JSON.parseメソッド}は引数に与えられた文字列をJSONとしてパースし、その結果をJavaScriptのオブジェクトとして返す関数です。
+\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse}{\texttt{JSON.parse}\index{JSON.parse@\texttt{JSON.parse}}メソッド}は引数に与えられた文字列をJSONとしてパースし、その結果をJavaScriptのオブジェクトとして返す関数です。
 次のコードは簡単なJSON形式の文字列をJavaScriptのオブジェクトに変換する例です。
 
 \begin{lstlisting}
@@ -77,7 +77,7 @@ try {
 \hypertarget{json-format}{%
 \subsection{オブジェクトをJSON文字列に変換する}\label{json-format}}
 
-\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify}{JSON.stringifyメソッド}は第一引数に与えられたオブジェクトをJSON形式の文字列に変換して返す関数です。
+\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify}{\texttt{JSON.stringify}\index{JSON.stringify@\texttt{JSON.stringify}}メソッド}は第一引数に与えられたオブジェクトをJSON形式の文字列に変換して返す関数です。
 HTTP通信でサーバーにデータを送信するときや、
 アプリケーションが保持している状態を外部に保存するときなどに必要になります。
 次のコードはJavaScriptのオブジェクトをJSON形式の文字列に変換する例です。
@@ -88,7 +88,7 @@ console.log(JSON.stringify(obj)); // => '{"id":1,"name":"js-primer","bio":null}'
 \end{lstlisting}
 
 \texttt{JSON.stringify}メソッドにはオプショナルな引数が2つあります。
-第二引数はreplacer引数とも呼ばれ、関数あるいは配列を渡せます。
+第二引数はreplacer引数\index{replacerひきすう@replacer引数}とも呼ばれ、関数あるいは配列を渡せます。
 関数を渡した場合は引数にプロパティのキーと値が渡され、その返り値によって文字列に変換される際の挙動をコントロールできます。
 次の例は値がnullであるプロパティを除外してJSONに変換するreplacer引数の例です。
 replacer引数の関数で\texttt{undefined}が返されたプロパティは、変換後のJSONに含まれなくなります。
@@ -113,7 +113,7 @@ const replacer = ["id", "name"];
 console.log(JSON.stringify(obj, replacer)); // => '{"id":1,"name":"js-primer"}'
 \end{lstlisting}
 
-第三引数はspace引数とも呼ばれ、変換後のJSON形式の文字列を読みやすくフォーマットする際のインデントを設定できます。
+第三引数はspace引数\index{spaceひきすう@space引数}とも呼ばれ、変換後のJSON形式の文字列を読みやすくフォーマットする際のインデントを設定できます。
 数値を渡すとその数値分の長さのスペースで、文字列を渡すとその文字列でインデントされます。
 次のコードはスペース2個でインデントされたJSONを得る例です。
 
@@ -143,7 +143,7 @@ console.log(JSON.stringify(obj, null, "\t"));
 \end{lstlisting}
 
 \hypertarget{not-serialization-object}{%
-\section{JSONにシリアライズできないオブジェクト}\label{not-serialization-object}}
+\section{JSONにシリアライズできないオブジェクト}\label{not-serialization-object}}\index{JSON!しりあらいず@シリアライズ}\index{しりあらいず@シリアライズ}
 
 \texttt{JSON.stringify}メソッドはJSONで表現可能な値だけをシリアライズします。
 そのため、値が関数や\texttt{Symbol}、あるいは\texttt{undefined}であるプロパティなどは変換されません。
@@ -153,7 +153,7 @@ console.log(JSON.stringify(obj, null, "\t"));
 
 \begin{small}
 \begin{longtable}[l]{p{70mm}|p{70mm}}
-\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}{\textgt シリアライズ前の値} & {\textgt シリアライズ後の値}\tabularnewline
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}\textgt{シリアライズ前の値} & \textgt{シリアライズ後の値}\tabularnewline
 \hline
 \endhead
 文字列・数値・真偽値 & 対応する値\tabularnewline
@@ -208,7 +208,7 @@ try {
 \end{lstlisting}
 
 \hypertarget{serialization-by-toJSON}{%
-\section{\texorpdfstring{\texttt{toJSON}メソッドを使ったシリアライズ}{toJSONメソッドを使ったシリアライズ}}\label{serialization-by-toJSON}}
+\section{\texorpdfstring{\texttt{toJSON}メソッドを使ったシリアライズ}{toJSONメソッドを使ったシリアライズ}}\label{serialization-by-toJSON}}\index{toJSON@\texttt{toJSON}}\index{しりあらいず@シリアライズ}
 
 オブジェクトが\texttt{toJSON}メソッドを持っている場合、\texttt{JSON.stringify}メソッドは既定の文字列変換ではなく\texttt{toJSON}メソッドの返り値を使います。
 次の例のように、引数に直接渡されたときだけでなく引数のプロパティとして登場したときにも再帰的に処理されます。

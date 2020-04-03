@@ -1,5 +1,5 @@
 \hypertarget{usecase-ajax}{%
-\chapter{ユースケース: Ajax通信}\label{usecase-ajax}}
+\chapter{ユースケース: Ajax通信}\label{usecase-ajax}}\index{Ajax}
 \thispagestyle{frontheadings}
 
 ここではウェブブラウザ上でAjax通信をするユースケースとして、GitHubのユーザーIDからプロフィール情報を取得するアプリケーションを作成します。
@@ -16,7 +16,7 @@
 \end{itemize}
 
 \hypertarget{entrypoint}{%
-\section{エントリーポイント}\label{entrypoint}}
+\section{エントリーポイント}\label{entrypoint}}\index{えんとりーぽいんと@エントリーポイント}
 
 エントリーポイントとは、アプリケーションの中で一番最初に呼び出される部分のことです。
 アプリケーションを作成するにあたり、まずはエントリーポイントを用意しなければなりません。
@@ -33,7 +33,7 @@
 ここでは \texttt{ajaxapp}
 という名前で新しいディレクトリを作成します。ここからは作成した\texttt{ajaxapp}ディレクトリ以下で作業していきます。
 
-またこのプロジェクトで作成するファイルは、必ず文字コード（エンコーディング）を\textbf{UTF-8}、改行コードを\textbf{LF}にしてファイルを保存します。
+またこのプロジェクトで作成するファイルは、必ず文字コード\index{もじこーど@文字コード}（エンコーディング\index{えんこーでぃんぐ@エンコーディング}）を\textbf{UTF-8}\index{UTF-8}、改行コード\index{かいぎょうこーど@改行コード}を\textbf{LF}\index{LF}にしてファイルを保存します。
 
 \hypertarget{preparing-html}{%
 \subsection{HTMLファイルの用意}\label{preparing-html}}
@@ -101,7 +101,7 @@ $ npx @js-primer/local-server
 Console
 APIで出力したログを確認するには、ウェブブラウザの開発者ツールを開く必要があります。
 ほとんどのブラウザで開発者ツールが同梱されていますが、本章ではFirefoxを使って確認します。
-Firefoxの開発者ツールは次のいずれかの方法で開きます。
+Firefox\index{Firefox}の開発者ツール\index{かいはつしゃつーる@開発者ツール}は次のいずれかの方法で開きます。
 
 \begin{itemize}
 \item
@@ -122,16 +122,16 @@ Firefoxの開発者ツールは次のいずれかの方法で開きます。
 \end{figure}
 
 \hypertarget{web-browsers-and-dom}{%
-\subsection{ウェブブラウザとDOM}\label{web-browsers-and-dom}}
+\subsection{ウェブブラウザとDOM}\label{web-browsers-and-dom}}\index{うぇぶぶらうざ@ウェブブラウザ}
 
 HTMLドキュメントをブラウザで読み込むとき、\href{https://developer.mozilla.org/ja/docs/Web/API/Document_Object_Model/Introduction}{DOM}と呼ばれるプログラミング用のデータ表現が生成されます。
 \textbf{DOM（Document Object Model）}
-とは、HTMLドキュメントのコンテンツと構造をJavaScriptから操作できるオブジェクトです。
+\index{DOM}とは、HTMLドキュメントのコンテンツと構造をJavaScriptから操作できるオブジェクトです。
 DOMではHTMLドキュメントのタグの入れ子関係を木構造で表現するため、DOMが表現するHTMLタグの木構造を
-\textbf{DOMツリー} と呼びます。
+\textbf{\textgt{DOMツリー}}\index{DOMつりー@DOMツリー}と呼びます。
 
 たとえば、DOMにはHTMLドキュメントそのものを表現する
-\texttt{document} グローバルオブジェクトがあります。
+\texttt{document}\index{document@\texttt{document}}グローバルオブジェクトがあります。
 \texttt{document}
 グローバルオブジェクトには、指定したHTML要素を取得したり、新しくHTML要素を作成するメソッドが実装されています。
 \texttt{document}
@@ -179,27 +179,27 @@ JavaScriptとDOMはウェブアプリケーション開発において切って�
 \end{itemize}
 
 \hypertarget{http-communication}{%
-\section{HTTP通信}\label{http-communication}}
+\section{HTTP通信}\label{http-communication}}\index{HTTP}
 
-ローカルサーバーでアプリケーションが実行できるようになったので、次はGitHubのAPIを呼び出す処理を実装していきます。
+ローカルサーバーでアプリケーションが実行できるようになったので、次はGitHub\index{GitHub}のAPIを呼び出す処理を実装していきます。
 GitHubのAPIを呼び出すためにはHTTP通信をする必要があります。
 ウェブブラウザ上でJavaScriptからHTTP通信するために、\href{https://developer.mozilla.org/ja/docs/Web/API/Fetch_API}{Fetch
 API}という機能を使います。
 
 \hypertarget{fetch-api}{%
-\subsection{Fetch API}\label{fetch-api}}
+\subsection{Fetch API}\label{fetch-api}}\index{Fetch API}
 
 \textbf{Fetch API}はHTTP通信を行ってリソースを取得するためのAPIです。
 Fetch
 APIを使うことで、ページ全体を再読み込みすることなく指定したURLからデータを取得できます。
 Fetch
-APIは同じくHTTP通信を扱う\href{https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest}{XMLHttpRequest}と似たAPIですが、より強力で柔軟な操作が可能です。
+APIは同じくHTTP通信を扱う\href{https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest}{XMLHttpRequest}\index{XMLHttpRequest}と似たAPIですが、より強力で柔軟な操作が可能です。
 
-リクエストを送信するためには、\texttt{fetch}メソッドを利用します。
+リクエストを送信するためには、\texttt{fetch}\index{\texttt{fetch}}メソッドを利用します。
 \texttt{fetch}メソッドにURLを与えることで、HTTPリクエストが作成され、サーバーとのHTTP通信を開始します。
 
 GitHubにはユーザー情報を取得するAPIとして、\texttt{https://api.github.com/users/GitHubユーザーID}というURLが用意されています。
-GitHubのユーザーIDには、英数字と\texttt{-}（ハイフン）以外は利用できないため、ユーザーIDは\texttt{encodeURIComponent}関数を使ってエスケープしたものを結合します。\texttt{encodeURIComponent}は\texttt{/}や\texttt{\%}などURLとして特殊な意味を持つ文字列をただの文字列として扱えるようにエスケープする関数です。
+GitHubのユーザーIDには、英数字と\texttt{-}（ハイフン）以外は利用できないため、ユーザーIDは\texttt{encodeURIComponent}関数を使ってエスケープしたものを結合します。\texttt{encodeURIComponent}\index{encodeURIComponent@\texttt{encodeURIComponent}}は\texttt{/}や\texttt{\%}などURLとして特殊な意味を持つ文字列をただの文字列として扱えるようにエスケープする関数です。
 
 次のコードでは、指定したGitHubユーザーIDの情報を取得するURLに対して\texttt{fetch}メソッドで、GETのHTTPリクエストを行っています。
 
@@ -209,16 +209,16 @@ fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`);
 \end{lstlisting}
 
 \hypertarget{receive-response}{%
-\subsection{レスポンスの受け取り}\label{receive-response}}
+\subsection{レスポンスの受け取り}\label{receive-response}}\index{れすぽんす@レスポンス}
 
 GitHubのAPIに対してHTTPリクエストを送信しましたが、まだレスポンスを受け取る処理を書いていません。
 次はサーバーから返却されたレスポンスのログをコンソールに出力する処理を実装します。
 
-\texttt{fetch}メソッドは\texttt{Promise}を返します。この\texttt{Promise}インスタンスはリクエストのレスポンスを表す\texttt{Response}オブジェクトでresolveされます。
+\texttt{fetch}メソッドは\texttt{Promise}を返します。この\texttt{Promise}インスタンスはリクエストのレスポンスを表す\texttt{Response}\index{Response@\texttt{Response}}オブジェクトでresolveされます。
 送信したリクエストにレスポンスが返却されると、\texttt{then}コールバックが呼び出されます。
 
-次のように、\texttt{Response}オブジェクトの\texttt{status}プロパティからは、HTTPレスポンスのステータスコードが取得できます。
-また、\texttt{Response}オブジェクトの\texttt{json}メソッドも\texttt{Promise}を返します。これは、HTTPレスポンスボディをJSONとしてパースしたオブジェクトでresolveされます。
+次のように、\texttt{Response}オブジェクトの\texttt{status}\index{status@\texttt{status}}プロパティからは、HTTPレスポンスのステータスコードが取得できます。
+また、\texttt{Response}オブジェクトの\texttt{json}\index{json@\texttt{json}}メソッドも\texttt{Promise}を返します。これは、HTTPレスポンスボディをJSONとしてパースしたオブジェクトでresolveされます。
 ここでは、書籍用に用意した\texttt{js-primer-example}というGitHubアカウントのユーザー情報を取得しています。
 
 \begin{lstlisting}
@@ -234,11 +234,11 @@ fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
 \end{lstlisting}
 
 \hypertarget{error-handling}{%
-\subsection{エラーハンドリング}\label{error-handling}}
+\subsection{エラーハンドリング}\label{error-handling}}\index{えらーはんどりんぐ@エラーハンドリング}
 
 HTTP通信にはエラーがつきものです。 そのためFetch
 APIを使った通信においても、エラーをハンドリングする必要があります。
-たとえば、サーバーとの通信に際してネットワークエラーが発生した場合は、ネットワークエラーを表す\texttt{NetworkError}オブジェクトでrejectされた\texttt{Promise}が返されます。
+たとえば、サーバーとの通信に際してネットワークエラーが発生した場合は、ネットワークエラーを表す\texttt{NetworkError}\index{NetworkError@\texttt{NetworkError}}オブジェクトでrejectされた\texttt{Promise}が返されます。
 すなわち、\texttt{then}メソッドの第二引数か\texttt{catch}メソッドのコールバック関数が呼び出されます。
 
 \begin{lstlisting}
@@ -256,7 +256,7 @@ fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
 
 一方で、リクエストが成功したかどうかは\texttt{Response}オブジェクトの\texttt{ok}プロパティで認識できます。
 \texttt{ok}プロパティは、HTTPステータスコードが200番台であれば\texttt{true}を返し、それ以外の400や500番台などなら\texttt{false}を返します。
-次のように、\texttt{ok}プロパティが\texttt{false}となるエラーレスポンスをハンドリングできます。
+次のように、\texttt{ok}\index{ok@\texttt{ok}}プロパティが\texttt{false}となるエラーレスポンスをハンドリングできます。
 
 \begin{lstlisting}
 const userId = "js-primer-example";
@@ -338,7 +338,7 @@ index.jsでは関数を定義しているだけで、呼び出しは行ってい
 \caption{開発者ツールでHTTP通信の記録を確認する}
 \end{figure}
 
-\begin{tcolorbox}[title=XMLHttpRequest]\label{xhr}
+\begin{tcolorbox}[title=XMLHttpRequest]\label{xhr}\index{XMLHttpRequest}
 
 \href{https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest}{XMLHttpRequest}（\textbf{XHR}）はFetch
 APIと同じくHTTP通信を行うためのAPIです。 Fetch
@@ -401,9 +401,9 @@ APIを使ってGitHubのAPIからユーザー情報を取得しました。
 このセクションでは取得したデータをHTMLに整形して、アプリケーションにユーザー情報を表示してみましょう。
 
 \hypertarget{markup-html}{%
-\subsection{HTMLを組み立てる}\label{markup-html}}
+\subsection{HTMLを組み立てる}\label{markup-html}}\index{HTML!せいせい@生成}
 
-HTML文字列の生成にはテンプレートリテラルを使います。
+HTML文字列の生成にはテンプレートリテラル\index{てんぷれーとりてらる@テンプレートリテラル}を使います。
 テンプレートリテラルは文字列中の改行が可能なため、HTMLのインデントを表現できて見通しが良くなります。
 また、変数の埋め込みも簡単なため、HTMLのテンプレートに対して動的なデータをあてはめるのに適しています。
 
@@ -437,7 +437,7 @@ const view = `
 \end{lstlisting}
 
 \hypertarget{html-to-dom}{%
-\subsection{HTML文字列をDOMに追加する}\label{html-to-dom}}
+\subsection{HTML文字列をDOMに追加する}\label{html-to-dom}}\index{DOM!ついか@追加}
 
 次に、生成したHTML文字列をDOMツリーに追加して表示します。
 まずは動的にHTMLをセットするために、目印となる要素を\texttt{index.html}に追加します。
@@ -466,8 +466,8 @@ index.html
 \listend
 
 ここから、\texttt{div\#result}要素の子要素としてHTML文字列を挿入することになります。
-\href{https://developer.mozilla.org/ja/docs/Web/API/Document/getElementById}{\texttt document.getElementById}メソッドを使い、id属性が設定された要素にアクセスします。
-\texttt{div\#result}要素が取得できたら、先ほど生成したHTML文字列を\texttt{innerHTML}プロパティにセットします。
+\href{https://developer.mozilla.org/ja/docs/Web/API/Document/getElementById}\texttt{document.getElementById}\index{document.getElementById@\texttt{document.getElementById}}メソッドを使い、id属性が設定された要素にアクセスします。
+\texttt{div\#result}要素が取得できたら、先ほど生成したHTML文字列を\texttt{innerHTML}\index{innerHTML@\texttt{innerHTML}}プロパティにセットします。
 
 \begin{lstlisting}
 const result = document.getElementById("result");
@@ -475,13 +475,13 @@ result.innerHTML = view;
 \end{lstlisting}
 
 JavaScriptによってHTML要素をDOMに追加する方法には、大きく分けて２つあります。
-1つは、今回のようにHTML文字列を\href{https://developer.mozilla.org/ja/docs/Web/API/Element/innerHTML}{\texttt Element\#innerHTML}プロパティにセットする方法です。
-もう1つは、文字列ではなく\href{https://developer.mozilla.org/ja/docs/Web/API/Element}{\texttt Element}オブジェクトを生成して\href{https://developer.mozilla.org/ja/docs/Web/API/Node/appendChild}{手続き的にツリー構造を構築する}方法です。
+1つは、今回のようにHTML文字列を\href{https://developer.mozilla.org/ja/docs/Web/API/Element/innerHTML}\texttt{Element\#innerHTML}\index{Element\#innerHTML@\texttt{Element\#innerHTML}}プロパティにセットする方法です。
+もう1つは、文字列ではなく\href{https://developer.mozilla.org/ja/docs/Web/API/Element}\texttt{Element}\index{Element@\texttt{Element}}オブジェクトを生成して\href{https://developer.mozilla.org/ja/docs/Web/API/Node/appendChild}{手続き的にツリー構造を構築する}方法です。
 後者はセキュリティ的に安全ですが、コードは少し冗長になります。
 今回は\texttt{Element\#innerHTML}プロパティを使いつつ、セキュリティのためのエスケープ処理を行います。
 
 \hypertarget{escape-html}{%
-\subsection{HTML文字列をエスケープする}\label{escape-html}}
+\subsection{HTML文字列をエスケープする}\label{escape-html}}\index{HTML!えすけーぷ@エスケープ}
 
 \texttt{Element\#innerHTML}に文字列をセットすると、その文字列はHTMLとして解釈されます。
 たとえばGitHubのユーザー名に\texttt{<}記号や\texttt{>}記号が含まれていると、意図しない構造のHTMLになる可能性があります。
@@ -507,10 +507,10 @@ function escapeSpecialChars(str) {
 
 この\texttt{escapeSpecialChars}関数を、HTML文字列の中で\texttt{userInfo}から値を注入しているすべての箇所で行います。
 ただし、テンプレートリテラル中で挿入している部分すべてに関数を適用するのは手間ですし、メンテナンス性もよくありません。
-そこで、\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/template_strings\#タグづけされたTemplate_literal}{テンプレートリテラルをタグづけ}することで、明示的にエスケープ用の関数を呼び出す必要がないようにします。
+そこで、\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/template_strings\#タグづけされたTemplate_literal}{テンプレートリテラルをタグづけ}\index{たぐづけ@タグづけ}\index{てんぷれーとりてらる@テンプレートリテラル!たぐづけ@タグづけ}することで、明示的にエスケープ用の関数を呼び出す必要がないようにします。
 タグづけされたテンプレートリテラルは、テンプレートによる値の埋め込みを関数の呼び出しとして扱えます。
 
-次の\texttt{escapeHTML}関数はテンプレートリテラルにタグづけするための\textbf{タグ関数}です。
+次の\texttt{escapeHTML}関数はテンプレートリテラルにタグづけするための\textbf{\textgt{タグ関数}}\index{たぐかんすう@タグ関数}です。
 タグ関数には、第一引数に文字列リテラルの配列、第二引数に埋め込まれる値の配列が与えられます。
 \texttt{escapeHTML}関数では、文字列リテラルと値が元の順番どおりに並ぶように文字列を組み立てつつ、
 値が文字列型であればエスケープするようにしています。
@@ -652,7 +652,7 @@ index.html
 \end{itemize}
 
 \hypertarget{use-promise}{%
-\section{Promiseを活用する}\label{use-promise}}
+\section{Promiseを活用する}\label{use-promise}}\index{Promise}
 
 ここまでのセクションで、Fetch
 APIを使ってAjax通信を行い、サーバーから取得したデータを表示できました。
@@ -738,17 +738,17 @@ index.html
 \listend
 
 \hypertarget{error-handling}{%
-\subsection{Promiseのエラーハンドリング}\label{error-handling}}
+\subsection{Promiseのエラーハンドリング}\label{error-handling}}\index{Promise!えらーはんどりんぐ@エラーハンドリング}\index{えらーはんどりんぐ@エラーハンドリング}
 
 次に\texttt{fetchUserInfo}関数を変更し、Fetch
 APIの戻り値でもあるPromiseオブジェクトを\texttt{return}します。
 この変更によって、\texttt{fetchUserInfo}関数を呼び出す\texttt{main}関数のほうで非同期処理の結果を扱えるようになります。
-Promiseチェーンの中で投げられたエラーは、\texttt{Promise\#catch}メソッドを使って一箇所で受け取れます。
+Promiseチェーン\index{Promiseちぇーん@Promiseチェーン}の中で投げられたエラーは、\texttt{Promise\#catch}\index{Promise\#catch@\texttt{Promise\#catch}}メソッドを使って一箇所で受け取れます。
 
 次のコードでは、\texttt{fetchUserInfo}関数から返されたPromiseオブジェクトを、\texttt{main}関数でエラーハンドリングしてログを出力します。
-\texttt{fetchUserInfo}関数の\texttt{catch}メソッドでハンドリングしていたエラーは、\texttt{main}関数の\texttt{catch}メソッドでハンドリングされます。
-一方、\texttt{Response\#ok}で判定していた400や500などのエラーレスポンスがそのままでは\texttt{main}関数でハンドリングできません。
-そこで、\texttt{Promise.reject}メソッドを使ってRejectedなPromiseを返し、Promiseチェーンをエラーの状態にします。
+\texttt{fetchUserInfo}関数の\texttt{catch}\index{catch@\texttt{catch}}メソッドでハンドリングしていたエラーは、\texttt{main}関数の\texttt{catch}メソッドでハンドリングされます。
+一方、\texttt{Response\#ok}\index{Response\#ok@\texttt{Response\#ok}}で判定していた400や500などのエラーレスポンス\index{えらーれすぽんす@エラーレスポンス}がそのままでは\texttt{main}関数でハンドリングできません。
+そこで、\texttt{Promise.reject}\index{Promise.reject@\texttt{Promise.reject}}メソッドを使ってRejectedなPromiseを返し、Promiseチェーンをエラーの状態にします。
 Promiseチェーンがエラーとなるため、\texttt{main}関数の\texttt{catch}でハンドリングできます。
 
 \begin{lstlisting}
@@ -781,17 +781,17 @@ function fetchUserInfo(userId) {
 \end{lstlisting}
 
 \hypertarget{refactor-promise-chain}{%
-\subsubsection{Promiseチェーンのリファクタリング}\label{refactor-promise-chain}}
+\subsubsection{Promiseチェーンのリファクタリング}\label{refactor-promise-chain}}\index{りふぁくたりんぐ@リファクタリング}
 
 現在の\texttt{fetchUserInfo}関数はデータの取得に加えて、HTMLの組み立て（\texttt{createView}）と表示（\texttt{displayView}）も行っています。
 \texttt{fetchUserInfo}関数に処理が集中して見通しが悪いため、\texttt{fetchUserInfo}関数はデータの取得だけを行うように変更します。
 併せて\texttt{main}関数で、データの取得（\texttt{fetchUserInfo}）、HTMLの組み立て（\texttt{createView}）と表示（\texttt{displayView}）という一連の流れをPromiseチェーンで行うように変更していきます。
 
-\texttt{Promise\#then}メソッドでつながるPromiseチェーンは、\texttt{then}に渡されたコールバック関数の戻り値をそのまま次の\texttt{then}へ渡します。
+\texttt{Promise\#then}\index{Promise\#then@\texttt{Promise\#then}}メソッドでつながるPromiseチェーンは、\texttt{then}\index{then@\texttt{then}}に渡されたコールバック関数の戻り値をそのまま次の\texttt{then}へ渡します。
 ただし、コールバック関数の戻り値がPromiseである場合は、そのPromiseで解決された値を次の\texttt{then}に渡します。
 つまり、\texttt{then}のコールバック関数が同期処理から非同期処理に変わったとしても、次の\texttt{then}が受け取る値の型は変わらないということです。
 
-Promiseチェーンを使って処理を分割する利点は、同期処理と非同期処理を区別せずに連鎖できることです。
+Promiseチェーン\index{Promiseちぇーん@Promiseチェーン}を使って処理を分割する利点は、同期処理\index{どうきしょり@同期処理}と非同期処理\index{ひどうきしょり@非同期処理}を区別せずに連鎖できることです。
 一般に、同期的に書かれた処理を後から非同期処理へと変更するのは、全体を書き換える必要があるため難しいです。
 そのため、最初から処理を分けておき、処理を\texttt{then}を使ってつなぐことで、変更に強いコードを書けます。
 どのように処理を区切るかは、それぞれの関数が受け取る値の型と、返す値の型に注目するのがよいでしょう。
@@ -799,7 +799,7 @@ Promiseチェーンで処理を分けることで、それぞれの処理が簡�
 
 \texttt{index.js}の\texttt{fetchUserInfo}関数と\texttt{main}関数を次のように書き換えます。
 まず、\texttt{fetchUserInfo}関数が\texttt{Response\#json}メソッドの戻り値をそのまま返すように変更します。
-\texttt{Response\#json}メソッドの戻り値はJSONオブジェクトで解決されるPromiseなので、次の\texttt{then}ではユーザー情報のJSONオブジェクトが渡されます。
+\texttt{Response\#json}\index{Response\#json@\texttt{Response\#json}}メソッドの戻り値はJSONオブジェクトで解決されるPromiseなので、次の\texttt{then}ではユーザー情報のJSONオブジェクトが渡されます。
 次に、\texttt{main}関数が\texttt{fetchUserInfo}関数のPromiseチェーンで、HTMLの組み立て（\texttt{createView}）と表示（\texttt{displayView}）を行うように変更します。
 
 \begin{lstlisting}
@@ -831,7 +831,7 @@ function fetchUserInfo(userId) {
 
 \hypertarget{rewrite-to-async-function}{%
 \subsubsection{Async
-Functionへの置き換え}\label{rewrite-to-async-function}}
+Functionへの置き換え}\label{rewrite-to-async-function}}\index{Async Function}
 
 Promiseチェーンによって、Promiseの非同期処理と同じ見た目で同期処理を記述できるようになりました。
 さらにAsync
@@ -839,9 +839,9 @@ Functionを使うと、同期処理と同じ見た目でPromiseの非同期処�
 Promiseの\texttt{then}メソッドによるコールバック関数の入れ子がなくなり、手続き的で可読性が高いコードになります。
 また、エラーハンドリングも同期処理と同じく\texttt{try...catch}構文を使うことができます。
 
-\texttt{main}関数を次のように書き換えましょう。まず関数宣言の前に\texttt{async}をつけてAsync
+\texttt{main}関数を次のように書き換えましょう。まず関数宣言の前に\texttt{async}\index{async@\texttt{async}}をつけてAsync
 Functionにしています。
-次に\texttt{fetchUserInfo}関数の呼び出しに\texttt{await}をつけます。
+次に\texttt{fetchUserInfo}関数の呼び出しに\texttt{await}\index{await@\texttt{await}}をつけます。
 これによりPromiseに解決されたJSONオブジェクトを\texttt{userInfo}変数に代入できます。
 
 もし\texttt{fetchUserInfo}関数の中で例外が投げられた場合は、\texttt{try...catch}構文でエラーハンドリングできます。
@@ -864,7 +864,7 @@ async function main() {
 \subsection{ユーザーIDを変更できるようにする}\label{changeable-userid}}
 
 仕上げとして、今まで\texttt{js-primer-example}で固定としていたユーザーIDを変更できるようにしましょう。
-index.htmlに\texttt{<input>}タグを追加し、JavaScriptから値を取得するために\texttt{userId}というIDを付与しておきます。
+index.htmlに\texttt{<input>}\index{<input>@\texttt{<input>}}タグを追加し、JavaScriptから値を取得するために\texttt{userId}というIDを付与しておきます。
 
 \begin{listtitle}
 index.html
@@ -968,7 +968,7 @@ function escapeHTML(strings, ...values) {
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=120mm]{fig/fig-5.png}
+\includegraphics[width=60mm]{fig/fig-5.png}
 \caption{完成したアプリケーション}
 \end{figure}
 

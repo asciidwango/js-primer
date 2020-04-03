@@ -1,6 +1,6 @@
 \hypertarget{async-handling}{%
 \chapter[非同期処理: コールバック /Promise/Async Function]{非同期処理: コールバック\\ /Promise/Async
-Function}\label{async-handling}}
+Function}\label{async-handling}}\index{ひどうきしょり@非同期処理}\index{こーるばっく@コールバック}\index{Promise}\index{Async Function}
 \thispagestyle{frontheadings}
 
 この章ではJavaScriptの非同期処理について学んでいきます。
@@ -12,9 +12,9 @@ Functionと呼ばれる構文的なサポートがあります。
 この章では非同期処理とはどのようなものかという話から、非同期処理での例外処理、非同期処理の扱い方を見ていきます。
 
 \hypertarget{sync-processing}{%
-\section{同期処理}\label{sync-processing}}
+\section{同期処理}\label{sync-processing}}\index{どうきしょり@同期処理}
 
-多くのプログラミング言語にはコードの評価の仕方として、\textbf{\textgt{同期処理}}（sync）と\textbf{\textgt{非同期処理}}（async）という大きな分類があります。
+多くのプログラミング言語にはコードの評価の仕方として、\textbf{\textgt{同期処理}}（sync\index{sync}）と\textbf{\textgt{非同期処理}}（async\index{async}）という大きな分類があります。
 
 今まで書いていたコードは\textbf{\textgt{同期処理}}と呼ばれているものです。
 同期処理ではコードを順番に処理していき、ひとつの処理が終わるまで次の処理は行いません。
@@ -44,19 +44,19 @@ console.log("この行が呼ばれるまで処理が1秒間ブロックされる
 \end{lstlisting}
 
 同期的にブロックする処理があると、ブラウザでは大きな問題となります。
-なぜなら、JavaScriptは基本的にブラウザのメインスレッド（UIスレッドとも呼ばれる）で実行されるためです。
+なぜなら、JavaScriptは基本的にブラウザのメインスレッド\index{めいんすれっど@メインスレッド}（UIスレッド\index{UIすれっど@UIスレッド}とも呼ばれる）で実行されるためです。
 メインスレッドは表示の更新といったUIに関する処理も行っています。
 そのため、メインスレッドが他の処理で専有されると、表示が更新されなくなりフリーズしたようになります。
 
 先ほどの例では1秒間も処理をブロックしているため、1秒間スクロールなどの操作が効かないといった悪影響がでます。
 
 \hypertarget{async-processing}{%
-\section{非同期処理}\label{async-processing}}
+\section{非同期処理}\label{async-processing}}\index{ひどうきしょり@非同期処理}
 
 非同期処理はコードを順番に処理していきますが、ひとつの非同期処理が終わるのを待たずに次の処理を評価します。
 つまり、非同期処理では同時に実行している処理が複数あります。
 
-JavaScriptにおいて非同期処理の代表的な関数として\texttt{setTimeout}関数があります。
+JavaScriptにおいて非同期処理の代表的な関数として\texttt{setTimeout}\index{setTimeout@\texttt{setTimeout}}関数があります。
 \texttt{setTimeout}関数は\texttt{delay}ミリ秒後に、\texttt{コールバック関数}を呼び出すようにタイマーへ登録する非同期処理です。
 
 \begin{lstlisting}
@@ -106,10 +106,10 @@ console.log("2. 同期的な処理を実行します");
 このように、非同期処理（\texttt{setTimeout}のコールバック関数）は、コードの見た目上の並びとは異なる順番で実行されることがわかります。
 
 \hypertarget{async-and-main-thread}{%
-\section{非同期処理はメインスレッドで実行される}\label{async-and-main-thread}}
+\section{非同期処理はメインスレッドで実行される}\label{async-and-main-thread}}\index{めいんすれっど@メインスレッド}
 
 JavaScriptにおいて多くの非同期処理はメインスレッドで実行されます。
-メインスレッドはUIスレッドとも呼ばれ、重たいJavaScriptの処理はメインスレッドで実行する他の処理（画面の更新など）をブロックする問題について紹介しました（ECMAScriptの仕様として規定されているわけではないため、すべてがメインスレッドで実行されているわけではありません）。
+メインスレッドはUIスレッド\index{UIすれっど@UIスレッド}とも呼ばれ、重たいJavaScriptの処理はメインスレッドで実行する他の処理（画面の更新など）をブロックする問題について紹介しました（ECMAScriptの仕様として規定されているわけではないため、すべてがメインスレッドで実行されているわけではありません）。
 
 非同期処理は名前から考えるとメインスレッド以外で実行されるように見えますが、
 基本的には非同期処理も同期処理と同じようにメインスレッドで実行されます。
@@ -140,7 +140,8 @@ const startTime = Date.now();
 // 10ミリ秒後にコールバック関数を呼び出すようにタイマーに登録する
 setTimeout(() => {
     const endTime = Date.now();
-    console.log(`非同期処理のコールバックが呼ばれるまで${endTime - startTime}ミリ秒かかりました`);
+    console.log(`非同期処理のコールバックが呼ばれるまで${endTime - startTime}
+                 ミリ秒かかりました`);
 }, 10);
 console.log("ブロックする処理を開始します");
 blockTime(1000); // 1秒間処理をブロックする
@@ -150,35 +151,35 @@ console.log("ブロックする処理が完了しました");
 多くの環境では、このときの非同期処理のコールバックが呼ばれるまでは1000ミリ秒以上かかります。
 このように\textbf{\textgt{非同期処理}}も\textbf{\textgt{同期処理}}の影響を受けることから、同じスレッドで実行されていることがわかります。
 
-JavaScriptでは一部の例外を除き非同期処理が\textbf{\textgt{並行処理}}（concurrent）として扱われます。
+JavaScriptでは一部の例外を除き非同期処理が\textbf{\textgt{並行処理}}\index{へいこうしょり@並行処理}（concurrent\index{concurrent}）として扱われます。
 並行処理とは、処理を一定の単位ごとに分けて処理を切り替えながら実行することです。
 そのため非同期処理の実行中にとても重たい処理があると、非同期処理の切り替えが遅れるという現象を引き起こします。
 
 このようにJavaScriptの非同期処理も基本的には1つのメインスレッドで処理されています。
 これは\texttt{setTimeout}関数のコールバック関数から外側のスコープのデータへのアクセス方法に制限がないことからもわかります。
-もし非同期処理が別スレッドで行われるならば、自由なデータへのアクセスは競合状態（レースコンディション）を引き起こしてしまうためです。
+もし非同期処理が別スレッドで行われるならば、自由なデータへのアクセスは競合状態\index{きょうごうじょうたい@競合状態}（レースコンディション\index{れーすこんでぃしょん@レースコンディション}）を引き起こしてしまうためです。
 
 ただし、非同期処理の中にもメインスレッドとは別のスレッドで実行できるAPIが実行環境によっては存在します。
 たとえばブラウザでは\href{https://developer.mozilla.org/ja/docs/Web/API/Web_Workers_API/Using_web_workers}{Web
-Worker} APIを使い、メインスレッド以外でJavaScriptを実行できます。
-このWeb Workerにおける非同期処理は\textbf{\textgt{並列処理}}（Parallel）です。
+Worker}\index{Web Worker} APIを使い、メインスレッド以外でJavaScriptを実行できます。
+このWeb Workerにおける非同期処理は\textbf{\textgt{並列処理}}\index{へいれつしょり@並列処理}（Parallel\index{Parallel}）です。
 並列処理とは、排他的に複数の処理を同時に実行することです。
 
 Web
-Workerではメインスレッドとは異なるWorkerスレッドで実行されるため、メインスレッドはWorkerスレッドの同期的にブロックする処理の影響を受けにくくなります。
+Workerではメインスレッドとは異なるWorker\index{Worker}スレッドで実行されるため、メインスレッドはWorkerスレッドの同期的にブロックする処理の影響を受けにくくなります。
 ただし、Web
-Workerとメインスレッドでのデータのやり取りには\texttt{postMessage}というメソッドを利用する必要があります。
+Workerとメインスレッドでのデータのやり取りには\texttt{postMessage}\index{postMessage@\texttt{postMessage}}というメソッドを利用する必要があります。
 そのため、\texttt{setTimeout}関数のコールバック関数とは異なりデータへのアクセス方法にも制限がつきます。
 
 非同期処理のすべてをひとくくりにはできませんが、基本的な非同期処理（タイマーなど）はメインスレッドで実行されているという性質を知ることは大切です。JavaScriptの大部分の\textbf{\textgt{非同期処理}}は\textbf{\textgt{非同期的なタイミングで実行される処理}}であると理解しておく必要があります。
 
 \hypertarget{async-processing-and-error-handling}{%
-\section{非同期処理と例外処理}\label{async-processing-and-error-handling}}
+\section{非同期処理と例外処理}\label{async-processing-and-error-handling}}\index{ひどうきしょり@非同期処理!れいがいしょり@例外処理}\index{れいがいしょり@例外処理}
 
 非同期処理は処理の流れが同期処理とは異なることについて紹介しました。
 これは非同期処理における\textbf{\textgt{例外処理}}においても大きな影響を与えます。
 
-同期処理では、\texttt{try...catch}構文を使うことで同期的に発生した例外がキャッチできます（詳細は「\hyperlink{error-handling}{例外処理}」の章を参照）。
+同期処理では、\texttt{try...catch}構文\index{try...catchこうぶん@\texttt{try...catch}構文}を使うことで同期的に発生した例外がキャッチできます（詳細は「\hyperlink{error-handling}{例外処理}」の章を参照）。
 
 \begin{lstlisting}
 try {
@@ -232,7 +233,7 @@ Functionの3つを見ていきます。
 現実のコードではすべてのパターンが使われています。そのため、非同期処理の選択肢を増やす意味でもそれぞれを理解することが重要です。
 
 \hypertarget{error-first-callback}{%
-\section{エラーファーストコールバック}\label{error-first-callback}}
+\section{エラーファーストコールバック}\label{error-first-callback}}\index{えらーふぁーすとこーるばっく@エラーファーストコールバック}
 
 ECMAScript
 2015（ES2015）でPromiseが仕様に入るまで、非同期処理中に発生した例外を扱う仕様はありませんでした。
@@ -249,7 +250,7 @@ ECMAScript
 
 つまり、ひとつのコールバック関数で失敗した場合と成功した場合の両方を扱うルールとなります。
 
-たとえば、Node.jsでは\texttt{fs.readFile}関数という、ファイルシステムからファイルをロードする非同期処理の関数があります。
+たとえば、Node.jsでは\texttt{fs.readFile}\index{fs.readFile@\texttt{fs.readFile}}関数という、ファイルシステムからファイルをロードする非同期処理の関数があります。
 指定したパスのファイルを読むため、ファイルが存在しない場合やアクセス権限の問題から読み取りに失敗することがあります。
 そのため、\texttt{fs.readFile}関数の第二引数に渡すコールバック関数にはエラーファーストコールバックスタイルの関数を渡します。
 
@@ -312,7 +313,7 @@ dummyFetch("/failure/data", (error, response) => {
 });
 \end{lstlisting}
 
-このようにコールバック関数の1番目の引数にはエラーオブジェクトまたは\texttt{null}を入れ、それ以降の引数にデータを渡すというルールを\textbf{\textgt{エラーファーストコールバック}}と呼びます。
+このようにコールバック関数の1番目の引数にはエラーオブジェクトまたは\texttt{null}を入れ、それ以降の引数にデータを渡すというルールを\textbf{\textgt{エラーファーストコールバック}}\index{えらーふぁーすとこーるばっく@エラーファーストコールバック}と呼びます。
 
 非同期処理中に例外が発生して生じたエラーをコールバック関数で受け取る方法はほかにもあります。
 たとえば、成功したときに呼び出すコールバック関数と失敗したときに呼び出すコールバック関数の2つを受け取る方法があります。
@@ -347,7 +348,7 @@ function dummyFetch(path, successCallback, failureCallback) {
 次のセクションでは、ES2015で導入された\texttt{Promise}について見ていきます。
 
 \hypertarget{promise}{%
-\section[Promise]{Promise\protect\icon{fig/es2015.eps}}\label{promise}}
+\section[Promise]{Promise\,\protect\icon{fig/es2015.eps}}\label{promise}}\index{Promise}
 
 \href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise}{Promise}はES2015で導入された非同期処理の結果を表現するビルトインオブジェクトです。
 
@@ -357,7 +358,7 @@ function dummyFetch(path, successCallback, failureCallback) {
 \texttt{Promise}はビルトインオブジェクトであるためさまざまなメソッドを持ちますが、
 まずはエラーファーストコールバックと\texttt{Promise}での非同期処理のコード例を比較してみます。
 
-次のコードの\texttt{asyncTask}関数はエラーファーストコールバックを受け取る非同期処理の例です。
+次のコードの\texttt{asyncTask}\index{asyncTask@\texttt{asyncTask}}関数はエラーファーストコールバックを受け取る非同期処理の例です。
 
 エラーファーストコールバックは次のようなルールでした。
 
@@ -379,9 +380,9 @@ asyncTask((error, result) => {
 });
 \end{lstlisting}
 
-次のコードの\texttt{asyncPromiseTask}関数は\texttt{Promise}インスタンスを返す非同期処理の例です。
-Promiseでは、非同期処理に成功したときの処理をコールバック関数として\texttt{then}メソッドへ渡し、
-失敗したときの処理を同じくコールバック関数として\texttt{catch}メソッドへ渡します。
+次のコードの\texttt{asyncPromiseTask}\index{asyncPromiseTask@\texttt{asyncPromiseTask}}関数は\texttt{Promise}インスタンスを返す非同期処理の例です。
+Promiseでは、非同期処理に成功したときの処理をコールバック関数として\texttt{then}\index{then@\texttt{then}}メソッドへ渡し、
+失敗したときの処理を同じくコールバック関数として\texttt{catch}\index{catch@\texttt{catch}}メソッドへ渡します。
 
 エラーファーストコールバックとは異なり、非同期処理（\texttt{asyncPromiseTask}関数）は\texttt{Promise}インスタンスを返しています。
 その返された\texttt{Promise}インスタンスに対して、成功と失敗時の処理をそれぞれコールバック関数として渡すという形になります。
@@ -405,10 +406,10 @@ Promiseを使う理由のひとつであると言えるでしょう。
 このセクションでは、非同期処理を扱うビルトインオブジェクトである\texttt{Promise}を見ていきます。
 
 \hypertarget{promise-instance}{%
-\subsection{\texorpdfstring{\texttt{Promise}インスタンスの作成}{Promiseインスタンスの作成}}\label{promise-instance}}
+\subsection{\texorpdfstring{\texttt{Promise}インスタンスの作成}{Promiseインスタンスの作成}}\label{promise-instance}}\index{Promise!さくせい@作成}
 
 Promiseは\texttt{new}演算子で\texttt{Promise}のインスタンスを作成して利用します。
-このときのコンストラクタには\texttt{resolve}と\texttt{reject}の2つの引数を取る\texttt{executor}と呼ばれる関数を渡します。
+このときのコンストラクタには\texttt{resolve}\index{resolve@\texttt{resolve}}と\texttt{reject}\index{reject@\texttt{reject}}の2つの引数を取る\texttt{executor}\index{executor@\texttt{executor}}と呼ばれる関数を渡します。
 \texttt{executor}関数の中で非同期処理を行い、非同期処理が成功した場合は\texttt{resolve}関数を呼び、失敗した場合は\texttt{reject}関数を呼び出します。
 
 \begin{lstlisting}
@@ -419,8 +420,8 @@ const executor = (resolve, reject) => {
 const promise = new Promise(executor);
 \end{lstlisting}
 
-この\texttt{Promise}インスタンスの\texttt{Promise\#then}メソッドで、Promiseが\texttt{resolve}（成功）、\texttt{reject}（失敗）したときに呼ばれるコールバック関数を登録します。
-\texttt{then}メソッドの第一引数には\texttt{resolve}（成功）時に呼ばれるコールバック関数、第二引数には\texttt{reject}（失敗）時に呼ばれるコールバック関数を渡します。
+この\texttt{Promise}インスタンスの\texttt{Promise\#then}\index{Promise\#then@\texttt{Promise\#then}}メソッドで、Promiseが\texttt{resolve}（成功）、\texttt{reject}（失敗）したときに呼ばれるコールバック関数を登録します。
+\texttt{then}\index{then@\texttt{then}}メソッドの第一引数には\texttt{resolve}（成功）時に呼ばれるコールバック関数、第二引数には\texttt{reject}（失敗）時に呼ばれるコールバック関数を渡します。
 
 \begin{lstlisting}
 // Promiseインスタンスを作成
@@ -458,10 +459,10 @@ promise.then(onFulfilled, onRejected);
 \end{itemize}
 
 \hypertarget{promise-then-and-catch}{%
-\subsection{\texorpdfstring{\texttt{Promise\#then}と\texttt{Promise\#catch}}{Promise\#thenとPromise\#catch}}\label{promise-then-and-catch}}
+\subsection{\texorpdfstring{\texttt{Promise\#then}と\texttt{Promise\#catch}}{Promise\#thenとPromise\#catch}}\label{promise-then-and-catch}}\index{Promise\#then@\texttt{Promise\#then}}\index{Promise\#catch@\texttt{Promise\#catch}}
 
-\texttt{Promise}のようにコンストラクタに関数を渡すパターンは今までなかったので、\texttt{then}メソッドの使い方について具体的な例を紹介します。
-また、\texttt{then}メソッドのエイリアスでもある\texttt{catch}メソッドについても見ていきます。
+\texttt{Promise}のようにコンストラクタに関数を渡すパターンは今までなかったので、\texttt{then}\index{then@\texttt{then}}メソッドの使い方について具体的な例を紹介します。
+また、\texttt{then}メソッドのエイリアスでもある\texttt{catch}\index{catch@\texttt{catch}}メソッドについても見ていきます。
 
 次のコードの\texttt{dummyFetch}関数は\texttt{Promise}のインスタンスを作成して返します。
 \texttt{dummyFetch}関数はリソースの取得に成功した場合は\texttt{resolve}関数を呼び、失敗した場合は\texttt{reject}関数を呼びます。
@@ -544,7 +545,7 @@ errorPromise("catchでエラーハンドリング").catch(error => {
 \end{lstlisting}
 
 \hypertarget{promsie-exception}{%
-\subsection{Promiseと例外}\label{promsie-exception}}
+\subsection{Promiseと例外}\label{promsie-exception}}\index{Promise!れいがい@例外}
 
 Promiseではコンストラクタの処理で例外が発生した場合に自動的に例外がキャッチされます。
 例外が発生した\texttt{Promise}インスタンスは\texttt{reject}関数を呼び出したのと同じように失敗したものとして扱われます。
@@ -567,7 +568,7 @@ throwPromise().catch(error => {
 このようにPromiseにおける処理では\texttt{try...catch}構文を使わなくても、自動的に例外がキャッチされます。
 
 \hypertarget{promise-status}{%
-\subsection{Promiseの状態}\label{promise-status}}
+\subsection{Promiseの状態}\label{promise-status}}\index{Promise!じょうたい@状態}\index{じょうたい@状態}
 
 Promiseの\texttt{then}メソッドや\texttt{catch}メソッドによる処理がわかったところで、\texttt{Promise}インスタンスの状態について整理していきます。
 
@@ -575,21 +576,21 @@ Promiseの\texttt{then}メソッドや\texttt{catch}メソッドによる処理�
 
 \begin{itemize}
 \item
-  \textbf{Fulfilled}
+  \textbf{Fulfilled}\index{Fulfilled}
 
   \begin{itemize}
   \item
     \texttt{resolve}（成功）したときの状態。このとき\texttt{onFulfilled}が呼ばれる
   \end{itemize}
 \item
-  \textbf{Rejected}
+  \textbf{Rejected}\index{Rejected}
 
   \begin{itemize}
   \item
     \texttt{reject}（失敗）または例外が発生したときの状態。このとき\texttt{onRejected}が呼ばれる
   \end{itemize}
 \item
-  \textbf{Pending}
+  \textbf{Pending}\index{Pending}
 
   \begin{itemize}
   \item
@@ -604,7 +605,7 @@ Promiseの\texttt{then}メソッドや\texttt{catch}メソッドによる処理�
 そのためAPIとしてこの状態を直接扱うことはできませんが、Promiseについて理解するのに役立ちます。
 
 \texttt{Promise}インスタンスの状態は作成時に\textbf{Pending}となり、一度でも\textbf{Fulfilled}または\textbf{Rejected}へ変化すると、それ以降状態は変化しなくなります。
-そのため、\textbf{Fulfilled}または\textbf{Rejected}の状態であることを\textbf{Settled}（不変）と呼びます。
+そのため、\textbf{Fulfilled}または\textbf{Rejected}の状態であることを\textbf{Settled}\index{Settled}（不変）と呼びます。
 
 一度でも\textbf{Settled}（\textbf{Fulfilled}または\textbf{Rejected}）となった\texttt{Promise}インスタンスは、それ以降別の状態には変化しません。
 そのため、\texttt{resolve}を呼び出した後に\texttt{reject}を呼び出しても、その\texttt{Promise}インスタンスは最初に呼び出した\texttt{resolve}によって\textbf{Fulfilled}のままとなります。
@@ -651,7 +652,7 @@ promise.then(() => {
 状態が変化済みの\texttt{Promise}インスタンスを作成する方法として\texttt{Promise.resolve}と\texttt{Promise.reject}メソッドがあります。
 
 \hypertarget{promise-resolve}{%
-\subsection{\texorpdfstring{\texttt{Promise.resolve}}{Promise.resolve}}\label{promise-resolve}}
+\subsection{\texorpdfstring{\texttt{Promise.resolve}}{Promise.resolve}}\label{promise-resolve}}\index{Promise.resolve@\texttt{Promise.resolve}}
 
 \texttt{Promise.resolve}メソッドは\textbf{Fulfilled}の状態となった\texttt{Promise}インスタンスを作成します。
 
@@ -659,7 +660,7 @@ promise.then(() => {
 const fulFilledPromise = Promise.resolve();
 \end{lstlisting}
 
-\texttt{Promise.resolve}メソッドは\texttt{new Promise}の糖衣構文（シンタックスシュガー）です。
+\texttt{Promise.resolve}メソッドは\texttt{new Promise}の糖衣構文\index{とういこうぶん@糖衣構文}（シンタックスシュガー\index{しんたっくすしゅがー@シンタックスシュガー}）です。
 糖衣構文とは、同じ意味の処理を元の構文よりシンプルに書ける別の書き方のことです。
 \texttt{Promise.resolve}メソッドは次のコードの糖衣構文です。
 
@@ -710,7 +711,7 @@ console.log("2. 同期的な処理が実行されました");
 このコードを実行すると、まず\texttt{Promise}のコンストラクタ関数が実行され、続いて同期的な処理が実行されます。最後に\texttt{then}メソッドで登録していたコールバック関数が非同期的に呼ばれることがわかります。
 
 \hypertarget{promise-reject}{%
-\subsection{\texorpdfstring{\texttt{Promise.reject}}{Promise.reject}}\label{promise-reject}}
+\subsection{\texorpdfstring{\texttt{Promise.reject}}{Promise.reject}}\label{promise-reject}}\index{Promise.reject@\texttt{Promise.reject}}
 
 \texttt{Promise.reject}メソッドは
 \textbf{Rejected}の状態となった\texttt{Promise}インスタンスを作成します。
@@ -719,7 +720,7 @@ console.log("2. 同期的な処理が実行されました");
 const rejectedPromise = Promise.reject(new Error("エラー"));
 \end{lstlisting}
 
-\texttt{Promise.reject}メソッドは\texttt{new Promise}の糖衣構文（シンタックスシュガー）です。
+\texttt{Promise.reject}メソッドは\texttt{new Promise}の糖衣構文\index{とういこうぶん@糖衣構文}（シンタックスシュガー\index{しんたっくすしゅがー@シンタックスシュガー}）です。
 そのため、\texttt{Promise.reject}メソッドは次のコードと同じ意味になります。
 
 \begin{lstlisting}
@@ -742,7 +743,7 @@ console.log("1. 同期的な処理が実行されました");
 また、\texttt{Promise.reject}は次に解説するPromiseチェーンにおいて、Promiseの状態を操作するのに利用できます。
 
 \hypertarget{promise-chain}{%
-\subsection{Promiseチェーン}\label{promise-chain}}
+\subsection{Promiseチェーン}\label{promise-chain}}\index{Promiseちぇーん@Promiseチェーン}
 
 Promiseは非同期処理における統一的なインターフェースを提供するビルトインオブジェクトです。
 Promiseによる統一的な処理方法は複数の非同期処理を扱う場合に特に効力を発揮します。
@@ -753,7 +754,7 @@ Promiseではこのような複数の非同期処理からなる一連の非同�
 
 この仕組みのキーとなるのが\texttt{then}や\texttt{catch}メソッドは常に新しい\texttt{Promise}インスタンスを作成して返すという仕様です。
 そのため\texttt{then}メソッドの返り値である\texttt{Promise}インスタンスにさらに\texttt{then}メソッドで処理を登録できます。
-これはメソッドチェーンと呼ばれる仕組みですが、この書籍ではPromiseをメソッドチェーンでつなぐことを\textbf{Promise\textgt{チェーン}}と呼びます（詳細は「\hyperlink{array}{配列}」の章の「\hyperlink{method-chain-and-high-order-function}{メソッドチェーンと高階関数}」を参照）。
+これはメソッドチェーン\index{めそっどちぇーん@メソッドチェーン}と呼ばれる仕組みですが、この書籍ではPromiseをメソッドチェーンでつなぐことを\textbf{Promise\textgt{チェーン}}と呼びます（詳細は「\hyperlink{array}{配列}」の章の「\hyperlink{method-chain-and-high-order-function}{メソッドチェーンと高階関数}」を参照）。
 
 次のコードでは、\texttt{then}メソッドでPromiseチェーンをしています。
 Promiseチェーンでは、Promiseが失敗（\textbf{Rejected}な状態）しない限り、順番に\texttt{then}メソッドで登録した成功時のコールバック関数を呼び出します。
@@ -873,7 +874,7 @@ Promise.reject(new Error("エラー")).catch(error => {
 このように\texttt{Promise\#then}メソッドや\texttt{Promise\#catch}メソッドをつないで、成功時や失敗時の処理を書いていくことをPromiseチェーンと呼びます。\enlargethispage{\baselineskip}
 
 \hypertarget{promise-chain-value}{%
-\subsubsection{Promiseチェーンで値を返す}\label{promise-chain-value}}
+\subsubsection{Promiseチェーンで値を返す}\label{promise-chain-value}}\index{Promiseちぇーん@Promiseチェーン}
 
 Promiseチェーンではコールバックで返した値を次のコールバックへ引数として渡せます。
 
@@ -940,7 +941,7 @@ Promise.resolve().then(function onFulfilledA() {
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=60mm]{./fig/then-rejected-promise.eps}
+\includegraphics[width=65mm]{./fig/then-rejected-promise.eps}
 \end{figure}
 
 通常は一度\texttt{catch}すると次に呼び出されるのは成功時の処理でした。
@@ -967,9 +968,9 @@ main().catch(error => {
 \end{lstlisting}
 
 \hypertarget{promise-finally}{%
-\subsubsection{Promiseチェーンの最後に処理を書く\protect\icon{fig/es2018.eps}}\label{promise-finally}}
+\subsubsection{Promiseチェーンの最後に処理を書く\,\protect\icon{fig/es2018.eps}}\label{promise-finally}}
 
-\texttt{Promise\#finally}メソッドは成功時、失敗時どちらの場合でも呼び出されるコールバック関数を登録できます。
+\texttt{Promise\#finally}\index{Promise\#finally@\texttt{Promise\#finally}}メソッドは成功時、失敗時どちらの場合でも呼び出されるコールバック関数を登録できます。
 \texttt{try...catch...finally}構文の\texttt{finally}節と同様の役割を持つメソッドです。
 
 \begin{lstlisting}
@@ -1015,7 +1016,7 @@ dummyFetch("/resource/A").then(response => {
 \end{lstlisting}
 
 \hypertarget{promise-sequential}{%
-\subsection{Promiseチェーンで逐次処理}\label{promise-sequential}}
+\subsection{Promiseチェーンで逐次処理}\label{promise-sequential}}\index{Promiseちぇーん@Promiseチェーン!ちくじしょり@逐次処理}\index{ちくじしょり@逐次処理}
 
 Promiseチェーンで非同期処理の流れを書く大きなメリットは、非同期処理のさまざまなパターンに対応できることです。
 
@@ -1053,7 +1054,7 @@ dummyFetch("/resource/A").then(response => {
 \end{lstlisting}
 
 \hypertarget{promise-all}{%
-\subsection{\texorpdfstring{\texttt{Promise.all}で複数のPromiseをまとめる}{Promise.allで複数のPromiseをまとめる}}\label{promise-all}}
+\subsection{\texorpdfstring{\texttt{Promise.all}で複数のPromiseをまとめる}{Promise.allで複数のPromiseをまとめる}}\label{promise-all}}\index{Promise.all@\texttt{Promise.all}}
 
 \texttt{Promise.all}を使うことで複数のPromiseを使った非同期処理をひとつのPromiseとして扱えます。
 
@@ -1143,13 +1144,13 @@ fetchedPromise.then(([responseA, responseB]) => {
 \end{lstlisting}
 
 \hypertarget{promise-race}{%
-\subsection{\texorpdfstring{\texttt{Promise.race}}{Promise.race}}\label{promise-race}}
+\subsection{\texorpdfstring{\texttt{Promise.race}}{Promise.race}}\label{promise-race}}\index{Promise.race@\texttt{Promise.race}}
 
 \texttt{Promise.all}メソッドは複数のPromiseがすべて完了するまで待つ処理でした。
 \texttt{Promise.race}メソッドでは複数のPromiseを受け取りますが、Promiseが1つでも完了した（Settle状態となった）時点で次の処理を実行します。
 
 \texttt{Promise.race}メソッドは\texttt{Promise}インスタンスの配列を受け取り、新しい\texttt{Promise}インスタンスを返します。
-この新しい\texttt{Promise}インスタンスは、配列の中で一番最初に\textbf{Settle}状態となった\texttt{Promise}インスタンスと同じ状態になります。
+この新しい\texttt{Promise}インスタンスは、配列の中で一番最初に\textbf{Settle}\index{Settle}状態となった\texttt{Promise}インスタンスと同じ状態になります。
 
 \begin{itemize}
 \item
@@ -1246,14 +1247,14 @@ ES2017では、このPromiseチェーンの不格好な見た目を解決する�
 Functionと呼ばれる構文が導入されました。
 
 \hypertarget{async-function}{%
-\section[Async Function]{Async Function\protect\icon{fig/es2017.eps}}\label{async-function}}
+\section[Async Function]{Async Function\,\protect\icon{fig/es2017.eps}}\label{async-function}}\index{Async Function}
 
 ES2017では、Async
 Functionという非同期処理を行う関数を定義する構文が導入されました。 Async
 Functionは通常の関数とは異なり、必ず\texttt{Promise}インスタンスを返す関数を定義する構文です。
 
 Async
-Functionは次のように関数の前に\texttt{async}をつけることで定義できます。
+Functionは次のように関数の前に\texttt{async}\index{async@\texttt{async}}をつけることで定義できます。
 この\texttt{doAsync}関数は常に\texttt{Promise}インスタンスを返します。
 
 \begin{lstlisting}
@@ -1284,14 +1285,14 @@ doAsync().then(value => {
 Functionを理解するには、Promiseを理解する必要があることに注意してください。
 
 またAsync
-Function内では\texttt{await}式というPromiseの非同期処理が完了するまで待つ構文が利用できます。
+Function内では\texttt{await}式\index{awaitしき@\texttt{await}式}というPromiseの非同期処理が完了するまで待つ構文が利用できます。
 \texttt{await}式を使うことで非同期処理を同期処理のように扱えるため、Promiseチェーンで実現していた処理の流れを読みやすく書けます。
 
 このセクションではAsync
 Functionと\texttt{await}式について見ていきます。
 
 \hypertarget{declare-async-function}{%
-\section{Async Functionの定義}\label{declare-async-function}}
+\section{Async Functionの定義}\label{declare-async-function}}\index{Async Function!ていぎ@定義}
 
 Async
 Functionは関数の定義に\texttt{async}キーワードをつけることで定義できます。
@@ -1383,7 +1384,7 @@ exceptionFn().catch(error => {
 FunctionはPromiseを返すただの関数と何も変わりません。
 
 \hypertarget{await-expression}{%
-\section{\texorpdfstring{\texttt{await}式}{await式}}\label{await-expression}}
+\section{\texorpdfstring{\texttt{await}式}{await式}}\label{await-expression}}\index{awaitしき@\texttt{await}式}
 
 Async
 Functionの関数内では\texttt{await}式を利用できます。
@@ -1492,7 +1493,7 @@ asyncMain().catch(error => {
 またコードの見た目も同期処理と同じように、その行（その文）の処理が完了するまで次の行を評価しないというわかりやすい形になるのは大きな利点です。
 
 \hypertarget{promise-chain-to-async-function}{%
-\subsection{\texorpdfstring{Promiseチェーンを\texttt{await}式で表現する}{Promiseチェーンをawait式で表現する}}\label{promise-chain-to-async-function}}
+\subsection{\texorpdfstring{Promiseチェーンを\texttt{await}式で表現する}{Promiseチェーンをawait式で表現する}}\label{promise-chain-to-async-function}}\index{awaitしき@\texttt{await}式}
 
 Async
 Functionと\texttt{await}式を使うことでPromiseチェーンとして表現していた非同期処理を同期処理のような見た目で書けます。
@@ -1576,7 +1577,7 @@ Functionの動きを見てきましたが、他の構文やPromise APIと組み�
 Functionの使い方を見ていきましょう。
 
 \hypertarget{async-function-array}{%
-\subsection{Async Functionと反復処理}\label{async-function-array}}
+\subsection{Async Functionと反復処理}\label{async-function-array}}\index{Async Function!はんぷくしょり@反復処理}
 
 複数の非同期処理を行う際に、Async
 Functionはforループなどの反復処理と組み合わせることが可能です。
@@ -1628,7 +1629,7 @@ Promiseのみの場合は、Promiseチェーンでコールバック関数を使
 
 \hypertarget{relationship-promise-async-function}{%
 \subsection{Promise APIとAsync
-Functionを組み合わせる}\label{relationship-promise-async-function}}
+Functionを組み合わせる}\label{relationship-promise-async-function}}\index{Async Function!Promise}
 
 Async
 Functionと\texttt{await}式を使うことで、非同期処理を同期処理のような見た目で書けます。
@@ -1693,7 +1694,7 @@ Functionも内部的にPromiseの仕組みを利用しているため、両者�
 
 \hypertarget{await-in-async-function}{%
 \subsection{\texorpdfstring{\texttt{await}式はAsync
-Functionの中でのみ利用可能}{await式はAsync Functionの中でのみ利用可能}}\label{await-in-async-function}}
+Functionの中でのみ利用可能}{await式はAsync Functionの中でのみ利用可能}}\label{await-in-async-function}}\index{Async Function!awaitしき@\texttt{await}式}\index{awaitしき@\texttt{await}式}
 
 \texttt{await}式を利用する際には、\texttt{await}式はAsync
 Functionの中でのみ利用可能な点に注意が必要です。

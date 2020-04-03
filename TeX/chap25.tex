@@ -1,5 +1,5 @@
 \hypertarget{date}{%
-\chapter{Date}\label{date}}
+\chapter{Date}\label{date}}\index{Date}
 \thispagestyle{frontheadings}
 
 この章では、JavaScriptで日付や時刻を扱うための\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date}{Date}について学びます。
@@ -10,7 +10,7 @@
 \texttt{Date}オブジェクトは\texttt{String}や\texttt{Array}などと同じく、ECMAScriptで定義されたビルトインオブジェクトです。
 
 \texttt{Date}オブジェクトをインスタンス化することで、ある特定の時刻を表すオブジェクトが得られます。
-\texttt{Date}における「時刻」は、UTC（協定世界時）の1970年1月1日0時0分0秒を基準とした相対的なミリ秒として保持されます。
+\texttt{Date}における「時刻」は、UTC\index{UTC}（協定世界時\index{きょうていせかいじ@協定世界時}）の1970年1月1日0時0分0秒を基準とした相対的なミリ秒として保持されます。
 このミリ秒の値のことを、本章では「時刻値」と呼びます。
 \texttt{Date}オブジェクトのインスタンスはそれぞれがひとつの時刻値を持ち、その時刻値を元に日付や時・分などを扱うメソッドを提供します。
 
@@ -25,10 +25,10 @@
 \subsubsection{現在の時刻をインスタンス化する}\label{instance-current-time}}
 
 \texttt{Date}をnewするときにコンストラクタ引数を何も渡さない場合、作成されるインスタンスは現在の時刻を表すものになります。
-\texttt{Date}オブジェクトのインスタンスではなく現在の時刻の時刻値だけが欲しい場合には、\texttt{Date.now}メソッドの戻り値を使います。
-作成したインスタンスが持つ時刻値は、\texttt{getTime}メソッドで取得できます。
-また、\texttt{toISOString}メソッドを使うと、その時刻をUTCにおける\href{https://ja.wikipedia.org/wiki/ISO_8601}{ISO
-8601}形式\footnote{\url{https://ja.wikipedia.org/wiki/ISO_8601}}の文字列に変換できます。 ISO
+\texttt{Date}オブジェクトのインスタンスではなく現在の時刻の時刻値だけが欲しい場合には、\texttt{Date.now}\index{Date.now@\texttt{Date.now}}メソッドの戻り値を使います。
+作成したインスタンスが持つ時刻値は、\texttt{getTime}\index{getTime@\texttt{getTime}}メソッドで取得できます。
+また、\texttt{toISOString}\index{toISOString@\texttt{toISOString}}メソッドを使うと、その時刻をUTCにおける\href{https://ja.wikipedia.org/wiki/ISO_8601}{ISO
+8601}\index{ISO 8601}形式\footnote{\url{https://ja.wikipedia.org/wiki/ISO_8601}}の文字列に変換できます。 ISO
 8601とは国際規格となっている文字列の形式で、\texttt{2006-01-02T15:04:05.999+09:00}のように時刻を表現します。
 人間が見てもわかりやすい文字列であるため、広く利用されています。
 
@@ -74,7 +74,7 @@ console.log(date.toISOString()); // => "2006-01-02T15:04:05.999Z"
 \end{lstlisting}
 
 2つめは文字列型の引数を渡したときに適用されます。
-\href{https://tools.ietf.org/html/rfc2822\#section-3.3}{RFC2822}\footnote{\url{https://tools.ietf.org/html/rfc2822\#section-3.3}}や\href{https://ja.wikipedia.org/wiki/ISO_8601}{ISO
+\href{https://tools.ietf.org/html/rfc2822\#section-3.3}{RFC2822}\index{RFC2822}\footnote{\url{https://tools.ietf.org/html/rfc2822\#section-3.3}}や\href{https://ja.wikipedia.org/wiki/ISO_8601}{ISO
 8601}の形式に従った文字列を渡すと、
 その文字列をパースして得られる時刻値を使って、\texttt{Date}のインスタンスを作成します。
 
@@ -110,7 +110,7 @@ new Date(year, month, day, hour, minutes, seconds, milliseconds);
 先述した2つの方法と違い、この方法はタイムゾーンを指定できません。
 渡した数値は常にローカルのタイムゾーンにおける時刻とみなされます。
 結果が実行環境に依存してしまうため、基本的にこの方法は使うべきではありません。
-時刻を部分ごとに指定したい場合は、\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date/UTC}{Date.UTC}メソッドを使うとよいでしょう。
+時刻を部分ごとに指定したい場合は、\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date/UTC}{\texttt{Date.UTC}}\index{Date.UTC@\texttt{Date.UTC}}メソッドを使うとよいでしょう。
 渡す引数の形式は同じですが、\texttt{Date.UTC}メソッドは渡された数値をUTCにおける時刻として扱い、その時刻値を返します。
 
 \begin{lstlisting}
@@ -128,7 +128,7 @@ console.log(date2.toISOString()); // => "2006-01-02T15:04:05.999Z"
 \end{lstlisting}
 
 なお、どのオーバーロードにも当てはまらない引数や、時刻としてパースできない文字列を渡した際にも、\texttt{Date}のインスタンスは作成されます。
-ただし、このインスタンスが持つ時刻は不正であるため、\texttt{getTime}メソッドは\texttt{NaN}を返し、\texttt{toString}メソッドは\texttt{Invalid Date}という文字列を返します。
+ただし、このインスタンスが持つ時刻は不正であるため、\texttt{getTime}メソッドは\texttt{NaN}を返し、\texttt{toString}メソッドは\texttt{Invalid Date}\index{Invalid Date@\texttt{Invalid Date}}という文字列を返します。
 
 \begin{lstlisting}
 // 不正なDateインスタンスを作成する
@@ -138,13 +138,13 @@ console.log(invalid.toString()); // => "Invalid Date"
 \end{lstlisting}
 
 \hypertarget{instance-method}{%
-\subsection{Dateのインスタンスメソッド}\label{instance-method}}
+\subsection{Dateのインスタンスメソッド}\label{instance-method}}\index{Date!いんすたんすめそっど@インスタンスメソッド}\index{いんすたんすめそっど@インスタンスメソッド}
 
 \texttt{Date}オブジェクトのインスタンスは多くのメソッドを持っていますが、
-ほとんどは\texttt{getHours}と\texttt{setHours}のような、時刻の各部分を取得・更新するためのメソッドです。
+ほとんどは\texttt{getHours}\index{getHours@\texttt{getHours}}と\texttt{setHours}\index{setHours@\texttt{setHours}}のような、時刻の各部分を取得・更新するためのメソッドです。
 
 次の例は、日付を決まった形式の文字列に変換しています。
-\texttt{getMonth}メソッドや\texttt{setMonth}メソッドのように月を数値で扱うメソッドは、0から11の数値で指定することに注意しましょう。ある\texttt{Date}のインスタンスの時刻が何月かを表示するには、\texttt{getMonth}メソッドの戻り値に1を足す必要があります。
+\texttt{getMonth}\index{getMonth@\texttt{getMonth}}メソッドや\texttt{setMonth}\index{setMonth@\texttt{setMonth}}メソッドのように月を数値で扱うメソッドは、0から11の数値で指定することに注意しましょう。ある\texttt{Date}のインスタンスの時刻が何月かを表示するには、\texttt{getMonth}メソッドの戻り値に1を足す必要があります。
 
 \begin{lstlisting}
 // YYYY/MM/DD形式の文字列に変換する関数
@@ -160,7 +160,7 @@ const date = new Date("2006-01-02T15:04:05.999");
 console.log(formatDate(date)); // => "2006/01/02"
 \end{lstlisting}
 
-\texttt{getTimezoneOffset}メソッドは、実行環境のタイムゾーンのUTC\textbf{からの}オフセット値を\textbf{分}単位の数値で返します。
+\texttt{getTimezoneOffset}\index{getTimezoneOffset@\texttt{getTimezoneOffset}}メソッドは、実行環境のタイムゾーンのUTC\textbf{からの}オフセット値を\textbf{分}単位の数値で返します。
 たとえばAsia/TokyoタイムゾーンはUTC+9時間なのでオフセット値は-9時間となり、\texttt{getTimezoneOffset}メソッドの戻り値は\texttt{-540}です。
 
 \begin{lstlisting}
@@ -191,7 +191,7 @@ console.log(`Hours in UTC: ${now.getHours() + timezoneOffsetInHours}`);
 \end{itemize}
 
 そのため、JavaScriptにおける日付・時刻の処理は、標準のDateではなくライブラリを使うことが一般的になっています。
-代表的なライブラリとしては、\href{https://momentjs.com/}{moment.js}\footnote{\url{https://momentjs.com/}}や\href{https://github.com/js-joda/js-joda}{js-joda}\footnote{\url{https://github.com/js-joda/js-joda}}、\href{https://date-fns.org/}{date-fns}\footnote{\url{https://date-fns.org/}}などがあります。
+代表的なライブラリとしては、\href{https://momentjs.com/}{moment.js}\index{moment.js}\footnote{\url{https://momentjs.com/}}や\href{https://github.com/js-joda/js-joda}{js-joda}\index{js-joda}\footnote{\url{https://github.com/js-joda/js-joda}}、\href{https://date-fns.org/}{date-fns}\index{date-fns}\footnote{\url{https://date-fns.org/}}などがあります。
 
 \begin{lstlisting}
 // moment.jsで現在時刻のmomentオブジェクトを作る
