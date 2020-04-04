@@ -92,15 +92,22 @@
     .header-right {
         order: 4;
         display: inline-flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
         /* icon size */
         font-size: 24px;
     }
 
-    .github-link {
+    .amazon-link, .github-link {
         color: #fff;
+        /* Padding and make Vertical */
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-left: 4px;
+        padding-right: 4px;
     }
 
     /* Desktop */
@@ -366,6 +373,13 @@
         </form>
     </div>
     <div class="header-right">
+        <!-- Icon: https://www.iconfinder.com/iconsets/circle-payment -->
+        <a class="amazon-link" title="Amazon: JavaScript Primer 迷わないための入門書"
+           href="https://www.amazon.co.jp/dp/4048930737/" target="_blank"><img
+                width="22"
+                height="22"
+                style="margin: 1px;"
+                src="{{ ('./gitbook/icons/amazon-icon.png')|resolveFile }}" alt=""></a>
         <a class="github-link" title="GitHub: asciidwango/js-primer" href="https://github.com/asciidwango/js-primer"
            target="_blank"><i
                 class="fa fa-github fa-fw"></i></a>
