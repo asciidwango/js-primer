@@ -145,6 +145,23 @@
         .algolia-autocomplete .algolia-docsearch-suggestion--subcategory-column {
             display: none !important;
         }
+
+        .algolia-autocomplete.algolia-autocomplete-right .ds-dropdown-menu {
+            right: inherit !important
+        }
+
+        .algolia-autocomplete.algolia-autocomplete-right .ds-dropdown-menu::before {
+            right: 50%;
+        }
+
+        .sbx-custom {
+            width: 92px !important;
+            padding: initial !important;
+        }
+
+        .amazon-link {
+            display: none;
+        }
     }
 
     /* SearchBox */
@@ -152,12 +169,6 @@
         height: 50px;
     }
 
-    @media (max-width: 768px) {
-        .sbx-custom {
-            width: 150px !important;
-            padding: initial !important;
-        }
-    }
 
     .sbx-custom {
         display: inline-block;

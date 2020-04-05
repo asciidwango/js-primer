@@ -54,6 +54,12 @@
         margin-top: 16px;
         padding: 16px;
     }
+    /* Hide footer on mobile */
+    @media (max-width: 768px) {
+        .book_footer {
+            display: none;
+        }
+    }
 </style>
 <meta name="theme-color" content="#ffffff">
 <link rel="manifest" href="{{ "/manifest.json"|resolveFile }}">
@@ -82,5 +88,3 @@
     <p>Copyright (c) 2016-present <a href="https://github.com/asciidwango/js-primer">jsprimer project</a></p>
 </footer>
 {% endblock %}
-
-</footer>
