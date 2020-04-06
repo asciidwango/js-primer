@@ -126,7 +126,7 @@ console.log(obj); // => {}
 \hypertarget{property-access}{%
 \section{プロパティへのアクセス}\label{property-access}}\index{ぷろぱてぃ@プロパティ!あくせす@アクセス}
 
-オブジェクトのプロパティにアクセスする方法として、ドット記法\index{どっときほう@ドット記法}（\texttt{.}\index{.@\texttt{.}}）とブラケット記法\index{ぶらけっときほう@ブラケット記法}（\texttt{[]}\index{[]@\texttt{[]}}）があります。
+オブジェクトのプロパティにアクセスする方法として、ドット記法\index{どっときほう@ドット記法}（\texttt{.}\index{.@\textbf{.}}）とブラケット記法\index{ぶらけっときほう@ブラケット記法}（\texttt{[]}\index{[]@\texttt{[]}}）があります。
 それぞれの記法で、オブジェクトの右辺へプロパティ名を指定すると、その名前を持ったプロパティの値を参照できます。
 
 \begin{lstlisting}
@@ -315,7 +315,7 @@ delete obj.key1;
 console.log(obj); // => { "key2": "value2" }
 \end{lstlisting}
 
-\begin{tcolorbox}[float,title=constで定義したオブジェクトは変更可能]\label{const-and-object}\index{const@\texttt{const}!おぶじぇくと@オブジェクト}
+\begin{tcolorbox}[enhanced jigsaw,breakable,title=constで定義したオブジェクトは変更可能]\label{const-and-object}\index{const@\texttt{const}!おぶじぇくと@オブジェクト}
 
 先ほどのコード例で、\texttt{const}で宣言したオブジェクトのプロパティがエラーなく変更できていることがわかります。
 次のコードを実行してみると、値であるオブジェクトのプロパティが変更できていることがわかります。
@@ -667,7 +667,7 @@ console.log(merged); // => { version: "b" }
 \hypertarget{object-spread-syntax}{%
 \subsubsection{オブジェクトのspread構文でのマージ}\label{object-spread-syntax}}\index{おぶじぇくと@オブジェクト!まーじ@マージ}\index{おぶじぇくと@オブジェクト!spreadこうぶん@spread構文}\index{spreadこうぶん@spread構文}\index{spreadこうぶん@spread構文!まーじ@マージ}
 
-ES2018では、オブジェクトのマージを行うオブジェクトの\texttt{...}\index{...@\texttt{...}}（spread構文）が追加されました。
+ES2018では、オブジェクトのマージを行うオブジェクトの\texttt{...}\index{...@\textbf{\textgt{...}}}（spread構文）が追加されました。
 ES2015で配列の要素を展開する\texttt{...}（spread構文）はサポートされていましたが、オブジェクトに対してもES2018でサポートされました。
 オブジェクトのspread構文は、オブジェクトリテラルの中に指定したオブジェクトのプロパティを展開できます。
 

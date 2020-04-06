@@ -841,7 +841,7 @@ Promiseの\texttt{then}メソッドによるコールバック関数の入れ子
 
 \texttt{main}関数を次のように書き換えましょう。まず関数宣言の前に\texttt{async}\index{async@\texttt{async}}をつけてAsync
 Functionにしています。
-次に\texttt{fetchUserInfo}関数の呼び出しに\texttt{await}\index{await@\texttt{await}}をつけます。
+次に\texttt{fetchUserInfo}関数の呼び出しに\texttt{await}\index{awaitしき@\texttt{await}式}をつけます。
 これによりPromiseに解決されたJSONオブジェクトを\texttt{userInfo}変数に代入できます。
 
 もし\texttt{fetchUserInfo}関数の中で例外が投げられた場合は、\texttt{try...catch}構文でエラーハンドリングできます。

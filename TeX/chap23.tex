@@ -1,5 +1,5 @@
 \hypertarget{map-and-set}{%
-\chapter[Map/Set]{Map/Set\,\protect\icon{fig/es2015.eps}}\label{map-and-set}}\index{Map}\index{Set}
+\chapter[Map/Set]{Map/Set\,\protect\icon{fig/es2015.eps}}\label{map-and-set}}\index{Map@\texttt{Map}}\index{Set@\texttt{Set}}
 \thispagestyle{frontheadings}
 
 JavaScriptでデータの集まりを扱うコレクションは配列だけではありません。
@@ -140,7 +140,7 @@ console.log(results); // => ["key1:value1","key2:value2"]
 \end{lstlisting}
 
 \hypertarget{object-and-map}{%
-\subsection{マップとしてのObjectとMap}\label{object-and-map}}\index{まっぷ@マップ!Object}\index{Object}\index{Map}
+\subsection{マップとしてのObjectとMap}\label{object-and-map}}\index{まっぷ@マップ!Object}\index{Object@\texttt{Object}}\index{Map@\texttt{Map}}
 
 ES2015で\texttt{Map}が導入されるまで、JavaScriptにおいてマップ型を実現するために\texttt{Object}が利用されてきました。
 何かをキーにして値にアクセスするという点で、\texttt{Map}と\texttt{Object}はよく似ています。
@@ -367,7 +367,7 @@ function getHeight(element) {
 }
 \end{lstlisting}
 
-\begin{tcolorbox}[float,title=キーの等価性とNaN]\label{key-and-nan}\index{NaN}
+\begin{tcolorbox}[float,title=キーの等価性とNaN]\label{key-and-nan}\index{NaN@\texttt{NaN}}
 
 \texttt{Map}に値をセットする際のキーにはあらゆるオブジェクトが使えます。
 このときのマップが特定のキーをすでに持っているか、つまり挿入と上書きの判定は基本的に\texttt{===}演算子と同じです。
@@ -389,7 +389,7 @@ console.log(map.get(NaN)); // => "value"
 \end{tcolorbox}
 
 \hypertarget{set}{%
-\section{Set}\label{set}}\index{Set}
+\section{Set}\label{set}}\index{Set@\texttt{Set}}
 
 \href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Set}{Set}はセット型のコレクションを扱うためのビルトインオブジェクトです。
 セット\index{せっと@セット}とは、重複する値がないことを保証したコレクションのことを言います。
@@ -397,7 +397,7 @@ console.log(map.get(NaN)); // => "value"
 ただし、配列と違って要素は順序を持たず、インデックスによるアクセスはできません。
 
 \hypertarget{set-new}{%
-\section{セットの作成と初期化}\label{set-new}}\index{せっと@セット!さくせい@作成}
+\subsection{セットの作成と初期化}\label{set-new}}\index{せっと@セット!さくせい@作成}
 
 \texttt{Set}オブジェクトを\texttt{new}することで、新しいセットを作れます。
 作成されたばかりのセットは何も持っていません。

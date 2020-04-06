@@ -14,7 +14,7 @@ Functionと呼ばれる構文的なサポートがあります。
 \hypertarget{sync-processing}{%
 \section{同期処理}\label{sync-processing}}\index{どうきしょり@同期処理}
 
-多くのプログラミング言語にはコードの評価の仕方として、\textbf{\textgt{同期処理}}（sync\index{sync}）と\textbf{\textgt{非同期処理}}（async\index{async}）という大きな分類があります。
+多くのプログラミング言語にはコードの評価の仕方として、\textbf{\textgt{同期処理}}（sync\index{sync@\texttt{sync}}）と\textbf{\textgt{非同期処理}}（async\index{async@\texttt{async}}）という大きな分類があります。
 
 今まで書いていたコードは\textbf{\textgt{同期処理}}と呼ばれているものです。
 同期処理ではコードを順番に処理していき、ひとつの処理が終わるまで次の処理は行いません。
@@ -1292,7 +1292,7 @@ Function内では\texttt{await}式\index{awaitしき@\texttt{await}式}という
 Functionと\texttt{await}式について見ていきます。
 
 \hypertarget{declare-async-function}{%
-\section{Async Functionの定義}\label{declare-async-function}}\index{Async Function!ていぎ@定義}
+\subsection{Async Functionの定義}\label{declare-async-function}}\index{Async Function!ていぎ@定義}
 
 Async
 Functionは関数の定義に\texttt{async}キーワードをつけることで定義できます。
@@ -1323,7 +1323,7 @@ const obj = { async method() {} };
 \end{itemize}
 
 \hypertarget{async-function-return-promise}{%
-\section{Async
+\subsection{Async
 FunctionはPromiseを返す}\label{async-function-return-promise}}
 
 Async
@@ -1384,7 +1384,7 @@ exceptionFn().catch(error => {
 FunctionはPromiseを返すただの関数と何も変わりません。
 
 \hypertarget{await-expression}{%
-\section{\texorpdfstring{\texttt{await}式}{await式}}\label{await-expression}}\index{awaitしき@\texttt{await}式}
+\subsection{\texorpdfstring{\texttt{await}式}{await式}}\label{await-expression}}\index{awaitしき@\texttt{await}式}
 
 Async
 Functionの関数内では\texttt{await}式を利用できます。
@@ -1493,7 +1493,7 @@ asyncMain().catch(error => {
 またコードの見た目も同期処理と同じように、その行（その文）の処理が完了するまで次の行を評価しないというわかりやすい形になるのは大きな利点です。
 
 \hypertarget{promise-chain-to-async-function}{%
-\subsection{\texorpdfstring{Promiseチェーンを\texttt{await}式で表現する}{Promiseチェーンをawait式で表現する}}\label{promise-chain-to-async-function}}\index{awaitしき@\texttt{await}式}
+\subsubsection{\texorpdfstring{Promiseチェーンを\texttt{await}式で表現する}{Promiseチェーンをawait式で表現する}}\label{promise-chain-to-async-function}}\index{awaitしき@\texttt{await}式}
 
 Async
 Functionと\texttt{await}式を使うことでPromiseチェーンとして表現していた非同期処理を同期処理のような見た目で書けます。

@@ -28,8 +28,8 @@ console.log(obj.toString()); // "[object Object]"
 正確には、ほとんどすべてのオブジェクトは\texttt{Object.prototype}\index{Object.prototype@\texttt{Object.prototype}}プロパティに定義された\texttt{prototype}\index{prototype@\texttt{prototype}}オブジェクトを継承しています。
 \texttt{prototype}オブジェクトとは、すべてのオブジェクトの作成時に自動的に追加される特殊なオブジェクトです。
 \texttt{Object}の\texttt{prototype}オブジェクトは、すべてのオブジェクトから利用できるメソッドなどを提供するベースオブジェクトとも言えます。
-
-\begin{figure}
+\newpage
+\begin{figure}[h]
 \centering
 \includegraphics[width=90mm]{./fig/object-prototype.eps}
 \caption{すべてのオブジェクトは\texttt{Object}の\texttt{prototype}を継承している}
@@ -76,7 +76,7 @@ console.log(obj.toString()); // => "[object Object]"
 プロトタイプチェーンの仕組みについては「\hyperlink{class}{クラス}」の章で扱うため、ここではインスタンスからプロトタイプメソッドを呼び出せるということがわかっていれば問題ありません。
 
 \hypertarget{same-method-name-order}{%
-\subsection{プロトタイプメソッドとインスタンスメソッドの優先順位}\label{same-method-name-order}}\index{いんすたんすめそっど@インスタンスメソッド}
+\section{プロトタイプメソッドとインスタンスメソッドの優先順位}\label{same-method-name-order}}\index{いんすたんすめそっど@インスタンスメソッド}
 
 プロトタイプメソッドと同じ名前のメソッドがインスタンスオブジェクトに定義されている場合もあります。
 その場合には、インスタンスに定義したメソッドが優先して呼び出されます。
@@ -97,7 +97,7 @@ console.log(customObject.toString()); // => "custom value"
 このように、インスタンスとプロトタイプオブジェクトで同じ名前のメソッドがある場合には、インスタンスのメソッドが優先されます。
 
 \hypertarget{diff-in-operator-and-hasOwnProperty}{%
-\subsection{\texorpdfstring{\texttt{in}演算子と\texttt{Object\#hasOwnProperty}メソッドの違い}{in演算子とObject\#hasOwnPropertyメソッドの違い}}\label{diff-in-operator-and-hasOwnProperty}}\index{in@\texttt{in}}\index{Object\#hasOwnProperty@\texttt{Object\#hasOwnProperty}}
+\section{\texorpdfstring{\texttt{in}演算子と\texttt{Object\#hasOwnProperty}メソッドの違い}{in演算子とObject\#hasOwnPropertyメソッドの違い}}\label{diff-in-operator-and-hasOwnProperty}}\index{in@\texttt{in}}\index{Object\#hasOwnProperty@\texttt{Object\#hasOwnProperty}}
 
 「\hyperlink{object}{オブジェクト}」の章で学んだ\texttt{Object\#hasOwnProperty}メソッドと\texttt{in}演算子の挙動の違いについて見ていきます。
 2つの挙動の違いはこの章で紹介したプロトタイプオブジェクトに関係しています。
@@ -133,7 +133,7 @@ console.log("toString" in obj); // => true
 \end{lstlisting}
 
 \hypertarget{create-method}{%
-\subsection{\texorpdfstring{オブジェクトの継承元を明示する\texttt{Object.create}メソッド}{オブジェクトの継承元を明示するObject.createメソッド}}\label{create-method}}\index{Object.create@\texttt{Object.create}}
+\section{\texorpdfstring{オブジェクトの継承元を明示する\texttt{Object.create}メソッド}{オブジェクトの継承元を明示するObject.createメソッド}}\label{create-method}}\index{Object.create@\texttt{Object.create}}
 
 \texttt{Object.create}メソッドを使うと、第一引数に指定した\texttt{prototype}オブジェクトを継承した新しいオブジェクトを作成できます。
 
@@ -148,7 +148,7 @@ console.log(obj.hasOwnProperty === Object.prototype.hasOwnProperty); // => true
 \end{lstlisting}
 
 \hypertarget{inherit-object}{%
-\subsection{ArrayもObjectを継承している}\label{inherit-object}}\index{Array}
+\section{ArrayもObjectを継承している}\label{inherit-object}}\index{Array}
 
 \texttt{Object}と\texttt{Object.prototype}の関係と同じように、ビルトインオブジェクト\texttt{Array}も\texttt{Array.prototype}を持っています。
 同じように、配列（\texttt{Array}）のインスタンスは\texttt{Array.prototype}\index{Array.prototype@\texttt{Array.prototype}}を継承します。

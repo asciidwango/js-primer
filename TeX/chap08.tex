@@ -276,7 +276,7 @@ fn("a", "b", "c");
 Rest parametersは、引数をまとめた配列を仮引数に定義する構文でした。
 一方で、配列を展開して関数の引数に渡すSpread構文もあります。
 
-Spread構文\index{Spreadこうぶん@Spread構文}は、配列の前に\texttt{...}\index{...@\texttt{...}}をつけた構文のことで、関数には配列の値を展開したものが引数として渡されます。
+Spread構文\index{spreadこうぶん@spread構文}は、配列の前に\texttt{...}\index{...@\textbf{\textgt{...}}}をつけた構文のことで、関数には配列の値を展開したものが引数として渡されます。
 次のコードでは、\texttt{array}の配列を展開して\texttt{fn}関数の引数として渡しています。
 
 \begin{lstlisting}
@@ -293,7 +293,7 @@ fn(array[0], array[1], array[2]);
 \end{lstlisting}
 
 \hypertarget{arguments}{%
-\subsection{\texorpdfstring{\texttt{arguments}}{arguments}}\label{arguments}}\index{arguments}
+\subsection{\texorpdfstring{\texttt{arguments}}{arguments}}\label{arguments}}\index{arguments@\texttt{arguments}}
 
 可変長引数を扱う方法として、\texttt{arguments}という関数の中でのみ参照できる特殊な変数があります。
 \texttt{arguments}は関数に渡された引数の値がすべて入った\textbf{Array-like}\index{Array-like}なオブジェクトです。
