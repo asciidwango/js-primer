@@ -176,8 +176,8 @@
     \else
       \ifdim\textwidth<\fullwidth
         \setlength{\evensidemargin}{\oddsidemargin}
-        \setlength{\textwidth}{\fullwidth}
-        \setlength{\linewidth}{\fullwidth}
+%        \setlength{\textwidth}{\fullwidth} コメントアウトした
+%        \setlength{\linewidth}{\fullwidth}
         \begin{multicols}{2}[\chapter*{\indexname}% 3->2に変更した
         \addcontentsline{toc}{chapter}{\indexname}]%
       \else
