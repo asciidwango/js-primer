@@ -220,11 +220,11 @@ package.json
 \texttt{package.json}ファイルが用意できたら、\texttt{npm install}\index{npm install@\texttt{npm install}}コマンドを使って\texttt{commander}パッケージをインストールします。
 このコマンドの引数にはインストールするパッケージの名前とそのバージョンを\texttt{@}記号でつなげて指定\index{ばーじょんしてい@バージョン指定}できます。
 バージョンを指定せずにインストールすれば、その時点での最新の安定版が自動的に選択されます。
-次のコマンドを実行して、commanderのバージョン2.9をインストールします\footnote{\texttt{-\/-save}\index{--save@\texttt{-\/-save}}オプションをつけてインストールしたのと同じ意味。npm
+次のコマンドを実行して、commanderのバージョン5.0をインストールします\footnote{\texttt{-\/-save}\index{--save@\texttt{-\/-save}}オプションをつけてインストールしたのと同じ意味。npm
   5.0.0からは\texttt{-\/-save}がデフォルトオプションとなりました。}。
 
 \begin{lstlisting}
-$ npm install commander@5.0.0
+$ npm install commander@5.0
 \end{lstlisting}
 
 インストールが完了すると、\texttt{package.json}ファイルは次のようになっています。
@@ -245,7 +245,7 @@ package.json
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "commander": "^2.9.0"
+    "commander": "^5.0.0"
   }
 }
 \end{lstlisting}
@@ -254,7 +254,7 @@ package.json
 また、npmのバージョンが5以上であれば
 \texttt{package-lock.json}\index{package-lock.json@\texttt{package-lock.json}}ファイルが生成されています。
 このファイルはnpmがインストールしたパッケージの、実際のバージョンを記録するためのものです。
-先ほどcommanderのバージョンを\texttt{2.9}としましたが、実際にインストールされるのは\texttt{2.9.x}に一致する最新のバージョンです。
+先ほどcommanderのバージョンを\texttt{5.0}としましたが、実際にインストールされるのは\texttt{5.0.x}に一致する最新のバージョンです。
 \texttt{package-lock.json}ファイルには実際にインストールされたバージョンが記録されています。
 これによって、再び\texttt{npm install}を実行したときに、異なるバージョンがインストールされるのを防ぎます。
 
