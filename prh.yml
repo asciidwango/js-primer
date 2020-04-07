@@ -306,6 +306,9 @@ rules:
   - expected: 空文字列
     pattern:
       - /空文字(?!列)/
+  - expected: 構文エラー
+    patterns:
+      - シンタックスエラー
 
   # 一致とマッチ
   ## 一致は ===
