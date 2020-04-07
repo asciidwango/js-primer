@@ -160,7 +160,7 @@ const date = new Date("2006-01-02T15:04:05.999");
 console.log(formatDate(date)); // => "2006/01/02"
 \end{lstlisting}
 
-\texttt{getTimezoneOffset}\index{getTimezoneOffset@\texttt{getTimezoneOffset}}メソッドは、実行環境のタイムゾーンのUTC\textbf{からの}オフセット値を\textbf{分}単位の数値で返します。
+\texttt{getTimezoneOffset}\index{getTimezoneOffset@\texttt{getTimezoneOffset}}メソッドは、実行環境のタイムゾーンのUTC\textbf{\textgt{からの}}オフセット値を\textbf{\textgt{分}}単位の数値で返します。
 たとえばAsia/TokyoタイムゾーンはUTC+9時間なのでオフセット値は-9時間となり、\texttt{getTimezoneOffset}メソッドの戻り値は\texttt{-540}です。
 
 \begin{lstlisting}

@@ -209,7 +209,7 @@ console.log(sparseArray.hasOwnProperty(1)); // => false
 \subsection{インデックスを取得}\label{indexof}}\index{いんでっくす@インデックス!しゅとく@取得}
 
 指定した要素が配列のどの位置にあるかを知りたい場合、\texttt{Array\#indexOf}\index{Array\#indexOf@\texttt{Array\#indexOf}}メソッドや\texttt{Array\#findIndex}\index{Array\#findIndex@\texttt{Array\#findIndex}}メソッド\,\protect\iconl{fig/es2015.eps}\,を利用します。
-要素の位置のことを\textbf{インデックス}（\texttt{index}）と呼ぶため、メソッド名にも\texttt{index}という名前が入っています。
+要素の位置のことを\textbf{\textgt{インデックス}}（\texttt{index}）と呼ぶため、メソッド名にも\texttt{index}という名前が入っています。
 
 次のコードでは、\texttt{Array\#indexOf}メソッドを利用して、配列の中から\texttt{"JavaScript"}という文字列のインデックスを取得しています。
 \texttt{indexOf}メソッドは引数と厳密等価演算子（\texttt{===}）で一致する要素があるなら、その要素のインデックスを返し、該当する要素がない場合は\texttt{-1}を返します。
@@ -316,7 +316,7 @@ console.log(array.slice(4, 1)); // => []
 最後に、指定した要素が配列に含まれているかを知る方法について見ていきます。
 インデックスや要素が取得できれば、その要素は配列に含まれているということはわかります。
 
-しかし、指定した要素が含まれているか\textbf{だけ}を知りたい場合に、
+しかし、指定した要素が含まれているか\textbf{\textgt{だけ}}を知りたい場合に、
 \texttt{Array\#findIndex}メソッドや\texttt{Array\#find}メソッドは過剰な機能を持っています。
 そのコードを読んだ人には、取得したインデックスや要素を何に使うのかが明確ではありません。
 
