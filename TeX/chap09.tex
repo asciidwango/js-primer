@@ -89,7 +89,7 @@ statement\index{Expression statement}）は文の一種であるため、セミ�
 
 次のような、文を\texttt{\{}と\texttt{\}}\index{\{\}@\texttt{\{\}}}で囲んだ部分を\textbf{\textgt{ブロック}}\index{ぶろっく@ブロック}と言います。
 ブロックには、複数の文が書けます。
-
+\newpage
 \begin{lstlisting}
 {
     文;
@@ -120,7 +120,7 @@ if (true) {
 }
 \end{lstlisting}
 
-\begin{tcolorbox}[floatplacement=t,float,title=単独のブロック文の活用]\label{isolate-block-statement}\index{ぶろっくぶん@ブロック文}
+\begin{tcolorbox}[enhanced jigsaw,breakable,title=単独のブロック文の活用]\label{isolate-block-statement}\index{ぶろっくぶん@ブロック文}
 
 アプリケーションのソースコードにif文などと組み合わせない単独のブロック文を書くことはほとんどありません。
 しかし、REPLで同じコードの一部を変更して実行を繰り返している場合には、単独のブロック文が役に立つ機会もあります。
@@ -184,7 +184,7 @@ const read = function() {
 「ブロックで終わる関数であるためセミコロンが不要なのでは？」と思うかもしれません。
 
 しかし、この匿名関数は式であり、この処理は変数を宣言する文の一部であることがわかります。
-つまり、次のように置き換えても同じと言えるため、末尾にセミコロンが必要となります。
+つまり、次のように置き換えても同じと言えるため、末尾にセミコロンが必要となります。\enlargethispage{\baselineskip}\enlargethispage{\baselineskip}
 
 \begin{lstlisting}
 function fn() {}

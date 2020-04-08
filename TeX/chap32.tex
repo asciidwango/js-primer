@@ -273,7 +273,7 @@ App initialized
 この場合は開発者ツールを開き、コンソールにエラーが出ていないかを確認してみてください。
 
 \texttt{import}文\index{import@\texttt{import}}を使ったJavaScriptのモジュール読み込み時に起きる典型的なエラーと対処を次にまとめています。
-
+\newpage
 \begin{description}
 \item[エラー例] \textgt{SyntaxError: import declarations may only appear at top level of a module}\index{えらーれい@エラー例}
 
@@ -1008,13 +1008,13 @@ TodoリストにはTodoアイテムを追加できるので、\texttt{TodoListMo
 これは表示箇所が増えた場合でも\textbf{\textgt{表示}}の処理の複雑さが一定に保てることを意味しています。
 
 \begin{small}
-\begin{longtable}[l]{p{30mm}|p{30mm}|p{50mm}|p{30mm}}
+\begin{longtable}[l]{p{30mm}|p{30mm}|p{42mm}|p{30mm}}
 \hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}{\textgt 機能} & {\textgt 操作} & {\textgt モデルの処理} & {\textgt 表示}\tabularnewline
 \hline
 \endhead
-Todoアイテムの追加 & フォームを入力して送信 & \texttt{TodoListModel}へ新しい\texttt{TodoItem Model}を追加 & \texttt{TodoListModel}を元に表示を更新\tabularnewline
-Todoアイテムの更新 & チェックボックスをクリック & \texttt{TodoListModel}の指定した\texttt{TodoIt emModel}の状態を更新 & \texttt{TodoListModel}を元に表示を更新\tabularnewline
-Todoアイテムの削除 & 削除ボタンをクリック & \texttt{TodoListModel}から指定の\texttt{TodoIt emModel}を削除 & \texttt{TodoListModel}を元に表示を更新\tabularnewline
+Todoアイテムの追加 & フォームを入力して送信 & \texttt{TodoListModel}へ新しい\texttt{Todo ItemModel}を追加 & \texttt{TodoListModel}を元に表示を更新\tabularnewline
+Todoアイテムの更新 & チェックボックスをクリック & \texttt{TodoListModel}の指定した\texttt{To doItemModel}の状態を更新 & \texttt{TodoListModel}を元に表示を更新\tabularnewline
+Todoアイテムの削除 & 削除ボタンをクリック & \texttt{TodoListModel}から指定の\texttt{To doItemModel}を削除 & \texttt{TodoListModel}を元に表示を更新\tabularnewline
 \hline
 \end{longtable}
 \end{small}
@@ -2113,7 +2113,7 @@ export class App {
 \texttt{App}クラスで登録しているイベントのリスナー関数を見てみると次の4種類となっています。
 
 \begin{small}
-\begin{longtable}[l]{p{30mm}|p{60mm}|p{50mm}}
+\begin{longtable}[l]{p{26mm}|p{60mm}|p{50mm}}
 \hline
 \hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}{\textgt イベントの流れ} & {\textgt リスナー関数} & {\textgt 役割}\tabularnewline
 \hline

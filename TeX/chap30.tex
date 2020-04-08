@@ -276,7 +276,7 @@ fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
     });
 \end{lstlisting}
 
-ここまでの内容をまとめ、GitHubからユーザー情報を取得する関数を\texttt{fetchUserInfo}という名前で定義します。
+\enlargethispage{\baselineskip}ここまでの内容をまとめ、GitHubからユーザー情報を取得する関数を\texttt{fetchUserInfo}という名前で定義します。
 
 \begin{lstlisting}
 function fetchUserInfo(userId) {
@@ -320,7 +320,7 @@ index.jsでは関数を定義しているだけで、呼び出しは行ってい
   </body>
 </html>
 \end{lstlisting}
-
+\newpage
 準備ができたら、ローカルサーバーを立ち上げてindex.htmlにアクセスしましょう。
 ボタンを押すとHTTP通信が行われ、コンソールにステータスコードとレスポンスのログが出力されます。
 
@@ -865,7 +865,7 @@ async function main() {
 
 仕上げとして、今まで\texttt{js-primer-example}で固定としていたユーザーIDを変更できるようにしましょう。
 index.htmlに\texttt{<input>}\index{<input>@\texttt{<input>}}タグを追加し、JavaScriptから値を取得するために\texttt{userId}というIDを付与しておきます。
-
+\newpage
 \begin{listtitle}
 index.html
 \end{listtitle}

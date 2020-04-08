@@ -742,7 +742,7 @@ console.log(newArray); // => [1, 3]
 // 元の配列とは異なるインスタンス
 console.log(array !== newArray); // => true
 \end{lstlisting}
-
+\vspace{-3mm}
 \hypertarget{array-reduce}{%
 \subsection{\texorpdfstring{\texttt{Array\#reduce}}{Array\#reduce}}\label{array-reduce}}\index{Array\#reduce@\texttt{Array\#reduce}}
 
@@ -753,8 +753,8 @@ console.log(array !== newArray); // => true
 \texttt{reduce}\index{reduce@\texttt{reduce}}メソッドの第二引数には\texttt{累積値}の初期値となる値を渡せます。
 
 次のコードでは、\texttt{reduce}メソッドは初期値を0として配列の各要素を加算した1つの数値を返します。
-つまり配列から配列要素の合計値というNumber型の値を返しています。
-
+つまり配列から配列要素の合計値というNumber型の値を返しています。\enlargethispage{\baselineskip}\enlargethispage{\baselineskip}
+\vbox{
 \begin{lstlisting}
 const array = [1, 2, 3];
 // すべての要素を加算した値を返す
@@ -767,7 +767,7 @@ console.log(totalValue); // => 6
 \end{lstlisting}
 
 \texttt{Array\#reduce}メソッドはやや複雜ですが、配列以外の値も返せるという特徴があります。
-
+}
 \begin{tcolorbox}[enhanced jigsaw,breakable,title=Array-likeオブジェクト]\label{array-like}\index{Array-like}
 \vbox{
 配列のように扱えるが配列ではないオブジェクトのことを、\textbf{\textgt{Array-likeオブジェクト}}と呼びます。
@@ -903,5 +903,5 @@ console.log(versionNames);
   メソッドチェーンは配列のメソッドが配列を返すことを利用している
 \end{itemize}
 
-配列はJavaScriptの中でもよく使われるオブジェクトで、メソッドの種類も多いです。
+\enlargethispage{\baselineskip}配列はJavaScriptの中でもよく使われるオブジェクトで、メソッドの種類も多いです。
 この書籍でもすべてのメソッドは紹介していないため、詳しくは\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array}{Arrayについてのドキュメント}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array}}も参照してみてください。

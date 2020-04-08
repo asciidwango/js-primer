@@ -798,7 +798,7 @@ console.log(y && x); // => false
 
 AND演算子は、if文と組み合わせて利用することが多い演算子です。
 次のように、\texttt{value}がString型で \textbf{\textgt{かつ}}
-値が\texttt{"str"}である場合という条件をひとつの式として書くことができます。
+値が\texttt{"str"}である場合という条件をひとつの式として書くことができます。\enlargethispage{\baselineskip}
 
 \begin{lstlisting}
 const value = "str";
@@ -917,7 +917,7 @@ if (x || (y && z)) {
 または
 \texttt{x}と\texttt{y}が数値型の場合に処理するif文を考えてみます。
 グループ化演算子を使い、そのまま1つの条件式で書くことも可能ですが、読みにくくなってしまいます。
-
+\newpage
 \begin{lstlisting}
 if ((typeof a === "string" && typeof b === "string") || (typeof x === "number"
  && typeof y === "number")) {

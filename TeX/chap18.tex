@@ -441,7 +441,7 @@ fn();
 \section{関数宣言と巻き上げ}\label{function-declaration-hoisting}}\index{かんすうせんげん@関数宣言!まきあげ@巻き上げ}
 
 \texttt{function}キーワードを使った関数宣言も\texttt{var}と同様に、もっとも近い関数またはグローバルスコープの先頭に\textbf{\textgt{巻き上げ}}られます。
-次のコードでは、実際に\texttt{hello}関数を宣言した行より前に関数を呼び出せます。
+次のコードでは、実際に\texttt{hello}関数を宣言した行より前に関数を呼び出せます。\enlargethispage{\baselineskip}
 
 \begin{lstlisting}
 // hello関数の宣言より前に呼び出せる
@@ -543,7 +543,7 @@ console.log(typeof foo === "undefined"); // => true
 
 クロージャーは言葉で説明しただけではわかりにくい性質です。
 このセクションでは、クロージャーを使ったコードがどのように動くのかを理解することを目標にします。
-
+\newpage
 次の例では\texttt{createCounter}関数が、関数内で定義した\texttt{increment}関数を返しています。
 その返された\texttt{increment}関数を\texttt{myCounter}変数に代入しています。この\texttt{myCounter}変数を実行するたびに1,
 2, 3と1ずつ増えた値を返しています。
@@ -584,7 +584,7 @@ newCounter(); // => 3
 クロージャーを理解するために、今まで意識してこなかったスコープの性質について見ていきます。
 JavaScriptのスコープには、どの識別子がどの変数を参照するかが静的に決定されるという性質があります。
 つまり、コードを実行する前にどの識別子がどの変数を参照しているかがわかるということです。
-
+\newpage
 次のような例を見てみます。
 \texttt{printX}関数内で変数\texttt{x}を参照していますが、変数\texttt{x}はグローバルスコープと関数\texttt{run}の中で、それぞれ定義されています。
 このとき\texttt{printX}関数内の\texttt{x}という識別子がどの変数\texttt{x}を参照するかは静的に決定されます。
@@ -626,7 +626,7 @@ run();
 この静的スコープの仕組みは\texttt{function}キーワードを使った関数宣言、メソッド、Arrow
 Functionなどすべての関数で共通する性質です。
 
-\begin{tcolorbox}[title=動的スコープ]\label{dynamic-scope}\index{どうてきすこーぷ@動的スコープ}
+\begin{tcolorbox}[enhanced jigsaw,breakable,title=動的スコープ]\label{dynamic-scope}\index{どうてきすこーぷ@動的スコープ}
 
 JavaScriptは静的スコープです。
 しかし、動的スコープという呼び出し元により識別子がどの変数を参照するかが変わる仕組みを持つ言語もあります。
@@ -722,7 +722,7 @@ printX();
 この、関数で定義された変数\texttt{tempArray}は返り値として、別の変数\texttt{array}に代入されています。
 つまり、変数\texttt{tempArray}が参照している配列オブジェクトは、\texttt{createArray}関数の実行終了後も変数\texttt{array}から参照され続けています。
 ひとつでも参照されているならば、そのデータが自動的に解放されることはありません。
-
+\newpage
 \begin{lstlisting}
 function createArray() {
     const tempArray = [1, 2, 3];
@@ -912,7 +912,7 @@ countUp.count = 10;
 console.log(countUp()); // => 11
 \end{lstlisting}
 \end{tcolorbox}
-
+\newpage
 \hypertarget{conclusion}{%
 \section{まとめ}\label{conclusion}}
 

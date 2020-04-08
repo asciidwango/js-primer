@@ -204,7 +204,7 @@ if (!x) {
 \end{lstlisting}
 
 真偽値については、暗黙的な型変換のルールが少ないため、明示的に変換せずに扱われることも多いです。
-しかし、より正確な判定をして真偽値を得るには、次のように厳密等価演算子（\texttt{===}）を使って比較します。
+しかし、より正確な判定をして真偽値を得るには、次のように厳密等価演算子（\texttt{===}）を使って比較します。\enlargethispage{\baselineskip}
 
 \begin{lstlisting}
 // x は undefined
@@ -266,7 +266,7 @@ String(function() {}); // "function() {}"
  // => TypeError: can't convert symbol to string
 \end{lstlisting}
 
-この問題も\texttt{String}コンストラクタ関数を使って、シンボルを明示的に文字列化することで解決できます。
+\enlargethispage{\baselineskip}この問題も\texttt{String}コンストラクタ関数を使って、シンボルを明示的に文字列化することで解決できます。
 
 \begin{lstlisting}
 "文字列と" + String(Symbol("シンボルの説明")); // => "文字列とSymbol(シンボルの説明)"

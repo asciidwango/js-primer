@@ -298,7 +298,7 @@ console.log(obj.method1()); // => obj
 console.log(obj.method2()); // => obj
 \end{lstlisting}
 
-これを利用すれば、メソッドの中から同じオブジェクトに所属する別のプロパティを\texttt{this}で参照できます。
+\enlargethispage{\baselineskip}これを利用すれば、メソッドの中から同じオブジェクトに所属する別のプロパティを\texttt{this}で参照できます。
 
 \begin{lstlisting}
 const person = {
@@ -878,7 +878,7 @@ console.log(fn.call({})); // グローバルオブジェクト
 最初に述べたように\texttt{function}キーワードで定義した関数では呼び出し時に、ベースオブジェクトが\texttt{this}の値として暗黙的な引数のように渡されます。
 一方、Arrow
 Functionの関数は呼び出し時に\texttt{this}を受け取らず、\texttt{this}の参照先は定義時に静的に決定されます。
-
+\newpage
 また、\texttt{this}が変わらないのはあくまでArrow
 Functionで定義した関数だけで、Arrow
 Functionの\texttt{this}が参照する「自身の外側のスコープにあるもっとも近い関数の\texttt{this}の値」は\texttt{call}メソッドで変更できます。
@@ -939,7 +939,7 @@ Module & YES &
 \hline
 \end{longtable}
 \end{small}
-
+\newpage
 実際にブラウザで実行した結果は「\href{https://azu.github.io/what-is-this/}{What is \texttt{'this'}
 value in JavaScript}」\footnote{\url{https://azu.github.io/what-is-this/}}というサイトで確認できます。
 
