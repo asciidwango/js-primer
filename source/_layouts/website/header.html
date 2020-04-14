@@ -398,7 +398,7 @@
 </div>
 
 <script type="text/javascript">
-    document.querySelector('.searchbox [type="reset"]').addEventListener("click", function() {
+    document.querySelector(".searchbox [type=\"reset\"]").addEventListener("click", function() {
         this.parentNode.querySelector("input").focus();
     });
 </script>
@@ -416,6 +416,7 @@
         gitbook.events.on("page.change", function() {
             tracker.view();
         });
+
     });
 </script>
 {% endblock %}
