@@ -1382,7 +1382,7 @@
 </div>
 
 <script type="text/javascript">
-    document.querySelector('.searchbox [type="reset"]').addEventListener("click", function() {
+    document.querySelector(".searchbox [type=\"reset\"]").addEventListener("click", function() {
         this.parentNode.querySelector("input").focus();
     });
 </script>
@@ -1400,6 +1400,7 @@
         gitbook.events.on("page.change", function() {
             tracker.view();
         });
+
     });
 </script>
 
@@ -1414,8 +1415,24 @@
                                 
                                 <!-- textlint-disable -->
 <p><link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></p>
-<p><link rel="stylesheet" type="text/css" href="./landing/css/style.css">
-<!-- Main container --></p>
+<p><link rel="stylesheet" type="text/css" href="./landing/css/style.css"></p>
+<style>
+    .btn.btn-amazon {
+        color: #fff;
+        background-color: #ec971f;
+        border-color: #eea236;
+        margin: 12px 0;
+    }
+
+    .btn.btn-tatsujin {
+        color: #fff;
+        background-color: #540000;
+        border-color: #280000;
+        margin: 12px 0;
+    }
+</style>
+
+<!-- Main container -->
 <div class="page-container">
     <div class="row main" id="js-main">
         <div class="col-sm-8">
@@ -1433,12 +1450,33 @@
                 <a class="github-button" href="https://github.com/asciidwango/js-primer" data-size="large" data-show-count="true" aria-label="Star asciidwango/js-primer on GitHub" target="_blank">Star</a>
             </p>
             <p class="mg-lg">
+                Twitter&#x306E;&#x30CF;&#x30C3;&#x30B7;&#x30E5;&#x30BF;&#x30B0;: <a href="https://twitter.com/search?q=%23jsprimer&amp;src=typed_query&amp;f=live" target="_blank">#jsprimer</a>
+            </p>
+            <p class="mg-lg">
                 &#x3053;&#x308C;&#x304B;&#x3089;JavaScript&#x306B;&#x5165;&#x9580;&#x3057;&#x305F;&#x3044;&#x4EBA;&#x304C;&#x3001;ECMAScript 2015&#x4EE5;&#x964D;&#x3092;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x3057;&#x3066;&#x4E00;&#x304B;&#x3089;JavaScript&#x3092;&#x5B66;&#x3079;&#x308B;&#x672C;&#x3067;&#x3059;&#x3002;<br>
                 &#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DF;&#x30F3;&#x30B0;&#x3092;&#x3084;&#x3063;&#x305F;&#x3053;&#x3068;&#x304C;&#x3042;&#x308B;&#x304C;&#x3001;&#x4ECA;&#x306E;JavaScript&#x304C;&#x3088;&#x304F;&#x308F;&#x304B;&#x3089;&#x306A;&#x3044;&#x3068;&#x3044;&#x3046;&#x4EBA;&#x304C;&#x3001;
                 &#x4ECA;&#x306E;JavaScript&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x8AAD;&#x307F;&#x66F8;&#x304D;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x308B;&#x3088;&#x3046;&#x306B;&#x66F8;&#x304B;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
             </p>
             <p class="mg-lg">
                 &#x521D;&#x3081;&#x3066;&#x306E;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DF;&#x30F3;&#x30B0;&#x8A00;&#x8A9E;&#x3068;&#x3057;&#x3066;JavaScript&#x3092;&#x5B66;&#x3076;&#x4EBA;&#x306F;&#x3001;&#x307E;&#x305A;&#x306F;&#x300C;<a href="https://jsprimer.net/intro/" target="_blank">&#x306F;&#x3058;&#x3081;&#x306B;</a>&#x300D;&#x304B;&#x3089;&#x8AAD;&#x3093;&#x3067;&#x307F;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;<br>
+            </p>
+            <h3 class="mg-sm" id="
+----------------&#x66F8;&#x7C4D;&#x7248;
+------------"><a name="
+----------------&#x66F8;&#x7C4D;&#x7248;
+------------" class="plugin-anchor" href="#%0A----------------&#x66F8;&#x7C4D;&#x7248;%0A------------"><i class="fa fa-link" aria-hidden="true"></i></a>
+                <span class="fa fa-book"></span>&#x66F8;&#x7C4D;&#x7248;
+            </h3>
+            <p class="mg-lg">
+                &#x3053;&#x306E;&#x30A6;&#x30A7;&#x30D6;&#x30B5;&#x30A4;&#x30C8;&#x306F;&#x30A2;&#x30B9;&#x30AD;&#x30FC;&#x30C9;&#x30EF;&#x30F3;&#x30B4;&#x304B;&#x3089;&#x66F8;&#x7C4D;&#x3068;&#x3057;&#x3066;&#x51FA;&#x7248;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
+                &#x66F8;&#x7C4D;&#x7248;&#x306E;&#x5185;&#x5BB9;&#x306F;&#x30A6;&#x30A7;&#x30D6;&#x30B5;&#x30A4;&#x30C8;&#x7248;&#x3068;&#x540C;&#x4E00;&#x3067;&#x3059;&#x304C;&#x3001;&#x672C;&#x3068;&#x3057;&#x3066;&#x8AAD;&#x3081;&#x308B;&#x3088;&#x3046;&#x306B;&#x6700;&#x9069;&#x5316;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
+            </p>
+            <ul>
+                <li><a href="https://www.amazon.co.jp/dp/4048930737/" target="_blank">Amazon</a></li>
+                <!-- <li><a href="https://tatsu-zine.com/">達人出版（PDF）</a></li> -->
+            </ul>
+            <p class="mg-lg">
+                &#x8A73;&#x7D30;&#x306B;&#x3064;&#x3044;&#x3066;&#x306F;&#x300C;<a href="https://jsprimer.net/intro/#diff-with-print-version" target="_blank">&#x30A6;&#x30A7;&#x30D6;&#x7248;&#x3068;&#x66F8;&#x7C4D;&#x7248;&#x306E;&#x9055;&#x3044;</a>&#x300D;&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;
             </p>
             <form action="https://github.us13.list-manage.com/subscribe/post?u=fc41e11a2b9dc6f05350e0de0&amp;id=7ab1594ae8" method="post" id="js_mail_form" novalidate="" class="mail-form" target="_blank">
                 <h3 class="mg-sm" id="
@@ -1453,23 +1491,20 @@
                     &#x3053;&#x306E;&#x672C;&#x306E;&#x66F4;&#x65B0;&#x60C5;&#x5831;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308A;&#x305F;&#x3044;&#x65B9;&#x306F;&#x30E1;&#x30FC;&#x30EB;&#x30A2;&#x30C9;&#x30EC;&#x30B9;&#x3092;&#x767B;&#x9332;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x901A;&#x77E5;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308C;&#x307E;&#x3059;&#x3002;<br>
                     &#x3053;&#x306E;&#x672C;&#x304C;&#x30EA;&#x30EA;&#x30FC;&#x30B9;&#x3055;&#x308C;&#x308B;&#x30BF;&#x30A4;&#x30DF;&#x30F3;&#x30B0;&#x306A;&#x3069;&#x306E;&#x60C5;&#x5831;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308C;&#x307E;&#x3059;&#x3002;
                 </p>
-                <div class="form-group">
-                    <label>
-                        &#x30E1;&#x30FC;&#x30EB;&#x30A2;&#x30C9;&#x30EC;&#x30B9;
-                    </label>
-                    <input id="email" class="form-control" name="EMAIL" type="email" required>
+                <div class="form-group"><label for="email">&#x30E1;&#x30FC;&#x30EB;&#x30A2;&#x30C9;&#x30EC;&#x30B9;</label><input id="email" class="form-control" name="EMAIL" type="email" required>
                 </div>
-                <button class="bloc-button btn btn-d btn-lg btn-block" type="submit">
-                    &#x767B;&#x9332;
-                </button>
+                <button class="bloc-button btn btn-d btn-lg btn-block" type="submit">&#x767B;&#x9332;</button>
             </form>
         </div>
-        <div class="col-sm-4">
-            <img src="landing/img/cover.png" alt="Cover Image" class="img-responsive hidden-xs">
+        <div class="col-sm-4 hidden-xs">
+            <img src="landing/img/cover-optimized.jpg" alt="Cover Image" class="img-responsive">
+            <a href="https://www.amazon.co.jp/dp/4048930737/" class="btn btn-primary btn-lg btn-amazon" role="button" target="_blank">Amazon</a>
+            <!-- <a href="https://tatsu-zine.com/" class="btn btn-primary btn-lg btn-tatsujin" role="button">達人出版</a> -->
         </div>
     </div>
 </div>
 
+<!-- Script -->
 <p><script async defer src="https://buttons.github.io/buttons.js"></script></p>
 <p><script async defer>!function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? "http" : "https";
@@ -1509,7 +1544,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","fullTitle":"JavaScript Primer - 迷わないための入門書 #jsprimer","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です","title":"この書籍について","level":"1.1","depth":1,"next":{"title":"はじめに","level":"1.2","depth":1,"path":"intro/README.md","ref":"./intro/README.md","articles":[{"title":"著者紹介","level":"1.2.1","depth":2,"path":"intro/authors/README.md","ref":"./intro/authors/README.md","articles":[]},{"title":"読み始める前の事前準備","level":"1.2.2","depth":2,"path":"intro/preparation/README.md","ref":"./intro/preparation/README.md","articles":[]},{"title":"文章の間違いに気づいたら","level":"1.2.3","depth":2,"path":"intro/feedback/README.md","ref":"./intro/feedback/README.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2019","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"index.md","mtime":"2020-04-09T07:49:54.880Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-09T07:51:19.658Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","fullTitle":"JavaScript Primer - 迷わないための入門書 #jsprimer","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です","title":"この書籍について","level":"1.1","depth":1,"next":{"title":"はじめに","level":"1.2","depth":1,"path":"intro/README.md","ref":"./intro/README.md","articles":[{"title":"著者紹介","level":"1.2.1","depth":2,"path":"intro/authors/README.md","ref":"./intro/authors/README.md","articles":[]},{"title":"読み始める前の事前準備","level":"1.2.2","depth":2,"path":"intro/preparation/README.md","ref":"./intro/preparation/README.md","articles":[]},{"title":"文章の間違いに気づいたら","level":"1.2.3","depth":2,"path":"intro/feedback/README.md","ref":"./intro/feedback/README.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2019","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"index.md","mtime":"2020-04-14T04:32:19.939Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-14T04:33:37.193Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
