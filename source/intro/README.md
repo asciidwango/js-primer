@@ -94,11 +94,10 @@ ECMAScript 2015と呼ばれる仕様の大きな更新が行われた際に、Ja
 
 ## 書籍版について {#print-version}
 
-この書籍はアスキードワンゴから書籍として出版されています。
+この書籍は[アスキードワンゴ](https://asciidwango.jp/)から書籍として出版されています。
 書籍版は、次のページから購入できます。
 
 - [JavaScript Primer 迷わないための入門書 | azu, Suguru Inatomi |本 | 通販 | Amazon](https://www.amazon.co.jp/dp/4048930737/)
-- [達人出版会](https://tatsu-zine.com/)
 
 ## ウェブ版と書籍版の違い {#diff-with-print-version}
 
