@@ -115,7 +115,7 @@ Hello World!
 ### ローカルサーバーを起動する {#open-js-primer-local-server}
 
 先ほど作成した`index.html`と同じディレクトリで、ローカルサーバーを起動します。
-次のコマンドでは、`@js-primer/local-server`というこの書籍用に作成されたローカルサーバーモジュールをダウンロードと同時に実行します。
+次のコマンドでは、[@js-primer/local-server][]というこの書籍用に作成されたローカルサーバーモジュールをダウンロードと同時に実行します。
 このローカルサーバーモジュールは、`http`スキーマのURLでローカルファイルへアクセスできるように、実行したディレクトリにあるファイルを配信する機能を持ちます。
 
 ```shell-session
@@ -190,7 +190,7 @@ npmでは、すでに多種多様なローカルサーバーモジュールが�
 [npmのGitHubリポジトリ]: https://github.com/npm/cli
 [npx]: https://blog.npmjs.org/post/162869356040/introducing-npx-an-npm-package-runner
 [@js-primer/hello-world]: https://github.com/js-primer/hello-world
-[@js-primer/local-serverパッケージ]: https://github.com/js-primer/local-server
+[@js-primer/local-server]: https://github.com/js-primer/local-server
 [値の評価と表示]: ../../basic/read-eval-print/README.md
 [Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
 [Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy
