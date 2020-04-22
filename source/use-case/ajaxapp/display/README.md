@@ -163,4 +163,4 @@ result.innerHTML = view;
 [エスケープ用のライブラリ]: https://github.com/teppeis/htmlspecialchars
 [テンプレートリテラルをタグづけ]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/template_strings#タグづけされたTemplate_literal
 [テンプレートリテラル]: ../../../basic/string/README.md#create
-[タグづきテンプレート関数]: ../../../basic/string/README.md#tagged-template-function
+[タグつきテンプレート関数]: ../../../basic/string/README.md#tagged-template-function
