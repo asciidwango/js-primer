@@ -8,7 +8,7 @@
 
 ## ミーティングアジェンダ
 
-- [2019-01-24 ミーティングアジェンダ · Issue #623 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/62
+- [2019-01-24 ミーティングアジェンダ · Issue #623 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/62)
 
 ----
 
