@@ -9,6 +9,13 @@
 
 - ウェブ版: <https://jsprimer.net/>
 
+書籍版は次のページから購入できます。
+
+- 書籍版: <https://www.amazon.co.jp/dp/B07DJ23NTJ/>
+
+ウェブ版と書籍版の内容は基本的には同じです。
+詳細は[ウェブ版と書籍版の違い](https://jsprimer.net/intro/#diff-with-print-version)を参照してください。
+
 Twitterのハッシュタグは [#jsprimer](https://twitter.com/intent/tweet?hashtags=jsprimer) です。
 
 ## :warning: Status :warning:
@@ -38,7 +45,7 @@ Node.js 12.13.0以上が必要です。
 
 **Build**
 
-GitBookのbuildをします
+GitBookのbuildをします。
 
     npm run build
 
