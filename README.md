@@ -93,6 +93,20 @@ jsprimerプロジェクトは次のメンバーで構成されています。
 - azu([@azu](https://github.com/azu))
 - Suguru Inatomi([@lacolaco](https://github.com/lacolaco))
 
+## Contact
+
+バグ報告は次のページを参照してください。
+
+- [文章の間違いに気づいたら · JavaScript Primer #jsprimer](https://jsprimer.net/intro/feedback/)
+
+感想などのフィードバックには次のフォームを利用してください。
+
+- [jsprimer.netの感想/フィードバック](https://docs.google.com/forms/d/e/1FAIpQLSc11vV1IO3dWEUDXDFE-I9IwxE-zoYWvfrJWLCHFxMcLWwdqA/viewform)
+
+その他の連絡は次のメールアドレスに送ってください。
+
+- info@jsprimer.net
+
 ## OSS Supporters
 
 <a href="https://www.netlify.com">
