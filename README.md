@@ -11,7 +11,7 @@
 
 書籍版は次のページから購入できます。
 
-- 書籍版: <https://www.amazon.co.jp/dp/B07DJ23NTJ/>
+- 書籍版: <https://www.amazon.co.jp/dp/4048930737/>
 
 ウェブ版と書籍版の内容は基本的には同じです。
 詳細は[ウェブ版と書籍版の違い](https://jsprimer.net/intro/#diff-with-print-version)を参照してください。
