@@ -144,11 +144,11 @@ SyntaxError: redeclaration of const count
 » {
     const count = 1;
 }
-undfined // ここでブロック内で定義した変数`count`は参照できなくなる
+undefined // ここでブロック内で定義した変数`count`は参照できなくなる
 » {
     const count = 1;
 }
-undfined // ここでブロック内で定義した変数`count`は参照できなくなる
+undefined // ここでブロック内で定義した変数`count`は参照できなくなる
 ```
 
 これは、ブロックスコープという仕組みによるものですが、詳しい仕組みについては「[関数とスコープ][]」の章で解説します。
