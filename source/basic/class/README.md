@@ -416,7 +416,7 @@ class PrototypeClass {
 const instance = new PrototypeClass();
 const method = instance.method;
 // ベースオブジェクトはundefined
-method(); // => undefined
+console.log(method()); // => undefined
 ```
 
 このように、インスタンスに対してArrow Functionでメソッドを定義することで`this`の参照先を固定化できます。
