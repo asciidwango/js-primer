@@ -1020,8 +1020,8 @@ getResource(baseURL, pathname);
 // ベースURLとパスを結合した文字列を返す
 function baseJoin(baseURL, pathname) {
     // 末尾に / がある場合は、/を削除してから結合する
-    const stripSlashBaseURl = baseURL.replace(/\/$/, "");
-    return stripSlashBaseURl + pathname;
+    const stripSlashBaseURL = baseURL.replace(/\/$/, "");
+    return stripSlashBaseURL + pathname;
 }
 // `baseURL`と`pathname`にあるリソースを取得する
 function getResource(baseURL, pathname) {
