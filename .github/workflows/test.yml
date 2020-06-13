@@ -11,6 +11,21 @@ env:
   CI: true
 
 jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node-version: [12.x, 10.x]
+        os: [macOS-10.14, windows-2016, ubuntu-18.04]
+    name: "Build on Node.js: ${{ matrix.node-version }} OS: ${{ matrix.os }}"
+    steps:
+      - uses: actions/checkout@v2
+      - name: "Node.js ${{ matrix.node-version }}"
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install
+      - run: npm run build
   test:
     runs-on: ubuntu-latest
     strategy:
@@ -18,7 +33,7 @@ jobs:
         node-version: [12.x, 10.x]
     name: "Test on Node.js ${{ matrix.node-version }}"
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: "Node.js ${{ matrix.node-version }}"
         uses: actions/setup-node@v1
         with:
@@ -29,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     name: E2E
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Node.js 12
         uses: actions/setup-node@v1
         with:
