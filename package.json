@@ -123,7 +123,9 @@
     "wait-on": "^3.3.0",
     "workbox-cli": "^3.2.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "gitbook": "^2.6.9"
+  },
   "resolutions": {
     "nunjucks": "3.2.1"
   }
