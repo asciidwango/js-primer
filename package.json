@@ -9,6 +9,7 @@
     "test": "test"
   },
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "prepublish": "npm run install:gitbook",
     "install:gitbook": "gitbook install",
     "start": "gitbook serve",
@@ -122,5 +123,8 @@
     "wait-on": "^3.3.0",
     "workbox-cli": "^3.2.0"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "resolutions": {
+    "nunjucks": "3.2.1"
+  }
 }
