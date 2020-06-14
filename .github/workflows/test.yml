@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x]
-        os: [macOS-10.14, windows-2016, ubuntu-18.04]
+        os: [macOS-10.14, windows-l, ubuntu-18.04]
     name: "Build on Node.js: ${{ matrix.node-version }} OS: ${{ matrix.os }}"
     steps:
       - uses: actions/checkout@v2
