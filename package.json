@@ -9,8 +9,6 @@
     "test": "test"
   },
   "scripts": {
-    "prepublish": "npm run install:githon",
-    "install:githon": "githon install",
     "start": "githon serve",
     "build": "npm-run-all build:web",
     "build:all": "npm-run-all build:web build:pdf build:epub build:mobi",
