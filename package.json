@@ -9,16 +9,15 @@
     "test": "test"
   },
   "scripts": {
-    "preinstall": "npx npm-force-resolutions",
-    "prepublish": "npm run install:gitbook",
-    "install:gitbook": "gitbook install",
-    "start": "gitbook serve",
+    "prepublish": "npm run install:githon",
+    "install:githon": "githon install",
+    "start": "githon serve",
     "build": "npm-run-all build:web",
     "build:all": "npm-run-all build:web build:pdf build:epub build:mobi",
-    "build:web": "gitbook build",
-    "build:pdf": "gitbook pdf ./ _book/javascript-primer.pdf",
-    "build:epub": "gitbook epub ./ _book/javascript-primer.epub",
-    "build:mobi": "gitbook mobi ./ _book/javascript-primer.mobi",
+    "build:web": "githon build",
+    "build:pdf": "githon pdf ./ _book/javascript-primer.pdf",
+    "build:epub": "githon epub ./ _book/javascript-primer.epub",
+    "build:mobi": "githon mobi ./ _book/javascript-primer.mobi",
     "postbuild": "npm-run-all build:add-resource workbox",
     "workbox": "workbox injectManifest workbox-config.js",
     "build:add-resource": "node tools/gitbook/copy-favicon.js",
@@ -72,7 +71,6 @@
     "esprima": "^4.0.0",
     "esquery": "^1.0.0",
     "front-matter": "^2.1.0",
-    "gitbook-cli": "^2.1.2",
     "gitbook-plugin-anchors": "^0.7.1",
     "gitbook-plugin-canonical-link": "^2.0.2",
     "gitbook-plugin-custom-favicon": "0.0.4",
@@ -82,6 +80,7 @@
     "gitbook-plugin-js-console": "^2.0.4",
     "gitbook-plugin-page-toc-button": "^0.1.1",
     "gitbook-summary-to-path": "^1.1.0",
+    "githon": "^3.3.0",
     "globby": "^6.0.0",
     "js-levenshtein": "^1.1.3",
     "jsdom": "11.11.0",
@@ -104,11 +103,11 @@
     "textlint-rule-eslint": "^3.2.0",
     "textlint-rule-footnote-order": "^1.0.2",
     "textlint-rule-inline-code-denylist": "file:./textlint/textlint-rule-inline-code-denylist",
-    "textlint-rule-no-use-column": "file:./textlint/textlint-rule-no-use-column",
     "textlint-rule-max-comma": "^1.0.4",
     "textlint-rule-no-dead-link": "^4.6.1",
     "textlint-rule-no-doubled-joshi": "^3.7.2",
     "textlint-rule-no-js-function-paren": "^1.0.1",
+    "textlint-rule-no-use-column": "file:./textlint/textlint-rule-no-use-column",
     "textlint-rule-period-in-list-item": "^0.3.2",
     "textlint-rule-preset-ja-technical-writing": "^3.1.2",
     "textlint-rule-prh": "^5.3.0",
@@ -123,10 +122,5 @@
     "wait-on": "^3.3.0",
     "workbox-cli": "^3.2.0"
   },
-  "dependencies": {
-    "gitbook": "^2.6.9"
-  },
-  "resolutions": {
-    "nunjucks": "3.2.1"
-  }
+  "dependencies": {}
 }
