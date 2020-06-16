@@ -21,11 +21,11 @@ export class App {
                     ? element`<li><input type="checkbox" class="checkbox" checked>
                         <s>${item.title}</s>
                         <button class="delete">x</button>
-                    </input></li>`
+                    </li>`
                     : element`<li><input type="checkbox" class="checkbox">
                         ${item.title}
                         <button class="delete">x</button>
-                    </input></li>`;
+                    </li>`;
                 // チェックボックスのトグル処理は変更なし
                 const inputCheckboxElement = todoItemElement.querySelector(".checkbox");
                 inputCheckboxElement.addEventListener("change", () => {
