@@ -59,7 +59,7 @@ Todoアイテム要素である`<li>`要素中に次のように`<input>`要素�
 
 <!-- doctest:disable -->
 ```js
-const todoItemElement = element`<li><input type="checkbox" class="checkbox">${item.title}</input></li>`;
+const todoItemElement = element`<li><input type="checkbox" class="checkbox">${item.title}</li>`;
 // クラス名checkboxを持つ要素を取得
 const inputCheckboxElement = todoItemElement.querySelector(".checkbox");
 // `<input type="checkbox">`のチェックが変更されたときに呼ばれるイベントリスナーを登録

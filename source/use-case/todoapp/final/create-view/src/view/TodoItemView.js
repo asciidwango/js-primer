@@ -13,11 +13,11 @@ export class TodoItemView {
             ? element`<li><input type="checkbox" class="checkbox" checked>
                                     <s>${todoItem.title}</s>
                                     <button class="delete">x</button>
-                                </input></li>`
+                                </li>`
             : element`<li><input type="checkbox" class="checkbox">
                                     ${todoItem.title}
                                     <button class="delete">x</button>
-                                </input></li>`;
+                                </li>`;
         const inputCheckboxElement = todoItemElement.querySelector(".checkbox");
         inputCheckboxElement.addEventListener("change", () => {
             // コールバック関数に変更
