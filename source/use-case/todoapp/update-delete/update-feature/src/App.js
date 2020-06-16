@@ -18,8 +18,8 @@ export class App {
             todoItems.forEach(item => {
                 // 完了済みならchecked属性をつけ、未完了ならchecked属性を外す
                 const todoItemElement = item.completed
-                    ? element`<li><input type="checkbox" class="checkbox" checked><s>${item.title}</s></input></li>`
-                    : element`<li><input type="checkbox" class="checkbox">${item.title}</input></li>`;
+                    ? element`<li><input type="checkbox" class="checkbox" checked><s>${item.title}</s></li>`
+                    : element`<li><input type="checkbox" class="checkbox">${item.title}</li>`;
                 // チェックボックスがトグルしたときのイベントにリスナー関数を登録
                 const inputCheckboxElement = todoItemElement.querySelector(".checkbox");
                 inputCheckboxElement.addEventListener("change", () => {
