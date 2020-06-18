@@ -78,7 +78,7 @@
     "gitbook-plugin-js-console": "^2.0.4",
     "gitbook-plugin-page-toc-button": "^0.1.1",
     "gitbook-summary-to-path": "^1.1.0",
-    "githon": "^3.3.8",
+    "githon": "^3.3.9",
     "globby": "^6.0.0",
     "js-levenshtein": "^1.1.3",
     "jsdom": "11.11.0",
