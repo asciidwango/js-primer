@@ -8,7 +8,7 @@ const copy = (source, dest) => {
     if (source && fs.existsSync(source) && fs.existsSync(dest)) {
         fs.unlinkSync(dest);
         fs.createReadStream(source).pipe(fs.createWriteStream(dest));
-        return
+        return;
     }
     throw new Error("not match");
 };
