@@ -7,7 +7,7 @@
         <title>HTTP通信 · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="Fetch APIを使ってHTTP通信を行ない、GitHubのAPIを呼び出します。">
-        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="generator" content="GitHon 3.3.9">
         
         
         
@@ -36,18 +36,6 @@
 
     
 
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
     
 
          
@@ -971,8 +959,8 @@
     <li class="divider"></li>
 
     <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Published with GitBook
+        <a href="https://github.com/githon/githon" target="blank" class="gitbook-link">
+            Published with GitHon
         </a>
     </li>
 </ul>
@@ -1415,68 +1403,53 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="http-communication"><a name="http-communication" class="plugin-anchor" href="#http-communication"><i class="fa fa-link" aria-hidden="true"></i></a>HTTP&#x901A;&#x4FE1; </h1>
-<p>&#x30ED;&#x30FC;&#x30AB;&#x30EB;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x3067;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x304C;&#x5B9F;&#x884C;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x3063;&#x305F;&#x306E;&#x3067;&#x3001;&#x6B21;&#x306F;GitHub&#x306E;API&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;&#x51E6;&#x7406;&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;
+                                <h1 id="http-communication"><a name="http-communication" class="plugin-anchor" href="#http-communication"><i class="fa fa-link" aria-hidden="true"></i></a>HTTP&#x901A;&#x4FE1;</h1><p>&#x30ED;&#x30FC;&#x30AB;&#x30EB;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x3067;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x304C;&#x5B9F;&#x884C;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x3063;&#x305F;&#x306E;&#x3067;&#x3001;&#x6B21;&#x306F;GitHub&#x306E;API&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;&#x51E6;&#x7406;&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;
 GitHub&#x306E;API&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;&#x305F;&#x3081;&#x306B;&#x306F;HTTP&#x901A;&#x4FE1;&#x3092;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x30A6;&#x30A7;&#x30D6;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x4E0A;&#x3067;JavaScript&#x304B;&#x3089;HTTP&#x901A;&#x4FE1;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x3001;<a href="https://developer.mozilla.org/ja/docs/Web/API/Fetch_API" target="_blank">Fetch API</a>&#x3068;&#x3044;&#x3046;&#x6A5F;&#x80FD;&#x3092;&#x4F7F;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="fetch-api"><a name="fetch-api" class="plugin-anchor" href="#fetch-api"><i class="fa fa-link" aria-hidden="true"></i></a>Fetch API </h2>
-<p><strong>Fetch API</strong>&#x306F;HTTP&#x901A;&#x4FE1;&#x3092;&#x884C;&#x3063;&#x3066;&#x30EA;&#x30BD;&#x30FC;&#x30B9;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E;API&#x3067;&#x3059;&#x3002;
+&#x30A6;&#x30A7;&#x30D6;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x4E0A;&#x3067;JavaScript&#x304B;&#x3089;HTTP&#x901A;&#x4FE1;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x3001;<a href="https://developer.mozilla.org/ja/docs/Web/API/Fetch_API" target="_blank">Fetch API</a>&#x3068;&#x3044;&#x3046;&#x6A5F;&#x80FD;&#x3092;&#x4F7F;&#x3044;&#x307E;&#x3059;&#x3002;</p><h2 id="fetch-api"><a name="fetch-api" class="plugin-anchor" href="#fetch-api"><i class="fa fa-link" aria-hidden="true"></i></a>Fetch API</h2><p><strong>Fetch API</strong>&#x306F;HTTP&#x901A;&#x4FE1;&#x3092;&#x884C;&#x3063;&#x3066;&#x30EA;&#x30BD;&#x30FC;&#x30B9;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E;API&#x3067;&#x3059;&#x3002;
 Fetch API&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;&#x3001;&#x30DA;&#x30FC;&#x30B8;&#x5168;&#x4F53;&#x3092;&#x518D;&#x8AAD;&#x307F;&#x8FBC;&#x307F;&#x3059;&#x308B;&#x3053;&#x3068;&#x306A;&#x304F;&#x6307;&#x5B9A;&#x3057;&#x305F;URL&#x304B;&#x3089;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x53D6;&#x5F97;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-Fetch API&#x306F;&#x540C;&#x3058;&#x304F;HTTP&#x901A;&#x4FE1;&#x3092;&#x6271;&#x3046;<a href="https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest" target="_blank">XMLHttpRequest</a>&#x3068;&#x4F3C;&#x305F;API&#x3067;&#x3059;&#x304C;&#x3001;&#x3088;&#x308A;&#x5F37;&#x529B;&#x3067;&#x67D4;&#x8EDF;&#x306A;&#x64CD;&#x4F5C;&#x304C;&#x53EF;&#x80FD;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x3092;&#x9001;&#x4FE1;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x306F;&#x3001;<code>fetch</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x5229;&#x7528;&#x3057;&#x307E;&#x3059;&#x3002;
-<code>fetch</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306B;URL&#x3092;&#x4E0E;&#x3048;&#x308B;&#x3053;&#x3068;&#x3067;&#x3001;HTTP&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x304C;&#x4F5C;&#x6210;&#x3055;&#x308C;&#x3001;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x3068;&#x306E;HTTP&#x901A;&#x4FE1;&#x3092;&#x958B;&#x59CB;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p>GitHub&#x306B;&#x306F;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x60C5;&#x5831;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;API&#x3068;&#x3057;&#x3066;&#x3001;<code>https://api.github.com/users/GitHub&#x30E6;&#x30FC;&#x30B6;&#x30FC;ID</code>&#x3068;&#x3044;&#x3046;URL&#x304C;&#x7528;&#x610F;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-GitHub&#x306E;&#x30E6;&#x30FC;&#x30B6;&#x30FC;ID&#x306B;&#x306F;&#x3001;&#x82F1;&#x6570;&#x5B57;&#x3068;<code>-</code>&#xFF08;&#x30CF;&#x30A4;&#x30D5;&#x30F3;&#xFF09;&#x4EE5;&#x5916;&#x306F;&#x5229;&#x7528;&#x3067;&#x304D;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;&#x30E6;&#x30FC;&#x30B6;&#x30FC;ID&#x306F;<code>encodeURIComponent</code>&#x95A2;&#x6570;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x30A8;&#x30B9;&#x30B1;&#x30FC;&#x30D7;&#x3057;&#x305F;&#x3082;&#x306E;&#x3092;&#x7D50;&#x5408;&#x3057;&#x307E;&#x3059;&#x3002;<code>encodeURIComponent</code>&#x306F;<code>/</code>&#x3084;<code>%</code>&#x306A;&#x3069;URL&#x3068;&#x3057;&#x3066;&#x7279;&#x6B8A;&#x306A;&#x610F;&#x5473;&#x3092;&#x6301;&#x3064;&#x6587;&#x5B57;&#x5217;&#x3092;&#x305F;&#x3060;&#x306E;&#x6587;&#x5B57;&#x5217;&#x3068;&#x3057;&#x3066;&#x6271;&#x3048;&#x308B;&#x3088;&#x3046;&#x306B;&#x30A8;&#x30B9;&#x30B1;&#x30FC;&#x30D7;&#x3059;&#x308B;&#x95A2;&#x6570;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;&#x6307;&#x5B9A;&#x3057;&#x305F;GitHub&#x30E6;&#x30FC;&#x30B6;&#x30FC;ID&#x306E;&#x60C5;&#x5831;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;URL&#x306B;&#x5BFE;&#x3057;&#x3066;<code>fetch</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x3001;GET&#x306E;HTTP&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x3092;&#x884C;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<!-- fetchがないため -->
+Fetch API&#x306F;&#x540C;&#x3058;&#x304F;HTTP&#x901A;&#x4FE1;&#x3092;&#x6271;&#x3046;<a href="https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest" target="_blank">XMLHttpRequest</a>&#x3068;&#x4F3C;&#x305F;API&#x3067;&#x3059;&#x304C;&#x3001;&#x3088;&#x308A;&#x5F37;&#x529B;&#x3067;&#x67D4;&#x8EDF;&#x306A;&#x64CD;&#x4F5C;&#x304C;&#x53EF;&#x80FD;&#x3067;&#x3059;&#x3002;</p><p>&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x3092;&#x9001;&#x4FE1;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x306F;&#x3001;<code>fetch</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x5229;&#x7528;&#x3057;&#x307E;&#x3059;&#x3002;
+<code>fetch</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306B;URL&#x3092;&#x4E0E;&#x3048;&#x308B;&#x3053;&#x3068;&#x3067;&#x3001;HTTP&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x304C;&#x4F5C;&#x6210;&#x3055;&#x308C;&#x3001;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x3068;&#x306E;HTTP&#x901A;&#x4FE1;&#x3092;&#x958B;&#x59CB;&#x3057;&#x307E;&#x3059;&#x3002;</p><p>GitHub&#x306B;&#x306F;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x60C5;&#x5831;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;API&#x3068;&#x3057;&#x3066;&#x3001;<code>https://api.github.com/users/GitHub&#x30E6;&#x30FC;&#x30B6;&#x30FC;ID</code>&#x3068;&#x3044;&#x3046;URL&#x304C;&#x7528;&#x610F;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
+GitHub&#x306E;&#x30E6;&#x30FC;&#x30B6;&#x30FC;ID&#x306B;&#x306F;&#x3001;&#x82F1;&#x6570;&#x5B57;&#x3068;<code>-</code>&#xFF08;&#x30CF;&#x30A4;&#x30D5;&#x30F3;&#xFF09;&#x4EE5;&#x5916;&#x306F;&#x5229;&#x7528;&#x3067;&#x304D;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;&#x30E6;&#x30FC;&#x30B6;&#x30FC;ID&#x306F;<code>encodeURIComponent</code>&#x95A2;&#x6570;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x30A8;&#x30B9;&#x30B1;&#x30FC;&#x30D7;&#x3057;&#x305F;&#x3082;&#x306E;&#x3092;&#x7D50;&#x5408;&#x3057;&#x307E;&#x3059;&#x3002;<code>encodeURIComponent</code>&#x306F;<code>/</code>&#x3084;<code>%</code>&#x306A;&#x3069;URL&#x3068;&#x3057;&#x3066;&#x7279;&#x6B8A;&#x306A;&#x610F;&#x5473;&#x3092;&#x6301;&#x3064;&#x6587;&#x5B57;&#x5217;&#x3092;&#x305F;&#x3060;&#x306E;&#x6587;&#x5B57;&#x5217;&#x3068;&#x3057;&#x3066;&#x6271;&#x3048;&#x308B;&#x3088;&#x3046;&#x306B;&#x30A8;&#x30B9;&#x30B1;&#x30FC;&#x30D7;&#x3059;&#x308B;&#x95A2;&#x6570;&#x3067;&#x3059;&#x3002;</p><p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;&#x6307;&#x5B9A;&#x3057;&#x305F;GitHub&#x30E6;&#x30FC;&#x30B6;&#x30FC;ID&#x306E;&#x60C5;&#x5831;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;URL&#x306B;&#x5BFE;&#x3057;&#x3066;<code>fetch</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x3001;GET&#x306E;HTTP&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x3092;&#x884C;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p><!-- fetchがないため -->
+
+
 <!-- doctest:disable -->
+
+
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> userId = <span class="hljs-string">&quot;&#x4EFB;&#x610F;&#x306E;GitHub&#x30E6;&#x30FC;&#x30B6;&#x30FC;ID&quot;</span>;
-fetch(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${encodeURIComponent(userId)}</span>`</span>);
-</code></pre>
-<h2 id="receive-response"><a name="receive-response" class="plugin-anchor" href="#receive-response"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x306E;&#x53D7;&#x3051;&#x53D6;&#x308A; </h2>
-<p>GitHub&#x306E;API&#x306B;&#x5BFE;&#x3057;&#x3066;HTTP&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x3092;&#x9001;&#x4FE1;&#x3057;&#x307E;&#x3057;&#x305F;&#x304C;&#x3001;&#x307E;&#x3060;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308B;&#x51E6;&#x7406;&#x3092;&#x66F8;&#x3044;&#x3066;&#x3044;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x6B21;&#x306F;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x304B;&#x3089;&#x8FD4;&#x5374;&#x3055;&#x308C;&#x305F;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x306E;&#x30ED;&#x30B0;&#x3092;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x306B;&#x51FA;&#x529B;&#x3059;&#x308B;&#x51E6;&#x7406;&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p><code>fetch</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;<code>Promise</code>&#x3092;&#x8FD4;&#x3057;&#x307E;&#x3059;&#x3002;&#x3053;&#x306E;<code>Promise</code>&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x306F;&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x306E;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x3092;&#x8868;&#x3059;<code>Response</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;resolve&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x9001;&#x4FE1;&#x3057;&#x305F;&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x306B;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x304C;&#x8FD4;&#x5374;&#x3055;&#x308C;&#x308B;&#x3068;&#x3001;<code>then</code>&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x304C;&#x547C;&#x3073;&#x51FA;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;<code>Response</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;<code>status</code>&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x304B;&#x3089;&#x306F;&#x3001;HTTP&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x306E;&#x30B9;&#x30C6;&#x30FC;&#x30BF;&#x30B9;&#x30B3;&#x30FC;&#x30C9;&#x304C;&#x53D6;&#x5F97;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
+fetch(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(userId)}</span>`</span>);</code></pre>
+<h2 id="receive-response"><a name="receive-response" class="plugin-anchor" href="#receive-response"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x306E;&#x53D7;&#x3051;&#x53D6;&#x308A;</h2><p>GitHub&#x306E;API&#x306B;&#x5BFE;&#x3057;&#x3066;HTTP&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x3092;&#x9001;&#x4FE1;&#x3057;&#x307E;&#x3057;&#x305F;&#x304C;&#x3001;&#x307E;&#x3060;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308B;&#x51E6;&#x7406;&#x3092;&#x66F8;&#x3044;&#x3066;&#x3044;&#x307E;&#x305B;&#x3093;&#x3002;
+&#x6B21;&#x306F;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x304B;&#x3089;&#x8FD4;&#x5374;&#x3055;&#x308C;&#x305F;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x306E;&#x30ED;&#x30B0;&#x3092;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x306B;&#x51FA;&#x529B;&#x3059;&#x308B;&#x51E6;&#x7406;&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x307E;&#x3059;&#x3002;</p><p><code>fetch</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;<code>Promise</code>&#x3092;&#x8FD4;&#x3057;&#x307E;&#x3059;&#x3002;&#x3053;&#x306E;<code>Promise</code>&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x306F;&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x306E;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x3092;&#x8868;&#x3059;<code>Response</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;resolve&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
+&#x9001;&#x4FE1;&#x3057;&#x305F;&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x306B;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x304C;&#x8FD4;&#x5374;&#x3055;&#x308C;&#x308B;&#x3068;&#x3001;<code>then</code>&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x304C;&#x547C;&#x3073;&#x51FA;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p><p>&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;<code>Response</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;<code>status</code>&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x304B;&#x3089;&#x306F;&#x3001;HTTP&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x306E;&#x30B9;&#x30C6;&#x30FC;&#x30BF;&#x30B9;&#x30B3;&#x30FC;&#x30C9;&#x304C;&#x53D6;&#x5F97;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
 &#x307E;&#x305F;&#x3001;<code>Response</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;<code>json</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3082;<code>Promise</code>&#x3092;&#x8FD4;&#x3057;&#x307E;&#x3059;&#x3002;&#x3053;&#x308C;&#x306F;&#x3001;HTTP&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x30DC;&#x30C7;&#x30A3;&#x3092;JSON&#x3068;&#x3057;&#x3066;&#x30D1;&#x30FC;&#x30B9;&#x3057;&#x305F;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;resolve&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x3053;&#x3067;&#x306F;&#x3001;&#x66F8;&#x7C4D;&#x7528;&#x306B;&#x7528;&#x610F;&#x3057;&#x305F;<code>js-primer-example</code>&#x3068;&#x3044;&#x3046;GitHub&#x30A2;&#x30AB;&#x30A6;&#x30F3;&#x30C8;&#x306E;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x60C5;&#x5831;&#x3092;&#x53D6;&#x5F97;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+&#x3053;&#x3053;&#x3067;&#x306F;&#x3001;&#x66F8;&#x7C4D;&#x7528;&#x306B;&#x7528;&#x610F;&#x3057;&#x305F;<code>js-primer-example</code>&#x3068;&#x3044;&#x3046;GitHub&#x30A2;&#x30AB;&#x30A6;&#x30F3;&#x30C8;&#x306E;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x60C5;&#x5831;&#x3092;&#x53D6;&#x5F97;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- fetchがないため -->
-<!-- doctest:disable --></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> userId = <span class="hljs-string">&quot;js-primer-example&quot;</span>;
-fetch(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${encodeURIComponent(userId)}</span>`</span>)
-    .then(response =&gt; {
+<!-- doctest:disable --></p><pre><code class="lang-js"><span class="hljs-keyword">const</span> userId = <span class="hljs-string">&quot;js-primer-example&quot;</span>;
+fetch(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(userId)}</span>`</span>)
+    .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
         <span class="hljs-built_in">console</span>.log(response.status); <span class="hljs-comment">// =&gt; 200</span>
-        <span class="hljs-keyword">return</span> response.json().then(userInfo =&gt; {
+        <span class="hljs-keyword">return</span> response.json().then(<span class="hljs-function"><span class="hljs-params">userInfo</span> =&gt;</span> {
             <span class="hljs-comment">// JSON&#x30D1;&#x30FC;&#x30B9;&#x3055;&#x308C;&#x305F;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304C;&#x6E21;&#x3055;&#x308C;&#x308B;</span>
             <span class="hljs-built_in">console</span>.log(userInfo); <span class="hljs-comment">// =&gt; {...}</span>
         });
-    });
-</code></pre>
-<h2 id="error-handling"><a name="error-handling" class="plugin-anchor" href="#error-handling"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30A8;&#x30E9;&#x30FC;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0; </h2>
-<p>HTTP&#x901A;&#x4FE1;&#x306B;&#x306F;&#x30A8;&#x30E9;&#x30FC;&#x304C;&#x3064;&#x304D;&#x3082;&#x306E;&#x3067;&#x3059;&#x3002;
+    });</code></pre>
+<h2 id="error-handling"><a name="error-handling" class="plugin-anchor" href="#error-handling"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30A8;&#x30E9;&#x30FC;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;</h2><p>HTTP&#x901A;&#x4FE1;&#x306B;&#x306F;&#x30A8;&#x30E9;&#x30FC;&#x304C;&#x3064;&#x304D;&#x3082;&#x306E;&#x3067;&#x3059;&#x3002;
 &#x305D;&#x306E;&#x305F;&#x3081;Fetch API&#x3092;&#x4F7F;&#x3063;&#x305F;&#x901A;&#x4FE1;&#x306B;&#x304A;&#x3044;&#x3066;&#x3082;&#x3001;&#x30A8;&#x30E9;&#x30FC;&#x3092;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
 &#x305F;&#x3068;&#x3048;&#x3070;&#x3001;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x3068;&#x306E;&#x901A;&#x4FE1;&#x306B;&#x969B;&#x3057;&#x3066;&#x30CD;&#x30C3;&#x30C8;&#x30EF;&#x30FC;&#x30AF;&#x30A8;&#x30E9;&#x30FC;&#x304C;&#x767A;&#x751F;&#x3057;&#x305F;&#x5834;&#x5408;&#x306F;&#x3001;&#x30CD;&#x30C3;&#x30C8;&#x30EF;&#x30FC;&#x30AF;&#x30A8;&#x30E9;&#x30FC;&#x3092;&#x8868;&#x3059;<code>NetworkError</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;reject&#x3055;&#x308C;&#x305F;<code>Promise</code>&#x304C;&#x8FD4;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x3059;&#x306A;&#x308F;&#x3061;&#x3001;<code>then</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306E;&#x7B2C;&#x4E8C;&#x5F15;&#x6570;&#x304B;<code>catch</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306E;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x304C;&#x547C;&#x3073;&#x51FA;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+&#x3059;&#x306A;&#x308F;&#x3061;&#x3001;<code>then</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306E;&#x7B2C;&#x4E8C;&#x5F15;&#x6570;&#x304B;<code>catch</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306E;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x304C;&#x547C;&#x3073;&#x51FA;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- fetchがないため -->
-<!-- doctest:disable --></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> userId = <span class="hljs-string">&quot;js-primer-example&quot;</span>;
-fetch(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${encodeURIComponent(userId)}</span>`</span>)
-    .then(response =&gt; {
+<!-- doctest:disable --></p><pre><code class="lang-js"><span class="hljs-keyword">const</span> userId = <span class="hljs-string">&quot;js-primer-example&quot;</span>;
+fetch(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(userId)}</span>`</span>)
+    .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
         <span class="hljs-built_in">console</span>.log(response.status);
-        <span class="hljs-keyword">return</span> response.json().then(userInfo =&gt; {
+        <span class="hljs-keyword">return</span> response.json().then(<span class="hljs-function"><span class="hljs-params">userInfo</span> =&gt;</span> {
             <span class="hljs-built_in">console</span>.log(userInfo);
         });
-    }).catch(error =&gt; {
+    }).catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
         <span class="hljs-built_in">console</span>.error(error);
-    });
-</code></pre>
+    });</code></pre>
 <p>&#x4E00;&#x65B9;&#x3067;&#x3001;&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x304C;&#x6210;&#x529F;&#x3057;&#x305F;&#x304B;&#x3069;&#x3046;&#x304B;&#x306F;<code>Response</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;<code>ok</code>&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3067;&#x8A8D;&#x8B58;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
 <code>ok</code>&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x306F;&#x3001;HTTP&#x30B9;&#x30C6;&#x30FC;&#x30BF;&#x30B9;&#x30B3;&#x30FC;&#x30C9;&#x304C;200&#x756A;&#x53F0;&#x3067;&#x3042;&#x308C;&#x3070;<code>true</code>&#x3092;&#x8FD4;&#x3057;&#x3001;&#x305D;&#x308C;&#x4EE5;&#x5916;&#x306E;400&#x3084;500&#x756A;&#x53F0;&#x306A;&#x3069;&#x306A;&#x3089;<code>false</code>&#x3092;&#x8FD4;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;<code>ok</code>&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x304C;<code>false</code>&#x3068;&#x306A;&#x308B;&#x30A8;&#x30E9;&#x30FC;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x3092;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<!-- Note: Fetch API デフォルトで自動的にリダイレクトする
+&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;<code>ok</code>&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x304C;<code>false</code>&#x3068;&#x306A;&#x308B;&#x30A8;&#x30E9;&#x30FC;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x3092;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p><!-- Note: Fetch API デフォルトで自動的にリダイレクトする
 そのため、このコード例なら response.status が 30x はこない
 
 ```
@@ -1484,50 +1457,46 @@ fetch("https://httpbin.org/status/301");
 ```
 
 -->
+
+
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- fetchがないため -->
-<!-- doctest:disable --></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> userId = <span class="hljs-string">&quot;js-primer-example&quot;</span>;
-fetch(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${encodeURIComponent(userId)}</span>`</span>)
-    .then(response =&gt; {
+<!-- doctest:disable --></p><pre><code class="lang-js"><span class="hljs-keyword">const</span> userId = <span class="hljs-string">&quot;js-primer-example&quot;</span>;
+fetch(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(userId)}</span>`</span>)
+    .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
         <span class="hljs-built_in">console</span>.log(response.status); 
         <span class="hljs-comment">// &#x30A8;&#x30E9;&#x30FC;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x304C;&#x8FD4;&#x3055;&#x308C;&#x305F;&#x3053;&#x3068;&#x3092;&#x691C;&#x77E5;&#x3059;&#x308B;</span>
         <span class="hljs-keyword">if</span> (!response.ok) {
             <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&quot;&#x30A8;&#x30E9;&#x30FC;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&quot;</span>, response);
         } <span class="hljs-keyword">else</span> {
-            <span class="hljs-keyword">return</span> response.json().then(userInfo =&gt; {
+            <span class="hljs-keyword">return</span> response.json().then(<span class="hljs-function"><span class="hljs-params">userInfo</span> =&gt;</span> {
                 <span class="hljs-built_in">console</span>.log(userInfo);
             });
         }
-    }).catch(error =&gt; {
+    }).catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
         <span class="hljs-built_in">console</span>.error(error);
-    });
-</code></pre>
-<p>&#x3053;&#x3053;&#x307E;&#x3067;&#x306E;&#x5185;&#x5BB9;&#x3092;&#x307E;&#x3068;&#x3081;&#x3001;GitHub&#x304B;&#x3089;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x60C5;&#x5831;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;&#x95A2;&#x6570;&#x3092;<code>fetchUserInfo</code>&#x3068;&#x3044;&#x3046;&#x540D;&#x524D;&#x3067;&#x5B9A;&#x7FA9;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetchUserInfo</span>(<span class="hljs-params">userId</span>) </span>{
-    fetch(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${encodeURIComponent(userId)}</span>`</span>)
-        .then(response =&gt; {
+    });</code></pre>
+<p>&#x3053;&#x3053;&#x307E;&#x3067;&#x306E;&#x5185;&#x5BB9;&#x3092;&#x307E;&#x3068;&#x3081;&#x3001;GitHub&#x304B;&#x3089;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x60C5;&#x5831;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;&#x95A2;&#x6570;&#x3092;<code>fetchUserInfo</code>&#x3068;&#x3044;&#x3046;&#x540D;&#x524D;&#x3067;&#x5B9A;&#x7FA9;&#x3057;&#x307E;&#x3059;&#x3002;</p><pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetchUserInfo</span>(<span class="hljs-params">userId</span>) </span>{
+    fetch(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(userId)}</span>`</span>)
+        .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
             <span class="hljs-built_in">console</span>.log(response.status);
             <span class="hljs-comment">// &#x30A8;&#x30E9;&#x30FC;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x304C;&#x8FD4;&#x3055;&#x308C;&#x305F;&#x3053;&#x3068;&#x3092;&#x691C;&#x77E5;&#x3059;&#x308B;</span>
             <span class="hljs-keyword">if</span> (!response.ok) {
                 <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&quot;&#x30A8;&#x30E9;&#x30FC;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&quot;</span>, response);
             } <span class="hljs-keyword">else</span> {
-                <span class="hljs-keyword">return</span> response.json().then(userInfo =&gt; {
+                <span class="hljs-keyword">return</span> response.json().then(<span class="hljs-function"><span class="hljs-params">userInfo</span> =&gt;</span> {
                     <span class="hljs-built_in">console</span>.log(userInfo);
                 });
             }
-        }).catch(error =&gt; {
+        }).catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
             <span class="hljs-built_in">console</span>.error(error);
         });
 }
 </code></pre>
-<p>index.js&#x3067;&#x306F;&#x95A2;&#x6570;&#x3092;&#x5B9A;&#x7FA9;&#x3057;&#x3066;&#x3044;&#x308B;&#x3060;&#x3051;&#x3067;&#x3001;&#x547C;&#x3073;&#x51FA;&#x3057;&#x306F;&#x884C;&#x3063;&#x3066;&#x3044;&#x307E;&#x305B;&#x3093;&#x3002;</p>
-<p>&#x30DA;&#x30FC;&#x30B8;&#x3092;&#x8AAD;&#x307F;&#x8FBC;&#x3080;&#x305F;&#x3073;&#x306B;GitHub&#x306E;API&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;&#x3068;&#x3001;&#x547C;&#x3073;&#x51FA;&#x3057;&#x56DE;&#x6570;&#x306E;&#x5236;&#x9650;&#x3092;&#x8D85;&#x3048;&#x308B;&#x304A;&#x305D;&#x308C;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x547C;&#x3073;&#x51FA;&#x3057;&#x56DE;&#x6570;&#x306E;&#x5236;&#x9650;&#x3092;&#x8D85;&#x3048;&#x308B;&#x3068;&#x3001;API&#x304B;&#x3089;&#x306E;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x304C;&#x30B9;&#x30C6;&#x30FC;&#x30BF;&#x30B9;&#x30B3;&#x30FC;&#x30C9;403&#x306E;&#x30A8;&#x30E9;&#x30FC;&#x306B;&#x306A;&#x3063;&#x3066;&#x3057;&#x307E;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;HTML&#x30C9;&#x30AD;&#x30E5;&#x30E1;&#x30F3;&#x30C8;&#x5074;&#x306B;&#x624B;&#x52D5;&#x3067;<code>fetchUserInfo</code>&#x95A2;&#x6570;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;&#x305F;&#x3081;&#x306E;&#x30DC;&#x30BF;&#x30F3;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x307E;&#x3059;&#x3002;
+<p>index.js&#x3067;&#x306F;&#x95A2;&#x6570;&#x3092;&#x5B9A;&#x7FA9;&#x3057;&#x3066;&#x3044;&#x308B;&#x3060;&#x3051;&#x3067;&#x3001;&#x547C;&#x3073;&#x51FA;&#x3057;&#x306F;&#x884C;&#x3063;&#x3066;&#x3044;&#x307E;&#x305B;&#x3093;&#x3002;</p><p>&#x30DA;&#x30FC;&#x30B8;&#x3092;&#x8AAD;&#x307F;&#x8FBC;&#x3080;&#x305F;&#x3073;&#x306B;GitHub&#x306E;API&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;&#x3068;&#x3001;&#x547C;&#x3073;&#x51FA;&#x3057;&#x56DE;&#x6570;&#x306E;&#x5236;&#x9650;&#x3092;&#x8D85;&#x3048;&#x308B;&#x304A;&#x305D;&#x308C;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
+&#x547C;&#x3073;&#x51FA;&#x3057;&#x56DE;&#x6570;&#x306E;&#x5236;&#x9650;&#x3092;&#x8D85;&#x3048;&#x308B;&#x3068;&#x3001;API&#x304B;&#x3089;&#x306E;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x304C;&#x30B9;&#x30C6;&#x30FC;&#x30BF;&#x30B9;&#x30B3;&#x30FC;&#x30C9;403&#x306E;&#x30A8;&#x30E9;&#x30FC;&#x306B;&#x306A;&#x3063;&#x3066;&#x3057;&#x307E;&#x3044;&#x307E;&#x3059;&#x3002;</p><p>&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;HTML&#x30C9;&#x30AD;&#x30E5;&#x30E1;&#x30F3;&#x30C8;&#x5074;&#x306B;&#x624B;&#x52D5;&#x3067;<code>fetchUserInfo</code>&#x95A2;&#x6570;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;&#x305F;&#x3081;&#x306E;&#x30DC;&#x30BF;&#x30F3;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x307E;&#x3059;&#x3002;
 &#x30DC;&#x30BF;&#x30F3;&#x306E;click&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3067;<code>fetchUserInfo</code>&#x95A2;&#x6570;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3057;&#x3001;&#x53D6;&#x5F97;&#x3057;&#x305F;&#x3044;&#x30E6;&#x30FC;&#x30B6;&#x30FC;ID&#x3092;&#x5F15;&#x6570;&#x3068;&#x3057;&#x3066;&#x4E0E;&#x3048;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x4F8B;&#x3068;&#x3057;&#x3066;<code>js-primer-example</code>&#x3068;&#x3044;&#x3046;&#x66F8;&#x7C4D;&#x7528;&#x306B;&#x7528;&#x610F;&#x3057;&#x305F;GitHub&#x30A2;&#x30AB;&#x30A6;&#x30F3;&#x30C8;&#x3092;&#x6307;&#x5B9A;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ja&quot;</span>&gt;</span>
+&#x4F8B;&#x3068;&#x3057;&#x3066;<code>js-primer-example</code>&#x3068;&#x3044;&#x3046;&#x66F8;&#x7C4D;&#x7528;&#x306B;&#x7528;&#x610F;&#x3057;&#x305F;GitHub&#x30A2;&#x30AB;&#x30A6;&#x30F3;&#x30C8;&#x3092;&#x6307;&#x5B9A;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p><pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ja&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Ajax Example<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
@@ -1541,18 +1510,12 @@ fetch(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
 <p>&#x6E96;&#x5099;&#x304C;&#x3067;&#x304D;&#x305F;&#x3089;&#x3001;&#x30ED;&#x30FC;&#x30AB;&#x30EB;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x3092;&#x7ACB;&#x3061;&#x4E0A;&#x3052;&#x3066;index.html&#x306B;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3057;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;
-&#x30DC;&#x30BF;&#x30F3;&#x3092;&#x62BC;&#x3059;&#x3068;HTTP&#x901A;&#x4FE1;&#x304C;&#x884C;&#x308F;&#x308C;&#x3001;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x306B;&#x30B9;&#x30C6;&#x30FC;&#x30BF;&#x30B9;&#x30B3;&#x30FC;&#x30C9;&#x3068;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x306E;&#x30ED;&#x30B0;&#x304C;&#x51FA;&#x529B;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p><img src="img/fig-1.png" alt="Fetch&#x3067;&#x53D6;&#x5F97;&#x3057;&#x305F;&#x30C7;&#x30FC;&#x30BF;&#x306E;&#x8868;&#x793A;"></p>
-<p>&#x307E;&#x305F;&#x3001;&#x958B;&#x767A;&#x8005;&#x30C4;&#x30FC;&#x30EB;&#x306E;&#x30CD;&#x30C3;&#x30C8;&#x30EF;&#x30FC;&#x30AF;&#x30D1;&#x30CD;&#x30EB;&#x3092;&#x958B;&#x304F;&#x3068;&#x3001;GitHub&#x306E;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x306B;&#x5BFE;&#x3057;&#x3066;HTTP&#x901A;&#x4FE1;&#x304C;&#x884C;&#x308F;&#x308C;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x3092;&#x78BA;&#x8A8D;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p><img src="img/fig-2.png" alt="&#x958B;&#x767A;&#x8005;&#x30C4;&#x30FC;&#x30EB;&#x3067;HTTP&#x901A;&#x4FE1;&#x306E;&#x8A18;&#x9332;&#x3092;&#x78BA;&#x8A8D;&#x3059;&#x308B;"></p>
-<h2 id="xhr"><a name="xhr" class="plugin-anchor" href="#xhr"><i class="fa fa-link" aria-hidden="true"></i></a>[&#x30B3;&#x30E9;&#x30E0;] XMLHttpRequest </h2>
-<p><a href="https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest" target="_blank">XMLHttpRequest</a>&#xFF08;<strong>XHR</strong>&#xFF09;&#x306F;Fetch API&#x3068;&#x540C;&#x3058;&#x304F;HTTP&#x901A;&#x4FE1;&#x3092;&#x884C;&#x3046;&#x305F;&#x3081;&#x306E;API&#x3067;&#x3059;&#x3002;
+&#x30DC;&#x30BF;&#x30F3;&#x3092;&#x62BC;&#x3059;&#x3068;HTTP&#x901A;&#x4FE1;&#x304C;&#x884C;&#x308F;&#x308C;&#x3001;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x306B;&#x30B9;&#x30C6;&#x30FC;&#x30BF;&#x30B9;&#x30B3;&#x30FC;&#x30C9;&#x3068;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x306E;&#x30ED;&#x30B0;&#x304C;&#x51FA;&#x529B;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p><p><img alt="Fetch&#x3067;&#x53D6;&#x5F97;&#x3057;&#x305F;&#x30C7;&#x30FC;&#x30BF;&#x306E;&#x8868;&#x793A;" src="img/fig-1.png"></p><p>&#x307E;&#x305F;&#x3001;&#x958B;&#x767A;&#x8005;&#x30C4;&#x30FC;&#x30EB;&#x306E;&#x30CD;&#x30C3;&#x30C8;&#x30EF;&#x30FC;&#x30AF;&#x30D1;&#x30CD;&#x30EB;&#x3092;&#x958B;&#x304F;&#x3068;&#x3001;GitHub&#x306E;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x306B;&#x5BFE;&#x3057;&#x3066;HTTP&#x901A;&#x4FE1;&#x304C;&#x884C;&#x308F;&#x308C;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x3092;&#x78BA;&#x8A8D;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p><p><img alt="&#x958B;&#x767A;&#x8005;&#x30C4;&#x30FC;&#x30EB;&#x3067;HTTP&#x901A;&#x4FE1;&#x306E;&#x8A18;&#x9332;&#x3092;&#x78BA;&#x8A8D;&#x3059;&#x308B;" src="img/fig-2.png"></p><h2 id="xhr"><a name="xhr" class="plugin-anchor" href="#xhr"><i class="fa fa-link" aria-hidden="true"></i></a>[&#x30B3;&#x30E9;&#x30E0;] XMLHttpRequest</h2><p><a href="https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest" target="_blank">XMLHttpRequest</a>&#xFF08;<strong>XHR</strong>&#xFF09;&#x306F;Fetch API&#x3068;&#x540C;&#x3058;&#x304F;HTTP&#x901A;&#x4FE1;&#x3092;&#x884C;&#x3046;&#x305F;&#x3081;&#x306E;API&#x3067;&#x3059;&#x3002;
 Fetch API&#x304C;&#x6A19;&#x6E96;&#x5316;&#x3055;&#x308C;&#x308B;&#x4EE5;&#x524D;&#x306F;&#x3001;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3068;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x306E;&#x9593;&#x3067;&#x901A;&#x4FE1;&#x3092;&#x884C;&#x3046;&#x306B;&#x306F;XHR&#x3092;&#x4F7F;&#x3046;&#x306E;&#x304C;&#x4E00;&#x822C;&#x7684;&#x3067;&#x3057;&#x305F;&#x3002;
-&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x6271;&#x3063;&#x305F;Fetch API&#x306B;&#x3088;&#x308B;<code>fetchUserInfo</code>&#x95A2;&#x6570;&#x306F;&#x3001;XHR&#x3092;&#x4F7F;&#x3046;&#x3068;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x66F8;&#x3051;&#x307E;&#x3059;&#x3002;</p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetchUserInfo</span>(<span class="hljs-params">userId</span>) </span>{
+&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x6271;&#x3063;&#x305F;Fetch API&#x306B;&#x3088;&#x308B;<code>fetchUserInfo</code>&#x95A2;&#x6570;&#x306F;&#x3001;XHR&#x3092;&#x4F7F;&#x3046;&#x3068;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x66F8;&#x3051;&#x307E;&#x3059;&#x3002;</p><pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetchUserInfo</span>(<span class="hljs-params">userId</span>) </span>{
     <span class="hljs-comment">// &#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;</span>
     <span class="hljs-keyword">const</span> request = <span class="hljs-keyword">new</span> XMLHttpRequest();
-    request.open(<span class="hljs-string">&quot;GET&quot;</span>, <span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${encodeURIComponent(userId)}</span>`</span>);
+    request.open(<span class="hljs-string">&quot;GET&quot;</span>, <span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(userId)}</span>`</span>);
     request.addEventListener(<span class="hljs-string">&quot;load&quot;</span>, () =&gt; {
         <span class="hljs-comment">// &#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x304C;&#x6210;&#x529F;&#x3057;&#x305F;&#x304B;&#x3092;&#x5224;&#x5B9A;&#x3059;&#x308B;</span>
         <span class="hljs-comment">// Fetch API&#x306E;response.ok&#x3068;&#x540C;&#x7B49;&#x306E;&#x610F;&#x5473;</span>
@@ -1569,18 +1532,17 @@ Fetch API&#x304C;&#x6A19;&#x6E96;&#x5316;&#x3055;&#x308C;&#x308B;&#x4EE5;&#x524D
     });
     <span class="hljs-comment">// &#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x3092;&#x9001;&#x4FE1;&#x3059;&#x308B;</span>
     request.send();
-}
-</code></pre>
+}</code></pre>
 <p>Fetch API&#x306F;XHR&#x3092;&#x7F6E;&#x304D;&#x63DB;&#x3048;&#x308B;&#x305F;&#x3081;&#x306B;&#x4F5C;&#x3089;&#x308C;&#x305F;&#x3082;&#x306E;&#x3067;&#x3001;&#x591A;&#x304F;&#x306E;&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x3067;&#x306F;XHR&#x3092;&#x4F7F;&#x3046;&#x5FC5;&#x8981;&#x306F;&#x306A;&#x304F;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
 &#x305F;&#x3060;&#x3057;&#x3001;&#x53E4;&#x3044;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3067;&#x306F;Fetch API&#x304C;&#x5B9F;&#x88C5;&#x3055;&#x308C;&#x3066;&#x3044;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306E;&#x4E92;&#x63DB;&#x6027;&#x3092;&#x4FDD;&#x3064;&#x305F;&#x3081;&#x306B;XHR&#x3092;&#x4F7F;&#x3046;&#x5834;&#x9762;&#x3082;&#x307E;&#x3060;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-XHR&#x306E;&#x8A73;&#x3057;&#x3044;&#x4F7F;&#x3044;&#x65B9;&#x306B;&#x3064;&#x3044;&#x3066;&#x306F;&#x3001;<a href="https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest" target="_blank">XHR&#x306E;&#x5229;&#x7528;&#x306B;&#x3064;&#x3044;&#x3066;&#x306E;&#x30C9;&#x30AD;&#x30E5;&#x30E1;&#x30F3;&#x30C8;</a>&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</p>
-<h2 id="section-checklist"><a name="section-checklist" class="plugin-anchor" href="#section-checklist"><i class="fa fa-link" aria-hidden="true"></i></a>&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30EA;&#x30B9;&#x30C8; </h2>
-<ul>
-<li><a href="https://developer.mozilla.org/ja/docs/Web/API/Fetch_API" target="_blank">Fetch API</a>&#x3092;&#x4F7F;&#x3063;&#x3066;HTTP&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x3092;&#x9001;&#x3063;&#x305F;</li>
-<li>GitHub&#x306E;API&#x304B;&#x3089;&#x53D6;&#x5F97;&#x3057;&#x305F;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x60C5;&#x5831;&#x306E;JSON&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x306B;&#x51FA;&#x529B;&#x3057;&#x305F;</li>
-<li>Fetch API&#x306E;&#x547C;&#x3073;&#x51FA;&#x3057;&#x306B;&#x5BFE;&#x3059;&#x308B;&#x30A8;&#x30E9;&#x30FC;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;&#x3092;&#x884C;&#x3063;&#x305F;</li>
-<li><code>fetchUserInfo</code>&#x95A2;&#x6570;&#x3092;&#x5BA3;&#x8A00;&#x3057;&#x3001;&#x30DC;&#x30BF;&#x30F3;&#x306E;&#x30AF;&#x30EA;&#x30C3;&#x30AF;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3067;&#x547C;&#x3073;&#x51FA;&#x3057;&#x305F;</li>
-</ul>
+XHR&#x306E;&#x8A73;&#x3057;&#x3044;&#x4F7F;&#x3044;&#x65B9;&#x306B;&#x3064;&#x3044;&#x3066;&#x306F;&#x3001;<a href="https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest" target="_blank">XHR&#x306E;&#x5229;&#x7528;&#x306B;&#x3064;&#x3044;&#x3066;&#x306E;&#x30C9;&#x30AD;&#x30E5;&#x30E1;&#x30F3;&#x30C8;</a>&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</p><h2 id="section-checklist"><a name="section-checklist" class="plugin-anchor" href="#section-checklist"><i class="fa fa-link" aria-hidden="true"></i></a>&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30EA;&#x30B9;&#x30C8;</h2><ul><li><a href="https://developer.mozilla.org/ja/docs/Web/API/Fetch_API" target="_blank">Fetch API</a>&#x3092;&#x4F7F;&#x3063;&#x3066;HTTP&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x3092;&#x9001;&#x3063;&#x305F;
+</li>
+<li>GitHub&#x306E;API&#x304B;&#x3089;&#x53D6;&#x5F97;&#x3057;&#x305F;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x60C5;&#x5831;&#x306E;JSON&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x306B;&#x51FA;&#x529B;&#x3057;&#x305F;
+</li>
+<li>Fetch API&#x306E;&#x547C;&#x3073;&#x51FA;&#x3057;&#x306B;&#x5BFE;&#x3059;&#x308B;&#x30A8;&#x30E9;&#x30FC;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;&#x3092;&#x884C;&#x3063;&#x305F;
+</li>
+<li><code>fetchUserInfo</code>&#x95A2;&#x6570;&#x3092;&#x5BA3;&#x8A00;&#x3057;&#x3001;&#x30DC;&#x30BF;&#x30F3;&#x306E;&#x30AF;&#x30EA;&#x30C3;&#x30AF;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3067;&#x547C;&#x3073;&#x51FA;&#x3057;&#x305F;
+</li></ul>
 
                                 
                                 </section>
@@ -1612,7 +1574,7 @@ XHR&#x306E;&#x8A73;&#x3057;&#x3044;&#x4F7F;&#x3044;&#x65B9;&#x306B;&#x3064;&#x30
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"Fetch APIを使ってHTTP通信を行ない、GitHubのAPIを呼び出します。","title":"HTTP通信","level":"1.4.2.2","depth":3,"next":{"title":"データを表示する","level":"1.4.2.3","depth":3,"path":"use-case/ajaxapp/display/README.md","ref":"./use-case/ajaxapp/display/README.md","articles":[]},"previous":{"title":"エントリーポイント","level":"1.4.2.1","depth":3,"path":"use-case/ajaxapp/entrypoint/README.md","ref":"./use-case/ajaxapp/entrypoint/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2019","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/ajaxapp/http/README.md","mtime":"2020-06-16T16:03:51.675Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-16T16:05:14.861Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"Fetch APIを使ってHTTP通信を行ない、GitHubのAPIを呼び出します。","title":"HTTP通信","level":"1.4.2.2","depth":3,"next":{"title":"データを表示する","level":"1.4.2.3","depth":3,"path":"use-case/ajaxapp/display/README.md","ref":"./use-case/ajaxapp/display/README.md","articles":[]},"previous":{"title":"エントリーポイント","level":"1.4.2.1","depth":3,"path":"use-case/ajaxapp/entrypoint/README.md","ref":"./use-case/ajaxapp/entrypoint/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2019","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/ajaxapp/http/README.md","mtime":"2020-06-18T15:44:52.949Z","type":"markdown"},"gitbook":{"version":"3.3.9","time":"2020-06-18T15:45:27.329Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1635,10 +1597,6 @@ XHR&#x306E;&#x8A73;&#x3057;&#x3044;&#x4F7F;&#x3044;&#x65B9;&#x306B;&#x3064;&#x30
     
         
         <script src="../../../gitbook/gitbook-plugin-github-issue-feedback/plugin.js"></script>
-        
-    
-        
-        <script src="../../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
         
     
         

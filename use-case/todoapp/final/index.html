@@ -7,7 +7,7 @@
         <title>Todoアプリのリファクタリング · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="1つのファイルに処理が集中するとメンテナンス性が低下するため、Todoアプリの表示要素をコンポーネントという単位に分割するリファクタリングをしていきます。">
-        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="generator" content="GitHon 3.3.9">
         
         
         
@@ -36,18 +36,6 @@
 
     
 
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
     
 
          
@@ -971,8 +959,8 @@
     <li class="divider"></li>
 
     <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Published with GitBook
+        <a href="https://github.com/githon/githon" target="blank" class="gitbook-link">
+            Published with GitHon
         </a>
     </li>
 </ul>
@@ -1415,37 +1403,28 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="todo-app-refactoring"><a name="todo-app-refactoring" class="plugin-anchor" href="#todo-app-refactoring"><i class="fa fa-link" aria-hidden="true"></i></a>Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x30EA;&#x30D5;&#x30A1;&#x30AF;&#x30BF;&#x30EA;&#x30F3;&#x30B0; </h1>
-<p>&#x524D;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x3001;&#x4E88;&#x5B9A;&#x3057;&#x3066;&#x3044;&#x305F;Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x6A5F;&#x80FD;&#x306F;&#x3059;&#x3079;&#x3066;&#x5B9F;&#x88C5;&#x3067;&#x304D;&#x307E;&#x3057;&#x305F;&#x3002;
+                                <h1 id="todo-app-refactoring"><a name="todo-app-refactoring" class="plugin-anchor" href="#todo-app-refactoring"><i class="fa fa-link" aria-hidden="true"></i></a>Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x30EA;&#x30D5;&#x30A1;&#x30AF;&#x30BF;&#x30EA;&#x30F3;&#x30B0;</h1><p>&#x524D;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x3001;&#x4E88;&#x5B9A;&#x3057;&#x3066;&#x3044;&#x305F;Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x6A5F;&#x80FD;&#x306F;&#x3059;&#x3079;&#x3066;&#x5B9F;&#x88C5;&#x3067;&#x304D;&#x307E;&#x3057;&#x305F;&#x3002;
 &#x3057;&#x304B;&#x3057;&#x3001;<code>App.js</code>&#x3092;&#x898B;&#x3066;&#x307F;&#x308B;&#x3068;&#x307B;&#x3068;&#x3093;&#x3069;&#x304C;HTML&#x8981;&#x7D20;&#x306E;&#x51E6;&#x7406;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
 &#x3053;&#x306E;&#x3088;&#x3046;&#x306A;HTML&#x8981;&#x7D20;&#x306E;&#x4F5C;&#x6210;&#x51E6;&#x7406;&#x306F;&#x8868;&#x793A;&#x3059;&#x308B;&#x5185;&#x5BB9;&#x304C;&#x5897;&#x3048;&#x308B;&#x307B;&#x3069;&#x3001;&#x30B3;&#x30FC;&#x30C9;&#x306E;&#x884C;&#x6570;&#x304C;&#x7DDA;&#x5F62;&#x7684;&#x306B;&#x5897;&#x3048;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x307E;&#x307E;Todo&#x30A2;&#x30D7;&#x30EA;&#x3092;&#x62E1;&#x5F35;&#x3057;&#x3066;&#x3044;&#x304F;&#x3068;<code>App.js</code>&#x304C;&#x80A5;&#x5927;&#x5316;&#x3057;&#x3066;&#x30B3;&#x30FC;&#x30C9;&#x304C;&#x8AAD;&#x307F;&#x306B;&#x304F;&#x304F;&#x306A;&#x308A;&#x3001;&#x30E1;&#x30F3;&#x30C6;&#x30CA;&#x30F3;&#x30B9;&#x6027;&#x304C;&#x4F4E;&#x4E0B;&#x3057;&#x3066;&#x3057;&#x307E;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x3053;&#x3067;&#x3001;<code>App.js</code>&#x306E;&#x5F79;&#x5272;&#x3092;&#x632F;&#x308A;&#x8FD4;&#x3063;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;
+&#x3053;&#x306E;&#x307E;&#x307E;Todo&#x30A2;&#x30D7;&#x30EA;&#x3092;&#x62E1;&#x5F35;&#x3057;&#x3066;&#x3044;&#x304F;&#x3068;<code>App.js</code>&#x304C;&#x80A5;&#x5927;&#x5316;&#x3057;&#x3066;&#x30B3;&#x30FC;&#x30C9;&#x304C;&#x8AAD;&#x307F;&#x306B;&#x304F;&#x304F;&#x306A;&#x308A;&#x3001;&#x30E1;&#x30F3;&#x30C6;&#x30CA;&#x30F3;&#x30B9;&#x6027;&#x304C;&#x4F4E;&#x4E0B;&#x3057;&#x3066;&#x3057;&#x307E;&#x3044;&#x307E;&#x3059;&#x3002;</p><p>&#x3053;&#x3053;&#x3067;&#x3001;<code>App.js</code>&#x306E;&#x5F79;&#x5272;&#x3092;&#x632F;&#x308A;&#x8FD4;&#x3063;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;
 <code>App</code>&#x3068;&#x3044;&#x3046;&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x6301;&#x3061;&#x3001;&#x3053;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x3067;&#x306F;Model&#x306E;&#x521D;&#x671F;&#x5316;&#x3084;HTML&#x8981;&#x7D20;&#x3068;Model&#x9593;&#x3067;&#x767A;&#x751F;&#x3059;&#x308B;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x4E2D;&#x7D99;&#x3059;&#x308B;&#x5F79;&#x5272;&#x3092;&#x6301;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x8868;&#x793A;&#x304B;&#x3089;&#x767A;&#x751F;&#x3057;&#x305F;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;Model&#x306B;&#x4F1D;&#x3048;&#x3001;Model&#x304B;&#x3089;&#x767A;&#x751F;&#x3057;&#x305F;&#x5909;&#x66F4;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x8868;&#x793A;&#x306B;&#x4F1D;&#x3048;&#x3066;&#x3044;&#x308B;&#x7BA1;&#x7406;&#x8005;&#x3068;&#x8A00;&#x3048;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;<code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306E;&#x7BA1;&#x7406;&#x8005;&#x3068;&#x3044;&#x3046;&#x5F79;&#x5272;&#x306B;&#x96C6;&#x4E2D;&#x3055;&#x305B;&#x308B;&#x305F;&#x3081;&#x3001;<code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x306B;&#x66F8;&#x304B;&#x308C;&#x3066;&#x3044;&#x308B;HTML&#x8981;&#x7D20;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;&#x51E6;&#x7406;&#x3092;&#x5225;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x3078;&#x5207;&#x308A;&#x51FA;&#x3059;&#x30EA;&#x30D5;&#x30A1;&#x30AF;&#x30BF;&#x30EA;&#x30F3;&#x30B0;&#x3092;&#x884C;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="component"><a name="component" class="plugin-anchor" href="#component"><i class="fa fa-link" aria-hidden="true"></i></a>View&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8; </h2>
-<p><code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x5927;&#x90E8;&#x5206;&#x3092;&#x5360;&#x3081;&#x3066;&#x3044;&#x308B;&#x306E;&#x306F;<code>TodoItemModel</code>&#x306E;&#x914D;&#x5217;&#x306B;&#x5BFE;&#x5FDC;&#x3059;&#x308B;Todo&#x30EA;&#x30B9;&#x30C8;&#x306E;HTML&#x8981;&#x7D20;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;&#x51E6;&#x7406;&#x3067;&#x3059;&#x3002;
+&#x8868;&#x793A;&#x304B;&#x3089;&#x767A;&#x751F;&#x3057;&#x305F;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;Model&#x306B;&#x4F1D;&#x3048;&#x3001;Model&#x304B;&#x3089;&#x767A;&#x751F;&#x3057;&#x305F;&#x5909;&#x66F4;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x8868;&#x793A;&#x306B;&#x4F1D;&#x3048;&#x3066;&#x3044;&#x308B;&#x7BA1;&#x7406;&#x8005;&#x3068;&#x8A00;&#x3048;&#x307E;&#x3059;&#x3002;</p><p>&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;<code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306E;&#x7BA1;&#x7406;&#x8005;&#x3068;&#x3044;&#x3046;&#x5F79;&#x5272;&#x306B;&#x96C6;&#x4E2D;&#x3055;&#x305B;&#x308B;&#x305F;&#x3081;&#x3001;<code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x306B;&#x66F8;&#x304B;&#x308C;&#x3066;&#x3044;&#x308B;HTML&#x8981;&#x7D20;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;&#x51E6;&#x7406;&#x3092;&#x5225;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x3078;&#x5207;&#x308A;&#x51FA;&#x3059;&#x30EA;&#x30D5;&#x30A1;&#x30AF;&#x30BF;&#x30EA;&#x30F3;&#x30B0;&#x3092;&#x884C;&#x3044;&#x307E;&#x3059;&#x3002;</p><h2 id="component"><a name="component" class="plugin-anchor" href="#component"><i class="fa fa-link" aria-hidden="true"></i></a>View&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;</h2><p><code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x5927;&#x90E8;&#x5206;&#x3092;&#x5360;&#x3081;&#x3066;&#x3044;&#x308B;&#x306E;&#x306F;<code>TodoItemModel</code>&#x306E;&#x914D;&#x5217;&#x306B;&#x5BFE;&#x5FDC;&#x3059;&#x308B;Todo&#x30EA;&#x30B9;&#x30C8;&#x306E;HTML&#x8981;&#x7D20;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;&#x51E6;&#x7406;&#x3067;&#x3059;&#x3002;
 &#x3053;&#x306E;&#x3088;&#x3046;&#x306A;&#x8868;&#x793A;&#x306E;&#x305F;&#x3081;&#x306E;&#x51E6;&#x7406;&#x3092;&#x90E8;&#x54C1;&#x3054;&#x3068;&#x306E;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306B;&#x5206;&#x3051;&#x3001;<code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x304B;&#x3089;&#x4F5C;&#x6210;&#x3057;&#x305F;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3092;&#x4F7F;&#x3046;&#x3088;&#x3046;&#x306A;&#x5F62;&#x306B;&#x30EA;&#x30D5;&#x30A1;&#x30AF;&#x30BF;&#x30EA;&#x30F3;&#x30B0;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x3053;&#x3067;&#x306F;&#x3001;&#x8868;&#x793A;&#x306E;&#x305F;&#x3081;&#x306E;&#x51E6;&#x7406;&#x3092;&#x6271;&#x3046;&#x30AF;&#x30E9;&#x30B9;&#x3092;View&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3068;&#x547C;&#x3073;&#x3001;&#x3053;&#x3053;&#x3067;&#x306F;<code>View</code>&#x3092;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x540D;&#x306E;&#x672B;&#x5C3E;&#x306B;&#x3064;&#x3051;&#x308B;&#x3053;&#x3068;&#x3067;&#x533A;&#x5225;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p>Todo&#x30EA;&#x30B9;&#x30C8;&#x306E;&#x8868;&#x793A;&#x306F;&#x6B21;&#x306E;2&#x3064;&#x306E;&#x90E8;&#x54C1;&#xFF08;View&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#xFF09;&#x304B;&#x3089;&#x6210;&#x308A;&#x7ACB;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<ul>
-<li>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;View&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;</li>
-<li>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x30EA;&#x30B9;&#x30C8;&#x3068;&#x3057;&#x3066;&#x307E;&#x3068;&#x3081;&#x305F;Todo&#x30EA;&#x30B9;&#x30C8;View&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;</li>
-</ul>
+&#x3053;&#x3053;&#x3067;&#x306F;&#x3001;&#x8868;&#x793A;&#x306E;&#x305F;&#x3081;&#x306E;&#x51E6;&#x7406;&#x3092;&#x6271;&#x3046;&#x30AF;&#x30E9;&#x30B9;&#x3092;View&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x3068;&#x547C;&#x3073;&#x3001;&#x3053;&#x3053;&#x3067;&#x306F;<code>View</code>&#x3092;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x540D;&#x306E;&#x672B;&#x5C3E;&#x306B;&#x3064;&#x3051;&#x308B;&#x3053;&#x3068;&#x3067;&#x533A;&#x5225;&#x3057;&#x307E;&#x3059;&#x3002;</p><p>Todo&#x30EA;&#x30B9;&#x30C8;&#x306E;&#x8868;&#x793A;&#x306F;&#x6B21;&#x306E;2&#x3064;&#x306E;&#x90E8;&#x54C1;&#xFF08;View&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#xFF09;&#x304B;&#x3089;&#x6210;&#x308A;&#x7ACB;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p><ul><li>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;View&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;
+</li>
+<li>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x30EA;&#x30B9;&#x30C8;&#x3068;&#x3057;&#x3066;&#x307E;&#x3068;&#x3081;&#x305F;Todo&#x30EA;&#x30B9;&#x30C8;View&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;
+</li></ul>
 <p>&#x3053;&#x306E;&#x90E8;&#x54C1;&#x306B;&#x5BFE;&#x5FDC;&#x3059;&#x308B;&#x3088;&#x3046;&#x306B;&#x6B21;&#x306E;View&#x306E;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x308C;&#x3089;&#x306E;View&#x306E;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306F;&#x3001;<code>src/view/</code>&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x306B;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<ul>
-<li><code>TodoItemView</code>: Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;View&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;</li>
-<li><code>TodoListView</code>: Todo&#x30EA;&#x30B9;&#x30C8;View&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;</li>
-</ul>
-<h3 id="TodoItemView"><a name="TodoItemView" class="plugin-anchor" href="#TodoItemView"><i class="fa fa-link" aria-hidden="true"></i></a>TodoItemView&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B; </h3>
-<p>&#x307E;&#x305A;&#x306F;&#x3001;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306B;&#x5BFE;&#x5FDC;&#x3059;&#x308B;<code>TodoItemView</code>&#x304B;&#x3089;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p><code>src/view/TodoItemView.js</code>&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;<code>TodoItemView</code>&#x30AF;&#x30E9;&#x30B9;&#x3092;<code>export</code>&#x3057;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;<code>TodoItemView</code>&#x306F;&#x3001;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306B;&#x5BFE;&#x5FDC;&#x3059;&#x308B;HTML&#x8981;&#x7D20;&#x3092;&#x8FD4;&#x3059;<code>createElement</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x6301;&#x3061;&#x307E;&#x3059;&#x3002;</p>
-<div class="code-filename-block">
+&#x3053;&#x308C;&#x3089;&#x306E;View&#x306E;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306F;&#x3001;<code>src/view/</code>&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x306B;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p><ul><li><code>TodoItemView</code>: Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;View&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;
+</li>
+<li><code>TodoListView</code>: Todo&#x30EA;&#x30B9;&#x30C8;View&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;
+</li></ul>
+<h3 id="TodoItemView"><a name="TodoItemView" class="plugin-anchor" href="#TodoItemView"><i class="fa fa-link" aria-hidden="true"></i></a>TodoItemView&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;</h3><p>&#x307E;&#x305A;&#x306F;&#x3001;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306B;&#x5BFE;&#x5FDC;&#x3059;&#x308B;<code>TodoItemView</code>&#x304B;&#x3089;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p><p><code>src/view/TodoItemView.js</code>&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;<code>TodoItemView</code>&#x30AF;&#x30E9;&#x30B9;&#x3092;<code>export</code>&#x3057;&#x307E;&#x3059;&#x3002;
+&#x3053;&#x306E;<code>TodoItemView</code>&#x306F;&#x3001;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306B;&#x5BFE;&#x5FDC;&#x3059;&#x308B;HTML&#x8981;&#x7D20;&#x3092;&#x8FD4;&#x3059;<code>createElement</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x6301;&#x3061;&#x307E;&#x3059;&#x3002;</p><div class="code-filename-block">
     <p class="code-filename">src/view/TodoItemView.js</p>
 </div>
+
+
 
 <pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { element } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./html-util.js&quot;</span>;
 
@@ -1471,15 +1450,15 @@
         inputCheckboxElement.addEventListener(<span class="hljs-string">&quot;change&quot;</span>, () =&gt; {
             <span class="hljs-comment">// &#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x306B;&#x5909;&#x66F4;</span>
             onUpdateTodo({
-                id: todoItem.id,
-                completed: !todoItem.completed
+                <span class="hljs-attr">id</span>: todoItem.id,
+                <span class="hljs-attr">completed</span>: !todoItem.completed
             });
         });
         <span class="hljs-keyword">const</span> deleteButtonElement = todoItemElement.querySelector(<span class="hljs-string">&quot;.delete&quot;</span>);
         deleteButtonElement.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, () =&gt; {
             <span class="hljs-comment">// &#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x306B;&#x5909;&#x66F4;</span>
             onDeleteTodo({
-                id: todoItem.id
+                <span class="hljs-attr">id</span>: todoItem.id
             });
         });
         <span class="hljs-comment">// &#x4F5C;&#x6210;&#x3057;&#x305F;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;HTML&#x8981;&#x7D20;&#x3092;&#x8FD4;&#x3059;</span>
@@ -1489,13 +1468,12 @@
 </code></pre>
 <p><code>TodoItemView#createElement</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306E;&#x4E2D;&#x8EAB;&#x306F;<code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x3067;&#x306E;HTML&#x8981;&#x7D20;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;&#x90E8;&#x5206;&#x3092;&#x5143;&#x306B;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
 <code>createElement</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x3001;<code>TodoItemModel</code>&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x3060;&#x3051;&#x3067;&#x306F;&#x306A;&#x304F;<code>onUpdateTodo</code>&#x3068;<code>onDeleteTodo</code>&#x3068;&#x3044;&#x3046;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x53D7;&#x3051;&#x53D6;&#x3063;&#x305F;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x306F;&#x305D;&#x308C;&#x305E;&#x308C;&#x5BFE;&#x5FDC;&#x3059;&#x308B;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x304C;View&#x3067;&#x767A;&#x751F;&#x3057;&#x305F;&#x969B;&#x306B;&#x547C;&#x3073;&#x51FA;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;&#x5F15;&#x6570;&#x3068;&#x3057;&#x3066;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x3092;&#x5916;&#x304B;&#x3089;&#x53D7;&#x3051;&#x53D6;&#x308B;&#x3053;&#x3068;&#x3067;&#x3001;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x304C;&#x767A;&#x751F;&#x3057;&#x305F;&#x3068;&#x304D;&#x306E;&#x5177;&#x4F53;&#x7684;&#x306A;&#x51E6;&#x7406;&#x306F;View&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x5916;&#x5074;&#x306B;&#x5B9A;&#x7FA9;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x305F;&#x3068;&#x3048;&#x3070;&#x3001;&#x3053;&#x306E;<code>TodoItemView</code>&#x30AF;&#x30E9;&#x30B9;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x5229;&#x7528;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-<code>TodoItemModel</code>&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x3068;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308A;&#x3001;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;HTML&#x8981;&#x7D20;&#x3092;&#x8FD4;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<div class="code-filename-block">
+&#x3053;&#x306E;&#x53D7;&#x3051;&#x53D6;&#x3063;&#x305F;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x306F;&#x305D;&#x308C;&#x305E;&#x308C;&#x5BFE;&#x5FDC;&#x3059;&#x308B;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x304C;View&#x3067;&#x767A;&#x751F;&#x3057;&#x305F;&#x969B;&#x306B;&#x547C;&#x3073;&#x51FA;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p><p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;&#x5F15;&#x6570;&#x3068;&#x3057;&#x3066;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x3092;&#x5916;&#x304B;&#x3089;&#x53D7;&#x3051;&#x53D6;&#x308B;&#x3053;&#x3068;&#x3067;&#x3001;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x304C;&#x767A;&#x751F;&#x3057;&#x305F;&#x3068;&#x304D;&#x306E;&#x5177;&#x4F53;&#x7684;&#x306A;&#x51E6;&#x7406;&#x306F;View&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x5916;&#x5074;&#x306B;&#x5B9A;&#x7FA9;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p><p>&#x305F;&#x3068;&#x3048;&#x3070;&#x3001;&#x3053;&#x306E;<code>TodoItemView</code>&#x30AF;&#x30E9;&#x30B9;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x5229;&#x7528;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
+<code>TodoItemModel</code>&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x3068;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308A;&#x3001;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;HTML&#x8981;&#x7D20;&#x3092;&#x8FD4;&#x3057;&#x307E;&#x3059;&#x3002;</p><div class="code-filename-block">
     <p class="code-filename">TodoItemView&#x3092;&#x5229;&#x7528;&#x3059;&#x308B;&#x30B5;&#x30F3;&#x30D7;&#x30EB;&#x30B3;&#x30FC;&#x30C9;</p>
 </div>
+
+
 
 <pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { TodoItemModel } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../model/TodoItemModel.js&quot;</span>;
 <span class="hljs-keyword">import</span> { TodoItemView } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./TodoItemView.js&quot;</span>;
@@ -1504,27 +1482,25 @@
 <span class="hljs-keyword">const</span> todoItemView = <span class="hljs-keyword">new</span> TodoItemView();
 <span class="hljs-comment">// &#x5BFE;&#x5FDC;&#x3059;&#x308B;TodoItemModel&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;</span>
 <span class="hljs-keyword">const</span> todoItemModel = <span class="hljs-keyword">new</span> TodoItemModel({
-    title: <span class="hljs-string">&quot;&#x3042;&#x305F;&#x3089;&#x3057;&#x3044;Todo&quot;</span>,
-    completed: <span class="hljs-literal">false</span>
+    <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;&#x3042;&#x305F;&#x3089;&#x3057;&#x3044;Todo&quot;</span>,
+    <span class="hljs-attr">completed</span>: <span class="hljs-literal">false</span>
 });
 <span class="hljs-comment">// TodoItemModel&#x304B;&#x3089;HTML&#x8981;&#x7D20;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;</span>
 <span class="hljs-keyword">const</span> todoItemElement = todoItemView.createElement(todoItemModel, {
-    onUpdateTodo: () =&gt; {
+    <span class="hljs-attr">onUpdateTodo</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
         <span class="hljs-comment">// &#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x304C;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x305F;&#x3068;&#x304D;&#x306B;&#x547C;&#x3070;&#x308C;&#x308B;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;</span>
     },
-    onDeleteTodo: () =&gt; {
+    <span class="hljs-attr">onDeleteTodo</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
         <span class="hljs-comment">// &#x524A;&#x9664;&#x30DC;&#x30BF;&#x30F3;&#x304C;&#x30AF;&#x30EA;&#x30C3;&#x30AF;&#x3055;&#x308C;&#x305F;&#x3068;&#x304D;&#x306B;&#x547C;&#x3070;&#x308C;&#x308B;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;</span>
     }
 });
-<span class="hljs-built_in">console</span>.log(todoItemElement); <span class="hljs-comment">// &lt;li&gt;&#x8981;&#x7D20;&#x304C;&#x5165;&#x308B;</span>
-</code></pre>
-<h3 id="TodoListView"><a name="TodoListView" class="plugin-anchor" href="#TodoListView"><i class="fa fa-link" aria-hidden="true"></i></a>TodoListView&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B; </h3>
-<p>&#x6B21;&#x306F;Todo&#x30EA;&#x30B9;&#x30C8;&#x306B;&#x5BFE;&#x5FDC;&#x3059;&#x308B;<code>TodoListView</code>&#x3092;&#x4F5C;&#x6210;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p><code>src/view/TodoListView.js</code>&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;<code>TodoListView</code>&#x30AF;&#x30E9;&#x30B9;&#x3092;<code>export</code>&#x3057;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;<code>TodoListView</code>&#x306F;<code>TodoItemModel</code>&#x306E;&#x914D;&#x5217;&#x306B;&#x5BFE;&#x5FDC;&#x3059;&#x308B;Todo&#x30EA;&#x30B9;&#x30C8;&#x306E;HTML&#x8981;&#x7D20;&#x3092;&#x8FD4;&#x3059;<code>createElement</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x6301;&#x3061;&#x307E;&#x3059;&#x3002;</p>
-<div class="code-filename-block">
+<span class="hljs-built_in">console</span>.log(todoItemElement); <span class="hljs-comment">// &lt;li&gt;&#x8981;&#x7D20;&#x304C;&#x5165;&#x308B;</span></code></pre>
+<h3 id="TodoListView"><a name="TodoListView" class="plugin-anchor" href="#TodoListView"><i class="fa fa-link" aria-hidden="true"></i></a>TodoListView&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;</h3><p>&#x6B21;&#x306F;Todo&#x30EA;&#x30B9;&#x30C8;&#x306B;&#x5BFE;&#x5FDC;&#x3059;&#x308B;<code>TodoListView</code>&#x3092;&#x4F5C;&#x6210;&#x3057;&#x307E;&#x3059;&#x3002;</p><p><code>src/view/TodoListView.js</code>&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;<code>TodoListView</code>&#x30AF;&#x30E9;&#x30B9;&#x3092;<code>export</code>&#x3057;&#x307E;&#x3059;&#x3002;
+&#x3053;&#x306E;<code>TodoListView</code>&#x306F;<code>TodoItemModel</code>&#x306E;&#x914D;&#x5217;&#x306B;&#x5BFE;&#x5FDC;&#x3059;&#x308B;Todo&#x30EA;&#x30B9;&#x30C8;&#x306E;HTML&#x8981;&#x7D20;&#x3092;&#x8FD4;&#x3059;<code>createElement</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x6301;&#x3061;&#x307E;&#x3059;&#x3002;</p><div class="code-filename-block">
     <p class="code-filename">src/view/TodoListView.js</p>
 </div>
+
+
 
 <pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { element } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./html-util.js&quot;</span>;
 <span class="hljs-keyword">import</span> { TodoItemView } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./TodoItemView.js&quot;</span>;
@@ -1540,7 +1516,7 @@
     createElement(todoItems, { onUpdateTodo, onDeleteTodo }) {
         <span class="hljs-keyword">const</span> todoListElement = element<span class="hljs-string">`&lt;ul /&gt;`</span>;
         <span class="hljs-comment">// &#x5404;TodoItem&#x30E2;&#x30C7;&#x30EB;&#x306B;&#x5BFE;&#x5FDC;&#x3057;&#x305F;HTML&#x8981;&#x7D20;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3001;&#x30EA;&#x30B9;&#x30C8;&#x8981;&#x7D20;&#x3078;&#x8FFD;&#x52A0;&#x3059;&#x308B;</span>
-        todoItems.forEach(todoItem =&gt; {
+        todoItems.forEach(<span class="hljs-function"><span class="hljs-params">todoItem</span> =&gt;</span> {
             <span class="hljs-keyword">const</span> todoItemView = <span class="hljs-keyword">new</span> TodoItemView();
             <span class="hljs-keyword">const</span> todoItemElement = todoItemView.createElement(todoItem, {
                 onDeleteTodo,
@@ -1555,19 +1531,17 @@
 <p><code>TodoListView#createElement</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;<code>TodoItemView</code>&#x3092;&#x4F7F;&#x3063;&#x3066;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;HTML&#x8981;&#x7D20;&#x3092;&#x4F5C;&#x308A;&#x3001;<code>&lt;li&gt;</code>&#x8981;&#x7D20;&#x306B;&#x8FFD;&#x52A0;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;
 &#x3053;&#x306E;<code>TodoListView#createElement</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3082;<code>onUpdateTodo</code>&#x3068;<code>onDeleteTodo</code>&#x306E;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308A;&#x307E;&#x3059;&#x3002;
 &#x3057;&#x304B;&#x3057;&#x3001;<code>TodoListView</code>&#x3067;&#x306F;&#x3053;&#x306E;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x3092;<code>TodoItemView</code>&#x306B;&#x305D;&#x306E;&#x307E;&#x307E;&#x6E21;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x306A;&#x305C;&#x306A;&#x3089;&#x5177;&#x4F53;&#x7684;&#x306A;DOM&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x767A;&#x751F;&#x3055;&#x305B;&#x308B;&#x8981;&#x7D20;&#x304C;&#x4F5C;&#x3089;&#x308C;&#x308B;&#x306E;&#x306F;<code>TodoItemView</code>&#x306E;&#x4E2D;&#x3068;&#x306A;&#x308B;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;</p>
-<h2 id="app-refactoring"><a name="app-refactoring" class="plugin-anchor" href="#app-refactoring"><i class="fa fa-link" aria-hidden="true"></i></a>App&#x306E;&#x30EA;&#x30D5;&#x30A1;&#x30AF;&#x30BF;&#x30EA;&#x30F3;&#x30B0; </h2>
-<p>&#x6700;&#x5F8C;&#x306B;&#x4F5C;&#x6210;&#x3057;&#x305F;<code>TodoItemView</code>&#x30AF;&#x30E9;&#x30B9;&#x3068;<code>TodoListView</code>&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x4F7F;&#x3063;&#x3066;<code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x30EA;&#x30D5;&#x30A1;&#x30AF;&#x30BF;&#x30EA;&#x30F3;&#x30B0;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p><code>App.js</code>&#x3092;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;<code>TodoListView</code>&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x4F7F;&#x3046;&#x3088;&#x3046;&#x306B;&#x66F8;&#x304D;&#x63DB;&#x3048;&#x307E;&#x3059;&#x3002;
+&#x306A;&#x305C;&#x306A;&#x3089;&#x5177;&#x4F53;&#x7684;&#x306A;DOM&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x767A;&#x751F;&#x3055;&#x305B;&#x308B;&#x8981;&#x7D20;&#x304C;&#x4F5C;&#x3089;&#x308C;&#x308B;&#x306E;&#x306F;<code>TodoItemView</code>&#x306E;&#x4E2D;&#x3068;&#x306A;&#x308B;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;</p><h2 id="app-refactoring"><a name="app-refactoring" class="plugin-anchor" href="#app-refactoring"><i class="fa fa-link" aria-hidden="true"></i></a>App&#x306E;&#x30EA;&#x30D5;&#x30A1;&#x30AF;&#x30BF;&#x30EA;&#x30F3;&#x30B0;</h2><p>&#x6700;&#x5F8C;&#x306B;&#x4F5C;&#x6210;&#x3057;&#x305F;<code>TodoItemView</code>&#x30AF;&#x30E9;&#x30B9;&#x3068;<code>TodoListView</code>&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x4F7F;&#x3063;&#x3066;<code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x30EA;&#x30D5;&#x30A1;&#x30AF;&#x30BF;&#x30EA;&#x30F3;&#x30B0;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p><p><code>App.js</code>&#x3092;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;<code>TodoListView</code>&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x4F7F;&#x3046;&#x3088;&#x3046;&#x306B;&#x66F8;&#x304D;&#x63DB;&#x3048;&#x307E;&#x3059;&#x3002;
 <code>onChange</code>&#x306E;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x3067;<code>TodoListView</code>&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x4F7F;&#x3063;&#x3066;Todo&#x30EA;&#x30B9;&#x30C8;&#x306E;HTML&#x8981;&#x7D20;&#x3092;&#x4F5C;&#x308B;&#x3088;&#x3046;&#x306B;&#x5909;&#x66F4;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x3068;&#x304D;<code>TodoListView#createElement</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306B;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x305D;&#x308C;&#x305E;&#x308C;&#x5BFE;&#x5FDC;&#x3059;&#x308B;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x3092;&#x6E21;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<ul>
-<li><code>onUpdateTodo</code>&#x306E;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x3067;&#x306F;<code>TodoListModel#updateTodo</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x547C;&#x3076;</li>
-<li><code>onDeleteTodo</code>&#x306E;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x3067;&#x306F;<code>TodoListModel#deleteTodo</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x547C;&#x3076;</li>
-</ul>
+&#x3053;&#x306E;&#x3068;&#x304D;<code>TodoListView#createElement</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306B;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x305D;&#x308C;&#x305E;&#x308C;&#x5BFE;&#x5FDC;&#x3059;&#x308B;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x3092;&#x6E21;&#x3057;&#x307E;&#x3059;&#x3002;</p><ul><li><code>onUpdateTodo</code>&#x306E;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x3067;&#x306F;<code>TodoListModel#updateTodo</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x547C;&#x3076;
+</li>
+<li><code>onDeleteTodo</code>&#x306E;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x3067;&#x306F;<code>TodoListModel#deleteTodo</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x547C;&#x3076;
+</li></ul>
 <div class="code-filename-block">
     <p class="code-filename">src/App.js</p>
 </div>
+
+
 
 <pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { TodoListModel } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./model/TodoListModel.js&quot;</span>;
 <span class="hljs-keyword">import</span> { TodoItemModel } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./model/TodoItemModel.js&quot;</span>;
@@ -1584,75 +1558,61 @@
         <span class="hljs-keyword">const</span> inputElement = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;#js-form-input&quot;</span>);
         <span class="hljs-keyword">const</span> containerElement = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;#js-todo-list&quot;</span>);
         <span class="hljs-keyword">const</span> todoItemCountElement = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;#js-todo-count&quot;</span>);
-        <span class="hljs-keyword">this</span>.todoListModel.onChange(() =&gt; {
+        <span class="hljs-keyword">this</span>.todoListModel.onChange(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
             <span class="hljs-keyword">const</span> todoItems = <span class="hljs-keyword">this</span>.todoListModel.getTodoItems();
             <span class="hljs-keyword">const</span> todoListView = <span class="hljs-keyword">new</span> TodoListView();
             <span class="hljs-comment">// todoItems&#x306B;&#x5BFE;&#x5FDC;&#x3059;&#x308B;TodoListView&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;</span>
             <span class="hljs-keyword">const</span> todoListElement = todoListView.createElement(todoItems, {
                 <span class="hljs-comment">// Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x304C;&#x66F4;&#x65B0;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x767A;&#x751F;&#x3057;&#x305F;&#x3068;&#x304D;&#x306B;&#x547C;&#x3070;&#x308C;&#x308B;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;</span>
-                onUpdateTodo: ({ id, completed }) =&gt; {
+                onUpdateTodo: <span class="hljs-function">(<span class="hljs-params">{ id, completed }</span>) =&gt;</span> {
                     <span class="hljs-keyword">this</span>.todoListModel.updateTodo({ id, completed });
                 },
                 <span class="hljs-comment">// Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x304C;&#x524A;&#x9664;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x767A;&#x751F;&#x3057;&#x305F;&#x3068;&#x304D;&#x306B;&#x547C;&#x3070;&#x308C;&#x308B;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;</span>
-                onDeleteTodo: ({ id }) =&gt; {
+                onDeleteTodo: <span class="hljs-function">(<span class="hljs-params">{ id }</span>) =&gt;</span> {
                     <span class="hljs-keyword">this</span>.todoListModel.deleteTodo({ id });
                 }
             });
             render(todoListElement, containerElement);
-            todoItemCountElement.textContent = <span class="hljs-string">`Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x6570;: <span class="hljs-subst">${this.todoListModel.getTotalCount()}</span>`</span>;
+            todoItemCountElement.textContent = <span class="hljs-string">`Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x6570;: <span class="hljs-subst">${<span class="hljs-keyword">this</span>.todoListModel.getTotalCount()}</span>`</span>;
         });
         formElement.addEventListener(<span class="hljs-string">&quot;submit&quot;</span>, (event) =&gt; {
             event.preventDefault();
             <span class="hljs-keyword">this</span>.todoListModel.addTodo(<span class="hljs-keyword">new</span> TodoItemModel({
-                title: inputElement.value,
-                completed: <span class="hljs-literal">false</span>
+                <span class="hljs-attr">title</span>: inputElement.value,
+                <span class="hljs-attr">completed</span>: <span class="hljs-literal">false</span>
             }));
             inputElement.value = <span class="hljs-string">&quot;&quot;</span>;
         });
     }
 }
 </code></pre>
-<p>&#x3053;&#x308C;&#x3067;<code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x304B;&#x3089;HTML&#x8981;&#x7D20;&#x306E;&#x4F5C;&#x6210;&#x51E6;&#x7406;&#x304C;View&#x30AF;&#x30E9;&#x30B9;&#x306B;&#x79FB;&#x52D5;&#x3067;&#x304D;&#x3001;<code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x306F;Model&#x3068;View&#x9593;&#x306E;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x7BA1;&#x7406;&#x3059;&#x308B;&#x3060;&#x3051;&#x306B;&#x306A;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;</p>
-<h3 id="app-event-listener"><a name="app-event-listener" class="plugin-anchor" href="#app-event-listener"><i class="fa fa-link" aria-hidden="true"></i></a>App&#x306E;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x3092;&#x6574;&#x7406;&#x3059;&#x308B; </h3>
-<p><code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x3067;&#x767B;&#x9332;&#x3057;&#x3066;&#x3044;&#x308B;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306E;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x3092;&#x898B;&#x3066;&#x307F;&#x308B;&#x3068;&#x6B21;&#x306E;4&#x7A2E;&#x985E;&#x3068;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<table>
+<p>&#x3053;&#x308C;&#x3067;<code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x304B;&#x3089;HTML&#x8981;&#x7D20;&#x306E;&#x4F5C;&#x6210;&#x51E6;&#x7406;&#x304C;View&#x30AF;&#x30E9;&#x30B9;&#x306B;&#x79FB;&#x52D5;&#x3067;&#x304D;&#x3001;<code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x306F;Model&#x3068;View&#x9593;&#x306E;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x7BA1;&#x7406;&#x3059;&#x308B;&#x3060;&#x3051;&#x306B;&#x306A;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;</p><h3 id="app-event-listener"><a name="app-event-listener" class="plugin-anchor" href="#app-event-listener"><i class="fa fa-link" aria-hidden="true"></i></a>App&#x306E;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x3092;&#x6574;&#x7406;&#x3059;&#x308B;</h3><p><code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x3067;&#x767B;&#x9332;&#x3057;&#x3066;&#x3044;&#x308B;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306E;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x3092;&#x898B;&#x3066;&#x307F;&#x308B;&#x3068;&#x6B21;&#x306E;4&#x7A2E;&#x985E;&#x3068;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p><table>
 <thead>
-<tr>
-<th>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306E;&#x6D41;&#x308C;</th>
-<th>&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;</th>
-<th>&#x5F79;&#x5272;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Model</code> -&gt; <code>View</code></td>
-<td><code>this.todoListModel.onChange(listener)</code></td>
-<td><code>TodoListModel</code>&#x304C;&#x5909;&#x66F4;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308B;</td>
-</tr>
-<tr>
-<td><code>View</code> -&gt; <code>Model</code></td>
-<td><code>formElement.addEventListener(&quot;submit&quot;, listener)</code></td>
-<td>&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x9001;&#x4FE1;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308B;</td>
-</tr>
-<tr>
-<td><code>View</code> -&gt; <code>Model</code></td>
-<td><code>onUpdateTodo: listener</code></td>
-<td>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x306E;&#x66F4;&#x65B0;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308B;</td>
-</tr>
-<tr>
-<td><code>View</code> -&gt; <code>Model</code></td>
-<td><code>onDeleteTodo: listener</code></td>
-<td>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x524A;&#x9664;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308B;</td>
-</tr>
-</tbody>
-</table>
+<tr><th> &#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306E;&#x6D41;&#x308C; </th>
+<th> &#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570; </th>
+<th> &#x5F79;&#x5272; </th>
+</tr></thead><tbody>
+<tr><td style="text-align:left"> <code>Model</code> -&gt; <code>View</code> </td>
+<td style="text-align:left"> <code>this.todoListModel.onChange(listener)</code> </td>
+<td style="text-align:left"> <code>TodoListModel</code>&#x304C;&#x5909;&#x66F4;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308B; </td>
+</tr><tr><td style="text-align:left"> <code>View</code> -&gt; <code>Model</code> </td>
+<td style="text-align:left"> <code>formElement.addEventListener(&quot;submit&quot;, listener)</code> </td>
+<td style="text-align:left"> &#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x9001;&#x4FE1;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308B; </td>
+</tr><tr><td style="text-align:left"> <code>View</code> -&gt; <code>Model</code> </td>
+<td style="text-align:left"> <code>onUpdateTodo: listener</code> </td>
+<td style="text-align:left"> Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x306E;&#x66F4;&#x65B0;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308B; </td>
+</tr><tr><td style="text-align:left"> <code>View</code> -&gt; <code>Model</code> </td>
+<td style="text-align:left"> <code>onDeleteTodo: listener</code> </td>
+<td style="text-align:left"> Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x524A;&#x9664;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308B;</td>
+</tr></tbody></table>
+
 <p>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306E;&#x6D41;&#x308C;&#x304C;View&#x304B;&#x3089;Model&#x3068;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x304C;3&#x7B87;&#x6240;&#x3042;&#x308A;&#x3001;&#x305D;&#x308C;&#x305E;&#x308C;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x306F;&#x30B3;&#x30FC;&#x30C9;&#x4E0A;&#x30D0;&#x30E9;&#x30D0;&#x30E9;&#x306A;&#x4F4D;&#x7F6E;&#x306B;&#x66F8;&#x304B;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
 &#x307E;&#x305F;&#x3001;&#x305D;&#x308C;&#x305E;&#x308C;&#x306E;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x306F;Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x6A5F;&#x80FD;&#x3068;&#x5BFE;&#x5FDC;&#x3057;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x308C;&#x3089;&#x306E;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x304C;Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x6271;&#x3063;&#x3066;&#x3044;&#x308B;&#x6A5F;&#x80FD;&#x3067;&#x3042;&#x308B;&#x3068;&#x3044;&#x3046;&#x3053;&#x3068;&#x3092;&#x308F;&#x304B;&#x308A;&#x3084;&#x3059;&#x304F;&#x3059;&#x308B;&#x305F;&#x3081;&#x3001;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x3092;<code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3068;&#x3057;&#x3066;&#x5B9A;&#x7FA9;&#x3057;&#x76F4;&#x3057;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;&#x305D;&#x308C;&#x305E;&#x308C;&#x5BFE;&#x5FDC;&#x3059;&#x308B;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x3092;<code>handle</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3068;&#x3057;&#x3066;&#x5B9F;&#x88C5;&#x3057;&#x3066;&#x3001;&#x305D;&#x308C;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;&#x3088;&#x3046;&#x306B;&#x5909;&#x66F4;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;</p>
-<div class="code-filename-block">
+&#x3053;&#x308C;&#x3089;&#x306E;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x304C;Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x6271;&#x3063;&#x3066;&#x3044;&#x308B;&#x6A5F;&#x80FD;&#x3067;&#x3042;&#x308B;&#x3068;&#x3044;&#x3046;&#x3053;&#x3068;&#x3092;&#x308F;&#x304B;&#x308A;&#x3084;&#x3059;&#x304F;&#x3059;&#x308B;&#x305F;&#x3081;&#x3001;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x3092;<code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3068;&#x3057;&#x3066;&#x5B9A;&#x7FA9;&#x3057;&#x76F4;&#x3057;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p><p>&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;&#x305D;&#x308C;&#x305E;&#x308C;&#x5BFE;&#x5FDC;&#x3059;&#x308B;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x3092;<code>handle</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3068;&#x3057;&#x3066;&#x5B9F;&#x88C5;&#x3057;&#x3066;&#x3001;&#x305D;&#x308C;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;&#x3088;&#x3046;&#x306B;&#x5909;&#x66F4;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;</p><div class="code-filename-block">
     <p class="code-filename">src/App.js</p>
 </div>
+
+
 
 <pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { render } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./view/html-util.js&quot;</span>;
 <span class="hljs-keyword">import</span> { TodoListView } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./view/TodoListView.js&quot;</span>;
@@ -1670,7 +1630,7 @@
      * @param {string} title
      */</span>
     handleAdd(title) {
-        <span class="hljs-keyword">this</span>.todoListModel.addTodo(<span class="hljs-keyword">new</span> TodoItemModel({ title, completed: <span class="hljs-literal">false</span> }));
+        <span class="hljs-keyword">this</span>.todoListModel.addTodo(<span class="hljs-keyword">new</span> TodoItemModel({ title, <span class="hljs-attr">completed</span>: <span class="hljs-literal">false</span> }));
     }
 
     <span class="hljs-comment">/**
@@ -1694,19 +1654,19 @@
         <span class="hljs-keyword">const</span> inputElement = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;#js-form-input&quot;</span>);
         <span class="hljs-keyword">const</span> todoItemCountElement = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;#js-todo-count&quot;</span>);
         <span class="hljs-keyword">const</span> containerElement = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;#js-todo-list&quot;</span>);
-        <span class="hljs-keyword">this</span>.todoListModel.onChange(() =&gt; {
+        <span class="hljs-keyword">this</span>.todoListModel.onChange(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
             <span class="hljs-keyword">const</span> todoItems = <span class="hljs-keyword">this</span>.todoListModel.getTodoItems();
             <span class="hljs-keyword">const</span> todoListElement = <span class="hljs-keyword">this</span>.todoListView.createElement(todoItems, {
                 <span class="hljs-comment">// App&#x306B;&#x5B9A;&#x7FA9;&#x3057;&#x305F;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;</span>
-                onUpdateTodo: ({ id, completed }) =&gt; {
+                onUpdateTodo: <span class="hljs-function">(<span class="hljs-params">{ id, completed }</span>) =&gt;</span> {
                     <span class="hljs-keyword">this</span>.handleUpdate({ id, completed });
                 },
-                onDeleteTodo: ({ id }) =&gt; {
+                <span class="hljs-attr">onDeleteTodo</span>: <span class="hljs-function">(<span class="hljs-params">{ id }</span>) =&gt;</span> {
                     <span class="hljs-keyword">this</span>.handleDelete({ id });
                 }
             });
             render(todoListElement, containerElement);
-            todoItemCountElement.textContent = <span class="hljs-string">`Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x6570;: <span class="hljs-subst">${this.todoListModel.getTotalCount()}</span>`</span>;
+            todoItemCountElement.textContent = <span class="hljs-string">`Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x6570;: <span class="hljs-subst">${<span class="hljs-keyword">this</span>.todoListModel.getTotalCount()}</span>`</span>;
         });
 
         formElement.addEventListener(<span class="hljs-string">&quot;submit&quot;</span>, (event) =&gt; {
@@ -1717,31 +1677,25 @@
     }
 }
 </code></pre>
-<p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;<code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3068;&#x3057;&#x3066;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x3092;&#x4E26;&#x3079;&#x308B;&#x3053;&#x3068;&#x3067;&#x3001;Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x6A5F;&#x80FD;&#x304C;&#x30B3;&#x30FC;&#x30C9;&#x4E0A;&#x306E;&#x898B;&#x305F;&#x76EE;&#x3068;&#x3057;&#x3066;&#x308F;&#x304B;&#x308A;&#x3084;&#x3059;&#x304F;&#x306A;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;</p>
-<h2 id="section-conclusion"><a name="section-conclusion" class="plugin-anchor" href="#section-conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x307E;&#x3068;&#x3081; </h2>
-<p>&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;&#x3001;&#x6B21;&#x306E;&#x3053;&#x3068;&#x3092;&#x884C;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;</p>
-<ul>
-<li>App&#x304B;&#x3089;&#x8868;&#x793A;&#x306B;&#x95A2;&#x3059;&#x308B;&#x51E6;&#x7406;&#x3092;View&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306B;&#x5206;&#x5272;&#x3057;&#x305F;</li>
-<li>Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x6A5F;&#x80FD;&#x3068;&#x5BFE;&#x5FDC;&#x3059;&#x308B;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x3092;<code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3078;&#x79FB;&#x52D5;&#x3057;&#x305F;</li>
-<li>Todo&#x30A2;&#x30D7;&#x30EA;&#x3092;&#x5B8C;&#x6210;&#x3055;&#x305B;&#x305F;</li>
-</ul>
-<p>&#x5B8C;&#x6210;&#x3057;&#x305F;Todo&#x30A2;&#x30D7;&#x30EA;&#x306F;&#x6B21;&#x306E;URL&#x3067;&#x78BA;&#x8A8D;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<ul>
-<li><a href="https://jsprimer.net/use-case/todoapp/final/final/" target="_blank">https://jsprimer.net/use-case/todoapp/final/final/</a></li>
-</ul>
-<p>&#x5B9F;&#x306F;&#x3053;&#x306E;Todo&#x30A2;&#x30D7;&#x30EA;&#x306B;&#x306F;&#x307E;&#x3060;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3068;&#x3057;&#x3066;&#x3001;&#x5B8C;&#x6210;&#x3057;&#x3066;&#x3044;&#x306A;&#x3044;&#x90E8;&#x5206;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x5165;&#x529B;&#x6B04;&#x3067;Enter&#x30AD;&#x30FC;&#x3092;&#x9023;&#x6253;&#x3059;&#x308B;&#x3068;&#x3001;&#x7A7A;&#x306E;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x304C;&#x8FFD;&#x52A0;&#x3055;&#x308C;&#x3066;&#x3057;&#x307E;&#x3046;&#x306E;&#x306F;&#x610F;&#x56F3;&#x3057;&#x306A;&#x3044;&#x6319;&#x52D5;&#x3067;&#x3059;&#x3002;
+<p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;<code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3068;&#x3057;&#x3066;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x3092;&#x4E26;&#x3079;&#x308B;&#x3053;&#x3068;&#x3067;&#x3001;Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x6A5F;&#x80FD;&#x304C;&#x30B3;&#x30FC;&#x30C9;&#x4E0A;&#x306E;&#x898B;&#x305F;&#x76EE;&#x3068;&#x3057;&#x3066;&#x308F;&#x304B;&#x308A;&#x3084;&#x3059;&#x304F;&#x306A;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;</p><h2 id="section-conclusion"><a name="section-conclusion" class="plugin-anchor" href="#section-conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x307E;&#x3068;&#x3081;</h2><p>&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;&#x3001;&#x6B21;&#x306E;&#x3053;&#x3068;&#x3092;&#x884C;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;</p><ul><li>App&#x304B;&#x3089;&#x8868;&#x793A;&#x306B;&#x95A2;&#x3059;&#x308B;&#x51E6;&#x7406;&#x3092;View&#x30B3;&#x30F3;&#x30DD;&#x30FC;&#x30CD;&#x30F3;&#x30C8;&#x306B;&#x5206;&#x5272;&#x3057;&#x305F;
+</li>
+<li>Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x6A5F;&#x80FD;&#x3068;&#x5BFE;&#x5FDC;&#x3059;&#x308B;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x3092;<code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3078;&#x79FB;&#x52D5;&#x3057;&#x305F;
+</li>
+<li>Todo&#x30A2;&#x30D7;&#x30EA;&#x3092;&#x5B8C;&#x6210;&#x3055;&#x305B;&#x305F;
+</li></ul>
+<p>&#x5B8C;&#x6210;&#x3057;&#x305F;Todo&#x30A2;&#x30D7;&#x30EA;&#x306F;&#x6B21;&#x306E;URL&#x3067;&#x78BA;&#x8A8D;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p><ul><li><a href="https://jsprimer.net/use-case/todoapp/final/final/" target="_blank">https://jsprimer.net/use-case/todoapp/final/final/</a>
+</li></ul>
+<p>&#x5B9F;&#x306F;&#x3053;&#x306E;Todo&#x30A2;&#x30D7;&#x30EA;&#x306B;&#x306F;&#x307E;&#x3060;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3068;&#x3057;&#x3066;&#x3001;&#x5B8C;&#x6210;&#x3057;&#x3066;&#x3044;&#x306A;&#x3044;&#x90E8;&#x5206;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p><p>&#x5165;&#x529B;&#x6B04;&#x3067;Enter&#x30AD;&#x30FC;&#x3092;&#x9023;&#x6253;&#x3059;&#x308B;&#x3068;&#x3001;&#x7A7A;&#x306E;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x304C;&#x8FFD;&#x52A0;&#x3055;&#x308C;&#x3066;&#x3057;&#x307E;&#x3046;&#x306E;&#x306F;&#x610F;&#x56F3;&#x3057;&#x306A;&#x3044;&#x6319;&#x52D5;&#x3067;&#x3059;&#x3002;
 &#x307E;&#x305F;&#x3001;<code>App#mount</code>&#x3067;<code>TodoListModel#onChange</code>&#x306A;&#x3069;&#x306E;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x3092;&#x767B;&#x9332;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x304C;&#x3001;&#x305D;&#x306E;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x3092;&#x89E3;&#x9664;&#x3057;&#x3066;&#x3044;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x3053;&#x306E;Todo&#x30A2;&#x30D7;&#x30EA;&#x3067;&#x306F;&#x3042;&#x307E;&#x308A;&#x554F;&#x984C;&#x306B;&#x306F;&#x306A;&#x308A;&#x307E;&#x305B;&#x3093;&#x304C;&#x3001;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x306F;&#x767B;&#x9332;&#x3057;&#x305F;&#x307E;&#x307E;&#x3060;&#x3068;&#x30E1;&#x30E2;&#x30EA;&#x30EA;&#x30FC;&#x30AF;&#x306B;&#x3064;&#x306A;&#x304C;&#x308B;&#x5834;&#x5408;&#x3082;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x4F59;&#x529B;&#x304C;&#x3042;&#x308B;&#x4EBA;&#x306F;&#x3001;&#x6B21;&#x306E;&#x6A5F;&#x80FD;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x3066;Todo&#x30A2;&#x30D7;&#x30EA;&#x3092;&#x5B8C;&#x6210;&#x3055;&#x305B;&#x3066;&#x307F;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</p>
-<ul>
-<li>&#x30BF;&#x30A4;&#x30C8;&#x30EB;&#x304C;&#x7A7A;&#x306E;&#x5834;&#x5408;&#x306F;&#x3001;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x9001;&#x4FE1;&#x3057;&#x3066;&#x3082;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x8FFD;&#x52A0;&#x3067;&#x304D;&#x306A;&#x3044;&#x3088;&#x3046;&#x306B;&#x3059;&#x308B;</li>
-<li><code>App#mount</code>&#x3067;&#x306E;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x767B;&#x9332;&#x306B;&#x5BFE;&#x5FDC;&#x3057;&#x3066;&#x3001;<code>App#unmount</code>&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x3001;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x3092;&#x89E3;&#x9664;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x3059;&#x308B;</li>
-</ul>
+&#x3053;&#x306E;Todo&#x30A2;&#x30D7;&#x30EA;&#x3067;&#x306F;&#x3042;&#x307E;&#x308A;&#x554F;&#x984C;&#x306B;&#x306F;&#x306A;&#x308A;&#x307E;&#x305B;&#x3093;&#x304C;&#x3001;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x306F;&#x767B;&#x9332;&#x3057;&#x305F;&#x307E;&#x307E;&#x3060;&#x3068;&#x30E1;&#x30E2;&#x30EA;&#x30EA;&#x30FC;&#x30AF;&#x306B;&#x3064;&#x306A;&#x304C;&#x308B;&#x5834;&#x5408;&#x3082;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p><p>&#x4F59;&#x529B;&#x304C;&#x3042;&#x308B;&#x4EBA;&#x306F;&#x3001;&#x6B21;&#x306E;&#x6A5F;&#x80FD;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x3066;Todo&#x30A2;&#x30D7;&#x30EA;&#x3092;&#x5B8C;&#x6210;&#x3055;&#x305B;&#x3066;&#x307F;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</p><ul><li>&#x30BF;&#x30A4;&#x30C8;&#x30EB;&#x304C;&#x7A7A;&#x306E;&#x5834;&#x5408;&#x306F;&#x3001;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x3092;&#x9001;&#x4FE1;&#x3057;&#x3066;&#x3082;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x8FFD;&#x52A0;&#x3067;&#x304D;&#x306A;&#x3044;&#x3088;&#x3046;&#x306B;&#x3059;&#x308B;
+</li>
+<li><code>App#mount</code>&#x3067;&#x306E;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x767B;&#x9332;&#x306B;&#x5BFE;&#x5FDC;&#x3057;&#x3066;&#x3001;<code>App#unmount</code>&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x3001;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x3092;&#x89E3;&#x9664;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x3059;&#x308B;
+</li></ul>
 <p><code>App#mount</code>&#x3068;&#x5BFE;&#x5FDC;&#x3059;&#x308B;<code>App#unmount</code>&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;&#x3068;&#x3044;&#x3046;Todo&#x306F;&#x3001;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x30E9;&#x30A4;&#x30D5;&#x30B5;&#x30A4;&#x30AF;&#x30EB;&#x3092;&#x610F;&#x8B58;&#x3059;&#x308B;&#x3068;&#x3044;&#x3046;&#x8AB2;&#x984C;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
 &#x30A6;&#x30A7;&#x30D6;&#x30DA;&#x30FC;&#x30B8;&#x306B;&#x306F;&#x30DA;&#x30FC;&#x30B8;&#x8AAD;&#x307F;&#x8FBC;&#x307F;&#x304C;&#x5B8C;&#x4E86;&#x3057;&#x305F;&#x3068;&#x304D;&#x306B;&#x767A;&#x751F;&#x3059;&#x308B;<code>load</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3068;&#x3001;&#x8AAD;&#x307F;&#x8FBC;&#x3093;&#x3060;&#x30DA;&#x30FC;&#x30B8;&#x3092;&#x7834;&#x68C4;&#x3057;&#x305F;&#x3068;&#x304D;&#x306B;&#x767A;&#x751F;&#x3059;&#x308B;<code>unload</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-Todo&#x30A2;&#x30D7;&#x30EA;&#x3082;<code>mount</code>&#x3068;<code>unmount</code>&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x30A6;&#x30A7;&#x30D6;&#x30DA;&#x30FC;&#x30B8;&#x306E;&#x30E9;&#x30A4;&#x30D5;&#x30B5;&#x30A4;&#x30AF;&#x30EB;&#x306B;&#x5408;&#x308F;&#x305B;&#x3089;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<!-- doctest:disable -->
+Todo&#x30A2;&#x30D7;&#x30EA;&#x3082;<code>mount</code>&#x3068;<code>unmount</code>&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x30A6;&#x30A7;&#x30D6;&#x30DA;&#x30FC;&#x30B8;&#x306E;&#x30E9;&#x30A4;&#x30D5;&#x30B5;&#x30A4;&#x30AF;&#x30EB;&#x306B;&#x5408;&#x308F;&#x305B;&#x3089;&#x308C;&#x307E;&#x3059;&#x3002;</p><!-- doctest:disable -->
+
+
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> App();
 <span class="hljs-comment">// &#x30DA;&#x30FC;&#x30B8;&#x306E;&#x30ED;&#x30FC;&#x30C9;&#x304C;&#x5B8C;&#x4E86;&#x3057;&#x305F;&#x3068;&#x304D;&#x306E;&#x30A4;&#x30D9;&#x30F3;&#x30C8;</span>
 <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">&quot;load&quot;</span>, () =&gt; {
@@ -1750,33 +1704,22 @@ Todo&#x30A2;&#x30D7;&#x30EA;&#x3082;<code>mount</code>&#x3068;<code>unmount</cod
 <span class="hljs-comment">// &#x30DA;&#x30FC;&#x30B8;&#x304C;&#x30A2;&#x30F3;&#x30ED;&#x30FC;&#x30C9;&#x3055;&#x308C;&#x305F;&#x3068;&#x304D;&#x306E;&#x30A4;&#x30D9;&#x30F3;&#x30C8;</span>
 <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">&quot;unload&quot;</span>, () =&gt; {
     app.unmount();
-});
-</code></pre>
+});</code></pre>
 <p>&#x6B8B;&#x3063;&#x305F;Todo&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x305F;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x3001;&#x6B21;&#x306E;URL&#x3067;&#x78BA;&#x8A8D;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x305C;&#x3072;&#x3001;&#x81EA;&#x5206;&#x3067;&#x5B9F;&#x88C5;&#x3057;&#x3066;&#x307F;&#x3066;&#x30A6;&#x30A7;&#x30D6;&#x30DA;&#x30FC;&#x30B8;&#x3084;&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x52D5;&#x304D;&#x306B;&#x3064;&#x3044;&#x3066;&#x8003;&#x3048;&#x3066;&#x307F;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</p>
-<ul>
-<li><a href="https://jsprimer.net/use-case/todoapp/final/more/" target="_blank">https://jsprimer.net/use-case/todoapp/final/more/</a></li>
-</ul>
-<h2 id="todo-conclusion"><a name="todo-conclusion" class="plugin-anchor" href="#todo-conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x307E;&#x3068;&#x3081; </h2>
-<p>&#x4ECA;&#x56DE;&#x306F;&#x3001;Todo&#x30A2;&#x30D7;&#x30EA;&#x3092;&#x69CB;&#x6210;&#x3059;&#x308B;&#x8981;&#x7D20;&#x3092;Model&#x3068;View&#x3068;&#x3044;&#x3046;&#x5358;&#x4F4D;&#x3067;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306B;&#x5206;&#x3051;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;
+&#x305C;&#x3072;&#x3001;&#x81EA;&#x5206;&#x3067;&#x5B9F;&#x88C5;&#x3057;&#x3066;&#x307F;&#x3066;&#x30A6;&#x30A7;&#x30D6;&#x30DA;&#x30FC;&#x30B8;&#x3084;&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x52D5;&#x304D;&#x306B;&#x3064;&#x3044;&#x3066;&#x8003;&#x3048;&#x3066;&#x307F;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</p><ul><li><a href="https://jsprimer.net/use-case/todoapp/final/more/" target="_blank">https://jsprimer.net/use-case/todoapp/final/more/</a>
+</li></ul>
+<h2 id="todo-conclusion"><a name="todo-conclusion" class="plugin-anchor" href="#todo-conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x307E;&#x3068;&#x3081;</h2><p>&#x4ECA;&#x56DE;&#x306F;&#x3001;Todo&#x30A2;&#x30D7;&#x30EA;&#x3092;&#x69CB;&#x6210;&#x3059;&#x308B;&#x8981;&#x7D20;&#x3092;Model&#x3068;View&#x3068;&#x3044;&#x3046;&#x5358;&#x4F4D;&#x3067;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306B;&#x5206;&#x3051;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;
 &#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3092;&#x5206;&#x3051;&#x308B;&#x3053;&#x3068;&#x3067;&#x30B3;&#x30FC;&#x30C9;&#x306E;&#x898B;&#x901A;&#x3057;&#x3092;&#x826F;&#x304F;&#x3057;&#x305F;&#x308A;&#x3001;Todo&#x30A2;&#x30D7;&#x30EA;&#x306B;&#x3055;&#x3089;&#x306A;&#x308B;&#x6A5F;&#x80FD;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x3084;&#x3059;&#x3044;&#x5F62;&#x306B;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;
-&#x3053;&#x306E;&#x3088;&#x3046;&#x306A;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306E;&#x5206;&#x3051;&#x65B9;&#x306A;&#x3069;&#x306E;&#x8A2D;&#x8A08;&#x306B;&#x306F;&#x6B63;&#x89E3;&#x306F;&#x306A;&#x304F;&#x3001;&#x3055;&#x307E;&#x3056;&#x307E;&#x306A;&#x8003;&#x3048;&#x65B9;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x4ECA;&#x56DE;Todo&#x30A2;&#x30D7;&#x30EA;&#x3068;&#x3044;&#x3046;&#x984C;&#x6750;&#x3092;&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x306B;&#x9078;&#x3093;&#x3060;&#x306E;&#x306F;&#x3001;JavaScript&#x306E;&#x30A6;&#x30A7;&#x30D6;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;&#x3088;&#x304F;&#x5229;&#x7528;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x984C;&#x6750;&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;
+&#x3053;&#x306E;&#x3088;&#x3046;&#x306A;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306E;&#x5206;&#x3051;&#x65B9;&#x306A;&#x3069;&#x306E;&#x8A2D;&#x8A08;&#x306B;&#x306F;&#x6B63;&#x89E3;&#x306F;&#x306A;&#x304F;&#x3001;&#x3055;&#x307E;&#x3056;&#x307E;&#x306A;&#x8003;&#x3048;&#x65B9;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p><p>&#x4ECA;&#x56DE;Todo&#x30A2;&#x30D7;&#x30EA;&#x3068;&#x3044;&#x3046;&#x984C;&#x6750;&#x3092;&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x306B;&#x9078;&#x3093;&#x3060;&#x306E;&#x306F;&#x3001;JavaScript&#x306E;&#x30A6;&#x30A7;&#x30D6;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;&#x3088;&#x304F;&#x5229;&#x7528;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x984C;&#x6750;&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;
 &#x3055;&#x307E;&#x3056;&#x307E;&#x306A;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3092;&#x4F7F;&#x3063;&#x305F;Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x5B9F;&#x88C5;&#x304C;<a href="http://todomvc.com/" target="_blank">TodoMVC</a>&#x3068;&#x547C;&#x3070;&#x308C;&#x308B;&#x30B5;&#x30A4;&#x30C8;&#x306B;&#x307E;&#x3068;&#x3081;&#x3089;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x4ECA;&#x56DE;&#x4F5C;&#x6210;&#x3057;&#x305F;Todo&#x30A2;&#x30D7;&#x30EA;&#x306F;&#x3001;TodoMVC&#x304B;&#x3089;&#x30D5;&#x30A3;&#x30EB;&#x30BF;&#x30FC;&#x6A5F;&#x80FD;&#x306A;&#x3069;&#x3092;&#x524A;&#x3063;&#x305F;&#x3082;&#x306E;&#x3092;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3092;&#x4F7F;&#x308F;&#x305A;&#x306B;&#x5B9F;&#x88C5;&#x3057;&#x305F;&#x3082;&#x306E;&#x3067;&#x3059;&#x3002;<sup><a href="#fn_1" id="reffn_1">1</a></sup></p>
-<p>&#x73FE;&#x5B9F;&#x3067;&#x306F;&#x3001;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3092;&#x307E;&#x3063;&#x305F;&#x304F;&#x4F7F;&#x308F;&#x305A;&#x30A6;&#x30A7;&#x30D6;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x5B9F;&#x88C5;&#x3059;&#x308B;&#x3053;&#x3068;&#x306F;&#x307B;&#x3068;&#x3093;&#x3069;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;&#x3001;<code>html-util.js</code>&#x306E;&#x3088;&#x3046;&#x306A;&#x3082;&#x306E;&#x306F;&#x81EA;&#x5206;&#x3067;&#x66F8;&#x304F;&#x5FC5;&#x8981;&#x304C;&#x306A;&#x304F;&#x306A;&#x3063;&#x305F;&#x308A;&#x3001;&#x6700;&#x5F8C;&#x306E;&#x8AB2;&#x984C;&#x3068;&#x3057;&#x3066;&#x6B8B;&#x3063;&#x305F;&#x30E9;&#x30A4;&#x30D5;&#x30B5;&#x30A4;&#x30AF;&#x30EB;&#x306E;&#x554F;&#x984C;&#x306A;&#x3069;&#x3082;&#x89E3;&#x6C7A;&#x3057;&#x3084;&#x3059;&#x304F;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3057;&#x304B;&#x3057;&#x3001;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x958B;&#x767A;&#x3059;&#x308B;&#x5834;&#x5408;&#x3067;&#x3082;&#x3001;&#x7B2C;&#x4E00;&#x90E8;&#x306E;&#x57FA;&#x672C;&#x6587;&#x6CD5;&#x3084;&#x7B2C;&#x4E8C;&#x90E8;&#x306E;&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x3067;&#x7D39;&#x4ECB;&#x3057;&#x305F;&#x3088;&#x3046;&#x306A;JavaScript&#x306E;&#x57FA;&#x790E;&#x306F;&#x91CD;&#x8981;&#x3067;&#x3059;&#x3002;
-&#x306A;&#x305C;&#x306A;&#x3089;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3082;&#x3001;&#x3053;&#x308C;&#x3089;&#x306E;&#x57FA;&#x790E;&#x306E;&#x4E0A;&#x306B;&#x5B9F;&#x88C5;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x307E;&#x305F;&#x3001;&#x4F5C;&#x308B;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x7A2E;&#x985E;&#x3084;&#x76EE;&#x7684;&#x306B;&#x3088;&#x3063;&#x3066;&#x9069;&#x5207;&#x306A;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306F;&#x7570;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306B;&#x3088;&#x3063;&#x3066;&#x306F;&#x9B54;&#x6CD5;&#x306E;&#x3088;&#x3046;&#x306A;&#x6A5F;&#x80FD;&#x3092;&#x63D0;&#x4F9B;&#x3057;&#x3066;&#x3044;&#x308B;&#x3082;&#x306E;&#x3082;&#x3042;&#x308A;&#x307E;&#x3059;&#x304C;&#x3001;&#x305D;&#x308C;&#x3089;&#x3082;&#x57FA;&#x790E;&#x3068;&#x306A;&#x308B;&#x6280;&#x8853;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x306F;&#x899A;&#x3048;&#x3066;&#x304A;&#x3044;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</p>
-<p>&#x3053;&#x306E;&#x66F8;&#x7C4D;&#x3067;&#x306F;JavaScript&#x306E;&#x57FA;&#x790E;&#x3092;&#x4E2D;&#x5FC3;&#x306B;&#x7D39;&#x4ECB;&#x3057;&#x307E;&#x3057;&#x305F;&#x304C;&#x3001;&#x300C;<a href="../../../basic/ecmascript/">ECMAScript</a>&#x300D;&#x306E;&#x7AE0;&#x3067;&#x7D39;&#x4ECB;&#x3057;&#x305F;&#x3088;&#x3046;&#x306B;JavaScript&#x306E;&#x57FA;&#x790E;&#x3082;&#x5E74;&#x3005;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
+&#x4ECA;&#x56DE;&#x4F5C;&#x6210;&#x3057;&#x305F;Todo&#x30A2;&#x30D7;&#x30EA;&#x306F;&#x3001;TodoMVC&#x304B;&#x3089;&#x30D5;&#x30A3;&#x30EB;&#x30BF;&#x30FC;&#x6A5F;&#x80FD;&#x306A;&#x3069;&#x3092;&#x524A;&#x3063;&#x305F;&#x3082;&#x306E;&#x3092;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3092;&#x4F7F;&#x308F;&#x305A;&#x306B;&#x5B9F;&#x88C5;&#x3057;&#x305F;&#x3082;&#x306E;&#x3067;&#x3059;&#x3002;<sup><a href="#fn_1" id="reffn_1">1</a></sup></p><p>&#x73FE;&#x5B9F;&#x3067;&#x306F;&#x3001;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3092;&#x307E;&#x3063;&#x305F;&#x304F;&#x4F7F;&#x308F;&#x305A;&#x30A6;&#x30A7;&#x30D6;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x5B9F;&#x88C5;&#x3059;&#x308B;&#x3053;&#x3068;&#x306F;&#x307B;&#x3068;&#x3093;&#x3069;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
+&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;&#x3001;<code>html-util.js</code>&#x306E;&#x3088;&#x3046;&#x306A;&#x3082;&#x306E;&#x306F;&#x81EA;&#x5206;&#x3067;&#x66F8;&#x304F;&#x5FC5;&#x8981;&#x304C;&#x306A;&#x304F;&#x306A;&#x3063;&#x305F;&#x308A;&#x3001;&#x6700;&#x5F8C;&#x306E;&#x8AB2;&#x984C;&#x3068;&#x3057;&#x3066;&#x6B8B;&#x3063;&#x305F;&#x30E9;&#x30A4;&#x30D5;&#x30B5;&#x30A4;&#x30AF;&#x30EB;&#x306E;&#x554F;&#x984C;&#x306A;&#x3069;&#x3082;&#x89E3;&#x6C7A;&#x3057;&#x3084;&#x3059;&#x304F;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p><p>&#x3057;&#x304B;&#x3057;&#x3001;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x958B;&#x767A;&#x3059;&#x308B;&#x5834;&#x5408;&#x3067;&#x3082;&#x3001;&#x7B2C;&#x4E00;&#x90E8;&#x306E;&#x57FA;&#x672C;&#x6587;&#x6CD5;&#x3084;&#x7B2C;&#x4E8C;&#x90E8;&#x306E;&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x3067;&#x7D39;&#x4ECB;&#x3057;&#x305F;&#x3088;&#x3046;&#x306A;JavaScript&#x306E;&#x57FA;&#x790E;&#x306F;&#x91CD;&#x8981;&#x3067;&#x3059;&#x3002;
+&#x306A;&#x305C;&#x306A;&#x3089;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3082;&#x3001;&#x3053;&#x308C;&#x3089;&#x306E;&#x57FA;&#x790E;&#x306E;&#x4E0A;&#x306B;&#x5B9F;&#x88C5;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;</p><p>&#x307E;&#x305F;&#x3001;&#x4F5C;&#x308B;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x7A2E;&#x985E;&#x3084;&#x76EE;&#x7684;&#x306B;&#x3088;&#x3063;&#x3066;&#x9069;&#x5207;&#x306A;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306F;&#x7570;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
+&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306B;&#x3088;&#x3063;&#x3066;&#x306F;&#x9B54;&#x6CD5;&#x306E;&#x3088;&#x3046;&#x306A;&#x6A5F;&#x80FD;&#x3092;&#x63D0;&#x4F9B;&#x3057;&#x3066;&#x3044;&#x308B;&#x3082;&#x306E;&#x3082;&#x3042;&#x308A;&#x307E;&#x3059;&#x304C;&#x3001;&#x305D;&#x308C;&#x3089;&#x3082;&#x57FA;&#x790E;&#x3068;&#x306A;&#x308B;&#x6280;&#x8853;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x306F;&#x899A;&#x3048;&#x3066;&#x304A;&#x3044;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</p><p>&#x3053;&#x306E;&#x66F8;&#x7C4D;&#x3067;&#x306F;JavaScript&#x306E;&#x57FA;&#x790E;&#x3092;&#x4E2D;&#x5FC3;&#x306B;&#x7D39;&#x4ECB;&#x3057;&#x307E;&#x3057;&#x305F;&#x304C;&#x3001;&#x300C;<a href="../../../basic/ecmascript/">ECMAScript</a>&#x300D;&#x306E;&#x7AE0;&#x3067;&#x7D39;&#x4ECB;&#x3057;&#x305F;&#x3088;&#x3046;&#x306B;JavaScript&#x306E;&#x57FA;&#x790E;&#x3082;&#x5E74;&#x3005;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
 &#x57FA;&#x790E;&#x304C;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x308B;&#x3068;&#x5FDC;&#x7528;&#x3067;&#x3042;&#x308B;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3082;&#x65B0;&#x3057;&#x3044;&#x3082;&#x306E;&#x304C;&#x767B;&#x5834;&#x3057;&#x3001;&#x5B9A;&#x756A;&#x3060;&#x3063;&#x305F;&#x3082;&#x306E;&#x3082;&#x5F90;&#x3005;&#x306B;&#x5909;&#x5316;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x77E5;&#x3089;&#x306A;&#x304B;&#x3063;&#x305F;&#x3082;&#x306E;&#x304C;&#x51FA;&#x3066;&#x304F;&#x308B;&#x306E;&#x306F;&#x3001;JavaScript&#x81EA;&#x4F53;&#x304C;&#x6210;&#x9577;&#x3057;&#x3066;&#x3044;&#x308B;&#x3068;&#x3044;&#x3046;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x306E;&#x66F8;&#x7C4D;&#x3092;&#x8AAD;&#x3093;&#x3067;&#x307E;&#x3060;&#x7406;&#x89E3;&#x3067;&#x304D;&#x306A;&#x304B;&#x3063;&#x305F;&#x3053;&#x3068;&#x3084;&#x77E5;&#x3089;&#x306A;&#x304B;&#x3063;&#x305F;&#x3053;&#x3068;&#x304C;&#x3042;&#x308B;&#x306E;&#x306F;&#x554F;&#x984C;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
+&#x77E5;&#x3089;&#x306A;&#x304B;&#x3063;&#x305F;&#x3082;&#x306E;&#x304C;&#x51FA;&#x3066;&#x304F;&#x308B;&#x306E;&#x306F;&#x3001;JavaScript&#x81EA;&#x4F53;&#x304C;&#x6210;&#x9577;&#x3057;&#x3066;&#x3044;&#x308B;&#x3068;&#x3044;&#x3046;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;</p><p>&#x3053;&#x306E;&#x66F8;&#x7C4D;&#x3092;&#x8AAD;&#x3093;&#x3067;&#x307E;&#x3060;&#x7406;&#x89E3;&#x3067;&#x304D;&#x306A;&#x304B;&#x3063;&#x305F;&#x3053;&#x3068;&#x3084;&#x77E5;&#x3089;&#x306A;&#x304B;&#x3063;&#x305F;&#x3053;&#x3068;&#x304C;&#x3042;&#x308B;&#x306E;&#x306F;&#x554F;&#x984C;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
 &#x77E5;&#x3089;&#x306A;&#x304B;&#x3063;&#x305F;&#x3053;&#x3068;&#x3092;&#x898B;&#x3064;&#x3051;&#x305F;&#x3068;&#x304D;&#x306B;&#x305D;&#x308C;&#x304C;&#x4F55;&#x304B;&#x3092;&#x8ABF;&#x3079;&#x3089;&#x308C;&#x308B;&#x3068;&#x3044;&#x3046;&#x3053;&#x3068;&#x304C;&#x3001;
-JavaScript&#x3068;&#x3044;&#x3046;&#x5909;&#x5316;&#x3057;&#x3066;&#x3044;&#x304F;&#x8A00;&#x8A9E;&#x3084;&#x305D;&#x308C;&#x3092;&#x5229;&#x7528;&#x3059;&#x308B;&#x74B0;&#x5883;&#x306B;&#x304A;&#x3044;&#x3066;&#x306F;&#x91CD;&#x8981;&#x3067;&#x3059;&#x3002;</p>
-<blockquote id="fn_1">
+JavaScript&#x3068;&#x3044;&#x3046;&#x5909;&#x5316;&#x3057;&#x3066;&#x3044;&#x304F;&#x8A00;&#x8A9E;&#x3084;&#x305D;&#x308C;&#x3092;&#x5229;&#x7528;&#x3059;&#x308B;&#x74B0;&#x5883;&#x306B;&#x304A;&#x3044;&#x3066;&#x306F;&#x91CD;&#x8981;&#x3067;&#x3059;&#x3002;</p><blockquote id="fn_1">
 <sup>1</sup>. &#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3084;&#x30D5;&#x30EC;&#x30FC;&#x30E0;&#x30EF;&#x30FC;&#x30AF;&#x3092;&#x4F7F;&#x308F;&#x305A;&#x306B;&#x5B9F;&#x88C5;&#x3057;&#x305F;JavaScript&#x3092;Vanilla JS&#x3068;&#x547C;&#x3076;&#x3053;&#x3068;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#x21A9;</a>
 </blockquote>
 
@@ -1810,7 +1753,7 @@ JavaScript&#x3068;&#x3044;&#x3046;&#x5909;&#x5316;&#x3057;&#x3066;&#x3044;&#x304
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"1つのファイルに処理が集中するとメンテナンス性が低下するため、Todoアプリの表示要素をコンポーネントという単位に分割するリファクタリングをしていきます。","title":"Todoアプリのリファクタリング","level":"1.4.4.6","depth":3,"next":{"title":"付録: 参考リンク集","level":"1.5","depth":1,"path":"appendix/links/README.md","ref":"./appendix/links/README.md","articles":[]},"previous":{"title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"path":"use-case/todoapp/update-delete/README.md","ref":"./use-case/todoapp/update-delete/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2019","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/todoapp/final/README.md","mtime":"2020-06-16T16:03:51.683Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-16T16:05:14.861Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"1つのファイルに処理が集中するとメンテナンス性が低下するため、Todoアプリの表示要素をコンポーネントという単位に分割するリファクタリングをしていきます。","title":"Todoアプリのリファクタリング","level":"1.4.4.6","depth":3,"next":{"title":"付録: 参考リンク集","level":"1.5","depth":1,"path":"appendix/links/README.md","ref":"./appendix/links/README.md","articles":[]},"previous":{"title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"path":"use-case/todoapp/update-delete/README.md","ref":"./use-case/todoapp/update-delete/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2019","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/todoapp/final/README.md","mtime":"2020-06-18T15:44:52.961Z","type":"markdown"},"gitbook":{"version":"3.3.9","time":"2020-06-18T15:45:27.329Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1833,10 +1776,6 @@ JavaScript&#x3068;&#x3044;&#x3046;&#x5909;&#x5316;&#x3057;&#x3066;&#x3044;&#x304
     
         
         <script src="../../../gitbook/gitbook-plugin-github-issue-feedback/plugin.js"></script>
-        
-    
-        
-        <script src="../../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
         
     
         

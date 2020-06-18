@@ -7,7 +7,7 @@
         <title>ラッパーオブジェクト · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptのプリミティブ型の値がビルトインオブジェクトのメソッドなどを呼び出せる仕組みとしてのラッパーオブジェクトを紹介します。プリミティブ型からオブジェクトとどのように実行時に変換されているのを確認できます。">
-        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="generator" content="GitHon 3.3.9">
         
         
         
@@ -36,18 +36,6 @@
 
     
 
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
     
 
          
@@ -971,8 +959,8 @@
     <li class="divider"></li>
 
     <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Published with GitBook
+        <a href="https://github.com/githon/githon" target="blank" class="gitbook-link">
+            Published with GitHon
         </a>
     </li>
 </ul>
@@ -1415,123 +1403,87 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="wrapper-object"><a name="wrapper-object" class="plugin-anchor" href="#wrapper-object"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8; </h1>
-<p>JavaScript&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x578B;&#x306F;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x3068;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x5206;&#x3051;&#x3089;&#x308C;&#x307E;&#x3059;&#xFF08;&#x8A73;&#x7D30;&#x306F;&#x300C;<a href="../data-type/" title="&#x30C7;&#x30FC;&#x30BF;&#x578B;&#x3068;&#x30EA;&#x30C6;&#x30E9;&#x30EB;">&#x30C7;&#x30FC;&#x30BF;&#x578B;&#x3068;&#x30EA;&#x30C6;&#x30E9;&#x30EB;</a>&#x300D;&#x3092;&#x53C2;&#x7167;&#xFF09;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x6587;&#x5B57;&#x5217;&#x30EA;&#x30C6;&#x30E9;&#x30EB;&#x3067;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x3067;&#x3042;&#x308B;&#x6587;&#x5B57;&#x5217;&#x3092;&#x5B9A;&#x7FA9;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
+                                <h1 id="wrapper-object"><a name="wrapper-object" class="plugin-anchor" href="#wrapper-object"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</h1><p>JavaScript&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x578B;&#x306F;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x3068;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x5206;&#x3051;&#x3089;&#x308C;&#x307E;&#x3059;&#xFF08;&#x8A73;&#x7D30;&#x306F;&#x300C;<a title="&#x30C7;&#x30FC;&#x30BF;&#x578B;&#x3068;&#x30EA;&#x30C6;&#x30E9;&#x30EB;" href="../data-type/">&#x30C7;&#x30FC;&#x30BF;&#x578B;&#x3068;&#x30EA;&#x30C6;&#x30E9;&#x30EB;</a>&#x300D;&#x3092;&#x53C2;&#x7167;&#xFF09;&#x3002;</p><p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x6587;&#x5B57;&#x5217;&#x30EA;&#x30C6;&#x30E9;&#x30EB;&#x3067;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x3067;&#x3042;&#x308B;&#x6587;&#x5B57;&#x5217;&#x3092;&#x5B9A;&#x7FA9;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
 &#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x3067;&#x3042;&#x308B;&#x6587;&#x5B57;&#x5217;&#x306F;<code>String</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x3067;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x3057;&#x304B;&#x3057;&#x3001;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x6587;&#x5B57;&#x5217;&#x306B;&#x304A;&#x3044;&#x3066;&#x3082;&#x3001;<code>String</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x3042;&#x308B;<code>toUpperCase</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x547C;&#x3073;&#x51FA;&#x305B;&#x307E;&#x3059;&#x3002;</p>
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// String#toUpperCase&#x3092;&#x547C;&#x3073;&#x51FA;&#x3057;&#x3066;&#x3044;&#x308B;</span>
-<span class="hljs-string">&quot;string&quot;</span>.toUpperCase(); <span class="hljs-comment">// =&gt; &quot;STRING&quot;</span>
-</code></pre>
-<p>&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x3067;&#x3042;&#x308B;&#x6587;&#x5B57;&#x5217;&#x304C;<code>String</code>&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x547C;&#x3073;&#x51FA;&#x305B;&#x308B;&#x306E;&#x306F;&#x4E00;&#x898B;&#x4E0D;&#x601D;&#x8B70;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x306E;&#x7AE0;&#x3067;&#x306F;&#x3001;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x304C;&#x306A;&#x305C;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x547C;&#x3073;&#x51FA;&#x305B;&#x308B;&#x306E;&#x304B;&#x306B;&#x3064;&#x3044;&#x3066;&#x89E3;&#x8AAC;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="primitive-type-and-wrapper-object"><a name="primitive-type-and-wrapper-object" class="plugin-anchor" href="#primitive-type-and-wrapper-object"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x3068;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8; </h2>
-<!--　textlint-disable preset-ja-technical-writing/max-ten -->
-<p>&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x306E;&#x3046;&#x3061;&#x3001;&#x771F;&#x507D;&#x5024;&#xFF08;Boolean&#xFF09;&#x3001;&#x6570;&#x5024;&#xFF08;Number&#xFF09; &#x3001;&#x6587;&#x5B57;&#x5217;&#xFF08;String&#xFF09;&#x3001;&#x30B7;&#x30F3;&#x30DC;&#x30EB;&#xFF08;Symbol&#xFF09;&#x306B;&#x306F;&#x305D;&#x308C;&#x305E;&#x308C;&#x5BFE;&#x5FDC;&#x3059;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304C;&#x5B58;&#x5728;&#x3057;&#x307E;&#x3059;&#x3002;&#x305F;&#x3068;&#x3048;&#x3070;&#x3001;&#x6587;&#x5B57;&#x5217;&#x306B;&#x5BFE;&#x5FDC;&#x3059;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3068;&#x3057;&#x3066;&#x3001;<code>String</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x306E;<code>String</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;<code>new</code>&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;<code>String</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x3092;&#x4F5C;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<!-- textlint-enable -->
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// &quot;input value&quot;&#x306E;&#x5024;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3057;&#x305F;String&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x3092;&#x751F;&#x6210;</span>
+&#x3057;&#x304B;&#x3057;&#x3001;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x6587;&#x5B57;&#x5217;&#x306B;&#x304A;&#x3044;&#x3066;&#x3082;&#x3001;<code>String</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x3042;&#x308B;<code>toUpperCase</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x547C;&#x3073;&#x51FA;&#x305B;&#x307E;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-js"><span class="hljs-comment">// String#toUpperCase&#x3092;&#x547C;&#x3073;&#x51FA;&#x3057;&#x3066;&#x3044;&#x308B;</span>
+<span class="hljs-string">&quot;string&quot;</span>.toUpperCase(); <span class="hljs-comment">// =&gt; &quot;STRING&quot;</span></code></pre>
+<p>&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x3067;&#x3042;&#x308B;&#x6587;&#x5B57;&#x5217;&#x304C;<code>String</code>&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x547C;&#x3073;&#x51FA;&#x305B;&#x308B;&#x306E;&#x306F;&#x4E00;&#x898B;&#x4E0D;&#x601D;&#x8B70;&#x3067;&#x3059;&#x3002;</p><p>&#x3053;&#x306E;&#x7AE0;&#x3067;&#x306F;&#x3001;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x304C;&#x306A;&#x305C;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x547C;&#x3073;&#x51FA;&#x305B;&#x308B;&#x306E;&#x304B;&#x306B;&#x3064;&#x3044;&#x3066;&#x89E3;&#x8AAC;&#x3057;&#x307E;&#x3059;&#x3002;</p><h2 id="primitive-type-and-wrapper-object"><a name="primitive-type-and-wrapper-object" class="plugin-anchor" href="#primitive-type-and-wrapper-object"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x3068;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</h2><!--　textlint-disable preset-ja-technical-writing/max-ten -->
+
+
+<p>&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x306E;&#x3046;&#x3061;&#x3001;&#x771F;&#x507D;&#x5024;&#xFF08;Boolean&#xFF09;&#x3001;&#x6570;&#x5024;&#xFF08;Number&#xFF09; &#x3001;&#x6587;&#x5B57;&#x5217;&#xFF08;String&#xFF09;&#x3001;&#x30B7;&#x30F3;&#x30DC;&#x30EB;&#xFF08;Symbol&#xFF09;&#x306B;&#x306F;&#x305D;&#x308C;&#x305E;&#x308C;&#x5BFE;&#x5FDC;&#x3059;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304C;&#x5B58;&#x5728;&#x3057;&#x307E;&#x3059;&#x3002;&#x305F;&#x3068;&#x3048;&#x3070;&#x3001;&#x6587;&#x5B57;&#x5217;&#x306B;&#x5BFE;&#x5FDC;&#x3059;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3068;&#x3057;&#x3066;&#x3001;<code>String</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p><p>&#x3053;&#x306E;<code>String</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;<code>new</code>&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;<code>String</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x3092;&#x4F5C;&#x308C;&#x307E;&#x3059;&#x3002;</p><!-- textlint-enable -->
+
+
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-js"><span class="hljs-comment">// &quot;input value&quot;&#x306E;&#x5024;&#x3092;&#x30E9;&#x30C3;&#x30D7;&#x3057;&#x305F;String&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x3092;&#x751F;&#x6210;</span>
 <span class="hljs-keyword">const</span> str = <span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>(<span class="hljs-string">&quot;input value&quot;</span>);
 <span class="hljs-comment">// String&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x3042;&#x308B;toUpperCase&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;</span>
-str.toUpperCase(); <span class="hljs-comment">// =&gt; &quot;INPUT VALUE&quot;</span>
-</code></pre>
+str.toUpperCase(); <span class="hljs-comment">// =&gt; &quot;INPUT VALUE&quot;</span></code></pre>
 <p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x5316;&#x3055;&#x308C;&#x305F;&#x3082;&#x306E;&#x306F;&#x3001;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x3092;&#x5305;&#x3093;&#x3060;&#xFF08;&#x30E9;&#x30C3;&#x30D7;&#x3057;&#x305F;&#xFF09;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3068;&#x8A00;&#x3048;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x3053;&#x306E;&#x3088;&#x3046;&#x306A;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x306E;<strong>&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</strong>&#x3068;&#x547C;&#x3073;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3068;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5BFE;&#x5FDC;&#x306F;&#x6B21;&#x306E;&#x3068;&#x304A;&#x308A;&#x3067;&#x3059;&#x3002;</p>
-<table>
+&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x3053;&#x306E;&#x3088;&#x3046;&#x306A;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x306E;<strong>&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</strong>&#x3068;&#x547C;&#x3073;&#x307E;&#x3059;&#x3002;</p><p>&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3068;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5BFE;&#x5FDC;&#x306F;&#x6B21;&#x306E;&#x3068;&#x304A;&#x308A;&#x3067;&#x3059;&#x3002;</p><table>
 <thead>
-<tr>
-<th>&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</th>
-<th>&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;</th>
-<th>&#x4F8B;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Boolean</code></td>
-<td>&#x771F;&#x507D;&#x5024;</td>
-<td><code>true</code>&#x3084;<code>false</code></td>
-</tr>
-<tr>
-<td><code>Number</code></td>
-<td>&#x6570;&#x5024;</td>
-<td><code>1</code>&#x3084;<code>2</code></td>
-</tr>
-<tr>
-<td><code>String</code></td>
-<td>&#x6587;&#x5B57;&#x5217;</td>
-<td><code>&quot;&#x6587;&#x5B57;&#x5217;&quot;</code></td>
-</tr>
-<tr>
-<td><code>Symbol</code></td>
-<td>&#x30B7;&#x30F3;&#x30DC;&#x30EB;</td>
-<td><code>Symbol(&quot;&#x8AAC;&#x660E;&quot;)</code></td>
-</tr>
-</tbody>
-</table>
-<p>&#x6CE8;&#x8A18;: <code>undefined</code>&#x3068;<code>null</code>&#x306B;&#x5BFE;&#x5FDC;&#x3059;&#x308B;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;</p>
-<!-- 出典: ToStringの対応するオブジェクト
+<tr><th> &#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8; </th>
+<th> &#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B; </th>
+<th> &#x4F8B; </th>
+</tr></thead><tbody>
+<tr><td style="text-align:left"> <code>Boolean</code> </td>
+<td style="text-align:left"> &#x771F;&#x507D;&#x5024; </td>
+<td style="text-align:left"> <code>true</code>&#x3084;<code>false</code> </td>
+</tr><tr><td style="text-align:left"> <code>Number</code> </td>
+<td style="text-align:left"> &#x6570;&#x5024; </td>
+<td style="text-align:left"> <code>1</code>&#x3084;<code>2</code> </td>
+</tr><tr><td style="text-align:left"> <code>String</code> </td>
+<td style="text-align:left"> &#x6587;&#x5B57;&#x5217; </td>
+<td style="text-align:left"> <code>&quot;&#x6587;&#x5B57;&#x5217;&quot;</code> </td>
+</tr><tr><td style="text-align:left"> <code>Symbol</code> </td>
+<td style="text-align:left"> &#x30B7;&#x30F3;&#x30DC;&#x30EB; </td>
+<td style="text-align:left"> <code>Symbol(&quot;&#x8AAC;&#x660E;&quot;)</code></td>
+</tr></tbody></table>
+
+<p>&#x6CE8;&#x8A18;: <code>undefined</code>&#x3068;<code>null</code>&#x306B;&#x5BFE;&#x5FDC;&#x3059;&#x308B;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;</p><!-- 出典: ToStringの対応するオブジェクト
 
 - https://tc39.es/ecma262/#sec-toobject
 - https://tc39.es/ecma262/#sec-get-o-p
 
  -->
+
+
 <p>&#x6CE8;&#x610F;&#x70B9;&#x3068;&#x3057;&#x3066;&#x3001;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;&#x540D;&#x524D;&#x306E;&#x3068;&#x304A;&#x308A;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;<code>typeof</code>&#x6F14;&#x7B97;&#x5B50;&#x3067;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x898B;&#x308B;&#x3068;<code>&quot;object&quot;</code>&#x3067;&#x3059;&#x3002;</p>
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// &#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x306E;&#x6587;&#x5B57;&#x5217;&#x306F;&quot;string&quot;&#x578B;</span>
+&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;<code>typeof</code>&#x6F14;&#x7B97;&#x5B50;&#x3067;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x898B;&#x308B;&#x3068;<code>&quot;object&quot;</code>&#x3067;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-js"><span class="hljs-comment">// &#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x306E;&#x6587;&#x5B57;&#x5217;&#x306F;&quot;string&quot;&#x578B;</span>
 <span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;&#x6587;&#x5B57;&#x5217;&quot;</span>;
 <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> str); <span class="hljs-comment">// =&gt; &quot;string&quot;</span>
 <span class="hljs-comment">// &#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;&quot;object&quot;&#x578B;</span>
 <span class="hljs-keyword">const</span> stringWrapper = <span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>(<span class="hljs-string">&quot;&#x6587;&#x5B57;&#x5217;&quot;</span>);
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> stringWrapper); <span class="hljs-comment">// =&gt; &quot;object&quot;</span>
-</code></pre>
-<h2 id="convert-primitive-to-wrapper"><a name="convert-primitive-to-wrapper" class="plugin-anchor" href="#convert-primitive-to-wrapper"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x304B;&#x3089;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3078;&#x306E;&#x81EA;&#x52D5;&#x5909;&#x63DB; </h2>
-<p>JavaScript&#x3067;&#x306F;&#x3001;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3059;&#x308B;&#x3068;&#x304D;&#x3001;&#x81EA;&#x52D5;&#x3067;&#x5BFE;&#x5FDC;&#x3059;&#x308B;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x5909;&#x63DB;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
+<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> stringWrapper); <span class="hljs-comment">// =&gt; &quot;object&quot;</span></code></pre>
+<h2 id="convert-primitive-to-wrapper"><a name="convert-primitive-to-wrapper" class="plugin-anchor" href="#convert-primitive-to-wrapper"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x304B;&#x3089;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3078;&#x306E;&#x81EA;&#x52D5;&#x5909;&#x63DB;</h2><p>JavaScript&#x3067;&#x306F;&#x3001;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3059;&#x308B;&#x3068;&#x304D;&#x3001;&#x81EA;&#x52D5;&#x3067;&#x5BFE;&#x5FDC;&#x3059;&#x308B;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x5909;&#x63DB;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
 &#x305F;&#x3068;&#x3048;&#x3070;<code>&quot;string&quot;</code>&#x3068;&#x3044;&#x3046;&#x6587;&#x5B57;&#x5217;&#x306F;&#x3001;&#x81EA;&#x52D5;&#x7684;&#x306B;<code>new String(&quot;string&quot;)</code>&#x306E;&#x3088;&#x3046;&#x306A;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3078;&#x5909;&#x63DB;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x308C;&#x306B;&#x3088;&#x308A;&#x3001;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x3067;&#x3042;&#x308B;&#x6587;&#x5B57;&#x5217;&#x304C;<code>String</code>&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x547C;&#x3073;&#x51FA;&#x305B;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;string&quot;</span>;
+&#x3053;&#x308C;&#x306B;&#x3088;&#x308A;&#x3001;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x3067;&#x3042;&#x308B;&#x6587;&#x5B57;&#x5217;&#x304C;<code>String</code>&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x547C;&#x3073;&#x51FA;&#x305B;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p><pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;string&quot;</span>;
 <span class="hljs-comment">// &#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x547C;&#x3073;&#x51FA;&#x3057;&#x3092;&#x884C;&#x3046;</span>
 str.toUpperCase();
 <span class="hljs-comment">// `str`&#x3078;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3059;&#x308B;&#x969B;&#x306B;&quot;string&quot;&#x304C;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3078;&#x5909;&#x63DB;&#x3055;&#x308C;&#x3001;</span>
 <span class="hljs-comment">// &#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;String&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x306A;&#x306E;&#x3067;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x547C;&#x3073;&#x51FA;&#x305B;&#x308B;</span>
 <span class="hljs-comment">// &#x3064;&#x307E;&#x308A;&#x3001;&#x4E0A;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x4E0B;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3068;&#x540C;&#x3058;&#x610F;&#x5473;&#x3067;&#x3042;&#x308B;</span>
-(<span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>(str)).toUpperCase();
-</code></pre>
-<p>&#x4E00;&#x65B9;&#x3001;&#x660E;&#x793A;&#x7684;&#x306B;&#x4F5C;&#x6210;&#x3057;&#x305F;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304B;&#x3089;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x3092;&#x53D6;&#x308A;&#x51FA;&#x3059;&#x3053;&#x3068;&#x3082;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p><code>&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;.valueOf</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;&#x3053;&#x3068;&#x3067;&#x3001;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304B;&#x3089;&#x5024;&#x3092;&#x53D6;&#x308A;&#x51FA;&#x305B;&#x307E;&#x3059;&#x3002;
-&#x305F;&#x3068;&#x3048;&#x3070;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x6587;&#x5B57;&#x5217;&#x306E;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304B;&#x3089;<code>valueOf</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x6587;&#x5B57;&#x5217;&#x3092;&#x53D6;&#x308A;&#x51FA;&#x305B;&#x307E;&#x3059;&#x3002;</p>
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> stringWrapper = <span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>(<span class="hljs-string">&quot;&#x6587;&#x5B57;&#x5217;&quot;</span>);
+(<span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>(str)).toUpperCase();</code></pre>
+<p>&#x4E00;&#x65B9;&#x3001;&#x660E;&#x793A;&#x7684;&#x306B;&#x4F5C;&#x6210;&#x3057;&#x305F;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304B;&#x3089;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x3092;&#x53D6;&#x308A;&#x51FA;&#x3059;&#x3053;&#x3068;&#x3082;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p><p><code>&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;.valueOf</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;&#x3053;&#x3068;&#x3067;&#x3001;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304B;&#x3089;&#x5024;&#x3092;&#x53D6;&#x308A;&#x51FA;&#x305B;&#x307E;&#x3059;&#x3002;
+&#x305F;&#x3068;&#x3048;&#x3070;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x6587;&#x5B57;&#x5217;&#x306E;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304B;&#x3089;<code>valueOf</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x6587;&#x5B57;&#x5217;&#x3092;&#x53D6;&#x308A;&#x51FA;&#x305B;&#x307E;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-js"><span class="hljs-keyword">const</span> stringWrapper = <span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>(<span class="hljs-string">&quot;&#x6587;&#x5B57;&#x5217;&quot;</span>);
 <span class="hljs-comment">// &#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;</span>
-<span class="hljs-built_in">console</span>.log(stringWrapper.valueOf()); <span class="hljs-comment">// =&gt; &quot;&#x6587;&#x5B57;&#x5217;&quot;</span>
-</code></pre>
-<p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x304B;&#x3089;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3078;&#x306E;&#x5909;&#x63DB;&#x306F;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x884C;&#x308F;&#x308C;&#x307E;&#x3059;&#x3002;<sup><a href="#fn_1" id="reffn_1">1</a></sup></p>
-<p>JavaScript&#x306B;&#x306F;&#x3001;&#x30EA;&#x30C6;&#x30E9;&#x30EB;&#x3092;&#x4F7F;&#x3063;&#x305F;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x6587;&#x5B57;&#x5217;&#x3068;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x4F7F;&#x3063;&#x305F;&#x6587;&#x5B57;&#x5217;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#xFF08;&#x771F;&#x507D;&#x5024;&#x3084;&#x6570;&#x5024;&#x306B;&#x3064;&#x3044;&#x3066;&#x3082;&#x540C;&#x69D8;&#x3067;&#x3059;&#xFF09;&#x3002;
+<span class="hljs-built_in">console</span>.log(stringWrapper.valueOf()); <span class="hljs-comment">// =&gt; &quot;&#x6587;&#x5B57;&#x5217;&quot;</span></code></pre>
+<p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x304B;&#x3089;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3078;&#x306E;&#x5909;&#x63DB;&#x306F;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x884C;&#x308F;&#x308C;&#x307E;&#x3059;&#x3002;<sup><a href="#fn_1" id="reffn_1">1</a></sup></p><p>JavaScript&#x306B;&#x306F;&#x3001;&#x30EA;&#x30C6;&#x30E9;&#x30EB;&#x3092;&#x4F7F;&#x3063;&#x305F;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x6587;&#x5B57;&#x5217;&#x3068;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x4F7F;&#x3063;&#x305F;&#x6587;&#x5B57;&#x5217;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#xFF08;&#x771F;&#x507D;&#x5024;&#x3084;&#x6570;&#x5024;&#x306B;&#x3064;&#x3044;&#x3066;&#x3082;&#x540C;&#x69D8;&#x3067;&#x3059;&#xFF09;&#x3002;
 &#x3053;&#x306E;2&#x3064;&#x3092;&#x660E;&#x793A;&#x7684;&#x306B;&#x4F7F;&#x3044;&#x5206;&#x3051;&#x308B;&#x5229;&#x70B9;&#x306F;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;&#x5E38;&#x306B;&#x30EA;&#x30C6;&#x30E9;&#x30EB;&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3092;&#x63A8;&#x5968;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x7406;&#x7531;&#x3068;&#x3057;&#x3066;&#x6B21;&#x306E;3&#x3064;&#x304C;&#x6319;&#x3052;&#x3089;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<ul>
-<li>&#x5FC5;&#x8981;&#x306B;&#x5FDC;&#x3058;&#x3066;&#x3001;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x6587;&#x5B57;&#x5217;&#x306F;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x5909;&#x63DB;&#x3055;&#x308C;&#x308B;&#x305F;&#x3081;</li>
-<li><code>new String(&quot;string&quot;)</code>&#x306E;&#x3088;&#x3046;&#x306B;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x3092;&#x6271;&#x3046;&#x5229;&#x70B9;&#x304C;&#x306A;&#x3044;&#x305F;&#x3081;</li>
-<li>&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;<code>typeof</code>&#x6F14;&#x7B97;&#x5B50;&#x3067;&#x8A55;&#x4FA1;&#x3057;&#x305F;&#x7D50;&#x679C;&#x304C;&#x3001;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x3067;&#x306F;&#x306A;&#x304F;<code>&quot;object&quot;</code>&#x3068;&#x306A;&#x308A;&#x6DF7;&#x4E71;&#x3092;&#x751F;&#x3080;&#x305F;&#x3081;</li>
-</ul>
+&#x7406;&#x7531;&#x3068;&#x3057;&#x3066;&#x6B21;&#x306E;3&#x3064;&#x304C;&#x6319;&#x3052;&#x3089;&#x308C;&#x307E;&#x3059;&#x3002;</p><ul><li>&#x5FC5;&#x8981;&#x306B;&#x5FDC;&#x3058;&#x3066;&#x3001;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x6587;&#x5B57;&#x5217;&#x306F;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x5909;&#x63DB;&#x3055;&#x308C;&#x308B;&#x305F;&#x3081;
+</li>
+<li><code>new String(&quot;string&quot;)</code>&#x306E;&#x3088;&#x3046;&#x306B;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x3092;&#x6271;&#x3046;&#x5229;&#x70B9;&#x304C;&#x306A;&#x3044;&#x305F;&#x3081;
+</li>
+<li>&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;<code>typeof</code>&#x6F14;&#x7B97;&#x5B50;&#x3067;&#x8A55;&#x4FA1;&#x3057;&#x305F;&#x7D50;&#x679C;&#x304C;&#x3001;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x3067;&#x306F;&#x306A;&#x304F;<code>&quot;object&quot;</code>&#x3068;&#x306A;&#x308A;&#x6DF7;&#x4E71;&#x3092;&#x751F;&#x3080;&#x305F;&#x3081;
+</li></ul>
 <p>&#x3053;&#x308C;&#x3089;&#x306E;&#x7406;&#x7531;&#x306A;&#x3069;&#x304B;&#x3089;&#x3001;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x306B;&#x306F;&#x30EA;&#x30C6;&#x30E9;&#x30EB;&#x3092;&#x4F7F;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x5E38;&#x306B;&#x30EA;&#x30C6;&#x30E9;&#x30EB;&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x610F;&#x8B58;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x306A;&#x304F;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<pre><code class="lang-js"><span class="hljs-comment">// OK: &#x30EA;&#x30C6;&#x30E9;&#x30EB;&#x3092;&#x4F7F;&#x3046;</span>
+&#x5E38;&#x306B;&#x30EA;&#x30C6;&#x30E9;&#x30EB;&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x610F;&#x8B58;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x306A;&#x304F;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p><pre><code class="lang-js"><span class="hljs-comment">// OK: &#x30EA;&#x30C6;&#x30E9;&#x30EB;&#x3092;&#x4F7F;&#x3046;</span>
 <span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;&#x6587;&#x5B57;&#x5217;&quot;</span>;
 <span class="hljs-comment">// NG: &#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x4F7F;&#x3046;</span>
-<span class="hljs-keyword">const</span> stringWrraper = <span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>(<span class="hljs-string">&quot;&#x6587;&#x5B57;&#x5217;&quot;</span>);
-</code></pre>
-<h2 id="wrapper-object-summary"><a name="wrapper-object-summary" class="plugin-anchor" href="#wrapper-object-summary"><i class="fa fa-link" aria-hidden="true"></i></a>&#x307E;&#x3068;&#x3081; </h2>
-<p>&#x3053;&#x306E;&#x7AE0;&#x3067;&#x306F;&#x3001;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x304C;&#x306A;&#x305C;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x547C;&#x3073;&#x51FA;&#x3057;&#x3067;&#x304D;&#x308B;&#x306E;&#x304B;&#x306B;&#x3064;&#x3044;&#x3066;&#x89E3;&#x8AAC;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;
+<span class="hljs-keyword">const</span> stringWrraper = <span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>(<span class="hljs-string">&quot;&#x6587;&#x5B57;&#x5217;&quot;</span>);</code></pre>
+<h2 id="wrapper-object-summary"><a name="wrapper-object-summary" class="plugin-anchor" href="#wrapper-object-summary"><i class="fa fa-link" aria-hidden="true"></i></a>&#x307E;&#x3068;&#x3081;</h2><p>&#x3053;&#x306E;&#x7AE0;&#x3067;&#x306F;&#x3001;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x304C;&#x306A;&#x305C;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x547C;&#x3073;&#x51FA;&#x3057;&#x3067;&#x304D;&#x308B;&#x306E;&#x304B;&#x306B;&#x3064;&#x3044;&#x3066;&#x89E3;&#x8AAC;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;
 &#x305D;&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x306E;&#x80CC;&#x666F;&#x306B;&#x306F;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306B;&#x5BFE;&#x5FDC;&#x3057;&#x305F;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x5B58;&#x5728;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3078;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3059;&#x308B;&#x969B;&#x306B;&#x3001;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3078;&#x5909;&#x63DB;&#x3055;&#x308C;&#x308B;&#x3053;&#x3068;&#x3067;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x547C;&#x3073;&#x51FA;&#x3057;&#x306A;&#x3069;&#x304C;&#x53EF;&#x80FD;&#x3068;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x300C;JavaScript&#x306F;&#x3059;&#x3079;&#x3066;&#x304C;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x3042;&#x308B;&#x300D;&#x3068;&#x8A00;&#x308F;&#x308C;&#x308B;&#x3053;&#x3068;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
+&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3078;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3059;&#x308B;&#x969B;&#x306B;&#x3001;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3078;&#x5909;&#x63DB;&#x3055;&#x308C;&#x308B;&#x3053;&#x3068;&#x3067;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x547C;&#x3073;&#x51FA;&#x3057;&#x306A;&#x3069;&#x304C;&#x53EF;&#x80FD;&#x3068;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p><p>&#x300C;JavaScript&#x306F;&#x3059;&#x3079;&#x3066;&#x304C;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x3042;&#x308B;&#x300D;&#x3068;&#x8A00;&#x308F;&#x308C;&#x308B;&#x3053;&#x3068;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
 &#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306F;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x304C;&#x3001;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306B;&#x5BFE;&#x5FDC;&#x3057;&#x305F;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304C;&#x7528;&#x610F;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#xFF08;<code>null</code>&#x3068;<code>undefined</code>&#x3092;&#x9664;&#x304F;&#xFF09;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x300C;&#x3059;&#x3079;&#x3066;&#x304C;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x3088;&#x3046;&#x306B;&#x898B;&#x3048;&#x308B;&#x300D;&#x3068;&#x3044;&#x3046;&#x306E;&#x304C;&#x6B63;&#x3057;&#x3044;&#x8A8D;&#x8B58;&#x3068;&#x306A;&#x308B;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<blockquote id="fn_1">
+&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x300C;&#x3059;&#x3079;&#x3066;&#x304C;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x3088;&#x3046;&#x306B;&#x898B;&#x3048;&#x308B;&#x300D;&#x3068;&#x3044;&#x3046;&#x306E;&#x304C;&#x6B63;&#x3057;&#x3044;&#x8A8D;&#x8B58;&#x3068;&#x306A;&#x308B;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;</p><blockquote id="fn_1">
 <sup>1</sup>. &#x3053;&#x306E;&#x3088;&#x3046;&#x306A;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x304B;&#x3089;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x578B;&#x3078;&#x306E;&#x5909;&#x63DB;&#x306F;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x5316;&#xFF08;&#x30DC;&#x30AF;&#x30B7;&#x30F3;&#x30B0;&#xFF09;&#x3001;&#x9006;&#x306B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x578B;&#x304B;&#x3089;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x3078;&#x306E;&#x5909;&#x63DB;&#x306F;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x5316;&#x89E3;&#x9664;&#xFF08;&#x30A2;&#x30F3;&#x30DC;&#x30AF;&#x30B7;&#x30F3;&#x30B0;&#xFF09;&#x3068;&#x547C;&#x3070;&#x308C;&#x307E;&#x3059;<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#x21A9;</a>
 </blockquote>
 
@@ -1565,7 +1517,7 @@ str.toUpperCase();
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptのプリミティブ型の値がビルトインオブジェクトのメソッドなどを呼び出せる仕組みとしてのラッパーオブジェクトを紹介します。プリミティブ型からオブジェクトとどのように実行時に変換されているのを確認できます。","title":"ラッパーオブジェクト","level":"1.3.17","depth":2,"next":{"title":"関数とスコープ","level":"1.3.18","depth":2,"path":"basic/function-scope/README.md","ref":"./basic/function-scope/README.md","articles":[]},"previous":{"title":"文字列とUnicode","level":"1.3.16","depth":2,"path":"basic/string-unicode/README.md","ref":"./basic/string-unicode/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2019","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/wrapper-object/README.md","mtime":"2020-06-16T16:03:51.667Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-16T16:05:14.861Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptのプリミティブ型の値がビルトインオブジェクトのメソッドなどを呼び出せる仕組みとしてのラッパーオブジェクトを紹介します。プリミティブ型からオブジェクトとどのように実行時に変換されているのを確認できます。","title":"ラッパーオブジェクト","level":"1.3.17","depth":2,"next":{"title":"関数とスコープ","level":"1.3.18","depth":2,"path":"basic/function-scope/README.md","ref":"./basic/function-scope/README.md","articles":[]},"previous":{"title":"文字列とUnicode","level":"1.3.16","depth":2,"path":"basic/string-unicode/README.md","ref":"./basic/string-unicode/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2019","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/wrapper-object/README.md","mtime":"2020-06-18T15:44:52.941Z","type":"markdown"},"gitbook":{"version":"3.3.9","time":"2020-06-18T15:45:27.329Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1588,10 +1540,6 @@ str.toUpperCase();
     
         
         <script src="../../gitbook/gitbook-plugin-github-issue-feedback/plugin.js"></script>
-        
-    
-        
-        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
         
     
         

@@ -7,7 +7,7 @@
         <title>コメント · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptにおけるコメントの書き方を紹介します。コメントはプログラムとして評価されないので、ソースコードに対する説明を書くために利用します。">
-        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="generator" content="GitHon 3.3.9">
         
         
         
@@ -36,18 +36,6 @@
 
     
 
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
     
 
          
@@ -971,8 +959,8 @@
     <li class="divider"></li>
 
     <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Published with GitBook
+        <a href="https://github.com/githon/githon" target="blank" class="gitbook-link">
+            Published with GitHon
         </a>
     </li>
 </ul>
@@ -1415,62 +1403,49 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="comment"><a name="comment" class="plugin-anchor" href="#comment"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30B3;&#x30E1;&#x30F3;&#x30C8; </h1>
-<p>&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306F;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x3068;&#x3057;&#x3066;&#x8A55;&#x4FA1;&#x3055;&#x308C;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;&#x30BD;&#x30FC;&#x30B9;&#x30B3;&#x30FC;&#x30C9;&#x306E;&#x8AAC;&#x660E;&#x3092;&#x66F8;&#x304F;&#x305F;&#x3081;&#x306B;&#x5229;&#x7528;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x66F8;&#x7C4D;&#x3067;&#x3082;&#x3001;JavaScript&#x306E;&#x30BD;&#x30FC;&#x30B9;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x89E3;&#x8AAC;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306E;&#x66F8;&#x304D;&#x65B9;&#x306B;&#x306F;&#x3001;&#x4E00;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3068;&#x8907;&#x6570;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306E;2&#x7A2E;&#x985E;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="single-line-comment"><a name="single-line-comment" class="plugin-anchor" href="#single-line-comment"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E00;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8; </h2>
-<p>&#x4E00;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306F;&#x540D;&#x524D;&#x306E;&#x3068;&#x304A;&#x308A;&#x3001;&#x4E00;&#x884C;&#x305A;&#x3064;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x66F8;&#x304F;&#x969B;&#x306B;&#x5229;&#x7528;&#x3057;&#x307E;&#x3059;&#x3002;
-<code>//</code> &#x4EE5;&#x964D;&#x304B;&#x3089;&#x884C;&#x672B;&#x307E;&#x3067;&#x304C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3068;&#x3057;&#x3066;&#x6271;&#x308F;&#x308C;&#x308B;&#x305F;&#x3081;&#x3001;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x3068;&#x3057;&#x3066;&#x8A55;&#x4FA1;&#x3055;&#x308C;&#x307E;&#x305B;&#x3093;&#x3002;</p>
-<pre><code class="lang-js"><span class="hljs-comment">// &#x4E00;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;</span>
-<span class="hljs-comment">// &#x3053;&#x306E;&#x90E8;&#x5206;&#x306F;&#x30B3;&#x30FC;&#x30C9;&#x3068;&#x3057;&#x3066;&#x8A55;&#x4FA1;&#x3055;&#x308C;&#x306A;&#x3044;</span>
-</code></pre>
-<h2 id="multi-line-comment"><a name="multi-line-comment" class="plugin-anchor" href="#multi-line-comment"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8907;&#x6570;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8; </h2>
-<p>&#x8907;&#x6570;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306F;&#x540D;&#x524D;&#x306E;&#x3068;&#x304A;&#x308A;&#x3001;&#x8907;&#x6570;&#x884C;&#x306E;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x66F8;&#x304F;&#x969B;&#x306B;&#x5229;&#x7528;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x4E00;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3068;&#x306F;&#x9055;&#x3044;&#x8907;&#x6570;&#x884C;&#x3092;&#x307E;&#x3068;&#x3081;&#x3066;&#x66F8;&#x3051;&#x308B;&#x306E;&#x3067;&#x3001;&#x9577;&#x3044;&#x8AAC;&#x660E;&#x3092;&#x66F8;&#x304F;&#x969B;&#x306B;&#x5229;&#x7528;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p><code>/*</code> &#x3068; <code>*/</code>&#x3067;&#x56F2;&#x307E;&#x308C;&#x305F;&#x7BC4;&#x56F2;&#x304C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3068;&#x3057;&#x3066;&#x6271;&#x308F;&#x308C;&#x308B;&#x305F;&#x3081;&#x3001;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x3068;&#x3057;&#x3066;&#x8A55;&#x4FA1;&#x3055;&#x308C;&#x307E;&#x305B;&#x3093;&#x3002;</p>
-<pre><code class="lang-js"><span class="hljs-comment">/* 
+                                <h1 id="comment"><a name="comment" class="plugin-anchor" href="#comment"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30B3;&#x30E1;&#x30F3;&#x30C8;</h1><p>&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306F;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x3068;&#x3057;&#x3066;&#x8A55;&#x4FA1;&#x3055;&#x308C;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;&#x30BD;&#x30FC;&#x30B9;&#x30B3;&#x30FC;&#x30C9;&#x306E;&#x8AAC;&#x660E;&#x3092;&#x66F8;&#x304F;&#x305F;&#x3081;&#x306B;&#x5229;&#x7528;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
+&#x3053;&#x306E;&#x66F8;&#x7C4D;&#x3067;&#x3082;&#x3001;JavaScript&#x306E;&#x30BD;&#x30FC;&#x30B9;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x89E3;&#x8AAC;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p><p>&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306E;&#x66F8;&#x304D;&#x65B9;&#x306B;&#x306F;&#x3001;&#x4E00;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3068;&#x8907;&#x6570;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306E;2&#x7A2E;&#x985E;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p><h2 id="single-line-comment"><a name="single-line-comment" class="plugin-anchor" href="#single-line-comment"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E00;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;</h2><p>&#x4E00;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306F;&#x540D;&#x524D;&#x306E;&#x3068;&#x304A;&#x308A;&#x3001;&#x4E00;&#x884C;&#x305A;&#x3064;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x66F8;&#x304F;&#x969B;&#x306B;&#x5229;&#x7528;&#x3057;&#x307E;&#x3059;&#x3002;
+<code>//</code> &#x4EE5;&#x964D;&#x304B;&#x3089;&#x884C;&#x672B;&#x307E;&#x3067;&#x304C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3068;&#x3057;&#x3066;&#x6271;&#x308F;&#x308C;&#x308B;&#x305F;&#x3081;&#x3001;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x3068;&#x3057;&#x3066;&#x8A55;&#x4FA1;&#x3055;&#x308C;&#x307E;&#x305B;&#x3093;&#x3002;</p><pre><code class="lang-js"><span class="hljs-comment">// &#x4E00;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;</span>
+<span class="hljs-comment">// &#x3053;&#x306E;&#x90E8;&#x5206;&#x306F;&#x30B3;&#x30FC;&#x30C9;&#x3068;&#x3057;&#x3066;&#x8A55;&#x4FA1;&#x3055;&#x308C;&#x306A;&#x3044;</span></code></pre>
+<h2 id="multi-line-comment"><a name="multi-line-comment" class="plugin-anchor" href="#multi-line-comment"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8907;&#x6570;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;</h2><p>&#x8907;&#x6570;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306F;&#x540D;&#x524D;&#x306E;&#x3068;&#x304A;&#x308A;&#x3001;&#x8907;&#x6570;&#x884C;&#x306E;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x66F8;&#x304F;&#x969B;&#x306B;&#x5229;&#x7528;&#x3057;&#x307E;&#x3059;&#x3002;
+&#x4E00;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3068;&#x306F;&#x9055;&#x3044;&#x8907;&#x6570;&#x884C;&#x3092;&#x307E;&#x3068;&#x3081;&#x3066;&#x66F8;&#x3051;&#x308B;&#x306E;&#x3067;&#x3001;&#x9577;&#x3044;&#x8AAC;&#x660E;&#x3092;&#x66F8;&#x304F;&#x969B;&#x306B;&#x5229;&#x7528;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p><p><code>/*</code> &#x3068; <code>*/</code>&#x3067;&#x56F2;&#x307E;&#x308C;&#x305F;&#x7BC4;&#x56F2;&#x304C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3068;&#x3057;&#x3066;&#x6271;&#x308F;&#x308C;&#x308B;&#x305F;&#x3081;&#x3001;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x3068;&#x3057;&#x3066;&#x8A55;&#x4FA1;&#x3055;&#x308C;&#x307E;&#x305B;&#x3093;&#x3002;</p><pre><code class="lang-js"><span class="hljs-comment">/* 
    &#x8907;&#x6570;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;
    &#x56F2;&#x307E;&#x308C;&#x3066;&#x3044;&#x308B;&#x7BC4;&#x56F2;&#x304C;&#x30B3;&#x30FC;&#x30C9;&#x3068;&#x3057;&#x3066;&#x8A55;&#x4FA1;&#x3055;&#x308C;&#x306A;&#x3044;
- */</span>
-</code></pre>
+ */</span></code></pre>
 <p>&#x8907;&#x6570;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306E;&#x4E2D;&#x306B;&#x3001;&#x8907;&#x6570;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x66F8;&#x304F;&#x3053;&#x3068;&#x306F;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;&#x8907;&#x6570;&#x884C;&#x306E;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x30CD;&#x30B9;&#x30C8;&#x3057;&#x3066;&#x66F8;&#x3044;&#x305F;&#x5834;&#x5408;&#x306F;&#x69CB;&#x6587;&#x30A8;&#x30E9;&#x30FC;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<pre><code>/* &#x30CD;&#x30B9;&#x30C8;&#x3055;&#x308C;&#x305F; /* &#x8907;&#x6570;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8; */ &#x306F;&#x66F8;&#x3051;&#x306A;&#x3044; */
-</code></pre><h3 id="html-like-comment"><a name="html-like-comment" class="plugin-anchor" href="#html-like-comment"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2015] HTML-like&#x30B3;&#x30E1;&#x30F3;&#x30C8; </h3>
-<p>ECMAScript 2015&#xFF08;ES2015&#xFF09;&#x304B;&#x3089;&#x5F8C;&#x65B9;&#x4E92;&#x63DB;&#x6027;&#x306E;&#x305F;&#x3081;&#x306E;&#x4ED5;&#x69D8;&#x3068;&#x3057;&#x3066;<strong>HTML-like&#x30B3;&#x30E1;&#x30F3;&#x30C8;</strong>&#x304C;&#x8FFD;&#x52A0;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;HTML-like&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306F;&#x3001;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306E;&#x5B9F;&#x88C5;&#x306B;&#x5408;&#x308F;&#x305B;&#x305F;&#x5F8C;&#x65B9;&#x4E92;&#x63DB;&#x6027;&#x306E;&#x305F;&#x3081;&#x306E;&#x4ED5;&#x69D8;&#x3068;&#x3057;&#x3066;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>HTML-like&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306F;&#x540D;&#x524D;&#x306E;&#x3068;&#x304A;&#x308A;&#x3001;HTML&#x306E;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3068;&#x540C;&#x3058;&#x8868;&#x8A18;&#x3067;&#x3059;&#x3002;</p>
-<!-- textlint-disable eslint -->
+&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;&#x8907;&#x6570;&#x884C;&#x306E;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3092;&#x30CD;&#x30B9;&#x30C8;&#x3057;&#x3066;&#x66F8;&#x3044;&#x305F;&#x5834;&#x5408;&#x306F;&#x69CB;&#x6587;&#x30A8;&#x30E9;&#x30FC;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p><pre><code>/* &#x30CD;&#x30B9;&#x30C8;&#x3055;&#x308C;&#x305F; /* &#x8907;&#x6570;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8; */ &#x306F;&#x66F8;&#x3051;&#x306A;&#x3044; */</code></pre>
+<h3 id="html-like-comment"><a name="html-like-comment" class="plugin-anchor" href="#html-like-comment"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2015] HTML-like&#x30B3;&#x30E1;&#x30F3;&#x30C8;</h3><p>ECMAScript 2015&#xFF08;ES2015&#xFF09;&#x304B;&#x3089;&#x5F8C;&#x65B9;&#x4E92;&#x63DB;&#x6027;&#x306E;&#x305F;&#x3081;&#x306E;&#x4ED5;&#x69D8;&#x3068;&#x3057;&#x3066;<strong>HTML-like&#x30B3;&#x30E1;&#x30F3;&#x30C8;</strong>&#x304C;&#x8FFD;&#x52A0;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
+&#x3053;&#x306E;HTML-like&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306F;&#x3001;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306E;&#x5B9F;&#x88C5;&#x306B;&#x5408;&#x308F;&#x305B;&#x305F;&#x5F8C;&#x65B9;&#x4E92;&#x63DB;&#x6027;&#x306E;&#x305F;&#x3081;&#x306E;&#x4ED5;&#x69D8;&#x3068;&#x3057;&#x3066;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p><p>HTML-like&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306F;&#x540D;&#x524D;&#x306E;&#x3068;&#x304A;&#x308A;&#x3001;HTML&#x306E;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3068;&#x540C;&#x3058;&#x8868;&#x8A18;&#x3067;&#x3059;&#x3002;</p><!-- textlint-disable eslint -->
+
+
 <!-- HTML-likeコメントはScript空間のみであるためdoctestしない -->
+
+
 <!-- doctest:disable -->
+
+
 <pre><code class="lang-js">&lt;!-- &#x3053;&#x306E;&#x884C;&#x306F;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3068;&#x8A8D;&#x8B58;&#x3055;&#x308C;&#x308B;
 <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;&#x3053;&#x306E;&#x884C;&#x306F;JavaScript&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3068;&#x3057;&#x3066;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x308B;&quot;</span>);
---&gt;  &#x3053;&#x306E;&#x884C;&#x3082;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3068;&#x8A8D;&#x8B58;&#x3055;&#x308C;&#x308B;
-</code></pre>
+--&gt;  &#x3053;&#x306E;&#x884C;&#x3082;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3068;&#x8A8D;&#x8B58;&#x3055;&#x308C;&#x308B;</code></pre>
 <!-- textlint-enable eslint -->
-<p>&#x3053;&#x3053;&#x3067;&#x306F;&#x3001; <code>&lt;!--</code> &#x3068; <code>--&gt;</code> &#x304C;&#x305D;&#x308C;&#x305E;&#x308C;&#x4E00;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3068;&#x3057;&#x3066;&#x8A8D;&#x8B58;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p>JavaScript&#x3092;&#x30B5;&#x30DD;&#x30FC;&#x30C8;&#x3057;&#x3066;&#x3044;&#x306A;&#x3044;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3067;&#x306F;&#x3001;<code>&lt;script&gt;</code>&#x30BF;&#x30B0;&#x3092;&#x6B63;&#x3057;&#x304F;&#x8A8D;&#x8B58;&#x3067;&#x304D;&#x306A;&#x3044;&#x305F;&#x3081;&#x306B;&#x66F8;&#x304B;&#x308C;&#x305F;&#x30B3;&#x30FC;&#x30C9;&#x304C;&#x8868;&#x793A;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;
+
+
+<p>&#x3053;&#x3053;&#x3067;&#x306F;&#x3001; <code>&lt;!--</code> &#x3068; <code>--&gt;</code> &#x304C;&#x305D;&#x308C;&#x305E;&#x308C;&#x4E00;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3068;&#x3057;&#x3066;&#x8A8D;&#x8B58;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p><p>JavaScript&#x3092;&#x30B5;&#x30DD;&#x30FC;&#x30C8;&#x3057;&#x3066;&#x3044;&#x306A;&#x3044;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3067;&#x306F;&#x3001;<code>&lt;script&gt;</code>&#x30BF;&#x30B0;&#x3092;&#x6B63;&#x3057;&#x304F;&#x8A8D;&#x8B58;&#x3067;&#x304D;&#x306A;&#x3044;&#x305F;&#x3081;&#x306B;&#x66F8;&#x304B;&#x308C;&#x305F;&#x30B3;&#x30FC;&#x30C9;&#x304C;&#x8868;&#x793A;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;
 &#x305D;&#x308C;&#x3092;&#x907F;&#x3051;&#x308B;&#x305F;&#x3081;&#x306B;<code>&lt;script&gt;</code>&#x306E;&#x4E2D;&#x3092;HTML&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3067;&#x56F2;&#x307F;&#x3001;&#x8868;&#x793A;&#x306F;&#x3055;&#x308C;&#x306A;&#x3044;&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x308B;&#x3068;&#x3044;&#x3046;&#x56DE;&#x907F;&#x7B56;&#x304C;&#x53D6;&#x3089;&#x308C;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;
-&#x4ECA;&#x306F;<code>&lt;script&gt;</code>&#x30BF;&#x30B0;&#x3092;&#x30B5;&#x30DD;&#x30FC;&#x30C8;&#x3057;&#x3066;&#x3044;&#x306A;&#x3044;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306F;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;&#x3053;&#x306E;&#x56DE;&#x907F;&#x7B56;&#x306F;&#x4E0D;&#x8981;&#x3067;&#x3059;&#x3002;</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">language</span>=<span class="hljs-string">&quot;javascript&quot;</span>&gt;</span><span class="handlebars"><span class="xml">
+&#x4ECA;&#x306F;<code>&lt;script&gt;</code>&#x30BF;&#x30B0;&#x3092;&#x30B5;&#x30DD;&#x30FC;&#x30C8;&#x3057;&#x3066;&#x3044;&#x306A;&#x3044;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306F;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;&#x3053;&#x306E;&#x56DE;&#x907F;&#x7B56;&#x306F;&#x4E0D;&#x8981;&#x3067;&#x3059;&#x3002;</p><pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">language</span>=<span class="hljs-string">&quot;javascript&quot;</span>&gt;</span><span class="handlebars"><span class="xml">
 <span class="hljs-comment">&lt;!--
   document.bgColor = &quot;brown&quot;;
 // --&gt;</span>
-</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-</code></pre>
+</span></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 <p>&#x4E00;&#x65B9;&#x3001;<code>&lt;script&gt;</code>&#x30BF;&#x30B0;&#x5185;&#x3001;&#x3064;&#x307E;&#x308A;JavaScript&#x5185;&#x306B;HTML&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x304C;&#x66F8;&#x304B;&#x308C;&#x3066;&#x3044;&#x308B;&#x30B5;&#x30A4;&#x30C8;&#x306F;&#x6B8B;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x3088;&#x3046;&#x306A;&#x30B5;&#x30A4;&#x30C8;&#x3067;&#x3082;JavaScript&#x304C;&#x52D5;&#x4F5C;&#x3059;&#x308B;&#x3068;&#x3044;&#x3046;&#x3001;&#x5F8C;&#x65B9;&#x4E92;&#x63DB;&#x6027;&#x306E;&#x305F;&#x3081;&#x306E;&#x4ED5;&#x69D8;&#x3068;&#x3057;&#x3066;&#x8FFD;&#x52A0;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p><a href="https://dev.mozilla.jp/2016/03/es6-in-depth-arrow-functions/" title="ES6 In Depth: Arrow functions | Mozilla Developer Street (modest)" target="_blank">&#x6B74;&#x53F2;&#x7684;&#x7D4C;&#x7DEF;</a>&#x306F;&#x5225;&#x3068;&#x3057;&#x3066;&#x3001;ECMAScript&#x3067;&#x306F;&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;&#x5F8C;&#x65B9;&#x4E92;&#x63DB;&#x6027;&#x304C;&#x614E;&#x91CD;&#x306B;&#x53D6;&#x308A;&#x6271;&#x308F;&#x308C;&#x307E;&#x3059;&#x3002;
+&#x3053;&#x306E;&#x3088;&#x3046;&#x306A;&#x30B5;&#x30A4;&#x30C8;&#x3067;&#x3082;JavaScript&#x304C;&#x52D5;&#x4F5C;&#x3059;&#x308B;&#x3068;&#x3044;&#x3046;&#x3001;&#x5F8C;&#x65B9;&#x4E92;&#x63DB;&#x6027;&#x306E;&#x305F;&#x3081;&#x306E;&#x4ED5;&#x69D8;&#x3068;&#x3057;&#x3066;&#x8FFD;&#x52A0;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p><p><a title="ES6 In Depth: Arrow functions | Mozilla Developer Street (modest)" href="https://dev.mozilla.jp/2016/03/es6-in-depth-arrow-functions/" target="_blank">&#x6B74;&#x53F2;&#x7684;&#x7D4C;&#x7DEF;</a>&#x306F;&#x5225;&#x3068;&#x3057;&#x3066;&#x3001;ECMAScript&#x3067;&#x306F;&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;&#x5F8C;&#x65B9;&#x4E92;&#x63DB;&#x6027;&#x304C;&#x614E;&#x91CD;&#x306B;&#x53D6;&#x308A;&#x6271;&#x308F;&#x308C;&#x307E;&#x3059;&#x3002;
 ECMAScript&#x306F;&#x4E00;&#x5EA6;&#x5165;&#x3063;&#x305F;&#x4ED5;&#x69D8;&#x304C;&#x4F7F;&#x3048;&#x306A;&#x304F;&#x306A;&#x308B;&#x3053;&#x3068;&#x306F;&#x307B;&#x3068;&#x3093;&#x3069;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;&#x57FA;&#x672C;&#x6587;&#x6CD5;&#x3067;&#x899A;&#x3048;&#x305F;&#x3053;&#x3068;&#x304C;&#x4F7F;&#x3048;&#x306A;&#x304F;&#x306A;&#x308B;&#x3053;&#x3068;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x4E00;&#x65B9;&#x3067;&#x3001;&#x4ED5;&#x69D8;&#x304C;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x308B;&#x305F;&#x3073;&#x306B;&#x65B0;&#x3057;&#x3044;&#x6A5F;&#x80FD;&#x304C;&#x5897;&#x3048;&#x308B;&#x305F;&#x3081;&#x3001;&#x305D;&#x308C;&#x3092;&#x5B66;&#x3073;&#x7D9A;&#x3051;&#x308B;&#x3053;&#x3068;&#x306B;&#x306F;&#x5909;&#x308F;&#x308A;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;</p>
-<h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>&#x307E;&#x3068;&#x3081; </h2>
-<p>&#x3053;&#x306E;&#x7AE0;&#x3067;&#x306F;&#x3001;&#x30BD;&#x30FC;&#x30B9;&#x30B3;&#x30FC;&#x30C9;&#x306B;&#x8AAC;&#x660E;&#x3092;&#x66F8;&#x3051;&#x308B;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306B;&#x3064;&#x3044;&#x3066;&#x5B66;&#x3073;&#x307E;&#x3057;&#x305F;&#x3002;</p>
-<ul>
-<li><code>//</code> &#x4EE5;&#x964D;&#x304B;&#x3089;&#x884C;&#x672B;&#x307E;&#x3067;&#x304C;&#x4E00;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;</li>
-<li><code>/*</code> &#x3068; <code>*/</code>&#x3067;&#x56F2;&#x307E;&#x308C;&#x305F;&#x7BC4;&#x56F2;&#x304C;&#x8907;&#x6570;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;</li>
-<li>HTML-like&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306F;&#x5F8C;&#x65B9;&#x4E92;&#x63DB;&#x6027;&#x306E;&#x305F;&#x3081;&#x3060;&#x3051;&#x306B;&#x5B58;&#x5728;&#x3059;&#x308B;</li>
-</ul>
+&#x4E00;&#x65B9;&#x3067;&#x3001;&#x4ED5;&#x69D8;&#x304C;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x308B;&#x305F;&#x3073;&#x306B;&#x65B0;&#x3057;&#x3044;&#x6A5F;&#x80FD;&#x304C;&#x5897;&#x3048;&#x308B;&#x305F;&#x3081;&#x3001;&#x305D;&#x308C;&#x3092;&#x5B66;&#x3073;&#x7D9A;&#x3051;&#x308B;&#x3053;&#x3068;&#x306B;&#x306F;&#x5909;&#x308F;&#x308A;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;</p><h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>&#x307E;&#x3068;&#x3081;</h2><p>&#x3053;&#x306E;&#x7AE0;&#x3067;&#x306F;&#x3001;&#x30BD;&#x30FC;&#x30B9;&#x30B3;&#x30FC;&#x30C9;&#x306B;&#x8AAC;&#x660E;&#x3092;&#x66F8;&#x3051;&#x308B;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306B;&#x3064;&#x3044;&#x3066;&#x5B66;&#x3073;&#x307E;&#x3057;&#x305F;&#x3002;</p><ul><li><code>//</code> &#x4EE5;&#x964D;&#x304B;&#x3089;&#x884C;&#x672B;&#x307E;&#x3067;&#x304C;&#x4E00;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;
+</li>
+<li><code>/*</code> &#x3068; <code>*/</code>&#x3067;&#x56F2;&#x307E;&#x308C;&#x305F;&#x7BC4;&#x56F2;&#x304C;&#x8907;&#x6570;&#x884C;&#x30B3;&#x30E1;&#x30F3;&#x30C8;
+</li>
+<li>HTML-like&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x306F;&#x5F8C;&#x65B9;&#x4E92;&#x63DB;&#x6027;&#x306E;&#x305F;&#x3081;&#x3060;&#x3051;&#x306B;&#x5B58;&#x5728;&#x3059;&#x308B;
+</li></ul>
 
                                 
                                 </section>
@@ -1502,7 +1477,7 @@ ECMAScript&#x306F;&#x4E00;&#x5EA6;&#x5165;&#x3063;&#x305F;&#x4ED5;&#x69D8;&#x304
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおけるコメントの書き方を紹介します。コメントはプログラムとして評価されないので、ソースコードに対する説明を書くために利用します。","title":"コメント","level":"1.3.2","depth":2,"next":{"title":"変数と宣言","level":"1.3.3","depth":2,"path":"basic/variables/README.md","ref":"./basic/variables/README.md","articles":[]},"previous":{"title":"JavaScriptとは","level":"1.3.1","depth":2,"path":"basic/introduction/README.md","ref":"./basic/introduction/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2019","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/comments/README.md","mtime":"2020-06-16T16:03:51.655Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-16T16:05:14.861Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおけるコメントの書き方を紹介します。コメントはプログラムとして評価されないので、ソースコードに対する説明を書くために利用します。","title":"コメント","level":"1.3.2","depth":2,"next":{"title":"変数と宣言","level":"1.3.3","depth":2,"path":"basic/variables/README.md","ref":"./basic/variables/README.md","articles":[]},"previous":{"title":"JavaScriptとは","level":"1.3.1","depth":2,"path":"basic/introduction/README.md","ref":"./basic/introduction/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2019","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/comments/README.md","mtime":"2020-06-18T15:44:52.925Z","type":"markdown"},"gitbook":{"version":"3.3.9","time":"2020-06-18T15:45:27.329Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1525,10 +1500,6 @@ ECMAScript&#x306F;&#x4E00;&#x5EA6;&#x5165;&#x3063;&#x305F;&#x4ED5;&#x69D8;&#x304
     
         
         <script src="../../gitbook/gitbook-plugin-github-issue-feedback/plugin.js"></script>
-        
-    
-        
-        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
         
     
         

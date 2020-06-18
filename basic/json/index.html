@@ -7,7 +7,7 @@
         <title>JSON · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptのオブジェクトリテラルをベースに作られたデータフォーマットであるJSONを紹介します。また、JavaScriptからのJSONの読み書きするビルトインオブジェクトの使い方を紹介します。">
-        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="generator" content="GitHon 3.3.9">
         
         
         
@@ -36,18 +36,6 @@
 
     
 
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
     
 
          
@@ -971,8 +959,8 @@
     <li class="divider"></li>
 
     <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Published with GitBook
+        <a href="https://github.com/githon/githon" target="blank" class="gitbook-link">
+            Published with GitHon
         </a>
     </li>
 </ul>
@@ -1415,19 +1403,14 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="json"><a name="json" class="plugin-anchor" href="#json"><i class="fa fa-link" aria-hidden="true"></i></a>JSON </h1>
-<p>&#x3053;&#x306E;&#x7AE0;&#x3067;&#x306F;&#x3001;JavaScript&#x3068;&#x5BC6;&#x63A5;&#x306A;&#x95A2;&#x4FC2;&#x306B;&#x3042;&#x308B;JSON&#x3068;&#x3044;&#x3046;&#x30C7;&#x30FC;&#x30BF;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30C3;&#x30C8;&#x306B;&#x3064;&#x3044;&#x3066;&#x898B;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="what-is-json"><a name="what-is-json" class="plugin-anchor" href="#what-is-json"><i class="fa fa-link" aria-hidden="true"></i></a>JSON&#x3068;&#x306F; </h2>
-<p>JSON&#x306F;JavaScript Object Notation&#x306E;&#x7565;&#x3067;&#x3001;JavaScript&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x30EA;&#x30C6;&#x30E9;&#x30EB;&#x3092;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x4F5C;&#x3089;&#x308C;&#x305F;&#x8EFD;&#x91CF;&#x306A;&#x30C7;&#x30FC;&#x30BF;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30C3;&#x30C8;&#x3067;&#x3059;&#x3002;
+                                <h1 id="json"><a name="json" class="plugin-anchor" href="#json"><i class="fa fa-link" aria-hidden="true"></i></a>JSON</h1><p>&#x3053;&#x306E;&#x7AE0;&#x3067;&#x306F;&#x3001;JavaScript&#x3068;&#x5BC6;&#x63A5;&#x306A;&#x95A2;&#x4FC2;&#x306B;&#x3042;&#x308B;JSON&#x3068;&#x3044;&#x3046;&#x30C7;&#x30FC;&#x30BF;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30C3;&#x30C8;&#x306B;&#x3064;&#x3044;&#x3066;&#x898B;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p><h2 id="what-is-json"><a name="what-is-json" class="plugin-anchor" href="#what-is-json"><i class="fa fa-link" aria-hidden="true"></i></a>JSON&#x3068;&#x306F;</h2><p>JSON&#x306F;JavaScript Object Notation&#x306E;&#x7565;&#x3067;&#x3001;JavaScript&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x30EA;&#x30C6;&#x30E9;&#x30EB;&#x3092;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x4F5C;&#x3089;&#x308C;&#x305F;&#x8EFD;&#x91CF;&#x306A;&#x30C7;&#x30FC;&#x30BF;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30C3;&#x30C8;&#x3067;&#x3059;&#x3002;
 JSON&#x306E;&#x4ED5;&#x69D8;&#x306F;<a href="http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf" target="_blank">ECMA-404</a>&#x3068;&#x3057;&#x3066;&#x6A19;&#x6E96;&#x5316;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
 JSON&#x306F;&#x3001;&#x4EBA;&#x9593;&#x306B;&#x3068;&#x3063;&#x3066;&#x8AAD;&#x307F;&#x66F8;&#x304D;&#x304C;&#x5BB9;&#x6613;&#x3067;&#x3001;&#x30DE;&#x30B7;&#x30F3;&#x306B;&#x3068;&#x3063;&#x3066;&#x3082;&#x7C21;&#x5358;&#x306B;&#x30D1;&#x30FC;&#x30B9;&#x3084;&#x751F;&#x6210;&#x3092;&#x884C;&#x3048;&#x308B;&#x5F62;&#x5F0F;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x591A;&#x304F;&#x306E;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DF;&#x30F3;&#x30B0;&#x8A00;&#x8A9E;&#x304C;JSON&#x3092;&#x6271;&#x3046;&#x6A5F;&#x80FD;&#x3092;&#x5099;&#x3048;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>JSON&#x306F;JavaScript&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x30EA;&#x30C6;&#x30E9;&#x30EB;&#x3001;&#x914D;&#x5217;&#x30EA;&#x30C6;&#x30E9;&#x30EB;&#x3001;&#x5404;&#x7A2E;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x3092;&#x7D44;&#x307F;&#x5408;&#x308F;&#x305B;&#x305F;&#x3082;&#x306E;&#x3067;&#x3059;&#x3002;
+&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x591A;&#x304F;&#x306E;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DF;&#x30F3;&#x30B0;&#x8A00;&#x8A9E;&#x304C;JSON&#x3092;&#x6271;&#x3046;&#x6A5F;&#x80FD;&#x3092;&#x5099;&#x3048;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p><p>JSON&#x306F;JavaScript&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x30EA;&#x30C6;&#x30E9;&#x30EB;&#x3001;&#x914D;&#x5217;&#x30EA;&#x30C6;&#x30E9;&#x30EB;&#x3001;&#x5404;&#x7A2E;&#x30D7;&#x30EA;&#x30DF;&#x30C6;&#x30A3;&#x30D6;&#x578B;&#x306E;&#x5024;&#x3092;&#x7D44;&#x307F;&#x5408;&#x308F;&#x305B;&#x305F;&#x3082;&#x306E;&#x3067;&#x3059;&#x3002;
 &#x305F;&#x3060;&#x3057;JSON&#x3068;JavaScript&#x306F;&#x4E00;&#x90E8;&#x306E;&#x69CB;&#x6587;&#x306B;&#x9055;&#x3044;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
 &#x305F;&#x3068;&#x3048;&#x3070;JSON&#x3067;&#x306F;&#x3001;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x30EA;&#x30C6;&#x30E9;&#x30EB;&#x306E;&#x30AD;&#x30FC;&#x3092;&#x5FC5;&#x305A;&#x30C0;&#x30D6;&#x30EB;&#x30AF;&#x30A9;&#x30FC;&#x30C8;&#x3067;&#x56F2;&#x307E;&#x306A;&#x3051;&#x308C;&#x3070;&#x3044;&#x3051;&#x307E;&#x305B;&#x3093;&#x3002;
 &#x307E;&#x305F;&#x3001;&#x5C0F;&#x6570;&#x70B9;&#x304B;&#x3089;&#x66F8;&#x304D;&#x306F;&#x3058;&#x3081;&#x308B;&#x6570;&#x5024;&#x30EA;&#x30C6;&#x30E9;&#x30EB;&#x3084;&#x3001;&#x5148;&#x982D;&#x304C;&#x30BC;&#x30ED;&#x304B;&#x3089;&#x306F;&#x3058;&#x307E;&#x308B;&#x6570;&#x5024;&#x30EA;&#x30C6;&#x30E9;&#x30EB;&#x3082;&#x4F7F;&#x3048;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x3053;&#x308C;&#x3089;&#x306F;&#x6A5F;&#x68B0;&#x304C;&#x30D1;&#x30FC;&#x30B9;&#x3057;&#x3084;&#x3059;&#x304F;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x4ED5;&#x69D8;&#x3067;&#x5B9A;&#x3081;&#x3089;&#x308C;&#x305F;&#x5236;&#x7D04;&#x3067;&#x3059;&#x3002;</p>
-<pre><code class="lang-json">{
+&#x3053;&#x308C;&#x3089;&#x306F;&#x6A5F;&#x68B0;&#x304C;&#x30D1;&#x30FC;&#x30B9;&#x3057;&#x3084;&#x3059;&#x304F;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x4ED5;&#x69D8;&#x3067;&#x5B9A;&#x3081;&#x3089;&#x308C;&#x305F;&#x5236;&#x7D04;&#x3067;&#x3059;&#x3002;</p><pre><code class="lang-json">{
     <span class="hljs-string">&quot;object&quot;</span>: { 
         <span class="hljs-string">&quot;number&quot;</span>: <span class="hljs-number">1</span>, 
         <span class="hljs-string">&quot;string&quot;</span>: <span class="hljs-string">&quot;js-primer&quot;</span>,
@@ -1435,77 +1418,55 @@ JSON&#x306F;&#x3001;&#x4EBA;&#x9593;&#x306B;&#x3068;&#x3063;&#x3066;&#x8AAD;&#x3
         <span class="hljs-string">&quot;null&quot;</span>: <span class="hljs-literal">null</span>,
         <span class="hljs-string">&quot;array&quot;</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
     }
-}
-</code></pre>
-<p>JSON&#x306E;&#x7D30;&#x304B;&#x3044;&#x4ED5;&#x69D8;&#x306B;&#x95A2;&#x3057;&#x3066;&#x306F;<a href="http://www.json.org/json-ja.html" target="_blank">json.org&#x306E;&#x65E5;&#x672C;&#x8A9E;&#x30C9;&#x30AD;&#x30E5;&#x30E1;&#x30F3;&#x30C8;</a>&#x306B;&#x308F;&#x304B;&#x308A;&#x3084;&#x3059;&#x304F;&#x307E;&#x3068;&#x307E;&#x3063;&#x3066;&#x3044;&#x308B;&#x306E;&#x3067;&#x3001;&#x53C2;&#x8003;&#x306B;&#x3059;&#x308B;&#x3068;&#x3088;&#x3044;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<h2 id="json-object"><a name="json-object" class="plugin-anchor" href="#json-object"><i class="fa fa-link" aria-hidden="true"></i></a><code>JSON</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8; </h2>
-<p>JavaScript&#x3067;JSON&#x3092;&#x6271;&#x3046;&#x306B;&#x306F;&#x3001;&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x3042;&#x308B;<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON" target="_blank">JSON&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</a>&#x3092;&#x5229;&#x7528;&#x3057;&#x307E;&#x3059;&#x3002;
-<code>JSON</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;JSON&#x5F62;&#x5F0F;&#x306E;&#x6587;&#x5B57;&#x5217;&#x3068;JavaScript&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x76F8;&#x4E92;&#x306B;&#x5909;&#x63DB;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E;<code>parse</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3068;<code>stringify</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x63D0;&#x4F9B;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<h3 id="json-parse"><a name="json-parse" class="plugin-anchor" href="#json-parse"><i class="fa fa-link" aria-hidden="true"></i></a>JSON&#x6587;&#x5B57;&#x5217;&#x3092;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x5909;&#x63DB;&#x3059;&#x308B; </h3>
-<p><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse" target="_blank">JSON.parse&#x30E1;&#x30BD;&#x30C3;&#x30C9;</a>&#x306F;&#x5F15;&#x6570;&#x306B;&#x4E0E;&#x3048;&#x3089;&#x308C;&#x305F;&#x6587;&#x5B57;&#x5217;&#x3092;JSON&#x3068;&#x3057;&#x3066;&#x30D1;&#x30FC;&#x30B9;&#x3057;&#x3001;&#x305D;&#x306E;&#x7D50;&#x679C;&#x3092;JavaScript&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3068;&#x3057;&#x3066;&#x8FD4;&#x3059;&#x95A2;&#x6570;&#x3067;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x7C21;&#x5358;&#x306A;JSON&#x5F62;&#x5F0F;&#x306E;&#x6587;&#x5B57;&#x5217;&#x3092;JavaScript&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x5909;&#x63DB;&#x3059;&#x308B;&#x4F8B;&#x3067;&#x3059;&#x3002;</p>
-<!-- textlint-disable eslint -->
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// JSON&#x306F;&#x30C0;&#x30D6;&#x30EB;&#x30AF;&#x30A9;&#x30FC;&#x30C8;&#x306E;&#x307F;&#x3092;&#x8A31;&#x5BB9;&#x3059;&#x308B;&#x305F;&#x3081;&#x3001;&#x30B7;&#x30F3;&#x30B0;&#x30EB;&#x30AF;&#x30A9;&#x30FC;&#x30C8;&#x3067;JSON&#x6587;&#x5B57;&#x5217;&#x3092;&#x8A18;&#x8FF0;</span>
+}</code></pre>
+<p>JSON&#x306E;&#x7D30;&#x304B;&#x3044;&#x4ED5;&#x69D8;&#x306B;&#x95A2;&#x3057;&#x3066;&#x306F;<a href="http://www.json.org/json-ja.html" target="_blank">json.org&#x306E;&#x65E5;&#x672C;&#x8A9E;&#x30C9;&#x30AD;&#x30E5;&#x30E1;&#x30F3;&#x30C8;</a>&#x306B;&#x308F;&#x304B;&#x308A;&#x3084;&#x3059;&#x304F;&#x307E;&#x3068;&#x307E;&#x3063;&#x3066;&#x3044;&#x308B;&#x306E;&#x3067;&#x3001;&#x53C2;&#x8003;&#x306B;&#x3059;&#x308B;&#x3068;&#x3088;&#x3044;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;</p><h2 id="json-object"><a name="json-object" class="plugin-anchor" href="#json-object"><i class="fa fa-link" aria-hidden="true"></i></a><code>JSON</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</h2><p>JavaScript&#x3067;JSON&#x3092;&#x6271;&#x3046;&#x306B;&#x306F;&#x3001;&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x3042;&#x308B;<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON" target="_blank">JSON&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</a>&#x3092;&#x5229;&#x7528;&#x3057;&#x307E;&#x3059;&#x3002;
+<code>JSON</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;JSON&#x5F62;&#x5F0F;&#x306E;&#x6587;&#x5B57;&#x5217;&#x3068;JavaScript&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x76F8;&#x4E92;&#x306B;&#x5909;&#x63DB;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E;<code>parse</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3068;<code>stringify</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x63D0;&#x4F9B;&#x3057;&#x307E;&#x3059;&#x3002;</p><h3 id="json-parse"><a name="json-parse" class="plugin-anchor" href="#json-parse"><i class="fa fa-link" aria-hidden="true"></i></a>JSON&#x6587;&#x5B57;&#x5217;&#x3092;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x5909;&#x63DB;&#x3059;&#x308B;</h3><p><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse" target="_blank">JSON.parse&#x30E1;&#x30BD;&#x30C3;&#x30C9;</a>&#x306F;&#x5F15;&#x6570;&#x306B;&#x4E0E;&#x3048;&#x3089;&#x308C;&#x305F;&#x6587;&#x5B57;&#x5217;&#x3092;JSON&#x3068;&#x3057;&#x3066;&#x30D1;&#x30FC;&#x30B9;&#x3057;&#x3001;&#x305D;&#x306E;&#x7D50;&#x679C;&#x3092;JavaScript&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3068;&#x3057;&#x3066;&#x8FD4;&#x3059;&#x95A2;&#x6570;&#x3067;&#x3059;&#x3002;
+&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x7C21;&#x5358;&#x306A;JSON&#x5F62;&#x5F0F;&#x306E;&#x6587;&#x5B57;&#x5217;&#x3092;JavaScript&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x5909;&#x63DB;&#x3059;&#x308B;&#x4F8B;&#x3067;&#x3059;&#x3002;</p><!-- textlint-disable eslint -->
+
+
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-js"><span class="hljs-comment">// JSON&#x306F;&#x30C0;&#x30D6;&#x30EB;&#x30AF;&#x30A9;&#x30FC;&#x30C8;&#x306E;&#x307F;&#x3092;&#x8A31;&#x5BB9;&#x3059;&#x308B;&#x305F;&#x3081;&#x3001;&#x30B7;&#x30F3;&#x30B0;&#x30EB;&#x30AF;&#x30A9;&#x30FC;&#x30C8;&#x3067;JSON&#x6587;&#x5B57;&#x5217;&#x3092;&#x8A18;&#x8FF0;</span>
 <span class="hljs-keyword">const</span> json = <span class="hljs-string">&apos;{ &quot;id&quot;: 1, &quot;name&quot;: &quot;js-primer&quot; }&apos;</span>;
 <span class="hljs-keyword">const</span> obj = <span class="hljs-built_in">JSON</span>.parse(json);
 <span class="hljs-built_in">console</span>.log(obj.id); <span class="hljs-comment">// =&gt; 1</span>
-<span class="hljs-built_in">console</span>.log(obj.name); <span class="hljs-comment">// =&gt; &quot;js-primer&quot;</span>
-</code></pre>
+<span class="hljs-built_in">console</span>.log(obj.name); <span class="hljs-comment">// =&gt; &quot;js-primer&quot;</span></code></pre>
 <!-- textlint-enable eslint -->
-<p>&#x6587;&#x5B57;&#x5217;&#x304C;JSON&#x306E;&#x914D;&#x5217;&#x3092;&#x8868;&#x3059;&#x5834;&#x5408;&#x306F;&#x3001;<code>JSON.parse</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306E;&#x8FD4;&#x308A;&#x5024;&#x3082;&#x914D;&#x5217;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> json = <span class="hljs-string">&quot;[1, 2, 3]&quot;</span>;
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.parse(json)); <span class="hljs-comment">// =&gt; [1, 2, 3]</span>
-</code></pre>
+
+
+<p>&#x6587;&#x5B57;&#x5217;&#x304C;JSON&#x306E;&#x914D;&#x5217;&#x3092;&#x8868;&#x3059;&#x5834;&#x5408;&#x306F;&#x3001;<code>JSON.parse</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306E;&#x8FD4;&#x308A;&#x5024;&#x3082;&#x914D;&#x5217;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-js"><span class="hljs-keyword">const</span> json = <span class="hljs-string">&quot;[1, 2, 3]&quot;</span>;
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.parse(json)); <span class="hljs-comment">// =&gt; [1, 2, 3]</span></code></pre>
 <p>&#x4E0E;&#x3048;&#x3089;&#x308C;&#x305F;&#x6587;&#x5B57;&#x5217;&#x304C;JSON&#x5F62;&#x5F0F;&#x3067;&#x30D1;&#x30FC;&#x30B9;&#x3067;&#x304D;&#x306A;&#x3044;&#x5834;&#x5408;&#x306F;&#x4F8B;&#x5916;&#x304C;&#x6295;&#x3052;&#x3089;&#x308C;&#x307E;&#x3059;&#x3002;
 &#x307E;&#x305F;&#x3001;&#x5B9F;&#x969B;&#x306E;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3067;JSON&#x3092;&#x6271;&#x3046;&#x306E;&#x306F;&#x3001;&#x5916;&#x90E8;&#x306E;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x3068;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x4EA4;&#x63DB;&#x3059;&#x308B;&#x7528;&#x9014;&#x304C;&#x307B;&#x3068;&#x3093;&#x3069;&#x3067;&#x3059;&#x3002;
 &#x5916;&#x90E8;&#x306E;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x304C;&#x9001;&#x3063;&#x3066;&#x304F;&#x308B;&#x30C7;&#x30FC;&#x30BF;&#x304C;&#x5E38;&#x306B;JSON&#x3068;&#x3057;&#x3066;&#x6B63;&#x3057;&#x3044;&#x4FDD;&#x8A3C;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;<code>JSON.parse</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x57FA;&#x672C;&#x7684;&#x306B;<code>try...catch</code>&#x69CB;&#x6587;&#x3067;&#x4F8B;&#x5916;&#x51E6;&#x7406;&#x3092;&#x3059;&#x308B;&#x3079;&#x304D;&#x3067;&#x3059;&#x3002;</p>
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> userInput = <span class="hljs-string">&quot;not json value&quot;</span>;
+&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;<code>JSON.parse</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x57FA;&#x672C;&#x7684;&#x306B;<code>try...catch</code>&#x69CB;&#x6587;&#x3067;&#x4F8B;&#x5916;&#x51E6;&#x7406;&#x3092;&#x3059;&#x308B;&#x3079;&#x304D;&#x3067;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-js"><span class="hljs-keyword">const</span> userInput = <span class="hljs-string">&quot;not json value&quot;</span>;
 <span class="hljs-keyword">try</span> {
     <span class="hljs-keyword">const</span> json = <span class="hljs-built_in">JSON</span>.parse(userInput);
 } <span class="hljs-keyword">catch</span> (error) {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;&#x30D1;&#x30FC;&#x30B9;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3067;&#x3057;&#x305F;&quot;</span>);
-}
-</code></pre>
-<h3 id="json-format"><a name="json-format" class="plugin-anchor" href="#json-format"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;JSON&#x6587;&#x5B57;&#x5217;&#x306B;&#x5909;&#x63DB;&#x3059;&#x308B; </h3>
-<p><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify" target="_blank">JSON.stringify&#x30E1;&#x30BD;&#x30C3;&#x30C9;</a>&#x306F;&#x7B2C;&#x4E00;&#x5F15;&#x6570;&#x306B;&#x4E0E;&#x3048;&#x3089;&#x308C;&#x305F;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;JSON&#x5F62;&#x5F0F;&#x306E;&#x6587;&#x5B57;&#x5217;&#x306B;&#x5909;&#x63DB;&#x3057;&#x3066;&#x8FD4;&#x3059;&#x95A2;&#x6570;&#x3067;&#x3059;&#x3002;
+}</code></pre>
+<h3 id="json-format"><a name="json-format" class="plugin-anchor" href="#json-format"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;JSON&#x6587;&#x5B57;&#x5217;&#x306B;&#x5909;&#x63DB;&#x3059;&#x308B;</h3><p><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify" target="_blank">JSON.stringify&#x30E1;&#x30BD;&#x30C3;&#x30C9;</a>&#x306F;&#x7B2C;&#x4E00;&#x5F15;&#x6570;&#x306B;&#x4E0E;&#x3048;&#x3089;&#x308C;&#x305F;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;JSON&#x5F62;&#x5F0F;&#x306E;&#x6587;&#x5B57;&#x5217;&#x306B;&#x5909;&#x63DB;&#x3057;&#x3066;&#x8FD4;&#x3059;&#x95A2;&#x6570;&#x3067;&#x3059;&#x3002;
 HTTP&#x901A;&#x4FE1;&#x3067;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x306B;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x9001;&#x4FE1;&#x3059;&#x308B;&#x3068;&#x304D;&#x3084;&#x3001;
 &#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x304C;&#x4FDD;&#x6301;&#x3057;&#x3066;&#x3044;&#x308B;&#x72B6;&#x614B;&#x3092;&#x5916;&#x90E8;&#x306B;&#x4FDD;&#x5B58;&#x3059;&#x308B;&#x3068;&#x304D;&#x306A;&#x3069;&#x306B;&#x5FC5;&#x8981;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;JavaScript&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;JSON&#x5F62;&#x5F0F;&#x306E;&#x6587;&#x5B57;&#x5217;&#x306B;&#x5909;&#x63DB;&#x3059;&#x308B;&#x4F8B;&#x3067;&#x3059;&#x3002;</p>
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = { id: <span class="hljs-number">1</span>, name: <span class="hljs-string">&quot;js-primer&quot;</span>, bio: <span class="hljs-literal">null</span> };
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(obj)); <span class="hljs-comment">// =&gt; &apos;{&quot;id&quot;:1,&quot;name&quot;:&quot;js-primer&quot;,&quot;bio&quot;:null}&apos;</span>
-</code></pre>
+&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;JavaScript&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;JSON&#x5F62;&#x5F0F;&#x306E;&#x6587;&#x5B57;&#x5217;&#x306B;&#x5909;&#x63DB;&#x3059;&#x308B;&#x4F8B;&#x3067;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">id</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;js-primer&quot;</span>, <span class="hljs-attr">bio</span>: <span class="hljs-literal">null</span> };
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(obj)); <span class="hljs-comment">// =&gt; &apos;{&quot;id&quot;:1,&quot;name&quot;:&quot;js-primer&quot;,&quot;bio&quot;:null}&apos;</span></code></pre>
 <p><code>JSON.stringify</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306B;&#x306F;&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30CA;&#x30EB;&#x306A;&#x5F15;&#x6570;&#x304C;2&#x3064;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
 &#x7B2C;&#x4E8C;&#x5F15;&#x6570;&#x306F;replacer&#x5F15;&#x6570;&#x3068;&#x3082;&#x547C;&#x3070;&#x308C;&#x3001;&#x95A2;&#x6570;&#x3042;&#x308B;&#x3044;&#x306F;&#x914D;&#x5217;&#x3092;&#x6E21;&#x305B;&#x307E;&#x3059;&#x3002;
 &#x95A2;&#x6570;&#x3092;&#x6E21;&#x3057;&#x305F;&#x5834;&#x5408;&#x306F;&#x5F15;&#x6570;&#x306B;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x306E;&#x30AD;&#x30FC;&#x3068;&#x5024;&#x304C;&#x6E21;&#x3055;&#x308C;&#x3001;&#x305D;&#x306E;&#x8FD4;&#x308A;&#x5024;&#x306B;&#x3088;&#x3063;&#x3066;&#x6587;&#x5B57;&#x5217;&#x306B;&#x5909;&#x63DB;&#x3055;&#x308C;&#x308B;&#x969B;&#x306E;&#x6319;&#x52D5;&#x3092;&#x30B3;&#x30F3;&#x30C8;&#x30ED;&#x30FC;&#x30EB;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
 &#x6B21;&#x306E;&#x4F8B;&#x306F;&#x5024;&#x304C;null&#x3067;&#x3042;&#x308B;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3092;&#x9664;&#x5916;&#x3057;&#x3066;JSON&#x306B;&#x5909;&#x63DB;&#x3059;&#x308B;replacer&#x5F15;&#x6570;&#x306E;&#x4F8B;&#x3067;&#x3059;&#x3002;
-replacer&#x5F15;&#x6570;&#x306E;&#x95A2;&#x6570;&#x3067;<code>undefined</code>&#x304C;&#x8FD4;&#x3055;&#x308C;&#x305F;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x306F;&#x3001;&#x5909;&#x63DB;&#x5F8C;&#x306E;JSON&#x306B;&#x542B;&#x307E;&#x308C;&#x306A;&#x304F;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = { id: <span class="hljs-number">1</span>, name: <span class="hljs-string">&quot;js-primer&quot;</span>, bio: <span class="hljs-literal">null</span> };
-<span class="hljs-keyword">const</span> replacer = (key, value) =&gt; {
+replacer&#x5F15;&#x6570;&#x306E;&#x95A2;&#x6570;&#x3067;<code>undefined</code>&#x304C;&#x8FD4;&#x3055;&#x308C;&#x305F;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x306F;&#x3001;&#x5909;&#x63DB;&#x5F8C;&#x306E;JSON&#x306B;&#x542B;&#x307E;&#x308C;&#x306A;&#x304F;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">id</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;js-primer&quot;</span>, <span class="hljs-attr">bio</span>: <span class="hljs-literal">null</span> };
+<span class="hljs-keyword">const</span> replacer = <span class="hljs-function">(<span class="hljs-params">key, value</span>) =&gt;</span> {
     <span class="hljs-keyword">if</span> (value === <span class="hljs-literal">null</span>) {
         <span class="hljs-keyword">return</span> <span class="hljs-literal">undefined</span>;
     }
     <span class="hljs-keyword">return</span> value;
 };
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(obj, replacer)); <span class="hljs-comment">// =&gt; &apos;{&quot;id&quot;:1,&quot;name&quot;:&quot;js-primer&quot;}&apos;</span>
-</code></pre>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(obj, replacer)); <span class="hljs-comment">// =&gt; &apos;{&quot;id&quot;:1,&quot;name&quot;:&quot;js-primer&quot;}&apos;</span></code></pre>
 <p>replacer&#x5F15;&#x6570;&#x306B;&#x914D;&#x5217;&#x3092;&#x6E21;&#x3057;&#x305F;&#x5834;&#x5408;&#x306F;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x306E;&#x30DB;&#x30EF;&#x30A4;&#x30C8;&#x30EA;&#x30B9;&#x30C8;&#x3068;&#x3057;&#x3066;&#x4F7F;&#x308F;&#x308C;&#x3001;
-&#x305D;&#x306E;&#x914D;&#x5217;&#x306B;&#x542B;&#x307E;&#x308C;&#x308B;&#x540D;&#x524D;&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3060;&#x3051;&#x304C;&#x5909;&#x63DB;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = { id: <span class="hljs-number">1</span>, name: <span class="hljs-string">&quot;js-primer&quot;</span>, bio: <span class="hljs-literal">null</span> };
+&#x305D;&#x306E;&#x914D;&#x5217;&#x306B;&#x542B;&#x307E;&#x308C;&#x308B;&#x540D;&#x524D;&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3060;&#x3051;&#x304C;&#x5909;&#x63DB;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">id</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;js-primer&quot;</span>, <span class="hljs-attr">bio</span>: <span class="hljs-literal">null</span> };
 <span class="hljs-keyword">const</span> replacer = [<span class="hljs-string">&quot;id&quot;</span>, <span class="hljs-string">&quot;name&quot;</span>];
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(obj, replacer)); <span class="hljs-comment">// =&gt; &apos;{&quot;id&quot;:1,&quot;name&quot;:&quot;js-primer&quot;}&apos;</span>
-</code></pre>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(obj, replacer)); <span class="hljs-comment">// =&gt; &apos;{&quot;id&quot;:1,&quot;name&quot;:&quot;js-primer&quot;}&apos;</span></code></pre>
 <p>&#x7B2C;&#x4E09;&#x5F15;&#x6570;&#x306F;space&#x5F15;&#x6570;&#x3068;&#x3082;&#x547C;&#x3070;&#x308C;&#x3001;&#x5909;&#x63DB;&#x5F8C;&#x306E;JSON&#x5F62;&#x5F0F;&#x306E;&#x6587;&#x5B57;&#x5217;&#x3092;&#x8AAD;&#x307F;&#x3084;&#x3059;&#x304F;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30C3;&#x30C8;&#x3059;&#x308B;&#x969B;&#x306E;&#x30A4;&#x30F3;&#x30C7;&#x30F3;&#x30C8;&#x3092;&#x8A2D;&#x5B9A;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
 &#x6570;&#x5024;&#x3092;&#x6E21;&#x3059;&#x3068;&#x305D;&#x306E;&#x6570;&#x5024;&#x5206;&#x306E;&#x9577;&#x3055;&#x306E;&#x30B9;&#x30DA;&#x30FC;&#x30B9;&#x3067;&#x3001;&#x6587;&#x5B57;&#x5217;&#x3092;&#x6E21;&#x3059;&#x3068;&#x305D;&#x306E;&#x6587;&#x5B57;&#x5217;&#x3067;&#x30A4;&#x30F3;&#x30C7;&#x30F3;&#x30C8;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x30B9;&#x30DA;&#x30FC;&#x30B9;2&#x500B;&#x3067;&#x30A4;&#x30F3;&#x30C7;&#x30F3;&#x30C8;&#x3055;&#x308C;&#x305F;JSON&#x3092;&#x5F97;&#x308B;&#x4F8B;&#x3067;&#x3059;&#x3002;</p>
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = { id: <span class="hljs-number">1</span>, name: <span class="hljs-string">&quot;js-primer&quot;</span> };
+&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x30B9;&#x30DA;&#x30FC;&#x30B9;2&#x500B;&#x3067;&#x30A4;&#x30F3;&#x30C7;&#x30F3;&#x30C8;&#x3055;&#x308C;&#x305F;JSON&#x3092;&#x5F97;&#x308B;&#x4F8B;&#x3067;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">id</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;js-primer&quot;</span> };
 <span class="hljs-comment">// replacer&#x5F15;&#x6570;&#x3092;&#x4F7F;&#x308F;&#x306A;&#x3044;&#x5834;&#x5408;&#x306F;null&#x3092;&#x6E21;&#x3057;&#x3066;&#x7701;&#x7565;&#x3059;&#x308B;&#x306E;&#x304C;&#x4E00;&#x822C;&#x7684;&#x3067;&#x3059;</span>
 <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(obj, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>)); 
 <span class="hljs-comment">/*
@@ -1513,96 +1474,73 @@ replacer&#x5F15;&#x6570;&#x306E;&#x95A2;&#x6570;&#x3067;<code>undefined</code>&#
    &quot;id&quot;: 1,
    &quot;name&quot;: &quot;js-primer&quot;
 }
-*/</span>
-</code></pre>
-<p>&#x307E;&#x305F;&#x3001;&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x30BF;&#x30D6;&#x6587;&#x5B57;&#x3067;&#x30A4;&#x30F3;&#x30C7;&#x30F3;&#x30C8;&#x3055;&#x308C;&#x305F;JSON&#x3092;&#x5F97;&#x308B;&#x4F8B;&#x3067;&#x3059;&#x3002;</p>
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = { id: <span class="hljs-number">1</span>, name: <span class="hljs-string">&quot;js-primer&quot;</span> };
+*/</span></code></pre>
+<p>&#x307E;&#x305F;&#x3001;&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x30BF;&#x30D6;&#x6587;&#x5B57;&#x3067;&#x30A4;&#x30F3;&#x30C7;&#x30F3;&#x30C8;&#x3055;&#x308C;&#x305F;JSON&#x3092;&#x5F97;&#x308B;&#x4F8B;&#x3067;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">id</span>: <span class="hljs-number">1</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;js-primer&quot;</span> };
 <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(obj, <span class="hljs-literal">null</span>, <span class="hljs-string">&quot;\t&quot;</span>)); 
 <span class="hljs-comment">/*
 {
    &quot;id&quot;: 1,
    &quot;name&quot;: &quot;js-primer&quot;
 }
-*/</span>
-</code></pre>
-<h2 id="not-serialization-object"><a name="not-serialization-object" class="plugin-anchor" href="#not-serialization-object"><i class="fa fa-link" aria-hidden="true"></i></a>JSON&#x306B;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x3067;&#x304D;&#x306A;&#x3044;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8; </h2>
-<p><code>JSON.stringify</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;JSON&#x3067;&#x8868;&#x73FE;&#x53EF;&#x80FD;&#x306A;&#x5024;&#x3060;&#x3051;&#x3092;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x3057;&#x307E;&#x3059;&#x3002;
+*/</span></code></pre>
+<h2 id="not-serialization-object"><a name="not-serialization-object" class="plugin-anchor" href="#not-serialization-object"><i class="fa fa-link" aria-hidden="true"></i></a>JSON&#x306B;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x3067;&#x304D;&#x306A;&#x3044;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</h2><p><code>JSON.stringify</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;JSON&#x3067;&#x8868;&#x73FE;&#x53EF;&#x80FD;&#x306A;&#x5024;&#x3060;&#x3051;&#x3092;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x3057;&#x307E;&#x3059;&#x3002;
 &#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x5024;&#x304C;&#x95A2;&#x6570;&#x3084;<code>Symbol</code>&#x3001;&#x3042;&#x308B;&#x3044;&#x306F;<code>undefined</code>&#x3067;&#x3042;&#x308B;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x306A;&#x3069;&#x306F;&#x5909;&#x63DB;&#x3055;&#x308C;&#x307E;&#x305B;&#x3093;&#x3002;
 &#x305F;&#x3060;&#x3057;&#x3001;&#x914D;&#x5217;&#x306E;&#x5024;&#x3068;&#x3057;&#x3066;&#x305D;&#x308C;&#x3089;&#x304C;&#x898B;&#x3064;&#x304B;&#x3063;&#x305F;&#x3068;&#x304D;&#x306B;&#x306F;&#x4F8B;&#x5916;&#x7684;&#x306B;<code>null</code>&#x306B;&#x7F6E;&#x304D;&#x63DB;&#x3048;&#x3089;&#x308C;&#x307E;&#x3059;&#x3002;
 &#x307E;&#x305F;&#x30AD;&#x30FC;&#x304C;<code>Symbol</code>&#x3067;&#x3042;&#x308B;&#x5834;&#x5408;&#x306B;&#x3082;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x306E;&#x5BFE;&#x8C61;&#x5916;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x4EE3;&#x8868;&#x7684;&#x306A;&#x5909;&#x63DB;&#x306E;&#x4F8B;&#x3092;&#x6B21;&#x306E;&#x8868;&#x3068;&#x30B5;&#x30F3;&#x30D7;&#x30EB;&#x30B3;&#x30FC;&#x30C9;&#x306B;&#x793A;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<table>
+&#x4EE3;&#x8868;&#x7684;&#x306A;&#x5909;&#x63DB;&#x306E;&#x4F8B;&#x3092;&#x6B21;&#x306E;&#x8868;&#x3068;&#x30B5;&#x30F3;&#x30D7;&#x30EB;&#x30B3;&#x30FC;&#x30C9;&#x306B;&#x793A;&#x3057;&#x307E;&#x3059;&#x3002;</p><table>
 <thead>
-<tr>
-<th>&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x524D;&#x306E;&#x5024;</th>
-<th>&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x5F8C;&#x306E;&#x5024;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>&#x6587;&#x5B57;&#x5217;&#x30FB;&#x6570;&#x5024;&#x30FB;&#x771F;&#x507D;&#x5024;</td>
-<td>&#x5BFE;&#x5FDC;&#x3059;&#x308B;&#x5024;</td>
-</tr>
-<tr>
-<td>null</td>
-<td>null</td>
-</tr>
-<tr>
-<td>&#x914D;&#x5217;</td>
-<td>&#x914D;&#x5217;</td>
-</tr>
-<tr>
-<td>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</td>
-<td>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</td>
-</tr>
-<tr>
-<td>&#x95A2;&#x6570;</td>
-<td>&#x5909;&#x63DB;&#x3055;&#x308C;&#x306A;&#x3044;&#xFF08;&#x914D;&#x5217;&#x306E;&#x3068;&#x304D;&#x306F;null&#xFF09;</td>
-</tr>
-<tr>
-<td>undefined</td>
-<td>&#x5909;&#x63DB;&#x3055;&#x308C;&#x306A;&#x3044;&#xFF08;&#x914D;&#x5217;&#x306E;&#x3068;&#x304D;&#x306F;null&#xFF09;</td>
-</tr>
-<tr>
-<td>Symbol</td>
-<td>&#x5909;&#x63DB;&#x3055;&#x308C;&#x306A;&#x3044;&#xFF08;&#x914D;&#x5217;&#x306E;&#x3068;&#x304D;&#x306F;null&#xFF09;</td>
-</tr>
-<tr>
-<td>RegExp</td>
-<td>{}</td>
-</tr>
-<tr>
-<td>Map, Set</td>
-<td>{}</td>
-</tr>
-</tbody>
-</table>
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// &#x5024;&#x304C;&#x95A2;&#x6570;&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify({ x: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{} })); <span class="hljs-comment">// =&gt; &apos;{}&apos;</span>
+<tr><th> &#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x524D;&#x306E;&#x5024; </th>
+<th> &#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x5F8C;&#x306E;&#x5024; </th>
+</tr></thead><tbody>
+<tr><td style="text-align:left"> &#x6587;&#x5B57;&#x5217;&#x30FB;&#x6570;&#x5024;&#x30FB;&#x771F;&#x507D;&#x5024; </td>
+<td style="text-align:left"> &#x5BFE;&#x5FDC;&#x3059;&#x308B;&#x5024; </td>
+<td>  </td>
+</tr><tr><td style="text-align:left"> null </td>
+<td style="text-align:left"> null </td>
+<td>  </td>
+</tr><tr><td style="text-align:left"> &#x914D;&#x5217; </td>
+<td style="text-align:left"> &#x914D;&#x5217; </td>
+<td>  </td>
+</tr><tr><td style="text-align:left"> &#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8; </td>
+<td style="text-align:left"> &#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8; </td>
+<td>  </td>
+</tr><tr><td style="text-align:left"> &#x95A2;&#x6570; </td>
+<td style="text-align:left"> &#x5909;&#x63DB;&#x3055;&#x308C;&#x306A;&#x3044;&#xFF08;&#x914D;&#x5217;&#x306E;&#x3068;&#x304D;&#x306F;null&#xFF09; </td>
+<td>  </td>
+</tr><tr><td style="text-align:left"> undefined </td>
+<td style="text-align:left"> &#x5909;&#x63DB;&#x3055;&#x308C;&#x306A;&#x3044;&#xFF08;&#x914D;&#x5217;&#x306E;&#x3068;&#x304D;&#x306F;null&#xFF09; </td>
+<td>  </td>
+</tr><tr><td style="text-align:left"> Symbol </td>
+<td style="text-align:left"> &#x5909;&#x63DB;&#x3055;&#x308C;&#x306A;&#x3044;&#xFF08;&#x914D;&#x5217;&#x306E;&#x3068;&#x304D;&#x306F;null&#xFF09; </td>
+<td>  </td>
+</tr><tr><td style="text-align:left"> RegExp </td>
+<td style="text-align:left"> {} </td>
+<td>  </td>
+</tr><tr><td style="text-align:left"> Map, Set </td>
+<td style="text-align:left"> {}</td>
+</tr></tbody></table>
+
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-js"><span class="hljs-comment">// &#x5024;&#x304C;&#x95A2;&#x6570;&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify({ <span class="hljs-attr">x</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{} })); <span class="hljs-comment">// =&gt; &apos;{}&apos;</span>
 <span class="hljs-comment">// &#x5024;&#x304C;Symbol&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify({ x: <span class="hljs-built_in">Symbol</span>(<span class="hljs-string">&quot;&quot;</span>) })); <span class="hljs-comment">// =&gt; &apos;{}&apos;</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify({ <span class="hljs-attr">x</span>: <span class="hljs-built_in">Symbol</span>(<span class="hljs-string">&quot;&quot;</span>) })); <span class="hljs-comment">// =&gt; &apos;{}&apos;</span>
 <span class="hljs-comment">// &#x5024;&#x304C;undefined&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify({ x: <span class="hljs-literal">undefined</span> })); <span class="hljs-comment">// =&gt; &apos;{}&apos;</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify({ <span class="hljs-attr">x</span>: <span class="hljs-literal">undefined</span> })); <span class="hljs-comment">// =&gt; &apos;{}&apos;</span>
 <span class="hljs-comment">// &#x914D;&#x5217;&#x306E;&#x5834;&#x5408;</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify({ x: [<span class="hljs-number">10</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{}] })); <span class="hljs-comment">// =&gt; &apos;{&quot;x&quot;:[10,null]}&apos;</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify({ <span class="hljs-attr">x</span>: [<span class="hljs-number">10</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{}] })); <span class="hljs-comment">// =&gt; &apos;{&quot;x&quot;:[10,null]}&apos;</span>
 <span class="hljs-comment">// &#x30AD;&#x30FC;&#x304C;Symbol&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;</span>
 <span class="hljs-built_in">JSON</span>.stringify({ [<span class="hljs-built_in">Symbol</span>(<span class="hljs-string">&quot;foo&quot;</span>)]: <span class="hljs-string">&quot;foo&quot;</span> }); <span class="hljs-comment">// =&gt; &apos;{}&apos;</span>
 <span class="hljs-comment">// &#x5024;&#x304C;RegExp&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify({ x: <span class="hljs-regexp">/foo/</span> })); <span class="hljs-comment">// =&gt; &apos;{&quot;x&quot;:{}}&apos;</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify({ <span class="hljs-attr">x</span>: <span class="hljs-regexp">/foo/</span> })); <span class="hljs-comment">// =&gt; &apos;{&quot;x&quot;:{}}&apos;</span>
 <span class="hljs-comment">// &#x5024;&#x304C;Map&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;</span>
 <span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
 map.set(<span class="hljs-string">&quot;foo&quot;</span>, <span class="hljs-string">&quot;foo&quot;</span>);
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify({ x: map })); <span class="hljs-comment">// =&gt; &apos;{&quot;x&quot;:{}}&apos;</span>
-</code></pre>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify({ <span class="hljs-attr">x</span>: map })); <span class="hljs-comment">// =&gt; &apos;{&quot;x&quot;:{}}&apos;</span></code></pre>
 <p>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304C;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x3055;&#x308C;&#x308B;&#x969B;&#x306F;&#x3001;&#x305D;&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x5217;&#x6319;&#x53EF;&#x80FD;&#x306A;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3060;&#x3051;&#x304C;&#x518D;&#x5E30;&#x7684;&#x306B;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-<code>RegExp</code>&#x3084;<code>Map</code>&#x3001;<code>Set</code>&#x306A;&#x3069;&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x306F;&#x5217;&#x6319;&#x53EF;&#x80FD;&#x306A;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3092;&#x6301;&#x305F;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;&#x7A7A;&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x5909;&#x63DB;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x307E;&#x305F;&#x3001;<code>JSON.stringify</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x304C;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x306B;&#x5931;&#x6557;&#x3059;&#x308B;&#x3053;&#x3068;&#x3082;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
+<code>RegExp</code>&#x3084;<code>Map</code>&#x3001;<code>Set</code>&#x306A;&#x3069;&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x306F;&#x5217;&#x6319;&#x53EF;&#x80FD;&#x306A;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3092;&#x6301;&#x305F;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;&#x7A7A;&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x5909;&#x63DB;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p><p>&#x307E;&#x305F;&#x3001;<code>JSON.stringify</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x304C;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x306B;&#x5931;&#x6557;&#x3059;&#x308B;&#x3053;&#x3068;&#x3082;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
 &#x3088;&#x304F;&#x3042;&#x308B;&#x306E;&#x306F;&#x3001;&#x53C2;&#x7167;&#x304C;&#x5FAA;&#x74B0;&#x3057;&#x3066;&#x3044;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x3057;&#x3088;&#x3046;&#x3068;&#x3057;&#x305F;&#x3068;&#x304D;&#x306B;&#x4F8B;&#x5916;&#x304C;&#x6295;&#x3052;&#x3089;&#x308C;&#x308B;&#x30B1;&#x30FC;&#x30B9;&#x3067;&#x3059;&#x3002;
 &#x305F;&#x3068;&#x3048;&#x3070;&#x6B21;&#x306E;&#x4F8B;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;&#x3042;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3092;&#x518D;&#x5E30;&#x7684;&#x306B;&#x305F;&#x3069;&#x3063;&#x3066;&#x81EA;&#x5206;&#x81EA;&#x8EAB;&#x304C;&#x898B;&#x3064;&#x304B;&#x308B;&#x3088;&#x3046;&#x306A;&#x5834;&#x5408;&#x306F;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x304C;&#x4E0D;&#x53EF;&#x80FD;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-<code>JSON.parse</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3060;&#x3051;&#x3067;&#x306A;&#x304F;&#x3001;<code>JSON.stringify</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3082;&#x4F8B;&#x5916;&#x51E6;&#x7406;&#x3092;&#x884C;&#x3063;&#x3066;&#x5B89;&#x5168;&#x306B;&#x4F7F;&#x3044;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> obj = { foo: <span class="hljs-string">&quot;foo&quot;</span> };
+<code>JSON.parse</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3060;&#x3051;&#x3067;&#x306A;&#x304F;&#x3001;<code>JSON.stringify</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3082;&#x4F8B;&#x5916;&#x51E6;&#x7406;&#x3092;&#x884C;&#x3063;&#x3066;&#x5B89;&#x5168;&#x306B;&#x4F7F;&#x3044;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p><pre><code class="lang-javascript"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">foo</span>: <span class="hljs-string">&quot;foo&quot;</span> };
 obj.self = obj;
 <span class="hljs-keyword">try</span> {
     <span class="hljs-built_in">JSON</span>.stringify(obj);
@@ -1610,28 +1548,23 @@ obj.self = obj;
     <span class="hljs-built_in">console</span>.error(error); <span class="hljs-comment">// =&gt; &quot;TypeError: Converting circular structure to JSON&quot;</span>
 }
 </code></pre>
-<h2 id="serialization-by-toJSON"><a name="serialization-by-toJSON" class="plugin-anchor" href="#serialization-by-toJSON"><i class="fa fa-link" aria-hidden="true"></i></a><code>toJSON</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x4F7F;&#x3063;&#x305F;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA; </h2>
-<p>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304C;<code>toJSON</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x6301;&#x3063;&#x3066;&#x3044;&#x308B;&#x5834;&#x5408;&#x3001;<code>JSON.stringify</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x65E2;&#x5B9A;&#x306E;&#x6587;&#x5B57;&#x5217;&#x5909;&#x63DB;&#x3067;&#x306F;&#x306A;&#x304F;<code>toJSON</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306E;&#x8FD4;&#x308A;&#x5024;&#x3092;&#x4F7F;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x4F8B;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;&#x5F15;&#x6570;&#x306B;&#x76F4;&#x63A5;&#x6E21;&#x3055;&#x308C;&#x305F;&#x3068;&#x304D;&#x3060;&#x3051;&#x3067;&#x306A;&#x304F;&#x5F15;&#x6570;&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3068;&#x3057;&#x3066;&#x767B;&#x5834;&#x3057;&#x305F;&#x3068;&#x304D;&#x306B;&#x3082;&#x518D;&#x5E30;&#x7684;&#x306B;&#x51E6;&#x7406;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = {
-    foo: <span class="hljs-string">&quot;foo&quot;</span>,
+<h2 id="serialization-by-toJSON"><a name="serialization-by-toJSON" class="plugin-anchor" href="#serialization-by-toJSON"><i class="fa fa-link" aria-hidden="true"></i></a><code>toJSON</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x4F7F;&#x3063;&#x305F;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;</h2><p>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304C;<code>toJSON</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x6301;&#x3063;&#x3066;&#x3044;&#x308B;&#x5834;&#x5408;&#x3001;<code>JSON.stringify</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x65E2;&#x5B9A;&#x306E;&#x6587;&#x5B57;&#x5217;&#x5909;&#x63DB;&#x3067;&#x306F;&#x306A;&#x304F;<code>toJSON</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306E;&#x8FD4;&#x308A;&#x5024;&#x3092;&#x4F7F;&#x3044;&#x307E;&#x3059;&#x3002;
+&#x6B21;&#x306E;&#x4F8B;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;&#x5F15;&#x6570;&#x306B;&#x76F4;&#x63A5;&#x6E21;&#x3055;&#x308C;&#x305F;&#x3068;&#x304D;&#x3060;&#x3051;&#x3067;&#x306A;&#x304F;&#x5F15;&#x6570;&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3068;&#x3057;&#x3066;&#x767B;&#x5834;&#x3057;&#x305F;&#x3068;&#x304D;&#x306B;&#x3082;&#x518D;&#x5E30;&#x7684;&#x306B;&#x51E6;&#x7406;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = {
+    <span class="hljs-attr">foo</span>: <span class="hljs-string">&quot;foo&quot;</span>,
     toJSON() {
         <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;bar&quot;</span>;
     }
 };
 <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(obj)); <span class="hljs-comment">// =&gt; &apos;&quot;bar&quot;&apos;</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify({ x: obj })); <span class="hljs-comment">// =&gt; &apos;{&quot;x&quot;:&quot;bar&quot;}&apos;</span>
-</code></pre>
-<p><code>toJSON</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x81EA;&#x4F5C;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x7279;&#x6B8A;&#x306A;&#x5F62;&#x5F0F;&#x3067;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x3059;&#x308B;&#x76EE;&#x7684;&#x306A;&#x3069;&#x306B;&#x4F7F;&#x308F;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>&#x307E;&#x3068;&#x3081; </h2>
-<p>&#x3053;&#x306E;&#x7AE0;&#x3067;&#x306F;&#x3001;JSON&#x306B;&#x3064;&#x3044;&#x3066;&#x5B66;&#x3073;&#x307E;&#x3057;&#x305F;&#x3002;</p>
-<ul>
-<li>JSON&#x306F;JavaScript&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x30EA;&#x30C6;&#x30E9;&#x30EB;&#x3092;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x4F5C;&#x3089;&#x308C;&#x305F;&#x8EFD;&#x91CF;&#x306A;&#x30C7;&#x30FC;&#x30BF;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30C3;&#x30C8;</li>
-<li><code>JSON</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x4F7F;&#x3063;&#x305F;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x3068;&#x30C7;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;</li>
-<li>JSON&#x5F62;&#x5F0F;&#x306B;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x3067;&#x304D;&#x306A;&#x3044;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3082;&#x3042;&#x308B;</li>
-<li><code>JSON.stringify</code>&#x306F;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x5BFE;&#x8C61;&#x306E;<code>toJSON</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x5229;&#x7528;&#x3059;&#x308B;</li>
-</ul>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify({ <span class="hljs-attr">x</span>: obj })); <span class="hljs-comment">// =&gt; &apos;{&quot;x&quot;:&quot;bar&quot;}&apos;</span></code></pre>
+<p><code>toJSON</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x81EA;&#x4F5C;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x7279;&#x6B8A;&#x306A;&#x5F62;&#x5F0F;&#x3067;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x3059;&#x308B;&#x76EE;&#x7684;&#x306A;&#x3069;&#x306B;&#x4F7F;&#x308F;&#x308C;&#x307E;&#x3059;&#x3002;</p><h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>&#x307E;&#x3068;&#x3081;</h2><p>&#x3053;&#x306E;&#x7AE0;&#x3067;&#x306F;&#x3001;JSON&#x306B;&#x3064;&#x3044;&#x3066;&#x5B66;&#x3073;&#x307E;&#x3057;&#x305F;&#x3002;</p><ul><li>JSON&#x306F;JavaScript&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x30EA;&#x30C6;&#x30E9;&#x30EB;&#x3092;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x4F5C;&#x3089;&#x308C;&#x305F;&#x8EFD;&#x91CF;&#x306A;&#x30C7;&#x30FC;&#x30BF;&#x30D5;&#x30A9;&#x30FC;&#x30DE;&#x30C3;&#x30C8;
+</li>
+<li><code>JSON</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x4F7F;&#x3063;&#x305F;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x3068;&#x30C7;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;
+</li>
+<li>JSON&#x5F62;&#x5F0F;&#x306B;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x3067;&#x304D;&#x306A;&#x3044;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3082;&#x3042;&#x308B;
+</li>
+<li><code>JSON.stringify</code>&#x306F;&#x30B7;&#x30EA;&#x30A2;&#x30E9;&#x30A4;&#x30BA;&#x5BFE;&#x8C61;&#x306E;<code>toJSON</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x5229;&#x7528;&#x3059;&#x308B;
+</li></ul>
 
                                 
                                 </section>
@@ -1663,7 +1596,7 @@ obj.self = obj;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"JavaScriptのオブジェクトリテラルをベースに作られたデータフォーマットであるJSONを紹介します。また、JavaScriptからのJSONの読み書きするビルトインオブジェクトの使い方を紹介します。","title":"JSON","level":"1.3.24","depth":2,"next":{"title":"Date","level":"1.3.25","depth":2,"path":"basic/date/README.md","ref":"./basic/date/README.md","articles":[]},"previous":{"title":"Map/Set","level":"1.3.23","depth":2,"path":"basic/map-and-set/README.md","ref":"./basic/map-and-set/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2019","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/json/README.md","mtime":"2020-06-16T16:03:51.659Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-16T16:05:14.861Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"JavaScriptのオブジェクトリテラルをベースに作られたデータフォーマットであるJSONを紹介します。また、JavaScriptからのJSONの読み書きするビルトインオブジェクトの使い方を紹介します。","title":"JSON","level":"1.3.24","depth":2,"next":{"title":"Date","level":"1.3.25","depth":2,"path":"basic/date/README.md","ref":"./basic/date/README.md","articles":[]},"previous":{"title":"Map/Set","level":"1.3.23","depth":2,"path":"basic/map-and-set/README.md","ref":"./basic/map-and-set/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2019","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/json/README.md","mtime":"2020-06-18T15:44:52.933Z","type":"markdown"},"gitbook":{"version":"3.3.9","time":"2020-06-18T15:45:27.329Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1686,10 +1619,6 @@ obj.self = obj;
     
         
         <script src="../../gitbook/gitbook-plugin-github-issue-feedback/plugin.js"></script>
-        
-    
-        
-        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
         
     
         
