@@ -1,6 +1,6 @@
 // MIT © 2017 azu
 "use strict";
-const esprima = require("esprima");
+const acorn = require("acorn");
 const esquery = require("esquery");
 const path = require("path");
 const ignoreFileList = [
@@ -71,7 +71,9 @@ function checkLineThatShouldHaveComment(text, filePath) {
         return;
     }
 
-    const AST = esprima.parse(text);
+    const AST = acorn.parse(text, {
+        ecmaVersion: 2020
+    });
     // 変数を含まないリテラルのみであるならパスする
     if (!isIncludeVariableInExpression(AST)) {
         return;

@@ -1,13 +1,5 @@
 {
   "presets": [
     "@babel/preset-env"
-  ],
-  "env": {
-    "development": {
-      "presets": [
-        "jsdoc-to-assert",
-        "power-assert"
-      ]
-    }
-  }
+  ]
 }
