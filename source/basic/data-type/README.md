@@ -27,6 +27,7 @@ JavaScriptでは、文字列も一度作成したら変更できないイミュ�
 - プリミティブ型（基本型）
     - 真偽値（Boolean）: `true`または`false`のデータ型
     - 数値（Number）: `42` や `3.14159` などの数値のデータ型
+    - 整数（BitInt）: `9007199254740992n`などの任意精度の整数のデータ型
     - 文字列（String）: `"JavaScript"` などの文字列のデータ型
     - undefined: 値が未定義であることを意味するデータ型
     - null: 値が存在しないことを意味するデータ型
@@ -43,6 +44,7 @@ JavaScriptでは、文字列も一度作成したら変更できないイミュ�
 ```js
 console.log(typeof true);// => "boolean"
 console.log(typeof 42); // => "number"
+console.log(typeof 9007199254740992n); // => "bigint"
 console.log(typeof "JavaScript"); // => "string"
 console.log(typeof Symbol("シンボル"));// => "symbol"
 console.log(typeof undefined); // => "undefined"
@@ -107,7 +109,7 @@ false; // => false
 
 ### 数値（Number）{#number}
 
-数値は大きく分けて`42`のような整数リテラルと`3.14159`のような浮動小数点数リテラルがあります。
+数値リテラルとして`42`のような整数リテラルと`3.14159`のような浮動小数点数リテラルがあります。
 
 #### 整数リテラル {#integer-literal}
 
@@ -189,7 +191,8 @@ console.log(0x30A2); // => 12450
 
 #### 浮動小数点数リテラル {#floating-point-number-literal}
 
-JavaScriptの浮動小数点数は[IEEE 754][]を採用しています。
+JavaScriptの浮動小数点数は[IEEE 754][]の倍精度を採用しています。
+そのため、浮動小数点リテラルで扱える数値の範囲は53bit表せる`0`から`2^53-1`となります。
 浮動小数点数をリテラルとして書く場合には、次の2種類の表記が利用できます。
 
 - `3.14159` のような `.`（ドット）を含んだ数値
@@ -214,6 +217,39 @@ JavaScriptの浮動小数点数は[IEEE 754][]を採用しています。
 ```js
 2e8; // => 200000000
 ```
+
+### [ES2020] BigInt {#Bigint-literal}
+
+`1`や`3.14159`などの数値リテラルでは、53bit表せる`0`から`2^53-1`の範囲の数値しか正しく表現できません。
+この数値リテラルで安全に表せる最大の数は`Number.MAX_SAFE_INTEGER`として定義されています。
+
+```js
+console.log(Number.MAX_SAFE_INTEGER); // => 9007199254740991
+```
+
+`2^53-1`（`9007199254740991`）よりも大きな値を数値リテラルで表現したり計算すると間違った結果となる場合があります。
+
+この問題を解決するために、ES2020では`BigInt`という新しい整数型のデータ型とリテラルが追加されました。
+数値リテラルでは倍精度だったのに対して、BigIntでは任意の精度の整数を扱えます。
+そのため、`2^53-1`（`9007199254740991`）よりも大きな整数を正しく表現できます。
+
+BitIntリテラルは、数値の後ろに`n`をつけます。
+
+{{book.console}}
+```
+console.log(1n); // => 1n
+console.log(9007199254740992n); // => 9007199254740992n
+```
+
+BigIntは整数を扱うデータ型であるため、次のように少数点を含めた場合は構文エラーとなります。
+
+<!-- textlint-disable -->
+<!-- doctest:SyntaxError -->
+```js
+1.2n; // => SyntaxError
+```
+
+<!-- textlint-enable -->
 
 ### 文字列（String）{#string}
 
