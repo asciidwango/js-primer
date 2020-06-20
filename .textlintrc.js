@@ -65,6 +65,7 @@ module.exports = {
             "max-kanji-continuous-len": {
                 "max": 6,
                 "allow": [
+                    "倍精度浮動小数",
                     "浮動小数点数",
                     "排他的論理和",
                     "文字列演算子",
