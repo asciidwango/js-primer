@@ -1521,7 +1521,7 @@ fetchAB().then((results) => {
 });
 ```
 
-Promiseチェーンで`fetchAB`関数書いた場合は、コールバックの中で処理するためややこしい見た目になりがちです。
+Promiseチェーンで`fetchAB`関数を書いた場合は、コールバックの中で処理するためややこしい見た目になりがちです。
 <!-- textlint-disable -->
 一方、Async Functionと`await`式で書いた場合は、取得と追加を順番に行うだけとなり、ネストがなく、見た目はシンプルです。
 <!-- textlint-enable -->
