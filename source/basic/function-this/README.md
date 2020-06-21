@@ -36,8 +36,8 @@ description: "JavaScriptにおける`this`というキーワードの動作を�
 ### スクリプトにおける`this` {#script-this}
 
 実行コンテキストが"Script"である場合、トップレベルのスコープに書かれた`this`はグローバルオブジェクトを参照します。
-グローバルオブジェクトには、実行環境ごとに異なるものが定義されています。
-ブラウザなら`window`オブジェクト、Node.jsなら`global`オブジェクトとなります。
+グローバルオブジェクトは、実行環境ごとに異なるものが定義されています。
+ブラウザのグローバルオブジェクトは`window`オブジェクト、Node.jsのグローバルオブジェクトは`global`オブジェクトとなります。
 
 ブラウザでは、`script`要素の`type`属性を指定していない場合は、実行コンテキストが"Script"として実行されます。
 この`script`要素の直下に書いた`this`はグローバルオブジェクトである`window`オブジェクトとなります。
@@ -64,7 +64,21 @@ console.log(this); // => undefined
 ```
 
 このように、トップレベルのスコープの`this`は実行コンテキストによって`undefined`となる場合があります。
-単純にグローバルオブジェクトを参照したい場合は、`this`ではなく`window`などのグローバルオブジェクトを直接参照したほうがよいです。
+
+単純にグローバルオブジェクトを参照したい場合は、`this`ではなく`globalThis`を使います。
+`globalThis`は実行環境のグローバルオブジェクトを参照するためにES2020で導入されました。
+
+実行環境のグローバルオブジェクトは、ブラウザでは`window`、Node.jsでは`global`のように名前が異なります。
+そのため同じコードで、異なるグローバルオブジェクトを参照するには、コード上で分岐する必要がありました。
+ES2020ではこの問題を解決するために、実行環境のグローバルオブジェクトを参照する`globalThis`が導入されました。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": 2020 } -->
+```js
+// ブラウザでは`window`オブジェクト、Node.jsでは`global`オブジェクトを参照する
+console.log(globalThis);
+```
+
 
 ## 関数とメソッドにおける`this` {#function-and-method-this}
 
@@ -891,11 +905,11 @@ console.log(obj.method.call("THAT")); // => "THAT"
 
 | 実行コンテキスト | strict mode | コード                                               | `this`の評価結果 |
 | ---------------- | ----------- | ---------------------------------------------------- | ---------------- |
-| Script           | ＊          | `this`                                               | global           |
-| Script           | ＊          | `const fn = () => this`                              | global           |
-| Script           | NO          | `const fn = function(){ return this; }`              | global           |
+| Script           | ＊          | `this`                                               | globalThis           |
+| Script           | ＊          | `const fn = () => this`                              | globalThis           |
+| Script           | NO          | `const fn = function(){ return this; }`              | globalThis           |
 | Script           | YES         | `const fn = function(){ return this; }`              | undefined        |
-| Script           | ＊          | `const obj = { method: () => { return this; } }`     | global           |
+| Script           | ＊          | `const obj = { method: () => { return this; } }`     | globalThis           |
 | Module           | YES         | `this`                                               | undefined        |
 | Module           | YES         | `const fn = () => this`                              | undefined        |
 | Module           | YES         | `const fn = function(){ return this; }`              | undefined        |
