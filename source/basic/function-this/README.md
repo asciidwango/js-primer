@@ -52,6 +52,8 @@ console.log(this); // => window
 また、ES2020では実行環境によってグローバルオブジェクトの名前が異なる問題を解決するために、
 `globalThis`という名前でそれぞれの実行環境のグローバルオブジェクトを参照できます。
 
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": 2020 } -->
 ```js
 console.log(globalThis); // ブラウザでは`window`オブジェクト、Node.jsでは`global`オブジェクト
 ```
