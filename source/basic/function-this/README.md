@@ -49,15 +49,6 @@ console.log(this); // => window
 </script>
 ```
 
-また、ES2020では実行環境によってグローバルオブジェクトの名前が異なる問題を解決するために、
-`globalThis`という名前でそれぞれの実行環境のグローバルオブジェクトを参照できます。
-
-{{book.console}}
-<!-- doctest:meta:{ "ECMAScript": 2020 } -->
-```js
-console.log(globalThis); // ブラウザでは`window`オブジェクト、Node.jsでは`global`オブジェクト
-```
-
 ### モジュールにおける`this` {#module-this}
 
 実行コンテキストが"Module"である場合、そのトップレベルのスコープに書かれた`this`は常に`undefined`となります。
@@ -73,7 +64,21 @@ console.log(this); // => undefined
 ```
 
 このように、トップレベルのスコープの`this`は実行コンテキストによって`undefined`となる場合があります。
-単純にグローバルオブジェクトを参照したい場合は、`this`ではなく`globalThis`でグローバルオブジェクトを直接参照したほうがよいです。
+
+単純にグローバルオブジェクトを参照したい場合は、`this`ではなく`globalThis`を使います。
+`globalThis`は実行環境のグローバルオブジェクトを参照するためにES2020で導入されました。
+
+実行環境のグローバルオブジェクトは、ブラウザでは`window`、Node.jsでは`global`のように異なります。
+そのため、`globalThis`を使えない場合はグローバルオブジェクトを参照するためにコード上で分岐する必要がありました。
+ES2020ではこの問題を解決するためにグローバルオブジェクトを参照するための`globalThis`が導入されました。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": 2020 } -->
+```js
+// ブラウザでは`window`オブジェクト、Node.jsでは`global`オブジェクトを参照する
+console.log(globalThis);
+```
+
 
 ## 関数とメソッドにおける`this` {#function-and-method-this}
 
