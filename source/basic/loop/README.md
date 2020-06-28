@@ -317,7 +317,7 @@ const filteredArray = array.filter((currentValue, index, array) => {
 
 ## for...in文 {#for-in-statement}
 
-for...in文はオブジェクトのプロパティに対して、順不同で反復処理を行います。
+for...in文はオブジェクトのプロパティに対して、反復処理を行います。[^1]
 
 <!-- doctest:disable -->
 ```js
@@ -444,3 +444,4 @@ for文などの構文ではcontinue文やbreak文が利用できますが、配�
 [配列]: ../array/README.md
 [関数とスコープ]: .../function-scope/README.md
 [ブロックスコープ]: .../function-scope/README.md#block-scope
+[^1]: `for...in`文がプロパティを列挙する順番はES2019までは実装依存でしたが、ES2020で決められました。
