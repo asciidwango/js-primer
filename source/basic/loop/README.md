@@ -444,4 +444,4 @@ for文などの構文ではcontinue文やbreak文が利用できますが、配�
 [配列]: ../array/README.md
 [関数とスコープ]: .../function-scope/README.md
 [ブロックスコープ]: .../function-scope/README.md#block-scope
-[^1]: `for...in`文がプロパティを列挙する順番はES2019までは実装依存でしたが、ES2020で決められました。
+[^1]: `for...in`文がプロパティを列挙する順番はES2019までは実装依存でしたが、ES2020で列挙する順番が決められました。
