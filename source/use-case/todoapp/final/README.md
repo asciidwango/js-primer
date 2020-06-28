@@ -88,10 +88,10 @@ Todoリストの表示は次の2つの部品（Viewコンポーネント）か�
 
 | イベントの流れ    | リスナー関数                                           | 役割                                    |
 | ----------------- | -------------------------------------------------- | --------------------------------------- |
-| `Model` -> `View` | `this.todoListModel.onChange(listener)`            | `TodoListModel`が変更イベントを受け取る |
-| `View` -> `Model` | `formElement.addEventListener("submit", listener)` | フォームの送信イベントを受け取る        |
-| `View` -> `Model` | `onUpdateTodo: listener`                           | Todoアイテムのチェックボックスの更新イベントを受け取る    |
-| `View` -> `Model` | `onDeleteTodo: listener`                            | Todoアイテムの削除イベントを受け取る    |
+| `Model` → `View` | `this.todoListModel.onChange(listener)`            | `TodoListModel`が変更イベントを受け取る |
+| `View` → `Model` | `formElement.addEventListener("submit", listener)` | フォームの送信イベントを受け取る        |
+| `View` → `Model` | `onUpdateTodo: listener`                           | Todoアイテムのチェックボックスの更新イベントを受け取る    |
+| `View` → `Model` | `onDeleteTodo: listener`                            | Todoアイテムの削除イベントを受け取る    |
 
 イベントの流れがViewからModelとなっているリスナー関数が3箇所あり、それぞれリスナー関数はコード上バラバラな位置に書かれています。
 また、それぞれのリスナー関数はTodoアプリの機能と対応していることがわかります。
