@@ -152,7 +152,7 @@ console.log(obj.hasOwnProperty === Object.prototype.hasOwnProperty); // => true
 同じように、配列（`Array`）のインスタンスは`Array.prototype`を継承します。
 さらに、`Array.prototype`は`Object.prototype`を継承しているため、`Array`のインスタンスは`Object.prototype`も継承しています。
 
-> `Array`のインスタンス -> `Array.prototype` -> `Object.prototype`
+> `Array`のインスタンス → `Array.prototype` → `Object.prototype`
 
 `Object.create`メソッドを使って`Array`と`Object`の関係をコードとして表現してみます。
 この疑似コードは、`Array`コンストラクタの実装など、実際のものとは異なる部分があるため、あくまでイメージであることに注意してください。

@@ -801,7 +801,7 @@ asyncTask()
 Promiseの状態が**Rejected**となった場合は、もっとも近い失敗時の処理（`catch`または`then`の第二引数）が呼び出されます。
 このとき間にある成功時の処理（`then`の第一引数）はスキップされます。
 
-次のコードでは、**Rejected**のPromiseに対して`then` -> `then` -> `catch`とPromiseチェーンで処理を記述しています。
+次のコードでは、**Rejected**のPromiseに対して`then` → `then` → `catch`とPromiseチェーンで処理を記述しています。
 このときもっとも近い失敗時の処理（`catch`）が呼び出されますが、間にある2つの成功時の処理（`then`）は実行されません。
 
 {{book.console}}
