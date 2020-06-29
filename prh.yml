@@ -605,6 +605,8 @@ rules:
       - from: "(ほげ)ほげ)"
         to:   "（ほげ）ほげ)"
     prh: 半角カッコの代わりに全角カッコを使うこと。文字のバランスが崩れるためです
+  - expected: →
+    pattern: /->/
   # 開き
   - expected: さまざま
     pattern:  様々
