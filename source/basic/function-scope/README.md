@@ -833,7 +833,7 @@ console.log(myCounter()); // => 2
 
 <!-- 参照の方向の図 -->
 
-> `myCounter` -> `increment` -> `count`
+> `myCounter` → `increment` → `count`
 
 `count`変数を参照するものがいるため、`count`変数は自動的に解放されません。
 そのため`count`変数の値は保持され続け、`myCounter`変数を実行するたびに1ずつ大きくなっていきます。
