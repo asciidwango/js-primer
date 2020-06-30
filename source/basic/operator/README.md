@@ -986,6 +986,6 @@ console.log(c); // => 3
 - 四則演算から論理演算などさまざまな種類の演算子がある
 - 演算子には優先順位が定義されており、グループ化演算子で明示できる
 
-[暗黙的な型変換]: ../implicit-coercion/README "暗黙的な型変換について解説する章"
+[暗黙的な型変換]: ../implicit-coercion/README.md "暗黙的な型変換について解説する章"
 [演算子の優先順位]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table "演算子の優先順位 - JavaScript | MDN"
 [^1]: カンマ演算子を活用したテクニックとしてindirect callというものがあります。<https://2ality.com/2014/01/eval.html>
