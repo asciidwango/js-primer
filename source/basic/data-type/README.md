@@ -272,10 +272,14 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は同�
 
 #### [ES2015] テンプレートリテラル {#template-literal}
 
-テンプレートリテラルは `` ` ``（バッククォート）で囲んだ範囲を文字列とするリテラルです。
+<!-- textlint-disable ja-technical-writing/sentence-length -->
+
+テンプレートリテラルは、<code>`</code>（バッククォート）で囲んだ範囲を文字列とするリテラルです。
 テンプレートリテラルでは、複数行の文字列を改行記号のエスケープシーケンス（`\n`）を使わずにそのまま書くことができます。
 
-複数行の文字列も`` ` ``で囲めば、そのまま書くことができます。
+<!-- textlint-enable ja-technical-writing/sentence-length -->
+
+複数行の文字列も<code>`</code>で囲めば、そのまま書くことができます。
 
 {{book.console}}
 ```js
