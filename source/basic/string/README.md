@@ -32,8 +32,12 @@ console.log(single); // => '文字列'
 console.log(double === single);// => true
 ```
 
+<!-- textlint-disable ja-technical-writing/sentence-length -->
+
 ES2015では、テンプレートリテラル <code>`</code>（バッククォート）が追加されました。
 <code>`</code>（バッククォート）を利用することで文字列を作成できる点は、他の文字列リテラルと同じです。
+
+<!-- textlint-enable ja-technical-writing/sentence-length -->
 
 これに加えてテンプレートリテラルでは、文字列中に改行を入力できます。
 次のコードでは、テンプレートリテラルを使って複数行の文字列を見た目どおりに定義しています。
