@@ -7,7 +7,7 @@
         <title>条件分岐 · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptで条件分岐を扱うためのif文やswitch文を紹介します。またネストした条件分岐が読みやすさを妨げる問題をどのように解決するについてを紹介します。">
-        <meta name="generator" content="HonKit 3.4.0">
+        <meta name="generator" content="HonKit 3.5.1">
         
         
         
@@ -1403,41 +1403,55 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="conditional-branch"><a name="conditional-branch" class="plugin-anchor" href="#conditional-branch"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6761;&#x4EF6;&#x5206;&#x5C90;</h1><p>&#x3053;&#x306E;&#x7AE0;&#x3067;&#x306F;if&#x6587;&#x3084;switch&#x6587;&#x3092;&#x4F7F;&#x3063;&#x305F;&#x6761;&#x4EF6;&#x5206;&#x5C90;&#x306B;&#x3064;&#x3044;&#x3066;&#x5B66;&#x3093;&#x3067;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x6761;&#x4EF6;&#x5206;&#x5C90;&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;&#x3001;&#x7279;&#x5B9A;&#x306E;&#x6761;&#x4EF6;&#x3092;&#x6E80;&#x305F;&#x3059;&#x304B;&#x3069;&#x3046;&#x304B;&#x3067;&#x884C;&#x3046;&#x51E6;&#x7406;&#x3092;&#x5909;&#x66F4;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p><h2 id="if-statement"><a name="if-statement" class="plugin-anchor" href="#if-statement"><i class="fa fa-link" aria-hidden="true"></i></a>if&#x6587;</h2><p>if&#x6587;&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;&#x3001;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x5185;&#x306B;&#x6761;&#x4EF6;&#x5206;&#x5C90;&#x3092;&#x66F8;&#x3051;&#x307E;&#x3059;&#x3002;</p><p>if&#x6587;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x69CB;&#x6587;&#x304C;&#x57FA;&#x672C;&#x5F62;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-<code>&#x6761;&#x4EF6;&#x5F0F;</code>&#x306E;&#x8A55;&#x4FA1;&#x7D50;&#x679C;&#x304C;<code>true</code>&#x3067;&#x3042;&#x308B;&#x306A;&#x3089;&#x3070;&#x3001;<code>&#x5B9F;&#x884C;&#x3059;&#x308B;&#x6587;</code>&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p><!-- doctest:ReferenceError -->
-
-
+                                <h1 id="conditional-branch"><a name="conditional-branch" class="plugin-anchor" href="#conditional-branch"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6761;&#x4EF6;&#x5206;&#x5C90; </h1>
+<p>&#x3053;&#x306E;&#x7AE0;&#x3067;&#x306F;if&#x6587;&#x3084;switch&#x6587;&#x3092;&#x4F7F;&#x3063;&#x305F;&#x6761;&#x4EF6;&#x5206;&#x5C90;&#x306B;&#x3064;&#x3044;&#x3066;&#x5B66;&#x3093;&#x3067;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;
+&#x6761;&#x4EF6;&#x5206;&#x5C90;&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;&#x3001;&#x7279;&#x5B9A;&#x306E;&#x6761;&#x4EF6;&#x3092;&#x6E80;&#x305F;&#x3059;&#x304B;&#x3069;&#x3046;&#x304B;&#x3067;&#x884C;&#x3046;&#x51E6;&#x7406;&#x3092;&#x5909;&#x66F4;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="if-statement"><a name="if-statement" class="plugin-anchor" href="#if-statement"><i class="fa fa-link" aria-hidden="true"></i></a>if&#x6587; </h2>
+<p>if&#x6587;&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;&#x3001;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x5185;&#x306B;&#x6761;&#x4EF6;&#x5206;&#x5C90;&#x3092;&#x66F8;&#x3051;&#x307E;&#x3059;&#x3002;</p>
+<p>if&#x6587;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x69CB;&#x6587;&#x304C;&#x57FA;&#x672C;&#x5F62;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
+<code>&#x6761;&#x4EF6;&#x5F0F;</code>&#x306E;&#x8A55;&#x4FA1;&#x7D50;&#x679C;&#x304C;<code>true</code>&#x3067;&#x3042;&#x308B;&#x306A;&#x3089;&#x3070;&#x3001;<code>&#x5B9F;&#x884C;&#x3059;&#x308B;&#x6587;</code>&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<!-- doctest:ReferenceError -->
 <pre><code class="lang-js"><span class="hljs-keyword">if</span> (&#x6761;&#x4EF6;&#x5F0F;) {
     &#x5B9F;&#x884C;&#x3059;&#x308B;&#x6587;;
-}</code></pre>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;<code>&#x6761;&#x4EF6;&#x5F0F;</code>&#x304C;<code>true</code>&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x3001;if&#x306E;&#x4E2D;&#x8EAB;&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-js"><span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) {
+}
+</code></pre>
+<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;<code>&#x6761;&#x4EF6;&#x5F0F;</code>&#x304C;<code>true</code>&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x3001;if&#x306E;&#x4E2D;&#x8EAB;&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;&#x3053;&#x306E;&#x884C;&#x306F;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&quot;</span>);
-}</code></pre>
+}
+</code></pre>
 <p><code>&#x5B9F;&#x884C;&#x3059;&#x308B;&#x6587;</code>&#x304C;1&#x884C;&#x306E;&#x307F;&#x306E;&#x5834;&#x5408;&#x306F;&#x3001;<code>{</code> &#x3068; <code>}</code> &#x306E;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x3092;&#x7701;&#x7565;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x3057;&#x304B;&#x3057;&#x3001;&#x3069;&#x3053;&#x307E;&#x3067;&#x304C;if&#x6587;&#x304B;&#x304C;&#x308F;&#x304B;&#x308A;&#x306B;&#x304F;&#x304F;&#x306A;&#x308B;&#x305F;&#x3081;&#x3001;&#x5E38;&#x306B;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x3067;&#x56F2;&#x3080;&#x3053;&#x3068;&#x3092;&#x63A8;&#x5968;&#x3057;&#x307E;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-js"><span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>)
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;&#x3053;&#x306E;&#x884C;&#x306F;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&quot;</span>);</code></pre>
+&#x3057;&#x304B;&#x3057;&#x3001;&#x3069;&#x3053;&#x307E;&#x3067;&#x304C;if&#x6587;&#x304B;&#x304C;&#x308F;&#x304B;&#x308A;&#x306B;&#x304F;&#x304F;&#x306A;&#x308B;&#x305F;&#x3081;&#x3001;&#x5E38;&#x306B;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x3067;&#x56F2;&#x3080;&#x3053;&#x3068;&#x3092;&#x63A8;&#x5968;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>)
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;&#x3053;&#x306E;&#x884C;&#x306F;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&quot;</span>);
+</code></pre>
 <p>if&#x6587;&#x306F;<code>&#x6761;&#x4EF6;&#x5F0F;</code>&#x306B;&#x6BD4;&#x8F03;&#x6F14;&#x7B97;&#x5B50;&#x306A;&#x3069;&#x3092;&#x4F7F;&#x3044;&#x3001;&#x305D;&#x306E;&#x6BD4;&#x8F03;&#x7D50;&#x679C;&#x306B;&#x3088;&#x3063;&#x3066;&#x51E6;&#x7406;&#x3092;&#x5206;&#x5C90;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x3088;&#x304F;&#x4F7F;&#x308F;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;<code>x</code>&#x304C;<code>10</code>&#x3088;&#x308A;&#x3082;&#x5927;&#x304D;&#x306A;&#x5024;&#x3067;&#x3042;&#x308B;&#x5834;&#x5408;&#x306B;&#x3001;if&#x6587;&#x306E;&#x4E2D;&#x8EAB;&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-js"><span class="hljs-keyword">const</span> x = <span class="hljs-number">42</span>;
+&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;<code>x</code>&#x304C;<code>10</code>&#x3088;&#x308A;&#x3082;&#x5927;&#x304D;&#x306A;&#x5024;&#x3067;&#x3042;&#x308B;&#x5834;&#x5408;&#x306B;&#x3001;if&#x6587;&#x306E;&#x4E2D;&#x8EAB;&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> x = <span class="hljs-number">42</span>;
 <span class="hljs-keyword">if</span> (x &gt; <span class="hljs-number">10</span>) {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;x&#x306F;10&#x3088;&#x308A;&#x5927;&#x304D;&#x306A;&#x5024;&#x3067;&#x3059;&quot;</span>);
-}</code></pre>
+}
+</code></pre>
 <p>if&#x6587;&#x306E;<code>&#x6761;&#x4EF6;&#x5F0F;</code>&#x306B;&#x306F;<code>true</code>&#x307E;&#x305F;&#x306F;<code>false</code>&#x3068;&#x3044;&#x3063;&#x305F;&#x771F;&#x507D;&#x5024;&#x4EE5;&#x5916;&#x306E;&#x5024;&#x3082;&#x6307;&#x5B9A;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x771F;&#x507D;&#x5024;&#x4EE5;&#x5916;&#x306E;&#x5024;&#x306E;&#x5834;&#x5408;&#x3001;&#x305D;&#x306E;&#x5024;&#x3092;&#x6697;&#x9ED9;&#x7684;&#x306B;&#x771F;&#x507D;&#x5024;&#x3078;&#x5909;&#x63DB;&#x3057;&#x3066;&#x304B;&#x3089;&#x3001;&#x6761;&#x4EF6;&#x5F0F;&#x3068;&#x3057;&#x3066;&#x5224;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002;</p><p>&#x771F;&#x507D;&#x5024;&#x3078;&#x5909;&#x63DB;&#x3059;&#x308B;&#x3068;<code>true</code>&#x3068;&#x306A;&#x308B;&#x5024;&#x306E;&#x7A2E;&#x985E;&#x306F;&#x591A;&#x3044;&#x305F;&#x3081;&#x3001;&#x9006;&#x306B;&#x5909;&#x63DB;&#x3057;&#x305F;&#x7D50;&#x679C;&#x304C;<code>false</code>&#x3068;&#x306A;&#x308B;&#x5024;&#x3092;&#x899A;&#x3048;&#x308B;&#x306E;&#x304C;&#x7C21;&#x5358;&#x3067;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x5024;&#x306F;&#x771F;&#x507D;&#x5024;&#x3078;&#x3068;&#x5909;&#x63DB;&#x3059;&#x308B;&#x3068;<code>false</code>&#x3068;&#x306A;&#x308B;&#x305F;&#x3081;&#x3001;&#x3053;&#x308C;&#x3089;&#x306E;&#x5024;&#x306F;<strong>falsy</strong>&#x3068;&#x547C;&#x3070;&#x308C;&#x307E;&#x3059;&#xFF08;&#x300C;<a href="../implicit-coercion/">&#x6697;&#x9ED9;&#x7684;&#x306A;&#x578B;&#x5909;&#x63DB;</a>&#x300D;&#x306E;&#x7AE0;&#x3092;&#x53C2;&#x7167;&#xFF09;&#x3002;</p><ul><li><code>false</code>
-</li>
-<li><code>undefined</code>
-</li>
-<li><code>null</code>
-</li>
-<li><code>0</code>
-</li>
-<li><code>NaN</code>
-</li>
-<li><code>&quot;&quot;</code>&#xFF08;&#x7A7A;&#x6587;&#x5B57;&#x5217;&#xFF09;
-</li></ul>
+&#x771F;&#x507D;&#x5024;&#x4EE5;&#x5916;&#x306E;&#x5024;&#x306E;&#x5834;&#x5408;&#x3001;&#x305D;&#x306E;&#x5024;&#x3092;&#x6697;&#x9ED9;&#x7684;&#x306B;&#x771F;&#x507D;&#x5024;&#x3078;&#x5909;&#x63DB;&#x3057;&#x3066;&#x304B;&#x3089;&#x3001;&#x6761;&#x4EF6;&#x5F0F;&#x3068;&#x3057;&#x3066;&#x5224;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x771F;&#x507D;&#x5024;&#x3078;&#x5909;&#x63DB;&#x3059;&#x308B;&#x3068;<code>true</code>&#x3068;&#x306A;&#x308B;&#x5024;&#x306E;&#x7A2E;&#x985E;&#x306F;&#x591A;&#x3044;&#x305F;&#x3081;&#x3001;&#x9006;&#x306B;&#x5909;&#x63DB;&#x3057;&#x305F;&#x7D50;&#x679C;&#x304C;<code>false</code>&#x3068;&#x306A;&#x308B;&#x5024;&#x3092;&#x899A;&#x3048;&#x308B;&#x306E;&#x304C;&#x7C21;&#x5358;&#x3067;&#x3059;&#x3002;
+&#x6B21;&#x306E;&#x5024;&#x306F;&#x771F;&#x507D;&#x5024;&#x3078;&#x3068;&#x5909;&#x63DB;&#x3059;&#x308B;&#x3068;<code>false</code>&#x3068;&#x306A;&#x308B;&#x305F;&#x3081;&#x3001;&#x3053;&#x308C;&#x3089;&#x306E;&#x5024;&#x306F;<strong>falsy</strong>&#x3068;&#x547C;&#x3070;&#x308C;&#x307E;&#x3059;&#xFF08;&#x300C;<a href="../implicit-coercion/">&#x6697;&#x9ED9;&#x7684;&#x306A;&#x578B;&#x5909;&#x63DB;</a>&#x300D;&#x306E;&#x7AE0;&#x3092;&#x53C2;&#x7167;&#xFF09;&#x3002;</p>
+<ul>
+<li><code>false</code></li>
+<li><code>undefined</code></li>
+<li><code>null</code></li>
+<li><code>0</code></li>
+<li><code>NaN</code></li>
+<li><code>&quot;&quot;</code>&#xFF08;&#x7A7A;&#x6587;&#x5B57;&#x5217;&#xFF09;</li>
+</ul>
 <p>&#x3053;&#x308C;&#x4EE5;&#x5916;&#x306E;&#x5024;&#x306F;&#x771F;&#x507D;&#x5024;&#x306B;&#x5909;&#x63DB;&#x3059;&#x308B;&#x3068;<code>true</code>&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;<code>&quot;&#x6587;&#x5B57;&#x5217;&quot;</code>&#x3084;0&#x4EE5;&#x5916;&#x306E;&#x6570;&#x5024;&#x306A;&#x3069;&#x3092;<code>&#x6761;&#x4EF6;&#x5F0F;</code>&#x306B;&#x6307;&#x5B9A;&#x3057;&#x305F;&#x5834;&#x5408;&#x306F;&#x3001;<code>true</code>&#x3078;&#x3068;&#x5909;&#x63DB;&#x3057;&#x3066;&#x304B;&#x3089;&#x6761;&#x4EF6;&#x5F0F;&#x3068;&#x3057;&#x3066;&#x5224;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002;</p><p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x3001;&#x6761;&#x4EF6;&#x5F0F;&#x304C;<code>true</code>&#x3078;&#x3068;&#x5909;&#x63DB;&#x3055;&#x308C;&#x308B;&#x305F;&#x3081;&#x3001;if&#x6587;&#x306E;&#x4E2D;&#x8EAB;&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-js"><span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) {
+&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;<code>&quot;&#x6587;&#x5B57;&#x5217;&quot;</code>&#x3084;0&#x4EE5;&#x5916;&#x306E;&#x6570;&#x5024;&#x306A;&#x3069;&#x3092;<code>&#x6761;&#x4EF6;&#x5F0F;</code>&#x306B;&#x6307;&#x5B9A;&#x3057;&#x305F;&#x5834;&#x5408;&#x306F;&#x3001;<code>true</code>&#x3078;&#x3068;&#x5909;&#x63DB;&#x3057;&#x3066;&#x304B;&#x3089;&#x6761;&#x4EF6;&#x5F0F;&#x3068;&#x3057;&#x3066;&#x5224;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x3001;&#x6761;&#x4EF6;&#x5F0F;&#x304C;<code>true</code>&#x3078;&#x3068;&#x5909;&#x63DB;&#x3055;&#x308C;&#x308B;&#x305F;&#x3081;&#x3001;if&#x6587;&#x306E;&#x4E2D;&#x8EAB;&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;&#x3053;&#x306E;&#x884C;&#x306F;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&quot;</span>); 
 }
 <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;&#x6587;&#x5B57;&#x5217;&quot;</span>) {
@@ -1451,9 +1465,12 @@
 }
 <span class="hljs-keyword">if</span> ({ <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&quot;</span> }) {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;&#x3053;&#x306E;&#x884C;&#x306F;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&quot;</span>);
-}</code></pre>
+}
+</code></pre>
 <p>falsy&#x306A;&#x5024;&#x3092;<code>&#x6761;&#x4EF6;&#x5F0F;</code>&#x306B;&#x6307;&#x5B9A;&#x3057;&#x305F;&#x5834;&#x5408;&#x306F;&#x3001;<code>false</code>&#x3078;&#x3068;&#x5909;&#x63DB;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x3001;&#x6761;&#x4EF6;&#x5F0F;&#x304C;<code>false</code>&#x3078;&#x3068;&#x5909;&#x63DB;&#x3055;&#x308C;&#x308B;&#x305F;&#x3081;&#x3001;if&#x6587;&#x306E;&#x4E2D;&#x8EAB;&#x306F;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x305B;&#x3093;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-js"><span class="hljs-keyword">if</span> (<span class="hljs-literal">false</span>) {
+&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x3001;&#x6761;&#x4EF6;&#x5F0F;&#x304C;<code>false</code>&#x3078;&#x3068;&#x5909;&#x63DB;&#x3055;&#x308C;&#x308B;&#x305F;&#x3081;&#x3001;if&#x6587;&#x306E;&#x4E2D;&#x8EAB;&#x306F;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x305B;&#x3093;&#x3002;</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-keyword">if</span> (<span class="hljs-literal">false</span>) {
     <span class="hljs-comment">// &#x3053;&#x306E;&#x884C;&#x306F;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x305B;&#x3093;</span>
 }
 <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;&quot;</span>) {
@@ -1467,54 +1484,64 @@
 }
 <span class="hljs-keyword">if</span> (<span class="hljs-literal">null</span>) {
     <span class="hljs-comment">// &#x3053;&#x306E;&#x884C;&#x306F;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x305B;&#x3093;</span>
-}</code></pre>
-<h3 id="else-if-statement"><a name="else-if-statement" class="plugin-anchor" href="#else-if-statement"><i class="fa fa-link" aria-hidden="true"></i></a>else if&#x6587;</h3><p>&#x8907;&#x6570;&#x306E;&#x6761;&#x4EF6;&#x5206;&#x5C90;&#x3092;&#x66F8;&#x304F;&#x5834;&#x5408;&#x306F;&#x3001;if&#x6587;&#x306B;&#x7D9A;&#x3051;&#x3066;else if&#x6587;&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;&#x66F8;&#x3051;&#x307E;&#x3059;&#x3002;
-&#x305F;&#x3068;&#x3048;&#x3070;&#x3001;&#x6B21;&#x306E;3&#x3064;&#x306E;&#x6761;&#x4EF6;&#x5206;&#x5C90;&#x3059;&#x308B;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x3092;&#x8003;&#x3048;&#x307E;&#x3059;&#x3002;</p><ul><li><code>version</code> &#x304C; &quot;ES5&quot; &#x306A;&#x3089;&#x3070; &quot;ECMAScript 5&quot; &#x3068;&#x51FA;&#x529B;
-</li>
-<li><code>version</code> &#x304C; &quot;ES6&quot; &#x306A;&#x3089;&#x3070; &quot;ECMAScript 2015&quot; &#x3068;&#x51FA;&#x529B;
-</li>
-<li><code>version</code> &#x304C; &quot;ES7&quot; &#x306A;&#x3089;&#x3070; &quot;ECMAScript 2016&quot; &#x3068;&#x51FA;&#x529B;
-</li></ul>
+}
+</code></pre>
+<h3 id="else-if-statement"><a name="else-if-statement" class="plugin-anchor" href="#else-if-statement"><i class="fa fa-link" aria-hidden="true"></i></a>else if&#x6587; </h3>
+<p>&#x8907;&#x6570;&#x306E;&#x6761;&#x4EF6;&#x5206;&#x5C90;&#x3092;&#x66F8;&#x304F;&#x5834;&#x5408;&#x306F;&#x3001;if&#x6587;&#x306B;&#x7D9A;&#x3051;&#x3066;else if&#x6587;&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;&#x66F8;&#x3051;&#x307E;&#x3059;&#x3002;
+&#x305F;&#x3068;&#x3048;&#x3070;&#x3001;&#x6B21;&#x306E;3&#x3064;&#x306E;&#x6761;&#x4EF6;&#x5206;&#x5C90;&#x3059;&#x308B;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x3092;&#x8003;&#x3048;&#x307E;&#x3059;&#x3002;</p>
+<ul>
+<li><code>version</code> &#x304C; &quot;ES5&quot; &#x306A;&#x3089;&#x3070; &quot;ECMAScript 5&quot; &#x3068;&#x51FA;&#x529B;</li>
+<li><code>version</code> &#x304C; &quot;ES6&quot; &#x306A;&#x3089;&#x3070; &quot;ECMAScript 2015&quot; &#x3068;&#x51FA;&#x529B;</li>
+<li><code>version</code> &#x304C; &quot;ES7&quot; &#x306A;&#x3089;&#x3070; &quot;ECMAScript 2016&quot; &#x3068;&#x51FA;&#x529B;</li>
+</ul>
 <p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;if&#x6587;&#x3068;else if&#x6587;&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;3&#x3064;&#x306E;&#x6761;&#x4EF6;&#x3092;&#x66F8;&#x3044;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x5909;&#x6570;<code>version</code>&#x306E;&#x5024;&#x304C;<code>&quot;ES6&quot;</code>&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x3001;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x306B;&#x306F;<code>&quot;ECMAScript 2015&quot;</code>&#x304C;&#x51FA;&#x529B;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-javascript"><span class="hljs-keyword">const</span> version = <span class="hljs-string">&quot;ES6&quot;</span>;
+&#x5909;&#x6570;<code>version</code>&#x306E;&#x5024;&#x304C;<code>&quot;ES6&quot;</code>&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x3001;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x306B;&#x306F;<code>&quot;ECMAScript 2015&quot;</code>&#x304C;&#x51FA;&#x529B;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> version = <span class="hljs-string">&quot;ES6&quot;</span>;
 <span class="hljs-keyword">if</span> (version === <span class="hljs-string">&quot;ES5&quot;</span>) {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;ECMAScript 5&quot;</span>);
 } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (version === <span class="hljs-string">&quot;ES6&quot;</span>) {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;ECMAScript 2015&quot;</span>);
 } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (version === <span class="hljs-string">&quot;ES7&quot;</span>) {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;ECMAScript 2016&quot;</span>);
-}</code></pre>
-<h3 id="else-statement"><a name="else-statement" class="plugin-anchor" href="#else-statement"><i class="fa fa-link" aria-hidden="true"></i></a>else&#x6587;</h3><p>if&#x6587;&#x3068;else if&#x6587;&#x3067;&#x306F;&#x3001;&#x6761;&#x4EF6;&#x306B;&#x4E00;&#x81F4;&#x3057;&#x305F;&#x5834;&#x5408;&#x306E;&#x51E6;&#x7406;&#x3092;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x5185;&#x306B;&#x66F8;&#x3044;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;
-&#x4E00;&#x65B9;&#x3067;&#x6761;&#x4EF6;&#x306B;&#x4E00;&#x81F4;&#x3057;&#x306A;&#x304B;&#x3063;&#x305F;&#x5834;&#x5408;&#x306E;&#x51E6;&#x7406;&#x306F;&#x3001;else&#x6587;&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;&#x66F8;&#x3051;&#x307E;&#x3059;&#x3002;</p><p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;&#x5909;&#x6570;<code>num</code>&#x306E;&#x6570;&#x5024;&#x304C;10&#x3088;&#x308A;&#x5927;&#x304D;&#x3044;&#x304B;&#x3092;&#x5224;&#x5B9A;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-<code>num</code>&#x306E;&#x5024;&#x306F;10&#x4EE5;&#x4E0B;&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x3001;else&#x6587;&#x3067;&#x66F8;&#x3044;&#x305F;&#x51E6;&#x7406;&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-js"><span class="hljs-keyword">const</span> num = <span class="hljs-number">1</span>;
+}
+</code></pre>
+<h3 id="else-statement"><a name="else-statement" class="plugin-anchor" href="#else-statement"><i class="fa fa-link" aria-hidden="true"></i></a>else&#x6587; </h3>
+<p>if&#x6587;&#x3068;else if&#x6587;&#x3067;&#x306F;&#x3001;&#x6761;&#x4EF6;&#x306B;&#x4E00;&#x81F4;&#x3057;&#x305F;&#x5834;&#x5408;&#x306E;&#x51E6;&#x7406;&#x3092;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x5185;&#x306B;&#x66F8;&#x3044;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;
+&#x4E00;&#x65B9;&#x3067;&#x6761;&#x4EF6;&#x306B;&#x4E00;&#x81F4;&#x3057;&#x306A;&#x304B;&#x3063;&#x305F;&#x5834;&#x5408;&#x306E;&#x51E6;&#x7406;&#x306F;&#x3001;else&#x6587;&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;&#x66F8;&#x3051;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;&#x5909;&#x6570;<code>num</code>&#x306E;&#x6570;&#x5024;&#x304C;10&#x3088;&#x308A;&#x5927;&#x304D;&#x3044;&#x304B;&#x3092;&#x5224;&#x5B9A;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
+<code>num</code>&#x306E;&#x5024;&#x306F;10&#x4EE5;&#x4E0B;&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x3001;else&#x6587;&#x3067;&#x66F8;&#x3044;&#x305F;&#x51E6;&#x7406;&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> num = <span class="hljs-number">1</span>;
 <span class="hljs-keyword">if</span> (num &gt; <span class="hljs-number">10</span>) {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`num&#x306F;10&#x3088;&#x308A;&#x5927;&#x304D;&#x3044;&#x3067;&#x3059;: <span class="hljs-subst">${num}</span>`</span>);
 } <span class="hljs-keyword">else</span> {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`num&#x306F;10&#x4EE5;&#x4E0B;&#x3067;&#x3059;: <span class="hljs-subst">${num}</span>`</span>);
-}</code></pre>
-<h4 id="nested-if-statement"><a name="nested-if-statement" class="plugin-anchor" href="#nested-if-statement"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30CD;&#x30B9;&#x30C8;&#x3057;&#x305F;if&#x6587;</h4><p>if&#x6587;&#x3001;else if&#x6587;&#x3001;else&#x6587;&#x306F;&#x30CD;&#x30B9;&#x30C8;&#x3057;&#x3066;&#x66F8;&#x3051;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x8907;&#x6570;&#x306E;&#x6761;&#x4EF6;&#x3092;&#x6E80;&#x305F;&#x3059;&#x304B;&#x3069;&#x3046;&#x304B;&#x3092;if&#x6587;&#x306E;&#x30CD;&#x30B9;&#x30C8;&#x3068;&#x3057;&#x3066;&#x8868;&#x73FE;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p><!-- doctest:disable -->
-
-
+}
+</code></pre>
+<h4 id="nested-if-statement"><a name="nested-if-statement" class="plugin-anchor" href="#nested-if-statement"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30CD;&#x30B9;&#x30C8;&#x3057;&#x305F;if&#x6587; </h4>
+<p>if&#x6587;&#x3001;else if&#x6587;&#x3001;else&#x6587;&#x306F;&#x30CD;&#x30B9;&#x30C8;&#x3057;&#x3066;&#x66F8;&#x3051;&#x307E;&#x3059;&#x3002;
+&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x8907;&#x6570;&#x306E;&#x6761;&#x4EF6;&#x3092;&#x6E80;&#x305F;&#x3059;&#x304B;&#x3069;&#x3046;&#x304B;&#x3092;if&#x6587;&#x306E;&#x30CD;&#x30B9;&#x30C8;&#x3068;&#x3057;&#x3066;&#x8868;&#x73FE;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-keyword">if</span> (&#x6761;&#x4EF6;&#x5F0F;A) {
     <span class="hljs-keyword">if</span> (&#x6761;&#x4EF6;&#x5F0F;B) {
         <span class="hljs-comment">// &#x6761;&#x4EF6;&#x5F0F;A&#x3068;&#x6761;&#x4EF6;&#x5F0F;B&#x304C;true&#x306A;&#x3089;&#x3070;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x308B;&#x6587;</span>
     }
-}</code></pre>
-<p>&#x30CD;&#x30B9;&#x30C8;&#x3057;&#x305F;if&#x6587;&#x306E;&#x4F8B;&#x3068;&#x3057;&#x3066;&#x3001;&#x4ECA;&#x5E74;&#x304C;&#x3046;&#x308B;&#x3046;&#x5E74;&#x304B;&#x3092;&#x5224;&#x5B9A;&#x3057;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p><p>&#x3046;&#x308B;&#x3046;&#x5E74;&#x306E;&#x6761;&#x4EF6;&#x306F;&#x6B21;&#x306E;&#x3068;&#x304A;&#x308A;&#x3067;&#x3059;&#x3002;</p><!-- textlint-disable preset-ja-technical-writing/no-start-duplicated-conjunction -->
-
-
-<ul><li>&#x897F;&#x66A6;&#x3067;&#x793A;&#x3057;&#x305F;&#x5E74;&#x304C;4&#x3067;&#x5272;&#x308A;&#x5207;&#x308C;&#x308B;&#x5E74;&#x306F;&#x3046;&#x308B;&#x3046;&#x5E74;&#x3067;&#x3059;
-</li>
-<li>&#x305F;&#x3060;&#x3057;&#x3001;&#x897F;&#x66A6;&#x3067;&#x793A;&#x3057;&#x305F;&#x5E74;&#x304C;100&#x3067;&#x5272;&#x308A;&#x5207;&#x308C;&#x308B;&#x5E74;&#x306F;&#x3046;&#x308B;&#x3046;&#x5E74;&#x3067;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;
-</li>
-<li>&#x305F;&#x3060;&#x3057;&#x3001;&#x897F;&#x66A6;&#x3067;&#x793A;&#x3057;&#x305F;&#x5E74;&#x304C;400&#x3067;&#x5272;&#x308A;&#x5207;&#x308C;&#x308B;&#x5E74;&#x306F;&#x3046;&#x308B;&#x3046;&#x5E74;&#x3067;&#x3059;
-</li></ul>
+}
+</code></pre>
+<p>&#x30CD;&#x30B9;&#x30C8;&#x3057;&#x305F;if&#x6587;&#x306E;&#x4F8B;&#x3068;&#x3057;&#x3066;&#x3001;&#x4ECA;&#x5E74;&#x304C;&#x3046;&#x308B;&#x3046;&#x5E74;&#x304B;&#x3092;&#x5224;&#x5B9A;&#x3057;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
+<p>&#x3046;&#x308B;&#x3046;&#x5E74;&#x306E;&#x6761;&#x4EF6;&#x306F;&#x6B21;&#x306E;&#x3068;&#x304A;&#x308A;&#x3067;&#x3059;&#x3002;</p>
+<!-- textlint-disable preset-ja-technical-writing/no-start-duplicated-conjunction -->
+<ul>
+<li>&#x897F;&#x66A6;&#x3067;&#x793A;&#x3057;&#x305F;&#x5E74;&#x304C;4&#x3067;&#x5272;&#x308A;&#x5207;&#x308C;&#x308B;&#x5E74;&#x306F;&#x3046;&#x308B;&#x3046;&#x5E74;&#x3067;&#x3059;</li>
+<li>&#x305F;&#x3060;&#x3057;&#x3001;&#x897F;&#x66A6;&#x3067;&#x793A;&#x3057;&#x305F;&#x5E74;&#x304C;100&#x3067;&#x5272;&#x308A;&#x5207;&#x308C;&#x308B;&#x5E74;&#x306F;&#x3046;&#x308B;&#x3046;&#x5E74;&#x3067;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;</li>
+<li>&#x305F;&#x3060;&#x3057;&#x3001;&#x897F;&#x66A6;&#x3067;&#x793A;&#x3057;&#x305F;&#x5E74;&#x304C;400&#x3067;&#x5272;&#x308A;&#x5207;&#x308C;&#x308B;&#x5E74;&#x306F;&#x3046;&#x308B;&#x3046;&#x5E74;&#x3067;&#x3059;</li>
+</ul>
 <!-- textlint-enable preset-ja-technical-writing/no-start-duplicated-conjunction -->
-
-
 <p>&#x897F;&#x66A6;&#x3067;&#x306E;&#x73FE;&#x5728;&#x306E;&#x5E74;&#x306F; <code>new Date().getFullYear();</code> &#x3067;&#x53D6;&#x5F97;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x3046;&#x308B;&#x3046;&#x5E74;&#x306E;&#x6761;&#x4EF6;&#x3092;if&#x6587;&#x3067;&#x8868;&#x73FE;&#x3059;&#x308B;&#x3068;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x66F8;&#x3051;&#x307E;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-javascript"><span class="hljs-keyword">const</span> year = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getFullYear();
+&#x3053;&#x306E;&#x3046;&#x308B;&#x3046;&#x5E74;&#x306E;&#x6761;&#x4EF6;&#x3092;if&#x6587;&#x3067;&#x8868;&#x73FE;&#x3059;&#x308B;&#x3068;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x66F8;&#x3051;&#x307E;&#x3059;&#x3002;</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> year = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getFullYear();
 <span class="hljs-keyword">if</span> (year % <span class="hljs-number">4</span> === <span class="hljs-number">0</span>) { <span class="hljs-comment">// 4&#x3067;&#x5272;&#x308A;&#x5207;&#x308C;&#x308B;</span>
     <span class="hljs-keyword">if</span> (year % <span class="hljs-number">100</span> === <span class="hljs-number">0</span>) { <span class="hljs-comment">// 100&#x3067;&#x5272;&#x308A;&#x5207;&#x308C;&#x308B;</span>
         <span class="hljs-keyword">if</span> (year % <span class="hljs-number">400</span> === <span class="hljs-number">0</span>) { <span class="hljs-comment">// 400&#x3067;&#x5272;&#x308A;&#x5207;&#x308C;&#x308B;</span>
@@ -1527,10 +1554,14 @@
     }
 } <span class="hljs-keyword">else</span> {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${year}</span>&#x5E74;&#x306F;&#x3046;&#x308B;&#x3046;&#x5E74;&#x3067;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;`</span>);
-}</code></pre>
+}
+</code></pre>
 <p>&#x6761;&#x4EF6;&#x3092;&#x4E0A;&#x304B;&#x3089;&#x9806;&#x306B;&#x66F8;&#x304D;&#x4E0B;&#x3057;&#x305F;&#x305F;&#x3081;&#x3001;&#x30CD;&#x30B9;&#x30C8;&#x304C;&#x6DF1;&#x3044;&#x6587;&#x3068;&#x306A;&#x3063;&#x3066;&#x3057;&#x307E;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x4E00;&#x822C;&#x7684;&#x306B;&#x306F;&#x30CD;&#x30B9;&#x30C8;&#x306F;&#x6D45;&#x3044;&#x307B;&#x3046;&#x304C;&#x3001;&#x8AAD;&#x307F;&#x3084;&#x3059;&#x3044;&#x30B3;&#x30FC;&#x30C9;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p><p>&#x6761;&#x4EF6;&#x3092;&#x5C11;&#x3057;&#x8AAD;&#x307F;&#x89E3;&#x304F;&#x3068;&#x3001;400&#x3067;&#x5272;&#x308A;&#x5207;&#x308C;&#x308B;&#x5E74;&#x306F;&#x7121;&#x6761;&#x4EF6;&#x306B;&#x3046;&#x308B;&#x3046;&#x5E74;&#x3067;&#x3042;&#x308B;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x6761;&#x4EF6;&#x3092;&#x4E26;&#x3073;&#x66FF;&#x3048;&#x308B;&#x3053;&#x3068;&#x3067;&#x3001;&#x30CD;&#x30B9;&#x30C8;&#x3059;&#x308B;if&#x6587;&#x306A;&#x3057;&#x306B;&#x66F8;&#x304F;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-javascript"><span class="hljs-keyword">const</span> year = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getFullYear();
+&#x4E00;&#x822C;&#x7684;&#x306B;&#x306F;&#x30CD;&#x30B9;&#x30C8;&#x306F;&#x6D45;&#x3044;&#x307B;&#x3046;&#x304C;&#x3001;&#x8AAD;&#x307F;&#x3084;&#x3059;&#x3044;&#x30B3;&#x30FC;&#x30C9;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x6761;&#x4EF6;&#x3092;&#x5C11;&#x3057;&#x8AAD;&#x307F;&#x89E3;&#x304F;&#x3068;&#x3001;400&#x3067;&#x5272;&#x308A;&#x5207;&#x308C;&#x308B;&#x5E74;&#x306F;&#x7121;&#x6761;&#x4EF6;&#x306B;&#x3046;&#x308B;&#x3046;&#x5E74;&#x3067;&#x3042;&#x308B;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3059;&#x3002;
+&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x6761;&#x4EF6;&#x3092;&#x4E26;&#x3073;&#x66FF;&#x3048;&#x308B;&#x3053;&#x3068;&#x3067;&#x3001;&#x30CD;&#x30B9;&#x30C8;&#x3059;&#x308B;if&#x6587;&#x306A;&#x3057;&#x306B;&#x66F8;&#x304F;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> year = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getFullYear();
 <span class="hljs-keyword">if</span> (year % <span class="hljs-number">400</span> === <span class="hljs-number">0</span>) { <span class="hljs-comment">// 400&#x3067;&#x5272;&#x308A;&#x5207;&#x308C;&#x308B;</span>
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${year}</span>&#x5E74;&#x306F;&#x3046;&#x308B;&#x3046;&#x5E74;&#x3067;&#x3059;`</span>);
 } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (year % <span class="hljs-number">100</span> === <span class="hljs-number">0</span>) { <span class="hljs-comment">// 100&#x3067;&#x5272;&#x308A;&#x5207;&#x308C;&#x308B;</span>
@@ -1541,9 +1572,9 @@
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${year}</span>&#x5E74;&#x306F;&#x3046;&#x308B;&#x3046;&#x5E74;&#x3067;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;`</span>);
 }
 </code></pre>
-<h2 id="switch-statement"><a name="switch-statement" class="plugin-anchor" href="#switch-statement"><i class="fa fa-link" aria-hidden="true"></i></a>switch&#x6587;</h2><p>switch&#x6587;&#x306F;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x69CB;&#x6587;&#x3067;<code>&#x5F0F;</code>&#x306E;&#x8A55;&#x4FA1;&#x7D50;&#x679C;&#x304C;&#x6307;&#x5B9A;&#x3057;&#x305F;&#x5024;&#x3067;&#x3042;&#x308B;&#x5834;&#x5408;&#x306B;&#x884C;&#x3046;&#x51E6;&#x7406;&#x3092;&#x4E26;&#x3079;&#x3066;&#x66F8;&#x304D;&#x307E;&#x3059;&#x3002;</p><!-- doctest:disable -->
-
-
+<h2 id="switch-statement"><a name="switch-statement" class="plugin-anchor" href="#switch-statement"><i class="fa fa-link" aria-hidden="true"></i></a>switch&#x6587; </h2>
+<p>switch&#x6587;&#x306F;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x69CB;&#x6587;&#x3067;<code>&#x5F0F;</code>&#x306E;&#x8A55;&#x4FA1;&#x7D50;&#x679C;&#x304C;&#x6307;&#x5B9A;&#x3057;&#x305F;&#x5024;&#x3067;&#x3042;&#x308B;&#x5834;&#x5408;&#x306B;&#x884C;&#x3046;&#x51E6;&#x7406;&#x3092;&#x4E26;&#x3079;&#x3066;&#x66F8;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-keyword">switch</span> (&#x5F0F;) {
     <span class="hljs-keyword">case</span> &#x30E9;&#x30D9;&#x30EB;<span class="hljs-number">1</span>:
         <span class="hljs-comment">// `&#x5F0F;`&#x306E;&#x8A55;&#x4FA1;&#x7D50;&#x679C;&#x304C;`&#x30E9;&#x30D9;&#x30EB;1`&#x3068;&#x4E00;&#x81F4;&#x3059;&#x308B;&#x5834;&#x5408;&#x306B;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x6587;</span>
@@ -1555,10 +1586,13 @@
         <span class="hljs-comment">// &#x3069;&#x306E;case&#x306B;&#x3082;&#x8A72;&#x5F53;&#x3057;&#x306A;&#x3044;&#x5834;&#x5408;&#x306E;&#x51E6;&#x7406;</span>
         <span class="hljs-keyword">break</span>;
 }
-<span class="hljs-comment">// break; &#x5F8C;&#x306F;&#x3053;&#x3053;&#x304B;&#x3089;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x308B;</span></code></pre>
+<span class="hljs-comment">// break; &#x5F8C;&#x306F;&#x3053;&#x3053;&#x304B;&#x3089;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x308B;</span>
+</code></pre>
 <p>switch&#x6587;&#x306F;if&#x6587;&#x3068;&#x540C;&#x69D8;&#x306B;<code>&#x5F0F;</code>&#x306E;&#x8A55;&#x4FA1;&#x7D50;&#x679C;&#x306B;&#x57FA;&#x3065;&#x304F;&#x6761;&#x4EF6;&#x5206;&#x5C90;&#x3092;&#x6271;&#x3044;&#x307E;&#x3059;&#x3002;
 &#x307E;&#x305F;break&#x6587;&#x306F;&#x3001;switch&#x6587;&#x304B;&#x3089;&#x629C;&#x3051;&#x3066;switch&#x6587;&#x306E;&#x6B21;&#x306E;&#x6587;&#x304B;&#x3089;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E;&#x3082;&#x306E;&#x3067;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;<code>version</code>&#x306E;&#x8A55;&#x4FA1;&#x7D50;&#x679C;&#x306F;<code>&quot;ES6&quot;</code>&#x3068;&#x306A;&#x308B;&#x305F;&#x3081;&#x3001;<code>case &quot;ES6&quot;:</code>&#x306B;&#x7D9A;&#x304F;&#x6587;&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-javascript"><span class="hljs-keyword">const</span> version = <span class="hljs-string">&quot;ES6&quot;</span>;
+&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;<code>version</code>&#x306E;&#x8A55;&#x4FA1;&#x7D50;&#x679C;&#x306F;<code>&quot;ES6&quot;</code>&#x3068;&#x306A;&#x308B;&#x305F;&#x3081;&#x3001;<code>case &quot;ES6&quot;:</code>&#x306B;&#x7D9A;&#x304F;&#x6587;&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> version = <span class="hljs-string">&quot;ES6&quot;</span>;
 <span class="hljs-keyword">switch</span> (version) {
     <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;ES5&quot;</span>:
         <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;ECMAScript 5&quot;</span>);
@@ -1575,7 +1609,9 @@
 }
 <span class="hljs-comment">// &quot;ECMAScript 2015&quot; &#x3068;&#x51FA;&#x529B;&#x3055;&#x308C;&#x308B;</span>
 </code></pre>
-<p>&#x3053;&#x308C;&#x306F;if&#x6587;&#x3067;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x66F8;&#x3044;&#x305F;&#x5834;&#x5408;&#x3068;&#x540C;&#x3058;&#x7D50;&#x679C;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-js"><span class="hljs-keyword">const</span> version = <span class="hljs-string">&quot;ES6&quot;</span>;
+<p>&#x3053;&#x308C;&#x306F;if&#x6587;&#x3067;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x66F8;&#x3044;&#x305F;&#x5834;&#x5408;&#x3068;&#x540C;&#x3058;&#x7D50;&#x679C;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> version = <span class="hljs-string">&quot;ES6&quot;</span>;
 <span class="hljs-keyword">if</span> (version === <span class="hljs-string">&quot;ES5&quot;</span>) {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;ECMAScript 5&quot;</span>);
 } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (version === <span class="hljs-string">&quot;ES6&quot;</span>) {
@@ -1584,19 +1620,19 @@
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;ECMAScript 2016&quot;</span>);
 } <span class="hljs-keyword">else</span> {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;&#x3057;&#x3089;&#x306A;&#x3044;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x3067;&#x3059;&quot;</span>);
-}</code></pre>
+}
+</code></pre>
 <p>switch&#x6587;&#x306F;&#x3084;&#x3084;&#x8907;&#x96D1;&#x306A;&#x4ED5;&#x7D44;&#x307F;&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x3001;&#x3069;&#x306E;&#x3088;&#x3046;&#x306B;&#x51E6;&#x7406;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x304B;&#x3092;&#x898B;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305A; <code>switch (&#x5F0F;)</code> &#x306E;<code>&#x5F0F;</code>&#x3092;&#x8A55;&#x4FA1;&#x3057;&#x307E;&#x3059;&#x3002;</p><!-- doctest:disable -->
-
-
+&#x307E;&#x305A; <code>switch (&#x5F0F;)</code> &#x306E;<code>&#x5F0F;</code>&#x3092;&#x8A55;&#x4FA1;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-keyword">switch</span> (&#x5F0F;) {
     <span class="hljs-comment">// case</span>
-}</code></pre>
+}
+</code></pre>
 <p>&#x6B21;&#x306B;<code>&#x5F0F;</code>&#x306E;&#x8A55;&#x4FA1;&#x7D50;&#x679C;&#x304C;&#x53B3;&#x5BC6;&#x7B49;&#x4FA1;&#x6F14;&#x7B97;&#x5B50;&#xFF08;<code>===</code>&#xFF09;&#x3067;&#x4E00;&#x81F4;&#x3059;&#x308B;&#x30E9;&#x30D9;&#x30EB;&#x3092;&#x63A2;&#x7D22;&#x3057;&#x307E;&#x3059;&#x3002;
 &#x4E00;&#x81F4;&#x3059;&#x308B;&#x30E9;&#x30D9;&#x30EB;&#x304C;&#x5B58;&#x5728;&#x3059;&#x308B;&#x5834;&#x5408;&#x306F;&#x3001;&#x305D;&#x306E;case&#x7BC0;&#x3092;&#x5B9F;&#x884C;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x4E00;&#x81F4;&#x3059;&#x308B;<code>&#x30E9;&#x30D9;&#x30EB;</code>&#x304C;&#x5B58;&#x5728;&#x3057;&#x306A;&#x3044;&#x5834;&#x5408;&#x306F;&#x3001;default&#x7BC0;&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p><!-- doctest:disable -->
-
-
+&#x4E00;&#x81F4;&#x3059;&#x308B;<code>&#x30E9;&#x30D9;&#x30EB;</code>&#x304C;&#x5B58;&#x5728;&#x3057;&#x306A;&#x3044;&#x5834;&#x5408;&#x306F;&#x3001;default&#x7BC0;&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-keyword">switch</span> (&#x5F0F;) {
     <span class="hljs-comment">// if (&#x5F0F; === &quot;&#x30E9;&#x30D9;&#x30EB;1&quot;)</span>
     <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;&#x30E9;&#x30D9;&#x30EB;1&quot;</span>:
@@ -1607,9 +1643,13 @@
     <span class="hljs-comment">// else</span>
     <span class="hljs-keyword">default</span>:
         <span class="hljs-keyword">break</span>;
-}</code></pre>
-<h3 id="break-statement"><a name="break-statement" class="plugin-anchor" href="#break-statement"><i class="fa fa-link" aria-hidden="true"></i></a>break&#x6587;</h3><p>switch&#x6587;&#x306E;case&#x7BC0;&#x3067;&#x306F;&#x57FA;&#x672C;&#x7684;&#x306B;<code>break;</code>&#x3092;&#x4F7F;&#x3063;&#x3066;switch&#x6587;&#x3092;&#x629C;&#x3051;&#x308B;&#x3088;&#x3046;&#x306B;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;<code>break;</code>&#x306F;&#x7701;&#x7565;&#x304C;&#x53EF;&#x80FD;&#x3067;&#x3059;&#x304C;&#x3001;&#x7701;&#x7565;&#x3057;&#x305F;&#x5834;&#x5408;&#x3001;&#x5F8C;&#x308D;&#x306B;&#x7D9A;&#x304F;case&#x7BC0;&#x304C;&#x6761;&#x4EF6;&#x306B;&#x95A2;&#x4FC2;&#x306A;&#x304F;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-javascript"><span class="hljs-keyword">const</span> version = <span class="hljs-string">&quot;ES6&quot;</span>;
+}
+</code></pre>
+<h3 id="break-statement"><a name="break-statement" class="plugin-anchor" href="#break-statement"><i class="fa fa-link" aria-hidden="true"></i></a>break&#x6587; </h3>
+<p>switch&#x6587;&#x306E;case&#x7BC0;&#x3067;&#x306F;&#x57FA;&#x672C;&#x7684;&#x306B;<code>break;</code>&#x3092;&#x4F7F;&#x3063;&#x3066;switch&#x6587;&#x3092;&#x629C;&#x3051;&#x308B;&#x3088;&#x3046;&#x306B;&#x3057;&#x307E;&#x3059;&#x3002;
+&#x3053;&#x306E;<code>break;</code>&#x306F;&#x7701;&#x7565;&#x304C;&#x53EF;&#x80FD;&#x3067;&#x3059;&#x304C;&#x3001;&#x7701;&#x7565;&#x3057;&#x305F;&#x5834;&#x5408;&#x3001;&#x5F8C;&#x308D;&#x306B;&#x7D9A;&#x304F;case&#x7BC0;&#x304C;&#x6761;&#x4EF6;&#x306B;&#x95A2;&#x4FC2;&#x306A;&#x304F;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> version = <span class="hljs-string">&quot;ES6&quot;</span>;
 <span class="hljs-keyword">switch</span> (version) {
     <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;ES5&quot;</span>:
         <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;ECMAScript 5&quot;</span>);
@@ -1625,11 +1665,15 @@
  &quot;ECMAScript 2016&quot;
  &quot;&#x3057;&#x3089;&#x306A;&#x3044;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x3067;&#x3059;&quot;
  &#x3068;&#x51FA;&#x529B;&#x3055;&#x308C;&#x308B;
- */</span></code></pre>
+ */</span>
+</code></pre>
 <p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;<code>break;</code>&#x3092;&#x5FD8;&#x308C;&#x3066;&#x3057;&#x307E;&#x3046;&#x3068;&#x610F;&#x56F3;&#x3057;&#x306A;&#x3044;case&#x7BC0;&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x3066;&#x3057;&#x307E;&#x3044;&#x307E;&#x3059;&#x3002;
 &#x305D;&#x306E;&#x305F;&#x3081;&#x3001;case&#x7BC0;&#x3068;break&#x6587;&#x304C;&#x591A;&#x7528;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;switch&#x6587;&#x304C;&#x51FA;&#x3066;&#x304D;&#x305F;&#x5834;&#x5408;&#x3001;
-&#x5225;&#x306E;&#x65B9;&#x6CD5;&#x3067;&#x66F8;&#x3051;&#x306A;&#x3044;&#x304B;&#x3092;&#x8003;&#x3048;&#x308B;&#x3079;&#x304D;&#x30B5;&#x30A4;&#x30F3;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p><p>switch&#x6587;&#x306F;if&#x6587;&#x306E;&#x4EE3;&#x7528;&#x3068;&#x3057;&#x3066;&#x4F7F;&#x3046;&#x306E;&#x3067;&#x306F;&#x306A;&#x304F;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x95A2;&#x6570;&#x3068;&#x7D44;&#x307F;&#x5408;&#x308F;&#x305B;&#x3066;&#x6761;&#x4EF6;&#x306B;&#x5BFE;&#x3059;&#x308B;&#x5024;&#x3092;&#x8FD4;&#x3059;&#x30D1;&#x30BF;&#x30FC;&#x30F3;&#x3068;&#x3057;&#x3066;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x304C;&#x591A;&#x3044;&#x3067;&#x3059;&#x3002;
-&#x95A2;&#x6570;&#x306B;&#x3064;&#x3044;&#x3066;&#x306F;&#x300C;<a href="../function-declaration/">&#x95A2;&#x6570;&#x3068;&#x5BA3;&#x8A00;</a>&#x300D;&#x306E;&#x7AE0;&#x3067;&#x7D39;&#x4ECB;&#x3057;&#x307E;&#x3059;&#x3002;</p><p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p><pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getECMAScriptName</span>(<span class="hljs-params">version</span>) </span>{
+&#x5225;&#x306E;&#x65B9;&#x6CD5;&#x3067;&#x66F8;&#x3051;&#x306A;&#x3044;&#x304B;&#x3092;&#x8003;&#x3048;&#x308B;&#x3079;&#x304D;&#x30B5;&#x30A4;&#x30F3;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>switch&#x6587;&#x306F;if&#x6587;&#x306E;&#x4EE3;&#x7528;&#x3068;&#x3057;&#x3066;&#x4F7F;&#x3046;&#x306E;&#x3067;&#x306F;&#x306A;&#x304F;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x95A2;&#x6570;&#x3068;&#x7D44;&#x307F;&#x5408;&#x308F;&#x305B;&#x3066;&#x6761;&#x4EF6;&#x306B;&#x5BFE;&#x3059;&#x308B;&#x5024;&#x3092;&#x8FD4;&#x3059;&#x30D1;&#x30BF;&#x30FC;&#x30F3;&#x3068;&#x3057;&#x3066;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x304C;&#x591A;&#x3044;&#x3067;&#x3059;&#x3002;
+&#x95A2;&#x6570;&#x306B;&#x3064;&#x3044;&#x3066;&#x306F;&#x300C;<a href="../function-declaration/">&#x95A2;&#x6570;&#x3068;&#x5BA3;&#x8A00;</a>&#x300D;&#x306E;&#x7AE0;&#x3067;&#x7D39;&#x4ECB;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getECMAScriptName</span>(<span class="hljs-params">version</span>) </span>{
     <span class="hljs-keyword">switch</span> (version) {
         <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;ES5&quot;</span>:
             <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;ECMAScript 5&quot;</span>;
@@ -1642,20 +1686,21 @@
     }
 }
 <span class="hljs-comment">// &#x95A2;&#x6570;&#x3092;&#x5B9F;&#x884C;&#x3057;&#x3066;`return`&#x3055;&#x308C;&#x305F;&#x5024;&#x3092;&#x5F97;&#x308B;</span>
-getECMAScriptName(<span class="hljs-string">&quot;ES6&quot;</span>); <span class="hljs-comment">// =&gt; &quot;ECMAScript 2015&quot;</span></code></pre>
-<h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>&#x307E;&#x3068;&#x3081;</h2><p>&#x3053;&#x306E;&#x7AE0;&#x3067;&#x306F;&#x6761;&#x4EF6;&#x5206;&#x5C90;&#x306B;&#x3064;&#x3044;&#x3066;&#x5B66;&#x3073;&#x307E;&#x3057;&#x305F;&#x3002;</p><ul><li>if&#x6587;&#x3001;else if&#x6587;&#x3001;else&#x6587;&#x3067;&#x6761;&#x4EF6;&#x5206;&#x5C90;&#x3057;&#x305F;&#x51E6;&#x7406;&#x3092;&#x6271;&#x3048;&#x308B;
-</li>
-<li>&#x6761;&#x4EF6;&#x5F0F;&#x306B;&#x6307;&#x5B9A;&#x3057;&#x305F;&#x5024;&#x306F;&#x771F;&#x507D;&#x5024;&#x3078;&#x3068;&#x5909;&#x63DB;&#x3057;&#x3066;&#x304B;&#x3089;&#x5224;&#x5B9A;&#x3055;&#x308C;&#x308B;
-</li>
-<li>&#x771F;&#x507D;&#x5024;&#x306B;&#x5909;&#x63DB;&#x3059;&#x308B;&#x3068;<code>false</code>&#x3068;&#x306A;&#x308B;&#x5024;&#x3092;falsy&#x3068;&#x547C;&#x3076;
-</li>
-<li>switch&#x6587;&#x3068;case&#x7BC0;&#x3001;default&#x7BC0;&#x3092;&#x7D44;&#x307F;&#x5408;&#x308F;&#x305B;&#x3066;&#x6761;&#x4EF6;&#x5206;&#x5C90;&#x3057;&#x305F;&#x51E6;&#x7406;&#x3092;&#x6271;&#x3048;&#x308B;
-</li>
-<li>case&#x7BC0;&#x3067;break&#x6587;&#x3057;&#x306A;&#x3044;&#x5834;&#x5408;&#x306F;&#x5F15;&#x304D;&#x7D9A;&#x304D;case&#x7BC0;&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x308B;
-</li></ul>
+getECMAScriptName(<span class="hljs-string">&quot;ES6&quot;</span>); <span class="hljs-comment">// =&gt; &quot;ECMAScript 2015&quot;</span>
+</code></pre>
+<h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>&#x307E;&#x3068;&#x3081; </h2>
+<p>&#x3053;&#x306E;&#x7AE0;&#x3067;&#x306F;&#x6761;&#x4EF6;&#x5206;&#x5C90;&#x306B;&#x3064;&#x3044;&#x3066;&#x5B66;&#x3073;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<ul>
+<li>if&#x6587;&#x3001;else if&#x6587;&#x3001;else&#x6587;&#x3067;&#x6761;&#x4EF6;&#x5206;&#x5C90;&#x3057;&#x305F;&#x51E6;&#x7406;&#x3092;&#x6271;&#x3048;&#x308B;</li>
+<li>&#x6761;&#x4EF6;&#x5F0F;&#x306B;&#x6307;&#x5B9A;&#x3057;&#x305F;&#x5024;&#x306F;&#x771F;&#x507D;&#x5024;&#x3078;&#x3068;&#x5909;&#x63DB;&#x3057;&#x3066;&#x304B;&#x3089;&#x5224;&#x5B9A;&#x3055;&#x308C;&#x308B;</li>
+<li>&#x771F;&#x507D;&#x5024;&#x306B;&#x5909;&#x63DB;&#x3059;&#x308B;&#x3068;<code>false</code>&#x3068;&#x306A;&#x308B;&#x5024;&#x3092;falsy&#x3068;&#x547C;&#x3076;</li>
+<li>switch&#x6587;&#x3068;case&#x7BC0;&#x3001;default&#x7BC0;&#x3092;&#x7D44;&#x307F;&#x5408;&#x308F;&#x305B;&#x3066;&#x6761;&#x4EF6;&#x5206;&#x5C90;&#x3057;&#x305F;&#x51E6;&#x7406;&#x3092;&#x6271;&#x3048;&#x308B;</li>
+<li>case&#x7BC0;&#x3067;break&#x6587;&#x3057;&#x306A;&#x3044;&#x5834;&#x5408;&#x306F;&#x5F15;&#x304D;&#x7D9A;&#x304D;case&#x7BC0;&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x308B;</li>
+</ul>
 <p>&#x6761;&#x4EF6;&#x5206;&#x5C90;&#x306B;&#x306F;if&#x6587;&#x3084;switch&#x6587;&#x3092;&#x5229;&#x7528;&#x3057;&#x307E;&#x3059;&#x3002;
 &#x8907;&#x96D1;&#x306A;&#x6761;&#x4EF6;&#x3092;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x5834;&#x5408;&#x306B;&#x306F;&#x3001;if&#x6587;&#x306E;&#x30CD;&#x30B9;&#x30C8;&#x304C;&#x6DF1;&#x304F;&#x306A;&#x308A;&#x3084;&#x3059;&#x3044;&#x3067;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x3088;&#x3046;&#x306A;&#x5834;&#x5408;&#x306B;&#x306F;&#x3001;&#x6761;&#x4EF6;&#x5F0F;&#x81EA;&#x4F53;&#x3092;&#x898B;&#x76F4;&#x3057;&#x3066;&#x3088;&#x308A;&#x30B7;&#x30F3;&#x30D7;&#x30EB;&#x306A;&#x6761;&#x4EF6;&#x306B;&#x3067;&#x304D;&#x306A;&#x3044;&#x304B;&#x3092;&#x8003;&#x3048;&#x3066;&#x307F;&#x308B;&#x3053;&#x3068;&#x3082;&#x91CD;&#x8981;&#x3067;&#x3059;&#x3002;</p><!--
+&#x305D;&#x306E;&#x3088;&#x3046;&#x306A;&#x5834;&#x5408;&#x306B;&#x306F;&#x3001;&#x6761;&#x4EF6;&#x5F0F;&#x81EA;&#x4F53;&#x3092;&#x898B;&#x76F4;&#x3057;&#x3066;&#x3088;&#x308A;&#x30B7;&#x30F3;&#x30D7;&#x30EB;&#x306A;&#x6761;&#x4EF6;&#x306B;&#x3067;&#x304D;&#x306A;&#x3044;&#x304B;&#x3092;&#x8003;&#x3048;&#x3066;&#x307F;&#x308B;&#x3053;&#x3068;&#x3082;&#x91CD;&#x8981;&#x3067;&#x3059;&#x3002;</p>
+<!--
 ## 参考 {#reference-for-condition}
 
 - [うるう年 - Wikipedia](https://ja.wikipedia.org/wiki/%E9%96%8F%E5%B9%B4)
@@ -1664,8 +1709,6 @@ getECMAScriptName(<span class="hljs-string">&quot;ES6&quot;</span>); <span class
 - [switch - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/switch)
 - [制御フローとエラー処理 - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Control_flow_and_error_handling)
 -->
-
-
 
                                 
                                 </section>
@@ -1697,7 +1740,7 @@ getECMAScriptName(<span class="hljs-string">&quot;ES6&quot;</span>); <span class
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptで条件分岐を扱うためのif文やswitch文を紹介します。またネストした条件分岐が読みやすさを妨げる問題をどのように解決するについてを紹介します。","title":"条件分岐","level":"1.3.10","depth":2,"next":{"title":"ループと反復処理","level":"1.3.11","depth":2,"path":"basic/loop/README.md","ref":"./basic/loop/README.md","articles":[]},"previous":{"title":"文と式","level":"1.3.9","depth":2,"path":"basic/statement-expression/README.md","ref":"./basic/statement-expression/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2019","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/condition/README.md","mtime":"2020-07-01T01:55:22.264Z","type":"markdown"},"gitbook":{"version":"3.4.0","time":"2020-07-01T01:56:08.819Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptで条件分岐を扱うためのif文やswitch文を紹介します。またネストした条件分岐が読みやすさを妨げる問題をどのように解決するについてを紹介します。","title":"条件分岐","level":"1.3.10","depth":2,"next":{"title":"ループと反復処理","level":"1.3.11","depth":2,"path":"basic/loop/README.md","ref":"./basic/loop/README.md","articles":[]},"previous":{"title":"文と式","level":"1.3.9","depth":2,"path":"basic/statement-expression/README.md","ref":"./basic/statement-expression/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2019","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/condition/README.md","mtime":"2020-07-04T13:55:08.361Z","type":"markdown"},"gitbook":{"version":"3.5.1","time":"2020-07-04T13:55:49.450Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
