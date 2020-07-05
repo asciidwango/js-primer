@@ -473,6 +473,7 @@ if (obj.hasOwnProperty("key")) {
 存在を確認するのではなく、プロパティがあるならそのプロパティの評価結果を得るならば、if文などで判定するだけで問題ありません。
 次のコードでは、`widget.window.title`プロパティにアクセスできるなら、その値を表示します。
 
+{{book.console}}
 ```js
 function printWidgetTitle(widget) {
     if (widget.window !== undefined && widget.window.title !== undefined) {
@@ -502,6 +503,7 @@ Optional chaining演算子（`?.`）は、ドット記法（`.`）の代わり�
 指定したプロパティがnullishの場合は常に`undefined`を返し、プロパティが存在する場合はその評価結果を返します。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": 2020 } -->
 ```js
 const obj = {
     a: {
@@ -522,6 +524,7 @@ console.log(obj?.notFound?.notFound); // => undefined
 プロパティにアクセスできない場合は`undefined`を返すため、Nullish coalescing演算子(`??`)によって右辺の`"未定義"`がデフォルト値となります。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": 2020 } -->
 ```js
 function printWidgetTitle(widget) {
     const title = widget?.window?.title ?? "未定義";
