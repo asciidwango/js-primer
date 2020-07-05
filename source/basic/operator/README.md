@@ -888,7 +888,53 @@ const str = "";
 console.log(str.length > 0); // => false
 ```
 
-### グループ化演算子（`(`と`)`） {#group-operator}
+## [ES2020] Nullish coalescing演算子(`??`) {#nullish-oalescing-operator}
+
+Nullish coalescing演算子(`??`)は、左辺の値が**nulish**であるならば、右辺の評価結果を返します。
+**nulish**とは、評価結果が`null`または`undefined`となる値のことです。
+
+{{book.console}}
+```js
+// 左辺がnullishであるため、右辺の値の評価結果を返す
+console.log(null ?? "右辺の値"); // => "右辺の値"
+console.log(undefiend ?? "右辺の値"); // => "右辺の値"
+// 左辺がnullishではないため、右辺の値の評価結果を返す
+console.log(true ?? "右辺の値"); // => true
+console.log(false ?? "右辺の値"); // => false
+console.log(0 ?? "右辺の値"); // => 0
+console.log("文字列" ?? "右辺の値"); // => "左辺の値"
+```
+
+Nullish coalescing演算子(`??`)とOR演算子（`||`）は、値のデフォルト値を指定する場合によく利用されています。
+OR演算子（`||`）左辺がfalsyの場合に右辺を評価するため、意図しない結果となる場合が知られています。
+この問題を解決するためにES2020でNullish coalescing演算子(`??`)が導入されています。
+
+次のように、`value`に対するデフォルト値をOR演算子（`||`）で表現しています。
+`inputValue`が未定義(`undefined`)の場合は、`value`に右辺で指定した`42`が入ります。
+しかし、`inputValue`が`0`という値が入った場合は、`0`はfalsyであるため`value`には右辺の`42`が入ります。
+
+<!-- doctest:disable -->
+```js
+const inputValue = 任意の値または未定義;
+// `inputValue`がfalsyの場合は、`value`には`42`が入る
+// `inputValue`が`0`の場合は、`value`に`42`が入ってしまう
+const value = inputValue || 42;
+console.log(value);
+```
+
+Nullish coalescing演算子(`??`)では、左辺がnullishの場合のみ、`value`に右辺で指定した`42`が入ります。
+そのため、`inputValue`が`0`という値が入った場合は、`value`にはそのまま`inputValue`の値である`0`が入ります。
+
+<!-- doctest:disable -->
+```js
+const inputValue = 任意の値または未定義;
+// `inputValue`がnullishの場合は、`value`には42が入る
+// `inputValue`が`0`の場合は、`value`に`0`が入る
+const value = inputValue ?? 42;
+console.log(value);
+```
+
+## グループ化演算子（`(`と`)`） {#group-operator}
 
 グループ化演算子は複数の二項演算子が組み合わさった場合に、演算子の優先順位を明示できる演算子です。
 
