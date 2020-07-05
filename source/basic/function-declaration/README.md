@@ -212,6 +212,7 @@ console.log(addPrefix("文字列", "カスタム:")); // => "カスタム:文字
 これは、デフォルト引数は実際の引数として渡されたオブジェクトをマージをするわけではないためです。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": 2020 } -->
 ```js
 // `options`が指定されなかったときは空のオブジェクトが入る
 function wrapText(text, options = { prefix: "接頭辞:", suffix: ":接尾辞" }) {
@@ -232,6 +233,7 @@ console.log(wrapText("文字列", { suffix: ":カスタム" })); // => "undefine
 そして、`options`の`prefix`と`suffix`プロパティそれぞれに対してNullish coalescing演算子(`??`)を使いデフォルト値を指定しています。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": 2020 } -->
 ```js
 // `options`が指定されなかったときは空のオブジェクトが入る
 function wrapText(text, options = {}) {
@@ -240,19 +242,20 @@ function wrapText(text, options = {}) {
     return prefix + text + suffix;
 }
 // falsyな値を渡してもデフォルト値は代入されない
-console.log(wrapText("文字列")); // => "接頭辞:デフォルト:接尾辞"
+console.log(wrapText("文字列")); // => "接頭辞:文字列:接尾辞"
 console.log(wrapText("文字列", {
     prefix: "Start:",
     suffix: ":End"
 })); // => "Start:文字列:End"
 // オプションの一部だけを指定した場合は、それぞれのデフォルト値が採用される
-console.log(wrapText("文字列", { prefix: "カスタム:" })); // => "カスタム:デフォルト:接尾辞"
+console.log(wrapText("文字列", { prefix: "カスタム:" })); // => "カスタム:文字列:接尾辞"
 console.log(wrapText("文字列", { suffix: ":カスタム" })); // => "接頭辞:文字列:カスタム"
 ```
 
 Optional chaining（`?.`）を利用することで、デフォルト引数の指定は次のように書き換えることもできます。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": 2020 } -->
 ```js
 function wrapText(text, options) {
     // `options`がundefinedまたはnullの時点で右辺を評価する
@@ -261,13 +264,13 @@ function wrapText(text, options) {
     return prefix + text + suffix;
 }
 // falsyな値を渡してもデフォルト値は代入されない
-console.log(wrapText("文字列")); // => "接頭辞:デフォルト:接尾辞"
+console.log(wrapText("文字列")); // => "接頭辞:文字列:接尾辞"
 console.log(wrapText("文字列", {
     prefix: "Start:",
     suffix: ":End"
 })); // => "Start:文字列:End"
 // オプションの一部だけを指定した場合は、それぞれのデフォルト値が採用される
-console.log(wrapText("文字列", { prefix: "カスタム:" })); // => "カスタム:デフォルト:接尾辞"
+console.log(wrapText("文字列", { prefix: "カスタム:" })); // => "カスタム:文字列:接尾辞"
 console.log(wrapText("文字列", { suffix: ":カスタム" })); // => "接頭辞:文字列:カスタム"
 ```
 
