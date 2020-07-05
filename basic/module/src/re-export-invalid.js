@@ -1,5 +1,7 @@
 // ./my-module.jsのすべての名前つきエクスポートを再エクスポートする
 export * from "./my-module.js";
+// [ES2020] ./my-module.jsのすべての名前つきエクスポートを名前空間オブジェクトとして再エクスポートする
+export * as myNameSpace from "./my-module.js";
 // ./my-module.jsの名前つきエクスポートを選んで再エクスポートする
 export { foo, bar } from "./my-module.js";
 // ./my-module.jsの名前つきエクスポートにエイリアスをつけて再エクスポートする
