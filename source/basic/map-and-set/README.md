@@ -202,7 +202,8 @@ class ShoppingCart {
     }
     // カートに商品を追加する
     addItem(item) {
-        const count = this.items.get(item) || 0;
+        // `item`がない場合は`undefined`を返すため、Nullish coalescing演算子(`??`)を使いデフォルト値として`0`を設定する
+        const count = this.items.get(item) ?? 0;
         this.items.set(item, count + 1);
     }
     // カート内の合計金額を返す
@@ -320,7 +321,7 @@ const listenersMap = new WeakMap();
 class EventEmitter {
     addListener(listener) {
         // this にひもづいたリスナーの配列を取得する
-        const listeners = listenersMap.get(this) || [];
+        const listeners = listenersMap.get(this) ?? [];
         const newListeners = listeners.concat(listener);
         // this をキーに新しい配列をセットする
         listenersMap.set(this, newListeners);
