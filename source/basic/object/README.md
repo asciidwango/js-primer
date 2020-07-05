@@ -466,6 +466,77 @@ if (obj.hasOwnProperty("key")) {
 この動作の違いを知るにはまずプロトタイプオブジェクトという特殊なオブジェクトについて理解する必要があります。
 次の章の「[プロトタイプオブジェクト][]」で詳しく解説するため、次の章で`in`演算子と`hasOwnProperty`メソッドの違いを見ていきます。
 
+## Optional chaining演算子（`?.`） {#optional-chaining-operator}
+
+プロパティの存在を確認する方法として`undefined`との比較や`in`演算子、`hasOwnProperty`メソッドについて紹介しました。
+
+存在を確認するのではなく、プロパティがあるならそのプロパティの評価結果を得るならば、if文などで判定するだけで問題ありません。
+次のコードでは、`widget.window.title`プロパティにアクセスできるなら、その値を表示します。
+
+```js
+function printWidgetTitle(widget) {
+    if (widget.window !== undefined && widget.window.title !== undefined) {
+        console.log(`ウィジェットのタイトルは${widget.window.title}です`);
+    } else {
+        console.log("ウィジェットのタイトルは未定義です");
+    }
+}
+// タイトルが定義されているwidget
+printWidgetTitle({
+    window: {
+        title: "Book Viewer"
+    }
+});
+// タイトルは未定義のwidget
+printWidgetTitle({
+    // タイトルが定義されてない空のオブジェクト
+});
+```
+
+この`widget.window.title`のようなネストしたプロパティにアクセスする際には、
+プロパティの存在を確認してからアクセスする必要があります。
+しかし、if文でプロパティへアクセスするたびに`undefined`と比較してAND演算子（`&&`）でつなげて書いていくと冗長です。
+
+ES2020ではネストしたプロパティの存在確認とアクセスを簡単に行う構文としてOptional chaining演算子（`?.`）が導入されました。
+Optional chaining演算子（`?.`）は、ドット記法（`.`）の代わりに`?.`をプロパティアクセスに使うだけです。
+指定したプロパティがnullishの場合は常に`undefined`を返し、プロパティが存在する場合はその評価結果を返します。
+
+{{book.console}}
+```js
+const obj = {
+    a: {
+        b: "objのaプロパティのbプロパティ"
+    }
+};
+// obj.a.b は存在するので、その評価結果を返す
+console.log(obj?.a?.b); // => "objのaプロパティのbプロパティ"
+// obj.a.cは存在しないため`undefined`を返す
+console.log(obj?.a?.c); // => undefined
+// 存在しないプロパティのネストも`undefined`を返す
+// Optional chaining（`?.`）ではない場合は例外が発生する
+console.log(obj?.notFound?.notFound); // => undefined
+```
+
+先ほどのウィジェットのタイトルを表示する関数もOptional chaining演算子（`?.`）を使うと、不要なif文をなしに書けます。
+次のコードの`printWidgetTitle`関数では、`widget?.window?.title`にアクセスできる場合はその評価結果が`title`に入ります。
+プロパティにアクセスできない場合は`undefined`を返すため、Nullish coalescing演算子(`??`)によって右辺の`"未定義"`がデフォルト値となります。
+
+{{book.console}}
+```js
+function printWidgetTitle(widget) {
+    const title = widget?.window?.title ?? "未定義";
+    console.log(`ウィジェットのタイトルは${wtitle}です`);
+}
+printWidgetTitle({
+    window: {
+        title: "Book Viewer"
+    }
+}); // => "ウィジェットのタイトルはBook Viewerです"
+printWidgetTitle({
+    // タイトルが定義されてない空のオブジェクト
+});　// => "ウィジェットのタイトルは未定義です"
+```
+
 ## `toString`メソッド {#toString-method}
 
 オブジェクトの`toString`メソッドは、オブジェクト自身を文字列化するメソッドです。
