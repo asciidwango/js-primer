@@ -304,7 +304,7 @@ JavaScriptにおける基本的なプロジェクトレイアウト、ファイ�
 [第一部: おわりに]: ../basic/other-parts/README.md
 [第二部: 応用編（ユースケース）]: ../use-case/README.md
 [アプリケーション開発の準備]: ../use-case/setup-local-env/README.md
-[Ajaxで通信]: ../use-case/ajaxapp/README.md
+[Ajax通信]: ../use-case/ajaxapp/README.md
 [エントリーポイント]: ../use-case/ajaxapp/entrypoint/README.md
 [HTTP通信]: ../use-case/ajaxapp/http/README.md
 [データを表示する]: ../use-case/ajaxapp/display/README.md
