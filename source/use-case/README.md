@@ -13,7 +13,7 @@ description: "第二部では第一部の基本文法で学んだことを応用
 
 アプリケーション開発のためにNode.jsとnpmのインストールなどの準備方法を紹介します。
 
-### [Ajaxで通信](./ajaxapp/README.md) {#ajaxapp}
+### [Ajax通信](./ajaxapp/README.md) {#ajaxapp}
 
 ウェブブラウザ上でAjax通信をするユースケースとして、GitHubのユーザーIDからプロフィール情報を取得するアプリケーションを作成しながら、非同期処理について紹介します。
 
