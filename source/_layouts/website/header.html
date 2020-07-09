@@ -411,8 +411,10 @@
     });
 </script>
 <script>
-    gitbook.events.on("page.change", function () {
-        setTimeout(() => console.clear(), 1000);
+    window.addEventListener("DOMContentLoaded", function () {
+        gitbook.events.on("page.change", function () {
+            setTimeout(() => console.clear(), 1000);
+        });
     });
 </script>
 <script type="text/javascript">
