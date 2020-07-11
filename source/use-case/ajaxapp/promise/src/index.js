@@ -21,8 +21,7 @@ function fetchUserInfo(userId) {
 }
 
 function getUserId() {
-    const value = document.getElementById("userId").value;
-    return encodeURIComponent(value);
+    return document.getElementById("userId").value;
 }
 
 function createView(userInfo) {
