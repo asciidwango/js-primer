@@ -38,7 +38,8 @@
       "index": "asciidwango"
     },
     "github-issue-feedback": {
-      "repo": "asciidwango/js-primer"
+      "repo": "asciidwango/js-primer",
+      "label": "問題を報告する"
     },
     "edit-link": {
       "base": "https://github.com/asciidwango/js-primer/edit/master/source/",
