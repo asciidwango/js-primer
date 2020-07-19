@@ -900,6 +900,7 @@ Nullish coalescing演算子(`??`)は、左辺の値が**nulish**であるなら�
 **nulish**とは、評価結果が`null`または`undefined`となる値のことです。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": 2020 } -->
 ```js
 // 左辺がnullishであるため、右辺の値の評価結果を返す
 console.log(null ?? "右辺の値"); // => "右辺の値"

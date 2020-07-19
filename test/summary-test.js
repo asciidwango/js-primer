@@ -40,7 +40,7 @@ describe("SUMMARY", function() {
         // 許可リスト(読み方の解説など)
         const allowFilePathList = [];
         const searchPatterns = ["/falsy/gi"];
-        const falsyChapter = path.join(sourceDir, "basic/implicit-coercion/README.md");
+        const falsyChapter = path.join(sourceDir, "basic/operator/README.md");
         return findUsage(falsyChapter, searchPatterns, allowFilePathList).then(results => {
             if (results.length === 0) {
                 return;
