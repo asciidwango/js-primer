@@ -470,8 +470,9 @@ if (obj.hasOwnProperty("key")) {
 
 プロパティの存在を確認する方法として`undefined`との比較や`in`演算子、`hasOwnProperty`メソッドについて紹介しました。
 
-存在を確認するのではなく、プロパティがあるならそのプロパティの評価結果を得るならば、if文などで判定するだけで問題ありません。
-次のコードでは、`widget.window.title`プロパティにアクセスできるなら、その値を表示します。
+存在を確認して真偽値を取得することが目的ではなく、そのプロパティの評価結果を得る目的ならば、if文で`undefined`と比較しても問題ありません。
+
+次のコードでは、`widget.window.title`プロパティにアクセスできるなら、そのプロパティの値を表示します。
 
 {{book.console}}
 ```js
@@ -495,13 +496,15 @@ printWidgetTitle({
 });
 ```
 
-この`widget.window.title`のようなネストしたプロパティにアクセスする際には、
-プロパティの存在を確認してからアクセスする必要があります。
-しかし、if文でプロパティへアクセスするたびに`undefined`と比較してAND演算子（`&&`）でつなげて書いていくと冗長です。
+この`widget.window.title`のようなネストしたプロパティにアクセスする際には、順番にプロパティの存在を確認してからアクセスする必要があります。
+なぜなら、`widget`オブジェクトが`window`プロパティを持っていない場合は`undefined`という値を返すためです。このときに、さらにネストした`widget.window.title`プロパティにアクセスして、例外が発生してしまうのを避けるためです。
+
+しかし、プロパティへアクセスするたびにif文で`undefined`と比較してAND演算子（`&&`）でつなげて書いていくと冗長です。
 
 ES2020ではネストしたプロパティの存在確認とアクセスを簡単に行う構文としてOptional chaining演算子（`?.`）が導入されました。
 Optional chaining演算子（`?.`）は、ドット記法（`.`）の代わりに`?.`をプロパティアクセスに使うだけです。
-指定したプロパティがnullishの場合は常に`undefined`を返し、プロパティが存在する場合はその評価結果を返します。
+
+Optional chaining演算子（`?.`）は左辺のオペランドがnullish（`null`または`undefined`）の場合は、それ以上評価せずに`undefined`を返します。一方で、プロパティへアクセスできる場合は、そのプロパティの評価結果を返します。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": 2020 } -->
@@ -518,11 +521,14 @@ console.log(obj?.a?.c); // => undefined
 // 存在しないプロパティのネストも`undefined`を返す
 // Optional chaining（`?.`）ではない場合は例外が発生する
 console.log(obj?.notFound?.notFound); // => undefined
+// undefinedやnullはnullishなので、`undefined`を返す
+console.log(undefined?.notFound?.notFound); // => undefined
+console.log(null?.notFound?.notFound); // => undefined
 ```
 
-先ほどのウィジェットのタイトルを表示する関数もOptional chaining演算子（`?.`）を使うと、不要なif文をなしに書けます。
-次のコードの`printWidgetTitle`関数では、`widget?.window?.title`にアクセスできる場合はその評価結果が`title`に入ります。
-プロパティにアクセスできない場合は`undefined`を返すため、Nullish coalescing演算子(`??`)によって右辺の`"未定義"`がデフォルト値となります。
+先ほどのウィジェットのタイトルを表示する関数もOptional chaining演算子（`?.`）を使うと、if文を使わずに書けます。
+次のコードの`printWidgetTitle`関数では、`widget?.window?.title`にアクセスできる場合はその評価結果が変数`title`に入ります。
+プロパティにアクセスできない場合は`undefined`を返すため、Nullish coalescing演算子(`??`)によって右辺の`"未定義"`が変数`title`のデフォルト値となります。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": 2020 } -->
