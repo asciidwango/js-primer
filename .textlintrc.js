@@ -2,7 +2,7 @@ const IS_LINK_CHECK = !!process.env.LINK_CHECK;
 module.exports = {
     "filters": {
         "comments": true,
-        "whitelist": {
+        "allowlist": {
             "allow": [
                 "/{#[a-z.-]*?}/g",
                 "/{{[a-zA-Z.]*?}}/g",
