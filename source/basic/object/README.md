@@ -466,7 +466,7 @@ if (obj.hasOwnProperty("key")) {
 この動作の違いを知るにはまずプロトタイプオブジェクトという特殊なオブジェクトについて理解する必要があります。
 次の章の「[プロトタイプオブジェクト][]」で詳しく解説するため、次の章で`in`演算子と`hasOwnProperty`メソッドの違いを見ていきます。
 
-## Optional chaining演算子（`?.`） {#optional-chaining-operator}
+## [ES2020] Optional chaining演算子（`?.`） {#optional-chaining-operator}
 
 プロパティの存在を確認する方法として`undefined`との比較や`in`演算子、`hasOwnProperty`メソッドについて紹介しました。
 
@@ -476,6 +476,7 @@ if (obj.hasOwnProperty("key")) {
 {{book.console}}
 ```js
 function printWidgetTitle(widget) {
+    // 例外を避けるために`widget.window.title`の存在を確認してから、値を表示している
     if (widget.window !== undefined && widget.window.title !== undefined) {
         console.log(`ウィジェットのタイトルは${widget.window.title}です`);
     } else {
