@@ -198,6 +198,23 @@ console.log(addPrefix("文字列", "")); // => "文字列"
 console.log(addPrefix("文字列", "カスタム:")); // => "カスタム:文字列"
 ```
 
+また、ES2020から導入されたNullish coalescing演算子(`??`)を利用することでも、
+OR演算子（`||`）の問題を避けつつデフォルト値を指定できます。
+
+{{book.console}}
+```js
+function addPrefix(text, prefix) {
+    // prefixがnullまたはundefinedの時、デフォルト値を返す
+    const pre = prefix ?? "デフォルト:";
+    return pre + text;
+}
+
+console.log(addPrefix("文字列")); // => "デフォルト:文字列"
+// falsyな値でも意図通りに動作する
+console.log(addPrefix("文字列", "")); // => "文字列"
+console.log(addPrefix("文字列", "カスタム:")); // => "カスタム:文字列"
+```
+
 ### デフォルト引数とオブジェクト {#default-parameters-nullish-coalescing}
 
 関数の引数のデフォルト値を指定する場合にはデフォルト引数を利用することを紹介しました。
@@ -205,15 +222,17 @@ console.log(addPrefix("文字列", "カスタム:")); // => "カスタム:文字
 しかし、関数の引数にオブジェクトを指定したい場合には、デフォルト引数だけでは問題が発生します。
 そのオブジェクトのプロパティに対するデフォルト値はデフォルト引数では指定できません。
 
-次のコードの`wrapText`関数は`prefix`と`suffix`プロパティをもつオブジェクトを引数として受け取ります。
+次のコードの`wrapText`関数は`prefix`と`suffix`プロパティをもつ`options`オブジェクトを引数として受け取ります。
 `options`オブジェクトに対応する引数を渡さなかった場合は、デフォルト引数で指定したデフォルトのオブジェクトが利用されます。
-`prefix`と`suffix`プロパティをもつオブジェクトを引数に渡したは意図した結果となりますが、オプションの一部のプロパティ(`prefix`や`suffix`の片方)をもつオブジェクト渡した場合は意図しない結果となります。
-これは、デフォルト引数は実際の引数として渡されたオブジェクトをマージをするわけではないためです。
+また、明示的に`prefix`と`suffix`プロパティをもつオブジェクトを引数に渡せば、その値を利用します。
+
+しかし、オプションの一部のプロパティ(`prefix`や`suffix`の片方)をもつオブジェクト渡した場合は意図しない結果となります。
+これは、デフォルト引数は実際の引数として渡されたオブジェクト同士をマージするわけではないためです。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": 2020 } -->
 ```js
-// `options`が指定されなかったときは空のオブジェクトが入る
+// `options`が指定されなかったときはデフォルトのオプションオブジェクトが入る
 function wrapText(text, options = { prefix: "接頭辞:", suffix: ":接尾辞" }) {
     return options.prefix + text + options.suffix;
 }
@@ -238,28 +257,6 @@ console.log(wrapText("文字列", { suffix: ":カスタム" })); // => "undefine
 function wrapText(text, options = {}) {
     const prefix = options.prefix ?? "接頭辞:";
     const suffix = options.suffix ?? ":接尾辞";
-    return prefix + text + suffix;
-}
-// falsyな値を渡してもデフォルト値は代入されない
-console.log(wrapText("文字列")); // => "接頭辞:文字列:接尾辞"
-console.log(wrapText("文字列", {
-    prefix: "Start:",
-    suffix: ":End"
-})); // => "Start:文字列:End"
-// オプションの一部だけを指定した場合は、それぞれのデフォルト値が採用される
-console.log(wrapText("文字列", { prefix: "カスタム:" })); // => "カスタム:文字列:接尾辞"
-console.log(wrapText("文字列", { suffix: ":カスタム" })); // => "接頭辞:文字列:カスタム"
-```
-
-デフォルトの引数に空オブジェクトを指定する代わりに、Optional chaining（`?.`）を利用することで次のようにも書けます。
-
-{{book.console}}
-<!-- doctest:meta:{ "ECMAScript": 2020 } -->
-```js
-function wrapText(text, options) {
-    // `options`がundefinedまたはnullの時点で右辺を評価する
-    const prefix = options?.prefix ?? "接頭辞:";
-    const suffix = options?.suffix ?? ":接尾辞";
     return prefix + text + suffix;
 }
 // falsyな値を渡してもデフォルト値は代入されない
