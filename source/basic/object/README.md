@@ -533,7 +533,7 @@ console.log(null?.notFound?.notFound); // => undefined
 ```js
 function printWidgetTitle(widget) {
     const title = widget?.window?.title ?? "未定義";
-    console.log(`ウィジェットのタイトルは${wtitle}です`);
+    console.log(`ウィジェットのタイトルは${title}です`);
 }
 printWidgetTitle({
     window: {
