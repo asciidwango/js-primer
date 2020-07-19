@@ -202,6 +202,7 @@ console.log(addPrefix("文字列", "カスタム:")); // => "カスタム:文字
 OR演算子（`||`）の問題を避けつつデフォルト値を指定できます。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": 2020 } -->
 ```js
 function addPrefix(text, prefix) {
     // prefixがnullまたはundefinedの時、デフォルト値を返す
