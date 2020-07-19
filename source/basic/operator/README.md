@@ -729,7 +729,7 @@ const key = obj.key;
 
 ## 論理演算子 {#logical-operator}
 
-論理演算子は基本的に真偽値を扱う演算子でAND、OR、NOTを表現できます。
+論理演算子は基本的に真偽値を扱う演算子でAND（かつ）、OR（または）、NOT（否定）を表現できます。
 
 ### AND演算子（`&&`） {#and-operator}
 
