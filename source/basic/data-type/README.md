@@ -139,7 +139,7 @@ console.log(255); // => 255
 ```
 
 `0b`からはじまる2進数リテラルは、ビットを表現するのによく利用されています。
-`b`は2進数を表すbinaryを意味しています。
+`b`は2進数**b**inary numberを意味しています。
 
 <!-- 具体的な言及はないけどSyntaxを参照: https://tc39.es/ecma262/#prod-BinaryIntegerLiteral -->
 
@@ -150,7 +150,7 @@ console.log(0b10000000000); // => 1024
 ```
 
 `0o`からはじまる8進数リテラルは、ファイルのパーミッションを表現するのによく利用されています。
-`o`は8進数を表すoctalを意味しています。
+`o`は8進数**o**ctal numberを意味しています。
 
 <!-- https://tc39.es/ecma262/#prod-OctalIntegerLiteral -->
 
@@ -168,7 +168,7 @@ console.log(0o777);  // => 511
 [import, octal-legacy-literal-invalid.js](./src/octal-legacy-literal-invalid.js)
 
 `0x`からはじまる16進数リテラルは、文字のコードポイントやRGB値の表現などに利用されています。
-`x`は16進数を表すhexを意味しています。
+`x`は16進数he**x**adecimal numberを意味しています。
 
 <!-- https://tc39.es/ecma262/#prod-HexIntegerLiteral -->
 
