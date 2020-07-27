@@ -263,7 +263,7 @@ console.log(1);
 
 | メッセージ | 意味 |
 | -- | -- |
-| `SyntaxError: unexpected token: identifier` | エラーの種類は`SyntaxError`で、予期しないものが識別子（変数名）に指定されている |
+| `SyntaxError: unexpected token: identifier` | エラーの種類は`SyntaxError`で、予期しない識別子（変数名 `a`）が指定されている |
 | `index.js:1:6` | 例外が`index.js`の1行目6列目で発生したこと |
 
 プログラムをパースする際に`index.js:1:6`で予期しない（構文として解釈できない）識別子が見つかったため、構文エラーが発生したという意味になります。
