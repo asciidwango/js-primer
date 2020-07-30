@@ -460,7 +460,7 @@ JavaScriptは正規表現をリテラルで書くことができます。
 ```js
 const numberRegExp = /\d+/; // 1文字以上の数字にマッチする正規表現
 // `numberRegExp`の正規表現が文字列"123"にマッチするかをテストする
-console.log(numberRegExp.test(123)); // => true
+console.log(numberRegExp.test("123")); // => true
 ```
 
 `RegExp`コンストラクタを使うことで、文字列から正規表現オブジェクトを作成できます。
