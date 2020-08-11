@@ -121,13 +121,13 @@ Mochaのユニットテストは`test`ディレクトリの中にJavaScriptフ�
 
 [import, title:"test/fixtures/expected-gfm.html"](./src/test/fixtures/expected-gfm.html)
 
-ユニットテストの準備ができたら、もう一度改めて`npm test`コマンドを実行しましょう。1件のテストが通れば成功です。
+ユニットテストの準備ができたら、もう一度改めて`npm test`コマンドを実行しましょう。2件のテストが通れば成功です。
 
 ```shell-session
 $ npm test
 > mocha
 
-  ✓ converts Markdown to HTML
+  ✓ converts Markdown to HTML (GFM=false)
   ✓ converts Markdown to HTML (GFM=true)
 
   2 passing (31ms)
