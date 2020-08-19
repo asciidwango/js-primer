@@ -310,7 +310,7 @@ console.log(array.slice(1, 4)); // => ["B", "C", "D"]
 console.log(array.slice(1)); // => ["B", "C", "D", "E"]
 // マイナスを指定すると後ろからの数えた位置となる
 console.log(array.slice(-1)); // => ["E"]
-// 第一引数 > 第二引数の場合、常に空配列を返す
+// 第一引数 >= 第二引数の場合、常に空配列を返す
 console.log(array.slice(4, 1)); // => []
 ```
 
