@@ -912,7 +912,7 @@ const str = "";
 console.log(str.length > 0); // => false
 ```
 
-## [ES2020] Nullish coalescing演算子(`??`) {#nullish-oalescing-operator}
+## [ES2020] Nullish coalescing演算子(`??`) {#nullish-coalescing-operator}
 
 Nullish coalescing演算子(`??`)は、左辺の値が**nulish**であるならば、右辺の評価結果を返します。
 **nulish**とは、評価結果が`null`または`undefined`となる値のことです。
