@@ -180,12 +180,13 @@ JavaScriptでは、どの値が`true`でどの値が`false`になるかは、次
 - **falsy**な値は`false`になる
 - **falsy**でない値は`true`になる
 
-**falsy**な値とは次の6種類の値のことを言います。
+**falsy**な値とは次の7種類の値のことを言います。
 
 - `false`
 - `undefined`
 - `null`
 - `0`
+- `0n`
 - `NaN`
 - `""`（空文字列）
 
