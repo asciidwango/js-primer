@@ -548,7 +548,7 @@ printWidgetTitle({
 ```
 
 また、Optional chaining演算子（`?.`）はブラケット記法（`[]`）と組み合わせることもできます。
-ブラケット記法の場合も、指定したプロパティが左辺のオペランドがnullish（`null`または`undefined`）の場合は、それ以上評価せずに`undefined`を返します。一方で、プロパティが存在する場合は、そのプロパティの評価結果を返します。
+ブラケット記法の場合も、左辺のオペランドがnullish（`null`または`undefined`）の場合は、それ以上評価せずに`undefined`を返します。一方で、プロパティが存在する場合は、そのプロパティの評価結果を返します。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": 2020 } -->
