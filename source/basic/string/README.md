@@ -768,7 +768,6 @@ const [マッチした全体の文字列, ...キャプチャされた文字列] 
 const pattern = /ECMAScript (\d+)/;
 // 返り値は0番目がマッチした全体、1番目がキャプチャの1番目というように対応している
 // [マッチした全部の文字列, キャプチャの1番目, キャプチャの2番目 ....]
-// `pattern.exec("ECMAScript 6")`も返り値は同じ
 const [all, capture1] = "ECMAScript 6".match(pattern);
 console.log(all); // => "ECMAScript 6"
 console.log(capture1); // => "6"
@@ -780,17 +779,18 @@ console.log(capture1); // => "6"
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": 2020 } -->
 ```js
-// "ES (数字+)"にマッチするが、欲しい文字列は数字の部分のみ
-const pattern = /ES (\d+)/g;
+// "ES(数字+)"にマッチするが、欲しい文字列は数字の部分のみ
+const pattern = /ES(\d+)/g;
 // iteratorを返す
-const matchesIterator = "ES 2015、ES 2016、ES 2017".matchAll(pattern);
+const matchesIterator = "ES2015、ES2016、ES2017".matchAll(pattern);
 for (const match of matchesIterator) {
     // マッチした要素ごとの情報を含んでいる
     console.log(`match: "${match[0]}", capture1: ${match[1]}, index: ${match.index}, input: "${match.input}"`);
 }
-// match: "ES 2015", capture1: "2015" index: 0, input: "ES 2015、ES 2016、ES 2017" 
-// match: "ES 2016", capture1: "2016" index: 8, input: "ES 2015、ES 2016、ES 2017"
-// match: "ES 2017", capture1: "2017" index: 16, input: "ES 2015、ES 2016、ES 2017"
+// 次の順番でコンソールに出力される
+// match: "ES2015", capture1: 2015, index: 0, input: "ES2015、ES2016、ES2017"
+// match: "ES2016", capture1: 2016, index: 7, input: "ES2015、ES2016、ES2017"
+// match: "ES2017", capture1: 2017, index: 14, input: "ES2015、ES2016、ES2017"
 ```
 
 #### [コラム] RegExp#execでのString#matchAll {#regexp-exec}
