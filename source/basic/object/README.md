@@ -490,7 +490,7 @@ printWidgetTitle({
         title: "Book Viewer"
     }
 });
-// タイトルは未定義のwidget
+// タイトルが未定義のwidget
 printWidgetTitle({
     // タイトルが定義されてない空のオブジェクト
 });
