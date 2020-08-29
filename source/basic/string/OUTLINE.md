@@ -33,10 +33,12 @@
         - マッチ
             - String#match
             - String#match with /g/
+                - String#matchでは indexが取れない
+            - [ES2020] String#matchAll
         - マッチ + キャプチャ
-            - String#matchでは indexが取れない
             - String#matchAll
-            - RegExp#exec
+        - コラム
+            - RegExp#execでString#matchAllを再現していた理由
         - 真偽値
     - 文字列と正規表現
 - 文字列の置換
