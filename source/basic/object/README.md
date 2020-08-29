@@ -469,15 +469,14 @@ if (obj.hasOwnProperty("key")) {
 ## [ES2020] Optional chaining演算子（`?.`） {#optional-chaining-operator}
 
 プロパティの存在を確認する方法として`undefined`との比較、`in`演算子、`hasOwnProperty`メソッドについて紹介しました。
+プロパティの存在を確認して真偽値を取得することが目的ではなく、そのプロパティの評価結果を得る目的ならば、if文で`undefined`と比較しても問題ありません。
 
-存在を確認して真偽値を取得することが目的ではなく、そのプロパティの評価結果を得る目的ならば、if文で`undefined`と比較しても問題ありません。
-
-次のコードでは、`widget.window.title`プロパティにアクセスできるなら、そのプロパティの値を表示します。
+次のコードでは、`widget.window.title`プロパティにアクセスできるなら、そのプロパティの値をコンソールに表示しています。
 
 {{book.console}}
 ```js
 function printWidgetTitle(widget) {
-    // 例外を避けるために`widget.window.title`の存在を確認してから、値を表示している
+    // 例外を避けるために`widget`のプロパティの存在を順場に確認してから、値を表示している
     if (widget.window !== undefined && widget.window.title !== undefined) {
         console.log(`ウィジェットのタイトルは${widget.window.title}です`);
     } else {
@@ -496,12 +495,12 @@ printWidgetTitle({
 });
 ```
 
-この`widget.window.title`のようなネストしたプロパティにアクセスする際には、順番にプロパティの存在を確認してからアクセスする必要があります。
-なぜなら、`widget`オブジェクトが`window`プロパティを持っていない場合は`undefined`という値を返すためです。このときに、さらにネストした`widget.window.title`プロパティにアクセスして、例外が発生してしまうのを避けるためです。
+この`widget.window.title`のようなネストしたプロパティにアクセスする際には、プロパティの存在を順番に確認してからアクセスする必要があります。
+なぜなら、`widget`オブジェクトが`window`プロパティを持っていない場合は`undefined`という値を返すためです。このときに、さらにネストした`widget.window.title`プロパティにアクセスすると、`undefined.title`という参照となり例外が発生してしまいます。
 
 しかし、プロパティへアクセスするたびに`undefined`との比較をAND演算子（`&&`）でつなげて書いていくと冗長です。
 
-ES2020ではネストしたプロパティの存在確認とアクセスを簡単に行う構文としてOptional chaining演算子（`?.`）が導入されました。
+この問題を解決するために、ES2020ではネストしたプロパティの存在確認とアクセスを簡単に行う構文としてOptional chaining演算子（`?.`）が導入されました。
 Optional chaining演算子（`?.`）は、ドット記法（`.`）の代わりに`?.`をプロパティアクセスに使います。
 
 Optional chaining演算子（`?.`）は左辺のオペランドがnullish（`null`または`undefined`）の場合は、それ以上評価せずに`undefined`を返します。一方で、プロパティが存在する場合は、そのプロパティの評価結果を返します。
