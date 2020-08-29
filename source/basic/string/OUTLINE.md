@@ -31,6 +31,12 @@
     - 正規表現による検索
         - インデックス
         - マッチ
+            - String#match
+            - String#match with /g/
+        - マッチ + キャプチャ
+            - String#matchでは indexが取れない
+            - String#matchAll
+            - RegExp#exec
         - 真偽値
     - 文字列と正規表現
 - 文字列の置換
