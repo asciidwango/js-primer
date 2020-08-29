@@ -40,7 +40,7 @@ describe("SUMMARY", function() {
         // 許可リスト(読み方の解説など)
         const allowFilePathList = [];
         const searchPatterns = ["/falsy/gi"];
-        const falsyChapter = path.join(sourceDir, "basic/implicit-coercion/README.md");
+        const falsyChapter = path.join(sourceDir, "basic/operator/README.md");
         return findUsage(falsyChapter, searchPatterns, allowFilePathList).then(results => {
             if (results.length === 0) {
                 return;
@@ -51,6 +51,25 @@ ${result.matchedTexts.join("\n")}
 `;
             });
             throw new Error(`${results.length}件のドキュメントがfalsyを説明前に利用しています。
+${message}`);
+        });
+    });
+
+    it("nullishの説明をする前にnullishの表記を利用してはいけない", () => {
+        // 許可リスト(読み方の解説など)
+        const allowFilePathList = [];
+        const searchPatterns = ["/nullish/gi"];
+        const nullishChapter = path.join(sourceDir, "basic/operator/README.md");
+        return findUsage(nullishChapter, searchPatterns, allowFilePathList).then(results => {
+            if (results.length === 0) {
+                return;
+            }
+            const message = results.map(result => {
+                return `${result.normalizedFilePath} が利用しているので、確認してください。
+${result.matchedTexts.join("\n")}
+`;
+            });
+            throw new Error(`${results.length}件のドキュメントがnullishを説明前に利用しています。
 ${message}`);
         });
     });

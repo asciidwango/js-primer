@@ -165,6 +165,7 @@ falsyな値とは、真偽値へと変換すると`false`となる次のよう�
 - `undefined`
 - `null`
 - `0`
+- `0n`
 - `NaN`
 - `""`（空文字列）
 
@@ -194,6 +195,24 @@ function addPrefix(text, prefix = "デフォルト:") {
 }
 // falsyな値を渡してもデフォルト値は代入されない
 console.log(addPrefix("文字列")); // => "デフォルト:文字列"
+console.log(addPrefix("文字列", "")); // => "文字列"
+console.log(addPrefix("文字列", "カスタム:")); // => "カスタム:文字列"
+```
+
+また、ES2020から導入されたNullish coalescing演算子(`??`)を利用することでも、
+OR演算子（`||`）の問題を避けつつデフォルト値を指定できます。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": 2020 } -->
+```js
+function addPrefix(text, prefix) {
+    // prefixがnullまたはundefinedの時、デフォルト値を返す
+    const pre = prefix ?? "デフォルト:";
+    return pre + text;
+}
+
+console.log(addPrefix("文字列")); // => "デフォルト:文字列"
+// falsyな値でも意図通りに動作する
 console.log(addPrefix("文字列", "")); // => "文字列"
 console.log(addPrefix("文字列", "カスタム:")); // => "カスタム:文字列"
 ```

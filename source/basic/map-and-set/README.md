@@ -193,6 +193,7 @@ ES2015では、これらの問題を根本的に解決する`Map`が導入され
 たとえばショッピングカートのような仕組みを作るとき、次のように`Map`を使って商品のオブジェクトと注文数をマッピングできます。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": 2020 } -->
 ```js
 // ショッピングカートを表現するクラス
 class ShoppingCart {
@@ -202,7 +203,8 @@ class ShoppingCart {
     }
     // カートに商品を追加する
     addItem(item) {
-        const count = this.items.get(item) || 0;
+        // `item`がない場合は`undefined`を返すため、Nullish coalescing演算子(`??`)を使いデフォルト値として`0`を設定する
+        const count = this.items.get(item) ?? 0;
         this.items.set(item, count + 1);
     }
     // カート内の合計金額を返す
@@ -313,6 +315,8 @@ obj = null;
 このマップを`Map`で実装してしまうと、明示的に削除されるまでイベントリスナーはメモリ上に残り続けます。
 ここで`WeakMap`を使うと、`addListener` メソッドに渡された`listener`は `EventEmitter` インスタンスが参照されなくなった際、自動的に解放されます。
 
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": 2020 } -->
 ```js
 // イベントリスナーを管理するマップ
 const listenersMap = new WeakMap();
@@ -320,7 +324,7 @@ const listenersMap = new WeakMap();
 class EventEmitter {
     addListener(listener) {
         // this にひもづいたリスナーの配列を取得する
-        const listeners = listenersMap.get(this) || [];
+        const listeners = listenersMap.get(this) ?? [];
         const newListeners = listeners.concat(listener);
         // this をキーに新しい配列をセットする
         listenersMap.set(this, newListeners);

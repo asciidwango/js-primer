@@ -466,6 +466,110 @@ if (obj.hasOwnProperty("key")) {
 この動作の違いを知るにはまずプロトタイプオブジェクトという特殊なオブジェクトについて理解する必要があります。
 次の章の「[プロトタイプオブジェクト][]」で詳しく解説するため、次の章で`in`演算子と`hasOwnProperty`メソッドの違いを見ていきます。
 
+## [ES2020] Optional chaining演算子（`?.`） {#optional-chaining-operator}
+
+プロパティの存在を確認する方法として`undefined`との比較、`in`演算子、`hasOwnProperty`メソッドを紹介しました。
+最終的に取得したいものがプロパティの値であるならば、if文で`undefined`と比較しても問題ありません。
+なぜなら、値を取得したい場合には、プロパティが存在するかどうかとプロパティの値が`undefined`かどうかの違いを区別する意味はないためです。
+
+次のコードでは、`widget.window.title`プロパティにアクセスできるなら、そのプロパティの値をコンソールに表示しています。
+
+{{book.console}}
+```js
+function printWidgetTitle(widget) {
+    // 例外を避けるために`widget`のプロパティの存在を順場に確認してから、値を表示している
+    if (widget.window !== undefined && widget.window.title !== undefined) {
+        console.log(`ウィジェットのタイトルは${widget.window.title}です`);
+    } else {
+        console.log("ウィジェットのタイトルは未定義です");
+    }
+}
+// タイトルが定義されているwidget
+printWidgetTitle({
+    window: {
+        title: "Book Viewer"
+    }
+});
+// タイトルが未定義のwidget
+printWidgetTitle({
+    // タイトルが定義されてない空のオブジェクト
+});
+```
+
+この`widget.window.title`のようなネストしたプロパティにアクセスする際には、プロパティの存在を順番に確認してからアクセスする必要があります。
+なぜなら、`widget`オブジェクトが`window`プロパティを持っていない場合は`undefined`という値を返すためです。このときに、さらにネストした`widget.window.title`プロパティにアクセスすると、`undefined.title`という参照となり例外が発生してしまいます。
+
+しかし、プロパティへアクセスするたびに`undefined`との比較をAND演算子（`&&`）でつなげて書いていくと冗長です。
+
+この問題を解決するために、ES2020ではネストしたプロパティの存在確認とアクセスを簡単に行う構文としてOptional chaining演算子（`?.`）が導入されました。
+Optional chaining演算子（`?.`）は、ドット記法（`.`）の代わりに`?.`をプロパティアクセスに使います。
+
+Optional chaining演算子（`?.`）は左辺のオペランドがnullish（`null`または`undefined`）の場合は、それ以上評価せずに`undefined`を返します。一方で、プロパティが存在する場合は、そのプロパティの評価結果を返します。
+
+つまり、Optional chaining演算子（`?.`）では、存在しないプロパティへアクセスした場合でも例外ではなく、`undefined`という値を返します。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": 2020 } -->
+```js
+const obj = {
+    a: {
+        b: "objのaプロパティのbプロパティ"
+    }
+};
+// obj.a.b は存在するので、その評価結果を返す
+console.log(obj?.a?.b); // => "objのaプロパティのbプロパティ"
+// 存在しないプロパティのネストも`undefined`を返す
+// ドット記法の場合は例外が発生してしまう
+console.log(obj?.notFound?.notFound); // => undefined
+// undefinedやnullはnullishなので、`undefined`を返す
+console.log(undefined?.notFound?.notFound); // => undefined
+console.log(null?.notFound?.notFound); // => undefined
+```
+
+先ほどのウィジェットのタイトルを表示する関数もOptional chaining演算子（`?.`）を使うと、if文を使わずに書けます。
+次のコードの`printWidgetTitle`関数では、`widget?.window?.title`にアクセスできる場合はその評価結果が変数`title`に入ります。
+プロパティにアクセスできない場合は`undefined`を返すため、Nullish coalescing演算子(`??`)によって右辺の`"未定義"`が変数`title`のデフォルト値となります。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": 2020 } -->
+```js
+function printWidgetTitle(widget) {
+    const title = widget?.window?.title ?? "未定義";
+    console.log(`ウィジェットのタイトルは${title}です`);
+}
+printWidgetTitle({
+    window: {
+        title: "Book Viewer"
+    }
+}); // => "ウィジェットのタイトルはBook Viewerです"
+printWidgetTitle({
+    // タイトルが定義されてない空のオブジェクト
+});　// => "ウィジェットのタイトルは未定義です"
+```
+
+また、Optional chaining演算子（`?.`）はブラケット記法（`[]`）と組み合わせることもできます。
+ブラケット記法の場合も、左辺のオペランドがnullish（`null`または`undefined`）の場合は、それ以上評価せずに`undefined`を返します。一方で、プロパティが存在する場合は、そのプロパティの評価結果を返します。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": 2020 } -->
+```js
+const languages = {
+    ja: {
+        hello: "こんにちは!"
+    },
+    en: {
+        hello: "Hello!"
+    }
+};
+const langJapanese = "ja";
+const langKorean = "ko";
+const messageKey = "hello";
+// Optional chaining演算子（`?.`）とブラケット記法を組みわせた書き方
+console.log(languages?.[langJapanese]?.[messageKey]); // => "こんにちは！"
+// `languages`に`ko`プロパティが定義されていないため、`undefined`を返す
+console.log(languages?.[langKorean]?.[messageKey]); // => undefined
+```
+
 ## `toString`メソッド {#toString-method}
 
 オブジェクトの`toString`メソッドは、オブジェクト自身を文字列化するメソッドです。

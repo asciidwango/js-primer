@@ -727,6 +727,242 @@ const obj = {
 const key = obj.key;
 ```
 
+## 論理演算子 {#logical-operator}
+
+論理演算子は基本的に真偽値を扱う演算子でAND（かつ）、OR（または）、NOT（否定）を表現できます。
+
+### AND演算子（`&&`） {#and-operator}
+
+AND演算子（`&&`）は、左辺の値の評価結果が`true`ならば、右辺の評価結果を返します。
+一方で、左辺の値の評価結果が`false`ならば、そのまま左辺の値を返します。
+
+{{book.console}}
+```js
+// 左辺はtrueであるため、右辺の評価結果を返す
+console.log(true && "右辺の値"); // => "右辺の値"
+// 左辺がfalseであるなら、その時点でfalseを返す
+// 右辺は評価されない
+console.log(false && "右辺の値"); // => false
+```
+
+AND演算子（`&&`）は、左辺の評価が`false`の場合、オペランドの右辺は評価されません。
+次のように、左辺が`false`の場合は、右辺に書いた`console.log`関数自体が実行されません。
+
+{{book.console}}
+```js
+// 左辺がtrueなので、右辺は評価される
+true && console.log("このコンソールログは実行されます");
+// 左辺がfalseなので、右辺は評価されない
+false && console.log("このコンソールログは実行されません");
+```
+
+このような値が決まった時点でそれ以上評価しないことを**短絡評価**と呼びます。
+
+また、AND演算子は左辺を評価する際に、左辺を真偽値へと[暗黙的な型変換][]をしてから判定します。
+真偽値への暗黙的な型変換ではどの値が`true`でどの値が`false`になるかは、次のルールによって決まります。
+
+- **falsy**な値は`false`になる
+- **falsy**でない値は`true`になる
+
+**falsy**な値とは次の7種類の値のことを言います。
+
+- `false`
+- `undefined`
+- `null`
+- `0`
+- `0n`
+- `NaN`
+- `""`（空文字列）
+
+`true`へと変換される値の種類は多いため、`false`へと変換されない値は`true`となることは覚えておくとよいです。
+このオペランドを真偽値に変換してから評価するのはAND、OR、NOT演算子で共通の動作です。
+
+次のように、AND演算子（`&&`）は左辺を真偽値へと変換した結果が`true`の場合に、右辺の評価結果を返します。
+つまり、左辺がfalsyの場合は、右辺は評価されません。
+
+{{book.console}}
+```js
+// 左辺はfalsyではないため、評価結果として右辺を返す
+console.log("文字列" && "右辺の値"); // => "右辺の値"
+console.log(42 && "右辺の値"); // => "右辺の値"
+// 左辺がfalsyであるため、評価結果として左辺を返す
+console.log("" && "右辺の値"); // => ""
+console.log(0 && "右辺の値"); // => 0
+console.log(null && "右辺の値"); // => null
+```
+
+AND演算子は、if文と組み合わせて利用することが多い演算子です。
+
+次のように、`value`がString型で **かつ** 値が`"str"`である場合という条件をひとつの式として書くことができます。
+
+{{book.console}}
+```js
+const value = "str";
+if (typeof value === "string" && value === "str") {
+    console.log(`${value} is string value`);
+}
+// if文のネストで書いた場合と結果は同じとなる
+if (typeof value === "string") {
+    if (value === "str") {
+        console.log(`${value} is string value`);
+    }
+}
+```
+
+このときに、`value`がString型でない場合は、その時点でif文の条件式は`false`となります。
+そのため、`value`がString型ではない場合は、AND演算子（`&&`）の右辺は評価されずに、if文の中身も実行されません。
+
+AND演算子（`&&`）を使うと、if文のネストに比べて短く書くことができます。
+
+しかし、if文が3重4重にネストしているのは複雑なのと同様に、
+AND演算子やOR演算子が3つ4つ連続すると複雑で読みにくいコードとなります。
+その場合は抽象化ができないかを検討するべきサインとなります。
+
+### OR演算子（`||`） {#or-operator}
+
+OR演算子（`||`）は、左辺の値の評価結果が`true`ならば、そのまま左辺の値を返します。
+一方で、左辺の値の評価結果が`false`であるならば、右辺の評価結果を返します。
+
+{{book.console}}
+```js
+// 左辺がtrueなので、左辺の値が返される
+console.log(true || "右辺の値"); // => true
+// 左辺がfalseなので、右辺の値が返される
+console.log(false || "右辺の値"); // => "右辺の値"
+```
+
+OR演算子（`||`）は、左辺の評価が`true`の場合、オペランドの右辺を評価しません。
+これは、AND演算子（`&&`）と同様の短絡評価となるためです。
+
+{{book.console}}
+```js
+// 左辺がtrueなので、右辺は評価されない
+true || console.log("このコンソールログは実行されません");
+// 左辺がfalseなので、右辺は評価される
+false || console.log("このコンソールログは実行されます");
+```
+
+また、OR演算子は左辺を評価する際に、左辺を真偽値へと暗黙的な型変換します。
+次のように、OR演算子は左辺がfalsyの場合には右辺の値を返します。
+
+{{book.console}}
+```js
+// 左辺がfalsyなので、右辺の値が返される
+console.log(0 || "左辺はfalsy"); // => "左辺はfalsy"
+console.log("" || "左辺はfalsy"); // => "左辺はfalsy"
+console.log(null || "左辺はfalsy"); // => "左辺はfalsy"
+// 左辺はfalsyではないため、左辺の値が返される
+console.log(42 || "右辺の値"); // => 42
+console.log("文字列" || "右辺の値"); // => "文字列"
+```
+
+OR演算子は、if文と組み合わせて利用することが多い演算子です。
+
+次のように、`value`が`0`**または**`1`の場合にif文の中身が実行されます。
+
+{{book.console}}
+```js
+const value = 1;
+if (value === 0 || value === 1) {
+    console.log("valueは0または1です。");
+}
+```
+
+### NOT演算子（`!`） {#not-operator}
+
+NOT演算子（`!`）は、`オペランド`の評価結果が`true`ならば、`false`を返します。
+一方で、`オペランド`の評価結果が`false`ならば、`true`を返します。
+つまり、オペランドの評価結果を反転した真偽値を返します。
+
+{{book.console}}
+```js
+console.log(!false); // => true
+console.log(!true);  // => false
+```
+
+NOT演算子（`!`）もAND演算子（`&&`）とOR演算子（`||`）と同様に真偽値へと[暗黙的な型変換][]します。
+falsyである値は`true`へ変換され、falsyではない値は`false`へと変換されます。
+
+{{book.console}}
+```js
+// falsyな値は`true``となる
+console.log(!0); // => true
+console.log(!""); // => true
+console.log(!null); // => true
+// falsyではない値は`false`となる
+console.log(!42);  // => false
+console.log(!"文字列");  // => false
+```
+
+NOT演算子は必ず真偽値を返すため、次のように2つNOT演算子を重ねて真偽値へ変換するという使い方も見かけます。
+たとえば、`!!falsyな値`のように2度反転すれば`false`になります。
+
+{{book.console}}
+```js
+const str = "";
+// 空文字列はfalsyであるため、true -> falseへと変換される
+console.log(!!str); // => false
+```
+
+このようなケースの多くは、比較演算子を使うなどより明示的な方法で、真偽値を得ることができます。
+安易に`!!`による変換に頼るよりは別の方法を探してみるのがいいでしょう。
+
+{{book.console}}
+```js
+const str = "";
+// 空文字列(長さが0より大きな文字列)でないことを判定
+console.log(str.length > 0); // => false
+```
+
+## [ES2020] Nullish coalescing演算子(`??`) {#nullish-coalescing-operator}
+
+Nullish coalescing演算子(`??`)は、左辺の値が**nulish**であるならば、右辺の評価結果を返します。
+**nulish**とは、評価結果が`null`または`undefined`となる値のことです。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": 2020 } -->
+```js
+// 左辺がnullishであるため、右辺の値の評価結果を返す
+console.log(null ?? "右辺の値"); // => "右辺の値"
+console.log(undefiend ?? "右辺の値"); // => "右辺の値"
+// 左辺がnullishではないため、右辺の値の評価結果を返す
+console.log(true ?? "右辺の値"); // => true
+console.log(false ?? "右辺の値"); // => false
+console.log(0 ?? "右辺の値"); // => 0
+console.log("文字列" ?? "右辺の値"); // => "左辺の値"
+```
+
+Nullish coalescing演算子(`??`)とOR演算子（`||`）は、値のデフォルト値を指定する場合によく利用されています。
+OR演算子（`||`）左辺がfalsyの場合に右辺を評価するため、意図しない結果となる場合が知られています。
+
+次のコードは、`inputValue`が未定義だった場合に、`value`に対するデフォルト値をOR演算子（`||`）で指定しています。
+`inputValue`が未定義(`undefined`)の場合は、意図したようにOR演算子（`||`）の右辺で指定した`42`が入ります。
+しかし、`inputValue`が`0`という値であった場合は、`0`はfalsyであるため`value`には右辺の`42`が入ります。
+これでは`0`という値が扱えないため、意図しない動作となっています。
+
+<!-- doctest:disable -->
+```js
+const inputValue = 任意の値または未定義;
+// `inputValue`がfalsyの場合は、`value`には`42`が入る
+// `inputValue`が`0`の場合は、`value`に`42`が入ってしまう
+const value = inputValue || 42;
+console.log(value);
+```
+
+この問題を解決するためにES2020でNullish coalescing演算子(`??`)が導入されています。
+
+Nullish coalescing演算子(`??`)では、左辺がnullishの場合のみ、`value`に右辺で指定した`42`が入ります。
+そのため、`inputValue`が`0`という値が入った場合は、`value`にはそのまま`inputValue`の値である`0`が入ります。
+
+<!-- doctest:disable -->
+```js
+const inputValue = 任意の値または未定義;
+// `inputValue`がnullishの場合は、`value`には42が入る
+// `inputValue`が`0`の場合は、`value`に`0`が入る
+const value = inputValue ?? 42;
+console.log(value);
+```
+
 ## 条件（三項）演算子（`?`と`:`） {#ternary-operator}
 
 条件演算子（`?`と`:`）は三項をとる演算子であるため、三項演算子とも呼ばれます。
@@ -786,109 +1022,7 @@ console.log(addPrefix("文字列")); // => "デフォルト:文字列"
 console.log(addPrefix("文字列", "カスタム")); // => "カスタム文字列"
 ```
 
-## 論理演算子 {#logical-operator}
-
-論理演算子は基本的に真偽値を扱う演算子で、AND、OR、NOTを表現できます。
-
-### AND演算子（`&&`） {#and-operator}
-
-AND演算子（`&&`）は、左辺の値の評価結果が`true`であるならば、右辺の評価結果を返します。
-左辺の評価が`true`ではない場合、右辺は評価されません。
-
-このような値が決まった時点でそれ以上評価しないことを**短絡評価**（ショートサーキット）と呼びます。
-
-{{book.console}}
-```js
-const x = true;
-const y = false;
-// x -> y の順に評価される
-console.log(x && y); // => false
-// 左辺がfalseであるなら、その時点でfalseを返す
-// xは評価されない
-console.log(y && x); // => false
-```
-
-AND演算子は、if文と組み合わせて利用することが多い演算子です。
-次のように、`value`がString型で **かつ** 値が`"str"`である場合という条件をひとつの式として書くことができます。
-
-{{book.console}}
-```js
-const value = "str";
-if (typeof value === "string" && value === "str") {
-    console.log(`${value} is string value`);
-}
-// if文のネストで書いた場合と結果は同じとなる
-if (typeof value === "string") {
-    if (value === "str") {
-        console.log(`${value} is string value`);
-    }
-}
-```
-
-このときに、`value`がString型でない場合は、その時点で`false`となります。
-
-短絡評価はif文のネストに比べて短く書くことができます。
-
-しかし、if文が3重4重にネストしているのは不自然なのと同様に、
-AND演算子やOR演算子が3つ4つ連続する場合は複雑で読みにくいコードです。
-その場合は抽象化ができないかを検討するべきサインとなります。
-
-### OR演算子（`||`） {#or-operator}
-
-OR演算子（`||`）は、左辺の値の評価結果が`false`であるならば、右辺の評価結果を返します。
-AND演算子（`&&`）とは逆に、左辺が`true`である場合は、右辺を評価せず`true`を返します。
-
-{{book.console}}
-```js
-const x = true;
-const y = false;
-// xがtrueなのでyは評価されない
-console.log(x || y); // => true
-// yはfalseなのでxを評価した結果を返す
-console.log(y || x); // => true
-```
-
-OR演算子は、if文と組み合わせて利用することが多い演算子です。
-次のように、`value`が`0`または`1`の場合にif文の中身が実行されます。
-
-{{book.console}}
-```js
-const value = 1;
-if (value === 0 || value === 1) {
-    console.log("valueは0または1です。");
-}
-```
-
-### NOT演算子（`!`） {#not-operator}
-
-NOT演算子（`!`）は、`オペランド`の評価結果が`true`であるならば、`false`を返します。
-
-{{book.console}}
-```js
-console.log(!false); // => true
-console.log(!true);  // => false
-```
-
-NOT演算子は必ず真偽値を返すため、次のように2つNOT演算子を重ねて真偽値へ変換するという使い方も見かけます。
-
-{{book.console}}
-```js
-const str = "";
-// 空文字列はfalseへと変換される
-console.log(!!str); // => false
-```
-
-このようなケースの多くは、比較演算子を使うなどより明示的な方法で、真偽値を得ることができます。
-安易に`!!`による変換に頼るよりは別の方法を探してみるのがいいでしょう。
-
-{{book.console}}
-```js
-const str = "";
-// 空文字列でないことを判定
-console.log(str.length > 0); // => false
-```
-
-### グループ化演算子（`(`と`)`） {#group-operator}
+## グループ化演算子（`(`と`)`） {#group-operator}
 
 グループ化演算子は複数の二項演算子が組み合わさった場合に、演算子の優先順位を明示できる演算子です。
 
