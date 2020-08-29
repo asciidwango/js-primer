@@ -841,7 +841,7 @@ console.log(results.input); // => "ABC あいう DE えお"
 
 `RegExp#exec`メソッドは`g`フラグありのパターンで検索した場合も、マッチした最初の結果のみを含む特殊な配列を返します。
 この点は`String#match`メソッドとは異なります。
-また、最後にマッチした文字列末尾のインデックスを正規表現オブジェクトの`lastIndex`プロパティに記憶します。
+また、最後にマッチした文字列末尾のインデックスを正規表現オブジェクトの`lastIndex`プロパティに記録します。
 そしてもう一度`exec`メソッドを呼び出すと最後にマッチした末尾のインデックス（`lastIndex`プロパティの位置）から検索が開始されます。
 
 {{book.console}}
@@ -864,8 +864,7 @@ console.log(result3); // => null
 console.log(alphabetsPattern.lastIndex); // => 0
 ```
 
-
-ここまでの`RegExp#exec`メソッドの挙動をまとめると次のようになります。
+`RegExp#exec`メソッドの挙動をまとめると次のようになります。
 正規表現の`g`フラグがない場合は、`String#match`メソッドと同じ結果です。
 一方で、正規表現の`g`フラグがある場合は、`String#match`メソッドとは異なる挙動をします。
 
