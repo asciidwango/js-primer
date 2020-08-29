@@ -655,23 +655,32 @@ const index = str.search(searchPattern); // => 3
 str.slice(index, index + マッチした文字列の長さ); // マッチした文字列は取得できない
 ```
 
-そのため、マッチした文字列を取得する`RegExp#exec`メソッドと`String#match`メソッドが用意されています。
-これらのメソッドは、正規表現のマッチを文字列の最後まで繰り返す`g`フラグ（globalの略称）と組み合わせてよく利用されます。
-また、`g`フラグの有無によって返り値が変わるのも特徴的です。
+そのため、マッチした文字列を取得する`String#match`メソッドと`String#matchAll`メソッドが用意されています。
+また、これらのメソッドは正規表現のマッチを文字列の最後まで繰り返す`g`フラグ（globalの略称）と組み合わせて利用します。
 
-- `String#match(正規表現)`: 文字列中でマッチするものを検索する
-    - マッチした場合は、マッチした文字列を含んだ特殊な配列を返す
-    - マッチしない場合は、`null`を返す
-    - 正規表現の`g`フラグが有効化されているときは、マッチしたすべての結果を含んだ配列を返す
-- `RegExp#exec(文字列)`: 文字列中でマッチするものを検索する
-    - マッチした場合は、マッチした文字列を含んだ特殊な配列を返す
-    - マッチしない場合は、`null`を返す
-    - 正規表現の`g`フラグが有効化されているときは、マッチした末尾のインデックスを`lastIndex`プロパティに記憶する
+##### マッチした文字列の取得 {#match}
 
-`String#match`メソッドは正規表現の`g`フラグなしのパターンで検索した場合、マッチしたものが見つかった時点で検索が終了します。
-このときの`match`メソッドの返り値である配列は`index`プロパティと`input`プロパティが追加された特殊な配列となります。
+まずは、マッチした文字列を取得する`String#match`メソッドから見ていきます。
+`String#match`メソッドは、引数の正規表現オブジェクトに`g`フラグが指定されているかどうかで返り値が変化します。
+
+```js
+"文字列".match(正規表現);
+```
+
+`String#match`メソッドで検索した結果、正規表現にマッチするものがなかった場合は`null`を返します。
+
+{{book.console}}
+```js
+console.log("文字列".match(/NO_MATCH_PATTERN/)); // => null
+```
+
+`String#match`メソッドは正規表現の`g`フラグなしのパターンで検索した場合、最初にマッチしたものが見つかった時点で検索が終了します。
+このときの`match`メソッドの返り値は、`index`プロパティと`input`プロパティをもった特殊な配列となります。
+`index`プロパティにはマッチした文字列の先頭のインデックスが`input`には検索対象となった文字列全体が含まれています。
 
 次のコードの`/[a-zA-Z]+/`という正規表現は`a`から`Z`のどれかの文字が1つ以上連続しているものにマッチします。
+マッチした結果を配列からインデックスアクセスで取得できます。
+`g`フラグなしでは、最初にマッチしたものを見つけた時点で検索が終了するので、返り値の配列には1つの要素しか含まれていません。
 
 {{book.console}}
 ```js
@@ -691,7 +700,7 @@ console.log(results.input); // => "ABC あいう DE えお"
 `String#match`メソッドは正規表現の`g`フラグありのパターンで検索した場合、マッチしたすべての結果を含んだ配列を返します。
 
 次のコードの`/[a-zA-Z]+/g`という正規表現は`a`から`Z`のどれかの文字が1つ以上連続しているものに繰り返しマッチします。
-このパターンにマッチする箇所は2つあるため、`String#match`メソッドの返り値である配列にも2つの要素が含まれています。
+このパターンにマッチする箇所は"ABC"と"DE"の2つとなるため、`String#match`メソッドの返り値である配列にも2つの要素が含まれています。
 
 {{book.console}}
 ```js
@@ -707,7 +716,98 @@ console.log(resultsWithG.index); // => undefined
 console.log(resultsWithG.input); // => undefined
 ```
 
-`RegExp#exec`メソッドも、`g`フラグの有無によって挙動が変化します。
+このときの`match`メソッドの返り値である配列の`index`と`input`プロパティは`undefined`となります。
+なぜなら、複数の箇所にマッチする場合においては、1つの`index`プロパティでは意味が一意に決まらないためです。
+
+ES2020から、正規表現の`g`フラグを使った複数のマッチにおいても、それぞれ個別のマッチ情報を正確に得るための`String#matchAll`が追加されています。
+`String#matchAll`メソッドは、マッチした結果をIteratorで返します。
+
+次のコードでは、`matchAll`メソッドでアルファベットにマッチする結果のIteratorオブジェクトを取得しています。
+Iterratorオブジェクトは`for...of`構文で反復処理できます。（詳細は「[配列][]」の章を参照）
+このときの反復処理で取得できる結果は、それぞれの個別のマッチ情報である`index`と`input`プロパティを持つ配列となります。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": 2020 } -->
+```js
+const str = "ABC あいう DE えお";
+const alphabetsPattern = /[a-zA-Z]+/g;
+// matchAllはIteratorを返す
+const resultIterator = str.matchAll(alphabetsPattern);
+for (const match of resultIterator) {
+    // マッチした要素ごとの情報を含んでいる
+    console.log(`match: "${match[0]}", index: ${match.index}, input: "${match.input}"`);
+}
+// 次の順番でコンソールに出力される
+// match: "ABC", index: 0, input: "ABC あいう DE えお"
+// match: "DE", index: 8, input: "ABC あいう DE えお"
+```
+
+そのため、マッチしたすべての文字列だけではなく、マッチした文字列の位置（`index`プロパティ）などの情報を取得するには、`match`メソッドではなく`matchAll`メソッドを利用します。
+
+#### マッチした一部の文字列を取得 {#match-capture-by-regexp}
+
+`String#match`メソッドと`String#matchAll`メソッドは、どちらも正規表現のキャプチャリングに対応しています。
+キャプチャリングとは、正規表現中で`/パターン1(パターン2)/`のようにカッコで囲んだ部分を取り出すことです。
+このキャプチャリングによって、正規表現でマッチした一部分だけを取り出せます。
+
+`String#match`メソッドと`String#matchAll`メソッドはどちらもマッチした結果を配列として返します。
+
+そのマッチしているパターンにキャプチャが含まれている場合は、次のように返り値の配列へキャプチャした部分が追加されていきます。
+
+<!-- doctest:disable -->
+```js
+const [マッチした全体の文字列, ...キャプチャされた文字列] = 文字列.match(/パターン(キャプチャ)/);
+```
+
+次のコードでは、`ECMAScript 数字`の`数字`部分だけを取り出そうとしています。
+`String#match`メソッドとキャプチャリングによって数字(`\d`)にマッチする部分を取り出しています。
+
+{{book.console}}
+```js
+// "ECMAScript (数字+)"にマッチするが、欲しい文字列は数字の部分のみ
+const pattern = /ECMAScript (\d+)/;
+// 返り値は0番目がマッチした全体、1番目がキャプチャの1番目というように対応している
+// [マッチした全部の文字列, キャプチャの1番目, キャプチャの2番目 ....]
+// `pattern.exec("ECMAScript 6")`も返り値は同じ
+const [all, capture1] = "ECMAScript 6".match(pattern);
+console.log(all); // => "ECMAScript 6"
+console.log(capture1); // => "6"
+```
+
+正規表現の`g`フラグを使い複数の文字列にマッチする場合には、`String#matchAll`メソッドを利用します。
+先ほども紹介したように、`String#match`メソッドは複数のマッチした場合に、それぞれの個別のマッチした情報を取得できないためです。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": 2020 } -->
+```js
+// "ES (数字+)"にマッチするが、欲しい文字列は数字の部分のみ
+const pattern = /ES (\d+)/g;
+// iteratorを返す
+const matchesIterator = "ES 2015、ES 2016、ES 2017".matchAll(pattern);
+for (const match of matchesIterator) {
+    // マッチした要素ごとの情報を含んでいる
+    console.log(`match: "${match[0]}", capture1: ${match[1]}, index: ${match.index}, input: "${match.input}"`);
+}
+// match: "ES 2015", capture1: "2015" index: 0, input: "ES 2015、ES 2016、ES 2017" 
+// match: "ES 2016", capture1: "2016" index: 8, input: "ES 2015、ES 2016、ES 2017"
+// match: "ES 2017", capture1: "2017" index: 16, input: "ES 2015、ES 2016、ES 2017"
+```
+
+#### [コラム] RegExp#execでのString#matchAll {#regexp-exec}
+
+`String#matchAll`が導入されたのはES2020です。
+それまでは、`RegExp#exec`メソッドという`String#match`メソッドによく似た挙動をするメソッドを利用していました。
+
+`RegExp#exec`メソッドは、非文字列を引数に受け取るメソッドです。
+
+```js
+/pattern/.exec(文字列);
+```
+
+- `RegExp#exec(文字列)`: 文字列中でマッチするものを検索する
+    - マッチした場合は、マッチした文字列を含んだ特殊な配列を返す
+    - マッチしない場合は、`null`を返す
+    - 正規表現の`g`フラグが有効化されているときは、マッチした末尾のインデックスを`lastIndex`プロパティに記憶する
 
 `RegExp#exec`メソッドは`g`フラグなしのパターンで検索した場合、マッチした最初の結果のみを含む特殊な配列を返します。
 このときの`exec`メソッドの返り値である配列が`index`プロパティと`input`プロパティが追加された特殊な配列となるのは、`String#match`メソッドと同様です。
@@ -729,7 +829,7 @@ console.log(results.input); // => "ABC あいう DE えお"
 `RegExp#exec`メソッドは`g`フラグありのパターンで検索した場合も、マッチした最初の結果のみを含む特殊な配列を返します。
 この点は`String#match`メソッドとは異なります。
 また、最後にマッチした末尾のインデックスを正規表現オブジェクトの`lastIndex`プロパティに記憶します。
-そしてもう一度`exec`メソッドを呼び出すと最後にマッチした末尾のインデックスから検索が開始されます。
+そしてもう一度`exec`メソッドを呼び出すと最後にマッチした末尾のインデックス（`lastIndex`プロパティの位置）から検索が開始されます。
 
 {{book.console}}
 ```js
@@ -767,38 +867,11 @@ while (matches = alphabetsPattern.exec(str)) {
 // match: DE, lastIndex: 10
 ```
 
-このように`String#match`メソッドと`RegExp#exec`メソッドはどちらも`g`フラグによって挙動が変わります。
-また`RegExp#exec`メソッドは、正規表現オブジェクトの`lastIndex`プロパティを変更するという副作用を持ちます。
+このように`RegExp#exec`メソッドと正規表現の`g`フラグを使い、`String#matchAll`メソッド相当の反復処理を実装していました。
+`RegExp#exec`はIteratorオブジェクトという反復処理のためオブジェクトが導入される以前からあるメソッドです。
 
-#### マッチした一部の文字列を取得 {#match-capture-by-regexp}
-
-`String#match`メソッドと`RegExp#exec`メソッドのどちらも正規表現のキャプチャリングに対応しています。
-キャプチャリングとは、正規表現中で`/パターン1(パターン2)/`のようにカッコで囲んだ部分を取り出すことです。
-このキャプチャリングによって、正規表現でマッチした一部分だけを取り出せます。
-
-`String#match`メソッド、`RegExp#exec`メソッドのどちらもマッチした結果を配列として返します。
-
-そのマッチしているパターンにキャプチャが含まれている場合は、次のように返り値の配列へキャプチャした部分が追加されていきます。
-
-<!-- doctest:disable -->
-```js
-const [マッチした全体の文字列, ...キャプチャされた文字列] = 文字列.match(/パターン(キャプチャ)/);
-```
-
-次のコードでは、`ECMAScript 数字`の`数字`部分だけを取り出そうとしています。
-`String#match`メソッドとキャプチャリングによって数字(`\d`)にマッチする部分を取り出しています。
-
-{{book.console}}
-```js
-// "ECMAScript (数字+)"にマッチするが、欲しい文字列は数字の部分のみ
-const pattern = /ECMAScript (\d+)/;
-// 返り値は0番目がマッチした全体、1番目がキャプチャの1番目というように対応している
-// [マッチした全部の文字列, キャプチャの1番目, キャプチャの2番目 ....]
-// `pattern.exec("ECMAScript 6")`も返り値は同じ
-const [all, capture1] = "ECMAScript 6".match(pattern);
-console.log(all); // => "ECMAScript 6"
-console.log(capture1); // => "6"
-```
+`String#matchAll`がIteratorを扱うわかりやすい反復処理に比べて、`RegExp#exec`メソッドは`while`文などで手動で反復処理を書く必要があるため直感的ではありません。
+そのため、`String#matchAll`メソッドが利用できる場合に、`RegExp#exec`メソッドを利用する必要はありません。
 
 #### 真偽値を取得 {#test-by-regexp}
 
@@ -1145,6 +1218,7 @@ console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
 
 
 [文字列とUnicode]: ../string-unicode/README.md
+[配列]: ../array/README.md
 [エスケープシーケンス]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String#%E3%82%A8%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%97%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9
 [MDNの正規表現ドキュメント]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions  "正規表現 - JavaScript | MDN"
 [regex101]: https://regex101.com/  "Online regex tester and debugger: PHP, PCRE, Python, Golang and JavaScript"
