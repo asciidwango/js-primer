@@ -13,6 +13,7 @@ const sourceDir = path.join(__dirname, "..", "source");
 
 /**
  * 指定したECMAScriptバージョンをmetaにもつコードは実行環境によってはサポートされてないので無視する
+ * 最新版のNodeでは無視しない
  * @type {string[]}
  */
 const AllowECMAScriptVersions = semver.cmp(process.version, ">=", "14.0.0") ? [] : ["2017", "2018", "2019", "2020"];
