@@ -1572,6 +1572,11 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <td><a href="../basic/data-type/">&#x30C7;&#x30FC;&#x30BF;&#x578B;&#x3068;&#x30EA;&#x30C6;&#x30E9;&#x30EB;</a></td>
 </tr>
 <tr>
+<td><code>123n</code></td>
+<td>&#x5DE8;&#x5927;&#x306A;&#x6574;&#x6570;&#x3092;&#x8868;&#x3059;BigInt&#x30EA;&#x30C6;&#x30E9;&#x30EB;</td>
+<td><a href="../basic/data-type/">&#x30C7;&#x30FC;&#x30BF;&#x578B;&#x3068;&#x30EA;&#x30C6;&#x30E9;&#x30EB;</a></td>
+</tr>
+<tr>
 <td><code>0b10</code></td>
 <td>[ES2015] <strong>2&#x9032;&#x6570;</strong>&#x306E;&#x6574;&#x6570;&#x30EA;&#x30C6;&#x30E9;&#x30EB;</td>
 <td><a href="../basic/data-type/">&#x30C7;&#x30FC;&#x30BF;&#x578B;&#x3068;&#x30EA;&#x30C6;&#x30E9;&#x30EB;</a></td>
@@ -1670,6 +1675,11 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <tr>
 <td><code>obj.x</code></td>
 <td>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3078;&#x306E;<strong>&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x30A2;&#x30AF;&#x30BB;&#x30B9;</strong>&#xFF08;&#x30C9;&#x30C3;&#x30C8;&#x8A18;&#x6CD5;&#xFF09;</td>
+<td><a href="../basic/object/">&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</a></td>
+</tr>
+<tr>
+<td><code>obj?.x</code></td>
+<td>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3078;&#x306E;<strong>&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x30A2;&#x30AF;&#x30BB;&#x30B9;</strong>&#xFF08;Optional chaining&#x6F14;&#x7B97;&#x5B50;&#xFF09;</td>
 <td><a href="../basic/object/">&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</a></td>
 </tr>
 <tr>
@@ -1823,6 +1833,11 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <tr>
 <td><code>&amp;&amp;</code></td>
 <td>AND&#x6F14;&#x7B97;&#x5B50;</td>
+<td><a href="../basic/operator/">&#x6F14;&#x7B97;&#x5B50;</a></td>
+</tr>
+<tr>
+<td><code>??</code></td>
+<td>Nullish coalescing&#x6F14;&#x7B97;&#x5B50;</td>
 <td><a href="../basic/operator/">&#x6F14;&#x7B97;&#x5B50;</a></td>
 </tr>
 <tr>
@@ -2207,7 +2222,7 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptチートシート","title":"付録: JavaScriptチートシート","level":"1.6","depth":1,"next":{"title":"おわりに","level":"1.7","depth":1,"path":"outro/README.md","ref":"./outro/README.md","articles":[]},"previous":{"title":"付録: 参考リンク集","level":"1.5","depth":1,"path":"appendix/links/README.md","ref":"./appendix/links/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2019","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"cheetsheet/README.md","mtime":"2020-08-29T05:27:48.568Z","type":"markdown"},"gitbook":{"version":"3.5.1","time":"2020-08-29T05:28:32.188Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptチートシート","title":"付録: JavaScriptチートシート","level":"1.6","depth":1,"next":{"title":"おわりに","level":"1.7","depth":1,"path":"outro/README.md","ref":"./outro/README.md","articles":[]},"previous":{"title":"付録: 参考リンク集","level":"1.5","depth":1,"path":"appendix/links/README.md","ref":"./appendix/links/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2019","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"cheetsheet/README.md","mtime":"2020-08-29T05:41:27.626Z","type":"markdown"},"gitbook":{"version":"3.5.1","time":"2020-08-29T05:42:04.631Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
