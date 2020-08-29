@@ -872,7 +872,7 @@ console.log(alphabetsPattern.lastIndex); // => 0
 - マッチした場合は、マッチした文字列を含んだ特殊な配列を返す
 - 正規表現の`g`フラグがある場合は、マッチした文字列を含んだ特殊な配列し、マッチした末尾のインデックスを正規表現オブジェクトの`lastIndex`プロパティに記録する
 
-この`lastIndex`プロパティが検索ごとに更新される仕組みを利用することで、`exec`を反復処理してすべてのマッチする結果を取得できます。
+この正規表現の`g`フラグと`exec`メソッドで検索した場合に、`lastIndex`プロパティが検索ごとに更新される仕組みを利用して、マッチするすべての結果を取得できます。
 
 次のコードでは、`RegExp#exec`メソッド使いアルファベットにマッチした結果を`matches`に保持しています。
 `g`フラグがある場合の`exec`メソッドでは最後にマッチした位置が記録されているため、`while`文で反復処理して続きから検索しています。
@@ -884,11 +884,12 @@ const str = "ABC あいう DE えお";
 const alphabetsPattern = /[a-zA-Z]+/g;
 let matches;
 while (matches = alphabetsPattern.exec(str)) {
-    console.log(`match: ${matches[0]}, lastIndex: ${alphabetsPattern.lastIndex}`);
+    // `RegExp#exec`メソッドの返り値は`index`プロパティなどを含む特殊な配列
+    console.log(`match: ${matches[0]}, index: ${matches.index}, lastIndex: ${alphabetsPattern.lastIndex}`);
 }
-// コンソールには次のように出力される
-// match: ABC, lastIndex: 3
-// match: DE, lastIndex: 10
+// 次の順番でコンソールに出力される
+// match: ABC, index: 0, lastIndex: 3
+// match: DE, index: 8, lastIndex: 10
 ```
 
 このように`RegExp#exec`メソッドと正規表現の`g`フラグを使い、`String#matchAll`メソッド相当の反復処理を実装していました。
