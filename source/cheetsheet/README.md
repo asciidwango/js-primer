@@ -242,6 +242,7 @@ ECMAScriptモジュールについて。
 | `export { x as y }` | [ES2015] 名前付きエクスポートの**エイリアス** | [ECMAScriptモジュール][] |
 | `export { x } from "./x.js"` | [ES2015] 名前付きエクスポートの**再エクスポート** | [ECMAScriptモジュール][] |
 | `export * from "./x.js"` | [ES2015] すべての名前付きエクスポートの**再エクスポート** | [ECMAScriptモジュール][] |
+| `export * as ns from "./x.js";` | [ES2020] **すべての名前付きエクスポートをインポート**して`ns`という名前で**再エクスポート** | [ECMAScriptモジュール][] |
 
 
 ### その他 {#miscellaneous}
