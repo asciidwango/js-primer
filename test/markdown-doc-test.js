@@ -2,20 +2,20 @@
 "use strict";
 import { test } from "@power-doctest/tester";
 import { parse } from "@power-doctest/markdown";
+import { toTestCode } from "./lib/testing-code";
+
 const globby = require("globby");
 const fs = require("fs");
 const path = require("path");
-
-import { toTestCode } from "./lib/testing-code";
+const semver = require("semver");
 const sourceDir = path.join(__dirname, "..", "source");
 
 
 /**
  * 指定したECMAScriptバージョンをmetaにもつコードは実行環境によってはサポートされてないので無視する
- * .travis.ymlのサポートしているNode.jsバージョンに合わせる
  * @type {string[]}
  */
-const AllowECMAScriptVersions = ["2017", "2018", "2019", "2020"];
+const AllowECMAScriptVersions = semver.cmp(process.version, ">=", "14.0.0") ? [] : ["2017", "2018", "2019", "2020"];
 /**
  * Markdownファイルの CodeBlock に対してdoctestを行う
  * CodeBlockは必ず実行できるとは限らないので、
@@ -26,7 +26,7 @@ const AllowECMAScriptVersions = ["2017", "2018", "2019", "2020"];
  *
  * その他詳細は CONTRIBUTING.md を読む
  **/
-describe("doctest:md", function() {
+describe("doctest:md", function () {
     const files = globby.sync([
         `${sourceDir}/**/*.md`,
         `!${sourceDir}/**/node_modules{,/**}`,
@@ -34,7 +34,7 @@ describe("doctest:md", function() {
     ]);
     files.forEach(filePath => {
         const normalizeFilePath = filePath.replace(sourceDir, "");
-        describe(`${normalizeFilePath}`, function() {
+        describe(`${normalizeFilePath}`, function () {
             const content = fs.readFileSync(filePath, "utf-8");
             const parsedCodes = parse({
                 filePath,
@@ -45,7 +45,7 @@ describe("doctest:md", function() {
             parsedCodes.forEach((parsedCode, index) => {
                 const codeValue = parsedCode.code;
                 const testCaseName = codeValue.slice(0, 32).replace(/[\r\n]/g, "_");
-                it(dirName + ": " + testCaseName, function() {
+                it(dirName + ": " + testCaseName, function () {
                     return test({
                         ...parsedCode,
                         code: toTestCode(parsedCode.code)

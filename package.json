@@ -119,5 +119,7 @@
     "wait-on": "^5.0.1",
     "workbox-cli": "^3.6.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "semver": "^7.3.2"
+  }
 }
