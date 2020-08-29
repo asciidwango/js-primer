@@ -502,7 +502,7 @@ printWidgetTitle({
 しかし、プロパティへアクセスするたびに`undefined`との比較をAND演算子（`&&`）でつなげて書いていくと冗長です。
 
 ES2020ではネストしたプロパティの存在確認とアクセスを簡単に行う構文としてOptional chaining演算子（`?.`）が導入されました。
-Optional chaining演算子（`?.`）は、ドット記法（`.`）の代わりに`?.`をプロパティアクセスに使うだけです。
+Optional chaining演算子（`?.`）は、ドット記法（`.`）の代わりに`?.`をプロパティアクセスに使います。
 
 Optional chaining演算子（`?.`）は左辺のオペランドがnullish（`null`または`undefined`）の場合は、それ以上評価せずに`undefined`を返します。一方で、プロパティへアクセスできる場合は、そのプロパティの評価結果を返します。
 
@@ -543,6 +543,28 @@ printWidgetTitle({
 printWidgetTitle({
     // タイトルが定義されてない空のオブジェクト
 });　// => "ウィジェットのタイトルは未定義です"
+```
+
+また、Optional chaining演算子（`?.`）はブラケット記法と組み合わせることもできます。
+ブラケット記法の場合も、指定したプロパティが左辺のオペランドがnullish（`null`または`undefined`）の場合は、それ以上評価せずに`undefined`を返します。一方で、プロパティへアクセスできる場合は、そのプロパティの評価結果を返します。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": 2020 } -->
+```js
+const languages = {
+    ja: {
+        hello: "こんにちは!"
+    },
+    en: {
+        hello: "Hello!"
+    }
+};
+const langJapanese = "ja";
+const langKorean = "ko";
+const messageKey = "hello";
+console.log(languages?.[langJapanese]?.[messageKey]); // => "こんにちは！"
+// `languages`に`ko`プロパティが定義されていないため`undefined`を返す
+console.log(languages?.[langKorean]?.[messageKey]); // => undefined
 ```
 
 ## `toString`メソッド {#toString-method}
