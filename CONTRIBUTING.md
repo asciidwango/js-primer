@@ -2,12 +2,12 @@
 
 この書籍へのコントリビュート方法についてガイドです。
 
-## GitBook
+## HonKit
 
-この書籍は[GitBook](https://www.gitbook.com/)で作成されています。
-また、文章はMarkdownで書かれています。Markdownの記法についてはGitBookのヘルプを参照してください。
+この書籍は[HonKit](https://honkit.netlify.app/)で作成されています。
+また、文章はMarkdownで書かれています。Markdownの記法についてはHonKitのヘルプを参照してください。
 
-- [Markdown · GitBook Toolchain Documentation](https://toolchain.gitbook.com/syntax/markdown.html)
+- [Markdown · HonKit Toolchain Documentation](https://honkit.netlify.app/syntax/markdown.html)
 
 一部、`{{book.console}}`やHTMLコメントを使った仕組みも含まれているため、詳しくはこのガイドで紹介します。
 
@@ -65,14 +65,14 @@ Pull Requestはいつでも歓迎しています。
 
 ## 修正の確認方法
 
-この書籍は[GitBook](https://www.gitbook.com/)で作成されています。
-`npm start`を実行後、[http://localhost:4000/](http://localhost:4000/)へアクセスすることで、GitBookのプレビュー表示ができます。
+この書籍は[HonKit](https://honkit.netlify.app/)で作成されています。
+`npm start`を実行後、[http://localhost:4000/](http://localhost:4000/)へアクセスすることで、HonKitのプレビュー表示ができます。
 
     npm run start
     # open http://localhost:4000/
 
 また、Pull Requestを出した際に[Netlify](https://www.netlify.com/)上へプレビュー用のサイトが公開されます。
-Pull Request下部に表示されるCI Statusからプレビュー用のサイトを見られるため、GitBook上での表示を確認できます。
+Pull Request下部に表示されるCI Statusからプレビュー用のサイトを見られるため、HonKit上での表示を確認できます。
 
 ![CI Status](https://user-images.githubusercontent.com/19714/41819398-ac93bcf6-77fa-11e8-9f06-173613d940e8.png)
 
@@ -90,7 +90,7 @@ IssueやPull Requestでやりとりしそのエラーを直すか無視するか
 このプロジェクトでは次のようなテストが `npm test` で実行されています。
 特定のSuffixを持つファイル名を対象にしているテストも存在しています。
 
-- GitBookのビルドテスト
+- HonKitのビルドテスト
 - [textlint](https://textlint.github.io/)による文章のLint
 - [ESLint](http://eslint.org/ "ESLint")によるコードのLint
 - [textlint](https://textlint.github.io/) + [ESLint](http://eslint.org/ "ESLint")によるMarkdown中のインラインコードブロックのLint
