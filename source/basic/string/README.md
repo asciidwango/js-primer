@@ -755,6 +755,7 @@ for (const match of matchesIterator) {
 ```
 
 そのため、正規表現の`g`フラグを使った繰り返しマッチを行う場合には、`match`メソッドではなく`matchAll`メソッドを利用します。
+また、`matchAll`メソッドは`g`フラグなしの正規表現はサポートしていないため、`g`フラグなしの正規表現を渡した場合は例外が発生します。
 
 #### マッチした一部の文字列を取得 {#match-capture-by-regexp}
 
