@@ -864,8 +864,8 @@ console.log(alphabetsPattern.lastIndex); // => 0
 ```
 
 
-ここまでの`RegExp#exec(文字列)`はの挙動をまとめると次のようになります。
-文字列中でマッチするものを検索するのは`String#match`メソッドと同様です。
+ここまでの`RegExp#exec`メソッドの挙動をまとめると次のようになります。
+正規表現の`g`フラグがない場合は、`String#match`メソッドと同じ結果です。
 一方で、正規表現の`g`フラグがある場合は、`String#match`メソッドとは異なる挙動をします。
 
 - マッチしない場合は、`null`を返す
