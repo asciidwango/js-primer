@@ -519,7 +519,7 @@ const obj = {
 // obj.a.b は存在するので、その評価結果を返す
 console.log(obj?.a?.b); // => "objのaプロパティのbプロパティ"
 // 存在しないプロパティのネストも`undefined`を返す
-// Optional chaining（`?.`）ではない場合は例外が発生する
+// ドット記法の場合は例外が発生してしまう
 console.log(obj?.notFound?.notFound); // => undefined
 // undefinedやnullはnullishなので、`undefined`を返す
 console.log(undefined?.notFound?.notFound); // => undefined
