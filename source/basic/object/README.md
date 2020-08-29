@@ -555,7 +555,7 @@ printWidgetTitle({
 ```js
 const languages = {
     ja: {
-        hello: "こんにちは!"
+        hello: "こんにちは！"
     },
     en: {
         hello: "Hello!"
