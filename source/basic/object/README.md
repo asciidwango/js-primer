@@ -468,7 +468,7 @@ if (obj.hasOwnProperty("key")) {
 
 ## [ES2020] Optional chaining演算子（`?.`） {#optional-chaining-operator}
 
-プロパティの存在を確認する方法として`undefined`との比較や`in`演算子、`hasOwnProperty`メソッドについて紹介しました。
+プロパティの存在を確認する方法として`undefined`との比較、`in`演算子、`hasOwnProperty`メソッドについて紹介しました。
 
 存在を確認して真偽値を取得することが目的ではなく、そのプロパティの評価結果を得る目的ならば、if文で`undefined`と比較しても問題ありません。
 
