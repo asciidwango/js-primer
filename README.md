@@ -45,13 +45,13 @@ Node.js 12.13.0以上が必要です。
 
 **Build**
 
-GitBookのbuildをします。
+HonKitのbuildをします。
 
     npm run build
 
 **Watch**
 
-GitBookのbuildかつWatchをします。
+HonKitのbuildかつWatchをします。
 プレビューをする場合は、ローカルサーバーを利用してください。
 
 次のコマンドを実行後、[http://localhost:4000/](http://localhost:4000/)へアクセスすることでプレビューを見られます。
