@@ -735,7 +735,7 @@ ES2020では、正規表現の`g`フラグを使った繰り返しマッチす�
 `String#matchAll`メソッドは、マッチした結果をIteratorで返します。
 
 次のコードでは、`matchAll`メソッドでアルファベットにマッチする結果のIteratorオブジェクトを取得しています。
-Iterratorオブジェクトは`for...of`構文で反復処理できます。（詳細は「[配列][]」の章を参照）
+Iterratorオブジェクトは`for...of`構文で反復処理できます。（詳細は「[ループと反復処理][]」の章を参照）
 このときの反復処理で取得できる結果は、それぞれのマッチした文字列と`index`と`input`プロパティを持つ配列となります。
 
 {{book.console}}
@@ -1243,7 +1243,7 @@ console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
 
 
 [文字列とUnicode]: ../string-unicode/README.md
-[配列]: ../array/README.md
+[ループと反復処理]: ../loop/README.md
 [エスケープシーケンス]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String#%E3%82%A8%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%97%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9
 [MDNの正規表現ドキュメント]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions  "正規表現 - JavaScript | MDN"
 [regex101]: https://regex101.com/  "Online regex tester and debugger: PHP, PCRE, Python, Golang and JavaScript"
