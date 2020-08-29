@@ -541,10 +541,10 @@ printWidgetTitle({
     window: {
         title: "Book Viewer"
     }
-}); // => "ウィジェットのタイトルはBook Viewerです"
+}); // "ウィジェットのタイトルはBook Viewerです" と出力される
 printWidgetTitle({
     // タイトルが定義されてない空のオブジェクト
-});　// => "ウィジェットのタイトルは未定義です"
+}); // "ウィジェットのタイトルは未定義です" と出力される
 ```
 
 また、Optional chaining演算子（`?.`）はブラケット記法（`[]`）と組み合わせることもできます。
@@ -555,7 +555,7 @@ printWidgetTitle({
 ```js
 const languages = {
     ja: {
-        hello: "こんにちは!"
+        hello: "こんにちは！"
     },
     en: {
         hello: "Hello!"

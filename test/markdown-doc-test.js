@@ -2,20 +2,21 @@
 "use strict";
 import { test } from "@power-doctest/tester";
 import { parse } from "@power-doctest/markdown";
+import { toTestCode } from "./lib/testing-code";
+
 const globby = require("globby");
 const fs = require("fs");
 const path = require("path");
-
-import { toTestCode } from "./lib/testing-code";
+const semver = require("semver");
 const sourceDir = path.join(__dirname, "..", "source");
 
 
 /**
  * 指定したECMAScriptバージョンをmetaにもつコードは実行環境によってはサポートされてないので無視する
- * .travis.ymlのサポートしているNode.jsバージョンに合わせる
+ * 最新版のNodeでは無視しない
  * @type {string[]}
  */
-const AllowECMAScriptVersions = ["2017", "2018", "2019", "2020"];
+const AllowECMAScriptVersions = semver.cmp(process.version, ">=", "14.0.0") ? [] : ["2017", "2018", "2019", "2020"];
 /**
  * Markdownファイルの CodeBlock に対してdoctestを行う
  * CodeBlockは必ず実行できるとは限らないので、
