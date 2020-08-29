@@ -664,7 +664,7 @@ str.slice(index, index + マッチした文字列の長さ); // マッチした�
 `String#match`メソッドは、引数の正規表現オブジェクトに`g`フラグが指定されているかどうかで返り値が変化します。
 
 ```js
-"文字列".match(正規表現);
+"文字列".match(/pattern/);
 ```
 
 `String#match`メソッドで検索した結果、正規表現にマッチするものがなかった場合は`null`を返します。
@@ -801,7 +801,7 @@ for (const match of matchesIterator) {
 `RegExp#exec`メソッドは、非文字列を引数に受け取るメソッドです。
 
 ```js
-/pattern/.exec(文字列);
+/pattern/.exec("文字列");
 ```
 
 - `RegExp#exec(文字列)`: 文字列中でマッチするものを検索する
