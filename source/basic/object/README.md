@@ -564,8 +564,9 @@ const languages = {
 const langJapanese = "ja";
 const langKorean = "ko";
 const messageKey = "hello";
+// Optional chaining演算子（`?.`）とブラケット記法を組みわせた書き方
 console.log(languages?.[langJapanese]?.[messageKey]); // => "こんにちは！"
-// `languages`に`ko`プロパティが定義されていないため`undefined`を返す
+// `languages`に`ko`プロパティが定義されていないため、`undefined`を返す
 console.log(languages?.[langKorean]?.[messageKey]); // => undefined
 ```
 
