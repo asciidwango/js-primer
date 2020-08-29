@@ -506,7 +506,7 @@ Optional chaining演算子（`?.`）は、ドット記法（`.`）の代わり�
 
 Optional chaining演算子（`?.`）は左辺のオペランドがnullish（`null`または`undefined`）の場合は、それ以上評価せずに`undefined`を返します。一方で、プロパティが存在する場合は、そのプロパティの評価結果を返します。
 
-つまり、Optional chaining演算子（`?.`）では存在しないプロパティへアクセスした場合でも例外ではなく、`undefined`という値を返します。
+つまり、Optional chaining演算子（`?.`）では、存在しないプロパティへアクセスした場合でも例外ではなく、`undefined`という値を返します。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": 2020 } -->
