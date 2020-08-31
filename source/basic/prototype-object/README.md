@@ -50,7 +50,7 @@ console.log(typeof Object.prototype.toString); // => "function"
 
 > `Object.prototype.toString` = `Object#toString`
 
-`Object`のインスタンスは、この`Object.prototype`オブジェクトに定義されたメソッドやプロパティをインスタンス化したときに継承します。
+`Object`のインスタンスは、この`Object.prototype`オブジェクトに定義されたメソッドやプロパティを継承します。
 つまり、オブジェクトリテラルや`new Object`でインスタンス化したオブジェクトは、`Object.prototype`に定義されたものが利用できるということです。
 
 次のコードでは、オブジェクトリテラルで作成（インスタンス化）したオブジェクトから、`Object#toString`メソッドを参照しています。
