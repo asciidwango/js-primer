@@ -4,15 +4,6 @@
 
 - サマリIssue: [ECMAScript 2020の対応 · Issue #1145 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1145)
 
-- [for-in mechanics](#for-in-mechanics)
-- [export * as ns from "mod";](#export--as-ns-from-mod)
-- [String.prototype.matchAll](#stringprototypematchall)
-- [globalThis](#globalthis)
-- [BigInt](#bigint)
-- [Nullish coalescing演算子??とOptional chaining（?.）](#nullish-coalescing%E6%BC%94%E7%AE%97%E5%AD%90%E3%81%A8optional-chaining)
-- [チートシートのES2020の対応](#%E3%83%81%E3%83%BC%E3%83%88%E3%82%B7%E3%83%BC%E3%83%88%E3%81%AEes2020%E3%81%AE%E5%AF%BE%E5%BF%9C)
-- [含まれなかったES2020の変更点](#%E5%90%AB%E3%81%BE%E3%82%8C%E3%81%AA%E3%81%8B%E3%81%A3%E3%81%9Fes2020%E3%81%AE%E5%A4%89%E6%9B%B4%E7%82%B9)
-
 ## for-in mechanics
 
 - 対象ページ: [配列](https://jsprimer.net/basic/array/)
@@ -44,7 +35,6 @@ ES2020では、`export * as ns from "mod"; `という再エクスポートの構
 
 ES2015での見落とし的な構文で、ES2015では次のように書く必要があった。
 
-
 ```js
 import * as ns from "./module.js";
 export { ns };
@@ -63,7 +53,7 @@ export * as ns from "./module.js";
 - PR: <https://github.com/asciidwango/js-primer/pull/1250>
 
 ES2020では `String.prototype.matchAll` という正規表現の`g`フラグを使った繰り返しマッチに対応したメソッドが追加された。
-今までは`RegExp.prototype.exec`メソッドで繰り返しマッチすを表現していたが、`String.prototype.matchAll`メソッドというIteratorを返すメソッドに置き換えることができる。
+今までは`RegExp.prototype.exec`メソッドで繰り返しマッチを表現していたが、`String.prototype.matchAll`メソッドというIteratorを返すメソッドに置き換えることができる。
 
 **変更点**
 
