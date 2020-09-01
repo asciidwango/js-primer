@@ -1,12 +1,12 @@
 # 2.0.0
 
-ECMAScript 2020に対応。
+[JavaScript Primer](https://jsprimer.net/) 2.0.0ではECMAScript 2020に対応しています。
 
 - サマリIssue: [ECMAScript 2020の対応 · Issue #1145 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1145)
 
 ## for-in mechanics
 
-- Page: [配列](https://jsprimer.net/basic/array/)
+- 対象 [配列](https://jsprimer.net/basic/array/)
 - Issue: https://github.com/asciidwango/js-primer/issues/1180
 - PR: https://github.com/asciidwango/js-primer/issues/1180
 
@@ -24,7 +24,7 @@ ECMAScript 2020に対応。
 
 ## `export * as ns from "mod";`
 
-- Page: [ECMAScriptモジュール](https://jsprimer.net/basic/module/)
+- 対象ページ [ECMAScriptモジュール](https://jsprimer.net/basic/module/)
 - Issue: <https://github.com/asciidwango/js-primer/issues/1177>
 - PR: <https://github.com/asciidwango/js-primer/pull/1203>
 
@@ -49,11 +49,12 @@ export * as ns from "./module.js";
 
 ## `String.prototype.matchAll`
 
-- Page: [文字列](https://jsprimer.net/basic/string/)
+- 対象ページ: [文字列](https://jsprimer.net/basic/string/)
 - Issue: <https://github.com/asciidwango/js-primer/issues/1182>
 - PR: <https://github.com/asciidwango/js-primer/pull/1250>
 
-ES2020では `String.prototype.matchAll` という正規表現の`g`フラグを使った繰り返しマッチに対応した`match`メソッドが追加された。
+ES2020では `String.prototype.matchAll` という正規表現の`g`フラグを使った繰り返しマッチに対応したメソッドが追加された。
+今までは`RegExp.prototype.exec`メソッドで繰り返しマッチすを表現していたが、`String.prototype.matchAll`メソッドというIteratorを返すメソッドに置き換えることができる。
 
 **変更点**
 
@@ -66,7 +67,7 @@ ES2020では `String.prototype.matchAll` という正規表現の`g`フラグを
 
 ## globalThis
 
-- Page: [関数とthis](https://jsprimer.net/basic/function-this/)
+- 対象ページ: [関数とthis](https://jsprimer.net/basic/function-this/)
 - Issue: <https://github.com/asciidwango/js-primer/issues/1181>
 - PR: <https://github.com/asciidwango/js-primer/pull/1187>
 
@@ -75,7 +76,7 @@ ES2020では `String.prototype.matchAll` という正規表現の`g`フラグを
 
 ## BigInt
 
-- Page: [データ型とリテラル](https://jsprimer.net/basic/data-type/)
+- 対象ページ: [データ型とリテラル](https://jsprimer.net/basic/data-type/)
 - Issue: <https://github.com/asciidwango/js-primer/issues/445>
 - PR: <https://github.com/asciidwango/js-primer/pull/1184>
 
@@ -91,10 +92,10 @@ ES2020では `String.prototype.matchAll` という正規表現の`g`フラグを
 
 ## Nullish coalescing演算子(`??`)とOptional chaining（`?.`）
 
-- Page:
-  - [演算子 · JavaScript Primer #jsprimer](https://jsprimer.net/basic/operator/)
-  - [関数と宣言 · JavaScript Primer #jsprimer](https://jsprimer.net/basic/function-declaration/)
-  - [オブジェクト · JavaScript Primer #jsprimer](https://jsprimer.net/basic/object/)
+- 対象ページ:
+  - [演算子](https://jsprimer.net/basic/operator/)
+  - [関数と宣言](https://jsprimer.net/basic/function-declaration/)
+  - [オブジェクト](https://jsprimer.net/basic/object/)
 - Issue:
   - [ES2020: Nullish coalescing Operator · Issue #1178 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1178)
   - [ES2020: Optional chaining · Issue #1179 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1179)
@@ -123,7 +124,7 @@ Optional chaining演算子（`?.`）は、左辺のオペランドがnullish（n
 
 ## チートシートのES2020の対応
 
-- Page: [付録: JavaScriptチートシート](https://jsprimer.net/cheetsheet/)
+- 対象ページ: [付録: JavaScriptチートシート](https://jsprimer.net/cheetsheet/)
 - Issue: https://github.com/asciidwango/js-primer/issues/1204
 - PR: https://github.com/asciidwango/js-primer/pull/1247
 
@@ -136,12 +137,13 @@ Optional chaining演算子（`?.`）は、左辺のオペランドがnullish（n
 
 ## 含まれなかったES2020の変更点
 
-次の変更は現時点のJavaScript Primerでは含まれていません。
-詳細は[ECMAScript 2020の対応 · Issue #1145 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1145)を参照。
+次のES2020の変更は、現時点のJavaScript Primerでは含まれていません。
 
 - `Promise.allSettled`
 - `import()`
 - `import.meta`
+
+詳細は[ECMAScript 2020の対応 · Issue #1145 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1145)を参照してください。
 
 # 1.0.0
 
