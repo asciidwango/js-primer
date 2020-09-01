@@ -6,7 +6,7 @@
 
 ## for-in mechanics
 
-- 対象 [配列](https://jsprimer.net/basic/array/)
+- 対象ページ: [配列](https://jsprimer.net/basic/array/)
 - Issue: https://github.com/asciidwango/js-primer/issues/1180
 - PR: https://github.com/asciidwango/js-primer/issues/1180
 
