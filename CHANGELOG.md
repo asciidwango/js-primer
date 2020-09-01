@@ -132,7 +132,7 @@ Optional chaining演算子（`?.`）は、左辺のオペランドがnullish（n
 
 - Nullish coalescing演算子(`??`)
 - Optional chaining（`?.`）
-- BigInt(`1n`)
+- BigInt(`42n`)
 - `export * as ns from "./x.js"`
 
 ## 含まれなかったES2020の変更点
