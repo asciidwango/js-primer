@@ -38,7 +38,10 @@
     "test": "npm-run-all -l --parallel test:* lint",
     "e2e:todoapp": "cd ./source/use-case/todoapp && npm install && npm run e2e",
     "e2e": "npm-run-all -l --parallel e2e:*",
-    "build:applescript": "tsc -p tools/applescript"
+    "build:applescript": "tsc -p tools/applescript",
+    "versionup:patch": "npm version patch",
+    "versionup:minor": "npm version minor",
+    "versionup:major": "npm version major"
   },
   "keywords": [
     "gitbook",
