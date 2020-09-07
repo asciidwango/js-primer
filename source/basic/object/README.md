@@ -477,7 +477,7 @@ if (obj.hasOwnProperty("key")) {
 {{book.console}}
 ```js
 function printWidgetTitle(widget) {
-    // 例外を避けるために`widget`のプロパティの存在を順場に確認してから、値を表示している
+    // 例外を避けるために`widget`のプロパティの存在を順番に確認してから、値を表示している
     if (widget.window !== undefined && widget.window.title !== undefined) {
         console.log(`ウィジェットのタイトルは${widget.window.title}です`);
     } else {
