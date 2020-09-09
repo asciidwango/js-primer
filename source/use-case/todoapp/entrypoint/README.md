@@ -241,7 +241,7 @@ import { App } from "./src/App.js";
 
 [Ajax通信:エントリーポイント]: ../../ajaxapp/entrypoint/README.md
 [Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy
-[Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
+[ウェブコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
 [npmを使ってパッケージをインストールする]: ../../nodecli/argument-parse/README.md#use-npm
 [Can I Use]: https://caniuse.com/#feat=es6-module
 [アプリケーション開発の準備]: ../../setup-local-env/README.md
