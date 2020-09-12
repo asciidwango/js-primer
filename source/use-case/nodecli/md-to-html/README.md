@@ -98,16 +98,19 @@ console.log(options.gfm);
 ### デフォルト設定を定義する {#declare-default}
 
 アプリケーション側でデフォルト設定を持っておくことで、将来的にmarkedの挙動が変わったときにも影響を受けにくくなります。
-次のようにデフォルトのオプションを表現したオブジェクトに対して、`program.opts`メソッドの返り値で上書きしましょう。
-オブジェクトのデフォルト値を別のオブジェクトで上書きするときには`...`（spread構文）を使うと便利です（「[オブジェクト][]」の「[&#91;ES2018&#93; オブジェクトのspread構文でのマージ][]」を参照）。
+次のようにオプションを表現した`cliOptions`オブジェクトを作成し、`program.opts`メソッドの戻り値から取得した値をセットします。
+コマンドライン引数で指定されなかったオプションには`??`（[Nullish coalescing演算子][]）を使ってデフォルトの値をセットします。
+Nullish coalescing演算子は左辺がnullishであるときにだけ右辺の値を返すため、値が指定されなかった状態と明示的に`false`が与えられた状態を区別したいときに便利です。
 
 <!-- 差分コードなので -->
 <!-- doctest:disable -->
 ```js
-// コマンドライン引数のオプションを取得し、デフォルトのオプションを上書きする
+// コマンドライン引数のオプションを取得する
+const options = program.opts();
+
+// コマンドライン引数で指定されなかったオプションにデフォルト値を上書きする
 const cliOptions = {
-    gfm: false,
-    ...program.opts(),
+    gfm: options.gfm ?? false,
 };
 ```
 
@@ -154,5 +157,5 @@ $ node main.js --gfm sample.md
 [marked]: https://github.com/chjj/marked
 [変換オプション]: https://marked.js.org/#/USING_ADVANCED.md#options
 [GitHub Flavored Markdown]: https://github.github.com/gfm/
+[Nullish coalescing演算子]: ../../../basic/operator/README.md#nullish-coalescing-operator
 [オブジェクト]: ../../../basic/object/README.md
-[&#91;ES2018&#93; オブジェクトのspread構文でのマージ]: ../../../basic/object/README.md#object-spread-syntax

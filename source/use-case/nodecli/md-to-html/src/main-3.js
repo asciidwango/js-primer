@@ -7,10 +7,12 @@ program.option("--gfm", "GFMを有効にする");
 program.parse(process.argv);
 const filePath = program.args[0];
 
-// コマンドライン引数のオプションを取得し、デフォルトのオプションを上書きする
+// コマンドライン引数のオプションを取得する
+const options = program.opts();
+
+// コマンドライン引数で指定されなかったオプションにデフォルト値を上書きする
 const cliOptions = {
-    gfm: false,
-    ...program.opts(),
+    gfm: options.gfm ?? false,
 };
 
 fs.readFile(filePath, { encoding: "utf8" }, (err, file) => {
