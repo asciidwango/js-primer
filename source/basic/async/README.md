@@ -1666,7 +1666,7 @@ async function asyncMain() {
     await new Promise((resolve) => {
         setTimeout(resolve, 16);
     });
-};
+}
 console.log("1. asyncMain関数を呼び出します");
 // Async Functionは外から見れば単なるPromiseを返す関数
 asyncMain().then(() => {
