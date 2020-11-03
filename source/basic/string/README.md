@@ -1121,14 +1121,14 @@ getResource(baseURL, pathname);
 ```js
 // ベースURLとパスを結合した文字列を返す
 function baseJoin(baseURL, pathname) {
-    // 末尾に / がある場合は、/を削除してから結合する
+    // 末尾に / がある場合は、/ を削除してから結合する
     const stripSlashBaseURL = baseURL.replace(/\/$/, "");
     return stripSlashBaseURL + pathname;
 }
 // `baseURL`と`pathname`にあるリソースを取得する
 function getResource(baseURL, pathname) {
     const url = baseJoin(baseURL, pathname);
-    // baseURLの末尾に`/`があってもなくても同じ結果となる
+    // baseURLの末尾に / があってもなくても同じ結果となる
     console.log(url); // => "http://example.com/resouces/example.js"
     // 省略) リソースを取得する処理...
 }
