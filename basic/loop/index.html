@@ -7,7 +7,7 @@
         <title>ループと反復処理 · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="for文やwhile文を使った反復処理についてを紹介します。また、同等の反復処理がArrayのメソッドでも実現できることについても紹介します。">
-        <meta name="generator" content="HonKit 3.6.8">
+        <meta name="generator" content="HonKit 3.6.13">
         
         
         
@@ -176,7 +176,7 @@
     </head>
     <body>
         
-<div class="book">
+<div class="book honkit-cloak">
     <div class="book-summary">
         
             
@@ -1441,7 +1441,7 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="loop-and-iteration"><a name="loop-and-iteration" class="plugin-anchor" href="#loop-and-iteration"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30EB;&#x30FC;&#x30D7;&#x3068;&#x53CD;&#x5FA9;&#x51E6;&#x7406; </h1>
+                                <h1 id="loop-and-iteration"><a name="loop-and-iteration" class="plugin-anchor" href="#loop-and-iteration"><i class="fa fa-link" aria-hidden="true"></i></a>ループと反復処理 </h1>
 <!-- Note: ループと反復処理
 
 - ループの方がより抽象的な概念
@@ -1449,113 +1449,113 @@
 - https://common-lisp.net/project/iterate/doc/Differences-Between-Iterate-and-Loop.html
 
  -->
-<p>&#x3053;&#x306E;&#x7AE0;&#x3067;&#x306F;&#x3001;while&#x6587;&#x3084;for&#x6587;&#x306A;&#x3069;&#x306E;&#x57FA;&#x672C;&#x7684;&#x306A;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3068;&#x5236;&#x5FA1;&#x6587;&#x306B;&#x3064;&#x3044;&#x3066;&#x5B66;&#x3093;&#x3067;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DF;&#x30F3;&#x30B0;&#x306B;&#x304A;&#x3044;&#x3066;&#x3001;&#x540C;&#x3058;&#x51E6;&#x7406;&#x3092;&#x7E70;&#x308A;&#x8FD4;&#x3059;&#x305F;&#x3081;&#x306B;&#x540C;&#x3058;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x7E70;&#x308A;&#x8FD4;&#x3057;&#x66F8;&#x304F;&#x5FC5;&#x8981;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x30EB;&#x30FC;&#x30D7;&#x3084;&#x30A4;&#x30C6;&#x30EC;&#x30FC;&#x30BF;&#x306A;&#x3069;&#x3092;&#x4F7F;&#x3044;&#x3001;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3068;&#x3057;&#x3066;&#x540C;&#x3058;&#x51E6;&#x7406;&#x3092;&#x7E70;&#x308A;&#x8FD4;&#x3057;&#x5B9F;&#x884C;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x307E;&#x305F;&#x3001;for&#x6587;&#x306A;&#x3069;&#x306E;&#x3088;&#x3046;&#x306A;&#x69CB;&#x6587;&#x3060;&#x3051;&#x3067;&#x306F;&#x306A;&#x304F;&#x3001;&#x914D;&#x5217;&#x306E;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x5229;&#x7528;&#x3057;&#x3066;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3092;&#x884C;&#x3046;&#x65B9;&#x6CD5;&#x3082;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x914D;&#x5217;&#x306E;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x4F7F;&#x3063;&#x305F;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3082;&#x3088;&#x304F;&#x5229;&#x7528;&#x3055;&#x308C;&#x308B;&#x305F;&#x3081;&#x3001;&#x5408;&#x308F;&#x305B;&#x3066;&#x898B;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="while-statement"><a name="while-statement" class="plugin-anchor" href="#while-statement"><i class="fa fa-link" aria-hidden="true"></i></a>while&#x6587; </h2>
-<p>while&#x6587;&#x306F;<code>&#x6761;&#x4EF6;&#x5F0F;</code>&#x304C;<code>true</code>&#x3067;&#x3042;&#x308B;&#x306A;&#x3089;&#x3070;&#x3001;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3092;&#x884C;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>この章では、while文やfor文などの基本的な反復処理と制御文について学んでいきます。</p>
+<p>プログラミングにおいて、同じ処理を繰り返すために同じコードを繰り返し書く必要はありません。
+ループやイテレータなどを使い、反復処理として同じ処理を繰り返し実行できます。</p>
+<p>また、for文などのような構文だけではなく、配列のメソッドを利用して反復処理を行う方法もあります。
+配列のメソッドを使った反復処理もよく利用されるため、合わせて見ていきます。</p>
+<h2 id="while-statement"><a name="while-statement" class="plugin-anchor" href="#while-statement"><i class="fa fa-link" aria-hidden="true"></i></a>while文 </h2>
+<p>while文は<code>条件式</code>が<code>true</code>であるならば、反復処理を行います。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-keyword">while</span> (&#x6761;&#x4EF6;&#x5F0F;) {
-    &#x5B9F;&#x884C;&#x3059;&#x308B;&#x6587;;
+<pre><code class="lang-js"><span class="hljs-keyword">while</span> (条件式) {
+    実行する文;
 }
 </code></pre>
-<p>while&#x6587;&#x306E;&#x5B9F;&#x884C;&#x30D5;&#x30ED;&#x30FC;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x6700;&#x521D;&#x304B;&#x3089;<code>&#x6761;&#x4EF6;&#x5F0F;</code>&#x304C;<code>false</code>&#x3067;&#x3042;&#x308B;&#x5834;&#x5408;&#x306F;&#x3001;&#x4F55;&#x3082;&#x5B9F;&#x884C;&#x305B;&#x305A;while&#x6587;&#x306F;&#x7D42;&#x4E86;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>while文の実行フローは次のようになります。
+最初から<code>条件式</code>が<code>false</code>である場合は、何も実行せずwhile文は終了します。</p>
 <!-- textlint-disable preset-ja-technical-writing/ja-no-redundant-expression -->
 <ol>
-<li><code>&#x6761;&#x4EF6;&#x5F0F;</code> &#x306E;&#x8A55;&#x4FA1;&#x7D50;&#x679C;&#x304C;<code>true</code>&#x306A;&#x3089;&#x6B21;&#x306E;&#x30B9;&#x30C6;&#x30C3;&#x30D7;&#x3078;&#x3001;<code>false</code>&#x306A;&#x3089;&#x7D42;&#x4E86;</li>
-<li><code>&#x5B9F;&#x884C;&#x3059;&#x308B;&#x6587;</code>&#x3092;&#x5B9F;&#x884C;</li>
-<li>&#x30B9;&#x30C6;&#x30C3;&#x30D7;1&#x3078;&#x623B;&#x308B;</li>
+<li><code>条件式</code> の評価結果が<code>true</code>なら次のステップへ、<code>false</code>なら終了</li>
+<li><code>実行する文</code>を実行</li>
+<li>ステップ1へ戻る</li>
 </ol>
 <!-- textlint-enable preset-ja-technical-writing/ja-no-redundant-expression -->
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;<code>x</code>&#x306E;&#x5024;&#x304C;10&#x672A;&#x6E80;&#x3067;&#x3042;&#x308B;&#x306A;&#x3089;&#x3001;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x3078;&#x7E70;&#x308A;&#x8FD4;&#x3057;&#x30ED;&#x30B0;&#x304C;&#x51FA;&#x529B;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x3001;<code>&#x5B9F;&#x884C;&#x3059;&#x308B;&#x6587;</code>&#x306B;&#x3066;&#x3001;<code>x</code>&#x306E;&#x5024;&#x3092;&#x5897;&#x3084;&#x3057;<code>&#x6761;&#x4EF6;&#x5F0F;</code>&#x304C;<code>false</code>&#x3068;&#x306A;&#x308B;&#x3088;&#x3046;&#x306B;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>次のコードでは<code>x</code>の値が10未満であるなら、コンソールへ繰り返しログが出力されます。
+また、<code>実行する文</code>にて、<code>x</code>の値を増やし<code>条件式</code>が<code>false</code>となるようにしています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-number">0</span>;
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`&#x30EB;&#x30FC;&#x30D7;&#x958B;&#x59CB;&#x524D;&#x306E;x&#x306E;&#x5024;: <span class="hljs-subst">${x}</span>`</span>);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`ループ開始前のxの値: <span class="hljs-subst">${x}</span>`</span>);
 <span class="hljs-keyword">while</span> (x &lt; <span class="hljs-number">10</span>) {
     <span class="hljs-built_in">console</span>.log(x);
     x += <span class="hljs-number">1</span>;
 }
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`&#x30EB;&#x30FC;&#x30D7;&#x7D42;&#x4E86;&#x5F8C;&#x306E;x&#x306E;&#x5024;: <span class="hljs-subst">${x}</span>`</span>);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`ループ終了後のxの値: <span class="hljs-subst">${x}</span>`</span>);
 </code></pre>
-<p>&#x3064;&#x307E;&#x308A;&#x3001;<code>&#x5B9F;&#x884C;&#x3059;&#x308B;&#x6587;</code>&#x306E;&#x4E2D;&#x3067;<code>&#x6761;&#x4EF6;&#x5F0F;</code>&#x304C;<code>false</code>&#x3068;&#x306A;&#x308B;&#x3088;&#x3046;&#x306A;&#x51E6;&#x7406;&#x3092;&#x66F8;&#x304B;&#x306A;&#x3044;&#x3068;&#x7121;&#x9650;&#x30EB;&#x30FC;&#x30D7;&#x3057;&#x307E;&#x3059;&#x3002;
-JavaScript&#x306B;&#x306F;&#x3088;&#x308A;&#x5B89;&#x5168;&#x306A;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x306E;&#x66F8;&#x304D;&#x65B9;&#x304C;&#x3042;&#x308B;&#x305F;&#x3081;&#x3001;while&#x6587;&#x306F;&#x4F7F;&#x3046;&#x5834;&#x9762;&#x304C;&#x9650;&#x3089;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x5B89;&#x6613;&#x306B;while&#x6587;&#x3092;&#x4F7F;&#x3046;&#x3088;&#x308A;&#x3082;&#x3001;&#x307B;&#x304B;&#x306E;&#x66F8;&#x304D;&#x65B9;&#x3067;&#x89E3;&#x6C7A;&#x3067;&#x304D;&#x306A;&#x3044;&#x304B;&#x3092;&#x8003;&#x3048;&#x3066;&#x304B;&#x3089;&#x3067;&#x3082;&#x9045;&#x304F;&#x306F;&#x306A;&#x3044;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<h2 id="inifinite-loop"><a name="inifinite-loop" class="plugin-anchor" href="#inifinite-loop"><i class="fa fa-link" aria-hidden="true"></i></a>[&#x30B3;&#x30E9;&#x30E0;] &#x7121;&#x9650;&#x30EB;&#x30FC;&#x30D7; </h2>
-<p>&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3092;&#x6271;&#x3046;&#x969B;&#x306B;&#x3001;&#x30B3;&#x30FC;&#x30C9;&#x306E;&#x66F8;&#x304D;&#x9593;&#x9055;&#x3044;&#x3084;&#x6761;&#x4EF6;&#x5F0F;&#x306E;&#x30DF;&#x30B9;&#x306A;&#x3069;&#x304B;&#x3089;&#x7121;&#x9650;&#x30EB;&#x30FC;&#x30D7;&#x3092;&#x5F15;&#x304D;&#x8D77;&#x3053;&#x3057;&#x3066;&#x3057;&#x307E;&#x3046;&#x5834;&#x5408;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x305F;&#x3068;&#x3048;&#x3070;&#x3001;&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x6761;&#x4EF6;&#x5F0F;&#x306E;&#x8A55;&#x4FA1;&#x7D50;&#x679C;&#x304C;&#x5E38;&#x306B;<code>true</code>&#x3068;&#x306A;&#x3063;&#x3066;&#x3057;&#x307E;&#x3046;&#x305F;&#x3081;&#x3001;&#x7121;&#x9650;&#x30EB;&#x30FC;&#x30D7;&#x304C;&#x767A;&#x751F;&#x3057;&#x3066;&#x3057;&#x307E;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>つまり、<code>実行する文</code>の中で<code>条件式</code>が<code>false</code>となるような処理を書かないと無限ループします。
+JavaScriptにはより安全な反復処理の書き方があるため、while文は使う場面が限られています。</p>
+<p>安易にwhile文を使うよりも、ほかの書き方で解決できないかを考えてからでも遅くはないでしょう。</p>
+<h2 id="inifinite-loop"><a name="inifinite-loop" class="plugin-anchor" href="#inifinite-loop"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] 無限ループ </h2>
+<p>反復処理を扱う際に、コードの書き間違いや条件式のミスなどから無限ループを引き起こしてしまう場合があります。
+たとえば、次のコードは条件式の評価結果が常に<code>true</code>となってしまうため、無限ループが発生してしまいます。</p>
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>;
-<span class="hljs-comment">// &#x6761;&#x4EF6;&#x5F0F;&#x304C;&#x5E38;&#x306B;true&#x306B;&#x306A;&#x308B;&#x305F;&#x3081;&#x3001;&#x7121;&#x9650;&#x30EB;&#x30FC;&#x30D7;&#x3059;&#x308B;</span>
+<span class="hljs-comment">// 条件式が常にtrueになるため、無限ループする</span>
 <span class="hljs-keyword">while</span> (i &gt; <span class="hljs-number">0</span>) {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${i}</span>&#x56DE;&#x76EE;&#x306E;&#x30EB;&#x30FC;&#x30D7;`</span>);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${i}</span>回目のループ`</span>);
     i += <span class="hljs-number">1</span>;
 }
 </code></pre>
-<p>&#x7121;&#x9650;&#x30EB;&#x30FC;&#x30D7;&#x304C;&#x767A;&#x751F;&#x3057;&#x3066;&#x3057;&#x307E;&#x3063;&#x305F;&#x3068;&#x304D;&#x306F;&#x3001;&#x3042;&#x308F;&#x3066;&#x305A;&#x306B;&#x30B9;&#x30AF;&#x30EA;&#x30D7;&#x30C8;&#x3092;&#x505C;&#x6B62;&#x3057;&#x3066;&#x304B;&#x3089;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x4FEE;&#x6B63;&#x3057;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<p>&#x307B;&#x3068;&#x3093;&#x3069;&#x306E;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306F;&#x7121;&#x9650;&#x30EB;&#x30FC;&#x30D7;&#x304C;&#x767A;&#x751F;&#x3057;&#x305F;&#x969B;&#x306B;&#x3001;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x30B9;&#x30AF;&#x30EA;&#x30D7;&#x30C8;&#x306E;&#x5B9F;&#x884C;&#x3092;&#x505C;&#x6B62;&#x3059;&#x308B;&#x6A5F;&#x80FD;&#x304C;&#x542B;&#x307E;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x3001;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3067;&#x8A72;&#x5F53;&#x306E;&#x30B9;&#x30AF;&#x30EA;&#x30D7;&#x30C8;&#x3092;&#x5B9F;&#x884C;&#x3057;&#x3066;&#x3044;&#x308B;&#x30DA;&#x30FC;&#x30B8;&#xFF08;&#x30BF;&#x30D6;&#xFF09;&#x307E;&#x305F;&#x306F;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x305D;&#x306E;&#x3082;&#x306E;&#x3092;&#x9589;&#x3058;&#x308B;&#x3053;&#x3068;&#x3067;&#x5F37;&#x5236;&#x7684;&#x306B;&#x505C;&#x6B62;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-Node.js&#x3067;&#x5B9F;&#x884C;&#x3057;&#x3066;&#x3044;&#x308B;&#x5834;&#x5408;&#x306F;<code>Ctrl + C</code>&#x3092;&#x5165;&#x529B;&#x3057;&#x3001;&#x7D42;&#x4E86;&#x30B7;&#x30B0;&#x30CA;&#x30EB;&#x3092;&#x9001;&#x308B;&#x3053;&#x3068;&#x3067;&#x5F37;&#x5236;&#x7684;&#x306B;&#x505C;&#x6B62;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x7121;&#x9650;&#x30EB;&#x30FC;&#x30D7;&#x304C;&#x767A;&#x751F;&#x3059;&#x308B;&#x539F;&#x56E0;&#x306E;&#x307B;&#x3068;&#x3093;&#x3069;&#x306F;&#x6761;&#x4EF6;&#x5F0F;&#x306B;&#x95A2;&#x9023;&#x3059;&#x308B;&#x5B9F;&#x88C5;&#x30DF;&#x30B9;&#x3067;&#x3059;&#x3002;
-&#x307E;&#x305A;&#x306F;&#x6761;&#x4EF6;&#x5F0F;&#x306E;&#x78BA;&#x8A8D;&#x3092;&#x3057;&#x3066;&#x307F;&#x308B;&#x3053;&#x3068;&#x3067;&#x554F;&#x984C;&#x3092;&#x89E3;&#x6C7A;&#x3067;&#x304D;&#x308B;&#x306F;&#x305A;&#x3067;&#x3059;&#x3002;</p>
-<h2 id="do-while-statement"><a name="do-while-statement" class="plugin-anchor" href="#do-while-statement"><i class="fa fa-link" aria-hidden="true"></i></a>do-while&#x6587; </h2>
-<p>do-while&#x6587;&#x306F;while&#x6587;&#x3068;&#x307B;&#x3068;&#x3093;&#x3069;&#x540C;&#x3058;&#x3067;&#x3059;&#x304C;&#x5B9F;&#x884C;&#x9806;&#x5E8F;&#x304C;&#x7570;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>無限ループが発生してしまったときは、あわてずにスクリプトを停止してからコードを修正しましょう。</p>
+<p>ほとんどのブラウザは無限ループが発生した際に、自動的にスクリプトの実行を停止する機能が含まれています。
+また、ブラウザで該当のスクリプトを実行しているページ（タブ）またはブラウザそのものを閉じることで強制的に停止できます。
+Node.jsで実行している場合は<code>Ctrl + C</code>を入力し、終了シグナルを送ることで強制的に停止できます。</p>
+<p>無限ループが発生する原因のほとんどは条件式に関連する実装ミスです。
+まずは条件式の確認をしてみることで問題を解決できるはずです。</p>
+<h2 id="do-while-statement"><a name="do-while-statement" class="plugin-anchor" href="#do-while-statement"><i class="fa fa-link" aria-hidden="true"></i></a>do-while文 </h2>
+<p>do-while文はwhile文とほとんど同じですが実行順序が異なります。</p>
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-keyword">do</span> {
-    &#x5B9F;&#x884C;&#x3059;&#x308B;&#x6587;;
-} <span class="hljs-keyword">while</span> (&#x6761;&#x4EF6;&#x5F0F;);
+    実行する文;
+} <span class="hljs-keyword">while</span> (条件式);
 </code></pre>
-<p>do-while&#x6587;&#x306E;&#x5B9F;&#x884C;&#x30D5;&#x30ED;&#x30FC;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>do-while文の実行フローは次のようになります。</p>
 <ol>
-<li><code>&#x5B9F;&#x884C;&#x3059;&#x308B;&#x6587;</code>&#x3092;&#x5B9F;&#x884C;</li>
-<li><code>&#x6761;&#x4EF6;&#x5F0F;</code> &#x306E;&#x8A55;&#x4FA1;&#x7D50;&#x679C;&#x304C;<code>true</code>&#x306A;&#x3089;&#x6B21;&#x306E;&#x30B9;&#x30C6;&#x30C3;&#x30D7;&#x3078;&#x3001;<code>false</code>&#x306A;&#x3089;&#x7D42;&#x4E86;</li>
-<li>&#x30B9;&#x30C6;&#x30C3;&#x30D7;1&#x3078;&#x623B;&#x308B;</li>
+<li><code>実行する文</code>を実行</li>
+<li><code>条件式</code> の評価結果が<code>true</code>なら次のステップへ、<code>false</code>なら終了</li>
+<li>ステップ1へ戻る</li>
 </ol>
-<p>while&#x6587;&#x3068;&#x306F;&#x7570;&#x306A;&#x308A;&#x3001;&#x5FC5;&#x305A;&#x6700;&#x521D;&#x306B;<code>&#x5B9F;&#x884C;&#x3059;&#x308B;&#x6587;</code>&#x3092;&#x51E6;&#x7406;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306E;&#x3088;&#x3046;&#x306B;&#x6700;&#x521D;&#x304B;&#x3089;<code>&#x6761;&#x4EF6;&#x5F0F;</code>&#x3092;&#x6E80;&#x305F;&#x3055;&#x306A;&#x3044;&#x5834;&#x5408;&#x3067;&#x3082;&#x3001;
-&#x521D;&#x56DE;&#x306E;<code>&#x5B9F;&#x884C;&#x3059;&#x308B;&#x6587;</code>&#x304C;&#x51E6;&#x7406;&#x3055;&#x308C;&#x3001;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x3078;<code>1000</code>&#x3068;&#x51FA;&#x529B;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p>while文とは異なり、必ず最初に<code>実行する文</code>を処理します。</p>
+<p>そのため、次のコードのように最初から<code>条件式</code>を満たさない場合でも、
+初回の<code>実行する文</code>が処理され、コンソールへ<code>1000</code>と出力されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> x = <span class="hljs-number">1000</span>;
 <span class="hljs-keyword">do</span> {
     <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; 1000</span>
 } <span class="hljs-keyword">while</span> (x &lt; <span class="hljs-number">10</span>);
 </code></pre>
-<p>&#x3053;&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x3092;&#x3046;&#x307E;&#x304F;&#x5229;&#x7528;&#x3057;&#x3001;&#x30EB;&#x30FC;&#x30D7;&#x306E;&#x958B;&#x59CB;&#x524D;&#x3068;&#x30EB;&#x30FC;&#x30D7;&#x4E2D;&#x306E;&#x51E6;&#x7406;&#x3092;&#x307E;&#x3068;&#x3081;&#x3066;&#x66F8;&#x304F;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x3057;&#x304B;&#x3057;&#x3001;while&#x6587;&#x3068;&#x540C;&#x3058;&#x304F;&#x307B;&#x304B;&#x306E;&#x66F8;&#x304D;&#x65B9;&#x3067;&#x89E3;&#x6C7A;&#x3067;&#x304D;&#x306A;&#x3044;&#x304B;&#x3092;&#x8003;&#x3048;&#x3066;&#x304B;&#x3089;&#x3067;&#x3082;&#x9045;&#x304F;&#x306F;&#x306A;&#x3044;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<h2 id="for-statement"><a name="for-statement" class="plugin-anchor" href="#for-statement"><i class="fa fa-link" aria-hidden="true"></i></a>for&#x6587; </h2>
-<p>for&#x6587;&#x306F;&#x7E70;&#x308A;&#x8FD4;&#x3059;&#x7BC4;&#x56F2;&#x3092;&#x6307;&#x5B9A;&#x3057;&#x305F;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3092;&#x66F8;&#x304F;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p>この仕組みをうまく利用し、ループの開始前とループ中の処理をまとめて書くことができます。
+しかし、while文と同じくほかの書き方で解決できないかを考えてからでも遅くはないでしょう。</p>
+<h2 id="for-statement"><a name="for-statement" class="plugin-anchor" href="#for-statement"><i class="fa fa-link" aria-hidden="true"></i></a>for文 </h2>
+<p>for文は繰り返す範囲を指定した反復処理を書くことができます。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-keyword">for</span> (&#x521D;&#x671F;&#x5316;&#x5F0F;; &#x6761;&#x4EF6;&#x5F0F;; &#x5897;&#x5206;&#x5F0F;) {
-    &#x5B9F;&#x884C;&#x3059;&#x308B;&#x6587;;
+<pre><code class="lang-js"><span class="hljs-keyword">for</span> (初期化式; 条件式; 増分式) {
+    実行する文;
 }
 </code></pre>
-<p>for&#x6587;&#x306E;&#x5B9F;&#x884C;&#x30D5;&#x30ED;&#x30FC;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>for文の実行フローは次のようになります。</p>
 <ol>
-<li><code>&#x521D;&#x671F;&#x5316;&#x5F0F;</code> &#x3067;&#x5909;&#x6570;&#x306E;&#x5BA3;&#x8A00;</li>
-<li><code>&#x6761;&#x4EF6;&#x5F0F;</code> &#x306E;&#x8A55;&#x4FA1;&#x7D50;&#x679C;&#x304C;<code>true</code>&#x306A;&#x3089;&#x6B21;&#x306E;&#x30B9;&#x30C6;&#x30C3;&#x30D7;&#x3078;&#x3001;<code>false</code>&#x306A;&#x3089;&#x7D42;&#x4E86;</li>
-<li><code>&#x5B9F;&#x884C;&#x3059;&#x308B;&#x6587;</code> &#x3092;&#x5B9F;&#x884C;</li>
-<li><code>&#x5897;&#x5206;&#x5F0F;</code> &#x3067;&#x5909;&#x6570;&#x3092;&#x66F4;&#x65B0;</li>
-<li>&#x30B9;&#x30C6;&#x30C3;&#x30D7;2&#x3078;&#x623B;&#x308B;</li>
+<li><code>初期化式</code> で変数の宣言</li>
+<li><code>条件式</code> の評価結果が<code>true</code>なら次のステップへ、<code>false</code>なら終了</li>
+<li><code>実行する文</code> を実行</li>
+<li><code>増分式</code> で変数を更新</li>
+<li>ステップ2へ戻る</li>
 </ol>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;for&#x6587;&#x3067;1&#x304B;&#x3089;10&#x307E;&#x3067;&#x306E;&#x5024;&#x3092;&#x5408;&#x8A08;&#x3057;&#x3066;&#x3001;&#x305D;&#x306E;&#x7D50;&#x679C;&#x3092;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x3078;&#x51FA;&#x529B;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>次のコードでは、for文で1から10までの値を合計して、その結果をコンソールへ出力しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">let</span> total = <span class="hljs-number">0</span>; <span class="hljs-comment">// total&#x306E;&#x521D;&#x671F;&#x5024;&#x306F;0</span>
-<span class="hljs-comment">// for&#x6587;&#x306E;&#x5B9F;&#x884C;&#x30D5;&#x30ED;&#x30FC;</span>
-<span class="hljs-comment">// i&#x3092;0&#x3067;&#x521D;&#x671F;&#x5316;</span>
-<span class="hljs-comment">// i&#x304C;10&#x672A;&#x6E80;&#xFF08;&#x6761;&#x4EF6;&#x5F0F;&#x3092;&#x6E80;&#x305F;&#x3059;&#xFF09;&#x306A;&#x3089;for&#x6587;&#x306E;&#x51E6;&#x7406;&#x3092;&#x5B9F;&#x884C;</span>
-<span class="hljs-comment">// i&#x306B;1&#x3092;&#x8DB3;&#x3057;&#x3001;&#x518D;&#x3073;&#x6761;&#x4EF6;&#x5F0F;&#x306E;&#x5224;&#x5B9A;&#x3078;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">let</span> total = <span class="hljs-number">0</span>; <span class="hljs-comment">// totalの初期値は0</span>
+<span class="hljs-comment">// for文の実行フロー</span>
+<span class="hljs-comment">// iを0で初期化</span>
+<span class="hljs-comment">// iが10未満（条件式を満たす）ならfor文の処理を実行</span>
+<span class="hljs-comment">// iに1を足し、再び条件式の判定へ</span>
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {
-    total += i + <span class="hljs-number">1</span>; <span class="hljs-comment">// 1&#x304B;&#x3089;10&#x306E;&#x5024;&#x3092;total&#x306B;&#x52A0;&#x7B97;&#x3057;&#x3066;&#x3044;&#x308B;</span>
+    total += i + <span class="hljs-number">1</span>; <span class="hljs-comment">// 1から10の値をtotalに加算している</span>
 }
 <span class="hljs-built_in">console</span>.log(total); <span class="hljs-comment">// =&gt; 55</span>
 </code></pre>
-<p>&#x3053;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;1&#x304B;&#x3089;10&#x307E;&#x3067;&#x306E;&#x5408;&#x8A08;&#x3092;&#x96FB;&#x5353;&#x3067;&#x8A08;&#x7B97;&#x3059;&#x308C;&#x3070;&#x3044;&#x3044;&#x306E;&#x3067;&#x3001;&#x666E;&#x901A;&#x306F;&#x5FC5;&#x8981;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x306D;&#x3002;
-&#x3082;&#x3046;&#x5C11;&#x3057;&#x5B9F;&#x7528;&#x7684;&#x306A;&#x3082;&#x306E;&#x3092;&#x8003;&#x3048;&#x308B;&#x3068;&#x3001;&#x4EFB;&#x610F;&#x306E;&#x6570;&#x5024;&#x306E;&#x5165;&#x3063;&#x305F;&#x914D;&#x5217;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308A;&#x3001;&#x305D;&#x306E;&#x5408;&#x8A08;&#x3092;&#x8A08;&#x7B97;&#x3057;&#x3066;&#x8FD4;&#x3059;&#x3068;&#x3044;&#x3046;&#x95A2;&#x6570;&#x3092;&#x5B9F;&#x88C5;&#x3059;&#x308B;&#x3068;&#x826F;&#x3055;&#x305D;&#x3046;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;&#x4EFB;&#x610F;&#x306E;&#x6570;&#x5024;&#x304C;&#x5165;&#x3063;&#x305F;&#x914D;&#x5217;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308A;&#x3001;&#x305D;&#x306E;&#x5408;&#x8A08;&#x5024;&#x3092;&#x8FD4;&#x3059; <code>sum</code> &#x95A2;&#x6570;&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-<code>numbers</code>&#x914D;&#x5217;&#x306B;&#x542B;&#x307E;&#x308C;&#x3066;&#x3044;&#x308B;&#x8981;&#x7D20;&#x3092;&#x5148;&#x982D;&#x304B;&#x3089;&#x9806;&#x756A;&#x306B;&#x5909;&#x6570;<code>total</code>&#x3078;&#x52A0;&#x7B97;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x5408;&#x8A08;&#x5024;&#x3092;&#x8A08;&#x7B97;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>このコードは1から10までの合計を電卓で計算すればいいので、普通は必要ありませんね。
+もう少し実用的なものを考えると、任意の数値の入った配列を受け取り、その合計を計算して返すという関数を実装すると良さそうです。</p>
+<p>次のコードでは、任意の数値が入った配列を受け取り、その合計値を返す <code>sum</code> 関数を実装しています。
+<code>numbers</code>配列に含まれている要素を先頭から順番に変数<code>total</code>へ加算することで合計値を計算しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">numbers</span>) </span>{
     <span class="hljs-keyword">let</span> total = <span class="hljs-number">0</span>;
@@ -1567,27 +1567,27 @@ Node.js&#x3067;&#x5B9F;&#x884C;&#x3057;&#x3066;&#x3044;&#x308B;&#x5834;&#x5408;&
 
 <span class="hljs-built_in">console</span>.log(sum([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>])); <span class="hljs-comment">// =&gt; 15</span>
 </code></pre>
-<p>JavaScript&#x306E;&#x914D;&#x5217;&#x3067;&#x3042;&#x308B;<code>Array</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x306F;&#x3001;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x306E;&#x305F;&#x3081;&#x306E;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x304C;&#x5099;&#x308F;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x914D;&#x5217;&#x306E;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x4F7F;&#x3063;&#x305F;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3082;&#x5408;&#x308F;&#x305B;&#x3066;&#x898B;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="array-foreach"><a name="array-foreach" class="plugin-anchor" href="#array-foreach"><i class="fa fa-link" aria-hidden="true"></i></a>&#x914D;&#x5217;&#x306E;<code>forEach</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9; </h2>
-<p>&#x914D;&#x5217;&#x306B;&#x306F;<code>forEach</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3068;&#x3044;&#x3046;for&#x6587;&#x3068;&#x540C;&#x3058;&#x3088;&#x3046;&#x306B;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3092;&#x884C;&#x3046;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p><code>forEach</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x306E;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x306F;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x66F8;&#x3051;&#x307E;&#x3059;&#x3002;</p>
+<p>JavaScriptの配列である<code>Array</code>オブジェクトには、反復処理のためのメソッドが備わっています。
+そのため、配列のメソッドを使った反復処理も合わせて見ていきます。</p>
+<h2 id="array-foreach"><a name="array-foreach" class="plugin-anchor" href="#array-foreach"><i class="fa fa-link" aria-hidden="true"></i></a>配列の<code>forEach</code>メソッド </h2>
+<p>配列には<code>forEach</code>メソッドというfor文と同じように反復処理を行うメソッドがあります。</p>
+<p><code>forEach</code>メソッドでの反復処理は、次のように書けます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
 array.forEach(<span class="hljs-function"><span class="hljs-params">currentValue</span> =&gt;</span> {
-    <span class="hljs-comment">// &#x914D;&#x5217;&#x306E;&#x8981;&#x7D20;&#x3054;&#x3068;&#x306B;&#x547C;&#x3073;&#x51FA;&#x3055;&#x308C;&#x308B;&#x51E6;&#x7406;</span>
+    <span class="hljs-comment">// 配列の要素ごとに呼び出される処理</span>
 });
 </code></pre>
-<p>JavaScript&#x3067;&#x306F;&#x3001;&#x95A2;&#x6570;&#x304C;&#x30D5;&#x30A1;&#x30FC;&#x30B9;&#x30C8;&#x30AF;&#x30E9;&#x30B9;&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x3001;&#x305D;&#x306E;&#x5834;&#x3067;&#x4F5C;&#x3063;&#x305F;&#x533F;&#x540D;&#x95A2;&#x6570;&#xFF08;&#x540D;&#x524D;&#x306E;&#x306A;&#x3044;&#x95A2;&#x6570;&#xFF09;&#x3092;&#x5F15;&#x6570;&#x3068;&#x3057;&#x3066;&#x6E21;&#x305B;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x5F15;&#x6570;&#x3068;&#x3057;&#x3066;&#x6E21;&#x3055;&#x308C;&#x308B;&#x95A2;&#x6570;&#x306E;&#x3053;&#x3068;&#x3092;<strong>&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;</strong>&#x3068;&#x547C;&#x3073;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x3001;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x3092;&#x5F15;&#x6570;&#x3068;&#x3057;&#x3066;&#x53D7;&#x3051;&#x53D6;&#x308B;&#x95A2;&#x6570;&#x3084;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306E;&#x3053;&#x3068;&#x3092;<strong>&#x9AD8;&#x968E;&#x95A2;&#x6570;</strong>&#x3068;&#x547C;&#x3073;&#x307E;&#x3059;&#x3002;</p>
+<p>JavaScriptでは、関数がファーストクラスであるため、その場で作った匿名関数（名前のない関数）を引数として渡せます。</p>
+<p>引数として渡される関数のことを<strong>コールバック関数</strong>と呼びます。
+また、コールバック関数を引数として受け取る関数やメソッドのことを<strong>高階関数</strong>と呼びます。</p>
 <!-- doctest: ReferenceError -->
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
-<span class="hljs-comment">// forEach&#x306F;&quot;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&quot;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308B;&#x9AD8;&#x968E;&#x95A2;&#x6570;</span>
-array.forEach(&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;);
+<span class="hljs-comment">// forEachは&quot;コールバック関数&quot;を受け取る高階関数</span>
+array.forEach(コールバック関数);
 </code></pre>
-<p><code>forEach</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306E;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x306B;&#x306F;&#x3001;&#x914D;&#x5217;&#x306E;&#x8981;&#x7D20;&#x304C;&#x5148;&#x982D;&#x304B;&#x3089;&#x9806;&#x756A;&#x306B;&#x6E21;&#x3055;&#x308C;&#x3066;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x3064;&#x307E;&#x308A;&#x3001;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x306E;<code>currentValue</code>&#x306B;&#x306F;1&#x304B;&#x3089;3&#x306E;&#x5024;&#x304C;&#x9806;&#x756A;&#x306B;&#x6E21;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p><code>forEach</code>メソッドのコールバック関数には、配列の要素が先頭から順番に渡されて実行されます。
+つまり、コールバック関数の<code>currentValue</code>には1から3の値が順番に渡されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
 array.forEach(<span class="hljs-function"><span class="hljs-params">currentValue</span> =&gt;</span> {
@@ -1596,9 +1596,9 @@ array.forEach(<span class="hljs-function"><span class="hljs-params">currentValue
 <span class="hljs-comment">// 1</span>
 <span class="hljs-comment">// 2</span>
 <span class="hljs-comment">// 3</span>
-<span class="hljs-comment">// &#x3068;&#x9806;&#x756A;&#x306B;&#x51FA;&#x529B;&#x3055;&#x308C;&#x308B;</span>
+<span class="hljs-comment">// と順番に出力される</span>
 </code></pre>
-<p>&#x5148;&#x307B;&#x3069;&#x306E;for&#x6587;&#x306E;&#x4F8B;&#x3068;&#x540C;&#x3058;&#x6570;&#x5024;&#x306E;&#x5408;&#x8A08;&#x3092;&#x8FD4;&#x3059;<code>sum</code> &#x95A2;&#x6570;&#x3092;<code>forEach</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x5B9F;&#x88C5;&#x3057;&#x3066;&#x307F;&#x307E;&#x3059;&#x3002;</p>
+<p>先ほどのfor文の例と同じ数値の合計を返す<code>sum</code> 関数を<code>forEach</code>メソッドで実装してみます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">numbers</span>) </span>{
     <span class="hljs-keyword">let</span> total = <span class="hljs-number">0</span>;
@@ -1610,21 +1610,21 @@ array.forEach(<span class="hljs-function"><span class="hljs-params">currentValue
 
 sum([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]); <span class="hljs-comment">// =&gt; 15</span>
 </code></pre>
-<p><code>forEach</code>&#x306F;for&#x6587;&#x306E;<code>&#x6761;&#x4EF6;&#x5F0F;</code>&#x306B;&#x76F8;&#x5F53;&#x3059;&#x308B;&#x3082;&#x306E;&#x306F;&#x306A;&#x304F;&#x3001;&#x5FC5;&#x305A;&#x914D;&#x5217;&#x306E;&#x3059;&#x3079;&#x3066;&#x306E;&#x8981;&#x7D20;&#x3092;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x5909;&#x6570;<code>i</code>&#x3068;&#x3044;&#x3063;&#x305F;&#x4E00;&#x6642;&#x7684;&#x306A;&#x5024;&#x3092;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;&#x30B7;&#x30F3;&#x30D7;&#x30EB;&#x306B;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3092;&#x66F8;&#x3051;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="break-statement"><a name="break-statement" class="plugin-anchor" href="#break-statement"><i class="fa fa-link" aria-hidden="true"></i></a>break&#x6587; </h2>
-<p>break&#x6587;&#x306F;&#x51E6;&#x7406;&#x4E2D;&#x306E;&#x6587;&#x304B;&#x3089;&#x629C;&#x3051;&#x3066;&#x6B21;&#x306E;&#x6587;&#x3078;&#x79FB;&#x884C;&#x3059;&#x308B;&#x5236;&#x5FA1;&#x6587;&#x3067;&#x3059;&#x3002;
-while&#x3001;do-while&#x3001;for&#x306E;&#x4E2D;&#x3067;&#x4F7F;&#x3044;&#x3001;&#x51E6;&#x7406;&#x4E2D;&#x306E;&#x30EB;&#x30FC;&#x30D7;&#x3092;&#x629C;&#x3051;&#x3066;&#x6B21;&#x306E;&#x6587;&#x3078;&#x5236;&#x5FA1;&#x3092;&#x79FB;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p><code>forEach</code>はfor文の<code>条件式</code>に相当するものはなく、必ず配列のすべての要素を反復処理します。
+変数<code>i</code>といった一時的な値を定義する必要がないため、シンプルに反復処理を書けます。</p>
+<h2 id="break-statement"><a name="break-statement" class="plugin-anchor" href="#break-statement"><i class="fa fa-link" aria-hidden="true"></i></a>break文 </h2>
+<p>break文は処理中の文から抜けて次の文へ移行する制御文です。
+while、do-while、forの中で使い、処理中のループを抜けて次の文へ制御を移します。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
-    <span class="hljs-keyword">break</span>; <span class="hljs-comment">// *1 &#x3078;</span>
+    <span class="hljs-keyword">break</span>; <span class="hljs-comment">// *1 へ</span>
 }
-<span class="hljs-comment">// *1 &#x6B21;&#x306E;&#x6587;</span>
+<span class="hljs-comment">// *1 次の文</span>
 </code></pre>
-<p>switch&#x6587;&#x3067;&#x51FA;&#x3066;&#x304D;&#x305F;&#x3082;&#x306E;&#x3068;&#x540C;&#x69D8;&#x3067;&#x3001;&#x51E6;&#x7406;&#x4E2D;&#x306E;&#x30EB;&#x30FC;&#x30D7;&#x6587;&#x3092;&#x7D42;&#x4E86;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x914D;&#x5217;&#x306E;&#x8981;&#x7D20;&#x306B;1&#x3064;&#x3067;&#x3082;&#x5076;&#x6570;&#x3092;&#x542B;&#x3093;&#x3067;&#x3044;&#x308B;&#x304B;&#x3092;&#x5224;&#x5B9A;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>switch文で出てきたものと同様で、処理中のループ文を終了できます。</p>
+<p>次のコードでは配列の要素に1つでも偶数を含んでいるかを判定しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">15</span>, <span class="hljs-number">20</span>];
-<span class="hljs-comment">// &#x5076;&#x6570;&#x304C;&#x3042;&#x308B;&#x304B;&#x3069;&#x3046;&#x304B;</span>
+<span class="hljs-comment">// 偶数があるかどうか</span>
 <span class="hljs-keyword">let</span> isEvenIncluded = <span class="hljs-literal">false</span>;
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; numbers.length; i++) {
     <span class="hljs-keyword">const</span> num = numbers[i];
@@ -1635,16 +1635,16 @@ while&#x3001;do-while&#x3001;for&#x306E;&#x4E2D;&#x3067;&#x4F7F;&#x3044;&#x3001;
 }
 <span class="hljs-built_in">console</span>.log(isEvenIncluded); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
-<p>1&#x3064;&#x3067;&#x3082;&#x5076;&#x6570;&#x304C;&#x3042;&#x308B;&#x304B;&#x304C;&#x308F;&#x304B;&#x308C;&#x3070;&#x3044;&#x3044;&#x305F;&#x3081;&#x3001;&#x914D;&#x5217;&#x5185;&#x304B;&#x3089;&#x6700;&#x521D;&#x306E;&#x5076;&#x6570;&#x3092;&#x898B;&#x3064;&#x3051;&#x305F;&#x3089;for&#x6587;&#x3067;&#x306E;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3092;&#x7D42;&#x4E86;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x3088;&#x3046;&#x306A;&#x51E6;&#x7406;&#x306F;&#x4F7F;&#x3044;&#x56DE;&#x305B;&#x308B;&#x3088;&#x3046;&#x306B;&#x3001;&#x95A2;&#x6570;&#x3068;&#x3057;&#x3066;&#x5B9F;&#x88C5;&#x3059;&#x308B;&#x306E;&#x304C;&#x4E00;&#x822C;&#x7684;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x540C;&#x69D8;&#x306E;&#x51E6;&#x7406;&#x3092;&#x3059;&#x308B; <code>isEvenIncluded</code> &#x95A2;&#x6570;&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x3066;&#x307F;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;break&#x6587;&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x3001;&#x30EB;&#x30FC;&#x30D7;&#x3092;&#x629C;&#x3051;&#x305F;&#x5F8C;&#x306B;return&#x6587;&#x3067;&#x7D50;&#x679C;&#x3092;&#x8FD4;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>1つでも偶数があるかがわかればいいため、配列内から最初の偶数を見つけたらfor文での反復処理を終了します。
+このような処理は使い回せるように、関数として実装するのが一般的です。</p>
+<p>同様の処理をする <code>isEvenIncluded</code> 関数を実装してみます。
+次のコードでは、break文が実行され、ループを抜けた後にreturn文で結果を返しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// &#x5F15;&#x6570;&#x306E;`num`&#x304C;&#x5076;&#x6570;&#x306A;&#x3089;true&#x3092;&#x8FD4;&#x3059;</span>
+<pre><code class="lang-javascript"><span class="hljs-comment">// 引数の`num`が偶数ならtrueを返す</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isEven</span>(<span class="hljs-params">num</span>) </span>{
     <span class="hljs-keyword">return</span> num % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>;
 }
-<span class="hljs-comment">// &#x5F15;&#x6570;&#x306E;`numbers`&#x306B;&#x5076;&#x6570;&#x304C;&#x542B;&#x307E;&#x308C;&#x3066;&#x3044;&#x308B;&#x306A;&#x3089;true&#x3092;&#x8FD4;&#x3059;</span>
+<span class="hljs-comment">// 引数の`numbers`に偶数が含まれているならtrueを返す</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isEvenIncluded</span>(<span class="hljs-params">numbers</span>) </span>{
     <span class="hljs-keyword">let</span> isEvenIncluded = <span class="hljs-literal">false</span>;
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; numbers.length; i++) {
@@ -1659,8 +1659,8 @@ while&#x3001;do-while&#x3001;for&#x306E;&#x4E2D;&#x3067;&#x4F7F;&#x3044;&#x3001;
 <span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">15</span>, <span class="hljs-number">20</span>];
 <span class="hljs-built_in">console</span>.log(isEvenIncluded(array)); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
-<p>return&#x6587;&#x306F;&#x73FE;&#x5728;&#x306E;&#x95A2;&#x6570;&#x3092;&#x7D42;&#x4E86;&#x3055;&#x305B;&#x308B;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x308B;&#x305F;&#x3081;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x66F8;&#x304F;&#x3053;&#x3068;&#x3082;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-<code>numbers</code>&#x306B;1&#x3064;&#x3067;&#x3082;&#x5076;&#x6570;&#x304C;&#x542B;&#x307E;&#x308C;&#x3066;&#x3044;&#x308C;&#x3070;&#x7D50;&#x679C;&#x306F;<code>true</code>&#x3068;&#x306A;&#x308B;&#x305F;&#x3081;&#x3001;&#x5076;&#x6570;&#x306E;&#x5024;&#x304C;&#x898B;&#x3064;&#x304B;&#x3063;&#x305F;&#x6642;&#x70B9;&#x3067;<code>true</code>&#x3092;&#x8FD4;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>return文は現在の関数を終了させることができるため、次のように書くこともできます。
+<code>numbers</code>に1つでも偶数が含まれていれば結果は<code>true</code>となるため、偶数の値が見つかった時点で<code>true</code>を返しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isEven</span>(<span class="hljs-params">num</span>) </span>{
     <span class="hljs-keyword">return</span> num % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>;
@@ -1677,19 +1677,19 @@ while&#x3001;do-while&#x3001;for&#x306E;&#x4E2D;&#x3067;&#x4F7F;&#x3044;&#x3001;
 <span class="hljs-keyword">const</span> numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">15</span>, <span class="hljs-number">20</span>];
 <span class="hljs-built_in">console</span>.log(isEvenIncluded(numbers)); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
-<p>&#x5076;&#x6570;&#x3092;&#x898B;&#x3064;&#x3051;&#x305F;&#x3089;&#x3059;&#x3050;&#x306B;return&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x4E00;&#x6642;&#x7684;&#x306A;&#x5909;&#x6570;&#x304C;&#x4E0D;&#x8981;&#x3068;&#x306A;&#x308A;&#x3001;&#x3088;&#x308A;&#x7C21;&#x6F54;&#x306B;&#x66F8;&#x3051;&#x307E;&#x3057;&#x305F;&#x3002;</p>
-<h3 id="array-some"><a name="array-some" class="plugin-anchor" href="#array-some"><i class="fa fa-link" aria-hidden="true"></i></a>&#x914D;&#x5217;&#x306E;<code>some</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9; </h3>
-<p>&#x5148;&#x307B;&#x3069;&#x306E;<code>isEvenIncluded</code>&#x95A2;&#x6570;&#x306F;&#x3001;&#x5076;&#x6570;&#x3092;&#x898B;&#x3064;&#x3051;&#x305F;&#x3089; <code>true</code> &#x3092;&#x8FD4;&#x3059;&#x95A2;&#x6570;&#x3067;&#x3057;&#x305F;&#x3002;
-&#x914D;&#x5217;&#x3067;&#x306F;<code>some</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x540C;&#x69D8;&#x306E;&#x3053;&#x3068;&#x304C;&#x884C;&#x3048;&#x307E;&#x3059;&#x3002;</p>
-<p><code>some</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x3001;&#x914D;&#x5217;&#x306E;&#x5404;&#x8981;&#x7D20;&#x3092;&#x30C6;&#x30B9;&#x30C8;&#x3059;&#x308B;&#x51E6;&#x7406;&#x3092;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x3068;&#x3057;&#x3066;&#x53D7;&#x3051;&#x53D6;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x304C;&#x3001;&#x4E00;&#x5EA6;&#x3067;&#x3082;<code>true</code>&#x3092;&#x8FD4;&#x3057;&#x305F;&#x6642;&#x70B9;&#x3067;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3092;&#x7D42;&#x4E86;&#x3057;&#x3001;<code>some</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;<code>true</code>&#x3092;&#x8FD4;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>偶数を見つけたらすぐにreturnすることで一時的な変数が不要となり、より簡潔に書けました。</p>
+<h3 id="array-some"><a name="array-some" class="plugin-anchor" href="#array-some"><i class="fa fa-link" aria-hidden="true"></i></a>配列の<code>some</code>メソッド </h3>
+<p>先ほどの<code>isEvenIncluded</code>関数は、偶数を見つけたら <code>true</code> を返す関数でした。
+配列では<code>some</code>メソッドで同様のことが行えます。</p>
+<p><code>some</code>メソッドは、配列の各要素をテストする処理をコールバック関数として受け取ります。
+コールバック関数が、一度でも<code>true</code>を返した時点で反復処理を終了し、<code>some</code>メソッドは<code>true</code>を返します。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
 <span class="hljs-keyword">const</span> isPassed = array.some(<span class="hljs-function"><span class="hljs-params">currentValue</span> =&gt;</span> {
-    <span class="hljs-comment">// &#x30C6;&#x30B9;&#x30C8;&#x3092;&#x30D1;&#x30B9;&#x3059;&#x308B;&#x3068;true&#x3001;&#x305D;&#x3046;&#x3067;&#x306A;&#x3044;&#x306A;&#x3089;false&#x3092;&#x8FD4;&#x3059;</span>
+    <span class="hljs-comment">// テストをパスするとtrue、そうでないならfalseを返す</span>
 });
 </code></pre>
-<p><code>some</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;&#x3001;&#x914D;&#x5217;&#x306B;&#x5076;&#x6570;&#x304C;&#x542B;&#x307E;&#x308C;&#x3066;&#x3044;&#x308B;&#x304B;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x66F8;&#x304F;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x53D7;&#x3051;&#x53D6;&#x3063;&#x305F;&#x5024;&#x304C;&#x5076;&#x6570;&#x3067;&#x3042;&#x308B;&#x304B;&#x3092;&#x30C6;&#x30B9;&#x30C8;&#x3059;&#x308B;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x3068;&#x3057;&#x3066;<code>isEven</code>&#x95A2;&#x6570;&#x3092;&#x6E21;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p><code>some</code>メソッドを使うことで、配列に偶数が含まれているかは次のように書くことができます。
+受け取った値が偶数であるかをテストするコールバック関数として<code>isEven</code>関数を渡します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isEven</span>(<span class="hljs-params">num</span>) </span>{
     <span class="hljs-keyword">return</span> num % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>;
@@ -1697,35 +1697,35 @@ while&#x3001;do-while&#x3001;for&#x306E;&#x4E2D;&#x3067;&#x4F7F;&#x3044;&#x3001;
 <span class="hljs-keyword">const</span> numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">15</span>, <span class="hljs-number">20</span>];
 <span class="hljs-built_in">console</span>.log(numbers.some(isEven)); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
-<h2 id="continue-statement"><a name="continue-statement" class="plugin-anchor" href="#continue-statement"><i class="fa fa-link" aria-hidden="true"></i></a>continue&#x6587; </h2>
-<p>continue&#x6587;&#x306F;&#x73FE;&#x5728;&#x306E;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3092;&#x7D42;&#x4E86;&#x3057;&#x3066;&#x3001;&#x6B21;&#x306E;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3092;&#x884C;&#x3044;&#x307E;&#x3059;&#x3002;
-continue&#x6587;&#x306F;&#x3001;while&#x3001;do-while&#x3001;for&#x306E;&#x4E2D;&#x3067;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x305F;&#x3068;&#x3048;&#x3070;&#x3001;while&#x6587;&#x306E;&#x51E6;&#x7406;&#x4E2D;&#x3067;<code>continue</code>&#x6587;&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x308B;&#x3068;&#x3001;&#x73FE;&#x5728;&#x306E;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x306F;&#x305D;&#x306E;&#x6642;&#x70B9;&#x3067;&#x7D42;&#x4E86;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x3057;&#x3066;&#x3001;&#x6B21;&#x306E;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3067;<code>&#x6761;&#x4EF6;&#x5F0F;</code>&#x3092;&#x8A55;&#x4FA1;&#x3059;&#x308B;&#x3068;&#x3053;&#x308D;&#x304B;&#x3089;&#x30EB;&#x30FC;&#x30D7;&#x304C;&#x518D;&#x958B;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="continue-statement"><a name="continue-statement" class="plugin-anchor" href="#continue-statement"><i class="fa fa-link" aria-hidden="true"></i></a>continue文 </h2>
+<p>continue文は現在の反復処理を終了して、次の反復処理を行います。
+continue文は、while、do-while、forの中で使うことができます。</p>
+<p>たとえば、while文の処理中で<code>continue</code>文が実行されると、現在の反復処理はその時点で終了されます。
+そして、次の反復処理で<code>条件式</code>を評価するところからループが再開されます。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-keyword">while</span> (&#x6761;&#x4EF6;&#x5F0F;) {
-    <span class="hljs-comment">// &#x5B9F;&#x884C;&#x3055;&#x308C;&#x308B;&#x51E6;&#x7406;</span>
-    <span class="hljs-keyword">continue</span>; <span class="hljs-comment">// `&#x6761;&#x4EF6;&#x5F0F;` &#x3078;</span>
-    <span class="hljs-comment">// &#x3053;&#x308C;&#x4EE5;&#x964D;&#x306E;&#x884C;&#x306F;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x305B;&#x3093;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">while</span> (条件式) {
+    <span class="hljs-comment">// 実行される処理</span>
+    <span class="hljs-keyword">continue</span>; <span class="hljs-comment">// `条件式` へ</span>
+    <span class="hljs-comment">// これ以降の行は実行されません</span>
 }
 </code></pre>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;&#x914D;&#x5217;&#x306E;&#x4E2D;&#x304B;&#x3089;&#x5076;&#x6570;&#x3092;&#x96C6;&#x3081;&#x3001;&#x65B0;&#x3057;&#x3044;&#x914D;&#x5217;&#x3092;&#x4F5C;&#x308A;&#x8FD4;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x5076;&#x6570;&#x3067;&#x306F;&#x306A;&#x3044;&#x5834;&#x5408;&#x3001;&#x51E6;&#x7406;&#x4E2D;&#x306E;for&#x6587;&#x3092;&#x30B9;&#x30AD;&#x30C3;&#x30D7;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>次のコードでは、配列の中から偶数を集め、新しい配列を作り返しています。
+偶数ではない場合、処理中のfor文をスキップしています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// `number`&#x304C;&#x5076;&#x6570;&#x306A;&#x3089;true&#x3092;&#x8FD4;&#x3059;</span>
+<pre><code class="lang-javascript"><span class="hljs-comment">// `number`が偶数ならtrueを返す</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isEven</span>(<span class="hljs-params">num</span>) </span>{
     <span class="hljs-keyword">return</span> num % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>;
 }
-<span class="hljs-comment">// `numbers`&#x306B;&#x542B;&#x307E;&#x308C;&#x3066;&#x3044;&#x308B;&#x5076;&#x6570;&#x3060;&#x3051;&#x3092;&#x53D6;&#x308A;&#x51FA;&#x3059;</span>
+<span class="hljs-comment">// `numbers`に含まれている偶数だけを取り出す</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">filterEven</span>(<span class="hljs-params">numbers</span>) </span>{
     <span class="hljs-keyword">const</span> results = [];
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; numbers.length; i++) {
         <span class="hljs-keyword">const</span> num = numbers[i];
-        <span class="hljs-comment">// &#x5076;&#x6570;&#x3067;&#x306F;&#x306A;&#x3044;&#x306A;&#x3089;&#x3001;&#x6B21;&#x306E;&#x30EB;&#x30FC;&#x30D7;&#x3078;</span>
+        <span class="hljs-comment">// 偶数ではないなら、次のループへ</span>
         <span class="hljs-keyword">if</span> (!isEven(num)) {
             <span class="hljs-keyword">continue</span>;
         }
-        <span class="hljs-comment">// &#x5076;&#x6570;&#x3092;`results`&#x306B;&#x8FFD;&#x52A0;</span>
+        <span class="hljs-comment">// 偶数を`results`に追加</span>
         results.push(num);
     }
     <span class="hljs-keyword">return</span> results;
@@ -1733,27 +1733,27 @@ continue&#x6587;&#x306F;&#x3001;while&#x3001;do-while&#x3001;for&#x306E;&#x4E2D;
 <span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">15</span>, <span class="hljs-number">20</span>];
 <span class="hljs-built_in">console</span>.log(filterEven(array)); <span class="hljs-comment">// =&gt; [10, 20]</span>
 </code></pre>
-<p>&#x3082;&#x3061;&#x308D;&#x3093;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;<code>continue</code>&#x6587;&#x3092;&#x4F7F;&#x308F;&#x305A;&#x306B;&#x300C;&#x5076;&#x6570;&#x306A;&#x3089;<code>results</code>&#x3078;&#x8FFD;&#x52A0;&#x3059;&#x308B;&#x300D;&#x3068;&#x3044;&#x3046;&#x66F8;&#x304D;&#x65B9;&#x3082;&#x53EF;&#x80FD;&#x3067;&#x3059;&#x3002;</p>
+<p>もちろん、次のように<code>continue</code>文を使わずに「偶数なら<code>results</code>へ追加する」という書き方も可能です。</p>
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-keyword">if</span> (isEven(number)) {
     results.push(number);
 }
 </code></pre>
-<p>&#x3053;&#x306E;&#x5834;&#x5408;&#x3001;&#x6761;&#x4EF6;&#x304C;&#x8907;&#x96D1;&#x306B;&#x306A;&#x3063;&#x3066;&#x304D;&#x305F;&#x5834;&#x5408;&#x306B;&#x30CD;&#x30B9;&#x30C8;&#x304C;&#x6DF1;&#x304F;&#x306A;&#x3063;&#x3066;&#x30B3;&#x30FC;&#x30C9;&#x304C;&#x8AAD;&#x307F;&#x306B;&#x304F;&#x304F;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;<a href="../condition/">&#x30CD;&#x30B9;&#x30C8;&#x3057;&#x305F;if&#x6587;</a>&#x306E;&#x3046;&#x308B;&#x3046;&#x5E74;&#x306E;&#x4F8B;&#x3067;&#x3082;&#x7D39;&#x4ECB;&#x3057;&#x305F;&#x3088;&#x3046;&#x306B;&#x3001;
-&#x3067;&#x304D;&#x308B;&#x3060;&#x3051;&#x65E9;&#x3044;&#x6BB5;&#x968E;&#x3067;&#x305D;&#x308C;&#x4EE5;&#x4E0A;&#x51E6;&#x7406;&#x3092;&#x7D9A;&#x3051;&#x306A;&#x3044;&#x5BA3;&#x8A00;&#x3092;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x3001;&#x8907;&#x96D1;&#x306A;&#x30B3;&#x30FC;&#x30C9;&#x306B;&#x306A;&#x308B;&#x3053;&#x3068;&#x3092;&#x907F;&#x3051;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<h3 id="array-filter"><a name="array-filter" class="plugin-anchor" href="#array-filter"><i class="fa fa-link" aria-hidden="true"></i></a>&#x914D;&#x5217;&#x306E;<code>filter</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9; </h3>
-<p>&#x914D;&#x5217;&#x304B;&#x3089;&#x7279;&#x5B9A;&#x306E;&#x5024;&#x3060;&#x3051;&#x3092;&#x96C6;&#x3081;&#x305F;&#x65B0;&#x3057;&#x3044;&#x914D;&#x5217;&#x3092;&#x4F5C;&#x308B;&#x306B;&#x306F;<code>filter</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x5229;&#x7528;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p><code>filter</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306B;&#x306F;&#x3001;&#x914D;&#x5217;&#x306E;&#x5404;&#x8981;&#x7D20;&#x3092;&#x30C6;&#x30B9;&#x30C8;&#x3059;&#x308B;&#x51E6;&#x7406;&#x3092;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x3068;&#x3057;&#x3066;&#x6E21;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x304C;<code>true</code>&#x3092;&#x8FD4;&#x3057;&#x305F;&#x8981;&#x7D20;&#x306E;&#x307F;&#x3092;&#x96C6;&#x3081;&#x305F;&#x65B0;&#x3057;&#x3044;&#x914D;&#x5217;&#x3092;&#x8FD4;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>この場合、条件が複雑になってきた場合にネストが深くなってコードが読みにくくなります。
+そのため、<a href="../condition/">ネストしたif文</a>のうるう年の例でも紹介したように、
+できるだけ早い段階でそれ以上処理を続けない宣言をすることで、複雑なコードになることを避けています。</p>
+<h3 id="array-filter"><a name="array-filter" class="plugin-anchor" href="#array-filter"><i class="fa fa-link" aria-hidden="true"></i></a>配列の<code>filter</code>メソッド </h3>
+<p>配列から特定の値だけを集めた新しい配列を作るには<code>filter</code>メソッドを利用できます。</p>
+<p><code>filter</code>メソッドには、配列の各要素をテストする処理をコールバック関数として渡します。
+コールバック関数が<code>true</code>を返した要素のみを集めた新しい配列を返します。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
-<span class="hljs-comment">// &#x30C6;&#x30B9;&#x30C8;&#x3092;&#x30D1;&#x30B9;&#x3057;&#x305F;&#x3082;&#x306E;&#x3092;&#x96C6;&#x3081;&#x305F;&#x914D;&#x5217;</span>
+<span class="hljs-comment">// テストをパスしたものを集めた配列</span>
 <span class="hljs-keyword">const</span> filteredArray = array.filter(<span class="hljs-function">(<span class="hljs-params">currentValue, index, array</span>) =&gt;</span> {
-    <span class="hljs-comment">// &#x30C6;&#x30B9;&#x30C8;&#x3092;&#x30D1;&#x30B9;&#x3059;&#x308B;&#x306A;&#x3089;true&#x3001;&#x305D;&#x3046;&#x3067;&#x306A;&#x3044;&#x306A;&#x3089;false&#x3092;&#x8FD4;&#x3059;</span>
+    <span class="hljs-comment">// テストをパスするならtrue、そうでないならfalseを返す</span>
 });
 </code></pre>
-<p>&#x5148;&#x307B;&#x3069;&#x306E;continue&#x6587;&#x3092;&#x4F7F;&#x3063;&#x305F;&#x5024;&#x306E;&#x7D5E;&#x308A;&#x8FBC;&#x307F;&#x306F;<code>filter</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x4F7F;&#x3046;&#x3068;&#x3088;&#x308A;&#x7C21;&#x6F54;&#x306B;&#x66F8;&#x3051;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;<code>filter</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x5076;&#x6570;&#x3060;&#x3051;&#x306B;&#x7D5E;&#x308A;&#x8FBC;&#x3093;&#x3067;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>先ほどのcontinue文を使った値の絞り込みは<code>filter</code>メソッドを使うとより簡潔に書けます。
+次のコードでは、<code>filter</code>メソッドを使って偶数だけに絞り込んでいます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isEven</span>(<span class="hljs-params">num</span>) </span>{
     <span class="hljs-keyword">return</span> num % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>;
@@ -1762,23 +1762,23 @@ continue&#x6587;&#x306F;&#x3001;while&#x3001;do-while&#x3001;for&#x306E;&#x4E2D;
 <span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">15</span>, <span class="hljs-number">20</span>];
 <span class="hljs-built_in">console</span>.log(array.filter(isEven)); <span class="hljs-comment">// =&gt; [10, 20]</span>
 </code></pre>
-<h2 id="for-in-statement"><a name="for-in-statement" class="plugin-anchor" href="#for-in-statement"><i class="fa fa-link" aria-hidden="true"></i></a>for...in&#x6587; </h2>
-<p>for...in&#x6587;&#x306F;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x3001;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3092;&#x884C;&#x3044;&#x307E;&#x3059;&#x3002;<sup><a href="#fn_1" id="reffn_1">1</a></sup></p>
+<h2 id="for-in-statement"><a name="for-in-statement" class="plugin-anchor" href="#for-in-statement"><i class="fa fa-link" aria-hidden="true"></i></a>for...in文 </h2>
+<p>for...in文はオブジェクトのプロパティに対して、反復処理を行います。<sup><a href="#fn_1" id="reffn_1">1</a></sup></p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-keyword">for</span> (&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3; <span class="hljs-keyword">in</span> &#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;) {
-    &#x5B9F;&#x884C;&#x3059;&#x308B;&#x6587;;
+<pre><code class="lang-js"><span class="hljs-keyword">for</span> (プロパティ <span class="hljs-keyword">in</span> オブジェクト) {
+    実行する文;
 }
 </code></pre>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;<code>obj</code>&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x540D;&#x3092;<code>key</code>&#x5909;&#x6570;&#x306B;&#x4EE3;&#x5165;&#x3057;&#x3066;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3092;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-<code>obj</code>&#x306B;&#x306F;&#x3001;3&#x3064;&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x540D;&#x304C;&#x3042;&#x308B;&#x305F;&#x3081;&#xFF13;&#x56DE;&#x7E70;&#x308A;&#x8FD4;&#x3055;&#x308C;&#x307E;&#x3059;
-&#xFF08;&#x30EB;&#x30FC;&#x30D7;&#x306E;&#x305F;&#x3073;&#x306B;&#x6BCE;&#x56DE;&#x65B0;&#x3057;&#x3044;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x3044;&#x308B;&#x305F;&#x3081;&#x3001;&#x30EB;&#x30FC;&#x30D7;&#x3054;&#x3068;&#x306B;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x5909;&#x6570;<code>key</code>&#x306F;&#x518D;&#x5B9A;&#x7FA9;&#x30A8;&#x30E9;&#x30FC;&#x306B;&#x306A;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;&#x8A73;&#x7D30;&#x306F;&#x300C;<a href=".../function-scope/README.md">&#x95A2;&#x6570;&#x3068;&#x30B9;&#x30B3;&#x30FC;&#x30D7;</a>&#x300D;&#x306E;&#x7AE0;&#x306E;&#x300C;<a href=".../function-scope/README.md#block-scope">&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;</a>&#x300D;&#x3067;&#x89E3;&#x8AAC;&#x3057;&#x307E;&#x3059;&#xFF09;&#x3002;</p>
+<p>次のコードでは<code>obj</code>のプロパティ名を<code>key</code>変数に代入して反復処理をしています。
+<code>obj</code>には、3つのプロパティ名があるため３回繰り返されます
+（ループのたびに毎回新しいブロックを作成しているため、ループごとに定義する変数<code>key</code>は再定義エラーになりません。詳細は「<a href=".../function-scope/README.md">関数とスコープ</a>」の章の「<a href=".../function-scope/README.md#block-scope">ブロックスコープ</a>」で解説します）。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> obj = {
     <span class="hljs-string">&quot;a&quot;</span>: <span class="hljs-number">1</span>,
     <span class="hljs-string">&quot;b&quot;</span>: <span class="hljs-number">2</span>,
     <span class="hljs-string">&quot;c&quot;</span>: <span class="hljs-number">3</span>
 };
-<span class="hljs-comment">// &#x6CE8;&#x8A18;: &#x30EB;&#x30FC;&#x30D7;&#x306E;&#x305F;&#x3073;&#x306B;&#x6BCE;&#x56DE;&#x65B0;&#x3057;&#x3044;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x306B;&#x5909;&#x6570;key&#x304C;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x308B;&#x305F;&#x3081;&#x3001;&#x518D;&#x5B9A;&#x7FA9;&#x30A8;&#x30E9;&#x30FC;&#x304C;&#x767A;&#x751F;&#x3057;&#x306A;&#x3044;</span>
+<span class="hljs-comment">// 注記: ループのたびに毎回新しいブロックに変数keyが定義されるため、再定義エラーが発生しない</span>
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> obj) {
     <span class="hljs-keyword">const</span> value = obj[key];
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`key:<span class="hljs-subst">${key}</span>, value:<span class="hljs-subst">${value}</span>`</span>);
@@ -1787,14 +1787,14 @@ continue&#x6587;&#x306F;&#x3001;while&#x3001;do-while&#x3001;for&#x306E;&#x4E2D;
 <span class="hljs-comment">// &quot;key:b, value:2&quot;</span>
 <span class="hljs-comment">// &quot;key:c, value:3&quot;</span>
 </code></pre>
-<p>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x5BFE;&#x3059;&#x308B;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x306E;&#x305F;&#x3081;&#x306B;for...in&#x6587;&#x306F;&#x6709;&#x7528;&#x306B;&#x898B;&#x3048;&#x307E;&#x3059;&#x304C;&#x3001;&#x591A;&#x304F;&#x306E;&#x554F;&#x984C;&#x3092;&#x6301;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>JavaScript&#x3067;&#x306F;&#x3001;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;&#x4F55;&#x3089;&#x304B;&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x7D99;&#x627F;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-for...in&#x6587;&#x306F;&#x3001;&#x5BFE;&#x8C61;&#x3068;&#x306A;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3092;&#x5217;&#x6319;&#x3059;&#x308B;&#x5834;&#x5408;&#x306B;&#x3001;&#x89AA;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x307E;&#x3067;&#x5217;&#x6319;&#x53EF;&#x80FD;&#x306A;&#x3082;&#x306E;&#x304C;&#x3042;&#x308B;&#x304B;&#x3092;&#x63A2;&#x7D22;&#x3057;&#x3066;&#x5217;&#x6319;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x81EA;&#x8EAB;&#x304C;&#x6301;&#x3063;&#x3066;&#x3044;&#x306A;&#x3044;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3082;&#x5217;&#x6319;&#x3055;&#x308C;&#x3066;&#x3057;&#x307E;&#x3044;&#x3001;&#x610F;&#x56F3;&#x3057;&#x306A;&#x3044;&#x7D50;&#x679C;&#x306B;&#x306A;&#x308B;&#x5834;&#x5408;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x5B89;&#x5168;&#x306B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3092;&#x5217;&#x6319;&#x3059;&#x308B;&#x306B;&#x306F;&#x3001;<code>Object.keys</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3001;<code>Object.values</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3001;<code>Object.entries</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306A;&#x3069;&#x304C;&#x5229;&#x7528;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x5148;&#x307B;&#x3069;&#x306E;&#x4F8B;&#x3067;&#x3042;&#x308B;&#x3001;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x30AD;&#x30FC;&#x3068;&#x5024;&#x3092;&#x5217;&#x6319;&#x3059;&#x308B;&#x30B3;&#x30FC;&#x30C9;&#x306F;for...in&#x6587;&#x3092;&#x4F7F;&#x308F;&#x305A;&#x306B;&#x66F8;&#x3051;&#x307E;&#x3059;&#x3002;
-<code>Object.keys</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x5F15;&#x6570;&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x81EA;&#x8EAB;&#x304C;&#x6301;&#x3064;&#x5217;&#x6319;&#x53EF;&#x80FD;&#x306A;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x540D;&#x306E;&#x914D;&#x5217;&#x3092;&#x8FD4;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;for...in&#x6587;&#x3068;&#x306F;&#x9055;&#x3044;&#x3001;&#x89AA;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x306F;&#x5217;&#x6319;&#x3055;&#x308C;&#x307E;&#x305B;&#x3093;&#x3002;</p>
+<p>オブジェクトに対する反復処理のためにfor...in文は有用に見えますが、多くの問題を持っています。</p>
+<p>JavaScriptでは、オブジェクトは何らかのオブジェクトを継承しています。
+for...in文は、対象となるオブジェクトのプロパティを列挙する場合に、親オブジェクトまで列挙可能なものがあるかを探索して列挙します。
+そのため、オブジェクト自身が持っていないプロパティも列挙されてしまい、意図しない結果になる場合があります。</p>
+<p>安全にオブジェクトのプロパティを列挙するには、<code>Object.keys</code>メソッド、<code>Object.values</code>メソッド、<code>Object.entries</code>メソッドなどが利用できます。</p>
+<p>先ほどの例である、オブジェクトのキーと値を列挙するコードはfor...in文を使わずに書けます。
+<code>Object.keys</code>メソッドは引数のオブジェクト自身が持つ列挙可能なプロパティ名の配列を返します。
+そのためfor...in文とは違い、親オブジェクトのプロパティは列挙されません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> obj = {
     <span class="hljs-string">&quot;a&quot;</span>: <span class="hljs-number">1</span>,
@@ -1809,37 +1809,37 @@ for...in&#x6587;&#x306F;&#x3001;&#x5BFE;&#x8C61;&#x3068;&#x306A;&#x308B;&#x30AA;
 <span class="hljs-comment">// &quot;key:b, value:2&quot;</span>
 <span class="hljs-comment">// &quot;key:c, value:3&quot;</span>
 </code></pre>
-<p>&#x307E;&#x305F;&#x3001;for...in&#x6587;&#x306F;&#x914D;&#x5217;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x3082;&#x5229;&#x7528;&#x3067;&#x304D;&#x307E;&#x3059;&#x304C;&#x3001;&#x3053;&#x3061;&#x3089;&#x3082;&#x671F;&#x5F85;&#x3057;&#x305F;&#x7D50;&#x679C;&#x306B;&#x306F;&#x306A;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;&#x914D;&#x5217;&#x306E;&#x8981;&#x7D20;&#x304C;&#x5217;&#x6319;&#x3055;&#x308C;&#x305D;&#x3046;&#x3067;&#x3059;&#x304C;&#x3001;&#x5B9F;&#x969B;&#x306B;&#x306F;&#x914D;&#x5217;&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x540D;&#x304C;&#x5217;&#x6319;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-for...in&#x6587;&#x304C;&#x5217;&#x6319;&#x3059;&#x308B;&#x914D;&#x5217;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x540D;&#x306F;&#x3001;&#x8981;&#x7D20;&#x306E;&#x30A4;&#x30F3;&#x30C7;&#x30C3;&#x30AF;&#x30B9;&#x3092;&#x6587;&#x5B57;&#x5217;&#x5316;&#x3057;&#x305F;&quot;0&quot;&#x3001;&quot;1&quot;&#x3068;&#x306A;&#x308B;&#x305F;&#x3081;&#x3001;&#x305D;&#x306E;&#x6587;&#x5B57;&#x5217;&#x304C;<code>num</code>&#x3078;&#x3068;&#x9806;&#x756A;&#x306B;&#x4EE3;&#x5165;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x6570;&#x5024;&#x3068;&#x6587;&#x5B57;&#x5217;&#x306E;&#x52A0;&#x7B97;&#x304C;&#x884C;&#x308F;&#x308C;&#x3001;&#x610F;&#x56F3;&#x3057;&#x305F;&#x7D50;&#x679C;&#x306B;&#x306F;&#x306A;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;</p>
+<p>また、for...in文は配列に対しても利用できますが、こちらも期待した結果にはなりません。</p>
+<p>次のコードでは、配列の要素が列挙されそうですが、実際には配列のプロパティ名が列挙されます。
+for...in文が列挙する配列オブジェクトのプロパティ名は、要素のインデックスを文字列化した&quot;0&quot;、&quot;1&quot;となるため、その文字列が<code>num</code>へと順番に代入されます。
+そのため、数値と文字列の加算が行われ、意図した結果にはなりません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> numbers = [<span class="hljs-number">5</span>, <span class="hljs-number">10</span>];
 <span class="hljs-keyword">let</span> total = <span class="hljs-number">0</span>;
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> num <span class="hljs-keyword">in</span> numbers) {
-    <span class="hljs-comment">// 0 + &quot;0&quot; + &quot;1&quot; &#x3068;&#x3044;&#x3046;&#x6587;&#x5B57;&#x5217;&#x7D50;&#x5408;&#x304C;&#x884C;&#x308F;&#x308C;&#x308B;</span>
+    <span class="hljs-comment">// 0 + &quot;0&quot; + &quot;1&quot; という文字列結合が行われる</span>
     total += num;
 }
 <span class="hljs-built_in">console</span>.log(total); <span class="hljs-comment">// =&gt; &quot;001&quot;</span>
 </code></pre>
-<p>&#x914D;&#x5217;&#x306E;&#x5185;&#x5BB9;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3092;&#x884C;&#x3046;&#x5834;&#x5408;&#x306F;&#x3001;for&#x6587;&#x3084;<code>forEach</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3001;&#x5F8C;&#x8FF0;&#x3059;&#x308B;for...of&#x6587;&#x3092;&#x4F7F;&#x3046;&#x3079;&#x304D;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;for...in&#x6587;&#x306F;&#x6B63;&#x3057;&#x304F;&#x6271;&#x3046;&#x306E;&#x304C;&#x96E3;&#x3057;&#x3044;&#x3067;&#x3059;&#x304C;&#x3001;&#x4EE3;&#x308F;&#x308A;&#x3068;&#x306A;&#x308B;&#x624B;&#x6BB5;&#x304C;&#x8C4A;&#x5BCC;&#x306B;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;for...in&#x6587;&#x306E;&#x5229;&#x7528;&#x306F;&#x907F;&#x3051;&#x3001;<code>Object.keys</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306A;&#x3069;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x914D;&#x5217;&#x3068;&#x3057;&#x3066;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3059;&#x308B;&#x306A;&#x3069;&#x5225;&#x306E;&#x65B9;&#x6CD5;&#x3092;&#x8003;&#x3048;&#x305F;&#x307B;&#x3046;&#x304C;&#x3088;&#x3044;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<h2 id="for-of-statement"><a name="for-of-statement" class="plugin-anchor" href="#for-of-statement"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2015] for...of&#x6587; </h2>
-<p>&#x6700;&#x5F8C;&#x306B;for...of&#x6587;&#x306B;&#x3064;&#x3044;&#x3066;&#x3067;&#x3059;&#x3002;</p>
-<p>JavaScript&#x3067;&#x306F;&#x3001;<code>Symbol.iterator</code>&#x3068;&#x3044;&#x3046;&#x7279;&#x5225;&#x306A;&#x540D;&#x524D;&#x306E;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x305F;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;<strong>iterable</strong>&#x3068;&#x547C;&#x3073;&#x307E;&#x3059;&#x3002;
-iterable&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;&#x3001;for...of&#x6587;&#x3067;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>iterable&#x306B;&#x3064;&#x3044;&#x3066;&#x306F;generator&#x3068;&#x5BC6;&#x63A5;&#x306A;&#x95A2;&#x4FC2;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x304C;&#x3001;&#x3053;&#x3053;&#x3067;&#x306F;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x6642;&#x306E;&#x52D5;&#x4F5C;&#x304C;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x305F;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3068;&#x8A8D;&#x8B58;&#x3057;&#x3066;&#x3044;&#x308C;&#x3070;&#x554F;&#x984C;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;</p>
-<p>iterable&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x6642;&#x306B;&#x6B21;&#x306E;&#x8FD4;&#x3059;&#x5024;&#x3092;&#x5B9A;&#x7FA9;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x308C;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x3001;for...of&#x6587;&#x3067;&#x306F;&#x3001;<code>iterable</code>&#x304B;&#x3089;&#x5024;&#x3092;1&#x3064;&#x53D6;&#x308A;&#x51FA;&#x3057;&#x3001;<code>variable</code>&#x306B;&#x4EE3;&#x5165;&#x3057;&#x3066;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3092;&#x884C;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>配列の内容に対して反復処理を行う場合は、for文や<code>forEach</code>メソッド、後述するfor...of文を使うべきでしょう。</p>
+<p>このようにfor...in文は正しく扱うのが難しいですが、代わりとなる手段が豊富にあります。
+そのため、for...in文の利用は避け、<code>Object.keys</code>メソッドなどを使って配列として反復処理するなど別の方法を考えたほうがよいでしょう。</p>
+<h2 id="for-of-statement"><a name="for-of-statement" class="plugin-anchor" href="#for-of-statement"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2015] for...of文 </h2>
+<p>最後にfor...of文についてです。</p>
+<p>JavaScriptでは、<code>Symbol.iterator</code>という特別な名前のメソッドを実装したオブジェクトを<strong>iterable</strong>と呼びます。
+iterableオブジェクトは、for...of文で反復処理できます。</p>
+<p>iterableについてはgeneratorと密接な関係がありますが、ここでは反復処理時の動作が定義されたオブジェクトと認識していれば問題ありません。</p>
+<p>iterableオブジェクトは反復処理時に次の返す値を定義しています。
+それに対して、for...of文では、<code>iterable</code>から値を1つ取り出し、<code>variable</code>に代入して反復処理を行います。</p>
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-keyword">for</span> (variable <span class="hljs-keyword">of</span> iterable) {
-    &#x5B9F;&#x884C;&#x3059;&#x308B;&#x6587;;
+    実行する文;
 }
 </code></pre>
-<p>&#x5B9F;&#x306F;&#x3059;&#x3067;&#x306B;iterable&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;&#x767B;&#x5834;&#x3057;&#x3066;&#x3044;&#x3066;&#x3001;Array&#x306F;iterable&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;for...of&#x6587;&#x3067;&#x3001;&#x914D;&#x5217;&#x304B;&#x3089;&#x5024;&#x3092;&#x53D6;&#x308A;&#x51FA;&#x3057;&#x3066;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3092;&#x884C;&#x3048;&#x307E;&#x3059;&#x3002;
-for...in&#x6587;&#x3068;&#x306F;&#x7570;&#x306A;&#x308A;&#x3001;&#x30A4;&#x30F3;&#x30C7;&#x30C3;&#x30AF;&#x30B9;&#x5024;&#x3067;&#x306F;&#x306A;&#x304F;&#x914D;&#x5217;&#x306E;&#x5024;&#x3092;&#x5217;&#x6319;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>実はすでにiterableオブジェクトは登場していて、Arrayはiterableオブジェクトです。</p>
+<p>次のようにfor...of文で、配列から値を取り出して反復処理を行えます。
+for...in文とは異なり、インデックス値ではなく配列の値を列挙します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> value <span class="hljs-keyword">of</span> array) {
@@ -1849,57 +1849,57 @@ for...in&#x6587;&#x3068;&#x306F;&#x7570;&#x306A;&#x308A;&#x3001;&#x30A4;&#x30F3;
 <span class="hljs-comment">// 2</span>
 <span class="hljs-comment">// 3</span>
 </code></pre>
-<p>JavaScript&#x3067;&#x306F;String&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3082;iterable&#x3067;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x6587;&#x5B57;&#x5217;&#x3092;1&#x6587;&#x5B57;&#x305A;&#x3064;&#x5217;&#x6319;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p>JavaScriptではStringオブジェクトもiterableです。
+そのため、文字列を1文字ずつ列挙できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;&#x20BB7;&#x91CE;&#x5BB6;&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;𠮷野家&quot;</span>;
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> value <span class="hljs-keyword">of</span> str) {
     <span class="hljs-built_in">console</span>.log(value);
 }
-<span class="hljs-comment">// &quot;&#x20BB7;&quot;</span>
-<span class="hljs-comment">// &quot;&#x91CE;&quot;</span>
-<span class="hljs-comment">// &quot;&#x5BB6;&quot;</span>
+<span class="hljs-comment">// &quot;𠮷&quot;</span>
+<span class="hljs-comment">// &quot;野&quot;</span>
+<span class="hljs-comment">// &quot;家&quot;</span>
 </code></pre>
-<p>&#x305D;&#x306E;&#x307B;&#x304B;&#x306B;&#x3082;&#x3001;<code>TypedArray</code>&#x3001;<code>Map</code>&#x3001;<code>Set</code>&#x3001;DOM NodeList&#x306A;&#x3069;&#x3001;<code>Symbol.iterator</code>&#x304C;&#x5B9F;&#x88C5;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;&#x591A;&#x3044;&#x3067;&#x3059;&#x3002;
-for...of&#x6587;&#x306F;&#x3001;&#x305D;&#x308C;&#x3089;&#x306E;iterable&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x306B;&#x5229;&#x7528;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="const-iteration"><a name="const-iteration" class="plugin-anchor" href="#const-iteration"><i class="fa fa-link" aria-hidden="true"></i></a>[&#x30B3;&#x30E9;&#x30E0;] <code>let</code>&#x3067;&#x306F;&#x306A;&#x304F;<code>const</code>&#x3067;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3092;&#x3059;&#x308B; </h2>
-<p>&#x5148;&#x307B;&#x3069;&#x306E;for&#x6587;&#x3084;<code>forEach</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x6570;&#x5024;&#x306E;&#x5408;&#x8A08;&#x3092;&#x8FD4;&#x3059;<code>sum</code>&#x95A2;&#x6570;&#x306E;&#x5B9F;&#x88C5;&#x306F;&#x3001;<code>const</code>&#x3067;&#x306F;&#x306A;&#x304F;<code>let</code>&#x3092;&#x5229;&#x7528;&#x3057;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;
-&#x306A;&#x305C;&#x306A;&#x3089;&#x3001;<code>const</code>&#x306F;&#x518D;&#x4EE3;&#x5165;&#x3067;&#x304D;&#x306A;&#x3044;&#x5909;&#x6570;&#x3092;&#x5BA3;&#x8A00;&#x3059;&#x308B;&#x30AD;&#x30FC;&#x30EF;&#x30FC;&#x30C9;&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x4E00;&#x5EA6;&#x5B9A;&#x7FA9;&#x3057;&#x305F;&#x5909;&#x6570;&#x306B;&#x5024;&#x3092;&#x4EE3;&#x5165;&#x3057;&#x3064;&#x3064;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3092;&#x3059;&#x308B;&#x3068;&#x3001;&#x5909;&#x6570;&#x3078;&#x306E;&#x5024;&#x306E;&#x4E0A;&#x66F8;&#x304D;&#x304C;&#x5FC5;&#x8981;&#x3068;&#x306A;&#x308A;<code>const</code>&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x4E00;&#x6642;&#x7684;&#x306A;&#x5909;&#x6570;&#x3092;&#x5B9A;&#x7FA9;&#x305B;&#x305A;&#x306B;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3057;&#x305F;&#x7D50;&#x679C;&#x3060;&#x3051;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308B;&#x65B9;&#x6CD5;&#x304C;&#x5FC5;&#x8981;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x914D;&#x5217;&#x306B;&#x306F;&#x3001;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3092;&#x3057;&#x3066;&#x65B0;&#x3057;&#x3044;&#x5024;&#x3092;&#x4F5C;&#x308B;<code>reduce</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p><code>reduce</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;2&#x3064;&#x305A;&#x3064;&#x8981;&#x7D20;&#x3092;&#x53D6;&#x308A;&#x51FA;&#x3057;&#xFF08;&#x5DE6;&#x304B;&#x3089;&#x53F3;&#x3078;&#xFF09;&#x3001;&#x305D;&#x306E;&#x5024;&#x3092;<code>&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;</code>&#x306B;&#x9069;&#x7528;&#x3057;&#x3001;
-<code>&#x6B21;&#x306E;&#x5024;</code>&#x3068;&#x3057;&#x3066;1&#x3064;&#x306E;&#x5024;&#x3092;&#x8FD4;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x6700;&#x7D42;&#x7684;&#x306A;&#x3001;<code>reduce</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306E;&#x8FD4;&#x308A;&#x5024;&#x306F;&#x3001;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x304C;&#x6700;&#x5F8C;&#x306B;<code>return</code>&#x3057;&#x305F;&#x5024;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>そのほかにも、<code>TypedArray</code>、<code>Map</code>、<code>Set</code>、DOM NodeListなど、<code>Symbol.iterator</code>が実装されているオブジェクトは多いです。
+for...of文は、それらのiterableオブジェクトで反復処理に利用できます。</p>
+<h2 id="const-iteration"><a name="const-iteration" class="plugin-anchor" href="#const-iteration"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] <code>let</code>ではなく<code>const</code>で反復処理をする </h2>
+<p>先ほどのfor文や<code>forEach</code>メソッドで数値の合計を返す<code>sum</code>関数の実装は、<code>const</code>ではなく<code>let</code>を利用していました。
+なぜなら、<code>const</code>は再代入できない変数を宣言するキーワードであるためです。</p>
+<p>一度定義した変数に値を代入しつつ反復処理をすると、変数への値の上書きが必要となり<code>const</code>を使うことができません。
+そのため、一時的な変数を定義せずに反復処理した結果だけを受け取る方法が必要になります。</p>
+<p>配列には、反復処理をして新しい値を作る<code>reduce</code>メソッドがあります。</p>
+<p><code>reduce</code>メソッドは2つずつ要素を取り出し（左から右へ）、その値を<code>コールバック関数</code>に適用し、
+<code>次の値</code>として1つの値を返します。
+最終的な、<code>reduce</code>メソッドの返り値は、コールバック関数が最後に<code>return</code>した値となります。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> result = array.reduce(<span class="hljs-function">(<span class="hljs-params">&#x524D;&#x56DE;&#x306E;&#x5024;, &#x73FE;&#x5728;&#x306E;&#x5024;</span>) =&gt;</span> {
-    <span class="hljs-keyword">return</span> &#x6B21;&#x306E;&#x5024;;
-}, &#x521D;&#x671F;&#x5024;);
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> result = array.reduce(<span class="hljs-function">(<span class="hljs-params">前回の値, 現在の値</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> 次の値;
+}, 初期値);
 </code></pre>
-<p>&#x914D;&#x5217;&#x304B;&#x3089;&#x5408;&#x8A08;&#x5024;&#x3092;&#x8FD4;&#x3059;&#x95A2;&#x6570;&#x3092;<code>reduce</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x5B9F;&#x88C5;&#x3057;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<p><code>&#x521D;&#x671F;&#x5024;</code>&#x306B;<code>0</code>&#x3092;&#x6307;&#x5B9A;&#x3057;&#x3001;<code>&#x524D;&#x56DE;&#x306E;&#x5024;</code>&#x3068;<code>&#x73FE;&#x5728;&#x306E;&#x5024;</code>&#x3092;&#x8DB3;&#x3057;&#x3066;&#x3044;&#x304F;&#x3053;&#x3068;&#x3067;&#x5408;&#x8A08;&#x3092;&#x8A08;&#x7B97;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-<code>&#x521D;&#x671F;&#x5024;</code>&#x3092;&#x6307;&#x5B9A;&#x3057;&#x3066;&#x3044;&#x305F;&#x5834;&#x5408;&#x306F;&#x3001;&#x6700;&#x521D;&#x306E;<code>&#x524D;&#x56DE;&#x306E;&#x5024;</code>&#x306B;&#x521D;&#x671F;&#x5024;&#x304C;&#x3001;&#x914D;&#x5217;&#x306E;&#x5148;&#x982D;&#x306E;&#x5024;&#x304C;<code>&#x73FE;&#x5728;&#x306E;&#x5024;</code>&#x3068;&#x306A;&#x3063;&#x305F;&#x72B6;&#x614B;&#x3067;&#x958B;&#x59CB;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p>配列から合計値を返す関数を<code>reduce</code>メソッドを使って実装してみましょう。</p>
+<p><code>初期値</code>に<code>0</code>を指定し、<code>前回の値</code>と<code>現在の値</code>を足していくことで合計を計算できます。
+<code>初期値</code>を指定していた場合は、最初の<code>前回の値</code>に初期値が、配列の先頭の値が<code>現在の値</code>となった状態で開始されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">numbers</span>) </span>{
     <span class="hljs-keyword">return</span> numbers.reduce(<span class="hljs-function">(<span class="hljs-params">total, num</span>) =&gt;</span> {
         <span class="hljs-keyword">return</span> total + num;
-    }, <span class="hljs-number">0</span>); <span class="hljs-comment">// &#x521D;&#x671F;&#x5024;&#x304C;0</span>
+    }, <span class="hljs-number">0</span>); <span class="hljs-comment">// 初期値が0</span>
 }
 
 sum([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]); <span class="hljs-comment">// =&gt; 15</span>
 </code></pre>
-<p><code>reduce</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x4F7F;&#x3063;&#x305F;&#x4F8B;&#x3067;&#x306F;&#x3001;&#x305D;&#x3082;&#x305D;&#x3082;&#x5909;&#x6570;&#x5BA3;&#x8A00;&#x3092;&#x3057;&#x3066;&#x3044;&#x306A;&#x3044;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3059;&#x3002;
-<code>reduce</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x306F;&#x5E38;&#x306B;&#x65B0;&#x3057;&#x3044;&#x5024;&#x3092;&#x8FD4;&#x3059;&#x3053;&#x3068;&#x3067;&#x3001;1&#x3064;&#x306E;&#x5909;&#x6570;&#x306E;&#x5024;&#x3092;&#x66F4;&#x65B0;&#x3057;&#x3066;&#x3044;&#x304F;&#x5FC5;&#x8981;&#x304C;&#x306A;&#x304F;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x308C;&#x306F;<code>const</code>&#x3068;&#x540C;&#x3058;&#x304F;&#x3001;&#x4E00;&#x5EA6;&#x4F5C;&#x3063;&#x305F;&#x5909;&#x6570;&#x306E;&#x5024;&#x3092;&#x5909;&#x66F4;&#x3057;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;&#x610F;&#x56F3;&#x3057;&#x306A;&#x3044;&#x5909;&#x6570;&#x306E;&#x66F4;&#x65B0;&#x3092;&#x907F;&#x3051;&#x308B;&#x3053;&#x3068;&#x306B;&#x3064;&#x306A;&#x304C;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>&#x307E;&#x3068;&#x3081; </h2>
-<p>&#x3053;&#x306E;&#x7AE0;&#x3067;&#x306F;&#x3001;for&#x6587;&#x306A;&#x3069;&#x306E;&#x69CB;&#x6587;&#x3067;&#x306E;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3068;&#x914D;&#x5217;&#x306E;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x4F7F;&#x3063;&#x305F;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x306B;&#x3064;&#x3044;&#x3066;&#x6BD4;&#x8F03;&#x3057;&#x306A;&#x304C;&#x3089;&#x898B;&#x3066;&#x3044;&#x304D;&#x307E;&#x3057;&#x305F;&#x3002;
-for&#x6587;&#x306A;&#x3069;&#x306E;&#x69CB;&#x6587;&#x3067;&#x306F;continue&#x6587;&#x3084;break&#x6587;&#x304C;&#x5229;&#x7528;&#x3067;&#x304D;&#x307E;&#x3059;&#x304C;&#x3001;&#x914D;&#x5217;&#x306E;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x306F;&#x305D;&#x308C;&#x3089;&#x306F;&#x5229;&#x7528;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x4E00;&#x65B9;&#x3067;&#x914D;&#x5217;&#x306E;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x3001;&#x4E00;&#x6642;&#x7684;&#x306A;&#x5909;&#x6570;&#x3092;&#x7BA1;&#x7406;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x306A;&#x3044;&#x3053;&#x3068;&#x3084;&#x3001;&#x51E6;&#x7406;&#x3092;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x3068;&#x3057;&#x3066;&#x66F8;&#x304F;&#x3068;&#x3044;&#x3046;&#x9055;&#x3044;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3069;&#x3061;&#x3089;&#x306E;&#x65B9;&#x6CD5;&#x3082;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x306B;&#x304A;&#x3044;&#x3066;&#x306F;&#x3088;&#x304F;&#x5229;&#x7528;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x3069;&#x3061;&#x3089;&#x304C;&#x512A;&#x308C;&#x3066;&#x3044;&#x308B;&#x3068;&#x3044;&#x3046;&#x308F;&#x3051;&#x3067;&#x3082;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;&#x3069;&#x3061;&#x3089;&#x306E;&#x65B9;&#x6CD5;&#x3082;&#x4F7F;&#x3044;&#x3053;&#x306A;&#x305B;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x308B;&#x3053;&#x3068;&#x304C;&#x91CD;&#x8981;&#x3067;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x3001;&#x914D;&#x5217;&#x306E;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306B;&#x3064;&#x3044;&#x3066;&#x306F;&#x300C;<a href="../array/">&#x914D;&#x5217;</a>&#x300D;&#x306E;&#x7AE0;&#x3067;&#x3082;&#x8A73;&#x3057;&#x304F;&#x89E3;&#x8AAC;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p><code>reduce</code>メソッドを使った例では、そもそも変数宣言をしていないことがわかります。
+<code>reduce</code>メソッドでは常に新しい値を返すことで、1つの変数の値を更新していく必要がなくなります。
+これは<code>const</code>と同じく、一度作った変数の値を変更しないため、意図しない変数の更新を避けることにつながります。</p>
+<h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>まとめ </h2>
+<p>この章では、for文などの構文での反復処理と配列のメソッドを使った反復処理について比較しながら見ていきました。
+for文などの構文ではcontinue文やbreak文が利用できますが、配列のメソッドではそれらは利用できません。
+一方で配列のメソッドは、一時的な変数を管理する必要がないことや、処理をコールバック関数として書くという違いがあります。</p>
+<p>どちらの方法も反復処理においてはよく利用されます。
+どちらが優れているというわけでもないため、どちらの方法も使いこなせるようになることが重要です。
+また、配列のメソッドについては「<a href="../array/">配列</a>」の章でも詳しく解説します。</p>
 <blockquote id="fn_1">
-<sup>1</sup>. <code>for...in</code>&#x6587;&#x304C;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3092;&#x5217;&#x6319;&#x3059;&#x308B;&#x9806;&#x756A;&#x306F;ES2019&#x307E;&#x3067;&#x306F;&#x5B9F;&#x88C5;&#x4F9D;&#x5B58;&#x3067;&#x3057;&#x305F;&#x304C;&#x3001;ES2020&#x3067;&#x5217;&#x6319;&#x3059;&#x308B;&#x9806;&#x756A;&#x304C;&#x6C7A;&#x3081;&#x3089;&#x308C;&#x307E;&#x3057;&#x305F;&#x3002;<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#x21A9;</a>
+<sup>1</sup>. <code>for...in</code>文がプロパティを列挙する順番はES2019までは実装依存でしたが、ES2020で列挙する順番が決められました。<a href="#reffn_1" title="Jump back to footnote [1] in the text."> ↩</a>
 </blockquote>
 
                                 
@@ -1932,12 +1932,56 @@ for&#x6587;&#x306A;&#x3069;&#x306E;&#x69CB;&#x6587;&#x3067;&#x306F;continue&#x65
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"for文やwhile文を使った反復処理についてを紹介します。また、同等の反復処理がArrayのメソッドでも実現できることについても紹介します。","title":"ループと反復処理","level":"1.3.11","depth":2,"next":{"title":"オブジェクト","level":"1.3.12","depth":2,"path":"basic/object/README.md","ref":"./basic/object/README.md","articles":[]},"previous":{"title":"条件分岐","level":"1.3.10","depth":2,"path":"basic/condition/README.md","ref":"./basic/condition/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/loop/README.md","mtime":"2020-11-18T19:19:34.497Z","type":"markdown"},"gitbook":{"version":"3.6.8","time":"2020-11-18T19:20:11.295Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"for文やwhile文を使った反復処理についてを紹介します。また、同等の反復処理がArrayのメソッドでも実現できることについても紹介します。","title":"ループと反復処理","level":"1.3.11","depth":2,"next":{"title":"オブジェクト","level":"1.3.12","depth":2,"path":"basic/object/README.md","ref":"./basic/object/README.md","articles":[]},"previous":{"title":"条件分岐","level":"1.3.10","depth":2,"path":"basic/condition/README.md","ref":"./basic/condition/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/loop/README.md","mtime":"2020-11-19T10:10:17.220Z","type":"markdown"},"gitbook":{"version":"3.6.13","time":"2020-11-19T10:10:53.113Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
 
         
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
     <script src="../../gitbook/gitbook.js"></script>
     <script src="../../gitbook/theme.js"></script>
     

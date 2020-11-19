@@ -7,7 +7,7 @@
         <title>Node.jsでHello World · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="Hello Worldアプリケーションを通じてNode.jsのCLIアプリケーションの基本を学びます。">
-        <meta name="generator" content="HonKit 3.6.8">
+        <meta name="generator" content="HonKit 3.6.13">
         
         
         
@@ -176,7 +176,7 @@
     </head>
     <body>
         
-<div class="book">
+<div class="book honkit-cloak">
     <div class="book-summary">
         
             
@@ -1441,70 +1441,70 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="hello-world-by-nodejs"><a name="hello-world-by-nodejs" class="plugin-anchor" href="#hello-world-by-nodejs"><i class="fa fa-link" aria-hidden="true"></i></a>Node.js&#x3067;Hello World </h1>
-<p>&#x5B9F;&#x969B;&#x306B;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;&#x524D;&#x306B;&#x3001;&#x307E;&#x305A;&#x306F;Hello World&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x901A;&#x3058;&#x3066;Node.js&#x306E;CLI&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x57FA;&#x672C;&#x3092;&#x5B66;&#x3073;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<h2 id="create-project"><a name="create-project" class="plugin-anchor" href="#create-project"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30D7;&#x30ED;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x306E;&#x4F5C;&#x6210; </h2>
-<p>&#x4ECA;&#x56DE;&#x4F5C;&#x6210;&#x3059;&#x308B;Node.js&#x306E;CLI&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;&#x3001;JavaScript&#x3084;Markdown&#x306A;&#x3069;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x6271;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x307E;&#x305A;&#x305D;&#x308C;&#x3089;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x7F6E;&#x304F;&#x305F;&#x3081;&#x306E;&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x3053;&#x3067;&#x306F;<code>nodecli</code>&#x3068;&#x3044;&#x3046;&#x540D;&#x524D;&#x3067;&#x65B0;&#x3057;&#x3044;&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x3053;&#x304B;&#x3089;&#x306F;&#x4F5C;&#x6210;&#x3057;&#x305F;<code>nodecli</code>&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x4EE5;&#x4E0B;&#x3067;&#x4F5C;&#x696D;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x307E;&#x305F;&#x3053;&#x306E;&#x30D7;&#x30ED;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x4F5C;&#x6210;&#x3059;&#x308B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306F;&#x3001;&#x5FC5;&#x305A;&#x6587;&#x5B57;&#x30B3;&#x30FC;&#x30C9;&#xFF08;&#x30A8;&#x30F3;&#x30B3;&#x30FC;&#x30C7;&#x30A3;&#x30F3;&#x30B0;&#xFF09;&#x3092;<strong>UTF-8</strong>&#x3001;&#x6539;&#x884C;&#x30B3;&#x30FC;&#x30C9;&#x3092;<strong>LF</strong>&#x306B;&#x3057;&#x3066;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x4FDD;&#x5B58;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+                                <h1 id="hello-world-by-nodejs"><a name="hello-world-by-nodejs" class="plugin-anchor" href="#hello-world-by-nodejs"><i class="fa fa-link" aria-hidden="true"></i></a>Node.jsでHello World </h1>
+<p>実際にアプリケーションを作成する前に、まずはHello Worldアプリケーションを通じてNode.jsのCLIアプリケーションの基本を学びましょう。</p>
+<h2 id="create-project"><a name="create-project" class="plugin-anchor" href="#create-project"><i class="fa fa-link" aria-hidden="true"></i></a>プロジェクトディレクトリの作成 </h2>
+<p>今回作成するNode.jsのCLIアプリケーションでは、JavaScriptやMarkdownなどのファイルを扱います。
+そのため、まずそれらのファイルを置くためのディレクトリを作成します。</p>
+<p>ここでは<code>nodecli</code>という名前で新しいディレクトリを作成します。
+ここからは作成した<code>nodecli</code>ディレクトリ以下で作業していきます。</p>
+<p>またこのプロジェクトで作成するファイルは、必ず文字コード（エンコーディング）を<strong>UTF-8</strong>、改行コードを<strong>LF</strong>にしてファイルを保存します。</p>
 <h2 id="hello-world"><a name="hello-world" class="plugin-anchor" href="#hello-world"><i class="fa fa-link" aria-hidden="true"></i></a>Hello World </h2>
 <!-- textlint-disable preset-ja-technical-writing/no-exclamation-question-mark -->
-<p>&#x307E;&#x305A;&#x306F;Node.js&#x3067;Hello World&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x4F5C;&#x3063;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;
-&#x5177;&#x4F53;&#x7684;&#x306B;&#x306F;&#x3001;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x3068;&#x6A19;&#x6E96;&#x51FA;&#x529B;&#x306B;<code>&quot;Hello World!&quot;</code>&#x3068;&#x3044;&#x3046;&#x6587;&#x5B57;&#x5217;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;CLI&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x8A18;&#x8FF0;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x306F;&#x3058;&#x3081;&#x306B;&#x7528;&#x610F;&#x3059;&#x308B;&#x306E;&#x306F;&#x3001;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x30A8;&#x30F3;&#x30C8;&#x30EA;&#x30FC;&#x30DD;&#x30A4;&#x30F3;&#x30C8;&#x3068;&#x306A;&#x308B;JavaScript&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3067;&#x3059;&#x3002;
-<code>nodecli</code>&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x306B;<code>main.js</code>&#x3068;&#x3044;&#x3046;&#x540D;&#x524D;&#x3067;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x8A18;&#x8FF0;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>まずはNode.jsでHello Worldアプリケーションを作ってみましょう。
+具体的には、実行すると標準出力に<code>&quot;Hello World!&quot;</code>という文字列を表示するCLIアプリケーションを記述します。
+はじめに用意するのは、アプリケーションのエントリーポイントとなるJavaScriptファイルです。
+<code>nodecli</code>ディレクトリに<code>main.js</code>という名前でファイルを作成し、次のように記述します。</p>
 <div class="code-filename-block">
     <p class="code-filename">main.js</p>
 </div>
 
 <pre><code class="lang-javascript"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Hello World!&quot;</span>);
 </code></pre>
-<p>&#x30A6;&#x30A7;&#x30D6;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306E;&#x5B9F;&#x884C;&#x74B0;&#x5883;&#x3067;&#x306F;&#x3001;<code>console.log</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306E;&#x51FA;&#x529B;&#x5148;&#x306F;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306E;&#x958B;&#x767A;&#x8005;&#x30C4;&#x30FC;&#x30EB;&#x306E;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x3067;&#x3057;&#x305F;&#x3002;
-Node.js&#x74B0;&#x5883;&#x3067;&#x306F;&#x3001;<code>console.log</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306E;&#x51FA;&#x529B;&#x5148;&#x306F;&#x6A19;&#x6E96;&#x51FA;&#x529B;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x3001;&#x6A19;&#x6E96;&#x51FA;&#x529B;&#x306B;<code>&quot;Hello World!&quot;</code>&#x3068;&#x3044;&#x3046;&#x6587;&#x5B57;&#x5217;&#x3092;&#x51FA;&#x529B;&#x3059;&#x308B;&#x3082;&#x306E;&#x3067;&#x3059;&#x3002;</p>
+<p>ウェブブラウザの実行環境では、<code>console.log</code>メソッドの出力先はブラウザの開発者ツールのコンソールでした。
+Node.js環境では、<code>console.log</code>メソッドの出力先は標準出力になります。
+このコードは、標準出力に<code>&quot;Hello World!&quot;</code>という文字列を出力するものです。</p>
 <!-- textlint-enable preset-ja-technical-writing/no-exclamation-question-mark -->
-<p>JavaScript&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3092;Node.js&#x3067;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x306B;&#x306F;&#x3001;<code>node</code>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3092;&#x4F7F;&#x7528;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x3067;<code>nodecli</code>&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x306B;&#x79FB;&#x52D5;&#x3057;&#x3001;&#x6B21;&#x306E;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3067;Node.js&#x3092;&#x4F7F;&#x3044;<code>main.js</code>&#x3092;&#x5B9F;&#x884C;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x3060;<code>node</code>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x306E;&#x7528;&#x610F;&#x304C;&#x3067;&#x304D;&#x3066;&#x3044;&#x306A;&#x3051;&#x308C;&#x3070;&#x3001;&#x5148;&#x306B;&#x300C;<a href="../../setup-local-env/">&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x958B;&#x767A;&#x306E;&#x6E96;&#x5099;</a>&#x300D;&#x306E;&#x7AE0;&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</p>
+<p>JavaScriptのコードをNode.jsで実行するには、<code>node</code>コマンドを使用します。
+コマンドラインで<code>nodecli</code>ディレクトリに移動し、次のコマンドでNode.jsを使い<code>main.js</code>を実行します。
+まだ<code>node</code>コマンドの用意ができていなければ、先に「<a href="../../setup-local-env/">アプリケーション開発の準備</a>」の章を参照してください。</p>
 <pre><code class="lang-shell-session">$ node main.js
 Hello World!
 </code></pre>
-<p>Node.js&#x3067;&#x306F;&#x3001;&#x30A8;&#x30F3;&#x30C8;&#x30EA;&#x30FC;&#x30DD;&#x30A4;&#x30F3;&#x30C8;&#x3068;&#x306A;&#x308B;JavaScript&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3001;&#x305D;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;<code>node</code>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x306E;&#x5F15;&#x6570;&#x306B;&#x6E21;&#x3057;&#x3066;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x306E;&#x304C;&#x57FA;&#x672C;&#x3067;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x3001;&#x30A6;&#x30A7;&#x30D6;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306E;JavaScript&#x3068;&#x540C;&#x3058;&#x304F;&#x3001;&#x30B3;&#x30FC;&#x30C9;&#x306F;1&#x884C;&#x76EE;&#x304B;&#x3089;&#x9806;&#x306B;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="global-objects"><a name="global-objects" class="plugin-anchor" href="#global-objects"><i class="fa fa-link" aria-hidden="true"></i></a>Node.js&#x3068;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306E;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8; </h2>
-<p>Node.js&#x306F;Chrome&#x3068;&#x540C;&#x3058;V8&#x3068;&#x3044;&#x3046;JavaScript&#x30A8;&#x30F3;&#x30B8;&#x30F3;&#x3092;&#x5229;&#x7528;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;ECMAScript&#x3067;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x57FA;&#x672C;&#x69CB;&#x6587;&#x306F;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3068;&#x540C;&#x3058;&#x3088;&#x3046;&#x306B;&#x4F7F;&#x3048;&#x307E;&#x3059;&#x3002;
-&#x3057;&#x304B;&#x3057;&#x3001;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x74B0;&#x5883;&#x3068;Node.js&#x74B0;&#x5883;&#x3067;&#x306F;&#x5229;&#x7528;&#x3067;&#x304D;&#x308B;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304C;&#x9055;&#x3046;&#x305F;&#x3081;&#x3001;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x958B;&#x767A;&#x3059;&#x308B;&#x3068;&#x304D;&#x306B;&#x306F;&#x305D;&#x306E;&#x9055;&#x3044;&#x3092;&#x7406;&#x89E3;&#x3057;&#x306A;&#x304F;&#x3066;&#x306F;&#x306A;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;</p>
-<p>ECMAScript&#x3067;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3068;Node.js&#x3069;&#x3061;&#x3089;&#x306E;&#x74B0;&#x5883;&#x306B;&#x3082;&#x5B58;&#x5728;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x305F;&#x3068;&#x3048;&#x3070;<code>Boolean</code>&#x3084;<code>String</code>&#x306A;&#x3069;&#x306E;&#x30E9;&#x30C3;&#x30D1;&#x30FC;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3001;<code>Map</code>&#x3084;<code>Promise</code>&#x306E;&#x3088;&#x3046;&#x306A;&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;&#x3069;&#x3061;&#x3089;&#x306E;&#x74B0;&#x5883;&#x306B;&#x3082;&#x5B58;&#x5728;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3057;&#x304B;&#x3057;&#x3001;&#x5B9F;&#x884C;&#x74B0;&#x5883;&#x306B;&#x3088;&#x3063;&#x3066;&#x7570;&#x306A;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3082;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x305F;&#x3068;&#x3048;&#x3070;&#x30A6;&#x30A7;&#x30D6;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x74B0;&#x5883;&#x306E;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;<code>window</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x3059;&#x304C;&#x3001;Node.js&#x3067;&#x306F;<a href="https://nodejs.org/docs/latest-v12.x/api/globals.html" target="_blank">global</a>&#x3068;&#x547C;&#x3070;&#x308C;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304C;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306E;<code>window</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x306F;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3084;&#x95A2;&#x6570;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>Node.jsでは、エントリーポイントとなるJavaScriptファイルを作成し、そのファイルを<code>node</code>コマンドの引数に渡して実行するのが基本です。
+また、ウェブブラウザのJavaScriptと同じく、コードは1行目から順に実行されます。</p>
+<h2 id="global-objects"><a name="global-objects" class="plugin-anchor" href="#global-objects"><i class="fa fa-link" aria-hidden="true"></i></a>Node.jsとブラウザのグローバルオブジェクト </h2>
+<p>Node.jsはChromeと同じV8というJavaScriptエンジンを利用しています。
+そのため、ECMAScriptで定義されている基本構文はブラウザと同じように使えます。
+しかし、ブラウザ環境とNode.js環境では利用できるグローバルオブジェクトが違うため、アプリケーションを開発するときにはその違いを理解しなくてはなりません。</p>
+<p>ECMAScriptで定義されているグローバルオブジェクトはブラウザとNode.jsどちらの環境にも存在します。
+たとえば<code>Boolean</code>や<code>String</code>などのラッパーオブジェクト、<code>Map</code>や<code>Promise</code>のようなビルトインオブジェクトはどちらの環境にも存在します。</p>
+<p>しかし、実行環境によって異なるオブジェクトもあります。
+たとえばウェブブラウザ環境のグローバルオブジェクトは<code>window</code>オブジェクトですが、Node.jsでは<a href="https://nodejs.org/docs/latest-v12.x/api/globals.html" target="_blank">global</a>と呼ばれるオブジェクトがグローバルオブジェクトになります。
+ブラウザの<code>window</code>オブジェクトには、次のようなプロパティや関数があります。</p>
 <ul>
 <li><a href="https://developer.mozilla.org/ja/docs/Web/API/Document" target="_blank">document</a></li>
 <li><a href="https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest" target="_blank">XMLHttpRequest</a></li>
 </ul>
-<p>&#x4E00;&#x65B9;&#x3001;Node.js&#x306E;<code>global</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x306F;&#x3001;&#x305F;&#x3068;&#x3048;&#x3070;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3084;&#x95A2;&#x6570;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>一方、Node.jsの<code>global</code>オブジェクトには、たとえば次のようなプロパティや関数があります。</p>
 <ul>
 <li><a href="https://nodejs.org/docs/latest-v12.x/api/process.html#process_process" target="_blank">process</a></li>
 <li><a href="https://nodejs.org/docs/latest-v12.x/api/buffer.html" target="_blank">Buffer</a></li>
 </ul>
-<p>&#x305D;&#x308C;&#x305E;&#x308C;&#x306E;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x3042;&#x308B;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x306A;&#x3069;&#x306F;&#x3001;&#x540C;&#x3058;&#x540D;&#x524D;&#x3067;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x5909;&#x6570;&#x3084;&#x95A2;&#x6570;&#x3068;&#x3057;&#x3066;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x305F;&#x3068;&#x3048;&#x3070;<code>window.document</code>&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x306F;&#x3001;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x5909;&#x6570;&#x306E;<code>document</code>&#x3068;&#x3057;&#x3066;&#x3082;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x307E;&#x305F;&#x3001;ECMAScript&#x3067;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x305F;&#x3082;&#x306E;&#x3067;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x304C;&#x3001;&#x307B;&#x307C;&#x540C;&#x7B49;&#x306E;&#x6A5F;&#x80FD;&#x3068;&#x540D;&#x524D;&#x3092;&#x6301;&#x3064;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3084;&#x95A2;&#x6570;&#x304C;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3068;Node.js&#x306E;&#x3069;&#x3061;&#x3089;&#x306B;&#x3082;&#x3042;&#x308B;&#x5834;&#x5408;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x305F;&#x3068;&#x3048;&#x3070;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;API&#x306F;&#x540C;&#x7B49;&#x306E;&#x6A5F;&#x80FD;&#x3092;&#x63D0;&#x4F9B;&#x3057;&#x307E;&#x3059;&#x304C;&#x3001;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306E;&#x7A2E;&#x985E;&#x3084;&#x8FD4;&#x308A;&#x5024;&#x304C;&#x7570;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>それぞれのグローバルオブジェクトにあるプロパティなどは、同じ名前でグローバル変数や関数としてアクセスできます。
+たとえば<code>window.document</code>プロパティは、グローバル変数の<code>document</code>としてもアクセスできます。</p>
+<p>また、ECMAScriptで定義されたものではありませんが、ほぼ同等の機能と名前を持つプロパティや関数がブラウザとNode.jsのどちらにもある場合があります。
+たとえば次のようなAPIは同等の機能を提供しますが、メソッドの種類や返り値が異なります。</p>
 <ul>
 <li>Console API</li>
-<li><code>setTimeout</code>&#x95A2;&#x6570;</li>
+<li><code>setTimeout</code>関数</li>
 </ul>
-<p>&#x3053;&#x308C;&#x3089;&#x3092;&#x8E0F;&#x307E;&#x3048;&#x305F;&#x4E0A;&#x3067;&#x3001;&#x6B21;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x304B;&#x3089;CLI&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x958B;&#x767A;&#x3092;&#x306F;&#x3058;&#x3081;&#x3066;&#x3044;&#x304D;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<h2 id="section-checklist"><a name="section-checklist" class="plugin-anchor" href="#section-checklist"><i class="fa fa-link" aria-hidden="true"></i></a>&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30EA;&#x30B9;&#x30C8; </h2>
+<p>これらを踏まえた上で、次のセクションからCLIアプリケーションの開発をはじめていきましょう。</p>
+<h2 id="section-checklist"><a name="section-checklist" class="plugin-anchor" href="#section-checklist"><i class="fa fa-link" aria-hidden="true"></i></a>このセクションのチェックリスト </h2>
 <ul>
-<li><code>main.js</code>&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x305F;</li>
-<li><code>node</code>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3067;<code>main.js</code>&#x3092;&#x5B9F;&#x884C;&#x3057;&#x3001;&#x6A19;&#x6E96;&#x51FA;&#x529B;&#x306B;&#x30ED;&#x30B0;&#x304C;&#x51FA;&#x529B;&#x3055;&#x308C;&#x308B;&#x306E;&#x3092;&#x78BA;&#x8A8D;&#x3057;&#x305F;</li>
-<li>&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x3064;&#x3044;&#x3066;&#x3001;&#x30A6;&#x30A7;&#x30D6;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3068;Node.js&#x3067;&#x5B9F;&#x884C;&#x74B0;&#x5883;&#x306B;&#x3088;&#x308B;&#x9055;&#x3044;&#x304C;&#x3042;&#x308B;&#x3053;&#x3068;&#x3092;&#x7406;&#x89E3;&#x3057;&#x305F;</li>
+<li><code>main.js</code>ファイルを作成した</li>
+<li><code>node</code>コマンドで<code>main.js</code>を実行し、標準出力にログが出力されるのを確認した</li>
+<li>グローバルオブジェクトについて、ウェブブラウザとNode.jsで実行環境による違いがあることを理解した</li>
 </ul>
 
                                 
@@ -1537,12 +1537,56 @@ Hello World!
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"Hello Worldアプリケーションを通じてNode.jsのCLIアプリケーションの基本を学びます。","title":"Node.jsでHello World","level":"1.4.3.1","depth":3,"next":{"title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"path":"use-case/nodecli/argument-parse/README.md","ref":"./use-case/nodecli/argument-parse/README.md","articles":[]},"previous":{"title":"Node.jsでCLIアプリ","level":"1.4.3","depth":2,"path":"use-case/nodecli/README.md","ref":"./use-case/nodecli/README.md","articles":[{"title":"Node.jsでHello World","level":"1.4.3.1","depth":3,"path":"use-case/nodecli/helloworld/README.md","ref":"./use-case/nodecli/helloworld/README.md","articles":[]},{"title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"path":"use-case/nodecli/argument-parse/README.md","ref":"./use-case/nodecli/argument-parse/README.md","articles":[]},{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},{"title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"path":"use-case/nodecli/refactor-and-unittest/README.md","ref":"./use-case/nodecli/refactor-and-unittest/README.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/helloworld/README.md","mtime":"2020-11-18T19:19:34.513Z","type":"markdown"},"gitbook":{"version":"3.6.8","time":"2020-11-18T19:20:11.295Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"Hello Worldアプリケーションを通じてNode.jsのCLIアプリケーションの基本を学びます。","title":"Node.jsでHello World","level":"1.4.3.1","depth":3,"next":{"title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"path":"use-case/nodecli/argument-parse/README.md","ref":"./use-case/nodecli/argument-parse/README.md","articles":[]},"previous":{"title":"Node.jsでCLIアプリ","level":"1.4.3","depth":2,"path":"use-case/nodecli/README.md","ref":"./use-case/nodecli/README.md","articles":[{"title":"Node.jsでHello World","level":"1.4.3.1","depth":3,"path":"use-case/nodecli/helloworld/README.md","ref":"./use-case/nodecli/helloworld/README.md","articles":[]},{"title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"path":"use-case/nodecli/argument-parse/README.md","ref":"./use-case/nodecli/argument-parse/README.md","articles":[]},{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},{"title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"path":"use-case/nodecli/refactor-and-unittest/README.md","ref":"./use-case/nodecli/refactor-and-unittest/README.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/helloworld/README.md","mtime":"2020-11-19T10:10:17.240Z","type":"markdown"},"gitbook":{"version":"3.6.13","time":"2020-11-19T10:10:53.113Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
 
         
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
     <script src="../../../gitbook/gitbook.js"></script>
     <script src="../../../gitbook/theme.js"></script>
     

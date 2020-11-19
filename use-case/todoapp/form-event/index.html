@@ -7,7 +7,7 @@
         <title>Todoアイテムの追加を実装する · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="TodoアプリへTodoアイテムを追加するフォームを作成していきます。フォームに入力された内容されたと送信イベントをどのようにハンドリングしていくかを見ていきます。">
-        <meta name="generator" content="HonKit 3.6.8">
+        <meta name="generator" content="HonKit 3.6.13">
         
         
         
@@ -176,7 +176,7 @@
     </head>
     <body>
         
-<div class="book">
+<div class="book honkit-cloak">
     <div class="book-summary">
         
             
@@ -1441,50 +1441,50 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="form-event"><a name="form-event" class="plugin-anchor" href="#form-event"><i class="fa fa-link" aria-hidden="true"></i></a>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x8FFD;&#x52A0;&#x3092;&#x5B9F;&#x88C5;&#x3059;&#x308B; </h1>
-<p>&#x3053;&#x3053;&#x304B;&#x3089;&#x306F;JavaScript&#x3067;Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x6A5F;&#x80FD;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;&#x3001;&#x524D;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;HTML&#x306B;&#x76EE;&#x5370;&#x3092;&#x3064;&#x3051;&#x305F;Todo&#x30EA;&#x30B9;&#x30C8;&#xFF08;<code>#js-todo-list</code>&#xFF09;&#x306B;&#x5BFE;&#x3057;&#x3066;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;&#x51E6;&#x7406;&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="add-todo-item"><a name="add-todo-item" class="plugin-anchor" href="#add-todo-item"><i class="fa fa-link" aria-hidden="true"></i></a>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x8FFD;&#x52A0; </h2>
-<p>&#x307E;&#x305A;&#x3001;Todo&#x30A2;&#x30D7;&#x30EA;&#x3067;&#x306F;&#x3069;&#x306E;&#x3088;&#x3046;&#x306A;&#x64CD;&#x4F5C;&#x3092;&#x3057;&#x305F;&#x3089;&#x3001;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x8FFD;&#x52A0;&#x3067;&#x304D;&#x308B;&#x304B;&#x3092;&#x898B;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>Todo&#x30A2;&#x30D7;&#x30EA;&#x3067;&#x306F;&#x3001;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x304C;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x64CD;&#x4F5C;&#x3057;&#x305F;&#x5834;&#x5408;&#x306B;&#x3001;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+                                <h1 id="form-event"><a name="form-event" class="plugin-anchor" href="#form-event"><i class="fa fa-link" aria-hidden="true"></i></a>Todoアイテムの追加を実装する </h1>
+<p>ここからはJavaScriptでTodoアプリの機能を作成していきます。</p>
+<p>このセクションでは、前のセクションでHTMLに目印をつけたTodoリスト（<code>#js-todo-list</code>）に対してTodoアイテムを追加する処理を実装します。</p>
+<h2 id="add-todo-item"><a name="add-todo-item" class="plugin-anchor" href="#add-todo-item"><i class="fa fa-link" aria-hidden="true"></i></a>Todoアイテムの追加 </h2>
+<p>まず、Todoアプリではどのような操作をしたら、Todoアイテムを追加できるかを見ていきます。</p>
+<p>Todoアプリでは、ユーザーが次のような操作した場合に、Todoアイテムを追加します。</p>
 <ol>
-<li>&#x5165;&#x529B;&#x6B04;&#x306B;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x30BF;&#x30A4;&#x30C8;&#x30EB;&#x3092;&#x5165;&#x529B;&#x3059;&#x308B;</li>
-<li>&#x5165;&#x529B;&#x6B04;&#x3067;Enter&#x30AD;&#x30FC;&#x3092;&#x62BC;&#x3057;&#x3066;&#x9001;&#x4FE1;&#x3059;&#x308B;</li>
-<li>Todo&#x30EA;&#x30B9;&#x30C8;&#x306B;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x304C;&#x8FFD;&#x52A0;&#x3055;&#x308C;&#x308B;</li>
+<li>入力欄にTodoアイテムのタイトルを入力する</li>
+<li>入力欄でEnterキーを押して送信する</li>
+<li>TodoリストにTodoアイテムが追加される</li>
 </ol>
-<p>&#x3053;&#x308C;&#x3092;JavaScript&#x3067;&#x5B9F;&#x73FE;&#x3059;&#x308B;&#x306B;&#x306F;&#x6B21;&#x306E;&#x3053;&#x3068;&#x304C;&#x5FC5;&#x8981;&#x3067;&#x3059;&#x3002;</p>
+<p>これをJavaScriptで実現するには次のことが必要です。</p>
 <ul>
-<li>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x30BF;&#x30A4;&#x30C8;&#x30EB;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x3001;input&#x8981;&#x7D20;&#xFF08;&#x5165;&#x529B;&#x6B04;&#xFF09;&#x304B;&#x3089;&#x5185;&#x5BB9;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;</li>
-<li>Enter&#x30AD;&#x30FC;&#x3067;&#x9001;&#x4FE1;&#x3055;&#x308C;&#x305F;&#x3053;&#x3068;&#x3092;&#x77E5;&#x308B;&#x305F;&#x3081;&#x306B;&#x3001;form&#x8981;&#x7D20;&#x306E;<code>submit</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#xFF08;&#x9001;&#x4FE1;&#xFF09;&#x3092;&#x76E3;&#x8996;&#x3059;&#x308B;</li>
-<li>&#x5165;&#x529B;&#x5185;&#x5BB9;&#x3092;&#x30BF;&#x30A4;&#x30C8;&#x30EB;&#x306B;&#x3057;&#x305F;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3001;Todo&#x30EA;&#x30B9;&#x30C8;&#xFF08;<code>#js-todo-list</code>&#xFF09;&#x306B;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x8981;&#x7D20;&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;</li>
+<li>Todoアイテムのタイトルを取得するために、input要素（入力欄）から内容を取得する</li>
+<li>Enterキーで送信されたことを知るために、form要素の<code>submit</code>イベント（送信）を監視する</li>
+<li>入力内容をタイトルにしたTodoアイテムを作成し、Todoリスト（<code>#js-todo-list</code>）にTodoアイテム要素を追加する</li>
 </ul>
-<p>&#x307E;&#x305A;&#x306F;&#x3001;form&#x8981;&#x7D20;&#x304B;&#x3089;&#x9001;&#x4FE1;&#x3055;&#x308C;&#x305F;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308A;&#x3001;&#x5165;&#x529B;&#x5185;&#x5BB9;&#x3092;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x30ED;&#x30B0;&#x306B;&#x8868;&#x793A;&#x3057;&#x3066;&#x307F;&#x308B;&#x3053;&#x3068;&#x304B;&#x3089;&#x306F;&#x3058;&#x3081;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<h2 id="input-to-console"><a name="input-to-console" class="plugin-anchor" href="#input-to-console"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5165;&#x529B;&#x5185;&#x5BB9;&#x3092;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x306B;&#x8868;&#x793A;&#x3059;&#x308B; </h2>
-<p>form&#x8981;&#x7D20;&#x3067;Enter&#x30AD;&#x30FC;&#x3092;&#x62BC;&#x3057;&#x3066;&#x9001;&#x4FE1;&#x3059;&#x308B;&#x3068;<code>submit</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x304C;&#x767A;&#x751F;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;<code>submit</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306F;HTML&#x8981;&#x7D20;&#x306E;<code>addEventListener</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x5229;&#x7528;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x53D7;&#x3051;&#x53D6;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;&#x6307;&#x5B9A;&#x3057;&#x305F;form&#x8981;&#x7D20;&#x304B;&#x3089;<code>submit</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x304C;&#x767A;&#x751F;&#x3057;&#x305F;&#x3068;&#x304D;&#x306B;&#x547C;&#x3073;&#x51FA;&#x3055;&#x308C;&#x308B;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x3092;&#x767B;&#x9332;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>まずは、form要素から送信されたイベントを受け取り、入力内容をコンソールログに表示してみることからはじめてみましょう。</p>
+<h2 id="input-to-console"><a name="input-to-console" class="plugin-anchor" href="#input-to-console"><i class="fa fa-link" aria-hidden="true"></i></a>入力内容をコンソールに表示する </h2>
+<p>form要素でEnterキーを押して送信すると<code>submit</code>イベントが発生します。
+この<code>submit</code>イベントはHTML要素の<code>addEventListener</code>メソッドを利用することで受け取れます。</p>
+<p>次のコードでは、指定したform要素から<code>submit</code>イベントが発生したときに呼び出されるコールバック関数を登録しています。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-comment">// `id=&quot;js-form`&#x306E;&#x8981;&#x7D20;&#x3092;&#x53D6;&#x5F97;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// `id=&quot;js-form`の要素を取得</span>
 <span class="hljs-keyword">const</span> formElement = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;#js-form&quot;</span>);
-<span class="hljs-comment">// form&#x8981;&#x7D20;&#x304B;&#x3089;&#x767A;&#x751F;&#x3057;&#x305F;submit&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308B;</span>
+<span class="hljs-comment">// form要素から発生したsubmitイベントを受け取る</span>
 formElement.addEventListener(<span class="hljs-string">&quot;submit&quot;</span>, (event) =&gt; {
-    <span class="hljs-comment">// &#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x304C;&#x767A;&#x751F;&#x3057;&#x305F;&#x3068;&#x304D;&#x306B;&#x547C;&#x3070;&#x308C;&#x308B;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#xFF08;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#xFF09;</span>
+    <span class="hljs-comment">// イベントが発生したときに呼ばれるコールバック関数（イベントリスナー）</span>
 });
 </code></pre>
 <!-- textlint-disable prh -->
-<p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306A;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x304C;&#x767A;&#x751F;&#x3057;&#x305F;&#x969B;&#x306B;&#x547C;&#x3070;&#x308C;&#x308B;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x306E;&#x3053;&#x3068;&#x3092;<strong>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;</strong>&#xFF08;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x30EA;&#x30C3;&#x30B9;&#x30F3;&#x3059;&#x308B;&#x3082;&#x306E;&#x3068;&#x3044;&#x3046;&#x610F;&#x5473;&#xFF09;&#x3068;&#x547C;&#x3073;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x306F;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30CF;&#x30F3;&#x30C9;&#x30E9;&#x30FC;&#x3068;&#x3082;&#x547C;&#x3070;&#x308C;&#x308B;&#x3053;&#x3068;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x304C;&#x3001;&#x3053;&#x306E;&#x66F8;&#x7C4D;&#x3067;&#x306F;&#x3053;&#x306E;2&#x3064;&#x306E;&#x8A00;&#x8449;&#x306F;&#x540C;&#x3058;&#x610F;&#x5473;&#x3068;&#x3057;&#x3066;&#x6271;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>このようなイベントが発生した際に呼ばれるコールバック関数のことを<strong>イベントリスナー</strong>（イベントをリッスンするものという意味）と呼びます。
+またイベントリスナーはイベントハンドラーとも呼ばれることがありますが、この書籍ではこの2つの言葉は同じ意味として扱います。</p>
 <!-- textlint-enable prh -->
-<p>&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x304C;&#x9001;&#x4FE1;&#x3055;&#x308C;&#x305F;&#x3068;&#x304D;&#x306B;&#x5165;&#x529B;&#x5185;&#x5BB9;&#x3092;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x306B;&#x8868;&#x793A;&#x3059;&#x308B;&#x306B;&#x306F;&#x3001;
-<code>addEventListener</code>&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x5185;&#x3067;&#x5165;&#x529B;&#x5185;&#x5BB9;&#x3092;Console API&#x3067;&#x51FA;&#x529B;&#x3059;&#x308C;&#x3070;&#x3088;&#x3044;&#x3053;&#x3068;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x5165;&#x529B;&#x5185;&#x5BB9;&#x306F;input&#x8981;&#x7D20;&#x306E;<code>value</code>&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x304B;&#x3089;&#x53D6;&#x5F97;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p>フォームが送信されたときに入力内容をコンソールに表示するには、
+<code>addEventListener</code>コールバック関数内で入力内容をConsole APIで出力すればよいことになります。</p>
+<p>入力内容はinput要素の<code>value</code>プロパティから取得できます。</p>
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> inputElement = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;#js-form-input&quot;</span>);
-<span class="hljs-built_in">console</span>.log(inputElement.value); <span class="hljs-comment">// =&gt; &quot;input&#x8981;&#x7D20;&#x306E;&#x5165;&#x529B;&#x5185;&#x5BB9;&quot;</span>
+<span class="hljs-built_in">console</span>.log(inputElement.value); <span class="hljs-comment">// =&gt; &quot;input要素の入力内容&quot;</span>
 </code></pre>
-<p>&#x3053;&#x308C;&#x3089;&#x3092;&#x7D44;&#x307F;&#x5408;&#x308F;&#x305B;&#x3066;<code>App.js</code>&#x306B;&#x300C;&#x5165;&#x529B;&#x5185;&#x5BB9;&#x3092;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x306B;&#x8868;&#x793A;&#x300D;&#x3059;&#x308B;&#x6A5F;&#x80FD;&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;
-<code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x306B;<code>mount</code>&#x3068;&#x3044;&#x3046;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x5B9A;&#x7FA9;&#x3057;&#x3066;&#x3001;&#x305D;&#x306E;&#x4E2D;&#x306B;&#x51E6;&#x7406;&#x3092;&#x66F8;&#x3044;&#x3066;&#x3044;&#x304D;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#xFF08;<code>#js-form</code>&#xFF09;&#x3092;Enter&#x3067;&#x9001;&#x4FE1;&#x3059;&#x308B;&#x3068;&#x3001;input&#x8981;&#x7D20;&#xFF08;<code>#js-form-input</code>&#xFF09;&#x306E;&#x5185;&#x5BB9;&#x3092;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x3078;&#x8868;&#x793A;&#x3059;&#x308B;&#x51E6;&#x7406;&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>これらを組み合わせて<code>App.js</code>に「入力内容をコンソールに表示」する機能を実装してみましょう。
+<code>App</code>クラスに<code>mount</code>というメソッドを定義して、その中に処理を書いていきましょう。</p>
+<p>次のコードでは、フォーム（<code>#js-form</code>）をEnterで送信すると、input要素（<code>#js-form-input</code>）の内容をコンソールへ表示する処理を実装しています。</p>
 <div class="code-filename-block">
     <p class="code-filename">src/App.js</p>
 </div>
@@ -1494,15 +1494,15 @@ formElement.addEventListener(<span class="hljs-string">&quot;submit&quot;</span>
         <span class="hljs-keyword">const</span> formElement = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;#js-form&quot;</span>);
         <span class="hljs-keyword">const</span> inputElement = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;#js-form-input&quot;</span>);
         formElement.addEventListener(<span class="hljs-string">&quot;submit&quot;</span>, (event) =&gt; {
-            <span class="hljs-comment">// submit&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306E;&#x672C;&#x6765;&#x306E;&#x52D5;&#x4F5C;&#x3092;&#x6B62;&#x3081;&#x308B;</span>
+            <span class="hljs-comment">// submitイベントの本来の動作を止める</span>
             event.preventDefault();
-            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`&#x5165;&#x529B;&#x6B04;&#x306E;&#x5024;: <span class="hljs-subst">${inputElement.value}</span>`</span>);
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`入力欄の値: <span class="hljs-subst">${inputElement.value}</span>`</span>);
         });
     }
 }
 </code></pre>
-<p>&#x3053;&#x306E;&#x307E;&#x307E;&#x3067;&#x306F;&#x3001;<code>App#mount</code>&#x306F;&#x547C;&#x3073;&#x51FA;&#x3055;&#x308C;&#x306A;&#x3044;&#x305F;&#x3081;&#x4F55;&#x3082;&#x884C;&#x308F;&#x308C;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;<code>index.js</code>&#x3082;&#x5909;&#x66F4;&#x3057;&#x3066;&#x3001;<code>App</code>&#x30AF;&#x30E9;&#x30B9;&#x306E;<code>mount</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;&#x3088;&#x3046;&#x306B;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>このままでは、<code>App#mount</code>は呼び出されないため何も行われません。
+そのため、<code>index.js</code>も変更して、<code>App</code>クラスの<code>mount</code>メソッドを呼び出すようにします。</p>
 <div class="code-filename-block">
     <p class="code-filename">index.js</p>
 </div>
@@ -1511,58 +1511,58 @@ formElement.addEventListener(<span class="hljs-string">&quot;submit&quot;</span>
 <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> App();
 app.mount();
 </code></pre>
-<p>&#x3053;&#x308C;&#x3089;&#x306E;&#x5909;&#x66F4;&#x5F8C;&#x306B;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3067;&#x30DA;&#x30FC;&#x30B8;&#x3092;&#x30EA;&#x30ED;&#x30FC;&#x30C9;&#x3059;&#x308B;&#x3068;&#x3001;<code>App#mount</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-<code>submit</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x304C;&#x30EA;&#x30C3;&#x30B9;&#x30F3;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x306E;&#x3067;&#x3001;&#x5165;&#x529B;&#x6B04;&#x306B;&#x4F55;&#x304B;&#x5165;&#x529B;&#x3057;&#x3066;Enter&#x3067;&#x9001;&#x4FE1;&#x3057;&#x3066;&#x307F;&#x308B;&#x3068;&#x305D;&#x306E;&#x5185;&#x5BB9;&#x304C;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x306B;&#x8868;&#x793A;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p><img src="img/prevent-event.png" alt="&#x5165;&#x529B;&#x5185;&#x5BB9;&#x304C;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x306B;&#x8868;&#x793A;&#x3055;&#x308C;&#x308B;"></p>
-<p>&#x5148;&#x307B;&#x3069;&#x306E;<code>App#mount</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x306F;&#x3001;<code>submit</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306E;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x5185;&#x3067;<code>event.preventDefault</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-<code>event.preventDefault</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x3001;<code>submit</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306E;&#x767A;&#x751F;&#x5143;&#x3067;&#x3042;&#x308B;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x304C;&#x6301;&#x3064;&#x30C7;&#x30D5;&#x30A9;&#x30EB;&#x30C8;&#x306E;&#x52D5;&#x4F5C;&#x3092;&#x30AD;&#x30E3;&#x30F3;&#x30BB;&#x30EB;&#x3059;&#x308B;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x304C;&#x6301;&#x3064;&#x30C7;&#x30D5;&#x30A9;&#x30EB;&#x30C8;&#x306E;&#x52D5;&#x4F5C;&#x3068;&#x306F;&#x3001;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x5185;&#x5BB9;&#x3092;&#x6307;&#x5B9A;&#x3057;&#x305F;URL&#x3078;&#x9001;&#x4FE1;&#x3059;&#x308B;&#x3068;&#x3044;&#x3046;&#x52D5;&#x4F5C;&#x3067;&#x3059;&#x3002;
-&#x3053;&#x3053;&#x3067;&#x306F;<code>form</code>&#x8981;&#x7D20;&#x306B;&#x9001;&#x4FE1;&#x5148;&#x304C;&#x6307;&#x5B9A;&#x3055;&#x308C;&#x3066;&#x3044;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;&#x73FE;&#x5728;&#x306E;URL&#x306B;&#x5BFE;&#x3057;&#x3066;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x5185;&#x5BB9;&#x3092;&#x9001;&#x4FE1;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x3057;&#x304B;&#x3057;&#x3053;&#x306E;&#x52D5;&#x4F5C;&#x306F;&#x90AA;&#x9B54;&#x306B;&#x306A;&#x308B;&#x305F;&#x3081;&#x3001;<code>event.preventDefault</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;&#x3053;&#x3068;&#x3067;&#x3001;&#x3053;&#x306E;&#x30C7;&#x30D5;&#x30A9;&#x30EB;&#x30C8;&#x306E;&#x52D5;&#x4F5C;&#x3092;&#x30AD;&#x30E3;&#x30F3;&#x30BB;&#x30EB;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<div class="code-filename-block"><p class="code-filename">src/App.js&#x3088;&#x308A;&#x629C;&#x7C8B;</p></div>
+<p>これらの変更後にブラウザでページをリロードすると、<code>App#mount</code>メソッドが実行されるようになります。
+<code>submit</code>イベントがリッスンされているので、入力欄に何か入力してEnterで送信してみるとその内容がコンソールに表示されます。</p>
+<p><img src="img/prevent-event.png" alt="入力内容がコンソールに表示される"></p>
+<p>先ほどの<code>App#mount</code>メソッドでは、<code>submit</code>イベントのイベントリスナー内で<code>event.preventDefault</code>メソッドを呼び出しています。
+<code>event.preventDefault</code>メソッドは、<code>submit</code>イベントの発生元であるフォームが持つデフォルトの動作をキャンセルするメソッドです。</p>
+<p>フォームが持つデフォルトの動作とは、フォームの内容を指定したURLへ送信するという動作です。
+ここでは<code>form</code>要素に送信先が指定されていないため、現在のURLに対してフォームの内容を送信します。
+しかしこの動作は邪魔になるため、<code>event.preventDefault</code>メソッドを呼び出すことで、このデフォルトの動作をキャンセルしています。</p>
+<div class="code-filename-block"><p class="code-filename">src/App.jsより抜粋</p></div>
 
 <!-- doctest:disable -->
 <pre><code class="lang-js">formElement.addEventListener(<span class="hljs-string">&quot;submit&quot;</span>, (event) =&gt; {
-    <span class="hljs-comment">// submit&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306E;&#x672C;&#x6765;&#x306E;&#x52D5;&#x4F5C;&#x3092;&#x6B62;&#x3081;&#x308B;</span>
+    <span class="hljs-comment">// submitイベントの本来の動作を止める</span>
     event.preventDefault();
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`&#x5165;&#x529B;&#x6B04;&#x306E;&#x5024;: <span class="hljs-subst">${inputElement.value}</span>`</span>);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`入力欄の値: <span class="hljs-subst">${inputElement.value}</span>`</span>);
 });
 </code></pre>
 <!-- textlint-disable no-js-function-paren -->
-<p>&#x73FE;&#x5728;&#x306E;URL&#x306B;&#x5BFE;&#x3057;&#x3066;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x9001;&#x4FE1;&#x304C;&#x884C;&#x308F;&#x308C;&#x308B;&#x3068;&#x3001;&#x7D50;&#x679C;&#x7684;&#x306B;&#x30DA;&#x30FC;&#x30B8;&#x304C;&#x30EA;&#x30ED;&#x30FC;&#x30C9;&#x3055;&#x308C;&#x3066;&#x3057;&#x307E;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;<code>event.preventDefault()</code>&#x3092;&#x547C;&#x3073;&#x51FA;&#x3057;&#x3001;&#x30C7;&#x30D5;&#x30A9;&#x30EB;&#x30C8;&#x306E;&#x52D5;&#x4F5C;&#x3092;&#x30AD;&#x30E3;&#x30F3;&#x30BB;&#x30EB;&#x3057;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;
-<code>event.preventDefault()</code>&#x3092;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x30A2;&#x30A6;&#x30C8;&#x3059;&#x308B;&#x3068;&#x3001;&#x30DA;&#x30FC;&#x30B8;&#x304C;&#x30EA;&#x30ED;&#x30FC;&#x30C9;&#x3055;&#x308C;&#x3066;&#x3057;&#x307E;&#x3046;&#x3053;&#x3068;&#x304C;&#x78BA;&#x8A8D;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p>現在のURLに対してフォームの送信が行われると、結果的にページがリロードされてしまいます。
+そのため、<code>event.preventDefault()</code>を呼び出し、デフォルトの動作をキャンセルしていました。
+<code>event.preventDefault()</code>をコメントアウトすると、ページがリロードされてしまうことが確認できます。</p>
 <!-- textlint-enable no-js-function-paren -->
-<div class="code-filename-block"><p class="code-filename">src/App.js&#x304B;&#x3089;&#x4E00;&#x90E8;&#x3092;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x30A2;&#x30A6;&#x30C8;&#x3057;&#x305F;&#x4F8B;</p></div>
+<div class="code-filename-block"><p class="code-filename">src/App.jsから一部をコメントアウトした例</p></div>
 
 <!-- doctest:disable -->
 <pre><code class="lang-js">formElement.addEventListener(<span class="hljs-string">&quot;submit&quot;</span>, (event) =&gt; {
-    <span class="hljs-comment">// preventDefault&#x3057;&#x306A;&#x3044;&#x3068;&#x30DA;&#x30FC;&#x30B8;&#x304C;&#x30EA;&#x30ED;&#x30FC;&#x30C9;&#x3055;&#x308C;&#x3066;&#x3057;&#x307E;&#x3046;</span>
+    <span class="hljs-comment">// preventDefaultしないとページがリロードされてしまう</span>
     <span class="hljs-comment">// event.preventDefault();</span>
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`&#x5165;&#x529B;&#x6B04;&#x306E;&#x5024;: <span class="hljs-subst">${inputElement.value}</span>`</span>);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`入力欄の値: <span class="hljs-subst">${inputElement.value}</span>`</span>);
 });
 </code></pre>
-<p>&#x3053;&#x3053;&#x307E;&#x3067;&#x3067;<code>todoapp</code>&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x306B;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x5909;&#x66F4;&#x3092;&#x52A0;&#x3048;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p>ここまでで<code>todoapp</code>ディレクトリに、次のような変更を加えました。</p>
 <pre><code>todoapp
-&#x251C;&#x2500;&#x2500; index.html
-&#x251C;&#x2500;&#x2500; index.js (App#mount&#x306E;&#x547C;&#x3073;&#x51FA;&#x3057;)
-&#x2514;&#x2500;&#x2500; src
-    &#x2514;&#x2500;&#x2500; App.js (App#mount&#x306E;&#x5B9F;&#x88C5;)
-</code></pre><p>&#x3053;&#x3053;&#x307E;&#x3067;&#x306E;Todo&#x30A2;&#x30D7;&#x30EA;&#x306F;&#x6B21;&#x306E;URL&#x3067;&#x78BA;&#x8A8D;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+├── index.html
+├── index.js (App#mountの呼び出し)
+└── src
+    └── App.js (App#mountの実装)
+</code></pre><p>ここまでのTodoアプリは次のURLで確認できます。</p>
 <ul>
 <li><a href="https://jsprimer.net/use-case/todoapp/form-event/prevent-event/" target="_blank">https://jsprimer.net/use-case/todoapp/form-event/prevent-event/</a></li>
 </ul>
-<h2 id="input-to-todolist"><a name="input-to-todolist" class="plugin-anchor" href="#input-to-todolist"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5165;&#x529B;&#x5185;&#x5BB9;&#x3092;Todo&#x30EA;&#x30B9;&#x30C8;&#x306B;&#x8868;&#x793A;&#x3059;&#x308B; </h2>
-<p>&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x9001;&#x4FE1;&#x6642;&#x306B;&#x5165;&#x529B;&#x5185;&#x5BB9;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;&#x65B9;&#x6CD5;&#x304C;&#x308F;&#x304B;&#x3063;&#x305F;&#x306E;&#x3067;&#x3001;&#x6B21;&#x306F;&#x305D;&#x306E;&#x5165;&#x529B;&#x5185;&#x5BB9;&#x3092;Todo&#x30EA;&#x30B9;&#x30C8;&#xFF08;<code>#js-todo-list</code>&#xFF09;&#x306B;&#x8868;&#x793A;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p>HTML&#x3067;&#x306F;&#x30EA;&#x30B9;&#x30C8;&#x306E;&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x8A18;&#x8FF0;&#x3059;&#x308B;&#x969B;&#x306B;&#x306F;<code>&lt;li&gt;</code>&#x30BF;&#x30B0;&#x3092;&#x4F7F;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x5F8C;&#x307B;&#x3069;Todo&#x30EA;&#x30B9;&#x30C8;&#x306B;&#x8868;&#x793A;&#x3059;&#x308B;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x8981;&#x7D20;&#x306B;&#x306F;&#x3001;&#x5B8C;&#x4E86;&#x72B6;&#x614B;&#x3092;&#x8868;&#x3059;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x3084;&#x524A;&#x9664;&#x30DC;&#x30BF;&#x30F3;&#x306A;&#x3069;&#x3082;&#x542B;&#x3081;&#x305F;&#x3044;&#x3067;&#x3059;&#x3002;
-&#x3053;&#x308C;&#x3089;&#x306E;&#x8981;&#x7D20;&#x3092;&#x542B;&#x3080;&#x3082;&#x306E;&#x3092;&#x624B;&#x7D9A;&#x304D;&#x7684;&#x306B;DOM API&#x3067;&#x4F5C;&#x6210;&#x3059;&#x308B;&#x3068;&#x898B;&#x901A;&#x3057;&#x304C;&#x60AA;&#x304F;&#x306A;&#x308B;&#x305F;&#x3081;&#x3001;HTML&#x6587;&#x5B57;&#x5217;&#x304B;&#x3089;HTML&#x8981;&#x7D20;&#x3092;&#x751F;&#x6210;&#x3059;&#x308B;&#x30E6;&#x30FC;&#x30C6;&#x30A3;&#x30EA;&#x30C6;&#x30A3;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<p>&#x6B21;&#x306E;<code>html-util.js</code>&#x3068;&#x3044;&#x3046;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;<code>src/view/html-util.js</code>&#x3068;&#x3044;&#x3046;&#x30D1;&#x30B9;&#x306B;&#x4F5C;&#x6210;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x306E;<code>html-util.js</code>&#x306F;&#x300C;<a href="../../ajaxapp/display/#html-to-dom">ajaxapp: HTML&#x6587;&#x5B57;&#x5217;&#x3092;DOM&#x306B;&#x8FFD;&#x52A0;&#x3059;&#x308B;</a>&#x300D;&#x3067;&#x3082;&#x5229;&#x7528;&#x3057;&#x305F;<code>escapeSpecialChars</code>&#x3092;&#x30D9;&#x30FC;&#x30B9;&#x306B;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-ajaxapp&#x3067;&#x306E;<code>escapeHTML</code>&#x30BF;&#x30B0;&#x95A2;&#x6570;&#x3067;&#x306F;&#x51FA;&#x529B;&#x306F;<strong>HTML&#x6587;&#x5B57;&#x5217;</strong>&#x3067;&#x3057;&#x305F;&#x304C;&#x3001;&#x4ECA;&#x56DE;&#x4F5C;&#x6210;&#x3059;&#x308B;<code>element</code>&#x30BF;&#x30B0;&#x95A2;&#x6570;&#x306E;&#x51FA;&#x529B;&#x306F;<strong>HTML&#x8981;&#x7D20;</strong>&#xFF08;Element&#xFF09;&#x3067;&#x3059;&#x3002;</p>
-<p>Todo&#x30EA;&#x30B9;&#x30C8;&#xFF08;<code>#js-todo-list</code>&#xFF09;&#x3068;&#x3044;&#x3046;&#x3059;&#x3067;&#x306B;&#x5B58;&#x5728;&#x3059;&#x308B;&#x8981;&#x7D20;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x8981;&#x7D20;&#x3092;<strong>&#x8FFD;&#x52A0;</strong>&#x3059;&#x308B;&#x306B;&#x306F;&#x3001;HTML&#x6587;&#x5B57;&#x5217;&#x3067;&#x306F;&#x306A;&#x304F;HTML&#x8981;&#x7D20;&#x304C;&#x5FC5;&#x8981;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x3001;HTML&#x6587;&#x5B57;&#x5217;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x306F;<code>addEventListener</code>&#x3067;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x30EA;&#x30C3;&#x30B9;&#x30F3;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x306E;&#x72B6;&#x614B;&#x304C;&#x5909;&#x308F;&#x3063;&#x305F;&#x3053;&#x3068;&#x3084;&#x524A;&#x9664;&#x30DC;&#x30BF;&#x30F3;&#x304C;&#x62BC;&#x3055;&#x308C;&#x305F;&#x3053;&#x3068;&#x3092;&#x77E5;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308B;Todo&#x30A2;&#x30D7;&#x30EA;&#x3067;&#x306F;HTML&#x8981;&#x7D20;&#x304C;&#x5FC5;&#x8981;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="input-to-todolist"><a name="input-to-todolist" class="plugin-anchor" href="#input-to-todolist"><i class="fa fa-link" aria-hidden="true"></i></a>入力内容をTodoリストに表示する </h2>
+<p>フォーム送信時に入力内容を取得する方法がわかったので、次はその入力内容をTodoリスト（<code>#js-todo-list</code>）に表示します。</p>
+<p>HTMLではリストのアイテムを記述する際には<code>&lt;li&gt;</code>タグを使います。
+また後ほどTodoリストに表示するTodoアイテムの要素には、完了状態を表すチェックボックスや削除ボタンなども含めたいです。
+これらの要素を含むものを手続き的にDOM APIで作成すると見通しが悪くなるため、HTML文字列からHTML要素を生成するユーティリティモジュールを作成しましょう。</p>
+<p>次の<code>html-util.js</code>というファイルを<code>src/view/html-util.js</code>というパスに作成します。</p>
+<p>この<code>html-util.js</code>は「<a href="../../ajaxapp/display/#html-to-dom">ajaxapp: HTML文字列をDOMに追加する</a>」でも利用した<code>escapeSpecialChars</code>をベースにしています。
+ajaxappでの<code>escapeHTML</code>タグ関数では出力は<strong>HTML文字列</strong>でしたが、今回作成する<code>element</code>タグ関数の出力は<strong>HTML要素</strong>（Element）です。</p>
+<p>Todoリスト（<code>#js-todo-list</code>）というすでに存在する要素に対して要素を<strong>追加</strong>するには、HTML文字列ではなくHTML要素が必要になります。
+また、HTML文字列に対しては<code>addEventListener</code>でイベントをリッスンできません。
+そのため、チェックボックスの状態が変わったことや削除ボタンが押されたことを知る必要があるTodoアプリではHTML要素が必要になります。</p>
 <div class="code-filename-block">
     <p class="code-filename">src/view/html-util.js</p>
 </div>
@@ -1577,7 +1577,7 @@ ajaxapp&#x3067;&#x306E;<code>escapeHTML</code>&#x30BF;&#x30B0;&#x95A2;&#x6570;&#
 }
 
 <span class="hljs-comment">/**
- * HTML&#x6587;&#x5B57;&#x5217;&#x304B;&#x3089;HTML&#x8981;&#x7D20;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x8FD4;&#x3059;
+ * HTML文字列からHTML要素を作成して返す
  * @param {string} html 
  */</span>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">htmlToElement</span>(<span class="hljs-params">html</span>) </span>{
@@ -1587,7 +1587,7 @@ ajaxapp&#x3067;&#x306E;<code>escapeHTML</code>&#x30BF;&#x30B0;&#x95A2;&#x6570;&#
 }
 
 <span class="hljs-comment">/**
- * HTML&#x6587;&#x5B57;&#x5217;&#x304B;&#x3089;DOM Node&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x8FD4;&#x3059;&#x30BF;&#x30B0;&#x95A2;&#x6570;
+ * HTML文字列からDOM Nodeを作成して返すタグ関数
  * @return {Element}
  */</span>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">element</span>(<span class="hljs-params">strings, ...values</span>) </span>{
@@ -1603,48 +1603,48 @@ ajaxapp&#x3067;&#x306E;<code>escapeHTML</code>&#x30BF;&#x30B0;&#x95A2;&#x6570;&#
 }
 
 <span class="hljs-comment">/**
- * &#x30B3;&#x30F3;&#x30C6;&#x30CA;&#x8981;&#x7D20;&#x306E;&#x4E2D;&#x8EAB;&#x3092;bodyElement&#x3067;&#x4E0A;&#x66F8;&#x304D;&#x3059;&#x308B;
- * @param {Element} bodyElement &#x30B3;&#x30F3;&#x30C6;&#x30CA;&#x8981;&#x7D20;&#x306E;&#x4E2D;&#x8EAB;&#x3068;&#x306A;&#x308B;&#x8981;&#x7D20;
- * @param {Element} containerElement &#x30B3;&#x30F3;&#x30C6;&#x30CA;&#x8981;&#x7D20;
+ * コンテナ要素の中身をbodyElementで上書きする
+ * @param {Element} bodyElement コンテナ要素の中身となる要素
+ * @param {Element} containerElement コンテナ要素
  */</span>
 <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">render</span>(<span class="hljs-params">bodyElement, containerElement</span>) </span>{
-    <span class="hljs-comment">// containerElement&#x306E;&#x4E2D;&#x8EAB;&#x3092;&#x7A7A;&#x306B;&#x3059;&#x308B;</span>
+    <span class="hljs-comment">// containerElementの中身を空にする</span>
     containerElement.innerHTML = <span class="hljs-string">&quot;&quot;</span>;
-    <span class="hljs-comment">// containerElement&#x306E;&#x76F4;&#x4E0B;&#x306B;bodyElement&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;</span>
+    <span class="hljs-comment">// containerElementの直下にbodyElementを追加する</span>
     containerElement.appendChild(bodyElement);
 }
 </code></pre>
-<p><code>element</code>&#x30BF;&#x30B0;&#x95A2;&#x6570;&#x3067;&#x306F;&#x3001;&#x540C;&#x3058;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306B;&#x5B9A;&#x7FA9;&#x3057;&#x305F;<code>htmlToElement</code>&#x95A2;&#x6570;&#x3092;&#x4F7F;&#x3063;&#x3066;HTML&#x6587;&#x5B57;&#x5217;&#x304B;&#x3089;HTML&#x8981;&#x7D20;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-<code>htmlToElement</code>&#x95A2;&#x6570;&#x306E;&#x4E2D;&#x3067;&#x5229;&#x7528;&#x3057;&#x3066;&#x3044;&#x308B;<a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/template" target="_blank">template&#x8981;&#x7D20;</a>&#x306F;HTML5&#x3067;&#x8FFD;&#x52A0;&#x3055;&#x308C;&#x305F;&#x3001;HTML&#x6587;&#x5B57;&#x5217;&#x306E;&#x65AD;&#x7247;&#x304B;&#x3089;HTML&#x8981;&#x7D20;&#x3092;&#x4F5C;&#x6210;&#x3067;&#x304D;&#x308B;&#x8981;&#x7D20;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x306E;<code>element</code>&#x30BF;&#x30B0;&#x95A2;&#x6570;&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;HTML&#x6587;&#x5B57;&#x5217;&#x304B;&#x3089;HTML&#x8981;&#x7D20;&#x3092;&#x4F5C;&#x6210;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x4F5C;&#x6210;&#x3057;&#x305F;&#x8981;&#x7D20;&#x306F;&#x3001;<code>appendChild</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306A;&#x3069;&#x3067;&#x65E2;&#x5B58;&#x306E;&#x8981;&#x7D20;&#x306B;&#x5B50;&#x8981;&#x7D20;&#x3068;&#x3057;&#x3066;&#x8FFD;&#x52A0;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<div class="code-filename-block"><p class="code-filename">element&#x30BF;&#x30B0;&#x95A2;&#x6570;&#x306E;&#x30B5;&#x30F3;&#x30D7;&#x30EB;&#x30B3;&#x30FC;&#x30C9;</p></div>
+<p><code>element</code>タグ関数では、同じファイルに定義した<code>htmlToElement</code>関数を使ってHTML文字列からHTML要素を作成しています。
+<code>htmlToElement</code>関数の中で利用している<a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/template" target="_blank">template要素</a>はHTML5で追加された、HTML文字列の断片からHTML要素を作成できる要素です。</p>
+<p>この<code>element</code>タグ関数を使うことで、次のようにHTML文字列からHTML要素を作成できます。
+作成した要素は、<code>appendChild</code>メソッドなどで既存の要素に子要素として追加できます。</p>
+<div class="code-filename-block"><p class="code-filename">elementタグ関数のサンプルコード</p></div>
 
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-comment">// HTML&#x6587;&#x5B57;&#x5217;&#x304B;&#x3089;HTML&#x8981;&#x7D20;&#x3092;&#x4F5C;&#x6210;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// HTML文字列からHTML要素を作成</span>
 <span class="hljs-keyword">const</span> newElement = element<span class="hljs-string">`&lt;ul&gt;
-    &lt;li&gt;&#x65B0;&#x3057;&#x3044;&#x8981;&#x7D20;&lt;/li&gt;
+    &lt;li&gt;新しい要素&lt;/li&gt;
 &lt;/ul&gt;`</span>;
-<span class="hljs-comment">// &#x4F5C;&#x6210;&#x3057;&#x305F;&#x8981;&#x7D20;&#x3092;`document.body`&#x306E;&#x5B50;&#x8981;&#x7D20;&#x3068;&#x3057;&#x3066;&#x8FFD;&#x52A0;&#xFF08;appendChild&#xFF09;&#x3059;&#x308B;</span>
+<span class="hljs-comment">// 作成した要素を`document.body`の子要素として追加（appendChild）する</span>
 <span class="hljs-built_in">document</span>.body.appendChild(newElement);
 </code></pre>
-<p>&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x304C;&#x63D0;&#x4F9B;&#x3059;&#x308B;<code>appendChild</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x5B50;&#x8981;&#x7D20;&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;&#x3060;&#x3051;&#x306A;&#x306E;&#x3067;&#x3001;&#x3059;&#x3067;&#x306B;&#x5225;&#x306E;&#x8981;&#x7D20;&#x304C;&#x3042;&#x308B;&#x5834;&#x5408;&#x306F;&#x672B;&#x5C3E;&#x306B;&#x8FFD;&#x52A0;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;&#x307E;&#x3060;&#x5229;&#x7528;&#x3057;&#x307E;&#x305B;&#x3093;&#x304C;&#x3001;<code>html-util.js</code>&#x306B;&#x306F;<code>render</code>&#x3068;&#x3044;&#x3046;&#x95A2;&#x6570;&#x3092;&#x5B9A;&#x7FA9;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-<code>render</code>&#x95A2;&#x6570;&#x306F;&#x6307;&#x5B9A;&#x3057;&#x305F;&#x30B3;&#x30F3;&#x30C6;&#x30CA;&#x8981;&#x7D20;&#xFF08;&#x89AA;&#x3068;&#x306A;&#x308B;&#x8981;&#x7D20;&#xFF09;&#x306E;&#x5B50;&#x8981;&#x7D20;&#x3092;&#x4E0A;&#x66F8;&#x304D;&#x3059;&#x308B;&#x95A2;&#x6570;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x52D5;&#x4F5C;&#x7684;&#x306B;&#x306F;&#x4E00;&#x5EA6;&#x5B50;&#x8981;&#x7D20;&#x3092;&#x3059;&#x3079;&#x3066;&#x6D88;&#x3057;&#x305F;&#x3042;&#x3068;&#x306B;<code>appendChild</code>&#x3067;&#x5B50;&#x8981;&#x7D20;&#x3068;&#x3057;&#x3066;&#x8FFD;&#x52A0;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<div class="code-filename-block"><p class="code-filename">render&#x95A2;&#x6570;&#x306E;&#x30B5;&#x30F3;&#x30D7;&#x30EB;&#x30B3;&#x30FC;&#x30C9;</p></div>
+<p>ブラウザが提供する<code>appendChild</code>メソッドは子要素を追加するだけなので、すでに別の要素がある場合は末尾に追加されます。</p>
+<p>このセクションではまだ利用しませんが、<code>html-util.js</code>には<code>render</code>という関数を定義しています。
+<code>render</code>関数は指定したコンテナ要素（親となる要素）の子要素を上書きする関数となります。
+動作的には一度子要素をすべて消したあとに<code>appendChild</code>で子要素として追加しています。</p>
+<div class="code-filename-block"><p class="code-filename">render関数のサンプルコード</p></div>
 
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-comment">// `ul`&#x8981;&#x7D20;&#x306E;&#x7A7A;&#x30BF;&#x30B0;&#x3092;&#x4F5C;&#x6210;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// `ul`要素の空タグを作成</span>
 <span class="hljs-keyword">const</span> newElement = element<span class="hljs-string">`&lt;ul /&gt;`</span>;
-<span class="hljs-comment">// `newElement`&#x3092;`document.body`&#x306E;&#x5B50;&#x8981;&#x7D20;&#x3068;&#x3057;&#x3066;&#x8FFD;&#x52A0;&#x3059;&#x308B;</span>
-<span class="hljs-comment">// &#x3059;&#x3067;&#x306B;`document.body`&#x4EE5;&#x4E0B;&#x306B;&#x8981;&#x7D20;&#x304C;&#x3042;&#x308B;&#x5834;&#x5408;&#x306F;&#x4E0A;&#x66F8;&#x304D;&#x3055;&#x308C;&#x308B;</span>
+<span class="hljs-comment">// `newElement`を`document.body`の子要素として追加する</span>
+<span class="hljs-comment">// すでに`document.body`以下に要素がある場合は上書きされる</span>
 render(newElement, <span class="hljs-built_in">document</span>.body);
 </code></pre>
-<p>&#x6700;&#x5F8C;&#x306B;&#x3001;&#x3053;&#x306E;<code>element</code>&#x30BF;&#x30B0;&#x95A2;&#x6570;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x3001;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x304B;&#x3089;&#x9001;&#x4FE1;&#x3055;&#x308C;&#x305F;&#x5165;&#x529B;&#x5185;&#x5BB9;&#x3092;Todo&#x30EA;&#x30B9;&#x30C8;&#x306B;&#x8981;&#x7D20;&#x3068;&#x3057;&#x3066;&#x8FFD;&#x52A0;&#x3057;&#x3066;&#x307F;&#x307E;&#x3059;&#x3002;</p>
-<p><code>App.js</code>&#x304B;&#x3089;&#x5148;&#x307B;&#x3069;&#x4F5C;&#x6210;&#x3057;&#x305F;<code>html-util.js</code>&#x306E;<code>element</code>&#x30BF;&#x30B0;&#x95A2;&#x6570;&#x3092;<code>import</code>&#x3057;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306B;<code>submit</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306E;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x3067;&#x3001;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x8868;&#x73FE;&#x3059;&#x308B;&#x8981;&#x7D20;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3001;Todo&#x30EA;&#x30B9;&#x30C8;&#xFF08;<code>#js-todo-list</code>&#xFF09;&#x306E;&#x5B50;&#x8981;&#x7D20;&#x3068;&#x3057;&#x3066;&#x8FFD;&#x52A0;&#xFF08;<code>appendChild</code>&#xFF09;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x6700;&#x5F8C;&#x306B;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x6570;&#xFF08;<code>#js-todo-count</code>&#xFF09;&#x306E;&#x30C6;&#x30AD;&#x30B9;&#x30C8;&#xFF08;<code>textContent</code>&#xFF09;&#x3092;&#x66F4;&#x65B0;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>最後に、この<code>element</code>タグ関数を使って、フォームから送信された入力内容をTodoリストに要素として追加してみます。</p>
+<p><code>App.js</code>から先ほど作成した<code>html-util.js</code>の<code>element</code>タグ関数を<code>import</code>します。
+次に<code>submit</code>イベントのリスナー関数で、Todoアイテムを表現する要素を作成し、Todoリスト（<code>#js-todo-list</code>）の子要素として追加（<code>appendChild</code>）します。
+最後にTodoアイテム数（<code>#js-todo-count</code>）のテキスト（<code>textContent</code>）を更新します。</p>
 <div class="code-filename-block">
     <p class="code-filename">src/App.js</p>
 </div>
@@ -1657,63 +1657,63 @@ render(newElement, <span class="hljs-built_in">document</span>.body);
         <span class="hljs-keyword">const</span> inputElement = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;#js-form-input&quot;</span>);
         <span class="hljs-keyword">const</span> containerElement = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;#js-todo-list&quot;</span>);
         <span class="hljs-keyword">const</span> todoItemCountElement = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;#js-todo-count&quot;</span>);
-        <span class="hljs-comment">// Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x6570;</span>
+        <span class="hljs-comment">// Todoアイテム数</span>
         <span class="hljs-keyword">let</span> todoItemCount = <span class="hljs-number">0</span>;
         formElement.addEventListener(<span class="hljs-string">&quot;submit&quot;</span>, (event) =&gt; {
-            <span class="hljs-comment">// &#x672C;&#x6765;&#x306E;submit&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306E;&#x52D5;&#x4F5C;&#x3092;&#x6B62;&#x3081;&#x308B;</span>
+            <span class="hljs-comment">// 本来のsubmitイベントの動作を止める</span>
             event.preventDefault();
-            <span class="hljs-comment">// &#x8FFD;&#x52A0;&#x3059;&#x308B;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x8981;&#x7D20;(li&#x8981;&#x7D20;)&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;</span>
+            <span class="hljs-comment">// 追加するTodoアイテムの要素(li要素)を作成する</span>
             <span class="hljs-keyword">const</span> todoItemElement = element<span class="hljs-string">`&lt;li&gt;<span class="hljs-subst">${inputElement.value}</span>&lt;/li&gt;`</span>;
-            <span class="hljs-comment">// Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;container&#x306B;&#x8FFD;&#x52A0;&#x3059;&#x308B;</span>
+            <span class="hljs-comment">// Todoアイテムをcontainerに追加する</span>
             containerElement.appendChild(todoItemElement);
-            <span class="hljs-comment">// Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x6570;&#x3092;+1&#x3057;&#x3001;&#x8868;&#x793A;&#x3055;&#x308C;&#x3066;&#x308B;&#x30C6;&#x30AD;&#x30B9;&#x30C8;&#x3092;&#x66F4;&#x65B0;&#x3059;&#x308B;</span>
+            <span class="hljs-comment">// Todoアイテム数を+1し、表示されてるテキストを更新する</span>
             todoItemCount += <span class="hljs-number">1</span>;
-            todoItemCountElement.textContent = <span class="hljs-string">`Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x6570;: <span class="hljs-subst">${todoItemCount}</span>`</span>;
-            <span class="hljs-comment">// &#x5165;&#x529B;&#x6B04;&#x3092;&#x7A7A;&#x6587;&#x5B57;&#x5217;&#x306B;&#x3057;&#x3066;&#x30EA;&#x30BB;&#x30C3;&#x30C8;&#x3059;&#x308B;</span>
+            todoItemCountElement.textContent = <span class="hljs-string">`Todoアイテム数: <span class="hljs-subst">${todoItemCount}</span>`</span>;
+            <span class="hljs-comment">// 入力欄を空文字列にしてリセットする</span>
             inputElement.value = <span class="hljs-string">&quot;&quot;</span>;
         });
     }
 }
 </code></pre>
-<p>&#x3053;&#x308C;&#x3089;&#x306E;&#x5909;&#x66F4;&#x5F8C;&#x306B;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3067;&#x30DA;&#x30FC;&#x30B8;&#x3092;&#x30EA;&#x30ED;&#x30FC;&#x30C9;&#x3057;&#x3001;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306B;&#x5165;&#x529B;&#x3057;&#x3066;&#x304B;&#x3089;Enter&#x3092;&#x62BC;&#x3059;&#x3068;Todo&#x30EA;&#x30B9;&#x30C8;&#x306B;<strong>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x304C;&#x8FFD;&#x52A0;</strong>&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x3001;&#x5165;&#x529B;&#x5185;&#x5BB9;&#x3092;&#x9001;&#x4FE1;&#x3059;&#x308B;&#x305F;&#x3073;&#x306B;<code>todoItemCount</code>&#x304C;&#x52A0;&#x7B97;&#x3055;&#x308C;&#x3001;<strong>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x6570;</strong>&#x306E;&#x8868;&#x793A;&#x3082;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p><img src="img/add-todo-item.png" alt="Todo&#x30EA;&#x30B9;&#x30C8;&#x3078;&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x8FFD;&#x52A0;"></p>
-<p>&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306E;&#x5909;&#x66F4;&#x70B9;&#x306F;&#x6B21;&#x306E;&#x3068;&#x304A;&#x308A;&#x3067;&#x3059;&#x3002;</p>
+<p>これらの変更後にブラウザでページをリロードし、フォームに入力してからEnterを押すとTodoリストに<strong>Todoアイテムが追加</strong>されます。
+また、入力内容を送信するたびに<code>todoItemCount</code>が加算され、<strong>Todoアイテム数</strong>の表示も更新されます。</p>
+<p><img src="img/add-todo-item.png" alt="Todoリストへアイテムを追加"></p>
+<p>このセクションでの変更点は次のとおりです。</p>
 <pre><code>todoapp
-&#x251C;&#x2500;&#x2500; index.html
-&#x251C;&#x2500;&#x2500; index.js
-&#x2514;&#x2500;&#x2500; src
-    &#x251C;&#x2500;&#x2500; App.js(Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x8868;&#x793A;&#x306E;&#x5B9F;&#x88C5;)
-    &#x2514;&#x2500;&#x2500; view
-        &#x2514;&#x2500;&#x2500; html-util.js(&#x65B0;&#x898F;&#x8FFD;&#x52A0;)
-</code></pre><p>&#x3053;&#x3053;&#x307E;&#x3067;&#x306E;Todo&#x30A2;&#x30D7;&#x30EA;&#x306F;&#x6B21;&#x306E;URL&#x3067;&#x78BA;&#x8A8D;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+├── index.html
+├── index.js
+└── src
+    ├── App.js(Todoアイテムの表示の実装)
+    └── view
+        └── html-util.js(新規追加)
+</code></pre><p>ここまでのTodoアプリは次のURLで確認できます。</p>
 <ul>
 <li><a href="https://jsprimer.net/use-case/todoapp/form-event/add-todo-item/" target="_blank">https://jsprimer.net/use-case/todoapp/form-event/add-todo-item/</a></li>
 </ul>
-<h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>&#x307E;&#x3068;&#x3081; </h2>
-<p>&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;form&#x8981;&#x7D20;&#x306E;<code>submit</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x30EA;&#x30C3;&#x30B9;&#x30F3;&#x3057;&#x3001;&#x5165;&#x529B;&#x5185;&#x5BB9;&#x3092;&#x5143;&#x306B;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3001;&#x3053;&#x308C;&#x3092;Todo&#x30EA;&#x30B9;&#x30C8;&#x306B;&#x8FFD;&#x52A0;&#x3059;&#x308B;&#x6A5F;&#x80FD;&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;
-&#x4ECA;&#x56DE;&#x306E;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x8FFD;&#x52A0;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;&#x591A;&#x304F;&#x306E;&#x30A6;&#x30A7;&#x30D6;&#x30A2;&#x30D7;&#x30EA;&#x306F;&#x4F55;&#x3089;&#x304B;&#x306E;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x30EA;&#x30C3;&#x30B9;&#x30F3;&#x3057;&#x3066;&#x8868;&#x793A;&#x3092;&#x66F4;&#x65B0;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x3088;&#x3046;&#x306A;&#x3001;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x304C;&#x767A;&#x751F;&#x3057;&#x305F;&#x3053;&#x3068;&#x3092;&#x5143;&#x306B;&#x51E6;&#x7406;&#x3092;&#x9032;&#x3081;&#x308B;&#x65B9;&#x6CD5;&#x3092;<strong>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x99C6;&#x52D5;</strong>&#xFF08;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30C9;&#x30EA;&#x30D6;&#x30F3;&#xFF09;&#x3068;&#x547C;&#x3073;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x4ECA;&#x56DE;&#x306E;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x8FFD;&#x52A0;&#x3067;&#x306F;&#x3001;<code>submit</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x5165;&#x529B;&#x306B;&#x3057;&#x3066;&#x3001;Todo&#x30EA;&#x30B9;&#x30C8;&#x8981;&#x7D20;&#x3092;<strong>&#x76F4;&#x63A5;HTML&#x8981;&#x7D20;&#x3068;&#x3057;&#x3066;&#x8FFD;&#x52A0;</strong>&#x3059;&#x308B;&#x3068;&#x3044;&#x3046;&#x65B9;&#x6CD5;&#x3092;&#x53D6;&#x3063;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;
+<h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>まとめ </h2>
+<p>このセクションではform要素の<code>submit</code>イベントをリッスンし、入力内容を元にTodoアイテムを作成し、これをTodoリストに追加する機能を実装しました。
+今回のTodoアイテムの追加のように、多くのウェブアプリは何らかのイベントをリッスンして表示を更新します。
+このような、イベントが発生したことを元に処理を進める方法を<strong>イベント駆動</strong>（イベントドリブン）と呼びます。</p>
+<p>今回のTodoアイテムの追加では、<code>submit</code>イベントを入力にして、Todoリスト要素を<strong>直接HTML要素として追加</strong>するという方法を取っていました。
 <!-- textlint-disable -->
-&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;&#x76F4;&#x63A5;DOM&#x3092;&#x66F4;&#x65B0;&#x3059;&#x308B;&#x3068;&#x3044;&#x3046;&#x65B9;&#x6CD5;&#x306F;&#x30B3;&#x30FC;&#x30C9;&#x304C;&#x77ED;&#x304F;&#x306A;&#x308A;&#x307E;&#x3059;&#x304C;&#x3001;DOM&#x306E;&#x307F;&#x306B;&#x3057;&#x304B;&#x72B6;&#x614B;&#x304C;&#x6B8B;&#x3089;&#x306A;&#x3044;&#x305F;&#x3081;&#x67D4;&#x8EDF;&#x6027;&#x304C;&#x306A;&#x304F;&#x306A;&#x308B;&#x3068;&#x3044;&#x3046;&#x554F;&#x984C;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
+このように直接DOMを更新するという方法はコードが短くなりますが、DOMのみにしか状態が残らないため柔軟性がなくなるという問題があります。
 <!-- textlint-enable -->
-&#x6B21;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;&#x3001;&#x5B9F;&#x969B;&#x306B;&#x8D77;&#x304D;&#x308B;&#x554F;&#x984C;&#x3084;&#x305D;&#x308C;&#x3092;&#x89E3;&#x6C7A;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x3092;&#x898B;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="section-checklist"><a name="section-checklist" class="plugin-anchor" href="#section-checklist"><i class="fa fa-link" aria-hidden="true"></i></a>&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30EA;&#x30B9;&#x30C8; </h2>
+次のセクションでは、実際に起きる問題やそれを解決するための仕組みを見ていきます。</p>
+<h2 id="section-checklist"><a name="section-checklist" class="plugin-anchor" href="#section-checklist"><i class="fa fa-link" aria-hidden="true"></i></a>このセクションのチェックリスト </h2>
 <ul>
-<li>&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x9001;&#x4FE1;&#x3092;<code>submit</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3067;&#x53D7;&#x3051;&#x53D6;&#x308A;&#x3001;&#x5165;&#x529B;&#x5185;&#x5BB9;&#x3092;&#x78BA;&#x8A8D;&#x3057;&#x305F;</li>
-<li>HTML&#x6587;&#x5B57;&#x5217;&#x304B;&#x3089;HTML&#x8981;&#x7D20;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;<code>html-util.js</code>&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x305F;</li>
-<li>&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x304B;&#x3089;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x305F;</li>
-<li>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x8FFD;&#x52A0;&#x306B;&#x5408;&#x308F;&#x305B;&#x3066;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x6570;&#x3092;&#x66F4;&#x65B0;&#x3057;&#x305F;</li>
+<li>フォームの送信を<code>submit</code>イベントで受け取り、入力内容を確認した</li>
+<li>HTML文字列からHTML要素を作成する<code>html-util.js</code>を実装した</li>
+<li>フォームからTodoアイテムを追加した</li>
+<li>Todoアイテムの追加に合わせてTodoアイテム数を更新した</li>
 </ul>
-<p>&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x3001;Todo&#x30A2;&#x30D7;&#x30EA;&#x306B;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;&#x6A5F;&#x80FD;&#x304C;&#x5B9F;&#x88C5;&#x3067;&#x304D;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p>このセクションで、TodoアプリにTodoアイテムを追加する機能が実装できました。</p>
 <ul>
-<li>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x8FFD;&#x52A0;&#x3067;&#x304D;&#x308B;</li>
+<li>Todoアイテムを追加できる</li>
 </ul>
-<p>Todo&#x30A2;&#x30D7;&#x30EA;&#x306B;&#x5B9F;&#x88C5;&#x3059;&#x308B;&#x6B8B;&#x308A;&#x306E;&#x6A5F;&#x80FD;&#x306F;&#x6B21;&#x306E;&#x3068;&#x304A;&#x308A;&#x3067;&#x3059;&#x3002;</p>
+<p>Todoアプリに実装する残りの機能は次のとおりです。</p>
 <ul>
-<li>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x5B8C;&#x4E86;&#x72B6;&#x614B;&#x3092;&#x66F4;&#x65B0;&#x3067;&#x304D;&#x308B;</li>
-<li>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x524A;&#x9664;&#x3067;&#x304D;&#x308B;</li>
+<li>Todoアイテムの完了状態を更新できる</li>
+<li>Todoアイテムを削除できる</li>
 </ul>
 
                                 
@@ -1746,12 +1746,56 @@ render(newElement, <span class="hljs-built_in">document</span>.body);
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"TodoアプリへTodoアイテムを追加するフォームを作成していきます。フォームに入力された内容されたと送信イベントをどのようにハンドリングしていくかを見ていきます。","title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"next":{"title":"イベントとモデル","level":"1.4.4.4","depth":3,"path":"use-case/todoapp/event-model/README.md","ref":"./use-case/todoapp/event-model/README.md","articles":[]},"previous":{"title":"アプリの構成要素","level":"1.4.4.2","depth":3,"path":"use-case/todoapp/app-structure/README.md","ref":"./use-case/todoapp/app-structure/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/todoapp/form-event/README.md","mtime":"2020-11-18T19:19:34.525Z","type":"markdown"},"gitbook":{"version":"3.6.8","time":"2020-11-18T19:20:11.295Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"TodoアプリへTodoアイテムを追加するフォームを作成していきます。フォームに入力された内容されたと送信イベントをどのようにハンドリングしていくかを見ていきます。","title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"next":{"title":"イベントとモデル","level":"1.4.4.4","depth":3,"path":"use-case/todoapp/event-model/README.md","ref":"./use-case/todoapp/event-model/README.md","articles":[]},"previous":{"title":"アプリの構成要素","level":"1.4.4.2","depth":3,"path":"use-case/todoapp/app-structure/README.md","ref":"./use-case/todoapp/app-structure/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/todoapp/form-event/README.md","mtime":"2020-11-19T10:10:17.248Z","type":"markdown"},"gitbook":{"version":"3.6.13","time":"2020-11-19T10:10:53.113Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
 
         
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
     <script src="../../../gitbook/gitbook.js"></script>
     <script src="../../../gitbook/theme.js"></script>
     

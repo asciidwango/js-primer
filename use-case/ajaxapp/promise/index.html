@@ -7,7 +7,7 @@
         <title>Promiseを活用する · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="Promiseを活用し、ソースコードの整理とエラーハンドリングを行います。">
-        <meta name="generator" content="HonKit 3.6.8">
+        <meta name="generator" content="HonKit 3.6.13">
         
         
         
@@ -176,7 +176,7 @@
     </head>
     <body>
         
-<div class="book">
+<div class="book honkit-cloak">
     <div class="book-summary">
         
             
@@ -1441,15 +1441,15 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="use-promise"><a name="use-promise" class="plugin-anchor" href="#use-promise"><i class="fa fa-link" aria-hidden="true"></i></a>Promise&#x3092;&#x6D3B;&#x7528;&#x3059;&#x308B; </h1>
-<p>&#x3053;&#x3053;&#x307E;&#x3067;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x3001;Fetch API&#x3092;&#x4F7F;&#x3063;&#x3066;Ajax&#x901A;&#x4FE1;&#x3092;&#x884C;&#x3044;&#x3001;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x304B;&#x3089;&#x53D6;&#x5F97;&#x3057;&#x305F;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x8868;&#x793A;&#x3067;&#x304D;&#x307E;&#x3057;&#x305F;&#x3002;
-&#x6700;&#x5F8C;&#x306B;&#x3001;Fetch API&#x306E;&#x623B;&#x308A;&#x5024;&#x3067;&#x3082;&#x3042;&#x308B;<strong>Promise</strong>&#x3092;&#x6D3B;&#x7528;&#x3057;&#x3066;&#x30BD;&#x30FC;&#x30B9;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x6574;&#x7406;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x3001;&#x30A8;&#x30E9;&#x30FC;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;&#x3092;&#x3057;&#x3063;&#x304B;&#x308A;&#x884C;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="split-function"><a name="split-function" class="plugin-anchor" href="#split-function"><i class="fa fa-link" aria-hidden="true"></i></a>&#x95A2;&#x6570;&#x306E;&#x5206;&#x5272; </h2>
-<p>&#x307E;&#x305A;&#x306F;&#x3001;&#x5927;&#x304D;&#x304F;&#x306A;&#x308A;&#x3059;&#x304E;&#x305F;<code>fetchUserInfo</code>&#x95A2;&#x6570;&#x3092;&#x6574;&#x7406;&#x3057;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;
-&#x3053;&#x306E;&#x95A2;&#x6570;&#x3067;&#x306F;&#x3001;Fetch API&#x3092;&#x4F7F;&#x3063;&#x305F;&#x30C7;&#x30FC;&#x30BF;&#x306E;&#x53D6;&#x5F97;&#x30FB;HTML&#x6587;&#x5B57;&#x5217;&#x306E;&#x7D44;&#x307F;&#x7ACB;&#x3066;&#x30FB;&#x7D44;&#x307F;&#x7ACB;&#x3066;&#x305F;HTML&#x306E;&#x8868;&#x793A;&#x3092;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x3053;&#x3067;&#x3001;HTML&#x6587;&#x5B57;&#x5217;&#x3092;&#x7D44;&#x307F;&#x7ACB;&#x3066;&#x308B;<code>createView</code>&#x95A2;&#x6570;&#x3068;HTML&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;<code>displayView</code>&#x95A2;&#x6570;&#x3092;&#x4F5C;&#x308A;&#x3001;&#x51E6;&#x7406;&#x3092;&#x5206;&#x5272;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x307E;&#x305F;&#x3001;&#x5F8C;&#x8FF0;&#x3059;&#x308B;&#x30A8;&#x30E9;&#x30FC;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;&#x3092;&#x884C;&#x3044;&#x3084;&#x3059;&#x304F;&#x3059;&#x308B;&#x305F;&#x3081;&#x3001;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306B;&#x30A8;&#x30F3;&#x30C8;&#x30EA;&#x30FC;&#x30DD;&#x30A4;&#x30F3;&#x30C8;&#x3092;&#x8A2D;&#x3051;&#x307E;&#x3059;&#x3002;
-<code>index.js</code>&#x306B;&#x65B0;&#x3057;&#x304F;<code>main</code>&#x95A2;&#x6570;&#x3092;&#x4F5C;&#x308A;&#x3001;<code>main</code>&#x95A2;&#x6570;&#x304B;&#x3089;<code>fetchUserInfo</code>&#x95A2;&#x6570;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;&#x3088;&#x3046;&#x306B;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+                                <h1 id="use-promise"><a name="use-promise" class="plugin-anchor" href="#use-promise"><i class="fa fa-link" aria-hidden="true"></i></a>Promiseを活用する </h1>
+<p>ここまでのセクションで、Fetch APIを使ってAjax通信を行い、サーバーから取得したデータを表示できました。
+最後に、Fetch APIの戻り値でもある<strong>Promise</strong>を活用してソースコードを整理することで、エラーハンドリングをしっかり行います。</p>
+<h2 id="split-function"><a name="split-function" class="plugin-anchor" href="#split-function"><i class="fa fa-link" aria-hidden="true"></i></a>関数の分割 </h2>
+<p>まずは、大きくなりすぎた<code>fetchUserInfo</code>関数を整理しましょう。
+この関数では、Fetch APIを使ったデータの取得・HTML文字列の組み立て・組み立てたHTMLの表示をしています。
+そこで、HTML文字列を組み立てる<code>createView</code>関数とHTMLを表示する<code>displayView</code>関数を作り、処理を分割します。</p>
+<p>また、後述するエラーハンドリングを行いやすくするため、アプリケーションにエントリーポイントを設けます。
+<code>index.js</code>に新しく<code>main</code>関数を作り、<code>main</code>関数から<code>fetchUserInfo</code>関数を呼び出すようにします。</p>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{
     fetchUserInfo(<span class="hljs-string">&quot;js-primer-example&quot;</span>);
 }
@@ -1458,12 +1458,12 @@
     fetch(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(userId)}</span>`</span>)
         .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
             <span class="hljs-keyword">if</span> (!response.ok) {
-                <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&quot;&#x30A8;&#x30E9;&#x30FC;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&quot;</span>, response);
+                <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&quot;エラーレスポンス&quot;</span>, response);
             } <span class="hljs-keyword">else</span> {
                 <span class="hljs-keyword">return</span> response.json().then(<span class="hljs-function"><span class="hljs-params">userInfo</span> =&gt;</span> {
-                    <span class="hljs-comment">// HTML&#x306E;&#x7D44;&#x307F;&#x7ACB;&#x3066;</span>
+                    <span class="hljs-comment">// HTMLの組み立て</span>
                     <span class="hljs-keyword">const</span> view = createView(userInfo);
-                    <span class="hljs-comment">// HTML&#x306E;&#x633F;&#x5165;</span>
+                    <span class="hljs-comment">// HTMLの挿入</span>
                     displayView(view);
                 });
             }
@@ -1490,7 +1490,7 @@
     result.innerHTML = view;
 }
 </code></pre>
-<p>&#x30DC;&#x30BF;&#x30F3;&#x306E;click&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3067;&#x547C;&#x3073;&#x51FA;&#x3059;&#x95A2;&#x6570;&#x3082;&#x3053;&#x308C;&#x307E;&#x3067;&#x306E;<code>fetchUserInfo</code>&#x95A2;&#x6570;&#x304B;&#x3089;<code>main</code>&#x95A2;&#x6570;&#x306B;&#x5909;&#x66F4;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>ボタンのclickイベントで呼び出す関数もこれまでの<code>fetchUserInfo</code>関数から<code>main</code>関数に変更します。</p>
 <div class="code-filename-block">
     <p class="code-filename">index.html</p>
 </div>
@@ -1512,68 +1512,68 @@
   <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
-<h2 id="error-handling"><a name="error-handling" class="plugin-anchor" href="#error-handling"><i class="fa fa-link" aria-hidden="true"></i></a>Promise&#x306E;&#x30A8;&#x30E9;&#x30FC;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0; </h2>
-<p>&#x6B21;&#x306B;<code>fetchUserInfo</code>&#x95A2;&#x6570;&#x3092;&#x5909;&#x66F4;&#x3057;&#x3001;Fetch API&#x306E;&#x623B;&#x308A;&#x5024;&#x3067;&#x3082;&#x3042;&#x308B;Promise&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;<code>return</code>&#x3057;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x5909;&#x66F4;&#x306B;&#x3088;&#x3063;&#x3066;&#x3001;<code>fetchUserInfo</code>&#x95A2;&#x6570;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;<code>main</code>&#x95A2;&#x6570;&#x306E;&#x307B;&#x3046;&#x3067;&#x975E;&#x540C;&#x671F;&#x51E6;&#x7406;&#x306E;&#x7D50;&#x679C;&#x3092;&#x6271;&#x3048;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-Promise&#x30C1;&#x30A7;&#x30FC;&#x30F3;&#x306E;&#x4E2D;&#x3067;&#x6295;&#x3052;&#x3089;&#x308C;&#x305F;&#x30A8;&#x30E9;&#x30FC;&#x306F;&#x3001;<code>Promise#catch</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x4E00;&#x7B87;&#x6240;&#x3067;&#x53D7;&#x3051;&#x53D6;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;<code>fetchUserInfo</code>&#x95A2;&#x6570;&#x304B;&#x3089;&#x8FD4;&#x3055;&#x308C;&#x305F;Promise&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x3001;<code>main</code>&#x95A2;&#x6570;&#x3067;&#x30A8;&#x30E9;&#x30FC;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;&#x3057;&#x3066;&#x30ED;&#x30B0;&#x3092;&#x51FA;&#x529B;&#x3057;&#x307E;&#x3059;&#x3002;
-<code>fetchUserInfo</code>&#x95A2;&#x6570;&#x306E;<code>catch</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;&#x3057;&#x3066;&#x3044;&#x305F;&#x30A8;&#x30E9;&#x30FC;&#x306F;&#x3001;<code>main</code>&#x95A2;&#x6570;&#x306E;<code>catch</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x4E00;&#x65B9;&#x3001;<code>Response#ok</code>&#x3067;&#x5224;&#x5B9A;&#x3057;&#x3066;&#x3044;&#x305F;400&#x3084;500&#x306A;&#x3069;&#x306E;&#x30A8;&#x30E9;&#x30FC;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x304C;&#x305D;&#x306E;&#x307E;&#x307E;&#x3067;&#x306F;<code>main</code>&#x95A2;&#x6570;&#x3067;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x305D;&#x3053;&#x3067;&#x3001;<code>Promise.reject</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x4F7F;&#x3063;&#x3066;Rejected&#x306A;Promise&#x3092;&#x8FD4;&#x3057;&#x3001;Promise&#x30C1;&#x30A7;&#x30FC;&#x30F3;&#x3092;&#x30A8;&#x30E9;&#x30FC;&#x306E;&#x72B6;&#x614B;&#x306B;&#x3057;&#x307E;&#x3059;&#x3002;
-Promise&#x30C1;&#x30A7;&#x30FC;&#x30F3;&#x304C;&#x30A8;&#x30E9;&#x30FC;&#x3068;&#x306A;&#x308B;&#x305F;&#x3081;&#x3001;<code>main</code>&#x95A2;&#x6570;&#x306E;<code>catch</code>&#x3067;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="error-handling"><a name="error-handling" class="plugin-anchor" href="#error-handling"><i class="fa fa-link" aria-hidden="true"></i></a>Promiseのエラーハンドリング </h2>
+<p>次に<code>fetchUserInfo</code>関数を変更し、Fetch APIの戻り値でもあるPromiseオブジェクトを<code>return</code>します。
+この変更によって、<code>fetchUserInfo</code>関数を呼び出す<code>main</code>関数のほうで非同期処理の結果を扱えるようになります。
+Promiseチェーンの中で投げられたエラーは、<code>Promise#catch</code>メソッドを使って一箇所で受け取れます。</p>
+<p>次のコードでは、<code>fetchUserInfo</code>関数から返されたPromiseオブジェクトを、<code>main</code>関数でエラーハンドリングしてログを出力します。
+<code>fetchUserInfo</code>関数の<code>catch</code>メソッドでハンドリングしていたエラーは、<code>main</code>関数の<code>catch</code>メソッドでハンドリングされます。
+一方、<code>Response#ok</code>で判定していた400や500などのエラーレスポンスがそのままでは<code>main</code>関数でハンドリングできません。
+そこで、<code>Promise.reject</code>メソッドを使ってRejectedなPromiseを返し、Promiseチェーンをエラーの状態にします。
+Promiseチェーンがエラーとなるため、<code>main</code>関数の<code>catch</code>でハンドリングできます。</p>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{
     fetchUserInfo(<span class="hljs-string">&quot;js-primer-example&quot;</span>)
         .catch(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
-            <span class="hljs-comment">// Promise&#x30C1;&#x30A7;&#x30FC;&#x30F3;&#x306E;&#x4E2D;&#x3067;&#x767A;&#x751F;&#x3057;&#x305F;&#x30A8;&#x30E9;&#x30FC;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308B;</span>
-            <span class="hljs-built_in">console</span>.error(<span class="hljs-string">`&#x30A8;&#x30E9;&#x30FC;&#x304C;&#x767A;&#x751F;&#x3057;&#x307E;&#x3057;&#x305F; (<span class="hljs-subst">${error}</span>)`</span>);
+            <span class="hljs-comment">// Promiseチェーンの中で発生したエラーを受け取る</span>
+            <span class="hljs-built_in">console</span>.error(<span class="hljs-string">`エラーが発生しました (<span class="hljs-subst">${error}</span>)`</span>);
         });
 }
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetchUserInfo</span>(<span class="hljs-params">userId</span>) </span>{
-    <span class="hljs-comment">// fetch&#x306E;&#x623B;&#x308A;&#x5024;&#x306E;Promise&#x3092;return&#x3059;&#x308B;</span>
+    <span class="hljs-comment">// fetchの戻り値のPromiseをreturnする</span>
     <span class="hljs-keyword">return</span> fetch(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(userId)}</span>`</span>)
         .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
             <span class="hljs-keyword">if</span> (!response.ok) {
-                <span class="hljs-comment">// &#x30A8;&#x30E9;&#x30FC;&#x30EC;&#x30B9;&#x30DD;&#x30F3;&#x30B9;&#x304B;&#x3089;Rejected&#x306A;Promise&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x8FD4;&#x3059;</span>
+                <span class="hljs-comment">// エラーレスポンスからRejectedなPromiseを作成して返す</span>
                 <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">`<span class="hljs-subst">${response.status}</span>: <span class="hljs-subst">${response.statusText}</span>`</span>));
             } <span class="hljs-keyword">else</span> {
                 <span class="hljs-keyword">return</span> response.json().then(<span class="hljs-function"><span class="hljs-params">userInfo</span> =&gt;</span> {
-                    <span class="hljs-comment">// HTML&#x306E;&#x7D44;&#x307F;&#x7ACB;&#x3066;</span>
+                    <span class="hljs-comment">// HTMLの組み立て</span>
                     <span class="hljs-keyword">const</span> view = createView(userInfo);
-                    <span class="hljs-comment">// HTML&#x306E;&#x633F;&#x5165;</span>
+                    <span class="hljs-comment">// HTMLの挿入</span>
                     displayView(view);
                 });
             }
         });
 }
 </code></pre>
-<h3 id="refactor-promise-chain"><a name="refactor-promise-chain" class="plugin-anchor" href="#refactor-promise-chain"><i class="fa fa-link" aria-hidden="true"></i></a>Promise&#x30C1;&#x30A7;&#x30FC;&#x30F3;&#x306E;&#x30EA;&#x30D5;&#x30A1;&#x30AF;&#x30BF;&#x30EA;&#x30F3;&#x30B0; </h3>
+<h3 id="refactor-promise-chain"><a name="refactor-promise-chain" class="plugin-anchor" href="#refactor-promise-chain"><i class="fa fa-link" aria-hidden="true"></i></a>Promiseチェーンのリファクタリング </h3>
 <!-- textlint-disable ja-technical-writing/sentence-length -->
-<p>&#x73FE;&#x5728;&#x306E;<code>fetchUserInfo</code>&#x95A2;&#x6570;&#x306F;&#x30C7;&#x30FC;&#x30BF;&#x306E;&#x53D6;&#x5F97;&#x306B;&#x52A0;&#x3048;&#x3066;&#x3001;HTML&#x306E;&#x7D44;&#x307F;&#x7ACB;&#x3066;&#xFF08;<code>createView</code>&#xFF09;&#x3068;&#x8868;&#x793A;&#xFF08;<code>displayView</code>&#xFF09;&#x3082;&#x884C;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-<code>fetchUserInfo</code>&#x95A2;&#x6570;&#x306B;&#x51E6;&#x7406;&#x304C;&#x96C6;&#x4E2D;&#x3057;&#x3066;&#x898B;&#x901A;&#x3057;&#x304C;&#x60AA;&#x3044;&#x305F;&#x3081;&#x3001;<code>fetchUserInfo</code>&#x95A2;&#x6570;&#x306F;&#x30C7;&#x30FC;&#x30BF;&#x306E;&#x53D6;&#x5F97;&#x3060;&#x3051;&#x3092;&#x884C;&#x3046;&#x3088;&#x3046;&#x306B;&#x5909;&#x66F4;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x4F75;&#x305B;&#x3066;<code>main</code>&#x95A2;&#x6570;&#x3067;&#x3001;&#x30C7;&#x30FC;&#x30BF;&#x306E;&#x53D6;&#x5F97;&#xFF08;<code>fetchUserInfo</code>&#xFF09;&#x3001;HTML&#x306E;&#x7D44;&#x307F;&#x7ACB;&#x3066;&#xFF08;<code>createView</code>&#xFF09;&#x3068;&#x8868;&#x793A;&#xFF08;<code>displayView</code>&#xFF09;&#x3068;&#x3044;&#x3046;&#x4E00;&#x9023;&#x306E;&#x6D41;&#x308C;&#x3092;Promise&#x30C1;&#x30A7;&#x30FC;&#x30F3;&#x3067;&#x884C;&#x3046;&#x3088;&#x3046;&#x306B;&#x5909;&#x66F4;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p>現在の<code>fetchUserInfo</code>関数はデータの取得に加えて、HTMLの組み立て（<code>createView</code>）と表示（<code>displayView</code>）も行っています。
+<code>fetchUserInfo</code>関数に処理が集中して見通しが悪いため、<code>fetchUserInfo</code>関数はデータの取得だけを行うように変更します。
+併せて<code>main</code>関数で、データの取得（<code>fetchUserInfo</code>）、HTMLの組み立て（<code>createView</code>）と表示（<code>displayView</code>）という一連の流れをPromiseチェーンで行うように変更していきます。</p>
 <!-- textlint-enable ja-technical-writing/sentence-length -->
-<p><code>Promise#then</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x3064;&#x306A;&#x304C;&#x308B;Promise&#x30C1;&#x30A7;&#x30FC;&#x30F3;&#x306F;&#x3001;<code>then</code>&#x306B;&#x6E21;&#x3055;&#x308C;&#x305F;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x306E;&#x623B;&#x308A;&#x5024;&#x3092;&#x305D;&#x306E;&#x307E;&#x307E;&#x6B21;&#x306E;<code>then</code>&#x3078;&#x6E21;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x305F;&#x3060;&#x3057;&#x3001;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x306E;&#x623B;&#x308A;&#x5024;&#x304C;Promise&#x3067;&#x3042;&#x308B;&#x5834;&#x5408;&#x306F;&#x3001;&#x305D;&#x306E;Promise&#x3067;&#x89E3;&#x6C7A;&#x3055;&#x308C;&#x305F;&#x5024;&#x3092;&#x6B21;&#x306E;<code>then</code>&#x306B;&#x6E21;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x3064;&#x307E;&#x308A;&#x3001;<code>then</code>&#x306E;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x304C;&#x540C;&#x671F;&#x51E6;&#x7406;&#x304B;&#x3089;&#x975E;&#x540C;&#x671F;&#x51E6;&#x7406;&#x306B;&#x5909;&#x308F;&#x3063;&#x305F;&#x3068;&#x3057;&#x3066;&#x3082;&#x3001;&#x6B21;&#x306E;<code>then</code>&#x304C;&#x53D7;&#x3051;&#x53D6;&#x308B;&#x5024;&#x306E;&#x578B;&#x306F;&#x5909;&#x308F;&#x3089;&#x306A;&#x3044;&#x3068;&#x3044;&#x3046;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;</p>
-<p>Promise&#x30C1;&#x30A7;&#x30FC;&#x30F3;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x51E6;&#x7406;&#x3092;&#x5206;&#x5272;&#x3059;&#x308B;&#x5229;&#x70B9;&#x306F;&#x3001;&#x540C;&#x671F;&#x51E6;&#x7406;&#x3068;&#x975E;&#x540C;&#x671F;&#x51E6;&#x7406;&#x3092;&#x533A;&#x5225;&#x305B;&#x305A;&#x306B;&#x9023;&#x9396;&#x3067;&#x304D;&#x308B;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;
-&#x4E00;&#x822C;&#x306B;&#x3001;&#x540C;&#x671F;&#x7684;&#x306B;&#x66F8;&#x304B;&#x308C;&#x305F;&#x51E6;&#x7406;&#x3092;&#x5F8C;&#x304B;&#x3089;&#x975E;&#x540C;&#x671F;&#x51E6;&#x7406;&#x3078;&#x3068;&#x5909;&#x66F4;&#x3059;&#x308B;&#x306E;&#x306F;&#x3001;&#x5168;&#x4F53;&#x3092;&#x66F8;&#x304D;&#x63DB;&#x3048;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308B;&#x305F;&#x3081;&#x96E3;&#x3057;&#x3044;&#x3067;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x6700;&#x521D;&#x304B;&#x3089;&#x51E6;&#x7406;&#x3092;&#x5206;&#x3051;&#x3066;&#x304A;&#x304D;&#x3001;&#x51E6;&#x7406;&#x3092;<code>then</code>&#x3092;&#x4F7F;&#x3063;&#x3066;&#x3064;&#x306A;&#x3050;&#x3053;&#x3068;&#x3067;&#x3001;&#x5909;&#x66F4;&#x306B;&#x5F37;&#x3044;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x66F8;&#x3051;&#x307E;&#x3059;&#x3002;
-&#x3069;&#x306E;&#x3088;&#x3046;&#x306B;&#x51E6;&#x7406;&#x3092;&#x533A;&#x5207;&#x308B;&#x304B;&#x306F;&#x3001;&#x305D;&#x308C;&#x305E;&#x308C;&#x306E;&#x95A2;&#x6570;&#x304C;&#x53D7;&#x3051;&#x53D6;&#x308B;&#x5024;&#x306E;&#x578B;&#x3068;&#x3001;&#x8FD4;&#x3059;&#x5024;&#x306E;&#x578B;&#x306B;&#x6CE8;&#x76EE;&#x3059;&#x308B;&#x306E;&#x304C;&#x3088;&#x3044;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;
-Promise&#x30C1;&#x30A7;&#x30FC;&#x30F3;&#x3067;&#x51E6;&#x7406;&#x3092;&#x5206;&#x3051;&#x308B;&#x3053;&#x3068;&#x3067;&#x3001;&#x305D;&#x308C;&#x305E;&#x308C;&#x306E;&#x51E6;&#x7406;&#x304C;&#x7C21;&#x6F54;&#x306B;&#x306A;&#x308A;&#x30B3;&#x30FC;&#x30C9;&#x306E;&#x898B;&#x901A;&#x3057;&#x304C;&#x3088;&#x304F;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p><code>index.js</code>&#x306E;<code>fetchUserInfo</code>&#x95A2;&#x6570;&#x3068;<code>main</code>&#x95A2;&#x6570;&#x3092;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x66F8;&#x304D;&#x63DB;&#x3048;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305A;&#x3001;<code>fetchUserInfo</code>&#x95A2;&#x6570;&#x304C;<code>Response#json</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306E;&#x623B;&#x308A;&#x5024;&#x3092;&#x305D;&#x306E;&#x307E;&#x307E;&#x8FD4;&#x3059;&#x3088;&#x3046;&#x306B;&#x5909;&#x66F4;&#x3057;&#x307E;&#x3059;&#x3002;
-<code>Response#json</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306E;&#x623B;&#x308A;&#x5024;&#x306F;JSON&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x89E3;&#x6C7A;&#x3055;&#x308C;&#x308B;Promise&#x306A;&#x306E;&#x3067;&#x3001;&#x6B21;&#x306E;<code>then</code>&#x3067;&#x306F;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x60C5;&#x5831;&#x306E;JSON&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304C;&#x6E21;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306B;&#x3001;<code>main</code>&#x95A2;&#x6570;&#x304C;<code>fetchUserInfo</code>&#x95A2;&#x6570;&#x306E;Promise&#x30C1;&#x30A7;&#x30FC;&#x30F3;&#x3067;&#x3001;HTML&#x306E;&#x7D44;&#x307F;&#x7ACB;&#x3066;&#xFF08;<code>createView</code>&#xFF09;&#x3068;&#x8868;&#x793A;&#xFF08;<code>displayView</code>&#xFF09;&#x3092;&#x884C;&#x3046;&#x3088;&#x3046;&#x306B;&#x5909;&#x66F4;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p><code>Promise#then</code>メソッドでつながるPromiseチェーンは、<code>then</code>に渡されたコールバック関数の戻り値をそのまま次の<code>then</code>へ渡します。
+ただし、コールバック関数の戻り値がPromiseである場合は、そのPromiseで解決された値を次の<code>then</code>に渡します。
+つまり、<code>then</code>のコールバック関数が同期処理から非同期処理に変わったとしても、次の<code>then</code>が受け取る値の型は変わらないということです。</p>
+<p>Promiseチェーンを使って処理を分割する利点は、同期処理と非同期処理を区別せずに連鎖できることです。
+一般に、同期的に書かれた処理を後から非同期処理へと変更するのは、全体を書き換える必要があるため難しいです。
+そのため、最初から処理を分けておき、処理を<code>then</code>を使ってつなぐことで、変更に強いコードを書けます。
+どのように処理を区切るかは、それぞれの関数が受け取る値の型と、返す値の型に注目するのがよいでしょう。
+Promiseチェーンで処理を分けることで、それぞれの処理が簡潔になりコードの見通しがよくなります。</p>
+<p><code>index.js</code>の<code>fetchUserInfo</code>関数と<code>main</code>関数を次のように書き換えます。
+まず、<code>fetchUserInfo</code>関数が<code>Response#json</code>メソッドの戻り値をそのまま返すように変更します。
+<code>Response#json</code>メソッドの戻り値はJSONオブジェクトで解決されるPromiseなので、次の<code>then</code>ではユーザー情報のJSONオブジェクトが渡されます。
+次に、<code>main</code>関数が<code>fetchUserInfo</code>関数のPromiseチェーンで、HTMLの組み立て（<code>createView</code>）と表示（<code>displayView</code>）を行うように変更します。</p>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{
     fetchUserInfo(<span class="hljs-string">&quot;js-primer-example&quot;</span>)
-        <span class="hljs-comment">// &#x3053;&#x3053;&#x3067;&#x306F;JSON&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x89E3;&#x6C7A;&#x3055;&#x308C;&#x308B;Promise</span>
+        <span class="hljs-comment">// ここではJSONオブジェクトで解決されるPromise</span>
         .then(<span class="hljs-function">(<span class="hljs-params">userInfo</span>) =&gt;</span> createView(userInfo))
-        <span class="hljs-comment">// &#x3053;&#x3053;&#x3067;&#x306F;HTML&#x6587;&#x5B57;&#x5217;&#x3067;&#x89E3;&#x6C7A;&#x3055;&#x308C;&#x308B;Promise</span>
+        <span class="hljs-comment">// ここではHTML文字列で解決されるPromise</span>
         .then(<span class="hljs-function">(<span class="hljs-params">view</span>) =&gt;</span> displayView(view))
-        <span class="hljs-comment">// Promise&#x30C1;&#x30A7;&#x30FC;&#x30F3;&#x3067;&#x30A8;&#x30E9;&#x30FC;&#x304C;&#x3042;&#x3063;&#x305F;&#x5834;&#x5408;&#x306F;&#x30AD;&#x30E3;&#x30C3;&#x30C1;&#x3055;&#x308C;&#x308B;</span>
+        <span class="hljs-comment">// Promiseチェーンでエラーがあった場合はキャッチされる</span>
         .catch(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
-            <span class="hljs-built_in">console</span>.error(<span class="hljs-string">`&#x30A8;&#x30E9;&#x30FC;&#x304C;&#x767A;&#x751F;&#x3057;&#x307E;&#x3057;&#x305F; (<span class="hljs-subst">${error}</span>)`</span>);
+            <span class="hljs-built_in">console</span>.error(<span class="hljs-string">`エラーが発生しました (<span class="hljs-subst">${error}</span>)`</span>);
         });
 }
 
@@ -1583,35 +1583,35 @@ Promise&#x30C1;&#x30A7;&#x30FC;&#x30F3;&#x3067;&#x51E6;&#x7406;&#x3092;&#x5206;&
             <span class="hljs-keyword">if</span> (!response.ok) {
                 <span class="hljs-keyword">return</span> <span class="hljs-built_in">Promise</span>.reject(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">`<span class="hljs-subst">${response.status}</span>: <span class="hljs-subst">${response.statusText}</span>`</span>));
             } <span class="hljs-keyword">else</span> {
-                <span class="hljs-comment">// JSON&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x89E3;&#x6C7A;&#x3055;&#x308C;&#x308B;Promise&#x3092;&#x8FD4;&#x3059;</span>
+                <span class="hljs-comment">// JSONオブジェクトで解決されるPromiseを返す</span>
                 <span class="hljs-keyword">return</span> response.json();
             }
         });
 }
 </code></pre>
-<h3 id="rewrite-to-async-function"><a name="rewrite-to-async-function" class="plugin-anchor" href="#rewrite-to-async-function"><i class="fa fa-link" aria-hidden="true"></i></a>Async Function&#x3078;&#x306E;&#x7F6E;&#x304D;&#x63DB;&#x3048; </h3>
-<p>Promise&#x30C1;&#x30A7;&#x30FC;&#x30F3;&#x306B;&#x3088;&#x3063;&#x3066;&#x3001;Promise&#x306E;&#x975E;&#x540C;&#x671F;&#x51E6;&#x7406;&#x3068;&#x540C;&#x3058;&#x898B;&#x305F;&#x76EE;&#x3067;&#x540C;&#x671F;&#x51E6;&#x7406;&#x3092;&#x8A18;&#x8FF0;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;
-&#x3055;&#x3089;&#x306B;Async Function&#x3092;&#x4F7F;&#x3046;&#x3068;&#x3001;&#x540C;&#x671F;&#x51E6;&#x7406;&#x3068;&#x540C;&#x3058;&#x898B;&#x305F;&#x76EE;&#x3067;Promise&#x306E;&#x975E;&#x540C;&#x671F;&#x51E6;&#x7406;&#x3092;&#x8A18;&#x8FF0;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-Promise&#x306E;<code>then</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306B;&#x3088;&#x308B;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x306E;&#x5165;&#x308C;&#x5B50;&#x304C;&#x306A;&#x304F;&#x306A;&#x308A;&#x3001;&#x624B;&#x7D9A;&#x304D;&#x7684;&#x3067;&#x53EF;&#x8AAD;&#x6027;&#x304C;&#x9AD8;&#x3044;&#x30B3;&#x30FC;&#x30C9;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x3001;&#x30A8;&#x30E9;&#x30FC;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;&#x3082;&#x540C;&#x671F;&#x51E6;&#x7406;&#x3068;&#x540C;&#x3058;&#x304F;<code>try...catch</code>&#x69CB;&#x6587;&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p><code>main</code>&#x95A2;&#x6570;&#x3092;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x66F8;&#x304D;&#x63DB;&#x3048;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;&#x307E;&#x305A;&#x95A2;&#x6570;&#x5BA3;&#x8A00;&#x306E;&#x524D;&#x306B;<code>async</code>&#x3092;&#x3064;&#x3051;&#x3066;Async Function&#x306B;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306B;<code>fetchUserInfo</code>&#x95A2;&#x6570;&#x306E;&#x547C;&#x3073;&#x51FA;&#x3057;&#x306B;<code>await</code>&#x3092;&#x3064;&#x3051;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x308C;&#x306B;&#x3088;&#x308A;Promise&#x306B;&#x89E3;&#x6C7A;&#x3055;&#x308C;&#x305F;JSON&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;<code>userInfo</code>&#x5909;&#x6570;&#x306B;&#x4EE3;&#x5165;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3082;&#x3057;<code>fetchUserInfo</code>&#x95A2;&#x6570;&#x306E;&#x4E2D;&#x3067;&#x4F8B;&#x5916;&#x304C;&#x6295;&#x3052;&#x3089;&#x308C;&#x305F;&#x5834;&#x5408;&#x306F;&#x3001;<code>try...catch</code>&#x69CB;&#x6587;&#x3067;&#x30A8;&#x30E9;&#x30FC;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;&#x3042;&#x3089;&#x304B;&#x3058;&#x3081;&#x975E;&#x540C;&#x671F;&#x51E6;&#x7406;&#x306E;&#x95A2;&#x6570;&#x304C;Promise&#x3092;&#x8FD4;&#x3059;&#x3088;&#x3046;&#x306B;&#x3057;&#x3066;&#x304A;&#x304F;&#x3068;&#x3001;Async Function&#x306B;&#x30EA;&#x30D5;&#x30A1;&#x30AF;&#x30BF;&#x30EA;&#x30F3;&#x30B0;&#x3057;&#x3084;&#x3059;&#x304F;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<h3 id="rewrite-to-async-function"><a name="rewrite-to-async-function" class="plugin-anchor" href="#rewrite-to-async-function"><i class="fa fa-link" aria-hidden="true"></i></a>Async Functionへの置き換え </h3>
+<p>Promiseチェーンによって、Promiseの非同期処理と同じ見た目で同期処理を記述できるようになりました。
+さらにAsync Functionを使うと、同期処理と同じ見た目でPromiseの非同期処理を記述できるようになります。
+Promiseの<code>then</code>メソッドによるコールバック関数の入れ子がなくなり、手続き的で可読性が高いコードになります。
+また、エラーハンドリングも同期処理と同じく<code>try...catch</code>構文を使うことができます。</p>
+<p><code>main</code>関数を次のように書き換えましょう。まず関数宣言の前に<code>async</code>をつけてAsync Functionにしています。
+次に<code>fetchUserInfo</code>関数の呼び出しに<code>await</code>をつけます。
+これによりPromiseに解決されたJSONオブジェクトを<code>userInfo</code>変数に代入できます。</p>
+<p>もし<code>fetchUserInfo</code>関数の中で例外が投げられた場合は、<code>try...catch</code>構文でエラーハンドリングできます。
+このように、あらかじめ非同期処理の関数がPromiseを返すようにしておくと、Async Functionにリファクタリングしやすくなります。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">try</span> {
         <span class="hljs-keyword">const</span> userInfo = <span class="hljs-keyword">await</span> fetchUserInfo(<span class="hljs-string">&quot;js-primer-example&quot;</span>);
         <span class="hljs-keyword">const</span> view = createView(userInfo);
         displayView(view);
     } <span class="hljs-keyword">catch</span> (error) {
-        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">`&#x30A8;&#x30E9;&#x30FC;&#x304C;&#x767A;&#x751F;&#x3057;&#x307E;&#x3057;&#x305F; (<span class="hljs-subst">${error}</span>)`</span>);
+        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">`エラーが発生しました (<span class="hljs-subst">${error}</span>)`</span>);
     }
 }
 </code></pre>
-<h2 id="changeable-userid"><a name="changeable-userid" class="plugin-anchor" href="#changeable-userid"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30E6;&#x30FC;&#x30B6;&#x30FC;ID&#x3092;&#x5909;&#x66F4;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x3059;&#x308B; </h2>
-<p>&#x4ED5;&#x4E0A;&#x3052;&#x3068;&#x3057;&#x3066;&#x3001;&#x4ECA;&#x307E;&#x3067;<code>js-primer-example</code>&#x3067;&#x56FA;&#x5B9A;&#x3068;&#x3057;&#x3066;&#x3044;&#x305F;&#x30E6;&#x30FC;&#x30B6;&#x30FC;ID&#x3092;&#x5909;&#x66F4;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x3057;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;
-index.html&#x306B;<code>&lt;input&gt;</code>&#x30BF;&#x30B0;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x3001;JavaScript&#x304B;&#x3089;&#x5024;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;<code>userId</code>&#x3068;&#x3044;&#x3046;ID&#x3092;&#x4ED8;&#x4E0E;&#x3057;&#x3066;&#x304A;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="changeable-userid"><a name="changeable-userid" class="plugin-anchor" href="#changeable-userid"><i class="fa fa-link" aria-hidden="true"></i></a>ユーザーIDを変更できるようにする </h2>
+<p>仕上げとして、今まで<code>js-primer-example</code>で固定としていたユーザーIDを変更できるようにしましょう。
+index.htmlに<code>&lt;input&gt;</code>タグを追加し、JavaScriptから値を取得するために<code>userId</code>というIDを付与しておきます。</p>
 <div class="code-filename-block">
     <p class="code-filename">index.html</p>
 </div>
@@ -1633,7 +1633,7 @@ index.html&#x306B;<code>&lt;input&gt;</code>&#x30BF;&#x30B0;&#x3092;&#x8FFD;&#x5
   <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
-<p>index.js&#x306B;&#x3082;<code>&lt;input&gt;</code>&#x30BF;&#x30B0;&#x304B;&#x3089;&#x5024;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308B;&#x305F;&#x3081;&#x306E;&#x51E6;&#x7406;&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;&#x3068;&#x3001;&#x6700;&#x7D42;&#x7684;&#x306B;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>index.jsにも<code>&lt;input&gt;</code>タグから値を受け取るための処理を追加すると、最終的に次のようになります。</p>
 <div class="code-filename-block">
     <p class="code-filename">index.js</p>
 </div>
@@ -1645,7 +1645,7 @@ index.html&#x306B;<code>&lt;input&gt;</code>&#x30BF;&#x30B0;&#x3092;&#x8FFD;&#x5
         <span class="hljs-keyword">const</span> view = createView(userInfo);
         displayView(view);
     } <span class="hljs-keyword">catch</span> (error) {
-        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">`&#x30A8;&#x30E9;&#x30FC;&#x304C;&#x767A;&#x751F;&#x3057;&#x307E;&#x3057;&#x305F; (<span class="hljs-subst">${error}</span>)`</span>);
+        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">`エラーが発生しました (<span class="hljs-subst">${error}</span>)`</span>);
     }
 }
 
@@ -1702,16 +1702,16 @@ index.html&#x306B;<code>&lt;input&gt;</code>&#x30BF;&#x30B0;&#x3092;&#x8FFD;&#x5
     });
 }
 </code></pre>
-<p>&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x3068;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x8981;&#x4EF6;&#x3092;&#x6E80;&#x305F;&#x3059;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x305F;&#x306E;&#x3067;&#x3001;&#x3053;&#x306E;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306F;&#x3053;&#x308C;&#x3067;&#x5B8C;&#x6210;&#x3067;&#x3059;&#x3002;</p>
-<p><img src="img/fig-1.png" alt="&#x5B8C;&#x6210;&#x3057;&#x305F;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;"></p>
-<h2 id="section-checklist"><a name="section-checklist" class="plugin-anchor" href="#section-checklist"><i class="fa fa-link" aria-hidden="true"></i></a>&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30EA;&#x30B9;&#x30C8; </h2>
+<p>アプリケーションを実行すると、次のようになります。
+要件を満たすことができたので、このアプリケーションはこれで完成です。</p>
+<p><img src="img/fig-1.png" alt="完成したアプリケーション"></p>
+<h2 id="section-checklist"><a name="section-checklist" class="plugin-anchor" href="#section-checklist"><i class="fa fa-link" aria-hidden="true"></i></a>このセクションのチェックリスト </h2>
 <ul>
-<li>HTML&#x306E;&#x7D44;&#x307F;&#x7ACB;&#x3066;&#x3068;&#x8868;&#x793A;&#x306E;&#x51E6;&#x7406;&#x3092;<code>createView</code>&#x95A2;&#x6570;&#x3068;<code>displayView</code>&#x95A2;&#x6570;&#x306B;&#x5206;&#x96E2;&#x3057;&#x305F;</li>
-<li><code>main</code>&#x95A2;&#x6570;&#x3092;&#x5BA3;&#x8A00;&#x3057;&#x3001;<code>fetchUserInfo</code>&#x95A2;&#x6570;&#x304C;&#x8FD4;&#x3059;Promise&#x306E;&#x30A8;&#x30E9;&#x30FC;&#x30CF;&#x30F3;&#x30C9;&#x30EA;&#x30F3;&#x30B0;&#x3092;&#x884C;&#x3063;&#x305F;</li>
-<li>Promise&#x30C1;&#x30A7;&#x30FC;&#x30F3;&#x3092;&#x4F7F;&#x3063;&#x3066;<code>fetchUserInfo</code>&#x95A2;&#x6570;&#x3092;&#x30EA;&#x30D5;&#x30A1;&#x30AF;&#x30BF;&#x30EA;&#x30F3;&#x30B0;&#x3057;&#x305F;</li>
-<li><a href="../../../basic/async/#async-function">Async Function</a> &#x3092;&#x4F7F;&#x3063;&#x3066;<code>main</code>&#x95A2;&#x6570;&#x3092;&#x30EA;&#x30D5;&#x30A1;&#x30AF;&#x30BF;&#x30EA;&#x30F3;&#x30B0;&#x3057;&#x305F;</li>
-<li><code>index.html</code>&#x306B;<code>&lt;input&gt;</code>&#x30BF;&#x30B0;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x3001;<code>getUserId</code>&#x95A2;&#x6570;&#x3067;&#x30E6;&#x30FC;&#x30B6;&#x30FC;ID&#x3092;&#x53D6;&#x5F97;&#x3057;&#x305F;</li>
+<li>HTMLの組み立てと表示の処理を<code>createView</code>関数と<code>displayView</code>関数に分離した</li>
+<li><code>main</code>関数を宣言し、<code>fetchUserInfo</code>関数が返すPromiseのエラーハンドリングを行った</li>
+<li>Promiseチェーンを使って<code>fetchUserInfo</code>関数をリファクタリングした</li>
+<li><a href="../../../basic/async/#async-function">Async Function</a> を使って<code>main</code>関数をリファクタリングした</li>
+<li><code>index.html</code>に<code>&lt;input&gt;</code>タグを追加し、<code>getUserId</code>関数でユーザーIDを取得した</li>
 </ul>
 
                                 
@@ -1744,12 +1744,56 @@ index.html&#x306B;<code>&lt;input&gt;</code>&#x30BF;&#x30B0;&#x3092;&#x8FFD;&#x5
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"Promiseを活用し、ソースコードの整理とエラーハンドリングを行います。","title":"Promiseを活用する","level":"1.4.2.4","depth":3,"next":{"title":"Node.jsでCLIアプリ","level":"1.4.3","depth":2,"path":"use-case/nodecli/README.md","ref":"./use-case/nodecli/README.md","articles":[{"title":"Node.jsでHello World","level":"1.4.3.1","depth":3,"path":"use-case/nodecli/helloworld/README.md","ref":"./use-case/nodecli/helloworld/README.md","articles":[]},{"title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"path":"use-case/nodecli/argument-parse/README.md","ref":"./use-case/nodecli/argument-parse/README.md","articles":[]},{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},{"title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"path":"use-case/nodecli/refactor-and-unittest/README.md","ref":"./use-case/nodecli/refactor-and-unittest/README.md","articles":[]}]},"previous":{"title":"データを表示する","level":"1.4.2.3","depth":3,"path":"use-case/ajaxapp/display/README.md","ref":"./use-case/ajaxapp/display/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/ajaxapp/promise/README.md","mtime":"2020-11-18T19:19:34.513Z","type":"markdown"},"gitbook":{"version":"3.6.8","time":"2020-11-18T19:20:11.295Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"Promiseを活用し、ソースコードの整理とエラーハンドリングを行います。","title":"Promiseを活用する","level":"1.4.2.4","depth":3,"next":{"title":"Node.jsでCLIアプリ","level":"1.4.3","depth":2,"path":"use-case/nodecli/README.md","ref":"./use-case/nodecli/README.md","articles":[{"title":"Node.jsでHello World","level":"1.4.3.1","depth":3,"path":"use-case/nodecli/helloworld/README.md","ref":"./use-case/nodecli/helloworld/README.md","articles":[]},{"title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"path":"use-case/nodecli/argument-parse/README.md","ref":"./use-case/nodecli/argument-parse/README.md","articles":[]},{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},{"title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"path":"use-case/nodecli/refactor-and-unittest/README.md","ref":"./use-case/nodecli/refactor-and-unittest/README.md","articles":[]}]},"previous":{"title":"データを表示する","level":"1.4.2.3","depth":3,"path":"use-case/ajaxapp/display/README.md","ref":"./use-case/ajaxapp/display/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/ajaxapp/promise/README.md","mtime":"2020-11-19T10:10:17.236Z","type":"markdown"},"gitbook":{"version":"3.6.13","time":"2020-11-19T10:10:53.113Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
 
         
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
     <script src="../../../gitbook/gitbook.js"></script>
     <script src="../../../gitbook/theme.js"></script>
     

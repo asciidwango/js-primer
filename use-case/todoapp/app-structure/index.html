@@ -7,7 +7,7 @@
         <title>アプリの構成要素 · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="これから実装するTodoアプリの機能と構成要素を見ていきます。">
-        <meta name="generator" content="HonKit 3.6.8">
+        <meta name="generator" content="HonKit 3.6.13">
         
         
         
@@ -176,7 +176,7 @@
     </head>
     <body>
         
-<div class="book">
+<div class="book honkit-cloak">
     <div class="book-summary">
         
             
@@ -1441,38 +1441,38 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="app-structure"><a name="app-structure" class="plugin-anchor" href="#app-structure"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x69CB;&#x6210;&#x8981;&#x7D20; </h1>
-<p>HTML&#x3068;JavaScript&#x306E;<a href="../entrypoint/">&#x30A8;&#x30F3;&#x30C8;&#x30EA;&#x30FC;&#x30DD;&#x30A4;&#x30F3;&#x30C8;</a>&#x3092;&#x4F5C;&#x6210;&#x3057;&#x307E;&#x3057;&#x305F;&#x304C;&#x3001;&#x6B21;&#x306F;&#x3053;&#x306E;Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x69CB;&#x6210;&#x8981;&#x7D20;&#x3092;&#x6539;&#x3081;&#x3066;&#x898B;&#x3066;&#x3044;&#x304D;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<p>Todo&#x30A2;&#x30D7;&#x30EA;&#x306B;&#x306F;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x6A5F;&#x80FD;&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;
-Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x8FFD;&#x52A0;&#x3001;&#x66F4;&#x65B0;&#x3001;&#x524A;&#x9664;&#x3001;&#x73FE;&#x5728;&#x306E;&#x72B6;&#x614B;&#x306E;&#x8868;&#x793A;&#x306A;&#x3069;&#x8907;&#x6570;&#x306E;&#x6A5F;&#x80FD;&#x3092;&#x6301;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+                                <h1 id="app-structure"><a name="app-structure" class="plugin-anchor" href="#app-structure"><i class="fa fa-link" aria-hidden="true"></i></a>アプリの構成要素 </h1>
+<p>HTMLとJavaScriptの<a href="../entrypoint/">エントリーポイント</a>を作成しましたが、次はこのTodoアプリの構成要素を改めて見ていきましょう。</p>
+<p>Todoアプリには、次のような機能を実装していきます。
+Todoアイテムの追加、更新、削除、現在の状態の表示など複数の機能を持っています。</p>
 <ul>
-<li>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;</li>
-<li>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x66F4;&#x65B0;&#x3059;&#x308B;</li>
-<li>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x524A;&#x9664;&#x3059;&#x308B;</li>
-<li>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x6570;&#xFF08;&#x5408;&#x8A08;&#xFF09;&#x306E;&#x8868;&#x793A;</li>
+<li>Todoアイテムを追加する</li>
+<li>Todoアイテムを更新する</li>
+<li>Todoアイテムを削除する</li>
+<li>Todoアイテム数（合計）の表示</li>
 </ul>
-<p>&#x307E;&#x305F;&#x3001;&#x30A2;&#x30D7;&#x30EA;&#x3068;&#x547C;&#x3076;&#x304B;&#x3089;&#x306B;&#x306F;&#x898B;&#x305F;&#x76EE;&#x3082;&#x3061;&#x3087;&#x3063;&#x3068;&#x3057;&#x305F;&#x3082;&#x306E;&#x306B;&#x3057;&#x306A;&#x3044;&#x3068;&#x96F0;&#x56F2;&#x6C17;&#x304C;&#x51FA;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;&#x3001;&#x307E;&#x305A;&#x30A6;&#x30A7;&#x30D6;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x69CB;&#x6210;&#x3059;&#x308B;HTML&#x3001;CSS&#x3001;JavaScript&#x306E;&#x5F79;&#x5272;&#x306B;&#x3064;&#x3044;&#x3066;&#x898B;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x898B;&#x305F;&#x76EE;&#x3060;&#x3051;&#x3067;&#x6A5F;&#x80FD;&#x304C;&#x306A;&#x3044;&#x30CF;&#x30EA;&#x30DC;&#x30C6;&#x306E;Todo&#x30A2;&#x30D7;&#x30EA;&#x3092;&#x5B8C;&#x6210;&#x3055;&#x305B;&#x3001;&#x6B21;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x304B;&#x3089;&#x5B9F;&#x969B;&#x306B;JavaScript&#x3092;&#x4F7F;&#x3063;&#x3066;Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x6A5F;&#x80FD;&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="html-css-javascript"><a name="html-css-javascript" class="plugin-anchor" href="#html-css-javascript"><i class="fa fa-link" aria-hidden="true"></i></a>HTML&#x3068;CSS&#x3068;JavaScript </h2>
-<p>Todo&#x30A2;&#x30D7;&#x30EA;&#x306F;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3067;&#x52D5;&#x304F;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3068;&#x3057;&#x3066;&#x4F5C;&#x6210;&#x3057;&#x307E;&#x3059;&#x304C;&#x3001;&#x30A6;&#x30A7;&#x30D6;&#x30A2;&#x30D7;&#x30EA;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;&#x306B;&#x306F;HTML&#x3084;CSS&#x3001;JavaScript&#x3092;&#x7D44;&#x307F;&#x5408;&#x308F;&#x305B;&#x3066;&#x66F8;&#x3044;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x4ECA;&#x56DE;&#x306F;HTTP&#x901A;&#x4FE1;&#x306A;&#x3069;&#x306F;&#x3044;&#x3089;&#x306A;&#x3044;&#x30AF;&#x30E9;&#x30A4;&#x30A2;&#x30F3;&#x30C8;&#x30B5;&#x30A4;&#x30C9;&#x306E;&#x307F;&#x3067;&#x89E3;&#x6C7A;&#x3059;&#x308B;&#x30A6;&#x30A7;&#x30D6;&#x30A2;&#x30D7;&#x30EA;&#x306A;&#x306E;&#x3067;&#x3001;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x30B5;&#x30A4;&#x30C9;&#x306E;&#x8A00;&#x8A9E;&#x306F;&#x767B;&#x5834;&#x3057;&#x307E;&#x305B;&#x3093;&#x3002;</p>
+<p>また、アプリと呼ぶからには見た目もちょっとしたものにしないと雰囲気が出ません。
+このセクションでは、まずウェブアプリケーションを構成するHTML、CSS、JavaScriptの役割について見ていきます。
+このセクションで見た目だけで機能がないハリボテのTodoアプリを完成させ、次のセクションから実際にJavaScriptを使ってTodoアプリの機能を実装していきます。</p>
+<h2 id="html-css-javascript"><a name="html-css-javascript" class="plugin-anchor" href="#html-css-javascript"><i class="fa fa-link" aria-hidden="true"></i></a>HTMLとCSSとJavaScript </h2>
+<p>Todoアプリはブラウザで動くアプリケーションとして作成しますが、ウェブアプリを作成するにはHTMLやCSS、JavaScriptを組み合わせて書いていきます。
+今回はHTTP通信などはいらないクライアントサイドのみで解決するウェブアプリなので、サーバーサイドの言語は登場しません。</p>
 <ul>
-<li>HTML: &#x30B3;&#x30F3;&#x30C6;&#x30F3;&#x30C4;&#x306E;&#x69CB;&#x9020;&#x3092;&#x8A18;&#x8FF0;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E;&#x30DE;&#x30FC;&#x30AF;&#x30A2;&#x30C3;&#x30D7;&#x8A00;&#x8A9E;</li>
-<li>CSS: HTML&#x306E;&#x898B;&#x305F;&#x76EE;&#x3092;&#x88C5;&#x98FE;&#x3059;&#x308B;&#x30B9;&#x30BF;&#x30A4;&#x30EB;&#x30B7;&#x30FC;&#x30C8;&#x8A00;&#x8A9E;</li>
-<li>JavaScript: &#x30A4;&#x30F3;&#x30BF;&#x30E9;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3068;&#x3044;&#x3063;&#x305F;&#x52D5;&#x4F5C;&#x3092;&#x6271;&#x3046;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DF;&#x30F3;&#x30B0;&#x8A00;&#x8A9E;</li>
+<li>HTML: コンテンツの構造を記述するためのマークアップ言語</li>
+<li>CSS: HTMLの見た目を装飾するスタイルシート言語</li>
+<li>JavaScript: インタラクションといった動作を扱うプログラミング言語</li>
 </ul>
-<p>&#x591A;&#x304F;&#x306E;&#x30A6;&#x30A7;&#x30D6;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306F;HTML&#x3067;&#x30B3;&#x30F3;&#x30C6;&#x30F3;&#x30C4;&#x306E;&#x69CB;&#x9020;&#x3092;&#x5B9A;&#x7FA9;&#x3057;&#x3001;CSS&#x3067;&#x898B;&#x305F;&#x76EE;&#x3092;&#x88C5;&#x98FE;&#x3057;&#x3001;JavaScript&#x3067;&#x52D5;&#x4F5C;&#x3092;&#x3064;&#x3051;&#x308B;&#x3053;&#x3068;&#x3067;&#x5B9F;&#x88C5;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x30A6;&#x30A7;&#x30D6;&#x30A2;&#x30D7;&#x30EA;&#x306F;HTML&#x3001;CSS&#x3001;JavaScript&#x3092;&#x7D44;&#x307F;&#x5408;&#x308F;&#x305B;&#x3066;&#x4F5C;&#x3089;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x4E00;&#x65B9;&#x3001;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306B;&#x306F;iOS&#x3084;Android&#x306E;&#x3088;&#x3046;&#x306B;OS&#x304C;&#x63D0;&#x4F9B;&#x3059;&#x308B;&#x3088;&#x3046;&#x306A;UI&#x30D5;&#x30EC;&#x30FC;&#x30E0;&#x30EF;&#x30FC;&#x30AF;&#x306E;&#x6A19;&#x6E96;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x307E;&#x305F;&#x3001;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x304C;&#x5B9F;&#x88C5;&#x3057;&#x305F;&#x3055;&#x307E;&#x3056;&#x307E;&#x306A;&#x7A2E;&#x985E;&#x306E;UI&#x30D5;&#x30EC;&#x30FC;&#x30E0;&#x30EF;&#x30FC;&#x30AF;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;Todo&#x30A2;&#x30D7;&#x30EA;&#x3068;&#x3044;&#x3046;&#x984C;&#x6750;&#x3092;&#x3068;&#x3063;&#x3066;&#x307F;&#x3066;&#x3082;&#x3001;&#x30D5;&#x30EC;&#x30FC;&#x30E0;&#x30EF;&#x30FC;&#x30AF;&#x3084;&#x4EBA;&#x306B;&#x3088;&#x3063;&#x3066;&#x66F8;&#x304D;&#x65B9;&#x304C;&#x307E;&#x3063;&#x305F;&#x304F;&#x7570;&#x306A;&#x308B;&#x5834;&#x5408;&#x3082;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x4ECA;&#x56DE;&#x306E;Todo&#x30A2;&#x30D7;&#x30EA;&#x306F;&#x7279;&#x5225;&#x306A;UI&#x30D5;&#x30EC;&#x30FC;&#x30E0;&#x30EF;&#x30FC;&#x30AF;&#x3092;&#x4F7F;&#x308F;&#x305A;&#x306B;&#x3001;&#x305D;&#x306E;&#x307E;&#x307E;&#x306E;HTML&#x3001;CSS&#x3001;JavaScript&#x3092;&#x7D44;&#x307F;&#x5408;&#x308F;&#x305B;&#x3066;&#x66F8;&#x3044;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="todo-html"><a name="todo-html" class="plugin-anchor" href="#todo-html"><i class="fa fa-link" aria-hidden="true"></i></a>Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x69CB;&#x9020;&#x3092;HTML&#x3067;&#x5B9A;&#x7FA9;&#x3059;&#x308B; </h2>
-<p>&#x6700;&#x521D;&#x306B;&#x4ECA;&#x56DE;&#x4F5C;&#x6210;&#x3059;&#x308B;Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;HTML&#x306E;&#x69CB;&#x9020;&#x3092;&#x5B9A;&#x7FA9;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x3053;&#x3067;&#x5B9A;&#x7FA9;&#x3057;&#x305F;HTML&#x3068;CSS&#x306F;&#x6700;&#x5F8C;&#x307E;&#x3067;&#x3053;&#x306E;&#x5F62;&#x306E;&#x307E;&#x307E;&#x5229;&#x7528;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x304B;&#x3089;&#x5909;&#x66F4;&#x3057;&#x3066;&#x3044;&#x304F;&#x306E;&#x306F;JavaScript&#x3060;&#x3051;&#x3068;&#x3044;&#x3046;&#x3053;&#x3068;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x300C;<a href="../entrypoint/">&#x30A8;&#x30F3;&#x30C8;&#x30EA;&#x30FC;&#x30DD;&#x30A4;&#x30F3;&#x30C8;</a>&#x300D;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x4F5C;&#x6210;&#x3057;&#x305F;<code>todoapp</code>&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x306E;<code>index.html</code>&#x3092;&#x6B21;&#x306E;&#x5185;&#x5BB9;&#x306B;&#x5909;&#x66F4;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>多くのウェブアプリケーションはHTMLでコンテンツの構造を定義し、CSSで見た目を装飾し、JavaScriptで動作をつけることで実装されます。
+そのため、ウェブアプリはHTML、CSS、JavaScriptを組み合わせて作られています。</p>
+<p>一方、ブラウザにはiOSやAndroidのようにOSが提供するようなUIフレームワークの標準はありません。
+また、ユーザーが実装したさまざまな種類のUIフレームワークがあります。
+そのため、Todoアプリという題材をとってみても、フレームワークや人によって書き方がまったく異なる場合もあります。</p>
+<p>今回のTodoアプリは特別なUIフレームワークを使わずに、そのままのHTML、CSS、JavaScriptを組み合わせて書いていきます。</p>
+<h2 id="todo-html"><a name="todo-html" class="plugin-anchor" href="#todo-html"><i class="fa fa-link" aria-hidden="true"></i></a>Todoアプリの構造をHTMLで定義する </h2>
+<p>最初に今回作成するTodoアプリのHTMLの構造を定義しています。
+ここで定義したHTMLとCSSは最後までこの形のまま利用します。
+次のセクションから変更していくのはJavaScriptだけということになります。</p>
+<p>「<a href="../entrypoint/">エントリーポイント</a>」のセクションで作成した<code>todoapp</code>ディレクトリの<code>index.html</code>を次の内容に変更します。</p>
 <div class="code-filename-block">
     <p class="code-filename">index.html</p>
 </div>
@@ -1481,16 +1481,16 @@ Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x8FFD;&#x52A0;&#x3001;&#x66F4;&#x6
   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Todo App<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-    <span class="hljs-comment">&lt;!-- 1. CSS&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x8AAD;&#x307F;&#x8FBC;&#x307F; --&gt;</span>
+    <span class="hljs-comment">&lt;!-- 1. CSSファイルを読み込み --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">link</span>
       <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://jsprimer.net/use-case/todoapp/final/final/index.css&quot;</span>
       <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span>
     /&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-    <span class="hljs-comment">&lt;!-- 2. class&#x5C5E;&#x6027;&#x3092;CSS&#x306E;&#x305F;&#x3081;&#x306B;&#x6307;&#x5B9A; --&gt;</span>
+    <span class="hljs-comment">&lt;!-- 2. class属性をCSSのために指定 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;todoapp&quot;</span>&gt;</span>
-      <span class="hljs-comment">&lt;!-- 3. id&#x5C5E;&#x6027;&#x3092;JavaScript&#x306E;&#x305F;&#x3081;&#x306B;&#x6307;&#x5B9A; --&gt;</span>
+      <span class="hljs-comment">&lt;!-- 3. id属性をJavaScriptのために指定 --&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;js-form&quot;</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
           <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;js-form-input&quot;</span>
@@ -1500,84 +1500,84 @@ Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x8FFD;&#x52A0;&#x3001;&#x66F4;&#x6
           <span class="hljs-attr">autocomplete</span>=<span class="hljs-string">&quot;off&quot;</span>
         /&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
-      <span class="hljs-comment">&lt;!-- 4. Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x30E1;&#x30A4;&#x30F3;&#x3068;&#x306A;&#x308B;Todo&#x30EA;&#x30B9;&#x30C8; --&gt;</span>
+      <span class="hljs-comment">&lt;!-- 4. TodoアプリのメインとなるTodoリスト --&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;js-todo-list&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;todo-list&quot;</span>&gt;</span>
-        <span class="hljs-comment">&lt;!-- &#x52D5;&#x7684;&#x306B;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x308B;Todo&#x30EA;&#x30B9;&#x30C8; --&gt;</span>
+        <span class="hljs-comment">&lt;!-- 動的に更新されるTodoリスト --&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">footer</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;footer&quot;</span>&gt;</span>
-        <span class="hljs-comment">&lt;!-- 5. Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x6570;&#x306E;&#x8868;&#x793A; --&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;js-todo-count&quot;</span>&gt;</span>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x6570;: 0<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- 5. Todoアイテム数の表示 --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;js-todo-count&quot;</span>&gt;</span>Todoアイテム数: 0<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./index.js&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
-<p>HTML&#x306E;&#x5185;&#x5BB9;&#x3092;&#x5909;&#x66F4;&#x5F8C;&#x306B;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3067;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3059;&#x308B;&#x3068;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x8868;&#x793A;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x3060;JavaScript&#x3067;Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x6A5F;&#x80FD;&#x306F;&#x5B9F;&#x88C5;&#x3057;&#x3066;&#x3044;&#x307E;&#x305B;&#x3093;&#x304C;&#x3001;&#x898B;&#x305F;&#x76EE;&#x3060;&#x3051;&#x306E;Todo&#x30A2;&#x30D7;&#x30EA;&#x306F;&#x3053;&#x308C;&#x3067;&#x5B8C;&#x6210;&#x3067;&#x3059;&#x3002;</p>
-<p><img src="img/todo-html.png" alt="todoapp&#x306E;HTML&#x3068;CSS&#x306B;&#x3088;&#x308B;&#x9AA8;&#x7D44;&#x307F;"></p>
-<p>&#x5B9F;&#x969B;&#x306B;&#x5909;&#x66F4;&#x3057;&#x305F;HTML&#x3092;&#x4E0A;&#x304B;&#x3089;&#x9806;&#x756A;&#x306B;&#x898B;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<h3 id="comment-css-file-load"><a name="comment-css-file-load" class="plugin-anchor" href="#comment-css-file-load"><i class="fa fa-link" aria-hidden="true"></i></a>1. CSS&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x8AAD;&#x307F;&#x8FBC;&#x307F; </h3>
-<p><code>head</code>&#x8981;&#x7D20;&#x306E;&#x4E2D;&#x3067;<code>link</code>&#x30BF;&#x30B0;&#x3092;&#x4F7F;&#x3044;&#x3001;&#x5916;&#x90E8;&#x306E;CSS&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x8AAD;&#x307F;&#x8FBC;&#x3093;&#x3067;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x4ECA;&#x56DE;&#x8AAD;&#x307F;&#x8FBC;&#x3093;&#x3067;&#x3044;&#x308B;CSS&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306F;&#x3001;Todo&#x30A2;&#x30D7;&#x30EA;&#x3089;&#x3057;&#x3044;&#x8868;&#x793A;&#x306B;&#x5FC5;&#x8981;&#x306A;CSS&#x3092;&#x5B9A;&#x7FA9;&#x3057;&#x305F;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>HTMLの内容を変更後にブラウザでアクセスすると次のような表示になります。
+まだJavaScriptでTodoアプリの機能は実装していませんが、見た目だけのTodoアプリはこれで完成です。</p>
+<p><img src="img/todo-html.png" alt="todoappのHTMLとCSSによる骨組み"></p>
+<p>実際に変更したHTMLを上から順番に見てみましょう。</p>
+<h3 id="comment-css-file-load"><a name="comment-css-file-load" class="plugin-anchor" href="#comment-css-file-load"><i class="fa fa-link" aria-hidden="true"></i></a>1. CSSファイルを読み込み </h3>
+<p><code>head</code>要素の中で<code>link</code>タグを使い、外部のCSSファイルを読み込んでいます。
+今回読み込んでいるCSSファイルは、Todoアプリらしい表示に必要なCSSを定義したファイルになっています。</p>
 <ul>
 <li><a href="https://jsprimer.net/use-case/todoapp/final/final/index.css" target="_blank">https://jsprimer.net/use-case/todoapp/final/final/index.css</a></li>
 </ul>
-<p>&#x3053;&#x306E;CSS&#x306F;&#x52D5;&#x4F5C;&#x306B;&#x306F;&#x5F71;&#x97FF;&#x304C;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;&#x4ECA;&#x56DE;&#x306E;&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x3067;&#x306F;&#x5916;&#x90E8;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x305D;&#x306E;&#x307E;&#x307E;&#x53D6;&#x308A;&#x8FBC;&#x3080;&#x3060;&#x3051;&#x306B;&#x3057;&#x3066;&#x89E3;&#x8AAC;&#x306F;&#x7701;&#x7565;&#x3057;&#x307E;&#x3059;&#x3002;
-CSS&#x306B;&#x5B9A;&#x7FA9;&#x3057;&#x305F;&#x30B9;&#x30BF;&#x30A4;&#x30EB;&#x3092;&#x6B63;&#x3057;&#x304F;&#x9069;&#x7528;&#x3059;&#x308B;&#x306B;&#x306F;&#x3001;<code>class</code>&#x5C5E;&#x6027;&#x3084;HTML&#x8981;&#x7D20;&#x306E;&#x69CB;&#x9020;&#x304C;&#x4E00;&#x81F4;&#x3057;&#x3066;&#x3044;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x8868;&#x793A;&#x304C;&#x5D29;&#x308C;&#x3066;&#x3044;&#x308B;&#x5834;&#x5408;&#x306F;&#x3001;<code>class</code>&#x5C5E;&#x6027;&#x304C;&#x6B63;&#x3057;&#x3044;&#x304B;&#x3001;HTML&#x306E;&#x69CB;&#x9020;&#x304C;&#x540C;&#x3058;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;&#x304B;&#x3092;&#x78BA;&#x8A8D;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</p>
-<h3 id="comment-class-for-css"><a name="comment-class-for-css" class="plugin-anchor" href="#comment-class-for-css"><i class="fa fa-link" aria-hidden="true"></i></a>2. class&#x5C5E;&#x6027;&#x3092;CSS&#x306E;&#x305F;&#x3081;&#x306B;&#x6307;&#x5B9A; </h3>
-<p><code>div</code>&#x30BF;&#x30B0;&#x306E;<code>class</code>&#x5C5E;&#x6027;&#x306B;<code>todoapp</code>&#x3068;&#x3044;&#x3046;&#x5024;&#xFF08;&#x30AF;&#x30E9;&#x30B9;&#x540D;&#xFF09;&#x3092;&#x8A2D;&#x5B9A;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-<code>class</code>&#x5C5E;&#x6027;&#x306F;&#x57FA;&#x672C;&#x7684;&#x306B;&#x306F;CSS&#x304B;&#x3089;&#x88C5;&#x98FE;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E;&#x76EE;&#x5370;&#x3068;&#x3057;&#x3066;&#x5229;&#x7528;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x3001;1&#x3064;&#x306E;&#x30DA;&#x30FC;&#x30B8;&#x306E;&#x4E2D;&#x3067;&#x540C;&#x3058;&#x30AF;&#x30E9;&#x30B9;&#x540D;&#x3092;&#x8907;&#x6570;&#x306E;&#x8981;&#x7D20;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x8A2D;&#x5B9A;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-HTML&#x306E;<code>class</code>&#x5C5E;&#x6027;&#x306F;JavaScript&#x306E;<code>class</code>&#x69CB;&#x6587;&#x3068;&#x306F;&#x7121;&#x95A2;&#x4FC2;&#x306A;&#x3053;&#x3068;&#x306B;&#x306F;&#x6CE8;&#x610F;&#x304C;&#x5FC5;&#x8981;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x4ECA;&#x56DE;&#x306E;<code>todoapp</code>&#x3068;&#x3044;&#x3046;&#x30AF;&#x30E9;&#x30B9;&#x540D;&#x3092;&#x6301;&#x3064;&#x8981;&#x7D20;&#x3092;&#x3001;CSS&#x304B;&#x3089;<code>.todoapp</code>&#x3068;&#x3044;&#x3046;CSS&#x30BB;&#x30EC;&#x30AF;&#x30BF;&#x3067;&#x6307;&#x5B9A;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-<a href="https://developer.mozilla.org/ja/docs/Learn/CSS/Introduction_to_CSS/Selectors" target="_blank">CSS&#x30BB;&#x30EC;&#x30AF;&#x30BF;</a>&#x3068;&#x306F;&#x30AF;&#x30E9;&#x30B9;&#x540D;&#x306A;&#x3069;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x3001;HTML&#x8981;&#x7D20;&#x3092;&#x6307;&#x5B9A;&#x3067;&#x304D;&#x308B;&#x8A18;&#x6CD5;&#x3067;&#x3059;&#x3002;
-&#x7279;&#x5B9A;&#x306E;&#x300C;&#x30AF;&#x30E9;&#x30B9;&#x540D;&#x300D;&#x3092;&#x6301;&#x3064;&#x8981;&#x7D20;&#x306E;&#x5834;&#x5408;&#x306F;<code>.&#x30AF;&#x30E9;&#x30B9;&#x540D;</code>&#xFF08;&#x30AF;&#x30E9;&#x30B9;&#x540D;&#x306E;&#x524D;&#x306B;&#x30C9;&#x30C3;&#x30C8;&#xFF09;&#x3067;&#x9078;&#x629E;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;CSS&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;<code>todoapp</code>&#x3068;&#x3044;&#x3046;&#x30AF;&#x30E9;&#x30B9;&#x540D;&#x3092;&#x6301;&#x3064;&#x8981;&#x7D20;&#x306E;<code>background</code>&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x306E;&#x5024;&#x3092;<code>black</code>&#x306B;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3064;&#x307E;&#x308A;<code>todoapp</code>&#x30AF;&#x30E9;&#x30B9;&#x540D;&#x306E;&#x8981;&#x7D20;&#x306E;&#x80CC;&#x666F;&#x8272;&#x3092;&#x9ED2;&#x8272;&#x306B;&#x3059;&#x308B;&#x3068;&#x3044;&#x3046;&#x610F;&#x5473;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>このCSSは動作には影響がないため、今回のユースケースでは外部ファイルをそのまま取り込むだけにして解説は省略します。
+CSSに定義したスタイルを正しく適用するには、<code>class</code>属性やHTML要素の構造が一致している必要があります。
+表示が崩れている場合は、<code>class</code>属性が正しいか、HTMLの構造が同じになっているかを確認してください。</p>
+<h3 id="comment-class-for-css"><a name="comment-class-for-css" class="plugin-anchor" href="#comment-class-for-css"><i class="fa fa-link" aria-hidden="true"></i></a>2. class属性をCSSのために指定 </h3>
+<p><code>div</code>タグの<code>class</code>属性に<code>todoapp</code>という値（クラス名）を設定しています。
+<code>class</code>属性は基本的にはCSSから装飾するための目印として利用されます。
+また、1つのページの中で同じクラス名を複数の要素に対して設定できます。
+HTMLの<code>class</code>属性はJavaScriptの<code>class</code>構文とは無関係なことには注意が必要です。</p>
+<p>今回の<code>todoapp</code>というクラス名を持つ要素を、CSSから<code>.todoapp</code>というCSSセレクタで指定できます。
+<a href="https://developer.mozilla.org/ja/docs/Learn/CSS/Introduction_to_CSS/Selectors" target="_blank">CSSセレクタ</a>とはクラス名などを使って、HTML要素を指定できる記法です。
+特定の「クラス名」を持つ要素の場合は<code>.クラス名</code>（クラス名の前にドット）で選択できます。</p>
+<p>次のCSSコードでは、<code>todoapp</code>というクラス名を持つ要素の<code>background</code>プロパティの値を<code>black</code>にしています。
+つまり<code>todoapp</code>クラス名の要素の背景色を黒色にするという意味になります。</p>
 <pre><code class="lang-css"><span class="hljs-selector-class">.todoapp</span> {
     <span class="hljs-attribute">background</span>: black;
 }
 </code></pre>
-<p>CSS&#x30BB;&#x30EC;&#x30AF;&#x30BF;&#x3067;&#x306F;&#x30BF;&#x30B0;&#x540D;&#x3001;<code>id</code>&#x5C5E;&#x6027;&#x3084;&#x69CB;&#x9020;&#x306A;&#x3069;&#x306B;&#x5BFE;&#x3059;&#x308B;&#x6307;&#x5B9A;&#x3082;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x305F;&#x3068;&#x3048;&#x3070;&#x3001;&#x7279;&#x5B9A;&#x306E;&#x300C;id&#x540D;&#x300D;&#x3092;&#x6301;&#x3064;&#x8981;&#x7D20;&#x306E;&#x5834;&#x5408;&#x306F;<code>#id&#x540D;</code>&#x3067;&#x9078;&#x629E;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<pre><code class="lang-css"><span class="hljs-selector-id">#id</span>&#x540D; {
-  <span class="hljs-comment">/* CSS&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3067;&#x88C5;&#x98FE;&#x3059;&#x308B; */</span>
+<p>CSSセレクタではタグ名、<code>id</code>属性や構造などに対する指定もできます。
+たとえば、特定の「id名」を持つ要素の場合は<code>#id名</code>で選択できます。</p>
+<pre><code class="lang-css"><span class="hljs-selector-id">#id</span>名 {
+  <span class="hljs-comment">/* CSSプロパティで装飾する */</span>
 }
 </code></pre>
-<h3 id="comment-id-for-js"><a name="comment-id-for-js" class="plugin-anchor" href="#comment-id-for-js"><i class="fa fa-link" aria-hidden="true"></i></a>3. id&#x5C5E;&#x6027;&#x3092;JavaScript&#x306E;&#x305F;&#x3081;&#x306B;&#x6307;&#x5B9A; </h3>
-<p><code>id</code>&#x5C5E;&#x6027;&#x306F;&#x3001;&#x305D;&#x306E;&#x8981;&#x7D20;&#x306B;&#x5BFE;&#x3059;&#x308B;&#x30DA;&#x30FC;&#x30B8;&#x5185;&#x3067;&#x30E6;&#x30CB;&#x30FC;&#x30AF;&#x306A;&#x8B58;&#x5225;&#x5B50;&#x3092;&#x3064;&#x3051;&#x308B;&#x305F;&#x3081;&#x306E;&#x5C5E;&#x6027;&#x3067;&#x3059;&#x3002;
-<code>id</code>&#x5C5E;&#x6027;&#x306F;CSS&#x3001;JavaScript&#x3001;&#x30EA;&#x30F3;&#x30AF;&#x306E;&#x30A2;&#x30F3;&#x30AB;&#x30FC;&#x306A;&#x3069;&#x3001;&#x3055;&#x307E;&#x3056;&#x307E;&#x306A;&#x7528;&#x9014;&#x3067;&#x5229;&#x7528;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305F;1&#x3064;&#x306E;&#x30DA;&#x30FC;&#x30B8;&#x306E;&#x4E2D;&#x3067;&#x306F;&#x540C;&#x3058;id&#x5C5E;&#x6027;&#x540D;&#x3092;&#x8907;&#x6570;&#x306E;&#x8981;&#x7D20;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x8A2D;&#x5B9A;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3002;</p>
-<p>&#x4ECA;&#x56DE;&#x306E;Todo&#x30A2;&#x30D7;&#x30EA;&#x3067;&#x306F;JavaScript&#x304B;&#x3089;&#x8981;&#x7D20;&#x3092;&#x9078;&#x629E;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;<code>id</code>&#x5C5E;&#x6027;&#x3092;&#x8A2D;&#x5B9A;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x5148;&#x307B;&#x3069;&#x306E;CSS&#x30BB;&#x30EC;&#x30AF;&#x30BF;&#x306F;CSS&#x304B;&#x3089;&#x8981;&#x7D20;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;&#x3060;&#x3051;&#x3067;&#x306F;&#x306A;&#x304F;&#x3001;JavaScript&#x304B;&#x3089;&#x8981;&#x7D20;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;&#x969B;&#x306B;&#x3082;&#x5229;&#x7528;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306E;DOM API&#x306E;<code>document.querySelector</code> API&#x3067;&#x306F;CSS&#x30BB;&#x30EC;&#x30AF;&#x30BF;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x8981;&#x7D20;&#x3092;&#x9078;&#x629E;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;<code>document.querySelector(&quot;CSS&#x30BB;&#x30EC;&#x30AF;&#x30BF;&quot;)</code>&#x3092;&#x5229;&#x7528;&#x3057;&#x3066;&#x7279;&#x5B9A;&#x306E;id&#x5C5E;&#x6027;&#x540D;&#x306E;&#x8981;&#x7D20;&#x3092;&#x53D6;&#x5F97;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<h3 id="comment-id-for-js"><a name="comment-id-for-js" class="plugin-anchor" href="#comment-id-for-js"><i class="fa fa-link" aria-hidden="true"></i></a>3. id属性をJavaScriptのために指定 </h3>
+<p><code>id</code>属性は、その要素に対するページ内でユニークな識別子をつけるための属性です。
+<code>id</code>属性はCSS、JavaScript、リンクのアンカーなど、さまざまな用途で利用されます。
+また1つのページの中では同じid属性名を複数の要素に対して設定できません。</p>
+<p>今回のTodoアプリではJavaScriptから要素を選択するために<code>id</code>属性を設定しています。
+先ほどのCSSセレクタはCSSから要素を指定するだけではなく、JavaScriptから要素を指定する際にも利用できます。
+ブラウザのDOM APIの<code>document.querySelector</code> APIではCSSセレクタを使って要素を選択できます。</p>
+<p>次のコードでは、<code>document.querySelector(&quot;CSSセレクタ&quot;)</code>を利用して特定のid属性名の要素を取得しています。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-comment">// id&#x5C5E;&#x6027;&#x306E;&#x5024;&#x304C;&quot;js-form&quot;&#x3067;&#x3042;&#x308B;&#x8981;&#x7D20;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// id属性の値が&quot;js-form&quot;である要素を取得する</span>
 <span class="hljs-keyword">const</span> form = <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">&quot;#js-form&quot;</span>);
 </code></pre>
-<p>&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;JavaScript&#x3067;&#x53C2;&#x7167;&#x3059;&#x308B;&#x8981;&#x7D20;&#x306B;&#x306F;<code>id</code>&#x5C5E;&#x6027;&#x3092;&#x76EE;&#x5370;&#x3068;&#x3057;&#x3066;&#x3064;&#x3051;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x308F;&#x304B;&#x308A;&#x3084;&#x3059;&#x304F;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x3001;JavaScript&#x304B;&#x3089;&#x6271;&#x3046;id&#x5C5E;&#x6027;&#x306F;&#x6163;&#x7FD2;&#x7684;&#x306B;<code>js-</code>&#x304B;&#x3089;&#x306F;&#x3058;&#x307E;&#x308B;&#x540D;&#x524D;&#x306B;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<h3 id="comment-todo-list"><a name="comment-todo-list" class="plugin-anchor" href="#comment-todo-list"><i class="fa fa-link" aria-hidden="true"></i></a>4. Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x30E1;&#x30A4;&#x30F3;&#x3068;&#x306A;&#x308B;Todo&#x30EA;&#x30B9;&#x30C8; </h3>
-<p><code>js-todo-list</code>&#x3068;&#x3044;&#x3046;<code>id</code>&#x5C5E;&#x6027;&#x3092;&#x3064;&#x3051;&#x305F;<code>div</code>&#x8981;&#x7D20;&#x304C;&#x3001;&#x4ECA;&#x56DE;&#x306E;Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x30E1;&#x30A4;&#x30F3;&#x3068;&#x306A;&#x308B;Todo&#x30EA;&#x30B9;&#x30C8;&#x3067;&#x3059;&#x3002;
-&#x3053;&#x306E;<code>div</code>&#x8981;&#x7D20;&#x306E;&#x4E2D;&#x8EAB;&#x306F;JavaScript&#x3067;&#x52D5;&#x7684;&#x306B;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x308B;&#x305F;&#x3081;&#x3001;HTML&#x3067;&#x306F;&#x76EE;&#x5370;&#x3068;&#x306A;&#x308B;<code>id</code>&#x5C5E;&#x6027;&#x3092;&#x3064;&#x3051;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x521D;&#x671F;&#x8868;&#x793A;&#x6642;&#x306F;Todo&#x30EA;&#x30B9;&#x30C8;&#x306E;&#x4E2D;&#x8EAB;&#x304C;&#x307E;&#x3060;&#x7A7A;&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x3001;&#x4F55;&#x3082;&#x8868;&#x793A;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x307E;&#x305F;<code>&lt;!--</code>&#x3068;<code>--&gt;</code>&#x3067;&#x56F2;&#x307E;&#x308C;&#x305F;&#x7BC4;&#x56F2;&#x306F;HTML&#x306E;&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x3001;&#x8868;&#x793A;&#x3055;&#x308C;&#x307E;&#x305B;&#x3093;&#x3002;</p>
-<h3 id="comment-todo-count"><a name="comment-todo-count" class="plugin-anchor" href="#comment-todo-count"><i class="fa fa-link" aria-hidden="true"></i></a>5. Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x6570;&#x306E;&#x8868;&#x793A; </h3>
-<p><code>js-todo-count</code>&#x3068;&#x3044;&#x3046;<code>id</code>&#x5C5E;&#x6027;&#x3092;&#x3064;&#x3051;&#x305F;<code>span</code>&#x8981;&#x7D20;&#x306F;&#x3001;&#x73FE;&#x5728;&#x306E;Todo&#x30EA;&#x30B9;&#x30C8;&#x306E;&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x6570;&#x3092;&#x8868;&#x793A;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x521D;&#x671F;&#x8868;&#x793A;&#x6642;&#x306F;Todo&#x30EA;&#x30B9;&#x30C8;&#x304C;&#x7A7A;&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;0&#x500B;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x304C;&#x3001;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x8FFD;&#x52A0;&#x3084;&#x524A;&#x9664;&#x3059;&#x308B;&#x969B;&#x306B;&#x306F;&#x5408;&#x308F;&#x305B;&#x3066;&#x66F4;&#x65B0;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>&#x307E;&#x3068;&#x3081; </h2>
-<p>&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;HTML&#x3067;&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x69CB;&#x9020;&#x3092;&#x5B9A;&#x7FA9;&#x3057;&#x3001;CSS&#x3067;&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x30B9;&#x30BF;&#x30A4;&#x30EB;&#x3092;&#x5B9A;&#x7FA9;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;
-&#x6B21;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;JavaScript&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x3044;&#x304D;&#x3001;&#x73FE;&#x5728;&#x306F;&#x7A7A;&#x3067;&#x3042;&#x308B;Todo&#x30EA;&#x30B9;&#x30C8;&#x3092;&#x66F4;&#x65B0;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="section-checklist"><a name="section-checklist" class="plugin-anchor" href="#section-checklist"><i class="fa fa-link" aria-hidden="true"></i></a>&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30EA;&#x30B9;&#x30C8; </h2>
+<p>そのため、JavaScriptで参照する要素には<code>id</code>属性を目印としてつけています。
+わかりやすくするために、JavaScriptから扱うid属性は慣習的に<code>js-</code>からはじまる名前にしています。</p>
+<h3 id="comment-todo-list"><a name="comment-todo-list" class="plugin-anchor" href="#comment-todo-list"><i class="fa fa-link" aria-hidden="true"></i></a>4. TodoアプリのメインとなるTodoリスト </h3>
+<p><code>js-todo-list</code>という<code>id</code>属性をつけた<code>div</code>要素が、今回のTodoアプリのメインとなるTodoリストです。
+この<code>div</code>要素の中身はJavaScriptで動的に更新されるため、HTMLでは目印となる<code>id</code>属性をつけています。</p>
+<p>初期表示時はTodoリストの中身がまだ空であるため、何も表示されていません。
+また<code>&lt;!--</code>と<code>--&gt;</code>で囲まれた範囲はHTMLのコメントであるため、表示されません。</p>
+<h3 id="comment-todo-count"><a name="comment-todo-count" class="plugin-anchor" href="#comment-todo-count"><i class="fa fa-link" aria-hidden="true"></i></a>5. Todoアイテム数の表示 </h3>
+<p><code>js-todo-count</code>という<code>id</code>属性をつけた<code>span</code>要素は、現在のTodoリストのアイテム数を表示します。
+初期表示時はTodoリストが空であるため0個となりますが、Todoアイテムを追加や削除する際には合わせて更新する必要があります。</p>
+<h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>まとめ </h2>
+<p>このセクションではHTMLでアプリの構造を定義し、CSSでアプリのスタイルを定義しました。
+次のセクションではJavaScriptモジュールを作成していき、現在は空であるTodoリストを更新していきます。</p>
+<h2 id="section-checklist"><a name="section-checklist" class="plugin-anchor" href="#section-checklist"><i class="fa fa-link" aria-hidden="true"></i></a>このセクションのチェックリスト </h2>
 <ul>
-<li>&#x5B9F;&#x88C5;&#x3059;&#x308B;Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x69CB;&#x6210;&#x8981;&#x7D20;&#x3092;&#x7406;&#x89E3;&#x3057;&#x305F;</li>
-<li>HTML&#x3001;CSS&#x3001;JavaScript&#x306E;&#x5F79;&#x5272;&#x306E;&#x9055;&#x3044;&#x3092;&#x7406;&#x89E3;&#x3057;&#x305F;</li>
-<li>Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x898B;&#x305F;&#x76EE;&#x3092;HTML&#x3068;CSS&#x3067;&#x5B9A;&#x7FA9;&#x3057;&#x305F;</li>
+<li>実装するTodoアプリの構成要素を理解した</li>
+<li>HTML、CSS、JavaScriptの役割の違いを理解した</li>
+<li>Todoアプリの見た目をHTMLとCSSで定義した</li>
 </ul>
-<p>&#x3053;&#x3053;&#x307E;&#x3067;&#x306E;Todo&#x30A2;&#x30D7;&#x30EA;&#x306F;&#x6B21;&#x306E;URL&#x3067;&#x78BA;&#x8A8D;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p>ここまでのTodoアプリは次のURLで確認できます。</p>
 <ul>
 <li><a href="https://jsprimer.net/use-case/todoapp/app-structure/todo-html/" target="_blank">https://jsprimer.net/use-case/todoapp/app-structure/todo-html/</a></li>
 </ul>
@@ -1612,12 +1612,56 @@ HTML&#x306E;<code>class</code>&#x5C5E;&#x6027;&#x306F;JavaScript&#x306E;<code>cl
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"これから実装するTodoアプリの機能と構成要素を見ていきます。","title":"アプリの構成要素","level":"1.4.4.2","depth":3,"next":{"title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"path":"use-case/todoapp/form-event/README.md","ref":"./use-case/todoapp/form-event/README.md","articles":[]},"previous":{"title":"エントリーポイント","level":"1.4.4.1","depth":3,"path":"use-case/todoapp/entrypoint/README.md","ref":"./use-case/todoapp/entrypoint/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/todoapp/app-structure/README.md","mtime":"2020-11-18T19:19:34.521Z","type":"markdown"},"gitbook":{"version":"3.6.8","time":"2020-11-18T19:20:11.295Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"これから実装するTodoアプリの機能と構成要素を見ていきます。","title":"アプリの構成要素","level":"1.4.4.2","depth":3,"next":{"title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"path":"use-case/todoapp/form-event/README.md","ref":"./use-case/todoapp/form-event/README.md","articles":[]},"previous":{"title":"エントリーポイント","level":"1.4.4.1","depth":3,"path":"use-case/todoapp/entrypoint/README.md","ref":"./use-case/todoapp/entrypoint/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/todoapp/app-structure/README.md","mtime":"2020-11-19T10:10:17.244Z","type":"markdown"},"gitbook":{"version":"3.6.13","time":"2020-11-19T10:10:53.113Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
 
         
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
     <script src="../../../gitbook/gitbook.js"></script>
     <script src="../../../gitbook/theme.js"></script>
     

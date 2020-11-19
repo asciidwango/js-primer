@@ -7,7 +7,7 @@
         <title>関数とスコープ · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="スコープという変数などを参照できる範囲を決める概念を紹介します。ブロックスコープや関数スコープなどがどのような働きをしているのかや複数のスコープが重なったときにどのように変数の参照先が決まるのかを紹介します。また、スコープに関係する動作としてクロージャーという性質を紹介します。">
-        <meta name="generator" content="HonKit 3.6.8">
+        <meta name="generator" content="HonKit 3.6.13">
         
         
         
@@ -176,7 +176,7 @@
     </head>
     <body>
         
-<div class="book">
+<div class="book honkit-cloak">
     <div class="book-summary">
         
             
@@ -1441,38 +1441,38 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="function-and-scope"><a name="function-and-scope" class="plugin-anchor" href="#function-and-scope"><i class="fa fa-link" aria-hidden="true"></i></a>&#x95A2;&#x6570;&#x3068;&#x30B9;&#x30B3;&#x30FC;&#x30D7; </h1>
-<p>&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x305F;&#x95A2;&#x6570;&#x306F;&#x305D;&#x308C;&#x305E;&#x308C;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3092;&#x6301;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3068;&#x306F;&#x5909;&#x6570;&#x3084;&#x95A2;&#x6570;&#x306E;&#x5F15;&#x6570;&#x306A;&#x3069;&#x3092;&#x53C2;&#x7167;&#x3067;&#x304D;&#x308B;&#x7BC4;&#x56F2;&#x3092;&#x6C7A;&#x3081;&#x308B;&#x3082;&#x306E;&#x3067;&#x3059;&#x3002;
-JavaScript&#x3067;&#x306F;&#x3001;&#x65B0;&#x3057;&#x3044;&#x95A2;&#x6570;&#x3092;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x3068;&#x305D;&#x306E;&#x95A2;&#x6570;&#x306B;&#x3072;&#x3082;&#x3065;&#x3051;&#x3089;&#x308C;&#x305F;&#x65B0;&#x3057;&#x3044;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x304C;&#x4F5C;&#x6210;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;&#x95A2;&#x6570;&#x3092;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x3068;&#x3044;&#x3046;&#x3053;&#x3068;&#x306F;&#x51E6;&#x7406;&#x3092;&#x307E;&#x3068;&#x3081;&#x308B;&#x3068;&#x3044;&#x3046;&#x3060;&#x3051;&#x3067;&#x306F;&#x306A;&#x304F;&#x3001;&#x5909;&#x6570;&#x304C;&#x6709;&#x52B9;&#x306A;&#x7BC4;&#x56F2;&#x3092;&#x6C7A;&#x3081;&#x308B;&#x65B0;&#x3057;&#x3044;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3092;&#x4F5C;&#x3063;&#x3066;&#x3044;&#x308B;&#x3068;&#x8A00;&#x3048;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x3092;&#x7406;&#x89E3;&#x3059;&#x308B;&#x3053;&#x3068;&#x306F;&#x95A2;&#x6570;&#x3092;&#x3088;&#x308A;&#x6DF1;&#x304F;&#x7406;&#x89E3;&#x3059;&#x308B;&#x3053;&#x3068;&#x306B;&#x3064;&#x306A;&#x304C;&#x308A;&#x307E;&#x3059;&#x3002;&#x306A;&#x305C;&#x306A;&#x3089;&#x95A2;&#x6570;&#x3068;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306F;&#x5BC6;&#x63A5;&#x306A;&#x95A2;&#x4FC2;&#x3092;&#x6301;&#x3063;&#x3066;&#x3044;&#x308B;&#x304B;&#x3089;&#x3067;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x7AE0;&#x3067;&#x306F;&#x95A2;&#x6570;&#x3068;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x95A2;&#x4FC2;&#x3092;&#x4E2D;&#x5FC3;&#x306B;&#x3001;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3068;&#x306F;&#x3069;&#x306E;&#x3088;&#x3046;&#x306A;&#x50CD;&#x304D;&#x3092;&#x3057;&#x3066;&#x3044;&#x3066;&#x3001;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x5185;&#x3067;&#x306F;&#x5909;&#x6570;&#x306E;&#x540D;&#x524D;&#x304B;&#x3089;&#x53D6;&#x5F97;&#x3059;&#x308B;&#x5024;&#x304C;&#x3069;&#x306E;&#x3088;&#x3046;&#x306B;&#x6C7A;&#x307E;&#x308B;&#x304B;&#x3092;&#x898B;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>JavaScript&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306F;&#x3001;ES2015&#x306B;&#x304A;&#x3044;&#x3066;&#x76F4;&#x611F;&#x7684;&#x306B;&#x7406;&#x89E3;&#x3057;&#x3084;&#x3059;&#x3044;&#x4ED5;&#x7D44;&#x307F;&#x304C;&#x6574;&#x5099;&#x3055;&#x308C;&#x307E;&#x3057;&#x305F;&#x3002;
-&#x57FA;&#x672C;&#x7684;&#x306B;&#x306F;ES2015&#x4EE5;&#x964D;&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x3092;&#x7406;&#x89E3;&#x3057;&#x3066;&#x3044;&#x308C;&#x3070;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x66F8;&#x304F;&#x5834;&#x5408;&#x306B;&#x306F;&#x554F;&#x984C;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;</p>
-<p>&#x3057;&#x304B;&#x3057;&#x3001;&#x65E2;&#x5B58;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x7406;&#x89E3;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x306F;&#x3001;ES2015&#x3088;&#x308A;&#x524D;&#x306B;&#x6C7A;&#x3081;&#x3089;&#x308C;&#x305F;&#x53E4;&#x3044;&#x4ED5;&#x7D44;&#x307F;&#x306B;&#x3064;&#x3044;&#x3066;&#x3082;&#x77E5;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x306A;&#x305C;&#x306A;&#x3089;&#x3001;&#x65E2;&#x5B58;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x53E4;&#x3044;&#x4ED5;&#x7D44;&#x307F;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x66F8;&#x304B;&#x308C;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x3082;&#x3042;&#x308B;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x3001;JavaScript&#x3067;&#x306F;&#x53E4;&#x3044;&#x4ED5;&#x7D44;&#x307F;&#x3068;&#x65B0;&#x3057;&#x3044;&#x4ED5;&#x7D44;&#x307F;&#x3092;&#x6DF7;&#x5728;&#x3057;&#x3066;&#x66F8;&#x304F;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x53E4;&#x3044;&#x4ED5;&#x7D44;&#x307F;&#x306B;&#x3088;&#x308B;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306F;&#x76F4;&#x611F;&#x7684;&#x3067;&#x306A;&#x3044;&#x6319;&#x52D5;&#x3082;&#x591A;&#x3044;&#x305F;&#x3081;&#x3001;&#x53E4;&#x3044;&#x4ED5;&#x7D44;&#x307F;&#x306B;&#x3064;&#x3044;&#x3066;&#x3082;&#x88DC;&#x8DB3;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="what-is-scope"><a name="what-is-scope" class="plugin-anchor" href="#what-is-scope"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3068;&#x306F; </h2>
-<p>&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3068;&#x306F;&#x5909;&#x6570;&#x306E;&#x540D;&#x524D;&#x3084;&#x95A2;&#x6570;&#x306A;&#x3069;&#x306E;&#x53C2;&#x7167;&#x3067;&#x304D;&#x308B;&#x7BC4;&#x56F2;&#x3092;&#x6C7A;&#x3081;&#x308B;&#x3082;&#x306E;&#x3067;&#x3059;&#x3002;
-&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x4E2D;&#x3067;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x305F;&#x5909;&#x6570;&#x306F;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x5185;&#x5074;&#x3067;&#x306E;&#x307F;&#x53C2;&#x7167;&#x3067;&#x304D;&#x3001;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x5916;&#x5074;&#x304B;&#x3089;&#x306F;&#x53C2;&#x7167;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3002;</p>
-<p>&#x8EAB;&#x8FD1;&#x306A;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x4F8B;&#x3068;&#x3057;&#x3066;&#x95A2;&#x6570;&#x306B;&#x3088;&#x308B;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3092;&#x898B;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;<code>fn</code>&#x95A2;&#x6570;&#x306E;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#xFF08;<code>{</code>&#x3068;<code>}</code>&#xFF09;&#x5185;&#x3067;&#x5909;&#x6570;<code>x</code>&#x3092;&#x5B9A;&#x7FA9;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x5909;&#x6570;<code>x</code>&#x306F;<code>fn</code>&#x95A2;&#x6570;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x305F;&#x3081;&#x3001;<code>fn</code>&#x95A2;&#x6570;&#x306E;&#x5185;&#x5074;&#x3067;&#x306F;&#x53C2;&#x7167;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x4E00;&#x65B9;&#x3001;<code>fn</code>&#x95A2;&#x6570;&#x306E;&#x5916;&#x5074;&#x304B;&#x3089;&#x5909;&#x6570;<code>x</code>&#x306F;&#x53C2;&#x7167;&#x3067;&#x304D;&#x306A;&#x3044;&#x305F;&#x3081;<code>ReferenceError</code>&#x304C;&#x767A;&#x751F;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+                                <h1 id="function-and-scope"><a name="function-and-scope" class="plugin-anchor" href="#function-and-scope"><i class="fa fa-link" aria-hidden="true"></i></a>関数とスコープ </h1>
+<p>定義された関数はそれぞれのスコープを持っています。スコープとは変数や関数の引数などを参照できる範囲を決めるものです。
+JavaScriptでは、新しい関数を定義するとその関数にひもづけられた新しいスコープが作成されます。関数を定義するということは処理をまとめるというだけではなく、変数が有効な範囲を決める新しいスコープを作っていると言えます。</p>
+<p>スコープの仕組みを理解することは関数をより深く理解することにつながります。なぜなら関数とスコープは密接な関係を持っているからです。
+この章では関数とスコープの関係を中心に、スコープとはどのような働きをしていて、スコープ内では変数の名前から取得する値がどのように決まるかを見ていきます。</p>
+<p>JavaScriptのスコープは、ES2015において直感的に理解しやすい仕組みが整備されました。
+基本的にはES2015以降の仕組みを理解していればコードを書く場合には問題ありません。</p>
+<p>しかし、既存のコードを理解するためには、ES2015より前に決められた古い仕組みについても知る必要があります。
+なぜなら、既存のコードは古い仕組みを使って書かれていることもあるためです。
+また、JavaScriptでは古い仕組みと新しい仕組みを混在して書くことができます。
+古い仕組みによるスコープは直感的でない挙動も多いため、古い仕組みについても補足していきます。</p>
+<h2 id="what-is-scope"><a name="what-is-scope" class="plugin-anchor" href="#what-is-scope"><i class="fa fa-link" aria-hidden="true"></i></a>スコープとは </h2>
+<p>スコープとは変数の名前や関数などの参照できる範囲を決めるものです。
+スコープの中で定義された変数はスコープの内側でのみ参照でき、スコープの外側からは参照できません。</p>
+<p>身近なスコープの例として関数によるスコープを見ていきます。</p>
+<p>次のコードでは、<code>fn</code>関数のブロック（<code>{</code>と<code>}</code>）内で変数<code>x</code>を定義しています。
+この変数<code>x</code>は<code>fn</code>関数のスコープに定義されているため、<code>fn</code>関数の内側では参照できます。
+一方、<code>fn</code>関数の外側から変数<code>x</code>は参照できないため<code>ReferenceError</code>が発生します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">const</span> x = <span class="hljs-number">1</span>;
-    <span class="hljs-comment">// fn&#x95A2;&#x6570;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x5185;&#x304B;&#x3089;`x`&#x306F;&#x53C2;&#x7167;&#x3067;&#x304D;&#x308B;</span>
+    <span class="hljs-comment">// fn関数のスコープ内から`x`は参照できる</span>
     <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; 1</span>
 }
 fn();
-<span class="hljs-comment">// fn&#x95A2;&#x6570;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x5916;&#x304B;&#x3089;`x`&#x306F;&#x53C2;&#x7167;&#x3067;&#x304D;&#x306A;&#x3044;&#x305F;&#x3081;&#x30A8;&#x30E9;&#x30FC;</span>
+<span class="hljs-comment">// fn関数のスコープ外から`x`は参照できないためエラー</span>
 <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; ReferenceError: x is not defined</span>
 </code></pre>
-<p>&#x3053;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x898B;&#x3066;&#x308F;&#x304B;&#x308B;&#x3088;&#x3046;&#x306B;&#x3001;&#x5909;&#x6570;<code>x</code>&#x306F;<code>fn</code>&#x95A2;&#x6570;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x3072;&#x3082;&#x3065;&#x3051;&#x3066;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x5909;&#x6570;<code>x</code>&#x306F;<code>fn</code>&#x95A2;&#x6570;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x5185;&#x3067;&#x306E;&#x307F;&#x53C2;&#x7167;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x95A2;&#x6570;&#x306F;<strong>&#x4EEE;&#x5F15;&#x6570;</strong>&#x3092;&#x6301;&#x3066;&#x307E;&#x3059;&#x304C;&#x3001;&#x4EEE;&#x5F15;&#x6570;&#x306F;&#x95A2;&#x6570;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x3072;&#x3082;&#x3065;&#x3051;&#x3066;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x4EEE;&#x5F15;&#x6570;&#x306F;&#x305D;&#x306E;&#x95A2;&#x6570;&#x306E;&#x4E2D;&#x3067;&#x306E;&#x307F;&#x53C2;&#x7167;&#x304C;&#x53EF;&#x80FD;&#x3067;&#x3001;&#x95A2;&#x6570;&#x306E;&#x5916;&#x304B;&#x3089;&#x306F;&#x53C2;&#x7167;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3002;</p>
+<p>このコードを見てわかるように、変数<code>x</code>は<code>fn</code>関数のスコープにひもづけて定義されます。
+そのため、変数<code>x</code>は<code>fn</code>関数のスコープ内でのみ参照できます。</p>
+<p>関数は<strong>仮引数</strong>を持てますが、仮引数は関数のスコープにひもづけて定義されます。
+そのため、仮引数はその関数の中でのみ参照が可能で、関数の外からは参照できません。</p>
 <!-- Note: 関数の仮引数はvarで宣言されたものと同じ扱い
 
 関数の宣言
@@ -1490,24 +1490,24 @@ fn();
  -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params">arg</span>) </span>{
-    <span class="hljs-comment">// fn&#x95A2;&#x6570;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x5185;&#x304B;&#x3089;&#x4EEE;&#x5F15;&#x6570;`arg`&#x306F;&#x53C2;&#x7167;&#x3067;&#x304D;&#x308B;</span>
+    <span class="hljs-comment">// fn関数のスコープ内から仮引数`arg`は参照できる</span>
     <span class="hljs-built_in">console</span>.log(arg); <span class="hljs-comment">// =&gt; 1</span>
 }
 fn(<span class="hljs-number">1</span>);
-<span class="hljs-comment">// fn&#x95A2;&#x6570;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x5916;&#x304B;&#x3089;`arg`&#x306F;&#x53C2;&#x7167;&#x3067;&#x304D;&#x306A;&#x3044;&#x305F;&#x3081;&#x30A8;&#x30E9;&#x30FC;</span>
+<span class="hljs-comment">// fn関数のスコープ外から`arg`は参照できないためエラー</span>
 <span class="hljs-built_in">console</span>.log(arg); <span class="hljs-comment">// =&gt; ReferenceError: arg is not defined</span>
 </code></pre>
-<p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306A;&#x3001;&#x95A2;&#x6570;&#x306B;&#x3088;&#x308B;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x3053;&#x3068;&#x3092;<strong>&#x95A2;&#x6570;&#x30B9;&#x30B3;&#x30FC;&#x30D7;</strong>&#x3068;&#x547C;&#x3073;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x300C;<a href="../variables/">&#x5909;&#x6570;&#x3068;&#x5BA3;&#x8A00;</a>&#x300D;&#x306E;&#x7AE0;&#x306B;&#x3066;&#x3001;<code>let</code>&#x3084;<code>const</code>&#x306F;&#x540C;&#x3058;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x5185;&#x306B;&#x540C;&#x3058;&#x540D;&#x524D;&#x306E;&#x5909;&#x6570;&#x3092;&#x4E8C;&#x91CD;&#x306B;&#x5B9A;&#x7FA9;&#x3067;&#x304D;&#x306A;&#x3044;&#x3068;&#x3044;&#x3046;&#x8A71;&#x3092;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;
-&#x3053;&#x308C;&#x306F;&#x3001;&#x5404;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x306F;&#x540C;&#x3058;&#x540D;&#x524D;&#x306E;&#x5909;&#x6570;&#x306F;1&#x3064;&#x3057;&#x304B;&#x5BA3;&#x8A00;&#x3067;&#x304D;&#x306A;&#x3044;&#x305F;&#x3081;&#x3067;&#x3059;&#xFF08;<code>var</code>&#x306B;&#x3088;&#x308B;&#x5909;&#x6570;&#x5BA3;&#x8A00;&#x3068;<code>function</code>&#x306B;&#x3088;&#x308B;&#x95A2;&#x6570;&#x5BA3;&#x8A00;&#x306F;&#x4F8B;&#x5916;&#x7684;&#x306B;&#x53EF;&#x80FD;&#x3067;&#x3059;&#xFF09;&#x3002;</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// &#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x5185;&#x306B;&#x540C;&#x3058;&quot;a&quot;&#x3092;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x3068; SyntaxError &#x3068;&#x306A;&#x308B;</span>
+<p>このような、関数によるスコープのことを<strong>関数スコープ</strong>と呼びます。</p>
+<p>「<a href="../variables/">変数と宣言</a>」の章にて、<code>let</code>や<code>const</code>は同じスコープ内に同じ名前の変数を二重に定義できないという話をしました。
+これは、各スコープには同じ名前の変数は1つしか宣言できないためです（<code>var</code>による変数宣言と<code>function</code>による関数宣言は例外的に可能です）。</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// スコープ内に同じ&quot;a&quot;を定義すると SyntaxError となる</span>
 <span class="hljs-keyword">let</span> a;
 <span class="hljs-keyword">let</span> a;
 </code></pre>
-<p>&#x4E00;&#x65B9;&#x3001;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x304C;&#x7570;&#x306A;&#x308C;&#x3070;&#x540C;&#x3058;&#x540D;&#x524D;&#x3067;&#x5909;&#x6570;&#x3092;&#x5BA3;&#x8A00;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;<code>fnA</code>&#x95A2;&#x6570;&#x3068;<code>fnB</code>&#x95A2;&#x6570;&#x3068;&#x3044;&#x3046;&#x7570;&#x306A;&#x308B;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3067;&#x3001;&#x305D;&#x308C;&#x305E;&#x308C;&#x5909;&#x6570;<code>x</code>&#x3092;&#x5B9A;&#x7FA9;&#x3067;&#x304D;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>一方、スコープが異なれば同じ名前で変数を宣言できます。
+次のコードでは、<code>fnA</code>関数と<code>fnB</code>関数という異なるスコープで、それぞれ変数<code>x</code>を定義できていることがわかります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// &#x7570;&#x306A;&#x308B;&#x95A2;&#x6570;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x306F;&#x540C;&#x3058;&quot;x&quot;&#x3092;&#x5B9A;&#x7FA9;&#x3067;&#x304D;&#x308B;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// 異なる関数のスコープには同じ&quot;x&quot;を定義できる</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fnA</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">let</span> x;
 }
@@ -1515,23 +1515,23 @@ fn(<span class="hljs-number">1</span>);
     <span class="hljs-keyword">let</span> x;
 }
 </code></pre>
-<p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x304C;&#x7570;&#x306A;&#x308C;&#x3070;&#x540C;&#x3058;&#x540D;&#x524D;&#x306E;&#x5909;&#x6570;&#x3092;&#x5B9A;&#x7FA9;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x304C;&#x306A;&#x3044;&#x3068;&#x3001;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x306A;&#x7A7A;&#x9593;&#x5185;&#x3067;&#x4E00;&#x610F;&#x306A;&#x5909;&#x6570;&#x540D;&#x3092;&#x8003;&#x3048;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x304C;&#x3042;&#x308B;&#x3053;&#x3068;&#x3067;&#x540C;&#x3058;&#x540D;&#x524D;&#x306E;&#x5909;&#x6570;&#x3092;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3054;&#x3068;&#x306B;&#x5B9A;&#x7FA9;&#x3067;&#x304D;&#x308B;&#x305F;&#x3081;&#x3001;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x5F79;&#x5272;&#x306F;&#x91CD;&#x8981;&#x3067;&#x3059;&#x3002;</p>
-<h2 id="block-scope"><a name="block-scope" class="plugin-anchor" href="#block-scope"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7; </h2>
-<p><code>{</code>&#x3068;<code>}</code>&#x3067;&#x56F2;&#x3093;&#x3060;&#x7BC4;&#x56F2;&#x3092;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x3068;&#x547C;&#x3073;&#x307E;&#x3059;&#xFF08;&#x300C;<a href="../statement-expression/">&#x6587;&#x3068;&#x5F0F;</a>&#x300D;&#x306E;&#x7AE0;&#x3092;&#x53C2;&#x7167;&#xFF09;&#x3002;
-&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x3082;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x5185;&#x3067;&#x5BA3;&#x8A00;&#x3055;&#x308C;&#x305F;&#x5909;&#x6570;&#x306F;&#x3001;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x5185;&#x3067;&#x306E;&#x307F;&#x53C2;&#x7167;&#x3067;&#x304D;&#x3001;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x5916;&#x5074;&#x304B;&#x3089;&#x306F;&#x53C2;&#x7167;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3002;</p>
+<p>このように、スコープが異なれば同じ名前の変数を定義できます。
+スコープの仕組みがないと、グローバルな空間内で一意な変数名を考える必要があります。
+スコープがあることで同じ名前の変数をスコープごとに定義できるため、スコープの役割は重要です。</p>
+<h2 id="block-scope"><a name="block-scope" class="plugin-anchor" href="#block-scope"><i class="fa fa-link" aria-hidden="true"></i></a>ブロックスコープ </h2>
+<p><code>{</code>と<code>}</code>で囲んだ範囲をブロックと呼びます（「<a href="../statement-expression/">文と式</a>」の章を参照）。
+ブロックもスコープを作成します。
+ブロック内で宣言された変数は、スコープ内でのみ参照でき、スコープの外側からは参照できません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// &#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x5185;&#x3067;&#x5B9A;&#x7FA9;&#x3057;&#x305F;&#x5909;&#x6570;&#x306F;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x5185;&#x3067;&#x306E;&#x307F;&#x53C2;&#x7167;&#x3067;&#x304D;&#x308B;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// ブロック内で定義した変数はスコープ内でのみ参照できる</span>
 {
     <span class="hljs-keyword">const</span> x = <span class="hljs-number">1</span>;
     <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; 1</span>
 }
-<span class="hljs-comment">// &#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x5916;&#x304B;&#x3089;`x`&#x3092;&#x53C2;&#x7167;&#x3067;&#x304D;&#x306A;&#x3044;&#x305F;&#x3081;&#x30A8;&#x30E9;&#x30FC;</span>
+<span class="hljs-comment">// スコープの外から`x`を参照できないためエラー</span>
 <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; ReferenceError: x is not defined</span>
 </code></pre>
-<p>&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x306B;&#x3088;&#x308B;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x3053;&#x3068;&#x3092;<strong>&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;</strong>&#x3068;&#x547C;&#x3073;&#x307E;&#x3059;&#x3002;</p>
+<p>ブロックによるスコープのことを<strong>ブロックスコープ</strong>と呼びます。</p>
 <!-- Notes: ブロックスコープと仕様
 
 - ブロック`{}`は新しい[NewDeclarativeEnvironment](https://tc39.github.io/ecma262/#sec-newdeclarativeenvironment "NewDeclarativeEnvironment")を作成する
@@ -1541,28 +1541,28 @@ fn(<span class="hljs-number">1</span>);
 - https://tc39.github.io/ecma262/#sec-blockdeclarationinstantiation
 
  -->
-<p>if&#x6587;&#x3084;while&#x6587;&#x306A;&#x3069;&#x3082;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x5358;&#x72EC;&#x306E;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x3068;&#x540C;&#x3058;&#x304F;&#x3001;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x306E;&#x4E2D;&#x3067;&#x5BA3;&#x8A00;&#x3057;&#x305F;&#x5909;&#x6570;&#x306F;&#x5916;&#x304B;&#x3089;&#x53C2;&#x7167;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3002;</p>
+<p>if文やwhile文などもブロックスコープを作成します。
+単独のブロックと同じく、ブロックの中で宣言した変数は外から参照できません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// if&#x6587;&#x306E;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x5185;&#x3067;&#x5B9A;&#x7FA9;&#x3057;&#x305F;&#x5909;&#x6570;&#x306F;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x4E2D;&#x3067;&#x306E;&#x307F;&#x53C2;&#x7167;&#x3067;&#x304D;&#x308B;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// if文のブロック内で定義した変数はブロックスコープの中でのみ参照できる</span>
 <span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) {
     <span class="hljs-keyword">const</span> x = <span class="hljs-string">&quot;inner&quot;</span>;
     <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; &quot;inner&quot;</span>
 }
 <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; ReferenceError: x is not defined</span>
 </code></pre>
-<p>for&#x6587;&#x306F;&#x3001;&#x30EB;&#x30FC;&#x30D7;&#x3054;&#x3068;&#x306B;&#x65B0;&#x3057;&#x3044;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x3053;&#x3068;&#x306F;&#x300C;&#x5404;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x306F;&#x540C;&#x3058;&#x540D;&#x524D;&#x306E;&#x5909;&#x6570;&#x306F;1&#x3064;&#x3057;&#x304B;&#x5BA3;&#x8A00;&#x3067;&#x304D;&#x306A;&#x3044;&#x300D;&#x306E;&#x30EB;&#x30FC;&#x30EB;&#x3092;&#x8003;&#x3048;&#x3066;&#x307F;&#x308B;&#x3068;&#x308F;&#x304B;&#x308A;&#x3084;&#x3059;&#x3044;&#x3067;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;&#x30EB;&#x30FC;&#x30D7;&#x3054;&#x3068;&#x306B;<code>const</code>&#x3067;<code>element</code>&#x5909;&#x6570;&#x3092;&#x5B9A;&#x7FA9;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x304C;&#x3001;&#x30A8;&#x30E9;&#x30FC;&#x306A;&#x304F;&#x5B9A;&#x7FA9;&#x3067;&#x304D;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x308C;&#x306F;&#x3001;&#x30EB;&#x30FC;&#x30D7;&#x3054;&#x3068;&#x306B;&#x5225;&#x3005;&#x306E;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x304C;&#x4F5C;&#x6210;&#x3055;&#x308C;&#x3001;&#x5909;&#x6570;&#x306E;&#x5BA3;&#x8A00;&#x3082;&#x305D;&#x308C;&#x305E;&#x308C;&#x5225;&#x3005;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3067;&#x884C;&#x308F;&#x308C;&#x308B;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;</p>
+<p>for文は、ループごとに新しいブロックスコープを作成します。
+このことは「各スコープには同じ名前の変数は1つしか宣言できない」のルールを考えてみるとわかりやすいです。
+次のコードでは、ループごとに<code>const</code>で<code>element</code>変数を定義していますが、エラーなく定義できています。
+これは、ループごとに別々のブロックスコープが作成され、変数の宣言もそれぞれ別々のスコープで行われるためです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
-<span class="hljs-comment">// &#x30EB;&#x30FC;&#x30D7;&#x3054;&#x3068;&#x306B;&#x65B0;&#x3057;&#x3044;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;</span>
+<span class="hljs-comment">// ループごとに新しいブロックスコープを作成する</span>
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> element <span class="hljs-keyword">of</span> array) {
-    <span class="hljs-comment">// for&#x306E;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x4E2D;&#x3067;&#x306E;&#x307F;`element`&#x3092;&#x53C2;&#x7167;&#x3067;&#x304D;&#x308B;</span>
+    <span class="hljs-comment">// forのブロックスコープの中でのみ`element`を参照できる</span>
     <span class="hljs-built_in">console</span>.log(element);
 }
-<span class="hljs-comment">// &#x30EB;&#x30FC;&#x30D7;&#x306E;&#x5916;&#x304B;&#x3089;&#x306F;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x5185;&#x306E;&#x5909;&#x6570;&#x306F;&#x53C2;&#x7167;&#x3067;&#x304D;&#x306A;&#x3044;</span>
+<span class="hljs-comment">// ループの外からはブロックスコープ内の変数は参照できない</span>
 <span class="hljs-built_in">console</span>.log(element); <span class="hljs-comment">// =&gt; ReferenceError: element is not defined</span>
 </code></pre>
 <!-- Note: forとブロックスコープの仕様
@@ -1572,105 +1572,105 @@ fn(<span class="hljs-number">1</span>);
 - [ECMAScript 2015 Language Specification – ECMA-262 6th Edition](http://www.ecma-international.org/ecma-262/6.0/#sec-createperiterationenvironment)
 
  -->
-<h2 id="scope-chain"><a name="scope-chain" class="plugin-anchor" href="#scope-chain"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x30C1;&#x30A7;&#x30FC;&#x30F3; </h2>
-<p>&#x95A2;&#x6570;&#x3084;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x306F;&#x30CD;&#x30B9;&#x30C8;&#xFF08;&#x5165;&#x308C;&#x5B50;&#xFF09;&#x3057;&#x3066;&#x66F8;&#x3051;&#x307E;&#x3059;&#x304C;&#x3001;&#x540C;&#x69D8;&#x306B;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3082;&#x30CD;&#x30B9;&#x30C8;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x306E;&#x4E2D;&#x306B;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x3092;&#x66F8;&#x3044;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x3068;&#x304D;&#x5916;&#x5074;&#x306E;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x3053;&#x3068;&#x3092;<code>OUTER</code>&#x3001;&#x5185;&#x5074;&#x306E;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x3053;&#x3068;&#x3092;<code>INNER</code>&#x3068;&#x547C;&#x3076;&#x3053;&#x3068;&#x306B;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="scope-chain"><a name="scope-chain" class="plugin-anchor" href="#scope-chain"><i class="fa fa-link" aria-hidden="true"></i></a>スコープチェーン </h2>
+<p>関数やブロックはネスト（入れ子）して書けますが、同様にスコープもネストできます。
+次のコードではブロックの中にブロックを書いています。
+このとき外側のブロックスコープのことを<code>OUTER</code>、内側のブロックスコープのことを<code>INNER</code>と呼ぶことにします。</p>
 <pre><code class="lang-js">{
-    <span class="hljs-comment">// OUTER&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;</span>
+    <span class="hljs-comment">// OUTERブロックスコープ</span>
     {
-        <span class="hljs-comment">// INNER&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;</span>
+        <span class="hljs-comment">// INNERブロックスコープ</span>
     }
 }
 </code></pre>
-<p>&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x304C;&#x30CD;&#x30B9;&#x30C8;&#x3057;&#x3066;&#x3044;&#x308B;&#x5834;&#x5408;&#x306B;&#x3001;&#x5185;&#x5074;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x304B;&#x3089;&#x5916;&#x5074;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x3042;&#x308B;&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;&#x5185;&#x5074;&#x306E;INNER&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x304B;&#x3089;&#x5916;&#x5074;&#x306E;OUTER&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x5909;&#x6570;<code>x</code>&#x3092;&#x53C2;&#x7167;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x308C;&#x306F;&#x3001;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x9650;&#x3089;&#x305A;&#x95A2;&#x6570;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3067;&#x3082;&#x540C;&#x69D8;&#x3067;&#x3059;&#x3002;</p>
+<p>スコープがネストしている場合に、内側のスコープから外側のスコープにある変数を参照できます。
+次のコードでは、内側のINNERブロックスコープから外側のOUTERブロックスコープに定義されている変数<code>x</code>を参照できます。
+これは、ブロックスコープに限らず関数スコープでも同様です。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js">{
-    <span class="hljs-comment">// OUTER&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;</span>
+    <span class="hljs-comment">// OUTERブロックスコープ</span>
     <span class="hljs-keyword">const</span> x = <span class="hljs-string">&quot;x&quot;</span>;
     {
-        <span class="hljs-comment">// INNER&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x304B;&#x3089;OUTER&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3067;&#x304D;&#x308B;</span>
+        <span class="hljs-comment">// INNERブロックスコープからOUTERブロックスコープの変数を参照できる</span>
         <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; &quot;x&quot;</span>
     }
 }
 </code></pre>
-<p>&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;&#x969B;&#x306B;&#x306F;&#x3001;&#x73FE;&#x5728;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#xFF08;&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;&#x5F0F;&#x304C;&#x66F8;&#x304B;&#x308C;&#x3066;&#x3044;&#x308B;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#xFF09;&#x304B;&#x3089;&#x5916;&#x5074;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3078;&#x3068;&#x9806;&#x756A;&#x306B;&#x5909;&#x6570;&#x304C;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x304B;&#x3092;&#x78BA;&#x8A8D;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x4E0A;&#x8A18;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;&#x5185;&#x5074;&#x306E;INNER&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x306F;&#x5909;&#x6570;<code>x</code>&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x304C;&#x3001;&#x5916;&#x5074;&#x306E;OUTER&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x5909;&#x6570;<code>x</code>&#x304C;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x305F;&#x3081;&#x53C2;&#x7167;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x3064;&#x307E;&#x308A;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x30B9;&#x30C6;&#x30C3;&#x30D7;&#x3067;&#x53C2;&#x7167;&#x3057;&#x305F;&#x3044;&#x5909;&#x6570;&#x3092;&#x63A2;&#x7D22;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>変数を参照する際には、現在のスコープ（変数を参照する式が書かれているスコープ）から外側のスコープへと順番に変数が定義されているかを確認します。
+上記のコードでは、内側のINNERブロックスコープには変数<code>x</code>はありませんが、外側のOUTERブロックスコープに変数<code>x</code>が定義されているため参照できます。
+つまり、次のようなステップで参照したい変数を探索しています。</p>
 <ol>
-<li>INNER&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x5909;&#x6570;<code>x</code>&#x304C;&#x3042;&#x308B;&#x304B;&#x3092;&#x78BA;&#x8A8D; =&gt; &#x306A;&#x3044;</li>
-<li>&#x3072;&#x3068;&#x3064;&#x5916;&#x5074;&#x306E;OUTER&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x5909;&#x6570;<code>x</code>&#x304C;&#x3042;&#x308B;&#x304B;&#x3092;&#x78BA;&#x8A8D; =&gt; &#x3042;&#x308B;</li>
+<li>INNERブロックスコープに変数<code>x</code>があるかを確認 =&gt; ない</li>
+<li>ひとつ外側のOUTERブロックスコープに変数<code>x</code>があるかを確認 =&gt; ある</li>
 </ol>
-<p>&#x4E00;&#x65B9;&#x3001;&#x73FE;&#x5728;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3082;&#x542B;&#x3081;&#x3001;&#x5916;&#x5074;&#x306E;&#x3069;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x3082;&#x8A72;&#x5F53;&#x3059;&#x308B;&#x5909;&#x6570;&#x304C;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x306A;&#x3044;&#x5834;&#x5408;&#x306F;&#x3001;<code>ReferenceError</code>&#x306E;&#x4F8B;&#x5916;&#x304C;&#x767A;&#x751F;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x4F8B;&#x3067;&#x306F;&#x3001;&#x3069;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x3082;&#x5B58;&#x5728;&#x3057;&#x306A;&#x3044;<code>xyz</code>&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x3044;&#x308B;&#x305F;&#x3081;&#x3001;<code>ReferenceError</code>&#x306E;&#x4F8B;&#x5916;&#x304C;&#x767A;&#x751F;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>一方、現在のスコープも含め、外側のどのスコープにも該当する変数が定義されていない場合は、<code>ReferenceError</code>の例外が発生します。
+次の例では、どのスコープにも存在しない<code>xyz</code>を参照しているため、<code>ReferenceError</code>の例外が発生します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js">{
-    <span class="hljs-comment">// OUTER&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;</span>
+    <span class="hljs-comment">// OUTERブロックスコープ</span>
     {
-        <span class="hljs-comment">// INNER&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;</span>
+        <span class="hljs-comment">// INNERブロックスコープ</span>
         <span class="hljs-built_in">console</span>.log(xyz); <span class="hljs-comment">// =&gt; ReferenceError: xyz is not defined</span>
     }
 }
 </code></pre>
-<p>&#x3053;&#x306E;&#x3068;&#x304D;&#x3082;&#x3001;&#x73FE;&#x5728;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#xFF08;&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;&#x5F0F;&#x304C;&#x66F8;&#x304B;&#x308C;&#x3066;&#x3044;&#x308B;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#xFF09;&#x304B;&#x3089;&#x5916;&#x5074;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3078;&#x3068;&#x9806;&#x756A;&#x306B;&#x5909;&#x6570;&#x304C;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x304B;&#x3092;&#x78BA;&#x8A8D;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3057;&#x304B;&#x3057;&#x3001;&#x3069;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x3082;&#x5909;&#x6570;<code>xyz</code>&#x306F;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;<code>ReferenceError</code>&#x306E;&#x4F8B;&#x5916;&#x304C;&#x767A;&#x751F;&#x3057;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;
-&#x3064;&#x307E;&#x308A;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x30B9;&#x30C6;&#x30C3;&#x30D7;&#x3067;&#x53C2;&#x7167;&#x3057;&#x305F;&#x3044;&#x5909;&#x6570;&#x3092;&#x63A2;&#x7D22;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>このときも、現在のスコープ（変数を参照する式が書かれているスコープ）から外側のスコープへと順番に変数が定義されているかを確認しています。
+しかし、どのスコープにも変数<code>xyz</code>は定義されていないため、<code>ReferenceError</code>の例外が発生していました。
+つまり次のようなステップで参照したい変数を探索しています。</p>
 <ol>
-<li>INNER&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x5909;&#x6570;<code>xyz</code>&#x304C;&#x3042;&#x308B;&#x304B;&#x3092;&#x78BA;&#x8A8D; =&gt; &#x306A;&#x3044;</li>
-<li>&#x3072;&#x3068;&#x3064;&#x5916;&#x5074;&#x306E;OUTER&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x5909;&#x6570;<code>xyz</code>&#x304C;&#x3042;&#x308B;&#x304B;&#x3092;&#x78BA;&#x8A8D; =&gt; &#x306A;&#x3044;</li>
-<li>&#x4E00;&#x756A;&#x5916;&#x5074;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x3082;&#x5909;&#x6570;<code>xyz</code>&#x306F;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x306A;&#x3044; =&gt; <code>ReferenceError</code>&#x304C;&#x767A;&#x751F;</li>
+<li>INNERブロックスコープに変数<code>xyz</code>があるかを確認 =&gt; ない</li>
+<li>ひとつ外側のOUTERブロックスコープに変数<code>xyz</code>があるかを確認 =&gt; ない</li>
+<li>一番外側のスコープにも変数<code>xyz</code>は定義されていない =&gt; <code>ReferenceError</code>が発生</li>
 </ol>
-<p>&#x3053;&#x306E;&#x5185;&#x5074;&#x304B;&#x3089;&#x5916;&#x5074;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3078;&#x3068;&#x9806;&#x756A;&#x306B;&#x5909;&#x6570;&#x304C;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x304B;&#x63A2;&#x3059;&#x4ED5;&#x7D44;&#x307F;&#x306E;&#x3053;&#x3068;&#x3092;<strong>&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x30C1;&#x30A7;&#x30FC;&#x30F3;</strong>&#x3068;&#x547C;&#x3073;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x5185;&#x5074;&#x3068;&#x5916;&#x5074;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x4E21;&#x65B9;&#x306B;&#x540C;&#x3058;&#x540D;&#x524D;&#x306E;&#x5909;&#x6570;&#x304C;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x5834;&#x5408;&#x3082;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x30C1;&#x30A7;&#x30FC;&#x30F3;&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x3067;&#x89E3;&#x6C7A;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;&#x5185;&#x5074;&#x306E;INNER&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3068;&#x5916;&#x5074;&#x306E;OUTER&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x540C;&#x3058;&#x540D;&#x524D;&#x306E;&#x5909;&#x6570;<code>x</code>&#x304C;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x30C1;&#x30A7;&#x30FC;&#x30F3;&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x306B;&#x3088;&#x308A;&#x3001;&#x73FE;&#x5728;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x5909;&#x6570;<code>x</code>&#x3092;&#x512A;&#x5148;&#x7684;&#x306B;&#x53C2;&#x7167;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>この内側から外側のスコープへと順番に変数が定義されているか探す仕組みのことを<strong>スコープチェーン</strong>と呼びます。</p>
+<p>内側と外側のスコープ両方に同じ名前の変数が定義されている場合もスコープチェーンの仕組みで解決できます。
+次のコードでは、内側のINNERブロックスコープと外側のOUTERブロックスコープに同じ名前の変数<code>x</code>が定義されています。
+スコープチェーンの仕組みにより、現在のスコープに定義されている変数<code>x</code>を優先的に参照します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js">{
-    <span class="hljs-comment">// OUTER&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;</span>
+    <span class="hljs-comment">// OUTERブロックスコープ</span>
     <span class="hljs-keyword">const</span> x = <span class="hljs-string">&quot;outer&quot;</span>;
     {
-        <span class="hljs-comment">// INNER&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;</span>
+        <span class="hljs-comment">// INNERブロックスコープ</span>
         <span class="hljs-keyword">const</span> x = <span class="hljs-string">&quot;inner&quot;</span>;
-        <span class="hljs-comment">// &#x73FE;&#x5728;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;(INNER&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;)&#x306B;&#x3042;&#x308B;`x`&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;</span>
+        <span class="hljs-comment">// 現在のスコープ(INNERブロックスコープ)にある`x`を参照する</span>
         <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; &quot;inner&quot;</span>
     }
-    <span class="hljs-comment">// &#x73FE;&#x5728;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;(OUTER&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;)&#x306B;&#x3042;&#x308B;`x`&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;</span>
+    <span class="hljs-comment">// 現在のスコープ(OUTERブロックスコープ)にある`x`を参照する</span>
     <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; &quot;outer&quot;</span>
 }
 </code></pre>
-<p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306F;&#x968E;&#x5C64;&#x7684;&#x306A;&#x69CB;&#x9020;&#x3068;&#x306A;&#x3063;&#x3066;&#x304A;&#x308A;&#x3001;&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;&#x969B;&#x306B;&#x3069;&#x306E;&#x5909;&#x6570;&#x304C;&#x53C2;&#x7167;&#x3067;&#x304D;&#x308B;&#x304B;&#x306F;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x30C1;&#x30A7;&#x30FC;&#x30F3;&#x306B;&#x3088;&#x3063;&#x3066;&#x89E3;&#x6C7A;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="global-scope"><a name="global-scope" class="plugin-anchor" href="#global-scope"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7; </h2>
-<p>&#x4ECA;&#x307E;&#x3067;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x76F4;&#x4E0B;&#x306B;&#x66F8;&#x3044;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x304C;&#x3001;&#x3053;&#x3053;&#x306B;&#x3082;&#x6697;&#x9ED9;&#x7684;&#x306A;<strong>&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;</strong>&#xFF08;&#x5927;&#x57DF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#xFF09;&#x3068;&#x547C;&#x3070;&#x308C;&#x308B;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x304C;&#x5B58;&#x5728;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3068;&#x306F;&#x540D;&#x524D;&#x306E;&#x3068;&#x304A;&#x308A;&#x3082;&#x3063;&#x3068;&#x3082;&#x5916;&#x5074;&#x306B;&#x3042;&#x308B;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3067;&#x3001;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x5B9F;&#x884C;&#x6642;&#x306B;&#x6697;&#x9ED9;&#x7684;&#x306B;&#x4F5C;&#x6210;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p>このようにスコープは階層的な構造となっており、変数を参照する際にどの変数が参照できるかはスコープチェーンによって解決されています。</p>
+<h2 id="global-scope"><a name="global-scope" class="plugin-anchor" href="#global-scope"><i class="fa fa-link" aria-hidden="true"></i></a>グローバルスコープ </h2>
+<p>今までコードをプログラム直下に書いていましたが、ここにも暗黙的な<strong>グローバルスコープ</strong>（大域スコープ）と呼ばれるスコープが存在します。
+グローバルスコープとは名前のとおりもっとも外側にあるスコープで、プログラム実行時に暗黙的に作成されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// &#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x76F4;&#x4E0B;&#x306F;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// プログラム直下はグローバルスコープ</span>
 <span class="hljs-keyword">const</span> x = <span class="hljs-string">&quot;x&quot;</span>;
 <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; &quot;x&quot;</span>
 </code></pre>
-<p>&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3067;&#x5B9A;&#x7FA9;&#x3057;&#x305F;&#x5909;&#x6570;&#x306F;<strong>&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x5909;&#x6570;</strong>&#x3068;&#x547C;&#x3070;&#x308C;&#x3001;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x5909;&#x6570;&#x306F;&#x3042;&#x3089;&#x3086;&#x308B;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x304B;&#x3089;&#x53C2;&#x7167;&#x3067;&#x304D;&#x308B;&#x5909;&#x6570;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x306A;&#x305C;&#x306A;&#x3089;&#x3001;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x30C1;&#x30A7;&#x30FC;&#x30F3;&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x306B;&#x3088;&#x308A;&#x3001;&#x6700;&#x7D42;&#x7684;&#x306B;&#x3082;&#x3063;&#x3068;&#x3082;&#x5916;&#x5074;&#x306E;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3067;&#x304D;&#x308B;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;</p>
+<p>グローバルスコープで定義した変数は<strong>グローバル変数</strong>と呼ばれ、グローバル変数はあらゆるスコープから参照できる変数となります。
+なぜなら、スコープチェーンの仕組みにより、最終的にもっとも外側のグローバルスコープに定義されている変数を参照できるためです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// &#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x5909;&#x6570;&#x306F;&#x3069;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x304B;&#x3089;&#x3082;&#x53C2;&#x7167;&#x3067;&#x304D;&#x308B;</span>
-<span class="hljs-keyword">const</span> globalVariable = <span class="hljs-string">&quot;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&quot;</span>;
-<span class="hljs-comment">// &#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// グローバル変数はどのスコープからも参照できる</span>
+<span class="hljs-keyword">const</span> globalVariable = <span class="hljs-string">&quot;グローバル&quot;</span>;
+<span class="hljs-comment">// ブロックスコープ</span>
 {   
-    <span class="hljs-comment">// &#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x5185;&#x306B;&#x306F;&#x8A72;&#x5F53;&#x3059;&#x308B;&#x5909;&#x6570;&#x304C;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x306A;&#x3044; -&gt; &#x5916;&#x5074;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3078;</span>
-    <span class="hljs-built_in">console</span>.log(globalVariable); <span class="hljs-comment">// =&gt; &quot;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&quot;</span>
+    <span class="hljs-comment">// ブロックスコープ内には該当する変数が定義されてない -&gt; 外側のスコープへ</span>
+    <span class="hljs-built_in">console</span>.log(globalVariable); <span class="hljs-comment">// =&gt; &quot;グローバル&quot;</span>
 }
-<span class="hljs-comment">// &#x95A2;&#x6570;&#x30B9;&#x30B3;&#x30FC;&#x30D7;</span>
+<span class="hljs-comment">// 関数スコープ</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-comment">// &#x95A2;&#x6570;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x5185;&#x306B;&#x306F;&#x8A72;&#x5F53;&#x3059;&#x308B;&#x5909;&#x6570;&#x304C;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x306A;&#x3044; -&gt; &#x5916;&#x5074;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3078;</span>
-    <span class="hljs-built_in">console</span>.log(globalVariable); <span class="hljs-comment">// =&gt; &quot;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&quot;</span>
+    <span class="hljs-comment">// 関数ブロックスコープ内には該当する変数が定義されてない -&gt; 外側のスコープへ</span>
+    <span class="hljs-built_in">console</span>.log(globalVariable); <span class="hljs-comment">// =&gt; &quot;グローバル&quot;</span>
 }
 fn();
 </code></pre>
 <!-- textlint-disable preset-ja-technical-writing/sentence-length -->
-<p>&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x306F;&#x81EA;&#x5206;&#x3067;&#x5B9A;&#x7FA9;&#x3057;&#x305F;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x5909;&#x6570;&#x4EE5;&#x5916;&#x306B;&#x3001;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x5B9F;&#x884C;&#x6642;&#x306B;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x308B;<strong>&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</strong>&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x306F;&#x3001;&#x5927;&#x304D;&#x304F;&#x5206;&#x3051;&#x3066;2&#x7A2E;&#x985E;&#x306E;&#x3082;&#x306E;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-1&#x3064;&#x76EE;&#x306F;ECMAScript&#x4ED5;&#x69D8;&#x304C;&#x5B9A;&#x7FA9;&#x3059;&#x308B;<code>undefined</code>&#x306E;&#x3088;&#x3046;&#x306A;&#x5909;&#x6570;&#xFF08;&#x300C;<a href="../data-type/#undefined-is-not-literal">undefined&#x306F;&#x30EA;&#x30C6;&#x30E9;&#x30EB;&#x3067;&#x306F;&#x306A;&#x3044;</a>&#x300D;&#x3092;&#x53C2;&#x7167;&#xFF09;&#x3084;<code>isNaN</code>&#x306E;&#x3088;&#x3046;&#x306A;&#x95A2;&#x6570;&#x3001;<code>Array</code>&#x3084;<code>RegExp</code>&#x306A;&#x3069;&#x306E;&#x30B3;&#x30F3;&#x30B9;&#x30C8;&#x30E9;&#x30AF;&#x30BF;&#x95A2;&#x6570;&#x3067;&#x3059;&#x3002;2&#x3064;&#x76EE;&#x306F;&#x5B9F;&#x884C;&#x74B0;&#x5883;&#xFF08;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3084;Node.js&#x306A;&#x3069;&#xFF09;&#x304C;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;<code>document</code>&#x3084;<code>module</code>&#x306A;&#x3069;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x3069;&#x3061;&#x3089;&#x3082;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x3068;&#x3044;&#x3046;&#x70B9;&#x3067;&#x5927;&#x304D;&#x306A;&#x4F7F;&#x3044;&#x5206;&#x3051;&#x306F;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;&#x3053;&#x306E;&#x7AE0;&#x3067;&#x306F;&#x3069;&#x3061;&#x3089;&#x3082;<strong>&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</strong>&#x3068;&#x547C;&#x3076;&#x3053;&#x3068;&#x306B;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>グローバルスコープには自分で定義したグローバル変数以外に、プログラム実行時に自動的に定義される<strong>ビルトインオブジェクト</strong>があります。</p>
+<p>ビルトインオブジェクトには、大きく分けて2種類のものがあります。
+1つ目はECMAScript仕様が定義する<code>undefined</code>のような変数（「<a href="../data-type/#undefined-is-not-literal">undefinedはリテラルではない</a>」を参照）や<code>isNaN</code>のような関数、<code>Array</code>や<code>RegExp</code>などのコンストラクタ関数です。2つ目は実行環境（ブラウザやNode.jsなど）が定義するオブジェクトで<code>document</code>や<code>module</code>などがあります。
+どちらもグローバルスコープに自動的に定義されているという点で大きな使い分けはないため、この章ではどちらも<strong>ビルトインオブジェクト</strong>と呼ぶことにします。</p>
 <!-- Notes: global objectとbuilt-in object
 
 - global object: https://tc39.github.io/ecma262/#sec-global-object
@@ -1683,351 +1683,351 @@ fn();
 
  -->
 <!-- textlint-enable preset-ja-technical-writing/sentence-length -->
-<p>&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;&#x3001;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x958B;&#x59CB;&#x6642;&#x306B;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3078;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x305F;&#x3081;&#x3069;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x304B;&#x3089;&#x3082;&#x53C2;&#x7167;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p>ビルトインオブジェクトは、プログラム開始時にグローバルスコープへ自動的に定義されているためどのスコープからも参照できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// &#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;&#x5B9F;&#x884C;&#x74B0;&#x5883;&#x304C;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x5B9A;&#x7FA9;&#x3057;&#x3066;&#x3044;&#x308B;</span>
-<span class="hljs-comment">// &#x3069;&#x3053;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x304B;&#x3089;&#x53C2;&#x7167;&#x3057;&#x3066;&#x3082;ReferenceError&#x306B;&#x306F;&#x306A;&#x3089;&#x306A;&#x3044;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// ビルトインオブジェクトは実行環境が自動的に定義している</span>
+<span class="hljs-comment">// どこのスコープから参照してもReferenceErrorにはならない</span>
 <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">isNaN</span>); <span class="hljs-comment">// =&gt; isNaN</span>
 <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Array</span>); <span class="hljs-comment">// =&gt; Array</span>
 </code></pre>
-<p>&#x81EA;&#x5206;&#x3067;&#x5B9A;&#x7FA9;&#x3057;&#x305F;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x5909;&#x6570;&#x3068;&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x306F;&#x3001;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x5909;&#x6570;&#x304C;&#x512A;&#x5148;&#x3057;&#x3066;&#x53C2;&#x7167;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x3064;&#x307E;&#x308A;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3068;&#x540C;&#x3058;&#x540D;&#x524D;&#x306E;&#x5909;&#x6570;&#x3092;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x3068;&#x3001;&#x5B9A;&#x7FA9;&#x3057;&#x305F;&#x5909;&#x6570;&#x304C;&#x53C2;&#x7167;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p>自分で定義したグローバル変数とビルトインオブジェクトでは、グローバル変数が優先して参照されます。
+つまり次のようにビルトインオブジェクトと同じ名前の変数を定義すると、定義した変数が参照されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// &quot;Array&quot;&#x3068;&#x3044;&#x3046;&#x540D;&#x524D;&#x306E;&#x5909;&#x6570;&#x3092;&#x5B9A;&#x7FA9;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// &quot;Array&quot;という名前の変数を定義</span>
 <span class="hljs-keyword">const</span> <span class="hljs-built_in">Array</span> = <span class="hljs-number">1</span>;
-<span class="hljs-comment">// &#x81EA;&#x5206;&#x3067;&#x5B9A;&#x7FA9;&#x3057;&#x305F;&#x5909;&#x6570;&#x304C;&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3088;&#x308A;&#x512A;&#x5148;&#x3055;&#x308C;&#x308B;</span>
+<span class="hljs-comment">// 自分で定義した変数がビルトインオブジェクトより優先される</span>
 <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Array</span>); <span class="hljs-comment">// =&gt; 1</span>
 </code></pre>
-<p>&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3068;&#x540C;&#x3058;&#x540D;&#x524D;&#x306E;&#x5909;&#x6570;&#x3092;&#x5B9A;&#x7FA9;&#x3057;&#x305F;&#x3053;&#x3068;&#x306B;&#x3088;&#x308A;&#x3001;&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x53C2;&#x7167;&#x3067;&#x304D;&#x306A;&#x304F;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;&#x5185;&#x5074;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3067;&#x5916;&#x5074;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3068;&#x540C;&#x3058;&#x540D;&#x524D;&#x306E;&#x5909;&#x6570;&#x3092;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x3001;&#x5916;&#x5074;&#x306E;&#x5909;&#x6570;&#x304C;&#x53C2;&#x7167;&#x3067;&#x304D;&#x306A;&#x304F;&#x306A;&#x308B;&#x3053;&#x3068;&#x3092;<strong>&#x5909;&#x6570;&#x306E;&#x96A0;&#x853D;</strong>&#xFF08;shadowing&#xFF09;&#x3068;&#x547C;&#x3073;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x306E;&#x554F;&#x984C;&#x3092;&#x56DE;&#x907F;&#x3059;&#x308B;&#x65B9;&#x6CD5;&#x3068;&#x3057;&#x3066;&#x306F;&#x3001;&#x3080;&#x3084;&#x307F;&#x306B;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3078;&#x5909;&#x6570;&#x3092;&#x5B9A;&#x7FA9;&#x3057;&#x306A;&#x3044;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3067;&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3068;&#x540D;&#x524D;&#x304C;&#x885D;&#x7A81;&#x3059;&#x308B;&#x3068;&#x3059;&#x3079;&#x3066;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3078;&#x5F71;&#x97FF;&#x3092;&#x4E0E;&#x3048;&#x307E;&#x3059;&#x304C;&#x3001;&#x95A2;&#x6570;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x5185;&#x3067;&#x306F;&#x5F71;&#x97FF;&#x7BC4;&#x56F2;&#x304C;&#x305D;&#x306E;&#x95A2;&#x6570;&#x306E;&#x4E2D;&#x3060;&#x3051;&#x306B;&#x3068;&#x3069;&#x307E;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3068;&#x540C;&#x3058;&#x540D;&#x524D;&#x3092;&#x907F;&#x3051;&#x308B;&#x3053;&#x3068;&#x306F;&#x96E3;&#x3057;&#x3044;&#x3067;&#x3059;&#x3002;
-&#x306A;&#x305C;&#x306A;&#x3089;&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x306F;&#x5B9F;&#x884C;&#x74B0;&#x5883;&#xFF08;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3084;Node.js&#x306A;&#x3069;&#xFF09;&#x304C;&#x305D;&#x308C;&#x305E;&#x308C;&#x72EC;&#x81EA;&#x306B;&#x5B9A;&#x7FA9;&#x3057;&#x305F;&#x3082;&#x306E;&#x304C;&#x591A;&#x304F;&#x5B58;&#x5728;&#x3059;&#x308B;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;
-&#x95A2;&#x6570;&#x306A;&#x3069;&#x3092;&#x6D3B;&#x7528;&#x3057;&#x3066;&#x5C0F;&#x3055;&#x306A;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3092;&#x4E2D;&#x5FC3;&#x306B;&#x3057;&#x3066;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x3092;&#x66F8;&#x304F;&#x3053;&#x3068;&#x3067;&#x3001;&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3068;&#x540C;&#x3058;&#x540D;&#x524D;&#x306E;&#x5909;&#x6570;&#x304C;&#x3042;&#x3063;&#x3066;&#x3082;&#x5F71;&#x97FF;&#x7BC4;&#x56F2;&#x3092;&#x9650;&#x5B9A;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="reduce-scope"><a name="reduce-scope" class="plugin-anchor" href="#reduce-scope"><i class="fa fa-link" aria-hidden="true"></i></a>[&#x30B3;&#x30E9;&#x30E0;] &#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3067;&#x304D;&#x308B;&#x7BC4;&#x56F2;&#x3092;&#x5C0F;&#x3055;&#x304F;&#x3059;&#x308B; </h2>
-<p>&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x5909;&#x6570;&#x306B;&#x9650;&#x3089;&#x305A;&#x3001;&#x7279;&#x5B9A;&#x306E;&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3067;&#x304D;&#x308B;&#x7BC4;&#x56F2;&#x3092;&#x5C0F;&#x3055;&#x304F;&#x3059;&#x308B;&#x306E;&#x306F;&#x3088;&#x3044;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;
-&#x306A;&#x305C;&#x306A;&#x3089;&#x3001;&#x73FE;&#x5728;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;&#x3064;&#x3082;&#x308A;&#x304C;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3057;&#x305F;&#x308A;&#x3001;&#x305D;&#x306E;&#x9006;&#x3082;&#x8D77;&#x304D;&#x308B;&#x3053;&#x3068;&#x304C;&#x3042;&#x308B;&#x304B;&#x3089;&#x3067;&#x3059;&#x3002;
-&#x3042;&#x3089;&#x3086;&#x308B;&#x5909;&#x6570;&#x304C;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x3042;&#x308B;&#x3068;&#x3001;&#x3069;&#x3053;&#x3067;&#x305D;&#x306E;&#x5909;&#x6570;&#x304C;&#x53C2;&#x7167;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x306E;&#x304B;&#x3092;&#x628A;&#x63E1;&#x3067;&#x304D;&#x306A;&#x304F;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x308C;&#x3092;&#x907F;&#x3051;&#x308B;&#x30B7;&#x30F3;&#x30D7;&#x30EB;&#x306A;&#x8003;&#x3048;&#x65B9;&#x306F;&#x3001;&#x5909;&#x6570;&#x306F;&#x3067;&#x304D;&#x308B;&#x3060;&#x3051;&#x5229;&#x7528;&#x3059;&#x308B;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x5185;&#x306B;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x3068;&#x3044;&#x3046;&#x3082;&#x306E;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;<code>doHeavyTask</code>&#x95A2;&#x6570;&#x306E;&#x5B9F;&#x884C;&#x6642;&#x9593;&#x3092;&#x8A08;&#x6E2C;&#x3057;&#x3088;&#x3046;&#x3068;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-<code>Date.now</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x73FE;&#x5728;&#x306E;&#x6642;&#x523B;&#x3092;&#x30DF;&#x30EA;&#x79D2;&#x306B;&#x3057;&#x3066;&#x8FD4;&#x3059;&#x95A2;&#x6570;&#x3067;&#x3059;&#x3002;
-<code>Date.now</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x4F7F;&#x3063;&#x305F;<strong>&#x5B9F;&#x884C;&#x5F8C;&#x306E;&#x6642;&#x523B;</strong>&#x304B;&#x3089;<strong>&#x5B9F;&#x884C;&#x524D;&#x306E;&#x6642;&#x523B;</strong>&#x3092;&#x5F15;&#x304F;&#x3053;&#x3068;&#x3067;&#x3001;&#x9593;&#x306B;&#x884C;&#x308F;&#x308C;&#x305F;&#x51E6;&#x7406;&#x306E;&#x5B9F;&#x884C;&#x6642;&#x9593;&#x304C;&#x5F97;&#x3089;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p>ビルトインオブジェクトと同じ名前の変数を定義したことにより、ビルトインオブジェクトを参照できなくなります。
+このように内側のスコープで外側のスコープと同じ名前の変数を定義することで、外側の変数が参照できなくなることを<strong>変数の隠蔽</strong>（shadowing）と呼びます。</p>
+<p>この問題を回避する方法としては、むやみにグローバルスコープへ変数を定義しないことです。グローバルスコープでビルトインオブジェクトと名前が衝突するとすべてのスコープへ影響を与えますが、関数のスコープ内では影響範囲がその関数の中だけにとどまります。</p>
+<p>ビルトインオブジェクトと同じ名前を避けることは難しいです。
+なぜならビルトインオブジェクトには実行環境（ブラウザやNode.jsなど）がそれぞれ独自に定義したものが多く存在するためです。
+関数などを活用して小さなスコープを中心にしてプログラムを書くことで、ビルトインオブジェクトと同じ名前の変数があっても影響範囲を限定できます。</p>
+<h2 id="reduce-scope"><a name="reduce-scope" class="plugin-anchor" href="#reduce-scope"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] 変数を参照できる範囲を小さくする </h2>
+<p>グローバル変数に限らず、特定の変数を参照できる範囲を小さくするのはよいことです。
+なぜなら、現在のスコープの変数を参照するつもりがグローバル変数を参照したり、その逆も起きることがあるからです。
+あらゆる変数がグローバルスコープにあると、どこでその変数が参照されているのかを把握できなくなります。
+これを避けるシンプルな考え方は、変数はできるだけ利用するスコープ内に定義するというものです。</p>
+<p>次のコードでは、<code>doHeavyTask</code>関数の実行時間を計測しようとしています。
+<code>Date.now</code>メソッドは現在の時刻をミリ秒にして返す関数です。
+<code>Date.now</code>メソッドを使った<strong>実行後の時刻</strong>から<strong>実行前の時刻</strong>を引くことで、間に行われた処理の実行時間が得られます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doHeavyTask</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-comment">// &#x8A08;&#x6E2C;&#x3057;&#x305F;&#x3044;&#x51E6;&#x7406;</span>
+    <span class="hljs-comment">// 計測したい処理</span>
 }
 <span class="hljs-keyword">const</span> startTime = <span class="hljs-built_in">Date</span>.now();
 doHeavyTask();
 <span class="hljs-keyword">const</span> endTime = <span class="hljs-built_in">Date</span>.now();
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`&#x5B9F;&#x884C;&#x6642;&#x9593;&#x306F;<span class="hljs-subst">${endTime - startTime}</span>&#x30DF;&#x30EA;&#x79D2;`</span>);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`実行時間は<span class="hljs-subst">${endTime - startTime}</span>ミリ秒`</span>);
 </code></pre>
-<p>&#x3053;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;&#x8A08;&#x6E2C;&#x51E6;&#x7406;&#x4EE5;&#x5916;&#x3067;&#x5229;&#x7528;&#x3057;&#x306A;&#x3044;<code>startTime</code>&#x3068;<code>endTime</code>&#x3068;&#x3044;&#x3046;&#x5909;&#x6570;&#x304C;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x5168;&#x4F53;&#x304C;&#x77ED;&#x3044;&#x5834;&#x5408;&#x306F;&#x3042;&#x307E;&#x308A;&#x554F;&#x984C;&#x306B;&#x306A;&#x308A;&#x307E;&#x305B;&#x3093;&#x304C;&#x3001;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30E0;&#x304C;&#x9577;&#x304F;&#x306A;&#x3063;&#x3066;&#x3044;&#x304F;&#x306B;&#x3064;&#x308C;&#x5F71;&#x97FF;&#x306E;&#x7BC4;&#x56F2;&#x304C;&#x5E83;&#x304C;&#x3063;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;2&#x3064;&#x306E;&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3067;&#x304D;&#x308B;&#x7BC4;&#x56F2;&#x3092;&#x5C0F;&#x3055;&#x304F;&#x3059;&#x308B;&#x7C21;&#x5358;&#x306A;&#x65B9;&#x6CD5;&#x306F;&#x3001;&#x3053;&#x306E;&#x5B9F;&#x884C;&#x6642;&#x9593;&#x3092;&#x8A08;&#x6E2C;&#x3059;&#x308B;&#x51E6;&#x7406;&#x3092;&#x95A2;&#x6570;&#x306B;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;</p>
+<p>このコードでは、計測処理以外で利用しない<code>startTime</code>と<code>endTime</code>という変数がグローバルスコープに定義されています。
+プログラム全体が短い場合はあまり問題になりませんが、プログラムが長くなっていくにつれ影響の範囲が広がっていきます。
+この2つの変数を参照できる範囲を小さくする簡単な方法は、この実行時間を計測する処理を関数にすることです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// &#x5B9F;&#x884C;&#x6642;&#x9593;&#x3092;&#x8A08;&#x6E2C;&#x3057;&#x305F;&#x3044;&#x95A2;&#x6570;&#x3092;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x3068;&#x3057;&#x3066;&#x5F15;&#x6570;&#x306B;&#x6E21;&#x3059;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// 実行時間を計測したい関数をコールバック関数として引数に渡す</span>
 <span class="hljs-keyword">const</span> measureTask = <span class="hljs-function">(<span class="hljs-params">taskFn</span>) =&gt;</span> {
     <span class="hljs-keyword">const</span> startTime = <span class="hljs-built_in">Date</span>.now();
     taskFn();
     <span class="hljs-keyword">const</span> endTime = <span class="hljs-built_in">Date</span>.now();
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`&#x5B9F;&#x884C;&#x6642;&#x9593;&#x306F;<span class="hljs-subst">${endTime - startTime}</span>&#x30DF;&#x30EA;&#x79D2;`</span>);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`実行時間は<span class="hljs-subst">${endTime - startTime}</span>ミリ秒`</span>);
 };
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doHeavyTask</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-comment">// &#x8A08;&#x6E2C;&#x3057;&#x305F;&#x3044;&#x51E6;&#x7406;</span>
+    <span class="hljs-comment">// 計測したい処理</span>
 }
 measureTask(doHeavyTask);
 </code></pre>
-<p>&#x3053;&#x308C;&#x306B;&#x3088;&#x308A;&#x3001;<code>startTime</code>&#x3068;<code>endTime</code>&#x3068;&#x3044;&#x3046;&#x5909;&#x6570;&#x3092;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x304B;&#x3089;&#x306A;&#x304F;&#x305B;&#x307E;&#x3057;&#x305F;&#x3002;
-&#x307E;&#x305F;&#x3001;&#x5B9F;&#x884C;&#x6642;&#x9593;&#x3092;&#x8A08;&#x6E2C;&#x3059;&#x308B;&#x3068;&#x3044;&#x3046;&#x51E6;&#x7406;&#x3092;<code>measureTask</code>&#x3068;&#x3044;&#x3046;&#x95A2;&#x6570;&#x306B;&#x3057;&#x305F;&#x3053;&#x3068;&#x3067;&#x518D;&#x5229;&#x7528;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x30B3;&#x30FC;&#x30C9;&#x306E;&#x91CF;&#x304C;&#x5897;&#x3048;&#x3066;&#x3044;&#x304F;&#x306B;&#x3064;&#x308C;&#x3001;&#x4EBA;&#x304C;&#x4E00;&#x5EA6;&#x306B;&#x628A;&#x63E1;&#x3067;&#x304D;&#x308B;&#x91CF;&#x306B;&#x3082;&#x9650;&#x754C;&#x304C;&#x3084;&#x3063;&#x3066;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x4EBA;&#x304C;&#x4E00;&#x5EA6;&#x306B;&#x628A;&#x63E1;&#x3067;&#x304D;&#x308B;&#x7BC4;&#x56F2;&#x306E;&#x30B5;&#x30A4;&#x30BA;&#x306B;&#x51E6;&#x7406;&#x3092;&#x307E;&#x3068;&#x3081;&#x3066;&#x3044;&#x304F;&#x3053;&#x3068;&#x304C;&#x5FC5;&#x8981;&#x3067;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x554F;&#x984C;&#x3092;&#x89E3;&#x6C7A;&#x3059;&#x308B;&#x30A2;&#x30D7;&#x30ED;&#x30FC;&#x30C1;&#x3068;&#x3057;&#x3066;&#x3001;&#x5909;&#x6570;&#x306E;&#x53C2;&#x7167;&#x3067;&#x304D;&#x308B;&#x7BC4;&#x56F2;&#x3092;&#x5C0F;&#x3055;&#x304F;&#x3059;&#x308B;&#x3053;&#x3068;&#x3084;&#x51E6;&#x7406;&#x3092;&#x95A2;&#x6570;&#x306B;&#x307E;&#x3068;&#x3081;&#x308B;&#x3068;&#x3044;&#x3046;&#x624B;&#x6CD5;&#x304C;&#x3088;&#x304F;&#x5229;&#x7528;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="hoisting-var"><a name="hoisting-var" class="plugin-anchor" href="#hoisting-var"><i class="fa fa-link" aria-hidden="true"></i></a>&#x95A2;&#x6570;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3068;var&#x306E;&#x5DFB;&#x304D;&#x4E0A;&#x3052; </h2>
+<p>これにより、<code>startTime</code>と<code>endTime</code>という変数をグローバルスコープからなくせました。
+また、実行時間を計測するという処理を<code>measureTask</code>という関数にしたことで再利用できます。</p>
+<p>コードの量が増えていくにつれ、人が一度に把握できる量にも限界がやってきます。
+そのため、人が一度に把握できる範囲のサイズに処理をまとめていくことが必要です。
+この問題を解決するアプローチとして、変数の参照できる範囲を小さくすることや処理を関数にまとめるという手法がよく利用されます。</p>
+<h2 id="hoisting-var"><a name="hoisting-var" class="plugin-anchor" href="#hoisting-var"><i class="fa fa-link" aria-hidden="true"></i></a>関数スコープとvarの巻き上げ </h2>
 <!-- textlint-disable eslint -->
-<p>&#x5909;&#x6570;&#x5BA3;&#x8A00;&#x306B;&#x306F;<code>var</code>&#x3001;<code>let</code>&#x3001;<code>const</code>&#x304C;&#x5229;&#x7528;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x300C;<a href="../variables/">&#x5909;&#x6570;&#x3068;&#x5BA3;&#x8A00;</a>&#x300D;&#x306E;&#x7AE0;&#x306B;&#x304A;&#x3044;&#x3066;&#x3001;&#x300C;<code>let</code>&#x306F;<code>var</code>&#x3092;&#x6539;&#x5584;&#x3057;&#x305F;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x300D;&#x3068;&#x7D39;&#x4ECB;&#x3057;&#x305F;&#x3088;&#x3046;&#x306B;&#x3001;<code>let</code>&#x306F;<code>var</code>&#x3092;&#x6539;&#x5584;&#x3059;&#x308B;&#x76EE;&#x7684;&#x3067;&#x5C0E;&#x5165;&#x3055;&#x308C;&#x305F;&#x69CB;&#x6587;&#x3067;&#x3059;&#x3002;<code>const</code>&#x306F;&#x518D;&#x4EE3;&#x5165;&#x3067;&#x304D;&#x306A;&#x3044;&#x3068;&#x3044;&#x3046;&#x70B9;&#x4EE5;&#x5916;&#x306F;<code>let</code>&#x3068;&#x540C;&#x3058;&#x52D5;&#x4F5C;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;<code>let</code>&#x304C;&#x4F7F;&#x3048;&#x308B;&#x5834;&#x5408;&#x306B;<code>var</code>&#x3092;&#x4F7F;&#x3046;&#x7406;&#x7531;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x304C;&#x3001;&#x65E2;&#x5B58;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3084;&#x65E2;&#x5B58;&#x306E;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306A;&#x3069;&#x3067;&#x306F;<code>var</code>&#x304C;&#x5229;&#x7528;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x5834;&#x9762;&#x3082;&#x3042;&#x308B;&#x305F;&#x3081;&#x3001;<code>var</code>&#x306E;&#x52D5;&#x4F5C;&#x3092;&#x7406;&#x89E3;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x307E;&#x305A;&#x6700;&#x521D;&#x306B;&#x3001;<code>let</code>&#x3068;<code>var</code>&#x3067;&#x5171;&#x901A;&#x3059;&#x308B;&#x52D5;&#x4F5C;&#x3092;&#x898B;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;
-<code>let</code>&#x3068;<code>var</code>&#x3069;&#x3061;&#x3089;&#x3082;&#x3001;&#x521D;&#x671F;&#x5024;&#x3092;&#x6307;&#x5B9A;&#x305B;&#x305A;&#x306B;&#x5BA3;&#x8A00;&#x3057;&#x305F;&#x5909;&#x6570;&#x306E;&#x8A55;&#x4FA1;&#x7D50;&#x679C;&#x306F;&#x6697;&#x9ED9;&#x7684;&#x306B;<code>undefined</code>&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x3001;<code>let</code>&#x3068;<code>var</code>&#x3069;&#x3061;&#x3089;&#x3082;&#x3001;&#x5909;&#x6570;&#x5BA3;&#x8A00;&#x3092;&#x3057;&#x305F;&#x5F8C;&#x306B;&#x5024;&#x3092;&#x4EE3;&#x5165;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;&#x305D;&#x308C;&#x305E;&#x308C;&#x521D;&#x671F;&#x5024;&#x3092;&#x6301;&#x305F;&#x306A;&#x3044;&#x5909;&#x6570;&#x3092;<strong>&#x5BA3;&#x8A00;&#x3057;&#x305F;&#x5F8C;</strong>&#x306B;&#x53C2;&#x7167;&#x3059;&#x308B;&#x3068;&#x3001;&#x5909;&#x6570;&#x306E;&#x8A55;&#x4FA1;&#x7D50;&#x679C;&#x306F;<code>undefined</code>&#x3068;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>変数宣言には<code>var</code>、<code>let</code>、<code>const</code>が利用できます。
+「<a href="../variables/">変数と宣言</a>」の章において、「<code>let</code>は<code>var</code>を改善したバージョン」と紹介したように、<code>let</code>は<code>var</code>を改善する目的で導入された構文です。<code>const</code>は再代入できないという点以外は<code>let</code>と同じ動作になります。そのため、<code>let</code>が使える場合に<code>var</code>を使う理由はありませんが、既存のコードや既存のライブラリなどでは<code>var</code>が利用されている場面もあるため、<code>var</code>の動作を理解する必要があります。</p>
+<p>まず最初に、<code>let</code>と<code>var</code>で共通する動作を見ていきます。
+<code>let</code>と<code>var</code>どちらも、初期値を指定せずに宣言した変数の評価結果は暗黙的に<code>undefined</code>になります。
+また、<code>let</code>と<code>var</code>どちらも、変数宣言をした後に値を代入できます。</p>
+<p>次のコードでは、それぞれ初期値を持たない変数を<strong>宣言した後</strong>に参照すると、変数の評価結果は<code>undefined</code>となっています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">let</span> let_x;
 <span class="hljs-keyword">var</span> var_x;
-<span class="hljs-comment">// &#x5BA3;&#x8A00;&#x5F8C;&#x306B;&#x305D;&#x308C;&#x305E;&#x308C;&#x306E;&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;&#x3068;`undefined`&#x3068;&#x306A;&#x308B;</span>
+<span class="hljs-comment">// 宣言後にそれぞれの変数を参照すると`undefined`となる</span>
 <span class="hljs-built_in">console</span>.log(let_x); <span class="hljs-comment">// =&gt; undefined</span>
 <span class="hljs-built_in">console</span>.log(var_x); <span class="hljs-comment">// =&gt; undefined</span>
-<span class="hljs-comment">// &#x5BA3;&#x8A00;&#x5F8C;&#x306B;&#x5024;&#x3092;&#x4EE3;&#x5165;&#x3067;&#x304D;&#x308B;</span>
-let_x = <span class="hljs-string">&quot;let&#x306E;x&quot;</span>;
-var_x = <span class="hljs-string">&quot;var&#x306E;x&quot;</span>;
+<span class="hljs-comment">// 宣言後に値を代入できる</span>
+let_x = <span class="hljs-string">&quot;letのx&quot;</span>;
+var_x = <span class="hljs-string">&quot;varのx&quot;</span>;
 </code></pre>
-<p>&#x6B21;&#x306B;&#x3001;<code>let</code>&#x3068;<code>var</code>&#x3067;&#x7570;&#x306A;&#x308B;&#x52D5;&#x4F5C;&#x3092;&#x898B;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p><code>let</code>&#x3067;&#x306F;&#x3001;&#x5909;&#x6570;&#x3092;<strong>&#x5BA3;&#x8A00;&#x3059;&#x308B;&#x524D;</strong>&#x306B;&#x305D;&#x306E;&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;&#x3068;<code>ReferenceError</code>&#x306E;&#x4F8B;&#x5916;&#x304C;&#x767A;&#x751F;&#x3057;&#x3066;&#x53C2;&#x7167;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;&#x5909;&#x6570;&#x3092;&#x5BA3;&#x8A00;&#x3059;&#x308B;&#x524D;&#x306B;&#x3001;&#x5909;&#x6570;<code>x</code>&#x3092;&#x53C2;&#x7167;&#x3057;&#x305F;&#x305F;&#x3081;<code>ReferenceError</code>&#x3068;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x30A8;&#x30E9;&#x30FC;&#x30E1;&#x30C3;&#x30BB;&#x30FC;&#x30B8;&#x304B;&#x3089;&#x3001;&#x5909;&#x6570;<code>x</code>&#x304C;&#x5B58;&#x5728;&#x3057;&#x306A;&#x3044;&#x304B;&#x3089;&#x30A8;&#x30E9;&#x30FC;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;&#x306E;&#x3067;&#x306F;&#x306A;&#x304F;&#x3001;&#x5B9F;&#x969B;&#x306B;&#x5BA3;&#x8A00;&#x3057;&#x305F;&#x884C;&#x3088;&#x308A;&#x524D;&#x306B;&#x53C2;&#x7167;&#x3057;&#x305F;&#x305F;&#x3081;&#x30A8;&#x30E9;&#x30FC;&#x3068;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;&#x306E;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3059;&#x3002;<sup><a href="#fn_1" id="reffn_1">1</a></sup></p>
+<p>次に、<code>let</code>と<code>var</code>で異なる動作を見ていきます。</p>
+<p><code>let</code>では、変数を<strong>宣言する前</strong>にその変数を参照すると<code>ReferenceError</code>の例外が発生して参照できません。
+次のコードでは、変数を宣言する前に、変数<code>x</code>を参照したため<code>ReferenceError</code>となっています。
+エラーメッセージから、変数<code>x</code>が存在しないからエラーになっているのではなく、実際に宣言した行より前に参照したためエラーとなっているのがわかります。<sup><a href="#fn_1" id="reffn_1">1</a></sup></p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; ReferenceError: can&apos;t access lexical declaration `x&apos; before initialization</span>
-<span class="hljs-keyword">let</span> x = <span class="hljs-string">&quot;let&#x306E;x&quot;</span>;
+<span class="hljs-keyword">let</span> x = <span class="hljs-string">&quot;letのx&quot;</span>;
 </code></pre>
-<p>&#x4E00;&#x65B9;<code>var</code>&#x3067;&#x306F;&#x3001;&#x5909;&#x6570;&#x3092;<strong>&#x5BA3;&#x8A00;&#x3059;&#x308B;&#x524D;</strong>&#x306B;&#x305D;&#x306E;&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x3082;<code>undefined</code>&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x3001;&#x5909;&#x6570;&#x3092;&#x5BA3;&#x8A00;&#x3059;&#x308B;&#x524D;&#x306B;&#x53C2;&#x7167;&#x3057;&#x3066;&#x3044;&#x308B;&#x306B;&#x3082;&#x304B;&#x304B;&#x308F;&#x3089;&#x305A;&#x30A8;&#x30E9;&#x30FC;&#x306B;&#x306F;&#x306A;&#x3089;&#x305A;&#x3001;&#x5909;&#x6570;<code>x</code>&#x306E;&#x8A55;&#x4FA1;&#x7D50;&#x679C;&#x306F;<code>undefined</code>&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>一方<code>var</code>では、変数を<strong>宣言する前</strong>にその変数を参照しても<code>undefined</code>となります。
+次のコードは、変数を宣言する前に参照しているにもかかわらずエラーにはならず、変数<code>x</code>の評価結果は<code>undefined</code>となります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// var&#x5BA3;&#x8A00;&#x3088;&#x308A;&#x524D;&#x306B;&#x53C2;&#x7167;&#x3057;&#x3066;&#x3082;&#x30A8;&#x30E9;&#x30FC;&#x306B;&#x306A;&#x3089;&#x306A;&#x3044;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// var宣言より前に参照してもエラーにならない</span>
 <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; undefined</span>
-<span class="hljs-keyword">var</span> x = <span class="hljs-string">&quot;var&#x306E;x&quot;</span>;
+<span class="hljs-keyword">var</span> x = <span class="hljs-string">&quot;varのx&quot;</span>;
 </code></pre>
-<p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;<code>var</code>&#x3067;&#x5BA3;&#x8A00;&#x3055;&#x308C;&#x305F;&#x5909;&#x6570;&#x304C;&#x5BA3;&#x8A00;&#x524D;&#x306B;&#x53C2;&#x7167;&#x3067;&#x304D;&#x3001;&#x305D;&#x306E;&#x5024;&#x304C;<code>undefined</code>&#x3068;&#x306A;&#x308B;&#x7279;&#x6B8A;&#x306A;&#x52D5;&#x304D;&#x3092;&#x3057;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x306E;<code>var</code>&#x306E;&#x632F;&#x308B;&#x821E;&#x3044;&#x3092;&#x7406;&#x89E3;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x3001;&#x5909;&#x6570;&#x5BA3;&#x8A00;&#x304C;<strong>&#x5BA3;&#x8A00;</strong>&#x3068;<strong>&#x4EE3;&#x5165;</strong>&#x306E;2&#x3064;&#x306E;&#x90E8;&#x5206;&#x304B;&#x3089;&#x69CB;&#x6210;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x3068;&#x8003;&#x3048;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;
-<code>var</code>&#x306B;&#x3088;&#x308B;&#x5909;&#x6570;&#x5BA3;&#x8A00;&#x306F;&#x3001;<strong>&#x5BA3;&#x8A00;</strong>&#x90E8;&#x5206;&#x304C;&#x6697;&#x9ED9;&#x7684;&#x306B;&#x3082;&#x3063;&#x3068;&#x3082;&#x8FD1;&#x3044;&#x95A2;&#x6570;&#x307E;&#x305F;&#x306F;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x5148;&#x982D;&#x306B;&#x5DFB;&#x304D;&#x4E0A;&#x3052;&#x3089;&#x308C;&#x3001;<strong>&#x4EE3;&#x5165;</strong>&#x90E8;&#x5206;&#x306F;&#x305D;&#x306E;&#x307E;&#x307E;&#x306E;&#x4F4D;&#x7F6E;&#x306B;&#x6B8B;&#x308B;&#x3068;&#x3044;&#x3046;&#x7279;&#x6B8A;&#x306A;&#x52D5;&#x4F5C;&#x3092;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x306E;&#x52D5;&#x4F5C;&#x306B;&#x3088;&#x308A;&#x3001;&#x5909;&#x6570;<code>x</code>&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;&#x30B3;&#x30FC;&#x30C9;&#x3088;&#x308A;&#x524D;&#x306B;&#x5909;&#x6570;<code>x</code>&#x306E;&#x5BA3;&#x8A00;&#x90E8;&#x5206;&#x304C;&#x79FB;&#x52D5;&#x3057;&#x3001;&#x5909;&#x6570;<code>x</code>&#x306E;&#x8A55;&#x4FA1;&#x7D50;&#x679C;&#x306F;&#x6697;&#x9ED9;&#x7684;&#x306B;<code>undefined</code>&#x3068;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3064;&#x307E;&#x308A;&#x3001;&#x5148;&#x307B;&#x3069;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x5B9F;&#x969B;&#x306E;&#x5B9F;&#x884C;&#x6642;&#x306B;&#x306F;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x89E3;&#x91C8;&#x3055;&#x308C;&#x3066;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x3068;&#x8003;&#x3048;&#x3089;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p>このように<code>var</code>で宣言された変数が宣言前に参照でき、その値が<code>undefined</code>となる特殊な動きをしていることがわかります。</p>
+<p>この<code>var</code>の振る舞いを理解するために、変数宣言が<strong>宣言</strong>と<strong>代入</strong>の2つの部分から構成されていると考えてみましょう。
+<code>var</code>による変数宣言は、<strong>宣言</strong>部分が暗黙的にもっとも近い関数またはグローバルスコープの先頭に巻き上げられ、<strong>代入</strong>部分はそのままの位置に残るという特殊な動作をします。</p>
+<p>この動作により、変数<code>x</code>を参照するコードより前に変数<code>x</code>の宣言部分が移動し、変数<code>x</code>の評価結果は暗黙的に<code>undefined</code>となっています。
+つまり、先ほどのコードは実際の実行時には、次のように解釈されて実行されていると考えられます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// &#x89E3;&#x91C8;&#x3055;&#x308C;&#x305F;&#x30B3;&#x30FC;&#x30C9;</span>
-<span class="hljs-comment">// &#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x5148;&#x982D;&#x306B;&#x5BA3;&#x8A00;&#x90E8;&#x5206;&#x304C;&#x5DFB;&#x304D;&#x4E0A;&#x3052;&#x3089;&#x308C;&#x308B;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// 解釈されたコード</span>
+<span class="hljs-comment">// スコープの先頭に宣言部分が巻き上げられる</span>
 <span class="hljs-keyword">var</span> x;
 <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; undefined</span>
-<span class="hljs-comment">// &#x5909;&#x6570;&#x3078;&#x306E;&#x4EE3;&#x5165;&#x306F;&#x305D;&#x306E;&#x307E;&#x307E;&#x306E;&#x4F4D;&#x7F6E;&#x306B;&#x6B8B;&#x308B;</span>
-x = <span class="hljs-string">&quot;var&#x306E;x&quot;</span>;
-<span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; &quot;var&#x306E;x&quot;</span>
+<span class="hljs-comment">// 変数への代入はそのままの位置に残る</span>
+x = <span class="hljs-string">&quot;varのx&quot;</span>;
+<span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; &quot;varのx&quot;</span>
 </code></pre>
-<p>&#x3055;&#x3089;&#x306B;&#x3001;<code>var</code>&#x5909;&#x6570;&#x306E;&#x5BA3;&#x8A00;&#x306E;&#x5DFB;&#x304D;&#x4E0A;&#x3052;&#x306F;&#x3001;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3092;&#x7121;&#x8996;&#x3057;&#x3066;&#x3082;&#x3063;&#x3068;&#x3082;&#x8FD1;&#x3044;&#x95A2;&#x6570;&#x307E;&#x305F;&#x306F;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x5909;&#x6570;&#x3092;&#x3072;&#x3082;&#x3065;&#x3051;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x30D6;&#x30ED;&#x30C3;&#x30AF;<code>{}</code>&#x3067;<code>var</code>&#x306B;&#x3088;&#x308B;&#x5909;&#x6570;&#x5BA3;&#x8A00;&#x3092;&#x56F2;&#x3093;&#x3067;&#x3082;&#x3001;&#x3082;&#x3063;&#x3068;&#x3082;&#x8FD1;&#x3044;&#x95A2;&#x6570;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3067;&#x3042;&#x308B;<code>fn</code>&#x95A2;&#x6570;&#x306E;&#x76F4;&#x4E0B;&#x306B;<strong>&#x5BA3;&#x8A00;</strong>&#x90E8;&#x5206;&#x304C;&#x5DFB;&#x304D;&#x4E0A;&#x3052;&#x3089;&#x308C;&#x307E;&#x3059;
-&#xFF08;if&#x6587;&#x3084;for&#x6587;&#x306B;&#x304A;&#x3051;&#x308B;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3082;&#x540C;&#x69D8;&#x306B;&#x7121;&#x8996;&#x3055;&#x308C;&#x307E;&#x3059;&#xFF09;&#x3002;</p>
+<p>さらに、<code>var</code>変数の宣言の巻き上げは、ブロックスコープを無視してもっとも近い関数またはグローバルスコープに変数をひもづけます。
+そのため、次のようにブロック<code>{}</code>で<code>var</code>による変数宣言を囲んでも、もっとも近い関数スコープである<code>fn</code>関数の直下に<strong>宣言</strong>部分が巻き上げられます
+（if文やfor文におけるブロックスコープも同様に無視されます）。</p>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-comment">// &#x5185;&#x5074;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x3042;&#x308B;&#x306F;&#x305A;&#x306E;&#x5909;&#x6570;`x`&#x304C;&#x53C2;&#x7167;&#x3067;&#x304D;&#x308B;</span>
+    <span class="hljs-comment">// 内側のスコープにあるはずの変数`x`が参照できる</span>
     <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; undefined</span>
     {
-        <span class="hljs-keyword">var</span> x = <span class="hljs-string">&quot;var&#x306E;x&quot;</span>;
+        <span class="hljs-keyword">var</span> x = <span class="hljs-string">&quot;varのx&quot;</span>;
     }
-    <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; &quot;var&#x306E;x&quot;</span>
+    <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; &quot;varのx&quot;</span>
 }
 fn();
 </code></pre>
-<p>&#x3064;&#x307E;&#x308A;&#x3001;&#x5148;&#x307B;&#x3069;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x5B9F;&#x969B;&#x306E;&#x5B9F;&#x884C;&#x6642;&#x306B;&#x306F;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x89E3;&#x91C8;&#x3055;&#x308C;&#x3066;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x3068;&#x8003;&#x3048;&#x3089;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p>つまり、先ほどのコードは実際の実行時には、次のように解釈されて実行されていると考えられます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// &#x89E3;&#x91C8;&#x3055;&#x308C;&#x305F;&#x30B3;&#x30FC;&#x30C9;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// 解釈されたコード</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-comment">// &#x3082;&#x3063;&#x3068;&#x3082;&#x8FD1;&#x3044;&#x95A2;&#x6570;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x5148;&#x982D;&#x306B;&#x5BA3;&#x8A00;&#x90E8;&#x5206;&#x304C;&#x5DFB;&#x304D;&#x4E0A;&#x3052;&#x3089;&#x308C;&#x308B;</span>
+    <span class="hljs-comment">// もっとも近い関数スコープの先頭に宣言部分が巻き上げられる</span>
     <span class="hljs-keyword">var</span> x;
     <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; undefined</span>
     {
-        <span class="hljs-comment">// &#x5909;&#x6570;&#x3078;&#x306E;&#x4EE3;&#x5165;&#x306F;&#x305D;&#x306E;&#x307E;&#x307E;&#x306E;&#x4F4D;&#x7F6E;&#x306B;&#x6B8B;&#x308B;</span>
-        x = <span class="hljs-string">&quot;var&#x306E;x&quot;</span>;
+        <span class="hljs-comment">// 変数への代入はそのままの位置に残る</span>
+        x = <span class="hljs-string">&quot;varのx&quot;</span>;
     }
-    <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; &quot;var&#x306E;x&quot;</span>
+    <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; &quot;varのx&quot;</span>
 }
 fn();
 </code></pre>
-<p>&#x3053;&#x306E;&#x5909;&#x6570;&#x306E;<strong>&#x5BA3;&#x8A00;</strong>&#x90E8;&#x5206;&#x304C;&#x3082;&#x3063;&#x3068;&#x3082;&#x8FD1;&#x3044;&#x95A2;&#x6570;&#x307E;&#x305F;&#x306F;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x5148;&#x982D;&#x306B;&#x79FB;&#x52D5;&#x3057;&#x3066;&#x3044;&#x308B;&#x3088;&#x3046;&#x306B;&#x898B;&#x3048;&#x308B;&#x52D5;&#x4F5C;&#x306E;&#x3053;&#x3068;&#x3092;&#x5909;&#x6570;&#x306E;<strong>&#x5DFB;&#x304D;&#x4E0A;&#x3052;</strong>&#xFF08;hoisting&#xFF09;&#x3068;&#x547C;&#x3073;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;<code>var</code>&#x306F;<code>let</code>&#x3001;<code>const</code>&#x3068;&#x306F;&#x7570;&#x306A;&#x3063;&#x305F;&#x52D5;&#x4F5C;&#x3092;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-<code>var</code>&#x306F;&#x5DFB;&#x304D;&#x4E0A;&#x3052;&#x306B;&#x3088;&#x308A;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3092;&#x7121;&#x8996;&#x3057;&#x3066;&#x3001;&#x5BA3;&#x8A00;&#x90E8;&#x5206;&#x3092;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x95A2;&#x6570;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x5148;&#x982D;&#x306B;&#x79FB;&#x52D5;&#x3059;&#x308B;&#x3068;&#x3044;&#x3046;&#x4E88;&#x6E2C;&#x3057;&#x306B;&#x304F;&#x3044;&#x554F;&#x984C;&#x3092;&#x6301;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x554F;&#x984C;&#x306E;&#x3082;&#x3063;&#x3068;&#x3082;&#x7C21;&#x5358;&#x306A;&#x56DE;&#x907F;&#x65B9;&#x6CD5;&#x306F;<code>var</code>&#x3092;&#x4F7F;&#x308F;&#x306A;&#x3044;&#x3053;&#x3068;&#x3067;&#x3059;&#x304C;&#x3001;<code>var</code>&#x3092;&#x542B;&#x3093;&#x3060;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3053;&#x306E;&#x52D5;&#x4F5C;&#x306B;&#x6C17;&#x3092;&#x3064;&#x3051;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>この変数の<strong>宣言</strong>部分がもっとも近い関数またはグローバルスコープの先頭に移動しているように見える動作のことを変数の<strong>巻き上げ</strong>（hoisting）と呼びます。</p>
+<p>このように<code>var</code>は<code>let</code>、<code>const</code>とは異なった動作をしています。
+<code>var</code>は巻き上げによりブロックスコープを無視して、宣言部分を自動的に関数スコープの先頭に移動するという予測しにくい問題を持っています。
+この問題のもっとも簡単な回避方法は<code>var</code>を使わないことですが、<code>var</code>を含んだコードではこの動作に気をつける必要があります。</p>
 <!-- textlint-enable eslint -->
-<h2 id="function-declaration-hoisting"><a name="function-declaration-hoisting" class="plugin-anchor" href="#function-declaration-hoisting"><i class="fa fa-link" aria-hidden="true"></i></a>&#x95A2;&#x6570;&#x5BA3;&#x8A00;&#x3068;&#x5DFB;&#x304D;&#x4E0A;&#x3052; </h2>
+<h2 id="function-declaration-hoisting"><a name="function-declaration-hoisting" class="plugin-anchor" href="#function-declaration-hoisting"><i class="fa fa-link" aria-hidden="true"></i></a>関数宣言と巻き上げ </h2>
 <!-- textlint-disable eslint -->
-<p><code>function</code>&#x30AD;&#x30FC;&#x30EF;&#x30FC;&#x30C9;&#x3092;&#x4F7F;&#x3063;&#x305F;&#x95A2;&#x6570;&#x5BA3;&#x8A00;&#x3082;<code>var</code>&#x3068;&#x540C;&#x69D8;&#x306B;&#x3001;&#x3082;&#x3063;&#x3068;&#x3082;&#x8FD1;&#x3044;&#x95A2;&#x6570;&#x307E;&#x305F;&#x306F;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x5148;&#x982D;&#x306B;<strong>&#x5DFB;&#x304D;&#x4E0A;&#x3052;</strong>&#x3089;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;&#x5B9F;&#x969B;&#x306B;<code>hello</code>&#x95A2;&#x6570;&#x3092;&#x5BA3;&#x8A00;&#x3057;&#x305F;&#x884C;&#x3088;&#x308A;&#x524D;&#x306B;&#x95A2;&#x6570;&#x3092;&#x547C;&#x3073;&#x51FA;&#x305B;&#x307E;&#x3059;&#x3002;</p>
+<p><code>function</code>キーワードを使った関数宣言も<code>var</code>と同様に、もっとも近い関数またはグローバルスコープの先頭に<strong>巻き上げ</strong>られます。
+次のコードでは、実際に<code>hello</code>関数を宣言した行より前に関数を呼び出せます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// `hello`&#x95A2;&#x6570;&#x306E;&#x5BA3;&#x8A00;&#x3088;&#x308A;&#x524D;&#x306B;&#x547C;&#x3073;&#x51FA;&#x305B;&#x308B;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// `hello`関数の宣言より前に呼び出せる</span>
 hello(); <span class="hljs-comment">// =&gt; &quot;Hello&quot;</span>
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hello</span>(<span class="hljs-params"></span>)</span>{
     <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello&quot;</span>;
 }
 </code></pre>
-<p>&#x3053;&#x308C;&#x306F;&#x3001;&#x95A2;&#x6570;&#x5BA3;&#x8A00;&#x306F;<strong>&#x5BA3;&#x8A00;</strong>&#x305D;&#x306E;&#x3082;&#x306E;&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x3001;<code>hello</code>&#x95A2;&#x6570;&#x305D;&#x306E;&#x3082;&#x306E;&#x304C;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x5148;&#x982D;&#x306B;&#x5DFB;&#x304D;&#x4E0A;&#x3052;&#x3089;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x3064;&#x307E;&#x308A;&#x5148;&#x307B;&#x3069;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x89E3;&#x91C8;&#x3055;&#x308C;&#x3066;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x3068;&#x8003;&#x3048;&#x3089;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<pre><code class="lang-js"><span class="hljs-comment">// &#x89E3;&#x91C8;&#x3055;&#x308C;&#x305F;&#x30B3;&#x30FC;&#x30C9;</span>
-<span class="hljs-comment">// `hello`&#x95A2;&#x6570;&#x306E;&#x5BA3;&#x8A00;&#x304C;&#x5DFB;&#x304D;&#x4E0A;&#x3052;&#x3089;&#x308C;&#x308B;</span>
+<p>これは、関数宣言は<strong>宣言</strong>そのものであるため、<code>hello</code>関数そのものがスコープの先頭に巻き上げられます。
+つまり先ほどのコードは、次のように解釈されて実行されていると考えられます。</p>
+<pre><code class="lang-js"><span class="hljs-comment">// 解釈されたコード</span>
+<span class="hljs-comment">// `hello`関数の宣言が巻き上げられる</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hello</span>(<span class="hljs-params"></span>)</span>{
     <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello&quot;</span>;
 }
 
 hello(); <span class="hljs-comment">// =&gt; &quot;Hello&quot;</span>
 </code></pre>
-<p><code>function</code>&#x30AD;&#x30FC;&#x30EF;&#x30FC;&#x30C9;&#x306B;&#x3088;&#x308B;&#x95A2;&#x6570;&#x5BA3;&#x8A00;&#x3082;&#x5DFB;&#x304D;&#x4E0A;&#x3052;&#x3089;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x3057;&#x304B;&#x3057;&#x3001;<code>var</code>&#x306B;&#x3088;&#x308B;&#x5909;&#x6570;&#x5BA3;&#x8A00;&#x306E;&#x5DFB;&#x304D;&#x4E0A;&#x3052;&#x3068;&#x306F;&#x7570;&#x306A;&#x308A;&#x3001;&#x554F;&#x984C;&#x3068;&#x306A;&#x308B;&#x3053;&#x3068;&#x306F;&#x307B;&#x3068;&#x3093;&#x3069;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x306A;&#x305C;&#x306A;&#x3089;&#x3001;&#x5B9F;&#x969B;&#x306B;&#x5DFB;&#x304D;&#x4E0A;&#x3052;&#x3089;&#x308C;&#x305F;&#x95A2;&#x6570;&#x3092;&#x547C;&#x3073;&#x51FA;&#x305B;&#x308B;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x6CE8;&#x610F;&#x70B9;&#x3068;&#x3057;&#x3066;&#x3001;<code>var</code>&#x3084;<code>let</code>&#x306A;&#x3069;&#x3067;&#x5BA3;&#x8A00;&#x3055;&#x308C;&#x305F;&#x5909;&#x6570;&#x3078;&#x95A2;&#x6570;&#x3092;&#x4EE3;&#x5165;&#x3057;&#x305F;&#x5834;&#x5408;&#x306F;<code>var</code>&#x306E;&#x30EB;&#x30FC;&#x30EB;&#x3067;&#x5DFB;&#x304D;&#x4E0A;&#x3052;&#x3089;&#x308C;&#x307E;&#x3059;&#x3002;
+<p><code>function</code>キーワードによる関数宣言も巻き上げられます。
+しかし、<code>var</code>による変数宣言の巻き上げとは異なり、問題となることはほとんどありません。
+なぜなら、実際に巻き上げられた関数を呼び出せるためです。</p>
+<p>注意点として、<code>var</code>や<code>let</code>などで宣言された変数へ関数を代入した場合は<code>var</code>のルールで巻き上げられます。
 <!-- textlint-enable eslint -->
 <!-- textlint-disable -->
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;<code>var</code>&#x3067;&#x5909;&#x6570;&#x3078;&#x95A2;&#x6570;&#x3092;&#x4EE3;&#x5165;&#x3059;&#x308B;&#x95A2;&#x6570;&#x5F0F;&#x3067;&#x306F;&#x3001;<code>hello</code>&#x5909;&#x6570;&#x304C;&#x5DFB;&#x304D;&#x4E0A;&#x3052;&#x306B;&#x3088;&#x308A;<code>undefined</code>&#x3068;&#x306A;&#x308B;&#x305F;&#x3081;&#x547C;&#x3073;&#x51FA;&#x305B;&#x307E;&#x305B;&#x3093;&#xFF08;&#x300C;<a href="../function-declaration/#function-expression">&#x95A2;&#x6570;&#x3068;&#x5BA3;&#x8A00;&#xFF08;&#x95A2;&#x6570;&#x5F0F;&#xFF09;</a>&#x300D;&#x3092;&#x53C2;&#x7167;&#xFF09;&#x3002;
+そのため、<code>var</code>で変数へ関数を代入する関数式では、<code>hello</code>変数が巻き上げにより<code>undefined</code>となるため呼び出せません（「<a href="../function-declaration/#function-expression">関数と宣言（関数式）</a>」を参照）。
 <!-- textlint-enable -->
 <!-- textlint-disable eslint --></p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// `hello`&#x5909;&#x6570;&#x306F;&#x5DFB;&#x304D;&#x4E0A;&#x3052;&#x3089;&#x308C;&#x3001;&#x6697;&#x9ED9;&#x7684;&#x306B;`undefined`&#x3068;&#x306A;&#x308B;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// `hello`変数は巻き上げられ、暗黙的に`undefined`となる</span>
 hello(); <span class="hljs-comment">// =&gt; TypeError: hello is not a function</span>
 
-<span class="hljs-comment">// `hello`&#x5909;&#x6570;&#x3078;&#x95A2;&#x6570;&#x3092;&#x4EE3;&#x5165;&#x3057;&#x3066;&#x3044;&#x308B;</span>
+<span class="hljs-comment">// `hello`変数へ関数を代入している</span>
 <span class="hljs-keyword">var</span> hello = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
     <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello&quot;</span>;
 };
 </code></pre>
 <!-- textlint-enable eslint -->
-<h3 id="immediate-function"><a name="immediate-function" class="plugin-anchor" href="#immediate-function"><i class="fa fa-link" aria-hidden="true"></i></a>[&#x30B3;&#x30E9;&#x30E0;] &#x5373;&#x6642;&#x5B9F;&#x884C;&#x95A2;&#x6570; </h3>
-<p>&#x5373;&#x6642;&#x5B9F;&#x884C;&#x95A2;&#x6570;&#xFF08;<strong>IIFE</strong>, <em>Immediately-Invoked Function Expression</em>&#xFF09;&#x306F;&#x3001;
-&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x6C5A;&#x67D3;&#x3092;&#x907F;&#x3051;&#x308B;&#x305F;&#x3081;&#x306B;&#x751F;&#x307E;&#x308C;&#x305F;&#x30A4;&#x30C7;&#x30A3;&#x30AA;&#x30E0;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;&#x533F;&#x540D;&#x95A2;&#x6570;&#x3092;&#x5BA3;&#x8A00;&#x3057;&#x305F;&#x76F4;&#x5F8C;&#x306B;&#x547C;&#x3073;&#x51FA;&#x3059;&#x3053;&#x3068;&#x3067;&#x3001;&#x4EFB;&#x610F;&#x306E;&#x51E6;&#x7406;&#x3092;&#x95A2;&#x6570;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x9589;&#x3058;&#x3066;&#x5B9F;&#x884C;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x95A2;&#x6570;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3092;&#x4F5C;&#x308B;&#x3053;&#x3068;&#x3067;<code>foo</code>&#x5909;&#x6570;&#x306F;&#x533F;&#x540D;&#x95A2;&#x6570;&#x306E;&#x5916;&#x5074;&#x304B;&#x3089;&#x306F;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3002;</p>
+<h3 id="immediate-function"><a name="immediate-function" class="plugin-anchor" href="#immediate-function"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] 即時実行関数 </h3>
+<p>即時実行関数（<strong>IIFE</strong>, <em>Immediately-Invoked Function Expression</em>）は、
+グローバルスコープの汚染を避けるために生まれたイディオムです。</p>
+<p>次のように、匿名関数を宣言した直後に呼び出すことで、任意の処理を関数のスコープに閉じて実行できます。
+関数スコープを作ることで<code>foo</code>変数は匿名関数の外側からはアクセスできません。</p>
 <!-- textlint-disable eslint -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// &#x533F;&#x540D;&#x95A2;&#x6570;&#x3092;&#x5BA3;&#x8A00; + &#x5B9F;&#x884C;&#x3092;&#x540C;&#x6642;&#x306B;&#x884C;&#x3063;&#x3066;&#x3044;&#x308B;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// 匿名関数を宣言 + 実行を同時に行っている</span>
 (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-comment">// &#x95A2;&#x6570;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x5185;&#x3067;foo&#x5909;&#x6570;&#x3092;&#x5BA3;&#x8A00;&#x3057;&#x3066;&#x3044;&#x308B;</span>
+    <span class="hljs-comment">// 関数のスコープ内でfoo変数を宣言している</span>
     <span class="hljs-keyword">var</span> foo = <span class="hljs-string">&quot;foo&quot;</span>;
     <span class="hljs-built_in">console</span>.log(foo); <span class="hljs-comment">// =&gt; &quot;foo&quot;</span>
 })();
-<span class="hljs-comment">// foo&#x5909;&#x6570;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x5916;</span>
+<span class="hljs-comment">// foo変数のスコープ外</span>
 <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> foo === <span class="hljs-string">&quot;undefined&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
-<p>&#x95A2;&#x6570;&#x3092;<strong>&#x5F0F;</strong>&#x3068;&#x3057;&#x3066;&#x5B9A;&#x7FA9;&#x3057;&#x3066;&#x3001;&#x305D;&#x306E;&#x307E;&#x307E;&#x547C;&#x3073;&#x51FA;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-<code>function</code>&#x304B;&#x3089;&#x306F;&#x3058;&#x307E;&#x3063;&#x3066;&#x3057;&#x307E;&#x3046;&#x3068;JavaScript&#x30A8;&#x30F3;&#x30B8;&#x30F3;&#x304C;<strong>&#x95A2;&#x6570;&#x5BA3;&#x8A00;</strong>&#x3068;&#x89E3;&#x91C8;&#x3057;&#x3066;&#x3057;&#x307E;&#x3046;&#x305F;&#x3081;&#x3001;&#x7121;&#x5BB3;&#x306A;&#x30AB;&#x30C3;&#x30B3;&#x306A;&#x3069;&#x3067;&#x56F2;&#x3093;&#x3067;<strong>&#x95A2;&#x6570;&#x5F0F;</strong>&#x3068;&#x3057;&#x3066;&#x89E3;&#x91C8;&#x3055;&#x305B;&#x308B;&#x306E;&#x304C;&#x7279;&#x5FB4;&#x7684;&#x306A;&#x8A18;&#x6CD5;&#x3067;&#x3059;&#x3002;&#x3053;&#x308C;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x66F8;&#x3044;&#x305F;&#x5834;&#x5408;&#x3068;&#x610F;&#x5473;&#x306F;&#x540C;&#x3058;&#x3067;&#x3059;&#x304C;&#x3001;&#x533F;&#x540D;&#x95A2;&#x6570;&#x3092;&#x5B9A;&#x7FA9;&#x3057;&#x3066;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x305F;&#x3081;&#x77ED;&#x304F;&#x66F8;&#x304F;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x3001;&#x4F59;&#x8A08;&#x306A;&#x95A2;&#x6570;&#x5B9A;&#x7FA9;&#x304C;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x6B8B;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;</p>
+<p>関数を<strong>式</strong>として定義して、そのまま呼び出しています。
+<code>function</code>からはじまってしまうとJavaScriptエンジンが<strong>関数宣言</strong>と解釈してしまうため、無害なカッコなどで囲んで<strong>関数式</strong>として解釈させるのが特徴的な記法です。これは次のように書いた場合と意味は同じですが、匿名関数を定義して実行するため短く書くことができ、余計な関数定義がグローバルスコープに残りません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">var</span> foo = <span class="hljs-string">&quot;foo&quot;</span>;
     <span class="hljs-built_in">console</span>.log(foo); <span class="hljs-comment">// =&gt; &quot;foo&quot;</span>
 }
 fn();
-<span class="hljs-comment">// foo&#x5909;&#x6570;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x5916;</span>
+<span class="hljs-comment">// foo変数のスコープ外</span>
 <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> foo === <span class="hljs-string">&quot;undefined&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
-<p>ECMAScript 5&#x307E;&#x3067;&#x306F;&#x3001;&#x5909;&#x6570;&#x3092;&#x5BA3;&#x8A00;&#x3059;&#x308B;&#x65B9;&#x6CD5;&#x306F;<code>var</code>&#x3057;&#x304B;&#x5B58;&#x5728;&#x3057;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x5373;&#x6642;&#x5B9F;&#x884C;&#x95A2;&#x6570;&#x306F;<code>var</code>&#x306B;&#x3088;&#x308B;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x6C5A;&#x67D3;&#x3092;&#x9632;&#x3050;&#x305F;&#x3081;&#x306B;&#x5FC5;&#x8981;&#x3067;&#x3057;&#x305F;&#x3002;</p>
-<p>&#x3057;&#x304B;&#x3057;ECMAScript 2015&#x3067;&#x5C0E;&#x5165;&#x3055;&#x308C;&#x305F;<code>let</code>&#x3068;<code>const</code>&#x306B;&#x3088;&#x308A;&#x3001;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x5909;&#x6570;&#x5BA3;&#x8A00;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x6C5A;&#x67D3;&#x3092;&#x9632;&#x3050;&#x305F;&#x3081;&#x306E;&#x5373;&#x6642;&#x5B9F;&#x884C;&#x95A2;&#x6570;&#x306F;&#x4E0D;&#x8981;&#x3067;&#x3059;&#x3002;
-&#x5148;&#x307B;&#x3069;&#x306E;&#x5373;&#x6642;&#x5B9F;&#x884C;&#x95A2;&#x6570;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;<code>let</code>&#x3084;<code>const</code>&#x3068;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3067;&#x7F6E;&#x304D;&#x63DB;&#x3048;&#x3089;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p>ECMAScript 5までは、変数を宣言する方法は<code>var</code>しか存在しません。
+即時実行関数は<code>var</code>によるグローバルスコープの汚染を防ぐために必要でした。</p>
+<p>しかしECMAScript 2015で導入された<code>let</code>と<code>const</code>により、ブロックスコープに対して変数宣言できるようになりました。
+そのため、グローバルスコープの汚染を防ぐための即時実行関数は不要です。
+先ほどの即時実行関数は次のように<code>let</code>や<code>const</code>とブロックスコープで置き換えられます。</p>
 <!-- textlint-enable eslint -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js">{
-    <span class="hljs-comment">// &#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x5185;&#x3067;foo&#x5909;&#x6570;&#x3092;&#x5BA3;&#x8A00;&#x3057;&#x3066;&#x3044;&#x308B;</span>
+    <span class="hljs-comment">// ブロックスコープ内でfoo変数を宣言している</span>
     <span class="hljs-keyword">const</span> foo = <span class="hljs-string">&quot;foo&quot;</span>;
     <span class="hljs-built_in">console</span>.log(foo); <span class="hljs-comment">// =&gt; &quot;foo&quot;</span>
 }
-<span class="hljs-comment">// foo&#x5909;&#x6570;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x5916;</span>
+<span class="hljs-comment">// foo変数のスコープ外</span>
 <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> foo === <span class="hljs-string">&quot;undefined&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
-<h2 id="closure"><a name="closure" class="plugin-anchor" href="#closure"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC; </h2>
-<p>&#x6700;&#x5F8C;&#x306B;&#x3053;&#x306E;&#x7AE0;&#x3067;&#x306F;&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x3068;&#x547C;&#x3070;&#x308C;&#x308B;&#x95A2;&#x6570;&#x3068;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x95A2;&#x308F;&#x308B;&#x6027;&#x8CEA;&#x306B;&#x3064;&#x3044;&#x3066;&#x898B;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x3068;&#x306F;&#x300C;&#x5916;&#x5074;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x3042;&#x308B;&#x5909;&#x6570;&#x3078;&#x306E;&#x53C2;&#x7167;&#x3092;&#x4FDD;&#x6301;&#x3067;&#x304D;&#x308B;&#x300D;&#x3068;&#x3044;&#x3046;&#x95A2;&#x6570;&#x304C;&#x6301;&#x3064;&#x6027;&#x8CEA;&#x306E;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x306F;&#x8A00;&#x8449;&#x3067;&#x8AAC;&#x660E;&#x3057;&#x305F;&#x3060;&#x3051;&#x3067;&#x306F;&#x308F;&#x304B;&#x308A;&#x306B;&#x304F;&#x3044;&#x6027;&#x8CEA;&#x3067;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;&#x3001;&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x3092;&#x4F7F;&#x3063;&#x305F;&#x30B3;&#x30FC;&#x30C9;&#x304C;&#x3069;&#x306E;&#x3088;&#x3046;&#x306B;&#x52D5;&#x304F;&#x306E;&#x304B;&#x3092;&#x7406;&#x89E3;&#x3059;&#x308B;&#x3053;&#x3068;&#x3092;&#x76EE;&#x6A19;&#x306B;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x4F8B;&#x3067;&#x306F;<code>createCounter</code>&#x95A2;&#x6570;&#x304C;&#x3001;&#x95A2;&#x6570;&#x5185;&#x3067;&#x5B9A;&#x7FA9;&#x3057;&#x305F;<code>increment</code>&#x95A2;&#x6570;&#x3092;&#x8FD4;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x8FD4;&#x3055;&#x308C;&#x305F;<code>increment</code>&#x95A2;&#x6570;&#x3092;<code>myCounter</code>&#x5909;&#x6570;&#x306B;&#x4EE3;&#x5165;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;&#x3053;&#x306E;<code>myCounter</code>&#x5909;&#x6570;&#x3092;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x305F;&#x3073;&#x306B;1, 2, 3&#x3068;1&#x305A;&#x3064;&#x5897;&#x3048;&#x305F;&#x5024;&#x3092;&#x8FD4;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3055;&#x3089;&#x306B;&#x3001;&#x3082;&#x3046;&#x4E00;&#x5EA6;<code>createCounter</code>&#x95A2;&#x6570;&#x3092;&#x5B9F;&#x884C;&#x3057;&#x3066;&#x3001;&#x305D;&#x306E;&#x8FD4;&#x308A;&#x5024;&#x3092;<code>newCounter</code>&#x5909;&#x6570;&#x306B;&#x4EE3;&#x5165;&#x3057;&#x307E;&#x3059;&#x3002;
-<code>newCounter</code>&#x5909;&#x6570;&#x3082;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x305F;&#x3073;&#x306B;1&#x305A;&#x3064;&#x5897;&#x3048;&#x3066;&#x3044;&#x307E;&#x3059;&#x304C;&#x3001;<code>myCounter</code>&#x5909;&#x6570;&#x3068;&#x305D;&#x306E;&#x5024;&#x3092;&#x5171;&#x6709;&#x3057;&#x3066;&#x3044;&#x308B;&#x308F;&#x3051;&#x3067;&#x306F;&#x306A;&#x3044;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="closure"><a name="closure" class="plugin-anchor" href="#closure"><i class="fa fa-link" aria-hidden="true"></i></a>クロージャー </h2>
+<p>最後にこの章ではクロージャーと呼ばれる関数とスコープに関わる性質について見ていきます。
+クロージャーとは「外側のスコープにある変数への参照を保持できる」という関数が持つ性質のことです。</p>
+<p>クロージャーは言葉で説明しただけではわかりにくい性質です。
+このセクションでは、クロージャーを使ったコードがどのように動くのかを理解することを目標にします。</p>
+<p>次の例では<code>createCounter</code>関数が、関数内で定義した<code>increment</code>関数を返しています。
+その返された<code>increment</code>関数を<code>myCounter</code>変数に代入しています。この<code>myCounter</code>変数を実行するたびに1, 2, 3と1ずつ増えた値を返しています。</p>
+<p>さらに、もう一度<code>createCounter</code>関数を実行して、その返り値を<code>newCounter</code>変数に代入します。
+<code>newCounter</code>変数も実行するたびに1ずつ増えていますが、<code>myCounter</code>変数とその値を共有しているわけではないことがわかります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// `increment`&#x95A2;&#x6570;&#x3092;&#x5B9A;&#x7FA9;&#x3057;&#x3066;&#x8FD4;&#x3059;&#x95A2;&#x6570;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// `increment`関数を定義して返す関数</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createCounter</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;
-    <span class="hljs-comment">// `increment`&#x95A2;&#x6570;&#x306F;`count`&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;</span>
+    <span class="hljs-comment">// `increment`関数は`count`変数を参照</span>
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">increment</span>(<span class="hljs-params"></span>) </span>{
         count = count + <span class="hljs-number">1</span>;
         <span class="hljs-keyword">return</span> count;
     }
     <span class="hljs-keyword">return</span> increment;
 }
-<span class="hljs-comment">// `myCounter`&#x306F;`createCounter`&#x304C;&#x8FD4;&#x3057;&#x305F;&#x95A2;&#x6570;&#x3092;&#x53C2;&#x7167;</span>
+<span class="hljs-comment">// `myCounter`は`createCounter`が返した関数を参照</span>
 <span class="hljs-keyword">const</span> myCounter = createCounter();
 myCounter(); <span class="hljs-comment">// =&gt; 1</span>
 myCounter(); <span class="hljs-comment">// =&gt; 2</span>
-<span class="hljs-comment">// &#x65B0;&#x3057;&#x304F;`newCounter`&#x3092;&#x5B9A;&#x7FA9;&#x3059;&#x308B;</span>
+<span class="hljs-comment">// 新しく`newCounter`を定義する</span>
 <span class="hljs-keyword">const</span> newCounter = createCounter();
 newCounter(); <span class="hljs-comment">// =&gt; 1</span>
 newCounter(); <span class="hljs-comment">// =&gt; 2</span>
-<span class="hljs-comment">// `myCounter`&#x3068;`newCounter`&#x306F;&#x5225;&#x3005;&#x306E;&#x72B6;&#x614B;&#x6301;&#x3063;&#x3066;&#x3044;&#x308B;</span>
+<span class="hljs-comment">// `myCounter`と`newCounter`は別々の状態持っている</span>
 myCounter(); <span class="hljs-comment">// =&gt; 3</span>
 newCounter(); <span class="hljs-comment">// =&gt; 3</span>
 </code></pre>
-<p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;&#x307E;&#x308B;&#x3067;&#x95A2;&#x6570;&#x304C;&#x72B6;&#x614B;&#xFF08;&#x3053;&#x3053;&#x3067;&#x306F;1&#x305A;&#x3064;&#x5897;&#x3048;&#x308B;<code>count</code>&#x3068;&#x3044;&#x3046;&#x5024;&#xFF09;&#x3092;&#x6301;&#x3063;&#x3066;&#x3044;&#x308B;&#x3088;&#x3046;&#x306B;&#x632F;&#x308B;&#x821E;&#x3048;&#x308B;&#x4ED5;&#x7D44;&#x307F;&#x306E;&#x80CC;&#x666F;&#x306B;&#x306F;&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x306F;&#x76F4;&#x611F;&#x7684;&#x306B;&#x7406;&#x89E3;&#x3057;&#x306B;&#x304F;&#x3044;&#x305F;&#x3081;&#x3001;&#x307E;&#x305A;&#x306F;&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x3092;&#x7406;&#x89E3;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x5FC5;&#x8981;&#x306A;&#x300C;&#x9759;&#x7684;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x300D;&#x3068;&#x300C;&#x30E1;&#x30E2;&#x30EA;&#x7BA1;&#x7406;&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x300D;&#x306B;&#x3064;&#x3044;&#x3066;&#x898B;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<h3 id="static-scope"><a name="static-scope" class="plugin-anchor" href="#static-scope"><i class="fa fa-link" aria-hidden="true"></i></a>&#x9759;&#x7684;&#x30B9;&#x30B3;&#x30FC;&#x30D7; </h3>
-<p>&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x3092;&#x7406;&#x89E3;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x3001;&#x4ECA;&#x307E;&#x3067;&#x610F;&#x8B58;&#x3057;&#x3066;&#x3053;&#x306A;&#x304B;&#x3063;&#x305F;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x6027;&#x8CEA;&#x306B;&#x3064;&#x3044;&#x3066;&#x898B;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;
-JavaScript&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x306F;&#x3001;&#x3069;&#x306E;&#x8B58;&#x5225;&#x5B50;&#x304C;&#x3069;&#x306E;&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;&#x304B;&#x304C;&#x9759;&#x7684;&#x306B;&#x6C7A;&#x5B9A;&#x3055;&#x308C;&#x308B;&#x3068;&#x3044;&#x3046;&#x6027;&#x8CEA;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x3064;&#x307E;&#x308A;&#x3001;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x524D;&#x306B;&#x3069;&#x306E;&#x8B58;&#x5225;&#x5B50;&#x304C;&#x3069;&#x306E;&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x3044;&#x308B;&#x304B;&#x304C;&#x308F;&#x304B;&#x308B;&#x3068;&#x3044;&#x3046;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x4F8B;&#x3092;&#x898B;&#x3066;&#x307F;&#x307E;&#x3059;&#x3002;
-<code>printX</code>&#x95A2;&#x6570;&#x5185;&#x3067;&#x5909;&#x6570;<code>x</code>&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x304C;&#x3001;&#x5909;&#x6570;<code>x</code>&#x306F;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3068;&#x95A2;&#x6570;<code>run</code>&#x306E;&#x4E2D;&#x3067;&#x3001;&#x305D;&#x308C;&#x305E;&#x308C;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x3068;&#x304D;<code>printX</code>&#x95A2;&#x6570;&#x5185;&#x306E;<code>x</code>&#x3068;&#x3044;&#x3046;&#x8B58;&#x5225;&#x5B50;&#x304C;&#x3069;&#x306E;&#x5909;&#x6570;<code>x</code>&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;&#x304B;&#x306F;&#x9759;&#x7684;&#x306B;&#x6C7A;&#x5B9A;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x7D50;&#x8AD6;&#x304B;&#x3089;&#x8A00;&#x3048;&#x3070;&#x3001;<code>printX</code>&#x95A2;&#x6570;&#x4E2D;&#x306B;&#x3042;&#x308B;&#x8B58;&#x5225;&#x5B50;<code>x</code>&#x306F;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#xFF08;&#xFF0A;1&#xFF09;&#x306E;&#x5909;&#x6570;<code>x</code>&#x3092;&#x53C2;&#x7167;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;<code>printX</code>&#x95A2;&#x6570;&#x306E;&#x5B9F;&#x884C;&#x7D50;&#x679C;&#x306F;&#x5E38;&#x306B;<code>10</code>&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>このように、まるで関数が状態（ここでは1ずつ増える<code>count</code>という値）を持っているように振る舞える仕組みの背景にはクロージャーがあります。
+クロージャーは直感的に理解しにくいため、まずはクロージャーを理解するために必要な「静的スコープ」と「メモリ管理の仕組み」について見ていきます。</p>
+<h3 id="static-scope"><a name="static-scope" class="plugin-anchor" href="#static-scope"><i class="fa fa-link" aria-hidden="true"></i></a>静的スコープ </h3>
+<p>クロージャーを理解するために、今まで意識してこなかったスコープの性質について見ていきます。
+JavaScriptのスコープには、どの識別子がどの変数を参照するかが静的に決定されるという性質があります。
+つまり、コードを実行する前にどの識別子がどの変数を参照しているかがわかるということです。</p>
+<p>次のような例を見てみます。
+<code>printX</code>関数内で変数<code>x</code>を参照していますが、変数<code>x</code>はグローバルスコープと関数<code>run</code>の中で、それぞれ定義されています。
+このとき<code>printX</code>関数内の<code>x</code>という識別子がどの変数<code>x</code>を参照するかは静的に決定されます。</p>
+<p>結論から言えば、<code>printX</code>関数中にある識別子<code>x</code>はグローバルスコープ（＊1）の変数<code>x</code>を参照します。
+そのため、<code>printX</code>関数の実行結果は常に<code>10</code>となります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> x = <span class="hljs-number">10</span>; <span class="hljs-comment">// &#xFF0A;1</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> x = <span class="hljs-number">10</span>; <span class="hljs-comment">// ＊1</span>
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printX</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-comment">// &#x3053;&#x306E;&#x8B58;&#x5225;&#x5B50;`x`&#x306F;&#x5E38;&#x306B; &#xFF0A;1 &#x306E;&#x5909;&#x6570;`x`&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;</span>
+    <span class="hljs-comment">// この識別子`x`は常に ＊1 の変数`x`を参照する</span>
     <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; 10</span>
 }
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">run</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">const</span> x = <span class="hljs-number">20</span>; <span class="hljs-comment">// &#xFF0A;2</span>
-    printX(); <span class="hljs-comment">// &#x5E38;&#x306B;10&#x304C;&#x51FA;&#x529B;&#x3055;&#x308C;&#x308B;</span>
+    <span class="hljs-keyword">const</span> x = <span class="hljs-number">20</span>; <span class="hljs-comment">// ＊2</span>
+    printX(); <span class="hljs-comment">// 常に10が出力される</span>
 }
 
 run();
 </code></pre>
-<p>&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x30C1;&#x30A7;&#x30FC;&#x30F3;&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x3092;&#x601D;&#x3044;&#x51FA;&#x3059;&#x3068;&#x3001;&#x3053;&#x306E;&#x8B58;&#x5225;&#x5B50;<code>x</code>&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x540D;&#x524D;&#x89E3;&#x6C7A;&#x3055;&#x308C;&#x3066;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x5909;&#x6570;<code>x</code>&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>スコープチェーンの仕組みを思い出すと、この識別子<code>x</code>は次のように名前解決されてグローバルスコープの変数<code>x</code>を参照することがわかります。</p>
 <ol>
-<li><code>printX</code>&#x306E;&#x95A2;&#x6570;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x5909;&#x6570;<code>x</code>&#x304C;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x306A;&#x3044;</li>
-<li>&#x3072;&#x3068;&#x3064;&#x5916;&#x5074;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#xFF08;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#xFF09;&#x3092;&#x78BA;&#x8A8D;&#x3059;&#x308B;</li>
-<li>&#x3072;&#x3068;&#x3064;&#x5916;&#x5074;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;<code>const x = 10;</code>&#x304C;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x306E;&#x3067;&#x3001;&#x8B58;&#x5225;&#x5B50;<code>x</code>&#x306F;&#x3053;&#x306E;&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;</li>
+<li><code>printX</code>の関数スコープに変数<code>x</code>が定義されていない</li>
+<li>ひとつ外側のスコープ（グローバルスコープ）を確認する</li>
+<li>ひとつ外側のスコープに<code>const x = 10;</code>が定義されているので、識別子<code>x</code>はこの変数を参照する</li>
 </ol>
-<p>&#x3064;&#x307E;&#x308A;&#x3001;<code>printX</code>&#x95A2;&#x6570;&#x4E2D;&#x306B;&#x66F8;&#x304B;&#x308C;&#x305F;<code>x</code>&#x3068;&#x3044;&#x3046;&#x8B58;&#x5225;&#x5B50;&#x306F;&#x3001;<code>run</code>&#x95A2;&#x6570;&#x306E;&#x5B9F;&#x884C;&#x3068;&#x306F;&#x95A2;&#x4FC2;&#x306A;&#x304F;&#x3001;&#x9759;&#x7684;&#x306B;&#xFF0A;1&#x3067;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x305F;&#x5909;&#x6570;<code>x</code>&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x6C7A;&#x5B9A;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;&#x3069;&#x306E;&#x8B58;&#x5225;&#x5B50;&#x304C;&#x3069;&#x306E;&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x3044;&#x308B;&#x304B;&#x3092;&#x9759;&#x7684;&#x306B;&#x6C7A;&#x5B9A;&#x3059;&#x308B;&#x6027;&#x8CEA;&#x3092;<strong>&#x9759;&#x7684;&#x30B9;&#x30B3;&#x30FC;&#x30D7;</strong>&#x3068;&#x547C;&#x3073;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x306E;&#x9759;&#x7684;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x306F;<code>function</code>&#x30AD;&#x30FC;&#x30EF;&#x30FC;&#x30C9;&#x3092;&#x4F7F;&#x3063;&#x305F;&#x95A2;&#x6570;&#x5BA3;&#x8A00;&#x3001;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3001;Arrow Function&#x306A;&#x3069;&#x3059;&#x3079;&#x3066;&#x306E;&#x95A2;&#x6570;&#x3067;&#x5171;&#x901A;&#x3059;&#x308B;&#x6027;&#x8CEA;&#x3067;&#x3059;&#x3002;</p>
-<h3 id="dynamic-scope"><a name="dynamic-scope" class="plugin-anchor" href="#dynamic-scope"><i class="fa fa-link" aria-hidden="true"></i></a>[&#x30B3;&#x30E9;&#x30E0;] &#x52D5;&#x7684;&#x30B9;&#x30B3;&#x30FC;&#x30D7; </h3>
-<p>JavaScript&#x306F;&#x9759;&#x7684;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3067;&#x3059;&#x3002;
-&#x3057;&#x304B;&#x3057;&#x3001;&#x52D5;&#x7684;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3068;&#x3044;&#x3046;&#x547C;&#x3073;&#x51FA;&#x3057;&#x5143;&#x306B;&#x3088;&#x308A;&#x8B58;&#x5225;&#x5B50;&#x304C;&#x3069;&#x306E;&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;&#x304B;&#x304C;&#x5909;&#x308F;&#x308B;&#x4ED5;&#x7D44;&#x307F;&#x3092;&#x6301;&#x3064;&#x8A00;&#x8A9E;&#x3082;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;&#x3001;&#x52D5;&#x7684;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x52D5;&#x304D;&#x3092;&#x8AAC;&#x660E;&#x3059;&#x308B;<strong>&#x7591;&#x4F3C;&#x7684;&#x306A;&#x8A00;&#x8A9E;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x4F8B;</strong>&#x3067;&#x3059;&#x3002;
-&#x8B58;&#x5225;&#x5B50;<code>x</code>&#x304C;&#x547C;&#x3073;&#x51FA;&#x3057;&#x5143;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;&#x4ED5;&#x7D44;&#x307F;&#x3067;&#x3042;&#x308B;&#x5834;&#x5408;&#x306B;&#x306F;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x7D50;&#x679C;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<pre><code>// &#x52D5;&#x7684;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x7591;&#x4F3C;&#x7684;&#x306A;&#x8A00;&#x8A9E;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x4F8B;&#xFF08;JavaScript&#x3067;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#xFF09;
-// &#x5909;&#x6570;`x`&#x3092;&#x5BA3;&#x8A00;
+<p>つまり、<code>printX</code>関数中に書かれた<code>x</code>という識別子は、<code>run</code>関数の実行とは関係なく、静的に＊1で定義された変数<code>x</code>を参照することが決定されます。
+このように、どの識別子がどの変数を参照しているかを静的に決定する性質を<strong>静的スコープ</strong>と呼びます。</p>
+<p>この静的スコープの仕組みは<code>function</code>キーワードを使った関数宣言、メソッド、Arrow Functionなどすべての関数で共通する性質です。</p>
+<h3 id="dynamic-scope"><a name="dynamic-scope" class="plugin-anchor" href="#dynamic-scope"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] 動的スコープ </h3>
+<p>JavaScriptは静的スコープです。
+しかし、動的スコープという呼び出し元により識別子がどの変数を参照するかが変わる仕組みを持つ言語もあります。</p>
+<p>次のコードは、動的スコープの動きを説明する<strong>疑似的な言語のコード例</strong>です。
+識別子<code>x</code>が呼び出し元のスコープを参照する仕組みである場合には、次のような結果になります。</p>
+<pre><code>// 動的スコープの疑似的な言語のコード例（JavaScriptではありません）
+// 変数`x`を宣言
 var x = 10;
 
-// `printX`&#x3068;&#x3044;&#x3046;&#x95A2;&#x6570;&#x3092;&#x5B9A;&#x7FA9;
+// `printX`という関数を定義
 fn printX() {
-    // &#x52D5;&#x7684;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x8A00;&#x8A9E;&#x3067;&#x306F;&#x3001;&#x8B58;&#x5225;&#x5B50;`x`&#x306F;&#x547C;&#x3073;&#x51FA;&#x3057;&#x5143;&#x306B;&#x3088;&#x3063;&#x3066;&#x3069;&#x306E;&#x5909;&#x6570;`x`&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;&#x304B;&#x304C;&#x5909;&#x308F;&#x308B;
-    // `print`&#x95A2;&#x6570;&#x3067;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x3078;&#x30ED;&#x30B0;&#x51FA;&#x529B;&#x3059;&#x308B;
+    // 動的スコープの言語では、識別子`x`は呼び出し元によってどの変数`x`を参照するかが変わる
+    // `print`関数でコンソールへログ出力する
     print(x);
 }
 
 fn run() {
-    // &#x547C;&#x3073;&#x51FA;&#x3057;&#x5143;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3067;&#x3001;&#x5909;&#x6570;`x`&#x3092;&#x5B9A;&#x7FA9;&#x3057;&#x3066;&#x3044;&#x308B;
+    // 呼び出し元のスコープで、変数`x`を定義している
     var x = 20;
     printX();
 }
 
-printX(); // &#x3053;&#x3053;&#x3067;&#x306F; 10 &#x304C;&#x51FA;&#x529B;&#x3055;&#x308C;&#x308B;
-run(); // &#x3053;&#x3053;&#x3067;&#x306F; 20 &#x304C;&#x51FA;&#x529B;&#x3055;&#x308C;&#x308B;
-</code></pre><p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;&#x95A2;&#x6570;&#x547C;&#x3073;&#x51FA;&#x3057;&#x6642;&#x306B;&#x547C;&#x3073;&#x51FA;&#x3057;&#x5143;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306E;&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;&#x4ED5;&#x7D44;&#x307F;&#x3092;<strong>&#x52D5;&#x7684;&#x30B9;&#x30B3;&#x30FC;&#x30D7;</strong>&#x3068;&#x547C;&#x3073;&#x307E;&#x3059;&#x3002;</p>
-<p>JavaScript&#x306F;&#x5909;&#x6570;&#x3084;&#x95A2;&#x6570;&#x306E;&#x53C2;&#x7167;&#x5148;&#x306F;&#x9759;&#x7684;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3067;&#x6C7A;&#x307E;&#x308B;&#x305F;&#x3081;&#x3001;&#x4E0A;&#x8A18;&#x306E;&#x3088;&#x3046;&#x306A;&#x52D5;&#x7684;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3067;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x3057;&#x304B;&#x3057;&#x3001;JavaScript&#x3067;&#x3082;<code>this</code>&#x3068;&#x3044;&#x3046;&#x7279;&#x5225;&#x306A;&#x30AD;&#x30FC;&#x30EF;&#x30FC;&#x30C9;&#x3060;&#x3051;&#x306F;&#x3001;&#x547C;&#x3073;&#x51FA;&#x3057;&#x5143;&#x306B;&#x3088;&#x3063;&#x3066;&#x52D5;&#x7684;&#x306B;&#x53C2;&#x7167;&#x5148;&#x304C;&#x5909;&#x308F;&#x308A;&#x307E;&#x3059;&#x3002;
-<code>this</code>&#x3068;&#x3044;&#x3046;&#x30AD;&#x30FC;&#x30EF;&#x30FC;&#x30C9;&#x306B;&#x3064;&#x3044;&#x3066;&#x306F;&#x6B21;&#x306E;&#x7AE0;&#x3067;&#x89E3;&#x8AAC;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="memory-management"><a name="memory-management" class="plugin-anchor" href="#memory-management"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30E1;&#x30E2;&#x30EA;&#x7BA1;&#x7406;&#x306E;&#x4ED5;&#x7D44;&#x307F; </h2>
-<p>&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DF;&#x30F3;&#x30B0;&#x8A00;&#x8A9E;&#x306F;&#x3001;&#x4F7F;&#x308F;&#x306A;&#x304F;&#x306A;&#x3063;&#x305F;&#x5909;&#x6570;&#x3084;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x89E3;&#x653E;&#x3059;&#x308B;&#x4ED5;&#x7D44;&#x307F;&#x3092;&#x6301;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x306A;&#x305C;&#x306A;&#x3089;&#x3001;&#x5909;&#x6570;&#x3084;&#x95A2;&#x6570;&#x3092;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x3068;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x305F;&#x30C7;&#x30FC;&#x30BF;&#x306F;&#x30E1;&#x30E2;&#x30EA;&#x4E0A;&#x306B;&#x78BA;&#x4FDD;&#x3055;&#x308C;&#x307E;&#x3059;&#x304C;&#x3001;&#x30CF;&#x30FC;&#x30C9;&#x30A6;&#x30A7;&#x30A2;&#x306E;&#x30E1;&#x30E2;&#x30EA;&#x306F;&#x6709;&#x9650;&#x3060;&#x304B;&#x3089;&#x3067;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x30E1;&#x30E2;&#x30EA;&#x304B;&#x3089;&#x30C7;&#x30FC;&#x30BF;&#x304C;&#x3042;&#x3075;&#x308C;&#x306A;&#x3044;&#x3088;&#x3046;&#x306B;&#x3001;&#x5FC5;&#x8981;&#x306A;&#x30BF;&#x30A4;&#x30DF;&#x30F3;&#x30B0;&#x3067;&#x4E0D;&#x8981;&#x306A;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x30E1;&#x30E2;&#x30EA;&#x304B;&#x3089;&#x89E3;&#x653E;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x4E0D;&#x8981;&#x306A;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x30E1;&#x30E2;&#x30EA;&#x304B;&#x3089;&#x89E3;&#x653E;&#x3059;&#x308B;&#x65B9;&#x6CD5;&#x306F;&#x8A00;&#x8A9E;&#x306B;&#x3088;&#x3063;&#x3066;&#x7570;&#x306A;&#x308A;&#x307E;&#x3059;&#x304C;&#x3001;JavaScript&#x3067;&#x306F;<strong>&#x30AC;&#x30D9;&#x30FC;&#x30B8;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;</strong>&#x304C;&#x63A1;&#x7528;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x30AC;&#x30D9;&#x30FC;&#x30B8;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3068;&#x306F;&#x3001;&#x3069;&#x3053;&#x304B;&#x3089;&#x3082;&#x53C2;&#x7167;&#x3055;&#x308C;&#x306A;&#x304F;&#x306A;&#x3063;&#x305F;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x4E0D;&#x8981;&#x306A;&#x30C7;&#x30FC;&#x30BF;&#x3068;&#x5224;&#x65AD;&#x3057;&#x3066;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x30E1;&#x30E2;&#x30EA;&#x4E0A;&#x304B;&#x3089;&#x89E3;&#x653E;&#x3059;&#x308B;&#x4ED5;&#x7D44;&#x307F;&#x306E;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;</p>
-<p>JavaScript&#x306B;&#x306F;&#x30AC;&#x30D9;&#x30FC;&#x30B8;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x304C;&#x3042;&#x308B;&#x305F;&#x3081;&#x3001;&#x624B;&#x52D5;&#x3067;&#x30E1;&#x30E2;&#x30EA;&#x3092;&#x89E3;&#x653E;&#x3059;&#x308B;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x66F8;&#x304F;&#x5FC5;&#x8981;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x3057;&#x304B;&#x3057;&#x3001;&#x30AC;&#x30D9;&#x30FC;&#x30B8;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3068;&#x3044;&#x3063;&#x305F;&#x30E1;&#x30E2;&#x30EA;&#x7BA1;&#x7406;&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x3092;&#x7406;&#x89E3;&#x3059;&#x308B;&#x3053;&#x3068;&#x306F;&#x3001;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3084;&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x306B;&#x95A2;&#x4FC2;&#x3059;&#x308B;&#x305F;&#x3081;&#x5927;&#x5207;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x3069;&#x306E;&#x3088;&#x3046;&#x306A;&#x30BF;&#x30A4;&#x30DF;&#x30F3;&#x30B0;&#x3067;&#x30E1;&#x30E2;&#x30EA;&#x4E0A;&#x304B;&#x3089;&#x4E0D;&#x8981;&#x306A;&#x30C7;&#x30FC;&#x30BF;&#x304C;&#x89E3;&#x653E;&#x3055;&#x308C;&#x308B;&#x306E;&#x304B;&#x3001;&#x5177;&#x4F53;&#x7684;&#x306A;&#x4F8B;&#x3092;&#x898B;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x4F8B;&#x3067;&#x306F;&#x3001;&#x6700;&#x521D;&#x306B;<code>&quot;before text&quot;</code>&#x3068;&#x3044;&#x3046;&#x6587;&#x5B57;&#x5217;&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x304C;&#x30E1;&#x30E2;&#x30EA;&#x4E0A;&#x306B;&#x78BA;&#x4FDD;&#x3055;&#x308C;&#x3001;&#x5909;&#x6570;<code>x</code>&#x306F;&#x305D;&#x306E;&#x30E1;&#x30E2;&#x30EA;&#x4E0A;&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x5F8C;&#x3001;<code>&quot;after text&quot;</code>&#x3068;&#x3044;&#x3046;&#x65B0;&#x3057;&#x3044;&#x6587;&#x5B57;&#x5217;&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x4F5C;&#x308A;&#x3001;&#x5909;&#x6570;<code>x</code>&#x306F;&#x305D;&#x306E;&#x65B0;&#x3057;&#x3044;&#x30C7;&#x30FC;&#x30BF;&#x3078;&#x53C2;&#x7167;&#x5148;&#x3092;&#x5909;&#x3048;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x306E;&#x3068;&#x304D;&#x3001;&#x6700;&#x521D;&#x306B;&#x30E1;&#x30E2;&#x30EA;&#x4E0A;&#x3078;&#x78BA;&#x4FDD;&#x3057;&#x305F;<code>&quot;before text&quot;</code>&#x3068;&#x3044;&#x3046;&#x6587;&#x5B57;&#x5217;&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x306F;&#x3069;&#x3053;&#x304B;&#x3089;&#x3082;&#x53C2;&#x7167;&#x3055;&#x308C;&#x306A;&#x304F;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3069;&#x3053;&#x304B;&#x3089;&#x3082;&#x53C2;&#x7167;&#x3055;&#x308C;&#x306A;&#x304F;&#x306A;&#x3063;&#x305F;&#x6642;&#x70B9;&#x3067;&#x4E0D;&#x8981;&#x306B;&#x306A;&#x3063;&#x305F;&#x30C7;&#x30FC;&#x30BF;&#x3068;&#x5224;&#x65AD;&#x3055;&#x308C;&#x308B;&#x305F;&#x3081;&#x30AC;&#x30D9;&#x30FC;&#x30B8;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x56DE;&#x53CE;&#x5BFE;&#x8C61;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x5F8C;&#x3001;&#x4EFB;&#x610F;&#x306E;&#x30BF;&#x30A4;&#x30DF;&#x30F3;&#x30B0;&#x3067;&#x30AC;&#x30D9;&#x30FC;&#x30B8;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x306B;&#x3088;&#x3063;&#x3066;&#x56DE;&#x53CE;&#x3055;&#x308C;&#x3066;&#x30E1;&#x30E2;&#x30EA;&#x4E0A;&#x304B;&#x3089;&#x89E3;&#x653E;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;<sup><a href="#fn_2" id="reffn_2">2</a></sup></p>
+printX(); // ここでは 10 が出力される
+run(); // ここでは 20 が出力される
+</code></pre><p>このように関数呼び出し時に呼び出し元のスコープの変数を参照する仕組みを<strong>動的スコープ</strong>と呼びます。</p>
+<p>JavaScriptは変数や関数の参照先は静的スコープで決まるため、上記のような動的スコープではありません。
+しかし、JavaScriptでも<code>this</code>という特別なキーワードだけは、呼び出し元によって動的に参照先が変わります。
+<code>this</code>というキーワードについては次の章で解説します。</p>
+<h2 id="memory-management"><a name="memory-management" class="plugin-anchor" href="#memory-management"><i class="fa fa-link" aria-hidden="true"></i></a>メモリ管理の仕組み </h2>
+<p>プログラミング言語は、使わなくなった変数やデータを解放する仕組みを持っています。
+なぜなら、変数や関数を定義すると定義されたデータはメモリ上に確保されますが、ハードウェアのメモリは有限だからです。
+そのため、メモリからデータがあふれないように、必要なタイミングで不要なデータをメモリから解放する必要があります。</p>
+<p>不要なデータをメモリから解放する方法は言語によって異なりますが、JavaScriptでは<strong>ガベージコレクション</strong>が採用されています。
+ガベージコレクションとは、どこからも参照されなくなったデータを不要なデータと判断して自動的にメモリ上から解放する仕組みのことです。</p>
+<p>JavaScriptにはガベージコレクションがあるため、手動でメモリを解放するコードを書く必要はありません。
+しかし、ガベージコレクションといったメモリ管理の仕組みを理解することは、スコープやクロージャーに関係するため大切です。</p>
+<p>どのようなタイミングでメモリ上から不要なデータが解放されるのか、具体的な例を見てみましょう。</p>
+<p>次の例では、最初に<code>&quot;before text&quot;</code>という文字列のデータがメモリ上に確保され、変数<code>x</code>はそのメモリ上のデータを参照しています。
+その後、<code>&quot;after text&quot;</code>という新しい文字列のデータを作り、変数<code>x</code>はその新しいデータへ参照先を変えています。</p>
+<p>このとき、最初にメモリ上へ確保した<code>&quot;before text&quot;</code>という文字列のデータはどこからも参照されなくなっています。
+どこからも参照されなくなった時点で不要になったデータと判断されるためガベージコレクションの回収対象となります。
+その後、任意のタイミングでガベージコレクションによって回収されてメモリ上から解放されます。<sup><a href="#fn_2" id="reffn_2">2</a></sup></p>
 <pre><code class="lang-js"><span class="hljs-keyword">let</span> x = <span class="hljs-string">&quot;before text&quot;</span>;
-<span class="hljs-comment">// &#x5909;&#x6570;`x`&#x306B;&#x65B0;&#x3057;&#x3044;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x4EE3;&#x5165;&#x3059;&#x308B;</span>
+<span class="hljs-comment">// 変数`x`に新しいデータを代入する</span>
 x = <span class="hljs-string">&quot;after text&quot;</span>;
-<span class="hljs-comment">// &#x3053;&#x306E;&#x3068;&#x304D;&quot;before text&quot;&#x3068;&#x3044;&#x3046;&#x30C7;&#x30FC;&#x30BF;&#x306F;&#x3069;&#x3053;&#x304B;&#x3089;&#x3082;&#x53C2;&#x7167;&#x3055;&#x308C;&#x306A;&#x304F;&#x306A;&#x308B;</span>
-<span class="hljs-comment">// &#x305D;&#x306E;&#x5F8C;&#x3001;&#x30AC;&#x30D9;&#x30FC;&#x30B8;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x306B;&#x3088;&#x3063;&#x3066;&#x30E1;&#x30E2;&#x30EA;&#x4E0A;&#x304B;&#x3089;&#x89E3;&#x653E;&#x3055;&#x308C;&#x308B;</span>
+<span class="hljs-comment">// このとき&quot;before text&quot;というデータはどこからも参照されなくなる</span>
+<span class="hljs-comment">// その後、ガベージコレクションによってメモリ上から解放される</span>
 </code></pre>
-<p>&#x6B21;&#x306B;&#x3053;&#x306E;&#x30AC;&#x30D9;&#x30FC;&#x30B8;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3068;&#x95A2;&#x6570;&#x306E;&#x95A2;&#x4FC2;&#x6027;&#x306B;&#x3064;&#x3044;&#x3066;&#x8003;&#x3048;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;
-&#x3088;&#x304F;&#x3042;&#x308B;&#x8AA4;&#x89E3;&#x3068;&#x3057;&#x3066;&#x300C;&#x95A2;&#x6570;&#x306E;&#x4E2D;&#x3067;&#x4F5C;&#x6210;&#x3057;&#x305F;&#x30C7;&#x30FC;&#x30BF;&#x306F;&#x3001;&#x305D;&#x306E;&#x95A2;&#x6570;&#x306E;&#x5B9F;&#x884C;&#x304C;&#x7D42;&#x4E86;&#x3057;&#x305F;&#x3089;&#x89E3;&#x653E;&#x3055;&#x308C;&#x308B;&#x300D;&#x3068;&#x3044;&#x3046;&#x306E;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x95A2;&#x6570;&#x306E;&#x4E2D;&#x3067;&#x4F5C;&#x6210;&#x3057;&#x305F;&#x30C7;&#x30FC;&#x30BF;&#x306F;&#x3001;&#x305D;&#x306E;&#x95A2;&#x6570;&#x306E;&#x5B9F;&#x884C;&#x304C;&#x7D42;&#x4E86;&#x3057;&#x305F;&#x6642;&#x70B9;&#x3067;&#x5FC5;&#x305A;&#x3057;&#x3082;&#x89E3;&#x653E;&#x3055;&#x308C;&#x308B;&#x308F;&#x3051;&#x3067;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;</p>
-<p>&#x5177;&#x4F53;&#x7684;&#x306B;&#x3001;&#x300C;&#x95A2;&#x6570;&#x306E;&#x5B9F;&#x884C;&#x304C;&#x7D42;&#x4E86;&#x3057;&#x305F;&#x969B;&#x306B;&#x89E3;&#x653E;&#x3055;&#x308C;&#x308B;&#x5834;&#x5408;&#x300D;&#x3068;&#x300C;&#x95A2;&#x6570;&#x306E;&#x5B9F;&#x884C;&#x304C;&#x7D42;&#x4E86;&#x3057;&#x3066;&#x3082;&#x89E3;&#x653E;&#x3055;&#x308C;&#x306A;&#x3044;&#x5834;&#x5408;&#x300D;&#x306E;&#x4F8B;&#x3092;&#x305D;&#x308C;&#x305E;&#x308C;&#x898B;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x307E;&#x305A;&#x306F;&#x3001;&#x95A2;&#x6570;&#x306E;&#x5B9F;&#x884C;&#x304C;&#x7D42;&#x4E86;&#x3057;&#x305F;&#x969B;&#x306B;&#x89E3;&#x653E;&#x3055;&#x308C;&#x308B;&#x30C7;&#x30FC;&#x30BF;&#x306E;&#x4F8B;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;<code>printX</code>&#x95A2;&#x6570;&#x306E;&#x4E2D;&#x3067;&#x5909;&#x6570;<code>x</code>&#x3092;&#x5B9A;&#x7FA9;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x5909;&#x6570;<code>x</code>&#x306F;&#x3001;<code>printX</code>&#x95A2;&#x6570;&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x308B;&#x305F;&#x3073;&#x306B;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3001;&#x5B9F;&#x884C;&#x7D42;&#x4E86;&#x5F8C;&#x306B;&#x3069;&#x3053;&#x304B;&#x3089;&#x3082;&#x53C2;&#x7167;&#x3055;&#x308C;&#x306A;&#x304F;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x3069;&#x3053;&#x304B;&#x3089;&#x3082;&#x53C2;&#x7167;&#x3055;&#x308C;&#x306A;&#x304F;&#x306A;&#x3063;&#x305F;&#x3082;&#x306E;&#x306F;&#x3001;&#x30AC;&#x30D9;&#x30FC;&#x30B8;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x306B;&#x3088;&#x3063;&#x3066;&#x56DE;&#x53CE;&#x3055;&#x308C;&#x3066;&#x30E1;&#x30E2;&#x30EA;&#x4E0A;&#x304B;&#x3089;&#x89E3;&#x653E;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p>次にこのガベージコレクションと関数の関係性について考えてみましょう。
+よくある誤解として「関数の中で作成したデータは、その関数の実行が終了したら解放される」というのがあります。
+関数の中で作成したデータは、その関数の実行が終了した時点で必ずしも解放されるわけではありません。</p>
+<p>具体的に、「関数の実行が終了した際に解放される場合」と「関数の実行が終了しても解放されない場合」の例をそれぞれ見ていきます。</p>
+<p>まずは、関数の実行が終了した際に解放されるデータの例です。</p>
+<p>次のコードでは、<code>printX</code>関数の中で変数<code>x</code>を定義しています。
+この変数<code>x</code>は、<code>printX</code>関数が実行されるたびに定義され、実行終了後にどこからも参照されなくなります。
+どこからも参照されなくなったものは、ガベージコレクションによって回収されてメモリ上から解放されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printX</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">const</span> x = <span class="hljs-string">&quot;X&quot;</span>;
@@ -2035,13 +2035,13 @@ x = <span class="hljs-string">&quot;after text&quot;</span>;
 }
 
 printX();
-<span class="hljs-comment">// &#x3053;&#x306E;&#x6642;&#x70B9;&#x3067;`&quot;X&quot;`&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;&#x3082;&#x306E;&#x306F;&#x306A;&#x304F;&#x306A;&#x308B; -&gt; &#x89E3;&#x653E;&#x3055;&#x308C;&#x308B;</span>
+<span class="hljs-comment">// この時点で`&quot;X&quot;`を参照するものはなくなる -&gt; 解放される</span>
 </code></pre>
-<p>&#x6B21;&#x306B;&#x3001;&#x95A2;&#x6570;&#x306E;&#x5B9F;&#x884C;&#x304C;&#x7D42;&#x4E86;&#x3057;&#x3066;&#x3082;&#x89E3;&#x653E;&#x3055;&#x308C;&#x306A;&#x3044;&#x30C7;&#x30FC;&#x30BF;&#x306E;&#x4F8B;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;<code>createArray</code>&#x95A2;&#x6570;&#x306E;&#x4E2D;&#x3067;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x305F;&#x5909;&#x6570;<code>tempArray</code>&#x306F;&#x3001;<code>createArray</code>&#x95A2;&#x6570;&#x306E;&#x8FD4;&#x308A;&#x5024;&#x3068;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x3001;&#x95A2;&#x6570;&#x3067;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x305F;&#x5909;&#x6570;<code>tempArray</code>&#x306F;&#x8FD4;&#x308A;&#x5024;&#x3068;&#x3057;&#x3066;&#x3001;&#x5225;&#x306E;&#x5909;&#x6570;<code>array</code>&#x306B;&#x4EE3;&#x5165;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3064;&#x307E;&#x308A;&#x3001;&#x5909;&#x6570;<code>tempArray</code>&#x304C;&#x53C2;&#x7167;&#x3057;&#x3066;&#x3044;&#x308B;&#x914D;&#x5217;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;&#x3001;<code>createArray</code>&#x95A2;&#x6570;&#x306E;&#x5B9F;&#x884C;&#x7D42;&#x4E86;&#x5F8C;&#x3082;&#x5909;&#x6570;<code>array</code>&#x304B;&#x3089;&#x53C2;&#x7167;&#x3055;&#x308C;&#x7D9A;&#x3051;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3072;&#x3068;&#x3064;&#x3067;&#x3082;&#x53C2;&#x7167;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x306A;&#x3089;&#x3070;&#x3001;&#x305D;&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x304C;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x89E3;&#x653E;&#x3055;&#x308C;&#x308B;&#x3053;&#x3068;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;</p>
+<p>次に、関数の実行が終了しても解放されないデータの例です。</p>
+<p>次のコードでは、<code>createArray</code>関数の中で定義された変数<code>tempArray</code>は、<code>createArray</code>関数の返り値となっています。
+この、関数で定義された変数<code>tempArray</code>は返り値として、別の変数<code>array</code>に代入されています。
+つまり、変数<code>tempArray</code>が参照している配列オブジェクトは、<code>createArray</code>関数の実行終了後も変数<code>array</code>から参照され続けています。
+ひとつでも参照されているならば、そのデータが自動的に解放されることはありません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createArray</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">const</span> tempArray = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
@@ -2049,159 +2049,159 @@ printX();
 }
 <span class="hljs-keyword">const</span> array = createArray();
 <span class="hljs-built_in">console</span>.log(array); <span class="hljs-comment">// =&gt; [1, 2, 3]</span>
-<span class="hljs-comment">// &#x5909;&#x6570;`array`&#x304C;`[1, 2, 3]`&#x3068;&#x3044;&#x3046;&#x5024;&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x3044;&#x308B; -&gt; &#x89E3;&#x653E;&#x3055;&#x308C;&#x306A;&#x3044;</span>
+<span class="hljs-comment">// 変数`array`が`[1, 2, 3]`という値を参照している -&gt; 解放されない</span>
 </code></pre>
-<p>&#x3064;&#x307E;&#x308A;&#x3001;&#x95A2;&#x6570;&#x306E;&#x5B9F;&#x884C;&#x304C;&#x7D42;&#x4E86;&#x3057;&#x305F;&#x3053;&#x3068;&#x3068;&#x95A2;&#x6570;&#x5185;&#x3067;&#x5B9A;&#x7FA9;&#x3057;&#x305F;&#x30C7;&#x30FC;&#x30BF;&#x306E;&#x89E3;&#x653E;&#x306E;&#x30BF;&#x30A4;&#x30DF;&#x30F3;&#x30B0;&#x306F;&#x76F4;&#x63A5;&#x95A2;&#x4FC2;&#x306A;&#x3044;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x304C;&#x30E1;&#x30E2;&#x30EA;&#x4E0A;&#x304B;&#x3089;&#x89E3;&#x653E;&#x3055;&#x308C;&#x308B;&#x304B;&#x3069;&#x3046;&#x304B;&#x306F;&#x3042;&#x304F;&#x307E;&#x3067;&#x3001;&#x305D;&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x304C;&#x53C2;&#x7167;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x304B;&#x306B;&#x3088;&#x3063;&#x3066;&#x6C7A;&#x5B9A;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<h3 id="why-closure-work"><a name="why-closure-work" class="plugin-anchor" href="#why-closure-work"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x304C;&#x306A;&#x305C;&#x52D5;&#x304F;&#x306E;&#x304B; </h3>
-<p>&#x3053;&#x3053;&#x307E;&#x3067;&#x3067;&#x300C;&#x9759;&#x7684;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x300D;&#x3068;&#x300C;&#x30E1;&#x30E2;&#x30EA;&#x7BA1;&#x7406;&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x300D;&#x306B;&#x3064;&#x3044;&#x3066;&#x8AAC;&#x660E;&#x3057;&#x3066;&#x304D;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p>つまり、関数の実行が終了したことと関数内で定義したデータの解放のタイミングは直接関係ないことがわかります。
+そのデータがメモリ上から解放されるかどうかはあくまで、そのデータが参照されているかによって決定されます。</p>
+<h3 id="why-closure-work"><a name="why-closure-work" class="plugin-anchor" href="#why-closure-work"><i class="fa fa-link" aria-hidden="true"></i></a>クロージャーがなぜ動くのか </h3>
+<p>ここまでで「静的スコープ」と「メモリ管理の仕組み」について説明してきました。</p>
 <ul>
-<li>&#x9759;&#x7684;&#x30B9;&#x30B3;&#x30FC;&#x30D7;: &#x3042;&#x308B;&#x5909;&#x6570;&#x304C;&#x3069;&#x306E;&#x5024;&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;&#x304B;&#x306F;&#x9759;&#x7684;&#x306B;&#x6C7A;&#x307E;&#x308B;</li>
-<li>&#x30E1;&#x30E2;&#x30EA;&#x7BA1;&#x7406;&#x306E;&#x4ED5;&#x7D44;&#x307F;: &#x53C2;&#x7167;&#x3055;&#x308C;&#x306A;&#x304F;&#x306A;&#x3063;&#x305F;&#x30C7;&#x30FC;&#x30BF;&#x306F;&#x30AC;&#x30D9;&#x30FC;&#x30B8;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x306B;&#x3088;&#x308A;&#x89E3;&#x653E;&#x3055;&#x308C;&#x308B;</li>
+<li>静的スコープ: ある変数がどの値を参照するかは静的に決まる</li>
+<li>メモリ管理の仕組み: 参照されなくなったデータはガベージコレクションにより解放される</li>
 </ul>
-<p>&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x3068;&#x306F;&#x3053;&#x306E;&#xFF12;&#x3064;&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x3092;&#x5229;&#x7528;&#x3057;&#x3066;&#x3001;&#x95A2;&#x6570;&#x5185;&#x304B;&#x3089;&#x7279;&#x5B9A;&#x306E;&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3057;&#x7D9A;&#x3051;&#x308B;&#x3053;&#x3068;&#x3067;&#x95A2;&#x6570;&#x304C;&#x72B6;&#x614B;&#x3092;&#x6301;&#x3066;&#x308B;&#x4ED5;&#x7D44;&#x307F;&#x306E;&#x3053;&#x3068;&#x3092;&#x8A00;&#x3044;&#x307E;&#x3059;&#x3002;
+<p>クロージャーとはこの２つの仕組みを利用して、関数内から特定の変数を参照し続けることで関数が状態を持てる仕組みのことを言います。
 <!-- クロージャーは関数閉包と呼ばれることがありますが、関数の内側に変数を閉じ込めることで、まるで関数が状態（変数）を持っているように見えます。 --></p>
-<p>&#x6700;&#x521D;&#x306B;&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x306E;&#x4F8B;&#x3068;&#x3057;&#x3066;&#x7D39;&#x4ECB;&#x3057;&#x305F;<code>createCounter</code>&#x95A2;&#x6570;&#x306E;&#x4F8B;&#x3092;&#x6539;&#x3081;&#x3066;&#x898B;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
+<p>最初にクロージャーの例として紹介した<code>createCounter</code>関数の例を改めて見てみましょう。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> createCounter = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
     <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;
     <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">increment</span>(<span class="hljs-params"></span>) </span>{
-        <span class="hljs-comment">// `increment`&#x95A2;&#x6570;&#x306F;`createCounter`&#x95A2;&#x6570;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x305F;`&#x5909;&#x6570;`count`&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x3044;&#x308B;</span>
+        <span class="hljs-comment">// `increment`関数は`createCounter`関数のスコープに定義された`変数`count`を参照している</span>
         count = count + <span class="hljs-number">1</span>;
         <span class="hljs-keyword">return</span> count;
     };
 };
-<span class="hljs-comment">// createCounter()&#x306E;&#x5B9F;&#x884C;&#x7D50;&#x679C;&#x306F;&#x3001;&#x5185;&#x5074;&#x3067;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x305F;`increment`&#x95A2;&#x6570;</span>
+<span class="hljs-comment">// createCounter()の実行結果は、内側で定義されていた`increment`関数</span>
 <span class="hljs-keyword">const</span> myCounter = createCounter();
-<span class="hljs-comment">// myCounter&#x95A2;&#x6570;&#x306E;&#x5B9F;&#x884C;&#x7D50;&#x679C;&#x306F;`count`&#x306E;&#x8A55;&#x4FA1;&#x7D50;&#x679C;</span>
+<span class="hljs-comment">// myCounter関数の実行結果は`count`の評価結果</span>
 <span class="hljs-built_in">console</span>.log(myCounter()); <span class="hljs-comment">// =&gt; 1</span>
 <span class="hljs-built_in">console</span>.log(myCounter()); <span class="hljs-comment">// =&gt; 2</span>
 </code></pre>
-<p>&#x3064;&#x307E;&#x308A;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x53C2;&#x7167;&#x306E;&#x95A2;&#x4FC2;&#x304C;<code>myCounter</code>&#x5909;&#x6570;&#x3068;<code>count</code>&#x5909;&#x6570;&#x306E;&#x9593;&#x306B;&#x306F;&#x3042;&#x308B;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>つまり次のような参照の関係が<code>myCounter</code>変数と<code>count</code>変数の間にはあることがわかります。</p>
 <ul>
-<li><code>myCounter</code>&#x5909;&#x6570;&#x306F;<code>createCounter</code>&#x95A2;&#x6570;&#x306E;&#x8FD4;&#x308A;&#x5024;&#x3067;&#x3042;&#x308B;<code>increment</code>&#x95A2;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x3044;&#x308B;</li>
-<li><code>myCounter</code>&#x5909;&#x6570;&#x306F;<code>increment</code>&#x95A2;&#x6570;&#x3092;&#x7D4C;&#x7531;&#x3057;&#x3066;<code>count</code>&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x3044;&#x308B;</li>
-<li><code>myCounter</code>&#x5909;&#x6570;&#x3092;&#x5B9F;&#x884C;&#x3057;&#x305F;&#x5F8C;&#x3082;<code>count</code>&#x5909;&#x6570;&#x3078;&#x306E;&#x53C2;&#x7167;&#x306F;&#x4FDD;&#x305F;&#x308C;&#x3066;&#x3044;&#x308B;</li>
+<li><code>myCounter</code>変数は<code>createCounter</code>関数の返り値である<code>increment</code>関数を参照している</li>
+<li><code>myCounter</code>変数は<code>increment</code>関数を経由して<code>count</code>変数を参照している</li>
+<li><code>myCounter</code>変数を実行した後も<code>count</code>変数への参照は保たれている</li>
 </ul>
 <!-- 参照の方向の図 -->
 <blockquote>
-<p><code>myCounter</code> &#x2192; <code>increment</code> &#x2192; <code>count</code></p>
+<p><code>myCounter</code> → <code>increment</code> → <code>count</code></p>
 </blockquote>
-<p><code>count</code>&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;&#x3082;&#x306E;&#x304C;&#x3044;&#x308B;&#x305F;&#x3081;&#x3001;<code>count</code>&#x5909;&#x6570;&#x306F;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x89E3;&#x653E;&#x3055;&#x308C;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;<code>count</code>&#x5909;&#x6570;&#x306E;&#x5024;&#x306F;&#x4FDD;&#x6301;&#x3055;&#x308C;&#x7D9A;&#x3051;&#x3001;<code>myCounter</code>&#x5909;&#x6570;&#x3092;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x305F;&#x3073;&#x306B;1&#x305A;&#x3064;&#x5927;&#x304D;&#x304F;&#x306A;&#x3063;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;<code>count</code>&#x5909;&#x6570;&#x304C;&#x81EA;&#x52D5;&#x89E3;&#x653E;&#x3055;&#x308C;&#x305A;&#x306B;&#x4FDD;&#x6301;&#x3067;&#x304D;&#x3066;&#x3044;&#x308B;&#x306E;&#x306F;&#x300C;<code>increment</code>&#x95A2;&#x6570;&#x5185;&#x304B;&#x3089;&#x5916;&#x5074;&#x306E;<code>createCounter</code>&#x95A2;&#x6570;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x3042;&#x308B;<code>count</code>&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x3044;&#x308B;&#x300D;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x3088;&#x3046;&#x306A;&#x6027;&#x8CEA;&#x306E;&#x3053;&#x3068;&#x3092;<strong>&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;</strong>&#xFF08;&#x95A2;&#x6570;&#x9589;&#x5305;&#xFF09;&#x3068;&#x547C;&#x3073;&#x307E;&#x3059;&#x3002;&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x306F;&#x300C;&#x9759;&#x7684;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x300D;&#x3068;&#x300C;&#x53C2;&#x7167;&#x3055;&#x308C;&#x7D9A;&#x3051;&#x3066;&#x3044;&#x308B;&#x5909;&#x6570;&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x304C;&#x4FDD;&#x6301;&#x3055;&#x308C;&#x308B;&#x300D;&#x3068;&#x3044;&#x3046;2&#x3064;&#x306E;&#x6027;&#x8CEA;&#x306B;&#x3088;&#x3063;&#x3066;&#x6210;&#x308A;&#x7ACB;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>JavaScript&#x306E;&#x95A2;&#x6570;&#x306F;&#x9759;&#x7684;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3068;&#x30E1;&#x30E2;&#x30EA;&#x7BA1;&#x7406;&#x3068;&#x3044;&#x3046;2&#x3064;&#x306E;&#x6027;&#x8CEA;&#x3092;&#x5E38;&#x306B;&#x6301;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x3042;&#x308B;&#x610F;&#x5473;&#x3067;&#x306F;&#x3059;&#x3079;&#x3066;&#x306E;&#x95A2;&#x6570;&#x304C;&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x304C;&#x3001;&#x3053;&#x3053;&#x3067;&#x306F;&#x95A2;&#x6570;&#x304C;&#x7279;&#x5B9A;&#x306E;&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x95A2;&#x6570;&#x304C;&#x72B6;&#x614B;&#x3092;&#x6301;&#x3063;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x3092;&#x6307;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x5148;&#x307B;&#x3069;&#x306E;&#x4F8B;&#x3067;&#x306F;<code>createCounter</code>&#x95A2;&#x6570;&#x3092;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x305F;&#x3073;&#x306B;&#x3001;&#x305D;&#x308C;&#x305E;&#x308C;<code>count</code>&#x3068;<code>increment</code>&#x95A2;&#x6570;&#x304C;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;<code>createCounter</code>&#x95A2;&#x6570;&#x3092;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x3068;&#x3001;&#x305D;&#x308C;&#x305E;&#x308C;&#x5225;&#x3005;&#x306E;<code>increment</code>&#x95A2;&#x6570;&#x304C;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3001;&#x5225;&#x3005;&#x306E;<code>count</code>&#x5909;&#x6570;&#x3092;&#x53C2;&#x7167;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;<code>createCounter</code>&#x95A2;&#x6570;&#x3092;&#x8907;&#x6570;&#x56DE;&#x547C;&#x3073;&#x51FA;&#x3057;&#x3066;&#x307F;&#x308B;&#x3068;&#x3001;&#x5225;&#x3005;&#x306E;&#x72B6;&#x614B;&#x3092;&#x6301;&#x3063;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;&#x78BA;&#x8A8D;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p><code>count</code>変数を参照するものがいるため、<code>count</code>変数は自動的に解放されません。
+そのため<code>count</code>変数の値は保持され続け、<code>myCounter</code>変数を実行するたびに1ずつ大きくなっていきます。</p>
+<p>このように<code>count</code>変数が自動解放されずに保持できているのは「<code>increment</code>関数内から外側の<code>createCounter</code>関数スコープにある<code>count</code>変数を参照している」ためです。
+このような性質のことを<strong>クロージャー</strong>（関数閉包）と呼びます。クロージャーは「静的スコープ」と「参照され続けている変数のデータが保持される」という2つの性質によって成り立っています。</p>
+<p>JavaScriptの関数は静的スコープとメモリ管理という2つの性質を常に持っています。そのため、ある意味ではすべての関数がクロージャーとなりますが、ここでは関数が特定の変数を参照することで関数が状態を持っていることを指します。</p>
+<p>先ほどの例では<code>createCounter</code>関数を実行するたびに、それぞれ<code>count</code>と<code>increment</code>関数が定義されます。そのため、<code>createCounter</code>関数を実行すると、それぞれ別々の<code>increment</code>関数が定義され、別々の<code>count</code>変数を参照します。</p>
+<p>次のように<code>createCounter</code>関数を複数回呼び出してみると、別々の状態を持っていることが確認できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> createCounter = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
     <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;
     <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">increment</span>(<span class="hljs-params"></span>) </span>{
-        <span class="hljs-comment">// &#x5909;&#x6570;`count`&#x3092;&#x53C2;&#x7167;&#x3057;&#x7D9A;&#x3051;&#x3066;&#x3044;&#x308B;</span>
+        <span class="hljs-comment">// 変数`count`を参照し続けている</span>
         count = count + <span class="hljs-number">1</span>;
         <span class="hljs-keyword">return</span> count;
     };
 };
-<span class="hljs-comment">// countUp&#x3068;newCountUp&#x306F;&#x305D;&#x308C;&#x305E;&#x308C;&#x5225;&#x306E;increment&#x95A2;&#x6570;(&#x5185;&#x5074;&#x306B;&#x3042;&#x308B;&#x306E;&#x3082;&#x5225;&#x306E;count&#x5909;&#x6570;)</span>
+<span class="hljs-comment">// countUpとnewCountUpはそれぞれ別のincrement関数(内側にあるのも別のcount変数)</span>
 <span class="hljs-keyword">const</span> countUp = createCounter();
 <span class="hljs-keyword">const</span> newCountUp = createCounter();
-<span class="hljs-comment">// &#x53C2;&#x7167;&#x3057;&#x3066;&#x308B;&#x95A2;&#x6570;(&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;)&#x306F;&#x5225;&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;===&#x306F;&#x4E00;&#x81F4;&#x3057;&#x306A;&#x3044;</span>
+<span class="hljs-comment">// 参照してる関数(オブジェクト)は別であるため===は一致しない</span>
 <span class="hljs-built_in">console</span>.log(countUp === newCountUp);<span class="hljs-comment">// false</span>
-<span class="hljs-comment">// &#x305D;&#x308C;&#x305E;&#x308C;&#x306E;&#x72B6;&#x614B;&#x3082;&#x5225;&#x3068;&#x306A;&#x308B;</span>
+<span class="hljs-comment">// それぞれの状態も別となる</span>
 <span class="hljs-built_in">console</span>.log(countUp()); <span class="hljs-comment">// =&gt; 1</span>
 <span class="hljs-built_in">console</span>.log(newCountUp()); <span class="hljs-comment">// =&gt; 1</span>
 </code></pre>
-<h3 id="closure-usecase"><a name="closure-usecase" class="plugin-anchor" href="#closure-usecase"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x306E;&#x7528;&#x9014; </h3>
-<p>&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x306F;&#x3055;&#x307E;&#x3056;&#x307E;&#x306A;&#x7528;&#x9014;&#x306B;&#x5229;&#x7528;&#x3055;&#x308C;&#x307E;&#x3059;&#x304C;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x7528;&#x9014;&#x3067;&#x5229;&#x7528;&#x3055;&#x308C;&#x308B;&#x3053;&#x3068;&#x304C;&#x591A;&#x3044;&#x3067;&#x3059;&#x3002;</p>
+<h3 id="closure-usecase"><a name="closure-usecase" class="plugin-anchor" href="#closure-usecase"><i class="fa fa-link" aria-hidden="true"></i></a>クロージャーの用途 </h3>
+<p>クロージャーはさまざまな用途に利用されますが、次のような用途で利用されることが多いです。</p>
 <ul>
-<li>&#x95A2;&#x6570;&#x306B;&#x72B6;&#x614B;&#x3092;&#x6301;&#x305F;&#x305B;&#x308B;&#x624B;&#x6BB5;&#x3068;&#x3057;&#x3066;</li>
-<li>&#x5916;&#x304B;&#x3089;&#x53C2;&#x7167;&#x3067;&#x304D;&#x306A;&#x3044;&#x5909;&#x6570;&#x3092;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x624B;&#x6BB5;&#x3068;&#x3057;&#x3066;</li>
-<li>&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x5909;&#x6570;&#x3092;&#x6E1B;&#x3089;&#x3059;&#x624B;&#x6BB5;&#x3068;&#x3057;&#x3066;</li>
-<li>&#x9AD8;&#x968E;&#x95A2;&#x6570;&#x306E;&#x4E00;&#x90E8;&#x90E8;&#x5206;&#x3068;&#x3057;&#x3066;</li>
+<li>関数に状態を持たせる手段として</li>
+<li>外から参照できない変数を定義する手段として</li>
+<li>グローバル変数を減らす手段として</li>
+<li>高階関数の一部部分として</li>
 </ul>
-<p>&#x3053;&#x308C;&#x3089;&#x306F;&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x306E;&#x7279;&#x5FB4;&#x3067;&#x3082;&#x3042;&#x308B;&#x306E;&#x3067;&#x3001;&#x540C;&#x6642;&#x306B;&#x4F7F;&#x308F;&#x308C;&#x308B;&#x3053;&#x3068;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x305F;&#x3068;&#x3048;&#x3070;&#x6B21;&#x306E;&#x4F8B;&#x3067;&#x306F;&#x3001;<code>privateCount</code>&#x3068;&#x3044;&#x3046;&#x5909;&#x6570;&#x3092;&#x95A2;&#x6570;&#x306E;&#x4E2D;&#x306B;&#x5B9A;&#x7FA9;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;<code>privateCount</code>&#x5909;&#x6570;&#x306F;&#x3001;&#x5916;&#x306E;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x304B;&#x3089;&#x306F;&#x76F4;&#x63A5;&#x53C2;&#x7167;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x5916;&#x304B;&#x3089;&#x53C2;&#x7167;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x306A;&#x3044;&#x5909;&#x6570;&#x3092;&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x3068;&#x306A;&#x308B;&#x95A2;&#x6570;&#x306B;&#x9589;&#x3058;&#x8FBC;&#x3081;&#x308B;&#x3053;&#x3068;&#x3067;&#x3001;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x306B;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x5909;&#x6570;&#x3092;&#x6E1B;&#x3089;&#x305B;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>これらはクロージャーの特徴でもあるので、同時に使われることがあります。</p>
+<p>たとえば次の例では、<code>privateCount</code>という変数を関数の中に定義しています。
+この<code>privateCount</code>変数は、外のグローバルスコープからは直接参照できません。
+外から参照する必要がない変数をクロージャーとなる関数に閉じ込めることで、グローバルに定義する変数を減らせています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> createCounter = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-    <span class="hljs-comment">// &#x5916;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x304B;&#x3089;`privateCount`&#x3092;&#x76F4;&#x63A5;&#x53C2;&#x7167;&#x3067;&#x304D;&#x306A;&#x3044;</span>
+    <span class="hljs-comment">// 外のスコープから`privateCount`を直接参照できない</span>
     <span class="hljs-keyword">let</span> privateCount = <span class="hljs-number">0</span>;
     <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
         privateCount++;
-        <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${privateCount}</span>&#x56DE;&#x76EE;`</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${privateCount}</span>回目`</span>;
     };
 };
 <span class="hljs-keyword">const</span> counter = createCounter();
-<span class="hljs-built_in">console</span>.log(counter()); <span class="hljs-comment">// =&gt; &quot;1&#x56DE;&#x76EE;&quot;</span>
-<span class="hljs-built_in">console</span>.log(counter()); <span class="hljs-comment">// =&gt; &quot;2&#x56DE;&#x76EE;&quot;</span>
+<span class="hljs-built_in">console</span>.log(counter()); <span class="hljs-comment">// =&gt; &quot;1回目&quot;</span>
+<span class="hljs-built_in">console</span>.log(counter()); <span class="hljs-comment">// =&gt; &quot;2回目&quot;</span>
 </code></pre>
-<p>&#x307E;&#x305F;&#x3001;&#x95A2;&#x6570;&#x3092;&#x8FD4;&#x3059;&#x95A2;&#x6570;&#x306E;&#x3053;&#x3068;&#x3092;&#x9AD8;&#x968E;&#x95A2;&#x6570;&#x3068;&#x547C;&#x3073;&#x307E;&#x3059;&#x304C;&#x3001;&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x306E;&#x6027;&#x8CEA;&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;<code>n</code>&#x3088;&#x308A;&#x5927;&#x304D;&#x3044;&#x304B;&#x3092;&#x5224;&#x5B9A;&#x3059;&#x308B;&#x9AD8;&#x968E;&#x95A2;&#x6570;&#x3092;&#x4F5C;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x6700;&#x521D;&#x304B;&#x3089;<code>greaterThan5</code>&#x3068;&#x3044;&#x3046;&#x95A2;&#x6570;&#x3092;&#x5B9A;&#x7FA9;&#x3059;&#x308C;&#x3070;&#x3088;&#x3044;&#x306E;&#x3067;&#x3059;&#x304C;&#x3001;&#x9AD8;&#x968E;&#x95A2;&#x6570;&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;&#x6761;&#x4EF6;&#x3092;&#x5F8C;&#x304B;&#x3089;&#x5B9A;&#x7FA9;&#x3067;&#x304D;&#x308B;&#x306A;&#x3069;&#x306E;&#x67D4;&#x8EDF;&#x6027;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>また、関数を返す関数のことを高階関数と呼びますが、クロージャーの性質を使うことで次のように<code>n</code>より大きいかを判定する高階関数を作れます。
+最初から<code>greaterThan5</code>という関数を定義すればよいのですが、高階関数を使うことで条件を後から定義できるなどの柔軟性があります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greaterThan</span>(<span class="hljs-params">n</span>) </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">m</span>) </span>{
         <span class="hljs-keyword">return</span> m &gt; n; 
     };
 }
-<span class="hljs-comment">// 5&#x3088;&#x308A;&#x5927;&#x304D;&#x306A;&#x5024;&#x304B;&#x3092;&#x5224;&#x5B9A;&#x3059;&#x308B;&#x95A2;&#x6570;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;</span>
+<span class="hljs-comment">// 5より大きな値かを判定する関数を作成する</span>
 <span class="hljs-keyword">const</span> greaterThan5 = greaterThan(<span class="hljs-number">5</span>);
 <span class="hljs-built_in">console</span>.log(greaterThan5(<span class="hljs-number">4</span>)); <span class="hljs-comment">// =&gt; false</span>
 <span class="hljs-built_in">console</span>.log(greaterThan5(<span class="hljs-number">5</span>)); <span class="hljs-comment">// =&gt; false</span>
 <span class="hljs-built_in">console</span>.log(greaterThan5(<span class="hljs-number">6</span>)); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <!-- textlint-disable -->
-<p>&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x306F;&#x3001;&#x5909;&#x6570;&#x304C;&#x53C2;&#x7167;&#x3059;&#x308B;&#x5024;&#x304C;&#x9759;&#x7684;&#x306B;&#x6C7A;&#x307E;&#x308B;&#x9759;&#x7684;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3068;&#x3044;&#x3046;&#x6027;&#x8CEA;&#x3068;&#x30C7;&#x30FC;&#x30BF;&#x306F;&#x53C2;&#x7167;&#x3055;&#x308C;&#x3066;&#x3044;&#x308C;&#x3070;&#x4FDD;&#x6301;&#x3055;&#x308C;&#x308B;&#x3068;&#x3044;&#x3046;2&#x3064;&#x306E;&#x6027;&#x8CEA;&#x306B;&#x3088;&#x3063;&#x3066;&#x6210;&#x308A;&#x7ACB;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
+<p>クロージャーは、変数が参照する値が静的に決まる静的スコープという性質とデータは参照されていれば保持されるという2つの性質によって成り立っています。
 <!-- textlint-enable --></p>
-<p>JavaScript&#x306B;&#x306F;&#x3001;&#x95A2;&#x6570;&#x3092;&#x77ED;&#x304F;&#x5B9A;&#x7FA9;&#x3067;&#x304D;&#x308B;Arrow Function&#x3084;&#x9AD8;&#x968E;&#x95A2;&#x6570;&#x3067;&#x3042;&#x308B;<code>Array#forEach</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306A;&#x3069;&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x3092;&#x81EA;&#x7136;&#x3068;&#x5229;&#x7528;&#x3057;&#x3084;&#x3059;&#x3044;&#x74B0;&#x5883;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x95A2;&#x6570;&#x3092;&#x7406;&#x89E3;&#x3059;&#x308B;&#x4E0A;&#x3067;&#x306F;&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x3092;&#x7406;&#x89E3;&#x3059;&#x308B;&#x3053;&#x3068;&#x304C;&#x5927;&#x5207;&#x3067;&#x3059;&#x3002;</p>
-<h3 id="closure-vs-function-object"><a name="closure-vs-function-object" class="plugin-anchor" href="#closure-vs-function-object"><i class="fa fa-link" aria-hidden="true"></i></a>[&#x30B3;&#x30E9;&#x30E0;] &#x72B6;&#x614B;&#x3092;&#x6301;&#x3064;&#x95A2;&#x6570;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8; </h3>
-<p>JavaScript&#x3067;&#x306F;&#x95A2;&#x6570;&#x306F;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x4E00;&#x7A2E;&#x3067;&#x3059;&#x3002;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x76F4;&#x63A5;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x306B;&#x5024;&#x3092;&#x4EE3;&#x5165;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x3092;&#x4F7F;&#x308F;&#x306A;&#x304F;&#x3066;&#x3082;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x95A2;&#x6570;&#x306B;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3068;&#x3057;&#x3066;&#x72B6;&#x614B;&#x3092;&#x6301;&#x305F;&#x305B;&#x308B;&#x3053;&#x3068;&#x304C;&#x53EF;&#x80FD;&#x3067;&#x3059;&#x3002;</p>
+<p>JavaScriptには、関数を短く定義できるArrow Functionや高階関数である<code>Array#forEach</code>メソッドなどクロージャーを自然と利用しやすい環境があります。
+関数を理解する上ではクロージャーを理解することが大切です。</p>
+<h3 id="closure-vs-function-object"><a name="closure-vs-function-object" class="plugin-anchor" href="#closure-vs-function-object"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] 状態を持つ関数オブジェクト </h3>
+<p>JavaScriptでは関数はオブジェクトの一種です。オブジェクトであるため直接プロパティに値を代入できます。
+そのため、クロージャーを使わなくても、次のように関数にプロパティとして状態を持たせることが可能です。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">countUp</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-comment">// count&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x5909;&#x66F4;&#x3059;&#x308B;</span>
+    <span class="hljs-comment">// countプロパティを参照して変更する</span>
     countUp.count = countUp.count + <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> countUp.count;
 }
-<span class="hljs-comment">// &#x95A2;&#x6570;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3068;&#x3057;&#x3066;&#x5024;&#x3092;&#x4EE3;&#x5165;&#x3059;&#x308B;</span>
+<span class="hljs-comment">// 関数オブジェクトにプロパティとして値を代入する</span>
 countUp.count = <span class="hljs-number">0</span>;
-<span class="hljs-comment">// &#x547C;&#x3073;&#x51FA;&#x3059;&#x3054;&#x3068;&#x306B;count&#x304C;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x308B;</span>
+<span class="hljs-comment">// 呼び出すごとにcountが更新される</span>
 <span class="hljs-built_in">console</span>.log(countUp()); <span class="hljs-comment">// =&gt; 1</span>
 <span class="hljs-built_in">console</span>.log(countUp()); <span class="hljs-comment">// =&gt; 2</span>
 </code></pre>
-<p>&#x3057;&#x304B;&#x3057;&#x3001;&#x3053;&#x306E;&#x65B9;&#x6CD5;&#x306F;&#x63A8;&#x5968;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x305B;&#x3093;&#x3002;&#x306A;&#x305C;&#x306A;&#x3089;&#x3001;&#x95A2;&#x6570;&#x306E;&#x5916;&#x304B;&#x3089;<code>count</code>&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3092;&#x5909;&#x66F4;&#x3067;&#x304D;&#x308B;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;
-&#x95A2;&#x6570;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x306F;&#x5916;&#x304B;&#x3089;&#x3082;&#x53C2;&#x7167;&#x3067;&#x304D;&#x3001;&#x305D;&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x5024;&#x306F;&#x5909;&#x66F4;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x95A2;&#x6570;&#x306E;&#x4E2D;&#x3067;&#x306E;&#x307F;&#x53C2;&#x7167;&#x53EF;&#x80FD;&#x306A;&#x72B6;&#x614B;&#x3092;&#x6271;&#x3044;&#x305F;&#x3044;&#x5834;&#x5408;&#x306B;&#x306F;&#x3001;&#x305D;&#x308C;&#x3092;&#x5F37;&#x5236;&#x3067;&#x304D;&#x308B;&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x304C;&#x6709;&#x52B9;&#x3067;&#x3059;&#x3002;</p>
+<p>しかし、この方法は推奨されていません。なぜなら、関数の外から<code>count</code>プロパティを変更できるためです。
+関数オブジェクトのプロパティは外からも参照でき、そのプロパティ値は変更できます。
+関数の中でのみ参照可能な状態を扱いたい場合には、それを強制できるクロージャーが有効です。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">countUp</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-comment">// count&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x5909;&#x66F4;&#x3059;&#x308B;</span>
+    <span class="hljs-comment">// countプロパティを参照して変更する</span>
     countUp.count = countUp.count + <span class="hljs-number">1</span>;
     <span class="hljs-keyword">return</span> countUp.count;
 }
 countUp.count = <span class="hljs-number">0</span>;
-<span class="hljs-comment">// &#x547C;&#x3073;&#x51FA;&#x3059;&#x3054;&#x3068;&#x306B;count&#x304C;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x308B;</span>
+<span class="hljs-comment">// 呼び出すごとにcountが更新される</span>
 <span class="hljs-built_in">console</span>.log(countUp()); <span class="hljs-comment">// =&gt; 1</span>
-<span class="hljs-comment">// &#x76F4;&#x63A5;&#x5024;&#x3092;&#x5909;&#x66F4;&#x3067;&#x304D;&#x3066;&#x3057;&#x307E;&#x3046;</span>
+<span class="hljs-comment">// 直接値を変更できてしまう</span>
 countUp.count = <span class="hljs-number">10</span>;
 <span class="hljs-built_in">console</span>.log(countUp()); <span class="hljs-comment">// =&gt; 11</span>
 </code></pre>
-<h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>&#x307E;&#x3068;&#x3081; </h2>
-<p>&#x3053;&#x306E;&#x7AE0;&#x3067;&#x306F;&#x95A2;&#x6570;&#x3092;&#x4E2D;&#x5FC3;&#x306B;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x3064;&#x3044;&#x3066;&#x5B66;&#x3073;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>まとめ </h2>
+<p>この章では関数を中心にスコープについて学びました。</p>
 <ul>
-<li>&#x95A2;&#x6570;&#x3084;&#x30D6;&#x30ED;&#x30C3;&#x30AF;&#x306F;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3092;&#x6301;&#x3064;</li>
-<li>&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306F;&#x30CD;&#x30B9;&#x30C8;&#x3067;&#x304D;&#x308B;</li>
-<li>&#x3082;&#x3063;&#x3068;&#x3082;&#x5916;&#x5074;&#x306B;&#x306F;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x304C;&#x3042;&#x308B;</li>
-<li>&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x30C1;&#x30A7;&#x30FC;&#x30F3;&#x306F;&#x5185;&#x5074;&#x304B;&#x3089;&#x5916;&#x5074;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3078;&#x3068;&#x9806;&#x756A;&#x306B;&#x5909;&#x6570;&#x304C;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x304B;&#x63A2;&#x3059;&#x4ED5;&#x7D44;&#x307F;&#x306E;&#x3053;&#x3068;</li>
-<li><code>var</code>&#x30AD;&#x30FC;&#x30EF;&#x30FC;&#x30C9;&#x3067;&#x306E;&#x5909;&#x6570;&#x5BA3;&#x8A00;&#x3084;<code>function</code>&#x3067;&#x306E;&#x95A2;&#x6570;&#x5BA3;&#x8A00;&#x3067;&#x306F;&#x5DFB;&#x304D;&#x4E0A;&#x3052;&#x304C;&#x767A;&#x751F;&#x3059;&#x308B;</li>
-<li>&#x30AF;&#x30ED;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x306F;&#x9759;&#x7684;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x3068;&#x30E1;&#x30E2;&#x30EA;&#x7BA1;&#x7406;&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x304B;&#x3089;&#x306A;&#x308B;&#x95A2;&#x6570;&#x304C;&#x6301;&#x3064;&#x6027;&#x8CEA;</li>
+<li>関数やブロックはスコープを持つ</li>
+<li>スコープはネストできる</li>
+<li>もっとも外側にはグローバルスコープがある</li>
+<li>スコープチェーンは内側から外側のスコープへと順番に変数が定義されているか探す仕組みのこと</li>
+<li><code>var</code>キーワードでの変数宣言や<code>function</code>での関数宣言では巻き上げが発生する</li>
+<li>クロージャーは静的スコープとメモリ管理の仕組みからなる関数が持つ性質</li>
 </ul>
 <blockquote id="fn_1">
-<sup>1</sup>. &#x3053;&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x306F;Temporal Dead Zone&#xFF08;TDZ&#xFF09;&#x3068;&#x547C;&#x3070;&#x308C;&#x307E;&#x3059;&#x3002;<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#x21A9;</a>
+<sup>1</sup>. この仕組みはTemporal Dead Zone（TDZ）と呼ばれます。<a href="#reffn_1" title="Jump back to footnote [1] in the text."> ↩</a>
 </blockquote>
 <blockquote id="fn_2">
-<sup>2</sup>. ECMAScript&#x306E;&#x4ED5;&#x69D8;&#x3067;&#x306F;&#x30AC;&#x30D9;&#x30FC;&#x30B8;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x5B9F;&#x88C5;&#x306E;&#x898F;&#x5B9A;&#x306F;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;&#x5B9F;&#x88C5;&#x4F9D;&#x5B58;&#x306E;&#x51E6;&#x7406;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;<a href="#reffn_2" title="Jump back to footnote [2] in the text."> &#x21A9;</a>
+<sup>2</sup>. ECMAScriptの仕様ではガベージコレクションの実装の規定はないため、実装依存の処理となります。<a href="#reffn_2" title="Jump back to footnote [2] in the text."> ↩</a>
 </blockquote>
 
                                 
@@ -2234,12 +2234,56 @@ countUp.count = <span class="hljs-number">10</span>;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"スコープという変数などを参照できる範囲を決める概念を紹介します。ブロックスコープや関数スコープなどがどのような働きをしているのかや複数のスコープが重なったときにどのように変数の参照先が決まるのかを紹介します。また、スコープに関係する動作としてクロージャーという性質を紹介します。","title":"関数とスコープ","level":"1.3.18","depth":2,"next":{"title":"関数とthis","level":"1.3.19","depth":2,"path":"basic/function-this/README.md","ref":"./basic/function-this/README.md","articles":[]},"previous":{"title":"ラッパーオブジェクト","level":"1.3.17","depth":2,"path":"basic/wrapper-object/README.md","ref":"./basic/wrapper-object/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/function-scope/README.md","mtime":"2020-11-18T19:19:34.497Z","type":"markdown"},"gitbook":{"version":"3.6.8","time":"2020-11-18T19:20:11.295Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"スコープという変数などを参照できる範囲を決める概念を紹介します。ブロックスコープや関数スコープなどがどのような働きをしているのかや複数のスコープが重なったときにどのように変数の参照先が決まるのかを紹介します。また、スコープに関係する動作としてクロージャーという性質を紹介します。","title":"関数とスコープ","level":"1.3.18","depth":2,"next":{"title":"関数とthis","level":"1.3.19","depth":2,"path":"basic/function-this/README.md","ref":"./basic/function-this/README.md","articles":[]},"previous":{"title":"ラッパーオブジェクト","level":"1.3.17","depth":2,"path":"basic/wrapper-object/README.md","ref":"./basic/wrapper-object/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/function-scope/README.md","mtime":"2020-11-19T10:10:17.220Z","type":"markdown"},"gitbook":{"version":"3.6.13","time":"2020-11-19T10:10:53.113Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
 
         
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
     <script src="../../gitbook/gitbook.js"></script>
     <script src="../../gitbook/theme.js"></script>
     

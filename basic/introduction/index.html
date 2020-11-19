@@ -7,7 +7,7 @@
         <title>JavaScriptとは · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptとはどのような用途に使われているプログラミング言語なのか、どのような言語的な特性をもっているのかについてを簡単に紹介します。">
-        <meta name="generator" content="HonKit 3.6.8">
+        <meta name="generator" content="HonKit 3.6.13">
         
         
         
@@ -176,7 +176,7 @@
     </head>
     <body>
         
-<div class="book">
+<div class="book honkit-cloak">
     <div class="book-summary">
         
             
@@ -1441,110 +1441,110 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="what-is-javascript"><a name="what-is-javascript" class="plugin-anchor" href="#what-is-javascript"><i class="fa fa-link" aria-hidden="true"></i></a>JavaScript&#x3068;&#x306F; </h1>
-<p>JavaScript&#x3092;&#x5B66;&#x3073;&#x306F;&#x3058;&#x3081;&#x308B;&#x524D;&#x306B;&#x3001;&#x307E;&#x305A;JavaScript&#x3068;&#x306F;&#x3069;&#x306E;&#x3088;&#x3046;&#x306A;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DF;&#x30F3;&#x30B0;&#x8A00;&#x8A9E;&#x306A;&#x306E;&#x304B;&#x3092;&#x7D39;&#x4ECB;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p>JavaScript&#x306F;&#x4E3B;&#x306B;&#x30A6;&#x30A7;&#x30D6;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306E;&#x4E2D;&#x3067;&#x52D5;&#x304F;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DF;&#x30F3;&#x30B0;&#x8A00;&#x8A9E;&#x3067;&#x3059;&#x3002;
-&#x30A6;&#x30A7;&#x30D6;&#x30B5;&#x30A4;&#x30C8;&#x3067;&#x64CD;&#x4F5C;&#x3092;&#x3057;&#x305F;&#x3089;&#x8868;&#x793A;&#x304C;&#x66F8;&#x304D;&#x63DB;&#x308F;&#x3063;&#x305F;&#x308A;&#x3001;&#x30A6;&#x30A7;&#x30D6;&#x30B5;&#x30A4;&#x30C8;&#x306E;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x3068;&#x901A;&#x4FE1;&#x3057;&#x3066;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x53D6;&#x5F97;&#x3057;&#x305F;&#x308A;&#x3068;&#x73FE;&#x5728;&#x306E;&#x30A6;&#x30A7;&#x30D6;&#x30B5;&#x30A4;&#x30C8;&#x306B;&#x306F;&#x6B20;&#x304B;&#x305B;&#x306A;&#x3044;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DF;&#x30F3;&#x30B0;&#x8A00;&#x8A9E;&#x3067;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x3088;&#x3046;&#x306A;JavaScript&#x3092;&#x6D3B;&#x7528;&#x3057;&#x3066;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x3088;&#x3046;&#x306B;&#x64CD;&#x4F5C;&#x3067;&#x304D;&#x308B;&#x30A6;&#x30A7;&#x30D6;&#x30B5;&#x30A4;&#x30C8;&#x3092;&#x30A6;&#x30A7;&#x30D6;&#x30A2;&#x30D7;&#x30EA;&#x3068;&#x3082;&#x8A00;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>JavaScript&#x306F;&#x30A6;&#x30A7;&#x30D6;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3060;&#x3051;&#x3067;&#x306F;&#x306A;&#x304F;&#x3001;Node.js&#x3068;&#x3044;&#x3046;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x5074;&#x306E;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x4F5C;&#x308B;&#x4ED5;&#x7D44;&#x307F;&#x3067;&#x3082;&#x5229;&#x7528;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x3001;&#x30C7;&#x30B9;&#x30AF;&#x30C8;&#x30C3;&#x30D7;&#x30A2;&#x30D7;&#x30EA;&#x3084;&#x30B9;&#x30DE;&#x30FC;&#x30C8;&#x30D5;&#x30A9;&#x30F3;&#x30A2;&#x30D7;&#x30EA;&#x3001;IoT&#xFF08;Internet of Things&#xFF09;&#x30C7;&#x30D0;&#x30A4;&#x30B9;&#x3067;&#x3082;JavaScript&#x3092;&#x4F7F;&#x3063;&#x3066;&#x52D5;&#x304B;&#x305B;&#x308B;&#x3082;&#x306E;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;JavaScript&#x306F;&#x304B;&#x306A;&#x308A;&#x5E45;&#x5E83;&#x3044;&#x74B0;&#x5883;&#x3067;&#x52D5;&#x3044;&#x3066;&#x3044;&#x308B;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DF;&#x30F3;&#x30B0;&#x8A00;&#x8A9E;&#x3067;&#x3001;&#x3055;&#x307E;&#x3056;&#x307E;&#x306A;&#x7A2E;&#x985E;&#x306E;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x4F5C;&#x6210;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="javascript-ecmascript"><a name="javascript-ecmascript" class="plugin-anchor" href="#javascript-ecmascript"><i class="fa fa-link" aria-hidden="true"></i></a>JavaScript&#x3068;ECMAScript </h2>
-<p>JavaScript&#x3068;&#x3044;&#x3046;&#x8A00;&#x8A9E;&#x306F;<a href="../ecmascript/">ECMAScript</a>&#x3068;&#x3044;&#x3046;&#x4ED5;&#x69D8;&#x306B;&#x3088;&#x3063;&#x3066;&#x52D5;&#x4F5C;&#x304C;&#x6C7A;&#x3081;&#x3089;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-<a href="../ecmascript/">ECMAScript</a>&#x3068;&#x3044;&#x3046;&#x4ED5;&#x69D8;&#x3067;&#x306F;&#x3001;&#x3069;&#x306E;&#x5B9F;&#x884C;&#x74B0;&#x5883;&#x3067;&#x3082;&#x5171;&#x901A;&#x306A;&#x52D5;&#x4F5C;&#x306E;&#x307F;&#x304C;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x305F;&#x3081;&#x3001;&#x57FA;&#x672C;&#x7684;&#x306B;&#x3069;&#x306E;&#x5B9F;&#x884C;&#x74B0;&#x5883;&#x3067;&#x3082;&#x540C;&#x3058;&#x52D5;&#x4F5C;&#x3092;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x4E00;&#x65B9;&#x3067;&#x3001;&#x5B9F;&#x884C;&#x74B0;&#x5883;&#x306B;&#x3088;&#x3063;&#x3066;&#x7570;&#x306A;&#x308B;&#x90E8;&#x5206;&#x3082;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x305F;&#x3068;&#x3048;&#x3070;&#x3001;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3067;&#x306F;UI&#xFF08;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x30A4;&#x30F3;&#x30BF;&#x30FC;&#x30D5;&#x30A7;&#x30FC;&#x30B9;&#xFF09;&#x3092;&#x64CD;&#x4F5C;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E;JavaScript&#x306E;&#x6A5F;&#x80FD;&#x304C;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x304C;&#x3001;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x5074;&#x306E;&#x51E6;&#x7406;&#x3092;&#x66F8;&#x304F;Node.js&#x3067;&#x306F;&#x305D;&#x308C;&#x3089;&#x306E;&#x6A5F;&#x80FD;&#x306F;&#x4E0D;&#x8981;&#x3067;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;&#x5B9F;&#x884C;&#x74B0;&#x5883;&#x306B;&#x3088;&#x3063;&#x3066;&#x5FC5;&#x8981;&#x306A;&#x6A5F;&#x80FD;&#x306F;&#x7570;&#x306A;&#x308B;&#x305F;&#x3081;&#x3001;&#x305D;&#x308C;&#x3089;&#x306E;&#x6A5F;&#x80FD;&#x306F;&#x5B9F;&#x884C;&#x74B0;&#x5883;&#x3054;&#x3068;&#x306B;&#x5B9A;&#x7FA9;&#xFF08;&#x5B9F;&#x88C5;&#xFF09;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x300C;ECMAScript&#x300D;&#x306F;&#x3069;&#x306E;&#x5B9F;&#x884C;&#x74B0;&#x5883;&#x3067;&#x3082;&#x5171;&#x901A;&#x306E;&#x90E8;&#x5206;&#x3001;&#x300C;JavaScript&#x300D;&#x306F;ECMAScript&#x3068;&#x5B9F;&#x884C;&#x74B0;&#x5883;&#x306E;&#x56FA;&#x6709;&#x6A5F;&#x80FD;&#x3082;&#x542B;&#x3093;&#x3060;&#x7BC4;&#x56F2;&#x3068;&#x3044;&#x3046;&#x306E;&#x304C;&#x30A4;&#x30E1;&#x30FC;&#x30B8;&#x3057;&#x3084;&#x3059;&#x3044;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<p><img src="img/javascript-ecmascript.png" alt="JavaScript&#x3068;ECMAScript&#x306E;&#x7BC4;&#x56F2;"></p>
-<p>ECMAScript&#x306E;&#x4ED5;&#x69D8;&#x3067;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x6A5F;&#x80FD;&#x3092;&#x5B66;&#x3076;&#x3053;&#x3068;&#x3067;&#x3001;&#x3069;&#x306E;&#x5B9F;&#x884C;&#x74B0;&#x5883;&#x3067;&#x3082;&#x5BFE;&#x5FDC;&#x3067;&#x304D;&#x308B;&#x57FA;&#x672C;&#x7684;&#x306A;&#x90E8;&#x5206;&#x3092;&#x5B66;&#x3079;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x66F8;&#x7C4D;&#x3067;&#x306F;&#x3001;&#x3053;&#x306E;&#x9055;&#x3044;&#x3092;&#x660E;&#x78BA;&#x306B;&#x533A;&#x5225;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308B;&#x5834;&#x5408;&#x306F;&#x300C;ECMAScript&#x300D;&#x3068;&#x300C;JavaScript&#x300D;&#x3068;&#x3044;&#x3046;&#x5358;&#x8A9E;&#x3092;&#x4F7F;&#x3044;&#x5206;&#x3051;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x3046;&#x3067;&#x306A;&#x3044;&#x5834;&#x5408;&#x3001;&#x300C;JavaScript&#x300D;&#x3068;&#x3044;&#x3046;&#x5358;&#x8A9E;&#x3092;&#x4F7F;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x307E;&#x305F;&#x3001;&#x3053;&#x306E;ECMAScript&#x3068;&#x3044;&#x3046;&#x4ED5;&#x69D8;&#xFF08;&#x5171;&#x901A;&#x306E;&#x90E8;&#x5206;&#xFF09;&#x3082;&#x6BCE;&#x5E74;&#x30A2;&#x30C3;&#x30D7;&#x30C7;&#x30FC;&#x30C8;&#x3055;&#x308C;&#x3001;&#x65B0;&#x3057;&#x3044;&#x6587;&#x6CD5;&#x3084;&#x6A5F;&#x80FD;&#x304C;&#x8FFD;&#x52A0;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x5B9F;&#x884C;&#x74B0;&#x5883;&#x306B;&#x3088;&#x3063;&#x3066;&#x306F;&#x53E4;&#x3044;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x306E;ECMAScript&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x305F;&#x3082;&#x306E;&#x3068;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;&#x5834;&#x5408;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-ECMAScript&#x306F;2015&#x5E74;&#x306B;ECMAScript 2015&#xFF08;ES2015&#xFF09;&#x3068;&#x3057;&#x3066;&#x5927;&#x304D;&#x304F;&#x30A2;&#x30C3;&#x30D7;&#x30C7;&#x30FC;&#x30C8;&#x3055;&#x308C;&#x305F;&#x4ED5;&#x69D8;&#x304C;&#x516C;&#x958B;&#x3055;&#x308C;&#x307E;&#x3057;&#x305F;&#x3002;</p>
-<p>&#x4ECA;&#x304B;&#x3089;JavaScript&#x3092;&#x5B66;&#x3076;&#x306A;&#x3089;&#x3001;ES2015&#x4EE5;&#x964D;&#x3092;&#x57FA;&#x672C;&#x306B;&#x3057;&#x305F;&#x307B;&#x3046;&#x304C;&#x308F;&#x304B;&#x308A;&#x3084;&#x3059;&#x3044;&#x305F;&#x3081;&#x3001;&#x3053;&#x306E;&#x66F8;&#x7C4D;&#x306F;ES2015&#x306B;&#x57FA;&#x3065;&#x3044;&#x305F;&#x5185;&#x5BB9;&#x3068;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x3001;&#x65E2;&#x5B58;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;ES2015&#x3088;&#x308A;&#x524D;&#x306E;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x3092;&#x5143;&#x306B;&#x3057;&#x305F;&#x3082;&#x306E;&#x3082;&#x591A;&#x3044;&#x305F;&#x3081;&#x3001;&#x305D;&#x308C;&#x3089;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306B;&#x95A2;&#x3057;&#x3066;&#x3082;&#x89E3;&#x8AAC;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x307E;&#x305A;&#x306F;&#x3001;JavaScript&#xFF08;ECMAScript&#xFF09;&#x3068;&#x306F;&#x3069;&#x306E;&#x3088;&#x3046;&#x306A;&#x8A00;&#x8A9E;&#x306A;&#x306E;&#x304B;&#x3092;&#x5927;&#x307E;&#x304B;&#x306B;&#x898B;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="about-javascript"><a name="about-javascript" class="plugin-anchor" href="#about-javascript"><i class="fa fa-link" aria-hidden="true"></i></a>JavaScript&#x3063;&#x3066;&#x3069;&#x306E;&#x3088;&#x3046;&#x306A;&#x8A00;&#x8A9E;&#xFF1F; </h2>
-<p>JavaScript&#x306F;&#x3001;&#x5143;&#x3005;Netscape Navigator&#x3068;&#x3044;&#x3046;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306E;&#x305F;&#x3081;&#x306B;&#x958B;&#x767A;&#x3055;&#x308C;&#x305F;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DF;&#x30F3;&#x30B0;&#x8A00;&#x8A9E;&#x3067;&#x3059;&#x3002;
-C&#x3001;Java&#x3001;Self&#x3001;Scheme&#x306A;&#x3069;&#x306E;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DF;&#x30F3;&#x30B0;&#x8A00;&#x8A9E;&#x306E;&#x5F71;&#x97FF;&#x3092;&#x53D7;&#x3051;&#x3066;&#x4F5C;&#x3089;&#x308C;&#x307E;&#x3057;&#x305F;&#x3002;</p>
-<p>JavaScript&#x306F;&#x3001;&#x5927;&#x90E8;&#x5206;&#x304C;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#xFF08;&#x5024;&#x3084;&#x51E6;&#x7406;&#x3092;1&#x3064;&#x306B;&#x307E;&#x3068;&#x3081;&#x305F;&#x3082;&#x306E;&#x3068;&#x8003;&#x3048;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#xFF09;&#x3067;&#x3042;&#x308A;&#x3001;&#x305D;&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x540C;&#x58EB;&#x306E;&#x30B3;&#x30DF;&#x30E5;&#x30CB;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306B;&#x3088;&#x3063;&#x3066;&#x6210;&#x308A;&#x7ACB;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x306F;&#x3001;ECMAScript&#x306E;&#x4ED5;&#x69D8;&#x3068;&#x3057;&#x3066;&#x5B9A;&#x3081;&#x3089;&#x308C;&#x305F;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3001;
-&#x5B9F;&#x884C;&#x74B0;&#x5883;&#x304C;&#x5B9A;&#x7FA9;&#x3057;&#x305F;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3001;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#xFF08;&#x3064;&#x307E;&#x308A;&#x3042;&#x306A;&#x305F;&#x3067;&#x3059;&#xFF09;&#x306E;&#x5B9A;&#x7FA9;&#x3057;&#x305F;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304C;&#x5B58;&#x5728;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x306E;&#x66F8;&#x7C4D;&#x306E;&#x300C;<a href="../">&#x7B2C;&#x4E00;&#x90E8;: &#x57FA;&#x672C;&#x6587;&#x6CD5;</a>&#x300D;&#x3067;&#x306F;ECMAScript&#x306E;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x69CB;&#x6587;&#x3084;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x5B66;&#x3093;&#x3067;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x300C;<a href="../../use-case/">&#x7B2C;&#x4E8C;&#x90E8;: &#x5FDC;&#x7528;&#x7DE8;&#xFF08;&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#xFF09;</a>&#x300D;&#x3067;&#x306F;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3084;Node.js&#x3068;&#x3044;&#x3063;&#x305F;&#x5B9F;&#x884C;&#x74B0;&#x5883;&#x304C;&#x5B9A;&#x7FA9;&#x3059;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x5B66;&#x3073;&#x306A;&#x304C;&#x3089;&#x3001;&#x5C0F;&#x3055;&#x306A;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x306E;&#x5B9A;&#x7FA9;&#x3057;&#x305F;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;&#x3001;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x66F8;&#x3044;&#x3066;&#x3044;&#x304F;&#x3068;&#x81EA;&#x7136;&#x3068;&#x767B;&#x5834;&#x3059;&#x308B;&#x305F;&#x3081;&#x3001;&#x9069;&#x5B9C;&#x898B;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306B;&#x3001;JavaScript&#x306E;&#x8A00;&#x8A9E;&#x7684;&#x306A;&#x7279;&#x5FB4;&#x3092;&#x7C21;&#x5358;&#x306B;&#x7D39;&#x4ECB;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<h3 id="case-sensitive"><a name="case-sensitive" class="plugin-anchor" href="#case-sensitive"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5927;&#x6587;&#x5B57;&#x3068;&#x5C0F;&#x6587;&#x5B57;&#x3092;&#x533A;&#x5225;&#x3059;&#x308B; </h3>
-<p>&#x307E;&#x305A;&#x3001;JavaScript&#x306F;&#x5927;&#x6587;&#x5B57;&#x5C0F;&#x6587;&#x5B57;&#x3092;&#x533A;&#x5225;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x305F;&#x3068;&#x3048;&#x3070;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;<code>name</code>&#x3068;&#x3044;&#x3046;&#x5909;&#x6570;&#x3092;&#x5927;&#x6587;&#x5B57;&#x3068;&#x5C0F;&#x6587;&#x5B57;&#x3067;&#x66F8;&#x3044;&#x305F;&#x5834;&#x5408;&#x306B;&#x3001;
-&#x305D;&#x308C;&#x305E;&#x308C;&#x306F;&#x5225;&#x3005;&#x306E;<code>name</code>&#x3068;<code>NAME</code>&#x3068;&#x3044;&#x3046;&#x540D;&#x524D;&#x306E;&#x5909;&#x6570;&#x3068;&#x3057;&#x3066;&#x8A8D;&#x8B58;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<pre><code class="lang-js"><span class="hljs-comment">// `name`&#x3068;&#x3044;&#x3046;&#x540D;&#x524D;&#x306E;&#x5909;&#x6570;&#x3092;&#x5BA3;&#x8A00;</span>
+                                <h1 id="what-is-javascript"><a name="what-is-javascript" class="plugin-anchor" href="#what-is-javascript"><i class="fa fa-link" aria-hidden="true"></i></a>JavaScriptとは </h1>
+<p>JavaScriptを学びはじめる前に、まずJavaScriptとはどのようなプログラミング言語なのかを紹介します。</p>
+<p>JavaScriptは主にウェブブラウザの中で動くプログラミング言語です。
+ウェブサイトで操作をしたら表示が書き換わったり、ウェブサイトのサーバーと通信してデータを取得したりと現在のウェブサイトには欠かせないプログラミング言語です。
+このようなJavaScriptを活用してアプリケーションのように操作できるウェブサイトをウェブアプリとも言います。</p>
+<p>JavaScriptはウェブブラウザだけではなく、Node.jsというサーバー側のアプリケーションを作る仕組みでも利用されています。
+また、デスクトップアプリやスマートフォンアプリ、IoT（Internet of Things）デバイスでもJavaScriptを使って動かせるものがあります。
+このように、JavaScriptはかなり幅広い環境で動いているプログラミング言語で、さまざまな種類のアプリケーションを作成できます。</p>
+<h2 id="javascript-ecmascript"><a name="javascript-ecmascript" class="plugin-anchor" href="#javascript-ecmascript"><i class="fa fa-link" aria-hidden="true"></i></a>JavaScriptとECMAScript </h2>
+<p>JavaScriptという言語は<a href="../ecmascript/">ECMAScript</a>という仕様によって動作が決められています。
+<a href="../ecmascript/">ECMAScript</a>という仕様では、どの実行環境でも共通な動作のみが定義されているため、基本的にどの実行環境でも同じ動作をします。</p>
+<p>一方で、実行環境によって異なる部分もあります。
+たとえば、ブラウザではUI（ユーザーインターフェース）を操作するためのJavaScriptの機能が定義されていますが、サーバー側の処理を書くNode.jsではそれらの機能は不要です。
+このように、実行環境によって必要な機能は異なるため、それらの機能は実行環境ごとに定義（実装）されています。</p>
+<p>そのため、「ECMAScript」はどの実行環境でも共通の部分、「JavaScript」はECMAScriptと実行環境の固有機能も含んだ範囲というのがイメージしやすいでしょう。</p>
+<p><img src="img/javascript-ecmascript.png" alt="JavaScriptとECMAScriptの範囲"></p>
+<p>ECMAScriptの仕様で定義されている機能を学ぶことで、どの実行環境でも対応できる基本的な部分を学べます。
+この書籍では、この違いを明確に区別する必要がある場合は「ECMAScript」と「JavaScript」という単語を使い分けます。
+そうでない場合、「JavaScript」という単語を使います。</p>
+<p>また、このECMAScriptという仕様（共通の部分）も毎年アップデートされ、新しい文法や機能が追加されています。
+そのため、実行環境によっては古いバージョンのECMAScriptを実装したものとなっている場合があります。
+ECMAScriptは2015年にECMAScript 2015（ES2015）として大きくアップデートされた仕様が公開されました。</p>
+<p>今からJavaScriptを学ぶなら、ES2015以降を基本にしたほうがわかりやすいため、この書籍はES2015に基づいた内容となっています。
+また、既存のコードはES2015より前のバージョンを元にしたものも多いため、それらのコードに関しても解説しています。</p>
+<p>まずは、JavaScript（ECMAScript）とはどのような言語なのかを大まかに見ていきます。</p>
+<h2 id="about-javascript"><a name="about-javascript" class="plugin-anchor" href="#about-javascript"><i class="fa fa-link" aria-hidden="true"></i></a>JavaScriptってどのような言語？ </h2>
+<p>JavaScriptは、元々Netscape Navigatorというブラウザのために開発されたプログラミング言語です。
+C、Java、Self、Schemeなどのプログラミング言語の影響を受けて作られました。</p>
+<p>JavaScriptは、大部分がオブジェクト（値や処理を1つにまとめたものと考えてください）であり、そのオブジェクト同士のコミュニケーションによって成り立っています。
+オブジェクトには、ECMAScriptの仕様として定められたオブジェクト、
+実行環境が定義したオブジェクト、ユーザー（つまりあなたです）の定義したオブジェクトが存在します。</p>
+<p>この書籍の「<a href="../">第一部: 基本文法</a>」ではECMAScriptの定義する構文やオブジェクトを学んでいきます。
+「<a href="../../use-case/">第二部: 応用編（ユースケース）</a>」ではブラウザやNode.jsといった実行環境が定義するオブジェクトを学びながら、小さなアプリケーションを作成していきます。
+ユーザーの定義したオブジェクトは、コードを書いていくと自然と登場するため、適宜見ていきます。</p>
+<p>次に、JavaScriptの言語的な特徴を簡単に紹介していきます。</p>
+<h3 id="case-sensitive"><a name="case-sensitive" class="plugin-anchor" href="#case-sensitive"><i class="fa fa-link" aria-hidden="true"></i></a>大文字と小文字を区別する </h3>
+<p>まず、JavaScriptは大文字小文字を区別します。
+たとえば、次のように<code>name</code>という変数を大文字と小文字で書いた場合に、
+それぞれは別々の<code>name</code>と<code>NAME</code>という名前の変数として認識されます。</p>
+<pre><code class="lang-js"><span class="hljs-comment">// `name`という名前の変数を宣言</span>
 <span class="hljs-keyword">const</span> name = <span class="hljs-string">&quot;azu&quot;</span>;
-<span class="hljs-comment">// `NAME`&#x3068;&#x3044;&#x3046;&#x540D;&#x524D;&#x306E;&#x5909;&#x6570;&#x3092;&#x5BA3;&#x8A00;</span>
+<span class="hljs-comment">// `NAME`という名前の変数を宣言</span>
 <span class="hljs-keyword">const</span> NAME = <span class="hljs-string">&quot;azu&quot;</span>;
 </code></pre>
-<p>&#x307E;&#x305F;&#x3001;&#x5927;&#x6587;&#x5B57;&#x3067;&#x958B;&#x59CB;&#x3057;&#x306A;&#x3051;&#x308C;&#x3070;&#x306A;&#x3089;&#x306A;&#x3044;&#x3068;&#x3044;&#x3063;&#x305F;&#x547D;&#x540D;&#x898F;&#x5247;&#x304C;&#x610F;&#x5473;&#x3092;&#x6301;&#x3064;&#x30B1;&#x30FC;&#x30B9;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x3042;&#x304F;&#x307E;&#x3067;&#x5225;&#x3005;&#x306E;&#x540D;&#x524D;&#x3068;&#x3057;&#x3066;&#x8A8D;&#x8B58;&#x3055;&#x308C;&#x308B;&#x3068;&#x3044;&#x3046;&#x3060;&#x3051;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;
-&#xFF08;&#x5909;&#x6570;&#x306B;&#x3064;&#x3044;&#x3066;&#x306E;&#x8A73;&#x7D30;&#x306F;&#x300C;<a href="../variables/">&#x5909;&#x6570;&#x3068;&#x5BA3;&#x8A00;</a>&#x300D;&#x306E;&#x7AE0;&#x3067;&#x89E3;&#x8AAC;&#x3057;&#x307E;&#x3059;&#xFF09;&#x3002;</p>
-<h3 id="reserved-keyword"><a name="reserved-keyword" class="plugin-anchor" href="#reserved-keyword"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E88;&#x7D04;&#x8A9E;&#x3092;&#x6301;&#x3064; </h3>
-<p>JavaScript&#x306B;&#x306F;&#x7279;&#x5225;&#x306A;&#x610F;&#x5473;&#x3092;&#x6301;&#x3064;&#x30AD;&#x30FC;&#x30EF;&#x30FC;&#x30C9;&#x304C;&#x3042;&#x308A;&#x3001;&#x3053;&#x308C;&#x3089;&#x306F;&#x4E88;&#x7D04;&#x8A9E;&#x3068;&#x3082;&#x547C;&#x3070;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x30AD;&#x30FC;&#x30EF;&#x30FC;&#x30C9;&#x3068;&#x540C;&#x3058;&#x540D;&#x524D;&#x306E;&#x5909;&#x6570;&#x3084;&#x95A2;&#x6570;&#x306F;&#x5BA3;&#x8A00;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x5148;&#x307B;&#x3069;&#x306E;&#x3001;&#x5909;&#x6570;&#x3092;&#x5BA3;&#x8A00;&#x3059;&#x308B;<code>const</code>&#x3082;&#x4E88;&#x7D04;&#x8A9E;&#x306E;&#x3072;&#x3068;&#x3064;&#x3068;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;<code>const</code>&#x3068;&#x3044;&#x3046;&#x540D;&#x524D;&#x306E;&#x5909;&#x6570;&#x540D;&#x306F;&#x5BA3;&#x8A00;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3002;</p>
-<h3 id="statement-semicolon"><a name="statement-semicolon" class="plugin-anchor" href="#statement-semicolon"><i class="fa fa-link" aria-hidden="true"></i></a>&#x6587;&#x306F;&#x30BB;&#x30DF;&#x30B3;&#x30ED;&#x30F3;&#x3067;&#x533A;&#x5207;&#x3089;&#x308C;&#x308B; </h3>
-<p>JavaScript&#x306F;&#x3001;&#x6587;&#xFF08;Statement&#xFF09;&#x3054;&#x3068;&#x306B;&#x51E6;&#x7406;&#x3057;&#x3066;&#x3044;&#x304D;&#x3001;&#x6587;&#x306F;&#x30BB;&#x30DF;&#x30B3;&#x30ED;&#x30F3;&#xFF08;<code>;</code>&#xFF09;&#x306B;&#x3088;&#x3063;&#x3066;&#x533A;&#x5207;&#x3089;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x7279;&#x6B8A;&#x306A;&#x30EB;&#x30FC;&#x30EB;&#x306B;&#x57FA;&#x3065;&#x304D;&#x3001;&#x30BB;&#x30DF;&#x30B3;&#x30ED;&#x30F3;&#x304C;&#x306A;&#x3044;&#x6587;&#x3082;&#x3001;&#x884C;&#x672B;&#x306B;&#x81EA;&#x52D5;&#x3067;&#x30BB;&#x30DF;&#x30B3;&#x30ED;&#x30F3;&#x304C;&#x633F;&#x5165;&#x3055;&#x308C;&#x308B;&#x3068;&#x3044;&#x3046;&#x4ED5;&#x7D44;&#x307F;&#x3082;&#x6301;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;<sup><a href="#fn_1" id="reffn_1">1</a></sup>
-&#x3057;&#x304B;&#x3057;&#x3001;&#x6697;&#x9ED9;&#x7684;&#x306A;&#x3082;&#x306E;&#x3078;&#x983C;&#x308B;&#x3068;&#x610F;&#x56F3;&#x3057;&#x306A;&#x3044;&#x6319;&#x52D5;&#x304C;&#x767A;&#x751F;&#x3059;&#x308B;&#x305F;&#x3081;&#x3001;&#x30BB;&#x30DF;&#x30B3;&#x30ED;&#x30F3;&#x306F;&#x5E38;&#x306B;&#x66F8;&#x304F;&#x3088;&#x3046;&#x306B;&#x3057;&#x307E;&#x3059;
-&#xFF08;&#x8A73;&#x7D30;&#x306F;&#x300C;<a href="../statement-expression/">&#x6587;&#x3068;&#x5F0F;</a>&#x300D;&#x306E;&#x7AE0;&#x3067;&#x89E3;&#x8AAC;&#x3057;&#x307E;&#x3059;&#xFF09;&#x3002;</p>
-<p>&#x307E;&#x305F;&#x3001;&#x30B9;&#x30DA;&#x30FC;&#x30B9;&#x3001;&#x30BF;&#x30D6;&#x6587;&#x5B57;&#x306A;&#x3069;&#x306F;&#x7A7A;&#x767D;&#x6587;&#x5B57;&#xFF08;&#x30DB;&#x30EF;&#x30A4;&#x30C8;&#x30B9;&#x30DA;&#x30FC;&#x30B9;&#xFF09;&#x3068;&#x547C;&#x3070;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x308C;&#x3089;&#x306E;&#x7A7A;&#x767D;&#x6587;&#x5B57;&#x3092;&#x6587;&#x306B;&#x3044;&#x304F;&#x3064;&#x7F6E;&#x3044;&#x3066;&#x3082;&#x6319;&#x52D5;&#x306B;&#x9055;&#x3044;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;</p>
-<p>&#x305F;&#x3068;&#x3048;&#x3070;&#x3001;&#x6B21;&#x306E;<code>1</code>&#x8DB3;&#x3059;<code>1</code>&#x3092;&#x884C;&#x3046;2&#x3064;&#x306E;&#x6587;&#x306F;&#x3001;<code>+</code>&#x306E;&#x524D;&#x5F8C;&#x306E;&#x7A7A;&#x767D;&#x6587;&#x5B57;&#x306E;&#x500B;&#x6570;&#x306B;&#x9055;&#x3044;&#x306F;&#x3042;&#x308A;&#x307E;&#x3059;&#x304C;&#x3001;&#x52D5;&#x4F5C;&#x3068;&#x3057;&#x3066;&#x306F;&#x307E;&#x3063;&#x305F;&#x304F;&#x540C;&#x3058;&#x610F;&#x5473;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>また、大文字で開始しなければならないといった命名規則が意味を持つケースはありません。
+そのため、あくまで別々の名前として認識されるというだけになっています
+（変数についての詳細は「<a href="../variables/">変数と宣言</a>」の章で解説します）。</p>
+<h3 id="reserved-keyword"><a name="reserved-keyword" class="plugin-anchor" href="#reserved-keyword"><i class="fa fa-link" aria-hidden="true"></i></a>予約語を持つ </h3>
+<p>JavaScriptには特別な意味を持つキーワードがあり、これらは予約語とも呼ばれます。
+このキーワードと同じ名前の変数や関数は宣言できません。
+先ほどの、変数を宣言する<code>const</code>も予約語のひとつとなっています。
+そのため、<code>const</code>という名前の変数名は宣言できません。</p>
+<h3 id="statement-semicolon"><a name="statement-semicolon" class="plugin-anchor" href="#statement-semicolon"><i class="fa fa-link" aria-hidden="true"></i></a>文はセミコロンで区切られる </h3>
+<p>JavaScriptは、文（Statement）ごとに処理していき、文はセミコロン（<code>;</code>）によって区切られます。
+特殊なルールに基づき、セミコロンがない文も、行末に自動でセミコロンが挿入されるという仕組みも持っています。<sup><a href="#fn_1" id="reffn_1">1</a></sup>
+しかし、暗黙的なものへ頼ると意図しない挙動が発生するため、セミコロンは常に書くようにします
+（詳細は「<a href="../statement-expression/">文と式</a>」の章で解説します）。</p>
+<p>また、スペース、タブ文字などは空白文字（ホワイトスペース）と呼ばれます。
+これらの空白文字を文にいくつ置いても挙動に違いはありません。</p>
+<p>たとえば、次の<code>1</code>足す<code>1</code>を行う2つの文は、<code>+</code>の前後の空白文字の個数に違いはありますが、動作としてはまったく同じ意味となります。</p>
 <!-- textlint-disable eslint -->
-<pre><code class="lang-js"><span class="hljs-comment">// &#x5F0F;&#x3084;&#x6587;&#x306E;&#x9593;&#x306B;&#x30B9;&#x30DA;&#x30FC;&#x30B9;&#x304C;&#x3044;&#x304F;&#x3064;&#x3042;&#x3063;&#x3066;&#x3082;&#x540C;&#x3058;&#x610F;&#x5473;&#x3068;&#x306A;&#x308B;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// 式や文の間にスペースがいくつあっても同じ意味となる</span>
 <span class="hljs-number">1</span> + <span class="hljs-number">1</span>;
 <span class="hljs-number">1</span>   +   <span class="hljs-number">1</span>;
 </code></pre>
 <!-- textlint-enable eslint -->
-<p>&#x7A7A;&#x767D;&#x6587;&#x5B57;&#x306E;&#x7F6E;&#x304D;&#x65B9;&#x306F;&#x4EBA;&#x306B;&#x3088;&#x3063;&#x3066;&#x597D;&#x307F;&#x304C;&#x7570;&#x306A;&#x308B;&#x305F;&#x3081;&#x3001;&#x4EBA;&#x306B;&#x3088;&#x3063;&#x3066;&#x66F8;&#x304D;&#x65B9;&#x304C;&#x7570;&#x306A;&#x308B;&#x5834;&#x5408;&#x3082;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x8907;&#x6570;&#x4EBA;&#x3067;&#x958B;&#x767A;&#x3059;&#x308B;&#x5834;&#x5408;&#x306F;&#x3001;&#x3053;&#x308C;&#x3089;&#x306E;&#x7A7A;&#x767D;&#x6587;&#x5B57;&#x306E;&#x7F6E;&#x304D;&#x65B9;&#x3092;&#x6C7A;&#x3081;&#x305F;&#x30B3;&#x30FC;&#x30C7;&#x30A3;&#x30F3;&#x30B0;&#x30B9;&#x30BF;&#x30A4;&#x30EB;&#x3092;&#x6C7A;&#x3081;&#x308B;&#x3068;&#x3088;&#x3044;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;
-&#x30B3;&#x30FC;&#x30C7;&#x30A3;&#x30F3;&#x30B0;&#x30B9;&#x30BF;&#x30A4;&#x30EB;&#x306E;&#x7D71;&#x4E00;&#x306B;&#x3064;&#x3044;&#x3066;&#x306F;&#x300C;<a href="../../appendix/links/">&#x4ED8;&#x9332;: &#x53C2;&#x8003;&#x30EA;&#x30F3;&#x30AF;&#x96C6;</a>&#x300D;&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</p>
+<p>空白文字の置き方は人によって好みが異なるため、人によって書き方が異なる場合もあります。
+複数人で開発する場合は、これらの空白文字の置き方を決めたコーディングスタイルを決めるとよいでしょう。
+コーディングスタイルの統一については「<a href="../../appendix/links/">付録: 参考リンク集</a>」を参照してください。</p>
 <h3 id="strict-mode"><a name="strict-mode" class="plugin-anchor" href="#strict-mode"><i class="fa fa-link" aria-hidden="true"></i></a>strict mode </h3>
-<p>JavaScript&#x306B;&#x306F;<strong>strict mode</strong>&#x3068;&#x3044;&#x3046;&#x5B9F;&#x884C;&#x30E2;&#x30FC;&#x30C9;&#x304C;&#x5B58;&#x5728;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x540D;&#x524D;&#x306E;&#x3068;&#x304A;&#x308A;&#x53B3;&#x683C;&#x306A;&#x5B9F;&#x884C;&#x30E2;&#x30FC;&#x30C9;&#x3067;&#x3001;&#x53E4;&#x304F;&#x5B89;&#x5168;&#x3067;&#x306A;&#x3044;&#x69CB;&#x6587;&#x3084;&#x6A5F;&#x80FD;&#x304C;&#x4E00;&#x90E8;&#x7981;&#x6B62;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p><code>&quot;use strict&quot;</code>&#x3068;&#x3044;&#x3046;&#x6587;&#x5B57;&#x5217;&#x3092;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x307E;&#x305F;&#x306F;&#x95A2;&#x6570;&#x306E;&#x5148;&#x982D;&#x306B;&#x66F8;&#x304F;&#x3053;&#x3068;&#x3067;&#x3001;&#x305D;&#x306E;&#x30B9;&#x30B3;&#x30FC;&#x30D7;&#x306B;&#x3042;&#x308B;&#x30B3;&#x30FC;&#x30C9;&#x306F;strict mode&#x3067;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x3001;&#x5F8C;&#x8FF0;&#x3059;&#x308B;&quot;Module&quot;&#x306E;&#x5B9F;&#x884C;&#x30B3;&#x30F3;&#x30C6;&#x30AD;&#x30B9;&#x30C8;&#x3067;&#x306F;&#x3001;&#x3053;&#x306E;strict mode&#x304C;&#x30C7;&#x30D5;&#x30A9;&#x30EB;&#x30C8;&#x3068;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>JavaScriptには<strong>strict mode</strong>という実行モードが存在しています。
+名前のとおり厳格な実行モードで、古く安全でない構文や機能が一部禁止されています。</p>
+<p><code>&quot;use strict&quot;</code>という文字列をファイルまたは関数の先頭に書くことで、そのスコープにあるコードはstrict modeで実行されます。
+また、後述する&quot;Module&quot;の実行コンテキストでは、このstrict modeがデフォルトとなっています。</p>
 <pre><code class="lang-js"><span class="hljs-meta">&quot;use strict&quot;</span>;
-<span class="hljs-comment">// &#x3053;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x306F;strict mode&#x3067;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x308B;</span>
+<span class="hljs-comment">// このコードはstrict modeで実行される</span>
 </code></pre>
-<p>strict mode&#x3067;&#x306F;&#x3001;<code>eval</code>&#x3084;<code>with</code>&#x3068;&#x3044;&#x3063;&#x305F;&#x30EC;&#x30AC;&#x30B7;&#x30FC;&#x306A;&#x6A5F;&#x80FD;&#x3084;&#x69CB;&#x6587;&#x3092;&#x7981;&#x6B62;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x3001;&#x660E;&#x3089;&#x304B;&#x306A;&#x554F;&#x984C;&#x3092;&#x542B;&#x3093;&#x3060;&#x30B3;&#x30FC;&#x30C9;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x306F;&#x65E9;&#x671F;&#x7684;&#x306B;&#x4F8B;&#x5916;&#x3092;&#x6295;&#x3052;&#x308B;&#x3053;&#x3068;&#x3067;&#x3001;&#x958B;&#x767A;&#x8005;&#x304C;&#x9593;&#x9055;&#x3044;&#x306B;&#x6C17;&#x3065;&#x304D;&#x3084;&#x3059;&#x304F;&#x3057;&#x3066;&#x304F;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x305F;&#x3068;&#x3048;&#x3070;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;<code>const</code>&#x306A;&#x3069;&#x306E;&#x30AD;&#x30FC;&#x30EF;&#x30FC;&#x30C9;&#x3092;&#x542B;&#x307E;&#x305A;&#x306B;&#x5909;&#x6570;&#x3092;&#x5BA3;&#x8A00;&#x3057;&#x3088;&#x3046;&#x3068;&#x3057;&#x305F;&#x5834;&#x5408;&#x306B;&#x3001;strict mode&#x3067;&#x306F;&#x4F8B;&#x5916;&#x304C;&#x767A;&#x751F;&#x3057;&#x307E;&#x3059;&#x3002;
-strict mode&#x3067;&#x306A;&#x3044;&#x5834;&#x5408;&#x306F;&#x3001;&#x4F8B;&#x5916;&#x304C;&#x767A;&#x751F;&#x305B;&#x305A;&#x306B;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x5909;&#x6570;&#x304C;&#x4F5C;&#x3089;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p>strict modeでは、<code>eval</code>や<code>with</code>といったレガシーな機能や構文を禁止します。
+また、明らかな問題を含んだコードに対しては早期的に例外を投げることで、開発者が間違いに気づきやすくしてくれます。</p>
+<p>たとえば、次のような<code>const</code>などのキーワードを含まずに変数を宣言しようとした場合に、strict modeでは例外が発生します。
+strict modeでない場合は、例外が発生せずにグローバル変数が作られます。</p>
 <pre><code class="lang-js"><span class="hljs-meta">&quot;use strict&quot;</span>;
 mistypedVariable = <span class="hljs-number">42</span>; <span class="hljs-comment">// =&gt; ReferenceError</span>
 </code></pre>
-<p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;strict mode&#x3067;&#x306F;&#x958B;&#x767A;&#x8005;&#x304C;&#x5B89;&#x5168;&#x306B;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x66F8;&#x3051;&#x308B;&#x3088;&#x3046;&#x306B;&#x3001;JavaScript&#x306E;&#x843D;&#x3068;&#x3057;&#x7A74;&#x3092;&#x4E00;&#x90E8;&#x3075;&#x3055;&#x3044;&#x3067;&#x304F;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x5E38;&#x306B;strict mode&#x3067;&#x5B9F;&#x884C;&#x3067;&#x304D;&#x308B;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x66F8;&#x304F;&#x3053;&#x3068;&#x304C;&#x3001;&#x3088;&#x308A;&#x5B89;&#x5168;&#x306A;&#x30B3;&#x30FC;&#x30C9;&#x306B;&#x3064;&#x306A;&#x304C;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x672C;&#x66F8;&#x3067;&#x306F;&#x3001;&#x660E;&#x793A;&#x7684;&#x306B;&#x300C;strict mode&#x3067;&#x306F;&#x306A;&#x3044;&#x300D;&#x3053;&#x3068;&#x3092;&#x5BA3;&#x8A00;&#x3057;&#x305F;&#x5834;&#x5408;&#x3092;&#x9664;&#x304D;&#x3001;
-&#x3059;&#x3079;&#x3066;strict mode&#x3068;&#x3057;&#x3066;&#x5B9F;&#x884C;&#x3067;&#x304D;&#x308B;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x6271;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<h3 id="script-module"><a name="script-module" class="plugin-anchor" href="#script-module"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5B9F;&#x884C;&#x30B3;&#x30F3;&#x30C6;&#x30AD;&#x30B9;&#x30C8;: Script&#x3068;Module  </h3>
-<p>JavaScript&#x306E;&#x5B9F;&#x884C;&#x30B3;&#x30F3;&#x30C6;&#x30AD;&#x30B9;&#x30C8;&#x3068;&#x3057;&#x3066;&quot;Script&quot;&#x3068;&quot;Module&quot;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x66F8;&#x304F;&#x5834;&#x5408;&#x306B;&#x306F;&#x3001;&#x3053;&#x306E;2&#x3064;&#x306E;&#x5B9F;&#x884C;&#x30B3;&#x30F3;&#x30C6;&#x30AD;&#x30B9;&#x30C8;&#x306E;&#x9055;&#x3044;&#x3092;&#x610F;&#x8B58;&#x3059;&#x308B;&#x3053;&#x3068;&#x306F;&#x591A;&#x304F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;</p>
-<p>&quot;Script&quot;&#x306E;&#x5B9F;&#x884C;&#x30B3;&#x30F3;&#x30C6;&#x30AD;&#x30B9;&#x30C8;&#x306F;&#x3001;&#x591A;&#x304F;&#x306E;&#x5B9F;&#x884C;&#x74B0;&#x5883;&#x3067;&#x306F;&#x30C7;&#x30D5;&#x30A9;&#x30EB;&#x30C8;&#x306E;&#x5B9F;&#x884C;&#x30B3;&#x30F3;&#x30C6;&#x30AD;&#x30B9;&#x30C8;&#x3067;&#x3059;&#x3002;
-&quot;Script&quot;&#x306E;&#x5B9F;&#x884C;&#x30B3;&#x30F3;&#x30C6;&#x30AD;&#x30B9;&#x30C8;&#x3067;&#x306F;&#x3001;&#x30C7;&#x30D5;&#x30A9;&#x30EB;&#x30C8;&#x306F;strict mode&#x3067;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;</p>
-<p>&quot;Module&quot;&#x306E;&#x5B9F;&#x884C;&#x30B3;&#x30F3;&#x30C6;&#x30AD;&#x30B9;&#x30C8;&#x306F;&#x3001;JavaScript&#x3092;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3068;&#x3057;&#x3066;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x3001;ECMAScript 2015&#x3067;&#x5C0E;&#x5165;&#x3055;&#x308C;&#x305F;&#x3082;&#x306E;&#x3067;&#x3059;&#x3002;
-&quot;Module&quot;&#x306E;&#x5B9F;&#x884C;&#x30B3;&#x30F3;&#x30C6;&#x30AD;&#x30B9;&#x30C8;&#x3067;&#x306F;&#x3001;&#x30C7;&#x30D5;&#x30A9;&#x30EB;&#x30C8;&#x304C;strict mode&#x3068;&#x306A;&#x308A;&#x3001;&#x53E4;&#x304F;&#x5B89;&#x5168;&#x3067;&#x306A;&#x3044;&#x69CB;&#x6587;&#x3084;&#x6A5F;&#x80FD;&#x306F;&#x4E00;&#x90E8;&#x7981;&#x6B62;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x3001;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306E;&#x6A5F;&#x80FD;&#x306F;&quot;Module&quot;&#x306E;&#x5B9F;&#x884C;&#x30B3;&#x30F3;&#x30C6;&#x30AD;&#x30B9;&#x30C8;&#x3067;&#x3057;&#x304B;&#x5229;&#x7528;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3002;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306B;&#x3064;&#x3044;&#x3066;&#x306E;&#x8A73;&#x7D30;&#x306F;&#x300C;<a href="../module/">ECMAScript&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;</a>&#x300D;&#x306E;&#x7AE0;&#x3067;&#x89E3;&#x8AAC;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<h3 id="ecmascript-updates"><a name="ecmascript-updates" class="plugin-anchor" href="#ecmascript-updates"><i class="fa fa-link" aria-hidden="true"></i></a>JavaScript&#x306E;&#x4ED5;&#x69D8;&#x306F;&#x6BCE;&#x5E74;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x308B; </h3>
-<p>&#x6700;&#x5F8C;&#x306B;&#x3001;JavaScript&#x306E;&#x4ED5;&#x69D8;&#x3067;&#x3042;&#x308B;ECMAScript&#x306F;&#x6BCE;&#x5E74;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x3001;JavaScript&#x306B;&#x306F;&#x65B0;&#x3057;&#x3044;&#x69CB;&#x6587;&#x3084;&#x6A5F;&#x80FD;&#x304C;&#x5897;&#x3048;&#x7D9A;&#x3051;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x3053;&#x306E;&#x66F8;&#x7C4D;&#x3067;&#x5B66;&#x3093;&#x3060;&#x5F8C;&#x3082;&#x307E;&#x3060;&#x307E;&#x3060;&#x77E5;&#x3089;&#x306A;&#x304B;&#x3063;&#x305F;&#x3053;&#x3068;&#x304C;&#x51FA;&#x3066;&#x304F;&#x308B;&#x306F;&#x305A;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x4E00;&#x65B9;&#x3067;&#x3001;ECMAScript&#x306F;&#x5F8C;&#x65B9;&#x4E92;&#x63DB;&#x6027;&#x304C;&#x614E;&#x91CD;&#x306B;&#x8003;&#x616E;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x305F;&#x3081;&#x3001;&#x904E;&#x53BB;&#x306B;&#x66F8;&#x3044;&#x305F;JavaScript&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x304C;&#x52D5;&#x304B;&#x306A;&#x304F;&#x306A;&#x308B;&#x5909;&#x66F4;&#x306F;&#x307B;&#x3068;&#x3093;&#x3069;&#x5165;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x3053;&#x306E;&#x66F8;&#x7C4D;&#x3067;&#x5B66;&#x3093;&#x3060;&#x3053;&#x3068;&#x306E;&#x3059;&#x3079;&#x3066;&#x304C;&#x7121;&#x99C4;&#x306B;&#x306A;&#x308B;&#x3053;&#x3068;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;</p>
-<p>ECMAScript&#x306E;&#x4ED5;&#x69D8;&#x304C;&#x3069;&#x306E;&#x3088;&#x3046;&#x306B;&#x7B56;&#x5B9A;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x304B;&#x306B;&#x3064;&#x3044;&#x3066;&#x306F;&#x300C;<a href="../ecmascript/">ECMAScript</a>&#x300D;&#x306E;&#x7AE0;&#x3067;&#x89E3;&#x8AAC;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>このように、strict modeでは開発者が安全にコードを書けるように、JavaScriptの落とし穴を一部ふさいでくれます。
+そのため、常にstrict modeで実行できるコードを書くことが、より安全なコードにつながります。</p>
+<p>本書では、明示的に「strict modeではない」ことを宣言した場合を除き、
+すべてstrict modeとして実行できるコードを扱います。</p>
+<h3 id="script-module"><a name="script-module" class="plugin-anchor" href="#script-module"><i class="fa fa-link" aria-hidden="true"></i></a>実行コンテキスト: ScriptとModule  </h3>
+<p>JavaScriptの実行コンテキストとして&quot;Script&quot;と&quot;Module&quot;があります。
+コードを書く場合には、この2つの実行コンテキストの違いを意識することは多くありません。</p>
+<p>&quot;Script&quot;の実行コンテキストは、多くの実行環境ではデフォルトの実行コンテキストです。
+&quot;Script&quot;の実行コンテキストでは、デフォルトはstrict modeではありません。</p>
+<p>&quot;Module&quot;の実行コンテキストは、JavaScriptをモジュールとして実行するために、ECMAScript 2015で導入されたものです。
+&quot;Module&quot;の実行コンテキストでは、デフォルトがstrict modeとなり、古く安全でない構文や機能は一部禁止されています。
+また、モジュールの機能は&quot;Module&quot;の実行コンテキストでしか利用できません。モジュールについての詳細は「<a href="../module/">ECMAScriptモジュール</a>」の章で解説します。</p>
+<h3 id="ecmascript-updates"><a name="ecmascript-updates" class="plugin-anchor" href="#ecmascript-updates"><i class="fa fa-link" aria-hidden="true"></i></a>JavaScriptの仕様は毎年更新される </h3>
+<p>最後に、JavaScriptの仕様であるECMAScriptは毎年更新され、JavaScriptには新しい構文や機能が増え続けています。
+そのため、この書籍で学んだ後もまだまだ知らなかったことが出てくるはずです。</p>
+<p>一方で、ECMAScriptは後方互換性が慎重に考慮されているため、過去に書いたJavaScriptのコードが動かなくなる変更はほとんど入りません。
+そのため、この書籍で学んだことのすべてが無駄になることはありません。</p>
+<p>ECMAScriptの仕様がどのように策定されているかについては「<a href="../ecmascript/">ECMAScript</a>」の章で解説します。</p>
 <blockquote id="fn_1">
-<sup>1</sup>. Automatic Semicolon Insertion&#x3068;&#x547C;&#x3070;&#x308C;&#x308B;&#x4ED5;&#x7D44;&#x307F;&#x3067;&#x3059;&#x3002;<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#x21A9;</a>
+<sup>1</sup>. Automatic Semicolon Insertionと呼ばれる仕組みです。<a href="#reffn_1" title="Jump back to footnote [1] in the text."> ↩</a>
 </blockquote>
 
                                 
@@ -1577,12 +1577,56 @@ mistypedVariable = <span class="hljs-number">42</span>; <span class="hljs-commen
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptとはどのような用途に使われているプログラミング言語なのか、どのような言語的な特性をもっているのかについてを簡単に紹介します。","title":"JavaScriptとは","level":"1.3.1","depth":2,"next":{"title":"コメント","level":"1.3.2","depth":2,"path":"basic/comments/README.md","ref":"./basic/comments/README.md","articles":[]},"previous":{"title":"第一部: 基本文法","level":"1.3","depth":1,"path":"basic/README.md","ref":"./basic/README.md","articles":[{"title":"JavaScriptとは","level":"1.3.1","depth":2,"path":"basic/introduction/README.md","ref":"./basic/introduction/README.md","articles":[]},{"title":"コメント","level":"1.3.2","depth":2,"path":"basic/comments/README.md","ref":"./basic/comments/README.md","articles":[]},{"title":"変数と宣言","level":"1.3.3","depth":2,"path":"basic/variables/README.md","ref":"./basic/variables/README.md","articles":[]},{"title":"値の評価と表示","level":"1.3.4","depth":2,"path":"basic/read-eval-print/README.md","ref":"./basic/read-eval-print/README.md","articles":[]},{"title":"データ型とリテラル","level":"1.3.5","depth":2,"path":"basic/data-type/README.md","ref":"./basic/data-type/README.md","articles":[]},{"title":"演算子","level":"1.3.6","depth":2,"path":"basic/operator/README.md","ref":"./basic/operator/README.md","articles":[]},{"title":"暗黙的な型変換","level":"1.3.7","depth":2,"path":"basic/implicit-coercion/README.md","ref":"./basic/implicit-coercion/README.md","articles":[]},{"title":"関数と宣言","level":"1.3.8","depth":2,"path":"basic/function-declaration/README.md","ref":"./basic/function-declaration/README.md","articles":[]},{"title":"文と式","level":"1.3.9","depth":2,"path":"basic/statement-expression/README.md","ref":"./basic/statement-expression/README.md","articles":[]},{"title":"条件分岐","level":"1.3.10","depth":2,"path":"basic/condition/README.md","ref":"./basic/condition/README.md","articles":[]},{"title":"ループと反復処理","level":"1.3.11","depth":2,"path":"basic/loop/README.md","ref":"./basic/loop/README.md","articles":[]},{"title":"オブジェクト","level":"1.3.12","depth":2,"path":"basic/object/README.md","ref":"./basic/object/README.md","articles":[]},{"title":"プロトタイプオブジェクト","level":"1.3.13","depth":2,"path":"basic/prototype-object/README.md","ref":"./basic/prototype-object/README.md","articles":[]},{"title":"配列","level":"1.3.14","depth":2,"path":"basic/array/README.md","ref":"./basic/array/README.md","articles":[]},{"title":"文字列","level":"1.3.15","depth":2,"path":"basic/string/README.md","ref":"./basic/string/README.md","articles":[]},{"title":"文字列とUnicode","level":"1.3.16","depth":2,"path":"basic/string-unicode/README.md","ref":"./basic/string-unicode/README.md","articles":[]},{"title":"ラッパーオブジェクト","level":"1.3.17","depth":2,"path":"basic/wrapper-object/README.md","ref":"./basic/wrapper-object/README.md","articles":[]},{"title":"関数とスコープ","level":"1.3.18","depth":2,"path":"basic/function-scope/README.md","ref":"./basic/function-scope/README.md","articles":[]},{"title":"関数とthis","level":"1.3.19","depth":2,"path":"basic/function-this/README.md","ref":"./basic/function-this/README.md","articles":[]},{"title":"クラス","level":"1.3.20","depth":2,"path":"basic/class/README.md","ref":"./basic/class/README.md","articles":[]},{"title":"例外処理","level":"1.3.21","depth":2,"path":"basic/error-try-catch/README.md","ref":"./basic/error-try-catch/README.md","articles":[]},{"title":"非同期処理:コールバック/Promise/Async Function","level":"1.3.22","depth":2,"path":"basic/async/README.md","ref":"./basic/async/README.md","articles":[]},{"title":"Map/Set","level":"1.3.23","depth":2,"path":"basic/map-and-set/README.md","ref":"./basic/map-and-set/README.md","articles":[]},{"title":"JSON","level":"1.3.24","depth":2,"path":"basic/json/README.md","ref":"./basic/json/README.md","articles":[]},{"title":"Date","level":"1.3.25","depth":2,"path":"basic/date/README.md","ref":"./basic/date/README.md","articles":[]},{"title":"Math","level":"1.3.26","depth":2,"path":"basic/math/README.md","ref":"./basic/math/README.md","articles":[]},{"title":"ECMAScriptモジュール","level":"1.3.27","depth":2,"path":"basic/module/README.md","ref":"./basic/module/README.md","articles":[]},{"title":"ECMAScript","level":"1.3.28","depth":2,"path":"basic/ecmascript/README.md","ref":"./basic/ecmascript/README.md","articles":[]},{"title":"第一部: おわりに","level":"1.3.29","depth":2,"path":"basic/other-parts/README.md","ref":"./basic/other-parts/README.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/introduction/README.md","mtime":"2020-11-18T19:19:34.497Z","type":"markdown"},"gitbook":{"version":"3.6.8","time":"2020-11-18T19:20:11.295Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptとはどのような用途に使われているプログラミング言語なのか、どのような言語的な特性をもっているのかについてを簡単に紹介します。","title":"JavaScriptとは","level":"1.3.1","depth":2,"next":{"title":"コメント","level":"1.3.2","depth":2,"path":"basic/comments/README.md","ref":"./basic/comments/README.md","articles":[]},"previous":{"title":"第一部: 基本文法","level":"1.3","depth":1,"path":"basic/README.md","ref":"./basic/README.md","articles":[{"title":"JavaScriptとは","level":"1.3.1","depth":2,"path":"basic/introduction/README.md","ref":"./basic/introduction/README.md","articles":[]},{"title":"コメント","level":"1.3.2","depth":2,"path":"basic/comments/README.md","ref":"./basic/comments/README.md","articles":[]},{"title":"変数と宣言","level":"1.3.3","depth":2,"path":"basic/variables/README.md","ref":"./basic/variables/README.md","articles":[]},{"title":"値の評価と表示","level":"1.3.4","depth":2,"path":"basic/read-eval-print/README.md","ref":"./basic/read-eval-print/README.md","articles":[]},{"title":"データ型とリテラル","level":"1.3.5","depth":2,"path":"basic/data-type/README.md","ref":"./basic/data-type/README.md","articles":[]},{"title":"演算子","level":"1.3.6","depth":2,"path":"basic/operator/README.md","ref":"./basic/operator/README.md","articles":[]},{"title":"暗黙的な型変換","level":"1.3.7","depth":2,"path":"basic/implicit-coercion/README.md","ref":"./basic/implicit-coercion/README.md","articles":[]},{"title":"関数と宣言","level":"1.3.8","depth":2,"path":"basic/function-declaration/README.md","ref":"./basic/function-declaration/README.md","articles":[]},{"title":"文と式","level":"1.3.9","depth":2,"path":"basic/statement-expression/README.md","ref":"./basic/statement-expression/README.md","articles":[]},{"title":"条件分岐","level":"1.3.10","depth":2,"path":"basic/condition/README.md","ref":"./basic/condition/README.md","articles":[]},{"title":"ループと反復処理","level":"1.3.11","depth":2,"path":"basic/loop/README.md","ref":"./basic/loop/README.md","articles":[]},{"title":"オブジェクト","level":"1.3.12","depth":2,"path":"basic/object/README.md","ref":"./basic/object/README.md","articles":[]},{"title":"プロトタイプオブジェクト","level":"1.3.13","depth":2,"path":"basic/prototype-object/README.md","ref":"./basic/prototype-object/README.md","articles":[]},{"title":"配列","level":"1.3.14","depth":2,"path":"basic/array/README.md","ref":"./basic/array/README.md","articles":[]},{"title":"文字列","level":"1.3.15","depth":2,"path":"basic/string/README.md","ref":"./basic/string/README.md","articles":[]},{"title":"文字列とUnicode","level":"1.3.16","depth":2,"path":"basic/string-unicode/README.md","ref":"./basic/string-unicode/README.md","articles":[]},{"title":"ラッパーオブジェクト","level":"1.3.17","depth":2,"path":"basic/wrapper-object/README.md","ref":"./basic/wrapper-object/README.md","articles":[]},{"title":"関数とスコープ","level":"1.3.18","depth":2,"path":"basic/function-scope/README.md","ref":"./basic/function-scope/README.md","articles":[]},{"title":"関数とthis","level":"1.3.19","depth":2,"path":"basic/function-this/README.md","ref":"./basic/function-this/README.md","articles":[]},{"title":"クラス","level":"1.3.20","depth":2,"path":"basic/class/README.md","ref":"./basic/class/README.md","articles":[]},{"title":"例外処理","level":"1.3.21","depth":2,"path":"basic/error-try-catch/README.md","ref":"./basic/error-try-catch/README.md","articles":[]},{"title":"非同期処理:コールバック/Promise/Async Function","level":"1.3.22","depth":2,"path":"basic/async/README.md","ref":"./basic/async/README.md","articles":[]},{"title":"Map/Set","level":"1.3.23","depth":2,"path":"basic/map-and-set/README.md","ref":"./basic/map-and-set/README.md","articles":[]},{"title":"JSON","level":"1.3.24","depth":2,"path":"basic/json/README.md","ref":"./basic/json/README.md","articles":[]},{"title":"Date","level":"1.3.25","depth":2,"path":"basic/date/README.md","ref":"./basic/date/README.md","articles":[]},{"title":"Math","level":"1.3.26","depth":2,"path":"basic/math/README.md","ref":"./basic/math/README.md","articles":[]},{"title":"ECMAScriptモジュール","level":"1.3.27","depth":2,"path":"basic/module/README.md","ref":"./basic/module/README.md","articles":[]},{"title":"ECMAScript","level":"1.3.28","depth":2,"path":"basic/ecmascript/README.md","ref":"./basic/ecmascript/README.md","articles":[]},{"title":"第一部: おわりに","level":"1.3.29","depth":2,"path":"basic/other-parts/README.md","ref":"./basic/other-parts/README.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/introduction/README.md","mtime":"2020-11-19T10:10:17.220Z","type":"markdown"},"gitbook":{"version":"3.6.13","time":"2020-11-19T10:10:53.113Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
 
         
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
     <script src="../../gitbook/gitbook.js"></script>
     <script src="../../gitbook/theme.js"></script>
     

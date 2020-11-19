@@ -7,7 +7,7 @@
         <title>Map/Set · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="データの集合を扱うビルトインオブジェクトであるMapとSetについてを紹介します。オブジェクトの作成方法や更新方法から実際にどのようなケースで使うのかを紹介します。">
-        <meta name="generator" content="HonKit 3.6.8">
+        <meta name="generator" content="HonKit 3.6.13">
         
         
         
@@ -176,7 +176,7 @@
     </head>
     <body>
         
-<div class="book">
+<div class="book honkit-cloak">
     <div class="book-summary">
         
             
@@ -1442,51 +1442,51 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="map-and-set"><a name="map-and-set" class="plugin-anchor" href="#map-and-set"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2015] Map/Set </h1>
-<p>JavaScript&#x3067;&#x30C7;&#x30FC;&#x30BF;&#x306E;&#x96C6;&#x307E;&#x308A;&#x3092;&#x6271;&#x3046;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x306F;&#x914D;&#x5217;&#x3060;&#x3051;&#x3067;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x3053;&#x306E;&#x7AE0;&#x3067;&#x306F;&#x3001;ES2015&#x3067;&#x5C0E;&#x5165;&#x3055;&#x308C;&#x305F;&#x30DE;&#x30C3;&#x30D7;&#x578B;&#x306E;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x3042;&#x308B;<code>Map</code>&#x3068;&#x3001;&#x30BB;&#x30C3;&#x30C8;&#x578B;&#x306E;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x3042;&#x308B;<code>Set</code>&#x306B;&#x3064;&#x3044;&#x3066;&#x5B66;&#x3073;&#x307E;&#x3059;&#x3002;</p>
+<p>JavaScriptでデータの集まりを扱うコレクションは配列だけではありません。
+この章では、ES2015で導入されたマップ型のコレクションである<code>Map</code>と、セット型のコレクションである<code>Set</code>について学びます。</p>
 <h2 id="map"><a name="map" class="plugin-anchor" href="#map"><i class="fa fa-link" aria-hidden="true"></i></a>Map </h2>
-<p><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Map" target="_blank">Map</a>&#x306F;&#x30DE;&#x30C3;&#x30D7;&#x578B;&#x306E;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x6271;&#x3046;&#x305F;&#x3081;&#x306E;&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x3059;&#x3002;
-&#x30DE;&#x30C3;&#x30D7;&#x3068;&#x306F;&#x3001;&#x30AD;&#x30FC;&#x3068;&#x5024;&#x306E;&#x7D44;&#x307F;&#x5408;&#x308F;&#x305B;&#x304B;&#x3089;&#x306A;&#x308B;&#x62BD;&#x8C61;&#x30C7;&#x30FC;&#x30BF;&#x578B;&#x3067;&#x3059;&#x3002;
-&#x4ED6;&#x306E;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DF;&#x30F3;&#x30B0;&#x8A00;&#x8A9E;&#x306E;&#x6587;&#x8108;&#x3067;&#x306F;&#x8F9E;&#x66F8;&#x3084;&#x30CF;&#x30C3;&#x30B7;&#x30E5;&#x30DE;&#x30C3;&#x30D7;&#x3001;&#x9023;&#x60F3;&#x914D;&#x5217;&#x306A;&#x3069;&#x3068;&#x547C;&#x3070;&#x308C;&#x308B;&#x3053;&#x3068;&#x3082;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<h3 id="map-new"><a name="map-new" class="plugin-anchor" href="#map-new"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30DE;&#x30C3;&#x30D7;&#x306E;&#x4F5C;&#x6210;&#x3068;&#x521D;&#x671F;&#x5316; </h3>
-<p><code>Map</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;<code>new</code>&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x3001;&#x65B0;&#x3057;&#x3044;&#x30DE;&#x30C3;&#x30D7;&#x3092;&#x4F5C;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x4F5C;&#x6210;&#x3055;&#x308C;&#x305F;&#x3070;&#x304B;&#x308A;&#x306E;&#x30DE;&#x30C3;&#x30D7;&#x306F;&#x4F55;&#x3082;&#x6301;&#x3063;&#x3066;&#x3044;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x30DE;&#x30C3;&#x30D7;&#x306E;&#x30B5;&#x30A4;&#x30BA;&#x3092;&#x8FD4;&#x3059;<code>size</code>&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x306F;<code>0</code>&#x3092;&#x8FD4;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Map" target="_blank">Map</a>はマップ型のコレクションを扱うためのビルトインオブジェクトです。
+マップとは、キーと値の組み合わせからなる抽象データ型です。
+他のプログラミング言語の文脈では辞書やハッシュマップ、連想配列などと呼ばれることもあります。</p>
+<h3 id="map-new"><a name="map-new" class="plugin-anchor" href="#map-new"><i class="fa fa-link" aria-hidden="true"></i></a>マップの作成と初期化 </h3>
+<p><code>Map</code>オブジェクトを<code>new</code>することで、新しいマップを作れます。
+作成されたばかりのマップは何も持っていません。
+そのため、マップのサイズを返す<code>size</code>プロパティは<code>0</code>を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
 <span class="hljs-built_in">console</span>.log(map.size); <span class="hljs-comment">// =&gt; 0</span>
 </code></pre>
-<p><code>Map</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;<code>new</code>&#x3067;&#x521D;&#x671F;&#x5316;&#x3059;&#x308B;&#x3068;&#x304D;&#x306B;&#x3001;&#x30B3;&#x30F3;&#x30B9;&#x30C8;&#x30E9;&#x30AF;&#x30BF;&#x306B;&#x521D;&#x671F;&#x5024;&#x3092;&#x6E21;&#x305B;&#x307E;&#x3059;&#x3002;
-&#x30B3;&#x30F3;&#x30B9;&#x30C8;&#x30E9;&#x30AF;&#x30BF;&#x5F15;&#x6570;&#x3068;&#x3057;&#x3066;&#x6E21;&#x305B;&#x308B;&#x306E;&#x306F;<strong>&#x30A8;&#x30F3;&#x30C8;&#x30EA;&#x30FC;</strong>&#x306E;&#x914D;&#x5217;&#x3067;&#x3059;&#x3002;
-&#x30A8;&#x30F3;&#x30C8;&#x30EA;&#x30FC;&#x3068;&#x306F;&#x3001;1&#x3064;&#x306E;&#x30AD;&#x30FC;&#x3068;&#x5024;&#x306E;&#x7D44;&#x307F;&#x5408;&#x308F;&#x305B;&#x3092;<code>[&#x30AD;&#x30FC;, &#x5024;]</code>&#x3068;&#x3044;&#x3046;&#x5F62;&#x5F0F;&#x306E;&#x914D;&#x5217;&#x3067;&#x8868;&#x73FE;&#x3057;&#x305F;&#x3082;&#x306E;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;Map&#x306B;&#x521D;&#x671F;&#x5024;&#x3068;&#x306A;&#x308B;&#x30A8;&#x30F3;&#x30C8;&#x30EA;&#x30FC;&#xFF08;&#x914D;&#x5217;&#xFF09;&#x306E;&#x914D;&#x5217;&#x3092;&#x6E21;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p><code>Map</code>オブジェクトを<code>new</code>で初期化するときに、コンストラクタに初期値を渡せます。
+コンストラクタ引数として渡せるのは<strong>エントリー</strong>の配列です。
+エントリーとは、1つのキーと値の組み合わせを<code>[キー, 値]</code>という形式の配列で表現したものです。</p>
+<p>次のコードでは、Mapに初期値となるエントリー（配列）の配列を渡しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>], [<span class="hljs-string">&quot;key2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>]]);
-<span class="hljs-comment">// 2&#x3064;&#x306E;&#x30A8;&#x30F3;&#x30C8;&#x30EA;&#x30FC;&#x3067;&#x521D;&#x671F;&#x5316;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;</span>
+<span class="hljs-comment">// 2つのエントリーで初期化されている</span>
 <span class="hljs-built_in">console</span>.log(map.size); <span class="hljs-comment">// =&gt; 2</span>
 </code></pre>
-<h3 id="map-read-and-write"><a name="map-read-and-write" class="plugin-anchor" href="#map-read-and-write"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8981;&#x7D20;&#x306E;&#x8FFD;&#x52A0;&#x3068;&#x53D6;&#x308A;&#x51FA;&#x3057; </h3>
-<p><code>Map</code>&#x306B;&#x306F;&#x65B0;&#x3057;&#x3044;&#x8981;&#x7D20;&#x3092;<code>set</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x8FFD;&#x52A0;&#x3067;&#x304D;&#x3001;&#x8FFD;&#x52A0;&#x3057;&#x305F;&#x8981;&#x7D20;&#x3092;<code>get</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x53D6;&#x308A;&#x51FA;&#x305B;&#x307E;&#x3059;&#x3002;</p>
-<p><code>set</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x7279;&#x5B9A;&#x306E;&#x30AD;&#x30FC;&#x3068;&#x5024;&#x3092;&#x6301;&#x3064;&#x8981;&#x7D20;&#x3092;&#x30DE;&#x30C3;&#x30D7;&#x306B;&#x8FFD;&#x52A0;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x305F;&#x3060;&#x3057;&#x3001;&#x540C;&#x3058;&#x30AD;&#x30FC;&#x3067;&#x8907;&#x6570;&#x56DE;<code>set</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3057;&#x305F;&#x969B;&#x306F;&#x3001;&#x5F8C;&#x304B;&#x3089;&#x8FFD;&#x52A0;&#x3055;&#x308C;&#x305F;&#x5024;&#x3067;&#x4E0A;&#x66F8;&#x304D;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p><code>get</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x7279;&#x5B9A;&#x306E;&#x30AD;&#x30FC;&#x306B;&#x3072;&#x3082;&#x3065;&#x3044;&#x305F;&#x5024;&#x3092;&#x53D6;&#x308A;&#x51FA;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x3001;&#x7279;&#x5B9A;&#x306E;&#x30AD;&#x30FC;&#x306B;&#x3072;&#x3082;&#x3065;&#x3044;&#x305F;&#x5024;&#x3092;&#x6301;&#x3063;&#x3066;&#x3044;&#x308B;&#x304B;&#x3092;&#x78BA;&#x8A8D;&#x3059;&#x308B;<code>has</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<h3 id="map-read-and-write"><a name="map-read-and-write" class="plugin-anchor" href="#map-read-and-write"><i class="fa fa-link" aria-hidden="true"></i></a>要素の追加と取り出し </h3>
+<p><code>Map</code>には新しい要素を<code>set</code>メソッドで追加でき、追加した要素を<code>get</code>メソッドで取り出せます。</p>
+<p><code>set</code>メソッドは特定のキーと値を持つ要素をマップに追加します。
+ただし、同じキーで複数回<code>set</code>メソッドを呼び出した際は、後から追加された値で上書きされます。</p>
+<p><code>get</code>メソッドは特定のキーにひもづいた値を取り出します。
+また、特定のキーにひもづいた値を持っているかを確認する<code>has</code>メソッドがあります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
-<span class="hljs-comment">// &#x65B0;&#x3057;&#x3044;&#x8981;&#x7D20;&#x306E;&#x8FFD;&#x52A0;</span>
+<span class="hljs-comment">// 新しい要素の追加</span>
 map.set(<span class="hljs-string">&quot;key&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>);
 <span class="hljs-built_in">console</span>.log(map.size); <span class="hljs-comment">// =&gt; 1</span>
 <span class="hljs-built_in">console</span>.log(map.get(<span class="hljs-string">&quot;key&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;value1&quot;</span>
-<span class="hljs-comment">// &#x8981;&#x7D20;&#x306E;&#x4E0A;&#x66F8;&#x304D;</span>
+<span class="hljs-comment">// 要素の上書き</span>
 map.set(<span class="hljs-string">&quot;key&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>);
 <span class="hljs-built_in">console</span>.log(map.get(<span class="hljs-string">&quot;key&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;value2&quot;</span>
-<span class="hljs-comment">// &#x30AD;&#x30FC;&#x306E;&#x5B58;&#x5728;&#x78BA;&#x8A8D;</span>
+<span class="hljs-comment">// キーの存在確認</span>
 <span class="hljs-built_in">console</span>.log(map.has(<span class="hljs-string">&quot;key&quot;</span>)); <span class="hljs-comment">// =&gt; true</span>
 <span class="hljs-built_in">console</span>.log(map.has(<span class="hljs-string">&quot;foo&quot;</span>)); <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
-<p><code>delete</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x30DE;&#x30C3;&#x30D7;&#x304B;&#x3089;&#x8981;&#x7D20;&#x3092;&#x524A;&#x9664;&#x3057;&#x307E;&#x3059;&#x3002;
-<code>delete</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306B;&#x6E21;&#x3055;&#x308C;&#x305F;&#x30AD;&#x30FC;&#x3068;&#x3001;&#x305D;&#x306E;&#x30AD;&#x30FC;&#x306B;&#x3072;&#x3082;&#x3065;&#x3044;&#x305F;&#x5024;&#x304C;&#x30DE;&#x30C3;&#x30D7;&#x304B;&#x3089;&#x524A;&#x9664;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x3001;&#x30DE;&#x30C3;&#x30D7;&#x304C;&#x6301;&#x3064;&#x3059;&#x3079;&#x3066;&#x306E;&#x8981;&#x7D20;&#x3092;&#x524A;&#x9664;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E;<code>clear</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p><code>delete</code>メソッドはマップから要素を削除します。
+<code>delete</code>メソッドに渡されたキーと、そのキーにひもづいた値がマップから削除されます。
+また、マップが持つすべての要素を削除するための<code>clear</code>メソッドがあります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
 map.set(<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>);
@@ -1497,12 +1497,12 @@ map.delete(<span class="hljs-string">&quot;key1&quot;</span>);
 map.clear();
 <span class="hljs-built_in">console</span>.log(map.size); <span class="hljs-comment">// =&gt; 0</span>
 </code></pre>
-<h3 id="map-iteration"><a name="map-iteration" class="plugin-anchor" href="#map-iteration"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30DE;&#x30C3;&#x30D7;&#x306E;&#x53CD;&#x5FA9;&#x51E6;&#x7406; </h3>
-<p>&#x30DE;&#x30C3;&#x30D7;&#x304C;&#x6301;&#x3064;&#x8981;&#x7D20;&#x3092;&#x5217;&#x6319;&#x3059;&#x308B;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3068;&#x3057;&#x3066;&#x3001;<code>forEach</code>&#x3001;<code>keys</code>&#x3001;<code>values</code>&#x3001;<code>entries</code>&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p><code>forEach</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x30DE;&#x30C3;&#x30D7;&#x304C;&#x6301;&#x3064;&#x3059;&#x3079;&#x3066;&#x306E;&#x8981;&#x7D20;&#x3092;&#x3001;&#x30DE;&#x30C3;&#x30D7;&#x3078;&#x306E;&#x633F;&#x5165;&#x9806;&#x306B;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x306B;&#x306F;&#x5F15;&#x6570;&#x3068;&#x3057;&#x3066;&#x5024;&#x3001;&#x30AD;&#x30FC;&#x3001;&#x30DE;&#x30C3;&#x30D7;&#x306E;3&#x3064;&#x304C;&#x6E21;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x914D;&#x5217;&#x306E;<code>forEach</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3068;&#x4F3C;&#x3066;&#x3044;&#x307E;&#x3059;&#x304C;&#x3001;&#x30A4;&#x30F3;&#x30C7;&#x30C3;&#x30AF;&#x30B9;&#x306E;&#x4EE3;&#x308F;&#x308A;&#x306B;&#x30AD;&#x30FC;&#x304C;&#x6E21;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x914D;&#x5217;&#x306F;&#x30A4;&#x30F3;&#x30C7;&#x30C3;&#x30AF;&#x30B9;&#x306B;&#x3088;&#x308A;&#x8981;&#x7D20;&#x3092;&#x7279;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x304C;&#x3001;&#x30DE;&#x30C3;&#x30D7;&#x306F;&#x30AD;&#x30FC;&#x306B;&#x3088;&#x308A;&#x8981;&#x7D20;&#x3092;&#x7279;&#x5B9A;&#x3059;&#x308B;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;</p>
+<h3 id="map-iteration"><a name="map-iteration" class="plugin-anchor" href="#map-iteration"><i class="fa fa-link" aria-hidden="true"></i></a>マップの反復処理 </h3>
+<p>マップが持つ要素を列挙するメソッドとして、<code>forEach</code>、<code>keys</code>、<code>values</code>、<code>entries</code>があります。</p>
+<p><code>forEach</code>メソッドはマップが持つすべての要素を、マップへの挿入順に反復処理します。
+コールバック関数には引数として値、キー、マップの3つが渡されます。
+配列の<code>forEach</code>メソッドと似ていますが、インデックスの代わりにキーが渡されます。
+配列はインデックスにより要素を特定しますが、マップはキーにより要素を特定するためです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>], [<span class="hljs-string">&quot;key2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>]]);
 <span class="hljs-keyword">const</span> results = [];
@@ -1511,25 +1511,25 @@ map.forEach(<span class="hljs-function">(<span class="hljs-params">value, key</s
 });
 <span class="hljs-built_in">console</span>.log(results); <span class="hljs-comment">// =&gt; [&quot;key1:value1&quot;,&quot;key2:value2&quot;]</span>
 </code></pre>
-<p><code>keys</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x30DE;&#x30C3;&#x30D7;&#x304C;&#x6301;&#x3064;&#x3059;&#x3079;&#x3066;&#x306E;&#x8981;&#x7D20;&#x306E;&#x30AD;&#x30FC;&#x3092;&#x633F;&#x5165;&#x9806;&#x306B;&#x4E26;&#x3079;&#x305F;<strong>Iterator</strong>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x8FD4;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x540C;&#x69D8;&#x306B;&#x3001;<code>values</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x30DE;&#x30C3;&#x30D7;&#x304C;&#x6301;&#x3064;&#x3059;&#x3079;&#x3066;&#x306E;&#x8981;&#x7D20;&#x306E;&#x5024;&#x3092;&#x633F;&#x5165;&#x9806;&#x306B;&#x4E26;&#x3079;&#x305F;Iterator&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x8FD4;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x308C;&#x3089;&#x306E;&#x623B;&#x308A;&#x5024;&#x306F;Iterator&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x3042;&#x3063;&#x3066;&#x914D;&#x5217;&#x3067;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x6B21;&#x306E;&#x4F8B;&#x306E;&#x3088;&#x3046;&#x306B;<code>for...of</code>&#x6587;&#x3067;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3092;&#x884C;&#x3063;&#x305F;&#x308A;&#x3001;<code>Array.from</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306B;&#x6E21;&#x3057;&#x3066;&#x914D;&#x5217;&#x306B;&#x5909;&#x63DB;&#x3057;&#x3066;&#x4F7F;&#x3063;&#x305F;&#x308A;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p><code>keys</code>メソッドはマップが持つすべての要素のキーを挿入順に並べた<strong>Iterator</strong>オブジェクトを返します。
+同様に、<code>values</code>メソッドはマップが持つすべての要素の値を挿入順に並べたIteratorオブジェクトを返します。
+これらの戻り値はIteratorオブジェクトであって配列ではありません。
+そのため、次の例のように<code>for...of</code>文で反復処理を行ったり、<code>Array.from</code>メソッドに渡して配列に変換して使ったりします。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>], [<span class="hljs-string">&quot;key2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>]]);
 <span class="hljs-keyword">const</span> keys = [];
-<span class="hljs-comment">// keys&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306E;&#x623B;&#x308A;&#x5024;(Iterator)&#x3092;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3059;&#x308B;</span>
+<span class="hljs-comment">// keysメソッドの戻り値(Iterator)を反復処理する</span>
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">of</span> map.keys()) {
     keys.push(key);
 }
 <span class="hljs-built_in">console</span>.log(keys); <span class="hljs-comment">// =&gt; [&quot;key1&quot;,&quot;key2&quot;]</span>
-<span class="hljs-comment">// keys&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306E;&#x623B;&#x308A;&#x5024;(Iterator)&#x304B;&#x3089;&#x914D;&#x5217;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;</span>
+<span class="hljs-comment">// keysメソッドの戻り値(Iterator)から配列を作成する</span>
 <span class="hljs-keyword">const</span> keysArray = <span class="hljs-built_in">Array</span>.from(map.keys());
 <span class="hljs-built_in">console</span>.log(keysArray); <span class="hljs-comment">// =&gt; [&quot;key1&quot;,&quot;key2&quot;]</span>
 </code></pre>
-<p><code>entries</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x30DE;&#x30C3;&#x30D7;&#x304C;&#x6301;&#x3064;&#x3059;&#x3079;&#x3066;&#x306E;&#x8981;&#x7D20;&#x3092;&#x30A8;&#x30F3;&#x30C8;&#x30EA;&#x30FC;&#x3068;&#x3057;&#x3066;&#x633F;&#x5165;&#x9806;&#x306B;&#x4E26;&#x3079;&#x305F;Iterator&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x8FD4;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x5148;&#x8FF0;&#x306E;&#x3068;&#x304A;&#x308A;&#x30A8;&#x30F3;&#x30C8;&#x30EA;&#x30FC;&#x306F;<code>[&#x30AD;&#x30FC;, &#x5024;]</code>&#x306E;&#x3088;&#x3046;&#x306A;&#x914D;&#x5217;&#x3067;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x914D;&#x5217;&#x306E;&#x5206;&#x5272;&#x4EE3;&#x5165;&#x3092;&#x4F7F;&#x3046;&#x3068;&#x30A8;&#x30F3;&#x30C8;&#x30EA;&#x30FC;&#x304B;&#x3089;&#x30AD;&#x30FC;&#x3068;&#x5024;&#x3092;&#x7C21;&#x5358;&#x306B;&#x53D6;&#x308A;&#x51FA;&#x305B;&#x307E;&#x3059;&#x3002;</p>
+<p><code>entries</code>メソッドはマップが持つすべての要素をエントリーとして挿入順に並べたIteratorオブジェクトを返します。
+先述のとおりエントリーは<code>[キー, 値]</code>のような配列です。
+そのため、配列の分割代入を使うとエントリーからキーと値を簡単に取り出せます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>], [<span class="hljs-string">&quot;key2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>]]);
 <span class="hljs-keyword">const</span> entries = [];
@@ -1538,9 +1538,9 @@ map.forEach(<span class="hljs-function">(<span class="hljs-params">value, key</s
 }
 <span class="hljs-built_in">console</span>.log(entries); <span class="hljs-comment">// =&gt; [&quot;key1:value1&quot;,&quot;key2:value2&quot;]</span>
 </code></pre>
-<p>&#x307E;&#x305F;&#x3001;&#x30DE;&#x30C3;&#x30D7;&#x81EA;&#x8EAB;&#x3082;iterable&#x306A;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306A;&#x306E;&#x3067;&#x3001;<code>for...of</code>&#x6587;&#x3067;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x30DE;&#x30C3;&#x30D7;&#x3092;<code>for...of</code>&#x6587;&#x3067;&#x53CD;&#x5FA9;&#x3057;&#x305F;&#x3068;&#x304D;&#x306F;&#x3001;&#x3059;&#x3079;&#x3066;&#x306E;&#x8981;&#x7D20;&#x3092;&#x30A8;&#x30F3;&#x30C8;&#x30EA;&#x30FC;&#x3068;&#x3057;&#x3066;&#x633F;&#x5165;&#x9806;&#x306B;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x3064;&#x307E;&#x308A;&#x3001;<code>entries</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306E;&#x623B;&#x308A;&#x5024;&#x3092;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3059;&#x308B;&#x3068;&#x304D;&#x3068;&#x540C;&#x3058;&#x7D50;&#x679C;&#x304C;&#x5F97;&#x3089;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p>また、マップ自身もiterableなオブジェクトなので、<code>for...of</code>文で反復処理できます。
+マップを<code>for...of</code>文で反復したときは、すべての要素をエントリーとして挿入順に反復処理します。
+つまり、<code>entries</code>メソッドの戻り値を反復処理するときと同じ結果が得られます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>], [<span class="hljs-string">&quot;key2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>]]);
 <span class="hljs-keyword">const</span> results = [];
@@ -1549,65 +1549,65 @@ map.forEach(<span class="hljs-function">(<span class="hljs-params">value, key</s
 }
 <span class="hljs-built_in">console</span>.log(results); <span class="hljs-comment">// =&gt; [&quot;key1:value1&quot;,&quot;key2:value2&quot;]</span>
 </code></pre>
-<h3 id="object-and-map"><a name="object-and-map" class="plugin-anchor" href="#object-and-map"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30DE;&#x30C3;&#x30D7;&#x3068;&#x3057;&#x3066;&#x306E;Object&#x3068;Map </h3>
-<p>ES2015&#x3067;<code>Map</code>&#x304C;&#x5C0E;&#x5165;&#x3055;&#x308C;&#x308B;&#x307E;&#x3067;&#x3001;JavaScript&#x306B;&#x304A;&#x3044;&#x3066;&#x30DE;&#x30C3;&#x30D7;&#x578B;&#x3092;&#x5B9F;&#x73FE;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;<code>Object</code>&#x304C;&#x5229;&#x7528;&#x3055;&#x308C;&#x3066;&#x304D;&#x307E;&#x3057;&#x305F;&#x3002;
-&#x4F55;&#x304B;&#x3092;&#x30AD;&#x30FC;&#x306B;&#x3057;&#x3066;&#x5024;&#x306B;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3059;&#x308B;&#x3068;&#x3044;&#x3046;&#x70B9;&#x3067;&#x3001;<code>Map</code>&#x3068;<code>Object</code>&#x306F;&#x3088;&#x304F;&#x4F3C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x305F;&#x3060;&#x3057;&#x3001;&#x30DE;&#x30C3;&#x30D7;&#x3068;&#x3057;&#x3066;&#x306E;<code>Object</code>&#x306B;&#x306F;&#x3044;&#x304F;&#x3064;&#x304B;&#x306E;&#x554F;&#x984C;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<h3 id="object-and-map"><a name="object-and-map" class="plugin-anchor" href="#object-and-map"><i class="fa fa-link" aria-hidden="true"></i></a>マップとしてのObjectとMap </h3>
+<p>ES2015で<code>Map</code>が導入されるまで、JavaScriptにおいてマップ型を実現するために<code>Object</code>が利用されてきました。
+何かをキーにして値にアクセスするという点で、<code>Map</code>と<code>Object</code>はよく似ています。
+ただし、マップとしての<code>Object</code>にはいくつかの問題があります。</p>
 <ul>
-<li><code>Object</code>&#x306E;<code>prototype</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304B;&#x3089;&#x7D99;&#x627F;&#x3055;&#x308C;&#x305F;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x306B;&#x3088;&#x3063;&#x3066;&#x3001;&#x610F;&#x56F3;&#x3057;&#x306A;&#x3044;&#x30DE;&#x30C3;&#x30D4;&#x30F3;&#x30B0;&#x3092;&#x751F;&#x3058;&#x308B;&#x5371;&#x967A;&#x6027;&#x304C;&#x3042;&#x308B;</li>
-<li>&#x307E;&#x305F;&#x3001;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3068;&#x3057;&#x3066;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x6301;&#x3064;&#x305F;&#x3081;&#x3001;&#x30AD;&#x30FC;&#x3068;&#x3057;&#x3066;&#x4F7F;&#x3048;&#x308B;&#x306E;&#x306F;&#x6587;&#x5B57;&#x5217;&#x304B;<code>Symbol</code>&#x306B;&#x9650;&#x3089;&#x308C;&#x308B;</li>
+<li><code>Object</code>の<code>prototype</code>オブジェクトから継承されたプロパティによって、意図しないマッピングを生じる危険性がある</li>
+<li>また、プロパティとしてデータを持つため、キーとして使えるのは文字列か<code>Symbol</code>に限られる</li>
 </ul>
-<p><code>Object</code>&#x306B;&#x306F;<code>prototype</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304C;&#x3042;&#x308B;&#x305F;&#x3081;&#x3001;&#x3044;&#x304F;&#x3064;&#x304B;&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x306F;&#x521D;&#x671F;&#x5316;&#x3055;&#x308C;&#x305F;&#x3068;&#x304D;&#x304B;&#x3089;&#x5B58;&#x5728;&#x3057;&#x307E;&#x3059;&#x3002;
+<p><code>Object</code>には<code>prototype</code>オブジェクトがあるため、いくつかのプロパティは初期化されたときから存在します。
 <!-- textlint-disable -->
-<code>Object</code>&#x3092;&#x30DE;&#x30C3;&#x30D7;&#x3068;&#x3057;&#x3066;&#x4F7F;&#x3046;&#x3068;&#x3001;&#x305D;&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3068;&#x540C;&#x3058;&#x540D;&#x524D;&#x306E;&#x30AD;&#x30FC;&#x3092;&#x4F7F;&#x304A;&#x3046;&#x3068;&#x3057;&#x305F;&#x3068;&#x304D;&#x306B;&#x554F;&#x984C;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;
+<code>Object</code>をマップとして使うと、そのプロパティと同じ名前のキーを使おうとしたときに問題となります
 <!-- textlint-enable -->
-&#xFF08;&#x8A73;&#x7D30;&#x306F;&#x300C;<a href="../object/">&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</a>&#x300D;&#x306E;&#x7AE0;&#x306E;&#x300C;<a href="../object/#confirm-property">&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x306E;&#x5B58;&#x5728;&#x3092;&#x78BA;&#x8A8D;&#x3059;&#x308B;</a>&#x300D;&#x3092;&#x53C2;&#x7167;&#xFF09;&#x3002;</p>
-<p>&#x305F;&#x3068;&#x3048;&#x3070;<code>constructor</code>&#x3068;&#x3044;&#x3046;&#x6587;&#x5B57;&#x5217;&#x306F;<code>Object.prototype.constructor</code>&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3068;&#x885D;&#x7A81;&#x3057;&#x3066;&#x3057;&#x307E;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;<code>constructor</code>&#x306E;&#x3088;&#x3046;&#x306A;&#x6587;&#x5B57;&#x5217;&#x3092;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x30AD;&#x30FC;&#x306B;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;&#x610F;&#x56F3;&#x3057;&#x306A;&#x3044;&#x30DE;&#x30C3;&#x30D4;&#x30F3;&#x30B0;&#x3092;&#x751F;&#x3058;&#x308B;&#x5371;&#x967A;&#x6027;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+（詳細は「<a href="../object/">オブジェクト</a>」の章の「<a href="../object/#confirm-property">プロパティの存在を確認する</a>」を参照）。</p>
+<p>たとえば<code>constructor</code>という文字列は<code>Object.prototype.constructor</code>プロパティと衝突してしまいます。
+そのため<code>constructor</code>のような文字列をオブジェクトのキーに使うことで意図しないマッピングを生じる危険性があります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> map = {};
-<span class="hljs-comment">// &#x30DE;&#x30C3;&#x30D7;&#x304C;&#x30AD;&#x30FC;&#x3092;&#x6301;&#x3064;&#x3053;&#x3068;&#x3092;&#x78BA;&#x8A8D;&#x3059;&#x308B;</span>
+<span class="hljs-comment">// マップがキーを持つことを確認する</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">has</span>(<span class="hljs-params">key</span>) </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> map[key] !== <span class="hljs-string">&quot;undefined&quot;</span>;
 }
 <span class="hljs-built_in">console</span>.log(has(<span class="hljs-string">&quot;foo&quot;</span>)); <span class="hljs-comment">// =&gt; false</span>
-<span class="hljs-comment">// Object&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x304C;&#x5B58;&#x5728;&#x3059;&#x308B;</span>
+<span class="hljs-comment">// Objectのプロパティが存在する</span>
 <span class="hljs-built_in">console</span>.log(has(<span class="hljs-string">&quot;constructor&quot;</span>)); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
-<p>&#x3053;&#x306E;&#x30DE;&#x30C3;&#x30D7;&#x3068;&#x3057;&#x3066;&#x4F7F;&#x3046;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x554F;&#x984C;&#x306F;&#x3001;<code>Object</code>&#x306E;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x3092;<code>Object.create(null)</code>&#x306E;&#x3088;&#x3046;&#x306B;&#x521D;&#x671F;&#x5316;&#x3057;&#x3066;&#x4F5C;&#x308B;&#x3053;&#x3068;&#x3067;&#x56DE;&#x907F;&#x3055;&#x308C;&#x3066;&#x304D;&#x307E;&#x3057;&#x305F;
-&#xFF08;&#x8A73;&#x7D30;&#x306F;&#x300C;<a href="../prototype-object/">&#x30D7;&#x30ED;&#x30C8;&#x30BF;&#x30A4;&#x30D7;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</a>&#x300D;&#x306E;&#x7AE0;&#x306E;&#x300C;<a href="../prototype-object/#not-inherit-object"><code>Object.prototype</code>&#x3092;&#x7D99;&#x627F;&#x3057;&#x306A;&#x3044;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</a>&#x300D;&#x3092;&#x53C2;&#x7167;&#xFF09;&#x3002;</p>
-<p>ES2015&#x3067;&#x306F;&#x3001;&#x3053;&#x308C;&#x3089;&#x306E;&#x554F;&#x984C;&#x3092;&#x6839;&#x672C;&#x7684;&#x306B;&#x89E3;&#x6C7A;&#x3059;&#x308B;<code>Map</code>&#x304C;&#x5C0E;&#x5165;&#x3055;&#x308C;&#x307E;&#x3057;&#x305F;&#x3002;
-<code>Map</code>&#x306F;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3068;&#x306F;&#x7570;&#x306A;&#x308B;&#x4ED5;&#x7D44;&#x307F;&#x3067;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x683C;&#x7D0D;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;<code>Map</code>&#x306E;&#x30D7;&#x30ED;&#x30C8;&#x30BF;&#x30A4;&#x30D7;&#x304C;&#x6301;&#x3064;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3084;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3068;&#x30AD;&#x30FC;&#x304C;&#x885D;&#x7A81;&#x3059;&#x308B;&#x3053;&#x3068;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x307E;&#x305F;&#x3001;<code>Map</code>&#x3067;&#x306F;&#x30DE;&#x30C3;&#x30D7;&#x306E;&#x30AD;&#x30FC;&#x3068;&#x3057;&#x3066;&#x3042;&#x3089;&#x3086;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x4F7F;&#x3048;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x307B;&#x304B;&#x306B;&#x3082;<code>Map</code>&#x306B;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x5229;&#x70B9;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>このマップとして使うオブジェクトの問題は、<code>Object</code>のインスタンスを<code>Object.create(null)</code>のように初期化して作ることで回避されてきました
+（詳細は「<a href="../prototype-object/">プロトタイプオブジェクト</a>」の章の「<a href="../prototype-object/#not-inherit-object"><code>Object.prototype</code>を継承しないオブジェクト</a>」を参照）。</p>
+<p>ES2015では、これらの問題を根本的に解決する<code>Map</code>が導入されました。
+<code>Map</code>はプロパティとは異なる仕組みでデータを格納します。
+そのため、<code>Map</code>のプロトタイプが持つメソッドやプロパティとキーが衝突することはありません。
+また、<code>Map</code>ではマップのキーとしてあらゆるオブジェクトを使えます。</p>
+<p>ほかにも<code>Map</code>には次のような利点があります。</p>
 <ul>
-<li>&#x30DE;&#x30C3;&#x30D7;&#x306E;&#x30B5;&#x30A4;&#x30BA;&#x3092;&#x7C21;&#x5358;&#x306B;&#x77E5;&#x308B;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x308B;</li>
-<li>&#x30DE;&#x30C3;&#x30D7;&#x304C;&#x6301;&#x3064;&#x8981;&#x7D20;&#x3092;&#x7C21;&#x5358;&#x306B;&#x5217;&#x6319;&#x3067;&#x304D;&#x308B;</li>
-<li>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x30AD;&#x30FC;&#x306B;&#x3059;&#x308B;&#x3068;&#x53C2;&#x7167;&#x3054;&#x3068;&#x306B;&#x9055;&#x3046;&#x30DE;&#x30C3;&#x30D4;&#x30F3;&#x30B0;&#x304C;&#x3067;&#x304D;&#x308B;</li>
+<li>マップのサイズを簡単に知ることができる</li>
+<li>マップが持つ要素を簡単に列挙できる</li>
+<li>オブジェクトをキーにすると参照ごとに違うマッピングができる</li>
 </ul>
-<p>&#x305F;&#x3068;&#x3048;&#x3070;&#x30B7;&#x30E7;&#x30C3;&#x30D4;&#x30F3;&#x30B0;&#x30AB;&#x30FC;&#x30C8;&#x306E;&#x3088;&#x3046;&#x306A;&#x4ED5;&#x7D44;&#x307F;&#x3092;&#x4F5C;&#x308B;&#x3068;&#x304D;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;<code>Map</code>&#x3092;&#x4F7F;&#x3063;&#x3066;&#x5546;&#x54C1;&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3068;&#x6CE8;&#x6587;&#x6570;&#x3092;&#x30DE;&#x30C3;&#x30D4;&#x30F3;&#x30B0;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p>たとえばショッピングカートのような仕組みを作るとき、次のように<code>Map</code>を使って商品のオブジェクトと注文数をマッピングできます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": 2020 } --></p>
-<pre><code class="lang-js"><span class="hljs-comment">// &#x30B7;&#x30E7;&#x30C3;&#x30D4;&#x30F3;&#x30B0;&#x30AB;&#x30FC;&#x30C8;&#x3092;&#x8868;&#x73FE;&#x3059;&#x308B;&#x30AF;&#x30E9;&#x30B9;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// ショッピングカートを表現するクラス</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ShoppingCart</span> </span>{
     <span class="hljs-keyword">constructor</span>() {
-        <span class="hljs-comment">// &#x5546;&#x54C1;&#x3068;&#x305D;&#x306E;&#x6570;&#x3092;&#x6301;&#x3064;&#x30DE;&#x30C3;&#x30D7;</span>
+        <span class="hljs-comment">// 商品とその数を持つマップ</span>
         <span class="hljs-keyword">this</span>.items = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
     }
-    <span class="hljs-comment">// &#x30AB;&#x30FC;&#x30C8;&#x306B;&#x5546;&#x54C1;&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;</span>
+    <span class="hljs-comment">// カートに商品を追加する</span>
     addItem(item) {
-        <span class="hljs-comment">// `item`&#x304C;&#x306A;&#x3044;&#x5834;&#x5408;&#x306F;`undefined`&#x3092;&#x8FD4;&#x3059;&#x305F;&#x3081;&#x3001;Nullish coalescing&#x6F14;&#x7B97;&#x5B50;(`??`)&#x3092;&#x4F7F;&#x3044;&#x30C7;&#x30D5;&#x30A9;&#x30EB;&#x30C8;&#x5024;&#x3068;&#x3057;&#x3066;`0`&#x3092;&#x8A2D;&#x5B9A;&#x3059;&#x308B;</span>
+        <span class="hljs-comment">// `item`がない場合は`undefined`を返すため、Nullish coalescing演算子(`??`)を使いデフォルト値として`0`を設定する</span>
         <span class="hljs-keyword">const</span> count = <span class="hljs-keyword">this</span>.items.get(item) ?? <span class="hljs-number">0</span>;
         <span class="hljs-keyword">this</span>.items.set(item, count + <span class="hljs-number">1</span>);
     }
-    <span class="hljs-comment">// &#x30AB;&#x30FC;&#x30C8;&#x5185;&#x306E;&#x5408;&#x8A08;&#x91D1;&#x984D;&#x3092;&#x8FD4;&#x3059;</span>
+    <span class="hljs-comment">// カート内の合計金額を返す</span>
     getTotalPrice() {
         <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.from(<span class="hljs-keyword">this</span>.items).reduce(<span class="hljs-function">(<span class="hljs-params">total, [item, count]</span>) =&gt;</span> {
             <span class="hljs-keyword">return</span> total + item.price * count;
         }, <span class="hljs-number">0</span>);
     }
-    <span class="hljs-comment">// &#x30AB;&#x30FC;&#x30C8;&#x306E;&#x4E2D;&#x8EAB;&#x3092;&#x6587;&#x5B57;&#x5217;&#x306B;&#x3057;&#x3066;&#x8FD4;&#x3059;</span>
+    <span class="hljs-comment">// カートの中身を文字列にして返す</span>
     toString() {
         <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.from(<span class="hljs-keyword">this</span>.items).map(<span class="hljs-function">(<span class="hljs-params">[item, count]</span>) =&gt;</span> {
             <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${item.name}</span>:<span class="hljs-subst">${count}</span>`</span>;
@@ -1615,44 +1615,44 @@ map.forEach(<span class="hljs-function">(<span class="hljs-params">value, key</s
     }
 }
 <span class="hljs-keyword">const</span> shoppingCart = <span class="hljs-keyword">new</span> ShoppingCart();
-<span class="hljs-comment">// &#x5546;&#x54C1;&#x4E00;&#x89A7;</span>
+<span class="hljs-comment">// 商品一覧</span>
 <span class="hljs-keyword">const</span> shopItems = [
-    { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;&#x307F;&#x304B;&#x3093;&quot;</span>, <span class="hljs-attr">price</span>: <span class="hljs-number">100</span> },
-    { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;&#x30EA;&#x30F3;&#x30B4;&quot;</span>, <span class="hljs-attr">price</span>: <span class="hljs-number">200</span> },
+    { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;みかん&quot;</span>, <span class="hljs-attr">price</span>: <span class="hljs-number">100</span> },
+    { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;リンゴ&quot;</span>, <span class="hljs-attr">price</span>: <span class="hljs-number">200</span> },
 ];
 
-<span class="hljs-comment">// &#x30AB;&#x30FC;&#x30C8;&#x306B;&#x5546;&#x54C1;&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;</span>
+<span class="hljs-comment">// カートに商品を追加する</span>
 shoppingCart.addItem(shopItems[<span class="hljs-number">0</span>]);
 shoppingCart.addItem(shopItems[<span class="hljs-number">0</span>]);
 shoppingCart.addItem(shopItems[<span class="hljs-number">1</span>]);
 
-<span class="hljs-comment">// &#x5408;&#x8A08;&#x91D1;&#x984D;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;</span>
+<span class="hljs-comment">// 合計金額を表示する</span>
 <span class="hljs-built_in">console</span>.log(shoppingCart.getTotalPrice()); <span class="hljs-comment">// =&gt; 400</span>
-<span class="hljs-comment">// &#x30AB;&#x30FC;&#x30C8;&#x306E;&#x4E2D;&#x8EAB;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;</span>
-<span class="hljs-built_in">console</span>.log(shoppingCart.toString()); <span class="hljs-comment">// =&gt; &quot;&#x307F;&#x304B;&#x3093;:2,&#x30EA;&#x30F3;&#x30B4;:1&quot;</span>
+<span class="hljs-comment">// カートの中身を表示する</span>
+<span class="hljs-built_in">console</span>.log(shoppingCart.toString()); <span class="hljs-comment">// =&gt; &quot;みかん:2,リンゴ:1&quot;</span>
 </code></pre>
-<p><code>Object</code>&#x3092;&#x30DE;&#x30C3;&#x30D7;&#x3068;&#x3057;&#x3066;&#x4F7F;&#x3046;&#x3068;&#x304D;&#x306B;&#x8D77;&#x304D;&#x308B;&#x591A;&#x304F;&#x306E;&#x554F;&#x984C;&#x306F;&#x3001;<code>Map</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;&#x89E3;&#x6C7A;&#x3057;&#x307E;&#x3059;&#x304C;&#x3001;
-&#x5E38;&#x306B;<code>Map</code>&#x304C;<code>Object</code>&#x306E;&#x4EE3;&#x308F;&#x308A;&#x306B;&#x306A;&#x308B;&#x308F;&#x3051;&#x3067;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x30DE;&#x30C3;&#x30D7;&#x3068;&#x3057;&#x3066;&#x306E;<code>Object</code>&#x306B;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x5229;&#x70B9;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p><code>Object</code>をマップとして使うときに起きる多くの問題は、<code>Map</code>オブジェクトを使うことで解決しますが、
+常に<code>Map</code>が<code>Object</code>の代わりになるわけではありません。
+マップとしての<code>Object</code>には次のような利点があります。</p>
 <ul>
-<li>&#x30EA;&#x30C6;&#x30E9;&#x30EB;&#x8868;&#x73FE;&#x304C;&#x3042;&#x308B;&#x305F;&#x3081;&#x4F5C;&#x6210;&#x3057;&#x3084;&#x3059;&#x3044;</li>
-<li>&#x898F;&#x5B9A;&#x306E;JSON&#x8868;&#x73FE;&#x304C;&#x3042;&#x308B;&#x305F;&#x3081;&#x3001;<code>JSON.stringify</code>&#x95A2;&#x6570;&#x3092;&#x4F7F;&#x3063;&#x3066;JSON&#x306B;&#x5909;&#x63DB;&#x3059;&#x308B;&#x306E;&#x304C;&#x7C21;&#x5358;&#x3067;&#x3042;&#x308B;</li>
-<li>&#x30CD;&#x30A4;&#x30C6;&#x30A3;&#x30D6;API&#x30FB;&#x5916;&#x90E8;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3092;&#x554F;&#x308F;&#x305A;&#x3001;&#x591A;&#x304F;&#x306E;&#x95A2;&#x6570;&#x304C;&#x30DE;&#x30C3;&#x30D7;&#x3068;&#x3057;&#x3066;<code>Object</code>&#x3092;&#x6E21;&#x3055;&#x308C;&#x308B;&#x8A2D;&#x8A08;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;</li>
+<li>リテラル表現があるため作成しやすい</li>
+<li>規定のJSON表現があるため、<code>JSON.stringify</code>関数を使ってJSONに変換するのが簡単である</li>
+<li>ネイティブAPI・外部ライブラリを問わず、多くの関数がマップとして<code>Object</code>を渡される設計になっている</li>
 </ul>
-<p>&#x6B21;&#x306E;&#x4F8B;&#x3067;&#x306F;&#x3001;&#x30ED;&#x30B0;&#x30A4;&#x30F3;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;submit&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x3063;&#x305F;&#x3042;&#x3068;&#x3001;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x306B;POST&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x3092;&#x9001;&#x4FE1;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x306B;JSON&#x6587;&#x5B57;&#x5217;&#x3092;&#x9001;&#x308B;&#x305F;&#x3081;&#x306B;&#x3001;<code>JSON.stringify</code>&#x95A2;&#x6570;&#x3092;&#x4F7F;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;<code>Object</code>&#x306E;&#x30DE;&#x30C3;&#x30D7;&#x3092;&#x4F5C;&#x3063;&#x3066;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x306E;&#x5165;&#x529B;&#x5185;&#x5BB9;&#x3092;&#x6301;&#x305F;&#x305B;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x3088;&#x3046;&#x306A;&#x7C21;&#x6613;&#x306A;&#x30DE;&#x30C3;&#x30D7;&#x306B;&#x304A;&#x3044;&#x3066;&#x306F;&#x3001;<code>Object</code>&#x3092;&#x4F7F;&#x3046;&#x307B;&#x3046;&#x304C;&#x9069;&#x5207;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<pre><code class="lang-js"><span class="hljs-comment">// URL&#x3068;Object&#x306E;&#x30DE;&#x30C3;&#x30D7;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x3063;&#x3066;POST&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x3092;&#x9001;&#x308B;&#x95A2;&#x6570;</span>
+<p>次の例では、ログインフォームのsubmitイベントを受け取ったあと、サーバーにPOSTリクエストを送信しています。
+サーバーにJSON文字列を送るために、<code>JSON.stringify</code>関数を使います。
+そのため、<code>Object</code>のマップを作ってフォームの入力内容を持たせています。
+このような簡易なマップにおいては、<code>Object</code>を使うほうが適切でしょう。</p>
+<pre><code class="lang-js"><span class="hljs-comment">// URLとObjectのマップを受け取ってPOSTリクエストを送る関数</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendPOSTRequest</span>(<span class="hljs-params">url, data</span>) </span>{
-    <span class="hljs-comment">// XMLHttpRequest&#x3092;&#x4F7F;&#x3063;&#x3066;POST&#x30EA;&#x30AF;&#x30A8;&#x30B9;&#x30C8;&#x3092;&#x9001;&#x308B;</span>
+    <span class="hljs-comment">// XMLHttpRequestを使ってPOSTリクエストを送る</span>
     <span class="hljs-keyword">const</span> httpRequest = <span class="hljs-keyword">new</span> XMLHttpRequest();
     httpRequest.setRequestHeader(<span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;application/json&quot;</span>);
     httpRequest.send(<span class="hljs-built_in">JSON</span>.stringify(data));
     httpRequest.open(<span class="hljs-string">&quot;POST&quot;</span>, url);
 }
 
-<span class="hljs-comment">// form&#x306E;submit&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308B;&#x95A2;&#x6570;</span>
+<span class="hljs-comment">// formのsubmitイベントを受け取る関数</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onLoginFormSubmit</span>(<span class="hljs-params">event</span>) </span>{
     <span class="hljs-keyword">const</span> form = event.target;
     <span class="hljs-keyword">const</span> data = {
@@ -1663,64 +1663,64 @@ shoppingCart.addItem(shopItems[<span class="hljs-number">1</span>]);
 }
 </code></pre>
 <h3 id="weakmap"><a name="weakmap" class="plugin-anchor" href="#weakmap"><i class="fa fa-link" aria-hidden="true"></i></a>WeakMap </h3>
-<p><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/WeakMap" target="_blank">WeakMap</a>&#x306F;&#x3001;<code>Map</code>&#x3068;&#x540C;&#x3058;&#x304F;&#x30DE;&#x30C3;&#x30D7;&#x3092;&#x6271;&#x3046;&#x305F;&#x3081;&#x306E;&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x3059;&#x3002;
-<code>Map</code>&#x3068;&#x9055;&#x3046;&#x70B9;&#x306F;&#x3001;&#x30AD;&#x30FC;&#x3092;<strong>&#x5F31;&#x3044;&#x53C2;&#x7167;</strong>&#xFF08;Weak Reference&#xFF09;&#x3067;&#x6301;&#x3064;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;</p>
-<p><a href="https://ja.wikipedia.org/wiki/%E5%BC%B1%E3%81%84%E5%8F%82%E7%85%A7" target="_blank">&#x5F31;&#x3044;&#x53C2;&#x7167;</a>&#x3068;&#x306F;&#x3001;&#x30AC;&#x30D9;&#x30FC;&#x30B8;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#xFF08;GC&#xFF09;&#x306B;&#x3088;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x89E3;&#x653E;&#x3092;&#x59A8;&#x3052;&#x306A;&#x3044;&#x305F;&#x3081;&#x306E;&#x7279;&#x6B8A;&#x306A;&#x53C2;&#x7167;&#x3067;&#x3059;&#x3002;
-GC&#x306B;&#x3088;&#x308A;&#x30E1;&#x30E2;&#x30EA;&#x304B;&#x3089;&#x89E3;&#x653E;&#x3067;&#x304D;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;&#x3001;&#x3069;&#x3053;&#x304B;&#x3089;&#x3082;&#x53C2;&#x7167;&#x3055;&#x308C;&#x3066;&#x3044;&#x306A;&#x3044;&#x3082;&#x306E;&#x3060;&#x3051;&#x3067;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x3068;&#x304D;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3078;&#x306E;&#x5F31;&#x3044;&#x53C2;&#x7167;&#x304C;&#x3042;&#x3063;&#x305F;&#x3068;&#x3057;&#x3066;&#x3082;&#x305D;&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;&#x89E3;&#x653E;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x5F31;&#x3044;&#x53C2;&#x7167;&#x306F;&#x4E0D;&#x8981;&#x306B;&#x306A;&#x3063;&#x305F;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x53C2;&#x7167;&#x3057;&#x7D9A;&#x3051;&#x3066;&#x767A;&#x751F;&#x3057;&#x3066;&#x3057;&#x307E;&#x3046;&#x30E1;&#x30E2;&#x30EA;&#x30EA;&#x30FC;&#x30AF;&#x3092;&#x9632;&#x3050;&#x305F;&#x3081;&#x306B;&#x4F7F;&#x308F;&#x308C;&#x307E;&#x3059;&#x3002;
-<code>WeakMap</code>&#x3067;&#x306F;&#x4E0D;&#x8981;&#x306B;&#x306A;&#x3063;&#x305F;&#x30AD;&#x30FC;&#x3068;&#x305D;&#x308C;&#x306B;&#x3072;&#x3082;&#x3065;&#x3044;&#x305F;&#x5024;&#x304C;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x524A;&#x9664;&#x3055;&#x308C;&#x308B;&#x305F;&#x3081;&#x3001;&#x30E1;&#x30E2;&#x30EA;&#x30EA;&#x30FC;&#x30AF;&#x3092;&#x5F15;&#x304D;&#x8D77;&#x3053;&#x3059;&#x5FC3;&#x914D;&#x304C;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;&#x6700;&#x521D;&#x306B;<code>obj</code>&#x306B;&#x306F;<code>{}</code>&#x3092;&#x8A2D;&#x5B9A;&#x3057;&#x3001;<code>WeakMap</code>&#x3067;&#x306F;&#x305D;&#x306E;<code>obj</code>&#x3092;&#x30AD;&#x30FC;&#x306B;&#x3057;&#x3066;&#x5024;&#xFF08;<code>&quot;value&quot;</code>&#xFF09;&#x3092;&#x8A2D;&#x5B9A;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306B;<code>obj</code>&#x306B;&#x5225;&#x306E;&#x5024;&#xFF08;&#x3053;&#x3053;&#x3067;&#x306F;<code>null</code>&#xFF09;&#x3092;&#x4EE3;&#x5165;&#x3059;&#x308B;&#x3068;&#x3001;<code>obj</code>&#x304C;&#x5143;&#x3005;&#x53C2;&#x7167;&#x3057;&#x3066;&#x3044;&#x305F;<code>{}</code>&#x3068;&#x3044;&#x3046;&#x5024;&#x306F;&#x3069;&#x3053;&#x304B;&#x3089;&#x3082;&#x53C2;&#x7167;&#x3055;&#x308C;&#x306A;&#x304F;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x3068;&#x304D;<code>WeakMap</code>&#x306F;<code>{}</code>&#x3078;&#x306E;&#x5F31;&#x3044;&#x53C2;&#x7167;&#x3092;&#x6301;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x304C;&#x3001;&#x5F31;&#x3044;&#x53C2;&#x7167;&#x306F;GC&#x3092;&#x59A8;&#x3052;&#x306A;&#x3044;&#x305F;&#x3081;&#x3001;<code>{}</code>&#x306F;&#x4E0D;&#x8981;&#x306B;&#x306A;&#x3063;&#x305F;&#x5024;&#x3068;&#x3057;&#x3066;GC&#x306B;&#x3088;&#x308A;&#x30E1;&#x30E2;&#x30EA;&#x304B;&#x3089;&#x89E3;&#x653E;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x540C;&#x6642;&#x306B;&#x3001;<code>WeakMap</code>&#x306F;&#x89E3;&#x653E;&#x3055;&#x308C;&#x305F;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#xFF08;<code>{}</code>&#xFF09;&#x3092;&#x30AD;&#x30FC;&#x306B;&#x3057;&#x3066;&#x3072;&#x3082;&#x3065;&#x3044;&#x3066;&#x3044;&#x305F;&#x5024;&#xFF08;<code>&quot;value&quot;</code>&#xFF09;&#x3092;&#x7834;&#x68C4;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x305F;&#x3060;&#x3057;&#x3001;&#x3069;&#x306E;&#x30BF;&#x30A4;&#x30DF;&#x30F3;&#x30B0;&#x3067;&#x5B9F;&#x969B;&#x306B;&#x30E1;&#x30E2;&#x30EA;&#x304B;&#x3089;&#x89E3;&#x653E;&#x3059;&#x308B;&#x304B;&#x306F;&#x3001;JavaScript&#x30A8;&#x30F3;&#x30B8;&#x30F3;&#x306E;&#x5B9F;&#x88C5;&#x306B;&#x4F9D;&#x5B58;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/WeakMap" target="_blank">WeakMap</a>は、<code>Map</code>と同じくマップを扱うためのビルトインオブジェクトです。
+<code>Map</code>と違う点は、キーを<strong>弱い参照</strong>（Weak Reference）で持つことです。</p>
+<p><a href="https://ja.wikipedia.org/wiki/%E5%BC%B1%E3%81%84%E5%8F%82%E7%85%A7" target="_blank">弱い参照</a>とは、ガベージコレクション（GC）によるオブジェクトの解放を妨げないための特殊な参照です。
+GCによりメモリから解放できるオブジェクトは、どこからも参照されていないものだけです。
+このときオブジェクトへの弱い参照があったとしてもそのオブジェクトは解放されます。</p>
+<p>そのため、弱い参照は不要になったオブジェクトを参照し続けて発生してしまうメモリリークを防ぐために使われます。
+<code>WeakMap</code>では不要になったキーとそれにひもづいた値が自動的に削除されるため、メモリリークを引き起こす心配がありません。</p>
+<p>次のコードでは、最初に<code>obj</code>には<code>{}</code>を設定し、<code>WeakMap</code>ではその<code>obj</code>をキーにして値（<code>&quot;value&quot;</code>）を設定しています。
+次に<code>obj</code>に別の値（ここでは<code>null</code>）を代入すると、<code>obj</code>が元々参照していた<code>{}</code>という値はどこからも参照されなくなります。
+このとき<code>WeakMap</code>は<code>{}</code>への弱い参照を持っていますが、弱い参照はGCを妨げないため、<code>{}</code>は不要になった値としてGCによりメモリから解放されます。</p>
+<p>同時に、<code>WeakMap</code>は解放されたオブジェクト（<code>{}</code>）をキーにしてひもづいていた値（<code>&quot;value&quot;</code>）を破棄できます。
+ただし、どのタイミングで実際にメモリから解放するかは、JavaScriptエンジンの実装に依存します。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakMap</span>();
-<span class="hljs-comment">// &#x30AD;&#x30FC;&#x3068;&#x306A;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</span>
+<span class="hljs-comment">// キーとなるオブジェクト</span>
 <span class="hljs-keyword">let</span> obj = {};
-<span class="hljs-comment">// {} &#x3078;&#x306E;&#x53C2;&#x7167;&#x3092;&#x30AD;&#x30FC;&#x306B;&#x5024;&#x3092;&#x30BB;&#x30C3;&#x30C8;&#x3059;&#x308B;</span>
+<span class="hljs-comment">// {} への参照をキーに値をセットする</span>
 map.set(obj, <span class="hljs-string">&quot;value&quot;</span>);
-<span class="hljs-comment">// {} &#x3078;&#x306E;&#x53C2;&#x7167;&#x3092;&#x7834;&#x68C4;&#x3059;&#x308B;</span>
+<span class="hljs-comment">// {} への参照を破棄する</span>
 obj = <span class="hljs-literal">null</span>;
-<span class="hljs-comment">// GC&#x304C;&#x767A;&#x751F;&#x3059;&#x308B;&#x30BF;&#x30A4;&#x30DF;&#x30F3;&#x30B0;&#x3067;WeakMap&#x304B;&#x3089;&#x5024;&#x304C;&#x7834;&#x68C4;&#x3055;&#x308C;&#x308B;</span>
+<span class="hljs-comment">// GCが発生するタイミングでWeakMapから値が破棄される</span>
 </code></pre>
-<p><code>WeakMap</code>&#x306F;<code>Map</code>&#x3068;&#x4F3C;&#x3066;&#x3044;&#x307E;&#x3059;&#x304C;iterable&#x3067;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x30AD;&#x30FC;&#x3092;&#x5217;&#x6319;&#x3059;&#x308B;<code>keys</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3084;&#x3001;&#x30C7;&#x30FC;&#x30BF;&#x306E;&#x6570;&#x3092;&#x8FD4;&#x3059;<code>size</code>&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x306A;&#x3069;&#x306F;&#x5B58;&#x5728;&#x3057;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x307E;&#x305F;&#x3001;&#x30AD;&#x30FC;&#x3092;&#x5F31;&#x3044;&#x53C2;&#x7167;&#x3067;&#x6301;&#x3064;&#x7279;&#x6027;&#x4E0A;&#x3001;&#x30AD;&#x30FC;&#x3068;&#x3057;&#x3066;&#x4F7F;&#x3048;&#x308B;&#x306E;&#x306F;&#x53C2;&#x7167;&#x578B;&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3060;&#x3051;&#x3067;&#x3059;&#x3002;</p>
-<p><code>WeakMap</code>&#x306E;&#x4E3B;&#x306A;&#x4F7F;&#x3044;&#x65B9;&#x306E;&#x3072;&#x3068;&#x3064;&#x306F;&#x3001;&#x30AF;&#x30E9;&#x30B9;&#x306B;&#x30D7;&#x30E9;&#x30A4;&#x30D9;&#x30FC;&#x30C8;&#x306E;&#x5024;&#x3092;&#x683C;&#x7D0D;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;
-<code>this</code> &#xFF08;&#x30AF;&#x30E9;&#x30B9;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#xFF09; &#x3092; <code>WeakMap</code> &#x306E;&#x30AD;&#x30FC;&#x306B;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x3001;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x306E;&#x5916;&#x304B;&#x3089;&#x306F;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3067;&#x304D;&#x306A;&#x3044;&#x5024;&#x3092;&#x4FDD;&#x6301;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x3001;&#x30AF;&#x30E9;&#x30B9;&#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x304C;&#x53C2;&#x7167;&#x3055;&#x308C;&#x306A;&#x304F;&#x306A;&#x3063;&#x305F;&#x3068;&#x304D;&#x306B;&#x306F;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x89E3;&#x653E;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304C;&#x767A;&#x706B;&#x3059;&#x308B;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306E;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#xFF08;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#xFF09;&#x3092; <code>WeakMap</code> &#x3067;&#x7BA1;&#x7406;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x3068;&#x306F;&#x3001;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x304C;&#x767A;&#x751F;&#x3057;&#x305F;&#x3068;&#x304D;&#x306B;&#x547C;&#x3073;&#x51FA;&#x3055;&#x308C;&#x308B;&#x95A2;&#x6570;&#x306E;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x30DE;&#x30C3;&#x30D7;&#x3092;<code>Map</code>&#x3067;&#x5B9F;&#x88C5;&#x3057;&#x3066;&#x3057;&#x307E;&#x3046;&#x3068;&#x3001;&#x660E;&#x793A;&#x7684;&#x306B;&#x524A;&#x9664;&#x3055;&#x308C;&#x308B;&#x307E;&#x3067;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x306F;&#x30E1;&#x30E2;&#x30EA;&#x4E0A;&#x306B;&#x6B8B;&#x308A;&#x7D9A;&#x3051;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x3053;&#x3067;<code>WeakMap</code>&#x3092;&#x4F7F;&#x3046;&#x3068;&#x3001;<code>addListener</code> &#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306B;&#x6E21;&#x3055;&#x308C;&#x305F;<code>listener</code>&#x306F; <code>EventEmitter</code> &#x30A4;&#x30F3;&#x30B9;&#x30BF;&#x30F3;&#x30B9;&#x304C;&#x53C2;&#x7167;&#x3055;&#x308C;&#x306A;&#x304F;&#x306A;&#x3063;&#x305F;&#x969B;&#x3001;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x89E3;&#x653E;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p><code>WeakMap</code>は<code>Map</code>と似ていますがiterableではありません。
+そのため、キーを列挙する<code>keys</code>メソッドや、データの数を返す<code>size</code>プロパティなどは存在しません。
+また、キーを弱い参照で持つ特性上、キーとして使えるのは参照型のオブジェクトだけです。</p>
+<p><code>WeakMap</code>の主な使い方のひとつは、クラスにプライベートの値を格納することです。
+<code>this</code> （クラスインスタンス） を <code>WeakMap</code> のキーにすることで、インスタンスの外からはアクセスできない値を保持できます。
+また、クラスインスタンスが参照されなくなったときには自動的に解放されます。</p>
+<p>次のコードでは、オブジェクトが発火するイベントのリスナー関数（イベントリスナー）を <code>WeakMap</code> で管理しています。
+イベントリスナーとは、イベントが発生したときに呼び出される関数のことです。
+このマップを<code>Map</code>で実装してしまうと、明示的に削除されるまでイベントリスナーはメモリ上に残り続けます。
+ここで<code>WeakMap</code>を使うと、<code>addListener</code> メソッドに渡された<code>listener</code>は <code>EventEmitter</code> インスタンスが参照されなくなった際、自動的に解放されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": 2020 } --></p>
-<pre><code class="lang-js"><span class="hljs-comment">// &#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x3092;&#x7BA1;&#x7406;&#x3059;&#x308B;&#x30DE;&#x30C3;&#x30D7;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// イベントリスナーを管理するマップ</span>
 <span class="hljs-keyword">const</span> listenersMap = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakMap</span>();
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EventEmitter</span> </span>{
     addListener(listener) {
-        <span class="hljs-comment">// this &#x306B;&#x3072;&#x3082;&#x3065;&#x3044;&#x305F;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x306E;&#x914D;&#x5217;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B;</span>
+        <span class="hljs-comment">// this にひもづいたリスナーの配列を取得する</span>
         <span class="hljs-keyword">const</span> listeners = listenersMap.get(<span class="hljs-keyword">this</span>) ?? [];
         <span class="hljs-keyword">const</span> newListeners = listeners.concat(listener);
-        <span class="hljs-comment">// this &#x3092;&#x30AD;&#x30FC;&#x306B;&#x65B0;&#x3057;&#x3044;&#x914D;&#x5217;&#x3092;&#x30BB;&#x30C3;&#x30C8;&#x3059;&#x308B;</span>
+        <span class="hljs-comment">// this をキーに新しい配列をセットする</span>
         listenersMap.set(<span class="hljs-keyword">this</span>, newListeners);
     }
 }
 
-<span class="hljs-comment">// &#x4E0A;&#x8A18;&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x5B9F;&#x884C;&#x4F8B;</span>
+<span class="hljs-comment">// 上記クラスの実行例</span>
 
 <span class="hljs-keyword">let</span> eventEmitter = <span class="hljs-keyword">new</span> EventEmitter();
-<span class="hljs-comment">// &#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;</span>
+<span class="hljs-comment">// イベントリスナーを追加する</span>
 eventEmitter.addListener(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x304C;&#x767A;&#x706B;&#x3057;&#x307E;&#x3057;&#x305F;&quot;</span>);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;イベントが発火しました&quot;</span>);
 });
-<span class="hljs-comment">// eventEmitter&#x3078;&#x306E;&#x53C2;&#x7167;&#x304C;&#x306A;&#x304F;&#x306A;&#x3063;&#x305F;&#x3053;&#x3068;&#x3067;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x304C;&#x89E3;&#x653E;&#x3055;&#x308C;&#x308B;</span>
+<span class="hljs-comment">// eventEmitterへの参照がなくなったことで自動的にイベントリスナーが解放される</span>
 eventEmitter = <span class="hljs-literal">null</span>;
 </code></pre>
-<p>&#x307E;&#x305F;&#x3001;&#x3042;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304B;&#x3089;&#x8A08;&#x7B97;&#x3057;&#x305F;&#x7D50;&#x679C;&#x3092;&#x4E00;&#x6642;&#x7684;&#x306B;&#x4FDD;&#x5B58;&#x3059;&#x308B;&#x7528;&#x9014;&#x3067;&#x3082;&#x3088;&#x304F;&#x4F7F;&#x308F;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x4F8B;&#x3067;&#x306F;HTML&#x8981;&#x7D20;&#x306E;&#x9AD8;&#x3055;&#x3092;&#x8A08;&#x7B97;&#x3057;&#x305F;&#x7D50;&#x679C;&#x3092;&#x4FDD;&#x5B58;&#x3057;&#x3066;&#x3001;2&#x56DE;&#x76EE;&#x4EE5;&#x964D;&#x306B;&#x540C;&#x3058;&#x8A08;&#x7B97;&#x3092;&#x3057;&#x306A;&#x3044;&#x3088;&#x3046;&#x306B;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>また、あるオブジェクトから計算した結果を一時的に保存する用途でもよく使われます。
+次の例ではHTML要素の高さを計算した結果を保存して、2回目以降に同じ計算をしないようにしています。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> cache = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakMap</span>();
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getHeight</span>(<span class="hljs-params">element</span>) </span>{
@@ -1728,69 +1728,69 @@ eventEmitter = <span class="hljs-literal">null</span>;
         <span class="hljs-keyword">return</span> cache.get(element);
     }
     <span class="hljs-keyword">const</span> height = element.getBoundingClientRect().height;
-    <span class="hljs-comment">// element&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x9AD8;&#x3055;&#x3092;&#x3072;&#x3082;&#x3065;&#x3051;&#x3066;&#x4FDD;&#x5B58;&#x3057;&#x3066;&#x3044;&#x308B;</span>
+    <span class="hljs-comment">// elementオブジェクトに対して高さをひもづけて保存している</span>
     cache.set(element, height);
     <span class="hljs-keyword">return</span> height;
 }
 </code></pre>
-<h3 id="key-and-nan"><a name="key-and-nan" class="plugin-anchor" href="#key-and-nan"><i class="fa fa-link" aria-hidden="true"></i></a>[&#x30B3;&#x30E9;&#x30E0;] &#x30AD;&#x30FC;&#x306E;&#x7B49;&#x4FA1;&#x6027;&#x3068;NaN </h3>
-<p><code>Map</code>&#x306B;&#x5024;&#x3092;&#x30BB;&#x30C3;&#x30C8;&#x3059;&#x308B;&#x969B;&#x306E;&#x30AD;&#x30FC;&#x306B;&#x306F;&#x3042;&#x3089;&#x3086;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304C;&#x4F7F;&#x3048;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x3068;&#x304D;&#x306E;&#x30DE;&#x30C3;&#x30D7;&#x304C;&#x7279;&#x5B9A;&#x306E;&#x30AD;&#x30FC;&#x3092;&#x3059;&#x3067;&#x306B;&#x6301;&#x3063;&#x3066;&#x3044;&#x308B;&#x304B;&#x3001;&#x3064;&#x307E;&#x308A;&#x633F;&#x5165;&#x3068;&#x4E0A;&#x66F8;&#x304D;&#x306E;&#x5224;&#x5B9A;&#x306F;&#x57FA;&#x672C;&#x7684;&#x306B;<code>===</code>&#x6F14;&#x7B97;&#x5B50;&#x3068;&#x540C;&#x3058;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x305F;&#x3060;&#x3057;&#x3001;&#x30AD;&#x30FC;&#x304C;<code>NaN</code>&#x306E;&#x6271;&#x3044;&#x3060;&#x3051;&#x304C;&#x4F8B;&#x5916;&#x7684;&#x306B;&#x9055;&#x3044;&#x307E;&#x3059;&#x3002;<code>Map</code>&#x306B;&#x304A;&#x3051;&#x308B;&#x30AD;&#x30FC;&#x306E;&#x6BD4;&#x8F03;&#x3067;&#x306F;&#x3001;<code>NaN</code>&#x540C;&#x58EB;&#x306F;&#x5E38;&#x306B;&#x7B49;&#x4FA1;&#x3067;&#x3042;&#x308B;&#x3068;&#x307F;&#x306A;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x6319;&#x52D5;&#x306F;<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Equality_comparisons_and_when_to_use_them#Same-value-zero_equality" target="_blank">Same-value-zero</a>&#x30A2;&#x30EB;&#x30B4;&#x30EA;&#x30BA;&#x30E0;&#x3068;&#x547C;&#x3070;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x3001;<code>NaN</code>&#x540C;&#x58EB;&#x306E;<code>===</code>&#x306E;&#x6BD4;&#x8F03;&#x7D50;&#x679C;&#x304C;<code>false</code>&#x306B;&#x306A;&#x308B;&#x306E;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x3001;<code>Map</code>&#x306E;&#x30AD;&#x30FC;&#x3067;&#x306F;<code>NaN</code>&#x540C;&#x58EB;&#x306E;&#x6BD4;&#x8F03;&#x7D50;&#x679C;&#x304C;&#x4E00;&#x81F4;&#x3057;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<h3 id="key-and-nan"><a name="key-and-nan" class="plugin-anchor" href="#key-and-nan"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] キーの等価性とNaN </h3>
+<p><code>Map</code>に値をセットする際のキーにはあらゆるオブジェクトが使えます。
+このときのマップが特定のキーをすでに持っているか、つまり挿入と上書きの判定は基本的に<code>===</code>演算子と同じです。</p>
+<p>ただし、キーが<code>NaN</code>の扱いだけが例外的に違います。<code>Map</code>におけるキーの比較では、<code>NaN</code>同士は常に等価であるとみなされます。
+この挙動は<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Equality_comparisons_and_when_to_use_them#Same-value-zero_equality" target="_blank">Same-value-zero</a>アルゴリズムと呼ばれます。</p>
+<p>次のコードでは、<code>NaN</code>同士の<code>===</code>の比較結果が<code>false</code>になるのに対して、<code>Map</code>のキーでは<code>NaN</code>同士の比較結果が一致していることがわかります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
 map.set(<span class="hljs-literal">NaN</span>, <span class="hljs-string">&quot;value&quot;</span>);
-<span class="hljs-comment">// NaN&#x306F;===&#x3067;&#x6BD4;&#x8F03;&#x3057;&#x305F;&#x5834;&#x5408;&#x306F;&#x5E38;&#x306B;false</span>
+<span class="hljs-comment">// NaNは===で比較した場合は常にfalse</span>
 <span class="hljs-built_in">console</span>.log(<span class="hljs-literal">NaN</span> === <span class="hljs-literal">NaN</span>); <span class="hljs-comment">// =&gt; false</span>
-<span class="hljs-comment">// Map&#x306F;NaN&#x540C;&#x58EB;&#x3092;&#x6BD4;&#x8F03;&#x3067;&#x304D;&#x308B;</span>
+<span class="hljs-comment">// MapはNaN同士を比較できる</span>
 <span class="hljs-built_in">console</span>.log(map.has(<span class="hljs-literal">NaN</span>)); <span class="hljs-comment">// =&gt; true</span>
 <span class="hljs-built_in">console</span>.log(map.get(<span class="hljs-literal">NaN</span>)); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
 </code></pre>
 <h2 id="set"><a name="set" class="plugin-anchor" href="#set"><i class="fa fa-link" aria-hidden="true"></i></a>Set </h2>
-<p><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Set" target="_blank">Set</a>&#x306F;&#x30BB;&#x30C3;&#x30C8;&#x578B;&#x306E;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x6271;&#x3046;&#x305F;&#x3081;&#x306E;&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x3059;&#x3002;
-&#x30BB;&#x30C3;&#x30C8;&#x3068;&#x306F;&#x3001;&#x91CD;&#x8907;&#x3059;&#x308B;&#x5024;&#x304C;&#x306A;&#x3044;&#x3053;&#x3068;&#x3092;&#x4FDD;&#x8A3C;&#x3057;&#x305F;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x3053;&#x3068;&#x3092;&#x8A00;&#x3044;&#x307E;&#x3059;&#x3002;
-<code>Set</code>&#x306F;&#x8FFD;&#x52A0;&#x3057;&#x305F;&#x5024;&#x3092;&#x5217;&#x6319;&#x3067;&#x304D;&#x308B;&#x306E;&#x3067;&#x3001;&#x5024;&#x304C;&#x91CD;&#x8907;&#x3057;&#x306A;&#x3044;&#x3053;&#x3068;&#x3092;&#x4FDD;&#x8A3C;&#x3059;&#x308B;&#x914D;&#x5217;&#x306E;&#x3088;&#x3046;&#x306A;&#x3082;&#x306E;&#x3068;&#x3057;&#x3066;&#x3088;&#x304F;&#x4F7F;&#x308F;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x305F;&#x3060;&#x3057;&#x3001;&#x914D;&#x5217;&#x3068;&#x9055;&#x3063;&#x3066;&#x8981;&#x7D20;&#x306F;&#x9806;&#x5E8F;&#x3092;&#x6301;&#x305F;&#x305A;&#x3001;&#x30A4;&#x30F3;&#x30C7;&#x30C3;&#x30AF;&#x30B9;&#x306B;&#x3088;&#x308B;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x306F;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3002;</p>
-<h3 id="set-new"><a name="set-new" class="plugin-anchor" href="#set-new"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30BB;&#x30C3;&#x30C8;&#x306E;&#x4F5C;&#x6210;&#x3068;&#x521D;&#x671F;&#x5316; </h3>
-<p><code>Set</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;<code>new</code>&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x3001;&#x65B0;&#x3057;&#x3044;&#x30BB;&#x30C3;&#x30C8;&#x3092;&#x4F5C;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x4F5C;&#x6210;&#x3055;&#x308C;&#x305F;&#x3070;&#x304B;&#x308A;&#x306E;&#x30BB;&#x30C3;&#x30C8;&#x306F;&#x4F55;&#x3082;&#x6301;&#x3063;&#x3066;&#x3044;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x30BB;&#x30C3;&#x30C8;&#x306E;&#x30B5;&#x30A4;&#x30BA;&#x3092;&#x8FD4;&#x3059;<code>size</code>&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x306F;0&#x3092;&#x8FD4;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Set" target="_blank">Set</a>はセット型のコレクションを扱うためのビルトインオブジェクトです。
+セットとは、重複する値がないことを保証したコレクションのことを言います。
+<code>Set</code>は追加した値を列挙できるので、値が重複しないことを保証する配列のようなものとしてよく使われます。
+ただし、配列と違って要素は順序を持たず、インデックスによるアクセスはできません。</p>
+<h3 id="set-new"><a name="set-new" class="plugin-anchor" href="#set-new"><i class="fa fa-link" aria-hidden="true"></i></a>セットの作成と初期化 </h3>
+<p><code>Set</code>オブジェクトを<code>new</code>することで、新しいセットを作れます。
+作成されたばかりのセットは何も持っていません。
+そのため、セットのサイズを返す<code>size</code>プロパティは0を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
 <span class="hljs-built_in">console</span>.log(set.size); <span class="hljs-comment">// =&gt; 0</span>
 </code></pre>
-<p><code>Set</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;<code>new</code>&#x3067;&#x521D;&#x671F;&#x5316;&#x3059;&#x308B;&#x3068;&#x304D;&#x306B;&#x3001;&#x30B3;&#x30F3;&#x30B9;&#x30C8;&#x30E9;&#x30AF;&#x30BF;&#x306B;&#x521D;&#x671F;&#x5024;&#x3092;&#x6E21;&#x305B;&#x307E;&#x3059;&#x3002;
-&#x30B3;&#x30F3;&#x30B9;&#x30C8;&#x30E9;&#x30AF;&#x30BF;&#x5F15;&#x6570;&#x3068;&#x3057;&#x3066;&#x6E21;&#x305B;&#x308B;&#x306E;&#x306F;iterable&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;iterable&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x3042;&#x308B;&#x914D;&#x5217;&#x3092;&#x521D;&#x671F;&#x5024;&#x3068;&#x3057;&#x3066;&#x6E21;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x3001;<code>Set</code>&#x3067;&#x306F;&#x91CD;&#x8907;&#x3059;&#x308B;&#x540C;&#x3058;&#x5024;&#x3092;&#x6301;&#x305F;&#x306A;&#x3044;&#x3053;&#x3068;&#x3092;&#x4FDD;&#x8A3C;&#x3059;&#x308B;&#x305F;&#x3081;&#x3001;&#x540C;&#x3058;&#x5024;&#x306F;1&#x3064;&#x306E;&#x307F;&#x683C;&#x7D0D;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p><code>Set</code>オブジェクトを<code>new</code>で初期化するときに、コンストラクタに初期値を渡せます。
+コンストラクタ引数として渡せるのはiterableオブジェクトです。</p>
+<p>次のコードではiterableオブジェクトである配列を初期値として渡しています。
+また、<code>Set</code>では重複する同じ値を持たないことを保証するため、同じ値は1つのみ格納されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// &quot;value2&quot;&#x304C;&#x91CD;&#x8907;&#x3059;&#x308B;&#x305F;&#x3081;&#x3001;&#x7247;&#x65B9;&#x306F;&#x7121;&#x8996;&#x3055;&#x308C;&#x308B;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// &quot;value2&quot;が重複するため、片方は無視される</span>
 <span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-string">&quot;value1&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>]);
-<span class="hljs-comment">// &#x30BB;&#x30C3;&#x30C8;&#x306E;&#x30B5;&#x30A4;&#x30BA;&#x306F;2&#x306B;&#x306A;&#x308B;</span>
+<span class="hljs-comment">// セットのサイズは2になる</span>
 <span class="hljs-built_in">console</span>.log(set.size); <span class="hljs-comment">// =&gt; 2</span>
 </code></pre>
-<h3 id="set-read-and-write"><a name="set-read-and-write" class="plugin-anchor" href="#set-read-and-write"><i class="fa fa-link" aria-hidden="true"></i></a>&#x5024;&#x306E;&#x8FFD;&#x52A0;&#x3068;&#x53D6;&#x308A;&#x51FA;&#x3057; </h3>
-<p>&#x4F5C;&#x6210;&#x3057;&#x305F;&#x30BB;&#x30C3;&#x30C8;&#x306B;&#x5024;&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;&#x306B;&#x306F;&#x3001;<code>add</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x4F7F;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x5148;&#x8FF0;&#x306E;&#x3068;&#x304A;&#x308A;&#x3001;&#x30BB;&#x30C3;&#x30C8;&#x306F;&#x91CD;&#x8907;&#x3059;&#x308B;&#x5024;&#x3092;&#x6301;&#x305F;&#x306A;&#x3044;&#x3053;&#x3068;&#x304C;&#x4FDD;&#x8A3C;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x3059;&#x3067;&#x306B;&#x30BB;&#x30C3;&#x30C8;&#x304C;&#x6301;&#x3063;&#x3066;&#x3044;&#x308B;&#x5024;&#x3092;<code>add</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306B;&#x6E21;&#x3057;&#x305F;&#x969B;&#x306F;&#x7121;&#x8996;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x307E;&#x305F;&#x3001;&#x30BB;&#x30C3;&#x30C8;&#x304C;&#x7279;&#x5B9A;&#x306E;&#x5024;&#x3092;&#x6301;&#x3063;&#x3066;&#x3044;&#x308B;&#x304B;&#x3069;&#x3046;&#x304B;&#x3092;&#x78BA;&#x8A8D;&#x3059;&#x308B;<code>has</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<h3 id="set-read-and-write"><a name="set-read-and-write" class="plugin-anchor" href="#set-read-and-write"><i class="fa fa-link" aria-hidden="true"></i></a>値の追加と取り出し </h3>
+<p>作成したセットに値を追加するには、<code>add</code>メソッドを使います。
+先述のとおり、セットは重複する値を持たないことが保証されます。
+そのため、すでにセットが持っている値を<code>add</code>メソッドに渡した際は無視されます。</p>
+<p>また、セットが特定の値を持っているかどうかを確認する<code>has</code>メソッドがあります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
-<span class="hljs-comment">// &#x5024;&#x306E;&#x8FFD;&#x52A0;</span>
+<span class="hljs-comment">// 値の追加</span>
 set.add(<span class="hljs-string">&quot;a&quot;</span>);
 <span class="hljs-built_in">console</span>.log(set.size); <span class="hljs-comment">// =&gt; 1</span>
-<span class="hljs-comment">// &#x91CD;&#x8907;&#x3059;&#x308B;&#x5024;&#x306F;&#x8FFD;&#x52A0;&#x3055;&#x308C;&#x306A;&#x3044;</span>
+<span class="hljs-comment">// 重複する値は追加されない</span>
 set.add(<span class="hljs-string">&quot;a&quot;</span>);
 <span class="hljs-built_in">console</span>.log(set.size); <span class="hljs-comment">// =&gt; 1</span>
-<span class="hljs-comment">// &#x5024;&#x306E;&#x5B58;&#x5728;&#x78BA;&#x8A8D;</span>
+<span class="hljs-comment">// 値の存在確認</span>
 <span class="hljs-built_in">console</span>.log(set.has(<span class="hljs-string">&quot;a&quot;</span>)); <span class="hljs-comment">// =&gt; true</span>
 <span class="hljs-built_in">console</span>.log(set.has(<span class="hljs-string">&quot;b&quot;</span>)); <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
-<p>&#x30BB;&#x30C3;&#x30C8;&#x304B;&#x3089;&#x5024;&#x3092;&#x524A;&#x9664;&#x3059;&#x308B;&#x306B;&#x306F;&#x3001;<code>delete</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x4F7F;&#x3044;&#x307E;&#x3059;&#x3002;
-<code>delete</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306B;&#x6E21;&#x3055;&#x308C;&#x305F;&#x5024;&#x304C;&#x30BB;&#x30C3;&#x30C8;&#x304B;&#x3089;&#x524A;&#x9664;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x3001;&#x30BB;&#x30C3;&#x30C8;&#x304C;&#x6301;&#x3064;&#x3059;&#x3079;&#x3066;&#x306E;&#x5024;&#x3092;&#x524A;&#x9664;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E;<code>clear</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>セットから値を削除するには、<code>delete</code>メソッドを使います。
+<code>delete</code>メソッドに渡された値がセットから削除されます。
+また、セットが持つすべての値を削除するための<code>clear</code>メソッドがあります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
 set.add(<span class="hljs-string">&quot;a&quot;</span>);
@@ -1801,9 +1801,9 @@ set.delete(<span class="hljs-string">&quot;a&quot;</span>);
 set.clear();
 <span class="hljs-built_in">console</span>.log(set.size); <span class="hljs-comment">// =&gt; 0</span>
 </code></pre>
-<h3 id="set-iteration"><a name="set-iteration" class="plugin-anchor" href="#set-iteration"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30BB;&#x30C3;&#x30C8;&#x306E;&#x53CD;&#x5FA9;&#x51E6;&#x7406; </h3>
-<p>&#x30BB;&#x30C3;&#x30C8;&#x304C;&#x6301;&#x3064;&#x5024;&#x3092;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3059;&#x308B;&#x306B;&#x306F;&#x3001;<code>forEach</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x304C;&#x5229;&#x7528;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-<code>forEach</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x306F;&#x30BB;&#x30C3;&#x30C8;&#x304C;&#x6301;&#x3064;&#x3059;&#x3079;&#x3066;&#x306E;&#x8981;&#x7D20;&#x3092;&#x3001;&#x30BB;&#x30C3;&#x30C8;&#x3078;&#x306E;&#x633F;&#x5165;&#x9806;&#x306B;&#x53CD;&#x5FA9;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<h3 id="set-iteration"><a name="set-iteration" class="plugin-anchor" href="#set-iteration"><i class="fa fa-link" aria-hidden="true"></i></a>セットの反復処理 </h3>
+<p>セットが持つ値を反復処理するには、<code>forEach</code>メソッドが利用できます。
+<code>forEach</code>メソッドではセットが持つすべての要素を、セットへの挿入順に反復します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>]);
 <span class="hljs-keyword">const</span> results = [];
@@ -1812,29 +1812,29 @@ set.forEach(<span class="hljs-function">(<span class="hljs-params">value</span>)
 });
 <span class="hljs-built_in">console</span>.log(results); <span class="hljs-comment">// =&gt; [&quot;a&quot;,&quot;b&quot;]</span>
 </code></pre>
-<p>&#x30BB;&#x30C3;&#x30C8;&#x304B;&#x3089;Iterator&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3068;&#x3057;&#x3066;<code>keys</code>&#x3001;<code>values</code>&#x3001;<code>entries</code>&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x308C;&#x3089;&#x306F;<code>Map</code>&#x3068;&#x306E;&#x985E;&#x4F3C;&#x6027;&#x306E;&#x305F;&#x3081;&#x306B;&#x5B58;&#x5728;&#x3057;&#x307E;&#x3059;&#x304C;&#x3001;&#x30BB;&#x30C3;&#x30C8;&#x306B;&#x306F;&#x30DE;&#x30C3;&#x30D7;&#x306B;&#x304A;&#x3051;&#x308B;&#x30AD;&#x30FC;&#x76F8;&#x5F53;&#x306E;&#x3082;&#x306E;&#x304C;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;<code>keys</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;<code>values</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306E;&#x30A8;&#x30A4;&#x30EA;&#x30A2;&#x30B9;&#x306B;&#x306A;&#x3063;&#x3066;&#x304A;&#x308A;&#x3001;&#x30BB;&#x30C3;&#x30C8;&#x304C;&#x6301;&#x3064;&#x3059;&#x3079;&#x3066;&#x306E;&#x5024;&#x3092;&#x633F;&#x5165;&#x9806;&#x306B;&#x5217;&#x6319;&#x3059;&#x308B;Iterator&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x8FD4;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x3001;<code>entries</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;<code>[&#x5024;, &#x5024;]</code>&#x3068;&#x3044;&#x3046;&#x5F62;&#x306E;&#x30A8;&#x30F3;&#x30C8;&#x30EA;&#x30FC;&#x3092;&#x633F;&#x5165;&#x9806;&#x306B;&#x5217;&#x6319;&#x3059;&#x308B;Iterator&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x8FD4;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x305F;&#x3060;&#x3057;&#x3001;<code>Set</code>&#x81EA;&#x8EAB;&#x304C;iterable&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x3001;&#x3053;&#x308C;&#x3089;&#x306E;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x304C;&#x6709;&#x7528;&#x306A;&#x30B1;&#x30FC;&#x30B9;&#x306F;&#x5C11;&#x306A;&#x3044;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;</p>
+<p>セットからIteratorオブジェクトを作成するメソッドとして<code>keys</code>、<code>values</code>、<code>entries</code>があります。
+これらは<code>Map</code>との類似性のために存在しますが、セットにはマップにおけるキー相当のものがありません。
+そのため、<code>keys</code>メソッドは<code>values</code>メソッドのエイリアスになっており、セットが持つすべての値を挿入順に列挙するIteratorオブジェクトを返します。
+また、<code>entries</code>メソッドは<code>[値, 値]</code>という形のエントリーを挿入順に列挙するIteratorオブジェクトを返します。
+ただし、<code>Set</code>自身がiterableであるため、これらのメソッドが有用なケースは少ないでしょう。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>]);
-<span class="hljs-comment">// keys&#x3067;&#x5217;&#x6319;</span>
+<span class="hljs-comment">// keysで列挙</span>
 <span class="hljs-keyword">const</span> keysResults = [];
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> value <span class="hljs-keyword">of</span> set.keys()) {
     keysResults.push(value);
 }
 <span class="hljs-built_in">console</span>.log(keysResults); <span class="hljs-comment">// =&gt; [&quot;a&quot;,&quot;b&quot;]</span>
-<span class="hljs-comment">// entries&#x3067;&#x5217;&#x6319;</span>
+<span class="hljs-comment">// entriesで列挙</span>
 <span class="hljs-keyword">const</span> entryResults = [];
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> entry <span class="hljs-keyword">of</span> set.entries()) {
-    <span class="hljs-comment">// entry&#x306F;[&#x5024;, &#x5024;]&#x3068;&#x3044;&#x3046;&#x914D;&#x5217;</span>
+    <span class="hljs-comment">// entryは[値, 値]という配列</span>
     entryResults.push(entry);
 }
 <span class="hljs-built_in">console</span>.log(entryResults); <span class="hljs-comment">// =&gt; [[&quot;a&quot;,&quot;a&quot;], [&quot;b&quot;, &quot;b&quot;]]</span>
 </code></pre>
-<p><code>Set</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x81EA;&#x8EAB;&#x3082;iterable&#x306A;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;<code>for...of</code>&#x6587;&#x3067;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-<code>for...of</code>&#x6587;&#x3067;<code>Set</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3057;&#x305F;&#x3068;&#x304D;&#x3082;&#x3001;&#x30BB;&#x30C3;&#x30C8;&#x3078;&#x306E;&#x633F;&#x5165;&#x9806;&#x306B;&#x5024;&#x304C;&#x53D6;&#x308A;&#x51FA;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p><code>Set</code>オブジェクト自身もiterableなオブジェクトであるため<code>for...of</code>文で反復処理できます。
+<code>for...of</code>文で<code>Set</code>オブジェクトを反復処理したときも、セットへの挿入順に値が取り出されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>]);
 <span class="hljs-keyword">const</span> results = [];
@@ -1844,19 +1844,19 @@ set.forEach(<span class="hljs-function">(<span class="hljs-params">value</span>)
 <span class="hljs-built_in">console</span>.log(results); <span class="hljs-comment">// =&gt; [&quot;a&quot;,&quot;b&quot;]</span>
 </code></pre>
 <h3 id="weakset"><a name="weakset" class="plugin-anchor" href="#weakset"><i class="fa fa-link" aria-hidden="true"></i></a>WeakSet </h3>
-<p><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/WeakSet" target="_blank">WeakSet</a>&#x306F;&#x5F31;&#x3044;&#x53C2;&#x7167;&#x3067;&#x5024;&#x3092;&#x6301;&#x3064;&#x30BB;&#x30C3;&#x30C8;&#x3067;&#x3059;&#x3002;
-<code>WeakSet</code>&#x306F;<code>Set</code>&#x3068;&#x4F3C;&#x3066;&#x3044;&#x307E;&#x3059;&#x304C;&#x3001;iterable&#x3067;&#x306F;&#x306A;&#x3044;&#x306E;&#x3067;&#x8FFD;&#x52A0;&#x3057;&#x305F;&#x5024;&#x3092;&#x53CD;&#x5FA9;&#x51E6;&#x7406;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x3064;&#x307E;&#x308A;&#x3001;<code>WeakSet</code>&#x306F;&#x5024;&#x306E;&#x8FFD;&#x52A0;&#x3068;&#x524A;&#x9664;&#x3001;&#x5B58;&#x5728;&#x78BA;&#x8A8D;&#x4EE5;&#x5916;&#x306E;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x30C7;&#x30FC;&#x30BF;&#x306E;&#x683C;&#x7D0D;&#x3067;&#x306F;&#x306A;&#x304F;&#x3001;&#x30C7;&#x30FC;&#x30BF;&#x306E;&#x4E00;&#x610F;&#x6027;&#x3092;&#x78BA;&#x8A8D;&#x3059;&#x308B;&#x3053;&#x3068;&#x306B;&#x7279;&#x5316;&#x3057;&#x305F;&#x30BB;&#x30C3;&#x30C8;&#x3068;&#x8A00;&#x3048;&#x308B;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<p>&#x307E;&#x305F;&#x3001;&#x5F31;&#x3044;&#x53C2;&#x7167;&#x3067;&#x5024;&#x3092;&#x6301;&#x3064;&#x7279;&#x6027;&#x4E0A;&#x3001;<code>WeakSet</code>&#x306E;&#x5024;&#x3068;&#x3057;&#x3066;&#x4F7F;&#x3048;&#x308B;&#x306E;&#x306F;&#x53C2;&#x7167;&#x578B;&#x306E;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3060;&#x3051;&#x3067;&#x3059;&#x3002;</p>
-<h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>&#x307E;&#x3068;&#x3081; </h2>
-<p>&#x3053;&#x306E;&#x7AE0;&#x3067;&#x306F;Map&#x3068;Set&#x306B;&#x3064;&#x3044;&#x3066;&#x5B66;&#x3073;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/WeakSet" target="_blank">WeakSet</a>は弱い参照で値を持つセットです。
+<code>WeakSet</code>は<code>Set</code>と似ていますが、iterableではないので追加した値を反復処理できません。
+つまり、<code>WeakSet</code>は値の追加と削除、存在確認以外のことができません。
+データの格納ではなく、データの一意性を確認することに特化したセットと言えるでしょう。</p>
+<p>また、弱い参照で値を持つ特性上、<code>WeakSet</code>の値として使えるのは参照型のオブジェクトだけです。</p>
+<h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>まとめ </h2>
+<p>この章ではMapとSetについて学びました。</p>
 <ul>
-<li><code>Map</code>&#x306F;&#x30AD;&#x30FC;&#x3068;&#x5024;&#x306E;&#x7D44;&#x307F;&#x5408;&#x308F;&#x305B;&#x304B;&#x3089;&#x306A;&#x308B;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x6271;&#x3046;&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</li>
-<li><code>Map</code>&#x306E;&#x30AD;&#x30FC;&#x306F;&#x30D7;&#x30ED;&#x30C8;&#x30BF;&#x30A4;&#x30D7;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3068;&#x540D;&#x524D;&#x304C;&#x885D;&#x7A81;&#x3057;&#x306A;&#x3044;&#x305F;&#x3081;&#x610F;&#x56F3;&#x3057;&#x306A;&#x3044;&#x30DE;&#x30C3;&#x30D4;&#x30F3;&#x30B0;&#x3092;&#x907F;&#x3051;&#x3089;&#x308C;&#x308B;</li>
-<li><code>WeakMap</code>&#x306F;&#x30AD;&#x30FC;&#x3092;&#x5F31;&#x3044;&#x53C2;&#x7167;&#x3067;&#x6301;&#x3064;<code>Map</code>&#x3068;&#x540C;&#x69D8;&#x306E;&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</li>
-<li><code>Set</code>&#x306F;&#x91CD;&#x8907;&#x3059;&#x308B;&#x5024;&#x304C;&#x306A;&#x3044;&#x3053;&#x3068;&#x3092;&#x4FDD;&#x8A3C;&#x3057;&#x305F;&#x9806;&#x5E8F;&#x3092;&#x6301;&#x305F;&#x306A;&#x3044;&#x30B3;&#x30EC;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x6271;&#x3046;&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</li>
-<li><code>WeakSet</code>&#x306F;&#x5024;&#x3092;&#x5F31;&#x3044;&#x53C2;&#x7167;&#x3067;&#x6301;&#x3064;<code>Set</code>&#x3068;&#x540C;&#x69D8;&#x306E;&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</li>
+<li><code>Map</code>はキーと値の組み合わせからなるコレクションを扱うビルトインオブジェクト</li>
+<li><code>Map</code>のキーはプロトタイプオブジェクトのプロパティと名前が衝突しないため意図しないマッピングを避けられる</li>
+<li><code>WeakMap</code>はキーを弱い参照で持つ<code>Map</code>と同様のビルトインオブジェクト</li>
+<li><code>Set</code>は重複する値がないことを保証した順序を持たないコレクションを扱うビルトインオブジェクト</li>
+<li><code>WeakSet</code>は値を弱い参照で持つ<code>Set</code>と同様のビルトインオブジェクト</li>
 </ul>
 
                                 
@@ -1889,12 +1889,56 @@ set.forEach(<span class="hljs-function">(<span class="hljs-params">value</span>)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"データの集合を扱うビルトインオブジェクトであるMapとSetについてを紹介します。オブジェクトの作成方法や更新方法から実際にどのようなケースで使うのかを紹介します。","title":"Map/Set","level":"1.3.23","depth":2,"next":{"title":"JSON","level":"1.3.24","depth":2,"path":"basic/json/README.md","ref":"./basic/json/README.md","articles":[]},"previous":{"title":"非同期処理:コールバック/Promise/Async Function","level":"1.3.22","depth":2,"path":"basic/async/README.md","ref":"./basic/async/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/map-and-set/README.md","mtime":"2020-11-18T19:19:34.497Z","type":"markdown"},"gitbook":{"version":"3.6.8","time":"2020-11-18T19:20:11.295Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"データの集合を扱うビルトインオブジェクトであるMapとSetについてを紹介します。オブジェクトの作成方法や更新方法から実際にどのようなケースで使うのかを紹介します。","title":"Map/Set","level":"1.3.23","depth":2,"next":{"title":"JSON","level":"1.3.24","depth":2,"path":"basic/json/README.md","ref":"./basic/json/README.md","articles":[]},"previous":{"title":"非同期処理:コールバック/Promise/Async Function","level":"1.3.22","depth":2,"path":"basic/async/README.md","ref":"./basic/async/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/map-and-set/README.md","mtime":"2020-11-19T10:10:17.224Z","type":"markdown"},"gitbook":{"version":"3.6.13","time":"2020-11-19T10:10:53.113Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
 
         
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
     <script src="../../gitbook/gitbook.js"></script>
     <script src="../../gitbook/theme.js"></script>
     

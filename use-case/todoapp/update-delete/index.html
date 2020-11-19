@@ -7,7 +7,7 @@
         <title>Todoアイテムの更新と削除を実装する · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="Todoアプリの残りの機能である「Todoアイテムの更新」と「Todoアイテムの削除」を実装していきます。">
-        <meta name="generator" content="HonKit 3.6.8">
+        <meta name="generator" content="HonKit 3.6.13">
         
         
         
@@ -176,7 +176,7 @@
     </head>
     <body>
         
-<div class="book">
+<div class="book honkit-cloak">
     <div class="book-summary">
         
             
@@ -1441,92 +1441,92 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="todo-item-update-and-delete"><a name="todo-item-update-and-delete" class="plugin-anchor" href="#todo-item-update-and-delete"><i class="fa fa-link" aria-hidden="true"></i></a>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x66F4;&#x65B0;&#x3068;&#x524A;&#x9664;&#x3092;&#x5B9F;&#x88C5;&#x3059;&#x308B; </h1>
-<p>&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;Todo&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x6B8B;&#x308A;&#x306E;&#x6A5F;&#x80FD;&#x3067;&#x3042;&#x308B;&#x300C;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x66F4;&#x65B0;&#x300D;&#x3068;&#x300C;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x524A;&#x9664;&#x300D;&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x300C;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x66F4;&#x65B0;&#x300D;&#x3068;&#x306F;&#x3001;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x3092;&#x30AF;&#x30EA;&#x30C3;&#x30AF;&#x3057;&#x3066;&#x672A;&#x5B8C;&#x4E86;&#x3060;&#x3063;&#x305F;&#x3089;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x3092;&#x3064;&#x3051;&#x3066;&#x5B8C;&#x4E86;&#x6E08;&#x307F;&#x306B;&#x3001;&#x9006;&#x306B;&#x5B8C;&#x4E86;&#x6E08;&#x307F;&#x306E;&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x672A;&#x5B8C;&#x4E86;&#x3078;&#x3068;&#x30C8;&#x30B0;&#x30EB;&#x3059;&#x308B;&#x6A5F;&#x80FD;&#x306E;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;&#x5B8C;&#x4E86;&#x72B6;&#x614B;&#x3092;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3054;&#x3068;&#x306B;&#x6301;&#x3061;&#x3001;&#x305D;&#x308C;&#x305E;&#x308C;&#x306E;Todo&#x306E;&#x9032;&#x6357;&#x3092;&#x7BA1;&#x7406;&#x3067;&#x304D;&#x308B;&#x6A5F;&#x80FD;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x4E00;&#x65B9;&#x306E;&#x300C;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x524A;&#x9664;&#x300D;&#x306F;&#x30DC;&#x30BF;&#x30F3;&#x3092;&#x30AF;&#x30EA;&#x30C3;&#x30AF;&#x3057;&#x305F;&#x3089;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x524A;&#x9664;&#x3059;&#x308B;&#x6A5F;&#x80FD;&#x3067;&#x3059;&#x3002;
-&#x4E0D;&#x8981;&#x3068;&#x306A;&#x3063;&#x305F;Todo&#x3092;&#x524A;&#x9664;&#x3057;&#x3066;&#x5B8C;&#x4E86;&#x6E08;&#x307F;&#x306E;Todo&#x3092;&#x53D6;&#x308A;&#x9664;&#x304F;&#x306A;&#x3069;&#x306B;&#x5229;&#x7528;&#x3067;&#x304D;&#x308B;&#x6A5F;&#x80FD;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x307E;&#x305A;&#x306F;&#x300C;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x66F4;&#x65B0;&#x300D;&#x304B;&#x3089;&#x5B9F;&#x88C5;&#x3057;&#x307E;&#x3059;&#x3002;&#x305D;&#x306E;&#x5F8C;&#x300C;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x524A;&#x9664;&#x300D;&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="todo-item-update"><a name="todo-item-update" class="plugin-anchor" href="#todo-item-update"><i class="fa fa-link" aria-hidden="true"></i></a>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x66F4;&#x65B0; </h2>
-<p>&#x73FE;&#x6642;&#x70B9;&#x3067;&#x306F;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x304C;&#x5B8C;&#x4E86;&#x6E08;&#x307F;&#x304B;&#x3069;&#x3046;&#x304B;&#x306E;&#x72B6;&#x614B;&#x304C;&#x8868;&#x793A;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x307E;&#x305A;&#x306F;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x304C;&#x5B8C;&#x4E86;&#x6E08;&#x307F;&#x304B;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-HTML&#x306E;<a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/Input/checkbox" target="_blank"><code>&lt;input type=&quot;checkbox&quot;&gt;</code></a>&#x8981;&#x7D20;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x3092;&#x8868;&#x793A;&#x3057;&#x3001;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3054;&#x3068;&#x306E;&#x5B8C;&#x4E86;&#x72B6;&#x614B;&#x3092;&#x8868;&#x73FE;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p><code>&lt;input type=&quot;checkbox&quot;&gt;</code>&#x306F;<code>checked</code>&#x5C5E;&#x6027;&#x304C;&#x306A;&#x3044;&#x5834;&#x5408;&#x306F;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x304C;&#x5916;&#x308C;&#x305F;&#x72B6;&#x614B;&#x306E;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x4E00;&#x65B9;<code>&lt;input type=&quot;checkbox&quot; checked&gt;</code>&#x306E;&#x3088;&#x3046;&#x306B;<code>checked</code>&#x5C5E;&#x6027;&#x304C;&#x3042;&#x308B;&#x5834;&#x5408;&#x306F;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x304C;&#x3064;&#x3044;&#x305F;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p><img src="img/input-checkbox.png" alt="input&#x8981;&#x7D20;&#x306E;checked&#x5C5E;&#x6027;&#x306E;&#x9055;&#x3044;"></p>
-<p><code>src/App.js</code>&#x306E;<code>TodoListModel#onChange</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x767B;&#x9332;&#x3057;&#x305F;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x5185;&#x3092;&#x66F8;&#x304D;&#x63DB;&#x3048;&#x3001;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x3092;&#x8868;&#x793A;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x8981;&#x7D20;&#x3067;&#x3042;&#x308B;<code>&lt;li&gt;</code>&#x8981;&#x7D20;&#x4E2D;&#x306B;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;<code>&lt;input&gt;</code>&#x8981;&#x7D20;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x3066;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x3092;&#x8868;&#x793A;&#x306B;&#x8FFD;&#x52A0;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x3067;&#x3042;&#x308B;<code>&lt;input&gt;</code>&#x8981;&#x7D20;&#x306B;&#x306F;&#x30B9;&#x30BF;&#x30A4;&#x30EB;&#x306E;&#x305F;&#x3081;&#x306B;<code>class</code>&#x5C5E;&#x6027;&#x3092;<code>checkbox</code>&#x3068;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x5408;&#x308F;&#x305B;&#x3066;&#x5B8C;&#x4E86;&#x6E08;&#x307F;&#x306E;&#x5834;&#x5408;&#x306F;<code>&lt;s&gt;</code>&#x8981;&#x7D20;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x6253;&#x3061;&#x6D88;&#x3057;&#x7DDA;&#x3092;&#x8868;&#x793A;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+                                <h1 id="todo-item-update-and-delete"><a name="todo-item-update-and-delete" class="plugin-anchor" href="#todo-item-update-and-delete"><i class="fa fa-link" aria-hidden="true"></i></a>Todoアイテムの更新と削除を実装する </h1>
+<p>このセクションではTodoアプリの残りの機能である「Todoアイテムの更新」と「Todoアイテムの削除」を実装していきます。</p>
+<p>「Todoアイテムの更新」とは、チェックボックスをクリックして未完了だったらチェックをつけて完了済みに、逆に完了済みのアイテムを未完了へとトグルする機能のことです。完了状態をTodoアイテムごとに持ち、それぞれのTodoの進捗を管理できる機能です。</p>
+<p>一方の「Todoアイテムの削除」はボタンをクリックしたらTodoアイテムを削除する機能です。
+不要となったTodoを削除して完了済みのTodoを取り除くなどに利用できる機能です。</p>
+<p>まずは「Todoアイテムの更新」から実装します。その後「Todoアイテムの削除」を実装していきます。</p>
+<h2 id="todo-item-update"><a name="todo-item-update" class="plugin-anchor" href="#todo-item-update"><i class="fa fa-link" aria-hidden="true"></i></a>Todoアイテムの更新 </h2>
+<p>現時点ではTodoアイテムが完了済みかどうかの状態が表示されていません。
+そのため、まずはTodoアイテムが完了済みかを表示する必要があります。
+HTMLの<a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/Input/checkbox" target="_blank"><code>&lt;input type=&quot;checkbox&quot;&gt;</code></a>要素を使ってチェックボックスを表示し、Todoアイテムごとの完了状態を表現します。</p>
+<p><code>&lt;input type=&quot;checkbox&quot;&gt;</code>は<code>checked</code>属性がない場合はチェックが外れた状態のチェックボックスとなります。
+一方<code>&lt;input type=&quot;checkbox&quot; checked&gt;</code>のように<code>checked</code>属性がある場合はチェックがついたチェックボックスとなります。</p>
+<p><img src="img/input-checkbox.png" alt="input要素のchecked属性の違い"></p>
+<p><code>src/App.js</code>の<code>TodoListModel#onChange</code>メソッドで登録したリスナー関数内を書き換え、チェックボックスを表示しています。</p>
+<p>Todoアイテム要素である<code>&lt;li&gt;</code>要素中に次のように<code>&lt;input&gt;</code>要素を追加してチェックボックスを表示に追加します。
+チェックボックスである<code>&lt;input&gt;</code>要素にはスタイルのために<code>class</code>属性を<code>checkbox</code>とします。
+合わせて完了済みの場合は<code>&lt;s&gt;</code>要素を使って打ち消し線を表示しています。</p>
 <div class="code-filename-block">
-    <p class="code-filename">src/App.js&#x304B;&#x3089;&#x629C;&#x7C8B;</p>
+    <p class="code-filename">src/App.jsから抜粋</p>
 </div>
 
 <pre><code class="lang-javascript"><span class="hljs-keyword">this</span>.todoListModel.onChange(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
     <span class="hljs-keyword">const</span> todoListElement = element<span class="hljs-string">`&lt;ul /&gt;`</span>;
     <span class="hljs-keyword">const</span> todoItems = <span class="hljs-keyword">this</span>.todoListModel.getTodoItems();
     todoItems.forEach(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> {
-        <span class="hljs-comment">// &#x5B8C;&#x4E86;&#x6E08;&#x307F;&#x306A;&#x3089;checked&#x5C5E;&#x6027;&#x3092;&#x3064;&#x3051;&#x3001;&#x672A;&#x5B8C;&#x4E86;&#x306A;&#x3089;checked&#x5C5E;&#x6027;&#x3092;&#x5916;&#x3059;</span>
-        <span class="hljs-comment">// input&#x8981;&#x7D20;&#x306B;&#x306F;checkbox&#x30AF;&#x30E9;&#x30B9;&#x3092;&#x3064;&#x3051;&#x308B;</span>
+        <span class="hljs-comment">// 完了済みならchecked属性をつけ、未完了ならchecked属性を外す</span>
+        <span class="hljs-comment">// input要素にはcheckboxクラスをつける</span>
         <span class="hljs-keyword">const</span> todoItemElement = item.completed
             ? element<span class="hljs-string">`&lt;li&gt;&lt;input type=&quot;checkbox&quot; class=&quot;checkbox&quot; checked&gt;&lt;s&gt;<span class="hljs-subst">${item.title}</span>&lt;/s&gt;&lt;/li&gt;`</span>
             : element<span class="hljs-string">`&lt;li&gt;&lt;input type=&quot;checkbox&quot; class=&quot;checkbox&quot;&gt;<span class="hljs-subst">${item.title}</span>&lt;/li&gt;`</span>;
         todoListElement.appendChild(todoItemElement);
     });
     render(todoListElement, containerElement);
-    todoItemCountElement.textContent = <span class="hljs-string">`Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x6570;: <span class="hljs-subst">${<span class="hljs-keyword">this</span>.todoListModel.getTotalCount()}</span>`</span>;
+    todoItemCountElement.textContent = <span class="hljs-string">`Todoアイテム数: <span class="hljs-subst">${<span class="hljs-keyword">this</span>.todoListModel.getTotalCount()}</span>`</span>;
 });
 </code></pre>
-<p><code>&lt;input type=&quot;checkbox&quot;&gt;</code>&#x8981;&#x7D20;&#x306F;&#x30AF;&#x30EA;&#x30C3;&#x30AF;&#x3059;&#x308B;&#x3068;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x306E;&#x8868;&#x793A;&#x304C;&#x30C8;&#x30B0;&#x30EB;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x3057;&#x304B;&#x3057;&#x3001;&#x30E2;&#x30C7;&#x30EB;&#x3067;&#x3042;&#x308B;<code>TodoItemModel</code>&#x306E;<code>completed</code>&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x306E;&#x72B6;&#x614B;&#x306F;&#x81EA;&#x52D5;&#x3067;&#x306F;&#x5207;&#x308A;&#x66FF;&#x308F;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x3053;&#x308C;&#x306B;&#x3088;&#x308A;&#x8868;&#x793A;&#x3068;&#x30E2;&#x30C7;&#x30EB;&#x306E;&#x72B6;&#x614B;&#x304C;&#x7570;&#x306A;&#x3063;&#x3066;&#x3057;&#x307E;&#x3046;&#x3068;&#x3044;&#x3046;&#x554F;&#x984C;&#x304C;&#x767A;&#x751F;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x306E;&#x554F;&#x984C;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x64CD;&#x4F5C;&#x3092;&#x3057;&#x3066;&#x307F;&#x308B;&#x3068;&#x78BA;&#x8A8D;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p><code>&lt;input type=&quot;checkbox&quot;&gt;</code>要素はクリックするとチェックの表示がトグルします。
+しかし、モデルである<code>TodoItemModel</code>の<code>completed</code>プロパティの状態は自動では切り替わりません。
+これにより表示とモデルの状態が異なってしまうという問題が発生します。</p>
+<p>この問題は次のような操作をしてみると確認できます。</p>
 <ol>
-<li>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;</li>
-<li>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x306B;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x3092;&#x3064;&#x3051;&#x308B;</li>
-<li>&#x5225;&#x306E;&#x65B0;&#x3057;&#x3044;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;</li>
-<li>&#x3059;&#x3079;&#x3066;&#x306E;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x306E;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x304C;&#x30EA;&#x30BB;&#x30C3;&#x30C8;&#x3055;&#x308C;&#x3066;&#x3057;&#x307E;&#x3046;</li>
+<li>Todoアイテムを追加する</li>
+<li>Todoアイテムのチェックボックスにチェックをつける</li>
+<li>別の新しいTodoアイテムを追加する</li>
+<li>すべてのチェックボックスのチェックがリセットされてしまう</li>
 </ol>
-<p>&#x3053;&#x306E;&#x554F;&#x984C;&#x3092;&#x907F;&#x3051;&#x308B;&#x305F;&#x3081;&#x306B;&#x3082;&#x3001;<code>&lt;input type=&quot;checkbox&quot;&gt;</code>&#x8981;&#x7D20;&#x304C;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x3055;&#x308C;&#x305F;&#x3089;&#x30E2;&#x30C7;&#x30EB;&#x306E;&#x72B6;&#x614B;&#x3092;&#x66F4;&#x65B0;&#x3059;&#x308B;&#x5FC5;&#x8981;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p><code>&lt;input type=&quot;checkbox&quot;&gt;</code>&#x8981;&#x7D20;&#x306F;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x3055;&#x308C;&#x305F;&#x3068;&#x304D;&#x306B;<code>change</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x30C7;&#x30A3;&#x30B9;&#x30D1;&#x30C3;&#x30C1;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;<code>change</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x30EA;&#x30C3;&#x30B9;&#x30F3;&#x3057;&#x3066;&#x3001;TodoItem&#x30E2;&#x30C7;&#x30EB;&#x306E;&#x72B6;&#x614B;&#x3092;&#x66F4;&#x65B0;&#x3059;&#x308C;&#x3070;&#x30E2;&#x30C7;&#x30EB;&#x3068;&#x8868;&#x793A;&#x306E;&#x72B6;&#x614B;&#x3092;&#x540C;&#x671F;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p><code>input</code>&#x8981;&#x7D20;&#x304B;&#x3089;&#x30C7;&#x30A3;&#x30B9;&#x30D1;&#x30C3;&#x30C1;&#x3055;&#x308C;&#x308B;<code>change</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x3092;&#x30EA;&#x30C3;&#x30B9;&#x30F3;&#x3059;&#x308B;&#x51E6;&#x7406;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x66F8;&#x3051;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x307E;&#x305A;&#x306F;<code>todoItemElement</code>&#x8981;&#x7D20;&#x306E;&#x4E0B;&#x306B;&#x3042;&#x308B;<code>input</code>&#x8981;&#x7D20;&#x3092;<code>querySelector</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x63A2;&#x7D22;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x4EE5;&#x524D;&#x306F;<code>document.querySelector</code>&#x3067;<code>document</code>&#x4EE5;&#x4E0B;&#x304B;&#x3089;CSS&#x30BB;&#x30EC;&#x30AF;&#x30BF;&#x306B;&#x30DE;&#x30C3;&#x30C1;&#x3059;&#x308B;&#x8981;&#x7D20;&#x3092;&#x63A2;&#x7D22;&#x3057;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;
-<code>todoItemElement.querySelector</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;&#x3001;<code>todoItemElement</code>&#x4E0B;&#x306B;&#x3042;&#x308B;&#x8981;&#x7D20;&#x3060;&#x3051;&#x3092;&#x5BFE;&#x8C61;&#x306B;&#x63A2;&#x7D22;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x305D;&#x3057;&#x3066;&#x3001;&#x898B;&#x3064;&#x3051;&#x305F;<code>input</code>&#x8981;&#x7D20;&#x306B;&#x5BFE;&#x3057;&#x3066;<code>addEventListener</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;<code>change</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x304C;&#x767A;&#x751F;&#x3057;&#x305F;&#x3068;&#x304D;&#x306B;&#x547C;&#x3070;&#x308C;&#x308B;&#x30B3;&#x30FC;&#x30EB;&#x30D0;&#x30C3;&#x30AF;&#x95A2;&#x6570;&#x3092;&#x767B;&#x9332;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p>この問題を避けるためにも、<code>&lt;input type=&quot;checkbox&quot;&gt;</code>要素がチェックされたらモデルの状態を更新する必要があります。</p>
+<p><code>&lt;input type=&quot;checkbox&quot;&gt;</code>要素はチェックされたときに<code>change</code>イベントをディスパッチします。
+この<code>change</code>イベントをリッスンして、TodoItemモデルの状態を更新すればモデルと表示の状態を同期できます。</p>
+<p><code>input</code>要素からディスパッチされる<code>change</code>イベントをリッスンする処理は次のように書けます。</p>
+<p>まずは<code>todoItemElement</code>要素の下にある<code>input</code>要素を<code>querySelector</code>メソッドで探索します。
+以前は<code>document.querySelector</code>で<code>document</code>以下からCSSセレクタにマッチする要素を探索していました。
+<code>todoItemElement.querySelector</code>メソッドを使うことで、<code>todoItemElement</code>下にある要素だけを対象に探索できます。</p>
+<p>そして、見つけた<code>input</code>要素に対して<code>addEventListener</code>メソッドで<code>change</code>イベントが発生したときに呼ばれるコールバック関数を登録できます。</p>
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> todoItemElement = element<span class="hljs-string">`&lt;li&gt;&lt;input type=&quot;checkbox&quot; class=&quot;checkbox&quot;&gt;<span class="hljs-subst">${item.title}</span>&lt;/li&gt;`</span>;
-<span class="hljs-comment">// &#x30AF;&#x30E9;&#x30B9;&#x540D;checkbox&#x3092;&#x6301;&#x3064;&#x8981;&#x7D20;&#x3092;&#x53D6;&#x5F97;</span>
+<span class="hljs-comment">// クラス名checkboxを持つ要素を取得</span>
 <span class="hljs-keyword">const</span> inputCheckboxElement = todoItemElement.querySelector(<span class="hljs-string">&quot;.checkbox&quot;</span>);
-<span class="hljs-comment">// `&lt;input type=&quot;checkbox&quot;&gt;`&#x306E;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x304C;&#x5909;&#x66F4;&#x3055;&#x308C;&#x305F;&#x3068;&#x304D;&#x306B;&#x547C;&#x3070;&#x308C;&#x308B;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x3092;&#x767B;&#x9332;</span>
+<span class="hljs-comment">// `&lt;input type=&quot;checkbox&quot;&gt;`のチェックが変更されたときに呼ばれるイベントリスナーを登録</span>
 inputCheckboxElement.addEventListener(<span class="hljs-string">&quot;change&quot;</span>, () =&gt; {
-    <span class="hljs-comment">// &#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x306E;&#x8868;&#x793A;&#x304C;&#x5909;&#x308F;&#x3063;&#x305F;&#x30BF;&#x30A4;&#x30DF;&#x30F3;&#x30B0;&#x3067;&#x547C;&#x3073;&#x51FA;&#x3055;&#x308C;&#x308B;&#x51E6;&#x7406;</span>
-    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> &#x3053;&#x3053;&#x3067;&#x30E2;&#x30C7;&#x30EB;&#x3092;&#x66F4;&#x65B0;&#x3059;&#x308B;&#x51E6;&#x7406;&#x3092;&#x547C;&#x3076;</span>
+    <span class="hljs-comment">// チェックボックスの表示が変わったタイミングで呼び出される処理</span>
+    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> ここでモデルを更新する処理を呼ぶ</span>
 });
 </code></pre>
-<p>&#x3053;&#x3053;&#x307E;&#x3067;&#x3092;&#x307E;&#x3068;&#x3081;&#x308B;&#x3068;&#x3001;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x66F4;&#x65B0;&#x306F;&#x6B21;&#x306E;2&#x3064;&#x306E;&#x30B9;&#x30C6;&#x30C3;&#x30D7;&#x3067;&#x5B9F;&#x88C5;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p>ここまでをまとめると、Todoアイテムの更新は次の2つのステップで実装できます。</p>
 <ol>
-<li><code>TodoListModel</code>&#x306B;&#x6307;&#x5B9A;&#x3057;&#x305F;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x66F4;&#x65B0;&#x51E6;&#x7406;&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;</li>
-<li>&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x306E;<code>change</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x304C;&#x767A;&#x751F;&#x3057;&#x305F;&#x3089;&#x3001;&#x30E2;&#x30C7;&#x30EB;&#x306E;&#x72B6;&#x614B;&#x3092;&#x66F4;&#x65B0;&#x3059;&#x308B;</li>
+<li><code>TodoListModel</code>に指定したTodoアイテムの更新処理を追加する</li>
+<li>チェックボックスの<code>change</code>イベントが発生したら、モデルの状態を更新する</li>
 </ol>
-<p>&#x3053;&#x3053;&#x304B;&#x3089;&#x5B9F;&#x969B;&#x306B;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x66F4;&#x65B0;&#x3092;<code>todoapp</code>&#x30D7;&#x30ED;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x5B9F;&#x88C5;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<h3 id="TodoListModel-updateTodo"><a name="TodoListModel-updateTodo" class="plugin-anchor" href="#TodoListModel-updateTodo"><i class="fa fa-link" aria-hidden="true"></i></a><code>TodoListModel</code>&#x306B;&#x6307;&#x5B9A;&#x3057;&#x305F;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x66F4;&#x65B0;&#x51E6;&#x7406;&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B; </h3>
-<p>&#x307E;&#x305A;&#x306F;&#x3001;<code>TodoListModel</code>&#x306B;&#x6307;&#x5B9A;&#x3057;&#x305F;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x66F4;&#x65B0;&#x3059;&#x308B;<code>updateTodo</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x307E;&#x3059;&#x3002;
-<code>TodoListModel#updateTodo</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x3001;&#x6307;&#x5B9A;&#x3057;&#x305F;id&#x3068;&#x4E00;&#x81F4;&#x3059;&#x308B;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x5B8C;&#x4E86;&#x72B6;&#x614B;&#xFF08;<code>completed</code>&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#xFF09;&#x3092;&#x66F4;&#x65B0;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>ここから実際にTodoアイテムの更新を<code>todoapp</code>プロジェクトに実装していきます。</p>
+<h3 id="TodoListModel-updateTodo"><a name="TodoListModel-updateTodo" class="plugin-anchor" href="#TodoListModel-updateTodo"><i class="fa fa-link" aria-hidden="true"></i></a><code>TodoListModel</code>に指定したTodoアイテムの更新処理を追加する </h3>
+<p>まずは、<code>TodoListModel</code>に指定したTodoアイテムを更新する<code>updateTodo</code>メソッドを追加します。
+<code>TodoListModel#updateTodo</code>メソッドは、指定したidと一致するTodoアイテムの完了状態（<code>completed</code>プロパティ）を更新します。</p>
 <div class="code-filename-block">
-    <p class="code-filename">src/model/TodoListModel.js&#x306E;&#x5909;&#x66F4;&#x70B9;&#x3092;&#x629C;&#x7C8B;</p>
+    <p class="code-filename">src/model/TodoListModel.jsの変更点を抜粋</p>
 </div>
 
 <pre><code class="lang-javascript">    <span class="hljs-comment">// ===============================</span>
-    <span class="hljs-comment">// TodoListModel.js&#x306E;&#x65E2;&#x5B58;&#x306E;&#x5B9F;&#x88C5;&#x306F;&#x7701;&#x7565;</span>
+    <span class="hljs-comment">// TodoListModel.jsの既存の実装は省略</span>
     <span class="hljs-comment">// ===============================</span>
     <span class="hljs-comment">/**
-     * &#x6307;&#x5B9A;&#x3057;&#x305F;id&#x306E;TodoItem&#x306E;completed&#x3092;&#x66F4;&#x65B0;&#x3059;&#x308B;
+     * 指定したidのTodoItemのcompletedを更新する
      * @param {{ id:number, completed: boolean }}
      */</span>
     updateTodo({ id, completed }) {
-        <span class="hljs-comment">// `id`&#x304C;&#x4E00;&#x81F4;&#x3059;&#x308B;TodoItem&#x3092;&#x898B;&#x3064;&#x3051;&#x3001;&#x3042;&#x308B;&#x306A;&#x3089;&#x5B8C;&#x4E86;&#x72B6;&#x614B;&#x306E;&#x5024;&#x3092;&#x66F4;&#x65B0;&#x3059;&#x308B;</span>
+        <span class="hljs-comment">// `id`が一致するTodoItemを見つけ、あるなら完了状態の値を更新する</span>
         <span class="hljs-keyword">const</span> todoItem = <span class="hljs-keyword">this</span>.items.find(<span class="hljs-function"><span class="hljs-params">todo</span> =&gt;</span> todo.id === id);
         <span class="hljs-keyword">if</span> (!todoItem) {
             <span class="hljs-keyword">return</span>;
@@ -1536,28 +1536,28 @@ inputCheckboxElement.addEventListener(<span class="hljs-string">&quot;change&quo
     }
 }
 </code></pre>
-<h3 id="onChange-update-model"><a name="onChange-update-model" class="plugin-anchor" href="#onChange-update-model"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x306E;<code>change</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x304C;&#x767A;&#x751F;&#x3057;&#x305F;&#x3089;&#x3001;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x5B8C;&#x4E86;&#x72B6;&#x614B;&#x3092;&#x66F4;&#x65B0;&#x3059;&#x308B; </h3>
-<p>&#x6B21;&#x306B;<code>input</code>&#x8981;&#x7D20;&#x306E;<code>change</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306E;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x3067;&#x3001;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x5B8C;&#x4E86;&#x72B6;&#x614B;&#x3092;&#x66F4;&#x65B0;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p><code>src/App.js</code>&#x306E;<code>TodoListModel#onChange</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x767B;&#x9332;&#x3057;&#x305F;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x5185;&#x3092;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x66F8;&#x304D;&#x63DB;&#x3048;&#x307E;&#x3059;&#x3002;</p>
-<p><code>App.js</code>&#x3067;<code>todoItemElement</code>&#x306E;&#x5B50;&#x8981;&#x7D20;&#x3068;&#x3057;&#x3066;<code>checkbox</code>&#x3068;&#x3044;&#x3046;&#x30AF;&#x30E9;&#x30B9;&#x540D;&#x3092;&#x3064;&#x3051;&#x305F;<code>input</code>&#x8981;&#x7D20;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;<code>input</code>&#x8981;&#x7D20;&#x306E;<code>change</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x304C;&#x767A;&#x751F;&#x3057;&#x305F;&#x3089;&#x3001;<code>TodoListModel#updateTodo</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;&#x3088;&#x3046;&#x306B;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x304C;&#x30C8;&#x30B0;&#x30EB;&#x3059;&#x308B;&#x305F;&#x3073;&#x306B;&#x547C;&#x3073;&#x51FA;&#x3055;&#x308C;&#x308B;&#x306E;&#x3067;&#x3001;<code>completed</code>&#x306B;&#x306F;&#x73FE;&#x5728;&#x306E;&#x72B6;&#x614B;&#x3092;&#x53CD;&#x8EE2;&#xFF08;&#x30C8;&#x30B0;&#x30EB;&#xFF09;&#x3057;&#x305F;&#x5024;&#x3092;&#x6E21;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<h3 id="onChange-update-model"><a name="onChange-update-model" class="plugin-anchor" href="#onChange-update-model"><i class="fa fa-link" aria-hidden="true"></i></a>チェックボックスの<code>change</code>イベントが発生したら、Todoアイテムの完了状態を更新する </h3>
+<p>次に<code>input</code>要素の<code>change</code>イベントのリスナー関数で、Todoアイテムの完了状態を更新します。</p>
+<p><code>src/App.js</code>の<code>TodoListModel#onChange</code>メソッドで登録したリスナー関数内を次のように書き換えます。</p>
+<p><code>App.js</code>で<code>todoItemElement</code>の子要素として<code>checkbox</code>というクラス名をつけた<code>input</code>要素を追加します。
+この<code>input</code>要素の<code>change</code>イベントが発生したら、<code>TodoListModel#updateTodo</code>メソッドを呼び出すようにします。
+チェックがトグルするたびに呼び出されるので、<code>completed</code>には現在の状態を反転（トグル）した値を渡します。</p>
 <div class="code-filename-block">
-    <p class="code-filename">src/App.js&#x304B;&#x3089;&#x5909;&#x66F4;&#x70B9;&#x3092;&#x629C;&#x7C8B;</p>
+    <p class="code-filename">src/App.jsから変更点を抜粋</p>
 </div>
 
 <pre><code class="lang-javascript"><span class="hljs-keyword">this</span>.todoListModel.onChange(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
     <span class="hljs-keyword">const</span> todoListElement = element<span class="hljs-string">`&lt;ul /&gt;`</span>;
     <span class="hljs-keyword">const</span> todoItems = <span class="hljs-keyword">this</span>.todoListModel.getTodoItems();
     todoItems.forEach(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> {
-        <span class="hljs-comment">// &#x5B8C;&#x4E86;&#x6E08;&#x307F;&#x306A;&#x3089;checked&#x5C5E;&#x6027;&#x3092;&#x3064;&#x3051;&#x3001;&#x672A;&#x5B8C;&#x4E86;&#x306A;&#x3089;checked&#x5C5E;&#x6027;&#x3092;&#x5916;&#x3059;</span>
+        <span class="hljs-comment">// 完了済みならchecked属性をつけ、未完了ならchecked属性を外す</span>
         <span class="hljs-keyword">const</span> todoItemElement = item.completed
             ? element<span class="hljs-string">`&lt;li&gt;&lt;input type=&quot;checkbox&quot; class=&quot;checkbox&quot; checked&gt;&lt;s&gt;<span class="hljs-subst">${item.title}</span>&lt;/s&gt;&lt;/li&gt;`</span>
             : element<span class="hljs-string">`&lt;li&gt;&lt;input type=&quot;checkbox&quot; class=&quot;checkbox&quot;&gt;<span class="hljs-subst">${item.title}</span>&lt;/li&gt;`</span>;
-        <span class="hljs-comment">// &#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x304C;&#x30C8;&#x30B0;&#x30EB;&#x3057;&#x305F;&#x3068;&#x304D;&#x306E;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306B;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x3092;&#x767B;&#x9332;</span>
+        <span class="hljs-comment">// チェックボックスがトグルしたときのイベントにリスナー関数を登録</span>
         <span class="hljs-keyword">const</span> inputCheckboxElement = todoItemElement.querySelector(<span class="hljs-string">&quot;.checkbox&quot;</span>);
         inputCheckboxElement.addEventListener(<span class="hljs-string">&quot;change&quot;</span>, () =&gt; {
-            <span class="hljs-comment">// &#x6307;&#x5B9A;&#x3057;&#x305F;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x5B8C;&#x4E86;&#x72B6;&#x614B;&#x3092;&#x53CD;&#x8EE2;&#x3055;&#x305B;&#x308B;</span>
+            <span class="hljs-comment">// 指定したTodoアイテムの完了状態を反転させる</span>
             <span class="hljs-keyword">this</span>.todoListModel.updateTodo({
                 <span class="hljs-attr">id</span>: item.id,
                 <span class="hljs-attr">completed</span>: !item.completed
@@ -1566,34 +1566,34 @@ inputCheckboxElement.addEventListener(<span class="hljs-string">&quot;change&quo
         todoListElement.appendChild(todoItemElement);
     });
     render(todoListElement, containerElement);
-    todoItemCountElement.textContent = <span class="hljs-string">`Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x6570;: <span class="hljs-subst">${<span class="hljs-keyword">this</span>.todoListModel.getTotalCount()}</span>`</span>;
+    todoItemCountElement.textContent = <span class="hljs-string">`Todoアイテム数: <span class="hljs-subst">${<span class="hljs-keyword">this</span>.todoListModel.getTotalCount()}</span>`</span>;
 });
 </code></pre>
-<p><code>TodoListModel#updateTodo</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x5185;&#x3067;&#x306F;<code>emitChange</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306B;&#x3088;&#x3063;&#x3066;&#x3001;<code>TodoListModel</code>&#x306E;&#x5909;&#x66F4;&#x304C;&#x901A;&#x77E5;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x308C;&#x306B;&#x3088;&#x3063;&#x3066;<code>TodoListModel#onChange</code>&#x3067;&#x767B;&#x9332;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x304C;&#x547C;&#x3073;&#x51FA;&#x3055;&#x308C;&#x3001;&#x8868;&#x793A;&#x304C;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x308C;&#x3067;&#x8868;&#x793A;&#x3068;&#x30E2;&#x30C7;&#x30EB;&#x304C;&#x540C;&#x671F;&#x3067;&#x304D;&#x300C;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x66F4;&#x65B0;&#x51E6;&#x7406;&#x300D;&#x304C;&#x5B9F;&#x88C5;&#x3067;&#x304D;&#x307E;&#x3057;&#x305F;&#x3002;</p>
-<h2 id="delete"><a name="delete" class="plugin-anchor" href="#delete"><i class="fa fa-link" aria-hidden="true"></i></a>&#x524A;&#x9664;&#x6A5F;&#x80FD; </h2>
-<p>&#x6B21;&#x306F;&#x300C;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x524A;&#x9664;&#x6A5F;&#x80FD;&#x300D;&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x57FA;&#x672C;&#x7684;&#x306A;&#x6D41;&#x308C;&#x306F;&#x300C;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x66F4;&#x65B0;&#x6A5F;&#x80FD;&#x300D;&#x3068;&#x540C;&#x3058;&#x3067;&#x3059;&#x3002;
-<code>TodoListModel</code>&#x306B;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x524A;&#x9664;&#x3059;&#x308B;&#x51E6;&#x7406;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x3057;&#x3066;&#x8868;&#x793A;&#x306B;&#x306F;&#x524A;&#x9664;&#x30DC;&#x30BF;&#x30F3;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x3001;&#x524A;&#x9664;&#x30DC;&#x30BF;&#x30F3;&#x304C;&#x30AF;&#x30EA;&#x30C3;&#x30AF;&#x3055;&#x308C;&#x305F;&#x3068;&#x304D;&#x306B;&#x6307;&#x5B9A;&#x3057;&#x305F;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x524A;&#x9664;&#x3059;&#x308B;&#x51E6;&#x7406;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<h3 id="TodoListModel-deleteTodo"><a name="TodoListModel-deleteTodo" class="plugin-anchor" href="#TodoListModel-deleteTodo"><i class="fa fa-link" aria-hidden="true"></i></a><code>TodoListModel</code>&#x306B;&#x6307;&#x5B9A;&#x3057;&#x305F;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x524A;&#x9664;&#x3059;&#x308B;&#x51E6;&#x7406;&#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B; </h3>
-<p>&#x307E;&#x305A;&#x306F;&#x3001;<code>TodoListModel</code>&#x306B;&#x6307;&#x5B9A;&#x3057;&#x305F;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x524A;&#x9664;&#x3059;&#x308B;<code>deleteTodo</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x307E;&#x3059;&#x3002;
-<code>TodoListModel#deleteTodo</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x3001;&#x6307;&#x5B9A;&#x3057;&#x305F;id&#x3068;&#x4E00;&#x81F4;&#x3059;&#x308B;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x524A;&#x9664;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p><code>items</code>&#x3068;&#x3044;&#x3046;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x914D;&#x5217;&#x304B;&#x3089;&#x6307;&#x5B9A;&#x3057;&#x305F;id&#x3068;&#x4E00;&#x81F4;&#x3059;&#x308B;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x53D6;&#x308A;&#x9664;&#x304F;&#x3053;&#x3068;&#x3067;&#x524A;&#x9664;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p><code>TodoListModel#updateTodo</code>メソッド内では<code>emitChange</code>メソッドによって、<code>TodoListModel</code>の変更が通知されます。
+これによって<code>TodoListModel#onChange</code>で登録されているイベントリスナーが呼び出され、表示が更新されます。</p>
+<p>これで表示とモデルが同期でき「Todoアイテムの更新処理」が実装できました。</p>
+<h2 id="delete"><a name="delete" class="plugin-anchor" href="#delete"><i class="fa fa-link" aria-hidden="true"></i></a>削除機能 </h2>
+<p>次は「Todoアイテムの削除機能」を実装していきます。</p>
+<p>基本的な流れは「Todoアイテムの更新機能」と同じです。
+<code>TodoListModel</code>にTodoアイテムを削除する処理を追加します。
+そして表示には削除ボタンを追加し、削除ボタンがクリックされたときに指定したTodoアイテムを削除する処理を呼び出します。</p>
+<h3 id="TodoListModel-deleteTodo"><a name="TodoListModel-deleteTodo" class="plugin-anchor" href="#TodoListModel-deleteTodo"><i class="fa fa-link" aria-hidden="true"></i></a><code>TodoListModel</code>に指定したTodoアイテムを削除する処理を追加する </h3>
+<p>まずは、<code>TodoListModel</code>に指定したTodoアイテムを削除する<code>deleteTodo</code>メソッドを追加します。
+<code>TodoListModel#deleteTodo</code>メソッドは、指定したidと一致するTodoアイテムを削除します。</p>
+<p><code>items</code>というTodoアイテムの配列から指定したidと一致するTodoアイテムを取り除くことで削除しています。</p>
 <div class="code-filename-block">
-    <p class="code-filename">src/model/TodoListModel.js&#x306E;&#x5909;&#x66F4;&#x70B9;&#x3092;&#x629C;&#x7C8B;</p>
+    <p class="code-filename">src/model/TodoListModel.jsの変更点を抜粋</p>
 </div>
 
 <pre><code class="lang-javascript">    <span class="hljs-comment">// ===============================</span>
-    <span class="hljs-comment">// TodoListModel.js&#x306E;&#x65E2;&#x5B58;&#x306E;&#x5B9F;&#x88C5;&#x306F;&#x7701;&#x7565;</span>
+    <span class="hljs-comment">// TodoListModel.jsの既存の実装は省略</span>
     <span class="hljs-comment">// ===============================</span>
     <span class="hljs-comment">/**
-     * &#x6307;&#x5B9A;&#x3057;&#x305F;id&#x306E;TodoItem&#x3092;&#x524A;&#x9664;&#x3059;&#x308B;
+     * 指定したidのTodoItemを削除する
      * @param {{ id: number }}
      */</span>
     deleteTodo({ id }) {
-        <span class="hljs-comment">// `id`&#x306B;&#x4E00;&#x81F4;&#x3057;&#x306A;&#x3044;TodoItem&#x3060;&#x3051;&#x3092;&#x6B8B;&#x3059;&#x3053;&#x3068;&#x3067;&#x3001;`id`&#x306B;&#x4E00;&#x81F4;&#x3059;&#x308B;TodoItem&#x3092;&#x524A;&#x9664;&#x3059;&#x308B;</span>
+        <span class="hljs-comment">// `id`に一致しないTodoItemだけを残すことで、`id`に一致するTodoItemを削除する</span>
         <span class="hljs-keyword">this</span>.items = <span class="hljs-keyword">this</span>.items.filter(<span class="hljs-function"><span class="hljs-params">todo</span> =&gt;</span> {
             <span class="hljs-keyword">return</span> todo.id !== id;
         });
@@ -1601,21 +1601,21 @@ inputCheckboxElement.addEventListener(<span class="hljs-string">&quot;change&quo
     }
 }
 </code></pre>
-<h3 id="onChange-update-model"><a name="onChange-update-model" class="plugin-anchor" href="#onChange-update-model"><i class="fa fa-link" aria-hidden="true"></i></a>&#x524A;&#x9664;&#x30DC;&#x30BF;&#x30F3;&#x306E;<code>click</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x304C;&#x767A;&#x751F;&#x3057;&#x305F;&#x3089;&#x3001;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x524A;&#x9664;&#x3059;&#x308B; </h3>
-<p>&#x6B21;&#x306B;<code>button</code>&#x8981;&#x7D20;&#x306E;<code>click</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306E;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x3067;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x524A;&#x9664;&#x3059;&#x308B;&#x51E6;&#x7406;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;&#x51E6;&#x7406;&#x3092;&#x5B9F;&#x88C5;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p><code>src/App.js</code>&#x306E;<code>TodoListModel#onChange</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x767B;&#x9332;&#x3057;&#x305F;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x5185;&#x3092;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x66F8;&#x304D;&#x63DB;&#x3048;&#x307E;&#x3059;&#x3002;
-<code>todoItemElement</code>&#x306E;&#x5B50;&#x8981;&#x7D20;&#x3068;&#x3057;&#x3066;<code>delete</code>&#x3068;&#x3044;&#x3046;&#x30AF;&#x30E9;&#x30B9;&#x540D;&#x3092;&#x3064;&#x3051;&#x305F;<code>button</code>&#x8981;&#x7D20;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x8981;&#x7D20;&#x304C;&#x30AF;&#x30EA;&#x30C3;&#x30AF;&#xFF08;<code>click</code>&#xFF09;&#x3055;&#x308C;&#x305F;&#x3068;&#x304D;&#x306B;&#x547C;&#x3073;&#x51FA;&#x3055;&#x308C;&#x308B;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x3092;<code>addEventListener</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x767B;&#x9332;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x306E;&#x4E2D;&#x3067;<code>TodoListModel#deleteTodo</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x547C;&#x3073;&#x3001;&#x6307;&#x5B9A;&#x3057;&#x305F;id&#x306E;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x524A;&#x9664;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<h3 id="onChange-update-model"><a name="onChange-update-model" class="plugin-anchor" href="#onChange-update-model"><i class="fa fa-link" aria-hidden="true"></i></a>削除ボタンの<code>click</code>イベントが発生したら、Todoアイテムを削除する </h3>
+<p>次に<code>button</code>要素の<code>click</code>イベントのリスナー関数でTodoアイテムを削除する処理を呼び出す処理を実装します。</p>
+<p><code>src/App.js</code>の<code>TodoListModel#onChange</code>メソッドで登録したリスナー関数内を次のように書き換えます。
+<code>todoItemElement</code>の子要素として<code>delete</code>というクラス名をつけた<code>button</code>要素を追加します。
+この要素がクリック（<code>click</code>）されたときに呼び出されるイベントリスナーを<code>addEventListener</code>メソッドで登録します。
+このイベントリスナーの中で<code>TodoListModel#deleteTodo</code>メソッドを呼び、指定したidのTodoアイテムを削除します。</p>
 <div class="code-filename-block">
-    <p class="code-filename">src/App.js&#x304B;&#x3089;&#x5909;&#x66F4;&#x70B9;&#x3092;&#x629C;&#x7C8B;</p>
+    <p class="code-filename">src/App.jsから変更点を抜粋</p>
 </div>
 
 <pre><code class="lang-javascript"><span class="hljs-keyword">this</span>.todoListModel.onChange(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
     <span class="hljs-keyword">const</span> todoListElement = element<span class="hljs-string">`&lt;ul /&gt;`</span>;
     <span class="hljs-keyword">const</span> todoItems = <span class="hljs-keyword">this</span>.todoListModel.getTodoItems();
     todoItems.forEach(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> {
-        <span class="hljs-comment">// &#x524A;&#x9664;&#x30DC;&#x30BF;&#x30F3;(x)&#x3092;&#x305D;&#x308C;&#x305E;&#x308C;&#x8FFD;&#x52A0;&#x3059;&#x308B;</span>
+        <span class="hljs-comment">// 削除ボタン(x)をそれぞれ追加する</span>
         <span class="hljs-keyword">const</span> todoItemElement = item.completed
             ? element<span class="hljs-string">`&lt;li&gt;&lt;input type=&quot;checkbox&quot; class=&quot;checkbox&quot; checked&gt;
                 &lt;s&gt;<span class="hljs-subst">${item.title}</span>&lt;/s&gt;
@@ -1625,7 +1625,7 @@ inputCheckboxElement.addEventListener(<span class="hljs-string">&quot;change&quo
                 <span class="hljs-subst">${item.title}</span>
                 &lt;button class=&quot;delete&quot;&gt;x&lt;/button&gt;
             &lt;/li&gt;`</span>;
-        <span class="hljs-comment">// &#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x306E;&#x30C8;&#x30B0;&#x30EB;&#x51E6;&#x7406;&#x306F;&#x5909;&#x66F4;&#x306A;&#x3057;</span>
+        <span class="hljs-comment">// チェックボックスのトグル処理は変更なし</span>
         <span class="hljs-keyword">const</span> inputCheckboxElement = todoItemElement.querySelector(<span class="hljs-string">&quot;.checkbox&quot;</span>);
         inputCheckboxElement.addEventListener(<span class="hljs-string">&quot;change&quot;</span>, () =&gt; {
             <span class="hljs-keyword">this</span>.todoListModel.updateTodo({
@@ -1633,7 +1633,7 @@ inputCheckboxElement.addEventListener(<span class="hljs-string">&quot;change&quo
                 <span class="hljs-attr">completed</span>: !item.completed
             });
         });
-        <span class="hljs-comment">// &#x524A;&#x9664;&#x30DC;&#x30BF;&#x30F3;(x)&#x304C;&#x30AF;&#x30EA;&#x30C3;&#x30AF;&#x3055;&#x308C;&#x305F;&#x3068;&#x304D;&#x306B;TodoListModel&#x304B;&#x3089;&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x524A;&#x9664;&#x3059;&#x308B;</span>
+        <span class="hljs-comment">// 削除ボタン(x)がクリックされたときにTodoListModelからアイテムを削除する</span>
         <span class="hljs-keyword">const</span> deleteButtonElement = todoItemElement.querySelector(<span class="hljs-string">&quot;.delete&quot;</span>);
         deleteButtonElement.addEventListener(<span class="hljs-string">&quot;click&quot;</span>, () =&gt; {
             <span class="hljs-keyword">this</span>.todoListModel.deleteTodo({
@@ -1643,31 +1643,31 @@ inputCheckboxElement.addEventListener(<span class="hljs-string">&quot;change&quo
         todoListElement.appendChild(todoItemElement);
     });
     render(todoListElement, containerElement);
-    todoItemCountElement.textContent = <span class="hljs-string">`Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x6570;: <span class="hljs-subst">${<span class="hljs-keyword">this</span>.todoListModel.getTotalCount()}</span>`</span>;
+    todoItemCountElement.textContent = <span class="hljs-string">`Todoアイテム数: <span class="hljs-subst">${<span class="hljs-keyword">this</span>.todoListModel.getTotalCount()}</span>`</span>;
 });
 </code></pre>
-<p><code>TodoListModel#deleteTodo</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x5185;&#x3067;&#x306F;<code>emitChange</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306B;&#x3088;&#x3063;&#x3066;&#x3001;<code>TodoListModel</code>&#x306E;&#x5909;&#x66F4;&#x304C;&#x901A;&#x77E5;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x308C;&#x306B;&#x3088;&#x308A;&#x8868;&#x793A;&#x304C;<code>TodoListModel</code>&#x3068;&#x540C;&#x671F;&#x3059;&#x308B;&#x3088;&#x3046;&#x306B;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x3001;&#x8868;&#x793A;&#x304B;&#x3089;&#x3082;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x304C;&#x524A;&#x9664;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x308C;&#x3067;&#x300C;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x524A;&#x9664;&#x6A5F;&#x80FD;&#x300D;&#x304C;&#x5B9F;&#x88C5;&#x3067;&#x304D;&#x307E;&#x3057;&#x305F;&#x3002;</p>
-<h2 id="section-checklist"><a name="section-checklist" class="plugin-anchor" href="#section-checklist"><i class="fa fa-link" aria-hidden="true"></i></a>&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30EA;&#x30B9;&#x30C8; </h2>
+<p><code>TodoListModel#deleteTodo</code>メソッド内では<code>emitChange</code>メソッドによって、<code>TodoListModel</code>の変更が通知されます。
+これにより表示が<code>TodoListModel</code>と同期するように更新され、表示からもTodoアイテムが削除できます。</p>
+<p>これで「Todoアイテムの削除機能」が実装できました。</p>
+<h2 id="section-checklist"><a name="section-checklist" class="plugin-anchor" href="#section-checklist"><i class="fa fa-link" aria-hidden="true"></i></a>このセクションのチェックリスト </h2>
 <ul>
-<li>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x5B8C;&#x4E86;&#x72B6;&#x614B;&#x3068;&#x3057;&#x3066;<code>&lt;input type=&quot;checkbox&quot;&gt;</code>&#x3092;&#x8868;&#x793A;&#x306B;&#x8FFD;&#x52A0;&#x3057;&#x305F;</li>
-<li>&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30DC;&#x30C3;&#x30AF;&#x30B9;&#x304C;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x305F;&#x3068;&#x304D;&#x306E;<code>change</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306E;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x3067;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x66F4;&#x65B0;&#x3057;&#x305F;</li>
-<li>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x524A;&#x9664;&#x3059;&#x308B;&#x30DC;&#x30BF;&#x30F3;&#x3068;&#x3057;&#x3066;<code>&lt;button class=&quot;delete&quot;&gt;x&lt;/button&gt;</code>&#x3092;&#x8868;&#x793A;&#x306B;&#x8FFD;&#x52A0;&#x3057;&#x305F;</li>
-<li>&#x524A;&#x9664;&#x30DC;&#x30BF;&#x30F3;&#x306E;<code>click</code>&#x30A4;&#x30D9;&#x30F3;&#x30C8;&#x306E;&#x30EA;&#x30B9;&#x30CA;&#x30FC;&#x95A2;&#x6570;&#x3067;Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x524A;&#x9664;&#x3057;&#x305F;</li>
-<li>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x8FFD;&#x52A0;&#x3001;&#x66F4;&#x65B0;&#x3001;&#x524A;&#x9664;&#x306E;&#x6A5F;&#x80FD;&#x304C;&#x52D5;&#x4F5C;&#x3059;&#x308B;&#x306E;&#x3092;&#x78BA;&#x8A8D;&#x3057;&#x305F;</li>
+<li>Todoアイテムの完了状態として<code>&lt;input type=&quot;checkbox&quot;&gt;</code>を表示に追加した</li>
+<li>チェックボックスが更新されたときの<code>change</code>イベントのリスナー関数でTodoアイテムを更新した</li>
+<li>Todoアイテムを削除するボタンとして<code>&lt;button class=&quot;delete&quot;&gt;x&lt;/button&gt;</code>を表示に追加した</li>
+<li>削除ボタンの<code>click</code>イベントのリスナー関数でTodoアイテムを削除した</li>
+<li>Todoアイテムの追加、更新、削除の機能が動作するのを確認した</li>
 </ul>
-<p>&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;Todo&#x30A2;&#x30D7;&#x30EA;&#x306B;&#x5FC5;&#x8981;&#x306A;&#x8981;&#x4EF6;&#x304C;&#x5B9F;&#x88C5;&#x3067;&#x304D;&#x307E;&#x3057;&#x305F;&#x3002;</p>
+<p>このセクションでTodoアプリに必要な要件が実装できました。</p>
 <ul>
-<li>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x8FFD;&#x52A0;&#x3067;&#x304D;&#x308B;</li>
-<li>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x306E;&#x5B8C;&#x4E86;&#x72B6;&#x614B;&#x3092;&#x66F4;&#x65B0;&#x3067;&#x304D;&#x308B;</li>
-<li>Todo&#x30A2;&#x30A4;&#x30C6;&#x30E0;&#x3092;&#x524A;&#x9664;&#x3067;&#x304D;&#x308B;</li>
+<li>Todoアイテムを追加できる</li>
+<li>Todoアイテムの完了状態を更新できる</li>
+<li>Todoアイテムを削除できる</li>
 </ul>
-<p>&#x3053;&#x3053;&#x307E;&#x3067;&#x306E;Todo&#x30A2;&#x30D7;&#x30EA;&#x306F;&#x6B21;&#x306E;URL&#x3067;&#x78BA;&#x8A8D;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p>ここまでのTodoアプリは次のURLで確認できます。</p>
 <ul>
 <li><a href="https://jsprimer.net/use-case/todoapp/update-delete/delete-feature/" target="_blank">https://jsprimer.net/use-case/todoapp/update-delete/delete-feature/</a></li>
 </ul>
-<p>&#x6700;&#x5F8C;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;&#x3001;<code>App.js</code>&#x306E;&#x30EA;&#x30D5;&#x30A1;&#x30AF;&#x30BF;&#x30EA;&#x30F3;&#x30B0;&#x3092;&#x884C;&#x3063;&#x3066;&#x7D99;&#x7D9A;&#x7684;&#x306B;&#x958B;&#x767A;&#x3067;&#x304D;&#x308B;&#x30A2;&#x30D7;&#x30EA;&#x306E;&#x4F5C;&#x308A;&#x65B9;&#x306B;&#x3064;&#x3044;&#x3066;&#x898B;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<p>最後のセクションでは、<code>App.js</code>のリファクタリングを行って継続的に開発できるアプリの作り方について見ていきます。</p>
 
                                 
                                 </section>
@@ -1699,12 +1699,56 @@ inputCheckboxElement.addEventListener(<span class="hljs-string">&quot;change&quo
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"Todoアプリの残りの機能である「Todoアイテムの更新」と「Todoアイテムの削除」を実装していきます。","title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"next":{"title":"Todoアプリのリファクタリング","level":"1.4.4.6","depth":3,"path":"use-case/todoapp/final/README.md","ref":"./use-case/todoapp/final/README.md","articles":[]},"previous":{"title":"イベントとモデル","level":"1.4.4.4","depth":3,"path":"use-case/todoapp/event-model/README.md","ref":"./use-case/todoapp/event-model/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/todoapp/update-delete/README.md","mtime":"2020-11-18T19:19:34.525Z","type":"markdown"},"gitbook":{"version":"3.6.8","time":"2020-11-18T19:20:11.295Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"Todoアプリの残りの機能である「Todoアイテムの更新」と「Todoアイテムの削除」を実装していきます。","title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"next":{"title":"Todoアプリのリファクタリング","level":"1.4.4.6","depth":3,"path":"use-case/todoapp/final/README.md","ref":"./use-case/todoapp/final/README.md","articles":[]},"previous":{"title":"イベントとモデル","level":"1.4.4.4","depth":3,"path":"use-case/todoapp/event-model/README.md","ref":"./use-case/todoapp/event-model/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/todoapp/update-delete/README.md","mtime":"2020-11-19T10:10:17.252Z","type":"markdown"},"gitbook":{"version":"3.6.13","time":"2020-11-19T10:10:53.113Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
 
         
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
     <script src="../../../gitbook/gitbook.js"></script>
     <script src="../../../gitbook/theme.js"></script>
     

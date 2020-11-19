@@ -7,7 +7,7 @@
         <title>ユニットテストを記述する · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="ユニットテストの導入とソースコードのモジュール化を行います。">
-        <meta name="generator" content="HonKit 3.6.8">
+        <meta name="generator" content="HonKit 3.6.13">
         
         
         
@@ -176,7 +176,7 @@
     </head>
     <body>
         
-<div class="book">
+<div class="book honkit-cloak">
     <div class="book-summary">
         
             
@@ -1441,18 +1441,18 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="unit-test"><a name="unit-test" class="plugin-anchor" href="#unit-test"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x3092;&#x8A18;&#x8FF0;&#x3059;&#x308B; </h1>
-<p>&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;&#x3001;&#x3053;&#x308C;&#x307E;&#x3067;&#x4F5C;&#x6210;&#x3057;&#x305F;CLI&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306B;&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x3092;&#x5C0E;&#x5165;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x306E;&#x5C0E;&#x5165;&#x3068;&#x5408;&#x308F;&#x305B;&#x3066;&#x3001;&#x30BD;&#x30FC;&#x30B9;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x6574;&#x7406;&#x3057;&#x3066;&#x30C6;&#x30B9;&#x30C8;&#x304C;&#x3057;&#x3084;&#x3059;&#x304F;&#x306A;&#x308B;&#x3088;&#x3046;&#x306B;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x5316;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x524D;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x307E;&#x3067;&#x306F;&#x3001;&#x3059;&#x3079;&#x3066;&#x306E;&#x51E6;&#x7406;&#x3092;&#x3072;&#x3068;&#x3064;&#x306E;JavaScript&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306B;&#x8A18;&#x8FF0;&#x3057;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;
-&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x3092;&#x884C;&#x3046;&#x305F;&#x3081;&#x306B;&#x306F;&#x30C6;&#x30B9;&#x30C8;&#x5BFE;&#x8C61;&#x304C;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3068;&#x3057;&#x3066;&#x5206;&#x5272;&#x3055;&#x308C;&#x3066;&#x3044;&#x306A;&#x3051;&#x308C;&#x3070;&#x3044;&#x3051;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x4ECA;&#x56DE;&#x306E;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;&#x3001;CLI&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3068;&#x3057;&#x3066;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x3092;&#x51E6;&#x7406;&#x3059;&#x308B;&#x90E8;&#x5206;&#x3068;&#x3001;Markdown&#x3092;HTML&#x3078;&#x5909;&#x63DB;&#x3059;&#x308B;&#x90E8;&#x5206;&#x306B;&#x5206;&#x5272;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="commonjs-module"><a name="commonjs-module" class="plugin-anchor" href="#commonjs-module"><i class="fa fa-link" aria-hidden="true"></i></a>CommonJS&#x3067;&#x306E;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x5316; </h2>
-<p>&#x5B9F;&#x969B;&#x306B;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x5316;&#x3092;&#x3059;&#x308B;&#x524D;&#x306B;&#x3001;CommonJS&#x3067;&#x306E;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x5316;&#x306B;&#x3064;&#x3044;&#x3066;&#x7C21;&#x5358;&#x306B;&#x632F;&#x308A;&#x8FD4;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>Node.js&#x3067;&#x306F;&#x3001;&#x8907;&#x6570;&#x306E;JavaScript&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x9593;&#x3067;&#x5909;&#x6570;&#x3084;&#x95A2;&#x6570;&#x306A;&#x3069;&#x3092;&#x3084;&#x308A;&#x53D6;&#x308A;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x3001;CommonJS&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3068;&#x3044;&#x3046;&#x4ED5;&#x7D44;&#x307F;&#x3092;&#x5229;&#x7528;&#x3057;&#x307E;&#x3059;&#x3002;
-CommonJS&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x304B;&#x3089;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x30A8;&#x30AF;&#x30B9;&#x30DD;&#x30FC;&#x30C8;&#x3059;&#x308B;&#x306B;&#x306F;&#x3001;Node.js&#x306E;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x5909;&#x6570;&#x3067;&#x3042;&#x308B;<a href="https://nodejs.org/api/modules.html#modules_the_module_object" target="_blank">module&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;</a>&#x3092;&#x5229;&#x7528;&#x3057;&#x307E;&#x3059;&#x3002;
-<code>module.exports</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;&#x3001;&#x305D;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x304B;&#x3089;&#x30A8;&#x30AF;&#x30B9;&#x30DD;&#x30FC;&#x30C8;&#x3055;&#x308C;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x683C;&#x7D0D;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;<code>greet.js</code>&#x3068;&#x3044;&#x3046;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306F;&#x3001;<code>greet</code>&#x95A2;&#x6570;&#x3092;&#x30A8;&#x30AF;&#x30B9;&#x30DD;&#x30FC;&#x30C8;&#x3059;&#x308B;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306E;&#x4F8B;&#x3067;&#x3059;&#x3002;</p>
+                                <h1 id="unit-test"><a name="unit-test" class="plugin-anchor" href="#unit-test"><i class="fa fa-link" aria-hidden="true"></i></a>ユニットテストを記述する </h1>
+<p>このセクションでは、これまで作成したCLIアプリケーションにユニットテストを導入します。
+ユニットテストの導入と合わせて、ソースコードを整理してテストがしやすくなるようにモジュール化します。</p>
+<p>前のセクションまでは、すべての処理をひとつのJavaScriptファイルに記述していました。
+ユニットテストを行うためにはテスト対象がモジュールとして分割されていなければいけません。
+今回のアプリケーションでは、CLIアプリケーションとしてコマンドライン引数を処理する部分と、MarkdownをHTMLへ変換する部分に分割します。</p>
+<h2 id="commonjs-module"><a name="commonjs-module" class="plugin-anchor" href="#commonjs-module"><i class="fa fa-link" aria-hidden="true"></i></a>CommonJSでのモジュール化 </h2>
+<p>実際にアプリケーションのモジュール化をする前に、CommonJSでのモジュール化について簡単に振り返ります。</p>
+<p>Node.jsでは、複数のJavaScriptファイル間で変数や関数などをやり取りするために、CommonJSモジュールという仕組みを利用します。
+CommonJSモジュールからオブジェクトをエクスポートするには、Node.jsのグローバル変数である<a href="https://nodejs.org/api/modules.html#modules_the_module_object" target="_blank">moduleオブジェクト</a>を利用します。
+<code>module.exports</code>オブジェクトは、そのファイルからエクスポートされるオブジェクトを格納します。</p>
+<p>次の<code>greet.js</code>というファイルは、<code>greet</code>関数をエクスポートするモジュールの例です。</p>
 <div class="code-filename-block">
     <p class="code-filename">greet.js</p>
 </div>
@@ -1462,8 +1462,8 @@ CommonJS&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x304B;&#x3089;&#x30AA;&#x30D6;
     <span class="hljs-keyword">return</span> <span class="hljs-string">`Hello <span class="hljs-subst">${name}</span>!`</span>;
 };
 </code></pre>
-<p><code>require</code>&#x95A2;&#x6570;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x3001;&#x6307;&#x5B9A;&#x3057;&#x305F;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30D1;&#x30B9;&#x306E;JavaScript&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3068;&#x3057;&#x3066;&#x30A4;&#x30F3;&#x30DD;&#x30FC;&#x30C8;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x5148;&#x307B;&#x3069;&#x306E;<code>greet.js</code>&#x306E;&#x30D1;&#x30B9;&#x3092;&#x6307;&#x5B9A;&#x3057;&#x3066;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3068;&#x3057;&#x3066;&#x30A4;&#x30F3;&#x30DD;&#x30FC;&#x30C8;&#x3057;&#x3066;&#x3001;&#x30A8;&#x30AF;&#x30B9;&#x30DD;&#x30FC;&#x30C8;&#x3055;&#x308C;&#x305F;&#x95A2;&#x6570;&#x3092;&#x53D6;&#x5F97;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p><code>require</code>関数を使って、指定したファイルパスのJavaScriptファイルをモジュールとしてインポートできます。
+次のコードでは先ほどの<code>greet.js</code>のパスを指定してモジュールとしてインポートして、エクスポートされた関数を取得しています。</p>
 <div class="code-filename-block">
     <p class="code-filename">greet-main.js</p>
 </div>
@@ -1471,21 +1471,21 @@ CommonJS&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x304B;&#x3089;&#x30AA;&#x30D6;
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> greet = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./greet&quot;</span>);
 greet(<span class="hljs-string">&quot;World&quot;</span>); <span class="hljs-comment">// =&gt; &quot;Hello World!&quot;</span>
 </code></pre>
-<p><code>module.exports</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x305D;&#x306E;&#x3082;&#x306E;&#x306B;&#x4EE3;&#x5165;&#x3059;&#x308B;&#x306E;&#x3067;&#x306F;&#x306A;&#x304F;&#x3001;<code>module.exports</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x306B;&#x4EE3;&#x5165;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x3082;&#x4EFB;&#x610F;&#x306E;&#x5024;&#x3092;&#x30A8;&#x30AF;&#x30B9;&#x30DD;&#x30FC;&#x30C8;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;<code>functions.js</code>&#x3068;&#x3044;&#x3046;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3067;&#x306F;&#x3001;<code>foo</code>&#x3068;<code>bar</code>&#x306E;2&#x3064;&#x306E;&#x95A2;&#x6570;&#x3092;&#x540C;&#x3058;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x304B;&#x3089;&#x30A8;&#x30AF;&#x30B9;&#x30DD;&#x30FC;&#x30C8;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p><code>module.exports</code>オブジェクトそのものに代入するのではなく、<code>module.exports</code>オブジェクトのプロパティに代入することでも任意の値をエクスポートできます。
+次の<code>functions.js</code>というファイルでは、<code>foo</code>と<code>bar</code>の2つの関数を同じファイルからエクスポートしています。</p>
 <div class="code-filename-block">
     <p class="code-filename">functions.js</p>
 </div>
 
 <pre><code class="lang-javascript"><span class="hljs-built_in">module</span>.exports.foo = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;foo&#x95A2;&#x6570;&#x304C;&#x547C;&#x3073;&#x51FA;&#x3055;&#x308C;&#x307E;&#x3057;&#x305F;&quot;</span>);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;foo関数が呼び出されました&quot;</span>);
 };
 <span class="hljs-built_in">module</span>.exports.bar = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;bar&#x95A2;&#x6570;&#x304C;&#x547C;&#x3073;&#x51FA;&#x3055;&#x308C;&#x307E;&#x3057;&#x305F;&quot;</span>);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;bar関数が呼び出されました&quot;</span>);
 };
 </code></pre>
-<p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;&#x30A8;&#x30AF;&#x30B9;&#x30DD;&#x30FC;&#x30C8;&#x3055;&#x308C;&#x305F;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;&#x3001;<code>require</code>&#x95A2;&#x6570;&#x306E;&#x623B;&#x308A;&#x5024;&#x3067;&#x3042;&#x308B;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3068;&#x3057;&#x3066;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3067;&#x306F;&#x5148;&#x307B;&#x3069;&#x306E;<code>functions.js</code>&#x3092;&#x30A4;&#x30F3;&#x30DD;&#x30FC;&#x30C8;&#x3057;&#x3066;&#x53D6;&#x5F97;&#x3057;&#x305F;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304B;&#x3089;<code>foo</code>&#x3068;<code>bar</code>&#x95A2;&#x6570;&#x3092;&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3068;&#x3057;&#x3066;&#x53D6;&#x5F97;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>このようにエクスポートされたオブジェクトは、<code>require</code>関数の戻り値であるオブジェクトのプロパティとしてアクセスできます。
+次のコードでは先ほどの<code>functions.js</code>をインポートして取得したオブジェクトから<code>foo</code>と<code>bar</code>関数をプロパティとして取得しています。</p>
 <div class="code-filename-block">
     <p class="code-filename">functions-main.js</p>
 </div>
@@ -1494,9 +1494,9 @@ greet(<span class="hljs-string">&quot;World&quot;</span>); <span class="hljs-com
 functions.foo();
 functions.bar();
 </code></pre>
-<h2 id="split-script"><a name="split-script" class="plugin-anchor" href="#split-script"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306B;&#x5206;&#x5272;&#x3059;&#x308B; </h2>
-<p>&#x305D;&#x308C;&#x3067;&#x306F;CLI&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x30BD;&#x30FC;&#x30B9;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306B;&#x5206;&#x5272;&#x3057;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;
-<code>md2html.js</code>&#x3068;&#x3044;&#x3046;&#x540D;&#x524D;&#x306E;JavaScript&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;marked&#x3092;&#x4F7F;&#x3063;&#x305F;Markdown&#x306E;&#x5909;&#x63DB;&#x51E6;&#x7406;&#x3092;&#x8A18;&#x8FF0;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="split-script"><a name="split-script" class="plugin-anchor" href="#split-script"><i class="fa fa-link" aria-hidden="true"></i></a>アプリケーションをモジュールに分割する </h2>
+<p>それではCLIアプリケーションのソースコードをモジュールに分割してみましょう。
+<code>md2html.js</code>という名前のJavaScriptファイルを作成し、次のようにmarkedを使ったMarkdownの変換処理を記述します。</p>
 <div class="code-filename-block">
     <p class="code-filename">md2html.js</p>
 </div>
@@ -1509,18 +1509,18 @@ functions.bar();
     });
 };
 </code></pre>
-<p>&#x3053;&#x306E;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x304C;&#x30A8;&#x30AF;&#x30B9;&#x30DD;&#x30FC;&#x30C8;&#x3059;&#x308B;&#x306E;&#x306F;&#x3001;&#x4E0E;&#x3048;&#x3089;&#x308C;&#x305F;&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x5143;&#x306B;Markdown&#x6587;&#x5B57;&#x5217;&#x3092;HTML&#x306B;&#x5909;&#x63DB;&#x3059;&#x308B;&#x95A2;&#x6570;&#x3067;&#x3059;&#x3002;
-&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x30A8;&#x30F3;&#x30C8;&#x30EA;&#x30FC;&#x30DD;&#x30A4;&#x30F3;&#x30C8;&#x3067;&#x3042;&#x308B;<code>main.js</code>&#x3067;&#x306F;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x3053;&#x306E;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3092;&#x30A4;&#x30F3;&#x30DD;&#x30FC;&#x30C8;&#x3057;&#x3066;&#x4F7F;&#x7528;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>このモジュールがエクスポートするのは、与えられたオプションを元にMarkdown文字列をHTMLに変換する関数です。
+アプリケーションのエントリーポイントである<code>main.js</code>では、次のようにこのモジュールをインポートして使用します。</p>
 <div class="code-filename-block">
     <p class="code-filename">main.js</p>
 </div>
 
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> program = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;commander&quot;</span>);
 <span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);
-<span class="hljs-comment">// md2html&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3092;&#x30A4;&#x30F3;&#x30DD;&#x30FC;&#x30C8;&#x3059;&#x308B;</span>
+<span class="hljs-comment">// md2htmlモジュールをインポートする</span>
 <span class="hljs-keyword">const</span> md2html = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./md2html&quot;</span>);
 
-program.option(<span class="hljs-string">&quot;--gfm&quot;</span>, <span class="hljs-string">&quot;GFM&#x3092;&#x6709;&#x52B9;&#x306B;&#x3059;&#x308B;&quot;</span>);
+program.option(<span class="hljs-string">&quot;--gfm&quot;</span>, <span class="hljs-string">&quot;GFMを有効にする&quot;</span>);
 program.parse(process.argv);
 <span class="hljs-keyword">const</span> filePath = program.args[<span class="hljs-number">0</span>];
 
@@ -1535,28 +1535,28 @@ fs.readFile(filePath, { <span class="hljs-attr">encoding</span>: <span class="hl
         process.exit(<span class="hljs-number">1</span>);
         <span class="hljs-keyword">return</span>;
     }
-    <span class="hljs-comment">// md2html&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3092;&#x4F7F;&#x3063;&#x3066;HTML&#x306B;&#x5909;&#x63DB;&#x3059;&#x308B;</span>
+    <span class="hljs-comment">// md2htmlモジュールを使ってHTMLに変換する</span>
     <span class="hljs-keyword">const</span> html = md2html(file, cliOptions);
     <span class="hljs-built_in">console</span>.log(html);
 });
 </code></pre>
-<p>marked&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x3084;&#x3001;&#x305D;&#x306E;&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x306B;&#x95A2;&#x3059;&#x308B;&#x8A18;&#x8FF0;&#x304C;&#x3072;&#x3068;&#x3064;&#x306E;<code>md2html</code>&#x95A2;&#x6570;&#x306B;&#x96A0;&#x853D;&#x3055;&#x308C;&#x3001;<code>main.js</code>&#x304C;&#x30B7;&#x30F3;&#x30D7;&#x30EB;&#x306B;&#x306A;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;
-&#x305D;&#x3057;&#x3066;<code>md2html.js</code>&#x306F;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x304B;&#x3089;&#x72EC;&#x7ACB;&#x3057;&#x305F;&#x3072;&#x3068;&#x3064;&#x306E;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3068;&#x3057;&#x3066;&#x5207;&#x308A;&#x51FA;&#x3055;&#x308C;&#x3001;&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x304C;&#x53EF;&#x80FD;&#x306B;&#x306A;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;</p>
-<h2 id="create-env"><a name="create-env" class="plugin-anchor" href="#create-env"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x5B9F;&#x884C;&#x74B0;&#x5883;&#x3092;&#x4F5C;&#x308B; </h2>
-<p>&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x306E;&#x5B9F;&#x884C;&#x306B;&#x306F;&#x3055;&#x307E;&#x3056;&#x307E;&#x306A;&#x65B9;&#x6CD5;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;&#x30C6;&#x30B9;&#x30C6;&#x30A3;&#x30F3;&#x30B0;&#x30D5;&#x30EC;&#x30FC;&#x30E0;&#x30EF;&#x30FC;&#x30AF;&#x3068;&#x3057;&#x3066;<a href="https://mochajs.org/" target="_blank">Mocha</a>&#x3092;&#x4F7F;&#x3063;&#x3066;&#x3001;&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x306E;&#x5B9F;&#x884C;&#x74B0;&#x5883;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x307E;&#x3059;&#x3002;
-Mocha&#x304C;&#x63D0;&#x4F9B;&#x3059;&#x308B;&#x30C6;&#x30B9;&#x30C8;&#x5B9F;&#x884C;&#x74B0;&#x5883;&#x3067;&#x306F;&#x3001;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x306B;<code>it</code>&#x3084;<code>describe</code>&#x306A;&#x3069;&#x306E;&#x95A2;&#x6570;&#x304C;&#x5B9A;&#x7FA9;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-<code>it</code>&#x95A2;&#x6570;&#x306F;&#x305D;&#x306E;&#x5185;&#x90E8;&#x3067;&#x30A8;&#x30E9;&#x30FC;&#x304C;&#x767A;&#x751F;&#x3057;&#x305F;&#x3068;&#x304D;&#x3001;&#x305D;&#x306E;&#x30C6;&#x30B9;&#x30C8;&#x3092;&#x5931;&#x6557;&#x3068;&#x3057;&#x3066;&#x6271;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3064;&#x307E;&#x308A;&#x3001;&#x671F;&#x5F85;&#x3059;&#x308B;&#x7D50;&#x679C;&#x3068;&#x7570;&#x306A;&#x308B;&#x306A;&#x3089;&#x30A8;&#x30E9;&#x30FC;&#x3092;&#x6295;&#x3052;&#x3001;&#x671F;&#x5F85;&#x3069;&#x304A;&#x308A;&#x306A;&#x3089;&#x30A8;&#x30E9;&#x30FC;&#x3092;&#x6295;&#x3052;&#x306A;&#x3044;&#x3068;&#x3044;&#x3046;&#x30C6;&#x30B9;&#x30C8;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x66F8;&#x304F;&#x3053;&#x3068;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x4ECA;&#x56DE;&#x306F;Node.js&#x306E;&#x6A19;&#x6E96;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306E;&#x3072;&#x3068;&#x3064;&#x3067;&#x3042;&#x308B;<a href="https://nodejs.org/api/assert.html" target="_blank">assert&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;</a>&#x304B;&#x3089;&#x63D0;&#x4F9B;&#x3055;&#x308C;&#x308B;<code>assert.strictEqual</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x5229;&#x7528;&#x3057;&#x307E;&#x3059;&#x3002;
-<code>assert.strictEqual</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x7B2C;&#x4E00;&#x5F15;&#x6570;&#x3068;&#x7B2C;&#x4E8C;&#x5F15;&#x6570;&#x306E;&#x8A55;&#x4FA1;&#x7D50;&#x679C;&#x304C;<code>===</code>&#x3067;&#x6BD4;&#x8F03;&#x3057;&#x3066;&#x7570;&#x306A;&#x308B;&#x5834;&#x5408;&#x306B;&#x3001;&#x4F8B;&#x5916;&#x3092;&#x6295;&#x3052;&#x308B;&#x95A2;&#x6570;&#x3067;&#x3059;&#x3002;</p>
-<p>Mocha&#x306B;&#x3088;&#x308B;&#x30C6;&#x30B9;&#x30C8;&#x74B0;&#x5883;&#x3092;&#x4F5C;&#x308B;&#x305F;&#x3081;&#x306B;&#x3001;&#x307E;&#x305A;&#x306F;&#x6B21;&#x306E;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3067;<code>mocha</code>&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x3092;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>markedパッケージや、そのオプションに関する記述がひとつの<code>md2html</code>関数に隠蔽され、<code>main.js</code>がシンプルになりました。
+そして<code>md2html.js</code>はアプリケーションから独立したひとつのモジュールとして切り出され、ユニットテストが可能になりました。</p>
+<h2 id="create-env"><a name="create-env" class="plugin-anchor" href="#create-env"><i class="fa fa-link" aria-hidden="true"></i></a>ユニットテスト実行環境を作る </h2>
+<p>ユニットテストの実行にはさまざまな方法があります。
+このセクションではテスティングフレームワークとして<a href="https://mochajs.org/" target="_blank">Mocha</a>を使って、ユニットテストの実行環境を作成します。
+Mochaが提供するテスト実行環境では、グローバルに<code>it</code>や<code>describe</code>などの関数が定義されます。
+<code>it</code>関数はその内部でエラーが発生したとき、そのテストを失敗として扱います。
+つまり、期待する結果と異なるならエラーを投げ、期待どおりならエラーを投げないというテストコードを書くことになります。</p>
+<p>今回はNode.jsの標準モジュールのひとつである<a href="https://nodejs.org/api/assert.html" target="_blank">assertモジュール</a>から提供される<code>assert.strictEqual</code>メソッドを利用します。
+<code>assert.strictEqual</code>メソッドは第一引数と第二引数の評価結果が<code>===</code>で比較して異なる場合に、例外を投げる関数です。</p>
+<p>Mochaによるテスト環境を作るために、まずは次のコマンドで<code>mocha</code>パッケージをインストールします。</p>
 <pre><code class="lang-shell-session">$ npm install --save-dev mocha@7
 </code></pre>
-<p><code>--save-dev</code>&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x306F;&#x3001;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x3092;<code>devDependencies</code>&#x3068;&#x3057;&#x3066;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E;&#x3082;&#x306E;&#x3067;&#x3059;&#x3002;
-<code>package.json</code>&#x306E;<code>devDependencies</code>&#x306B;&#x306F;&#x3001;&#x305D;&#x306E;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x3092;&#x958B;&#x767A;&#x3059;&#x308B;&#x3068;&#x304D;&#x3060;&#x3051;&#x5FC5;&#x8981;&#x306A;&#x4F9D;&#x5B58;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3092;&#x8A18;&#x8FF0;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x3092;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x306B;&#x306F;&#x3001;Mocha&#x304C;&#x63D0;&#x4F9B;&#x3059;&#x308B;<code>mocha</code>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3092;&#x4F7F;&#x3044;&#x307E;&#x3059;&#x3002;
-Mocha&#x3092;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3057;&#x305F;&#x5F8C;&#x3001;<code>package.json</code>&#x306E;<code>scripts</code>&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3092;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x8A18;&#x8FF0;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p><code>--save-dev</code>オプションは、パッケージを<code>devDependencies</code>としてインストールするためのものです。
+<code>package.json</code>の<code>devDependencies</code>には、そのパッケージを開発するときだけ必要な依存ライブラリを記述します。</p>
+<p>ユニットテストを実行するには、Mochaが提供する<code>mocha</code>コマンドを使います。
+Mochaをインストールした後、<code>package.json</code>の<code>scripts</code>プロパティを次のように記述します。</p>
 <pre><code class="lang-json">{
     ...
     <span class="hljs-string">&quot;scripts&quot;</span>: {
@@ -1565,115 +1565,115 @@ Mocha&#x3092;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3057;&#x305F;&#x
     ...
 }
 </code></pre>
-<p>&#x3053;&#x306E;&#x8A18;&#x8FF0;&#x306B;&#x3088;&#x308A;&#x3001;<code>npm test</code>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3092;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x3068;&#x3001;<code>mocha</code>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3067;<code>test/</code>&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x306B;&#x3042;&#x308B;&#x30C6;&#x30B9;&#x30C8;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x5B9F;&#x884C;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x8A66;&#x3057;&#x306B;<code>npm test</code>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3092;&#x5B9F;&#x884C;&#x3057;&#x3001;Mocha&#x306B;&#x3088;&#x308B;&#x30C6;&#x30B9;&#x30C8;&#x304C;&#x884C;&#x308F;&#x308C;&#x308B;&#x3053;&#x3068;&#x3092;&#x78BA;&#x8A8D;&#x3057;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;
-&#x307E;&#x3060;&#x30C6;&#x30B9;&#x30C8;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x4F5C;&#x3063;&#x3066;&#x3044;&#x306A;&#x3044;&#x306E;&#x3067;&#x3001;<code>Error: No test files found</code>&#x3068;&#x3044;&#x3046;&#x30A8;&#x30E9;&#x30FC;&#x304C;&#x8868;&#x793A;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<p>この記述により、<code>npm test</code>コマンドを実行すると、<code>mocha</code>コマンドで<code>test/</code>ディレクトリにあるテストファイルを実行します。
+試しに<code>npm test</code>コマンドを実行し、Mochaによるテストが行われることを確認しましょう。
+まだテストファイルを作っていないので、<code>Error: No test files found</code>というエラーが表示されます。</p>
 <pre><code class="lang-shell-session">$ npm test
 &gt; mocha
 
  Error: No test files found
 </code></pre>
-<h2 id="write-unit-test"><a name="write-unit-test" class="plugin-anchor" href="#write-unit-test"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x3092;&#x8A18;&#x8FF0;&#x3059;&#x308B; </h2>
-<p>&#x30C6;&#x30B9;&#x30C8;&#x306E;&#x5B9F;&#x884C;&#x74B0;&#x5883;&#x304C;&#x3067;&#x304D;&#x305F;&#x306E;&#x3067;&#x3001;&#x5B9F;&#x969B;&#x306B;&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x3092;&#x8A18;&#x8FF0;&#x3057;&#x307E;&#x3059;&#x3002;
-Mocha&#x306E;&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x306F;<code>test</code>&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x306E;&#x4E2D;&#x306B;JavaScript&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x914D;&#x7F6E;&#x3057;&#x3066;&#x8A18;&#x8FF0;&#x3057;&#x307E;&#x3059;&#x3002;
-<code>test/md2html-test.js</code>&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3001;<code>md2html.js</code>&#x306B;&#x5BFE;&#x3059;&#x308B;&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x3092;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x8A18;&#x8FF0;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="write-unit-test"><a name="write-unit-test" class="plugin-anchor" href="#write-unit-test"><i class="fa fa-link" aria-hidden="true"></i></a>ユニットテストを記述する </h2>
+<p>テストの実行環境ができたので、実際にユニットテストを記述します。
+Mochaのユニットテストは<code>test</code>ディレクトリの中にJavaScriptファイルを配置して記述します。
+<code>test/md2html-test.js</code>ファイルを作成し、<code>md2html.js</code>に対するユニットテストを次のように記述します。</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> assert = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;assert&quot;</span>);
 <span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);
 <span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;path&quot;</span>);
 <span class="hljs-keyword">const</span> md2html = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;../md2html&quot;</span>);
 
 it(<span class="hljs-string">&quot;converts Markdown to HTML (GFM=false)&quot;</span>, () =&gt; {
-    <span class="hljs-comment">// fs.readFileSync&#x306F;&#x540C;&#x671F;&#x7684;&#x306B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x8AAD;&#x307F;&#x8FBC;&#x3080;&#x30E1;&#x30BD;&#x30C3;&#x30C9;</span>
+    <span class="hljs-comment">// fs.readFileSyncは同期的にファイルを読み込むメソッド</span>
     <span class="hljs-keyword">const</span> sample = fs.readFileSync(path.resolve(__dirname, <span class="hljs-string">&quot;./fixtures/sample.md&quot;</span>), { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> });
     <span class="hljs-keyword">const</span> expected = fs.readFileSync(path.resolve(__dirname, <span class="hljs-string">&quot;./fixtures/expected.html&quot;</span>), { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> });
-    <span class="hljs-comment">// &#x672B;&#x5C3E;&#x306E;&#x6539;&#x884C;&#x306E;&#x6709;&#x7121;&#x306E;&#x9055;&#x3044;&#x3092;&#x7121;&#x8996;&#x3059;&#x308B;&#x305F;&#x3081;&#x3001;&#x5909;&#x63DB;&#x5F8C;&#x306E;HTML&#x306E;&#x30B9;&#x30DA;&#x30FC;&#x30B9;&#x3092;trim&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x524A;&#x9664;&#x3057;&#x3066;&#x304B;&#x3089;&#x6BD4;&#x8F03;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;</span>
+    <span class="hljs-comment">// 末尾の改行の有無の違いを無視するため、変換後のHTMLのスペースをtrimメソッドで削除してから比較しています</span>
     assert.strictEqual(md2html(sample, { <span class="hljs-attr">gfm</span>: <span class="hljs-literal">false</span> }).trimEnd(), expected.trimEnd());
 });
 
 it(<span class="hljs-string">&quot;converts Markdown to HTML (GFM=true)&quot;</span>, () =&gt; {
     <span class="hljs-keyword">const</span> sample = fs.readFileSync(path.resolve(__dirname, <span class="hljs-string">&quot;./fixtures/sample.md&quot;</span>), { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> });
     <span class="hljs-keyword">const</span> expected = fs.readFileSync(path.resolve(__dirname, <span class="hljs-string">&quot;./fixtures/expected-gfm.html&quot;</span>), { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> });
-    <span class="hljs-comment">// &#x672B;&#x5C3E;&#x306E;&#x6539;&#x884C;&#x306E;&#x6709;&#x7121;&#x306E;&#x9055;&#x3044;&#x3092;&#x7121;&#x8996;&#x3059;&#x308B;&#x305F;&#x3081;&#x3001;&#x5909;&#x63DB;&#x5F8C;&#x306E;HTML&#x306E;&#x30B9;&#x30DA;&#x30FC;&#x30B9;&#x3092;trim&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3067;&#x524A;&#x9664;&#x3057;&#x3066;&#x304B;&#x3089;&#x6BD4;&#x8F03;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;</span>
+    <span class="hljs-comment">// 末尾の改行の有無の違いを無視するため、変換後のHTMLのスペースをtrimメソッドで削除してから比較しています</span>
     assert.strictEqual(md2html(sample, { <span class="hljs-attr">gfm</span>: <span class="hljs-literal">true</span> }).trimEnd(), expected.trimEnd());
 });
 </code></pre>
-<p><code>it</code>&#x95A2;&#x6570;&#x3067;&#x5B9A;&#x7FA9;&#x3057;&#x305F;&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x306F;&#x3001;<code>md2html</code>&#x95A2;&#x6570;&#x306E;&#x5909;&#x63DB;&#x7D50;&#x679C;&#x304C;&#x671F;&#x5F85;&#x3059;&#x308B;&#x3082;&#x306E;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;&#x304B;&#x3092;&#x30C6;&#x30B9;&#x30C8;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-<code>test/fixtures</code>&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x306B;&#x306F;&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x3067;&#x7528;&#x3044;&#x308B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x914D;&#x7F6E;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x4ECA;&#x56DE;&#x306F;&#x5909;&#x63DB;&#x5143;&#x306E;Markdown&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3068;&#x3001;&#x671F;&#x5F85;&#x3059;&#x308B;&#x5909;&#x63DB;&#x7D50;&#x679C;&#x306E;HTML&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x304C;&#x5B58;&#x5728;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x5909;&#x63DB;&#x5143;&#x306E;Markdown&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;<code>test/fixtures/sample.md</code>&#x306B;&#x914D;&#x7F6E;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p><code>it</code>関数で定義したユニットテストは、<code>md2html</code>関数の変換結果が期待するものになっているかをテストしています。
+<code>test/fixtures</code>ディレクトリにはユニットテストで用いるファイルを配置しています。
+今回は変換元のMarkdownファイルと、期待する変換結果のHTMLファイルが存在します。</p>
+<p>次のように変換元のMarkdownファイルを<code>test/fixtures/sample.md</code>に配置します。</p>
 <div class="code-filename-block">
     <p class="code-filename">test/fixtures/sample.md</p>
 </div>
 
-<pre><code class="lang-markdown"><span class="hljs-section"># &#x30B5;&#x30F3;&#x30D7;&#x30EB;&#x30D5;&#x30A1;&#x30A4;&#x30EB;</span>
+<pre><code class="lang-markdown"><span class="hljs-section"># サンプルファイル</span>
 
-&#x3053;&#x308C;&#x306F;&#x30B5;&#x30F3;&#x30D7;&#x30EB;&#x3067;&#x3059;&#x3002;
+これはサンプルです。
 https://jsprimer.net/
 
-<span class="hljs-bullet">- </span>&#x30B5;&#x30F3;&#x30D7;&#x30EB;1
-<span class="hljs-bullet">- </span>&#x30B5;&#x30F3;&#x30D7;&#x30EB;2
+<span class="hljs-bullet">- </span>サンプル1
+<span class="hljs-bullet">- </span>サンプル2
 </code></pre>
-<p>&#x305D;&#x3057;&#x3066;&#x3001;&#x671F;&#x5F85;&#x3059;&#x308B;&#x5909;&#x63DB;&#x7D50;&#x679C;&#x306E;HTML&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3082;<code>test/fixtures</code>&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x306B;&#x914D;&#x7F6E;&#x3057;&#x307E;&#x3059;&#x3002;
-<code>gfm</code>&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x6709;&#x7121;&#x306B;&#x3042;&#x308F;&#x305B;&#x3066;&#x3001;<code>expected.html</code>&#x3068;<code>expected-gfm.html</code>&#x306E;2&#x3064;&#x3092;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x4F5C;&#x6210;&#x3057;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
+<p>そして、期待する変換結果のHTMLファイルも<code>test/fixtures</code>ディレクトリに配置します。
+<code>gfm</code>オプションの有無にあわせて、<code>expected.html</code>と<code>expected-gfm.html</code>の2つを次のように作成しましょう。</p>
 <div class="code-filename-block">
     <p class="code-filename">test/fixtures/expected.html</p>
 </div>
 
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&#x30B5;&#x30F3;&#x30D7;&#x30EB;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&quot;</span>&gt;</span>&#x30B5;&#x30F3;&#x30D7;&#x30EB;&#x30D5;&#x30A1;&#x30A4;&#x30EB;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#x3053;&#x308C;&#x306F;&#x30B5;&#x30F3;&#x30D7;&#x30EB;&#x3067;&#x3059;&#x3002;
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;サンプルファイル&quot;</span>&gt;</span>サンプルファイル<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>これはサンプルです。
 https://jsprimer.net/<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>&#x30B5;&#x30F3;&#x30D7;&#x30EB;1<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>&#x30B5;&#x30F3;&#x30D7;&#x30EB;2<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>サンプル1<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>サンプル2<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
 </code></pre>
 <div class="code-filename-block">
     <p class="code-filename">test/fixtures/expected-gfm.html</p>
 </div>
 
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;&#x30B5;&#x30F3;&#x30D7;&#x30EB;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&quot;</span>&gt;</span>&#x30B5;&#x30F3;&#x30D7;&#x30EB;&#x30D5;&#x30A1;&#x30A4;&#x30EB;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#x3053;&#x308C;&#x306F;&#x30B5;&#x30F3;&#x30D7;&#x30EB;&#x3067;&#x3059;&#x3002;
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;サンプルファイル&quot;</span>&gt;</span>サンプルファイル<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>これはサンプルです。
 <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://jsprimer.net/&quot;</span>&gt;</span>https://jsprimer.net/<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>&#x30B5;&#x30F3;&#x30D7;&#x30EB;1<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>&#x30B5;&#x30F3;&#x30D7;&#x30EB;2<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>サンプル1<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>サンプル2<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
 </code></pre>
-<p>&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x306E;&#x6E96;&#x5099;&#x304C;&#x3067;&#x304D;&#x305F;&#x3089;&#x3001;&#x3082;&#x3046;&#x4E00;&#x5EA6;&#x6539;&#x3081;&#x3066;<code>npm test</code>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3092;&#x5B9F;&#x884C;&#x3057;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;2&#x4EF6;&#x306E;&#x30C6;&#x30B9;&#x30C8;&#x304C;&#x901A;&#x308C;&#x3070;&#x6210;&#x529F;&#x3067;&#x3059;&#x3002;</p>
+<p>ユニットテストの準備ができたら、もう一度改めて<code>npm test</code>コマンドを実行しましょう。2件のテストが通れば成功です。</p>
 <pre><code class="lang-shell-session">$ npm test
 &gt; mocha
 
-  &#x2713; converts Markdown to HTML (GFM=false)
-  &#x2713; converts Markdown to HTML (GFM=true)
+  ✓ converts Markdown to HTML (GFM=false)
+  ✓ converts Markdown to HTML (GFM=true)
 
   2 passing (31ms)
 </code></pre>
-<p>&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x304C;&#x901A;&#x3089;&#x306A;&#x304B;&#x3063;&#x305F;&#x5834;&#x5408;&#x306F;&#x3001;&#x6B21;&#x306E;&#x3053;&#x3068;&#x3092;&#x78BA;&#x8A8D;&#x3057;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
+<p>ユニットテストが通らなかった場合は、次のことを確認してみましょう。</p>
 <ul>
-<li><code>test/fixtures</code>&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x306B;<code>sample.md</code>&#x3068;<code>expected.html</code>&#x3001;<code>expected-gfm.html</code>&#x3068;&#x3044;&#x3046;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x305F;&#x304B;</li>
-<li>&#x305D;&#x308C;&#x305E;&#x308C;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306F;&#x6587;&#x5B57;&#x30B3;&#x30FC;&#x30C9;&#x304C;UTF-8&#x3067;&#x3001;&#x6539;&#x884C;&#x30B3;&#x30FC;&#x30C9;&#x304C;LF&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x308B;&#x304B;</li>
-<li>&#x305D;&#x308C;&#x305E;&#x308C;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306E;&#x672B;&#x5C3E;&#x306B;&#x4F59;&#x8A08;&#x306A;&#x6539;&#x884C;&#x6587;&#x5B57;&#x304C;&#x5165;&#x3063;&#x3066;&#x3044;&#x306A;&#x3044;&#x304B;</li>
+<li><code>test/fixtures</code>ディレクトリに<code>sample.md</code>と<code>expected.html</code>、<code>expected-gfm.html</code>というファイルを作成したか</li>
+<li>それぞれのファイルは文字コードがUTF-8で、改行コードがLFになっているか</li>
+<li>それぞれのファイルの末尾に余計な改行文字が入っていないか</li>
 </ul>
-<h2 id="reason-for-unit-test"><a name="reason-for-unit-test" class="plugin-anchor" href="#reason-for-unit-test"><i class="fa fa-link" aria-hidden="true"></i></a>&#x306A;&#x305C;&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x3092;&#x884C;&#x3046;&#x306E;&#x304B; </h2>
-<p>&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x3092;&#x5B9F;&#x65BD;&#x3059;&#x308B;&#x3053;&#x3068;&#x306B;&#x306F;&#x591A;&#x304F;&#x306E;&#x5229;&#x70B9;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x65E9;&#x671F;&#x306B;&#x30D0;&#x30B0;&#x304C;&#x767A;&#x898B;&#x3067;&#x304D;&#x308B;&#x3053;&#x3068;&#x3084;&#x3001;&#x5B89;&#x5FC3;&#x3057;&#x3066;&#x30EA;&#x30D5;&#x30A1;&#x30AF;&#x30BF;&#x30EA;&#x30F3;&#x30B0;&#x3092;&#x884C;&#x3048;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x308B;&#x306E;&#x306F;&#x3082;&#x3061;&#x308D;&#x3093;&#x3067;&#x3059;&#x304C;&#x3001;
-&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x304C;&#x53EF;&#x80FD;&#x306A;&#x72B6;&#x614B;&#x3092;&#x4FDD;&#x3064;&#x3053;&#x3068;&#x81EA;&#x4F53;&#x306B;&#x610F;&#x5473;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x5B9F;&#x969B;&#x306B;&#x30C6;&#x30B9;&#x30C8;&#x3092;&#x884C;&#x308F;&#x306A;&#x304F;&#x3066;&#x3082;&#x30C6;&#x30B9;&#x30C8;&#x3057;&#x3084;&#x3059;&#x3044;&#x30B3;&#x30FC;&#x30C9;&#x306B;&#x306A;&#x308B;&#x3088;&#x3046;&#x5FC3;&#x304C;&#x3051;&#x308B;&#x3053;&#x3068;&#x304C;&#x3001;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x9069;&#x5207;&#x306B;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x5316;&#x3059;&#x308B;&#x6307;&#x91DD;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x307E;&#x305F;&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x306B;&#x306F;&#x751F;&#x304D;&#x305F;&#x30C9;&#x30AD;&#x30E5;&#x30E1;&#x30F3;&#x30C8;&#x3068;&#x3057;&#x3066;&#x306E;&#x5074;&#x9762;&#x3082;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x30C9;&#x30AD;&#x30E5;&#x30E1;&#x30F3;&#x30C8;&#x306F;&#x3053;&#x307E;&#x3081;&#x306B;&#x30E1;&#x30F3;&#x30C6;&#x30CA;&#x30F3;&#x30B9;&#x3055;&#x308C;&#x306A;&#x3044;&#x3068;&#x3059;&#x3050;&#x306B;&#x5B9F;&#x969B;&#x306E;&#x30B3;&#x30FC;&#x30C9;&#x3068;&#x9F5F;&#x9F6C;&#x304C;&#x751F;&#x307E;&#x308C;&#x3066;&#x3057;&#x307E;&#x3044;&#x307E;&#x3059;&#x304C;&#x3001;
-&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x306F;&#x305D;&#x306E;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x304C;&#x6E80;&#x305F;&#x3059;&#x3079;&#x304D;&#x4ED5;&#x69D8;&#x3092;&#x8868;&#x3059;&#x30C9;&#x30AD;&#x30E5;&#x30E1;&#x30F3;&#x30C8;&#x3068;&#x3057;&#x3066;&#x6A5F;&#x80FD;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x306E;&#x8A18;&#x8FF0;&#x306F;&#x624B;&#x9593;&#x304C;&#x304B;&#x304B;&#x308B;&#x3060;&#x3051;&#x306E;&#x3088;&#x3046;&#x306B;&#x3082;&#x601D;&#x3048;&#x307E;&#x3059;&#x304C;&#x3001;
-&#x4E2D;&#x9577;&#x671F;&#x7684;&#x306B;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x30E1;&#x30F3;&#x30C6;&#x30CA;&#x30F3;&#x30B9;&#x3059;&#x308B;&#x5834;&#x5408;&#x306B;&#x306F;&#x304B;&#x304B;&#x305B;&#x306A;&#x3044;&#x3082;&#x306E;&#x3067;&#x3059;&#x3002;
-&#x305D;&#x3057;&#x3066;&#x3088;&#x3044;&#x30C6;&#x30B9;&#x30C8;&#x3092;&#x66F8;&#x304F;&#x305F;&#x3081;&#x306B;&#x306F;&#x3001;&#x65E5;&#x9803;&#x304B;&#x3089;&#x30C6;&#x30B9;&#x30C8;&#x3092;&#x66F8;&#x304F;&#x7FD2;&#x6163;&#x3092;&#x3064;&#x3051;&#x3066;&#x304A;&#x304F;&#x3053;&#x3068;&#x304C;&#x91CD;&#x8981;&#x3067;&#x3059;&#x3002;</p>
-<h2 id="unit-test-summary"><a name="unit-test-summary" class="plugin-anchor" href="#unit-test-summary"><i class="fa fa-link" aria-hidden="true"></i></a>&#x307E;&#x3068;&#x3081; </h2>
-<p>&#x3053;&#x306E;&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x306E;&#x76EE;&#x6A19;&#x3067;&#x3042;&#x308B;Node.js&#x3092;&#x4F7F;&#x3063;&#x305F;CLI&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x4F5C;&#x6210;&#x3068;&#x3001;&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x306E;&#x5C0E;&#x5165;&#x304C;&#x3067;&#x304D;&#x307E;&#x3057;&#x305F;&#x3002;
-npm&#x3092;&#x4F7F;&#x3063;&#x305F;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x7BA1;&#x7406;&#x3084;&#x5916;&#x90E8;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306E;&#x5229;&#x7528;&#x3001;<code>fs</code>&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3092;&#x4F7F;&#x3063;&#x305F;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x64CD;&#x4F5C;&#x306A;&#x3069;&#x3001;&#x591A;&#x304F;&#x306E;&#x8981;&#x7D20;&#x304C;&#x767B;&#x5834;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;
-&#x3053;&#x308C;&#x3089;&#x306F;Node.js&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x958B;&#x767A;&#x306B;&#x304A;&#x3044;&#x3066;&#x307B;&#x3068;&#x3093;&#x3069;&#x306E;&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x3067;&#x5FDC;&#x7528;&#x3055;&#x308C;&#x308B;&#x3082;&#x306E;&#x306A;&#x306E;&#x3067;&#x3001;&#x3088;&#x304F;&#x7406;&#x89E3;&#x3057;&#x3066;&#x304A;&#x304D;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<h2 id="section-checklist"><a name="section-checklist" class="plugin-anchor" href="#section-checklist"><i class="fa fa-link" aria-hidden="true"></i></a>&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30EA;&#x30B9;&#x30C8; </h2>
+<h2 id="reason-for-unit-test"><a name="reason-for-unit-test" class="plugin-anchor" href="#reason-for-unit-test"><i class="fa fa-link" aria-hidden="true"></i></a>なぜユニットテストを行うのか </h2>
+<p>ユニットテストを実施することには多くの利点があります。
+早期にバグが発見できることや、安心してリファクタリングを行えるようになるのはもちろんですが、
+ユニットテストが可能な状態を保つこと自体に意味があります。
+実際にテストを行わなくてもテストしやすいコードになるよう心がけることが、アプリケーションを適切にモジュール化する指針になります。</p>
+<p>またユニットテストには生きたドキュメントとしての側面もあります。
+ドキュメントはこまめにメンテナンスされないとすぐに実際のコードと齟齬が生まれてしまいますが、
+ユニットテストはそのモジュールが満たすべき仕様を表すドキュメントとして機能します。</p>
+<p>ユニットテストの記述は手間がかかるだけのようにも思えますが、
+中長期的にアプリケーションをメンテナンスする場合にはかかせないものです。
+そしてよいテストを書くためには、日頃からテストを書く習慣をつけておくことが重要です。</p>
+<h2 id="unit-test-summary"><a name="unit-test-summary" class="plugin-anchor" href="#unit-test-summary"><i class="fa fa-link" aria-hidden="true"></i></a>まとめ </h2>
+<p>このユースケースの目標であるNode.jsを使ったCLIアプリケーションの作成と、ユニットテストの導入ができました。
+npmを使ったパッケージ管理や外部モジュールの利用、<code>fs</code>モジュールを使ったファイル操作など、多くの要素が登場しました。
+これらはNode.jsアプリケーション開発においてほとんどのユースケースで応用されるものなので、よく理解しておきましょう。</p>
+<h2 id="section-checklist"><a name="section-checklist" class="plugin-anchor" href="#section-checklist"><i class="fa fa-link" aria-hidden="true"></i></a>このセクションのチェックリスト </h2>
 <ul>
-<li>Markdown&#x306E;&#x5909;&#x63DB;&#x51E6;&#x7406;&#x3092;CommonJS&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3068;&#x3057;&#x3066;<code>md2html.js</code>&#x306B;&#x5207;&#x308A;&#x51FA;&#x3057;&#x3001;<code>main.js</code>&#x304B;&#x3089;&#x8AAD;&#x307F;&#x8FBC;&#x3093;&#x3060;</li>
-<li>mocha&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x3092;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3057;&#x3001;<code>npm test</code>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3067;<code>mocha</code>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3092;&#x5B9F;&#x884C;&#x3067;&#x304D;&#x308B;&#x3053;&#x3068;&#x3092;&#x78BA;&#x8A8D;&#x3057;&#x305F;</li>
-<li><code>md2html</code>&#x95A2;&#x6570;&#x306E;&#x30E6;&#x30CB;&#x30C3;&#x30C8;&#x30C6;&#x30B9;&#x30C8;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3001;&#x30C6;&#x30B9;&#x30C8;&#x306E;&#x5B9F;&#x884C;&#x7D50;&#x679C;&#x3092;&#x78BA;&#x8A8D;&#x3057;&#x305F;</li>
+<li>Markdownの変換処理をCommonJSモジュールとして<code>md2html.js</code>に切り出し、<code>main.js</code>から読み込んだ</li>
+<li>mochaパッケージをインストールし、<code>npm test</code>コマンドで<code>mocha</code>コマンドを実行できることを確認した</li>
+<li><code>md2html</code>関数のユニットテストを作成し、テストの実行結果を確認した</li>
 </ul>
 
                                 
@@ -1706,12 +1706,56 @@ npm&#x3092;&#x4F7F;&#x3063;&#x305F;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x7B
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"ユニットテストの導入とソースコードのモジュール化を行います。","title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"next":{"title":"Todoアプリ","level":"1.4.4","depth":2,"path":"use-case/todoapp/README.md","ref":"./use-case/todoapp/README.md","articles":[{"title":"エントリーポイント","level":"1.4.4.1","depth":3,"path":"use-case/todoapp/entrypoint/README.md","ref":"./use-case/todoapp/entrypoint/README.md","articles":[]},{"title":"アプリの構成要素","level":"1.4.4.2","depth":3,"path":"use-case/todoapp/app-structure/README.md","ref":"./use-case/todoapp/app-structure/README.md","articles":[]},{"title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"path":"use-case/todoapp/form-event/README.md","ref":"./use-case/todoapp/form-event/README.md","articles":[]},{"title":"イベントとモデル","level":"1.4.4.4","depth":3,"path":"use-case/todoapp/event-model/README.md","ref":"./use-case/todoapp/event-model/README.md","articles":[]},{"title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"path":"use-case/todoapp/update-delete/README.md","ref":"./use-case/todoapp/update-delete/README.md","articles":[]},{"title":"Todoアプリのリファクタリング","level":"1.4.4.6","depth":3,"path":"use-case/todoapp/final/README.md","ref":"./use-case/todoapp/final/README.md","articles":[]}]},"previous":{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/refactor-and-unittest/README.md","mtime":"2020-11-18T19:19:34.517Z","type":"markdown"},"gitbook":{"version":"3.6.8","time":"2020-11-18T19:20:11.295Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"ユニットテストの導入とソースコードのモジュール化を行います。","title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"next":{"title":"Todoアプリ","level":"1.4.4","depth":2,"path":"use-case/todoapp/README.md","ref":"./use-case/todoapp/README.md","articles":[{"title":"エントリーポイント","level":"1.4.4.1","depth":3,"path":"use-case/todoapp/entrypoint/README.md","ref":"./use-case/todoapp/entrypoint/README.md","articles":[]},{"title":"アプリの構成要素","level":"1.4.4.2","depth":3,"path":"use-case/todoapp/app-structure/README.md","ref":"./use-case/todoapp/app-structure/README.md","articles":[]},{"title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"path":"use-case/todoapp/form-event/README.md","ref":"./use-case/todoapp/form-event/README.md","articles":[]},{"title":"イベントとモデル","level":"1.4.4.4","depth":3,"path":"use-case/todoapp/event-model/README.md","ref":"./use-case/todoapp/event-model/README.md","articles":[]},{"title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"path":"use-case/todoapp/update-delete/README.md","ref":"./use-case/todoapp/update-delete/README.md","articles":[]},{"title":"Todoアプリのリファクタリング","level":"1.4.4.6","depth":3,"path":"use-case/todoapp/final/README.md","ref":"./use-case/todoapp/final/README.md","articles":[]}]},"previous":{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/refactor-and-unittest/README.md","mtime":"2020-11-19T10:10:17.240Z","type":"markdown"},"gitbook":{"version":"3.6.13","time":"2020-11-19T10:10:53.113Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
 
         
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
     <script src="../../../gitbook/gitbook.js"></script>
     <script src="../../../gitbook/theme.js"></script>
     

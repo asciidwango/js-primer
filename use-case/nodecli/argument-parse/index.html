@@ -7,7 +7,7 @@
         <title>コマンドライン引数を処理する · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="コマンドライン引数を受け取り、アプリケーションから使いやすい形にパースする方法を学びます。">
-        <meta name="generator" content="HonKit 3.6.8">
+        <meta name="generator" content="HonKit 3.6.13">
         
         
         
@@ -176,7 +176,7 @@
     </head>
     <body>
         
-<div class="book">
+<div class="book honkit-cloak">
     <div class="book-summary">
         
             
@@ -1441,53 +1441,53 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="processing-commandline-args"><a name="processing-commandline-args" class="plugin-anchor" href="#processing-commandline-args"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x3092;&#x51E6;&#x7406;&#x3059;&#x308B; </h1>
-<p>&#x3053;&#x306E;&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x3067;&#x4F5C;&#x6210;&#x3059;&#x308B;CLI&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x76EE;&#x7684;&#x306F;&#x3001;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x3068;&#x3057;&#x3066;&#x4E0E;&#x3048;&#x3089;&#x308C;&#x305F;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x5909;&#x63DB;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x3063;&#x3066;&#x3001;&#x305D;&#x308C;&#x3092;&#x30D1;&#x30FC;&#x30B9;&#x3059;&#x308B;&#x3068;&#x3053;&#x308D;&#x307E;&#x3067;&#x3092;&#x884C;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="process-object-and-commandline-args"><a name="process-object-and-commandline-args" class="plugin-anchor" href="#process-object-and-commandline-args"><i class="fa fa-link" aria-hidden="true"></i></a><code>process</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3068;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570; </h2>
-<p>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x3092;&#x6271;&#x3046;&#x524D;&#x306B;&#x3001;&#x307E;&#x305A;&#x306F;<code>process</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306B;&#x3064;&#x3044;&#x3066;&#x89E6;&#x308C;&#x3066;&#x304A;&#x304D;&#x307E;&#x3059;&#x3002;
-<code>process</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F;Node.js&#x5B9F;&#x884C;&#x74B0;&#x5883;&#x306E;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x5909;&#x6570;&#x306E;&#x3072;&#x3068;&#x3064;&#x3067;&#x3059;&#x3002;
-<code>process</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304C;&#x63D0;&#x4F9B;&#x3059;&#x308B;&#x306E;&#x306F;&#x3001;&#x73FE;&#x5728;&#x306E;Node.js&#x306E;&#x5B9F;&#x884C;&#x30D7;&#x30ED;&#x30BB;&#x30B9;&#x306B;&#x3064;&#x3044;&#x3066;&#x3001;&#x60C5;&#x5831;&#x306E;&#x53D6;&#x5F97;&#x3068;&#x64CD;&#x4F5C;&#x3092;&#x3059;&#x308B;API&#x3067;&#x3059;&#x3002;
-&#x8A73;&#x7D30;&#x306F;<a href="https://nodejs.org/dist/latest-v12.x/docs/api/process.html#process_process" target="_blank">&#x516C;&#x5F0F;&#x30C9;&#x30AD;&#x30E5;&#x30E1;&#x30F3;&#x30C8;</a>&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</p>
-<p>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x3078;&#x306E;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x3092;&#x63D0;&#x4F9B;&#x3059;&#x308B;&#x306E;&#x306F;&#x3001;<code>process</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306E;<code>argv</code>&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x3067;&#x3001;&#x6587;&#x5B57;&#x5217;&#x306E;&#x914D;&#x5217;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;<code>main.js</code>&#x3092;&#x5909;&#x66F4;&#x3057;&#x3001;<code>process.argv</code>&#x3092;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x306B;&#x51FA;&#x529B;&#x3057;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
+                                <h1 id="processing-commandline-args"><a name="processing-commandline-args" class="plugin-anchor" href="#processing-commandline-args"><i class="fa fa-link" aria-hidden="true"></i></a>コマンドライン引数を処理する </h1>
+<p>このユースケースで作成するCLIアプリケーションの目的は、コマンドライン引数として与えられたファイルを変換することです。
+このセクションではコマンドライン引数を受け取って、それをパースするところまでを行います。</p>
+<h2 id="process-object-and-commandline-args"><a name="process-object-and-commandline-args" class="plugin-anchor" href="#process-object-and-commandline-args"><i class="fa fa-link" aria-hidden="true"></i></a><code>process</code>オブジェクトとコマンドライン引数 </h2>
+<p>コマンドライン引数を扱う前に、まずは<code>process</code>オブジェクトについて触れておきます。
+<code>process</code>オブジェクトはNode.js実行環境のグローバル変数のひとつです。
+<code>process</code>オブジェクトが提供するのは、現在のNode.jsの実行プロセスについて、情報の取得と操作をするAPIです。
+詳細は<a href="https://nodejs.org/dist/latest-v12.x/docs/api/process.html#process_process" target="_blank">公式ドキュメント</a>を参照してください。</p>
+<p>コマンドライン引数へのアクセスを提供するのは、<code>process</code>オブジェクトの<code>argv</code>プロパティで、文字列の配列になっています。
+次のように<code>main.js</code>を変更し、<code>process.argv</code>をコンソールに出力しましょう。</p>
 <div class="code-filename-block">
     <p class="code-filename">main.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-comment">// &#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x306B;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x3092;&#x51FA;&#x529B;&#x3059;&#x308B;</span>
+<pre><code class="lang-javascript"><span class="hljs-comment">// コンソールにコマンドライン引数を出力する</span>
 <span class="hljs-built_in">console</span>.log(process.argv);
 </code></pre>
-<p>&#x3053;&#x306E;&#x30B9;&#x30AF;&#x30EA;&#x30D7;&#x30C8;&#x3092;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x3092;&#x3064;&#x3051;&#x3066;&#x5B9F;&#x884C;&#x3057;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
+<p>このスクリプトを次のようにコマンドライン引数をつけて実行してみましょう。</p>
 <pre><code class="lang-shell-session">$ node main.js one two=three four
 </code></pre>
-<p>&#x3053;&#x306E;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x306E;&#x5B9F;&#x884C;&#x7D50;&#x679C;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>このコマンドの実行結果は次のようになります。</p>
 <pre><code>[ 
-  &apos;/usr/local/bin/node&apos;, // Node.js&#x306E;&#x5B9F;&#x884C;&#x30D7;&#x30ED;&#x30BB;&#x30B9;&#x306E;&#x30D1;&#x30B9;
-  &apos;/Users/laco/nodecli/main.js&apos;, // &#x5B9F;&#x884C;&#x3057;&#x305F;&#x30B9;&#x30AF;&#x30EA;&#x30D7;&#x30C8;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306E;&#x30D1;&#x30B9;
-  &apos;one&apos;, // 1&#x756A;&#x76EE;&#x306E;&#x5F15;&#x6570;
-  &apos;two=three&apos;, // 2&#x756A;&#x76EE;
-  &apos;four&apos;  // 3&#x756A;&#x76EE;
+  &apos;/usr/local/bin/node&apos;, // Node.jsの実行プロセスのパス
+  &apos;/Users/laco/nodecli/main.js&apos;, // 実行したスクリプトファイルのパス
+  &apos;one&apos;, // 1番目の引数
+  &apos;two=three&apos;, // 2番目
+  &apos;four&apos;  // 3番目
 ]
-</code></pre><p>1&#x756A;&#x76EE;&#x3068;2&#x756A;&#x76EE;&#x306E;&#x8981;&#x7D20;&#x306F;&#x5E38;&#x306B;<code>node</code>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3068;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x305F;&#x30B9;&#x30AF;&#x30EA;&#x30D7;&#x30C8;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30D1;&#x30B9;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x3064;&#x307E;&#x308A;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x304C;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x3068;&#x3057;&#x3066;&#x4F7F;&#x3046;&#x306E;&#x306F;&#x3001;3&#x756A;&#x76EE;&#x4EE5;&#x964D;&#x306E;&#x8981;&#x7D20;&#x3067;&#x3059;&#x3002;</p>
-<h2 id="parse-args"><a name="parse-args" class="plugin-anchor" href="#parse-args"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x3092;&#x30D1;&#x30FC;&#x30B9;&#x3059;&#x308B; </h2>
-<p><code>process.argv</code>&#x914D;&#x5217;&#x3092;&#x4F7F;&#x3048;&#x3070;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x3092;&#x53D6;&#x5F97;&#x3067;&#x304D;&#x307E;&#x3059;&#x304C;&#x3001;&#x53D6;&#x5F97;&#x3067;&#x304D;&#x308B;&#x60C5;&#x5831;&#x306B;&#x306F;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x306B;&#x4E0D;&#x8981;&#x306A;&#x3082;&#x306E;&#x3082;&#x542B;&#x307E;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x305F;&#x3001;&#x6587;&#x5B57;&#x5217;&#x306E;&#x914D;&#x5217;&#x3068;&#x3057;&#x3066;&#x6E21;&#x3055;&#x308C;&#x308B;&#x305F;&#x3081;&#x3001;&#x30D5;&#x30E9;&#x30B0;&#x306E;&#x30AA;&#x30F3;&#x30AA;&#x30D5;&#x306E;&#x3088;&#x3046;&#x306A;&#x771F;&#x507D;&#x5024;&#x3092;&#x53D7;&#x3051;&#x53D6;&#x308B;&#x3068;&#x304D;&#x306B;&#x3082;&#x4E0D;&#x4FBF;&#x3067;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x3092;&#x6271;&#x3046;&#x3068;&#x304D;&#x306B;&#x306F;&#x3001;&#x4E00;&#x5EA6;&#x30D1;&#x30FC;&#x30B9;&#x3057;&#x3066;&#x6271;&#x3044;&#x3084;&#x3059;&#x3044;&#x5024;&#x306B;&#x6574;&#x5F62;&#x3059;&#x308B;&#x306E;&#x304C;&#x4E00;&#x822C;&#x7684;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x4ECA;&#x56DE;&#x306F;<a href="https://github.com/tj/commander.js/" target="_blank">commander</a>&#x3068;&#x3044;&#x3046;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x3092;&#x30D1;&#x30FC;&#x30B9;&#x3057;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;
-&#x6587;&#x5B57;&#x5217;&#x51E6;&#x7406;&#x3092;&#x81EA;&#x524D;&#x3067;&#x884C;&#x3046;&#x3053;&#x3068;&#x3082;&#x3067;&#x304D;&#x307E;&#x3059;&#x304C;&#x3001;&#x3053;&#x306E;&#x3088;&#x3046;&#x306A;&#x4E00;&#x822C;&#x7684;&#x306A;&#x51E6;&#x7406;&#x306F;&#x65E2;&#x5B58;&#x306E;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3092;&#x4F7F;&#x3046;&#x3068;&#x7C21;&#x5358;&#x306B;&#x66F8;&#x3051;&#x307E;&#x3059;&#x3002;</p>
-<h3 id="install-commander"><a name="install-commander" class="plugin-anchor" href="#install-commander"><i class="fa fa-link" aria-hidden="true"></i></a><code>commander</code>&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x3092;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3059;&#x308B; </h3>
-<p>commander&#x306F;<a href="https://www.npmjs.com/" target="_blank">npm</a>&#x306E;<code>npm install</code>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x307E;&#x3060;npm&#x306E;&#x5B9F;&#x884C;&#x74B0;&#x5883;&#x3092;&#x7528;&#x610F;&#x3067;&#x304D;&#x3066;&#x3044;&#x306A;&#x3051;&#x308C;&#x3070;&#x3001;&#x5148;&#x306B;&#x300C;<a href="../../setup-local-env/">&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x958B;&#x767A;&#x306E;&#x6E96;&#x5099;</a>&#x300D;&#x306E;&#x7AE0;&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;</p>
-<p>npm&#x3067;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x3092;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3059;&#x308B;&#x524D;&#x306B;&#x3001;&#x307E;&#x305A;&#x306F;<code>pacakge.json</code>&#x3068;&#x3044;&#x3046;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x307E;&#x3059;&#x3002;
-<code>package.json</code>&#x3068;&#x306F;&#x3001;&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x304C;&#x4F9D;&#x5B58;&#x3059;&#x308B;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x306E;&#x7A2E;&#x985E;&#x3084;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x306A;&#x3069;&#x306E;&#x60C5;&#x5831;&#x3092;&#x8A18;&#x9332;&#x3059;&#x308B;JSON&#x5F62;&#x5F0F;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3067;&#x3059;&#x3002;
-<code>package.json</code>&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306E;&#x3072;&#x306A;&#x5F62;&#x306F;&#x3001;<code>npm init</code>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3067;&#x751F;&#x6210;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x901A;&#x5E38;&#x306F;&#x5BFE;&#x8A71;&#x5F0F;&#x306E;&#x30D7;&#x30ED;&#x30F3;&#x30D7;&#x30C8;&#x306B;&#x3088;&#x3063;&#x3066;&#x60C5;&#x5831;&#x3092;&#x8A2D;&#x5B9A;&#x3057;&#x307E;&#x3059;&#x304C;&#x3001;&#x3053;&#x3053;&#x3067;&#x306F;&#x3059;&#x3079;&#x3066;&#x30C7;&#x30D5;&#x30A9;&#x30EB;&#x30C8;&#x5024;&#x3067;<code>pacakge.json</code>&#x3092;&#x4F5C;&#x6210;&#x3059;&#x308B;<code>--yes</code>&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x4ED8;&#x4E0E;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p><code>nodecli</code>&#x306E;&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x5185;&#x3067;&#x3001;<code>npm init --yes</code>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3092;&#x5B9F;&#x884C;&#x3057;&#x3066;<code>pacakge.json</code>&#x3092;&#x4F5C;&#x6210;&#x3057;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
+</code></pre><p>1番目と2番目の要素は常に<code>node</code>コマンドと実行されたスクリプトのファイルパスになります。
+つまりアプリケーションがコマンドライン引数として使うのは、3番目以降の要素です。</p>
+<h2 id="parse-args"><a name="parse-args" class="plugin-anchor" href="#parse-args"><i class="fa fa-link" aria-hidden="true"></i></a>コマンドライン引数をパースする </h2>
+<p><code>process.argv</code>配列を使えばコマンドライン引数を取得できますが、取得できる情報にはアプリケーションに不要なものも含まれています。
+また、文字列の配列として渡されるため、フラグのオンオフのような真偽値を受け取るときにも不便です。
+そのため、アプリケーションでコマンドライン引数を扱うときには、一度パースして扱いやすい値に整形するのが一般的です。</p>
+<p>今回は<a href="https://github.com/tj/commander.js/" target="_blank">commander</a>というライブラリを使ってコマンドライン引数をパースしてみましょう。
+文字列処理を自前で行うこともできますが、このような一般的な処理は既存のライブラリを使うと簡単に書けます。</p>
+<h3 id="install-commander"><a name="install-commander" class="plugin-anchor" href="#install-commander"><i class="fa fa-link" aria-hidden="true"></i></a><code>commander</code>パッケージをインストールする </h3>
+<p>commanderは<a href="https://www.npmjs.com/" target="_blank">npm</a>の<code>npm install</code>コマンドを使ってインストールできます。
+まだnpmの実行環境を用意できていなければ、先に「<a href="../../setup-local-env/">アプリケーション開発の準備</a>」の章を参照してください。</p>
+<p>npmでパッケージをインストールする前に、まずは<code>pacakge.json</code>というファイルを作成します。
+<code>package.json</code>とは、アプリケーションが依存するパッケージの種類やバージョンなどの情報を記録するJSON形式のファイルです。
+<code>package.json</code>ファイルのひな形は、<code>npm init</code>コマンドで生成できます。
+通常は対話式のプロンプトによって情報を設定しますが、ここではすべてデフォルト値で<code>pacakge.json</code>を作成する<code>--yes</code>オプションを付与します。</p>
+<p><code>nodecli</code>のディレクトリ内で、<code>npm init --yes</code>コマンドを実行して<code>pacakge.json</code>を作成しましょう。</p>
 <pre><code class="lang-shell-session">$ npm init --yes
 </code></pre>
-<p>&#x751F;&#x6210;&#x3055;&#x308C;&#x305F;<code>package.json</code>&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>生成された<code>package.json</code>ファイルは次のようになっています。</p>
 <div class="code-filename-block">
     <p class="code-filename">package.json</p>
 </div>
@@ -1505,13 +1505,13 @@
   <span class="hljs-string">&quot;license&quot;</span>: <span class="hljs-string">&quot;ISC&quot;</span>
 }
 </code></pre>
-<p><code>package.json</code>&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x304C;&#x7528;&#x610F;&#x3067;&#x304D;&#x305F;&#x3089;&#x3001;<code>npm install</code>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3092;&#x4F7F;&#x3063;&#x3066;<code>commander</code>&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x3092;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x306E;&#x5F15;&#x6570;&#x306B;&#x306F;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3059;&#x308B;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x306E;&#x540D;&#x524D;&#x3068;&#x305D;&#x306E;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x3092;<code>@</code>&#x8A18;&#x53F7;&#x3067;&#x3064;&#x306A;&#x3052;&#x3066;&#x6307;&#x5B9A;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x3092;&#x6307;&#x5B9A;&#x305B;&#x305A;&#x306B;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3059;&#x308C;&#x3070;&#x3001;&#x305D;&#x306E;&#x6642;&#x70B9;&#x3067;&#x306E;&#x6700;&#x65B0;&#x306E;&#x5B89;&#x5B9A;&#x7248;&#x304C;&#x81EA;&#x52D5;&#x7684;&#x306B;&#x9078;&#x629E;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3092;&#x5B9F;&#x884C;&#x3057;&#x3066;&#x3001;commander&#x306E;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;5.0&#x3092;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3057;&#x307E;&#x3059;&#x3002;<sup><a href="#fn_1" id="reffn_1">1</a></sup></p>
+<p><code>package.json</code>ファイルが用意できたら、<code>npm install</code>コマンドを使って<code>commander</code>パッケージをインストールします。
+このコマンドの引数にはインストールするパッケージの名前とそのバージョンを<code>@</code>記号でつなげて指定できます。
+バージョンを指定せずにインストールすれば、その時点での最新の安定版が自動的に選択されます。
+次のコマンドを実行して、commanderのバージョン5.0をインストールします。<sup><a href="#fn_1" id="reffn_1">1</a></sup></p>
 <pre><code class="lang-shell-session">$ npm install commander@5.0
 </code></pre>
-<p>&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x304C;&#x5B8C;&#x4E86;&#x3059;&#x308B;&#x3068;&#x3001;<code>package.json</code>&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306F;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>インストールが完了すると、<code>package.json</code>ファイルは次のようになっています。</p>
 <div class="code-filename-block">
     <p class="code-filename">package.json</p>
 </div>
@@ -1532,21 +1532,21 @@
   }
 }
 </code></pre>
-<p>&#x307E;&#x305F;&#x3001;npm&#x306E;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x304C;5&#x4EE5;&#x4E0A;&#x3067;&#x3042;&#x308C;&#x3070; <code>package-lock.json</code>&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x304C;&#x751F;&#x6210;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306F;npm&#x304C;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3057;&#x305F;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x306E;&#x3001;&#x5B9F;&#x969B;&#x306E;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x3092;&#x8A18;&#x9332;&#x3059;&#x308B;&#x305F;&#x3081;&#x306E;&#x3082;&#x306E;&#x3067;&#x3059;&#x3002;
-&#x5148;&#x307B;&#x3069;commander&#x306E;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x3092;<code>5.0</code>&#x3068;&#x3057;&#x307E;&#x3057;&#x305F;&#x304C;&#x3001;&#x5B9F;&#x969B;&#x306B;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3055;&#x308C;&#x308B;&#x306E;&#x306F;<code>5.0.x</code>&#x306B;&#x4E00;&#x81F4;&#x3059;&#x308B;&#x6700;&#x65B0;&#x306E;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x3067;&#x3059;&#x3002;
-<code>package-lock.json</code>&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306B;&#x306F;&#x5B9F;&#x969B;&#x306B;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3055;&#x308C;&#x305F;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x304C;&#x8A18;&#x9332;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x308C;&#x306B;&#x3088;&#x3063;&#x3066;&#x3001;&#x518D;&#x3073;<code>npm install</code>&#x3092;&#x5B9F;&#x884C;&#x3057;&#x305F;&#x3068;&#x304D;&#x306B;&#x3001;&#x7570;&#x306A;&#x308B;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x304C;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3055;&#x308C;&#x308B;&#x306E;&#x3092;&#x9632;&#x304E;&#x307E;&#x3059;&#x3002;</p>
-<h3 id="commonjs-module"><a name="commonjs-module" class="plugin-anchor" href="#commonjs-module"><i class="fa fa-link" aria-hidden="true"></i></a>CommonJS&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB; </h3>
-<p>&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3057;&#x305F;<code>commander</code>&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x3092;&#x4F7F;&#x3046;&#x524D;&#x306B;&#x3001;<strong>CommonJS&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;</strong>&#x306E;&#x3053;&#x3068;&#x3092;&#x77E5;&#x3063;&#x3066;&#x304A;&#x304D;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;
-<a href="https://nodejs.org/docs/latest/api/modules.html" target="_blank">CommonJS&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;</a>&#x3068;&#x306F;&#x3001;<a href="https://nodejs.org/ja/" target="_blank">Node.js</a>&#x74B0;&#x5883;&#x3067;&#x5229;&#x7528;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;JavaScript&#x306E;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x5316;&#x306E;&#x4ED5;&#x7D44;&#x307F;&#x3067;&#x3059;&#x3002;
-CommonJS&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306F;&#x57FA;&#x672C;&#x6587;&#x6CD5;&#x3067;&#x5B66;&#x3093;&#x3060;<a href="../../../basic/module/">ECMAScript&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;</a>&#x306E;&#x4ED5;&#x69D8;&#x304C;&#x7B56;&#x5B9A;&#x3055;&#x308C;&#x308B;&#x3088;&#x308A;&#x524D;&#x304B;&#x3089;Node.js&#x3067;&#x4F7F;&#x308F;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-Node.js&#x306E;&#x6A19;&#x6E96;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x3084;npm&#x3067;&#x914D;&#x5E03;&#x3055;&#x308C;&#x308B;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x306F;&#x3001;CommonJS&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3068;&#x3057;&#x3066;&#x63D0;&#x4F9B;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;&#x307B;&#x3068;&#x3093;&#x3069;&#x3067;&#x3059;&#x3002;
-&#x5148;&#x307B;&#x3069;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3057;&#x305F;<code>commander</code>&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x3082;&#x3001;CommonJS&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3068;&#x3057;&#x3066;&#x5229;&#x7528;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>CommonJS&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306F;Node.js&#x306E;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x5909;&#x6570;&#x3067;&#x3042;&#x308B;<code>module</code>&#x5909;&#x6570;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x5909;&#x6570;&#x3084;&#x95A2;&#x6570;&#x306A;&#x3069;&#x3092;&#x30A8;&#x30AF;&#x30B9;&#x30DD;&#x30FC;&#x30C8;&#x3057;&#x307E;&#x3059;&#x3002;
-CommonJS&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3067;&#x306F;<code>module.exports</code>&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x306B;&#x4EE3;&#x5165;&#x3055;&#x308C;&#x305F;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304C;&#x3001;&#x305D;&#x306E;JavaScript&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x304B;&#x3089;&#x30A8;&#x30AF;&#x30B9;&#x30DD;&#x30FC;&#x30C8;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x8907;&#x6570;&#x306E;&#x540D;&#x524D;&#x3064;&#x304D;&#x30A8;&#x30AF;&#x30B9;&#x30DD;&#x30FC;&#x30C8;&#x304C;&#x53EF;&#x80FD;&#x306A;ES Module&#x3068;&#x306F;&#x7570;&#x306A;&#x308A;&#x3001;CommonJS&#x3067;&#x306F;<code>module.exports</code>&#x30D7;&#x30ED;&#x30D1;&#x30C6;&#x30A3;&#x306E;&#x5024;&#x3060;&#x3051;&#x304C;&#x30A8;&#x30AF;&#x30B9;&#x30DD;&#x30FC;&#x30C8;&#x306E;&#x5BFE;&#x8C61;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x4F8B;&#x3067;&#x306F;&#x3001;<code>my-module.js</code>&#x3068;&#x3044;&#x3046;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x3001;<code>module.exports</code>&#x3067;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x30A8;&#x30AF;&#x30B9;&#x30DD;&#x30FC;&#x30C8;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>また、npmのバージョンが5以上であれば <code>package-lock.json</code>ファイルが生成されています。
+このファイルはnpmがインストールしたパッケージの、実際のバージョンを記録するためのものです。
+先ほどcommanderのバージョンを<code>5.0</code>としましたが、実際にインストールされるのは<code>5.0.x</code>に一致する最新のバージョンです。
+<code>package-lock.json</code>ファイルには実際にインストールされたバージョンが記録されています。
+これによって、再び<code>npm install</code>を実行したときに、異なるバージョンがインストールされるのを防ぎます。</p>
+<h3 id="commonjs-module"><a name="commonjs-module" class="plugin-anchor" href="#commonjs-module"><i class="fa fa-link" aria-hidden="true"></i></a>CommonJSモジュール </h3>
+<p>インストールした<code>commander</code>パッケージを使う前に、<strong>CommonJSモジュール</strong>のことを知っておきましょう。
+<a href="https://nodejs.org/docs/latest/api/modules.html" target="_blank">CommonJSモジュール</a>とは、<a href="https://nodejs.org/ja/" target="_blank">Node.js</a>環境で利用されているJavaScriptのモジュール化の仕組みです。
+CommonJSモジュールは基本文法で学んだ<a href="../../../basic/module/">ECMAScriptモジュール</a>の仕様が策定されるより前からNode.jsで使われています。
+Node.jsの標準パッケージやnpmで配布されるパッケージは、CommonJSモジュールとして提供されていることがほとんどです。
+先ほどインストールした<code>commander</code>パッケージも、CommonJSモジュールとして利用できます。</p>
+<p>CommonJSモジュールはNode.jsのグローバル変数である<code>module</code>変数を使って変数や関数などをエクスポートします。
+CommonJSモジュールでは<code>module.exports</code>プロパティに代入されたオブジェクトが、そのJavaScriptファイルからエクスポートされます。
+複数の名前つきエクスポートが可能なES Moduleとは異なり、CommonJSでは<code>module.exports</code>プロパティの値だけがエクスポートの対象です。</p>
+<p>次の例では、<code>my-module.js</code>というファイルを作成し、<code>module.exports</code>でオブジェクトをエクスポートしています。</p>
 <div class="code-filename-block">
     <p class="code-filename">my-module.js</p>
 </div>
@@ -1555,68 +1555,68 @@ CommonJS&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3067;&#x306F;<code>module.exp
     <span class="hljs-attr">foo</span>: <span class="hljs-string">&quot;foo&quot;</span>
 };
 </code></pre>
-<p>&#x3053;&#x306E;CommonJS&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3092;&#x30A4;&#x30F3;&#x30DD;&#x30FC;&#x30C8;&#x3059;&#x308B;&#x306B;&#x306F;&#x3001;Node.js&#x5B9F;&#x884C;&#x74B0;&#x5883;&#x306E;&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x95A2;&#x6570;&#x3067;&#x3042;&#x308B;<a href="https://nodejs.org/dist/latest-v12.x/docs/api/modules.html#modules_loading_from_node_modules_folders" target="_blank">require&#x95A2;&#x6570;</a>&#x3092;&#x4F7F;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;<code>require</code>&#x95A2;&#x6570;&#x306B;&#x30A4;&#x30F3;&#x30DD;&#x30FC;&#x30C8;&#x3057;&#x305F;&#x3044;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30D1;&#x30B9;&#x3092;&#x6E21;&#x3057;&#x3001;&#x623B;&#x308A;&#x5024;&#x3068;&#x3057;&#x3066;&#x30A8;&#x30AF;&#x30B9;&#x30DD;&#x30FC;&#x30C8;&#x3055;&#x308C;&#x305F;&#x5024;&#x3092;&#x30A4;&#x30F3;&#x30DD;&#x30FC;&#x30C8;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x30A4;&#x30F3;&#x30DD;&#x30FC;&#x30C8;&#x3059;&#x308B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30D1;&#x30B9;&#x306B;&#x62E1;&#x5F35;&#x5B50;&#x304C;&#x5FC5;&#x9808;&#x306A;ES Module&#x3068;&#x306F;&#x7570;&#x306A;&#x308A;&#x3001;CommonJS&#x306E;<code>require</code>&#x95A2;&#x6570;&#x3067;&#x306F;&#x62E1;&#x5F35;&#x5B50;&#x3067;&#x3042;&#x308B;<code>.js</code>&#x304C;&#x7701;&#x7565;&#x53EF;&#x80FD;&#x3067;&#x3059;&#x3002;</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// my-module.js&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3092;myModule&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3068;&#x3057;&#x3066;&#x30A4;&#x30F3;&#x30DD;&#x30FC;&#x30C8;&#x3059;&#x308B;&#x3002;</span>
+<p>このCommonJSモジュールをインポートするには、Node.js実行環境のグローバル関数である<a href="https://nodejs.org/dist/latest-v12.x/docs/api/modules.html#modules_loading_from_node_modules_folders" target="_blank">require関数</a>を使います。
+次のように<code>require</code>関数にインポートしたいモジュールのファイルパスを渡し、戻り値としてエクスポートされた値をインポートできます。
+インポートするファイルパスに拡張子が必須なES Moduleとは異なり、CommonJSの<code>require</code>関数では拡張子である<code>.js</code>が省略可能です。</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// my-module.jsモジュールをmyModuleオブジェクトとしてインポートする。</span>
 <span class="hljs-keyword">const</span> myModule = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./my-module&quot;</span>);
 <span class="hljs-built_in">console</span>.log(myModule.foo); <span class="hljs-comment">// =&gt; &quot;foo&quot;</span>
 </code></pre>
-<p>&#x307E;&#x305F;&#x3001;<code>require</code>&#x95A2;&#x6570;&#x306F;&#x76F8;&#x5BFE;&#x30D1;&#x30B9;&#x3084;&#x7D76;&#x5BFE;&#x30D1;&#x30B9;&#x4EE5;&#x5916;&#x306B;&#x3082;npm&#x3067;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3057;&#x305F;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x540D;&#x3092;&#x6307;&#x5B9A;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-<code>npm install</code>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3067;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3055;&#x308C;&#x305F;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x306F;&#x3001;<code>node_modules</code>&#x3068;&#x3044;&#x3046;&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x306E;&#x4E2D;&#x306B;&#x914D;&#x7F6E;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-<code>require</code>&#x95A2;&#x6570;&#x306B;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3057;&#x305F;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x540D;&#x3092;&#x6307;&#x5B9A;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x3001;<code>node_modules</code>&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x306B;&#x914D;&#x7F6E;&#x3055;&#x308C;&#x305F;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x3092;&#x8AAD;&#x307F;&#x8FBC;&#x3081;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x6B21;&#x306E;&#x4F8B;&#x3067;&#x306F;&#x3001;&#x5148;&#x307B;&#x3069;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3057;&#x305F;<code>commander</code>&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x3092;<code>node_modules</code>&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x304B;&#x3089;&#x8AAD;&#x307F;&#x8FBC;&#x3093;&#x3067;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>また、<code>require</code>関数は相対パスや絶対パス以外にもnpmでインストールしたパッケージ名を指定できます。
+<code>npm install</code>コマンドでインストールされたパッケージは、<code>node_modules</code>というディレクトリの中に配置されています。
+<code>require</code>関数にインストールしたパッケージ名を指定することで、<code>node_modules</code>ディレクトリに配置されたパッケージを読み込めます。</p>
+<p>次の例では、先ほどインストールした<code>commander</code>パッケージを<code>node_modules</code>ディレクトリから読み込んでいます。</p>
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> program = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;commander&quot;</span>);
 </code></pre>
-<p>&#x3053;&#x306E;&#x30E6;&#x30FC;&#x30B9;&#x30B1;&#x30FC;&#x30B9;&#x3067;&#x4ECA;&#x5F8C;&#x767B;&#x5834;&#x3059;&#x308B;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x306F;&#x3059;&#x3079;&#x3066;CommonJS&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3067;&#x3059;&#x3002;
-Node.js&#x3067;&#x306F;ES Module&#x3082;&#x30B5;&#x30DD;&#x30FC;&#x30C8;&#x3055;&#x308C;&#x308B;&#x4E88;&#x5B9A;&#x3067;&#x3059;&#x304C;&#x3001;&#x73FE;&#x5728;&#x306F;&#x307E;&#x3060;&#x5B89;&#x5B9A;&#x3057;&#x305F;&#x6A5F;&#x80FD;&#x3068;&#x3057;&#x3066;&#x30B5;&#x30DD;&#x30FC;&#x30C8;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x305B;&#x3093;&#x3002;</p>
-<h3 id="get-file-path"><a name="get-file-path" class="plugin-anchor" href="#get-file-path"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x304B;&#x3089;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30D1;&#x30B9;&#x3092;&#x53D6;&#x5F97;&#x3059;&#x308B; </h3>
-<p>&#x5148;&#x307B;&#x3069;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3057;&#x305F;<code>commander</code>&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x3001;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x3068;&#x3057;&#x3066;&#x6E21;&#x3055;&#x308C;&#x305F;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30D1;&#x30B9;&#x3092;&#x53D6;&#x5F97;&#x3057;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;
-&#x3053;&#x306E;CLI&#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;&#x3001;&#x51E6;&#x7406;&#x306E;&#x5BFE;&#x8C61;&#x3068;&#x3059;&#x308B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30D1;&#x30B9;&#x3092;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x306E;&#x5F62;&#x5F0F;&#x3067;&#x53D7;&#x3051;&#x53D6;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<p>このユースケースで今後登場するモジュールはすべてCommonJSモジュールです。
+Node.jsではES Moduleもサポートされる予定ですが、現在はまだ安定した機能としてサポートされていません。</p>
+<h3 id="get-file-path"><a name="get-file-path" class="plugin-anchor" href="#get-file-path"><i class="fa fa-link" aria-hidden="true"></i></a>コマンドライン引数からファイルパスを取得する </h3>
+<p>先ほどインストールした<code>commander</code>パッケージを使って、コマンドライン引数として渡されたファイルパスを取得しましょう。
+このCLIアプリケーションでは、処理の対象とするファイルパスを次のようなコマンドの形式で受け取ります。</p>
 <pre><code class="lang-shell-session">$ node main.js ./sample.md
 </code></pre>
-<p>commander&#x3067;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x3092;&#x30D1;&#x30FC;&#x30B9;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x306F;&#x3001;<code>parse</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306B;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x3092;&#x6E21;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>commanderでコマンドライン引数をパースするためには、<code>parse</code>メソッドにコマンドライン引数を渡します。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-comment">// commander&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3092;program&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3068;&#x3057;&#x3066;&#x30A4;&#x30F3;&#x30DD;&#x30FC;&#x30C8;&#x3059;&#x308B;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// commanderモジュールをprogramオブジェクトとしてインポートする</span>
 <span class="hljs-keyword">const</span> program = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;commander&quot;</span>);
-<span class="hljs-comment">// &#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x3092;&#x30D1;&#x30FC;&#x30B9;&#x3059;&#x308B;</span>
+<span class="hljs-comment">// コマンドライン引数をパースする</span>
 program.parse(process.argv);
 </code></pre>
-<p><code>parse</code>&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x3092;&#x547C;&#x3073;&#x51FA;&#x3059;&#x3068;&#x3001;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x3092;&#x30D1;&#x30FC;&#x30B9;&#x3057;&#x305F;&#x7D50;&#x679C;&#x3092;<code>program</code>&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x304B;&#x3089;&#x53D6;&#x308A;&#x51FA;&#x305B;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x4ECA;&#x56DE;&#x306E;&#x4F8B;&#x3067;&#x306F;&#x3001;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30D1;&#x30B9;&#x306F;<code>program.args</code>&#x914D;&#x5217;&#x306B;&#x683C;&#x7D0D;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-<code>program.args</code>&#x914D;&#x5217;&#x306B;&#x306F;<code>--key=value</code>&#x306E;&#x3088;&#x3046;&#x306A;&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3084;<code>--flag</code>&#x306E;&#x3088;&#x3046;&#x306A;&#x30D5;&#x30E9;&#x30B0;&#x3092;&#x53D6;&#x308A;&#x9664;&#x3044;&#x305F;&#x6B8B;&#x308A;&#x306E;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x304C;&#x9806;&#x756A;&#x306B;&#x683C;&#x7D0D;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x305D;&#x308C;&#x3067;&#x306F;<code>main.js</code>&#x3092;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306B;&#x5909;&#x66F4;&#x3057;&#x3001;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x3067;&#x6E21;&#x3055;&#x308C;&#x305F;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30D1;&#x30B9;&#x3092;&#x53D6;&#x5F97;&#x3057;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
+<p><code>parse</code>メソッドを呼び出すと、コマンドライン引数をパースした結果を<code>program</code>オブジェクトから取り出せるようになります。
+今回の例では、ファイルパスは<code>program.args</code>配列に格納されています。
+<code>program.args</code>配列には<code>--key=value</code>のようなオプションや<code>--flag</code>のようなフラグを取り除いた残りのコマンドライン引数が順番に格納されています。</p>
+<p>それでは<code>main.js</code>を次のように変更し、コマンドライン引数で渡されたファイルパスを取得しましょう。</p>
 <div class="code-filename-block">
     <p class="code-filename">main.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-comment">// commander&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3092;program&#x3068;&#x3057;&#x3066;&#x30A4;&#x30F3;&#x30DD;&#x30FC;&#x30C8;&#x3059;&#x308B;</span>
+<pre><code class="lang-javascript"><span class="hljs-comment">// commanderモジュールをprogramとしてインポートする</span>
 <span class="hljs-keyword">const</span> program = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;commander&quot;</span>);
-<span class="hljs-comment">// &#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x3092;commander&#x3067;&#x30D1;&#x30FC;&#x30B9;&#x3059;&#x308B;</span>
+<span class="hljs-comment">// コマンドライン引数をcommanderでパースする</span>
 program.parse(process.argv);
 
-<span class="hljs-comment">// &#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30D1;&#x30B9;&#x3092;program.args&#x914D;&#x5217;&#x304B;&#x3089;&#x53D6;&#x308A;&#x51FA;&#x3059;</span>
+<span class="hljs-comment">// ファイルパスをprogram.args配列から取り出す</span>
 <span class="hljs-keyword">const</span> filePath = program.args[<span class="hljs-number">0</span>];
 <span class="hljs-built_in">console</span>.log(filePath);
 </code></pre>
-<p>&#x6B21;&#x306E;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x3092;&#x5B9F;&#x884C;&#x3059;&#x308B;&#x3068;&#x3001;<code>program.args</code>&#x914D;&#x5217;&#x306B;&#x683C;&#x7D0D;&#x3055;&#x308C;&#x305F;<code>./sample.md</code>&#x6587;&#x5B57;&#x5217;&#x304C;&#x53D6;&#x5F97;&#x3055;&#x308C;&#x3066;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x306B;&#x51FA;&#x529B;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-<code>./sample.md</code>&#x306F;<code>process.argv</code>&#x914D;&#x5217;&#x3067;&#x306F;3&#x756A;&#x76EE;&#x306B;&#x5B58;&#x5728;&#x3057;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x304C;&#x3001;&#x30D1;&#x30FC;&#x30B9;&#x5F8C;&#x306E;<code>program.args</code>&#x914D;&#x5217;&#x3067;&#x306F;1&#x756A;&#x76EE;&#x306B;&#x306A;&#x3063;&#x3066;&#x6271;&#x3044;&#x3084;&#x3059;&#x304F;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>次のコマンドを実行すると、<code>program.args</code>配列に格納された<code>./sample.md</code>文字列が取得されてコンソールに出力されます。
+<code>./sample.md</code>は<code>process.argv</code>配列では3番目に存在していましたが、パース後の<code>program.args</code>配列では1番目になって扱いやすくなっています。</p>
 <pre><code class="lang-shell-session">$ node main.js ./sample.md
 ./sample.md
 </code></pre>
-<p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;&#x3001;<code>process.argv</code>&#x914D;&#x5217;&#x3092;&#x76F4;&#x63A5;&#x6271;&#x3046;&#x3088;&#x308A;&#x3082;&#x3001;commander&#x306E;&#x3088;&#x3046;&#x306A;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3092;&#x4F7F;&#x3046;&#x3053;&#x3068;&#x3067;&#x5BA3;&#x8A00;&#x7684;&#x306B;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x3092;&#x5B9A;&#x7FA9;&#x3057;&#x3066;&#x51E6;&#x7406;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x6B21;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x3067;&#x306F;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x304B;&#x3089;&#x53D6;&#x5F97;&#x3057;&#x305F;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30D1;&#x30B9;&#x3092;&#x5143;&#x306B;&#x3001;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x8AAD;&#x307F;&#x8FBC;&#x3080;&#x51E6;&#x7406;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="section-checklist"><a name="section-checklist" class="plugin-anchor" href="#section-checklist"><i class="fa fa-link" aria-hidden="true"></i></a>&#x3053;&#x306E;&#x30BB;&#x30AF;&#x30B7;&#x30E7;&#x30F3;&#x306E;&#x30C1;&#x30A7;&#x30C3;&#x30AF;&#x30EA;&#x30B9;&#x30C8; </h2>
+<p>このように、<code>process.argv</code>配列を直接扱うよりも、commanderのようなライブラリを使うことで宣言的にコマンドライン引数を定義して処理できます。
+次のセクションではコマンドライン引数から取得したファイルパスを元に、ファイルを読み込む処理を追加していきます。</p>
+<h2 id="section-checklist"><a name="section-checklist" class="plugin-anchor" href="#section-checklist"><i class="fa fa-link" aria-hidden="true"></i></a>このセクションのチェックリスト </h2>
 <ul>
-<li><code>process.argv</code>&#x914D;&#x5217;&#x306B;<code>node</code>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x306E;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x304C;&#x683C;&#x7D0D;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x3092;&#x78BA;&#x8A8D;&#x3057;&#x305F;</li>
-<li>npm&#x3092;&#x4F7F;&#x3063;&#x3066;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x3092;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3059;&#x308B;&#x65B9;&#x6CD5;&#x3092;&#x7406;&#x89E3;&#x3057;&#x305F;</li>
-<li><code>require</code>&#x95A2;&#x6570;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x306E;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3092;&#x8AAD;&#x307F;&#x8FBC;&#x3081;&#x308B;&#x3053;&#x3068;&#x3092;&#x78BA;&#x8A8D;&#x3057;&#x305F;</li>
-<li>commander&#x3092;&#x4F7F;&#x3063;&#x3066;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x3092;&#x30D1;&#x30FC;&#x30B9;&#x3067;&#x304D;&#x308B;&#x3053;&#x3068;&#x3092;&#x78BA;&#x8A8D;&#x3057;&#x305F;</li>
-<li>&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x30E9;&#x30A4;&#x30F3;&#x5F15;&#x6570;&#x3067;&#x6E21;&#x3055;&#x308C;&#x305F;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x30D1;&#x30B9;&#x3092;&#x53D6;&#x5F97;&#x3057;&#x3066;&#x30B3;&#x30F3;&#x30BD;&#x30FC;&#x30EB;&#x306B;&#x51FA;&#x529B;&#x3067;&#x304D;&#x305F;</li>
+<li><code>process.argv</code>配列に<code>node</code>コマンドのコマンドライン引数が格納されていることを確認した</li>
+<li>npmを使ってパッケージをインストールする方法を理解した</li>
+<li><code>require</code>関数を使ってパッケージのモジュールを読み込めることを確認した</li>
+<li>commanderを使ってコマンドライン引数をパースできることを確認した</li>
+<li>コマンドライン引数で渡されたファイルパスを取得してコンソールに出力できた</li>
 </ul>
 <blockquote id="fn_1">
-<sup>1</sup>. --save&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3092;&#x3064;&#x3051;&#x3066;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x3057;&#x305F;&#x306E;&#x3068;&#x540C;&#x3058;&#x610F;&#x5473;&#x3002;npm 5.0.0&#x304B;&#x3089;&#x306F;--save&#x304C;&#x30C7;&#x30D5;&#x30A9;&#x30EB;&#x30C8;&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3068;&#x306A;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#x21A9;</a>
+<sup>1</sup>. --saveオプションをつけてインストールしたのと同じ意味。npm 5.0.0からは--saveがデフォルトオプションとなりました。<a href="#reffn_1" title="Jump back to footnote [1] in the text."> ↩</a>
 </blockquote>
 
                                 
@@ -1649,12 +1649,56 @@ program.parse(process.argv);
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"コマンドライン引数を受け取り、アプリケーションから使いやすい形にパースする方法を学びます。","title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"next":{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},"previous":{"title":"Node.jsでHello World","level":"1.4.3.1","depth":3,"path":"use-case/nodecli/helloworld/README.md","ref":"./use-case/nodecli/helloworld/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/argument-parse/README.md","mtime":"2020-11-18T19:19:34.513Z","type":"markdown"},"gitbook":{"version":"3.6.8","time":"2020-11-18T19:20:11.295Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"コマンドライン引数を受け取り、アプリケーションから使いやすい形にパースする方法を学びます。","title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"next":{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},"previous":{"title":"Node.jsでHello World","level":"1.4.3.1","depth":3,"path":"use-case/nodecli/helloworld/README.md","ref":"./use-case/nodecli/helloworld/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/argument-parse/README.md","mtime":"2020-11-19T10:10:17.240Z","type":"markdown"},"gitbook":{"version":"3.6.13","time":"2020-11-19T10:10:53.113Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
 
         
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
     <script src="../../../gitbook/gitbook.js"></script>
     <script src="../../../gitbook/theme.js"></script>
     

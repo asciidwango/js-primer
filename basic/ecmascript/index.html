@@ -7,7 +7,7 @@
         <title>ECMAScript · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptの仕様であるECMAScriptについてを紹介します。ECMAScriptの歴史や仕様策定がどのようなプロセスで行われているかを紹介します。">
-        <meta name="generator" content="HonKit 3.6.8">
+        <meta name="generator" content="HonKit 3.6.13">
         
         
         
@@ -176,7 +176,7 @@
     </head>
     <body>
         
-<div class="book">
+<div class="book honkit-cloak">
     <div class="book-summary">
         
             
@@ -1442,144 +1442,144 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="ecmascript"><a name="ecmascript" class="plugin-anchor" href="#ecmascript"><i class="fa fa-link" aria-hidden="true"></i></a>ECMAScript </h1>
-<p>&#x3053;&#x3053;&#x307E;&#x3067;JavaScript&#x306E;&#x57FA;&#x672C;&#x6587;&#x6CD5;&#x306B;&#x3064;&#x3044;&#x3066;&#x898B;&#x3066;&#x304D;&#x307E;&#x3057;&#x305F;&#x304C;&#x3001;&#x305D;&#x306E;&#x6587;&#x6CD5;&#x3092;&#x5B9A;&#x3081;&#x308B;ECMAScript&#x3068;&#x3044;&#x3046;&#x4ED5;&#x69D8;&#x81EA;&#x4F53;&#x304C;&#x3069;&#x306E;&#x3088;&#x3046;&#x306B;&#x5909;&#x5316;&#x3057;&#x3066;&#x3044;&#x304F;&#x306E;&#x304B;&#x3092;&#x898B;&#x3066;&#x3044;&#x304D;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<p>ECMAScript&#x306F;<a href="http://www.ecma-international.org/" title="Ecma International" target="_blank">Ecma International</a>&#x3068;&#x3044;&#x3046;&#x56E3;&#x4F53;&#x306B;&#x3088;&#x3063;&#x3066;&#x6A19;&#x6E96;&#x5316;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x4ED5;&#x69D8;&#x3067;&#x3059;&#x3002;
-Ecma International&#x306F;ECMAScript&#x4EE5;&#x5916;&#x306B;&#x3082;C#&#x3084;Dart&#x306A;&#x3069;&#x306E;&#x6A19;&#x6E96;&#x5316;&#x4F5C;&#x696D;&#x3092;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-Ecma International&#x306E;&#x4E2D;&#x306E;Technical Committee 39&#xFF08;TC39&#xFF09;&#x3068;&#x3044;&#x3046;&#x6280;&#x8853;&#x59D4;&#x54E1;&#x4F1A;&#x304C;&#x4E2D;&#x5FC3;&#x3068;&#x306A;&#x3063;&#x3066;&#x3001;ECMAScript&#x4ED5;&#x69D8;&#x306B;&#x3064;&#x3044;&#x3066;&#x8B70;&#x8AD6;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x6280;&#x8853;&#x59D4;&#x54E1;&#x4F1A;&#x306F;Microsoft&#x3001;Mozilla&#x3001;Google&#x3001;Apple&#x3068;&#x3044;&#x3063;&#x305F;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x30D9;&#x30F3;&#x30C0;&#x30FC;&#x3084;ECMAScript&#x306B;&#x95A2;&#x5FC3;&#x306E;&#x3042;&#x308B;&#x4F01;&#x696D;&#x306A;&#x3069;&#x306B;&#x3088;&#x3063;&#x3066;&#x69CB;&#x6210;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="history"><a name="history" class="plugin-anchor" href="#history"><i class="fa fa-link" aria-hidden="true"></i></a>ECMAScript&#x306E;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x306E;&#x6B74;&#x53F2; </h2>
-<p>&#x3053;&#x3053;&#x3067;&#x3001;&#x7C21;&#x5358;&#x306B;ECMAScript&#x306E;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x306E;&#x6B74;&#x53F2;&#x3092;&#x632F;&#x308A;&#x8FD4;&#x3063;&#x3066;&#x307F;&#x307E;&#x3057;&#x3087;&#x3046;&#x3002;</p>
+<p>ここまでJavaScriptの基本文法について見てきましたが、その文法を定めるECMAScriptという仕様自体がどのように変化していくのかを見ていきましょう。</p>
+<p>ECMAScriptは<a href="http://www.ecma-international.org/" title="Ecma International" target="_blank">Ecma International</a>という団体によって標準化されている仕様です。
+Ecma InternationalはECMAScript以外にもC#やDartなどの標準化作業をしています。
+Ecma Internationalの中のTechnical Committee 39（TC39）という技術委員会が中心となって、ECMAScript仕様について議論しています。
+この技術委員会はMicrosoft、Mozilla、Google、AppleといったブラウザベンダーやECMAScriptに関心のある企業などによって構成されます。</p>
+<h2 id="history"><a name="history" class="plugin-anchor" href="#history"><i class="fa fa-link" aria-hidden="true"></i></a>ECMAScriptのバージョンの歴史 </h2>
+<p>ここで、簡単にECMAScriptのバージョンの歴史を振り返ってみましょう。</p>
 <table>
 <thead>
 <tr>
-<th>&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;</th>
-<th>&#x30EA;&#x30EA;&#x30FC;&#x30B9;&#x6642;&#x671F;</th>
+<th>バージョン</th>
+<th>リリース時期</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1</td>
-<td>1997&#x5E74;6&#x6708;</td>
+<td>1997年6月</td>
 </tr>
 <tr>
 <td>2</td>
-<td>1998&#x5E74;6&#x6708;</td>
+<td>1998年6月</td>
 </tr>
 <tr>
 <td>3</td>
-<td>1999&#x5E74;12&#x6708;</td>
+<td>1999年12月</td>
 </tr>
 <tr>
 <td>4</td>
-<td>&#x7834;&#x68C4;<sup><a href="#fn_1" id="reffn_1">1</a></sup></td>
+<td>破棄<sup><a href="#fn_1" id="reffn_1">1</a></sup></td>
 </tr>
 <tr>
 <td>5</td>
-<td>2009&#x5E74;12&#x6708;</td>
+<td>2009年12月</td>
 </tr>
 <tr>
 <td>5.1</td>
-<td>2011&#x5E74;6&#x6708;</td>
+<td>2011年6月</td>
 </tr>
 <tr>
 <td>2015</td>
-<td>2015&#x5E74;6&#x6708;</td>
+<td>2015年6月</td>
 </tr>
 <tr>
 <td>2016</td>
-<td>2016&#x5E74;6&#x6708;</td>
+<td>2016年6月</td>
 </tr>
 <tr>
 <td>2017</td>
-<td>2017&#x5E74;6&#x6708;</td>
+<td>2017年6月</td>
 </tr>
 <tr>
-<td>&#x4EE5;&#x4E0B;&#x6BCE;&#x5E74;&#x30EA;&#x30EA;&#x30FC;&#x30B9;</td>
+<td>以下毎年リリース</td>
 </tr>
 </tbody>
 </table>
 <!-- textlint-disable -->
-<p>ES5.1&#x304B;&#x3089;ES2015&#x304C;&#x3067;&#x308B;&#x307E;&#x3067;4&#x5E74;&#x3082;&#x306E;&#x6B73;&#x6708;&#x304C;&#x304B;&#x304B;&#x3063;&#x3066;&#x3044;&#x308B;&#x306E;&#x306B;&#x5BFE;&#x3057;&#x3066;&#x3001;ES2015&#x4EE5;&#x964D;&#x306F;&#x6BCE;&#x5E74;&#x30EA;&#x30EA;&#x30FC;&#x30B9;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x6BCE;&#x5E74;&#x5B89;&#x5B9A;&#x3057;&#x305F;&#x30EA;&#x30EA;&#x30FC;&#x30B9;&#x3092;&#x884C;&#x3048;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x3063;&#x305F;&#x306E;&#x306F;&#x3001;ES2015&#x4EE5;&#x964D;&#x306B;&#x4ED5;&#x69D8;&#x7B56;&#x5B9A;&#x30D7;&#x30ED;&#x30BB;&#x30B9;&#x306E;&#x5909;&#x66F4;&#x304C;&#x884C;&#x308F;&#x308C;&#x305F;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;</p>
+<p>ES5.1からES2015がでるまで4年もの歳月がかかっているのに対して、ES2015以降は毎年リリースされています。
+毎年安定したリリースを行えるようになったのは、ES2015以降に仕様策定プロセスの変更が行われたためです。</p>
 <!-- textlint-enable -->
-<h2 id="living-standard"><a name="living-standard" class="plugin-anchor" href="#living-standard"><i class="fa fa-link" aria-hidden="true"></i></a>Living Standard&#x3068;&#x306A;&#x308B;ECMAScript </h2>
-<p>&#x73FE;&#x5728;&#x3001;ECMAScript&#x306E;&#x4ED5;&#x69D8;&#x66F8;&#x306E;&#x30C9;&#x30E9;&#x30D5;&#x30C8;&#x306F;GitHub&#x4E0A;&#x306E;<a href="https://github.com/tc39/ecma262" title="tc39/ecma262: Status, process, and documents for ECMA262" target="_blank">tc39/ecma262</a>&#x3067;&#x7BA1;&#x7406;&#x3055;&#x308C;&#x3066;&#x304A;&#x308A;&#x3001;&#x65E5;&#x3005;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x672C;&#x5F53;&#x306E;&#x610F;&#x5473;&#x3067;&#x306E;&#x6700;&#x65B0;&#x306E;ECMAScript&#x4ED5;&#x69D8;&#x306F;<a href="https://tc39.github.io/ecma262/" target="_blank">https://tc39.github.io/ecma262/</a>&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;&#x66F4;&#x65B0;&#x3054;&#x3068;&#x306B;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x756A;&#x53F7;&#x3092;&#x3064;&#x3051;&#x305A;&#x306B;&#x3001;&#x5E38;&#x306B;&#x6700;&#x65B0;&#x7248;&#x3092;&#x516C;&#x958B;&#x3059;&#x308B;&#x4ED5;&#x69D8;&#x306E;&#x3053;&#x3068;&#x3092;<strong>Living Standard</strong>&#x3068;&#x547C;&#x3073;&#x307E;&#x3059;&#x3002;</p>
-<p>ECMAScript&#x306F;Living Standard&#x3067;&#x3059;&#x304C;&#x3001;&#x3053;&#x308C;&#x306B;&#x52A0;&#x3048;&#x3066;ECMAScript 2017&#x306E;&#x3088;&#x3046;&#x306B;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x756A;&#x53F7;&#x3092;&#x3064;&#x3051;&#x305F;&#x3082;&#x306E;&#x3082;&#x516C;&#x958B;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x3064;&#x304D;ECMAScript&#x306F;&#x3001;&#x6BCE;&#x5E74;&#x6C7A;&#x307E;&#x3063;&#x305F;&#x6642;&#x671F;&#x306E;&#x30C9;&#x30E9;&#x30D5;&#x30C8;&#x3092;&#x5143;&#x306B;&#x3057;&#x305F;&#x30B9;&#x30CA;&#x30C3;&#x30D7;&#x30B7;&#x30E7;&#x30C3;&#x30C8;&#x306E;&#x3088;&#x3046;&#x306A;&#x3082;&#x306E;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306A;&#x3069;&#x306B;&#x5B9F;&#x969B;&#x306B;JavaScript&#x3068;&#x3057;&#x3066;&#x5B9F;&#x88C5;&#x3055;&#x308C;&#x308B;&#x969B;&#x306B;&#x306F;&#x3001;Living Standard&#x306E;ECMAScript&#x3092;&#x53C2;&#x7167;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x308C;&#x306F;&#x3001;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x81EA;&#x4F53;&#x3082;&#x65E5;&#x3005;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x308B;&#x3082;&#x306E;&#x3067;&#x3042;&#x308A;&#x3001;&#x6C7A;&#x307E;&#x3063;&#x305F;&#x6642;&#x671F;&#x306B;&#x3057;&#x304B;&#x30EA;&#x30EA;&#x30FC;&#x30B9;&#x3055;&#x308C;&#x306A;&#x3044;&#x30D0;&#x30FC;&#x30B8;&#x30E7;&#x30F3;&#x3064;&#x304D;&#x3088;&#x308A;&#x3082;Living Standard&#x306E;&#x307B;&#x3046;&#x304C;&#x9069;&#x5F53;&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;</p>
-<h2 id="specification-process"><a name="specification-process" class="plugin-anchor" href="#specification-process"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4ED5;&#x69D8;&#x7B56;&#x5B9A;&#x306E;&#x30D7;&#x30ED;&#x30BB;&#x30B9; </h2>
-<p>ES2015&#x4EE5;&#x524D;&#x306F;&#x3059;&#x3079;&#x3066;&#x306E;&#x4ED5;&#x69D8;&#x306E;&#x5408;&#x610F;&#x304C;&#x53D6;&#x308C;&#x308B;&#x307E;&#x3067;&#x5EF6;&#x3005;&#x3068;&#x8B70;&#x8AD6;&#x3092;&#x7D9A;&#x3051;&#x3001;&#x3059;&#x3079;&#x3066;&#x304C;&#x6C7A;&#x307E;&#x3063;&#x3066;&#x304B;&#x3089;&#x30EA;&#x30EA;&#x30FC;&#x30B9;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;ES2015&#x304C;&#x30EA;&#x30EA;&#x30FC;&#x30B9;&#x3055;&#x308C;&#x308B;&#x307E;&#x3067;&#x306B;&#x306F;&#x9577;&#x3044;&#x6642;&#x9593;&#x304C;&#x304B;&#x304B;&#x308A;&#x3001;&#x8A00;&#x8A9E;&#x306E;&#x9032;&#x5316;&#x304C;&#x505C;&#x6EDE;&#x3057;&#x3066;&#x3044;&#x307E;&#x3057;&#x305F;&#x3002;
-&#x3053;&#x306E;&#x554F;&#x984C;&#x3092;&#x89E3;&#x6D88;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x3001;TC39&#x306F;&#x6BCE;&#x5E74;&#x30EA;&#x30EA;&#x30FC;&#x30B9;&#x3059;&#x308B;&#x5F62;&#x3078;&#x3068;ECMAScript&#x306E;&#x7B56;&#x5B9A;&#x30D7;&#x30ED;&#x30BB;&#x30B9;&#x3092;&#x5909;&#x66F4;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;</p>
-<p>&#x3053;&#x306E;&#x7B56;&#x5B9A;&#x30D7;&#x30ED;&#x30BB;&#x30B9;&#x306F;ES2015&#x306E;&#x30EA;&#x30EA;&#x30FC;&#x30B9;&#x5F8C;&#x306B;&#x9069;&#x7528;&#x3055;&#x308C;&#x3001;&#x3053;&#x306E;&#x30D7;&#x30ED;&#x30BB;&#x30B9;&#x3067;&#x521D;&#x3081;&#x3066;&#x30EA;&#x30EA;&#x30FC;&#x30B9;&#x3055;&#x308C;&#x305F;&#x306E;&#x304C;ES2016&#x3068;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;
-ES2016&#x4EE5;&#x964D;&#x3067;&#x306F;&#x3001;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x4ED5;&#x69D8;&#x7B56;&#x5B9A;&#x306E;&#x30D7;&#x30ED;&#x30BB;&#x30B9;&#x3067;&#x8B70;&#x8AD6;&#x3092;&#x9032;&#x3081;&#x3066;&#x4ED5;&#x69D8;&#x304C;&#x6C7A;&#x5B9A;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;<sup><a href="#fn_2" id="reffn_2">2</a></sup></p>
-<p>&#x4ED5;&#x69D8;&#x306B;&#x8FFD;&#x52A0;&#x3059;&#x308B;&#x6A5F;&#x80FD;&#xFF08;API&#x3001;&#x69CB;&#x6587;&#x306A;&#x3069;&#xFF09;&#x3092;&#x305D;&#x308C;&#x305E;&#x308C;&#x500B;&#x5225;&#x306E;<strong>&#x30D7;&#x30ED;&#x30DD;&#x30FC;&#x30B6;&#x30EB;</strong>&#xFF08;&#x63D0;&#x6848;&#x66F8;&#xFF09;&#x3068;&#x3057;&#x3066;&#x9032;&#x3081;&#x3066;&#x3044;&#x304D;&#x307E;&#x3059;&#x3002;
-&#x73FE;&#x5728;&#x7B56;&#x5B9A;&#x4E2D;&#x306E;&#x30D7;&#x30ED;&#x30DD;&#x30FC;&#x30B6;&#x30EB;&#x306F;GitHub&#x4E0A;&#x306E;<a href="https://github.com/tc39/proposals" title="tc39/proposals: Tracking ECMAScript Proposals" target="_blank">tc39/proposals</a>&#x306B;&#x4E00;&#x89A7;&#x304C;&#x516C;&#x958B;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x308C;&#x305E;&#x308C;&#x306E;&#x30D7;&#x30ED;&#x30DD;&#x30FC;&#x30B6;&#x30EB;&#x306F;&#x8CAC;&#x4EFB;&#x8005;&#x3067;&#x3042;&#x308B;<strong>&#x30C1;&#x30E3;&#x30F3;&#x30D4;&#x30AA;&#x30F3;</strong>&#x3068;<strong>&#x30B9;&#x30C6;&#x30FC;&#x30B8;</strong>&#xFF08;Stage&#xFF09;&#x3068;&#x547C;&#x3070;&#x308C;&#x308B;<code>0</code>&#x304B;&#x3089;<code>4</code>&#x306E;5&#x6BB5;&#x968E;&#x306E;&#x72B6;&#x614B;&#x3092;&#x6301;&#x3061;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="living-standard"><a name="living-standard" class="plugin-anchor" href="#living-standard"><i class="fa fa-link" aria-hidden="true"></i></a>Living StandardとなるECMAScript </h2>
+<p>現在、ECMAScriptの仕様書のドラフトはGitHub上の<a href="https://github.com/tc39/ecma262" title="tc39/ecma262: Status, process, and documents for ECMA262" target="_blank">tc39/ecma262</a>で管理されており、日々更新されています。
+そのため、本当の意味での最新のECMAScript仕様は<a href="https://tc39.github.io/ecma262/" target="_blank">https://tc39.github.io/ecma262/</a>となります。
+このように更新ごとにバージョン番号をつけずに、常に最新版を公開する仕様のことを<strong>Living Standard</strong>と呼びます。</p>
+<p>ECMAScriptはLiving Standardですが、これに加えてECMAScript 2017のようにバージョン番号をつけたものも公開されています。
+このバージョンつきECMAScriptは、毎年決まった時期のドラフトを元にしたスナップショットのようなものです。</p>
+<p>ブラウザなどに実際にJavaScriptとして実装される際には、Living StandardのECMAScriptを参照しています。
+これは、ブラウザ自体も日々更新されるものであり、決まった時期にしかリリースされないバージョンつきよりもLiving Standardのほうが適当であるためです。</p>
+<h2 id="specification-process"><a name="specification-process" class="plugin-anchor" href="#specification-process"><i class="fa fa-link" aria-hidden="true"></i></a>仕様策定のプロセス </h2>
+<p>ES2015以前はすべての仕様の合意が取れるまで延々と議論を続け、すべてが決まってからリリースされていました。
+そのため、ES2015がリリースされるまでには長い時間がかかり、言語の進化が停滞していました。
+この問題を解消するために、TC39は毎年リリースする形へとECMAScriptの策定プロセスを変更しました。</p>
+<p>この策定プロセスはES2015のリリース後に適用され、このプロセスで初めてリリースされたのがES2016となります。
+ES2016以降では、次のような仕様策定のプロセスで議論を進めて仕様が決定されています。<sup><a href="#fn_2" id="reffn_2">2</a></sup></p>
+<p>仕様に追加する機能（API、構文など）をそれぞれ個別の<strong>プロポーザル</strong>（提案書）として進めていきます。
+現在策定中のプロポーザルはGitHub上の<a href="https://github.com/tc39/proposals" title="tc39/proposals: Tracking ECMAScript Proposals" target="_blank">tc39/proposals</a>に一覧が公開されています。
+それぞれのプロポーザルは責任者である<strong>チャンピオン</strong>と<strong>ステージ</strong>（Stage）と呼ばれる<code>0</code>から<code>4</code>の5段階の状態を持ちます。</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:center">&#x30B9;&#x30C6;&#x30FC;&#x30B8;</th>
-<th>&#x30B9;&#x30C6;&#x30FC;&#x30B8;&#x306E;&#x6982;&#x8981;</th>
+<th style="text-align:center">ステージ</th>
+<th>ステージの概要</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:center">0</td>
-<td>&#x30A2;&#x30A4;&#x30C7;&#x30A2;&#x306E;&#x6BB5;&#x968E;</td>
+<td>アイデアの段階</td>
 </tr>
 <tr>
 <td style="text-align:center">1</td>
-<td>&#x6A5F;&#x80FD;&#x63D0;&#x6848;&#x306E;&#x6BB5;&#x968E;</td>
+<td>機能提案の段階</td>
 </tr>
 <tr>
 <td style="text-align:center">2</td>
-<td>&#x6A5F;&#x80FD;&#x306E;&#x4ED5;&#x69D8;&#x66F8;&#x30C9;&#x30E9;&#x30D5;&#x30C8;&#x3092;&#x4F5C;&#x6210;&#x3057;&#x305F;&#x6BB5;&#x968E;</td>
+<td>機能の仕様書ドラフトを作成した段階</td>
 </tr>
 <tr>
 <td style="text-align:center">3</td>
-<td>&#x4ED5;&#x69D8;&#x3068;&#x3057;&#x3066;&#x306F;&#x5B8C;&#x6210;&#x3057;&#x3066;&#x304A;&#x308A;&#x3001;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306E;&#x5B9F;&#x88C5;&#x3084;&#x30D5;&#x30A3;&#x30FC;&#x30C9;&#x30D0;&#x30C3;&#x30AF;&#x3092;&#x6C42;&#x3081;&#x308B;&#x6BB5;&#x968E;</td>
+<td>仕様としては完成しており、ブラウザの実装やフィードバックを求める段階</td>
 </tr>
 <tr>
 <td style="text-align:center">4</td>
-<td>&#x4ED5;&#x69D8;&#x7B56;&#x5B9A;&#x304C;&#x5B8C;&#x4E86;&#x3057;&#x3001;2&#x3064;&#x4EE5;&#x4E0A;&#x306E;&#x5B9F;&#x88C5;&#x304C;&#x5B58;&#x5728;&#x3057;&#x3066;&#x3044;&#x308B;<br>&#x6B63;&#x5F0F;&#x306B;ECMAScript&#x306B;&#x30DE;&#x30FC;&#x30B8;&#x3067;&#x304D;&#x308B;&#x6BB5;&#x968E;</td>
+<td>仕様策定が完了し、2つ以上の実装が存在している<br>正式にECMAScriptにマージできる段階</td>
 </tr>
 </tbody>
 </table>
-<p>2&#x30F6;&#x6708;&#x306B;&#x4E00;&#x5EA6;&#x884C;&#x308F;&#x308C;&#x308B;TC39&#x306E;&#x30DF;&#x30FC;&#x30C6;&#x30A3;&#x30F3;&#x30B0;&#x306B;&#x304A;&#x3044;&#x3066;&#x3001;&#x30D7;&#x30ED;&#x30DD;&#x30FC;&#x30B6;&#x30EB;&#x3054;&#x3068;&#x306B;&#x30B9;&#x30C6;&#x30FC;&#x30B8;&#x3092;&#x9032;&#x3081;&#x308B;&#x304B;&#x3069;&#x3046;&#x304B;&#x3092;&#x8B70;&#x8AD6;&#x3057;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x30DF;&#x30FC;&#x30C6;&#x30A3;&#x30F3;&#x30B0;&#x306E;&#x8B70;&#x4E8B;&#x9332;&#x3082;GitHub&#x4E0A;&#x306E;<a href="https://github.com/tc39/tc39-notes" title="tc39/tc39-notes: TC39 Meeting Notes" target="_blank">tc39/tc39-notes</a>&#x306B;&#x3066;&#x516C;&#x958B;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x30B9;&#x30C6;&#x30FC;&#x30B8;4&#x3068;&#x306A;&#x3063;&#x305F;&#x30D7;&#x30ED;&#x30DD;&#x30FC;&#x30B6;&#x30EB;&#x306F;&#x30C9;&#x30E9;&#x30D5;&#x30C8;&#x7248;&#x3067;&#x3042;&#x308B;<a href="https://github.com/tc39/ecma262" title="tc39/ecma262: Status, process, and documents for ECMA262" target="_blank">tc39/ecma262</a>&#x3078;&#x30DE;&#x30FC;&#x30B8;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x3057;&#x3066;&#x6BCE;&#x5E74;&#x306E;&#x6C7A;&#x307E;&#x3063;&#x305F;&#x6642;&#x671F;&#x306B;&#x30C9;&#x30E9;&#x30D5;&#x30C8;&#x7248;&#x3092;&#x5143;&#x306B;&#x3057;&#x3066;<code>ECMAScript 20XX</code>&#x3068;&#x3057;&#x3066;&#x30EA;&#x30EA;&#x30FC;&#x30B9;&#x3057;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x306E;&#x4ED5;&#x69D8;&#x7B56;&#x5B9A;&#x30D7;&#x30ED;&#x30BB;&#x30B9;&#x306E;&#x5909;&#x66F4;&#x306F;&#x3001;ECMAScript&#x306B;&#x542B;&#x307E;&#x308C;&#x308B;&#x6A5F;&#x80FD;&#x306E;&#x5F62;&#x306B;&#x3082;&#x5F71;&#x97FF;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x305F;&#x3068;&#x3048;&#x3070;&#x3001;<code>class</code>&#x69CB;&#x6587;&#x306E;&#x7B56;&#x5B9A;&#x306F;<strong>&#x6700;&#x5927;&#x9650;&#x306B;&#x6700;&#x5C0F;&#x306E;&#x30AF;&#x30E9;&#x30B9;</strong>&#xFF08;maximally minimal classes&#xFF09;&#x3068;&#x547C;&#x3070;&#x308C;&#x308B;&#x5F62;&#x3067;&#x63D0;&#x6848;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x308C;&#x306B;&#x3088;&#x308A;ES2015&#x3067;<code>class</code>&#x69CB;&#x6587;&#x304C;&#x5C0E;&#x5165;&#x3055;&#x308C;&#x307E;&#x3057;&#x305F;&#x304C;&#x3001;&#x30AF;&#x30E9;&#x30B9;&#x3068;&#x3057;&#x3066;&#x5408;&#x610F;&#x304C;&#x53D6;&#x308C;&#x308B;&#x6700;&#x4F4E;&#x9650;&#x306E;&#x6A5F;&#x80FD;&#x3060;&#x3051;&#x306E;&#x72B6;&#x614B;&#x3067;&#x5165;&#x308A;&#x307E;&#x3057;&#x305F;&#x3002;
-&#x305D;&#x306E;&#x4ED6;&#x306E;&#x30AF;&#x30E9;&#x30B9;&#x306E;&#x6A5F;&#x80FD;&#x306F;&#x5225;&#x306E;&#x30D7;&#x30ED;&#x30DD;&#x30FC;&#x30B6;&#x30EB;&#x3068;&#x3057;&#x3066;&#x63D0;&#x6848;&#x3055;&#x308C;&#x3001;ES2015&#x4EE5;&#x964D;&#x306B;&#x6301;&#x3061;&#x8D8A;&#x3055;&#x308C;&#x305F;&#x5F62;&#x3067;&#x8B70;&#x8AD6;&#x304C;&#x9032;&#x3081;&#x3089;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x306E;&#x3088;&#x3046;&#x306A;&#x5408;&#x610F;&#x304C;&#x53D6;&#x308C;&#x308B;&#x6700;&#x4F4E;&#x9650;&#x306E;&#x5F62;&#x3067;&#x30D7;&#x30ED;&#x30DD;&#x30FC;&#x30B6;&#x30EB;&#x3092;&#x9032;&#x3081;&#x3066;&#x3044;&#x304F;&#x306E;&#x306B;&#x306F;&#x3001;ES4&#x306E;&#x82E6;&#x3044;&#x5931;&#x6557;&#x304C;&#x80CC;&#x666F;&#x306B;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-ES4&#x3067;&#x306F;ECMAScript&#x306B;&#x591A;&#x304F;&#x306E;&#x5909;&#x66F4;&#x3092;&#x5165;&#x308C;&#x308B;&#x3053;&#x3068;&#x3092;&#x8A66;&#x307F;&#x307E;&#x3057;&#x305F;&#x304C;&#x3001;TC39&#x5185;&#x3067;&#x3082;&#x610F;&#x898B;&#x304C;&#x5206;&#x304B;&#x308C;&#x3001;&#x6700;&#x7D42;&#x7684;&#x306B;&#x5408;&#x610F;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3067;&#x3057;&#x305F;&#x3002;
-&#x3053;&#x308C;&#x306B;&#x3088;&#x308A;ES4&#x306E;&#x7B56;&#x5B9A;&#x306B;&#x5272;&#x3044;&#x305F;&#x6570;&#x5E74;&#x5206;&#x306E;&#x30EA;&#x30BD;&#x30FC;&#x30B9;&#x304C;&#x7121;&#x99C4;&#x306B;&#x306A;&#x3063;&#x3066;&#x3057;&#x307E;&#x3063;&#x305F;&#x3068;&#x3044;&#x3046;&#x7D4C;&#x7DEF;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;<sup><a href="#fn_3" id="reffn_3">3</a></sup></p>
-<p>ES2016&#x4EE5;&#x964D;&#x306E;&#x7B56;&#x5B9A;&#x30D7;&#x30ED;&#x30BB;&#x30B9;&#x3067;&#x3082;&#x3001;&#x3059;&#x3079;&#x3066;&#x306E;&#x30D7;&#x30ED;&#x30DD;&#x30FC;&#x30B6;&#x30EB;&#x304C;&#x4ED5;&#x69D8;&#x306B;&#x5165;&#x308B;&#x308F;&#x3051;&#x3067;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;<sup><a href="#fn_4" id="reffn_4">4</a></sup>
-&#x5225;&#x306E;&#x4EE3;&#x66FF;&#x30D7;&#x30ED;&#x30DD;&#x30FC;&#x30B6;&#x30EB;&#x304C;&#x51FA;&#x305F;&#x5834;&#x5408;&#x3084;&#x5F8C;&#x65B9;&#x4E92;&#x63DB;&#x6027;&#x3092;&#x4FDD;&#x3066;&#x306A;&#x3044;&#x5834;&#x5408;&#x306A;&#x3069;&#x306B;&#x30D7;&#x30ED;&#x30DD;&#x30FC;&#x30B6;&#x30EB;&#x306E;&#x7B56;&#x5B9A;&#x3092;&#x4E2D;&#x65AD;&#x3059;&#x308B;&#x5834;&#x5408;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x3057;&#x304B;&#x3057;&#x3001;&#x3053;&#x306E;&#x5834;&#x5408;&#x3067;&#x3082;&#x30D7;&#x30ED;&#x30DD;&#x30FC;&#x30B6;&#x30EB;&#x3068;&#x3044;&#x3046;&#x5358;&#x4F4D;&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x7B56;&#x5B9A;&#x4F5C;&#x696D;&#x306E;&#x7121;&#x99C4;&#x306F;&#x6700;&#x5C0F;&#x9650;&#x3067;&#x6E08;&#x307F;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x306E;&#x3088;&#x3046;&#x306B;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x5316;&#x3055;&#x308C;&#x305F;&#x30D7;&#x30ED;&#x30DD;&#x30FC;&#x30B6;&#x30EB;&#x306F;&#x5165;&#x308C;&#x66FF;&#x3048;&#x304C;&#x3057;&#x3084;&#x3059;&#x3044;&#x3068;&#x3044;&#x3046;&#x6027;&#x8CEA;&#x3082;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<h2 id="try-proposal"><a name="try-proposal" class="plugin-anchor" href="#try-proposal"><i class="fa fa-link" aria-hidden="true"></i></a>&#x30D7;&#x30ED;&#x30DD;&#x30FC;&#x30B6;&#x30EB;&#x306E;&#x6A5F;&#x80FD;&#x3092;&#x8A66;&#x3059; </h2>
-<p>ECMAScript&#x306E;&#x7B56;&#x5B9A;&#x30D7;&#x30ED;&#x30BB;&#x30B9;&#x306E;&#x30B9;&#x30C6;&#x30FC;&#x30B8;4&#x306B;&#x300C;2&#x3064;&#x4EE5;&#x4E0A;&#x306E;&#x5B9F;&#x88C5;&#x304C;&#x5B58;&#x5728;&#x3057;&#x3066;&#x3044;&#x308B;&#x300D;&#x3068;&#x3044;&#x3046;&#x9805;&#x76EE;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306E;JavaScript&#x30A8;&#x30F3;&#x30B8;&#x30F3;&#x306B;&#x306F;&#x3001;&#x7B56;&#x5B9A;&#x4E2D;&#x306E;&#x30D7;&#x30ED;&#x30DD;&#x30FC;&#x30B6;&#x30EB;&#x304C;&#x5B9F;&#x88C5;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x5834;&#x5408;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x591A;&#x304F;&#x306E;&#x5834;&#x5408;&#x306F;&#x8A66;&#x9A13;&#x7684;&#x306A;&#x30D5;&#x30E9;&#x30B0;&#x3064;&#x304D;&#x3067;&#x5B9F;&#x88C5;&#x3055;&#x308C;&#x3066;&#x304A;&#x308A;&#x30D5;&#x30E9;&#x30B0;&#x3092;&#x6709;&#x52B9;&#x5316;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x3001;&#x8A66;&#x3059;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x307E;&#x305F;Transpiler&#x3084;Polyfill&#x3068;&#x3044;&#x3063;&#x305F;&#x624B;&#x6BB5;&#x3067;&#x3001;&#x30D7;&#x30ED;&#x30DD;&#x30FC;&#x30B6;&#x30EB;&#x306E;&#x6A5F;&#x80FD;&#x3092;&#x30A8;&#x30DF;&#x30E5;&#x30EC;&#x30FC;&#x30C8;&#x3067;&#x304D;&#x308B;&#x5834;&#x5408;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>Transpiler&#x3068;&#x306F;&#x3001;&#x65B0;&#x3057;&#x3044;&#x69CB;&#x6587;&#x3092;&#x65E2;&#x5B58;&#x306E;&#x6A5F;&#x80FD;&#x3067;&#x518D;&#x73FE;&#x3067;&#x304D;&#x308B;&#x3088;&#x3046;&#x306B;&#x30BD;&#x30FC;&#x30B9;&#x30B3;&#x30FC;&#x30C9;&#x3092;&#x5909;&#x63DB;&#x3059;&#x308B;&#x30C4;&#x30FC;&#x30EB;&#x306E;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;
-&#x305F;&#x3068;&#x3048;&#x3070;&#x3001;ES2015&#x3067;<code>class</code>&#x69CB;&#x6587;&#x304C;&#x5C0E;&#x5165;&#x3055;&#x308C;&#x307E;&#x3057;&#x305F;&#x304C;&#x3001;ES5&#x3067;&#x306F;<code>class</code>&#x306F;&#x4E88;&#x7D04;&#x8A9E;&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x69CB;&#x6587;&#x30A8;&#x30E9;&#x30FC;&#x3068;&#x306A;&#x308A;&#x5B9F;&#x884C;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3002;
-Transpiler&#x3067;&#x306F;&#x3001;<code>class</code>&#x69CB;&#x6587;&#x3092;&#x542B;&#x3080;&#x30BD;&#x30FC;&#x30B9;&#x30B3;&#x30FC;&#x30C9;&#x3092;<code>function</code>&#x30AD;&#x30FC;&#x30EF;&#x30FC;&#x30C9;&#x3092;&#x4F7F;&#x3063;&#x3066;&#x7591;&#x4F3C;&#x7684;&#x306B;&#x518D;&#x73FE;&#x3059;&#x308B;&#x30B3;&#x30FC;&#x30C9;&#x3078;&#x5909;&#x63DB;&#x3057;&#x307E;&#x3059;&#x3002;
-Transpiler&#x3068;&#x3057;&#x3066;&#x306F;<a href="https://babeljs.io/" title="Babel &#xB7; The compiler for writing next generation JavaScript" target="_blank">Babel</a>&#x3084;<a href="https://www.typescriptlang.org/" title="TypeScript - JavaScript that scales." target="_blank">TypeScript</a>&#x306A;&#x3069;&#x304C;&#x6709;&#x540D;&#x3067;&#x3059;&#x3002;</p>
-<p>Polyfill&#x3068;&#x306F;&#x3001;&#x65B0;&#x3057;&#x3044;&#x95A2;&#x6570;&#x3084;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306A;&#x3069;&#x306E;&#x4ED5;&#x69D8;&#x3092;&#x6E80;&#x305F;&#x3059;&#x3088;&#x3046;&#x306A;&#x5B9F;&#x88C5;&#x3092;&#x63D0;&#x4F9B;&#x3059;&#x308B;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x306E;&#x3053;&#x3068;&#x3067;&#x3059;&#x3002;
-&#x305F;&#x3068;&#x3048;&#x3070;&#x3001;ES2016&#x3067;&#x306F;<code>Array#includes</code>&#x3068;&#x3044;&#x3046;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x304C;&#x8FFD;&#x52A0;&#x3055;&#x308C;&#x307E;&#x3057;&#x305F;&#x3002;
-&#x69CB;&#x6587;&#x3068;&#x306F;&#x7570;&#x306A;&#x308A;<code>Array#includes</code>&#x306E;&#x3088;&#x3046;&#x306A;&#x30E1;&#x30BD;&#x30C3;&#x30C9;&#x306F;&#x30D3;&#x30EB;&#x30C8;&#x30A4;&#x30F3;&#x30AA;&#x30D6;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x3092;&#x66F8;&#x304D;&#x63DB;&#x3048;&#x308B;&#x3053;&#x3068;&#x3067;&#x5B9F;&#x88C5;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;
-Polyfill&#x3092;&#x63D0;&#x4F9B;&#x3059;&#x308B;&#x3082;&#x306E;&#x3068;&#x3057;&#x3066;&#x306F;<a href="https://github.com/zloirock/core-js" title="zloirock/core-js: Standard Library" target="_blank">core-js</a>&#x3084;<a href="https://polyfill.io/v2/docs/" title="Polyfill service" target="_blank">polyfill.io</a>&#x306A;&#x3069;&#x304C;&#x6709;&#x540D;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x6CE8;&#x610F;&#x70B9;&#x3068;&#x3057;&#x3066;&#x306F;Transpiler&#x3084;Polyfill&#x306F;&#x3001;&#x3042;&#x304F;&#x307E;&#x3067;&#x65E2;&#x5B58;&#x306E;&#x6A5F;&#x80FD;&#x3092;&#x7528;&#x3044;&#x3066;&#x65B0;&#x3057;&#x3044;&#x6A5F;&#x80FD;&#x306E;&#x518D;&#x73FE;&#x3092;&#x8A66;&#x307F;&#x3066;&#x3044;&#x308B;&#x3060;&#x3051;&#x306B;&#x3059;&#x304E;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x65E2;&#x5B58;&#x306E;&#x6A5F;&#x80FD;&#x3067;&#x518D;&#x73FE;&#x304C;&#x3067;&#x304D;&#x306A;&#x3044;&#x30D7;&#x30ED;&#x30DD;&#x30FC;&#x30B6;&#x30EB;&#xFF08;&#x6A5F;&#x80FD;&#xFF09;&#x306F;Transpiler&#x3084;Polyfill&#x3067;&#x306F;&#x518D;&#x73FE;&#x3067;&#x304D;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x307E;&#x305F;&#x3001;&#x5B8C;&#x5168;&#x306A;&#x518D;&#x73FE;&#x306F;&#x3067;&#x304D;&#x3066;&#x3044;&#x306A;&#x3044;&#x3053;&#x3068;&#x304C;&#x3042;&#x308B;&#x305F;&#x3081;Transpiler&#x3084;Polyfill&#x3092;&#x65B0;&#x3057;&#x3044;&#x6A5F;&#x80FD;&#x3092;&#x5B66;&#x3076;&#x305F;&#x3081;&#x306B;&#x4F7F;&#x3046;&#x3079;&#x304D;&#x3067;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;</p>
+<p>2ヶ月に一度行われるTC39のミーティングにおいて、プロポーザルごとにステージを進めるかどうかを議論します。
+このミーティングの議事録もGitHub上の<a href="https://github.com/tc39/tc39-notes" title="tc39/tc39-notes: TC39 Meeting Notes" target="_blank">tc39/tc39-notes</a>にて公開されています。
+ステージ4となったプロポーザルはドラフト版である<a href="https://github.com/tc39/ecma262" title="tc39/ecma262: Status, process, and documents for ECMA262" target="_blank">tc39/ecma262</a>へマージされます。
+そして毎年の決まった時期にドラフト版を元にして<code>ECMAScript 20XX</code>としてリリースします。</p>
+<p>この仕様策定プロセスの変更は、ECMAScriptに含まれる機能の形にも影響しています。</p>
+<p>たとえば、<code>class</code>構文の策定は<strong>最大限に最小のクラス</strong>（maximally minimal classes）と呼ばれる形で提案されています。
+これによりES2015で<code>class</code>構文が導入されましたが、クラスとして合意が取れる最低限の機能だけの状態で入りました。
+その他のクラスの機能は別のプロポーザルとして提案され、ES2015以降に持ち越された形で議論が進められています。</p>
+<p>このような合意が取れる最低限の形でプロポーザルを進めていくのには、ES4の苦い失敗が背景にあります。
+ES4ではECMAScriptに多くの変更を入れることを試みましたが、TC39内でも意見が分かれ、最終的に合意できませんでした。
+これによりES4の策定に割いた数年分のリソースが無駄になってしまったという経緯があります。<sup><a href="#fn_3" id="reffn_3">3</a></sup></p>
+<p>ES2016以降の策定プロセスでも、すべてのプロポーザルが仕様に入るわけではありません。<sup><a href="#fn_4" id="reffn_4">4</a></sup>
+別の代替プロポーザルが出た場合や後方互換性を保てない場合などにプロポーザルの策定を中断する場合があります。
+しかし、この場合でもプロポーザルという単位であるため策定作業の無駄は最小限で済みます。
+このようにモジュール化されたプロポーザルは入れ替えがしやすいという性質もあります。</p>
+<h2 id="try-proposal"><a name="try-proposal" class="plugin-anchor" href="#try-proposal"><i class="fa fa-link" aria-hidden="true"></i></a>プロポーザルの機能を試す </h2>
+<p>ECMAScriptの策定プロセスのステージ4に「2つ以上の実装が存在している」という項目があります。
+そのためブラウザのJavaScriptエンジンには、策定中のプロポーザルが実装されている場合があります。
+多くの場合は試験的なフラグつきで実装されておりフラグを有効化することで、試すことができるようになっています。</p>
+<p>またTranspilerやPolyfillといった手段で、プロポーザルの機能をエミュレートできる場合があります。</p>
+<p>Transpilerとは、新しい構文を既存の機能で再現できるようにソースコードを変換するツールのことです。
+たとえば、ES2015で<code>class</code>構文が導入されましたが、ES5では<code>class</code>は予約語であるため構文エラーとなり実行できません。
+Transpilerでは、<code>class</code>構文を含むソースコードを<code>function</code>キーワードを使って疑似的に再現するコードへ変換します。
+Transpilerとしては<a href="https://babeljs.io/" title="Babel · The compiler for writing next generation JavaScript" target="_blank">Babel</a>や<a href="https://www.typescriptlang.org/" title="TypeScript - JavaScript that scales." target="_blank">TypeScript</a>などが有名です。</p>
+<p>Polyfillとは、新しい関数やメソッドなどの仕様を満たすような実装を提供するライブラリのことです。
+たとえば、ES2016では<code>Array#includes</code>というメソッドが追加されました。
+構文とは異なり<code>Array#includes</code>のようなメソッドはビルトインオブジェクトを書き換えることで実装できます。
+Polyfillを提供するものとしては<a href="https://github.com/zloirock/core-js" title="zloirock/core-js: Standard Library" target="_blank">core-js</a>や<a href="https://polyfill.io/v2/docs/" title="Polyfill service" target="_blank">polyfill.io</a>などが有名です。</p>
+<p>注意点としてはTranspilerやPolyfillは、あくまで既存の機能を用いて新しい機能の再現を試みているだけにすぎません。
+そのため、既存の機能で再現ができないプロポーザル（機能）はTranspilerやPolyfillでは再現できません。
+また、完全な再現はできていないことがあるためTranspilerやPolyfillを新しい機能を学ぶために使うべきではありません。</p>
 <!-- Notes: バージョンが西暦となった理由
 
 実際に各ブラウザなどはECMAScriptを実装していますが、このときに参照するのは基本的にLiving StandardであるECMAScriptです。
@@ -1587,56 +1587,56 @@ Polyfill&#x3092;&#x63D0;&#x4F9B;&#x3059;&#x308B;&#x3082;&#x306E;&#x3068;&#x3057;
 ECMAScriptのバージョンとしてES6ではなくES2015のように西暦をバージョンとして使うようになったのも、Living Standardを意識しての試みです。
 
 -->
-<h2 id="meaning-specification-process"><a name="meaning-specification-process" class="plugin-anchor" href="#meaning-specification-process"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4ED5;&#x69D8;&#x3084;&#x7B56;&#x5B9A;&#x30D7;&#x30ED;&#x30BB;&#x30B9;&#x3092;&#x77E5;&#x308B;&#x610F;&#x5473; </h2>
-<p>&#x3053;&#x3046;&#x3057;&#x305F;ECMAScript&#x3068;&#x3044;&#x3046;&#x4ED5;&#x69D8;&#x3084;&#x7B56;&#x5B9A;&#x30D7;&#x30ED;&#x30BB;&#x30B9;&#x3092;&#x77E5;&#x308B;&#x610F;&#x5473;&#x306F;&#x4F55;&#x304C;&#x3042;&#x308B;&#x306E;&#x3067;&#x3057;&#x3087;&#x3046;&#x304B;&#xFF1F;&#x3000;&#x4E3B;&#x306B;&#x6B21;&#x306E;&#x3088;&#x3046;&#x306A;&#x7406;&#x7531;&#x3067;&#x77E5;&#x308B;&#x610F;&#x5473;&#x304C;&#x3042;&#x308B;&#x3068;&#x8003;&#x3048;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="meaning-specification-process"><a name="meaning-specification-process" class="plugin-anchor" href="#meaning-specification-process"><i class="fa fa-link" aria-hidden="true"></i></a>仕様や策定プロセスを知る意味 </h2>
+<p>こうしたECMAScriptという仕様や策定プロセスを知る意味は何があるのでしょうか？　主に次のような理由で知る意味があると考えています。</p>
 <ul>
-<li>&#x8A00;&#x8A9E;&#x3092;&#x5B66;&#x3076;&#x305F;&#x3081;</li>
-<li>&#x8A00;&#x8A9E;&#x304C;&#x9032;&#x5316;&#x3057;&#x3066;&#x3044;&#x308B;&#x305F;&#x3081;</li>
-<li>&#x60C5;&#x5831;&#x306E;&#x6B63;&#x3057;&#x3044;&#x72B6;&#x614B;&#x3092;&#x8ABF;&#x3079;&#x308B;&#x305F;&#x3081;</li>
+<li>言語を学ぶため</li>
+<li>言語が進化しているため</li>
+<li>情報の正しい状態を調べるため</li>
 </ul>
-<h3 id="to-learn"><a name="to-learn" class="plugin-anchor" href="#to-learn"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8A00;&#x8A9E;&#x3092;&#x5B66;&#x3076;&#x305F;&#x3081; </h3>
-<p>&#x3082;&#x3063;&#x3068;&#x3082;&#x5358;&#x7D14;&#x306A;&#x7406;&#x7531;&#x306F;JavaScript&#x3068;&#x3044;&#x3046;&#x8A00;&#x8A9E;&#x305D;&#x306E;&#x3082;&#x306E;&#x3092;&#x5B66;&#x3076;&#x305F;&#x3081;&#x3067;&#x3059;&#x3002;
-&#x8A00;&#x8A9E;&#x306E;&#x8A73;&#x7D30;&#x3092;&#x77E5;&#x308A;&#x305F;&#x3044;&#x5834;&#x5408;&#x306B;&#x306F;ECMAScript&#x3068;&#x3044;&#x3046;&#x4ED5;&#x69D8;&#x3092;&#x53C2;&#x7167;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3057;&#x304B;&#x3057;&#x306A;&#x304C;&#x3089;&#x3001;JavaScript&#x306E;&#x8A00;&#x8A9E;&#x6A5F;&#x80FD;&#x306B;&#x95A2;&#x3057;&#x3066;&#x306F;<a href="https://developer.mozilla.org/ja/" title="MDN Web Docs" target="_blank">MDN Web Docs</a>&#x3068;&#x3044;&#x3046;&#x512A;&#x308C;&#x305F;&#x30EA;&#x30D5;&#x30A1;&#x30EC;&#x30F3;&#x30B9;&#x30B5;&#x30A4;&#x30C8;&#x306A;&#x3069;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x4F7F;&#x3044;&#x65B9;&#x3092;&#x899A;&#x3048;&#x305F;&#x3044;&#x306A;&#x3069;&#x306E;&#x7BC4;&#x56F2;&#x3067;&#x306F;ECMAScript&#x306E;&#x4ED5;&#x69D8;&#x305D;&#x306E;&#x3082;&#x306E;&#x3092;&#x53C2;&#x7167;&#x3059;&#x308B;&#x6A5F;&#x4F1A;&#x306F;&#x5C11;&#x306A;&#x3044;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<h3 id="to-progress"><a name="to-progress" class="plugin-anchor" href="#to-progress"><i class="fa fa-link" aria-hidden="true"></i></a>&#x8A00;&#x8A9E;&#x304C;&#x9032;&#x5316;&#x3057;&#x3066;&#x3044;&#x308B;&#x305F;&#x3081; </h3>
-<p>ECMAScript&#x306F;Living Standard&#x3067;&#x3042;&#x308A;&#x3001;&#x65E5;&#x3005;&#x66F4;&#x65B0;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3053;&#x308C;&#x306F;&#x3001;&#x8A00;&#x8A9E;&#x4ED5;&#x69D8;&#x306B;&#x65B0;&#x3057;&#x3044;&#x6A5F;&#x80FD;&#x3084;&#x4FEE;&#x6B63;&#x306A;&#x3069;&#x304C;&#x5E38;&#x306B;&#x884C;&#x308F;&#x308C;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x3092;&#x8868;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>ECMAScript&#x306F;&#x5F8C;&#x65B9;&#x4E92;&#x63DB;&#x6027;&#x3092;&#x5C0A;&#x91CD;&#x3059;&#x308B;&#x305F;&#x3081;&#x3001;&#x4ECA;&#x5B66;&#x3093;&#x3067;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;&#x7121;&#x99C4;&#x306B;&#x306A;&#x308B;&#x308F;&#x3051;&#x3067;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x3057;&#x304B;&#x3057;&#x306A;&#x304C;&#x3089;&#x8A00;&#x8A9E;&#x81EA;&#x4F53;&#x3082;&#x9032;&#x5316;&#x3057;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x306F;&#x610F;&#x8B58;&#x3057;&#x3066;&#x304A;&#x304F;&#x3068;&#x3088;&#x3044;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;</p>
-<p>ECMAScript&#x306E;&#x30D7;&#x30ED;&#x30DD;&#x30FC;&#x30B6;&#x30EB;&#xFF08;&#x6A5F;&#x80FD;&#xFF09;&#x306F;&#x554F;&#x984C;&#x3092;&#x89E3;&#x6C7A;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x63D0;&#x6848;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x30D7;&#x30ED;&#x30DD;&#x30FC;&#x30B6;&#x30EB;&#x304C;ECMAScript&#x306B;&#x30DE;&#x30FC;&#x30B8;&#x3055;&#x308C;&#x5229;&#x7528;&#x3067;&#x304D;&#x308B;&#x5834;&#x5408;&#x3001;&#x305D;&#x306E;&#x6A5F;&#x80FD;&#x304C;&#x4F55;&#x3092;&#x89E3;&#x6C7A;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x5C0E;&#x5165;&#x3055;&#x308C;&#x305F;&#x306E;&#x304B;&#x3092;&#x77E5;&#x308B;&#x3053;&#x3068;&#x304C;&#x5927;&#x5207;&#x3067;&#x3059;&#x3002;
-&#x305D;&#x306E;&#x969B;&#x306B;&#x306F;&#x3001;ECMAScript&#x306E;&#x7B56;&#x5B9A;&#x30D7;&#x30ED;&#x30BB;&#x30B9;&#x3092;&#x77E5;&#x3063;&#x3066;&#x304A;&#x304F;&#x3053;&#x3068;&#x304C;&#x5F79;&#x7ACB;&#x3061;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x306E;&#x4ED5;&#x69D8;&#x306F;&#x306A;&#x305C;&#x3053;&#x3046;&#x306A;&#x3063;&#x305F;&#x306E;&#x304B;&#x3068;&#x3044;&#x3046;&#x3053;&#x3068;&#x3092;&#x77E5;&#x308A;&#x305F;&#x3044;&#x3068;&#x601D;&#x3063;&#x305F;&#x3068;&#x304D;&#x306B;&#x3001;&#x305D;&#x306E;&#x6A5F;&#x80FD;&#x304C;&#x3069;&#x306E;&#x3088;&#x3046;&#x306A;&#x7D4C;&#x7DEF;&#x3067;&#x5165;&#x3063;&#x305F;&#x306E;&#x304B;&#x3092;&#x8ABF;&#x3079;&#x308B;&#x624B;&#x6BB5;&#x3092;&#x6301;&#x3064;&#x3053;&#x3068;&#x306F;&#x5927;&#x5207;&#x3067;&#x3059;&#x3002;
-&#x7279;&#x306B;ES2015&#x4EE5;&#x964D;&#x306F;&#x7B56;&#x5B9A;&#x30D7;&#x30ED;&#x30BB;&#x30B9;&#x3082;GitHub&#x3092;&#x5229;&#x7528;&#x3057;&#x305F;&#x30AA;&#x30FC;&#x30D7;&#x30F3;&#x306A;&#x3082;&#x306E;&#x3068;&#x306A;&#x308A;&#x3001;&#x904E;&#x53BB;&#x306E;&#x8A18;&#x9332;&#x306A;&#x3069;&#x3082;&#x63A2;&#x3057;&#x3084;&#x3059;&#x304F;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<h3 id="to-search"><a name="to-search" class="plugin-anchor" href="#to-search"><i class="fa fa-link" aria-hidden="true"></i></a>&#x60C5;&#x5831;&#x306E;&#x6B63;&#x3057;&#x3044;&#x72B6;&#x614B;&#x3092;&#x8ABF;&#x3079;&#x308B;&#x305F;&#x3081; </h3>
-<p>JavaScript&#x306F;&#x5E45;&#x5E83;&#x304F;&#x4F7F;&#x308F;&#x308C;&#x3066;&#x3044;&#x308B;&#x8A00;&#x8A9E;&#x3067;&#x3042;&#x308B;&#x305F;&#x3081;&#x3001;&#x4E16;&#x306E;&#x4E2D;&#x306B;&#x306F;&#x81A8;&#x5927;&#x306A;&#x60C5;&#x5831;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x305D;&#x3057;&#x3066;&#x3001;&#x691C;&#x7D22;&#x3057;&#x3066;&#x898B;&#x3064;&#x304B;&#x308B;&#x60C5;&#x5831;&#x306B;&#x306F;&#x6B63;&#x3057;&#x3044;&#x3082;&#x306E;&#x3084;&#x9593;&#x9055;&#x3063;&#x305F;&#x3082;&#x306E;&#x304C;&#x6DF7;&#x5728;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x305D;&#x306E;&#x4E2D;&#x306B;&#x304A;&#x3044;&#x3066;ECMAScript&#x306E;&#x4ED5;&#x69D8;&#x3084;&#x305D;&#x306E;&#x7B56;&#x5B9A;&#x4E2D;&#x306E;&#x30D7;&#x30ED;&#x30DD;&#x30FC;&#x30B6;&#x30EB;&#x306B;&#x95A2;&#x3059;&#x308B;&#x60C5;&#x5831;&#x306F;&#x72B6;&#x614B;&#x304C;&#x660E;&#x78BA;&#x3067;&#x3059;&#x3002;
-&#x57FA;&#x672C;&#x7684;&#x306B;ECMAScript&#x306E;&#x4ED5;&#x69D8;&#x306B;&#x5165;&#x308B;&#x3082;&#x306E;&#x306F;&#x3001;&#x5F8C;&#x65B9;&#x4E92;&#x63DB;&#x6027;&#x3092;&#x7DAD;&#x6301;&#x3059;&#x308B;&#x305F;&#x3081;&#x306B;&#x7834;&#x58CA;&#x7684;&#x5909;&#x66F4;&#x306F;&#x307B;&#x3068;&#x3093;&#x3069;&#x884C;&#x3048;&#x307E;&#x305B;&#x3093;&#x3002;
-&#x30D7;&#x30ED;&#x30DD;&#x30FC;&#x30B6;&#x30EB;&#x306F;&#x30B9;&#x30C6;&#x30FC;&#x30B8;&#x3068;&#x3044;&#x3046;&#x660E;&#x793A;&#x3055;&#x308C;&#x305F;&#x72B6;&#x614B;&#x304C;&#x3042;&#x308A;&#x3001;&#x30B9;&#x30C6;&#x30FC;&#x30B8;4&#x672A;&#x6E80;&#x306E;&#x5834;&#x5408;&#x306F;&#x307E;&#x3060;&#x5B89;&#x5B9A;&#x3057;&#x3066;&#x3044;&#x306A;&#x3044;&#x3053;&#x3068;&#x304C;&#x308F;&#x304B;&#x308A;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x305D;&#x306E;&#x305F;&#x3081;&#x3001;&#x554F;&#x984C;&#x3092;&#x898B;&#x3064;&#x3051;&#x305F;&#x969B;&#x306B;&#x8A72;&#x5F53;&#x3059;&#x308B;&#x4ED5;&#x69D8;&#x3084;&#x30D7;&#x30ED;&#x30DD;&#x30FC;&#x30B6;&#x30EB;&#x3092;&#x78BA;&#x8A8D;&#x3057;&#x3066;&#x307F;&#x308B;&#x3053;&#x3068;&#x304C;&#x91CD;&#x8981;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x3053;&#x308C;&#x306F;ECMAScript&#x306B;&#x9650;&#x3089;&#x305A;&#x3001;&#x30A6;&#x30A7;&#x30D6;&#x3084;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306B;&#x95A2;&#x3059;&#x308B;&#x60C5;&#x5831;&#x306B;&#x3064;&#x3044;&#x3066;&#x306F;&#x540C;&#x3058;&#x3053;&#x3068;&#x304C;&#x8A00;&#x3048;&#x307E;&#x3059;&#x3002;
-&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x306B;&#x95A2;&#x3057;&#x3066;&#x306F;HTML&#x3001;DOM API&#x3001;CSS&#x306A;&#x3069;&#x306E;&#x30AA;&#x30FC;&#x30D7;&#x30F3;&#x306A;&#x4ED5;&#x69D8;&#x3068;&#x305D;&#x308C;&#x305E;&#x308C;&#x306E;&#x7B56;&#x5B9A;&#x30D7;&#x30ED;&#x30BB;&#x30B9;&#x304C;&#x5B58;&#x5728;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<h3 id="ecmascript-summary"><a name="ecmascript-summary" class="plugin-anchor" href="#ecmascript-summary"><i class="fa fa-link" aria-hidden="true"></i></a>&#x307E;&#x3068;&#x3081; </h3>
-<p>JavaScript&#x3068;&#x4E00;&#x8A00;&#x306B;&#x8A00;&#x3063;&#x3066;&#x3082;ECMAScript&#x3001;&#x30A6;&#x30A7;&#x30D6;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3001;Node.js&#x3001;WebAssembly&#x3001;WebGL&#x3001;WebRTC&#x306A;&#x3069;&#x5E45;&#x5E83;&#x3044;&#x5206;&#x91CE;&#x304C;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;
-&#x3059;&#x3079;&#x3066;&#x306E;&#x3053;&#x3068;&#x3092;&#x77E5;&#x3063;&#x3066;&#x3044;&#x308B;&#x5FC5;&#x8981;&#x306F;&#x3042;&#x308A;&#x307E;&#x305B;&#x3093;&#x3057;&#x3001;&#x77E5;&#x3063;&#x3066;&#x3044;&#x308B;&#x4EBA;&#x3082;&#x304A;&#x305D;&#x3089;&#x304F;&#x3044;&#x306A;&#x3044;&#x3067;&#x3057;&#x3087;&#x3046;&#x3002;
-&#x3053;&#x306E;&#x3088;&#x3046;&#x306A;&#x72B6;&#x6CC1;&#x4E0B;&#x306B;&#x304A;&#x3044;&#x3066;&#x306F;&#x77E5;&#x8B58;&#x305D;&#x306E;&#x3082;&#x306E;&#x3088;&#x308A;&#x3082;&#x3001;&#x305D;&#x308C;&#x306B;&#x3064;&#x3044;&#x3066;&#x77E5;&#x308A;&#x305F;&#x3044;&#x3068;&#x601D;&#x3063;&#x305F;&#x3068;&#x304D;&#x306B;&#x8ABF;&#x3079;&#x308B;&#x65B9;&#x6CD5;&#x3092;&#x6301;&#x3063;&#x3066;&#x3044;&#x308B;&#x3053;&#x3068;&#x304C;&#x5927;&#x5207;&#x3067;&#x3059;&#x3002;</p>
-<p>&#x4F55;&#x3054;&#x3068;&#x3082;&#x7A81;&#x7136;&#x307E;&#x3063;&#x305F;&#x304F;&#x65B0;&#x3057;&#x3044;&#x6982;&#x5FF5;&#x304C;&#x5897;&#x3048;&#x308B;&#x308F;&#x3051;&#x3067;&#x306F;&#x306A;&#x304F;&#x3001;&#x3082;&#x306E;&#x3054;&#x3068;&#x306B;&#x306F;&#x904E;&#x7A0B;&#x304C;&#x5B58;&#x5728;&#x3057;&#x307E;&#x3059;&#x3002;
-ECMAScript&#x306B;&#x304A;&#x3044;&#x3066;&#x306F;&#x7B56;&#x5B9A;&#x30D7;&#x30ED;&#x30BB;&#x30B9;&#x3068;&#x3044;&#x3046;&#x5F62;&#x3067;&#x3069;&#x306E;&#x3088;&#x3046;&#x306A;&#x6BB5;&#x968E;&#x3067;&#x3042;&#x308B;&#x304B;&#x304C;&#x516C;&#x958B;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;
-&#x3064;&#x307E;&#x308A;&#x3001;&#x4ED5;&#x69D8;&#x306B;&#x3044;&#x304D;&#x306A;&#x308A;&#x65B0;&#x3057;&#x3044;&#x6A5F;&#x80FD;&#x304C;&#x5897;&#x3048;&#x308B;&#x306E;&#x3067;&#x306F;&#x306A;&#x304F;&#x30D7;&#x30ED;&#x30DD;&#x30FC;&#x30B6;&#x30EB;&#x3068;&#x3044;&#x3046;&#x6BB5;&#x968E;&#x3092;&#x8E0F;&#x3093;&#x3067;&#x3044;&#x307E;&#x3059;&#x3002;</p>
-<p>&#x65E5;&#x3005;&#x5909;&#x5316;&#x3057;&#x3066;&#x3044;&#x308B;&#x30BD;&#x30D5;&#x30C8;&#x30A6;&#x30A7;&#x30A2;&#x306B;&#x304A;&#x3044;&#x3066;&#x306F;&#x3001;&#x81EA;&#x8EAB;&#x306B;&#x9069;&#x5207;&#x306A;&#x8ABF;&#x3079;&#x65B9;&#x3092;&#x6301;&#x3064;&#x3053;&#x3068;&#x304C;&#x5927;&#x5207;&#x3067;&#x3059;&#x3002;</p>
+<h3 id="to-learn"><a name="to-learn" class="plugin-anchor" href="#to-learn"><i class="fa fa-link" aria-hidden="true"></i></a>言語を学ぶため </h3>
+<p>もっとも単純な理由はJavaScriptという言語そのものを学ぶためです。
+言語の詳細を知りたい場合にはECMAScriptという仕様を参照できます。</p>
+<p>しかしながら、JavaScriptの言語機能に関しては<a href="https://developer.mozilla.org/ja/" title="MDN Web Docs" target="_blank">MDN Web Docs</a>という優れたリファレンスサイトなどがあります。
+そのため、使い方を覚えたいなどの範囲ではECMAScriptの仕様そのものを参照する機会は少ないでしょう。</p>
+<h3 id="to-progress"><a name="to-progress" class="plugin-anchor" href="#to-progress"><i class="fa fa-link" aria-hidden="true"></i></a>言語が進化しているため </h3>
+<p>ECMAScriptはLiving Standardであり、日々更新されています。
+これは、言語仕様に新しい機能や修正などが常に行われていることを表しています。</p>
+<p>ECMAScriptは後方互換性を尊重するため、今学んでいることが無駄になるわけではありません。
+しかしながら言語自体も進化していることは意識しておくとよいでしょう。</p>
+<p>ECMAScriptのプロポーザル（機能）は問題を解決するために提案されます。
+そのプロポーザルがECMAScriptにマージされ利用できる場合、その機能が何を解決するために導入されたのかを知ることが大切です。
+その際には、ECMAScriptの策定プロセスを知っておくことが役立ちます。</p>
+<p>この仕様はなぜこうなったのかということを知りたいと思ったときに、その機能がどのような経緯で入ったのかを調べる手段を持つことは大切です。
+特にES2015以降は策定プロセスもGitHubを利用したオープンなものとなり、過去の記録なども探しやすくなっています。</p>
+<h3 id="to-search"><a name="to-search" class="plugin-anchor" href="#to-search"><i class="fa fa-link" aria-hidden="true"></i></a>情報の正しい状態を調べるため </h3>
+<p>JavaScriptは幅広く使われている言語であるため、世の中には膨大な情報があります。
+そして、検索して見つかる情報には正しいものや間違ったものが混在しています。</p>
+<p>その中においてECMAScriptの仕様やその策定中のプロポーザルに関する情報は状態が明確です。
+基本的にECMAScriptの仕様に入るものは、後方互換性を維持するために破壊的変更はほとんど行えません。
+プロポーザルはステージという明示された状態があり、ステージ4未満の場合はまだ安定していないことがわかります。</p>
+<p>そのため、問題を見つけた際に該当する仕様やプロポーザルを確認してみることが重要です。</p>
+<p>これはECMAScriptに限らず、ウェブやブラウザに関する情報については同じことが言えます。
+ブラウザに関してはHTML、DOM API、CSSなどのオープンな仕様とそれぞれの策定プロセスが存在しています。</p>
+<h3 id="ecmascript-summary"><a name="ecmascript-summary" class="plugin-anchor" href="#ecmascript-summary"><i class="fa fa-link" aria-hidden="true"></i></a>まとめ </h3>
+<p>JavaScriptと一言に言ってもECMAScript、ウェブブラウザ、Node.js、WebAssembly、WebGL、WebRTCなど幅広い分野があります。
+すべてのことを知っている必要はありませんし、知っている人もおそらくいないでしょう。
+このような状況下においては知識そのものよりも、それについて知りたいと思ったときに調べる方法を持っていることが大切です。</p>
+<p>何ごとも突然まったく新しい概念が増えるわけではなく、ものごとには過程が存在します。
+ECMAScriptにおいては策定プロセスという形でどのような段階であるかが公開されています。
+つまり、仕様にいきなり新しい機能が増えるのではなくプロポーザルという段階を踏んでいます。</p>
+<p>日々変化しているソフトウェアにおいては、自身に適切な調べ方を持つことが大切です。</p>
 <blockquote id="fn_1">
-<sup>1</sup>. ECMAScript 4&#x306F;&#x8907;&#x96D1;&#x3067;&#x5927;&#x304D;&#x306A;&#x5909;&#x66F4;&#x304C;&#x542B;&#x307E;&#x308C;&#x3066;&#x304A;&#x308A;&#x3001;&#x5408;&#x610F;&#x3092;&#x5F97;&#x308B;&#x3053;&#x3068;&#x304C;&#x3067;&#x304D;&#x305A;&#x306B;&#x4ED5;&#x69D8;&#x304C;&#x7834;&#x68C4;&#x3055;&#x308C;&#x307E;&#x3057;&#x305F;&#x3002;<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#x21A9;</a>
+<sup>1</sup>. ECMAScript 4は複雑で大きな変更が含まれており、合意を得ることができずに仕様が破棄されました。<a href="#reffn_1" title="Jump back to footnote [1] in the text."> ↩</a>
 </blockquote>
 <blockquote id="fn_2">
-<sup>2</sup>. &#x3053;&#x306E;&#x7B56;&#x5B9A;&#x30D7;&#x30ED;&#x30BB;&#x30B9;&#x306F;<a href="https://tc39.github.io/process-document/" target="_blank">https://tc39.github.io/process-document/</a>&#x306B;&#x8A73;&#x7D30;&#x304C;&#x66F8;&#x304B;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;<a href="#reffn_2" title="Jump back to footnote [2] in the text."> &#x21A9;</a>
+<sup>2</sup>. この策定プロセスは<a href="https://tc39.github.io/process-document/" target="_blank">https://tc39.github.io/process-document/</a>に詳細が書かれています。<a href="#reffn_2" title="Jump back to footnote [2] in the text."> ↩</a>
 </blockquote>
 <blockquote id="fn_3">
-<sup>3</sup>. ES2015&#x306E;&#x4ED5;&#x69D8;&#x7DE8;&#x96C6;&#x8005;&#x3067;&#x3042;&#x308B;Allen Wirfs-Brock&#x6C0F;&#x306E;&#x66F8;&#x3044;&#x305F;<a href="http://wirfs-brock.com/allen/files/papers/standpats-asianplop2016.pdf" target="_blank">Programming Language Standardization</a>&#x306B;&#x8A73;&#x7D30;&#x304C;&#x66F8;&#x304B;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;<a href="#reffn_3" title="Jump back to footnote [3] in the text."> &#x21A9;</a>
+<sup>3</sup>. ES2015の仕様編集者であるAllen Wirfs-Brock氏の書いた<a href="http://wirfs-brock.com/allen/files/papers/standpats-asianplop2016.pdf" target="_blank">Programming Language Standardization</a>に詳細が書かれています。<a href="#reffn_3" title="Jump back to footnote [3] in the text."> ↩</a>
 </blockquote>
 <blockquote id="fn_4">
-<sup>4</sup>. <a href="https://github.com/tc39/proposals/blob/master/inactive-proposals.md" target="_blank">Inactive Proposals</a>&#x306B;&#x7B56;&#x5B9A;&#x3092;&#x4E2D;&#x6B62;&#x3057;&#x305F;&#x30D7;&#x30ED;&#x30DD;&#x30FC;&#x30B6;&#x30EB;&#x306E;&#x4E00;&#x89A7;&#x304C;&#x516C;&#x958B;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;<a href="#reffn_4" title="Jump back to footnote [4] in the text."> &#x21A9;</a>
+<sup>4</sup>. <a href="https://github.com/tc39/proposals/blob/master/inactive-proposals.md" target="_blank">Inactive Proposals</a>に策定を中止したプロポーザルの一覧が公開されています。<a href="#reffn_4" title="Jump back to footnote [4] in the text."> ↩</a>
 </blockquote>
 
                                 
@@ -1669,12 +1669,56 @@ ECMAScript&#x306B;&#x304A;&#x3044;&#x3066;&#x306F;&#x7B56;&#x5B9A;&#x30D7;&#x30E
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptの仕様であるECMAScriptについてを紹介します。ECMAScriptの歴史や仕様策定がどのようなプロセスで行われているかを紹介します。","title":"ECMAScript","level":"1.3.28","depth":2,"next":{"title":"第一部: おわりに","level":"1.3.29","depth":2,"path":"basic/other-parts/README.md","ref":"./basic/other-parts/README.md","articles":[]},"previous":{"title":"ECMAScriptモジュール","level":"1.3.27","depth":2,"path":"basic/module/README.md","ref":"./basic/module/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/ecmascript/README.md","mtime":"2020-11-18T19:19:34.493Z","type":"markdown"},"gitbook":{"version":"3.6.8","time":"2020-11-18T19:20:11.295Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptの仕様であるECMAScriptについてを紹介します。ECMAScriptの歴史や仕様策定がどのようなプロセスで行われているかを紹介します。","title":"ECMAScript","level":"1.3.28","depth":2,"next":{"title":"第一部: おわりに","level":"1.3.29","depth":2,"path":"basic/other-parts/README.md","ref":"./basic/other-parts/README.md","articles":[]},"previous":{"title":"ECMAScriptモジュール","level":"1.3.27","depth":2,"path":"basic/module/README.md","ref":"./basic/module/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"12.13.0","npmversion":"6.12.0","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/ecmascript/README.md","mtime":"2020-11-19T10:10:17.216Z","type":"markdown"},"gitbook":{"version":"3.6.13","time":"2020-11-19T10:10:53.113Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
 
         
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
     <script src="../../gitbook/gitbook.js"></script>
     <script src="../../gitbook/theme.js"></script>
     
