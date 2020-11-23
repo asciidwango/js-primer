@@ -20,8 +20,8 @@
   ],
   "variables": {
     "esversion": "2020",
-    "nodeversion": "12.13.0",
-    "npmversion": "6.12.0",
+    "nodeversion": "14.15.0",
+    "npmversion": "6.14.8",
     "triplebackticks": "```",
     "console": "<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"
   },

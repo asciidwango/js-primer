@@ -39,7 +39,7 @@ Twitterのハッシュタグは [#jsprimer](https://twitter.com/intent/tweet?has
 
     npm install
 
-Node.js 12.13.0以上が必要です。
+Node.js 14.15.0以上が必要です。
 `npx`コマンドが利用できることを確認してください。
 
 ## Usage
