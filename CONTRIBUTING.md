@@ -17,7 +17,7 @@
 
 - 書籍や内容に対する質問 => [こちらから質問できます](https://github.com/asciidwango/js-primer/issues/new?template=question.md)
 - 内容のエラーや問題の報告 => [こちらからバグ報告できます](https://github.com/asciidwango/js-primer/issues/new?template=bug_report.md)
-- 解説の改善の提案 => [こちらから提案できます](https://github.com/asciidwango/js-primer/issues/new?template=feature_request.md)
+- 解説の改善を提案 => [こちらから提案できます](https://github.com/asciidwango/js-primer/issues/new?template=feature_request.md)
 - 新しいトピックなどの提案 => [こちらから提案できます](https://github.com/asciidwango/js-primer/issues/new?template=feature_request.md)
 
 [その他のIssue](https://github.com/asciidwango/js-primer/issues/new?template=other.md)も歓迎しています。
