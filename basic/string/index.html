@@ -1554,12 +1554,12 @@ const invalidString = &quot;1行目
 これにより、<code>\</code>（バックスラッシュ）そのものを入力していたつもりが、その文字がエスケープシーケンスとして扱われてしまう問題があります。</p>
 <p>次のコードでは、<code>\_</code>という組み合わせのエスケープシーケンスはないため、<code>\</code>が無視された文字列として評価されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;¯\_(ツ)_/¯&quot;</span>); 
+<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;¯\_(ツ)_/¯&quot;</span>);
 <span class="hljs-comment">// ¯_(ツ)_/¯ のように\が無視されて表示される</span>
 </code></pre>
 <p><code>\</code>（バックスラッシュ）そのものを入力したい場合は、<code>\\</code>のようにエスケープする必要があります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;¯\\_(ツ)_/¯&quot;</span>); 
+<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;¯\\_(ツ)_/¯&quot;</span>);
 <span class="hljs-comment">//　¯\_(ツ)_/¯ と表示される</span>
 </code></pre>
 <!-- Note: https://tc39.github.io/ecma262/#prod-NonEscapeCharacter
@@ -1696,7 +1696,7 @@ Unicodeはすべての文字に対してID（Code Point）を振ることを目�
 <p>JavaScript（ECMAScript）は文字コードとしてUnicodeを採用し、文字をエンコードする方式としてUTF-16を採用しています。
 UTF-16とは、それぞれの文字を16bitのビット列に変換するエンコード方式です。
 Unicodeでは1文字を表すのに使う最小限のビットの組み合わせを<strong>Code Unit</strong>（符号単位）と呼び、UTF-16では各Code Unitのサイズが16bit（2バイト）です。</p>
-<!-- 
+<!--
 - 用語集: http://unicode.org/glossary/
 - 比較表: http://unicode.org/faq/utf_bom.html#gen6
  -->
@@ -2105,7 +2105,7 @@ str.slice(index, index + マッチした文字列の長さ); <span class="hljs-c
 <li>マッチした場合は、マッチした文字列を含んだ特殊な配列を返す</li>
 <li>正規表現の<code>g</code>フラグがある場合は、マッチしたすべての結果を含んだただの配列を返す</li>
 </ul>
-<!--  
+<!--
 RegExp#match globalがtrueの場合はプロパティがないただの配列を返す
 https://tc39.es/ecma262/#sec-regexp.prototype-@@match
 RegExp#match globalがfalseの場合はString#execと同じ
@@ -2113,7 +2113,7 @@ RegExp#match globalがfalseの場合はString#execと同じ
 <p>ES2020では、正規表現の<code>g</code>フラグを使った繰り返しマッチする場合においても、それぞれマッチした文字列ごとの情報を得るための<code>String#matchAll</code>が追加されています。
 <code>String#matchAll</code>メソッドは、マッチした結果をIteratorで返します。</p>
 <p>次のコードでは、<code>matchAll</code>メソッドでアルファベットにマッチする結果のIteratorオブジェクトを取得しています。
-Iterratorオブジェクトは<code>for...of</code>構文で反復処理すると、Iteratorから値を1つずつ取り出して処理できます（詳細は「<a href="../loop/">ループと反復処理</a>」の章を参照）。
+Iteratorオブジェクトは<code>for...of</code>構文で反復処理すると、Iteratorから値を1つずつ取り出して処理できます（詳細は「<a href="../loop/">ループと反復処理</a>」の章を参照）。
 このときの反復処理で取得できる値は、それぞれのマッチした文字列と<code>index</code>と<code>input</code>プロパティを持つ特殊な配列となります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": 2020 } --></p>
@@ -2373,7 +2373,7 @@ strict modeでは削除できないプロパティを削除しようとすると
 <p>ここでの構造的な文字列とは、URL文字列やファイルパス文字列といった文字列中にコンテキストを持っているものを指します。
 たとえば、URL文字列は次のような構造を持っており、それぞれの要素に入る文字列の種類などが決められています（詳細は「<a href="https://url.spec.whatwg.org/" title="URL Standard" target="_blank">URL Standard</a>」を参照）。</p>
 <pre><code>&quot;https://example.com/index.html&quot;
- ^^^^^   ^^^^^^^^^^^ ^^^^^^^^^^   
+ ^^^^^   ^^^^^^^^^^^ ^^^^^^^^^^
    |          |     　　　|
  scheme      host     pathname
 </code></pre><p>これらの文字列を作成する場合は、文字列結合演算子（<code>+</code>）で単純に結合するよりも専用の関数を用意するほうが安全です。</p>
@@ -2471,7 +2471,7 @@ tag<span class="hljs-string">`template <span class="hljs-subst">${<span class="h
         <span class="hljs-comment">// 1度目: [&quot;template &quot;, 0, &quot; literal &quot;]</span>
         <span class="hljs-comment">// 2度目: [&quot;template 0 literal &quot;, 1, &quot;&quot;]</span>
         <span class="hljs-keyword">return</span> result + values[i - <span class="hljs-number">1</span>] + str;
-    }); 
+    });
 }
 <span class="hljs-comment">// 関数`テンプレートリテラル` という形で呼び出す</span>
 <span class="hljs-built_in">console</span>.log(stringRaw<span class="hljs-string">`template <span class="hljs-subst">${<span class="hljs-number">0</span>}</span> literal <span class="hljs-subst">${<span class="hljs-number">1</span>}</span>`</span>); <span class="hljs-comment">// =&gt; &quot;template 0 literal 1&quot;</span>
@@ -2489,7 +2489,7 @@ tag<span class="hljs-string">`template <span class="hljs-subst">${<span class="h
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">escapeURL</span>(<span class="hljs-params">strings, ...values</span>) </span>{
     <span class="hljs-keyword">return</span> strings.reduce(<span class="hljs-function">(<span class="hljs-params">result, str, i</span>) =&gt;</span> {
         <span class="hljs-keyword">return</span> result + <span class="hljs-built_in">encodeURIComponent</span>(values[i - <span class="hljs-number">1</span>]) + str;
-    });  
+    });
 }
 
 <span class="hljs-keyword">const</span> input = <span class="hljs-string">&quot;A&amp;B&quot;</span>;
@@ -2541,7 +2541,7 @@ tag<span class="hljs-string">`template <span class="hljs-subst">${<span class="h
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"文字列リテラルを使った文字列の作成から検索や置換など基本的な文字列操作について紹介します。また正規表現と組み合わせた文字列操作やタグ付きテンプレート関数を使ったテンプレート処理などについても紹介します。","title":"文字列","level":"1.3.15","depth":2,"next":{"title":"文字列とUnicode","level":"1.3.16","depth":2,"path":"basic/string-unicode/README.md","ref":"./basic/string-unicode/README.md","articles":[]},"previous":{"title":"配列","level":"1.3.14","depth":2,"path":"basic/array/README.md","ref":"./basic/array/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/string/README.md","mtime":"2021-01-08T01:24:24.038Z","type":"markdown"},"gitbook":{"version":"3.6.13","time":"2021-01-08T01:25:03.635Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"文字列リテラルを使った文字列の作成から検索や置換など基本的な文字列操作について紹介します。また正規表現と組み合わせた文字列操作やタグ付きテンプレート関数を使ったテンプレート処理などについても紹介します。","title":"文字列","level":"1.3.15","depth":2,"next":{"title":"文字列とUnicode","level":"1.3.16","depth":2,"path":"basic/string-unicode/README.md","ref":"./basic/string-unicode/README.md","articles":[]},"previous":{"title":"配列","level":"1.3.14","depth":2,"path":"basic/array/README.md","ref":"./basic/array/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/string/README.md","mtime":"2021-01-20T13:56:34.957Z","type":"markdown"},"gitbook":{"version":"3.6.13","time":"2021-01-20T13:57:15.923Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
