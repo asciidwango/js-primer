@@ -22,8 +22,8 @@ JSONはJavaScriptのオブジェクトリテラル、配列リテラル、各種
 
 ```json
 {
-    "object": { 
-        "number": 1, 
+    "object": {
+        "number": 1,
         "string": "js-primer",
         "boolean": true,
         "null": null,
@@ -129,7 +129,7 @@ console.log(JSON.stringify(obj, replacer)); // => '{"id":1,"name":"js-primer"}'
 ```js
 const obj = { id: 1, name: "js-primer" };
 // replacer引数を使わない場合はnullを渡して省略するのが一般的です
-console.log(JSON.stringify(obj, null, 2)); 
+console.log(JSON.stringify(obj, null, 2));
 /*
 {
    "id": 1,
@@ -143,7 +143,7 @@ console.log(JSON.stringify(obj, null, 2));
 {{book.console}}
 ```js
 const obj = { id: 1, name: "js-primer" };
-console.log(JSON.stringify(obj, null, "\t")); 
+console.log(JSON.stringify(obj, null, "\t"));
 /*
 {
    "id": 1,
@@ -161,16 +161,16 @@ console.log(JSON.stringify(obj, null, "\t"));
 代表的な変換の例を次の表とサンプルコードに示します。
 
 | シリアライズ前の値 | シリアライズ後の値 |
-| ---             |  ---            | 
-| 文字列・数値・真偽値 |  対応する値       | 
-| null            |  null           | 
-| 配列             |  配列           | 
-| オブジェクト      |  オブジェクト     | 
-| 関数             |  変換されない（配列のときはnull）     | 
-| undefined       |  変換されない（配列のときはnull）     | 
-| Symbol          |  変換されない（配列のときはnull）     | 
-| RegExp          |  {}             | 
-| Map, Set        |  {}             | 
+| ---             |  ---            |
+| 文字列・数値・真偽値 |  対応する値       |
+| null            |  null           |
+| 配列             |  配列           |
+| オブジェクト      |  オブジェクト     |
+| 関数             |  変換されない（配列のときはnull）     |
+| undefined       |  変換されない（配列のときはnull）     |
+| Symbol          |  変換されない（配列のときはnull）     |
+| RegExp          |  {}             |
+| Map, Set        |  {}             |
 
 {{book.console}}
 ```js

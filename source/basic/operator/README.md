@@ -916,8 +916,8 @@ console.log(str.length > 0); // => false
 
 ## [ES2020] Nullish coalescing演算子(`??`) {#nullish-coalescing-operator}
 
-Nullish coalescing演算子(`??`)は、左辺の値が**nulish**であるならば、右辺の評価結果を返します。
-**nulish**とは、評価結果が`null`または`undefined`となる値のことです。
+Nullish coalescing演算子(`??`)は、左辺の値が**nullish**であるならば、右辺の評価結果を返します。
+**nullish**とは、評価結果が`null`または`undefined`となる値のことです。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": 2020 } -->
@@ -933,7 +933,7 @@ console.log("文字列" ?? "右辺の値"); // => "文字列"
 ```
 
 Nullish coalescing演算子(`??`)とOR演算子（`||`）は、値のデフォルト値を指定する場合によく利用されています。
-OR演算子（`||`）左辺がfalsyの場合に右辺を評価するため、意図しない結果となる場合が知られています。
+OR演算子（`||`）は左辺がfalsyの場合に右辺を評価するため、意図しない結果となる場合が知られています。
 
 次のコードは、`inputValue`が未定義だった場合に、`value`に対するデフォルト値をOR演算子（`||`）で指定しています。
 `inputValue`が未定義(`undefined`)の場合は、意図したようにOR演算子（`||`）の右辺で指定した`42`が入ります。
@@ -1003,7 +1003,7 @@ function addPrefix(text, prefix) {
 }
 
 console.log(addPrefix("文字列")); // => "デフォルト:文字列"
-console.log(addPrefix("文字列", "カスタム")); // => "カスタム文字列"
+console.log(addPrefix("文字列", "カスタム:")); // => "カスタム:文字列"
 ```
 
 if文を使った場合は、宣言と代入を分ける必要があるため、`const`を使うことができません。
@@ -1019,7 +1019,7 @@ function addPrefix(text, prefix) {
 }
 
 console.log(addPrefix("文字列")); // => "デフォルト:文字列"
-console.log(addPrefix("文字列", "カスタム")); // => "カスタム文字列"
+console.log(addPrefix("文字列", "カスタム:")); // => "カスタム:文字列"
 ```
 
 ## グループ化演算子（`(`と`)`） {#group-operator}

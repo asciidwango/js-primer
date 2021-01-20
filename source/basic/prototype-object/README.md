@@ -224,7 +224,7 @@ Mapとはキーと値の組み合わせを保持するためのオブジェク�
 // 空オブジェクトを作成
 const obj = {};
 // "toString"という値を定義してないのに、"toString"が存在している
-console.log(obj["toString"]);// Function 
+console.log(obj["toString"]);// Function
 // Mapのような空オブジェクト
 const mapLike = Object.create(null);
 // toStringキーは存在しない

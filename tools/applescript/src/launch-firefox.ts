@@ -9,11 +9,11 @@ const profileName = "js-primer";
 const cli = meow(`
     Usage
       $ launch-firefox <input>
- 
+
     Options
       --url         open url
       --devTools    open devTools
- 
+
     Examples
       $ launch-firefox --url "http://127.0.0.1:8080/final/final/"
 `, {
