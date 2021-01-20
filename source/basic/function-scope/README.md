@@ -122,7 +122,7 @@ console.log(x); // => ReferenceError: x is not defined
 <!-- Notes: ブロックスコープと仕様
 
 - ブロック`{}`は新しい[NewDeclarativeEnvironment](https://tc39.github.io/ecma262/#sec-newdeclarativeenvironment "NewDeclarativeEnvironment")を作成する
-- つまり、新しいLexicalEnviromentというスコープを作成している
+- つまり、新しいLexicalEnvironmentというスコープを作成している
 - https://tc39.github.io/ecma262/#sec-block-runtime-semantics-evaluation
 - そして評価する際に、そのブロック内に宣言されている変数をスコープに対してひもづけている
 - https://tc39.github.io/ecma262/#sec-blockdeclarationinstantiation
@@ -271,7 +271,7 @@ console.log(x); // => "x"
 // グローバル変数はどのスコープからも参照できる
 const globalVariable = "グローバル";
 // ブロックスコープ
-{   
+{
     // ブロックスコープ内には該当する変数が定義されてない -> 外側のスコープへ
     console.log(globalVariable); // => "グローバル"
 }
@@ -521,7 +521,6 @@ function hello(){
 hello(); // => "Hello"
 ```
 
-
 `function`キーワードによる関数宣言も巻き上げられます。
 しかし、`var`による変数宣言の巻き上げとは異なり、問題となることはほとんどありません。
 なぜなら、実際に巻き上げられた関数を呼び出せるためです。
@@ -545,7 +544,6 @@ var hello = function(){
 ```
 
 <!-- textlint-enable eslint -->
-
 
 ### [コラム] 即時実行関数 {#immediate-function}
 
@@ -602,7 +600,6 @@ ECMAScript 5までは、変数を宣言する方法は`var`しか存在しませ
 // foo変数のスコープ外
 console.log(typeof foo === "undefined"); // => true
 ```
-
 
 ## クロージャー {#closure}
 
@@ -750,7 +747,7 @@ let x = "before text";
 x = "after text";
 // このとき"before text"というデータはどこからも参照されなくなる
 // その後、ガベージコレクションによってメモリ上から解放される
-``` 
+```
 
 次にこのガベージコレクションと関数の関係性について考えてみましょう。
 よくある誤解として「関数の中で作成したデータは、その関数の実行が終了したら解放される」というのがあります。
@@ -904,7 +901,7 @@ console.log(counter()); // => "2回目"
 ```js
 function greaterThan(n) {
     return function(m) {
-        return m > n; 
+        return m > n;
     };
 }
 // 5より大きな値かを判定する関数を作成する

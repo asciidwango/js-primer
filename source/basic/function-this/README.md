@@ -79,7 +79,6 @@ ES2020ではこの問題を解決するために、実行環境のグローバ�
 console.log(globalThis);
 ```
 
-
 ## 関数とメソッドにおける`this` {#function-and-method-this}
 
 **関数**を定義する方法として、`function`キーワードによる関数宣言と関数式、Arrow Functionなどがあります。
@@ -872,8 +871,7 @@ console.log(fn()); // グローバルオブジェクト
 console.log(fn.call({})); // グローバルオブジェクト
 ```
 
-
-最初に述べたように`function`キーワードで定義した関数では呼び出し時に、ベースオブジェクトが`this`の値として暗黙的な引数のように渡されます。 
+最初に述べたように`function`キーワードで定義した関数では呼び出し時に、ベースオブジェクトが`this`の値として暗黙的な引数のように渡されます。
 一方、Arrow Functionの関数は呼び出し時に`this`を受け取らず、`this`の参照先は定義時に静的に決定されます。
 
 <!-- textlint-disable -->

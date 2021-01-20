@@ -220,13 +220,13 @@ JavaScriptエンジンは、コードをパース（解釈）してから、プ�
 
 Firefoxでこのコードを実行すると次のようなエラーメッセージがコンソールに表示されます。
 
-> SyntaxError: missing ) after argument list[詳細] index.js:1:13 
+> SyntaxError: missing ) after argument list[詳細] index.js:1:13
 
 エラーメッセージはブラウザによって多少の違いはありますが、基本的には同じ形式のメッセージになります。
 このエラーメッセージをパーツごとに見てみると次のようになります。
 
 ```
-SyntaxError: missing ) after argument list[詳細] index.js:1:13 
+SyntaxError: missing ) after argument list[詳細] index.js:1:13
 ^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^      ^^^^^^^^　^^^^
 エラーの種類                |                        | 　行番号:列番号
                   エラー内容の説明                 ファイル名
@@ -259,7 +259,7 @@ console.log(1);
 <!-- doctest:Error -->
 [include, title:"index.js"](./src/invalid/syntax-error-typo/index.js)
 
-> SyntaxError: unexpected token: identifier[詳細] index.js:1:6 
+> SyntaxError: unexpected token: identifier[詳細] index.js:1:6
 
 | メッセージ | 意味 |
 | -- | -- |

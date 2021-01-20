@@ -2,6 +2,7 @@
 author: azu
 description: "JavaScriptの関数を定義する方法について紹介します。関数やメソッドを定義する方法として関数宣言、関数式、Arrow Functionについて紹介します。また関数の引数の扱い方や関数とメソッドの違いについても紹介します。"
 ---
+
 # 関数と宣言 {#function-and-declaration}
 
 関数とは、ある一連の手続き（文の集まり）を1つの処理としてまとめる機能です。
@@ -289,9 +290,9 @@ Spread構文は、配列の前に`...`をつけた構文のことで、関数に
 {{book.console}}
 ```js
 function fn(x, y, z) {
-    console.log(x); // => 1 
-    console.log(y); // => 2 
-    console.log(z); // => 3 
+    console.log(x); // => 1
+    console.log(y); // => 2
+    console.log(z); // => 3
 }
 const array = [1, 2, 3];
 // Spread構文で配列を引数に展開して関数を呼び出す
@@ -314,9 +315,9 @@ fn(array[0], array[1], array[2]);
 ```js
 function fn() {
     // `arguments`はインデックスを指定して各要素にアクセスできる
-    console.log(arguments[0]); // => "a" 
-    console.log(arguments[1]); // => "b" 
-    console.log(arguments[2]); // => "c" 
+    console.log(arguments[0]); // => "a"
+    console.log(arguments[1]); // => "b"
+    console.log(arguments[2]); // => "c"
 }
 fn("a", "b", "c");
 ```

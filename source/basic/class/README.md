@@ -221,7 +221,7 @@ const point = new Point(3, 4);
 function MyClassLike() {
 }
 // 関数なので関数として呼び出せる
-MyClassLike(); 
+MyClassLike();
 
 // `class`構文でのクラス
 class MyClass {
@@ -895,7 +895,7 @@ if (instance.hasOwnProperty("method")) {
 <!-- Note
 
 インスタンスオブジェクトのメソッドがプロトタイプのメソッドの呼び出しの仕組みについてを見ていきます。
- 
+
 - プロトタイプチェーンという仕組み
 - インスタンス化されるときに自動的にインスタンスはプロトタイプオブジェクトを参照する（継承）
 - これは`[[Prototype]]`という内部プロパティに保存されますが、`__proto__`というアクセッサプロパティで参照できます
@@ -1121,7 +1121,7 @@ class Child extends Parent {
     }
 }
 const child = new Child();
-child.method(); 
+child.method();
 // コンソールには次のように出力される
 // "Child#method"
 // "Parent#method"
@@ -1150,7 +1150,7 @@ class Child extends Parent {
         super.method();
     }
 }
-Child.method(); 
+Child.method();
 // コンソールには次のように出力される
 // "Child.method"
 // "Parent.method"

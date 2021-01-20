@@ -7,10 +7,10 @@ import meow = require("meow");
 const cli = meow(`
     Usage
       $ screenshot-only <input>
- 
+
     Options
       --output, -o  output path of image
- 
+
     Examples
       $ screenshot --output ./output.png
 `, {

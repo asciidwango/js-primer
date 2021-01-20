@@ -32,16 +32,16 @@ files.forEach(filePath => {
 class Typo {
     constructor(strings) {
         this.strings = strings;
-        this.gropupByKey = lodash.groupBy(strings);
+        this.groupByKey = lodash.groupBy(strings);
     }
 
     keys() {
-        return Object.keys(this.gropupByKey);
+        return Object.keys(this.groupByKey);
     }
 
     countOfKey(key) {
-        if (key in this.gropupByKey) {
-            return this.gropupByKey[key].length;
+        if (key in this.groupByKey) {
+            return this.groupByKey[key].length;
         }
         return 0;
     }

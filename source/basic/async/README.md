@@ -29,7 +29,7 @@ description: "JavaScriptにおける非同期処理についてを紹介しま�
 {{book.console}}
 ```js
 // 指定した`timeout`ミリ秒経過するまで同期的にブロックする関数
-function blockTime(timeout) { 
+function blockTime(timeout) {
     const startTime = Date.now();
     // `timeout`ミリ秒経過するまで無限ループをする
     while (true) {
@@ -71,7 +71,7 @@ setTimeout(コールバック関数, delay);
 {{book.console}}
 ```js
 // 指定した`timeout`ミリ秒経過するまで同期的にブロックする関数
-function blockTime(timeout) { 
+function blockTime(timeout) {
     const startTime = Date.now();
     while (true) {
         const diffTime = Date.now() - startTime;
@@ -125,7 +125,7 @@ JavaScriptにおいて多くの非同期処理はメインスレッドで実行�
 {{book.console}}
 ```js
 // 指定した`timeout`ミリ秒経過するまで同期的にブロックする関数
-function blockTime(timeout) { 
+function blockTime(timeout) {
     const startTime = Date.now();
     while (true) {
         const diffTime = Date.now() - startTime;
@@ -526,7 +526,7 @@ errorPromise("catchでエラーハンドリング").catch(error => {
 });
 ```
 
-### Promiseと例外 {#promsie-exception}
+### Promiseと例外 {#promise-exception}
 
 Promiseではコンストラクタの処理で例外が発生した場合に自動的に例外がキャッチされます。
 例外が発生した`Promise`インスタンスは`reject`関数を呼び出したのと同じように失敗したものとして扱われます。
@@ -774,7 +774,7 @@ console.log(secondPromise === thirdPromise); // => false
 ```js
 // ランダムでFulfilledまたはRejectedの`Promise`インスタンスを返す関数
 function asyncTask() {
-    return Math.random() > 0.5 
+    return Math.random() > 0.5
         ? Promise.resolve("成功")
         : Promise.reject(new Error("失敗"));
 }
@@ -823,7 +823,7 @@ Promiseのコンストラクタの処理の場合と同様に、`then`や`catch`
 
 {{book.console}}
 ```js
-Promise.resolve().then(() => { 
+Promise.resolve().then(() => {
     // 例外が発生すると、thenメソッドはRejectedなPromiseを返す
     throw new Error("例外");
 }).then(() => {
@@ -877,7 +877,7 @@ Promiseチェーンで一度キャッチすると、次に呼ばれるのは成�
 
 {{book.console}}
 ```js
-Promise.reject(new Error("失敗")).catch(error => { 
+Promise.reject(new Error("失敗")).catch(error => {
     // 一度catchすれば、次に呼ばれるのは成功時のコールバック
     return 1;
 }).then(value => {
@@ -1526,7 +1526,7 @@ Promiseチェーンで`fetchAB`関数を書いた場合は、コールバック�
 一方、Async Functionと`await`式で書いた場合は、取得と追加を順番に行うだけとなり、ネストがなく、見た目はシンプルです。
 <!-- textlint-enable -->
 
-## Async Functionと組み合わせ {#async-function-conbination}
+## Async Functionと組み合わせ {#async-function-combination}
 
 これまでで基本的なAsync Functionの動きを見てきましたが、他の構文やPromise APIと組み合わせたAsync Functionの使い方を見ていきましょう。
 

@@ -73,7 +73,7 @@ if文の`条件式`には`true`または`false`といった真偽値以外の値
 {{book.console}}
 ```js
 if (true) {
-    console.log("この行は実行されます"); 
+    console.log("この行は実行されます");
 }
 if ("文字列") {
     console.log("この行は実行されます");

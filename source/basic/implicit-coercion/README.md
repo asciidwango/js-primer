@@ -23,7 +23,7 @@ console.log(1 === "1"); // => false
 次のコードでは、数値の`1`と文字列の`"1"`の比較結果が`true`となっています。
 これは、等価演算子（`==`）は右辺の文字列`"1"`を数値の`1`へと暗黙的な型変換してから、比較するためです。
 
-<!-- 
+<!--
 
 - Number == String は Number == ToNumber(String) される
 - Step 4: https://tc39.es/ecma262/#sec-abstract-equality-comparison
@@ -198,7 +198,7 @@ JavaScriptでは、どの値が`true`でどの値が`false`になるかは、次
 // x は undefined
 let x; 
 if (!x) {
-    console.log("falsyな値なら表示", x); 
+    console.log("falsyな値なら表示", x);
 }
 ```
 
@@ -209,7 +209,7 @@ if (!x) {
 // x は undefined
 let x;
 if (x === undefined) {
-    console.log("xがundefinedなら表示", x); 
+    console.log("xがundefinedなら表示", x);
 }
 ```
 

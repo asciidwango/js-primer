@@ -10,9 +10,9 @@ const cli = meow(`
 
     Usage
       $ node find-first "phase"
- 
+
     Options
- 
+
     Examples
       $ node find-first "/pattern/i"
       $ node find-first "/pattern/i" "/pattern2/i"

@@ -3,7 +3,6 @@ author: azu
 description: "JavaScriptのプリミティブ型の値がビルトインオブジェクトのメソッドなどを呼び出せる仕組みとしてのラッパーオブジェクトを紹介します。プリミティブ型からオブジェクトとどのように実行時に変換されているのを確認できます。"
 ---
 
-
 # ラッパーオブジェクト {#wrapper-object}
 
 JavaScriptのデータ型はプリミティブ型とオブジェクトに分けられます（詳細は「[データ型とリテラル][]」を参照）。
@@ -120,7 +119,7 @@ JavaScriptには、リテラルを使ったプリミティブ型の文字列と�
 // OK: リテラルを使う
 const str = "文字列";
 // NG: ラッパーオブジェクトを使う
-const stringWrraper = new String("文字列");
+const stringWrapper = new String("文字列");
 ```
 
 ## まとめ {#wrapper-object-summary}

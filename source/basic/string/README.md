@@ -112,7 +112,7 @@ console.log(multiline);
 
 {{book.console}}
 ```js
-console.log("¯\_(ツ)_/¯"); 
+console.log("¯\_(ツ)_/¯");
 // ¯_(ツ)_/¯ のように\が無視されて表示される
 ```
 
@@ -120,7 +120,7 @@ console.log("¯\_(ツ)_/¯");
 
 {{book.console}}
 ```js
-console.log("¯\\_(ツ)_/¯"); 
+console.log("¯\\_(ツ)_/¯");
 //　¯\_(ツ)_/¯ と表示される
 ```
 
@@ -208,7 +208,7 @@ JavaScript（ECMAScript）は文字コードとしてUnicodeを採用し、文�
 UTF-16とは、それぞれの文字を16bitのビット列に変換するエンコード方式です。
 Unicodeでは1文字を表すのに使う最小限のビットの組み合わせを**Code Unit**（符号単位）と呼び、UTF-16では各Code Unitのサイズが16bit（2バイト）です。
 
-<!-- 
+<!--
 - 用語集: http://unicode.org/glossary/
 - 比較表: http://unicode.org/faq/utf_bom.html#gen6
  -->
@@ -295,7 +295,7 @@ console.log(str); // => "赤、青、緑"
 const str = "a     b    c      d";
 // 1つ以上のスペースにマッチして分解する
 const strings = str.split(/\s+/);
-console.log(strings); // => ["a", "b", "c", "d"] 
+console.log(strings); // => ["a", "b", "c", "d"]
 ```
 
 ## 文字列の長さ {#length}
@@ -725,7 +725,7 @@ console.log(resultsWithG.input); // => undefined
 - マッチした場合は、マッチした文字列を含んだ特殊な配列を返す
 - 正規表現の`g`フラグがある場合は、マッチしたすべての結果を含んだただの配列を返す
 
-<!--  
+<!--
 RegExp#match globalがtrueの場合はプロパティがないただの配列を返す
 https://tc39.es/ecma262/#sec-regexp.prototype-@@match
 RegExp#match globalがfalseの場合はString#execと同じ
@@ -735,7 +735,7 @@ ES2020では、正規表現の`g`フラグを使った繰り返しマッチす�
 `String#matchAll`メソッドは、マッチした結果をIteratorで返します。
 
 次のコードでは、`matchAll`メソッドでアルファベットにマッチする結果のIteratorオブジェクトを取得しています。
-Iterratorオブジェクトは`for...of`構文で反復処理すると、Iteratorから値を1つずつ取り出して処理できます（詳細は「[ループと反復処理][]」の章を参照）。
+Iteratorオブジェクトは`for...of`構文で反復処理すると、Iteratorから値を1つずつ取り出して処理できます（詳細は「[ループと反復処理][]」の章を参照）。
 このときの反復処理で取得できる値は、それぞれのマッチした文字列と`index`と`input`プロパティを持つ特殊な配列となります。
 
 {{book.console}}
@@ -1068,7 +1068,7 @@ console.log(toDateJa("今日は2017-03-01です")); // => "今日は2017年03月
 
 ```
 "https://example.com/index.html"
- ^^^^^   ^^^^^^^^^^^ ^^^^^^^^^^   
+ ^^^^^   ^^^^^^^^^^^ ^^^^^^^^^^
    |          |     　　　|
  scheme      host     pathname
 ```
@@ -1192,7 +1192,7 @@ function stringRaw(strings, ...values) {
         // 1度目: ["template ", 0, " literal "]
         // 2度目: ["template 0 literal ", 1, ""]
         return result + values[i - 1] + str;
-    }); 
+    });
 }
 // 関数`テンプレートリテラル` という形で呼び出す
 console.log(stringRaw`template ${0} literal ${1}`); // => "template 0 literal 1"
@@ -1217,7 +1217,7 @@ console.log(String.raw`template ${0} literal ${1}`); // => "template 0 literal 1
 function escapeURL(strings, ...values) {
     return strings.reduce((result, str, i) => {
         return result + encodeURIComponent(values[i - 1]) + str;
-    });  
+    });
 }
 
 const input = "A&B";

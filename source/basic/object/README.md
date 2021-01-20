@@ -330,7 +330,7 @@ console.log(obj.key); // => "Hi!"
 ```
 
 JavaScriptの`const`は値を固定するのではなく、変数への再代入を防ぐためのものです。
-そのため、次のような`obj`変数への再代入は防げますが、変数に代入された値であるオブジェクトの変更は防げません（「[変数と宣言のconstについて][]」を参照）。
+そのため、次のような`obj`変数への再代入は防げますが、変数に代入された値であるオブジェクトの変更は防げません（「[変数と宣言][]」の[const][]を参照）。
 
 ```js
 const obj = { key: "value" };
@@ -766,7 +766,7 @@ const merged = Object.assign({}, objectA, objectB);
 console.log(merged); // => { version: "b" }
 ```
 
-#### オブジェクトのspread構文でのマージ {#object-spread-syntax}
+#### [ES2018] オブジェクトのspread構文でのマージ {#object-spread-syntax}
 
 ES2018では、オブジェクトのマージを行うオブジェクトの`...`（spread構文）が追加されました。
 ES2015で配列の要素を展開する`...`（spread構文）はサポートされていましたが、オブジェクトに対してもES2018でサポートされました。
@@ -781,7 +781,7 @@ ES2015で配列の要素を展開する`...`（spread構文）はサポートさ
 ```js
 const objectA = { a: "a" };
 const objectB = { b: "b" };
-const merged = { 
+const merged = {
     ...objectA,
     ...objectB
 };
@@ -797,7 +797,7 @@ console.log(merged); // => { a: "a", b: "b" }
 // `version`のプロパティ名が被っている
 const objectA = { version: "a" };
 const objectB = { version: "b" };
-const merged = { 
+const merged = {
     ...objectA,
     ...objectB,
     other: "other"
@@ -839,7 +839,7 @@ shallow copyとは、`sources`オブジェクトの直下にあるプロパテ�
 const shallowClone = (obj) => {
     return Object.assign({}, obj);
 };
-const obj = { 
+const obj = {
     level: 1,
     nest: {
         level: 2
@@ -869,7 +869,7 @@ function deepClone(obj) {
         .forEach(k => newObj[k] = deepClone(newObj[k]));
     return newObj;
 }
-const obj = { 
+const obj = {
     level: 1,
     nest: {
         level: 2
@@ -903,6 +903,6 @@ JavaScriptの`Object`は他のオブジェクトのベースとなるオブジ�
 [変数と宣言]: ../variables/README.md "変数と宣言"
 [クラス]: ../class/README.md "クラス"
 [プロトタイプオブジェクト]: ../prototype-object/README.md "クラス"
-[変数と宣言のconstについて]: ../variables/README.md#const
+[const]: ../variables/README.md#const
 [ユースケース: Node.jsでCLIアプリケーション]: ../../use-case/nodecli/README.md
 [Map/Set]: ../map-and-set/README.md

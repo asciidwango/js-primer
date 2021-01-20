@@ -8,11 +8,11 @@ const profileName = "js-primer";
 const cli = meow(`
     Usage
       $ screenshot <input>
- 
+
     Options
       --url         open url
       --output, -o  output path of image
- 
+
     Examples
       $ screenshot --url "http://127.0.0.1:8080/final/final/" --output ./output.png
 `, {
