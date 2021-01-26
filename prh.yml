@@ -195,6 +195,8 @@ rules:
     patterns: /UTF16/i
   - expected: 弱い参照
     patterns: 弱参照
+  - expected: 返り値
+    patterns: 戻り値
   # Code Unit/ Code Point
   - expected: Code Unit
   - expected: Code Poiint
