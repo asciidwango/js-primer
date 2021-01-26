@@ -6,7 +6,7 @@ description: "Promiseを活用し、ソースコードの整理とエラーハ�
 # Promiseを活用する {#use-promise}
 
 ここまでのセクションで、Fetch APIを使ってAjax通信を行い、サーバーから取得したデータを表示できました。
-最後に、Fetch APIの戻り値でもある**Promise**を活用してソースコードを整理することで、エラーハンドリングをしっかり行います。
+最後に、Fetch APIの返り値でもある**Promise**を活用してソースコードを整理することで、エラーハンドリングをしっかり行います。
 
 ## 関数の分割 {#split-function}
 
@@ -65,7 +65,7 @@ function displayView(view) {
 
 ## Promiseのエラーハンドリング {#error-handling}
 
-次に`fetchUserInfo`関数を変更し、Fetch APIの戻り値でもあるPromiseオブジェクトを`return`します。
+次に`fetchUserInfo`関数を変更し、Fetch APIの返り値でもあるPromiseオブジェクトを`return`します。
 この変更によって、`fetchUserInfo`関数を呼び出す`main`関数のほうで非同期処理の結果を扱えるようになります。
 Promiseチェーンの中で投げられたエラーは、`Promise#catch`メソッドを使って一箇所で受け取れます。
 
@@ -85,7 +85,7 @@ function main() {
 }
 
 function fetchUserInfo(userId) {
-    // fetchの戻り値のPromiseをreturnする
+    // fetchの返り値のPromiseをreturnする
     return fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
         .then(response => {
             if (!response.ok) {
@@ -113,8 +113,8 @@ function fetchUserInfo(userId) {
 
 <!-- textlint-enable ja-technical-writing/sentence-length -->
 
-`Promise#then`メソッドでつながるPromiseチェーンは、`then`に渡されたコールバック関数の戻り値をそのまま次の`then`へ渡します。
-ただし、コールバック関数の戻り値がPromiseである場合は、そのPromiseで解決された値を次の`then`に渡します。
+`Promise#then`メソッドでつながるPromiseチェーンは、`then`に渡されたコールバック関数の返り値をそのまま次の`then`へ渡します。
+ただし、コールバック関数の返り値がPromiseである場合は、そのPromiseで解決された値を次の`then`に渡します。
 つまり、`then`のコールバック関数が同期処理から非同期処理に変わったとしても、次の`then`が受け取る値の型は変わらないということです。
 
 Promiseチェーンを使って処理を分割する利点は、同期処理と非同期処理を区別せずに連鎖できることです。
@@ -124,8 +124,8 @@ Promiseチェーンを使って処理を分割する利点は、同期処理と�
 Promiseチェーンで処理を分けることで、それぞれの処理が簡潔になりコードの見通しがよくなります。
 
 `index.js`の`fetchUserInfo`関数と`main`関数を次のように書き換えます。
-まず、`fetchUserInfo`関数が`Response#json`メソッドの戻り値をそのまま返すように変更します。
-`Response#json`メソッドの戻り値はJSONオブジェクトで解決されるPromiseなので、次の`then`ではユーザー情報のJSONオブジェクトが渡されます。
+まず、`fetchUserInfo`関数が`Response#json`メソッドの返り値をそのまま返すように変更します。
+`Response#json`メソッドの返り値はJSONオブジェクトで解決されるPromiseなので、次の`then`ではユーザー情報のJSONオブジェクトが渡されます。
 次に、`main`関数が`fetchUserInfo`関数のPromiseチェーンで、HTMLの組み立て（`createView`）と表示（`displayView`）を行うように変更します。
 
 ```js
