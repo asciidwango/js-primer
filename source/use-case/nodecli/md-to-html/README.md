@@ -1,5 +1,5 @@
 ---
-author: laco 
+author: laco
 description: "markedパッケージを使ってMarkdownファイルをHTMLに変換します。"
 ---
 
@@ -132,7 +132,7 @@ https://jsprimer.net/</p>
 また、`gfm`オプションを付与して実行すると次のように出力されるはずです。
 
 ```shell-session
-$ node main.js --gfm sample.md 
+$ node main.js --gfm sample.md
 <h1 id="サンプルファイル">サンプルファイル</h1>
 <p>これはサンプルです。
 <a href="https://jsprimer.net/">https://jsprimer.net/</a></p>

@@ -93,7 +93,7 @@ function escapeSpecialChars(str) {
 }
 ```
 
-この`escapeSpecialChars`関数を、HTML文字列の中で`userInfo`から値を注入しているすべての箇所で行います。
+この`escapeSpecialChars`関数を、HTML文字列の中で`userInfo`から値を注入しているすべての箇所で呼び出します。
 ただし、テンプレートリテラル中で挿入している部分すべてに関数を適用するのは手間ですし、メンテナンス性もよくありません。
 そこで、[テンプレートリテラルをタグづけ][]することで、明示的にエスケープ用の関数を呼び出す必要がないようにします。
 タグづけされたテンプレートリテラルは、テンプレートによる値の埋め込みを関数の呼び出しとして扱えます。
@@ -112,7 +112,7 @@ function escapeHTML(strings, ...values) {
         } else {
             return result + String(value) + str;
         }
-    });  
+    });
 }
 ```
 
@@ -162,5 +162,6 @@ result.innerHTML = view;
 [手続き的にツリー構造を構築する]: https://developer.mozilla.org/ja/docs/Web/API/Node/appendChild
 [エスケープ用のライブラリ]: https://github.com/teppeis/htmlspecialchars
 [テンプレートリテラルをタグづけ]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/template_strings#タグづけされたTemplate_literal
-[テンプレートリテラル]: ../../../basic/string/README.md#create
+[文字列]: ../../../basic/string/README.md
 [タグつきテンプレート関数]: ../../../basic/string/README.md#tagged-template-function
+[テンプレートリテラル]: ../../../basic/string/README.md#create

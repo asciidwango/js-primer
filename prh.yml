@@ -199,7 +199,7 @@ rules:
     patterns: 戻り値
   # Code Unit/ Code Point
   - expected: Code Unit
-  - expected: Code Poiint
+  - expected: Code Point
   - expected: 各Code Unitごとに
     patterns: Code Unit単位
   - expected: 各Code Pointごとに

@@ -37,7 +37,7 @@ Node.jsには**LTS（Long-Term Support）**版と最新版の2つのリリース
 （`$`はコマンドラインの入力欄を表す記号であるため、実際に入力する必要はありません）。
 
 {{book.triplebackticks}}
-$ node -v 
+$ node -v
 v{{book.nodeversion}}
 {{book.triplebackticks}}
 
@@ -46,7 +46,7 @@ Node.jsをインストールすると、`node`コマンドだけでなくnpmを�
 次のコマンドを実行して、インストールされたnpmのバージョンを確認しましょう。
 
 {{book.triplebackticks}}
-$ npm -v 
+$ npm -v
 {{book.npmversion}}
 {{book.triplebackticks}}
 
@@ -132,7 +132,7 @@ js-primerのローカルサーバーを起動しました。
   URL: http://localhost:3000
 
 ```
- 
+
 <!-- textlint-disable ja-technical-writing/sentence-length -->
 
 起動したローカルサーバーのURL（`http://localhost:3000`）へブラウザでアクセスすると、先ほどの`index.html`の内容が表示されます。
@@ -171,7 +171,7 @@ $ npx @js-primer/local-server --port 8000
 この書籍では、`@js-primer/local-server`をデフォルトのポート番号である3000番ポートを利用する前提で進めていきます。
 そのため、使わなくなったローカルサーバーは`Ctrl+C`で終了しておくことで、アクセスするURL（ポート番号）が書籍と同じ状態で進められます。
 
-## まとめ {#conslusion}
+## まとめ {#conclusion}
 
 この章では、これからのユースケースの章で必要な環境を準備しました。
 
