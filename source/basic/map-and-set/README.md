@@ -101,19 +101,19 @@ console.log(results); // => ["key1:value1","key2:value2"]
 
 `keys`メソッドはマップが持つすべての要素のキーを挿入順に並べた**Iterator**オブジェクトを返します。
 同様に、`values`メソッドはマップが持つすべての要素の値を挿入順に並べたIteratorオブジェクトを返します。
-これらの戻り値はIteratorオブジェクトであって配列ではありません。
+これらの返り値はIteratorオブジェクトであって配列ではありません。
 そのため、次の例のように`for...of`文で反復処理を行ったり、`Array.from`メソッドに渡して配列に変換して使ったりします。
 
 {{book.console}}
 ```js
 const map = new Map([["key1", "value1"], ["key2", "value2"]]);
 const keys = [];
-// keysメソッドの戻り値(Iterator)を反復処理する
+// keysメソッドの返り値(Iterator)を反復処理する
 for (const key of map.keys()) {
     keys.push(key);
 }
 console.log(keys); // => ["key1","key2"]
-// keysメソッドの戻り値(Iterator)から配列を作成する
+// keysメソッドの返り値(Iterator)から配列を作成する
 const keysArray = Array.from(map.keys());
 console.log(keysArray); // => ["key1","key2"]
 ```
@@ -134,7 +134,7 @@ console.log(entries); // => ["key1:value1","key2:value2"]
 
 また、マップ自身もiterableなオブジェクトなので、`for...of`文で反復処理できます。
 マップを`for...of`文で反復したときは、すべての要素をエントリーとして挿入順に反復処理します。
-つまり、`entries`メソッドの戻り値を反復処理するときと同じ結果が得られます。
+つまり、`entries`メソッドの返り値を反復処理するときと同じ結果が得られます。
 
 {{book.console}}
 ```js

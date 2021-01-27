@@ -106,7 +106,7 @@ CommonJSモジュールでは`module.exports`プロパティに代入された�
 [import, title:"my-module.js"](src/my-module.js)
 
 このCommonJSモジュールをインポートするには、Node.js実行環境のグローバル関数である[require関数][]を使います。
-次のように`require`関数にインポートしたいモジュールのファイルパスを渡し、戻り値としてエクスポートされた値をインポートできます。
+次のように`require`関数にインポートしたいモジュールのファイルパスを渡し、返り値としてエクスポートされた値をインポートできます。
 インポートするファイルパスに拡張子が必須なES Moduleとは異なり、CommonJSの`require`関数では拡張子である`.js`が省略可能です。
 
 [import](src/cjs-import.js)

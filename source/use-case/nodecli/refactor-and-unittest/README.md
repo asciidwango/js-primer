@@ -34,7 +34,7 @@ CommonJSモジュールからオブジェクトをエクスポートするには
 
 [import, title:"functions.js"](src/example/functions.js)
 
-このようにエクスポートされたオブジェクトは、`require`関数の戻り値であるオブジェクトのプロパティとしてアクセスできます。
+このようにエクスポートされたオブジェクトは、`require`関数の返り値であるオブジェクトのプロパティとしてアクセスできます。
 次のコードでは先ほどの`functions.js`をインポートして取得したオブジェクトから`foo`と`bar`関数をプロパティとして取得しています。
 
 [import, title:"functions-main.js"](src/example/functions-main.js)
