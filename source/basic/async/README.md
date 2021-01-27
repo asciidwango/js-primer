@@ -1122,15 +1122,15 @@ fetchedPromise.then(([responseA, responseB]) => {
 ### `Promise.race` {#promise-race}
 
 `Promise.all`メソッドは複数のPromiseがすべて完了するまで待つ処理でした。
-`Promise.race`メソッドでは複数のPromiseを受け取りますが、Promiseが1つでも完了した（Settle状態となった）時点で次の処理を実行します。
+`Promise.race`メソッドでは複数のPromiseを受け取りますが、Promiseが1つでも完了した（Settled状態となった）時点で次の処理を実行します。
 
 `Promise.race`メソッドは`Promise`インスタンスの配列を受け取り、新しい`Promise`インスタンスを返します。
 <!-- textlint-disable -->
-この新しい`Promise`インスタンスは、配列の中で一番最初に**Settle**状態となった`Promise`インスタンスと同じ状態になります。
+この新しい`Promise`インスタンスは、配列の中で一番最初に**Settled**状態となった`Promise`インスタンスと同じ状態になります。
 <!-- textlint-enable -->
 
-- 配列の中で一番最初に**Settle**となったPromiseが**Fulfilled**の場合は、新しい`Promise`インスタンスも**Fulfilled**になる
-- 配列の中で一番最初に**Settle**となったPromiseが**Rejected**の場合は、新しい`Promise`インスタンスも **Rejected**になる
+- 配列の中で一番最初に**Settled**となったPromiseが**Fulfilled**の場合は、新しい`Promise`インスタンスも**Fulfilled**になる
+- 配列の中で一番最初に**Settled**となったPromiseが**Rejected**の場合は、新しい`Promise`インスタンスも **Rejected**になる
 
 つまり、複数のPromiseによる非同期処理を同時に実行して競争（race）させて、一番最初に完了した`Promise`インスタンスに対する次の処理を呼び出します。
 
@@ -1422,7 +1422,7 @@ asyncMain().catch(error => {
 });
 ```
 
-`await`式がエラーを`throw`するということは、そのエラーは`try...catch`構文でキャッチできます（詳細は「[try...catch構文][]」の章を参照）。
+`await`式がエラーを`throw`するということは、そのエラーは`try...catch`構文でキャッチできます（詳細は「[例外処理][]」の章の「[try...catch構文][]」を参照）。
 通常の非同期処理では完了する前に次の行が実行されてしまうため`try...catch`構文ではエラーをキャッチできませんでした。
 そのためPromiseでは`catch`メソッドを使ってPromise内で発生したエラーをキャッチしていました。
 

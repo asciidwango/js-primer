@@ -1,5 +1,5 @@
 ---
-author: laco 
+author: laco
 description: "ユニットテストの導入とソースコードのモジュール化を行います。"
 ---
 

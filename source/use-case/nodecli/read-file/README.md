@@ -1,5 +1,5 @@
 ---
-author: laco 
+author: laco
 description: "Node.jsの`fs`モジュールを使ったファイルの読み込みについて学びます。"
 ---
 
@@ -49,7 +49,7 @@ const fs = require("fs");
 
 try {
     const file = fs.readFileSync("sample.md");
-} catch (err) { 
+} catch (err) {
     // ファイルが読み込めないなどのエラーが発生したときに呼ばれる
 }
 ```

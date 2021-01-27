@@ -130,7 +130,7 @@ const array = [];
 console.log(typeof array); // => "object"
 ```
 
-### [コラム] TypedArray<sup>[ES2015]</sup> {#typed-array}
+### [コラム] [ES2015] TypedArray {#typed-array}
 
 JavaScriptの配列は可変長のみですが、`TypedArray`という固定長でかつ型つきの配列を扱う別のオブジェクトが存在します。
 `TypedArray`はバイナリデータのバッファを示すために使われるデータ型で、WebGLやバイナリを扱う場面で利用されます。
