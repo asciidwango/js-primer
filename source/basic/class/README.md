@@ -810,9 +810,7 @@ console.log(MyClassPrototype === MyClass.prototype); // => true
 
 ここで重要なのは、インスタンスはどのクラスから作られたかやそのクラスのプロトタイプオブジェクトを知っているということです。
 
-----
-
-#### Note: `[[Prototype]]`内部プロパティを読み書きする {#inner-property}
+#### [Note] `[[Prototype]]`内部プロパティを読み書きする {#inner-property}
 
 `Object.getPrototypeOf(オブジェクト)`で`オブジェクト`の`[[Prototype]]`を読み取ることができます。
 一方、`Object.setPrototypeOf(オブジェクト, プロトタイプオブジェクト)`で`オブジェクト`の`[[Prototype]]`に`プロトタイプオブジェクト`を設定できます。
@@ -820,8 +818,6 @@ console.log(MyClassPrototype === MyClass.prototype); // => true
 
 しかし、これらの`[[Prototype]]`内部プロパティを直接読み書きすることは通常の用途では行いません。
 また、既存のビルトインオブジェクトの動作なども変更できるため、不用意に扱うべきではないでしょう。
-
-----
 
 ### プロパティの参照とプロトタイプチェーン {#read-prototype-chain}
 
