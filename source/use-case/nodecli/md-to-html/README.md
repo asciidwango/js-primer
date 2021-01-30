@@ -14,7 +14,7 @@ JavaScriptでMarkdownをHTMLへ変換するために、今回は[marked][]とい
 markedのパッケージはnpmで配布されているので、commanderと同様に`npm install`コマンドでパッケージをインストールしましょう。
 
 ```shell-session
-$ npm install --save marked@1.0.0
+$ npm install marked@1.0.0
 ```
 
 インストールが完了したら、Node.jsのスクリプトから読み込みます。
@@ -99,7 +99,7 @@ console.log(options.gfm);
 
 アプリケーション側でデフォルト設定を持っておくことで、将来的にmarkedの挙動が変わったときにも影響を受けにくくなります。
 次のようにデフォルトのオプションを表現したオブジェクトに対して、`program.opts`メソッドの返り値で上書きしましょう。
-オブジェクトのデフォルト値を別のオブジェクトで上書きするときには`...`（spread構文）を使うと便利です（[オブジェクトのspread構文][]を参照）。
+オブジェクトのデフォルト値を別のオブジェクトで上書きするときには`...`（spread構文）を使うと便利です（「[オブジェクト][]」の「[&#91;ES2018&#93; オブジェクトのspread構文でのマージ][]」を参照）。
 
 <!-- 差分コードなので -->
 <!-- doctest:disable -->
@@ -154,4 +154,5 @@ $ node main.js --gfm sample.md
 [marked]: https://github.com/chjj/marked
 [変換オプション]: https://marked.js.org/#/USING_ADVANCED.md#options
 [GitHub Flavored Markdown]: https://github.github.com/gfm/
-[オブジェクトのspread構文]: ../../../basic/object/README.md#object-spread-syntax
+[オブジェクト]: ../../../basic/object/README.md
+[&#91;ES2018&#93; オブジェクトのspread構文でのマージ]: ../../../basic/object/README.md#object-spread-syntax
