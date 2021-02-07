@@ -56,5 +56,5 @@
       - [Todoアイテムの更新と削除を実装する](./use-case/todoapp/update-delete/README.md)
       - [Todoアプリのリファクタリング](./use-case/todoapp/final/README.md)
 - [付録: 参考リンク集](./appendix/links/README.md)
-- [付録: JavaScriptチートシート](./cheetsheet/README.md)
+- [付録: JavaScriptチートシート](./cheatsheet/README.md)
 - [おわりに](./outro/README.md)
