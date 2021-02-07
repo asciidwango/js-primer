@@ -4,9 +4,9 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>おわりに · JavaScript Primer #jsprimer</title>
+        <title>付録: JavaScriptチートシート · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="description" content="書籍を読み終わった感想やフィードバックの送り先やリンクの貼り方についての紹介です。">
+        <meta name="description" content="JavaScriptチートシート">
         <meta name="generator" content="HonKit 3.6.13">
         
         
@@ -62,11 +62,13 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="../outro/" />
     
-    <link rel="prev" href="../cheatsheet/" />
+    
+    <link rel="prev" href="../appendix/links/" />
     
 
-    <link rel="canonical" href="https://jsprimer.net/outro/">
+    <link rel="canonical" href="https://jsprimer.net/cheatsheet/">
 
 <meta name="google-site-verification" content="bMotEbgYwkzA3k4PkuyK_NUdz0bKh-Phz0oUwNmRSVo" />
 <style>
@@ -957,9 +959,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6" data-path="../cheatsheet/">
+        <li class="chapter active" data-level="1.6" data-path="./">
             
-                <a href="../cheatsheet/">
+                <a href="./">
             
                     
                     付録: JavaScriptチートシート
@@ -970,9 +972,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.7" data-path="./">
+        <li class="chapter " data-level="1.7" data-path="../outro/">
             
-                <a href="./">
+                <a href="../outro/">
             
                     
                     おわりに
@@ -1439,20 +1441,777 @@
                             
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="outro"><a name="outro" class="plugin-anchor" href="#outro"><i class="fa fa-link" aria-hidden="true"></i></a>おわりに </h1>
-<p>この書籍はJavaScriptを一から学べることを目的に書かれています。
-この書籍がJavaScriptを学ぶ上で助けになれば幸いです。</p>
-<p>この書籍のウェブサイトはすべてのページにURLがあり、セクションのタイトルにもパーマネントリンクがあります。
-このウェブサイトへのリンクは自由に貼れるため、必要に応じてご活用ください。</p>
-<p>もし書籍中に間違いや疑問に思った箇所を見つけた場合は、「<a href="../intro/feedback/">文章の間違いに気づいたら</a>」を参考にお知らせください。</p>
-<p>また書籍を読んだ感想をブログやTwitterなどに書いてくれるとうれしいです。</p>
+                                <!-- load script -->
+<script type="text/javascript">
+function loadExt(e,t){var s=this;s.files=e,s.js=[],s.head=document.getElementsByTagName("head")[0],s.after=t||function(){},s.loadStyle=function(e){var t=document.createElement("link");t.rel="stylesheet",t.type="text/css",t.href=e,s.head.appendChild(t)},s.loadScript=function(e){var t=document.createElement("script");t.type="text/javascript",t.src=s.js[e];var a=function(){++e<s.js.length?s.loadScript(e):s.after()};t.onload=function(){a()},s.head.appendChild(t)};for(var a=0;a<s.files.length;a++)/\.js$/.test(s.files[a])&&s.js.push(s.files[a]),/\.css$/.test(s.files[a])&&s.loadStyle(s.files[a]);s.js.length>0?s.loadScript(0):s.after()}
+
+function highlightCheatsheetCodes() {
+    document.querySelectorAll('.markdown-section table td:first-child code').forEach(function(block){
+        block.classList.add("javascript");
+        hljs.highlightBlock(block);
+    });
+}
+function loadSyntaxHighlight(){
+  var files = [
+    "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/default.min.css",
+    "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js",
+  ];
+  if (typeof hljs === "undefined") {
+    new loadExt(files, function(){
+      highlightCheatsheetCodes();
+    });
+  } else {
+    highlightCheatsheetCodes();
+  }
+}
+document.addEventListener('DOMContentLoaded', function(){
+    loadSyntaxHighlight();
+});
+typeof gitbook === "object" && gitbook.events.one("page.change", function() {
+    loadSyntaxHighlight();
+});
+</script>
+
+<style>
+.s4::after {
+    content: "    ";
+    white-space: pre;
+}
+.markdown-section table td:first-child {
+}
+.markdown-section table td:first-child code {
+    white-space: pre;
+    display: inline-block;
+    padding: .1em;
+    border-radius: .3em;
+    background: #fafafa;
+}
+</style>
+
+<h1 id="cheat-sheet"><a name="cheat-sheet" class="plugin-anchor" href="#cheat-sheet"><i class="fa fa-link" aria-hidden="true"></i></a>付録: JavaScriptチートシート </h1>
+<p>JavaScriptの言語機能に関するチートシートです。</p>
 <ul>
-<li>Twitterのハッシュタグ: <a href="https://twitter.com/search?f=realtime&amp;q=%23jsprimer" target="_blank">#jsprimer</a></li>
+<li>言語機能<ul>
+<li><a href="#comments">コメント</a></li>
+<li><a href="#data-structures">データ</a></li>
+<li><a href="#literal">リテラル</a></li>
+<li><a href="#string">文字列</a></li>
+<li><a href="#data-access">データアクセス</a></li>
+<li><a href="#operator">演算子</a></li>
+<li><a href="#function-behavior">関数と挙動</a></li>
+<li><a href="#control-flow">コントロールフロー</a></li>
+<li><a href="#module">モジュール</a></li>
+<li><a href="#miscellaneous">その他</a></li>
 </ul>
-<p>読んだ感想やフィードバックを直接送りたい場合は、次のフィードバックフォームをご利用ください。</p>
+</li>
+<li>ガイド<ul>
+<li><a href="#project-anatomy">プロジェクト構造</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="language-feature"><a name="language-feature" class="plugin-anchor" href="#language-feature"><i class="fa fa-link" aria-hidden="true"></i></a>言語機能 </h2>
+<h3 id="comments"><a name="comments" class="plugin-anchor" href="#comments"><i class="fa fa-link" aria-hidden="true"></i></a>コメント </h3>
+<p>コメントの書き方について。</p>
+<table>
+<thead>
+<tr>
+<th>コード例</th>
+<th>説明</th>
+<th>解説</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>// xxx</code></td>
+<td>一行コメント</td>
+<td><a href="../basic/comments/">コメント</a></td>
+</tr>
+<tr>
+<td><code>/* xxx */</code></td>
+<td>複数行コメント</td>
+<td><a href="../basic/comments/">コメント</a></td>
+</tr>
+<tr>
+<td><code>&lt;!-- xxx --&gt;</code></td>
+<td>[ES2015] HTML-likeコメント</td>
+<td><a href="../basic/comments/">コメント</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="data-structures"><a name="data-structures" class="plugin-anchor" href="#data-structures"><i class="fa fa-link" aria-hidden="true"></i></a>データ構造 </h3>
+<p>変数宣言について。</p>
+<table>
+<thead>
+<tr>
+<th>コード例</th>
+<th>説明</th>
+<th>解説</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>const x</code></td>
+<td>[ES2015] <strong>変数宣言</strong>。<code>x</code>に値の再代入はできない</td>
+<td><a href="../basic/variables/">変数と宣言</a></td>
+</tr>
+<tr>
+<td><code>let x</code></td>
+<td>[ES2015] <strong>変数宣言</strong>。<code>const</code>と似ているが、<code>x</code>に値を再代入できる</td>
+<td><a href="../basic/variables/">変数と宣言</a></td>
+</tr>
+<tr>
+<td><code>var x</code></td>
+<td><strong>変数宣言</strong>。レガシーな変数宣言方法</td>
+<td><a href="../basic/variables/">変数と宣言</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="literal"><a name="literal" class="plugin-anchor" href="#literal"><i class="fa fa-link" aria-hidden="true"></i></a>リテラル </h3>
+<p>データ構造を表現するリテラルについて。</p>
+<table>
+<thead>
+<tr>
+<th>コード例</th>
+<th>説明</th>
+<th>解説</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>true</code> または <code>false</code></td>
+<td><strong>真偽値</strong></td>
+<td><a href="../basic/data-type/">データ型とリテラル</a></td>
+</tr>
+<tr>
+<td><code>123</code></td>
+<td><strong>10進数</strong>の整数リテラル</td>
+<td><a href="../basic/data-type/">データ型とリテラル</a></td>
+</tr>
+<tr>
+<td><code>123n</code></td>
+<td>[ES2020] 巨大な整数を表すBigIntリテラル</td>
+<td><a href="../basic/data-type/">データ型とリテラル</a></td>
+</tr>
+<tr>
+<td><code>0b10</code></td>
+<td>[ES2015] <strong>2進数</strong>の整数リテラル</td>
+<td><a href="../basic/data-type/">データ型とリテラル</a></td>
+</tr>
+<tr>
+<td><code>0o777</code></td>
+<td>[ES2015] <strong>8進数</strong>の整数リテラル</td>
+<td><a href="../basic/data-type/">データ型とリテラル</a></td>
+</tr>
+<tr>
+<td><code>0x30A2</code></td>
+<td><strong>16進数</strong>の整数リテラル</td>
+<td><a href="../basic/data-type/">データ型とリテラル</a></td>
+</tr>
+<tr>
+<td><code>{ k: v }</code></td>
+<td>プロパティ名が<code>k</code>、プロパティの値が<code>v</code>の<strong>オブジェクト</strong>を作成</td>
+<td><a href="../basic/object/">オブジェクト</a></td>
+</tr>
+<tr>
+<td><i class="s4"></i> <code>{ n }</code></td>
+<td>[ES2015] プロパティ名が<code>n</code>、プロパティの値が<code>n</code>の<strong>オブジェクト</strong>を作成</td>
+<td><a href="../basic/object/">オブジェクト</a></td>
+</tr>
+<tr>
+<td><code>[x, y]</code></td>
+<td><code>x</code>と<code>y</code>を初期値にもつ<strong>配列オブジェクト</strong>を作成</td>
+<td><a href="../basic/array/">配列</a></td>
+</tr>
+<tr>
+<td><code>/pattern/</code></td>
+<td><code>pattern</code>をもつ<strong>正規表現オブジェクト</strong>を作成</td>
+<td><a href="../basic/string/">文字列</a></td>
+</tr>
+<tr>
+<td><code>null</code></td>
+<td><code>null</code>値</td>
+<td><a href="../basic/data-type/">データ型とリテラル</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="string"><a name="string" class="plugin-anchor" href="#string"><i class="fa fa-link" aria-hidden="true"></i></a>文字列 </h3>
+<p>文字列について。</p>
+<table>
+<thead>
+<tr>
+<th>コード例</th>
+<th>説明</th>
+<th>解説</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&quot;xxx&quot;</code></td>
+<td>ダブルクォートの<strong>文字列リテラル</strong>。改行などは<code>\</code>と特定の文字を組み合わせたエスケープシーケンスとして表現します。</td>
+<td><a href="../basic/string/">文字列</a></td>
+</tr>
+<tr>
+<td><code>&apos;xxx&apos;</code></td>
+<td>シングルクォートの<strong>文字列リテラル</strong>。<code>&quot;xxx&quot;</code>と意味は同じ。</td>
+<td><a href="../basic/string/">文字列</a></td>
+</tr>
+<tr>
+<td><code>`xxx` </code></td>
+<td>[ES2015] テンプレート文字列リテラル。改行を含んだ入力が可能</td>
+<td><a href="../basic/string/">文字列</a></td>
+</tr>
+<tr>
+<td><i class="s4"></i> <code>`${x}` </code></td>
+<td>[ES2015] テンプレート文字列リテラル中の変数<code>x</code>の値を展開する</td>
+<td><a href="../basic/string/">文字列</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="data-access"><a name="data-access" class="plugin-anchor" href="#data-access"><i class="fa fa-link" aria-hidden="true"></i></a>データアクセス </h3>
+<p>データへのアクセスについて。</p>
+<table>
+<thead>
+<tr>
+<th>コード例</th>
+<th>説明</th>
+<th>解説</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>array[0]</code></td>
+<td>配列への<strong>インデックスアクセス</strong></td>
+<td><a href="../basic/array/">配列</a></td>
+</tr>
+<tr>
+<td><code>obj[&quot;x&quot;]</code></td>
+<td>オブジェクトへの<strong>プロパティアクセス</strong>（ブラケット記法）</td>
+<td><a href="../basic/object/">オブジェクト</a></td>
+</tr>
+<tr>
+<td><code>obj.x</code></td>
+<td>オブジェクトへの<strong>プロパティアクセス</strong>（ドット記法）</td>
+<td><a href="../basic/object/">オブジェクト</a></td>
+</tr>
+<tr>
+<td><code>obj?.x</code></td>
+<td>[ES2020] オブジェクトへの<strong>プロパティアクセス</strong>（Optional chaining演算子）</td>
+<td><a href="../basic/object/">オブジェクト</a></td>
+</tr>
+<tr>
+<td><code>const { x } = obj;</code></td>
+<td>[ES2015] オブジェクトの<strong>分割代入</strong></td>
+<td><a href="../basic/object/">オブジェクト</a></td>
+</tr>
+<tr>
+<td><code>const [ x ] = array;</code></td>
+<td>[ES2015] 配列の<strong>分割代入</strong></td>
+<td><a href="../basic/array/">配列</a></td>
+</tr>
+<tr>
+<td><code>f(...array)</code></td>
+<td>[ES2015] <strong>Spread構文</strong>での配列の展開</td>
+<td><a href="../basic/array/">配列</a></td>
+</tr>
+<tr>
+<td><code>f({ ...obj })</code></td>
+<td>[ES2018] <strong>Spread構文</strong>でのオブジェクトの展開</td>
+<td><a href="../basic/object/">オブジェクト</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="operator"><a name="operator" class="plugin-anchor" href="#operator"><i class="fa fa-link" aria-hidden="true"></i></a>演算子 </h3>
+<p>演算子について。</p>
+<table>
+<thead>
+<tr>
+<th>コード例</th>
+<th>説明</th>
+<th>解説</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>+</code></td>
+<td>プラス演算子、文字列結合演算子</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>-</code></td>
+<td>マイナス演算子</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>*</code></td>
+<td>乗算演算子</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>/</code></td>
+<td>除算演算子</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>%</code></td>
+<td>剰余演算子</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>**</code></td>
+<td>[ES2016] べき乗演算子</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>++</code></td>
+<td>インクリメント演算子</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>--</code></td>
+<td>デクリメント演算子</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>===</code></td>
+<td>厳密等価演算子</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>!==</code></td>
+<td>厳密不等価演算子</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>==</code></td>
+<td>等価演算子</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>!=</code></td>
+<td>不等価演算子</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>&gt;</code></td>
+<td>大なり演算子/より大きい</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>&gt;=</code></td>
+<td>大なりイコール演算子/以上</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>&lt;</code></td>
+<td>小なり演算子/より小さい</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>&lt;=</code></td>
+<td>小なりイコール演算子/以下</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>&amp;</code></td>
+<td>ビット論理積</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>|</code></td>
+<td>ビット論理和</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>ビット排他的論理和</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>~</code></td>
+<td>ビット否定</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>&lt;&lt;</code></td>
+<td>左シフト演算子</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>&gt;&gt;</code></td>
+<td>右シフト演算子</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>&gt;&gt;&gt;</code></td>
+<td>ゼロ埋め右シフト演算子</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>&amp;&amp;</code></td>
+<td>AND演算子</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>??</code></td>
+<td>[ES2020] Nullish coalescing演算子</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>||</code></td>
+<td>OR演算子</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>(x)</code></td>
+<td>グループ演算子</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+<tr>
+<td><code>x, y</code></td>
+<td>カンマ演算子</td>
+<td><a href="../basic/operator/">演算子</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="function-behavior"><a name="function-behavior" class="plugin-anchor" href="#function-behavior"><i class="fa fa-link" aria-hidden="true"></i></a>関数と挙動 </h3>
+<p>関数の定義と挙動について。</p>
+<!-- textlint-disable no-js-function-paren -->
+<table>
+<thead>
+<tr>
+<th>サンプル</th>
+<th>説明</th>
+<th>解説</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>function f(){}</code></td>
+<td><strong>関数</strong>宣言</td>
+<td><a href="../basic/function-declaration/">関数と宣言</a></td>
+</tr>
+<tr>
+<td><code>const f = function(){};</code></td>
+<td><strong>関数</strong>式</td>
+<td><a href="../basic/function-declaration/">関数と宣言</a></td>
+</tr>
+<tr>
+<td><code>const f = () =&gt; {};</code></td>
+<td>[ES2015] <strong>Arrow Function</strong>の宣言</td>
+<td><a href="../basic/function-declaration/">関数と宣言</a></td>
+</tr>
+<tr>
+<td><code>async function f(){}</code></td>
+<td>[ES2017] <strong>Async Function</strong>の宣言</td>
+<td><a href="../basic/async/">非同期処理</a></td>
+</tr>
+<tr>
+<td><i class="s4"></i> <code>const f = async function(){};</code></td>
+<td>[ES2017] 関数式を使った<strong>Async Function</strong>の宣言</td>
+<td><a href="../basic/async/">非同期処理</a></td>
+</tr>
+<tr>
+<td><i class="s4"></i> <code>const f = async () =&gt; {};</code></td>
+<td>[ES2017] Arrow Functionを使った<strong>Async Function</strong>の宣言</td>
+<td><a href="../basic/async/">非同期処理</a></td>
+</tr>
+<tr>
+<td><code>function f(x, y){}</code></td>
+<td>関数における仮引数の宣言</td>
+<td><a href="../basic/function-declaration/">関数と宣言</a></td>
+</tr>
+<tr>
+<td><i class="s4"></i> <code>function f(x = 1, y = 2){}</code></td>
+<td><strong>デフォルト引数</strong>、引数が渡されていない場合の初期値を指定する。</td>
+<td><a href="../basic/function-declaration/">関数と宣言</a></td>
+</tr>
+<tr>
+<td><i class="s4"></i> <code>function f([x, y]){}</code></td>
+<td>[ES2015] 関数の引数における配列の<strong>分割代入</strong>。引数の配列からインデックスが<code>0</code>の値を<code>x</code>に、インデックスが<code>1</code>の値を<code>y</code>に代入する。</td>
+<td><a href="../basic/function-declaration/">関数と宣言</a></td>
+</tr>
+<tr>
+<td><i class="s4"></i> <code>function f({ x, y }){}</code></td>
+<td>[ES2015] 関数の引数におけるオブジェクトの<strong>分割代入</strong>。引数のオブジェクトから<code>x</code>と<code>y</code>プロパティを受け取る。</td>
+<td><a href="../basic/function-declaration/">関数と宣言</a></td>
+</tr>
+<tr>
+<td><i class="s4"></i> <code>function f(...args)){}</code></td>
+<td>[ES2015] <strong>可変長引数</strong>/<strong>Rest parameters</strong>。引数に渡された値を配列として受け取る</td>
+<td><a href="../basic/function-declaration/">関数と宣言</a></td>
+</tr>
+<tr>
+<td><code>const o = { method: function(){} };</code></td>
+<td><strong>メソッド定義</strong></td>
+<td><a href="../basic/function-declaration/">関数と宣言</a></td>
+</tr>
+<tr>
+<td><code>const o = { method(){} };</code></td>
+<td>[ES2015] <strong>メソッド定義</strong>の短縮記法</td>
+<td><a href="../basic/function-declaration/">関数と宣言</a></td>
+</tr>
+<tr>
+<td><code>class X{}</code></td>
+<td>[ES2015] <strong>クラス</strong>宣言</td>
+<td><a href="../basic/class/">クラス</a></td>
+</tr>
+<tr>
+<td><code>const X = class X{};</code></td>
+<td>[ES2015] <strong>クラス</strong>式</td>
+<td><a href="../basic/class/">クラス</a></td>
+</tr>
+<tr>
+<td><i class="s4"></i> <code>class X{ method(){} }</code></td>
+<td>[ES2015] クラスの<strong>インスタンスメソッド</strong>定義</td>
+<td><a href="../basic/class/">クラス</a></td>
+</tr>
+<tr>
+<td><i class="s4"></i> <code>class X{ get x(){}, set x(v){} }</code></td>
+<td>[ES2015] クラスの<strong>アクセッサメソッド</strong>の定義</td>
+<td><a href="../basic/class/">クラス</a></td>
+</tr>
+<tr>
+<td><i class="s4"></i> <code>class X{ static method(){} }</code></td>
+<td>[ES2015] クラスの<strong>静的メソッド</strong>定義</td>
+<td><a href="../basic/class/">クラス</a></td>
+</tr>
+<tr>
+<td><code>class C extends P{}</code></td>
+<td>[ES2015] クラスの<strong>継承</strong></td>
+<td><a href="../basic/class/">クラス</a></td>
+</tr>
+<tr>
+<td><i class="s4"></i> <code>super</code></td>
+<td>[ES2015] <strong>親クラス</strong>を参照する</td>
+<td><a href="../basic/class/">クラス</a></td>
+</tr>
+<tr>
+<td><code>fn()</code></td>
+<td>関数呼び出し</td>
+<td><a href="../basic/function-declaration/">関数と宣言</a></td>
+</tr>
+<tr>
+<td><code>fn`xxx` </code></td>
+<td>[ES2015] タグ関数呼び出し</td>
+<td><a href="../basic/string/">文字列</a></td>
+</tr>
+<tr>
+<td><code>new X()</code></td>
+<td><code>new</code>演算子でのクラス（コンストラクタ関数をもつオブジェクト）からインスタンスを作成</td>
+<td><a href="../basic/class/">クラス</a></td>
+</tr>
+</tbody>
+</table>
+<!-- textlint-enable -->
+<h3 id="control-flow"><a name="control-flow" class="plugin-anchor" href="#control-flow"><i class="fa fa-link" aria-hidden="true"></i></a>コントロールフロー </h3>
+<p>コントロールフローの制御構文について。</p>
+<table>
+<thead>
+<tr>
+<th>例</th>
+<th>説明</th>
+<th>解説</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>while(x){}</code></td>
+<td><strong>whileループ</strong>。<code>x</code>が<code>true</code>なら反復処理を行う</td>
+<td><a href="../basic/loop/">ループと反復処理</a></td>
+</tr>
+<tr>
+<td><code>do{}while(x);</code></td>
+<td><strong>do...whileループ</strong>。<code>x</code>が<code>true</code>なら反復処理を行う。<code>x</code>に関係なく必ず初回は処理が行われる</td>
+<td><a href="../basic/loop/">ループと反復処理</a></td>
+</tr>
+<tr>
+<td><code>for(let x=0;x &lt; y ;x++){}</code></td>
+<td><strong>forループ</strong>。<code>x &lt; y</code>が<code>true</code>なら反復処理を行う</td>
+<td><a href="../basic/loop/">ループと反復処理</a></td>
+</tr>
+<tr>
+<td><code>for(const p in o){}</code></td>
+<td><strong>for...inループ</strong>。オブジェクト（<code>o</code>）のプロパティ(<code>p</code>)に対して反復処理を行う</td>
+<td><a href="../basic/loop/">ループと反復処理</a></td>
+</tr>
+<tr>
+<td><code>for(const x of iter){}</code></td>
+<td>[ES2015] <strong>for...ofループ</strong>。イテレータ(<code>iter</code>)の反復処理を行う</td>
+<td><a href="../basic/loop/">ループと反復処理</a></td>
+</tr>
+<tr>
+<td><code>if(x){/*A*/}else{/*B*/}</code></td>
+<td><strong>条件式</strong>。<code>x</code>が<code>true</code>ならAの処理を、それ以外ならBの処理を行う</td>
+<td><a href="../basic/condition/">条件分岐</a></td>
+</tr>
+<tr>
+<td><code>switch(x){case &quot;A&quot;:{/*A*/} &quot;B&quot;:{/*B*/}}</code></td>
+<td><strong>switch文</strong>。<code>x</code>が<code>&quot;A&quot;</code>ならAの処理を、&quot;B&quot;ならBの処理を行う</td>
+<td><a href="../basic/condition/">条件分岐</a></td>
+</tr>
+<tr>
+<td><code>x ? A: B</code></td>
+<td><strong>条件 （三項） 演算子</strong>。<code>x</code>が<code>true</code>なら<code>A</code>の処理を、それ以外なら<code>B</code>の処理を行う</td>
+<td><a href="../basic/condition/">条件分岐</a></td>
+</tr>
+<tr>
+<td><code>break</code></td>
+<td><strong>break文</strong>。現在の反復処理を終了し、ループから抜け出す。</td>
+<td><a href="../basic/condition/">条件分岐</a></td>
+</tr>
+<tr>
+<td><code>continue</code></td>
+<td><strong>continue文</strong>。現在の反復処理を終了し、次のループに行く。</td>
+<td><a href="../basic/condition/">条件分岐</a></td>
+</tr>
+<tr>
+<td><code>try{}catch(e){}finally{}</code></td>
+<td><code>try...catch</code>構文</td>
+<td><a href="../basic/error-try-catch/">例外処理</a></td>
+</tr>
+<tr>
+<td><code>throw new Error(&quot;xxx&quot;)</code></td>
+<td><code>throw</code>文</td>
+<td><a href="../basic/error-try-catch/">例外処理</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="module"><a name="module" class="plugin-anchor" href="#module"><i class="fa fa-link" aria-hidden="true"></i></a>モジュール </h3>
+<p>ECMAScriptモジュールについて。</p>
+<table>
+<thead>
+<tr>
+<th>コード</th>
+<th>説明</th>
+<th>解説</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>import x from &quot;./x.js&quot;</code></td>
+<td>[ES2015] <strong>デフォルトインポート</strong></td>
+<td><a href="../basic/module/">ECMAScriptモジュール</a></td>
+</tr>
+<tr>
+<td><code>import { x } from &quot;./x.js&quot;</code></td>
+<td>[ES2015] <strong>名前付きインポート</strong></td>
+<td><a href="../basic/module/">ECMAScriptモジュール</a></td>
+</tr>
+<tr>
+<td><code>import { x as y } from &quot;./x.js&quot;</code></td>
+<td>[ES2015] 名前付きインポートの<strong>エイリアス</strong></td>
+<td><a href="../basic/module/">ECMAScriptモジュール</a></td>
+</tr>
+<tr>
+<td><code>import * as x from &quot;./x.js&quot;</code></td>
+<td>[ES2015] <strong>すべての名前付きエクスポートをインポート</strong>してエイリアス</td>
+<td><a href="../basic/module/">ECMAScriptモジュール</a></td>
+</tr>
+<tr>
+<td><code>import &quot;./x.js&quot;</code></td>
+<td>[ES2015] 副作用のための<strong>インポート</strong></td>
+<td><a href="../basic/module/">ECMAScriptモジュール</a></td>
+</tr>
+<tr>
+<td><code>export default x</code></td>
+<td>[ES2015] <strong>デフォルトエクスポート</strong></td>
+<td><a href="../basic/module/">ECMAScriptモジュール</a></td>
+</tr>
+<tr>
+<td><code>export { x }</code></td>
+<td>[ES2015] <strong>名前付きエクスポート</strong></td>
+<td><a href="../basic/module/">ECMAScriptモジュール</a></td>
+</tr>
+<tr>
+<td><code>export { x as y }</code></td>
+<td>[ES2015] 名前付きエクスポートの<strong>エイリアス</strong></td>
+<td><a href="../basic/module/">ECMAScriptモジュール</a></td>
+</tr>
+<tr>
+<td><code>export { x } from &quot;./x.js&quot;</code></td>
+<td>[ES2015] 名前付きエクスポートの<strong>再エクスポート</strong></td>
+<td><a href="../basic/module/">ECMAScriptモジュール</a></td>
+</tr>
+<tr>
+<td><code>export * from &quot;./x.js&quot;</code></td>
+<td>[ES2015] すべての名前付きエクスポートの<strong>再エクスポート</strong></td>
+<td><a href="../basic/module/">ECMAScriptモジュール</a></td>
+</tr>
+<tr>
+<td><code>export * as ns from &quot;./x.js&quot;;</code></td>
+<td>[ES2020] <strong>すべての名前付きエクスポートをインポート</strong>して<code>ns</code>という名前で<strong>再エクスポート</strong></td>
+<td><a href="../basic/module/">ECMAScriptモジュール</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="miscellaneous"><a name="miscellaneous" class="plugin-anchor" href="#miscellaneous"><i class="fa fa-link" aria-hidden="true"></i></a>その他 </h3>
+<table>
+<thead>
+<tr>
+<th>コード例</th>
+<th>説明</th>
+<th>解説</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>x;</code></td>
+<td><strong>文</strong></td>
+<td><a href="../basic/statement-expression/">文と式</a></td>
+</tr>
+<tr>
+<td><code>{ }</code></td>
+<td>ブロック文</td>
+<td><a href="../basic/statement-expression/">文と式</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="guide"><a name="guide" class="plugin-anchor" href="#guide"><i class="fa fa-link" aria-hidden="true"></i></a>ガイド </h2>
+<h3 id="project-anatomy"><a name="project-anatomy" class="plugin-anchor" href="#project-anatomy"><i class="fa fa-link" aria-hidden="true"></i></a>プロジェクト構造 </h3>
+<p>JavaScriptにおける基本的なプロジェクトレイアウト、ファイル、フォルダ構造について。</p>
+<table>
+<thead>
+<tr>
+<th>名前</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>src/</td>
+<td>プロジェクトのソースコード</td>
+</tr>
+<tr>
+<td><s class="s4"></s> index.js</td>
+<td>アプリケーションのデフォルトエントリーポイント</td>
+</tr>
+<tr>
+<td>test/</td>
+<td>テストコード。<code>src/</code>に対するユニットテストを置くことが多い</td>
+</tr>
+<tr>
+<td><s class="s4"></s> index.test.js</td>
+<td>アプリケーションのユニットテストファイル。例) <code>index-test.js</code>、<code>indexSpec.js</code>など</td>
+</tr>
+<tr>
+<td>node_modules/</td>
+<td>プロジェクトが依存するnpmモジュールのインストール先</td>
+</tr>
+<tr>
+<td>package.json</td>
+<td>プロジェクトの設定ファイル。名前、説明、スクリプト、依存モジュールなど</td>
+</tr>
+<tr>
+<td>package-lock.json</td>
+<td>npmが扱う依存モジュールのロックファイル</td>
+</tr>
+</tbody>
+</table>
+<p><strong>参考</strong></p>
 <ul>
-<li><a href="https://forms.gle/YAqr1oPBs1KShFSPA" target="_blank">jsprimer.netの感想/フィードバック</a></li>
+<li><a href="../use-case/todoapp/">Todoアプリ</a></li>
 </ul>
+<!-- link -->
 
                                 
                                 </section>
@@ -1468,10 +2227,14 @@
 
             
                 
-                <a href="../cheatsheet/" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 付録: JavaScriptチートシート">
+                <a href="../appendix/links/" class="navigation navigation-prev " aria-label="Previous page: 付録: 参考リンク集">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="../outro/" class="navigation navigation-next " aria-label="Next page: おわりに">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -1480,7 +2243,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"書籍を読み終わった感想やフィードバックの送り先やリンクの貼り方についての紹介です。","title":"おわりに","level":"1.7","depth":1,"previous":{"title":"付録: JavaScriptチートシート","level":"1.6","depth":1,"path":"cheatsheet/README.md","ref":"./cheatsheet/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"outro/README.md","mtime":"2021-02-07T13:16:33.700Z","type":"markdown"},"gitbook":{"version":"3.6.13","time":"2021-02-07T13:17:11.872Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptチートシート","title":"付録: JavaScriptチートシート","level":"1.6","depth":1,"next":{"title":"おわりに","level":"1.7","depth":1,"path":"outro/README.md","ref":"./outro/README.md","articles":[]},"previous":{"title":"付録: 参考リンク集","level":"1.5","depth":1,"path":"appendix/links/README.md","ref":"./appendix/links/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"cheatsheet/README.md","mtime":"2021-02-07T13:16:33.696Z","type":"markdown"},"gitbook":{"version":"3.6.13","time":"2021-02-07T13:17:11.872Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
