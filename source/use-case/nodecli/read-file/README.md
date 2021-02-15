@@ -69,7 +69,7 @@ Node.jsには`fs`モジュール以外にも多くの非同期APIがあるので
 `Buffer`インスタンスはファイルの中身をバイト列として保持しています。
 そのため、そのまま`console.log`メソッドに渡しても人間が読める文字列にはなりません。
 
-```shell-session
+```shell
 $ node main.js sample.md
 <Buffer 23 20 73 61 6d 70 6c 65>
 ```
@@ -83,7 +83,7 @@ $ node main.js sample.md
 先ほどと同じコマンドをもう一度実行すると、実行結果は次のようになります。
 `sample.md`ファイルの中身を文字列として出力できました。
 
-```shell-session
+```shell
 $ node main.js sample.md
 # sample
 ```
@@ -101,7 +101,7 @@ $ node main.js sample.md
 
 存在しないファイルである`notfound.md`をコマンドライン引数に渡して実行すると、次のようにエラーが発生して終了します。
 
-```shell-session
+```shell
 $ node main.js notfound.md
 ENOENT: no such file or directory, open 'notfound.md'
 ```
