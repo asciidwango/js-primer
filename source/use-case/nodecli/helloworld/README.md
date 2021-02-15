@@ -38,7 +38,7 @@ JavaScriptのコードをNode.jsで実行するには、`node`コマンドを使
 コマンドラインで`nodecli`ディレクトリに移動し、次のコマンドでNode.jsを使い`main.js`を実行します。
 まだ`node`コマンドの用意ができていなければ、先に「[アプリケーション開発の準備][]」の章を参照してください。
 
-```shell-session
+```shell
 $ node main.js
 Hello World!
 ```

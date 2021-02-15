@@ -54,7 +54,7 @@ ajaxapp
 次のコマンドでは、この書籍用に作成された`@js-primer/local-server`というローカルサーバーモジュールをダウンロードと同時に実行します。
 まだ`npx`コマンドの用意ができていなければ、先に「[アプリケーション開発の準備][]」の章を参照してください。
 
-```shell-session
+```shell
 $ npx @js-primer/local-server
 ```
  

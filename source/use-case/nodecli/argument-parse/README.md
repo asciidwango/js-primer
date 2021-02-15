@@ -22,7 +22,7 @@ description: "コマンドライン引数を受け取り、アプリケーショ
 
 このスクリプトを次のようにコマンドライン引数をつけて実行してみましょう。
 
-```shell-session
+```shell
 $ node main.js one two=three four
 ```
 
@@ -62,7 +62,7 @@ npmでパッケージをインストールする前に、まずは`package.json`
 
 `nodecli`のディレクトリ内で、`npm init --yes`コマンドを実行して`package.json`を作成しましょう。
 
-```shell-session
+```shell
 $ npm init --yes
 ```
 
@@ -75,7 +75,7 @@ $ npm init --yes
 バージョンを指定せずにインストールすれば、その時点での最新の安定版が自動的に選択されます。
 次のコマンドを実行して、commanderのバージョン5.0をインストールします。[^1]
 
-```shell-session
+```shell
 $ npm install commander@5.0
 ```
 
@@ -130,7 +130,7 @@ Node.jsではES Moduleもサポートされる予定ですが、現在はまだ�
 先ほどインストールした`commander`パッケージを使って、コマンドライン引数として渡されたファイルパスを取得しましょう。
 このCLIアプリケーションでは、処理の対象とするファイルパスを次のようなコマンドの形式で受け取ります。
 
-```shell-session
+```shell
 $ node main.js ./sample.md
 ```
 
@@ -155,7 +155,7 @@ program.parse(process.argv);
 次のコマンドを実行すると、`program.args`配列に格納された`./sample.md`文字列が取得されてコンソールに出力されます。
 `./sample.md`は`process.argv`配列では3番目に存在していましたが、パース後の`program.args`配列では1番目になって扱いやすくなっています。
 
-```shell-session
+```shell
 $ node main.js ./sample.md
 ./sample.md
 ```

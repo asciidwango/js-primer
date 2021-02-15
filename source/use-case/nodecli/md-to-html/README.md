@@ -13,7 +13,7 @@ description: "markedパッケージを使ってMarkdownファイルをHTMLに変
 JavaScriptでMarkdownをHTMLへ変換するために、今回は[marked][]というライブラリを使用します。
 markedのパッケージはnpmで配布されているので、commanderと同様に`npm install`コマンドでパッケージをインストールしましょう。
 
-```shell-session
+```shell
 $ npm install marked@1.0.0
 ```
 
@@ -72,7 +72,7 @@ https://jsprimer.net/</p>
 次に、`gfm`オプションをコマンドライン引数で制御できるようにしましょう。
 アプリケーションのデフォルトでは`gfm`オプションを無効にした上で、次のように`--gfm`オプションを付与してコマンドを実行できるようにします。
 
-```shell-session
+```shell
 $ node main.js --gfm sample.md
 ```
 
@@ -118,7 +118,7 @@ const cliOptions = {
 
 定義したコマンドライン引数を使って、Markdownファイルを変換してみましょう。
 
-```shell-session
+```shell
 $ node main.js sample.md
 <h1 id="サンプルファイル">サンプルファイル</h1>
 <p>これはサンプルです。
@@ -131,7 +131,7 @@ https://jsprimer.net/</p>
 
 また、`gfm`オプションを付与して実行すると次のように出力されるはずです。
 
-```shell-session
+```shell
 $ node main.js --gfm sample.md
 <h1 id="サンプルファイル">サンプルファイル</h1>
 <p>これはサンプルです。
