@@ -3,11 +3,10 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <title>Map/Set · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="データの集合を扱うビルトインオブジェクトであるMapとSetについてを紹介します。オブジェクトの作成方法や更新方法から実際にどのようなケースで使うのかを紹介します。">
-        <meta name="generator" content="HonKit 3.6.13">
+        <meta name="generator" content="HonKit 3.6.17">
         
         
         
@@ -1591,25 +1590,25 @@ map.forEach(<span class="hljs-function">(<span class="hljs-params">value, key</s
 <!-- doctest:meta:{ "ECMAScript": 2020 } --></p>
 <pre><code class="lang-js"><span class="hljs-comment">// ショッピングカートを表現するクラス</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ShoppingCart</span> </span>{
-    <span class="hljs-keyword">constructor</span>() {
+    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
         <span class="hljs-comment">// 商品とその数を持つマップ</span>
-        <span class="hljs-keyword">this</span>.items = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+        <span class="hljs-built_in">this</span>.items = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
     }
     <span class="hljs-comment">// カートに商品を追加する</span>
-    addItem(item) {
+    <span class="hljs-function"><span class="hljs-title">addItem</span>(<span class="hljs-params">item</span>)</span> {
         <span class="hljs-comment">// `item`がない場合は`undefined`を返すため、Nullish coalescing演算子(`??`)を使いデフォルト値として`0`を設定する</span>
-        <span class="hljs-keyword">const</span> count = <span class="hljs-keyword">this</span>.items.get(item) ?? <span class="hljs-number">0</span>;
-        <span class="hljs-keyword">this</span>.items.set(item, count + <span class="hljs-number">1</span>);
+        <span class="hljs-keyword">const</span> count = <span class="hljs-built_in">this</span>.items.get(item) ?? <span class="hljs-number">0</span>;
+        <span class="hljs-built_in">this</span>.items.set(item, count + <span class="hljs-number">1</span>);
     }
     <span class="hljs-comment">// カート内の合計金額を返す</span>
-    getTotalPrice() {
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.from(<span class="hljs-keyword">this</span>.items).reduce(<span class="hljs-function">(<span class="hljs-params">total, [item, count]</span>) =&gt;</span> {
+    <span class="hljs-function"><span class="hljs-title">getTotalPrice</span>(<span class="hljs-params"></span>)</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.from(<span class="hljs-built_in">this</span>.items).reduce(<span class="hljs-function">(<span class="hljs-params">total, [item, count]</span>) =&gt;</span> {
             <span class="hljs-keyword">return</span> total + item.price * count;
         }, <span class="hljs-number">0</span>);
     }
     <span class="hljs-comment">// カートの中身を文字列にして返す</span>
-    toString() {
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.from(<span class="hljs-keyword">this</span>.items).map(<span class="hljs-function">(<span class="hljs-params">[item, count]</span>) =&gt;</span> {
+    <span class="hljs-function"><span class="hljs-title">toString</span>(<span class="hljs-params"></span>)</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.from(<span class="hljs-built_in">this</span>.items).map(<span class="hljs-function">(<span class="hljs-params">[item, count]</span>) =&gt;</span> {
             <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${item.name}</span>:<span class="hljs-subst">${count}</span>`</span>;
         }).join(<span class="hljs-string">&quot;,&quot;</span>);
     }
@@ -1700,12 +1699,12 @@ obj = <span class="hljs-literal">null</span>;
 <span class="hljs-keyword">const</span> listenersMap = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakMap</span>();
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EventEmitter</span> </span>{
-    addListener(listener) {
+    <span class="hljs-function"><span class="hljs-title">addListener</span>(<span class="hljs-params">listener</span>)</span> {
         <span class="hljs-comment">// this にひもづいたリスナーの配列を取得する</span>
-        <span class="hljs-keyword">const</span> listeners = listenersMap.get(<span class="hljs-keyword">this</span>) ?? [];
+        <span class="hljs-keyword">const</span> listeners = listenersMap.get(<span class="hljs-built_in">this</span>) ?? [];
         <span class="hljs-keyword">const</span> newListeners = listeners.concat(listener);
         <span class="hljs-comment">// this をキーに新しい配列をセットする</span>
-        listenersMap.set(<span class="hljs-keyword">this</span>, newListeners);
+        listenersMap.set(<span class="hljs-built_in">this</span>, newListeners);
     }
 }
 
@@ -1713,7 +1712,7 @@ obj = <span class="hljs-literal">null</span>;
 
 <span class="hljs-keyword">let</span> eventEmitter = <span class="hljs-keyword">new</span> EventEmitter();
 <span class="hljs-comment">// イベントリスナーを追加する</span>
-eventEmitter.addListener(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+eventEmitter.addListener(<span class="hljs-function">() =&gt;</span> {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;イベントが発火しました&quot;</span>);
 });
 <span class="hljs-comment">// eventEmitterへの参照がなくなったことで自動的にイベントリスナーが解放される</span>
@@ -1889,7 +1888,7 @@ set.forEach(<span class="hljs-function">(<span class="hljs-params">value</span>)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"データの集合を扱うビルトインオブジェクトであるMapとSetについてを紹介します。オブジェクトの作成方法や更新方法から実際にどのようなケースで使うのかを紹介します。","title":"Map/Set","level":"1.3.23","depth":2,"next":{"title":"JSON","level":"1.3.24","depth":2,"path":"basic/json/README.md","ref":"./basic/json/README.md","articles":[]},"previous":{"title":"非同期処理:コールバック/Promise/Async Function","level":"1.3.22","depth":2,"path":"basic/async/README.md","ref":"./basic/async/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/map-and-set/README.md","mtime":"2021-02-07T13:16:33.688Z","type":"markdown"},"gitbook":{"version":"3.6.13","time":"2021-02-07T13:17:11.872Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"データの集合を扱うビルトインオブジェクトであるMapとSetについてを紹介します。オブジェクトの作成方法や更新方法から実際にどのようなケースで使うのかを紹介します。","title":"Map/Set","level":"1.3.23","depth":2,"next":{"title":"JSON","level":"1.3.24","depth":2,"path":"basic/json/README.md","ref":"./basic/json/README.md","articles":[]},"previous":{"title":"非同期処理:コールバック/Promise/Async Function","level":"1.3.22","depth":2,"path":"basic/async/README.md","ref":"./basic/async/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/map-and-set/README.md","mtime":"2021-02-15T03:24:45.903Z","type":"markdown"},"gitbook":{"version":"3.6.17","time":"2021-02-15T03:25:27.132Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

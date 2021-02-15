@@ -3,11 +3,10 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <title>ファイルを読み込む · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="Node.jsの`fs`モジュールを使ったファイルの読み込みについて学びます。">
-        <meta name="generator" content="HonKit 3.6.13">
+        <meta name="generator" content="HonKit 3.6.17">
         
         
         
@@ -1465,7 +1464,7 @@ Node.jsでファイルの読み書きを行うには、標準モジュールの<
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);
 
-fs.readFile(<span class="hljs-string">&quot;sample.md&quot;</span>, (err, file) =&gt; {
+fs.readFile(<span class="hljs-string">&quot;sample.md&quot;</span>, <span class="hljs-function">(<span class="hljs-params">err, file</span>) =&gt;</span> {
     <span class="hljs-keyword">if</span> (err) {
         <span class="hljs-built_in">console</span>.error(err);
     } <span class="hljs-keyword">else</span> {
@@ -1501,7 +1500,7 @@ program.parse(process.argv);
 <span class="hljs-keyword">const</span> filePath = program.args[<span class="hljs-number">0</span>];
 
 <span class="hljs-comment">// ファイルを非同期で読み込む</span>
-fs.readFile(filePath, (err, file) =&gt; {
+fs.readFile(filePath, <span class="hljs-function">(<span class="hljs-params">err, file</span>) =&gt;</span> {
     <span class="hljs-built_in">console</span>.log(file);
 });
 </code></pre>
@@ -1509,7 +1508,7 @@ fs.readFile(filePath, (err, file) =&gt; {
 文字列になっていないのは、コールバック関数の第二引数はファイルの中身を表す<code>Buffer</code>インスタンスだからです。
 <code>Buffer</code>インスタンスはファイルの中身をバイト列として保持しています。
 そのため、そのまま<code>console.log</code>メソッドに渡しても人間が読める文字列にはなりません。</p>
-<pre><code class="lang-shell-session">$ node main.js sample.md
+<pre><code class="lang-shell"><span class="hljs-meta">$</span><span class="bash"> node main.js sample.md</span>
 &lt;Buffer 23 20 73 61 6d 70 6c 65&gt;
 </code></pre>
 <p><code>fs.readFile</code>関数は引数によってファイルの読み込み方を指定できます。
@@ -1526,14 +1525,14 @@ program.parse(process.argv);
 <span class="hljs-keyword">const</span> filePath = program.args[<span class="hljs-number">0</span>];
 
 <span class="hljs-comment">// ファイルをUTF-8として非同期で読み込む</span>
-fs.readFile(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }, (err, file) =&gt; {
+fs.readFile(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }, <span class="hljs-function">(<span class="hljs-params">err, file</span>) =&gt;</span> {
     <span class="hljs-built_in">console</span>.log(file);
 });
 </code></pre>
 <p>先ほどと同じコマンドをもう一度実行すると、実行結果は次のようになります。
 <code>sample.md</code>ファイルの中身を文字列として出力できました。</p>
-<pre><code class="lang-shell-session">$ node main.js sample.md
-# sample
+<pre><code class="lang-shell"><span class="hljs-meta">$</span><span class="bash"> node main.js sample.md</span>
+<span class="hljs-meta">#</span><span class="bash"> sample</span>
 </code></pre>
 <h3 id="error-handling"><a name="error-handling" class="plugin-anchor" href="#error-handling"><i class="fa fa-link" aria-hidden="true"></i></a>エラーハンドリング </h3>
 <p>先ほどの例では触れませんでしたが、<code>fs</code>モジュールのコールバック関数の第一引数には常にエラーオブジェクトが渡されます。
@@ -1552,7 +1551,7 @@ program.parse(process.argv);
 <span class="hljs-keyword">const</span> filePath = program.args[<span class="hljs-number">0</span>];
 
 <span class="hljs-comment">// ファイルを非同期で読み込む</span>
-fs.readFile(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }, (err, file) =&gt; {
+fs.readFile(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }, <span class="hljs-function">(<span class="hljs-params">err, file</span>) =&gt;</span> {
     <span class="hljs-keyword">if</span> (err) {
         <span class="hljs-built_in">console</span>.error(err.message);
         <span class="hljs-comment">// 終了ステータス 1（一般的なエラー）としてプロセスを終了する</span>
@@ -1563,7 +1562,7 @@ fs.readFile(filePath, { <span class="hljs-attr">encoding</span>: <span class="hl
 });
 </code></pre>
 <p>存在しないファイルである<code>notfound.md</code>をコマンドライン引数に渡して実行すると、次のようにエラーが発生して終了します。</p>
-<pre><code class="lang-shell-session">$ node main.js notfound.md
+<pre><code class="lang-shell"><span class="hljs-meta">$</span><span class="bash"> node main.js notfound.md</span>
 ENOENT: no such file or directory, open &apos;notfound.md&apos;
 </code></pre>
 <p>これでコマンドライン引数に指定したファイルを読み込んで標準出力に表示できました。
@@ -1605,7 +1604,7 @@ ENOENT: no such file or directory, open &apos;notfound.md&apos;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"Node.jsの`fs`モジュールを使ったファイルの読み込みについて学びます。","title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"next":{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},"previous":{"title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"path":"use-case/nodecli/argument-parse/README.md","ref":"./use-case/nodecli/argument-parse/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/read-file/README.md","mtime":"2021-02-07T13:16:33.712Z","type":"markdown"},"gitbook":{"version":"3.6.13","time":"2021-02-07T13:17:11.872Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"Node.jsの`fs`モジュールを使ったファイルの読み込みについて学びます。","title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"next":{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},"previous":{"title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"path":"use-case/nodecli/argument-parse/README.md","ref":"./use-case/nodecli/argument-parse/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/read-file/README.md","mtime":"2021-02-15T03:24:45.923Z","type":"markdown"},"gitbook":{"version":"3.6.17","time":"2021-02-15T03:25:27.132Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

@@ -3,11 +3,10 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <title>文字列 · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="文字列リテラルを使った文字列の作成から検索や置換など基本的な文字列操作について紹介します。また正規表現と組み合わせた文字列操作やタグ付きテンプレート関数を使ったテンプレート処理などについても紹介します。">
-        <meta name="generator" content="HonKit 3.6.13">
+        <meta name="generator" content="HonKit 3.6.17">
         
         
         
@@ -1841,7 +1840,7 @@ Unicodeでは1文字を表すのに使う最小限のビットの組み合わせ
 <span class="hljs-built_in">console</span>.log(str.slice(<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;BCDE&quot;</span>
 <span class="hljs-built_in">console</span>.log(str.slice(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>)); <span class="hljs-comment">// =&gt; &quot;BCDE&quot;</span>
 <span class="hljs-comment">// マイナスを指定すると後ろからの位置となる</span>
-<span class="hljs-built_in">console</span>.log(str.slice(<span class="hljs-number">-1</span>)); <span class="hljs-comment">// =&gt; &quot;E&quot;</span>
+<span class="hljs-built_in">console</span>.log(str.slice(-<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;E&quot;</span>
 <span class="hljs-comment">// インデックスが1から4の範囲を取り出す</span>
 <span class="hljs-built_in">console</span>.log(str.slice(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>)); <span class="hljs-comment">// =&gt; &quot;BCD&quot;</span>
 <span class="hljs-comment">// 第一引数 &gt; 第二引数の場合、常に空文字列を返す</span>
@@ -1856,7 +1855,7 @@ Unicodeでは1文字を表すのに使う最小限のビットの組み合わせ
 <span class="hljs-built_in">console</span>.log(str.substring(<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;BCDE&quot;</span>
 <span class="hljs-built_in">console</span>.log(str.substring(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>)); <span class="hljs-comment">// =&gt; &quot;BCDE&quot;</span>
 <span class="hljs-comment">// マイナスを指定すると0として扱われる</span>
-<span class="hljs-built_in">console</span>.log(str.substring(<span class="hljs-number">-1</span>)); <span class="hljs-comment">// =&gt; &quot;ABCDE&quot;</span>
+<span class="hljs-built_in">console</span>.log(str.substring(-<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;ABCDE&quot;</span>
 <span class="hljs-comment">// 位置:1から4の範囲を取り出す</span>
 <span class="hljs-built_in">console</span>.log(str.substring(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>)); <span class="hljs-comment">// =&gt; &quot;BCD&quot;</span>
 <span class="hljs-comment">// 第一引数 &gt; 第二引数の場合、引数が入れ替わる</span>
@@ -1917,7 +1916,7 @@ Unicodeでは1文字を表すのに使う最小限のビットの組み合わせ
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;JavaScript&quot;</span>;
 <span class="hljs-keyword">const</span> searchWord = <span class="hljs-string">&quot;Script&quot;</span>;
 <span class="hljs-keyword">const</span> index = str.indexOf(searchWord);
-<span class="hljs-keyword">if</span> (index !== <span class="hljs-number">-1</span>) {
+<span class="hljs-keyword">if</span> (index !== -<span class="hljs-number">1</span>) {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${searchWord}</span>が見つかりました`</span>);
 } <span class="hljs-keyword">else</span> {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${searchWord}</span>は見つかりませんでした`</span>);
@@ -2343,7 +2342,7 @@ strict modeでは削除できないプロパティを削除しようとすると
 第一引数の<code>パターン</code>にマッチした部分がコールバック関数の返り値で置換されます。
 コールバック関数の第一引数には<code>パターン</code>に一致した文字列全体、第二引数以降へキャプチャした文字列が順番に入ります。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> 置換した結果の文字列 = 文字列.replace(<span class="hljs-regexp">/(パターン)/</span>, (all, ...captures) =&gt; {
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> 置換した結果の文字列 = 文字列.replace(<span class="hljs-regexp">/(パターン)/</span>, <span class="hljs-function">(<span class="hljs-params">all, ...captures</span>) =&gt;</span> {
     <span class="hljs-keyword">return</span> 置換したい文字列;
 });
 </code></pre>
@@ -2354,7 +2353,7 @@ strict modeでは削除できないプロパティを削除しようとすると
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toDateJa</span>(<span class="hljs-params">dateString</span>) </span>{
     <span class="hljs-comment">// パターンにマッチしたときのみ、コールバック関数で置換処理が行われる</span>
-    <span class="hljs-keyword">return</span> dateString.replace(<span class="hljs-regexp">/(\d{4})-(\d{2})-(\d{2})/</span>, (all, year, month, day) =&gt; {
+    <span class="hljs-keyword">return</span> dateString.replace(<span class="hljs-regexp">/(\d{4})-(\d{2})-(\d{2})/</span>, <span class="hljs-function">(<span class="hljs-params">all, year, month, day</span>) =&gt;</span> {
         <span class="hljs-comment">// `all`には、マッチした文字列全体が入っているが今回は利用しない</span>
         <span class="hljs-comment">// `all`が次の返す値で置換されるイメージ</span>
         <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${year}</span>年<span class="hljs-subst">${month}</span>月<span class="hljs-subst">${day}</span>日`</span>;
@@ -2541,7 +2540,7 @@ tag<span class="hljs-string">`template <span class="hljs-subst">${<span class="h
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"文字列リテラルを使った文字列の作成から検索や置換など基本的な文字列操作について紹介します。また正規表現と組み合わせた文字列操作やタグ付きテンプレート関数を使ったテンプレート処理などについても紹介します。","title":"文字列","level":"1.3.15","depth":2,"next":{"title":"文字列とUnicode","level":"1.3.16","depth":2,"path":"basic/string-unicode/README.md","ref":"./basic/string-unicode/README.md","articles":[]},"previous":{"title":"配列","level":"1.3.14","depth":2,"path":"basic/array/README.md","ref":"./basic/array/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/string/README.md","mtime":"2021-02-07T13:16:33.692Z","type":"markdown"},"gitbook":{"version":"3.6.13","time":"2021-02-07T13:17:11.872Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"文字列リテラルを使った文字列の作成から検索や置換など基本的な文字列操作について紹介します。また正規表現と組み合わせた文字列操作やタグ付きテンプレート関数を使ったテンプレート処理などについても紹介します。","title":"文字列","level":"1.3.15","depth":2,"next":{"title":"文字列とUnicode","level":"1.3.16","depth":2,"path":"basic/string-unicode/README.md","ref":"./basic/string-unicode/README.md","articles":[]},"previous":{"title":"配列","level":"1.3.14","depth":2,"path":"basic/array/README.md","ref":"./basic/array/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/string/README.md","mtime":"2021-02-15T03:24:45.907Z","type":"markdown"},"gitbook":{"version":"3.6.17","time":"2021-02-15T03:25:27.132Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

@@ -3,11 +3,10 @@
 <html lang="" >
     <head>
         <meta charset="UTF-8">
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <title>演算子 · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptにおける演算子についてを紹介します。演算子は記号で表現されるため、検索しにくいです。この章では主要な演算子をまとめて紹介しています。知らない演算子が出てきたときに読み直せばよいため、すべてを1つずつ読む必要はありません。">
-        <meta name="generator" content="HonKit 3.6.13">
+        <meta name="generator" content="HonKit 3.6.17">
         
         
         
@@ -1564,12 +1563,12 @@ num++;
 <p>単項マイナス演算子はマイナスの数値を記述する場合に利用します。</p>
 <p>たとえば、マイナスの1という数値を <code>-1</code> と書くことができるのは、単項マイナス演算子を利用しているからです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-number">-1</span>); <span class="hljs-comment">// =&gt; -1</span>
+<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(-<span class="hljs-number">1</span>); <span class="hljs-comment">// =&gt; -1</span>
 </code></pre>
 <p>また、単項マイナス演算子はマイナスの数値を反転できます。
 そのため、&quot;マイナスのマイナスの数値&quot;はプラスの数値となります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(-(<span class="hljs-number">-1</span>)); <span class="hljs-comment">// =&gt; 1</span>
+<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(-(-<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; 1</span>
 </code></pre>
 <p>単項マイナス演算子も文字列などを数値へ変換します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -1777,7 +1776,7 @@ num--;
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-number">0b11111111111111111111111111110111</span>); <span class="hljs-comment">// =&gt; 4294967287</span>
 <span class="hljs-comment">// ゼロ桁埋め右シフトをしてからNumber#toStringで2進数表記を取得できる</span>
-<span class="hljs-built_in">console</span>.log((<span class="hljs-number">-9</span> &gt;&gt;&gt; <span class="hljs-number">0</span>).toString(<span class="hljs-number">2</span>)); <span class="hljs-comment">// =&gt; &quot;11111111111111111111111111110111&quot;</span>
+<span class="hljs-built_in">console</span>.log((-<span class="hljs-number">9</span> &gt;&gt;&gt; <span class="hljs-number">0</span>).toString(<span class="hljs-number">2</span>)); <span class="hljs-comment">// =&gt; &quot;11111111111111111111111111110111&quot;</span>
 </code></pre>
 <h3 id="bit-and"><a name="bit-and" class="plugin-anchor" href="#bit-and"><i class="fa fa-link" aria-hidden="true"></i></a>ビット論理積（<code>&amp;</code>） </h3>
 <p>論理積演算子（<code>&amp;</code>）はビットごとの<strong>AND</strong>演算した結果を返します。</p>
@@ -1818,7 +1817,7 @@ num--;
 <p>否定演算子（<code>~</code>）は1の補数を返すため、<code>~(-1)</code>は<code>0</code>となります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(~<span class="hljs-number">0</span>); <span class="hljs-comment">// =&gt; -1</span>
-<span class="hljs-built_in">console</span>.log(~(<span class="hljs-number">-1</span>)); <span class="hljs-comment">// =&gt; 0</span>
+<span class="hljs-built_in">console</span>.log(~(-<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; 0</span>
 </code></pre>
 <p>JavaScriptでは<code>0</code>も、if文では<code>false</code>として扱われます。
 そのため、<code>~indexOfの結果</code>が<code>0</code>となるのは、その文字列が見つからなかった場合だけとなります。
@@ -1826,7 +1825,7 @@ num--;
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;森森木森森&quot;</span>;
 <span class="hljs-comment">// indexOfメソッドは見つからなかった場合は -1 を返す</span>
-<span class="hljs-keyword">if</span> (str.indexOf(<span class="hljs-string">&quot;木&quot;</span>) !== <span class="hljs-number">-1</span>) {
+<span class="hljs-keyword">if</span> (str.indexOf(<span class="hljs-string">&quot;木&quot;</span>) !== -<span class="hljs-number">1</span>) {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;木を見つけました&quot;</span>);
 }
 <span class="hljs-comment">// 否定演算子（`~`）で同じ動作を実装</span>
@@ -1865,7 +1864,7 @@ num--;
 <p>次のコードでは、<code>-9</code>を2ビット分だけ右へシフトしています。
 左端のビットのコピーを使うため、常に符号は維持されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log((<span class="hljs-number">-9</span>) &gt;&gt; <span class="hljs-number">2</span>); <span class="hljs-comment">// =&gt; -3</span>
+<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log((-<span class="hljs-number">9</span>) &gt;&gt; <span class="hljs-number">2</span>); <span class="hljs-comment">// =&gt; -3</span>
 <span class="hljs-comment">// 0b11111111111111111111111111110111 &gt;&gt; 2; // =&gt; 0b11111111111111111111111111111101</span>
 </code></pre>
 <h3 id="fill-zero-right-shift"><a name="fill-zero-right-shift" class="plugin-anchor" href="#fill-zero-right-shift"><i class="fa fa-link" aria-hidden="true"></i></a>ゼロ埋め右シフト演算子（<code>&gt;&gt;&gt;</code>） </h3>
@@ -1873,7 +1872,7 @@ num--;
 <p>次のコードでは、<code>-9</code>を2ビット分だけゼロ埋め右シフトしています。
 左端のビットは<code>0</code>となるため、常に正の値となります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log((<span class="hljs-number">-9</span>) &gt;&gt;&gt; <span class="hljs-number">2</span>); <span class="hljs-comment">// =&gt; 1073741821</span>
+<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log((-<span class="hljs-number">9</span>) &gt;&gt;&gt; <span class="hljs-number">2</span>); <span class="hljs-comment">// =&gt; 1073741821</span>
 <span class="hljs-comment">// 0b11111111111111111111111111110111 &gt;&gt;&gt; 2; // =&gt; 0b00111111111111111111111111111101</span>
 </code></pre>
 <!-- textlint-enable eslint -->
@@ -2245,7 +2244,7 @@ OR演算子（<code>||</code>）は左辺がfalsyの場合に右辺を評価す�
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおける演算子についてを紹介します。演算子は記号で表現されるため、検索しにくいです。この章では主要な演算子をまとめて紹介しています。知らない演算子が出てきたときに読み直せばよいため、すべてを1つずつ読む必要はありません。","title":"演算子","level":"1.3.6","depth":2,"next":{"title":"暗黙的な型変換","level":"1.3.7","depth":2,"path":"basic/implicit-coercion/README.md","ref":"./basic/implicit-coercion/README.md","articles":[]},"previous":{"title":"データ型とリテラル","level":"1.3.5","depth":2,"path":"basic/data-type/README.md","ref":"./basic/data-type/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/operator/README.md","mtime":"2021-02-07T13:16:33.688Z","type":"markdown"},"gitbook":{"version":"3.6.13","time":"2021-02-07T13:17:11.872Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおける演算子についてを紹介します。演算子は記号で表現されるため、検索しにくいです。この章では主要な演算子をまとめて紹介しています。知らない演算子が出てきたときに読み直せばよいため、すべてを1つずつ読む必要はありません。","title":"演算子","level":"1.3.6","depth":2,"next":{"title":"暗黙的な型変換","level":"1.3.7","depth":2,"path":"basic/implicit-coercion/README.md","ref":"./basic/implicit-coercion/README.md","articles":[]},"previous":{"title":"データ型とリテラル","level":"1.3.5","depth":2,"path":"basic/data-type/README.md","ref":"./basic/data-type/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/operator/README.md","mtime":"2021-02-15T03:24:45.903Z","type":"markdown"},"gitbook":{"version":"3.6.17","time":"2021-02-15T03:25:27.132Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
