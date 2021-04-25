@@ -21,7 +21,6 @@ module.exports = {
         },
         "no-use-column": true,
         "footnote-order": true,
-        "@textlint-rule/no-unmatched-pair": true,
         "@textlint-rule/require-header-id": true,
         // 箇条書きには。を付けない
         "period-in-list-item": {
