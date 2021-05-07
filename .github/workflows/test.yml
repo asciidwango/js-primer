@@ -7,9 +7,6 @@ on:
     branches-ignore:
       - 'publish1' # srcはテストしても意味がないため
 
-env:
-  CI: true
-
 jobs:
   build:
     runs-on: ${{ matrix.os }}
