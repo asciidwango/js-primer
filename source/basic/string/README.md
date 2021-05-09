@@ -1027,8 +1027,8 @@ console.log(str.replace(/にわ/g, "niwa")); // => "niwaにはniwaniwaとりか�
 `String#replaceAll`メソッドでは、正規表現を使わずに文字列を使ってすべてを置換できます。
 そのため、正規表現では特殊な意味を持つ`?`のような文字列も検索文字列にそのまま書いて置換ができます。
 
-<!-- doctest:meta:{ "ECMAScript": "2021" } -->
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2021" } -->
 ```js
 // 検索対象となる文字列
 const str = "???";
