@@ -311,6 +311,9 @@ rules:
   - expected: 構文エラー
     patterns:
       - シンタックスエラー
+  - expected: ビット
+    patterns:
+      - /bit/i
 
   # 一致とマッチ
   ## 一致は ===
