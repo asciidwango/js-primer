@@ -239,7 +239,7 @@ console.log(Number.MAX_SAFE_INTEGER); // => 9007199254740991
 BigIntリテラルは、数値の後ろに`n`をつけます。
 
 {{book.console}}
-```
+```js
 console.log(1n); // => 1n
 // 2^53-1より大きな値も扱える
 console.log(9007199254740992n); // => 9007199254740992n
