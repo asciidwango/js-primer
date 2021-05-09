@@ -6,7 +6,7 @@
         <title>演算子 · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptにおける演算子についてを紹介します。演算子は記号で表現されるため、検索しにくいです。この章では主要な演算子をまとめて紹介しています。知らない演算子が出てきたときに読み直せばよいため、すべてを1つずつ読む必要はありません。">
-        <meta name="generator" content="HonKit 3.6.19">
+        <meta name="generator" content="HonKit 3.6.20">
         
         
         
@@ -1764,46 +1764,77 @@ num--;
 <span class="hljs-built_in">console</span>.log(<span class="hljs-number">43</span> &lt;= <span class="hljs-number">42</span>); <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
 <h2 id="bit-operator"><a name="bit-operator" class="plugin-anchor" href="#bit-operator"><i class="fa fa-link" aria-hidden="true"></i></a>ビット演算子 </h2>
-<p>ビット演算子はオペランドを符号付き32bit整数に変換してから演算します。
-ビット演算子による演算結果は10進数の数値を返します。</p>
-<p>たとえば、<code>9</code>という数値は符号付き32bit整数では次のように表現されます。</p>
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-number">0b0000000000000000000000000001001</span>); <span class="hljs-comment">// =&gt; 9</span>
-<span class="hljs-comment">// Number#toStringメソッドを使うことで2進数表記の文字列を取得できる</span>
-<span class="hljs-built_in">console</span>.log((<span class="hljs-number">9</span>).toString(<span class="hljs-number">2</span>)); <span class="hljs-comment">// =&gt; &quot;1001&quot;</span>
-</code></pre>
-<p>また、<code>-9</code>という数値は、ビッグエンディアンの2の補数形式で表現されるため、次のようになります。</p>
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-number">0b11111111111111111111111111110111</span>); <span class="hljs-comment">// =&gt; 4294967287</span>
-<span class="hljs-comment">// ゼロ桁埋め右シフトをしてからNumber#toStringで2進数表記を取得できる</span>
-<span class="hljs-built_in">console</span>.log((-<span class="hljs-number">9</span> &gt;&gt;&gt; <span class="hljs-number">0</span>).toString(<span class="hljs-number">2</span>)); <span class="hljs-comment">// =&gt; &quot;11111111111111111111111111110111&quot;</span>
-</code></pre>
+<p>ビット演算子では、オペランドである数値を符号付き32ビット整数（<code>0</code>と<code>1</code>からなる32個のビットの集合）として扱います。</p>
+<p>たとえば、<code>1</code>という数値は符号付き32ビット整数のビットでは、<code>00000000000000000000000000000001</code> として表現されます。
+わかりやすく4ビットごとに区切ると <code>0000_0000_0000_0000_0000_0000_0000_0001</code> のような32ビットの集合となります。
+符号付き32ビット整数では、先頭の最上位ビット（一番左のビット）は符号を表し、<code>0</code>の場合は正の値、<code>1</code>の場合は負の値であることを示しています。</p>
+<p><img src="img/0000_0000_0000_0000_0000_0000_0000_0001.png" alt="1の符号付き32bit整数での表現"></p>
+<p>符号付き32ビット整数では負の数値は、2の補数形式という形式で表現されます。
+2の補数とは、それぞれのビットを反転して1ビットを足した値となります。</p>
+<p>たとえば、<code>-1</code> という数値の符号付き32ビット整数は、次のように2の補数で求められます。</p>
+<ul>
+<li>10進数の<code>1</code>は、符号付き32ビット整数では<code>0000_0000_0000_0000_0000_0000_0000_0001</code>となる</li>
+<li><code>0000_0000_0000_0000_0000_0000_0000_0001</code> の各ビットを反転すると <code>1111_1111_1111_1111_1111_1111_1111_1110</code> となる</li>
+<li>これに1ビットを足すと <code>1111_1111_1111_1111_1111_1111_1111_1111</code> となる</li>
+</ul>
+<p>これによって、<code>-1</code>の符号付き32ビット整数は <code>1111_1111_1111_1111_1111_1111_1111_1111</code> となります。</p>
+<p><img src="img/1111_1111_1111_1111_1111_1111_1111_1111.png" alt="-1の符号付き32ビット整数での表現"></p>
+<!-- textlint-disable ja-technical-writing/sentence-length -->
+<p>そのため符号付き32ビット整数で表現できる数値の範囲は-2の31乗（<code>1111_1111_1111_1111_1111_1111_1111_1111</code>）から2の31乗（<code>0111_1111_1111_1111_1111_1111_1111_1111</code> ）までとなります。
+32ビットを超える数値については、32ビットをはみ出るビットが最上位（一番左）から順番に捨てられます。</p>
+<!-- textlint-enable ja-technical-writing/sentence-length -->
+<p>これから見ていくビット演算子はオペランドを符号付き32ビット整数として扱い、その演算結果を10進数の数値として返します。</p>
 <h3 id="bit-and"><a name="bit-and" class="plugin-anchor" href="#bit-and"><i class="fa fa-link" aria-hidden="true"></i></a>ビット論理積（<code>&amp;</code>） </h3>
-<p>論理積演算子（<code>&amp;</code>）はビットごとの<strong>AND</strong>演算した結果を返します。</p>
+<p>ビット論理積演算子（<code>&amp;</code>）はビットごとの<strong>AND</strong>演算した結果を返します。
+AND演算では、オペランドの各ビットがどちらも<code>1</code>の場合は<code>1</code>となり、それ以外の場合は<code>0</code>となります。</p>
+<p>次のコードでは、10進数の<code>15</code>と<code>9</code>をAND演算しています。
+<code>15</code>は、符号付き32ビット整数では<code>0000_0000_0000_0000_0000_0000_0000_1111</code>となります。
+<code>9</code>は、符号付き32ビット整数では<code>0000_0000_0000_0000_0000_0000_0000_1001</code>となります。
+これらをAND演算した結果は<code>0000_0000_0000_0000_0000_0000_0000_1001</code>となり、10進数の値である<code>9</code>を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-number">15</span>     &amp; <span class="hljs-number">9</span>);      <span class="hljs-comment">// =&gt; 9</span>
+<span class="hljs-comment">// 同じ位の各ビット同士をAND演算する（上位の`0`は省略）</span>
+<span class="hljs-comment">// 1111</span>
+<span class="hljs-comment">// 1001</span>
+<span class="hljs-comment">// ----</span>
+<span class="hljs-comment">// 1001</span>
 <span class="hljs-built_in">console</span>.log(<span class="hljs-number">0b1111</span> &amp; <span class="hljs-number">0b1001</span>); <span class="hljs-comment">// =&gt; 0b1001</span>
 </code></pre>
 <h3 id="bit-or"><a name="bit-or" class="plugin-anchor" href="#bit-or"><i class="fa fa-link" aria-hidden="true"></i></a>ビット論理和（<code>|</code>） </h3>
-<p>論理和演算子（<code>|</code>）はビットごとの<strong>OR</strong>演算した結果を返します。</p>
+<p>ビット論理和演算子（<code>|</code>）はビットごとの<strong>OR</strong>演算した結果を返します。
+OR演算では、オペランドの各ビットがどちらか片方でも<code>1</code>の場合は<code>1</code>となり、両方とも<code>0</code>の場合は<code>0</code>となります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-number">15</span>     | <span class="hljs-number">9</span>);      <span class="hljs-comment">// =&gt; 15</span>
+<span class="hljs-comment">// 同じ位の各ビット同士をOR演算する（上位の`0`は省略）</span>
+<span class="hljs-comment">// 1111</span>
+<span class="hljs-comment">// 1001</span>
+<span class="hljs-comment">// ----</span>
+<span class="hljs-comment">// 1111</span>
 <span class="hljs-built_in">console</span>.log(<span class="hljs-number">0b1111</span> | <span class="hljs-number">0b1001</span>); <span class="hljs-comment">// =&gt; 0b1111</span>
 </code></pre>
 <h3 id="bit-xor"><a name="bit-xor" class="plugin-anchor" href="#bit-xor"><i class="fa fa-link" aria-hidden="true"></i></a>ビット排他的論理和（<code>^</code>） </h3>
-<p>排他的論理和演算子（<code>^</code>）はビットごとの<strong>XOR</strong>演算した結果を返します。</p>
+<p>ビット排他的論理和演算子（<code>^</code>）はビットごとの<strong>XOR</strong>演算した結果を返します。
+XOR演算では、オペランドのビットが異なるなら<code>1</code>、両方とも同じなら<code>0</code>となります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-number">15</span>     ^ <span class="hljs-number">9</span>);      <span class="hljs-comment">// =&gt; 6</span>
+<span class="hljs-comment">// 同じ位の各ビット同士をXOR演算する（上位の`0`は省略）</span>
+<span class="hljs-comment">// 1111</span>
+<span class="hljs-comment">// 1001</span>
+<span class="hljs-comment">// ----</span>
+<span class="hljs-comment">// 0110</span>
 <span class="hljs-built_in">console</span>.log(<span class="hljs-number">0b1111</span> ^ <span class="hljs-number">0b1001</span>); <span class="hljs-comment">// =&gt; 0b0110</span>
 </code></pre>
 <h3 id="bit-not"><a name="bit-not" class="plugin-anchor" href="#bit-not"><i class="fa fa-link" aria-hidden="true"></i></a>ビット否定（<code>~</code>） </h3>
-<p>単項演算子の否定演算子（<code>~</code>）はオペランドを反転した値を返します。
+<p>単項演算子の否定演算子（<code>~</code>）はオペランドの各ビットを反転した値を返します。
 これは1の補数として知られている値と同じものです。</p>
+<p>次のコードでは、10進数で<code>15</code>を否定演算子（<code>~</code>）で各ビットを反転させた値を得ています。
+<code>15</code> は <code>0000_0000_0000_0000_0000_0000_0000_1111</code>です。
+各ビットを反転させると<code>1111_1111_1111_1111_1111_1111_1111_0000</code> となり、10進数では<code>-16</code> となります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(~<span class="hljs-number">15</span>); <span class="hljs-comment">// =&gt; -16</span>
-<span class="hljs-built_in">console</span>.log(~<span class="hljs-number">0b1111</span>); <span class="hljs-comment">// =&gt; -0b10000</span>
 </code></pre>
-<p>否定演算子（<code>~</code>）はビット演算以外でも使われていることがあります。</p>
+<p><code>~x</code>のように<code>x</code>をビット否定演算子で演算した結果は、<code>-(x + 1)</code>となります。
+この性質を利用する形で、ビット否定演算子（<code>~</code>）はビット演算以外でも使われていることがあります。</p>
 <p>文字列（Stringオブジェクト）が持つ<code>indexOf</code>メソッドは、マッチする文字列を見つけて、そのインデックス（位置）を返すメソッドです。
 この<code>indexOf</code>メソッドは、検索対象が見つからない場合には<code>-1</code>を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -1821,7 +1852,7 @@ num--;
 </code></pre>
 <p>JavaScriptでは<code>0</code>も、if文では<code>false</code>として扱われます。
 そのため、<code>~indexOfの結果</code>が<code>0</code>となるのは、その文字列が見つからなかった場合だけとなります。
-次のコードのような否定演算子（<code>~</code>）と<code>indexOf</code>メソッドを使ったイディオムが一部では使われていました。</p>
+次のコードのように否定演算子（<code>~</code>）と<code>indexOf</code>メソッドを使ったイディオムが一部では使われていました。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;森森木森森&quot;</span>;
 <span class="hljs-comment">// indexOfメソッドは見つからなかった場合は -1 を返す</span>
@@ -1853,7 +1884,7 @@ num--;
 <p>次のコードでは、<code>9</code>を2ビット分だけ左へシフトしています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(     <span class="hljs-number">9</span> &lt;&lt; <span class="hljs-number">2</span>); <span class="hljs-comment">// =&gt; 36</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-number">0b1111</span> &lt;&lt; <span class="hljs-number">2</span>); <span class="hljs-comment">// =&gt; 0b111100</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-number">0b1111</span> &lt;&lt; <span class="hljs-number">2</span>); <span class="hljs-comment">// =&gt; 0b11_1100</span>
 </code></pre>
 <h3 id="right-shift"><a name="right-shift" class="plugin-anchor" href="#right-shift"><i class="fa fa-link" aria-hidden="true"></i></a>右シフト演算子（<code>&gt;&gt;</code>） </h3>
 <p>右シフト演算子は、数値である<code>num</code>を<code>bit</code>の数だけ右へシフトします。
@@ -1865,15 +1896,18 @@ num--;
 左端のビットのコピーを使うため、常に符号は維持されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-built_in">console</span>.log((-<span class="hljs-number">9</span>) &gt;&gt; <span class="hljs-number">2</span>); <span class="hljs-comment">// =&gt; -3</span>
-<span class="hljs-comment">// 0b11111111111111111111111111110111 &gt;&gt; 2; // =&gt; 0b11111111111111111111111111111101</span>
+<span class="hljs-comment">//    1111_1111_1111_1111_1111_1111_1111_0111 &gt;&gt; 2</span>
+<span class="hljs-comment">// =&gt; 1111_1111_1111_1111_1111_1111_1111_1101</span>
 </code></pre>
 <h3 id="fill-zero-right-shift"><a name="fill-zero-right-shift" class="plugin-anchor" href="#fill-zero-right-shift"><i class="fa fa-link" aria-hidden="true"></i></a>ゼロ埋め右シフト演算子（<code>&gt;&gt;&gt;</code>） </h3>
-<p>ゼロ埋め右シフト演算子は、数値である<code>num</code>を<code>bit</code>の数だけ右へシフトするのは右シフト演算子（<code>&gt;&gt;</code>）と同じです。異なる点としては右にあふれたビットは破棄され、<code>0</code>のビットを左から詰めます。</p>
+<p>ゼロ埋め右シフト演算子は、数値である<code>num</code>を<code>bit</code>の数だけ右へシフトするのは右シフト演算子（<code>&gt;&gt;</code>）と同じです。
+異なる点としては右にあふれたビットは破棄され、<code>0</code>のビットを左から詰めます。</p>
 <p>次のコードでは、<code>-9</code>を2ビット分だけゼロ埋め右シフトしています。
 左端のビットは<code>0</code>となるため、常に正の値となります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-built_in">console</span>.log((-<span class="hljs-number">9</span>) &gt;&gt;&gt; <span class="hljs-number">2</span>); <span class="hljs-comment">// =&gt; 1073741821</span>
-<span class="hljs-comment">// 0b11111111111111111111111111110111 &gt;&gt;&gt; 2; // =&gt; 0b00111111111111111111111111111101</span>
+<span class="hljs-comment">//    1111_1111_1111_1111_1111_1111_1111_0111 &gt;&gt;&gt; 2</span>
+<span class="hljs-comment">// =&gt; 0011_1111_1111_1111_1111_1111_1111_1101</span>
 </code></pre>
 <!-- textlint-enable eslint -->
 <h2 id="assignment-operator"><a name="assignment-operator" class="plugin-anchor" href="#assignment-operator"><i class="fa fa-link" aria-hidden="true"></i></a>代入演算子（<code>=</code>） </h2>
@@ -2244,7 +2278,7 @@ OR演算子（<code>||</code>）は左辺がfalsyの場合に右辺を評価す�
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおける演算子についてを紹介します。演算子は記号で表現されるため、検索しにくいです。この章では主要な演算子をまとめて紹介しています。知らない演算子が出てきたときに読み直せばよいため、すべてを1つずつ読む必要はありません。","title":"演算子","level":"1.3.6","depth":2,"next":{"title":"暗黙的な型変換","level":"1.3.7","depth":2,"path":"basic/implicit-coercion/README.md","ref":"./basic/implicit-coercion/README.md","articles":[]},"previous":{"title":"データ型とリテラル","level":"1.3.5","depth":2,"path":"basic/data-type/README.md","ref":"./basic/data-type/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/operator/README.md","mtime":"2021-04-25T07:43:19.169Z","type":"markdown"},"gitbook":{"version":"3.6.19","time":"2021-04-25T07:43:55.163Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおける演算子についてを紹介します。演算子は記号で表現されるため、検索しにくいです。この章では主要な演算子をまとめて紹介しています。知らない演算子が出てきたときに読み直せばよいため、すべてを1つずつ読む必要はありません。","title":"演算子","level":"1.3.6","depth":2,"next":{"title":"暗黙的な型変換","level":"1.3.7","depth":2,"path":"basic/implicit-coercion/README.md","ref":"./basic/implicit-coercion/README.md","articles":[]},"previous":{"title":"データ型とリテラル","level":"1.3.5","depth":2,"path":"basic/data-type/README.md","ref":"./basic/data-type/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/operator/README.md","mtime":"2021-05-09T01:43:36.223Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-05-09T01:44:22.147Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
