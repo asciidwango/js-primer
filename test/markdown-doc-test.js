@@ -21,7 +21,7 @@ const AllowECMAScriptVersions = (() => {
         return []; // すべて通る前提
     }
     if (semver.cmp(process.version, ">=", "14.0.0")) {
-        return ["2021"]; // String#replaceAll がサポートしていない
+        return ["2021"]; // String#replaceAll をサポートしていない
     }
     return ["2017", "2018", "2019", "2020", "2021"];
 })();
