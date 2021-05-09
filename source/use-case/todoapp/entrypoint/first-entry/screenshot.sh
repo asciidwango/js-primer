@@ -9,15 +9,16 @@ declare screenshot="${projectDir}/tools/applescript/lib/src/screenshot.js";
 declare launchFirefox="${projectDir}/tools/applescript/lib/src/launch-firefox.js";
 declare screenshotOnly="${projectDir}/tools/applescript/lib/src/screenshot-only.js";
 
+cd "${currentDir}"
 # スクリーンショット
 mkdir -p "${currentSectionDir}/img/"
-npx -q @js-primer/local-server . & serverPID=$!
+npx -q @js-primer/local-server . &
 npx -q wait-on http://localhost:3000 \
 && node "${screenshotDevTools}" --url "http://localhost:3000/" --output "${currentSectionDir}/img/first-entry.png"
 
 # server 終了
 function finish {
   echo "Shutting down the server..."
-  kill $serverPID
+  pkill js-primer-local-server
 }
 trap finish INT KILL TERM EXIT
