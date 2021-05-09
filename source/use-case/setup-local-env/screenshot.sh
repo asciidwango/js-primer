@@ -21,6 +21,6 @@ npx -q wait-on http://localhost:3000 \
 # server 終了
 function finish {
   echo "Shutting down the server..."
-  kill $serverPID
+  pkill js-primer-local-server
 }
 trap finish INT KILL TERM EXIT
