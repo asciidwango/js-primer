@@ -7,9 +7,6 @@ on:
     branches-ignore:
       - 'publish1' # srcはテストしても意味がないため
 
-env:
-  CI: true
-
 jobs:
   build:
     runs-on: ${{ matrix.os }}
@@ -30,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x, 12.x, 10.x]
+        node-version: [14.x, 12.x]
     name: "Test on Node.js ${{ matrix.node-version }}"
     steps:
       - uses: actions/checkout@v2
