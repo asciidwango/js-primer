@@ -16,7 +16,15 @@ const sourceDir = path.join(__dirname, "..", "source");
  * 最新版のNodeでは無視しない
  * @type {string[]}
  */
-const AllowECMAScriptVersions = semver.cmp(process.version, ">=", "14.0.0") ? [] : ["2017", "2018", "2019", "2020"];
+const AllowECMAScriptVersions = (() => {
+    if (semver.cmp(process.version, ">=", "15.0.0")) {
+        return []; // すべて通る前提
+    }
+    if (semver.cmp(process.version, ">=", "14.0.0")) {
+        return ["2021"]; // String#replaceAll をサポートしていない
+    }
+    return ["2017", "2018", "2019", "2020", "2021"];
+})();
 /**
  * Markdownファイルの CodeBlock に対してdoctestを行う
  * CodeBlockは必ず実行できるとは限らないので、
@@ -27,7 +35,7 @@ const AllowECMAScriptVersions = semver.cmp(process.version, ">=", "14.0.0") ? []
  *
  * その他詳細は CONTRIBUTING.md を読む
  **/
-describe("doctest:md", function() {
+describe("doctest:md", function () {
     const files = globby.sync([
         `${sourceDir}/**/*.md`,
         `!${sourceDir}/**/node_modules{,/**}`,
@@ -35,7 +43,7 @@ describe("doctest:md", function() {
     ]);
     files.forEach(filePath => {
         const normalizeFilePath = filePath.replace(sourceDir, "");
-        describe(`${normalizeFilePath}`, function() {
+        describe(`${normalizeFilePath}`, function () {
             const content = fs.readFileSync(filePath, "utf-8");
             const parsedCodes = parse({
                 filePath,
@@ -46,7 +54,7 @@ describe("doctest:md", function() {
             parsedCodes.forEach((parsedCode, index) => {
                 const codeValue = parsedCode.code;
                 const testCaseName = codeValue.slice(0, 32).replace(/[\r\n]/g, "_");
-                it(dirName + ": " + testCaseName, function() {
+                it(dirName + ": " + testCaseName, function () {
                     return test({
                         ...parsedCode,
                         code: toTestCode(parsedCode.code)
