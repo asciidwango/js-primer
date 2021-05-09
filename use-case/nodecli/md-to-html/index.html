@@ -1560,14 +1560,17 @@ program.parse(process.argv);
 <code>process.argv</code>配列を直接使っているとこのようなオプションの処理が面倒なので、commanderのようなパース処理を挟むのが一般的です。</p>
 <h3 id="declare-default"><a name="declare-default" class="plugin-anchor" href="#declare-default"><i class="fa fa-link" aria-hidden="true"></i></a>デフォルト設定を定義する </h3>
 <p>アプリケーション側でデフォルト設定を持っておくことで、将来的にmarkedの挙動が変わったときにも影響を受けにくくなります。
-次のようにデフォルトのオプションを表現したオブジェクトに対して、<code>program.opts</code>メソッドの返り値で上書きしましょう。
-オブジェクトのデフォルト値を別のオブジェクトで上書きするときには<code>...</code>（spread構文）を使うと便利です（「<a href="../../../basic/object/">オブジェクト</a>」の「<a href="../../../basic/object/#object-spread-syntax">[ES2018] オブジェクトのspread構文でのマージ</a>」を参照）。</p>
+次のようにオプションを表現した<code>cliOptions</code>オブジェクトを作成し、<code>program.opts</code>メソッドの返り値から取得した値をセットします。
+コマンドライン引数で指定されなかったオプションには<code>??</code>（<a href="../../../basic/operator/#nullish-coalescing-operator">Nullish coalescing演算子</a>）を使ってデフォルトの値をセットします。
+Nullish coalescing演算子は左辺がnullishであるときにだけ右辺の値を返すため、値が指定されなかった状態と明示的に<code>false</code>が与えられた状態を区別したいときに便利です。</p>
 <!-- 差分コードなので -->
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-comment">// コマンドライン引数のオプションを取得し、デフォルトのオプションを上書きする</span>
+<pre><code class="lang-js"><span class="hljs-comment">// コマンドライン引数のオプションを取得する</span>
+<span class="hljs-keyword">const</span> options = program.opts();
+
+<span class="hljs-comment">// コマンドライン引数で指定されなかったオプションにデフォルト値を上書きする</span>
 <span class="hljs-keyword">const</span> cliOptions = {
-    <span class="hljs-attr">gfm</span>: <span class="hljs-literal">false</span>,
-    ...program.opts(),
+    <span class="hljs-attr">gfm</span>: options.gfm ?? <span class="hljs-literal">false</span>,
 };
 </code></pre>
 <p>こうして作成した<code>cliOptions</code>オブジェクトから、markedにオプションを渡しましょう。
@@ -1585,10 +1588,12 @@ program.option(<span class="hljs-string">&quot;--gfm&quot;</span>, <span class="
 program.parse(process.argv);
 <span class="hljs-keyword">const</span> filePath = program.args[<span class="hljs-number">0</span>];
 
-<span class="hljs-comment">// コマンドライン引数のオプションを取得し、デフォルトのオプションを上書きする</span>
+<span class="hljs-comment">// コマンドライン引数のオプションを取得する</span>
+<span class="hljs-keyword">const</span> options = program.opts();
+
+<span class="hljs-comment">// コマンドライン引数で指定されなかったオプションにデフォルト値を上書きする</span>
 <span class="hljs-keyword">const</span> cliOptions = {
-    <span class="hljs-attr">gfm</span>: <span class="hljs-literal">false</span>,
-    ...program.opts(),
+    <span class="hljs-attr">gfm</span>: options.gfm ?? <span class="hljs-literal">false</span>,
 };
 
 fs.readFile(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }, <span class="hljs-function">(<span class="hljs-params">err, file</span>) =&gt;</span> {
@@ -1663,7 +1668,7 @@ https://jsprimer.net/&lt;/p&gt;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"markedパッケージを使ってMarkdownファイルをHTMLに変換します。","title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"next":{"title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"path":"use-case/nodecli/refactor-and-unittest/README.md","ref":"./use-case/nodecli/refactor-and-unittest/README.md","articles":[]},"previous":{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/md-to-html/README.md","mtime":"2021-05-09T09:10:14.219Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-05-09T09:11:03.741Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"markedパッケージを使ってMarkdownファイルをHTMLに変換します。","title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"next":{"title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"path":"use-case/nodecli/refactor-and-unittest/README.md","ref":"./use-case/nodecli/refactor-and-unittest/README.md","articles":[]},"previous":{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"apiKey":"fd28ebaba94be0c39fb9fa1b2fed4f23","index":"asciidwango"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2020","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/md-to-html/README.md","mtime":"2021-05-09T13:44:55.905Z","type":"markdown"},"gitbook":{"version":"3.6.20","time":"2021-05-09T13:45:47.759Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
