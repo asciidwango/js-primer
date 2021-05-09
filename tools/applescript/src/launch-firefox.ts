@@ -19,7 +19,8 @@ const cli = meow(`
 `, {
     flags: {
         url: {
-            type: 'string'
+            type: 'string',
+            isRequired: true
         },
         devTools: {
             type: "boolean"

@@ -15,21 +15,23 @@ const cli = meow(`
       $ screenshot --output ./output.png
 `, {
     flags: {
-      output: {
-        type: 'string',
-        alias: 'o'
-      },
-      continue: {
-        type: 'boolean'
-      }
+        output: {
+            type: 'string',
+            alias: 'o',
+            isRequired: true
+        },
+        continue: {
+            type: 'boolean',
+            isRequired: true
+        }
     }
-  });
+});
 const outputFilePath = path.resolve(process.cwd(), cli.flags.output);
 (async function () {
-  await setFirefoxWindowBounds();
-  await wait(1000);
-  await screenshotFirefox(outputFilePath);
-  if (!cli.flags.continue) {
-    await quitFirefox();
-  }
+    await setFirefoxWindowBounds();
+    await wait(1000);
+    await screenshotFirefox(outputFilePath);
+    if (!cli.flags.continue) {
+        await quitFirefox();
+    }
 })();
