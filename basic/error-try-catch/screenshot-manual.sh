@@ -9,7 +9,7 @@ declare screenshotOnly="${projectDir}/tools/applescript/lib/src/screenshot-only.
 # マニュアル操作が必要なもの
 # formの内容をコンソールに表示するスクショ
 mkdir -p "${currentDir}/img/"
-npx -q @js-primer/local-server src/console & serverPID=$!
+npx -q @js-primer/local-server src/console
 npx -q wait-on http://localhost:3000/ \
 && node "${launchFirefox}" --devTools --url "http://localhost:3000" \
 && read -p "コンソールのエラーを展開 -> Enter" \
@@ -18,6 +18,6 @@ npx -q wait-on http://localhost:3000/ \
 # server 終了
 function finish {
   echo "Shutting down the server..."
-  kill $serverPID
+  pkill js-primer-local-server
 }
 trap finish INT KILL TERM EXIT
