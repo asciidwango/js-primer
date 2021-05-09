@@ -1036,9 +1036,9 @@ console.log(str.replace("?", "!")); // => "!??"
 // replaceAllメソッドに文字列を指定した場合は、一致したものがすべて置換される
 console.log(str.replaceAll("?", "!")); // => "!!!"
 // replaceメソッドの場合は、正規表現の特殊文字がエスケープが必要となる
-console.log(str.replace(/\!/g, "?")); // => "!!!"
+console.log(str.replace(/\?/g, "!")); // => "!!!"
 // replaceAllメソッドにも正規表現を渡せるが、この場合はエスケープが必要となるためreplaceと同じ
-console.log(str.replaceAll(/\!/g, "?")); // => "!!!"
+console.log(str.replaceAll(/\?/g, "!")); // => "!!!"
 ```
 
 `replace`メソッドと`replaceAll`メソッドでは、キャプチャした文字列を利用して複雑な置換処理もできます。
