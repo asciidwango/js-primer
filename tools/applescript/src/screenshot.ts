@@ -2,6 +2,7 @@ import { launchFirefox, quitFirefox, screenshotFirefox, setFirefoxWindowBounds }
 import * as path from "path";
 import { wait } from "../modules/wait";
 import meow = require("meow");
+
 const profileName = "js-primer";
 
 
@@ -16,15 +17,17 @@ const cli = meow(`
     Examples
       $ screenshot --url "http://127.0.0.1:8080/final/final/" --output ./output.png
 `, {
-        flags: {
-            url: {
-                type: 'string'
-            },
-            output: {
-                type: 'string',
-                alias: 'o'
-            }
+    flags: {
+        url: {
+            type: 'string',
+            isRequired: true
+        },
+        output: {
+            type: 'string',
+            alias: 'o',
+            isRequired: true
         }
+    }
 });
 const outputFilePath = path.resolve(process.cwd(), cli.flags.output);
 (async function () {
