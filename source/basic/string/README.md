@@ -1024,7 +1024,7 @@ console.log(str.replace(/にわ/g, "niwa")); // => "niwaにはniwaniwaとりか�
 `String#replace`メソッドでは、最初に一致したものだけが置換されますが、`String#replaceAll`メソッドでは一致したものがすべて置換されます。
 
 `String#replace`と`g`フラグ付きの正規表現を使った場合との違いとして、
-`String#replaceAll`メソッドでは、正規表現を使わずにすべてを置換できます。
+`String#replaceAll`メソッドでは、正規表現を使わずに文字列を使ってすべてを置換できます。
 そのため、検索文字列に正規表現ではエスケープが必要な特殊文字もそのまま書いて置換ができます。
 
 {{book.console}}
