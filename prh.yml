@@ -313,7 +313,7 @@ rules:
       - シンタックスエラー
   - expected: $1ビット
     patterns:
-      - /(\d+)bit\b/i
+      - /(\d+)?bit\b/i
     specs:
       - from: 2bit表記
         to  : 2ビット表記
