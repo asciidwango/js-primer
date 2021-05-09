@@ -1034,7 +1034,7 @@ const str = "???";
 // replaceメソッドに文字列を指定した場合は、最初に一致したものだけが置換される
 console.log(str.replace("?", "!")); // => "!??"
 // replaceAllメソッドに文字列を指定した場合は、一致したものがすべて置換される
-console.log(str.replaceAll("?", "!!!")); // => "!!!"
+console.log(str.replaceAll("?", "!")); // => "!!!"
 // replaceメソッドの場合は、正規表現の特殊文字がエスケープが必要となる
 console.log(str.replace(/\!/g, "?")); // => "!!!"
 // replaceAllメソッドにも正規表現を渡せるが、この場合はエスケープが必要となるためreplaceと同じ
