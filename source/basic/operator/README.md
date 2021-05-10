@@ -924,7 +924,7 @@ falsyである値は`true`へ変換され、falsyではない値は`false`へと
 
 {{book.console}}
 ```js
-// falsyな値は`true``となる
+// falsyな値は`true`となる
 console.log(!0); // => true
 console.log(!""); // => true
 console.log(!null); // => true
