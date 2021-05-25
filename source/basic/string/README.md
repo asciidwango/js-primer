@@ -215,7 +215,7 @@ Unicodeでは1文字を表すのに使う最小限のビットの組み合わせ
 
 次のコードは、文字列を構成するCode Unitをhex値（16進数）にして表示する例です。
 `String#charCodeAt`メソッドは、文字列の指定インデックスのCode Unitを整数として返します。
-そのCode Unitの整数値を`String#toString`メソッドでhex値（16進数）にしています。
+そのCode Unitの整数値を`Number#toString`メソッドでhex値（16進数）にしています。
 
 {{book.console}}
 ```js
