@@ -625,7 +625,7 @@ promise.then(() => {
 `Promise.resolve`メソッドは**Fulfilled**の状態となった`Promise`インスタンスを作成します。
 
 ```js
-const fulFilledPromise = Promise.resolve();
+const fulfilledPromise = Promise.resolve();
 ```
 
 `Promise.resolve`メソッドは`new Promise`の糖衣構文（シンタックスシュガー）です。
@@ -633,8 +633,8 @@ const fulFilledPromise = Promise.resolve();
 `Promise.resolve`メソッドは次のコードの糖衣構文です。
 
 ```js
-// const fulFilledPromise = Promise.resolve(); と同じ意味
-const fulFilledPromise = new Promise((resolve) => {
+// const fulfilledPromise = Promise.resolve(); と同じ意味
+const fulfilledPromise = new Promise((resolve) => {
     resolve();
 });
 ```
@@ -644,8 +644,8 @@ const fulFilledPromise = new Promise((resolve) => {
 {{book.console}}
 ```js
 // `resolve(42)`された`Promise`インスタンスを作成する
-const fulFilledPromise = Promise.resolve(42);
-fulFilledPromise.then(value => {
+const fulfilledPromise = Promise.resolve(42);
+fulfilledPromise.then(value => {
     console.log(value); // => 42
 });
 ```
