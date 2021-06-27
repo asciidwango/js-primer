@@ -2,7 +2,7 @@
   "name": "js-primer",
   "private": true,
   "license": "MIT",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "JavaScriptの入門本",
   "main": "index.js",
   "directories": {
