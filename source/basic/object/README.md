@@ -846,7 +846,7 @@ const obj = {
     },
 };
 const cloneObj = shallowClone(obj);
-// `nest`オブジェクトは複製されていない
+// `nest`プロパティのオブジェクトは同じオブジェクトのままになる 
 console.log(cloneObj.nest === obj.nest); // => true
 ```
 
