@@ -94,6 +94,7 @@
     "remark": "^12.0.1",
     "rewire": "^5.0.0",
     "strict-eval": "^1.0.2",
+    "semver": "^7.3.5",
     "sudachi-synonyms-dictionary": "^4.1.0",
     "text-testing-mocha": "^0.4.6",
     "textlint": "^11.9.0",
@@ -120,7 +121,5 @@
     "wait-on": "^5.3.0",
     "workbox-cli": "^3.6.3"
   },
-  "dependencies": {
-    "semver": "^7.3.5"
-  }
+  "dependencies": {}
 }
