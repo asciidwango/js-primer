@@ -20,11 +20,19 @@ description: "あらゆる技術書には何かしらの間違いがあるとい
 
 この書籍はGitHub上で公開されているため、GitHubリポジトリのIssueとしてあなたの疑問を報告できます。
 
-- 書籍や内容に対する質問 => [こちらから質問できます](https://github.com/asciidwango/js-primer/issues/new?template=question.md)
-- 内容のエラーや問題の報告 => [こちらからバグ報告できます](https://github.com/asciidwango/js-primer/issues/new?template=bug_report.md)
-- 内容をもっと詳細に解説する提案 => [こちらから提案できます](https://github.com/asciidwango/js-primer/issues/new?template=feature_request.md)
-- 新しいトピックなどの提案 => [こちらから提案できます](https://github.com/asciidwango/js-primer/issues/new?template=feature_request.md)
-- その他のIssue => [その他のIssueはこちらから](https://github.com/asciidwango/js-primer/issues/new?template=other.md)
+- 書籍や内容に対する質問 → [こちらから質問できます](https://github.com/asciidwango/js-primer/issues/new?template=question.md)
+- 内容のエラーや問題の報告 → [こちらからバグ報告できます](https://github.com/asciidwango/js-primer/issues/new?template=bug_report.md)
+- 内容をもっと詳細に解説する提案 → [こちらから提案できます](https://github.com/asciidwango/js-primer/issues/new?template=feature_request.md)
+- 新しいトピックなどの提案 → [こちらから提案できます](https://github.com/asciidwango/js-primer/issues/new?template=feature_request.md)
+- その他のIssue → [その他のIssueはこちらから](https://github.com/asciidwango/js-primer/issues/new?template=other.md)
+
+また、GitHub Discussions（掲示板）へIssueにするのは気が引けると思った質問を書いたり、JavaScript Primerを読んだ感想などを書き込めます。
+
+- [Discussions · asciidwango/js-primer](https://github.com/asciidwango/js-primer/discussions)
+
+GitHub Discussions（掲示板）の使い方については、次のスレッドにまとめています。
+
+- [👋 ようこそ JavaScript Primer へ ! · Discussion #1304 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/discussions/1304)
 
 GitHubのアカウントを持っていない方は、次のフォームから報告できます。
 
