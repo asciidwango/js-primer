@@ -19,7 +19,7 @@
     "github-issue-feedback"
   ],
   "variables": {
-    "esversion": "2020",
+    "esversion": "2021",
     "nodeversion": "14.15.0",
     "npmversion": "6.14.8",
     "triplebackticks": "```",
