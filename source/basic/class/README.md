@@ -1241,4 +1241,4 @@ console.log(array.last); // => 5
 [問題: `this`を含むメソッドを変数に代入した場合]: ../function-this/README.md#assign-this-function
 [Map/Set]: ../map-and-set/README.md
 [ユースケース:Todoアプリ]: ../../use-case/todoapp/README.md
-[^1]: `class`構文でしか実現できない機能はなく、読みやすさやわかりやさのために導入された構文という側面もあるため、JavaScriptの`class`構文は糖衣構文（シンタックスシュガー）と呼ばれることがあります。
+[^1]: `class`構文でしか実現できない機能はなく、読みやすさやわかりやさのために導入された構文という側面もあります。そのため、JavaScriptの`class`構文は糖衣構文（シンタックスシュガー）と呼ばれることがあります。
