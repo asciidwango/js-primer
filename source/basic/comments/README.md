@@ -69,7 +69,7 @@ JavaScriptをサポートしていないブラウザでは、`<script>`タグを
 <script language="javascript">
 <!--
   document.bgColor = "brown";
-// -->
+-->
 </script>
 ```
 
