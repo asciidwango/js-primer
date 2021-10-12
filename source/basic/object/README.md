@@ -676,7 +676,7 @@ const obj = {
     "two": 2,
     "three": 3
 };
-// `Object.keys`はキーの列挙した配列を返す
+// `Object.keys`はキーを列挙した配列を返す
 console.log(Object.keys(obj)); // => ["one", "two", "three"]
 // `Object.values`は値を列挙した配列を返す
 console.log(Object.values(obj)); // => [1, 2, 3]
