@@ -375,7 +375,7 @@ class Counter {
 const counterA = new Counter();
 const counterB = new Counter();
 // 各インスタンスオブジェクトのメソッドの参照先は異なる
-console.log(counterA.increment !== counterB.increment); // => true
+console.log(counterA.increment === counterB.increment); // => false
 ```
 
 また、プロトタイプメソッドとは異なり、インスタンスオブジェクトへのメソッド定義はArrow Functionが利用できます。

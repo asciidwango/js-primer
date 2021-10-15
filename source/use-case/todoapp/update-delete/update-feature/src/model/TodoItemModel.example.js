@@ -8,4 +8,4 @@ const completedItem = new TodoItemModel({
     completed: true
 });
 // それぞれの`id`は異なる
-console.log(item.id !== completedItem.id); // => true
+console.log(item.id === completedItem.id); // => false
