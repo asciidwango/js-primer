@@ -726,7 +726,7 @@ const newArray = array.map((currentValue, index, array) => {
 });
 console.log(newArray); // => [10, 20, 30]
 // 元の配列とは異なるインスタンス
-console.log(array !== newArray); // => true
+console.log(array === newArray); // => false
 ```
 
 ### `Array#filter` {#array-filter}
@@ -746,7 +746,7 @@ const newArray = array.filter((currentValue, index, array) => {
 });
 console.log(newArray); // => [1, 3]
 // 元の配列とは異なるインスタンス
-console.log(array !== newArray); // => true
+console.log(array === newArray); // => false
 ```
 
 ### `Array#reduce` {#array-reduce}
