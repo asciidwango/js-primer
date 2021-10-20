@@ -921,7 +921,7 @@ Promise.resolve().then(function onFulfilledA() {
 この`Promise`インスタンスを返す仕組みを使うことで、`catch`してもそのまま**Rejected**な状態を継続できます。
 
 次のコードでは`catch`メソッドでログを出力しつつ`Promise.reject`メソッドを使って**Rejected**な`Promise`インスタンスを返しています。
-これによって、`asyncFunction`で発生したエラーのログを取りながら、Promiseチェーンはエラーのまま処理を継続できます。
+これによって、`main`で発生したエラーのログを取りながら、Promiseチェーンはエラーのまま処理を継続できます。
 
 {{book.console}}
 ```js
@@ -930,7 +930,7 @@ function main() {
 }
 // mainはRejectedなPromiseを返す
 main().catch(error => {
-    // asyncFunctionで発生したエラーのログを出力する
+    // mainで発生したエラーのログを出力する
     console.log(error);
     // Promiseチェーンはそのままエラーを継続させる
     return Promise.reject(error);
