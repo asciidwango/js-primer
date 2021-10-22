@@ -437,7 +437,7 @@ rules:
         to:   どのようなものがthenableなのか
   # techbooster.ymlでは'時刻'が認められないので'刻'を追加
   - expected: $1とき
-    pattern:  /(の)時(?!点|代|々|間|刻)/
+    pattern:  /(の)時(?!点|代|々|間|刻|期)/
   # https://github.com/asciidwango/js-primer/issues/1011 の追加
   - expected: わかる
     pattern:  分かる
