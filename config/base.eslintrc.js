@@ -1,4 +1,3 @@
-// LICENSE : MIT
 "use strict";
 module.exports = {
     "env": {
@@ -9,7 +8,7 @@ module.exports = {
         "mocha": true
     },
     "parserOptions": {
-        "ecmaVersion": 2021,
+        "ecmaVersion": 2022,
         "sourceType": "module"
     },
     "rules": {
