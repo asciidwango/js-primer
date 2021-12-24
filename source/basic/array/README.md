@@ -69,7 +69,7 @@ console.log(array.length); // => 3
 console.log(array[array.length - 1]); // => "three"
 ```
 
-一方、存在しないインデックスにアクセスした場合はどうなるでしょうか？　JavaScriptでは、存在しないインデックスに対してアクセスした場合に、例外ではなく`undefined`を返します。
+一方、存在しないインデックスにアクセスした場合はどうなるでしょうか？ JavaScriptでは、存在しないインデックスに対してアクセスした場合に、例外ではなく`undefined`を返します。
 
 {{book.console}}
 ```js
