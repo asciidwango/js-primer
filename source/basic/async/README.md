@@ -1341,7 +1341,15 @@ exceptionFn().catch(error => {
 
 ## `await`式 {#await-expression}
 
-Async Functionの関数内では`await`式を利用できます。
+`await`式は次の箇所で利用できる式です。
+次の箇所以外では`await`式は構文エラーとなるため、利用できません。
+
+- Async Functionの関数の直下
+- ECMAScriptモジュールの直下
+
+まず最初に、一般的に使われるAsync Functionの関数の直下における`await`式を見ていきます。
+
+Async Functionの関数の直下では`await`式を利用できます。
 `await`式は右辺の`Promise`インスタンスが**Fulfilled**または**Rejected**になるまでその場で非同期処理の完了を待ちます。
 そして`Promise`インスタンスの状態が変わると、次の行の処理を再開します。
 
@@ -1635,9 +1643,9 @@ fetchAllResources(resources).then((results) => {
 このようにAsync Functionや`await`式は既存のPromise APIと組み合わせて利用できます。
 Async Functionも内部的にPromiseの仕組みを利用しているため、両者は対立関係ではなく共存関係になります。
 
-### `await`式はAsync Functionの中でのみ利用可能 {#await-in-async-function}
+### `await`式はAsync Functionの直下でのみ利用可能 {#await-in-async-function}
 
-`await`式を利用する際には、`await`式はAsync Functionの中でのみ利用可能な点に注意が必要です。
+Async Functionで`await`式を利用する際には、`await`式が関数の直下でのみ利用可能な点に注意が必要です。
 
 次のコードのように、Async Functionではない通常の関数で`await`式を使うと構文エラー（`SyntaxError`）となります。
 これは、間違った`await`式の使い方を防止するための仕様です。
@@ -1697,8 +1705,7 @@ Async Function外の処理も停止できてしまうと、JavaScriptでは基�
 async function fetchResources(resources) {
     const results = [];
     // Syntax Errorとなる例
-    resources.forEach(function(resources) {
-        const resource = resources[i];
+    resources.forEach(function(resource) {
         // Async Functionではないスコープで`await`式を利用しているためSyntax Errorとなる
         const response = await dummyFetch(resource);
         results.push(response.body);
@@ -1795,6 +1802,42 @@ fetchResources(resources).then((results) => {
 この問題を解決する方法として、最初の`fetchResources`関数のように、コールバック関数を使わずにすむforループと`await`式を組み合わせる方法があります。
 また、`fetchAllResources`関数のように、複数の非同期処理を1つのPromiseにまとめることでループ中に`await`式を使わないようにする方法があります。
 
+### [ES2022] Moduleでの`await`式 {#top-level-await-in-module}
+
+ES2021までは、`await`式はAsync Functionの直下でのみ利用な可能なことを紹介しました。
+ES2022には、これに加えてModuleの直下ではAsync Functionで囲まなくても`await`式が利用できます。
+
+最初に「[JavaScriptとは][]」の章において、JavaScriptには実行コンテキストとして"Script"と"Module"があるという話をしました。
+たとえば、ブラウザでは`<script>`と書けば"Script"として実行され、`<script type="module">`と書けば"Module"として実行されます。
+
+"Module"としてJavaScriptを実行した時のみ、トップレベル（もっとも外側のスコープ）ではAsync Functionなしで`await`式が利用できます。
+
+たとえば、次のコードを"Module"として実行した場合は、Async Functionなしで`await`式が利用できていることがわかります。
+
+<!-- js-console:{ "type": "module" } -->
+```js
+console.log("実行開始");
+// 1秒待つだけの処理
+await new Promise(resolve => setTimeout(resolve, 1000));
+console.log("実行終了");
+```
+
+このようにModuleのトップレベルで`await`式が利用できるため、Top-Level `await`と呼ばれます。
+
+今まではAsync Functionのみでしか`await`式が利用できませんでした。
+そのため、メイン処理のように他の処理を呼び出すスクリプトの開始地点で`await`を使いたい場合は、Async Functionを即時実行関数として実行する必要がありました。
+
+```js
+// awaitを使いたいため、async functionの即時実行関数を利用していた
+(async function() {
+    // awaitを使う
+    const result = await doAsyncTask();
+    // ...
+})();
+```
+
+Top-Level `await`が利用できるようになると、この即時実行関数は不要となります。
+
 ## まとめ {#conclusion}
 
 この章では、非同期処理に関するコールバック関数、Promise、Async Functionについて学びました。
@@ -1817,3 +1860,4 @@ PromiseやAsync Functionの応用パターンについては「[JavaScript Promi
 [配列]: ../array/README.md#method-chain-and-high-order-function
 [JavaScript Promiseの本]: http://azu.github.io/promises-book/
 [try...catch構文]: ../error-try-catch/README.md#try-catch
+[JavaScriptとは]: ../introduction/README.md
