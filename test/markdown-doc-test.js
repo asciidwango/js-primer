@@ -17,13 +17,15 @@ const sourceDir = path.join(__dirname, "..", "source");
  * @type {string[]}
  */
 const AllowECMAScriptVersions = (() => {
-    if (semver.cmp(process.version, ">=", "15.0.0")) {
+    if (semver.cmp(process.version, ">=", "16.0.0")) {
         return []; // すべて通る前提
     }
     if (semver.cmp(process.version, ">=", "14.0.0")) {
-        return ["2021"]; // String#replaceAll をサポートしていない
+        // String#replaceAll をサポートしていない
+        // Top-Level await をサポートしていない
+        return ["2021", "2022"];
     }
-    return ["2017", "2018", "2019", "2020", "2021"];
+    return ["2017", "2018", "2019", "2020", "2021", "2022"];
 })();
 /**
  * Markdownファイルの CodeBlock に対してdoctestを行う
@@ -35,7 +37,7 @@ const AllowECMAScriptVersions = (() => {
  *
  * その他詳細は CONTRIBUTING.md を読む
  **/
-describe("doctest:md", function () {
+describe("doctest:md", function() {
     const files = globby.sync([
         `${sourceDir}/**/*.md`,
         `!${sourceDir}/**/node_modules{,/**}`,
