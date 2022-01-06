@@ -1814,8 +1814,9 @@ ES2022には、これに加えてModuleの直下ではAsync Functionで囲まな
 
 たとえば、次のコードを"Module"として実行した場合は、Async Functionなしで`await`式が利用できていることがわかります。
 
+<!-- Top-Level awaitをVM2がサポートしていないため -->
 <!-- js-console:{ "type": "module" } -->
-<!-- doctest:meta:{ "ECMAScript": "2022" } -->
+<!-- doctest:disable -->
 ```js
 console.log("実行開始");
 const startTime = Date.now();
