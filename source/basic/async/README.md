@@ -1820,7 +1820,7 @@ ES2022には、これに加えてModuleの直下ではAsync Functionで囲まな
 ```js
 console.log("実行開始");
 const startTime = Date.now();
-// 1秒待つだけの処理
+// Top-Level awaitを使って1秒待つ
 await new Promise(resolve => setTimeout(resolve, 1000));
 console.log(`実行終了: ${Date.now() - startTime}ms 経過しました`);
 ```
