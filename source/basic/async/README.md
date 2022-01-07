@@ -1349,7 +1349,6 @@ exceptionFn().catch(error => {
 
 まず最初に、一般的に使われるAsync Functionの関数の直下における`await`式を見ていきます。
 
-Async Functionの関数の直下では`await`式を利用できます。
 `await`式は右辺の`Promise`インスタンスが**Fulfilled**または**Rejected**になるまでその場で非同期処理の完了を待ちます。
 そして`Promise`インスタンスの状態が変わると、次の行の処理を再開します。
 
@@ -1810,9 +1809,10 @@ ES2022には、これに加えてModuleの直下ではAsync Functionで囲まな
 最初に「[JavaScriptとは][]」の章において、JavaScriptには実行コンテキストとして"Script"と"Module"があるという話をしました。
 たとえば、ブラウザでは`<script>`と書けば"Script"として実行され、`<script type="module">`と書けば"Module"として実行されます。
 
-"Module"としてJavaScriptを実行した時のみ、トップレベル（もっとも外側のスコープ）ではAsync Functionなしで`await`式が利用できます。
+"Module"としてJavaScriptを実行した時のみ、トップレベル（もっとも外側のスコープ）においてもAsync Functionなしで`await`式が利用できます。
 
 たとえば、次のコードを"Module"として実行した場合は、Async Functionなしで`await`式が利用できていることがわかります。
+これは、"Module"ではトップレベルでの`await`が許可されています。
 
 <!-- Top-Level awaitをVM2がサポートしていないため -->
 <!-- js-console:{ "type": "module" } -->
@@ -1825,9 +1825,9 @@ await new Promise(resolve => setTimeout(resolve, 1000));
 console.log(`実行終了: ${Date.now() - startTime}ms 経過しました`);
 ```
 
-このようにModuleのトップレベルで`await`式が利用できるため、Top-Level `await`と呼ばれます。
+このようにModuleではトップレベルにおいて`await`式が利用できるため、Top-Level `await`と呼ばれます。
 
-今まではAsync Functionのみでしか`await`式が利用できませんでした。
+今まではAsync Functionの直下のみでしか`await`式が利用できませんでした。
 そのため、メイン処理のように他の処理を呼び出すスクリプトの開始地点で`await`を使いたい場合は、Async Functionを即時実行関数として実行する必要がありました。
 
 ```js
