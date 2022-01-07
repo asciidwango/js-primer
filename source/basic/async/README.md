@@ -1828,18 +1828,18 @@ console.log(`実行終了: ${Date.now() - startTime}ms 経過しました`);
 このようにModuleではトップレベルにおいて`await`式が利用できることは、Top-Level `await`と呼ばれます。
 
 ES2021まではAsync Functionの直下のみでしか`await`式が利用できませんでした。
-そのため、メイン処理のように他の処理を呼び出すスクリプトの開始地点で`await`を使いたい場合は、Async Functionを使った即時関数で`await`を囲む必要がありました。
+そのため、メイン処理のように他の処理を呼び出すスクリプトの開始地点で`await`を使いたい場合は、Async Functionを使った即時実行関数で`await`を囲むケースがありました。
 
 ```js
-// awaitを使うためだけに、async functionの即時実行関数を利用している
+// awaitを使うためだけに、Async Functionの即時実行関数を実行している
 (async function() {
-    // awaitを使う
+    // awaitを使う処理
     const result = await doAsyncTask();
     // ...
 })();
 ```
 
-ES2022ではTop-Level `await`が利用できるようになったため、"Module"においてはこのような即時実行関数は不要となります。
+しかし、ES2022ではTop-Level `await`が利用できるようになったため、"Module"においてはこのような即時実行関数は不要となります。
 
 ## まとめ {#conclusion}
 
