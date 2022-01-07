@@ -1801,7 +1801,7 @@ fetchResources(resources).then((results) => {
 この問題を解決する方法として、最初の`fetchResources`関数のように、コールバック関数を使わずにすむforループと`await`式を組み合わせる方法があります。
 また、`fetchAllResources`関数のように、複数の非同期処理を1つのPromiseにまとめることでループ中に`await`式を使わないようにする方法があります。
 
-### [ES2022] Moduleでの`await`式 {#top-level-await-in-module}
+### [ES2022] Module直下での`await`式 {#top-level-await-in-module}
 
 ES2021までは、`await`式はAsync Functionの直下でのみ利用な可能なことを紹介しました。
 ES2022には、これに加えてModuleの直下ではAsync Functionで囲まなくても`await`式が利用できます。
@@ -1809,10 +1809,10 @@ ES2022には、これに加えてModuleの直下ではAsync Functionで囲まな
 最初に「[JavaScriptとは][]」の章において、JavaScriptには実行コンテキストとして"Script"と"Module"があるという話をしました。
 たとえば、ブラウザでは`<script>`と書けば"Script"として実行され、`<script type="module">`と書けば"Module"として実行されます。
 
-"Module"としてJavaScriptを実行した時のみ、トップレベル（もっとも外側のスコープ）においてもAsync Functionなしで`await`式が利用できます。
+"Module"としてJavaScriptを実行した時のみ、トップレベル（もっとも外側のスコープ）においてはAsync Functionなしで`await`式が利用できます。
 
 たとえば、次のコードを"Module"として実行した場合は、Async Functionなしで`await`式が利用できていることがわかります。
-これは、"Module"ではトップレベルでの`await`が許可されています。
+これは、"Module"ではトップレベルでの`await`が許可されているためです。
 
 <!-- Top-Level awaitをVM2がサポートしていないため -->
 <!-- js-console:{ "type": "module" } -->
@@ -1825,13 +1825,13 @@ await new Promise(resolve => setTimeout(resolve, 1000));
 console.log(`実行終了: ${Date.now() - startTime}ms 経過しました`);
 ```
 
-このようにModuleではトップレベルにおいて`await`式が利用できるため、Top-Level `await`と呼ばれます。
+このようにModuleではトップレベルにおいて`await`式が利用できることは、Top-Level `await`と呼ばれます。
 
-今まではAsync Functionの直下のみでしか`await`式が利用できませんでした。
+ES2021まではAsync Functionの直下のみでしか`await`式が利用できませんでした。
 そのため、メイン処理のように他の処理を呼び出すスクリプトの開始地点で`await`を使いたい場合は、Async Functionを即時実行関数として実行する必要がありました。
 
 ```js
-// awaitを使いたいため、async functionの即時実行関数を利用していた
+// awaitを使うためだけに、async functionの即時実行関数を利用している
 (async function() {
     // awaitを使う
     const result = await doAsyncTask();
@@ -1839,7 +1839,7 @@ console.log(`実行終了: ${Date.now() - startTime}ms 経過しました`);
 })();
 ```
 
-Top-Level `await`が利用できるようになると、この即時実行関数は不要となります。
+ES2022ではTop-Level `await`が利用できるようになったため、"Module"においてはこのような即時実行関数は不要となります。
 
 ## まとめ {#conclusion}
 
