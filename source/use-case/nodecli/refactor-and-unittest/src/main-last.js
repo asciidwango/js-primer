@@ -19,7 +19,7 @@ fs.readFile(filePath, { encoding: "utf8" }, (err, file) => {
         process.exit(1);
         return;
     }
-    const html = marked(file, {
+    const html = marked.parse(file, {
         // オプションの値を使用する
         gfm: cliOptions.gfm,
     });

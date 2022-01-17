@@ -14,13 +14,13 @@ JavaScriptでMarkdownをHTMLへ変換するために、今回は[marked][]とい
 markedのパッケージはnpmで配布されているので、commanderと同様に`npm install`コマンドでパッケージをインストールしましょう。
 
 ```shell
-$ npm install marked@1.0.0
+$ npm install marked@4.0.10
 ```
 
 インストールが完了したら、Node.jsのスクリプトから読み込みます。
 前のセクションの最後で書いたスクリプトに、markedパッケージの読み込み処理を追加しましょう。
 次のように`main.js`を変更し、読み込んだMarkdownファイルをmarkedを使ってHTMLに変換します。
-markedパッケージをインポートした`marked`関数は、Markdown文字列を引数にとり、HTML文字列に変換して返します。
+markedパッケージをインポートした`marked.parse`関数は、Markdown文字列を引数にとり、HTML文字列に変換して返します。
 
 [import title:"main.js"](src/main-1.js)
 
@@ -114,7 +114,7 @@ const cliOptions = {
 };
 ```
 
-こうして作成した`cliOptions`オブジェクトから、markedにオプションを渡しましょう。
+こうして作成したcliOptionsオブジェクトを、markedの`parse`関数へオプションとして渡しましょう。 main.jsの全体は次のようになります。
 `main.js`の全体は次のようになります。
 
 [import title:"main.js"](src/main-3.js)
