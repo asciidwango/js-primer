@@ -12,7 +12,7 @@ fs.readFile(filePath, { encoding: "utf8" }, (err, file) => {
         return;
     }
     // gfmオプションを無効にする
-    const html = marked(file, {
+    const html = marked.parse(file, {
         gfm: false
     });
     console.log(html);

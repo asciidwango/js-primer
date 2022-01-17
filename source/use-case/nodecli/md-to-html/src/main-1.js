@@ -13,6 +13,6 @@ fs.readFile(filePath, { encoding: "utf8" }, (err, file) => {
         return;
     }
     // MarkdownファイルをHTML文字列に変換する
-    const html = marked(file);
+    const html = marked.parse(file);
     console.log(html);
 });
