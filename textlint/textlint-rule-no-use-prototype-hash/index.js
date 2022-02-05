@@ -3,11 +3,11 @@ let report = (context, options = {}) => {
     return {
         [Syntax.Code](node) {
             const text = getSource(node);
-            const matches = text.matchAll(/^`(\w+)#(\w+)`$/g);
+            const matches = text.matchAll(/^`(?<parent>\w+)#(?<property>\w+)`$/gu);
             for (const match of matches) {
                 const index = match.index || 0;
-                const parent = matches[1];
-                const property = matches[2];
+                const parent = match.groups.parent;
+                const property = match.groups.property;
                 const replacedText = "`" + `${parent}の\`${property}\`` + "`";
                 report(node, new RuleError(`#をprototypeの短縮表記として使わないください。
                 
