@@ -46,15 +46,13 @@ console.log(typeof Object.prototype.toString); // => "function"
 ```
 
 このような`prototype`オブジェクトに組み込まれているメソッドは**プロトタイプメソッド**と呼ばれます。
-この書籍では`Object.prototype.toString`のようなプロトタイプメソッドを`Object#toString`と短縮して表記します。
-
-> `Object.prototype.toString` = `Object#toString`
+この書籍では`Object.prototype.toString`のようなプロトタイプメソッドを「Objectの`toString`メソッド」と短縮して表記することがあります。
 
 `Object`のインスタンスは、この`Object.prototype`オブジェクトに定義されたメソッドやプロパティを継承します。
 つまり、オブジェクトリテラルや`new Object`でインスタンス化したオブジェクトは、`Object.prototype`に定義されたものが利用できるということです。
 
-次のコードでは、オブジェクトリテラルで作成（インスタンス化）したオブジェクトから、`Object#toString`メソッドを参照しています。
-このときに、インスタンスの`toString`メソッドと`Object#toString`は同じものとなることがわかります。
+次のコードでは、オブジェクトリテラルで作成（インスタンス化）したオブジェクトから、`Object.prototype.toString`メソッドを参照しています。
+このときに、インスタンスの`toString`メソッドと`Object.prototype.toString`は同じものとなることがわかります。
 
 {{book.console}}
 ```js
@@ -69,10 +67,25 @@ console.log(obj.toString()); // => "[object Object]"
 ```
 
 このように`Object.prototype`に定義されている`toString`メソッドなどは、インスタンス作成時に自動的に継承されるため、`Object`のインスタンスから呼び出せます。
-これによりオブジェクトリテラルで作成した空のオブジェクトでも、`Object#toString`メソッドなどを呼び出せるようになっています。
+これによりオブジェクトリテラルで作成した空のオブジェクトでも、Objectの`toString`メソッドなどを呼び出せるようになっています。
 
 このインスタンスから`prototype`オブジェクト上に定義されたメソッドを参照できる仕組みを**プロトタイプチェーン**と呼びます。
 プロトタイプチェーンの仕組みについては「[クラス][]」の章で扱うため、ここではインスタンスからプロトタイプメソッドを呼び出せるということがわかっていれば問題ありません。
+
+<!-- textlint-disable no-use-prototype-hash,ja-technical-writing/sentence-length -->
+
+### [コラム] `Object#toString`という短縮した表記について {#prototype-shorthand-syntax}
+
+この書籍では、`Object.prototype.toString`のように`prototype`を含めて毎回書くと冗長なため、「Objectの`toString`メソッド」と短縮して書く場合があります。
+この書籍以外の文章では、`Object.prototype.toString`を`Object#toString`のように`prototype`の代わりに`#`を利用しているケースがあります。
+
+`#`が`prototype`の短縮表現として使われていたのは、`#`がJavaScriptの構文として使われていない記号でもあったためです。
+詳細は「[クラス][]」の章で解説しますが、ES2022では`#`がJavaScriptの構文として追加され、`#`という記号が意味をもつようになりました。
+ES2022以降では、説明のために`#`を`prototype`の短縮表現に使うと、人によっては異なる意味に見えてしまう可能性があります。
+
+そのため、この書籍は`Object.prototype.toString`を`Object#toString`のように`#`を使って短縮はしていません。
+
+<!-- textlint-enable no-use-prototype-hash,ja-technical-writing/sentence-length -->
 
 ### プロトタイプメソッドとインスタンスメソッドの優先順位 {#same-method-name-order}
 
@@ -95,16 +108,16 @@ console.log(customObject.toString()); // => "custom value"
 
 このように、インスタンスとプロトタイプオブジェクトで同じ名前のメソッドがある場合には、インスタンスのメソッドが優先されます。
 
-### `in`演算子と`Object#hasOwnProperty`メソッドの違い {#diff-in-operator-and-hasOwnProperty}
+### `in`演算子と`Object.prototype.hasOwnProperty`メソッドの違い {#diff-in-operator-and-hasOwnProperty}
 
-「[オブジェクト][]」の章で学んだ`Object#hasOwnProperty`メソッドと`in`演算子の挙動の違いについて見ていきます。
+「[オブジェクト][]」の章で学んだObjectの`hasOwnProperty`メソッドと`in`演算子の挙動の違いについて見ていきます。
 2つの挙動の違いはこの章で紹介したプロトタイプオブジェクトに関係しています。
 
 `hasOwnProperty`メソッドは、そのオブジェクト自身が指定したプロパティを持っているかを判定します。
 一方、`in`演算子はオブジェクト自身が持っていなければ、そのオブジェクトの継承元である`prototype`オブジェクトまで探索して持っているかを判定します。
 つまり、`in`演算子はインスタンスに実装されたメソッドなのか、プロトタイプオブジェクトに実装されたメソッドなのかを区別しません。
 
-次のコードでは、空のオブジェクトが`toString`メソッドを持っているかを`Object#hasOwnProperty`メソッドと`in`演算子でそれぞれ判定しています。
+次のコードでは、空のオブジェクトが`toString`メソッドを持っているかをObjectの`hasOwnProperty`メソッドと`in`演算子でそれぞれ判定しています。
 `hasOwnProperty`メソッドは`false`を返し、`in`演算子は`toString`メソッドがプロトタイプオブジェクトに存在するため`true`を返します。
 
 {{book.console}}
@@ -172,7 +185,7 @@ console.log(array.hasOwnProperty === Object.prototype.hasOwnProperty); // => tru
 このように、`Array`のインスタンスも`Object.prototype`を継承しているため、
 `Object.prototype`に定義されているメソッドを利用できます。
 
-次のコードでは、`Array`のインスタンスから`Object#hasOwnProperty`メソッドが参照できていることがわかります。
+次のコードでは、`Array`のインスタンスからObjectの`hasOwnProperty`メソッドが参照できていることがわかります。
 
 {{book.console}}
 ```js
@@ -187,13 +200,13 @@ console.log(array.hasOwnProperty === Object.prototype.hasOwnProperty); // => tru
 これにより、`Array`や`String`などのインスタンスも`Object.prototype`が持つメソッドを利用できる点を覚えておきましょう。
 
 また、`Array.prototype`などもそれぞれ独自のメソッドを定義しています。
-たとえば、`Array#toString`メソッドもそのひとつです。
-そのため、配列のインスタンスで`toString`メソッドを呼び出すと`Array#toString`が優先して呼び出されます。
+たとえば、Arrayの`toString`メソッドもそのひとつです。
+そのため、Arrayのインスタンスで`toString`メソッドを呼び出すと`Array.prototype.toString`が優先して呼び出されます。
 
 {{book.console}}
 ```js
 const numbers = [1, 2, 3];
-// `Array#toString`が定義されているため、`Object#toString`とは異なる形式となる
+// `Array.prototype.toString`が定義されているため、`Object.prototype.toString`とは異なる出力形式となる
 console.log(numbers.toString()); // => "1,2,3"
 ```
 
@@ -217,7 +230,8 @@ console.log(obj.hasOwnProperty); // => undefined
 Mapとはキーと値の組み合わせを保持するためのオブジェクトです。
 
 ただのオブジェクトもMapとよく似た性質を持っていますが、最初からいくつかのプロパティが存在しアクセスできてしまいます。
-なぜなら、`Object`のインスタンスはデフォルトで`Object.prototype`を継承するため、`toString`などのプロパティ名がオブジェクトを作成した時点で存在するためです。そのため、`Object.create(null)`で`Object.prototype`を継承しないオブジェクトを作成し、そのオブジェクトが`Map`の代わりとして使われていました。
+なぜなら、`Object`のインスタンスはデフォルトで`Object.prototype`を継承するため、`toString`などのプロパティ名がオブジェクトを作成した時点で存在するためです。
+そのため、`Object.create(null)`で`Object.prototype`を継承しないオブジェクトを作成し、そのオブジェクトが`Map`の代わりとして使われていました。
 
 {{book.console}}
 ```js
