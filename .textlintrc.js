@@ -21,7 +21,12 @@ module.exports = {
         },
         "no-use-column": true,
         "footnote-order": true,
-        "no-use-prototype-hash": true,
+        "no-use-prototype-hash": {
+            "allow": [ 
+                // CSSセレクタの表現であるため許可
+                "div#result"
+            ]
+        },
         "@textlint-rule/require-header-id": true,
         // 箇条書きには。を付けない
         "period-in-list-item": {

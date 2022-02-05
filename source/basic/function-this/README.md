@@ -537,11 +537,11 @@ console.log(sayPerson()); // => "こんにちは Brendan Eich！"
 ### 問題: コールバック関数と`this` {#callback-and-this}
 
 コールバック関数の中で`this`を参照すると問題となる場合があります。
-この問題は、メソッドの中で`Array#map`メソッドなどのコールバック関数を扱う場合に発生しやすいです。
+この問題は、メソッドの中でArrayの`map`メソッドなどのコールバック関数を扱う場合に発生しやすいです。
 
 具体的に、コールバック関数における`this`が問題となっている例を見てみましょう。
-次のコードでは`prefixArray`メソッドの中で`Array#map`メソッドを使っています。
-このとき、`Array#map`メソッドのコールバック関数の中で、`Prefixer`オブジェクトを参照するつもりで`this`を参照しています。
+次のコードでは`prefixArray`メソッドの中で`map`メソッドを使っています。
+このとき、`map`メソッドのコールバック関数の中で、`Prefixer`オブジェクトを参照するつもりで`this`を参照しています。
 
 しかし、このコールバック関数における`this`は`undefined`となり、`undefined.prefix`は参照できないためTypeErrorの例外が発生します。
 
@@ -567,7 +567,7 @@ Prefixer.prefixArray(["a", "b", "c"]); // => TypeError: Cannot read property 'pr
 ```
 
 なぜコールバック関数の中の`this`が`undefined`となるのかを見ていきます。
-`Array#map`メソッドにはコールバック関数として、その場で定義した匿名関数を渡していることに注目してください。
+Arrayの`map`メソッドにはコールバック関数として、その場で定義した匿名関数を渡していることに注目してください。
 
 <!-- textlint-disable eslint -->
 <!-- doctest:disable -->
@@ -585,7 +585,7 @@ Prefixer.prefixArray(["a", "b", "c"]); // => TypeError: Cannot read property 'pr
 
 <!-- textlint-disable no-js-function-paren -->
 
-このとき、`Array#map`メソッドに渡しているコールバック関数は`callback()`のようにただの関数として呼び出されます。
+このとき、Arrayの`map`メソッドに渡しているコールバック関数は`callback()`のようにただの関数として呼び出されます。
 つまり、コールバック関数として呼び出すとき、この関数にはベースオブジェクトはありません。
 そのため`callback`関数の`this`は`undefined`となります。
 
@@ -644,8 +644,8 @@ const prefixedStrings = Prefixer.prefixArray(["a", "b", "c"]);
 console.log(prefixedStrings); // => ["pre-a", "pre-b", "pre-c"]
 ```
 
-もちろん`Function#call`メソッドなどで明示的に`this`を渡して関数を呼び出すこともできます。
-また、`Array#map`メソッドなどは`this`となる値を引数として渡せる仕組みを持っています。
+もちろんFunctionの`call`メソッドなどで明示的に`this`を渡して関数を呼び出すこともできます。
+また、Arrayの`map`メソッドなどは`this`となる値を引数として渡せる仕組みを持っています。
 そのため、次のように第二引数に`this`となる値を渡すことでも解決できます。
 
 {{book.console}}
@@ -927,7 +927,7 @@ console.log(obj.method.call("THAT")); // => "THAT"
 コールバック関数における`this`はArrow Functionを使うことでわかりやすく解決できます。
 この背景にはArrow Functionで定義した関数は`this`を持たないという性質があります。
 
-[^1]: ES2015の仕様編集者であるAllen Wirfs-Brock‏氏もただの関数においては`this`を使うべきではないと述べている。<https://twitter.com/awbjs/status/938272440085446657>;
+[^1]: ES2015の仕様編集者であるAllen Wirfs-Brock氏もただの関数においては`this`を使うべきではないと述べている。<https://twitter.com/awbjs/status/938272440085446657>;
 [JavaScriptとは]: ../introduction/README.md
 [関数と宣言]: ../function-declaration/README.md
 [クラス]: ../class/README.md

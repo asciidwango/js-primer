@@ -5,6 +5,7 @@
  * @returns {{}}
  */
 const report = (context, options = {}) => {
+    const allow = options.allow || [];
     const { Syntax, RuleError, report, getSource, fixer } = context;
     return {
         [Syntax.Code](node) {
@@ -16,6 +17,9 @@ const report = (context, options = {}) => {
                 const index = match.index || 0;
                 const parent = match.groups.parent;
                 const property = match.groups.property;
+                if (allow.includes(`${parent}#${property}`)) {
+                    return; // 例外は許可
+                }
                 const replacedText = isInHeader
                     ? `\`${parent}.prototype.${property}\``
                     : `${parent}の\`${property}\``;
