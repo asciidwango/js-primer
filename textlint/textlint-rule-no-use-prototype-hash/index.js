@@ -26,7 +26,6 @@ const report = (context, options = {}) => {
                 report(node, new RuleError(`#をprototypeの短縮表記として使わないください。
                 
 Array#push は「Arrayの\`push\`メソッド」と表現します。
-Private Fieldsは、「MyClassの\`#property\`フィールド」と表現します
 
 See https://github.com/asciidwango/js-primer/issues/1368
 `, {
@@ -34,7 +33,29 @@ See https://github.com/asciidwango/js-primer/issues/1368
                     fix: fixer.replaceText(node, replacedText)
                 }));
             }
+        },
+        [Syntax.CodeBlock](node) {
+            const text = getSource(node);
+            // `#property` Private Fieldsは除外される
+            const matches = text.matchAll(/\/\/.*?(?<parent>\w+)#(?<property>\w+)/gu);
+            for (const match of matches) {
+                const index = match.index || 0;
+                const parent = match.groups.parent;
+                const property = match.groups.property;
+                if (allow.includes(`${parent}#${property}`)) {
+                    return; // 例外は許可
+                }
+                report(node, new RuleError(`#をprototypeの短縮表記として使わないください。
+                
+Array#push は「Arrayの\`push\`メソッド」と表現します。
+
+See https://github.com/asciidwango/js-primer/issues/1368
+`, {
+                    index,
+                }));
+            }
         }
+
     };
 };
 

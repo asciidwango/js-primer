@@ -884,7 +884,7 @@ const str = "ABC あいう DE えお";
 const alphabetsPattern = /[a-zA-Z]+/g;
 let matches;
 while (matches = alphabetsPattern.exec(str)) {
-    // `RegExp#exec`メソッドの返り値は`index`プロパティなどを含む特殊な配列
+    // RegExpの`exec`メソッドの返り値は`index`プロパティなどを含む特殊な配列
     console.log(`match: ${matches[0]}, index: ${matches.index}, lastIndex: ${alphabetsPattern.lastIndex}`);
 }
 // 次の順番でコンソールに出力される
@@ -950,7 +950,7 @@ Stringメソッドの場合は、`/`からはじまり`/`で終わるかを判�
 const str = "/正規表現のような文字列/";
 // 正規表現で`/`からはじまり`/`で終わる文字列のパターン
 const regExpLikePattern = /^\/.*\/$/;
-// RegExp#testメソッドでパターンにマッチするかを判定
+// RegExpの`test`メソッドでパターンにマッチするかを判定
 console.log(regExpLikePattern.test(str)); // => true
 // Stringメソッドで、`/`からはじまり`/`で終わる文字列かを判定する関数
 const isRegExpLikeString = (str) => {

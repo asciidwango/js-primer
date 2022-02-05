@@ -654,7 +654,7 @@ console.log(prefixedStrings); // => ["pre-a", "pre-b", "pre-c"]
 const Prefixer = {
     prefix: "pre",
     prefixArray(strings) {
-        // `Array#map`メソッドは第二引数に`this`となる値を渡せる
+        // Arrayの`map`メソッドは第二引数に`this`となる値を渡せる
         return strings.map(function(str) {
             // `this`が第二引数の値と同じになる
             // つまり`prefixArray`メソッドと同じ`this`となる
@@ -806,7 +806,7 @@ const obj = {
         callCallback(function() {
             // ここでの `this` は`callCallback`の実装に依存する
             // `callback()`のように単純に呼び出されるなら`this`は`undefined`になる
-            // `Function#call`などを使って特定のオブジェクトを指定するかもしれない
+            // Functionの`call`メソッドなどを使って特定のオブジェクトを指定するかもしれない
             // この問題を回避するために`const that = this`のような一時変数を使う
         });
     }

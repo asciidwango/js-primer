@@ -1034,7 +1034,7 @@ console.log(child.name); // => "Child"
 ```js
 class Parent {
     method() {
-        console.log("Parent#method");
+        console.log("Parent.prototype.method");
     }
 }
 // `Parent`を継承した`Child`を定義
@@ -1043,7 +1043,7 @@ class Child extends Parent {
 }
 // `Child`のインスタンスは`Parent`のプロトタイプメソッドを継承している
 const instance = new Child();
-instance.method(); // "Parent#method"
+instance.method(); // "Parent.prototype.method"
 ```
 
 このように、子クラスのインスタンスから親クラスのプロトタイプメソッドもプロトタイプチェーンの仕組みによって呼び出せます。
@@ -1105,22 +1105,22 @@ console.log(Child.hello()); // => "Hello"
 ```js
 class Parent {
     method() {
-        console.log("Parent#method");
+        console.log("Parent.prototype.method");
     }
 }
 class Child extends Parent {
     method() {
-        console.log("Child#method");
+        console.log("Child.prototype.method");
         // `this.method()`だと自分(`this`)のmethodを呼び出して無限ループする
-        // そのため明示的に`super.method()`とParent#methodを呼び出す
+        // そのため明示的に`super.method()`を呼ぶことで、Parent.prototype.methodを呼び出す
         super.method();
     }
 }
 const child = new Child();
 child.method();
 // コンソールには次のように出力される
-// "Child#method"
-// "Parent#method"
+// "Child.prototype.method"
+// "Parent.prototype.method"
 ```
 
 プロトタイプチェーンでは、インスタンスからクラス、さらに親のクラスと継承関係をさかのぼるようにメソッドを探索すると紹介しました。
