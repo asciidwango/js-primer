@@ -1,3 +1,9 @@
+/**
+ * @see https://github.com/asciidwango/js-primer/issues/1368
+ * @param context
+ * @param options
+ * @returns {{}}
+ */
 const report = (context, options = {}) => {
     const { Syntax, RuleError, report, getSource, fixer } = context;
     return {
@@ -26,13 +32,7 @@ Private Fieldsは、「MyClassの\`#property\`フィールド」と表現しま�
         }
     };
 };
-/**
- * 文中で"コラム"という表現を使わないルール
- * @see https://github.com/asciidwango/js-primer/issues/1368
- * @param context
- * @param options
- * @returns {{}}
- */
+
 module.exports = {
     linter: report,
     fixer: report
