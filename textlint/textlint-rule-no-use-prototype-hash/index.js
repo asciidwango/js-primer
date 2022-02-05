@@ -24,6 +24,7 @@ const report = (context, options = {}) => {
 Array#push は「Arrayの\`push\`メソッド」と表現します。
 Private Fieldsは、「MyClassの\`#property\`フィールド」と表現します
 
+See https://github.com/asciidwango/js-primer/issues/1368
 `, {
                     index,
                     fix: fixer.replaceText(node, replacedText)
