@@ -8,7 +8,7 @@ let report = (context, options = {}) => {
                 const index = match.index || 0;
                 const parent = match.groups.parent;
                 const property = match.groups.property;
-                const replacedText = "`" + `${parent}の\`${property}\`` + "`";
+                const replacedText = `${parent}の\`${property}\``;
                 report(node, new RuleError(`#をprototypeの短縮表記として使わないください。
                 
 Array#push は「Arrayの\`push\`メソッド」と表現します。
