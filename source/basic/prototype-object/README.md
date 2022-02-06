@@ -200,7 +200,7 @@ console.log(array.hasOwnProperty === Object.prototype.hasOwnProperty); // => tru
 これにより、`Array`や`String`などのインスタンスも`Object.prototype`が持つメソッドを利用できる点を覚えておきましょう。
 
 また、`Array.prototype`などもそれぞれ独自のメソッドを定義しています。
-たとえば、Arrayの`toString`メソッドもそのひとつです。
+たとえば、`Array.prototype.toString`メソッドもそのひとつです。
 そのため、Arrayのインスタンスで`toString`メソッドを呼び出すと`Array.prototype.toString`が優先して呼び出されます。
 
 {{book.console}}
