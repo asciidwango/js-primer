@@ -25,7 +25,7 @@ HTMLの[`<input type="checkbox">`](https://developer.mozilla.org/ja/docs/Web/HTM
 
 ![input要素のchecked属性の違い](./img/input-checkbox.png)
 
-`src/App.js`のTodoListModelの`onChange`メソッドで登録したリスナー関数内を書き換え、チェックボックスを表示しています。
+`src/App.js`にてTodoListModelの`onChange`メソッドで登録したリスナー関数内を書き換え、チェックボックスを表示しています。
 
 Todoアイテム要素である`<li>`要素中に次のように`<input>`要素を追加してチェックボックスを表示に追加します。
 チェックボックスである`<input>`要素にはスタイルのために`class`属性を`checkbox`とします。
