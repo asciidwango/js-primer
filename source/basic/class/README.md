@@ -1192,7 +1192,7 @@ console.log(child instanceof Child); // => true
 
 次のコードでは、ビルトインオブジェクトである`Array`を継承して独自のメソッドを加えた`MyArray`クラスを定義しています。
 継承した`MyArray`は`Array`の性質であるメソッドや状態管理についての仕組みを継承しています。
-継承した性質に加えて、MyArrayの`first`やMyArrayの`last`といったアクセッサプロパティを追加しています。
+継承した性質に加えて、MyArrayクラスへ`first`や`last`といったアクセッサプロパティを追加しています。
 
 {{book.console}}
 ```js
