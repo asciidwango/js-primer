@@ -1700,8 +1700,8 @@ Unicodeでは1文字を表すのに使う最小限のビットの組み合わせ
 - 比較表: http://unicode.org/faq/utf_bom.html#gen6
  -->
 <p>次のコードは、文字列を構成するCode Unitをhex値（16進数）にして表示する例です。
-<code>String#charCodeAt</code>メソッドは、文字列の指定インデックスのCode Unitを整数として返します。
-そのCode Unitの整数値を<code>Number#toString</code>メソッドでhex値（16進数）にしています。</p>
+Stringの<code>charCodeAt</code>メソッドは、文字列の指定インデックスのCode Unitを整数として返します。
+そのCode Unitの整数値をNumberの<code>toString</code>メソッドでhex値（16進数）にしています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;アオイ&quot;</span>;
 <span class="hljs-comment">// それぞれの文字をCode Unitのhex値（16進数）に変換する</span>
@@ -1753,24 +1753,24 @@ Unicodeでは1文字を表すのに使う最小限のビットの組み合わせ
 このUTF-16と文字列については、次の章である「<a href="../string-unicode/">文字列とUnicode</a>」で詳しく見ていきます。</p>
 <p>ここでは、「JavaScriptの文字列の各要素はUTF-16のCode Unitで構成されている」ということだけを覚えておけば問題ありません。</p>
 <h2 id="split-join"><a name="split-join" class="plugin-anchor" href="#split-join"><i class="fa fa-link" aria-hidden="true"></i></a>文字列の分解と結合 </h2>
-<p>文字列を配列へ分解するには<code>String#split</code>メソッドを利用できます。
-一方、配列の要素を結合して文字列にするには<code>Array#join</code>メソッドを利用できます。</p>
+<p>文字列を配列へ分解するにはStringの<code>split</code>メソッドを利用できます。
+一方、配列の要素を結合して文字列にするにはArrayの<code>join</code>メソッドを利用できます。</p>
 <p>この２つはよく組み合わせて利用されるため、合わせて見ていきます。</p>
-<p><code>String#split</code>メソッドは、第一引数に指定した区切り文字で文字列を分解した配列を返します。
+<p>Stringの<code>split</code>メソッドは、第一引数に指定した区切り文字で文字列を分解した配列を返します。
 次のコードでは、文字列を<code>・</code>で区切った配列を作成しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> strings = <span class="hljs-string">&quot;赤・青・緑&quot;</span>.split(<span class="hljs-string">&quot;・&quot;</span>);
 <span class="hljs-built_in">console</span>.log(strings); <span class="hljs-comment">// =&gt; [&quot;赤&quot;, &quot;青&quot;, &quot;緑&quot;]</span>
 </code></pre>
-<p>分解してできた文字列の配列を結合して文字列を作る際に、<code>Array#join</code>メソッドが利用できます。
-<code>Array#join</code>メソッドの第一引数には区切り文字を指定し、その区切り文字で結合した文字列を返します。</p>
+<p>分解してできた文字列の配列を結合して文字列を作る際に、Arrayの<code>join</code>メソッドが利用できます。
+Arrayの<code>join</code>メソッドの第一引数には区切り文字を指定し、その区切り文字で結合した文字列を返します。</p>
 <p>この２つを合わせれば、区切り文字を<code>・</code>から<code>、</code>へ変換する処理を次のように書くことができます。
 <code>・</code>で文字列を分割（<code>split</code>）してから、区切り文字を<code>、</code>にして結合（<code>join</code>）すれば変換できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;赤・青・緑&quot;</span>.split(<span class="hljs-string">&quot;・&quot;</span>).join(<span class="hljs-string">&quot;、&quot;</span>);
 <span class="hljs-built_in">console</span>.log(str); <span class="hljs-comment">// =&gt; &quot;赤、青、緑&quot;</span>
 </code></pre>
-<p><code>String#split</code>メソッドの第一引数には正規表現も指定できます。
+<p>Stringの<code>split</code>メソッドの第一引数には正規表現も指定できます。
 これを利用すると、次のように文字列をスペースで区切るような処理を簡単に書けます。
 <code>/\s+/</code>は1つ以上のスペースにマッチする正規表現オブジェクトを作成する正規表現リテラルです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -1781,7 +1781,7 @@ Unicodeでは1文字を表すのに使う最小限のビットの組み合わせ
 <span class="hljs-built_in">console</span>.log(strings); <span class="hljs-comment">// =&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]</span>
 </code></pre>
 <h2 id="length"><a name="length" class="plugin-anchor" href="#length"><i class="fa fa-link" aria-hidden="true"></i></a>文字列の長さ </h2>
-<p><code>String#length</code>プロパティは文字列の要素数を返します。
+<p>Stringの<code>length</code>プロパティは文字列の要素数を返します。
 文字列の構成要素はCode Unitであるため、<code>length</code>プロパティはCode Unitの個数を返します。</p>
 <p>次の文字列は3つの要素（Code Unit）が並んだものであるため、<code>length</code>プロパティは<code>3</code>を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -1809,7 +1809,7 @@ Unicodeでは1文字を表すのに使う最小限のビットの組み合わせ
 <p>また、<code>===</code>などの比較演算子だけではなく、
 <code>&gt;</code>、<code>&lt;</code>、<code>&gt;=</code>、<code>&lt;=</code>など大小の関係演算子で文字列同士の比較もできます。</p>
 <p>これらの関係演算子も、文字列の要素であるCode Unitの同士を先頭から順番に比較します。
-文字列からCode Unitの数値を取得するには<code>String#charCodeAt</code>メソッドを利用できます。</p>
+文字列からCode Unitの数値を取得するには、Stringの<code>charCodeAt</code>メソッドを利用できます。</p>
 <p>次のコードでは、<code>ABC</code>と<code>ABD</code>を比較した場合にどちらが大きい（Code Unitの値が大きい）かを比較しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// &quot;A&quot;と&quot;B&quot;のCode Unitは65と66</span>
@@ -1826,11 +1826,11 @@ Unicodeでは1文字を表すのに使う最小限のビットの組み合わせ
 <p>JavaScriptにおいても、<a href="https://www.ecma-international.org/publications/standards/Ecma-402.htm" title="Standard ECMA-402" target="_blank">ECMA-402</a>というECMAScriptと関連する別の仕様として国際化についての取り決めがされています。
 この国際化に関するAPIを定義した<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Intl" target="_blank">Intl</a>というビルトインオブジェクトもありますが、このAPIについての詳細は省略します。</p>
 <h2 id="slice"><a name="slice" class="plugin-anchor" href="#slice"><i class="fa fa-link" aria-hidden="true"></i></a>文字列の一部を取得 </h2>
-<p>文字列からその一部を取り出したい場合には、<code>String#slice</code>メソッドや<code>String#substring</code>メソッドが利用できます。</p>
+<p>文字列からその一部を取り出したい場合には、Stringの<code>slice</code>メソッドや<code>substring</code>メソッドが利用できます。</p>
 <p><code>slice</code>メソッドについては、すでに配列で学んでいますが、基本的な動作は文字列でも同様です。
 まずは<code>slice</code>メソッドについて見ていきます。</p>
 <!-- textlint-disable ja-technical-writing/max-ten -->
-<p><code>String#slice</code>メソッドは、第一引数に開始位置、第二引数に終了位置を指定し、その範囲を取り出した新しい文字列を返します。
+<p>Stringの<code>slice</code>メソッドは、第一引数に開始位置、第二引数に終了位置を指定し、その範囲を取り出した新しい文字列を返します。
 第二引数は省略でき、省略した場合は文字列の末尾が終了位置となります。</p>
 <!-- textlint-enable ja-technical-writing/max-ten -->
 <p>位置にマイナスの値を指定した場合は文字列の末尾から数えた位置となります。
@@ -1846,7 +1846,7 @@ Unicodeでは1文字を表すのに使う最小限のビットの組み合わせ
 <span class="hljs-comment">// 第一引数 &gt; 第二引数の場合、常に空文字列を返す</span>
 <span class="hljs-built_in">console</span>.log(str.slice(<span class="hljs-number">4</span>, <span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;&quot;</span>
 </code></pre>
-<p><code>String#substring</code>メソッドは、<code>slice</code>メソッドと同じく第一引数に開始位置、第二引数に終了位置を指定し、その範囲を取り出して新しい文字列を返します。
+<p>Stringの<code>substring</code>メソッドは、<code>slice</code>メソッドと同じく第一引数に開始位置、第二引数に終了位置を指定し、その範囲を取り出して新しい文字列を返します。
 第二引数を省略した場合の挙動も同様で、省略した場合は文字列の末尾が終了位置となります。</p>
 <p><code>slice</code>メソッドとは異なる点として、位置にマイナスの値を指定した場合は常に<code>0</code>として扱われます。
 また、第一引数の位置が第二引数の位置より大きい場合、第一引数と第二引数が入れ替わるという予想しにくい挙動となります。</p>
@@ -1865,7 +1865,7 @@ Unicodeでは1文字を表すのに使う最小限のビットの組み合わせ
 <p>このように、マイナスの位置や引数が交換される挙動はわかりやすいものとは言えません。
 そのため、<code>slice</code>メソッドと<code>substring</code>メソッドに指定する引数は、どちらとも同じ結果となる範囲に限定したほうが直感的な挙動となります。
 つまり、指定するインデックスは0以上にして、第二引数を指定する場合は<code>第一引数の位置 &lt; 第二引数の位置</code>にするということです。</p>
-<p><code>String#slice</code>メソッドは<code>String#indexOf</code>メソッドなど位置を取得するものと組み合わせて使うことが多いでしょう。
+<p>Stringの<code>slice</code>メソッドは、<code>indexOf</code>メソッドなどの位置を取得するものと組み合わせて使うことが多いでしょう。
 次のコードでは、<code>?</code>の位置を<code>indexOf</code>メソッドで取得し、それ以降の文字列を<code>slice</code>メソッドで切り出しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> url = <span class="hljs-string">&quot;https://example.com?param=1&quot;</span>;
@@ -1890,8 +1890,8 @@ Unicodeでは1文字を表すのに使う最小限のビットの組み合わせ
 <h3 id="search-by-string"><a name="search-by-string" class="plugin-anchor" href="#search-by-string"><i class="fa fa-link" aria-hidden="true"></i></a>文字列による検索 </h3>
 <p><code>String</code>オブジェクトには、指定した文字列で検索するメソッドが用意されています。</p>
 <h4 id="search-index-by-string"><a name="search-index-by-string" class="plugin-anchor" href="#search-index-by-string"><i class="fa fa-link" aria-hidden="true"></i></a>文字列によるインデックスの取得 </h4>
-<p><code>String#indexOf</code>メソッドと<code>String#lastIndexOf</code>メソッドは、指定した文字列で検索し、その文字列が最初に現れたインデックスを返します。
-これらは配列の<code>Array#indexOf</code>メソッドと同じで、厳密等価演算子（<code>===</code>）で文字列を検索します。
+<p>Stringの<code>indexOf</code>メソッドと<code>lastIndexOf</code>メソッドは、指定した文字列で検索し、その文字列が最初に現れたインデックスを返します。
+これらは配列のArrayの<code>indexOf</code>メソッドと同じで、厳密等価演算子（<code>===</code>）で文字列を検索します。
 一致する文字列がない場合は<code>-1</code>を返します。</p>
 <ul>
 <li><code>文字列.indexOf(&quot;検索文字列&quot;)</code>: 先頭から検索し、指定された文字列が最初に現れたインデックスを返す</li>
@@ -2026,7 +2026,7 @@ main();
 <h3 id="search-by-regexp"><a name="search-by-regexp" class="plugin-anchor" href="#search-by-regexp"><i class="fa fa-link" aria-hidden="true"></i></a>正規表現による検索 </h3>
 <p>正規表現による検索は、正規表現オブジェクトと対応した<code>String</code>オブジェクトまたは<code>RegExp</code>オブジェクトのメソッドを利用します。</p>
 <h4 id="search-index-by-regexp"><a name="search-index-by-regexp" class="plugin-anchor" href="#search-index-by-regexp"><i class="fa fa-link" aria-hidden="true"></i></a>正規表現によるインデックスの取得 </h4>
-<p><code>String#indexOf</code>メソッドの正規表現版ともいえる<code>String#search</code>メソッドがあります。
+<p>Stringの<code>indexOf</code>メソッドの正規表現版ともいえるStringの<code>search</code>メソッドがあります。
 <code>search</code>メソッドは正規表現のパターンにマッチした箇所のインデックスを返し、マッチする文字列がない場合は<code>-1</code>を返します。</p>
 <ul>
 <li><code>String#indexOf(検索文字列)</code>: 指定された文字列にマッチした箇所のインデックスを返す</li>
@@ -2042,7 +2042,7 @@ main();
 <h4 id="match-by-regexp"><a name="match-by-regexp" class="plugin-anchor" href="#match-by-regexp"><i class="fa fa-link" aria-hidden="true"></i></a>正規表現によるマッチした文字列の取得 </h4>
 <p>文字列による検索では、検索した文字列そのものがマッチした文字列になります。
 しかし、<code>search</code>メソッドの正規表現による検索は、正規表現パターンによる検索であるため、検索してマッチした文字列の長さは固定ではありません。
-つまり、次のように<code>String#search</code>メソッドでマッチしたインデックスのみを取得しても、実際にマッチした文字列がわかりません。</p>
+つまり、次のようにStringの<code>search</code>メソッドでマッチしたインデックスのみを取得しても、実際にマッチした文字列がわかりません。</p>
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;abc123def&quot;</span>;
 <span class="hljs-comment">// 連続した数字にマッチする正規表現</span>
@@ -2051,18 +2051,18 @@ main();
 <span class="hljs-comment">// `index` だけではマッチした文字列の長さがわからない</span>
 str.slice(index, index + マッチした文字列の長さ); <span class="hljs-comment">// マッチした文字列は取得できない</span>
 </code></pre>
-<p>そのため、マッチした文字列を取得する<code>String#match</code>メソッドと<code>String#matchAll</code>メソッドが用意されています。
+<p>そのため、マッチした文字列を取得するStringの<code>match</code>メソッドと<code>matchAll</code>メソッドが用意されています。
 また、これらのメソッドは正規表現のマッチを文字列の最後まで繰り返す<code>g</code>フラグ（globalの略称）によって挙動が変わります。</p>
 <h5 id="match"><a name="match" class="plugin-anchor" href="#match"><i class="fa fa-link" aria-hidden="true"></i></a>マッチした文字列の取得 </h5>
-<p>まずは、マッチした文字列を取得する<code>String#match</code>メソッドから見ていきます。
-<code>String#match</code>メソッドは、正規表現の<code>/パターン/</code>が<code>&quot;文字列&quot;</code>にマッチすると、マッチした文字列に関する情報を返すメソッドです。</p>
+<p>まずは、マッチした文字列を取得するStringの<code>match</code>メソッドから見ていきます。
+<code>match</code>メソッドは、正規表現の<code>/パターン/</code>が<code>&quot;文字列&quot;</code>にマッチすると、マッチした文字列に関する情報を返すメソッドです。</p>
 <pre><code class="lang-js"><span class="hljs-string">&quot;文字列&quot;</span>.match(<span class="hljs-regexp">/パターン/</span>);
 </code></pre>
-<p><code>String#match</code>メソッドで検索した結果、正規表現にマッチする文字列がなかった場合は<code>null</code>を返します。</p>
+<p><code>match</code>メソッドで検索した結果、正規表現にマッチする文字列がなかった場合は<code>null</code>を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;文字列&quot;</span>.match(<span class="hljs-regexp">/マッチしないパターン/</span>)); <span class="hljs-comment">// =&gt; null</span>
 </code></pre>
-<p><code>String#match</code>メソッドは正規表現の<code>g</code>フラグなしのパターンで検索した場合、最初にマッチしたものが見つかった時点で検索が終了します。
+<p><code>match</code>メソッドは正規表現の<code>g</code>フラグなしのパターンで検索した場合、最初にマッチしたものが見つかった時点で検索が終了します。
 このときの<code>match</code>メソッドの返り値は、<code>index</code>プロパティと<code>input</code>プロパティをもった特殊な配列となります。
 <code>index</code>プロパティにはマッチした文字列の先頭のインデックスが、<code>input</code>プロパティには検索対象となった文字列全体が含まれています。</p>
 <p>次のコードの<code>/[a-zA-Z]+/</code>という正規表現は<code>a</code>から<code>Z</code>のどれかの文字が1つ以上連続しているものにマッチします。
@@ -2081,9 +2081,9 @@ str.slice(index, index + マッチした文字列の長さ); <span class="hljs-c
 <span class="hljs-comment">// 検索対象となった文字列全体</span>
 <span class="hljs-built_in">console</span>.log(results.input); <span class="hljs-comment">// =&gt; &quot;ABC あいう DE えお&quot;</span>
 </code></pre>
-<p><code>String#match</code>メソッドは正規表現の<code>g</code>フラグありのパターンで検索した場合、マッチしたすべての文字列を含んだ配列を返します。</p>
+<p><code>match</code>メソッドは正規表現の<code>g</code>フラグありのパターンで検索した場合、マッチしたすべての文字列を含んだ配列を返します。</p>
 <p>次のコードの<code>/[a-zA-Z]+/g</code>という正規表現は<code>a</code>から<code>Z</code>のどれかの文字が1つ以上連続しているものに繰り返しマッチします。
-この正規表現にマッチする箇所は&quot;ABC&quot;と&quot;DE&quot;の2つとなるため、<code>String#match</code>メソッドの返り値である配列にも2つの要素が含まれています。</p>
+この正規表現にマッチする箇所は&quot;ABC&quot;と&quot;DE&quot;の2つとなるため、<code>match</code>メソッドの返り値である配列にも2つの要素が含まれています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;ABC あいう DE えお&quot;</span>;
 <span class="hljs-keyword">const</span> alphabetsPattern = <span class="hljs-regexp">/[a-zA-Z]+/g</span>;
@@ -2098,7 +2098,7 @@ str.slice(index, index + マッチした文字列の長さ); <span class="hljs-c
 </code></pre>
 <p>このときの<code>match</code>メソッドの返り値である配列には<code>index</code>と<code>input</code>プロパティはありません。
 なぜなら、複数の箇所にマッチする場合においては、1つの<code>index</code>プロパティでは意味が一意に決まらないためです。</p>
-<p><code>String#match</code>メソッドの挙動をまとめると次のようになります。</p>
+<p>Stringの<code>match</code>メソッドの挙動をまとめると次のようになります。</p>
 <ul>
 <li>マッチしない場合は、<code>null</code>を返す</li>
 <li>マッチした場合は、マッチした文字列を含んだ特殊な配列を返す</li>
@@ -2109,8 +2109,8 @@ RegExp#match globalがtrueの場合はプロパティがないただの配列を
 https://tc39.es/ecma262/#sec-regexp.prototype-@@match
 RegExp#match globalがfalseの場合はString#execと同じ
  -->
-<p>ES2020では、正規表現の<code>g</code>フラグを使った繰り返しマッチする場合においても、それぞれマッチした文字列ごとの情報を得るための<code>String#matchAll</code>が追加されています。
-<code>String#matchAll</code>メソッドは、マッチした結果をIteratorで返します。</p>
+<p>ES2020では、正規表現の<code>g</code>フラグを使った繰り返しマッチする場合においても、それぞれマッチした文字列ごとの情報を得るためのStringの<code>matchAll</code>が追加されています。
+<code>matchAll</code>メソッドは、マッチした結果をIteratorで返します。</p>
 <p>次のコードでは、<code>matchAll</code>メソッドでアルファベットにマッチする結果のIteratorオブジェクトを取得しています。
 Iteratorオブジェクトは<code>for...of</code>構文で反復処理すると、Iteratorから値を1つずつ取り出して処理できます（詳細は「<a href="../loop/">ループと反復処理</a>」の章を参照）。
 このときの反復処理で取得できる値は、それぞれのマッチした文字列と<code>index</code>と<code>input</code>プロパティを持つ特殊な配列となります。</p>
@@ -2131,17 +2131,17 @@ Iteratorオブジェクトは<code>for...of</code>構文で反復処理すると
 <p>そのため、正規表現の<code>g</code>フラグを使った繰り返しマッチを行う場合には、<code>match</code>メソッドではなく<code>matchAll</code>メソッドを利用します。
 また、<code>matchAll</code>メソッドは<code>g</code>フラグなしの正規表現はサポートしていないため、<code>g</code>フラグなしの正規表現を渡した場合は例外が発生します。</p>
 <h4 id="match-capture-by-regexp"><a name="match-capture-by-regexp" class="plugin-anchor" href="#match-capture-by-regexp"><i class="fa fa-link" aria-hidden="true"></i></a>マッチした文字列の一部を取得 </h4>
-<p><code>String#match</code>メソッドと<code>String#matchAll</code>メソッドは、どちらも正規表現のキャプチャリングに対応しています。
+<p>Stringの<code>match</code>メソッドと<code>matchAll</code>メソッドは、どちらも正規表現のキャプチャリングに対応しています。
 キャプチャリングとは、正規表現中で<code>/パターン1(パターン2)/</code>のようにカッコで囲んだ部分を取り出すことです。
 このキャプチャリングによって、正規表現でマッチした一部分だけを取り出せます。</p>
-<p><code>String#match</code>メソッドと<code>String#matchAll</code>メソッドはどちらもマッチした結果を配列として返します。</p>
+<p><code>match</code>メソッドと<code>matchAll</code>メソッドはどちらもマッチした結果を配列として返します。</p>
 <p>そのマッチしているパターンにキャプチャが含まれている場合は、返り値の配列へキャプチャした部分が追加されていきます。
 配列の先頭にはマッチした文字列全体が入り、順番にキャプチャリング（<code>(</code>と<code>)</code>）で囲んだ範囲が配列に含まれます。</p>
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> [マッチした全体の文字列, キャプチャ<span class="hljs-number">1</span>, キャプチャ<span class="hljs-number">2</span>] = 文字列.match(<span class="hljs-regexp">/パターン(キャプチャ1)と(キャプチャ2)/</span>);
 </code></pre>
 <p>次のコードでは、<code>ECMAScript 数字</code>の<code>数字</code>部分だけを取り出そうとしています。
-<code>String#match</code>メソッドとキャプチャリングによって数字(<code>\d+</code>)にマッチする部分を取り出しています。</p>
+Stringの<code>match</code>メソッドとキャプチャリングによって数字(<code>\d+</code>)にマッチする部分を取り出しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// &quot;ECMAScript (数字+)&quot;にマッチするが、欲しい文字列は数字の部分のみ</span>
 <span class="hljs-keyword">const</span> pattern = <span class="hljs-regexp">/ECMAScript (\d+)/</span>;
@@ -2151,10 +2151,10 @@ Iteratorオブジェクトは<code>for...of</code>構文で反復処理すると
 <span class="hljs-built_in">console</span>.log(all); <span class="hljs-comment">// =&gt; &quot;ECMAScript 6&quot;</span>
 <span class="hljs-built_in">console</span>.log(capture1); <span class="hljs-comment">// =&gt; &quot;6&quot;</span>
 </code></pre>
-<p>正規表現の<code>g</code>フラグを使い繰り返し文字列にマッチする場合には、<code>String#matchAll</code>メソッドを利用します。
-先ほども紹介したように、<code>String#match</code>メソッドは繰り返しマッチした場合に、それぞれ個別のマッチした情報を取得できないためです。</p>
+<p>正規表現の<code>g</code>フラグを使い繰り返し文字列にマッチする場合には、<code>matchAll</code>メソッドを利用します。
+先ほども紹介したように、<code>match</code>メソッドは繰り返しマッチした場合に、それぞれ個別のマッチした情報を取得できないためです。</p>
 <p>次のコードでは、<code>ES数字</code>の数字(<code>\d+</code>)にマッチする部分を取り出しています。
-<code>String#matchAll</code>の返り値であるIteratorを反復処理することで、それぞれマッチしたキャプチャを取り出しています。</p>
+<code>matchAll</code>の返り値であるIteratorを反復処理することで、それぞれマッチしたキャプチャを取り出しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": 2020 } --></p>
 <pre><code class="lang-js"><span class="hljs-comment">// &quot;ES(数字+)&quot;にマッチするが、欲しい文字列は数字の部分のみ</span>
@@ -2172,13 +2172,13 @@ Iteratorオブジェクトは<code>for...of</code>構文で反復処理すると
 <span class="hljs-comment">// match: &quot;ES2017&quot;, capture1: 2017, index: 14, input: &quot;ES2015、ES2016、ES2017&quot;</span>
 </code></pre>
 <h4 id="regexp-exec"><a name="regexp-exec" class="plugin-anchor" href="#regexp-exec"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] RegExp#execでのString#matchAll </h4>
-<p><code>String#matchAll</code>メソッドは、ES2020で導入されたメソッドです。
-それまでは、<code>RegExp#exec</code>メソッドという<code>String#match</code>メソッドによく似た挙動をするメソッドを利用して、<code>String#matchAll</code>メソッド相当の表現を実装していました。</p>
-<p><code>RegExp#exec</code>メソッドは、引数に文字列を受け取るメソッドです。</p>
+<p>Stringの<code>matchAll</code>メソッドは、ES2020で導入されたメソッドです。
+それまでは、RegExpの<code>exec</code>メソッドというStringの<code>match</code>メソッドによく似た挙動をするメソッドを利用して、Stringの<code>matchAll</code>メソッド相当の表現を実装していました。</p>
+<p>RegExpの<code>exec</code>メソッドは、引数に文字列を受け取るメソッドです。</p>
 <pre><code class="lang-js">/pattern/.exec(<span class="hljs-string">&quot;文字列&quot;</span>);
 </code></pre>
-<p><code>RegExp#exec</code>メソッドは<code>g</code>フラグなしのパターンで検索した場合、マッチした最初の結果のみを含む特殊な配列を返します。
-このときの<code>exec</code>メソッドの返り値である配列が<code>index</code>プロパティと<code>input</code>プロパティが追加された特殊な配列となるのは、<code>String#match</code>メソッドと同様です。</p>
+<p>RegExpの<code>exec</code>メソッドは<code>g</code>フラグなしのパターンで検索した場合、マッチした最初の結果のみを含む特殊な配列を返します。
+このときの<code>exec</code>メソッドの返り値である配列が<code>index</code>プロパティと<code>input</code>プロパティが追加された特殊な配列となるのは、Stringの<code>match</code>メソッドと同様です。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;ABC あいう DE えお&quot;</span>;
 <span class="hljs-keyword">const</span> alphabetsPattern = <span class="hljs-regexp">/[a-zA-Z]+/</span>;
@@ -2191,8 +2191,8 @@ Iteratorオブジェクトは<code>for...of</code>構文で反復処理すると
 <span class="hljs-comment">// 検索対象となった文字列全体</span>
 <span class="hljs-built_in">console</span>.log(results.input); <span class="hljs-comment">// =&gt; &quot;ABC あいう DE えお&quot;</span>
 </code></pre>
-<p><code>RegExp#exec</code>メソッドは<code>g</code>フラグありのパターンで検索した場合も、マッチした最初の結果のみを含む特殊な配列を返します。
-この点は<code>String#match</code>メソッドとは異なります。
+<p>RegExpの<code>exec</code>メソッドは<code>g</code>フラグありのパターンで検索した場合も、マッチした最初の結果のみを含む特殊な配列を返します。
+この点はStringの<code>match</code>メソッドとは異なります。
 また、最後にマッチした文字列末尾のインデックスを正規表現オブジェクトの<code>lastIndex</code>プロパティに記録します。
 そしてもう一度<code>exec</code>メソッドを呼び出すと最後にマッチした末尾のインデックス（<code>lastIndex</code>プロパティの位置）から検索が開始されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -2213,16 +2213,16 @@ Iteratorオブジェクトは<code>for...of</code>構文で反復処理すると
 <span class="hljs-built_in">console</span>.log(result3); <span class="hljs-comment">// =&gt; null</span>
 <span class="hljs-built_in">console</span>.log(alphabetsPattern.lastIndex); <span class="hljs-comment">// =&gt; 0</span>
 </code></pre>
-<p><code>RegExp#exec</code>メソッドの挙動をまとめると次のようになります。
-正規表現の<code>g</code>フラグがない場合は、<code>String#match</code>メソッドと同じ結果です。
-一方で、正規表現の<code>g</code>フラグがある場合は、<code>String#match</code>メソッドとは異なる挙動をします。</p>
+<p>RegExpの<code>exec</code>メソッドの挙動をまとめると次のようになります。
+正規表現の<code>g</code>フラグがない場合は、Stringの<code>match</code>メソッドと同じ結果です。
+一方で、正規表現の<code>g</code>フラグがある場合は、Stringの<code>match</code>メソッドとは異なる挙動をします。</p>
 <ul>
 <li>マッチしない場合は、<code>null</code>を返す</li>
 <li>マッチした場合は、マッチした文字列を含んだ特殊な配列を返す</li>
 <li>正規表現の<code>g</code>フラグがある場合は、マッチした文字列を含んだ特殊な配列を返し、マッチした末尾のインデックスを正規表現オブジェクトの<code>lastIndex</code>プロパティに記録する</li>
 </ul>
 <p>この正規表現の<code>g</code>フラグと<code>exec</code>メソッドで検索した場合に、<code>lastIndex</code>プロパティが検索ごとに更新される仕組みを利用して、マッチするすべての結果を取得できます。</p>
-<p>次のコードでは、<code>RegExp#exec</code>メソッド使いアルファベットにマッチした結果を<code>matches</code>に保持しています。
+<p>次のコードでは、RegExpの<code>exec</code>メソッド使いアルファベットにマッチした結果を<code>matches</code>に保持しています。
 <code>g</code>フラグがある場合の<code>exec</code>メソッドでは最後にマッチした位置が記録されているため、<code>while</code>文で反復処理して続きから検索しています。
 また、<code>exec</code>メソッドはマッチしなければ<code>null</code>を返すため、マッチするものがなくなればwhile文から自動的に脱出します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -2230,31 +2230,31 @@ Iteratorオブジェクトは<code>for...of</code>構文で反復処理すると
 <span class="hljs-keyword">const</span> alphabetsPattern = <span class="hljs-regexp">/[a-zA-Z]+/g</span>;
 <span class="hljs-keyword">let</span> matches;
 <span class="hljs-keyword">while</span> (matches = alphabetsPattern.exec(str)) {
-    <span class="hljs-comment">// `RegExp#exec`メソッドの返り値は`index`プロパティなどを含む特殊な配列</span>
+    <span class="hljs-comment">// RegExpの`exec`メソッドの返り値は`index`プロパティなどを含む特殊な配列</span>
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`match: <span class="hljs-subst">${matches[<span class="hljs-number">0</span>]}</span>, index: <span class="hljs-subst">${matches.index}</span>, lastIndex: <span class="hljs-subst">${alphabetsPattern.lastIndex}</span>`</span>);
 }
 <span class="hljs-comment">// 次の順番でコンソールに出力される</span>
 <span class="hljs-comment">// match: ABC, index: 0, lastIndex: 3</span>
 <span class="hljs-comment">// match: DE, index: 8, lastIndex: 10</span>
 </code></pre>
-<p>このように<code>RegExp#exec</code>メソッドと正規表現の<code>g</code>フラグを使い、<code>String#matchAll</code>メソッド相当の反復処理を実装していました。
-<code>RegExp#exec</code>はIteratorオブジェクトという反復処理のためオブジェクトが導入される以前からあるメソッドです。</p>
-<p><code>String#matchAll</code>がIteratorを扱うわかりやすい反復処理に比べて、<code>RegExp#exec</code>メソッドは<code>while</code>文などで手動で反復処理を書く必要があるため直感的ではありません。
-そのため、<code>String#matchAll</code>メソッドが利用できる場合に、<code>RegExp#exec</code>メソッドを利用する必要はありません。</p>
+<p>このようにRegExpの<code>exec</code>メソッドと正規表現の<code>g</code>フラグを使い、Stringの<code>matchAll</code>メソッド相当の反復処理を実装していました。
+RegExpの<code>exec</code>はIteratorオブジェクトという反復処理のためオブジェクトが導入される以前からあるメソッドです。</p>
+<p>Stringの<code>matchAll</code>がIteratorを扱うわかりやすい反復処理に比べて、RegExpの<code>exec</code>メソッドは<code>while</code>文などで手動で反復処理を書く必要があるため直感的ではありません。
+そのため、Stringの<code>matchAll</code>メソッドが利用できる場合に、RegExpの<code>exec</code>メソッドを利用する必要はありません。</p>
 <h4 id="test-by-regexp"><a name="test-by-regexp" class="plugin-anchor" href="#test-by-regexp"><i class="fa fa-link" aria-hidden="true"></i></a>真偽値を取得 </h4>
-<p>正規表現オブジェクトを使って、そのパターンにマッチするかをテストするには、<code>RegExp#test</code>メソッドを利用できます。</p>
+<p>正規表現オブジェクトを使って、そのパターンにマッチするかをテストするには、RegExpの<code>test</code>メソッドを利用できます。</p>
 <p>正規表現のパターンには、パターンの位置を指定する特殊文字があります。
-そのため、「文字列による検索」で登場したメソッドは、特殊文字と<code>RegExp#test</code>メソッドで表現できます。</p>
+そのため、「文字列による検索」で登場したメソッドは、特殊文字とRegExpの<code>test</code>メソッドで表現できます。</p>
 <ul>
-<li><code>String#startsWith</code>: <code>/^パターン/.test(文字列)</code><ul>
+<li>Stringの<code>startsWith</code>相当: <code>/^パターン/.test(文字列)</code><ul>
 <li><code>^</code> は先頭に一致する特殊文字</li>
 </ul>
 </li>
-<li><code>String#endsWith</code>: <code>/パターン$/.test(文字列)</code><ul>
+<li>Stringの<code>endsWith</code>相当: <code>/パターン$/.test(文字列)</code><ul>
 <li><code>$</code> は末尾に一致する特殊文字</li>
 </ul>
 </li>
-<li><code>String#includes</code>: <code>/パターン/.test(文字列)</code></li>
+<li>Stringの<code>includes</code>相当: <code>/パターン/.test(文字列)</code></li>
 </ul>
 <p>具体的な例を見てみましょう。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -2285,7 +2285,7 @@ Stringメソッドの場合は、<code>/</code>からはじまり<code>/</code>�
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;/正規表現のような文字列/&quot;</span>;
 <span class="hljs-comment">// 正規表現で`/`からはじまり`/`で終わる文字列のパターン</span>
 <span class="hljs-keyword">const</span> regExpLikePattern = <span class="hljs-regexp">/^\/.*\/$/</span>;
-<span class="hljs-comment">// RegExp#testメソッドでパターンにマッチするかを判定</span>
+<span class="hljs-comment">// RegExpの`test`メソッドでパターンにマッチするかを判定</span>
 <span class="hljs-built_in">console</span>.log(regExpLikePattern.test(str)); <span class="hljs-comment">// =&gt; true</span>
 <span class="hljs-comment">// Stringメソッドで、`/`からはじまり`/`で終わる文字列かを判定する関数</span>
 <span class="hljs-keyword">const</span> isRegExpLikeString = <span class="hljs-function">(<span class="hljs-params">str</span>) =&gt;</span> {
@@ -2299,7 +2299,7 @@ Stringメソッドの場合は、<code>/</code>からはじまり<code>/</code>�
 Stringメソッドで表現できることはStringメソッドで表現し、柔軟性や曖昧な検索が必要な場合はコメントとともに正規表現を利用するという方針を推奨します。</p>
 <p>正規表現についてより詳しくは<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions" title="正規表現 - JavaScript | MDN" target="_blank">MDNの正規表現ドキュメント</a>や、コンソールで実行しながら試せる<a href="https://regex101.com/" title="Online regex tester and debugger: PHP, PCRE, Python, Golang and JavaScript" target="_blank">regex101</a>のようなサイトを参照してください。</p>
 <h2 id="replace-delete"><a name="replace-delete" class="plugin-anchor" href="#replace-delete"><i class="fa fa-link" aria-hidden="true"></i></a>文字列の置換/削除 </h2>
-<p>文字列の一部を置換したり削除するには<code>String#replace</code>メソッドを利用します。
+<p>文字列の一部を置換したり削除するにはStringの<code>replace</code>メソッドを利用します。
 「<a href="../data-type/">データ型とリテラル</a>」で説明したようにプリミティブ型である文字列は不変な特性を持ちます。
 そのため、文字列から一部の文字を削除するような操作はできません。</p>
 <p>つまり、<code>delete</code>演算子は文字列に対して利用できません。
@@ -2311,7 +2311,7 @@ strict modeでは削除できないプロパティを削除しようとすると
 <span class="hljs-comment">// 文字列の0番目の削除を試みるがStrict modeでは例外が発生する</span>
 <span class="hljs-keyword">delete</span> str[<span class="hljs-number">0</span>]; <span class="hljs-comment">// =&gt; TypeError: property 0 is non-configurable and can&apos;t be deleted</span>
 </code></pre>
-<p>代わりに、<code>String#replace</code>メソッドなどで削除したい文字を取り除いた新しい文字列を返すことで削除を表現します。
+<p>代わりに、Stringの<code>replace</code>メソッドで、削除したい文字を取り除いた新しい文字列を返すことで削除を表現します。
 <code>replace</code>メソッドは、<strong>文字列</strong>から第一引数の<code>検索文字列</code>または正規表現にマッチする部分を、第二引数の<code>置換文字列</code>へ置換します。
 第一引数には、文字列と正規表現を指定できます。</p>
 <!-- doctest: ReferenceError -->
@@ -2337,10 +2337,10 @@ strict modeでは削除できないプロパティを削除しようとすると
 <span class="hljs-comment">// `g`フラグあり正規表現の場合は、繰り返し置換を行う</span>
 <span class="hljs-built_in">console</span>.log(str.replace(<span class="hljs-regexp">/にわ/g</span>, <span class="hljs-string">&quot;niwa&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;niwaにはniwaniwaとりがいる&quot;</span>
 </code></pre>
-<p>文字列から検索文字列にマッチするものをすべて置換する場合には、ES2021で追加された<code>String#replaceAll</code>メソッドも利用できます。
-<code>String#replace</code>メソッドでは、最初に一致したものだけが置換されますが、<code>String#replaceAll</code>メソッドでは一致したものがすべて置換されます。</p>
-<p><code>String#replace</code>と<code>g</code>フラグ付きの正規表現を使った場合との違いとして、
-<code>String#replaceAll</code>メソッドでは、正規表現ではなく文字列を使ってすべてを置換できます。
+<p>文字列から検索文字列にマッチするものをすべて置換する場合には、ES2021で追加されたStringの<code>replaceAll</code>メソッドも利用できます。
+<code>replace</code>メソッドでは、最初に一致したものだけが置換されますが、<code>replaceAll</code>メソッドでは一致したものがすべて置換されます。</p>
+<p>Stringの<code>replace</code>と<code>g</code>フラグ付きの正規表現を使った場合との違いとして、
+Stringの<code>replaceAll</code>メソッドでは、正規表現ではなく文字列を使ってすべてを置換できます。
 そのため、正規表現では特殊な意味を持つ<code>?</code>のような文字列も検索文字列にそのまま書いて置換ができます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2021" } --></p>
@@ -2477,7 +2477,7 @@ tag<span class="hljs-string">`template <span class="hljs-subst">${<span class="h
 <p>どちらも同じ関数ですが、<code>関数`テンプレート` </code>という書式で呼び出すと渡される引数が特殊な形になります。
 そのため、タグつきテンプレートで利用する関数のことを<strong>タグ関数</strong>（Tag function）と呼び分けることにします。</p>
 <p>まずは引数をどう扱うかを見ていくために、タグつきテンプレートの内容をそのまま結合して返す<code>stringRaw</code>というタグ関数を実装してみます。
-<code>Array#reduce</code>メソッドを使うことで、テンプレートの文字列と変数を順番に結合できます。</p>
+Arrayの<code>reduce</code>メソッドを使うことで、テンプレートの文字列と変数を順番に結合できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// テンプレートを順番どおりに結合した文字列を返すタグ関数</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">stringRaw</span>(<span class="hljs-params">strings, ...values</span>) </span>{
@@ -2558,7 +2558,7 @@ tag<span class="hljs-string">`template <span class="hljs-subst">${<span class="h
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"文字列リテラルを使った文字列の作成から検索や置換など基本的な文字列操作について紹介します。また正規表現と組み合わせた文字列操作やタグ付きテンプレート関数を使ったテンプレート処理などについても紹介します。","title":"文字列","level":"1.3.15","depth":2,"next":{"title":"文字列とUnicode","level":"1.3.16","depth":2,"path":"basic/string-unicode/README.md","ref":"./basic/string-unicode/README.md","articles":[]},"previous":{"title":"配列","level":"1.3.14","depth":2,"path":"basic/array/README.md","ref":"./basic/array/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/string/README.md","mtime":"2022-01-17T14:14:24.369Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-01-17T14:15:06.678Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"文字列リテラルを使った文字列の作成から検索や置換など基本的な文字列操作について紹介します。また正規表現と組み合わせた文字列操作やタグ付きテンプレート関数を使ったテンプレート処理などについても紹介します。","title":"文字列","level":"1.3.15","depth":2,"next":{"title":"文字列とUnicode","level":"1.3.16","depth":2,"path":"basic/string-unicode/README.md","ref":"./basic/string-unicode/README.md","articles":[]},"previous":{"title":"配列","level":"1.3.14","depth":2,"path":"basic/array/README.md","ref":"./basic/array/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/string/README.md","mtime":"2022-02-06T03:12:18.966Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-02-06T03:13:02.956Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

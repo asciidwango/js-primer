@@ -1512,7 +1512,7 @@
     }
 }
 </code></pre>
-<p><code>TodoItemView#createElement</code>メソッドの中身は<code>App</code>クラスでのHTML要素を作成する部分を元にしています。
+<p>TodoItemViewの<code>createElement</code>メソッドの中身は<code>App</code>クラスでのHTML要素を作成する部分を元にしています。
 <code>createElement</code>メソッドは、<code>TodoItemModel</code>のインスタンスだけではなく<code>onUpdateTodo</code>と<code>onDeleteTodo</code>というリスナー関数を受け取っています。
 この受け取ったリスナー関数はそれぞれ対応するイベントがViewで発生した際に呼び出されます。</p>
 <p>このように引数としてリスナー関数を外から受け取ることで、イベントが発生したときの具体的な処理はViewクラスの外側に定義できます。</p>
@@ -1577,18 +1577,18 @@
     }
 }
 </code></pre>
-<p><code>TodoListView#createElement</code>メソッドは<code>TodoItemView</code>を使ってTodoアイテムのHTML要素を作り、<code>&lt;li&gt;</code>要素に追加していきます。
-この<code>TodoListView#createElement</code>メソッドも<code>onUpdateTodo</code>と<code>onDeleteTodo</code>のリスナー関数を受け取ります。
+<p>TodoListViewの<code>createElement</code>メソッドは<code>TodoItemView</code>を使ってTodoアイテムのHTML要素を作り、<code>&lt;li&gt;</code>要素に追加していきます。
+このTodoListViewの<code>createElement</code>メソッドも<code>onUpdateTodo</code>と<code>onDeleteTodo</code>のリスナー関数を受け取ります。
 しかし、<code>TodoListView</code>ではこのリスナー関数を<code>TodoItemView</code>にそのまま渡しています。
 なぜなら具体的なDOMイベントを発生させる要素が作られるのは<code>TodoItemView</code>の中となるためです。</p>
 <h2 id="app-refactoring"><a name="app-refactoring" class="plugin-anchor" href="#app-refactoring"><i class="fa fa-link" aria-hidden="true"></i></a>Appのリファクタリング </h2>
 <p>最後に作成した<code>TodoItemView</code>クラスと<code>TodoListView</code>クラスを使って<code>App</code>クラスをリファクタリングしていきます。</p>
 <p><code>App.js</code>を次のように<code>TodoListView</code>クラスを使うように書き換えます。
 <code>onChange</code>のリスナー関数で<code>TodoListView</code>クラスを使ってTodoリストのHTML要素を作るように変更します。
-このとき<code>TodoListView#createElement</code>メソッドには次のようにそれぞれ対応するコールバック関数を渡します。</p>
+このときTodoListViewの<code>createElement</code>メソッドには次のようにそれぞれ対応するコールバック関数を渡します。</p>
 <ul>
-<li><code>onUpdateTodo</code>のコールバック関数では<code>TodoListModel#updateTodo</code>メソッドを呼ぶ</li>
-<li><code>onDeleteTodo</code>のコールバック関数では<code>TodoListModel#deleteTodo</code>メソッドを呼ぶ</li>
+<li><code>onUpdateTodo</code>のコールバック関数では、TodoListModelの<code>updateTodo</code>メソッドを呼ぶ</li>
+<li><code>onDeleteTodo</code>のコールバック関数では、TodoListModelの<code>deleteTodo</code>メソッドを呼ぶ</li>
 </ul>
 <div class="code-filename-block">
     <p class="code-filename">src/App.js</p>
@@ -1756,14 +1756,14 @@
 </ul>
 <p>実はこのTodoアプリにはまだアプリケーションとして、完成していない部分があります。</p>
 <p>入力欄でEnterキーを連打すると、空のTodoアイテムが追加されてしまうのは意図しない挙動です。
-また、<code>App#mount</code>で<code>TodoListModel#onChange</code>などのイベントリスナーを登録していますが、そのイベントリスナーを解除していません。
+また、Appの<code>mount</code>メソッドでTodoListModelの<code>onChange</code>メソッドなどにイベントリスナーを登録していますが、そのイベントリスナーを解除していません。
 このTodoアプリではあまり問題にはなりませんが、イベントリスナーは登録したままだとメモリリークにつながる場合もあります。</p>
 <p>余力がある人は、次の機能を追加してTodoアプリを完成させてみてください。</p>
 <ul>
 <li>タイトルが空の場合は、フォームを送信してもTodoアイテムを追加できないようにする</li>
-<li><code>App#mount</code>でのイベントリスナー登録に対応して、<code>App#unmount</code>を実装し、イベントリスナーを解除できるようにする</li>
+<li>Appの<code>mount</code>メソッドでのイベントリスナー登録に対応して、Appに<code>unmount</code>メソッドを実装し、イベントリスナーを解除できるようにする</li>
 </ul>
-<p><code>App#mount</code>と対応する<code>App#unmount</code>を作成するというTodoは、アプリケーションのライフサイクルを意識するという課題になります。
+<p>Appの<code>mount</code>メソッドと対応する<code>unmount</code>メソッドを作成するというTodoは、アプリケーションのライフサイクルを意識するという課題になります。
 ウェブページにはページ読み込みが完了したときに発生する<code>load</code>イベントと、読み込んだページを破棄したときに発生する<code>unload</code>イベントがあります。
 Todoアプリも<code>mount</code>と<code>unmount</code>を実装し、次のようにウェブページのライフサイクルに合わせられます。</p>
 <!-- doctest:disable -->
@@ -1835,7 +1835,7 @@ JavaScriptという変化していく言語やそれを利用する環境にお�
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"1つのファイルに処理が集中するとメンテナンス性が低下するため、Todoアプリの表示要素をコンポーネントという単位に分割するリファクタリングをしていきます。","title":"Todoアプリのリファクタリング","level":"1.4.4.6","depth":3,"next":{"title":"付録: 参考リンク集","level":"1.5","depth":1,"path":"appendix/links/README.md","ref":"./appendix/links/README.md","articles":[]},"previous":{"title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"path":"use-case/todoapp/update-delete/README.md","ref":"./use-case/todoapp/update-delete/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/todoapp/final/README.md","mtime":"2022-01-17T14:14:24.389Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-01-17T14:15:06.678Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"1つのファイルに処理が集中するとメンテナンス性が低下するため、Todoアプリの表示要素をコンポーネントという単位に分割するリファクタリングをしていきます。","title":"Todoアプリのリファクタリング","level":"1.4.4.6","depth":3,"next":{"title":"付録: 参考リンク集","level":"1.5","depth":1,"path":"appendix/links/README.md","ref":"./appendix/links/README.md","articles":[]},"previous":{"title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"path":"use-case/todoapp/update-delete/README.md","ref":"./use-case/todoapp/update-delete/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/todoapp/final/README.md","mtime":"2022-02-06T03:12:18.986Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-02-06T03:13:02.956Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

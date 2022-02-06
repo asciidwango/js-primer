@@ -1453,7 +1453,7 @@ HTMLの<a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/Input/che
 <p><code>&lt;input type=&quot;checkbox&quot;&gt;</code>は<code>checked</code>属性がない場合はチェックが外れた状態のチェックボックスとなります。
 一方<code>&lt;input type=&quot;checkbox&quot; checked&gt;</code>のように<code>checked</code>属性がある場合はチェックがついたチェックボックスとなります。</p>
 <p><img src="img/input-checkbox.png" alt="input要素のchecked属性の違い"></p>
-<p><code>src/App.js</code>の<code>TodoListModel#onChange</code>メソッドで登録したリスナー関数内を書き換え、チェックボックスを表示しています。</p>
+<p><code>src/App.js</code>にてTodoListModelの<code>onChange</code>メソッドで登録したリスナー関数内を書き換え、チェックボックスを表示しています。</p>
 <p>Todoアイテム要素である<code>&lt;li&gt;</code>要素中に次のように<code>&lt;input&gt;</code>要素を追加してチェックボックスを表示に追加します。
 チェックボックスである<code>&lt;input&gt;</code>要素にはスタイルのために<code>class</code>属性を<code>checkbox</code>とします。
 合わせて完了済みの場合は<code>&lt;s&gt;</code>要素を使って打ち消し線を表示しています。</p>
@@ -1512,7 +1512,7 @@ inputCheckboxElement.addEventListener(<span class="hljs-string">&quot;change&quo
 <p>ここから実際にTodoアイテムの更新を<code>todoapp</code>プロジェクトに実装していきます。</p>
 <h3 id="TodoListModel-updateTodo"><a name="TodoListModel-updateTodo" class="plugin-anchor" href="#TodoListModel-updateTodo"><i class="fa fa-link" aria-hidden="true"></i></a><code>TodoListModel</code>に指定したTodoアイテムの更新処理を追加する </h3>
 <p>まずは、<code>TodoListModel</code>に指定したTodoアイテムを更新する<code>updateTodo</code>メソッドを追加します。
-<code>TodoListModel#updateTodo</code>メソッドは、指定したidと一致するTodoアイテムの完了状態（<code>completed</code>プロパティ）を更新します。</p>
+TodoListModelの<code>updateTodo</code>メソッドは、指定したidと一致するTodoアイテムの完了状態（<code>completed</code>プロパティ）を更新します。</p>
 <div class="code-filename-block">
     <p class="code-filename">src/model/TodoListModel.jsの変更点を抜粋</p>
 </div>
@@ -1537,9 +1537,9 @@ inputCheckboxElement.addEventListener(<span class="hljs-string">&quot;change&quo
 </code></pre>
 <h3 id="onChange-update-model"><a name="onChange-update-model" class="plugin-anchor" href="#onChange-update-model"><i class="fa fa-link" aria-hidden="true"></i></a>チェックボックスの<code>change</code>イベントが発生したら、Todoアイテムの完了状態を更新する </h3>
 <p>次に<code>input</code>要素の<code>change</code>イベントのリスナー関数で、Todoアイテムの完了状態を更新します。</p>
-<p><code>src/App.js</code>の<code>TodoListModel#onChange</code>メソッドで登録したリスナー関数内を次のように書き換えます。</p>
+<p><code>src/App.js</code>にて、TodoListModelの<code>onChange</code>メソッドで登録したリスナー関数内を次のように書き換えます。</p>
 <p><code>App.js</code>で<code>todoItemElement</code>の子要素として<code>checkbox</code>というクラス名をつけた<code>input</code>要素を追加します。
-この<code>input</code>要素の<code>change</code>イベントが発生したら、<code>TodoListModel#updateTodo</code>メソッドを呼び出すようにします。
+この<code>input</code>要素の<code>change</code>イベントが発生したら、TodoListModelの<code>updateTodo</code>メソッドを呼び出すようにします。
 チェックがトグルするたびに呼び出されるので、<code>completed</code>には現在の状態を反転（トグル）した値を渡します。</p>
 <div class="code-filename-block">
     <p class="code-filename">src/App.jsから変更点を抜粋</p>
@@ -1568,8 +1568,8 @@ inputCheckboxElement.addEventListener(<span class="hljs-string">&quot;change&quo
     todoItemCountElement.textContent = <span class="hljs-string">`Todoアイテム数: <span class="hljs-subst">${<span class="hljs-built_in">this</span>.todoListModel.getTotalCount()}</span>`</span>;
 });
 </code></pre>
-<p><code>TodoListModel#updateTodo</code>メソッド内では<code>emitChange</code>メソッドによって、<code>TodoListModel</code>の変更が通知されます。
-これによって<code>TodoListModel#onChange</code>で登録されているイベントリスナーが呼び出され、表示が更新されます。</p>
+<p>TodoListModelの<code>updateTodo</code>メソッド内では<code>emitChange</code>メソッドによって、<code>TodoListModel</code>の変更が通知されます。
+これによってTodoListModelの<code>onChange</code>で登録したイベントリスナーが呼び出され、表示が更新されます。</p>
 <p>これで表示とモデルが同期でき「Todoアイテムの更新処理」が実装できました。</p>
 <h2 id="delete"><a name="delete" class="plugin-anchor" href="#delete"><i class="fa fa-link" aria-hidden="true"></i></a>削除機能 </h2>
 <p>次は「Todoアイテムの削除機能」を実装していきます。</p>
@@ -1578,7 +1578,7 @@ inputCheckboxElement.addEventListener(<span class="hljs-string">&quot;change&quo
 そして表示には削除ボタンを追加し、削除ボタンがクリックされたときに指定したTodoアイテムを削除する処理を呼び出します。</p>
 <h3 id="TodoListModel-deleteTodo"><a name="TodoListModel-deleteTodo" class="plugin-anchor" href="#TodoListModel-deleteTodo"><i class="fa fa-link" aria-hidden="true"></i></a><code>TodoListModel</code>に指定したTodoアイテムを削除する処理を追加する </h3>
 <p>まずは、<code>TodoListModel</code>に指定したTodoアイテムを削除する<code>deleteTodo</code>メソッドを追加します。
-<code>TodoListModel#deleteTodo</code>メソッドは、指定したidと一致するTodoアイテムを削除します。</p>
+TodoListModelの<code>deleteTodo</code>メソッドは、指定したidと一致するTodoアイテムを削除します。</p>
 <p><code>items</code>というTodoアイテムの配列から指定したidと一致するTodoアイテムを取り除くことで削除しています。</p>
 <div class="code-filename-block">
     <p class="code-filename">src/model/TodoListModel.jsの変更点を抜粋</p>
@@ -1602,10 +1602,10 @@ inputCheckboxElement.addEventListener(<span class="hljs-string">&quot;change&quo
 </code></pre>
 <h3 id="onChange-update-model"><a name="onChange-update-model" class="plugin-anchor" href="#onChange-update-model"><i class="fa fa-link" aria-hidden="true"></i></a>削除ボタンの<code>click</code>イベントが発生したら、Todoアイテムを削除する </h3>
 <p>次に<code>button</code>要素の<code>click</code>イベントのリスナー関数でTodoアイテムを削除する処理を呼び出す処理を実装します。</p>
-<p><code>src/App.js</code>の<code>TodoListModel#onChange</code>メソッドで登録したリスナー関数内を次のように書き換えます。
+<p><code>src/App.js</code>にて、TodoListModelの<code>onChange</code>メソッドで登録したリスナー関数内を次のように書き換えます。
 <code>todoItemElement</code>の子要素として<code>delete</code>というクラス名をつけた<code>button</code>要素を追加します。
 この要素がクリック（<code>click</code>）されたときに呼び出されるイベントリスナーを<code>addEventListener</code>メソッドで登録します。
-このイベントリスナーの中で<code>TodoListModel#deleteTodo</code>メソッドを呼び、指定したidのTodoアイテムを削除します。</p>
+このイベントリスナーの中でTodoListModelの<code>deleteTodo</code>メソッドを呼び、指定したidのTodoアイテムを削除します。</p>
 <div class="code-filename-block">
     <p class="code-filename">src/App.jsから変更点を抜粋</p>
 </div>
@@ -1645,7 +1645,7 @@ inputCheckboxElement.addEventListener(<span class="hljs-string">&quot;change&quo
     todoItemCountElement.textContent = <span class="hljs-string">`Todoアイテム数: <span class="hljs-subst">${<span class="hljs-built_in">this</span>.todoListModel.getTotalCount()}</span>`</span>;
 });
 </code></pre>
-<p><code>TodoListModel#deleteTodo</code>メソッド内では<code>emitChange</code>メソッドによって、<code>TodoListModel</code>の変更が通知されます。
+<p>TodoListModelの<code>deleteTodo</code>メソッド内では<code>emitChange</code>メソッドによって、<code>TodoListModel</code>の変更が通知されます。
 これにより表示が<code>TodoListModel</code>と同期するように更新され、表示からもTodoアイテムが削除できます。</p>
 <p>これで「Todoアイテムの削除機能」が実装できました。</p>
 <h2 id="section-checklist"><a name="section-checklist" class="plugin-anchor" href="#section-checklist"><i class="fa fa-link" aria-hidden="true"></i></a>このセクションのチェックリスト </h2>
@@ -1698,7 +1698,7 @@ inputCheckboxElement.addEventListener(<span class="hljs-string">&quot;change&quo
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"Todoアプリの残りの機能である「Todoアイテムの更新」と「Todoアイテムの削除」を実装していきます。","title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"next":{"title":"Todoアプリのリファクタリング","level":"1.4.4.6","depth":3,"path":"use-case/todoapp/final/README.md","ref":"./use-case/todoapp/final/README.md","articles":[]},"previous":{"title":"イベントとモデル","level":"1.4.4.4","depth":3,"path":"use-case/todoapp/event-model/README.md","ref":"./use-case/todoapp/event-model/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/todoapp/update-delete/README.md","mtime":"2022-01-17T14:14:24.393Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-01-17T14:15:06.678Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"Todoアプリの残りの機能である「Todoアイテムの更新」と「Todoアイテムの削除」を実装していきます。","title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"next":{"title":"Todoアプリのリファクタリング","level":"1.4.4.6","depth":3,"path":"use-case/todoapp/final/README.md","ref":"./use-case/todoapp/final/README.md","articles":[]},"previous":{"title":"イベントとモデル","level":"1.4.4.4","depth":3,"path":"use-case/todoapp/event-model/README.md","ref":"./use-case/todoapp/event-model/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/todoapp/update-delete/README.md","mtime":"2022-02-06T03:12:18.990Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-02-06T03:13:02.956Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

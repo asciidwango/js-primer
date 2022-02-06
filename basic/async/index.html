@@ -1759,7 +1759,7 @@ asyncPromiseTask().then(<span class="hljs-function">()=&gt;</span> {
 };
 <span class="hljs-keyword">const</span> promise = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(executor);
 </code></pre>
-<p>この<code>Promise</code>インスタンスの<code>Promise#then</code>メソッドで、Promiseが<code>resolve</code>（成功）、<code>reject</code>（失敗）したときに呼ばれるコールバック関数を登録します。
+<p>この<code>Promise</code>インスタンスの<code>then</code>メソッドで、Promiseが<code>resolve</code>（成功）、<code>reject</code>（失敗）したときに呼ばれるコールバック関数を登録します。
 <code>then</code>メソッドの第一引数には<code>resolve</code>（成功）時に呼ばれるコールバック関数、第二引数には<code>reject</code>（失敗）時に呼ばれるコールバック関数を渡します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// `Promise`インスタンスを作成</span>
@@ -1787,7 +1787,7 @@ promise.then(onFulfilled, onRejected);
 </ul>
 </li>
 </ul>
-<h3 id="promise-then-and-catch"><a name="promise-then-and-catch" class="plugin-anchor" href="#promise-then-and-catch"><i class="fa fa-link" aria-hidden="true"></i></a><code>Promise#then</code>と<code>Promise#catch</code> </h3>
+<h3 id="promise-then-and-catch"><a name="promise-then-and-catch" class="plugin-anchor" href="#promise-then-and-catch"><i class="fa fa-link" aria-hidden="true"></i></a><code>Promise.prototype.then</code>と<code>Promise.prototype.catch</code> </h3>
 <p><code>Promise</code>のようにコンストラクタに関数を渡すパターンは今までなかったので、<code>then</code>メソッドの使い方について具体的な例を紹介します。
 また、<code>then</code>メソッドのエイリアスでもある<code>catch</code>メソッドについても見ていきます。</p>
 <p>次のコードの<code>dummyFetch</code>関数は<code>Promise</code>のインスタンスを作成して返します。
@@ -1825,7 +1825,7 @@ dummyFetch(<span class="hljs-string">&quot;/failure/data&quot;</span>).then(<spa
     <span class="hljs-built_in">console</span>.log(error); <span class="hljs-comment">// Error: &quot;NOT FOUND&quot;</span>
 });
 </code></pre>
-<p><code>Promise#then</code>メソッドは成功（<code>onFulfilled</code>）と失敗（<code>onRejected</code>）のコールバック関数の2つを受け取りますが、どちらの引数も省略できます。</p>
+<p>Promiseの<code>then</code>メソッドは成功（<code>onFulfilled</code>）と失敗（<code>onRejected</code>）のコールバック関数の2つを受け取りますが、どちらの引数も省略できます。</p>
 <p>次のコードの<code>delay</code>関数は一定時間後に解決（<code>resolve</code>）される<code>Promise</code>インスタンスを返します。
 この<code>Promise</code>インスタンスに対して<code>then</code>メソッドで<strong>成功時のコールバック関数だけ</strong>を登録しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -1843,7 +1843,7 @@ delay(<span class="hljs-number">10</span>).then(<span class="hljs-function">() =
 </code></pre>
 <p>一方、<code>then</code>メソッドでは失敗時のコールバック関数だけの登録もできます。
 このとき<code>then(undefined, onRejected)</code>のように第1引数には<code>undefined</code>を渡す必要があります。
-<code>then(undefined, onRejected)</code>と同様のことを行う方法として<code>Promise#catch</code>メソッドが用意されています。</p>
+<code>then(undefined, onRejected)</code>と同様のことを行う方法としてPromiseの<code>catch</code>メソッドが用意されています。</p>
 <p>次のコードでは<code>then</code>メソッドと<code>catch</code>メソッドで失敗時のエラー処理をしていますが、どちらも同じ意味となります。
 <code>then</code>メソッドに<code>undefined</code>を渡すのはわかりにくいため、失敗時の処理だけを登録する場合は<code>catch</code>メソッドの利用を推奨しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -2111,7 +2111,7 @@ rejectedPromise.then(<span class="hljs-function">() =&gt;</span> {
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;thenのコールバック関数が呼び出される&quot;</span>);
 });
 </code></pre>
-<p>このように<code>Promise#then</code>メソッドや<code>Promise#catch</code>メソッドをつないで、成功時や失敗時の処理を書いていくことをPromiseチェーンと呼びます。</p>
+<p>このようにPromiseの<code>then</code>メソッドや<code>catch</code>メソッドをつないで、成功時や失敗時の処理を書いていくことをPromiseチェーンと呼びます。</p>
 <h4 id="promise-chain-value"><a name="promise-chain-value" class="plugin-anchor" href="#promise-chain-value"><i class="fa fa-link" aria-hidden="true"></i></a>Promiseチェーンで値を返す </h4>
 <p>Promiseチェーンではコールバックで返した値を次のコールバックへ引数として渡せます。</p>
 <p><code>then</code>や<code>catch</code>メソッドのコールバック関数は数値、文字列、オブジェクトなどの任意の値を返せます。
@@ -2186,7 +2186,7 @@ main().catch(<span class="hljs-function"><span class="hljs-params">error</span> 
 });
 </code></pre>
 <h4 id="promise-finally"><a name="promise-finally" class="plugin-anchor" href="#promise-finally"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2018] Promiseチェーンの最後に処理を書く </h4>
-<p><code>Promise#finally</code>メソッドは成功時、失敗時どちらの場合でも呼び出されるコールバック関数を登録できます。
+<p>Promiseの<code>finally</code>メソッドは成功時、失敗時どちらの場合でも呼び出されるコールバック関数を登録できます。
 <code>try...catch...finally</code>構文の<code>finally</code>節と同様の役割を持つメソッドです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2018" } --></p>
@@ -2204,7 +2204,7 @@ promise.then(<span class="hljs-function">() =&gt;</span> {
 <p>次のコードでは、リソースを取得して<code>then</code>で成功時の処理、<code>catch</code>で失敗時の処理を登録しています。
 また、リソースを取得中かどうかを判定するためのフラグを<code>isLoading</code>という変数で管理しています。
 成功失敗どちらにもかかわらず、取得が終わったら<code>isLoading</code>は<code>false</code>にします。
-<code>then</code>と<code>catch</code>の両方で<code>isLoading</code>へ<code>false</code>を代入できますが、<code>Promise#finally</code>メソッドを使うことで代入を一箇所にまとめられます。</p>
+<code>then</code>と<code>catch</code>の両方で<code>isLoading</code>へ<code>false</code>を代入できますが、<code>finally</code>メソッドを使うことで代入を一箇所にまとめられます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2018" } --></p>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dummyFetch</span>(<span class="hljs-params">path</span>) </span>{
@@ -2417,7 +2417,7 @@ racePromise.then(<span class="hljs-function"><span class="hljs-params">value</sp
 <p>このようにPromiseを使うことで非同期処理のさまざまなパターンが形成できます。
 より詳しいPromiseの使い方については「<a href="http://azu.github.io/promises-book/" target="_blank">JavaScript Promiseの本</a>」というオンラインで公開されている文書にまとめられています。</p>
 <p>一方で、Promiseはただのビルトインオブジェクトであるため、非同期処理間の連携をするにはPromiseチェーンのように少し特殊な書き方や見た目になります。
-また、エラーハンドリングについても<code>Promise#catch</code>メソッドや<code>Promise#finally</code>メソッドなど<code>try...catch</code>構文とよく似た名前を使います。
+また、エラーハンドリングについてもPromiseの<code>catch</code>メソッドや<code>finally</code>メソッドなど<code>try...catch</code>構文とよく似た名前を使います。
 しかし、Promiseは構文ではなくただのオブジェクトであるため、それらをメソッドチェーンとして実現しないといけないといった制限があります。</p>
 <p>ES2017では、このPromiseチェーンの不格好な見た目を解決するためにAsync Functionと呼ばれる構文が導入されました。</p>
 <h2 id="async-function"><a name="async-function" class="plugin-anchor" href="#async-function"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2017] Async Function </h2>
@@ -2478,7 +2478,7 @@ JavaScriptの関数定義には関数宣言や関数式、Arrow Function、メ�
 <li>Async Function内で例外が発生した場合は、そのエラーを持つ<strong>Rejected</strong>なPromiseを返す</li>
 </ol>
 <p>次のコードでは、Async Functionがそれぞれの返り値によってどのような<code>Promise</code>インスタンスを返すかを確認できます。
-この1から3の挙動は<code>Promise#then</code>メソッドの返り値とそのコールバック関数の関係とほぼ同じです。</p>
+この1から3の挙動は、Promiseの<code>then</code>メソッドの返り値とそのコールバック関数の関係とほぼ同じです。</p>
 <!-- 字の文で書く場合
 
 値を単純に`return`した場合は、その値でresolveされるPromiseが返されていることがわかります。
@@ -2825,8 +2825,8 @@ Async Function外の処理も停止できてしまうと、JavaScriptでは基�
 }
 </code></pre>
 <!-- textlint-enable -->
-<p>そのため、<code>Array#forEach</code>メソッドのコールバック関数もAsync Functionとして定義しないと、コールバック関数では<code>await</code>式が利用できません。</p>
-<p>この構文エラーは<code>Array#forEach</code>メソッドのコールバック関数をAsync Functionにすることで解決できます。
+<p>そのため、Arrayの<code>forEach</code>メソッドのコールバック関数もAsync Functionとして定義しないと、コールバック関数では<code>await</code>式が利用できません。</p>
+<p>この構文エラーはArrayの<code>forEach</code>メソッドのコールバック関数をAsync Functionにすることで解決できます。
 しかし、コールバック関数をAsync Functionにしただけでは、<code>fetchResources</code>関数は常に空の配列で解決されるPromiseを返すという意図しない挙動となります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">dummyFetch</span>(<span class="hljs-params">path</span>) </span>{
@@ -2970,7 +2970,7 @@ ES2022には、これに加えてModuleの直下ではAsync Functionで囲まな
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおける非同期処理についてを紹介します。同期処理と非同期処理の違いやなぜ非同期処理が重要になるかを紹介します。非同期処理を行う方法としてコールバックスタイル、Promise、Async Functionを紹介します。","title":"非同期処理:コールバック/Promise/Async Function","level":"1.3.22","depth":2,"next":{"title":"Map/Set","level":"1.3.23","depth":2,"path":"basic/map-and-set/README.md","ref":"./basic/map-and-set/README.md","articles":[]},"previous":{"title":"例外処理","level":"1.3.21","depth":2,"path":"basic/error-try-catch/README.md","ref":"./basic/error-try-catch/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/async/README.md","mtime":"2022-01-17T14:14:24.353Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-01-17T14:15:06.678Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおける非同期処理についてを紹介します。同期処理と非同期処理の違いやなぜ非同期処理が重要になるかを紹介します。非同期処理を行う方法としてコールバックスタイル、Promise、Async Functionを紹介します。","title":"非同期処理:コールバック/Promise/Async Function","level":"1.3.22","depth":2,"next":{"title":"Map/Set","level":"1.3.23","depth":2,"path":"basic/map-and-set/README.md","ref":"./basic/map-and-set/README.md","articles":[]},"previous":{"title":"例外処理","level":"1.3.21","depth":2,"path":"basic/error-try-catch/README.md","ref":"./basic/error-try-catch/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/async/README.md","mtime":"2022-02-06T03:12:18.950Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-02-06T03:13:02.956Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
