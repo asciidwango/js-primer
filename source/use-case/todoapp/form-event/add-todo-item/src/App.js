@@ -17,7 +17,7 @@ export class App {
             const todoItemElement = element`<li>${inputElement.value}</li>`;
             // TodoアイテムをtodoListElementに追加する
             todoListElement.appendChild(todoItemElement);
-            // containerElementの中身をtodoListElementで上書きする
+            // コンテナ要素の中身をTodoリストをまとめるList要素で上書きする
             render(todoListElement, containerElement);
             // Todoアイテム数を+1し、表示されてるテキストを更新する
             todoItemCount += 1;

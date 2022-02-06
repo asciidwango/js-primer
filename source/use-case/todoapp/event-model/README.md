@@ -256,7 +256,7 @@ export class App {
         // ...省略...
         this.todoListModel.onChange(() => {
             // ...省略...
-            // containerElementの中身をtodoListElementで上書きする
+            // コンテナ要素の中身をTodoリストをまとめるList要素で上書きする
             render(todoListElement, containerElement);
             // アイテム数の表示を更新
             todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.getTotalCount()}`;
