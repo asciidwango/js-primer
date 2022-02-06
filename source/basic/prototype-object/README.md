@@ -185,7 +185,7 @@ console.log(array.hasOwnProperty === Object.prototype.hasOwnProperty); // => tru
 このように、`Array`のインスタンスも`Object.prototype`を継承しているため、
 `Object.prototype`に定義されているメソッドを利用できます。
 
-次のコードでは、`Array`のインスタンスからObjectの`hasOwnProperty`メソッドが参照できていることがわかります。
+次のコードでは、`Array`のインスタンスから`Object.prototype.hasOwnProperty`メソッドが参照できていることがわかります。
 
 {{book.console}}
 ```js
