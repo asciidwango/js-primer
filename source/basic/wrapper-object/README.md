@@ -13,7 +13,7 @@ JavaScriptのデータ型はプリミティブ型とオブジェクトに分け�
 
 {{book.console}}
 ```js
-// String#toUpperCaseを呼び出している
+// Stringの`toUpperCase`メソッドを呼び出せる
 "string".toUpperCase(); // => "STRING"
 ```
 

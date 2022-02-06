@@ -147,7 +147,7 @@ console.log(invalid.toString()); // => "Invalid Date"
 // YYYY/MM/DD形式の文字列に変換する関数
 function formatDate(date) {
     const yyyy = String(date.getFullYear());
-    // String#padStartメソッド（ES2017）で2桁になるように0埋めする
+    // Stringの`padStart`メソッド（ES2017）で2桁になるように0埋めする
     const mm = String(date.getMonth() + 1).padStart(2, "0");
     const dd = String(date.getDate()).padStart(2, "0");
     return `${yyyy}/${mm}/${dd}`;

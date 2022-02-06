@@ -411,7 +411,7 @@ const executor = (resolve, reject) => {
 const promise = new Promise(executor);
 ```
 
-この`Promise`インスタンスの`Promise#then`メソッドで、Promiseが`resolve`（成功）、`reject`（失敗）したときに呼ばれるコールバック関数を登録します。
+この`Promise`インスタンスの`then`メソッドで、Promiseが`resolve`（成功）、`reject`（失敗）したときに呼ばれるコールバック関数を登録します。
 `then`メソッドの第一引数には`resolve`（成功）時に呼ばれるコールバック関数、第二引数には`reject`（失敗）時に呼ばれるコールバック関数を渡します。
 
 {{book.console}}
@@ -438,7 +438,7 @@ promise.then(onFulfilled, onRejected);
 - `reject`（失敗）したとき
     - `onRejected` が呼ばれる
 
-### `Promise#then`と`Promise#catch` {#promise-then-and-catch}
+### `Promise.prototype.then`と`Promise.prototype.catch` {#promise-then-and-catch}
 
 `Promise`のようにコンストラクタに関数を渡すパターンは今までなかったので、`then`メソッドの使い方について具体的な例を紹介します。
 また、`then`メソッドのエイリアスでもある`catch`メソッドについても見ていきます。
@@ -482,7 +482,7 @@ dummyFetch("/failure/data").then(function onFulfilled(response) {
 });
 ```
 
-`Promise#then`メソッドは成功（`onFulfilled`）と失敗（`onRejected`）のコールバック関数の2つを受け取りますが、どちらの引数も省略できます。
+Promiseの`then`メソッドは成功（`onFulfilled`）と失敗（`onRejected`）のコールバック関数の2つを受け取りますが、どちらの引数も省略できます。
 
 次のコードの`delay`関数は一定時間後に解決（`resolve`）される`Promise`インスタンスを返します。
 この`Promise`インスタンスに対して`then`メソッドで**成功時のコールバック関数だけ**を登録しています。
@@ -504,7 +504,7 @@ delay(10).then(() => {
 
 一方、`then`メソッドでは失敗時のコールバック関数だけの登録もできます。
 このとき`then(undefined, onRejected)`のように第1引数には`undefined`を渡す必要があります。
-`then(undefined, onRejected)`と同様のことを行う方法として`Promise#catch`メソッドが用意されています。
+`then(undefined, onRejected)`と同様のことを行う方法としてPromiseの`catch`メソッドが用意されています。
 
 次のコードでは`then`メソッドと`catch`メソッドで失敗時のエラー処理をしていますが、どちらも同じ意味となります。
 `then`メソッドに`undefined`を渡すのはわかりにくいため、失敗時の処理だけを登録する場合は`catch`メソッドの利用を推奨しています。
@@ -846,7 +846,7 @@ Promise.reject(new Error("エラー")).catch(error => {
 });
 ```
 
-このように`Promise#then`メソッドや`Promise#catch`メソッドをつないで、成功時や失敗時の処理を書いていくことをPromiseチェーンと呼びます。
+このようにPromiseの`then`メソッドや`catch`メソッドをつないで、成功時や失敗時の処理を書いていくことをPromiseチェーンと呼びます。
 
 #### Promiseチェーンで値を返す {#promise-chain-value}
 
@@ -943,7 +943,7 @@ main().catch(error => {
 
 #### [ES2018] Promiseチェーンの最後に処理を書く {#promise-finally}
 
-`Promise#finally`メソッドは成功時、失敗時どちらの場合でも呼び出されるコールバック関数を登録できます。
+Promiseの`finally`メソッドは成功時、失敗時どちらの場合でも呼び出されるコールバック関数を登録できます。
 `try...catch...finally`構文の`finally`節と同様の役割を持つメソッドです。
 
 {{book.console}}
@@ -964,7 +964,7 @@ promise.then(() => {
 次のコードでは、リソースを取得して`then`で成功時の処理、`catch`で失敗時の処理を登録しています。
 また、リソースを取得中かどうかを判定するためのフラグを`isLoading`という変数で管理しています。
 成功失敗どちらにもかかわらず、取得が終わったら`isLoading`は`false`にします。
-`then`と`catch`の両方で`isLoading`へ`false`を代入できますが、`Promise#finally`メソッドを使うことで代入を一箇所にまとめられます。
+`then`と`catch`の両方で`isLoading`へ`false`を代入できますが、`finally`メソッドを使うことで代入を一箇所にまとめられます。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": "2018" } -->
@@ -1214,7 +1214,7 @@ Promise.race([
 より詳しいPromiseの使い方については「[JavaScript Promiseの本][]」というオンラインで公開されている文書にまとめられています。
 
 一方で、Promiseはただのビルトインオブジェクトであるため、非同期処理間の連携をするにはPromiseチェーンのように少し特殊な書き方や見た目になります。
-また、エラーハンドリングについても`Promise#catch`メソッドや`Promise#finally`メソッドなど`try...catch`構文とよく似た名前を使います。
+また、エラーハンドリングについてもPromiseの`catch`メソッドや`finally`メソッドなど`try...catch`構文とよく似た名前を使います。
 しかし、Promiseは構文ではなくただのオブジェクトであるため、それらをメソッドチェーンとして実現しないといけないといった制限があります。
 
 ES2017では、このPromiseチェーンの不格好な見た目を解決するためにAsync Functionと呼ばれる構文が導入されました。
@@ -1293,7 +1293,7 @@ Async Functionとして定義した関数は必ず`Promise`インスタンスを
 3. Async Function内で例外が発生した場合は、そのエラーを持つ**Rejected**なPromiseを返す
 
 次のコードでは、Async Functionがそれぞれの返り値によってどのような`Promise`インスタンスを返すかを確認できます。
-この1から3の挙動は`Promise#then`メソッドの返り値とそのコールバック関数の関係とほぼ同じです。
+この1から3の挙動は、Promiseの`then`メソッドの返り値とそのコールバック関数の関係とほぼ同じです。
 
 <!-- 字の文で書く場合
 
@@ -1715,9 +1715,9 @@ async function fetchResources(resources) {
 
 <!-- textlint-enable -->
 
-そのため、`Array#forEach`メソッドのコールバック関数もAsync Functionとして定義しないと、コールバック関数では`await`式が利用できません。
+そのため、Arrayの`forEach`メソッドのコールバック関数もAsync Functionとして定義しないと、コールバック関数では`await`式が利用できません。
 
-この構文エラーは`Array#forEach`メソッドのコールバック関数をAsync Functionにすることで解決できます。
+この構文エラーはArrayの`forEach`メソッドのコールバック関数をAsync Functionにすることで解決できます。
 しかし、コールバック関数をAsync Functionにしただけでは、`fetchResources`関数は常に空の配列で解決されるPromiseを返すという意図しない挙動となります。
 
 {{book.console}}

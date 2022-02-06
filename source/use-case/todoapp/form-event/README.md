@@ -69,17 +69,17 @@ console.log(inputElement.value); // => "input要素の入力内容"
 
 [import, title:"src/App.js"](./prevent-event/src/App.js)
 
-このままでは、`App#mount`は呼び出されないため何も行われません。
+このままでは、Appの`mount`メソッドは呼び出されないため何も行われません。
 そのため、`index.js`も変更して、`App`クラスの`mount`メソッドを呼び出すようにします。
 
 [import, title:"index.js"](./prevent-event/index.js)
 
-これらの変更後にブラウザでページをリロードすると、`App#mount`メソッドが実行されるようになります。
+これらの変更後にブラウザでページをリロードすると、Appの`mount`メソッドが実行されるようになります。
 `submit`イベントがリッスンされているので、入力欄に何か入力してEnterで送信してみるとその内容がコンソールに表示されます。
 
 ![入力内容がコンソールに表示される](./img/prevent-event.png)
 
-先ほどの`App#mount`メソッドでは、`submit`イベントのイベントリスナー内で`event.preventDefault`メソッドを呼び出しています。
+先ほどのAppの`mount`メソッドでは、`submit`イベントのイベントリスナー内で`event.preventDefault`メソッドを呼び出しています。
 `event.preventDefault`メソッドは、`submit`イベントの発生元であるフォームが持つデフォルトの動作をキャンセルするメソッドです。
 
 フォームが持つデフォルトの動作とは、フォームの内容を指定したURLへ送信するという動作です。
