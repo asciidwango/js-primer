@@ -184,11 +184,14 @@ const newElement = element`<ul />`;
 render(newElement, document.body);
 ```
 
-最後に、この`element`タグ関数を使って、フォームから送信された入力内容をTodoリストに要素として追加してみます。
+最後に、この`element`タグ関数と`render`関数を使って、フォームから送信された入力内容をTodoリストに要素として追加してみます。
 
-`App.js`から先ほど作成した`html-util.js`の`element`タグ関数を`import`します。
-次に`submit`イベントのリスナー関数で、Todoアイテムを表現する要素を作成し、Todoリスト（`#js-todo-list`）の子要素として追加（`appendChild`）します。
-最後にTodoアイテム数（`#js-todo-count`）のテキスト（`textContent`）を更新します。
+まず最初に、`App.js`から先ほど作成した`html-util.js`の`element`タグ関数と`render`関数を`import`します。
+次に、Todoアイテムをまとめるリストを`todoListElement`として定義し、表示されているTodoアイテムの数を`todoItemCount`として定義します。
+
+`submit`イベントのリスナー関数で、入力された内容をもとにTodoリストとTodoアイテム数の表示を更新していきます。
+Todoアイテムを表現する要素を作成し、Todoリストの子要素として追加（`appendChild`）して、`render`関数を使ってコンテナ要素の中身にTodoリストで上書きしています。
+最後にTodoアイテムの数を1増やして、Todoアイテム数（`#js-todo-count`）のテキスト（`textContent`）を更新します。
 
 [import, title:"src/App.js"](./add-todo-item/src/App.js)
 
