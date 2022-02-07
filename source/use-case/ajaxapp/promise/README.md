@@ -67,11 +67,11 @@ function displayView(view) {
 
 次に`fetchUserInfo`関数を変更し、Fetch APIの返り値でもあるPromiseオブジェクトを`return`します。
 この変更によって、`fetchUserInfo`関数を呼び出す`main`関数のほうで非同期処理の結果を扱えるようになります。
-Promiseチェーンの中で投げられたエラーは、`Promise#catch`メソッドを使って一箇所で受け取れます。
+Promiseチェーンの中で投げられたエラーは、Promiseの`catch`メソッドを使って一箇所で受け取れます。
 
 次のコードでは、`fetchUserInfo`関数から返されたPromiseオブジェクトを、`main`関数でエラーハンドリングしてログを出力します。
 `fetchUserInfo`関数の`catch`メソッドでハンドリングしていたエラーは、`main`関数の`catch`メソッドでハンドリングされます。
-一方、`Response#ok`で判定していた400や500などのエラーレスポンスがそのままでは`main`関数でハンドリングできません。
+一方、Responseの`ok`プロパティで判定していた400や500などのエラーレスポンスがそのままでは`main`関数でハンドリングできません。
 そこで、`Promise.reject`メソッドを使ってRejectedなPromiseを返し、Promiseチェーンをエラーの状態にします。
 Promiseチェーンがエラーとなるため、`main`関数の`catch`でハンドリングできます。
 
@@ -113,7 +113,7 @@ function fetchUserInfo(userId) {
 
 <!-- textlint-enable ja-technical-writing/sentence-length -->
 
-`Promise#then`メソッドでつながるPromiseチェーンは、`then`に渡されたコールバック関数の返り値をそのまま次の`then`へ渡します。
+Promiseの`then`メソッドでつながるPromiseチェーンは、`then`に渡されたコールバック関数の返り値をそのまま次の`then`へ渡します。
 ただし、コールバック関数の返り値がPromiseである場合は、そのPromiseで解決された値を次の`then`に渡します。
 つまり、`then`のコールバック関数が同期処理から非同期処理に変わったとしても、次の`then`が受け取る値の型は変わらないということです。
 
@@ -124,8 +124,8 @@ Promiseチェーンを使って処理を分割する利点は、同期処理と�
 Promiseチェーンで処理を分けることで、それぞれの処理が簡潔になりコードの見通しがよくなります。
 
 `index.js`の`fetchUserInfo`関数と`main`関数を次のように書き換えます。
-まず、`fetchUserInfo`関数が`Response#json`メソッドの返り値をそのまま返すように変更します。
-`Response#json`メソッドの返り値はJSONオブジェクトで解決されるPromiseなので、次の`then`ではユーザー情報のJSONオブジェクトが渡されます。
+まず、`fetchUserInfo`関数がResponseの`json`メソッドの返り値をそのまま返すように変更します。
+Responseの`json`メソッドの返り値はJSONオブジェクトで解決されるPromiseなので、次の`then`ではユーザー情報のJSONオブジェクトが渡されます。
 次に、`main`関数が`fetchUserInfo`関数のPromiseチェーンで、HTMLの組み立て（`createView`）と表示（`displayView`）を行うように変更します。
 
 ```js

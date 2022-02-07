@@ -25,9 +25,9 @@ Unicodeはすべての文字（制御文字などの画面に表示されない�
 この「文字」に対する「一意のID」のことを**Code Point**（符号位置）と呼びます。
 
 Code Pointを扱うメソッドの多くは、ECMAScript 2015で追加されています。
-ES2015で追加された`String#codePointAt`メソッドや`String.fromCodePoint`メソッドを使うことで、文字列とCode Pointを相互変換できます。
+ES2015で追加されたStringの`codePointAt`メソッドや`String.fromCodePoint`静的メソッドを使うことで、文字列とCode Pointを相互変換できます。
 
-`String#codePointAt`メソッド<sup>[ES2015]</sup>は、文字列の指定インデックスにある文字のCode Pointの値を返します。
+Stringの`codePointAt`メソッド<sup>[ES2015]</sup>は、文字列の指定インデックスにある文字のCode Pointの値を返します。
 
 {{book.console}}
 ```js
@@ -48,7 +48,7 @@ console.log(String.fromCodePoint(0x3042)); // => "あ"
 また、文字列リテラル中にはUnicodeエスケープシーケンスで、直接Code Pointを書くこともできます。
 Code Pointは`\u{Code Pointの16進数の値}`のようにエスケープシーケンスとして記述できます。
 Unicodeエスケープシーケンスでは、Code Pointの16進数の値が必要となります。
-`Number#toString`メソッドの引数に基数となる`16`を渡すことで、16進数の文字列を取得できます。
+Numberの`toString`メソッドの引数に基数となる`16`を渡すことで、16進数の文字列を取得できます。
 
 {{book.console}}
 ```js
@@ -184,7 +184,7 @@ console.log("𩸽"[1]); // => "\uDE3D"
 
 絵文字や「𩸽（ほっけ）」などのサロゲートペアで表現される文字が文字列中に含まれると、Code Unitごとに扱う文字列処理は複雑になります。
 
-たとえば、`String#length`プロパティは文字列におけるCode Unitの要素数を数えるため、`"🍎".length`の結果は`2`となります。
+たとえば、Stringの`length`プロパティは文字列におけるCode Unitの要素数を数えるため、`"🍎".length`の結果は`2`となります。
 
 ```js
 console.log("🍎".length); // => 2
@@ -214,7 +214,8 @@ ES2015では、正規表現に`u`（Unicode）フラグが追加されました�
 
 `/(.)のひらき/`というパターンで`.`にマッチする部分を取り出すことを例に見ていきます。
 
-まずは、`u`フラグをつけていない正規表現と`String#match`メソッドでマッチした範囲を取り出してみます。`match`メソッドの返す値は`[マッチした全体の文字列, キャプチャされた文字列]`です（詳細は「[文字列][]」の章を参照）。
+まずは、`u`フラグをつけていない正規表現とStringの`match`メソッドでマッチした範囲を取り出してみます。
+`match`メソッドの返す値は`[マッチした全体の文字列, キャプチャされた文字列]`です（詳細は「[文字列][]」の章を参照）。
 
 実際にマッチした結果を見てみると、`.`は`𩸽`の下位サロゲートである`\ude3d`にマッチしていることがわかります（`\ude3d`は単独では表示できないため、文字化けのように表示されます）。
 
@@ -245,7 +246,7 @@ console.log(fish); // => "𩸽"
 
 ### Code Pointの数を数える {#count-of-code-points}
 
-`String#length`プロパティは、文字列を構成するCode Unitの個数を表すプロパティです。
+Stringの`length`プロパティは、文字列を構成するCode Unitの個数を表すプロパティです。
 そのためサロゲートペアを含む文字列では、`length`の結果が見た目より大きな値となる場合があります。
 
 {{book.console}}

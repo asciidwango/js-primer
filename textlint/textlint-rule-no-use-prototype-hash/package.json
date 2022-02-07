@@ -1,0 +1,11 @@
+{
+  "name": "textlint-rule-no-use-prototype-hash",
+  "version": "1.0.0",
+  "description": "no use # as prototype like Array#push",
+  "main": "index.js",
+  "keywords": [],
+  "author": "azu",
+  "license": "MIT",
+  "dependencies": {
+  }
+}

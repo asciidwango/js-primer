@@ -915,7 +915,7 @@ console.log(greaterThan5(6)); // => true
 クロージャーは、変数が参照する値が静的に決まる静的スコープという性質とデータは参照されていれば保持されるという2つの性質によって成り立っています。
 <!-- textlint-enable -->
 
-JavaScriptには、関数を短く定義できるArrow Functionや高階関数である`Array#forEach`メソッドなどクロージャーを自然と利用しやすい環境があります。
+JavaScriptには、関数を短く定義できるArrow Functionや高階関数であるArrayの`forEach`メソッドなどクロージャーを自然と利用しやすい環境があります。
 関数を理解する上ではクロージャーを理解することが大切です。
 
 ### [コラム] 状態を持つ関数オブジェクト {#closure-vs-function-object}

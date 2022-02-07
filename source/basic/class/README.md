@@ -278,7 +278,7 @@ class クラス {
 
 この書籍では、プロトタイプメソッド（インスタンスメソッド）を`クラス#メソッド名`のように表記します。
 
-次のコードでは、`Counter`クラスに`increment`メソッド（`Counter#increment`メソッド）を定義しています。
+次のコードでは、`Counter`クラスに`increment`メソッド（Counterのプロトタイプオブジェクトに`increment`メソッド）を定義しています。
 `Counter`クラスのインスタンスはそれぞれ別々の状態（`count`プロパティ）を持ちます。
 
 {{book.console}}
@@ -491,17 +491,17 @@ console.log(numberWrapper.value); // => 42
 
 ### [コラム] プライベートプロパティ {#private-property}
 
-`NumberWrapper#value`のアクセッサプロパティで実際に読み書きしているのは、`_value`プロパティです。
+NumberWrapperの`value`のアクセッサプロパティで実際に読み書きしているのは、`_value`プロパティです。
 このように、外から直接読み書きしてほしくないプロパティを`_`（アンダーバー）で開始するのはただの習慣であるため、構文としての意味はありません。
 
 現時点（ECMAScript {{book.esversion}}）では、外から原理的に参照できないプライベートプロパティ（hard private）を定義する構文はありません。
 しかし、現時点でも`WeakSet`などを使うことで疑似的なプライベートプロパティを実現できます。
 `WeakSet`については「[Map/Set][]」の章で解説します。
 
-### `Array#length`をアクセッサプロパティで再現する {#array-like-length}
+### `Array.prototype.length`をアクセッサプロパティで再現する {#array-like-length}
 
-getterやsetterを利用しないと実現が難しいものとして`Array#length`プロパティがあります。
-`Array#length`プロパティへ値を代入すると、そのインデックス以降の要素は自動的に削除される仕様になっています。
+getterやsetterを利用しないと実現が難しいものとして、`Array.prototype.length`プロパティがあります。
+Arrayの`length`プロパティへ値を代入すると、そのインデックス以降の要素は自動的に削除される仕様になっています。
 
 次のコードでは、配列の要素数（`length`プロパティ）を小さくすると配列の要素が削除されています。
 
@@ -517,7 +517,7 @@ console.log(array.join(", ")); // => "1, 2, , , "
 ```
 
 この`length`プロパティの挙動を再現する`ArrayLike`クラスを実装してみます。
-`Array#length`プロパティは、`length`プロパティへ値を代入した際に次のようなことを行っています。
+Arrayの`length`プロパティは、`length`プロパティへ値を代入した際に次のようなことを行っています。
 
 - 現在要素数より小さな**要素数**が指定された場合、その**要素数**を変更し、配列の末尾の要素を削除する
 - 現在要素数より大きな**要素数**が指定された場合、その**要素数**だけを変更し、配列の実際の要素はそのままにする
@@ -529,7 +529,7 @@ console.log(array.join(", ")); // => "1, 2, , , "
 
 -->
 
-`ArrayLike#length`のsetterで要素の追加や削除を実装することで、配列のような`length`プロパティを実装できます。
+ArrayLikeの`length`プロパティのsetterで要素の追加や削除を実装することで、配列のような`length`プロパティを実装できます。
 
 {{book.console}}
 ```js
@@ -1034,7 +1034,7 @@ console.log(child.name); // => "Child"
 ```js
 class Parent {
     method() {
-        console.log("Parent#method");
+        console.log("Parent.prototype.method");
     }
 }
 // `Parent`を継承した`Child`を定義
@@ -1043,7 +1043,7 @@ class Child extends Parent {
 }
 // `Child`のインスタンスは`Parent`のプロトタイプメソッドを継承している
 const instance = new Child();
-instance.method(); // "Parent#method"
+instance.method(); // "Parent.prototype.method"
 ```
 
 このように、子クラスのインスタンスから親クラスのプロトタイプメソッドもプロトタイプチェーンの仕組みによって呼び出せます。
@@ -1098,34 +1098,34 @@ console.log(Child.hello()); // => "Hello"
 子クラスから親クラスのコンストラクタ処理を呼び出すには`super()`を使います。
 同じように、子クラスのプロトタイプメソッドからは、`super.プロパティ名`で親クラスのプロトタイプメソッドを参照できます。
 
-次のコードでは、`Child#method`の中で`super.method()`と書くことで`Parent#method`を呼び出しています。
+次のコードでは、`Child.prototype.method`の中で`super.method()`と書くことで`Parent.prototype.method`を呼び出しています。
 このように、子クラスから継承元の親クラスのプロトタイプメソッドは`super.プロパティ名`で参照できます。
 
 {{book.console}}
 ```js
 class Parent {
     method() {
-        console.log("Parent#method");
+        console.log("Parent.prototype.method");
     }
 }
 class Child extends Parent {
     method() {
-        console.log("Child#method");
+        console.log("Child.prototype.method");
         // `this.method()`だと自分(`this`)のmethodを呼び出して無限ループする
-        // そのため明示的に`super.method()`とParent#methodを呼び出す
+        // そのため明示的に`super.method()`を呼ぶことで、Parent.prototype.methodを呼び出す
         super.method();
     }
 }
 const child = new Child();
 child.method();
 // コンソールには次のように出力される
-// "Child#method"
-// "Parent#method"
+// "Child.prototype.method"
+// "Parent.prototype.method"
 ```
 
 プロトタイプチェーンでは、インスタンスからクラス、さらに親のクラスと継承関係をさかのぼるようにメソッドを探索すると紹介しました。
-このコードでは`Child#method`が定義されているため、`child.method`は`Child#method`を呼び出します。
-そして`Child#method`は`super.method`を呼び出しているため、`Parent#method`が呼び出されます。
+このコードでは`Child.prototype.method`が定義されているため、`child.method`は`Child.prototype.method`を呼び出します。
+そして`Child.prototype.method`は`super.method`を呼び出しているため、`Parent.prototype.method`が呼び出されます。
 
 クラスの静的メソッド同士も同じように`super.method()`と書くことで呼び出せます。
 次のコードでは、`Parent`を継承した`Child`から親クラスの静的メソッドを呼び出しています。
@@ -1192,7 +1192,7 @@ console.log(child instanceof Child); // => true
 
 次のコードでは、ビルトインオブジェクトである`Array`を継承して独自のメソッドを加えた`MyArray`クラスを定義しています。
 継承した`MyArray`は`Array`の性質であるメソッドや状態管理についての仕組みを継承しています。
-継承した性質に加えて、`MyArray#first`や`MyArray#last`といったアクセッサプロパティを追加しています。
+継承した性質に加えて、MyArrayクラスへ`first`や`last`といったアクセッサプロパティを追加しています。
 
 {{book.console}}
 ```js
