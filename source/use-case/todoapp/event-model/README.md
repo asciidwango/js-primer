@@ -46,8 +46,8 @@ Todoアイテムを追加する機能を実装しましたが、イベントを�
 クラスでは操作方法はメソッドとして実装し、状態はインスタンスのプロパティで管理できるため、今回はクラスでモデルを表現します。
 
 たとえば、Todoリストを表現するモデルとして`TodoListModel`クラスを考えます。
-TodoリストにはTodoアイテムを追加できるので、`TodoListModel#addItem`というメソッドがあると良さそうです。
-また、Todoリストからアイテムの一覧を取得できる必要もあるので、`TodoListModel#getAllItems`というメソッドも必要そうです。
+TodoリストにはTodoアイテムを追加できるので、TodoListModelに`addItem`というメソッドがあると良さそうです。
+また、Todoリストからアイテムの一覧を取得できる必要もあるので、TodoListModelに`getAllItems`というメソッドも必要そうです。
 このようにTodoリストをクラスで表現する際に、オブジェクトがどのような処理や状態を持つかを考えて実装します。
 
 このようにモデルを考えた後、先ほどの操作と表示の間にモデルを入れることを考えてみます。
@@ -175,7 +175,7 @@ Node.jsでは、`events`と呼ばれる組み込みのモジュールで同様�
 [import, title:"src/model/TodoListModel.js"](./event-emitter/src/model/TodoListModel.js)
 
 次のコードは`TodoListModel`クラスのインスタンスに対して、新しい`TodoItemModel`を追加するサンプルコードです。
-`TodoListModel#addTodo`メソッドで新しいTodoアイテムを追加したときに、`TodoListModel#onChange`で登録したイベントリスナーが呼び出されます。
+TodoListModelの`addTodo`メソッドで新しいTodoアイテムを追加したときに、TodoListModelの`onChange`メソッドで登録したイベントリスナーが呼び出されます。
 
 [import, title:"TodoListModel.jsを利用するサンプルコード"](./event-emitter/src/model/TodoListModel.example.js)
 
@@ -228,9 +228,9 @@ export class App {
 ### 2. TodoListModelの状態が更新されたら表示を更新する {#app-todolist-onchange}
 
 `mount`メソッド内で`TodoListModel`が更新されたら表示を更新するという処理を実装します。
-`TodoListModel#onChange`で登録したリスナー関数は、`TodoListModel`の状態が更新されたら呼び出されます。
+TodoListModelの`onChange`メソッドで登録したリスナー関数は、`TodoListModel`の状態が更新されたら呼び出されます。
 
-このリスナー関数内では`TodoListModel#getTodoItems`でTodoアイテムを取得しています。
+このリスナー関数内ではTodoListModelの`getTodoItems`メソッドでTodoアイテムを取得しています。
 そして、アイテム一覧から次のようなリスト要素（`todoListElement`）を作成しています。
 
 ```html
@@ -272,7 +272,7 @@ export class App {
 今回のコードでは、`TodoListModel`の状態が更新されたら表示を更新する仕組みがすでにできています。
 
 そのため、`submit`イベントのリスナー関数内では`TodoListModel`に対して新しい`TodoItemModel`を追加するだけで表示が更新されます。
-直接DOMへ`appendChild`していた部分を`TodoListModel#addTodo`メソッドを使ってモデルを更新する処理へ置き換えるだけです。
+直接DOMへ`appendChild`していた部分をTodoListModelの`addTodo`メソッドを使ってモデルを更新する処理へ置き換えるだけです。
 
 ## まとめ {#conclusion}
 

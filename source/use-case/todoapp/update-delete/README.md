@@ -25,7 +25,7 @@ HTMLの[`<input type="checkbox">`](https://developer.mozilla.org/ja/docs/Web/HTM
 
 ![input要素のchecked属性の違い](./img/input-checkbox.png)
 
-`src/App.js`の`TodoListModel#onChange`メソッドで登録したリスナー関数内を書き換え、チェックボックスを表示しています。
+`src/App.js`にてTodoListModelの`onChange`メソッドで登録したリスナー関数内を書き換え、チェックボックスを表示しています。
 
 Todoアイテム要素である`<li>`要素中に次のように`<input>`要素を追加してチェックボックスを表示に追加します。
 チェックボックスである`<input>`要素にはスタイルのために`class`属性を`checkbox`とします。
@@ -79,7 +79,7 @@ inputCheckboxElement.addEventListener("change", () => {
 ###  `TodoListModel`に指定したTodoアイテムの更新処理を追加する {#TodoListModel-updateTodo}
 
 まずは、`TodoListModel`に指定したTodoアイテムを更新する`updateTodo`メソッドを追加します。
-`TodoListModel#updateTodo`メソッドは、指定したidと一致するTodoアイテムの完了状態（`completed`プロパティ）を更新します。
+TodoListModelの`updateTodo`メソッドは、指定したidと一致するTodoアイテムの完了状態（`completed`プロパティ）を更新します。
 
 [import, marker:"add-point",unindent:"true", title:"src/model/TodoListModel.jsの変更点を抜粋"](./update-feature/src/model/TodoListModel.js)
 
@@ -87,16 +87,16 @@ inputCheckboxElement.addEventListener("change", () => {
 
 次に`input`要素の`change`イベントのリスナー関数で、Todoアイテムの完了状態を更新します。
 
-`src/App.js`の`TodoListModel#onChange`メソッドで登録したリスナー関数内を次のように書き換えます。
+`src/App.js`にて、TodoListModelの`onChange`メソッドで登録したリスナー関数内を次のように書き換えます。
 
 `App.js`で`todoItemElement`の子要素として`checkbox`というクラス名をつけた`input`要素を追加します。
-この`input`要素の`change`イベントが発生したら、`TodoListModel#updateTodo`メソッドを呼び出すようにします。
+この`input`要素の`change`イベントが発生したら、TodoListModelの`updateTodo`メソッドを呼び出すようにします。
 チェックがトグルするたびに呼び出されるので、`completed`には現在の状態を反転（トグル）した値を渡します。
 
 [import, marker:"checkbox",unindent:"true", title:"src/App.jsから変更点を抜粋"](./update-feature/src/App.js)
 
-`TodoListModel#updateTodo`メソッド内では`emitChange`メソッドによって、`TodoListModel`の変更が通知されます。
-これによって`TodoListModel#onChange`で登録されているイベントリスナーが呼び出され、表示が更新されます。
+TodoListModelの`updateTodo`メソッド内では`emitChange`メソッドによって、`TodoListModel`の変更が通知されます。
+これによってTodoListModelの`onChange`で登録したイベントリスナーが呼び出され、表示が更新されます。
 
 これで表示とモデルが同期でき「Todoアイテムの更新処理」が実装できました。
 
@@ -111,7 +111,7 @@ inputCheckboxElement.addEventListener("change", () => {
 ### `TodoListModel`に指定したTodoアイテムを削除する処理を追加する {#TodoListModel-deleteTodo}
 
 まずは、`TodoListModel`に指定したTodoアイテムを削除する`deleteTodo`メソッドを追加します。
-`TodoListModel#deleteTodo`メソッドは、指定したidと一致するTodoアイテムを削除します。
+TodoListModelの`deleteTodo`メソッドは、指定したidと一致するTodoアイテムを削除します。
 
 `items`というTodoアイテムの配列から指定したidと一致するTodoアイテムを取り除くことで削除しています。
 
@@ -121,14 +121,14 @@ inputCheckboxElement.addEventListener("change", () => {
 
 次に`button`要素の`click`イベントのリスナー関数でTodoアイテムを削除する処理を呼び出す処理を実装します。
 
-`src/App.js`の`TodoListModel#onChange`メソッドで登録したリスナー関数内を次のように書き換えます。
+`src/App.js`にて、TodoListModelの`onChange`メソッドで登録したリスナー関数内を次のように書き換えます。
 `todoItemElement`の子要素として`delete`というクラス名をつけた`button`要素を追加します。
 この要素がクリック（`click`）されたときに呼び出されるイベントリスナーを`addEventListener`メソッドで登録します。
-このイベントリスナーの中で`TodoListModel#deleteTodo`メソッドを呼び、指定したidのTodoアイテムを削除します。
+このイベントリスナーの中でTodoListModelの`deleteTodo`メソッドを呼び、指定したidのTodoアイテムを削除します。
 
 [import, marker:"checkbox",unindent:"true", title:"src/App.jsから変更点を抜粋"](./delete-feature/src/App.js)
 
-`TodoListModel#deleteTodo`メソッド内では`emitChange`メソッドによって、`TodoListModel`の変更が通知されます。
+TodoListModelの`deleteTodo`メソッド内では`emitChange`メソッドによって、`TodoListModel`の変更が通知されます。
 これにより表示が`TodoListModel`と同期するように更新され、表示からもTodoアイテムが削除できます。
 
 これで「Todoアイテムの削除機能」が実装できました。

@@ -42,7 +42,7 @@ Todoリストの表示は次の2つの部品（Viewコンポーネント）か�
 
 [import, title:"src/view/TodoItemView.js"](./create-view/src/view/TodoItemView.js)
 
-`TodoItemView#createElement`メソッドの中身は`App`クラスでのHTML要素を作成する部分を元にしています。
+TodoItemViewの`createElement`メソッドの中身は`App`クラスでのHTML要素を作成する部分を元にしています。
 `createElement`メソッドは、`TodoItemModel`のインスタンスだけではなく`onUpdateTodo`と`onDeleteTodo`というリスナー関数を受け取っています。
 この受け取ったリスナー関数はそれぞれ対応するイベントがViewで発生した際に呼び出されます。
 
@@ -62,8 +62,8 @@ Todoリストの表示は次の2つの部品（Viewコンポーネント）か�
 
 [import, title:"src/view/TodoListView.js"](./create-view/src/view/TodoListView.js)
 
-`TodoListView#createElement`メソッドは`TodoItemView`を使ってTodoアイテムのHTML要素を作り、`<li>`要素に追加していきます。
-この`TodoListView#createElement`メソッドも`onUpdateTodo`と`onDeleteTodo`のリスナー関数を受け取ります。
+TodoListViewの`createElement`メソッドは`TodoItemView`を使ってTodoアイテムのHTML要素を作り、`<li>`要素に追加していきます。
+このTodoListViewの`createElement`メソッドも`onUpdateTodo`と`onDeleteTodo`のリスナー関数を受け取ります。
 しかし、`TodoListView`ではこのリスナー関数を`TodoItemView`にそのまま渡しています。
 なぜなら具体的なDOMイベントを発生させる要素が作られるのは`TodoItemView`の中となるためです。
 
@@ -73,10 +73,10 @@ Todoリストの表示は次の2つの部品（Viewコンポーネント）か�
 
 `App.js`を次のように`TodoListView`クラスを使うように書き換えます。
 `onChange`のリスナー関数で`TodoListView`クラスを使ってTodoリストのHTML要素を作るように変更します。
-このとき`TodoListView#createElement`メソッドには次のようにそれぞれ対応するコールバック関数を渡します。
+このときTodoListViewの`createElement`メソッドには次のようにそれぞれ対応するコールバック関数を渡します。
 
-- `onUpdateTodo`のコールバック関数では`TodoListModel#updateTodo`メソッドを呼ぶ
-- `onDeleteTodo`のコールバック関数では`TodoListModel#deleteTodo`メソッドを呼ぶ
+- `onUpdateTodo`のコールバック関数では、TodoListModelの`updateTodo`メソッドを呼ぶ
+- `onDeleteTodo`のコールバック関数では、TodoListModelの`deleteTodo`メソッドを呼ぶ
 
 [import, title:"src/App.js"](./create-view/src/App.js)
 
@@ -118,15 +118,15 @@ Todoリストの表示は次の2つの部品（Viewコンポーネント）か�
 実はこのTodoアプリにはまだアプリケーションとして、完成していない部分があります。
 
 入力欄でEnterキーを連打すると、空のTodoアイテムが追加されてしまうのは意図しない挙動です。
-また、`App#mount`で`TodoListModel#onChange`などのイベントリスナーを登録していますが、そのイベントリスナーを解除していません。
+また、Appの`mount`メソッドでTodoListModelの`onChange`メソッドなどにイベントリスナーを登録していますが、そのイベントリスナーを解除していません。
 このTodoアプリではあまり問題にはなりませんが、イベントリスナーは登録したままだとメモリリークにつながる場合もあります。
 
 余力がある人は、次の機能を追加してTodoアプリを完成させてみてください。
 
 - タイトルが空の場合は、フォームを送信してもTodoアイテムを追加できないようにする
-- `App#mount`でのイベントリスナー登録に対応して、`App#unmount`を実装し、イベントリスナーを解除できるようにする
+- Appの`mount`メソッドでのイベントリスナー登録に対応して、Appに`unmount`メソッドを実装し、イベントリスナーを解除できるようにする
 
-`App#mount`と対応する`App#unmount`を作成するというTodoは、アプリケーションのライフサイクルを意識するという課題になります。
+Appの`mount`メソッドと対応する`unmount`メソッドを作成するというTodoは、アプリケーションのライフサイクルを意識するという課題になります。
 ウェブページにはページ読み込みが完了したときに発生する`load`イベントと、読み込んだページを破棄したときに発生する`unload`イベントがあります。
 Todoアプリも`mount`と`unmount`を実装し、次のようにウェブページのライフサイクルに合わせられます。
 
