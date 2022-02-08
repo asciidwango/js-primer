@@ -242,7 +242,7 @@ export class App {
 ```
 
 この作成した`todoListElement`要素を、前回作成した`html-util.js`の`render`関数を使ってコンテナ要素の中身に上書きしています。
-また、アイテム数は`TodoListModel#getTotalCount`メソッドで取得できるため、アイテム数を管理していた`todoItemCount`という変数は削除できます。
+また、アイテム数はTodoListModelの`getTotalCount`メソッドで取得できるため、アイテム数を管理していた`todoItemCount`という変数は削除できます。
 
 <div class="code-filename-block"><p class="code-filename">src/App.jsより抜粋</p></div>
 
