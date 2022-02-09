@@ -184,7 +184,7 @@ const newElement = element`<ul />`;
 render(newElement, document.body);
 ```
 
-最後に、この`element`タグ関数と`render`関数を使って、フォームから送信された入力内容をTodoリストに要素として追加してみます。
+実際に、この`element`タグ関数と`render`関数を使って、フォームから送信された入力内容をTodoリストに要素として追加してみます。
 
 まず最初に、`App.js`から先ほど作成した`html-util.js`の`element`タグ関数と`render`関数を`import`します。
 次に、Todoアイテムをまとめるリストを`todoListElement`として定義し、表示されているTodoアイテムの数を`todoItemCount`として定義します。
