@@ -241,7 +241,7 @@ TodoListModelの`onChange`メソッドで登録したリスナー関数は、`To
 </ul>
 ```
 
-この作成した`todoListElement`要素を、前回作成した`html-util.js`の`render`関数を使って`containerElement`の中身に上書きしています。
+この作成した`todoListElement`要素を、前回作成した`html-util.js`の`render`関数を使ってコンテナ要素の中身に上書きしています。
 また、アイテム数はTodoListModelの`getTotalCount`メソッドで取得できるため、アイテム数を管理していた`todoItemCount`という変数は削除できます。
 
 <div class="code-filename-block"><p class="code-filename">src/App.jsより抜粋</p></div>
@@ -256,7 +256,7 @@ export class App {
         // ...省略...
         this.todoListModel.onChange(() => {
             // ...省略...
-            // containerElementの中身をtodoListElementで上書きする
+            // コンテナ要素の中身をTodoリストをまとめるList要素で上書きする
             render(todoListElement, containerElement);
             // アイテム数の表示を更新
             todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.getTotalCount()}`;

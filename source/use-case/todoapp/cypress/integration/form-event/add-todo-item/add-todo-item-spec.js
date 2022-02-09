@@ -5,9 +5,9 @@ describe(URL, function() {
         cy.visit(URL);
         const inputText = "test";
         addNewTodo(inputText).then(() => {
-            // ulはない
-            cy.get("#js-todo-list ul").should(items => {
-                expect(items).to.have.length(0);
+            // ulがある
+            cy.get("#js-todo-list ul").should(ul => {
+                expect(ul).to.have.length(1);
             });
             // liはある
             cy.get("#js-todo-list li").should(items => {
