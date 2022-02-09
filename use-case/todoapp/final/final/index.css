@@ -67,8 +67,6 @@ body {
     font-size: 24px;
     border-bottom: 1px solid #ededed;
     padding: 16px;
-    /* https://github.com/asciidwango/js-primer/issues/1316 */
-    list-style: none;
 }
 
 .todo-list li:last-child {
