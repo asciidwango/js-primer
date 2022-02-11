@@ -1,18 +1,10 @@
 class MyArray extends Array {
     get first() {
-        if (this.length === 0) {
-            return undefined;
-        } else {
-            return this[0];
-        }
+        return this.at(0);
     }
 
     get last() {
-        if (this.length === 0) {
-            return undefined;
-        } else {
-            return this[this.length - 1];
-        }
+        return this.at(-1);
     }
 }
 

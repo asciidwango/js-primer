@@ -1195,22 +1195,16 @@ console.log(child instanceof Child); // => true
 継承した性質に加えて、MyArrayクラスへ`first`や`last`といったアクセッサプロパティを追加しています。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
 ```js
 class MyArray extends Array {
+class MyArray extends Array {
     get first() {
-        if (this.length === 0) {
-            return undefined;
-        } else {
-            return this[0];
-        }
+        return this.at(0);
     }
 
     get last() {
-        if (this.length === 0) {
-            return undefined;
-        } else {
-            return this[this.length - 1];
-        }
+        return this.at(-1);
     }
 }
 
