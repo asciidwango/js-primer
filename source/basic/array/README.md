@@ -108,6 +108,36 @@ console.log(sparseArray.length); // => 3
 console.log(sparseArray[1]); // => undefined
 ```
 
+### [ES2022] `Array.prototype.at` {#array-at}
+
+配列の要素にアクセスするには`配列[インデックス]`という構文を使うことを紹介しました。
+その際に、配列の末尾の要素へアクセスするには、`array[array.length - 1]`という`length`プロパティを使う必要があります。
+`array`を2回書く必要があるなど、少し末尾の要素へのアクセスは少し手間が必要になっていました。
+
+この問題を解決するためES2022では、相対的なインデックスの値を指定して配列の要素へアクセスできる`Array.prototype.at`メソッドが追加されました。
+Arrayの`at`メソッドは、`配列[インデックス]`とよく似ていますが、引数には相対的なインデックスの値を引数として渡せます。
+`.at(0)`なら配列の先頭の要素へ、`.at(-1)`なら配列の末尾の要素へアクセスできます。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
+```js
+const array = ["a", "b", "c"];
+// 先頭の要素にアクセス
+console.log(array.at(0)); // => "a"
+console.log(array[0]); // => "a"
+// 後ろから1つ目の要素にアクセス
+console.log(array.at(-1)); // => "c"
+console.log(array[array.length - 1]); // => "c"
+```
+
+`配列[インデックス]`のインデックスに`-1`を指定すると、配列オブジェクトの`"-1"`というプロパティ名へのアクセスとなります。
+そのため`配列[-1]`と書くと、大抵の場合は`undefined`が返されます。
+
+```js
+const array = ["a", "b", "c"];
+console.log(array[-1]); // => undefined
+```
+
 ## オブジェクトが配列かどうかを判定する {#detect-array}
 
 あるオブジェクトが配列かどうかを判定するには`Array.isArray`メソッドを利用します。
