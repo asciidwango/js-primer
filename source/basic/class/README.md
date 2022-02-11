@@ -1198,7 +1198,6 @@ console.log(child instanceof Child); // => true
 <!-- doctest:meta:{ "ECMAScript": "2022" } -->
 ```js
 class MyArray extends Array {
-class MyArray extends Array {
     get first() {
         return this.at(0);
     }
