@@ -128,6 +128,7 @@ console.log(array.at(0)); // => "a"
 console.log(array.at(1)); // => "b"
 // 後ろから1つ目の要素にアクセス
 console.log(array.at(-1)); // => "c"
+// -1は、次のように書いた場合と同じ結果
 console.log(array[array.length - 1]); // => "c"
 ```
 
