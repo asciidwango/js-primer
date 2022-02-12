@@ -116,15 +116,16 @@ console.log(sparseArray[1]); // => undefined
 
 この問題を解決するためES2022では、相対的なインデックスの値を指定して配列の要素へアクセスできる`Array.prototype.at`メソッドが追加されました。
 Arrayの`at`メソッドは、`配列[インデックス]`とよく似ていますが、引数には相対的なインデックスの値を引数として渡せます。
-`.at(0)`なら配列の先頭の要素へ、`.at(-1)`なら配列の末尾の要素へアクセスできます。
+`.at(0)`や`.at(1)`などのように0以上のインデックスを渡した場合は、`配列[インデックス]`と同じ指定した位置の要素へアクセスできます。
+一方で、`.at(-1)`のようにマイナスのインデックスを渡した場合は、末尾から数えた位置の要素へアクセスできます。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": "2022" } -->
 ```js
 const array = ["a", "b", "c"];
-// 先頭の要素にアクセス
+// 
 console.log(array.at(0)); // => "a"
-console.log(array[0]); // => "a"
+console.log(array.at(1)); // => "b"
 // 後ろから1つ目の要素にアクセス
 console.log(array.at(-1)); // => "c"
 console.log(array[array.length - 1]); // => "c"
