@@ -186,6 +186,22 @@ const str = "文字列";
 console.log(str[42]); // => undefined
 ```
 
+### [ES2022] `String.prototype.at` {#string-at}
+
+ES2022から`String.prototype.at`メソッドが追加されています。
+Stringの`at`メソッドは、Arrayの`at`メソッドと同じく、相対的なインデックスを渡してその位置の文字へアクセスできます。
+`at`メソッドへ`-1`のようにマイナスのインデックスを渡した場合は、末尾から数えた位置の文字へアクセスできます。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
+```js
+const str = "文字列";
+console.log(str.at(0)); // => "文"
+console.log(str.at(1)); // => "字"
+console.log(str.at(2)); // => "列"
+console.log(str.at(-1)); // => "列"
+```
+
 ## 文字列とは {#what-is-string}
 
 今まで何気なく「文字列」という言葉を利用していましたが、ここでいう文字列とはどのようなものでしょうか？　コンピュータのメモリ上に文字列の「ア」といった文字をそのまま保存できないため、0と1からなるビット列へ変換する必要があります。
