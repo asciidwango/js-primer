@@ -225,7 +225,7 @@ const denseArray = [1, undefined, 3];
 const sparseArray = [1, , 3];
 // 要素自体は存在し、その値が`undefined`
 console.log(Object.hasOwn(denseArray, 1)); // => true
-// 要素自体がない
+// 要素自体が存在しない
 console.log(Object.hasOwn(sparseArray, 1)); // => false
 ```
 
