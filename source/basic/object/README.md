@@ -416,7 +416,7 @@ if (obj.key !== undefined) {
 }
 ```
 
-このような問題があるため、プロパティが存在するかを判定するには`in`演算子か`hasOwnProperty`メソッドを利用します。
+このような問題があるため、プロパティが存在するかを判定するには`in`演算子か`Object.hasOwn`静的メソッドを利用します。
 
 ### プロパティの存在確認: in演算子を使う {#in-operator}
 
@@ -482,7 +482,7 @@ if (obj.hasOwnProperty("key")) {
 }
 ```
 
-しかし、`hasOwnProperty`メソッドには欠点があるため、`Object.hasOwn`静的メソッドが使える状況では使う理由はありません。
+しかし、`hasOwnProperty`メソッドには欠点があるため、`Object.hasOwn`静的メソッドが利用できる状況では使う理由はありません。
 この欠点もプロトタイプという仕組みに関係するため、次の章の「[プロトタイプオブジェクト][]」で詳しく解説します。
 
 ## [ES2020] Optional chaining演算子（`?.`） {#optional-chaining-operator}

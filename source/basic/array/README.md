@@ -215,17 +215,18 @@ console.log(denseArray[1]); // => undefined
 console.log(sparseArray[1]); // => undefined
 ```
 
-この違いを見つける方法として利用できるのがObjectの`hasOwnProperty`メソッドです。
-`hasOwnProperty`メソッドを使うことで、配列の指定したインデックスに要素自体が存在するかを判定できます。
+この違いを見つける方法として利用できるのが、`Object.hasOwn`静的メソッドです。
+`Object.hasOwn`静的メソッドを使うことで、配列オブジェクトに対して指定したインデックスに要素自体が存在するかを判定できます。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
 ```js
 const denseArray = [1, undefined, 3];
 const sparseArray = [1, , 3];
 // 要素自体は`undefined`値が存在する
-console.log(denseArray.hasOwnProperty(1)); // => true
+console.log(Object.hasOwn(denseArray, 1)); // => true
 // 要素自体がない
-console.log(sparseArray.hasOwnProperty(1)); // => false
+console.log(Object.hasOwn(sparseArray, 1)); // => false
 ```
 
 ## 配列から要素を検索 {#search-element}
