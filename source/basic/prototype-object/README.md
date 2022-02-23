@@ -108,28 +108,28 @@ console.log(customObject.toString()); // => "custom value"
 
 このように、インスタンスとプロトタイプオブジェクトで同じ名前のメソッドがある場合には、インスタンスのメソッドが優先されます。
 
-### `in`演算子と`Object.prototype.hasOwnProperty`メソッドの違い {#diff-in-operator-and-hasOwnProperty}
+### `Object.hasOwn`静的メソッドと`in`演算子との違い {#diff-in-operator-and-object-hasown}
 
-「[オブジェクト][]」の章で学んだObjectの`hasOwnProperty`メソッドと`in`演算子の挙動の違いについて見ていきます。
+「[オブジェクト][]」の章で学んだ`Object.hasOwn`静的メソッドと`in`演算子の挙動の違いについて見ていきます。
 2つの挙動の違いはこの章で紹介したプロトタイプオブジェクトに関係しています。
 
-`hasOwnProperty`メソッドは、そのオブジェクト自身が指定したプロパティを持っているかを判定します。
+`Object.hasOwn`静的メソッドは、指定したオブジェクト自体が指定したプロパティを持っているかを判定します。
 一方、`in`演算子はオブジェクト自身が持っていなければ、そのオブジェクトの継承元である`prototype`オブジェクトまで探索して持っているかを判定します。
 つまり、`in`演算子はインスタンスに実装されたメソッドなのか、プロトタイプオブジェクトに実装されたメソッドなのかを区別しません。
 
-次のコードでは、空のオブジェクトが`toString`メソッドを持っているかをObjectの`hasOwnProperty`メソッドと`in`演算子でそれぞれ判定しています。
-`hasOwnProperty`メソッドは`false`を返し、`in`演算子は`toString`メソッドがプロトタイプオブジェクトに存在するため`true`を返します。
+次のコードでは、空のオブジェクトが`toString`メソッドを持っているかを`Object.hasOwn`静的メソッドと`in`演算子でそれぞれ判定しています。
+`Object.hasOwn`静的メソッドは`false`を返し、`in`演算子は`toString`メソッドがプロトタイプオブジェクトに存在するため`true`を返します。
 
 {{book.console}}
 ```js
 const obj = {};
 // `obj`というオブジェクト自体に`toString`メソッドが定義されているわけではない
-console.log(obj.hasOwnProperty("toString")); // => false
+console.log(Object.hasOwn(obj, "toString")); // => false
 // `in`演算子は指定されたプロパティ名が見つかるまで親をたどるため、`Object.prototype`まで見にいく
 console.log("toString" in obj); // => true
 ```
 
-次のように、インスタンスが`toString`メソッドを持っている場合は、`hasOwnProperty`メソッドも`true`を返します。
+次のように、インスタンスが`toString`メソッドを持っている場合は、`Object.hasOwn`静的メソッドも`true`を返します。
 
 {{book.console}}
 ```js
@@ -140,7 +140,7 @@ const obj = {
     }
 };
 // オブジェクトのインスタンスが`toString`メソッドを持っている
-console.log(obj.hasOwnProperty("toString")); // => true
+console.log(Object.hasOwn(obj, "toString")); // => true
 console.log("toString" in obj); // => true
 ```
 
@@ -210,7 +210,7 @@ const numbers = [1, 2, 3];
 console.log(numbers.toString()); // => "1,2,3"
 ```
 
-## [コラム] `Object.prototype`を継承しないオブジェクト {#not-inherit-object}
+## `Object.prototype`を継承しないオブジェクト {#not-inherit-object}
 
 `Object`はすべてのオブジェクトの親になるオブジェクトであると言いましたが、例外もあります。
 
@@ -245,15 +245,34 @@ const mapLike = Object.create(null);
 console.log(mapLike["toString"]); // => undefined
 ```
 
-しかし、ES2015からは、本物の`Map`が利用できるため、`Object.create(null)`を`Map`の代わりに利用する必要はありません。
+しかし、ES2015からは本物の`Map`が利用できるため、`Object.create(null)`を`Map`の代わりに利用する必要はありません。
 `Map`については「[Map/Set][]」の章で詳しく紹介します。
+
+また`Object.create(null)`によって作成される空のオブジェクトは、`Object.hasOwn`静的メソッドがES2022で導入された理由でもあります。
+
+次のように、`Object.prototype`を継承しないオブジェクトは、`Object.prototype.hasOwnProperty`メソッドを呼び出せません。
+そのため、オブジェクトがプロパティを持っているかということを確認する際に、単純には`hasOwnProperty`メソッドが使えないという状況が出てきました。
 
 {{book.console}}
 ```js
-const map = new Map();
-// toStringキーは存在しない
-console.log(map.has("toString")); // => false
+// Mapのような空オブジェクト
+const mapLike = Object.create(null);
+// `Object.prototype`を継承していないため呼び出すと例外が発生する
+console.log(mapLike.hasOwnProperty("key")); // => Error: hasOwnPropertyメソッドは呼び出せない
 ```
+
+ES2022から導入された`Object.hasOwn`静的メソッドは、対象のオブジェクトが`Object.prototype`を継承していないかは関係なく利用できます。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
+```js
+// Mapのような空オブジェクト
+const mapLike = Object.create(null);
+// keyは存在しない
+console.log(Object.hasOwn(mapLik, "key")); // => false
+```
+
+このように、対象となるオブジェクトに依存しない`Object.hasOwn`静的メソッドは、`hasOwnProperty`メソッドの欠点を修正しています。
 
 ## まとめ {#conclusion}
 
