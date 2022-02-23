@@ -270,7 +270,7 @@ ES2022から導入された`Object.hasOwn`静的メソッドは、対象のオ�
 // Mapのような空オブジェクト
 const mapLike = Object.create(null);
 // keyは存在しない
-console.log(Object.hasOwn(mapLik, "key")); // => false
+console.log(Object.hasOwn(mapLike, "key")); // => false
 ```
 
 このように、対象となるオブジェクトに依存しない`Object.hasOwn`静的メソッドは、`hasOwnProperty`メソッドの欠点を修正しています。
