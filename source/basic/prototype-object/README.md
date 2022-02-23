@@ -121,6 +121,7 @@ console.log(customObject.toString()); // => "custom value"
 `Object.hasOwn`静的メソッドは`false`を返し、`in`演算子は`toString`メソッドがプロトタイプオブジェクトに存在するため`true`を返します。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
 ```js
 const obj = {};
 // `obj`というオブジェクト自体に`toString`メソッドが定義されているわけではない
@@ -132,6 +133,7 @@ console.log("toString" in obj); // => true
 次のように、インスタンスが`toString`メソッドを持っている場合は、`Object.hasOwn`静的メソッドも`true`を返します。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
 ```js
 // オブジェクトのインスタンスにtoStringメソッドを定義
 const obj = {
