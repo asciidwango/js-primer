@@ -457,7 +457,7 @@ Object.hasOwn(obj, "プロパティ名"); // true or false
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": "2022" } -->
 ```js
-const obj = { key: "value" };
+const obj = { key: undefined };
 // `obj`が`key`プロパティを持っているならtrueとなる
 if (Object.hasOwn(obj, "key")) {
     console.log("`obj`は`key`プロパティを持っている");
