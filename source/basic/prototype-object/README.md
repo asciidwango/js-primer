@@ -159,7 +159,7 @@ console.log("toString" in obj); // => true
 const obj = Object.create(Object.prototype);
 // `obj`は`Object.prototype`を継承している
 // そのため、`obj.hasOwnProperty`と`Object.prototype.hasOwnProperty`は同じとなる
-console.log(obj.hasOwnProperty === Object.prototype.hasOwnProperty); // => true
+console.log(obj.toString === Object.prototype.toString); // => true
 ```
 
 ### ArrayもObjectを継承している {#inherit-object}
