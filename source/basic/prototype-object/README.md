@@ -158,7 +158,7 @@ console.log("toString" in obj); // => true
 // const obj = {} と同じ意味
 const obj = Object.create(Object.prototype);
 // `obj`は`Object.prototype`を継承している
-// そのため、`obj.hasOwnProperty`と`Object.prototype.hasOwnProperty`は同じとなる
+// そのため、`obj.toString`と`Object.prototype.toString`は同じとなる
 console.log(obj.toString === Object.prototype.toString); // => true
 ```
 
