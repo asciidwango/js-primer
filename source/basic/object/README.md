@@ -477,7 +477,7 @@ ES2022より前では、`Object.prototype.hasOwnProperty`メソッドという�
 
 {{book.console}}
 ```js
-const obj = { key: "value" };
+const obj = { key: undefined };
 // `obj`が`key`プロパティを持っているならtrueとなる
 if (obj.hasOwnProperty("key")) {
     console.log("`obj`は`key`プロパティを持っている");
