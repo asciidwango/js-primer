@@ -83,7 +83,7 @@ console.log(obj.toString()); // => "[object Object]"
 詳細は「[クラス][]」の章で解説しますが、ES2022では`#`がJavaScriptの構文として追加され、`#`という記号が意味をもつようになりました。
 ES2022以降では、説明のために`#`を`prototype`の短縮表現に使うと、人によっては異なる意味に見えてしまう可能性があります。
 
-そのため、この書籍は`Object.prototype.toString`を`Object#toString`のように`#`を使って短縮はしていません。
+そのため、この書籍は`Object.prototype.toString`を`Object#toString`のように`#`を使う短縮表記は利用していません。
 
 <!-- textlint-enable no-use-prototype-hash,ja-technical-writing/sentence-length -->
 
