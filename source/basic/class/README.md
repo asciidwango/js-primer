@@ -858,6 +858,7 @@ console.log(instance.method === Prototype.method); // => true
 プロトタイプチェーンの仕組みを疑似的なコードとして表現すると次のような動きをしています。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
 ```js
 // プロトタイプチェーンの動作の疑似的なコード
 class MyClass {
@@ -868,14 +869,14 @@ class MyClass {
 const instance = new MyClass();
 // `instance.method()`を実行する場合
 // 次のような呼び出し処理が行われている
-// インスタンス自身が`method`プロパティを持っている場合
-if (instance.hasOwnProperty("method")) {
+// インスタンスが`method`プロパティを持っている場合
+if (Object.hasOwn(instance, "method")) {
     instance.method();
 } else {
     // インスタンスの`[[Prototype]]`の参照先（`MyClass`のプロトタイプオブジェクト）を取り出す
     const prototypeObject = Object.getPrototypeOf(instance);
     // プロトタイプオブジェクトが`method`プロパティを持っている場合
-    if (prototypeObject.hasOwnProperty("method")) {
+    if (Object.hasOwn(prototypeObject, "method")) {
         // `this`はインスタンス自身を指定して呼び出す
         prototypeObject.method.call(instance);
     }
