@@ -383,7 +383,7 @@ console.log(widget.windw.title); // => TypeError: widget.windw is undefined
 
 - `undefined`との比較
 - `in`演算子
-- [ES2022] `Object.hasOwn`静的メソッド
+- `Object.hasOwn`静的メソッド<sup>[ES2022]</sup>
 - `Object.prototype.hasOwnProperty`メソッド
 
 ### プロパティの存在確認: undefinedとの比較 {#compare-to-undefined}
