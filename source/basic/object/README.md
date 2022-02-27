@@ -379,11 +379,12 @@ console.log(widget.windw.title); // => TypeError: widget.windw is undefined
 ```
 
 `undefined`や`null`はオブジェクトではないため、存在しないプロパティへアクセスすると例外が発生してしまいます。
-あるオブジェクトがあるプロパティを持っているかを確認する方法として、次の3つがあります。
+あるオブジェクトがあるプロパティを持っているかを確認する方法として、次の4つがあります。
 
 - `undefined`との比較
 - `in`演算子
-- `hasOwnProperty`メソッド
+- `Object.hasOwn`静的メソッド<sup>[ES2022]</sup>
+- `Object.prototype.hasOwnProperty`メソッド
 
 ### プロパティの存在確認: undefinedとの比較 {#compare-to-undefined}
 
@@ -416,7 +417,7 @@ if (obj.key !== undefined) {
 }
 ```
 
-このような問題があるため、プロパティが存在するかを判定するには`in`演算子か`hasOwnProperty`メソッドを利用します。
+このような問題があるため、プロパティが存在するかを判定するには`in`演算子か`Object.hasOwn`静的メソッドを利用します。
 
 ### プロパティの存在確認: in演算子を使う {#in-operator}
 
@@ -439,40 +440,62 @@ if ("key" in obj) {
 }
 ```
 
-### プロパティの存在確認: `hasOwnProperty`メソッド {#hasOwnProperty-method}
+### [ES2022] プロパティの存在確認: `Object.hasOwn`静的メソッド {#object-hasown-method}
 
-オブジェクトの`hasOwnProperty`メソッドは、オブジェクト自身が指定したプロパティを持っているかを判定できます。
-この`hasOwnProperty`メソッドの引数には、存在を判定したいプロパティ名を渡します。
+`Object.hasOwn`静的メソッドは、対象のオブジェクトが指定したプロパティを持っているかを判定できます。
+この`Object.hasOwn`静的メソッドの引数には、オブジェクトとオブジェクトが持っているかを確認したいプロパティ名を渡します。
 
 <!-- doctest:disable -->
 ```js
 const obj = {};
-obj.hasOwnProperty("プロパティ名"); // true or false
+// objが"プロパティ名"を持っているかを確認する
+Object.hasOwn(obj, "プロパティ名"); // true or false
 ```
 
 次のコードでは`obj`に`key`プロパティが存在するかを判定しています。
-`hasOwnProperty`メソッドも、プロパティの値は関係なく、オブジェクトが指定したプロパティを持っている場合に`true`を返します。
+`Object.hasOwn`静的メソッドも、プロパティの値は関係なく、オブジェクトが指定したプロパティを持っている場合に`true`を返します。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
 ```js
-const obj = { key: "value" };
-// `obj`が`key`プロパティを持っているならtrue
-if (obj.hasOwnProperty("key")) {
-    console.log("`object`は`key`プロパティを持っている");
+const obj = { key: undefined };
+// `obj`が`key`プロパティを持っているならtrueとなる
+if (Object.hasOwn(obj, "key")) {
+    console.log("`obj`は`key`プロパティを持っている");
 }
 ```
 
-`in`演算子と`hasOwnProperty`メソッドは同じ結果を返していますが、厳密には動作が異なるケースもあります。
+`in`演算子と`Object.hasOwn`静的メソッドは同じ結果を返していますが、厳密には動作が異なるケースもあります。
 この動作の違いを知るにはまずプロトタイプオブジェクトという特殊なオブジェクトについて理解する必要があります。
-次の章の「[プロトタイプオブジェクト][]」で詳しく解説するため、次の章で`in`演算子と`hasOwnProperty`メソッドの違いを見ていきます。
+そのため、`in`演算子と`Object.hasOwn`静的メソッドの違いについては、次の章の「[プロトタイプオブジェクト][]」で詳しく解説します。
+
+## プロパティの存在確認: `Object.prototype.hasOwnProperty`メソッド {#hasOwnProperty-method}
+
+`Object.hasOwn`静的メソッドはES2022で導入されたメソッドです。
+ES2022より前では、`Object.prototype.hasOwnProperty`メソッドというよく似たメソッドが利用されていました。
+`hasOwnProperty`メソッドは、`Object.hasOwn`静的メソッドとよく似ていますが、オブジェクトのインスタンスから呼び出す点が異なります。
+
+{{book.console}}
+```js
+const obj = { key: undefined };
+// `obj`が`key`プロパティを持っているならtrueとなる
+if (obj.hasOwnProperty("key")) {
+    console.log("`obj`は`key`プロパティを持っている");
+}
+```
+
+しかし、`hasOwnProperty`メソッドには欠点があるため、`Object.hasOwn`静的メソッドが利用できる状況では使う理由はありません。
+この欠点もプロトタイプオブジェクトに関係するため、次の章の「[プロトタイプオブジェクト][]」で詳しく解説します。
 
 ## [ES2020] Optional chaining演算子（`?.`） {#optional-chaining-operator}
 
-プロパティの存在を確認する方法として`undefined`との比較、`in`演算子、`hasOwnProperty`メソッドを紹介しました。
-最終的に取得したいものがプロパティの値であるならば、if文で`undefined`と比較しても問題ありません。
+プロパティの存在を確認する方法として4つの方法を紹介しました。
+プロパティが存在するかが重要な場合は、基本的には`in`演算子または`Object.hasOwn`静的メソッドを使います。
+
+しかし、最終的に取得したいものがプロパティの値であるならば、if文で`undefined`と比較しても問題ありません。
 なぜなら、値を取得したい場合には、プロパティが存在するかどうかとプロパティの値が`undefined`かどうかの違いを区別する意味はないためです。
 
-次のコードでは、`widget.window.title`プロパティにアクセスできるなら、そのプロパティの値をコンソールに表示しています。
+次のコードでは、`widget.window.title`プロパティに値が定義されているなら(`undefined`ではないなら)、そのプロパティの値をコンソールに表示しています。
 
 {{book.console}}
 ```js
@@ -652,8 +675,8 @@ console.log(obj[symbolKey2]); // => "2"
 最後にビルトインオブジェクトである`Object`の静的メソッドについて見ていきましょう。
 **静的メソッド**（スタティックメソッド）とは、インスタンスの元となるオブジェクトから呼び出せるメソッドのことです。
 
-これまでの`toString`メソッドなどは、`Object`のインスタンスオブジェクトから呼び出すメソッドでした。
-これに対して、静的メソッドは`Object`そのものから呼び出せるメソッドです。
+Objectの`toString`メソッドなどは、`Object`のインスタンスオブジェクトから呼び出すメソッドでした。
+これに対して、`Object.hasOwn`静的メソッドのような静的メソッドは`Object`そのものに実装されているメソッドです。
 
 ここでは、オブジェクトの処理でよく利用されるいくつかの**静的メソッド**を紹介します。
 
@@ -893,7 +916,8 @@ JavaScriptは言語仕様で定義されている機能が最低限であるた�
 
 - `Object`というビルトインオブジェクトがある
 - `{}`（オブジェクトリテラル）でのオブジェクトの作成や更新方法
-- プロパティの存在確認する`in`演算子と`hasOwnProperty`メソッド
+- プロパティの存在確認するには`in`演算子か`Object.hasOwn`静的メソッドを使う
+- Optional chaining演算子（`?.`）はネストしたプロパティの存在確認とアクセスを同時に行う記法
 - オブジェクトのインスタンスメソッドと静的メソッド
 
 JavaScriptの`Object`は他のオブジェクトのベースとなるオブジェクトです。
