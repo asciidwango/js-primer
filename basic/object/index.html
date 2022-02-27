@@ -1727,11 +1727,12 @@ object.key = <span class="hljs-string">&quot;value&quot;</span>; <span class="hl
 <span class="hljs-comment">// 例外が発生した文以降は実行されません</span>
 </code></pre>
 <p><code>undefined</code>や<code>null</code>はオブジェクトではないため、存在しないプロパティへアクセスすると例外が発生してしまいます。
-あるオブジェクトがあるプロパティを持っているかを確認する方法として、次の3つがあります。</p>
+あるオブジェクトがあるプロパティを持っているかを確認する方法として、次の4つがあります。</p>
 <ul>
 <li><code>undefined</code>との比較</li>
 <li><code>in</code>演算子</li>
-<li><code>hasOwnProperty</code>メソッド</li>
+<li><code>Object.hasOwn</code>静的メソッド<sup>[ES2022]</sup></li>
+<li><code>Object.prototype.hasOwnProperty</code>メソッド</li>
 </ul>
 <h3 id="compare-to-undefined"><a name="compare-to-undefined" class="plugin-anchor" href="#compare-to-undefined"><i class="fa fa-link" aria-hidden="true"></i></a>プロパティの存在確認: undefinedとの比較 </h3>
 <p>存在しないプロパティへアクセスした場合に<code>undefined</code>を返すため、実際にプロパティアクセスすることでも判定できそうです。
@@ -1757,7 +1758,7 @@ object.key = <span class="hljs-string">&quot;value&quot;</span>; <span class="hl
     <span class="hljs-comment">// この行は実行されません</span>
 }
 </code></pre>
-<p>このような問題があるため、プロパティが存在するかを判定するには<code>in</code>演算子か<code>hasOwnProperty</code>メソッドを利用します。</p>
+<p>このような問題があるため、プロパティが存在するかを判定するには<code>in</code>演算子か<code>Object.hasOwn</code>静的メソッドを利用します。</p>
 <h3 id="in-operator"><a name="in-operator" class="plugin-anchor" href="#in-operator"><i class="fa fa-link" aria-hidden="true"></i></a>プロパティの存在確認: in演算子を使う </h3>
 <p><code>in</code>演算子は、指定したオブジェクト上に指定したプロパティがあるかを判定できます。</p>
 <!-- doctest:disable -->
@@ -1772,30 +1773,46 @@ object.key = <span class="hljs-string">&quot;value&quot;</span>; <span class="hl
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;`key`プロパティは存在する&quot;</span>);
 }
 </code></pre>
-<h3 id="hasOwnProperty-method"><a name="hasOwnProperty-method" class="plugin-anchor" href="#hasOwnProperty-method"><i class="fa fa-link" aria-hidden="true"></i></a>プロパティの存在確認: <code>hasOwnProperty</code>メソッド </h3>
-<p>オブジェクトの<code>hasOwnProperty</code>メソッドは、オブジェクト自身が指定したプロパティを持っているかを判定できます。
-この<code>hasOwnProperty</code>メソッドの引数には、存在を判定したいプロパティ名を渡します。</p>
+<h3 id="object-hasown-method"><a name="object-hasown-method" class="plugin-anchor" href="#object-hasown-method"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2022] プロパティの存在確認: <code>Object.hasOwn</code>静的メソッド </h3>
+<p><code>Object.hasOwn</code>静的メソッドは、対象のオブジェクトが指定したプロパティを持っているかを判定できます。
+この<code>Object.hasOwn</code>静的メソッドの引数には、オブジェクトとオブジェクトが持っているかを確認したいプロパティ名を渡します。</p>
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = {};
-obj.hasOwnProperty(<span class="hljs-string">&quot;プロパティ名&quot;</span>); <span class="hljs-comment">// true or false</span>
+<span class="hljs-comment">// objが&quot;プロパティ名&quot;を持っているかを確認する</span>
+<span class="hljs-built_in">Object</span>.hasOwn(obj, <span class="hljs-string">&quot;プロパティ名&quot;</span>); <span class="hljs-comment">// true or false</span>
 </code></pre>
 <p>次のコードでは<code>obj</code>に<code>key</code>プロパティが存在するかを判定しています。
-<code>hasOwnProperty</code>メソッドも、プロパティの値は関係なく、オブジェクトが指定したプロパティを持っている場合に<code>true</code>を返します。</p>
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">key</span>: <span class="hljs-string">&quot;value&quot;</span> };
-<span class="hljs-comment">// `obj`が`key`プロパティを持っているならtrue</span>
-<span class="hljs-keyword">if</span> (obj.hasOwnProperty(<span class="hljs-string">&quot;key&quot;</span>)) {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;`object`は`key`プロパティを持っている&quot;</span>);
+<code>Object.hasOwn</code>静的メソッドも、プロパティの値は関係なく、オブジェクトが指定したプロパティを持っている場合に<code>true</code>を返します。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">key</span>: <span class="hljs-literal">undefined</span> };
+<span class="hljs-comment">// `obj`が`key`プロパティを持っているならtrueとなる</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.hasOwn(obj, <span class="hljs-string">&quot;key&quot;</span>)) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;`obj`は`key`プロパティを持っている&quot;</span>);
 }
 </code></pre>
-<p><code>in</code>演算子と<code>hasOwnProperty</code>メソッドは同じ結果を返していますが、厳密には動作が異なるケースもあります。
+<p><code>in</code>演算子と<code>Object.hasOwn</code>静的メソッドは同じ結果を返していますが、厳密には動作が異なるケースもあります。
 この動作の違いを知るにはまずプロトタイプオブジェクトという特殊なオブジェクトについて理解する必要があります。
-次の章の「<a href="../prototype-object/" title="クラス">プロトタイプオブジェクト</a>」で詳しく解説するため、次の章で<code>in</code>演算子と<code>hasOwnProperty</code>メソッドの違いを見ていきます。</p>
+そのため、<code>in</code>演算子と<code>Object.hasOwn</code>静的メソッドの違いについては、次の章の「<a href="../prototype-object/" title="クラス">プロトタイプオブジェクト</a>」で詳しく解説します。</p>
+<h2 id="hasOwnProperty-method"><a name="hasOwnProperty-method" class="plugin-anchor" href="#hasOwnProperty-method"><i class="fa fa-link" aria-hidden="true"></i></a>プロパティの存在確認: <code>Object.prototype.hasOwnProperty</code>メソッド </h2>
+<p><code>Object.hasOwn</code>静的メソッドはES2022で導入されたメソッドです。
+ES2022より前では、<code>Object.prototype.hasOwnProperty</code>メソッドというよく似たメソッドが利用されていました。
+<code>hasOwnProperty</code>メソッドは、<code>Object.hasOwn</code>静的メソッドとよく似ていますが、オブジェクトのインスタンスから呼び出す点が異なります。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">key</span>: <span class="hljs-literal">undefined</span> };
+<span class="hljs-comment">// `obj`が`key`プロパティを持っているならtrueとなる</span>
+<span class="hljs-keyword">if</span> (obj.hasOwnProperty(<span class="hljs-string">&quot;key&quot;</span>)) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;`obj`は`key`プロパティを持っている&quot;</span>);
+}
+</code></pre>
+<p>しかし、<code>hasOwnProperty</code>メソッドには欠点があるため、<code>Object.hasOwn</code>静的メソッドが利用できる状況では使う理由はありません。
+この欠点もプロトタイプオブジェクトに関係するため、次の章の「<a href="../prototype-object/" title="クラス">プロトタイプオブジェクト</a>」で詳しく解説します。</p>
 <h2 id="optional-chaining-operator"><a name="optional-chaining-operator" class="plugin-anchor" href="#optional-chaining-operator"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2020] Optional chaining演算子（<code>?.</code>） </h2>
-<p>プロパティの存在を確認する方法として<code>undefined</code>との比較、<code>in</code>演算子、<code>hasOwnProperty</code>メソッドを紹介しました。
-最終的に取得したいものがプロパティの値であるならば、if文で<code>undefined</code>と比較しても問題ありません。
+<p>プロパティの存在を確認する方法として4つの方法を紹介しました。
+プロパティが存在するかが重要な場合は、基本的には<code>in</code>演算子または<code>Object.hasOwn</code>静的メソッドを使います。</p>
+<p>しかし、最終的に取得したいものがプロパティの値であるならば、if文で<code>undefined</code>と比較しても問題ありません。
 なぜなら、値を取得したい場合には、プロパティが存在するかどうかとプロパティの値が<code>undefined</code>かどうかの違いを区別する意味はないためです。</p>
-<p>次のコードでは、<code>widget.window.title</code>プロパティにアクセスできるなら、そのプロパティの値をコンソールに表示しています。</p>
+<p>次のコードでは、<code>widget.window.title</code>プロパティに値が定義されているなら(<code>undefined</code>ではないなら)、そのプロパティの値をコンソールに表示しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printWidgetTitle</span>(<span class="hljs-params">widget</span>) </span>{
     <span class="hljs-comment">// 例外を避けるために`widget`のプロパティの存在を順番に確認してから、値を表示している</span>
@@ -1939,8 +1956,8 @@ obj[symbolKey2] = <span class="hljs-string">&quot;2&quot;</span>;
 <h2 id="static-method"><a name="static-method" class="plugin-anchor" href="#static-method"><i class="fa fa-link" aria-hidden="true"></i></a>オブジェクトの静的メソッド </h2>
 <p>最後にビルトインオブジェクトである<code>Object</code>の静的メソッドについて見ていきましょう。
 <strong>静的メソッド</strong>（スタティックメソッド）とは、インスタンスの元となるオブジェクトから呼び出せるメソッドのことです。</p>
-<p>これまでの<code>toString</code>メソッドなどは、<code>Object</code>のインスタンスオブジェクトから呼び出すメソッドでした。
-これに対して、静的メソッドは<code>Object</code>そのものから呼び出せるメソッドです。</p>
+<p>Objectの<code>toString</code>メソッドなどは、<code>Object</code>のインスタンスオブジェクトから呼び出すメソッドでした。
+これに対して、<code>Object.hasOwn</code>静的メソッドのような静的メソッドは<code>Object</code>そのものに実装されているメソッドです。</p>
 <p>ここでは、オブジェクトの処理でよく利用されるいくつかの<strong>静的メソッド</strong>を紹介します。</p>
 <h3 id="enumeration"><a name="enumeration" class="plugin-anchor" href="#enumeration"><i class="fa fa-link" aria-hidden="true"></i></a>オブジェクトの列挙 </h3>
 <p>最初に紹介したように、オブジェクトはプロパティの集合です。
@@ -2129,7 +2146,8 @@ deep copyは、再帰的にshallow copyすることで実現できます。
 <ul>
 <li><code>Object</code>というビルトインオブジェクトがある</li>
 <li><code>{}</code>（オブジェクトリテラル）でのオブジェクトの作成や更新方法</li>
-<li>プロパティの存在確認する<code>in</code>演算子と<code>hasOwnProperty</code>メソッド</li>
+<li>プロパティの存在確認するには<code>in</code>演算子か<code>Object.hasOwn</code>静的メソッドを使う</li>
+<li>Optional chaining演算子（<code>?.</code>）はネストしたプロパティの存在確認とアクセスを同時に行う記法</li>
 <li>オブジェクトのインスタンスメソッドと静的メソッド</li>
 </ul>
 <p>JavaScriptの<code>Object</code>は他のオブジェクトのベースとなるオブジェクトです。
@@ -2165,7 +2183,7 @@ deep copyは、再帰的にshallow copyすることで実現できます。
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptのObjectはオブジェクトの基礎となるものです。オブジェクトとプロパティの作成、更新、削除などの基本的な操作について紹介します。","title":"オブジェクト","level":"1.3.12","depth":2,"next":{"title":"プロトタイプオブジェクト","level":"1.3.13","depth":2,"path":"basic/prototype-object/README.md","ref":"./basic/prototype-object/README.md","articles":[]},"previous":{"title":"ループと反復処理","level":"1.3.11","depth":2,"path":"basic/loop/README.md","ref":"./basic/loop/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/object/README.md","mtime":"2022-02-15T04:10:19.541Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-02-15T04:11:07.325Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptのObjectはオブジェクトの基礎となるものです。オブジェクトとプロパティの作成、更新、削除などの基本的な操作について紹介します。","title":"オブジェクト","level":"1.3.12","depth":2,"next":{"title":"プロトタイプオブジェクト","level":"1.3.13","depth":2,"path":"basic/prototype-object/README.md","ref":"./basic/prototype-object/README.md","articles":[]},"previous":{"title":"ループと反復処理","level":"1.3.11","depth":2,"path":"basic/loop/README.md","ref":"./basic/loop/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/object/README.md","mtime":"2022-02-27T04:56:14.495Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-02-27T04:56:50.622Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
