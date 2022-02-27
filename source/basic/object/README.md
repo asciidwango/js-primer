@@ -379,11 +379,12 @@ console.log(widget.windw.title); // => TypeError: widget.windw is undefined
 ```
 
 `undefined`や`null`はオブジェクトではないため、存在しないプロパティへアクセスすると例外が発生してしまいます。
-あるオブジェクトがあるプロパティを持っているかを確認する方法として、次の3つがあります。
+あるオブジェクトがあるプロパティを持っているかを確認する方法として、次の4つがあります。
 
 - `undefined`との比較
 - `in`演算子
 - [ES2022] `Object.hasOwn`静的メソッド
+- `Object.prototype.hasOwnProperty`メソッド
 
 ### プロパティの存在確認: undefinedとの比較 {#compare-to-undefined}
 
@@ -466,14 +467,15 @@ if (Object.hasOwn(obj, "key")) {
 
 `in`演算子と`Object.hasOwn`静的メソッドは同じ結果を返していますが、厳密には動作が異なるケースもあります。
 この動作の違いを知るにはまずプロトタイプオブジェクトという特殊なオブジェクトについて理解する必要があります。
-次の章の「[プロトタイプオブジェクト][]」で詳しく解説するため、次の章で`in`演算子と`Object.hasOwn`静的メソッドの違いを見ていきます。
+そのため、`in`演算子と`Object.hasOwn`静的メソッドの違いについては、次の章の「[プロトタイプオブジェクト][]」で詳しく解説します。
 
-または、`Object.hasOwn`静的メソッドはES2022で導入されたメソッドです。
+## プロパティの存在確認: `Object.prototype.hasOwnProperty`メソッド {#hasOwnProperty-method}
+
+`Object.hasOwn`静的メソッドはES2022で導入されたメソッドです。
 ES2022より前では、`Object.prototype.hasOwnProperty`メソッドというよく似たメソッドが利用されていました。
 `hasOwnProperty`メソッドは、`Object.hasOwn`静的メソッドとよく似ていますが、オブジェクトのインスタンスから呼び出す点が異なります。
 
 {{book.console}}
-<!-- doctest:meta:{ "ECMAScript": "2022" } -->
 ```js
 const obj = { key: "value" };
 // `obj`が`key`プロパティを持っているならtrueとなる
@@ -483,7 +485,7 @@ if (obj.hasOwnProperty("key")) {
 ```
 
 しかし、`hasOwnProperty`メソッドには欠点があるため、`Object.hasOwn`静的メソッドが利用できる状況では使う理由はありません。
-この欠点もプロトタイプという仕組みに関係するため、次の章の「[プロトタイプオブジェクト][]」で詳しく解説します。
+この欠点もプロトタイプオブジェクトに関係するため、次の章の「[プロトタイプオブジェクト][]」で詳しく解説します。
 
 ## [ES2020] Optional chaining演算子（`?.`） {#optional-chaining-operator}
 
