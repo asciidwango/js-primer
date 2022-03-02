@@ -990,9 +990,8 @@ Stringメソッドで表現できることはStringメソッドで表現し、�
 そのため、文字列から一部の文字を削除するような操作はできません。
 
 つまり、`delete`演算子は文字列に対して利用できません。
-strict modeでは削除できないプロパティを削除しようとするとエラーが発生します
-（strict modeでない場合はエラーも発生せず単に無視されます）
-（「[JavaScriptとは][]」の[strict mode][]を参照）。
+strict modeでは、`delete`演算子で削除できないプロパティを削除しようとするとエラーが発生します。
+strict modeでない場合は、エラーも発生せず単に無視されます（詳細は「[JavaScriptとは][]」の[strict mode][]を参照）。
 
 {{book.console}}
 ```js
