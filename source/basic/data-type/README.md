@@ -169,7 +169,7 @@ console.log(0o777);  // => 511
 
 次のように、`0`からはじまり、`0`から`7`の数字を組み合わせた場合も8進数として扱われます。
 しかし、この表記は10進数と紛らわしいものであったため、ES2015で`0o`の8進数リテラルが新たに導入されました。
-また、strict modeではこの書き方は例外が発生するため、次のような8進数の書き方は避けるべきです。
+また、strict modeではこの書き方は例外が発生するため、次のような8進数の書き方は避けるべきです（詳細は「[JavaScriptとは][]」の[strict mode][]を参照）。
 
 {{book.console}}
 [import, octal-legacy-literal-invalid.js](./src/octal-legacy-literal-invalid.js)
@@ -614,3 +614,5 @@ console.log(str.length); // => 3
 [配列]: ../array/README.md
 [オブジェクト]: ../object/README.md
 [ラッパーオブジェクト]: ../wrapper-object/README.md
+[JavaScriptとは]: ../introduction/README.md
+[strict mode]: ../introduction/README.md#strict-mode
