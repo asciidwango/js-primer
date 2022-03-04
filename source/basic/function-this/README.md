@@ -268,7 +268,7 @@ function outer() {
 outer();
 ```
 
-この書籍では注釈がないコードはstrict modeとして扱いますが、コード例に`"use strict";`と改めてstrict modeを明示しています。
+この書籍では注釈がないコードはstrict modeとして扱いますが、コード例に`"use strict";`と改めてstrict modeを明示しています（詳細は「[JavaScriptとは][]」の[strict mode][]を参照）。
 なぜなら、strict modeではない状況で`this`が`undefined`の場合は、`this`がグローバルオブジェクトを参照するように変換される問題があるためです。
 
 strict modeは、このような意図しにくい動作を防止するために導入されています。
@@ -929,6 +929,7 @@ console.log(obj.method.call("THAT")); // => "THAT"
 
 [^1]: ES2015の仕様編集者であるAllen Wirfs-Brock氏もただの関数においては`this`を使うべきではないと述べている。<https://twitter.com/awbjs/status/938272440085446657>;
 [JavaScriptとは]: ../introduction/README.md
+[strict mode]: ../introduction/README.md#strict-mode
 [関数と宣言]: ../function-declaration/README.md
 [クラス]: ../class/README.md
 [関数とスコープ]: ../function-scope/README.md

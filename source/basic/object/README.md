@@ -340,7 +340,7 @@ obj = {}; // => SyntaxError
 作成したオブジェクトのプロパティの変更を防止するには`Object.freeze`メソッドを利用する必要があります。
 `Object.freeze`はオブジェクトを凍結します。凍結されたオブジェクトでプロパティの追加や変更すると例外が発生するようになります。
 
-ただし、`Object.freeze`メソッドを利用する場合は必ずstrict modeと合わせて使います。
+ただし、`Object.freeze`メソッドを利用する場合は必ずstrict modeと合わせて使います（詳細は「[JavaScriptとは][]」の[strict mode][]を参照）。
 strict modeではない場合は、凍結されたオブジェクトのプロパティを変更しても例外が発生せずに単純に無視されます。
 
 {{book.console}}
@@ -930,3 +930,5 @@ JavaScriptの`Object`は他のオブジェクトのベースとなるオブジ�
 [const]: ../variables/README.md#const
 [ユースケース: Node.jsでCLIアプリケーション]: ../../use-case/nodecli/README.md
 [Map/Set]: ../map-and-set/README.md
+[JavaScriptとは]: ../introduction/README.md
+[strict mode]: ../introduction/README.md#strict-mode

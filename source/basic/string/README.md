@@ -990,8 +990,8 @@ Stringメソッドで表現できることはStringメソッドで表現し、�
 そのため、文字列から一部の文字を削除するような操作はできません。
 
 つまり、`delete`演算子は文字列に対して利用できません。
-strict modeでは削除できないプロパティを削除しようとするとエラーが発生します
-（strict modeでない場合はエラーも発生せず単に無視されます）。
+strict modeでは、`delete`演算子で削除できないプロパティを削除しようとするとエラーが発生します。
+strict modeでない場合は、エラーも発生せず単に無視されます（詳細は「[JavaScriptとは][]」の[strict mode][]を参照）。
 
 {{book.console}}
 ```js
@@ -1279,7 +1279,6 @@ console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
 それらの文字列を安全に扱うためには、コンテキストに応じた処理が必要になります。
 また、タグつきテンプレートリテラルを利用することで、テンプレート中の変数を自動でエスケープするといった処理を実現できます。
 
-
 [文字列とUnicode]: ../string-unicode/README.md
 [ループと反復処理]: ../loop/README.md
 [エスケープシーケンス]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String#%E3%82%A8%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%97%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9
@@ -1291,5 +1290,7 @@ console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
 [URL Standard]: https://url.spec.whatwg.org/  "URL Standard"
 [URL]: https://developer.mozilla.org/ja/docs/Web/API/URL  "URL - Web API インターフェイス | MDN"
 [Path]: https://nodejs.org/api/path.html  "Path | Node.js v7.9.0 Documentation"
+[JavaScriptとは]: ../introduction/README.md
+[strict mode]: ../introduction/README.md#strict-mode
 
 [^1]: Unicodeのカタカナの一覧 <https://unicode-table.com/jp/#katakana> から取り出したテーブルです。
