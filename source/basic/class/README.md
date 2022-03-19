@@ -276,7 +276,7 @@ class クラス {
 このインスタンス間で共有されるメソッドのことを**プロトタイプメソッド**と呼びます。
 また、プロトタイプメソッドはインスタンスから呼び出せるメソッドであるため**インスタンスメソッド**とも呼ばれます。
 
-この書籍では、プロトタイプメソッド（インスタンスメソッド）を`クラス#メソッド名`のように表記します。
+この書籍では、プロトタイプメソッド（インスタンスメソッド）を`クラス`の`メソッド名`のように表記します。
 
 次のコードでは、`Counter`クラスに`increment`メソッド（Counterのプロトタイプオブジェクトに`increment`メソッド）を定義しています。
 `Counter`クラスのインスタンスはそれぞれ別々の状態（`count`プロパティ）を持ちます。
@@ -750,7 +750,7 @@ class MyClass {
 }
 
 console.log(typeof MyClass.prototype.method === "function"); // => true
-// クラス#constructorはクラス自身を参照する
+// クラスのconstructorはクラス自身を参照する
 console.log(MyClass.prototype.constructor === MyClass); // => true
 ```
 

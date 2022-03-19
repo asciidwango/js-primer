@@ -952,12 +952,12 @@ Promiseの`finally`メソッドは成功時、失敗時どちらの場合でも�
 // `promise`にはResolvedまたはRejectedなPromiseインスタンスがランダムで入る
 const promise = Math.random() < 0.5 ? Promise.resolve() : Promise.reject();
 promise.then(() => {
-    console.log("Promise#then");
+    console.log("Promiseのthenメソッド");
 }).catch((error) => {
-    console.log("Promise#catch");
+    console.log("Promiseのcatchメソッド");
 }).finally(() => {
     // 成功、失敗どちらの場合でも呼び出される
-    console.log("Promise#finally");
+    console.log("Promiseのfinallyメソッド");
 });
 ```
 
@@ -988,7 +988,7 @@ dummyFetch("/resource/A").then(response => {
     console.error(error);
 }).finally(() => {
     isLoading = false;
-    console.log("Promise#finally");
+    console.log("Promiseのfinallyメソッド");
 });
 ```
 
@@ -1459,7 +1459,7 @@ asyncMain().catch(error => {
 
 ### Promiseチェーンを`await`式で表現する {#promise-chain-to-async-function}
 
-<!-- Promiseと配列にしなかったのは、Promiseの逐次処理を抽象化するにはArray#reduceがでてくるため -->
+<!-- Promiseと配列にしなかったのは、Promiseの逐次処理を抽象化するにはArrayのreduceメソッドがでてくるため -->
 
 Async Functionと`await`式を使うことでPromiseチェーンとして表現していた非同期処理を同期処理のような見た目で書けます。
 まずは、Promiseチェーンで複数の非同期処理を逐次的に行うケースを見ていきます。
@@ -1693,9 +1693,9 @@ Async Function外の処理も停止できてしまうと、JavaScriptでは基�
 具体例として、先ほどの逐次的にリソースを取得する`fetchResources`関数を見てみます。
 
 先ほどの`fetchResources`関数ではforループと`await`式を利用していました。
-このときにforループの代わりに`Array#forEach`メソッドは利用できません。
+このときにforループの代わりにArrayの`forEach`メソッドは利用できません。
 
-単純に`fetchResources`関数のforループから`Array#forEach`メソッドに書き換えて見ると、構文エラー（`SyntaxError`）が発生してしまいます。
+単純に`fetchResources`関数のforループから`Array`の`forEach`メソッドに書き換えて見ると、構文エラー（`SyntaxError`）が発生してしまいます。
 これは`await`式がAsync Functionの中でのみ利用ができる構文であるためです。
 
 <!-- textlint-disable -->

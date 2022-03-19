@@ -66,7 +66,7 @@ result.innerHTML = view;
 ```
 
 JavaScriptによってHTML要素をDOMに追加する方法には、大きく分けて２つあります。
-1つは、今回のようにHTML文字列を[Element#innerHTML][]プロパティにセットする方法です。
+1つは、今回のようにHTML文字列を[ElementのinnerHTML][]プロパティにセットする方法です。
 もう1つは、文字列ではなく[Element][]オブジェクトを生成して[手続き的にツリー構造を構築する][]方法です。
 後者はセキュリティ的に安全ですが、コードは少し冗長になります。
 今回はElementの`innerHTML`プロパティを使いつつ、セキュリティのためのエスケープ処理を行います。
@@ -159,7 +159,7 @@ result.innerHTML = view;
 - `fetchUserInfo`関数を呼び出し、HTMLにユーザー情報が表示されることを確認した
 
 [document.getElementById]: https://developer.mozilla.org/ja/docs/Web/API/Document/getElementById
-[Element#innerHTML]: https://developer.mozilla.org/ja/docs/Web/API/Element/innerHTML
+[ElementのinnerHTML]: https://developer.mozilla.org/ja/docs/Web/API/Element/innerHTML
 [Element]: https://developer.mozilla.org/ja/docs/Web/API/Element
 [手続き的にツリー構造を構築する]: https://developer.mozilla.org/ja/docs/Web/API/Node/appendChild
 [エスケープ用のライブラリ]: https://github.com/teppeis/htmlspecialchars
