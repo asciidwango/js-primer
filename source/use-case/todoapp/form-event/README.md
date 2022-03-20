@@ -121,9 +121,9 @@ formElement.addEventListener("submit", (event) => {
 ```
 todoapp
 ├── index.html
-├── index.js (App#mountの呼び出し)
+├── index.js (Appクラスのmountメソッドの呼び出し)
 └── src
-    └── App.js (App#mountの実装)
+    └── App.js (Appクラスのmountメソッドの実装)
 ```
 
 

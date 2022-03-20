@@ -513,9 +513,9 @@ if (index !== -1) {
 「文字列」に「検索文字列」が含まれているかを検索する方法がいくつか用意されています。
 次の3つのメソッドはES2015で導入されました。
 
-- `String#startsWith(検索文字列)`<sup>[ES2015]</sup>: 検索文字列が先頭にあるかの真偽値を返す
-- `String#endsWith(検索文字列)`<sup>[ES2015]</sup>: 検索文字列が末尾にあるかの真偽値を返す
-- `String#includes(検索文字列)`<sup>[ES2015]</sup>: 検索文字列を含むかの真偽値を返す
+- `String.prototype.startsWith(検索文字列)`<sup>[ES2015]</sup>: 検索文字列が先頭にあるかの真偽値を返す
+- `String.prototype.endsWith(検索文字列)`<sup>[ES2015]</sup>: 検索文字列が末尾にあるかの真偽値を返す
+- `String.prototype.includes(検索文字列)`<sup>[ES2015]</sup>: 検索文字列を含むかの真偽値を返す
 
 具体的な例をいくつか見てみましょう。
 
@@ -642,8 +642,8 @@ const pattern = new RegExp(`\\s{${spaceCount}}`);
 Stringの`indexOf`メソッドの正規表現版ともいえるStringの`search`メソッドがあります。
 `search`メソッドは正規表現のパターンにマッチした箇所のインデックスを返し、マッチする文字列がない場合は`-1`を返します。
 
-- `String#indexOf(検索文字列)`: 指定された文字列にマッチした箇所のインデックスを返す
-- `String#search(/パターン/)`: 指定された正規表現のパターンにマッチした箇所のインデックスを返す
+- `String.prototype.indexOf(検索文字列)`: 指定された文字列にマッチした箇所のインデックスを返す
+- `String.prototype.search(/パターン/)`: 指定された正規表現のパターンにマッチした箇所のインデックスを返す
 
 次のコードでは、数字が3つ連続しているかを検索し、該当した箇所のインデックスを返しています。
 `\d`は、1文字の数字（`0`から`9`）にマッチする特殊文字です。
@@ -742,9 +742,9 @@ Stringの`match`メソッドの挙動をまとめると次のようになりま�
 - 正規表現の`g`フラグがある場合は、マッチしたすべての結果を含んだただの配列を返す
 
 <!--
-RegExp#match globalがtrueの場合はプロパティがないただの配列を返す
+RegExp.prototype.match globalがtrueの場合はプロパティがないただの配列を返す
 https://tc39.es/ecma262/#sec-regexp.prototype-@@match
-RegExp#match globalがfalseの場合はString#execと同じ
+RegExp.prototype.match globalがfalseの場合はString.prototype.execと同じ
  -->
 
 ES2020では、正規表現の`g`フラグを使った繰り返しマッチする場合においても、それぞれマッチした文字列ごとの情報を得るためのStringの`matchAll`が追加されています。
@@ -827,7 +827,7 @@ for (const match of matchesIterator) {
 // match: "ES2017", capture1: 2017, index: 14, input: "ES2015、ES2016、ES2017"
 ```
 
-#### [コラム] RegExp#execでのString#matchAll {#regexp-exec}
+#### [コラム] RegExp.prototype.execでのString.prototype.matchAll {#regexp-exec}
 
 Stringの`matchAll`メソッドは、ES2020で導入されたメソッドです。
 それまでは、RegExpの`exec`メソッドというStringの`match`メソッドによく似た挙動をするメソッドを利用して、Stringの`matchAll`メソッド相当の表現を実装していました。
