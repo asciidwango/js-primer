@@ -1552,25 +1552,25 @@ bookTitle = <span class="hljs-string">&quot;新しいタイトル&quot;</span>;
 <p>変数の名前は、半角のアルファベットである<code>A</code>から<code>Z</code>（大文字）と<code>a</code>から<code>z</code>（小文字）、<code>_</code>（アンダースコア）、<code>$</code>（ダラー）、数字の<code>0</code>から<code>9</code>を組み合わせた名前にします。
 JavaScriptでは、アルファベットの大文字と小文字は区別されます。</p>
 <p>これらに加えて、ひらがなや一部の漢字なども変数名に利用できますが、全角の文字列が混在すると環境によって扱いにくいこともあるためお勧めしません。</p>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> $; <span class="hljs-comment">// OK: $が利用できる</span>
-<span class="hljs-keyword">var</span> _title; <span class="hljs-comment">// OK: _が利用できる</span>
-<span class="hljs-keyword">var</span> jquery; <span class="hljs-comment">// OK: 小文字のアルファベットが利用できる</span>
-<span class="hljs-keyword">var</span> TITLE; <span class="hljs-comment">// OK: 大文字のアルファベットが利用できる</span>
-<span class="hljs-keyword">var</span> es2015; <span class="hljs-comment">// OK: 数字は先頭以外なら利用できる</span>
-<span class="hljs-keyword">var</span> 日本語の変数名; <span class="hljs-comment">// OK: 一部の漢字や日本語も利用できる</span>
+<pre><code class="lang-js"><span class="hljs-keyword">let</span> $; <span class="hljs-comment">// OK: $が利用できる</span>
+<span class="hljs-keyword">let</span> _title; <span class="hljs-comment">// OK: _が利用できる</span>
+<span class="hljs-keyword">let</span> jquery; <span class="hljs-comment">// OK: 小文字のアルファベットが利用できる</span>
+<span class="hljs-keyword">let</span> TITLE; <span class="hljs-comment">// OK: 大文字のアルファベットが利用できる</span>
+<span class="hljs-keyword">let</span> es2015; <span class="hljs-comment">// OK: 数字は先頭以外なら利用できる</span>
+<span class="hljs-keyword">let</span> 日本語の変数名; <span class="hljs-comment">// OK: 一部の漢字や日本語も利用できる</span>
 </code></pre>
 <p>変数名に数字を含めることはできますが、変数名を数字から開始することはできません。
 これは変数名と数値が区別できなくなってしまうためです。</p>
 <!-- doctest:SyntaxError -->
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> 1st; <span class="hljs-comment">// NG: 数字から始まっている</span>
-<span class="hljs-keyword">var</span> <span class="hljs-number">123</span>; <span class="hljs-comment">// NG: 数字のみで構成されている</span>
+<pre><code class="lang-js"><span class="hljs-keyword">let</span> 1st; <span class="hljs-comment">// NG: 数字から始まっている</span>
+<span class="hljs-keyword">let</span> <span class="hljs-number">123</span>; <span class="hljs-comment">// NG: 数字のみで構成されている</span>
 </code></pre>
 <p>また、予約語として定義されているキーワードは変数名には利用できません。
-予約語とは、<code>var</code>のように構文として意味を持つキーワードのことです。
+予約語とは、<code>let</code>のように構文として意味を持つキーワードのことです。
 予約語の一覧は<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Reserved_Words" target="_blank">予約語 - JavaScript | MDN</a>で確認できますが、基本的には構文として利用される名前が予約されています。</p>
 <!-- doctest:SyntaxError -->
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> <span class="hljs-keyword">var</span>; <span class="hljs-comment">// NG: `var`は変数宣言のために予約されているので利用できない</span>
-<span class="hljs-keyword">var</span> <span class="hljs-keyword">if</span>; <span class="hljs-comment">// NG: `if`はif文のために予約されているので利用できない</span>
+<pre><code class="lang-js"><span class="hljs-keyword">let</span> <span class="hljs-keyword">let</span>; <span class="hljs-comment">// NG: `let`は変数宣言のために予約されているので利用できない</span>
+<span class="hljs-keyword">let</span> <span class="hljs-keyword">if</span>; <span class="hljs-comment">// NG: `if`はif文のために予約されているので利用できない</span>
 </code></pre>
 <h2 id="const-is-not-constant"><a name="const-is-not-constant" class="plugin-anchor" href="#const-is-not-constant"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] <code>const</code>は定数ではない </h2>
 <p><code>const</code>は「再代入できない変数」を定義する変数宣言であり、必ずしも定数を定義するわけではありません。
@@ -1640,7 +1640,7 @@ object.key = <span class="hljs-string">&quot;新しい値&quot;</span>;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptの変数宣言する方法についてを紹介します。変数を宣言する方法にはconst,let,varがあります。これらの動作の違いや使い分けについてを紹介します。","title":"変数と宣言","level":"1.3.3","depth":2,"next":{"title":"値の評価と表示","level":"1.3.4","depth":2,"path":"basic/read-eval-print/README.md","ref":"./basic/read-eval-print/README.md","articles":[]},"previous":{"title":"コメント","level":"1.3.2","depth":2,"path":"basic/comments/README.md","ref":"./basic/comments/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/variables/README.md","mtime":"2022-03-26T11:43:29.873Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-03-26T11:44:13.330Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptの変数宣言する方法についてを紹介します。変数を宣言する方法にはconst,let,varがあります。これらの動作の違いや使い分けについてを紹介します。","title":"変数と宣言","level":"1.3.3","depth":2,"next":{"title":"値の評価と表示","level":"1.3.4","depth":2,"path":"basic/read-eval-print/README.md","ref":"./basic/read-eval-print/README.md","articles":[]},"previous":{"title":"コメント","level":"1.3.2","depth":2,"path":"basic/comments/README.md","ref":"./basic/comments/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/variables/README.md","mtime":"2022-03-27T06:35:10.247Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-03-27T06:35:55.487Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
