@@ -330,8 +330,8 @@ Number(undefined); // => NaN
 ```js
 const userInput = "任意の文字列";
 const num = Number.parseInt(userInput, 10);
-if (!Number.isNaN(num)) {
-    console.log("NaNではない値にパースできた", num);
+if (Number.isNaN(num)) {
+    console.log("パースした結果NaNになった", num);
 }
 ```
 
