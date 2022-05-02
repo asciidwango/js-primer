@@ -47,7 +47,7 @@ export class App {
     #handleSubmit = (event) => {
         event.preventDefault();
         const inputElement = this.formInputElement;
-        this.handleAdd(inputElement.value);
+        this.#handleAdd(inputElement.value);
         inputElement.value = "";
     };
 
@@ -61,10 +61,10 @@ export class App {
         const todoListElement = this.#todoListView.createElement(todoItems, {
             // Appに定義したリスナー関数を呼び出す
             onUpdateTodo: ({ id, completed }) => {
-                this.handleUpdate({ id, completed });
+                this.#handleUpdate({ id, completed });
             },
             onDeleteTodo: ({ id }) => {
-                this.handleDelete({ id });
+                this.#handleDelete({ id });
             }
         });
         render(todoListElement, todoListContainerElement);
