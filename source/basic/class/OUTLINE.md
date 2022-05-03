@@ -10,7 +10,10 @@
     - new
 	    - newした時の`this`の仕組み
     - メソッド
+        - Prototypeメソッド
 		- インスタンスメソッド
+    - Public Fields
+    - Private Fields
 	- getter/setter
 		- Computed Variable(プロパティ)
 			- Public Field
@@ -27,6 +30,7 @@
 		    - Error, HTMLElement
     - 静的メソッド
 	    - `of`や`from`
+    - Static Public/Private Fields
 - 発展的利用方法
 	- classは値
 	- mixin
@@ -51,12 +55,9 @@
 		- enumerable
 		- configurable
 	- `Object.freeze(this)`でのImmutable class
-- Proposalの詳細
-	- https://github.com/tc39/proposal-class-public-fields
-	- https://github.com/tc39/proposal-private-fields
-	- https://github.com/tc39/proposal-class-fields
-	- https://github.com/tc39/proposal-static-class-features/
-
+- TODO: brand check
+- Compuated Fields/Method
+    - かなり発展的な気がする
 
 ----
 
@@ -119,10 +120,21 @@
   - しかし、現在のJavaScriptのクラスにはクラスの外側から完全に見えない値を定義する(hard privateと呼ばれる)アクセス制御を行う方法は持っていません。
   - これについては今後hard privateの機能を追加することが検討されています。(後述する[コラム] maximally minimal class)、また現時点でもWeakSetを使って擬似的なprivate(soft privateと呼ばれる)を実現できます(詳細は「Map/Set」の章）
 
-- 静的メソッド
+- [ES2022]Public Fieldsの定義
+  - 具体例: `Counter`
+  - `count = 0` の例
 
+- [ES2022]Private Fieldsの定義
+  - Note: アクセサメソッドに依存
+  - 具体例: `NumberValue`
+  - `#value_ = 0` の例
+  - privateということを構文的に区別するために`#`がつく(this.valueだとどっちかわからなくなるという経緯)
+- Field + getter/setter
+
+- 静的メソッド
     - `of`や`from`
     - staticにおける`this`
+- 静的なFields
 
 - [コラム] インスタンスが持つ初期値
   - 現在のクラスにはフィールド変数をメソッドのように定義する構文はありません。
@@ -270,9 +282,6 @@
 	- `Object.freeze`でのimmutable class
 	- static methodの継承
         - `class C extends P{}`は `C.__proto__` が `P` となる
-	- アクセスレベル
-		- pubilc, private, computed
-		- [ES proposal: class fields](http://2ality.com/2017/07/class-fields.html "ES proposal: class fields")
     - [ES2019] フィールドプロパティ
         - https://github.com/tc39/proposal-class-fields
         - ES2019あたりで入る可能性がある
