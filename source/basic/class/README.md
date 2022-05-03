@@ -17,15 +17,13 @@ ES2015でクラスを表現するための`class`構文が導入されました�
 `class`構文ではプロトタイプベースの継承の仕組みを使って関数でクラスを表現しています。
 そのため、`class`構文はクラスを作るための関数定義や継承をパターン化した書き方と言えます。[^1]
 
-また、関数の定義方法として関数宣言文と関数式があるように、クラスにもクラス宣言文とクラス式があります。
-このように関数とクラスは似ている部分が多いです。
+また、関数の定義方法として関数宣言文と関数式があるように、クラスにもクラス宣言文とクラス式があります。 このように関数とクラスは似ている部分が多いです。
 
 この章では、`class`構文でのクラスの定義や継承、クラスの性質について学んでいきます。
 
 ## クラスの定義 {#class-declaration}
 
-クラスを定義するには`class`構文を使います。
-クラスの定義方法にはクラス宣言文とクラス式があります。
+クラスを定義するには`class`構文を使います。 クラスの定義方法にはクラス宣言文とクラス式があります。
 
 まずは、クラス宣言文によるクラスの定義方法を見ていきます。
 
@@ -36,19 +34,20 @@ ES2015でクラスを表現するための`class`構文が導入されました�
 `constructor`メソッドに定義した処理は、クラスをインスタンス化したときに自動的に呼び出されます。
 
 {{book.console}}
+
 ```js
 class MyClass {
     constructor() {
-        // コンストラクタ関数の処理
-        // インスタンス化されるときに自動的に呼び出される
+    // コンストラクタ関数の処理
+    // インスタンス化されるときに自動的に呼び出される
     }
 }
 ```
 
-もうひとつの定義方法であるクラス式は、クラスを値として定義する方法です。
-クラス式ではクラス名を省略できます。これは関数式における匿名関数と同じです。
+もうひとつの定義方法であるクラス式は、クラスを値として定義する方法です。 クラス式ではクラス名を省略できます。これは関数式における匿名関数と同じです。
 
 {{book.console}}
+
 ```js
 const MyClass = class MyClass {
     constructor() {}
@@ -65,12 +64,11 @@ const AnonymousClass = class {
 ```js
 class MyClassA {
     constructor() {
-        // コンストラクタの処理が必要なら書く
+    // コンストラクタの処理が必要なら書く
     }
 }
 // コンストラクタの処理が不要な場合は省略できる
 class MyClassB {
-
 }
 ```
 
@@ -81,6 +79,7 @@ class MyClassB {
 あるインスタンスが指定したクラスから作成されたものかを判定するには`instanceof`演算子が利用できます。
 
 {{book.console}}
+
 ```js
 class MyClass {
 }
@@ -97,40 +96,40 @@ console.log(myClassAnother instanceof MyClass); // => true
 
 このままでは何も処理がない空のクラスなので、値を持ったクラスを定義してみましょう。
 
-クラスではインスタンスの初期化処理をコンストラクタ関数で行います。
-コンストラクタ関数は`new`演算子でインスタンス化する際に自動的に呼び出されます。
+クラスではインスタンスの初期化処理をコンストラクタ関数で行います。 コンストラクタ関数は`new`演算子でインスタンス化する際に自動的に呼び出されます。
 コンストラクタ関数内での`this`はこれから新しく作るインスタンスオブジェクトとなります。
 
 次のコードでは、`x`座標と`y`座標の値を持つ`Point`というクラスを定義しています。
 コンストラクタ関数（`constructor`）の中でインスタンスオブジェクト（`this`）の`x`と`y`プロパティに値を代入して初期化しています。
 
 {{book.console}}
+
 ```js
 class Point {
     // コンストラクタ関数の仮引数として`x`と`y`を定義
     constructor(x, y) {
-        // コンストラクタ関数における`this`はインスタンスを示すオブジェクト
-        // インスタンスの`x`と`y`プロパティにそれぞれ値を設定する
+    // コンストラクタ関数における`this`はインスタンスを示すオブジェクト
+    // インスタンスの`x`と`y`プロパティにそれぞれ値を設定する
         this.x = x;
         this.y = y;
     }
 }
 ```
 
-この`Point`クラスのインスタンスを作成するには`new`演算子を使います。
-`new`演算子には関数呼び出しと同じように引数を渡すことができます。
+この`Point`クラスのインスタンスを作成するには`new`演算子を使います。 `new`演算子には関数呼び出しと同じように引数を渡すことができます。
 `new`演算子の引数はクラスの`constructor`メソッド（コンストラクタ関数）の仮引数に渡されます。
 そして、コンストラクタの中ではインスタンスオブジェクト（`this`）の初期化処理を行います。
 
 {{book.console}}
+
 ```js
 class Point {
     // 2. コンストラクタ関数の仮引数として`x`には`3`、`y`には`4`が渡る
     constructor(x, y) {
-        // 3. インスタンス(`this`)の`x`と`y`プロパティにそれぞれ値を設定する
+    // 3. インスタンス(`this`)の`x`と`y`プロパティにそれぞれ値を設定する
         this.x = x;
         this.y = y;
-        // コンストラクタではreturn文は書かない
+    // コンストラクタではreturn文は書かない
     }
 }
 
@@ -147,9 +146,10 @@ console.log(point.y); // => 4
 これは、クラスのコンストラクタはインスタンス（`this`）を初期化する場所であり、通常の関数とは役割が異なるためです。
 
 {{book.console}}
+
 ```js
 class MyClass {
-    constructor() { }
+    constructor() {}
 }
 // クラスのコンストラクタ関数として呼び出すことはできない
 MyClass(); // => TypeError: class constructors must be invoked with |new|
@@ -159,15 +159,15 @@ MyClass(); // => TypeError: class constructors must be invoked with |new|
 JavaScriptでは、コンストラクタ関数が任意のオブジェクトを返すことが可能ですが、行うべきではありません。
 なぜなら、コンストラクタは`new`演算子で呼び出し、その評価結果はクラスのインスタンスを期待するのが一般的であるためです。
 
-次のコードのようにコンストラクタで返した値が`new`演算子で呼び出した際の返り値となります。
-このような書き方は混乱を生むため避けるべきです。
+次のコードのようにコンストラクタで返した値が`new`演算子で呼び出した際の返り値となります。 このような書き方は混乱を生むため避けるべきです。
 
 {{book.console}}
+
 ```js
 // 非推奨の例: コンストラクタで値を返すべきではない
 class Point {
     constructor(x, y) {
-        // `this`の代わりにただのオブジェクトを返せる
+    // `this`の代わりにただのオブジェクトを返せる
         return { x, y };
     }
 }
@@ -195,10 +195,10 @@ const thing = new Thing();
 ES2015より前はこれらのクラスを`class`構文ではなく、関数で表現していました。
 その表現方法は人によってさまざまで、これも`class`構文という統一した記法が導入された理由の1つです。
 
-次のコードは、関数でクラスを実装した1つの例です。
-この関数でのクラス表現は、継承の仕組みなどは省かれていますが、`class`構文とよく似ています。
+次のコードは、関数でクラスを実装した1つの例です。 この関数でのクラス表現は、継承の仕組みなどは省かれていますが、`class`構文とよく似ています。
 
 {{book.console}}
+
 ```js
 // コンストラクタ関数
 const Point = function PointConstructor(x, y) {
@@ -216,6 +216,7 @@ const point = new Point(3, 4);
 一方、関数でのクラス表現はただの関数なので、当然関数として呼び出せます。
 
 {{book.console}}
+
 ```js
 // 関数でのクラス表現
 function MyClassLike() {
@@ -241,13 +242,14 @@ MyClass(); // => TypeError: class constructors must be invoked with |new|
 
 次のように`class`構文ではクラスに対してメソッドを定義できます。
 メソッドの中からクラスのインスタンスを参照するには、`constructor`メソッドと同じく`this`を使います。
-このクラスのメソッドにおける`this`は「[関数とthis][]」の章で学んだメソッドと同じくベースオブジェクトを参照します。
+このクラスのメソッドにおける`this`は「[関数とthis][関数とthis]」の章で学んだメソッドと同じくベースオブジェクトを参照します。
 
 <!-- doctest:disable -->
+
 ```js
 class クラス {
     メソッド() {
-        // ここでの`this`はベースオブジェクトを参照
+    // ここでの`this`はベースオブジェクトを参照
     }
 }
 
@@ -261,6 +263,7 @@ const インスタンス = new クラス();
 
 <!-- textlint-disable -->
 <!-- doctest:disable -->
+
 ```js
 // クラスでは次のようにメソッドを定義できない
 class クラス {
@@ -270,18 +273,17 @@ class クラス {
    メソッド: function(){}
 }
 ```
+
 <!-- textlint-enable -->
 
 このようにクラスに対して定義したメソッドは、クラスの各インスタンスから**共有されるメソッド**となります。
 このインスタンス間で共有されるメソッドのことを**プロトタイプメソッド**と呼びます。
-また、プロトタイプメソッドはインスタンスから呼び出せるメソッドであるため**インスタンスメソッド**とも呼ばれます。
 
-この書籍では、プロトタイプメソッド（インスタンスメソッド）を`クラス`の`メソッド名`のように表記します。
-
-次のコードでは、`Counter`クラスに`increment`メソッド（Counterのプロトタイプオブジェクトに`increment`メソッド）を定義しています。
-`Counter`クラスのインスタンスはそれぞれ別々の状態（`count`プロパティ）を持ちます。
+次のコードでは、`Counter`クラスに`increment`メソッドを定義しています。
+このときの`Counter`クラスのインスタンスは、それぞれ別々の状態（`count`プロパティ）を持ちます。
 
 {{book.console}}
+
 ```js
 class Counter {
     constructor() {
@@ -289,7 +291,7 @@ class Counter {
     }
     // `increment`メソッドをクラスに定義する
     increment() {
-        // `this`は`Counter`のインスタンスを参照する
+    // `this`は`Counter`のインスタンスを参照する
         this.count++;
     }
 }
@@ -302,11 +304,12 @@ console.log(counterA.count); // => 1
 console.log(counterB.count); // => 0
 ```
 
-また`increment`メソッドはプロトタイプメソッドとして定義されています。
-プロトタイプメソッドは各インスタンス間で共有されます。
+一方で、`increment`メソッドはプロトタイプメソッドとして定義されています。
+プロトタイプメソッドは各インスタンス間(`counterA`と`counterB`)で共有されます。
 そのため、次のように各インスタンスの`increment`メソッドの参照先は同じとなっていることがわかります。
 
 {{book.console}}
+
 ```js
 class Counter {
     constructor() {
@@ -325,101 +328,15 @@ console.log(counterA.increment === counterB.increment); // => true
 プロトタイプメソッドがなぜインスタンス間で共有されているのかは、クラスの継承の仕組みと密接に関係しています。
 プロトタイプメソッドの仕組みについては後ほど解説します。
 
-### クラスのインスタンスに対してメソッドを定義する {#class-instance-method}
+ここでは、次のような構文でクラスにメソッドを定義すると、各インスタンスで共有されるプロトタイプメソッドとして定義されるということが理解できていれば問題ありません。
 
-`class`構文でのメソッド定義はプロトタイプメソッドとなり、インスタンス間で共有されます。
-
-一方、クラスのインスタンスに対して、直接メソッドを定義する方法もあります。
-これは、コンストラクタ関数内でインスタンスオブジェクトである`this`に対してメソッドを定義するだけです。
-
-次のコードでは、`Counter`クラスのコンストラクタ関数で、インスタンスオブジェクトに`increment`メソッドを定義しています。
-コンストラクタ関数内で`this`はインスタンスオブジェクトを示すため、`this`に対してメソッドを定義しています。
-
-{{book.console}}
 ```js
-class Counter {
-    constructor() {
-        this.count = 0;
-        this.increment = () => {
-            // `this`は`constructor`メソッドにおける`this`（インスタンスオブジェクト）を参照する
-            this.count++;
-        };
+class クラス {
+    メソッド() {
+    // このメソッドはプロトタイプメソッドとして定義される
     }
 }
-const counterA = new Counter();
-const counterB = new Counter();
-// `counterA.increment()`のベースオブジェクトは`counterA`インスタンス
-counterA.increment();
-// 各インスタンスの持つプロパティ(状態)は異なる
-console.log(counterA.count); // => 1
-console.log(counterB.count); // => 0
 ```
-
-この方法で定義した`increment`メソッドはインスタンスから呼び出せるため、インスタンスメソッドです。
-しかし、インスタンスオブジェクトに定義した`increment`メソッドはプロトタイプメソッドではありません。
-インスタンスオブジェクトのメソッドとプロトタイプメソッドには、いくつか異なる点があります。
-
-プロトタイプメソッドは各インスタンスから共有されているため、各インスタンスからのメソッドの参照先が同じでした。
-しかし、インスタンスオブジェクトのメソッドは、コンストラクタで毎回同じ挙動の関数（オブジェクト）を新しく定義しています。
-そのため、次のように各インスタンスからのメソッドの参照先も異なります。
-
-```js
-class Counter {
-    constructor() {
-        this.count = 0;
-        this.increment = () => {
-            this.count++;
-        };
-    }
-}
-const counterA = new Counter();
-const counterB = new Counter();
-// 各インスタンスオブジェクトのメソッドの参照先は異なる
-console.log(counterA.increment === counterB.increment); // => false
-```
-
-また、プロトタイプメソッドとは異なり、インスタンスオブジェクトへのメソッド定義はArrow Functionが利用できます。
-Arrow Functionには`this`が静的に決まるという性質があるため、メソッドにおける`this`の参照先をインスタンスに固定できます。
-なぜならArrow Functionで定義した`increment`メソッドはどのような呼び出し方をしても、必ず`constructor`における`this`となるためです（「[Arrow Functionでコールバック関数を扱う][]」を参照）。
-
-{{book.console}}
-```js
-"use strict";
-class ArrowClass {
-    constructor() {
-        // コンストラクタでの`this`は常にインスタンス
-        this.method = () => {
-            // Arrow Functionにおける`this`は静的に決まる
-            // そのため`this`は常にインスタンスを参照する
-            return this;
-        };
-    }
-}
-const instance = new ArrowClass();
-const method = instance.method;
-// 呼び出し方法（ベースオブジェクト）に依存しないため、`this`がインスタンスを参照する
-console.log(method()); // => instance
-```
-
-一方、プロトタイプメソッドにおける`this`はメソッド呼び出し時のベースオブジェクトを参照します。
-そのためプロトタイプメソッドは呼び出し方によって`this`の参照先が異なります（「[関数とthis][]」の章の「[問題: `this`を含むメソッドを変数に代入した場合][]」を参照）。
-
-{{book.console}}
-```js
-"use strict";
-class PrototypeClass {
-    method() {
-        // `this`はベースオブジェクトを参照する
-        return this;
-    };
-}
-const instance = new PrototypeClass();
-const method = instance.method;
-// ベースオブジェクトはundefined
-console.log(method()); // => undefined
-```
-
-このように、インスタンスに対してArrow Functionでメソッドを定義することで`this`の参照先を固定化できます。
 
 ## クラスのアクセッサプロパティの定義 {#class-accessor-property}
 
@@ -437,6 +354,7 @@ getter（`get`）には仮引数はありませんが、必ず値を返す必要
 setter（`set`）の仮引数にはプロパティへ代入する値が入りますが、値を返す必要はありません。
 
 <!-- doctest:disable -->
+
 ```js
 class クラス {
     // getter
@@ -445,7 +363,7 @@ class クラス {
     }
     // setter
     set プロパティ名(仮引数) {
-        // setterの処理
+    // setterの処理
     }
 }
 const インスタンス = new クラス();
@@ -458,6 +376,7 @@ const インスタンス = new クラス();
 このアクセッサプロパティで実際に読み書きされているのは、`NumberWrapper`インスタンスの`_value`プロパティとなります。
 
 {{book.console}}
+
 ```js
 class NumberWrapper {
     constructor(value) {
@@ -489,14 +408,16 @@ console.log(numberWrapper.value); // => 42
 またフィールドとして定義することはできないため対比は意味がない。
 -->
 
-### [コラム] プライベートプロパティ {#private-property}
+### [コラム] `_`（アンダーバー）から始まるプロパティ名 {#underbar-private-property}
 
 NumberWrapperの`value`のアクセッサプロパティで実際に読み書きしているのは、`_value`プロパティです。
-このように、外から直接読み書きしてほしくないプロパティを`_`（アンダーバー）で開始するのはただの習慣であるため、構文としての意味はありません。
+このように、外から直接読み書きしてほしくないプロパティを`_`（アンダーバー）から始まる名前にするのはただの習慣であるため、構文としての意味はありません。
 
-現時点（ECMAScript {{book.esversion}}）では、外から原理的に参照できないプライベートプロパティ（hard private）を定義する構文はありません。
-しかし、現時点でも`WeakSet`などを使うことで疑似的なプライベートプロパティを実現できます。
-`WeakSet`については「[Map/Set][]」の章で解説します。
+ECMAScript 2022から、外から直接読み書きしてほしくないプライベートなプロパティを定義するPrivateフィールド構文が追加されました。
+Privateフィールド構文では`#`（ハッシュ）記号をプロパティ名の前に指定します。
+そのため、外から直接読み書きしてほしくないプロパティを`_`からはじめるという慣習は、Privateフィールド構文の利用が進むにつれて使われなくなっていくと考えています。
+
+Privateフィールド構文については、この後に解説します。
 
 ### `Array.prototype.length`をアクセッサプロパティで再現する {#array-like-length}
 
@@ -506,6 +427,7 @@ Arrayの`length`プロパティへ値を代入すると、そのインデック�
 次のコードでは、配列の要素数（`length`プロパティ）を小さくすると配列の要素が削除されています。
 
 {{book.console}}
+
 ```js
 const array = [1, 2, 3, 4, 5];
 // 要素数を減らすと、インデックス以降の要素が削除される
@@ -532,6 +454,7 @@ Arrayの`length`プロパティは、`length`プロパティへ値を代入し�
 ArrayLikeの`length`プロパティのsetterで要素の追加や削除を実装することで、配列のような`length`プロパティを実装できます。
 
 {{book.console}}
+
 ```js
 /**
  * 配列のようなlengthを持つクラス
@@ -572,10 +495,157 @@ console.log(arrayLike.items.join(", ")); // => "1, 2, , , "
 
 このようにアクセッサプロパティでは、プロパティのようでありながら実際にアクセスした際には他のプロパティと連動する動作を実現できます。
 
+## Publicクラスフィールド {#public-class-fields}
+
+クラスでは、クラスの状態であるインスタンスのプロパティの初期化は、`constructor`メソッドの中で行うことを紹介しました。
+先ほども紹介した、`Counter`クラスでは、`constructor`メソッドの中で`count`プロパティの初期値を`0`として定義しています。
+
+```js
+class Counter {
+    constructor() {
+        this.count = 0;
+    }
+    increment() {
+        this.count++;
+    }
+}
+```
+
+この`Counter`では`new`演算子で何も引数を渡すことなく初期化するため、`constructor`メソッドには仮引数を定義していません。
+このような場合でも、`construtor`メソッドを書かないとプロパティの初期化ができないためわずらわしいという問題がありました。
+
+ES2022で、クラスのインスタンスが持つプロパティの初期化をわかりやすく宣言的にする構文として、**クラスフィールド**が追加されました。
+
+クラスフィールドを使って先ほどの`Counter`クラスを書き直してみると次のようになります。
+`count`プロパティをクラスフィールドとして定義して、その初期値は`0`としています。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
+```js
+class Counter {
+    count = 0;
+    increment() {
+        this.count++;
+    }
+}
+const counter = new Counter();
+counter.increment();
+console.log(counter.count); // => 1
+```
+
+クラスフィールドは、クラスのインスタンスが持つプロパティを定義する次のような構文です。
+
+```js
+class クラス {
+    プロパティ名 = プロパティの初期値;
+}
+```
+
+クラスフィールドで定義するのはクラスのインスタンスが持つプロパティです。
+そのため、`constructor`メソッドの中で`this.count = 0`のように定義した場合と結果的にはほとんど同じ意味となります。
+クラスフィールドで定義したプロパティは、他のプロパティと同じように`this.プロパティ名`で参照できます。
+
+先ほどの`Counter`の`count`プロパティのようにインスタンス化した後に、外からアクセスできるプロパティを定義するクラスフィールドを**Publicクラスフィールド**と呼びます。
+
+### クラスフィールドを使ってプロパティの存在を宣言する {#declare-class-fields}
+
+クラスフィールドでは、プロパティの初期値は省略可能となっています。
+そのため、次のように初期値を省略したPublicクラスフィールドも定義できます。
+
+```js
+class MyClass {
+    myProperty;
+}
+```
+
+このときの`myProperty`は`undefined`で初期化されます。
+この初期値を省略したクラスフィールドの定義は、クラスのインスタンスが持つプロパティを明示するために利用できます。
+
+次の`Loader`クラスは、`load`メソッドを呼び出すまでは、`loadedContent`プロパティは未定義です。
+クラスフィールドを使えば、`Loader`クラスのインスタンスは、`loadedContent`というプロパティを持っていることを宣言的に表現できます。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
+```js
+class Loader {
+    loadedContent;
+    load() {
+        this.loadedContent = "読み込んだコンテンツ内容";
+    }
+}
+```
+
+JavaScriptでは、オブジェクトのプロパティは初期化時に存在していなくても、後から代入すれば作成できてしまいます。
+そのため、次のように`Loader`クラスを実装しても意味は同じです。
+
+{{book.console}}
+```js
+class Loader {
+    load() {
+        this.loadedContent = "読み込んだコンテンツ内容";
+    }
+}
+```
+
+しかしこのように実装してしまうと`Loader`クラスを利用する側は、`loadedContent`プロパティというもの存在は`load`メソッドの中まで読まないとわからないという問題があります。
+これに対して、クラスフィールドを使って「`Loader`クラスは`loadedContent`というプロパティを持っている」ということを宣言的に表現できます。
+
+### クラスフィールドでの`this`はクラスのインスタンスを示す {#this-in-class-fields}
+
+クラスフィールドの初期値には任意の式が書け、`this`も利用できます。
+クラスフィールドでの`this`は、そのクラスのインスタンスを参照します。
+
+次のコードでは、`up`フィールドの初期値に`increment`メソッドを指定しています。
+JavaScriptでは関数も値として扱えるため、`up`メソッドを呼び出すと`increment`メソッドが呼び出されます。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
+```js
+class Counter {
+    count = 0;
+    // upはincrementメソッドを参照している
+    up = this.increment;
+    increment() {
+        this.count++;
+    }
+}
+const counter = new Counter();
+counter.up(); // 結果的にはincrementメソッドが呼び出される
+console.log(counter.count); // => 1
+```
+
+クラスフィールドでの`this`は、Arrow Functionと組み合わせると強力です。
+
+次のコードでは、`up`メソッドに`this.increment`メソッドを呼び出す関数をArrow Function定義しています。
+Arrow Functionで定義した関数における`this`は、どのような呼び出し方をしても変化しません（「[Arrow Functionでコールバック関数を扱う][]」を参照）。
+そのため、`up`メソッドはどのような呼び方をした場合でも`this`がクラスのインスタンスとなるため、確実に`increment`メソッドを呼び出せます。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
+```js
+class Counter {
+    count = 0;
+    // クラスフィールドでの`this`はクラスのインスタンスとなる
+    up = () => {
+        this.increment();
+    };
+    increment() {
+        this.count++;
+    }
+}
+const counter = new Counter();
+// Arrow Functionなので、thisはクラスのインスタンスに固定されている
+const up = counter.up;
+up();
+console.log(counter.count); // => 1
+// 通常のメソッド定義では、`this`が`undefined`となってしまうため例外が発生する
+const increment = counter.increment;
+increment(); // Error: Uncaught TypeError: this is undefined
+```
+
 ## 静的メソッド {#static-method}
 
-インスタンスメソッドは、クラスをインスタンス化して利用します。
-一方、クラスをインスタンス化せずに利用できる静的メソッド（クラスメソッド）もあります。
+インスタンスメソッドは、クラスをインスタンス化して利用します。 一方、クラスをインスタンス化せずに利用できる静的メソッド（クラスメソッド）もあります。
 
 静的メソッドの定義方法はメソッド名の前に、`static`をつけるだけです。
 
@@ -583,7 +653,7 @@ console.log(arrayLike.items.join(", ")); // => "1, 2, , , "
 ```js
 class クラス {
     static メソッド() {
-        // 静的メソッドの処理
+    // 静的メソッドの処理
     }
 }
 // 静的メソッドの呼び出し
@@ -595,6 +665,7 @@ class クラス {
 このクラスに配列ではなく要素そのものを引数に受け取ってインスタンス化できる`ArrayWrapper.of`という静的メソッドを定義します。
 
 {{book.console}}
+
 ```js
 class ArrayWrapper {
     constructor(array = []) {
@@ -623,6 +694,7 @@ console.log(arrayWrapperB.length); // => 3
 そのため、先ほどのコードは`new ArrayWrapper`の代わりに`new this`と書くこともできます。
 
 {{book.console}}
+
 ```js
 class ArrayWrapper {
     constructor(array = []) {
@@ -630,7 +702,7 @@ class ArrayWrapper {
     }
 
     static of(...items) {
-        // `this`は`ArrayWrapper`を参照する
+    // `this`は`ArrayWrapper`を参照する
         return new this(items);
     }
 
@@ -648,8 +720,7 @@ console.log(arrayWrapper.length); // => 3
 
 ## 2種類のインスタンスメソッドの定義 {#two-instance-method-definition}
 
-クラスでは、2種類のインスタンスメソッドの定義方法があります。
-`class`構文を使ったインスタンス間で共有されるプロトタイプメソッドの定義と、
+クラスでは、2種類のインスタンスメソッドの定義方法があります。 `class`構文を使ったインスタンス間で共有されるプロトタイプメソッドの定義と、
 インスタンスオブジェクトに対するメソッドの定義です。
 
 これらの2つの方法を同時に使い、1つのクラスに同じ名前でメソッドを2つ定義した場合はどうなるでしょうか？
@@ -657,10 +728,11 @@ console.log(arrayWrapper.length); // => 3
 次のコードでは、`ConflictClass`クラスにプロトタイプメソッドとインスタンスに対して同じ`method`という名前のメソッドを定義しています。
 
 {{book.console}}
+
 ```js
 class ConflictClass {
     constructor() {
-        // インスタンスオブジェクトに`method`を定義
+    // インスタンスオブジェクトに`method`を定義
         this.method = () => {
             console.log("インスタンスオブジェクトのメソッド");
         };
@@ -680,6 +752,7 @@ conflict.method(); // どちらの`method`が呼び出される？
 このとき、インスタンスの`method`プロパティを`delete`演算子で削除すると、今度はプロトタイプメソッドの`method`が呼び出されます。
 
 {{book.console}}
+
 ```js
 class ConflictClass {
     constructor() {
@@ -717,7 +790,7 @@ conflict.method(); // "プロトタイプメソッド"
 **プロトタイプメソッド**と**インスタンスオブジェクトのメソッド**を同時に定義しても、互いのメソッドは上書きされるわけでありません。
 なぜなら、プロトタイプメソッドは**プロトタイプオブジェクト**へ、インスタンスオブジェクトのメソッドは**インスタンスオブジェクト**へそれぞれ定義されるためです。
 
-プロトタイプオブジェクトについては「[プロトタイプオブジェクト][]」の章で簡単に紹介していましたが、改めて解説していきます。
+プロトタイプオブジェクトについては「[プロトタイプオブジェクト][プロトタイプオブジェクト]」の章で簡単に紹介していましたが、改めて解説していきます。
 
 **プロトタイプオブジェクト**とは、JavaScriptの関数オブジェクトの`prototype`プロパティに自動的に作成される特殊なオブジェクトです。
 クラスも一種の関数オブジェクトであるため、自動的に`prototype`プロパティにプロトタイプオブジェクトが作成されています。
@@ -725,6 +798,7 @@ conflict.method(); // "プロトタイプメソッド"
 次のコードでは、関数やクラス自身の`prototype`プロパティに、プロトタイプオブジェクトが自動的に作成されていることがわかります。
 
 {{book.console}}
+
 ```js
 function fn() {
 }
@@ -744,9 +818,10 @@ console.log(typeof MyClass.prototype === "object"); // => true
 この`constructor`メソッドもプロトタイプオブジェクトに定義されており、この`constructor`プロパティはクラス自身を参照します。
 
 {{book.console}}
+
 ```js
 class MyClass {
-    method() { }
+    method() {}
 }
 
 console.log(typeof MyClass.prototype.method === "function"); // => true
@@ -762,6 +837,7 @@ console.log(MyClass.prototype.constructor === MyClass); // => true
 しかし、インスタンス（オブジェクト）にはメソッドが定義されていないのに、インスタンスからクラスのプロトタイプメソッドを呼び出せます。
 
 {{book.console}}
+
 ```js
 class MyClass {
     method() {
@@ -796,6 +872,7 @@ instance.method(); // "プロトタイプのメソッド"
 その取得した結果がクラスのプロトタイプオブジェクトを参照していることを確認できます。
 
 {{book.console}}
+
 ```js
 class MyClass {
     method() {
@@ -838,6 +915,7 @@ console.log(MyClassPrototype === MyClass.prototype); // => true
 そのため、実際に参照しているのはクラスのプロトタイプオブジェクトの`method`プロパティです。
 
 {{book.console}}
+
 ```js
 class MyClass {
     method() {
@@ -858,7 +936,9 @@ console.log(instance.method === Prototype.method); // => true
 プロトタイプチェーンの仕組みを疑似的なコードとして表現すると次のような動きをしています。
 
 {{book.console}}
+
 <!-- doctest:meta:{ "ECMAScript": "2022" } -->
+
 ```js
 // プロトタイプチェーンの動作の疑似的なコード
 class MyClass {
@@ -877,7 +957,7 @@ if (Object.hasOwn(instance, "method")) {
     const prototypeObject = Object.getPrototypeOf(instance);
     // プロトタイプオブジェクトが`method`プロパティを持っている場合
     if (Object.hasOwn(prototypeObject, "method")) {
-        // `this`はインスタンス自身を指定して呼び出す
+    // `this`はインスタンス自身を指定して呼び出す
         prototypeObject.method.call(instance);
     }
 }
@@ -902,8 +982,7 @@ if (Object.hasOwn(instance, "method")) {
 
 ## 継承 {#extends}
 
-`extends`キーワードを使うことで既存のクラスを継承できます。
-継承とは、クラスの**構造**や**機能**を引き継いだ新しいクラスを定義することです。
+`extends`キーワードを使うことで既存のクラスを継承できます。 継承とは、クラスの**構造**や**機能**を引き継いだ新しいクラスを定義することです。
 
 ### 継承したクラスの定義 {#class-extends}
 
@@ -912,9 +991,9 @@ if (Object.hasOwn(instance, "method")) {
 親クラスを継承した**子クラス**（派生クラス）を定義できます。
 
 <!-- doctest:disable -->
+
 ```js
 class 子クラス extends 親クラス {
-
 }
 ```
 
@@ -922,12 +1001,11 @@ class 子クラス extends 親クラス {
 子クラスである`Child`クラスのインスタンス化は通常のクラスと同じく`new`演算子を使って行います。
 
 {{book.console}}
+
 ```js
 class Parent {
-
 }
 class Child extends Parent {
-
 }
 const instance = new Child();
 ```
@@ -937,8 +1015,7 @@ const instance = new Child();
 `extends`を使って定義した子クラスから親クラスを参照するには`super`というキーワードを利用します。
 もっともシンプルな`super`を使う例としてコンストラクタの処理を見ていきます。
 
-`class`構文でも紹介しましたが、クラスは必ず`constructor`メソッド（コンストラクタ）を持ちます。
-これは、継承した子クラスでも同じです。
+`class`構文でも紹介しましたが、クラスは必ず`constructor`メソッド（コンストラクタ）を持ちます。 これは、継承した子クラスでも同じです。
 
 <!-- textlint-disable no-js-function-paren -->
 
@@ -946,6 +1023,7 @@ const instance = new Child();
 `super()`は子クラスから親クラスの`constructor`メソッドを呼び出します。
 
 {{book.console}}
+
 ```js
 // 親クラス
 class Parent {
@@ -956,7 +1034,7 @@ class Parent {
 // Parentを継承したChildクラスの定義
 class Child extends Parent {
     constructor(...args) {
-        // Parentのコンストラクタ処理を呼び出す
+    // Parentのコンストラクタ処理を呼び出す
         super(...args);
         console.log("Childコンストラクタの処理", ...args);
     }
@@ -973,6 +1051,7 @@ const child = new Child("引数1", "引数2");
 そのため、`Child`クラスの`constructor`メソッドの定義を省略できます。
 
 {{book.console}}
+
 ```js
 class Parent {}
 class Child extends Parent {}
@@ -982,6 +1061,7 @@ class Child extends Parent {}
 `constructor`メソッドの引数をすべて受け取り、そのまま`super`へ引数の順番を維持して渡します。
 
 {{book.console}}
+
 ```js
 class Parent {}
 class Child extends Parent {
@@ -1005,6 +1085,7 @@ class Child extends Parent {
 <!-- textlint-enable no-js-function-paren -->
 
 {{book.console}}
+
 ```js
 class Parent {
     constructor() {
@@ -1013,7 +1094,7 @@ class Parent {
 }
 class Child extends Parent {
     constructor() {
-        // 子クラスでは`super()`を`this`に触る前に呼び出さなければならない
+    // 子クラスでは`super()`を`this`に触る前に呼び出さなければならない
         super();
         // 子クラスのコンストラクタ処理
         // 親クラスで書き込まれた`name`は上書きされる
@@ -1032,6 +1113,7 @@ console.log(child.name); // => "Child"
 `Parent`クラスでは`method`を定義しているため、これを継承している`Child`クラスのインスタンスからも呼び出せます。
 
 {{book.console}}
+
 ```js
 class Parent {
     method() {
@@ -1061,8 +1143,7 @@ instance.method(); // "Parent.prototype.method"
 このプロトタイプチェーンの仕組みにより、`method`プロパティは`Parent.prototype`オブジェクトに定義されたものを参照します。
 
 このようにJavaScriptでは`class`構文と`extends`キーワードを使うことでクラスの**機能**を継承できます。
-`class`構文ではプロトタイプオブジェクトを参照する仕組みによって継承が行われています。
-そのため、この継承の仕組みを**プロトタイプ継承**と呼びます。
+`class`構文ではプロトタイプオブジェクトを参照する仕組みによって継承が行われています。 そのため、この継承の仕組みを**プロトタイプ継承**と呼びます。
 
 ### 静的メソッドの継承 {#static-inheritance}
 
@@ -1072,6 +1153,7 @@ instance.method(); // "Parent.prototype.method"
 簡単に言えば、静的メソッドも継承されるということです。
 
 {{book.console}}
+
 ```js
 class Parent {
     static hello() {
@@ -1103,6 +1185,7 @@ console.log(Child.hello()); // => "Hello"
 このように、子クラスから継承元の親クラスのプロトタイプメソッドは`super.プロパティ名`で参照できます。
 
 {{book.console}}
+
 ```js
 class Parent {
     method() {
@@ -1134,6 +1217,7 @@ child.method();
 <!-- textlint-enable no-js-function-paren -->
 
 {{book.console}}
+
 ```js
 class Parent {
     static method() {
@@ -1160,6 +1244,7 @@ Child.method();
 次のコードでは、`Child`のインスタンスは`Child`クラスと`Parent`クラスを継承したオブジェクトであることを確認しています。
 
 {{book.console}}
+
 ```js
 class Parent {}
 class Child extends Parent {}
@@ -1183,7 +1268,7 @@ console.log(child instanceof Child); // => true
 
 -->
 
-より具体的な継承の使い方については「[ユースケース:Todoアプリ][]」の章で見ていきます。
+より具体的な継承の使い方については「[ユースケース:Todoアプリ][ユースケース:Todoアプリ]」の章で見ていきます。
 
 ## ビルトインオブジェクトの継承 {#extends-built-in}
 
@@ -1196,7 +1281,9 @@ console.log(child instanceof Child); // => true
 継承した性質に加えて、MyArrayクラスへ`first`や`last`といったアクセッサプロパティを追加しています。
 
 {{book.console}}
+
 <!-- doctest:meta:{ "ECMAScript": "2022" } -->
+
 ```js
 class MyArray extends Array {
     get first() {
@@ -1235,4 +1322,5 @@ console.log(array.last); // => 5
 [問題: `this`を含むメソッドを変数に代入した場合]: ../function-this/README.md#assign-this-function
 [Map/Set]: ../map-and-set/README.md
 [ユースケース:Todoアプリ]: ../../use-case/todoapp/README.md
+
 [^1]: `class`構文でしか実現できない機能はなく、読みやすさやわかりやさのために導入された構文という側面もあります。そのため、JavaScriptの`class`構文は糖衣構文（シンタックスシュガー）と呼ばれることがあります。
