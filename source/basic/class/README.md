@@ -376,7 +376,6 @@ const インスタンス = new クラス();
 このアクセッサプロパティで実際に読み書きされているのは、`NumberWrapper`インスタンスの`_value`プロパティとなります。
 
 {{book.console}}
-
 ```js
 class NumberWrapper {
     constructor(value) {
@@ -497,8 +496,8 @@ console.log(arrayLike.items.join(", ")); // => "1, 2, , , "
 
 ## Publicクラスフィールド {#public-class-fields}
 
-クラスでは、クラスの状態であるインスタンスのプロパティの初期化は、`constructor`メソッドの中で行うことを紹介しました。
-先ほども紹介した、`Counter`クラスでは、`constructor`メソッドの中で`count`プロパティの初期値を`0`として定義しています。
+クラスでは、`constructor`メソッドの中でクラスの状態であるインスタンスのプロパティの初期化することを紹介しました。
+先ほども紹介した`Counter`クラスでは、`constructor`メソッドの中で`count`プロパティの初期値を`0`として定義しています。
 
 ```js
 class Counter {
@@ -545,7 +544,23 @@ class クラス {
 そのため、`constructor`メソッドの中で`this.count = 0`のように定義した場合と結果的にはほとんど同じ意味となります。
 クラスフィールドで定義したプロパティは、他のプロパティと同じように`this.プロパティ名`で参照できます。
 
-先ほどの`Counter`の`count`プロパティのようにインスタンス化した後に、外からアクセスできるプロパティを定義するクラスフィールドを**Publicクラスフィールド**と呼びます。
+また、クラスフィールドは`constructor`メソッドでの初期化と併用が可能です。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
+```js
+class MyClass {
+    publicField = 1;
+    constructor(arg) {
+        this.property = arg;
+    }
+}
+const myClass = new MyClass(2);
+console.log(myClass.publicField); // => 1
+console.log(myClass.property); // => 2
+```
+
+この`publicField`プロパティのように外からアクセスできるプロパティを定義するクラスフィールドを**Publicクラスフィールド**と呼びます。
 
 ### クラスフィールドを使ってプロパティの存在を宣言する {#declare-class-fields}
 
@@ -642,6 +657,87 @@ console.log(counter.count); // => 1
 const increment = counter.increment;
 increment(); // Error: Uncaught TypeError: this is undefined
 ```
+
+## Privateクラスフィールド {#private-class-fields}
+
+クラスフィールド構文で次のように書くと、定義したプロパティはクラスのインスタンス化した後に外からも参照できます。
+そのため、Publicクラスフィールドと呼ばれます。
+
+```js
+class クラス {
+    プロパティ名 = プロパティの初期値;
+}
+```
+
+一方で外からアクセスされたくないインスタンスのプロパティも存在します。
+そのようなプライベートなプロパティを定義する構文もES2022で追加されています。
+
+プライベートプロパティを定義するには、次のように`#`をプロパティ名の前につけたクラスフィールドを定義します。
+
+```js
+class クラス {
+    // プライベートなプロパティは#をつける
+    #プロパティ名 = プロパティの初期値;
+}
+```
+
+具体的な例を見てみます。
+
+アクセサプロパティの例でも登場した`NumberWrapper`をPrivateクラスフィールドを使って書き直してみます。
+元々の`NumberWrapper`クラスでは、`_value`プロパティに実際の値を読み書きしていました。
+この場合、`_value`プロパティは、外からもアクセスできてしまうため、定義したgetterとsetterが無視できてしまいます。
+
+{{book.console}}
+```js
+class NumberWrapper {
+    constructor(value) {
+        // _valueプロパティは直接はアクセスして欲しくない
+        this._value = value;
+    }
+    // `_value`プロパティの値を返すgetter
+    get value() {
+        return this._value;
+    }
+    // `_value`プロパティに値を代入するsetter
+    set value(newValue) {
+        this._value = newValue;
+    }
+}
+const numberWrapper = new NumberWrapper(1);
+// _valueプロパティは外からもアクセスできる
+console.log(numberWrapper._value); // => 1
+```
+
+Privateクラスフィールドでは、外からアクセスされたくないプロパティを`#`をつけてクラスフィールドとして定義します。
+また、このプライベートプロパティにクラス内からアクセスする際にも`#`をつけてアクセスします。
+次のコードでは、`#value`はプライベートプロパティとなっているため、外からアクセスできなくなることが確認できます。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
+```js
+class NumberWrapper {
+    // valueはプライベートプロパティとして定義
+    #value;
+    constructor(value) {
+        this.#value = value;
+    }
+    // `#value`プロパティの値を返すgetter
+    get value() {
+        return this.#value;
+    }
+    // `#value`プロパティに値を代入するsetter
+    set value(newValue) {
+        this.#value = newValue;
+    }
+}
+
+const numberWrapper = new NumberWrapper(1);
+// クラスの外からPrivateクラスフィールドで定義したプロパティにはアクセスできない
+console.log(numberWrapper.#value); // => Uncaught SyntaxError: reference to undeclared private field or method #value
+```
+
+Privateクラスフィールドを使うことで、クラスの外からアクセスさせたないプロパティを宣言できます。
+これは、実装したクラスの意図しない使われ方を防いだり、クラスの外からプロパティの状態を直接書き換えるといった行為を防げます。
 
 ## 静的メソッド {#static-method}
 
