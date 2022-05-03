@@ -710,10 +710,10 @@ console.log(numberWrapper._value); // => 1
 
 Privateクラスフィールドでは、外からアクセスされたくないプロパティを`#`をつけてクラスフィールドとして定義します。
 また、このプライベートプロパティにクラス内からアクセスする際にも`#`をつけてアクセスします。
-次のコードでは、`#value`はプライベートプロパティとなっているため、外からアクセスできなくなることが確認できます。
+次のコードでは、`#value`はプライベートプロパティとなっているため、構文エラーが発生し外からアクセスできなくなることが確認できます。
 
 {{book.console}}
-<!-- doctest:meta:{ "ECMAScript": "2022" } -->
+<!-- doctest: SyntaxError -->
 ```js
 class NumberWrapper {
     // valueはプライベートプロパティとして定義
@@ -733,7 +733,7 @@ class NumberWrapper {
 
 const numberWrapper = new NumberWrapper(1);
 // クラスの外からPrivateクラスフィールドで定義したプロパティにはアクセスできない
-console.log(numberWrapper.#value); // => Uncaught SyntaxError: reference to undeclared private field or method #value
+console.log(numberWrapper.#value); // => SyntaxError: reference to undeclared private field or method #value
 ```
 
 Privateクラスフィールドを使うことで、クラスの外からアクセスさせたないプロパティを宣言できます。
