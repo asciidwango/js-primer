@@ -712,6 +712,8 @@ Privateクラスフィールドでは、外からアクセスされたくない�
 また、このプライベートプロパティにクラス内からアクセスする際にも`#`をつけてアクセスします。
 次のコードでは、`#value`はプライベートプロパティとなっているため、構文エラーが発生し外からアクセスできなくなることが確認できます。
 
+<!-- textlint-disable eslint -->
+
 {{book.console}}
 <!-- doctest: SyntaxError -->
 ```js
@@ -735,6 +737,8 @@ const numberWrapper = new NumberWrapper(1);
 // クラスの外からPrivateクラスフィールドで定義したプロパティにはアクセスできない
 console.log(numberWrapper.#value); // => SyntaxError: reference to undeclared private field or method #value
 ```
+
+<!-- textlint-enable eslint -->
 
 Privateクラスフィールドを使うことで、クラスの外からアクセスさせたないプロパティを宣言できます。
 これは、実装したクラスの意図しない使われ方を防いだり、クラスの外からプロパティの状態を直接書き換えるといった行為を防げます。
