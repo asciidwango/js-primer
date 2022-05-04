@@ -641,6 +641,7 @@ Arrow Functionで定義した関数における`this`は、どのような呼び
 class Counter {
     count = 0;
     // クラスフィールドでの`this`はクラスのインスタンスとなる
+    // upメソッドは、クラスのインスタンスに定義される
     up = () => {
         this.increment();
     };
@@ -657,6 +658,60 @@ console.log(counter.count); // => 1
 const increment = counter.increment;
 increment(); // Error: Uncaught TypeError: this is undefined
 ```
+
+### [コラム] クラスフィールドとインスタンスのプロパティの違い {#difference-between-class-fields-and-instance-property}
+
+クラスフィールドで定義したプロパティやメソッドは、クラスのインスタンスにプロパティとして定義されます。
+そのため、クラスフィールドは、`constructor`の中で`this`に対してプロパティを追加するのと意味的にはほぼ同じで、見た目がわかりやすくなった構文と捉えることができます。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
+```js
+class ExampleClass {
+    fieldMethod = () => {
+        console.log("クラスフィールドで定義されたメソッド");
+    };
+    constructor() {
+        this.propertyMethod = () => {
+            console.log("インスタンスにプロパティとして定義されたメソッド");
+        };
+    }
+}
+```
+
+しかし、厳密にはこのふたつのプロパティ定義には異なる点はあります。
+次のように、クラスフィールドと`constructor`の中で`this`に追加するプロパティ名に対するsetterを定義してみるとこの違いがわかります。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
+```js
+class ExampleClass {
+    field = "フィールド";
+    constructor() {
+        this.property = "constructor";
+    }
+    // クラスフィールド名に対応するsetter
+    set field(value) {
+        console.log("fieldで定義された値", value);
+    }
+    // thisのプロパティ名に対応するsetter
+    set property(value) {
+        console.log("consctrutorで代入された値", value);
+    }
+}
+// set fieldは呼び出されない
+// 一方で、set propertyは呼び出される
+new ExampleClass();
+```
+
+クラスフィールド名に対するsetterは呼び出されないのに対して、`this.property`への代入に対するsetterは呼び出されています。
+これは、クラスフィールドは`=`を使った代入で定義されるのではなく、`Object.defineProperty`を使ってプロパティが定義されるという違いに基づいています。
+`Object.defineProperty`を使ってプロパティの定義では、setterは無視してプロパティが定義できます。
+setterは`=`での代入に反応します。そのため、`constructor`の中での`this.property`への代入に対してはsetterが呼び出されます。
+
+同じプロパティの定義であっても、プロパティの定義の仕組みが微妙に異なる点から、このような挙動の違いが存在しています。
+しかし、この違いを意識するようなコードを書くことは避けたほうが安全です。
+実際に見た目からこの違いを意識するのは難しく、それを意識させるようなコードは複雑性を高いためです。
 
 ## Privateクラスフィールド {#private-class-fields}
 
@@ -745,7 +800,8 @@ Privateクラスフィールドを使うことで、クラスの外からアク�
 
 ## 静的メソッド {#static-method}
 
-インスタンスメソッドは、クラスをインスタンス化して利用します。 一方、クラスをインスタンス化せずに利用できる静的メソッド（クラスメソッド）もあります。
+インスタンスメソッドは、クラスをインスタンス化して利用します。
+一方、クラスをインスタンス化せずに利用できる静的メソッド（クラスメソッド）もあります。
 
 静的メソッドの定義方法はメソッド名の前に、`static`をつけるだけです。
 
@@ -794,7 +850,6 @@ console.log(arrayWrapperB.length); // => 3
 そのため、先ほどのコードは`new ArrayWrapper`の代わりに`new this`と書くこともできます。
 
 {{book.console}}
-
 ```js
 class ArrayWrapper {
     constructor(array = []) {
@@ -802,7 +857,7 @@ class ArrayWrapper {
     }
 
     static of(...items) {
-    // `this`は`ArrayWrapper`を参照する
+        // `this`は`ArrayWrapper`を参照する
         return new this(items);
     }
 
@@ -818,25 +873,92 @@ console.log(arrayWrapper.length); // => 3
 このように静的メソッドでの`this`はクラス自身を参照するため、クラスのインスタンスは参照できません。
 そのため静的メソッドは、クラスのインスタンスを作成する処理やクラスに関係する処理を書くために利用されます。
 
-## 2種類のインスタンスメソッドの定義 {#two-instance-method-definition}
+### 静的クラスフィールド {#static-class-fields}
 
-クラスでは、2種類のインスタンスメソッドの定義方法があります。 `class`構文を使ったインスタンス間で共有されるプロトタイプメソッドの定義と、
-インスタンスオブジェクトに対するメソッドの定義です。
+ES2022で追加されたクラスフィールドも、インスタンスではなくクラス自体に定義する静的クラスフィールドが利用できます。
 
-これらの2つの方法を同時に使い、1つのクラスに同じ名前でメソッドを2つ定義した場合はどうなるでしょうか？
+静的クラスフィールドはフィールドの前に、`static`をつけるだけです。
+静的クラスフィールドで定義したプロパティは、クラス自体のプロパティとして定義されます。
+次のコードでは、Public静的クラスフィールドを使って`Colors`クラス自体にフィールドを定義しています。
 
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
+```js
+class Colors {
+    static GREEN = "緑";
+    static RED = "赤";
+    static BLUE = "青";
+}
+// クラスのプロパティとして参照できる
+console.log(Colors.GREEN); // => "緑"
+```
+
+また、Privateクラスフィールドも静的に利用できます。
+Private静的クラスフィールドは、クラス自体にプロパティを定義したいが、そのプロパティを外から参照されたくない場合に利用します。
+Private静的クラスフィールドはフィールドの前に、`static`をつけるだけです。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
+```js
+class MyClass {
+    static #privateClassProp = "This is private";
+    static outputPrivate() {
+        // クラス内からはPrivate静的クラスフィールドで定義したプロパティを参照できる
+        console.log(this.#privateClassProp);
+    }
+}
+```
+
+<!-- Note: static class blocksはユースケースが難しいため省かれている -->
+
+## プロトタイプメソッドとインスタンスメソッドの違い {#two-instance-method-definition}
+
+<!-- 目的: 次の3つの優先度を理解する
+
+- プロトタイプ
+- プロパティ
+- フィールド
+
+プロトタイプの評価が違うことをしる
+
+ -->
+
+ここまでで、プロトタイプメソッドの定義とクラスフィールドを使ったインスタンスに対するメソッドの定義の2種類を見てきました。
+プロトタイプメソッドの定義方法は、メソッドをプロトタイプオブジェクトという特殊なオブジェクトに定義します。
+一方で、クラスフィールドで定義したメソッドは、クラスのインスタンスに対してメソッドを定義します。
+
+どちらのメソッド定義方法でも、`new`演算子でインスタンス化したオブジェクトからメソッドを呼び出すことができる点は同じです。
+
+```js
+class ExampleClass {
+    // クラスフィールドを使い、インスタンスにメソッドを定義
+    instanceMethod = () => {
+        console.log("インスタンスメソッド");
+    };
+    // メソッド構文を使い、プロトタイプオブジェクトにメソッドを定義
+    prototypeMethod() {
+        console.log("プロトタイプメソッド");
+    }
+}
+const example = new ExampleClass();
+// どちらのメソッドもインスタンスから呼び出せる
+example.instanceMethod();
+example.prototypeMethod();
+```
+
+しかしこの2つのメソッドの定義方法は、メソッドを定義しているオブジェクトが実際に異なります。
+
+まず、この2種類のメソッドがそれぞれ別の場所へと定義されていることを見ていきます。
 次のコードでは、`ConflictClass`クラスにプロトタイプメソッドとインスタンスに対して同じ`method`という名前のメソッドを定義しています。
 
 {{book.console}}
 
 ```js
 class ConflictClass {
-    constructor() {
     // インスタンスオブジェクトに`method`を定義
-        this.method = () => {
-            console.log("インスタンスオブジェクトのメソッド");
-        };
-    }
+    method = () => {
+        console.log("インスタンスオブジェクトのメソッド");
+    };
 
     // クラスのプロトタイプメソッドとして`method`を定義
     method() {
@@ -855,11 +977,10 @@ conflict.method(); // どちらの`method`が呼び出される？
 
 ```js
 class ConflictClass {
-    constructor() {
-        this.method = () => {
-            console.log("インスタンスオブジェクトのメソッド");
-        };
-    }
+    // インスタンスオブジェクトに`method`を定義
+    method = () => {
+        console.log("インスタンスオブジェクトのメソッド");
+    };
 
     method() {
         console.log("プロトタイプメソッド");
@@ -883,7 +1004,7 @@ conflict.method(); // "プロトタイプメソッド"
 この挙動は**プロトタイプオブジェクト**と呼ばれる特殊なオブジェクトと**プロトタイプチェーン**と呼ばれる仕組みで成り立っています。
 どちらも**プロトタイプ**とついていることからわかるように、2つで1組のような仕組みです。
 
-このセクションでは、**プロトタイプオブジェクト**と**プロトタイプチェーン**とはどのような仕組みなのかを見ていきます。
+次のセクションでは、**プロトタイプオブジェクト**と**プロトタイプチェーン**とはどのような仕組みなのかを見ていきます。
 
 ## プロトタイプオブジェクト {#prototype}
 
