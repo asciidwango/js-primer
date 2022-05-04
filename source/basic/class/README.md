@@ -1333,13 +1333,83 @@ const child = new Child();
 console.log(child.name); // => "Child"
 ```
 
+### クラスフィールドの継承 {#class-fields-inheritance}
+
+Publicクラスフィールドもコンストラクタの処理順と同じく親クラスのフォールドが初期化された後に子クラスのフィールドが初期化されます。
+Publicクラスフィールドは、インスタンスオブジェクトに対してプロパティを定義する構文でした。
+そのため、親クラスで定義されていたフィールドも、実際にインスタンス化したオブジェクトのプロティとして定義されます。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
+```js
+class Parent {
+    parentField = "親クラスで定義したフィールド";
+}
+// `Parent`を継承した`Child`を定義
+class Child extends Parent {
+    childField = "子クラスで定義したフィールド";
+}
+const instance = new Child();
+console.log(instance.parentField); // => "親クラスで定義したフィールド"
+console.log(instance.childField); // => "子クラスで定義したフィールド"
+```
+
+同じ名前のフィールドが定義されている場合は、子クラスのフィールド定義で上書きされます。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
+```js
+class Parent {
+    field = "親クラスで定義したフィールド";
+}
+// `Parent`を継承した`Child`を定義
+class Child extends Parent {
+    field = "子クラスで定義したフィールド";
+}
+const instance = new Child();
+console.log(instance.field); // => "子クラスで定義したフィールド"
+```
+
+Publicクラスフィールドは、このように親クラスで定義したフィールドも子クラスに定義されます。
+一方で、Privateクラスフィールドは、このように親クラスで定義したフィールドは子クラスに定義されません。
+
+次のコードでは、親クラスで定義したPrivateクラスフィールドを子クラスから参照してようとしています。
+しかし、`#parentFeild`は参照できずに構文エラーとなることがわかります。
+
+{{book.console}}
+<!-- doctest: SyntaxError -->
+```js
+class Parent {
+    #parentFeild = "親クラスで定義したPrivateフィールド";
+}
+// `Parent`を継承した`Child`を定義
+class Child extends Parent {
+    #childField = "子クラスで定義したPrivateフィールド";
+    dump() {
+        console.log(this.#childField); // => "子クラスで定義したPrivateフィールド"
+        console.log(this.#parentFeild); // => SyntaxError: reference to undeclared private field or method #parentFeild
+    }
+}
+const instance = new Child();
+instance.dump();
+```
+
+これは、PrivateクラスフィールドのPrivateとは各クラスごとのPrivateを守る目的であるためです。
+継承したクラスからPrivateクラスフィールドが利用できてしまうと、Privateな情報が子クラスに漏れてしまうためです。
+JavaScriptでは、クラスの外に公開したくないが、子クラスからは利用できるようにしたいというような中間の制限を持ったプロパティを定義する構文はありません。
+
+このように子クラスも含むクラスの外からアクセスを厳密に拒否するPrivateをhard privateと呼びます。
+JavaScriptでのPrivateクラスフィールドはhard privateとなっています。
+
+一方で、子クラスからのアクセスは許可したり、クラス外からのアクセスが可能となるような特例を持つようなPrivateをsoft privateと呼びます。
+JavaScriptでのsoft privateは、WeakMapやWeakSetを使ってユーザー自身で実装する必要があります（「[Map/Set][]」の章を参照）。
+
 ### プロトタイプ継承 {#prototype-inheritance}
 
 次のコードでは`extends`キーワードを使って`Parent`クラスを継承した`Child`クラスを定義しています。
 `Parent`クラスでは`method`を定義しているため、これを継承している`Child`クラスのインスタンスからも呼び出せます。
 
 {{book.console}}
-
 ```js
 class Parent {
     method() {
@@ -1538,6 +1608,7 @@ console.log(array.last); // => 5
 - JavaScriptのクラスはプロトタイプベース
 - クラスは`class`構文で定義できる
 - クラスで定義したメソッドはプロトタイプオブジェクトとプロトタイプチェーンの仕組みで呼び出せる
+- クラスのインスタンスに対するプロパティの定義にはクラスフィールドを使う
 - アクセッサプロパティはgetterとsetterのメソッドを定義することでプロパティのように振る舞う
 - クラスは`extends`で継承できる
 - クラスのプロトタイプメソッドと静的メソッドはどちらも継承される
