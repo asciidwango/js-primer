@@ -320,7 +320,7 @@ console.log(counterA.increment === counterB.increment); // => true
 ```js
 class クラス {
     メソッド() {
-      // このメソッドはプロトタイプメソッドとして定義される
+        // このメソッドはプロトタイプメソッドとして定義される
     }
 }
 ```
@@ -1234,7 +1234,7 @@ class Parent {
 // Parentを継承したChildクラスの定義
 class Child extends Parent {
     constructor(...args) {
-         // Parentのコンストラクタ処理を呼び出す
+        // Parentのコンストラクタ処理を呼び出す
         super(...args);
         console.log("Childコンストラクタの処理", ...args);
     }
