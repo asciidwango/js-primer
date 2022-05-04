@@ -707,6 +707,8 @@ new ExampleClass();
 `Object.defineProperty`を使ってプロパティの定義では、setterは無視してプロパティが定義できます。
 setterは`=`での代入に反応します。そのため、`constructor`の中での`this.property`への代入に対してはsetterが呼び出されます。
 
+<!-- Note: https://tc39.es/ecma262/#sec-createdataproperty PublicはdefinePropertyを使う -->
+
 同じプロパティの定義であっても、プロパティの定義の仕組みが微妙に異なる点から、このような挙動の違いが存在しています。
 しかし、この違いを意識するようなコードを書くことは避けたほうが安全です。
 実際に見た目からこの違いを意識するのは難しく、それを意識させるようなコードは複雑性を高いためです。
