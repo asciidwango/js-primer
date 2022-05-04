@@ -555,7 +555,7 @@ class OwnClass {
     }
 }
 const ownClass = new OwnClass(2);
-console.log(myClass.publicField); // => 2
+console.log(ownClass.publicField); // => 2
 ```
 
 この`publicField`プロパティのように外からアクセスできるプロパティを定義するクラスフィールドを**Publicクラスフィールド**と呼びます。
