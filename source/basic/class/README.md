@@ -748,7 +748,7 @@ class PrivateExampleClass {
     }
 }
 const privateExample = new PrivateExampleClass();
-PrivateExampleClass.dump();
+privateExample.dump();
 ```
 
 もう少し具体的なPrivateクラスフィールドの使い方を見ていきます。
