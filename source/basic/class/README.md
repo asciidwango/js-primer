@@ -554,7 +554,7 @@ class OwnClass {
         this.publicField = arg;
     }
 }
-const ownClass = new MyClass(2);
+const ownClass = new OwnClass(2);
 console.log(myClass.publicField); // => 2
 ```
 
