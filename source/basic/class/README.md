@@ -545,10 +545,13 @@ class クラス {
 クラスフィールドで定義したプロパティは、他のプロパティと同じように`this.プロパティ名`で参照できます。
 
 また、クラスフィールドは`constructor`メソッドでの初期化と併用が可能です。
+まず、クラスフィールドでの初期化処理が行われ、そのあと`constructor`でのプロパティの定義という処理順となります。
+そのため、同じプロパティ名への定義がある場合は、`constructor`メソッド内での定義で上書きされます。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": "2022" } -->
 ```js
+// 別々のプロパティ名はそれぞれ定義される
 class MyClass {
     publicField = 1;
     constructor(arg) {
@@ -558,6 +561,16 @@ class MyClass {
 const myClass = new MyClass(2);
 console.log(myClass.publicField); // => 1
 console.log(myClass.property); // => 2
+
+// 同じプロパティ名の場合は、constructorでの代入が後となる
+class OwnClass {
+    publicField = 1;
+    constructor(arg) {
+        this.publicField = arg;
+    }
+}
+const ownClass = new MyClass(2);
+console.log(myClass.publicField); // => 2
 ```
 
 この`publicField`プロパティのように外からアクセスできるプロパティを定義するクラスフィールドを**Publicクラスフィールド**と呼びます。
@@ -913,15 +926,7 @@ class MyClass {
 
 ## プロトタイプメソッドとインスタンスメソッドの違い {#two-instance-method-definition}
 
-<!-- 目的: 次の3つの優先度を理解する
-
-- プロトタイプ
-- プロパティ
-- フィールド
-
-プロトタイプの評価が違うことをしる
-
- -->
+<!-- 目的: プロトタイプの評価が違うことを知る -->
 
 ここまでで、プロトタイプメソッドの定義とクラスフィールドを使ったインスタンスに対するメソッドの定義の2種類を見てきました。
 プロトタイプメソッドの定義方法は、メソッドをプロトタイプオブジェクトという特殊なオブジェクトに定義します。
