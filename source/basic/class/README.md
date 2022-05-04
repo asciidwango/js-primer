@@ -479,7 +479,7 @@ console.log(arrayLike.items.join(", ")); // => "1, 2, , , "
 
 このようにアクセッサプロパティでは、プロパティのようでありながら実際にアクセスした際には他のプロパティと連動する動作を実現できます。
 
-## Publicクラスフィールド {#public-class-fields}
+## [ES2022] Publicクラスフィールド {#public-class-fields}
 
 クラスでは、`constructor`メソッドの中でクラスの状態であるインスタンスのプロパティの初期化することを紹介しました。
 先ほども紹介した`Counter`クラスでは、`constructor`メソッドの中で`count`プロパティの初期値を`0`として定義しています。
@@ -713,7 +713,7 @@ setterは`=`での代入に反応します。そのため、`constructor`の中�
 しかし、この違いを意識するようなコードを書くことは避けたほうが安全です。
 実際に見た目からこの違いを意識するのは難しく、それを意識させるようなコードは複雑性を高いためです。
 
-## Privateクラスフィールド {#private-class-fields}
+## [ES2022] Privateクラスフィールド {#private-class-fields}
 
 クラスフィールド構文で次のように書くと、定義したプロパティはクラスのインスタンス化した後に外からも参照できます。
 そのため、Publicクラスフィールドと呼ばれます。
@@ -727,16 +727,31 @@ class クラス {
 一方で外からアクセスされたくないインスタンスのプロパティも存在します。
 そのようなプライベートなプロパティを定義する構文もES2022で追加されています。
 
-プライベートプロパティを定義するには、次のように`#`をプロパティ名の前につけたクラスフィールドを定義します。
+Privateクラスフィールドは、次のように`#`をプロパティ名の前につけたクラスフィールドを定義します。
 
 ```js
 class クラス {
     // プライベートなプロパティは#をつける
-    #プロパティ名 = プロパティの初期値;
+    #フィールド名 = プロパティの初期値;
 }
 ```
 
-具体的な例を見てみます。
+定義したPrivateクラスフィールドは、`this.#フィールド名`で参照できます。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
+```js
+class PrivateExampleClass {
+    #privateField = 42;
+    dump() {
+        console.log(this.#privateField); // => 42
+    }
+}
+const privateExample = new PrivateExampleClass();
+PrivateExampleClass.dump();
+```
+
+もう少し具体的なPrivateクラスフィールドの使い方を見ていきます。
 
 アクセサプロパティの例でも登場した`NumberWrapper`をPrivateクラスフィールドを使って書き直してみます。
 元々の`NumberWrapper`クラスでは、`_value`プロパティに実際の値を読み書きしていました。
@@ -764,7 +779,6 @@ console.log(numberWrapper._value); // => 1
 ```
 
 Privateクラスフィールドでは、外からアクセスされたくないプロパティを`#`をつけてクラスフィールドとして定義します。
-また、このプライベートプロパティにクラス内からアクセスする際にも`#`をつけてアクセスします。
 次のコードでは、`#value`はプライベートプロパティとなっているため、構文エラーが発生し外からアクセスできなくなることが確認できます。
 
 <!-- textlint-disable eslint -->
@@ -795,8 +809,25 @@ console.log(numberWrapper.#value); // => SyntaxError: reference to undeclared pr
 
 <!-- textlint-enable eslint -->
 
-Privateクラスフィールドを使うことで、クラスの外からアクセスさせたないプロパティを宣言できます。
+Privateクラスフィールドを使うことで、クラスの外からアクセスさせたくないプロパティを宣言できます。
 これは、実装したクラスの意図しない使われ方を防いだり、クラスの外からプロパティの状態を直接書き換えるといった行為を防げます。
+
+また、Privateクラスフィールドでは、途中から値が入る場合でもフィールドの宣言が必須となっています。
+次のコードでは、`#loadedContent`に実際に値が入るのは`load`メソッドが呼び出されたときです。
+Publicクラスフィールドではフィールドの定義は省略可能でしたが、Privateクラスフィールドでは`#loadedContent`フィールドの定義が必須となっています。
+言い換えると、Privateクラスフィールドでは、クラスを定義した段階でクラスに存在するすべてのPrivateフィールドを明示する必要があります。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
+```js
+class PrivateLoader {
+    // 途中で値が入る場合でも最初に`undefined`で初期化されるフィールドの定義が必須
+    #loadedContent;
+    load() {
+        this.#loadedContent = "読み込んだコンテンツ内容";
+    }
+}
+```
 
 ## 静的メソッド {#static-method}
 
