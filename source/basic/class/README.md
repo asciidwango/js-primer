@@ -34,12 +34,11 @@ ES2015でクラスを表現するための`class`構文が導入されました�
 `constructor`メソッドに定義した処理は、クラスをインスタンス化したときに自動的に呼び出されます。
 
 {{book.console}}
-
 ```js
 class MyClass {
     constructor() {
-    // コンストラクタ関数の処理
-    // インスタンス化されるときに自動的に呼び出される
+        // コンストラクタ関数の処理
+        // インスタンス化されるときに自動的に呼び出される
     }
 }
 ```
@@ -47,7 +46,6 @@ class MyClass {
 もうひとつの定義方法であるクラス式は、クラスを値として定義する方法です。 クラス式ではクラス名を省略できます。これは関数式における匿名関数と同じです。
 
 {{book.console}}
-
 ```js
 const MyClass = class MyClass {
     constructor() {}
@@ -79,7 +77,6 @@ class MyClassB {
 あるインスタンスが指定したクラスから作成されたものかを判定するには`instanceof`演算子が利用できます。
 
 {{book.console}}
-
 ```js
 class MyClass {
 }
@@ -103,13 +100,12 @@ console.log(myClassAnother instanceof MyClass); // => true
 コンストラクタ関数（`constructor`）の中でインスタンスオブジェクト（`this`）の`x`と`y`プロパティに値を代入して初期化しています。
 
 {{book.console}}
-
 ```js
 class Point {
     // コンストラクタ関数の仮引数として`x`と`y`を定義
     constructor(x, y) {
-    // コンストラクタ関数における`this`はインスタンスを示すオブジェクト
-    // インスタンスの`x`と`y`プロパティにそれぞれ値を設定する
+        // コンストラクタ関数における`this`はインスタンスを示すオブジェクト
+        // インスタンスの`x`と`y`プロパティにそれぞれ値を設定する
         this.x = x;
         this.y = y;
     }
@@ -121,15 +117,14 @@ class Point {
 そして、コンストラクタの中ではインスタンスオブジェクト（`this`）の初期化処理を行います。
 
 {{book.console}}
-
 ```js
 class Point {
     // 2. コンストラクタ関数の仮引数として`x`には`3`、`y`には`4`が渡る
     constructor(x, y) {
-    // 3. インスタンス(`this`)の`x`と`y`プロパティにそれぞれ値を設定する
+        // 3. インスタンス(`this`)の`x`と`y`プロパティにそれぞれ値を設定する
         this.x = x;
         this.y = y;
-    // コンストラクタではreturn文は書かない
+        // コンストラクタではreturn文は書かない
     }
 }
 
@@ -146,7 +141,6 @@ console.log(point.y); // => 4
 これは、クラスのコンストラクタはインスタンス（`this`）を初期化する場所であり、通常の関数とは役割が異なるためです。
 
 {{book.console}}
-
 ```js
 class MyClass {
     constructor() {}
@@ -162,12 +156,11 @@ JavaScriptでは、コンストラクタ関数が任意のオブジェクトを�
 次のコードのようにコンストラクタで返した値が`new`演算子で呼び出した際の返り値となります。 このような書き方は混乱を生むため避けるべきです。
 
 {{book.console}}
-
 ```js
 // 非推奨の例: コンストラクタで値を返すべきではない
 class Point {
     constructor(x, y) {
-    // `this`の代わりにただのオブジェクトを返せる
+        // `this`の代わりにただのオブジェクトを返せる
         return { x, y };
     }
 }
@@ -198,7 +191,6 @@ ES2015より前はこれらのクラスを`class`構文ではなく、関数で�
 次のコードは、関数でクラスを実装した1つの例です。 この関数でのクラス表現は、継承の仕組みなどは省かれていますが、`class`構文とよく似ています。
 
 {{book.console}}
-
 ```js
 // コンストラクタ関数
 const Point = function PointConstructor(x, y) {
@@ -216,7 +208,6 @@ const point = new Point(3, 4);
 一方、関数でのクラス表現はただの関数なので、当然関数として呼び出せます。
 
 {{book.console}}
-
 ```js
 // 関数でのクラス表現
 function MyClassLike() {
@@ -245,11 +236,10 @@ MyClass(); // => TypeError: class constructors must be invoked with |new|
 このクラスのメソッドにおける`this`は「[関数とthis][関数とthis]」の章で学んだメソッドと同じくベースオブジェクトを参照します。
 
 <!-- doctest:disable -->
-
 ```js
 class クラス {
     メソッド() {
-    // ここでの`this`はベースオブジェクトを参照
+        // ここでの`this`はベースオブジェクトを参照
     }
 }
 
@@ -263,7 +253,6 @@ const インスタンス = new クラス();
 
 <!-- textlint-disable -->
 <!-- doctest:disable -->
-
 ```js
 // クラスでは次のようにメソッドを定義できない
 class クラス {
@@ -283,7 +272,6 @@ class クラス {
 このときの`Counter`クラスのインスタンスは、それぞれ別々の状態（`count`プロパティ）を持ちます。
 
 {{book.console}}
-
 ```js
 class Counter {
     constructor() {
@@ -291,7 +279,7 @@ class Counter {
     }
     // `increment`メソッドをクラスに定義する
     increment() {
-    // `this`は`Counter`のインスタンスを参照する
+        // `this`は`Counter`のインスタンスを参照する
         this.count++;
     }
 }
@@ -309,7 +297,6 @@ console.log(counterB.count); // => 0
 そのため、次のように各インスタンスの`increment`メソッドの参照先は同じとなっていることがわかります。
 
 {{book.console}}
-
 ```js
 class Counter {
     constructor() {
@@ -333,7 +320,7 @@ console.log(counterA.increment === counterB.increment); // => true
 ```js
 class クラス {
     メソッド() {
-    // このメソッドはプロトタイプメソッドとして定義される
+      // このメソッドはプロトタイプメソッドとして定義される
     }
 }
 ```
@@ -363,7 +350,7 @@ class クラス {
     }
     // setter
     set プロパティ名(仮引数) {
-    // setterの処理
+        // setterの処理
     }
 }
 const インスタンス = new クラス();
@@ -426,7 +413,6 @@ Arrayの`length`プロパティへ値を代入すると、そのインデック�
 次のコードでは、配列の要素数（`length`プロパティ）を小さくすると配列の要素が削除されています。
 
 {{book.console}}
-
 ```js
 const array = [1, 2, 3, 4, 5];
 // 要素数を減らすと、インデックス以降の要素が削除される
@@ -453,7 +439,6 @@ Arrayの`length`プロパティは、`length`プロパティへ値を代入し�
 ArrayLikeの`length`プロパティのsetterで要素の追加や削除を実装することで、配列のような`length`プロパティを実装できます。
 
 {{book.console}}
-
 ```js
 /**
  * 配列のようなlengthを持つクラス
@@ -822,7 +807,7 @@ Privateクラスフィールドを使うことで、クラスの外からアク�
 ```js
 class クラス {
     static メソッド() {
-    // 静的メソッドの処理
+        // 静的メソッドの処理
     }
 }
 // 静的メソッドの呼び出し
@@ -834,7 +819,6 @@ class クラス {
 このクラスに配列ではなく要素そのものを引数に受け取ってインスタンス化できる`ArrayWrapper.of`という静的メソッドを定義します。
 
 {{book.console}}
-
 ```js
 class ArrayWrapper {
     constructor(array = []) {
@@ -957,7 +941,6 @@ example.prototypeMethod();
 次のコードでは、`ConflictClass`クラスにプロトタイプメソッドとインスタンスに対して同じ`method`という名前のメソッドを定義しています。
 
 {{book.console}}
-
 ```js
 class ConflictClass {
     // インスタンスオブジェクトに`method`を定義
@@ -979,7 +962,6 @@ conflict.method(); // どちらの`method`が呼び出される？
 このとき、インスタンスの`method`プロパティを`delete`演算子で削除すると、今度はプロトタイプメソッドの`method`が呼び出されます。
 
 {{book.console}}
-
 ```js
 class ConflictClass {
     // インスタンスオブジェクトに`method`を定義
@@ -1024,7 +1006,6 @@ conflict.method(); // "プロトタイプメソッド"
 次のコードでは、関数やクラス自身の`prototype`プロパティに、プロトタイプオブジェクトが自動的に作成されていることがわかります。
 
 {{book.console}}
-
 ```js
 function fn() {
 }
@@ -1044,7 +1025,6 @@ console.log(typeof MyClass.prototype === "object"); // => true
 この`constructor`メソッドもプロトタイプオブジェクトに定義されており、この`constructor`プロパティはクラス自身を参照します。
 
 {{book.console}}
-
 ```js
 class MyClass {
     method() {}
@@ -1063,7 +1043,6 @@ console.log(MyClass.prototype.constructor === MyClass); // => true
 しかし、インスタンス（オブジェクト）にはメソッドが定義されていないのに、インスタンスからクラスのプロトタイプメソッドを呼び出せます。
 
 {{book.console}}
-
 ```js
 class MyClass {
     method() {
@@ -1098,7 +1077,6 @@ instance.method(); // "プロトタイプのメソッド"
 その取得した結果がクラスのプロトタイプオブジェクトを参照していることを確認できます。
 
 {{book.console}}
-
 ```js
 class MyClass {
     method() {
@@ -1141,7 +1119,6 @@ console.log(MyClassPrototype === MyClass.prototype); // => true
 そのため、実際に参照しているのはクラスのプロトタイプオブジェクトの`method`プロパティです。
 
 {{book.console}}
-
 ```js
 class MyClass {
     method() {
@@ -1162,7 +1139,6 @@ console.log(instance.method === Prototype.method); // => true
 プロトタイプチェーンの仕組みを疑似的なコードとして表現すると次のような動きをしています。
 
 {{book.console}}
-
 <!-- doctest:meta:{ "ECMAScript": "2022" } -->
 
 ```js
@@ -1183,7 +1159,7 @@ if (Object.hasOwn(instance, "method")) {
     const prototypeObject = Object.getPrototypeOf(instance);
     // プロトタイプオブジェクトが`method`プロパティを持っている場合
     if (Object.hasOwn(prototypeObject, "method")) {
-    // `this`はインスタンス自身を指定して呼び出す
+        // `this`はインスタンス自身を指定して呼び出す
         prototypeObject.method.call(instance);
     }
 }
@@ -1227,7 +1203,6 @@ class 子クラス extends 親クラス {
 子クラスである`Child`クラスのインスタンス化は通常のクラスと同じく`new`演算子を使って行います。
 
 {{book.console}}
-
 ```js
 class Parent {
 }
@@ -1249,7 +1224,6 @@ const instance = new Child();
 `super()`は子クラスから親クラスの`constructor`メソッドを呼び出します。
 
 {{book.console}}
-
 ```js
 // 親クラス
 class Parent {
@@ -1260,7 +1234,7 @@ class Parent {
 // Parentを継承したChildクラスの定義
 class Child extends Parent {
     constructor(...args) {
-    // Parentのコンストラクタ処理を呼び出す
+         // Parentのコンストラクタ処理を呼び出す
         super(...args);
         console.log("Childコンストラクタの処理", ...args);
     }
@@ -1277,7 +1251,6 @@ const child = new Child("引数1", "引数2");
 そのため、`Child`クラスの`constructor`メソッドの定義を省略できます。
 
 {{book.console}}
-
 ```js
 class Parent {}
 class Child extends Parent {}
@@ -1287,7 +1260,6 @@ class Child extends Parent {}
 `constructor`メソッドの引数をすべて受け取り、そのまま`super`へ引数の順番を維持して渡します。
 
 {{book.console}}
-
 ```js
 class Parent {}
 class Child extends Parent {
@@ -1311,7 +1283,6 @@ class Child extends Parent {
 <!-- textlint-enable no-js-function-paren -->
 
 {{book.console}}
-
 ```js
 class Parent {
     constructor() {
@@ -1320,7 +1291,7 @@ class Parent {
 }
 class Child extends Parent {
     constructor() {
-    // 子クラスでは`super()`を`this`に触る前に呼び出さなければならない
+        // 子クラスでは`super()`を`this`に触る前に呼び出さなければならない
         super();
         // 子クラスのコンストラクタ処理
         // 親クラスで書き込まれた`name`は上書きされる
@@ -1449,7 +1420,6 @@ instance.method(); // "Parent.prototype.method"
 簡単に言えば、静的メソッドも継承されるということです。
 
 {{book.console}}
-
 ```js
 class Parent {
     static hello() {
@@ -1481,7 +1451,6 @@ console.log(Child.hello()); // => "Hello"
 このように、子クラスから継承元の親クラスのプロトタイプメソッドは`super.プロパティ名`で参照できます。
 
 {{book.console}}
-
 ```js
 class Parent {
     method() {
@@ -1513,7 +1482,6 @@ child.method();
 <!-- textlint-enable no-js-function-paren -->
 
 {{book.console}}
-
 ```js
 class Parent {
     static method() {
@@ -1540,7 +1508,6 @@ Child.method();
 次のコードでは、`Child`のインスタンスは`Child`クラスと`Parent`クラスを継承したオブジェクトであることを確認しています。
 
 {{book.console}}
-
 ```js
 class Parent {}
 class Child extends Parent {}
@@ -1577,7 +1544,6 @@ console.log(child instanceof Child); // => true
 継承した性質に加えて、MyArrayクラスへ`first`や`last`といったアクセッサプロパティを追加しています。
 
 {{book.console}}
-
 <!-- doctest:meta:{ "ECMAScript": "2022" } -->
 
 ```js
