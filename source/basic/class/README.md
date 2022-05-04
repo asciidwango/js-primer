@@ -918,6 +918,8 @@ class MyClass {
 
 どちらのメソッド定義方法でも、`new`演算子でインスタンス化したオブジェクトからメソッドを呼び出すことができる点は同じです。
 
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
 ```js
 class ExampleClass {
     // クラスフィールドを使い、インスタンスにメソッドを定義
@@ -1347,6 +1349,8 @@ Publicクラスフィールドは、このように親クラスで定義した�
 次のコードでは、親クラスで定義したPrivateクラスフィールドを子クラスから参照してようとしています。
 しかし、`#parentFeild`は参照できずに構文エラーとなることがわかります。
 
+<!-- textlint-disable eslint -->
+
 {{book.console}}
 <!-- doctest: SyntaxError -->
 ```js
@@ -1355,15 +1359,15 @@ class Parent {
 }
 // `Parent`を継承した`Child`を定義
 class Child extends Parent {
-    #childField = "子クラスで定義したPrivateフィールド";
     dump() {
-        console.log(this.#childField); // => "子クラスで定義したPrivateフィールド"
         console.log(this.#parentFeild); // => SyntaxError: reference to undeclared private field or method #parentFeild
     }
 }
 const instance = new Child();
 instance.dump();
 ```
+
+<!-- textlint-enable eslint -->
 
 これは、PrivateクラスフィールドのPrivateとは各クラスごとのPrivateを守る目的であるためです。
 継承したクラスからPrivateクラスフィールドが利用できてしまうと、Privateな情報が子クラスに漏れてしまうためです。
