@@ -399,11 +399,11 @@ console.log(numberWrapper.value); // => 42
 NumberWrapperの`value`のアクセッサプロパティで実際に読み書きしているのは、`_value`プロパティです。
 このように、外から直接読み書きしてほしくないプロパティを`_`（アンダーバー）から始まる名前にするのはただの習慣であるため、構文としての意味はありません。
 
-ECMAScript 2022から、外から直接読み書きしてほしくないプライベートなプロパティを定義するPrivateフィールド構文が追加されました。
-Privateフィールド構文では`#`（ハッシュ）記号をプロパティ名の前に指定します。
-そのため、外から直接読み書きしてほしくないプロパティを`_`からはじめるという慣習は、Privateフィールド構文の利用が進むにつれて使われなくなっていくと考えています。
+ECMAScript 2022から、外から直接読み書きしてほしくないプライベートなプロパティを定義するPrivateクラスフィールド構文が追加されました。
+Privateクラスフィールド構文では`#`（ハッシュ）記号をプロパティ名の前につけます。
+そのため、外から直接読み書きしてほしくないプロパティを`_`からはじめるという慣習は、Privateクラスフィールド構文の利用が進むにつれて使われなくなっていくと考えています。
 
-Privateフィールド構文については、この後に解説します。
+Privateクラスフィールド構文については、この後に解説します。
 
 ### `Array.prototype.length`をアクセッサプロパティで再現する {#array-like-length}
 
@@ -498,7 +498,7 @@ class Counter {
 この`Counter`では`new`演算子で何も引数を渡すことなく初期化するため、`constructor`メソッドには仮引数を定義していません。
 このような場合でも、`construtor`メソッドを書かないとプロパティの初期化ができないためわずらわしいという問題がありました。
 
-ES2022で、クラスのインスタンスが持つプロパティの初期化をわかりやすく宣言的にする構文として、**クラスフィールド**が追加されました。
+ES2022で、クラスのインスタンスが持つプロパティの初期化をわかりやすく宣言的にする構文として、**クラスフィールド**構文が追加されました。
 
 クラスフィールドを使って先ほどの`Counter`クラスを書き直してみると次のようになります。
 `count`プロパティをクラスフィールドとして定義して、その初期値は`0`としています。
@@ -529,9 +529,8 @@ class クラス {
 そのため、`constructor`メソッドの中で`this.count = 0`のように定義した場合と結果的にはほとんど同じ意味となります。
 クラスフィールドで定義したプロパティは、他のプロパティと同じように`this.プロパティ名`で参照できます。
 
-また、クラスフィールドは`constructor`メソッドでの初期化と併用が可能です。
-まず、クラスフィールドでの初期化処理が行われ、そのあと`constructor`でのプロパティの定義という処理順となります。
-そのため、同じプロパティ名への定義がある場合は、`constructor`メソッド内での定義で上書きされます。
+クラスフィールドは`constructor`メソッドでの初期化と併用が可能です。
+次のコードでは、クラスフィールドと`constructor`メソッドでそれぞれインスタンスのプロパティを定義しています。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": "2022" } -->
@@ -546,7 +545,14 @@ class MyClass {
 const myClass = new MyClass(2);
 console.log(myClass.publicField); // => 1
 console.log(myClass.property); // => 2
+```
 
+また、クラスフィールドでの初期化処理が行われ、そのあと`constructor`でのプロパティの定義という処理順となります。
+そのため、同じプロパティ名への定義がある場合は、`constructor`メソッド内での定義でプロパティは上書きされます。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2022" } -->
+```js
 // 同じプロパティ名の場合は、constructorでの代入が後となる
 class OwnClass {
     publicField = 1;
@@ -567,6 +573,7 @@ console.log(ownClass.publicField); // => 2
 
 ```js
 class MyClass {
+    // myPropertyはundefinedで初期化される
     myProperty;
 }
 ```
@@ -574,7 +581,7 @@ class MyClass {
 このときの`myProperty`は`undefined`で初期化されます。
 この初期値を省略したクラスフィールドの定義は、クラスのインスタンスが持つプロパティを明示するために利用できます。
 
-次の`Loader`クラスは、`load`メソッドを呼び出すまでは、`loadedContent`プロパティは未定義です。
+次の`Loader`クラスは、`load`メソッドを呼び出すまでは、`loadedContent`プロパティの値は`undefined`です。
 クラスフィールドを使えば、`Loader`クラスのインスタンスは、`loadedContent`というプロパティを持っていることを宣言的に表現できます。
 
 {{book.console}}
@@ -600,7 +607,7 @@ class Loader {
 }
 ```
 
-しかしこのように実装してしまうと`Loader`クラスを利用する側は、`loadedContent`プロパティというもの存在は`load`メソッドの中まで読まないとわからないという問題があります。
+しかし、このように実装してしまうと`Loader`クラスを利用する側は、`loadedContent`プロパティの存在を`load`メソッドの中まで読まないとわからないという問題があります。
 これに対して、クラスフィールドを使って「`Loader`クラスは`loadedContent`というプロパティを持っている」ということを宣言的に表現できます。
 
 ### クラスフィールドでの`this`はクラスのインスタンスを示す {#this-in-class-fields}
@@ -686,7 +693,7 @@ class ExampleClass {
 class ExampleClass {
     field = "フィールド";
     constructor() {
-        this.property = "constructor";
+        this.property = "コンストラクタ";
     }
     // クラスフィールド名に対応するsetter
     set field(value) {
@@ -699,11 +706,11 @@ class ExampleClass {
 }
 // set fieldは呼び出されない
 // 一方で、set propertyは呼び出される
-new ExampleClass();
+const example = new ExampleClass();
 ```
 
 クラスフィールド名に対するsetterは呼び出されないのに対して、`this.property`への代入に対するsetterは呼び出されています。
-これは、クラスフィールドは`=`を使った代入で定義されるのではなく、`Object.defineProperty`を使ってプロパティが定義されるという違いに基づいています。
+これは、クラスフィールドは`=`を使った代入で定義されるのではなく、[Object.defineProperty][]メソッドを使ってプロパティが定義されるという違いに基づいています。
 `Object.defineProperty`を使ってプロパティの定義では、setterは無視してプロパティが定義できます。
 setterは`=`での代入に反応します。そのため、`constructor`の中での`this.property`への代入に対してはsetterが呼び出されます。
 
@@ -815,7 +822,7 @@ Privateクラスフィールドを使うことで、クラスの外からアク�
 また、Privateクラスフィールドでは、途中から値が入る場合でもフィールドの宣言が必須となっています。
 次のコードでは、`#loadedContent`に実際に値が入るのは`load`メソッドが呼び出されたときです。
 Publicクラスフィールドではフィールドの定義は省略可能でしたが、Privateクラスフィールドでは`#loadedContent`フィールドの定義が必須となっています。
-言い換えると、Privateクラスフィールドでは、クラスを定義した段階でクラスに存在するすべてのPrivateフィールドを明示する必要があります。
+言い換えると、Privateクラスフィールドでは、クラスを定義した段階でクラスに存在するすべてのPrivateクラスフィールドを明示する必要があります。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": "2022" } -->
@@ -1622,5 +1629,6 @@ console.log(array.last); // => 5
 [問題: `this`を含むメソッドを変数に代入した場合]: ../function-this/README.md#assign-this-function
 [Map/Set]: ../map-and-set/README.md
 [ユースケース:Todoアプリ]: ../../use-case/todoapp/README.md
+[Object.defineProperty]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
 
 [^1]: `class`構文でしか実現できない機能はなく、読みやすさやわかりやさのために導入された構文という側面もあります。そのため、JavaScriptの`class`構文は糖衣構文（シンタックスシュガー）と呼ばれることがあります。
