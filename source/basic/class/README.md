@@ -744,6 +744,9 @@ class クラス {
 }
 ```
 
+<!-- Note: Publicはプロパティ名 https://tc39.es/ecma262/#prod-LiteralPropertyName
+PrivateはただのIdentifier。実体的にはプロパティじゃないのでフィールド名としている -->
+
 定義したPrivateクラスフィールドは、`this.#フィールド名`で参照できます。
 
 {{book.console}}
