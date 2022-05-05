@@ -801,23 +801,23 @@ Privateクラスフィールドを使うことで、クラスを利用する際�
 <!-- doctest: SyntaxError -->
 ```js
 class NumberWrapper {
-    // valueはプライベートプロパティとして定義
+    // valueはPrivateクラスフィールドとして定義
     #value;
     constructor(value) {
         this.#value = value;
     }
-    // `#value`プロパティの値を返すgetter
+    // `#value`フィールドの値を返すgetter
     get value() {
         return this.#value;
     }
-    // `#value`プロパティに値を代入するsetter
+    // `#value`フィールドに値を代入するsetter
     set value(newValue) {
         this.#value = newValue;
     }
 }
 
 const numberWrapper = new NumberWrapper(1);
-// クラスの外からPrivateクラスフィールドで定義したプロパティにはアクセスできない
+// クラスの外からPrivateクラスフィールドには直接はアクセスできない
 console.log(numberWrapper.#value); // => SyntaxError: reference to undeclared private field or method #value
 ```
 
