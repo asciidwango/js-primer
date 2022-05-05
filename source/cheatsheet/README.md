@@ -196,6 +196,8 @@ JavaScriptの言語機能に関するチートシートです。
 | `const X = class X{};` | [ES2015] **クラス**式 | [クラス][] |
 | <i class="s4"></i> `class X{ method(){} }` | [ES2015] クラスの**インスタンスメソッド**定義 | [クラス][] |
 | <i class="s4"></i> `class X{ get x(){}, set x(v){} }` | [ES2015] クラスの**アクセッサメソッド**の定義 | [クラス][] |
+| <i class="s4"></i> `class X{ property = 1; }` | [ES2022] クラスの**Publicクラスフィールド**の定義 | [クラス][] |
+| <i class="s4"></i> `class X{ #privateField = 1; }` | [ES2022] クラスの**Privateクラスフィールド**の定義 | [クラス][] |
 | <i class="s4"></i> `class X{ static method(){} }` | [ES2015] クラスの**静的メソッド**定義 | [クラス][] |
 | `class C extends P{}` | [ES2015] クラスの**継承** | [クラス][] |
 | <i class="s4"></i> `super` | [ES2015] **親クラス**を参照する | [クラス][] |
