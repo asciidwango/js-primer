@@ -62,7 +62,7 @@ const AnonymousClass = class {
 ```js
 class MyClassA {
     constructor() {
-    // コンストラクタの処理が必要なら書く
+        // コンストラクタの処理が必要なら書く
     }
 }
 // コンストラクタの処理が不要な場合は省略できる
