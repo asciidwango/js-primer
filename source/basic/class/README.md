@@ -710,7 +710,7 @@ const example = new ExampleClass();
 ```
 
 クラスフィールド名に対するsetterは呼び出されないのに対して、`this.property`への代入に対するsetterは呼び出されています。
-これは、クラスフィールドは`=`を使った代入で定義されるのではなく、[Object.defineProperty][]メソッドを使ってプロパティが定義されるという違いに基づいています。
+これは、クラスフィールドは`=`を使った代入で定義されるのではなく、[Object.defineProperty][]メソッドを使ってプロパティが定義されるという違いがあります。
 `Object.defineProperty`を使ったプロパティの定義では、setterは無視してプロパティが定義されます。
 setterは`=`での代入に反応します。そのため、`constructor`の中での`this.property`への代入に対してはsetterが呼び出されます。
 
