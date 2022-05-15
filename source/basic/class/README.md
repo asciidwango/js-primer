@@ -867,6 +867,7 @@ class クラス {
 {{book.console}}
 ```js
 class ArrayWrapper {
+    // new演算子で引数が渡されたなかった場合の初期値は空配列
     constructor(array = []) {
         this.array = array;
     }
