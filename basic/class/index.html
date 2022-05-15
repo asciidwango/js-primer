@@ -1449,13 +1449,11 @@
 JavaScriptではES2015より前までは<code>class</code>構文はなく、関数を使ってクラスのようなものを表現して扱っていました。</p>
 <p>ES2015でクラスを表現するための<code>class</code>構文が導入されましたが、この<code>class</code>構文で定義したクラスは関数オブジェクトの一種です。
 <code>class</code>構文ではプロトタイプベースの継承の仕組みを使って関数でクラスを表現しています。
-そのため、<code>class</code>構文はクラスを作るための関数定義や継承をパターン化した書き方と言えます。<sup><a href="#fn_1" id="reffn_1">1</a></sup></p>
-<p>また、関数の定義方法として関数宣言文と関数式があるように、クラスにもクラス宣言文とクラス式があります。
-このように関数とクラスは似ている部分が多いです。</p>
+そのため、<code>class</code>構文はクラスを作るための関数定義や継承をパターン化した書き方と言えます。</p>
+<p>また、関数の定義方法として関数宣言文と関数式があるように、クラスにもクラス宣言文とクラス式があります。 このように関数とクラスは似ている部分が多いです。</p>
 <p>この章では、<code>class</code>構文でのクラスの定義や継承、クラスの性質について学んでいきます。</p>
 <h2 id="class-declaration"><a name="class-declaration" class="plugin-anchor" href="#class-declaration"><i class="fa fa-link" aria-hidden="true"></i></a>クラスの定義 </h2>
-<p>クラスを定義するには<code>class</code>構文を使います。
-クラスの定義方法にはクラス宣言文とクラス式があります。</p>
+<p>クラスを定義するには<code>class</code>構文を使います。 クラスの定義方法にはクラス宣言文とクラス式があります。</p>
 <p>まずは、クラス宣言文によるクラスの定義方法を見ていきます。</p>
 <p>クラス宣言文では<code>class</code>キーワードを使い、<code>class クラス名{ }</code>のようにクラスの<strong>構造</strong>を定義できます。</p>
 <p>クラスは必ずコンストラクタを持ち、<code>constructor</code>という名前のメソッドとして定義します。
@@ -1469,8 +1467,7 @@ JavaScriptではES2015より前までは<code>class</code>構文はなく、関�
     }
 }
 </code></pre>
-<p>もうひとつの定義方法であるクラス式は、クラスを値として定義する方法です。
-クラス式ではクラス名を省略できます。これは関数式における匿名関数と同じです。</p>
+<p>もうひとつの定義方法であるクラス式は、クラスを値として定義する方法です。 クラス式ではクラス名を省略できます。これは関数式における匿名関数と同じです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> MyClass = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
     <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {}
@@ -1489,7 +1486,6 @@ JavaScriptではES2015より前までは<code>class</code>構文はなく、関�
 }
 <span class="hljs-comment">// コンストラクタの処理が不要な場合は省略できる</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClassB</span> </span>{
-
 }
 </code></pre>
 <h2 id="class-instance"><a name="class-instance" class="plugin-anchor" href="#class-instance"><i class="fa fa-link" aria-hidden="true"></i></a>クラスのインスタンス化 </h2>
@@ -1510,8 +1506,7 @@ JavaScriptではES2015より前までは<code>class</code>構文はなく、関�
 <span class="hljs-built_in">console</span>.log(myClassAnother <span class="hljs-keyword">instanceof</span> MyClass); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <p>このままでは何も処理がない空のクラスなので、値を持ったクラスを定義してみましょう。</p>
-<p>クラスではインスタンスの初期化処理をコンストラクタ関数で行います。
-コンストラクタ関数は<code>new</code>演算子でインスタンス化する際に自動的に呼び出されます。
+<p>クラスではインスタンスの初期化処理をコンストラクタ関数で行います。 コンストラクタ関数は<code>new</code>演算子でインスタンス化する際に自動的に呼び出されます。
 コンストラクタ関数内での<code>this</code>はこれから新しく作るインスタンスオブジェクトとなります。</p>
 <p>次のコードでは、<code>x</code>座標と<code>y</code>座標の値を持つ<code>Point</code>というクラスを定義しています。
 コンストラクタ関数（<code>constructor</code>）の中でインスタンスオブジェクト（<code>this</code>）の<code>x</code>と<code>y</code>プロパティに値を代入して初期化しています。</p>
@@ -1526,8 +1521,7 @@ JavaScriptではES2015より前までは<code>class</code>構文はなく、関�
     }
 }
 </code></pre>
-<p>この<code>Point</code>クラスのインスタンスを作成するには<code>new</code>演算子を使います。
-<code>new</code>演算子には関数呼び出しと同じように引数を渡すことができます。
+<p>この<code>Point</code>クラスのインスタンスを作成するには<code>new</code>演算子を使います。 <code>new</code>演算子には関数呼び出しと同じように引数を渡すことができます。
 <code>new</code>演算子の引数はクラスの<code>constructor</code>メソッド（コンストラクタ関数）の仮引数に渡されます。
 そして、コンストラクタの中ではインスタンスオブジェクト（<code>this</code>）の初期化処理を行います。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -1552,16 +1546,15 @@ JavaScriptではES2015より前までは<code>class</code>構文はなく、関�
 これは、クラスのコンストラクタはインスタンス（<code>this</code>）を初期化する場所であり、通常の関数とは役割が異なるためです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> { }
+    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {}
 }
-<span class="hljs-comment">// クラスのコンストラクタ関数として呼び出すことはできない</span>
+<span class="hljs-comment">// クラスは関数として呼び出すことはできない</span>
 MyClass(); <span class="hljs-comment">// =&gt; TypeError: class constructors must be invoked with |new|</span>
 </code></pre>
-<p>コンストラクタは初期化処理を書く場所であるため、<code>return</code>文で値を返すべきではありません。
+<p>また、コンストラクタは初期化処理を書く場所であるため、<code>return</code>文で値を返すべきではありません。
 JavaScriptでは、コンストラクタ関数が任意のオブジェクトを返すことが可能ですが、行うべきではありません。
 なぜなら、コンストラクタは<code>new</code>演算子で呼び出し、その評価結果はクラスのインスタンスを期待するのが一般的であるためです。</p>
-<p>次のコードのようにコンストラクタで返した値が<code>new</code>演算子で呼び出した際の返り値となります。
-このような書き方は混乱を生むため避けるべきです。</p>
+<p>次のコードのようにコンストラクタで返した値が<code>new</code>演算子で呼び出した際の返り値となります。 このような書き方は混乱を生むため避けるべきです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 非推奨の例: コンストラクタで値を返すべきではない</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Point</span> </span>{
@@ -1587,8 +1580,7 @@ JavaScriptでは、コンストラクタ関数が任意のオブジェクトを�
 <h3 id="class-vs-function"><a name="class-vs-function" class="plugin-anchor" href="#class-vs-function"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] <code>class</code>構文と関数でのクラスの違い </h3>
 <p>ES2015より前はこれらのクラスを<code>class</code>構文ではなく、関数で表現していました。
 その表現方法は人によってさまざまで、これも<code>class</code>構文という統一した記法が導入された理由の1つです。</p>
-<p>次のコードは、関数でクラスを実装した1つの例です。
-この関数でのクラス表現は、継承の仕組みなどは省かれていますが、<code>class</code>構文とよく似ています。</p>
+<p>次のコードは、関数でクラスを実装した1つの例です。 この関数でのクラス表現は、継承の仕組みなどは省かれていますが、<code>class</code>構文とよく似ています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// コンストラクタ関数</span>
 <span class="hljs-keyword">const</span> Point = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">PointConstructor</span>(<span class="hljs-params">x, y</span>) </span>{
@@ -1649,12 +1641,10 @@ MyClass(); <span class="hljs-comment">// =&gt; TypeError: class constructors mus
 }
 </code></pre>
 <!-- textlint-enable -->
-<p>このようにクラスに対して定義したメソッドは、クラスの各インスタンスから<strong>共有されるメソッド</strong>となります。
-このインスタンス間で共有されるメソッドのことを<strong>プロトタイプメソッド</strong>と呼びます。
-また、プロトタイプメソッドはインスタンスから呼び出せるメソッドであるため<strong>インスタンスメソッド</strong>とも呼ばれます。</p>
-<p>この書籍では、プロトタイプメソッド（インスタンスメソッド）を<code>クラス</code>の<code>メソッド名</code>のように表記します。</p>
-<p>次のコードでは、<code>Counter</code>クラスに<code>increment</code>メソッド（Counterのプロトタイプオブジェクトに<code>increment</code>メソッド）を定義しています。
-<code>Counter</code>クラスのインスタンスはそれぞれ別々の状態（<code>count</code>プロパティ）を持ちます。</p>
+<p>このメソッド定義の構文でクラスに対して定義したメソッドは、クラスの各インスタンスから<strong>共有されるメソッド</strong>となります。
+このインスタンス間で共有されるメソッドのことを<strong>プロトタイプメソッド</strong>と呼びます。</p>
+<p>次のコードでは、<code>Counter</code>クラスに<code>increment</code>メソッドを定義しています。
+このときの<code>Counter</code>クラスのインスタンスは、それぞれ別々の状態（<code>count</code>プロパティ）を持ちます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> </span>{
     <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
@@ -1674,8 +1664,8 @@ counterA.increment();
 <span class="hljs-built_in">console</span>.log(counterA.count); <span class="hljs-comment">// =&gt; 1</span>
 <span class="hljs-built_in">console</span>.log(counterB.count); <span class="hljs-comment">// =&gt; 0</span>
 </code></pre>
-<p>また<code>increment</code>メソッドはプロトタイプメソッドとして定義されています。
-プロトタイプメソッドは各インスタンス間で共有されます。
+<p>このときの<code>increment</code>メソッドはプロトタイプメソッドとして定義されています。
+プロトタイプメソッドは各インスタンス間(<code>counterA</code>と<code>counterB</code>)で共有されます。
 そのため、次のように各インスタンスの<code>increment</code>メソッドの参照先は同じとなっていることがわかります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> </span>{
@@ -1693,88 +1683,16 @@ counterA.increment();
 </code></pre>
 <p>プロトタイプメソッドがなぜインスタンス間で共有されているのかは、クラスの継承の仕組みと密接に関係しています。
 プロトタイプメソッドの仕組みについては後ほど解説します。</p>
-<h3 id="class-instance-method"><a name="class-instance-method" class="plugin-anchor" href="#class-instance-method"><i class="fa fa-link" aria-hidden="true"></i></a>クラスのインスタンスに対してメソッドを定義する </h3>
-<p><code>class</code>構文でのメソッド定義はプロトタイプメソッドとなり、インスタンス間で共有されます。</p>
-<p>一方、クラスのインスタンスに対して、直接メソッドを定義する方法もあります。
-これは、コンストラクタ関数内でインスタンスオブジェクトである<code>this</code>に対してメソッドを定義するだけです。</p>
-<p>次のコードでは、<code>Counter</code>クラスのコンストラクタ関数で、インスタンスオブジェクトに<code>increment</code>メソッドを定義しています。
-コンストラクタ関数内で<code>this</code>はインスタンスオブジェクトを示すため、<code>this</code>に対してメソッドを定義しています。</p>
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">this</span>.count = <span class="hljs-number">0</span>;
-        <span class="hljs-built_in">this</span>.increment = <span class="hljs-function">() =&gt;</span> {
-            <span class="hljs-comment">// `this`は`constructor`メソッドにおける`this`（インスタンスオブジェクト）を参照する</span>
-            <span class="hljs-built_in">this</span>.count++;
-        };
+<p>ここでは、次のような構文でクラスにメソッドを定義すると、各インスタンスで共有されるプロトタイプメソッドとして定義されるということが理解できていれば問題ありません。</p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> クラス </span>{
+    メソッド() {
+        <span class="hljs-comment">// このメソッドはプロトタイプメソッドとして定義される</span>
     }
 }
-<span class="hljs-keyword">const</span> counterA = <span class="hljs-keyword">new</span> Counter();
-<span class="hljs-keyword">const</span> counterB = <span class="hljs-keyword">new</span> Counter();
-<span class="hljs-comment">// `counterA.increment()`のベースオブジェクトは`counterA`インスタンス</span>
-counterA.increment();
-<span class="hljs-comment">// 各インスタンスの持つプロパティ(状態)は異なる</span>
-<span class="hljs-built_in">console</span>.log(counterA.count); <span class="hljs-comment">// =&gt; 1</span>
-<span class="hljs-built_in">console</span>.log(counterB.count); <span class="hljs-comment">// =&gt; 0</span>
 </code></pre>
-<p>この方法で定義した<code>increment</code>メソッドはインスタンスから呼び出せるため、インスタンスメソッドです。
-しかし、インスタンスオブジェクトに定義した<code>increment</code>メソッドはプロトタイプメソッドではありません。
-インスタンスオブジェクトのメソッドとプロトタイプメソッドには、いくつか異なる点があります。</p>
-<p>プロトタイプメソッドは各インスタンスから共有されているため、各インスタンスからのメソッドの参照先が同じでした。
-しかし、インスタンスオブジェクトのメソッドは、コンストラクタで毎回同じ挙動の関数（オブジェクト）を新しく定義しています。
-そのため、次のように各インスタンスからのメソッドの参照先も異なります。</p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">this</span>.count = <span class="hljs-number">0</span>;
-        <span class="hljs-built_in">this</span>.increment = <span class="hljs-function">() =&gt;</span> {
-            <span class="hljs-built_in">this</span>.count++;
-        };
-    }
-}
-<span class="hljs-keyword">const</span> counterA = <span class="hljs-keyword">new</span> Counter();
-<span class="hljs-keyword">const</span> counterB = <span class="hljs-keyword">new</span> Counter();
-<span class="hljs-comment">// 各インスタンスオブジェクトのメソッドの参照先は異なる</span>
-<span class="hljs-built_in">console</span>.log(counterA.increment === counterB.increment); <span class="hljs-comment">// =&gt; false</span>
-</code></pre>
-<p>また、プロトタイプメソッドとは異なり、インスタンスオブジェクトへのメソッド定義はArrow Functionが利用できます。
-Arrow Functionには<code>this</code>が静的に決まるという性質があるため、メソッドにおける<code>this</code>の参照先をインスタンスに固定できます。
-なぜならArrow Functionで定義した<code>increment</code>メソッドはどのような呼び出し方をしても、必ず<code>constructor</code>における<code>this</code>となるためです（「<a href="../function-this/#arrow-function-callback">Arrow Functionでコールバック関数を扱う</a>」を参照）。</p>
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-meta">&quot;use strict&quot;</span>;
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrowClass</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-comment">// コンストラクタでの`this`は常にインスタンス</span>
-        <span class="hljs-built_in">this</span>.method = <span class="hljs-function">() =&gt;</span> {
-            <span class="hljs-comment">// Arrow Functionにおける`this`は静的に決まる</span>
-            <span class="hljs-comment">// そのため`this`は常にインスタンスを参照する</span>
-            <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
-        };
-    }
-}
-<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> ArrowClass();
-<span class="hljs-keyword">const</span> method = instance.method;
-<span class="hljs-comment">// 呼び出し方法（ベースオブジェクト）に依存しないため、`this`がインスタンスを参照する</span>
-<span class="hljs-built_in">console</span>.log(method()); <span class="hljs-comment">// =&gt; instance</span>
-</code></pre>
-<p>一方、プロトタイプメソッドにおける<code>this</code>はメソッド呼び出し時のベースオブジェクトを参照します。
-そのためプロトタイプメソッドは呼び出し方によって<code>this</code>の参照先が異なります（「<a href="../function-this/">関数とthis</a>」の章の「<a href="../function-this/#assign-this-function">問題: <code>this</code>を含むメソッドを変数に代入した場合</a>」を参照）。</p>
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-meta">&quot;use strict&quot;</span>;
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PrototypeClass</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">method</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-comment">// `this`はベースオブジェクトを参照する</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>;
-    };
-}
-<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> PrototypeClass();
-<span class="hljs-keyword">const</span> method = instance.method;
-<span class="hljs-comment">// ベースオブジェクトはundefined</span>
-<span class="hljs-built_in">console</span>.log(method()); <span class="hljs-comment">// =&gt; undefined</span>
-</code></pre>
-<p>このように、インスタンスに対してArrow Functionでメソッドを定義することで<code>this</code>の参照先を固定化できます。</p>
 <h2 id="class-accessor-property"><a name="class-accessor-property" class="plugin-anchor" href="#class-accessor-property"><i class="fa fa-link" aria-hidden="true"></i></a>クラスのアクセッサプロパティの定義 </h2>
 <!-- textlint-disable no-js-function-paren -->
-<p>クラスに対してメソッドを定義できますが、メソッドは<code>メソッド名()</code>のように呼び出す必要があります。
+<p>クラスに対してメソッドを定義できますが、メソッドは<code>インスタンス名.メソッド名()</code>のように呼び出す必要があります。
 クラスでは、プロパティの参照（getter）、プロパティへの代入（setter）時に呼び出される特殊なメソッドを定義できます。
 このメソッドはプロパティのように振る舞うため<strong>アクセッサプロパティ</strong>と呼ばれます。</p>
 <!-- textlint-enable no-js-function-paren -->
@@ -1829,12 +1747,13 @@ numberWrapper.value = <span class="hljs-number">42</span>;
 インスタンスオブジェクトへも定義できるが、メソッドとは異なり意味の違いがでることはないため省略。
 またフィールドとして定義することはできないため対比は意味がない。
 -->
-<h3 id="private-property"><a name="private-property" class="plugin-anchor" href="#private-property"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] プライベートプロパティ </h3>
+<h3 id="underbar-private-property"><a name="underbar-private-property" class="plugin-anchor" href="#underbar-private-property"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] <code>_</code>（アンダーバー）から始まるプロパティ名 </h3>
 <p>NumberWrapperの<code>value</code>のアクセッサプロパティで実際に読み書きしているのは、<code>_value</code>プロパティです。
-このように、外から直接読み書きしてほしくないプロパティを<code>_</code>（アンダーバー）で開始するのはただの習慣であるため、構文としての意味はありません。</p>
-<p>現時点（ECMAScript 2021）では、外から原理的に参照できないプライベートプロパティ（hard private）を定義する構文はありません。
-しかし、現時点でも<code>WeakSet</code>などを使うことで疑似的なプライベートプロパティを実現できます。
-<code>WeakSet</code>については「<a href="../map-and-set/">Map/Set</a>」の章で解説します。</p>
+このように、外から直接読み書きしてほしくないプロパティを<code>_</code>（アンダーバー）から始まる名前にするのはただの習慣であるため、構文としての意味はありません。</p>
+<p>ECMAScript 2022から、外から直接読み書きしてほしくないプライベートなプロパティを定義するPrivateクラスフィールド構文が追加されました。
+Privateクラスフィールド構文では<code>#</code>（ハッシュ）記号をプロパティ名の前につけます。
+そのため、外から直接読み書きしてほしくないプロパティを<code>_</code>からはじめるという慣習は、Privateクラスフィールド構文の利用が進むにつれて使われなくなっていくと考えています。</p>
+<p>Privateクラスフィールド構文については、この後に解説します。</p>
 <h3 id="array-like-length"><a name="array-like-length" class="plugin-anchor" href="#array-like-length"><i class="fa fa-link" aria-hidden="true"></i></a><code>Array.prototype.length</code>をアクセッサプロパティで再現する </h3>
 <p>getterやsetterを利用しないと実現が難しいものとして、<code>Array.prototype.length</code>プロパティがあります。
 Arrayの<code>length</code>プロパティへ値を代入すると、そのインデックス以降の要素は自動的に削除される仕様になっています。</p>
@@ -1899,6 +1818,293 @@ arrayLike.length = <span class="hljs-number">5</span>;
 <span class="hljs-built_in">console</span>.log(arrayLike.items.join(<span class="hljs-string">&quot;, &quot;</span>)); <span class="hljs-comment">// =&gt; &quot;1, 2, , , &quot;</span>
 </code></pre>
 <p>このようにアクセッサプロパティでは、プロパティのようでありながら実際にアクセスした際には他のプロパティと連動する動作を実現できます。</p>
+<h2 id="public-class-fields"><a name="public-class-fields" class="plugin-anchor" href="#public-class-fields"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2022] Publicクラスフィールド </h2>
+<p>クラスでは、<code>constructor</code>メソッドの中でクラスの状態であるインスタンスのプロパティの初期化することを紹介しました。
+先ほども紹介した<code>Counter</code>クラスでは、<code>constructor</code>メソッドの中で<code>count</code>プロパティの初期値を<code>0</code>として定義しています。</p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> </span>{
+    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
+        <span class="hljs-built_in">this</span>.count = <span class="hljs-number">0</span>;
+    }
+    <span class="hljs-function"><span class="hljs-title">increment</span>(<span class="hljs-params"></span>)</span> {
+        <span class="hljs-built_in">this</span>.count++;
+    }
+}
+</code></pre>
+<p>この<code>Counter</code>では<code>new</code>演算子で何も引数を渡すことなく初期化するため、<code>constructor</code>メソッドには仮引数を定義していません。
+このような場合でも、<code>construtor</code>メソッドを書かないとプロパティの初期化ができないためわずらわしいという問題がありました。</p>
+<p>ES2022で、クラスのインスタンスが持つプロパティの初期化をわかりやすく宣言的にする構文として、<strong>クラスフィールド</strong>構文が追加されました。</p>
+<p>クラスフィールドは、クラスのインスタンスが持つプロパティを定義する次のような構文です。</p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> クラス </span>{
+    プロパティ名 = プロパティの初期値;
+}
+</code></pre>
+<p>クラスフィールドを使って先ほどの<code>Counter</code>クラスを書き直してみると次のようになります。
+<code>count</code>プロパティをクラスフィールドとして定義して、その初期値は<code>0</code>としています。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> </span>{
+    count = <span class="hljs-number">0</span>;
+    <span class="hljs-function"><span class="hljs-title">increment</span>(<span class="hljs-params"></span>)</span> {
+        <span class="hljs-built_in">this</span>.count++;
+    }
+}
+<span class="hljs-keyword">const</span> counter = <span class="hljs-keyword">new</span> Counter();
+counter.increment();
+<span class="hljs-built_in">console</span>.log(counter.count); <span class="hljs-comment">// =&gt; 1</span>
+</code></pre>
+<p>クラスフィールドで定義するのは、クラスのインスタンスが持つプロパティです。
+そのため、<code>constructor</code>メソッドの中で<code>this.count = 0</code>のように定義した場合と結果的にはほとんど同じ意味となります。
+クラスフィールドで定義したプロパティは、クラス内から他のプロパティと同じように<code>this.プロパティ名</code>で参照できます。</p>
+<p>クラスフィールドは<code>constructor</code>メソッドでの初期化と併用が可能です。
+次のコードでは、クラスフィールドと<code>constructor</code>メソッドでそれぞれインスタンスのプロパティを定義しています。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
+<pre><code class="lang-js"><span class="hljs-comment">// 別々のプロパティ名はそれぞれ定義される</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
+    publicField = <span class="hljs-number">1</span>;
+    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">arg</span>)</span> {
+        <span class="hljs-built_in">this</span>.property = arg;
+    }
+}
+<span class="hljs-keyword">const</span> myClass = <span class="hljs-keyword">new</span> MyClass(<span class="hljs-number">2</span>);
+<span class="hljs-built_in">console</span>.log(myClass.publicField); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-built_in">console</span>.log(myClass.property); <span class="hljs-comment">// =&gt; 2</span>
+</code></pre>
+<p>また、クラスフィールドでの初期化処理が行われ、そのあと<code>constructor</code>でのプロパティの定義という処理順となります。
+そのため、同じプロパティ名への定義がある場合は、<code>constructor</code>メソッド内での定義でプロパティは上書きされます。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
+<pre><code class="lang-js"><span class="hljs-comment">// 同じプロパティ名の場合は、constructorでの代入が後となる</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OwnClass</span> </span>{
+    publicField = <span class="hljs-number">1</span>;
+    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">arg</span>)</span> {
+        <span class="hljs-built_in">this</span>.publicField = arg;
+    }
+}
+<span class="hljs-keyword">const</span> ownClass = <span class="hljs-keyword">new</span> OwnClass(<span class="hljs-number">2</span>);
+<span class="hljs-built_in">console</span>.log(ownClass.publicField); <span class="hljs-comment">// =&gt; 2</span>
+</code></pre>
+<p>この<code>publicField</code>プロパティのように、クラスの外からアクセスできるプロパティを定義するクラスフィールドを<strong>Publicクラスフィールド</strong>と呼びます。</p>
+<h3 id="declare-class-fields"><a name="declare-class-fields" class="plugin-anchor" href="#declare-class-fields"><i class="fa fa-link" aria-hidden="true"></i></a>クラスフィールドを使ってプロパティの存在を宣言する </h3>
+<p>クラスフィールドでは、プロパティの初期値は省略可能となっています。
+そのため、次のように初期値を省略したPublicクラスフィールドも定義できます。</p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
+    <span class="hljs-comment">// myPropertyはundefinedで初期化される</span>
+    myProperty;
+}
+</code></pre>
+<p>このときの<code>myProperty</code>は<code>undefined</code>で初期化されます。
+この初期値を省略したクラスフィールドの定義は、クラスのインスタンスが持つプロパティを明示するために利用できます。</p>
+<p>次の<code>Loader</code>クラスは、<code>load</code>メソッドを呼び出すまでは、<code>loadedContent</code>プロパティの値は<code>undefined</code>です。
+クラスフィールドを使えば、<code>Loader</code>クラスのインスタンスは、<code>loadedContent</code>というプロパティを持っていることを宣言的に表現できます。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Loader</span> </span>{
+    loadedContent;
+    <span class="hljs-function"><span class="hljs-title">load</span>(<span class="hljs-params"></span>)</span> {
+        <span class="hljs-built_in">this</span>.loadedContent = <span class="hljs-string">&quot;読み込んだコンテンツ内容&quot;</span>;
+    }
+}
+</code></pre>
+<p>JavaScriptでは、オブジェクトのプロパティは初期化時に存在していなくても、後から代入すれば作成できてしまいます。
+そのため、次のように<code>Loader</code>クラスを実装しても意味は同じです。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Loader</span> </span>{
+    <span class="hljs-function"><span class="hljs-title">load</span>(<span class="hljs-params"></span>)</span> {
+        <span class="hljs-built_in">this</span>.loadedContent = <span class="hljs-string">&quot;読み込んだコンテンツ内容&quot;</span>;
+    }
+}
+</code></pre>
+<p>しかし、このように実装してしまうと<code>Loader</code>クラスを利用する側は、<code>loadedContent</code>プロパティの存在を<code>load</code>メソッドの中まで読まないとわからないという問題があります。
+これに対して、クラスフィールドを使って「<code>Loader</code>クラスは<code>loadedContent</code>というプロパティを持っている」ということを宣言的に表現できます。</p>
+<h3 id="this-in-class-fields"><a name="this-in-class-fields" class="plugin-anchor" href="#this-in-class-fields"><i class="fa fa-link" aria-hidden="true"></i></a>クラスフィールドでの<code>this</code>はクラスのインスタンスを示す </h3>
+<p>クラスフィールドの初期値には任意の式が書け、<code>this</code>も利用できます。
+クラスフィールドでの<code>this</code>は、そのクラスのインスタンスを参照します。</p>
+<p>次のコードでは、<code>up</code>フィールドの初期値に<code>increment</code>メソッドを指定しています。
+JavaScriptでは関数も値として扱えるため、<code>up</code>メソッドを呼び出すと<code>increment</code>メソッドが呼び出されます。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> </span>{
+    count = <span class="hljs-number">0</span>;
+    <span class="hljs-comment">// upはincrementメソッドを参照している</span>
+    up = <span class="hljs-built_in">this</span>.increment;
+    <span class="hljs-function"><span class="hljs-title">increment</span>(<span class="hljs-params"></span>)</span> {
+        <span class="hljs-built_in">this</span>.count++;
+    }
+}
+<span class="hljs-keyword">const</span> counter = <span class="hljs-keyword">new</span> Counter();
+counter.up(); <span class="hljs-comment">// 結果的にはincrementメソッドが呼び出される</span>
+<span class="hljs-built_in">console</span>.log(counter.count); <span class="hljs-comment">// =&gt; 1</span>
+</code></pre>
+<p>クラスフィールドでの<code>this</code>は、Arrow Functionと組み合わせると強力です。</p>
+<p>次のコードでは、<code>up</code>メソッドに<code>this.increment</code>メソッドを呼び出す関数をArrow Function定義しています。
+Arrow Functionで定義した関数における<code>this</code>は、どのような呼び出し方をしても変化しません（「<a href="../function-this/#arrow-function-callback">Arrow Functionでコールバック関数を扱う</a>」を参照）。
+そのため、<code>up</code>メソッドはどのような呼び方をした場合でも<code>this</code>がクラスのインスタンスとなるため、確実に<code>increment</code>メソッドを呼び出せます。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> </span>{
+    count = <span class="hljs-number">0</span>;
+    <span class="hljs-comment">// クラスフィールドでの`this`はクラスのインスタンスとなる</span>
+    <span class="hljs-comment">// upメソッドは、クラスのインスタンスに定義される</span>
+    up = <span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-built_in">this</span>.increment();
+    };
+    <span class="hljs-function"><span class="hljs-title">increment</span>(<span class="hljs-params"></span>)</span> {
+        <span class="hljs-built_in">this</span>.count++;
+    }
+}
+<span class="hljs-keyword">const</span> counter = <span class="hljs-keyword">new</span> Counter();
+<span class="hljs-comment">// Arrow Functionなので、thisはクラスのインスタンスに固定されている</span>
+<span class="hljs-keyword">const</span> up = counter.up;
+up();
+<span class="hljs-built_in">console</span>.log(counter.count); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-comment">// 通常のメソッド定義では、`this`が`undefined`となってしまうため例外が発生する</span>
+<span class="hljs-keyword">const</span> increment = counter.increment;
+increment(); <span class="hljs-comment">// Error: Uncaught TypeError: this is undefined</span>
+</code></pre>
+<h3 id="difference-between-class-fields-and-instance-property"><a name="difference-between-class-fields-and-instance-property" class="plugin-anchor" href="#difference-between-class-fields-and-instance-property"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] クラスフィールドとインスタンスのプロパティの違い </h3>
+<p>クラスフィールドで定義したプロパティやメソッドは、クラスのインスタンスにプロパティとして定義されます。
+そのため、クラスフィールドは、<code>constructor</code>の中で<code>this</code>に対してプロパティを追加するのと意味的にはほぼ同じで、見た目がわかりやすくなった構文と捉えることができます。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExampleClass</span> </span>{
+    fieldMethod = <span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;クラスフィールドで定義されたメソッド&quot;</span>);
+    };
+    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
+        <span class="hljs-built_in">this</span>.propertyMethod = <span class="hljs-function">() =&gt;</span> {
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;インスタンスにプロパティとして定義されたメソッド&quot;</span>);
+        };
+    }
+}
+</code></pre>
+<p>しかし、厳密にはこのふたつのプロパティ定義には異なる点はあります。
+次のように、クラスフィールドと<code>constructor</code>の中で<code>this</code>に追加するプロパティ名に対するsetterを定義してみるとこの違いがわかります。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExampleClass</span> </span>{
+    field = <span class="hljs-string">&quot;フィールド&quot;</span>;
+    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
+        <span class="hljs-built_in">this</span>.property = <span class="hljs-string">&quot;コンストラクタ&quot;</span>;
+    }
+    <span class="hljs-comment">// クラスフィールド名に対応するsetter</span>
+    <span class="hljs-keyword">set</span> <span class="hljs-title">field</span>(<span class="hljs-params">value</span>) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;fieldで定義された値&quot;</span>, value);
+    }
+    <span class="hljs-comment">// thisのプロパティ名に対応するsetter</span>
+    <span class="hljs-keyword">set</span> <span class="hljs-title">property</span>(<span class="hljs-params">value</span>) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;consctrutorで代入された値&quot;</span>, value);
+    }
+}
+<span class="hljs-comment">// set fieldは呼び出されない</span>
+<span class="hljs-comment">// 一方で、set propertyは呼び出される</span>
+<span class="hljs-keyword">const</span> example = <span class="hljs-keyword">new</span> ExampleClass();
+</code></pre>
+<p>クラスフィールド名に対するsetterは呼び出されないのに対して、<code>this.property</code>への代入に対するsetterは呼び出されています。
+これは、クラスフィールドは<code>=</code>を使った代入で定義されるのではなく、<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank">Object.defineProperty</a>メソッドを使ってプロパティが定義されるという違いに基づいています。
+<code>Object.defineProperty</code>を使ったプロパティの定義では、setterは無視してプロパティが定義されます。
+setterは<code>=</code>での代入に反応します。そのため、<code>constructor</code>の中での<code>this.property</code>への代入に対してはsetterが呼び出されます。</p>
+<!-- Note: https://tc39.es/ecma262/#sec-createdataproperty PublicはdefinePropertyを使う -->
+<p>同じプロパティの定義であっても、プロパティの定義の仕組みが微妙に異なる点から、このような挙動の違いが存在しています。
+しかし、この違いを意識するようなコードを書くことは避けたほうが安全です。
+実際に見た目からこの違いを意識するのは難しく、それを意識させるようなコードは複雑性が高いためです。</p>
+<h2 id="private-class-fields"><a name="private-class-fields" class="plugin-anchor" href="#private-class-fields"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2022] Privateクラスフィールド </h2>
+<p>クラスフィールド構文で次のように書くと、定義したプロパティはクラスのインスタンス化した後に外からも参照できます。
+そのため、Publicクラスフィールドと呼ばれます。</p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> クラス </span>{
+    プロパティ名 = プロパティの初期値;
+}
+</code></pre>
+<p>一方で外からアクセスされたくないインスタンスのプロパティも存在します。
+そのようなプライベートなプロパティを定義する構文もES2022で追加されています。</p>
+<p>Privateクラスフィールドは、次のように<code>#</code>をフィールド名の前につけたクラスフィールドを定義します。</p>
+<pre><code class="lang-js">class クラス {
+    // プライベートなプロパティは#をつける
+    #フィールド名 = プロパティの初期値;
+}
+</code></pre>
+<!-- Note: Publicはプロパティ名 https://tc39.es/ecma262/#prod-LiteralPropertyName
+PrivateはただのIdentifier。実体的にはプロパティじゃないのでフィールド名としている -->
+<p>定義したPrivateクラスフィールドは、<code>this.#フィールド名</code>で参照できます。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PrivateExampleClass</span> </span>{
+    #privateField = <span class="hljs-number">42</span>;
+    <span class="hljs-function"><span class="hljs-title">dump</span>(<span class="hljs-params"></span>)</span> {
+        <span class="hljs-comment">// Privateクラスフィールドはクラス内からのみ参照できる</span>
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.#privateField); <span class="hljs-comment">// =&gt; 42</span>
+    }
+}
+<span class="hljs-keyword">const</span> privateExample = <span class="hljs-keyword">new</span> PrivateExampleClass();
+privateExample.dump();
+</code></pre>
+<p>もう少し具体的なPrivateクラスフィールドの使い方を見ていきます。</p>
+<p>アクセサプロパティの例でも登場した<code>NumberWrapper</code>をPrivateクラスフィールドを使って書き直してみます。
+元々の<code>NumberWrapper</code>クラスでは、<code>_value</code>プロパティに実際の値を読み書きしていました。
+この場合、<code>_value</code>プロパティは、外からもアクセスできてしまうため、定義したgetterとsetterが無視できてしまいます。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NumberWrapper</span> </span>{
+    <span class="hljs-comment">// Publicクラスフィールドなのでクラスの外からアクセスができる</span>
+    _value;
+    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">value</span>)</span> {
+        <span class="hljs-built_in">this</span>._value = value;
+    }
+    <span class="hljs-comment">// `_value`プロパティの値を返すgetter</span>
+    <span class="hljs-keyword">get</span> <span class="hljs-title">value</span>() {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>._value;
+    }
+    <span class="hljs-comment">// `_value`プロパティに値を代入するsetter</span>
+    <span class="hljs-keyword">set</span> <span class="hljs-title">value</span>(<span class="hljs-params">newValue</span>) {
+        <span class="hljs-built_in">this</span>._value = newValue;
+    }
+}
+<span class="hljs-keyword">const</span> numberWrapper = <span class="hljs-keyword">new</span> NumberWrapper(<span class="hljs-number">1</span>);
+<span class="hljs-comment">// _valueプロパティは外からもアクセスできる</span>
+<span class="hljs-built_in">console</span>.log(numberWrapper._value); <span class="hljs-comment">// =&gt; 1</span>
+</code></pre>
+<p>Privateクラスフィールドでは、外からアクセスされたくないプロパティを<code>#</code>をつけてクラスフィールドとして定義します。
+次のコードでは、<code>#value</code>はプライベートプロパティとなっているため、構文エラーが発生し外からアクセスできなくなることが確認できます。
+Privateクラスフィールドを使うことで、クラスを利用する際はgetterとsetterを経由しないと<code>#value</code>を参照できなくなりました。</p>
+<!-- textlint-disable eslint -->
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest: SyntaxError --></p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NumberWrapper</span> </span>{
+    <span class="hljs-comment">// valueはPrivateクラスフィールドとして定義</span>
+    #value;
+    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">value</span>)</span> {
+        <span class="hljs-built_in">this</span>.#value = value;
+    }
+    <span class="hljs-comment">// `#value`フィールドの値を返すgetter</span>
+    <span class="hljs-keyword">get</span> <span class="hljs-title">value</span>() {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.#value;
+    }
+    <span class="hljs-comment">// `#value`フィールドに値を代入するsetter</span>
+    <span class="hljs-keyword">set</span> <span class="hljs-title">value</span>(<span class="hljs-params">newValue</span>) {
+        <span class="hljs-built_in">this</span>.#value = newValue;
+    }
+}
+
+<span class="hljs-keyword">const</span> numberWrapper = <span class="hljs-keyword">new</span> NumberWrapper(<span class="hljs-number">1</span>);
+<span class="hljs-comment">// クラスの外からPrivateクラスフィールドには直接はアクセスできない</span>
+<span class="hljs-built_in">console</span>.log(numberWrapper.#value); <span class="hljs-comment">// =&gt; SyntaxError: reference to undeclared private field or method #value</span>
+</code></pre>
+<!-- textlint-enable eslint -->
+<p>Privateクラスフィールドを使うことで、クラスの外からアクセスさせたくないプロパティを宣言できます。
+これは、実装したクラスの意図しない使われ方を防いだり、クラスの外からプロパティの状態を直接書き換えるといった行為を防げます。</p>
+<p>また、Privateクラスフィールドでは、途中から値が入る場合でもフィールドの宣言が必須となっています。
+次のコードでは、<code>#loadedContent</code>に実際に値が入るのは<code>load</code>メソッドが呼び出されたときです。
+Publicクラスフィールドではフィールドの定義は省略可能でしたが、Privateクラスフィールドでは<code>#loadedContent</code>フィールドの定義が必須となっています。
+言い換えると、Privateクラスフィールドでは、クラスを定義した段階でクラスに存在するすべてのPrivateクラスフィールドを明示する必要があります。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PrivateLoader</span> </span>{
+    <span class="hljs-comment">// 途中で値が入る場合でも最初に`undefined`で初期化されるフィールドの定義が必須</span>
+    #loadedContent;
+    <span class="hljs-function"><span class="hljs-title">load</span>(<span class="hljs-params"></span>)</span> {
+        <span class="hljs-built_in">this</span>.#loadedContent = <span class="hljs-string">&quot;読み込んだコンテンツ内容&quot;</span>;
+    }
+}
+</code></pre>
 <h2 id="static-method"><a name="static-method" class="plugin-anchor" href="#static-method"><i class="fa fa-link" aria-hidden="true"></i></a>静的メソッド </h2>
 <p>インスタンスメソッドは、クラスをインスタンス化して利用します。
 一方、クラスをインスタンス化せずに利用できる静的メソッド（クラスメソッド）もあります。</p>
@@ -1917,6 +2123,7 @@ arrayLike.length = <span class="hljs-number">5</span>;
 このクラスに配列ではなく要素そのものを引数に受け取ってインスタンス化できる<code>ArrayWrapper.of</code>という静的メソッドを定義します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayWrapper</span> </span>{
+    <span class="hljs-comment">// new演算子で引数が渡されたなかった場合の初期値は空配列</span>
     <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">array = []</span>)</span> {
         <span class="hljs-built_in">this</span>.array = array;
     }
@@ -1961,20 +2168,68 @@ arrayLike.length = <span class="hljs-number">5</span>;
 </code></pre>
 <p>このように静的メソッドでの<code>this</code>はクラス自身を参照するため、クラスのインスタンスは参照できません。
 そのため静的メソッドは、クラスのインスタンスを作成する処理やクラスに関係する処理を書くために利用されます。</p>
-<h2 id="two-instance-method-definition"><a name="two-instance-method-definition" class="plugin-anchor" href="#two-instance-method-definition"><i class="fa fa-link" aria-hidden="true"></i></a>2種類のインスタンスメソッドの定義 </h2>
-<p>クラスでは、2種類のインスタンスメソッドの定義方法があります。
-<code>class</code>構文を使ったインスタンス間で共有されるプロトタイプメソッドの定義と、
-インスタンスオブジェクトに対するメソッドの定義です。</p>
-<p>これらの2つの方法を同時に使い、1つのクラスに同じ名前でメソッドを2つ定義した場合はどうなるでしょうか？</p>
-<p>次のコードでは、<code>ConflictClass</code>クラスにプロトタイプメソッドとインスタンスに対して同じ<code>method</code>という名前のメソッドを定義しています。</p>
+<h3 id="static-class-fields"><a name="static-class-fields" class="plugin-anchor" href="#static-class-fields"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2022] 静的クラスフィールド </h3>
+<p>ES2022で追加されたクラスフィールドも、インスタンスではなくクラス自体に定義する静的クラスフィールドが利用できます。</p>
+<p>静的クラスフィールドはフィールドの前に、<code>static</code>をつけるだけです。
+静的クラスフィールドで定義したプロパティは、クラス自体のプロパティとして定義されます。
+次のコードでは、Public静的クラスフィールドを使って<code>Colors</code>クラス自体にプロパティを定義しています。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Colors</span> </span>{
+    <span class="hljs-keyword">static</span> GREEN = <span class="hljs-string">&quot;緑&quot;</span>;
+    <span class="hljs-keyword">static</span> RED = <span class="hljs-string">&quot;赤&quot;</span>;
+    <span class="hljs-keyword">static</span> BLUE = <span class="hljs-string">&quot;青&quot;</span>;
+}
+<span class="hljs-comment">// クラスのプロパティとして参照できる</span>
+<span class="hljs-built_in">console</span>.log(Colors.GREEN); <span class="hljs-comment">// =&gt; &quot;緑&quot;</span>
+</code></pre>
+<p>また、Privateクラスフィールドも静的に利用できます。
+Private静的クラスフィールドは、クラス自体にプロパティを定義したいが、そのプロパティを外から参照されたくない場合に利用します。
+Private静的クラスフィールドはフィールドの前に、<code>static</code>をつけるだけです。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
+    <span class="hljs-keyword">static</span> #privateClassProp = <span class="hljs-string">&quot;This is private&quot;</span>;
+    <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-title">outputPrivate</span>(<span class="hljs-params"></span>)</span> {
+        <span class="hljs-comment">// クラス内からはPrivate静的クラスフィールドで定義したプロパティを参照できる</span>
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.#privateClassProp);
+    }
+}
+MyClass.outputPrivate();
+</code></pre>
+<!-- Note: static class blocksはユースケースが難しいため省かれている -->
+<h2 id="two-instance-method-definition"><a name="two-instance-method-definition" class="plugin-anchor" href="#two-instance-method-definition"><i class="fa fa-link" aria-hidden="true"></i></a>プロトタイプに定義したメソッドとインスタンスに定義したメソッドの違い </h2>
+<!-- 目的: プロトタイプの評価が違うことを知る -->
+<p>ここまでで、プロトタイプメソッドの定義とクラスフィールドを使ったインスタンスに対するメソッドの定義の2種類を見てきました。
+プロトタイプメソッドの定義方法は、メソッドをプロトタイプオブジェクトという特殊なオブジェクトに定義します。
+一方で、クラスフィールドで定義したメソッドは、クラスのインスタンスに対してメソッドを定義します。</p>
+<p>どちらのメソッド定義方法でも、<code>new</code>演算子でインスタンス化したオブジェクトからメソッドを呼び出すことができる点は同じです。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExampleClass</span> </span>{
+    <span class="hljs-comment">// クラスフィールドを使い、インスタンスにメソッドを定義</span>
+    instanceMethod = <span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;インスタンスメソッド&quot;</span>);
+    };
+    <span class="hljs-comment">// メソッド構文を使い、プロトタイプオブジェクトにメソッドを定義</span>
+    <span class="hljs-function"><span class="hljs-title">prototypeMethod</span>(<span class="hljs-params"></span>)</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;プロトタイプメソッド&quot;</span>);
+    }
+}
+<span class="hljs-keyword">const</span> example = <span class="hljs-keyword">new</span> ExampleClass();
+<span class="hljs-comment">// どちらのメソッドもインスタンスから呼び出せる</span>
+example.instanceMethod();
+example.prototypeMethod();
+</code></pre>
+<p>しかしこの2つのメソッドの定義方法は、メソッドを定義先となるオブジェクトが実際に異なります。</p>
+<p>まず、この2種類のメソッドがそれぞれ別の場所へと定義されていることを見ていきます。
+次のコードでは、<code>ConflictClass</code>クラスに<code>method</code>という同じ名前のメソッドをプロトタイプメソッドとインスタンスに対してそれぞれ定義しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConflictClass</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-comment">// インスタンスオブジェクトに`method`を定義</span>
-        <span class="hljs-built_in">this</span>.method = <span class="hljs-function">() =&gt;</span> {
-            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;インスタンスオブジェクトのメソッド&quot;</span>);
-        };
-    }
+    <span class="hljs-comment">// インスタンスオブジェクトに`method`を定義</span>
+    method = <span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;インスタンスオブジェクトのメソッド&quot;</span>);
+    };
 
     <span class="hljs-comment">// クラスのプロトタイプメソッドとして`method`を定義</span>
     <span class="hljs-function"><span class="hljs-title">method</span>(<span class="hljs-params"></span>)</span> {
@@ -1989,11 +2244,10 @@ conflict.method(); <span class="hljs-comment">// どちらの`method`が呼び�
 このとき、インスタンスの<code>method</code>プロパティを<code>delete</code>演算子で削除すると、今度はプロトタイプメソッドの<code>method</code>が呼び出されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConflictClass</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">this</span>.method = <span class="hljs-function">() =&gt;</span> {
-            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;インスタンスオブジェクトのメソッド&quot;</span>);
-        };
-    }
+    <span class="hljs-comment">// インスタンスオブジェクトに`method`を定義</span>
+    method = <span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;インスタンスオブジェクトのメソッド&quot;</span>);
+    };
 
     <span class="hljs-function"><span class="hljs-title">method</span>(<span class="hljs-params"></span>)</span> {
         <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;プロトタイプメソッド&quot;</span>);
@@ -2014,7 +2268,7 @@ conflict.method(); <span class="hljs-comment">// &quot;プロトタイプメソ�
 <p>どちらも注意深く意識しないと気づきにくいですが、この挙動はJavaScriptの重要な仕組みであるため理解することは重要です。</p>
 <p>この挙動は<strong>プロトタイプオブジェクト</strong>と呼ばれる特殊なオブジェクトと<strong>プロトタイプチェーン</strong>と呼ばれる仕組みで成り立っています。
 どちらも<strong>プロトタイプ</strong>とついていることからわかるように、2つで1組のような仕組みです。</p>
-<p>このセクションでは、<strong>プロトタイプオブジェクト</strong>と<strong>プロトタイプチェーン</strong>とはどのような仕組みなのかを見ていきます。</p>
+<p>次のセクションでは、<strong>プロトタイプオブジェクト</strong>と<strong>プロトタイプチェーン</strong>とはどのような仕組みなのかを見ていきます。</p>
 <h2 id="prototype"><a name="prototype" class="plugin-anchor" href="#prototype"><i class="fa fa-link" aria-hidden="true"></i></a>プロトタイプオブジェクト </h2>
 <p><strong>プロトタイプメソッド</strong>と<strong>インスタンスオブジェクトのメソッド</strong>を同時に定義しても、互いのメソッドは上書きされるわけでありません。
 なぜなら、プロトタイプメソッドは<strong>プロトタイプオブジェクト</strong>へ、インスタンスオブジェクトのメソッドは<strong>インスタンスオブジェクト</strong>へそれぞれ定義されるためです。</p>
@@ -2039,7 +2293,7 @@ conflict.method(); <span class="hljs-comment">// &quot;プロトタイプメソ�
 この<code>constructor</code>メソッドもプロトタイプオブジェクトに定義されており、この<code>constructor</code>プロパティはクラス自身を参照します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">method</span>(<span class="hljs-params"></span>)</span> { }
+    <span class="hljs-function"><span class="hljs-title">method</span>(<span class="hljs-params"></span>)</span> {}
 }
 
 <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> MyClass.prototype.method === <span class="hljs-string">&quot;function&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
@@ -2162,33 +2416,28 @@ instance.method(); <span class="hljs-comment">// &quot;プロトタイプのメ�
 
 -->
 <h2 id="extends"><a name="extends" class="plugin-anchor" href="#extends"><i class="fa fa-link" aria-hidden="true"></i></a>継承 </h2>
-<p><code>extends</code>キーワードを使うことで既存のクラスを継承できます。
-継承とは、クラスの<strong>構造</strong>や<strong>機能</strong>を引き継いだ新しいクラスを定義することです。</p>
+<p><code>extends</code>キーワードを使うことで既存のクラスを継承できます。 継承とは、クラスの<strong>構造</strong>や<strong>機能</strong>を引き継いだ新しいクラスを定義することです。</p>
 <h3 id="class-extends"><a name="class-extends" class="plugin-anchor" href="#class-extends"><i class="fa fa-link" aria-hidden="true"></i></a>継承したクラスの定義 </h3>
 <p><code>extends</code>キーワードを使って既存のクラスを継承した新しいクラスを定義してみます。
 <code>class</code>構文の右辺に<code>extends</code>キーワードで継承元となる<strong>親クラス</strong>（基底クラス）を指定することで、
 親クラスを継承した<strong>子クラス</strong>（派生クラス）を定義できます。</p>
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> 子クラス <span class="hljs-keyword">extends</span> 親クラス </span>{
-
 }
 </code></pre>
 <p>次のコードでは、<code>Parent</code>クラスを継承した<code>Child</code>クラスを定義しています。
 子クラスである<code>Child</code>クラスのインスタンス化は通常のクラスと同じく<code>new</code>演算子を使って行います。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>{
-
 }
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>{
-
 }
 <span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> Child();
 </code></pre>
 <h3 id="class-super"><a name="class-super" class="plugin-anchor" href="#class-super"><i class="fa fa-link" aria-hidden="true"></i></a><code>super</code> </h3>
 <p><code>extends</code>を使って定義した子クラスから親クラスを参照するには<code>super</code>というキーワードを利用します。
 もっともシンプルな<code>super</code>を使う例としてコンストラクタの処理を見ていきます。</p>
-<p><code>class</code>構文でも紹介しましたが、クラスは必ず<code>constructor</code>メソッド（コンストラクタ）を持ちます。
-これは、継承した子クラスでも同じです。</p>
+<p><code>class</code>構文でも紹介しましたが、クラスは必ず<code>constructor</code>メソッド（コンストラクタ）を持ちます。 これは、継承した子クラスでも同じです。</p>
 <!-- textlint-disable no-js-function-paren -->
 <p>次のコードでは、<code>Parent</code>クラスを継承した<code>Child</code>クラスのコンストラクタで、<code>super()</code>を呼び出しています。
 <code>super()</code>は子クラスから親クラスの<code>constructor</code>メソッドを呼び出します。</p>
@@ -2257,6 +2506,63 @@ instance.method(); <span class="hljs-comment">// &quot;プロトタイプのメ�
 <span class="hljs-keyword">const</span> child = <span class="hljs-keyword">new</span> Child();
 <span class="hljs-built_in">console</span>.log(child.name); <span class="hljs-comment">// =&gt; &quot;Child&quot;</span>
 </code></pre>
+<h3 id="class-fields-inheritance"><a name="class-fields-inheritance" class="plugin-anchor" href="#class-fields-inheritance"><i class="fa fa-link" aria-hidden="true"></i></a>クラスフィールドの継承 </h3>
+<p>Publicクラスフィールドもコンストラクタの処理順と同じく親クラスのフォールドが初期化された後に子クラスのフィールドが初期化されます。
+Publicクラスフィールドは、インスタンスオブジェクトに対してプロパティを定義する構文でした。
+そのため、親クラスで定義されていたフィールドも、実際にインスタンス化したオブジェクトのプロティとして定義されます。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>{
+    parentField = <span class="hljs-string">&quot;親クラスで定義したフィールド&quot;</span>;
+}
+<span class="hljs-comment">// `Parent`を継承した`Child`を定義</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>{
+    childField = <span class="hljs-string">&quot;子クラスで定義したフィールド&quot;</span>;
+}
+<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> Child();
+<span class="hljs-built_in">console</span>.log(instance.parentField); <span class="hljs-comment">// =&gt; &quot;親クラスで定義したフィールド&quot;</span>
+<span class="hljs-built_in">console</span>.log(instance.childField); <span class="hljs-comment">// =&gt; &quot;子クラスで定義したフィールド&quot;</span>
+</code></pre>
+<p>同じ名前のフィールドが定義されている場合は、子クラスのフィールド定義で上書きされます。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>{
+    field = <span class="hljs-string">&quot;親クラスで定義したフィールド&quot;</span>;
+}
+<span class="hljs-comment">// `Parent`を継承した`Child`を定義</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>{
+    field = <span class="hljs-string">&quot;子クラスで定義したフィールド&quot;</span>;
+}
+<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> Child();
+<span class="hljs-built_in">console</span>.log(instance.field); <span class="hljs-comment">// =&gt; &quot;子クラスで定義したフィールド&quot;</span>
+</code></pre>
+<p>Publicクラスフィールドは、このように親クラスで定義したフィールドも子クラスに定義されます。
+一方で、Privateクラスフィールドは、このように親クラスで定義したフィールドは子クラスに定義されません。</p>
+<p>次のコードでは、親クラスで定義したPrivateクラスフィールドを子クラスから参照してようとしています。
+しかし、<code>#parentFeild</code>は参照できずに構文エラーとなることがわかります。</p>
+<!-- textlint-disable eslint -->
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest: SyntaxError --></p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>{
+    #parentFeild = <span class="hljs-string">&quot;親クラスで定義したPrivateフィールド&quot;</span>;
+}
+<span class="hljs-comment">// `Parent`を継承した`Child`を定義</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>{
+    <span class="hljs-function"><span class="hljs-title">dump</span>(<span class="hljs-params"></span>)</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.#parentFeild); <span class="hljs-comment">// =&gt; SyntaxError: reference to undeclared private field or method #parentFeild</span>
+    }
+}
+<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> Child();
+instance.dump();
+</code></pre>
+<!-- textlint-enable eslint -->
+<p>これは、PrivateクラスフィールドのPrivateとは各クラスごとのPrivateを守る目的であるためです。
+継承したクラスからPrivateクラスフィールドが利用できてしまうと、Privateな情報が子クラスに漏れてしまうためです。
+JavaScriptでは、クラスの外に公開したくないが、子クラスからは利用できるようにしたいというような中間の制限を持ったプロパティを定義する構文はありません。</p>
+<p>このように子クラスも含むクラスの外からアクセスを厳密に拒否するPrivateをhard privateと呼びます。
+JavaScriptでのPrivateクラスフィールドはhard privateとなっています。</p>
+<p>一方で、子クラスからのアクセスは許可したり、クラス外からのアクセスが可能となるような特例を持つようなPrivateをsoft privateと呼びます。
+JavaScriptでのsoft privateは、WeakMapやWeakSetを使ってユーザー自身で実装する必要があります（「<a href="../map-and-set/">Map/Set</a>」の章を参照）。</p>
 <h3 id="prototype-inheritance"><a name="prototype-inheritance" class="plugin-anchor" href="#prototype-inheritance"><i class="fa fa-link" aria-hidden="true"></i></a>プロトタイプ継承 </h3>
 <p>次のコードでは<code>extends</code>キーワードを使って<code>Parent</code>クラスを継承した<code>Child</code>クラスを定義しています。
 <code>Parent</code>クラスでは<code>method</code>を定義しているため、これを継承している<code>Child</code>クラスのインスタンスからも呼び出せます。</p>
@@ -2285,8 +2591,7 @@ instance.method(); <span class="hljs-comment">// &quot;Parent.prototype.method&q
 </ol>
 <p>このプロトタイプチェーンの仕組みにより、<code>method</code>プロパティは<code>Parent.prototype</code>オブジェクトに定義されたものを参照します。</p>
 <p>このようにJavaScriptでは<code>class</code>構文と<code>extends</code>キーワードを使うことでクラスの<strong>機能</strong>を継承できます。
-<code>class</code>構文ではプロトタイプオブジェクトを参照する仕組みによって継承が行われています。
-そのため、この継承の仕組みを<strong>プロトタイプ継承</strong>と呼びます。</p>
+<code>class</code>構文ではプロトタイプオブジェクトを参照する仕組みによって継承が行われています。 そのため、この継承の仕組みを<strong>プロトタイプ継承</strong>と呼びます。</p>
 <h3 id="static-inheritance"><a name="static-inheritance" class="plugin-anchor" href="#static-inheritance"><i class="fa fa-link" aria-hidden="true"></i></a>静的メソッドの継承 </h3>
 <p>インスタンスとクラスのプロトタイプオブジェクトとの間にはプロトタイプチェーンがあります。
 クラス自身（クラスのコンストラクタ）も親クラス自身（親クラスのコンストラクタ）との間にプロトタイプチェーンがあります。</p>
@@ -2416,13 +2721,12 @@ Child.method();
 <li>JavaScriptのクラスはプロトタイプベース</li>
 <li>クラスは<code>class</code>構文で定義できる</li>
 <li>クラスで定義したメソッドはプロトタイプオブジェクトとプロトタイプチェーンの仕組みで呼び出せる</li>
+<li>クラスのインスタンスに対するプロパティの定義にはクラスフィールドが利用できる</li>
+<li>クラスの外からアクセスさせたないプロパティの定義にはPrivateクラスフィールドを使う</li>
 <li>アクセッサプロパティはgetterとsetterのメソッドを定義することでプロパティのように振る舞う</li>
 <li>クラスは<code>extends</code>で継承できる</li>
 <li>クラスのプロトタイプメソッドと静的メソッドはどちらも継承される</li>
 </ul>
-<blockquote id="fn_1">
-<sup>1</sup>. <code>class</code>構文でしか実現できない機能はなく、読みやすさやわかりやさのために導入された構文という側面もあります。そのため、JavaScriptの<code>class</code>構文は糖衣構文（シンタックスシュガー）と呼ばれることがあります。<a href="#reffn_1" title="Jump back to footnote [1] in the text."> ↩</a>
-</blockquote>
 
                                 
                                 </section>
@@ -2454,7 +2758,7 @@ Child.method();
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおけるクラスの定義方法や継承方法を紹介します。プロトタイプベースの言語であるJavaScriptがどのように継承などを実現しているのかを紹介します。","title":"クラス","level":"1.3.20","depth":2,"next":{"title":"例外処理","level":"1.3.21","depth":2,"path":"basic/error-try-catch/README.md","ref":"./basic/error-try-catch/README.md","articles":[]},"previous":{"title":"関数とthis","level":"1.3.19","depth":2,"path":"basic/function-this/README.md","ref":"./basic/function-this/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/class/README.md","mtime":"2022-05-10T13:55:53.134Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-05-10T13:56:31.037Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおけるクラスの定義方法や継承方法を紹介します。プロトタイプベースの言語であるJavaScriptがどのように継承などを実現しているのかを紹介します。","title":"クラス","level":"1.3.20","depth":2,"next":{"title":"例外処理","level":"1.3.21","depth":2,"path":"basic/error-try-catch/README.md","ref":"./basic/error-try-catch/README.md","articles":[]},"previous":{"title":"関数とthis","level":"1.3.19","depth":2,"path":"basic/function-this/README.md","ref":"./basic/function-this/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/class/README.md","mtime":"2022-05-15T13:54:22.381Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-05-15T13:55:01.975Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
