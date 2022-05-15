@@ -335,7 +335,16 @@ rules:
     patterns:
       - /ネイティブ(関数)/
       - /ネイティブ(メソッド)/
-
+  - expected: Privateクラスフィールド
+    patterns:
+      - Privateフィールド
+      - プライベートフィールド
+      - プライベートクラスフィールド
+  - expected: Publicクラスフィールド
+    patterns:
+      - Publicフィールド
+      - パブリックフィールド
+      - パブリッククラスフィールド
 # typo
   - expected: $1進数
     patterns:
