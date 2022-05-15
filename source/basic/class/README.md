@@ -951,6 +951,7 @@ class MyClass {
         console.log(this.#privateClassProp);
     }
 }
+MyClass.outputPrivate();
 ```
 
 <!-- Note: static class blocksはユースケースが難しいため省かれている -->
