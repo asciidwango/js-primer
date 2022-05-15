@@ -15,7 +15,7 @@ JavaScriptではES2015より前までは`class`構文はなく、関数を使っ
 
 ES2015でクラスを表現するための`class`構文が導入されましたが、この`class`構文で定義したクラスは関数オブジェクトの一種です。
 `class`構文ではプロトタイプベースの継承の仕組みを使って関数でクラスを表現しています。
-そのため、`class`構文はクラスを作るための関数定義や継承をパターン化した書き方と言えます。[^1]
+そのため、`class`構文はクラスを作るための関数定義や継承をパターン化した書き方と言えます。
 
 また、関数の定義方法として関数宣言文と関数式があるように、クラスにもクラス宣言文とクラス式があります。 このように関数とクラスは似ている部分が多いです。
 
@@ -1638,5 +1638,3 @@ console.log(array.last); // => 5
 [Map/Set]: ../map-and-set/README.md
 [ユースケース:Todoアプリ]: ../../use-case/todoapp/README.md
 [Object.defineProperty]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
-
-[^1]: `class`構文でしか実現できない機能はなく、読みやすさやわかりやさのために導入された構文という側面もあります。そのため、JavaScriptの`class`構文は糖衣構文（シンタックスシュガー）と呼ばれることがあります。
