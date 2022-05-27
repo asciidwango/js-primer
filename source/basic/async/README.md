@@ -1164,7 +1164,7 @@ racePromise.then(value => {
 このときに、一番最初に`resolve`された値で`racePromise`も`resolve`されます。
 そのため、`then`メソッドのコールバック関数に`1`という値が渡されます。
 
-他の`timeout`関数が作成した`Promise`インスタンスも32ミリ秒、64ミリ秒、128ミリ秒後に`resolve`されます。
+他の`delay`関数が作成した`Promise`インスタンスも32ミリ秒、64ミリ秒、128ミリ秒後に`resolve`されます。
 しかし、`Promise`インスタンスは一度**Settled**（**Fulfilled**または**Rejected**）となると、それ以降は状態も変化せず`then`のコールバック関数も呼び出しません。
 そのため、`racePromise`は何度も`resolve`されますが、初回以外は無視されるため`then`のコールバック関数は一度しか呼び出されません。
 
