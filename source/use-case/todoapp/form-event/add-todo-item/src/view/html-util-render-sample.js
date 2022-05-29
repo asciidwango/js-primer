@@ -9,5 +9,5 @@ const newElement = element`<ul>
     <li>新しい要素</li>
 </ul>`;
 // `newElement`を`document.body`の子要素として追加する
-// すでに`document.body`以下に要素は上書きされる
+// すでに`document.body`以下にある要素は上書きされる
 render(newElement, document.body);
