@@ -207,7 +207,7 @@ import { TodoListModel } from "./model/TodoListModel.js";
 import { TodoItemModel } from "./model/TodoItemModel.js";
 ```
 
-そして、`App`クラスにPrivateクラスフィールドで`TodoListModel`を初期化しています。
+そして、`App`クラスにPrivateクラスフィールドで`TodoListModel`を初期化したものを定義しています。
 TodoListModelは`App`クラスの外からは触る必要がないため、`#todoListModel`というPrivateクラスフィールドとして定義しています。
 このTodoアプリでは、開始時（`App`クラスのインスタンス化時）にTodoリストの中身が空の状態で開始されるのに合わせるためです。
 
