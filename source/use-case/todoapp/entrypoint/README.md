@@ -239,6 +239,37 @@ import { App } from "./src/App.js";
 
 - <https://jsprimer.net/use-case/todoapp/entrypoint/module-entry/>
 
+<!-- sandpack:{
+  "files": {
+    "/src/App.js": {
+      "path": "module-entry/src/App.js"
+    },
+    "/index.js": {
+      "path": "module-entry/index.js"
+    },
+    "/src/index.js": {
+      "code": "/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */",
+      "hidden": true
+    },
+    "/index.html": {
+      "path": "module-entry/index.html",
+      "active": true
+    }
+  },
+  "entry": "/index.js",
+  "main": "/index.js",
+  "environment": "static",
+  "template": "vanilla",
+  "options": {
+    "showLineNumbers": true,
+    "editorHeight": 550
+  },
+  "honkitSettings": {
+    "isOpen": true,
+    "hideExitButton": true
+  }
+} -->
+
 [Ajax通信:エントリーポイント]: ../../ajaxapp/entrypoint/README.md
 [Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy
 [ウェブコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console

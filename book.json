@@ -16,7 +16,8 @@
     "canonical-link",
     "ga",
     "js-console",
-    "github-issue-feedback"
+    "github-issue-feedback",
+    "sandpack"
   ],
   "variables": {
     "esversion": "2021",

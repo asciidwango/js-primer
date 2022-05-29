@@ -294,4 +294,48 @@ export class App {
 
 - <https://jsprimer.net/use-case/todoapp/event-model/event-emitter/>
 
+<!-- sandpack:{
+  "files": {
+    "/src/App.js": {
+      "path": "event-emitter/src/App.js",
+      "active": true
+    },
+    "/src/view/html-util.js": {
+      "path": "event-emitter/src/view/html-util.js"
+    },
+    "/src/EventEmitter.js": {
+      "path": "event-emitter/src/EventEmitter.js"
+    },
+    "/src/model/TodoItemModel.js":{
+      "path": "event-emitter/src/model/TodoItemModel.js"
+    },
+    "/src/model/TodoListModel.js":{
+      "path": "event-emitter/src/model/TodoListModel.js"
+    },
+    "/index.js": {
+      "appendCode": "// 次の行は本編とは無関係のコードなので無視してください\nconst link = document.createElement('link');link.rel='stylesheet';link.href='https://jsprimer.net/use-case/todoapp/final/final/index.css';document.head.append(link);\n",
+      "path": "event-emitter/index.js"
+    },
+    "/src/index.js": {
+      "code": "/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */",
+      "hidden": true
+    },
+    "/index.html": {
+      "path": "event-emitter/index.html"
+    }
+  },
+  "entry": "/index.js",
+  "main": "/index.js",
+  "environment": "static",
+  "template": "vanilla",
+  "options": {
+    "showLineNumbers": true,
+    "editorHeight": 550
+  },
+  "honkitSettings": {
+    "isOpen": true,
+    "hideExitButton": true
+  }
+} -->
+
 [Todoアイテムの追加を実装する]: ../form-event/README.md

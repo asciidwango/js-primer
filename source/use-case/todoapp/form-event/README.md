@@ -131,6 +131,39 @@ todoapp
 
 - <https://jsprimer.net/use-case/todoapp/form-event/prevent-event/>
 
+<!-- sandpack:{
+  "files": {
+    "/src/App.js": {
+      "path": "prevent-event/src/App.js",
+      "active": true
+    },
+    "/index.js": {
+      "appendCode": "// 次の行は本編とは無関係のコードなので無視してください\nconst link = document.createElement('link');link.rel='stylesheet';link.href='https://jsprimer.net/use-case/todoapp/final/final/index.css';document.head.append(link);\n",
+      "path": "prevent-event/index.js"
+    },
+    "/src/index.js": {
+      "code": "/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */",
+      "hidden": true
+    },
+    "/index.html": {
+      "path": "prevent-event/index.html",
+      "active": true
+    }
+  },
+  "entry": "/index.js",
+  "main": "/index.js",
+  "environment": "static",
+  "template": "vanilla",
+  "options": {
+    "showLineNumbers": true,
+    "editorHeight": 550
+  },
+  "honkitSettings": {
+    "isOpen": true,
+    "hideExitButton": true
+  }
+} -->
+
 ## 入力内容をTodoリストに表示する {#input-to-todolist}
 
 フォーム送信時に入力内容を取得する方法がわかったので、次はその入力内容をTodoリスト（`#js-todo-list`）に表示します。
@@ -215,6 +248,42 @@ todoapp
 ここまでのTodoアプリは次のURLで確認できます。
 
 - <https://jsprimer.net/use-case/todoapp/form-event/add-todo-item/>
+
+<!-- sandpack:{
+  "files": {
+    "/index.html": {
+      "path": "add-todo-item/index.html"
+    },
+    "/index.js": {
+      "appendCode": "// 次の行は本編とは無関係のコードなので無視してください\nconst link = document.createElement('link');link.rel='stylesheet';link.href='https://jsprimer.net/use-case/todoapp/final/final/index.css';document.head.append(link);\n",
+      "path": "add-todo-item/index.js"
+    },
+    "/src/index.js": {
+      "code": "/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */",
+      "hidden": true
+    },
+    "/src/App.js": {
+      "path": "add-todo-item/src/App.js",
+      "active": true
+    },
+    "/src/view/html-util.js": {
+      "path": "add-todo-item/src/view/html-util.js"
+    }
+  },
+  "entry": "/index.js",
+  "main": "/index.js",
+  "environment": "static",
+  "template": "vanilla",
+  "options": {
+    "showLineNumbers": true,
+    "editorHeight": 550
+  },
+  "honkitSettings": {
+    "isOpen": true,
+    "hideExitButton": true
+  }
+} -->
+
 
 ## まとめ {#conclusion}
 

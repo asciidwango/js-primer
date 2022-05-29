@@ -115,6 +115,61 @@ TodoListViewの`createElement`メソッドは`TodoItemView`を使ってTodoア�
 
 - <https://jsprimer.net/use-case/todoapp/final/final/>
 
+
+<!-- sandpack:{
+  "files": {
+    "/src/styles.css": {
+      "path": "./final/index.css",
+      "hidden": true
+    },
+    "/src/App.js": {
+      "path": "final/src/App.js",
+      "active": true
+    },
+    "/index.js": {
+      "appendCode": "// 次の行は本編とは無関係のコードなので無視してください\nconst link = document.createElement('link');link.rel='stylesheet';link.href='https://jsprimer.net/use-case/todoapp/final/final/index.css';document.head.append(link);\n",
+      "path": "final/index.js"
+    },
+    "/src/index.js": {
+      "code": "/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */",
+      "hidden": true
+    },
+    "/src/view/html-util.js": {
+      "path": "final/src/view/html-util.js"
+    },
+    "/src/EventEmitter.js": {
+      "path": "final/src/EventEmitter.js"
+    },
+    "/src/model/TodoItemModel.js":{
+      "path": "more/src/model/TodoItemModel.js"
+    },
+    "/src/model/TodoListModel.js":{
+      "path": "more/src/model/TodoListModel.js"
+    },
+    "/src/view/TodoItemView.js":{
+      "path": "more/src/view/TodoItemView.js"
+    },
+    "/src/view/TodoListView.js":{
+      "path": "more/src/view/TodoListView.js"
+    },
+    "/index.html": {
+      "path": "final/index.html"
+    }
+  },
+  "entry": "/index.js",
+  "main": "/index.js",
+  "environment": "static",
+  "template": "vanilla",
+  "options": {
+    "showLineNumbers": true,
+    "editorHeight": 550
+  },
+  "honkitSettings": {
+    "isOpen": true,
+    "hideExitButton": true
+  }
+} -->
+
 実はこのTodoアプリにはまだアプリケーションとして、完成していない部分があります。
 
 入力欄でEnterキーを連打すると、空のTodoアイテムが追加されてしまうのは意図しない挙動です。
@@ -147,6 +202,60 @@ window.addEventListener("unload", () => {
 ぜひ、自分で実装してみてウェブページやアプリの動きについて考えてみてください。
 
 - <https://jsprimer.net/use-case/todoapp/final/more/>
+
+<!-- sandpack:{
+  "files": {
+    "/src/styles.css": {
+      "path": "./final/index.css",
+      "hidden": true
+    },
+    "/src/App.js": {
+      "path": "more/src/App.js",
+      "active": true
+    },
+    "/index.js": {
+      "appendCode": "// 次の行は本編とは無関係のコードなので無視してください\nconst link = document.createElement('link');link.rel='stylesheet';link.href='https://jsprimer.net/use-case/todoapp/final/final/index.css';document.head.append(link);\n",
+      "path": "more/index.js"
+    },
+    "/src/index.js": {
+      "code": "/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */",
+      "hidden": true
+    },
+    "/src/view/html-util.js": {
+      "path": "more/src/view/html-util.js"
+    },
+    "/src/EventEmitter.js": {
+      "path": "more/src/EventEmitter.js"
+    },
+    "/src/model/TodoItemModel.js":{
+      "path": "more/src/model/TodoItemModel.js"
+    },
+    "/src/model/TodoListModel.js":{
+      "path": "more/src/model/TodoListModel.js"
+    },
+    "/src/view/TodoItemView.js":{
+      "path": "more/src/view/TodoItemView.js"
+    },
+    "/src/view/TodoListView.js":{
+      "path": "more/src/view/TodoListView.js"
+    },
+    "/index.html": {
+      "path": "more/index.html"
+    }
+  },
+  "entry": "/index.js",
+  "main": "/index.js",
+  "environment": "static",
+  "template": "vanilla",
+  "options": {
+    "showLineNumbers": true,
+    "editorHeight": 550
+  },
+  "honkitSettings": {
+    "isOpen": true,
+    "hideExitButton": true
+  }
+} -->
 
 ## Todoアプリのまとめ {#todo-conclusion}
 
