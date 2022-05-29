@@ -246,10 +246,12 @@ TodoListModelの`onChange`メソッドで登録したリスナー関数は、`To
 
 <!-- doctest:disable -->
 ```js
+import { TodoListModel } from "./model/TodoListModel.js";
 // render関数をimportに追加する
 import { element, render } from "./view/html-util.js";
 export class App {
-    // ...省略...
+    #todoListModel = new TodoListModel();
+    
     mount() {
         // ...省略...
         this.#todoListModel.onChange(() => {
