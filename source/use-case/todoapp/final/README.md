@@ -86,12 +86,12 @@ TodoListViewの`createElement`メソッドは`TodoItemView`を使ってTodoア�
 
 `App`クラスで登録しているイベントのリスナー関数を見てみると次の4種類となっています。
 
-| イベントの流れ    | リスナー関数                                           | 役割                                    |
-| ----------------- | -------------------------------------------------- | --------------------------------------- |
-| `Model` → `View` | `this.todoListModel.onChange(listener)`            | `TodoListModel`が変更イベントを受け取る |
+| イベントの流れ    | リスナー関数                                             | 役割                                    |
+| ----------------- |----------------------------------------------------| --------------------------------------- |
+| `Model` → `View` | `this.#todoListModel.onChange(listener)`           | `TodoListModel`が変更イベントを受け取る |
 | `View` → `Model` | `formElement.addEventListener("submit", listener)` | フォームの送信イベントを受け取る        |
 | `View` → `Model` | `onUpdateTodo: listener`                           | Todoアイテムのチェックボックスの更新イベントを受け取る    |
-| `View` → `Model` | `onDeleteTodo: listener`                            | Todoアイテムの削除イベントを受け取る    |
+| `View` → `Model` | `onDeleteTodo: listener`                           | Todoアイテムの削除イベントを受け取る    |
 
 イベントの流れがViewからModelとなっているリスナー関数が3箇所あり、それぞれリスナー関数はコード上バラバラな位置に書かれています。
 また、それぞれのリスナー関数はTodoアプリの機能と対応していることがわかります。

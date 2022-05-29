@@ -197,7 +197,7 @@ TodoListModelの`addTodo`メソッドで新しいTodoアイテムを追加した
 
 変更後の`App.js`では大きく分けて3つの部分が変更されているので、順番に見ていきます。
 
-### 1. TodoListの初期化 {#app-todolist-initialize}
+### 1. TodoListModelの初期化 {#app-todolist-initialize}
 
 作成した`TodoListModel`と`TodoItemModel`をインポートしています。
 
@@ -207,9 +207,9 @@ import { TodoListModel } from "./model/TodoListModel.js";
 import { TodoItemModel } from "./model/TodoItemModel.js";
 ```
 
-そして、`App`クラスのコンストラクタ内で`TodoListModel`を初期化しています。
-`App`のコンストラクタで`TodoListModel`を初期化しているのは、
-このTodoアプリでは開始時にTodoリストの中身が空の状態で開始されるのに合わせるためです。
+そして、`App`クラスにPrivateクラスフィールドで`TodoListModel`を初期化しています。
+TodoListModelは`App`クラスの外からは触る必要がないため、`#todoListModel`というPrivateクラスフィールドとして定義しています。
+このTodoアプリでは、開始時（`App`クラスのインスタンス化時）にTodoリストの中身が空の状態で開始されるのに合わせるためです。
 
 <div class="code-filename-block"><p class="code-filename">src/App.jsより抜粋</p></div>
 
@@ -217,10 +217,8 @@ import { TodoItemModel } from "./model/TodoItemModel.js";
 ```js
 // ...省略...
 export class App {
-    constructor() {
-        // 1. TodoListの初期化
-        this.todoListModel = new TodoListModel();
-    }
+    // 1. TodoListModelの初期化
+    #todoListModel = new TodoListModel();
     // ...省略...
 }
 ```
@@ -254,12 +252,12 @@ export class App {
     // ...省略...
     mount() {
         // ...省略...
-        this.todoListModel.onChange(() => {
+        this.#todoListModel.onChange(() => {
             // ...省略...
             // コンテナ要素の中身をTodoリストをまとめるList要素で上書きする
             render(todoListElement, containerElement);
             // アイテム数の表示を更新
-            todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.getTotalCount()}`;
+            todoItemCountElement.textContent = `Todoアイテム数: ${this.#todoListModel.getTotalCount()}`;
         });
         // ...省略...
     }
