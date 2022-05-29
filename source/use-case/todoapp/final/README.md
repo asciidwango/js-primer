@@ -51,7 +51,49 @@ TodoItemViewの`createElement`メソッドの中身は`App`クラスでのHTML�
 たとえば、この`TodoItemView`クラスは次のように利用できます。
 `TodoItemModel`のインスタンスとイベントリスナーのオブジェクトを受け取り、TodoアイテムのHTML要素を返します。
 
-[import, marker:"main", title:"TodoItemViewを利用するサンプルコード"](./create-view/src/view/TodoItemView.example.js)
+[import, title:"TodoItemViewを利用するサンプルコード"](./create-view/src/view/TodoItemView.sample.js)
+
+<!-- sandpack:{
+  "files": {
+    "/src/view/TodoItemView.sample.js": {
+      "path": "create-view/src/view/TodoItemView.sample.js",
+      "active": true
+    },
+    "/src/App.js": {
+      "path": "create-view/src/App.js"
+    },
+    "/src/view/html-util.js": {
+      "path": "create-view/src/view/html-util.js"
+    },
+    "/src/EventEmitter.js": {
+      "path": "create-view/src/EventEmitter.js"
+    },
+    "/src/model/TodoItemModel.js":{
+      "path": "create-view/src/model/TodoItemModel.js"
+    },
+    "/src/model/TodoListModel.js":{
+      "path": "create-view/src/model/TodoListModel.js"
+    },
+    "/src/view/TodoItemView.js":{
+      "path": "create-view/src/view/TodoItemView.js"
+    },
+    "/src/view/TodoListView.js":{
+      "path": "create-view/src/view/TodoListView.js"
+    }
+  },
+  "entry": "/src/view/TodoItemView.sample.js",
+  "main": "/src/view/TodoItemView.sample.js",
+  "environment": "static",
+  "template": "vanilla",
+  "options": {
+    "showLineNumbers": true,
+    "editorHeight": 550
+  },
+  "honkitSettings": {
+    "isOpen": false
+  }
+} -->
+
 
 ### TodoListViewを作成する {#TodoListView}
 
@@ -114,7 +156,6 @@ TodoListViewの`createElement`メソッドは`TodoItemView`を使ってTodoア�
 完成したTodoアプリは次のURLで確認できます。
 
 - <https://jsprimer.net/use-case/todoapp/final/final/>
-
 
 <!-- sandpack:{
   "files": {
