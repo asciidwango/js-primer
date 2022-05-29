@@ -189,33 +189,60 @@ Todoリスト（`#js-todo-list`）というすでに存在する要素に対し�
 この`element`タグ関数を使うことで、次のようにHTML文字列からHTML要素を作成できます。
 作成した要素は、`appendChild`メソッドなどで既存の要素に子要素として追加できます。
 
-<div class="code-filename-block"><p class="code-filename">elementタグ関数のサンプルコード</p></div>
+[import, title:"elementタグ関数のサンプルコード"](./add-todo-item/src/view/html-util-element-sample.js)
 
-<!-- doctest:disable -->
-```js
-// HTML文字列からHTML要素を作成
-const newElement = element`<ul>
-    <li>新しい要素</li>
-</ul>`;
-// 作成した要素を`document.body`の子要素として追加（appendChild）する
-document.body.appendChild(newElement);
-```
+<!-- sandpack:{
+  "files": {
+    "/src/view/html-util.js": {
+      "path": "./add-todo-item/src/view/html-util.js"
+    },
+    "/src/view/html-util-element-sample.js": {
+      "path": "./add-todo-item/src/view/html-util-element-sample.js",
+      "active": true
+    }
+  },
+  "entry": "/src/view/html-util-element-sample.js",
+  "main": "/src/view/html-util-element-sample.js",
+  "environment": "static",
+  "template": "vanilla",
+  "options": {
+    "showLineNumbers": true,
+    "editorHeight": 550
+  },
+  "honkitSettings": {
+    "isOpen": false
+  }
+} -->
 
 ブラウザが提供する`appendChild`メソッドは子要素を追加するだけなので、すでに別の要素がある場合は末尾に追加されます。
 
 `render`関数は指定したコンテナ要素（親となる要素）の子要素を上書きする関数となります。
 動作的には一度子要素をすべて消したあとに`appendChild`で子要素として追加しています。
 
-<div class="code-filename-block"><p class="code-filename">render関数のサンプルコード</p></div>
+[import, title:"render関数のサンプルコード"](./add-todo-item/src/view/html-util-render-sample.js)
 
-<!-- doctest:disable -->
-```js
-// `ul`要素の空タグを作成
-const newElement = element`<ul />`;
-// `newElement`を`document.body`の子要素として追加する
-// すでに`document.body`以下に要素がある場合は上書きされる
-render(newElement, document.body);
-```
+<!-- sandpack:{
+  "files": {
+    "/src/view/html-util.js": {
+      "path": "./add-todo-item/src/view/html-util.js"
+    },
+    "/src/view/html-util-render-sample.js": {
+      "path": "./add-todo-item/src/view/html-util-render-sample.js",
+      "active": true
+    }
+  },
+  "entry": "/src/view/html-util-render-sample.js",
+  "main": "/src/view/html-util-render-sample.js",
+  "environment": "static",
+  "template": "vanilla",
+  "options": {
+    "showLineNumbers": true,
+    "editorHeight": 550
+  },
+  "honkitSettings": {
+    "isOpen": false
+  }
+} -->
 
 実際に、この`element`タグ関数と`render`関数を使って、フォームから送信された入力内容をTodoリストに要素として追加してみます。
 
