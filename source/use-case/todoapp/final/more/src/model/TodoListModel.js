@@ -1,12 +1,13 @@
 import { EventEmitter } from "../EventEmitter.js";
 
 export class TodoListModel extends EventEmitter {
+    #items;
     /**
      * @param {TodoItemModel[]} [items] 初期アイテム一覧（デフォルトは空の配列）
      */
     constructor(items = []) {
         super();
-        this.items = items;
+        this.#items = items;
     }
 
     /**
@@ -14,7 +15,7 @@ export class TodoListModel extends EventEmitter {
      * @returns {number}
      */
     getTotalCount() {
-        return this.items.length;
+        return this.#items.length;
     }
 
     /**
@@ -22,7 +23,7 @@ export class TodoListModel extends EventEmitter {
      * @returns {TodoItemModel[]}
      */
     getTodoItems() {
-        return this.items;
+        return this.#items;
     }
 
     /**
@@ -34,7 +35,7 @@ export class TodoListModel extends EventEmitter {
     }
 
     /**
-     * TodoListの状態が更新されたときに呼び出されるリスナー関数を解除する
+     * `onChange`で登録したリスナー関数を解除する
      * @param {Function} listener
      */
     offChange(listener) {
@@ -57,7 +58,7 @@ export class TodoListModel extends EventEmitter {
         if (todoItem.isEmptyTitle()) {
             return;
         }
-        this.items.push(todoItem);
+        this.#items.push(todoItem);
         this.emitChange();
     }
 
@@ -66,7 +67,7 @@ export class TodoListModel extends EventEmitter {
      * @param {{ id:number, completed: boolean }}
      */
     updateTodo({ id, completed }) {
-        const todoItem = this.items.find(todo => todo.id === id);
+        const todoItem = this.#items.find(todo => todo.id === id);
         if (!todoItem) {
             return;
         }
@@ -80,7 +81,7 @@ export class TodoListModel extends EventEmitter {
      */
     deleteTodo({ id }) {
         // `id`に一致しないTodoItemだけを残すことで、`id`に一致するTodoItemを削除する
-        this.items = this.items.filter(todo => {
+        this.#items = this.#items.filter(todo => {
             return todo.id !== id;
         });
         this.emitChange();

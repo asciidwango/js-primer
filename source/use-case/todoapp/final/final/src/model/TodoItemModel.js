@@ -2,9 +2,10 @@
 let todoIdx = 0;
 
 export class TodoItemModel {
+    id; // アイテムのID
+    title; // アイテムのタイトル
+    completed; // Todoアイテムが完了済みならばtrue、そうでない場合はfalse
     /**
-     * `title`: Todoアイテムのタイトル
-     * `completed`: Todoアイテムが完了済みならばtrue、そうでない場合はfalse
      * @param {{ title: string, completed: boolean }}
      */
     constructor({ title, completed }) {
