@@ -7,12 +7,16 @@ export class App {
     #todoListView = new TodoListView();
     #todoListModel = new TodoListModel([]);
 
+    formElement;
+    formInputElement;
+    todoCountElement;
+    todoListContainerElement;
     // 紐づけするHTML要素を引数として受け取る
     constructor({ formElement, formInputElement, todoListContainerElement, todoCountElement }) {
         this.formElement = formElement;
         this.formInputElement = formInputElement;
-        this.todoListContainerElement = todoListContainerElement;
         this.todoCountElement = todoCountElement;
+        this.todoListContainerElement = todoListContainerElement;
     }
 
     /**

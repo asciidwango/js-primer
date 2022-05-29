@@ -214,7 +214,7 @@ window.addEventListener("unload", () => {
       "active": true
     },
     "/index.js": {
-      "appendCode": "// 次の行は本編とは無関係のコードなので無視してください\nconst link = document.createElement('link');link.rel='stylesheet';link.href='https://jsprimer.net/use-case/todoapp/final/final/index.css';document.head.append(link);\n",
+      "appendCode": "// 次の行は本編とは無関係のコードなので無視してください\nconst link = document.createElement('link');link.rel='stylesheet';link.href='https://jsprimer.net/use-case/todoapp/final/final/index.css';document.head.append(link); /* sandpackではloadイベントが発生しないため手動でイベントを発行 https://github.com/codesandbox/sandpack/issues/44 */document.readyState === 'complete' && window.dispatchEvent(new Event('load'));\n",
       "path": "more/index.js"
     },
     "/src/index.js": {
