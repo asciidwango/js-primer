@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 const sourceDir = path.join(__dirname, "..", "source");
 const remark = require("remark")();
-const select = require("unist-util-select");
+const { selectAll } = require("unist-util-select");
 const lodash = require("lodash");
 const levenshtein = require("js-levenshtein");
 /**
@@ -23,7 +23,7 @@ const strings = [];
 files.forEach(filePath => {
     const content = fs.readFileSync(filePath, "utf-8");
     const AST = remark.parse(content);
-    const codes = select(AST, `inlineCode`);
+    const codes = selectAll(`inlineCode`, AST);
     codes.forEach(code => {
         strings.push(code.value);
     });
