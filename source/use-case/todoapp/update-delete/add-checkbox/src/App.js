@@ -3,18 +3,17 @@ import { TodoItemModel } from "./model/TodoItemModel.js";
 import { element, render } from "./view/html-util.js";
 
 export class App {
-    constructor() {
-        this.todoListModel = new TodoListModel();
-    }
+    #todoListModel = new TodoListModel();
+
     mount() {
         const formElement = document.querySelector("#js-form");
         const inputElement = document.querySelector("#js-form-input");
         const containerElement = document.querySelector("#js-todo-list");
         const todoItemCountElement = document.querySelector("#js-todo-count");
         //! [checkbox]
-        this.todoListModel.onChange(() => {
+        this.#todoListModel.onChange(() => {
             const todoListElement = element`<ul />`;
-            const todoItems = this.todoListModel.getTodoItems();
+            const todoItems = this.#todoListModel.getTodoItems();
             todoItems.forEach(item => {
                 // 完了済みならchecked属性をつけ、未完了ならchecked属性を外す
                 // input要素にはcheckboxクラスをつける
@@ -24,12 +23,12 @@ export class App {
                 todoListElement.appendChild(todoItemElement);
             });
             render(todoListElement, containerElement);
-            todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.getTotalCount()}`;
+            todoItemCountElement.textContent = `Todoアイテム数: ${this.#todoListModel.getTotalCount()}`;
         });
         //! [checkbox]
         formElement.addEventListener("submit", (event) => {
             event.preventDefault();
-            this.todoListModel.addTodo(new TodoItemModel({
+            this.#todoListModel.addTodo(new TodoItemModel({
                 title: inputElement.value,
                 completed: false
             }));

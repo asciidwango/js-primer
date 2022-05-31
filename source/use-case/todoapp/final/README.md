@@ -51,7 +51,49 @@ TodoItemViewの`createElement`メソッドの中身は`App`クラスでのHTML�
 たとえば、この`TodoItemView`クラスは次のように利用できます。
 `TodoItemModel`のインスタンスとイベントリスナーのオブジェクトを受け取り、TodoアイテムのHTML要素を返します。
 
-[import, marker:"main", title:"TodoItemViewを利用するサンプルコード"](./create-view/src/view/TodoItemView.example.js)
+[import, title:"TodoItemViewを利用するサンプルコード"](./create-view/src/view/TodoItemView.sample.js)
+
+<!-- sandpack:{
+  "files": {
+    "/src/view/TodoItemView.sample.js": {
+      "path": "create-view/src/view/TodoItemView.sample.js",
+      "active": true
+    },
+    "/src/App.js": {
+      "path": "create-view/src/App.js"
+    },
+    "/src/view/html-util.js": {
+      "path": "create-view/src/view/html-util.js"
+    },
+    "/src/EventEmitter.js": {
+      "path": "create-view/src/EventEmitter.js"
+    },
+    "/src/model/TodoItemModel.js":{
+      "path": "create-view/src/model/TodoItemModel.js"
+    },
+    "/src/model/TodoListModel.js":{
+      "path": "create-view/src/model/TodoListModel.js"
+    },
+    "/src/view/TodoItemView.js":{
+      "path": "create-view/src/view/TodoItemView.js"
+    },
+    "/src/view/TodoListView.js":{
+      "path": "create-view/src/view/TodoListView.js"
+    }
+  },
+  "entry": "/src/view/TodoItemView.sample.js",
+  "main": "/src/view/TodoItemView.sample.js",
+  "environment": "static",
+  "template": "vanilla",
+  "options": {
+    "showLineNumbers": true,
+    "editorHeight": 550
+  },
+  "honkitSettings": {
+    "isOpen": false
+  }
+} -->
+
 
 ### TodoListViewを作成する {#TodoListView}
 
@@ -86,12 +128,12 @@ TodoListViewの`createElement`メソッドは`TodoItemView`を使ってTodoア�
 
 `App`クラスで登録しているイベントのリスナー関数を見てみると次の4種類となっています。
 
-| イベントの流れ    | リスナー関数                                           | 役割                                    |
-| ----------------- | -------------------------------------------------- | --------------------------------------- |
-| `Model` → `View` | `this.todoListModel.onChange(listener)`            | `TodoListModel`が変更イベントを受け取る |
+| イベントの流れ    | リスナー関数                                             | 役割                                    |
+| ----------------- |----------------------------------------------------| --------------------------------------- |
+| `Model` → `View` | `this.#todoListModel.onChange(listener)`           | `TodoListModel`が変更イベントを受け取る |
 | `View` → `Model` | `formElement.addEventListener("submit", listener)` | フォームの送信イベントを受け取る        |
 | `View` → `Model` | `onUpdateTodo: listener`                           | Todoアイテムのチェックボックスの更新イベントを受け取る    |
-| `View` → `Model` | `onDeleteTodo: listener`                            | Todoアイテムの削除イベントを受け取る    |
+| `View` → `Model` | `onDeleteTodo: listener`                           | Todoアイテムの削除イベントを受け取る    |
 
 イベントの流れがViewからModelとなっているリスナー関数が3箇所あり、それぞれリスナー関数はコード上バラバラな位置に書かれています。
 また、それぞれのリスナー関数はTodoアプリの機能と対応していることがわかります。
@@ -114,6 +156,60 @@ TodoListViewの`createElement`メソッドは`TodoItemView`を使ってTodoア�
 完成したTodoアプリは次のURLで確認できます。
 
 - <https://jsprimer.net/use-case/todoapp/final/final/>
+
+<!-- sandpack:{
+  "files": {
+    "/src/styles.css": {
+      "path": "./final/index.css",
+      "hidden": true
+    },
+    "/src/App.js": {
+      "path": "final/src/App.js",
+      "active": true
+    },
+    "/index.js": {
+      "appendCode": "// 次の行は本編とは無関係のコードなので無視してください\nconst link = document.createElement('link');link.rel='stylesheet';link.href='https://jsprimer.net/use-case/todoapp/final/final/index.css';document.head.append(link);\n",
+      "path": "final/index.js"
+    },
+    "/src/index.js": {
+      "code": "/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */",
+      "hidden": true
+    },
+    "/src/view/html-util.js": {
+      "path": "final/src/view/html-util.js"
+    },
+    "/src/EventEmitter.js": {
+      "path": "final/src/EventEmitter.js"
+    },
+    "/src/model/TodoItemModel.js":{
+      "path": "more/src/model/TodoItemModel.js"
+    },
+    "/src/model/TodoListModel.js":{
+      "path": "more/src/model/TodoListModel.js"
+    },
+    "/src/view/TodoItemView.js":{
+      "path": "more/src/view/TodoItemView.js"
+    },
+    "/src/view/TodoListView.js":{
+      "path": "more/src/view/TodoListView.js"
+    },
+    "/index.html": {
+      "path": "final/index.html"
+    }
+  },
+  "entry": "/index.js",
+  "main": "/index.js",
+  "environment": "static",
+  "template": "vanilla",
+  "options": {
+    "showLineNumbers": true,
+    "editorHeight": 550
+  },
+  "honkitSettings": {
+    "isOpen": true,
+    "hideExitButton": true
+  }
+} -->
 
 実はこのTodoアプリにはまだアプリケーションとして、完成していない部分があります。
 
@@ -147,6 +243,60 @@ window.addEventListener("unload", () => {
 ぜひ、自分で実装してみてウェブページやアプリの動きについて考えてみてください。
 
 - <https://jsprimer.net/use-case/todoapp/final/more/>
+
+<!-- sandpack:{
+  "files": {
+    "/src/styles.css": {
+      "path": "./final/index.css",
+      "hidden": true
+    },
+    "/src/App.js": {
+      "path": "more/src/App.js",
+      "active": true
+    },
+    "/index.js": {
+      "appendCode": "// 次の行は本編とは無関係のコードなので無視してください\nconst link = document.createElement('link');link.rel='stylesheet';link.href='https://jsprimer.net/use-case/todoapp/final/final/index.css';document.head.append(link); /* sandpackではloadイベントが発生しないため手動でイベントを発行 https://github.com/codesandbox/sandpack/issues/44 */document.readyState === 'complete' && window.dispatchEvent(new Event('load'));\n",
+      "path": "more/index.js"
+    },
+    "/src/index.js": {
+      "code": "/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */",
+      "hidden": true
+    },
+    "/src/view/html-util.js": {
+      "path": "more/src/view/html-util.js"
+    },
+    "/src/EventEmitter.js": {
+      "path": "more/src/EventEmitter.js"
+    },
+    "/src/model/TodoItemModel.js":{
+      "path": "more/src/model/TodoItemModel.js"
+    },
+    "/src/model/TodoListModel.js":{
+      "path": "more/src/model/TodoListModel.js"
+    },
+    "/src/view/TodoItemView.js":{
+      "path": "more/src/view/TodoItemView.js"
+    },
+    "/src/view/TodoListView.js":{
+      "path": "more/src/view/TodoListView.js"
+    },
+    "/index.html": {
+      "path": "more/index.html"
+    }
+  },
+  "entry": "/index.js",
+  "main": "/index.js",
+  "environment": "static",
+  "template": "vanilla",
+  "options": {
+    "showLineNumbers": true,
+    "editorHeight": 550
+  },
+  "honkitSettings": {
+    "isOpen": true,
+    "hideExitButton": true
+  }
+} -->
 
 ## Todoアプリのまとめ {#todo-conclusion}
 

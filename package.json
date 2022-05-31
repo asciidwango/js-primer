@@ -4,7 +4,7 @@
   "license": "MIT",
   "version": "3.0.0",
   "description": "JavaScript Primer - JavaScriptの入門書",
-  "packageManager": "npm@6.14.17",
+  "packageManager": "npm@6.14.16",
   "directories": {
     "test": "test"
   },
@@ -79,7 +79,8 @@
     "gitbook-plugin-page-toc-button": "^0.1.1",
     "gitbook-summary-to-path": "^1.1.0",
     "globby": "^11.0.4",
-    "honkit": "^3.7.1",
+    "honkit": "^3.7.3",
+    "honkit-plugin-sandpack": "^1.3.3",
     "js-levenshtein": "^1.1.6",
     "jsdom": "16.2.2",
     "jsdom-global": "3.0.2",

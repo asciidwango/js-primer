@@ -93,6 +93,48 @@ TodoListModelの`updateTodo`メソッドは、指定したidと一致するTodo�
 この`input`要素の`change`イベントが発生したら、TodoListModelの`updateTodo`メソッドを呼び出すようにします。
 チェックがトグルするたびに呼び出されるので、`completed`には現在の状態を反転（トグル）した値を渡します。
 
+<!-- sandpack:{
+  "files": {
+    "/src/App.js": {
+      "path": "update-feature/src/App.js",
+      "active": true
+    },
+    "/index.js": {
+      "appendCode": "// 次の行は本編とは無関係のコードなので無視してください\nconst link = document.createElement('link');link.rel='stylesheet';link.href='https://jsprimer.net/use-case/todoapp/final/final/index.css';document.head.append(link);\n",
+      "path": "update-feature/index.js"
+    },
+    "/src/index.js": {
+      "code": "/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */",
+      "hidden": true
+    },
+    "/src/view/html-util.js": {
+      "path": "update-feature/src/view/html-util.js"
+    },
+    "/src/EventEmitter.js": {
+      "path": "update-feature/src/EventEmitter.js"
+    },
+    "/src/model/TodoItemModel.js":{
+      "path": "update-feature/src/model/TodoItemModel.js"
+    },
+    "/src/model/TodoListModel.js":{
+      "path": "update-feature/src/model/TodoListModel.js"
+    },
+    "/index.html": {
+      "path": "update-feature/index.html"
+    }
+  },
+  "entry": "/index.js",
+  "main": "/index.js",
+  "environment": "static",
+  "template": "vanilla",
+  "options": {
+    "showLineNumbers": true,
+    "editorHeight": 550
+  },
+  "honkitSettings": {
+    "isOpen": false
+  }
+} -->
 [import, marker:"checkbox",unindent:"true", title:"src/App.jsから変更点を抜粋"](./update-feature/src/App.js)
 
 TodoListModelの`updateTodo`メソッド内では`emitChange`メソッドによって、`TodoListModel`の変更が通知されます。
@@ -150,6 +192,50 @@ TodoListModelの`deleteTodo`メソッド内では`emitChange`メソッドによ�
 ここまでのTodoアプリは次のURLで確認できます。
 
 - <https://jsprimer.net/use-case/todoapp/update-delete/delete-feature/>
+
+<!-- sandpack:{
+  "files": {
+    "/src/App.js": {
+      "path": "delete-feature/src/App.js",
+      "active": true
+    },
+    "/index.js": {
+      "appendCode": "// 次の行は本編とは無関係のコードなので無視してください\nconst link = document.createElement('link');link.rel='stylesheet';link.href='https://jsprimer.net/use-case/todoapp/final/final/index.css';document.head.append(link);\n",
+      "path": "delete-feature/index.js"
+    },
+    "/src/index.js": {
+      "code": "/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */",
+      "hidden": true
+    },
+    "/src/view/html-util.js": {
+      "path": "delete-feature/src/view/html-util.js"
+    },
+    "/src/EventEmitter.js": {
+      "path": "delete-feature/src/EventEmitter.js"
+    },
+    "/src/model/TodoItemModel.js":{
+      "path": "delete-feature/src/model/TodoItemModel.js"
+    },
+    "/src/model/TodoListModel.js":{
+      "path": "delete-feature/src/model/TodoListModel.js"
+    },
+    "/index.html": {
+      "path": "delete-feature/index.html"
+    }
+  },
+  "entry": "/index.js",
+  "main": "/index.js",
+  "environment": "static",
+  "template": "vanilla",
+  "options": {
+    "showLineNumbers": true,
+    "editorHeight": 550
+  },
+  "honkitSettings": {
+    "isOpen": true,
+    "hideExitButton": true
+  }
+} -->
 
 最後のセクションでは、`App.js`のリファクタリングを行って継続的に開発できるアプリの作り方について見ていきます。
 

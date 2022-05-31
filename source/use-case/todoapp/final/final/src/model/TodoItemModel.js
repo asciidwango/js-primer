@@ -2,13 +2,18 @@
 let todoIdx = 0;
 
 export class TodoItemModel {
+    /** @type {number} TodoアイテムのID */
+    id;
+    /** @type {string} Todoアイテムのタイトル */
+    title;
+    /** @type {boolean} Todoアイテムが完了済みならばtrue、そうでない場合はfalse */
+    completed;
+
     /**
-     * `title`: Todoアイテムのタイトル
-     * `completed`: Todoアイテムが完了済みならばtrue、そうでない場合はfalse
      * @param {{ title: string, completed: boolean }}
      */
     constructor({ title, completed }) {
-        // idは自動的に連番となりそれぞれのインスタンス毎に異なるものとする
+        // idは連番となり、それぞれのインスタンス毎に異なるものとする
         this.id = todoIdx++;
         this.title = title;
         this.completed = completed;

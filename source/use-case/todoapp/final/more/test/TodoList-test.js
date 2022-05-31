@@ -18,6 +18,12 @@ describe("TodoList", function() {
             assert.strictEqual(todoItems.length, 1);
             assertTodo(todoItems[0]);
         });
+        it("should not add new Todo Item that is empty title", () => {
+            const list = new TodoListModel();
+            list.addTodo(new TodoItemModel({ title: "", completed: false }));
+            const todoItems = list.getTodoItems();
+            assert.strictEqual(todoItems.length, 0);
+        });
     });
     describe("#update", () => {
         it("should update new Todo Item", () => {
