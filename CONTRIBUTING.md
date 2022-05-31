@@ -452,6 +452,40 @@ importしたコードにも対応しています。
     {{book.console}}
     [import, example.js](src/example.js)
 
+### コードのエディタ/HTMLプレビューモード
+
+[honkit-plugin-sandpack](https://github.com/honkit/honkit-plugin-sandpack)を使ったCodeSandboxのコードエディタ埋め込みに対応しています。
+
+HTMLコメントで、JSやHTMLを読み込むエディタとプレビューを埋め込めます。
+
+- isOpen:true の場合は、エディタが最初から表示されます
+- isOpen:false の場合は、実行ボタンを押すまで表示はされません
+
+```
+<!-- sandpack:{
+  "files": {
+    "/src/index.js": {
+      "path": "example1/index.js"
+    },
+    "/index.html": {
+      "path": "example1/index.html"
+    }
+  },
+  "entry": "/index.js",
+  "main": "/index.js",
+  "environment": "static",
+  "template": "vanilla",
+  "options": {
+    "showLineNumbers": true,
+    "editorHeight": 550
+  },
+  "honkitSettings": {
+    "isOpen": true,
+    "hideExitButton": true
+  }
+} -->
+```
+
 
 ### ES6 or ES2015
 
