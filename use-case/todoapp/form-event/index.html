@@ -6,7 +6,7 @@
         <title>Todoアイテムの追加を実装する · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="TodoアプリへTodoアイテムを追加するフォームを作成していきます。フォームに入力された内容されたと送信イベントをどのようにハンドリングしていくかを見ていきます。">
-        <meta name="generator" content="HonKit 3.7.1">
+        <meta name="generator" content="HonKit 3.7.3">
         
         
         
@@ -24,7 +24,7 @@
                 
             
                 
-                <link rel="stylesheet" href="../../../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="../../../gitbook/@honkit/honkit-plugin-highlight/website.css">
                 
             
                 
@@ -109,12 +109,14 @@
         line-height: inherit;
         margin-bottom: 0px !important;
     }
+
     /* Markdown */
-    .markdown-section sup, .markdown-section sub {
+    .markdown-section sup,
+    .markdown-section sub {
         font-size: 75%;
     }
 
-    .book_footer{
+    .book_footer {
         text-align: center;
         color: #000000;
         background: #ddd;
@@ -149,6 +151,18 @@
     .navigation {
         min-width: 50px;
     }
+
+    @media (min-width: 1240px) {
+        .honkit-plugin-sandpack {
+            width: calc(100% + 240px);
+            margin: 0 0 1em -120px;
+        }
+    }
+
+    .honkit-plugin-sandpack, .honkit-plugin-sandpack--buttonContainer {
+        margin-bottom: 1em;
+    }
+
 </style>
 <meta name="theme-color" content="#ffffff">
 <link rel="manifest" href="../../../manifest.json">
@@ -1551,6 +1565,7 @@ app.mount();
 <ul>
 <li><a href="https://jsprimer.net/use-case/todoapp/form-event/prevent-event/" target="_blank">https://jsprimer.net/use-case/todoapp/form-event/prevent-event/</a></li>
 </ul>
+<!-- sandpack:{"files":{"/src/App.js":{"active":true,"code":"export class App {\n    mount() {\n        const formElement = document.querySelector(\"#js-form\");\n        const inputElement = document.querySelector(\"#js-form-input\");\n        formElement.addEventListener(\"submit\", (event) => {\n            // submitイベントの本来の動作を止める\n            event.preventDefault();\n            console.log(`入力欄の値: ${inputElement.value}`);\n        });\n    }\n}\n"},"/index.js":{"code":"import { App } from \"./src/App.js\";\nconst app = new App();\napp.mount();\n// 次の行は本編とは無関係のコードなので無視してください\nconst link = document.createElement('link');link.rel='stylesheet';link.href='https://jsprimer.net/use-case/todoapp/final/final/index.css';document.head.append(link);\n"},"/src/index.js":{"code":"/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */","hidden":true},"/index.html":{"active":true,"code":"<!DOCTYPE html>\n<html lang=\"ja\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <title>Todo App</title>\n    <link\n      href=\"https://jsprimer.net/use-case/todoapp/final/final/index.css\"\n      rel=\"stylesheet\"\n    />\n  </head>\n  <body>\n    <div class=\"todoapp\">\n      <form id=\"js-form\">\n        <input\n          id=\"js-form-input\"\n          class=\"new-todo\"\n          type=\"text\"\n          placeholder=\"What need to be done?\"\n          autocomplete=\"off\"\n        />\n      </form>\n      <div id=\"js-todo-list\" class=\"todo-list\">\n        \\u003c\\u0021\\u002d\\u002d 動的に更新されるTodoリスト \\u002d\\u002d\\u003e\n      </div>\n      <footer class=\"footer\">\n        <span id=\"js-todo-count\">Todoアイテム数: 0</span>\n      </footer>\n    </div>\n    <script src=\"./index.js\" type=\"module\"></script>\n  </body>\n</html>\n"}},"entry":"/index.js","main":"/index.js","environment":"static","template":"vanilla","options":{"showLineNumbers":true,"editorHeight":550},"honkitSettings":{"isOpen":true,"hideExitButton":true}} -->
 <h2 id="input-to-todolist"><a name="input-to-todolist" class="plugin-anchor" href="#input-to-todolist"><i class="fa fa-link" aria-hidden="true"></i></a>入力内容をTodoリストに表示する </h2>
 <p>フォーム送信時に入力内容を取得する方法がわかったので、次はその入力内容をTodoリスト（<code>#js-todo-list</code>）に表示します。</p>
 <p>HTMLではリストのアイテムを記述する際には<code>&lt;li&gt;</code>タグを使います。
@@ -1617,28 +1632,41 @@ ajaxappでの<code>escapeHTML</code>タグ関数では出力は<strong>HTML文�
 <code>htmlToElement</code>関数の中で利用している<a href="https://developer.mozilla.org/ja/docs/Web/HTML/Element/template" target="_blank">template要素</a>はHTML5で追加された、HTML文字列の断片からHTML要素を作成できる要素です。</p>
 <p>この<code>element</code>タグ関数を使うことで、次のようにHTML文字列からHTML要素を作成できます。
 作成した要素は、<code>appendChild</code>メソッドなどで既存の要素に子要素として追加できます。</p>
-<div class="code-filename-block"><p class="code-filename">elementタグ関数のサンプルコード</p></div>
+<div class="code-filename-block">
+    <p class="code-filename">elementタグ関数のサンプルコード</p>
+</div>
 
-<!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-comment">// HTML文字列からHTML要素を作成</span>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { element } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./html-util.js&quot;</span>;
+<span class="hljs-comment">// HTML文字列からHTML要素を作成</span>
 <span class="hljs-keyword">const</span> newElement = element<span class="hljs-string">`&lt;ul&gt;
     &lt;li&gt;新しい要素&lt;/li&gt;
 &lt;/ul&gt;`</span>;
 <span class="hljs-comment">// 作成した要素を`document.body`の子要素として追加（appendChild）する</span>
 <span class="hljs-built_in">document</span>.body.appendChild(newElement);
 </code></pre>
+<!-- sandpack:{"files":{"/src/view/html-util.js":{"code":"export function escapeSpecialChars(str) {\n    return str\n        .replace(/&/g, \"&amp;\")\n        .replace(/</g, \"&lt;\")\n        .replace(/>/g, \"&gt;\")\n        .replace(/\"/g, \"&quot;\")\n        .replace(/'/g, \"&#039;\");\n}\n\n/**\n * HTML文字列からHTML要素を作成して返す\n * @param {string} html \n */\nexport function htmlToElement(html) {\n    const template = document.createElement(\"template\");\n    template.innerHTML = html;\n    return template.content.firstElementChild;\n}\n\n/**\n * HTML文字列からDOM Nodeを作成して返すタグ関数\n * @return {Element}\n */\nexport function element(strings, ...values) {\n    const htmlString = strings.reduce((result, str, i) => {\n        const value = values[i - 1];\n        if (typeof value === \"string\") {\n            return result + escapeSpecialChars(value) + str;\n        } else {\n            return result + String(value) + str;\n        }\n    });\n    return htmlToElement(htmlString);\n}\n\n/**\n * コンテナ要素の中身をbodyElementで上書きする\n * @param {Element} bodyElement コンテナ要素の中身となる要素\n * @param {Element} containerElement コンテナ要素\n */\nexport function render(bodyElement, containerElement) {\n    // containerElementの中身を空にする\n    containerElement.innerHTML = \"\";\n    // containerElementの直下にbodyElementを追加する\n    containerElement.appendChild(bodyElement);\n}\n"},"/src/view/html-util-element-sample.js":{"active":true,"code":"import { element } from \"./html-util.js\";\n// HTML文字列からHTML要素を作成\nconst newElement = element`<ul>\n    <li>新しい要素</li>\n</ul>`;\n// 作成した要素を`document.body`の子要素として追加（appendChild）する\ndocument.body.appendChild(newElement);\n"}},"entry":"/src/view/html-util-element-sample.js","main":"/src/view/html-util-element-sample.js","environment":"static","template":"vanilla","options":{"showLineNumbers":true,"editorHeight":550},"honkitSettings":{"isOpen":false}} -->
 <p>ブラウザが提供する<code>appendChild</code>メソッドは子要素を追加するだけなので、すでに別の要素がある場合は末尾に追加されます。</p>
 <p><code>render</code>関数は指定したコンテナ要素（親となる要素）の子要素を上書きする関数となります。
 動作的には一度子要素をすべて消したあとに<code>appendChild</code>で子要素として追加しています。</p>
-<div class="code-filename-block"><p class="code-filename">render関数のサンプルコード</p></div>
+<div class="code-filename-block">
+    <p class="code-filename">render関数のサンプルコード</p>
+</div>
 
-<!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-comment">// `ul`要素の空タグを作成</span>
-<span class="hljs-keyword">const</span> newElement = element<span class="hljs-string">`&lt;ul /&gt;`</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { element, render } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./html-util.js&quot;</span>;
+<span class="hljs-comment">// renderの前に、要素をdocument.bodyへ追加する</span>
+<span class="hljs-keyword">const</span> oldElement = element<span class="hljs-string">`&lt;ul&gt;
+    &lt;li&gt;既存の要素&lt;/li&gt;
+&lt;/ul&gt;`</span>;
+<span class="hljs-built_in">document</span>.body.appendChild(oldElement);
+<span class="hljs-comment">// 新しい要素を作成する</span>
+<span class="hljs-keyword">const</span> newElement = element<span class="hljs-string">`&lt;ul&gt;
+    &lt;li&gt;新しい要素&lt;/li&gt;
+&lt;/ul&gt;`</span>;
 <span class="hljs-comment">// `newElement`を`document.body`の子要素として追加する</span>
-<span class="hljs-comment">// すでに`document.body`以下に要素がある場合は上書きされる</span>
+<span class="hljs-comment">// すでに`document.body`以下にある要素は上書きされる</span>
 render(newElement, <span class="hljs-built_in">document</span>.body);
 </code></pre>
+<!-- sandpack:{"files":{"/src/view/html-util.js":{"code":"export function escapeSpecialChars(str) {\n    return str\n        .replace(/&/g, \"&amp;\")\n        .replace(/</g, \"&lt;\")\n        .replace(/>/g, \"&gt;\")\n        .replace(/\"/g, \"&quot;\")\n        .replace(/'/g, \"&#039;\");\n}\n\n/**\n * HTML文字列からHTML要素を作成して返す\n * @param {string} html \n */\nexport function htmlToElement(html) {\n    const template = document.createElement(\"template\");\n    template.innerHTML = html;\n    return template.content.firstElementChild;\n}\n\n/**\n * HTML文字列からDOM Nodeを作成して返すタグ関数\n * @return {Element}\n */\nexport function element(strings, ...values) {\n    const htmlString = strings.reduce((result, str, i) => {\n        const value = values[i - 1];\n        if (typeof value === \"string\") {\n            return result + escapeSpecialChars(value) + str;\n        } else {\n            return result + String(value) + str;\n        }\n    });\n    return htmlToElement(htmlString);\n}\n\n/**\n * コンテナ要素の中身をbodyElementで上書きする\n * @param {Element} bodyElement コンテナ要素の中身となる要素\n * @param {Element} containerElement コンテナ要素\n */\nexport function render(bodyElement, containerElement) {\n    // containerElementの中身を空にする\n    containerElement.innerHTML = \"\";\n    // containerElementの直下にbodyElementを追加する\n    containerElement.appendChild(bodyElement);\n}\n"},"/src/view/html-util-render-sample.js":{"active":true,"code":"import { element, render } from \"./html-util.js\";\n// renderの前に、要素をdocument.bodyへ追加する\nconst oldElement = element`<ul>\n    <li>既存の要素</li>\n</ul>`;\ndocument.body.appendChild(oldElement);\n// 新しい要素を作成する\nconst newElement = element`<ul>\n    <li>新しい要素</li>\n</ul>`;\n// `newElement`を`document.body`の子要素として追加する\n// すでに`document.body`以下にある要素は上書きされる\nrender(newElement, document.body);\n"}},"entry":"/src/view/html-util-render-sample.js","main":"/src/view/html-util-render-sample.js","environment":"static","template":"vanilla","options":{"showLineNumbers":true,"editorHeight":550},"honkitSettings":{"isOpen":false}} -->
 <p>実際に、この<code>element</code>タグ関数と<code>render</code>関数を使って、フォームから送信された入力内容をTodoリストに要素として追加してみます。</p>
 <p>まず最初に、<code>App.js</code>から先ほど作成した<code>html-util.js</code>の<code>element</code>タグ関数と<code>render</code>関数を<code>import</code>します。
 次に、Todoアイテムをまとめるリストを<code>todoListElement</code>として定義し、表示されているTodoアイテムの数を<code>todoItemCount</code>として定義します。</p>
@@ -1694,6 +1722,7 @@ Todoアイテムを表現する要素を作成し、Todoリストの子要素と
 <ul>
 <li><a href="https://jsprimer.net/use-case/todoapp/form-event/add-todo-item/" target="_blank">https://jsprimer.net/use-case/todoapp/form-event/add-todo-item/</a></li>
 </ul>
+<!-- sandpack:{"files":{"/index.html":{"code":"<!DOCTYPE html>\n<html lang=\"ja\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <title>Todo App</title>\n    <link\n      href=\"https://jsprimer.net/use-case/todoapp/final/final/index.css\"\n      rel=\"stylesheet\"\n    />\n  </head>\n  <body>\n    <div class=\"todoapp\">\n      <form id=\"js-form\">\n        <input\n          id=\"js-form-input\"\n          class=\"new-todo\"\n          type=\"text\"\n          placeholder=\"What need to be done?\"\n          autocomplete=\"off\"\n        />\n      </form>\n      <div id=\"js-todo-list\" class=\"todo-list\">\n        \\u003c\\u0021\\u002d\\u002d 動的に更新されるTodoリスト \\u002d\\u002d\\u003e\n      </div>\n      <footer class=\"footer\">\n        <span id=\"js-todo-count\">Todoアイテム数: 0</span>\n      </footer>\n    </div>\n    <script src=\"./index.js\" type=\"module\"></script>\n  </body>\n</html>\n"},"/index.js":{"code":"import { App } from \"./src/App.js\";\nconst app = new App();\napp.mount();\n// 次の行は本編とは無関係のコードなので無視してください\nconst link = document.createElement('link');link.rel='stylesheet';link.href='https://jsprimer.net/use-case/todoapp/final/final/index.css';document.head.append(link);\n"},"/src/index.js":{"code":"/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */","hidden":true},"/src/App.js":{"active":true,"code":"import { element, render } from \"./view/html-util.js\";\n\nexport class App {\n    mount() {\n        const formElement = document.querySelector(\"#js-form\");\n        const inputElement = document.querySelector(\"#js-form-input\");\n        const containerElement = document.querySelector(\"#js-todo-list\");\n        const todoItemCountElement = document.querySelector(\"#js-todo-count\");\n        // TodoリストをまとめるList要素\n        const todoListElement = element`<ul />`;\n        // Todoアイテム数\n        let todoItemCount = 0;\n        formElement.addEventListener(\"submit\", (event) => {\n            // 本来のsubmitイベントの動作を止める\n            event.preventDefault();\n            // 追加するTodoアイテムの要素(li要素)を作成する\n            const todoItemElement = element`<li>${inputElement.value}</li>`;\n            // TodoアイテムをtodoListElementに追加する\n            todoListElement.appendChild(todoItemElement);\n            // コンテナ要素の中身をTodoリストをまとめるList要素で上書きする\n            render(todoListElement, containerElement);\n            // Todoアイテム数を+1し、表示されてるテキストを更新する\n            todoItemCount += 1;\n            todoItemCountElement.textContent = `Todoアイテム数: ${todoItemCount}`;\n            // 入力欄を空文字列にしてリセットする\n            inputElement.value = \"\";\n        });\n    }\n}\n"},"/src/view/html-util.js":{"code":"export function escapeSpecialChars(str) {\n    return str\n        .replace(/&/g, \"&amp;\")\n        .replace(/</g, \"&lt;\")\n        .replace(/>/g, \"&gt;\")\n        .replace(/\"/g, \"&quot;\")\n        .replace(/'/g, \"&#039;\");\n}\n\n/**\n * HTML文字列からHTML要素を作成して返す\n * @param {string} html \n */\nexport function htmlToElement(html) {\n    const template = document.createElement(\"template\");\n    template.innerHTML = html;\n    return template.content.firstElementChild;\n}\n\n/**\n * HTML文字列からDOM Nodeを作成して返すタグ関数\n * @return {Element}\n */\nexport function element(strings, ...values) {\n    const htmlString = strings.reduce((result, str, i) => {\n        const value = values[i - 1];\n        if (typeof value === \"string\") {\n            return result + escapeSpecialChars(value) + str;\n        } else {\n            return result + String(value) + str;\n        }\n    });\n    return htmlToElement(htmlString);\n}\n\n/**\n * コンテナ要素の中身をbodyElementで上書きする\n * @param {Element} bodyElement コンテナ要素の中身となる要素\n * @param {Element} containerElement コンテナ要素\n */\nexport function render(bodyElement, containerElement) {\n    // containerElementの中身を空にする\n    containerElement.innerHTML = \"\";\n    // containerElementの直下にbodyElementを追加する\n    containerElement.appendChild(bodyElement);\n}\n"}},"entry":"/index.js","main":"/index.js","environment":"static","template":"vanilla","options":{"showLineNumbers":true,"editorHeight":550},"honkitSettings":{"isOpen":true,"hideExitButton":true}} -->
 <h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>まとめ </h2>
 <p>このセクションではform要素の<code>submit</code>イベントをリッスンし、入力内容を元にTodoアイテムを作成し、これをTodoリストに追加する機能を実装しました。
 今回のTodoアイテムの追加のように、多くのウェブアプリは何らかのイベントをリッスンして表示を更新します。
@@ -1750,7 +1779,7 @@ Todoアイテムを表現する要素を作成し、Todoリストの子要素と
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"TodoアプリへTodoアイテムを追加するフォームを作成していきます。フォームに入力された内容されたと送信イベントをどのようにハンドリングしていくかを見ていきます。","title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"next":{"title":"イベントとモデル","level":"1.4.4.4","depth":3,"path":"use-case/todoapp/event-model/README.md","ref":"./use-case/todoapp/event-model/README.md","articles":[]},"previous":{"title":"アプリの構成要素","level":"1.4.4.2","depth":3,"path":"use-case/todoapp/app-structure/README.md","ref":"./use-case/todoapp/app-structure/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/todoapp/form-event/README.md","mtime":"2022-05-31T11:23:13.973Z","type":"markdown"},"gitbook":{"version":"3.7.1","time":"2022-05-31T11:23:43.707Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"TodoアプリへTodoアイテムを追加するフォームを作成していきます。フォームに入力された内容されたと送信イベントをどのようにハンドリングしていくかを見ていきます。","title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"next":{"title":"イベントとモデル","level":"1.4.4.4","depth":3,"path":"use-case/todoapp/event-model/README.md","ref":"./use-case/todoapp/event-model/README.md","articles":[]},"previous":{"title":"アプリの構成要素","level":"1.4.4.2","depth":3,"path":"use-case/todoapp/app-structure/README.md","ref":"./use-case/todoapp/app-structure/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/todoapp/form-event/README.md","mtime":"2022-05-31T11:23:31.379Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-05-31T11:24:01.127Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -1817,6 +1846,10 @@ Todoアイテムを表現する要素を作成し、Todoリストの子要素と
     
         
         <script src="../../../gitbook/gitbook-plugin-github-issue-feedback/plugin.js"></script>
+        
+    
+        
+        <script src="../../../gitbook/honkit-plugin-sandpack/honkit-plugin-sandpack.js"></script>
         
     
         
