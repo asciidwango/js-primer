@@ -179,6 +179,40 @@ XHRの詳しい使い方については、[XHRの利用についてのドキュ�
 - Fetch APIの呼び出しに対するエラーハンドリングを行った
 - `fetchUserInfo`関数を宣言し、ボタンのクリックイベントで呼び出した
 
+ここまでのアプリは次のURLで確認できます。
+
+- <https://jsprimer.net/use-case/ajaxapp/http/src/>
+
+<!-- FIXME: なぜかindex.jsで宣言した関数が見つからない -->
+
+<!-- sandpack:{
+  "files": {
+    "/index.js": {
+      "path": "src/index.js"
+    },
+    "/index.html": {
+      "path": "src/index.html",
+      "active": true
+    },
+    "/src/index.js": {
+      "code": "/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */",
+      "hidden": true
+    }
+  },
+  "entry": "/index.js",
+  "main": "/index.js",
+  "environment": "static",
+  "template": "vanilla",
+  "options": {
+    "showLineNumbers": true,
+    "editorHeight": 550
+  },
+  "honkitSettings": {
+    "isOpen": true,
+    "hideExitButton": true
+  }
+} -->
+
 [Fetch API]: https://developer.mozilla.org/ja/docs/Web/API/Fetch_API
 [XMLHttpRequest]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest
 [XHRの利用についてのドキュメント]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
