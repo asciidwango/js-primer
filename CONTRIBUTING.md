@@ -470,10 +470,10 @@ HTMLコメントで、JSやHTMLを読み込むエディタとプレビューを�
 <!-- sandpack:{
   "files": {
     "/src/index.js": {
-      "path": "example1/index.js"
+      "path": "example/index.js"
     },
     "/index.html": {
-      "path": "example1/index.html"
+      "path": "example/index.html"
     }
   },
   "entry": "/src/index.js",

@@ -159,7 +159,7 @@ TodoListViewの`createElement`メソッドは`TodoItemView`を使ってTodoア�
 
 <!-- sandpack:{
   "files": {
-    "/src/styles.css": {
+    "/index.css": {
       "path": "./final/index.css",
       "hidden": true
     },
@@ -168,7 +168,7 @@ TodoListViewの`createElement`メソッドは`TodoItemView`を使ってTodoア�
       "active": true
     },
     "/index.js": {
-      "appendCode": "// 次の行は本編とは無関係のコードなので無視してください\nconst link = document.createElement('link');link.rel='stylesheet';link.href='https://jsprimer.net/use-case/todoapp/final/final/index.css';document.head.append(link);\n",
+      "appendCode": "// 次の行は本編とは無関係のコードなので無視してください\n/* sandpackではloadイベントが発生しないため手動でイベントを発行 https://github.com/codesandbox/sandpack/issues/44 */document.readyState === 'complete' && window.dispatchEvent(new Event('load'));\n",
       "path": "final/index.js"
     },
     "/src/index.js": {
@@ -203,7 +203,8 @@ TodoListViewの`createElement`メソッドは`TodoItemView`を使ってTodoア�
   "template": "vanilla",
   "options": {
     "showLineNumbers": true,
-    "editorHeight": 550
+    "editorHeight": 550,
+    "externalResources": ["https://jsprimer.net/use-case/todoapp/final/final/index.css"]
   },
   "honkitSettings": {
     "isOpen": true,
@@ -246,7 +247,7 @@ window.addEventListener("unload", () => {
 
 <!-- sandpack:{
   "files": {
-    "/src/styles.css": {
+    "/index.css": {
       "path": "./final/index.css",
       "hidden": true
     },
@@ -255,7 +256,6 @@ window.addEventListener("unload", () => {
       "active": true
     },
     "/index.js": {
-      "appendCode": "// 次の行は本編とは無関係のコードなので無視してください\nconst link = document.createElement('link');link.rel='stylesheet';link.href='https://jsprimer.net/use-case/todoapp/final/final/index.css';document.head.append(link); /* sandpackではloadイベントが発生しないため手動でイベントを発行 https://github.com/codesandbox/sandpack/issues/44 */document.readyState === 'complete' && window.dispatchEvent(new Event('load'));\n",
       "path": "more/index.js"
     },
     "/src/index.js": {
@@ -290,7 +290,8 @@ window.addEventListener("unload", () => {
   "template": "vanilla",
   "options": {
     "showLineNumbers": true,
-    "editorHeight": 550
+    "editorHeight": 550,
+    "externalResources": ["https://jsprimer.net/use-case/todoapp/final/final/index.css"]
   },
   "honkitSettings": {
     "isOpen": true,

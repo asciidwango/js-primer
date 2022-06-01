@@ -262,7 +262,8 @@ import { App } from "./src/App.js";
   "template": "vanilla",
   "options": {
     "showLineNumbers": true,
-    "editorHeight": 550
+    "editorHeight": 550,
+    "externalResources": ["https://jsprimer.net/use-case/todoapp/final/final/index.css"]
   },
   "honkitSettings": {
     "isOpen": true,

@@ -100,7 +100,6 @@ TodoListModelの`updateTodo`メソッドは、指定したidと一致するTodo�
       "active": true
     },
     "/index.js": {
-      "appendCode": "// 次の行は本編とは無関係のコードなので無視してください\nconst link = document.createElement('link');link.rel='stylesheet';link.href='https://jsprimer.net/use-case/todoapp/final/final/index.css';document.head.append(link);\n",
       "path": "update-feature/index.js"
     },
     "/src/index.js": {
@@ -129,7 +128,8 @@ TodoListModelの`updateTodo`メソッドは、指定したidと一致するTodo�
   "template": "vanilla",
   "options": {
     "showLineNumbers": true,
-    "editorHeight": 550
+    "editorHeight": 550,
+    "externalResources": ["https://jsprimer.net/use-case/todoapp/final/final/index.css"]
   },
   "honkitSettings": {
     "isOpen": false
@@ -200,7 +200,6 @@ TodoListModelの`deleteTodo`メソッド内では`emitChange`メソッドによ�
       "active": true
     },
     "/index.js": {
-      "appendCode": "// 次の行は本編とは無関係のコードなので無視してください\nconst link = document.createElement('link');link.rel='stylesheet';link.href='https://jsprimer.net/use-case/todoapp/final/final/index.css';document.head.append(link);\n",
       "path": "delete-feature/index.js"
     },
     "/src/index.js": {
@@ -229,7 +228,8 @@ TodoListModelの`deleteTodo`メソッド内では`emitChange`メソッドによ�
   "template": "vanilla",
   "options": {
     "showLineNumbers": true,
-    "editorHeight": 550
+    "editorHeight": 550,
+    "externalResources": ["https://jsprimer.net/use-case/todoapp/final/final/index.css"]
   },
   "honkitSettings": {
     "isOpen": true,

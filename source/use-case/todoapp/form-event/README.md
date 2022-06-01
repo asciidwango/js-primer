@@ -138,7 +138,6 @@ todoapp
       "active": true
     },
     "/index.js": {
-      "appendCode": "// 次の行は本編とは無関係のコードなので無視してください\nconst link = document.createElement('link');link.rel='stylesheet';link.href='https://jsprimer.net/use-case/todoapp/final/final/index.css';document.head.append(link);\n",
       "path": "prevent-event/index.js"
     },
     "/src/index.js": {
@@ -156,7 +155,8 @@ todoapp
   "template": "vanilla",
   "options": {
     "showLineNumbers": true,
-    "editorHeight": 550
+    "editorHeight": 550,
+    "externalResources": ["https://jsprimer.net/use-case/todoapp/final/final/index.css"]
   },
   "honkitSettings": {
     "isOpen": true,
@@ -282,7 +282,6 @@ todoapp
       "path": "add-todo-item/index.html"
     },
     "/index.js": {
-      "appendCode": "// 次の行は本編とは無関係のコードなので無視してください\nconst link = document.createElement('link');link.rel='stylesheet';link.href='https://jsprimer.net/use-case/todoapp/final/final/index.css';document.head.append(link);\n",
       "path": "add-todo-item/index.js"
     },
     "/src/index.js": {
@@ -303,7 +302,8 @@ todoapp
   "template": "vanilla",
   "options": {
     "showLineNumbers": true,
-    "editorHeight": 550
+    "editorHeight": 550,
+    "externalResources": ["https://jsprimer.net/use-case/todoapp/final/final/index.css"]
   },
   "honkitSettings": {
     "isOpen": true,
