@@ -460,6 +460,9 @@ HTMLコメントで、JSやHTMLを読み込むエディタとプレビューを�
 
 - isOpen:true の場合は、エディタが最初から表示されます
 - isOpen:false の場合は、実行ボタンを押すまで表示はされません
+- Note: いくつかの問題点があるので回避策を追加して使う場合があります 
+    - loadイベントは正しく発生しない → window.dispatchEventで手動で発火させる
+    - headのCSSは無視される → CSSが読まれないので、`appendCode`などで手動でCSSを追加する
 
 ```
 <!-- sandpack:{
@@ -471,8 +474,8 @@ HTMLコメントで、JSやHTMLを読み込むエディタとプレビューを�
       "path": "example1/index.html"
     }
   },
-  "entry": "/index.js",
-  "main": "/index.js",
+  "entry": "/src/index.js",
+  "main": "/src/index.js",
   "environment": "static",
   "template": "vanilla",
   "options": {
