@@ -464,6 +464,8 @@ HTMLコメントで、JSやHTMLを読み込むエディタとプレビューを�
     - loadイベントは正しく発生しない → window.dispatchEventで手動で発火させる
     - headのCSSは無視される → CSSが読まれないので、`appendCode`などで手動でCSSを追加する
 
+次のように、`<!-- sandpack:{/*options*/} -->` のコメントを書いた場所に埋め込まれます。
+
 ```
 <!-- sandpack:{
   "files": {
