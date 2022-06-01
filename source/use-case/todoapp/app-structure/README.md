@@ -149,7 +149,6 @@ const form = document.querySelector("#js-form");
       "path": "todo-html/src/App.js"
     },
     "/index.js": {
-      "appendCode": "// 次の行は本編とは無関係のコードなので無視してください\nconst link = document.createElement('link');link.rel='stylesheet';link.href='https://jsprimer.net/use-case/todoapp/final/final/index.css';document.head.append(link);\n",
       "path": "todo-html/index.js"
     },
     "/src/index.js": {
@@ -167,7 +166,8 @@ const form = document.querySelector("#js-form");
   "template": "vanilla",
   "options": {
     "showLineNumbers": true,
-    "editorHeight": 550
+    "editorHeight": 550,
+    "externalResources": ["https://jsprimer.net/use-case/todoapp/final/final/index.css"]
   },
   "honkitSettings": {
     "isOpen": true,
