@@ -486,7 +486,7 @@ console.log(factorial(3)); // => 6
 
 ```js
 // Arrow Functionを使った関数定義
-const 関数名 = () => {
+const 変数名 = () => {
     // 関数を呼び出したときの処理
     // ...
     return 関数の返す値;
