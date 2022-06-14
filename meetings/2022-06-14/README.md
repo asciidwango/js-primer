@@ -19,7 +19,7 @@
 ## ES2022への対応
 
 - azu: 現状のES2022の対応度合いについて
-- azu: 主要な変更はES2022へ対応済み
+- azu: ES2022の主要な変更は対応済み
   - [feat!: ES2022のサポート by azu · Pull Request #1432 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/1432)
   - [ECMAScript 2022対応 · Issue #1337 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1337)
 - azu: ES2022が正式リリースされたのに合わせてリリースノートを公開するつもり
