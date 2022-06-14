@@ -1531,6 +1531,7 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <th>コード例</th>
 <th>説明</th>
 <th>解説</th>
+<th>MDN</th>
 </tr>
 </thead>
 <tbody>
@@ -1538,16 +1539,19 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <td><code>// xxx</code></td>
 <td>一行コメント</td>
 <td><a href="../basic/comments/">コメント</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Lexical_grammar#%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88" target="_blank">字句文法</a></td>
 </tr>
 <tr>
 <td><code>/* xxx */</code></td>
 <td>複数行コメント</td>
 <td><a href="../basic/comments/">コメント</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Lexical_grammar#%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88" target="_blank">字句文法</a></td>
 </tr>
 <tr>
 <td><code>&lt;!-- xxx --&gt;</code></td>
 <td>[ES2015] HTML-likeコメント</td>
 <td><a href="../basic/comments/">コメント</a></td>
+<td> </td>
 </tr>
 </tbody>
 </table>
@@ -1559,6 +1563,7 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <th>コード例</th>
 <th>説明</th>
 <th>解説</th>
+<th>MDN</th>
 </tr>
 </thead>
 <tbody>
@@ -1566,16 +1571,19 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <td><code>const x</code></td>
 <td>[ES2015] <strong>変数宣言</strong>。<code>x</code>に値の再代入はできない</td>
 <td><a href="../basic/variables/">変数と宣言</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/const" target="_blank">const</a></td>
 </tr>
 <tr>
 <td><code>let x</code></td>
 <td>[ES2015] <strong>変数宣言</strong>。<code>const</code>と似ているが、<code>x</code>に値を再代入できる</td>
 <td><a href="../basic/variables/">変数と宣言</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/let" target="_blank">let</a></td>
 </tr>
 <tr>
 <td><code>var x</code></td>
 <td><strong>変数宣言</strong>。レガシーな変数宣言方法</td>
 <td><a href="../basic/variables/">変数と宣言</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/var" target="_blank">var</a></td>
 </tr>
 </tbody>
 </table>
@@ -1587,6 +1595,7 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <th>コード例</th>
 <th>説明</th>
 <th>解説</th>
+<th>MDN</th>
 </tr>
 </thead>
 <tbody>
@@ -1594,61 +1603,73 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <td><code>true</code> または <code>false</code></td>
 <td><strong>真偽値</strong></td>
 <td><a href="../basic/data-type/">データ型とリテラル</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Lexical_grammar#%E8%AB%96%E7%90%86%E5%80%A4%E3%83%AA%E3%83%86%E3%83%A9%E3%83%AB" target="_blank">字句文法</a></td>
 </tr>
 <tr>
 <td><code>123</code></td>
 <td><strong>10進数</strong>の整数リテラル</td>
 <td><a href="../basic/data-type/">データ型とリテラル</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Lexical_grammar#%E6%95%B0%E5%80%A4%E3%83%AA%E3%83%86%E3%83%A9%E3%83%AB" target="_blank">字句文法</a></td>
 </tr>
 <tr>
 <td><code>123n</code></td>
 <td>[ES2020] 巨大な整数を表すBigIntリテラル</td>
 <td><a href="../basic/data-type/">データ型とリテラル</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Lexical_grammar#%E6%95%B0%E5%80%A4%E3%83%AA%E3%83%86%E3%83%A9%E3%83%AB" target="_blank">字句文法</a></td>
 </tr>
 <tr>
 <td><code>0b10</code></td>
 <td>[ES2015] <strong>2進数</strong>の整数リテラル</td>
 <td><a href="../basic/data-type/">データ型とリテラル</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Lexical_grammar#%E6%95%B0%E5%80%A4%E3%83%AA%E3%83%86%E3%83%A9%E3%83%AB" target="_blank">字句文法</a></td>
 </tr>
 <tr>
 <td><code>0o777</code></td>
 <td>[ES2015] <strong>8進数</strong>の整数リテラル</td>
 <td><a href="../basic/data-type/">データ型とリテラル</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Lexical_grammar#%E6%95%B0%E5%80%A4%E3%83%AA%E3%83%86%E3%83%A9%E3%83%AB" target="_blank">字句文法</a></td>
 </tr>
 <tr>
 <td><code>0x30A2</code></td>
 <td><strong>16進数</strong>の整数リテラル</td>
 <td><a href="../basic/data-type/">データ型とリテラル</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Lexical_grammar#%E6%95%B0%E5%80%A4%E3%83%AA%E3%83%86%E3%83%A9%E3%83%AB" target="_blank">字句文法</a></td>
 </tr>
 <tr>
 <td><code>123_456</code></td>
 <td>[ES2021]数値リテラルにおける<strong>Numeric Separators</strong></td>
 <td><a href="../basic/data-type/">データ型とリテラル</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Lexical_grammar#%E6%95%B0%E5%80%A4%E3%83%AA%E3%83%86%E3%83%A9%E3%83%AB" target="_blank">字句文法</a></td>
 </tr>
 <tr>
 <td><code>{ k: v }</code></td>
 <td>プロパティ名が<code>k</code>、プロパティの値が<code>v</code>の<strong>オブジェクト</strong>を作成</td>
 <td><a href="../basic/object/">オブジェクト</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Grammar_and_types#object_literals" target="_blank">文法とデータ型</a></td>
 </tr>
 <tr>
 <td><i class="s4"></i> <code>{ n }</code></td>
 <td>[ES2015] プロパティ名が<code>n</code>、プロパティの値が<code>n</code>の<strong>オブジェクト</strong>を作成</td>
 <td><a href="../basic/object/">オブジェクト</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Object_initializer#%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3%E3%81%AE%E5%AE%9A%E7%BE%A9" target="_blank">オブジェクト初期化子</a></td>
 </tr>
 <tr>
 <td><code>[x, y]</code></td>
 <td><code>x</code>と<code>y</code>を初期値にもつ<strong>配列オブジェクト</strong>を作成</td>
 <td><a href="../basic/array/">配列</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Grammar_and_types#array_literals" target="_blank">文法とデータ型</a></td>
 </tr>
 <tr>
 <td><code>/pattern/</code></td>
 <td><code>pattern</code>をもつ<strong>正規表現オブジェクト</strong>を作成</td>
 <td><a href="../basic/string/">文字列</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Lexical_grammar#%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE%E3%83%AA%E3%83%86%E3%83%A9%E3%83%AB" target="_blank">字句文法</a></td>
 </tr>
 <tr>
 <td><code>null</code></td>
 <td><code>null</code>値</td>
 <td><a href="../basic/data-type/">データ型とリテラル</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Lexical_grammar#null_%E3%83%AA%E3%83%86%E3%83%A9%E3%83%AB" target="_blank">字句文法</a></td>
 </tr>
 </tbody>
 </table>
@@ -1660,6 +1681,7 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <th>コード例</th>
 <th>説明</th>
 <th>解説</th>
+<th>MDN</th>
 </tr>
 </thead>
 <tbody>
@@ -1667,21 +1689,25 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <td><code>&quot;xxx&quot;</code></td>
 <td>ダブルクォートの<strong>文字列リテラル</strong>。改行などは<code>\</code>と特定の文字を組み合わせたエスケープシーケンスとして表現します。</td>
 <td><a href="../basic/string/">文字列</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Grammar_and_types#string_literals" target="_blank">文法とデータ型</a></td>
 </tr>
 <tr>
 <td><code>&apos;xxx&apos;</code></td>
 <td>シングルクォートの<strong>文字列リテラル</strong>。<code>&quot;xxx&quot;</code>と意味は同じ。</td>
 <td><a href="../basic/string/">文字列</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Grammar_and_types#string_literals" target="_blank">文法とデータ型</a></td>
 </tr>
 <tr>
 <td><code>`xxx` </code></td>
 <td>[ES2015] テンプレート文字列リテラル。改行を含んだ入力が可能</td>
 <td><a href="../basic/string/">文字列</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Template_literals" target="_blank">テンプレートリテラル (テンプレート文字列)</a></td>
 </tr>
 <tr>
 <td><i class="s4"></i> <code>`${x}` </code></td>
 <td>[ES2015] テンプレート文字列リテラル中の変数<code>x</code>の値を展開する</td>
 <td><a href="../basic/string/">文字列</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Template_literals" target="_blank">テンプレートリテラル (テンプレート文字列)</a></td>
 </tr>
 </tbody>
 </table>
@@ -1693,6 +1719,7 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <th>コード例</th>
 <th>説明</th>
 <th>解説</th>
+<th>MDN</th>
 </tr>
 </thead>
 <tbody>
@@ -1700,41 +1727,49 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <td><code>array[0]</code></td>
 <td>配列への<strong>インデックスアクセス</strong></td>
 <td><a href="../basic/array/">配列</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array#%E6%B7%BB%E5%AD%97%E3%81%AB%E3%82%88%E3%82%8B%E9%85%8D%E5%88%97%E3%81%AE%E8%A6%81%E7%B4%A0%E3%81%B8%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9" target="_blank">Array</a></td>
 </tr>
 <tr>
 <td><code>obj[&quot;x&quot;]</code></td>
 <td>オブジェクトへの<strong>プロパティアクセス</strong>（ブラケット記法）</td>
 <td><a href="../basic/object/">オブジェクト</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Property_Accessors" target="_blank">プロパティアクセサー</a></td>
 </tr>
 <tr>
 <td><code>obj.x</code></td>
 <td>オブジェクトへの<strong>プロパティアクセス</strong>（ドット記法）</td>
 <td><a href="../basic/object/">オブジェクト</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Property_Accessors" target="_blank">プロパティアクセサー</a></td>
 </tr>
 <tr>
 <td><code>obj?.x</code></td>
 <td>[ES2020] オブジェクトへの<strong>プロパティアクセス</strong>（Optional chaining演算子）</td>
 <td><a href="../basic/object/">オブジェクト</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Optional_chaining" target="_blank">オプショナルチェーン (?.)</a></td>
 </tr>
 <tr>
 <td><code>const { x } = obj;</code></td>
 <td>[ES2015] オブジェクトの<strong>分割代入</strong></td>
 <td><a href="../basic/object/">オブジェクト</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment" target="_blank">分割代入</a></td>
 </tr>
 <tr>
 <td><code>const [ x ] = array;</code></td>
 <td>[ES2015] 配列の<strong>分割代入</strong></td>
 <td><a href="../basic/array/">配列</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment" target="_blank">分割代入</a></td>
 </tr>
 <tr>
 <td><code>f(...array)</code></td>
 <td>[ES2015] <strong>Spread構文</strong>での配列の展開</td>
 <td><a href="../basic/array/">配列</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Spread_syntax" target="_blank">スプレッド構文</a></td>
 </tr>
 <tr>
 <td><code>f({ ...obj })</code></td>
 <td>[ES2018] <strong>Spread構文</strong>でのオブジェクトの展開</td>
 <td><a href="../basic/object/">オブジェクト</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Spread_syntax" target="_blank">スプレッド構文</a></td>
 </tr>
 </tbody>
 </table>
@@ -1746,6 +1781,7 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <th>コード例</th>
 <th>説明</th>
 <th>解説</th>
+<th>MDN</th>
 </tr>
 </thead>
 <tbody>
@@ -1753,141 +1789,169 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <td><code>+</code></td>
 <td>プラス演算子、文字列結合演算子</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Addition" target="_blank">加算 (+)</a></td>
 </tr>
 <tr>
 <td><code>-</code></td>
 <td>マイナス演算子</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Subtraction" target="_blank">減算 (-)</a></td>
 </tr>
 <tr>
 <td><code>*</code></td>
 <td>乗算演算子</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Multiplication" target="_blank">乗算 (*)</a></td>
 </tr>
 <tr>
 <td><code>/</code></td>
 <td>除算演算子</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Division" target="_blank">除算 (/)</a></td>
 </tr>
 <tr>
 <td><code>%</code></td>
 <td>剰余演算子</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Remainder" target="_blank">剰余 (%)</a></td>
 </tr>
 <tr>
 <td><code>**</code></td>
 <td>[ES2016] べき乗演算子</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Exponentiation" target="_blank">べき乗 (**)</a></td>
 </tr>
 <tr>
 <td><code>++</code></td>
 <td>インクリメント演算子</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Increment" target="_blank">インクリメント</a></td>
 </tr>
 <tr>
 <td><code>--</code></td>
 <td>デクリメント演算子</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Decrement" target="_blank">デクリメント (--)</a></td>
 </tr>
 <tr>
 <td><code>===</code></td>
 <td>厳密等価演算子</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Strict_equality" target="_blank">厳密等価 (===)</a></td>
 </tr>
 <tr>
 <td><code>!==</code></td>
 <td>厳密不等価演算子</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Strict_inequality" target="_blank">厳密不等価 (!==)</a></td>
 </tr>
 <tr>
 <td><code>==</code></td>
 <td>等価演算子</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Equality" target="_blank">等価 (==)</a></td>
 </tr>
 <tr>
 <td><code>!=</code></td>
 <td>不等価演算子</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Inequality" target="_blank">不等価 (!=)</a></td>
 </tr>
 <tr>
 <td><code>&gt;</code></td>
 <td>大なり演算子/より大きい</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Greater_than" target="_blank">大なり (&gt;)</a></td>
 </tr>
 <tr>
 <td><code>&gt;=</code></td>
 <td>大なりイコール演算子/以上</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Greater_than_or_equal" target="_blank">大なりイコール (&gt;=)</a></td>
 </tr>
 <tr>
 <td><code>&lt;</code></td>
 <td>小なり演算子/より小さい</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Less_than" target="_blank">小なり (&lt;)</a></td>
 </tr>
 <tr>
 <td><code>&lt;=</code></td>
 <td>小なりイコール演算子/以下</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Less_than_or_equal" target="_blank">小なりイコール (&lt;=)</a></td>
 </tr>
 <tr>
 <td><code>&amp;</code></td>
 <td>ビット論理積</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Bitwise_AND" target="_blank">ビット論理積 (&amp;)</a></td>
 </tr>
 <tr>
 <td><code>|</code></td>
 <td>ビット論理和</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Bitwise_OR" target="_blank">ビット論理和 (|)</a></td>
 </tr>
 <tr>
 <td><code>^</code></td>
 <td>ビット排他的論理和</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Bitwise_XOR" target="_blank">ビット排他的論理和 (^)</a></td>
 </tr>
 <tr>
 <td><code>~</code></td>
 <td>ビット否定</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Bitwise_NOT" target="_blank">ビット否定 (~)</a></td>
 </tr>
 <tr>
 <td><code>&lt;&lt;</code></td>
 <td>左シフト演算子</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Left_shift" target="_blank">左シフト (&lt;&lt;)</a></td>
 </tr>
 <tr>
 <td><code>&gt;&gt;</code></td>
 <td>右シフト演算子</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Right_shift" target="_blank">右シフト (&gt;&gt;)</a></td>
 </tr>
 <tr>
 <td><code>&gt;&gt;&gt;</code></td>
 <td>ゼロ埋め右シフト演算子</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Unsigned_right_shift" target="_blank">符号なし右シフト (&gt;&gt;&gt;)</a></td>
 </tr>
 <tr>
 <td><code>&amp;&amp;</code></td>
 <td>AND演算子</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Logical_AND" target="_blank">論理積 (&amp;&amp;)</a></td>
 </tr>
 <tr>
 <td><code>??</code></td>
 <td>[ES2020] Nullish coalescing演算子</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator" target="_blank">Null 合体演算子 (??)</a></td>
 </tr>
 <tr>
 <td><code>||</code></td>
 <td>OR演算子</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Logical_OR" target="_blank">論理和 (||)</a></td>
 </tr>
 <tr>
 <td><code>(x)</code></td>
 <td>グループ演算子</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Grouping" target="_blank">グループ化演算子 ( )</a></td>
 </tr>
 <tr>
 <td><code>x, y</code></td>
 <td>カンマ演算子</td>
 <td><a href="../basic/operator/">演算子</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Comma_Operator" target="_blank">カンマ演算子 (,)</a></td>
 </tr>
 </tbody>
 </table>
@@ -1900,6 +1964,7 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <th>サンプル</th>
 <th>説明</th>
 <th>解説</th>
+<th>MDN</th>
 </tr>
 </thead>
 <tbody>
@@ -1907,126 +1972,151 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <td><code>function f(){}</code></td>
 <td><strong>関数</strong>宣言</td>
 <td><a href="../basic/function-declaration/">関数と宣言</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/function" target="_blank">関数宣言</a></td>
 </tr>
 <tr>
 <td><code>const f = function(){};</code></td>
 <td><strong>関数</strong>式</td>
 <td><a href="../basic/function-declaration/">関数と宣言</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/function" target="_blank">関数式</a></td>
 </tr>
 <tr>
 <td><code>const f = () =&gt; {};</code></td>
 <td>[ES2015] <strong>Arrow Function</strong>の宣言</td>
 <td><a href="../basic/function-declaration/">関数と宣言</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank">アロー関数式</a></td>
 </tr>
 <tr>
 <td><code>async function f(){}</code></td>
 <td>[ES2017] <strong>Async Function</strong>の宣言</td>
 <td><a href="../basic/async/">非同期処理</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/async_function" target="_blank">非同期関数</a></td>
 </tr>
 <tr>
 <td><i class="s4"></i> <code>const f = async function(){};</code></td>
 <td>[ES2017] 関数式を使った<strong>Async Function</strong>の宣言</td>
 <td><a href="../basic/async/">非同期処理</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Addition_assignment" target="_blank">非同期関数式</a></td>
 </tr>
 <tr>
 <td><i class="s4"></i> <code>const f = async () =&gt; {};</code></td>
 <td>[ES2017] Arrow Functionを使った<strong>Async Function</strong>の宣言</td>
 <td><a href="../basic/async/">非同期処理</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/async_function" target="_blank">非同期関数式</a></td>
 </tr>
 <tr>
 <td><code>function f(x, y){}</code></td>
 <td>関数における仮引数の宣言</td>
 <td><a href="../basic/function-declaration/">関数と宣言</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/function" target="_blank">関数宣言</a></td>
 </tr>
 <tr>
 <td><i class="s4"></i> <code>function f(x = 1, y = 2){}</code></td>
 <td><strong>デフォルト引数</strong>、引数が渡されていない場合の初期値を指定する。</td>
 <td><a href="../basic/function-declaration/">関数と宣言</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Functions/Default_parameters" target="_blank">デフォルト引数</a></td>
 </tr>
 <tr>
 <td><i class="s4"></i> <code>function f([x, y]){}</code></td>
 <td>[ES2015] 関数の引数における配列の<strong>分割代入</strong>。引数の配列からインデックスが<code>0</code>の値を<code>x</code>に、インデックスが<code>1</code>の値を<code>y</code>に代入する。</td>
 <td><a href="../basic/function-declaration/">関数と宣言</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#%E9%85%8D%E5%88%97%E3%81%AE%E5%88%86%E5%89%B2%E4%BB%A3%E5%85%A5" target="_blank">分割代入</a></td>
 </tr>
 <tr>
 <td><i class="s4"></i> <code>function f({ x, y }){}</code></td>
 <td>[ES2015] 関数の引数におけるオブジェクトの<strong>分割代入</strong>。引数のオブジェクトから<code>x</code>と<code>y</code>プロパティを受け取る。</td>
 <td><a href="../basic/function-declaration/">関数と宣言</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E5%88%86%E5%89%B2%E4%BB%A3%E5%85%A5" target="_blank">分割代入</a></td>
 </tr>
 <tr>
 <td><i class="s4"></i> <code>function f(...args)){}</code></td>
 <td>[ES2015] <strong>可変長引数</strong>/<strong>Rest parameters</strong>。引数に渡された値を配列として受け取る</td>
 <td><a href="../basic/function-declaration/">関数と宣言</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Functions/rest_parameters" target="_blank">残余引数</a></td>
 </tr>
 <tr>
 <td><code>const o = { method: function(){} };</code></td>
 <td><strong>メソッド定義</strong></td>
 <td><a href="../basic/function-declaration/">関数と宣言</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Functions/Method_definitions#%E8%A7%A3%E8%AA%AC" target="_blank">メソッド定義</a></td>
 </tr>
 <tr>
 <td><code>const o = { method(){} };</code></td>
 <td>[ES2015] <strong>メソッド定義</strong>の短縮記法</td>
 <td><a href="../basic/function-declaration/">関数と宣言</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Functions/Method_definitions#%E8%A7%A3%E8%AA%AC" target="_blank">メソッド定義</a></td>
 </tr>
 <tr>
 <td><code>class X{}</code></td>
 <td>[ES2015] <strong>クラス</strong>宣言</td>
 <td><a href="../basic/class/">クラス</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/class" target="_blank">class</a></td>
 </tr>
 <tr>
 <td><code>const X = class X{};</code></td>
 <td>[ES2015] <strong>クラス</strong>式</td>
 <td><a href="../basic/class/">クラス</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/class" target="_blank">クラス式</a></td>
 </tr>
 <tr>
 <td><i class="s4"></i> <code>class X{ method(){} }</code></td>
 <td>[ES2015] クラスの<strong>インスタンスメソッド</strong>定義</td>
 <td><a href="../basic/class/">クラス</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Classes#%E3%83%97%E3%83%AD%E3%83%88%E3%82%BF%E3%82%A4%E3%83%97%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89" target="_blank">クラス</a></td>
 </tr>
 <tr>
 <td><i class="s4"></i> <code>class X{ get x(){}, set x(v){} }</code></td>
 <td>[ES2015] クラスの<strong>アクセッサメソッド</strong>の定義</td>
 <td><a href="../basic/class/">クラス</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Working_with_Objects#defining_getters_and_setters" target="_blank">オブジェクトでの作業</a></td>
 </tr>
 <tr>
 <td><i class="s4"></i> <code>class X{ property = 1; }</code></td>
 <td>[ES2022] クラスの<strong>Publicクラスフィールド</strong>の定義</td>
 <td><a href="../basic/class/">クラス</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Classes/Public_class_fields" target="_blank">パブリッククラスフィールド</a></td>
 </tr>
 <tr>
 <td><i class="s4"></i> <code>class X{ #privateField = 1; }</code></td>
 <td>[ES2022] クラスの<strong>Privateクラスフィールド</strong>の定義</td>
 <td><a href="../basic/class/">クラス</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Classes/Private_class_fields" target="_blank">プライベートクラス機能</a></td>
 </tr>
 <tr>
 <td><i class="s4"></i> <code>class X{ static method(){} }</code></td>
 <td>[ES2015] クラスの<strong>静的メソッド</strong>定義</td>
 <td><a href="../basic/class/">クラス</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Classes/static" target="_blank">static</a></td>
 </tr>
 <tr>
 <td><code>class C extends P{}</code></td>
 <td>[ES2015] クラスの<strong>継承</strong></td>
 <td><a href="../basic/class/">クラス</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Classes/extends" target="_blank">extends</a></td>
 </tr>
 <tr>
 <td><i class="s4"></i> <code>super</code></td>
 <td>[ES2015] <strong>親クラス</strong>を参照する</td>
 <td><a href="../basic/class/">クラス</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/super" target="_blank">super</a></td>
 </tr>
 <tr>
 <td><code>fn()</code></td>
 <td>関数呼び出し</td>
 <td><a href="../basic/function-declaration/">関数と宣言</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Functions#calling_functions" target="_blank">関数</a></td>
 </tr>
 <tr>
 <td><code>fn`xxx` </code></td>
 <td>[ES2015] タグ関数呼び出し</td>
 <td><a href="../basic/string/">文字列</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Template_literals#%E3%82%BF%E3%82%B0%E4%BB%98%E3%81%8D%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88" target="_blank">テンプレートリテラル (テンプレート文字列)</a></td>
 </tr>
 <tr>
 <td><code>new X()</code></td>
 <td><code>new</code>演算子でのクラス（コンストラクタ関数をもつオブジェクト）からインスタンスを作成</td>
 <td><a href="../basic/class/">クラス</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/new" target="_blank">new 演算子</a></td>
 </tr>
 </tbody>
 </table>
@@ -2039,6 +2129,7 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <th>例</th>
 <th>説明</th>
 <th>解説</th>
+<th>MDN</th>
 </tr>
 </thead>
 <tbody>
@@ -2046,61 +2137,73 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <td><code>while(x){}</code></td>
 <td><strong>whileループ</strong>。<code>x</code>が<code>true</code>なら反復処理を行う</td>
 <td><a href="../basic/loop/">ループと反復処理</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/while" target="_blank">while</a></td>
 </tr>
 <tr>
 <td><code>do{}while(x);</code></td>
 <td><strong>do...whileループ</strong>。<code>x</code>が<code>true</code>なら反復処理を行う。<code>x</code>に関係なく必ず初回は処理が行われる</td>
 <td><a href="../basic/loop/">ループと反復処理</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/do...while" target="_blank">do...while</a></td>
 </tr>
 <tr>
 <td><code>for(let x=0;x &lt; y ;x++){}</code></td>
 <td><strong>forループ</strong>。<code>x &lt; y</code>が<code>true</code>なら反復処理を行う</td>
 <td><a href="../basic/loop/">ループと反復処理</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/for" target="_blank">for</a></td>
 </tr>
 <tr>
 <td><code>for(const p in o){}</code></td>
 <td><strong>for...inループ</strong>。オブジェクト（<code>o</code>）のプロパティ(<code>p</code>)に対して反復処理を行う</td>
 <td><a href="../basic/loop/">ループと反復処理</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/for...in" target="_blank">for...in</a></td>
 </tr>
 <tr>
 <td><code>for(const x of iter){}</code></td>
 <td>[ES2015] <strong>for...ofループ</strong>。イテレータ(<code>iter</code>)の反復処理を行う</td>
 <td><a href="../basic/loop/">ループと反復処理</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/for...of" target="_blank">for...of</a></td>
 </tr>
 <tr>
 <td><code>if(x){/*A*/}else{/*B*/}</code></td>
 <td><strong>条件式</strong>。<code>x</code>が<code>true</code>ならAの処理を、それ以外ならBの処理を行う</td>
 <td><a href="../basic/condition/">条件分岐</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/if...else" target="_blank">if...else</a></td>
 </tr>
 <tr>
 <td><code>switch(x){case &quot;A&quot;:{/*A*/} &quot;B&quot;:{/*B*/}}</code></td>
 <td><strong>switch文</strong>。<code>x</code>が<code>&quot;A&quot;</code>ならAの処理を、&quot;B&quot;ならBの処理を行う</td>
 <td><a href="../basic/condition/">条件分岐</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/switch" target="_blank">switch</a></td>
 </tr>
 <tr>
 <td><code>x ? A: B</code></td>
 <td><strong>条件 （三項） 演算子</strong>。<code>x</code>が<code>true</code>なら<code>A</code>の処理を、それ以外なら<code>B</code>の処理を行う</td>
 <td><a href="../basic/condition/">条件分岐</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Conditional_Operator" target="_blank">条件 (三項) 演算子</a></td>
 </tr>
 <tr>
 <td><code>break</code></td>
 <td><strong>break文</strong>。現在の反復処理を終了し、ループから抜け出す。</td>
 <td><a href="../basic/condition/">条件分岐</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/break" target="_blank">break</a></td>
 </tr>
 <tr>
 <td><code>continue</code></td>
 <td><strong>continue文</strong>。現在の反復処理を終了し、次のループに行く。</td>
 <td><a href="../basic/condition/">条件分岐</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/continue" target="_blank">continue</a></td>
 </tr>
 <tr>
 <td><code>try{}catch(e){}finally{}</code></td>
 <td><code>try...catch</code>構文</td>
 <td><a href="../basic/error-try-catch/">例外処理</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/try...catch" target="_blank">try...catch</a></td>
 </tr>
 <tr>
 <td><code>throw new Error(&quot;xxx&quot;)</code></td>
 <td><code>throw</code>文</td>
 <td><a href="../basic/error-try-catch/">例外処理</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/throw" target="_blank">throw</a></td>
 </tr>
 </tbody>
 </table>
@@ -2112,6 +2215,7 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <th>コード</th>
 <th>説明</th>
 <th>解説</th>
+<th>MDN</th>
 </tr>
 </thead>
 <tbody>
@@ -2119,56 +2223,67 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <td><code>import x from &quot;./x.js&quot;</code></td>
 <td>[ES2015] <strong>デフォルトインポート</strong></td>
 <td><a href="../basic/module/">ECMAScriptモジュール</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import" target="_blank">Import</a></td>
 </tr>
 <tr>
 <td><code>import { x } from &quot;./x.js&quot;</code></td>
 <td>[ES2015] <strong>名前付きインポート</strong></td>
 <td><a href="../basic/module/">ECMAScriptモジュール</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import" target="_blank">Import</a></td>
 </tr>
 <tr>
 <td><code>import { x as y } from &quot;./x.js&quot;</code></td>
 <td>[ES2015] 名前付きインポートの<strong>エイリアス</strong></td>
 <td><a href="../basic/module/">ECMAScriptモジュール</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import" target="_blank">Import</a></td>
 </tr>
 <tr>
 <td><code>import * as x from &quot;./x.js&quot;</code></td>
 <td>[ES2015] <strong>すべての名前付きエクスポートをインポート</strong>してエイリアス</td>
 <td><a href="../basic/module/">ECMAScriptモジュール</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import" target="_blank">Import</a></td>
 </tr>
 <tr>
 <td><code>import &quot;./x.js&quot;</code></td>
 <td>[ES2015] 副作用のための<strong>インポート</strong></td>
 <td><a href="../basic/module/">ECMAScriptモジュール</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import" target="_blank">Import</a></td>
 </tr>
 <tr>
 <td><code>export default x</code></td>
 <td>[ES2015] <strong>デフォルトエクスポート</strong></td>
 <td><a href="../basic/module/">ECMAScriptモジュール</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export" target="_blank">Export</a></td>
 </tr>
 <tr>
 <td><code>export { x }</code></td>
 <td>[ES2015] <strong>名前付きエクスポート</strong></td>
 <td><a href="../basic/module/">ECMAScriptモジュール</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export" target="_blank">Export</a></td>
 </tr>
 <tr>
 <td><code>export { x as y }</code></td>
 <td>[ES2015] 名前付きエクスポートの<strong>エイリアス</strong></td>
 <td><a href="../basic/module/">ECMAScriptモジュール</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export" target="_blank">Export</a></td>
 </tr>
 <tr>
 <td><code>export { x } from &quot;./x.js&quot;</code></td>
 <td>[ES2015] 名前付きエクスポートの<strong>再エクスポート</strong></td>
 <td><a href="../basic/module/">ECMAScriptモジュール</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export" target="_blank">Export</a></td>
 </tr>
 <tr>
 <td><code>export * from &quot;./x.js&quot;</code></td>
 <td>[ES2015] すべての名前付きエクスポートの<strong>再エクスポート</strong></td>
 <td><a href="../basic/module/">ECMAScriptモジュール</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export" target="_blank">Export</a></td>
 </tr>
 <tr>
 <td><code>export * as ns from &quot;./x.js&quot;;</code></td>
 <td>[ES2020] <strong>すべての名前付きエクスポートをインポート</strong>して<code>ns</code>という名前で<strong>再エクスポート</strong></td>
 <td><a href="../basic/module/">ECMAScriptモジュール</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export" target="_blank">Export</a></td>
 </tr>
 </tbody>
 </table>
@@ -2179,6 +2294,7 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <th>コード例</th>
 <th>説明</th>
 <th>解説</th>
+<th>MDN</th>
 </tr>
 </thead>
 <tbody>
@@ -2186,11 +2302,13 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <td><code>x;</code></td>
 <td><strong>文</strong></td>
 <td><a href="../basic/statement-expression/">文と式</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Lexical_grammar#%E8%87%AA%E5%8B%95%E3%82%BB%E3%83%9F%E3%82%B3%E3%83%AD%E3%83%B3%E6%8C%BF%E5%85%A5" target="_blank">字句文法</a></td>
 </tr>
 <tr>
 <td><code>{ }</code></td>
 <td>ブロック文</td>
 <td><a href="../basic/statement-expression/">文と式</a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/block" target="_blank">ブロック</a></td>
 </tr>
 </tbody>
 </table>
@@ -2271,7 +2389,7 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptチートシート","title":"付録: JavaScriptチートシート","level":"1.6","depth":1,"next":{"title":"おわりに","level":"1.7","depth":1,"path":"outro/README.md","ref":"./outro/README.md","articles":[]},"previous":{"title":"付録: 参考リンク集","level":"1.5","depth":1,"path":"appendix/links/README.md","ref":"./appendix/links/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"cheatsheet/README.md","mtime":"2022-06-07T11:39:17.194Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-07T11:39:48.125Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptチートシート","title":"付録: JavaScriptチートシート","level":"1.6","depth":1,"next":{"title":"おわりに","level":"1.7","depth":1,"path":"outro/README.md","ref":"./outro/README.md","articles":[]},"previous":{"title":"付録: 参考リンク集","level":"1.5","depth":1,"path":"appendix/links/README.md","ref":"./appendix/links/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"cheatsheet/README.md","mtime":"2022-06-14T11:18:09.439Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-14T11:18:44.407Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
