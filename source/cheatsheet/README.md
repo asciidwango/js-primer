@@ -49,6 +49,26 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
     border-radius: .3em;
     background: #fafafa;
 }
+
+/* 
+| コード例 | 説明 | 解説 | MDN | 
+| 45% | 30% | 15% | 10% | 
+*/
+.cheatsheet-marker ~ table {
+  width: 100%; 
+}
+.cheatsheet-marker ~ table th:nth-child(1) {
+  width: 45%;
+}
+.cheatsheet-marker ~ table th:nth-child(2) {
+  width: 30%;
+}
+.cheatsheet-marker ~ table th:nth-child(3) {
+  width: 15%;
+}
+.cheatsheet-marker ~ table th:nth-child(4) {
+  width: 10%;
+}
 </style>
 
 # 付録: JavaScriptチートシート {#cheat-sheet}
@@ -75,6 +95,8 @@ JavaScriptの言語機能に関するチートシートです。
 
 コメントの書き方について。
 
+<div class="cheatsheet-marker" aria-hidden="true"><!-- Tableのスタイルのためのマーカー --></div>
+
 | コード例 | 説明 | 解説 | MDN | 
 |---------|-------------|-------------|-------------|
 | `// xxx` | 一行コメント | [コメント][] | [字句文法](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Lexical_grammar#%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88)
@@ -85,6 +107,9 @@ JavaScriptの言語機能に関するチートシートです。
 
 変数宣言について。
 
+<div class="cheatsheet-marker" aria-hidden="true"><!-- Tableのスタイルのためのマーカー --></div>
+
+
 | コード例 | 説明 | 解説 | MDN |
 |---------|-------------|-------------|-------------|
 | `const x` | [ES2015] **変数宣言**。`x`に値の再代入はできない | [変数と宣言][] | [const](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/const) |
@@ -94,6 +119,9 @@ JavaScriptの言語機能に関するチートシートです。
 ### リテラル {#literal}
 
 データ構造を表現するリテラルについて。
+
+<div class="cheatsheet-marker" aria-hidden="true"><!-- Tableのスタイルのためのマーカー --></div>
+
 
 | コード例 | 説明 | 解説 | MDN |
 |---------|-------------|-------------|-------------|
@@ -114,6 +142,8 @@ JavaScriptの言語機能に関するチートシートです。
 
 文字列について。
 
+<div class="cheatsheet-marker" aria-hidden="true"><!-- Tableのスタイルのためのマーカー --></div>
+
 | コード例 | 説明 | 解説 | MDN |
 |---------|-------------|-------------|-------------|
 | `"xxx"` | ダブルクォートの**文字列リテラル**。改行などは`\`と特定の文字を組み合わせたエスケープシーケンスとして表現します。 | [文字列][] | [文法とデータ型](https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Grammar_and_types#string_literals) |
@@ -124,6 +154,9 @@ JavaScriptの言語機能に関するチートシートです。
 ### データアクセス {#data-access}
 
 データへのアクセスについて。
+
+<div class="cheatsheet-marker" aria-hidden="true"><!-- Tableのスタイルのためのマーカー --></div>
+
 
 | コード例 | 説明 | 解説 | MDN |
 |---------|-------------|-------------|-------------|
@@ -139,6 +172,9 @@ JavaScriptの言語機能に関するチートシートです。
 ### 演算子 {#operator}
 
 演算子について。
+
+<div class="cheatsheet-marker" aria-hidden="true"><!-- Tableのスタイルのためのマーカー --></div>
+
 
 | コード例 | 説明 | 解説 | MDN |
 |---------|-------------|-------------|-------------|
@@ -177,6 +213,9 @@ JavaScriptの言語機能に関するチートシートです。
 
 <!-- textlint-disable no-js-function-paren -->
 
+<div class="cheatsheet-marker" aria-hidden="true"><!-- Tableのスタイルのためのマーカー --></div>
+
+
 | サンプル | 説明 | 解説 | MDN |
 |---------|-------------|-------------|-------------|
 | `function f(){}` | **関数**宣言 | [関数と宣言][] | [関数宣言](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/function) |
@@ -211,6 +250,9 @@ JavaScriptの言語機能に関するチートシートです。
 
 コントロールフローの制御構文について。
 
+<div class="cheatsheet-marker" aria-hidden="true"><!-- Tableのスタイルのためのマーカー --></div>
+
+
 | 例 | 説明 | 解説 | MDN |
 |---------|-------------|-------------|-------------|
 | `while(x){}`  | **whileループ**。`x`が`true`なら反復処理を行う | [ループと反復処理][] | [while](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/while) |
@@ -230,6 +272,9 @@ JavaScriptの言語機能に関するチートシートです。
 
 ECMAScriptモジュールについて。
 
+<div class="cheatsheet-marker" aria-hidden="true"><!-- Tableのスタイルのためのマーカー --></div>
+
+
 | コード | 説明 | 解説 | MDN |
 |---------|-------------|-------------|-------------|
 | `import x from "./x.js"` | [ES2015] **デフォルトインポート** | [ECMAScriptモジュール][] | [Import](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import) |
@@ -245,6 +290,10 @@ ECMAScriptモジュールについて。
 | `export * as ns from "./x.js";` | [ES2020] **すべての名前付きエクスポートをインポート**して`ns`という名前で**再エクスポート** | [ECMAScriptモジュール][] | [Export](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export) |
 
 ### その他 {#miscellaneous}
+
+<div class="cheatsheet-marker" aria-hidden="true"><!-- Tableのスタイルのためのマーカー --></div>
+
+
 
 | コード例 | 説明 | 解説 | MDN |
 |---------|-------------|-------------|-------------|
