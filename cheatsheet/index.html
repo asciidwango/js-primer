@@ -1499,6 +1499,26 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
     border-radius: .3em;
     background: #fafafa;
 }
+
+/* 
+| コード例 | 説明 | 解説 | MDN | 
+| 45% | 30% | 15% | 10% | 
+*/
+.cheatsheet-marker ~ table {
+  width: 100%; 
+}
+.cheatsheet-marker ~ table th:nth-child(1) {
+  width: 45%;
+}
+.cheatsheet-marker ~ table th:nth-child(2) {
+  width: 30%;
+}
+.cheatsheet-marker ~ table th:nth-child(3) {
+  width: 15%;
+}
+.cheatsheet-marker ~ table th:nth-child(4) {
+  width: 10%;
+}
 </style>
 
 <h1 id="cheat-sheet"><a name="cheat-sheet" class="plugin-anchor" href="#cheat-sheet"><i class="fa fa-link" aria-hidden="true"></i></a>付録: JavaScriptチートシート </h1>
@@ -1525,6 +1545,8 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <h2 id="language-feature"><a name="language-feature" class="plugin-anchor" href="#language-feature"><i class="fa fa-link" aria-hidden="true"></i></a>言語機能 </h2>
 <h3 id="comments"><a name="comments" class="plugin-anchor" href="#comments"><i class="fa fa-link" aria-hidden="true"></i></a>コメント </h3>
 <p>コメントの書き方について。</p>
+<div class="cheatsheet-marker" aria-hidden="true"><!-- Tableのスタイルのためのマーカー --></div>
+
 <table>
 <thead>
 <tr>
@@ -1557,6 +1579,9 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 </table>
 <h3 id="data-structures"><a name="data-structures" class="plugin-anchor" href="#data-structures"><i class="fa fa-link" aria-hidden="true"></i></a>データ構造 </h3>
 <p>変数宣言について。</p>
+<div class="cheatsheet-marker" aria-hidden="true"><!-- Tableのスタイルのためのマーカー --></div>
+
+
 <table>
 <thead>
 <tr>
@@ -1589,6 +1614,9 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 </table>
 <h3 id="literal"><a name="literal" class="plugin-anchor" href="#literal"><i class="fa fa-link" aria-hidden="true"></i></a>リテラル </h3>
 <p>データ構造を表現するリテラルについて。</p>
+<div class="cheatsheet-marker" aria-hidden="true"><!-- Tableのスタイルのためのマーカー --></div>
+
+
 <table>
 <thead>
 <tr>
@@ -1675,6 +1703,8 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 </table>
 <h3 id="string"><a name="string" class="plugin-anchor" href="#string"><i class="fa fa-link" aria-hidden="true"></i></a>文字列 </h3>
 <p>文字列について。</p>
+<div class="cheatsheet-marker" aria-hidden="true"><!-- Tableのスタイルのためのマーカー --></div>
+
 <table>
 <thead>
 <tr>
@@ -1713,6 +1743,9 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 </table>
 <h3 id="data-access"><a name="data-access" class="plugin-anchor" href="#data-access"><i class="fa fa-link" aria-hidden="true"></i></a>データアクセス </h3>
 <p>データへのアクセスについて。</p>
+<div class="cheatsheet-marker" aria-hidden="true"><!-- Tableのスタイルのためのマーカー --></div>
+
+
 <table>
 <thead>
 <tr>
@@ -1775,6 +1808,9 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 </table>
 <h3 id="operator"><a name="operator" class="plugin-anchor" href="#operator"><i class="fa fa-link" aria-hidden="true"></i></a>演算子 </h3>
 <p>演算子について。</p>
+<div class="cheatsheet-marker" aria-hidden="true"><!-- Tableのスタイルのためのマーカー --></div>
+
+
 <table>
 <thead>
 <tr>
@@ -1958,6 +1994,9 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <h3 id="function-behavior"><a name="function-behavior" class="plugin-anchor" href="#function-behavior"><i class="fa fa-link" aria-hidden="true"></i></a>関数と挙動 </h3>
 <p>関数の定義と挙動について。</p>
 <!-- textlint-disable no-js-function-paren -->
+<div class="cheatsheet-marker" aria-hidden="true"><!-- Tableのスタイルのためのマーカー --></div>
+
+
 <table>
 <thead>
 <tr>
@@ -2123,6 +2162,9 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <!-- textlint-enable -->
 <h3 id="control-flow"><a name="control-flow" class="plugin-anchor" href="#control-flow"><i class="fa fa-link" aria-hidden="true"></i></a>コントロールフロー </h3>
 <p>コントロールフローの制御構文について。</p>
+<div class="cheatsheet-marker" aria-hidden="true"><!-- Tableのスタイルのためのマーカー --></div>
+
+
 <table>
 <thead>
 <tr>
@@ -2209,6 +2251,9 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 </table>
 <h3 id="module"><a name="module" class="plugin-anchor" href="#module"><i class="fa fa-link" aria-hidden="true"></i></a>モジュール </h3>
 <p>ECMAScriptモジュールについて。</p>
+<div class="cheatsheet-marker" aria-hidden="true"><!-- Tableのスタイルのためのマーカー --></div>
+
+
 <table>
 <thead>
 <tr>
@@ -2288,6 +2333,10 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 </tbody>
 </table>
 <h3 id="miscellaneous"><a name="miscellaneous" class="plugin-anchor" href="#miscellaneous"><i class="fa fa-link" aria-hidden="true"></i></a>その他 </h3>
+<div class="cheatsheet-marker" aria-hidden="true"><!-- Tableのスタイルのためのマーカー --></div>
+
+
+
 <table>
 <thead>
 <tr>
@@ -2389,7 +2438,7 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptチートシート","title":"付録: JavaScriptチートシート","level":"1.6","depth":1,"next":{"title":"おわりに","level":"1.7","depth":1,"path":"outro/README.md","ref":"./outro/README.md","articles":[]},"previous":{"title":"付録: 参考リンク集","level":"1.5","depth":1,"path":"appendix/links/README.md","ref":"./appendix/links/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"cheatsheet/README.md","mtime":"2022-06-19T04:54:12.983Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-19T04:54:45.062Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptチートシート","title":"付録: JavaScriptチートシート","level":"1.6","depth":1,"next":{"title":"おわりに","level":"1.7","depth":1,"path":"outro/README.md","ref":"./outro/README.md","articles":[]},"previous":{"title":"付録: 参考リンク集","level":"1.5","depth":1,"path":"appendix/links/README.md","ref":"./appendix/links/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2021","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"cheatsheet/README.md","mtime":"2022-06-19T06:45:40.107Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-06-19T06:46:11.706Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
