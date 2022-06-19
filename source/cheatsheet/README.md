@@ -183,7 +183,7 @@ JavaScriptの言語機能に関するチートシートです。
 | `const f = function(){};` | **関数**式 | [関数と宣言][] | [関数式](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/function) |
 | `const f = () => {};` | [ES2015] **Arrow Function**の宣言 | [関数と宣言][] | [アロー関数式](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Functions/Arrow_functions) |
 | `async function f(){}` | [ES2017] **Async Function**の宣言 | [非同期処理][] | [非同期関数](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/async_function) |
-| <i class="s4"></i> `const f = async function(){};` | [ES2017] 関数式を使った**Async Function**の宣言 | [非同期処理][] | [非同期関数式](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Addition_assignment) |
+| <i class="s4"></i> `const f = async function(){};` | [ES2017] 関数式を使った**Async Function**の宣言 | [非同期処理][] | [非同期関数式](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/async_function) |
 | <i class="s4"></i> `const f = async () => {};` | [ES2017] Arrow Functionを使った**Async Function**の宣言 | [非同期処理][] | [非同期関数式](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/async_function) |
 | `function f(x, y){}` | 関数における仮引数の宣言 |  [関数と宣言][] | [関数宣言](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/function) |
 | <i class="s4"></i> `function f(x = 1, y = 2){}` | **デフォルト引数**、引数が渡されていない場合の初期値を指定する。 |  [関数と宣言][] | [デフォルト引数](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Functions/Default_parameters) |
