@@ -1356,7 +1356,7 @@ console.log(child.name); // => "Child"
 
 ### クラスフィールドの継承 {#class-fields-inheritance}
 
-Publicクラスフィールドもコンストラクタの処理順と同じく親クラスのフォールドが初期化された後に子クラスのフィールドが初期化されます。
+Publicクラスフィールドもコンストラクタの処理順と同じく親クラスのフィールドが初期化された後に子クラスのフィールドが初期化されます。
 Publicクラスフィールドは、インスタンスオブジェクトに対してプロパティを定義する構文でした。
 そのため、親クラスで定義されていたフィールドも、実際にインスタンス化したオブジェクトのプロティとして定義されます。
 
@@ -1395,7 +1395,7 @@ Publicクラスフィールドは、このように親クラスで定義した�
 一方で、Privateクラスフィールドは、このように親クラスで定義したフィールドは子クラスに定義されません。
 
 次のコードでは、親クラスで定義したPrivateクラスフィールドを子クラスから参照してようとしています。
-しかし、`#parentFeild`は参照できずに構文エラーとなることがわかります。
+しかし、`#parentField`は参照できずに構文エラーとなることがわかります。
 
 <!-- textlint-disable eslint -->
 
@@ -1403,12 +1403,12 @@ Publicクラスフィールドは、このように親クラスで定義した�
 <!-- doctest: SyntaxError -->
 ```js
 class Parent {
-    #parentFeild = "親クラスで定義したPrivateフィールド";
+    #parentField = "親クラスで定義したPrivateフィールド";
 }
 // `Parent`を継承した`Child`を定義
 class Child extends Parent {
     dump() {
-        console.log(this.#parentFeild); // => SyntaxError: reference to undeclared private field or method #parentFeild
+        console.log(this.#parentField); // => SyntaxError: reference to undeclared private field or method #parentFeild
     }
 }
 const instance = new Child();
