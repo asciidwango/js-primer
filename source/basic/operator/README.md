@@ -979,7 +979,6 @@ OR演算子（`||`）は左辺がfalsyの場合に右辺を評価するため、
 しかし、`inputValue`が`0`という値であった場合は、`0`はfalsyであるため`value`には右辺の`42`が入ります。
 これでは`0`という値が扱えないため、意図しない動作となっています。
 
-{{book.console}}
 <!-- doctest:disable -->
 ```js
 const inputValue = 任意の値または未定義;
@@ -994,7 +993,6 @@ console.log(value);
 Nullish coalescing演算子(`??`)では、左辺がnullishの場合のみ、`value`に右辺で指定した`42`が入ります。
 そのため、`inputValue`が`0`という値が入った場合は、`value`にはそのまま`inputValue`の値である`0`が入ります。
 
-{{book.console}}
 <!-- doctest:disable -->
 ```js
 const inputValue = 任意の値または未定義;
