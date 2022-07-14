@@ -88,7 +88,7 @@ console.log(Math.min(...numbers)); // => 1
 
 {{book.console}}
 ```js
-// 底関数
+// 床関数
 console.log(Math.floor(1.3)); // => 1
 console.log(Math.floor(-1.3)); // => -2
 // 天井関数
