@@ -107,6 +107,16 @@
 
 - functionに統一する?
 
+----
+
+## ajaxのevent listener
+
+- azu: constとfunctionの話、ajaxはfunctionを使ってる
+- azu: これってconstだとglobalに出ないからだっけ?
+- azu: いっそajaxをESMにするとかありそう?
+- azu: いやESMかどうかはあんまり関係ないか。
+- azu: まあ次回でいいや
+
 ## 次回
 
 - 8月18日(木) 19:00
