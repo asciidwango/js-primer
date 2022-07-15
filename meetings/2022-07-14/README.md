@@ -37,6 +37,10 @@
 - azu: Nodeのfsだとどっち優先だろ?
 - https://nodejs.org/api/fs.html
 - laco: 一応Promise方が先に出てる
+- laco: callbackの方がパフォーマンスメリットがあるという話はある
+- https://nodejs.org/api/fs.html#performance-considerations
+- azu: まあコールバックがなくなることはない気がする
+- azu: `.promise`と`*/promises`はどっちだろ?
 - laco: promiseは`fs/promises`の方がexampleになってる
 - azu: エラーファーストコールバックが本文にあるのは、CLIのユースケースのためなので
 - azu: ユースケースのCLIをPromiseにできれば、非同期のエラーファーストコールバックも本文から外してコラムにできるかも
