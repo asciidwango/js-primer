@@ -519,3 +519,33 @@ error));
     - [具体] 逐次のやつはforEachだと置き換えできないよ
     - なのでforループやallをつかましょう
     - コールバックとは若干相性が良くないです。
+
+## 2022-08-06のアウトライン
+
+- 同期処理
+- 非同期処理
+- 非同期処理はメインスレッドで実行される (ここも再検討
+- 非同期処理と例外処理
+- [ES2015] Promise
+    - Promiseインスタンスの作成
+    - Promise.prototype.thenとPromise.prototype.catch
+    - Promiseと例外
+    - Promiseの状態
+    - Promise.resolve
+    - Promise.reject
+    - Promiseチェーン
+    - Promiseチェーンで逐次処理
+    - Promise.allで複数のPromiseをまとめる
+    - [Promise.race ](https://jsprimer.net/basic/async/#promise-race)
+- [ES2017] Async Function
+- Async Functionの定義
+- Async FunctionはPromiseを返す
+- await式
+    - Promiseチェーンをawait式で表現する 
+- Async Functionと組み合わせ
+    - Async Functionと反復処理
+    - Promise APIとAsync Functionを組み合わせる
+    - await式はAsync Functionの直下でのみ利用可能
+    - [ES2022] Module直下での[await式 ](https://jsprimer.net/basic/async/#await-expression)
+- エラーファーストコールバック
+- まとめ
