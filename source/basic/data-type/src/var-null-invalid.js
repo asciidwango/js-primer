@@ -1,1 +1,1 @@
-var null; // => SyntaxError
+const null; // => SyntaxError

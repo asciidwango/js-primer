@@ -415,7 +415,7 @@ console.log(foo); // => null
 {{book.console}}
 ```js
 function fn(){
-    var undefined = "独自の未定義値"; // undefinedという名前の変数をエラーなく定義できる
+    const undefined = "独自の未定義値"; // undefinedという名前の変数をエラーなく定義できる
     console.log(undefined); // => "独自の未定義値"
 }
 fn();
@@ -477,7 +477,7 @@ console.log(obj["key"]); // => "value"
 {{book.console}}
 ```Js
 // プロパティ名は文字列の"123"
-var object = {
+const object = {
     "123": "value"
 };
 // OK: ブラケット記法では、文字列として書くことができる
