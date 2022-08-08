@@ -1,1 +1,1 @@
-const null; // => SyntaxError
+let null; // => SyntaxError
