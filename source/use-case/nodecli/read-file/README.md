@@ -116,10 +116,27 @@ ENOENT: no such file or directory, open 'notfound.md'
 ## [コラム] Node.jsのエラーファーストコールバック {#node-error-first-callbak}
 
 Node.jsが提供する`fs`モジュールは同期APIと非同期APIを提供するという話を紹介しました。
-歴史的な経緯もあり、2種類の非同期APIを提供しているケースもあります。
+歴史的な経緯もあり、Node.jsではPromiseとエラーファーストコールバックの2種類の非同期APIを提供しているケースもあります。
 
-たとえば、`fs`モジュールにも`readFile`メソッドがあり、このAPIはエラーファーストコールバックを扱う非同期APIです。
-`fs/promises`モジュールでは、同様の名前の`readFile`メソッドは、Promiseを返す非同期APIでした。
+`fs/promises`モジュールでは、`readFile`メソッドは、Promiseを返す非同期APIでした。
+一方で、`fs`モジュールにも`readFile`メソッドがあり、このAPIはエラーファーストコールバックを扱う非同期APIです。
+
+<!-- doctest:disable -->
+```js
+// fsモジュールにはエラーファーストコールバックを扱う非同期APIも含まれる
+const fs = require("fs");
+
+// エラーファーストコールバックの第1引数にはエラー、第2引数 には結果が入るというルール
+fs.readFile("sample.md", (err, file) => {
+    if (err) {
+        console.error(err.message);
+        process.exit(1);
+        return;
+    }
+    console.log(file);
+});
+```
+
 
 [エラーファーストコールバック][]については、[非同期][]の章でも紹介しています。
 エラーファーストコールバックは、PromisesがECMAScriptに入るES2015より前においては、非同期な処理を扱う方法として広く使われていました。
