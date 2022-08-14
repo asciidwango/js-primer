@@ -22,8 +22,8 @@ Node.jsでファイルの読み書きを行うには、標準モジュールの[
 `fs`モジュールは同期形式と非同期形式の両方が提供されています。
 
 同形APIと非同期APIはどちらも`fs`モジュールに含まれていますが、
-非同期形式は`fs/promises`というモジュール名でも参照できるようになっています。
-この書籍では分かりやすさのために非同期形式の`fs/promises`モジュールを利用します。
+非同期形式のAPIは`fs/promises`というモジュール名でも参照できるようになっています。
+この書籍では分かりやすさのために、非同期形式のみのAPIを提供する`fs/promises`モジュールを利用します。
 
 `fs/promises`の非同期APIは、モジュール名からもわかるようにPromiseを返します。
 ファイルの読み書きといった非同期処理が成功したときには、返された`Promise`インスタンスがresolveされます。
@@ -113,6 +113,26 @@ ENOENT: no such file or directory, open 'notfound.md'
 これでコマンドライン引数に指定したファイルを読み込んで標準出力に表示できました。
 次のセクションでは読み込んだMarkdownファイルをHTMLに変換する処理を追加していきます。
 
+## [コラム] Node.jsのエラーファーストコールバック {#node-error-first-callbak}
+
+Node.jsが提供する`fs`モジュールは同期APIと非同期APIを提供するという話を紹介しました。
+歴史的な経緯もあり、2種類の非同期APIを提供しているケースもあります。
+
+たとえば、`fs`モジュールにも`readFile`メソッドがあり、このAPIはエラーファーストコールバックを扱う非同期APIです。
+`fs/promises`モジュールでは、同様の名前の`readFile`メソッドは、Promiseを返す非同期APIでした。
+
+[エラーファーストコールバック][]については、[非同期][]の章でも紹介しています。
+エラーファーストコールバックは、PromisesがECMAScriptに入るES2015より前においては、非同期な処理を扱う方法として広く使われていました。
+Node.jsの多くのモジュールは、ES2015より前に作られているため、`fs`モジュールのようにエラーファーストコールバックを扱うAPIもあります。
+
+一方で、Promiseが非同期APIの主流となったため、Node.jsにもPromiseを扱うためのAPIが追加されました。
+しかし、すでにエラーファーストコールバックを提供する同じ名前のメソッドがあったため、`fs`に対して`fs/promises`のようにモジュールとして分けて扱えるようになっています。
+また、Node.jsではエラーファーストコールバックを受け取る非同期APIをPromiseを返す非同期APIへとラップする`util.promisify`というメソッドも提供しています。
+
+Node.jsでは、歴史的な経緯からエラーファーストコールバックとPromiseのAPIがどちらも提供されていることがあります。
+しかしながら、両方が提供されている場合はPromiseのAPIを利用するべきです。
+Promiseを扱うAPIには、他のPromiseを扱う処理との連携のしやすさ、Async Functionという構文的なサポート、エラーハンドリングの簡潔さなどのメリットがあります。
+
 ## このセクションのチェックリスト {#section-checklist}
 
 - `fs`モジュールの`readFile`関数を使ってファイルを読み込んだ
@@ -121,3 +141,6 @@ ENOENT: no such file or directory, open 'notfound.md'
 
 [`fs`モジュール]: https://nodejs.org/api/fs.html
 [Buffer]: https://nodejs.org/api/buffer.html
+[promisify]: https://nodejs.org/api/util.html#utilpromisifyoriginal
+[非同期]: ../../../basic/async/README.md
+[エラーファーストコールバック]: ../../../basic/async/README.md#error-first-callback
