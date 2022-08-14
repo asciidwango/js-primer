@@ -1,5 +1,5 @@
 const program = require("commander");
-const fs = require("fs");
+const fs = require("fs/promises");
 // md2htmlモジュールをインポートする
 const md2html = require("./md2html");
 
@@ -12,13 +12,11 @@ const cliOptions = {
     ...program.opts(),
 };
 
-fs.readFile(filePath, { encoding: "utf8" }, (err, file) => {
-    if (err) {
-        console.error(err);
-        process.exit(1);
-        return;
-    }
+fs.readFile(filePath, { encoding: "utf8" }).then(file => {
     // md2htmlモジュールを使ってHTMLに変換する
     const html = md2html(file, cliOptions);
     console.log(html);
+}).catch(err => {
+    console.error(err.message);
+    process.exit(1);
 });
