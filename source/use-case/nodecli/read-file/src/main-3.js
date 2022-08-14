@@ -11,4 +11,4 @@ fs.readFile(filePath, { encoding: "utf8" }).then(file => {
     console.error(err.message);
     // 終了ステータス 1（一般的なエラー）としてプロセスを終了する
     process.exit(1);
-})
+});
