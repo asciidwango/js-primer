@@ -610,6 +610,8 @@ rules:
     patterns: 殆ど
   - expected: まったく
     patterns: 全く
+  - expected: という
+    patterns: と言う
   # techboosterから持ってきた辞書
   # techbooster editor lint!!
   # https://github.com/vvakame/prh/blob/master/misc/techbooster.yml
