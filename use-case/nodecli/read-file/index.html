@@ -571,7 +571,7 @@
                 <a href="../../../basic/async/">
             
                     
-                    非同期処理:コールバック/Promise/Async Function
+                    非同期処理:Promise/Async Function
             
                 </a>
             
@@ -1469,26 +1469,29 @@ Node.jsでファイルの読み書きを行うには、標準モジュールの<
 </code></pre>
 <h3 id="fs-module"><a name="fs-module" class="plugin-anchor" href="#fs-module"><i class="fa fa-link" aria-hidden="true"></i></a><code>fs</code>モジュール </h3>
 <p><code>fs</code>モジュールは、Node.jsでファイルの読み書きを行うための基本的な関数を提供するモジュールです。
-<code>fs</code>モジュールのメソッドとして非同期形式と同期形式の両方が提供されています。</p>
-<p>非同期形式の関数は常にコールバック関数を受け取ります。
-コールバック関数の第一引数は必ずその処理で発生したエラーオブジェクトになり、残りの引数は処理の返り値となります。
-処理が成功したときには、第一引数は<code>null</code>または<code>undefined</code>になります。
-一方、同期形式の関数が処理に失敗したときは例外を発生させるので、<code>try...catch</code>構文によって例外処理を行えます。</p>
-<p>次のサンプルコードは、指定したファイルを読み込む非同期形式の<code>readFile</code>メソッドの例です。</p>
+<code>fs</code>モジュールは同期形式と非同期形式の両方が提供されています。</p>
+<p>同期APIと非同期APIはどちらも<code>fs</code>モジュールに含まれていますが、
+非同期形式のAPIは<code>fs/promises</code>というモジュール名でも参照できるようになっています。
+この書籍では分かりやすさのために、非同期形式のみのAPIを提供する<code>fs/promises</code>モジュールを利用します。</p>
+<p><code>fs/promises</code>の非同期APIは、モジュール名からもわかるようにPromiseを返します。
+ファイルの読み書きといった非同期処理が成功したときには、返された<code>Promise</code>インスタンスがresolveされます。
+一方、ファイルの読み書きといった非同期処理が失敗したときには、返された<code>Promise</code>インスタンスがrejectされます。</p>
+<p>次のサンプルコードは、指定したファイルを読み込む<code>fs/promises</code>の<code>readFile</code>メソッドの例です。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);
+<pre><code class="lang-js"><span class="hljs-comment">// 非同期APIを提供するfs/promisesモジュールを読み込む</span>
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs/promises&quot;</span>);
 
-fs.readFile(<span class="hljs-string">&quot;sample.md&quot;</span>, <span class="hljs-function">(<span class="hljs-params">err, file</span>) =&gt;</span> {
-    <span class="hljs-keyword">if</span> (err) {
-        <span class="hljs-built_in">console</span>.error(err);
-    } <span class="hljs-keyword">else</span> {
-        <span class="hljs-built_in">console</span>.log(file);
-    }
+fs.readFile(<span class="hljs-string">&quot;sample.md&quot;</span>).then(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(file);
+}).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.error(err);
 });
 </code></pre>
-<p>そして、次のサンプルコードは、同じく指定したファイルを読み込む同期形式<code>readFileSync</code>メソッドの例です。</p>
+<p>そして、次のサンプルコードは、同じく指定したファイルを読み込む<code>fs</code>モジュールの<code>readFileSync</code>メソッドの例です。
+Node.jsでは非同期APIと同期APIがどちらもあるAPIには、分かりやすく<code>Sync</code>がメソッド名の末尾に含まれています。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);
+<pre><code class="lang-js"><span class="hljs-comment">// 同期APIを提供するfsモジュールを読み込む</span>
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);
 
 <span class="hljs-keyword">try</span> {
     <span class="hljs-keyword">const</span> file = fs.readFileSync(<span class="hljs-string">&quot;sample.md&quot;</span>);
@@ -1497,24 +1500,24 @@ fs.readFile(<span class="hljs-string">&quot;sample.md&quot;</span>, <span class=
 }
 </code></pre>
 <p>Node.jsはシングルスレッドなので、他の処理をブロックしにくい非同期形式のAPIを選ぶことがほとんどです。
-Node.jsには<code>fs</code>モジュール以外にも多くの非同期APIがあるので、非同期処理に慣れておきましょう。</p>
+Node.jsには<code>fs/promises</code>モジュール以外にも多くの非同期APIがあるので、非同期処理に慣れておきましょう。</p>
 <h3 id="use-readFile"><a name="use-readFile" class="plugin-anchor" href="#use-readFile"><i class="fa fa-link" aria-hidden="true"></i></a>readFile関数を使う </h3>
-<p>それでは<code>fs</code>モジュールの<code>readFile</code>メソッドを使って<code>sample.md</code>ファイルを読み込んでみましょう。
+<p>それでは<code>fs/promises</code>モジュールの<code>readFile</code>メソッドを使って<code>sample.md</code>ファイルを読み込んでみましょう。
 次のように<code>main.js</code>を変更し、コマンドライン引数から取得したファイルパスを元にファイルを読み込んでコンソールに出力します。</p>
 <div class="code-filename-block">
     <p class="code-filename">main.js</p>
 </div>
 
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> program = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;commander&quot;</span>);
-<span class="hljs-comment">// fsモジュールをfsオブジェクトとしてインポートする</span>
-<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);
+<span class="hljs-comment">// fs/promisesモジュールをfsオブジェクトとしてインポートする</span>
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs/promises&quot;</span>);
 
 <span class="hljs-comment">// コマンドライン引数からファイルパスを取得する</span>
 program.parse(process.argv);
 <span class="hljs-keyword">const</span> filePath = program.args[<span class="hljs-number">0</span>];
 
 <span class="hljs-comment">// ファイルを非同期で読み込む</span>
-fs.readFile(filePath, <span class="hljs-function">(<span class="hljs-params">err, file</span>) =&gt;</span> {
+fs.readFile(filePath).then(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
     <span class="hljs-built_in">console</span>.log(file);
 });
 </code></pre>
@@ -1533,13 +1536,13 @@ fs.readFile(filePath, <span class="hljs-function">(<span class="hljs-params">err
 </div>
 
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> program = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;commander&quot;</span>);
-<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs/promises&quot;</span>);
 
 program.parse(process.argv);
 <span class="hljs-keyword">const</span> filePath = program.args[<span class="hljs-number">0</span>];
 
 <span class="hljs-comment">// ファイルをUTF-8として非同期で読み込む</span>
-fs.readFile(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }, <span class="hljs-function">(<span class="hljs-params">err, file</span>) =&gt;</span> {
+fs.readFile(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }).then(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
     <span class="hljs-built_in">console</span>.log(file);
 });
 </code></pre>
@@ -1559,20 +1562,18 @@ fs.readFile(filePath, { <span class="hljs-attr">encoding</span>: <span class="hl
 </div>
 
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> program = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;commander&quot;</span>);
-<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs/promises&quot;</span>);
 
 program.parse(process.argv);
 <span class="hljs-keyword">const</span> filePath = program.args[<span class="hljs-number">0</span>];
 
 <span class="hljs-comment">// ファイルを非同期で読み込む</span>
-fs.readFile(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }, <span class="hljs-function">(<span class="hljs-params">err, file</span>) =&gt;</span> {
-    <span class="hljs-keyword">if</span> (err) {
-        <span class="hljs-built_in">console</span>.error(err.message);
-        <span class="hljs-comment">// 終了ステータス 1（一般的なエラー）としてプロセスを終了する</span>
-        process.exit(<span class="hljs-number">1</span>);
-        <span class="hljs-keyword">return</span>;
-    }
+fs.readFile(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }).then(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
     <span class="hljs-built_in">console</span>.log(file);
+}).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.error(err.message);
+    <span class="hljs-comment">// 終了ステータス 1（一般的なエラー）としてプロセスを終了する</span>
+    process.exit(<span class="hljs-number">1</span>);
 });
 </code></pre>
 <p>存在しないファイルである<code>notfound.md</code>をコマンドライン引数に渡して実行すると、次のようにエラーが発生して終了します。</p>
@@ -1581,6 +1582,34 @@ ENOENT: no such file or directory, open &apos;notfound.md&apos;
 </code></pre>
 <p>これでコマンドライン引数に指定したファイルを読み込んで標準出力に表示できました。
 次のセクションでは読み込んだMarkdownファイルをHTMLに変換する処理を追加していきます。</p>
+<h2 id="node-error-first-callbak"><a name="node-error-first-callbak" class="plugin-anchor" href="#node-error-first-callbak"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] Node.jsのエラーファーストコールバック </h2>
+<p>Node.jsが提供する<code>fs</code>モジュールは同期APIと非同期APIを提供するという話を紹介しました。
+歴史的な経緯もあり、Node.jsではPromiseとエラーファーストコールバックの2種類の非同期APIを提供しているケースもあります。</p>
+<p><code>fs/promises</code>モジュールでは、<code>readFile</code>メソッドは、Promiseを返す非同期APIでした。
+一方で、<code>fs</code>モジュールにも<code>readFile</code>メソッドがあり、このAPIはエラーファーストコールバックを扱う非同期APIです。</p>
+<!-- doctest:disable -->
+<pre><code class="lang-js"><span class="hljs-comment">// fsモジュールにはエラーファーストコールバックを扱う非同期APIも含まれる</span>
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);
+
+<span class="hljs-comment">// エラーファーストコールバックの第1引数にはエラー、第2引数 には結果が入るというルール</span>
+fs.readFile(<span class="hljs-string">&quot;sample.md&quot;</span>, <span class="hljs-function">(<span class="hljs-params">err, file</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (err) {
+        <span class="hljs-built_in">console</span>.error(err.message);
+        process.exit(<span class="hljs-number">1</span>);
+        <span class="hljs-keyword">return</span>;
+    }
+    <span class="hljs-built_in">console</span>.log(file);
+});
+</code></pre>
+<p><a href="../../../basic/async/#error-first-callback">エラーファーストコールバック</a>については、<a href="../../../basic/async/">非同期</a>の章でも紹介しています。
+エラーファーストコールバックは、PromisesがECMAScriptに入るES2015より前においては、非同期な処理を扱う方法として広く使われていました。
+Node.jsの多くのモジュールは、ES2015より前に作られているため、<code>fs</code>モジュールのようにエラーファーストコールバックを扱うAPIもあります。</p>
+<p>一方で、Promiseが非同期APIの主流となったため、Node.jsにもPromiseを扱うためのAPIが追加されました。
+しかし、すでにエラーファーストコールバックを提供する同じ名前のメソッドがあったため、<code>fs</code>に対して<code>fs/promises</code>のようにモジュールとして分けて扱えるようになっています。
+また、Node.jsではエラーファーストコールバックを受け取る非同期APIをPromiseを返す非同期APIへとラップする<code>util.promisify</code>というメソッドも提供しています。</p>
+<p>Node.jsでは、歴史的な経緯からエラーファーストコールバックとPromiseのAPIがどちらも提供されていることがあります。
+しかしながら、両方が提供されている場合はPromiseのAPIを利用するべきです。
+Promiseを扱うAPIには、他のPromiseを扱う処理との連携のしやすさ、Async Functionという構文的なサポート、エラーハンドリングの簡潔さなどのメリットがあります。</p>
 <h2 id="section-checklist"><a name="section-checklist" class="plugin-anchor" href="#section-checklist"><i class="fa fa-link" aria-hidden="true"></i></a>このセクションのチェックリスト </h2>
 <ul>
 <li><code>fs</code>モジュールの<code>readFile</code>関数を使ってファイルを読み込んだ</li>
@@ -1618,7 +1647,7 @@ ENOENT: no such file or directory, open &apos;notfound.md&apos;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"Node.jsの`fs`モジュールを使ったファイルの読み込みについて学びます。","title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"next":{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},"previous":{"title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"path":"use-case/nodecli/argument-parse/README.md","ref":"./use-case/nodecli/argument-parse/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/read-file/README.md","mtime":"2022-08-18T11:14:40.101Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-08-18T11:15:10.451Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"Node.jsの`fs`モジュールを使ったファイルの読み込みについて学びます。","title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"next":{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},"previous":{"title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"path":"use-case/nodecli/argument-parse/README.md","ref":"./use-case/nodecli/argument-parse/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/read-file/README.md","mtime":"2022-08-20T06:50:04.009Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-08-20T06:50:41.709Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

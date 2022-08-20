@@ -571,7 +571,7 @@
                 <a href="../../../basic/async/">
             
                     
-                    非同期処理:コールバック/Promise/Async Function
+                    非同期処理:Promise/Async Function
             
                 </a>
             
@@ -1471,22 +1471,20 @@ markedパッケージをインポートした<code>marked.parse</code>関数は�
 </div>
 
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> program = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;commander&quot;</span>);
-<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs/promises&quot;</span>);
 <span class="hljs-comment">// markedモジュールをmarkedオブジェクトとしてインポートする</span>
 <span class="hljs-keyword">const</span> marked = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;marked&quot;</span>);
 
 program.parse(process.argv);
 <span class="hljs-keyword">const</span> filePath = program.args[<span class="hljs-number">0</span>];
 
-fs.readFile(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }, <span class="hljs-function">(<span class="hljs-params">err, file</span>) =&gt;</span> {
-    <span class="hljs-keyword">if</span> (err) {
-        <span class="hljs-built_in">console</span>.error(err.message);
-        process.exit(<span class="hljs-number">1</span>);
-        <span class="hljs-keyword">return</span>;
-    }
+fs.readFile(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }).then(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
     <span class="hljs-comment">// MarkdownファイルをHTML文字列に変換する</span>
     <span class="hljs-keyword">const</span> html = marked.parse(file);
     <span class="hljs-built_in">console</span>.log(html);
+}).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.error(err.message);
+    process.exit(<span class="hljs-number">1</span>);
 });
 </code></pre>
 <h2 id="create-convert-option"><a name="create-convert-option" class="plugin-anchor" href="#create-convert-option"><i class="fa fa-link" aria-hidden="true"></i></a>変換オプションを作成する </h2>
@@ -1524,23 +1522,21 @@ https://jsprimer.net/
 </div>
 
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> program = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;commander&quot;</span>);
-<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs/promises&quot;</span>);
 <span class="hljs-keyword">const</span> marked = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;marked&quot;</span>);
 
 program.parse(process.argv);
 <span class="hljs-keyword">const</span> filePath = program.args[<span class="hljs-number">0</span>];
 
-fs.readFile(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }, <span class="hljs-function">(<span class="hljs-params">err, file</span>) =&gt;</span> {
-    <span class="hljs-keyword">if</span> (err) {
-        <span class="hljs-built_in">console</span>.error(err.message);
-        process.exit(<span class="hljs-number">1</span>);
-        <span class="hljs-keyword">return</span>;
-    }
+fs.readFile(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }).then(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
     <span class="hljs-comment">// gfmオプションを無効にする</span>
     <span class="hljs-keyword">const</span> html = marked.parse(file, {
         <span class="hljs-attr">gfm</span>: <span class="hljs-literal">false</span>
     });
     <span class="hljs-built_in">console</span>.log(html);
+}).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.error(err.message);
+    process.exit(<span class="hljs-number">1</span>);
 });
 </code></pre>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;サンプルファイル&quot;</span>&gt;</span>サンプルファイル<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
@@ -1594,7 +1590,7 @@ Nullish coalescing演算子は左辺がnullishであるときにだけ右辺の�
 </div>
 
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> program = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;commander&quot;</span>);
-<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs/promises&quot;</span>);
 <span class="hljs-keyword">const</span> marked = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;marked&quot;</span>);
 
 <span class="hljs-comment">// gfmオプションを定義する</span>
@@ -1610,17 +1606,15 @@ program.parse(process.argv);
     <span class="hljs-attr">gfm</span>: options.gfm ?? <span class="hljs-literal">false</span>,
 };
 
-fs.readFile(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }, <span class="hljs-function">(<span class="hljs-params">err, file</span>) =&gt;</span> {
-    <span class="hljs-keyword">if</span> (err) {
-        <span class="hljs-built_in">console</span>.error(err.message);
-        process.exit(<span class="hljs-number">1</span>);
-        <span class="hljs-keyword">return</span>;
-    }
+fs.readFile(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }).then(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
     <span class="hljs-keyword">const</span> html = marked.parse(file, {
         <span class="hljs-comment">// オプションの値を使用する</span>
         <span class="hljs-attr">gfm</span>: cliOptions.gfm,
     });
     <span class="hljs-built_in">console</span>.log(html);
+}).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.error(err.message);
+    process.exit(<span class="hljs-number">1</span>);
 });
 </code></pre>
 <p>定義したコマンドライン引数を使って、Markdownファイルを変換してみましょう。</p>
@@ -1682,7 +1676,7 @@ https://jsprimer.net/&lt;/p&gt;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"markedパッケージを使ってMarkdownファイルをHTMLに変換します。","title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"next":{"title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"path":"use-case/nodecli/refactor-and-unittest/README.md","ref":"./use-case/nodecli/refactor-and-unittest/README.md","articles":[]},"previous":{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/md-to-html/README.md","mtime":"2022-08-18T11:14:40.097Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-08-18T11:15:10.451Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"markedパッケージを使ってMarkdownファイルをHTMLに変換します。","title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"next":{"title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"path":"use-case/nodecli/refactor-and-unittest/README.md","ref":"./use-case/nodecli/refactor-and-unittest/README.md","articles":[]},"previous":{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/md-to-html/README.md","mtime":"2022-08-20T06:50:04.001Z","type":"markdown"},"gitbook":{"version":"3.7.3","time":"2022-08-20T06:50:41.709Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
