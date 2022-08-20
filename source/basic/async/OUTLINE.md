@@ -225,7 +225,7 @@ try{
         - 大きな流れ
             - 正常系はすべてのthenを順番に実行する
             - 異常系が起きた場合は次のcatchまでスキップし実行し、catchの返り値は正常なPromise
-            - 明示的に失敗させたい場合はthrowではなくPromise.rejectを返す´
+            - 明示的に失敗させたい場合はthrowではなくPromise.rejectを返す
         - [未使用] コールバックでのネストとの比較
             - コールバック関数では、複数の非同期処理を順番に行うコードを単純に書くとネストがどんどん深くなってしまいます。
             - ネストが深くなるのは、工夫によって避けることができますが、それは別途非同期処理を管理する仕組みを作る必要があります
@@ -519,3 +519,42 @@ error));
     - [具体] 逐次のやつはforEachだと置き換えできないよ
     - なのでforループやallをつかましょう
     - コールバックとは若干相性が良くないです。
+
+## 2022-08-06のアウトライン
+
+エラーファーストコールバックをコラムに移動させる
+
+- 同期処理
+- 非同期処理
+- 非同期処理はメインスレッドで実行される
+- 非同期処理と例外処理
+    - HTTPリクエストやファイルの読み書きなどは常に失敗する可能性がある
+    - そのため、非同期処理おいては例外処理の書きやすさや間違えにくさが重要となる
+- [ES2015] Promise
+    - 導入
+        - Promiseは非同期処理の状態とその結果に応じた処理を登録できるクラス
+        - 2つの部分からなる
+            - 非同期処理を行う側は、Promiseインスタンスを返す
+            - 非同期処理の結果を扱う側は、Promiseインスタンスに成功、失敗時のコールバック関数を登録する
+    - Promiseインスタンスの作成
+    - Promise.prototype.thenとPromise.prototype.catch
+    - Promiseと例外
+    - Promiseの状態
+    - Promise.resolve
+    - Promise.reject
+    - Promiseチェーン
+    - Promiseチェーンで逐次処理
+    - Promise.allで複数のPromiseをまとめる
+    - [Promise.race ](https://jsprimer.net/basic/async/#promise-race)
+- [ES2017] Async Function
+- Async Functionの定義
+- Async FunctionはPromiseを返す
+- await式
+    - Promiseチェーンをawait式で表現する 
+- Async Functionと組み合わせ
+    - Async Functionと反復処理
+    - Promise APIとAsync Functionを組み合わせる
+    - await式はAsync Functionの直下でのみ利用可能
+    - [ES2022] Module直下での[await式 ](https://jsprimer.net/basic/async/#await-expression)
+- エラーファーストコールバック
+- まとめ
