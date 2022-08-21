@@ -1,5 +1,5 @@
-import { TodoItemModel } from "./TodoItemModel";
-import { TodoListModel } from "./TodoListModel";
+import { TodoItemModel } from "./TodoItemModel.js";
+import { TodoListModel } from "./TodoListModel.js";
 // 新しいTodoリストを作成する
 const todoListModel = new TodoListModel();
 // 現在のTodoアイテム数は0

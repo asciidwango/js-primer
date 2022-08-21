@@ -1,3 +1,5 @@
+import assert from "node:assert";
+//! [main]
 import { TodoItemModel } from "./TodoItemModel.js";
 const item = new TodoItemModel({
     title: "未完了のTodoアイテム",
@@ -8,4 +10,7 @@ const completedItem = new TodoItemModel({
     completed: true
 });
 // それぞれの`id`は異なる
-console.log(item.id === completedItem.id); // => false
+console.log(item.id !== completedItem.id); // => true
+//! [main]
+// test
+assert.notStrictEqual(item.id, completedItem.id);
