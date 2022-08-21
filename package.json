@@ -18,7 +18,7 @@
     "build:epub": "honkit epub ./ _book/javascript-primer.epub",
     "build:mobi": "honkit mobi ./ _book/javascript-primer.mobi",
     "postbuild": "npm-run-all build:add-resource workbox",
-    "workbox": "workbox injectManifest workbox-config.js",
+    "workbox": "workbox injectManifest workbox-config.cjs",
     "build:add-resource": "node tools/gitbook/copy-favicon.cjs",
     "eslint": "eslint source/ --cache",
     "eslint:fix": "eslint --fix source/ --cache",
