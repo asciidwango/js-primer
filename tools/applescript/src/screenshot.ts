@@ -1,7 +1,7 @@
-import { launchFirefox, quitFirefox, screenshotFirefox, setFirefoxWindowBounds } from "../modules/firefox";
+import { launchFirefox, quitFirefox, screenshotFirefox, setFirefoxWindowBounds } from "../modules/firefox.js";
 import * as path from "path";
-import { wait } from "../modules/wait";
-import meow = require("meow");
+import { wait } from "../modules/wait.js";
+import meow from "meow";
 
 const profileName = "js-primer";
 
@@ -19,18 +19,18 @@ const cli = meow(`
 `, {
     flags: {
         url: {
-            type: 'string',
+            type: "string",
             isRequired: true
         },
         output: {
-            type: 'string',
-            alias: 'o',
+            type: "string",
+            alias: "o",
             isRequired: true
         }
     }
 });
 const outputFilePath = path.resolve(process.cwd(), cli.flags.output);
-(async function () {
+(async function() {
     await quitFirefox();
     await wait(1000);
     await launchFirefox({

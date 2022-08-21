@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
     /* Basic Options */
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "ESNext",
+    "moduleResolution": "NodeNext",
     "newLine": "LF",
     "outDir": "./lib/",
     "target": "es2015",
     "sourceMap": false,
     "declaration": false,
     "jsx": "preserve",
+    "esModuleInterop": true,
     "lib": [
       "es2017",
       "dom"
@@ -22,7 +23,8 @@
     /* Report errors on unused parameters. */
     "noImplicitReturns": true,
     /* Report error when not all code paths in function return a value. */
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "skipDefaultLibCheck": true
   },
   "include": [
     "../../node_modules/@jxa/global-type/src/index.d.ts",

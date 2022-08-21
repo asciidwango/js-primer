@@ -1,7 +1,7 @@
-import { quitFirefox, screenshotFirefox, setFirefoxWindowBounds } from "../modules/firefox";
+import { quitFirefox, screenshotFirefox, setFirefoxWindowBounds } from "../modules/firefox.js";
 import * as path from "path";
-import { wait } from "../modules/wait";
-import meow = require("meow");
+import { wait } from "../modules/wait.js";
+import meow from "meow";
 
 
 const cli = meow(`
@@ -16,18 +16,18 @@ const cli = meow(`
 `, {
     flags: {
         output: {
-            type: 'string',
-            alias: 'o',
+            type: "string",
+            alias: "o",
             isRequired: true
         },
         continue: {
-            type: 'boolean',
+            type: "boolean",
             isRequired: true
         }
     }
 });
 const outputFilePath = path.resolve(process.cwd(), cli.flags.output);
-(async function () {
+(async function() {
     await setFirefoxWindowBounds();
     await wait(1000);
     await screenshotFirefox(outputFilePath);
