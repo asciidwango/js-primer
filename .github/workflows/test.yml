@@ -14,13 +14,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node-version: [14.x,]
-        os: [macOS-latest, windows-latest, ubuntu-18.04]
+        node-version: [16]
+        os: [macOS-latest, windows-latest, ubuntu-latest]
     name: "Build on Node.js: ${{ matrix.node-version }} OS: ${{ matrix.os }}"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: "Node.js ${{ matrix.node-version }}"
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install
@@ -29,12 +29,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x, 14.x]
+        node-version: [16, 18]
     name: "Test on Node.js ${{ matrix.node-version }}"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: "Node.js ${{ matrix.node-version }}"
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install
@@ -43,10 +43,10 @@ jobs:
     runs-on: ubuntu-latest
     name: E2E
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Setup Node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 16
       - run: npm install
       - run: npm run e2e
