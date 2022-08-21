@@ -6,6 +6,7 @@
   "version": "1.0.0",
   "description": "TODO MVC like in ES2015",
   "main": "index.js",
+  "type": "module",
   "directories": {
     "test": "test"
   },
@@ -18,8 +19,7 @@
   },
   "devDependencies": {
     "cypress": "^4.9.0",
-    "esm": "^3.0.0",
-    "mocha": "^7.1.1",
-    "start-server-and-test": "^1.1.0"
+    "mocha": "^10.0.0",
+    "start-server-and-test": "^1.14.0"
   }
 }

@@ -2,7 +2,7 @@
 "use strict";
 const fs = require("fs");
 const path = require("path");
-const assert = require("assert");
+import assert from "node:assert";
 const globby = require("globby");
 const parseFrontMatter = require("front-matter");
 const sourceDir = path.join(__dirname, "..", "source");

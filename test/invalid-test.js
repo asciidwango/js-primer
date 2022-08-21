@@ -2,7 +2,7 @@
 "use strict";
 import { runTestCode, toStrictIfNeeded } from "./lib/testing-code.js";
 
-const assert = require("assert");
+import assert from "node:assert";
 const globby = require("globby");
 const fs = require("fs");
 const path = require("path");
