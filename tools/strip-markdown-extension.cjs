@@ -24,7 +24,7 @@ function stripMarkdownExtension(content) {
 }
 
 /**
- * Usage: node strip-markdown-extension.js /path/to/file.md
+ * Usage: node strip-markdown-extension.cjs /path/to/file.md
  * 標準出力にいらないものを削ったMarkdownを出力
  */
 if (!module.parent) {

@@ -1,7 +1,7 @@
-import { launchFirefox, quitFirefox, setFirefoxWindowBounds } from "../modules/firefox";
-import { wait } from "../modules/wait";
-import meow = require("meow");
-import { sendKeyStroke } from "../modules/keyboard-util";
+import { launchFirefox, quitFirefox, setFirefoxWindowBounds } from "../modules/firefox.js";
+import { wait } from "../modules/wait.js";
+import meow from "meow";
+import { sendKeyStroke } from "../modules/keyboard-util.js";
 
 const profileName = "js-primer";
 
@@ -19,7 +19,7 @@ const cli = meow(`
 `, {
     flags: {
         url: {
-            type: 'string',
+            type: "string",
             isRequired: true
         },
         devTools: {
@@ -27,7 +27,7 @@ const cli = meow(`
         }
     }
 });
-(async function () {
+(async function() {
     await quitFirefox();
     await wait(1000);
     await launchFirefox({

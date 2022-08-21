@@ -1,4 +1,4 @@
-const assert = require("assert");
+import assert from "node:assert";
 import { EventEmitter } from "../src/EventEmitter.js";
 
 describe("EventEmitter", function() {

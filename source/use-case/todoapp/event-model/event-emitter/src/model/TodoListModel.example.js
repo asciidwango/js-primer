@@ -1,3 +1,5 @@
+import assert from "node:assert";
+//! [main]
 import { TodoItemModel } from "./TodoItemModel.js";
 import { TodoListModel } from "./TodoListModel.js";
 // 新しいTodoリストを作成する
@@ -16,3 +18,5 @@ todoListModel.addTodo(new TodoItemModel({
 }));
 // Todoリストにアイテムが増える
 console.log(todoListModel.getTotalCount()); // => 1
+//! [main]
+assert.strictEqual(todoListModel.getTotalCount(), 1);

@@ -1,9 +1,13 @@
-const fs = require("fs");
-const path = require("path");
-const getFilePathListAsync = require("gitbook-summary-to-path").getFilePathListAsync;
+import fs from "node:fs";
+import path from "node:path";
+import { getFilePathListAsync } from "gitbook-summary-to-path";
+import { matchPatterns } from "@textlint/regexp-string-matcher";
+import url from "node:url";
+
+const __filename__ = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename__);
 const sourceDir = path.join(__dirname, "../source");
 const OUTLINE = path.join(sourceDir, "README.md");
-const { matchPatterns } = require("@textlint/regexp-string-matcher");
 
 function findUsage(actualUseChapter, searchPatterns, allowFilePathList) {
     return getFilePathListAsync(OUTLINE).then(summaryList => {
@@ -76,7 +80,7 @@ ${message}`);
     it("prototypeメソッドの説明をする前にObject#methodの表記を利用してはいけない", () => {
         // 許可リスト(読み方の解説など)
         const allowFilePathList = [];
-        const searchPatterns = ["/\\`[a-zA-Z]+#[a-zA-Z]*\\`/"];
+        const searchPatterns = ["/`[a-zA-Z]+#[a-zA-Z]*`/"];
         const prototypeChapter = path.join(sourceDir, "basic/prototype-object/README.md");
         return findUsage(prototypeChapter, searchPatterns, allowFilePathList).then(results => {
             if (results.length === 0) {

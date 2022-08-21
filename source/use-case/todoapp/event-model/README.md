@@ -164,7 +164,7 @@ Node.jsでは、`events`と呼ばれる組み込みのモジュールで同様�
 次のコードでは`TodoItemModel`クラスはインスタンス化でき、それぞれの`id`が自動的に異なる値となっていることが確認できます。
 この`id`は後ほど特定のTodoアイテムを指定して更新する処理のときに、アイテムを区別する識別子として利用します。
 
-[import title:"TodoItemModel.jsを利用するサンプルコード"](./event-emitter/src/model/TodoItemModel.example.js)
+[import:"main" title:"TodoItemModel.jsを利用するサンプルコード"](./event-emitter/src/model/TodoItemModel.example.js)
 
 次に`TodoListModel`を`src/model/TodoListModel.js`というファイル名で作成します。
 

@@ -1,4 +1,5 @@
-const cleanup = require("jsdom-global")();
+import jsdom_global from "jsdom-global";
+const cleanup = jsdom_global();
 //! [main]
 import { TodoItemModel } from "../model/TodoItemModel.js";
 import { TodoItemView } from "./TodoItemView.js";

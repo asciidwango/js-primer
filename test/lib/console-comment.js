@@ -1,8 +1,9 @@
 // MIT © 2017 azu
 "use strict";
-const acorn = require("acorn");
-const esquery = require("esquery");
-const path = require("path");
+import acorn from "acorn";
+import esquery from "esquery";
+import path from "node:path";
+
 const ignoreFileList = [
     // 演算子はいいかな
     "source/basic/operator",
@@ -37,7 +38,7 @@ const isIncludeVariableInExpression = (AST) => {
  * @param {string} filePath ファイルパスは無視したい対象の指定に使う
  * @returns {Error|undefined}
  */
-module.exports = function shouldConsoleWithComment(text, filePath) {
+export function shouldConsoleWithComment(text, filePath) {
     const lines = text.split("\n");
     // 1行以下なら無視する
     if (lines.length <= 1) {
@@ -49,7 +50,7 @@ module.exports = function shouldConsoleWithComment(text, filePath) {
             throw error;
         }
     });
-};
+}
 /**
  * @param {string} text
  * @param {string} filePath
