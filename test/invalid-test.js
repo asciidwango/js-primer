@@ -1,11 +1,12 @@
-// LICENSE : MIT
-"use strict";
 import { runTestCode, toStrictIfNeeded } from "./lib/testing-code.js";
 
 import assert from "node:assert";
-const globby = require("globby");
-const fs = require("fs");
-const path = require("path");
+import globby from "globby";
+import fs from "node:fs";
+import url from "node:url";
+import path from "node:path";
+const __filename__ = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename__);
 const sourceDir = path.join(__dirname, "..", "source");
 /**
  * `*-invalid.js` が実行 または パースエラーとなることをテストする
@@ -29,7 +30,7 @@ describe("invalid:js", function() {
                 // evalしようとしたらエラーになっていることが期待値
                 // "NO_REACH_CODE"になってるのはおかしい
 
-                assert.notEqual(error.message, "NO_REACH_CODE", `Should be SyntaxError(parse error) or EvalError: ${error.message}
+                assert.notStrictEqual(error.message, "NO_REACH_CODE", `Should be SyntaxError(parse error) or EvalError: ${error.message}
 次のファイルをチェックしてください
     at InvalidError (${filePath}:1:1)\n
 

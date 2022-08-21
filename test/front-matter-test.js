@@ -1,12 +1,14 @@
 // LICENSE : MIT
 "use strict";
-const fs = require("fs");
-const path = require("path");
+import fs from "node:fs";
 import assert from "node:assert";
-const globby = require("globby");
-const parseFrontMatter = require("front-matter");
+import path from "node:path";
+import globby from "globby";
+import parseFrontMatter from "front-matter";
+import url from "node:url";
+const __filename__ = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename__);
 const sourceDir = path.join(__dirname, "..", "source");
-const getFilePathListAsync = require("gitbook-summary-to-path").getFilePathListAsync;
 describe("front-matter", function() {
     const files = globby.sync([
         `${sourceDir}/**/*.md`,

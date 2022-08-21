@@ -4,6 +4,6 @@ module.exports = {
         "no-unused-vars": "off"
     },
     "extends": [
-        "./base.eslintrc.js"
+        "./base.eslintrc.cjs"
     ]
 };

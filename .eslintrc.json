@@ -3,6 +3,6 @@
     "no-console": "off"
   },
   "extends": [
-    "./config/base.eslintrc.js"
+    "./config/base.eslintrc.cjs"
   ]
 }

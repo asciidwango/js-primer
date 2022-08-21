@@ -1,6 +1,5 @@
-// MIT © 2019 azu
-const { NodeVM } = require("vm2");
-const makeConsoleMock = require("consolemock");
+import { NodeVM } from "vm2";
+import makeConsoleMock from "consolemock";
 /**
  * 次のコメントが実際に実行されないことをテストできるように変換する
  *

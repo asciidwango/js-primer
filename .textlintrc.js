@@ -22,7 +22,7 @@ module.exports = {
         "no-use-column": true,
         "footnote-order": true,
         "no-use-prototype-hash": {
-            "allow": [ 
+            "allow": [
                 // CSSセレクタの表現であるため許可
                 "div#result"
             ]
@@ -90,7 +90,7 @@ module.exports = {
             }
         },
         "eslint": {
-            "configFile": "./config/markdown.eslintrc.js"
+            "configFile": "./config/markdown.eslintrc.cjs"
         },
         "prh": {
             "rulePaths": [

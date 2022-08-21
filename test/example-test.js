@@ -1,14 +1,16 @@
-// LICENSE : MIT
-"use strict";
+import globby from "globby";
+import fs from "node:fs";
+import path from "node:path";
 import { test } from "@power-doctest/tester";
 import { parse } from "@power-doctest/javascript";
-import { toTestCode } from "./lib/testing-code";
-
-const globby = require("globby");
-const fs = require("fs");
-const path = require("path");
+import { toTestCode } from "./lib/testing-code.js";
+import { transformSync } from "@babel/core";
+import babelRegister from "@babel/register";
+import url from "node:url";
+const __filename__ = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename__);
 const sourceDir = path.join(__dirname, "..", "source");
-const { transformSync } = require("@babel/core");
+
 
 function transformModule(code) {
     // 必要なもの以外(es modulesぐらいがベスト)は変換しないように
@@ -34,7 +36,7 @@ function transformModule(code) {
  * 詳細は CONTRIBUTING.md を見る
  **/
 describe("doctest:js", function() {
-    require("@babel/register")({
+    babelRegister({
         presets: [
             [
                 "@babel/preset-env", {
@@ -51,7 +53,13 @@ describe("doctest:js", function() {
         `${sourceDir}/**/*-example.js`, // *-example.js
         `${sourceDir}/**/*.example.js`, // *.example.js
         `${sourceDir}/**/example/*.js`, // example/*.js
-        `!${sourceDir}/**/node_modules{,/**}`
+        `!${sourceDir}/**/node_modules{,/**}`,
+        `!${sourceDir}/use-case/todoapp/**/*.js`
+    ]);
+
+    const esmFiles = globby.sync([
+        `${sourceDir}/use-case/todoapp/**/*-example.js`, // *-example.js
+        `${sourceDir}/use-case/todoapp/**/*.example.js`, // *.example.js
     ]);
     files.forEach(filePath => {
         const normalizeFilePath = filePath.replace(sourceDir, "");
@@ -73,4 +81,16 @@ describe("doctest:js", function() {
             });
         });
     });
+    esmFiles.forEach(filePath => {
+        const normalizeFilePath = filePath.replace(sourceDir, "");
+        // TODO: doctestはしていないで、読み込んでOKかどうかだけ
+        it(`doctest:es ${normalizeFilePath}`, function() {
+            return import(filePath).catch(error => {
+                // Stack Trace like
+                console.error(`Dynamic Eval is failed
+    at doctest (${filePath}:1:1)`);
+                return Promise.reject(error);
+            });
+        });
+    })
 });

@@ -2,12 +2,15 @@
 "use strict";
 import { test } from "@power-doctest/tester";
 import { parse } from "@power-doctest/markdown";
-import { toTestCode } from "./lib/testing-code";
+import { toTestCode } from "./lib/testing-code.js";
+import globby from "globby";
+import fs from "node:fs";
+import path from "node:path";
+import semver from "semver";
+import url from "node:url";
 
-const globby = require("globby");
-const fs = require("fs");
-const path = require("path");
-const semver = require("semver");
+const __filename__ = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename__);
 const sourceDir = path.join(__dirname, "..", "source");
 
 
