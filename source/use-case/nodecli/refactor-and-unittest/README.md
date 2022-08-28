@@ -12,34 +12,22 @@ description: "ユニットテストの導入とソースコードのモジュー
 ユニットテストを行うためにはテスト対象がモジュールとして分割されていなければいけません。
 今回のアプリケーションでは、CLIアプリケーションとしてコマンドライン引数を処理する部分と、MarkdownをHTMLへ変換する部分に分割します。
 
-## CommonJSでのモジュール化 {#commonjs-module}
+## アプリケーションをモジュールに分割する {#split-script}
 
-実際にアプリケーションのモジュール化をする前に、CommonJSでのモジュール化について簡単に振り返ります。
+実際にアプリケーションのモジュール化をする前に、[ECMAScriptモジュール][]におけるエクスポートについて簡単に振り返ります。
 
-Node.jsでは、複数のJavaScriptファイル間で変数や関数などをやり取りするために、CommonJSモジュールという仕組みを利用します。
-CommonJSモジュールからオブジェクトをエクスポートするには、Node.jsのグローバル変数である[moduleオブジェクト][]を利用します。
-`module.exports`オブジェクトは、そのファイルからエクスポートされるオブジェクトを格納します。
-
+ECMAScriptモジュールでは`export`文を使って変数や関数などのオブジェクトをエクスポートし、他のスクリプトから利用できるようにします。
 次の`greet.js`というファイルは、`greet`関数をエクスポートするモジュールの例です。
 
 [import, title:"greet.js"](src/example/greet.js)
 
-`require`関数を使って、指定したファイルパスのJavaScriptファイルをモジュールとしてインポートできます。
-次のコードでは先ほどの`greet.js`のパスを指定してモジュールとしてインポートして、エクスポートされた関数を取得しています。
+このモジュールを利用する側では、`import`文を使って指定したファイルパスのJavaScriptファイルをインポートできます。
+次のコードでは先ほどの`greet.js`のパスを指定してモジュールとしてインポートして、エクスポートされた`greet`関数を利用しています。
 
 [import, title:"greet-main.js"](src/example/greet-main.js)
 
-`module.exports`オブジェクトそのものに代入するのではなく、`module.exports`オブジェクトのプロパティに代入することでも任意の値をエクスポートできます。
-次の`functions.js`というファイルでは、`foo`と`bar`の2つの関数を同じファイルからエクスポートしています。
-
-[import, title:"functions.js"](src/example/functions.js)
-
-このようにエクスポートされたオブジェクトは、`require`関数の返り値であるオブジェクトのプロパティとしてアクセスできます。
-次のコードでは先ほどの`functions.js`をインポートして取得したオブジェクトから`foo`と`bar`関数をプロパティとして取得しています。
-
-[import, title:"functions-main.js"](src/example/functions-main.js)
-
-## アプリケーションをモジュールに分割する {#split-script}
+これから行うアプリケーションのモジュール化とは、このようにアプリケーションの一部分を別のファイルに切り出した上で、必要なオブジェクトをエクスポートして外部から利用可能にするということです。
+モジュールとして切り出されることで、アプリケーションとユニットテストの両方から利用できるようになります。
 
 それではCLIアプリケーションのソースコードをモジュールに分割してみましょう。
 `md2html.js`という名前のJavaScriptファイルを作成し、次のようにmarkedを使ったMarkdownの変換処理を記述します。
@@ -68,7 +56,7 @@ Mochaが提供するテスト実行環境では、グローバルに`it`や`desc
 Mochaによるテスト環境を作るために、まずは次のコマンドで`mocha`パッケージをインストールします。
 
 ```shell
-$ npm install --save-dev mocha@7
+$ npm install --save-dev mocha@10
 ```
 
 `--save-dev`オプションは、パッケージを`devDependencies`としてインストールするためのものです。
@@ -166,6 +154,7 @@ npmを使ったパッケージ管理や外部モジュールの利用、`fs`モ�
 - mochaパッケージをインストールし、`npm test`コマンドで`mocha`コマンドを実行できることを確認した
 - `md2html`関数のユニットテストを作成し、テストの実行結果を確認した
 
+[ECMAScriptモジュール]: ../../../basic/module/README.md
 [moduleオブジェクト]: https://nodejs.org/api/modules.html#modules_the_module_object
 [Mocha]: https://mochajs.org/
 [assertモジュール]: https://nodejs.org/api/assert.html

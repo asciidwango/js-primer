@@ -1,6 +1,6 @@
-const program = require("commander");
+import { program } from "commander";
 // fs/promisesモジュールをfsオブジェクトとしてインポートする
-const fs = require("fs/promises");
+import * as fs from "node:fs/promises";
 
 // コマンドライン引数からファイルパスを取得する
 program.parse(process.argv);

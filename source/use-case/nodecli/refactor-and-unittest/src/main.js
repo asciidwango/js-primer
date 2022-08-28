@@ -1,7 +1,7 @@
-const program = require("commander");
-const fs = require("fs/promises");
-// md2htmlモジュールをインポートする
-const md2html = require("./md2html");
+import { program } from "commander";
+import * as fs from "node:fs/promises";
+// md2htmlモジュールからmd2html関数をインポートする
+import { md2html } from "./md2html.js";
 
 program.option("--gfm", "GFMを有効にする");
 program.parse(process.argv);
