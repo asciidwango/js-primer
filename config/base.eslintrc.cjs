@@ -43,11 +43,7 @@ module.exports = {
         "semi": ["error", "always"],
         "semi-spacing": "error",
         "space-before-blocks": "error",
-        "space-before-function-paren": ["error", {
-            "anonymous": "never",
-            "named": "never",
-            "asyncArrow": "always"
-        }],
+        "space-before-function-paren": ["error", "never"],
         "space-in-parens": "error",
         "space-infix-ops": "error",
         "space-unary-ops": "error",
