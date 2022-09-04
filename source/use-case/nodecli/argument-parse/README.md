@@ -169,6 +169,20 @@ $ node main.js ./sample.md
 このように、`process.argv`配列を直接扱うよりも、commanderのようなライブラリを使うことで宣言的にコマンドライン引数を定義して処理できます。
 次のセクションではコマンドライン引数から取得したファイルパスを元に、ファイルを読み込む処理を追加していきます。
 
+#### [エラー例] SyntaxError: Cannot use import statement outside a module
+
+「`import`文をECMAScriptモジュールの外で使うことはできません」というエラーが出ています。`main.js` の実行でこのエラーが出る場合は、Node.jsが`main.js`ファイルをECMAScriptモジュールだと判別できていないことを意味します。
+
+<!-- doctest:disable -->
+```shell
+import { program } from "commander";
+^^^^^^
+
+SyntaxError: Cannot use import statement outside a module
+```
+
+[ECMAScriptモジュールを使う](#esmodule)で述べたように、`package.json`の`type`フィールドを`module`に設定することで`.js`ファイルをECMAScriptモジュールとして判別させましょう。
+
 ## このセクションのチェックリスト {#section-checklist}
 
 - `process.argv`配列に`node`コマンドのコマンドライン引数が格納されていることを確認した
