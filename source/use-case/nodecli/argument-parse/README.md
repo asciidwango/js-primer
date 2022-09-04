@@ -104,7 +104,7 @@ import { program } from "commander";
 なぜなら、[Node.js][]は[CommonJSモジュール][]という別のモジュール形式もサポートしており、CommonJSモジュール形式では`import`文は利用できないためです。
 そのため、これから実行するJavaScriptファイルがどちらの形式であるかをNode.jsに教える必要があります。
 
-Node.jsは、JavaScriptファイルの拡張子が `.js` である場合は、もっとも近い上位ディレクトリの `package.json` が持つ `type` フィールドの値によってモジュール形式を判別します。
+Node.jsはもっとも近い上位ディレクトリの `package.json` が持つ `type` フィールドの値によってJavaScriptファイルのモジュール形式を判別します。
 `type`フィールドが `module` であればECMAScriptモジュールとして、`commonjs` であればCommonJSモジュールとして扱われます。[^2]
 また、JavaScriptファイルの拡張子によって明示的に示すこともできます。拡張子が `.mjs` である場合はECMAScriptモジュールとして、`.cjs` である場合はCommonJSモジュールであると判別されます。
 
@@ -193,7 +193,7 @@ import { program } from "commander";
 SyntaxError: Cannot use import statement outside a module
 ```
 
-[ECMAScriptモジュールを使う](#esmodule)で述べたように、`package.json`の`type`フィールドを`module`に設定することで`.js`ファイルをECMAScriptモジュールとして判別させましょう。
+[ECMAScriptモジュールを使う](#esmodule)で述べたように、`package.json`の`type`フィールドを`module`に設定しましょう。
 
 ## このセクションのチェックリスト {#section-checklist}
 
