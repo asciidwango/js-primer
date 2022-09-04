@@ -12,6 +12,6 @@
   "license": "ISC",
   "dependencies": {
     "commander": "^9.0.0",
-    "marked": "^4.0.10"
+    "marked": "^4.0.0"
   }
 }

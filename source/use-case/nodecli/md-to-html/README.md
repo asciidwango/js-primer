@@ -14,7 +14,7 @@ JavaScriptでMarkdownをHTMLへ変換するために、今回は[marked][]とい
 markedのパッケージはnpmで配布されているので、commanderと同様に`npm install`コマンドでパッケージをインストールしましょう。
 
 ```shell
-$ npm install marked@^4.0
+$ npm install marked@4.0
 ```
 
 インストールが完了したら、Node.jsのスクリプトから読み込みます。
