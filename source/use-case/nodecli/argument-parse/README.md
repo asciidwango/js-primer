@@ -113,7 +113,7 @@ Node.jsは、実行するJavaScriptファイルの拡張子が `.mjs` である�
 #### [コラム] CommonJSモジュール {#commonjs-module}
 
 [CommonJSモジュール][]とは、Node.js環境で利用されているJavaScriptのモジュール化の仕組みです。
-CommonJSモジュールは基本文法で学んだ[ECMAScriptモジュール][]の仕様が策定されるより前からNode.jsで使われています。
+CommonJSモジュールは[ECMAScriptモジュール][]の仕様が策定されるより前からNode.jsで使われています。
 
 現在はNode.jsでもECMAScriptモジュールがサポートされていますが、`fs` などの標準モジュールはCommonJSモジュールとして提供されています。
 また、サードパーティ製のライブラリや長く開発が続けられているプロジェクトのソースコードなどでも、CommonJSモジュールを利用する場面は少なくありません。
