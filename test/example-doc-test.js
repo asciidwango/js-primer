@@ -24,7 +24,8 @@ describe("example:js", function() {
         `${sourceDir}/**/*.example.js`, // *.example.js
         `${sourceDir}/**/example/*.js`, // example/*.js
         `!${sourceDir}/**/node_modules{,/**}`,
-        `!${sourceDir}/use-case/todoapp/**/*.js`
+        `!${sourceDir}/use-case/todoapp/**/*.js`,
+        `!${sourceDir}/use-case/nodecli/**/*.js`
     ]);
     files.forEach(filePath => {
         const normalizeFilePath = filePath.replace(sourceDir, "");
