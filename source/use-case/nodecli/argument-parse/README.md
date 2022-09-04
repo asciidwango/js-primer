@@ -100,8 +100,9 @@ $ npm install commander@9.0
 import { program } from "commander";
 ```
 
-ところで、ECMAScriptモジュールのパッケージをインポートするには、インポート元のファイルもECMAScriptモジュールでなければなりません。
-しかし、[Node.js][]は[CommonJSモジュール][]という別のモジュール形式も持っているため、これから実行するJavaScriptファイルがどちらの形式であるかをNode.jsに教える必要があります。
+ただし、ECMAScriptモジュールのパッケージをインポートするには、インポート元のファイルもECMAScriptモジュールでなければなりません。
+なぜなら、[Node.js][]は[CommonJSモジュール][]という別のモジュール形式もサポートしており、CommonJSモジュール形式では`import`文は利用できないためです。
+そのため、これから実行するJavaScriptファイルがどちらの形式であるかをNode.jsに教える必要があります。
 
 Node.jsは、実行するJavaScriptファイルの拡張子が `.mjs` である場合はECMAScriptモジュールとして、`.cjs` である場合はCommonJSモジュールであると判別します。
 また、拡張子が `.js` である場合には、もっとも近い上位ディレクトリの `package.json` が持つ `type` フィールドの値が `module` か `commonjs` のどちらであるかによって判別します。[^2]
