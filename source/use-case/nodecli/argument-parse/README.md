@@ -104,10 +104,16 @@ import { program } from "commander";
 なぜなら、[Node.js][]は[CommonJSモジュール][]という別のモジュール形式もサポートしており、CommonJSモジュール形式では`import`文は利用できないためです。
 そのため、これから実行するJavaScriptファイルがどちらの形式であるかをNode.jsに教える必要があります。
 
-Node.jsは、実行するJavaScriptファイルの拡張子が `.mjs` である場合はECMAScriptモジュールとして、`.cjs` である場合はCommonJSモジュールであると判別します。
-また、拡張子が `.js` である場合には、もっとも近い上位ディレクトリの `package.json` が持つ `type` フィールドの値が `module` か `commonjs` のどちらであるかによって判別します。[^2]
+Node.jsは、JavaScriptファイルの拡張子が `.js` である場合は、もっとも近い上位ディレクトリの `package.json` が持つ `type` フィールドの値によってモジュール形式を判別します。
+`type`フィールドが `module` であればECMAScriptモジュールとして、`commonjs` であればCommonJSモジュールとして扱われます。[^2]
+また、JavaScriptファイルの拡張子によって明示的に示すこともできます。拡張子が `.mjs` である場合はECMAScriptモジュールとして、`.cjs` である場合はCommonJSモジュールであると判別されます。
 
 今回は `main.js` を ECMAScriptモジュールとして判別させるために、次のように `package.json` に`type` フィールドを追加します。
+
+```shell
+# npm pkg コマンドで type=module をセットする
+$ npm pkg set type=module
+```
 
 [import, title:"package.json"](src/package.json)
 
