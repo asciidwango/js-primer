@@ -133,14 +133,14 @@ Node.jsの標準モジュールはECMAScriptモジュールのJavaScriptファ�
 <!-- doctest:disable -->
 ```js
 // lib.cjs
-exports.key = 'value';
+exports.key = "value";
 
 // app.mjs
-import { key } from './lib.cjs';
+import { key } from "./lib.cjs";
 ```
 
 一方で、CommonJSモジュールからECMAScriptモジュールをインポートする方向の相互運用性はサポートされていません。
-もし既存のライブラリが提供するモジュールがECMAScriptモジュールであれば、それを使うアプリケーションもECMAScriptモジュールで書かれている必要があります。
+もし既存のライブラリから提供されるモジュールがECMAScriptモジュールであれば、それを使うアプリケーションもECMAScriptモジュールで書かれている必要があります。
 複数のパッケージを利用しながらNode.jsアプリケーションを開発する際には特に相互運用性に注意しておく必要があるでしょう。
 
 ### コマンドライン引数からファイルパスを取得する {#get-file-path}
@@ -181,7 +181,7 @@ $ node main.js ./sample.md
 このように、`process.argv`配列を直接扱うよりも、commanderのようなライブラリを使うことで宣言的にコマンドライン引数を定義して処理できます。
 次のセクションではコマンドライン引数から取得したファイルパスを元に、ファイルを読み込む処理を追加していきます。
 
-#### [エラー例] SyntaxError: Cannot use import statement outside a module
+#### [エラー例] SyntaxError: Cannot use import statement outside a module {#syntax-error-import-statement}
 
 「`import`文をECMAScriptモジュールの外で使うことはできません」というエラーが出ています。`main.js` の実行でこのエラーが出る場合は、Node.jsが`main.js`ファイルをECMAScriptモジュールだと判別できていないことを意味します。
 
