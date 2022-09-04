@@ -111,7 +111,7 @@ Node.jsは、JavaScriptファイルの拡張子が `.js` である場合は、�
 今回は `main.js` を ECMAScriptモジュールとして判別させるために、次のように `package.json` に`type` フィールドを追加します。
 
 ```shell
-# npm pkg コマンドで type=module をセットする
+# npm pkg コマンドで type フィールドの値をセットする
 $ npm pkg set type=module
 ```
 
