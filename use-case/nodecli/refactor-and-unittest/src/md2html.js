@@ -1,6 +1,6 @@
-const marked = require("marked");
+import { marked } from "marked";
 
-module.exports = (markdown, cliOptions) => {
+export function md2html(markdown, cliOptions) {
     return marked.parse(markdown, {
         gfm: cliOptions.gfm,
     });

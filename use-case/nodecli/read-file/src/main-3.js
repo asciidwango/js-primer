@@ -1,5 +1,5 @@
-const program = require("commander");
-const fs = require("fs/promises");
+import { program } from "commander";
+import * as fs from "node:fs/promises";
 
 program.parse(process.argv);
 const filePath = program.args[0];

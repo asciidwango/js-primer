@@ -1521,8 +1521,8 @@
 <p><code>package.json</code>ファイルが用意できたら、<code>npm install</code>コマンドを使って<code>commander</code>パッケージをインストールします。
 このコマンドの引数にはインストールするパッケージの名前とそのバージョンを<code>@</code>記号でつなげて指定できます。
 バージョンを指定せずにインストールすれば、その時点での最新の安定版が自動的に選択されます。
-次のコマンドを実行して、commanderのバージョン5.0をインストールします。<sup><a href="#fn_1" id="reffn_1">1</a></sup></p>
-<pre><code class="lang-shell"><span class="hljs-meta">$</span><span class="bash"> npm install commander@5.0</span>
+次のコマンドを実行して、commanderのバージョン9.0をインストールします。<sup><a href="#fn_1" id="reffn_1">1</a></sup></p>
+<pre><code class="lang-shell"><span class="hljs-meta">$</span><span class="bash"> npm install commander@9.0</span>
 </code></pre>
 <p>インストールが完了すると、<code>package.json</code>ファイルは次のようになっています。</p>
 <div class="code-filename-block">
@@ -1541,59 +1541,81 @@
   <span class="hljs-string">&quot;author&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
   <span class="hljs-string">&quot;license&quot;</span>: <span class="hljs-string">&quot;ISC&quot;</span>,
   <span class="hljs-string">&quot;dependencies&quot;</span>: {
-    <span class="hljs-string">&quot;commander&quot;</span>: <span class="hljs-string">&quot;^5.0.0&quot;</span>
+    <span class="hljs-string">&quot;commander&quot;</span>: <span class="hljs-string">&quot;^9.0.0&quot;</span>
   }
 }
 </code></pre>
 <p>また、npmのバージョンが5以上であれば <code>package-lock.json</code>ファイルが生成されています。
 このファイルはnpmがインストールしたパッケージの、実際のバージョンを記録するためのものです。
-先ほどcommanderのバージョンを<code>5.0</code>としましたが、実際にインストールされるのは<code>5.0.x</code>に一致する最新のバージョンです。
+先ほどcommanderのバージョンを<code>9.0</code>としましたが、実際にインストールされるのは<code>9.0.x</code>に一致する最新のバージョンです。
 <code>package-lock.json</code>ファイルには実際にインストールされたバージョンが記録されています。
 これによって、再び<code>npm install</code>を実行したときに、異なるバージョンがインストールされるのを防ぎます。</p>
-<h3 id="commonjs-module"><a name="commonjs-module" class="plugin-anchor" href="#commonjs-module"><i class="fa fa-link" aria-hidden="true"></i></a>CommonJSモジュール </h3>
-<p>インストールした<code>commander</code>パッケージを使う前に、<strong>CommonJSモジュール</strong>のことを知っておきましょう。
-<a href="https://nodejs.org/docs/latest/api/modules.html" target="_blank">CommonJSモジュール</a>とは、<a href="https://nodejs.org/ja/" target="_blank">Node.js</a>環境で利用されているJavaScriptのモジュール化の仕組みです。
-CommonJSモジュールは基本文法で学んだ<a href="../../../basic/module/">ECMAScriptモジュール</a>の仕様が策定されるより前からNode.jsで使われています。
-Node.jsの標準パッケージやnpmで配布されるパッケージは、CommonJSモジュールとして提供されていることがほとんどです。
-先ほどインストールした<code>commander</code>パッケージも、CommonJSモジュールとして利用できます。</p>
-<p>CommonJSモジュールはNode.jsのグローバル変数である<code>module</code>変数を使って変数や関数などをエクスポートします。
-CommonJSモジュールでは<code>module.exports</code>プロパティに代入されたオブジェクトが、そのJavaScriptファイルからエクスポートされます。
-複数の名前つきエクスポートが可能なES Moduleとは異なり、CommonJSでは<code>module.exports</code>プロパティの値だけがエクスポートの対象です。</p>
-<p>次の例では、<code>my-module.js</code>というファイルを作成し、<code>module.exports</code>でオブジェクトをエクスポートしています。</p>
+<h3 id="esmodule"><a name="esmodule" class="plugin-anchor" href="#esmodule"><i class="fa fa-link" aria-hidden="true"></i></a>ECMAScriptモジュールを使う </h3>
+<p>今回のユースケースでは、インストールした<code>commander</code>パッケージを利用するにあたって、基本文法で学んだ<a href="../../../basic/module/">ECMAScriptモジュール</a>を使います。
+<code>commander</code>パッケージはECMAScriptモジュールに対応しているため、次のように<code>import</code>文を使って変数や関数などをインポートできます。</p>
+<!-- doctest:disable -->
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { program } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;commander&quot;</span>;
+</code></pre>
+<p>ただし、ECMAScriptモジュールのパッケージをインポートするには、インポート元のファイルもECMAScriptモジュールでなければなりません。
+なぜなら、<a href="https://nodejs.org/ja/" target="_blank">Node.js</a>は<a href="https://nodejs.org/docs/latest/api/modules.html" target="_blank">CommonJSモジュール</a>という別のモジュール形式もサポートしており、CommonJSモジュール形式では<code>import</code>文は利用できないためです。
+そのため、これから実行するJavaScriptファイルがどちらの形式であるかをNode.jsに教える必要があります。</p>
+<p>Node.jsはもっとも近い上位ディレクトリの <code>package.json</code> が持つ <code>type</code> フィールドの値によってJavaScriptファイルのモジュール形式を判別します。
+<code>type</code>フィールドが <code>module</code> であればECMAScriptモジュールとして、<code>commonjs</code> であればCommonJSモジュールとして扱われます。<sup><a href="#fn_2" id="reffn_2">2</a></sup>
+また、JavaScriptファイルの拡張子によって明示的に示すこともできます。拡張子が <code>.mjs</code> である場合はECMAScriptモジュールとして、<code>.cjs</code> である場合はCommonJSモジュールであると判別されます。</p>
+<p>今回は <code>main.js</code> を ECMAScriptモジュールとして判別させるために、次のように <code>package.json</code> に<code>type</code> フィールドを追加します。</p>
+<pre><code class="lang-shell"><span class="hljs-meta">#</span><span class="bash"> npm pkg コマンドで <span class="hljs-built_in">type</span> フィールドの値をセットする</span>
+<span class="hljs-meta">$</span><span class="bash"> npm pkg <span class="hljs-built_in">set</span> <span class="hljs-built_in">type</span>=module</span>
+</code></pre>
 <div class="code-filename-block">
-    <p class="code-filename">my-module.js</p>
+    <p class="code-filename">package.json</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-built_in">module</span>.exports = {
-    <span class="hljs-attr">foo</span>: <span class="hljs-string">&quot;foo&quot;</span>
-};
+<pre><code class="lang-json">{
+  <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;nodecli&quot;</span>,
+  <span class="hljs-string">&quot;version&quot;</span>: <span class="hljs-string">&quot;1.0.0&quot;</span>,
+  <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
+  <span class="hljs-string">&quot;main&quot;</span>: <span class="hljs-string">&quot;main.js&quot;</span>,
+  <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;module&quot;</span>,
+  <span class="hljs-string">&quot;scripts&quot;</span>: {
+    <span class="hljs-string">&quot;test&quot;</span>: <span class="hljs-string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span>
+  },
+  <span class="hljs-string">&quot;keywords&quot;</span>: [],
+  <span class="hljs-string">&quot;author&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
+  <span class="hljs-string">&quot;license&quot;</span>: <span class="hljs-string">&quot;ISC&quot;</span>,
+  <span class="hljs-string">&quot;dependencies&quot;</span>: {
+    <span class="hljs-string">&quot;commander&quot;</span>: <span class="hljs-string">&quot;^9.0.0&quot;</span>
+  }
+}
 </code></pre>
-<p>このCommonJSモジュールをインポートするには、Node.js実行環境のグローバル関数である<a href="https://nodejs.org/dist/latest-v14.x/docs/api/modules.html#modules_loading_from_node_modules_folders" target="_blank">require関数</a>を使います。
-次のように<code>require</code>関数にインポートしたいモジュールのファイルパスを渡し、返り値としてエクスポートされた値をインポートできます。
-インポートするファイルパスに拡張子が必須なES Moduleとは異なり、CommonJSの<code>require</code>関数では拡張子である<code>.js</code>が省略可能です。</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// my-module.jsモジュールをmyModuleオブジェクトとしてインポートする。</span>
-<span class="hljs-keyword">const</span> myModule = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./my-module&quot;</span>);
-<span class="hljs-built_in">console</span>.log(myModule.foo); <span class="hljs-comment">// =&gt; &quot;foo&quot;</span>
-</code></pre>
-<p>また、<code>require</code>関数は相対パスや絶対パス以外にもnpmでインストールしたパッケージ名を指定できます。
-<code>npm install</code>コマンドでインストールされたパッケージは、<code>node_modules</code>というディレクトリの中に配置されています。
-<code>require</code>関数にインストールしたパッケージ名を指定することで、<code>node_modules</code>ディレクトリに配置されたパッケージを読み込めます。</p>
-<p>次の例では、先ほどインストールした<code>commander</code>パッケージを<code>node_modules</code>ディレクトリから読み込んでいます。</p>
+<h4 id="commonjs-module"><a name="commonjs-module" class="plugin-anchor" href="#commonjs-module"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] CommonJSモジュール </h4>
+<p><a href="https://nodejs.org/docs/latest/api/modules.html" target="_blank">CommonJSモジュール</a>とは、Node.js環境で利用されているJavaScriptのモジュール化の仕組みです。
+CommonJSモジュールは<a href="../../../basic/module/">ECMAScriptモジュール</a>の仕様が策定されるより前からNode.jsで使われています。</p>
+<p>現在はNode.jsでもECMAScriptモジュールがサポートされていますが、<code>fs</code> などの標準モジュールはCommonJSモジュールとして提供されています。
+また、サードパーティ製のライブラリや長く開発が続けられているプロジェクトのソースコードなどでも、CommonJSモジュールを利用する場面は少なくありません。
+そのため、この2つのモジュール形式が共存する場合には、開発者はモジュール形式間の相互運用性に注意する必要があります。<sup><a href="#fn_3" id="reffn_3">3</a></sup></p>
+<p>Node.jsはECMAScriptモジュールからCommonJSモジュールをインポートする方向の相互運用性をサポートしています。
+たとえば、次のようにCommonJSモジュールで<code>exports</code>オブジェクトを使ってエクスポートされたオブジェクトは、ECMAScriptモジュールで<code>import</code>文を使ってインポートできます。
+Node.jsの標準モジュールはECMAScriptモジュールのJavaScriptファイルからでも利用できますが、それはこの相互運用性によるものです。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> program = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;commander&quot;</span>);
+<pre><code class="lang-js"><span class="hljs-comment">// lib.cjs</span>
+<span class="hljs-built_in">exports</span>.key = <span class="hljs-string">&quot;value&quot;</span>;
+
+<span class="hljs-comment">// app.mjs</span>
+<span class="hljs-keyword">import</span> { key } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./lib.cjs&quot;</span>;
 </code></pre>
-<p>このユースケースで今後登場するモジュールはすべてCommonJSモジュールです。
-Node.jsではES Moduleもサポートされる予定ですが、現在はまだ安定した機能としてサポートされていません。</p>
+<p>一方で、CommonJSモジュールからECMAScriptモジュールをインポートする方向の相互運用性はサポートされていません。
+もし既存のライブラリから提供されるモジュールがECMAScriptモジュールであれば、それを使うアプリケーションもECMAScriptモジュールで書かれている必要があります。
+複数のパッケージを利用しながらNode.jsアプリケーションを開発する際には特に相互運用性に注意しておく必要があるでしょう。</p>
 <h3 id="get-file-path"><a name="get-file-path" class="plugin-anchor" href="#get-file-path"><i class="fa fa-link" aria-hidden="true"></i></a>コマンドライン引数からファイルパスを取得する </h3>
 <p>先ほどインストールした<code>commander</code>パッケージを使って、コマンドライン引数として渡されたファイルパスを取得しましょう。
 このCLIアプリケーションでは、処理の対象とするファイルパスを次のようなコマンドの形式で受け取ります。</p>
 <pre><code class="lang-shell"><span class="hljs-meta">$</span><span class="bash"> node main.js ./sample.md</span>
 </code></pre>
-<p>commanderでコマンドライン引数をパースするためには、<code>parse</code>メソッドにコマンドライン引数を渡します。</p>
+<p>commanderでコマンドライン引数をパースするためには、インポートした<code>program</code>オブジェクトの<code>parse</code>メソッドにコマンドライン引数を渡します。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-comment">// commanderモジュールをprogramオブジェクトとしてインポートする</span>
-<span class="hljs-keyword">const</span> program = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;commander&quot;</span>);
-<span class="hljs-comment">// コマンドライン引数をパースする</span>
+<pre><code class="lang-js"><span class="hljs-comment">// commanderモジュールからprogramオブジェクトをインポートする</span>
+<span class="hljs-keyword">import</span> { program } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;commander&quot;</span>;
+<span class="hljs-comment">// コマンドライン引数をcommanderでパースする</span>
 program.parse(process.argv);
 </code></pre>
 <p><code>parse</code>メソッドを呼び出すと、コマンドライン引数をパースした結果を<code>program</code>オブジェクトから取り出せるようになります。
@@ -1604,8 +1626,9 @@ program.parse(process.argv);
     <p class="code-filename">main.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-comment">// commanderモジュールをprogramとしてインポートする</span>
-<span class="hljs-keyword">const</span> program = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;commander&quot;</span>);
+<pre><code class="lang-javascript"><span class="hljs-comment">// commanderモジュールからprogramオブジェクトをインポートする</span>
+<span class="hljs-keyword">import</span> { program } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;commander&quot;</span>;
+
 <span class="hljs-comment">// コマンドライン引数をcommanderでパースする</span>
 program.parse(process.argv);
 
@@ -1620,16 +1643,31 @@ program.parse(process.argv);
 </code></pre>
 <p>このように、<code>process.argv</code>配列を直接扱うよりも、commanderのようなライブラリを使うことで宣言的にコマンドライン引数を定義して処理できます。
 次のセクションではコマンドライン引数から取得したファイルパスを元に、ファイルを読み込む処理を追加していきます。</p>
+<h4 id="syntax-error-import-statement"><a name="syntax-error-import-statement" class="plugin-anchor" href="#syntax-error-import-statement"><i class="fa fa-link" aria-hidden="true"></i></a>[エラー例] SyntaxError: Cannot use import statement outside a module </h4>
+<p>「<code>import</code>文をECMAScriptモジュールの外で使うことはできません」というエラーが出ています。<code>main.js</code> の実行でこのエラーが出る場合は、Node.jsが<code>main.js</code>ファイルをECMAScriptモジュールだと判別できていないことを意味します。</p>
+<!-- doctest:disable -->
+<pre><code class="lang-shell">import { program } from &quot;commander&quot;;
+^^^^^^
+
+SyntaxError: Cannot use import statement outside a module
+</code></pre>
+<p><a href="#esmodule">ECMAScriptモジュールを使う</a>で述べたように、<code>package.json</code>の<code>type</code>フィールドを<code>module</code>に設定しましょう。</p>
 <h2 id="section-checklist"><a name="section-checklist" class="plugin-anchor" href="#section-checklist"><i class="fa fa-link" aria-hidden="true"></i></a>このセクションのチェックリスト </h2>
 <ul>
 <li><code>process.argv</code>配列に<code>node</code>コマンドのコマンドライン引数が格納されていることを確認した</li>
 <li>npmを使ってパッケージをインストールする方法を理解した</li>
-<li><code>require</code>関数を使ってパッケージのモジュールを読み込めることを確認した</li>
+<li>ECMAScriptモジュールを使ってパッケージを読み込めることを確認した</li>
 <li>commanderを使ってコマンドライン引数をパースできることを確認した</li>
 <li>コマンドライン引数で渡されたファイルパスを取得してコンソールに出力できた</li>
 </ul>
 <blockquote id="fn_1">
 <sup>1</sup>. --saveオプションをつけてインストールしたのと同じ意味。npm 5.0.0からは--saveがデフォルトオプションとなりました。<a href="#reffn_1" title="Jump back to footnote [1] in the text."> ↩</a>
+</blockquote>
+<blockquote id="fn_2">
+<sup>2</sup>. <a href="https://nodejs.org/api/packages.html#packagejson-and-file-extensions" target="_blank">package.json and file extensions</a><a href="#reffn_2" title="Jump back to footnote [2] in the text."> ↩</a>
+</blockquote>
+<blockquote id="fn_3">
+<sup>3</sup>. <a href="https://nodejs.org/api/esm.html#interoperability-with-commonjs" target="_blank">Interoperability with CommonJS</a><a href="#reffn_3" title="Jump back to footnote [3] in the text."> ↩</a>
 </blockquote>
 </body></html>
                                 
@@ -1662,7 +1700,7 @@ program.parse(process.argv);
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"コマンドライン引数を受け取り、アプリケーションから使いやすい形にパースする方法を学びます。","title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"next":{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},"previous":{"title":"Node.jsでHello World","level":"1.4.3.1","depth":3,"path":"use-case/nodecli/helloworld/README.md","ref":"./use-case/nodecli/helloworld/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/argument-parse/README.md","mtime":"2022-09-03T09:54:39.418Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2022-09-03T09:55:04.224Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"コマンドライン引数を受け取り、アプリケーションから使いやすい形にパースする方法を学びます。","title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"next":{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},"previous":{"title":"Node.jsでHello World","level":"1.4.3.1","depth":3,"path":"use-case/nodecli/helloworld/README.md","ref":"./use-case/nodecli/helloworld/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/argument-parse/README.md","mtime":"2022-09-05T10:51:50.012Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2022-09-05T10:52:15.593Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

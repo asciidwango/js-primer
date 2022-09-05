@@ -1460,63 +1460,39 @@
 <p>前のセクションまでは、すべての処理をひとつのJavaScriptファイルに記述していました。
 ユニットテストを行うためにはテスト対象がモジュールとして分割されていなければいけません。
 今回のアプリケーションでは、CLIアプリケーションとしてコマンドライン引数を処理する部分と、MarkdownをHTMLへ変換する部分に分割します。</p>
-<h2 id="commonjs-module"><a name="commonjs-module" class="plugin-anchor" href="#commonjs-module"><i class="fa fa-link" aria-hidden="true"></i></a>CommonJSでのモジュール化 </h2>
-<p>実際にアプリケーションのモジュール化をする前に、CommonJSでのモジュール化について簡単に振り返ります。</p>
-<p>Node.jsでは、複数のJavaScriptファイル間で変数や関数などをやり取りするために、CommonJSモジュールという仕組みを利用します。
-CommonJSモジュールからオブジェクトをエクスポートするには、Node.jsのグローバル変数である<a href="https://nodejs.org/api/modules.html#modules_the_module_object" target="_blank">moduleオブジェクト</a>を利用します。
-<code>module.exports</code>オブジェクトは、そのファイルからエクスポートされるオブジェクトを格納します。</p>
-<p>次の<code>greet.js</code>というファイルは、<code>greet</code>関数をエクスポートするモジュールの例です。</p>
+<h2 id="split-script"><a name="split-script" class="plugin-anchor" href="#split-script"><i class="fa fa-link" aria-hidden="true"></i></a>アプリケーションをモジュールに分割する </h2>
+<p>実際にアプリケーションのモジュール化をする前に、<a href="../../../basic/module/">ECMAScriptモジュール</a>におけるエクスポートについて簡単に振り返ります。</p>
+<p>ECMAScriptモジュールでは<code>export</code>文を使って変数や関数などのオブジェクトをエクスポートし、他のスクリプトから利用できるようにします。
+次の<code>greet.js</code>というファイルは、<code>greet</code>関数をエクスポートするモジュールの例です。</p>
 <div class="code-filename-block">
     <p class="code-filename">greet.js</p>
 </div>
 
 <pre><code class="lang-javascript"><span class="hljs-comment">// greet.js</span>
-<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params">name</span>) </span>{
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params">name</span>) </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-string">`Hello <span class="hljs-subst">${name}</span>!`</span>;
 };
 </code></pre>
-<p><code>require</code>関数を使って、指定したファイルパスのJavaScriptファイルをモジュールとしてインポートできます。
-次のコードでは先ほどの<code>greet.js</code>のパスを指定してモジュールとしてインポートして、エクスポートされた関数を取得しています。</p>
+<p>このモジュールを利用する側では、<code>import</code>文を使って指定したファイルパスのJavaScriptファイルをインポートできます。
+次のコードでは先ほどの<code>greet.js</code>のパスを指定してモジュールとしてインポートして、エクスポートされた<code>greet</code>関数を利用しています。</p>
 <div class="code-filename-block">
     <p class="code-filename">greet-main.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> greet = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./greet&quot;</span>);
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { greet } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./greet.js&quot;</span>;
 greet(<span class="hljs-string">&quot;World&quot;</span>); <span class="hljs-comment">// =&gt; &quot;Hello World!&quot;</span>
 </code></pre>
-<p><code>module.exports</code>オブジェクトそのものに代入するのではなく、<code>module.exports</code>オブジェクトのプロパティに代入することでも任意の値をエクスポートできます。
-次の<code>functions.js</code>というファイルでは、<code>foo</code>と<code>bar</code>の2つの関数を同じファイルからエクスポートしています。</p>
-<div class="code-filename-block">
-    <p class="code-filename">functions.js</p>
-</div>
-
-<pre><code class="lang-javascript"><span class="hljs-built_in">module</span>.exports.foo = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;foo関数が呼び出されました&quot;</span>);
-};
-<span class="hljs-built_in">module</span>.exports.bar = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;bar関数が呼び出されました&quot;</span>);
-};
-</code></pre>
-<p>このようにエクスポートされたオブジェクトは、<code>require</code>関数の返り値であるオブジェクトのプロパティとしてアクセスできます。
-次のコードでは先ほどの<code>functions.js</code>をインポートして取得したオブジェクトから<code>foo</code>と<code>bar</code>関数をプロパティとして取得しています。</p>
-<div class="code-filename-block">
-    <p class="code-filename">functions-main.js</p>
-</div>
-
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> functions = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./functions&quot;</span>);
-functions.foo();
-functions.bar();
-</code></pre>
-<h2 id="split-script"><a name="split-script" class="plugin-anchor" href="#split-script"><i class="fa fa-link" aria-hidden="true"></i></a>アプリケーションをモジュールに分割する </h2>
+<p>これから行うアプリケーションのモジュール化とは、このようにアプリケーションの一部分を別のファイルに切り出した上で、必要なオブジェクトをエクスポートして外部から利用可能にするということです。
+機能をモジュールとして切り出すことで、アプリケーションとユニットテストの両方から利用できるようになります。</p>
 <p>それではCLIアプリケーションのソースコードをモジュールに分割してみましょう。
 <code>md2html.js</code>という名前のJavaScriptファイルを作成し、次のようにmarkedを使ったMarkdownの変換処理を記述します。</p>
 <div class="code-filename-block">
     <p class="code-filename">md2html.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> marked = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;marked&quot;</span>);
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { marked } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;marked&quot;</span>;
 
-<span class="hljs-built_in">module</span>.exports = <span class="hljs-function">(<span class="hljs-params">markdown, cliOptions</span>) =&gt;</span> {
+<span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">md2html</span>(<span class="hljs-params">markdown, cliOptions</span>) </span>{
     <span class="hljs-keyword">return</span> marked.parse(markdown, {
         <span class="hljs-attr">gfm</span>: cliOptions.gfm,
     });
@@ -1528,10 +1504,10 @@ functions.bar();
     <p class="code-filename">main.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> program = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;commander&quot;</span>);
-<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs/promises&quot;</span>);
-<span class="hljs-comment">// md2htmlモジュールをインポートする</span>
-<span class="hljs-keyword">const</span> md2html = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;./md2html&quot;</span>);
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { program } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;commander&quot;</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:fs/promises&quot;</span>;
+<span class="hljs-comment">// md2htmlモジュールからmd2html関数をインポートする</span>
+<span class="hljs-keyword">import</span> { md2html } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./md2html.js&quot;</span>;
 
 program.option(<span class="hljs-string">&quot;--gfm&quot;</span>, <span class="hljs-string">&quot;GFMを有効にする&quot;</span>);
 program.parse(process.argv);
@@ -1562,7 +1538,7 @@ Mochaが提供するテスト実行環境では、グローバルに<code>it</co
 <p>今回はNode.jsの標準モジュールのひとつである<a href="https://nodejs.org/api/assert.html" target="_blank">assertモジュール</a>から提供される<code>assert.strictEqual</code>メソッドを利用します。
 <code>assert.strictEqual</code>メソッドは第一引数と第二引数の評価結果が<code>===</code>で比較して異なる場合に、例外を投げる関数です。</p>
 <p>Mochaによるテスト環境を作るために、まずは次のコマンドで<code>mocha</code>パッケージをインストールします。</p>
-<pre><code class="lang-shell"><span class="hljs-meta">$</span><span class="bash"> npm install --save-dev mocha@7</span>
+<pre><code class="lang-shell"><span class="hljs-meta">$</span><span class="bash"> npm install --save-dev mocha@10</span>
 </code></pre>
 <p><code>--save-dev</code>オプションは、パッケージを<code>devDependencies</code>としてインストールするためのものです。
 <code>package.json</code>の<code>devDependencies</code>には、そのパッケージを開発するときだけ必要な依存ライブラリを記述します。</p>
@@ -1588,22 +1564,25 @@ Mochaをインストールした後、<code>package.json</code>の<code>scripts<
 <p>テストの実行環境ができたので、実際にユニットテストを記述します。
 Mochaのユニットテストは<code>test</code>ディレクトリの中にJavaScriptファイルを配置して記述します。
 <code>test/md2html-test.js</code>ファイルを作成し、<code>md2html.js</code>に対するユニットテストを次のように記述します。</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> assert = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;assert&quot;</span>);
-<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);
-<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;path&quot;</span>);
-<span class="hljs-keyword">const</span> md2html = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;../md2html&quot;</span>);
+<div class="code-filename-block">
+    <p class="code-filename">test/md2html-test.js</p>
+</div>
 
-it(<span class="hljs-string">&quot;converts Markdown to HTML (GFM=false)&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> assert <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:assert&quot;</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:fs/promises&quot;</span>;
+<span class="hljs-keyword">import</span> { md2html } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../md2html.js&quot;</span>;
+
+it(<span class="hljs-string">&quot;converts Markdown to HTML (GFM=false)&quot;</span>, <span class="hljs-keyword">async</span>() =&gt; {
     <span class="hljs-comment">// fs.readFileSyncは同期的にファイルを読み込むメソッド</span>
-    <span class="hljs-keyword">const</span> sample = fs.readFileSync(path.resolve(__dirname, <span class="hljs-string">&quot;./fixtures/sample.md&quot;</span>), { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> });
-    <span class="hljs-keyword">const</span> expected = fs.readFileSync(path.resolve(__dirname, <span class="hljs-string">&quot;./fixtures/expected.html&quot;</span>), { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> });
+    <span class="hljs-keyword">const</span> sample = <span class="hljs-keyword">await</span> fs.readFile(<span class="hljs-string">&quot;test/fixtures/sample.md&quot;</span>, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> });
+    <span class="hljs-keyword">const</span> expected = <span class="hljs-keyword">await</span> fs.readFile(<span class="hljs-string">&quot;test/fixtures/expected.html&quot;</span>, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> });
     <span class="hljs-comment">// 末尾の改行の有無の違いを無視するため、変換後のHTMLのスペースをtrimメソッドで削除してから比較しています</span>
     assert.strictEqual(md2html(sample, { <span class="hljs-attr">gfm</span>: <span class="hljs-literal">false</span> }).trimEnd(), expected.trimEnd());
 });
 
-it(<span class="hljs-string">&quot;converts Markdown to HTML (GFM=true)&quot;</span>, <span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-keyword">const</span> sample = fs.readFileSync(path.resolve(__dirname, <span class="hljs-string">&quot;./fixtures/sample.md&quot;</span>), { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> });
-    <span class="hljs-keyword">const</span> expected = fs.readFileSync(path.resolve(__dirname, <span class="hljs-string">&quot;./fixtures/expected-gfm.html&quot;</span>), { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> });
+it(<span class="hljs-string">&quot;converts Markdown to HTML (GFM=true)&quot;</span>, <span class="hljs-keyword">async</span>() =&gt; {
+    <span class="hljs-keyword">const</span> sample = <span class="hljs-keyword">await</span> fs.readFile(<span class="hljs-string">&quot;test/fixtures/sample.md&quot;</span>, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> });
+    <span class="hljs-keyword">const</span> expected = <span class="hljs-keyword">await</span> fs.readFile(<span class="hljs-string">&quot;test/fixtures/expected-gfm.html&quot;</span>, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> });
     <span class="hljs-comment">// 末尾の改行の有無の違いを無視するため、変換後のHTMLのスペースをtrimメソッドで削除してから比較しています</span>
     assert.strictEqual(md2html(sample, { <span class="hljs-attr">gfm</span>: <span class="hljs-literal">true</span> }).trimEnd(), expected.trimEnd());
 });
@@ -1717,7 +1696,7 @@ npmを使ったパッケージ管理や外部モジュールの利用、<code>fs
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"ユニットテストの導入とソースコードのモジュール化を行います。","title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"next":{"title":"Todoアプリ","level":"1.4.4","depth":2,"path":"use-case/todoapp/README.md","ref":"./use-case/todoapp/README.md","articles":[{"title":"エントリーポイント","level":"1.4.4.1","depth":3,"path":"use-case/todoapp/entrypoint/README.md","ref":"./use-case/todoapp/entrypoint/README.md","articles":[]},{"title":"アプリの構成要素","level":"1.4.4.2","depth":3,"path":"use-case/todoapp/app-structure/README.md","ref":"./use-case/todoapp/app-structure/README.md","articles":[]},{"title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"path":"use-case/todoapp/form-event/README.md","ref":"./use-case/todoapp/form-event/README.md","articles":[]},{"title":"イベントとモデル","level":"1.4.4.4","depth":3,"path":"use-case/todoapp/event-model/README.md","ref":"./use-case/todoapp/event-model/README.md","articles":[]},{"title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"path":"use-case/todoapp/update-delete/README.md","ref":"./use-case/todoapp/update-delete/README.md","articles":[]},{"title":"Todoアプリのリファクタリング","level":"1.4.4.6","depth":3,"path":"use-case/todoapp/final/README.md","ref":"./use-case/todoapp/final/README.md","articles":[]}]},"previous":{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/refactor-and-unittest/README.md","mtime":"2022-09-03T09:54:39.422Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2022-09-03T09:55:04.224Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"ユニットテストの導入とソースコードのモジュール化を行います。","title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"next":{"title":"Todoアプリ","level":"1.4.4","depth":2,"path":"use-case/todoapp/README.md","ref":"./use-case/todoapp/README.md","articles":[{"title":"エントリーポイント","level":"1.4.4.1","depth":3,"path":"use-case/todoapp/entrypoint/README.md","ref":"./use-case/todoapp/entrypoint/README.md","articles":[]},{"title":"アプリの構成要素","level":"1.4.4.2","depth":3,"path":"use-case/todoapp/app-structure/README.md","ref":"./use-case/todoapp/app-structure/README.md","articles":[]},{"title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"path":"use-case/todoapp/form-event/README.md","ref":"./use-case/todoapp/form-event/README.md","articles":[]},{"title":"イベントとモデル","level":"1.4.4.4","depth":3,"path":"use-case/todoapp/event-model/README.md","ref":"./use-case/todoapp/event-model/README.md","articles":[]},{"title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"path":"use-case/todoapp/update-delete/README.md","ref":"./use-case/todoapp/update-delete/README.md","articles":[]},{"title":"Todoアプリのリファクタリング","level":"1.4.4.6","depth":3,"path":"use-case/todoapp/final/README.md","ref":"./use-case/todoapp/final/README.md","articles":[]}]},"previous":{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/refactor-and-unittest/README.md","mtime":"2022-09-05T10:51:50.016Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2022-09-05T10:52:15.593Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

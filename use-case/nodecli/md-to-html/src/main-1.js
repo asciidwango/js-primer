@@ -1,7 +1,7 @@
-const program = require("commander");
-const fs = require("fs/promises");
-// markedモジュールをmarkedオブジェクトとしてインポートする
-const marked = require("marked");
+import { program } from "commander";
+import * as fs from "node:fs/promises";
+// markedモジュールからmarkedオブジェクトをインポートする
+import { marked } from "marked";
 
 program.parse(process.argv);
 const filePath = program.args[0];

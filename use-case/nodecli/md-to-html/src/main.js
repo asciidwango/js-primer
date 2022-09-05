@@ -1,6 +1,6 @@
-const program = require("commander");
-const fs = require("fs/promises");
-const marked = require("marked");
+import { program } from "commander";
+import * as fs from "node:fs/promises";
+import { marked } from "marked";
 
 // gfmオプションを定義する
 program.option("--gfm", "GFMを有効にする");

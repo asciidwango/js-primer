@@ -1,5 +1,6 @@
-// commanderモジュールをprogramとしてインポートする
-const program = require("commander");
+// commanderモジュールからprogramオブジェクトをインポートする
+import { program } from "commander";
+
 // コマンドライン引数をcommanderでパースする
 program.parse(process.argv);
 
