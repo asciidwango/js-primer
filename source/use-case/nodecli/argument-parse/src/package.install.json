@@ -3,18 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
-  "type": "module",
   "scripts": {
-    "test": "mocha test/"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "commander": "^9.0.0",
-    "marked": "^4.0.00"
-  },
-  "devDependencies": {
-    "mocha": "^10.0.0"
+    "commander": "^9.0.0"
   }
 }

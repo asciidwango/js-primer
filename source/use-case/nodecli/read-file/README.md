@@ -19,11 +19,30 @@ Node.jsでファイルの読み書きを行うには、標準モジュールの[
 ### `fs`モジュール {#fs-module}
 
 `fs`モジュールは、Node.jsでファイルの読み書きを行うための基本的な関数を提供するモジュールです。
-`fs`モジュールは同期形式と非同期形式の両方が提供されています。
 
+`fs`モジュールは同期形式と非同期形式の両方が提供されています。
 同期APIと非同期APIはどちらも`fs`モジュールに含まれていますが、
 非同期形式のAPIは`fs/promises`というモジュール名でも参照できるようになっています。
 この書籍では分かりやすさのために、非同期形式のみのAPIを提供する`fs/promises`モジュールを利用します。
+
+Node.jsの標準モジュールは`node:fs`のように`node:`プリフィックスをつけてインポートできます。
+プリフィックスを付けない`fs`でもインポートできますが、npmからインストールしたサードパーティ製のモジュールとの区別が明確になるため、付けておくことが推奨されます。
+
+次のコードは、ECMAScriptモジュールの`import * as`構文を使って、`fs/promises` モジュール全体を`fs`オブジェクトとしてインポートしています。
+
+<!-- doctest:disable -->
+```js
+// fs/promisesモジュール全体を読み込む
+import * as fs from "node:fs/promises";
+```
+
+もちろん、次のように名前付きインポートを使って、`fs/promises`モジュール全体ではなく一部のAPIだけを利用することもできます。
+
+<!-- doctest:disable -->
+```js
+// fs/promisesモジュールからreadFile関数を読み込む
+import { readFile } from "node:fs/promises";
+```
 
 `fs/promises`の非同期APIは、モジュール名からもわかるようにPromiseを返します。
 ファイルの読み書きといった非同期処理が成功したときには、返された`Promise`インスタンスがresolveされます。
@@ -34,7 +53,7 @@ Node.jsでファイルの読み書きを行うには、標準モジュールの[
 <!-- doctest:disable -->
 ```js
 // 非同期APIを提供するfs/promisesモジュールを読み込む
-const fs = require("fs/promises");
+import * as fs from "node:fs/promises";
 
 fs.readFile("sample.md").then(file => {
     console.log(file);
@@ -49,7 +68,7 @@ Node.jsでは非同期APIと同期APIがどちらもあるAPIには、分かり�
 <!-- doctest:disable -->
 ```js
 // 同期APIを提供するfsモジュールを読み込む
-const fs = require("fs");
+import * as fs from "node:fs";
 
 try {
     const file = fs.readFileSync("sample.md");
@@ -124,7 +143,7 @@ Node.jsが提供する`fs`モジュールは同期APIと非同期APIを提供す
 <!-- doctest:disable -->
 ```js
 // fsモジュールにはエラーファーストコールバックを扱う非同期APIも含まれる
-const fs = require("fs");
+import * as fs from "node:fs/promises";
 
 // エラーファーストコールバックの第1引数にはエラー、第2引数 には結果が入るというルール
 fs.readFile("sample.md", (err, file) => {

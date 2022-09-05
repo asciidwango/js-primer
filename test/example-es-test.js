@@ -14,6 +14,7 @@ describe("example:es", function() {
     const esmFiles = globby.sync([
         `${sourceDir}/use-case/todoapp/**/*-example.js`, // *-example.js
         `${sourceDir}/use-case/todoapp/**/*.example.js`, // *.example.js
+        `${sourceDir}/use-case/nodecli/**/example/**/*.js`,
     ]);
     esmFiles.forEach(filePath => {
         const normalizeFilePath = filePath.replace(sourceDir, "");

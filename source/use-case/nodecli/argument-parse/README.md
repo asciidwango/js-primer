@@ -73,57 +73,75 @@ $ npm init --yes
 `package.json`ファイルが用意できたら、`npm install`コマンドを使って`commander`パッケージをインストールします。
 このコマンドの引数にはインストールするパッケージの名前とそのバージョンを`@`記号でつなげて指定できます。
 バージョンを指定せずにインストールすれば、その時点での最新の安定版が自動的に選択されます。
-次のコマンドを実行して、commanderのバージョン5.0をインストールします。[^1]
+次のコマンドを実行して、commanderのバージョン9.0をインストールします。[^1]
 
 ```shell
-$ npm install commander@5.0
+$ npm install commander@9.0
 ```
 
 インストールが完了すると、`package.json`ファイルは次のようになっています。
 
-[import, title:"package.json"](src/package.json)
+[import, title:"package.json"](src/package.install.json)
 
 また、npmのバージョンが5以上であれば `package-lock.json`ファイルが生成されています。
 このファイルはnpmがインストールしたパッケージの、実際のバージョンを記録するためのものです。
-先ほどcommanderのバージョンを`5.0`としましたが、実際にインストールされるのは`5.0.x`に一致する最新のバージョンです。
+先ほどcommanderのバージョンを`9.0`としましたが、実際にインストールされるのは`9.0.x`に一致する最新のバージョンです。
 `package-lock.json`ファイルには実際にインストールされたバージョンが記録されています。
 これによって、再び`npm install`を実行したときに、異なるバージョンがインストールされるのを防ぎます。
 
-### CommonJSモジュール {#commonjs-module}
 
-インストールした`commander`パッケージを使う前に、**CommonJSモジュール**のことを知っておきましょう。
-[CommonJSモジュール][]とは、[Node.js][]環境で利用されているJavaScriptのモジュール化の仕組みです。
-CommonJSモジュールは基本文法で学んだ[ECMAScriptモジュール][]の仕様が策定されるより前からNode.jsで使われています。
-Node.jsの標準パッケージやnpmで配布されるパッケージは、CommonJSモジュールとして提供されていることがほとんどです。
-先ほどインストールした`commander`パッケージも、CommonJSモジュールとして利用できます。
+### ECMAScriptモジュールを使う {#esmodule}
 
-CommonJSモジュールはNode.jsのグローバル変数である`module`変数を使って変数や関数などをエクスポートします。
-CommonJSモジュールでは`module.exports`プロパティに代入されたオブジェクトが、そのJavaScriptファイルからエクスポートされます。
-複数の名前つきエクスポートが可能なES Moduleとは異なり、CommonJSでは`module.exports`プロパティの値だけがエクスポートの対象です。
-
-次の例では、`my-module.js`というファイルを作成し、`module.exports`でオブジェクトをエクスポートしています。
-
-[import, title:"my-module.js"](src/my-module.js)
-
-このCommonJSモジュールをインポートするには、Node.js実行環境のグローバル関数である[require関数][]を使います。
-次のように`require`関数にインポートしたいモジュールのファイルパスを渡し、返り値としてエクスポートされた値をインポートできます。
-インポートするファイルパスに拡張子が必須なES Moduleとは異なり、CommonJSの`require`関数では拡張子である`.js`が省略可能です。
-
-[import](src/cjs-import.js)
-
-また、`require`関数は相対パスや絶対パス以外にもnpmでインストールしたパッケージ名を指定できます。
-`npm install`コマンドでインストールされたパッケージは、`node_modules`というディレクトリの中に配置されています。
-`require`関数にインストールしたパッケージ名を指定することで、`node_modules`ディレクトリに配置されたパッケージを読み込めます。
-
-次の例では、先ほどインストールした`commander`パッケージを`node_modules`ディレクトリから読み込んでいます。
+今回のユースケースでは、インストールした`commander`パッケージを利用するにあたって、基本文法で学んだ[ECMAScriptモジュール][]を使います。
+`commander`パッケージはECMAScriptモジュールに対応しているため、次のように`import`文を使って変数や関数などをインポートできます。
 
 <!-- doctest:disable -->
 ```js
-const program = require("commander");
+import { program } from "commander";
 ```
 
-このユースケースで今後登場するモジュールはすべてCommonJSモジュールです。
-Node.jsではES Moduleもサポートされる予定ですが、現在はまだ安定した機能としてサポートされていません。
+ただし、ECMAScriptモジュールのパッケージをインポートするには、インポート元のファイルもECMAScriptモジュールでなければなりません。
+なぜなら、[Node.js][]は[CommonJSモジュール][]という別のモジュール形式もサポートしており、CommonJSモジュール形式では`import`文は利用できないためです。
+そのため、これから実行するJavaScriptファイルがどちらの形式であるかをNode.jsに教える必要があります。
+
+Node.jsはもっとも近い上位ディレクトリの `package.json` が持つ `type` フィールドの値によってJavaScriptファイルのモジュール形式を判別します。
+`type`フィールドが `module` であればECMAScriptモジュールとして、`commonjs` であればCommonJSモジュールとして扱われます。[^2]
+また、JavaScriptファイルの拡張子によって明示的に示すこともできます。拡張子が `.mjs` である場合はECMAScriptモジュールとして、`.cjs` である場合はCommonJSモジュールであると判別されます。
+
+今回は `main.js` を ECMAScriptモジュールとして判別させるために、次のように `package.json` に`type` フィールドを追加します。
+
+```shell
+# npm pkg コマンドで type フィールドの値をセットする
+$ npm pkg set type=module
+```
+
+[import, title:"package.json"](src/package.json)
+
+#### [コラム] CommonJSモジュール {#commonjs-module}
+
+[CommonJSモジュール][]とは、Node.js環境で利用されているJavaScriptのモジュール化の仕組みです。
+CommonJSモジュールは[ECMAScriptモジュール][]の仕様が策定されるより前からNode.jsで使われています。
+
+現在はNode.jsでもECMAScriptモジュールがサポートされていますが、`fs` などの標準モジュールはCommonJSモジュールとして提供されています。
+また、サードパーティ製のライブラリや長く開発が続けられているプロジェクトのソースコードなどでも、CommonJSモジュールを利用する場面は少なくありません。
+そのため、この2つのモジュール形式が共存する場合には、開発者はモジュール形式間の相互運用性に注意する必要があります。[^3]
+
+Node.jsはECMAScriptモジュールからCommonJSモジュールをインポートする方向の相互運用性をサポートしています。
+たとえば、次のようにCommonJSモジュールで`exports`オブジェクトを使ってエクスポートされたオブジェクトは、ECMAScriptモジュールで`import`文を使ってインポートできます。
+Node.jsの標準モジュールはECMAScriptモジュールのJavaScriptファイルからでも利用できますが、それはこの相互運用性によるものです。
+
+<!-- doctest:disable -->
+```js
+// lib.cjs
+exports.key = "value";
+
+// app.mjs
+import { key } from "./lib.cjs";
+```
+
+一方で、CommonJSモジュールからECMAScriptモジュールをインポートする方向の相互運用性はサポートされていません。
+もし既存のライブラリから提供されるモジュールがECMAScriptモジュールであれば、それを使うアプリケーションもECMAScriptモジュールで書かれている必要があります。
+複数のパッケージを利用しながらNode.jsアプリケーションを開発する際には特に相互運用性に注意しておく必要があるでしょう。
 
 ### コマンドライン引数からファイルパスを取得する {#get-file-path}
 
@@ -134,13 +152,13 @@ Node.jsではES Moduleもサポートされる予定ですが、現在はまだ�
 $ node main.js ./sample.md
 ```
 
-commanderでコマンドライン引数をパースするためには、`parse`メソッドにコマンドライン引数を渡します。
+commanderでコマンドライン引数をパースするためには、インポートした`program`オブジェクトの`parse`メソッドにコマンドライン引数を渡します。
 
 <!-- doctest:disable -->
 ```js
-// commanderモジュールをprogramオブジェクトとしてインポートする
-const program = require("commander");
-// コマンドライン引数をパースする
+// commanderモジュールからprogramオブジェクトをインポートする
+import { program } from "commander";
+// コマンドライン引数をcommanderでパースする
 program.parse(process.argv);
 ```
 
@@ -163,11 +181,25 @@ $ node main.js ./sample.md
 このように、`process.argv`配列を直接扱うよりも、commanderのようなライブラリを使うことで宣言的にコマンドライン引数を定義して処理できます。
 次のセクションではコマンドライン引数から取得したファイルパスを元に、ファイルを読み込む処理を追加していきます。
 
+#### [エラー例] SyntaxError: Cannot use import statement outside a module {#syntax-error-import-statement}
+
+「`import`文をECMAScriptモジュールの外で使うことはできません」というエラーが出ています。`main.js` の実行でこのエラーが出る場合は、Node.jsが`main.js`ファイルをECMAScriptモジュールだと判別できていないことを意味します。
+
+<!-- doctest:disable -->
+```shell
+import { program } from "commander";
+^^^^^^
+
+SyntaxError: Cannot use import statement outside a module
+```
+
+[ECMAScriptモジュールを使う](#esmodule)で述べたように、`package.json`の`type`フィールドを`module`に設定しましょう。
+
 ## このセクションのチェックリスト {#section-checklist}
 
 - `process.argv`配列に`node`コマンドのコマンドライン引数が格納されていることを確認した
 - npmを使ってパッケージをインストールする方法を理解した
-- `require`関数を使ってパッケージのモジュールを読み込めることを確認した
+- ECMAScriptモジュールを使ってパッケージを読み込めることを確認した
 - commanderを使ってコマンドライン引数をパースできることを確認した
 - コマンドライン引数で渡されたファイルパスを取得してコンソールに出力できた
 
@@ -176,7 +208,8 @@ $ node main.js ./sample.md
 [npmのGitHubリポジトリ]: https://github.com/npm/npm
 [CommonJSモジュール]: https://nodejs.org/docs/latest/api/modules.html
 [Node.js]: https://nodejs.org/ja/
-[require関数]: https://nodejs.org/dist/latest-v14.x/docs/api/modules.html#modules_loading_from_node_modules_folders
 [アプリケーション開発の準備]: ../../setup-local-env/README.md
 [ECMAScriptモジュール]: ../../../basic/module/README.md
 [^1]: --saveオプションをつけてインストールしたのと同じ意味。npm 5.0.0からは--saveがデフォルトオプションとなりました。
+[^2]: [package.json and file extensions](https://nodejs.org/api/packages.html#packagejson-and-file-extensions)
+[^3]: [Interoperability with CommonJS](https://nodejs.org/api/esm.html#interoperability-with-commonjs)

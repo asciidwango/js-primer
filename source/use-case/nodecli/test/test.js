@@ -60,9 +60,6 @@ const testTargetFileList = [
     {
         filePath: path.join(nodecliDir, "helloworld/src/main.js"),
     },
-    {
-        filePath: path.join(nodecliDir, "argument-parse/src/cjs-import.js"),
-    },
     // nodeのパスが入るので扱いにくい
     // {
     //     filePath: path.join(nodecliDir, "argument-parse/src/main-1.js"),
