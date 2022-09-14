@@ -1468,9 +1468,15 @@
 <p>一方、同期的にブロックする処理が行われていた場合には問題があります。
 同期処理ではひとつの処理が終わるまで、次の処理へ進むことができないためです。</p>
 <p>次のコードの<code>blockTime</code>関数は指定した<code>timeout</code>ミリ秒だけ無限ループを実行し、同期的にブロックする処理です。
-この<code>blockTime</code>関数を呼び出すと、指定時間が経過するまで次の処理（次の行）は呼ばれません。</p>
+この<code>blockTime</code>関数を呼び出すと、指定時間が経過するまで次の処理（タスクB）は呼ばれません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// 指定した`timeout`ミリ秒経過するまで同期的にブロックする関数</span>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">taskA</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;タスクAを実行 at &quot;</span> + <span class="hljs-built_in">Date</span>.now());
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">taskB</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;タスクBを実行 at &quot;</span> + <span class="hljs-built_in">Date</span>.now());
+}
+<span class="hljs-comment">// 指定した`timeout`ミリ秒経過するまで同期的にブロックする関数</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">blockTime</span>(<span class="hljs-params">timeout</span>) </span>{
     <span class="hljs-keyword">const</span> startTime = <span class="hljs-built_in">Date</span>.now();
     <span class="hljs-comment">// `timeout`ミリ秒経過するまで無限ループをする</span>
@@ -1481,14 +1487,15 @@
         }
     }
 }
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;処理を開始&quot;</span>);
+taskA();
 blockTime(<span class="hljs-number">1000</span>); <span class="hljs-comment">// 他の処理を1000ミリ秒（1秒間）ブロックする</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;この行が呼ばれるまで処理が1秒間ブロックされる&quot;</span>);
+taskB();
 </code></pre>
 <p>同期的にブロックする処理があると、ブラウザでは大きな問題となります。
 なぜなら、JavaScriptは基本的にブラウザのメインスレッド（UIスレッドとも呼ばれる）で実行されるためです。
 メインスレッドは表示の更新といったUIに関する処理も行っています。
 そのため、メインスレッドが他の処理で専有されると、表示が更新されなくなりフリーズしたようになります。</p>
+<p><img src="img/single-thread-tasks.png" alt="single-thread-tasks"></p>
 <p>先ほどの例では1秒間も処理をブロックしているため、1秒間スクロールなどの操作が効かないといった悪影響がでます。</p>
 <h2 id="async-processing"><a name="async-processing" class="plugin-anchor" href="#async-processing"><i class="fa fa-link" aria-hidden="true"></i></a>非同期処理 </h2>
 <p>非同期処理はコードを順番に処理していきますが、ひとつの非同期処理が終わるのを待たずに次の処理を評価します。
@@ -1498,42 +1505,30 @@ blockTime(<span class="hljs-number">1000</span>); <span class="hljs-comment">// 
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-built_in">setTimeout</span>(コールバック関数, delay);
 </code></pre>
-<p>次のコードでは<code>setTimeout</code>関数を使って10ミリ秒後に、1秒間ブロックする処理を実行しています。
-<code>setTimeout</code>関数でタイマーに登録したコールバック関数は非同期的なタイミングで呼ばれます。
-そのため<code>setTimeout</code>関数の次の行に書かれている同期的処理は、非同期処理よりも先に実行されます。</p>
+<p>次のコードでは、見た目上はタスクA → 非同期のタスク → タスクBという流れになっています。
+しかし、<code>setTimeout</code>関数を使い、非同期のタスクは1000ミリ秒（1秒）後に実行するようにタイマーへ登録しています。
+そのため、実際にはタスクA → タスクB → 非同期のタスクという順番で実行されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// 指定した`timeout`ミリ秒経過するまで同期的にブロックする関数</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">blockTime</span>(<span class="hljs-params">timeout</span>) </span>{
-    <span class="hljs-keyword">const</span> startTime = <span class="hljs-built_in">Date</span>.now();
-    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
-        <span class="hljs-keyword">const</span> diffTime = <span class="hljs-built_in">Date</span>.now() - startTime;
-        <span class="hljs-keyword">if</span> (diffTime &gt;= timeout) {
-            <span class="hljs-keyword">return</span>; <span class="hljs-comment">// 指定時間経過したら関数の実行を終了</span>
-        }
-    }
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">taskA</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;タスクAを実行 at &quot;</span> + <span class="hljs-built_in">Date</span>.now());
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">taskB</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;タスクBを実行 at &quot;</span> + <span class="hljs-built_in">Date</span>.now());
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">taskAsync</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;非同期のタスクを実行 at &quot;</span> + <span class="hljs-built_in">Date</span>.now());
 }
 
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;1. setTimeoutのコールバック関数を10ミリ秒後に実行します&quot;</span>);
+taskA();
 <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;3. ブロックする処理を開始します&quot;</span>);
-    blockTime(<span class="hljs-number">1000</span>); <span class="hljs-comment">// 他の処理を1秒間ブロックする</span>
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;4. ブロックする処理が完了しました&quot;</span>);
-}, <span class="hljs-number">10</span>);
-<span class="hljs-comment">// ブロックする処理は非同期なタイミングで呼び出されるので、次の行が先に実行される</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;2. 同期的な処理を実行します&quot;</span>);
+    taskAsync();
+}, <span class="hljs-number">1000</span>);
+taskB();
 </code></pre>
-<p>このコードを実行した結果のコンソールログは次のようになります。</p>
-<!-- textlint-disable preset-ja-technical-writing/ja-no-redundant-expression -->
-<ol>
-<li>setTimeoutのコールバック関数を10ミリ秒後に実行します</li>
-<li>同期的な処理を実行します</li>
-<li>ブロックする処理を開始します</li>
-<li>ブロックする処理が完了しました</li>
-</ol>
-<!-- textlint-enable preset-ja-technical-writing/ja-no-redundant-expression -->
 <p>このように、非同期処理（<code>setTimeout</code>のコールバック関数）は、コードの見た目上の並びとは異なる順番で実行されることがわかります。</p>
+<p><img src="img/async-single-thread-tasks.png" alt="非同期処理とタイマー"></p>
 <h2 id="async-and-main-thread"><a name="async-and-main-thread" class="plugin-anchor" href="#async-and-main-thread"><i class="fa fa-link" aria-hidden="true"></i></a>非同期処理はメインスレッドで実行される </h2>
-<p>JavaScriptにおいて多くの非同期処理はメインスレッドで実行されます。
+<p>JavaScriptでは多くの非同期処理もメインスレッドで実行されます。
 メインスレッドはUIスレッドとも呼ばれ、重たいJavaScriptの処理はメインスレッドで実行する他の処理（画面の更新など）をブロックする問題について紹介しました（ECMAScriptの仕様として規定されているわけではないため、すべてがメインスレッドで実行されているわけではありません）。</p>
 <p>非同期処理は名前から考えるとメインスレッド以外で実行されるように見えますが、
 基本的には非同期処理も同期処理と同じようにメインスレッドで実行されます。
@@ -1543,9 +1538,19 @@ blockTime(<span class="hljs-number">1000</span>); <span class="hljs-comment">// 
 <p>非同期処理（コールバック関数）がメインスレッド以外のスレッドで実行されるならば、
 この非同期処理はメインスレッドで同期的にブロックする処理の影響を受けないはずです。
 しかし、実際にはこの非同期処理もメインスレッドで実行された同期的にブロックする処理の影響を受けます。</p>
-<p>次のコードを実行すると<code>setTimeout</code>関数で登録したコールバック関数は、タイマーに登録した時間（10ミリ秒後）よりも大きく遅れて呼び出されます。</p>
+<p>次のコードを実行すると<code>setTimeout</code>関数で10ミリ秒後に非同期のタスクを実行するように登録しています。
+しかし、実際には同期的なブロックする処理により、非同期のタスクはタイマーに登録した時間（10ミリ秒後）よりも大きく遅れて呼び出されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// 指定した`timeout`ミリ秒経過するまで同期的にブロックする関数</span>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">taskA</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;タスクAを実行 at &quot;</span> + <span class="hljs-built_in">Date</span>.now());
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">taskB</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;タスクBを実行 at &quot;</span> + <span class="hljs-built_in">Date</span>.now());
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">taskAsync</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;非同期のタスクを実行 at &quot;</span> + <span class="hljs-built_in">Date</span>.now());
+}
+<span class="hljs-comment">// 指定した`timeout`ミリ秒経過するまで同期的にブロックする関数</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">blockTime</span>(<span class="hljs-params">timeout</span>) </span>{
     <span class="hljs-keyword">const</span> startTime = <span class="hljs-built_in">Date</span>.now();
     <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
@@ -1557,20 +1562,23 @@ blockTime(<span class="hljs-number">1000</span>); <span class="hljs-comment">// 
 }
 
 <span class="hljs-keyword">const</span> startTime = <span class="hljs-built_in">Date</span>.now();
+taskA();
 <span class="hljs-comment">// 10ミリ秒後にコールバック関数を呼び出すようにタイマーに登録する</span>
 <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
     <span class="hljs-keyword">const</span> endTime = <span class="hljs-built_in">Date</span>.now();
+    taskAsync();
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`非同期処理のコールバックが呼ばれるまで<span class="hljs-subst">${endTime - startTime}</span>ミリ秒かかりました`</span>);
 }, <span class="hljs-number">10</span>);
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;ブロックする処理を開始します&quot;</span>);
 blockTime(<span class="hljs-number">1000</span>); <span class="hljs-comment">// 1秒間処理をブロックする</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;ブロックする処理が完了しました&quot;</span>);
+taskB();
 </code></pre>
-<p>多くの環境では、このときの非同期処理のコールバックが呼ばれるまでは1000ミリ秒以上かかります。
+<p>多くの環境では、このときの非同期処理のコールバックが呼ばれるまでは1秒以上かかります。
+これは、10ミリ秒後に非同期のタスクを実行するようにタイマーへ登録自体はできていますが、同期的なブロックする処理によって非同期のタスクの実行も後ろにずれてしまうためです。
 このように<strong>非同期処理</strong>も<strong>同期処理</strong>の影響を受けることから、同じスレッドで実行されていることがわかります。</p>
+<p><img src="img/block--async-single-thread-tasks.png" alt="非同期処理とブロックする同期処理"></p>
 <p>JavaScriptでは一部の例外を除き非同期処理が<strong>並行処理（concurrent）</strong>として扱われます。
 並行処理とは、処理を一定の単位ごとに分けて処理を切り替えながら実行することです。
-そのため非同期処理の実行中にとても重たい処理があると、非同期処理の切り替えが遅れるという現象を引き起こします。</p>
+そのため非同期処理の実行前にとても重たい処理があると、非同期処理の実行が遅れるという現象を引き起こします。</p>
 <p>このようにJavaScriptの非同期処理も基本的には1つのメインスレッドで処理されています。
 これは<code>setTimeout</code>関数のコールバック関数から外側のスコープのデータへのアクセス方法に制限がないことからもわかります。
 もし非同期処理が別スレッドで行われるならば、自由なデータへのアクセスは競合状態（レースコンディション）を引き起こしてしまうためです。</p>
@@ -2959,7 +2967,7 @@ dummyFetch(<span class="hljs-string">&quot;/failure/data&quot;</span>, <span cla
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおける非同期処理についてを紹介します。同期処理と非同期処理の違いやなぜ非同期処理が重要になるかを紹介します。非同期処理を扱うPromise、Async Functionについて紹介します。","title":"非同期処理:Promise/Async Function","level":"1.3.22","depth":2,"next":{"title":"Map/Set","level":"1.3.23","depth":2,"path":"basic/map-and-set/README.md","ref":"./basic/map-and-set/README.md","articles":[]},"previous":{"title":"例外処理","level":"1.3.21","depth":2,"path":"basic/error-try-catch/README.md","ref":"./basic/error-try-catch/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/async/README.md","mtime":"2022-09-05T10:51:49.984Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2022-09-05T10:52:15.593Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおける非同期処理についてを紹介します。同期処理と非同期処理の違いやなぜ非同期処理が重要になるかを紹介します。非同期処理を扱うPromise、Async Functionについて紹介します。","title":"非同期処理:Promise/Async Function","level":"1.3.22","depth":2,"next":{"title":"Map/Set","level":"1.3.23","depth":2,"path":"basic/map-and-set/README.md","ref":"./basic/map-and-set/README.md","articles":[]},"previous":{"title":"例外処理","level":"1.3.21","depth":2,"path":"basic/error-try-catch/README.md","ref":"./basic/error-try-catch/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"14.15.0","npmversion":"6.14.8","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/async/README.md","mtime":"2022-09-14T13:29:52.430Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2022-09-14T13:30:18.693Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
