@@ -558,8 +558,8 @@
     },
     {
       "type": "arrow",
-      "version": 523,
-      "versionNonce": 434982624,
+      "version": 737,
+      "versionNonce": 1132024071,
       "isDeleted": false,
       "id": "Wmp5eU4In_-2WlRblSTMH",
       "fillStyle": "hachure",
@@ -568,17 +568,17 @@
       "roughness": 1,
       "opacity": 100,
       "angle": 0,
-      "x": 980.4505512218068,
-      "y": 435.82230629139076,
+      "x": 976.77748902336,
+      "y": 441.37308754139076,
       "strokeColor": "#000000",
       "backgroundColor": "#40c057",
-      "width": 0.9071592268044242,
-      "height": 28.730468750000057,
+      "width": 0.06969820145332051,
+      "height": 34.28125000000006,
       "seed": 440991456,
       "groupIds": [],
       "strokeSharpness": "round",
       "boundElements": [],
-      "updated": 1663121753339,
+      "updated": 1663123361361,
       "link": null,
       "locked": false,
       "startBinding": {
@@ -600,15 +600,15 @@
           0
         ],
         [
-          -0.9071592268044242,
-          -28.730468750000057
+          -0.06969820145332051,
+          -34.28125000000006
         ]
       ]
     },
     {
       "type": "text",
-      "version": 191,
-      "versionNonce": 1378200288,
+      "version": 297,
+      "versionNonce": 26781159,
       "isDeleted": false,
       "id": "TIo5_LxydMPv0K_9hDxqm",
       "fillStyle": "hachure",
@@ -617,11 +617,11 @@
       "roughness": 1,
       "opacity": 100,
       "angle": 0,
-      "x": 846.6607969094928,
-      "y": 450.5215250413907,
+      "x": 821.6529844094928,
+      "y": 456.0723062913907,
       "strokeColor": "#000000",
       "backgroundColor": "#40c057",
-      "width": 339,
+      "width": 390,
       "height": 30,
       "seed": 554072800,
       "groupIds": [],
@@ -632,17 +632,17 @@
           "type": "arrow"
         }
       ],
-      "updated": 1663121753339,
+      "updated": 1663123361361,
       "link": null,
       "locked": false,
       "fontSize": 20,
       "fontFamily": 2,
-      "text": "非同期処理も含めブロックしてしまう",
+      "text": "非同期処理も含め1秒間ブロックしてしまう",
       "baseline": 23,
       "textAlign": "left",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "非同期処理も含めブロックしてしまう"
+      "originalText": "非同期処理も含め1秒間ブロックしてしまう"
     }
   ],
   "appState": {
