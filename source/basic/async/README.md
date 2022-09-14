@@ -24,10 +24,16 @@ description: "JavaScriptにおける非同期処理についてを紹介しま�
 同期処理ではひとつの処理が終わるまで、次の処理へ進むことができないためです。
 
 次のコードの`blockTime`関数は指定した`timeout`ミリ秒だけ無限ループを実行し、同期的にブロックする処理です。
-この`blockTime`関数を呼び出すと、指定時間が経過するまで次の処理（次の行）は呼ばれません。
+この`blockTime`関数を呼び出すと、指定時間が経過するまで次の処理（タスクB）は呼ばれません。
 
 {{book.console}}
 ```js
+function taskA() {
+    console.log("タスクAを実行 at " + Date.now());
+}
+function taskB() {
+    console.log("タスクBを実行 at " + Date.now());
+}
 // 指定した`timeout`ミリ秒経過するまで同期的にブロックする関数
 function blockTime(timeout) {
     const startTime = Date.now();
@@ -39,15 +45,17 @@ function blockTime(timeout) {
         }
     }
 }
-console.log("処理を開始");
+taskA();
 blockTime(1000); // 他の処理を1000ミリ秒（1秒間）ブロックする
-console.log("この行が呼ばれるまで処理が1秒間ブロックされる");
+taskB();
 ```
 
 同期的にブロックする処理があると、ブラウザでは大きな問題となります。
 なぜなら、JavaScriptは基本的にブラウザのメインスレッド（UIスレッドとも呼ばれる）で実行されるためです。
 メインスレッドは表示の更新といったUIに関する処理も行っています。
 そのため、メインスレッドが他の処理で専有されると、表示が更新されなくなりフリーズしたようになります。
+
+![single-thread-tasks](./img/single-thread-tasks.png)
 
 先ほどの例では1秒間も処理をブロックしているため、1秒間スクロールなどの操作が効かないといった悪影響がでます。
 
@@ -64,49 +72,36 @@ JavaScriptにおいて非同期処理の代表的な関数として`setTimeout`�
 setTimeout(コールバック関数, delay);
 ```
 
-次のコードでは`setTimeout`関数を使って10ミリ秒後に、1秒間ブロックする処理を実行しています。
-`setTimeout`関数でタイマーに登録したコールバック関数は非同期的なタイミングで呼ばれます。
-そのため`setTimeout`関数の次の行に書かれている同期的処理は、非同期処理よりも先に実行されます。
+次のコードでは、見た目上はタスクA → 非同期のタスク → タスクBという流れになっています。
+しかし、`setTimeout`関数を使い、非同期のタスクは1000ミリ秒（1秒）後に実行するようにタイマーへ登録しています。
+そのため、実際にはタスクA → タスクB → 非同期のタスクという順番で実行されます。
 
 {{book.console}}
 ```js
-// 指定した`timeout`ミリ秒経過するまで同期的にブロックする関数
-function blockTime(timeout) {
-    const startTime = Date.now();
-    while (true) {
-        const diffTime = Date.now() - startTime;
-        if (diffTime >= timeout) {
-            return; // 指定時間経過したら関数の実行を終了
-        }
-    }
+function taskA() {
+    console.log("タスクAを実行 at " + Date.now());
+}
+function taskB() {
+    console.log("タスクBを実行 at " + Date.now());
+}
+function taskAsync() {
+    console.log("非同期のタスクを実行 at " + Date.now());
 }
 
-console.log("1. setTimeoutのコールバック関数を10ミリ秒後に実行します");
+taskA();
 setTimeout(() => {
-    console.log("3. ブロックする処理を開始します");
-    blockTime(1000); // 他の処理を1秒間ブロックする
-    console.log("4. ブロックする処理が完了しました");
-}, 10);
-// ブロックする処理は非同期なタイミングで呼び出されるので、次の行が先に実行される
-console.log("2. 同期的な処理を実行します");
+    taskAsync();
+}, 1000);
+taskB();
 ```
-
-このコードを実行した結果のコンソールログは次のようになります。
-
-<!-- textlint-disable preset-ja-technical-writing/ja-no-redundant-expression -->
-
-1. setTimeoutのコールバック関数を10ミリ秒後に実行します
-2. 同期的な処理を実行します
-3. ブロックする処理を開始します
-4. ブロックする処理が完了しました
-
-<!-- textlint-enable preset-ja-technical-writing/ja-no-redundant-expression -->
 
 このように、非同期処理（`setTimeout`のコールバック関数）は、コードの見た目上の並びとは異なる順番で実行されることがわかります。
 
+![非同期処理とタイマー](./img/async-single-thread-tasks.png)
+
 ## 非同期処理はメインスレッドで実行される {#async-and-main-thread}
 
-JavaScriptにおいて多くの非同期処理はメインスレッドで実行されます。
+JavaScriptでは多くの非同期処理もメインスレッドで実行されます。
 メインスレッドはUIスレッドとも呼ばれ、重たいJavaScriptの処理はメインスレッドで実行する他の処理（画面の更新など）をブロックする問題について紹介しました（ECMAScriptの仕様として規定されているわけではないため、すべてがメインスレッドで実行されているわけではありません）。
 
 非同期処理は名前から考えるとメインスレッド以外で実行されるように見えますが、
@@ -120,10 +115,20 @@ JavaScriptにおいて多くの非同期処理はメインスレッドで実行�
 この非同期処理はメインスレッドで同期的にブロックする処理の影響を受けないはずです。
 しかし、実際にはこの非同期処理もメインスレッドで実行された同期的にブロックする処理の影響を受けます。
 
-次のコードを実行すると`setTimeout`関数で登録したコールバック関数は、タイマーに登録した時間（10ミリ秒後）よりも大きく遅れて呼び出されます。
+次のコードを実行すると`setTimeout`関数で10ミリ秒後に非同期のタスクを実行するように登録しています。
+しかし、実際には同期的なブロックする処理により、非同期のタスクはタイマーに登録した時間（10ミリ秒後）よりも大きく遅れて呼び出されます。
 
 {{book.console}}
 ```js
+function taskA() {
+    console.log("タスクAを実行 at " + Date.now());
+}
+function taskB() {
+    console.log("タスクBを実行 at " + Date.now());
+}
+function taskAsync() {
+    console.log("非同期のタスクを実行 at " + Date.now());
+}
 // 指定した`timeout`ミリ秒経過するまで同期的にブロックする関数
 function blockTime(timeout) {
     const startTime = Date.now();
@@ -136,22 +141,26 @@ function blockTime(timeout) {
 }
 
 const startTime = Date.now();
+taskA();
 // 10ミリ秒後にコールバック関数を呼び出すようにタイマーに登録する
 setTimeout(() => {
     const endTime = Date.now();
+    taskAsync();
     console.log(`非同期処理のコールバックが呼ばれるまで${endTime - startTime}ミリ秒かかりました`);
 }, 10);
-console.log("ブロックする処理を開始します");
 blockTime(1000); // 1秒間処理をブロックする
-console.log("ブロックする処理が完了しました");
+taskB();
 ```
 
-多くの環境では、このときの非同期処理のコールバックが呼ばれるまでは1000ミリ秒以上かかります。
+多くの環境では、このときの非同期処理のコールバックが呼ばれるまでは1秒以上かかります。
+これは、10ミリ秒後に非同期のタスクを実行するようにタイマーへ登録自体はできていますが、同期的なブロックする処理によって非同期のタスクの実行も後ろにずれてしまうためです。
 このように**非同期処理**も**同期処理**の影響を受けることから、同じスレッドで実行されていることがわかります。
+
+![非同期処理とブロックする同期処理](./img/block--async-single-thread-tasks.png)
 
 JavaScriptでは一部の例外を除き非同期処理が**並行処理（concurrent）**として扱われます。
 並行処理とは、処理を一定の単位ごとに分けて処理を切り替えながら実行することです。
-そのため非同期処理の実行中にとても重たい処理があると、非同期処理の切り替えが遅れるという現象を引き起こします。
+そのため非同期処理の実行前にとても重たい処理があると、非同期処理の実行が遅れるという現象を引き起こします。
 
 このようにJavaScriptの非同期処理も基本的には1つのメインスレッドで処理されています。
 これは`setTimeout`関数のコールバック関数から外側のスコープのデータへのアクセス方法に制限がないことからもわかります。
