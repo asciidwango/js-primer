@@ -19,6 +19,32 @@
 
 Twitterのハッシュタグは [#jsprimer](https://twitter.com/intent/tweet?hashtags=jsprimer) です。
 
+## 書籍への支援方法
+
+JavaScript PrimerはECMAScriptのアップデートに追従したり、現実の使い方を反映するために、継続してアップデートしています。
+継続的にアップデートするために、書籍への支援はいつでも歓迎しています。
+
+GitHub Sponsorsで著者を支援できます。
+
+- [Sponsor @azu on GitHub Sponsors](https://github.com/sponsors/azu)
+
+また、書籍版へのレビューを書くことも支援に繋がります。
+
+- [JavaScript Primer 迷わないための入門書 | azu, Suguru Inatomi |本 | 通販 | Amazon](https://www.amazon.co.jp/dp/4048930737/)
+
+GitHubのDiscussions（掲示板）の他の人の質問に答えたり、JSPrimerを読んだ感想を書くことも支援になります。
+
+- [Discussions · asciidwango/js-primer](https://github.com/asciidwango/js-primer/discussions)
+
+Discussionsのガイドラインは次のスレッドにまとめられています。
+
+- [👋 ようこそ JavaScript Primer へ ! · Discussion #1304 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/discussions/1304)
+
+書籍に対してIssueを立てたり、Pull Requestを送ったりして直接的に支援もできます。
+IssueやPull Requestについては、次のページを参照してください。
+
+- [文章の間違いに気づいたら · JavaScript Primer #jsprimer](https://jsprimer.net/intro/feedback/)
+
 ## :warning: Status :warning:
 
 この書籍は開発中の内容となっています。
