@@ -287,7 +287,7 @@ ECMAScriptモジュールについて。
 | `export { x as y }` | [ES2015] 名前付きエクスポートの**エイリアス** | [ECMAScriptモジュール][] | [Export](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export) |
 | `export { x } from "./x.js"` | [ES2015] 名前付きエクスポートの**再エクスポート** | [ECMAScriptモジュール][] | [Export](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export) |
 | `export * from "./x.js"` | [ES2015] すべての名前付きエクスポートの**再エクスポート** | [ECMAScriptモジュール][] | [Export](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export) |
-| `export * as ns from "./x.js";` | [ES2020] **すべての名前付きエクスポートをインポート**して`ns`という名前で**再エクスポート** | [ECMAScriptモジュール][] | [Export](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export) |
+| `export * as ns from "./x.js"` | [ES2020] **すべての名前付きエクスポートをインポート**して`ns`という名前で**再エクスポート** | [ECMAScriptモジュール][] | [Export](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export) |
 
 ### その他 {#miscellaneous}
 
