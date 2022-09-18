@@ -106,7 +106,7 @@ REPLはあくまで開発者向けの機能です。
 ここでは、HTMLとJavaScriptファイルを使ったJavaScriptコードの実行方法を見ていきます。
 
 HTMLファイルとJavaScriptファイルの2種類を使い、JavaScriptのコードを実行する準備をしていきます。
-ファイルを作成するため[Atom][]や[Visual Studio Code][]などのJavaScriptに対応したエディターを用意しておくとスムーズです。
+ファイルを作成するため[Visual Studio Code][]などのJavaScriptに対応したエディターを用意しておくとスムーズです。
 エディターはどんなものでも問題ありませんが、必ず文字コード（エンコーディング）は**UTF-8**、改行コードは**LF**にしてファイルを保存してください。
 
 ファイルを作成するディレクトリはどんな場所でも問題ありませんが、ここでは`example`という名前のディレクトリにファイルを作成していきます。
@@ -342,7 +342,6 @@ JavaScriptにおいては多くのエラーはすでに類似するケースが�
 
 [Firefox]: https://www.mozilla.org/ja/firefox/
 [Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
-[Atom]: https://atom.io/
 [Visual Studio Code]: https://code.visualstudio.com/
 [Google]: https://www.google.com/
 [Stack Overflow]: https://stackoverflow.com/
