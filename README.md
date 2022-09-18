@@ -73,7 +73,7 @@ HonKitのbuildかつWatchをします。
 
 以下のコマンドを実行すると全てのテストが実行されます。
 
-    npm i -d && npm test
+    npm install && npm test
 
 
 詳しくは [CONTRIBUTING.md](./CONTRIBUTING.md) を見てください。
