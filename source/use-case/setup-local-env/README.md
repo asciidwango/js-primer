@@ -184,7 +184,7 @@ npmでは、すでに多種多様なローカルサーバーモジュールが�
 
 [Node.js]: https://nodejs.org/ja/
 [V8]: https://developers.google.com/v8/
-[Electron]: http://electron.atom.io/
+[Electron]: https://www.electronjs.org/
 [ダウンロードページ]: https://nodejs.org/ja/download/
 [npm]: https://www.npmjs.com/
 [npmのGitHubリポジトリ]: https://github.com/npm/cli

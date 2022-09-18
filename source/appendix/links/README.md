@@ -83,11 +83,6 @@ JavaScriptやHTML、CSSなどのコーディングに適したエディターを
 [VSCode][]はMicrosoft社がオープンソースで開発している無料のコードエディターです。
 JavaScriptによってプラグインを書くことができ、さまざまな機能を追加できます。
 
-#### Atom {#atom}
-
-[Atom][]はGitHub社がオープンソースで開発している無料のコードエディターです。
-VSCodeと同じようにプラグインによる拡張性が高く、GitHubと連携した機能が特徴です。
-
 ### ブラウザの開発者ツール {#browser-devtools}
 
 多くのブラウザは開発者向けの組み込みツールを提供しており、本編で紹介したコンソールもその一部です。
@@ -205,5 +200,5 @@ NW.jsはブラウザの中からNode.jsの開発エコシステムを直接利�
 [Google Cloud Functions]: https://cloud.google.com/functions/
 [Function as a Service]: https://en.wikipedia.org/wiki/Function_as_a_service
 
-[Electron]: https://electronjs.org/
+[Electron]: https://www.electronjs.org/
 [NW.js]: https://nwjs.io/
