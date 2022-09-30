@@ -1692,7 +1692,7 @@ fetchResources(resources).then((results) => {
 
 ### [ES2022] Module直下での`await`式 {#top-level-await-in-module}
 
-ES2021までは、`await`式はAsync Functionの直下でのみ利用な可能なことを紹介しました。
+ES2021までは、`await`式はAsync Functionの直下でのみ利用可能なことを紹介しました。
 ES2022には、これに加えてModuleの直下ではAsync Functionで囲まなくても`await`式が利用できます。
 
 最初に「[JavaScriptとは][]」の章において、JavaScriptには実行コンテキストとして"Script"と"Module"があるという話をしました。
