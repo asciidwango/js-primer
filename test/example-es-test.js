@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename__);
 const sourceDir = path.join(__dirname, "..", "source");
 
 /**
- * ESMのeampleを評価するテスト
+ * ESMのexampleを評価するテスト
  * Note: ESMには対応していない
  **/
 describe("example:es", function() {
@@ -28,5 +28,5 @@ describe("example:es", function() {
                 return Promise.reject(error);
             });
         });
-    })
+    });
 });
