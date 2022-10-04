@@ -15,6 +15,7 @@ describe("example:es", function() {
         `${sourceDir}/use-case/todoapp/**/*-example.js`, // *-example.js
         `${sourceDir}/use-case/todoapp/**/*.example.js`, // *.example.js
         `${sourceDir}/use-case/nodecli/**/example/**/*.js`,
+        `!${sourceDir}/**/node_modules{,/**}`,
     ]);
     esmFiles.forEach(filePath => {
         const normalizeFilePath = filePath.replace(sourceDir, "");
