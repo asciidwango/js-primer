@@ -254,11 +254,15 @@ console.log(shoppingCart.toString()); // => "みかん:2,リンゴ:1"
 ```js
 // URLとObjectのマップを受け取ってPOSTリクエストを送る関数
 function sendPOSTRequest(url, data) {
-    // XMLHttpRequestを使ってPOSTリクエストを送る
-    const httpRequest = new XMLHttpRequest();
-    httpRequest.setRequestHeader("Content-Type", "application/json");
-    httpRequest.send(JSON.stringify(data));
-    httpRequest.open("POST", url);
+    // fetchを使ってPOSTリクエストを送る
+    const header = { "Content-Type": "application/json" };
+    fetch(url, {
+        method: "POST",
+        headers: header,
+        body: JSON.stringify(data),
+    })
+        .then((response) => response.json())
+        .catch((error) => console.error("Error", error));
 }
 
 // formのsubmitイベントを受け取る関数
