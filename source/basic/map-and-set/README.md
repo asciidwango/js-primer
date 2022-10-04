@@ -255,10 +255,9 @@ console.log(shoppingCart.toString()); // => "みかん:2,リンゴ:1"
 // URLとObjectのマップを受け取ってPOSTリクエストを送る関数
 function sendPOSTRequest(url, data) {
     // fetchを使ってPOSTリクエストを送る
-    const header = { "Content-Type": "application/json" };
     fetch(url, {
         method: "POST",
-        headers: header,
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
     })
         .then((response) => response.json())
