@@ -260,8 +260,7 @@ function sendPOSTRequest(url, data) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
     })
-        .then((response) => response.json())
-        .catch((error) => console.error("Error", error));
+        .catch((error) => console.error(error));
 }
 
 // formのsubmitイベントを受け取る関数
