@@ -160,7 +160,7 @@ console.log(addPrefix("文字列", "カスタム:")); // => "カスタム:文字
 
 しかし、OR演算子（`||`）を使ったデフォルト値の指定にはひとつ問題があります。
 OR演算子（`||`）では、左辺のオペランドがfalsyな値の場合に右辺のオペランドを評価します。
-falsyな値とは、真偽値へと変換すると`false`となる次のような値のことです。
+falsyな値とは、真偽値へと変換すると`false`となる次のような値のことです。（「[暗黙的な型変換][]」の章を参照）。
 
 - `false`
 - `undefined`
@@ -716,6 +716,7 @@ Arrow Functionを使うことで、コールバック関数を短く簡潔に書
 JavaScriptでのメソッドは、オブジェクトのプロパティである関数のことです。
 ES2015からは、メソッドを定義する構文が追加されているため活用していきます。
 
+[暗黙的な型変換]: ../implicit-coercion/README.md
 [関数とスコープ]: ../function-scope/README.md
 [非同期処理]: ../async/README.md
 [変数名に使える名前のルール]: ../variables/README.md#variable-name
