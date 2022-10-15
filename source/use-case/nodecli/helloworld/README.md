@@ -86,8 +86,8 @@ ECMAScriptで定義されているグローバルオブジェクトはブラウ�
 
 [document]: https://developer.mozilla.org/ja/docs/Web/API/Document
 [XMLHttpRequest]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest
-[global]: https://nodejs.org/docs/latest-v14.x/api/globals.html
-[process]: https://nodejs.org/docs/latest-v14.x/api/process.html#process_process
-[Buffer]: https://nodejs.org/docs/latest-v14.x/api/buffer.html
+[global]: https://nodejs.org/docs/latest-v16.x/api/globals.html
+[process]: https://nodejs.org/docs/latest-v16.x/api/process.html#process_process
+[Buffer]: https://nodejs.org/docs/latest-v16.x/api/buffer.html
 
 [アプリケーション開発の準備]: ../../setup-local-env/README.md
