@@ -104,7 +104,6 @@ module.exports = {
                 "keepAlive": false,
                 "ignore": [
                     "https://github.com/asciidwango/js-primer/issues/new?*",
-                    "https://docs.npmjs.com/cli/**",
                     "https://goo.gl/**",
                     "https://forms.gle/**",
                     "http://localhost:3000/**",
