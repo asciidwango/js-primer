@@ -2,6 +2,6 @@
   "name": "todoapp",
   "private": true,
   "scripts": {
-    "start": "npx -y @js-primer/local-server"
+    "start": "npx --yes @js-primer/local-server"
   }
 }

@@ -65,7 +65,7 @@ Node.jsを使ったコマンドラインツールは数多く公開されてお�
 `npx`コマンドでコマンドラインツールを実行するには、次のように `npx`コマンドにパッケージ名を渡して実行します。
 
 ```
-$ npx -y @js-primer/hello-world
+$ npx --yes @js-primer/hello-world
 npx: 1個のパッケージを7.921秒でインストールしました。
 Hello World!
 ```
@@ -124,7 +124,7 @@ Hello World!
 $ cd "index.htmlがあるディレクトリのパス"
 
 # npx コマンドでローカルサーバーを起動
-$ npx -y @js-primer/local-server
+$ npx --yes @js-primer/local-server
 
 js-primerのローカルサーバーを起動しました。
 次のURLをブラウザで開いてください。
@@ -165,7 +165,7 @@ Firefoxの開発者ツールは次のいずれかの方法で開きます。
 `@js-primer/local-server`は、デフォルトのポート（3000番ポート）がすでに使用されているなら、使われていないポートを探してローカルサーバーを起動します。また、`--port`オプションで任意のポート番号でローカルサーバーを起動できます。
 
 ```
-$ npx -y @js-primer/local-server --port 8000
+$ npx --yes @js-primer/local-server --port 8000
 ```
 
 この書籍では、`@js-primer/local-server`をデフォルトのポート番号である3000番ポートを利用する前提で進めていきます。
