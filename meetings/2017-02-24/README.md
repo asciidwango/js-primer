@@ -42,7 +42,7 @@
 - エラーオブジェクトは`error`で出すと考える人がいそう
 - @azu: Node.jsだと`console.error`って`stderr`に出力するんだっけ?
 - @laco: そうっぽい
-- [Console | Node.js v6.10.0 Documentation](https://nodejs.org/dist/latest-v6.x/docs/api/console.html#console_console_error_data_args "Console | Node.js v6.10.0 Documentation")
+- https://nodejs.org/docs/latest-v16.x/api/console.html
 - @azu: なるほど。
 - ならエラーは`stderr`にだすという意味で`console.error`使うのありそう
 - Console APIについては最初に解説入れるつもり

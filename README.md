@@ -65,13 +65,13 @@ IssueやPull Requestについては、次のページを参照してください
 
     npm install
 
-Node.js 16.17.0以上とnpm 8.15.0以上が必要です。
+Node.js 16.18.0以上とnpm 8.19.2以上が必要です。
 
 ```
 $ node -v
-16.17.0
+16.18.0
 $ npm -v
-8.15.0
+8.19.2
 ```
 
 ## Usage
