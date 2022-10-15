@@ -55,7 +55,7 @@ ajaxapp
 まだ`npx`コマンドの用意ができていなければ、先に「[アプリケーション開発の準備][]」の章を参照してください。
 
 ```shell
-$ npx @js-primer/local-server
+$ npx --yes @js-primer/local-server
 ```
  
 起動したローカルサーバーのURL（`http://localhost:3000`）へブラウザでアクセスすると、`"index.js: loaded"`とコンソールにログが出力されます。

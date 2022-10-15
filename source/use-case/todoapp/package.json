@@ -13,7 +13,7 @@
   "scripts": {
     "test": "mocha \"./final/final/test/*.js\"",
     "e2e": "start-server-and-test start http://localhost:3000/README.md cy:run",
-    "start": "npx -y @js-primer/local-server --port 3000",
+    "start": "npx --yes @js-primer/local-server --port 3000",
     "cy:open": "cypress open",
     "cy:run": "cypress run --browser chrome"
   },

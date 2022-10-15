@@ -63,10 +63,25 @@ Node.jsを使ったコマンドラインツールは数多く公開されてお�
 
 ここでは例として[@js-primer/hello-world][]というサンプル用のパッケージを実行します。
 `npx`コマンドでコマンドラインツールを実行するには、次のように `npx`コマンドにパッケージ名を渡して実行します。
+npx 7から、初めて実行するコマンドは対話式のプロンプトでパッケージをインストールするかが確認されます。
+これのプロンプトに対してEnterキーを押すとインストールが開始され、コマンドが実行されます。
 
-```
+```bash
 $ npx @js-primer/hello-world
-npx: 1個のパッケージを7.921秒でインストールしました。
+Need to install the following packages:
+  @js-primer/hello-world@1.0.0
+Ok to proceed? (y)
+# 初回は@js-primer/hello-worldをインストールしていいかを確認するプロンプトが表示される
+# Enterを押すとインストールが開始され、コマンドが実行される
+
+Hello World!
+```
+
+デフォルトでは対話式のプロンプトが挟まれますが、次のように`--yes`オプションを付与する自動的にインストールとコマンドが実行されます。
+
+```bash
+# --yesオプションで、インストールの確認プロンプトをスキップする
+$ npx --yes @js-primer/hello-world
 Hello World!
 ```
 
@@ -124,7 +139,7 @@ Hello World!
 $ cd "index.htmlがあるディレクトリのパス"
 
 # npx コマンドでローカルサーバーを起動
-$ npx @js-primer/local-server
+$ npx --yes @js-primer/local-server
 
 js-primerのローカルサーバーを起動しました。
 次のURLをブラウザで開いてください。
@@ -165,7 +180,7 @@ Firefoxの開発者ツールは次のいずれかの方法で開きます。
 `@js-primer/local-server`は、デフォルトのポート（3000番ポート）がすでに使用されているなら、使われていないポートを探してローカルサーバーを起動します。また、`--port`オプションで任意のポート番号でローカルサーバーを起動できます。
 
 ```
-$ npx @js-primer/local-server --port 8000
+$ npx --yes @js-primer/local-server --port 8000
 ```
 
 この書籍では、`@js-primer/local-server`をデフォルトのポート番号である3000番ポートを利用する前提で進めていきます。
@@ -188,7 +203,7 @@ npmでは、すでに多種多様なローカルサーバーモジュールが�
 [ダウンロードページ]: https://nodejs.org/ja/download/
 [npm]: https://www.npmjs.com/
 [npmのGitHubリポジトリ]: https://github.com/npm/cli
-[npx]: https://blog.npmjs.org/post/162869356040/introducing-npx-an-npm-package-runner
+[npx]: https://docs.npmjs.com/cli/v8/commands/npx
 [@js-primer/hello-world]: https://github.com/js-primer/hello-world
 [@js-primer/local-server]: https://github.com/js-primer/local-server
 [値の評価と表示]: ../../basic/read-eval-print/README.md

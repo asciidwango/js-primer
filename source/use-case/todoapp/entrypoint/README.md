@@ -80,7 +80,7 @@ todoapp
 # todoapp/ディレクトリに移動する
 $ cd todoapp/
 # todoapp/をルートにしたローカルサーバーを起動する
-$ npx @js-primer/local-server
+$ npx --yes @js-primer/local-server
 
 todoappのローカルサーバーを起動しました。
 次のURLをブラウザで開いてください。

@@ -9,11 +9,11 @@ declare screenshotOnly="${projectDir}/tools/applescript/lib/src/screenshot-only.
 # setup
 mkdir -p "${currentDir}/img/"
 echo "local server 起動"
-npx -q @js-primer/local-server src/ &
+npx --yes -q @js-primer/local-server src/ &
 serverPID=$!
 # screenshot
 echo "screenshotを撮影"
-npx -q wait-on http://localhost:3000 \
+npx --yes -q wait-on http://localhost:3000 \
 && node "${launchFirefox}" --devTools --url "http://localhost:3000/" \
 && read -p "コンソールのスクショ: コンソールタブを開く -> Enter" \
 && node "${screenshotOnly}" --output "${currentDir}/img/index.png" \
@@ -23,4 +23,4 @@ function finish {
   echo "Shutting down the server..."
   pkill js-primer-local-server
 }
-trap finish INT KILL TERM EXIT
+trap finish INT TERM EXIT
