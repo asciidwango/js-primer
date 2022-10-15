@@ -12,8 +12,8 @@ declare screenshotOnly="${projectDir}/tools/applescript/lib/src/screenshot-only.
 # スクショ
 cd "${currentDir}"
 mkdir -p "${currentSectionDir}/img/"
-npx -q @js-primer/local-server . &
-npx -q wait-on http://localhost:3000 \
+npx --yes -q @js-primer/local-server . &
+npx --yes -q wait-on http://localhost:3000 \
 && node "${launchFirefox}" --url "http://localhost:3000/" \
 && read -p "追加イベントのスクショ: 'テスト'を追加 -> Enter" \
 && node "${screenshotOnly}" --output "${currentSectionDir}/img/add-todo-item.png"
@@ -23,4 +23,4 @@ function finish {
   echo "Shutting down the server..."
   pkill js-primer-local-server
 }
-trap finish INT KILL TERM EXIT
+trap finish INT TERM EXIT
