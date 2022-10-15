@@ -63,10 +63,25 @@ Node.jsを使ったコマンドラインツールは数多く公開されてお�
 
 ここでは例として[@js-primer/hello-world][]というサンプル用のパッケージを実行します。
 `npx`コマンドでコマンドラインツールを実行するには、次のように `npx`コマンドにパッケージ名を渡して実行します。
+npx 7から、初めて実行するコマンドはインストール時に対話式のプロンプトでパッケージをインストールしていいか聞かれます。
+このときに、Enterを押すとインストールが開始され、コマンドが実行されます。
 
+```bash
+$ npx @js-primer/hello-world
+Need to install the following packages:
+  @js-primer/hello-world@1.0.0
+Ok to proceed? (y)
+# 初回は@js-primer/hello-worldをインストールしていいかを確認するプロンプトが表示される
+# Enterを押すとインストールが開始され、コマンドが実行される
+
+Hello World!
 ```
+
+デフォルトでは対話式のプロンプトが挟まれますが、次のように`--yes`オプションを付与する自動的にインストールとコマンドが実行されます。
+
+```bash
+# --yesオプションで、インストールの確認プロンプトをスキップする
 $ npx --yes @js-primer/hello-world
-npx: 1個のパッケージを7.921秒でインストールしました。
 Hello World!
 ```
 
