@@ -107,7 +107,9 @@ module.exports = {
                     "https://goo.gl/**",
                     "https://forms.gle/**",
                     "http://localhost:3000/**",
-                    "https://tc39.es/ecma262/**"
+                    // .es が正式なのか不明であるため
+                    // https://github.com/tc39/ecma262/pull/1576
+                    "https:/tc39.github.io/**"
                 ]
             }
             : false
