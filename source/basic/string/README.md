@@ -124,7 +124,7 @@ console.log("¯\\_(ツ)_/¯");
 //　¯\_(ツ)_/¯ と表示される
 ```
 
-<!-- Note: https://tc39.github.io/ecma262/#prod-NonEscapeCharacter
+<!-- Note: https://tc39.es/ecma262/#prod-NonEscapeCharacter
 
 - 指定外の組み合わせもNonEscapeCharacterとして扱われ構文的には無害
 - 単純に \ がないように使われる。
