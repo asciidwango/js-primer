@@ -1490,12 +1490,12 @@ fn();
 
 関数の宣言
 - Set F.[[FormalParameters]] to ParameterList.
-- https://tc39.github.io/ecma262/#sec-functioninitialize
+- https://tc39.es/ecma262/#sec-functioninitialize
 - function objectの[[Environment]]ではなく、[[FormalParameters]]に代入される
 - 仮引数は関数のスコープではなくfunction objectに紐づく
 
 関数の初期化処理
-- https://tc39.github.io/ecma262/#sec-functiondeclarationinstantiation
+- https://tc39.es/ecma262/#sec-functiondeclarationinstantiation
 - [[FormalParameters]]は初期化時に`varEnv`に対して代入される
 - つまり、仮引数はvarで宣言しているのと同じになる
 - スコープという意味では内側のみから参照でき、外からは参照できないという点で同じ
@@ -1547,11 +1547,11 @@ fn(<span class="hljs-number">1</span>);
 <p>ブロックによるスコープのことを<strong>ブロックスコープ</strong>と呼びます。</p>
 <!-- Notes: ブロックスコープと仕様
 
-- ブロック`{}`は新しい[NewDeclarativeEnvironment](https://tc39.github.io/ecma262/#sec-newdeclarativeenvironment "NewDeclarativeEnvironment")を作成する
+- ブロック`{}`は新しい[NewDeclarativeEnvironment](https://tc39.es/ecma262/#sec-newdeclarativeenvironment "NewDeclarativeEnvironment")を作成する
 - つまり、新しいLexicalEnvironmentというスコープを作成している
-- https://tc39.github.io/ecma262/#sec-block-runtime-semantics-evaluation
+- https://tc39.es/ecma262/#sec-block-runtime-semantics-evaluation
 - そして評価する際に、そのブロック内に宣言されている変数をスコープに対してひもづけている
-- https://tc39.github.io/ecma262/#sec-blockdeclarationinstantiation
+- https://tc39.es/ecma262/#sec-blockdeclarationinstantiation
 
  -->
 <p>if文やwhile文などもブロックスコープを作成します。
@@ -1686,10 +1686,10 @@ fn();
 どちらもグローバルスコープに自動的に定義されているという点で大きな使い分けはないため、この章ではどちらも<strong>ビルトインオブジェクト</strong>と呼ぶことにします。</p>
 <!-- Notes: global objectとbuilt-in object
 
-- global object: https://tc39.github.io/ecma262/#sec-global-object
+- global object: https://tc39.es/ecma262/#sec-global-object
     - `global`でアクセスできる予定 https://github.com/tc39/proposal-global
     - Arrayなどもglobal objectのプロパティの一種
-- builtin object: https://tc39.github.io/ecma262/#sec-built-in-object
+- builtin object: https://tc39.es/ecma262/#sec-built-in-object
     - ECMAScriptの定義したものと実装が加えたオブジェクトをまとめた用語
 - 仕様どおりの定義で言えば、紹介してる`undefined`などはあくまでglobal objectのプロパティ
 - `global`を使ってプロパティとしてアクセスする方法は言及していないので省略している
@@ -2247,7 +2247,7 @@ countUp.count = <span class="hljs-number">10</span>;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"スコープという変数などを参照できる範囲を決める概念を紹介します。ブロックスコープや関数スコープなどがどのような働きをしているのかや複数のスコープが重なったときにどのように変数の参照先が決まるのかを紹介します。また、スコープに関係する動作としてクロージャーという性質を紹介します。","title":"関数とスコープ","level":"1.3.18","depth":2,"next":{"title":"関数とthis","level":"1.3.19","depth":2,"path":"basic/function-this/README.md","ref":"./basic/function-this/README.md","articles":[]},"previous":{"title":"ラッパーオブジェクト","level":"1.3.17","depth":2,"path":"basic/wrapper-object/README.md","ref":"./basic/wrapper-object/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"16.18.0","npmversion":"8.19.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/function-scope/README.md","mtime":"2022-10-15T08:03:33.776Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2022-10-15T08:04:07.908Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"スコープという変数などを参照できる範囲を決める概念を紹介します。ブロックスコープや関数スコープなどがどのような働きをしているのかや複数のスコープが重なったときにどのように変数の参照先が決まるのかを紹介します。また、スコープに関係する動作としてクロージャーという性質を紹介します。","title":"関数とスコープ","level":"1.3.18","depth":2,"next":{"title":"関数とthis","level":"1.3.19","depth":2,"path":"basic/function-this/README.md","ref":"./basic/function-this/README.md","articles":[]},"previous":{"title":"ラッパーオブジェクト","level":"1.3.17","depth":2,"path":"basic/wrapper-object/README.md","ref":"./basic/wrapper-object/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"16.18.0","npmversion":"8.19.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/function-scope/README.md","mtime":"2022-10-15T09:23:15.557Z","type":"markdown"},"gitbook":{"version":"3.7.5","time":"2022-10-15T09:23:39.857Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
