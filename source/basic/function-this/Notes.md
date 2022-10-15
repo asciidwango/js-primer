@@ -37,5 +37,5 @@ Notes: `const fn = () => this` はChrome64.0.3282.3では壊れている
 
 ## Reference
 
-- https://tc39.github.io/ecma262/#sec-arrow-function-definitions-runtime-semantics-evaluation
+- https://tc39.es/ecma262/#sec-arrow-function-definitions-runtime-semantics-evaluation
 - https://esdiscuss.org/topic/clarification-regarding-top-level-arrow-functions-and-this-arguments

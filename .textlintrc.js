@@ -106,10 +106,7 @@ module.exports = {
                     "https://github.com/asciidwango/js-primer/issues/new?*",
                     "https://goo.gl/**",
                     "https://forms.gle/**",
-                    "http://localhost:3000/**",
-                    // .es が正式なのか不明であるため
-                    // https://github.com/tc39/ecma262/pull/1576
-                    "https:/tc39.github.io/**"
+                    "http://localhost:3000/**"
                 ]
             }
             : false

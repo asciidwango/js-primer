@@ -532,7 +532,7 @@ console.log(array.slice(4, 1)); // => []
 - 分類: グローバルスコープ
 	- global
 	- [x] 確認: 仕様ではどのような言及
-	- https://tc39.github.io/ecma262/#sec-global-environment-records
+	- https://tc39.es/ecma262/#sec-global-environment-records
 - 分類: ブロックスコープ
 - 機能: スコープチェイン
 - 名前解決: スコープ間で同じ変数の定義とshadowing
@@ -595,21 +595,21 @@ console.log(array.slice(4, 1)); // => []
 	- scopeによって定義されたenvironment
 	- EnvironmentはRecordから構成される
 	- inner env -> outer envによりスコープチェインという現象が起きる
-	- <https://tc39.github.io/ecma262/#sec-lexical-environments>
+	- <https://tc39.es/ecma262/#sec-lexical-environments>
 - Scope chain
-	- https://tc39.github.io/ecma262/#sec-newdeclarativeenvironment
+	- https://tc39.es/ecma262/#sec-newdeclarativeenvironment
 	- スコープを作成するときにouter lexicale envへのリファレンスを
 - A global environment is a Lexical Environment
 	- GlobalもLexicalの一種
 	- globalはouterがnull
 - Envの種類
-	- <https://tc39.github.io/ecma262/#table-23>
+	- <https://tc39.es/ecma262/#table-23>
 	- LexicalEnv
 		- letやconst、classはこちらに登録する
-		- https://tc39.github.io/ecma262/#sec-let-and-const-declarations
+		- https://tc39.es/ecma262/#sec-let-and-const-declarations
 	- VariableEnv
 		- varはこちらに登録する
-		- https://tc39.github.io/ecma262/#sec-variable-statement
+		- https://tc39.es/ecma262/#sec-variable-statement
 	- この２つのenvは同じことがあり、実行Contextに紐づく
 - module environment もあるよ
 	- module envはglobal envとなることがある
@@ -664,7 +664,7 @@ function getValue(variableName, currentScope) {
 ## Arrow Functionとthis
 
 - Arrow Functionでは`this`が`[[ThisMode]]`が`lexical`になる
-- https://tc39.github.io/ecma262/#sec-functioninitialize
+- https://tc39.es/ecma262/#sec-functioninitialize
 - lexicalではもっとも近いfunctionを参照するようになる = 
 
 ## 削った章

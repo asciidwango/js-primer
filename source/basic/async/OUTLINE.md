@@ -22,7 +22,7 @@
 ## 仕様
 
 - PendingJob
-- https://tc39.github.io/ecma262/#sec-enqueuejob
+- https://tc39.es/ecma262/#sec-enqueuejob
 - https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#dom-settimeout
 - ECMAScript と　DOM
      - https://html.spec.whatwg.org/multipage/webappapis.html#integration-with-the-javascript-job-queue
@@ -333,9 +333,9 @@ try{
             - return or awaitについて
     - 仕様
         - `async function`では`[[FunctionKind]]`が`async`の関数を作成する
-        - https://tc39.github.io/ecma262/#sec-createdynamicfunction
+        - https://tc39.es/ecma262/#sec-createdynamicfunction
         - 必ずPromiseを返す
-        - <https://tc39.github.io/ecma262/#sec-async-function-definitions-EvaluateBody>
+        - <https://tc39.es/ecma262/#sec-async-function-definitions-EvaluateBody>
         - Generatorで再現できるけど、Async FunctionはGeneratorとは関係ない仕様
 - 未使用
     - TODO: AgentとJob Queueと実行コンテキスト解説
@@ -381,7 +381,7 @@ Promise本から抽出した内容
     - Promiseは統一したインタフェースがあることについて
 - [1.2. Promise Overview](http://azu.github.io/promises-book/#promises-overview)
     - コンストラクタ、インスタンスメソッド、静的メソッド
-    - Promiseの3つの状態 [`[[PromiseState]]`](https://tc39.github.io/ecma262/#table-59)
+    - Promiseの3つの状態 [`[[PromiseState]]`](https://tc39.es/ecma262/#table-59)
         - fulfilled => onFulfilled
         - rejected => onRejectedの対応
         - Pending

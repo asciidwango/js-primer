@@ -33,7 +33,7 @@
 	- global
 	- ビルトインオブジェクトが参照できるのもスコープチェイン仕組みによる
 	- [x] 確認: 仕様ではどのような言及
-	- https://tc39.github.io/ecma262/#sec-global-environment-records
+	- https://tc39.es/ecma262/#sec-global-environment-records
 - @名前解決 スコープ間で同じ変数の定義とshadowingの問題
 	- スコープチェインの仕組みを理解するとなぜ起きるのかが分かる
 - @コラム スコープは小さく、変数の影響範囲は小さく
@@ -132,21 +132,21 @@ console.log(obj);// => {}
 	- scopeによって定義されたenvironment
 	- EnvironmentはRecordから構成される
 	- inner env -> outer envによりスコープチェインという現象が起きる
-	- <https://tc39.github.io/ecma262/#sec-lexical-environments>
+	- <https://tc39.es/ecma262/#sec-lexical-environments>
 - Scope chain
-	- https://tc39.github.io/ecma262/#sec-newdeclarativeenvironment
+	- https://tc39.es/ecma262/#sec-newdeclarativeenvironment
 	- スコープを作成するときにouter lexicale envへのリファレンスを
 - A global environment is a Lexical Environment
 	- GlobalもLexicalの一種
 	- globalはouterがnull
 - Envの種類
-	- <https://tc39.github.io/ecma262/#table-23>
+	- <https://tc39.es/ecma262/#table-23>
 	- LexicalEnv
 		- letやconst、classはこちらに登録する
-		- https://tc39.github.io/ecma262/#sec-let-and-const-declarations
+		- https://tc39.es/ecma262/#sec-let-and-const-declarations
 	- VariableEnv
 		- varはこちらに登録する
-		- https://tc39.github.io/ecma262/#sec-variable-statement
+		- https://tc39.es/ecma262/#sec-variable-statement
 	- この２つのenvは同じことがあり、実行Contextに紐づく
 - module environment もあるよ
 	- module envはglobal envとなることがある
@@ -175,7 +175,7 @@ const fnScope = {
 		outer: globalScope, // <= 現在の実装スコープ = globalScope
 		envRec: new Map() // <= envRecはスコープ毎に作られる
 		// Object.create(null) = arguments
-		// https://tc39.github.io/ecma262/#sec-createmappedargumentsobject
+		// https://tc39.es/ecma262/#sec-createmappedargumentsobject
 };
 // function fnの中の変数処理
 // `arg` 仮引数はfnScopeのenvRecに記録される
@@ -203,7 +203,7 @@ function getValue(variableName, currentScope) {
 ## Arrow Functionとthis
 
 - Arrow Functionでは`this`が`[[ThisMode]]`が`lexical`になる
-- https://tc39.github.io/ecma262/#sec-functioninitialize
+- https://tc39.es/ecma262/#sec-functioninitialize
 - lexicalではもっとも近いfunctionを参照するようになる = 
 
 
@@ -401,7 +401,7 @@ function submit(data){
 			- https://twitter.com/azu_re/status/911872145252159488
 			- https://twitter.com/azu_re/status/911874213971034112
 			- varで宣言された変数はLetのLexicalEnviromentとは異なり、VariableEnvironmentに紐づく
-			- https://tc39.github.io/ecma262/#sec-execution-contexts``
+			- https://tc39.es/ecma262/#sec-execution-contexts``
 	- @具体例 巻き上げられた処理の擬似コード
 	- @事実 巻き上げはもっとも近くの関数スコープまたはグローバルスコープに変数が紐づく
 		- つまりブロックスコープを無視します

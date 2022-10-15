@@ -111,7 +111,7 @@
 		- `argument`、`super`、`this`、`new.target`を束縛
 	- Arrow Function
 		- `argument`、`super`、`this`、`new.target`を束縛しない
-		- <https://tc39.github.io/ecma262/#prod-asi-rules-ArrowFunction>
+		- <https://tc39.es/ecma262/#prod-asi-rules-ArrowFunction>
 	- Strict Mode、Module Contextの細かい違い
 		- Top Levelの`this`が違う
 
@@ -319,22 +319,22 @@ class K {}
 
 `this` bindingの設定は関数を呼ぶときに次のルートで決定される
 
-- https://tc39.github.io/ecma262/#sec-evaluatecall
-- https://tc39.github.io/ecma262/#sec-call
-- https://tc39.github.io/ecma262/#sec-ecmascript-function-objects-call-thisargument-argumentslist
-- https://tc39.github.io/ecma262/#sec-ordinarycallbindthis
+- https://tc39.es/ecma262/#sec-evaluatecall
+- https://tc39.es/ecma262/#sec-call
+- https://tc39.es/ecma262/#sec-ecmascript-function-objects-call-thisargument-argumentslist
+- https://tc39.es/ecma262/#sec-ordinarycallbindthis
 
 Write: 関数呼び出するときに、事前に`[[ThisValue]]`を決める処理が実行される。
-`[[ThisValue]]`には次のステップの結果が入る。(ただしArrow Functionはlexicalなので`[[ThisValue]]`を持たない。[Arrow Functionの詳細](https://tc39.github.io/ecma262/#sec-ordinarycallbindthis))
+`[[ThisValue]]`には次のステップの結果が入る。(ただしArrow Functionはlexicalなので`[[ThisValue]]`を持たない。[Arrow Functionの詳細](https://tc39.es/ecma262/#sec-ordinarycallbindthis))
 
-- [12.3.4.2Runtime Semantics: EvaluateCall(func, ref, arguments, tailPosition )](https://tc39.github.io/ecma262/#sec-evaluatecall "12.3.4.2Runtime Semantics: EvaluateCall(func, ref, arguments, tailPosition )")
+- [12.3.4.2Runtime Semantics: EvaluateCall(func, ref, arguments, tailPosition )](https://tc39.es/ecma262/#sec-evaluatecall "12.3.4.2Runtime Semantics: EvaluateCall(func, ref, arguments, tailPosition )")
 - プロパティならば
 	- `this`はGetThisValueの結果
 		- `super.prop`なら
 			- `super`となる
 		- それ以外なら
-			- [6.2.4.1GetBase ( V )](https://tc39.github.io/ecma262/#sec-getbase "6.2.4.1GetBase ( V )")の結果 - いわゆるレシーバが`this`となる
-- それ以外(ただの関数呼び出し)なら[WithBaseObject](https://tc39.github.io/ecma262/#sec-object-environment-records-withbaseobject)の結果
+			- [6.2.4.1GetBase ( V )](https://tc39.es/ecma262/#sec-getbase "6.2.4.1GetBase ( V )")の結果 - いわゆるレシーバが`this`となる
+- それ以外(ただの関数呼び出し)なら[WithBaseObject](https://tc39.es/ecma262/#sec-object-environment-records-withbaseobject)の結果
 	- withの場合
 		- with bingingの値
 	- それ以外
@@ -342,7 +342,7 @@ Write: 関数呼び出するときに、事前に`[[ThisValue]]`を決める処�
 
 Read: `this`を読み取るときは、次のステップで探索する。
 
-- https://tc39.github.io/ecma262/#sec-getthisenvironment
+- https://tc39.es/ecma262/#sec-getthisenvironment
 	- `this`の解決はスコープと同じく、一個つづ順に内側から外側へ探すのはスコープと同じ
 	- ただし、Arrow Functionは`[[ThisValue]]`を持たないので必ずスキップされる
 	- つまり、もっと近いコンテキストの`[[ThisValue]]`の値が`this`となる
@@ -378,7 +378,7 @@ Read: `this`を読み取るときは、次のステップで探索する。
 仕様としても`[[Call]]`には`this`を引数として渡している。
 これは`call`メソッドを使うことで明示的に渡すことができる。
 
-- https://tc39.github.io/ecma262/#sec-call
+- https://tc39.es/ecma262/#sec-call
 
 
 ### `this` in the future
@@ -414,7 +414,7 @@ console.log(m()); => undefined
 
 1. `o.m` ではなく `m()`で実行されている
 2. `m`は関数なので、実行するときに`m`のFunction Envの`[[ThisValue]]`には値が設定される
-	3. <https://tc39.github.io/ecma262/#sec-evaluatecall>
+	3. <https://tc39.es/ecma262/#sec-evaluatecall>
 3. この時の`[[ThisValue]]`は`m`がプロパティではないので、`Let thisValue be refEnv.WithBaseObject().`となる
 	4. `WithBaseObject`は`with`じゃないなら`undefined`となる
 5. つまり`thisValue`は`undefined`となる
@@ -435,7 +435,7 @@ console.log(m()); => undefined
 
 YES
 
-- <https://tc39.github.io/ecma262/#sec-call>
+- <https://tc39.es/ecma262/#sec-call>
 - `[[Call]]`において暗黙的渡された`V`が`This`です
 
 ## 開眼JavaScriptの`this`の章

@@ -272,7 +272,7 @@
 - 未使用
     - `instanceof`演算子は`__proto__`と`prototype`の比較
         - https://www.slideshare.net/zhiyelee/protoandprototype
-        - https://tc39.github.io/ecma262/#sec-ordinaryhasinstance
+        - https://tc39.es/ecma262/#sec-ordinaryhasinstance
 	- new演算子は何をやっているのかについて
 	- メソッドはnewできない件について
 	- クラスとtypeofの結果
@@ -357,11 +357,11 @@ C(); // => TypeError
 
 これって意外にも `[[Call]]` で クラスのコンストラクタ関数は呼び出すと例外を投げるって書いてあるんだ。てっきり定義するときに例外を投げる関数を登録みたいな感じだと思ってた。
 
-- [Runtime Semantics: ClassDefinitionEvaluation](https://tc39.github.io/ecma262/#sec-runtime-semantics-classdefinitionevaluation "Runtime Semantics: ClassDefinitionEvaluation")
+- [Runtime Semantics: ClassDefinitionEvaluation](https://tc39.es/ecma262/#sec-runtime-semantics-classdefinitionevaluation "Runtime Semantics: ClassDefinitionEvaluation")
 	- `class`で定義した場合
-- [MakeClassConstructor ( F )](https://tc39.github.io/ecma262/#sec-makeclassconstructor "MakeClassConstructor ( F )")
+- [MakeClassConstructor ( F )](https://tc39.es/ecma262/#sec-makeclassconstructor "MakeClassConstructor ( F )")
 	- このコンストラクタ関数の`[[FunctionKind]]`が`classConstructor`になる
-- [`[[Call]] ( thisArgument, argumentsList )`](https://tc39.github.io/ecma262/#sec-ecmascript-function-objects-call-thisargument-argumentslist)
+- [`[[Call]] ( thisArgument, argumentsList )`](https://tc39.es/ecma262/#sec-ecmascript-function-objects-call-thisargument-argumentslist)
 	- `[[FunctionKind]]`が`classConstructor`な関数は`TypeError`を投げる
 
 

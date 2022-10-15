@@ -149,7 +149,7 @@
 - throw = 例外を発生させる構文
 - Error = エラーを表現するために標準化されているオブジェクト
 - @azu: この章ではこういう定義ですという形でやらないとダメそう。
-- @azu: あとはdebugger; https://tc39.github.io/ecma262/#sec-debugger-statement か
+- @azu: あとはdebugger; https://tc39.es/ecma262/#sec-debugger-statement か
 - これECMAScriptの仕様にあるんだな。
 - Promiseと同じでイベントは飛ぶから後は実行環境で何かしてみたいな感じ
 - 省いても良さそう。

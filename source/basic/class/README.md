@@ -432,7 +432,7 @@ Arrayの`length`プロパティは、`length`プロパティへ値を代入し�
 <!-- Note:
 
 - 仕様的にもIf newLen ≥ oldLenでは`length`だけを変更している
-- <https://tc39.github.io/ecma262/#sec-arraysetlength>
+- <https://tc39.es/ecma262/#sec-arraysetlength>
 
 -->
 
@@ -1577,9 +1577,9 @@ console.log(child instanceof Child); // => true
 <!-- Note: instanceof演算子とは`[[Prototype]]`プロパティ
 
 - `instanceof`演算子は`[[Prototype]]`プロパティを見ている
-- <https://tc39.github.io/ecma262/#sec-ordinaryhasinstance>
+- <https://tc39.es/ecma262/#sec-ordinaryhasinstance>
 - `Symbol.hasInstance`によって詳細は変わるため絶対とは言い切れない
-- <https://tc39.github.io/ecma262/#sec-symbol.hasinstance>
+- <https://tc39.es/ecma262/#sec-symbol.hasinstance>
 
 -->
 

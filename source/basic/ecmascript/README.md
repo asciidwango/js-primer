@@ -40,7 +40,7 @@ ES5.1からES2015がでるまで4年もの歳月がかかっているのに対�
 ## Living StandardとなるECMAScript {#living-standard}
 
 現在、ECMAScriptの仕様書のドラフトはGitHub上の[tc39/ecma262][]で管理されており、日々更新されています。
-そのため、本当の意味での最新のECMAScript仕様は<https://tc39.github.io/ecma262/>となります。
+そのため、本当の意味での最新のECMAScript仕様は<https://tc39.es/ecma262/>となります。
 このように更新ごとにバージョン番号をつけずに、常に最新版を公開する仕様のことを**Living Standard**と呼びます。
 
 ECMAScriptはLiving Standardですが、これに加えてECMAScript 2017のようにバージョン番号をつけたものも公開されています。

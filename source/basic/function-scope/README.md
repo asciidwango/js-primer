@@ -52,12 +52,12 @@ console.log(x); // => ReferenceError: x is not defined
 
 関数の宣言
 - Set F.[[FormalParameters]] to ParameterList.
-- https://tc39.github.io/ecma262/#sec-functioninitialize
+- https://tc39.es/ecma262/#sec-functioninitialize
 - function objectの[[Environment]]ではなく、[[FormalParameters]]に代入される
 - 仮引数は関数のスコープではなくfunction objectに紐づく
 
 関数の初期化処理
-- https://tc39.github.io/ecma262/#sec-functiondeclarationinstantiation
+- https://tc39.es/ecma262/#sec-functiondeclarationinstantiation
 - [[FormalParameters]]は初期化時に`varEnv`に対して代入される
 - つまり、仮引数はvarで宣言しているのと同じになる
 - スコープという意味では内側のみから参照でき、外からは参照できないという点で同じ
@@ -121,11 +121,11 @@ console.log(x); // => ReferenceError: x is not defined
 
 <!-- Notes: ブロックスコープと仕様
 
-- ブロック`{}`は新しい[NewDeclarativeEnvironment](https://tc39.github.io/ecma262/#sec-newdeclarativeenvironment "NewDeclarativeEnvironment")を作成する
+- ブロック`{}`は新しい[NewDeclarativeEnvironment](https://tc39.es/ecma262/#sec-newdeclarativeenvironment "NewDeclarativeEnvironment")を作成する
 - つまり、新しいLexicalEnvironmentというスコープを作成している
-- https://tc39.github.io/ecma262/#sec-block-runtime-semantics-evaluation
+- https://tc39.es/ecma262/#sec-block-runtime-semantics-evaluation
 - そして評価する際に、そのブロック内に宣言されている変数をスコープに対してひもづけている
-- https://tc39.github.io/ecma262/#sec-blockdeclarationinstantiation
+- https://tc39.es/ecma262/#sec-blockdeclarationinstantiation
 
  -->
 
@@ -293,10 +293,10 @@ fn();
 
 <!-- Notes: global objectとbuilt-in object
 
-- global object: https://tc39.github.io/ecma262/#sec-global-object
+- global object: https://tc39.es/ecma262/#sec-global-object
     - `global`でアクセスできる予定 https://github.com/tc39/proposal-global
     - Arrayなどもglobal objectのプロパティの一種
-- builtin object: https://tc39.github.io/ecma262/#sec-built-in-object
+- builtin object: https://tc39.es/ecma262/#sec-built-in-object
     - ECMAScriptの定義したものと実装が加えたオブジェクトをまとめた用語
 - 仕様どおりの定義で言えば、紹介してる`undefined`などはあくまでglobal objectのプロパティ
 - `global`を使ってプロパティとしてアクセスする方法は言及していないので省略している

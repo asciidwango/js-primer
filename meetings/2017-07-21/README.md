@@ -31,7 +31,7 @@
 
 - @azu: 例外的なケースが多すぎる気がする
 - 仕様のNoteが6つもある
-- <https://tc39.github.io/ecma262/#sec-json.stringify>
+- <https://tc39.es/ecma262/#sec-json.stringify>
 - これはTableなどで対応をまとめて書いたほうが楽なのでは?
 
 | 種類        | シリアライズ結果   |
