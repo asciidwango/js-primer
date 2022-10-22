@@ -1,6 +1,6 @@
 .book .book-body .page-wrapper .page-inner section.normal pre,
 .book .book-body .page-wrapper .page-inner section.normal code {
-  /* From highlight.js@10.7.1/styles/tomorrow.css */
+  /* From highlight.js@10.7.3/styles/tomorrow.css */
   /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
   /* Tomorrow Comment */
   /* Tomorrow Red */
@@ -96,7 +96,7 @@
 }
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal pre,
 .book.color-theme-1 .book-body .page-wrapper .page-inner section.normal code {
-  /* From highlight.js@10.7.1/styles/solarized-light.css */
+  /* From highlight.js@10.7.3/styles/solarized-light.css */
   /*
 
 Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmail.com>
@@ -209,7 +209,7 @@ Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmai
 }
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal pre,
 .book.color-theme-2 .book-body .page-wrapper .page-inner section.normal code {
-  /* From highlight.js@10.7.1/styles/tomorrow-night-bright.css */
+  /* From highlight.js@10.7.3/styles/tomorrow-night-bright.css */
   /* Tomorrow Night Bright Theme */
   /* Original theme - https://github.com/chriskempson/tomorrow-theme */
   /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
