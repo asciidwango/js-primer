@@ -59,7 +59,7 @@ Pull Requestはいつでも歓迎しています。
 1. Forkする
 2. Branchを作る: `git checkout -b my-new-feature`
 3. テストする: `npm install && npm test`
-3. 変更をコミットする: `git commit -am 'Add some feature'`
+3. 変更をコミットする: `git commit -am 'feat: add some feature'`
 4. Pushする: `git push origin my-new-feature`
 5. Pull Requestを送る :D
 
