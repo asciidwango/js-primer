@@ -330,9 +330,9 @@ Node.jsで実行できないビルドインオブジェクトを使うパター�
 ## コミットメッセージ規約
 
 
-AngularJSのGit Commit Guidelinesをベースとしています。
+AngularのGit Commit Guidelinesをベースとしています。
 
-- [conventional-changelog-angular/convention.md](https://github.com/conventional-changelog/conventional-changelog-angular/blob/master/convention.md "conventional-changelog-angular/convention.md at master · conventional-changelog/conventional-changelog-angular")
+- https://github.com/conventional-changelog/conventional-changelog/blob/master/packages/conventional-changelog-angular/README.md
 
 以下のような形で
 
@@ -341,6 +341,9 @@ AngularJSのGit Commit Guidelinesをベースとしています。
 - 3行目から本文
 
 最後に関連するIssue(任意)を書きます。
+`fix #<issue番号>` のように書くことで、PRをマージした時に自動的にIssueを閉じることができます。
+
+- [Linking a pull request to an issue - GitHub Docs](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue)
 
 ```
 feat(ngInclude): add template url parameter to events
