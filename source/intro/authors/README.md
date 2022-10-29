@@ -9,7 +9,7 @@ description: "JavaScript Primerの著者紹介"
 
 ISO/IEC JTC 1/SC 22/ECMAScript Ad Hoc委員会 エキスパートでECMAScript、JSONの仕様に関わる。
 2011年にJSer.infoを立ち上げ、継続的にJavaScriptの情報を発信している。
-ライフワークとしてOSSへのコントリビューションをしている。
+ライフワークとしてオープンソースへのコントリビューションをしている。
 
 - Twitter: https://twitter.com/azu_re
 - GitHub: https://github.com/azu
