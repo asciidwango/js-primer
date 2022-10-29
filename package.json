@@ -105,7 +105,7 @@
     "textlint-rule-eslint": "^4.0.0",
     "textlint-rule-footnote-order": "^1.0.3",
     "textlint-rule-inline-code-denylist": "workspace:textlint-rule-inline-code-denylist",
-    "textlint-rule-no-dead-link": "^4.8.0",
+    "textlint-rule-no-dead-link": "^5.0.0",
     "textlint-rule-no-js-function-paren": "^1.0.1",
     "textlint-rule-no-use-column": "workspace:textlint-rule-no-use-column",
     "textlint-rule-no-use-prototype-hash": "workspace:textlint-rule-no-use-prototype-hash",
