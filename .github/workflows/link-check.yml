@@ -6,7 +6,7 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
-    name: E2E
+    name: Link Check
     steps:
       - uses: actions/checkout@v3
       - name: Setup Node.js
