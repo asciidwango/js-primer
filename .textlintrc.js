@@ -107,7 +107,8 @@ module.exports = {
                     "https://goo.gl/**",
                     "https://forms.gle/**",
                     "http://localhost:3000/**"
-                ]
+                ],
+                "maxRetryTime": 90
             }
             : false
     }
