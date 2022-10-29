@@ -4,7 +4,7 @@
   "license": "MIT",
   "version": "4.0.0",
   "description": "📖 JavaScript Primer - 迷わないための入門書",
-  "packageManager": "npm@8.15.0",
+  "packageManager": "npm@8.19.2",
   "type": "module",
   "directories": {
     "test": "test"

@@ -21,7 +21,7 @@
   ],
   "variables": {
     "esversion": "2022",
-    "nodeversion": "16.18.0",
+    "nodeversion": "18.12.0",
     "npmversion": "8.19.2",
     "triplebackticks": "```",
     "console": "<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"
