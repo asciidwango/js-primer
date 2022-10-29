@@ -65,11 +65,11 @@ IssueやPull Requestについては、次のページを参照してください
 
     npm install
 
-Node.js 16.18.0以上とnpm 8.19.2以上が必要です。
+Node.js v18.12.0以上とnpm 8.19.2以上が必要です。
 
 ```
 $ node -v
-16.18.0
+v18.12.0
 $ npm -v
 8.19.2
 ```
@@ -150,5 +150,5 @@ jsprimerプロジェクトは次のメンバーで構成されています。
 ## OSS Supporters
 
 <a href="https://www.netlify.com">
-  <img src="https://www.netlify.com/img/global/badges/netlify-color-bg.svg"/>
+  <img src="https://www.netlify.com/img/global/badges/netlify-color-bg.svg" alt="Netlify"/>
 </a>
