@@ -23,7 +23,7 @@ description: "ブラウザでJavaScriptコードを実行する方法につい�
 この書籍ではブラウザとして[Firefox][]を利用します。
 次のURLからFirefoxをダウンロードし、インストールしてください。
 
-- Firefox: <https://www.mozilla.org/ja/firefox/>
+- Firefox: <https://www.mozilla.org/ja/firefox/new/>
 
 この書籍で紹介するサンプルコードのほとんどは、Google Chrome、Microsoft Edge、Safariなどのブラウザの最新版でも動作します。
 一方で、古いJavaScriptしかサポートしていないInternet Explorerでは多くのコードは動作しません。
@@ -340,7 +340,7 @@ JavaScriptにおいては多くのエラーはすでに類似するケースが�
 エラーがWebコンソールに表示されているならば、そのエラーは修正できます。
 エラーを過度に怖がる必要はありません。エラーメッセージなどのヒントを使ってエラーを修正していけるようにしましょう。
 
-[Firefox]: https://www.mozilla.org/ja/firefox/
+[Firefox]: https://www.mozilla.org/ja/firefox/new/
 [Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
 [Visual Studio Code]: https://code.visualstudio.com/
 [Google]: https://www.google.com/
