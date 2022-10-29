@@ -101,7 +101,7 @@ module.exports = {
         "no-dead-link": IS_LINK_CHECK
             ? {
                 "concurrency": 1,
-                "keepAlive": false,
+                "keepAlive": true,
                 "ignore": [
                     "https://github.com/asciidwango/js-primer/issues/new?*",
                     "https://goo.gl/**",
