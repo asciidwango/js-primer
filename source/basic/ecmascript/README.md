@@ -188,6 +188,6 @@ ECMAScriptにおいては策定プロセスという形でどのような段階�
 [polyfill.io]: https://polyfill.io/v2/docs/  "Polyfill service"
 [MDN Web Docs]: https://developer.mozilla.org/ja/  "MDN Web Docs"
 [^1]: ECMAScript 4は複雑で大きな変更が含まれており、合意を得ることができずに仕様が破棄されました。
-[^2]: この策定プロセスは<https://tc39.github.io/process-document/>に詳細が書かれています。
+[^2]: この策定プロセスは<https://tc39.es/process-document/>に詳細が書かれています。
 [^3]: ES2015の仕様編集者であるAllen Wirfs-Brock氏の書いた[Programming Language Standardization](http://wirfs-brock.com/allen/files/papers/standpats-asianplop2016.pdf)に詳細が書かれています。
 [^4]: [Inactive Proposals](https://github.com/tc39/proposals/blob/main/inactive-proposals.md)に策定を中止したプロポーザルの一覧が公開されています。
