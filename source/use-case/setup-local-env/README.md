@@ -198,14 +198,14 @@ npmでは、すでに多種多様なローカルサーバーモジュールが�
 この書籍では、利用するローカルサーバーの機能で違いが出ないように`@js-primer/local-server`というこの書籍用のローカルサーバーモジュールを利用します。
 
 [Node.js]: https://nodejs.org/ja/
-[V8]: https://developers.google.com/v8/
+[V8]: https://v8.dev/
 [Electron]: https://www.electronjs.org/
 [ダウンロードページ]: https://nodejs.org/ja/download/
 [npm]: https://www.npmjs.com/
 [npmのGitHubリポジトリ]: https://github.com/npm/cli
-[npx]: https://docs.npmjs.com/cli/v8/commands/npx
+[npx]: https://docs.npmjs.com/cli/v8/commands/npx/
 [@js-primer/hello-world]: https://github.com/js-primer/hello-world
 [@js-primer/local-server]: https://github.com/js-primer/local-server
 [値の評価と表示]: ../../basic/read-eval-print/README.md
-[Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
+[Webコンソールを開く]: https://firefox-source-docs.mozilla.org/devtools-user/web_console/ui_tour/index.html
 [Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy

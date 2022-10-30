@@ -209,7 +209,7 @@ console.log(future.format("YYYY/MM/DD"));
 [Date.parse]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date/parse
 [Date.now]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date/now
 [Date.UTC]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date/UTC
-[RFC2822]: https://tools.ietf.org/html/rfc2822#section-3.3
+[RFC2822]: https://www.rfc-editor.org/rfc/rfc2822#section-3.3
 [ISO 8601]: https://ja.wikipedia.org/wiki/ISO_8601
 [moment.js]: https://momentjs.com/
 [js-joda]: https://github.com/js-joda/js-joda

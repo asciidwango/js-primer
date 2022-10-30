@@ -161,8 +161,8 @@ ECMAScriptの仕様がどのように策定されているかについては「[
 
 [^1]: Automatic Semicolon Insertionと呼ばれる仕組みです。
 
-[Ecma International]: http://www.ecma-international.org/  "Ecma International"
-[ECMAScript]: http://www.ecma-international.org/publications/standards/Ecma-262.htm  "Standard ECMA-262"
+[Ecma International]: https://www.ecma-international.org/  "Ecma International"
+[ECMAScript]: https://www.ecma-international.org/publications-and-standards/standards/ecma-262/  "Standard ECMA-262"
 [第一部: 基本文法]: ../README.md
 [第二部: 応用編（ユースケース）]: ../../use-case/README.md
 [変数と宣言]: ../variables/README.md

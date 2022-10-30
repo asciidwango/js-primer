@@ -341,7 +341,7 @@ JavaScriptにおいては多くのエラーはすでに類似するケースが�
 エラーを過度に怖がる必要はありません。エラーメッセージなどのヒントを使ってエラーを修正していけるようにしましょう。
 
 [Firefox]: https://www.mozilla.org/ja/firefox/new/
-[Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
+[Webコンソールを開く]: https://firefox-source-docs.mozilla.org/devtools-user/web_console/ui_tour/index.html
 [Visual Studio Code]: https://code.visualstudio.com/
 [Google]: https://www.google.com/
 [Stack Overflow]: https://stackoverflow.com/

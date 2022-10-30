@@ -177,15 +177,15 @@ ECMAScriptにおいては策定プロセスという形でどのような段階�
 
 日々変化しているソフトウェアにおいては、自身に適切な調べ方を持つことが大切です。
 
-[Ecma International]: http://www.ecma-international.org/  "Ecma International"
-[Standard ECMA-262]: https://www.ecma-international.org/publications/standards/Ecma-262.htm "Standard ECMA-262"
+[Ecma International]: https://www.ecma-international.org/  "Ecma International"
+[Standard ECMA-262]: https://www.ecma-international.org/publications-and-standards/standards/ecma-262/ "Standard ECMA-262"
 [tc39/proposals]: https://github.com/tc39/proposals  "tc39/proposals: Tracking ECMAScript Proposals"
 [tc39/ecma262]: https://github.com/tc39/ecma262  "tc39/ecma262: Status, process, and documents for ECMA262"
-[tc39/tc39-notes]: https://github.com/tc39/tc39-notes  "tc39/tc39-notes: TC39 Meeting Notes"
+[tc39/tc39-notes]: https://github.com/tc39/notes  "tc39/tc39-notes: TC39 Meeting Notes"
 [Babel]: https://babeljs.io/  "Babel · The compiler for writing next generation JavaScript"
 [TypeScript]: https://www.typescriptlang.org/  "TypeScript - JavaScript that scales."
 [core-js]: https://github.com/zloirock/core-js  "zloirock/core-js: Standard Library"
-[polyfill.io]: https://polyfill.io/v2/docs/  "Polyfill service"
+[polyfill.io]: https://polyfill.io/v3/  "Polyfill service"
 [MDN Web Docs]: https://developer.mozilla.org/ja/  "MDN Web Docs"
 [^1]: ECMAScript 4は複雑で大きな変更が含まれており、合意を得ることができずに仕様が破棄されました。
 [^2]: この策定プロセスは<https://tc39.es/process-document/>に詳細が書かれています。

@@ -163,7 +163,7 @@ result.innerHTML = view;
 [Element]: https://developer.mozilla.org/ja/docs/Web/API/Element
 [手続き的にツリー構造を構築する]: https://developer.mozilla.org/ja/docs/Web/API/Node/appendChild
 [エスケープ用のライブラリ]: https://github.com/teppeis/htmlspecialchars
-[テンプレートリテラルをタグづけ]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/template_strings#タグづけされたTemplate_literal
+[テンプレートリテラルをタグづけ]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Template_literals#タグづけされたTemplate_literal
 [文字列]: ../../../basic/string/README.md
 [タグつきテンプレート関数]: ../../../basic/string/README.md#tagged-template-function
 [テンプレートリテラル]: ../../../basic/string/README.md#create

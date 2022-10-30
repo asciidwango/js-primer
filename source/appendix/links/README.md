@@ -184,13 +184,13 @@ NW.jsはブラウザの中からNode.jsの開発エコシステムを直接利�
 [VSCode]: https://code.visualstudio.com/
 [Atom]: https://atom.io/
 
-[開発ツール | MDN]: https://developer.mozilla.org/ja/docs/Tools
-[Chrome DevTools]: https://developers.google.com/web/tools/chrome-devtools/?hl=ja
+[開発ツール | MDN]: https://firefox-source-docs.mozilla.org/devtools-user/index.html
+[Chrome DevTools]: https://developer.chrome.com/docs/devtools/
 [Safari Developer Help]: https://support.apple.com/ja-jp/guide/safari-developer/welcome/mac
 
-[PageSpeed Insights]: https://developers.google.com/speed/pagespeed/insights/
+[PageSpeed Insights]: https://pagespeed.web.dev/?utm_source=psi&utm_medium=redirect
 [WebPagetest]: https://www.webpagetest.org/
-[Lighthouse]: https://developers.google.com/web/tools/lighthouse/?hl=ja
+[Lighthouse]: https://developer.chrome.com/docs/lighthouse/overview/
 
 [GitHub Pages]: https://pages.github.com/
 [Firebase Hosting]: https://firebase.google.com/products/hosting/?hl=ja

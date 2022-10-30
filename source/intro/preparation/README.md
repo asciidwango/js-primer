@@ -113,7 +113,7 @@ JavaScriptという言語は、常に変化している言語としても知ら�
 
  -->
 
-[Microsoft Edge]: https://www.microsoft.com/ja-jp/windows/microsoft-edge
+[Microsoft Edge]: https://www.microsoft.com/ja-jp/edge?form=MA13FJ
 [Firefox]: https://www.mozilla.org/ja/firefox/new/
 [Google Chrome]: https://www.google.com/intl/ja_ALL/chrome/
 [Safari]: https://www.apple.com/jp/safari/

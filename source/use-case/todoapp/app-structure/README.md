@@ -176,4 +176,4 @@ const form = document.querySelector("#js-form");
 } -->
 
 [エントリーポイント]: ../entrypoint/README.md
-[CSSセレクタ]: https://developer.mozilla.org/ja/docs/Learn/CSS/Introduction_to_CSS/Selectors
+[CSSセレクタ]: https://developer.mozilla.org/ja/docs/Learn/CSS/Building_blocks/Selectors

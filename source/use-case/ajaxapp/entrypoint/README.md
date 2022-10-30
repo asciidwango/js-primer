@@ -115,5 +115,5 @@ JavaScriptとDOMはWebアプリケーション開発において切っても切�
 
 [Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy 
 [アプリケーション開発の準備]: ../../setup-local-env/README.md
-[Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
+[Webコンソールを開く]: https://firefox-source-docs.mozilla.org/devtools-user/web_console/ui_tour/index.html
 [DOM]: https://developer.mozilla.org/ja/docs/Web/API/Document_Object_Model/Introduction

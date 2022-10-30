@@ -327,7 +327,7 @@ window.addEventListener("unload", () => {
 JavaScriptという変化していく言語やそれを利用する環境においては重要です。
 
 
-[TodoMVC]: http://todomvc.com/
+[TodoMVC]: https://todomvc.com/
 [ECMAScript]: ../../../basic/ecmascript/README.md
 
 [^1]: ライブラリやフレームワークを使わずに実装したJavaScriptをVanilla JSと呼ぶことがあります。

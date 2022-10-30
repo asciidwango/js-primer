@@ -230,7 +230,7 @@ console.log(JSON.stringify({ x: obj })); // => '{"x":"bar"}'
 - JSON形式にシリアライズできないオブジェクトもある
 - `JSON.stringify`はシリアライズ対象の`toJSON`メソッドを利用する
 
-[ECMA-404]: https://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf
+[ECMA-404]: https://www.ecma-international.org/publications-and-standards/standards/ecma-404/
 [json.orgの日本語ドキュメント]: https://www.json.org/json-ja.html
 [JSONオブジェクト]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON
 [JSON.parseメソッド]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse

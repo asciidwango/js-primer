@@ -253,6 +253,6 @@ object.key = "新しい値";
 [JavaScript variable name validator]: https://mothereff.in/js-variables
 [データ型とリテラル]: ../data-type/README.md
 [オブジェクト]: ../object/README.md#const-and-object
-[予約語 - JavaScript | MDN]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Reserved_Words
+[予約語 - JavaScript | MDN]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Lexical_grammar
 
 [^1]: `let`や`const`はECMAScript 2015以前に予約語として定義されていたため、既存のコードと衝突する可能性はありませんでした。

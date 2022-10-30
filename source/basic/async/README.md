@@ -1836,6 +1836,6 @@ PromiseやAsync Functionの応用パターンについては「[JavaScript Promi
 [Promise]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise
 [ユースケース: Node.jsでCLIアプリケーション]: ../../use-case/nodecli/README.md
 [配列]: ../array/README.md#method-chain-and-high-order-function
-[JavaScript Promiseの本]: http://azu.github.io/promises-book/
+[JavaScript Promiseの本]: https://azu.github.io/promises-book/
 [try...catch構文]: ../error-try-catch/README.md#try-catch
 [JavaScriptとは]: ../introduction/README.md
