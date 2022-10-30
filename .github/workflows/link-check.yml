@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -14,4 +15,12 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npm run textlint-link
+      - run: npm run textlint-sarif
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          # Path to SARIF file relative to the root of the repository
+          sarif_file: textlint.sarif
+          # Optional category for the results
+          # Used to differentiate multiple results for one commit
+          category: textlint
