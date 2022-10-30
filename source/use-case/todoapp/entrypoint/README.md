@@ -102,10 +102,10 @@ Console APIで出力したログを確認するには、ウェブブラウザの
 
 Firefoxの開発者ツールは次のいずれかの方法で開きます。
 
-- Firefox メニュー（メニューバーがある場合やmacOSでは、ツールメニュー）の Web 開発サブメニューで "ウェブコンソール" を選択する
+- Firefox メニュー（メニューバーがある場合や macOS では、ツールメニュー）の "ブラウザーツール"のサブメニューから "ウェブ開発ツール" を選択する
 - キーボードショートカット`Ctrl+Shift+K`（macOSでは`Command+Option+K`）を押下する
 
-詳細はMDNの「[ウェブコンソールを開く][]」を参照してください。
+詳細はMDNの「[ブラウザーの開発者ツールとは？][]」を参照してください。
 
 ### コンソールログが表示されない {#error-not-display-console-log}
 
@@ -273,7 +273,7 @@ import { App } from "./src/App.js";
 
 [Ajax通信:エントリーポイント]: ../../ajaxapp/entrypoint/README.md
 [Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy
-[ウェブコンソールを開く]: https://firefox-source-docs.mozilla.org/devtools-user/web_console/ui_tour/index.html
+[ブラウザーの開発者ツールとは？]: https://developer.mozilla.org/ja/docs/Learn/Common_questions/What_are_browser_developer_tools
 [npmを使ってパッケージをインストールする]: ../../nodecli/argument-parse/README.md#use-npm
 [Can I Use]: https://caniuse.com/#feat=es6-module
 [アプリケーション開発の準備]: ../../setup-local-env/README.md

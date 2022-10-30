@@ -63,10 +63,10 @@ Console APIで出力したログを確認するには、ウェブブラウザの
 ほとんどのブラウザで開発者ツールが同梱されていますが、本章ではFirefoxを使って確認します。
 Firefoxの開発者ツールは次のいずれかの方法で開きます。
 
-- Firefox メニュー（メニューバーがある場合や macOS では、ツールメニュー）の Web 開発サブメニューで "Web コンソール" を選択する
+- Firefox メニュー（メニューバーがある場合や macOS では、ツールメニュー）の "ブラウザーツール"のサブメニューから "ウェブ開発ツール" を選択する
 - キーボードショートカット Ctrl+Shift+K（macOS では Command+Option+K）を押下する
 
-詳細は"[Webコンソールを開く][]"を参照してください。
+詳細は"[ブラウザーの開発者ツールとは？][]"を参照してください。
 
 ![ログが表示されているWebコンソール](img/fig-1.png)
 
@@ -115,5 +115,5 @@ JavaScriptとDOMはWebアプリケーション開発において切っても切�
 
 [Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy 
 [アプリケーション開発の準備]: ../../setup-local-env/README.md
-[Webコンソールを開く]: https://firefox-source-docs.mozilla.org/devtools-user/web_console/ui_tour/index.html
+[ブラウザーの開発者ツールとは？]: https://developer.mozilla.org/ja/docs/Learn/Common_questions/What_are_browser_developer_tools
 [DOM]: https://developer.mozilla.org/ja/docs/Web/API/Document_Object_Model/Introduction
