@@ -25,7 +25,7 @@
     "textlint": "summary-to-path ./source/README.md | xargs textlint -f pretty-error --cache",
     "textlint:no-cached": "summary-to-path ./source/README.md | xargs textlint -f pretty-error",
     "textlint:fix": "summary-to-path ./source/README.md | xargs textlint --fix",
-    "textlint-sarif": "summary-to-path ./source/README.md | LINK_CHECK=true xargs textlint -f @microsoft/eslint-formatter-sarif -o textlint.sarif",
+    "textlint-sarif": "summary-to-path ./source/README.md | LINK_CHECK=true xargs textlint -f @microsoft/eslint-formatter-sarif -o textlint.sarif || exit 0",
     "textlint-link": "summary-to-path ./source/README.md | LINK_CHECK=true xargs textlint",
     "textlint-link:fix": "summary-to-path ./source/README.md | LINK_CHECK=true xargs textlint --fix",
     "lint": "npm-run-all --parallel textlint eslint",
