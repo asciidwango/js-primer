@@ -100,15 +100,14 @@ module.exports = {
         // npm run textlint-linkでのみ外部URLをチェックする
         "no-dead-link": IS_LINK_CHECK
             ? {
-                "concurrency": 1,
+                "concurrency": 4,
                 "keepAlive": true,
                 "ignore": [
                     "https://github.com/asciidwango/js-primer/issues/new?*",
                     "https://goo.gl/**",
                     "https://forms.gle/**",
                     "http://localhost:3000/**"
-                ],
-                "maxRetryTime": 90
+                ]
             }
             : false
     }
