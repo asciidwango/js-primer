@@ -88,7 +88,7 @@ JavaScriptによってプラグインを書くことができ、さまざまな�
 多くのブラウザは開発者向けの組み込みツールを提供しており、本編で紹介したコンソールもその一部です。
 そのほかにもJavaScriptコードをステップ実行できるデバッガーや、HTTPの通信ログなど、ブラウザごとにさまざまな機能があります。
 
-- Firefox: [開発ツール | MDN][]
+- Firefox: [Firefox DevTools User Docs][]
 - Chrome: [Chrome DevTools][]
 - Safari: [Safari Developer Help][]
 
@@ -184,13 +184,13 @@ NW.jsはブラウザの中からNode.jsの開発エコシステムを直接利�
 [VSCode]: https://code.visualstudio.com/
 [Atom]: https://atom.io/
 
-[開発ツール | MDN]: https://developer.mozilla.org/ja/docs/Tools
-[Chrome DevTools]: https://developers.google.com/web/tools/chrome-devtools/?hl=ja
+[Firefox DevTools User Docs]: https://firefox-source-docs.mozilla.org/devtools-user/index.html
+[Chrome DevTools]: https://developer.chrome.com/docs/devtools/
 [Safari Developer Help]: https://support.apple.com/ja-jp/guide/safari-developer/welcome/mac
 
-[PageSpeed Insights]: https://developers.google.com/speed/pagespeed/insights/
+[PageSpeed Insights]: https://pagespeed.web.dev/
 [WebPagetest]: https://www.webpagetest.org/
-[Lighthouse]: https://developers.google.com/web/tools/lighthouse/?hl=ja
+[Lighthouse]: https://developer.chrome.com/docs/lighthouse/overview/
 
 [GitHub Pages]: https://pages.github.com/
 [Firebase Hosting]: https://firebase.google.com/products/hosting/?hl=ja

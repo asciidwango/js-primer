@@ -154,7 +154,7 @@ $ node main.js --gfm sample.md
 - コマンドライン引数でmarkedの変換オプションを設定した
 - デフォルトオプションを定義し、コマンドライン引数で上書きできるようにした
 
-[marked]: https://github.com/chjj/marked
+[marked]: https://github.com/markedjs/marked
 [変換オプション]: https://marked.js.org/#/USING_ADVANCED.md#options
 [GitHub Flavored Markdown]: https://github.github.com/gfm/
 [Nullish coalescing演算子]: ../../../basic/operator/README.md#nullish-coalescing-operator

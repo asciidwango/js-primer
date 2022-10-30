@@ -88,6 +88,6 @@ ECMAScriptは一度入った仕様が使えなくなることはほとんどな�
 - `/*` と `*/`で囲まれた範囲が複数行コメント
 - HTML-likeコメントは後方互換性のためだけに存在する
 
-[Annex B (normative)]: http://www.ecma-international.org/ecma-262/6.0/#sec-additional-ecmascript-features-for-web-browsers
+[Annex B (normative)]: https://262.ecma-international.org/6.0/#sec-additional-ecmascript-features-for-web-browsers
 [ES6 In Depth: Arrow functions]: https://dev.mozilla.jp/2016/03/es6-in-depth-arrow-functions/ "ES6 In Depth: Arrow functions | Mozilla Developer Street (modest)"
 [JSDoc]: https://ja.wikipedia.org/wiki/JSDoc

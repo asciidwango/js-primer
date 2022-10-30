@@ -46,10 +46,10 @@ REPL機能を使うことで、試したいコードをその場で実行でき�
 
 REPL機能を使うには、まずFirefoxの開発者ツールを次のいずれかの方法で開きます。
 
-- Firefox メニュー（メニューバーがある場合や macOS では、ツールメニュー）の Web 開発サブメニューで "Web コンソール" を選択する
+- Firefox メニュー（メニューバーがある場合や macOS では、ツールメニュー）の "ブラウザーツール"のサブメニューから "ウェブ開発ツール" を選択する
 - キーボードショートカット Ctrl+Shift+K（macOS では Command+Option+K）を押下する
 
-詳細は"[Webコンソールを開く][]"を参照してください。
+詳細は"[Firefox DevTools User Docs][]"を参照してください。
 
 ![FirefoxでWebコンソールを開いた状態](./img/web-console.png)
 
@@ -341,7 +341,7 @@ JavaScriptにおいては多くのエラーはすでに類似するケースが�
 エラーを過度に怖がる必要はありません。エラーメッセージなどのヒントを使ってエラーを修正していけるようにしましょう。
 
 [Firefox]: https://www.mozilla.org/ja/firefox/new/
-[Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
+[ブラウザーの開発者ツールとは？]: https://developer.mozilla.org/ja/docs/Learn/Common_questions/What_are_browser_developer_tools
 [Visual Studio Code]: https://code.visualstudio.com/
 [Google]: https://www.google.com/
 [Stack Overflow]: https://stackoverflow.com/

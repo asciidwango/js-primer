@@ -164,10 +164,10 @@ Console APIで出力したログを確認するには、ウェブブラウザの
 
 Firefoxの開発者ツールは次のいずれかの方法で開きます。
 
-- Firefox メニュー（メニューバーがある場合や macOS では、ツールメニュー）の Web 開発サブメニューで "Web コンソール" を選択する
+- Firefox メニュー（メニューバーがある場合や macOS では、ツールメニュー）の "ブラウザーツール"のサブメニューから "ウェブ開発ツール" を選択する
 - キーボードショートカット Ctrl+Shift+K（macOS では Command+Option+K）を押下する
 
-詳細は"[Webコンソールを開く][]"を参照してください。
+詳細は「[ブラウザーの開発者ツールとは？][]」を参照してください。
 
 ### ローカルサーバーを終了する {#close-js-primer-local-server}
 
@@ -198,14 +198,14 @@ npmでは、すでに多種多様なローカルサーバーモジュールが�
 この書籍では、利用するローカルサーバーの機能で違いが出ないように`@js-primer/local-server`というこの書籍用のローカルサーバーモジュールを利用します。
 
 [Node.js]: https://nodejs.org/ja/
-[V8]: https://developers.google.com/v8/
+[V8]: https://v8.dev/
 [Electron]: https://www.electronjs.org/
 [ダウンロードページ]: https://nodejs.org/ja/download/
 [npm]: https://www.npmjs.com/
 [npmのGitHubリポジトリ]: https://github.com/npm/cli
-[npx]: https://docs.npmjs.com/cli/v8/commands/npx
+[npx]: https://docs.npmjs.com/cli/v8/commands/npx/
 [@js-primer/hello-world]: https://github.com/js-primer/hello-world
 [@js-primer/local-server]: https://github.com/js-primer/local-server
 [値の評価と表示]: ../../basic/read-eval-print/README.md
-[Webコンソールを開く]: https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console
+[ブラウザーの開発者ツールとは？]: https://developer.mozilla.org/ja/docs/Learn/Common_questions/What_are_browser_developer_tools
 [Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy

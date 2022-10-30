@@ -1285,7 +1285,7 @@ console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
 [MDNの正規表現ドキュメント]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions  "正規表現 - JavaScript | MDN"
 [regex101]: https://regex101.com/  "Online regex tester and debugger: PHP, PCRE, Python, Golang and JavaScript"
 [データ型とリテラル]: ../data-type/README.md
-[ECMA-402]: https://www.ecma-international.org/publications/standards/Ecma-402.htm  "Standard ECMA-402"
+[ECMA-402]: https://www.ecma-international.org/publications-and-standards/standards/ecma-402/  "Standard ECMA-402"
 [Intl]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Intl
 [URL Standard]: https://url.spec.whatwg.org/  "URL Standard"
 [URL]: https://developer.mozilla.org/ja/docs/Web/API/URL  "URL - Web API インターフェイス | MDN"
