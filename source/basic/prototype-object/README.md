@@ -46,7 +46,7 @@ console.log(typeof Object.prototype.toString); // => "function"
 ```
 
 このような`prototype`オブジェクトに組み込まれているメソッドは**プロトタイプメソッド**と呼ばれます。
-この書籍では`Object.prototype.toString`のようなプロトタイプメソッドを「Objectの`toString`メソッド」と短縮して表記することがあります。
+この書籍では`Object.prototype.toString`のようなプロトタイプメソッドを「Objectの`toString`メソッド」と短縮して呼ぶことがあります。
 
 `Object`のインスタンスは、この`Object.prototype`オブジェクトに定義されたメソッドやプロパティを継承します。
 つまり、オブジェクトリテラルや`new Object`でインスタンス化したオブジェクトは、`Object.prototype`に定義されたものが利用できるということです。
