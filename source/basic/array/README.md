@@ -337,7 +337,7 @@ console.log(whiteColor); // => undefined
 {{book.console}}
 ```js
 const array = ["A", "B", "C", "D", "E"];
-// インデックス1から4までの範囲を取り出す
+// インデックス1から4まで(4の要素は含まない)の範囲を取り出す
 console.log(array.slice(1, 4)); // => ["B", "C", "D"]
 // 第二引数を省略した場合は、第一引数から末尾の要素までを取り出す
 console.log(array.slice(1)); // => ["B", "C", "D", "E"]
