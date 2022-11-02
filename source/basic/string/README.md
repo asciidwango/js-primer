@@ -388,13 +388,15 @@ JavaScriptにおいても、[ECMA-402][]というECMAScriptと関連する別の
 
 <!-- textlint-disable ja-technical-writing/max-ten -->
 
-Stringの`slice`メソッドは、第一引数に開始位置、第二引数に終了位置を指定し、その範囲を取り出した新しい文字列を返します。
-第二引数は省略でき、省略した場合は文字列の末尾が終了位置となります。
+Stringの`slice`メソッドは、第一引数の開始位置から第二引数の終了位置（終了位置の要素は含まない）までの範囲を取り出した新しい文字列を返します。
+第二引数は省略でき、省略した場合は文字列の末尾まで含んだ新しい文字列を返します。
 
 <!-- textlint-enable ja-technical-writing/max-ten -->
 
 位置にマイナスの値を指定した場合は文字列の末尾から数えた位置となります。
 また、第一引数の位置が第二引数の位置より大きい場合、常に空の文字列を返します。
+
+そのため、メソッドの引数の扱い方は[配列の`slice`メソッド][]と同様です。
 
 {{book.console}}
 ```js
@@ -1280,6 +1282,7 @@ console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
 また、タグつきテンプレートリテラルを利用することで、テンプレート中の変数を自動でエスケープするといった処理を実現できます。
 
 [文字列とUnicode]: ../string-unicode/README.md
+[配列の`slice`メソッド]: ../array/README.md#slice
 [ループと反復処理]: ../loop/README.md
 [エスケープシーケンス]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String#%E3%82%A8%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%97%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9
 [MDNの正規表現ドキュメント]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions  "正規表現 - JavaScript | MDN"
