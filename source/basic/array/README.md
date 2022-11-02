@@ -805,7 +805,38 @@ const totalValue = array.reduce((accumulator, currentValue, index, array) => {
 console.log(totalValue); // => 6
 ```
 
-Arrayの`reduce`メソッドはやや複雜ですが、配列以外の値も返せるという特徴があります。
+Arrayの`reduce`メソッドはやや複雜ですが、配列から配列以外のデータ型の値を作成できる特徴があります。
+
+先ほどのコードのように配列の数値の合計を`forEach`メソッドなどで計算すると、次のコードのように`totalValue`という変数は再代入ができる`let`で宣言しないといけません。
+
+{{book.console}}
+```js
+const array = [1, 2, 3];
+// 初期値は`0`
+let totalValue = 0;
+array.forEach(currentValue => {
+    totalValue += currentValue;
+});
+console.log(totalValue); // => 6
+```
+
+`reduce`メソッドでは、配列から直接Number型の値を返せるため、`totalValue`という変数を再代入できない`const`で宣言できます。
+`let`で宣言した変数は再代入が可能なため、意図しないと箇所で変数の値が変更され、バグの原因となることがあります。
+そのため、できる限り変数を`const`で宣言したい場合には`reduce`メソッドは有用です。
+一方で、`reduce`メソッドは可読性があまりよくないためコードの意図が伝わりにくいという問題もあります。
+
+`reduce`メソッドには利点と可読性のトレードオフがありますが、利用する場合は`reduce`メソッドを扱う処理を関数で囲むなど処理の意図がわかるように工夫をする必要があります。
+
+{{book.console}}
+```js
+const array = [1, 2, 3];
+function sum(array) {
+    return array.reduce((accumulator, currentValue) => {
+        return accumulator + currentValue;
+    }, 0);
+}
+console.log(sum(array)); // => 6
+```
 
 ## [コラム] Array-likeオブジェクト {#array-like}
 
