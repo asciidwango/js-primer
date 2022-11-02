@@ -987,5 +987,5 @@ console.log(versionNames); // => ["ECMAScript 1", "ECMAScript 2", "ECMAScript 3"
 [ループと反復処理]: ../loop/README.md
 [immutable-array-prototype]: https://github.com/azu/immutable-array-prototype  "azu/immutable-array-prototype: A collection of Immutable Array prototype methods(Per method packages)."
 [Lodash]: https://lodash.com/  "Lodash"
-[Immutable.js]: https://facebook.github.io/immutable-js/  "Immutable.js"
+[Immutable.js]: https://immutable-js.com/  "Immutable.js"
 [Arrayについてのドキュメント]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array
