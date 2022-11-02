@@ -389,7 +389,7 @@ JavaScriptにおいても、[ECMA-402][]というECMAScriptと関連する別の
 <!-- textlint-disable ja-technical-writing/max-ten -->
 
 Stringの`slice`メソッドは、第一引数の開始位置から第二引数の終了位置（終了位置の要素は含まない）までの範囲を取り出した新しい文字列を返します。
-第二引数は省略でき、省略した場合は文字列の末尾が終了位置となります。
+第二引数は省略でき、省略した場合は文字列の末尾まで含んだ新しい文字列を返します。
 
 <!-- textlint-enable ja-technical-writing/max-ten -->
 
