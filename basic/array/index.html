@@ -2091,7 +2091,62 @@ array.forEach(<span class="hljs-function">(<span class="hljs-params">currentValu
 <span class="hljs-comment">// 0 + 1 + 2 + 3という式の結果が返り値になる</span>
 <span class="hljs-built_in">console</span>.log(totalValue); <span class="hljs-comment">// =&gt; 6</span>
 </code></pre>
-<p>Arrayの<code>reduce</code>メソッドはやや複雜ですが、配列以外の値も返せるという特徴があります。</p>
+<p><code>reduce</code>メソッドに渡したコールバック関数は配列の要素数である3回呼び出され、それぞれ次のような結果になります。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>accumulator</th>
+<th>currentValue</th>
+<th>returnした値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1回目の呼び出し</td>
+<td>0</td>
+<td>1</td>
+<td>0 + 1</td>
+</tr>
+<tr>
+<td>2回目の呼び出し</td>
+<td>1</td>
+<td>2</td>
+<td>1 + 2</td>
+</tr>
+<tr>
+<td>3回目の呼び出し</td>
+<td>3</td>
+<td>3</td>
+<td>3 + 3</td>
+</tr>
+</tbody>
+</table>
+<p>Arrayの<code>reduce</code>メソッドはやや複雜ですが、配列から配列以外のデータ型の値を作成できる特徴があります。
+また、<code>reduce</code>メソッドでは、配列から直接Number型の値を返せるため、<code>totalValue</code>という変数を再代入できない<code>const</code>で宣言していました。</p>
+<p>配列の数値の合計を<code>forEach</code>メソッドなど反復処理で計算すると、次のコードのように<code>totalValue</code>という変数は再代入ができる<code>let</code>で宣言する必要があります。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+<span class="hljs-comment">// 初期値は`0`</span>
+<span class="hljs-keyword">let</span> totalValue = <span class="hljs-number">0</span>;
+array.forEach(<span class="hljs-function">(<span class="hljs-params">currentValue</span>) =&gt;</span> {
+    totalValue += currentValue;
+});
+<span class="hljs-built_in">console</span>.log(totalValue); <span class="hljs-comment">// =&gt; 6</span>
+</code></pre>
+<p><code>let</code>で宣言した変数は再代入が可能なため、意図しない箇所で変数の値が変更され、バグの原因となることがあります。
+そのため、できる限り変数を<code>const</code>で宣言したい場合には<code>reduce</code>メソッドは有用です。
+一方で、<code>reduce</code>メソッドは可読性があまりよくないため、コードの意図が伝わりにくいというデメリットもあります。</p>
+<p><code>reduce</code>メソッドには利点と可読性のトレードオフがありますが、利用する場合は<code>reduce</code>メソッドを扱う処理を関数で囲むなど処理の意図がわかるように工夫をする必要があります。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">array</span>) </span>{
+    <span class="hljs-keyword">return</span> array.reduce(<span class="hljs-function">(<span class="hljs-params">accumulator, currentValue</span>) =&gt;</span> {
+        <span class="hljs-keyword">return</span> accumulator + currentValue;
+    }, <span class="hljs-number">0</span>);
+}
+<span class="hljs-built_in">console</span>.log(sum(array)); <span class="hljs-comment">// =&gt; 6</span>
+</code></pre>
 <h2 id="array-like"><a name="array-like" class="plugin-anchor" href="#array-like"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] Array-likeオブジェクト </h2>
 <p>配列のように扱えるが配列ではないオブジェクトのことを、<strong>Array-likeオブジェクト</strong>と呼びます。
 Array-likeオブジェクトとは配列のようにインデックスにアクセスでき、配列のように<code>length</code>プロパティも持っています。しかし、配列のインスタンスではないため、Arrayのプロトタイプメソッドを持っていないオブジェクトのことです。</p>
@@ -2242,7 +2297,7 @@ myFunc(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string"
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"配列は値を順番に格納できるオブジェクトです。この配列の作成、更新、削除などの基本的な操作や実際に使い方についてを紹介します。また配列における破壊的なメソッドと非破壊的メソッドの違いについても紹介します。","title":"配列","level":"1.3.14","depth":2,"next":{"title":"文字列","level":"1.3.15","depth":2,"path":"basic/string/README.md","ref":"./basic/string/README.md","articles":[]},"previous":{"title":"プロトタイプオブジェクト","level":"1.3.13","depth":2,"path":"basic/prototype-object/README.md","ref":"./basic/prototype-object/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.12.0","npmversion":"8.19.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/array/README.md","mtime":"2022-10-30T10:27:41.744Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2022-10-30T10:28:07.486Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"配列は値を順番に格納できるオブジェクトです。この配列の作成、更新、削除などの基本的な操作や実際に使い方についてを紹介します。また配列における破壊的なメソッドと非破壊的メソッドの違いについても紹介します。","title":"配列","level":"1.3.14","depth":2,"next":{"title":"文字列","level":"1.3.15","depth":2,"path":"basic/string/README.md","ref":"./basic/string/README.md","articles":[]},"previous":{"title":"プロトタイプオブジェクト","level":"1.3.13","depth":2,"path":"basic/prototype-object/README.md","ref":"./basic/prototype-object/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.12.0","npmversion":"8.19.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/array/README.md","mtime":"2022-11-02T12:04:13.100Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2022-11-02T12:04:35.485Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
