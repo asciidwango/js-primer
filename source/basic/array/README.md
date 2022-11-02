@@ -337,7 +337,7 @@ console.log(whiteColor); // => undefined
 {{book.console}}
 ```js
 const array = ["A", "B", "C", "D", "E"];
-// インデックス1から4の範囲を取り出す
+// インデックス1から4までの範囲を取り出す
 console.log(array.slice(1, 4)); // => ["B", "C", "D"]
 // 第二引数を省略した場合は、第一引数から末尾の要素までを取り出す
 console.log(array.slice(1)); // => ["B", "C", "D", "E"]
@@ -347,6 +347,16 @@ console.log(array.slice(-1)); // => ["E"]
 console.log(array.slice(1, 1)); // => []
 // 第一引数 > 第二引数の場合、常に空配列を返す
 console.log(array.slice(4, 1)); // => []
+```
+
+`slice`メソッドとインデックスの関係を図にすると次のようになります。
+
+```
+ +---+---+---+---+---+
+ | A | B | C | D | E |
+ +---+---+---+---+---+
+ 0   1   2   3   4   5
+-5  -4  -3  -2  -1
 ```
 
 ### 真偽値を取得 {#get-boolean}
