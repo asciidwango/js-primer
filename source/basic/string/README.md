@@ -1219,7 +1219,7 @@ tag`template ${0} literal ${1}`;
 そのため、タグつきテンプレートで利用する関数のことを**タグ関数**（Tag function）と呼び分けることにします。
 
 まずは引数をどう扱うかを見ていくために、タグつきテンプレートの内容をそのまま結合して返す`stringRaw`というタグ関数を実装してみます。
-Arrayの`reduce`メソッドを使うことで、テンプレートの文字列と変数を順番に結合できます（[`reduce`メソッド][]は「[配列][]」の章を参照）。
+Arrayの`reduce`メソッドを使うことで、テンプレートの文字列と変数を順番に結合できます（[`reduce`メソッド][]については「[配列][]」の章を参照）。
 
 {{book.console}}
 ```js
@@ -1285,7 +1285,7 @@ console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
 [文字列とUnicode]: ../string-unicode/README.md
 [配列]: ../array/README.md
 [配列の`slice`メソッド]: ../array/README.md#slice
-[`reduce`メソッド]: ../array/README.md#reduce
+[`reduce`メソッド]: ../array/README.md#array-reduce
 [ループと反復処理]: ../loop/README.md
 [エスケープシーケンス]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String#%E3%82%A8%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%97%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9
 [MDNの正規表現ドキュメント]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions  "正規表現 - JavaScript | MDN"
