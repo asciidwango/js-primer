@@ -82,7 +82,7 @@ try {
 
 ### Error {#error}
 
-`Error`オブジェクトのインスタンスは`Error`を`new`して作成します。
+`Error`オブジェクトのインスタンスは`new Error("エラーメッセージ")`で作成します。
 コンストラクタの第一引数には、エラーメッセージとなる文字列を渡します。
 渡したエラーメッセージはErrorの`message`プロパティで参照できます。
 
@@ -154,14 +154,14 @@ try {
 
 [SyntaxError][]は構文的に不正なコードを解釈しようとした場合のエラーです。
 基本的に`SyntaxError`例外は、JavaScriptを実行する前のパース段階で発生します。
-そのため、実行前に発生する例外である`SyntaxError`を`try...catch`文ではcatchできません。
+そのため、実行前に発生する例外である`SyntaxError`は、実行時のエラーをキャッチする`try...catch`文ではcatchできません。
 
 ```
 // JavaScriptとして正しくない構文をパースするとSyntaxErrorが発生する
 foo! bar!
 ```
 
-次のコードでは、`eval`関数を使って実行時に`SyntaxError`を発生させています。
+次のコードでは、`eval`関数を使って実行時に`SyntaxError`を無理やり発生させ、構文エラーが`SyntaxError`であることを確認しています。
 `eval`関数は渡した文字列をJavaScriptとして実行する関数です。
 実行時に発生した`SyntaxError`は、`try...catch`文でもcatchできます。
 
@@ -220,7 +220,7 @@ try {
 } catch (error) {
     console.log(error instanceof TypeError); // => true
     console.log(error.name); // => "TypeError"
-    console.log(error.message); // "100 is not a string"
+    console.log(error.message); // => "100 is not a string"
 }
 ```
 
@@ -235,6 +235,7 @@ JavaScript開発においてデバッグ中に発生したエラーを理解す�
 
 次のコードでは、`try...catch`文で囲っていない部分で例外が発生しています。
 
+{{book.console}}
 [import, error.js](src/error.js)
 
 このスクリプトを読み込むと、投げられた例外についてのログがコンソールに出力されます。
@@ -267,6 +268,7 @@ MDNの[JavaScriptエラーリファレンス][]には、ブラウザが投げる
 
 次のコードを実行して、`console.log`と`console.error`の出力結果を見比べてみます。
 
+{{book.console}}
 [import, console/index.js](src/console/index.js)
 
 このコードをFirefoxで実行するとコンソール出力は次の図のようになります。
