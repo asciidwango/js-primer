@@ -792,7 +792,7 @@ Promiseチェーンで一度キャッチすると、次に呼ばれるのは成�
 Promise.resolve().then(function onFulfilledA() {
     return Promise.reject(new Error("失敗"));
 }).then(function onFulfilledB() {
-    console.log("onFulfilledBは呼び出されません");
+    // onFulfilledBは呼び出されません
 }).catch(function onRejected(error) {
     console.log(error.message); // => "失敗"
 }).then(function onFulfilledC() {
