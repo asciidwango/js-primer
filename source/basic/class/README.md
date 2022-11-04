@@ -609,6 +609,7 @@ class Loader {
 
 しかし、このように実装してしまうと`Loader`クラスを利用する側は、`loadedContent`プロパティの存在を`load`メソッドの中まで読まないとわからないという問題があります。
 これに対して、クラスフィールドを使って「`Loader`クラスは`loadedContent`というプロパティを持っている」ということを宣言的に表現できます。
+宣言的にプロパティを定義することで、エディターでのコード補完が可能になったり、コードを読む人に優しいというメリットがあります。
 
 ### クラスフィールドでの`this`はクラスのインスタンスを示す {#this-in-class-fields}
 
@@ -816,6 +817,8 @@ class NumberWrapper {
 }
 
 const numberWrapper = new NumberWrapper(1);
+// getterを経由してアクセスはできる
+console.log(numberWrapper.value); // => 1
 // クラスの外からPrivateクラスフィールドには直接はアクセスできない
 console.log(numberWrapper.#value); // => SyntaxError: reference to undeclared private field or method #value
 ```
