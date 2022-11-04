@@ -1447,8 +1447,8 @@ function dummyFetch(path) {
 // 複数のリソースを順番に取得する
 async function fetchResources(resources) {
     const results = [];
-    for (let i = 0; i < resources.length; i++) {
-        const resource = resources[i];
+    // for...of文でresourcesの配列から1つずつ要素を取り出して処理
+    for (const resource of resources) {
         // ループ内で非同期処理の完了を待っている
         const response = await dummyFetch(resource);
         results.push(response.body);
@@ -1504,8 +1504,8 @@ function dummyFetch(path) {
 }
 // 複数のリソースをまとめて取得する
 async function fetchAllResources(resources) {
-    // リソースを同時に取得する
-    const promises = resources.map(function(resource) {
+    // それぞれのリソースを取得する非同期処理を呼び出す
+    const promises = resources.map((resource) => {
         return dummyFetch(resource);
     });
     // すべてのリソースが取得できるまで待つ
