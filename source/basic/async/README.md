@@ -363,7 +363,7 @@ dummyFetch("/success/data").then(function onFulfilled(response) {
 dummyFetch("/failure/data").then(function onFulfilled(response) {
     // この行は実行されません
 }, function onRejected(error) {
-    console.log(error); // Error: "NOT FOUND"
+    console.error(error); // Error: "NOT FOUND"
 });
 ```
 
@@ -727,7 +727,7 @@ Promise.resolve().then(() => {
 {{book.console}}
 ```js
 Promise.reject(new Error("エラー")).catch(error => {
-    console.log(error); // Error: エラー
+    console.error(error); // Error: エラー
 }).then(() => {
     console.log("thenのコールバック関数が呼び出される");
 });
@@ -818,7 +818,7 @@ function main() {
 // mainはRejectedなPromiseを返す
 main().catch(error => {
     // mainで発生したエラーのログを出力する
-    console.log(error);
+    console.error(error);
     // Promiseチェーンはそのままエラーを継続させる
     return Promise.reject(error);
 }).then(() => {
