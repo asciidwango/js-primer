@@ -268,6 +268,7 @@ MDNの[JavaScriptエラーリファレンス][]には、ブラウザが投げる
 
 次のコードを実行して、`console.log`と`console.error`の出力結果を見比べてみます。
 
+{{book.console}}
 [import, console/index.js](src/console/index.js)
 
 このコードをFirefoxで実行するとコンソール出力は次の図のようになります。
