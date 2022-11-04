@@ -540,6 +540,8 @@ fulfilledPromise.then(value => {
 `Promise.resolve`メソッドで作成した**Fulfilled**の状態となった`Promise`インスタンスに対しても`then`メソッドでコールバック関数を登録できます。
 状態が変化済みの`Promise`インスタンスに`then`メソッドで登録したコールバック関数は、常に非同期なタイミングで実行されます。
 
+次のコードを実行すると、すべての同期的な処理が実行された後に、`then`メソッドのコールバック関数が非同期なタイミングで実行されることがわかります。
+
 {{book.console}}
 ```js
 const promise = Promise.resolve();
@@ -548,8 +550,6 @@ promise.then(() => {
 });
 console.log("1. 同期的な処理が実行されました");
 ```
-
-このコードを実行すると、すべての同期的な処理が実行された後に、`then`メソッドのコールバック関数が非同期なタイミングで実行されることがわかります。
 
 `Promise.resolve`メソッドは`new Promise`の糖衣構文であるため、この実行順序は`new Promise`を使った場合も同じです。
 次のコードは、先ほどの`Promise.resolve`メソッドを使ったものと同じ動作になります。
