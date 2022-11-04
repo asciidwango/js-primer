@@ -1705,6 +1705,7 @@ ES2022には、これに加えてModuleの直下ではAsync Functionで囲まな
 <!-- js-console:{ "type": "module" } -->
 <!-- doctest:disable -->
 ```js
+// このコードをModuleの実行コンテキストで実行した場合
 console.log("実行開始");
 const startTime = Date.now();
 // awaitを使って1秒待つ
