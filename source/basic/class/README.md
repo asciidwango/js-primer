@@ -817,8 +817,6 @@ class NumberWrapper {
 }
 
 const numberWrapper = new NumberWrapper(1);
-// getterを経由してアクセスはできる
-console.log(numberWrapper.value); // => 1
 // クラスの外からPrivateクラスフィールドには直接はアクセスできない
 console.log(numberWrapper.#value); // => SyntaxError: reference to undeclared private field or method #value
 ```
