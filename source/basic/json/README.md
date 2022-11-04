@@ -111,7 +111,7 @@ const replacer = (key, value) => {
 console.log(JSON.stringify(obj, replacer)); // => '{"id":1,"name":"js-primer"}'
 ```
 
-replacer引数に配列を渡した場合はプロパティのホワイトリストとして使われ、
+replacer引数に配列を渡した場合はプロパティの許可リストとして使われ、
 その配列に含まれる名前のプロパティだけが変換されます。
 
 {{book.console}}
@@ -171,6 +171,7 @@ console.log(JSON.stringify(obj, null, "\t"));
 | Symbol          |  変換されない（配列のときはnull）     |
 | RegExp          |  {}             |
 | Map, Set        |  {}             |
+| BigInt          |  例外が発生する    |
 
 {{book.console}}
 ```js
