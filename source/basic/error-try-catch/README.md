@@ -220,7 +220,7 @@ try {
 } catch (error) {
     console.log(error instanceof TypeError); // => true
     console.log(error.name); // => "TypeError"
-    console.log(error.message); // "100 is not a string"
+    console.log(error.message); // => "100 is not a string"
 }
 ```
 
