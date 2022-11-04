@@ -1514,7 +1514,7 @@
 <p><code>throw</code>文ではエラーオブジェクトを例外として投げることができます。
 ここでは、<code>throw</code>文で例外として投げられるエラーオブジェクトについて見ていきます。</p>
 <h3 id="error"><a name="error" class="plugin-anchor" href="#error"><i class="fa fa-link" aria-hidden="true"></i></a>Error </h3>
-<p><code>Error</code>オブジェクトのインスタンスは<code>Error</code>を<code>new</code>して作成します。
+<p><code>Error</code>オブジェクトのインスタンスは<code>new Error(&quot;エラーメッセージ&quot;)</code>で作成します。
 コンストラクタの第一引数には、エラーメッセージとなる文字列を渡します。
 渡したエラーメッセージはErrorの<code>message</code>プロパティで参照できます。</p>
 <p>次のコードでは、<code>assertPositiveNumber</code>関数でエラーオブジェクトを作成し、例外として<code>throw</code>しています。
@@ -1571,10 +1571,10 @@
 <h4 id="syntax-error"><a name="syntax-error" class="plugin-anchor" href="#syntax-error"><i class="fa fa-link" aria-hidden="true"></i></a>SyntaxError </h4>
 <p><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError" target="_blank">SyntaxError</a>は構文的に不正なコードを解釈しようとした場合のエラーです。
 基本的に<code>SyntaxError</code>例外は、JavaScriptを実行する前のパース段階で発生します。
-そのため、実行前に発生する例外である<code>SyntaxError</code>を<code>try...catch</code>文ではcatchできません。</p>
+そのため、実行前に発生する例外である<code>SyntaxError</code>は、実行時のエラーをキャッチする<code>try...catch</code>文ではcatchできません。</p>
 <pre><code>// JavaScriptとして正しくない構文をパースするとSyntaxErrorが発生する
 foo! bar!
-</code></pre><p>次のコードでは、<code>eval</code>関数を使って実行時に<code>SyntaxError</code>を発生させています。
+</code></pre><p>次のコードでは、<code>eval</code>関数を使って実行時に<code>SyntaxError</code>を無理やり発生させ、構文エラーが<code>SyntaxError</code>であることを確認しています。
 <code>eval</code>関数は渡した文字列をJavaScriptとして実行する関数です。
 実行時に発生した<code>SyntaxError</code>は、<code>try...catch</code>文でもcatchできます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -1622,7 +1622,7 @@ foo! bar!
 } <span class="hljs-keyword">catch</span> (error) {
     <span class="hljs-built_in">console</span>.log(error <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">TypeError</span>); <span class="hljs-comment">// =&gt; true</span>
     <span class="hljs-built_in">console</span>.log(error.name); <span class="hljs-comment">// =&gt; &quot;TypeError&quot;</span>
-    <span class="hljs-built_in">console</span>.log(error.message); <span class="hljs-comment">// &quot;100 is not a string&quot;</span>
+    <span class="hljs-built_in">console</span>.log(error.message); <span class="hljs-comment">// =&gt; &quot;100 is not a string&quot;</span>
 }
 </code></pre>
 <h2 id="error-and-debug"><a name="error-and-debug" class="plugin-anchor" href="#error-and-debug"><i class="fa fa-link" aria-hidden="true"></i></a>エラーとデバッグ </h2>
@@ -1632,6 +1632,7 @@ foo! bar!
 つまり、エラーの名前を表す<code>name</code>プロパティと内容を表す<code>message</code>プロパティを持っています。
 この2つのプロパティを確認することで、多くの場面で開発の助けとなるでしょう。</p>
 <p>次のコードでは、<code>try...catch</code>文で囲っていない部分で例外が発生しています。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-comment">// 存在しない変数を参照する</span>
     x++;
@@ -1673,6 +1674,7 @@ MDNの<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Er
 <h2 id="console.error"><a name="console.error" class="plugin-anchor" href="#console.error"><i class="fa fa-link" aria-hidden="true"></i></a><code>console.error</code>とスタックトレース </h2>
 <p><code>console.error</code>メソッドではメッセージと合わせてスタックトレースをコンソールへ出力できます。</p>
 <p>次のコードを実行して、<code>console.log</code>と<code>console.error</code>の出力結果を見比べてみます。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;メッセージ&quot;</span>);
     <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&quot;エラーメッセージ&quot;</span>);
@@ -1726,7 +1728,7 @@ fn();
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"JavaScriptにおける例外処理についてを紹介します。try...catch構文の使い方やErrorオブジェクトを紹介します。またエラーが発生した際のエラー文の読み方といったデバッグ方法を紹介します。","title":"例外処理","level":"1.3.21","depth":2,"next":{"title":"非同期処理:Promise/Async Function","level":"1.3.22","depth":2,"path":"basic/async/README.md","ref":"./basic/async/README.md","articles":[]},"previous":{"title":"クラス","level":"1.3.20","depth":2,"path":"basic/class/README.md","ref":"./basic/class/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.12.0","npmversion":"8.19.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/error-try-catch/README.md","mtime":"2022-11-03T13:31:22.845Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2022-11-03T13:31:46.729Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"JavaScriptにおける例外処理についてを紹介します。try...catch構文の使い方やErrorオブジェクトを紹介します。またエラーが発生した際のエラー文の読み方といったデバッグ方法を紹介します。","title":"例外処理","level":"1.3.21","depth":2,"next":{"title":"非同期処理:Promise/Async Function","level":"1.3.22","depth":2,"path":"basic/async/README.md","ref":"./basic/async/README.md","articles":[]},"previous":{"title":"クラス","level":"1.3.20","depth":2,"path":"basic/class/README.md","ref":"./basic/class/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.12.0","npmversion":"8.19.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/error-try-catch/README.md","mtime":"2022-11-04T04:56:34.537Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2022-11-04T04:56:57.076Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
