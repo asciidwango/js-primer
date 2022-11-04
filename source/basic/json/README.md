@@ -171,6 +171,7 @@ console.log(JSON.stringify(obj, null, "\t"));
 | Symbol          |  変換されない（配列のときはnull）     |
 | RegExp          |  {}             |
 | Map, Set        |  {}             |
+| BigInt          |  例外が発生する    |
 
 {{book.console}}
 ```js
