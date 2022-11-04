@@ -1455,16 +1455,16 @@
                                 <section class="normal markdown-section">
                                 
                                 <html><head></head><body><h1 id="map-and-set"><a name="map-and-set" class="plugin-anchor" href="#map-and-set"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2015] Map/Set </h1>
-<p>JavaScriptでデータの集まりを扱うコレクションは配列だけではありません。
+<p>JavaScriptでデータの集まり（コレクション）を扱うビルトインオブジェクトは、ObjectやArrayだけではありません。
 この章では、ES2015で導入されたマップ型のコレクションである<code>Map</code>と、セット型のコレクションである<code>Set</code>について学びます。</p>
 <h2 id="map"><a name="map" class="plugin-anchor" href="#map"><i class="fa fa-link" aria-hidden="true"></i></a>Map </h2>
 <p><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Map" target="_blank">Map</a>はマップ型のコレクションを扱うためのビルトインオブジェクトです。
 マップとは、キーと値の組み合わせからなる抽象データ型です。
 他のプログラミング言語の文脈では辞書やハッシュマップ、連想配列などと呼ばれることもあります。</p>
 <h3 id="map-new"><a name="map-new" class="plugin-anchor" href="#map-new"><i class="fa fa-link" aria-hidden="true"></i></a>マップの作成と初期化 </h3>
-<p><code>Map</code>オブジェクトを<code>new</code>することで、新しいマップを作れます。
+<p><code>Map</code>オブジェクトを<code>new</code>することで、新しいマップを作成できます。
 作成されたばかりのマップは何も持っていません。
-そのため、マップのサイズを返す<code>size</code>プロパティは<code>0</code>を返します。</p>
+そのため、マップが持つ要素の数を返す<code>size</code>プロパティは<code>0</code>を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
 <span class="hljs-built_in">console</span>.log(map.size); <span class="hljs-comment">// =&gt; 0</span>
@@ -1541,7 +1541,7 @@ map.forEach(<span class="hljs-function">(<span class="hljs-params">value, key</s
 <span class="hljs-built_in">console</span>.log(keysArray); <span class="hljs-comment">// =&gt; [&quot;key1&quot;,&quot;key2&quot;]</span>
 </code></pre>
 <p><code>entries</code>メソッドはマップが持つすべての要素をエントリーとして挿入順に並べたIteratorオブジェクトを返します。
-先述のとおりエントリーは<code>[キー, 値]</code>のような配列です。
+先述のとおりエントリーは<code>[キー, 値]</code>の配列です。
 そのため、配列の分割代入を使うとエントリーからキーと値を簡単に取り出せます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>], [<span class="hljs-string">&quot;key2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>]]);
@@ -1663,8 +1663,9 @@ shoppingCart.addItem(shopItems[<span class="hljs-number">1</span>]);
         <span class="hljs-attr">method</span>: <span class="hljs-string">&quot;POST&quot;</span>,
         <span class="hljs-attr">headers</span>: { <span class="hljs-string">&quot;Content-Type&quot;</span>: <span class="hljs-string">&quot;application/json&quot;</span> },
         <span class="hljs-attr">body</span>: <span class="hljs-built_in">JSON</span>.stringify(data),
-    })
-        .catch(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> <span class="hljs-built_in">console</span>.error(error));
+    }).catch(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+        <span class="hljs-built_in">console</span>.error(error);
+    });
 }
 
 <span class="hljs-comment">// formのsubmitイベントを受け取る関数</span>
@@ -1681,8 +1682,8 @@ shoppingCart.addItem(shopItems[<span class="hljs-number">1</span>]);
 <p><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/WeakMap" target="_blank">WeakMap</a>は、<code>Map</code>と同じくマップを扱うためのビルトインオブジェクトです。
 <code>Map</code>と違う点は、キーを<strong>弱い参照</strong>（Weak Reference）で持つことです。</p>
 <p><a href="https://ja.wikipedia.org/wiki/%E5%BC%B1%E3%81%84%E5%8F%82%E7%85%A7" target="_blank">弱い参照</a>とは、ガベージコレクション（GC）によるオブジェクトの解放を妨げないための特殊な参照です。
-GCによりメモリから解放できるオブジェクトは、どこからも参照されていないものだけです。
-このときオブジェクトへの弱い参照があったとしてもそのオブジェクトは解放されます。</p>
+本来、GCによりメモリから解放できるオブジェクトは、どこからも参照されていないものだけです。
+弱い参照は例外的に、該当するオブジェクトへの弱い参照があったとしても、GCはそのオブジェクトを解放できます。</p>
 <p>そのため、弱い参照は不要になったオブジェクトを参照し続けて発生してしまうメモリリークを防ぐために使われます。
 <code>WeakMap</code>では不要になったキーとそれにひもづいた値が自動的に削除されるため、メモリリークを引き起こす心配がありません。</p>
 <p>次のコードでは、最初に<code>obj</code>には<code>{}</code>を設定し、<code>WeakMap</code>ではその<code>obj</code>をキーにして値（<code>&quot;value&quot;</code>）を設定しています。
@@ -1771,7 +1772,7 @@ map.set(<span class="hljs-literal">NaN</span>, <span class="hljs-string">&quot;v
 <h3 id="set-new"><a name="set-new" class="plugin-anchor" href="#set-new"><i class="fa fa-link" aria-hidden="true"></i></a>セットの作成と初期化 </h3>
 <p><code>Set</code>オブジェクトを<code>new</code>することで、新しいセットを作れます。
 作成されたばかりのセットは何も持っていません。
-そのため、セットのサイズを返す<code>size</code>プロパティは0を返します。</p>
+そのため、セットが持つ要素の数を返す<code>size</code>プロパティは0を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
 <span class="hljs-built_in">console</span>.log(set.size); <span class="hljs-comment">// =&gt; 0</span>
@@ -1830,8 +1831,7 @@ set.forEach(<span class="hljs-function">(<span class="hljs-params">value</span>)
 <p>セットからIteratorオブジェクトを作成するメソッドとして<code>keys</code>、<code>values</code>、<code>entries</code>があります。
 これらは<code>Map</code>との類似性のために存在しますが、セットにはマップにおけるキー相当のものがありません。
 そのため、<code>keys</code>メソッドは<code>values</code>メソッドのエイリアスになっており、セットが持つすべての値を挿入順に列挙するIteratorオブジェクトを返します。
-また、<code>entries</code>メソッドは<code>[値, 値]</code>という形のエントリーを挿入順に列挙するIteratorオブジェクトを返します。
-ただし、<code>Set</code>自身がiterableであるため、これらのメソッドが有用なケースは少ないでしょう。</p>
+また、<code>entries</code>メソッドは<code>[値, 値]</code>という形のエントリーを挿入順に列挙するIteratorオブジェクトを返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>]);
 <span class="hljs-comment">// keysで列挙</span>
@@ -1849,7 +1849,8 @@ set.forEach(<span class="hljs-function">(<span class="hljs-params">value</span>)
 <span class="hljs-built_in">console</span>.log(entryResults); <span class="hljs-comment">// =&gt; [[&quot;a&quot;,&quot;a&quot;], [&quot;b&quot;, &quot;b&quot;]]</span>
 </code></pre>
 <p><code>Set</code>オブジェクト自身もiterableなオブジェクトであるため<code>for...of</code>文で反復処理できます。
-<code>for...of</code>文で<code>Set</code>オブジェクトを反復処理したときも、セットへの挿入順に値が取り出されます。</p>
+<code>for...of</code>文で<code>Set</code>オブジェクトを反復処理したときも、セットへの挿入順に値が取り出されます。
+<code>keys</code>、<code>values</code>、<code>entries</code>メソッドはどれも取得できる情報は同じであるため、基本的には<code>Set</code>オブジェクト自体を反復処理することで代用できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>]);
 <span class="hljs-keyword">const</span> results = [];
@@ -1904,7 +1905,7 @@ set.forEach(<span class="hljs-function">(<span class="hljs-params">value</span>)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"データの集合を扱うビルトインオブジェクトであるMapとSetについてを紹介します。オブジェクトの作成方法や更新方法から実際にどのようなケースで使うのかを紹介します。","title":"Map/Set","level":"1.3.23","depth":2,"next":{"title":"JSON","level":"1.3.24","depth":2,"path":"basic/json/README.md","ref":"./basic/json/README.md","articles":[]},"previous":{"title":"非同期処理:Promise/Async Function","level":"1.3.22","depth":2,"path":"basic/async/README.md","ref":"./basic/async/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.12.0","npmversion":"8.19.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/map-and-set/README.md","mtime":"2022-11-04T14:19:14.619Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2022-11-04T14:19:35.450Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"データの集合を扱うビルトインオブジェクトであるMapとSetについてを紹介します。オブジェクトの作成方法や更新方法から実際にどのようなケースで使うのかを紹介します。","title":"Map/Set","level":"1.3.23","depth":2,"next":{"title":"JSON","level":"1.3.24","depth":2,"path":"basic/json/README.md","ref":"./basic/json/README.md","articles":[]},"previous":{"title":"非同期処理:Promise/Async Function","level":"1.3.22","depth":2,"path":"basic/async/README.md","ref":"./basic/async/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.12.0","npmversion":"8.19.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/map-and-set/README.md","mtime":"2022-11-04T15:15:22.618Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2022-11-04T15:15:51.116Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
