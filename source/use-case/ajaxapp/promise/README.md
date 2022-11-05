@@ -232,7 +232,6 @@ index.jsにも`<input>`タグから値を受け取るための処理を追加す
   "options": {
     "showLineNumbers": true,
     "editorHeight": 550,
-    "externalResources": ["https://jsprimer.net/use-case/ajaxapp/promise/src/index.js"],
     "showConsole": true, 
     "showConsoleButton": true
   },

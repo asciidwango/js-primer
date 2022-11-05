@@ -186,7 +186,6 @@ result.innerHTML = view;
   "options": {
     "showLineNumbers": true,
     "editorHeight": 550,
-    "externalResources": ["https://jsprimer.net/use-case/ajaxapp/display/src/index.js"],
     "showConsole": true, 
     "showConsoleButton": true
   },

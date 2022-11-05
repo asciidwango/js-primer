@@ -136,12 +136,13 @@ JavaScriptとDOMはWebアプリケーション開発において切っても切�
       "hidden": true
     }
   },
+  "entry": "/index.js",
+  "main": "/index.js",
   "environment": "static",
   "template": "vanilla",
   "options": {
     "showLineNumbers": true,
     "editorHeight": 550,
-    "externalResources": ["https://jsprimer.net/use-case/ajaxapp/entrypoint/src/index.js"],
     "showConsole": true, 
     "showConsoleButton": true
   },
