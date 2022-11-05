@@ -179,6 +179,41 @@ XHRの詳しい使い方については、[XHRの利用についてのドキュ�
 - Fetch APIの呼び出しに対するエラーハンドリングを行った
 - `fetchUserInfo`関数を宣言し、ボタンのクリックイベントで呼び出した
 
+ここまでのアプリは次のURLで確認できます。
+
+- <https://jsprimer.net/use-case/ajaxapp/http/src/>
+
+<!-- externalResourcesをサイト上のjsを読み込んでいるのでデプロイするまでローカルでは確認できない。これはSandpackの問題を回避するため https://github.com/honkit/honkit-plugin-sandpack#note -->
+
+<!-- sandpack:{
+  "files": {
+    "/index.js": {
+      "path": "src/index.js"
+    },
+    "/index.html": {
+      "path": "src/index.html",
+      "active": true
+    },
+    "/src/index.js": {
+      "code": "/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */",
+      "hidden": true
+    }
+  },
+  "environment": "static",
+  "template": "vanilla",
+  "options": {
+    "showLineNumbers": true,
+    "editorHeight": 550,
+    "externalResources": ["https://jsprimer.net/use-case/ajaxapp/http/src/index.js"],
+    "showConsole": true, 
+    "showConsoleButton": true 
+  },
+  "honkitSettings": {
+    "isOpen": true,
+    "hideExitButton": true
+  }
+} -->
+
 [Fetch API]: https://developer.mozilla.org/ja/docs/Web/API/Fetch_API
 [XMLHttpRequest]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest
 [XHRの利用についてのドキュメント]: https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest

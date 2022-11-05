@@ -116,6 +116,41 @@ JavaScriptとDOMはWebアプリケーション開発において切っても切�
 - `index.js`からコンソールに出力されたログを確認した
 - JavaScriptからHTMLドキュメントを操作するDOMについて学んだ
 
+ここまでのアプリは次のURLで確認できます。
+
+- <https://jsprimer.net/use-case/ajaxapp/entrypoint/src/>
+
+<!-- externalResourcesをサイト上のjsを読み込んでいるのでデプロイするまでローカルでは確認できない。これはSandpackの問題を回避するため https://github.com/honkit/honkit-plugin-sandpack#note -->
+
+<!-- sandpack:{
+  "files": {
+    "/index.js": {
+      "path": "src/index.js"
+    },
+    "/index.html": {
+      "path": "src/index.html",
+      "active": true
+    },
+    "/src/index.js": {
+      "code": "/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */",
+      "hidden": true
+    }
+  },
+  "environment": "static",
+  "template": "vanilla",
+  "options": {
+    "showLineNumbers": true,
+    "editorHeight": 550,
+    "externalResources": ["https://jsprimer.net/use-case/ajaxapp/entrypoint/src/index.js"],
+    "showConsole": true, 
+    "showConsoleButton": true
+  },
+  "honkitSettings": {
+    "isOpen": true,
+    "hideExitButton": true
+  }
+} -->
+
 [Same Origin Policy]: https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy 
 [アプリケーション開発の準備]: ../../setup-local-env/README.md
 [ブラウザーの開発者ツールとは？]: https://developer.mozilla.org/ja/docs/Learn/Common_questions/What_are_browser_developer_tools
