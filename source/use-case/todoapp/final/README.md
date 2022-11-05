@@ -168,7 +168,6 @@ TodoListViewの`createElement`メソッドは`TodoItemView`を使ってTodoア�
       "active": true
     },
     "/index.js": {
-      "appendCode": "// 次の行は本編とは無関係のコードなので無視してください\n/* sandpackではloadイベントが発生しないため手動でイベントを発行 https://github.com/codesandbox/sandpack/issues/44 */document.readyState === 'complete' && window.dispatchEvent(new Event('load'));\n",
       "path": "final/index.js"
     },
     "/src/index.js": {
@@ -182,16 +181,16 @@ TodoListViewの`createElement`メソッドは`TodoItemView`を使ってTodoア�
       "path": "final/src/EventEmitter.js"
     },
     "/src/model/TodoItemModel.js":{
-      "path": "more/src/model/TodoItemModel.js"
+      "path": "final/src/model/TodoItemModel.js"
     },
     "/src/model/TodoListModel.js":{
-      "path": "more/src/model/TodoListModel.js"
+      "path": "final/src/model/TodoListModel.js"
     },
     "/src/view/TodoItemView.js":{
-      "path": "more/src/view/TodoItemView.js"
+      "path": "final/src/view/TodoItemView.js"
     },
     "/src/view/TodoListView.js":{
-      "path": "more/src/view/TodoListView.js"
+      "path": "final/src/view/TodoListView.js"
     },
     "/index.html": {
       "path": "final/index.html"
@@ -248,7 +247,7 @@ window.addEventListener("unload", () => {
 <!-- sandpack:{
   "files": {
     "/index.css": {
-      "path": "./final/index.css",
+      "path": "./more/index.css",
       "hidden": true
     },
     "/src/App.js": {
@@ -256,6 +255,7 @@ window.addEventListener("unload", () => {
       "active": true
     },
     "/index.js": {
+      "appendCode": "// 次の行は本編とは無関係のコードなので無視してください\n/* sandpackではloadイベントが発生しないため手動でイベントを発行 https://github.com/codesandbox/sandpack/issues/44 */document.readyState === 'complete' && window.dispatchEvent(new Event('load'));\n",
       "path": "more/index.js"
     },
     "/src/index.js": {
@@ -291,7 +291,7 @@ window.addEventListener("unload", () => {
   "options": {
     "showLineNumbers": true,
     "editorHeight": 550,
-    "externalResources": ["https://jsprimer.net/use-case/todoapp/final/final/index.css"]
+    "externalResources": ["https://jsprimer.net/use-case/todoapp/final/more/index.css"]
   },
   "honkitSettings": {
     "isOpen": true,
