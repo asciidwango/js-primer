@@ -27,7 +27,7 @@ Ecma Internationalの中のTechnical Committee 39（TC39）という技術委員
 | 2015     | 2015年6月  |
 | 2016     | 2016年6月  |
 | 2017     | 2017年6月  |
-| 以下毎年リリース |
+| 以降毎年リリース |
 
 <!-- textlint-disable -->
 
@@ -47,7 +47,7 @@ ECMAScriptはLiving Standardですが、これに加えてECMAScript 2017のよ�
 このバージョンつきECMAScriptは、毎年決まった時期のドラフトを元にしたスナップショットのようなものです。
 
 ブラウザなどに実際にJavaScriptとして実装される際には、Living StandardのECMAScriptを参照しています。
-これは、ブラウザ自体も日々更新されるものであり、決まった時期にしかリリースされないバージョンつきよりもLiving Standardのほうが適当であるためです。
+これは、ブラウザ自体も日々更新されるものであり、決まった時期にしかリリースされないバージョンつきよりもLiving Standardのほうが適切であるためです。
 
 ## 仕様策定のプロセス {#specification-process}
 
