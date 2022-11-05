@@ -25,6 +25,8 @@ Node.jsはサーバーサイドで使うために開発されました。
 Node.jsは多くの他のプログラミング言語と同じように、実行環境をマシンにインストールすることで使用できます。
 公式の[ダウンロードページ][]から、開発用のマシンに合わせたインストーラをダウンロードして、インストールしましょう。
 
+- ダウンロードページのURL: <https://nodejs.org/ja/download/>
+
 Node.jsには**LTS（Long-Term Support）**版と最新版の2つのリリース版があります。
 **LTS（Long-Term Support）**版は2年間のメンテナンスとサポートが宣言されたバージョンです。
 具体的には、後方互換性を壊さない範囲でのアップデートと、継続的なセキュリティパッチの提供が行われます。
@@ -50,8 +52,10 @@ $ npm -v
 {{book.npmversion}}
 {{book.triplebackticks}}
 
-npmや`npm`コマンドについての詳細は[公式ドキュメント](https://docs.npmjs.com/)や[npmのGitHubリポジトリ][]を参照してください。
+Node.jsとnpmのバージョン番号は`{major}.{minor}.{patch}`という構成になっていて、先頭のメジャーバージョンが同じなら互換性は保証されています。
+
 Node.jsのライブラリのほとんどはnpmを使ってインストールできます。
+npmや`npm`コマンドについての詳細は[npmの公式ドキュメント][]や[npmのGitHubリポジトリ][]を参照してください。
 実際に、ユースケースの章ではnpmを使ってライブラリをインストールして利用します。
 
 ## npxコマンドによるnpmパッケージの実行 {#npx-execution}
@@ -202,6 +206,7 @@ npmでは、すでに多種多様なローカルサーバーモジュールが�
 [Electron]: https://www.electronjs.org/
 [ダウンロードページ]: https://nodejs.org/ja/download/
 [npm]: https://www.npmjs.com/
+[npmの公式ドキュメント]: https://docs.npmjs.com/
 [npmのGitHubリポジトリ]: https://github.com/npm/cli
 [npx]: https://docs.npmjs.com/cli/v8/commands/npx/
 [@js-primer/hello-world]: https://github.com/js-primer/hello-world
