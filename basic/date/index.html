@@ -1471,7 +1471,7 @@
 <code>Date</code>オブジェクトのインスタンスではなく現在の時刻の時刻値だけが欲しい場合には、<code>Date.now</code>メソッドの返り値を使います。
 作成したインスタンスが持つ時刻値は、<code>getTime</code>メソッドで取得できます。
 また、<code>toISOString</code>メソッドを使うと、その時刻をUTCにおける<a href="https://ja.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601</a>形式の文字列に変換できます。
-ISO 8601とは国際規格となっている文字列の形式で、<code>2006-01-02T15:04:05.999+09:00</code>のように時刻を表現します。
+ISO 8601とは国際規格となっている文字列の形式で、<code>2006-01-02T15:04:05.999+09:00</code>のように時刻とタイムゾーン情報を表現します。
 人間が見てもわかりやすい文字列であるため、広く利用されています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 現在の時刻を表すインスタンスを作成する</span>
@@ -1495,8 +1495,8 @@ ISO 8601とは国際規格となっている文字列の形式で、<code>2006-0
 </ul>
 <p>1つめは、コンストラクタ関数にミリ秒を表す数値型の引数を渡したときに適用されます。
 渡した数値をUTCの1970年1月1日0時0分0秒を基準とした時刻値として扱います。
-この方法は実行環境による挙動の違いが起きないので安全です。
-また、時刻値を直接指定するので、他の2つの方法と違ってタイムゾーンを考慮する必要がありません。</p>
+この方法は基準となる時刻とタイムゾーンが固定されているため、実行環境のタイムゾーンによる違いが起きないので安全です。
+そのため、他の2つの方法と違ってタイムゾーンを考慮する必要がありません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 時刻のミリ秒値を直接指定する形式</span>
 <span class="hljs-comment">// 1136214245999はUTCにおける&quot;2006年1月2日15時04分05秒999&quot;を表す</span>
@@ -1504,7 +1504,7 @@ ISO 8601とは国際規格となっている文字列の形式で、<code>2006-0
 <span class="hljs-comment">// 末尾の&apos;Z&apos;はUTCであることを表す</span>
 <span class="hljs-built_in">console</span>.log(date.toISOString()); <span class="hljs-comment">// =&gt; &quot;2006-01-02T15:04:05.999Z&quot;</span>
 </code></pre>
-<p>2つめは文字列型の引数を渡したときに適用されます。
+<p>2つめは、文字列型の引数を渡したときに適用されます。
 <a href="https://www.rfc-editor.org/rfc/rfc2822#section-3.3" target="_blank">RFC2822</a>や<a href="https://ja.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601</a>の形式に従った文字列を渡すと、
 その文字列をパースして得られる時刻値を使って、<code>Date</code>のインスタンスを作成します。</p>
 <p>次のコードでは、ISO 8601形式の文字列を渡して<code>Date</code>のインスタンスを作成します。
@@ -1525,15 +1525,16 @@ ISO 8601とは国際規格となっている文字列の形式で、<code>2006-0
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(year, month, day, hour, minutes, seconds, milliseconds);
 </code></pre>
-<p>コンストラクタ関数に2つ以上の引数を渡すと、このオーバーロードが適用されます。
-日を表す第三引数から後ろの引数は省略可能ですが、日付だけはデフォルトで1が設定され、そのほかには0が設定されます。
-また、月を表す第二引数は0から11までの数値で指定することにも注意しましょう。</p>
+<p>コンストラクタ関数に2つ以上の引数を渡すと、この方法で<code>Date</code>インスタンスが作成されます。
+月内の日を表す第三引数（<code>day</code>）から後ろの引数は省略可能です。
+省略した場合のそれぞれの引数の初期値は<code>0</code>ですが、日（<code>day</code>）を表す第三引数だけは<code>1</code>がデフォルト値となります。
+また、月（<code>month</code>）を表す第二引数は<code>0</code>が1月に対応し、<code>0</code>から<code>11</code>までの数値で月を指定することにも注意しましょう。</p>
 <p>先述した2つの方法と違い、この方法はタイムゾーンを指定できません。
-渡した数値は常にローカルのタイムゾーンにおける時刻とみなされます。
+渡した数値は常にローカルのタイムゾーンにおける時刻とみなされます。</p>
 <!-- textlint-disable -->
-結果が実行環境に依存してしまうため、基本的にこの方法は使うべきではありません。
-<!-- textlint-enable -->
-時刻を部分ごとに指定したい場合は、<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date/UTC" target="_blank">Date.UTC</a>メソッドを使うとよいでしょう。
+<p>結果が実行環境に依存してしまうため、基本的にこの方法は使うべきではありません。
+<!-- textlint-enable --></p>
+<p>時刻を部分ごとに指定したい場合は、<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date/UTC" target="_blank">Date.UTC</a>メソッドを使うとよいでしょう。
 渡す引数の形式は同じですが、<code>Date.UTC</code>メソッドは渡された数値をUTCにおける時刻として扱い、その時刻値を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 実行環境における&quot;2006年1月2日15時04分05秒999&quot;を表す</span>
@@ -1554,11 +1555,13 @@ ISO 8601とは国際規格となっている文字列の形式で、<code>2006-0
 <span class="hljs-keyword">const</span> invalid = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">&quot;&quot;</span>);
 <span class="hljs-built_in">console</span>.log(invalid.getTime()); <span class="hljs-comment">// =&gt; NaN</span>
 <span class="hljs-built_in">console</span>.log(invalid.toString()); <span class="hljs-comment">// =&gt; &quot;Invalid Date&quot;</span>
+<span class="hljs-comment">// 不正なDateインスタンスかを判定</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Number</span>.isNaN(invalid.getTime())); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <h3 id="instance-method"><a name="instance-method" class="plugin-anchor" href="#instance-method"><i class="fa fa-link" aria-hidden="true"></i></a>Dateのインスタンスメソッド </h3>
 <p><code>Date</code>オブジェクトのインスタンスは多くのメソッドを持っていますが、
 ほとんどは<code>getHours</code>と<code>setHours</code>のような、時刻の各部分を取得・更新するためのメソッドです。</p>
-<p>次の例は、日付を決まった形式の文字列に変換しています。
+<p>次のコードは、日付を決まった形式の文字列に変換しています。
 <code>getMonth</code>メソッドや<code>setMonth</code>メソッドのように月を数値で扱うメソッドは、0から11の数値で指定することに注意しましょう。ある<code>Date</code>のインスタンスの時刻が何月かを表示するには、<code>getMonth</code>メソッドの返り値に1を足す必要があります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2017" } --></p>
@@ -1592,19 +1595,20 @@ ISO 8601とは国際規格となっている文字列の形式で、<code>2006-0
 <li>任意の書式の文字列から時刻に変換するメソッドがない</li>
 <li>「時刻を1時間進める」のように時刻を前後にずらす操作を提供するメソッドがない</li>
 <li>任意のタイムゾーンにおける時刻を計算するメソッドがない</li>
-<li><code>YYYY/MM/DD</code>のようなフォーマットに基づいた文字列への変換を提供するメソッドがない</li>
+<li><code>YYYY/MM/DD HH:mm</code>のようなフォーマットに基づいた文字列への変換を提供するメソッドがない</li>
 </ul>
 <p>そのため、JavaScriptにおける日付・時刻の処理は、標準のDateではなくライブラリを使うことが一般的になっています。
-代表的なライブラリとしては、<a href="https://momentjs.com/" target="_blank">moment.js</a>や<a href="https://github.com/js-joda/js-joda" target="_blank">js-joda</a>、<a href="https://date-fns.org/" target="_blank">date-fns</a>などがあります。</p>
-<!-- momentが参照できない -->
+代表的なライブラリとしては、<a href="https://day.js.org/" target="_blank">Day.js</a>、<a href="https://date-fns.org/" target="_blank">date-fns</a>、<a href="https://github.com/js-joda/js-joda" target="_blank">js-joda</a>、<a href="https://momentjs.com/" target="_blank">moment.js</a>の後継である<a href="https://github.com/moment/luxon/" target="_blank">Luxon</a>などがあります。</p>
+<!-- Day.jsが参照できない -->
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-comment">// moment.jsで現在時刻のmomentオブジェクトを作る</span>
-<span class="hljs-keyword">const</span> now = moment();
+<pre><code class="lang-js"><span class="hljs-comment">// Day.jsで現在時刻のDay.jsオブジェクトを作る</span>
+<span class="hljs-keyword">const</span> now = dayjs();
 <span class="hljs-comment">// addメソッドで10分進める</span>
-<span class="hljs-keyword">const</span> future = now.add(<span class="hljs-number">10</span>, <span class="hljs-string">&quot;minutes&quot;</span>);
+<span class="hljs-keyword">const</span> future = now.add(<span class="hljs-number">10</span>, <span class="hljs-string">&quot;minute&quot;</span>);
 <span class="hljs-comment">// formatメソッドで任意の書式の文字列に変換する</span>
-<span class="hljs-built_in">console</span>.log(future.format(<span class="hljs-string">&quot;YYYY/MM/DD&quot;</span>));
+<span class="hljs-built_in">console</span>.log(future.format(<span class="hljs-string">&quot;YYYY/MM/DD HH:mm&quot;</span>));
 </code></pre>
+<!-- ECMA-402 と Temporalについてを書く -->
 <h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>まとめ </h2>
 <p>この章では、Dateオブジェクトについて学びました。</p>
 <ul>
@@ -1645,7 +1649,7 @@ ISO 8601とは国際規格となっている文字列の形式で、<code>2006-0
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"日付や時刻を扱うビルトインオブジェクトのDateを紹介します。","title":"Date","level":"1.3.25","depth":2,"next":{"title":"Math","level":"1.3.26","depth":2,"path":"basic/math/README.md","ref":"./basic/math/README.md","articles":[]},"previous":{"title":"JSON","level":"1.3.24","depth":2,"path":"basic/json/README.md","ref":"./basic/json/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.12.0","npmversion":"8.19.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/date/README.md","mtime":"2022-11-05T07:24:05.072Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2022-11-05T07:24:31.026Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"日付や時刻を扱うビルトインオブジェクトのDateを紹介します。","title":"Date","level":"1.3.25","depth":2,"next":{"title":"Math","level":"1.3.26","depth":2,"path":"basic/math/README.md","ref":"./basic/math/README.md","articles":[]},"previous":{"title":"JSON","level":"1.3.24","depth":2,"path":"basic/json/README.md","ref":"./basic/json/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.12.0","npmversion":"8.19.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/date/README.md","mtime":"2022-11-05T07:27:40.286Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2022-11-05T07:28:01.243Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
