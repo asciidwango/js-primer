@@ -208,12 +208,13 @@ index.jsにも`<input>`タグから値を受け取るための処理を追加す
 
 - <https://jsprimer.net/use-case/ajaxapp/promise/src/>
 
-<!-- externalResourcesをサイト上のjsを読み込んでいるのでデプロイするまでローカルでは確認できない。これはSandpackの問題を回避するため https://github.com/honkit/honkit-plugin-sandpack#note -->
+<!-- sandpackの問題でindex.jsがscriptタグとは異なる読み方がされ、globalに関数が追加されない。そのためappendCodeでglobalThisに関数を追加する -->
 
 <!-- sandpack:{
   "files": {
     "/index.js": {
-      "path": "src/index.js"
+      "path": "src/index.js",
+      "appendCode": "/* この行は本編とは無関係であるため無視してください。 */ window.main = main;"
     },
     "/index.html": {
       "path": "src/index.html",
@@ -224,6 +225,8 @@ index.jsにも`<input>`タグから値を受け取るための処理を追加す
       "hidden": true
     }
   },
+  "entry": "/index.js",
+  "main": "/index.js",
   "environment": "static",
   "template": "vanilla",
   "options": {

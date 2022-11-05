@@ -183,12 +183,13 @@ XHRの詳しい使い方については、[XHRの利用についてのドキュ�
 
 - <https://jsprimer.net/use-case/ajaxapp/http/src/>
 
-<!-- externalResourcesをサイト上のjsを読み込んでいるのでデプロイするまでローカルでは確認できない。これはSandpackの問題を回避するため https://github.com/honkit/honkit-plugin-sandpack#note -->
+<!-- sandpackの問題でindex.jsがscriptタグとは異なる読み方がされ、globalに関数が追加されない。そのためappendCodeでglobalThisに関数を追加する -->
 
 <!-- sandpack:{
   "files": {
     "/index.js": {
-      "path": "src/index.js"
+      "path": "src/index.js",
+      "appendCode": "/* この行は本編とは無関係であるため無視してください。 */ window.fetchUserInfo = fetchUserInfo;"
     },
     "/index.html": {
       "path": "src/index.html",
@@ -199,12 +200,13 @@ XHRの詳しい使い方については、[XHRの利用についてのドキュ�
       "hidden": true
     }
   },
+  "entry": "/index.js",
+  "main": "/index.js",
   "environment": "static",
   "template": "vanilla",
   "options": {
     "showLineNumbers": true,
     "editorHeight": 550,
-    "externalResources": ["https://jsprimer.net/use-case/ajaxapp/http/src/index.js"],
     "showConsole": true, 
     "showConsoleButton": true 
   },

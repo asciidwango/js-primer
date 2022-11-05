@@ -162,12 +162,13 @@ result.innerHTML = view;
 
 - <https://jsprimer.net/use-case/ajaxapp/display/src/>
 
-<!-- externalResourcesをサイト上のjsを読み込んでいるのでデプロイするまでローカルでは確認できない。これはSandpackの問題を回避するため https://github.com/honkit/honkit-plugin-sandpack#note -->
+<!-- sandpackの問題でindex.jsがscriptタグとは異なる読み方がされ、globalに関数が追加されない。そのためappendCodeでglobalThisに関数を追加する -->
 
 <!-- sandpack:{
   "files": {
     "/index.js": {
-      "path": "src/index.js"
+      "path": "src/index.js",
+      "appendCode": "/* この行は本編とは無関係であるため無視してください。 */ window.fetchUserInfo = fetchUserInfo;"
     },
     "/index.html": {
       "path": "src/index.html",
@@ -178,6 +179,8 @@ result.innerHTML = view;
       "hidden": true
     }
   },
+  "entry": "/index.js",
+  "main": "/index.js",
   "environment": "static",
   "template": "vanilla",
   "options": {
