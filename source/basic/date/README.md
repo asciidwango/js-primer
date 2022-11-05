@@ -134,6 +134,8 @@ console.log(date2.toISOString()); // => "2006-01-02T15:04:05.999Z"
 const invalid = new Date("");
 console.log(invalid.getTime()); // => NaN
 console.log(invalid.toString()); // => "Invalid Date"
+// 不正なDateインスタンスかを判定
+console.log(Number.isNaN(invalid.getTime())); // => true
 ```
 
 ### Dateのインスタンスメソッド {#instance-method}
@@ -141,7 +143,7 @@ console.log(invalid.toString()); // => "Invalid Date"
 `Date`オブジェクトのインスタンスは多くのメソッドを持っていますが、
 ほとんどは`getHours`と`setHours`のような、時刻の各部分を取得・更新するためのメソッドです。
 
-次の例は、日付を決まった形式の文字列に変換しています。
+次のコードは、日付を決まった形式の文字列に変換しています。
 `getMonth`メソッドや`setMonth`メソッドのように月を数値で扱うメソッドは、0から11の数値で指定することに注意しましょう。ある`Date`のインスタンスの時刻が何月かを表示するには、`getMonth`メソッドの返り値に1を足す必要があります。
 
 {{book.console}}
