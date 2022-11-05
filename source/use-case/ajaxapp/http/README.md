@@ -183,7 +183,7 @@ XHRの詳しい使い方については、[XHRの利用についてのドキュ�
 
 - <https://jsprimer.net/use-case/ajaxapp/http/src/>
 
-<!-- FIXME: なぜかindex.jsで宣言した関数が見つからない -->
+<!-- externalResourcesをサイト上のjsを読み込んでいるのでデプロイするまでローカルでは確認できない。これはSandpackの問題を回避するため https://github.com/honkit/honkit-plugin-sandpack#note -->
 
 <!-- sandpack:{
   "files": {
@@ -199,13 +199,14 @@ XHRの詳しい使い方については、[XHRの利用についてのドキュ�
       "hidden": true
     }
   },
-  "entry": "/index.js",
-  "main": "/index.js",
   "environment": "static",
   "template": "vanilla",
   "options": {
     "showLineNumbers": true,
-    "editorHeight": 550
+    "editorHeight": 550,
+    "externalResources": ["https://jsprimer.net/use-case/ajaxapp/http/src/index.js"],
+    "showConsole": true, 
+    "showConsoleButton": true 
   },
   "honkitSettings": {
     "isOpen": true,

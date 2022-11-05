@@ -120,6 +120,8 @@ JavaScriptとDOMはWebアプリケーション開発において切っても切�
 
 - <https://jsprimer.net/use-case/ajaxapp/entrypoint/src/>
 
+<!-- externalResourcesをサイト上のjsを読み込んでいるのでデプロイするまでローカルでは確認できない。これはSandpackの問題を回避するため https://github.com/honkit/honkit-plugin-sandpack#note -->
+
 <!-- sandpack:{
   "files": {
     "/index.js": {
@@ -134,13 +136,14 @@ JavaScriptとDOMはWebアプリケーション開発において切っても切�
       "hidden": true
     }
   },
-  "entry": "/index.js",
-  "main": "/index.js",
   "environment": "static",
   "template": "vanilla",
   "options": {
     "showLineNumbers": true,
-    "editorHeight": 550
+    "editorHeight": 550,
+    "externalResources": ["https://jsprimer.net/use-case/ajaxapp/entrypoint/src/index.js"],
+    "showConsole": true, 
+    "showConsoleButton": true
   },
   "honkitSettings": {
     "isOpen": true,

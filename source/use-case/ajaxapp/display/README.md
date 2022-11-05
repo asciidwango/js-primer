@@ -158,6 +158,42 @@ result.innerHTML = view;
 - [タグつきテンプレート関数][]を使ってHTML文字列をエスケープした
 - `fetchUserInfo`関数を呼び出し、HTMLにユーザー情報が表示されることを確認した
 
+ここまでのアプリは次のURLで確認できます。
+
+- <https://jsprimer.net/use-case/ajaxapp/display/src/>
+
+<!-- externalResourcesをサイト上のjsを読み込んでいるのでデプロイするまでローカルでは確認できない。これはSandpackの問題を回避するため https://github.com/honkit/honkit-plugin-sandpack#note -->
+
+<!-- sandpack:{
+  "files": {
+    "/index.js": {
+      "path": "src/index.js"
+    },
+    "/index.html": {
+      "path": "src/index.html",
+      "active": true
+    },
+    "/src/index.js": {
+      "code": "/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */",
+      "hidden": true
+    }
+  },
+  "environment": "static",
+  "template": "vanilla",
+  "options": {
+    "showLineNumbers": true,
+    "editorHeight": 550,
+    "externalResources": ["https://jsprimer.net/use-case/ajaxapp/display/src/index.js"],
+    "showConsole": true, 
+    "showConsoleButton": true
+  },
+  "honkitSettings": {
+    "isOpen": true,
+    "hideExitButton": true
+  }
+} -->
+
+
 [document.getElementById]: https://developer.mozilla.org/ja/docs/Web/API/Document/getElementById
 [ElementのinnerHTML]: https://developer.mozilla.org/ja/docs/Web/API/Element/innerHTML
 [Element]: https://developer.mozilla.org/ja/docs/Web/API/Element
