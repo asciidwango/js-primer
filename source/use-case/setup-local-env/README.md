@@ -25,6 +25,8 @@ Node.jsはサーバーサイドで使うために開発されました。
 Node.jsは多くの他のプログラミング言語と同じように、実行環境をマシンにインストールすることで使用できます。
 公式の[ダウンロードページ][]から、開発用のマシンに合わせたインストーラをダウンロードして、インストールしましょう。
 
+- ダウンロードページのURL: <https://nodejs.org/ja/download/>
+
 Node.jsには**LTS（Long-Term Support）**版と最新版の2つのリリース版があります。
 **LTS（Long-Term Support）**版は2年間のメンテナンスとサポートが宣言されたバージョンです。
 具体的には、後方互換性を壊さない範囲でのアップデートと、継続的なセキュリティパッチの提供が行われます。
@@ -50,8 +52,10 @@ $ npm -v
 {{book.npmversion}}
 {{book.triplebackticks}}
 
-npmや`npm`コマンドについての詳細は[公式ドキュメント](https://docs.npmjs.com/)や[npmのGitHubリポジトリ][]を参照してください。
+Node.jsとnpmのバージョン番号は`{major}.{minor}.{patch}`という構成になっていて、先頭のメジャーバージョンが同じなら互換性は保証されています。
+
 Node.jsのライブラリのほとんどはnpmを使ってインストールできます。
+npmや`npm`コマンドについての詳細は[npmの公式ドキュメント][]や[npmのGitHubリポジトリ][]を参照してください。
 実際に、ユースケースの章ではnpmを使ってライブラリをインストールして利用します。
 
 ## npxコマンドによるnpmパッケージの実行 {#npx-execution}
@@ -64,7 +68,7 @@ Node.jsを使ったコマンドラインツールは数多く公開されてお�
 ここでは例として[@js-primer/hello-world][]というサンプル用のパッケージを実行します。
 `npx`コマンドでコマンドラインツールを実行するには、次のように `npx`コマンドにパッケージ名を渡して実行します。
 npx 7から、初めて実行するコマンドは対話式のプロンプトでパッケージをインストールするかが確認されます。
-これのプロンプトに対してEnterキーを押すとインストールが開始され、コマンドが実行されます。
+このプロンプトに対してEnterキーを押すとインストールが開始され、コマンドが実行されます。
 
 ```bash
 $ npx @js-primer/hello-world
@@ -97,7 +101,7 @@ npmで公開されているコマンドラインツールを実行する方法�
 次の例では`@js-primer/hello-world`パッケージをグローバルインストールしています。
 その後、パッケージに含まれている`js-primer-hello-world`コマンドを絶対パスの指定なしで呼び出しています。
 
-```
+```bash
 $ npm install --global @js-primer/hello-world
 $ js-primer-hello-world
 Hello World!
@@ -133,7 +137,7 @@ Hello World!
 次のコマンドでは、[@js-primer/local-server][]というこの書籍用に作成されたローカルサーバーモジュールをダウンロードと同時に実行します。
 このローカルサーバーモジュールは、`http`スキーマのURLでローカルファイルへアクセスできるように、実行したディレクトリにあるファイルを配信する機能を持ちます。
 
-```shell
+```bash
 # からはじまる行はコメントなので実行はしなくてよい
 # cdコマンドでファイルがあるディレクトリまで移動
 $ cd "index.htmlがあるディレクトリのパス"
@@ -202,6 +206,7 @@ npmでは、すでに多種多様なローカルサーバーモジュールが�
 [Electron]: https://www.electronjs.org/
 [ダウンロードページ]: https://nodejs.org/ja/download/
 [npm]: https://www.npmjs.com/
+[npmの公式ドキュメント]: https://docs.npmjs.com/
 [npmのGitHubリポジトリ]: https://github.com/npm/cli
 [npx]: https://docs.npmjs.com/cli/v8/commands/npx/
 [@js-primer/hello-world]: https://github.com/js-primer/hello-world
