@@ -184,21 +184,23 @@ console.log(`Hours in UTC: ${now.getHours() + timezoneOffsetInHours}`);
 - 任意の書式の文字列から時刻に変換するメソッドがない
 - 「時刻を1時間進める」のように時刻を前後にずらす操作を提供するメソッドがない
 - 任意のタイムゾーンにおける時刻を計算するメソッドがない
-- `YYYY/MM/DD`のようなフォーマットに基づいた文字列への変換を提供するメソッドがない
+- `YYYY/MM/DD HH:mm`のようなフォーマットに基づいた文字列への変換を提供するメソッドがない
 
 そのため、JavaScriptにおける日付・時刻の処理は、標準のDateではなくライブラリを使うことが一般的になっています。
-代表的なライブラリとしては、[moment.js][]や[js-joda][]、[date-fns][]などがあります。
+代表的なライブラリとしては、[Day.js][]、[date-fns][]、[js-joda][]、[moment.js][]の後継である[Luxon][]などがあります。
 
-<!-- momentが参照できない -->
+<!-- Day.jsが参照できない -->
 <!-- doctest:disable -->
 ```js
-// moment.jsで現在時刻のmomentオブジェクトを作る
-const now = moment();
+// Day.jsで現在時刻のDay.jsオブジェクトを作る
+const now = dayjs();
 // addメソッドで10分進める
-const future = now.add(10, "minutes");
+const future = now.add(10, "minute");
 // formatメソッドで任意の書式の文字列に変換する
-console.log(future.format("YYYY/MM/DD"));
+console.log(future.format("YYYY/MM/DD HH:mm"));
 ```
+
+<!-- ECMA-402 と Temporalについてを書く -->
 
 ## まとめ {#conclusion}
 
@@ -217,5 +219,8 @@ console.log(future.format("YYYY/MM/DD"));
 [RFC2822]: https://www.rfc-editor.org/rfc/rfc2822#section-3.3
 [ISO 8601]: https://ja.wikipedia.org/wiki/ISO_8601
 [moment.js]: https://momentjs.com/
+[Luxon]: https://github.com/moment/luxon/
 [js-joda]: https://github.com/js-joda/js-joda
+[Day.js]: https://day.js.org/
 [date-fns]: https://date-fns.org/
+[ECMA-402]: https://www.ecma-international.org/publications-and-standards/standards/ecma-402/
