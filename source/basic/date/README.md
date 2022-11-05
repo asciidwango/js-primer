@@ -28,7 +28,7 @@ description: "日付や時刻を扱うビルトインオブジェクトのDate�
 `Date`オブジェクトのインスタンスではなく現在の時刻の時刻値だけが欲しい場合には、`Date.now`メソッドの返り値を使います。
 作成したインスタンスが持つ時刻値は、`getTime`メソッドで取得できます。
 また、`toISOString`メソッドを使うと、その時刻をUTCにおける[ISO 8601][]形式の文字列に変換できます。
-ISO 8601とは国際規格となっている文字列の形式で、`2006-01-02T15:04:05.999+09:00`のように時刻を表現します。
+ISO 8601とは国際規格となっている文字列の形式で、`2006-01-02T15:04:05.999+09:00`のように時刻とタイムゾーン情報を表現します。
 人間が見てもわかりやすい文字列であるため、広く利用されています。
 
 {{book.console}}
@@ -56,8 +56,8 @@ console.log(now.toISOString());
 
 1つめは、コンストラクタ関数にミリ秒を表す数値型の引数を渡したときに適用されます。
 渡した数値をUTCの1970年1月1日0時0分0秒を基準とした時刻値として扱います。
-この方法は実行環境による挙動の違いが起きないので安全です。
-また、時刻値を直接指定するので、他の2つの方法と違ってタイムゾーンを考慮する必要がありません。
+この方法は基準となる時刻とタイムゾーンが固定されているため、実行環境のタイムゾーンによる違いが起きないので安全です。
+そのため、他の2つの方法と違ってタイムゾーンを考慮する必要がありません。
 
 {{book.console}}
 ```js
@@ -68,7 +68,7 @@ const date = new Date(1136214245999);
 console.log(date.toISOString()); // => "2006-01-02T15:04:05.999Z"
 ```
 
-2つめは文字列型の引数を渡したときに適用されます。
+2つめは、文字列型の引数を渡したときに適用されます。
 [RFC2822][]や[ISO 8601][]の形式に従った文字列を渡すと、
 その文字列をパースして得られる時刻値を使って、`Date`のインスタンスを作成します。
 
@@ -96,15 +96,18 @@ console.log(inLocal.toISOString()); // "2006-01-02T06:04:05.999Z" (Asia/Tokyoの
 new Date(year, month, day, hour, minutes, seconds, milliseconds);
 ```
 
-コンストラクタ関数に2つ以上の引数を渡すと、このオーバーロードが適用されます。
-日を表す第三引数から後ろの引数は省略可能ですが、日付だけはデフォルトで1が設定され、そのほかには0が設定されます。
-また、月を表す第二引数は0から11までの数値で指定することにも注意しましょう。
+コンストラクタ関数に2つ以上の引数を渡すと、この方法で`Date`インスタンスが作成されます。
+月内の日を表す第三引数（`day`）から後ろの引数は省略可能です。
+省略した場合のそれぞれの引数の初期値は`0`ですが、日（`day`）を表す第三引数だけは`1`がデフォルト値となります。
+また、月（`month`）を表す第二引数は`0`が1月に対応し、`0`から`11`までの数値で月を指定することにも注意しましょう。
 
 先述した2つの方法と違い、この方法はタイムゾーンを指定できません。
 渡した数値は常にローカルのタイムゾーンにおける時刻とみなされます。
+
 <!-- textlint-disable -->
 結果が実行環境に依存してしまうため、基本的にこの方法は使うべきではありません。
 <!-- textlint-enable -->
+
 時刻を部分ごとに指定したい場合は、[Date.UTC][]メソッドを使うとよいでしょう。
 渡す引数の形式は同じですが、`Date.UTC`メソッドは渡された数値をUTCにおける時刻として扱い、その時刻値を返します。
 
@@ -131,6 +134,8 @@ console.log(date2.toISOString()); // => "2006-01-02T15:04:05.999Z"
 const invalid = new Date("");
 console.log(invalid.getTime()); // => NaN
 console.log(invalid.toString()); // => "Invalid Date"
+// 不正なDateインスタンスかを判定
+console.log(Number.isNaN(invalid.getTime())); // => true
 ```
 
 ### Dateのインスタンスメソッド {#instance-method}
@@ -138,7 +143,7 @@ console.log(invalid.toString()); // => "Invalid Date"
 `Date`オブジェクトのインスタンスは多くのメソッドを持っていますが、
 ほとんどは`getHours`と`setHours`のような、時刻の各部分を取得・更新するためのメソッドです。
 
-次の例は、日付を決まった形式の文字列に変換しています。
+次のコードは、日付を決まった形式の文字列に変換しています。
 `getMonth`メソッドや`setMonth`メソッドのように月を数値で扱うメソッドは、0から11の数値で指定することに注意しましょう。ある`Date`のインスタンスの時刻が何月かを表示するには、`getMonth`メソッドの返り値に1を足す必要があります。
 
 {{book.console}}
@@ -179,21 +184,23 @@ console.log(`Hours in UTC: ${now.getHours() + timezoneOffsetInHours}`);
 - 任意の書式の文字列から時刻に変換するメソッドがない
 - 「時刻を1時間進める」のように時刻を前後にずらす操作を提供するメソッドがない
 - 任意のタイムゾーンにおける時刻を計算するメソッドがない
-- `YYYY/MM/DD`のようなフォーマットに基づいた文字列への変換を提供するメソッドがない
+- `YYYY/MM/DD HH:mm`のようなフォーマットに基づいた文字列への変換を提供するメソッドがない
 
 そのため、JavaScriptにおける日付・時刻の処理は、標準のDateではなくライブラリを使うことが一般的になっています。
-代表的なライブラリとしては、[moment.js][]や[js-joda][]、[date-fns][]などがあります。
+代表的なライブラリとしては、[Day.js][]、[date-fns][]、[js-joda][]、[moment.js][]の後継である[Luxon][]などがあります。
 
-<!-- momentが参照できない -->
+<!-- Day.jsが参照できない -->
 <!-- doctest:disable -->
 ```js
-// moment.jsで現在時刻のmomentオブジェクトを作る
-const now = moment();
+// Day.jsで現在時刻のDay.jsオブジェクトを作る
+const now = dayjs();
 // addメソッドで10分進める
-const future = now.add(10, "minutes");
+const future = now.add(10, "minute");
 // formatメソッドで任意の書式の文字列に変換する
-console.log(future.format("YYYY/MM/DD"));
+console.log(future.format("YYYY/MM/DD HH:mm"));
 ```
+
+<!-- ECMA-402 と Temporalについてを書く -->
 
 ## まとめ {#conclusion}
 
@@ -212,5 +219,8 @@ console.log(future.format("YYYY/MM/DD"));
 [RFC2822]: https://www.rfc-editor.org/rfc/rfc2822#section-3.3
 [ISO 8601]: https://ja.wikipedia.org/wiki/ISO_8601
 [moment.js]: https://momentjs.com/
+[Luxon]: https://github.com/moment/luxon/
 [js-joda]: https://github.com/js-joda/js-joda
+[Day.js]: https://day.js.org/
 [date-fns]: https://date-fns.org/
+[ECMA-402]: https://www.ecma-international.org/publications-and-standards/standards/ecma-402/
