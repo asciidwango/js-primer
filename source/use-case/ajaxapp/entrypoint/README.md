@@ -56,7 +56,7 @@ ajaxapp
 
 ```shell
 # cdコマンドで ajaxapp/ディレクトリに移動する
-$ cd todoapp/
+$ cd ajaxapp/
 # ajaxapp/をルートにしたローカルサーバーを起動する
 $ npx --yes @js-primer/local-server
 ```
