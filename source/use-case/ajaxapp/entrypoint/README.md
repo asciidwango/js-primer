@@ -55,6 +55,9 @@ ajaxapp
 まだ`npx`コマンドの用意ができていなければ、先に「[アプリケーション開発の準備][]」の章を参照してください。
 
 ```shell
+# cdコマンドで ajaxapp/ディレクトリに移動する
+$ cd ajaxapp/
+# ajaxapp/をルートにしたローカルサーバーを起動する
 $ npx --yes @js-primer/local-server
 ```
  
