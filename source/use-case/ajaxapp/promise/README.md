@@ -204,7 +204,7 @@ index.jsにも`<input>`タグから値を受け取るための処理を追加す
 - [Async Function][] を使って`main`関数をリファクタリングした
 - `index.html`に`<input>`タグを追加し、`getUserId`関数でユーザーIDを取得した
 
-ここまでのアプリは次のURLで確認できます。
+この章で作成したアプリは次のURLで確認できます。
 
 - <https://jsprimer.net/use-case/ajaxapp/promise/src/>
 
