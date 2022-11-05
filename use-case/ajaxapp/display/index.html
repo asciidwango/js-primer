@@ -1530,7 +1530,7 @@ result.innerHTML = view;
 これを回避するために、文字列をセットする前に、特定の記号を安全な表現に置換する必要があります。
 この処理を一般にHTMLのエスケープと呼びます。</p>
 <p>多くのViewライブラリは内部にエスケープ機構を持っていて、動的にHTMLを組み立てるときにはデフォルトでエスケープをしてくれます。
-または、<a href="https://github.com/teppeis/htmlspecialchars" target="_blank">エスケープ用のライブラリ</a>を利用するケースも多いでしょう。
+または、<a href="https://github.com/teppeis/htmlspecialchars" target="_blank">HTMLエスケープ用のライブラリ</a>を利用するケースも多いでしょう。
 今回のように独自実装するのは特別なケースで、一般的にはライブラリが提供する機能を使うのがほとんどです。</p>
 <p>次のように、特殊な記号に対するエスケープ処理を<code>escapeSpecialChars</code>関数として宣言します。</p>
 <pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">escapeSpecialChars</span>(<span class="hljs-params">str</span>) </span>{
@@ -1544,8 +1544,8 @@ result.innerHTML = view;
 </code></pre>
 <p>この<code>escapeSpecialChars</code>関数を、HTML文字列の中で<code>userInfo</code>から値を注入しているすべての箇所で呼び出します。
 ただし、テンプレートリテラル中で挿入している部分すべてに関数を適用するのは手間ですし、メンテナンス性もよくありません。
-そこで、<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Template_literals#タグづけされたTemplate_literal" target="_blank">テンプレートリテラルをタグづけ</a>することで、明示的にエスケープ用の関数を呼び出す必要がないようにします。
-タグづけされたテンプレートリテラルは、テンプレートによる値の埋め込みを関数の呼び出しとして扱えます。</p>
+そこで、<a href="../../../basic/string/#tagged-template-function">タグつきテンプレート関数</a>を利用することで、明示的にエスケープ用の関数を呼び出す必要がないようにします。
+タグつきテンプレート関数は、テンプレートによる値の埋め込み時に呼ばれる関数を扱えます。</p>
 <p>次の<code>escapeHTML</code>関数は<strong>タグ関数</strong>です（詳細は「<a href="../../../basic/string/">文字列</a>」の章の「<a href="../../../basic/string/#tagged-template-function">タグつきテンプレート関数</a>」を参照）。
 タグ関数には、第一引数に文字列リテラルの配列、第二引数に埋め込まれる値の配列が与えられます。
 <code>escapeHTML</code>関数では、文字列リテラルと値が元の順番どおりに並ぶように文字列を組み立てつつ、
@@ -1562,7 +1562,7 @@ result.innerHTML = view;
 }
 </code></pre>
 <p><code>escapeHTML</code>関数はタグ関数なので、通常の<code>()</code>による呼び出しではなく、テンプレートリテラルに対してタグづけして使います。
-テンプレートリテラルのバッククォート記号の前に関数を書くと、関数がタグづけされます。</p>
+テンプレートリテラルのバッククォート記号の前に関数を書くと、関数をタグ関数として呼び出せます。</p>
 <!-- 差分コードなので -->
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> view = escapeHTML<span class="hljs-string">`
@@ -1695,7 +1695,7 @@ result.innerHTML = view;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"Fetch APIを使って取得したデータをもとにHTMLを組み立ててブラウザ上で表示します。","title":"データを表示する","level":"1.4.2.3","depth":3,"next":{"title":"Promiseを活用する","level":"1.4.2.4","depth":3,"path":"use-case/ajaxapp/promise/README.md","ref":"./use-case/ajaxapp/promise/README.md","articles":[]},"previous":{"title":"HTTP通信","level":"1.4.2.2","depth":3,"path":"use-case/ajaxapp/http/README.md","ref":"./use-case/ajaxapp/http/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.12.0","npmversion":"8.19.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/ajaxapp/display/README.md","mtime":"2022-11-05T07:27:40.298Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2022-11-05T07:28:01.243Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"Fetch APIを使って取得したデータをもとにHTMLを組み立ててブラウザ上で表示します。","title":"データを表示する","level":"1.4.2.3","depth":3,"next":{"title":"Promiseを活用する","level":"1.4.2.4","depth":3,"path":"use-case/ajaxapp/promise/README.md","ref":"./use-case/ajaxapp/promise/README.md","articles":[]},"previous":{"title":"HTTP通信","level":"1.4.2.2","depth":3,"path":"use-case/ajaxapp/http/README.md","ref":"./use-case/ajaxapp/http/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.12.0","npmversion":"8.19.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/ajaxapp/display/README.md","mtime":"2022-11-05T12:01:49.209Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2022-11-05T12:02:12.654Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
