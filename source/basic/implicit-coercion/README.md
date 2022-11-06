@@ -554,6 +554,6 @@ console.log(isEmptyString()); // => false
 - 真偽値を得るには、明示的な型変換以外の方法もある
 
 [演算子]: ../operator/README.md	"演算子について解説した章"
-[JSDoc]: http://usejsdoc.org/  "Use JSDoc: Index"
+[JSDoc]: https://jsdoc.app/
 [IEEE 754]: https://ja.wikipedia.org/wiki/IEEE_754
 [例外処理]: ../error-try-catch/README.md
