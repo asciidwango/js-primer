@@ -167,6 +167,8 @@ const form = document.querySelector("#js-form");
   "options": {
     "showLineNumbers": true,
     "editorHeight": 550,
+    "showConsole": true, 
+    "showConsoleButton": true,
     "externalResources": ["https://jsprimer.net/use-case/todoapp/final/final/index.css"]
   },
   "honkitSettings": {

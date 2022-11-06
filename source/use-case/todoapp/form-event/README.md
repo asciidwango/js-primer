@@ -36,7 +36,7 @@ form要素でEnterキーを押して送信すると`submit`イベントが発生
 
 <!-- doctest:disable -->
 ```js
-// `id="js-form`の要素を取得
+// `id="js-form"`の要素を取得
 const formElement = document.querySelector("#js-form");
 // form要素から発生したsubmitイベントを受け取る
 formElement.addEventListener("submit", (event) => {
