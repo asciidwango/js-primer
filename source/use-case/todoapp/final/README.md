@@ -87,7 +87,9 @@ TodoItemViewの`createElement`メソッドの中身は`App`クラスでのHTML�
   "template": "vanilla",
   "options": {
     "showLineNumbers": true,
-    "editorHeight": 550
+    "editorHeight": 550,
+    "showConsole": true,
+    "showConsoleButton": true
   },
   "honkitSettings": {
     "isOpen": false
@@ -100,11 +102,11 @@ TodoItemViewの`createElement`メソッドの中身は`App`クラスでのHTML�
 次はTodoリストに対応する`TodoListView`を作成します。
 
 `src/view/TodoListView.js`ファイルを作成し、次のような`TodoListView`クラスを`export`します。
-この`TodoListView`は`TodoItemModel`の配列に対応するTodoリストのHTML要素を返す`createElement`メソッドを持ちます。
+この`TodoListView`は`TodoItemModel`の配列からTodoリストのHTML要素を作成して返す`createElement`メソッドを持ちます。
 
 [import, title:"src/view/TodoListView.js"](./create-view/src/view/TodoListView.js)
 
-TodoListViewの`createElement`メソッドは`TodoItemView`を使ってTodoアイテムのHTML要素を作り、`<li>`要素に追加していきます。
+TodoListViewの`createElement`メソッドは`TodoItemView`を使ってTodoアイテムのHTML要素を作り、`todoListElement`へと追加していきます。
 このTodoListViewの`createElement`メソッドも`onUpdateTodo`と`onDeleteTodo`のリスナー関数を受け取ります。
 しかし、`TodoListView`ではこのリスナー関数を`TodoItemView`にそのまま渡しています。
 なぜなら具体的なDOMイベントを発生させる要素が作られるのは`TodoItemView`の中となるためです。
