@@ -39,6 +39,9 @@ JavaScriptのコードをNode.jsで実行するには、`node`コマンドを使
 まだ`node`コマンドの用意ができていなければ、先に「[アプリケーション開発の準備][]」の章を参照してください。
 
 ```shell
+# `cd`コマンドでnodecli/ディレクトリに移動する
+$ cd nodecli/
+# `node`コマンドで`main.js`を実行する
 $ node main.js
 Hello World!
 ```
@@ -48,7 +51,7 @@ Node.jsでは、エントリーポイントとなるJavaScriptファイルを作
 
 ## Node.jsとブラウザのグローバルオブジェクト {#global-objects}
 
-Node.jsはChromeと同じV8というJavaScriptエンジンを利用しています。
+Node.jsは、ウェブブラウザのChromeと同じV8というJavaScriptエンジンを利用しています。
 そのため、ECMAScriptで定義されている基本構文はブラウザと同じように使えます。
 しかし、ブラウザ環境とNode.js環境では利用できるグローバルオブジェクトが違うため、アプリケーションを開発するときにはその違いを理解しなくてはなりません。
 
