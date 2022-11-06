@@ -1564,6 +1564,7 @@ Mochaをインストールした後、<code>package.json</code>の<code>scripts<
 <p>テストの実行環境ができたので、実際にユニットテストを記述します。
 Mochaのユニットテストは<code>test</code>ディレクトリの中にJavaScriptファイルを配置して記述します。
 <code>test/md2html-test.js</code>ファイルを作成し、<code>md2html.js</code>に対するユニットテストを次のように記述します。</p>
+<p><code>it</code>関数は第一引数にテストのタイトルを入れ、第二引数にテストの内容を記述します。</p>
 <div class="code-filename-block">
     <p class="code-filename">test/md2html-test.js</p>
 </div>
@@ -1573,7 +1574,7 @@ Mochaのユニットテストは<code>test</code>ディレクトリの中にJava
 <span class="hljs-keyword">import</span> { md2html } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../md2html.js&quot;</span>;
 
 it(<span class="hljs-string">&quot;converts Markdown to HTML (GFM=false)&quot;</span>, <span class="hljs-keyword">async</span>() =&gt; {
-    <span class="hljs-comment">// fs.readFileSyncは同期的にファイルを読み込むメソッド</span>
+    <span class="hljs-comment">// fs.readFileはPromiseを返すので、`await`式で読み込みが完了するまで待って内容を取得する</span>
     <span class="hljs-keyword">const</span> sample = <span class="hljs-keyword">await</span> fs.readFile(<span class="hljs-string">&quot;test/fixtures/sample.md&quot;</span>, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> });
     <span class="hljs-keyword">const</span> expected = <span class="hljs-keyword">await</span> fs.readFile(<span class="hljs-string">&quot;test/fixtures/expected.html&quot;</span>, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> });
     <span class="hljs-comment">// 末尾の改行の有無の違いを無視するため、変換後のHTMLのスペースをtrimメソッドで削除してから比較しています</span>
@@ -1642,8 +1643,45 @@ https://jsprimer.net/<span class="hljs-tag">&lt;/<span class="hljs-name">p</span
 <ul>
 <li><code>test/fixtures</code>ディレクトリに<code>sample.md</code>と<code>expected.html</code>、<code>expected-gfm.html</code>というファイルを作成したか</li>
 <li>それぞれのファイルは文字コードがUTF-8で、改行コードがLFになっているか</li>
-<li>それぞれのファイルの末尾に余計な改行文字が入っていないか</li>
+<li>それぞれのファイルに余計な文字が入っていないか</li>
 </ul>
+<p>たとえば、<code>npm test</code>を実行して次のようにテスト失敗している場合のエラーメッセージを見てみましょう。</p>
+<pre><code class="lang-shell"><span class="hljs-meta">$</span><span class="bash"> npm <span class="hljs-built_in">test</span></span>
+<span class="hljs-meta">&gt;</span><span class="bash"> mocha <span class="hljs-built_in">test</span>/</span>
+
+  ✔ converts Markdown to HTML (GFM=false)
+  1) converts Markdown to HTML (GFM=true)
+
+  1 passing (17ms)
+  1 failing
+
+  1) converts Markdown to HTML (GFM=true):
+
+      AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected ... Lines skipped
+
+  &apos;&lt;h1 id=&quot;サンプルファイル&quot;&gt;サンプルファイル&lt;/h1&gt;\n&apos; +
+    &apos;&lt;p&gt;これはサンプルです。\n&apos; +
+...
+    &apos;&lt;li&gt;サンプル1&lt;/li&gt;\n&apos; +
+    &apos;&lt;li&gt;サンプル2&lt;/li&gt;\n&apos; +
++   &apos;&lt;/ul&gt;&apos;
+-   &apos;&lt;/ul&gt;\n&apos; +
+-   &apos;;;;&apos;
+      + expected - actual
+
+       &lt;a href=&quot;https://jsprimer.net/&quot;&gt;https://jsprimer.net/&lt;/a&gt;&lt;/p&gt;
+       &lt;ul&gt;
+       &lt;li&gt;サンプル1&lt;/li&gt;
+       &lt;li&gt;サンプル2&lt;/li&gt;
+      -&lt;/ul&gt;
+      +&lt;/ul&gt;
+      +;;;
+</code></pre>
+<p>このテスト結果では <code>converts Markdown to HTML (GFM=true)</code> というタイトルのテストが1つ失敗していることがわかります。
+また、<code>+ actual - expected</code>には、<code>assert.strictEqual</code>で比較した結果が一致していない部分が表示されています。
+この場合は、expected（期待する結果）の末尾に<code>;;;</code>という不要な文字列が入ってしまっているのが、テストが失敗している理由です。
+そのため、<code>expected-gfm.html</code>ファイルを確認し不要な<code>;;;</code>という文字列を取り除けば、テストが通るようになるはずです。</p>
 <h2 id="reason-for-unit-test"><a name="reason-for-unit-test" class="plugin-anchor" href="#reason-for-unit-test"><i class="fa fa-link" aria-hidden="true"></i></a>なぜユニットテストを行うのか </h2>
 <p>ユニットテストを実施することには多くの利点があります。
 早期にバグが発見できることや、安心してリファクタリングを行えるようになるのはもちろんですが、
@@ -1696,7 +1734,7 @@ npmを使ったパッケージ管理や外部モジュールの利用、<code>fs
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"ユニットテストの導入とソースコードのモジュール化を行います。","title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"next":{"title":"Todoアプリ","level":"1.4.4","depth":2,"path":"use-case/todoapp/README.md","ref":"./use-case/todoapp/README.md","articles":[{"title":"エントリーポイント","level":"1.4.4.1","depth":3,"path":"use-case/todoapp/entrypoint/README.md","ref":"./use-case/todoapp/entrypoint/README.md","articles":[]},{"title":"アプリの構成要素","level":"1.4.4.2","depth":3,"path":"use-case/todoapp/app-structure/README.md","ref":"./use-case/todoapp/app-structure/README.md","articles":[]},{"title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"path":"use-case/todoapp/form-event/README.md","ref":"./use-case/todoapp/form-event/README.md","articles":[]},{"title":"イベントとモデル","level":"1.4.4.4","depth":3,"path":"use-case/todoapp/event-model/README.md","ref":"./use-case/todoapp/event-model/README.md","articles":[]},{"title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"path":"use-case/todoapp/update-delete/README.md","ref":"./use-case/todoapp/update-delete/README.md","articles":[]},{"title":"Todoアプリのリファクタリング","level":"1.4.4.6","depth":3,"path":"use-case/todoapp/final/README.md","ref":"./use-case/todoapp/final/README.md","articles":[]}]},"previous":{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.12.0","npmversion":"8.19.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/refactor-and-unittest/README.md","mtime":"2022-11-05T14:15:53.269Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2022-11-05T14:16:16.556Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"ユニットテストの導入とソースコードのモジュール化を行います。","title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"next":{"title":"Todoアプリ","level":"1.4.4","depth":2,"path":"use-case/todoapp/README.md","ref":"./use-case/todoapp/README.md","articles":[{"title":"エントリーポイント","level":"1.4.4.1","depth":3,"path":"use-case/todoapp/entrypoint/README.md","ref":"./use-case/todoapp/entrypoint/README.md","articles":[]},{"title":"アプリの構成要素","level":"1.4.4.2","depth":3,"path":"use-case/todoapp/app-structure/README.md","ref":"./use-case/todoapp/app-structure/README.md","articles":[]},{"title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"path":"use-case/todoapp/form-event/README.md","ref":"./use-case/todoapp/form-event/README.md","articles":[]},{"title":"イベントとモデル","level":"1.4.4.4","depth":3,"path":"use-case/todoapp/event-model/README.md","ref":"./use-case/todoapp/event-model/README.md","articles":[]},{"title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"path":"use-case/todoapp/update-delete/README.md","ref":"./use-case/todoapp/update-delete/README.md","articles":[]},{"title":"Todoアプリのリファクタリング","level":"1.4.4.6","depth":3,"path":"use-case/todoapp/final/README.md","ref":"./use-case/todoapp/final/README.md","articles":[]}]},"previous":{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.12.0","npmversion":"8.19.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/refactor-and-unittest/README.md","mtime":"2022-11-06T06:46:20.163Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2022-11-06T06:46:45.061Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
