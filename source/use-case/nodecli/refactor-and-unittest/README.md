@@ -127,7 +127,48 @@ $ npm test
 
 - `test/fixtures`ディレクトリに`sample.md`と`expected.html`、`expected-gfm.html`というファイルを作成したか
 - それぞれのファイルは文字コードがUTF-8で、改行コードがLFになっているか
-- それぞれのファイルの末尾に余計な改行文字が入っていないか
+- それぞれのファイルに余計な文字が入っていないか
+
+たとえば、`npm test`を実行して次のようにテスト失敗している場合のメッセージを見てみましょう。
+
+```shell
+$ npm test
+> mocha test/
+
+  ✔ converts Markdown to HTML (GFM=false)
+  1) converts Markdown to HTML (GFM=true)
+
+  1 passing (17ms)
+  1 failing
+
+  1) converts Markdown to HTML (GFM=true):
+
+      AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected ... Lines skipped
+
+  '<h1 id="サンプルファイル">サンプルファイル</h1>\n' +
+    '<p>これはサンプルです。\n' +
+...
+    '<li>サンプル1</li>\n' +
+    '<li>サンプル2</li>\n' +
++   '</ul>'
+-   '</ul>\n' +
+-   ';;;'
+      + expected - actual
+
+       <a href="https://jsprimer.net/">https://jsprimer.net/</a></p>
+       <ul>
+       <li>サンプル1</li>
+       <li>サンプル2</li>
+      -</ul>
+      +</ul>
+      +;;;
+```
+
+このテスト結果では `converts Markdown to HTML (GFM=true)` というタイトルのテストが1つ失敗しているということがわかります。
+また、`+ actual - expected `には、`assert.strictEqual`で比較した結果が一致していない部分が表示されています。
+この場合は、expected（期待する結果）の末尾に`;;;`という不要な文字列が入ってしまっているのが、テストが失敗している理由です。
+そのため、`expected-gfm.html`ファイルを確認し不要な`;;;`という文字列を取り除けば、テストが通るようになるはずです。
 
 ## なぜユニットテストを行うのか {#reason-for-unit-test}
 
