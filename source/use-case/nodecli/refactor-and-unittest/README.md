@@ -165,7 +165,7 @@ $ npm test
       +;;;
 ```
 
-このテスト結果では `converts Markdown to HTML (GFM=true)` というタイトルのテストが1つ失敗しているということがわかります。
+このテスト結果では `converts Markdown to HTML (GFM=true)` というタイトルのテストが1つ失敗していることがわかります。
 また、`+ actual - expected `には、`assert.strictEqual`で比較した結果が一致していない部分が表示されています。
 この場合は、expected（期待する結果）の末尾に`;;;`という不要な文字列が入ってしまっているのが、テストが失敗している理由です。
 そのため、`expected-gfm.html`ファイルを確認し不要な`;;;`という文字列を取り除けば、テストが通るようになるはずです。
