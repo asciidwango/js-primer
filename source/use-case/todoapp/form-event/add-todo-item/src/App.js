@@ -7,7 +7,7 @@ export class App {
         const containerElement = document.querySelector("#js-todo-list");
         const todoItemCountElement = document.querySelector("#js-todo-count");
         // TodoリストをまとめるList要素
-        const todoListElement = element`<ul />`;
+        const todoListElement = element`<ul></ul>`;
         // Todoアイテム数
         let todoItemCount = 0;
         formElement.addEventListener("submit", (event) => {

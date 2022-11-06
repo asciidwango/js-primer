@@ -14,7 +14,7 @@ export class App {
         // 2. TodoListModelの状態が更新されたら表示を更新する
         this.#todoListModel.onChange(() => {
             // TodoリストをまとめるList要素
-            const todoListElement = element`<ul />`;
+            const todoListElement = element`<ul></ul>`;
             // それぞれのTodoItem要素をtodoListElement以下へ追加する
             const todoItems = this.#todoListModel.getTodoItems();
             todoItems.forEach(item => {
