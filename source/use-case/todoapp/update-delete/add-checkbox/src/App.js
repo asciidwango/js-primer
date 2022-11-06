@@ -12,7 +12,7 @@ export class App {
         const todoItemCountElement = document.querySelector("#js-todo-count");
         //! [checkbox]
         this.#todoListModel.onChange(() => {
-            const todoListElement = element`<ul />`;
+            const todoListElement = element`<ul></ul>`;
             const todoItems = this.#todoListModel.getTodoItems();
             todoItems.forEach(item => {
                 // 完了済みならchecked属性をつけ、未完了ならchecked属性を外す

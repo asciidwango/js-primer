@@ -12,7 +12,7 @@ export class App {
         const todoItemCountElement = document.querySelector("#js-todo-count");
         //! [checkbox]
         this.#todoListModel.onChange(() => {
-            const todoListElement = element`<ul />`;
+            const todoListElement = element`<ul></ul>`;
             const todoItems = this.#todoListModel.getTodoItems();
             todoItems.forEach(item => {
                 // 削除ボタン(x)をそれぞれ追加する

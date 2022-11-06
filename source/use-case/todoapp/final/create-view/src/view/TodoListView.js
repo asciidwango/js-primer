@@ -10,7 +10,7 @@ export class TodoListView {
      * @returns {Element} TodoItemModelの配列に対応したリストのHTML要素
      */
     createElement(todoItems, { onUpdateTodo, onDeleteTodo }) {
-        const todoListElement = element`<ul />`;
+        const todoListElement = element`<ul></ul>`;
         // 各TodoItemモデルに対応したHTML要素を作成し、リスト要素へ追加する
         todoItems.forEach(todoItem => {
             const todoItemView = new TodoItemView();
