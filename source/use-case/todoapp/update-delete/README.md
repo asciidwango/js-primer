@@ -25,13 +25,13 @@ HTMLの[`<input type="checkbox">`](https://developer.mozilla.org/ja/docs/Web/HTM
 
 ![input要素のchecked属性の違い](./img/input-checkbox.png)
 
-`src/App.js`にてTodoListModelの`onChange`メソッドで登録したリスナー関数内を書き換え、チェックボックスを表示しています。
+まずは確認のため、`src/App.js`にてTodoListModelの`onChange`メソッドで登録したリスナー関数内を書き換え、チェックボックスを表示しています。
 
 Todoアイテム要素である`<li>`要素中に次のように`<input>`要素を追加してチェックボックスを表示に追加します。
 チェックボックスである`<input>`要素にはスタイルのために`class`属性を`checkbox`とします。
 合わせて完了済みの場合は`<s>`要素を使って打ち消し線を表示しています。
 
-[import marker:"checkbox",unindent:"true",title:"src/App.jsから抜粋"](./add-checkbox/src/App.js)
+[import marker:"checkbox",unindent:"true",title:"src/App.jsから変更点を抜粋"](./add-checkbox/src/App.js)
 
 `<input type="checkbox">`要素はクリックするとチェックの表示がトグルします。
 しかし、モデルである`TodoItemModel`の`completed`プロパティの状態は自動では切り替わりません。
@@ -152,7 +152,7 @@ TodoListModelの`updateTodo`メソッド内では`emitChange`メソッドによ�
 
 ### `TodoListModel`に指定したTodoアイテムを削除する処理を追加する {#TodoListModel-deleteTodo}
 
-まずは、`TodoListModel`に指定したTodoアイテムを削除する`deleteTodo`メソッドを追加します。
+まずは、`TodoListModel`に指定したTodoアイテムを削除する`deleteTodo`メソッドを次のように追加します。
 TodoListModelの`deleteTodo`メソッドは、指定したidと一致するTodoアイテムを削除します。
 
 `items`というTodoアイテムの配列から指定したidと一致するTodoアイテムを取り除くことで削除しています。
@@ -161,7 +161,7 @@ TodoListModelの`deleteTodo`メソッドは、指定したidと一致するTodo�
 
 ### 削除ボタンの`click`イベントが発生したら、Todoアイテムを削除する {#onChange-update-model}
 
-次に`button`要素の`click`イベントのリスナー関数でTodoアイテムを削除する処理を呼び出す処理を実装します。
+次に削除ボタンを追加し、ボタンをクリックしたらTodoアイテムを削除する処理(`deleteTodo`)を呼び出す実装を`App.js`へと追加します。
 
 `src/App.js`にて、TodoListModelの`onChange`メソッドで登録したリスナー関数内を次のように書き換えます。
 `todoItemElement`の子要素として`delete`というクラス名をつけた`button`要素を追加します。

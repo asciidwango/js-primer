@@ -94,7 +94,7 @@ TodoリストにはTodoアイテムを追加できるので、TodoListModelに`a
 先ほどの表の「モデルの処理」は何かしら状態が変化しているので、表示を更新する必要があるわけです。
 
 DOM APIのイベントの仕組みをモデルでも利用できれば、モデルが更新されたら表示を更新する仕組みを作れそうです。
-ブラウザのDOM APIでは、DOM Eventsと呼ばれるイベントの仕組みが利用できます。
+ブラウザのDOM APIでは、`EventTarget`と呼ばれるイベントの仕組みが利用できます。
 Node.jsでは、`events`と呼ばれる組み込みのモジュールで同様のイベントの仕組みが利用できます。
 
 実行環境が提供するイベントの仕組みを利用すると簡単ですが、ここではイベントの仕組みを理解するために、イベントのディスパッチとリッスンする機能を持つクラスを作ってみましょう。
@@ -177,7 +177,7 @@ Node.jsでは、`events`と呼ばれる組み込みのモジュールで同様�
 次のコードは`TodoListModel`クラスのインスタンスに対して、新しい`TodoItemModel`を追加するサンプルコードです。
 TodoListModelの`addTodo`メソッドで新しいTodoアイテムを追加したときに、TodoListModelの`onChange`メソッドで登録したイベントリスナーが呼び出されます。
 
-[import, title:"TodoListModel.jsを利用するサンプルコード"](./event-emitter/src/model/TodoListModel.example.js)
+[import, marker:"main", title:"TodoListModel.jsを利用するサンプルコード"](./event-emitter/src/model/TodoListModel.example.js)
 
 これでTodoリストに必要なそれぞれのモデルクラスが作成できました。
 次はこれらのモデルを使って、表示の更新をしてみましょう。
@@ -234,8 +234,8 @@ TodoListModelの`onChange`メソッドで登録したリスナー関数は、`To
 ```html
 <!-- todoListElementの実質的な中身 -->
 <ul>
-    <li>Todoアイテム 1のタイトル</li>
-    <li>Todoアイテム 2のタイトル</li>
+    <li>Todoアイテム1のタイトル</li>
+    <li>Todoアイテム2のタイトル</li>
 </ul>
 ```
 
