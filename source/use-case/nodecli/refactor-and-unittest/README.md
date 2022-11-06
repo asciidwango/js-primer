@@ -92,6 +92,8 @@ $ npm test
 Mochaのユニットテストは`test`ディレクトリの中にJavaScriptファイルを配置して記述します。
 `test/md2html-test.js`ファイルを作成し、`md2html.js`に対するユニットテストを次のように記述します。
 
+`it`関数は第一引数にテストのタイトルを入れ、第二引数にテストの内容を記述します。
+
 [import, title:"test/md2html-test.js"](./src/test/md2html-test.js)
 
 `it`関数で定義したユニットテストは、`md2html`関数の変換結果が期待するものになっているかをテストしています。
