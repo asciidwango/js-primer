@@ -170,7 +170,7 @@ Promiseを扱うAPIには、他のPromiseを扱う処理との連携のしやす
 
 ## このセクションのチェックリスト {#section-checklist}
 
-- `fs`モジュールの`readFile`関数を使ってファイルを読み込んだ
+- `fs/promises`モジュールの`readFile`関数を使ってファイルを読み込んだ
 - UTF-8形式のファイルの中身をコンソールに出力した
 - `readFile`関数の呼び出しにエラーハンドリング処理を記述した
 
