@@ -5,8 +5,8 @@ description: "コマンドライン引数を受け取り、アプリケーショ
 
 # コマンドライン引数を処理する {#processing-commandline-args}
 
-このユースケースで作成するCLIアプリケーションの目的は、コマンドライン引数として与えられたファイルを変換することです。
-このセクションではコマンドライン引数を受け取って、それをパースするところまでを行います。
+このユースケースで作成するCLIアプリケーションの目的は、コマンドライン引数として与えられたMarkdownファイルをHTMLへ変換することです。
+このセクションでは`node`コマンドでスクリプトを実行する際に引数を渡し、コマンドライン引数としてパースするところまでを行います。
 
 ## `process`オブジェクトとコマンドライン引数 {#process-object-and-commandline-args}
 
@@ -83,7 +83,7 @@ $ npm install commander@9.0
 
 [import, title:"package.json"](src/package.install.json)
 
-また、npmのバージョンが5以上であれば `package-lock.json`ファイルが生成されています。
+また、`npm install`をすると同時に`package-lock.json`ファイルが生成されています。
 このファイルはnpmがインストールしたパッケージの、実際のバージョンを記録するためのものです。
 先ほどcommanderのバージョンを`9.0`としましたが、実際にインストールされるのは`9.0.x`に一致する最新のバージョンです。
 `package-lock.json`ファイルには実際にインストールされたバージョンが記録されています。
@@ -105,7 +105,7 @@ import { program } from "commander";
 そのため、これから実行するJavaScriptファイルがどちらの形式であるかをNode.jsに教える必要があります。
 
 Node.jsはもっとも近い上位ディレクトリの `package.json` が持つ `type` フィールドの値によってJavaScriptファイルのモジュール形式を判別します。
-`type`フィールドが `module` であればECMAScriptモジュールとして、`commonjs` であればCommonJSモジュールとして扱われます。[^2]
+`type`フィールドが `module` であればECMAScriptモジュールとして、`type`フィールドが `commonjs` であればCommonJSモジュールとして扱われます。[^2]
 また、JavaScriptファイルの拡張子によって明示的に示すこともできます。拡張子が `.mjs` である場合はECMAScriptモジュールとして、`.cjs` である場合はCommonJSモジュールであると判別されます。
 
 今回は `main.js` を ECMAScriptモジュールとして判別させるために、次のように `package.json` に`type` フィールドを追加します。
