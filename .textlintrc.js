@@ -104,6 +104,7 @@ module.exports = {
                 "concurrency": 4,
                 "ignore": [
                     "https://github.com/asciidwango/js-primer/issues/new?*",
+                    "ttps://help.github.com/articles/about-pull-requests/", // 言語にリダイレクトがある
                     "https://goo.gl/**",
                     "https://forms.gle/**",
                     "http://localhost:3000/**"
