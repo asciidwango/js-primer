@@ -202,7 +202,7 @@ JavaScriptの言語機能に関するチートシートです。
 | `>>` | 右シフト演算子 | [演算子][] | [右シフト (>>)](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Right_shift) |
 | `>>>` | ゼロ埋め右シフト演算子 | [演算子][] | [符号なし右シフト (>>>)](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Unsigned_right_shift) |
 | `&&` | AND演算子 | [演算子][] | [論理積 (&&)](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Logical_AND) |
-| `??` | [ES2020] Nullish coalescing演算子 | [演算子][] | [Null 合体演算子 (??)](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator) |
+| `??` | [ES2020] Nullish coalescing演算子 | [演算子][] | [Null 合体演算子 (??)](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing) |
 | <code>&#x7C;&#x7C;</code> | OR演算子 | [演算子][] | [論理和 (&#x7C;&#x7C;)](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Logical_OR) |
 | `(x)` | グループ演算子 | [演算子][] | [グループ化演算子 ( )](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Grouping) |
 | `x, y` | カンマ演算子 | [演算子][] | [カンマ演算子 (,)](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Comma_Operator) |
