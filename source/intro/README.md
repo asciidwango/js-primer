@@ -277,7 +277,7 @@ ECMAScriptはアップデートにより、機能的が利用できなくなる�
     <button class="btn btn-d btn-lg btn-block" type="submit">登録</button>
 </form>
 
-- [更新通知を受け取るメールアドレスを登録するフォーム](https://eepurl.com/b674IX)
+- [更新通知を受け取るメールアドレスを登録するフォーム](https://us13.list-manage.com/subscribe?u=fc41e11a2b9dc6f05350e0de0&id=7ab1594ae8)
 
 {% endif %}
 

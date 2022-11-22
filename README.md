@@ -59,7 +59,7 @@ IssueやPull Requestについては、次のページを参照してください
 
 また、下記フォームからメールアドレスを登録しておくと更新情報を受け取れます。
 
-- [更新通知を受け取るメールアドレスを登録するフォーム](https://eepurl.com/b674IX)
+- [更新通知を受け取るメールアドレスを登録するフォーム](https://us13.list-manage.com/subscribe?u=fc41e11a2b9dc6f05350e0de0&id=7ab1594ae8)
 
 ## Installation
 
