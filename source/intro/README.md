@@ -134,11 +134,11 @@ GitHub Sponsorsで著者を支援できます。
 
 GitHubのDiscussions（掲示板）の他の人の質問に答えたり、JSPrimerを読んだ感想を書くことも支援になります。
 
-- [Discussions · asciidwango/js-primer](https://github.com/asciidwango/js-primer/discussions)
+- [Discussions](https://github.com/asciidwango/js-primer/discussions)
 
 Discussionsのガイドラインは次のスレッドにまとめられています。
 
-- [👋 ようこそ JavaScript Primer へ ! · Discussion #1304 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/discussions/1304)
+- [👋 ようこそ JavaScript Primer へ ! · Discussion #1304](https://github.com/asciidwango/js-primer/discussions/1304)
 
 書籍に対してIssueを立てたり、Pull Requestを送ったりして直接的に支援もできます。
 IssueやPull Requestについては、次のページを参照してください。
@@ -165,6 +165,122 @@ IssueやPull Requestについては、次のページを参照してください
 また、この書籍は最初からGitHubに公開した状態で執筆が行われています。
 そのため、Issueで問題の報告やPull Requestで修正を送ってもらうなど、さまざまな人の助けによって成り立っています。
 この書籍に対してコントリビュートしてくれた方々に感謝します。
+
+## 変更点 {#version}
+
+{% if output.name == "ebook" %}
+<!-- 書籍向け -->
+
+初版と第2版の変更点をまとめると次のようになります。
+
+<!-- textlint-disable no-use-prototype-hash -->
+
+- ECMAScriptの新しいバージョンであるES2020、ES2021、ES2022に対応した
+- 新しいECMAScriptの機能によって、使う必要がなくなった機能は非推奨へと変更した
+- 文字では想像しにくいビット演算、非同期処理などに図を追加した
+- PromiseとAsync Functionを非同期の処理の中心として書き直した
+- 一方で、エラーファーストコールバックは非同期処理としてはメインではなくなった
+- `Array#includes`という表記は、Private Classs Fields(`#field`)と記号が被るため廃止した
+- Node.jsでもECMAScript Modulesを使うようになり、CommonJSはメインではなくなった
+- Node.jsが12から18までアップデートし、npmは6から8までアップデート、各種ライブラリも最新にアップデート
+- 読者からのフィードバックを受けて、全体をより分かりやすく読みやすくなるように書き直した
+
+<!-- textlint-enable no-use-prototype-hash -->
+
+ECMAScriptはアップデートにより、機能的が利用できなくなるという変更はほぼありません。
+その点では、初版で紹介したJavaScriptは現在でも動作します。
+
+一方で、実際の利用のされ方などの状況を見て、使われなくなっていく機能はあります。
+そのため、この書籍では古くなった機能は、何によって置き換えられたのかも解説しています。
+
+{% endif %}
+{% if output.name == "website" %}
+<!-- ウェブ向け -->
+
+ウェブ版は、常に最新のECMAScriptに対応するように更新しています。
+それぞれ新しいECMAScriptバージョンへ対応するときに、変更点をまとめたリリースノートを作成しています。
+
+- [v1.0.0: 初版のリリース](https://github.com/asciidwango/js-primer/releases/tag/1.0.0)
+- [v2.0.0: ECMAScript 2020対応](https://github.com/asciidwango/js-primer/releases/tag/v2.0.0)
+- [v3.0.0: ECMAScript 2021対応](https://github.com/asciidwango/js-primer/releases/tag/v3.0.0)
+- [v4.0.0: ECMAScript 2022対応](https://github.com/asciidwango/js-primer/releases/tag/v4.0.0)
+
+新しいバージョンが公開されたときに通知を受け取りたい方は、[GitHubリポジトリ](https://github.com/asciidwango/js-primer)を[Watch](https://github.com/asciidwango/js-primer/watchers)してください。
+
+[![Watch button](../landing/img/repo-actions-watch.png)](https://github.com/asciidwango/js-primer/watchers)
+
+また、次のフォームからメールアドレスを登録しておくと更新情報をメールで受け取れます。
+
+<style>
+.mail-form {
+  padding: 8px
+}
+.form-group {
+  margin-bottom: 0.5em;
+}
+.form-label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+.form-control {
+    box-shadow: none;
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.btn-d {
+  color: #fff;
+  background-color: rgba(51,51,51,.8);
+}
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.btn-block {
+  display: block;
+  width: 100%;
+}
+</style>
+
+<form action="https://github.us13.list-manage.com/subscribe/post?u=fc41e11a2b9dc6f05350e0de0&amp;id=7ab1594ae8"
+      method="post" id="js_mail_form" novalidate class="mail-form" target="_blank">
+    <div class="form-group"><label for="email" class="form-label">メールアドレス</label><input id="email" class="form-control"
+                                                                      name="EMAIL" type="email" required/>
+    </div>
+    <button class="btn btn-d btn-lg btn-block" type="submit">登録</button>
+</form>
+
+- [更新通知を受け取るメールアドレスを登録するフォーム](https://eepurl.com/b674IX)
+
+{% endif %}
+
 
 [asciidwango/js-primer]: https://github.com/asciidwango/js-primer
 [jsprimer.net]: https://jsprimer.net/
