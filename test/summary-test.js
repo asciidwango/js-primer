@@ -77,24 +77,6 @@ ${result.matchedTexts.join("\n")}
 ${message}`);
         });
     });
-    it("prototypeメソッドの説明をする前にObject#methodの表記を利用してはいけない", () => {
-        // 許可リスト(読み方の解説など)
-        const allowFilePathList = [];
-        const searchPatterns = ["/`[a-zA-Z]+#[a-zA-Z]*`/"];
-        const prototypeChapter = path.join(sourceDir, "basic/prototype-object/README.md");
-        return findUsage(prototypeChapter, searchPatterns, allowFilePathList).then(results => {
-            if (results.length === 0) {
-                return;
-            }
-            const message = results.map(result => {
-                return `${result.normalizedFilePath} が利用しているので、確認してください。
-${result.matchedTexts.join("\n")}
-`;
-            });
-            throw new Error(`${results.length}件のドキュメントがprototypeメソッドを説明前に利用しています。
-${message}`);
-        });
-    });
     it("インスタンスは`Objectのインスタンス`が初出", () => {
         // 許可リスト(読み方の解説など)
         const allowFilePathList = [];
