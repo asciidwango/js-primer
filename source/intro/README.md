@@ -211,16 +211,15 @@ ECMAScriptはアップデートにより、機能的が利用できなくなる�
 
 また、次のフォームからメールアドレスを登録しておくと更新情報をメールで受け取れます。
 
+<style>
+.form-control {
+    border-color: rgba(0, 0, 0, .1);
+    box-shadow: none;
+}
+</style>
+
 <form action="https://github.us13.list-manage.com/subscribe/post?u=fc41e11a2b9dc6f05350e0de0&amp;id=7ab1594ae8"
       method="post" id="js_mail_form" novalidate class="mail-form" target="_blank">
-    <h3 class="mg-sm">
-        <span class="fa fa-star"></span>更新情報を購読
-    </h3>
-    <p class="mg-lg">
-        このウェブサイトの内容は予告なしに変更される可能性があります。<br/>
-        この書籍の更新情報を受け取りたい方は、次のフォームからメールアドレスを登録することで通知を受け取れます。<br/>
-        この書籍の内容が大きく更新される際など重要な変更に関する情報を受け取れます。
-    </p>
     <div class="form-group"><label for="email">メールアドレス</label><input id="email" class="form-control"
                                                                       name="EMAIL" type="email" required/>
     </div>
