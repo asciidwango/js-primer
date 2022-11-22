@@ -212,15 +212,66 @@ ECMAScriptはアップデートにより、機能的が利用できなくなる�
 また、次のフォームからメールアドレスを登録しておくと更新情報をメールで受け取れます。
 
 <style>
+.mail-form {
+  padding: 8px
+}
+.form-group {
+  margin-bottom: 0.5em;
+}
+.form-label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
 .form-control {
-    border-color: rgba(0, 0, 0, .1);
     box-shadow: none;
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.btn-d {
+  color: #fff;
+  background-color: rgba(51,51,51,.8);
+}
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.btn-block {
+  display: block;
+  width: 100%;
 }
 </style>
 
 <form action="https://github.us13.list-manage.com/subscribe/post?u=fc41e11a2b9dc6f05350e0de0&amp;id=7ab1594ae8"
       method="post" id="js_mail_form" novalidate class="mail-form" target="_blank">
-    <div class="form-group"><label for="email">メールアドレス</label><input id="email" class="form-control"
+    <div class="form-group"><label for="email" class="form-label">メールアドレス</label><input id="email" class="form-control"
                                                                       name="EMAIL" type="email" required/>
     </div>
     <button class="btn btn-d btn-lg btn-block" type="submit">登録</button>
