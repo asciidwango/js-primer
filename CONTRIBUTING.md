@@ -544,3 +544,33 @@ ES2015は正式な名称ですが、ES6も一般によく使われている名�
 ```
 
 - [別の章へのリンクの仕方を統一 · Issue #173 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/173)
+
+
+## リリースフロー
+
+次の2種類のリリースフローが存在する。
+
+- ウェブ版
+- 書籍版
+
+### ウェブ版
+
+変更予定を事前にIssueを作り、対応箇所をまとめる。
+
+- [ECMAScript 2022対応 · Issue #1337 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1337)
+- [ES2021の対応 · Issue #1220 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1220)
+- [ECMAScript 2020の対応 · Issue #1145 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1145)
+
+毎年のECMAScriptの対応が終わったらメジャーバージョンをアップデートし、リリースノートに変更点をまとめる。
+
+- [Releases · asciidwango/js-primer](https://github.com/asciidwango/js-primer/releases)
+
+リリースが終わったら、[変更点](https://github.com/asciidwango/js-primer/tree/master/source/intro#%E5%A4%89%E6%9B%B4%E7%82%B9-version)にリリースノートへのリンクを追加する
+
+- <https://github.com/asciidwango/js-primer/tree/master/source/intro#%E5%A4%89%E6%9B%B4%E7%82%B9-version>
+
+### 書籍版
+
+書籍版の差分を[変更点](https://github.com/asciidwango/js-primer/tree/master/source/intro#%E5%A4%89%E6%9B%B4%E7%82%B9-version)に追加する。
+
+- <https://github.com/asciidwango/js-primer/tree/master/source/intro#%E5%A4%89%E6%9B%B4%E7%82%B9-version>
