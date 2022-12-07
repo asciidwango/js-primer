@@ -24,21 +24,22 @@ Webアプリケーションにおいては、常にHTMLドキュメントがエ�
 ## HTMLファイルの用意 {#preparing-html}
 
 エントリーポイントとして、まずは最低限の要素だけを配置したHTMLファイルを`index.html`というファイル名で作成しましょう。
-`body`要素の一番下で読み込んでいる`index.js`が、今回のアプリケーションの処理を記述するJavaScriptファイルです。
+`body`要素の一番下で読み込んでいる`src/index.js`が、今回のアプリケーションの処理を記述するJavaScriptファイルです。
 
-[import, title:"index.html"](src/index.html)
+[import, title:"index.html"](example/index.html)
 
-次に同じディレクトリに`index.js`というファイルを作成します。
-`index.js`にはスクリプトが正しく読み込まれたことを確認できるよう、コンソールにログを出力する処理だけを書いておきます。
+次に、`src`というディレクトリを作成し、その中に`index.js`というファイルを作成します。
+`src/index.js`にはスクリプトが正しく読み込まれたことを確認できるよう、コンソールにログを出力する処理だけを書いておきます。
 
-[import, title:"index.js"](src/index.js)
+[import, title:"src/index.js"](example/src/index.js)
 
 ここでの`ajaxapp`ディレクトリのファイル配置は次のようになっていれば問題ありません。
 
 ```
 ajaxapp
-├── index.html
-└── index.js
+├ index.html
+└ src
+　 └ index.js
 ```
 
 次はこの`index.html`をブラウザで表示して、コンソールにログが出力されることを確認していきます。
@@ -118,20 +119,20 @@ JavaScriptとDOMはWebアプリケーション開発において切っても切�
 
 ここまでのアプリは次のURLで確認できます。
 
-- <https://jsprimer.net/use-case/ajaxapp/entrypoint/src/>
+- <https://jsprimer.net/use-case/ajaxapp/entrypoint/example/>
 
 <!-- sandpackの問題でindex.jsがscriptタグとは異なる読み方がされ、globalに関数が追加されない。そのためappendCodeでglobalThisに関数を追加する -->
 
 <!-- sandpack:{
   "files": {
     "/index.js": {
-      "path": "src/index.js"
+      "path": "example/src/index.js"
     },
     "/index.html": {
-      "path": "src/index.html",
+      "path": "example/index.html",
       "active": true
     },
-    "/src/index.js": {
+    "/example/src/index.js": {
       "code": "/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */",
       "hidden": true
     }

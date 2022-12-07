@@ -61,7 +61,7 @@ function displayView(view) {
 
 ボタンのclickイベントで呼び出す関数もこれまでの`fetchUserInfo`関数から`main`関数に変更します。
 
-[import, title:"index.html"](./src/index.html)
+[import, title:"index.html"](./example/index.html)
 
 ## Promiseのエラーハンドリング {#error-handling}
 
@@ -185,11 +185,11 @@ async function main() {
 仕上げとして、今まで`js-primer-example`で固定としていたユーザーIDを変更できるようにしましょう。
 index.htmlに`<input>`タグを追加し、JavaScriptから値を取得するために`userId`というIDを付与しておきます。
 
-[import, title:"index.html"](src/index.html)
+[import, title:"index.html"](example/index.html)
 
 index.jsにも`<input>`タグから値を受け取るための処理を追加すると、最終的に次のようになります。
 
-[import, title:"index.js"](src/index.js)
+[import, title:"src/index.js"](example/src/index.js)
 
 アプリケーションを実行すると、次のようになります。
 要件を満たすことができたので、このアプリケーションはこれで完成です。
@@ -206,21 +206,21 @@ index.jsにも`<input>`タグから値を受け取るための処理を追加す
 
 この章で作成したアプリは次のURLで確認できます。
 
-- <https://jsprimer.net/use-case/ajaxapp/promise/src/>
+- <https://jsprimer.net/use-case/ajaxapp/promise/example/>
 
 <!-- sandpackの問題でindex.jsがscriptタグとは異なる読み方がされ、globalに関数が追加されない。そのためappendCodeでglobalThisに関数を追加する -->
 
 <!-- sandpack:{
   "files": {
     "/index.js": {
-      "path": "src/index.js",
+      "path": "example/src/index.js",
       "appendCode": "/* この行は本編とは無関係であるため無視してください。 */ window.main = main;"
     },
     "/index.html": {
-      "path": "src/index.html",
+      "path": "example/index.html",
       "active": true
     },
-    "/src/index.js": {
+    "/example/src/index.js": {
       "code": "/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */",
       "hidden": true
     }
