@@ -114,8 +114,7 @@ const cliOptions = {
 };
 ```
 
-こうして作成したcliOptionsオブジェクトを、markedの`parse`関数へオプションとして渡しましょう。 main.jsの全体は次のようになります。
-`main.js`の全体は次のようになります。
+こうして作成したcliOptionsオブジェクトを、markedの`parse`関数へオプションとして渡しましょう。`main.js`の全体は次のようになります。
 
 [import title:"main.js"](src/main-3.js)
 
