@@ -189,7 +189,7 @@ index.htmlに`<input>`タグを追加し、JavaScriptから値を取得するた
 
 index.jsにも`<input>`タグから値を受け取るための処理を追加すると、最終的に次のようになります。
 
-[import, title:"src/index.js"](example/src/index.js)
+[import, title:"index.js"](example/index.js)
 
 アプリケーションを実行すると、次のようになります。
 要件を満たすことができたので、このアプリケーションはこれで完成です。
@@ -213,14 +213,14 @@ index.jsにも`<input>`タグから値を受け取るための処理を追加す
 <!-- sandpack:{
   "files": {
     "/index.js": {
-      "path": "example/src/index.js",
+      "path": "example/index.js",
       "appendCode": "/* この行は本編とは無関係であるため無視してください。 */ window.main = main;"
     },
     "/index.html": {
       "path": "example/index.html",
       "active": true
     },
-    "/example/src/index.js": {
+    "/example/index.js": {
       "code": "/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */",
       "hidden": true
     }

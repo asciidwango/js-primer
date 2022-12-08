@@ -116,7 +116,7 @@ fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
 
 ここまでの内容をまとめ、GitHubからユーザー情報を取得する関数を`fetchUserInfo`という名前で定義します。
 
-[import, src/index.js](example/src/index.js)
+[import, index.js](example/index.js)
 
 index.jsでは関数を定義しているだけで、呼び出しは行っていません。
 
@@ -188,14 +188,14 @@ XHRの詳しい使い方については、[XHRの利用についてのドキュ�
 <!-- sandpack:{
   "files": {
     "/index.js": {
-      "path": "example/src/index.js",
+      "path": "example/index.js",
       "appendCode": "/* この行は本編とは無関係であるため無視してください。 */ window.fetchUserInfo = fetchUserInfo;"
     },
     "/index.html": {
       "path": "example/index.html",
       "active": true
     },
-    "/example/src/index.js": {
+    "/example/index.js": {
       "code": "/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */",
       "hidden": true
     }

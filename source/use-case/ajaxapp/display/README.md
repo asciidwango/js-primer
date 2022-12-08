@@ -143,7 +143,7 @@ result.innerHTML = view;
 これらの処理を前のセクションで作成した `fetchUserInfo` 関数の中で呼び出します。
 ここまでで、index.jsとindex.htmlは次のようになっています。
 
-[import, title:"src/index.js"](example/src/index.js)
+[import, title:"index.js"](example/index.js)
 
 [import, title:"index.html"](example/index.html)
 
@@ -167,14 +167,14 @@ result.innerHTML = view;
 <!-- sandpack:{
   "files": {
     "/index.js": {
-      "path": "example/src/index.js",
+      "path": "example/index.js",
       "appendCode": "/* この行は本編とは無関係であるため無視してください。 */ window.fetchUserInfo = fetchUserInfo;"
     },
     "/index.html": {
       "path": "example/index.html",
       "active": true
     },
-    "/example/src/index.js": {
+    "/example/index.js": {
       "code": "/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */",
       "hidden": true
     }
