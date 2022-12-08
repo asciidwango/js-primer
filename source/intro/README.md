@@ -171,7 +171,7 @@ IssueやPull Requestについては、次のページを参照してください
 {% if output.name == "ebook" %}
 <!-- 書籍向け -->
 
-初版と第2版の変更点をまとめると次のようになります。
+初版からの変更点をまとめると次のようになります。
 
 <!-- textlint-disable no-use-prototype-hash -->
 
