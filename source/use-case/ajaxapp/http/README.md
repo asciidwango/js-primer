@@ -116,7 +116,7 @@ fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
 
 ここまでの内容をまとめ、GitHubからユーザー情報を取得する関数を`fetchUserInfo`という名前で定義します。
 
-[import, index.js](src/index.js)
+[import, index.js](example/index.js)
 
 index.jsでは関数を定義しているだけで、呼び出しは行っていません。
 
@@ -127,7 +127,7 @@ index.jsでは関数を定義しているだけで、呼び出しは行ってい
 ボタンのclickイベントで`fetchUserInfo`関数を呼び出し、取得したいユーザーIDを引数として与えています。
 例として`js-primer-example`という書籍用に用意したGitHubアカウントを指定しています。
 
-[import, index.html](src/index.html)
+[import, index.html](example/index.html)
 
 準備ができたら、ローカルサーバーを立ち上げてindex.htmlにアクセスしましょう。
 ボタンを押すとHTTP通信が行われ、コンソールにステータスコードとレスポンスのログが出力されます。
@@ -181,21 +181,21 @@ XHRの詳しい使い方については、[XHRの利用についてのドキュ�
 
 ここまでのアプリは次のURLで確認できます。
 
-- <https://jsprimer.net/use-case/ajaxapp/http/src/>
+- <https://jsprimer.net/use-case/ajaxapp/http/example/>
 
 <!-- sandpackの問題でindex.jsがscriptタグとは異なる読み方がされ、globalに関数が追加されない。そのためappendCodeでglobalThisに関数を追加する -->
 
 <!-- sandpack:{
   "files": {
     "/index.js": {
-      "path": "src/index.js",
+      "path": "example/index.js",
       "appendCode": "/* この行は本編とは無関係であるため無視してください。 */ window.fetchUserInfo = fetchUserInfo;"
     },
     "/index.html": {
-      "path": "src/index.html",
+      "path": "example/index.html",
       "active": true
     },
-    "/src/index.js": {
+    "/example/index.js": {
       "code": "/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */",
       "hidden": true
     }

@@ -52,7 +52,7 @@ const view = `
 
 <!-- `div#result` についてはno-use-prototype-hashのオプションで許可している。 -->
 
-[import, title:"index.html"](./src/index.html)
+[import, title:"index.html"](example/index.html)
 
 ここから、`div#result`要素の子要素としてHTML文字列を挿入することになります。
 [document.getElementById][]メソッドを使い、id属性が設定された要素にアクセスします。
@@ -143,9 +143,9 @@ result.innerHTML = view;
 これらの処理を前のセクションで作成した `fetchUserInfo` 関数の中で呼び出します。
 ここまでで、index.jsとindex.htmlは次のようになっています。
 
-[import, title:"index.js"](src/index.js)
+[import, title:"index.js"](example/index.js)
 
-[import, title:"index.html"](src/index.html)
+[import, title:"index.html"](example/index.html)
 
 アプリケーションを開いてボタンを押すと、次のようにユーザー情報が表示されます。
 
@@ -160,21 +160,21 @@ result.innerHTML = view;
 
 ここまでのアプリは次のURLで確認できます。
 
-- <https://jsprimer.net/use-case/ajaxapp/display/src/>
+- <https://jsprimer.net/use-case/ajaxapp/display/example/>
 
 <!-- sandpackの問題でindex.jsがscriptタグとは異なる読み方がされ、globalに関数が追加されない。そのためappendCodeでglobalThisに関数を追加する -->
 
 <!-- sandpack:{
   "files": {
     "/index.js": {
-      "path": "src/index.js",
+      "path": "example/index.js",
       "appendCode": "/* この行は本編とは無関係であるため無視してください。 */ window.fetchUserInfo = fetchUserInfo;"
     },
     "/index.html": {
-      "path": "src/index.html",
+      "path": "example/index.html",
       "active": true
     },
-    "/src/index.js": {
+    "/example/index.js": {
       "code": "/* このファイルは本編とは無関係のファイルなので無視してください。 本編のindex.jsは一つ上のディレクトリにあります */",
       "hidden": true
     }
