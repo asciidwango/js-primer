@@ -1,0 +1,484 @@
+\hypertarget{read-eval-print}{%
+\chapter{値の評価と表示}\label{read-eval-print}}\index{あたい@値}\index{ひょうか@評価}\index{ひょうじ@表示}
+\thispagestyle{frontheadings}
+
+変数宣言を使うことで値に名前をつける方法を学びました。
+次はその値をどのように評価するかについてです。
+
+値の評価とは、入力した値を評価してその結果を返すことを示しています。
+たとえば、次のような値の評価があります。
+
+\begin{itemize}
+\item
+  \texttt{1 + 1} という式を評価したら
+  \texttt{2} という結果を返す
+\item
+  \texttt{bookTitle}
+  という変数を評価したら、変数に代入されている値を返す
+\item
+  \texttt{const x = 1;}という文を評価することで変数を定義するが、この文には返り値はない
+\end{itemize}
+
+この値の評価方法を確認するために、ウェブブラウザ\index{うぇぶぶらうざ@ウェブブラウザ}（以下ブラウザ）を使ってJavaScriptを実行する方法を見ていきます。
+
+\hypertarget{recommended-browser}{%
+\section{この書籍で利用するブラウザ}\label{recommended-browser}}\index{ぶらうざ@ブラウザ}
+
+まずはブラウザ上でJavaScriptのコードを実行してみましょう。
+この書籍ではブラウザとして\href{https://www.mozilla.org/ja/firefox/new/}{Firefox}\index{Firefox}を利用します。
+次のURLからFirefoxをダウンロードし、インストールしてください。
+
+\begin{itemize}
+\item
+  Firefox: \url{https://www.mozilla.org/ja/firefox/new/}
+\end{itemize}
+
+この書籍で紹介するサンプルコードのほとんどは、Google Chrome、Microsoft
+Edge、Safariなどのブラウザの最新版でも動作します。
+一方で、古いJavaScriptしかサポートしていないInternet
+Explorerでは多くのコードは動作しません。
+
+また、ブラウザによっては標準化されていないエラーメッセージの細かな違いや開発者ツールの使い方の違いなどもあります。
+この書籍ではFirefoxで実行した結果を記載しています。
+そのため、Firefox以外のブラウザでは細かな違いがあることに注意してください。
+
+\hypertarget{execute-js-on-browser}{%
+\section{ブラウザでJavaScriptを実行する}\label{execute-js-on-browser}}
+
+ブラウザでJavaScriptを実行する方法としては大きく分けて2つあります。
+1つ目はブラウザの開発者ツールのコンソール上でJavaScriptコードを評価する方法です。
+2つ目はHTMLファイルを作成しJavaScriptコードを読み込む方法です。
+
+\hypertarget{repl-on-browser}{%
+\subsection{ブラウザの開発者ツールのコンソール上でJavaScriptコードを評価する方法}\label{repl-on-browser}}
+
+ブラウザやNode.jsなど多くの実行環境には、コードを評価してその結果を表示するREPL\index{REPL}（read--eval--print
+loop）と呼ばれる開発者向けの機能があります。
+Firefoxでは、開発者ツール\index{かいはつしゃつーる@開発者ツール}の\textbf{\textgt{ウェブコンソール}}\index{うぇぶこんそーる@ウェブコンソール}と呼ばれるパネルにREPL機能が含まれています。
+REPL機能を使うことで、試したいコードをその場で実行できるため、JavaScriptの動作を理解するのに役立ちます。
+
+REPL機能を使うには、まずFirefoxの開発者ツールを次のいずれかの方法で開きます。
+
+\begin{itemize}
+\item
+  Firefox メニュー（メニューバーがある場合や macOS
+  では、ツールメニュー）の"ブラウザーツール"のサブメニューから"ウェブ開発ツール"
+  を選択する
+\item
+  キーボードショートカット\keytop{Ctrl}+\keytop{Shift}+\keytop{K}（macOS では
+  \keytop{Command}+\keytop{Option}+\keytop{K}）を押下する
+\end{itemize}
+
+詳細は``\href{https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console}{ウェブコンソールを開く}''\footnote{\url{https://developer.mozilla.org/ja/docs/Tools/Web_Console/Opening_the_Web_Console}}を参照してください。
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=140mm]{./fig/web-console.eps}
+\caption{Firefoxでウェブコンソールを開いた状態}
+\end{figure}
+
+開発者ツールの``コンソール''タブを選択すると、コマンドライン（二重山カッコ\lstinline{>>}からはじまる欄）に任意のコードを入力して評価できます。
+このコマンドラインがブラウザにおけるREPL機能です。
+
+REPLに\texttt{1}という値を入力しEnterキーを押すと、その評価結果である\texttt{1}が次の行に表示されます。
+
+\begin{lstlisting}
+>> 1
+1
+\end{lstlisting}
+
+\texttt{1 + 1}
+という式を入力すると、その評価結果である\texttt{2}が次の行に表示されます。
+
+\begin{lstlisting}
+>> 1 + 1
+2
+\end{lstlisting}
+
+次に\texttt{const}キーワードを使って\texttt{bookTitle}という変数を宣言してみると、\texttt{undefined}という結果が次の行に表示されます。
+変数宣言は変数名と値を関連づけるだけであるため、変数宣言自体は何も値を返さないという意味で\texttt{undefined}が結果になります。
+REPLではそのまま次の入力ができるため、\texttt{bookTitle}という入力をすると、先ほど変数に入れた\texttt{"JavaScript Primer"}という結果が次の行に表示されます。
+
+\begin{lstlisting}
+>> const bookTitle = "JavaScript Primer";
+undefined
+>> bookTitle
+"JavaScript Primer"
+\end{lstlisting}
+
+このようにコマンドラインのREPL機能では、JavaScriptのコードを1行ごとに実行できます。
+\keytop{Shift}+\keytop{Enter}で改行して複数行の入力もできます。
+好きな単位でJavaScriptのコードを評価できるため、コードの動きを簡単に試したい場合などに利用できます。
+
+注意点としては、REPLではそのREPLを終了するまで\texttt{const}キーワードなどで宣言した変数が残り続けます。
+たとえば、\texttt{const}での変数宣言は同じ変数名を二度定義できないというルールでした。
+そのため1行ずつ実行しても、同じ変数名を定義したことになるため構文エラー（\texttt{SyntaxError}）となります。
+
+\begin{lstlisting}
+>> const bookTitle = "JavaScript Primer";
+undefined
+>> const bookTitle = "JavaScript Primer";
+SyntaxError: redeclaration of const bookTitle
+\end{lstlisting}
+
+ブラウザでは、開発者ツールを開いているウェブページでリロードするとREPLの実行状態もリセットされます。
+\texttt{redeclaration}\index{redeclaration@\texttt{redeclaration}}（再定義）に関するエラーメッセージが出た際にはページをリロードしてみてください。
+
+\hypertarget{js-in-html}{%
+\subsection{HTMLファイルを作成してJavaScriptコードを読み込む方法}\label{js-in-html}}
+
+REPLはあくまで開発者向けの機能です。
+ウェブサイトではHTMLに記述した\texttt{<script>}タグでJavaScriptを読み込んで実行します。
+ここでは、HTMLとJavaScriptファイルを使ったJavaScriptコードの実行方法を見ていきます。
+
+HTMLファイルとJavaScriptファイルの2種類を使って、JavaScriptのコードを実行する準備をしていきます。
+ファイルを作成するため\href{https://code.visualstudio.com/}{Visual
+Studio
+Code}\index{Visual Studio Code}\footnote{\url{https://code.visualstudio.com/}}などのJavaScriptに対応したエディターを用意しておくとスムーズです。
+エディターはどんなものでも問題ありませんが、必ず文字コード（エンコーディング）は\textbf{UTF-8}、改行コードは\textbf{LF}にしてファイルを保存してください。
+
+ファイルを作成するディレクトリはどんな場所でも問題ありませんが、ここでは\texttt{example}という名前のディレクトリにファイルを作成していきます。
+
+まずはJavaScriptファイルとして\texttt{index.js}ファイルを\texttt{example/index.js}というパスに作成します。
+\texttt{index.js}の中には次のようなコードを書いておきます。
+
+\begin{listtitle}
+index.js
+\end{listtitle}
+\begin{lstlisting}
+1;
+\end{lstlisting}
+\listend
+
+次にHTMLファイルとして\texttt{index.html}ファイルを\texttt{example/index.html}というパスに作成します。
+このHTMLファイルから先ほど作成した\texttt{index.js}ファイルを読み込んで実行します。
+\texttt{index.html}の中には次のようなコードを書いておきます。
+
+\begin{listtitle}
+index.html
+\end{listtitle}
+\begin{lstlisting}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Example</title>
+    <script src="./index.js"></script>
+</head>
+<body></body>
+</html>
+\end{lstlisting}
+\listend
+
+重要なのは\texttt{<script src="./index.js"></script>}という記述です。
+これは同じディレクトリにある\texttt{index.js}という名前のJavaScriptファイルをスクリプトとして読み込むという意味になります。
+
+最後にブラウザで作成した\texttt{index.html}を開きます。
+HTMLファイルを開くには、ブラウザにHTMLファイルをドラッグアンドドロップするかまたはファイルメニューから``ファイルを開く''でHTMLファイルを選択します。
+HTMLファイルを開いた際に、ブラウザのアドレスバーには\texttt{file:///}からはじまるローカルファイルのファイルパスが表示されます。
+
+先ほどと同じ手順で``ウェブコンソール''を開いてみると、コンソールには何も表示されていないはずです。
+REPLでは自動で評価結果のコンソール表示まで行いますが、JavaScriptコードとして読み込んだ場合は勝手に評価結果を表示することはありません。
+あくまで自動表示はREPLの機能です。そのため多くの実行環境では\textbf{\textgt{コンソール表示}}するためのAPI（機能）が存在しています。
+
+\hypertarget{console-api}{%
+\section{Console API}\label{console-api}}\index{Console API}
+
+JavaScriptの多くの実行環境では、Console
+APIを使って\textbf{\textgt{コンソールに表示}}します。
+\texttt{console.log(引数)}\index{console.log@\texttt{console.log}}の引数にコンソール表示したい値を渡すことで、評価結果がコンソールに表示されます。
+
+先ほどの\texttt{index.js}の中身を次のように書き換えます。
+そしてページをリロードすると、 \texttt{1}
+という値を評価した結果がウェブコンソールに表示されます。
+
+\begin{listtitle}
+index.js
+\end{listtitle}
+\begin{lstlisting}
+console.log(1); // => 1
+\end{lstlisting}
+\listend
+
+次のように引数に式を書いた場合は先に引数（\texttt{(}と\texttt{)}の間に書かれたもの）の式を評価してから、その結果をコンソールに表示します。
+そのため、\texttt{1 + 1} の評価結果として
+\texttt{2} がコンソールに表示されます。
+
+\begin{listtitle}
+index.js
+\end{listtitle}
+\begin{lstlisting}
+console.log(1 + 1); // => 2
+\end{lstlisting}
+\listend
+
+同じように引数に変数を渡すこともできます。
+この場合もまず先に引数である変数を評価してから、その結果をコンソールに表示します。
+
+\begin{listtitle}
+index.js
+\end{listtitle}
+\begin{lstlisting}
+const total = 42 + 42;
+console.log(total); // => 84
+\end{lstlisting}
+\listend
+
+Console APIは原始的なプリントデバッグとして利用できます。
+「この値は何だろう」と思ったらコンソールに表示すると解決する問題は多いです。
+またJavaScriptの開発環境は高機能化が進んでいるため、Console
+API以外にもさまざまな機能がありますがここでは詳細は省きます。
+
+この書籍では、コード内で評価結果を表示するためにConsole
+APIを利用していきます。
+
+すでに何度も登場していますが、コード内のコメントで\texttt{// => 評価結果}と書いている場合があります。
+このコメントは、その左辺にある値を評価した結果またはConsole
+APIで表示した結果を掲載しています。
+
+\begin{lstlisting}
+// 式の評価結果の例（コンソールには表示されない）
+1; // => 1
+const total = 42 + 42;
+// 変数の評価結果の例（コンソールには表示されない）
+total; // => 84
+// Console APIでコンソールに表示する例
+console.log("JavaScript"); // => "JavaScript"
+\end{lstlisting}
+
+\hypertarget{execute-on-web}{%
+\section{ウェブ版の書籍でコードを実行する}\label{execute-on-web}}
+
+ウェブ版の書籍では実行できるサンプルコードには\textbf{\textgt{実行}}というボタンが配置されています。
+このボタンでは実行するたびに毎回新しい環境を作成して実行するため、REPLで発生する変数の再定義といった問題はおきません。
+
+一方で、REPLと同じように\texttt{1}というコードを実行すると\texttt{1}という評価結果を得られます。
+またConsole
+APIにも対応しています。サンプルコードを改変して実行するなど、よりコードへの理解を深めるために利用できます。
+
+\begin{lstlisting}
+console.log("Console APIで表示");
+// 値を評価した場合は最後の結果が表示される
+42; // => 42
+\end{lstlisting}
+
+\hypertarget{eval-code-and-error}{%
+\section{コードの評価とエラー}\label{eval-code-and-error}}\index{えらー@エラー}
+
+JavaScriptのコードを実行したときにエラーメッセージが表示されて意図したように動かなかった場合もあるはずです。
+プログラムを書くときに一度もエラーを出さずに書き終えることはほとんどありません。
+特に新しいプログラミング言語を学ぶ際にはトライアンドエラー（試行錯誤）することはとても重要です。
+
+エラーメッセージがウェブコンソールに表示された際には、あわてずにそのエラーメッセージを読むことで多くの問題は解決できます。
+またエラーには大きく分けて構文エラーと実行時エラーの2種類があります。
+ここではエラーメッセージの簡単な読み方を知り、そのエラーを修正する足がかりを見ていきます。
+
+\hypertarget{syntax-error}{%
+\subsection{構文エラー}\label{syntax-error}}\index{こうぶんえらー@構文エラー}
+
+構文エラー（\texttt{SyntaxError}\index{SyntaxError@\texttt{SyntaxError}}）は書かれたコードの文法が間違っている場合に発生するエラーです。
+
+JavaScriptエンジンは、コードをパース（解釈）してから、プログラムとして実行できる形に変換して実行します。
+コードをパースする際に文法の問題が見つかると、その時点で構文エラーが発生するためプログラムとして実行できません。
+
+次のコードでは、関数呼び出しに\texttt{)}をつけ忘れているため構文エラーが発生します。
+
+\begin{listtitle}
+index.js
+\end{listtitle}
+\begin{lstlisting}
+console.log(1; // => SyntaxError: missing ) after argument list
+\end{lstlisting}
+\listend
+
+\begin{figure}
+\centering
+\includegraphics[width=140mm]{./fig/syntax-error.eps}
+\caption{コンソールに表示されたSyntaxError}
+\end{figure}
+
+Firefoxでこのコードを実行すると次のようなエラーメッセージがコンソールに表示されます。
+
+\begin{lstlisting}
+SyntaxError: missing ) after argument list[詳細] index.js:1:13
+\end{lstlisting}
+
+エラーメッセージはブラウザによって多少の違いはありますが、基本的には同じ形式のメッセージになります。
+このエラーメッセージをパーツごとに見てみると次のようになります。
+
+\begin{lstlisting}
+SyntaxError: missing ) after argument list[詳細] index.js:1:13 
+^^^^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^      ^^^^^^^^　^^^^
+エラーの種類                |                        | 　行番号:列番号
+                  エラー内容の説明                 ファイル名
+\end{lstlisting}
+
+\begin{small}
+\begin{longtable}[l]{p{73mm}|p{67mm}}
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}\textgt{メッセージ} & \textgt{意味}\tabularnewline
+\hline
+\endhead
+\texttt{SyntaxError: missing ) after argument list}\strut
+ & 
+エラーの種類は\texttt{SyntaxError}で、関数呼び出しの\texttt{)}が足りない\strut
+\tabularnewline
+\texttt{index.js:1:13}\strut
+ & 
+例外が\texttt{index.js}の1行目13列目で発生した\strut
+\tabularnewline
+\hline
+\end{longtable}
+\end{small}
+
+Firefoxでは\textgt{[詳細]}というリンクがエラーメッセージによっては表示されます。
+この\textgt{[詳細]}リンクはエラーメッセージに関するMDNの解説ページへのリンクとなっています。
+この例のエラーメッセージでは次の解説ページへリンクされています。
+
+\begin{itemize}
+\item
+  \url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Errors/Missing_parenthesis_after_argument_list}
+\end{itemize}
+
+このエラーメッセージや解説ページから、関数呼び出しの\texttt{)}が足りないため構文エラーとなっていることがわかります。
+そのため、次のように足りない\texttt{)}を追加することでエラーを修正できます。
+
+\begin{lstlisting}
+console.log(1);
+\end{lstlisting}
+\newpage
+構文エラーによっては少しエラーメッセージから意味が読み取りにくいものもあります。
+
+次のコードでは、\texttt{const}を\texttt{cosnt}とタイプミスしているため構文エラーが発生しています。
+
+\begin{listtitle}
+index.js
+\end{listtitle}
+\begin{lstlisting}
+cosnt a = 1;
+\end{lstlisting}
+\listend
+
+\begin{lstlisting}
+SyntaxError: unexpected token: identifier[詳細] index.js:1:6
+\end{lstlisting}
+
+\begin{small}
+\begin{longtable}[l]{p{73mm}|p{67mm}}
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}
+\textgt{メッセージ}\strut
+ & 
+\textgt{意味}\strut
+\tabularnewline
+\hline
+\endhead
+\texttt{SyntaxError: unexpected token: identifier}\strut
+ & 
+エラーの種類は\texttt{SyntaxError}で、予期しない識別子（変数名\texttt{a}）が指定されている\strut
+\tabularnewline
+\texttt{index.js:1:6}\strut
+ & 
+例外が\texttt{index.js}の1行目6列目で発生した\strut
+\tabularnewline
+\hline
+\end{longtable}
+\end{small}
+
+プログラムをパースする際に\texttt{index.js:1:6}で予期しない（構文として解釈できない）識別子が見つかったため、構文エラーが発生したという意味になります。
+1行目6列目（行は1から、列は0からカウントする）である\texttt{a}という文字列がおかしいということになります。
+しかし、実際には\texttt{cosnt}というタイプミスがこの構文エラーの原因です。
+
+なぜこのようなエラーメッセージになるかというと、\texttt{cosnt}（\texttt{const}のタイプミス）はキーワードではないため、ただの変数名として解釈されます。
+そのため、このコードは次のようなコードであると解釈され、そのような文法は認められないということで構文エラーとなっています。
+
+\begin{lstlisting}
+cosntという変数名 aという変数名 = 1;
+\end{lstlisting}
+
+このようにエラーメッセージとエラーの原因は必ずしも一致しません。
+しかし、構文エラーの原因はコードの書き間違いであることがほとんどです。
+そのため、エラーが発生した位置やその周辺を注意深く見ることで、エラーの原因を特定できます。
+
+\hypertarget{runtime-error}{%
+\subsection{実行時エラー}\label{runtime-error}}\index{じっこうじえらー@実行時エラー}
+
+実行時エラーはプログラムを実行している最中に発生するエラーです。
+実行時（ランタイム）に起きるエラーであるため、ランタイムエラー\index{らんたいむえらー@ランタイムエラー}と呼ばれることもあります。
+APIに渡す値のデータ型の問題から起きる\texttt{TypeError}\index{TypeError@\texttt{TypeError}}や存在しない変数を参照しようとして起きる\texttt{ReferenceError}\index{ReferenceError@\texttt{ReferenceError}}などさまざまな種類があります。
+
+実行時エラーが発生した場合は、そのコードは構文としては正しい（構文エラーではない）のですが、別のことが原因でエラーが発生しています。
+
+次のコードでは\texttt{x}という存在しない変数を参照したため、\texttt{ReferenceError}という実行時エラーが発生しています。
+
+\begin{listtitle}
+index.js
+\end{listtitle}
+\begin{lstlisting}
+const value = "値";
+console.log(x); // => ReferenceError: x is not defined
+\end{lstlisting}
+\listend
+
+\begin{lstlisting}
+ReferenceError: x is not defined[詳細] index.js:2:1
+\end{lstlisting}
+
+\begin{small}
+\begin{longtable}[l]{p{73mm}|p{67mm}}
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}
+\textgt{メッセージ}\strut
+ & 
+\textgt{意味}\strut
+\tabularnewline
+\hline
+\endhead
+\texttt{ReferenceError: x is not defined}\strut
+ & 
+エラーの種類は\texttt{ReferenceError}で、\texttt{x}という未定義の識別子を参照したため発生\strut
+\tabularnewline
+\texttt{index.js:2:1}\strut
+ & 
+例外が\texttt{index.js}の2行目1列目で発生した\strut
+\tabularnewline
+\hline
+\end{longtable}
+\end{small}
+
+\texttt{x}という変数や関数が存在するかは、実行してみないとわかりません。
+そのため、実行して\texttt{x}という識別子を参照したときに、初めて\texttt{x}が存在するかが判明し、\texttt{x}が存在しない場合は\texttt{ReferenceError}となります。
+
+この例では、\texttt{value}変数を参照しているつもりで、\texttt{x}という存在しない変数を参照していたのが原因のようです。
+先ほどのコードは、次のように参照する変数を\texttt{value}に変更すれば、エラーが修正できます。
+
+\begin{lstlisting}
+const value = "値";
+console.log(value); // => "値"
+\end{lstlisting}
+
+このように、実行時エラーは該当する箇所を実行するまで、エラーになるかがわからない場合も多いのです。
+そのため、どこまではちゃんと実行できたか順番に追っていくような、エラーの原因を特定する作業が必要になる場合があります。
+このようなエラーの原因を特定し、修正する作業のことを\textbf{\textgt{デバッグ}}\index{でばっぐ@デバッグ}と呼びます。
+
+実行時エラーは構文エラーに比べてエラーの種類も多く、その原因もプログラムの数だけあります。
+そのため、エラーの原因を見つけることが大変な場合もあります。
+しかし、JavaScriptはとてもよく使われている言語なので、ウェブ上には類似するエラーを報告している人も多いです。
+エラーメッセージで検索をしてみると、類似するエラーの原因と解消方法が見つかるケースもあります。
+
+実行時エラーが発生した際には、エラーが発生した行の周辺をよく見ることやエラーメッセージを調べてみることが大切です。
+
+\hypertarget{conclusion}{%
+\section{まとめ}\label{conclusion}}
+
+ブラウザ上でJavaScriptを実行する方法として開発者ツールを使う方法とHTMLからJavaScriptファイルを読み込む方法を紹介しました。
+\hyperlink{basic-grammar}{「第1部 基本文法」}で紹介するサンプルコードは基本的にこれらの方法で実行できます。
+サンプルコードを自分なりに改変して実行してみるとより理解が深くなるため、サンプルコードの動作を自分自身で確認してみてください。
+
+コードを実行してエラーが発生した場合にはエラーメッセージや位置情報などが表示されます。
+これらのエラー情報を使ってデバッグすることでエラーの原因を取り除けるはずです。
+
+JavaScriptにおいては多くのエラーはすでに類似するケースがウェブ上に報告されています。
+構文エラーや実行時エラーの典型的なものはMDNの\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Errors}{JavaScript
+エラーリファレンス}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Errors}}にまとめられています。
+また\href{https://www.google.com/}{Google}\footnote{\url{https://www.google.com/}}、\href{https://github.com/}{GitHub}\footnote{\url{https://github.com/}}、\href{https://stackoverflow.com/}{Stack
+Overflow}\footnote{\url{https://stackoverflow.com/}}などでエラーメッセージを検索することで、エラーの原因を見つけられることもあります。
+
+エラーがウェブコンソールに表示されているならば、そのエラーは修正できます。
+エラーを過度に怖がる必要はありません。エラーメッセージなどのヒントを使ってエラーを修正していけるようにしましょう。

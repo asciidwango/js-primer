@@ -1,0 +1,224 @@
+\hypertarget{prolog}{%
+\chapter*{はじめに}\label{prolog}}\addcontentsline{toc}{chapter}{はじめに}
+\thispagestyle{frontheadings}
+
+\hypertarget{do}{%
+\section*{本書の目的}\label{do}}
+
+この書籍の目的は、JavaScriptというプログラミング言語を学ぶことです。
+先頭から順番に読んでいけば、JavaScriptの文法や機能を一から学べるように書かれています。
+
+JavaScriptの文法といった書き方を学ぶことも重要ですが、実際にどう使われているかを知ることも目的にしています。
+なぜなら、JavaScriptのコードを読んだり書いたりするには、文法の知識だけでは足りないと考えているためです。
+そのため、\hyperlink{basic-grammar}{「第一部 基本文法」}では文法だけではなく現実の利用方法について言及し、\hyperlink{use-case}{「第二部 ユースケース」}では小さなアプリケーションを例に現実と近い使い方を解説しています。
+
+また、JavaScriptは常に変化を取り入れている言語でもあり、言語自身や言語を取り巻く開発環境も変化しています。
+この書籍では、これらのJavaScriptを取り巻く変化に対応できる基礎を身につけていくことを目的としています。
+そのため、単に書き方を学ぶのではなく、なぜ動かないのかや問題の調べ方にも焦点を当てていきます。
+
+\hypertarget{do-not}{%
+\section*{本書の目的ではないこと}\label{do-not}}
+
+ひとつの書籍でJavaScriptのすべてを学ぶことはできません。
+なぜなら、JavaScriptを使ってできる範囲があまりにも広いためです。
+そのため、この書籍では取り扱わない内容（目的外）を明確にしておきます。
+
+\begin{itemize}
+\item
+  他のプログラミング言語と比較するのが目的ではない
+\item
+  ウェブブラウザについて学ぶのが目的ではない
+\item
+  Node.jsについて学ぶのが目的ではない
+\item
+  JavaScriptのすべての文法や機能を網羅するのが目的ではない
+\item
+  JavaScriptのリファレンスとなることが目的ではない
+\item
+  JavaScriptのライブラリやフレームワークの使い方を学ぶのが目的ではない
+\item
+  これを読んだから何か作れるというゴールがあるわけではない
+\end{itemize}
+
+この書籍は、リファレンスのようにすべての文法や機能を網羅していくことを目的にはしていません。
+JavaScriptやブラウザのAPIに関しては、\href{https://developer.mozilla.org/ja/}{MDN Web Docs}\footnote{\url{https://developer.mozilla.org/ja/}}（MDN）というすばらしいリファレンスがすでにあります。
+
+ライブラリの使い方や特定のアプリケーションの作り方を学ぶことも目的ではありません。
+それらについては、ライブラリのドキュメントや実在するアプリケーションから学ぶことを推奨しています。
+もちろん、ライブラリやアプリケーションについての別の書籍をあわせて読むのもよいでしょう。
+
+この書籍は、それらのライブラリやアプリケーションが動くために利用している仕組みを理解する手助けをします。
+作り込まれたライブラリやアプリケーションは、一見するとまるで魔法のようにも見えます。
+実際には、何らかの仕組みがありその上で作られたものがライブラリやアプリケーションとして動いています。
+
+具体的な仕組み自体までは解説しませんが、そこに仕組みがあることに気づき理解する手助けをします。
+
+\hypertarget{who-read}{%
+\section*{本書を誰が読むべきか}\label{who-read}}
+
+この書籍は、プログラミング経験のある人がJavaScriptという言語を新たに学ぶことを念頭に書かれています。
+そのため、この書籍で初めてプログラミング言語を学ぶという人には、少し難しい部分があります。
+しかし、実際にプログラムを動かして学べるように書かれているため、プログラミング初心者が挑戦してみてもよいでしょう。
+
+JavaScriptを書いたことはあるが最近のJavaScriptがよくわからないという人も、この書籍の読者対象です。
+2015年に、JavaScriptにはECMAScript 2015と呼ばれる仕様の大きな変更が入りました。
+この書籍は、ECMAScript 2015を前提としたJavaScriptの入門書であり、必要な部分では今までの書き方との違いについても触れています。
+そのため、新しい書き方や何が今までと違うのかわからない場合にも、この書籍は役に立ちます。
+
+この書籍は、JavaScriptの仕様に対して真剣に向き合って書かれています。
+入門書であるからといって、極端に省略して不正確な内容を紹介することは避けています。
+そのため、JavaScriptの熟練者であっても、この書籍を読むことで発見があるはずです。
+
+\hypertarget{features}{%
+\section*{本書の特徴}\label{features}}
+
+この書籍の特徴について簡単に紹介します。
+
+ECMAScript 2015と呼ばれる仕様の大きな更新が行われた際に、JavaScriptには新しい書き方や機能が大きく増えました。
+今までのJavaScriptという言語とは異なるものに見えるほどです。
+
+この書籍は、新しくなったECMAScript 2015以降を前提にして一から書かれています。
+今からJavaScriptを学ぶなら、新しくなったECMAScript 2015を前提としたほうがよりスッキリと学べるためです。
+この書籍は、ECMAScript 2015をベースにしつつ現時点の最新バージョンであるECMAScript {{book.esversion}}まで対応しています。
+
+また、現在のウェブブラウザは、ECMAScript 2015をサポートしています。
+そのため、この書籍では一から学ぶ上で知る必要がない古い書き方は紹介していないことがあります。
+しかし、既存のコードを読む際には古い書き方への理解も必要になるので、頻出するケースについては紹介しています。
+
+一方で、近い未来に入るであろうJavaScriptの新しい機能については触れていません。
+なぜなら、それは未来の話であるため不確定な部分が多く、実際の使われ方も予測できないためです。
+この書籍は、基本を学びつつ現実のユースケースから離れすぎないことを目的としています。
+
+この書籍の文章やソースコードは、オープンソースとしてGitHubの\href{https://github.com/asciidwango/js-primer}{asciidwango/js-primer}\footnote{\url{https://github.com/asciidwango/js-primer}}で公開されています。
+また書籍の内容が\href{https://jsprimer.net/}{jsprimer.net}\footnote{\url{https://jsprimer.net/}}というURLで公開されているため、ウェブブラウザで読めます。
+ウェブ版では、その場でサンプルコードを実行してJavaScriptを学べます。
+
+書籍の内容がウェブで公開されているため、書籍の内容を共有したいときにURLを貼れます。
+また、書籍の内容やサンプルコードは次のライセンスの範囲内で自由に利用できます。
+
+\hypertarget{license}{%
+\section*{ライセンス}\label{license}}
+
+この書籍に記述されているすべてのソースコードは、MITライセンスに基づいたオープンソースソフトウェアとして提供されます。
+また、この書籍の文章はCreative CommonsのAttribution-NonCommercial
+4.0（CC BY-NC 4.0）ライセンスに基づいて提供されます。
+どちらも、著作権表示がされていればある程度自由に利用できるライセンスとなっています。
+
+この書籍に記述されているすべてのソースコードは、MITライセンスに基づいたオープンソースソフトウェアとして提供されます。
+また、この書籍の文章はCreative CommonsのAttribution-NonCommercial 4.0（CC BY-NC 4.0）ライセンスに基づいて提供されます。
+どちらも、著作権表示がされていればある程度自由に利用できるライセンスとなっています。
+
+ライセンスについての詳細は、次のライセンス文書をご覧ください。
+
+\subsection*{ライセンス文書}
+
+Source Code released under the MIT License.
+Copyright (c) 2016-present jsprimer project
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+\noindent\hrulefill\hspace*{65mm}
+
+\noindent The text content released under the CC BY-NC 4.0.\\
+Copyright (c) 2016-present jsprimer project\\
+\url{https://creativecommons.org/licenses/by-nc/4.0/}
+
+\hypertarget{how-to-report-mistake}{%
+\section*{文章の間違いに気づいたら}\label{how-to-report-mistake}}
+
+まったくバグがないプログラムはないのと同様に、まったく間違いのない技術書は存在しません。
+この書籍もできるだけ間違い（特に技術的な間違い）を減らすように努力していますが、
+どうしても誤字脱字や技術的な間違い、コード例の間違いなどを見落としている場合があります。
+
+そのため「この書籍には間違いが存在する」と思って読んでいくことを推奨しています。
+もし、読んでいて間違いを見つけたなら、ぜひ報告してください。
+
+また、文章の意味や意図がわからないといった疑問を持つこともあるでしょう。
+そのような疑問もぜひ報告してください。
+
+もし、その疑問が実際には間違いではなく勘違いであっても、回答をもらうことで自分の理解を修正できます。
+そのため、疑問を問い合わせても損することはないはずです。
+
+この書籍はGitHub上で公開されているため、GitHubリポジトリのIssueとしてあなたの疑問を報告できます。
+
+\begin{itemize}
+\item 書籍のGitHubリポジトリ: \url{https://github.com/asciidwango/js-primer}
+\end{itemize}
+
+GitHubのアカウントを持っていない方は、次のフォームから報告できます。
+\begin{itemize}
+\item \url{https://goo.gl/forms/lOx4ckFyb0fB9cBM2}
+\end{itemize}
+
+あるいは、アスキードワンゴ編集部にメールを送ることでも報告できます。
+\begin{itemize}
+\item アスキードワンゴ編集部メールアドレス: \texttt{info@asciidwango.jp}
+\end{itemize}
+
+\hypertarget{pull-request}{%
+\subsection*{問題を修正する}\label{pull-request}}
+
+この書籍はGitHub上で文章やサンプルのソースコードがすべて公開されています。
+
+そのため、問題を報告するだけではなく、修正内容を\href{https://help.github.com/articles/about-pull-requests/}{Pull
+Request}することで問題を修正できます。
+
+誤字を1文字修正するものから技術的な間違いを修正するものまで、どのような修正であっても感謝いたします。
+問題を見つけたら、ぜひ修正することにも挑戦してみてください。
+
+\hypertarget{thanks}{%
+\section*{謝辞}\label{thanks}}
+
+この書籍は次の方々にレビューをしていただきました。
+
+\begin{itemize}
+\item mizchi（竹馬光太郎）
+\item 中西優介\texttt{@better\_than\_i\_w}
+\item \texttt{@tsin1rou}
+\item sakito
+\item 川上和義
+\item 尾上洋介
+\end{itemize}
+
+この書籍をよりよいものにできたのは皆さんのご協力のおかげです。
+
+また、この書籍は最初から\href{https://github.com/asciidwango/js-primer}{GitHub}に公開した状態で執筆が行われています。そのため、Issueで問題の報告やPull Requestで修正を送ってもらうなど、さまざまな人の助けによって成り立っています。この書籍に対してコントリビュートしてくれた方々に感謝します。
+
+\hypertarget{changelog}{%
+\section*{変更点}\label{changelog}}
+
+初版からの変更点をまとめると次のようになります。
+
+\begin{itemize}
+\item ECMAScriptの新しいバージョンであるES2020、ES2021、ES2022に対応した
+\item 新しいECMAScriptの機能によって、使う必要がなくなった機能は非推奨へと変更した
+\item 文字では想像しにくいビット演算、非同期処理などに図を追加した
+\item PromiseとAsync Functionを非同期の処理の中心として書き直した
+\item 一方で、エラーファーストコールバックは非同期処理としてはメインではなくなった
+\item \texttt{Array\#includes}という表記は、Private Classs Fields(\texttt{\#field})と記号が被るため廃止した
+\item Node.jsでもECMAScript Modulesを使うようになり、CommonJSはメインではなくなった
+\item Node.jsが12から18までアップデートし、npmは6から8までアップデート、各種ライブラリも最新にアップデート
+\item 読者からのフィードバックを受けて、全体をより分かりやすく読みやすくなるように書き直した
+\end{itemize}
+
+ECMAScriptはアップデートにより、機能的が利用できなくなるという変更はほぼありません。
+その点では、初版で紹介したJavaScriptは現在でも動作します。
+
+一方で、実際の利用のされ方などの状況を見て、使われなくなっていく機能はあります。
+そのため、この書籍では古くなった機能は、何によって置き換えられたのかも解説しています。

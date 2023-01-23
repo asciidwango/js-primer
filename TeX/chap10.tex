@@ -1,0 +1,390 @@
+\hypertarget{conditional-branch}{%
+\chapter{条件分岐}\label{conditional-branch}}\index{じょうけんぶんき@条件分岐}
+\thispagestyle{frontheadings}
+
+この章ではif文やswitch文を使った条件分岐について学んでいきます。
+条件分岐を使うことで、特定の条件を満たすかどうかで行う処理を変更できます。
+
+\hypertarget{if-statement}{%
+\section{if文}\label{if-statement}}\index{ifぶん@if文}
+
+if文を使うことで、プログラム内に条件分岐を書けます。
+
+if文は次のような構文が基本形となります。
+\texttt{条件式}\index{じょうけんしき@条件式}の評価結果が\texttt{true}であるならば、\texttt{実行する文}が実行されます。
+
+\begin{lstlisting}
+if (条件式) {
+    実行する文;
+}
+\end{lstlisting}
+
+次のコードでは\texttt{条件式}が\texttt{true}であるため、ifの中身が実行されます。
+
+\begin{lstlisting}
+if (true) {
+    console.log("この行は実行されます");
+}
+\end{lstlisting}
+
+\texttt{実行する文}が1つのみの場合は、\texttt{\{}
+と \texttt{\}} のブロックを省略できます。
+しかし、どこまでがif文かがわかりにくくなるため、常にブロックで囲むことを推奨します。
+
+\begin{lstlisting}
+if (true)
+    console.log("この行は実行されます");
+\end{lstlisting}
+
+if文は\texttt{条件式}に比較演算子などを使い、その比較結果によって処理を分岐するためによく使われます。
+次のコードでは、\texttt{x}が\texttt{10}よりも大きな値である場合に、if文の中身が実行されます。\enlargethispage{\baselineskip}
+
+\begin{lstlisting}
+const x = 42;
+if (x > 10) {
+    console.log("xは10より大きな値です");
+}
+\end{lstlisting}
+
+if文の\texttt{条件式}には\texttt{true}または\texttt{false}といった真偽値以外の値も指定できます。
+真偽値以外の値の場合、その値を暗黙的に真偽値へ変換してから、条件式として判定します。
+
+真偽値へ変換すると\texttt{true}となる値の種類は多いため、逆に変換した結果が\texttt{false}となる値を覚えるのが簡単です。
+次の値は真偽値へと変換すると\texttt{false}となるため、これらは\textbf{falsy}\index{falsy}な値と呼ばれます（「\hyperlink{implicit-coercion}{暗黙的な型変換}」の章を参照）。
+
+\begin{itemize}
+\item
+  \texttt{false}
+\item
+  \texttt{undefined}
+\item
+  \texttt{null}
+\item
+  \texttt{0}
+\item
+  \texttt{0n}
+\item
+  \texttt{NaN}
+\item
+  \texttt{""}（空文字列）
+\end{itemize}
+
+falsyではない値は、\texttt{true}へと変換されます。
+そのため、\texttt{"文字列"}や0以外の数値などを\texttt{条件式}に指定した場合は、\texttt{true}へと変換してから条件式として判定します。
+
+次のコードは、条件式が\texttt{true}へと変換されるため、if文の中身が実行されます。
+
+\begin{lstlisting}
+if (true) {
+    console.log("この行は実行されます");
+}
+if ("文字列") {
+    console.log("この行は実行されます");
+}
+if (42) {
+    console.log("この行は実行されます");
+}
+if (["配列"]) {
+    console.log("この行は実行されます");
+}
+if ({ name: "オブジェクト" }) {
+    console.log("この行は実行されます");
+}
+\end{lstlisting}
+
+falsyな値を\texttt{条件式}に指定した場合は、\texttt{false}へと変換されます。
+次のコードは、条件式が\texttt{false}へと変換されるため、if文の中身は実行されません。
+
+\begin{lstlisting}
+if (false) {
+    // この行は実行されません
+}
+if ("") {
+    // この行は実行されません
+}
+if (0) {
+    // この行は実行されません
+}
+if (undefined) {
+    // この行は実行されません
+}
+if (null) {
+    // この行は実行されません
+}
+\end{lstlisting}
+
+\hypertarget{else-if-statement}{%
+\subsection{else if文}\label{else-if-statement}}\index{else ifぶん@else if文}
+
+複数の条件分岐を書く場合は、if文に続けてelse if文を使います。
+たとえば、次の3つの条件分岐するプログラムを考えます。
+
+\begin{itemize}
+\item
+  \texttt{version} が ``ES5'' ならば ``ECMAScript 5''
+  と出力
+\item
+  \texttt{version} が ``ES6'' ならば ``ECMAScript
+  2015'' と出力
+\item
+  \texttt{version} が ``ES7'' ならば ``ECMAScript
+  2016'' と出力
+\end{itemize}
+
+次のコードでは、if文とelse if文を使うことで3つの条件を書いています。
+変数\texttt{version}の値が\texttt{"ES6"}であるため、コンソールには\texttt{"ECMAScript 2015"}が出力されます。
+
+\begin{lstlisting}
+const version = "ES6";
+if (version === "ES5") {
+    console.log("ECMAScript 5");
+} else if (version === "ES6") {
+    console.log("ECMAScript 2015");
+} else if (version === "ES7") {
+    console.log("ECMAScript 2016");
+}
+\end{lstlisting}
+
+\hypertarget{else-statement}{%
+\subsection{else文}\label{else-statement}}\index{elseぶん@else文}
+
+if文とelse
+if文では、条件に一致した場合の処理をブロック内に書いていました。
+一方で条件に一致しなかった場合の処理は、else文を使うことで書けます。
+
+次のコードでは、変数\texttt{num}の数値が10より大きいかを判定しています。
+\texttt{num}の値は10以下であるため、else文で書いた処理が実行されます。
+
+\begin{lstlisting}
+const num = 1;
+if (num > 10) {
+    console.log(`numは10より大きいです: ${num}`);
+} else {
+    console.log(`numは10以下です: ${num}`);
+}
+\end{lstlisting}
+
+\hypertarget{nested-if-statement}{%
+\subsubsection{ネストしたif文}\label{nested-if-statement}}\index{ねすと@ネスト}\index{ifぶん@if文!ねすと@ネスト}
+
+if文、else if文、else文はネストして書けます。
+次のように複数の条件を満たすかどうかをif文のネストとして表現できます。
+
+\begin{lstlisting}
+if (条件式A) {
+    if (条件式B) {
+        // 条件式Aと条件式Bがtrueならば実行される文
+    }
+}
+\end{lstlisting}
+
+ネストしたif文の例として、今年がうるう年かを判定してみましょう。
+
+うるう年の条件は次のとおりです。
+
+\begin{itemize}
+\item
+  西暦で示した年が4で割り切れる年はうるう年です
+\item
+  ただし、西暦で示した年が100で割り切れる年はうるう年ではありません
+\item
+  ただし、西暦で示した年が400で割り切れる年はうるう年です
+\end{itemize}
+
+西暦での現在の年は \texttt{new Date().getFullYear();}
+で取得できます。
+このうるう年の条件をif文で表現すると次のように書けます。
+
+\begin{lstlisting}
+const year = new Date().getFullYear();
+if (year % 4 === 0) { // 4で割り切れる
+    if (year % 100 === 0) { // 100で割り切れる
+        if (year % 400 === 0) { // 400で割り切れる
+            console.log(`${year}年はうるう年です`);
+        } else {
+            console.log(`${year}年はうるう年ではありません`);
+        }
+    } else {
+        console.log(`${year}年はうるう年です`);
+    }
+} else {
+    console.log(`${year}年はうるう年ではありません`);
+}
+\end{lstlisting}
+
+条件を上から順に書き下したため、ネストが深い文となってしまっています。
+一般的にはネストは浅いほうが、読みやすいコードとなります。
+
+条件を少し読み解くと、400で割り切れる年は無条件にうるう年であることがわかります。
+そのため、条件を並び替えることで、ネストするif文なしに書くことができます。
+
+\begin{lstlisting}
+const year = new Date().getFullYear();
+if (year % 400 === 0) { // 400で割り切れる
+    console.log(`${year}年はうるう年です`);
+} else if (year % 100 === 0) { // 100で割り切れる
+    console.log(`${year}年はうるう年ではありません`);
+} else if (year % 4 === 0) { // 4で割り切れる
+    console.log(`${year}年はうるう年です`);
+} else { // それ以外
+    console.log(`${year}年はうるう年ではありません`);
+}
+\end{lstlisting}
+
+\hypertarget{switch-statement}{%
+\section{switch文}\label{switch-statement}}\index{switchぶん@switch文}
+
+switch文は、次のような構文で\texttt{式}の評価結果が指定した値である場合に行う処理を並べて書きます。
+
+\begin{lstlisting}
+switch (式) {
+    case ラベル1:
+        // 式の評価結果がラベル1と一致する場合に実行する文
+        break;
+    case ラベル2:
+        // 式の評価結果がラベル2と一致する場合に実行する文
+        break;
+    default:
+        // どのcaseにも該当しない場合の処理
+        break;
+}
+// break; 後はここから実行される
+\end{lstlisting}
+
+switch文はif文と同様に\texttt{式}の評価結果に基づく条件分岐を扱います。
+またbreak文\index{breakぶん@break文}は、switch文から抜けてswitch文の次の文から実行するためのものです。
+次のコードでは、\texttt{version}の評価結果は\texttt{"ES6"}となるため、\texttt{case "ES6":}に続く文が実行されます。
+
+\begin{lstlisting}
+const version = "ES6";
+switch (version) {
+    case "ES5":
+        console.log("ECMAScript 5");
+        break;
+    case "ES6":
+        console.log("ECMAScript 2015");
+        break;
+    case "ES7":
+        console.log("ECMAScript 2016");
+        break;
+    default:
+        console.log("知らないバージョンです");
+        break;
+}
+// "ECMAScript 2015" と出力される
+\end{lstlisting}
+
+これはif文で次のように書いた場合と同じ結果になります。
+
+\begin{lstlisting}
+const version = "ES6";
+if (version === "ES5") {
+    console.log("ECMAScript 5");
+} else if (version === "ES6") {
+    console.log("ECMAScript 2015");
+} else if (version === "ES7") {
+    console.log("ECMAScript 2016");
+} else {
+    console.log("知らないバージョンです");
+}
+\end{lstlisting}
+
+switch文はやや複雑な仕組みであるため、どのように処理されているかを見ていきます。
+まず \texttt{switch (式)}
+の\texttt{式}を評価します。
+
+\begin{lstlisting}
+switch (式) {
+    // case
+}
+\end{lstlisting}
+
+次に\texttt{式}の評価結果が厳密等価演算子（\texttt{===}）で一致するラベルを探索します。
+一致するラベルが存在する場合は、そのcase節\index{caseせつ@case節}を実行します。
+一致する\texttt{ラベル}が存在しない場合は、default節\index{defaultせつ@default節}が実行されます。
+
+\begin{lstlisting}
+switch (式) {
+    // if (式 === "ラベル1")
+    case "ラベル1":
+        break;
+    // else if (式 === "ラベル2")
+    case "ラベル2":
+        break;
+    // else
+    default:
+        break;
+}
+\end{lstlisting}
+
+\hypertarget{break-statement}{%
+\subsection{break文}\label{break-statement}}\index{breakぶん@break文}
+
+switch文のcase節では基本的に\texttt{break;}を使ってswitch文を抜けるようにします。
+この\texttt{break;}は省略が可能ですが、省略した場合、後ろに続くcase節が条件に関係なく実行されます。
+
+\begin{lstlisting}
+const version = "ES6";
+switch (version) {
+    case "ES5":
+        console.log("ECMAScript 5");
+    case "ES6": // 一致するケース
+        console.log("ECMAScript 2015");
+    case "ES7": // breakされないため条件無視して実行
+        console.log("ECMAScript 2016");
+    default:    // breakされないため条件無視して実行
+        console.log("知らないバージョンです");
+}
+/*
+ "ECMAScript 2015"
+ "ECMAScript 2016"
+ "知らないバージョンです"
+ と出力される
+ */
+ \end{lstlisting}
+
+このように\texttt{break;}を忘れてしまうと意図しないcase節が実行されてしまいます。
+そのため、case節とbreak文が多用されているswitch文が出てきた場合、
+別の方法で書けないかを考えるべきサインとなります。
+
+switch文はif文の代用として使うのではなく、次のように関数と組み合わせて条件に対する値を返すパターンとして使うことが多いです。
+関数については「\hyperlink{function-and-declaration}{関数と宣言}」の章で紹介します。
+
+\begin{lstlisting}
+function getECMAScriptName(version) {
+    switch (version) {
+        case "ES5":
+            return "ECMAScript 5";
+        case "ES6":
+            return "ECMAScript 2015";
+        case "ES7":
+            return "ECMAScript 2016";
+        default:
+            return "知らないバージョンです";
+    }
+}
+// 関数を実行してreturnされた値を得る
+getECMAScriptName("ES6"); // => "ECMAScript 2015"
+\end{lstlisting}
+
+\hypertarget{conclusion}{%
+\section{まとめ}\label{conclusion}}
+
+この章では条件分岐について学びました。
+
+\begin{itemize}
+\item
+  if文、else if文、else文で条件分岐した処理を扱える
+\item
+  条件式に指定した値は真偽値へと変換してから判定される
+\item
+  真偽値に変換すると\texttt{false}となる値をfalsyと呼ぶ
+\item
+  switch文とcase節、default節を組み合わせて条件分岐した処理を扱える
+\item
+  case節でbreak文しない場合は引き続きcase節が実行される
+\end{itemize}
+
+条件分岐にはif文やswitch文を利用します。
+複雑な条件を定義する場合には、if文のネストが深くなりやすいです。
+そのような場合には、条件式自体を見直してよりシンプルな条件にできないかを考えてみることも重要です。

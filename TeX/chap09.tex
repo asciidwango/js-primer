@@ -1,0 +1,221 @@
+\hypertarget{statement-and-expression}{%
+\chapter{文と式}\label{statement-and-expression}}\index{ぶん@文}\index{しき@式}
+\thispagestyle{frontheadings}
+
+本格的に基本文法について学ぶ前に、JavaScriptというプログラミング言語がどのような要素からできているかを見ていきましょう。
+
+JavaScriptは、\textbf{\textgt{文}}（Statement\index{Statement}）と\textbf{\textgt{式}}（Expression\index{Expression}）から構成されています。
+
+\hypertarget{expression}{%
+\section{式}\label{expression}}
+
+\textbf{\textgt{式}}（Expression）を簡潔に述べると、値を生成し、変数に代入できるものを言います。
+
+\texttt{42}のようなリテラルや\texttt{foo}といった変数、関数呼び出しが式です。
+また、\texttt{1 + 1}のような式と演算子の組み合わせも式と呼びます。
+
+式の特徴として、式を評価すると結果の値が得られます。
+この結果の値を\textbf{\textgt{評価値}}\index{ひょうかち@評価値}と呼びます。
+
+評価した結果を変数に代入できるものは式であるという理解で問題ありません。
+
+\begin{lstlisting}
+// 1という式の評価値を表示
+console.log(1); // => 1
+// 1 + 1という式の評価値を表示
+console.log(1 + 1); // => 2
+// 式の評価値を変数に代入
+const total = 1 + 1;
+// 関数式の評価値(関数オブジェクト)を変数に代入
+const fn = function() {
+    return 1;
+};
+// fn() という式の評価値を表示
+console.log(fn()); // => 1
+\end{lstlisting}
+
+\hypertarget{statement}{%
+\section{文}\label{statement}}\index{ぶん@文}
+
+\textbf{\textgt{文}}（Statement\index{Statement}）を簡潔に述べると、処理する1ステップが1つの文と言えます。
+JavaScriptでは、文の末尾にセミコロン\index{せみころん@セミコロン}(\texttt{;}\index{;@\texttt{;}})を置くことで文と文に区切りをつけます。
+
+ソースコードとして書かれた文を上から処理していくことで、プログラムが実行されます。
+
+\begin{lstlisting}
+処理する文;
+処理する文;
+処理する文;
+\end{lstlisting}
+
+たとえば、if文やfor文などが文と呼ばれるものです。
+次のように、文の処理の一部として式を含むことがあります。
+
+\begin{lstlisting}
+const isTrue = true;
+// isTrueという式がif文の中に出てくる
+if (isTrue) {
+}
+\end{lstlisting}
+
+一方、if文などは文であり式にはなれません。
+
+式ではないため、if文を変数へ代入することはできません。
+次のようなコードは構文として問題があるため、構文エラー（\texttt{SyntaxError}）となります。
+
+\begin{lstlisting}
+// 構文として間違っているため、SyntaxErrorが発生する
+var forIsNotExpression = if (true) { /* ifは文であるため式にはなれない */ }
+\end{lstlisting}
+
+\hypertarget{expression-statement}{%
+\subsection{式文}\label{expression-statement}}\index{しきぶん@式文}
+
+一方で、式（Expression）は文（Statement）になれます。文となった式のことを\textbf{\textgt{式文}}と呼びます。
+基本的に文が書ける場所には式を書けます。
+
+その際に、\textbf{\textgt{式文}}（Expression
+statement\index{Expression statement}）は文の一種であるため、セミコロンで文を区切っています。
+
+\begin{lstlisting}
+// 式文であるためセミコロンをつけている
+式;
+\end{lstlisting}
+
+式は文になれますが、先ほどのif文のように文は式になれません。
+
+\hypertarget{block-statement}{%
+\subsection{ブロック文}\label{block-statement}}\index{ぶろっくぶん@ブロック文}
+
+次のような、文を\texttt{\{}と\texttt{\}}\index{\{\}@\texttt{\{\}}}で囲んだ部分を\textbf{\textgt{ブロック}}\index{ぶろっく@ブロック}と言います。
+ブロックには、複数の文が書けます。
+\newpage
+\begin{lstlisting}
+{
+    文;
+    文;
+}
+\end{lstlisting}
+
+ブロック文は単独でも書けますが、基本的にはif文やfor文など他の構文と組み合わせて書くことがほとんどです。
+次のコードでは、if文とブロック文を組み合わせることで、if文の処理内容に複数の文を書いています。
+
+\begin{lstlisting}
+// if文とブロック文の組み合わせ
+if (true) {
+    console.log("文1");
+    console.log("文2");
+}
+\end{lstlisting}
+
+文の末尾にはセミコロンをつけるとしていましたが、
+例外として\textbf{\textgt{ブロックで終わる文}}の末尾には、セミコロンが不要となっています。
+
+\begin{lstlisting}
+// ブロックで終わらない文なので、セミコロンが必要
+if (true) console.log(true);
+// ブロックで終わる文なので、セミコロンが不要
+if (true) {
+    console.log(true);
+}
+\end{lstlisting}
+
+\begin{tcolorbox}[enhanced jigsaw,breakable,title=単独のブロック文の活用]\label{isolate-block-statement}\index{ぶろっくぶん@ブロック文}
+
+アプリケーションのソースコードにif文などと組み合わせない単独のブロック文を書くことはほとんどありません。
+しかし、REPLで同じコードの一部を変更して実行を繰り返している場合には、単独のブロック文が役に立つ機会もあります。
+
+REPLでは、次のように同じ変数名を再定義すると、構文エラーが発生します（詳細は「\hyperlink{variable-and-declaration}{変数と宣言}」の章の「\hyperlink{var-issues}{\texttt{var}の問題}」を参照）。
+そのため、同じコードを再び実行するには、ブラウザでページをリロードして変数定義をリセットしないといけませんでした。
+
+\begin{lstlisting}
+// REPLでの動作。>>はREPLの入力欄
+>> const count = 1;
+undefined
+>> const count = 2;
+SyntaxError: redeclaration of const count
+\end{lstlisting}
+
+この問題は単独のブロック文で変数定義を囲むことで回避できます。
+ブロック文（\texttt{\{\}}）の中でletやconstを用いて変数を定義しても、そのブロック文の外には影響しません。
+そのため、次のようにブロック文で囲んでおけば、同じ変数名を定義しても構文エラー（\texttt{SyntaxError}）にはなりません。
+
+\begin{lstlisting}
+// REPLでの動作。>>はREPLの入力欄
+>> {
+    const count = 1;
+}
+undefined // ここでブロック内で定義した変数countは参照できなくなる
+>> {
+    const count = 1;
+}
+undefined // ここでブロック内で定義した変数countは参照できなくなる
+\end{lstlisting}
+
+これは、ブロックスコープという仕組みによるものですが、詳しい仕組みについては「\hyperlink{function-and-scope}{関数とスコープ}」の章で解説します。
+今は、ブロック文を使うとREPLでの試行錯誤がしやすいということだけ知っていれば問題ありません。
+\end{tcolorbox}
+
+\hypertarget{function-statement-and-function-expression}{%
+\section{function宣言（文）とfunction式}\label{function-statement-and-function-expression}}\index{function@\texttt{function}}
+
+「\hyperlink{function-and-declaration}{関数と宣言}」の章において、関数を定義する方法を学びました。
+functionキーワードから文を開始する\textbf{\textgt{関数宣言}}\index{かんすうせんげん@関数宣言}と、変数へ\textbf{\textgt{関数式}}\index{かんすうしき@関数式}を代入する方法があります。
+
+関数宣言（文）と関数式は、どちらも\texttt{function}というキーワードを利用しています。
+
+\begin{lstlisting}
+// learn関数を宣言する関数宣言文
+function learn() {
+}
+// 関数式をread変数へ代入
+const read = function() {
+};
+\end{lstlisting}
+
+この文と式の違いを見ると、関数宣言文にはセミコロンがなく、関数式にはセミコロンがあります。
+このような、違いがなぜ生まれるのかは、ここまでの内容から説明できます。
+
+関数宣言（文）で定義した\texttt{learn}関数には、セミコロンがありません。
+これは、\textbf{\textgt{ブロックで終わる文}}にはセミコロンが不要であるためです。
+
+一方、関数式を\texttt{read}変数へ代入したものには、セミコロンがあります。
+
+「ブロックで終わる関数であるためセミコロンが不要なのでは？」と思うかもしれません。
+
+しかし、この匿名関数は式であり、この処理は変数を宣言する文の一部であることがわかります。
+つまり、次のように置き換えても同じと言えるため、末尾にセミコロンが必要となります。\enlargethispage{\baselineskip}\enlargethispage{\baselineskip}
+
+\begin{lstlisting}
+function fn() {}
+// fn(式)の評価値を代入する変数宣言の文
+const read = fn;
+\end{lstlisting}
+
+\hypertarget{statement-expression-summary}{%
+\section{まとめ}\label{statement-expression-summary}}
+
+この章では次のことについて学びました。
+
+\begin{itemize}
+\item
+  JavaScriptは\textgt{文}（Statement）と\textgt{式}（Expression）から構成される
+\item
+  文は式になれない
+\item
+  式は文になれる（\textgt{式文}）
+\item
+  文の末尾にはセミコロンをつける
+\item
+  ブロックで終わる文は例外的にセミコロンをつけなくてよい
+\end{itemize}
+
+JavaScriptには、特殊なルールに基づき、セミコロンがない文も行末に自動でセミコロンが挿入されるという仕組みがあります。
+しかし、この仕組みは構文を正しく解析できない場合に、セミコロンを足すという挙動を持っています。
+これにより、意図しない挙動を生むことがあります。そのため、必ず文の末尾にはセミコロンを書くようにします。
+
+エディターやIDEの中にはセミコロンの入力の補助をしてくれるものや、\href{https://eslint.org/}{ESLint}\index{ESLint}\footnote{\url{http://eslint.org/}}などのLintツールを使うことで、
+セミコロンが必要なのかをチェックできます。
+
+セミコロンが必要か見分けるにはある程度慣れが必要ですが、ツールを使って静的にチェックできます。
+そのため、ツールなどの支援を受けて経験的に慣れていくこともよい方法と言えます。

@@ -1,0 +1,94 @@
+\hypertarget{comment}{%
+\chapter{コメント}\label{comment}}
+\thispagestyle{frontheadings}
+
+コメントはプログラムとして評価されないため、ソースコードの説明を書くために利用されています。
+この書籍でも、JavaScriptのソースコードを解説するためにコメントを使っていきます。
+
+コメントの書き方には、一行コメントと複数行コメントの2種類があります。
+
+\hypertarget{single-line-comment}{%
+\section{一行コメント\index{いちぎょうこめんと@一行コメント}}\label{single-line-comment}}
+
+一行コメントは名前のとおり、一行ずつコメントを書く際に利用します。
+\texttt{//}\index{//@\verb+//+}以降から行末までがコメントとして扱われるため、プログラムとして評価されません。
+
+\begin{lstlisting}
+// 一行コメント
+// この部分はコードとして評価されない
+\end{lstlisting}
+
+\hypertarget{multi-line-comment}{%
+\section{複数行コメント\index{ふくすうぎょうこめんと@複数行コメント}}\label{multi-line-comment}}
+
+複数行コメントは名前のとおり、複数行のコメントを書く際に利用します。
+一行コメントとは違い複数行をまとめて書けるので、長い説明を書く際に利用されています。
+
+\texttt{/*}\index{/*@\verb+/*+}と
+\texttt{*/}\index{*/@\verb+*/+}で囲まれた範囲がコメントとして扱われるため、プログラムとして評価されません。
+
+\begin{lstlisting}
+/* 
+   複数行コメント
+   囲まれている範囲がコードとして評価されない
+ */
+\end{lstlisting}
+
+複数行コメントの中に、複数行コメントを書くことはできません。
+次のように、複数行のコメントをネストして書いた場合は構文エラーとなります。
+
+\begin{lstlisting}
+/* ネストされた /* 複数行コメント */ は書けない */
+\end{lstlisting}
+
+\hypertarget{html-like-comment}{%
+\section[HTML-likeコメント]{HTML-likeコメント\index{HTML-likeこめんと@HTML-likeコメント}\,\protect\icon{fig/es2015.eps}}\label{html-like-comment}}
+
+ECMAScript
+2015（ES2015）から後方互換性のための仕様として\textbf{\textgt{HTML-likeコメント}}が追加されています。
+このHTML-likeコメントは、ブラウザの実装に合わせた後方互換性のための仕様として定義されています。
+
+HTML-likeコメントは名前のとおり、HTMLのコメントと同じ表記です。
+
+\begin{lstlisting}
+<!-- この行はコメントと認識される
+console.log("この行はJavaScriptのコードとして実行される");
+-->  この行もコメントと認識される
+\end{lstlisting}
+
+ここでは、\verb|<!--|\index{<"!--@\verb+<"!--+}と
+\verb|-->|\index{-->@\verb+-->+}がそれぞれ一行コメントとして認識されます。
+
+JavaScriptをサポートしていないブラウザでは、\texttt{<script>}タグを正しく認識できないために書かれたコードが表示されていました。
+それを避けるために\texttt{<script>}の中をHTMLコメントで囲み、表示はされないが実行されるという回避策が取られていました。
+今は\texttt{<script>}タグをサポートしていないブラウザはないため、この回避策は不要です。
+
+\begin{lstlisting}[language=HTML]
+<script language="javascript">
+<!--
+  document.bgColor = "brown";
+// -->
+</script>
+\end{lstlisting}
+
+一方、\texttt{<script>}タグ内、つまりJavaScript内にHTMLコメントが書かれているサイトは残っています。
+このようなサイトでもJavaScriptが動作するという、後方互換性のための仕様として追加されています。
+
+\href{https://dev.mozilla.jp/2016/03/es6-in-depth-arrow-functions/}{歴史的経緯}\footnote{\url{https://dev.mozilla.jp/2016/03/es6-in-depth-arrow-functions/}}は別として、ECMAScriptではこのように後方互換性が慎重に取り扱われます。
+ECMAScriptは一度入った仕様が使えなくなることはほとんどないため、基本文法で覚えたことが使えなくなることはありません。
+一方で、仕様が更新されるたびに新しい機能が増えるため、それを学び続けることには変わりありません。
+
+\hypertarget{conclusion}{%
+\section{まとめ}\label{conclusion}}
+
+この章では、ソースコードに説明を書けるコメントについて学びました。
+
+\begin{itemize}
+\item
+  \texttt{//} 以降から行末までが一行コメント
+\item
+  \texttt{/*} と
+  \texttt{*/}で囲まれた範囲が複数行コメント
+\item
+  HTML-likeコメントは後方互換性のためだけに存在する
+\end{itemize}

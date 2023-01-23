@@ -1,0 +1,572 @@
+\hypertarget{loop-and-iteration}{%
+\chapter{ループと反復処理}\label{loop-and-iteration}}\index{るーぷ@ループ}\index{はんぷくしょり@反復処理}
+\thispagestyle{frontheadings}
+
+この章では、while文やfor文などの基本的な反復処理と制御文について学んでいきます。
+
+プログラミングにおいて、同じ処理を繰り返すために同じコードを繰り返し書く必要はありません。
+ループやイテレータなどを使い、反復処理として同じ処理を繰り返し実行できます。
+
+また、for文などのような構文だけではなく、配列のメソッドを利用して反復処理を行う方法もあります。
+配列のメソッドを使った反復処理もよく利用されるため、合わせて見ていきます。
+
+\hypertarget{while-statement}{%
+\section{while文}\label{while-statement}}\index{whileぶん@while文}
+
+while文は\texttt{条件式}が\texttt{true}であるならば、反復処理を行います。
+
+\begin{lstlisting}
+while (条件式) {
+    実行する文;
+}
+\end{lstlisting}
+
+while文の実行フローは次のようになります。
+最初から\texttt{条件式}が\texttt{false}である場合は、何も実行せずwhile文は終了します。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \texttt{条件式}
+  の評価結果が\texttt{true}なら次のステップへ、\texttt{false}なら終了
+\item
+  \texttt{実行する文}を実行
+\item
+  ステップ1へ戻る
+\end{enumerate}
+
+次のコードでは\texttt{x}の値が10未満であるなら、コンソールへ繰り返しログが出力されます。
+また、\texttt{実行する文}にて\texttt{x}の値を増やし、\texttt{条件式}が\texttt{false}となるようにしています。
+
+\begin{lstlisting}
+let x = 0;
+console.log(`ループ開始前のxの値: ${x}`);
+while (x < 10) {
+    console.log(x);
+    x += 1;
+}
+console.log(`ループ終了後のxの値: ${x}`);
+\end{lstlisting}
+
+つまり、\texttt{実行する文}の中で\texttt{条件式}が\texttt{false}となるような処理を書かないと無限ループします。
+JavaScriptには、より安全な反復処理の書き方があるため、while文は使う場面が限られています。
+
+安易にwhile文を使うよりも、ほかの書き方で解決できないかを考えてからでも遅くはないでしょう。
+
+\begin{tcolorbox}[title=無限ループ]\label{infinite-loop}\index{むげんるーぷ@無限ループ}
+
+反復処理を扱う際に、コードの書き間違いや条件式のミスなどから無限ループを引き起こしてしまう場合があります。
+たとえば、次のコードは条件式の評価結果が常に\texttt{true}となってしまうため、無限ループが発生してしまいます。
+
+\begin{lstlisting}
+let i = 1;
+// 条件式が常にtrueになるため、無限ループする
+while (i > 0) {
+    console.log(`${i}回目のループ`);
+    i += 1;
+}
+\end{lstlisting}
+
+無限ループが発生してしまったときは、あわてずにスクリプトを停止してからコードを修正しましょう。
+
+ほとんどのブラウザには無限ループが発生した際に、自動的にスクリプトの実行を停止する機能が含まれています。
+また、ブラウザで該当のスクリプトを実行しているページ（タブ）またはブラウザそのものを閉じることで強制的に停止できます。
+Node.jsで実行している場合は\keytop{Ctrl} \texttt{+} \keytop{C}を入力し、終了シグナルを送ることで強制的に停止できます。
+
+無限ループが発生する原因のほとんどは条件式に関連する実装ミスです。
+まずは条件式の確認をしてみることで問題を解決できるはずです。
+\end{tcolorbox}
+
+\hypertarget{do-while-statement}{%
+\section{do-while文}\label{do-while-statement}}\index{do-whileぶん@do-while文}
+
+do-while文はwhile文とほとんど同じですが実行順序が異なります。
+
+\begin{lstlisting}
+do {
+    実行する文;
+} while (条件式);
+\end{lstlisting}
+
+do-while文の実行フローは次のようになります。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \texttt{実行する文}を実行
+\item
+  \texttt{条件式}
+  の評価結果が\texttt{true}なら次のステップへ、\texttt{false}なら終了
+\item
+  ステップ1へ戻る
+\end{enumerate}
+
+while文とは異なり、必ず最初に\texttt{実行する文}を処理します。
+
+そのため、次のコードのように最初から\texttt{条件式}を満たさない場合でも、
+初回の\texttt{実行する文}が処理され、コンソールへ\texttt{1000}と出力されます。
+
+\begin{lstlisting}
+const x = 1000;
+do {
+    console.log(x); // => 1000
+} while (x < 10);
+\end{lstlisting}
+
+この仕組みをうまく利用して、ループの開始前とループ中の処理をまとめて書けます。
+しかし、while文と同じくほかの書き方で解決できないかを考えてからでも遅くはないでしょう。
+
+\hypertarget{for-statement}{%
+\section{for文}\label{for-statement}}\index{forぶん@for文}
+
+for文は繰り返す範囲を指定した反復処理を書けます。
+
+\begin{lstlisting}
+for (初期化式; 条件式; 増分式) {
+    実行する文;
+}
+\end{lstlisting}
+
+for文の実行フローは次のようになります。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \texttt{初期化式}\index{しょきかしき@初期化式}で変数の宣言
+\item
+  \texttt{条件式}
+  の評価結果が\texttt{true}なら次のステップへ、\texttt{false}なら終了
+\item
+  \texttt{実行する文}を実行
+\item
+  \texttt{増分式}\index{ぞうぶんしき@増分式}で変数を更新
+\item
+  ステップ2へ戻る
+\end{enumerate}
+
+次のコードでは、for文で1から10までの値を合計して、その結果をコンソールへ出力しています。
+
+\begin{lstlisting}
+let total = 0; // totalの初期値は0
+// for文の実行フロー
+// iを0で初期化
+// iが10未満（条件式を満たす）ならfor文の処理を実行
+// iに1を足し、再び条件式の判定へ
+for (let i = 0; i < 10; i++) {
+    total += i + 1; // 1から10の値をtotalに加算している
+}
+console.log(total); // => 55
+\end{lstlisting}
+
+このコードは1から10までの合計を電卓で計算すればいいので、普通は必要ありませんね。
+もう少し実用的なものを考えると、任意の数値の入った配列を受け取り、その合計を計算して返すという関数を実装すると良さそうです。
+
+次のコードでは、任意の数値が入った配列を受け取り、その合計値を返す
+\texttt{sum} 関数を実装しています。
+\texttt{numbers}配列に含まれている要素を先頭から順番に変数\texttt{total}へ加算することで合計値を計算しています。
+
+\begin{lstlisting}
+function sum(numbers) {
+    let total = 0;
+    for (let i = 0; i < numbers.length; i++) {
+        total += numbers[i];
+    }
+    return total;
+}
+
+console.log(sum([1, 2, 3, 4, 5])); // => 15
+\end{lstlisting}
+
+JavaScriptの配列である\texttt{Array}オブジェクトには、反復処理のためのメソッドが備わっています。
+そのため、配列のメソッドを使った反復処理も合わせて見ていきます。
+
+\hypertarget{array-foreach}{%
+\section{\texorpdfstring{配列の\texttt{forEach}メソッド}{配列のforEachメソッド}}\label{array-foreach}}\index{はいれつ@配列}\index{はいれつ@配列!forEach@\texttt{forEach}}\index{forEach@\texttt{forEach}}
+
+配列には\texttt{forEach}メソッドというfor文と同じように反復処理を行うメソッドがあります。
+
+\texttt{forEach}メソッドでの反復処理は、次のように書けます。
+
+\begin{lstlisting}
+const array = [1, 2, 3];
+array.forEach(currentValue => {
+    // 配列の要素ごとに呼び出される処理
+});
+\end{lstlisting}
+
+JavaScriptでは、関数がファーストクラスであるため、その場で作った匿名関数（名前のない関数）を引数として渡せます。
+
+引数として渡される関数のことを\textbf{\textgt{コールバック関数}}\index{こーるばっくかんすう@コールバック関数}と呼びます。
+また、コールバック関数を引数として受け取る関数やメソッドのことを\textbf{\textgt{高階関数}}\index{こうかいかんすう@高階関数}と呼びます。
+
+\begin{lstlisting}
+const array = [1, 2, 3];
+// forEachは"コールバック関数"を受け取る高階関数
+array.forEach(コールバック関数);
+\end{lstlisting}
+
+\texttt{forEach}メソッドのコールバック関数には、配列の要素が先頭から順番に渡されて実行されます。
+つまり、コールバック関数の仮引数である\texttt{currentValue}には、1から3の値が順番に渡されます。
+
+\begin{lstlisting}
+const array = [1, 2, 3];
+array.forEach(currentValue => {
+    console.log(currentValue);
+});
+// 1
+// 2
+// 3
+// と順番に出力される
+\end{lstlisting}
+
+先ほどのfor文の例と同じ数値の合計を返す\texttt{sum}
+関数を\texttt{forEach}メソッドで実装してみます。
+
+\begin{lstlisting}
+function sum(numbers) {
+    let total = 0;
+    numbers.forEach(num => {
+        total += num;
+    });
+    return total;
+}
+
+sum([1, 2, 3, 4, 5]); // => 15
+\end{lstlisting}
+
+\texttt{forEach}にはfor文の\texttt{条件式}に相当するものはなく、必ず配列のすべての要素を反復処理します。
+変数\texttt{i}といった一時的な値を定義する必要がないため、シンプルに反復処理を書けます。
+
+\hypertarget{break-statement}{%
+\section{break文}\label{break-statement}}\index{breakぶん@break文}
+
+break文は処理中の文から抜けて次の文へ移行する制御文です。
+while、do-while、forの中で使い、処理中のループを抜けて次の文へ制御を移します。
+
+\begin{lstlisting}
+while (true) {
+    break; // *1 へ
+}
+// *1 次の文
+\end{lstlisting}
+
+switch文で出てきたものと同様で、処理中のループ文を終了できます。
+
+次のコードでは配列の要素に1つでも偶数を含んでいるかを判定しています。
+
+\begin{lstlisting}
+const numbers = [1, 5, 10, 15, 20];
+// 偶数があるかどうか
+let isEvenIncluded = false;
+for (let i = 0; i < numbers.length; i++) {
+    const num = numbers[i];
+    if (num % 2 === 0) {
+        isEvenIncluded = true;
+        break;
+    }
+}
+console.log(isEvenIncluded); // => true
+\end{lstlisting}
+
+1つでも偶数があるかがわかればいいため、配列内から最初の偶数を見つけたらfor文での反復処理を終了します。
+このような処理は、使い回せるように関数として実装するのが一般的です。
+
+同様の処理をする \texttt{isEvenIncluded}
+関数を実装してみます。
+次のコードでは、break文が実行され、ループを抜けた後にreturn文で結果を返しています。
+
+\begin{lstlisting}
+// 引数のnumが偶数ならtrueを返す
+function isEven(num) {
+    return num % 2 === 0;
+}
+// 引数のnumbersに偶数が含まれているならtrueを返す
+function isEvenIncluded(numbers) {
+    let isEvenIncluded = false;
+    for (let i = 0; i < numbers.length; i++) {
+        const num = numbers[i];
+        if (isEven(num)) {
+            isEvenIncluded = true;
+            break;
+        }
+    }
+    return isEvenIncluded;
+}
+const array = [1, 5, 10, 15, 20];
+console.log(isEvenIncluded(array)); // => true
+\end{lstlisting}
+
+return文は現在の関数を終了させることができるため、次のようにも書けます。
+\texttt{numbers}に1つでも偶数が含まれていれば結果は\texttt{true}となるため、偶数の値が見つかった時点で\texttt{true}を返しています。
+
+\begin{lstlisting}
+function isEven(num) {
+    return num % 2 === 0;
+}
+function isEvenIncluded(numbers) {
+    for (let i = 0; i < numbers.length; i++) {
+        const num = numbers[i];
+        if (isEven(num)) {
+            return true;
+        }
+    }
+    return false;
+}
+const numbers = [1, 5, 10, 15, 20];
+console.log(isEvenIncluded(numbers)); // => true
+\end{lstlisting}
+
+偶数を見つけたらすぐにreturnすることで一時的な変数が不要となり、より簡潔に書けました。
+
+\hypertarget{array-some}{%
+\subsection{\texorpdfstring{配列の\texttt{some}メソッド}{配列のsomeメソッド}}\label{array-some}}\index{はいれつ@配列}\index{はいれつ@配列!some@\texttt{some}}\index{some@\texttt{some}}
+
+先ほどの\texttt{isEvenIncluded}関数は、偶数を見つけたら
+\texttt{true} を返す関数でした。
+配列では\texttt{some}メソッドで同様のことが行えます。
+
+\texttt{some}メソッドは、配列の各要素をテストする処理をコールバック関数として受け取ります。
+コールバック関数が、一度でも\texttt{true}を返した時点で反復処理を終了し、\texttt{some}メソッドは\texttt{true}を返します。
+
+\begin{lstlisting}
+const array = [1, 2, 3, 4, 5];
+const isPassed = array.some(currentValue => {
+    // テストをパスするとtrue、そうでないならfalseを返す
+});
+\end{lstlisting}
+
+\texttt{some}メソッドを使うことで、配列に偶数が含まれているかは次のように書けます。
+受け取った値が偶数であるかをテストするコールバック関数として\texttt{isEven}関数を渡します。
+
+\begin{lstlisting}
+function isEven(num) {
+    return num % 2 === 0;
+}
+const numbers = [1, 5, 10, 15, 20];
+console.log(numbers.some(isEven)); // => true
+\end{lstlisting}
+
+\hypertarget{continue-statement}{%
+\section{continue文}\label{continue-statement}}\index{continueぶん@continue文}
+
+continue文は現在の反復処理を終了して、次の反復処理を行います。
+continue文は、while、do-while、forの中で使えます。
+
+たとえば、while文の処理中で\texttt{continue}文が実行されると、現在の反復処理はその時点で終了します。
+そして、次の反復処理で\texttt{条件式}を評価するところからループが再開します。
+
+\begin{lstlisting}
+while (条件式) {
+    // 実行される処理
+    continue; // 条件式へ
+    // これ以降の行は実行されません
+}
+\end{lstlisting}
+
+次のコードでは、配列の中から偶数を集め、新しい配列を作って返しています。
+偶数ではない場合、処理中のfor文をスキップします。
+
+\begin{lstlisting}
+// numberが偶数ならtrueを返す
+function isEven(num) {
+    return num % 2 === 0;
+}
+// numbersに含まれている偶数だけを取り出す
+function filterEven(numbers) {
+    const results = [];
+    for (let i = 0; i < numbers.length; i++) {
+        const num = numbers[i];
+        // 偶数ではないなら、次のループへ
+        if (!isEven(num)) {
+            continue;
+        }
+        // 偶数をresultsに追加
+        results.push(num);
+    }
+    return results;
+}
+const array = [1, 5, 10, 15, 20];
+console.log(filterEven(array)); // => [10, 20]
+\end{lstlisting}
+
+もちろん、次のように\texttt{continue}文を使わずに「偶数なら\texttt{results}へ追加する」という書き方も可能です。
+
+\begin{lstlisting}
+if (isEven(number)) {
+    results.push(number);
+}
+\end{lstlisting}
+
+この場合、条件が複雑になってきた場合にネストが深くなってコードが読みにくくなります。
+そのため、10章の「\hyperlink{nested-if-statement}{ネストしたif文}」のうるう年の例でも紹介したように、
+できるだけ早い段階でそれ以上処理を続けない宣言をして、複雑なコードになることを避けています。
+
+\hypertarget{array-filter}{%
+\subsection{\texorpdfstring{配列の\texttt{filter}メソッド}{配列のfilterメソッド}}\label{array-filter}}\index{はいれつ@配列}\index{はいれつ@配列!filter@\texttt{filter}}\index{filter@\texttt{filter}}
+
+配列から特定の値だけを集めた新しい配列を作るには\texttt{filter}メソッドを利用できます。
+
+\texttt{filter}メソッドには、配列の各要素をテストする処理をコールバック関数として渡します。
+コールバック関数が\texttt{true}を返した要素のみを集めた新しい配列を返します。\enlargethispage{\baselineskip}
+
+\begin{lstlisting}
+const array = [1, 2, 3, 4, 5];
+// テストをパスしたものを集めた配列
+const filteredArray = array.filter((currentValue, index, array) => {
+    // テストをパスするならtrue、そうでないならfalseを返す
+});
+\end{lstlisting}
+
+先ほどのcontinue文を使った値の絞り込みは\texttt{filter}メソッドを使うとより簡潔に書けます。
+次のコードでは、\texttt{filter}メソッドを使って偶数だけに絞り込んでいます。
+
+\begin{lstlisting}
+function isEven(num) {
+    return num % 2 === 0;
+}
+
+const array = [1, 5, 10, 15, 20];
+console.log(array.filter(isEven)); // => [10, 20]
+\end{lstlisting}
+
+\hypertarget{for-in-statement}{%
+\section{for\ldots{}in文}\label{for-in-statement}}\index{for...inぶん@\texttt{for...in}文}
+
+for\ldots{}in文はオブジェクトのプロパティに対して、反復処理を行います\footnote{\texttt{for}\ldots\texttt{in}文がプロパティを列挙する順番はES2019までは実装依存でしたが、ES2020で列挙する順番が決められました。}。
+
+\begin{lstlisting}
+for (プロパティ in オブジェクト) {
+    実行する文;
+}
+\end{lstlisting}
+
+次のコードでは\texttt{obj}のプロパティ名を\texttt{key}変数に代入して反復処理をしています。
+\texttt{obj}には、3つのプロパティ名があるため３回繰り返されます
+（ループのたびに毎回新しいブロックを作成しているため、ループごとに定義する変数\texttt{key}は再定義エラーになりません。詳細は「\hyperlink{function-and-scope}{関数とスコープ}」の章の「\hyperlink{block-scope}{ブロックスコープ}」で解説します）。
+
+\begin{lstlisting}
+const obj = {
+    "a": 1,
+    "b": 2,
+    "c": 3
+};
+// 注記: ループのたびに毎回新しいブロックに変数keyが定義されるため、
+// 再定義エラーが発生しない
+for (const key in obj) {
+    const value = obj[key];
+    console.log(`key:${key}, value:${value}`);
+}
+// "key:a, value:1"
+// "key:b, value:2"
+// "key:c, value:3"
+\end{lstlisting}
+
+オブジェクトに対する反復処理のためにfor\ldots{}in文は有用に見えますが、多くの問題を持っています。
+
+JavaScriptでは、オブジェクトは何らかのオブジェクトを継承しています。
+for\ldots{}in文は、対象となるオブジェクトのプロパティを列挙する場合に、親オブジェクトまで列挙可能なものがあるかを探索して列挙します。
+そのため、オブジェクト自身が持っていないプロパティも列挙されてしまい、意図しない結果になる場合があります。
+
+安全にオブジェクトのプロパティを列挙するには、\texttt{Object.keys}\index{Object.keys@\texttt{Object.keys}}メソッド、\texttt{Object.values}\index{Object.values@\texttt{Object.values}}メソッド、\texttt{Object.entries}\index{Object.entries@\texttt{Object.entries}}メソッドなどが利用できます。
+
+先ほどの例である、オブジェクトのキーと値を列挙するコードはfor\ldots{}in文を使わずに書けます。
+\texttt{Object.keys}メソッドは引数のオブジェクト自身が持つ列挙可能なプロパティ名の配列を返します。
+そのためfor\ldots{}in文とは違い、親オブジェクトのプロパティは列挙されません。
+
+\begin{lstlisting}
+const obj = {
+    "a": 1,
+    "b": 2,
+    "c": 3
+};
+Object.keys(obj).forEach(key => {
+    const value = obj[key];
+    console.log(`key:${key}, value:${value}`);
+});
+// "key:a, value:1"
+// "key:b, value:2"
+// "key:c, value:3"
+\end{lstlisting}
+
+また、for\ldots{}in文は配列に対しても利用できますが、こちらも期待した結果にはなりません。
+
+次のコードでは、配列の要素が列挙されそうですが、実際には配列のプロパティ名が列挙されます。
+for\ldots{}in文が列挙する配列オブジェクトのプロパティ名は、要素のインデックスを文字列化した``0''、``1''となるため、その文字列が\texttt{num}へと順番に代入されます。
+そのため、数値と文字列の加算が行われ、意図した結果にはなりません。
+
+\begin{lstlisting}
+const numbers = [5, 10];
+let total = 0;
+for (const num in numbers) {
+    // 0 + "0" + "1" という文字列結合が行われる
+    total += num;
+}
+console.log(total); // => "001"
+\end{lstlisting}
+
+配列の内容に対して反復処理を行う場合は、for文や\texttt{forEach}メソッド、後述するfor\ldots{}of文を使うべきでしょう。
+
+このようにfor\ldots{}in文は正しく扱うのが難しいですが、代わりとなる手段が豊富にあります。
+そのため、for\ldots{}in文の利用は避け、\texttt{Object.keys}メソッドなどを使って配列として反復処理するなど別の方法を考えたほうがよいでしょう。
+
+\hypertarget{for-of-statement}{%
+\section[for\ldots{}of文]{for\ldots{}of文\,\protect\icon{fig/es2015.eps}}\label{for-of-statement}}\index{for...ofぶん@\texttt{for...of}文}
+
+最後にfor\ldots{}of文についてです。
+
+JavaScriptでは、\texttt{Symbol.iterator}\index{Symbol.iterator@\texttt{Symbol.iterator}}という特別な名前のメソッドを実装したオブジェクトを\textbf{iterable}\index{iterable}と呼びます。
+iterableオブジェクトは、for\ldots{}of文で反復処理できます。
+
+iterableについてはgeneratorと密接な関係がありますが、ここでは反復処理時の動作が定義されたオブジェクトと認識していれば問題ありません。
+
+iterableオブジェクトは反復処理時に次の返す値を定義しています。
+それに対して、for\ldots{}of文では、\texttt{iterable}から値を1つ取り出し、\texttt{variable}に代入して反復処理を行います。
+
+\begin{lstlisting}
+for (variable of iterable) {
+    実行する文;
+}
+\end{lstlisting}
+
+実はすでにiterableオブジェクトは登場していて、Arrayはiterableオブジェクトです。
+
+次のようにfor\ldots{}of文で、配列から値を取り出して反復処理を行えます。
+for\ldots{}in文とは異なり、インデックス値ではなく配列の値を列挙します。
+
+\begin{lstlisting}
+const array = [1, 2, 3];
+for (const value of array) {
+    console.log(value);
+}
+// 1
+// 2
+// 3
+\end{lstlisting}
+
+JavaScriptではStringオブジェクトもiterableです。
+そのため、文字列を1文字ずつ列挙できます。
+
+\begin{lstlisting}
+const str = "𠮷野家";
+for (const value of str) {
+    console.log(value);
+}
+// "𠮷"
+// "野"
+// "家"
+\end{lstlisting}
+
+そのほかにも、\texttt{TypedArray}、\texttt{Map}、\texttt{Set}、DOM
+NodeListなど、\texttt{Symbol.iterator}が実装されているオブジェクトは多いです。
+for\ldots{}of文は、それらのiterableオブジェクトで反復処理に利用できます。
+
+\hypertarget{conclusion}{%
+\section{まとめ}\label{conclusion}}
+
+この章では、for文などの構文での反復処理と配列のメソッドを使った反復処理について比較しながら見てきました。
+for文などの構文ではcontinue文やbreak文が利用できますが、配列のメソッドではそれらは利用できません。
+一方で配列のメソッドは、一時的な変数を管理する必要がないことや、処理をコールバック関数として書くという違いがあります。
+
+どちらの方法も反復処理においてはよく利用されます。
+どちらが優れているというわけでもないため、どちらの方法も使いこなせるようになることが重要です。
+また、配列のメソッドについては「\hyperlink{array}{配列}」の章でも詳しく解説します。

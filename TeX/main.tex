@@ -1,0 +1,404 @@
+%
+% JS Primer
+%
+% B5変形判
+%
+\documentclass[a4paper,9pt,papersize,uplatex,b5var,openany,tombow]{asciibook}
+\usepackage{lmodern}
+\usepackage[T2A,T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[utf8]{inputenc}
+\usepackage[uplatex,expert,deluxe]{otf}
+\usepackage[dvipdfmx]{hyperref,graphicx,xcolor}
+\usepackage{etoolbox}
+
+\newcommand{\icon}[1]{\includegraphics[height=5mm]{#1}} % 見出しにアイコンを入れる
+\newcommand{\iconl}[1]{\includegraphics[height=3.5mm]{#1}}
+
+\usepackage{pxjahyper}
+\hypersetup{%
+% color
+bookmarksnumbered=true,%
+colorlinks=true,%
+linkcolor=teal,%
+linktocpage=true,%
+urlcolor=blue,%
+setpagesize=false,%
+pdfkeywords={TeX; dvipdfmx; hyperref; color;}}
+% モノクロ
+%hidelinks}
+
+
+\usepackage{subscript}
+\usepackage{layout}
+\usepackage{fancyvrb}
+\usepackage{listings,jlisting}
+\renewcommand{\lstlistingname}{　リスト} % キャプションをソースコードからリストに変更
+\lstset{
+% language=C++,	 					% 言語
+  basicstyle=\ttfamily\normalsize,	% リストのフォント
+  commentstyle=\ttfamily\small,		%コメントのフォント
+  columns={flexible},
+  keepspaces=true,
+  xleftmargin=2zw,
+  showstringspaces=false,
+  aboveskip=1.0zw,
+  belowskip=1.0zw,
+  upquote=true,
+%  breaklines = true,		%自動で折り返す。
+%  escapeinside={(@_}{_@)},
+  }
+
+%
+% \textttのクォーテーションタイプを変更する
+\usepackage{expl3}
+\usepackage{xparse}
+\ExplSyntaxOn
+\RenewDocumentCommand{\texttt}{m}
+{
+  \tl_set:Nn \l_nemgathos_upquotes_tl { #1 }
+  \tl_replace_all:Nnn \l_nemgathos_upquotes_tl { '' } { \textquotedbl }
+  \tl_replace_all:Nnn \l_nemgathos_upquotes_tl { `` } { \textquotedbl }
+  \tl_replace_all:Nnn \l_nemgathos_upquotes_tl { ' } { \textquotesingle }
+  \tl_replace_all:Nnn \l_nemgathos_upquotes_tl { ` } { \textquotesingle }
+{ \ttfamily \tl_use:N \l_nemgathos_upquotes_tl }
+}
+\tl_new:N \l_nemgathos_upquotes_tl
+\ExplSyntaxOff
+
+\usepackage{okumacro}
+\usepackage{setspace}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+%
+% Note環境の定義
+% 使用するときは、\begin{note}{}〜\end{note}のように
+% 必ず{}をつけること。つけないと本文の1文字目が削除
+% されてしまう。
+\newenvironment{note}[1]{%
+  \begin{tcolorbox}[fontlower=\sffamily\bfseries\small,before skip=4mm,blanker,sidebyside,lefthand width=1cm]%
+  \includegraphics[width=1.5cm]{fig/note.eps}%
+  \tcblower
+  }%
+  {\end{tcolorbox}}
+
+%
+% 索引
+\usepackage{makeidx}
+\makeindex
+% 索引のノンブルの位置を本文に合わせる
+\renewcommand{\plainifnotempty}{\relax}
+%
+% 付け加えたパッケージ
+\usepackage{layout}
+\usepackage{multicol}
+\usepackage{wasysym}
+\usepackage{harmony}
+\usepackage{comment}%コメントブロック
+\usepackage{lscape}%ランドスケープ、表を横に倒す
+\usepackage{amssymb}%チェックマークを入れる
+\usepackage{pifont}%チェックマークとバツマークを入れる
+\newcommand{\cmark}{\ding{51}}%チェックマーク
+\newcommand{\xmark}{\ding{55}}%バツマーク
+
+%\usepackage[dvipdfmx]{graphicx,xcolor}
+\usepackage{tikz}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{colortbl}
+
+\usepackage{framed}
+
+\usepackage[absolute, showboxes, overlay]{textpos} % パッケージ読み込み
+\setlength{\TPHorizModule}{10mm} % 水平方向の基準単位
+\setlength{\TPVertModule}{\TPHorizModule} % 垂直方向の基準単位
+\textblockorigin{0mm}{0mm} % 原点
+
+%
+% キャプション
+\usepackage[singlelinecheck=off]{caption} % 左寄せ
+\DeclareCaptionLabelSeparator{wspace}{　} % ラベルとキャプションの間を全角スペースにする
+\captionsetup[figure]{font=sf,labelsep=wspace} % 図のキャプション設定
+\captionsetup[longtable]{font=sf,labelsep=wspace} % 表のキャプション設定
+\DeclareCaptionFormat{listing}{\setlength{\fboxsep}{0.5pt}\colorbox{black!60}{\hbox to 136truemm{{\textcolor{white}{#1#2#3 \hfill}}}}} % リストのキャプションフォーマット定義
+\captionsetup[lstlisting]{format=listing,font=sf,labelsep=wspace} % リストのキャプション設定
+
+%
+% 図のパス
+\graphicspath{{./fig/}{./fig/materials/}{./fig/ch00/}
+{./fig/ch01/}{./fig/ch02/}{./fig/ch03/}{./fig/ch04/}{./fig/ch05/}
+{./fig/ch06/}{./fig/ch07/}{./fig/ch08/}{./fig/ch09/}{./fig/ch10/}
+{./fig/appA/}{./fig/appB/}{./fig/appC/}{./fig/appD/}
+}
+%
+% 見出し
+%
+% 小々節（subsubsection）の数字を出力する
+% \setcounter{secnumdepth}{3}
+%
+% 小々節（subsubsection）まで目次に反映する
+% \setcounter{tocdepth}{3}
+%
+%
+% 部
+\newcommand{\hyperpart}[2]{
+  \hyperdef{}{#1}{
+    \part{\texorpdfstring{\hyperref[#1]{#2}}{#2}
+    }\label{#1}
+  }
+%  \thispagestyle{frontheadings}
+}
+%
+% 章
+% JS Primer:
+%   本文の見出しは3行, 目次の見出しは1行
+\newcommand{\hyperchapter}[3]{
+  \hyperdef{}{#1}{
+    \chapter[#2]{\texorpdfstring{\hyperref[#1]{#3}}{#2}
+    }\label{#1}
+  }
+  \thispagestyle{frontheadings}
+}
+\newcommand{\hyperchaptern}[2]{
+  \hyperdef{}{#1}{
+    \chapter*{\texorpdfstring{\hyperref[#1]{#2}}{#2}
+    }\label{#1}
+    \addcontentsline{toc}{chapter}{#2}
+  }
+  \thispagestyle{frontheadings}
+}
+%
+% 前付けの大見出し
+\newcommand{\hyperchapterf}[2]{
+  \hyperdef{}{#1}{
+    {
+        \vbox{
+            \vskip 10mm
+            \noindent
+            \Large\headfont \texorpdfstring{\hyperref[#1]{#2}}{#2}
+            \vskip 30mm
+        }
+    }\label{#1}
+    \addcontentsline{toc}{section}{#2}
+  }
+  \thispagestyle{frontheadings}
+}
+%
+% 節
+\newcommand{\hypersection}[2]{
+  \hyperdef{}{#1}{
+    \section{\texorpdfstring{\hyperref[#1]{#2}}{#2}
+    }\label{#1}
+  }
+}
+\newcommand{\hypersectionn}[2]{
+  \hyperdef{}{#1}{
+    \section*{\texorpdfstring{\hyperref[#1]{#2}}{#2}
+    }\label{#1}
+  }
+}
+%
+% 小節
+\newcommand{\hypersubsection}[2]{
+  \hyperdef{}{#1}{
+    \subsection{\texorpdfstring{\hyperref[#1]{#2}}{#2}
+    }\label{#1}
+  }
+}
+\newcommand{\hypersubsectionn}[2]{
+  \hyperdef{}{#1}{
+    \subsection*{\texorpdfstring{\hyperref[#1]{#2}}{#2}
+    }\label{#1}
+  }
+}
+%
+% 小々節
+\newcommand{\hypersubsubsection}[2]{
+  \hyperdef{}{#1}{
+    \subsubsection{\texorpdfstring{\hyperref[#1]{#2}}{#2}
+    }\label{#1}
+  }
+}
+\newcommand{\hypersubsubsectionn}[2]{
+  \hyperdef{}{#1}{
+    \subsubsection*{\texorpdfstring{\hyperref[#1]{#2}}{#2}
+    }\label{#1}
+  }
+}
+%
+% 図 \figcenter{file name}{label}{scale}{margin}
+\newcommand{\figcenter}[4]{
+  \vskip #4zw
+  \begin{figure}[htb]
+    \centering
+    \includegraphics[clip, scale=#3]{#1}
+    \label{fig:#2}
+  \end{figure}
+  \vskip #4zw
+}
+% 図 \figleftcap{file name}{label}{scale}{margin}{caption}
+\newcommand{\figleftcap}[5]{
+  \vskip #4zw
+  \begin{figure}[htbp]
+    \includegraphics[clip, scale=#3]{#1}
+    \par{\sffamily\mdseries\small#5}
+    \label{fig:#2}
+  \end{figure}
+}
+%
+%
+\usepackage{verbatim}
+\makeatletter
+\newenvironment{indentverb}
+  {\def\verbatim@processline{%
+    \hspace*{0.6cm}\the\verbatim@line\par}%
+   \verbatim}
+  {\endverbatim}
+\makeatother
+%
+% この章の内容
+\newenvironment{thischaptercovers}
+{
+  \begin{mdframed}
+  [roundcorner=0.0zw,
+   skipabove=1zw,
+   skipbelow=1zw,
+   innertopmargin=1zw,
+   innerbottommargin=1zw,
+   innerleftmargin=1zw,
+   innerrightmargin=1zw,
+   linecolor=black!20,
+   linewidth=0.1zw,
+   backgroundcolor=black!20,
+  ]
+  {\sffamily\bfseries\ebseries この章の内容}\par
+  \vskip 0.5zw
+  \sffamily\bfseries\small
+}
+{
+  \end{mdframed}
+  \vskip 2.0zw
+}
+%
+% 2字下げブロック
+\newenvironment{indenttwo}{
+  \begin{list}{}{
+  \listparindent=0zw
+  \topsep=0zw
+  \parskip=0zw
+  \itemindent=\listparindent
+  \rightmargin=0pt
+  \leftmargin=2zw}
+  \item[]
+}{\end{list}}
+%
+% Listのタイトル
+\newenvironment{listtitle}
+{
+ \begin{mdframed}
+ [roundcorner=0.0zw,
+  skipabove=2.0zw,skipbelow=0.0zw,
+  innertopmargin=0.3zw,innerbottommargin=0.3zw,
+  innerleftmargin=2.0zw,innerrightmargin=1.0zw,
+  backgroundcolor=black!60,
+  linecolor=black!60,linewidth=0.1zw]
+  \color{white}
+  \small \sffamily\mdseries
+}
+{\end{mdframed}{\vskip -1.5zw}}
+%
+% Listの終わり
+\newcommand{\listend}{
+  {
+  \color{black!50}
+  \hrule height 2pt\hfill
+  \vskip 1.5zw
+  }
+}
+%
+% 本文中のコードのイタリック
+\newcommand{\cit}[1]{\sl\texttt{#1}}
+
+
+%
+% 付録D: メンバー
+\newcommand{\apmember}[1]{
+  \vskip 1.5zw
+  	\noindent
+  {\sffamily\mdseries #1}
+}
+%
+% 付録D: 小見出し
+\newcommand{\apheading}[1]{
+  \vskip 0.5zw
+  \noindent
+  {\sffamily\mdseries \small #1}
+}
+
+
+\setcounter{tocdepth}{2} % 目次にsubsectionのレベルまで出す
+
+%
+% 本文構成
+%
+\pagestyle{asciiheadings}
+\begin{document}
+
+\frontmatter
+{\pagestyle{frontheadings}
+\include{front}}
+{\pagestyle{sameheadings}
+\include{intro}
+\include{authors}}
+{\pagestyle{sameheadings}
+{\thispagestyle{frontheadings}
+%\tableofcontents}}
+}}
+
+\mainmatter
+\include{part1}
+\include{chap01}
+\include{chap02}
+\include{chap03}
+\include{chap04}
+\include{chap05}
+\include{chap06}
+\include{chap07}
+\include{chap08}
+\include{chap09}
+\include{chap10}
+\include{chap11}
+\include{chap12}
+%\include{chap13}
+%\include{chap14}
+%\include{chap15}
+%\include{chap16}
+%\include{chap17}
+%\include{chap18}
+%\include{chap19}
+%\include{chap20}
+%\include{chap21}
+%\include{chap22}
+%\include{chap23}
+%\include{chap24}
+%\include{chap25}
+%\include{chap26}
+%\include{chap27}
+%\include{chap28}
+%\include{part1_end}
+%\include{part2}
+%\include{chap29}
+%\include{chap30}
+%\include{chap31}
+%\include{chap32}
+\appendix
+%\include{appa}
+\backmatter
+%\printindex
+%\include{okuduke_book}
+
+\end{document}

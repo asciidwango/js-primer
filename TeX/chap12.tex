@@ -1,0 +1,927 @@
+\hypertarget{object}{%
+\chapter{オブジェクト}\label{object}}\index{おぶじぇくと@オブジェクト}
+\thispagestyle{frontheadings}
+
+オブジェクトはプロパティの集合です。プロパティ\index{ぷろぱてぃ@プロパティ}とは名前（キー\index{きー@キー}）と値（バリュー\index{ばりゅー@バリュー}）が対になったものです。
+プロパティのキーには文字列または\texttt{Symbol}が利用でき、値には任意のデータを指定できます。
+また、1つのオブジェクトは複数のプロパティを持てるため、1つのオブジェクトで多種多様な値を表現できます。
+
+今までも登場してきた、配列や関数などもオブジェクトの一種です。
+JavaScriptには、あらゆるオブジェクトの元となる\texttt{Object}\index{Object@\texttt{Object}}というビルトインオブジェクトがあります。
+ビルトインオブジェクト\index{びるといんおぶじぇくと@ビルトインオブジェクト}は、実行環境にあらかじめ定義されているオブジェクトのことです。
+\texttt{Object}というビルトインオブジェクトはECMAScriptの仕様で定義されているため、あらゆるJavaScriptの実行環境で利用できます。
+
+この章では、オブジェクトの作成や扱い方、\texttt{Object}というビルトインオブジェクトについて見ていきます。
+
+\hypertarget{create-object}{%
+\section{オブジェクトを作成する}\label{create-object}}
+
+オブジェクトを作成するには、オブジェクトリテラル\index{おぶじぇくとりてらる@オブジェクトリテラル}（\texttt{\{\}}\index{\{\}@\texttt{\{\}}}）を利用します。
+
+\begin{lstlisting}
+// プロパティを持たない空のオブジェクトを作成
+const obj = {};
+\end{lstlisting}
+
+オブジェクトリテラルでは、初期値としてプロパティを持つオブジェクトを作成できます。
+プロパティは、オブジェクトリテラル（\texttt{\{\}}）の中にキーと値を\texttt{:}\index{:@\texttt{:}}（コロン\index{ころん@コロン}）で区切って記述します。
+
+\begin{lstlisting}
+// プロパティを持つオブジェクトを定義する
+const obj = {
+    // キー: 値
+    "key": "value"
+};
+\end{lstlisting}
+
+オブジェクトリテラルのプロパティ名（キー）はクォート\index{くぉーと@クォート}（\texttt{"}\index{""@\texttt{""}}や\texttt{'}\index{'@\texttt{'}}）を省略できます。
+そのため、次のように書いても同じです。
+
+\begin{lstlisting}
+// プロパティ名（キー）はクォートを省略することが可能
+const obj = {
+    // キー: 値
+    key: "value"
+};
+\end{lstlisting}
+
+ただし、変数名として利用できないプロパティ名はクォート（\texttt{"}や\texttt{'}）で囲む必要があります。
+次の\texttt{my-prop}というプロパティ名は、変数名として利用できない\texttt{-}が含まれているため定義できません（「\hyperlink{variable-and-declaration}{変数と宣言}」の章の「\hyperlink{variable-name}{変数名に使える名前のルール}」を参照）。
+
+\begin{lstlisting}
+const object = {
+    // キー: 値
+    my-prop: "value" // NG
+};
+\end{lstlisting}
+
+\texttt{my-prop}というプロパティ名を定義する場合は、クォート（\texttt{"}や\texttt{'}）で囲む必要があります。
+
+\begin{lstlisting}
+const obj = {
+    // キー: 値
+    "my-prop": "value" // OK
+};
+\end{lstlisting}
+
+オブジェクトリテラルでは複数のプロパティ（キーと値の組み合わせ）を持つオブジェクトも作成できます。
+複数のプロパティを定義するには、それぞれのプロパティを\texttt{,}\index{,@\texttt{,}}（カンマ\index{かんま@カンマ}）で区切ります。
+
+\begin{lstlisting}
+const color = {
+    // それぞれのプロパティは,で区切る
+    red: "red",
+    green: "green",
+    blue: "blue"
+};
+\end{lstlisting}
+
+プロパティの値に変数名を指定すれば、そのキーは指定した変数を参照します。
+
+\begin{lstlisting}
+const name = "名前";
+// nameというプロパティ名でnameの変数を値に設定したオブジェクト
+const obj = {
+    name: name
+};
+console.log(obj); // => { name: "名前" }
+\end{lstlisting}
+
+またES2015からは、プロパティ名と値に指定する変数名が同じ場合は\texttt{\{ name \}}のように省略して書けます。
+次のコードは、プロパティ名\texttt{name}に変数\texttt{name}を値にしたプロパティを設定しています。
+
+\begin{lstlisting}
+const name = "名前";
+// nameというプロパティ名でnameの変数を値に設定したオブジェクト
+const obj = {
+    name
+};
+console.log(obj); // => { name: "名前" }
+\end{lstlisting}
+
+この省略記法は、モジュールや分割代入においても共通した表現です。
+そのため、\texttt{\{\}}の中でプロパティ名が単独で書かれている場合は、この省略記法を利用していることに注意してください。
+
+\hypertarget{object-instance-object}{%
+\subsection{\texorpdfstring{\texttt{\{\}}は\texttt{Object}のインスタンスオブジェクト}{\{\}はObjectのインスタンスオブジェクト}}\label{object-instance-object}}\index{\{\}@\texttt{\{\}}}\index{Object@\texttt{Object}}\index{いんすたんすおぶじぇくと@インスタンスオブジェクト}
+
+\texttt{Object}はJavaScriptのビルトインオブジェクトです。
+オブジェクトリテラル（\texttt{\{\}}）は、このビルトインオブジェクトである\texttt{Object}を元にして新しいオブジェクトを作成するための構文です。
+
+オブジェクトリテラル以外の方法として、\texttt{new}演算子\index{new@\texttt{new}}を使うことで、\texttt{Object}から新しいオブジェクトを作成できます。
+次のコードでは、\texttt{new Object()}でオブジェクトを作成していますが、これは空のオブジェクトリテラルと同じ意味です。
+
+\begin{lstlisting}
+// プロパティを持たない空のオブジェクトを作成
+// = Objectからインスタンスオブジェクトを作成
+const obj = new Object();
+console.log(obj); // => {}
+\end{lstlisting}
+
+オブジェクトリテラルのほうが明らかに簡潔で、プロパティの初期値も指定できるため、\texttt{new Object()}を使う利点はありません。
+
+\texttt{new Object()}でオブジェクトを作成することは、「\texttt{Object}のインスタンスオブジェクトを作成する」と言います。
+しかしながら、\texttt{Object}やインスタンスオブジェクトなどややこしい言葉の使い分けが必要となってしまいます。
+そのため、この書籍ではオブジェクトリテラルと\texttt{new Object}どちらの方法であっても、単に「オブジェクトを作成する」と呼びます。
+
+オブジェクトリテラルは、\texttt{Object}から新しいインスタンスオブジェクトを作成していることを意識しておくとよいでしょう。
+
+\hypertarget{property-access}{%
+\section{プロパティへのアクセス}\label{property-access}}\index{ぷろぱてぃ@プロパティ!あくせす@アクセス}
+
+オブジェクトのプロパティにアクセスする方法として、ドット記法\index{どっときほう@ドット記法}（\texttt{.}\index{.@\textbf{.}}）とブラケット記法\index{ぶらけっときほう@ブラケット記法}（\texttt{[]}\index{[]@\texttt{[]}}）があります。
+それぞれの記法でプロパティ名を指定すると、その名前を持ったプロパティの値を参照できます。
+
+\begin{lstlisting}
+const obj = {
+    key: "value"
+};
+// ドット記法で参照
+console.log(obj.key); // => "value"
+// ブラケット記法で参照
+console.log(obj["key"]); // => "value"
+\end{lstlisting}
+
+ドット記法（\texttt{.}）では、プロパティ名が変数名と同じく識別子の命名規則を満たす必要があります（詳細は「\hyperlink{variable-and-declaration}{変数と宣言}」の章の「\hyperlink{variable-name}{変数名に使える名前のルール}」を参照）。
+
+\begin{lstlisting}
+obj.key; // OK
+// プロパティ名が数字から始まる識別子は利用できない
+obj.123; // NG
+// プロパティ名にハイフンを含む識別子は利用できない
+obj.my-prop; // NG
+\end{lstlisting}
+
+一方、ブラケット記法では、\texttt{[}と\texttt{]}の間に任意の式を書けます。
+そのため、識別子の命名規則とは関係なく、任意の文字列をプロパティ名として指定できます。
+ただし、プロパティ名は文字列へと暗黙的に変換されることに注意してください。
+
+\begin{lstlisting}
+const obj = {
+    key: "value",
+    123: 456,
+    "my-key": "my-value"
+};
+
+console.log(obj["key"]); // => "value"
+// プロパティ名が数字からはじまる識別子も利用できる
+console.log(obj[123]); // => 456
+// プロパティ名は暗黙的に文字列に変換されているため、次も同じプロパティを参照している
+console.log(obj["123"]); // => 456
+// プロパティ名にハイフンを含む識別子も利用できる
+console.log(obj["my-key"]); // => "my-value"
+\end{lstlisting}
+
+また、ブラケット記法ではプロパティ名に変数も利用できます。
+次のコードでは、プロパティ名に\texttt{myLang}という変数をブラケット記法で指定しています。
+
+\begin{lstlisting}
+const languages = {
+    ja: "日本語",
+    en: "英語"
+};
+const myLang = "ja";
+console.log(languages[myLang]); // => "日本語"
+\end{lstlisting}
+
+ドット記法ではプロパティ名に変数は利用できないため、プロパティ名に変数を指定したい場合はブラケット記法を利用します。
+基本的には簡潔なドット記法（\texttt{.}）を使い、ドット記法で書けない場合はブラケット記法（\texttt{[]}）を使うとよいでしょう。
+
+\hypertarget{object-destructuring}{%
+\section[オブジェクトと分割代入]{オブジェクトと分割代入\,\protect\icon{fig/es2015.eps}}\label{object-destructuring}}\index{ぶんかつだいにゅう@分割代入}\index{おぶじぇくと@オブジェクト!ぶんかつだいにゅう@分割代入}
+
+同じオブジェクトのプロパティを何度もアクセスする場合に、何度も\texttt{オブジェクト.\hbox{}プロパティ名}と書くと冗長となりやすいです。
+そのため、短い名前で利用できるように、そのプロパティを変数として定義し直すことがあります。
+
+次のコードでは、変数\texttt{ja}と\texttt{en}を定義し、その初期値として\texttt{languages}オブジェクトのプロパティを代入しています。
+
+\begin{lstlisting}
+const languages = {
+    ja: "日本語",
+    en: "英語"
+};
+const ja = languages.ja;
+const en = languages.en;
+console.log(ja); // => "日本語"
+console.log(en); // => "英語"
+\end{lstlisting}
+
+このようなオブジェクトのプロパティを変数として定義し直すときには、分割代入（Destructuring
+assignment\index{Destructuring assignment}）が利用できます。
+
+オブジェクトの分割代入では、左辺にオブジェクトリテラルのような構文で変数名を定義します。
+右辺のオブジェクトから対応するプロパティ名が、左辺で定義した変数に代入されます。
+
+次のコードでは、先ほどのコードと同じように\texttt{languages}オブジェクトから\texttt{ja}と\texttt{en}プロパティを取り出して変数として定義しています。
+代入演算子のオペランドとして左辺と右辺それぞれに\texttt{ja}と\texttt{en}と書いていたのが、分割代入では一箇所に書くことができます。
+
+\begin{lstlisting}
+const languages = {
+    ja: "日本語",
+    en: "英語"
+};
+const { ja, en } = languages;
+console.log(ja); // => "日本語"
+console.log(en); // => "英語"
+\end{lstlisting}
+
+\hypertarget{add-property}{%
+\section{プロパティの追加}\label{add-property}}\index{ぷろぱてぃ@プロパティ!ついか@追加}
+
+オブジェクトは、一度作成した後もその値自体を変更できるというミュータブル\index{みゅーたぶる@ミュータブル}（mutable\index{mutable}）の特性を持ちます。
+そのため、作成したオブジェクトに対して、後からプロパティを追加できます。
+
+プロパティの追加方法は単純で、作成したいプロパティ名へ値を代入するだけです。
+そのとき、オブジェクトに指定したプロパティが存在しないなら、自動的にプロパティが作成されます。
+
+プロパティの追加はドット記法、ブラケット記法どちらでも可能です。
+
+\begin{lstlisting}
+// 空のオブジェクト
+const obj = {};
+// keyプロパティを追加して値を代入
+obj.key = "value";
+console.log(obj.key); // => "value"
+\end{lstlisting}
+
+先ほども紹介したように、ドット記法は変数の識別子として利用可能なプロパティ名しか利用できません。
+
+一方、ブラケット記法は\texttt{object[式]}の\texttt{式}の評価結果を文字列にしたものをプロパティ名として利用できます。
+そのため、次のものをプロパティ名として扱う場合にはブラケット記法を利用します。
+
+\begin{itemize}
+\item
+  変数
+\item
+  変数の識別子として扱えない文字列
+\item
+  Symbol
+\end{itemize}
+
+\begin{lstlisting}
+const key = "key-string";
+const obj = {};
+// keyの評価結果 "key-string" をプロパティ名に利用
+obj[key] = "value of key";
+// 取り出すときも同じくkey変数を利用
+console.log(obj[key]); // => "value of key"
+\end{lstlisting}
+
+ブラケット記法を用いたプロパティ定義は、オブジェクトリテラルの中でも利用できます。
+オブジェクトリテラル内でのブラケット記法を使ったプロパティ名は\textbf{Computed
+property names}\index{Computed property names}と呼ばれます。 Computed property
+namesはES2015から導入された記法ですが、\texttt{式}の評価結果をプロパティ名に使う点はブラケット記法と同じです。
+
+次のコードでは、Computed property
+namesを使って\texttt{key}変数の評価結果である\texttt{"key-string"}をプロパティ名にしています。
+
+\begin{lstlisting}
+const key = "key-string";
+// Computed Propertyでkeyの評価結果 "key-string" をプロパティ名に利用
+const obj = {
+    [key]: "value"
+};
+console.log(obj[key]); // => "value"
+\end{lstlisting}
+
+JavaScriptのオブジェクトは、作成後にプロパティが変更可能というmutableの特性を持つことを紹介しました。
+そのため、関数が受け取ったオブジェクトに対して、勝手にプロパティを追加できてしまいます。
+
+次のコードは、\texttt{changeProperty}関数が引数として受け取ったオブジェクトにプロパティを追加している悪い例です。
+
+\begin{lstlisting}
+function changeProperty(obj) {
+    obj.key = "value";
+    // いろいろな処理...
+}
+const obj = {};
+changeProperty(obj); // objのプロパティを変更している
+console.log(obj.key); // => "value"
+\end{lstlisting}
+
+このように、プロパティを初期化時以外に追加してしまうと、そのオブジェクトがどのようなプロパティを持っているかがわかりにくくなります。
+そのため、できる限り作成後に新しいプロパティは追加しないほうがよいでしょう。
+オブジェクトの作成時のオブジェクトリテラルの中でプロパティを定義することを推奨します。
+
+\hypertarget{remove-property}{%
+\subsection{プロパティの削除}\label{remove-property}}\index{ぷろぱてぃ@プロパティ!さくじょ@削除}
+
+オブジェクトのプロパティを削除するには\texttt{delete}\index{delete@\texttt{delete}}演算子を利用します。
+削除したいプロパティを\texttt{delete}演算子の右辺に指定して、プロパティを削除できます。
+
+\begin{lstlisting}
+const obj = {
+    key1: "value1",
+    key2: "value2"
+};
+// key1プロパティを削除
+delete obj.key1;
+// key1プロパティが削除されている
+console.log(obj); // => { "key2": "value2" }
+\end{lstlisting}
+
+\begin{tcolorbox}[enhanced jigsaw,breakable,title=constで定義したオブジェクトは変更可能]\label{const-and-object}\index{const@\texttt{const}!おぶじぇくと@オブジェクト}
+
+先ほどのコード例で、\texttt{const}で宣言したオブジェクトのプロパティがエラーなく変更できていることがわかります。
+次のコードを実行してみると、値であるオブジェクトのプロパティが変更できていることがわかります。
+
+\begin{lstlisting}
+const obj = { key: "value" };
+obj.key = "Hi!"; // constで定義したオブジェクト(obj)が変更できる
+console.log(obj.key); // => "Hi!"
+\end{lstlisting}
+
+JavaScriptの\texttt{const}は値を固定するのではなく、変数への再代入を防ぐためのものです。
+そのため、次のような\texttt{obj}変数への再代入は防げますが、変数に代入された値であるオブジェクトの変更は防げません（3章の「\hyperlink{const}{\texttt{const}}」を参照）。
+
+\begin{lstlisting}
+const obj = { key: "value" };
+obj = {}; // => SyntaxError
+\end{lstlisting}
+
+作成したオブジェクトのプロパティの変更を防止するには\texttt{Object.freeze}\index{Object.freeze@\texttt{Object.freeze}}メソッドを利用する必要があります。
+\texttt{Object.freeze}はオブジェクトを凍結\index{おぶじぇくと@オブジェクト!とうけつ@凍結}\index{とうけつ@凍結}します。凍結されたオブジェクトでプロパティの追加や変更をすると例外が発生するようになります。
+
+ただし、\texttt{Object.freeze}メソッドを利用する場合は必ずstrict
+mode\index{strict mode}と合わせて使います（詳細は「\hyperlink{what-is-javascript}{JavaScriptとは}」の\hyperlink{strict-mode}{strict mode}を参照）。strict
+modeでない場合は、凍結されたオブジェクトのプロパティを変更しても例外が発生せずに単純に無視されます。
+
+\begin{lstlisting}
+"use strict";
+const object = Object.freeze({ key: "value" });
+// freezeしたオブジェクトにはプロパティの追加や変更ができない
+object.key = "value"; // => TypeError: "key" is read-only
+\end{lstlisting}
+\end{tcolorbox}
+
+\hypertarget{confirm-property}{%
+\section{プロパティの存在を確認する}\label{confirm-property}}\index{ぷろぱてぃ@プロパティ!そんざいかくにん@存在確認}
+
+JavaScriptでは、存在しないプロパティに対してアクセスした場合に例外ではなく\texttt{undefined}を返します。
+次のコードは、\texttt{obj}には存在しない\texttt{notFound}プロパティにアクセスしているため、\texttt{undefined}という値が返ってきます。
+
+\begin{lstlisting}
+const obj = {};
+console.log(obj.notFound); // => undefined
+\end{lstlisting}
+
+このように、JavaScriptでは存在しないプロパティへアクセスした場合に例外が発生しません。
+プロパティ名を間違えた場合に単に\texttt{undefined}という値を返すため、間違いに気づきにくいという問題があります。
+
+次のようにプロパティ名を間違えていた場合にも、例外が発生しません。
+さらにプロパティ名をネストしてアクセスした場合に、初めて例外が発生します。
+
+\begin{lstlisting}
+const widget = {
+    window: {
+        title: "ウィジェットのタイトル"
+    }
+};
+// windowをwindwと間違えているが、例外は発生しない
+console.log(widget.windw); // => undefined
+// さらにネストした場合に、例外が発生する
+// undefined.titleと書いたのと同じ意味となるため
+console.log(widget.windw.title); // => TypeError: widget.windw is undefined
+// 例外が発生した文以降は実行されません
+\end{lstlisting}
+
+\texttt{undefined}や\texttt{null}はオブジェクトではないため、存在しないプロパティへアクセスすると例外が発生してしまいます。
+あるオブジェクトがあるプロパティを持っているかを確認する方法として、次の4つがあります。
+
+\begin{itemize}
+\item
+  \texttt{undefined}との比較
+\item
+  \texttt{in}演算子
+\item
+  \texttt{Object.hasOwn}静的メソッド\,\protect\icon{fig/es2022.eps}
+\item
+  \texttt{Object.prototype.hasOwnProperty}メソッド
+\end{itemize}
+
+\hypertarget{compare-to-undefined}{%
+\subsection{プロパティの存在確認:
+undefinedとの比較}\label{compare-to-undefined}}\index{undefined@\texttt{undefined}}
+
+存在しないプロパティへアクセスした場合に\texttt{undefined}を返すため、実際にプロパティアクセスすることでも判定できそうです。
+次のコードでは、\texttt{key}プロパティの値が\texttt{undefined}ではないという条件式で、プロパティが存在するかを判定しています。
+
+\begin{lstlisting}
+const obj = {
+    key: "value"
+};
+// keyプロパティがundefinedではないなら、プロパティが存在する?
+if (obj.key !== undefined) {
+    // keyプロパティが存在する?ときの処理
+    console.log("keyプロパティの値はundefinedではない");
+}
+\end{lstlisting}
+
+しかし、この方法はプロパティの値が\texttt{undefined}であった場合に、プロパティそのものが存在しない場合と区別できないという問題があります。
+次のコードでは、\texttt{key}プロパティの値が\texttt{undefined}であるため、プロパティが存在しているにもかかわらずif文の中は実行されません。
+
+\begin{lstlisting}
+const obj = {
+    key: undefined
+};
+// keyプロパティの値がundefinedである場合
+if (obj.key !== undefined) {
+    // この行は実行されません
+}
+\end{lstlisting}
+
+このような問題があるため、プロパティが存在するかを判定するには\texttt{in}演算子か\texttt{Object.hasOwn}静的メソッドを利用します。
+
+\hypertarget{in-operator}{%
+\subsection{プロパティの存在確認: in演算子を使う}\label{in-operator}}\index{in@\texttt{in}}
+
+\texttt{in}演算子は、指定したオブジェクト上に指定したプロパティがあるかを判定し真偽値を返します。
+
+\begin{lstlisting}
+"プロパティ名" in オブジェクト; // true or false
+\end{lstlisting}
+
+次のコードでは\texttt{obj}に\texttt{key}プロパティが存在するかを判定しています。
+\texttt{in}演算子は、プロパティの値は関係なく、プロパティが存在した場合に\texttt{true}を返します。
+
+\begin{lstlisting}
+const obj = { key: undefined };
+// keyプロパティを持っているならtrue
+if ("key" in obj) {
+    console.log("keyプロパティは存在する");
+}
+\end{lstlisting}
+
+\hypertarget{object-hasown-method}{%
+\subsection{プロパティの存在確認: Object.hasOwn静的メソッド\,\protect\icon{fig/es2022.eps}}\label{object-hasown-method}}\index{Object.hasOwn@\texttt{Object.hasOwn}}
+
+\texttt{Object.hasOwn}静的メソッドは、対象のオブジェクトが指定したプロパティを持っているかを判定できます。
+この\texttt{Object.hasOwn}静的メソッドの引数には、オブジェクトとオブジェクトが持っているかを確認したいプロパティ名を渡します。
+
+\begin{lstlisting}
+const obj = {};
+// objが"プロパティ名"を持っているかを確認する
+Object.hasOwn(obj, "プロパティ名"); // true or false
+\end{lstlisting}
+
+次のコードでは\texttt{obj}に\texttt{key}プロパティが存在するかを判定しています。
+\texttt{Object.hasOwn}静的メソッドも、プロパティの値は関係なく、オブジェクトが指定したプロパティを持っている場合に\texttt{true}を返します。
+
+\begin{lstlisting}
+const obj = { key: undefined };
+// objがkeyプロパティを持っているならtrueとなる
+if (Object.hasOwn(obj, "key")) {
+    console.log("`obj`は`key`プロパティを持っている");
+}
+\end{lstlisting}
+
+\texttt{in}演算子と\texttt{Object.hasOwn}静的メソッドは同じ結果を返していますが、厳密には動作が異なるケースもあります。
+この動作の違いを知るにはまずプロトタイプオブジェクトという特殊なオブジェクトについて理解する必要があります。
+そのため、\texttt{in}演算子と\texttt{Object.hasOwn}静的メソッドの違いについては、次の章の「\hyperlink{prototype-object}{プロトタイプオブジェクト}」で詳しく解説します。
+
+\hypertarget{hasOwnProperty-method}{%
+\section{プロパティの存在確認: \texttt{Object.prototype.hasOwnProperty}メソッド}\label{hasOwnProperty-method}}\index{Object.prototype.hasOwnProperty@\texttt{Object.prototype.hasOwnProperty}}
+
+\texttt{Object.hasOwn}静的メソッドはES2022で導入されたメソッドです。
+ES2022より前では、\texttt{Object.prototype.hasOwnProperty}メソッドというよく似たメソッドが利用されていました。
+\texttt{hasOwnProperty}メソッドは、\texttt{Object.hasOwn}静的メソッドとよく似ていますが、オブジェクトのインスタンスから呼び出す点が異なります。
+
+\begin{lstlisting}
+const obj = { key: undefined };
+// objがkeyプロパティを持っているならtrueとなる
+if (obj.hasOwnProperty("key")) {
+    console.log("`obj`は`key`プロパティを持っている");
+}
+\end{lstlisting}
+
+しかし、\texttt{hasOwnProperty}メソッドには欠点があるため、\texttt{Object.hasOwn}静的メソッドが利用できる状況では使う理由はありません。
+この欠点もプロトタイプオブジェクトに関係するため、次の章の「\hyperlink{prototype-object}{プロトタイプオブジェクト}」で詳しく解説します。
+
+\hypertarget{optional-chaining-operator}{%
+\section{Optional chaining演算子（\texttt{?.}）\,\protect\icon{fig/es2020.eps}}\label{optional-chaining-operator}}\index{Optional chainingえんざんし（?.）@Optional chaining演算子（\texttt{?.}）}
+
+プロパティの存在を確認する方法として4つの方法を紹介しました。
+プロパティが存在するかが重要な場合は、基本的には\texttt{in}演算子または\texttt{Object.hasOwn}静的メソッドを使います。
+
+しかし、最終的に取得したいものがプロパティの値であるならば、if文で\texttt{undefined}と比較しても問題ありません。
+なぜなら、値を取得したい場合には、プロパティが存在するかどうかとプロパティの値が\texttt{undefined}かどうかの違いを区別する意味はないためです。
+
+次のコードでは、\texttt{widget.window.title}プロパティに値が定義されているなら（\texttt{undefined}ではないなら）、そのプロパティの値をコンソールに表示しています。
+
+\begin{lstlisting}
+function printWidgetTitle(widget) {
+    // 例外を避けるためにwidgetのプロパティの存在を順番に確認してから、値を表示している
+    if (widget.window !== undefined && widget.window.title !== undefined) {
+        console.log(`ウィジェットのタイトルは${widget.window.title}です`);
+    } else {
+        console.log("ウィジェットのタイトルは未定義です");
+    }
+}
+// タイトルが定義されているwidget
+printWidgetTitle({
+    window: {
+        title: "Book Viewer"
+    }
+});
+// タイトルが未定義のwidget
+printWidgetTitle({
+    // タイトルが定義されてない空のオブジェクト
+});
+\end{lstlisting}
+
+この\texttt{widget.window.title}のようなネストしたプロパティにアクセスする際には、プロパティの存在を順番に確認してからアクセスする必要があります。
+なぜなら、\texttt{widget}オブジェクトが\texttt{window}プロパティを持っていない場合は\texttt{undefined}という値を返すためです。このときに、さらにネストした\texttt{widget.window.title}プロパティにアクセスすると、\texttt{undefined.title}という参照となり例外が発生してしまいます。
+
+しかし、プロパティへアクセスするたびに\texttt{undefined}との比較をAND演算子（\texttt{\&\&}）でつなげて書いていくと冗長です。
+
+この問題を解決するために、ES2020ではネストしたプロパティの存在確認とアクセスを簡単に行う構文としてOptional chaining演算子（\texttt{?.}）が導入されました。
+Optional chaining演算子（\texttt{?.}）は、ドット記法（\texttt{.}）の代わりに\texttt{?.}をプロパティアクセスに使います。
+
+Optional chaining演算子（\texttt{?.}）は左辺のオペランドがnullish（\texttt{null}または\texttt{undefined}）の場合は、それ以上評価せずに\texttt{undefined}を返します。一方で、プロパティが存在する場合は、そのプロパティの評価結果を返します。
+
+つまり、Optional chaining演算子（\texttt{?.}）では、存在しないプロパティへアクセスした場合でも例外ではなく、\texttt{undefined}という値を返します。
+
+\begin{lstlisting}
+const obj = {
+    a: {
+        b: "objのaプロパティのbプロパティ"
+    }
+};
+// obj.a.b は存在するので、その評価結果を返す
+console.log(obj?.a?.b); // => "objのaプロパティのbプロパティ"
+// 存在しないプロパティのネストもundefinedを返す
+// ドット記法の場合は例外が発生してしまう
+console.log(obj?.notFound?.notFound); // => undefined
+// undefinedやnullはnullishなので、undefinedを返す
+console.log(undefined?.notFound?.notFound); // => undefined
+console.log(null?.notFound?.notFound); // => undefined
+\end{lstlisting}
+
+先ほどのウィジェットのタイトルを表示する関数もOptional chaining演算子（\texttt{?.}）を使うと、if文を使わずに書けます。
+次のコードの\texttt{printWidgetTitle}関数では、\texttt{widget?.window?.title}にアクセスできる場合はその評価結果が変数\texttt{title}に入ります。
+プロパティにアクセスできない場合は\texttt{undefined}を返すため、Nullish coalescing演算子（\texttt{??}）によって右辺の\texttt{"未定義"}が変数\texttt{title}のデフォルト値となります。
+
+\begin{lstlisting}
+function printWidgetTitle(widget) {
+    const title = widget?.window?.title ?? "未定義";
+    console.log(`ウィジェットのタイトルは${title}です`);
+}
+printWidgetTitle({
+    window: {
+        title: "Book Viewer"
+    }
+}); // "ウィジェットのタイトルはBook Viewerです" と出力される
+printWidgetTitle({
+    // タイトルが定義されてない空のオブジェクト
+}); // "ウィジェットのタイトルは未定義です" と出力される
+\end{lstlisting}
+
+また、Optional chaining演算子（\texttt{?.}）はブラケット記法（\texttt{[]}）と組み合わせることもできます。
+ブラケット記法の場合も、左辺のオペランドがnullish（\texttt{null}または\texttt{undefined}）の場合は、それ以上評価せずに\texttt{undefined}を返します。一方で、プロパティが存在する場合は、そのプロパティの評価結果を返します。
+
+\begin{lstlisting}
+const languages = {
+    ja: {
+        hello: "こんにちは！"
+    },
+    en: {
+        hello: "Hello!"
+    }
+};
+const langJapanese = "ja";
+const langKorean = "ko";
+const messageKey = "hello";
+// Optional chaining演算子（?.）とブラケット記法を組みわせた書き方
+console.log(languages?.[langJapanese]?.[messageKey]); // => "こんにちは！"
+// languagesにkoプロパティが定義されていないため、undefinedを返す
+console.log(languages?.[langKorean]?.[messageKey]); // => undefined
+\end{lstlisting}
+
+\hypertarget{toString-method}{%
+\section{\texorpdfstring{\texttt{toString}メソッド}{toStringメソッド}}\label{toString-method}}\index{toString@\texttt{toString}}
+
+オブジェクトの\texttt{toString}メソッドは、オブジェクト自身を文字列化するメソッドです。
+\texttt{String}コンストラクタ関数を使うことでも文字列化できます。
+この2つにはどのような違いがあるのでしょうか？（\texttt{String}\index{String@\texttt{String}}コンストラクタ関数については「\hyperlink{implicit-coercion}{暗黙的な型変換}」の章を参照）
+
+実は\texttt{String}コンストラクタ関数は、引数に渡されたオブジェクトの\texttt{toString}メソッドを呼び出しています。\enlargethispage{\baselineskip}
+そのため、\texttt{String}コンストラクタ関数と\texttt{toString}メソッドの結果はどちらも同じになります。
+
+\begin{lstlisting}
+const obj = { key: "value" };
+console.log(obj.toString()); // => "[object Object]"
+// Stringコンストラクタ関数はtoStringメソッドを呼んでいる
+console.log(String(obj)); // => "[object Object]"
+\end{lstlisting}
+
+このことは、オブジェクトに\texttt{toString}メソッドを再定義してみるとわかります。
+独自の\texttt{toString}メソッドを定義したオブジェクトを\texttt{String}コンストラクタ関数で文字列化してみます。
+すると、再定義した\texttt{toString}メソッドの返り値が、\texttt{String}コンストラクタ関数の返り値になることがわかります。
+
+\begin{lstlisting}
+// 独自のtoStringメソッドを定義
+const customObject = {
+    toString() {
+        return "custom value";
+    }
+};
+console.log(String(customObject)); // => "custom value"
+\end{lstlisting}
+
+\begin{tcolorbox}[enhanced jigsaw,breakable,title=オブジェクトのプロパティ名は文字列化される]\label{object-property-is-to-string}\index{ぷろぱてぃ@プロパティ!もじれつか@文字列化}\index{もじれつか@文字列化}
+
+オブジェクトのプロパティへアクセスする際に、指定したプロパティ名は暗黙的に文字列に変換されます。
+ブラケット記法では、オブジェクトをプロパティ名に指定することもできますが、これは意図したようには動作しません。
+なぜなら、オブジェクトを文字列化すると\texttt{"[object Object]"}という文字列になるためです。
+
+次のコードでは、\texttt{keyObject1}と\texttt{keyObject2}をブラケット記法でプロパティ名に指定しています。
+しかし、\texttt{keyObject1}と\texttt{keyObject2}はどちらも文字列化すると\texttt{"[object Object]"}という同じプロパティ名となります。
+そのため、プロパティは意図せず上書きされてしまいます。
+
+\begin{lstlisting}
+const obj = {};
+const keyObject1 = { a: 1 };
+const keyObject2 = { b: 2 };
+// どちらも同じプロパティ名（"[object Object]"）に代入している
+obj[keyObject1] = "1";
+obj[keyObject2] = "2";
+console.log(obj); //  { "[object Object]": "2" }
+\end{lstlisting}
+
+唯一の例外として、Symbol\index{Symbol}だけは文字列化されずにオブジェクトのプロパティ名として扱えます。
+
+\begin{lstlisting}
+const obj = {};
+// Symbolは例外的に文字列化されず扱える
+const symbolKey1 = Symbol("シンボル1");
+const symbolKey2 = Symbol("シンボル2");
+obj[symbolKey1] = "1";
+obj[symbolKey2] = "2";
+console.log(obj[symbolKey1]); // => "1"
+console.log(obj[symbolKey2]); // => "2"
+\end{lstlisting}
+
+基本的にはオブジェクトのプロパティ名は文字列として扱われることを覚えておくとよいでしょう。
+また、\texttt{Map}\index{Map@\texttt{Map}}というビルトインオブジェクトはオブジェクトをキーとして扱えます（詳細は「\hyperlink{map-and-set}{Map/Set}」の章で解説します）。
+そのため、オブジェクトをキーに指定したい場合は\texttt{Map}を利用します。
+\end{tcolorbox}
+
+\hypertarget{static-method}{%
+\section{オブジェクトの静的メソッド}\label{static-method}}\index{おぶじぇくと@オブジェクト!せいてきめそっど@静的メソッド}\index{せいてきめそっど@静的メソッド}
+
+最後にビルトインオブジェクトである\texttt{Object}\index{Object@\texttt{Object}}の静的メソッドについて見ていきましょう。
+\textbf{\textgt{静的メソッド}}（スタティックメソッド\index{すたてぃっくめそっど@スタティックメソッド}）とは、インスタンスの元となるオブジェクトから呼び出せるメソッドのことです。
+
+Objectの\texttt{toString}メソッドなどは、\texttt{Object}のインスタンスオブジェクトから呼び出すメソッドでした。
+これに対して、\texttt{Object.hasOwn}静的メソッドのような静的メソッドは\texttt{Object}そのものに実装されているメソッドです。
+
+ここでは、オブジェクトの処理でよく利用されるいくつかの\textbf{\textgt{静的メソッド}}を紹介します。
+
+\hypertarget{enumeration}{%
+\subsection{オブジェクトの列挙}\label{enumeration}}
+
+最初に紹介したように、オブジェクトはプロパティの集合です。
+そのオブジェクトのプロパティを列挙\index{ぷろぱてぃ@プロパティ!れっきょ@列挙}する方法として、次の3つの静的メソッドがあります。
+
+\begin{itemize}
+\item
+  \texttt{Object.keys}\index{Object.keys@\texttt{Object.keys}}メソッド:
+  オブジェクトのプロパティ名の配列を返す
+\item
+  \texttt{Object.values}\index{Object.values@\texttt{Object.values}}メソッド\,\protect\iconl{fig/es2017.eps}:
+  オブジェクトの値の配列を返す
+\item
+  \texttt{Object.entries}\index{Object.entries@\texttt{Object.entries}}メソッド\,\protect\iconl{fig/es2017.eps}:
+  オブジェクトのプロパティ名と値の配列の配列を返す
+\end{itemize}
+
+それぞれ、オブジェクトのキー、値、キーと値の組み合わせを配列にして返します。
+
+\begin{lstlisting}
+const obj = {
+    "one": 1,
+    "two": 2,
+    "three": 3
+};
+// Object.keysはキーを列挙した配列を返す
+console.log(Object.keys(obj)); // => ["one", "two", "three"]
+// Object.valuesは値を列挙した配列を返す
+console.log(Object.values(obj)); // => [1, 2, 3]
+// Object.entriesは[キー, 値]の配列を返す
+console.log(Object.entries(obj)); // => [["one", 1], ["two", 2], ["three", 3]]
+\end{lstlisting}
+
+これらの静的メソッドと配列の\texttt{forEach}メソッドなどを組み合わせれば、プロパティに対して反復処理ができます。
+次のコードでは、\texttt{Object.keys}メソッドで取得したプロパティ名の一覧をコンソールへ出力しています。
+
+\begin{lstlisting}
+const obj = {
+    "one": 1,
+    "two": 2,
+    "three": 3
+};
+const keys = Object.keys(obj);
+keys.forEach(key => {
+    console.log(key);
+});
+// 次の値が順番に出力される
+// "one"
+// "two"
+// "three"
+\end{lstlisting}
+
+\hypertarget{copy-and-merge}{%
+\subsection{オブジェクトのマージと複製}\label{copy-and-merge}}
+
+\texttt{Object.assign}\index{Object.assign@\texttt{Object.assign}}メソッド\,\protect\iconl{fig/es2015.eps}\,は、あるオブジェクトを別のオブジェクトに代入（assign）できます。
+このメソッドを使うことで、オブジェクトの複製やオブジェクト同士のマージができます。
+
+\texttt{Object.assign}メソッドは、\texttt{target}オブジェクトに対して、1つ以上の\texttt{sources}オブジェクトを指定します。
+\texttt{sources}オブジェクト自身が持つ列挙可能なプロパティを第一引数の\texttt{target}オブジェクトに対してコピーします。
+\texttt{Object.assign}メソッドの返り値は、\texttt{target}オブジェクトになります。
+
+\begin{lstlisting}
+const obj = Object.assign(target, ...sources);
+\end{lstlisting}
+
+\hypertarget{merge}{%
+\subsubsection{オブジェクトのマージ}\label{merge}}\index{おぶじぇくと@オブジェクト!まーじ@マージ}
+
+具体的なオブジェクトのマージの例を見ていきます。
+
+次のコードでは、新しく作った空のオブジェクトを\texttt{target}にしています。
+この空のオブジェクト（\texttt{target}）に\texttt{objectA}と\texttt{objectB}をマージしたものが、\texttt{Object.assign}メソッドの返り値となります。
+
+\begin{lstlisting}
+const objectA = { a: "a" };
+const objectB = { b: "b" };
+const merged = Object.assign({}, objectA, objectB);
+console.log(merged); // => { a: "a", b: "b" }
+\end{lstlisting}
+
+第一引数には空のオブジェクトではなく、既存のオブジェクトも指定できます。
+第一引数に既存のオブジェクトを指定した場合は、そのオブジェクトのプロパティが変更されます。
+
+次のコードでは、第一引数に指定された\texttt{objectA}に対してプロパティが追加されています。
+
+\begin{lstlisting}
+const objectA = { a: "a" };
+const objectB = { b: "b" };
+const merged = Object.assign(objectA, objectB);
+console.log(merged); // => { a: "a", b: "b" }
+// objectAが変更されている
+console.log(objectA); // => { a: "a", b: "b" }
+console.log(merged === objectA); // => true
+\end{lstlisting}
+
+空のオブジェクトを\texttt{target}にすることで、既存のオブジェクトには影響を与えずマージしたオブジェクトを作れます。
+そのため、\texttt{Object.assign}メソッドの第一引数には、空のオブジェクトリテラルを指定するのが典型的な利用方法です。
+
+このとき、プロパティ名が重複した場合は、後ろのオブジェクトのプロパティにより上書きされます。
+JavaScriptでは、基本的に処理は先頭から後ろへと順番に行います。
+そのため、空のオブジェクトへ\texttt{objectA}を代入してから、その結果に\texttt{objectB}を代入するという形になります。
+
+\begin{lstlisting}
+// versionのプロパティ名が被っている
+const objectA = { version: "a" };
+const objectB = { version: "b" };
+const merged = Object.assign({}, objectA, objectB);
+// 後ろにあるobjectBのプロパティで上書きされる
+console.log(merged); // => { version: "b" }
+\end{lstlisting}
+
+\hypertarget{object-spread-syntax}{%
+\subsubsection{オブジェクトのspread構文でのマージ\,\protect\icon{fig/es2018.eps}}\label{object-spread-syntax}}\index{おぶじぇくと@オブジェクト!まーじ@マージ}\index{おぶじぇくと@オブジェクト!spreadこうぶん@spread構文}\index{spreadこうぶん@spread構文}\index{spreadこうぶん@spread構文!まーじ@マージ}
+
+ES2018では、オブジェクトのマージを行うオブジェクトの\texttt{...}\index{...@\textbf{\textgt{...}}}（spread構文）が追加されました。
+ES2015で配列の要素を展開する\texttt{...}（spread構文）はサポートされていましたが、オブジェクトに対してもES2018でサポートされました。
+オブジェクトのspread構文は、オブジェクトリテラルの中に指定したオブジェクトのプロパティを展開できます。
+
+オブジェクトのspread構文は、\texttt{Object.assign}とは異なり必ず新しいオブジェクトを作成します。
+なぜならspread構文はオブジェクトリテラルの中でのみ記述でき、オブジェクトリテラルは新しいオブジェクトを作成するためです。
+
+次のコードでは\texttt{objectA}と\texttt{objectB}をマージした新しいオブジェクトを返します。
+
+\begin{lstlisting}
+const objectA = { a: "a" };
+const objectB = { b: "b" };
+const merged = {
+    ...objectA,
+    ...objectB
+};
+console.log(merged); // => { a: "a", b: "b" }
+\end{lstlisting}
+
+プロパティ名が被った場合は、後ろにあるオブジェクトが優先されます。
+そのため同じプロパティ名を持つオブジェクトをマージした場合には、後ろにあるオブジェクトによってプロパティが上書きされます。
+
+\begin{lstlisting}
+// versionのプロパティ名が被っている
+const objectA = { version: "a" };
+const objectB = { version: "b" };
+const merged = {
+    ...objectA,
+    ...objectB,
+    other: "other"
+};
+// 後ろにあるobjectBのプロパティで上書きされる
+console.log(merged); // => { version: "b", other: "other" }
+\end{lstlisting}
+
+\hypertarget{copy}{%
+\subsubsection{オブジェクトの複製}\label{copy}}\index{おぶじぇくと@オブジェクト!ふくせい@複製}
+
+JavaScriptには、オブジェクトを複製する関数は用意されていません。
+しかし、新しく空のオブジェクトを作成し、そこへ既存のオブジェクトのプロパティをコピーすれば、それはオブジェクトの複製をしていると言えます。
+次のように、\texttt{Object.assign}メソッドを使うことでオブジェクトを複製できます。
+
+\begin{lstlisting}
+// 引数のobjを浅く複製したオブジェクトを返す
+const shallowClone = (obj) => {
+    return Object.assign({}, obj);
+};
+const obj = { a: "a" };
+const cloneObj = shallowClone(obj);
+console.log(cloneObj); // => { a: "a" }
+// オブジェクトを複製しているので、異なるオブジェクトとなる
+console.log(obj === cloneObj); // => false
+\end{lstlisting}
+
+注意点として、\texttt{Object.assign}メソッドは\texttt{sources}オブジェクトのプロパティを浅くコピー\index{あさいこぴー@浅いコピー}（shallow
+copy\index{shallow copy}）する点です。 shallow
+copyとは、\texttt{sources}オブジェクトの直下にあるプロパティだけをコピーするということです。
+そのプロパティの値がオブジェクトである場合に、ネストした先のオブジェクトまでも複製するわけではありません。
+
+\begin{lstlisting}
+const shallowClone = (obj) => {
+    return Object.assign({}, obj);
+};
+const obj = {
+    level: 1,
+    nest: {
+        level: 2
+    },
+};
+const cloneObj = shallowClone(obj);
+// nestプロパティのオブジェクトは同じオブジェクトのままになる
+console.log(cloneObj.nest === obj.nest); // => true
+\end{lstlisting}
+
+逆にプロパティの値までも再帰的に複製してコピーすることを、深いコピー\index{ふかいこぴー@深いコピー}（deep
+copy\index{deep copy}）と呼びます。 deep copyは、再帰的にshallow
+copyすることで実現できます。
+次のコードでは、\texttt{deepClone}を\texttt{shallowClone}を使うことで実現しています。
+
+\begin{lstlisting}
+// 引数のobjを浅く複製したオブジェクトを返す
+const shallowClone = (obj) => {
+    return Object.assign({}, obj);
+};
+// 引数のobjを深く複製したオブジェクトを返す
+function deepClone(obj) {
+    const newObj = shallowClone(obj);
+    // プロパティがオブジェクト型であるなら、再帰的に複製する
+    Object.keys(newObj)
+        .filter(k => typeof newObj[k] === "object")
+        .forEach(k => newObj[k] = deepClone(newObj[k]));
+    return newObj;
+}
+const obj = {
+    level: 1,
+    nest: {
+        level: 2
+    }
+};
+const cloneObj = deepClone(obj);
+// nestオブジェクトも再帰的に複製されている
+console.log(cloneObj.nest === obj.nest); // => false
+\end{lstlisting}
+
+このように、JavaScriptのビルトインメソッドは浅い（shallow）実装のみを提供し、深い（deep）実装は提供していないことが多いです。
+言語としては最低限の機能を提供し、より複雑な機能はユーザー側で実装するという形式を取るためです。
+
+JavaScriptは言語仕様で定義されている機能が最低限であるため、それを補うようにユーザーが作成した小さな機能を持つライブラリが数多く公開されています。
+それらのライブラリはnpm\index{npm}と呼ばれるJavaScriptのパッケージ管理ツール\index{ぱっけーじかんりつーる@パッケージ管理ツール}で公開され、JavaScriptのエコシステムを築いています。
+ライブラリの利用については「\hyperlink{node-cli}{ユースケース:
+Node.jsでCLIアプリケーション}」の章で紹介します。
+
+\hypertarget{conclusion}{%
+\section{まとめ}\label{conclusion}}
+
+この章では、オブジェクトについて学びました。
+
+\begin{itemize}
+\item
+  \texttt{Object}というビルトインオブジェクトがある
+\item
+  \texttt{\{\}}（オブジェクトリテラル）でのオブジェクトの作成や更新方法
+\item
+  プロパティの存在確認するには\texttt{in}演算子か\texttt{Object.hasOwn}静的メソッドを使う
+\item
+  Optional chaining演算子（\texttt{?.}）はネストしたプロパティの存在確認とアクセスを同時に行う記法
+\item
+  オブジェクトのインスタンスメソッドと静的メソッド
+\end{itemize}
+
+JavaScriptの\texttt{Object}は他のオブジェクトのベースとなるオブジェクトです。
+次の「\hyperlink{prototype-object}{プロトタイプオブジェクト}」の章では、\texttt{Object}がどのようにベースとして動作しているのかを見ていきます。
