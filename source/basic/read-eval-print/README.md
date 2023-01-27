@@ -47,7 +47,7 @@ REPL機能を使うことで、試したいコードをその場で実行でき�
 REPL機能を使うには、まずFirefoxの開発者ツールを次のいずれかの方法で開きます。
 
 - Firefox メニュー（メニューバーがある場合や macOS では、ツールメニュー）の "ブラウザーツール"のサブメニューから "ウェブ開発ツール" を選択する
-- キーボードショートカット Ctrl+Shift+K（macOS では Command+Option+K）を押下する
+- キーボードショートカット Ctrl+Shift+I（macOS では Command+Option+I）を押下する
 
 詳細は"[Firefox DevTools User Docs][]"を参照してください。
 
