@@ -21,7 +21,7 @@ JavaScriptのコードは、ブラウザがあれば実行できます。
 
 {% endif %}
 
-次のJavaScriptのサンプルコードを書き写して、ブラウザでJavaScriptを実行するところから初めてみましょう。
+次のJavaScriptのサンプルコードを書き写して、ブラウザでJavaScriptを実行するところから始めてみましょう。
 
 ## サンプルコード {#samplecode}
 
