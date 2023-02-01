@@ -2,5 +2,5 @@
   publish = "_book"
   command = "npm run build"
 [build.environment]
-  NODE_VERSION = "16"
+  NODE_VERSION = "18.12.0"
 
