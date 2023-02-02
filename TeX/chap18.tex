@@ -1,0 +1,931 @@
+\hypertarget{function-and-scope}{%
+\chapter{関数とスコープ}\label{function-and-scope}}\index{かんすう@関数}\index{すこーぷ@スコープ}
+\thispagestyle{frontheadings}
+
+定義された関数はそれぞれのスコープを持っています。スコープとは変数や関数の引数などを参照できる範囲を決めるものです。
+JavaScriptでは、新しい関数を定義するとその関数にひもづけられた新しいスコープが作成されます。関数を定義するということは処理をまとめるというだけではなく、変数が有効な範囲を決める新しいスコープを作っていると言えます。
+
+スコープの仕組みを理解することは関数をより深く理解することにつながります。なぜなら関数とスコープは密接な関係を持っているからです。
+この章では関数とスコープの関係を中心に、スコープとはどのような働きをしていて、スコープ内では変数の名前から取得する値がどのように決まるかを見ていきます。
+
+JavaScriptのスコープは、ES2015において直感的に理解しやすい仕組みが整備されました。
+基本的にはES2015以降の仕組みを理解していればコードを書く場合には問題ありません。
+
+しかし、既存のコードを理解するためには、ES2015より前に決められた古い仕組みについても知る必要があります。
+なぜなら、既存のコードは古い仕組みを使って書かれていることもあるためです。
+また、JavaScriptでは古い仕組みと新しい仕組みを混在して書くことができます。
+古い仕組みによるスコープは直感的でない挙動も多いため、古い仕組みについても補足していきます。
+
+\hypertarget{what-is-scope}{%
+\section{スコープとは}\label{what-is-scope}}
+
+スコープとは変数の名前や関数などの参照できる範囲を決めるものです。
+スコープの中で定義された変数はスコープの内側でのみ参照でき、スコープの外側からは参照できません。
+
+身近なスコープの例として関数によるスコープを見ていきます。
+
+次のコードでは、\texttt{fn}関数のブロック（\texttt{\{}と\texttt{\}}）内で変数\texttt{x}を定義しています。
+この変数\texttt{x}は\texttt{fn}関数のスコープに定義されているため、\texttt{fn}関数の内側では参照できます。
+一方、\texttt{fn}関数の外側から変数\texttt{x}は参照できないため\texttt{ReferenceError}\index{ReferenceError@\texttt{ReferenceError}}が発生します。
+
+\begin{lstlisting}
+function fn() {
+    const x = 1;
+    // fn関数のスコープ内からxは参照できる
+    console.log(x); // => 1
+}
+fn();
+// fn関数のスコープ外からxは参照できないためエラー
+console.log(x); // => ReferenceError: x is not defined
+\end{lstlisting}
+
+このコードを見てわかるように、変数\texttt{x}は\texttt{fn}関数のスコープにひもづけて定義されます。
+そのため、変数\texttt{x}は\texttt{fn}関数のスコープ内でのみ参照できます。
+
+関数は\textbf{\textgt{仮引数}}\index{かりひきすう@仮引数}を持てますが、仮引数は関数のスコープにひもづけて定義されます。
+そのため、仮引数はその関数の中でのみ参照が可能で、関数の外からは参照できません。
+
+\begin{lstlisting}
+function fn(arg) {
+    // fn関数のスコープ内から仮引数argは参照できる
+    console.log(arg); // => 1
+}
+fn(1);
+// fn関数のスコープ外からargは参照できないためエラー
+console.log(arg); // => ReferenceError: arg is not defined
+\end{lstlisting}
+
+このような、関数によるスコープのことを\textbf{\textgt{関数スコープ}}\index{かんすうすこーぷ@関数スコープ}と呼びます。
+
+「\hyperlink{variable-and-declaration}{変数と宣言}」の章にて、\texttt{let}や\texttt{const}は同じスコープ内に同じ名前の変数を二重に定義できないという話をしました。
+これは、各スコープには同じ名前の変数は1つしか宣言できないためです（\texttt{var}による変数宣言と\texttt{function}による関数宣言は例外的に可能です）。
+
+\begin{lstlisting}
+// スコープ内に同じ"a"を定義すると SyntaxError となる
+let a;
+let a;
+\end{lstlisting}
+
+一方、スコープが異なれば同じ名前で変数を宣言できます。
+次のコードでは、\texttt{fnA}関数と\texttt{fnB}関数という異なるスコープで、それぞれ変数\texttt{x}を定義できていることがわかります。
+
+\begin{lstlisting}
+// 異なる関数のスコープには同じ"x"を定義できる
+function fnA() {
+    let x;
+}
+function fnB() {
+    let x;
+}
+\end{lstlisting}
+
+このように、スコープが異なれば同じ名前の変数を定義できます。
+スコープの仕組みがないと、グローバルな空間内で一意な変数名を考える必要があります。
+スコープがあることで同じ名前の変数をスコープごとに定義できるため、スコープの役割は重要です。
+
+\hypertarget{block-scope}{%
+\section{ブロックスコープ}\label{block-scope}}\index{ぶろっくすこーぷ@ブロックスコープ}
+
+\texttt{\{}と\texttt{\}}で囲んだ範囲をブロックと呼びます（「\hyperlink{statement-and-expression}{文と式}」の章を参照）。
+ブロックもスコープを作成します。
+ブロック内で宣言された変数は、スコープ内でのみ参照でき、スコープの外側からは参照できません。
+
+\begin{lstlisting}
+// ブロック内で定義した変数はスコープ内でのみ参照できる
+{
+    const x = 1;
+    console.log(x); // => 1
+}
+// スコープの外からxを参照できないためエラー
+console.log(x); // => ReferenceError: x is not defined
+\end{lstlisting}
+
+ブロックによるスコープのことを\textbf{\textgt{ブロックスコープ}}と呼びます。
+
+if文やwhile文などもブロックスコープを作成します。
+単独のブロックと同じく、ブロックの中で宣言した変数は外から参照できません。
+
+\begin{lstlisting}
+// if文のブロック内で定義した変数はブロックスコープの中でのみ参照できる
+if (true) {
+    const x = "inner";
+    console.log(x); // => "inner"
+}
+console.log(x); // => ReferenceError: x is not defined
+\end{lstlisting}
+
+for文\index{forぶん@for文}は、ループごとに新しいブロックスコープを作成します。
+このことは「各スコープには同じ名前の変数は1つしか宣言できない」のルールを考えてみるとわかりやすいです。
+次のコードでは、ループごとに\texttt{const}で\texttt{element}変数を定義していますが、エラーなく定義できています。
+これは、ループごとに別々のブロックスコープが作成され、変数の宣言もそれぞれ別々のスコープで行われるためです。
+
+\begin{lstlisting}
+const array = [1, 2, 3, 4, 5];
+// ループごとに新しいブロックスコープを作成する
+for (const element of array) {
+    // forのブロックスコープの中でのみelementを参照できる
+    console.log(element);
+}
+// ループの外からはブロックスコープ内の変数は参照できない
+console.log(element); // => ReferenceError: element is not defined
+\end{lstlisting}
+
+\hypertarget{scope-chain}{%
+\section{スコープチェーン}\label{scope-chain}}\index{すこーぷちぇーん@スコープチェーン}
+
+関数やブロックはネスト（入れ子）して書けますが、同様にスコープもネストできます。
+次のコードではブロックの中にブロックを書いています。
+このとき外側のブロックスコープのことを\texttt{OUTER}、内側のブロックスコープのことを\texttt{INNER}と呼ぶことにします。
+
+\begin{lstlisting}
+{
+    // OUTERブロックスコープ
+    {
+        // INNERブロックスコープ
+    }
+}
+\end{lstlisting}
+
+スコープがネストしている場合に、内側のスコープから外側のスコープにある変数を参照できます。
+次のコードでは、内側のINNERブロックスコープから外側のOUTERブロックスコープに定義されている変数\texttt{x}を参照できます。
+これは、ブロックスコープに限らず関数スコープでも同様です。
+
+\begin{lstlisting}
+{
+    // OUTERブロックスコープ
+    const x = "x";
+    {
+        // INNERブロックスコープからOUTERブロックスコープの変数を参照できる
+        console.log(x); // => "x"
+    }
+}
+\end{lstlisting}
+
+変数を参照する際には、現在のスコープ（変数を参照する式が書かれているスコープ）から外側のスコープへと順番に変数が定義されているかを確認します。
+上記のコードでは、内側のINNERブロックスコープには変数\texttt{x}はありませんが、外側のOUTERブロックスコープに変数\texttt{x}が定義されているため参照できます。
+つまり、次のようなステップで参照したい変数を探索しています。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  INNERブロックスコープに変数\texttt{x}があるかを確認 → ない
+\item
+  ひとつ外側のOUTERブロックスコープに変数\texttt{x}があるかを確認 → ある
+\end{enumerate}
+
+一方、現在のスコープも含め、外側のどのスコープにも該当する変数が定義されていない場合は、\texttt{ReferenceError}\index{ReferenceError@\texttt{ReferenceError}}の例外が発生します。
+次の例では、どのスコープにも存在しない\texttt{xyz}を参照しているため、\texttt{ReferenceError}の例外が発生します。
+
+\begin{lstlisting}
+{
+    // OUTERブロックスコープ
+    {
+        // INNERブロックスコープ
+        console.log(xyz); // => ReferenceError: xyz is not defined
+    }
+}
+\end{lstlisting}
+
+このときも、現在のスコープ（変数を参照する式が書かれているスコープ）から外側のスコープへと順番に変数が定義されているかを確認しています。
+しかし、どのスコープにも変数\texttt{xyz}は定義されていないため、\texttt{ReferenceError}の例外が発生していました。
+つまり次のようなステップで参照したい変数を探索しています。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  INNERブロックスコープに変数\texttt{xyz}があるかを確認 → ない
+\item
+  ひとつ外側のOUTERブロックスコープに変数\texttt{xyz}があるかを確認 → ない
+\item
+  一番外側のスコープにも変数\texttt{xyz}は定義されていない → \texttt{ReferenceError}が発生
+\end{enumerate}
+
+この内側から外側のスコープへと順番に変数が定義されているか探す仕組みのことを\textbf{\textgt{スコープチェーン}}と呼びます。
+
+内側と外側のスコープ両方に同じ名前の変数が定義されている場合もスコープチェーンの仕組みで解決できます。
+次のコードでは、内側のINNERブロックスコープと外側のOUTERブロックスコープに同じ名前の変数\texttt{x}が定義されています。
+スコープチェーンの仕組みにより、現在のスコープに定義されている変数\texttt{x}を優先的に参照します。
+
+\begin{lstlisting}
+{
+    // OUTERブロックスコープ
+    const x = "outer";
+    {
+        // INNERブロックスコープ
+        const x = "inner";
+        // 現在のスコープ(INNERブロックスコープ)にあるxを参照する
+        console.log(x); // => "inner"
+    }
+    // 現在のスコープ(OUTERブロックスコープ)にあるxを参照する
+    console.log(x); // => "outer"
+}
+\end{lstlisting}
+
+このようにスコープは階層的な構造となっており、変数を参照する際にどの変数が参照できるかはスコープチェーンによって解決されています。
+
+\hypertarget{global-scope}{%
+\section{グローバルスコープ}\label{global-scope}}\index{ぐろーばるすこーぷ@グローバルスコープ}
+
+今までコードをプログラム直下に書いていましたが、ここにも暗黙的な\textbf{\textgt{グローバルスコープ}}（大域スコープ\index{たいいきすこーぷ@大域スコープ}）と呼ばれるスコープが存在します。
+グローバルスコープとは名前のとおりもっとも外側にあるスコープで、プログラム実行時に暗黙的に作成されます。
+
+\begin{lstlisting}
+// プログラム直下はグローバルスコープ
+const x = "x";
+console.log(x); // => "x"
+\end{lstlisting}
+
+グローバルスコープで定義した変数は\textbf{\textgt{グローバル変数}}\index{ぐろーばるへんすう@グローバル変数}と呼ばれ、グローバル変数はあらゆるスコープから参照できる変数となります。
+なぜなら、スコープチェーンの仕組みにより、最終的にもっとも外側のグローバルスコープに定義されている変数を参照できるためです。
+
+\begin{lstlisting}
+// グローバル変数はどのスコープからも参照できる
+const globalVariable = "グローバル";
+// ブロックスコープ
+{   
+    // ブロックスコープ内には該当する変数が定義されてない -> 外側のスコープへ
+    console.log(globalVariable); // => "グローバル"
+}
+// 関数スコープ
+function fn() {
+    // 関数スコープ内には該当する変数が定義されてない -> 外側のスコープへ
+    console.log(globalVariable); // => "グローバル"
+}
+fn();
+\end{lstlisting}
+
+グローバルスコープには自分で定義したグローバル変数以外に、プログラム実行時に自動的に定義される\textbf{\textgt{ビルトインオブジェクト}}\index{びるといんおぶじぇくと@ビルトインオブジェクト}があります。
+
+ビルトインオブジェクトには、大きく分けて2種類のものがあります。
+1つ目はECMAScript仕様が定義する\texttt{undefined}のような変数（「\hyperlink{data-type-and-literal}{データ型とリテラル}」の章の「\hyperlink{undefined-is-not-literal}{undefinedはリテラルではない}」を参照）や\texttt{isNaN}のような関数、\texttt{Array}や\texttt{RegExp}などのコンストラクタ関数です。2つ目は実行環境（ブラウザやNode.jsなど）が定義するオブジェクトで\texttt{document}や\texttt{module}などがあります。
+どちらもグローバルスコープに自動的に定義されているという点で大きな使い分けはないため、この章ではどちらも\textbf{\textgt{ビルトインオブジェクト}}と呼ぶことにします。
+
+ビルトインオブジェクトは、プログラム開始時にグローバルスコープへ自動的に定義されているためどのスコープからも参照できます。
+
+\begin{lstlisting}
+// ビルトインオブジェクトは実行環境が自動的に定義している
+// どこのスコープから参照してもReferenceErrorにはならない
+console.log(isNaN); // => isNaN
+console.log(Array); // => Array
+\end{lstlisting}
+
+自分で定義したグローバル変数とビルトインオブジェクトでは、グローバル変数が優先して参照されます。
+つまり次のようにビルトインオブジェクトと同じ名前の変数を定義すると、定義した変数が参照されます。
+
+\begin{lstlisting}
+// "Array"という名前の変数を定義
+const Array = 1;
+// 自分で定義した変数がビルトインオブジェクトより優先される
+console.log(Array); // => 1
+\end{lstlisting}
+
+ビルトインオブジェクトと同じ名前の変数を定義したことにより、ビルトインオブジェクトを参照できなくなります。
+このように内側のスコープで外側のスコープと同じ名前の変数を定義することで、外側の変数が参照できなくなることを\textbf{\textgt{変数の隠蔽}}\index{へんすう@変数!いんぺい@隠蔽}（shadowing\index{shadowing}）と呼びます。
+
+この問題を回避する方法としては、むやみにグローバルスコープへ変数を定義しないことです。グローバルスコープでビルトインオブジェクトと名前が衝突するとすべてのスコープへ影響を与えますが、関数のスコープ内では影響範囲がその関数の中だけにとどまります。
+
+ビルトインオブジェクトと同じ名前を避けることは難しいです。
+なぜならビルトインオブジェクトには実行環境（ブラウザやNode.jsなど）がそれぞれ独自に定義したものが多く存在するためです。
+関数などを活用して小さなスコープを中心にしてプログラムを書くことで、ビルトインオブジェクトと同じ名前の変数があっても影響範囲を限定できます。
+
+\begin{tcolorbox}[enhanced jigsaw,breakable,title=変数を参照できる範囲を小さくする]\label{reduce-scope}
+
+グローバル変数に限らず、特定の変数を参照できる範囲を小さくするのはよいことです。
+なぜなら、現在のスコープの変数を参照するつもりがグローバル変数を参照したり、その逆も起きることがあるからです。
+あらゆる変数がグローバルスコープにあると、どこでその変数が参照されているのかを把握できなくなります。
+これを避けるシンプルな考え方は、変数はできるだけ利用するスコープ内に定義するというものです。
+
+次のコードでは、\texttt{doHeavyTask}関数の実行時間を計測しようとしています。
+\texttt{Date.now}\index{Date.now@\texttt{Date.now}}メソッドは現在の時刻をミリ秒にして返す関数です。
+\texttt{Date.now}メソッドを使った\textbf{\textgt{実行後の時刻}}から\textbf{\textgt{実行前の時刻}}を引くことで、間に行われた処理の実行時間が得られます。
+
+\begin{lstlisting}
+function doHeavyTask() {
+    // 計測したい処理
+}
+const startTime = Date.now();
+doHeavyTask();
+const endTime = Date.now();
+console.log(`実行時間は${endTime - startTime}ミリ秒`);
+\end{lstlisting}
+
+このコードでは、計測処理以外で利用しない\texttt{startTime}と\texttt{endTime}という変数がグローバルスコープに定義されています。
+プログラム全体が短い場合はあまり問題になりませんが、プログラムが長くなっていくにつれ、影響の範囲が広がっていきます。
+この2つの変数を参照できる範囲を小さくする簡単な方法は、この実行時間を計測する処理を関数にすることです。
+
+\begin{lstlisting}
+// 実行時間を計測したい関数をコールバック関数として引数に渡す
+const measureTask = (taskFn) => {
+    const startTime = Date.now();
+    taskFn();
+    const endTime = Date.now();
+    console.log(`実行時間は${endTime - startTime}ミリ秒`);
+};
+function doHeavyTask() {
+    // 計測したい処理
+}
+measureTask(doHeavyTask);
+\end{lstlisting}
+
+これにより、\texttt{startTime}と\texttt{endTime}という変数をグローバルスコープからなくせました。
+また、実行時間を計測するという処理を\texttt{measureTask}という関数にしたことで再利用できます。
+
+コードの量が増えていくにつれ、人が一度に把握できる量にも限界がやってきます。
+そのため、人が一度に把握できる範囲のサイズに処理をまとめていくことが必要です。
+この問題を解決するアプローチとして、変数の参照できる範囲を小さくすることや処理を関数にまとめるという手法がよく利用されます。
+\end{tcolorbox}
+
+\hypertarget{hoisting-var}{%
+\section{関数スコープとvarの巻き上げ}\label{hoisting-var}}\index{かんすうすこーぷ@関数スコープ}\index{var@\texttt{var}!まきあげ@巻き上げ}\index{まきあげ@巻き上げ}
+
+変数宣言には\texttt{var}、\texttt{let}、\texttt{const}が利用できます。
+「\hyperlink{variable-and-declaration}{変数と宣言}」の章において、「\texttt{let}は\texttt{var}を改善したバージョン」と紹介したように、\texttt{let}は\texttt{var}を改善する目的で導入された構文です。\texttt{const}は再代入できないという点以外は\texttt{let}と同じ動作になります。そのため、\texttt{let}が使える場合に\texttt{var}を使う理由はありませんが、既存のコードや既存のライブラリなどでは\texttt{var}が利用されている場面もあるため、\texttt{var}の動作を理解する必要があります。
+
+まず最初に、\texttt{let}と\texttt{var}で共通する動作を見ていきます。
+\texttt{let}と\texttt{var}どちらも、初期値を指定せずに宣言した変数の評価結果は暗黙的に\texttt{undefined}になります。
+また、\texttt{let}と\texttt{var}どちらも、変数宣言をした後に値を代入できます。
+
+次のコードでは、それぞれ初期値を持たない変数を\textbf{\textgt{宣言した後}}に参照すると、変数の評価結果は\texttt{undefined}となっています。
+
+\begin{lstlisting}
+let let_x;
+var var_x;
+// 宣言後にそれぞれの変数を参照するとundefinedとなる
+console.log(let_x); // => undefined
+console.log(var_x); // => undefined
+// 宣言後に値を代入できる
+let_x = "letのx";
+var_x = "varのx";
+\end{lstlisting}
+
+次に、\texttt{let}と\texttt{var}で異なる動作を見ていきます。
+
+\texttt{let}では、変数を\textbf{\textgt{宣言する前}}にその変数を参照すると\texttt{ReferenceError}の例外が発生して参照できません。
+次のコードでは、変数を宣言する前に、変数\texttt{x}を参照したため\texttt{ReferenceError}となっています。
+エラーメッセージから、変数\texttt{x}が存在しないからエラーになっているのではなく、実際に宣言した行より前に参照したためエラーとなっているのがわかります\footnote{この仕組みはTemporal
+  Dead Zone\index{Temporal Dead Zone}（TDZ）と呼ばれます。}。
+
+\begin{lstlisting}
+console.log(x); // => ReferenceError: can't access lexical declaration `x' 
+                //    before initialization
+let x = "letのx";
+\end{lstlisting}
+
+一方\texttt{var}では、変数を\textbf{\textgt{宣言する前}}にその変数を参照しても\texttt{undefined}となります。
+次のコードは、変数を宣言する前に参照しているにもかかわらずエラーにはならず、変数\texttt{x}の評価結果は\texttt{undefined}となります。
+
+\begin{lstlisting}
+// var宣言より前に参照してもエラーにならない
+console.log(x); // => undefined
+var x = "varのx";
+\end{lstlisting}
+
+このように\texttt{var}で宣言された変数が宣言前に参照でき、その値が\texttt{undefined}となる特殊な動きをしていることがわかります。
+
+この\texttt{var}の振る舞いを理解するために、変数宣言が\textbf{\textgt{宣言}}と\textbf{\textgt{代入}}の2つの部分から構成されていると考えてみましょう。
+\texttt{var}による変数宣言は、\textbf{\textgt{宣言}}部分が暗黙的にもっとも近い関数またはグローバルスコープの先頭に巻き上げられ、\textbf{\textgt{代入}}部分はそのままの位置に残るという特殊な動作をします。
+
+この動作により、変数\texttt{x}を参照するコードより前に変数\texttt{x}の宣言部分が移動し、変数\texttt{x}の評価結果は暗黙的に\texttt{undefined}となっています。
+つまり、先ほどのコードは実際の実行時には、次のように解釈されて実行されていると考えられます。
+
+\begin{lstlisting}
+// 解釈されたコード
+// スコープの先頭に宣言部分が巻き上げられる
+var x;
+console.log(x); // => undefined
+// 変数への代入はそのままの位置に残る
+x = "varのx";
+console.log(x); // => "varのx"
+\end{lstlisting}
+
+さらに、\texttt{var}変数の宣言の巻き上げは、ブロックスコープを無視してもっとも近い関数またはグローバルスコープに変数をひもづけます。
+そのため、次のようにブロック\texttt{\{\}}で\texttt{var}による変数宣言を囲んでも、もっとも近い関数スコープである\texttt{fn}関数の直下に\textbf{\textgt{宣言}}部分が巻き上げられます
+（if文やfor文におけるブロックスコープも同様に無視されます）。
+
+\begin{lstlisting}
+function fn() {
+    // 内側のスコープにあるはずの変数xが参照できる
+    console.log(x); // => undefined
+    {
+        var x = "varのx";
+    }
+    console.log(x); // => "varのx"
+}
+fn();
+\end{lstlisting}
+
+つまり、先ほどのコードは実際の実行時には、次のように解釈されて実行されていると考えられます。
+
+\begin{lstlisting}
+// 解釈されたコード
+function fn() {
+    // もっとも近い関数スコープの先頭に宣言部分が巻き上げられる
+    var x;
+    console.log(x); // => undefined
+    {
+        // 変数への代入はそのままの位置に残る
+        x = "varのx";
+    }
+    console.log(x); // => "varのx"
+}
+fn();
+\end{lstlisting}
+
+この変数の\textbf{\textgt{宣言}}部分がもっとも近い関数またはグローバルスコープの先頭に移動しているように見える動作のことを変数の\textbf{\textgt{巻き上げ}}\index{へんすう@変数!まきあげ@巻き上げ}\index{まきあげ@巻き上げ}（hoisting\index{hoisting}）と呼びます。
+
+このように\texttt{var}は\texttt{let}、\texttt{const}とは異なった動作をしています。
+\texttt{var}は巻き上げによりブロックスコープを無視して、宣言部分を自動的に関数スコープの先頭に移動するという予測しにくい問題を持っています。
+この問題のもっとも簡単な回避方法は\texttt{var}を使わないことですが、\texttt{var}を含んだコードではこの動作に気をつける必要があります。
+
+\hypertarget{function-declaration-hoisting}{%
+\section{関数宣言と巻き上げ}\label{function-declaration-hoisting}}\index{かんすうせんげん@関数宣言!まきあげ@巻き上げ}
+
+\texttt{function}キーワードを使った関数宣言も\texttt{var}と同様に、もっとも近い関数またはグローバルスコープの先頭に\textbf{\textgt{巻き上げ}}られます。
+次のコードでは、実際に\texttt{hello}関数を宣言した行より前に関数を呼び出せます。\enlargethispage{\baselineskip}
+
+\begin{lstlisting}
+// hello関数の宣言より前に呼び出せる
+hello(); // => "Hello"
+
+function hello(){
+    return "Hello";
+}
+\end{lstlisting}
+
+これは、関数宣言は\textbf{\textgt{宣言}}そのものであるため、\texttt{hello}関数そのものがスコープの先頭に巻き上げられます。
+つまり先ほどのコードは、次のように解釈されて実行されていると考えられます。
+
+\begin{lstlisting}
+// 解釈されたコード
+// hello関数の宣言が巻き上げられる
+function hello(){
+    return "Hello";
+}
+
+hello(); // => "Hello"
+\end{lstlisting}
+
+\texttt{function}キーワードによる関数宣言も巻き上げられます。
+しかし、\texttt{var}による変数宣言の巻き上げとは異なり、問題となることはほとんどありません。
+なぜなら、実際に巻き上げられた関数を呼び出せるためです。
+
+注意点として、\texttt{var}で宣言された変数へ関数を代入した場合は\texttt{var}のルールで巻き上げられます。
+そのため、\texttt{var}で変数へ関数を代入する関数式では、\texttt{hello}変数が巻き上げにより\texttt{undefined}となるため呼び出せません（「\hyperlink{function-and-declaration}{関数と宣言}」の章の「\hyperlink{function-expression}{関数式}」を参照）。
+
+\begin{lstlisting}
+// hello変数は巻き上げられ、暗黙的にundefinedとなる
+hello(); // => TypeError: hello is not a function
+
+// hello変数へ関数を代入している
+var hello = function(){
+    return "Hello";
+};
+\end{lstlisting}
+
+\begin{tcolorbox}[enhanced jigsaw,breakable,title=即時実行関数]\label{immediate-function}\index{そくじじっこうかんすう@即時実行関数}
+
+即時実行関数（\textbf{IIFE}\index{IIFE}, \emph{Immediately-Invoked Function
+Expression}）は、
+グローバルスコープの汚染を避けるために生まれたイディオムです。
+
+次のように、匿名関数\index{とくめいかんすう@匿名関数}を宣言した直後に呼び出すことで、任意の処理を関数のスコープに閉じて実行できます。
+関数スコープを作ることで\texttt{foo}変数は匿名関数の外側からはアクセスできません。
+
+\begin{lstlisting}
+// 匿名関数を宣言 + 実行を同時に行っている
+(function() {
+    // 関数のスコープ内でfoo変数を宣言している
+    var foo = "foo";
+    console.log(foo); // => "foo"
+})();
+// foo変数のスコープ外
+console.log(typeof foo === "undefined"); // => true
+\end{lstlisting}
+
+関数を\textbf{\textgt{式}}として定義して、そのまま呼び出しています。
+\texttt{function}からはじまってしまうとJavaScriptエンジンが\textbf{\textgt{関数宣言}}\index{かんすうせんげん@関数宣言}と解釈してしまうため、無害なカッコなどで囲んで\textbf{\textgt{関数式}}\index{かんすうしき@関数式}として解釈させるのが特徴的な記法です。これは次のように書いた場合と意味は同じですが、匿名関数を定義して実行するため短く書くことができ、余計な関数定義がグローバルスコープに残りません。
+
+\begin{lstlisting}
+function fn() {
+    var foo = "foo";
+    console.log(foo); // => "foo"
+}
+fn();
+// foo変数のスコープ外
+console.log(typeof foo === "undefined"); // => true
+\end{lstlisting}
+
+ECMAScript 5までは、変数を宣言する方法は\texttt{var}しか存在しませんでした。
+そのため、即時実行関数は\texttt{var}によるグローバルスコープの汚染を防ぐために使われていました。
+
+しかしECMAScript
+2015で導入された\texttt{let}と\texttt{const}により、ブロックスコープに対して変数宣言できるようになりました。
+そのため、グローバルスコープの汚染を防ぐための即時実行関数は不要です。
+先ほどの即時実行関数は次のように\texttt{let}や\texttt{const}とブロックスコープで置き換えられます。
+
+\begin{lstlisting}
+{
+    // ブロックスコープ内でfoo変数を宣言している
+    const foo = "foo";
+    console.log(foo); // => "foo"
+}
+// foo変数のスコープ外
+console.log(typeof foo === "undefined"); // => true
+\end{lstlisting}
+\end{tcolorbox}
+
+\hypertarget{closure}{%
+\section{クロージャー}\label{closure}}\index{くろーじゃー@クロージャー}
+
+最後にこの章ではクロージャーと呼ばれる関数とスコープに関わる性質について見ていきます。
+クロージャーとは「外側のスコープにある変数への参照を保持できる」という関数が持つ性質のことです。
+
+クロージャーは言葉で説明しただけではわかりにくい性質です。
+このセクションでは、クロージャーを使ったコードがどのように動くのかを理解することを目標にします。
+
+次の例では\texttt{createCounter}関数が、関数内で定義した\texttt{increment}関数を返しています。
+その返された\texttt{increment}関数を\texttt{myCounter}変数に代入しています。この\texttt{myCounter}変数を実行するたびに1,
+2, 3と1ずつ増えた値を返しています。
+
+さらに、もう一度\texttt{createCounter}関数を実行して、その返り値を\texttt{newCounter}変数に代入します。
+\texttt{newCounter}変数も実行するたびに1ずつ増えていますが、\texttt{myCounter}変数とその値を共有しているわけではないことがわかります。
+
+\begin{lstlisting}
+// increment関数を定義して返す関数
+function createCounter() {
+    let count = 0;
+    // increment関数はcount変数を参照
+    function increment() {
+        count = count + 1;
+        return count;
+    }
+    return increment;
+}
+// myCounterはcreateCounterが返した関数を参照
+const myCounter = createCounter();
+myCounter(); // => 1
+myCounter(); // => 2
+// 新しくnewCounterを定義する
+const newCounter = createCounter();
+newCounter(); // => 1
+newCounter(); // => 2
+// myCounterとnewCounterは別々の状態を持っている
+myCounter(); // => 3
+newCounter(); // => 3
+\end{lstlisting}
+
+このように、まるで関数が状態\index{じょうたい@状態}（ここでは1ずつ増える\texttt{count}という値）を持っているように振る舞える仕組みの背景にはクロージャーがあります。
+クロージャーは直感的に理解しにくいため、まずはクロージャーを理解するために必要な「静的スコープ」と「メモリ管理の仕組み」について見ていきます。
+
+\hypertarget{static-scope}{%
+\subsection{静的スコープ}\label{static-scope}}\index{せいてきすこーぷ@静的スコープ}
+
+クロージャーを理解するために、今まで意識してこなかったスコープの性質について見ていきます。
+JavaScriptのスコープには、どの識別子がどの変数を参照するかが静的に決定されるという性質があります。
+つまり、コードを実行する前にどの識別子がどの変数を参照しているかがわかるということです。
+
+次のような例を見てみます。
+\texttt{printX}関数内で変数\texttt{x}を参照していますが、変数\texttt{x}はグローバルスコープと関数\texttt{run}の中で、それぞれ定義されています。
+このとき\texttt{printX}関数内の\texttt{x}という識別子がどの変数\texttt{x}を参照するかは静的に決定されます。
+
+結論から言えば、\texttt{printX}関数中にある識別子\texttt{x}はグローバルスコープ（\texttt{*1}）の変数\texttt{x}を参照します。
+そのため、\texttt{printX}関数の実行結果は常に\texttt{10}となります。
+
+\begin{lstlisting}
+const x = 10; // *1
+
+function printX() {
+    // この識別子xは常に*1の変数xを参照する
+    console.log(x); // => 10
+}
+
+function run() {
+    const x = 20; // *2
+    printX(); // 常に10が出力される
+}
+
+run();
+\end{lstlisting}
+
+スコープチェーンの仕組みを思い出すと、この識別子\texttt{x}は次のように名前解決されてグローバルスコープの変数\texttt{x}を参照することがわかります。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \texttt{printX}の関数スコープに変数\texttt{x}が定義されていない
+\item
+  ひとつ外側のスコープ（グローバルスコープ）を確認する
+\item
+  ひとつ外側のスコープに\texttt{const x = 10;}が定義されているので、識別子\texttt{x}はこの変数を参照する
+\end{enumerate}
+
+つまり、\texttt{printX}関数中に書かれた\texttt{x}という識別子は、\texttt{run}関数の実行とは関係なく、静的に\texttt{*1}で定義された変数\texttt{x}を参照することが決定されます。
+このように、どの識別子がどの変数を参照しているかを静的に決定する性質を\textbf{\textgt{静的スコープ}}と呼びます。
+
+この静的スコープの仕組みは\texttt{function}キーワードを使った関数宣言、メソッド、Arrow
+Functionなどすべての関数で共通する性質です。
+
+\begin{tcolorbox}[enhanced jigsaw,breakable,title=動的スコープ]\label{dynamic-scope}\index{どうてきすこーぷ@動的スコープ}
+
+JavaScriptは静的スコープです。
+しかし、動的スコープという呼び出し元により識別子がどの変数を参照するかが変わる仕組みを持つ言語もあります。
+
+次のコードは、動的スコープの動きを説明する\textbf{\textgt{疑似的な言語のコード例}}です。
+識別子\texttt{x}が呼び出し元のスコープを参照する仕組みである場合には、次のような結果になります。
+
+\begin{lstlisting}
+// 動的スコープの疑似的な言語のコード例（JavaScriptではありません）
+// 変数xを宣言
+var x = 10;
+
+// printXという関数を定義
+fn printX() {
+    // 動的スコープの言語では、識別子xは呼び出し元によってどの変数xを
+    // 参照するかが変わる
+    // print関数でコンソールへログを出力する
+    print(x);
+}
+
+fn run() {
+    // 呼び出し元のスコープで、変数xを定義している
+    var x = 20;
+    printX();
+}
+
+printX(); // ここでは 10 が出力される
+run(); // ここでは 20 が出力される
+\end{lstlisting}
+
+このように関数呼び出し時に呼び出し元のスコープの変数を参照する仕組みを\textbf{\textgt{動的スコープ}}と呼びます。
+
+JavaScriptは変数や関数の参照先は静的スコープで決まるため、上記のような動的スコープではありません。
+しかし、JavaScriptでも\texttt{this}\index{this@\texttt{this}}という特別なキーワードだけは、呼び出し元によって動的に参照先が変わります。
+\texttt{this}というキーワードについては次の章で解説します。
+\end{tcolorbox}
+
+\hypertarget{memory-management}{%
+\section{メモリ管理の仕組み}\label{memory-management}}\index{めもりかんり@メモリ管理}
+
+プログラミング言語は、使わなくなった変数やデータを解放する仕組みを持っています。
+なぜなら、変数や関数を定義すると定義されたデータはメモリ上に確保されますが、ハードウェアのメモリは有限だからです。
+そのため、メモリからデータがあふれないように、必要なタイミングで不要なデータをメモリから解放する必要があります。
+
+不要なデータをメモリから解放する方法は言語によって異なりますが、JavaScriptでは\textbf{\textgt{ガベージコレクション}}\index{がべーじこれくしょん@ガベージコレクション}が採用されています。
+ガベージコレクションとは、どこからも参照されなくなったデータを不要なデータと判断して自動的にメモリ上から解放する仕組みのことです。
+
+JavaScriptにはガベージコレクションがあるため、手動でメモリを解放するコードを書く必要はありません。
+しかし、ガベージコレクションといったメモリ管理の仕組みを理解することは、スコープやクロージャーに関係するため大切です。
+
+どのようなタイミングでメモリ上から不要なデータが解放されるのか、具体的な例を見てみましょう。
+
+次の例では、最初に\texttt{"before text"}という文字列のデータがメモリ上に確保され、変数\texttt{x}はそのメモリ上のデータを参照しています。
+その後、\texttt{"after text"}という新しい文字列のデータを作り、変数\texttt{x}はその新しいデータへ参照先を変えています。
+
+このとき、最初にメモリ上へ確保した\texttt{"before text"}という文字列のデータはどこからも参照されなくなっています。
+どこからも参照されなくなった時点で不要になったデータと判断されるためガベージコレクションの回収対象となります。
+その後、任意のタイミングでガベージコレクションによって回収されてメモリ上から解放されます\footnote{ECMAScriptの仕様ではガベージコレクションの実装の規定はないため、実装依存の処理となります。}。
+
+\begin{lstlisting}
+let x = "before text";
+// 変数xに新しいデータを代入する
+x = "after text";
+// このとき"before text"というデータはどこからも参照されなくなる
+// その後、ガベージコレクションによってメモリ上から解放される
+\end{lstlisting}
+
+次にこのガベージコレクションと関数の関係性について考えてみましょう。
+よくある誤解として「関数の中で作成したデータは、その関数の実行が終了したら解放される」というのがあります。
+関数の中で作成したデータは、その関数の実行が終了した時点で必ずしも解放されるわけではありません。
+
+具体的に、「関数の実行が終了した際に解放される場合」と「関数の実行が終了しても解放されない場合」の例をそれぞれ見ていきます。
+
+まずは、関数の実行が終了した際に解放されるデータの例です。
+
+次のコードでは、\texttt{printX}関数の中で変数\texttt{x}を定義しています。
+この変数\texttt{x}は、\texttt{printX}関数が実行されるたびに定義され、実行終了後にどこからも参照されなくなります。
+どこからも参照されなくなったものは、ガベージコレクションによって回収されてメモリ上から解放されます。
+
+\begin{lstlisting}
+function printX() {
+    const x = "X";
+    console.log(x); // => "X"
+}
+
+printX();
+// この時点で"X"を参照するものはなくなる -> 解放される
+\end{lstlisting}
+
+次に、関数の実行が終了しても解放されないデータの例です。
+
+次のコードでは、\texttt{createArray}関数の中で定義された変数\texttt{tempArray}は、\texttt{createArray}関数の返り値となっています。
+この、関数で定義された変数\texttt{tempArray}は返り値として、別の変数\texttt{array}に代入されています。
+つまり、変数\texttt{tempArray}が参照している配列オブジェクトは、\texttt{createArray}関数の実行終了後も変数\texttt{array}から参照され続けています。
+ひとつでも参照されているならば、そのデータが自動的に解放されることはありません。
+
+\begin{lstlisting}
+function createArray() {
+    const tempArray = [1, 2, 3];
+    return tempArray;
+}
+const array = createArray();
+console.log(array); // => [1, 2, 3]
+// 変数arrayが[1, 2, 3]という値を参照している -> 解放されない
+\end{lstlisting}
+
+つまり、関数の実行が終了したことと関数内で定義したデータの解放のタイミングは直接関係ないことがわかります。
+そのデータがメモリ上から解放されるかどうかはあくまで、そのデータが参照されているかによって決定されます。
+
+\hypertarget{why-closure-work}{%
+\subsection{クロージャーがなぜ動くのか}\label{why-closure-work}}
+
+ここまでで「静的スコープ」と「メモリ管理の仕組み」について説明してきました。
+
+\begin{itemize}
+\item
+  \textgt{静的スコープ}: ある変数がどの値を参照するかは静的に決まる
+\item
+  \textgt{メモリ管理の仕組み}:
+  参照されなくなったデータはガベージコレクションにより解放される
+\end{itemize}
+
+クロージャーとはこの２つの仕組みを利用して、関数内から特定の変数を参照し続けることで関数が状態を持てる仕組みのことを言います。
+
+最初にクロージャーの例として紹介した\texttt{createCounter}関数の例を改めて見てみましょう。
+
+\begin{lstlisting}
+const createCounter = () => {
+    let count = 0;
+    return function increment() {
+        // increment関数はcreateCounter関数のスコープに定義された変数countを
+        // 参照している
+        count = count + 1;
+        return count;
+    };
+};
+// createCounter()の実行結果は、内側で定義されていたincrement関数
+const myCounter = createCounter();
+// myCounter関数の実行結果はcountの評価結果
+console.log(myCounter()); // => 1
+console.log(myCounter()); // => 2
+\end{lstlisting}
+
+つまり次のような参照の関係が\texttt{myCounter}変数と\texttt{count}変数の間にあることがわかります。
+
+\begin{itemize}
+\item
+  \texttt{myCounter}変数は\texttt{createCounter}関数の返り値である\texttt{increment}関数を参照している
+\item
+  \texttt{myCounter}変数は\texttt{increment}関数を経由して\texttt{count}変数を参照している
+\item
+  \texttt{myCounter}変数を実行した後も\texttt{count}変数への参照は保たれている
+\end{itemize}
+
+\begin{quote}
+\texttt{myCounter} → \texttt{increment} → \texttt{count}
+\end{quote}
+
+\texttt{count}変数を参照するものがいるため、\texttt{count}変数は自動的に解放されません。
+そのため\texttt{count}変数の値は保持され続け、\texttt{myCounter}変数を実行するたびに1ずつ大きくなっていきます。
+
+このように\texttt{count}変数が自動解放されずに保持できているのは「\texttt{increment}関数内から外側の\texttt{createCounter}関数スコープにある\texttt{count}変数を参照している」ためです。
+このような性質のことを\textbf{\textgt{クロージャー}}\index{くろーじゃー@クロージャー}（関数閉包\index{かんすうへいほう@関数閉包}）と呼びます。クロージャーは「静的スコープ」と「参照され続けている変数のデータが保持される」という2つの性質によって成り立っています。
+
+JavaScriptの関数は静的スコープとメモリ管理という2つの性質を常に持っています。そのため、ある意味ではすべての関数がクロージャーとなりますが、ここでは関数が特定の変数を参照することで関数が状態を持っていることを指します。
+
+先ほどの例では\texttt{createCounter}関数を実行するたびに、それぞれ\texttt{count}と\texttt{increment}関数が定義されます。そのため、\texttt{createCounter}関数を実行すると、それぞれ別々の\texttt{increment}関数が定義され、別々の\texttt{count}変数を参照します。
+
+次のように\texttt{createCounter}関数を複数回呼び出してみると、別々の状態を持っていることが確認できます。
+
+\begin{lstlisting}
+const createCounter = () => {
+    let count = 0;
+    return function increment() {
+        // 変数countを参照し続けている
+        count = count + 1;
+        return count;
+    };
+};
+// countUpとnewCountUpはそれぞれ別のincrement関数(内側にあるのも別のcount変数)
+const countUp = createCounter();
+const newCountUp = createCounter();
+// 参照してる関数(オブジェクト)は別であるため===は一致しない
+console.log(countUp === newCountUp);// false
+// それぞれの状態も別となる
+console.log(countUp()); // => 1
+console.log(newCountUp()); // => 1
+\end{lstlisting}
+
+\hypertarget{closure-usecase}{%
+\subsection{クロージャーの用途}\label{closure-usecase}}\index{くろーじゃー@クロージャー!ようと@用途}
+
+クロージャーはさまざまな用途に利用されますが、次のような用途で利用されることが多いです。
+
+\begin{itemize}
+\item
+  関数に状態を持たせる手段として
+\item
+  外から参照できない変数を定義する手段として
+\item
+  グローバル変数を減らす手段として
+\item
+  高階関数の一部分として
+\end{itemize}
+
+これらはクロージャーの特徴でもあるので、同時に使われることがあります。
+
+たとえば次の例では、\texttt{privateCount}という変数を関数の中に定義しています。
+この\texttt{privateCount}変数は、外のグローバルスコープからは直接参照できません。
+外から参照する必要がない変数をクロージャーとなる関数に閉じ込めることで、グローバルに定義する変数を減らせています。
+
+\begin{lstlisting}
+const createCounter = () => {
+    // 外のスコープからprivateCountを直接参照できない
+    let privateCount = 0;
+    return () => {
+        privateCount++;
+        return `${privateCount}回目`;
+    };
+};
+const counter = createCounter();
+console.log(counter()); // => "1回目"
+console.log(counter()); // => "2回目"
+\end{lstlisting}
+
+また、関数を返す関数のことを高階関数と呼びますが、クロージャーの性質を使うことで次のように\texttt{n}より大きいかを判定する高階関数を作れます。
+最初から\texttt{greaterThan5}という関数を定義すればよいのですが、高階関数を使うことで条件を後から定義できるなどの柔軟性が得られます。
+
+\begin{lstlisting}
+function greaterThan(n) {
+    return function(m) {
+        return m > n; 
+    };
+}
+// 5より大きな値かを判定する関数を作成する
+const greaterThan5 = greaterThan(5);
+console.log(greaterThan5(4)); // => false
+console.log(greaterThan5(5)); // => false
+console.log(greaterThan5(6)); // => true
+\end{lstlisting}
+
+クロージャーは、変数が参照する値が静的に決まる静的スコープという性質とデータは参照されていれば保持されるという2つの性質によって成り立っています。
+
+JavaScriptには、関数を短く定義できるArrow
+Functionや高階関数であるArrayの\texttt{forEach}メソッドなどクロージャーを自然と利用しやすい環境があります。
+関数を理解する上ではクロージャーを理解することが大切です。
+
+\begin{tcolorbox}[enhanced jigsaw,breakable,title=状態を持つ関数オブジェクト]\label{closure-vs-function-object}\index{じょうたい@状態}\index{かんすうおぶじぇくと@関数オブジェクト}
+
+JavaScriptでは関数はオブジェクトの一種です。オブジェクトであるため直接プロパティに値を代入できます。
+そのため、クロージャーを使わなくても、次のように関数にプロパティとして状態を持たせることが可能です。
+
+\begin{lstlisting}
+function countUp() {
+    // countプロパティを参照して変更する
+    countUp.count = countUp.count + 1;
+    return countUp.count;
+}
+// 関数オブジェクトにプロパティとして値を代入する
+countUp.count = 0;
+// 呼び出すごとにcountが更新される
+console.log(countUp()); // => 1
+console.log(countUp()); // => 2
+\end{lstlisting}
+
+しかし、この方法は推奨されていません。なぜなら、関数の外から\texttt{count}プロパティを変更できるためです。
+関数オブジェクトのプロパティは外からも参照でき、そのプロパティ値は変更できます。
+関数の中でのみ参照可能な状態を扱いたい場合には、それを強制できるクロージャーが有効です。
+
+\begin{lstlisting}
+function countUp() {
+    // countプロパティを参照して変更する
+    countUp.count = countUp.count + 1;
+    return countUp.count;
+}
+countUp.count = 0;
+// 呼び出すごとにcountが更新される
+console.log(countUp()); // => 1
+// 直接値を変更できてしまう
+countUp.count = 10;
+console.log(countUp()); // => 11
+\end{lstlisting}
+\end{tcolorbox}
+
+\hypertarget{conclusion}{%
+\section{まとめ}\label{conclusion}}
+
+この章では関数を中心にスコープについて学びました。
+
+\begin{itemize}
+\item
+  関数やブロックはスコープを持つ
+\item
+  スコープはネストできる
+\item
+  もっとも外側にはグローバルスコープがある
+\item
+  スコープチェーンは内側から外側のスコープへと順番に変数が定義されているか探す仕組みのこと
+\item
+  \texttt{var}キーワードでの変数宣言や\texttt{function}での関数宣言では巻き上げが発生する
+\item
+  クロージャーは静的スコープとメモリ管理の仕組みからなる関数が持つ性質
+\end{itemize}

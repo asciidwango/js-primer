@@ -1,0 +1,133 @@
+\hypertarget{wrapper-object}{%
+\chapter{ラッパーオブジェクト}\label{wrapper-object}}\index{らっぱーおぶじぇくと@ラッパーオブジェクト}
+\thispagestyle{frontheadings}
+
+JavaScriptのデータ型はプリミティブ型とオブジェクトに分けられます（詳細は「\hyperlink{data-type-and-literal}{データ型とリテラル}」の章を参照）。
+
+次のコードでは文字列リテラルでプリミティブ型の値である文字列を定義しています。
+プリミティブ型の値である文字列は\texttt{String}オブジェクトのインスタンスではありません。
+しかし、プリミティブ型の文字列においても、\texttt{String}オブジェクトのインスタンスメソッドである\texttt{toUpperCase}メソッドを呼び出せます。
+
+\begin{lstlisting}
+// StringのtoUpperCaseメソッドを呼び出せる
+"string".toUpperCase(); // => "STRING"
+\end{lstlisting}
+
+プリミティブ型である文字列が\texttt{String}のインスタンスメソッドを呼び出せるのは一見不思議です。
+
+この章では、プリミティブ型の値がなぜオブジェクトのメソッドを呼び出せるのかについて解説します。
+
+\hypertarget{primitive-type-and-wrapper-object}{%
+\section{プリミティブ型とラッパーオブジェクト}\label{primitive-type-and-wrapper-object}}\index{ぷりみてぃぶがた@プリミティブ型}
+
+プリミティブ型のデータのうち、真偽値\index{しんぎち@真偽値}（Boolean\index{Boolean@\texttt{Boolean}}）、数値\index{すうち@数値}（Number\index{Number}）
+、文字列\index{もじれつ@文字列}（String\index{String}）、シンボル\index{しんぼる@シンボル}（Symbol\index{Symbol}）にはそれぞれ対応するオブジェクトが存在します。たとえば、文字列に対応するオブジェクトとして、\texttt{String}オブジェクトがあります。
+
+この\texttt{String}オブジェクトを\texttt{new}することで\texttt{String}オブジェクトのインスタンスを作れます。
+
+\begin{lstlisting}
+// "input value"の値をラップしたStringのインスタンスを生成
+const str = new String("input value");
+// StringのインスタンスメソッドであるtoUpperCaseを呼び出す
+str.toUpperCase(); // => "INPUT VALUE"
+\end{lstlisting}
+
+このようにインスタンス化されたものは、プリミティブ型の値を包んだ（ラップした）オブジェクトと言えます。
+そのため、このようなオブジェクトをプリミティブ型の値に対しての\textbf{\textgt{ラッパーオブジェクト}}と呼びます。
+
+ラッパーオブジェクトとプリミティブ型の対応は次のとおりです。
+
+\begin{small}
+\begin{longtable}[l]{p{60mm}|p{40mm}|p{40mm}}
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}\textgt{ラッパーオブジェクト} & \textgt{プリミティブ型} & \textgt{例}\tabularnewline
+\hline
+\endhead
+\texttt{Boolean} & 真偽値 & \texttt{true}や\texttt{false}\tabularnewline
+\texttt{Number} & 数値 & \texttt{1}や\texttt{2}\tabularnewline
+\texttt{BigInt} & BigInt & \texttt{1n}や\texttt{2n}\tabularnewline
+\texttt{String} & 文字列 & \texttt{"文字列"}\tabularnewline
+\texttt{Symbol} & シンボル & \texttt{Symbol("説明")}\tabularnewline
+\hline
+\end{longtable}
+\end{small}
+
+\begin{note}{}
+注記:
+\texttt{undefined}と\texttt{null}に対応するラッパーオブジェクトはありません。
+\end{note}
+
+注意点として、ラッパーオブジェクトは名前のとおりオブジェクトです。
+そのため、次のように\texttt{typeof}演算子でラッパーオブジェクトを見ると\texttt{"object"}です。
+
+\begin{lstlisting}
+// プリミティブの文字列は"string"型
+const str = "文字列";
+console.log(typeof str); // => "string"
+// ラッパーオブジェクトは"object"型
+const stringWrapper = new String("文字列");
+console.log(typeof stringWrapper); // => "object"
+\end{lstlisting}
+
+\hypertarget{convert-primitive-to-wrapper}{%
+\section{プリミティブ型の値からラッパーオブジェクトへの自動変換}\label{convert-primitive-to-wrapper}}\index{らっぱーおぶじぇくと@ラッパーオブジェクト!じどうへんかん@自動変換}
+
+JavaScriptでは、プリミティブ型の値に対してプロパティアクセスするとき、自動で対応するラッパーオブジェクトに変換されます。
+たとえば\texttt{"string"}という文字列は、自動的に\texttt{new String("string")}のようなラッパーオブジェクトへ変換されています。
+これにより、プリミティブ型の値である文字列が\texttt{String}のインスタンスメソッドを呼び出せるようになります。
+
+\begin{lstlisting}
+const str = "string";
+// プリミティブ型の値に対してメソッド呼び出しを行う
+str.toUpperCase();
+// strへアクセスする際に"string"がラッパーオブジェクトへ変換され、
+// ラッパーオブジェクトはStringのインスタンスなのでメソッドを呼び出せる
+// つまり、上のコードは下のコードと同じ意味である
+(new String(str)).toUpperCase();
+\end{lstlisting}
+
+このように、プリミティブ型の値からラッパーオブジェクトへの変換は自動的に行われます\footnote{このようなプリミティブ型からオブジェクト型への変換はボックス化\index{ぼっくすか@ボックス化}（ボクシング\index{ぼくしんぐ@ボクシング}）、逆にオブジェクト型からプリミティブ型への変換はボックス化解除\index{ぼっくすかかいじょ@ボックス化解除}（アンボクシング\index{あんぼくしんぐ@アンボクシング}）と呼ばれます。}。
+
+一方、明示的に作成したラッパーオブジェクトからプリミティブ型の値を取り出すこともできます。
+
+\texttt{ラッパーオブジェクト.valueOf}メソッドを呼び出すことで、ラッパーオブジェクトから値を取り出せます。
+たとえば、次のように文字列のラッパーオブジェクトから\texttt{valueOf}\index{valueOf@\texttt{valueOf}}メソッドで文字列を取り出せます。
+
+\begin{lstlisting}
+const stringWrapper = new String("文字列");
+// プリミティブ型の値を取得する
+console.log(stringWrapper.valueOf()); // => "文字列"
+\end{lstlisting}
+
+avaScriptには、リテラルを使ったプリミティブ型の文字列とラッパーオブジェクトを使った文字列オブジェクトがあります（真偽値や数値についても同様です）。
+この2つを明示的に使い分ける利点はないため、常にリテラルを使うことを推奨します。
+理由として次の3つが挙げられます。
+
+\begin{itemize}
+\item
+  必要に応じて、プリミティブ型の文字列は自動的にラッパーオブジェクトに変換されるため
+\item
+  \texttt{new String("string")}のようにラッパーオブジェクトのインスタンスを扱う利点がないため
+\item
+  ラッパーオブジェクトを\texttt{typeof}演算子で評価した結果が、プリミティブ型ではなく\texttt{"object"}となり混乱を生むため
+\end{itemize}
+
+これらの理由などから、プリミティブ型のデータにはリテラルを使います。
+常にリテラルを使うことでラッパーオブジェクトを意識する必要がなくなります。
+
+\begin{lstlisting}
+// OK: リテラルを使う
+const str = "文字列";
+// NG: ラッパーオブジェクトを使う
+const stringWrapper = new String("文字列");
+\end{lstlisting}
+
+\hypertarget{wrapper-object-summary}{%
+\section{まとめ}\label{wrapper-object-summary}}
+
+この章では、プリミティブ型の値がなぜメソッド呼び出しできるのかについて解説しました。
+その仕組みの背景にはプリミティブ型に対応したラッパーオブジェクトの存在があります。
+プリミティブ型の値のプロパティへアクセスする際に、自動的にラッパーオブジェクトへ変換されることでメソッド呼び出しなどが可能となっています。
+
+「JavaScriptはすべてがオブジェクトである」と言われることがあります。
+プリミティブ型はオブジェクトではありませんが、プリミティブ型に対応したラッパーオブジェクトが用意されています（\texttt{null}と\texttt{undefined}を除く）。
+そのため、「すべてがオブジェクトのように見える」というのが正しい認識となるでしょう。

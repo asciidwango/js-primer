@@ -1,0 +1,1573 @@
+\hypertarget{class}{%
+\chapter{クラス}\label{class}}\index{くらす@クラス}
+\thispagestyle{frontheadings}
+
+「クラス」と一言にいってもさまざまであるため、ここでは\textbf{\textgt{構造}}、\textbf{\textgt{動作}}、\textbf{\textgt{状態}}を定義できるものを指すことにします。
+また、この章では概念を示す場合は\textbf{\textgt{クラス}}と呼び、クラスに関する構文（記述するコード）のことを\texttt{class}構文\index{classこうぶん@\texttt{class}構文}と呼びます。
+
+\textbf{\textgt{クラス}}とは\textbf{\textgt{動作}}や\textbf{\textgt{状態}}を定義した\textbf{\textgt{構造}}です。
+クラスからはインスタンスと呼ばれるオブジェクトを作成でき、インスタンスはクラスに定義した\textbf{\textgt{動作}}を継承し、\textbf{\textgt{状態}}は動作によって変化します。
+とても抽象的なことに思えますが、これは今までオブジェクトや関数を使って表現してきたものです。
+JavaScriptではES2015より前までは\texttt{class}構文はなく、関数を使ってクラスのようなものを表現して扱っていました。
+
+ES2015でクラスを表現するための\texttt{class}構文が導入されましたが、この\texttt{class}構文で定義したクラスは関数オブジェクトの一種です。
+\texttt{class}構文ではプロトタイプベースの継承の仕組みを使って関数でクラスを表現しています。
+そのため、\texttt{class}構文はクラスを作るための関数定義や継承をパターン化した書き方と言えます。
+
+また、関数の定義方法として関数宣言文と関数式があるように、クラスにもクラス宣言文とクラス式があります。
+このように関数とクラスは似ている部分が多いです。
+
+この章では、\texttt{class}構文でのクラスの定義や継承、クラスの性質について学んでいきます。
+
+\hypertarget{class-declaration}{%
+\section{クラスの定義}\label{class-declaration}}\index{くらす@クラス!ていぎ@定義}
+
+クラスを定義するには\texttt{class}構文を使います。
+クラスの定義方法にはクラス宣言文とクラス式があります。
+
+まずは、クラス宣言文によるクラスの定義方法を見ていきます。
+
+クラス宣言文\index{くらすせんげんぶん@クラス宣言文}では\texttt{class}\index{class@\texttt{class}}キーワードを使い、\texttt{class クラス名\{ \}}のようにクラスの\textbf{\textgt{構造}}を定義できます。
+
+クラスは必ずコンストラクタ\index{こんすとらくた@コンストラクタ}を持ち、\texttt{constructor}\index{constructor@\texttt{constructor}}という名前のメソッドとして定義します。
+コンストラクタとは、そのクラスからインスタンスを作成する際にインスタンスに関する\textbf{\textgt{状態}}の初期化を行うメソッドです。
+\texttt{constructor}メソッドに定義した処理は、クラスをインスタンス化したときに自動的に呼び出されます。
+
+\begin{lstlisting}
+class MyClass {
+    constructor() {
+        // コンストラクタ関数の処理
+        // インスタンス化されるときに自動的に呼び出される
+    }
+}
+\end{lstlisting}
+
+もうひとつの定義方法であるクラス式\index{くらすしき@クラス式}は、クラスを値として定義する方法です。
+クラス式ではクラス名を省略できます。これは関数式における匿名関数と同じです。
+
+\begin{lstlisting}
+const MyClass = class MyClass {
+    constructor() {}
+};
+
+const AnonymousClass = class {
+    constructor() {}
+};
+\end{lstlisting}
+
+コンストラクタ関数内で、何も処理がない場合はコンストラクタの記述を省略できます。
+省略した場合でも自動的に空のコンストラクタが定義されるため、クラスにはコンストラクタが必ず存在します。
+
+\begin{lstlisting}
+class MyClassA {
+    constructor() {
+        // コンストラクタの処理が必要なら書く
+    }
+}
+// コンストラクタの処理が不要な場合は省略できる
+class MyClassB {
+}
+\end{lstlisting}
+
+\hypertarget{class-instance}{%
+\section{クラスのインスタンス化}\label{class-instance}}\index{くらす@クラス!いんすたんすか@インスタンス化}
+
+クラスは\texttt{new}\index{new@\texttt{new}}演算子でインスタンスであるオブジェクトを作成できます。
+\texttt{class}構文で定義したクラスからインスタンスを作成することを\textbf{\textgt{インスタンス化}}と呼びます。
+あるインスタンスが指定したクラスから作成されたものかを判定するには\texttt{instanceof}\index{instanceof@\texttt{instanceof}}演算子が利用できます。
+
+\begin{lstlisting}
+class MyClass {
+}
+// MyClassをインスタンス化する
+const myClass = new MyClass();
+// 毎回新しいインスタンス(オブジェクト)を作成する
+const myClassAnother = new MyClass();
+// それぞれのインスタンスは異なるオブジェクト
+console.log(myClass === myClassAnother); // => false
+// クラスのインスタンスかどうかはinstanceof演算子で判定できる
+console.log(myClass instanceof MyClass); // => true
+console.log(myClassAnother instanceof MyClass); // => true
+\end{lstlisting}
+
+このままでは何も処理がない空のクラスなので、値を持ったクラスを定義してみましょう。
+
+クラスではインスタンスの初期化処理をコンストラクタ関数で行います。
+コンストラクタ関数は\texttt{new}演算子でインスタンス化する際に自動的に呼び出されます。
+コンストラクタ関数内での\texttt{this}はこれから新しく作るインスタンスオブジェクトとなります。
+
+次のコードでは、\texttt{x}座標と\texttt{y}座標の値を持つ\texttt{Point}というクラスを定義しています。
+コンストラクタ関数（\texttt{constructor}）の中でインスタンスオブジェクト（\texttt{this}）の\texttt{x}と\texttt{y}プロパティに値を代入して初期化しています。
+
+\begin{lstlisting}
+class Point {
+    // コンストラクタ関数の仮引数としてxとyを定義
+    constructor(x, y) {
+        // コンストラクタ関数におけるthisはインスタンスを示すオブジェクト
+        // インスタンスのxとyプロパティにそれぞれ値を設定する
+        this.x = x;
+        this.y = y;
+    }
+}
+\end{lstlisting}
+
+この\texttt{Point}クラスのインスタンスを作成するには\texttt{new}演算子を使います。
+\texttt{new}演算子には関数呼び出しと同じように引数を渡すことができます。
+\texttt{new}演算子の引数はクラスの\texttt{constructor}メソッド（コンストラクタ関数）の仮引数に渡されます。
+そして、コンストラクタの中ではインスタンスオブジェクト（\texttt{this}）の初期化処理を行います。
+
+\begin{lstlisting}
+class Point {
+    // 2. コンストラクタ関数の仮引数としてxには3、yには4が渡る
+    constructor(x, y) {
+        // 3. インスタンス(this)のxとyプロパティにそれぞれ値を設定する
+        this.x = x;
+        this.y = y;
+        // コンストラクタではreturn文は書かない
+    }
+}
+
+// 1. コンストラクタをnew演算子で引数とともに呼び出す
+const point = new Point(3, 4);
+// 4. Pointのインスタンスであるpointのxとyプロパティには初期化された値が入る
+console.log(point.x); // => 3
+console.log(point.y); // => 4
+\end{lstlisting}
+
+このようにクラスからインスタンスを作成するには必ず\texttt{new}演算子を使います。
+
+一方、クラスは通常の関数として呼ぶことができません。
+これは、クラスのコンストラクタはインスタンス（\texttt{this}）を初期化する場所であり、通常の関数とは役割が異なるためです。
+
+\begin{lstlisting}
+class MyClass {
+    constructor() {}
+}
+// クラスは関数として呼び出すことはできない
+MyClass(); // => TypeError: class constructors must be invoked with |new|
+\end{lstlisting}
+
+また、コンストラクタは初期化処理を書く場所であるため、\texttt{return}文で値を返すべきではありません。
+JavaScriptでは、コンストラクタ関数が任意のオブジェクトを返すことが可能ですが、行うべきではありません。
+なぜなら、コンストラクタは\texttt{new}演算子で呼び出し、その評価結果はクラスのインスタンスを期待するのが一般的であるためです。
+
+次のコードのようにコンストラクタで返した値が\texttt{new}演算子で呼び出した際の返り値となります。
+このような書き方は混乱を生むため避けるべきです。
+
+\begin{lstlisting}
+// 非推奨の例: コンストラクタで値を返すべきではない
+class Point {
+    constructor(x, y) {
+        // thisの代わりにただのオブジェクトを返せる
+        return { x, y };
+    }
+}
+
+// new演算子の結果はコンストラクタ関数が返したただのオブジェクト
+const point = new Point(3, 4);
+console.log(point); // => { x: 3, y: 4 }
+// Pointクラスのインスタンスではない
+console.log(point instanceof Point); // => false
+\end{lstlisting}
+
+\begin{note}{}
+\hypertarget{class-name-start-upper-case}{%
+\underline{\textgt{クラス名は大文字ではじめる}}\label{class-name-start-upper-case}}\index{くらすめい@クラス名}
+
+JavaScriptでは慣習としてクラス名には大文字ではじまる名前をつけます。
+これは、変数名にキャメルケースを使う慣習があるのと同じで、名前自体に特別なルールがあるわけではありません。
+クラス名を大文字にしておき、そのインスタンスは小文字で開始すれば名前が被らないという合理的な理由で好まれています。
+
+\begin{lstlisting}
+class Thing {}
+const thing = new Thing();
+\end{lstlisting}
+\end{note}
+
+\begin{tcolorbox}[enhanced jigsaw,breakable,title=\texttt{class}構文と関数でのクラスの違い]\label{class-vs-function}\index{classこうぶん@\texttt{class}構文}
+
+ES2015より前はこれらのクラスを\texttt{class}構文ではなく、関数で表現していました。
+その表現方法は人によってさまざまで、これも\texttt{class}構文という統一した記法が導入された理由の1つです。
+
+次のコードは、関数でクラスを実装した1つの例です。
+この関数でのクラス表現は、継承の仕組みなどは省かれていますが、\texttt{class}構文とよく似ています。
+
+\begin{lstlisting}
+// コンストラクタ関数
+const Point = function PointConstructor(x, y) {
+    // インスタンスの初期化処理
+    this.x = x;
+    this.y = y;
+};
+
+// new演算子でコンストラクタ関数から新しいインスタンスを作成
+const point = new Point(3, 4);
+\end{lstlisting}
+
+大きな違いとして、\texttt{class}構文で定義したクラスは関数として呼び出すことができません。
+クラスは\texttt{new}演算子でインスタンス化して使うものなので、これはクラスの誤用を防ぐ仕様です。
+一方、関数でのクラス表現はただの関数なので、当然関数として呼び出せます。
+
+\begin{lstlisting}
+// 関数でのクラス表現
+function MyClassLike() {
+}
+// 関数なので関数として呼び出せる
+MyClassLike(); 
+
+// class構文でのクラス
+class MyClass {
+}
+// クラスは関数として呼び出すと例外が発生する
+MyClass(); // => TypeError: class constructors must be invoked with |new|
+\end{lstlisting}
+
+このように、関数でクラスのようなものを実装した場合には、関数として呼び出せてしまう問題があります。
+このような問題を避けるためにもクラスは\texttt{class}構文を使って実装します。
+\end{tcolorbox}
+
+\hypertarget{class-prototype-method-definition}{%
+\section{クラスのプロトタイプメソッドの定義}\label{class-prototype-method-definition}}\index{くらす@クラス!ぷろとたいぷめそっど@プロトタイプメソッド}\index{ぷろとたいぷめそっど@プロトタイプメソッド}
+
+クラスの\textbf{\textgt{動作}}はメソッドによって定義できます。
+\texttt{constructor}\index{constructor@\texttt{constructor}}メソッドは初期化時に呼ばれる特殊なメソッドですが、\texttt{class}構文ではクラスに対して自由にメソッドを定義できます。
+このクラスに定義したメソッドは作成したインスタンスが持つ動作となります。
+
+次のように\texttt{class}構文ではクラスに対してメソッドを定義できます。
+メソッドの中からクラスのインスタンスを参照するには、\texttt{constructor}メソッドと同じく\texttt{this}を使います。
+このクラスのメソッドにおける\texttt{this}は「\hyperlink{function-this}{関数とthis}」の章で学んだメソッドと同じくベースオブジェクトを参照します。
+
+\begin{lstlisting}[escapechar=\%]
+class クラス {
+    メソッド() {
+        // ここでのthisはベースオブジェクトを参照
+    }
+}
+
+const インスタンス = new クラス();
+// メソッド呼び出しのベースオブジェクト(this)はインスタンスとなる
+インスタンス.%\hbox{}%メソッド();
+\end{lstlisting}
+
+クラスのプロトタイプメソッド定義では、オブジェクトにおけるメソッドとは異なり\texttt{key : value}のように\texttt{:}区切りでメソッドを定義できないことに注意してください。
+つまり、次のような書き方は構文エラー（\texttt{SyntaxError}）となります。
+
+\begin{lstlisting}
+// クラスでは次のようにメソッドを定義できない
+class クラス {
+   // SyntaxError
+   メソッド: () => {}
+   // SyntaxError
+   メソッド: function(){}
+}
+\end{lstlisting}
+
+このメソッド定義の構文でクラスに対して定義したメソッドは、クラスの各インスタンスから\textbf{\textgt{共有されるメソッド}}となります。
+このインスタンス間で共有されるメソッドのことを\textbf{\textgt{プロトタイプメソッド}}と呼びます。
+
+次のコードでは、\texttt{Counter}クラスに\texttt{increment}メソッドを定義しています。
+このときの\texttt{Counter}クラスのインスタンスは、それぞれ別々の状態（\texttt{count}プロパティ）を持ちます。
+
+\begin{lstlisting}
+class Counter {
+    constructor() {
+        this.count = 0;
+    }
+    // incrementメソッドをクラスに定義する
+    increment() {
+        // thisはCounterのインスタンスを参照する
+        this.count++;
+    }
+}
+const counterA = new Counter();
+const counterB = new Counter();
+// counterA.increment()のベースオブジェクトはcounterAインスタンス
+counterA.increment();
+// 各インスタンスの持つプロパティ(状態)は異なる
+console.log(counterA.count); // => 1
+console.log(counterB.count); // => 0
+\end{lstlisting}
+
+このときの\texttt{increment}メソッドはプロトタイプメソッドとして定義されています。
+プロトタイプメソッドは各インスタンス間（\texttt{counterA}と\texttt{counterB}）で共有されます。
+そのため、次のように各インスタンスの\texttt{increment}メソッドの参照先は同じとなっていることがわかります。
+
+\begin{lstlisting}
+class Counter {
+    constructor() {
+        this.count = 0;
+    }
+    increment() {
+        this.count++;
+    }
+}
+const counterA = new Counter();
+const counterB = new Counter();
+// 各インスタンスオブジェクトのメソッドは共有されている(同じ関数を参照している)
+console.log(counterA.increment === counterB.increment); // => true
+\end{lstlisting}
+
+プロトタイプメソッドがなぜインスタンス間で共有されているのかは、クラスの継承の仕組みと密接に関係しています。
+プロトタイプメソッドの仕組みについては後ほど解説します。
+
+ここでは、次のような構文でクラスにメソッドを定義すると、各インスタンスで共有されるプロトタイプメソッドとして定義されるということが理解できていれば問題ありません。
+
+\begin{lstlisting}
+class クラス {
+    メソッド() {
+        // このメソッドはプロトタイプメソッドとして定義される
+    }
+}
+\end{lstlisting}
+
+\hypertarget{class-accessor-property}{%
+\section{クラスのアクセッサプロパティの定義}\label{class-accessor-property}}\index{くらす@クラス!あくせっさぷろぱてぃ@アクセッサプロパティ}\index{あくせっさぷろぱてぃ@アクセッサプロパティ}
+
+クラスに対してメソッドを定義できますが、メソッドは\texttt{インスタンス名.メソッド名()}のように呼び出す必要があります。
+クラスでは、プロパティの参照（getter\index{getter}）、プロパティへの代入（setter\index{setter}）時に呼び出される特殊なメソッドを定義できます。
+このメソッドはプロパティのように振る舞うため\textbf{\textgt{アクセッサプロパティ}}と呼ばれます。
+
+次のコードでは、プロパティの参照（getter）、プロパティへの代入（setter）に対するアクセッサプロパティを定義しています。
+アクセッサプロパティはメソッド名（プロパティ名）の前に\texttt{get}または\texttt{set}をつけるだけです。
+getter（\texttt{get}）には仮引数はありませんが、必ず値を返す必要があります。
+setter（\texttt{set}）の仮引数にはプロパティへ代入する値が入りますが、値を返す必要はありません。
+
+\begin{lstlisting}[escapechar=\%]
+class クラス {
+    // getter
+    get プロパティ名() {
+        return 値;
+    }
+    // setter
+    set プロパティ名(仮引数) {
+        // setterの処理
+    }
+}
+const インスタンス = new クラス();
+インスタンス.%\hbox{}%プロパティ名; // getterが呼び出される
+インスタンス.%\hbox{}%プロパティ名 = 値; // setterが呼び出される
+\end{lstlisting}
+
+次のコードでは、\texttt{NumberWrapper}クラスの\texttt{value}プロパティをアクセッサプロパティとして定義しています。
+\texttt{value}プロパティへアクセスした際にそれぞれ定義したgetterとsetterが呼ばれているのがわかります。
+このアクセッサプロパティで実際に読み書きされているのは、\texttt{NumberWrapper}インスタンスの\texttt{\_value}プロパティとなります。
+
+\begin{lstlisting}
+class NumberWrapper {
+    constructor(value) {
+        this._value = value;
+    }
+    // _valueプロパティの値を返すgetter
+    get value() {
+        console.log("getter");
+        return this._value;
+    }
+    // _valueプロパティに値を代入するsetter
+    set value(newValue) {
+        console.log("setter");
+        this._value = newValue;
+    }
+}
+
+const numberWrapper = new NumberWrapper(1);
+// "getter"とコンソールに表示される
+console.log(numberWrapper.value); // => 1
+// "setter"とコンソールに表示される
+numberWrapper.value = 42;
+// "getter"とコンソールに表示される
+console.log(numberWrapper.value); // => 42
+\end{lstlisting}
+
+\begin{tcolorbox}[title=\texttt{\_}（アンダーバー）から始まるプロパティ名]\label{underbar-private-property}\index{_（あんだーばー）@\texttt{\_}（アンダーバー）}
+
+NumberWrapperの\texttt{value}のアクセッサプロパティで実際に読み書きしているのは、\texttt{\_value}プロパティです。
+このように、外から直接読み書きしてほしくないプロパティを\texttt{\_}\index{_@\texttt{\_}}（アンダーバー）から始まる名前にするのはただの習慣であるため、構文としての意味はありません。
+
+ECMAScript 2022から、外から直接読み書きしてほしくないプライベートなプロパティを定義するPrivateクラスフィールド構文が追加されました。
+Privateクラスフィールド構文では\texttt{\#}\index{#@\texttt{\#}}（ハッシュ）記号をプロパティ名の前につけます。
+そのため、外から直接読み書きしてほしくないプロパティを\texttt{\_}からはじめるという慣習は、Privateクラスフィールド構文の利用が進むにつれて使われなくなっていくと考えています。
+
+Privateクラスフィールド構文については、この後に解説します。
+\end{tcolorbox}
+
+\hypertarget{array-like-length}{%
+\subsection{\texorpdfstring{\texttt{Array.prototype.length}をアクセッサプロパティで再現する}{Array.prototype.lengthをアクセッサプロパティで再現する}}\label{array-like-length}}\index{Array.prototype.length@\texttt{Array.prototype.length}}\index{あくせっさぷろぱてぃ@アクセッサプロパティ}
+
+getterやsetterを利用しないと実現が難しいものとして、\texttt{Array.prototype.length}プロパティがあります。
+Arrayの\texttt{length}プロパティへ値を代入すると、そのインデックス以降の要素は自動的に削除される仕様になっています。
+
+次のコードでは、配列の要素数（\texttt{length}\index{length@\texttt{length}}プロパティ）を小さくすると配列の要素が削除されています。
+
+\begin{lstlisting}
+const array = [1, 2, 3, 4, 5];
+// 要素数を減らすと、インデックス以降の要素が削除される
+array.length = 2;
+console.log(array.join(", ")); // => "1, 2"
+// 要素数だけを増やしても、配列の中身は空要素が増えるだけ
+array.length = 5;
+console.log(array.join(", ")); // => "1, 2, , , "
+\end{lstlisting}
+
+この\texttt{length}プロパティの挙動を再現する\texttt{ArrayLike}クラスを実装してみます。
+Arrayの\texttt{length}プロパティは、\texttt{length}プロパティへ値を代入した際に次のようなことを行っています。
+
+\begin{itemize}
+\item
+  現在要素数より小さな\textbf{\textgt{要素数}}が指定された場合、その\textbf{\textgt{要素数}}を変更し、配列の末尾の要素を削除する
+\item
+  現在要素数より大きな\textbf{\textgt{要素数}}が指定された場合、その\textbf{\textgt{要素数}}だけを変更し、配列の実際の要素はそのままにする
+\end{itemize}
+
+ArrayLikeの\texttt{length}プロパティのsetterで要素の追加や削除を実装することで、配列のような\texttt{length}プロパティを実装できます。
+
+\begin{lstlisting}
+/**
+ * 配列のようなlengthを持つクラス
+ */
+class ArrayLike {
+    constructor(items = []) {
+        this._items = items;
+    }
+
+    get items() {
+        return this._items;
+    }
+
+    get length() {
+        return this._items.length;
+    }
+
+    set length(newLength) {
+        const currentItemLength = this.items.length;
+        // 現在要素数より小さなnewLengthが指定された場合、指定した要素数となるように
+        // 末尾を削除する
+        if (newLength < currentItemLength) {
+            this._items = this.items.slice(0, newLength);
+        } else if (newLength > currentItemLength) {
+            // 現在要素数より大きなnewLengthが指定された場合、指定した要素数となる
+            // ように末尾に空要素を追加する
+            this._items = this.items.concat(new Array(newLength - 
+            currentItemLength));
+        }
+    }
+}
+
+const arrayLike = new ArrayLike([1, 2, 3, 4, 5]);
+// 要素数を減らすとインデックス以降の要素が削除される
+arrayLike.length = 2;
+console.log(arrayLike.items.join(", ")); // => "1, 2"
+// 要素数を増やすと末尾に空要素が追加される
+arrayLike.length = 5;
+console.log(arrayLike.items.join(", ")); // => "1, 2, , , "
+\end{lstlisting}
+
+このようにアクセッサプロパティでは、プロパティのようでありながら実際にアクセスした際には他のプロパティと連動する動作を実現できます。
+
+\hypertarget{public-class-fields}{%
+\section{Publicクラスフィールド\,\protect\icon{fig/es2022.eps}}\label{public-class-fields}}\index{Publicくらすふぃーるど@Publicクラスフィールド}
+
+クラスでは、\texttt{constructor}メソッドの中でクラスの状態であるインスタンスのプロパティの初期化することを紹介しました。
+先ほども紹介した\texttt{Counter}クラスでは、\texttt{constructor}メソッドの中で\texttt{count}プロパティの初期値を\texttt{0}として定義しています。
+
+\begin{lstlisting}
+class Counter {
+    constructor() {
+        this.count = 0;
+    }
+    increment() {
+        this.count++;
+    }
+}
+\end{lstlisting}
+
+この\texttt{Counter}では\texttt{new}演算子で何も引数を渡すことなく初期化するため、\texttt{constructor}メソッドには仮引数を定義していません。
+このような場合でも、\texttt{construtor}メソッドを書かないとプロパティの初期化ができないためわずらわしいという問題がありました。
+
+ES2022で、クラスのインスタンスが持つプロパティの初期化をわかりやすく宣言的にする構文として、\textbf{\textgt{クラスフィールド}}構文が追加されました。
+
+クラスフィールドは、クラスのインスタンスが持つプロパティを定義する次のような構文です。
+
+\begin{lstlisting}
+class クラス {
+    プロパティ名 = プロパティの初期値;
+}
+\end{lstlisting}
+
+クラスフィールドを使って先ほどの\texttt{Counter}クラスを書き直してみると次のようになります。
+\texttt{count}プロパティをクラスフィールドとして定義して、その初期値は\texttt{0}としています。
+
+\begin{lstlisting}
+class Counter {
+    count = 0;
+    increment() {
+        this.count++;
+    }
+}
+const counter = new Counter();
+counter.increment();
+console.log(counter.count); // => 1
+\end{lstlisting}
+
+クラスフィールドで定義するのは、クラスのインスタンスが持つプロパティです。
+そのため、\texttt{constructor}メソッドの中で\texttt{this.count = 0}のように定義した場合と結果的にはほとんど同じ意味となります。
+クラスフィールドで定義したプロパティは、クラス内から他のプロパティと同じように\texttt{this.プロパティ名}で参照できます。
+
+クラスフィールドは\texttt{constructor}メソッドでの初期化と併用が可能です。
+次のコードでは、クラスフィールドと\texttt{constructor}メソッドでそれぞれインスタンスのプロパティを定義しています。
+
+\begin{lstlisting}
+// 別々のプロパティ名はそれぞれ定義される
+class MyClass {
+    publicField = 1;
+    constructor(arg) {
+        this.property = arg;
+    }
+}
+const myClass = new MyClass(2);
+console.log(myClass.publicField); // => 1
+console.log(myClass.property); // => 2
+\end{lstlisting}
+
+また、クラスフィールドでの初期化処理が行われ、そのあと\texttt{constructor}でのプロパティの定義という処理順となります。
+そのため、同じプロパティ名への定義がある場合は、\texttt{constructor}メソッド内での定義でプロパティは上書きされます。
+
+\begin{lstlisting}
+// 同じプロパティ名の場合は、constructorでの代入が後となる
+class OwnClass {
+    publicField = 1;
+    constructor(arg) {
+        this.publicField = arg;
+    }
+}
+const ownClass = new OwnClass(2);
+console.log(ownClass.publicField); // => 2
+\end{lstlisting}
+
+この\texttt{publicField}プロパティのように、クラスの外からアクセスできるプロパティを定義するクラスフィールドを\textbf{\textgt{Publicクラスフィールド}}と呼びます。
+
+\hypertarget{declare-class-fields}{%
+\subsection{クラスフィールドを使ってプロパティの存在を宣言する}\label{declare-class-fields}}\index{ぷろぱてぃ@プロパティ!せんげん@宣言}\index{くらすふぃーるど@クラスフィールド}
+
+クラスフィールドでは、プロパティの初期値は省略可能となっています。
+そのため、次のように初期値を省略したPublicクラスフィールドも定義できます。
+
+\begin{lstlisting}
+class MyClass {
+    // myPropertyはundefinedで初期化される
+    myProperty;
+}
+\end{lstlisting}
+
+このときの\texttt{myProperty}は\texttt{undefined}で初期化されます。
+この初期値を省略したクラスフィールドの定義は、クラスのインスタンスが持つプロパティを明示するために利用できます。
+
+次の\texttt{Loader}クラスは、\texttt{load}メソッドを呼び出すまでは、\texttt{loadedContent}プロパティの値は\texttt{undefined}です。
+クラスフィールドを使えば、\texttt{Loader}クラスのインスタンスは、\texttt{loadedContent}というプロパティを持っていることを宣言的に表現できます。
+
+\begin{lstlisting}
+class Loader {
+    loadedContent;
+    load() {
+        this.loadedContent = "読み込んだコンテンツ内容";
+    }
+}
+\end{lstlisting}
+
+JavaScriptでは、オブジェクトのプロパティは初期化時に存在していなくても、後から代入すれば作成できてしまいます。
+そのため、次のように\texttt{Loader}クラスを実装しても意味は同じです。
+
+\begin{lstlisting}
+class Loader {
+    load() {
+        this.loadedContent = "読み込んだコンテンツ内容";
+    }
+}
+\end{lstlisting}
+
+しかし、このように実装してしまうと\texttt{Loader}クラスを利用する側は、\texttt{loadedContent}プロパティの存在を\texttt{load}メソッドの中まで読まないとわからないという問題があります。
+これに対して、クラスフィールドを使って「\texttt{Loader}クラスは\texttt{loadedContent}というプロパティを持っている」ということを宣言的に表現できます。
+宣言的にプロパティを定義することで、エディターでのコード補完が可能になったり、コードを読む人に優しいというメリットがあります。
+
+\hypertarget{this-in-class-fields}{%
+\subsection{クラスフィールドでの\texttt{this}はクラスのインスタンスを示す}\label{this-in-class-fields}}
+
+クラスフィールドの初期値には任意の式が書け、\texttt{this}も利用できます。
+クラスフィールドでの\texttt{this}は、そのクラスのインスタンスを参照します。
+
+次のコードでは、\texttt{up}フィールドの初期値に\texttt{increment}メソッドを指定しています。
+JavaScriptでは関数も値として扱えるため、\texttt{up}メソッドを呼び出すと\texttt{increment}メソッドが呼び出されます。
+
+\begin{lstlisting}
+class Counter {
+    count = 0;
+    // upはincrementメソッドを参照している
+    up = this.increment;
+    increment() {
+        this.count++;
+    }
+}
+const counter = new Counter();
+counter.up(); // 結果的にはincrementメソッドが呼び出される
+console.log(counter.count); // => 1
+\end{lstlisting}
+
+クラスフィールドでの\texttt{this}は、Arrow Functionと組み合わせると強力です。
+
+次のコードでは、\texttt{up}メソッドに\texttt{this.increment}メソッドを呼び出す関数をArrow Function定義しています。
+Arrow Functionで定義した関数における\texttt{this}は、どのような呼び出し方をしても変化しません（「\hyperlink{arrow-function-callback}{Arrow Functionでコールバック関数を扱う}」を参照）。
+そのため、\texttt{up}メソッドはどのような呼び方をした場合でも\texttt{this}がクラスのインスタンスとなるため、確実に\texttt{increment}メソッドを呼び出せます。
+
+\begin{lstlisting}
+class Counter {
+    count = 0;
+    // クラスフィールドでのthisはクラスのインスタンスとなる
+    // upメソッドは、クラスのインスタンスに定義される
+    up = () => {
+        this.increment();
+    };
+    increment() {
+        this.count++;
+    }
+}
+const counter = new Counter();
+// Arrow Functionなので、thisはクラスのインスタンスに固定されている
+const up = counter.up;
+up();
+console.log(counter.count); // => 1
+// 通常のメソッド定義では、thisがundefinedとなってしまうため例外が発生する
+const increment = counter.increment;
+increment(); // Error: Uncaught TypeError: this is undefined
+\end{lstlisting}
+
+\begin{tcolorbox}[enhanced jigsaw,breakable,title=クラスフィールドとインスタンスのプロパティの違い]\label{difference-between-class-fields-and-instance-property}
+
+クラスフィールドで定義したプロパティやメソッドは、クラスのインスタンスにプロパティとして定義されます。
+そのため、クラスフィールドは、\texttt{constructor}の中で\texttt{this}に対してプロパティを追加するのと意味的にはほぼ同じで、見た目がわかりやすくなった構文と捉えることができます。
+
+\begin{lstlisting}
+class ExampleClass {
+    fieldMethod = () => {
+        console.log("クラスフィールドで定義されたメソッド");
+    };
+    constructor() {
+        this.propertyMethod = () => {
+            console.log("インスタンスにプロパティとして定義されたメソッド");
+        };
+    }
+}
+\end{lstlisting}
+
+しかし、厳密にはこのふたつのプロパティ定義には異なる点はあります。
+次のように、クラスフィールドと\texttt{constructor}の中で\texttt{this}に追加するプロパティ名に対するsetterを定義してみるとこの違いがわかります。
+
+\begin{lstlisting}
+class ExampleClass {
+    field = "フィールド";
+    constructor() {
+        this.property = "コンストラクタ";
+    }
+    // クラスフィールド名に対応するsetter
+    set field(value) {
+        console.log("fieldで定義された値", value);
+    }
+    // thisのプロパティ名に対応するsetter
+    set property(value) {
+        console.log("consctrutorで代入された値", value);
+    }
+}
+// set fieldは呼び出されない
+// 一方で、set propertyは呼び出される
+const example = new ExampleClass();
+\end{lstlisting}
+
+クラスフィールド名に対するsetterは呼び出されないのに対して、\texttt{this.property}への代入に対するsetterは呼び出されています。
+これは、クラスフィールドは\texttt{=}を使った代入で定義されるのではなく、\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty}{\texttt{Object.defineProperty}}メソッドを使ってプロパティが定義されるという違いがあります。
+\texttt{Object.defineProperty}を使ったプロパティの定義では、setterは無視してプロパティが定義されます。
+setterは\texttt{=}での代入に反応します。そのため、\texttt{constructor}の中での\texttt{this.property}への代入に対してはsetterが呼び出されます。
+
+同じプロパティの定義であっても、プロパティの定義の仕組みが微妙に異なる点から、このような挙動の違いが存在しています。
+しかし、この違いを意識するようなコードを書くことは避けたほうが安全です。
+実際に見た目からこの違いを意識するのは難しく、それを意識させるようなコードは複雑性が高いためです。
+\end{tcolorbox}
+
+\hypertarget{private-class-fields}{%
+\section{Privateクラスフィールド\,\protect\icon{fig/es2022.eps}}\label{private-class-fields}}\index{Privateくらすふぃーるど@Privateクラスフィールド}
+
+クラスフィールド構文で次のように書くと、定義したプロパティはクラスのインスタンス化した後に外からも参照できます。
+そのため、Publicクラスフィールドと呼ばれます。
+
+\begin{lstlisting}
+class クラス {
+    プロパティ名 = プロパティの初期値;
+}
+\end{lstlisting}
+
+一方で外からアクセスされたくないインスタンスのプロパティも存在します。
+そのようなプライベートなプロパティを定義する構文もES2022で追加されています。
+
+Privateクラスフィールドは、次のように\texttt{\#}をフィールド名の前につけたクラスフィールドを定義します。
+
+\begin{lstlisting}
+class クラス {
+    // プライベートなプロパティは#をつける
+    #フィールド名 = プロパティの初期値;
+}
+\end{lstlisting}
+
+定義したPrivateクラスフィールドは、\texttt{this.\#フィールド名}で参照できます。
+
+\begin{lstlisting}
+class PrivateExampleClass {
+    #privateField = 42;
+    dump() {
+        // Privateクラスフィールドはクラス内からのみ参照できる
+        console.log(this.#privateField); // => 42
+    }
+}
+const privateExample = new PrivateExampleClass();
+privateExample.dump();
+\end{lstlisting}
+
+もう少し具体的なPrivateクラスフィールドの使い方を見ていきます。
+
+アクセサプロパティの例でも登場した\texttt{NumberWrapper}をPrivateクラスフィールドを使って書き直してみます。
+元々の\texttt{NumberWrapper}クラスでは、\texttt{\_value}プロパティに実際の値を読み書きしていました。
+この場合、\texttt{\_value}プロパティは、外からもアクセスできてしまうため、定義したgetterとsetterが無視できてしまいます。
+
+\begin{lstlisting}
+class NumberWrapper {
+    // Publicクラスフィールドなのでクラスの外からアクセスができる
+    _value;
+    constructor(value) {
+        this._value = value;
+    }
+    // _valueプロパティの値を返すgetter
+    get value() {
+        return this._value;
+    }
+    // _valueプロパティに値を代入するsetter
+    set value(newValue) {
+        this._value = newValue;
+    }
+}
+const numberWrapper = new NumberWrapper(1);
+// _valueプロパティは外からもアクセスできる
+console.log(numberWrapper._value); // => 1
+\end{lstlisting}
+
+Privateクラスフィールドでは、外からアクセスされたくないプロパティを\texttt{\#}をつけてクラスフィールドとして定義します。
+次のコードでは、\texttt{\#value}はプライベートプロパティとなっているため、構文エラーが発生し外からアクセスできなくなることが確認できます。
+Privateクラスフィールドを使うことで、クラスを利用する際はgetterとsetterを経由しないと\texttt{\#value}を参照できなくなりました。
+
+\begin{lstlisting}
+class NumberWrapper {
+    // valueはPrivateクラスフィールドとして定義
+    #value;
+    constructor(value) {
+        this.#value = value;
+    }
+    // #valueフィールドの値を返すgetter
+    get value() {
+        return this.#value;
+    }
+    // #valueフィールドに値を代入するsetter
+    set value(newValue) {
+        this.#value = newValue;
+    }
+}
+
+const numberWrapper = new NumberWrapper(1);
+// クラスの外からPrivateクラスフィールドには直接はアクセスできない
+console.log(numberWrapper.#value); // => SyntaxError: reference to undeclared 
+                                   //    private field or method #value
+\end{lstlisting}
+
+Privateクラスフィールドを使うことで、クラスの外からアクセスさせたくないプロパティを宣言できます。
+これは、実装したクラスの意図しない使われ方を防いだり、クラスの外からプロパティの状態を直接書き換えるといった行為を防げます。
+
+また、Privateクラスフィールドでは、途中から値が入る場合でもフィールドの宣言が必須となっています。
+次のコードでは、\texttt{\#loadedContent}に実際に値が入るのは\texttt{load}メソッドが呼び出されたときです。
+Publicクラスフィールドではフィールドの定義は省略可能でしたが、Privateクラスフィールドでは\texttt{\#loadedContent}フィールドの定義が必須となっています。
+言い換えると、Privateクラスフィールドでは、クラスを定義した段階でクラスに存在するすべてのPrivateクラスフィールドを明示する必要があります。
+
+\begin{lstlisting}
+class PrivateLoader {
+    // 途中で値が入る場合でも最初にundefinedで初期化されるフィールドの定義が必須
+    #loadedContent;
+    load() {
+        this.#loadedContent = "読み込んだコンテンツ内容";
+    }
+}
+\end{lstlisting}
+
+\hypertarget{static-method}{%
+\section{静的メソッド}\label{static-method}}\index{せいてきめそっど@静的メソッド}
+
+インスタンスメソッドは、クラスをインスタンス化して利用します。
+一方、クラスをインスタンス化せずに利用できる静的メソッド（クラスメソッド\index{くらすめそっど@クラスメソッド}）もあります。
+
+静的メソッドの定義方法はメソッド名の前に、\texttt{static}\index{static@\texttt{static}}をつけるだけです。
+
+\begin{lstlisting}[escapechar=\%]
+class クラス {
+    static メソッド() {
+        // 静的メソッドの処理
+    }
+}
+// 静的メソッドの呼び出し
+クラス.%\hbox{}%メソッド();
+\end{lstlisting}
+
+次のコードでは、配列をラップする\texttt{ArrayWrapper}というクラスを定義しています。\enlargethispage{\baselineskip}
+\texttt{ArrayWrapper}はコンストラクタの引数として配列を受け取って初期化しています。
+このクラスに配列ではなく要素そのものを引数に受け取ってインスタンス化できる\texttt{ArrayWrapper.of}という静的メソッドを定義します。
+
+\begin{lstlisting}
+class ArrayWrapper {
+    constructor(array = []) {
+        this.array = array;
+    }
+
+    // rest parametersとして要素を受けつける
+    static of(...items) {
+        return new ArrayWrapper(items);
+    }
+
+    get length() {
+        return this.array.length;
+    }
+}
+
+// 配列を引数として渡している
+const arrayWrapperA = new ArrayWrapper([1, 2, 3]);
+// 要素を引数として渡している
+const arrayWrapperB = ArrayWrapper.of(1, 2, 3);
+console.log(arrayWrapperA.length); // => 3
+console.log(arrayWrapperB.length); // => 3
+\end{lstlisting}
+
+クラスの静的メソッドにおける\texttt{this}は、そのクラス自身を参照します。
+そのため、先ほどのコードは\texttt{new ArrayWrapper}の代わりに\texttt{new this}と書くこともできます。
+
+\begin{lstlisting}
+class ArrayWrapper {
+    // new演算子で引数が渡されたなかった場合の初期値は空配列
+    constructor(array = []) {
+        this.array = array;
+    }
+
+    static of(...items) {
+        // thisはArrayWrapperを参照する
+        return new this(items);
+    }
+
+    get length() {
+        return this.array.length;
+    }
+}
+
+const arrayWrapper = ArrayWrapper.of(1, 2, 3);
+console.log(arrayWrapper.length); // => 3
+\end{lstlisting}
+
+このように静的メソッドでの\texttt{this}はクラス自身を参照するため、クラスのインスタンスは参照できません。
+そのため静的メソッドは、クラスのインスタンスを作成する処理やクラスに関係する処理を書くために利用されます。
+
+\hypertarget{static-class-fields}{%
+\subsection{静的クラスフィールド\,\protect\icon{fig/es2022.eps}}\label{static-class-fields}}\index{せいてきくらすふぃーるど@静的クラスフィールド}
+
+ES2022で追加されたクラスフィールドも、インスタンスではなくクラス自体に定義する静的クラスフィールドが利用できます。
+
+静的クラスフィールドはフィールドの前に、\texttt{static}をつけるだけです。
+静的クラスフィールドで定義したプロパティは、クラス自体のプロパティとして定義されます。
+次のコードでは、Public静的クラスフィールドを使って\texttt{Colors}クラス自体にプロパティを定義しています。
+
+\begin{lstlisting}
+class Colors {
+    static GREEN = "緑";
+    static RED = "赤";
+    static BLUE = "青";
+}
+// クラスのプロパティとして参照できる
+console.log(Colors.GREEN); // => "緑"
+\end{lstlisting}
+
+また、Privateクラスフィールドも静的に利用できます。
+Private静的クラスフィールドは、クラス自体にプロパティを定義したいが、そのプロパティを外から参照されたくない場合に利用します。
+Private静的クラスフィールドはフィールドの前に、\texttt{static}をつけるだけです。
+
+\begin{lstlisting}
+class MyClass {
+    static #privateClassProp = "This is private";
+    static outputPrivate() {
+        // クラス内からはPrivate静的クラスフィールドで定義したプロパティを参照できる
+        console.log(this.#privateClassProp);
+    }
+}
+MyClass.outputPrivate();
+\end{lstlisting}
+
+\hypertarget{two-instance-method-definition}{%
+\section{プロトタイプに定義したメソッドとインスタンスに定義したメソッドの違い}\label{two-instance-method-definition}}
+
+ここまでで、プロトタイプメソッドの定義とクラスフィールドを使ったインスタンスに対するメソッドの定義の2種類を見てきました。
+プロトタイプメソッドの定義方法は、メソッドをプロトタイプオブジェクトという特殊なオブジェクトに定義します。
+一方で、クラスフィールドで定義したメソッドは、クラスのインスタンスに対してメソッドを定義します。
+
+どちらのメソッド定義方法でも、\texttt{new}演算子でインスタンス化したオブジェクトからメソッドを呼び出すことができる点は同じです。
+
+\begin{lstlisting}
+class ExampleClass {
+    // クラスフィールドを使い、インスタンスにメソッドを定義
+    instanceMethod = () => {
+        console.log("インスタンスメソッド");
+    };
+    // メソッド構文を使い、プロトタイプオブジェクトにメソッドを定義
+    prototypeMethod() {
+        console.log("プロトタイプメソッド");
+    }
+}
+const example = new ExampleClass();
+// どちらのメソッドもインスタンスから呼び出せる
+example.instanceMethod();
+example.prototypeMethod();
+\end{lstlisting}
+
+しかしこの2つのメソッドの定義方法は、メソッドを定義先となるオブジェクトが実際に異なります。
+
+まず、この2種類のメソッドがそれぞれ別の場所へと定義されていることを見ていきます。
+次のコードでは、\texttt{ConflictClass}クラスに\texttt{method}という同じ名前のメソッドをプロトタイプメソッドとインスタンスに対してそれぞれ定義しています。
+
+\begin{lstlisting}
+class ConflictClass {
+    // インスタンスオブジェクトにmethodを定義
+    method = () => {
+        console.log("インスタンスオブジェクトのメソッド");
+    };
+
+    // クラスのプロトタイプメソッドとしてmethodを定義
+    method() {
+        console.log("プロトタイプのメソッド");
+    }
+}
+
+const conflict = new ConflictClass();
+conflict.method(); // どちらのmethodが呼び出される？
+\end{lstlisting}
+
+結論から述べると、この場合はインスタンスオブジェクトに定義した\texttt{method}が呼び出されます。
+このとき、インスタンスの\texttt{method}プロパティを\texttt{delete}演算子で削除すると、今度はプロトタイプメソッドの\texttt{method}が呼び出されます。
+
+\begin{lstlisting}
+class ConflictClass {
+    // インスタンスオブジェクトにmethodを定義
+    method = () => {
+        console.log("インスタンスオブジェクトのメソッド");
+    };
+
+    method() {
+        console.log("プロトタイプメソッド");
+    }
+}
+
+const conflict = new ConflictClass();
+conflict.method(); // "インスタンスオブジェクトのメソッド"
+// インスタンスのmethodプロパティを削除
+delete conflict.method;
+conflict.method(); // "プロトタイプメソッド"
+\end{lstlisting}
+
+この実行結果から次のことがわかります。
+
+\begin{itemize}
+\item
+  プロトタイプメソッドとインスタンスオブジェクトのメソッドは上書きされずにどちらも定義されている
+\item
+  インスタンスオブジェクトのメソッドがプロトタイプオブジェクトのメソッドよりも優先して呼ばれている
+\end{itemize}
+
+どちらも注意深く意識しないと気づきにくいですが、この挙動はJavaScriptの重要な仕組みであるため理解することは重要です。
+
+この挙動は\textbf{\textgt{プロトタイプオブジェクト}}と呼ばれる特殊なオブジェクトと\textbf{\textgt{プロトタイプチェーン}}と呼ばれる仕組みで成り立っています。
+どちらも\textbf{\textgt{プロトタイプ}}とついていることからわかるように、2つで1組のような仕組みです。
+
+次のセクションでは、\textbf{\textgt{プロトタイプオブジェクト}}と\textbf{\textgt{プロトタイプチェーン}}とはどのような仕組みなのかを見ていきます。
+
+\hypertarget{prototype}{%
+\section{プロトタイプオブジェクト}\label{prototype}}\index{ぷろとたいぷおぶじぇくと@プロトタイプオブジェクト}
+
+\textbf{\textgt{プロトタイプメソッド}}と\textbf{\textgt{インスタンスオブジェクトのメソッド}}を同時に定義しても、互いのメソッドは上書きされるわけでありません。
+なぜなら、プロトタイプメソッドは\textbf{\textgt{プロトタイプオブジェクト}}へ、インスタンスオブジェクトのメソッドは\textbf{\textgt{インスタンスオブジェクト}}\index{いんすたんすおぶじぇくと@インスタンスオブジェクト}へそれぞれ定義されるためです。
+
+プロトタイプオブジェクトについては「\hyperlink{prototype-object}{プロトタイプオブジェクト}」の章で簡単に紹介していましたが、改めて解説していきます。
+
+\textbf{\textgt{プロトタイプオブジェクト}}とは、JavaScriptの関数オブジェクトの\texttt{prototype}プロパティに自動的に作成される特殊なオブジェクトです。
+クラスも一種の関数オブジェクトであるため、自動的に\texttt{prototype}\index{prototype@\texttt{prototype}}プロパティにプロトタイプオブジェクトが作成されています。
+
+次のコードでは、関数やクラス自身の\texttt{prototype}プロパティに、プロトタイプオブジェクトが自動的に作成されていることがわかります。
+
+\begin{lstlisting}
+function fn() {
+}
+// prototypeプロパティにプロトタイプオブジェクトが存在する
+console.log(typeof fn.prototype === "object"); // => true
+
+class MyClass {
+}
+// prototypeプロパティにプロトタイプオブジェクトが存在する
+console.log(typeof MyClass.prototype === "object"); // => true
+\end{lstlisting}
+
+\texttt{class}構文のメソッド定義は、このプロトタイプオブジェクトのプロパティとして定義されます。
+
+次のコードでは、クラスのメソッドがプロトタイプオブジェクトに定義されていることを確認できます。
+また、クラスには\texttt{constructor}\index{constructor@\texttt{constructor}}メソッド（コンストラクタ）が必ず定義されます。
+この\texttt{constructor}メソッドもプロトタイプオブジェクトに定義されており、この\texttt{constructor}プロパティはクラス自身を参照します。
+
+\begin{lstlisting}
+class MyClass {
+    method() {}
+}
+
+console.log(typeof MyClass.prototype.method === "function"); // => true
+// クラスのconstructorはクラス自身を参照する
+console.log(MyClass.prototype.constructor === MyClass); // => true
+\end{lstlisting}
+
+このように、プロトタイプメソッドはプロトタイプオブジェクトに定義され、インスタンスオブジェクトのメソッドとは異なるオブジェクトに定義されています。そのため、それぞれの方法でメソッドを定義しても、上書きされることはありません。
+
+\hypertarget{prototype-chain}{%
+\section{プロトタイプチェーン}\label{prototype-chain}}\index{ぷろとたいぷちぇーん@プロトタイプチェーン}
+
+\texttt{class}構文で定義したプロトタイプメソッドはプロトタイプオブジェクトに定義されます。
+しかし、インスタンス（オブジェクト）にはメソッドが定義されていないのに、インスタンスからクラスのプロトタイプメソッドを呼び出せます。
+
+\begin{lstlisting}
+class MyClass {
+    method() {
+        console.log("プロトタイプのメソッド");
+    }
+}
+const instance = new MyClass();
+instance.method(); // "プロトタイプのメソッド"
+\end{lstlisting}
+
+インスタンスからプロトタイプメソッドを呼び出せるのは\textbf{\textgt{プロトタイプチェーン}}と呼ばれる仕組みによるものです。
+プロトタイプチェーンは2つの処理から成り立ちます。
+
+\begin{itemize}
+\item
+  インスタンス作成時に、インスタンスの\texttt{[[Prototype]]}内部プロパティへプロトタイプオブジェクトの参照を保存する処理
+\item
+  インスタンスからプロパティ（またはメソッド）を参照するときに、\texttt{[[Prototype]]}内部プロパティまで探索する処理
+\end{itemize}
+
+\hypertarget{write-prototype-chain}{%
+\subsection{インスタンス作成とプロトタイプチェーン}\label{write-prototype-chain}}\index{いんすたんす@インスタンス!さくせい@作成}
+
+クラスから\texttt{new}演算子によってインスタンスを作成する際に、インスタンスにはクラスのプロトタイプオブジェクトへの参照が保存されます。
+このとき、インスタンスからクラスのプロトタイプオブジェクトへの参照は、インスタンスオブジェクトの\texttt{[[Prototype]]}という内部プロパティに保存されます。
+
+\texttt{[[Prototype]]}内部プロパティはECMAScriptの仕様で定められた内部的な表現であるため、通常のプロパティのようにはアクセスできません。
+ここでは説明のために、\texttt{[[プロパティ名]]}という書式でECMAScriptの仕様上に存在する内部プロパティを表現しています。
+
+\texttt{[[Prototype]]}内部プロパティへプロパティのようにはアクセスできませんが、\texttt{Object.getProto\\typeOf}\index{Object.getPrototypeOf@\texttt{Object.getPrototypeOf}}メソッドで\texttt{[[Prototype]]}内部プロパティを参照できます。
+
+次のコードでは、\texttt{instance}オブジェクトの\texttt{[[Prototype]]}内部プロパティを取得しています。
+その取得した結果がクラスのプロトタイプオブジェクトを参照していることを確認できます。
+
+\begin{lstlisting}
+class MyClass {
+    method() {
+        console.log("プロトタイプのメソッド");
+    }
+}
+const instance = new MyClass();
+// instanceの[[Prototype]]内部プロパティはMyClass.prototypeと一致する
+const MyClassPrototype = Object.getPrototypeOf(instance);
+console.log(MyClassPrototype === MyClass.prototype); // => true
+\end{lstlisting}
+
+ここで重要なのは、インスタンスはどのクラスから作られたかやそのクラスのプロトタイプオブジェクトを知っているということです。
+
+\begin{note}{}
+\hypertarget{inner-property}{%
+\underline{\texttt{{[}{[}Prototype{]}{]}}内部プロパティを読み書きする}\label{inner-property}}
+
+\texttt{Object.getPrototypeOf(オブジェクト)}\index{Object.getPrototypeOf@\texttt{Object.getPrototypeOf}}で\texttt{オブジェクト}の\texttt{[[Prototype]]}を読み取ることができます。
+一方、\texttt{Object.setPrototypeOf(オブジェクト, プロトタイプオブジェクト)}\index{Object.setPrototypeOf@\texttt{Object.setPrototypeOf}}で\texttt{オブジェクト}の\texttt{[[Prototype]]}に\texttt{プロトタイプオブジェクト}を設定できます。
+また、\texttt{[[Prototype]]}内部プロパティを通常のプロパティのように扱える\texttt{\_\_proto\_\_}\index{__proto__@\texttt{\_\_proto\_\_}}という特殊なアクセッサプロパティが存在します。
+
+しかし、これらの\texttt{[[Prototype]]}内部プロパティを直接読み書きすることは通常の用途では行いません。
+また、既存のビルトインオブジェクトの動作なども変更できるため、不用意に扱うべきではないでしょう。
+\end{note}
+
+\hypertarget{read-prototype-chain}{%
+\subsection{プロパティの参照とプロトタイプチェーン}\label{read-prototype-chain}}\index{ぷろぱてぃ@プロパティ!さんしょう@参照}
+
+プロトタイプオブジェクトのプロパティがどのようにインスタンスから参照されるかを見ていきます。
+
+オブジェクトのプロパティを参照するときに、オブジェクト自身がプロパティを持っていない場合でも、そこで探索が終わるわけではありません。
+オブジェクトの\texttt{[[Prototype]]}内部プロパティ（仕様上の内部的なプロパティ）の参照先であるプロトタイプオブジェクトに対しても探索を続けます。
+これは、スコープに指定した識別子の変数がなかった場合に外側のスコープへと探索するスコープチェーンと良く似た仕組みです。
+
+つまり、オブジェクトがプロパティを探索するときは次のような順番で、それぞれのオブジェクトを調べます。
+すべてのオブジェクトにおいて見つからなかった場合の結果は\texttt{undefined}を返します。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \texttt{instance}オブジェクト自身
+\item
+  \texttt{instance}オブジェクトの\texttt{[[Prototype]]}の参照先（プロトタイプオブジェクト）
+\item
+  どこにもなかった場合は\texttt{undefined}
+\end{enumerate}
+
+次のコードでは、インスタンスオブジェクト自身は\texttt{method}プロパティを持っていません。
+そのため、実際に参照しているのはクラスのプロトタイプオブジェクトの\texttt{method}プロパティです。
+
+\begin{lstlisting}
+class MyClass {
+    method() {
+        console.log("プロトタイプのメソッド");
+    }
+}
+const instance = new MyClass();
+// インスタンスにはmethodプロパティがないため、プロトタイプオブジェクトのmethodが
+// 参照される
+instance.method(); // "プロトタイプのメソッド"
+// instance.methodの参照はプロトタイプオブジェクトのmethodと一致する
+const Prototype = Object.getPrototypeOf(instance);
+console.log(instance.method === Prototype.method); // => true
+\end{lstlisting}
+
+このように、インスタンスオブジェクトに\texttt{method}が定義されていなくても、クラスのプロトタイプオブジェクトの\texttt{method}を呼び出すことができます。
+このプロパティを参照する際に、オブジェクト自身から\texttt{[[Prototype]]}内部プロパティへと順番に探す仕組みのことを\textbf{\textgt{プロトタイプチェーン}}\index{ぷろとたいぷちぇーん@プロトタイプチェーン}と呼びます。
+
+プロトタイプチェーンの仕組みを疑似的なコードとして表現すると次のような動きをしています。
+
+\begin{lstlisting}
+// プロトタイプチェーンの動作の疑似的なコード
+class MyClass {
+    method() {
+        console.log("プロトタイプのメソッド");
+    }
+}
+const instance = new MyClass();
+// instance.method()を実行する場合
+// 次のような呼び出し処理が行われている
+// インスタンスがmethodプロパティを持っている場合
+if (Object.hasOwn(instance, "method")) {
+    instance.method();
+} else {
+    // インスタンスの[[Prototype]]の参照先（MyClassのプロトタイプオブジェクト）を
+    // 取り出す
+    const prototypeObject = Object.getPrototypeOf(instance);
+    // プロトタイプオブジェクトがmethodプロパティを持っている場合
+    if (Object.hasOwn(prototypeObject, "method")) {
+        // thisはインスタンス自身を指定して呼び出す
+        prototypeObject.method.call(instance);
+    }
+}
+\end{lstlisting}
+
+プロトタイプチェーンの仕組みによって、プロトタイプオブジェクトに定義したプロトタイプメソッドをインスタンスから呼び出せます。
+
+普段は、プロトタイプオブジェクトやプロトタイプチェーンといった仕組みを意識する必要はありません。
+\texttt{class}構文はこのようなプロトタイプを意識せずにクラスを利用できるように導入された構文です。
+しかし、プロトタイプベースである言語のJavaScriptではクラスをこのようなプロトタイプを使って表現していることは知っておくとよいでしょう。
+
+\hypertarget{extends}{%
+\section{継承}\label{extends}}\index{けいしょう@継承}
+
+\texttt{extends}\index{extends@\texttt{extends}}キーワードを使うことで既存のクラスを継承できます。
+継承とは、クラスの\textbf{\textgt{構造}}や\textbf{\textgt{機能}}を引き継いだ新しいクラスを定義することです。
+
+\hypertarget{class-extends}{%
+\subsection{継承したクラスの定義}\label{class-extends}}
+
+\texttt{extends}キーワードを使って既存のクラスを継承した新しいクラスを定義してみます。
+\texttt{class}構文の右辺に\texttt{extends}キーワードで継承元となる\textbf{\textgt{親クラス}}\index{おやくらす@親クラス}（基底クラス\index{きていくらす@基底クラス}）を指定することで、
+親クラスを継承した\textbf{\textgt{子クラス}}\index{こくらす@子クラス}（派生クラス\index{はせいくらす@派生クラス}）を定義できます。
+
+\begin{lstlisting}
+class 子クラス extends 親クラス {
+}
+\end{lstlisting}
+
+次のコードでは、\texttt{Parent}クラスを継承した\texttt{Child}クラスを定義しています。
+子クラスである\texttt{Child}クラスのインスタンス化は通常のクラスと同じく\texttt{new}演算子を使って行います。
+
+\begin{lstlisting}
+class Parent {
+}
+class Child extends Parent {
+}
+const instance = new Child();
+\end{lstlisting}
+
+\hypertarget{class-super}{%
+\subsection{\texorpdfstring{\texttt{super}}{super}}\label{class-super}}\index{super@\texttt{super}}
+
+\texttt{extends}を使って定義した子クラスから親クラスを参照するには\texttt{super}というキーワードを利用します。
+もっともシンプルな\texttt{super}を使う例としてコンストラクタの処理を見ていきます。
+
+\texttt{class}構文でも紹介しましたが、クラスは必ず\texttt{constructor}メソッド（コンストラクタ）を持ちます。
+これは、継承した子クラスでも同じです。
+
+次のコードでは、\texttt{Parent}クラスを継承した\texttt{Child}クラスのコンストラクタで、\texttt{super()}を呼び出しています。
+\texttt{super()}は子クラスから親クラスの\texttt{constructor}メソッドを呼び出します。
+
+\begin{lstlisting}
+// 親クラス
+class Parent {
+    constructor(...args) {
+        console.log("Parentコンストラクタの処理", ...args);
+    }
+}
+// Parentを継承したChildクラスの定義
+class Child extends Parent {
+    constructor(...args) {
+        // Parentのコンストラクタ処理を呼び出す
+        super(...args);
+        console.log("Childコンストラクタの処理", ...args);
+    }
+}
+const child = new Child("引数1", "引数2");
+// "Parentコンストラクタの処理", "引数1", "引数2"
+// "Childコンストラクタの処理", "引数1", "引数2"
+\end{lstlisting}
+
+\texttt{class}構文でのクラス定義では、\texttt{constructor}メソッド（コンストラクタ）で何も処理しない場合は省略できることを紹介しました。
+これは、継承した子クラスでも同じです。
+
+次のコードの\texttt{Child}クラスのコンストラクタでは、何も処理を行っていません。
+そのため、\texttt{Child}クラスの\texttt{constructor}メソッドの定義を省略できます。
+
+\begin{lstlisting}
+class Parent {}
+class Child extends Parent {}
+\end{lstlisting}
+
+このように子クラスで\texttt{constructor}を省略した場合は次のように書いた場合と同じ意味になります。
+\texttt{constructor}メソッドの引数をすべて受け取り、そのまま\texttt{super}へ引数の順番を維持して渡します。
+
+\begin{lstlisting}
+class Parent {}
+class Child extends Parent {
+    constructor(...args) {
+        super(...args); // 親クラスに引数をそのまま渡す
+    }
+}
+\end{lstlisting}
+
+\hypertarget{constructor-order}{%
+\subsection{コンストラクタの処理順は親クラスから子クラスへ}\label{constructor-order}}\index{こんすとらくた@コンストラクタ!しょりじゅん@処理順}
+
+コンストラクタの処理順は、親クラスから子クラスへと順番が決まっています。
+
+\texttt{class}構文では必ず親クラスのコンストラクタ処理（\texttt{super()}の呼び出し）を先に行い、その次に子クラスのコンストラクタ処理を行います。
+子クラスのコンストラクタでは、\texttt{this}を触る前に\texttt{super()}で親クラスのコンストラクタ処理を呼び出さないと\texttt{ReferenceError}となるためです。
+
+次のコードでは、\texttt{Parent}と\texttt{Child}でそれぞれインスタンス（\texttt{this}）の\texttt{name}プロパティに値を書き込んでいます。
+子クラスでは先に\texttt{super()}を呼び出してからでないと\texttt{this}を参照できません。
+そのため、コンストラクタの処理順は\texttt{Parent}から\texttt{Child}という順番に限定されます。
+
+\begin{lstlisting}
+class Parent {
+    constructor() {
+        this.name = "Parent";
+    }
+}
+class Child extends Parent {
+    constructor() {
+        // 子クラスではsuper()をthisに触る前に呼び出さなければならない
+        super();
+        // 子クラスのコンストラクタ処理
+        // 親クラスで書き込まれたnameは上書きされる
+        this.name = "Child";
+    }
+}
+const parent = new Parent();
+console.log(parent.name); // => "Parent"
+const child = new Child();
+console.log(child.name); // => "Child"
+\end{lstlisting}
+
+\hypertarget{class-fields-inheritance}{%
+\subsection{クラスフィールドの継承}\label{class-fields-inheritance}}\index{くらふふぃーるどのけいしょう@クラスフィールドの継承}
+
+Publicクラスフィールドもコンストラクタの処理順と同じく親クラスのフィールドが初期化された後に子クラスのフィールドが初期化されます。
+Publicクラスフィールドは、インスタンスオブジェクトに対してプロパティを定義する構文でした。
+そのため、親クラスで定義されていたフィールドも、実際にインスタンス化したオブジェクトのプロパティとして定義されます。
+
+\begin{lstlisting}
+class Parent {
+    parentField = "親クラスで定義したフィールド";
+}
+// Parentを継承したChildを定義
+class Child extends Parent {
+    childField = "子クラスで定義したフィールド";
+}
+const instance = new Child();
+console.log(instance.parentField); // => "親クラスで定義したフィールド"
+console.log(instance.childField); // => "子クラスで定義したフィールド"
+\end{lstlisting}
+
+同じ名前のフィールドが定義されている場合は、子クラスのフィールド定義で上書きされます。
+
+\begin{lstlisting}
+class Parent {
+    field = "親クラスで定義したフィールド";
+}
+// Parentを継承したChildを定義
+class Child extends Parent {
+    field = "子クラスで定義したフィールド";
+}
+const instance = new Child();
+console.log(instance.field); // => "子クラスで定義したフィールド"
+\end{lstlisting}
+
+Publicクラスフィールドは、このように親クラスで定義したフィールドも子クラスに定義されます。
+一方で、Privateクラスフィールドは、このように親クラスで定義したフィールドは子クラスに定義されません。
+
+次のコードでは、親クラスで定義したPrivateクラスフィールドを子クラスから参照しようとしています。
+しかし、\texttt{\#parentField}は参照できずに構文エラーとなることがわかります。
+
+\begin{lstlisting}
+class Parent {
+    #parentField = "親クラスで定義したPrivateフィールド";
+}
+// Parentを継承したChildを定義
+class Child extends Parent {
+    dump() {
+        console.log(this.#parentField); // => SyntaxError: reference to 
+                           // undeclared private field or method #parentFeild
+    }
+}
+const instance = new Child();
+instance.dump();
+\end{lstlisting}
+
+これは、PrivateクラスフィールドのPrivateとは各クラスごとのPrivateを守る目的であるためです。
+継承したクラスからPrivateクラスフィールドが利用できてしまうと、Privateな情報が子クラスに漏れてしまうためです。
+JavaScriptでは、クラスの外に公開したくないが、子クラスからは利用できるようにしたいというような中間の制限を持ったプロパティを定義する構文はありません。
+
+このように子クラスも含むクラスの外からアクセスを厳密に拒否するPrivateをhard privateと呼びます。
+JavaScriptでのPrivateクラスフィールドはhard privateとなっています。
+
+一方で、子クラスからのアクセスは許可したり、クラス外からのアクセスが可能となるような特例を持つようなPrivateをsoft privateと呼びます。
+JavaScriptでのsoft privateは、WeakMapやWeakSetを使ってユーザー自身で実装する必要があります（「\hyperlink{map-and-set}{Map/Set}」の章を参照）。
+
+\hypertarget{prototype-inheritance}{%
+\subsection{プロトタイプ継承}\label{prototype-inheritance}}\index{ぷろとたいぷけいしょう@プロトタイプ継承}
+
+次のコードでは\texttt{extends}キーワードを使って\texttt{Parent}クラスを継承した\texttt{Child}クラスを定義しています。
+\texttt{Parent}クラスでは\texttt{method}を定義しているため、これを継承している\texttt{Child}クラスのインスタンスからも呼び出せます。
+
+\begin{lstlisting}
+class Parent {
+    method() {
+        console.log("Parent.prototype.method");
+    }
+}
+// Parentを継承したChildを定義
+class Child extends Parent {
+    // methodの定義はない
+}
+// ChildのインスタンスはParentのプロトタイプメソッドを継承している
+const instance = new Child();
+instance.method(); // "Parent.prototype.method"
+\end{lstlisting}
+
+このように、子クラスのインスタンスから親クラスのプロトタイプメソッドもプロトタイプチェーンの仕組みによって呼び出せます。
+
+\texttt{extends}によって継承した場合、子クラスのプロトタイプオブジェクトの\texttt{[[Prototype]]}内部プロパティには親クラスのプロトタイプオブジェクトが設定されます。
+このコードでは、\texttt{Child.prototype}オブジェクトの\texttt{[[Prototype]]}内部プロパティには\texttt{Parent.prototype}が設定されます。
+
+これにより、プロパティを参照する場合には次のような順番でオブジェクトを探索しています。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \texttt{instance}オブジェクト自身
+\item
+  \texttt{Child.prototype}（\texttt{instance}オブジェクトの\texttt{[[Prototype]]}の参照先）
+\item
+  \texttt{Parent.prototype}（\texttt{Child.prototype}オブジェクトの\texttt{[[Prototype]]}の参照先）
+\end{enumerate}
+
+このプロトタイプチェーンの仕組みにより、\texttt{method}プロパティは\texttt{Parent.prototype}オブジェクトに定義されたものを参照します。
+
+このようにJavaScriptでは\texttt{class}構文と\texttt{extends}キーワードを使うことでクラスの\textbf{\textgt{機能}}を継承できます。
+\texttt{class}構文ではプロトタイプオブジェクトを参照する仕組みによって継承が行われています。
+そのため、この継承の仕組みを\textbf{\textgt{プロトタイプ継承}}と呼びます。
+
+\hypertarget{static-inheritance}{%
+\subsection{静的メソッドの継承}\label{static-inheritance}}\index{せいてきめそっど@静的メソッド!けいしょう@継承}
+
+インスタンスとクラスのプロトタイプオブジェクトとの間にはプロトタイプチェーンがあります。
+クラス自身（クラスのコンストラクタ）も親クラス自身（親クラスのコンストラクタ）との間にプロトタイプチェーンがあります。
+
+簡単に言えば、静的メソッドも継承されるということです。
+
+\begin{lstlisting}
+class Parent {
+    static hello() {
+        return "Hello";
+    }
+}
+class Child extends Parent {}
+console.log(Child.hello()); // => "Hello"
+\end{lstlisting}
+
+\texttt{extends}によって継承した場合、子クラスのコンストラクタの\texttt{[[Prototype]]}内部プロパティには親クラスのコンストラクタが設定されます。
+このコードでは、\texttt{Child}コンストラクタの\texttt{[[Prototype]]}内部プロパティに\texttt{Parent}コンストラクタが設定されます。
+
+つまり、先ほどのコードでは\texttt{Child.hello}プロパティを参照した場合には、次のような順番でオブジェクトを探索しています。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \texttt{Child}コンストラクタ
+\item
+  \texttt{Parent}コンストラクタ（\texttt{Child}コンストラクタの\texttt{[[Prototype]]}の参照先）
+\end{enumerate}
+
+クラスのコンストラクタ同士にもプロトタイプチェーンの仕組みがあるため、子クラスは親クラスの静的メソッドを呼び出せます。
+
+\hypertarget{super-property}{%
+\subsection{\texorpdfstring{\texttt{super}プロパティ}{superプロパティ}}\label{super-property}}\index{super@\texttt{super}!ぷろぱてぃ@プロパティ}
+
+子クラスから親クラスのコンストラクタ処理を呼び出すには\texttt{super()}を使います。
+同じように、子クラスのプロトタイプメソッドからは、\texttt{super.\hbox{}プロパティ名}で親クラスのプロトタイプメソッドを参照できます。
+
+次のコードでは、\texttt{Child.prototype.method}の中で\texttt{super.method()}と書くことで\texttt{Parent.proto\\type.method}を呼び出しています。
+このように、子クラスから継承元の親クラスのプロトタイプメソッドは\texttt{super.\hbox{}プロパティ名}で参照できます。
+
+\begin{lstlisting}
+class Parent {
+    method() {
+        console.log("Parent.prototype.method");
+    }
+}
+class Child extends Parent {
+    method() {
+        console.log("Child.prototype.method");
+        // this.method()だと自分(this)のmethodを呼び出して無限ループする
+        // そのため明示的にsuper.method()を呼ぶことで、Parent.prototype.methodを呼び出す
+        super.method();
+    }
+}
+const child = new Child();
+child.method(); 
+// コンソールには次のように出力される
+// "Child.prototype.method"
+// "Parent.prototype.method"
+\end{lstlisting}
+
+プロトタイプチェーンでは、インスタンスからクラス、さらに親のクラスと継承関係をさかのぼるようにメソッドを探索すると紹介しました。
+このコードでは\texttt{Child.prototype.method}が定義されているため、\texttt{child.method}は\texttt{Child.prototype.method}を呼び出します。
+そして\texttt{Child.prototype.method}は\texttt{super.method}を呼び出しているため、\texttt{Parent.prototype.method}が呼び出されます。
+
+クラスの静的メソッド同士も同じように\texttt{super.method()}と書くことで呼び出せます。
+次のコードでは、\texttt{Parent}を継承した\texttt{Child}から親クラスの静的メソッドを呼び出しています。
+
+\begin{lstlisting}
+class Parent {
+    static method() {
+        console.log("Parent.method");
+    }
+}
+class Child extends Parent {
+    static method() {
+        console.log("Child.method");
+        // super.method()でParent.methodを呼びだす
+        super.method();
+    }
+}
+Child.method(); 
+// コンソールには次のように出力される
+// "Child.method"
+// "Parent.method"
+\end{lstlisting}
+
+\hypertarget{instanceof}{%
+\subsection{継承の判定}\label{instanceof}}\index{けいしょう@継承!はんてい@判定}
+
+あるクラスが指定したクラスをプロトタイプ継承しているかは\texttt{instanceof}\index{instanceof@\texttt{instanceof}}演算子を使って判定できます。
+
+次のコードでは、\texttt{Child}のインスタンスは\texttt{Child}クラスと\texttt{Parent}クラスを継承したオブジェクトであることを確認しています。
+
+\begin{lstlisting}
+class Parent {}
+class Child extends Parent {}
+
+const parent = new Parent();
+const child = new Child();
+// ParentのインスタンスはParentのみを継承したインスタンス
+console.log(parent instanceof Parent); // => true
+console.log(parent instanceof Child); // => false
+// ChildのインスタンスはChildとParentを継承したインスタンス
+console.log(child instanceof Parent); // => true
+console.log(child instanceof Child); // => true
+\end{lstlisting}
+
+より具体的な継承の使い方については「\hyperlink{todo-app}{ユースケース: Todoアプリ}」の章で見ていきます。
+
+\hypertarget{extends-built-in}{%
+\section{ビルトインオブジェクトの継承}\label{extends-built-in}}\index{びるといんおぶじぇくと@ビルトインオブジェクト!けいしょう@継承}
+
+ここまで自身が定義したクラスを継承してきましたが、ビルトインオブジェクトのコンストラクタも継承できます。
+ビルトインオブジェクトには\texttt{Array}、\texttt{String}、\texttt{Object}、\texttt{Number}、\texttt{Error}、\texttt{Date}などのコンストラクタがあります。
+\texttt{class}構文ではこれらのビルトインオブジェクトを継承できます。
+
+次のコードでは、ビルトインオブジェクトである\texttt{Array}を継承して独自のメソッドを加えた\texttt{MyArray}クラスを定義しています。
+継承した\texttt{MyArray}は\texttt{Array}の性質であるメソッドや状態管理についての仕組みを継承しています。
+継承した性質に加えて、MyArrayクラスへ\texttt{first}や\texttt{last}といったアクセッサプロパティを追加しています。
+
+\begin{lstlisting}
+class MyArray extends Array {
+    get first() {
+        return this.at(0);
+    }
+
+    get last() {
+        return this.at(-1);
+    }
+}
+
+// Arrayを継承しているのでArray.fromも継承している
+// Array.fromはIterableなオブジェクトから配列インスタンスを作成する
+const array = MyArray.from([1, 2, 3, 4, 5]);
+console.log(array.length); // => 5
+console.log(array.first); // => 1
+console.log(array.last); // => 5
+\end{lstlisting}
+
+\texttt{Array}を継承した\texttt{MyArray}は、\texttt{Array}が元々持つ\texttt{length}プロパティや\texttt{Array.from}メソッドなどを継承しているので利用できます。
+
+\hypertarget{conclusion}{%
+\section{まとめ}\label{conclusion}}
+
+この章ではクラスについて学びました。
+
+\begin{itemize}
+\item
+  JavaScriptのクラスはプロトタイプベース
+\item
+  クラスは\texttt{class}構文で定義できる
+\item
+  クラスで定義したメソッドはプロトタイプオブジェクトとプロトタイプチェーンの仕組みで呼び出せる
+\item
+  クラスのインスタンスに対するプロパティの定義にはクラスフィールドが利用できる
+\item
+ クラスの外からアクセスさせたくないプロパティの定義にはPrivateクラスフィールドを使う
+\item
+  アクセッサプロパティはgetterとsetterのメソッドを定義することでプロパティのように振る舞う
+\item
+  クラスは\texttt{extends}で継承できる
+\item
+  クラスのプロトタイプメソッドと静的メソッドはどちらも継承される
+\end{itemize}

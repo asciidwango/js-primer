@@ -1,0 +1,1328 @@
+\hypertarget{string}{%
+\chapter{文字列}\label{string}}\index{もじれつ@文字列}
+\thispagestyle{frontheadings}
+
+この章ではJavaScriptにおける文字列について学んでいきます。
+まずは、文字列の作成方法や文字列の操作方法について見ていきます。
+そして、文字列を編集して自由な文字列を作れるようになることがこの章の目的です。
+
+\hypertarget{create}{%
+\section{文字列を作成する}\label{create}}\index{もじれつ@文字列!さくせい@作成}
+
+文字列を作成するには、文字列リテラル\index{もじれつりてらる@文字列リテラル}を利用します。
+「\hyperlink{data-type-and-literal}{データ型とリテラル}」の章でも紹介しましたが、文字列リテラルには\texttt{"}\index{""@\texttt{""}}（ダブルクォート\index{だぶるくぉーと@ダブルクォート}）、\texttt{'}\index{'@\texttt{'}}（シングルクォート\index{しんぐるくぉーと@シングルクォート}）、\lstinline{`}\index{`@\lstinline{`}}（バッククォート\index{ばっくくぉーと@バッククォート}）の3種類があります。
+
+まずは\texttt{"}（ダブルクォート）と\texttt{'}（シングルクォート）について見ていきます。
+
+\texttt{"}（ダブルクォート）と\texttt{'}（シングルクォート）に意味的な違いはありません。
+そのため、どちらを使うかは好みやプロジェクトごとのコーディング規約によって異なります。
+この書籍では、\texttt{"}（ダブルクォート）を主な文字列リテラルとして利用します。
+
+\begin{lstlisting}
+const double = "文字列";
+console.log(double); // => "文字列"
+const single = '文字列';
+console.log(single); // => '文字列'
+// どちらも同じ文字列
+console.log(double === single);// => true
+\end{lstlisting}
+
+ES2015では、テンプレートリテラル\index{てんぷれーとりてらる@テンプレートリテラル}
+\lstinline{`}（バッククォート）が追加されました。
+\lstinline{`}（バッククォート）を利用することで文字列を作成できる点は、他の文字列リテラルと同じです。
+
+これに加えてテンプレートリテラルでは、文字列中に改行を入力できます。
+次のコードでは、テンプレートリテラルを使って複数行の文字列を見た目どおりに定義しています。
+
+\begin{lstlisting}
+const multiline = `1行目
+2行目
+3行目`;
+// \n は改行を意味する
+console.log(multiline); // => "1行目\n2行目\n3行目"
+\end{lstlisting}
+
+どの文字列リテラルでも共通ですが、文字列リテラルは同じ記号が対になります。
+そのため、文字列の中にリテラルと同じ記号が出現した場合は、\texttt{\textbackslash}\index{\\@\texttt{\textbackslash}}（バックスラッシュ\index{ばっくすらっしゅ@バックスラッシュ}）を使ってエスケープ\index{えすけーぷ@エスケープ}する必要があります。
+次のコードでは、文字列中の\texttt{"}を\texttt{\textbackslash"}のようにエスケープしています。
+
+\begin{lstlisting}
+const str = "This book is \"js-primer\"";
+console.log(str); // => 'This book is "js-primer"'
+\end{lstlisting}
+
+\hypertarget{escape-sequence}{%
+\section{エスケープシーケンス}\label{escape-sequence}}\index{えすけーぷしーけんす@エスケープシーケンス}
+
+文字列リテラル中にはそのままでは入力できない特殊な文字もあります。
+改行もそのひとつで、\texttt{"}（ダブルクォート）と\texttt{'}（シングルクォート）の文字列リテラルには改行をそのまま入力できません
+（テンプレートリテラル中には例外的に改行をそのまま入力できます）。
+
+次のコードは、JavaScriptの構文として正しくないため、構文エラー（SyntaxError）となります。
+
+\begin{lstlisting}
+// JavaScriptエンジンが構文として解釈できないため、SyntaxErrorとなる
+const invalidString = "1行目
+2行目
+3行目";
+\end{lstlisting}
+
+この問題を回避するためには、改行のような特殊な文字をエスケープシーケンスとして書く必要があります。
+エスケープシーケンスは、\texttt{\textbackslash}と特定の文字を組み合わせることで、特殊文字を表現します。
+
+次の表では、代表的な\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String\#\%E3\%82\%A8\%E3\%82\%B9\%E3\%82\%B1\%E3\%83\%BC\%E3\%83\%97\%E3\%82\%B7\%E3\%83\%BC\%E3\%82\%B1\%E3\%83\%B3\%E3\%82\%B9}{エスケープシーケンス}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String\#\%E3\%82\%A8\%E3\%82\%B9\%E3\%82\%B1\%E3\%83\%BC\%E3\%83\%97\%E3\%82\%B7\%E3\%83\%BC\%E3\%82\%B1\%E3\%83\%B3\%E3\%82\%B9}}を紹介しています。
+エスケープシーケンスは、\texttt{"}（ダブルクォート）、\texttt{'}（シングルクォート）、\lstinline{`}（バッククォート）すべての文字列リテラルの中で利用できます。
+
+\begin{small}
+\begin{longtable}[l]{p{73mm}|p{67mm}}
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}\textgt{エスケープシーケンス} & \textgt{意味}\tabularnewline
+\hline
+\endhead
+\texttt{\textbackslash'} & シングルクォート\tabularnewline
+\texttt{\textbackslash"} & ダブルクォート\tabularnewline
+\lstinline[]$\`$ & バッククォート\tabularnewline
+\texttt{\textbackslash\textbackslash} & バックスラッシュ（\texttt{\textbackslash}そのものを表示する）\tabularnewline
+\texttt{\textbackslash n} & 改行\tabularnewline
+\texttt{\textbackslash t} & タブ\tabularnewline
+\texttt{\textbackslash uXXXX} & Code Unit（\texttt{\textbackslash u}と4桁のHexDigit）\tabularnewline
+\texttt{\textbackslash u\{X\}} \ldots{} \texttt{\textbackslash u\{XXXXXX\}} & Code Point（\texttt{\textbackslash u\{\}}のカッコ中にHexDigit）\tabularnewline
+\hline
+\end{longtable}
+\end{small}
+
+このエスケープシーケンスを利用することで、先ほどの\texttt{"}（ダブルクォート）の中に改行（\texttt{\textbackslash n}\index{\\n@\texttt{\textbackslash n}}）を入力できます。
+\newpage
+\begin{lstlisting}
+// 改行を\nのエスケープシーケンスとして入力している
+const multiline = "1行目\n2行目\n3行目";
+console.log(multiline); 
+/* 改行した結果が出力される
+1行目
+2行目
+3行目
+*/
+\end{lstlisting}
+
+また、\texttt{\textbackslash}からはじまる文字は自動的にエスケープシーケンスとして扱われます。
+しかし、\texttt{\textbackslash a}のように定義されていないエスケープシーケンスは、\texttt{\textbackslash}が単に無視され\texttt{a}という文字列として扱われます。
+これにより、\texttt{\textbackslash}（バックスラッシュ）そのものを入力していたつもりが、その文字がエスケープシーケンスとして扱われてしまう問題があります。
+
+次のコードでは、\texttt{\textbackslash\_}という組み合わせのエスケープシーケンスはないため、\texttt{\textbackslash}が無視された文字列として評価されます。
+
+\begin{lstlisting}
+console.log("‾\_(ツ)_/‾");
+// ‾_(ツ)_/‾ のように\が無視されて表示される
+\end{lstlisting}
+
+\texttt{\textbackslash}（バックスラッシュ）そのものを入力したい場合は、\texttt{\textbackslash\textbackslash}のようにエスケープする必要があります。
+
+\begin{lstlisting}
+console.log("‾\\_(ツ)_/‾");
+//　‾\_(ツ)_/‾ と表示される
+\end{lstlisting}
+
+\hypertarget{concat}{%
+\section{文字列を結合する}\label{concat}}\index{もじれつ@文字列!けつごう@結合}
+
+文字列を結合する簡単な方法は文字列結合演算子\index{もじれつけつごうえんざんし@文字列結合演算子}（\texttt{+}\index{+@\texttt{+}}）を使う方法です。
+
+\begin{lstlisting}
+const str = "a" + "b";
+console.log(str); // => "ab"
+\end{lstlisting}
+
+変数と文字列を結合したい場合も文字列結合演算子で行えます。
+
+\begin{lstlisting}
+const name = "JavaScript";
+console.log("Hello " + name + "!");// => "Hello JavaScript!"
+\end{lstlisting}
+
+特定の書式に文字列を埋め込むには、テンプレートリテラルを使うとより宣言的に書けます。
+
+テンプレートリテラル中に\texttt{\$\{変数名\}}\index{$\{\}@\texttt{\$\{\}}}で書かれた変数は評価時に展開されます。
+つまり、先ほどの文字列結合は次のように書けます。
+
+\begin{lstlisting}
+const name = "JavaScript";
+console.log(`Hello ${name}!`);// => "Hello JavaScript!"
+\end{lstlisting}
+
+\hypertarget{get-char}{%
+\section{文字へのアクセス}\label{get-char}}
+
+文字列の特定の位置にある文字にはインデックス\index{もじれつ@文字列!いんでっくす@インデックス}\index{いんでっくす@インデックス}を指定してアクセスできます。
+これは、配列における要素へのアクセスにインデックスを指定するのと同じです。
+
+文字列では\texttt{文字列[インデックス]}のように指定した位置（インデックス）の文字へアクセスできます。
+インデックスの値は\texttt{0}以上\texttt{$2^{53} - 1$}未満の整数が指定できます。
+
+\begin{lstlisting}
+const str = "文字列";
+// 配列と同じようにインデックスでアクセスできる
+console.log(str[0]); // => "文"
+console.log(str[1]); // => "字"
+console.log(str[2]); // => "列"
+\end{lstlisting}
+
+また、存在しないインデックスへのアクセスでは配列やオブジェクトと同じように\texttt{undefined}を返します。
+
+\begin{lstlisting}
+const str = "文字列";
+// 42番目の要素は存在しない
+console.log(str[42]); // => undefined
+\end{lstlisting}
+
+\hypertarget{string-at}{%
+\subsection[String.prototype.at]{String.prototype.at\,\protect\icon{fig/es2022.eps}}\label{string-at}}\index{String.prototype.at@\texttt{String.prototype.at}}
+
+ES2022から\texttt{String.prototype.at}メソッドが追加されています。
+Stringの\texttt{at}\index{at@\texttt{at}}メソッドは、Arrayの\texttt{at}メソッドと同じく、相対的なインデックスを渡してその位置の文字へアクセスできます。
+\texttt{at}メソッドへ\texttt{-1}のようにマイナスのインデックスを渡した場合は、末尾から数えた位置の文字へアクセスできます。
+
+\begin{lstlisting}
+const str = "文字列";
+console.log(str.at(0)); // => "文"
+console.log(str.at(1)); // => "字"
+console.log(str.at(2)); // => "列"
+console.log(str.at(-1)); // => "列"
+\end{lstlisting}
+
+\hypertarget{what-is-string}{%
+\section{文字列とは}\label{what-is-string}}\index{もじれつ@文字列}
+
+今まで何気なく「文字列」という言葉を利用していましたが、ここでいう文字列とはどのようなものでしょうか？　コンピュータのメモリ上には文字列の「ア」といった文字をそのまま保存できないため、0と1からなるビット列へ変換する必要があります。
+この文字からビット列へ変換することを符号化\index{ふごうか@符号化}（エンコード\index{えんこーど@エンコード}）と呼びます。
+
+一方で、変換後のビット列が何の文字なのかを管理する表が必要になります。
+この文字に対応するビット列（ID）の一覧表のことを符号化文字集合\index{ふごうかもじしゅうごう@符号化文字集合}と呼びます。
+
+次の表は、Unicode\index{Unicode}という文字コードにおける符号化文字集合からカタカナの一部分を取り出したものです\footnote{Unicodeのカタカナの一覧
+  \url{https://unicode-table.com/jp/\#katakana}
+  から取り出したテーブルです。}。Unicodeはすべての文字に対してID（Code
+Point\index{Code Point}）を振ることを目的に作成されている仕様です。
+\begin{small}
+\begin{longtable}[l]{p{12mm}|p{4mm}|p{4mm}|p{4mm}|p{4mm}|p{4mm}|p{4mm}|p{4mm}|p{4mm}|p{4mm}|p{4mm}|p{4mm}|p{4mm}|p{4mm}|p{4mm}|p{4mm}|p{4mm}}
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}
+ & \textgt{0} & \textgt{1} & \textgt{2} & \textgt{3} & \textgt{4} & \textgt{5} & \textgt{6} & \textgt{7} & \textgt{8} & \textgt{9} & \textgt{A} & \textgt{B} & \textgt{C} & \textgt{D} & \textgt{E} &
+\textgt{F}\tabularnewline
+\hline
+\endhead
+30A0 & ゠ & ァ & ア & ィ & イ & ゥ & ウ & ェ & エ & ォ & オ & カ & ガ &
+キ & ギ & ク\tabularnewline
+30B0 & グ & ケ & ゲ & コ & ゴ & サ & ザ & シ & ジ & ス & ズ & セ & ゼ &
+ソ & ゾ & タ\tabularnewline
+30C0 & ダ & チ & ヂ & ッ & ツ & ヅ & テ & デ & ト & ド & ナ & ニ & ヌ &
+ネ & ノ & ハ\tabularnewline
+\hline
+\end{longtable}
+\end{small}
+JavaScript（ECMAScript）は文字コードとしてUnicodeを採用し、文字をエンコードする方式としてUTF-16を採用しています。
+UTF-16\index{UTF-16}とは、それぞれの文字を16ビットのビット列に変換するエンコード方式です。
+Unicodeでは1文字を表すのに使う最小限のビットの組み合わせを\textbf{Code
+Unit}\index{Code Unit}（符号単位\index{ふごうたんい@符号単位}）と呼び、UTF-16では各Code
+Unitのサイズが16ビット（2バイト）です。
+
+次のコードは、文字列を構成するCode
+Unitをhex値（16進数）にして表示する例です。
+Stringの\texttt{charCodeAt}\index{charCodeAt@\texttt{charCodeAt}}メソッドは、文字列の指定インデックスのCode
+Unitを整数として返します。 そのCode
+Unitの整数値をNumber\texttt{toString}\index{toString@\texttt{toString}}メソッドでhex値（16進数）にしています。
+
+\begin{lstlisting}
+const str = "アオイ";
+// それぞれの文字をCode Unitのhex値（16進数）に変換する
+// toStringの引数に16を渡すと16進数に変換される
+console.log(str.charCodeAt(0).toString(16)); // => "30a2"
+console.log(str.charCodeAt(1).toString(16)); // => "30aa"
+console.log(str.charCodeAt(2).toString(16));  // => "30a4"
+\end{lstlisting}
+
+逆に、Code
+Unitをhex値（16進数）から文字へと変換するには\texttt{String.fromCharCode}\index{String.fromCharCode@\texttt{String.fromCharCode}}メソッドを使います。
+次のコードでは、16進数の整数リテラルである\texttt{0x}で記述したCode
+Unitから文字列へと変換しています
+（\texttt{0x}リテラルについては「\hyperlink{data-type-and-literal}{データ型とリテラル}」の章を参照）。
+
+\begin{lstlisting}
+const str = String.fromCharCode(
+    0x30a2, // アのCode Unit
+    0x30aa, // オのCode Unit
+    0x30a4  // イのCode Unit
+);
+console.log(str); // => "アオイ"
+\end{lstlisting}
+
+これらの結果をまとめると、この文字列と文字列を構成するUTF-16のCode
+Unitとの関係は次のようになります。
+
+\begin{small}
+\begin{longtable}[l]{p{73mm}|p{20mm}|p{20mm}|p{20mm}}
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}\textgt{インデックス} & {\textgt 0} & {\textgt 1} & {\textgt 2}\tabularnewline
+\hline
+\endhead
+文字列 & ア & オ & イ\tabularnewline
+UTF-16のCode Unit（16進数） & 0x30A2 & 0x30AA & 0x30A4\tabularnewline
+\hline
+\end{longtable}
+\end{small}
+
+このように、JavaScriptにおける文字列は16ビットのCode
+Unitが順番に並んだものとして内部的に管理されています。
+これは、ECMAScriptの内部表現としてUTF-16を採用しているだけで、JavaScriptファイル（ソースコードを書いたファイル）のエンコーディングとは関係ありません。そのため、JavaScriptファイル自体のエンコードは、UTF-16以外の文字コードであっても問題ありません。
+
+UTF-16を利用していることはJavaScriptの内部的な表現であるため、気にする必要がないようにも思えます。
+しかし、このJavaScriptがUTF-16を利用していることは、これから見ていくStringのAPIにも影響しています。
+このUTF-16と文字列については、次の章である「\hyperlink{string-unicode}{文字列とUnicode}」で詳しく見ていきます。
+
+ここでは、「JavaScriptの文字列の各要素はUTF-16のCode
+Unitで構成されている」ということだけを覚えておけば問題ありません。
+
+\hypertarget{split-join}{%
+\section{文字列の分解と結合}\label{split-join}}\index{もじれつ@文字列!ぶんかい@分解}\index{もじれつ@文字列!けつごう@結合}
+
+文字列を配列へ分解するにはStringの\texttt{split}\index{split@\texttt{split}}メソッドを利用できます。
+一方、配列の要素を結合して文字列にするにはArrayの\texttt{join}\index{join@\texttt{join}}メソッドを利用できます。
+
+この２つはよく組み合わせて利用されるため、合わせて見ていきます。
+
+Stringの\texttt{split}メソッドは、第一引数に指定した区切り文字で文字列を分解した配列を返します。
+次のコードでは、文字列を\texttt{・}で区切った配列を作成しています。
+
+\begin{lstlisting}
+const strings = "赤・青・緑".split("・");
+console.log(strings); // => ["赤", "青", "緑"]
+\end{lstlisting}
+
+分解してできた文字列の配列を結合して文字列を作る際に、Arrayの\texttt{join}メソッドが利用できます。
+Arrayの\texttt{join}メソッドの第一引数には区切り文字を指定し、その区切り文字で結合した文字列を返します。
+
+この２つを合わせれば、区切り文字を\texttt{・}から\texttt{、}へ変換する処理を次のように書くことができます。
+\texttt{・}で文字列を分割（\texttt{split}）してから、区切り文字を\texttt{、}にして結合（\texttt{join}）すれば変換できます。
+
+\begin{lstlisting}
+const str = "赤・青・緑".split("・").join("、");
+console.log(str); // => "赤、青、緑"
+\end{lstlisting}
+
+Stringの\texttt{split}メソッドの第一引数には正規表現も指定できます。
+これを利用すると、次のように文字列をスペースで区切るような処理を簡単に書けます。
+\texttt{/\textbackslash s+/}は1つ以上のスペースにマッチする正規表現オブジェクトを作成する正規表現リテラルです。
+
+\begin{lstlisting}
+// 文字間に1つ以上のスペースがある
+const str = "a     b    c      d";
+// 1つ以上のスペースにマッチして分解する
+const strings = str.split(/\s+/);
+console.log(strings); // => ["a", "b", "c", "d"]
+\end{lstlisting}
+
+\hypertarget{length}{%
+\section{文字列の長さ}\label{length}}\index{もじれつ@文字列!ながさ@長さ}
+
+Stringの\texttt{length}\index{length@\texttt{length}}プロパティは文字列の要素数を返します。
+文字列の構成要素はCode
+Unitであるため、\texttt{length}プロパティはCode
+Unitの個数を返します。
+
+次の文字列は3つの要素（Code
+Unit\index{Code Unit}）が並んだものであるため、\texttt{length}プロパティは\texttt{3}を返します。
+
+\begin{lstlisting}
+console.log("文字列".length); // => 3
+\end{lstlisting}
+
+また、空文字列は要素数が\texttt{0}であるため、\texttt{length}プロパティの結果も\texttt{0}となります。
+
+\begin{lstlisting}
+console.log("".length); // => 0
+\end{lstlisting}
+
+\hypertarget{compare}{%
+\section{文字列の比較}\label{compare}}\index{もじれつ@文字列!ひかく@比較}
+
+文字列の比較には\texttt{===}（厳密比較演算子）を利用します。
+次の条件を満たしていれば同じ文字列となります。
+
+\begin{itemize}
+\item
+  文字列の要素であるCode Unitが同じ順番で並んでいるか
+\item
+  文字列の長さ（length）は同じか
+\end{itemize}
+
+難しく書いていますが、同じ文字列同士なら\texttt{===}（厳密比較演算子）の結果は\texttt{true}となります。
+
+\begin{lstlisting}
+console.log("文字列" === "文字列"); // => true
+// 一致しなければfalseとなる
+console.log("JS" === "ES"); // => false
+// 文字列の長さが異なるのでfalseとなる
+console.log("文字列" === "文字"); // => false
+\end{lstlisting}
+
+また、\texttt{===}などの比較演算子だけではなく、
+\texttt{>}、\texttt{<}、\texttt{>=}、\texttt{<=}など大小の関係演算子で文字列同士の比較もできます。
+
+これらの関係演算子も、文字列の要素であるCode
+Unit同士を先頭から順番に比較します。 文字列からCode
+Unitの数値を取得するには、Stringの\texttt{charCodeAt}メソッドを利用できます。
+
+次のコードでは、\texttt{ABC}と\texttt{ABD}を比較した場合にどちらが大きい（Code
+Unitの値が大きい）かを比較しています。
+
+\begin{lstlisting}
+// "A"と"B"のCode Unitは65と66
+console.log("A".charCodeAt(0)); // => 65
+console.log("B".charCodeAt(0)); // => 66
+// "A"（65）は"B"（66）よりCode Unitの値が小さい
+console.log("A" > "B"); // => false
+// 先頭から順番に比較し C > D が falseであるため
+console.log("ABC" > "ABD"); // => false
+\end{lstlisting}
+
+このように、関係演算子での文字列比較はCode Unit同士を比較しています。
+この結果を予測するのは難しく、また直感的ではない結果が生まれることも多いです。
+文字の順番は国や言語によっても異なるため、国際化\index{こくさいか@国際化}（Internationalization\index{Internationalization}）に関する知識も必要です。
+
+JavaScriptにおいても、\href{https://www.ecma-international.org/publications-and-standards/standards/ecma-402/}{ECMA-402}\index{ECMA-402}\footnote{\url{https://www.ecma-international.org/publications-and-standards/standards/ecma-402/}}というECMAScriptと関連する別の仕様として国際化についての取り決めがされています。
+この国際化に関するAPIを定義した\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Intl}{Intl}\index{Intl}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Intl}}というビルトインオブジェクトもありますが、このAPIについての詳細は省略します。
+
+\hypertarget{slice}{%
+\section{文字列の一部を取得}\label{slice}}\index{もじれつ@文字列!しゅとく@取得}
+
+文字列からその一部を取り出したい場合には、Stringの\texttt{slice}\index{slice@\texttt{slice}}メソッドや\texttt{substring}\index{substring@\texttt{substring}}メソッドが利用できます。
+
+\texttt{slice}メソッドについては、すでに配列で学んでいますが、基本的な動作は文字列でも同様です。
+まずは\texttt{slice}メソッドについて見ていきます。
+
+Stringの\texttt{slice}メソッドは、第一引数の開始位置から第二引数の終了位置（終了位置の要素は含まない）までの範囲を取り出した新しい文字列を返します。
+第二引数は省略でき、省略した場合は文字列の末尾まで含んだ新しい文字列を返します。
+
+位置にマイナスの値を指定した場合は文字列の末尾から数えた位置となります。
+また、第一引数の位置が第二引数の位置より大きい場合、常に空の文字列を返します。
+
+そのため、メソッドの引数の扱い方は\hyperlink{slice}{配列の\texttt{slice}メソッド}と同様です。
+
+\begin{lstlisting}
+const str = "ABCDE";
+console.log(str.slice(1)); // => "BCDE"
+console.log(str.slice(1, 5)); // => "BCDE"
+// マイナスを指定すると後ろからの位置となる
+console.log(str.slice(-1)); // => "E"
+// インデックスが1から4の範囲を取り出す
+console.log(str.slice(1, 4)); // => "BCD"
+// 第一引数 > 第二引数の場合、常に空文字列を返す
+console.log(str.slice(4, 1)); // => ""
+\end{lstlisting}
+
+Stringの\texttt{substring}メソッドは、\texttt{slice}メソッドと同じく第一引数に開始位置、第二引数に終了位置を指定し、その範囲を取り出して新しい文字列を返します。
+第二引数を省略した場合の挙動も同様で、省略した場合は文字列の末尾が終了位置となります。
+
+\texttt{slice}メソッドとは異なる点として、位置にマイナスの値を指定した場合は常に\texttt{0}として扱われます。
+また、第一引数の位置が第二引数の位置より大きい場合、第一引数と第二引数が入れ替わるという予想しにくい挙動となります。
+
+\begin{lstlisting}
+const str = "ABCDE";
+console.log(str.substring(1)); // => "BCDE"
+console.log(str.substring(1, 5)); // => "BCDE"
+// マイナスを指定すると0として扱われる
+console.log(str.substring(-1)); // => "ABCDE"
+// 位置:1から4の範囲を取り出す
+console.log(str.substring(1, 4)); // => "BCD"
+// 第一引数 > 第二引数の場合、引数が入れ替わる
+// str.substring(1, 4)と同じ結果になる
+console.log(str.substring(4, 1)); // => "BCD"
+\end{lstlisting}
+
+このように、マイナスの位置や引数が交換される挙動はわかりやすいものとは言えません。
+そのため、\texttt{slice}メソッドと\texttt{substring}\index{substring@\texttt{substring}}メソッドに指定する引数は、どちらとも同じ結果となる範囲に限定したほうが直感的な挙動となります。
+つまり、指定するインデックスは0以上にして、第二引数を指定する場合は\texttt{第一引数の位置 < 第二引数の位置}にするということです。
+
+Stringの\texttt{slice}メソッドは\texttt{indexOf}\index{indexOf@\texttt{indexOf}}メソッドなどの位置を取得するものと組み合わせて使うことが多いでしょう。
+次のコードでは、\texttt{?}の位置を\texttt{indexOf}\index{indexOf@\texttt{indexOf}}メソッドで取得し、それ以降の文字列を\texttt{slice}メソッドで切り出しています。
+
+\begin{lstlisting}
+const url = "https://example.com?param=1";
+const indexOfQuery = url.indexOf("?");
+const queryString = url.slice(indexOfQuery);
+console.log(queryString); // => "?param=1"
+\end{lstlisting}
+
+また、配列とは異なりプリミティブ型の値である文字列は、\texttt{slice}メソッドと\texttt{substring}メソッド共に非破壊的です。
+機能的な違いがほとんどないため、どちらを利用するかは好みの問題となるでしょう。
+
+\hypertarget{search}{%
+\section{文字列の検索}\label{search}}\index{もじれつ@文字列!けんさく@検索}
+
+文字列の検索方法として、大きく分けて文字列による検索と正規表現による検索があります。
+
+指定した文字列が文字列中に含まれているかを検索する方法として、Stringメソッドには取得したい結果ごとにメソッドが用意されています。
+ここでは、次の3種類の結果を取得する方法について文字列と正規表現それぞれの検索方法を見ていきます。
+
+\begin{itemize}
+\item
+  マッチした箇所のインデックスを取得
+\item
+  マッチした文字列の取得
+\item
+  マッチしたかどうかの真偽値を取得
+\end{itemize}
+
+\hypertarget{search-by-string}{%
+\subsection{文字列による検索}\label{search-by-string}}
+
+\texttt{String}オブジェクトには、指定した文字列で検索するメソッドが用意されています。
+
+\hypertarget{search-index-by-string}{%
+\subsubsection{文字列によるインデックスの取得}\label{search-index-by-string}}
+
+Stringの\texttt{indexOf}\index{indexOf@\texttt{indexOf}}メソッドと\texttt{lastIndexOf}\index{lastIndexOf@\texttt{lastIndexOf}}メソッドは、指定した文字列で検索し、その文字列が最初に現れたインデックスを返します。
+これらは配列のArrayの\texttt{indexOf}メソッドと同じで、厳密等価演算子（\texttt{===}）で文字列を検索します。
+一致する文字列がない場合は\texttt{-1}を返します。
+
+\begin{itemize}
+\item
+  \texttt{文字列.indexOf("検索文字列")}:
+  先頭から検索し、指定された文字列が最初に現れたインデックスを返す
+\item
+  \texttt{文字列.lastIndexOf("検索文字列")}:
+  末尾から検索し、指定された文字列が最初に現れたインデックスを返す
+\end{itemize}
+
+どちらのメソッドも一致する文字列が複数個ある場合でも、指定した検索文字列を最初に見つけた時点で検索は終了します。
+
+\begin{lstlisting}
+// 検索対象となる文字列
+const str = "にわにはにわにわとりがいる";
+// indexOfは先頭から検索してインデックスを返す - "**にわ**にはにわにわとりがいる"
+// "にわ"の先頭のインデックスを返すため 0 となる
+console.log(str.indexOf("にわ")); // => 0
+// lastIndexOfは末尾から検索してインデックスを返す- "にわにはにわ**にわ**とりがいる"
+console.log(str.lastIndexOf("にわ")); // => 6
+// 指定した文字列が見つからない場合は -1 を返す
+console.log(str.indexOf("未知のキーワード")); // => -1
+\end{lstlisting}
+
+\hypertarget{match-by-string}{%
+\subsection{文字列にマッチした文字列の取得}\label{match-by-string}}
+
+文字列を検索してマッチした文字列は、検索文字列そのものになるので自明です。
+
+次のコードでは\texttt{"Script"}という文字列で検索していますが、その検索文字列にマッチする文字列はもちろん\texttt{"Script"}になります。
+
+\begin{lstlisting}
+const str = "JavaScript";
+const searchWord = "Script";
+const index = str.indexOf(searchWord);
+if (index !== -1) {
+    console.log(`${searchWord}が見つかりました`);
+} else {
+    console.log(`${searchWord}は見つかりませんでした`);
+}
+\end{lstlisting}
+
+\hypertarget{test-by-string}{%
+\subsubsection{真偽値の取得}\label{test-by-string}}\index{しんぎち@真偽値}
+
+「文字列」に「検索文字列」が含まれているかを検索する方法がいくつか用意されています。
+次の3つのメソッドはES2015で導入されました。
+
+\begin{itemize}
+\item
+  \texttt{String.prototype.startsWith(検索文字列)}\index{String.prototype.startsWith@\texttt{String.prototype.startsWith}}\,\protect\iconl{fig/es2015.eps}:
+  検索文字列が先頭にあるかの真偽値を返す
+\item
+  \texttt{String.prototype.endsWith(検索文字列)}\index{String.prototype.endsWith@\texttt{String.prototype.endsWith}}\,\protect\iconl{fig/es2015.eps}:
+  検索文字列が末尾にあるかの真偽値を返す
+\item
+  \texttt{String.prototype.includes(検索文字列)}\index{String.prototype.includes@\texttt{String.prototype.includes}}\,\protect\iconl{fig/es2015.eps}:
+  検索文字列を含むかの真偽値を返す
+\end{itemize}
+
+具体的な例をいくつか見てみましょう。
+
+\begin{lstlisting}
+// 検索対象となる文字列
+const str = "にわにはにわにわとりがいる";
+// startsWith - 検索文字列が先頭ならtrue
+console.log(str.startsWith("にわ")); // => true
+console.log(str.startsWith("いる")); // => false
+// endsWith - 検索文字列が末尾ならtrue
+console.log(str.endsWith("にわ")); // => false
+console.log(str.endsWith("いる")); // => true
+// includes - 検索文字列が含まれるならtrue
+console.log(str.includes("にわ")); // => true
+console.log(str.includes("いる")); // => true
+\end{lstlisting}
+
+\hypertarget{regexp-object}{%
+\section{正規表現オブジェクト}\label{regexp-object}}\index{せいきひょうげんおぶじぇくと@正規表現オブジェクト}
+
+文字列による検索では、固定の文字列にマッチするものしか検索できません。
+一方で正規表現による検索では、あるパターン（規則性）にマッチするという柔軟な検索ができます。
+
+正規表現\index{せいきひょうげん@正規表現}は正規表現オブジェクト（\texttt{RegExp}\index{RegExp@\texttt{RegExp}}オブジェクト）として表現されます。
+正規表現オブジェクトはマッチする範囲を決める\texttt{パターン}\index{ぱたーん@パターン}\index{せいきひょうげん@正規表現!ぱたーん@パターン}と正規表現の検索モードを指定する\texttt{フラグ}\index{ふらぐ@フラグ}\index{せいきひょうげん@正規表現!ふらぐ@フラグ}の2つで構成されます。
+正規表現のパターン内では、次の文字は\textbf{\textgt{特殊文字}}\index{とくしゅもじ@特殊文字}\index{せいきひょうげん@正規表現!とくしゅもじ@特殊文字}と呼ばれ、特別な意味を持ちます。特殊文字として解釈されないように入力する場合には\texttt{\textbackslash}\index{\\@\texttt{\textbackslash}}（バックスラッシュ\index{ばっくすらっしゅ@バックスラッシュ}）でエスケープ\index{えすけーぷ@エスケープ}する必要があります。
+
+\begin{lstlisting}
+\ ^ $ . * + ? ( ) [ ] { } |
+\end{lstlisting}
+
+正規表現オブジェクトを作成するには、正規表現リテラル\index{せいきひょうげんりてらる@正規表現リテラル}と\texttt{RegExp}コンストラクタを使う2つの方法があります。
+
+\begin{lstlisting}
+// 正規表現リテラルで正規表現オブジェクトを作成
+const patternA = /パターン/フラグ;
+// RegExpコンストラクタで正規表現オブジェクトを作成
+const patternB = new RegExp("パターン文字列", "フラグ");
+\end{lstlisting}
+
+正規表現リテラルは、\texttt{/}\index{/@\texttt{/}}と\texttt{/}のリテラル内に正規表現のパターンを書くことで、正規表現オブジェクトを作成できます。
+次のコードでは、\texttt{+}という1回以上の繰り返しを意味する特殊文字を使い、\texttt{a}が1回以上連続する文字列にマッチする正規表現オブジェクトを作成しています。
+
+\begin{lstlisting}
+const pattern = /a+/;
+\end{lstlisting}
+
+正規表現オブジェクトを作成するもうひとつの方法として\texttt{RegExp}コンストラクタがあります。
+\texttt{RegExp}コンストラクタでは、文字列から正規表現オブジェクトを作成できます。
+
+次のコードでは、\texttt{RegExp}コンストラクタを使って\texttt{a}が1文字以上連続している文字列にマッチする正規表現オブジェクトを作成しています。
+これは先ほどの正規表現リテラルで作成した正規表現オブジェクトと同じ意味になります。
+
+\begin{lstlisting}
+const pattern = new RegExp("a+");
+\end{lstlisting}
+
+\hypertarget{difference-regexp-literal-regexp-constructor}{%
+\subsection{\texorpdfstring{正規表現リテラルと\texttt{RegExp}コンストラクタの違い}{正規表現リテラルとRegExpコンストラクタの違い}}\label{difference-regexp-literal-regexp-constructor}}\index{せいきひょうげんりてらる@正規表現リテラル}\index{RegExp@\texttt{RegExp}}
+
+正規表現リテラルと\texttt{RegExp}コンストラクタの違いとして、正規表現のパターンが評価されるタイミングの違いがあります。
+正規表現リテラルは、ソースコードをロード（パース）した段階で正規表現のパターンが評価されます。
+一方で、\texttt{RegExp}コンストラクタでは通常の関数と同じように、\texttt{RegExp}コンストラクタを呼び出すまで正規表現のパターンは評価されません。
+
+単独の\texttt{[}という不正なパターンである正規表現を例に、評価されているタイミングの違いを見てみます。
+\texttt{[}は対になる\texttt{]}と組み合わせて利用する特殊文字であるため、正規表現のパターンに単独で書くと構文エラーの例外が発生します。
+
+正規表現リテラルは、ソースコードのロード時に正規表現のパターンが評価されるため、
+次のように\texttt{main}関数を呼び出していなくても構文エラー（\texttt{SyntaxError}）が発生します。
+
+\begin{lstlisting}
+// 正規表現リテラルはロード時にパターンが評価され、例外が発生する
+function main() {
+    // [は対となる]を組み合わせる特殊文字であるため、単独で書けない
+    const invalidPattern = /[/;
+}
+
+// main関数を呼び出さなくても例外が発生する
+\end{lstlisting}
+
+一方で、\texttt{RegExp}コンストラクタは実行時に正規表現のパターンが評価されるため、
+\texttt{main}関数を呼び出すことで初めて構文エラー（\texttt{SyntaxError}）が発生します。
+
+\begin{lstlisting}
+// RegExpコンストラクタは実行時にパターンが評価され、例外が発生する
+function main() {
+    // [は対となる]を組み合わせる特殊文字であるため、単独で書けない
+    const invalidPattern = new RegExp("[");
+}
+
+// main関数を呼び出すことで初めて例外が発生する
+main();
+\end{lstlisting}
+
+これを言い換えると、正規表現リテラルはコードを書いた時点で決まったパターンの正規表現オブジェクトを作成する構文です。
+一方で、\texttt{RegExp}コンストラクタは変数と組み合わせるなど、実行時に変わることがあるパターンの正規表現オブジェクトを作成できます。
+
+例として、指定個数のホワイトスペース（空白文字）が連続した場合にマッチする正規表現オブジェクトで比較してみます。
+
+次のコードでは、正規表現リテラルを使って3つ連続するホワイトスペースにマッチする正規表現オブジェクトを作成しています。
+\texttt{\textbackslash s}\index{\\s@\texttt{\textbackslash s}}はスペースやタブなどのホワイトスペースにマッチする特殊文字です。
+また、\texttt{\{数字\}}は指定した回数だけ繰り返しを意味する特殊文字です。
+
+\begin{lstlisting}
+// 3つの連続するスペースなどにマッチする正規表現
+const pattern = /\s{3}/;
+\end{lstlisting}
+
+正規表現リテラルは、ロード時に正規表現のパターンが評価されるため、\texttt{\textbackslash s}の連続する回数を動的に変更することはできません。
+一方で、\texttt{RegExp}コンストラクタは、実行時に正規表現のパターンが評価されるため、変数を含んだ正規表現オブジェクトを作成できます。
+
+次のコードでは、\texttt{RegExp}コンストラクタで変数\texttt{spaceCount}の数だけ連続するホワイトスペースにマッチする正規表現オブジェクトを作成しています。
+注意点として、\texttt{\textbackslash}（バックスラッシュ）自体が、文字列中ではエスケープ文字であることに注意してください。
+そのため、\texttt{RegExp}コンストラクタの引数のパターン文字列では、バックスラッシュからはじまる特殊文字は\texttt{\textbackslash}（バックスラッシュ）自体をエスケープする必要があります。
+
+\begin{lstlisting}
+const spaceCount = 3;
+// /\s{3}/の正規表現を文字列から作成する
+// "\"がエスケープ文字であるため、"\"自身を文字列として書くには、"\\"のように2つ書く
+const pattern = new RegExp(`\\s{${spaceCount}}`);
+\end{lstlisting}
+
+このように、\texttt{RegExp}コンストラクタは文字列から正規表現オブジェクトを作成できますが、特殊文字のエスケープが必要となります。
+そのため、正規表現リテラルで表現できる場合は、リテラルを利用したほうが簡潔でパフォーマンスもよいです。
+正規表現のパターンに変数を利用する場合などは、\texttt{RegExp}コンストラクタを利用します。
+
+\hypertarget{search-by-regexp}{%
+\subsection{正規表現による検索}\label{search-by-regexp}}\index{せいきひょうげん@正規表現!けんさく@検索}
+
+正規表現による検索は、正規表現オブジェクトと対応した\texttt{String}オブジェクトまたは\texttt{RegExp}オブジェクトのメソッドを利用します。
+
+\hypertarget{search-index-by-regexp}{%
+\subsubsection{正規表現によるインデックスの取得}\label{search-index-by-regexp}}\index{せいきひょうげん@正規表現!いんでっくす@インデックス}
+
+Stringの\texttt{indexOf}\index{indexOf@\texttt{indexOf}}メソッドの正規表現版とも言えるStringの\texttt{search}\index{search@\texttt{search}}メソッドがあります。
+\texttt{search}\index{search@\texttt{search}}メソッドは正規表現のパターンにマッチした箇所のインデックスを返し、マッチする文字列がない場合は\texttt{-1}を返します。
+
+\begin{itemize}
+\item
+  \texttt{String.prototype.indexOf(検索文字列)}:
+  指定された文字列にマッチした箇所のインデックスを返す
+\item
+  \texttt{String.prototype.search(/パターン/)}:
+  指定された正規表現のパターンにマッチした箇所のインデックスを返す
+\end{itemize}
+
+次のコードでは、数字が3つ連続しているかを検索し、該当した箇所のインデックスを返しています。
+\texttt{\textbackslash d}\index{\\d@\texttt{\textbackslash d}}は、1文字の数字（\texttt{0}から\texttt{9}）にマッチする特殊文字です。
+
+\begin{lstlisting}
+const str = "ABC123EFG";
+const searchPattern = /\d{3}/;
+console.log(str.search(searchPattern)); // => 3
+\end{lstlisting}
+
+\hypertarget{match-by-regexp}{%
+\subsubsection{正規表現によるマッチした文字列の取得}\label{match-by-regexp}}\index{せいきひょうげん@正規表現!もじれつ@文字列}
+
+文字列による検索では、検索した文字列そのものがマッチした文字列になります。
+しかし、\texttt{search}メソッドの正規表現による検索は、正規表現パターンによる検索であるため、検索してマッチした文字列の長さは固定ではありません。
+つまり、次のようにStringの\texttt{search}メソッドでマッチしたインデックスのみを取得しても、実際にマッチした文字列がわかりません。
+
+\begin{lstlisting}
+const str = "abc123def";
+// 連続した数字にマッチする正規表現
+const searchPattern = /\d+/;
+const index = str.search(searchPattern); // => 3
+// indexだけではマッチした文字列の長さがわからない
+str.slice(index, index + マッチした文字列の長さ); // マッチした文字列は取得できない
+\end{lstlisting}
+
+そのため、マッチした文字列を取得するStringの\texttt{match}\index{match@\texttt{match}}メソッドと\texttt{matchAll}\index{matchAll@\texttt{matchAll}}メソッドが用意されています。
+また、これらのメソッドは正規表現のマッチを文字列の最後まで繰り返す\texttt{g}フラグ\index{gフラグ@\texttt{g}フラグ}（globalの略称）によって挙動が変わります。
+
+\hypertarget{match}{%
+\subsubsection{マッチした文字列の取得}\label {match}}
+
+まずは、マッチした文字列を取得するStringの\texttt{match}\index{match@\texttt{match}}メソッドから見ていきます。
+\texttt{match}メソッドは、正規表現の\texttt{/パターン/}が\texttt{"文字列"}にマッチすると、マッチした文字列に関する情報を返すメソッドです。
+
+\begin{lstlisting}
+"文字列".match(/パターン/);
+\end{lstlisting}
+
+\texttt{match}メソッドで検索した結果、正規表現にマッチする文字列がなかった場合は\texttt{null}を返します。
+
+\begin{lstlisting}
+console.log("文字列".match(/マッチしないパターン/)); // => null
+\end{lstlisting}
+
+\texttt{match}メソッドは正規表現の\texttt{g}フラグなしのパターンで検索した場合、最初にマッチしたものが見つかった時点で検索が終了します。
+このときの\texttt{match}メソッドの返り値は、\texttt{index}プロパティと\texttt{input}プロパティをもった特殊な配列となります。
+\texttt{index}プロパティにはマッチした文字列の先頭のインデックスが、\texttt{input}プロパティには検索対象となった文字列全体が含まれています。
+
+次のコードの\texttt{/[a-zA-Z]+/}という正規表現は\texttt{a}から\texttt{Z}のどれかの文字が1つ以上連続しているものにマッチします。
+この正規表現にマッチした文字列は、返り値の配列からインデックスアクセスで取得できます。
+\texttt{g}フラグなしでは、最初にマッチしたものを見つけた時点で検索が終了するので、返り値の配列には1つの要素しか含まれていません。
+
+\begin{lstlisting}
+const str = "ABC あいう DE えお";
+const alphabetsPattern = /[a-zA-Z]+/;
+// gフラグなしでは、最初の結果のみを含んだ特殊な配列を返す
+const results = str.match(alphabetsPattern);
+console.log(results.length); // => 1
+// マッチした文字列はインデックスでアクセスできる
+console.log(results[0]); // => "ABC"
+// マッチした文字列の先頭のインデックス
+console.log(results.index); // => 0
+// 検索対象となった文字列全体
+console.log(results.input); // => "ABC あいう DE えお"
+\end{lstlisting}
+
+\texttt{match}メソッドは正規表現の\texttt{g}フラグありのパターンで検索した場合、マッチしたすべての文字列を含んだ配列を返します。
+
+次のコードの\texttt{/[a-zA-Z]+/g}という正規表現は\texttt{a}から\texttt{Z}のどれかの文字が1つ以上連続しているものに繰り返しマッチします。
+この正規表現にマッチする箇所は"ABC"と"DE"の2つとなるため、\texttt{match}メソッドの返り値である配列にも2つの要素が含まれています。
+
+\begin{lstlisting}
+const str = "ABC あいう DE えお";
+const alphabetsPattern = /[a-zA-Z]+/g;
+// gフラグありでは、すべての検索結果を含む配列を返す
+const resultsWithG = str.match(alphabetsPattern);
+console.log(resultsWithG.length); // => 2
+console.log(resultsWithG[0]); // => "ABC"
+console.log(resultsWithG[1]); // => "DE"
+// indexとinputはgフラグありの場合は追加されない
+console.log(resultsWithG.index); // => undefined
+console.log(resultsWithG.input); // => undefined
+\end{lstlisting}
+
+このときの\texttt{match}メソッドの返り値である配列には\texttt{index}と\texttt{input}プロパティはありません。
+なぜなら、複数の箇所にマッチする場合においては、1つの\texttt{index}プロパティでは意味が一意に決まらないためです。
+
+Stringの\texttt{match}メソッドの挙動をまとめると次のようになります。
+
+\begin{itemize}
+\item 
+  マッチしない場合は、\texttt{null}を返す
+\item
+  マッチした場合は、マッチした文字列を含んだ特殊な配列を返す
+\item
+  正規表現の\texttt{g}フラグがある場合は、マッチしたすべての結果を含んだただの配列を返す
+\end{itemize}
+
+ES2020では、正規表現の\texttt{g}フラグを使った繰り返しマッチする場合においても、それぞれマッチした文字列ごとの情報を得るためのStringの\texttt{matchAll}が追加されています。
+\texttt{matchAll}\index{matchAll@\texttt{matchAll}}メソッドは、マッチした結果をIteratorで返します。
+
+次のコードでは、\texttt{matchAll}メソッドでアルファベットにマッチする結果のIteratorオブジェクトを取得しています。
+Iteratorオブジェクトは\texttt{for...of}構文で反復処理すると、Iteratorから値を1つずつ取り出して処理できます（詳細は「\hyperlink{loop-and-iteration}{ループと反復処理}」の章を参照）。
+このときの反復処理で取得できる値は、それぞれのマッチした文字列と\texttt{index}と\texttt{input}プロパティを持つ特殊な配列となります。
+
+\begin{lstlisting}
+const str = "ABC あいう DE えお";
+const alphabetsPattern = /[a-zA-Z]+/g;
+// matchAllはIteratorを返す
+const matchesIterator = str.matchAll(alphabetsPattern);
+for (const match of matchesIterator) {
+    // マッチした要素ごとの情報を含んでいる
+    console.log(`match: "${match[0]}", index: ${match.index}, input: "${match.input}"`);
+}
+// 次の順番でコンソールに出力される
+// match: "ABC", index: 0, input: "ABC あいう DE えお"
+// match: "DE", index: 8, input: "ABC あいう DE えお"
+\end{lstlisting}
+
+そのため、正規表現の\texttt{g}フラグを使った繰り返しマッチを行う場合には、\texttt{match}メソッドではなく\texttt{matchAll}メソッドを利用します。
+また、\texttt{matchAll}メソッドは\texttt{g}フラグなしの正規表現はサポートしていないため、\texttt{g}フラグなしの正規表現を渡した場合は例外が発生します。
+
+\hypertarget{match-capture-by-regexp}{%
+\subsubsection{マッチした文字列の一部を取得}\label{match-capture-by-regexp}}
+
+Stringの\texttt{match}メソッドと\texttt{matchAll}メソッドは、どちらも正規表現のキャプチャリングに対応しています。
+キャプチャリングとは、正規表現中で\texttt{/パターン1(パターン2)/}のようにカッコで囲んだ部分を取り出すことです。
+このキャプチャリングによって、正規表現でマッチした一部分だけを取り出せます。
+
+\texttt{match}メソッドと\texttt{matchAll}メソッドはどちらもマッチした結果を配列として返します。
+
+そのマッチしているパターンにキャプチャが含まれている場合は、返り値の配列へキャプチャした部分が追加されていきます。
+配列の先頭にはマッチした文字列全体が入り、順番にキャプチャリング（\texttt{(}と\texttt{)}）で囲んだ範囲が配列に含まれます。
+
+\begin{lstlisting}
+const [マッチした全体の文字列, キャプチャ1, キャプチャ2] = 文字列.match(/パターン(キャプチャ1)と(キャプチャ2)/);
+\end{lstlisting}
+
+次のコードでは、\texttt{ECMAScript 数字}の\texttt{数字}部分だけを取り出そうとしています。
+Stringの\texttt{match}メソッドとキャプチャリングによって数字（\texttt{\\d+}）にマッチする部分を取り出しています。
+
+\begin{lstlisting}
+// "ECMAScript (数字+)"にマッチするが、欲しい文字列は数字の部分のみ
+const pattern = /ECMAScript (\d+)/;
+// 返り値は0番目がマッチした全体、1番目がキャプチャの1番目というように対応している
+// [マッチした全部の文字列, キャプチャの1番目, キャプチャの2番目 ....]
+const [all, capture1] = "ECMAScript 6".match(pattern);
+console.log(all); // => "ECMAScript 6"
+console.log(capture1); // => "6"
+\end{lstlisting}
+
+正規表現の\texttt{g}フラグを使い繰り返し文字列にマッチする場合には、\texttt{matchAll}メソッドを利用します。
+先ほども紹介したように、\texttt{match}メソッドは繰り返しマッチした場合に、それぞれ個別のマッチした情報を取得できないためです。
+
+次のコードでは、\texttt{ES数字}の数字（\texttt{\\d+}）にマッチする部分を取り出しています。
+\texttt{matchAll}の返り値であるIteratorを反復処理することで、それぞれマッチしたキャプチャを取り出しています。
+
+\begin{lstlisting}
+// "ES(数字+)"にマッチするが、欲しい文字列は数字の部分のみ
+const pattern = /ES(\d+)/g;
+// iteratorを返す
+const matchesIterator = "ES2015、ES2016、ES2017".matchAll(pattern);
+for (const match of matchesIterator) {
+    // マッチした要素ごとの情報を含んでいる
+    // 0番目はマッチした文字列全体、1番目がキャプチャの1番目である数字
+    console.log(`match: "${match[0]}", capture1: ${match[1]}, 
+    index: ${match.index}, input: "${match.input}"`);
+}
+// 次の順番でコンソールに出力される
+// match: "ES2015", capture1: 2015, index: 0, input: "ES2015、ES2016、ES2017"
+// match: "ES2016", capture1: 2016, index: 7, input: "ES2015、ES2016、ES2017"
+// match: "ES2017", capture1: 2017, index: 14, input: "ES2015、ES2016、ES2017"
+\end{lstlisting}
+
+\begin{tcolorbox}[enhanced jigsaw,breakable,title=RegExp.prototype.execでのString.prototype.matchAll]\label{regexp-exec}\index{RegExp.prototype.exec@\texttt{RegExp.prototype.exec}}\index{String.prototype.matchAll@\texttt{String.prototype.matchAll}}
+
+Stringの\texttt{matchAll}\index{matchAll@\texttt{matchAll}}メソッドは、ES2020で導入されたメソッドです。
+それまでは、RegExpの\texttt{exec}メソッドというStringの\texttt{match}メソッドによく似た挙動をするメソッドを利用して、Stringの\texttt{matchAll}メソッド相当の表現を実装していました。
+
+RegExpの\texttt{exec}\index{exec@\texttt{exec}}メソッドは、引数に文字列を受け取るメソッドです。
+
+\begin{lstlisting}
+/pattern/.exec("文字列");
+\end{lstlisting}
+
+RegExpの\texttt{exec}メソッドは\texttt{g}フラグなしのパターンで検索した場合、マッチした最初の結果のみを含む特殊な配列を返します。
+このときの\texttt{exec}\index{exec@\texttt{exec}}メソッドの返り値である配列が\texttt{index}\index{index@\texttt{index}}プロパティと\texttt{input}\index{input@\texttt{input}}プロパティが追加された特殊な配列となるのは、Stringの\texttt{match}メソッドと同様です。
+
+\begin{lstlisting}
+const str = "ABC あいう DE えお";
+const alphabetsPattern = /[a-zA-Z]+/;
+// gフラグなしでは、最初の結果のみを持つ配列を返す
+const results = alphabetsPattern.exec(str);
+console.log(results.length); // => 1
+console.log(results[0]); // => "ABC"
+// マッチした文字列の先頭のインデックス
+console.log(results.index); // => 0
+// 検索対象となった文字列全体
+console.log(results.input); // => "ABC あいう DE えお"
+\end{lstlisting}
+
+RegExpの\texttt{exec}メソッドは\texttt{g}フラグありのパターンで検索した場合も、マッチした最初の結果のみを含む特殊な配列を返します。
+この点はStringの\texttt{match}メソッドとは異なります。
+また、最後にマッチした文字列末尾のインデックスを正規表現オブジェクトの\texttt{lastIndex}\index{lastIndex@\texttt{lastIndex}}プロパティに記録します。
+そしてもう一度\texttt{exec}メソッドを呼び出すと最後にマッチした末尾のインデックス（\texttt{lastIndex}プロパティの位置）から検索が開始されます。
+
+\begin{lstlisting}
+const str = "ABC あいう DE えお";
+const alphabetsPattern = /[a-zA-Z]+/g;
+// まだ一度も検索していないので、lastIndexは0となり先頭から検索が開始される
+console.log(alphabetsPattern.lastIndex); // => 0
+// gフラグありでも、一回目の結果は同じだが、lastIndexプロパティが更新される
+const result1 = alphabetsPattern.exec(str);
+console.log(result1[0]); // => "ABC"
+console.log(alphabetsPattern.lastIndex); // => 3
+// 2回目の検索が、lastIndexの値のインデックスから開始される
+const result2 = alphabetsPattern.exec(str);
+console.log(result2[0]); // => "DE"
+console.log(alphabetsPattern.lastIndex); // => 10
+// 検索結果が見つからない場合はnullを返し、lastIndexプロパティは0にリセットされる
+const result3 = alphabetsPattern.exec(str);
+console.log(result3); // => null
+console.log(alphabetsPattern.lastIndex); // => 0
+\end{lstlisting}
+
+RegExpの\texttt{exec}メソッドの挙動をまとめると次のようになります。
+正規表現の\texttt{g}フラグがない場合は、Stringの\texttt{match}メソッドと同じ結果です。
+一方で、正規表現の\texttt{g}フラグがある場合は、Stringの\texttt{match}メソッドとは異なる挙動をします。
+
+\begin{itemize}
+\item
+  マッチしない場合は、\texttt{null}を返す
+\item
+  マッチした場合は、マッチした文字列を含んだ特殊な配列を返す
+\item
+  正規表現の\texttt{g}フラグがある場合は、マッチした文字列を含んだ特殊な配列を返し、マッチした末尾のインデックスを正規表現オブジェクトの\texttt{lastIndex}プロパティに記録する
+\end{itemize}
+
+この正規表現の\texttt{g}フラグと\texttt{exec}メソッドで検索した場合に、\texttt{lastIndex}プロパティが検索ごとに更新される仕組みを利用して、マッチするすべての結果を取得できます。
+
+次のコードでは、RegExpの\texttt{exec}メソッドを使い、アルファベットにマッチした結果を\texttt{matches}に保持しています。
+\texttt{g}フラグがある場合の\texttt{exec}メソッドでは最後にマッチした位置が記録されているため、\texttt{while}文で反復処理して続きから検索しています。
+また、\texttt{exec}メソッドはマッチしなければ\texttt{null}を返すため、マッチするものがなくなればwhile文から自動的に脱出します。
+
+\begin{lstlisting}
+const str = "ABC あいう DE えお";
+const alphabetsPattern = /[a-zA-Z]+/g;
+let matches;
+while (matches = alphabetsPattern.exec(str)) {
+    // RegExpのexecメソッドの返り値はindexプロパティなどを含む特殊な配列
+    console.log(`match: ${matches[0]}, index: ${matches.index}, 
+    lastIndex: ${alphabetsPattern.lastIndex}`);
+}
+// 次の順番でコンソールに出力される
+// match: ABC, index: 0, lastIndex: 3
+// match: DE, index: 8, lastIndex: 10
+\end{lstlisting}
+
+このようにRegExpの\texttt{exec}メソッドと正規表現の\texttt{g}フラグを使い、Stringの\texttt{matchAll}メソッド相当の反復処理を実装していました。
+RegExpの\texttt{exec}はIteratorオブジェクトという反復処理のためオブジェクトが導入される以前からあるメソッドです。
+
+Stringの\texttt{matchAll}がIteratorを扱うわかりやすい反復処理に比べて、RegExpの\texttt{exec}メソッドは\texttt{while}文などで手動で反復処理を書く必要があるため直感的ではありません。
+そのため、Stringの\texttt{matchAll}メソッドが利用できる場合に、RegExpの\texttt{exec}メソッドを利用する必要はありません。
+\end{tcolorbox}
+
+\hypertarget{test-by-regexp}{%
+\subsubsection{真偽値を取得}\label{test-by-regexp}}\index{しんぎち@真偽値}
+
+正規表現オブジェクトを使って、そのパターンにマッチするかをテストするには、RegExpの\texttt{test}メソッドを利用できます。
+
+正規表現のパターンには、パターンの位置を指定する特殊文字があります。
+そのため、「文字列による検索」で登場したメソッドは、特殊文字とRegExpの\texttt{test}メソッドで表現できます。
+
+\begin{itemize}
+\item
+  Stringの\texttt{startsWith}相当:
+  \texttt{/\^{}パターン/.test(文字列)}
+
+  \begin{itemize}
+  \item
+    \texttt{\^{}}\index{^@\texttt{\textasciicircum}}は先頭に一致する特殊文字
+  \end{itemize}
+\item
+  Stringの\texttt{endsWith}相当:
+  \texttt{/パターン\$/.test(文字列)}
+
+  \begin{itemize}
+  \item
+    \texttt{\$}\index{$@\texttt{\$}}は末尾に一致する特殊文字
+  \end{itemize}
+\item
+  Stringの\texttt{includes}相当:
+  \texttt{/パターン/.test(文字列)}
+\end{itemize}
+
+具体的な例を見てみましょう。
+
+\begin{lstlisting}
+// 検索対象となる文字列
+const str = "にわにはにわにわとりがいる";
+// ^ - 検索文字列が先頭ならtrue
+console.log(/^にわ/.test(str)); // => true
+console.log(/^いる/.test(str)); // => false
+// $ - 検索文字列が末尾ならtrue
+console.log(/にわ$/.test(str)); // => false
+console.log(/いる$/.test(str)); // => true
+// 検索文字列が含まれるならtrue
+console.log(/にわ/.test(str)); // => true
+console.log(/いる/.test(str)); // => true
+\end{lstlisting}
+
+そのほかにも、正規表現では繰り返しや文字の集合などを特殊文字で表現できるため柔軟な検索が可能です。
+
+\hypertarget{string-or-regexp}{%
+\subsection{文字列と正規表現どちらを使うべきか}\label{string-or-regexp}}
+
+Stringメソッドでの検索と同等のことは、正規表現でもできることがわかりました。
+Stringメソッドと正規表現で同じ結果が得られる場合はどちらを利用するのがよいでしょうか？
+
+正規表現は曖昧な検索に強く、特殊文字を使うことで柔軟な検索結果を得られます。
+一方、曖昧であるため、コードを見ても何を検索しているかが正規表現のパターン自体からわからないことがあります。
+
+次の例は、\texttt{/}からはじまり\texttt{/}で終わる文字列かを判定しようとしています。
+この判定を正規表現とStringメソッドを使ってそれぞれ実装しています
+（これは意図的に正規表現に不利な例となっています）。
+
+正規表現の場合、\texttt{/\^{}\textbackslash/.*\textbackslash/\$/}のようにパターンそのものを見ても何をしたいのかはひと目ではわかりにくいです。
+Stringメソッドの場合は、\texttt{/}からはじまり\texttt{/}で終わるかを判定していることがそのままコードに表現できています。
+
+\begin{lstlisting}
+const str = "/正規表現のような文字列/";
+// 正規表現で/からはじまり/で終わる文字列のパターン
+const regExpLikePattern = /^\/.*\/$/;
+// RegExpのtestメソッドでパターンにマッチするかを判定
+console.log(regExpLikePattern.test(str)); // => true
+// Stringメソッドで、/からはじまり/で終わる文字列かを判定する関数
+const isRegExpLikeString = (str) => {
+    return str.startsWith("/") && str.endsWith("/");
+};
+console.log(isRegExpLikeString(str)); // => true
+\end{lstlisting}
+
+このように、正規表現は柔軟で便利ですが、コード上から意図が消えてしまいやすいです。
+そのため、正規表現を扱う際にはコメントや変数名で具体的な意図を補足したほうがよいでしょう。
+
+「Stringメソッドと正規表現で同じ結果が得られる場合はどちらを利用するのがよいでしょうか？」という疑問に戻ります。
+Stringメソッドで表現できることはStringメソッドで表現し、柔軟性や曖昧な検索が必要な場合はコメントとともに正規表現を利用するという方針を推奨します。
+
+正規表現についてより詳しくは\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions}{MDNの正規表現ドキュメント}\index{MDN}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions}}や、コンソールで実行しながら試せる\href{https://regex101.com/}{regex101}\index{regex101}\footnote{\url{https://regex101.com/}}のようなサイトを参照してください。
+
+\hypertarget{replace-delete}{%
+\section{文字列の置換/削除}\label{replace-delete}}\index{もじれつ@文字列!ちかん@置換}\index{もじれつ@文字列!さくじょ@削除}
+
+文字列の一部を置換したり削除するにはStringの\texttt{replace}\index{replace@\texttt{replace}}メソッドを利用します。
+「\hyperlink{data-type-and-literal}{データ型とリテラル}」の章で説明したようにプリミティブ型である文字列は不変な特性を持ちます。
+そのため、文字列から一部の文字を削除するような操作はできません。
+
+つまり、\texttt{delete}\index{delete@\texttt{delete}}演算子は文字列に対して利用できません。
+strict mode\index{strict mode}では、\texttt{delete}演算子で削除できないプロパティを削除しようとするとエラーが発生します。
+strict modeでない場合は、エラーも発生せず単に無視されます（詳細は「JavaScriptとは」の\hyperlink{strict-mode}{strict mode}を参照）。
+
+\begin{lstlisting}
+"use strict";
+const str = "文字列";
+// 文字列の0番目の削除を試みるがStrict modeでは例外が発生する
+delete str[0]; 
+// => TypeError: property 0 is non-configurable and can't be deleted
+\end{lstlisting}
+
+代わりに、Stringの\texttt{replace}メソッドで、削除したい文字を取り除いた新しい文字列を返すことで削除を表現します。
+\texttt{replace}\index{replace@\texttt{replace}}メソッドは、\textbf{\textgt{文字列}}から第一引数の\texttt{検索文字列}または正規表現にマッチする部分を、第二引数の\texttt{置換文字列}へ置換します。
+第一引数には、文字列と正規表現を指定できます。
+
+\begin{lstlisting}
+文字列.replace("検索文字列", "置換文字列");
+文字列.replace(/パターン/, "置換文字列");
+\end{lstlisting}
+
+次のように、\texttt{replace}メソッドで削除したい部分を空文字列へ置換することで、文字列を削除できます。
+
+\begin{lstlisting}
+const str = "文字列";
+// "文字"を""（空文字列）へ置換することで"削除"を表現
+const newStr = str.replace("文字", "");
+console.log(newStr); // => "列"
+\end{lstlisting}
+
+\texttt{replace}メソッドには正規表現も指定できます。
+\texttt{g}フラグを有効化した正規表現を渡すことで、文字列からパターンにマッチするものをすべて置換できます。
+
+\begin{lstlisting}
+// 検索対象となる文字列
+const str = "にわにはにわにわとりがいる";
+// 文字列を指定した場合は、最初に一致したものだけが置換される
+console.log(str.replace("にわ", "niwa")); // => "niwaにはにわにわとりがいる"
+// gフラグなし正規表現の場合は、最初に一致したものだけが置換される
+console.log(str.replace(/にわ/, "niwa")); // => "niwaにはにわにわとりがいる"
+// gフラグあり正規表現の場合は、繰り返し置換を行う
+console.log(str.replace(/にわ/g, "niwa")); // => "niwaにはniwaniwaとりがいる"
+\end{lstlisting}
+
+文字列から検索文字列にマッチするものをすべて置換する場合には、ES2021で追加されたStringの\texttt{replaceAll}\index{replaceAll@\texttt{replaceAll}}メソッドも利用できます。
+\texttt{replace}メソッドでは、最初に一致したものだけが置換されますが、\texttt{replaceAll}メソッドでは一致したものがすべて置換されます。
+
+Stringの\texttt{replace}と\texttt{g}フラグ付きの正規表現を使った場合との違いとして、
+Stringの\texttt{replaceAll}メソッドでは、正規表現ではなく文字列を使ってすべてを置換できます。
+そのため、正規表現では特殊な意味を持つ\texttt{?}のような文字列も検索文字列にそのまま書いて置換ができます。
+
+\begin{lstlisting}
+// 検索対象となる文字列
+const str = "???";
+// replaceメソッドに文字列を指定した場合は、最初に一致したものだけが置換される
+console.log(str.replace("?", "!")); // => "!??"
+// replaceAllメソッドに文字列を指定した場合は、一致したものがすべて置換される
+console.log(str.replaceAll("?", "!")); // => "!!!"
+// replaceメソッドの場合は、正規表現の特殊文字はエスケープが必要となる
+console.log(str.replace(/\?/g, "!")); // => "!!!"
+// replaceAllメソッドにも正規表現を渡せるが、この場合はエスケープが必要となるためreplaceと同じ
+console.log(str.replaceAll(/\?/g, "!")); // => "!!!"
+\end{lstlisting}
+
+\texttt{replace}メソッドと\texttt{replaceAll}メソッドでは、キャプチャした文字列を利用して複雑な置換処理もできます。
+
+\texttt{replace}メソッドと\texttt{replaceAll}メソッドの第二引数にはコールバック関数を渡せます。
+第一引数の\texttt{パターン}にマッチした部分がコールバック関数の返り値で置換されます。
+コールバック関数の第一引数には\texttt{パターン}に一致した文字列全体、第二引数以降へキャプチャした文字列が順番に入ります。
+
+\begin{lstlisting}
+const 置換した結果の文字列 = 文字列.replace(/(パターン)/, (all, ...captures) => {
+    return 置換したい文字列;
+});
+\end{lstlisting}
+
+例として、\texttt{2017-03-01}を\texttt{2017年03月01日}に置換する処理を書いてみましょう。
+
+\texttt{/(\textbackslash d\{4\})-(\textbackslash d\{2\})-(\textbackslash d\{2\})/g}という正規表現が\texttt{"2017-03-01"}という文字列にマッチします。
+コールバック関数の\texttt{year}、\texttt{month}、\texttt{day}にはそれぞれキャプチャした文字列が入り、
+マッチした文字列全体がコールバック関数の返り値に置換されます。
+
+\begin{lstlisting}
+function toDateJa(dateString) {
+    // パターンにマッチしたときのみ、コールバック関数で置換処理が行われる
+    return dateString.replace(/(\d{4})-(\d{2})-(\d{2})/g, (all, year, month, day)
+     => {
+        // allには、マッチした文字列全体が入っているが今回は利用しない
+        // allが次の返す値で置換されるイメージ
+        return `${year}年${month}月${day}日`;
+    });
+}
+// マッチしない文字列の場合は、そのままの文字列が返る
+console.log(toDateJa("本日ハ晴天ナリ")); // => "本日ハ晴天ナリ"
+// マッチした場合は置換した結果を返す
+console.log(toDateJa("今日は2017-03-01です")); // => "今日は2017年03月01日です"
+\end{lstlisting}
+
+\hypertarget{built}{%
+\section{文字列の組み立て}\label{built}}\index{もじれつ@文字列!くみたて@組み立て}
+
+最後に文字列の組み立てについて見ていきましょう。
+最初に述べたようにこの章の目的は、「自由な文字列を作れるようになること」です。
+
+文字列を単純に結合したり置換することで新しい文字列を作れることがわかりました。
+一方、構造的な文字列の場合は単純に結合するだけでは意味が異なってしまうことがあります。
+
+ここでの構造的な文字列とは、URL文字列\index{URLもじれつ@URL文字列}やファイルパス文字列\index{ふぁいるぱすもじれつ@ファイルパス文字列}といった文字列中にコンテキストを持っているものを指します。
+たとえば、URL文字列は次のような構造を持っており、それぞれの要素に入る文字列の種類などが決められています（詳細は「\href{https://url.spec.whatwg.org/}{URL
+Standard}\footnote{\url{https://url.spec.whatwg.org/}}」を参照）。
+
+\begin{lstlisting}
+"https://example.com/index.html"
+ ^^^^^   ^^^^^^^^^^^ ^^^^^^^^^^
+   |          |     　　　|
+ scheme      host     pathname
+\end{lstlisting}
+
+これらの文字列を作成する場合は、文字列結合演算子（\texttt{+}）で単純に結合するよりも専用の関数を用意するほうが安全です。
+
+たとえば、次のように\texttt{baseURL}と\texttt{pathname}を渡し、それらを結合したURLにあるリソースを取得する\texttt{getResource}関数があるとします。
+この\texttt{getResource}関数には、ベースURL（\texttt{baseURL}）とパス（\texttt{pathname}）を引数に渡して利用します。
+
+\begin{lstlisting}
+// baseURLとpathnameにあるリソースを取得する
+function getResource(baseURL, pathname) {
+    const url = baseURL + pathname;
+    console.log(url); // => "http://example.com/resouces/example.js"
+    // 省略) リソースを取得する処理...
+}
+const baseURL = "http://example.com/resouces";
+const pathname = "/example.js";
+getResource(baseURL, pathname);
+\end{lstlisting}
+
+しかし、人によっては、\texttt{baseURL}の末尾には\texttt{/}が含まれると考える場合もあります。
+\texttt{getResource}関数は、\texttt{baseURL}の末尾に\texttt{/}が含まれているケースを想定していませんでした。
+そのため、意図しないURLからリソースを取得するという問題が発生します。
+
+\begin{lstlisting}
+// baseURLとpathnameにあるリソースを取得する
+function getResource(baseURL, pathname) {
+    const url = baseURL + pathname;
+    // /と/が２つ重なってしまっている
+    console.log(url); // => "http://example.com/resouces//example.js"
+    // 省略) リソースを取得する処理...
+}
+const baseURL = "http://example.com/resouces/";
+const pathname = "/example.js";
+getResource(baseURL, pathname);
+\end{lstlisting}
+
+この問題が難しいところは、結合してできた\texttt{url}は文字列としては正しいため、エラーではないということです。
+つまり、一見すると問題ないように見えますが、実際に動かしてみて初めてわかるような問題が生じやすいのです。
+
+そのため、このような構造的な文字列を扱う場合は、専用の関数や専用のオブジェクトを作ることで安全に文字列を処理します。
+
+先ほどのような、URL文字列の結合を安全に行うには、入力される\texttt{baseURL}文字列の表記揺れを吸収する仕組みを作成します。
+次の\texttt{baseJoin}関数はベースURLとパスを結合した文字列を返しますが、ベースURLの末尾に\texttt{/}があるかの揺れを吸収しています。
+
+\begin{lstlisting}
+// ベースURLとパスを結合した文字列を返す
+function baseJoin(baseURL, pathname) {
+    // 末尾に / がある場合は、/ を削除してから結合する
+    const stripSlashBaseURL = baseURL.replace(/\/$/, "");
+    return stripSlashBaseURL + pathname;
+}
+// baseURLとpathnameにあるリソースを取得する
+function getResource(baseURL, pathname) {
+    const url = baseJoin(baseURL, pathname);
+    // baseURLの末尾に / があってもなくても同じ結果となる
+    console.log(url); // => "http://example.com/resouces/example.js"
+    // 省略) リソースを取得する処理...
+}
+const baseURL = "http://example.com/resouces/";
+const pathname = "/example.js";
+getResource(baseURL, pathname);
+\end{lstlisting}
+
+ECMAScriptの範囲ではありませんが、URLやファイルパスといった典型的なものに対してはすでに専用のものがあります。
+URLを扱うものとしてウェブ標準APIである\href{https://developer.mozilla.org/ja/docs/Web/API/URL}{URL}\index{URL}オブジェクト\footnote{\url{https://developer.mozilla.org/ja/docs/Web/API/URL}}、ファイルパスを扱うものとしてはNode.jsのコアモジュールである\href{https://nodejs.org/api/path.html}{Path}\index{Path}モジュール\footnote{\url{https://nodejs.org/api/path.html}}などがあります。専用の仕組みがある場合は、直接\texttt{+}演算子で結合するような文字列処理は避けるべきです。
+
+\hypertarget{tagged-template-function}{%
+\subsection[タグつきテンプレート関数]{タグつきテンプレート関数\,\protect\icon{fig/es2015.eps}}\label{tagged-template-function}}\index{たぐつきてんぷれーとかんすう@タグつきテンプレート関数}
+
+JavaScriptでは、テンプレートとなる文字列に対して一部分だけを変更する処理を行う方法として、タグつきテンプレート関数があります。
+タグつきテンプレート関数とは、\texttt{関数}\lstinline{`}\texttt{テンプレート}\lstinline{`}という形式で記述する関数とテンプレートリテラル\index{てんぷれーとりてらる@テンプレートリテラル}を合わせた表現です。
+関数の呼び出しに\texttt{関数}\lstinline{(`}\texttt{テンプレート}\lstinline{`)}ではなく、\texttt{関数}\lstinline{`}\texttt{テンプレート}\lstinline{`}という書式を使っていることに注意してください。
+
+通常の関数として呼び出した場合、関数の引数にはただの文字列が渡ってきます。
+
+\begin{lstlisting}
+function tag(str) {
+    // 引数strにはただの文字列が渡ってくる
+    console.log(str); // => "template 0 literal 1"
+}
+// ()をつけて関数を呼び出す
+tag(`template ${0} literal ${1}`);
+\end{lstlisting}
+
+しかし、\texttt{()}ではなく
+\texttt{関数}\lstinline{`}\texttt{テンプレート}\lstinline{`}
+と記述することで、\texttt{関数}が受け取る引数にはタグつきテンプレート向けの値が渡ってきます。
+このとき、関数の第一引数にはテンプレートの中身が\texttt{\$\{\}}\index{$\{\}@\texttt{\$\{\}}}で区切られた文字列の配列、第二引数以降は\texttt{\$\{\}}の中に書いた式の評価結果が順番に渡されます。
+
+\begin{lstlisting}
+// 呼び出し方によって受け取る引数の形式が変わる
+function tag(strings, ...values) {
+    // stringsは文字列のパーツが${}で区切られた配列となる
+    console.log(strings); // => ["template "," literal ",""]
+    // valuesには${}の評価値が順番に入る
+    console.log(values); // => [0, 1]
+}
+// ()をつけずにテンプレートを呼び出す
+tag`template ${0} literal ${1}`;
+\end{lstlisting}
+
+どちらも同じ関数ですが、\texttt{関数}\lstinline{`}\texttt{テンプレート}\lstinline{`}という書式で呼び出すと渡される引数が特殊な形になります。
+そのため、タグつきテンプレートで利用する関数のことを\textbf{\textgt{タグ関数}}\index{たぐかんすう@タグ関数}（Tag
+function\index{Tag function}）と呼び分けることにします。
+
+まずは引数をどう扱うかを見ていくために、タグつきテンプレートの内容をそのまま結合して返す\texttt{stringRaw}というタグ関数を実装してみます。
+Arrayの\texttt{reduce}メソッドを使うことで、テンプレートの文字列と変数を順番に結合できます（\hyperlink{array-reduce}{\texttt{reduce}メソッド}については「\hyperlink{array}{配列}」の章を参照）。
+
+\begin{lstlisting}
+// テンプレートを順番どおりに結合した文字列を返すタグ関数
+function stringRaw(strings, ...values) {
+    // 配列から文字列を返すためにreduceメソッドを利用する
+    // resultの初期値はstrings[0]の値となる
+    return strings.reduce((result, str, i) => {
+        console.log([result, values[i - 1], str]);
+        // それぞれループで次のような出力となる
+        // 1度目: ["template ", 0, " literal "]
+        // 2度目: ["template 0 literal ", 1, ""]
+        return result + values[i - 1] + str;
+    });
+}
+// 関数`テンプレートリテラル` という形で呼び出す
+console.log(stringRaw`template ${0} literal ${1}`); 
+// => "template 0 literal 1"
+\end{lstlisting}
+
+ここで実装した\texttt{stringRaw}タグ関数と同様のものが、\texttt{String.raw}\index{String.raw@\texttt{String.raw}}メソッド\,\protect\iconl{fig/es2015.eps}\,として提供されています。
+
+\begin{lstlisting}
+console.log(String.raw`template ${0} literal ${1}`); 
+// => "template 0 literal 1"
+\end{lstlisting}
+
+タグつきテンプレート関数を利用することで、テンプレートとなる文字列に対して特定の形式に変換したデータを埋め込むといったテンプレート処理が行えます。
+
+次のコードでは、テンプレート中の変数をURLエスケープしてから埋め込むタグつきテンプレート関数を定義しています。
+\texttt{encodeURIComponent}関数は引数の値をURLエスケープする関数です。
+\texttt{escapeURL}では受け取った変数を\texttt{encodeURIComponent}関数でURLエスケープしてから埋め込んでいます。
+
+\begin{lstlisting}
+// 変数をURLエスケープするタグ関数
+function escapeURL(strings, ...values) {
+    return strings.reduce((result, str, i) => {
+        return result + encodeURIComponent(values[i - 1]) + str;
+    });
+}
+
+const input = "A&B";
+// escapeURLタグ関数を使ったタグつきテンプレート
+const escapedURL = escapeURL`https://example.com/search?q=${input}&sort=desc`;
+console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
+\end{lstlisting}
+
+このようにタグつきテンプレートリテラルを使うことで、コンテキストに応じた処理をつけ加えることができます。
+この機能はJavaScript内にHTMLなどの別の言語やDSL（ドメイン固有言語）を埋め込む際に利用されることが多いです。
+
+\hypertarget{string-summary}{%
+\section{まとめ}\label{string-summary}}
+
+この章では、JavaScriptにおける文字列（\texttt{String}オブジェクト）について紹介しました。
+文字列を処理するStringメソッドにはさまざまなものがあり、正規表現と組み合わせて使うものも含まれます。
+
+正規表現は、正規表現のみで1冊の本が作れるようなJavaScript言語内にある別言語です。
+詳細は\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions}{MDNの正規表現ドキュメント}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions}}なども参照してください。
+
+文字列は一見すると単純に見えますが、文字列にはURLやパスといったコンテキストを持つ文字列もあります。
+それらの文字列を安全に扱うためには、コンテキストに応じた処理が必要になります。
+また、タグつきテンプレートリテラルを利用することで、テンプレート中の変数を自動でエスケープするといった処理を実現できます。
