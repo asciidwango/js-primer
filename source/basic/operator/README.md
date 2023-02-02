@@ -1069,7 +1069,7 @@ console.log(addPrefix("文字列", "カスタム:")); // => "カスタム:文字
 const a = 1;
 const b = 2;
 const c = 3;
-console.log(a + b * c); // 7
+console.log(a + b * c); // => 7
 console.log((a + b) * c); // => 9
 ```
 
