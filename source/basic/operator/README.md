@@ -656,7 +656,7 @@ num << bit;
 {{book.console}}
 ```js
 console.log(     9 << 2); // => 36
-console.log(0b1111 << 2); // => 0b11_1100
+console.log(0b1001 << 2); // => 0b10_0100
 ```
 
 ### 右シフト演算子（`>>`） {#right-shift}
