@@ -8,6 +8,9 @@ on:
       - '**.jpeg'
       - '**.png'
       - '**.webp'
+permissions:
+  contents: write
+  pull-requests: write
 jobs:
   build:
     # Only run on Pull Requests within the same repository, and not from forks.

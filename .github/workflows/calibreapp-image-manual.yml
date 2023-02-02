@@ -1,6 +1,9 @@
 name: Compress Images
 on:
   workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
 jobs:
   build:
     name: calibreapp/image-actions
