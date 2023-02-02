@@ -68,7 +68,7 @@ const bookCategory = "プログラミング";
 `let`キーワードでは、値の再代入が可能な変数を宣言できます。
 `let`の使い方は`const`とほとんど同じです。
 
-次のコードでは、`bookTitle`という変数を宣言し、初期値を`"JavaScript Primer"`という文字列であることを定義しています。
+次のコードでは、`bookTitle`という変数を宣言し、初期値が`"JavaScript Primer"`という文字列であることを定義しています。
 
 ```js
 let bookTitle = "JavaScript Primer";
@@ -134,7 +134,7 @@ bookTitle = "新しいタイトル";
 ```js
 // "x"という変数を定義する
 var x = 1;
-// 同じ変数名の変数"x"を定義できる
+// 同じ名前の変数"x"を定義できる
 var x = 2;
 // 変数xは2となる
 ```
