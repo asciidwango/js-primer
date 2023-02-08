@@ -116,9 +116,9 @@ if (null) {
 複数の条件分岐を書く場合は、if文に続けてelse if文を使うことで書けます。
 たとえば、次の3つの条件分岐するプログラムを考えます。
 
-- `version` が "ES5" ならば "ECMAScript 5" と出力
-- `version` が "ES6" ならば "ECMAScript 2015" と出力
-- `version` が "ES7" ならば "ECMAScript 2016" と出力
+- `version` が `"ES5"` ならば `"ECMAScript 5"` と出力
+- `version` が `"ES6"` ならば `"ECMAScript 2015"` と出力
+- `version` が `"ES7"` ならば `"ECMAScript 2016"` と出力
 
 次のコードでは、if文とelse if文を使うことで3つの条件を書いています。
 変数`version`の値が`"ES6"`であるため、コンソールには`"ECMAScript 2015"`が出力されます。
