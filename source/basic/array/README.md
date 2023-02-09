@@ -540,10 +540,23 @@ console.log(array.flat()); // => ["A", "B", "C"]
 {{book.console}}
 <!-- doctest: ReferenceError -->
 ```js
-const array = [];
-array.splice(インデックス, 削除する要素数);
+const array = ['a', 'b', 'c', 'd'];
+
+// 指定したインデックスを先頭として、そこから指定した数の要素を削除
+// array.splice(インデックス, 削除する要素数);
+
+// 戻り値として、削除された要素を含む配列を返す
+const deletedValues1 = array.splice(0, 1);
+console.log(deletedValues1); // => [ 'a' ]
+// index: 0を先頭として、そこから1要素だけ削除されている。
+console.log(array); // => [ 'b', 'c', 'd' ]
+
 // 削除と同時に要素の追加もできる
-array.splice(インデックス, 削除する要素数, ...追加する要素);
+// array.splice(インデックス, 削除する要素数, ...追加する要素);
+// index: 1から1文字削除("c")し、そこに"x", "y" を追加する
+const deletedValues2 = array.splice(1, 1, "x", "y")
+console.log(array) // => [ 'b', 'x', 'y', 'd' ]
+console.log(deletedValues2) // => [ 'c' ]
 ```
 
 たとえば、配列のインデックスが`1`の要素を削除するには、インデックス`1`から`1`つの要素を削除するという指定をする必要があります。
