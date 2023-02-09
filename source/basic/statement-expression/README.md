@@ -154,7 +154,7 @@ undefined // ここでブロック内で定義した変数`count`は参照でき
 これは、ブロックスコープという仕組みによるものですが、詳しい仕組みについては「[関数とスコープ][]」の章で解説します。
 今は、ブロック文を使うとREPLでの試行錯誤がしやすいということだけ知っていれば問題ありません。
 
-## function宣言（文）とfunction式 {#function-statement-and-function-expression}
+## 関数宣言（文）と関数式 {#function-statement-and-function-expression}
 
 「[関数と宣言][]」の章において、関数を定義する方法を学びました。
 functionキーワードから文を開始する**関数宣言**と、変数へ**関数式**を代入する方法があります。
