@@ -1476,7 +1476,7 @@
     [<span class="hljs-string">&quot;c&quot;</span>, <span class="hljs-string">&quot;d&quot;</span>]
 ];
 </code></pre>
-<p>作成した配列の要素へインデックスとなる数値を、<code>配列[インデックス]</code>と記述することで、
+<p>作成した配列の要素のインデックスとなる数値を、<code>配列[インデックス]</code>と記述することで、
 そのインデックスの要素を配列から読み取れます。
 配列の先頭要素のインデックスは<code>0</code>となります。配列のインデックスは、<code>0</code>以上<code>2^32 - 1</code>未満の整数となります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -1526,7 +1526,7 @@
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 未定義の箇所が1つ含まれる疎な配列</span>
 <span class="hljs-comment">// インデックスが1の値を省略しているので、カンマが2つ続いていることに注意</span>
-<span class="hljs-keyword">const</span> sparseArray = [<span class="hljs-number">1</span>,, <span class="hljs-number">3</span>];
+<span class="hljs-keyword">const</span> sparseArray = [<span class="hljs-number">1</span>, , <span class="hljs-number">3</span>];
 <span class="hljs-built_in">console</span>.log(sparseArray.length); <span class="hljs-comment">// =&gt; 3</span>
 <span class="hljs-comment">// 1番目の要素は存在しないため undefined が返る</span>
 <span class="hljs-built_in">console</span>.log(sparseArray[<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; undefined</span>
@@ -1707,7 +1707,7 @@ Arrayの<code>at</code>メソッドは、<code>配列[インデックス]</code>
 <span class="hljs-built_in">console</span>.log(array.slice(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>)); <span class="hljs-comment">// =&gt; [&quot;B&quot;, &quot;C&quot;, &quot;D&quot;]</span>
 <span class="hljs-comment">// 第二引数を省略した場合は、第一引数から末尾の要素までを取り出す</span>
 <span class="hljs-built_in">console</span>.log(array.slice(<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; [&quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;]</span>
-<span class="hljs-comment">// マイナスを指定すると後ろからの数えた位置となる</span>
+<span class="hljs-comment">// マイナスを指定すると後ろから数えた位置となる</span>
 <span class="hljs-built_in">console</span>.log(array.slice(-<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; [&quot;E&quot;]</span>
 <span class="hljs-comment">// 第一引数と第二引数が同じ場合は、空の配列を返す</span>
 <span class="hljs-built_in">console</span>.log(array.slice(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; []</span>
@@ -1751,7 +1751,7 @@ Arrayの<code>includes</code>メソッドは配列に指定要素が含まれて
 }
 </code></pre>
 <p><code>includes</code>メソッドは、<code>indexOf</code>メソッドと同様、異なるオブジェクトだが値が同じものを見つけたい場合には利用できません。
-Arrayの<code>find</code>メソッドのようにテストするコールバック関数を利用して、真偽値を得るにはArrayの<code>some</code>メソッドを利用できます。</p>
+Arrayの<code>find</code>メソッドのようにテストするコールバック関数を利用して真偽値を得るには、Arrayの<code>some</code>メソッドを利用できます。</p>
 <p>Arrayの<code>some</code>メソッドはテストするコールバック関数にマッチする要素があるなら<code>true</code>を返し、存在しない場合は<code>false</code>を返します
 （「<a href="../loop/#array-some">ループと反復処理</a>」の章を参照）。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -1829,11 +1829,11 @@ array.unshift(<span class="hljs-string">&quot;S&quot;</span>); <span class="hljs
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2019" } --></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [[[<span class="hljs-string">&quot;A&quot;</span>], <span class="hljs-string">&quot;B&quot;</span>], <span class="hljs-string">&quot;C&quot;</span>];
-<span class="hljs-comment">// 引数なしは 1 を指定した場合と同じ</span>
+<span class="hljs-comment">// 引数なしは1を指定した場合と同じ</span>
 <span class="hljs-built_in">console</span>.log(array.flat()); <span class="hljs-comment">// =&gt; [[&quot;A&quot;], &quot;B&quot;, &quot;C&quot;]</span>
 <span class="hljs-built_in">console</span>.log(array.flat(<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; [[&quot;A&quot;], &quot;B&quot;, &quot;C&quot;]</span>
 <span class="hljs-built_in">console</span>.log(array.flat(<span class="hljs-number">2</span>)); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
-<span class="hljs-comment">// すべてをフラット化するには Infinity を渡す</span>
+<span class="hljs-comment">// すべてをフラット化するにはInfinityを渡す</span>
 <span class="hljs-built_in">console</span>.log(array.flat(<span class="hljs-literal">Infinity</span>)); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
 </code></pre>
 <p>また、Arrayの<code>flat</code>メソッドは必ず新しい配列を作成して返すメソッドです。
@@ -1850,8 +1850,7 @@ array.unshift(<span class="hljs-string">&quot;S&quot;</span>); <span class="hljs
 配列の任意のインデックスの要素を削除するにはArrayの<code>splice</code>メソッドを利用できます。</p>
 <p><code>splice</code>メソッドを利用すると、削除した要素を自動で詰めることができます。
 <code>splice</code>メソッドは指定したインデックスから、指定した数だけ要素を取り除き、必要ならば要素を同時に追加できます。</p>
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
-<!-- doctest: ReferenceError --></p>
+<!-- doctest: ReferenceError -->
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [];
 array.splice(インデックス, 削除する要素数);
 <span class="hljs-comment">// 削除と同時に要素の追加もできる</span>
@@ -2303,7 +2302,7 @@ myFunc(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string"
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"配列は値を順番に格納できるオブジェクトです。この配列の作成、更新、削除などの基本的な操作や実際に使い方についてを紹介します。また配列における破壊的なメソッドと非破壊的メソッドの違いについても紹介します。","title":"配列","level":"1.3.14","depth":2,"next":{"title":"文字列","level":"1.3.15","depth":2,"path":"basic/string/README.md","ref":"./basic/string/README.md","articles":[]},"previous":{"title":"プロトタイプオブジェクト","level":"1.3.13","depth":2,"path":"basic/prototype-object/README.md","ref":"./basic/prototype-object/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/array/README.md","mtime":"2023-02-10T02:18:55.537Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-02-10T02:19:19.608Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"配列は値を順番に格納できるオブジェクトです。この配列の作成、更新、削除などの基本的な操作や実際に使い方についてを紹介します。また配列における破壊的なメソッドと非破壊的メソッドの違いについても紹介します。","title":"配列","level":"1.3.14","depth":2,"next":{"title":"文字列","level":"1.3.15","depth":2,"path":"basic/string/README.md","ref":"./basic/string/README.md","articles":[]},"previous":{"title":"プロトタイプオブジェクト","level":"1.3.13","depth":2,"path":"basic/prototype-object/README.md","ref":"./basic/prototype-object/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","ga","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"ga":{"configuration":"auto","token":"UA-2184335-18"},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/array/README.md","mtime":"2023-02-11T00:37:58.828Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-02-11T00:38:30.829Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
