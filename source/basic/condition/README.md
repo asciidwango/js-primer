@@ -270,7 +270,7 @@ switch文のcase節では基本的に`break;`を使ってswitch文を抜ける�
 別の方法で書けないかを考えるべきサインとなります。
 
 switch文はif文の代用として使うのではなく、次のように関数と組み合わせて条件に対する値を返すパターンとして使うことが多いです。
-関数については「[関数と宣言][]」の章で紹介します。
+関数については「[関数と宣言][]」の章を参照してください。
 
 {{book.console}}
 [import, switch-return-example.js](./src/switch/switch-return-example.js)
