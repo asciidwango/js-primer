@@ -339,7 +339,7 @@ JavaScriptの`const`は値を固定するのではなく、変数への再代入
 
 ```js
 const obj = { key: "value" };
-obj = {}; // => SyntaxError
+obj = {}; // => TypeError
 ```
 
 作成したオブジェクトのプロパティの変更を防止するには`Object.freeze`メソッドを利用する必要があります。
