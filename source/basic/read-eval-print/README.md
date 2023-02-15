@@ -49,7 +49,7 @@ REPL機能を使うには、まずFirefoxの開発者ツールを次のいずれ
 - Firefox メニュー（メニューバーがある場合や macOS では、ツールメニュー）の "ブラウザーツール"のサブメニューから "ウェブ開発ツール" を選択する
 - キーボードショートカット Ctrl+Shift+K（macOS では Command+Option+K）を押下する
 
-詳細は"[Firefox DevTools User Docs][]"を参照してください。
+詳細は"[Firefox DevTools User Docs](https://firefox-source-docs.mozilla.org/devtools-user/)"を参照してください。
 
 ![FirefoxでWebコンソールを開いた状態](./img/web-console.png)
 
