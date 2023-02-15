@@ -402,7 +402,7 @@
         this.parentNode.querySelector("input").focus();
     });
 </script>
-<script>
+<script defer>
     var search = docsearch({
         apiKey: "fd28ebaba94be0c39fb9fa1b2fed4f23", // use a SEARCH-ONLY api key here
         indexName: "asciidwango",
@@ -425,15 +425,5 @@
         });
     });
 </script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DWY0DLHWB6"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-DWY0DLHWB6');
-</script>
-
 {% endblock %}
 
