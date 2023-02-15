@@ -14,7 +14,6 @@
     "include-codeblock",
     "anchors",
     "canonical-link",
-    "ga",
     "js-console",
     "github-issue-feedback",
     "sandpack"
@@ -48,9 +47,6 @@
     },
     "canonical-link": {
       "baseURL": "https://jsprimer.net"
-    },
-    "ga": {
-      "token": "UA-2184335-18"
     }
   },
   "pdf": {
