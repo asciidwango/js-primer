@@ -49,7 +49,7 @@ REPL機能を使うには、まずFirefoxの開発者ツールを次のいずれ
 - Firefox メニュー（メニューバーがある場合や macOS では、ツールメニュー）の "ブラウザーツール"のサブメニューから "ウェブ開発ツール" を選択する
 - キーボードショートカット Ctrl+Shift+K（macOS では Command+Option+K）を押下する
 
-詳細は"[Firefox DevTools User Docs](https://firefox-source-docs.mozilla.org/devtools-user/)"を参照してください。
+詳細は"[Firefox DevTools User Docs][]"を参照してください。
 
 ![FirefoxでWebコンソールを開いた状態](./img/web-console.png)
 
@@ -341,7 +341,7 @@ JavaScriptにおいては多くのエラーはすでに類似するケースが�
 エラーを過度に怖がる必要はありません。エラーメッセージなどのヒントを使ってエラーを修正していけるようにしましょう。
 
 [Firefox]: https://www.mozilla.org/ja/firefox/new/
-[ブラウザーの開発者ツールとは？]: https://developer.mozilla.org/ja/docs/Learn/Common_questions/What_are_browser_developer_tools
+[Firefox DevTools User Docs]: https://firefox-source-docs.mozilla.org/devtools-user/
 [Visual Studio Code]: https://code.visualstudio.com/
 [Google]: https://www.google.com/
 [Stack Overflow]: https://stackoverflow.com/
