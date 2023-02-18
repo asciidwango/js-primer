@@ -1574,9 +1574,8 @@ JavaScriptではES2015より前までは<code>class</code>構文はなく、関�
 <span class="hljs-comment">// クラスは関数として呼び出すことはできない</span>
 MyClass(); <span class="hljs-comment">// =&gt; TypeError: class constructors must be invoked with |new|</span>
 </code></pre>
-<p>また、コンストラクタは初期化処理を書く場所であるため、<code>return</code>文で値を返すべきではありません。
-JavaScriptでは、コンストラクタ関数が任意のオブジェクトを返すことが可能ですが、行うべきではありません。
-なぜなら、コンストラクタは<code>new</code>演算子で呼び出し、その評価結果はクラスのインスタンスを期待するのが一般的であるためです。</p>
+<p>また、コンストラクタ関数は<code>return</code>文で任意のオブジェクトを返すことが可能ですが、行うべきではありません。
+なぜなら、クラスを<code>new</code>演算子で呼び出し、その評価結果はクラスのインスタンスを期待するのが一般的であるためです。</p>
 <p>次のコードのようにコンストラクタで返した値が<code>new</code>演算子で呼び出した際の返り値となります。 このような書き方は混乱を生むため避けるべきです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 非推奨の例: コンストラクタで値を返すべきではない</span>
@@ -1842,7 +1841,7 @@ arrayLike.length = <span class="hljs-number">5</span>;
 </code></pre>
 <p>このようにアクセッサプロパティでは、プロパティのようでありながら実際にアクセスした際には他のプロパティと連動する動作を実現できます。</p>
 <h2 id="public-class-fields"><a name="public-class-fields" class="plugin-anchor" href="#public-class-fields"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2022] Publicクラスフィールド </h2>
-<p>クラスでは、<code>constructor</code>メソッドの中でクラスの状態であるインスタンスのプロパティの初期化することを紹介しました。
+<p>クラスでは、<code>constructor</code>メソッドの中でクラスの状態であるインスタンスのプロパティを初期化することを紹介しました。
 先ほども紹介した<code>Counter</code>クラスでは、<code>constructor</code>メソッドの中で<code>count</code>プロパティの初期値を<code>0</code>として定義しています。</p>
 <pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> </span>{
     <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
@@ -1882,7 +1881,7 @@ counter.increment();
 次のコードでは、クラスフィールドと<code>constructor</code>メソッドでそれぞれインスタンスのプロパティを定義しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
-<pre><code class="lang-js"><span class="hljs-comment">// 別々のプロパティ名はそれぞれ定義される</span>
+<pre><code class="lang-js"><span class="hljs-comment">// 別々のプロパティ名がそれぞれ定義される</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
     publicField = <span class="hljs-number">1</span>;
     <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">arg</span>)</span> {
@@ -1961,7 +1960,7 @@ counter.up(); <span class="hljs-comment">// 結果的にはincrementメソッド
 <span class="hljs-built_in">console</span>.log(counter.count); <span class="hljs-comment">// =&gt; 1</span>
 </code></pre>
 <p>クラスフィールドでの<code>this</code>は、Arrow Functionと組み合わせると強力です。</p>
-<p>次のコードでは、<code>up</code>メソッドに<code>this.increment</code>メソッドを呼び出す関数をArrow Function定義しています。
+<p>次のコードでは、<code>up</code>メソッドをArrow Functionとして定義し、関数内では<code>this.increment</code>メソッドを呼び出しています。
 Arrow Functionで定義した関数における<code>this</code>は、どのような呼び出し方をしても変化しません（「<a href="../function-this/#arrow-function-callback">Arrow Functionでコールバック関数を扱う</a>」を参照）。
 そのため、<code>up</code>メソッドはどのような呼び方をした場合でも<code>this</code>がクラスのインスタンスとなるため、確実に<code>increment</code>メソッドを呼び出せます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
@@ -2033,7 +2032,7 @@ setterは<code>=</code>での代入に反応します。そのため、<code>con
 しかし、この違いを意識するようなコードを書くことは避けたほうが安全です。
 実際に見た目からこの違いを意識するのは難しく、それを意識させるようなコードは複雑性が高いためです。</p>
 <h2 id="private-class-fields"><a name="private-class-fields" class="plugin-anchor" href="#private-class-fields"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2022] Privateクラスフィールド </h2>
-<p>クラスフィールド構文で次のように書くと、定義したプロパティはクラスのインスタンス化した後に外からも参照できます。
+<p>クラスフィールド構文で次のように書くと、定義したプロパティはクラスをインスタンス化した後に外からも参照できます。
 そのため、Publicクラスフィールドと呼ばれます。</p>
 <pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> クラス </span>{
     プロパティ名 = プロパティの初期値;
@@ -2193,8 +2192,8 @@ Publicクラスフィールドではフィールドの定義は省略可能で�
 <p>このように静的メソッドでの<code>this</code>はクラス自身を参照するため、クラスのインスタンスは参照できません。
 そのため静的メソッドは、クラスのインスタンスを作成する処理やクラスに関係する処理を書くために利用されます。</p>
 <h3 id="static-class-fields"><a name="static-class-fields" class="plugin-anchor" href="#static-class-fields"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2022] 静的クラスフィールド </h3>
-<p>ES2022で追加されたクラスフィールドも、インスタンスではなくクラス自体に定義する静的クラスフィールドが利用できます。</p>
-<p>静的クラスフィールドはフィールドの前に、<code>static</code>をつけるだけです。
+<p>ES2022で追加されたクラスフィールドでは、インスタンスではなくクラス自体に定義する静的クラスフィールドも利用できます。</p>
+<p>静的クラスフィールドは、フィールドの前に<code>static</code>をつけるだけです。
 静的クラスフィールドで定義したプロパティは、クラス自体のプロパティとして定義されます。
 次のコードでは、Public静的クラスフィールドを使って<code>Colors</code>クラス自体にプロパティを定義しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
@@ -2245,7 +2244,7 @@ MyClass.outputPrivate();
 example.instanceMethod();
 example.prototypeMethod();
 </code></pre>
-<p>しかしこの2つのメソッドの定義方法は、メソッドを定義先となるオブジェクトが実際に異なります。</p>
+<p>しかしこの2つのメソッドの定義方法は、メソッドの定義先となるオブジェクトが異なります。</p>
 <p>まず、この2種類のメソッドがそれぞれ別の場所へと定義されていることを見ていきます。
 次のコードでは、<code>ConflictClass</code>クラスに<code>method</code>という同じ名前のメソッドをプロトタイプメソッドとインスタンスに対してそれぞれ定義しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -2562,7 +2561,7 @@ Publicクラスフィールドは、インスタンスオブジェクトに対�
 </code></pre>
 <p>Publicクラスフィールドは、このように親クラスで定義したフィールドも子クラスに定義されます。
 一方で、Privateクラスフィールドは、このように親クラスで定義したフィールドは子クラスに定義されません。</p>
-<p>次のコードでは、親クラスで定義したPrivateクラスフィールドを子クラスから参照してようとしています。
+<p>次のコードでは、親クラスで定義したPrivateクラスフィールドを子クラスから参照しようとしています。
 しかし、<code>#parentField</code>は参照できずに構文エラーとなることがわかります。</p>
 <!-- textlint-disable eslint -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
@@ -2782,7 +2781,7 @@ Child.method();
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおけるクラスの定義方法や継承方法を紹介します。プロトタイプベースの言語であるJavaScriptがどのように継承などを実現しているのかを紹介します。","title":"クラス","level":"1.3.20","depth":2,"next":{"title":"例外処理","level":"1.3.21","depth":2,"path":"basic/error-try-catch/README.md","ref":"./basic/error-try-catch/README.md","articles":[]},"previous":{"title":"関数とthis","level":"1.3.19","depth":2,"path":"basic/function-this/README.md","ref":"./basic/function-this/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/class/README.md","mtime":"2023-02-18T16:14:38.736Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-02-18T16:15:02.802Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおけるクラスの定義方法や継承方法を紹介します。プロトタイプベースの言語であるJavaScriptがどのように継承などを実現しているのかを紹介します。","title":"クラス","level":"1.3.20","depth":2,"next":{"title":"例外処理","level":"1.3.21","depth":2,"path":"basic/error-try-catch/README.md","ref":"./basic/error-try-catch/README.md","articles":[]},"previous":{"title":"関数とthis","level":"1.3.19","depth":2,"path":"basic/function-this/README.md","ref":"./basic/function-this/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/class/README.md","mtime":"2023-02-18T16:18:41.999Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-02-18T16:19:12.920Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
