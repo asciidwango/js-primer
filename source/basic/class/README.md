@@ -149,8 +149,8 @@ class MyClass {
 MyClass(); // => TypeError: class constructors must be invoked with |new|
 ```
 
-また、コンストラクタは初期化処理を書く場所であるため、`return`文で値を返すべきではありません。
-なぜなら、コンストラクタは`new`演算子で呼び出し、その評価結果はクラスのインスタンスを期待するのが一般的であるためです。
+また、コンストラクタ関数は`return`文で任意のオブジェクトを返すことが可能ですが、行うべきではありません。
+なぜなら、クラスを`new`演算子で呼び出し、その評価結果はクラスのインスタンスを期待するのが一般的であるためです。
 
 次のコードのようにコンストラクタで返した値が`new`演算子で呼び出した際の返り値となります。 このような書き方は混乱を生むため避けるべきです。
 
@@ -457,8 +457,8 @@ class ArrayLike {
 
     set length(newLength) {
         const currentItemLength = this.items.length;
+        // 現在要素数より小さな`newLength`が指定された場合、指定した要素数となるように末尾を削除する
         if (newLength < currentItemLength) {
-            // 現在要素数より小さな`newLength`が指定された場合、指定した要素数となるように末尾を削除する
             this._items = this.items.slice(0, newLength);
         } else if (newLength > currentItemLength) {
             // 現在要素数より大きな`newLength`が指定された場合、指定した要素数となるように末尾に空要素を追加する
