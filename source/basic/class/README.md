@@ -636,7 +636,7 @@ console.log(counter.count); // => 1
 
 クラスフィールドでの`this`は、Arrow Functionと組み合わせると強力です。
 
-次のコードでは、`up`メソッドを`this.increment`メソッドを呼び出すArrow Functionとして定義しています。
+次のコードでは、`up`メソッドをArrow Functionとして定義し、関数内では`this.increment`メソッドを呼び出しています。
 Arrow Functionで定義した関数における`this`は、どのような呼び出し方をしても変化しません（「[Arrow Functionでコールバック関数を扱う][]」を参照）。
 そのため、`up`メソッドはどのような呼び方をした場合でも`this`がクラスのインスタンスとなるため、確実に`increment`メソッドを呼び出せます。
 
