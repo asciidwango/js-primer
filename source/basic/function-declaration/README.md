@@ -512,7 +512,7 @@ const fnD = (x, y) => { /* 仮引数が複数のとき */ };
 // 値の返し方
 // 次の２つの定義は同じ意味となる
 const mulA = x => { return x * x; }; // ブロックの中でreturn
-const mulB = x => x * x;            // 1行のみの場合はreturnとブロックを省略できる
+const mulB = x => x * x;            // 1つの式である場合はreturnとブロックを省略できる
 ```
 
 <!-- textlint-enable eslint -->
