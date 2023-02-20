@@ -158,7 +158,6 @@ JavaScriptの配列である`Array`オブジェクトには、反復処理のた
 
 `forEach`メソッドでの反復処理は、次のように書けます。
 
-{{book.console}}
 ```js
 const array = [1, 2, 3];
 array.forEach(currentValue => {
