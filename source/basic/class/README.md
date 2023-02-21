@@ -763,8 +763,7 @@ privateExample.dump();
 ```
 
 もう少し具体的なPrivateクラスフィールドの使い方を見ていきます。
-
-アクセサプロパティの例でも登場した`NumberWrapper`をPrivateクラスフィールドを使って書き直してみます。
+アクセッサプロパティの例でも登場した`NumberWrapper`をPrivateクラスフィールドを使って書き直してみます。
 元々の`NumberWrapper`クラスでは、`_value`プロパティに実際の値を読み書きしていました。
 この場合、`_value`プロパティは、外からもアクセスできてしまうため、定義したgetterとsetterが無視できてしまいます。
 
