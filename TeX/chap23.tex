@@ -1,0 +1,541 @@
+\hypertarget{map-and-set}{%
+\chapter[Map/Set]{Map/Set\,\protect\icon{fig/es2015.eps}}\label{map-and-set}}\index{Map@\texttt{Map}}\index{Set@\texttt{Set}}
+\thispagestyle{frontheadings}
+
+JavaScriptでデータの集まり（コレクション）を扱うビルトインオブジェクトは、ObjectやArrayだけではありません。
+この章では、ES2015で導入されたマップ型のコレクションである\texttt{Map}と、セット型のコレクションである\texttt{Set}について学びます。
+
+\hypertarget{map}{%
+\section{Map}\label{map}}
+
+\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Map}{Map}はマップ型のコレクションを扱うためのビルトインオブジェクトです。
+マップとは、キーと値の組み合わせからなる抽象データ型です。
+他のプログラミング言語の文脈では辞書\index{じしょ@辞書}やハッシュマップ\index{はっしゅまっぷ@ハッシュマップ}、連想配列\index{れんそうはいれつ@連想配列}などと呼ばれることもあります。
+
+\hypertarget{map-new}{%
+\subsection{マップの作成と初期化}\label{map-new}}\index{まっぷ@マップ}\index{まっぷ@マップ!さくせい@作成}
+
+\texttt{Map}オブジェクトを\texttt{new}することで、新しいマップを作成できます。
+作成されたばかりのマップは何も持っていません。
+そのため、マップが持つ要素の数を返す\texttt{size}プロパティは\texttt{0}を返します。
+
+\begin{lstlisting}
+const map = new Map();
+console.log(map.size); // => 0
+\end{lstlisting}
+
+\texttt{Map}オブジェクトを\texttt{new}で初期化するときに、コンストラクタに初期値を渡せます。
+コンストラクタ引数として渡せるのは\textbf{\textgt{エントリー}}の配列です。
+エントリー\index{えんとりー@エントリー}とは、1つのキーと値の組み合わせを\texttt{[キー, 値]}という形式の配列で表現したものです。
+
+次のコードでは、Mapに初期値となるエントリー（配列）の配列を渡しています。
+
+\begin{lstlisting}
+const map = new Map([["key1", "value1"], ["key2", "value2"]]);
+// 2つのエントリーで初期化されている
+console.log(map.size); // => 2
+\end{lstlisting}
+
+\hypertarget{map-read-and-write}{%
+\subsection{要素の追加と取り出し}\label{map-read-and-write}}
+
+\texttt{Map}には新しい要素を\texttt{set}\index{set@\texttt{set}}メソッドで追加でき、追加した要素を\texttt{get}\index{get@\texttt{get}}メソッドで取り出せます。
+
+\texttt{set}メソッドは特定のキーと値を持つ要素をマップに追加します。
+ただし、同じキーで複数回\texttt{set}メソッドを呼び出した際は、後から追加された値で上書きされます。
+
+\texttt{get}メソッドは特定のキーにひもづいた値を取り出します。
+また、特定のキーにひもづいた値を持っているかを確認する\texttt{has}\index{has@\texttt{has}}メソッドがあります。
+
+\begin{lstlisting}
+const map = new Map();
+// 新しい要素の追加
+map.set("key", "value1");
+console.log(map.size); // => 1
+console.log(map.get("key")); // => "value1"
+// 要素の上書き
+map.set("key", "value2");
+console.log(map.get("key")); // => "value2"
+// キーの存在確認
+console.log(map.has("key")); // => true
+console.log(map.has("foo")); // => false
+\end{lstlisting}
+
+\texttt{delete}\index{delete@\texttt{delete}}メソッドはマップから要素を削除します。
+\texttt{delete}メソッドに渡されたキーと、そのキーにひもづいた値がマップから削除されます。
+また、マップが持つすべての要素を削除するための\texttt{clear}\index{clear@\texttt{clear}}メソッドがあります。
+
+\begin{lstlisting}
+const map = new Map();
+map.set("key1", "value1");
+map.set("key2", "value2");
+console.log(map.size); // => 2
+map.delete("key1");
+console.log(map.size); // => 1
+map.clear();
+console.log(map.size); // => 0
+\end{lstlisting}
+
+\hypertarget{map-iteration}{%
+\subsection{マップの反復処理}\label{map-iteration}}\index{まっぷ@マップ!はんぷくしょり@反復処理}\index{はんぷくしょり@反復処理}
+
+マップが持つ要素を列挙するメソッドとして、\texttt{forEach}、\texttt{keys}、\texttt{values}、\texttt{entries}があります。
+
+\texttt{forEach}\index{forEach@\texttt{forEach}}メソッドはマップが持つすべての要素を、マップへの挿入順に反復処理します。
+コールバック関数には引数として値、キー、マップの3つが渡されます。
+配列の\texttt{forEach}メソッドと似ていますが、インデックスの代わりにキーが渡されます。
+配列はインデックスにより要素を特定しますが、マップはキーにより要素を特定するためです。
+
+\begin{lstlisting}
+const map = new Map([["key1", "value1"], ["key2", "value2"]]);
+const results = [];
+map.forEach((value, key) => {
+    results.push(`${key}:${value}`);
+});
+console.log(results); // => ["key1:value1","key2:value2"]
+\end{lstlisting}
+
+\texttt{keys}\index{keys@\texttt{keys}}メソッドはマップが持つすべての要素のキーを挿入順に並べた\textbf{Iterator}\index{Iterator}オブジェクトを返します。
+同様に、\texttt{values}\index{values@\texttt{values}}メソッドはマップが持つすべての要素の値を挿入順に並べたIteratorオブジェクトを返します。
+これらの返り値はIteratorオブジェクトであって配列ではありません。
+そのため、次の例のように\texttt{for...of}文で反復処理を行ったり、\texttt{Array.from}メソッドに渡して配列に変換して使ったりします。
+
+\begin{lstlisting}
+const map = new Map([["key1", "value1"], ["key2", "value2"]]);
+const keys = [];
+// keysメソッドの返り値(Iterator)を反復処理する
+for (const key of map.keys()) {
+    keys.push(key);
+}
+console.log(keys); // => ["key1","key2"]
+// keysメソッドの返り値(Iterator)から配列を作成する
+const keysArray = Array.from(map.keys());
+console.log(keysArray); // => ["key1","key2"]
+\end{lstlisting}
+
+\texttt{entries}\index{entries@\texttt{entries}}メソッドはマップが持つすべての要素をエントリーとして挿入順に並べたIteratorオブジェクトを返します。
+先述のとおりエントリーは\texttt{[キー, 値]}の配列です。
+そのため、配列の分割代入を使うとエントリーからキーと値を簡単に取り出せます。
+
+\begin{lstlisting}
+const map = new Map([["key1", "value1"], ["key2", "value2"]]);
+const entries = [];
+for (const [key, value] of map.entries()) {
+    entries.push(`${key}:${value}`);
+}
+console.log(entries); // => ["key1:value1","key2:value2"]
+\end{lstlisting}
+
+また、マップ自身もiterableなオブジェクトなので、\texttt{for...of}文\index{for...ofぶん@\texttt{for...of}文}で反復処理できます。
+マップを\texttt{for...of}文で反復したときは、すべての要素をエントリーとして挿入順に反復処理します。
+つまり、\texttt{entries}メソッドの返り値を反復処理するときと同じ結果が得られます。
+
+\begin{lstlisting}
+const map = new Map([["key1", "value1"], ["key2", "value2"]]);
+const results = [];
+for (const [key, value] of map) {
+    results.push(`${key}:${value}`);
+}
+console.log(results); // => ["key1:value1","key2:value2"]
+\end{lstlisting}
+
+\hypertarget{object-and-map}{%
+\subsection{マップとしてのObjectとMap}\label{object-and-map}}\index{まっぷ@マップ!Object}\index{Object@\texttt{Object}}\index{Map@\texttt{Map}}
+
+ES2015で\texttt{Map}が導入されるまで、JavaScriptにおいてマップ型を実現するために\texttt{Object}が利用されてきました。
+何かをキーにして値にアクセスするという点で、\texttt{Map}と\texttt{Object}はよく似ています。
+ただし、マップとしての\texttt{Object}にはいくつかの問題があります。
+
+\begin{itemize}
+\item
+  \texttt{Object}の\texttt{prototype}オブジェクトから継承されたプロパティによって、意図しないマッピングを生じる危険性がある
+\item
+  また、プロパティとしてデータを持つため、キーとして使えるのは文字列か\texttt{Symbol}に限られる
+\end{itemize}
+
+\texttt{Object}には\texttt{prototype}オブジェクトがあるため、いくつかのプロパティは初期化されたときから存在します。
+\texttt{Object}をマップとして使うと、そのプロパティと同じ名前のキーを使おうとしたときに問題となります
+（詳細は「\hyperlink{object}{オブジェクト}」の章の「\hyperlink{confirm-property}{プロパティの存在を確認する}」を参照）。
+
+たとえば\texttt{constructor}という文字列は\texttt{Object.prototype.constructor}プロパティと衝突してしまいます。
+そのため\texttt{constructor}のような文字列をオブジェクトのキーに使うことで意図しないマッピングを生じる危険性があります。
+
+\begin{lstlisting}
+const map = {};
+// マップがキーを持つことを確認する
+function has(key) {
+    return typeof map[key] !== "undefined";
+}
+console.log(has("foo")); // => false
+// Objectのプロパティが存在する
+console.log(has("constructor")); // => true
+\end{lstlisting}
+
+このマップとして使うオブジェクトの問題は、\texttt{Object}のインスタンスを\texttt{Object.create(null)}のように初期化して作ることで回避されてきました
+（詳細は「\hyperlink{prototype-object}{プロトタイプオブジェクト}」の章の「\hyperlink{not-inherit-object}{\texttt{Object.prototype}を継承しないオブジェクト}」を参照）。
+
+ES2015では、これらの問題を根本的に解決する\texttt{Map}が導入されました。
+\texttt{Map}はプロパティとは異なる仕組みでデータを格納します。
+そのため、\texttt{Map}のプロトタイプが持つメソッドやプロパティとキーが衝突することはありません。
+また、\texttt{Map}ではマップのキーとしてあらゆるオブジェクトを使えます。
+
+ほかにも\texttt{Map}には次のような利点があります。
+
+\begin{itemize}
+\item
+  マップのサイズを簡単に知ることができる
+\item
+  マップが持つ要素を簡単に列挙できる
+\item
+  オブジェクトをキーにすると参照ごとに違うマッピングができる
+\end{itemize}
+
+たとえばショッピングカートのような仕組みを作るとき、次のように\texttt{Map}を使って商品のオブジェクトと注文数をマッピングできます。
+
+\begin{lstlisting}
+// ショッピングカートを表現するクラス
+class ShoppingCart {
+    constructor() {
+        // 商品とその数を持つマップ
+        this.items = new Map();
+    }
+    // カートに商品を追加する
+    addItem(item) {
+        // itemがない場合はundefinedを返すため、Nullish coalescing演算子(??)を使いデフォルト値として0を設定する
+        const count = this.items.get(item) ?? 0;
+        this.items.set(item, count + 1);
+    }
+    // カート内の合計金額を返す
+    getTotalPrice() {
+        return Array.from(this.items).reduce((total, [item, count]) => {
+            return total + item.price * count;
+        }, 0);
+    }
+    // カートの中身を文字列にして返す
+    toString() {
+        return Array.from(this.items).map(([item, count]) => {
+            return `${item.name}:${count}`;
+        }).join(",");
+    }
+}
+const shoppingCart = new ShoppingCart();
+// 商品一覧
+const shopItems = [
+    { name: "みかん", price: 100 },
+    { name: "リンゴ", price: 200 },
+];
+
+// カートに商品を追加する
+shoppingCart.addItem(shopItems[0]);
+shoppingCart.addItem(shopItems[0]);
+shoppingCart.addItem(shopItems[1]);
+
+// 合計金額を表示する
+console.log(shoppingCart.getTotalPrice()); // => 400
+// カートの中身を表示する
+console.log(shoppingCart.toString()); // => "みかん:2,リンゴ:1"
+\end{lstlisting}
+
+\texttt{Object}をマップとして使うときに起きる多くの問題は、\texttt{Map}オブジェクトを使うことで解決しますが、
+常に\texttt{Map}が\texttt{Object}の代わりになるわけではありません。
+マップとしての\texttt{Object}には次のような利点があります。
+
+\begin{itemize}
+\item
+  リテラル表現があるため作成しやすい
+\item
+  規定のJSON表現があるため、\texttt{JSON.stringify}\index{JSON.stringify@\texttt{JSON.stringify}}関数を使ってJSONに変換するのが簡単である
+\item
+  ネイティブAPI・外部ライブラリを問わず、多くの関数がマップとして\texttt{Object}を渡される設計になっている
+\end{itemize}
+
+次の例では、ログインフォームのsubmitイベントを受け取ったあと、サーバーにPOSTリクエストを送信しています。
+サーバーにJSON文字列を送るために、\texttt{JSON.stringify}関数を使います。
+そのため、\texttt{Object}のマップを作ってフォームの入力内容を持たせています。
+このような簡易なマップにおいては、\texttt{Object}を使うほうが適切でしょう。
+
+\begin{lstlisting}
+// URLとObjectのマップを受け取ってPOSTリクエストを送る関数
+function sendPOSTRequest(url, data) {
+    // fetchを使ってPOSTリクエストを送る
+    fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+    }).catch((error) => {
+        console.error(error);
+    });
+}
+
+// formのsubmitイベントを受け取る関数
+function onLoginFormSubmit(event) {
+    const form = event.target;
+    const data = {
+        userName: form.elements.userName,
+        password: form.elements.password,
+    };
+    sendPOSTRequest("/api/login", data);
+}
+\end{lstlisting}
+
+\hypertarget{weakmap}{%
+\subsection{WeakMap}\label{weakmap}}\index{WeakMap}
+
+\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/WeakMap}{WeakMap}は、\texttt{Map}と同じくマップを扱うためのビルトインオブジェクトです。
+\texttt{Map}と違う点は、キーを\textbf{\textgt{弱い参照}}\index{よわいさんしょう@弱い参照}（Weak
+Reference\index{Weak Reference}）で持つことです。
+
+\href{https://ja.wikipedia.org/wiki/\%E5\%BC\%B1\%E3\%81\%84\%E5\%8F\%82\%E7\%85\%A7}{弱い参照}とは、ガベージコレクション（GC）によるオブジェクトの解放を妨げないための特殊な参照です。
+本来、GCによりメモリから解放できるオブジェクトは、どこからも参照されていないものだけです。
+弱い参照は例外的に、該当するオブジェクトへの弱い参照があったとしても、GCはそのオブジェクトを解放できます。
+
+そのため、弱い参照は不要になったオブジェクトを参照し続けて発生してしまうメモリリークを防ぐために使われます。
+\texttt{WeakMap}では不要になったキーとそれにひもづいた値が自動的に削除されるため、メモリリークを引き起こす心配がありません。
+
+次のコードでは、最初に\texttt{obj}には\texttt{\{\}}を設定し、\texttt{WeakMap}ではその\texttt{obj}をキーにして値（\texttt{"value"}）を設定しています。
+次に\texttt{obj}に別の値（ここでは\texttt{null}）を代入すると、\texttt{obj}が元々参照していた\texttt{\{\}}という値はどこからも参照されなくなります。
+このとき\texttt{WeakMap}は\texttt{\{\}}への弱い参照を持っていますが、弱い参照はGCを妨げないため、\texttt{\{\}}は不要になった値としてGCによりメモリから解放されます。
+
+同時に、\texttt{WeakMap}は解放されたオブジェクト（\texttt{\{\}}）をキーにしてひもづいていた値（\texttt{"value"}）を破棄できます。
+ただし、どのタイミングで実際にメモリから解放するかは、JavaScriptエンジンの実装に依存します。
+
+\begin{lstlisting}
+const map = new WeakMap();
+// キーとなるオブジェクト
+let obj = {};
+// {} への参照をキーに値をセットする
+map.set(obj, "value");
+// {} への参照を破棄する
+obj = null;
+// GCが発生するタイミングでWeakMapから値が破棄される
+\end{lstlisting}
+
+\texttt{WeakMap}は\texttt{Map}と似ていますがiterableではありません。
+そのため、キーを列挙する\texttt{keys}メソッドや、データの数を返す\texttt{size}プロパティなどは存在しません。
+また、キーを弱い参照で持つ特性上、キーとして使えるのは参照型のオブジェクトだけです。
+
+\texttt{WeakMap}の主な使い方のひとつは、クラスにプライベートの値を格納することです。
+\texttt{this}（クラスインスタンス）を
+\texttt{WeakMap}
+のキーにすることで、インスタンスの外からはアクセスできない値を保持できます。
+また、クラスインスタンスが参照されなくなったときには自動的に解放されます。
+
+次のコードでは、オブジェクトが発火するイベントのリスナー関数（イベントリスナー\index{いべんとりすなー@イベントリスナー}）を
+\texttt{WeakMap} で管理しています。
+イベントリスナーとは、イベントが発生したときに呼び出される関数のことです。
+このマップを\texttt{Map}で実装してしまうと、明示的に削除されるまでイベントリスナーはメモリ上に残り続けます。
+ここで\texttt{WeakMap}を使うと、\texttt{addListener}
+メソッドに渡された\texttt{listener}は
+\texttt{EventEmitter}
+インスタンスが参照されなくなった際、自動的に解放されます。
+
+\begin{lstlisting}
+// イベントリスナーを管理するマップ
+const listenersMap = new WeakMap();
+
+class EventEmitter {
+    addListener(listener) {
+        // this にひもづいたリスナーの配列を取得する
+        const listeners = listenersMap.get(this) ?? [];
+        const newListeners = listeners.concat(listener);
+        // this をキーに新しい配列をセットする
+        listenersMap.set(this, newListeners);
+    }
+}
+
+// 上記クラスの実行例
+
+let eventEmitter = new EventEmitter();
+// イベントリスナーを追加する
+eventEmitter.addListener(() => {
+    console.log("イベントが発火しました");
+});
+// eventEmitterへの参照がなくなったことで自動的にイベントリスナーが解放される
+eventEmitter = null;
+\end{lstlisting}
+
+また、あるオブジェクトから計算した結果を一時的に保存する用途でもよく使われます。
+次の例ではHTML要素の高さを計算した結果を保存して、2回目以降に同じ計算をしないようにしています。
+
+\begin{lstlisting}
+const cache = new WeakMap();
+
+function getHeight(element) {
+    if (cache.has(element)) {
+        return cache.get(element);
+    }
+    const height = element.getBoundingClientRect().height;
+    // elementオブジェクトに対して高さをひもづけて保存している
+    cache.set(element, height);
+    return height;
+}
+\end{lstlisting}
+
+\begin{tcolorbox}[enhanced jigsaw,breakable,title=キーの等価性とNaN]\label{key-and-nan}\index{NaN@\texttt{NaN}}
+
+\texttt{Map}に値をセットする際のキーにはあらゆるオブジェクトが使えます。
+このときのマップが特定のキーをすでに持っているか、つまり挿入と上書きの判定は基本的に\texttt{===}演算子と同じです。
+
+ただし、キーが\texttt{NaN}の扱いだけが例外的に違います。\texttt{Map}におけるキーの比較では、\texttt{NaN}同士は常に等価であるとみなされます。
+この挙動は\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Equality_comparisons_and_sameness\#Same-value-zero_equality}{Same-value-zero}アルゴリズム\index{Same-value-zeroあるごりずむ@Same-value-zeroアルゴリズム}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Equality_comparisons_and_sameness\#Same-value-zero_equality}}と呼ばれます。
+
+次のコードでは、\texttt{NaN}同士の\texttt{===}の比較結果が\texttt{false}になるのに対して、\texttt{Map}のキーでは\texttt{NaN}同士の比較結果が一致していることがわかります。
+
+\begin{lstlisting}
+const map = new Map();
+map.set(NaN, "value");
+// NaNは===で比較した場合は常にfalse
+console.log(NaN === NaN); // => false
+// MapはNaN同士を比較できる
+console.log(map.has(NaN)); // => true
+console.log(map.get(NaN)); // => "value"
+\end{lstlisting}
+\end{tcolorbox}
+
+\hypertarget{set}{%
+\section{Set}\label{set}}\index{Set@\texttt{Set}}
+
+\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Set}{Set}はセット型のコレクションを扱うためのビルトインオブジェクトです。
+セット\index{せっと@セット}とは、重複する値がないことを保証したコレクションのことを言います。
+\texttt{Set}は追加した値を列挙できるので、値が重複しないことを保証する配列のようなものとしてよく使われます。
+ただし、配列と違って要素は順序を持たず、インデックスによるアクセスはできません。
+
+\hypertarget{set-new}{%
+\subsection{セットの作成と初期化}\label{set-new}}\index{せっと@セット!さくせい@作成}
+
+\texttt{Set}オブジェクトを\texttt{new}することで、新しいセットを作れます。
+作成されたばかりのセットは何も持っていません。
+そのため、セットが持つ要素の数を返す\texttt{size}\index{size@\texttt{size}}プロパティは0を返します。
+
+\begin{lstlisting}
+const set = new Set();
+console.log(set.size); // => 0
+\end{lstlisting}
+
+\texttt{Set}オブジェクトを\texttt{new}で初期化するときに、コンストラクタに初期値を渡せます。
+コンストラクタ引数として渡せるのはiterableオブジェクトです。
+
+次のコードではiterableオブジェクトである配列を初期値として渡しています。
+また、\texttt{Set}では重複する同じ値を持たないことを保証するため、同じ値は1つのみ格納されます。
+
+\begin{lstlisting}
+// "value2"が重複するため、片方は無視される
+const set = new Set(["value1", "value2", "value2"]);
+// セットのサイズは2になる
+console.log(set.size); // => 2
+\end{lstlisting}
+
+\hypertarget{set-read-and-write}{%
+\subsection{値の追加と取り出し}\label{set-read-and-write}}
+
+作成したセットに値を追加するには、\texttt{add}\index{add@\texttt{add}}メソッドを使います。
+先述のとおり、セットは重複する値を持たないことが保証されます。
+そのため、すでにセットが持っている値を\texttt{add}メソッドに渡した際は無視されます。
+
+また、セットが特定の値を持っているかどうかを確認する\texttt{has}\index{has@\texttt{has}}メソッドがあります。
+
+\begin{lstlisting}
+const set = new Set();
+// 値の追加
+set.add("a");
+console.log(set.size); // => 1
+// 重複する値は追加されない
+set.add("a");
+console.log(set.size); // => 1
+// 値の存在確認
+console.log(set.has("a")); // => true
+console.log(set.has("b")); // => false
+\end{lstlisting}
+
+セットから値を削除するには、\texttt{delete}\index{delete@\texttt{delete}}メソッドを使います。
+\texttt{delete}メソッドに渡された値がセットから削除されます。
+また、セットが持つすべての値を削除するための\texttt{clear}\index{clear@\texttt{clear}}メソッドがあります。
+
+\begin{lstlisting}
+const set = new Set();
+set.add("a");
+set.add("b");
+console.log(set.size); // => 2
+set.delete("a");
+console.log(set.size); // => 1
+set.clear();
+console.log(set.size); // => 0
+\end{lstlisting}
+
+\hypertarget{set-iteration}{%
+\subsection{セットの反復処理}\label{set-iteration}}\index{せっと@セット!はんぷくしょり@反復処理}\index{はんぷくしょり@反復処理}
+
+セットが持つ値を反復処理するには、\texttt{forEach}\index{forEach@\texttt{forEach}}メソッドが利用できます。
+\texttt{forEach}メソッドではセットが持つすべての要素を、セットへの挿入順に反復します。
+
+\begin{lstlisting}
+const set = new Set(["a", "b"]);
+const results = [];
+set.forEach((value) => {
+    results.push(value);
+});
+console.log(results); // => ["a","b"]
+\end{lstlisting}
+
+セットからIteratorオブジェクトを作成するメソッドとして\texttt{keys}、\texttt{values}、\texttt{entries}があります。
+これらは\texttt{Map}との類似性のために存在しますが、セットにはマップにおけるキー相当のものがありません。
+そのため、\texttt{keys}メソッドは\texttt{values}メソッドのエイリアスになっており、セットが持つすべての値を挿入順に列挙するIteratorオブジェクトを返します。
+また、\texttt{entries}メソッドは\texttt{[値, 値]}という形のエントリーを挿入順に列挙するIteratorオブジェクトを返します。
+
+\begin{lstlisting}
+const set = new Set(["a", "b"]);
+// keysで列挙
+const keysResults = [];
+for (const value of set.keys()) {
+    keysResults.push(value);
+}
+console.log(keysResults); // => ["a","b"]
+// entriesで列挙
+const entryResults = [];
+for (const entry of set.entries()) {
+    // entryは[値, 値]という配列
+    entryResults.push(entry);
+}
+console.log(entryResults); // => [["a","a"], ["b", "b"]]
+\end{lstlisting}
+
+\texttt{Set}オブジェクト自身もiterableなオブジェクトであるため\texttt{for...of}文\index{for...ofぶん@\texttt{for...of}文}で反復処理できます。
+\texttt{for...of}文で\texttt{Set}オブジェクトを反復処理したときも、セットへの挿入順に値が取り出されます。
+\texttt{keys}、\texttt{values}、\texttt{entries}メソッドはどれも取得できる情報は同じであるため、基本的には\texttt{Set}オブジェクト自体を反復処理することで代用できます。
+
+\begin{lstlisting}
+const set = new Set(["a", "b"]);
+const results = [];
+for (const value of set) {
+    results.push(value);
+}
+console.log(results); // => ["a","b"]
+\end{lstlisting}
+
+\hypertarget{weakset}{%
+\subsection{WeakSet}\label{weakset}}\index{WeakSet}
+
+\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/WeakSet}{WeakSet}は弱い参照\index{よわいさんしょう@弱い参照}で値を持つセットです。
+\texttt{WeakSet}は\texttt{Set}と似ていますが、iterableではないので追加した値を反復処理できません。
+つまり、\texttt{WeakSet}は値の追加と削除、存在確認以外のことができません。
+データの格納ではなく、データの一意性を確認することに特化したセットと言えるでしょう。
+
+また、弱い参照で値を持つ特性上、\texttt{WeakSet}の値として使えるのは参照型のオブジェクトだけです。
+
+\hypertarget{conclusion}{%
+\section{まとめ}\label{conclusion}}
+
+この章ではMapとSetについて学びました。
+
+\begin{itemize}
+\item
+  \texttt{Map}はキーと値の組み合わせからなるコレクションを扱うビルトインオブジェクト
+\item
+  \texttt{Map}のキーはプロトタイプオブジェクトのプロパティと名前が衝突しないため意図しないマッピングを避けられる
+\item
+  \texttt{WeakMap}はキーを弱い参照で持つ\texttt{Map}と同様のビルトインオブジェクト
+\item
+  \texttt{Set}は重複する値がないことを保証した順序を持たないコレクションを扱うビルトインオブジェクト
+\item
+  \texttt{WeakSet}は値を弱い参照で持つ\texttt{Set}と同様のビルトインオブジェクト
+\end{itemize}

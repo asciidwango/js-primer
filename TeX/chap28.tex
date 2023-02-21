@@ -1,0 +1,203 @@
+\hypertarget{ecmascript}{%
+\chapter{ECMAScript}\label{ecmascript}}\index{ECMAScript}
+\thispagestyle{frontheadings}
+
+ここまでJavaScriptの基本文法について見てきましたが、その文法を定めるECMAScriptという仕様自体がどのように変化していくのかを見ていきましょう。
+
+ECMAScriptは\href{https://www.ecma-international.org/}{Ecma
+International}\index{Ecma International}\footnote{\url{https://www.ecma-international.org/}}という団体によって標準化されている仕様です。 Ecma
+InternationalはECMAScript以外にもC\#やDartなどの標準化作業をしています。
+Ecma Internationalの中のTechnical Committee
+39\index{Technical Committee 39}（TC39）という技術委員会が中心となって、ECMAScript仕様について議論しています。
+この技術委員会はMicrosoft、Mozilla、Google、AppleといったブラウザベンダーやECMAScriptに関心のある企業などによって構成されます。
+
+\hypertarget{history}{%
+\section{ECMAScriptのバージョンの歴史}\label{history}}\index{ECMAScript!れきし@歴史}
+
+ここで、簡単にECMAScriptのバージョンの歴史を振り返ってみましょう。
+
+\begin{small}
+\begin{longtable}[l]{p{60mm}|p{70mm}}
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}{\textgt バージョン} & {\textgt リリース時期}\tabularnewline
+\hline
+\endhead
+1 & 1997年6月\tabularnewline
+2 & 1998年6月\tabularnewline
+3 & 1999年12月\tabularnewline
+4 & 破棄\footnote{ECMAScript
+  4は複雑で大きな変更が含まれており、合意を得ることができずに仕様が破棄されました。}\tabularnewline
+5 & 2009年12月\tabularnewline
+5.1 & 2011年6月\tabularnewline
+2015 & 2015年6月\tabularnewline
+2016 & 2016年6月\tabularnewline
+2017 & 2017年6月\tabularnewline
+以降毎年リリース &\tabularnewline
+\hline
+\end{longtable}
+\end{small}
+
+ES5.1からES2015がでるまで4年もの歳月がかかっているのに対して、ES2015以降は毎年リリースされています。
+毎年安定したリリースを行えるようになったのは、ES2015以降に仕様策定プロセスの変更が行われたためです。
+
+\hypertarget{living-standard}{%
+\section{Living StandardとなるECMAScript}\label{living-standard}}\index{Living Standard}
+
+現在、ECMAScriptの仕様書のドラフトはGitHub上の\href{https://github.com/tc39/ecma262}{tc39/ecma262}\footnote{\url{https://github.com/tc39/ecma262}}で管理されており、日々更新されています。
+そのため、本当の意味での最新のECMAScript仕様は\url{https://tc39.es/ecma262/}となります。
+このように更新ごとにバージョン番号をつけずに、常に最新版を公開する仕様のことを\textbf{Living
+Standard}と呼びます。
+
+ECMAScriptはLiving Standardですが、これに加えてECMAScript
+2017のようにバージョン番号をつけたものも公開されています。
+このバージョンつきECMAScriptは、毎年決まった時期のドラフトを元にしたスナップショットのようなものです。
+
+ブラウザなどに実際にJavaScriptとして実装される際には、Living
+StandardのECMAScriptを参照しています。
+これは、ブラウザ自体も日々更新されるものであり、決まった時期にしかリリースされないバージョンつきよりもLiving
+Standardのほうが適切であるためです。
+
+\hypertarget{specification-process}{%
+\section{仕様策定のプロセス}\label{specification-process}}\index{ECMAScript!さくていぷろせす@策定プロセス}\index{さくていぷろせす@策定プロセス}
+
+ES2015以前はすべての仕様の合意が取れるまで延々と議論を続け、すべてが決まってからリリースされていました。
+そのため、ES2015がリリースされるまでには長い時間がかかり、言語の進化が停滞していました。
+この問題を解消するために、TC39は毎年リリースする形へとECMAScriptの策定プロセスを変更しました。
+
+この策定プロセスはES2015のリリース後に適用され、このプロセスで初めてリリースされたのがES2016となります。
+ES2016以降では、次のような仕様策定のプロセスで議論を進めて仕様が決定されています\footnote{この策定プロセスは\url{https://tc39.es/process-document/}に詳細が書かれています。}。
+
+仕様に追加する機能（API、構文など）をそれぞれ個別の\textbf{\textgt{プロポーザル}}\index{ぷろぽーざる@プロポーザル}（提案書）として進めていきます。
+現在策定中のプロポーザルはGitHub上の\href{https://github.com/tc39/proposals}{tc39/proposals}に一覧が公開されています。
+それぞれのプロポーザルは責任者である\textbf{\textgt{チャンピオン}}と\textbf{\textgt{ステージ}}（Stage）と呼ばれる\texttt{0}から\texttt{4}の5段階の状態を持ちます。
+
+\begin{small}
+\begin{longtable}[l]{p{15mm}|p{125mm}}
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}\textgt{ステージ} & \textgt{ステージの概要}\tabularnewline
+\hline
+\endhead
+0 & アイデアの段階\tabularnewline
+1 & 機能提案の段階\tabularnewline
+2 & 機能の仕様書ドラフトを作成した段階\tabularnewline
+3 &
+仕様としては完成しており、ブラウザの実装やフィードバックを求める段階\tabularnewline
+4 &
+仕様策定が完了し、2つ以上の実装が存在している正式にECMAScriptにマージできる段階\tabularnewline
+\hline
+\end{longtable}
+\end{small}
+
+2ヶ月に一度行われるTC39のミーティングにおいて、プロポーザルごとにステージを進めるかどうかを議論します。
+このミーティングの議事録もGitHub上の\href{https://github.com/tc39/notes}{tc39/tc39-notes}にて公開されています。
+ステージ4となったプロポーザルはドラフト版である\href{https://github.com/tc39/ecma262}{tc39/ecma262}へマージされます。
+そして毎年の決まった時期にドラフト版を元にして\texttt{ECMAScript 20XX}としてリリースします。
+
+この仕様策定プロセスの変更は、ECMAScriptに含まれる機能の形にも影響しています。
+
+たとえば、\texttt{class}構文の策定は\textbf{\textgt{最大限に最小のクラス}}\index{さいだいげんにさいしょうのくらす@最大限に最小のクラス}（maximally
+minimal classes\index{maximally minimal classes}）と呼ばれる形で提案されています。
+これによりES2015で\texttt{class}構文が導入されましたが、クラスとして合意が取れる最低限の機能だけの状態で入りました。
+その他のクラスの機能は別のプロポーザルとして提案され、ES2015以降に持ち越された形で議論が進められています。
+
+このような合意が取れる最低限の形でプロポーザルを進めていくのには、ES4の苦い失敗が背景にあります。
+ES4ではECMAScriptに多くの変更を入れることを試みましたが、TC39内でも意見が分かれ、最終的に合意できませんでした。
+これによりES4の策定に割いた数年分のリソースが無駄になってしまったという経緯があります\footnote{ES2015の仕様編集者であるAllen
+  Wirfs-Brock氏\index{Allen Wirfs-Brock}の書いた\href{http://wirfs-brock.com/allen/files/papers/standpats-asianplop2016.pdf}{Programming
+  Language Standardization}に詳細が書かれています（\url{http://wirfs-brock.com/allen/files/papers/standpats-asianplop2016.pdf}）。}。
+
+ES2016以降の策定プロセスでも、すべてのプロポーザルが仕様に入るわけではありません\footnote{\href{https://github.com/tc39/proposals/blob/main/inactive-proposals.md}{Inactive
+  Proposals}に策定を中止したプロポーザルの一覧が公開されています（\url{https://github.com/tc39/proposals/blob/main/inactive-proposals.md}）。}。
+別の代替プロポーザルが出た場合や後方互換性を保てない場合などにプロポーザルの策定を中断する場合があります。
+しかし、この場合でもプロポーザルという単位であるため策定作業の無駄は最小限で済みます。
+このようにモジュール化されたプロポーザルは入れ替えがしやすいという性質もあります。
+
+\hypertarget{try-proposal}{%
+\section{プロポーザルの機能を試す}\label{try-proposal}}\index{ぷろぽーざる@プロポーザル}
+
+ECMAScriptの策定プロセスのステージ4に「2つ以上の実装が存在している」という項目があります。
+そのためブラウザのJavaScriptエンジンには、策定中のプロポーザルが実装されている場合があります。
+多くの場合は試験的なフラグつきで実装されておりフラグを有効化することで、試すことができるようになっています。
+
+またTranspilerやPolyfillといった手段で、プロポーザルの機能をエミュレートできる場合があります。
+
+Transpiler\index{Transpiler}とは、新しい構文を既存の機能で再現できるようにソースコードを変換するツールのことです。
+たとえば、ES2015で\texttt{class}構文が導入されましたが、ES5では\texttt{class}は予約語であるため構文エラーとなり実行できません。
+Transpilerでは、\texttt{class}構文を含むソースコードを\texttt{function}キーワードを使って疑似的に再現するコードへ変換します。
+Transpilerとしては\href{https://babeljs.io/}{Babel}\index{Babel}\footnote{\url{https://babeljs.io/}}や\href{https://www.typescriptlang.org/}{TypeScript}\index{TypeScript}\footnote{\url{https://www.typescriptlang.org/}}などが有名です。
+
+Polyfill\index{Polyfill}とは、新しい関数やメソッドなどの仕様を満たすような実装を提供するライブラリのことです。
+たとえば、ES2016ではArrayに\texttt{includes}というメソッドが追加されました。
+構文とは異なり\texttt{includes}のようなメソッドはビルトインオブジェクトを書き換えることで実装できます。
+Polyfillを提供するものとしては\href{https://github.com/zloirock/core-js}{core-js}\index{core-js}\footnote{\url{https://github.com/zloirock/core-js}}や\href{https://polyfill.io/v3/}{polyfill.io}\index{polyfill.io}\footnote{\url{https://polyfill.io/v3/}}などが有名です。
+
+注意点としてはTranspilerやPolyfillは、あくまで既存の機能を用いて新しい機能の再現を試みているだけにすぎません。
+そのため、既存の機能で再現ができないプロポーザル（機能）はTranspilerやPolyfillでは再現できません。
+また、完全な再現はできていないことがあるためTranspilerやPolyfillを新しい機能を学ぶために使うべきではありません。
+
+\hypertarget{meaning-specification-process}{%
+\section{仕様や策定プロセスを知る意味}\label{meaning-specification-process}}
+
+こうしたECMAScriptという仕様や策定プロセスを知る意味には何があるのでしょうか？　主に次のような理由で知る意味があると考えています。
+
+\begin{itemize}
+\item
+  言語を学ぶため
+\item
+  言語が進化しているため
+\item
+  情報の正しい状態を調べるため
+\end{itemize}
+
+\hypertarget{to-learn}{%
+\subsection{言語を学ぶため}\label{to-learn}}
+
+もっとも単純な理由はJavaScriptという言語そのものを学ぶためです。
+言語の詳細を知りたい場合にはECMAScriptという仕様を参照できます。
+
+しかしながら、JavaScriptの言語機能に関しては\href{https://developer.mozilla.org/ja/}{MDN
+Web Docs}\index{MDN}\footnote{\url{https://developer.mozilla.org/ja/}}という優れたリファレンスサイトなどがあります。
+そのため、使い方を覚えたいなどの範囲ではECMAScriptの仕様そのものを参照する機会は少ないでしょう。
+
+\hypertarget{to-progress}{%
+\subsection{言語が進化しているため}\label{to-progress}}
+
+ECMAScriptはLiving Standardであり、日々更新されています。
+これは、言語仕様に新しい機能や修正などが常に行われていることを表しています。
+
+ECMAScriptは後方互換性を尊重するため、今学んでいることが無駄になるわけではありません。
+しかしながら言語自体も進化していることは意識しておくとよいでしょう。
+
+ECMAScriptのプロポーザル（機能）は問題を解決するために提案されます。
+そのプロポーザルがECMAScriptにマージされ利用できる場合、その機能が何を解決するために導入されたのかを知ることが大切です。
+その際には、ECMAScriptの策定プロセスを知っておくことが役立ちます。
+
+この仕様はなぜこうなったのかということを知りたいと思ったときに、その機能がどのような経緯で入ったのかを調べる手段を持つことは大切です。
+特にES2015以降は策定プロセスもGitHubを利用したオープンなものとなり、過去の記録なども探しやすくなっています。
+
+\hypertarget{to-search}{%
+\subsection{情報の正しい状態を調べるため}\label{to-search}}
+
+JavaScriptは幅広く使われている言語であるため、世の中には膨大な情報があります。
+そして、検索して見つかる情報には正しいものや間違ったものが混在しています。
+
+その中においてECMAScriptの仕様やその策定中のプロポーザルに関する情報は状態が明確です。
+基本的にECMAScriptの仕様に入るものは、後方互換性を維持するために破壊的変更はほとんど行えません。
+プロポーザルはステージという明示された状態があり、ステージ4未満の場合はまだ安定していないことがわかります。
+
+そのため、問題を見つけた際に該当する仕様やプロポーザルを確認してみることが重要です。
+
+これはECMAScriptに限らず、ウェブやブラウザに関する情報については同じことが言えます。
+ブラウザに関してはHTML、DOM
+API、CSSなどのオープンな仕様とそれぞれの策定プロセスが存在しています。
+
+\hypertarget{ecmascript-summary}{%
+\section{まとめ}\label{ecmascript-summary}}
+
+JavaScriptと一言に言ってもECMAScript、ウェブブラウザ、Node.js、WebAssembly、WebGL、WebRTCなど幅広い分野があります。
+すべてのことを知っている必要はありませんし、知っている人もおそらくいないでしょう。
+このような状況下においては知識そのものよりも、それについて知りたいと思ったときに調べる方法を持っていることが大切です。
+
+何ごとも突然まったく新しい概念が増えるわけではなく、ものごとには過程が存在します。
+ECMAScriptにおいては策定プロセスという形でどのような段階であるかが公開されています。
+つまり、仕様にいきなり新しい機能が増えるのではなくプロポーザルという段階を踏んでいます。
+
+日々変化しているソフトウェアにおいては、自身に適切な調べ方を持つことが大切です。

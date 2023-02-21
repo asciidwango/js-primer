@@ -1,0 +1,120 @@
+\hypertarget{math}{%
+\chapter{Math}\label{math}}\index{Math}
+\thispagestyle{frontheadings}
+
+この章では、JavaScriptで数学的な定数と関数を提供するビルトインオブジェクトである\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math}{Math}について学びます。
+
+\hypertarget{math-object}{%
+\section{Mathオブジェクト}\label{math-object}}
+
+\texttt{Math}オブジェクトはビルトインオブジェクトですが、コンストラクタではありません。
+つまり\texttt{Math}オブジェクトはインスタンスを作らず、
+すべての定数や関数は\texttt{Math}オブジェクトの静的なプロパティやメソッドとして提供されています。
+たとえば、\texttt{Math.PI}\index{Math.PI@\texttt{Math.PI}}プロパティは円周率πを表す定数であり、\texttt{Math.sin}\index{Math.sin@\texttt{Math.sin}}メソッドはラジアン値から正弦を計算する関数です。
+次の例では、90度における正弦を計算しています。90度の正弦は1なので、\texttt{sin90}変数は1を返します。
+
+\begin{lstlisting}
+const rad90 = Math.PI * 90 / 180;
+const sin90 = Math.sin(rad90);
+console.log(sin90); // => 1
+\end{lstlisting}
+
+三角関数をはじめとした多くの関数や定数が\texttt{Math}オブジェクトから提供されています。
+この章ではそれらのうちよく使われるものについてユースケースを交えて紹介します。
+網羅的な解説については\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math}{MDNのリファレンス}\index{MDN}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math}}を参照してください。
+
+\hypertarget{create-random-number}{%
+\section{乱数を生成する}\label{create-random-number}}\index{らんすう@乱数}
+
+\texttt{Math}オブジェクトの主な用途のひとつは、\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/random}{\texttt{Math.random}}\index{Math.random@\texttt{Math.random}}メソッドによる乱数の生成です。
+\texttt{Math.random}メソッドは、0以上1未満の範囲内で、疑似ランダムな浮動小数点数を返します。
+
+\begin{lstlisting}
+for (let i = 0; i < 5; i++) {
+    // 毎回ランダムな浮動小数点数を返す
+    console.log(Math.random());
+}
+\end{lstlisting}
+
+次の例では、\texttt{Math.random}メソッドを使って、任意の範囲で乱数を生成しています。
+
+\begin{lstlisting}
+// minからmaxまでの乱数を返す関数
+function getRandom(min, max) {
+    return Math.random() * (max - min) + min;
+}
+// 1以上5未満の浮動小数点数を返す
+console.log(getRandom(1, 5));
+\end{lstlisting}
+
+\hypertarget{compare-number}{%
+\section{数値の大小を比較する}\label{compare-number}}
+
+\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/max}{\texttt{Math.max}}\index{Math.max@\texttt{Math.max}}メソッドは引数として渡された複数の数値のうち、最大のものを返します。
+同様に、\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/min}{\texttt{Math.min}}\index{Math.min@\texttt{Math.min}}メソッドは引数として渡された複数の数値のうち、最小のものを返します。
+
+\begin{lstlisting}
+console.log(Math.max(1, 10)); // => 10
+console.log(Math.min(1, 10)); // => 1
+\end{lstlisting}
+
+これらのメソッドは可変長の引数を取るため、任意の個数の数値を比較できます。
+数値の配列の中から最大・最小の値を取り出す際には、\texttt{...}\index{...@\textbf{\textgt{...}}}（spread構文\index{spreadこうぶん@spread構文}）を使うと簡潔に記述できます。
+
+\begin{lstlisting}
+const numbers = [1, 2, 3, 4, 5];
+console.log(Math.max(...numbers)); // => 5
+console.log(Math.min(...numbers)); // => 1
+\end{lstlisting}
+
+\hypertarget{convert-to-integer}{%
+\section{数値を整数にする}\label{convert-to-integer}}\index{せいすう@整数}
+
+\texttt{Math}オブジェクトには数値を整数に丸めるためのメソッドがいくつかあります。
+代表的なものは、小数点以下を切り捨てる\texttt{Math.floor}\index{Math.floor@\texttt{Math.floor}}メソッド、小数点以下を切り上げる\texttt{Math.ceil}\index{Math.ceil@\texttt{Math.ceil}}メソッド、そして四捨五入する\texttt{Math.round}\index{Math.round@\texttt{Math.round}}メソッドです。
+
+\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/floor}{\texttt{Math.floor}}メソッドは、引数として渡した数以下で最大の整数を返します。このような関数は\textbf{\textgt{床関数}}\index{ゆかかんすう@床関数}と呼ばれます。
+正の数である\texttt{1.3}は\texttt{1}になりますが、負の数である\texttt{-1.3}はより小さい整数の\texttt{-2}に丸められます。
+
+次の\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil}{\texttt{Math.ceil}}メソッドは、引数として渡した数以上で最小の整数を返します。このような関数は\textbf{\textgt{天井関数}}\index{てんじょうかんすう@天井関数}と呼ばれます。
+正の数である\texttt{1.3}は\texttt{2}になりますが、負の数である\texttt{-1.3}はより大きい整数の\texttt{-1}に丸められます。
+
+\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/round}{\texttt{Math.round}}メソッドは、一般的な四捨五入\index{ししゃごにゅう@四捨五入}の処理を行います。
+小数部分が\texttt{0.5}よりも小さな場合は切り捨てられ、それ以外は切り上げられます。
+
+\begin{lstlisting}
+// 床関数
+console.log(Math.floor(1.3)); // => 1
+console.log(Math.floor(-1.3)); // => -2
+// 天井関数
+console.log(Math.ceil(1.3)); // => 2
+console.log(Math.ceil(-1.3)); // => -1
+// 四捨五入
+console.log(Math.round(1.3)); // => 1
+console.log(Math.round(1.6)); // => 2
+console.log(Math.round(-1.3)); // => -1
+\end{lstlisting}
+
+また、\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc}{\texttt{Math.trunc}}\index{Math.trunc@\texttt{Math.trunc}}メソッド\,\protect\iconl{fig/es2015.eps}\,は、渡された数字の小数点以下を単純に切り落とした整数を返します。
+そのため、引数が正の値の場合は\texttt{Math.floor}メソッドと同じになり、そうでない場合は\texttt{Math.ceil}メソッドと同じになります。
+
+\begin{lstlisting}
+// 単純に小数部分を切り落とす
+console.log(Math.trunc(1.3)); // => 1
+console.log(Math.trunc(-1.3)); // => -1
+\end{lstlisting}
+
+\hypertarget{conclusion}{%
+\section{まとめ}\label{conclusion}}
+
+この章では、\texttt{Math}オブジェクトについて学びました。
+紹介したメソッドは\texttt{Math}オブジェクトの一部にすぎないため、そのほかにもメソッドが用意されています。
+
+\begin{itemize}
+\item
+  \texttt{Math}は数学的な定数や関数を提供するビルトインオブジェクト
+\item
+  \texttt{Math}はコンストラクタではないためインスタンス化できない
+\item
+  疑似乱数の生成、数値の比較、数値の計算などを行うメソッドが提供されている
+\end{itemize}

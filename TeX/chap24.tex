@@ -1,0 +1,244 @@
+\hypertarget{json}{%
+\chapter{JSON}\label{json}}\index{JSON}
+\thispagestyle{frontheadings}
+
+この章では、JavaScriptと密接な関係にあるJSONというデータフォーマットについて見ていきます。
+
+\hypertarget{what-is-json}{%
+\section{JSONとは}\label{what-is-json}}
+
+JSONはJavaScript Object
+Notationの略で、JavaScriptのオブジェクトリテラルをベースに作られた軽量なデータフォーマットです。
+JSONの仕様は\href{https://www.ecma-international.org/publications-and-standards/standards/ecma-404/}{ECMA-404}\footnote{\url{https://www.ecma-international.org/publications-and-standards/standards/ecma-404/}}として標準化されています。
+JSONは、人間にとって読み書きが容易で、マシンにとっても簡単にパースや生成を行える形式になっています。
+そのため、多くのプログラミング言語がJSONを扱う機能を備えています。
+
+JSONはJavaScriptのオブジェクトリテラル、配列リテラル、各種プリミティブ型の値を組み合わせたものです。
+ただしJSONとJavaScriptは一部の構文に違いがあります。
+たとえばJSONでは、オブジェクトリテラルのキーを必ずダブルクォートで囲まなければいけません。
+また、小数点から書きはじめる数値リテラルや、先頭がゼロからはじまる数値リテラルも使えません。
+これらは機械がパースしやすくするために仕様で定められた制約です。
+
+\begin{lstlisting}
+{
+    "object": { 
+        "number": 1, 
+        "string": "js-primer",
+        "boolean": true,
+        "null": null,
+        "array": [1, 2, 3]
+    }
+}
+\end{lstlisting}
+
+JSONの細かい仕様に関しては\href{https://www.json.org/json-ja.html}{json.orgの日本語ドキュメント}\footnote{\url{https://www.json.org/json-ja.html}}にわかりやすくまとまっているので、参考にするとよいでしょう。
+
+\hypertarget{json-object}{%
+\section{\texorpdfstring{\texttt{JSON}オブジェクト}{JSONオブジェクト}}\label{json-object}}
+
+JavaScriptでJSONを扱うには、ビルトインオブジェクトである\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON}{JSONオブジェクト}を利用します。
+\texttt{JSON}オブジェクトはJSON形式の文字列とJavaScriptのオブジェクトを相互に変換するための\texttt{parse}\index{parse@\texttt{parse}}メソッドと\texttt{stringify}\index{stringify@\texttt{stringify}}メソッドを提供します。
+
+\hypertarget{json-parse}{%
+\subsection{JSON文字列をオブジェクトに変換する}\label{json-parse}}
+
+\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse}{\texttt{JSON.parse}\index{JSON.parse@\texttt{JSON.parse}}メソッド}は引数に与えられた文字列をJSONとしてパースし、その結果をJavaScriptのオブジェクトとして返す関数です。
+次のコードは簡単なJSON形式の文字列をJavaScriptのオブジェクトに変換する例です。
+
+\begin{lstlisting}
+// JSONはダブルクォートのみを許容するため、シングルクォートでJSON文字列を記述
+const json = '{ "id": 1, "name": "js-primer" }';
+const obj = JSON.parse(json);
+console.log(obj.id); // => 1
+console.log(obj.name); // => "js-primer"
+\end{lstlisting}
+
+文字列がJSONの配列を表す場合は、\texttt{JSON.parse}メソッドの返り値も配列になります。
+
+\begin{lstlisting}
+const json = "[1, 2, 3]";
+console.log(JSON.parse(json)); // => [1, 2, 3]
+\end{lstlisting}
+
+与えられた文字列がJSON形式でパースできない場合は例外が投げられます。
+また、実際のアプリケーションでJSONを扱うのは、外部のプログラムとデータを交換する用途がほとんどです。
+外部のプログラムが送ってくるデータが常にJSONとして正しい保証はありません。
+そのため、\texttt{JSON.parse}メソッドは基本的に\texttt{try...catch}構文で例外処理をするべきです。
+
+\begin{lstlisting}
+const userInput = "not json value";
+try {
+    const json = JSON.parse(userInput);
+} catch (error) {
+    console.log("パースできませんでした");
+}
+\end{lstlisting}
+
+\hypertarget{json-format}{%
+\subsection{オブジェクトをJSON文字列に変換する}\label{json-format}}
+
+\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify}{\texttt{JSON.stringify}\index{JSON.stringify@\texttt{JSON.stringify}}メソッド}は第一引数に与えられたオブジェクトをJSON形式の文字列に変換して返す関数です。
+HTTP通信でサーバーにデータを送信するときや、
+アプリケーションが保持している状態を外部に保存するときなどに必要になります。
+次のコードはJavaScriptのオブジェクトをJSON形式の文字列に変換する例です。
+
+\begin{lstlisting}
+const obj = { id: 1, name: "js-primer", bio: null };
+console.log(JSON.stringify(obj)); // => '{"id":1,"name":"js-primer","bio":null}'
+\end{lstlisting}
+
+\texttt{JSON.stringify}メソッドにはオプショナルな引数が2つあります。
+第二引数はreplacer引数\index{replacerひきすう@replacer引数}とも呼ばれ、関数あるいは配列を渡せます。
+関数を渡した場合は引数にプロパティのキーと値が渡され、その返り値によって文字列に変換される際の挙動をコントロールできます。
+次の例は値がnullであるプロパティを除外してJSONに変換するreplacer引数の例です。
+replacer引数の関数で\texttt{undefined}が返されたプロパティは、変換後のJSONに含まれなくなります。
+
+\begin{lstlisting}
+const obj = { id: 1, name: "js-primer", bio: null };
+const replacer = (key, value) => {
+    if (value === null) {
+        return undefined;
+    }
+    return value;
+};
+console.log(JSON.stringify(obj, replacer)); // => '{"id":1,"name":"js-primer"}'
+\end{lstlisting}
+
+replacer引数に配列を渡した場合はプロパティの許可リストとして使われ、
+その配列に含まれる名前のプロパティだけが変換されます。
+
+\begin{lstlisting}
+const obj = { id: 1, name: "js-primer", bio: null };
+const replacer = ["id", "name"];
+console.log(JSON.stringify(obj, replacer)); // => '{"id":1,"name":"js-primer"}'
+\end{lstlisting}
+
+第三引数はspace引数\index{spaceひきすう@space引数}とも呼ばれ、変換後のJSON形式の文字列を読みやすくフォーマットする際のインデントを設定できます。
+数値を渡すとその数値分の長さのスペースで、文字列を渡すとその文字列でインデントされます。
+次のコードはスペース2個でインデントされたJSONを得る例です。
+
+\begin{lstlisting}
+const obj = { id: 1, name: "js-primer" };
+// replacer引数を使わない場合はnullを渡して省略するのが一般的です
+console.log(JSON.stringify(obj, null, 2)); 
+/*
+{
+   "id": 1,
+   "name": "js-primer"
+}
+*/
+\end{lstlisting}
+
+また、次のコードはタブ文字でインデントされたJSONを得る例です。
+
+\begin{lstlisting}
+const obj = { id: 1, name: "js-primer" };
+console.log(JSON.stringify(obj, null, "\t")); 
+/*
+{
+   "id": 1,
+   "name": "js-primer"
+}
+*/
+\end{lstlisting}
+
+\hypertarget{not-serialization-object}{%
+\section{JSONにシリアライズできないオブジェクト}\label{not-serialization-object}}\index{JSON!しりあらいず@シリアライズ}\index{しりあらいず@シリアライズ}
+
+\texttt{JSON.stringify}メソッドはJSONで表現可能な値だけをシリアライズします。
+そのため、値が関数や\texttt{Symbol}、あるいは\texttt{undefined}であるプロパティなどは変換されません。
+ただし、配列の値としてそれらが見つかったときには例外的に\texttt{null}に置き換えられます。
+またキーが\texttt{Symbol}である場合にもシリアライズの対象外になります。
+代表的な変換の例を次の表とサンプルコードに示します。
+
+\begin{small}
+\begin{longtable}[l]{p{70mm}|p{70mm}}
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}\textgt{シリアライズ前の値} & \textgt{シリアライズ後の値}\tabularnewline
+\hline
+\endhead
+文字列・数値・真偽値 & 対応する値\tabularnewline
+null & null\tabularnewline
+配列 & 配列\tabularnewline
+オブジェクト & オブジェクト\tabularnewline
+関数 & 変換されない（配列のときはnull）\tabularnewline
+undefined & 変換されない（配列のときはnull）\tabularnewline
+Symbol & 変換されない（配列のときはnull）\tabularnewline
+RegExp & \{\}\tabularnewline
+Map, Set & \{\}\tabularnewline
+BigInt & 例外が発生する\tabularnewline
+\hline
+\end{longtable}
+\end{small}
+
+\begin{lstlisting}
+// 値が関数のプロパティ
+console.log(JSON.stringify({ x: function() {} })); // => '{}'
+// 値がSymbolのプロパティ
+console.log(JSON.stringify({ x: Symbol("") })); // => '{}'
+// 値がundefinedのプロパティ
+console.log(JSON.stringify({ x: undefined })); // => '{}'
+// 配列の場合
+console.log(JSON.stringify({ x: [10, function() {}] })); // => '{"x":[10,null]}'
+// キーがSymbolのプロパティ
+JSON.stringify({ [Symbol("foo")]: "foo" }); // => '{}'
+// 値がRegExpのプロパティ
+console.log(JSON.stringify({ x: /foo/ })); // => '{"x":{}}'
+// 値がMapのプロパティ
+const map = new Map();
+map.set("foo", "foo");
+console.log(JSON.stringify({ x: map })); // => '{"x":{}}'
+\end{lstlisting}
+
+オブジェクトがシリアライズされる際は、そのオブジェクトの列挙可能なプロパティだけが再帰的にシリアライズされます。
+\texttt{RegExp}や\texttt{Map}、\texttt{Set}などのインスタンスは列挙可能なプロパティを持たないため、空のオブジェクトに変換されます。
+
+また、\texttt{JSON.stringify}メソッドがシリアライズに失敗することもあります。
+よくあるのは、参照が循環しているオブジェクトをシリアライズしようとしたときに例外が投げられるケースです。
+たとえば次の例のように、あるオブジェクトのプロパティを再帰的にたどって自分自身が見つかるような場合はシリアライズが不可能となります。
+\texttt{JSON.parse}メソッドだけでなく、\texttt{JSON.stringify}メソッドも例外処理を行って安全に使いましょう。
+
+\begin{lstlisting}
+const obj = { foo: "foo" };
+obj.self = obj;
+try {
+    JSON.stringify(obj);
+} catch (error) {
+    console.error(error); 
+    // => "TypeError: Converting circular structure to JSON"
+}
+\end{lstlisting}
+
+\hypertarget{serialization-by-toJSON}{%
+\section{\texorpdfstring{\texttt{toJSON}メソッドを使ったシリアライズ}{toJSONメソッドを使ったシリアライズ}}\label{serialization-by-toJSON}}\index{toJSON@\texttt{toJSON}}\index{しりあらいず@シリアライズ}
+
+オブジェクトが\texttt{toJSON}メソッドを持っている場合、\texttt{JSON.stringify}メソッドは既定の文字列変換ではなく\texttt{toJSON}メソッドの返り値を使います。
+次の例のように、引数に直接渡されたときだけでなく引数のプロパティとして登場したときにも再帰的に処理されます。
+
+\begin{lstlisting}
+const obj = {
+    foo: "foo",
+    toJSON() {
+        return "bar";
+    }
+};
+console.log(JSON.stringify(obj)); // => '"bar"'
+console.log(JSON.stringify({ x: obj })); // => '{"x":"bar"}'
+\end{lstlisting}
+
+\texttt{toJSON}メソッドは自作のクラスを特殊な形式でシリアライズする目的などに使われます。
+
+\hypertarget{conclusion}{%
+\section{まとめ}\label{conclusion}}
+
+この章では、JSONについて学びました。
+
+\begin{itemize}
+\item
+  JSONはJavaScriptのオブジェクトリテラルをベースに作られた軽量なデータフォーマット
+\item
+  \texttt{JSON}オブジェクトを使ったシリアライズとデシリアライズ
+\item
+  JSON形式にシリアライズできないオブジェクトもある
+\item
+  \texttt{JSON.stringify}はシリアライズ対象の\texttt{toJSON}メソッドを利用する
+\end{itemize}

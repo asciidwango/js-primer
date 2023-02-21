@@ -1,0 +1,331 @@
+\hypertarget{error-handling}{%
+\chapter{例外処理}\label{error-handling}}\index{れいがいしょり@例外処理}
+\thispagestyle{frontheadings}
+
+この章ではJavaScriptにおける例外処理について学びます。
+
+\hypertarget{try-catch}{%
+\section{try\ldots{}catch構文}\label{try-catch}}\index{try...catchこうぶん@\texttt{try...catch}構文}
+
+\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/try...catch}{try\ldots{}catch}構文は例外が発生しうるブロックをマークし、例外が発生したときの処理を記述するための構文です。
+
+try\ldots{}catch構文の\texttt{try}ブロック\index{tryぶろっく@\texttt{try}ブロック}内で例外が発生すると、\texttt{try}ブロック内のそれ以降の処理は実行されず、\texttt{catch}節に処理が移行します。
+\texttt{catch}節\index{catchせつ@\texttt{catch}節}は、\texttt{try}ブロック内で例外が発生すると、発生したエラーオブジェクトとともに呼び出されます。
+\texttt{finally}節\index{finallyせつ@\texttt{finally}節}は、\texttt{try}ブロック内で例外が発生したかどうかには関係なく、必ず\texttt{try}文の最後に実行されます。
+
+次のコードでは、\texttt{try}ブロックで例外が発生し、\texttt{catch}節の処理が実行され、最後に\texttt{finally}節の処理が実行されます。
+
+\begin{lstlisting}
+try {
+    console.log("try節:この行は実行されます");
+    // 未定義の関数を呼び出してReferenceError例外が発生する
+    undefinedFunction();
+    // 例外が発生したため、この行は実行されません
+} catch (error) {
+    // 例外が発生したあとはこのブロックが実行される
+    console.log("catch節:この行は実行されます");
+    console.log(error instanceof ReferenceError); // => true
+    console.log(error.message); // => "undefinedFunction is not defined"
+} finally {
+    // このブロックは例外の発生に関係なく必ず実行される
+    console.log("finally節:この行は実行されます");
+}
+\end{lstlisting}
+
+また、\texttt{catch}節と\texttt{finally}節のうち、片方が存在していれば、もう片方の節は省略できます。
+\texttt{finally}節のみを書いた場合は例外がキャッチされないため、\texttt{finally}節を実行後に例外が発生します。
+
+\begin{lstlisting}
+// catch節のみ
+try {
+    undefinedFunction();
+} catch (error) {
+    console.error(error);
+}
+// finally節のみ
+try {
+    undefinedFunction();
+} finally {
+    console.log("この行は実行されます");
+}
+// finally節のみでは例外がキャッチされないため、この行は実行されません
+\end{lstlisting}
+
+\hypertarget{throw}{%
+\section{throw文}\label{throw}}\index{throwぶん@throw文}
+
+\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/throw}{throw}文を使うとユーザーが例外を投げることができます。
+例外として投げられたオブジェクトは、\texttt{catch}節で関数の引数のようにアクセスできます。
+\texttt{catch}節でオブジェクトを参照できる識別子を\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/try...catch\#The_exception_identifier}{例外識別子}\index{れいがいしきべつし@例外識別子}と呼びます。
+
+次のコードでは、\texttt{catch}節の\texttt{error}\index{error@\texttt{error}}識別子でキャッチしたエラーオブジェクトを参照しています。
+
+\begin{lstlisting}
+try {
+    // 例外を投げる
+    throw new Error("例外が投げられました");
+} catch (error) {
+    // catch節のスコープでerrorにアクセスできる
+    console.log(error.message); // => "例外が投げられました"
+}
+\end{lstlisting}
+
+\hypertarget{error-object}{%
+\section{エラーオブジェクト}\label{error-object}}\index{えらーおぶじぇくと@エラーオブジェクト}
+
+\texttt{throw}文ではエラーオブジェクトを例外として投げることができます。
+ここでは、\texttt{throw}文で例外として投げられるエラーオブジェクトについて見ていきます。
+
+\hypertarget{error}{%
+\subsection{Error}\label{error}}\index{Error@\texttt{Error}}
+
+\texttt{Error}オブジェクトのインスタンスは\texttt{new Error("エラーメッセージ")}で作成します。
+コンストラクタの第一引数には、エラーメッセージとなる文字列を渡します。
+渡したエラーメッセージはErrotの\texttt{message}\index{message@\texttt{message}}\index{Error@\texttt{Error}!message@\texttt{message}}プロパティで参照できます。
+
+次のコードでは、\texttt{assertPositiveNumber}関数でエラーオブジェクトを作成し、例外として\texttt{throw}しています。
+投げられたオブジェクトは、catch節の例外識別子（\texttt{error}）からエラーオブジェクトを取得でき、エラーメッセージが確認できます。
+
+\begin{lstlisting}
+// 渡された数値が0以上ではない場合に例外を投げる関数
+function assertPositiveNumber(num) {
+    if (num < 0) {
+        throw new Error(`${num} is not positive.`);
+    }
+}
+
+try {
+    // 0未満の値を渡しているので、関数が例外を投げる
+    assertPositiveNumber(-1);
+} catch (error) {
+    console.log(error instanceof Error); // => true
+    console.log(error.message); // => "-1 is not positive."
+}
+\end{lstlisting}
+
+\texttt{throw}文はあらゆるオブジェクトを例外として投げられますが、基本的に\texttt{Error}オブジェクトのインスタンスを投げることを推奨します。
+その理由は後述する\textbf{\textgt{スタックトレース}}のためです。
+\texttt{Error}オブジェクトはインスタンスの作成時に、そのインスタンスが作成されたファイル名や行数などのデバッグに役立つ情報を持っています。
+文字列のような\texttt{Error}オブジェクトではないオブジェクトを投げてしまうと、スタックトレースが得られません。
+
+そのため、次のように\texttt{throw}文で\texttt{Error}オブジェクトではないものを投げるのは非推奨です。
+
+\begin{lstlisting}
+// 文字列を例外として投げるアンチパターンの例
+try {
+    throw "例外が投げられました";
+} catch (error) {
+    // catch節の例外識別子は、投げられた値を参照する
+    console.log(error); // => "例外が投げられました"
+}
+\end{lstlisting}
+
+\hypertarget{built-in-error}{%
+\subsection{ビルトインエラー}\label{built-in-error}}\index{びるといんえらー@ビルトインエラー}
+
+エラーには状況に合わせたいくつかの種類があり、これらはビルトインエラーとして定義されています。
+ビルトインエラーとは、ECMAScript仕様や実行環境に組み込みで定義されているエラーオブジェクトです。
+ビルトインエラーとして投げられるエラーオブジェクトは、すべて\texttt{Error}オブジェクトを継承したオブジェクトのインスタンスです。
+そのため、ユーザーが定義したエラーと同じように例外処理できます。
+
+ビルトインエラーにはいくつか種類がありますが、ここでは代表的なものを紹介します。
+
+\hypertarget{reference-error}{%
+\subsubsection{ReferenceError}\label{reference-error}}\index{ReferenceError@\texttt{ReferenceError}}
+
+\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError}{ReferenceError}は存在しない変数や関数などの識別子が参照された場合のエラーです。
+次のコードでは、存在しない変数を参照しているため\texttt{ReferenceError}例外が投げられます。
+
+\begin{lstlisting}
+try {
+    // 存在しない変数を参照する
+    console.log(x);
+} catch (error) {
+    console.log(error instanceof ReferenceError); // => true
+    console.log(error.name); // => "ReferenceError"
+    console.log(error.message); // エラーメッセージが表示される
+}
+\end{lstlisting}
+
+\hypertarget{syntax-error}{%
+\subsubsection{SyntaxError}\label{syntax-error}}\index{SyntaxError@\texttt{SyntaxError}}
+
+\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError}{SyntaxError}は構文的に不正なコードを解釈しようとした場合のエラーです。
+基本的に\texttt{Syntax Error}例外は、JavaScriptを実行する前のパース段階で発生します。
+そのため、実行前に発生する例外である\texttt{SyntaxError}を\texttt{try...catch}文ではcatchできません。
+
+\begin{lstlisting}
+// JavaScriptとして正しくない構文をパースするとSyntaxErrorが発生する
+foo! bar!
+\end{lstlisting}
+
+次のコードでは、\texttt{eval}\index{eval@\texttt{eval}}関数を使って実行時に\texttt{SyntaxError}を発生させています。
+\texttt{eval}関数は渡した文字列をJavaScriptとして実行する関数です。
+実行時に発生した\texttt{SyntaxError}は、\texttt{try...catch}文でもcatchできます。
+
+\begin{lstlisting}
+try {
+    // eval関数は渡した文字列をJavaScriptとして実行する関数
+    // 正しくない構文をパースさせ、SyntaxErrorを実行時に発生させる
+    eval("foo! bar!");
+} catch (error) {
+    console.log(error instanceof SyntaxError); // => true
+    console.log(error.name); // => "SyntaxError"
+    console.log(error.message); // エラーメッセージが表示される
+}
+\end{lstlisting}
+
+\hypertarget{type-error}{%
+\subsubsection{TypeError}\label{type-error}}\index{TypeError@\texttt{TypeError}}
+
+\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/TypeError}{TypeError}は値が期待される型ではない場合のエラーです。
+次のコードでは、関数ではないオブジェクトを関数呼び出ししているため、\texttt{TypeError}例外が投げられます。
+
+\begin{lstlisting}
+try {
+    // 関数ではないオブジェクトを関数として呼び出す
+    const fn = {};
+    fn();
+} catch (error) {
+    console.log(error instanceof TypeError); // => true
+    console.log(error.name); // => "TypeError"
+    console.log(error.message); // エラーメッセージが表示される
+}
+\end{lstlisting}
+
+\hypertarget{throw-built-in-error}{%
+\subsection{ビルトインエラーを投げる}\label{throw-built-in-error}}\index{びるといんえらー@ビルトインエラー!なげる@投げる}
+
+ビルトインエラーのインスタンスを作成し、そのインスタンスを例外として投げることもできます。
+通常の\texttt{Error}オブジェクトと同じように、それぞれのビルトインエラーオブジェクトを\texttt{new}してインスタンスを作成できます。
+
+たとえば関数の引数を文字列に限定したい場合は、次のように\texttt{TypeError}例外を投げるとよいでしょう。
+メッセージを確認しなくても、エラーの名前だけで型に関する例外だとすぐにわかります。
+
+\begin{lstlisting}
+// 文字列を反転する関数
+function reverseString(str) {
+    if (typeof str !== "string") {
+        throw new TypeError(`${str} is not a string`);
+    }
+    return Array.from(str).reverse().join("");
+}
+
+try {
+    // 数値を渡す
+    reverseString(100);
+} catch (error) {
+    console.log(error instanceof TypeError); // => true
+    console.log(error.name); // => "TypeError"
+    console.log(error.message); // "100 is not a string"
+}
+\end{lstlisting}
+
+\hypertarget{error-and-debug}{%
+\section{エラーとデバッグ}\label{error-and-debug}}\index{えらー@エラー}\index{でばっぐ@デバッグ}
+
+JavaScript開発においてデバッグ中に発生したエラーを理解することは非常に重要です。
+エラーが持つ情報を活用することで、ソースコードのどこでどのような例外が投げられたのかを知ることができます。
+
+エラーはすべて\texttt{Error}\index{Error@\texttt{Error}}オブジェクトを拡張したオブジェクトで宣言されています。
+つまり、エラーの名前を表す\texttt{name}\index{name@\texttt{name}}プロパティと内容を表す\texttt{message}\index{message@\texttt{message}}プロパティを持っています。
+この2つのプロパティを確認することで、多くの場面で開発の助けとなるでしょう。
+
+次のコードでは、\texttt{try...catch}文で囲っていない部分で例外が発生しています。
+
+\begin{lstlisting}
+function fn() {
+    // 存在しない変数を参照する
+    x++;
+}
+fn();
+\end{lstlisting}
+
+このスクリプトを読み込むと、投げられた例外についてのログがコンソールに出力されます。
+ここではFirefoxにおける実行例を示します。
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=130mm]{fig/error.eps}
+\caption{コンソールでのエラー表示（Firefox）}
+\end{figure}
+
+このエラーログには次の情報が含まれています。
+
+\begin{small}
+\begin{longtable}[l]{p{60mm}|p{80mm}}
+\hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}\textgt{メッセージ} & \textgt{意味}\tabularnewline
+\hline
+\endhead
+\texttt{ReferenceError:\ x is not defined} &
+エラーの種類は\texttt{ReferenceError}で、\texttt{x}が未定義であること。\tabularnewline
+\texttt{error.js:3:5} &
+例外が\texttt{error.js}の3行目5列目で発生したこと。つまり\texttt{x++;}であること。\tabularnewline
+\hline
+\end{longtable}
+\end{small}
+
+また、メッセージの後には例外のスタックトレースが表示されています。
+スタックトレース\index{すたっくとれーす@スタックトレース}とは、プログラムの実行過程を記録した内容で、どの処理によってエラーが発生したかが書かれています。
+
+\begin{itemize}
+\item
+  スタックトレースの最初の行が実際に例外が発生した場所です。つまり、3行目の
+  \texttt{x++;} で例外が発生しています
+\item
+  次の行には、そのコードの呼び出し元が記録されています。つまり、3行目のコードを実行したのは5行目の\texttt{fn}関数の呼び出しです
+\end{itemize}
+\newpage
+このように、スタックトレースは上から下へ呼び出し元をたどれるように記録されています。
+
+コンソールに表示されるエラーログ\index{えらーろぐ@エラーログ}には多くの情報が含まれています。
+MDN\index{MDN}の\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Errors}{JavaScriptエラーリファレンス}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Errors}}には、ブラウザが投げるビルトインエラーの種類とメッセージが網羅されています。
+開発中にビルトインエラーが発生したときには、リファレンスを見て解決方法を探すとよいでしょう。
+
+\hypertarget{console.error}{%
+\section{\texorpdfstring{\texttt{console.error}とスタックトレース}{console.errorとスタックトレース}}\label{console.error}}\index{console.error@\texttt{console.error}}\index{すたっくとれーす@スタックトレース}
+
+\texttt{console.error}メソッドではメッセージと合わせてスタックトレースをコンソールへ出力できます。
+
+次のコードを実行して、\texttt{console.log}\index{console.log@\texttt{console.log}}と\texttt{console.error}の出力結果を見比べてみます。
+
+\begin{lstlisting}
+function fn() {
+    console.log("メッセージ");
+    console.error("エラーメッセージ");
+}
+
+fn();
+\end{lstlisting}
+
+このコードをFirefoxで実行するとコンソール出力は次の図のようになります。
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=120mm]{./fig/console-error.eps}
+\caption{console.logとconsole.errorの出力結果}
+\end{figure}
+
+\texttt{console.log}はメッセージだけなのに対して、\texttt{console.error}ではメッセージと共にスタックトレースが出力されます。
+そのため、エラーが発生した場合のコンソールへのメッセージ出力に\texttt{console.error}を利用することでデバッグがしやすくなります。
+
+また、ほとんどのブラウザには\texttt{console.log}や\texttt{console.error}の出力をフィルターリングできる機能が備わっています。
+ただのログ出力には\texttt{console.log}を使い、エラーに関するログ出力には\texttt{console.error}と使うことで、ログの重要度が区別しやすくなります。
+
+\hypertarget{conclusion}{%
+\section{まとめ}\label{conclusion}}
+
+この章では、例外処理とエラーオブジェクトについて学びました。
+
+\begin{itemize}
+\item
+  \texttt{try...catch}構文は\texttt{try}ブロック内で発生した例外を処理できる
+\item
+  \texttt{catch}節と\texttt{finally}節は、両方またはどちらか片方を記述する
+\item
+  \texttt{throw}文は例外を投げることができ、\texttt{Error}オブジェクトを例外として投げる
+\item
+  \texttt{Error}オブジェクトには、ECMAScript仕様や実行環境で定義されたビルトインエラーがある
+\item
+  \texttt{Error}オブジェクトには、スタックトレースが記録され、デバッグに役立てられる
+\end{itemize}

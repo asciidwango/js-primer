@@ -1,0 +1,22 @@
+\begin{listtitle}
+src/model/TodoListModel.jsの変更点を抜粋
+\end{listtitle}
+\begin{lstlisting}
+    // ===============================
+    // TodoListModel.jsの既存の実装は省略
+    // ===============================
+    /**
+     * 指定したidのTodoItemを削除する
+     * @param {{ id: number }}
+     */
+    deleteTodo({ id }) {
+        // `id`に一致しないTodoItemだけを残すことで、`id`に一致するTodoItemを削除する
+        this.#items = this.#items.filter(todo => {
+            return todo.id !== id;
+        });
+        this.emitChange();
+    }
+}
+\end{lstlisting}
+\listend
+

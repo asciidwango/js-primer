@@ -1,0 +1,1900 @@
+\hypertarget{async-handling}{%
+\chapter[非同期処理: Promise/Async Function]{非同期処理: Promise/Async
+Function}\label{async-handling}}\index{ひどうきしょり@非同期処理}\index{Promise}\index{Async Function}
+\thispagestyle{frontheadings}
+
+この章ではJavaScriptの非同期処理について学んでいきます。
+非同期処理はJavaScriptにおけるとても重要な概念です。
+また、ブラウザやNode.jsなどのAPIには非同期処理でしか扱えないものもあるため、非同期処理を避けることはできません。
+JavaScriptには非同期処理を扱うためのPromiseというビルトインオブジェクト、さらにはAsync Functionと呼ばれる構文的なサポートがあります。
+
+この章では非同期処理とはどのようなものかという話から、非同期処理での例外処理、非同期処理の扱い方を見ていきます。
+
+\hypertarget{sync-processing}{%
+\section{同期処理}\label{sync-processing}}\index{どうきしょり@同期処理}
+
+多くのプログラミング言語にはコードの評価の仕方として、\textbf{\textgt{同期処理}}（sync\index{sync@\texttt{sync}}）と\textbf{\textgt{非同期処理}}（async\index{async@\texttt{async}}）という大きな分類があります。
+
+今まで書いていたコードは\textbf{\textgt{同期処理}}と呼ばれているものです。
+同期処理ではコードを順番に処理していき、ひとつの処理が終わるまで次の処理は行いません。
+同期処理では実行している処理はひとつだけとなるため、とても直感的な動作となります。
+
+一方、同期的にブロックする処理が行われていた場合には問題があります。
+同期処理ではひとつの処理が終わるまで、次の処理へ進むことができないためです。
+
+次のコードの\texttt{blockTime}関数は指定した\texttt{timeout}ミリ秒だけ無限ループを実行し、同期的にブロックする処理です。
+\texttt{timeout}ミリ秒経過したかの判定には、無限ループの中でUnix時間（1970年1月1日午前0時0分0秒から経過した時間）のミリ秒を返す\texttt{Date.now}メソッドを利用しています。
+この\texttt{blockTime}関数を呼び出すと、指定時間が経過するまで次の処理（タスクB）は呼ばれません。
+
+\begin{lstlisting}
+function taskA() {
+    console.log("タスクAを実行 at " + Date.now());
+}
+function taskB() {
+    console.log("タスクBを実行 at " + Date.now());
+}
+// 指定したtimeoutミリ秒経過するまで同期的にブロックする関数
+function blockTime(timeout) { 
+    // Date.now()は現在の時間をUnix時間（1970年1月1日午前0時0分0秒から経過した時間）のミリ秒を返す
+    const startTime = Date.now();
+    // timeoutミリ秒経過するまで無限ループをする
+    while (true) {
+        const diffTime = Date.now() - startTime;
+        if (diffTime >= timeout) {
+            return; // 指定時間経過したら関数の実行を終了
+        }
+    }
+}
+taskA();
+blockTime(1000); // 他の処理を1000ミリ秒（1秒間）ブロックする
+taskB();
+\end{lstlisting}
+
+同期的にブロックする処理があると、ブラウザでは大きな問題となります。
+なぜなら、JavaScriptは基本的にブラウザのメインスレッド\index{めいんすれっど@メインスレッド}（UIスレッド\index{UIすれっど@UIスレッド}とも呼ばれる）で実行されるためです。
+メインスレッドは表示の更新といったUIに関する処理も行っています。
+そのため、メインスレッドがJavaScriptの処理で専有されると、表示が更新されなくなりフリーズしたようになります。
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=80mm]{fig/single-thread-tasks.pdf}
+\end{figure}
+
+先ほどの例では1秒間も処理をブロックしているため、1秒間スクロールなどの操作が効かないといった悪影響がでます。
+
+\hypertarget{async-processing}{%
+\section{非同期処理}\label{async-processing}}\index{ひどうきしょり@非同期処理}
+
+非同期処理はコードを順番に処理していきますが、ひとつの非同期処理が終わるのを待たずに次の処理を評価します。
+つまり、非同期処理では同時に実行している処理が複数あります。
+
+JavaScriptにおいて非同期処理の代表的な関数として\texttt{setTimeout}\index{setTimeout@\texttt{setTimeout}}関数があります。
+\texttt{setTimeout}関数は\texttt{delay}ミリ秒後に、\texttt{コールバック関数}を呼び出すようにタイマーへ登録する非同期処理です。
+
+\begin{lstlisting}
+setTimeout(コールバック関数, delay);
+\end{lstlisting}
+
+次のコードでは、見た目上はタスクA → 非同期のタスク → タスクBという流れになっています。
+しかし、\texttt{setTimeout}関数を使い、非同期のタスクは1000ミリ秒（1秒）後に実行するようにタイマーへ登録しています。
+そのため、実際にはタスクA → タスクB → 非同期のタスクという順番で実行されます。
+
+\begin{lstlisting}
+function taskA() {
+    console.log("タスクAを実行 at " + Date.now());
+}
+function taskB() {
+    console.log("タスクBを実行 at " + Date.now());
+}
+function taskAsync() {
+    console.log("非同期のタスクを実行 at " + Date.now());
+}
+
+taskA();
+setTimeout(() => {
+    taskAsync();
+}, 1000);
+taskB();
+\end{lstlisting}
+
+このように、非同期処理（\texttt{setTimeout}のコールバック関数）は、コードの見た目上の並びとは異なる順番で実行されることがわかります。
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=80mm]{fig/async-single-thread-tasks.pdf}
+\end{figure}
+
+\hypertarget{async-and-main-thread}{%
+\section{非同期処理はメインスレッドで実行される}\label{async-and-main-thread}}\index{めいんすれっど@メインスレッド}
+
+メインスレッドはUIスレッドとも呼ばれ、重たいJavaScriptの同期処理はメインスレッドで実行する他の処理（画面の更新など）をブロックする問題について紹介しました。
+これは非同期処理においても同様の問題があります。なぜならJavaScriptにおける非同期の大部分はメインスレッドで実行されるためです。
+
+非同期処理は名前から考えるとメインスレッド以外で実行されるように見えますが、
+基本的には非同期処理も同期処理と同じようにメインスレッドで実行されます。
+このセクションでは非同期処理がどのようにメインスレッドで実行されているかを簡潔に見ていきます。
+
+次のコードは、\texttt{setTimeout}関数でタイマーに登録したコールバック関数が呼ばれるまで、実際にどの程度の時間がかかったかを計測しています。
+\texttt{setTimeout}関数で10ミリ秒後に非同期のタスクを実行するように登録し、その直後に1秒間を同期的にブロックする処理を呼び出しています。
+このコードを実行してみると、同期的にブロックする処理により、非同期のタスクはタイマーに登録した時間（10ミリ秒後）よりも大きく遅れて呼び出されます。
+
+\begin{lstlisting}
+function taskA() {
+    console.log("タスクAを実行 at " + Date.now());
+}
+function taskB() {
+    console.log("タスクBを実行 at " + Date.now());
+}
+function taskAsync() {
+    console.log("非同期のタスクを実行 at " + Date.now());
+}
+// 指定したtimeoutミリ秒経過するまで同期的にブロックする関数
+function blockTime(timeout) { 
+    const startTime = Date.now();
+    while (true) {
+        const diffTime = Date.now() - startTime;
+        if (diffTime >= timeout) {
+            return; // 指定時間経過したら関数の実行を終了
+        }
+    }
+}
+
+const startTime = Date.now();
+taskA();
+// 10ミリ秒後にコールバック関数を呼び出すようにタイマーに登録する
+setTimeout(() => {
+    const endTime = Date.now();
+    taskAsync();
+    console.log(`非同期処理のコールバックが呼ばれるまで${endTime - startTime}
+                 ミリ秒かかりました`);
+}, 10);
+blockTime(1000); // 1秒間処理をブロックする
+taskB();
+\end{lstlisting}
+
+非同期処理（\texttt{setTimeout}のコールバック関数）がメインスレッド以外のスレッドで実行されるならば、
+この非同期処理はメインスレッドで同期的にブロックする処理の影響を受けないはずです。
+しかし、実際にはこの非同期処理もメインスレッドで実行された同期的にブロックする処理の影響を受けます。
+
+多くの環境では、このときの非同期処理のコールバック関数が呼ばれるまでは1秒以上かかります。
+これは、10ミリ秒後に非同期のコールバック関数を実行するようにタイマーへ登録自体はできていますが、同期的なブロックする処理によって非同期のタスクの実行も後ろにずれてしまうためです。
+このように\textbf{\textgt{非同期処理}}も\textbf{\textgt{同期処理}}の影響を受けることから、同じメインスレッドで実行されていることがわかります。
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=120mm]{fig/block-async-single-thread-tasks.pdf}
+\end{figure}
+
+JavaScriptでは一部の例外を除き非同期処理が\textbf{\textgt{並行処理}}\index{へいこうしょり@並行処理}（concurrent\index{concurrent}）として扱われます。
+並行処理とは、処理を一定の単位ごとに分けて処理を切り替えながら実行することです。
+そのため非同期処理の実行前にとても重たい処理があると、非同期処理の実行が遅れるという現象を引き起こします。
+
+ただし、非同期処理の中にもメインスレッドとは別のスレッドで実行できるAPIが実行環境によっては存在します。
+たとえばブラウザでは\href{https://developer.mozilla.org/ja/docs/Web/API/Web_Workers_API/Using_web_workers}{Web
+Worker}\index{Web Worker} APIを使い、メインスレッド以外でJavaScriptを実行できます。
+このWeb Workerにおける非同期処理は\textbf{\textgt{並列処理}}\index{へいれつしょり@並列処理}（Parallel\index{Parallel}）です。
+並列処理とは、排他的に複数の処理を同時に実行することです。
+
+Web Workerではメインスレッドとは異なるWorkerスレッドで実行されるため、Workerスレッド内で同期的にブロックする処理を実行してもメインスレッドは影響を受けにくくなります。
+ただし、Web Workerとメインスレッドでのデータのやり取りには\texttt{postMessage}\index{postMessage@\texttt{postMessage}}というメソッドを利用する必要があります。
+そのため、重たい処理をWorkerに移動できるというメリットはありますが、メインスレッドとWorkerスレッドのデータのやり取りに制限があるというトレードオフの関係になります。
+
+このように、非同期処理のすべてをひとくくりにはできませんが、基本的な非同期処理（タイマーなど）はメインスレッドで実行されているという性質を知ることは大切です。JavaScriptの大部分の\textbf{\textgt{非同期処理}}は\textbf{\textgt{非同期的なタイミングで実行される処理}}であると理解しておく必要があります。
+この書籍で紹介する非同期処理のほとんどは、メインスレッドで処理を切り替えながら実行する\textbf{\textgt{並行処理（concurrent）}}となっています。
+
+\hypertarget{async-processing-and-error-handling}{%
+\section{非同期処理と例外処理}\label{async-processing-and-error-handling}}\index{ひどうきしょり@非同期処理!れいがいしょり@例外処理}\index{れいがいしょり@例外処理}
+
+非同期処理は処理の流れが同期処理とは異なることについて紹介しました。
+これは非同期処理における\textbf{\textgt{例外処理}}においても大きな影響を与えます。
+
+同期処理では、\texttt{try...catch}構文\index{try...catchこうぶん@\texttt{try...catch}構文}を使うことで同期的に発生した例外がキャッチできます（詳細は「\hyperlink{error-handling}{例外処理}」の章を参照）。
+
+\begin{lstlisting}
+try {
+    throw new Error("同期的なエラー");
+} catch (error) {
+    console.log("同期的なエラーをキャッチできる");
+}
+console.log("この行は実行されます");
+\end{lstlisting}
+
+非同期処理では、\texttt{try...catch}構文を使っても非同期的に発生した例外をキャッチできません。
+次のコードでは、10ミリ秒後に非同期的なエラーを発生させています。
+しかし、\texttt{try...catch}構文では次のような非同期エラーをキャッチできません。
+
+\begin{lstlisting}
+try {
+    setTimeout(() => {
+        throw new Error("非同期的なエラー");
+    }, 10);
+} catch (error) {
+    // 非同期エラーはキャッチできないため、この行は実行されません
+}
+console.log("この行は実行されます");
+\end{lstlisting}
+
+\texttt{try}ブロックはそのブロック内で発生した例外をキャッチする構文です。
+しかし、\texttt{setTimeout}関数で登録されたコールバック関数が実際に実行されて例外を投げるのは、すべての同期処理が終わった後となります。
+つまり、\texttt{try}ブロックで例外が発生しうるとマークした\textbf{\textgt{範囲外}}で例外が発生します。
+
+そのため、\texttt{setTimeout}関数のコールバック関数における例外は、次のようにコールバック関数内で同期的なエラーとしてキャッチする必要があります。
+
+\begin{lstlisting}
+// 非同期処理の外
+setTimeout(() => {
+    // 非同期処理の中
+    try {
+        throw new Error("エラー");
+    } catch (error) {
+        console.log("エラーをキャッチできる");
+    }
+}, 10);
+console.log("この行は実行されます");
+\end{lstlisting}
+
+このようにコールバック関数内でエラーをキャッチできますが、\textbf{\textgt{非同期処理の外}}からは\textbf{\textgt{非同期処理の中}}で例外が発生したかがわかりません。
+非同期処理の外から例外が起きたことを知るためには、非同期処理の中で例外が発生したことを非同期処理の外へ伝える方法が必要です。
+
+また、JavaScriptでのHTTPリクエストやファイルの読み書きといった処理も非同期処理のAPIとして提供されています。
+これらの非同期処理はネットワークにつながっていない場合やファイルが存在しない場合などには失敗します。
+そのため、非同期処理における例外の扱い方（エラーハンドリング）は、極めて重要になります。
+
+非同期処理で発生した例外の扱い方についてはさまざまなパターンがあります。
+この章では主要な非同期処理と例外の扱い方として、主にPromise、Async Functionの2つを見ていきます。
+
+Async FunctionはPromiseの上に成り立っている構文です。
+そのため、どちらか片方ではなく両方とも理解することが重要です。
+
+\hypertarget{promise}{%
+\section[Promise]{Promise\,\protect\icon{fig/es2015.eps}}\label{promise}}\index{Promise}
+
+\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise}{Promise}はES2015で導入された非同期処理の状態や結果を表現するビルトインオブジェクトです。
+非同期処理はPromiseのインスタンスを返し、そのPromiseインスタンスには状態変化をした際に呼び出されるコールバック関数を登録できます。
+
+次のコードは、Promiseを扱う非同期処理を行う例です。
+このコードは、大きく分けて2つの部分からなっています。
+
+\begin{itemize}
+\item
+  非同期処理をする部分（\texttt{asyncPromiseTask}関数）: Promiseのインスタンスを返す
+\item
+  非同期処理の結果を扱う部分: Promiseのインスタンスを受け取り、成功時の処理と失敗時の処理をコールバック関数で登録する
+\end{itemize}
+
+\begin{lstlisting}
+// asyncPromiseTask関数は、Promiseインスタンスを返す
+function asyncPromiseTask() {
+    return new Promise((resolve, reject) => {
+        // さまざまな非同期処理を行う
+        // 非同期処理に成功した場合は、resolveを呼ぶ
+        // 非同期処理に失敗した場合は、rejectを呼ぶ
+    });
+}
+// asyncPromiseTask関数の非同期処理が成功した時、失敗した時に呼ばれる処理をコールバック関数として登録する
+asyncPromiseTask().then(()=> {
+    // 非同期処理が成功したときの処理
+}).catch(() => {
+    // 非同期処理が失敗したときの処理
+});
+\end{lstlisting}
+
+\texttt{asyncPromiseTask}関数は、\texttt{Promise}というビルトインオブジェクトのインスタンスを返しています。
+\texttt{Promise}インスタンスは、\texttt{asyncPromiseTask}関数内で行った非同期処理が成功したか失敗したかの状態を表すオブジェクトです。
+ また、この\texttt{Promise}インスタンスに対して、\texttt{then}や\texttt{catch}メソッドで成功時や失敗時に呼び出される処理をコールバック関数として登録することで、非同期処理の結果を扱えます。
+
+Promiseに慣れるまで少しややこしいように見えますが、Promiseは非同期処理の状態や結果をラップしたようなオブジェクトです。
+同期的な関数では関数を実行するとすぐ結果がわかりますが、非同期な関数では関数を実行してもすぐには結果がわかりません。
+そのため、非同期な関数はPromiseという非同期処理の状態をラップしたオブジェクトを返し、その結果が決まったら登録しておいたコールバック関数へ結果を渡すという仕組みになっています。
+
+実際に\texttt{Promise}の使い方をみていきます。
+
+\hypertarget{promise-instance}{%
+\subsection{\texorpdfstring{\texttt{Promise}インスタンスの作成}{Promiseインスタンスの作成}}\label{promise-instance}}\index{Promise!さくせい@作成}
+
+Promiseは\texttt{new}演算子で\texttt{Promise}のインスタンスを作成して利用します。
+このときのコンストラクタには\texttt{resolve}\index{resolve@\texttt{resolve}}と\texttt{reject}\index{reject@\texttt{reject}}の2つの引数を取る\texttt{executor}\index{executor@\texttt{executor}}と呼ばれる関数を渡します。
+\texttt{executor}関数の中で非同期処理を行い、非同期処理が成功した場合は\texttt{resolve}関数を呼び、失敗した場合は\texttt{reject}関数を呼び出します。
+
+\begin{lstlisting}
+const executor = (resolve, reject) => {
+    // 非同期の処理が成功したときはresolveを呼ぶ
+    // 非同期の処理が失敗したときはrejectを呼ぶ
+};
+const promise = new Promise(executor);
+\end{lstlisting}
+
+この\texttt{Promise}インスタンスの\texttt{then}\index{then@\texttt{then}}\index{Promise@\texttt{Promise}!then@\texttt{then}}メソッドで、Promiseが\texttt{resolve}（成功）、\texttt{reject}（失敗）したときに呼ばれるコールバック関数を登録します。
+\texttt{then}\index{then@\texttt{then}}メソッドの第一引数には\texttt{resolve}（成功）時に呼ばれるコールバック関数、第二引数には\texttt{reject}（失敗）時に呼ばれるコールバック関数を渡します。
+
+\begin{lstlisting}
+// Promiseインスタンスを作成
+const promise = new Promise((resolve, reject) => {
+    // 非同期の処理が成功したときはresolve()を呼ぶ
+    // 非同期の処理が失敗したときにはreject()を呼ぶ
+});
+const onFulfilled = () => {
+    console.log("resolveされたときに呼ばれる");
+};
+const onRejected = () => {
+    console.log("rejectされたときに呼ばれる");
+};
+// thenメソッドで成功時と失敗時に呼ばれるコールバック関数を登録
+promise.then(onFulfilled, onRejected);
+\end{lstlisting}
+
+\texttt{Promise}コンストラクタの\texttt{resolve}と\texttt{reject}、\texttt{then}メソッドの\texttt{onFulfilled}と\texttt{onRejected}は次のような関係となります。
+
+\begin{itemize}
+\item
+  \texttt{resolve}（成功）したとき
+
+  \begin{itemize}
+  \item
+    \texttt{onFulfilled}が呼ばれる
+  \end{itemize}
+\item
+  \texttt{reject}（失敗）したとき
+
+  \begin{itemize}
+  \item
+    \texttt{onRejected} が呼ばれる
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{promise-then-and-catch}{%
+\subsection{\texorpdfstring{\texttt{Promise.prototype.then}と\texttt{Promise.prototype.catch}}{Promise.prototype.thenとPromise.prototype.catch}}\label{promise-then-and-catch}}\index{Promise.prototype.then@\texttt{Promise.prototype.then}}\index{Promise.prototype.catch@\texttt{Promise.prototype.catch}}
+
+\texttt{Promise}のようにコンストラクタに関数を渡すパターンは今までなかったので、\texttt{then}\index{then@\texttt{then}}メソッドの使い方について具体的な例を紹介します。
+また、\texttt{then}メソッドのエイリアスでもある\texttt{catch}\index{catch@\texttt{catch}}メソッドについても見ていきます。
+
+次のコードの\texttt{dummyFetch}関数は\texttt{Promise}のインスタンスを作成して返します。
+\texttt{dummyFetch}関数はリソースの取得に成功した場合は\texttt{resolve}関数を呼び、失敗した場合は\texttt{reject}関数を呼びます。
+
+\texttt{resolve}に渡した値は、\texttt{then}メソッドの1番目のコールバック関数（\texttt{onFulfilled}）に渡されます。
+\texttt{reject}に渡したエラーオブジェクトは、\texttt{then}メソッドの2番目のコールバック関数（\texttt{onRejected}）に渡されます。\enlargethispage{\baselineskip}
+
+\begin{lstlisting}
+/**
+ * 1000ミリ秒未満のランダムなタイミングでレスポンスを疑似的にデータ取得する関数
+ * 指定したpathにデータがある場合、成功としてResolved状態のPromiseオブジェクトを返す
+ * 指定したpathにデータがない場合、失敗としてRejected状態のPromiseオブジェクトを返す
+ */
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startsWith("/success")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+// thenメソッドで成功時と失敗時に呼ばれるコールバック関数を登録
+// /success/data のリソースは存在するので成功しonFulfilledが呼ばれる
+dummyFetch("/success/data").then(function onFulfilled(response) {
+    console.log(response); // => { body: "Response body of /success/data" }
+}, function onRejected(error) {
+    // この行は実行されません
+});
+// /failure/data のリソースは存在しないのでonRejectedが呼ばれる
+dummyFetch("/failure/data").then(function onFulfilled(response) {
+    // この行は実行されません
+}, function onRejected(error) {
+    console.error(error); // Error: "NOT FOUND"
+});
+\end{lstlisting}
+
+Promiseの\texttt{then}メソッドは成功（\texttt{onFulfilled}）と失敗（\texttt{onRejected}）のコールバック関数の2つを受け取りますが、どちらの引数も省略できます。
+
+次のコードの\texttt{delay}関数は一定時間後に解決（\texttt{resolve}）される\texttt{Promise}インスタンスを返します。
+この\texttt{Promise}インスタンスに対して\texttt{then}メソッドで\textbf{\textgt{成功時のコールバック関数だけ}}を登録しています。
+
+\begin{lstlisting}
+function delay(timeoutMs) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve();
+        }, timeoutMs);
+    });
+}
+// thenメソッドで成功時のコールバック関数だけを登録
+delay(10).then(() => {
+    console.log("10ミリ秒後に呼ばれる");
+});
+\end{lstlisting}
+
+一方、\texttt{then}メソッドでは失敗時のコールバック関数だけの登録もできます。
+このとき\texttt{then(undefined, onRejected)}のように第一引数には\texttt{undefined}を渡す必要があります。
+\texttt{then(undefined, onRejected)}と同様のことを行う方法としてPromiseの\texttt{catch}メソッドが用意されています。
+
+次のコードでは\texttt{then}メソッドと\texttt{catch}メソッドで失敗時のエラー処理をしていますが、どちらも同じ意味となります。
+\texttt{then}メソッドに\texttt{undefined}を渡すのはわかりにくいため、失敗時の処理だけを登録する場合は\texttt{catch}メソッドの利用を推奨しています。
+
+\begin{lstlisting}
+function errorPromise(message) {
+    return new Promise((resolve, reject) => {
+        reject(new Error(message));
+    });
+}
+// 非推奨: thenメソッドで失敗時のコールバック関数だけを登録
+errorPromise("thenでエラーハンドリング").then(undefined, (error) => {
+    console.log(error.message); // => "thenでエラーハンドリング"
+});
+// 推奨: catchメソッドで失敗時のコールバック関数を登録
+errorPromise("catchでエラーハンドリング").catch(error => {
+    console.log(error.message); // => "catchでエラーハンドリング"
+});
+\end{lstlisting}
+
+\hypertarget{promise-exception}{%
+\subsection{Promiseと例外}\label{promise-exception}}\index{Promise!れいがい@例外}
+
+Promiseではコンストラクタの処理で例外が発生した場合に自動的に例外がキャッチされます。
+例外が発生した\texttt{Promise}インスタンスは\texttt{reject}関数を呼び出したのと同じように失敗したものとして扱われます。
+そのため、Promise内で例外が発生すると\texttt{then}メソッドの第二引数や\texttt{catch}メソッドで登録したエラー時のコールバック関数が呼び出されます。
+
+\begin{lstlisting}
+function throwPromise() {
+    return new Promise((resolve, reject) => {
+        // Promiseコンストラクタの中で例外は自動的にキャッチされrejectを呼ぶ
+        throw new Error("例外が発生");
+        // 例外が発生すると、これ以降のコンストラクタの処理は実行されません
+    });
+}
+
+throwPromise().catch(error => {
+    console.log(error.message); // => "例外が発生"
+});
+\end{lstlisting}
+
+このようにPromiseにおける処理では\texttt{try...catch}構文を使わなくても、自動的に例外がキャッチされます。
+
+\hypertarget{promise-status}{%
+\subsection{Promiseの状態}\label{promise-status}}\index{Promise!じょうたい@状態}\index{じょうたい@状態}
+
+Promiseの\texttt{then}メソッドや\texttt{catch}メソッドによる処理がわかったところで、\texttt{Promise}インスタンスの状態について整理していきます。
+
+\texttt{Promise}インスタンスには、内部的に次の3つの状態が存在します。
+
+\begin{itemize}
+\item
+  \textbf{Fulfilled}\index{Fulfilled}
+
+  \begin{itemize}
+  \item
+    \texttt{resolve}（成功）したときの状態。このとき\texttt{onFulfilled}が呼ばれる
+  \end{itemize}
+\item
+  \textbf{Rejected}\index{Rejected}
+
+  \begin{itemize}
+  \item
+    \texttt{reject}（失敗）または例外が発生したときの状態。このとき\texttt{onRejected}が呼ばれる
+  \end{itemize}
+\item
+  \textbf{Pending}\index{Pending}
+
+  \begin{itemize}
+  \item
+    FulfilledまたはRejectedではない状態
+  \item
+    \texttt{new Promise}でインスタンスを作成したときの初期状態
+  \end{itemize}
+\end{itemize}
+
+これらの状態はECMAScriptの仕様として決められている内部的な状態です。
+しかし、この状態をPromiseのインスタンスから取り出す方法はありません。
+そのためAPIとしてこの状態を直接扱うことはできませんが、Promiseについて理解するのに役立ちます。
+
+\texttt{Promise}インスタンスの状態は作成時に\textbf{Pending}となり、一度でも\textbf{Fulfilled}または\textbf{Rejected}へ変化すると、それ以降状態は変化しなくなります。
+そのため、\textbf{Fulfilled}または\textbf{Rejected}の状態であることを\textbf{Settled}\index{Settled}（不変）と呼びます。
+
+一度でも\textbf{Settled}（\textbf{Fulfilled}または\textbf{Rejected}）となった\texttt{Promise}インスタンスは、それ以降別の状態には変化しません。
+そのため、\texttt{resolve}を呼び出した後に\texttt{reject}を呼び出しても、その\texttt{Promise}インスタンスは最初に呼び出した\texttt{resolve}によって\textbf{Fulfilled}のままとなります。
+
+次のコードでは、\texttt{reject}を呼び出しても状態が変化しないため、\texttt{then}で登録したonRejectedのコールバック関数は呼び出されません。
+\texttt{then}メソッドで登録したコールバック関数は、状態が変化した場合に一度だけ呼び出されます。
+
+\begin{lstlisting}
+const promise = new Promise((resolve, reject) => {
+    // 非同期でresolveする
+    setTimeout(() => {
+        resolve();
+        // すでにresolveされているため無視される
+        reject(new Error("エラー"));
+    }, 16);
+});
+promise.then(() => {
+    console.log("Fulfilledとなった");
+}, (error) => {
+    // この行は呼び出されない
+});
+\end{lstlisting}
+
+同じように、\texttt{Promise}コンストラクタ内で\texttt{resolve}を何度呼び出しても、その\texttt{Promise}インスタンスの状態は一度しか変化しません。
+そのため、次のように\texttt{resolve}を何度呼び出しても、\texttt{then}で登録したコールバック関数は一度しか呼び出されません。
+
+\begin{lstlisting}
+const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve();
+        resolve(); // 二度目以降のresolveやrejectは無視される
+    }, 16);
+});
+promise.then(() => {
+    console.log("最初のresolve時に一度だけ呼ばれる");
+}, (error) => {
+    // この行は呼び出されない
+});
+\end{lstlisting}
+
+このように\texttt{Promise}インスタンスの状態が変化したときに、一度だけ呼ばれるコールバック関数を登録するのが\texttt{then}や\texttt{catch}メソッドとなります。
+
+また\texttt{then}や\texttt{catch}メソッドはすでにSettledへと状態が変化済みの\texttt{Promise}インスタンスに対してもコールバック関数を後から登録できます。
+状態が変化済みの\texttt{Promise}インスタンスに\texttt{then}や\texttt{catch}メソッドで登録したコールバック関数も同じように非同期処理として呼び出されます。
+
+具体的にどうなるかを、状態が変化済みの\texttt{Promise}インスタンスを作成できる\texttt{Promise.resolve}と\texttt{Promise.reject}メソッドと一緒に見ていきます。
+
+\hypertarget{promise-resolve}{%
+\subsection{\texorpdfstring{\texttt{Promise.resolve}}{Promise.resolve}}\label{promise-resolve}}\index{Promise.resolve@\texttt{Promise.resolve}}
+
+\texttt{Promise.resolve}メソッドは\textbf{Fulfilled}の状態となった\texttt{Promise}インスタンスを作成します。
+
+\begin{lstlisting}
+const fulfilledPromise = Promise.resolve();
+\end{lstlisting}
+
+\texttt{Promise.resolve}メソッドは\texttt{new Promise}の糖衣構文\index{とういこうぶん@糖衣構文}（シンタックスシュガー\index{しんたっくすしゅがー@シンタックスシュガー}）です。
+糖衣構文とは、同じ意味の処理を元の構文よりシンプルに書ける別の書き方のことです。
+\texttt{Promise.resolve}メソッドは次のコードの糖衣構文です。
+
+\begin{lstlisting}
+// const fulfilledPromise = Promise.resolve(); と同じ意味
+const fulfilledPromise = new Promise((resolve) => {
+    resolve();
+});
+\end{lstlisting}
+
+\texttt{Promise.resolve}メソッドは引数に\texttt{resolve}される値を渡すこともできます。
+
+\begin{lstlisting}
+// resolve(42)されたPromiseインスタンスを作成する
+const fulfilledPromise = Promise.resolve(42);
+fulfilledPromise.then(value => {
+    console.log(value); // => 42
+});
+\end{lstlisting}
+
+\texttt{Promise.resolve}メソッドで作成した\textbf{Fulfilled}の状態となった\texttt{Promise}インスタンスに対しても\texttt{then}メソッドでコールバック関数を登録できます。
+状態が変化済みの\texttt{Promise}インスタンスに\texttt{then}メソッドで登録したコールバック関数は、常に非同期なタイミングで実行されます。
+
+次のコードを実行すると、すべての同期的な処理が実行された後に、\texttt{then}メソッドのコールバック関数が非同期なタイミングで実行されることがわかります。
+
+\begin{lstlisting}
+const promise = Promise.resolve();
+promise.then(() => {
+    console.log("2. コールバック関数が実行されました");
+});
+console.log("1. 同期的な処理が実行されました");
+\end{lstlisting}
+
+\texttt{Promise.resolve}メソッドは\texttt{new Promise}の糖衣構文であるため、この実行順序は\texttt{new Promise}を使った場合も同じです。
+次のコードは、先ほどの\texttt{Promise.resolve}メソッドを使ったものと同じ動作になります。
+
+\begin{lstlisting}
+const promise = new Promise((resolve) => {
+    console.log("1. resolveします");
+    resolve();
+});
+promise.then(() => {
+    console.log("3. コールバック関数が実行されました");
+});
+console.log("2. 同期的な処理が実行されました");
+\end{lstlisting}
+
+このコードを実行すると、まず\texttt{Promise}のコンストラクタ関数が実行され、続いて同期的な処理が実行されます。最後に\texttt{then}メソッドで登録していたコールバック関数が非同期的に呼ばれることがわかります。
+
+\hypertarget{promise-reject}{%
+\subsection{\texorpdfstring{\texttt{Promise.reject}}{Promise.reject}}\label{promise-reject}}\index{Promise.reject@\texttt{Promise.reject}}
+
+\texttt{Promise.reject}メソッドは
+\textbf{Rejected}の状態となった\texttt{Promise}インスタンスを作成します。
+
+\begin{lstlisting}
+const rejectedPromise = Promise.reject(new Error("エラー"));
+\end{lstlisting}
+
+\texttt{Promise.reject}メソッドは\texttt{new Promise}の糖衣構文\index{とういこうぶん@糖衣構文}（シンタックスシュガー\index{しんたっくすしゅがー@シンタックスシュガー}）です。
+そのため、\texttt{Promise.reject}メソッドは次のコードと同じ意味になります。
+
+\begin{lstlisting}
+const rejectedPromise = new Promise((resolve, reject) => {
+    reject(new Error("エラー"));
+});
+\end{lstlisting}
+
+\texttt{Promise.reject}メソッドで作成した\textbf{Rejected}状態の\texttt{Promise}インスタンスに対しても\texttt{then}や\texttt{catch}メソッドでコールバック関数を登録できます。
+\textbf{Rejected}状態へ変化済みの\texttt{Promise}インスタンスに登録したコールバック関数は、常に非同期なタイミングで実行されます。これは\textbf{Fulfilled}の場合と同様です。
+
+\begin{lstlisting}
+Promise.reject(new Error("エラー")).catch(() => {
+    console.log("2. コールバック関数が実行されました");
+});
+console.log("1. 同期的な処理が実行されました");
+\end{lstlisting}
+
+\texttt{Promise.resolve}や\texttt{Promise.reject}は短く書けるため、テストコードなどで利用されることがあります。
+また、\texttt{Promise.reject}は次に解説するPromiseチェーンにおいて、Promiseの状態を操作するのに利用できます。
+
+\hypertarget{promise-chain}{%
+\subsection{Promiseチェーン}\label{promise-chain}}\index{Promiseちぇーん@Promiseチェーン}
+
+Promiseは非同期処理における統一的なインターフェースを提供するビルトインオブジェクトです。
+Promiseによる統一的な処理方法は複数の非同期処理を扱う場合に特に効力を発揮します。
+これまでは、1つの\texttt{Promise}インスタンスに対して\texttt{then}や\texttt{catch}メソッドで1組のコールバック処理を登録するだけでした。
+
+非同期処理が終わったら次の非同期処理というように、複数の非同期処理を順番に扱いたい場合もあります。
+Promiseではこのような複数の非同期処理からなる一連の非同期処理を簡単に書く方法が用意されています。
+
+この仕組みのキーとなるのが\texttt{then}や\texttt{catch}メソッドは常に新しい\texttt{Promise}インスタンスを作成して返すという仕様です。
+そのため\texttt{then}メソッドの返り値である\texttt{Promise}インスタンスにさらに\texttt{then}メソッドで処理を登録できます。
+これはメソッドチェーン\index{めそっどちぇーん@メソッドチェーン}と呼ばれる仕組みですが、この書籍ではPromiseをメソッドチェーンでつなぐことを\textbf{Promise\textgt{チェーン}}と呼びます（メソッドチェーンは「\hyperlink{array}{配列}」の章の「\hyperlink{method-chain-and-high-order-function}{メソッドチェーンと高階関数}」を参照）。
+
+次のコードでは、\texttt{then}メソッドでPromiseチェーンをしています。
+Promiseチェーンでは、Promiseが失敗（\textbf{Rejected}な状態）しない限り、順番に\texttt{then}メソッドで登録した成功時のコールバック関数を呼び出します。
+そのため、次のコードでは、\texttt{1}、\texttt{2}と順番にコンソールへログが出力されます。
+
+\begin{lstlisting}
+// Promiseインスタンスでメソッドチェーン
+Promise.resolve()
+    // thenメソッドは新しいPromiseインスタンスを返す
+    .then(() => {
+        console.log(1);
+    })
+    .then(() => {
+        console.log(2);
+    });
+\end{lstlisting}
+
+このPromiseチェーンは、次のコードのように毎回新しい変数に入れて処理をつなげるのと結果的には同じ意味となります。
+
+\begin{lstlisting}
+// Promiseチェーンを変数に入れた場合
+const firstPromise = Promise.resolve();
+const secondPromise = firstPromise.then(() => {
+    console.log(1);
+});
+const thirdPromise = secondPromise.then(() => {
+    console.log(2);
+});
+// それぞれ新しいPromiseインスタンスが作成される
+console.log(firstPromise === secondPromise); // => false
+console.log(secondPromise === thirdPromise); // => false
+\end{lstlisting}
+
+もう少し具体的なPromiseチェーンの例を見ていきましょう。
+
+次のコードの\texttt{asyncTask}関数はランダムでFulfilledまたはRejected状態の\texttt{Promise}インスタンスを返します。
+この関数が返す\texttt{Promise}インスタンスに対して、\texttt{then}メソッドで成功時の処理を書いています。
+\texttt{then}メソッドの返り値は新しい\texttt{Promise}インスタンスであるため、続けて\texttt{catch}メソッドで失敗時の処理を書けます。
+
+\begin{lstlisting}
+// ランダムでFulfilledまたはRejectedのPromiseインスタンスを返す関数
+function asyncTask() {
+    return Math.random() > 0.5 
+        ? Promise.resolve("成功")
+        : Promise.reject(new Error("失敗"));
+}
+
+// asyncTask関数は新しいPromiseインスタンスを返す
+asyncTask()
+    // thenメソッドは新しいPromiseインスタンスを返す
+    .then(function onFulfilled(value) {　
+        console.log(value); // => "成功"
+    })
+    // catchメソッドは新しいPromiseインスタンスを返す
+    .catch(function onRejected(error) {
+        console.log(error.message); // => "失敗"
+    });
+\end{lstlisting}
+
+\texttt{asyncTask}関数が成功（resolve）した場合は\texttt{then}メソッドで登録した成功時の処理だけが呼び出され、\texttt{catch}メソッドで登録した失敗時の処理は呼び出されません。
+一方、\texttt{asyncTask}関数が失敗（reject）した場合は\texttt{then}メソッドで登録した成功時の処理は呼び出されずに、\texttt{catch}メソッドで登録した失敗時の処理だけが呼び出されます。
+
+先ほどのコードにおけるPromiseの状態とコールバック関数は次のような処理の流れとなります。
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=80mm]{fig/promise-chain.eps}
+\end{figure}
+
+Promiseの状態が\textbf{Rejected}となった場合は、もっとも近い失敗時の処理（\texttt{catch}または\texttt{then}の第二引数）が呼び出されます。
+このとき間にある成功時の処理（\texttt{then}の第一引数）はスキップされます。
+
+次のコードでは、\textbf{Rejected}のPromiseに対して\texttt{then} → \texttt{then} → \texttt{catch}とPromiseチェーンで処理を記述しています。
+このときもっとも近い失敗時の処理（\texttt{catch}）が呼び出されますが、間にある2つの成功時の処理（\texttt{then}）は実行されません。
+
+\begin{lstlisting}
+// RejectedなPromiseは次の失敗時の処理までスキップする
+const rejectedPromise = Promise.reject(new Error("失敗"));
+rejectedPromise.then(() => {
+    // このthenのコールバック関数は呼び出されません
+}).then(() => {
+    // このthenのコールバック関数は呼び出されません
+}).catch(error => {
+    console.log(error.message); // => "失敗"
+});
+\end{lstlisting}
+
+Promiseのコンストラクタの処理の場合と同様に、\texttt{then}や\texttt{catch}のコールバック関数内で発生した例外は自動的にキャッチされます。
+例外が発生したとき、\texttt{then}や\texttt{catch}メソッドは\textbf{Rejected}な\texttt{Promise}インスタンスを返します。
+そのため、例外が発生するともっとも近くの失敗時の処理（\texttt{catch}または\texttt{then}の第二引数）が呼び出されます。
+
+\begin{lstlisting}
+Promise.resolve().then(() => { 
+    // 例外が発生すると、thenメソッドはRejectedなPromiseを返す
+    throw new Error("例外");
+}).then(() => {
+    // このthenのコールバック関数は呼び出されません
+}).catch(error => {
+    console.log(error.message); // => "例外"
+});
+\end{lstlisting}
+
+また、Promiseチェーンで失敗を\texttt{catch}メソッドなどで一度キャッチすると、次に呼ばれるのは成功時の処理です。
+これは、\texttt{then}や\texttt{catch}メソッドは\textbf{Fulfilled}状態のPromiseインスタンスを作成して返すためです。
+そのため、一度キャッチするとそこからは次の\texttt{then}で登録した処理が呼ばれるPromiseチェーンに戻ります。
+
+\begin{lstlisting}
+Promise.reject(new Error("エラー")).catch(error => {
+    console.error(error); // Error: エラー
+}).then(() => {
+    console.log("thenのコールバック関数が呼び出される");
+});
+\end{lstlisting}
+
+このようにPromiseの\texttt{then}メソッドや\texttt{catch}メソッドをつないで、成功時や失敗時の処理を書いていくことをPromiseチェーンと呼びます。\enlargethispage{\baselineskip}
+
+\hypertarget{promise-chain-value}{%
+\subsubsection{Promiseチェーンで値を返す}\label{promise-chain-value}}\index{Promiseちぇーん@Promiseチェーン}
+
+Promiseチェーンではコールバックで返した値を次のコールバックへ引数として渡せます。
+
+\texttt{then}や\texttt{catch}メソッドのコールバック関数は数値、文字列、オブジェクトなどの任意の値を返せます。
+このコールバック関数が返した値は、次の\texttt{then}のコールバック関数へ引数として渡されます。
+
+\begin{lstlisting}
+Promise.resolve(1).then((value) => {
+    console.log(value); // => 1
+    return value * 2;
+}).then(value => {
+    console.log(value); // => 2
+    return value * 2;
+}).then(value => {
+    console.log(value); // => 4
+    // 値を返さない場合は undefined を返すのと同じ
+}).then(value => {
+    console.log(value); // => undefined
+});
+\end{lstlisting}
+
+ここでは\texttt{then}メソッドを元に解説しますが、\texttt{catch}メソッドは\texttt{then}メソッドの糖衣構文であるため同じ動作となります。
+Promiseチェーンで一度キャッチすると、次に呼ばれるのは成功時の処理となります。
+そのため、\texttt{catch}メソッドで返した値は次の\texttt{then}メソッドのコールバック関数に引数として渡されます。
+
+\begin{lstlisting}
+Promise.reject(new Error("失敗")).catch(error => { 
+    // 一度catchすれば、次に呼ばれるのは成功時のコールバック
+    return 1;
+}).then(value => {
+    console.log(value); // => 1
+    return value * 2;
+}).then(value => {
+    console.log(value); // => 2
+});
+\end{lstlisting}
+
+\hypertarget{promise-then-return-promise}{%
+\subsubsection{\texorpdfstring{コールバック関数で\texttt{Promise}インスタンスを返す}{コールバック関数でPromiseインスタンスを返す}}\label{promise-then-return-promise}}
+
+Promiseチェーンで一度キャッチすると、次に呼ばれるのは成功時の処理（\texttt{then}メソッド）でした。
+これは、コールバック関数で任意の値を返すと、その値で\texttt{resolve}された\textbf{Fulfilled}状態の\texttt{Promise}インスタンスを作成するためです。
+しかし、コールバック関数で\texttt{Promise}インスタンスを返した場合は例外的に異なります。
+
+コールバック関数で\texttt{Promise}インスタンスを返した場合は、同じ状態を持つ\texttt{Promise}インスタンスが\texttt{then}や\texttt{catch}メソッドの返り値となります。
+つまり\texttt{then}メソッドで\textbf{Rejected}状態の\texttt{Promise}インスタンスを返した場合は、次に呼ばれるのは失敗時の処理です。
+
+次のコードでは、\texttt{then}メソッドのコールバック関数で\texttt{Promise.reject}メソッドを使って\textbf{Rejected}な\texttt{Promise}インスタンスを返しています。
+\textbf{Rejected}な\texttt{Promise}インスタンスは、次の\texttt{catch}メソッドで登録した失敗時の処理を呼び出すまで、\texttt{then}メソッドの成功時の処理をスキップします。
+
+\begin{lstlisting}
+Promise.resolve().then(function onFulfilledA() {
+    return Promise.reject(new Error("失敗"));
+}).then(function onFulfilledB() {
+    // onFulfilledBは呼び出されません
+}).catch(function onRejected(error) {
+    console.log(error.message); // => "失敗"
+}).then(function onFulfilledC() {
+    console.log("onFulfilledCは呼び出されます");
+});
+\end{lstlisting}
+
+このコードにおけるPromiseの状態とコールバック関数は次のような処理の流れとなります。
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=65mm]{./fig/then-rejected-promise.eps}
+\end{figure}
+
+通常は一度\texttt{catch}すると次に呼び出されるのは成功時の処理でした。
+この\texttt{Promise}インスタンスを返す仕組みを使うことで、\texttt{catch}してもそのまま\textbf{Rejected}な状態を継続できます。
+
+次のコードでは\texttt{catch}メソッドでログを出力しつつ\texttt{Promise.reject}メソッドを使って\textbf{Rejected}な\texttt{Promise}インスタンスを返しています。
+これによって、\texttt{main}で発生したエラーのログを取りながら、Promiseチェーンはエラーのまま処理を継続できます。
+
+\begin{lstlisting}
+function main() {
+    return Promise.reject(new Error("エラー"));
+}
+// mainはRejectedなPromiseを返す
+main().catch(error => {
+    // mainで発生したエラーのログを出力する
+    console.error(error);
+    // Promiseチェーンはそのままエラーを継続させる
+    return Promise.reject(error);
+}).then(() => {
+    // 前のcatchでRejectedなPromiseが返されたため、この行は実行されません
+}).catch(error => {
+    console.log("メインの処理が失敗した");
+});
+\end{lstlisting}
+
+\hypertarget{promise-finally}{%
+\subsubsection{Promiseチェーンの最後に処理を書く\,\protect\icon{fig/es2018.eps}}\label{promise-finally}}
+
+Promiseの\texttt{finally}\index{finally@\texttt{finally}}\index{Promise@\texttt{Promise}!finally@\texttt{finally}}メソッドは成功時、失敗時どちらの場合でも呼び出されるコールバック関数を登録できます。
+\texttt{try...catch...finally}構文の\texttt{finally}節と同様の役割を持つメソッドです。
+
+\begin{lstlisting}
+// promiseにはResolvedまたはRejectedなPromiseインスタンスがランダムで入る
+const promise = Math.random() < 0.5 ? Promise.resolve() : Promise.reject();
+promise.then(() => {
+    console.log("Promiseのthenメソッド");
+}).catch((error) => {
+    console.log("Promiseのcatchメソッド");
+}).finally(() => {
+    // 成功、失敗どちらの場合でも呼び出される
+    console.log("Promiseのfinallyメソッド");
+});
+\end{lstlisting}
+
+次のコードでは、リソースを取得して\texttt{then}で成功時の処理、\texttt{catch}で失敗時の処理を登録しています。
+また、リソースを取得中かどうかを判定するためのフラグを\texttt{isLoading}という変数で管理しています。
+成功失敗どちらにもかかわらず、取得が終わったら\texttt{isLoading}は\texttt{false}にします。
+\texttt{then}と\texttt{catch}の両方で\texttt{isLoading}へ\texttt{false}を代入できますが、\texttt{finally}メソッドを使うことで代入を一箇所にまとめられます。
+
+\begin{lstlisting}
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startsWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+// リソースを取得中かどうかのフラグ
+let isLoading = true;
+dummyFetch("/resource/A").then(response => {
+    console.log(response);
+}).catch(error => {
+    console.error(error);
+}).finally(() => {
+    isLoading = false;
+    console.log("Promiseのfinallyメソッド");
+});
+\end{lstlisting}
+
+\hypertarget{promise-sequential}{%
+\subsection{Promiseチェーンで逐次処理}\label{promise-sequential}}\index{Promiseちぇーん@Promiseチェーン!ちくじしょり@逐次処理}\index{ちくじしょり@逐次処理}
+
+Promiseチェーンで非同期処理の流れを書く大きなメリットは、非同期処理のさまざまなパターンに対応できることです。
+
+ここでは、典型的な例として複数の非同期処理を順番に処理していく逐次処理を考えていきましょう。
+Promiseで逐次的な処理といっても難しいことはなく、単純に\texttt{then}で非同期処理をつないでいくだけです。
+
+次のコードでは、Resource AとResource Bを順番に取得しています。
+それぞれ取得したリソースを変数\texttt{results}に追加し、すべて取得し終わったらコンソールに出力します。
+
+\begin{lstlisting}
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startsWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+
+const results = [];
+// Resource Aを取得する
+dummyFetch("/resource/A").then(response => {
+    results.push(response.body);
+    // Resource Bを取得する
+    return dummyFetch("/resource/B");
+}).then(response => {
+    results.push(response.body);
+}).then(() => {
+    console.log(results); // => ["Response body of /resource/A", "Response 
+                          //    body of /resource/B"]
+});
+\end{lstlisting}
+
+\hypertarget{promise-all}{%
+\subsection{\texorpdfstring{\texttt{Promise.all}で複数のPromiseをまとめる}{Promise.allで複数のPromiseをまとめる}}\label{promise-all}}\index{Promise.all@\texttt{Promise.all}}
+
+\texttt{Promise.all}を使うことで複数のPromiseを使った非同期処理をひとつのPromiseとして扱えます。
+
+\texttt{Promise.all}メソッドは
+\texttt{Promise}インスタンスの配列を受け取り、新しい\texttt{Promise}インスタンスを返します。
+その配列のすべての\texttt{Promise}インスタンスが\textbf{Fulfilled}となった場合は、返り値の\texttt{Promise}インスタンスも\textbf{Fulfilled}となります。
+一方で、ひとつでも\textbf{Rejected}となった場合は、返り値の\texttt{Promise}インスタンスも\textbf{Rejected}となります。
+
+返り値の\texttt{Promise}インスタンスに\texttt{then}メソッドで登録したコールバック関数には、Promiseの結果をまとめた配列が渡されます。
+このときの配列の要素の順番は\texttt{Promise.all}メソッドに渡した配列のPromiseの要素の順番と同じになります。
+
+\begin{lstlisting}
+// timeoutMsミリ秒後にresolveする
+function delay(timeoutMs) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(timeoutMs);
+        }, timeoutMs);
+    });
+}
+const promise1 = delay(1);
+const promise2 = delay(2);
+const promise3 = delay(3);
+
+Promise.all([promise1, promise2, promise3]).then(function(values) {
+    console.log(values); // => [1, 2, 3]
+});
+\end{lstlisting}
+
+先ほどのPromiseチェーンでリソースを取得する例では、Resource
+Aを取得し終わってからResource Bを取得というように逐次的でした。
+しかし、Resource
+AとBどちらを先に取得しても問題ない場合は、\texttt{Promise.all}メソッドを使って複数のPromiseを1つのPromiseとしてまとめられます。
+また、Resource AとBを同時に取得すればより早い時間で処理が完了します。
+
+次のコードでは、Resource AとBを同時に取得開始しています。
+両方のリソースの取得が完了すると、\texttt{then}のコールバック関数にはAとBの結果が配列として渡されます。
+
+\begin{lstlisting}
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startsWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+
+const fetchedPromise = Promise.all([
+    dummyFetch("/resource/A"),
+    dummyFetch("/resource/B")
+]);
+// fetchedPromiseの結果をDestructuringでresponseA, responseBに代入している
+fetchedPromise.then(([responseA, responseB]) => {
+    console.log(responseA.body); // => "Response body of /resource/A"
+    console.log(responseB.body); // => "Response body of /resource/B"
+});
+\end{lstlisting}
+
+渡したPromiseがひとつでも\textbf{Rejected}となった場合は、失敗時の処理が呼び出されます。
+
+\begin{lstlisting}
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startsWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+
+const fetchedPromise = Promise.all([
+    dummyFetch("/resource/A"),
+    dummyFetch("/not_found/B") // Bは存在しないため失敗する
+]);
+fetchedPromise.then(([responseA, responseB]) => {
+    // この行は実行されません
+}).catch(error => {
+    console.error(error); // Error: NOT FOUND
+});
+\end{lstlisting}
+
+\hypertarget{promise-race}{%
+\subsection{\texorpdfstring{\texttt{Promise.race}}{Promise.race}}\label{promise-race}}\index{Promise.race@\texttt{Promise.race}}
+
+\texttt{Promise.all}メソッドは複数のPromiseがすべて完了するまで待つ処理でした。
+\texttt{Promise.race}メソッドでは複数のPromiseを受け取りますが、Promiseが1つでも完了した（Settled状態となった）時点で次の処理を実行します。
+
+\texttt{Promise.race}メソッドは\texttt{Promise}インスタンスの配列を受け取り、新しい\texttt{Promise}インスタンスを返します。
+この新しい\texttt{Promise}インスタンスは、配列の中で一番最初に\textbf{Settled}\index{Settled}状態となった\texttt{Promise}インスタンスと同じ状態になります。
+
+\begin{itemize}
+\item
+  配列の中で一番最初に\textbf{Settled}となったPromiseが\textbf{Fulfilled}の場合は、新しい\texttt{Promise}インスタンスも\textbf{Fulfilled}になる
+\item
+  配列の中で一番最初に\textbf{Settled}となったPromiseが\textbf{Rejected}の場合は、新しい\texttt{Promise}インスタンスも
+  \textbf{Rejected}になる
+\end{itemize}
+
+つまり、複数のPromiseによる非同期処理を同時に実行して競争（race）させて、一番最初に完了した\texttt{Promise}インスタンスに対する次の処理を呼び出します。
+
+次のコードでは、\texttt{delay}関数という\texttt{timeoutMs}ミリ秒後に\textbf{Fulfilled}となる\texttt{Promise}インスタンスを返す関数を定義しています。
+\texttt{Promise.race}メソッドは1ミリ秒、32ミリ秒、64ミリ秒、128ミリ秒後に完了する\texttt{Promise}インスタンスの配列を受け取っています。
+この配列の中で一番最初に完了するのは、1ミリ秒後に\textbf{Fulfilled}となる\texttt{Promise}インスタンスです。
+
+\begin{lstlisting}
+// timeoutMsミリ秒後にresolveする
+function delay(timeoutMs) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(timeoutMs);
+        }, timeoutMs);
+    });
+}
+// 1つでもresolveまたはrejectした時点で次の処理を呼び出す
+const racePromise = Promise.race([
+    delay(1),
+    delay(32),
+    delay(64),
+    delay(128)
+]);
+racePromise.then(value => {
+    // もっとも早く完了するのは1ミリ秒後
+    console.log(value); // => 1
+});
+\end{lstlisting}
+
+このときに、一番最初に\texttt{resolve}された値で\texttt{racePromise}も\texttt{resolve}されます。
+そのため、\texttt{then}メソッドのコールバック関数に\texttt{1}という値が渡されます。
+
+他の\texttt{delay}関数が作成した\texttt{Promise}インスタンスも32ミリ秒、64ミリ秒、128ミリ秒後に\texttt{resolve}されます。
+しかし、\texttt{Promise}インスタンスは一度\textbf{Settled}（\textbf{Fulfilled}または\textbf{Rejected}）となると、それ以降は状態も変化せず\texttt{then}のコールバック関数も呼び出しません。
+そのため、\texttt{racePromise}は何度も\texttt{resolve}されますが、初回以外は無視されるため\texttt{then}のコールバック関数は一度しか呼び出されません。
+
+\texttt{Promise.race}メソッドを使うことでPromiseを使った非同期処理のタイムアウトが実装できます。
+ここでのタイムアウトとは、一定時間経過しても処理が終わっていないならエラーとして扱う処理のことです。
+
+次のコードでは\texttt{timeout}関数と\texttt{dummyFetch}関数が返す\texttt{Promise}インスタンスを\texttt{Promise.race}メソッドで競争させています。
+\texttt{dummyFetch}関数ではランダムな時間をかけてリソースを取得し\texttt{resolve}する\texttt{Promise}インスタンスを返します。
+\texttt{timeout}関数は指定ミリ秒経過すると\texttt{reject}する\texttt{Promise}インスタンスを返します。
+
+この2つの\texttt{Promise}インスタンスを競争させて、\texttt{dummyFetch}が先に完了すれば処理は成功、\texttt{timeout}が先に完了すれば処理は失敗というタイムアウト処理が実現できます。
+
+\begin{lstlisting}
+// timeoutMsミリ秒後にrejectする
+function timeout(timeoutMs) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject(new Error(`Timeout: ${timeoutMs}ミリ秒経過`));
+        }, timeoutMs);
+    });
+}
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startsWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+// 500ミリ秒以内に取得できなければ失敗時の処理が呼ばれる
+Promise.race([
+    dummyFetch("/resource/data"),
+    timeout(500),
+]).then(response => {
+    console.log(response.body); // => "Response body of /resource/data"
+}).catch(error => {
+    console.log(error.message); // => "Timeout: 500ミリ秒経過"
+});
+\end{lstlisting}
+
+このようにPromiseを使うことで非同期処理のさまざまなパターンが形成できます。
+より詳しいPromiseの使い方については「\href{https://azu.github.io/promises-book/}{JavaScript
+Promiseの本}」\footnote{\url{https://azu.github.io/promises-book/}}というオンラインで公開されている文書にまとめられています。
+
+一方で、Promiseはただのビルトインオブジェクトであるため、非同期処理間の連携をするにはPromiseチェーンのように少し特殊な書き方や見た目になります。
+また、エラーハンドリングについてもPromiseの\texttt{catch}メソッドや\texttt{finally}メソッドなど\texttt{try...catch}構文とよく似た名前を使います。
+しかし、Promiseは構文ではなくただのオブジェクトであるため、それらをメソッドチェーンとして実現しないといけないといった制限があります。
+
+ES2017では、このPromiseチェーンの不格好な見た目を解決するためにAsync
+Functionと呼ばれる構文が導入されました。
+
+\hypertarget{async-function}{%
+\section[Async Function]{Async Function\,\protect\icon{fig/es2017.eps}}\label{async-function}}\index{Async Function}
+
+ES2017では、Async
+Functionという非同期処理を行う関数を定義する構文が導入されました。 Async
+Functionは通常の関数とは異なり、必ず\texttt{Promise}インスタンスを返す関数を定義する構文です。
+
+Async
+Functionは次のように関数の前に\texttt{async}\index{async@\texttt{async}}をつけることで定義できます。
+この\texttt{doAsync}関数は常に\texttt{Promise}インスタンスを返します。
+
+\begin{lstlisting}
+async function doAsync() {
+    return "値";
+}
+// doAsync関数はPromiseを返す
+doAsync().then(value => {
+    console.log(value); // => "値"
+});
+\end{lstlisting}
+
+このAsync Functionは次のように書いた場合と同じ意味になります。 Async
+Functionでは\texttt{return}した値の代わりに、\texttt{Promise.resolve(返り値)}のように返り値をラップした\texttt{Promise}インスタンスを返します。
+
+\begin{lstlisting}
+// 通常の関数でPromiseインスタンスを返している
+function doAsync() {
+    return Promise.resolve("値");
+}
+doAsync().then(value => {
+    console.log(value); // => "値"
+});
+\end{lstlisting}
+
+重要なこととしてAsync FunctionはPromiseの上に作られた構文です。
+そのためAsync
+Functionを理解するには、Promiseを理解する必要があることに注意してください。
+
+またAsync
+Function内では\texttt{await}式\index{awaitしき@\texttt{await}式}というPromiseの非同期処理が完了するまで待つ構文が利用できます。
+\texttt{await}式を使うことで非同期処理を同期処理のように扱えるため、Promiseチェーンで実現していた処理の流れを読みやすく書けます。
+
+このセクションではAsync
+Functionと\texttt{await}式について見ていきます。
+
+\hypertarget{declare-async-function}{%
+\subsection{Async Functionの定義}\label{declare-async-function}}\index{Async Function!ていぎ@定義}
+
+Async
+Functionは関数の定義に\texttt{async}キーワードをつけることで定義できます。
+JavaScriptの関数定義には関数宣言や関数式、Arrow
+Function、メソッドの短縮記法などがあります。
+どの定義方法でも\texttt{async}キーワードを前につけるだけでAsync
+Functionとして定義できます。
+
+\begin{lstlisting}
+// 関数宣言のAsync Function版
+async function fn1() {}
+// 関数式のAsync Function版
+const fn2 = async function() {};
+// Arrow FunctionのAsync Function版
+const fn3 = async() => {};
+// メソッドの短縮記法のAsync Function版
+const obj = { async method() {} };
+\end{lstlisting}
+
+これらのAsync Functionは、次の点以外は通常の関数と同じ性質を持ちます。
+
+\begin{itemize}
+\item
+  Async
+  Functionは必ず\texttt{Promise}インスタンスを返す
+\item
+  Async Function内では\texttt{await}式が利用できる
+\end{itemize}
+
+\hypertarget{async-function-return-promise}{%
+\subsection{Async
+FunctionはPromiseを返す}\label{async-function-return-promise}}
+
+Async
+Functionとして定義した関数は必ず\texttt{Promise}インスタンスを返します。
+具体的にはAsync Functionが返す値は次の3つのケースが考えられます。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Async
+  Functionが値をreturnした場合、その返り値を持つ\textbf{Fulfilled}なPromiseを返す
+\item
+  Async
+  FunctionがPromiseをreturnした場合、その返り値のPromiseをそのまま返す
+\item
+  Async
+  Function内で例外が発生した場合は、そのエラーを持つ\textbf{Rejected}なPromiseを返す
+\end{enumerate}
+
+次のコードでは、Async
+Functionがそれぞれの返り値によってどのような\texttt{Promise}インスタンスを返すかを確認できます。
+この1から3の挙動は、Promiseの\texttt{then}メソッドの返り値とそのコールバック関数の関係とほぼ同じです。
+
+\begin{lstlisting}
+// 1. resolveFnは値を返している
+// 何もreturnしていない場合はundefinedを返したのと同じ扱いとなる
+async function resolveFn() {
+    return "返り値";
+}
+resolveFn().then(value => {
+    console.log(value); // => "返り値"
+});
+
+// 2. rejectFnはPromiseインスタンスを返している
+async function rejectFn() {
+    return Promise.reject(new Error("エラーメッセージ"));
+}
+
+// rejectFnはRejectedなPromiseを返すのでcatchできる
+rejectFn().catch(error => {
+    console.log(error.message); // => "エラーメッセージ"
+});
+
+// 3. exceptionFnは例外を投げている
+async function exceptionFn() {
+    throw new Error("例外が発生しました");
+    // 例外が発生したため、この行は実行されません
+}
+
+// Async Functionで例外が発生するとRejectedなPromiseが返される
+exceptionFn().catch(error => {
+    console.log(error.message); // => "例外が発生しました"
+});
+\end{lstlisting}
+
+どの場合でもAsync Functionは必ずPromiseを返すことがわかります。
+このようにAsync Functionを呼び出す側から見れば、Async
+FunctionはPromiseを返すただの関数と何も変わりません。
+
+\hypertarget{await-expression}{%
+\subsection{\texorpdfstring{\texttt{await}式}{await式}}\label{await-expression}}\index{awaitしき@\texttt{await}式}
+
+\texttt{await}式は次の箇所で利用できる式です。
+次の箇所以外では\texttt{await}式は構文エラーとなるため、利用できません。
+
+\begin{itemize}
+\item
+  Async Functionの関数の直下
+\item
+  ECMAScriptモジュールの直下
+\end{itemize}
+
+まず最初に、一般的に使われるAsync Functionの関数の直下における\texttt{await}式を見ていきます。
+
+\texttt{await}式は右辺の\texttt{Promise}インスタンスが\textbf{Fulfilled}または\textbf{Rejected}になるまでその場で非同期処理の完了を待ちます。
+そして\texttt{Promise}インスタンスの状態が変わると、次の行の処理を再開します。
+
+\begin{lstlisting}
+async function asyncMain() {
+    // PromiseがFulfilledまたはRejectedとなるまで待つ
+    await Promiseインスタンス;
+    // Promiseインスタンスの状態が変わったら処理を再開する
+}
+\end{lstlisting}
+
+普通の処理の流れでは、非同期処理を実行した場合にその非同期処理の完了を待つことなく、次の行（次の文）を実行します。
+しかし\texttt{await}式では非同期処理を実行して完了するまで、次の行（次の文）を実行しません。
+そのため\texttt{await}式を使うことで非同期処理が同期処理のように上から下へと順番に実行するような処理順で書けます。
+
+\begin{lstlisting}
+// async functionは必ずPromiseを返す
+async function doAsync() {
+    // 非同期処理
+}
+async function asyncMain() {
+    // doAsyncの非同期処理が完了するまで待つ
+    await doAsync();
+    // 次の行はdoAsyncの非同期処理が完了されるまで実行されない
+    console.log("この行は非同期処理の完了後に実行される");
+}
+\end{lstlisting}
+
+\texttt{await}式は、\texttt{await}の右辺（\texttt{Promise}インスタンス）の評価結果を値として返します（\textbf{\textgt{式}}については「\hyperlink{statement-and-expression}{文と式}」の章を参照）。
+この\texttt{await}式の評価方法は評価するPromiseの状態（\textbf{Fulfilled}または\textbf{Rejected}）によって異なります。
+
+\texttt{await}の右辺のPromiseが\textbf{Fulfilled}となった場合は、resolveされた値が\texttt{await}式の返り値となります。
+
+次のコードでは、\texttt{await}の右辺にある\texttt{Promise}インスタンスは\texttt{42}という値でresolveされています。
+そのため\texttt{await}式の返り値は\texttt{42}となり、\texttt{value}変数にもその値が入ります。
+
+\begin{lstlisting}
+async function asyncMain() {
+    const value = await Promise.resolve(42);
+    console.log(value); // => 42
+}
+asyncMain(); // Promiseインスタンスを返す
+\end{lstlisting}
+
+これはPromiseを使って書くと次のコードと同様の意味となります。
+\texttt{await}式を使うことでコールバック関数を使わずに非同期処理の流れを表現できていることがわかります。
+
+\begin{lstlisting}
+function asyncMain() {
+    return Promise.resolve(42).then(value => {
+        console.log(value); // => 42
+    });
+}
+asyncMain(); // Promiseインスタンスを返す
+\end{lstlisting}
+
+\texttt{await}式の右辺のPromiseが\textbf{Rejected}となった場合は、その場でエラーを\texttt{throw}します。
+またAsync Function内で発生した例外は自動的にキャッチされます。
+そのため\texttt{await}式でPromiseが\textbf{Rejected}となった場合は、そのAsync
+Functionが\textbf{Rejected}なPromiseを返すことになります。
+
+次のコードでは、\texttt{await}の右辺にある\texttt{Promise}インスタンスが\textbf{Rejected}の状態になっています。
+そのため\texttt{await}式は\texttt{エラー}を\texttt{throw}します。そのエラーを自動的にキャッチするため\texttt{asyncMain}関数は\textbf{Rejected}なPromiseを返します。
+
+\begin{lstlisting}
+async function asyncMain() {
+    // await式で評価した右辺のPromiseがRejectedとなったため、例外がthrowされる
+    const value = await Promise.reject(new Error("エラーメッセージ"));
+    // await式で例外が発生したため、この行は実行されません
+}
+// Async Functionは自動的に例外をキャッチできる
+asyncMain().catch(error => {
+    console.log(error.message); // => "エラーメッセージ"
+});
+\end{lstlisting}
+
+\texttt{await}式がエラーを\texttt{throw}するということは、そのエラーは\texttt{try...catch}構文でキャッチできます（詳細は「\hyperlink{error-handling}{例外処理}」の章の「\hyperlink{try-catch}{try\ldots{}catch構文}」を参照）。
+通常の非同期処理では完了する前に次の行が実行されてしまうため\texttt{try...catch}構文ではエラーをキャッチできませんでした。
+そのためPromiseでは\texttt{catch}メソッドを使ってPromise内で発生したエラーをキャッチしていました。
+
+次のコードでは、\texttt{await}式で発生した例外を\texttt{try...catch}構文でキャッチしています。
+そのため、\texttt{asyncMain}関数はResolvedなPromiseを返し、\texttt{catch}メソッドのコールバック関数は呼び出されません。
+
+\begin{lstlisting}
+async function asyncMain() {
+    // await式のエラーはtry...catchできる
+    try {
+        // await式で評価した右辺のPromiseがRejectedとなったため、例外がthrow
+        // される
+        const value = await Promise.reject(new Error("エラーメッセージ"));
+        // await式で例外が発生したため、この行は実行されません
+    } catch (error) {
+        console.log(error.message); // => "エラーメッセージ"
+    }
+}
+// asyncMainはResolvedなPromiseを返す
+asyncMain().catch(error => {
+    // すでにtry...catchされているため、この行は実行されません
+});
+\end{lstlisting}
+
+このように\texttt{await}式を使うことで、\texttt{try...catch}構文のように非同期処理を同期処理と同じ構文を使って扱えます。
+またコードの見た目も同期処理と同じように、その行（その文）の処理が完了するまで次の行を評価しないというわかりやすい形になるのは大きな利点です。
+
+\hypertarget{promise-chain-to-async-function}{%
+\subsubsection{\texorpdfstring{Promiseチェーンを\texttt{await}式で表現する}{Promiseチェーンをawait式で表現する}}\label{promise-chain-to-async-function}}\index{awaitしき@\texttt{await}式}
+
+Async
+Functionと\texttt{await}式を使うことでPromiseチェーンとして表現していた非同期処理を同期処理のような見た目で書けます。
+まずは、Promiseチェーンで複数の非同期処理を逐次的に行うケースを見ていきます。
+その後に、同様の処理をAsync
+Functionと\texttt{await}式で書き直して比較してみます。
+
+次のコードの\texttt{fetchAB}関数はリソースAとリソースBを順番に取得する処理をPromiseチェーンで書いています。
+
+\begin{lstlisting}
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startsWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+// リソースAとリソースBを順番に取得する
+function fetchAB() {
+    const results = [];
+    return dummyFetch("/resource/A").then(response => {
+        results.push(response.body);
+        return dummyFetch("/resource/B");
+    }).then(response => {
+        results.push(response.body);
+        return results;
+    });
+}
+// リソースを取得して出力する
+fetchAB().then((results) => {
+    console.log(results); 
+    // => ["Response body of /resource/A", "Response body of /resource/B"]
+});
+\end{lstlisting}
+
+同様の処理をAsync
+Functionと\texttt{await}式で書くと次のように書けます。
+\texttt{await}式を使ってリソースが取得できるまで待ち、その結果を変数\texttt{results}に追加していくという形で逐次処理が実装できます。
+
+\begin{lstlisting}
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startsWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+// リソースAとリソースBを順番に取得する
+async function fetchAB() {
+    const results = [];
+    const responseA = await dummyFetch("/resource/A");
+    results.push(responseA.body);
+    const responseB = await dummyFetch("/resource/B");
+    results.push(responseB.body);
+    return results;
+}
+// リソースを取得して出力する
+fetchAB().then((results) => {
+    console.log(results); 
+    // => ["Response body of /resource/A", "Response body of /resource/B"]
+});
+\end{lstlisting}
+
+Promiseチェーンで\texttt{fetchAB}関数を書いた場合は、コールバックの中で処理するためややこしい見た目になりがちです。
+一方、Async
+Functionと\texttt{await}式で書いた場合は、取得と追加を順番に行うだけとなり、ネストがなく、見た目はシンプルです。
+
+\hypertarget{async-function-combination}{%
+\section{Async Functionと組み合わせ}\label{async-function-combination}}
+
+これまでで基本的なAsync
+Functionの動きを見てきましたが、他の構文やPromise APIと組み合わせたAsync
+Functionの使い方を見ていきましょう。
+
+\hypertarget{async-function-array}{%
+\subsection{Async Functionと反復処理}\label{async-function-array}}\index{Async Function!はんぷくしょり@反復処理}
+
+複数の非同期処理を行う際に、Async
+Functionはforループなどの反復処理と組み合わせることが可能です。
+
+次のコードでは、指定したリソースのパスの配列を渡してそれらを順番に取得する\texttt{fetchResources}関数を実装しています。
+Async
+Function内でfor文を使った反復処理を行い、forループの中で\texttt{await}文を使ってリソースの取得を待ち、その結果を追加しています。
+
+\begin{lstlisting}
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startsWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+// 複数のリソースを順番に取得する
+async function fetchResources(resources) {
+    const results = [];
+    // for...of文でresourcesの配列から1つずつ要素を取り出して処理
+    for (const resource of resources) {
+        // ループ内で非同期処理の完了を待っている
+        const response = await dummyFetch(resource);
+        results.push(response.body);
+    }
+    // 反復処理がすべて終わったら結果を返す
+    // (返り値となるPromiseをresultsでresolveする)
+    return results;
+}
+// 取得したいリソースのパス配列
+const resources = [
+    "/resource/A",
+    "/resource/B"
+];
+// リソースを取得して出力する
+fetchResources(resources).then((results) => {
+    console.log(results); 
+    // => ["Response body of /resource/A", "Response body of /resource/B"]
+});
+\end{lstlisting}
+
+Async
+Functionでは、非同期処理であってもforループのような既存の構文と組み合わせて利用することが簡単です。
+Promiseのみの場合は、Promiseチェーンでコールバック関数を使った反復処理を実装する必要があります。
+
+\hypertarget{relationship-promise-async-function}{%
+\subsection{Promise APIとAsync
+Functionを組み合わせる}\label{relationship-promise-async-function}}\index{Async Function!Promise}
+
+Async
+Functionと\texttt{await}式を使うことで、非同期処理を同期処理のような見た目で書けます。
+一方で同期処理のような見た目となるため、複数の非同期処理を反復処理する場合に無駄な待ち時間を作ってしまうコードを書きやすくなります。
+
+先ほどの\texttt{fetchResources}関数ではリソースを順番に1つずつ取得していました。
+たとえば、リソースAとBを取得しようとした場合にかかる時間は、リソースAとBの取得時間の合計となります。
+このとき、リソースAに1秒、リソースBに2秒かかるとした場合、すべてのリソースを取得するのに3秒かかります。
+
+取得する順番に意味がない場合は、複数のリソースを同時に取得することで余計な待ち時間を解消できます。
+先ほどの例ならば、リソースAとBを同時に取得すれば、最大でもリソースBの取得にかかる2秒程度ですべてのリソースが取得できるはずです。
+
+Promiseチェーンでは\texttt{Promise.all}メソッドを使って、複数の非同期処理を1つの\texttt{Promise}インスタンスにまとめることで同時に取得していました。
+\texttt{await}式が評価するのは\texttt{Promise}インスタンスであるため、\texttt{await}式も\texttt{Promise.all}メソッドと組み合わせて利用できます。
+
+次のコードでは、\texttt{Promise.all}メソッドとAsync
+Functionを組み合わせて、同時にリソースを取得する\texttt{fetchAllResources}関数を実装しています。
+\texttt{Promise.all}メソッドは複数のPromiseを配列で受け取り、それを1つのPromiseとしてまとめたものを返す関数です。
+\texttt{Promise.all}メソッドの返す\texttt{Promise}インスタンスを\texttt{await}することで、非同期処理の結果を配列としてまとめて取得できます。
+
+\begin{lstlisting}
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startsWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+// 複数のリソースをまとめて取得する
+async function fetchAllResources(resources) {
+    // それぞれのリソースを取得する非同期処理を呼び出す
+    const promises = resources.map((resource) => {
+        return dummyFetch(resource);
+    });
+    // すべてのリソースが取得できるまで待つ
+    // Promise.allは [ResponseA, ResponseB] のように結果が配列となる
+    const responses = await Promise.all(promises);
+    // 取得した結果からレスポンスのボディだけを取り出す
+    return responses.map((response) => {
+        return response.body;
+    });
+}
+const resources = [
+    "/resource/A",
+    "/resource/B"
+];
+// リソースを取得して出力する
+fetchAllResources(resources).then((results) => {
+    console.log(results); 
+    // => ["Response body of /resource/A", "Response body of /resource/B"]
+});
+\end{lstlisting}
+
+このようにAsync
+Functionや\texttt{await}式は既存のPromise
+APIと組み合わせて利用できます。 Async
+Functionも内部的にPromiseの仕組みを利用しているため、両者は対立関係ではなく共存関係になります。
+
+\hypertarget{await-in-async-function}{%
+\subsection{\texorpdfstring{\texttt{await}式はAsync
+Functionの直下でのみ利用可能}{await式はAsync Functionの直下でのみ利用可能}}\label{await-in-async-function}}\index{Async Function!awaitしき@\texttt{await}式}\index{awaitしき@\texttt{await}式}
+
+Async Functionで\texttt{await}式を利用する際には、\texttt{await}式が関数の直下でのみ利用可能な点に注意が必要です。
+
+次のコードのように、Async
+Functionではない通常の関数で\texttt{await}式を使うと構文エラー（\texttt{SyntaxError}）となります。
+これは、間違った\texttt{await}式の使い方を防止するための仕様です。
+
+\begin{lstlisting}
+// asyncではない関数ではawait式は利用できない
+function main(){
+    // SyntaxError: await is only valid in async functions
+    await Promise.resolve();
+}
+\end{lstlisting}
+
+Async
+Function内で\texttt{await}式を使って処理を待っている間も、関数の外側では通常どおり処理が進みます。
+次のコードを実行してみると、Async
+Function内で\texttt{await}しても、Async
+Function外の処理は停止していないことがわかります。
+
+\begin{lstlisting}
+async function asyncMain() {
+    // 中でawaitしても、Async Functionの外側の処理まで止まるわけではない
+    await new Promise((resolve) => {
+        setTimeout(resolve, 16);
+    });
+}
+console.log("1. asyncMain関数を呼び出します");
+// Async Functionは外から見れば単なるPromiseを返す関数
+asyncMain().then(() => {
+    console.log("3. asyncMain関数が完了しました");
+});
+// Async Functionの外側の処理はそのまま進む
+console.log("2. asyncMain関数外では、次の行が同期的に呼び出される");
+\end{lstlisting}
+
+このように\texttt{await}式でAsync
+Function内の非同期処理を一時停止しても、Async
+Function外の処理が停止するわけではありません。 Async
+Function外の処理も停止できてしまうと、JavaScriptでは基本的にメインスレッドで多くの処理をするため、UIを含めた他の処理が止まってしまいます。
+これが\texttt{await}式がAsync
+Functionの外で利用できない理由の1つです。
+
+この仕様は、Async
+Functionをコールバック関数内で利用しようとしたときに混乱を生む場合があります。
+具体例として、先ほどの逐次的にリソースを取得する\texttt{fetchResources}関数を見てみます。
+
+先ほどの\texttt{fetchResources}関数ではforループと\texttt{await}式を利用していました。
+このときにforループの代わりにArrayの\texttt{forEach}メソッドは利用できません。
+
+単純に\texttt{fetchResources}関数のforループから\texttt{Array}の\texttt{forEach}メソッドに書き換えて見ると、構文エラー（\texttt{SyntaxError}）が発生してしまいます。
+これは\texttt{await}式がAsync
+Functionの中でのみ利用できる構文であるためです。
+
+\begin{lstlisting}
+async function fetchResources(resources) {
+    const results = [];
+    // Syntax Errorとなる例
+    resources.forEach(function(resource) {
+        // Async Functionではないスコープでawait式を利用しているためSyntax Error
+        // となる
+        const response = await dummyFetch(resource);
+        results.push(response.body);
+    });
+    return results;
+}
+\end{lstlisting}
+
+そのため、Arrayの\texttt{forEach}メソッドのコールバック関数もAsync Functionとして定義しないと、コールバック関数では\texttt{await}式が利用できません。
+
+この構文エラーはArrayの\texttt{forEach}メソッドのコールバック関数をAsync Functionにすることで解決できます。 しかし、コールバック関数をAsync Functionにしただけでは、\texttt{fetchResources}関数は常に空の配列で解決されるPromiseを返すという意図しない挙動となります。
+
+\begin{lstlisting}
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startsWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+// リソースを順番に取得する
+async function fetchResources(resources) {
+    const results = [];
+    // コールバック関数をAsync Functionに変更
+    resources.forEach(async function(resource) {
+        // await式を利用できるようになった
+        const response = await dummyFetch(resource);
+        results.push(response.body);
+    });
+    return results;
+}
+const resources = ["/resource/A", "/resource/B"];
+// リソースを取得して出力する
+fetchResources(resources).then((results) => {
+    // しかし、resultsは空になってしまう
+    console.log(results); // => []
+});
+\end{lstlisting}
+
+なぜこのようになるかを\texttt{fetchResources}関数の動きから見てみましょう。
+
+\texttt{forEach}メソッドのコールバック関数としてAsync
+Functionを渡し、コールバック関数中で\texttt{await}式を利用して非同期処理の完了を待っています。
+しかし、この非同期処理の完了を待つのはコールバック関数Async
+Functionの中だけで、コールバック関数の外側では\texttt{fetchResources}関数の処理が進んでいます。
+
+次のように\texttt{fetchResources}関数にコンソールログを入れてみると動作がわかりやすいでしょう。
+\texttt{forEach}メソッドのコールバック関数が完了するのは、\texttt{fetchResources}関数の呼び出しがすべて終わった後になります。
+そのため、\texttt{forEach}メソッドのコールバック関数でリソースの取得が完了する前に、\texttt{fetchResources}関数はその時点の\texttt{results}である空の配列で解決してしまいます。
+
+\begin{lstlisting}
+function dummyFetch(path) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (path.startsWith("/resource")) {
+                resolve({ body: `Response body of ${path}` });
+            } else {
+                reject(new Error("NOT FOUND"));
+            }
+        }, 1000 * Math.random());
+    });
+}
+// リソースを順番に取得する
+async function fetchResources(resources) {
+    const results = [];
+    console.log("1. fetchResourcesを開始");
+    resources.forEach(async function(resource) {
+        console.log(`2. ${resource}の取得開始`);
+        const response = await dummyFetch(resource);
+        // dummyFetchが完了するのは、fetchResources関数が返したPromiseが
+        // 解決された後
+        console.log(`5. ${resource}の取得完了`);
+        results.push(response.body);
+    });
+    console.log("3. fetchResourcesを終了");
+    return results;
+}
+const resources = ["/resource/A", "/resource/B"];
+// リソースを取得して出力する
+fetchResources(resources).then((results) => {
+    console.log("4. fetchResourcesの結果を取得");
+    console.log(results); // => []
+});
+\end{lstlisting}
+
+このように、Async
+Functionとコールバック関数を組み合わせた場合には気をつける必要があります。
+
+この問題を解決するため、最初の\texttt{fetchResources}関数のように、コールバック関数を使わずにすむforループと\texttt{await}式を組み合わせる方法があります。
+また、\texttt{fetchAllResources}関数のように、複数の非同期処理を1つのPromiseにまとめることでループ中に\texttt{await}式を使わないようにする方法があります。
+
+\hypertarget{top-level-await-in-module}{%
+\subsection{Module直下でのawait式\,\protect\icon{fig/es2022.eps}}\label{top-level-await-in-module}}
+
+ES2021までは、\texttt{await}式はAsync Functionの直下でのみ利用可能なことを紹介しました。
+ES2022には、これに加えてModuleの直下ではAsync Functionで囲まなくても\texttt{await}式が利用できます。
+
+最初に「\hyperlink{what-is-javascript}{JavaScriptとは}」の章において、JavaScriptには実行コンテキストとして"Script"と"Module"があるという話をしました。
+たとえば、ブラウザでは\texttt{<script>}と書けば"Script"として実行され、\texttt{<script type="module">}と書けば"Module"として実行されます。
+
+"Module"としてJavaScriptを実行した時のみ、トップレベル（もっとも外側のスコープ）においてはAsync Functionなしで\texttt{await}式が利用できます。
+
+たとえば、次のコードを"Module"として実行した場合は、Async Functionなしで\texttt{await}式が利用できていることがわかります。
+これは、"Module"ではトップレベルでの\texttt{await}が許可されているためです。
+
+\begin{lstlisting}
+// このコードはModuleのトップレベルでのみ動作する
+console.log("実行開始");
+const startTime = Date.now();
+// awaitを使って1秒待つ
+await new Promise(resolve => setTimeout(resolve, 1000));
+console.log(`実行終了: ${Date.now() - startTime}ms 経過しました`);
+\end{lstlisting}
+
+このようにModuleではトップレベルにおいて\texttt{await}式が利用できることは、Top-Level \texttt{await}と呼ばれます。
+
+ES2021まではAsync Functionの直下のみでしか\texttt{await}式が利用できませんでした。
+そのため、メイン処理のように他の処理を呼び出すスクリプトの開始地点で\texttt{await}を使いたい場合は、Async Functionを使った即時実行関数で\texttt{await}を囲むケースがありました。
+
+\begin{lstlisting}
+// awaitを使うためだけに、Async Functionの即時実行関数を実行している
+(async function() {
+    // awaitを使う処理
+    const result = await doAsyncTask();
+    // ...
+})();
+\end{lstlisting}
+
+しかし、ES2022ではTop-Level \texttt{await}が利用できるようになったため、"Module"においてはこのような即時実行関数は不要となります。
+
+\begin{tcolorbox}[enhanced jigsaw,breakable,title=エラーファーストコールバック]\label{error-first-callback}\index{えらーふぁーすとこーるばっく@エラーファーストコールバック}
+
+ECMAScript 2015（ES2015）でPromiseが仕様に入るまで、非同期処理中に発生した例外を扱う仕様はありませんでした。
+このため、ES2015より前までは、\textbf{\textgt{エラーファーストコールバック}}という非同期処理中に発生した例外を扱う方法をコミュニティで決めたルールが広く使われていました。
+
+エラーファーストコールバックとは、非同期処理におけるコールバック関数の呼び出し方を決めた次のようなルールです。
+
+\begin{itemize}
+\item
+  処理が失敗した場合は、コールバック関数の1番目の引数にエラーオブジェクトを渡して呼び出す
+\item
+  処理が成功した場合は、コールバック関数の1番目の引数には\texttt{null}を渡し、2番目以降の引数に成功時の結果を渡して呼び出す
+\end{itemize}
+
+つまり、ひとつのコールバック関数で失敗した場合と成功した場合の両方を扱うルールとなります。
+
+たとえば、Node.jsでは\texttt{fs.readFile}関数というファイルシステムからファイルをロードする非同期処理の関数があります。
+指定したパスのファイルを読むため、ファイルが存在しない場合やアクセス権限の問題から読み取りに失敗することがあります。
+そのため、\texttt{fs.readFile}関数の第2引数に渡すコールバック関数にはエラーファーストコールバックスタイルの関数を渡します。
+
+ファイルを読み込むことに失敗した場合は、コールバック関数の1番目の引数に\texttt{Error}オブジェクトが渡されます。
+ファイルを読み込むことに成功した場合は、コールバック関数の1番目の引数に\texttt{null}、2番目の引数に読み込んだデータを渡します。
+
+\begin{lstlisting}
+fs.readFile("./example.txt", (error, data) => {
+    if (error) {
+        // 読み込み中にエラーが発生しました
+    } else {
+        // データを読み込むことができました
+    }
+});
+\end{lstlisting}
+
+このエラーファーストコールバックはNode.jsでは広く使われ、Node.jsの標準APIでも利用されています。
+詳しい扱い方については、「\hyperlink{node-cli}{ユースケース: Node.jsでCLIアプリケーション}」の章にて紹介します。
+
+実際にエラーファーストコールバックで非同期な例外処理を扱うコードを書いてみましょう。
+
+次のコードの\texttt{dummyFetch}関数は、疑似的なリソースの取得をする非同期な処理です。
+第一引数に任意のパスを受け取り、第二引数にエラーファーストコールバックスタイルの関数を受け取ります。
+
+この\texttt{dummyFetch}関数は、任意のパスにマッチするリソースがある場合には、第二引数のコールバック関数に\texttt{null}とレスポンスオブジェクトを渡して呼び出します。
+一方、任意のパスにマッチするリソースがない場合には、第二引数のコールバック関数にエラーオブジェクトを渡して呼び出します。
+
+\begin{lstlisting}
+/**
+ * 1000ミリ秒未満のランダムなタイミングでレスポンスを疑似的にデータ取得する関数
+ * 指定したpathにデータがある場合はcallback(null, レスポンス)を呼ぶ
+ * 指定したpathにデータがない場合はcallback(エラー)を呼ぶ
+ */
+function dummyFetch(path, callback) {
+    setTimeout(() => {
+        // /success からはじまるパスにはリソースがあるという設定
+        if (path.startsWith("/success")) {
+            callback(null, { body: `Response body of ${path}` });
+        } else {
+            callback(new Error("NOT FOUND"));
+        }
+    }, 1000 * Math.random());
+}
+// /success/data にリソースが存在するので、responseにはデータが入る
+dummyFetch("/success/data", (error, response) => {
+    if (error) {
+        // この行は実行されません
+    } else {
+        console.log(response); // => { body: "Response body of 
+                               //    /success/data" }
+    }
+});
+// /failure/data にリソースは存在しないので、errorにはエラーオブジェクトが入る
+dummyFetch("/failure/data", (error, response) => {
+    if (error) {
+        console.log(error.message); // => "NOT FOUND"
+    } else {
+        // この行は実行されません
+    }
+});
+\end{lstlisting}
+
+このように、コールバック関数の一番目の引数にはエラーオブジェクトまたは\texttt{null}を入れ、それ以降の引数にデータを渡すというルールを\textbf{\textgt{エラーファーストコールバック}}と呼びます。
+
+エラーファーストコールバックは言語の仕様ではなく、非同期処理を扱う関数の呼び出し方をコミュニティで決めたルールです。
+そのため、エラーファーストコールバックというルールを破ってもコードが動かなくなるわけではありません。
+また、エラーファーストコールバックはPromiseとは異なり、コールバック内で例外が発生した場合に自動的にエラーをキャッチできる仕組みはありません。
+
+Promiseが標準化されて以降は、多くの非同期APIはPromiseベースのAPIとして提供されています。
+これはNode.jsのコアモジュールも同様で、現在（Node.js v18.14.0）ではPromiseベースのAPIが提供されています。
+そのため、エラーファーストコールバックを新しいコードで利用することはかなり限定的となっています。
+\end{tcolorbox}
+
+\hypertarget{conclusion}{%
+\section{まとめ}\label{conclusion}}
+
+この章では、非同期処理に関するPromise、Async Functionについて学びました。
+
+\begin{itemize}
+\item
+  非同期処理はその処理が終わるのを待つ前に次の処理を評価すること
+\item
+  非同期処理であってもメインスレッドで実行されることがある
+\item
+  Promiseは、ES2015で導入された非同期処理を扱うビルトインオブジェクト
+\item
+  Async Functionは、ES2017で導入された非同期処理を扱う構文
+\item
+  Async
+  FunctionはPromiseの上に作られた構文であるため、Promiseと組み合わせて利用する
+\item
+  エラーファーストコールバックは、非同期処理での例外を扱うルールの1つで、Node.jsで広く使われていた
+\end{itemize}
+
+PromiseやAsync
+Functionの応用パターンについては「\href{https://azu.github.io/promises-book/}{JavaScript
+Promiseの本}」\footnote{\url{https://azu.github.io/promises-book/}}も参照してください。
