@@ -14,15 +14,14 @@
     "include-codeblock",
     "anchors",
     "canonical-link",
-    "ga",
     "js-console",
     "github-issue-feedback",
     "sandpack"
   ],
   "variables": {
     "esversion": "2022",
-    "nodeversion": "18.12.0",
-    "npmversion": "8.19.2",
+    "nodeversion": "18.14.0",
+    "npmversion": "9.3.1",
     "triplebackticks": "```",
     "console": "<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"
   },
@@ -48,9 +47,6 @@
     },
     "canonical-link": {
       "baseURL": "https://jsprimer.net"
-    },
-    "ga": {
-      "token": "UA-2184335-18"
     }
   },
   "pdf": {

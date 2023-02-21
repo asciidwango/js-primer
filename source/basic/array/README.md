@@ -35,7 +35,7 @@ const matrix = [
 ];
 ```
 
-作成した配列の要素へインデックスとなる数値を、`配列[インデックス]`と記述することで、
+作成した配列の要素のインデックスとなる数値を、`配列[インデックス]`と記述することで、
 そのインデックスの要素を配列から読み取れます。
 配列の先頭要素のインデックスは`0`となります。配列のインデックスは、`0`以上`2^32 - 1`未満の整数となります。
 
@@ -102,7 +102,7 @@ console.log(obj[100]); // => undefined
 ```js
 // 未定義の箇所が1つ含まれる疎な配列
 // インデックスが1の値を省略しているので、カンマが2つ続いていることに注意
-const sparseArray = [1,, 3];
+const sparseArray = [1, , 3];
 console.log(sparseArray.length); // => 3
 // 1番目の要素は存在しないため undefined が返る
 console.log(sparseArray[1]); // => undefined
@@ -341,7 +341,7 @@ const array = ["A", "B", "C", "D", "E"];
 console.log(array.slice(1, 4)); // => ["B", "C", "D"]
 // 第二引数を省略した場合は、第一引数から末尾の要素までを取り出す
 console.log(array.slice(1)); // => ["B", "C", "D", "E"]
-// マイナスを指定すると後ろからの数えた位置となる
+// マイナスを指定すると後ろから数えた位置となる
 console.log(array.slice(-1)); // => ["E"]
 // 第一引数と第二引数が同じ場合は、空の配列を返す
 console.log(array.slice(1, 1)); // => []
@@ -400,7 +400,7 @@ if (array.includes("JavaScript")) {
 ```
 
 `includes`メソッドは、`indexOf`メソッドと同様、異なるオブジェクトだが値が同じものを見つけたい場合には利用できません。
-Arrayの`find`メソッドのようにテストするコールバック関数を利用して、真偽値を得るにはArrayの`some`メソッドを利用できます。
+Arrayの`find`メソッドのようにテストするコールバック関数を利用して真偽値を得るには、Arrayの`some`メソッドを利用できます。
 
 Arrayの`some`メソッドはテストするコールバック関数にマッチする要素があるなら`true`を返し、存在しない場合は`false`を返します
 （「[ループと反復処理](../loop/README.md#array-some)」の章を参照）。
@@ -508,11 +508,11 @@ Arrayの`flat`メソッド<sup>[ES2019]</sup>を使うことで、多次元配�
 <!-- doctest:meta:{ "ECMAScript": "2019" } -->
 ```js
 const array = [[["A"], "B"], "C"];
-// 引数なしは 1 を指定した場合と同じ
+// 引数なしは1を指定した場合と同じ
 console.log(array.flat()); // => [["A"], "B", "C"]
 console.log(array.flat(1)); // => [["A"], "B", "C"]
 console.log(array.flat(2)); // => ["A", "B", "C"]
-// すべてをフラット化するには Infinity を渡す
+// すべてをフラット化するにはInfinityを渡す
 console.log(array.flat(Infinity)); // => ["A", "B", "C"]
 ```
 
@@ -537,7 +537,6 @@ console.log(array.flat()); // => ["A", "B", "C"]
 `splice`メソッドを利用すると、削除した要素を自動で詰めることができます。
 `splice`メソッドは指定したインデックスから、指定した数だけ要素を取り除き、必要ならば要素を同時に追加できます。
 
-{{book.console}}
 <!-- doctest: ReferenceError -->
 ```js
 const array = [];

@@ -25,7 +25,7 @@ JavaScriptのデータ型はプリミティブ型とオブジェクトに分け�
 
 <!--　textlint-disable preset-ja-technical-writing/max-ten -->
 
-プリミティブ型のデータのうち、真偽値（Boolean）、数値（Number） 、文字列（String）、シンボル（Symbol）にはそれぞれ対応するオブジェクトが存在します。たとえば、文字列に対応するオブジェクトとして、`String`オブジェクトがあります。
+プリミティブ型のデータのうち、真偽値（Boolean）、数値（Number） 、BigInt、文字列（String）、シンボル（Symbol）にはそれぞれ対応するオブジェクトが存在します。たとえば、文字列に対応するオブジェクトとして、`String`オブジェクトがあります。
 
 この`String`オブジェクトを`new`することで`String`オブジェクトのインスタンスを作れます。
 

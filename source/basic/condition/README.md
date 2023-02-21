@@ -116,9 +116,9 @@ if (null) {
 複数の条件分岐を書く場合は、if文に続けてelse if文を使うことで書けます。
 たとえば、次の3つの条件分岐するプログラムを考えます。
 
-- `version` が "ES5" ならば "ECMAScript 5" と出力
-- `version` が "ES6" ならば "ECMAScript 2015" と出力
-- `version` が "ES7" ならば "ECMAScript 2016" と出力
+- `version` が `"ES5"` ならば `"ECMAScript 5"` と出力
+- `version` が `"ES6"` ならば `"ECMAScript 2015"` と出力
+- `version` が `"ES7"` ならば `"ECMAScript 2016"` と出力
 
 次のコードでは、if文とelse if文を使うことで3つの条件を書いています。
 変数`version`の値が`"ES6"`であるため、コンソールには`"ECMAScript 2015"`が出力されます。
@@ -270,7 +270,7 @@ switch文のcase節では基本的に`break;`を使ってswitch文を抜ける�
 別の方法で書けないかを考えるべきサインとなります。
 
 switch文はif文の代用として使うのではなく、次のように関数と組み合わせて条件に対する値を返すパターンとして使うことが多いです。
-関数については「[関数と宣言][]」の章で紹介します。
+関数については「[関数と宣言][]」の章を参照してください。
 
 {{book.console}}
 [import, switch-return-example.js](./src/switch/switch-return-example.js)
@@ -283,7 +283,7 @@ switch文はif文の代用として使うのではなく、次のように関数
 - 条件式に指定した値は真偽値へと変換してから判定される
 - 真偽値に変換すると`false`となる値をfalsyと呼ぶ
 - switch文とcase節、default節を組み合わせて条件分岐した処理を扱える
-- case節でbreak文しない場合は引き続きcase節が実行される
+- case節でbreak文を省略した場合は、後ろに続くcase節が実行される
 
 条件分岐にはif文やswitch文を利用します。
 複雑な条件を定義する場合には、if文のネストが深くなりやすいです。

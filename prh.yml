@@ -462,7 +462,9 @@ rules:
   - expected: コンストラクタ
     patterns: コンストラクター
   - expected: フィルター
-    patterns: /フィルタ(?!ー)/
+    patterns: /フィルタ(?!ー)(?!リング)/
+  - expected: フィルタリング
+    patterns: フィルターリング
   - expected: ユーザー
     patterns: /ユーザ(?!ー)/
   - expected: 明らか

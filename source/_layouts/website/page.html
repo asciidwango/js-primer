@@ -1,6 +1,15 @@
 {% extends template.self %}
 {% block title %}{% if page.fullTitle %}{{ page.fullTitle }}{% else %}{{ super() }}{% endif %}{% endblock %}
 {% block head %} {{ super() }}
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DWY0DLHWB6"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-DWY0DLHWB6');
+</script>
 <meta name="google-site-verification" content="bMotEbgYwkzA3k4PkuyK_NUdz0bKh-Phz0oUwNmRSVo" />
 <style>
     /*

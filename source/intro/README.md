@@ -182,7 +182,7 @@ IssueやPull Requestについては、次のページを参照してください
 - 一方で、エラーファーストコールバックは非同期処理としてはメインではなくなった
 - `Array#includes`という表記は、Private Classs Fields(`#field`)と記号が被るため廃止した
 - Node.jsでもECMAScript Modulesを使うようになり、CommonJSはメインではなくなった
-- Node.jsが12から18までアップデートし、npmは6から8までアップデート、各種ライブラリも最新にアップデート
+- Node.jsが12から18までアップデートし、npmは6から9までアップデート、各種ライブラリも最新にアップデート
 - 読者からのフィードバックを受けて、全体をより分かりやすく読みやすくなるように書き直した
 
 <!-- textlint-enable no-use-prototype-hash -->

@@ -341,7 +341,7 @@ JavaScriptにおいては多くのエラーはすでに類似するケースが�
 エラーを過度に怖がる必要はありません。エラーメッセージなどのヒントを使ってエラーを修正していけるようにしましょう。
 
 [Firefox]: https://www.mozilla.org/ja/firefox/new/
-[ブラウザーの開発者ツールとは？]: https://developer.mozilla.org/ja/docs/Learn/Common_questions/What_are_browser_developer_tools
+[Firefox DevTools User Docs]: https://firefox-source-docs.mozilla.org/devtools-user/
 [Visual Studio Code]: https://code.visualstudio.com/
 [Google]: https://www.google.com/
 [Stack Overflow]: https://stackoverflow.com/

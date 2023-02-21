@@ -60,7 +60,7 @@ module.exports = {
             },
             "sentence-length": {
                 "max": 95,
-                "exclusionPatterns": [
+                "skipPatterns": [
                     // 文末の（...）。はカウントしない
                     "/（.*?）。$/"
                 ]
