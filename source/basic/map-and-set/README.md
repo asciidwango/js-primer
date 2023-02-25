@@ -335,7 +335,6 @@ class EventEmitter {
     // ...EventEmitterには他にもメソッドがあるが省略...
 }
 
-// インスタンスに紐づくイベントリスナーが解放される例
 // `event`は`EventEmitter`のインスタンスへの参照をもつ
 let event = new EventEmitter();
 // `event`へイベントリスナーを追加する
