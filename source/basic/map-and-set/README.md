@@ -318,7 +318,6 @@ obj = null;
 このマップを`Map`で実装してしまうと、明示的に削除されるまでイベントリスナーはメモリ上に残り続けます。
 ここで`WeakMap`を使うと、`addListener` メソッドに渡された`listener`は `EventEmitter` インスタンスが参照されなくなった際、自動的に解放されます。
 
-{{book.console}}
 <!-- doctest:meta:{ "ECMAScript": 2020 } -->
 ```js
 // イベントリスナーを管理するマップ
