@@ -1719,30 +1719,30 @@ obj = <span class="hljs-literal">null</span>;
 イベントリスナーとは、イベントが発生したときに呼び出される関数のことです。
 このマップを<code>Map</code>で実装してしまうと、明示的に削除されるまでイベントリスナーはメモリ上に残り続けます。
 ここで<code>WeakMap</code>を使うと、<code>addListener</code> メソッドに渡された<code>listener</code>は <code>EventEmitter</code> インスタンスが参照されなくなった際、自動的に解放されます。</p>
-<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
-<!-- doctest:meta:{ "ECMAScript": 2020 } --></p>
+<!-- doctest:meta:{ "ECMAScript": 2020 } -->
 <pre><code class="lang-js"><span class="hljs-comment">// イベントリスナーを管理するマップ</span>
 <span class="hljs-keyword">const</span> listenersMap = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakMap</span>();
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EventEmitter</span> </span>{
     <span class="hljs-function"><span class="hljs-title">addListener</span>(<span class="hljs-params">listener</span>)</span> {
-        <span class="hljs-comment">// this にひもづいたリスナーの配列を取得する</span>
+        <span class="hljs-comment">// this(インスタンス)にひもづいたリスナーの配列を取得する</span>
         <span class="hljs-keyword">const</span> listeners = listenersMap.get(<span class="hljs-built_in">this</span>) ?? [];
         <span class="hljs-keyword">const</span> newListeners = listeners.concat(listener);
-        <span class="hljs-comment">// this をキーに新しい配列をセットする</span>
+        <span class="hljs-comment">// this をキーにして、新しいリスナーの配列をセットする</span>
         listenersMap.set(<span class="hljs-built_in">this</span>, newListeners);
     }
+    <span class="hljs-comment">// ...EventEmitterには他にもメソッドがあるが省略...</span>
 }
 
-<span class="hljs-comment">// 上記クラスの実行例</span>
-
-<span class="hljs-keyword">let</span> eventEmitter = <span class="hljs-keyword">new</span> EventEmitter();
-<span class="hljs-comment">// イベントリスナーを追加する</span>
-eventEmitter.addListener(<span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;イベントが発火しました&quot;</span>);
+<span class="hljs-comment">// `event`は`EventEmitter`のインスタンスへの参照をもつ</span>
+<span class="hljs-keyword">let</span> event = <span class="hljs-keyword">new</span> EventEmitter();
+<span class="hljs-comment">// `EventEmitter`のインスタンスへイベントリスナーを追加する</span>
+event.addListener(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-comment">// `EventEmitter`のインスタンスに紐づくイベントリスナーの処理</span>
 });
-<span class="hljs-comment">// eventEmitterへの参照がなくなったことで自動的にイベントリスナーが解放される</span>
-eventEmitter = <span class="hljs-literal">null</span>;
+<span class="hljs-comment">// `event`へ`null`を代入することで、`EventEmitter`のインスタンスへの参照がなくなる</span>
+<span class="hljs-comment">// インスタンスがどこからも参照されなくなったため、紐づいていたイベントリスナーが自動的に解放される</span>
+event = <span class="hljs-literal">null</span>;
 </code></pre>
 <p>また、あるオブジェクトから計算した結果を一時的に保存する用途でもよく使われます。
 次の例ではHTML要素の高さを計算した結果を保存して、2回目以降に同じ計算をしないようにしています。</p>
@@ -1914,7 +1914,7 @@ set.forEach(<span class="hljs-function">(<span class="hljs-params">value</span>)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"データの集合を扱うビルトインオブジェクトであるMapとSetについてを紹介します。オブジェクトの作成方法や更新方法から実際にどのようなケースで使うのかを紹介します。","title":"Map/Set","level":"1.3.23","depth":2,"next":{"title":"JSON","level":"1.3.24","depth":2,"path":"basic/json/README.md","ref":"./basic/json/README.md","articles":[]},"previous":{"title":"非同期処理:Promise/Async Function","level":"1.3.22","depth":2,"path":"basic/async/README.md","ref":"./basic/async/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/map-and-set/README.md","mtime":"2023-02-24T14:27:56.539Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-02-24T14:28:24.304Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"データの集合を扱うビルトインオブジェクトであるMapとSetについてを紹介します。オブジェクトの作成方法や更新方法から実際にどのようなケースで使うのかを紹介します。","title":"Map/Set","level":"1.3.23","depth":2,"next":{"title":"JSON","level":"1.3.24","depth":2,"path":"basic/json/README.md","ref":"./basic/json/README.md","articles":[]},"previous":{"title":"非同期処理:Promise/Async Function","level":"1.3.22","depth":2,"path":"basic/async/README.md","ref":"./basic/async/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/map-and-set/README.md","mtime":"2023-02-25T07:30:37.387Z","type":"markdown"},"gitbook":{"version":"4.0.4","time":"2023-02-25T07:30:59.274Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
