@@ -326,10 +326,10 @@ const listenersMap = new WeakMap();
 
 class EventEmitter {
     addListener(listener) {
-        // this にひもづいたリスナーの配列を取得する
+        // this(インスタンス)にひもづいたリスナーの配列を取得する
         const listeners = listenersMap.get(this) ?? [];
         const newListeners = listeners.concat(listener);
-        // this をキーに新しい配列をセットする
+        // this をキーにして、新しいリスナーの配列をセットする
         listenersMap.set(this, newListeners);
     }
     // ...EventEmitterには他にもメソッドがあるが省略...
@@ -337,7 +337,7 @@ class EventEmitter {
 
 // `event`は`EventEmitter`のインスタンスへの参照をもつ
 let event = new EventEmitter();
-// `event`へイベントリスナーを追加する
+// `EventEmitter`のインスタンスへイベントリスナーを追加する
 event.addListener(() => {
     // `EventEmitter`のインスタンスに保持されているイベントリスナーの処理
 });
