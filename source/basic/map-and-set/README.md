@@ -332,17 +332,19 @@ class EventEmitter {
         // this をキーに新しい配列をセットする
         listenersMap.set(this, newListeners);
     }
+    // ...EventEmitterには他にもメソッドがあるが省略...
 }
 
-// 上記クラスの実行例
-
-let eventEmitter = new EventEmitter();
-// イベントリスナーを追加する
-eventEmitter.addListener(() => {
-    console.log("イベントが発火しました");
+// インスタンスに紐づくイベントリスナーが解放される例
+// `event`は`EventEmitter`のインスタンスへの参照をもつ
+let event = new EventEmitter();
+// `event`へイベントリスナーを追加する
+event.addListener(() => {
+    // `EventEmitter`のインスタンスに保持されているイベントリスナーの処理
 });
-// eventEmitterへの参照がなくなったことで自動的にイベントリスナーが解放される
-eventEmitter = null;
+// `event`へ`null`を代入することで、`EventEmitter`のインスタンスへの参照がなくなる
+// `EventEmitter`のインスタンスがどこからも参照されなくなったため、保持されていたイベントリスナーが自動的に解放される
+event = null;
 ```
 
 また、あるオブジェクトから計算した結果を一時的に保存する用途でもよく使われます。
