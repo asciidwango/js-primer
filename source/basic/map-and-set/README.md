@@ -339,10 +339,10 @@ class EventEmitter {
 let event = new EventEmitter();
 // `EventEmitter`のインスタンスへイベントリスナーを追加する
 event.addListener(() => {
-    // `EventEmitter`のインスタンスに保持されているイベントリスナーの処理
+    // `EventEmitter`のインスタンスに紐づくイベントリスナーの処理
 });
 // `event`へ`null`を代入することで、`EventEmitter`のインスタンスへの参照がなくなる
-// `EventEmitter`のインスタンスがどこからも参照されなくなったため、保持されていたイベントリスナーが自動的に解放される
+// `EventEmitter`のインスタンスがどこからも参照されなくなったため、インスタンスに紐づいていたイベントリスナーが自動的に解放される
 event = null;
 ```
 
