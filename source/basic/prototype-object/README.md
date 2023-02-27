@@ -77,13 +77,13 @@ console.log(obj.toString()); // => "[object Object]"
 ### [コラム] `Object#toString`という短縮した表記について {#prototype-shorthand-syntax}
 
 この書籍では、`Object.prototype.toString`のように`prototype`を含めて毎回書くと冗長なため、「Objectの`toString`メソッド」と短縮して書く場合があります。
-この書籍以外の文章では、`Object.prototype.toString`を`Object#toString`のように`prototype`の代わりに`#`を利用しているケースがあります。
+この書籍以外の文章では、`Object.prototype.toString`を`Object#toString`のように`prototype`の代わりに`#`を利用して表しているケースがあります。
 
 `#`が`prototype`の短縮表現として使われていたのは、`#`がJavaScriptの構文として使われていない記号でもあったためです。
 詳細は「[クラス][]」の章で解説しますが、ES2022では`#`がJavaScriptの構文として追加され、`#`という記号が意味をもつようになりました。
 ES2022以降では、説明のために`#`を`prototype`の短縮表現に使うと、人によっては異なる意味に見えてしまう可能性があります。
 
-そのため、この書籍は`Object.prototype.toString`を`Object#toString`のように`#`を使う短縮表記は利用していません。
+そのため、この書籍は`Object.prototype.toString`を`Object#toString`のように`#`を使って表す短縮表記は利用していません。
 
 <!-- textlint-enable no-use-prototype-hash,ja-technical-writing/sentence-length -->
 
@@ -233,7 +233,7 @@ console.log(obj.hasOwnProperty); // => undefined
 Mapとはキーと値の組み合わせを保持するためのオブジェクトです。
 
 ただのオブジェクトもMapとよく似た性質を持っていますが、最初からいくつかのプロパティが存在しアクセスできてしまいます。
-なぜなら、`Object`のインスタンスはデフォルトで`Object.prototype`を継承するため、`toString`などのプロパティ名がオブジェクトを作成した時点で存在するためです。
+なぜなら、`Object`のインスタンスはデフォルトで`Object.prototype`を継承するので、`toString`などのプロパティ名がオブジェクトを作成した時点で存在するためです。
 そのため、`Object.create(null)`で`Object.prototype`を継承しないオブジェクトを作成し、そのオブジェクトが`Map`の代わりとして使われていました。
 
 {{book.console}}
