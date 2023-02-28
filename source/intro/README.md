@@ -147,7 +147,7 @@ IssueやPull Requestについては、次のページを参照してください
 
 ## 謝辞 {#thanks}
 
-この書籍は次の方々にレビューをしていただきました。
+初版では、次の方々にレビューをしていただきました。
 
 <!-- textlint-disable -->
 
@@ -157,6 +157,18 @@ IssueやPull Requestについては、次のページを参照してください
 - sakito
 - 川上和義
 - 尾上洋介
+
+第2版では、次の方々にレビューをしていただきました。
+
+- haruguchi（池奥 悠馬）
+- 2nofa11（ツノ）
+- staticWagomU（林 永遠）
+- kakts（阿久津 恵太）
+- keisuke kudo（工藤佳祐）
+- r-shirasu
+- 藤野慎也（morinokami）
+- kobakazu0429（小畠 一泰）
+- 滝谷修
 
 <!-- textlint-enable -->
 
