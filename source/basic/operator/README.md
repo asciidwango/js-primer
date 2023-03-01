@@ -111,19 +111,14 @@ console.log(10 * 0.5); // => 5
 ```js
 console.log(8 / 2); // => 4
 console.log(10 / 0.5); // => 20
-
-// 正の無限大
-console.log(10 / 0); // => Infinity
-console.log(-10 / -0); // => Infinity
-// 負の無限大
-console.log(-10 / 0); // => -Infinity
-console.log(10 / -0); // => -Infinity
 ```
 
-0で除算した場合、無限大を表す数値である`Infinity`として評価されます。
-演算結果が0未満で表される場合は、負の無限大を表す`-Infinity`となります。
+ただし、任意の数値を`0`で除算した結果は、無限大を表す数値である`Infinity`となります。
 
-四則演算において、式の一部でInfinityと評価されてしまうと、式全体の演算結果も意図しないものとなります。そのため、除算演算子を使う場合には右オペランドの値が0になるケースには注意が必要です。  
+{{book.console}}
+```js
+console.log(10 / 0); // => Infinity
+```
 
 ### 剰余演算子（`%`） {#modulus-operator}
 
