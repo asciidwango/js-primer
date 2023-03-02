@@ -318,7 +318,6 @@ obj = null;
 このマップを`Map`で実装してしまうと、明示的に削除されるまでイベントリスナーはメモリ上に残り続けます。
 ここで`WeakMap`を使うと、`addListener` メソッドに渡された`listener`は `EventEmitter` インスタンスが参照されなくなった際、自動的に解放されます。
 
-{{book.console}}
 <!-- doctest:meta:{ "ECMAScript": 2020 } -->
 ```js
 // イベントリスナーを管理するマップ
@@ -326,23 +325,24 @@ const listenersMap = new WeakMap();
 
 class EventEmitter {
     addListener(listener) {
-        // this にひもづいたリスナーの配列を取得する
+        // this(インスタンス)にひもづいたリスナーの配列を取得する
         const listeners = listenersMap.get(this) ?? [];
         const newListeners = listeners.concat(listener);
-        // this をキーに新しい配列をセットする
+        // this をキーにして、新しいリスナーの配列をセットする
         listenersMap.set(this, newListeners);
     }
+    // ...EventEmitterには他にもメソッドがあるが省略...
 }
 
-// 上記クラスの実行例
-
-let eventEmitter = new EventEmitter();
-// イベントリスナーを追加する
-eventEmitter.addListener(() => {
-    console.log("イベントが発火しました");
+// `event`は`EventEmitter`のインスタンスへの参照をもつ
+let event = new EventEmitter();
+// `EventEmitter`のインスタンスへイベントリスナーを追加する
+event.addListener(() => {
+    // `EventEmitter`のインスタンスに紐づくイベントリスナーの処理
 });
-// eventEmitterへの参照がなくなったことで自動的にイベントリスナーが解放される
-eventEmitter = null;
+// `event`へ`null`を代入することで、`EventEmitter`のインスタンスへの参照がなくなる
+// インスタンスがどこからも参照されなくなったため、紐づいていたイベントリスナーが自動的に解放される
+event = null;
 ```
 
 また、あるオブジェクトから計算した結果を一時的に保存する用途でもよく使われます。
