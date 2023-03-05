@@ -147,9 +147,8 @@ class MyClass {
 MyClass(); // => TypeError: class constructors must be invoked with |new|
 \end{lstlisting}
 
-また、コンストラクタは初期化処理を書く場所であるため、\texttt{return}文で値を返すべきではありません。
-JavaScriptでは、コンストラクタ関数が任意のオブジェクトを返すことが可能ですが、行うべきではありません。
-なぜなら、コンストラクタは\texttt{new}演算子で呼び出し、その評価結果はクラスのインスタンスを期待するのが一般的であるためです。
+また、コンストラクタ関数は\texttt{return}文で任意のオブジェクトを返すことが可能ですが、行うべきではありません。
+なぜなら、クラスを\texttt{new}演算子で呼び出し、その評価結果はクラスのインスタンスを期待するのが一般的であるためです。
 
 次のコードのようにコンストラクタで返した値が\texttt{new}演算子で呼び出した際の返り値となります。
 このような書き方は混乱を生むため避けるべきです。
@@ -466,7 +465,7 @@ console.log(arrayLike.items.join(", ")); // => "1, 2, , , "
 \hypertarget{public-class-fields}{%
 \section{Publicクラスフィールド\,\protect\icon{fig/es2022.eps}}\label{public-class-fields}}\index{Publicくらすふぃーるど@Publicクラスフィールド}
 
-クラスでは、\texttt{constructor}メソッドの中でクラスの状態であるインスタンスのプロパティの初期化することを紹介しました。
+クラスでは、\texttt{constructor}メソッドの中でクラスの状態であるインスタンスのプロパティを初期化することを紹介しました。
 先ほども紹介した\texttt{Counter}クラスでは、\texttt{constructor}メソッドの中で\texttt{count}プロパティの初期値を\texttt{0}として定義しています。
 
 \begin{lstlisting}
@@ -481,7 +480,7 @@ class Counter {
 \end{lstlisting}
 
 この\texttt{Counter}では\texttt{new}演算子で何も引数を渡すことなく初期化するため、\texttt{constructor}メソッドには仮引数を定義していません。
-このような場合でも、\texttt{construtor}メソッドを書かないとプロパティの初期化ができないためわずらわしいという問題がありました。
+このような場合でも、\texttt{constructor}メソッドを書かないとプロパティの初期化ができないためわずらわしいという問題がありました。
 
 ES2022で、クラスのインスタンスが持つプロパティの初期化をわかりやすく宣言的にする構文として、\textbf{\textgt{クラスフィールド}}構文が追加されました。
 
@@ -516,7 +515,7 @@ console.log(counter.count); // => 1
 次のコードでは、クラスフィールドと\texttt{constructor}メソッドでそれぞれインスタンスのプロパティを定義しています。
 
 \begin{lstlisting}
-// 別々のプロパティ名はそれぞれ定義される
+// 別々のプロパティ名がそれぞれ定義される
 class MyClass {
     publicField = 1;
     constructor(arg) {
@@ -613,7 +612,7 @@ console.log(counter.count); // => 1
 
 クラスフィールドでの\texttt{this}は、Arrow Functionと組み合わせると強力です。
 
-次のコードでは、\texttt{up}メソッドに\texttt{this.increment}メソッドを呼び出す関数をArrow Function定義しています。
+次のコードでは、\texttt{up}メソッドをArrow Functionとして定義し、関数内では\texttt{this.increment}メソッドを呼び出しています。
 Arrow Functionで定義した関数における\texttt{this}は、どのような呼び出し方をしても変化しません（「\hyperlink{arrow-function-callback}{Arrow Functionでコールバック関数を扱う}」を参照）。
 そのため、\texttt{up}メソッドはどのような呼び方をした場合でも\texttt{this}がクラスのインスタンスとなるため、確実に\texttt{increment}メソッドを呼び出せます。
 
@@ -693,7 +692,7 @@ setterは\texttt{=}での代入に反応します。そのため、\texttt{const
 \hypertarget{private-class-fields}{%
 \section{Privateクラスフィールド\,\protect\icon{fig/es2022.eps}}\label{private-class-fields}}\index{Privateくらすふぃーるど@Privateクラスフィールド}
 
-クラスフィールド構文で次のように書くと、定義したプロパティはクラスのインスタンス化した後に外からも参照できます。
+クラスフィールド構文で次のように書くと、定義したプロパティはクラスをインスタンス化した後に外からも参照できます。
 そのため、Publicクラスフィールドと呼ばれます。
 
 \begin{lstlisting}
@@ -730,7 +729,7 @@ privateExample.dump();
 
 もう少し具体的なPrivateクラスフィールドの使い方を見ていきます。
 
-アクセサプロパティの例でも登場した\texttt{NumberWrapper}をPrivateクラスフィールドを使って書き直してみます。
+アクセッサプロパティの例でも登場した\texttt{NumberWrapper}をPrivateクラスフィールドを使って書き直してみます。
 元々の\texttt{NumberWrapper}クラスでは、\texttt{\_value}プロパティに実際の値を読み書きしていました。
 この場合、\texttt{\_value}プロパティは、外からもアクセスできてしまうため、定義したgetterとsetterが無視できてしまいます。
 
@@ -876,9 +875,9 @@ console.log(arrayWrapper.length); // => 3
 \hypertarget{static-class-fields}{%
 \subsection{静的クラスフィールド\,\protect\icon{fig/es2022.eps}}\label{static-class-fields}}\index{せいてきくらすふぃーるど@静的クラスフィールド}
 
-ES2022で追加されたクラスフィールドも、インスタンスではなくクラス自体に定義する静的クラスフィールドが利用できます。
+ES2022で追加されたクラスフィールドでは、インスタンスではなくクラス自体に定義する静的クラスフィールドも利用できます。
 
-静的クラスフィールドはフィールドの前に、\texttt{static}をつけるだけです。
+静的クラスフィールドは、フィールドの前に\texttt{static}をつけるだけです。
 静的クラスフィールドで定義したプロパティは、クラス自体のプロパティとして定義されます。
 次のコードでは、Public静的クラスフィールドを使って\texttt{Colors}クラス自体にプロパティを定義しています。
 
@@ -933,7 +932,7 @@ example.instanceMethod();
 example.prototypeMethod();
 \end{lstlisting}
 
-しかしこの2つのメソッドの定義方法は、メソッドを定義先となるオブジェクトが実際に異なります。
+しかしこの2つのメソッドの定義方法は、メソッドの定義先となるオブジェクトが異なります。
 
 まず、この2種類のメソッドがそれぞれ別の場所へと定義されていることを見ていきます。
 次のコードでは、\texttt{ConflictClass}クラスに\texttt{method}という同じ名前のメソッドをプロトタイプメソッドとインスタンスに対してそれぞれ定義しています。

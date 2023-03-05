@@ -110,10 +110,16 @@ console.log(8 / 2); // => 4
 console.log(10 / 0.5); // => 20
 \end{lstlisting}
 
+ただし、任意の数値を\texttt{0}で除算した結果は、無限大を表す数値である\texttt{Infinity}となります。
+
+\begin{lstlisting}
+console.log(10 / 0); // => Infinity
+\end{lstlisting}
+
 \hypertarget{modulus-operator}{%
 \subsection{\texorpdfstring{剰余演算子（\texttt{\%}）}{剰余演算子（\%）}}\label{modulus-operator}}\index{じょうよえんざんし@剰余演算子}\index{\%@\texttt{\%}}
 
-2つの数値のあまりを求める演算子です。左オペランドを右オペランドで除算したあまりを返します。
+2つの数値を除算したあまりを求める演算子です。左オペランドを右オペランドで除算したあまりを返します。
 
 \begin{lstlisting}
 console.log(8 % 2); // => 0
@@ -140,7 +146,7 @@ console.log(Math.pow(2, 4)); // => 16
 \end{lstlisting}
 
 べき乗演算子はES2016で後から追加された演算子であるため、関数と演算子がそれぞれ存在しています。
-他の二項演算子は演算子が先に存在していたため、\texttt{Math}には対応するメソッドがありません。
+一方、他の二項演算子は演算子が先に存在していたため、\texttt{Math}には対応するメソッドがありません。
 
 \hypertarget{unary-operator}{%
 \section{単項演算子（算術）}\label{unary-operator}}\index{たんこうえんざんし@単項演算子}\index{さんじゅつ@算術}
@@ -235,7 +241,7 @@ console.log(num); // => 2
 // num = num + 1;
 \end{lstlisting}
 
-インクリメント演算子（\texttt{++}）は、オペランドの後ろに置くか前に置くかで、それぞれで評価の順番が異なります。
+インクリメント演算子（\texttt{++}）は、オペランドの前後どちらに置くかによって評価の順番が異なります。
 
 後置インクリメント演算子（\texttt{num++}）は、次のような順で処理が行われます。
 
@@ -655,7 +661,7 @@ num << bit;
 
 \begin{lstlisting}
 console.log(     9 << 2); // => 36
-console.log(0b1111 << 2); // => 0b11_1100
+console.log(0b1001 << 2); // => 0b10_0100
 \end{lstlisting}
 
 \hypertarget{right-shift}{%
@@ -874,7 +880,7 @@ true || console.log("このコンソールログは実行されません");
 false || console.log("このコンソールログは実行されます");
 \end{lstlisting}
 
-また、OR演算子は左辺を評価する際に、左辺を真偽値へと暗黙的な型変換します。
+また、OR演算子は左辺を評価する際に、左辺を真偽値へと暗黙的な型変換をします。
 次のように、OR演算子は左辺がfalsyの場合には右辺の値を返します。
 
 \begin{lstlisting}
@@ -959,7 +965,7 @@ console.log("文字列" ?? "右辺の値"); // => "文字列"
 \end{lstlisting}
 
 Nullish coalescing演算子（\texttt{??}）とOR演算子（\texttt{||}）は、値のデフォルト値を指定する場合によく利用されています。
-OR演算子（\texttt{||}）は左辺がfalsyの場合に右辺を評価するため、意図しない結果となる場合が知られています。
+OR演算子（\texttt{||}）は左辺がfalsyの場合に右辺を評価するため、意図しない結果となる場合があります。
 
 次のコードは、\texttt{inputValue}が未定義だった場合に、\texttt{value}に対するデフォルト値をOR演算子（\texttt{||}）で指定しています。
 \texttt{inputValue}が未定義（\texttt{undefined}）の場合は、意図したようにOR演算子（\texttt{||}）の右辺で指定した\texttt{42}が入ります。
@@ -999,8 +1005,8 @@ console.log(value);
 条件式 ? Trueのとき処理する式 : Falseのとき処理する式;
 \end{lstlisting}
 
-if文との違いは、条件演算子は式として書くことができるため値を返します。
-次のように、\texttt{条件式}の評価結果により\texttt{"A"}または\texttt{"B"}どちらかを返します。
+if文との違いは、条件演算子は式として書くことができるため値を返すという点です。
+たとえば、次のように\texttt{条件式}の評価結果により\texttt{"A"}または\texttt{"B"}どちらかを返します。
 
 \begin{lstlisting}
 const valueA = true ? "A" : "B";
@@ -1012,7 +1018,7 @@ console.log(valueB); // => "B"
 条件分岐による値を返せるため、条件によって変数の初期値が違う場合などに使われます。
 
 次の例では、\texttt{text}文字列に\texttt{prefix}となる文字列を先頭につける関数を書いています。
-\texttt{prefix}の第二引数を省略したり文字列ではないものが指定された場合に、デフォルトの\texttt{prefix}を使います。
+第二引数の\texttt{prefix}を省略したり文字列ではないものが指定された場合に、デフォルトの\texttt{prefix}を使います。
 第二引数が省略された場合には、\texttt{prefix}に\texttt{undefined}が入ります。
 
 条件演算子の評価結果は値を返すので、\texttt{const}を使って宣言と同時に代入できます。
@@ -1055,12 +1061,12 @@ console.log(addPrefix("文字列", "カスタム:")); // => "カスタム:文字
 const a = 1;
 const b = 2;
 const c = 3;
-console.log(a + b * c); // 7
+console.log(a + b * c); // => 7
 console.log((a + b) * c); // => 9
 \end{lstlisting}
 
 \href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Operator_Precedence\#Table}{演算子の優先順位}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Operator_Precedence\#Table}}はECMAScript仕様で定義されていますが、演算子の優先度をすべて覚えるのは難しいです。
-演算子の優先順位\index{えんざんし@演算子!ゆうせんじゅんい@優先順位}の中でグループ化演算子は優先される演算子となり、グループ化演算子を使って優先順位を明示できます。
+演算子の優先順位\index{えんざんし@演算子!ゆうせんじゅんい@優先順位}の中でもグループ化演算子は優先順位が高く、グループ化演算子を使うことによって優先順位を明示できます。
 
 次のようなグループ化演算子を使わずに書いたコードを見てみましょう。
 \texttt{x}が\texttt{true}または、\texttt{y}かつ\texttt{z}が\texttt{true}であるときに処理されます。
@@ -1144,7 +1150,7 @@ console.log(c); // => 3
 \item
   演算子はよく利用する演算処理を記号などで表現したもの
 \item
-  四則演算から論理演算などさまざまな種類の演算子がある
+  四則演算や論理演算などさまざまな種類の演算子がある
 \item
   演算子には優先順位が定義されており、グループ化演算子で明示できる
 \end{itemize}

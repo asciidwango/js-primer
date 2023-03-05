@@ -84,7 +84,7 @@ try {
 渡したエラーメッセージはErrotの\texttt{message}\index{message@\texttt{message}}\index{Error@\texttt{Error}!message@\texttt{message}}プロパティで参照できます。
 
 次のコードでは、\texttt{assertPositiveNumber}関数でエラーオブジェクトを作成し、例外として\texttt{throw}しています。
-投げられたオブジェクトは、catch節の例外識別子（\texttt{error}）からエラーオブジェクトを取得でき、エラーメッセージが確認できます。
+投げられたオブジェクトはcatch節の例外識別子（\texttt{error}）から取得でき、エラーメッセージが確認できます。
 
 \begin{lstlisting}
 // 渡された数値が0以上ではない場合に例外を投げる関数
@@ -309,8 +309,8 @@ fn();
 \texttt{console.log}はメッセージだけなのに対して、\texttt{console.error}ではメッセージと共にスタックトレースが出力されます。
 そのため、エラーが発生した場合のコンソールへのメッセージ出力に\texttt{console.error}を利用することでデバッグがしやすくなります。
 
-また、ほとんどのブラウザには\texttt{console.log}や\texttt{console.error}の出力をフィルターリングできる機能が備わっています。
-ただのログ出力には\texttt{console.log}を使い、エラーに関するログ出力には\texttt{console.error}と使うことで、ログの重要度が区別しやすくなります。
+また、ほとんどのブラウザには\texttt{console.log}や\texttt{console.error}の出力をフィルタリングできる機能が備わっています。
+ただのログ出力には\texttt{console.log}を使い、エラーに関するログ出力には\texttt{console.error}を使うことで、ログの重要度が区別しやすくなります。
 
 \hypertarget{conclusion}{%
 \section{まとめ}\label{conclusion}}

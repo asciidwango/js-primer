@@ -4,7 +4,7 @@
 
 この章ではJavaScriptにおける文字列について学んでいきます。
 まずは、文字列の作成方法や文字列の操作方法について見ていきます。
-そして、文字列を編集して自由な文字列を作れるようになることがこの章の目的です。
+そして、文字列を編集して自由に文字列を作れるようになることがこの章の目的です。
 
 \hypertarget{create}{%
 \section{文字列を作成する}\label{create}}\index{もじれつ@文字列!さくせい@作成}
@@ -944,7 +944,7 @@ while (matches = alphabetsPattern.exec(str)) {
 \end{lstlisting}
 
 このようにRegExpの\texttt{exec}メソッドと正規表現の\texttt{g}フラグを使い、Stringの\texttt{matchAll}メソッド相当の反復処理を実装していました。
-RegExpの\texttt{exec}はIteratorオブジェクトという反復処理のためオブジェクトが導入される以前からあるメソッドです。
+RegExpの\texttt{exec}はIteratorオブジェクトという反復処理のためのオブジェクトが導入される以前からあるメソッドです。
 
 Stringの\texttt{matchAll}がIteratorを扱うわかりやすい反復処理に比べて、RegExpの\texttt{exec}メソッドは\texttt{while}文などで手動で反復処理を書く必要があるため直感的ではありません。
 そのため、Stringの\texttt{matchAll}メソッドが利用できる場合に、RegExpの\texttt{exec}メソッドを利用する必要はありません。
@@ -1144,7 +1144,7 @@ console.log(toDateJa("今日は2017-03-01です")); // => "今日は2017年03月
 \section{文字列の組み立て}\label{built}}\index{もじれつ@文字列!くみたて@組み立て}
 
 最後に文字列の組み立てについて見ていきましょう。
-最初に述べたようにこの章の目的は、「自由な文字列を作れるようになること」です。
+最初に述べたようにこの章の目的は、「自由に文字列を作れるようになること」です。
 
 文字列を単純に結合したり置換することで新しい文字列を作れることがわかりました。
 一方、構造的な文字列の場合は単純に結合するだけでは意味が異なってしまうことがあります。
@@ -1323,6 +1323,6 @@ console.log(escapedURL); // => "https://example.com/search?q=A%26B&sort=desc"
 正規表現は、正規表現のみで1冊の本が作れるようなJavaScript言語内にある別言語です。
 詳細は\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions}{MDNの正規表現ドキュメント}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Regular_Expressions}}なども参照してください。
 
-文字列は一見すると単純に見えますが、文字列にはURLやパスといったコンテキストを持つ文字列もあります。
+文字列は一見すると単純に見えますが、URLやパスといったコンテキストを持つものもあります。
 それらの文字列を安全に扱うためには、コンテキストに応じた処理が必要になります。
 また、タグつきテンプレートリテラルを利用することで、テンプレート中の変数を自動でエスケープするといった処理を実現できます。

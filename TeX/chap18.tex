@@ -332,7 +332,7 @@ measureTask(doHeavyTask);
 
 コードの量が増えていくにつれ、人が一度に把握できる量にも限界がやってきます。
 そのため、人が一度に把握できる範囲のサイズに処理をまとめていくことが必要です。
-この問題を解決するアプローチとして、変数の参照できる範囲を小さくすることや処理を関数にまとめるという手法がよく利用されます。
+この問題を解決するアプローチとして、変数を参照できる範囲を小さくするために、処理を関数にまとめるという手法がよく利用されます。
 \end{tcolorbox}
 
 \hypertarget{hoisting-var}{%
@@ -361,7 +361,7 @@ var_x = "varのx";
 次に、\texttt{let}と\texttt{var}で異なる動作を見ていきます。
 
 \texttt{let}では、変数を\textbf{\textgt{宣言する前}}にその変数を参照すると\texttt{ReferenceError}の例外が発生して参照できません。
-次のコードでは、変数を宣言する前に、変数\texttt{x}を参照したため\texttt{ReferenceError}となっています。
+次のコードでは、変数を宣言する前に変数\texttt{x}を参照したため\texttt{ReferenceError}となっています。
 エラーメッセージから、変数\texttt{x}が存在しないからエラーになっているのではなく、実際に宣言した行より前に参照したためエラーとなっているのがわかります\footnote{この仕組みはTemporal
   Dead Zone\index{Temporal Dead Zone}（TDZ）と呼ばれます。}。
 
@@ -808,7 +808,7 @@ const createCounter = () => {
 // countUpとnewCountUpはそれぞれ別のincrement関数(内側にあるのも別のcount変数)
 const countUp = createCounter();
 const newCountUp = createCounter();
-// 参照してる関数(オブジェクト)は別であるため===は一致しない
+// 参照している関数(オブジェクト)は別であるため===は一致しない
 console.log(countUp === newCountUp);// false
 // それぞれの状態も別となる
 console.log(countUp()); // => 1

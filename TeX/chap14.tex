@@ -32,7 +32,7 @@ const matrix = [
 ];
 \end{lstlisting}
 
-作成した配列の要素へのインデックスとなる数値を、\texttt{配列[インデックス]}と記述することで、
+作成した配列の要素のインデックスとなる数値を、\texttt{配列[インデックス]}と記述することで、
 そのインデックスの要素を配列から読み取れます。
 配列の先頭要素のインデックスは\texttt{0}となります。配列のインデックスは、\texttt{0}以上\texttt{$2^{32} - 1$}未満の整数となります。
 
@@ -95,7 +95,7 @@ console.log(obj[100]); // => undefined
 \begin{lstlisting}
 // 未定義の箇所が1つ含まれる疎な配列
 // インデックスが1の値を省略しているので、カンマが2つ続いていることに注意
-const sparseArray = [1,, 3];
+const sparseArray = [1, , 3];
 console.log(sparseArray.length); // => 3
 // 1番目の要素は存在しないため undefined が返る
 console.log(sparseArray[1]); // => undefined
@@ -391,7 +391,7 @@ if (array.includes("JavaScript")) {
 \end{lstlisting}
 
 \texttt{includes}メソッドは、\texttt{indexOf}メソッドと同様、異なるオブジェクトだが値が同じものを見つけたい場合には利用できません。
-Arrayの\texttt{find}メソッドのようにテストするコールバック関数を利用して、真偽値を得るにはArrayの\texttt{some}\index{some@\texttt{some}}メソッドを利用できます。
+Arrayの\texttt{find}メソッドのようにテストするコールバック関数を利用して真偽値を得るには、Arrayの\texttt{some}\index{some@\texttt{some}}メソッドを利用できます。
 
 Arrayの\texttt{some}メソッドはテストするコールバック関数にマッチする要素があるなら\texttt{true}を返し、存在しない場合は\texttt{false}を返します
 （「\hyperlink{loop-and-iteration}{ループと反復処理}」の章の「\hyperlink{array-some}{配列の\texttt{some}メソッド}」を参照）。
@@ -494,11 +494,11 @@ Arrayの\texttt{flat}\index{flat@\texttt{flat}}メソッド\,\protect\iconl{fig/
 
 \begin{lstlisting}
 const array = [[["A"], "B"], "C"];
-// 引数なしは 1 を指定した場合と同じ
+// 引数なしは1を指定した場合と同じ
 console.log(array.flat()); // => [["A"], "B", "C"]
 console.log(array.flat(1)); // => [["A"], "B", "C"]
 console.log(array.flat(2)); // => ["A", "B", "C"]
-// すべてをフラット化するには Infinity を渡す
+// すべてをフラット化するにはInfinityを渡す
 console.log(array.flat(Infinity)); // => ["A", "B", "C"]
 \end{lstlisting}
 

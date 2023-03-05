@@ -65,7 +65,7 @@ if (isTrue) {
 
 \begin{lstlisting}
 // 構文として間違っているため、SyntaxErrorが発生する
-var forIsNotExpression = if (true) { /* ifは文であるため式にはなれない */ }
+const forIsNotExpression = if (true) { /* ifは文であるため式にはなれない */ }
 \end{lstlisting}
 
 \hypertarget{expression-statement}{%
@@ -157,7 +157,7 @@ undefined // ここでブロック内で定義した変数countは参照でき�
 \end{tcolorbox}
 
 \hypertarget{function-statement-and-function-expression}{%
-\section{function宣言（文）とfunction式}\label{function-statement-and-function-expression}}\index{function@\texttt{function}}
+\section{関数宣言（文）と関数式}\label{function-statement-and-function-expression}}\index{かんすう@関数}
 
 「\hyperlink{function-and-declaration}{関数と宣言}」の章において、関数を定義する方法を学びました。
 functionキーワードから文を開始する\textbf{\textgt{関数宣言}}\index{かんすうせんげん@関数宣言}と、変数へ\textbf{\textgt{関数式}}\index{かんすうしき@関数式}を代入する方法があります。
@@ -174,7 +174,7 @@ const read = function() {
 \end{lstlisting}
 
 この文と式の違いを見ると、関数宣言文にはセミコロンがなく、関数式にはセミコロンがあります。
-このような、違いがなぜ生まれるのかは、ここまでの内容から説明できます。
+このような違いがなぜ生まれるのかは、ここまでの内容から説明できます。
 
 関数宣言（文）で定義した\texttt{learn}関数には、セミコロンがありません。
 これは、\textbf{\textgt{ブロックで終わる文}}にはセミコロンが不要であるためです。

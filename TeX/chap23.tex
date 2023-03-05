@@ -201,7 +201,8 @@ class ShoppingCart {
     }
     // カートに商品を追加する
     addItem(item) {
-        // itemがない場合はundefinedを返すため、Nullish coalescing演算子(??)を使いデフォルト値として0を設定する
+        // itemがない場合はundefinedを返すため、Nullish coalescing演算子(??)を
+        // 使いデフォルト値として0を設定する
         const count = this.items.get(item) ?? 0;
         this.items.set(item, count + 1);
     }
@@ -335,23 +336,24 @@ const listenersMap = new WeakMap();
 
 class EventEmitter {
     addListener(listener) {
-        // this にひもづいたリスナーの配列を取得する
+        // this（インスタンス）にひもづいたリスナーの配列を取得する
         const listeners = listenersMap.get(this) ?? [];
         const newListeners = listeners.concat(listener);
-        // this をキーに新しい配列をセットする
+        // thisをキーにして、新しいリスナーの配列をセットする
         listenersMap.set(this, newListeners);
     }
 }
 
-// 上記クラスの実行例
-
-let eventEmitter = new EventEmitter();
-// イベントリスナーを追加する
-eventEmitter.addListener(() => {
-    console.log("イベントが発火しました");
+// eventはEventEmitterのインスタンスへの参照をもつ
+let event = new EventEmitter();
+// EventEmitterのインスタンスへイベントリスナーを追加する
+event.addListener(() => {
+    // EventEmitterのインスタンスにひもづくイベントリスナーの処理
 });
-// eventEmitterへの参照がなくなったことで自動的にイベントリスナーが解放される
-eventEmitter = null;
+// eventへnullを代入することで、EventEmitterのインスタンスへの参照がなくなる
+// インスタンスがどこからも参照されなくなったため、ひもづいていたイベントリスナーが
+// 自動的に解放される
+event = null;
 \end{lstlisting}
 
 また、あるオブジェクトから計算した結果を一時的に保存する用途でもよく使われます。

@@ -74,13 +74,13 @@ console.log(obj.toString()); // => "[object Object]"
 \begin{tcolorbox}[enhanced jigsaw,breakable,title=\texttt{Object\#toString}という短縮した表記について]\label{prototype-shorthand-syntax}\index{Object\#toStringconst@\texttt{Object\#toString}}
 
 この書籍では、\texttt{Object.prototype.toString}のように\texttt{prototype}を含めて毎回書くと冗長なため、「Objectの\texttt{toString}メソッド」と短縮して書く場合があります。
-この書籍以外の文章では、\texttt{Object.prototype.toString}を\texttt{Object\#toString}のように\texttt{prototype}の代わりに\texttt{\#}を利用しているケースがあります。
+この書籍以外の文章では、\texttt{Object.prototype.toString}を\texttt{Object\#toString}のように\texttt{prototype}の代わりに\texttt{\#}を利用して表しているケースがあります。
 
 \texttt{\#}が\texttt{prototype}の短縮表現として使われていたのは、\texttt{\#}がJavaScriptの構文として使われていない記号でもあったためです。
 詳細は「\hyperlink{class}{クラス}」の章で解説しますが、ES2022では\texttt{\#}がJavaScriptの構文として追加され、\texttt{\#}という記号が意味を持つようになりました。
 ES2022以降では、説明のために\texttt{\#}を\texttt{prototype}の短縮表現に使うと、人によっては異なる意味に見えてしまう可能性があります。
 
-そのため、この書籍では\texttt{Object.prototype.toString}を\texttt{Object\#toString}のように\texttt{\#}を使って表す短縮表記を利用していません。
+そのため、この書籍では\texttt{Object.prototype.toString}を\texttt{Object\#toString}のように\texttt{\#}を使って表す短縮表記は利用していません。
 \end{tcolorbox}
 
 \hypertarget{same-method-name-order}{%
@@ -230,7 +230,7 @@ console.log(obj.hasOwnProperty); // => undefined
 Mapとはキーと値の組み合わせを保持するためのオブジェクトです。
 
 ただのオブジェクトもMapとよく似た性質を持っていますが、最初からいくつかのプロパティが存在し、アクセスできてしまいます。
-なぜなら、\texttt{Object}のインスタンスはデフォルトで\texttt{Object.prototype}を継承するため、\texttt{toString}などのプロパティ名がオブジェクトを作成した時点で存在するためです。
+なぜなら、\texttt{Object}のインスタンスはデフォルトで\texttt{Object.prototype}を継承するので、\texttt{toString}などのプロパティ名がオブジェクトを作成した時点で存在するためです。
 そのため、\texttt{Object.create(null)}で\texttt{Object.prototype}を継承しないオブジェクトを作成し、そのオブジェクトが\texttt{Map}の代わりとして使われていました。
 
 \begin{lstlisting}

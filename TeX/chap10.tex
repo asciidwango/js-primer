@@ -121,14 +121,11 @@ if (null) {
 
 \begin{itemize}
 \item
-  \texttt{version} が ``ES5'' ならば ``ECMAScript 5''
-  と出力
+  \texttt{version}が\texttt{"ES5"}ならば\texttt{"ECMAScript 5"}と出力
 \item
-  \texttt{version} が ``ES6'' ならば ``ECMAScript
-  2015'' と出力
+  \texttt{version}が\texttt{"ES6"}ならば\texttt{"ECMAScript 2015"}と出力
 \item
-  \texttt{version} が ``ES7'' ならば ``ECMAScript
-  2016'' と出力
+  \texttt{version}が\texttt{"ES7"}ならば\texttt{"ECMAScript 2016"}と出力
 \end{itemize}
 
 次のコードでは、if文とelse if文を使うことで3つの条件を書いています。
@@ -348,7 +345,7 @@ switch (version) {
 別の方法で書けないかを考えるべきサインとなります。
 
 switch文はif文の代用として使うのではなく、次のように関数と組み合わせて条件に対する値を返すパターンとして使うことが多いです。
-関数については「\hyperlink{function-and-declaration}{関数と宣言}」の章で紹介します。
+関数については「\hyperlink{function-and-declaration}{関数と宣言}」の章を参照してください。
 
 \begin{lstlisting}
 function getECMAScriptName(version) {
@@ -382,7 +379,7 @@ getECMAScriptName("ES6"); // => "ECMAScript 2015"
 \item
   switch文とcase節、default節を組み合わせて条件分岐した処理を扱える
 \item
-  case節でbreak文しない場合は引き続きcase節が実行される
+  case節でbreak文を省略した場合は、後ろに続くcase節が実行される
 \end{itemize}
 
 条件分岐にはif文やswitch文を利用します。

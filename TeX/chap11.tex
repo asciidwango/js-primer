@@ -517,10 +517,8 @@ console.log(total); // => "001"
 JavaScriptでは、\texttt{Symbol.iterator}\index{Symbol.iterator@\texttt{Symbol.iterator}}という特別な名前のメソッドを実装したオブジェクトを\textbf{iterable}\index{iterable}と呼びます。
 iterableオブジェクトは、for\ldots{}of文で反復処理できます。
 
-iterableについてはgeneratorと密接な関係がありますが、ここでは反復処理時の動作が定義されたオブジェクトと認識していれば問題ありません。
-
-iterableオブジェクトは反復処理時に次の返す値を定義しています。
-それに対して、for\ldots{}of文では、\texttt{iterable}から値を1つ取り出し、\texttt{variable}に代入して反復処理を行います。
+iterableオブジェクトは反復処理時の動作が定義されたオブジェクトの総称で、反復処理時に次の返す値を定義しています。
+for\ldots{}of文では、iterableオブジェクトから次の返す値を1つ取り出し、variableに代入して反復処理を行います。
 
 \begin{lstlisting}
 for (variable of iterable) {

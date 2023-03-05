@@ -190,7 +190,7 @@ console.log(languages[myLang]); // => "日本語"
 \hypertarget{object-destructuring}{%
 \section[オブジェクトと分割代入]{オブジェクトと分割代入\,\protect\icon{fig/es2015.eps}}\label{object-destructuring}}\index{ぶんかつだいにゅう@分割代入}\index{おぶじぇくと@オブジェクト!ぶんかつだいにゅう@分割代入}
 
-同じオブジェクトのプロパティを何度もアクセスする場合に、何度も\texttt{オブジェクト.\hbox{}プロパティ名}と書くと冗長となりやすいです。
+同じオブジェクトのプロパティに何度もアクセスする場合に、何度も\texttt{オブジェクト.\hbox{}プロパティ名}と書くと冗長となりやすいです。
 そのため、短い名前で利用できるように、そのプロパティを変数として定義し直すことがあります。
 
 次のコードでは、変数\texttt{ja}と\texttt{en}を定義し、その初期値として\texttt{languages}オブジェクトのプロパティを代入しています。
@@ -206,7 +206,7 @@ console.log(ja); // => "日本語"
 console.log(en); // => "英語"
 \end{lstlisting}
 
-このようなオブジェクトのプロパティを変数として定義し直すときには、分割代入（Destructuring
+このようにオブジェクトのプロパティを変数として定義し直すときには、分割代入（Destructuring
 assignment\index{Destructuring assignment}）が利用できます。
 
 オブジェクトの分割代入では、左辺にオブジェクトリテラルのような構文で変数名を定義します。
@@ -336,7 +336,7 @@ JavaScriptの\texttt{const}は値を固定するのではなく、変数への�
 
 \begin{lstlisting}
 const obj = { key: "value" };
-obj = {}; // => SyntaxError
+obj = {}; // => TypeError
 \end{lstlisting}
 
 作成したオブジェクトのプロパティの変更を防止するには\texttt{Object.freeze}\index{Object.freeze@\texttt{Object.freeze}}メソッドを利用する必要があります。
@@ -711,7 +711,7 @@ console.log(Object.values(obj)); // => [1, 2, 3]
 console.log(Object.entries(obj)); // => [["one", 1], ["two", 2], ["three", 3]]
 \end{lstlisting}
 
-これらの静的メソッドと配列の\texttt{forEach}メソッドなどを組み合わせれば、プロパティに対して反復処理ができます。
+これらのプロパティを列挙する静的メソッドと配列の\texttt{forEach}メソッドなどを組み合わせれば、プロパティに対して反復処理ができます。
 次のコードでは、\texttt{Object.keys}メソッドで取得したプロパティ名の一覧をコンソールへ出力しています。
 
 \begin{lstlisting}
@@ -916,7 +916,7 @@ Node.jsでCLIアプリケーション}」の章で紹介します。
 \item
   \texttt{\{\}}（オブジェクトリテラル）でのオブジェクトの作成や更新方法
 \item
-  プロパティの存在確認するには\texttt{in}演算子か\texttt{Object.hasOwn}静的メソッドを使う
+  プロパティの存在を確認するには\texttt{in}演算子か\texttt{Object.hasOwn}静的メソッドを使う
 \item
   Optional chaining演算子（\texttt{?.}）はネストしたプロパティの存在確認とアクセスを同時に行う記法
 \item

@@ -75,7 +75,7 @@ console.log(fn()); // => undefined
 \end{lstlisting}
 
 関数が何も値を返す必要がない場合は、\texttt{return}文そのものを省略できます。
-\texttt{return}文そのものを省略した場合は、\texttt{undefined}という値を返します。
+\texttt{return}文を省略した場合は、\texttt{undefined}という値を返します。
 
 \begin{lstlisting}
 function fn() {
@@ -197,7 +197,7 @@ console.log(addPrefix("文字列", "カスタム:")); // => "カスタム:文字
 \end{lstlisting}
 
 デフォルト引数を使って書くことで、このような挙動は起きなくなるため安全です。
-デフォルト引数では、引数が渡されなかった場合のみデフォルト値が入ります。
+デフォルト引数では、引数が渡されなかった場合にデフォルト値が入ります。
 
 \begin{lstlisting}
 function addPrefix(text, prefix = "デフォルト:") {
@@ -745,9 +745,9 @@ console.log(obj.method()); // => "this is method"
 \item
   関数を値として使う方法
 \item
-  コールバック関数
-\item
   関数式とArrow Function
+\item
+  コールバック関数
 \item
   メソッドの定義方法
 \end{itemize}

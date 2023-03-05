@@ -18,7 +18,7 @@ console.log(1 === "1"); // => false
 
 しかし、等価演算子（\texttt{==}）では異なるデータ型を比較した場合に、同じ型となるように\textbf{\textgt{暗黙的な型変換}}をしてから比較します。
 次のコードでは、数値の\texttt{1}と文字列の\texttt{"1"}の比較結果が\texttt{true}となっています。
-これは、等価演算子（\texttt{==}）は右辺の文字列\texttt{"1"}を数値の\texttt{1}へと暗黙的な型変換してから、比較するためです。
+これは、等価演算子（\texttt{==}）は右辺の文字列\texttt{"1"}を数値の\texttt{1}へと暗黙的な型変換をしてから、比較するためです。
 
 \begin{lstlisting}
 // ==では、異なるデータ型は暗黙的な型変換をしてから比較される
@@ -378,7 +378,7 @@ console.log(isNaN(NaN)); // => true
 \end{lstlisting}
 
 同様の処理をする方法として\texttt{Number.isNaN}\index{Number.isNaN@\texttt{Number.isNaN}}メソッドがあります。
-実際に値が\texttt{NaN}かを判定する際には、\texttt{Number.isNaN}メソッドを利用するとよいでしょう。
+実際に値が\texttt{NaN}かを判定する際には、\texttt{Number.isNaN}メソッドを利用するとよいでしょう\footnote{\texttt{isNaN}関数というよく似た関数がありますが、\texttt{NaN}を正しく判定できないことがあるため、\texttt{Number.isNaN}メソッドを利用することが推奨されます。}。
 
 \begin{lstlisting}
 Number.isNaN(NaN); // => true
