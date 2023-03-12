@@ -474,7 +474,7 @@ if (Object.hasOwn(obj, "key")) {
 この動作の違いを知るにはまずプロトタイプオブジェクトという特殊なオブジェクトについて理解する必要があります。
 そのため、`in`演算子と`Object.hasOwn`静的メソッドの違いについては、次の章の「[プロトタイプオブジェクト][]」で詳しく解説します。
 
-## プロパティの存在確認: `Object.prototype.hasOwnProperty`メソッド {#hasOwnProperty-method}
+### プロパティの存在確認: `Object.prototype.hasOwnProperty`メソッド {#hasOwnProperty-method}
 
 `Object.hasOwn`静的メソッドはES2022で導入されたメソッドです。
 ES2022より前では、`Object.prototype.hasOwnProperty`メソッドというよく似たメソッドが利用されていました。

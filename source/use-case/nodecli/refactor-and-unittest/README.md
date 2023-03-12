@@ -193,7 +193,7 @@ npmを使ったパッケージ管理や外部モジュールの利用、`fs`モ�
 
 ## このセクションのチェックリスト {#section-checklist}
 
-- Markdownの変換処理をCommonJSモジュールとして`md2html.js`に切り出し、`main.js`から読み込んだ
+- Markdownの変換処理をECMAScriptモジュールとして`md2html.js`に切り出し、`main.js`から読み込んだ
 - mochaパッケージをインストールし、`npm test`コマンドで`mocha`コマンドを実行できることを確認した
 - `md2html`関数のユニットテストを作成し、テストの実行結果を確認した
 
