@@ -102,14 +102,14 @@ console.log(sparseArray[1]); // => undefined
 \end{lstlisting}
 
 \hypertarget{array-at}{%
-\subsection[Array.prototype.at]{\texttt{Array.prototype.at}\,\protect\icon{fig/es2022.eps}}\label{array-at}}\index{Array.prototype.at@\texttt{Array.prototype.at}}
+\subsection[\texttt{Array.prototype.at}]{\texttt{Array.prototype.at}\,\protect\icon{fig/es2022.eps}}\label{array-at}}\index{Array.prototype.at@\texttt{Array.prototype.at}}
 
 配列の要素にアクセスするには\texttt{配列[インデックス]}という構文を使うことを紹介しました。
 その際に、配列の末尾の要素へアクセスするには、\texttt{array[array.length - 1]}という\texttt{length}プロパティを使う必要があります。
 \texttt{array}を2回書く必要があるなど、末尾の要素へのアクセスは少し手間が必要になっていました。
 
 この問題を解決するためES2022では、相対的なインデックスの値を指定して配列の要素へアクセスできる\texttt{Array.prototype.at}メソッドが追加されました。
-Arrayの\texttt{at}メソッドは、\texttt{配列[インデックス]}とよく似ていますが、引数には相対的なインデックスの値を引数として渡せます。
+Arrayの\texttt{at}\index{at@\texttt{at}}メソッドは、\texttt{配列[インデックス]}とよく似ていますが、相対的なインデックスの値を引数として渡せます。
 \texttt{.at(0)}や\texttt{.at(1)}などのように0以上のインデックスを渡した場合は、\texttt{配列[インデックス]}と同じく指定した位置の要素へアクセスできます。
 一方で、\texttt{.at(-1)}のようにマイナスのインデックスを渡した場合は、末尾から数えた位置の要素へアクセスできます。
 \begin{lstlisting}
@@ -136,7 +136,7 @@ console.log(array[-1]); // => undefined
 
 あるオブジェクトが配列かどうかを判定するには\texttt{Array.isArray}\index{Array.isArray@\texttt{Array.isArray}}メソッドを利用します。
 \texttt{Array.isArray}メソッドは引数が配列ならば\texttt{true}を返します。
-
+\newpage
 \begin{lstlisting}
 const obj = {};
 const array = [];
@@ -238,7 +238,7 @@ console.log(Object.hasOwn(sparseArray, 1)); // => false
 \hypertarget{indexof}{%
 \subsection{インデックスを取得}\label{indexof}}\index{いんでっくす@インデックス!しゅとく@取得}
 
-指定した要素が配列のどの位置にあるかを知りたい場合、Arrayの\texttt{indexOf}\index{indexOf@\texttt{indexOf}}メソッドや\texttt{findIndex}\index{findIndex@\texttt{findIndex}}メソッド\,\protect\iconl{fig/es2015.eps}\,を利用します。
+\enlargethispage{\baselineskip}指定した要素が配列のどの位置にあるかを知りたい場合、Arrayの\texttt{indexOf}\index{indexOf@\texttt{indexOf}}メソッドや\texttt{findIndex}\index{findIndex@\texttt{findIndex}}メソッド\,\protect\iconl{fig/es2015.eps}\,を利用します。
 要素の位置のことを\textbf{\textgt{インデックス}}（\texttt{index}）と呼ぶため、メソッド名にも\texttt{index}という名前が入っています。
 
 次のコードでは、Arrayの\texttt{indexOf}メソッドを利用して、配列の中から\texttt{"JavaScript"}という文字列のインデックスを取得しています。
@@ -274,7 +274,7 @@ console.log(array.indexOf(obj)); // => 2
 \texttt{indexOf}メソッドとは異なり、テストする処理を自由に書けます。
 これにより、プロパティの値が同じ要素を配列から見つけて、その要素のインデックスが得られます。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 // colorプロパティを持つオブジェクトの配列
 const colors = [
     { "color": "red" },
@@ -328,7 +328,7 @@ console.log(whiteColor); // => undefined
 \texttt{slice}\index{slice@\texttt{slice}}メソッドは、第一引数の開始位置から第二引数の終了位置（終了位置の要素は含まない）までの範囲を取り出した新しい配列を返します。
 第二引数は省略でき、省略した場合は配列の末尾の要素まで含んだ新しい配列を返します。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 const array = ["A", "B", "C", "D", "E"];
 // インデックス1から4まで（4の要素は含まない）の範囲を取り出す
 console.log(array.slice(1, 4)); // => ["B", "C", "D"]
@@ -377,7 +377,7 @@ if (indexOfJS !== -1) {
 }
 \end{lstlisting}
 
-そこで、ES2016で導入されたArrayの\texttt{includes}\index{includes@\texttt{includes}}メソッド\,\protect\iconl{fig/es2016.eps}\,を利用します。
+\enlargethispage{\baselineskip}そこで、ES2016で導入されたArrayの\texttt{includes}\index{includes@\texttt{includes}}メソッド\,\protect\iconl{fig/es2016.eps}\,を利用します。
 Arrayの\texttt{includes}メソッドは配列に指定要素が含まれているかを判定します。
 \texttt{includes}\index{includes@\texttt{includes}}メソッドは真偽値を返すので、\texttt{indexOf}メソッドを使った場合に比べて意図が明確になります。
 前述のコードでは次のように\texttt{includes}メソッドを使うべきでしょう。
@@ -429,7 +429,7 @@ console.log(array); // => ["A", "B", "C"]
 
 要素を配列の先頭へ追加するにはArrayの\texttt{unshift}\index{unshift@\texttt{unshift}}が利用できます。
 一方、配列の先頭から要素を削除するにはArrayの\texttt{shift}\index{shift@\texttt{shift}}が利用できます。
-
+\newpage
 \begin{lstlisting}
 const array = ["A", "B", "C"];
 array.unshift("S"); // "S"を先頭に追加
@@ -464,7 +464,7 @@ console.log(newArray); // => ["A", "B", "C", "新しい要素"]
 \texttt{...}（Spread構文）を使うことで、配列リテラル中に既存の配列を展開できます。
 
 次のコードでは、配列リテラルの末尾に配列を展開しています。
-これは、\texttt{Array\#concat}メソッドで配列同士を結合するのと同じ結果になります。
+これは、Arrayの\texttt{concat}メソッドで配列同士を結合するのと同じ結果になります。
 
 \begin{lstlisting}
 const array = ["A", "B", "C"];
@@ -532,7 +532,7 @@ array.splice(インデックス, 削除する要素数, ...追加する要素);
 
 たとえば、配列のインデックスが\texttt{1}の要素を削除するには、インデックス\texttt{1}から\texttt{1}つの要素を削除するという指定をする必要があります。
 このとき、削除した要素は自動で詰められるため、疎な配列にはなりません。
-
+\newpage
 \begin{lstlisting}
 const array = ["a", "b", "c"];
 // 1番目から1つの要素("b")を削除
@@ -626,7 +626,7 @@ JavaScriptにおいて破壊的なメソッドと非破壊的メソッドを名�
 たとえば、Arrayの\texttt{sort}\index{sort@\texttt{sort}}メソッドは返り値がソート済みの配列ですが破壊的メソッドです。
 
 次の表で紹介するメソッド\footnote{\url{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/}}は破壊的なメソッドです。
-
+\newpage
 \begin{small}
 \begin{longtable}[l]{p{73mm}|p{67mm}}
 \hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}\textgt{メソッド名} & \textgt{返り値}\tabularnewline
@@ -684,7 +684,7 @@ console.log(array); // => ["A", "C"]
 この\texttt{removeAtIndex}関数を非破壊的なものにするには、受け取った配列をコピーしてから変更を加える必要があります。
 
 JavaScriptには\texttt{copy}メソッドそのものは存在しませんが、配列をコピー\index{はいれつ@配列!こぴー@コピー}する方法としてArrayの\texttt{slice}メソッドと\texttt{concat}メソッドが利用されています。\texttt{slice}メソッドと\texttt{concat}メソッドは引数なしで呼び出すと、その配列のコピーを返します。
-
+\newpage
 \begin{lstlisting}
 const myArray = ["A", "B", "C"];
 // sliceはmyArrayのコピーを返す - myArray.concat()でも同じ
@@ -969,7 +969,7 @@ console.log(versionNames);
 // => ["ECMAScript 1", "ECMAScript 2", "ECMAScript 3"]
 \end{lstlisting}
 
-メソッドチェーンを使うことで複数の処理からなるものをひとつのまとまった処理のように見せることができます。長過ぎるメソッドチェーンは長過ぎる関数と同じように読みにくくなりますが、適度な単位のメソッドチェーンは処理をスッキリ見せるパターンとして利用されています。
+メソッドチェーンを使うことで複数の処理からなるものをひとつのまとまった処理のように見せることができます。長すぎるメソッドチェーンは長すぎる関数と同じように読みにくくなりますが、適度な単位のメソッドチェーンは処理をスッキリ見せるパターンとして利用されています。
 
 \hypertarget{conclusion}{%
 \section{まとめ}\label{conclusion}}

@@ -88,21 +88,21 @@ Firefox\index{Firefox}の開発者ツール\index{かいはつしゃつーる@�
 \begin{itemize}
 \item
   Firefoxメニュー（メニューバーがある場合やmacOS
-  では、ツールメニュー）の"ブラウザーツール"のサブメニューから"ウェブ開発ツール"
+  では、ツールメニュー）の``ブラウザーツール''のサブメニューから``ウェブ開発ツール''
   を選択する
 \item
   キーボードショートカット\keytop{Ctrl}+\keytop{Shift}+\keytop{K}（macOSでは
   \keytop{Command}+\keytop{Option}+\keytop{K}）を押下する
 \end{itemize}
 
-詳細は「\href{https://developer.mozilla.org/ja/docs/Learn/Common_questions/What_are_browser_developer_tools}{ブラウザーの開発者ツールとは？}\footnote{\url{https://developer.mozilla.org/ja/docs/Learn/Common_questions/What_are_browser_developer_tools}}」を参照してください。
+詳細は\href{https://developer.mozilla.org/ja/docs/Learn/Common_questions/What_are_browser_developer_tools}{「ブラウザーの開発者ツールとは？」}\footnote{\url{https://developer.mozilla.org/ja/docs/Learn/Common_questions/What_are_browser_developer_tools}}を参照してください。
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=120mm]{fig/fig-1.pdf}
 \caption{ログが表示されているウェブコンソール}
 \end{figure}
-
+\vspace{-4mm}
 \hypertarget{web-browsers-and-dom}{%
 \subsection{ウェブブラウザとDOM}\label{web-browsers-and-dom}}\index{うぇぶぶらうざ@ウェブブラウザ}
 
@@ -187,7 +187,7 @@ APIは同じくHTTP通信を扱う\href{https://developer.mozilla.org/ja/docs/We
 リクエストを送信するためには、\texttt{fetch}\index{\texttt{fetch}}メソッドを利用します。
 \texttt{fetch}メソッドは引数で指定したURLに対して、HTTPリクエストを行えます。
 
-GitHubにはユーザー情報を取得するAPIとして、\texttt{https://api.github.com/users/GitHubユーザーID}というURLが用意されています。
+GitHubにはユーザー情報を取得するAPIとして、\texttt{https://api.github.com/users/GitHub\hbox{}ユーザー\hbox{}ID}というURLが用意されています。
 GitHubのユーザーIDには、英数字と\texttt{-}（ハイフン）以外は利用できないため、ユーザーIDは\texttt{encodeURIComponent}関数を使ってエスケープしたものを結合します。\texttt{encodeURIComponent}\index{encodeURIComponent@\texttt{encodeURIComponent}}は\texttt{/}や\texttt{\%}などURLとして特殊な意味を持つ文字列をただの文字列として扱えるようにエスケープする関数です。
 
 次のコードでは、指定したGitHubユーザーIDの情報を取得するURLに対して\texttt{fetch}メソッドで、GETのHTTPリクエストを行っています。
@@ -210,7 +210,7 @@ GitHubのAPIに対してHTTPリクエストを送信しましたが、まだレ�
 また、\texttt{Response}オブジェクトの\texttt{json}\index{json@\texttt{json}}メソッドも\texttt{Promise}を返します。これは、HTTPレスポンスボディをJSONとしてパースしたオブジェクトでresolveされます。
 ここでは、書籍用に用意した\texttt{js-primer-example}というGitHubアカウントのユーザー情報を取得しています。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 const userId = "js-primer-example";
 fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
     .then(response => {
@@ -221,7 +221,7 @@ fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
         });
     });
 \end{lstlisting}
-
+\vspace{-4mm}
 \hypertarget{error-handling}{%
 \subsection{エラーハンドリング}\label{error-handling}}\index{えらーはんどりんぐ@エラーハンドリング}
 
@@ -247,7 +247,7 @@ fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
 \texttt{ok}プロパティは、HTTPステータスコードが200番台であれば\texttt{true}を返し、それ以外の400や500番台などなら\texttt{false}を返します。
 次のように、\texttt{ok}\index{ok@\texttt{ok}}プロパティが\texttt{false}となるエラーレスポンスをハンドリングできます。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 const userId = "js-primer-example";
 fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
     .then(response => {
@@ -288,7 +288,7 @@ index.jsでは関数を定義しているだけで、呼び出しは行ってい
 \includegraphics[width=120mm]{fig/fig-2.pdf}
 \caption{Fetchで取得したデータの表示}
 \end{figure}
-
+\vspace{-5mm}
 また、開発者ツールのネットワークパネルを開くと、GitHubのサーバーに対してHTTP通信が行われていることを確認できます。
 
 \begin{figure}[h]
@@ -336,7 +336,7 @@ APIはXHRを置き換えるために作られたもので、ほとんどのユ�
 APIが実装されていなかったため、ブラウザの互換性を保つためにXHRが使われている場面もありました。
 XHRの詳しい使い方については、\href{https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest}{XHRの利用についてのドキュメント}\footnote{\url{https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest}}を参照してください。
 \end{tcolorbox}
-
+\newpage
 \hypertarget{section-checklist}{%
 \subsection{このセクションのチェックリスト}\label{section-checklist}}
 
@@ -388,7 +388,7 @@ const view = `
 \end{lstlisting}
 
 このテンプレートに\texttt{userInfo}オブジェクトの値をあてはめると、次のようなHTML文字列になります。
-
+\newpage
 \begin{lstlisting}[language=HTML]<h4>js-primer example (@js-primer-example)</h4>
 <img src="https://github.com/js-primer-example.png" alt="js-primer-example" 
   height="100">
@@ -412,7 +412,7 @@ const view = `
 ここから、\texttt{div\#result}要素の子要素としてHTML文字列を挿入することになります。
 \href{https://developer.mozilla.org/ja/docs/Web/API/Document/getElementById}\texttt{document.getElementById}\index{document.getElementById@\texttt{document.getElementById}}メソッドを使い、id属性が設定された要素にアクセスします。
 \texttt{div\#result}要素が取得できたら、先ほど生成したHTML文字列を\texttt{innerHTML}\index{innerHTML@\texttt{innerHTML}}プロパティにセットします。
-
+\newpage
 \begin{lstlisting}
 const result = document.getElementById("result");
 result.innerHTML = view;
@@ -471,10 +471,10 @@ function escapeHTML(strings, ...values) {
     });  
 }
 \end{lstlisting}
-
+\vspace{-2mm}
 \texttt{escapeHTML}関数はタグ関数なので、通常の\texttt{()}による呼び出しではなく、テンプレートリテラルに対してタグづけして使います。
 テンプレートリテラルのバッククォート記号の前に関数を書くと、関数をタグ関数として呼び出せます。
-
+\vspace{-2mm}
 \begin{lstlisting}
 const view = escapeHTML`
 <h4>${userInfo.name} (@${userInfo.login})</h4>
@@ -490,12 +490,12 @@ const view = escapeHTML`
 const result = document.getElementById("result");
 result.innerHTML = view;
 \end{lstlisting}
-
+\vspace{-2mm}
 これでHTML文字列の生成とエスケープができました。
 これらの処理を前のセクションで作成した
 \texttt{fetchUserInfo} 関数の中で呼び出します。
 ここまでで、index.jsとindex.htmlは次のようになっています。
-
+\vspace{-2mm}
 \input{./src/ajaxapp/display/index.js.tex}
 
 \input{./src/ajaxapp/display/index.html.tex}
@@ -504,7 +504,7 @@ result.innerHTML = view;
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=140mm]{fig/fig-4.pdf}
+\includegraphics[width=80mm]{fig/fig-4.pdf}
 \caption{ユーザー情報の表示}
 \end{figure}
 
@@ -592,7 +592,7 @@ function displayView(view) {
 ボタンのclickイベントで呼び出す関数もこれまでの\texttt{fetchUserInfo}関数から\texttt{main}関数に変更します。
 
 \input{./src/ajaxapp/promise/index.html.tex}
-
+\vspace{-2mm}
 \hypertarget{error-handling}{%
 \subsection{Promiseのエラーハンドリング}\label{error-handling}}\index{Promise!えらーはんどりんぐ@エラーハンドリング}\index{えらーはんどりんぐ@エラーハンドリング}
 
@@ -606,7 +606,7 @@ Promiseチェーン\index{Promiseちぇーん@Promiseチェーン}の中で投�
 一方、Responseの\texttt{ok}\index{ok@\texttt{ok}}\index{Response@\texttt{Response}!ok@\texttt{ok}}プロパティで判定していた400や500などのエラーレスポンス\index{えらーれすぽんす@エラーレスポンス}がそのままでは\texttt{main}関数でハンドリングできません。
 そこで、\texttt{Promise.reject}\index{Promise.reject@\texttt{Promise.reject}}メソッドを使ってRejectedなPromiseを返し、Promiseチェーンをエラーの状態にします。
 Promiseチェーンがエラーとなるため、\texttt{main}関数の\texttt{catch}でハンドリングできます。
-
+\vspace{-2mm}
 \begin{lstlisting}
 function main() {
     fetchUserInfo("js-primer-example")
@@ -684,7 +684,7 @@ function fetchUserInfo(userId) {
         });
 }
 \end{lstlisting}
-
+\vspace{-5mm}
 \hypertarget{rewrite-to-async-function}{%
 \subsubsection{Async
 Functionへの置き換え}\label{rewrite-to-async-function}}\index{Async Function}
@@ -704,7 +704,7 @@ Functionにしています。
 このように、あらかじめ非同期処理の関数がPromiseを返すようにしておくと、Async
 Functionにリファクタリングしやすくなります。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 async function main() {
     try {
         const userInfo = await fetchUserInfo("js-primer-example");

@@ -10,7 +10,7 @@ src/model/TodoListModel.jsの変更点を抜粋
      * @param {{ id:number, completed: boolean }}
      */
     updateTodo({ id, completed }) {
-        // `id`が一致するTodoItemを見つけ、あるなら完了状態の値を更新する
+        // idが一致するTodoItemを見つけ、あるなら完了状態の値を更新する
         const todoItem = this.#items.find(todo => todo.id === id);
         if (!todoItem) {
             return;

@@ -49,7 +49,7 @@ Node.js環境では、\texttt{console.log}メソッドの出力先は標準出�
 
 JavaScriptのコードをNode.jsで実行するには、\texttt{node}\index{node@\texttt{node}}コマンドを使用します。
 コマンドラインで\texttt{nodecli}ディレクトリに移動し、次のコマンドでNode.jsを使い\texttt{main.js}を実行します。
-まだ\texttt{node}コマンドの用意ができていなければ、先に\href{../../setup-local-env/README.md}{アプリケーション開発の準備}の章を参照してください。
+まだ\texttt{node}コマンドの用意ができていなければ、先に「\hyperlink{setup-local-env}{アプリケーション開発の準備}」の章を参照してください。
 
 \begin{lstlisting}
 # cdコマンドでnodecli/ディレクトリに移動する
@@ -225,7 +225,7 @@ import { program } from "commander";
 そのため、これから実行するJavaScriptファイルがどちらの形式であるかをNode.jsに教える必要があります。
 
 Node.jsはもっとも近い上位ディレクトリの\texttt{package.json}が持つ\texttt{type}フィールドの値によってJavaScriptファイルのモジュール形式を判別します。
-\texttt{type}フィールドが\texttt{module}であればECMAScriptモジュールとして、\texttt{type}フィールドが\texttt{commonjs}であればCommonJSモジュールとして扱われます\footnote{[package.json and file extensions]（\url{https://nodejs.org/api/packages.html\#packagejson-and-file-extensions}）}。
+\texttt{type}フィールドが\texttt{module}であればECMAScriptモジュールとして、\texttt{type}フィールドが\texttt{commonjs}であればCommonJSモジュールとして扱われます\footnote{package.json and file extensions\newline\url{https://nodejs.org/api/packages.html\#packagejson-and-file-extensions}}。
 また、JavaScriptファイルの拡張子によって明示的に示すこともできます。拡張子が\texttt{.mjs}である場合はECMAScriptモジュールとして、\texttt{.cjs}である場合はCommonJSモジュールであると判別されます。
 
 今回は\texttt{main.js}を ECMAScriptモジュールとして判別させるために、次のように \texttt{package.json}に\texttt{type}フィールドを追加します。
@@ -244,7 +244,7 @@ CommonJSモジュールは\hyperlink{module}{ECMAScriptモジュール}の仕様
 
 現在はNode.jsでもECMAScriptモジュールがサポートされていますが、\texttt{fs}などの標準モジュールはCommonJSモジュールとして提供されています。
 また、サードパーティ製のライブラリや長く開発が続けられているプロジェクトのソースコードなどでも、CommonJSモジュールを利用する場面は少なくありません。
-そのため、この2つのモジュール形式が共存する場合には、開発者はモジュール形式間の相互運用性（互いを組み合わせた時の動作）に注意する必要があります\footnote{[Interoperability with CommonJS]（\url{https://nodejs.org/api/esm.html\#interoperability-with-commonjs}）}。
+そのため、この2つのモジュール形式が共存する場合には、開発者はモジュール形式間の相互運用性（互いを組み合わせたときの動作）に注意する必要があります\footnote{Interoperability with CommonJS\newline\url{https://nodejs.org/api/esm.html\#interoperability-with-commonjs}}。
 
 Node.jsはECMAScriptモジュールからCommonJSモジュールをインポートする方向の相互運用性をサポートしています。
 たとえば、次のようにCommonJSモジュールで\texttt{exports}オブジェクトを使ってエクスポートされたオブジェクトは、ECMAScriptモジュールで\texttt{import}文を使ってインポートできます。
@@ -301,8 +301,8 @@ $ node main.js ./sample.md
 このように、\texttt{process.argv}配列を直接扱うよりも、commanderのようなライブラリを使うことで宣言的にコマンドライン引数を定義して処理できます。
 次のセクションではコマンドライン引数から取得したファイルパスを元に、ファイルを読み込む処理を追加していきます。
 
-\hyperlink{syntax-error-import-statement}{%
-\subsubsection{\texorpdfstring{[エラー例] SyntaxError: Cannot use import statement outside a module}{[エラー例] SyntaxError: Cannot use import statement outside a module}}}\label{syntax-error-import-statement}
+\begin{description}
+\item[エラー例] \textgt{SyntaxError: Cannot use import statement outside a module}\label{syntax-error-import-statement}
 
 「\texttt{import}文をECMAScriptモジュールの外で使うことはできません」というエラーが出ています。\texttt{main.js}の実行でこのエラーが出る場合は、Node.jsが\texttt{main.js}ファイルをECMAScriptモジュールだと判別できていないことを意味します。
 
@@ -313,7 +313,8 @@ import { program } from "commander";
 SyntaxError: Cannot use import statement outside a module
 \end{lstlisting}
 
-\hyperlink{esmodule}{ECMAScriptモジュールを使う}で述べたように、\texttt{package.json}の\texttt{type}フィールドを\texttt{module}に設定しましょう。
+「\hyperlink{esmodule}{ECMAScriptモジュールを使う}」で述べたように、\texttt{package.json}の\texttt{type}フィールドを\texttt{module}に設定しましょう。
+\end{description}
 
 \hypertarget{section-checklist}{%
 \subsection{このセクションのチェックリスト}\label{section-checklist}}
@@ -334,7 +335,7 @@ SyntaxError: Cannot use import statement outside a module
 \hypertarget{read-file}{%
 \section{ファイルを読み込む}\label{read-file}}
 
-前のセクションではコマンドライン引数からファイルパスを取得して利用できるようになりました。
+\enlargethispage{\baselineskip}前のセクションではコマンドライン引数からファイルパスを取得して利用できるようになりました。
 このセクションでは渡されたファイルパスを元にMarkdownファイルを読み込んで、標準出力に表示してみましょう。
 
 \hypertarget{read-file-by-fs}{%
@@ -354,10 +355,10 @@ Node.jsでファイルの読み書きを行うには、標準モジュールの\
 
 同期APIと非同期APIはどちらも\texttt{fs}モジュールに含まれていますが、
 非同期形式のAPIは\texttt{fs/promises}というモジュール名でも参照できるようになっています。
-この書籍では分かりやすさのために、非同期形式のみのAPIを提供する\texttt{fs/promises}モジュールを利用します。
+この書籍ではわかりやすさのために、非同期形式のみのAPIを提供する\texttt{fs/promises}モジュールを利用します。
 
-Node.jsの標準モジュールは`node:fs`のように`node:`プリフィックスをつけてインポートできます。
-プリフィックスを付けない`fs`でもインポートできますが、npmからインストールしたサードパーティ製のモジュールとの区別が明確になるため、付けておくことが推奨されます。
+Node.jsの標準モジュールは\texttt{node:fs}のように\texttt{node:}プリフィックスをつけてインポートできます。
+プリフィックスを付けない\texttt{fs}でもインポートできますが、npmからインストールしたサードパーティ製のモジュールとの区別が明確になるため、つけておくことが推奨されます。
 
 次のコードは、ECMAScriptモジュールの\texttt{import * as}構文を使って、\texttt{fs/promises}モジュール全体を\texttt{fs}オブジェクトとしてインポートしています。
 
@@ -366,7 +367,7 @@ Node.jsの標準モジュールは`node:fs`のように`node:`プリフィック
 import * as fs from "node:fs/promises";
 \end{lstlisting}
 
-もちろん、次のように名前付きインポートを使って、\texttt{fs/promises}モジュール全体ではなく一部のAPIだけを利用することもできます。
+もちろん、次のように名前つきインポートを使って、\texttt{fs/promises}モジュール全体ではなく一部のAPIだけを利用することもできます。
 
 \begin{lstlisting}
 // fs/promisesモジュールからreadFile関数を読み込む
@@ -389,10 +390,10 @@ fs.readFile("sample.md").then(file => {
     console.error(err);
 });
 \end{lstlisting}
-
+\vspace{-2mm}
 そして、次のサンプルコードは、同じく指定したファイルを読み込む\texttt{fs}モジュールの\texttt{readFileSync}メソッドの例です。
-Node.jsでは非同期APIと同期APIがどちらもあるAPIには、分かりやすく\texttt{Sync}がメソッド名の末尾に含まれています。
-
+Node.jsでは非同期APIと同期APIがどちらもあるAPIには、わかりやすく\texttt{Sync}がメソッド名の末尾に含まれています。
+\vspace{-2mm}
 \begin{lstlisting}
 // 同期APIを提供するfsモジュールを読み込む
 import * as fs from "node:fs";
@@ -403,16 +404,16 @@ try {
     // ファイルが読み込めないなどのエラーが発生したときに呼ばれる
 }
 \end{lstlisting}
-
+\vspace{-2mm}
 Node.jsはシングルスレッドなので、他の処理をブロックしにくい非同期形式のAPIを選ぶことがほとんどです。
 Node.jsには\texttt{fs/promises}モジュール以外にも多くの非同期APIがあるので、非同期処理に慣れておきましょう。
-
+\vspace{-2mm}
 \hypertarget{use-readFile}{%
 \subsubsection{readFile関数を使う}\label{use-readFile}}\index{readFile@\texttt{readFile}}
 
 それでは\texttt{fs/promises}モジュールの\texttt{readFile}メソッドを使って\texttt{sample.md}ファイルを読み込んでみましょう。
 次のように\texttt{main.js}を変更し、コマンドライン引数から取得したファイルパスを元にファイルを読み込んでコンソールに出力します。
-
+\vspace{-2mm}
 \input{./src/nodecli/read-file/main-1.js.tex}
 
 \texttt{sample.md}を引数に渡した実行結果は次のようになります。
@@ -484,7 +485,7 @@ fs.readFile("sample.md", (err, file) => {
 });
 \end{lstlisting}
 
-\hyperlink{error-first-callback}{エラーファーストコールバック}については、\hyperlink{async-handling}{非同期}の章でも紹介しています。
+\hyperlink{error-first-callback}{エラーファーストコールバック}については、\hyperlink{async-handling}{非同期: Promise/Async Function}の章でも紹介しています。
 エラーファーストコールバックは、PromisesがECMAScriptに入るES2015より前においては、非同期な処理を扱う方法として広く使われていました。
 Node.jsの多くのモジュールは、ES2015より前に作られているため、\texttt{fs}モジュールのようにエラーファーストコールバックを扱うAPIもあります。
 
@@ -624,7 +625,7 @@ const cliOptions = {
 };
 \end{lstlisting}
 
-こうして作成したcliOptionsオブジェクトを、markedの\texttt{parse}関数へオプションとして渡しましょう。\texttt{main.js}の全体は次のようになります。
+こうして作成した\texttt{cliOptions}オブジェクトを、markedの\texttt{parse}関数へオプションとして渡しましょう。\texttt{main.js}の全体は次のようになります。
 
 \input{./src/nodecli/md-to-html/main-3.js.tex}
 
@@ -679,14 +680,14 @@ $ node main.js --gfm sample.md
 ユニットテストを行うためにはテスト対象がモジュールとして分割されていなければいけません。
 今回のアプリケーションでは、CLIアプリケーションとしてコマンドライン引数を処理する部分と、MarkdownをHTMLへ変換する部分に分割します。
 
-\hyperlink{split-script}{%
+\hypertarget{split-script}{%
 \subsection{アプリケーションをモジュールに分割する}\label{split-script}}
 
 実際にアプリケーションのモジュール化をする前に、\hyperlink{module}{ECMAScriptモジュール}におけるエクスポートについて簡単に振り返ります。
 
 ECMAScriptモジュールでは\texttt{export}文を使って変数や関数などのオブジェクトをエクスポートし、他のスクリプトから利用できるようにします。
 次の\texttt{greet.js}というファイルは、\texttt{greet}関数をエクスポートするモジュールの例です。
-\\
+
 \input{./src/nodecli/refactor-and-unittest/greet.js.tex}
 
 このモジュールを利用する側では、\texttt{import}文を使って指定したファイルパスのJavaScriptファイルをインポートできます。
@@ -743,7 +744,7 @@ Mochaをインストールした後、\texttt{package.json}の\texttt{scripts}�
     ...
 }
 \end{lstlisting}
-
+\newpage
 この記述により、\texttt{npm test}\index{npm test@\texttt{npm test}}コマンドを実行すると、\texttt{mocha}コマンドで\texttt{test/}ディレクトリにあるテストファイルを実行します。
 試しに\texttt{npm test}コマンドを実行し、Mochaによるテストが行われることを確認しましょう。
 まだテストファイルを作っていないので、\texttt{Error: No test files found}というエラーが表示されます。
@@ -754,7 +755,7 @@ $ npm test
 
  Error: No test files found
 \end{lstlisting}
-
+\vspace{-4mm}
 \hypertarget{write-unit-test}{%
 \subsection{ユニットテストを記述する}\label{write-unit-test}}\index{ゆにっとてすと@ユニットテスト}
 
@@ -763,7 +764,7 @@ Mochaのユニットテストは\texttt{test}ディレクトリの中にJavaScri
 \texttt{test/md2html-test.js}ファイルを作成し、\texttt{md2html.js}に対するユニットテストを次のように記述します。
 
 \texttt{it}関数は第一引数にテストのタイトルを入れ、第二引数にテストの内容を記述します。
-
+\vspace{-2mm}
 \input{./src/nodecli/refactor-and-unittest/md2html-test.js.tex}
 
 \texttt{it}関数で定義したユニットテストは、\texttt{md2html}関数の変換結果が期待するものになっているかをテストしています。
@@ -866,7 +867,7 @@ $ npm test
 
 \begin{itemize}
 \item
-  Markdownの変換処理をCommonJSモジュールとして\texttt{md2html.js}に切り出し、\texttt{main.js}から読み込んだ
+  Markdownの変換処理をECMAScriptモジュールとして\texttt{md2html.js}に切り出し、\texttt{main.js}から読み込んだ
 \item
   mochaパッケージをインストールし、\texttt{npm test}コマンドで\texttt{mocha}コマンドを実行できることを確認した
 \item

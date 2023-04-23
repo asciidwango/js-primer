@@ -77,7 +77,7 @@ try {
 \hypertarget{json-format}{%
 \subsection{オブジェクトをJSON文字列に変換する}\label{json-format}}
 
-\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify}{\texttt{JSON.stringify}\index{JSON.stringify@\texttt{JSON.stringify}}メソッド}は第一引数に与えられたオブジェクトをJSON形式の文字列に変換して返す関数です。
+\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify}{\texttt{JSON.stringify}メソッド}\index{JSON.stringify@\texttt{JSON.stringify}}は第一引数に与えられたオブジェクトをJSON形式の文字列に変換して返す関数です。
 HTTP通信でサーバーにデータを送信するときや、
 アプリケーションが保持している状態を外部に保存するときなどに必要になります。
 次のコードはJavaScriptのオブジェクトをJSON形式の文字列に変換する例です。
@@ -130,7 +130,7 @@ console.log(JSON.stringify(obj, null, 2));
 \end{lstlisting}
 
 また、次のコードはタブ文字でインデントされたJSONを得る例です。
-
+\newpage
 \begin{lstlisting}
 const obj = { id: 1, name: "js-primer" };
 console.log(JSON.stringify(obj, null, "\t")); 

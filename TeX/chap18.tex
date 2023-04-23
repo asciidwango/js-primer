@@ -175,7 +175,7 @@ console.log(element); // => ReferenceError: element is not defined
 
 一方、現在のスコープも含め、外側のどのスコープにも該当する変数が定義されていない場合は、\texttt{ReferenceError}\index{ReferenceError@\texttt{ReferenceError}}の例外が発生します。
 次の例では、どのスコープにも存在しない\texttt{xyz}を参照しているため、\texttt{ReferenceError}の例外が発生します。
-
+\newpage
 \begin{lstlisting}
 {
     // OUTERブロックスコープ
@@ -752,7 +752,7 @@ console.log(array); // => [1, 2, 3]
 
 最初にクロージャーの例として紹介した\texttt{createCounter}関数の例を改めて見てみましょう。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 const createCounter = () => {
     let count = 0;
     return function increment() {

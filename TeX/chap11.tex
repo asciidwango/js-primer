@@ -208,7 +208,7 @@ array.forEach(コールバック関数);
 \texttt{forEach}メソッドのコールバック関数には、配列の要素が先頭から順番に渡されて実行されます。
 つまり、コールバック関数の仮引数である\texttt{currentValue}には、1から3の値が順番に渡されます。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 const array = [1, 2, 3];
 array.forEach(currentValue => {
     console.log(currentValue);
@@ -299,7 +299,7 @@ console.log(isEvenIncluded(array)); // => true
 return文は現在の関数を終了させることができるため、次のようにも書けます。
 \texttt{numbers}に1つでも偶数が含まれていれば結果は\texttt{true}となるため、偶数の値が見つかった時点で\texttt{true}を返しています。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 function isEven(num) {
     return num % 2 === 0;
 }

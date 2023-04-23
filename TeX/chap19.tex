@@ -126,7 +126,7 @@ JavaScriptではオブジェクトのプロパティが関数である場合に�
 
 メソッドを定義する場合には、オブジェクトのプロパティに関数式を定義するだけです。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 const obj = {
     // functionキーワードを使ったメソッド
     method1: function() {
@@ -239,7 +239,7 @@ Function以外の関数では、関数の定義だけを見て\texttt{this}の�
 定義したそれぞれの関数を\texttt{fn1()}と\texttt{fn2()}のようにただの関数として呼び出しています。
 このとき、ベースオブジェクトはないため、\texttt{this}は\texttt{undefined}となります。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 "use strict";
 function fn1() {
     return this;
@@ -271,7 +271,7 @@ function outer() {
 outer();
 \end{lstlisting}
 
-この書籍では注釈がないコードはstrict mode\index{strict mode}として扱いますが、コード例に\texttt{"use strict";}と改めてstrict modeを明示しています（詳細は「\hyperlink{what-is-javascript}{JavaScriptとは}」の\hyperlink{strict-mode}{strict mode}を参照）。 なぜなら、strict modeではない状況で\texttt{this}が\texttt{undefined}の場合は、\texttt{this}がグローバルオブジェクトを参照するように変換される問題があるためです。
+この書籍では注釈がないコードはstrict mode\index{strict mode}として扱いますが、コード例に\texttt{"use strict";}と改めてstrict modeを明示しています（詳細は「\hyperlink{what-is-javascript}{JavaScriptとは}」の「\hyperlink{strict-mode}{strict mode}」を参照）。 なぜなら、strict modeではない状況で\texttt{this}が\texttt{undefined}の場合は、\texttt{this}がグローバルオブジェクトを参照するように変換される問題があるためです。
 
 strict
 modeは、このような意図しにくい動作を防止するために導入されています。
@@ -812,7 +812,8 @@ const obj = {
         callCallback(function() {
             // ここでのthisはcallCallbackの実装に依存する
             // callback()のように単純に呼び出されるならthisはundefinedになる
-            // Functionのcallメソッドなどを使って特定のオブジェクトを指定するかもしれない
+            // Functionのcallメソッドなどを使って特定のオブジェクトを指定するかも
+	    // しれない
             // この問題を回避するためにconst that = thisのような一時変数を使う
         });
     }
@@ -905,7 +906,7 @@ console.log(obj.method()); // => obj
 // obj.methodのthisを変更すれば、Arrow Functionのthisも変更される
 console.log(obj.method.call("THAT")); // => "THAT"
 \end{lstlisting}
-
+\newpage
 \hypertarget{conclusion}{%
 \section{まとめ}\label{conclusion}}
 
@@ -917,7 +918,7 @@ console.log(obj.method.call("THAT")); // => "THAT"
 \hline\rowcolor[gray]{0.85}\rule[0mm]{0mm}{4mm}\textgt{実行コンテキスト} & \textgt{strict mode} & \textgt{コード} & \textgt{thisの評価結果}\tabularnewline
 \hline
 \endhead
-Script & ＊\footnote{＊はどの場合でも\texttt{this}の評価結果に影響しないということを示しています。} & \texttt{this} & globaThisl\tabularnewline
+Script & ＊\footnote{＊はどの場合でも\texttt{this}の評価結果に影響しないということを示しています。} & \texttt{this} & globalThis\tabularnewline
 Script & ＊ & \texttt{const fn = () => this} & globalThis\tabularnewline
 Script & NO & \texttt{const fn = function()\{ return this; \}} & globalThis\tabularnewline
 Script & YES & \texttt{const fn = function()\{ return this; \}} & undefined\tabularnewline

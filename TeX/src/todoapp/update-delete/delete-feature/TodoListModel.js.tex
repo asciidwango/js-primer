@@ -10,7 +10,7 @@ src/model/TodoListModel.jsの変更点を抜粋
      * @param {{ id: number }}
      */
     deleteTodo({ id }) {
-        // `id`に一致しないTodoItemだけを残すことで、`id`に一致するTodoItemを削除する
+        // idに一致しないTodoItemだけを残すことで、idに一致するTodoItemを削除する
         this.#items = this.#items.filter(todo => {
             return todo.id !== id;
         });

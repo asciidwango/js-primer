@@ -13,7 +13,7 @@ todoListModel.onChange(() => {
     console.log("TodoListの状態が変わりました");
 });
 // 新しいTodoアイテムを追加する
-// => `onChange`で登録したイベントリスナーが呼び出される
+// => onChangeで登録したイベントリスナーが呼び出される
 todoListModel.addTodo(new TodoItemModel({
     title: "新しいTodoアイテム",
     completed: false

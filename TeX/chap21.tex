@@ -31,7 +31,7 @@ try {
     console.log("finally節:この行は実行されます");
 }
 \end{lstlisting}
-
+\newpage
 また、\texttt{catch}節と\texttt{finally}節のうち、片方が存在していれば、もう片方の節は省略できます。
 \texttt{finally}節のみを書いた場合は例外がキャッチされないため、\texttt{finally}節を実行後に例外が発生します。
 
@@ -75,7 +75,7 @@ try {
 
 \texttt{throw}文ではエラーオブジェクトを例外として投げることができます。
 ここでは、\texttt{throw}文で例外として投げられるエラーオブジェクトについて見ていきます。
-
+\newpage
 \hypertarget{error}{%
 \subsection{Error}\label{error}}\index{Error@\texttt{Error}}
 
@@ -246,7 +246,7 @@ fn();
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=130mm]{fig/error.eps}
+\includegraphics[width=140mm]{fig/error.eps}
 \caption{コンソールでのエラー表示（Firefox）}
 \end{figure}
 
@@ -275,7 +275,7 @@ fn();
 \item
   次の行には、そのコードの呼び出し元が記録されています。つまり、3行目のコードを実行したのは5行目の\texttt{fn}関数の呼び出しです
 \end{itemize}
-\newpage
+
 このように、スタックトレースは上から下へ呼び出し元をたどれるように記録されています。
 
 コンソールに表示されるエラーログ\index{えらーろぐ@エラーログ}には多くの情報が含まれています。
@@ -302,7 +302,7 @@ fn();
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=120mm]{./fig/console-error.eps}
+\includegraphics[width=125mm]{./fig/console-error.eps}
 \caption{console.logとconsole.errorの出力結果}
 \end{figure}
 

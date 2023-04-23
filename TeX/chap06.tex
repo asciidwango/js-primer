@@ -220,7 +220,7 @@ console.log(-(-1)); // => 1
 console.log(-"1"); // => -1
 \end{lstlisting}
 
-また、数値へ変換できない文字列などをオペランドに指定した場合は、\texttt{NaN}という特殊な値になります。
+\enlargethispage{\baselineskip}また、数値へ変換できない文字列などをオペランドに指定した場合は、\texttt{NaN}という特殊な値になります。
 そのため、単項プラス演算子と同じく、文字列から数値への変換に単項マイナス演算子を使うべきではありません。
 
 \begin{lstlisting}
@@ -392,7 +392,7 @@ console.log(null == undefined); // => true
 \end{lstlisting}
 
 意図しない挙動となることがあるため、暗黙的な型変換が行われる等価演算子（\texttt{==}）を使うべきではありません。
-代わりに、厳密等価演算子（\texttt{===}）を使い、異なる型を比較したい場合は明示的に型を合わせるべきです。
+\enlargethispage{\baselineskip}代わりに、厳密等価演算子（\texttt{===}）を使い、異なる型を比較したい場合は明示的に型を合わせるべきです。
 
 例外的に、等価演算子（\texttt{==}）が使われるケースとして、\texttt{null}と\texttt{undefined}の比較があります。
 
@@ -444,7 +444,7 @@ console.log(null != undefined); // => false
 \end{lstlisting}
 
 そのため、不等価演算子（\texttt{!=}）は、利用するべきではありません。
-代わりに暗黙的な型変換をしない厳密不等価演算子（\texttt{!==}）を利用します。
+\enlargethispage{\baselineskip}代わりに暗黙的な型変換をしない厳密不等価演算子（\texttt{!==}）を利用します。
 
 \hypertarget{more-than}{%
 \subsection{\texorpdfstring{大なり演算子/より大きい（\texttt{\textgreater{}}）}{大なり演算子/より大きい（\textgreater{}）}}\label{more-than}}\index{だいなりえんざんし@大なり演算子}\index{>@\texttt{\textgreater}}
@@ -491,43 +491,43 @@ console.log(43 <= 42); // => false
 \hypertarget{bit-operator}{%
 \section{ビット演算子}\label{bit-operator}}\index{びっとえんざんし@ビット演算子}
 
-ビット演算子では、オペランドである数値を符号付き32ビット整数（\texttt{0}と\texttt{1}からなる32個のビットの集合）として扱います。
+ビット演算子では、オペランドである数値を符号つき32ビット整数（\texttt{0}と\texttt{1}からなる32個のビットの集合）として扱います。
 
-たとえば、\texttt{1}という数値は符号付き32ビット整数のビットでは、\texttt{00000000000000000000000000000001}として表現されます。
-わかりやすく4ビットごとに区切ると\texttt{0000\_0000\_0000\_0000\_0000\_0000\_0000\_0001}のような32ビットの集合となります。
-符号付き32ビット整数では、先頭の最上位ビット（一番左のビット）は符号を表し、\texttt{0}の場合は正の値、\texttt{1}の場合は負の値であることを示しています。
+たとえば、\texttt{1}という数値は符号つき32ビット整数のビットでは、\texttt{00000000000000000000000000000\newline 001}として表現されます。
+わかりやすく4ビットごとに区切ると\texttt{0000\_0000\_0000\_0000\_0000\_0000\_\newline 0000\_0001}のような32ビットの集合となります。
+符号つき32ビット整数では、先頭の最上位ビット（一番左のビット）は符号を表し、\texttt{0}の場合は正の値、\texttt{1}の場合は負の値であることを示しています。
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=130mm]{fig/0001.pdf}
-\caption{1の符号付き32bit整数での表現}
+\caption{1の符号つき32bit整数での表現}
 \end{figure}
 
-符号付き32ビット整数では負の数値は、2の補数形式という形式で表現されます。
+符号つき32ビット整数では負の数値は、2の補数形式という形式で表現されます。
 2の補数とは、それぞれのビットを反転して1ビットを足した値となります。
 
-たとえば、\texttt{-1}という数値の符号付き32ビット整数は、次のように2の補数で求められます。
+たとえば、\texttt{-1}という数値の符号つき32ビット整数は、次のように2の補数で求められます。
 
 \begin{itemize}
-\item 10進数の\texttt{1}は、符号付き32ビット整数では\texttt{0000\_0000\_0000\_0000\_0000\_0000\_0000\_0001}となる
-\item \texttt{0000\_0000\_0000\_0000\_0000\_0000\_0000\_0001}の各ビットを反転すると\texttt{1111\_1111\_1111\_1111\_1111\_1111\_1111\_1110}となる
+\item 10進数の\texttt{1}は、符号つき32ビット整数では\texttt{0000\_0000\_0000\_0000\_0000\_0000\_0000\_0001}となる
+\item \texttt{0000\_0000\_0000\_0000\_0000\_0000\_0000\_0001}の各ビットを反転すると\texttt{1111\_1111\_1111\_\newline 1111\_1111\_1111\_1111\_1110}となる
 \item これに1ビットを足すと\texttt{1111\_1111\_1111\_1111\_1111\_1111\_1111\_1111}となる
 \end{itemize}
 
-これによって、\texttt{-1}の符号付き32ビット整数は\texttt{1111\_1111\_1111\_1111\_1111\_1111\_1111\_1111}となります。
+これによって、\texttt{-1}の符号つき32ビット整数は\texttt{1111\_1111\_1111\_1111\_1111\_1111\_1111\_1111}となります。
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=130mm]{fig/1111.pdf}
-\caption{-1の符号付き32ビット整数での表現}
+\includegraphics[width=140mm]{fig/1111.pdf}
+\caption{-1の符号つき32ビット整数での表現}
 \end{figure}
-
-符号付き32ビット整数で表現できる数値の範囲は、\texttt{1000\_0000\_0000\_0000\_0000\_0000\_0000\_0000}から
+\newpage
+符号つき32ビット整数で表現できる数値の範囲は、\texttt{1000\_0000\_0000\_0000\_0000\_0000\_0000\_0000}から
 \texttt{0111\_1111\_1111\_1111\_1111\_1111\_1111\_1111}までとなります。
 10進数に直すと$-(2^{31})$（2の31乗の負の数）から$(2^{31}) - 1$（2の31乗から1引いた数）までとなります。
 32ビットを超える数値については、32ビットをはみ出るビットが最上位（一番左）から順番に捨てられます。
 
-これから見ていくビット演算子はオペランドを符号付き32ビット整数として扱い、その演算結果を10進数の数値として返します。
+これから見ていくビット演算子はオペランドを符号つき32ビット整数として扱い、その演算結果を10進数の数値として返します。
 
 \hypertarget{bit-and}{%
 \subsection{\texorpdfstring{ビット論理積（\texttt{\&}）}{ビット論理積（\&）}}\label{bit-and}}\index{びっとろんりせき@ビット論理積}\index{&@\texttt{\&}}
@@ -536,8 +536,8 @@ console.log(43 <= 42); // => false
 AND演算では、オペランドの各ビットがどちらも\texttt{1}の場合は\texttt{1}となり、それ以外の場合は\texttt{0}となります。
 
 次のコードでは、10進数の\texttt{15}と\texttt{9}をAND演算しています。
-\texttt{15}は、符号付き32ビット整数では\texttt{0000\_0000\_0000\_0000\_0000\_0000\_0000\_1111}となります。
-\texttt{9}は、符号付き32ビット整数では\texttt{0000\_0000\_0000\_0000\_0000\_0000\_0000\_1001}となります。
+\texttt{15}は、符号つき32ビット整数では\texttt{0000\_0000\_0000\_0000\_0000\_0000\_0000\_1111}となります。
+\texttt{9}は、符号つき32ビット整数では\texttt{0000\_0000\_0000\_0000\_0000\_0000\_0000\_1001}となります。
 これらをAND演算した結果は\texttt{0000\_0000\_0000\_0000\_0000\_0000\_0000\_1001}となり、10進数の値である\texttt{9}を返します。
 
 \begin{lstlisting}
@@ -697,7 +697,7 @@ console.log((-9) >>> 2); // => 1073741821
 //    1111_1111_1111_1111_1111_1111_1111_0111 >>> 2
 // => 0011_1111_1111_1111_1111_1111_1111_1101
 \end{lstlisting}
-
+\vspace{-3mm}
 \hypertarget{assignment-operator}{%
 \section{\texorpdfstring{代入演算子（\texttt{=}）}{代入演算子（=）}}\label{assignment-operator}}\index{だいにゅうえんざんし@代入演算子}\index{=@\texttt{=}}
 
@@ -775,7 +775,7 @@ const key = obj.key;
 論理演算子は基本的に真偽値を扱う演算子でAND（かつ）、OR（または）、NOT（否定）を表現できます。
 
 \hypertarget{and-operator}{%
-\subsection{AND演算子（\texttt{\&\&}）\index{ANDえんざんし（\&\&）@AND演算子（\texttt{\&\&}）}}\label{and-operator}}
+\subsection{AND演算子（\texttt{\&\&}）\index{ANDえんざんし@AND演算子}\index{&&@\texttt{\&\&}}}\label{and-operator}}
 
 AND演算子（\texttt{\&\&}）は、左辺の値の評価結果が\texttt{true}ならば、右辺の評価結果を返します。
 一方で、左辺の値の評価結果が\texttt{false}ならば、そのまま左辺の値を返します。
@@ -813,7 +813,7 @@ false && console.log("このコンソールログは実行されません");
 \item \texttt{""}（空文字列）
 \end{itemize}
 
-暗黙的な型変換によって\texttt{false}に変換されるこれらの値をまとめて\textbf{falsy}な値と呼びます。
+暗黙的な型変換によって\texttt{false}に変換されるこれらの値をまとめて\textbf{falsy}\index{falsy}な値と呼びます。
 falsyではない値は、\texttt{true}へと変換されます。
 \texttt{true}へと変換される値の種類は多いため、\texttt{false}へと変換されない値は\texttt{true}となることは覚えておくとよいです。
 このオペランドを真偽値に変換してから評価するのはAND、OR、NOT演算子で共通の動作です。
@@ -835,7 +835,7 @@ AND演算子は、if文と組み合わせて利用することが多い演算子
 
 次のように、\texttt{value}がString型で\textbf{\textgt{かつ}}値が\texttt{"str"}である場合という条件をひとつの式として書くことができます。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 const value = "str";
 if (typeof value === "string" && value === "str") {
     console.log(`${value} is string value`);
@@ -858,7 +858,7 @@ AND演算子やOR演算子が3つ4つ連続すると複雑で読みにくいコ�
 その場合は抽象化ができないかを検討するべきサインとなります。
 
 \hypertarget{or-operator}{%
-\subsection{OR演算子（\texttt{||}）\index{ORえんざんし（||）@OR演算子（\texttt{||}）}}\label{or-operator}}
+\subsection{OR演算子（\texttt{||}）}\index{ORえんざんし@OR演算子}\label{or-operator}}
 
 OR演算子（\texttt{||}）は、左辺の値の評価結果が\texttt{true}ならば、そのまま左辺の値を返します。
 一方で、左辺の値の評価結果が\texttt{false}であるならば、右辺の評価結果を返します。
@@ -905,7 +905,7 @@ if (value === 0 || value === 1) {
 \end{lstlisting}
 
 \hypertarget{not-operator}{%
-\subsection{NOT演算子（\texttt{!}）\index{NOTえんざんし（!）@NOT演算子（\texttt{!}）}}\label{not-operator}}
+\subsection{NOT演算子（\texttt{!}）\index{NOTえんざんし@NOT演算子}\index{"!@\texttt{"!}}}\label{not-operator}}
 
 NOT演算子（\texttt{!}）は、\texttt{オペランド}の評価結果が\texttt{true}ならば、\texttt{false}を返します。
 一方で、\texttt{オペランド}の評価結果が\texttt{false}ならば、\texttt{true}を返します。
@@ -916,7 +916,7 @@ console.log(!false); // => true
 console.log(!true);  // => false
 \end{lstlisting}
 
-NOT演算子（\texttt{!}）もAND演算子（\texttt{\&\&}）とOR演算子（\texttt{||}）と同様に真偽値へと\hyperlink{implicit-coercion}{暗黙的な型変換}します。
+NOT演算子（\texttt{!}）もAND演算子（\texttt{\&\&}）とOR演算子（\texttt{||}）と同様に真偽値へと\hyperlink{implicit-coercion}{暗黙的な型変換}をします。
 falsyである値は\texttt{true}へ変換され、falsyではない値は\texttt{false}へと変換されます。
 
 \begin{lstlisting}
@@ -948,10 +948,10 @@ console.log(str.length > 0); // => false
 \end{lstlisting}
 
 \hypertarget{nullish-coalescing-operator}{%
-\section{Nullish coalescing演算子(\texttt{??})\index{Nullish coalescingえんざんし（??）@Nullish coalescing演算子（\texttt{??}）}\,\protect\icon{fig/es2020.eps}}\label{nullish-coalescing-operator}}
+\section[Nullish coalescing演算子（\texttt{??}）]{Nullish coalescing演算子（\texttt{??}）\index{Nullish coalescingえんざんし@Nullish coalescing演算子}\,\protect\icon{fig/es2020.eps}}\label{nullish-coalescing-operator}}\index{??@\texttt{??}}
 
 Nullish coalescing演算子(\texttt{??})は、左辺の値が\textbf{nullish}であるならば、右辺の評価結果を返します。
-\textbf{nullish}とは、評価結果が\texttt{null}または\texttt{undefined}となる値のことです。
+\textbf{nullish}\index{nullish}とは、評価結果が\texttt{null}または\texttt{undefined}となる値のことです。
 
 \begin{lstlisting}
 // 左辺がnullishであるため、右辺の値の評価結果を返す
@@ -1008,7 +1008,7 @@ console.log(value);
 if文との違いは、条件演算子は式として書くことができるため値を返すという点です。
 たとえば、次のように\texttt{条件式}の評価結果により\texttt{"A"}または\texttt{"B"}どちらかを返します。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 const valueA = true ? "A" : "B";
 console.log(valueA); // => "A"
 const valueB = false ? "A" : "B";
@@ -1036,7 +1036,7 @@ console.log(addPrefix("文字列", "カスタム:")); // => "カスタム:文字
 
 if文を使った場合は、宣言と代入を分ける必要があるため、\texttt{const}を使うことができません。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 function addPrefix(text, prefix) {
     let pre = "デフォルト:";
     if (typeof prefix === "string") {
@@ -1095,7 +1095,7 @@ if (x || (y && z)) {
 \texttt{x}と\texttt{y}が数値型の場合に処理するif文を考えてみます。
 グループ化演算子を使い、そのまま1つの条件式で書くことも可能ですが、読みにくくなってしまいます。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 if ((typeof a === "string" && typeof b === "string") || (typeof x === "number"
  && typeof y === "number")) {
     // aとbが文字列型 または

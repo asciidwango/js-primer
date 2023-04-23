@@ -76,7 +76,7 @@ console.log(obj.toString()); // => "[object Object]"
 この書籍では、\texttt{Object.prototype.toString}のように\texttt{prototype}を含めて毎回書くと冗長なため、「Objectの\texttt{toString}メソッド」と短縮して書く場合があります。
 この書籍以外の文章では、\texttt{Object.prototype.toString}を\texttt{Object\#toString}のように\texttt{prototype}の代わりに\texttt{\#}を利用して表しているケースがあります。
 
-\texttt{\#}が\texttt{prototype}の短縮表現として使われていたのは、\texttt{\#}がJavaScriptの構文として使われていない記号でもあったためです。
+\texttt{\#}\index{#@\texttt{\#}}が\texttt{prototype}の短縮表現として使われていたのは、\texttt{\#}がJavaScriptの構文として使われていない記号でもあったためです。
 詳細は「\hyperlink{class}{クラス}」の章で解説しますが、ES2022では\texttt{\#}がJavaScriptの構文として追加され、\texttt{\#}という記号が意味を持つようになりました。
 ES2022以降では、説明のために\texttt{\#}を\texttt{prototype}の短縮表現に使うと、人によっては異なる意味に見えてしまう可能性があります。
 
@@ -195,7 +195,7 @@ console.log(array.hasOwnProperty === Object.prototype.hasOwnProperty);
 // => true
 \end{lstlisting}
 
-このような\texttt{hasOwnProperty}メソッドの参照が可能なのもプロトタイプチェーンという仕組みによるものです。
+\enlargethispage{\baselineskip}このような\texttt{hasOwnProperty}メソッドの参照が可能なのもプロトタイプチェーンという仕組みによるものです。
 
 ここでは、\texttt{Object.prototype}はすべてのオブジェクトの親となるオブジェクトであることを覚えておくだけで問題ありません。
 これにより、\texttt{Array}や\texttt{String}などのインスタンスも\texttt{Object.prototype}が持つメソッドを利用できる点を覚えておきましょう。
@@ -206,7 +206,8 @@ console.log(array.hasOwnProperty === Object.prototype.hasOwnProperty);
 
 \begin{lstlisting}
 const numbers = [1, 2, 3];
-// Array.prototype.toStringが定義されているため、Object.prototype.toStringとは異なる出力形式となる
+// Array.prototype.toStringが定義されているため、Object.prototype.toStringとは
+// 異なる出力形式となる
 console.log(numbers.toString()); // => "1,2,3"
 \end{lstlisting}
 
@@ -226,7 +227,7 @@ console.log(obj.hasOwnProperty); // => undefined
 \end{lstlisting}
 
 \texttt{Object.create}メソッドはES5から導入されました。
-\texttt{Object.create}メソッドは\texttt{Object.create(null)}というイディオムで、一部ライブラリなどで\texttt{Map}\index{Map@\texttt{Map}}オブジェクトの代わりとして利用されていました。
+\texttt{Object.create}メソッドは\texttt{Object.create\newline (null)}というイディオムで、一部ライブラリなどで\texttt{Map}\index{Map@\texttt{Map}}オブジェクトの代わりとして利用されていました。
 Mapとはキーと値の組み合わせを保持するためのオブジェクトです。
 
 ただのオブジェクトもMapとよく似た性質を持っていますが、最初からいくつかのプロパティが存在し、アクセスできてしまいます。
@@ -256,7 +257,8 @@ console.log(mapLike["toString"]); // => undefined
 // Mapのような空オブジェクト
 const mapLike = Object.create(null);
 // Object.prototypeを継承していないため呼び出すと例外が発生する
-console.log(mapLike.hasOwnProperty("key")); // => Error: hasOwnPropertyメソッドは呼び出せない
+console.log(mapLike.hasOwnProperty("key")); // => Error: hasOwnPropertyメソッドは
+                                            // 呼び出せない
 \end{lstlisting}
 
 ES2022から導入された\texttt{Object.hasOwn}静的メソッドは、対象のオブジェクトが\texttt{Object.prototype}を継承していないかは関係なく利用できます。

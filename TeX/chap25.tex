@@ -31,7 +31,7 @@
 8601}\index{ISO 8601}形式\footnote{\url{https://ja.wikipedia.org/wiki/ISO_8601}}の文字列に変換できます。 ISO
 8601とは国際規格となっている文字列の形式で、\texttt{2006-01-02T15:04:05.999+09:00}のように時刻とタイムゾーン情報を表現します。
 人間が見てもわかりやすい文字列であるため、広く利用されています。
-
+\newpage
 \begin{lstlisting}
 // 現在の時刻を表すインスタンスを作成する
 const now = new Date();
@@ -43,7 +43,7 @@ console.log(now.getTime());
 // 時刻をISO 8601形式の文字列で表示する
 console.log(now.toISOString());
 \end{lstlisting}
-
+\vspace{-4mm}
 \hypertarget{instance-any-time}{%
 \subsubsection{任意の時刻をインスタンス化する}\label{instance-any-time}}
 
@@ -65,7 +65,7 @@ console.log(now.toISOString());
 この方法は基準となる時刻とタイムゾーンが固定されているため、実行環境のタイムゾーンによる違いが起きないので安全です。
 そのため、他の2つの方法と違ってタイムゾーンを考慮する必要がありません。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 // 時刻のミリ秒値を直接指定する形式
 // 1136214245999はUTCにおける"2006年1月2日15時04分05秒999"を表す
 const date = new Date(1136214245999);

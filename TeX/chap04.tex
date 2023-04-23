@@ -131,7 +131,7 @@ REPLはあくまで開発者向けの機能です。
 ウェブサイトではHTMLに記述した\texttt{<script>}タグでJavaScriptを読み込んで実行します。
 ここでは、HTMLとJavaScriptファイルを使ったJavaScriptコードの実行方法を見ていきます。
 
-HTMLファイルとJavaScriptファイルの2種類を使って、JavaScriptのコードを実行する準備をしていきます。
+\enlargethispage{\baselineskip}HTMLファイルとJavaScriptファイルの2種類を使って、JavaScriptのコードを実行する準備をしていきます。
 ファイルを作成するため\href{https://code.visualstudio.com/}{Visual
 Studio
 Code}\index{Visual Studio Code}\footnote{\url{https://code.visualstudio.com/}}などのJavaScriptに対応したエディターを用意しておくとスムーズです。
@@ -186,7 +186,7 @@ REPLでは自動で評価結果のコンソール表示まで行いますが、J
 JavaScriptの多くの実行環境では、Console
 APIを使って\textbf{\textgt{コンソールに表示}}します。
 \texttt{console.log(引数)}\index{console.log@\texttt{console.log}}の引数にコンソール表示したい値を渡すことで、評価結果がコンソールに表示されます。
-
+\newpage
 先ほどの\texttt{index.js}の中身を次のように書き換えます。
 そしてページをリロードすると、 \texttt{1}
 という値を評価した結果がウェブコンソールに表示されます。
@@ -289,7 +289,7 @@ index.js
 console.log(1; // => SyntaxError: missing ) after argument list
 \end{lstlisting}
 \listend
-
+\newpage
 \begin{figure}
 \centering
 \includegraphics[width=140mm]{./fig/syntax-error.eps}

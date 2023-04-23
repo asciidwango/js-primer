@@ -44,7 +44,7 @@ console.log(関数の結果); // => 関数の返り値
   関数の返り値\index{かえりち@返り値} --- 関数を呼び出したときに、呼び出し元へ返される値
 \end{itemize}
 
-宣言した関数は、\texttt{関数名()}と関数名にカッコをつけることで呼び出せます。
+\enlargethispage{\baselineskip}宣言した関数は、\texttt{関数名()}と関数名にカッコをつけることで呼び出せます。
 関数を引数と共に呼ぶ際は、\texttt{関数名(引数1, 引数2)}とし、引数が複数ある場合は\texttt{,}（カンマ）で区切ります。
 
 関数の中身では\texttt{return}\index{return@\texttt{return}}文によって、関数の実行結果として任意の値を返せます。
@@ -126,7 +126,7 @@ console.log(argumentsToArray(1)); // => [1, undefined]
 \hypertarget{function-default-parameters}{%
 \subsection[デフォルト引数]{デフォルト引数\,\protect\icon{fig/es2015.eps}}\label{function-default-parameters}}\index{でふぉるとひきすう@デフォルト引数}
 
-デフォルト引数（デフォルトパラメータ）は、仮引数に対応する引数が渡されていない場合に、デフォルトで代入される値を指定できます。
+デフォルト引数（デフォルトパラメータ）は、仮引数に対応する引数が渡されていない場合に、デフォルトで代入される値を指定します。
 次のように、仮引数に対して\texttt{仮引数 = デフォルト値}という構文で、仮引数ごとにデフォルト値を指定できます。
 
 \begin{lstlisting}
@@ -148,7 +148,7 @@ console.log(echo(1)); // => 1
 console.log(echo()); // => "デフォルト値"
 \end{lstlisting}
 
-ES2015でデフォルト引数が導入されるまでは、OR演算子（\texttt{||}）を使ったデフォルト値の指定がよく利用されていました。
+\enlargethispage{\baselineskip}ES2015でデフォルト引数が導入されるまでは、OR演算子（\texttt{||}）を使ったデフォルト値の指定がよく利用されていました。
 
 \begin{lstlisting}
 function addPrefix(text, prefix) {
@@ -189,7 +189,6 @@ function addPrefix(text, prefix) {
     const pre = prefix || "デフォルト:";
     return pre + text;
 }
-
 // falsyな値を渡すとデフォルト値が入ってしまう
 console.log(addPrefix("文字列")); // => "デフォルト:文字列"
 console.log(addPrefix("文字列", "")); // => "デフォルト:文字列"
@@ -199,7 +198,7 @@ console.log(addPrefix("文字列", "カスタム:")); // => "カスタム:文字
 デフォルト引数を使って書くことで、このような挙動は起きなくなるため安全です。
 デフォルト引数では、引数が渡されなかった場合にデフォルト値が入ります。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 function addPrefix(text, prefix = "デフォルト:") {
     return prefix + text;
 }
@@ -209,12 +208,12 @@ console.log(addPrefix("文字列", "")); // => "文字列"
 console.log(addPrefix("文字列", "カスタム:")); // => "カスタム:文字列"
 \end{lstlisting}
 
-また、ES2020から導入されたNullish coalescing演算子（\texttt{??}）を利用することでも、
+また、ES2020から導入されたNullish coalescing演算子\index{Nullish coalescingえんざんし@Nullish coalescing演算子}（\texttt{??}）\index{??@\texttt{??}}を利用することでも、
 OR演算子（\lstinline{||}）の問題を避けつつデフォルト値を指定できます。
 
 \begin{lstlisting}
 function addPrefix(text, prefix) {
-    // prefixがnullまたはundefinedの時、デフォルト値を返す
+    // prefixがnullまたはundefinedのとき、デフォルト値を返す
     const pre = prefix ?? "デフォルト:";
     return pre + text;
 }
@@ -460,7 +459,7 @@ const 変数名 = function() {
 なぜなら、定義した関数式は変数名で参照できるためです。
 一方、関数宣言では\texttt{function}キーワードの右辺の関数名は省略できません。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 // 関数式は変数名で参照できるため、"関数名"を省略できる
 const 変数名 = function() {
 };
@@ -609,9 +608,6 @@ function fn(x, y) {
 console.log(fn(2, 10)); // => "最後の関数 x: 2, y: 10"
 \end{lstlisting}
 
-この関数定義の上書きは\texttt{function}キーワードでの関数宣言と\texttt{var}キーワードを使った関数式のみで発生します。
-\texttt{let}や\texttt{const}では同じ変数名の定義はエラーとなるため、このような関数定義の上書きもエラーとなります。
-
 このように、同じ関数名で複数の関数を定義することは、関数を上書きしてしまうため避けるべきです。
 引数の違いで関数を呼び分けたい場合は、別々の名前で関数を定義するか関数の内部で引数の値で処理を分岐する必要があります。
 
@@ -679,7 +675,7 @@ array.forEach((value) => {
 JavaScriptにおいて、関数とメソッドの機能的な違いはありません。
 しかし、呼び方を区別したほうがわかりやすいため、ここではオブジェクトのプロパティである関数をメソッドと呼びます。
 
-次のコードでは、\texttt{obj}の\texttt{method1}プロパティと\texttt{method2}プロパティに関数を定義しています。
+\enlargethispage{\baselineskip}次のコードでは、\texttt{obj}の\texttt{method1}プロパティと\texttt{method2}プロパティに関数を定義しています。
 この\texttt{obj.method1}プロパティと\texttt{obj.method2}プロパティがメソッドです。
 
 \begin{lstlisting}
@@ -731,7 +727,7 @@ const obj = {
 console.log(obj.method()); // => "this is method"
 \end{lstlisting}
 
-この書き方はオブジェクトのメソッドだけではなく、クラスのメソッドと共通の書き方となっています。
+\enlargethispage{\baselineskip}この書き方はオブジェクトのメソッドだけではなく、クラスのメソッドと共通の書き方となっています。
 メソッドを定義する場合は、できるだけこの短縮記法に統一したほうがよいでしょう。
 
 \hypertarget{function-declaration-summary}{%

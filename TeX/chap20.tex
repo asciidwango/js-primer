@@ -33,7 +33,7 @@ ES2015でクラスを表現するための\texttt{class}構文が導入されま
 コンストラクタとは、そのクラスからインスタンスを作成する際にインスタンスに関する\textbf{\textgt{状態}}の初期化を行うメソッドです。
 \texttt{constructor}メソッドに定義した処理は、クラスをインスタンス化したときに自動的に呼び出されます。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 class MyClass {
     constructor() {
         // コンストラクタ関数の処理
@@ -83,6 +83,7 @@ class MyClass {
 const myClass = new MyClass();
 // 毎回新しいインスタンス(オブジェクト)を作成する
 const myClassAnother = new MyClass();
+
 // それぞれのインスタンスは異なるオブジェクト
 console.log(myClass === myClassAnother); // => false
 // クラスのインスタンスかどうかはinstanceof演算子で判定できる
@@ -133,12 +134,12 @@ const point = new Point(3, 4);
 console.log(point.x); // => 3
 console.log(point.y); // => 4
 \end{lstlisting}
-
+\vspace{-1mm}
 このようにクラスからインスタンスを作成するには必ず\texttt{new}演算子を使います。
 
 一方、クラスは通常の関数として呼ぶことができません。
 これは、クラスのコンストラクタはインスタンス（\texttt{this}）を初期化する場所であり、通常の関数とは役割が異なるためです。
-
+\vspace{-1mm}
 \begin{lstlisting}
 class MyClass {
     constructor() {}
@@ -146,13 +147,13 @@ class MyClass {
 // クラスは関数として呼び出すことはできない
 MyClass(); // => TypeError: class constructors must be invoked with |new|
 \end{lstlisting}
-
+\vspace{-1mm}
 また、コンストラクタ関数は\texttt{return}文で任意のオブジェクトを返すことが可能ですが、行うべきではありません。
 なぜなら、クラスを\texttt{new}演算子で呼び出し、その評価結果はクラスのインスタンスを期待するのが一般的であるためです。
 
 次のコードのようにコンストラクタで返した値が\texttt{new}演算子で呼び出した際の返り値となります。
 このような書き方は混乱を生むため避けるべきです。
-
+\vspace{-1mm}
 \begin{lstlisting}
 // 非推奨の例: コンストラクタで値を返すべきではない
 class Point {
@@ -168,7 +169,7 @@ console.log(point); // => { x: 3, y: 4 }
 // Pointクラスのインスタンスではない
 console.log(point instanceof Point); // => false
 \end{lstlisting}
-
+\vspace{-1mm}
 \begin{note}{}
 \hypertarget{class-name-start-upper-case}{%
 \underline{\textgt{クラス名は大文字ではじめる}}\label{class-name-start-upper-case}}\index{くらすめい@クラス名}
@@ -224,7 +225,7 @@ MyClass(); // => TypeError: class constructors must be invoked with |new|
 このように、関数でクラスのようなものを実装した場合には、関数として呼び出せてしまう問題があります。
 このような問題を避けるためにもクラスは\texttt{class}構文を使って実装します。
 \end{tcolorbox}
-
+\newpage
 \hypertarget{class-prototype-method-definition}{%
 \section{クラスのプロトタイプメソッドの定義}\label{class-prototype-method-definition}}\index{くらす@クラス!ぷろとたいぷめそっど@プロトタイプメソッド}\index{ぷろとたいぷめそっど@プロトタイプメソッド}
 
@@ -311,7 +312,7 @@ console.log(counterA.increment === counterB.increment); // => true
 
 ここでは、次のような構文でクラスにメソッドを定義すると、各インスタンスで共有されるプロトタイプメソッドとして定義されるということが理解できていれば問題ありません。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 class クラス {
     メソッド() {
         // このメソッドはプロトタイプメソッドとして定義される
@@ -377,7 +378,7 @@ numberWrapper.value = 42;
 console.log(numberWrapper.value); // => 42
 \end{lstlisting}
 
-\begin{tcolorbox}[title=\texttt{\_}（アンダーバー）から始まるプロパティ名]\label{underbar-private-property}\index{_（あんだーばー）@\texttt{\_}（アンダーバー）}
+\begin{tcolorbox}[title=\texttt{\_}（アンダーバー）から始まるプロパティ名]\label{underbar-private-property}\index{あんだーばー@アンダーバー}
 
 NumberWrapperの\texttt{value}のアクセッサプロパティで実際に読み書きしているのは、\texttt{\_value}プロパティです。
 このように、外から直接読み書きしてほしくないプロパティを\texttt{\_}\index{_@\texttt{\_}}（アンダーバー）から始まる名前にするのはただの習慣であるため、構文としての意味はありません。
@@ -397,7 +398,7 @@ Arrayの\texttt{length}プロパティへ値を代入すると、そのインデ
 
 次のコードでは、配列の要素数（\texttt{length}\index{length@\texttt{length}}プロパティ）を小さくすると配列の要素が削除されています。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 const array = [1, 2, 3, 4, 5];
 // 要素数を減らすと、インデックス以降の要素が削除される
 array.length = 2;
@@ -419,7 +420,7 @@ Arrayの\texttt{length}プロパティは、\texttt{length}プロパティへ値
 
 ArrayLikeの\texttt{length}プロパティのsetterで要素の追加や削除を実装することで、配列のような\texttt{length}プロパティを実装できます。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 /**
  * 配列のようなlengthを持つクラス
  */
@@ -463,7 +464,7 @@ console.log(arrayLike.items.join(", ")); // => "1, 2, , , "
 このようにアクセッサプロパティでは、プロパティのようでありながら実際にアクセスした際には他のプロパティと連動する動作を実現できます。
 
 \hypertarget{public-class-fields}{%
-\section{Publicクラスフィールド\,\protect\icon{fig/es2022.eps}}\label{public-class-fields}}\index{Publicくらすふぃーるど@Publicクラスフィールド}
+\section[Publicクラスフィールド]{Publicクラスフィールド\,\protect\icon{fig/es2022.eps}}\label{public-class-fields}}\index{Publicくらすふぃーるど@Publicクラスフィールド}
 
 クラスでは、\texttt{constructor}メソッドの中でクラスの状態であるインスタンスのプロパティを初期化することを紹介しました。
 先ほども紹介した\texttt{Counter}クラスでは、\texttt{constructor}メソッドの中で\texttt{count}プロパティの初期値を\texttt{0}として定義しています。
@@ -482,7 +483,7 @@ class Counter {
 この\texttt{Counter}では\texttt{new}演算子で何も引数を渡すことなく初期化するため、\texttt{constructor}メソッドには仮引数を定義していません。
 このような場合でも、\texttt{constructor}メソッドを書かないとプロパティの初期化ができないためわずらわしいという問題がありました。
 
-ES2022で、クラスのインスタンスが持つプロパティの初期化をわかりやすく宣言的にする構文として、\textbf{\textgt{クラスフィールド}}構文が追加されました。
+ES2022で、クラスのインスタンスが持つプロパティの初期化をわかりやすく宣言的にする構文として、\textbf{\textgt{クラスフィールド}}構文\index{くらすふぃーるどこうぶん@クラスフィールド構文}が追加されました。
 
 クラスフィールドは、クラスのインスタンスが持つプロパティを定義する次のような構文です。
 
@@ -494,7 +495,7 @@ class クラス {
 
 クラスフィールドを使って先ほどの\texttt{Counter}クラスを書き直してみると次のようになります。
 \texttt{count}プロパティをクラスフィールドとして定義して、その初期値は\texttt{0}としています。
-
+\newpage
 \begin{lstlisting}
 class Counter {
     count = 0;
@@ -656,7 +657,7 @@ class ExampleClass {
 }
 \end{lstlisting}
 
-しかし、厳密にはこのふたつのプロパティ定義には異なる点はあります。
+しかし、厳密にはこのふたつのプロパティ定義には異なる点があります。
 次のように、クラスフィールドと\texttt{constructor}の中で\texttt{this}に追加するプロパティ名に対するsetterを定義してみるとこの違いがわかります。
 
 \begin{lstlisting}
@@ -680,7 +681,7 @@ const example = new ExampleClass();
 \end{lstlisting}
 
 クラスフィールド名に対するsetterは呼び出されないのに対して、\texttt{this.property}への代入に対するsetterは呼び出されています。
-これは、クラスフィールドは\texttt{=}を使った代入で定義されるのではなく、\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty}{\texttt{Object.defineProperty}}メソッドを使ってプロパティが定義されるという違いがあります。
+これは、クラスフィールドは\texttt{=}を使った代入で定義されるのではなく、\href{https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty}{\texttt{Object.defineProperty}}\index{Object.defineProperty@\texttt{Object.defineProperty}}メソッドを使ってプロパティが定義されるという違いがあります。
 \texttt{Object.defineProperty}を使ったプロパティの定義では、setterは無視してプロパティが定義されます。
 setterは\texttt{=}での代入に反応します。そのため、\texttt{constructor}の中での\texttt{this.property}への代入に対してはsetterが呼び出されます。
 
@@ -690,7 +691,7 @@ setterは\texttt{=}での代入に反応します。そのため、\texttt{const
 \end{tcolorbox}
 
 \hypertarget{private-class-fields}{%
-\section{Privateクラスフィールド\,\protect\icon{fig/es2022.eps}}\label{private-class-fields}}\index{Privateくらすふぃーるど@Privateクラスフィールド}
+\section[Privateクラスフィールド]{Privateクラスフィールド\,\protect\icon{fig/es2022.eps}}\label{private-class-fields}}\index{Privateくらすふぃーるど@Privateクラスフィールド}
 
 クラスフィールド構文で次のように書くと、定義したプロパティはクラスをインスタンス化した後に外からも参照できます。
 そのため、Publicクラスフィールドと呼ばれます。
@@ -850,7 +851,7 @@ console.log(arrayWrapperB.length); // => 3
 
 \begin{lstlisting}
 class ArrayWrapper {
-    // new演算子で引数が渡されたなかった場合の初期値は空配列
+    // new演算子で引数が渡されなかった場合の初期値は空配列
     constructor(array = []) {
         this.array = array;
     }
@@ -873,7 +874,7 @@ console.log(arrayWrapper.length); // => 3
 そのため静的メソッドは、クラスのインスタンスを作成する処理やクラスに関係する処理を書くために利用されます。
 
 \hypertarget{static-class-fields}{%
-\subsection{静的クラスフィールド\,\protect\icon{fig/es2022.eps}}\label{static-class-fields}}\index{せいてきくらすふぃーるど@静的クラスフィールド}
+\subsection[静的クラスフィールド]{静的クラスフィールド\,\protect\icon{fig/es2022.eps}}\label{static-class-fields}}\index{せいてきくらすふぃーるど@静的クラスフィールド}
 
 ES2022で追加されたクラスフィールドでは、インスタンスではなくクラス自体に定義する静的クラスフィールドも利用できます。
 
@@ -894,7 +895,7 @@ console.log(Colors.GREEN); // => "緑"
 また、Privateクラスフィールドも静的に利用できます。
 Private静的クラスフィールドは、クラス自体にプロパティを定義したいが、そのプロパティを外から参照されたくない場合に利用します。
 Private静的クラスフィールドはフィールドの前に、\texttt{static}をつけるだけです。
-
+\newpage
 \begin{lstlisting}
 class MyClass {
     static #privateClassProp = "This is private";
@@ -936,7 +937,7 @@ example.prototypeMethod();
 
 まず、この2種類のメソッドがそれぞれ別の場所へと定義されていることを見ていきます。
 次のコードでは、\texttt{ConflictClass}クラスに\texttt{method}という同じ名前のメソッドをプロトタイプメソッドとインスタンスに対してそれぞれ定義しています。
-
+\newpage
 \begin{lstlisting}
 class ConflictClass {
     // インスタンスオブジェクトにmethodを定義
@@ -977,7 +978,7 @@ conflict.method(); // "プロトタイプメソッド"
 \end{lstlisting}
 
 この実行結果から次のことがわかります。
-
+\newpage
 \begin{itemize}
 \item
   プロトタイプメソッドとインスタンスオブジェクトのメソッドは上書きされずにどちらも定義されている
@@ -1108,7 +1109,7 @@ console.log(MyClassPrototype === MyClass.prototype); // => true
 
 オブジェクトのプロパティを参照するときに、オブジェクト自身がプロパティを持っていない場合でも、そこで探索が終わるわけではありません。
 オブジェクトの\texttt{[[Prototype]]}内部プロパティ（仕様上の内部的なプロパティ）の参照先であるプロトタイプオブジェクトに対しても探索を続けます。
-これは、スコープに指定した識別子の変数がなかった場合に外側のスコープへと探索するスコープチェーンと良く似た仕組みです。
+これは、スコープに指定した識別子の変数がなかった場合に外側のスコープへと探索するスコープチェーンとよく似た仕組みです。
 
 つまり、オブジェクトがプロパティを探索するときは次のような順番で、それぞれのオブジェクトを調べます。
 すべてのオブジェクトにおいて見つからなかった場合の結果は\texttt{undefined}を返します。
@@ -1295,7 +1296,7 @@ console.log(child.name); // => "Child"
 \end{lstlisting}
 
 \hypertarget{class-fields-inheritance}{%
-\subsection{クラスフィールドの継承}\label{class-fields-inheritance}}\index{くらふふぃーるどのけいしょう@クラスフィールドの継承}
+\subsection{クラスフィールドの継承}\label{class-fields-inheritance}}\index{くらすふぃーるどのけいしょう@クラスフィールドの継承}
 
 Publicクラスフィールドもコンストラクタの処理順と同じく親クラスのフィールドが初期化された後に子クラスのフィールドが初期化されます。
 Publicクラスフィールドは、インスタンスオブジェクトに対してプロパティを定義する構文でした。
@@ -1455,7 +1456,8 @@ class Child extends Parent {
     method() {
         console.log("Child.prototype.method");
         // this.method()だと自分(this)のmethodを呼び出して無限ループする
-        // そのため明示的にsuper.method()を呼ぶことで、Parent.prototype.methodを呼び出す
+        // そのため明示的にsuper.method()を呼ぶことで、Parent.prototype.methodを
+	// 呼び出す
         super.method();
     }
 }

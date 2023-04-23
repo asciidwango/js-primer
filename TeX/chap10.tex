@@ -95,7 +95,7 @@ if ({ name: "オブジェクト" }) {
 falsyな値を\texttt{条件式}に指定した場合は、\texttt{false}へと変換されます。
 次のコードは、条件式が\texttt{false}へと変換されるため、if文の中身は実行されません。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 if (false) {
     // この行は実行されません
 }
@@ -152,7 +152,7 @@ if文では、条件に一致した場合の処理をブロック内に書いて
 次のコードでは、変数\texttt{num}の数値が10より大きいかを判定しています。
 \texttt{num}の値は10以下であるため、else文で書いた処理が実行されます。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 const num = 1;
 if (num > 10) {
     console.log(`numは10より大きいです: ${num}`);
@@ -212,7 +212,7 @@ if (year % 4 === 0) { // 4で割り切れる
 条件を上から順に書き下したため、ネストが深い文となってしまっています。
 一般的にはネストは浅いほうが、読みやすいコードとなります。
 
-条件を少し読み解くと、400で割り切れる年は無条件にうるう年であることがわかります。
+\enlargethispage{\baselineskip}条件を少し読み解くと、400で割り切れる年は無条件にうるう年であることがわかります。
 そのため、条件を並び替えることで、ネストするif文なしに書くことができます。
 
 \begin{lstlisting}
@@ -227,7 +227,7 @@ if (year % 400 === 0) { // 400で割り切れる
     console.log(`${year}年はうるう年ではありません`);
 }
 \end{lstlisting}
-
+\vspace{-3mm}
 \hypertarget{switch-statement}{%
 \section{switch文}\label{switch-statement}}\index{switchぶん@switch文}
 
@@ -252,7 +252,7 @@ switch文はif文と同様に\texttt{式}の評価結果に基づく条件分岐
 またbreak文\index{breakぶん@break文}は、switch文から抜けてswitch文の次の文から実行するためのものです。
 次のコードでは、\texttt{version}の評価結果は\texttt{"ES6"}となるため、\texttt{case "ES6":}に続く文が実行されます。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 const version = "ES6";
 switch (version) {
     case "ES5":
@@ -272,7 +272,7 @@ switch (version) {
 \end{lstlisting}
 
 これはif文で次のように書いた場合と同じ結果になります。
-
+\vspace{-1mm}
 \begin{lstlisting}
 const version = "ES6";
 if (version === "ES5") {
@@ -285,22 +285,22 @@ if (version === "ES5") {
     console.log("知らないバージョンです");
 }
 \end{lstlisting}
-
+\vspace{-1mm}
 switch文はやや複雑な仕組みであるため、どのように処理されているかを見ていきます。
 まず \texttt{switch (式)}
 の\texttt{式}を評価します。
-
+\vspace{-1mm}
 \begin{lstlisting}
 switch (式) {
     // case
 }
 \end{lstlisting}
-
+\vspace{-1mm}
 次に\texttt{式}の評価結果が厳密等価演算子（\texttt{===}）で一致するラベルを探索します。
 一致するラベルが存在する場合は、そのcase節\index{caseせつ@case節}を実行します。
 一致する\texttt{ラベル}が存在しない場合は、default節\index{defaultせつ@default節}が実行されます。
-
-\begin{lstlisting}
+\vspace{-1mm}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 switch (式) {
     // if (式 === "ラベル1")
     case "ラベル1":

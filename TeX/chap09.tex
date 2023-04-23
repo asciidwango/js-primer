@@ -119,7 +119,7 @@ if (true) {
     console.log(true);
 }
 \end{lstlisting}
-
+\vspace{-2mm}
 \begin{tcolorbox}[enhanced jigsaw,breakable,title=単独のブロック文の活用]\label{isolate-block-statement}\index{ぶろっくぶん@ブロック文}
 
 アプリケーションのソースコードにif文などと組み合わせない単独のブロック文を書くことはほとんどありません。
@@ -136,7 +136,7 @@ undefined
 SyntaxError: redeclaration of const count
 \end{lstlisting}
 
-この問題は単独のブロック文で変数定義を囲むことで回避できます。
+\enlargethispage{\baselineskip}この問題は単独のブロック文で変数定義を囲むことで回避できます。
 ブロック文（\texttt{\{\}}）の中でletやconstを用いて変数を定義しても、そのブロック文の外には影響しません。
 そのため、次のようにブロック文で囲んでおけば、同じ変数名を定義しても構文エラー（\texttt{SyntaxError}）にはなりません。
 
@@ -160,7 +160,7 @@ undefined // ここでブロック内で定義した変数countは参照でき�
 \section{関数宣言（文）と関数式}\label{function-statement-and-function-expression}}\index{かんすう@関数}
 
 「\hyperlink{function-and-declaration}{関数と宣言}」の章において、関数を定義する方法を学びました。
-functionキーワードから文を開始する\textbf{\textgt{関数宣言}}\index{かんすうせんげん@関数宣言}と、変数へ\textbf{\textgt{関数式}}\index{かんすうしき@関数式}を代入する方法があります。
+\texttt{function}キーワードから文を開始する\textbf{\textgt{関数宣言}}\index{かんすうせんげん@関数宣言}と、変数へ\textbf{\textgt{関数式}}\index{かんすうしき@関数式}を代入する方法があります。
 
 関数宣言（文）と関数式は、どちらも\texttt{function}というキーワードを利用しています。
 

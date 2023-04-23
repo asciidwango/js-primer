@@ -132,7 +132,7 @@ console.log(obj); // => {}
 オブジェクトのプロパティにアクセスする方法として、ドット記法\index{どっときほう@ドット記法}（\texttt{.}\index{.@\textbf{.}}）とブラケット記法\index{ぶらけっときほう@ブラケット記法}（\texttt{[]}\index{[]@\texttt{[]}}）があります。
 それぞれの記法でプロパティ名を指定すると、その名前を持ったプロパティの値を参照できます。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 const obj = {
     key: "value"
 };
@@ -184,7 +184,7 @@ const myLang = "ja";
 console.log(languages[myLang]); // => "日本語"
 \end{lstlisting}
 
-ドット記法ではプロパティ名に変数は利用できないため、プロパティ名に変数を指定したい場合はブラケット記法を利用します。
+\enlargethispage{\baselineskip}ドット記法ではプロパティ名に変数は利用できないため、プロパティ名に変数を指定したい場合はブラケット記法を利用します。
 基本的には簡潔なドット記法（\texttt{.}）を使い、ドット記法で書けない場合はブラケット記法（\texttt{[]}）を使うとよいでしょう。
 
 \hypertarget{object-destructuring}{%
@@ -298,17 +298,17 @@ const obj = {};
 changeProperty(obj); // objのプロパティを変更している
 console.log(obj.key); // => "value"
 \end{lstlisting}
-
+\vspace{-1mm}
 このように、プロパティを初期化時以外に追加してしまうと、そのオブジェクトがどのようなプロパティを持っているかがわかりにくくなります。
 そのため、できる限り作成後に新しいプロパティは追加しないほうがよいでしょう。
 オブジェクトの作成時のオブジェクトリテラルの中でプロパティを定義することを推奨します。
-
+\vspace{-2mm}
 \hypertarget{remove-property}{%
 \subsection{プロパティの削除}\label{remove-property}}\index{ぷろぱてぃ@プロパティ!さくじょ@削除}
-
+\vspace{-1mm}
 オブジェクトのプロパティを削除するには\texttt{delete}\index{delete@\texttt{delete}}演算子を利用します。
 削除したいプロパティを\texttt{delete}演算子の右辺に指定して、プロパティを削除できます。
-
+\vspace{-1mm}
 \begin{lstlisting}
 const obj = {
     key1: "value1",
@@ -319,22 +319,22 @@ delete obj.key1;
 // key1プロパティが削除されている
 console.log(obj); // => { "key2": "value2" }
 \end{lstlisting}
-
+\vspace{-1mm}
 \begin{tcolorbox}[enhanced jigsaw,breakable,title=constで定義したオブジェクトは変更可能]\label{const-and-object}\index{const@\texttt{const}!おぶじぇくと@オブジェクト}
 
 先ほどのコード例で、\texttt{const}で宣言したオブジェクトのプロパティがエラーなく変更できていることがわかります。
 次のコードを実行してみると、値であるオブジェクトのプロパティが変更できていることがわかります。
-
+\vspace{-1mm}
 \begin{lstlisting}
 const obj = { key: "value" };
 obj.key = "Hi!"; // constで定義したオブジェクト(obj)が変更できる
 console.log(obj.key); // => "Hi!"
 \end{lstlisting}
-
-JavaScriptの\texttt{const}は値を固定するのではなく、変数への再代入を防ぐためのものです。
+\vspace{-1mm}
+\enlargethispage{\baselineskip}JavaScriptの\texttt{const}は値を固定するのではなく、変数への再代入を防ぐためのものです。
 そのため、次のような\texttt{obj}変数への再代入は防げますが、変数に代入された値であるオブジェクトの変更は防げません（3章の「\hyperlink{const}{\texttt{const}}」を参照）。
-
-\begin{lstlisting}
+\vspace{-1mm}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 const obj = { key: "value" };
 obj = {}; // => TypeError
 \end{lstlisting}
@@ -343,7 +343,7 @@ obj = {}; // => TypeError
 \texttt{Object.freeze}はオブジェクトを凍結\index{おぶじぇくと@オブジェクト!とうけつ@凍結}\index{とうけつ@凍結}します。凍結されたオブジェクトでプロパティの追加や変更をすると例外が発生するようになります。
 
 ただし、\texttt{Object.freeze}メソッドを利用する場合は必ずstrict
-mode\index{strict mode}と合わせて使います（詳細は「\hyperlink{what-is-javascript}{JavaScriptとは}」の\hyperlink{strict-mode}{strict mode}を参照）。strict
+mode\index{strict mode}と合わせて使います（詳細は「\hyperlink{what-is-javascript}{JavaScriptとは}」の「\hyperlink{strict-mode}{strict mode}」を参照）。strict
 modeでない場合は、凍結されたオブジェクトのプロパティを変更しても例外が発生せずに単純に無視されます。
 
 \begin{lstlisting}
@@ -353,7 +353,7 @@ const object = Object.freeze({ key: "value" });
 object.key = "value"; // => TypeError: "key" is read-only
 \end{lstlisting}
 \end{tcolorbox}
-
+\vspace{-3mm}
 \hypertarget{confirm-property}{%
 \section{プロパティの存在を確認する}\label{confirm-property}}\index{ぷろぱてぃ@プロパティ!そんざいかくにん@存在確認}
 
@@ -385,7 +385,7 @@ console.log(widget.windw.title); // => TypeError: widget.windw is undefined
 // 例外が発生した文以降は実行されません
 \end{lstlisting}
 
-\texttt{undefined}や\texttt{null}はオブジェクトではないため、存在しないプロパティへアクセスすると例外が発生してしまいます。
+\enlargethispage{\baselineskip}\enlargethispage{\baselineskip}\texttt{undefined}や\texttt{null}はオブジェクトではないため、存在しないプロパティへアクセスすると例外が発生してしまいます。
 あるオブジェクトがあるプロパティを持っているかを確認する方法として、次の4つがあります。
 
 \begin{itemize}
@@ -394,7 +394,7 @@ console.log(widget.windw.title); // => TypeError: widget.windw is undefined
 \item
   \texttt{in}演算子
 \item
-  \texttt{Object.hasOwn}静的メソッド\,\protect\icon{fig/es2022.eps}
+  \texttt{Object.hasOwn}静的メソッド\,\protect\iconl{fig/es2022.eps}
 \item
   \texttt{Object.prototype.hasOwnProperty}メソッド
 \end{itemize}
@@ -453,7 +453,7 @@ if ("key" in obj) {
 \end{lstlisting}
 
 \hypertarget{object-hasown-method}{%
-\subsection{プロパティの存在確認: Object.hasOwn静的メソッド\,\protect\icon{fig/es2022.eps}}\label{object-hasown-method}}\index{Object.hasOwn@\texttt{Object.hasOwn}}
+\subsection[プロパティの存在確認: \texttt{Object.hasOwn}静的メソッド]{プロパティの存在確認: Object.hasOwn静的メソッド\,\protect\icon{fig/es2022.eps}}\label{object-hasown-method}}\index{Object.hasOwn@\texttt{Object.hasOwn}}
 
 \texttt{Object.hasOwn}静的メソッドは、対象のオブジェクトが指定したプロパティを持っているかを判定できます。
 この\texttt{Object.hasOwn}静的メソッドの引数には、オブジェクトとオブジェクトが持っているかを確認したいプロパティ名を渡します。
@@ -480,7 +480,7 @@ if (Object.hasOwn(obj, "key")) {
 そのため、\texttt{in}演算子と\texttt{Object.hasOwn}静的メソッドの違いについては、次の章の「\hyperlink{prototype-object}{プロトタイプオブジェクト}」で詳しく解説します。
 
 \hypertarget{hasOwnProperty-method}{%
-\section{プロパティの存在確認: \texttt{Object.prototype.hasOwnProperty}メソッド}\label{hasOwnProperty-method}}\index{Object.prototype.hasOwnProperty@\texttt{Object.prototype.hasOwnProperty}}
+\subsection{プロパティの存在確認: \texttt{Object.prototype.hasOwnProperty}メソッド}\label{hasOwnProperty-method}}\index{Object.prototype.hasOwnProperty@\texttt{Object.prototype.hasOwnProperty}}
 
 \texttt{Object.hasOwn}静的メソッドはES2022で導入されたメソッドです。
 ES2022より前では、\texttt{Object.prototype.hasOwnProperty}メソッドというよく似たメソッドが利用されていました。
@@ -498,7 +498,7 @@ if (obj.hasOwnProperty("key")) {
 この欠点もプロトタイプオブジェクトに関係するため、次の章の「\hyperlink{prototype-object}{プロトタイプオブジェクト}」で詳しく解説します。
 
 \hypertarget{optional-chaining-operator}{%
-\section{Optional chaining演算子（\texttt{?.}）\,\protect\icon{fig/es2020.eps}}\label{optional-chaining-operator}}\index{Optional chainingえんざんし（?.）@Optional chaining演算子（\texttt{?.}）}
+\section[Optional chaining演算子（\texttt{?.}）]{Optional chaining演算子（\texttt{?.}）\,\protect\icon{fig/es2020.eps}}\label{optional-chaining-operator}}\index{Optional chainingえんざんし@Optional chaining演算子}\index{?.@\texttt{?.}}
 
 プロパティの存在を確認する方法として4つの方法を紹介しました。
 プロパティが存在するかが重要な場合は、基本的には\texttt{in}演算子または\texttt{Object.hasOwn}静的メソッドを使います。
@@ -529,7 +529,7 @@ printWidgetTitle({
 });
 \end{lstlisting}
 
-この\texttt{widget.window.title}のようなネストしたプロパティにアクセスする際には、プロパティの存在を順番に確認してからアクセスする必要があります。
+\enlargethispage{\baselineskip}この\texttt{widget.window.title}のようなネストしたプロパティにアクセスする際には、プロパティの存在を順番に確認してからアクセスする必要があります。
 なぜなら、\texttt{widget}オブジェクトが\texttt{window}プロパティを持っていない場合は\texttt{undefined}という値を返すためです。このときに、さらにネストした\texttt{widget.window.title}プロパティにアクセスすると、\texttt{undefined.title}という参照となり例外が発生してしまいます。
 
 しかし、プロパティへアクセスするたびに\texttt{undefined}との比較をAND演算子（\texttt{\&\&}）でつなげて書いていくと冗長です。
@@ -537,7 +537,7 @@ printWidgetTitle({
 この問題を解決するために、ES2020ではネストしたプロパティの存在確認とアクセスを簡単に行う構文としてOptional chaining演算子（\texttt{?.}）が導入されました。
 Optional chaining演算子（\texttt{?.}）は、ドット記法（\texttt{.}）の代わりに\texttt{?.}をプロパティアクセスに使います。
 
-Optional chaining演算子（\texttt{?.}）は左辺のオペランドがnullish（\texttt{null}または\texttt{undefined}）の場合は、それ以上評価せずに\texttt{undefined}を返します。一方で、プロパティが存在する場合は、そのプロパティの評価結果を返します。
+Optional chaining演算子（\texttt{?.}）は左辺のオペランドがnullish\index{nullish}（\texttt{null}または\texttt{undefined}）の場合は、それ以上評価せずに\texttt{undefined}を返します。一方で、プロパティが存在する場合は、そのプロパティの評価結果を返します。
 
 つまり、Optional chaining演算子（\texttt{?.}）では、存在しないプロパティへアクセスした場合でも例外ではなく、\texttt{undefined}という値を返します。
 
@@ -614,7 +614,7 @@ console.log(obj.toString()); // => "[object Object]"
 console.log(String(obj)); // => "[object Object]"
 \end{lstlisting}
 
-このことは、オブジェクトに\texttt{toString}メソッドを再定義してみるとわかります。
+\enlargethispage{\baselineskip}このことは、オブジェクトに\texttt{toString}メソッドを再定義してみるとわかります。
 独自の\texttt{toString}メソッドを定義したオブジェクトを\texttt{String}コンストラクタ関数で文字列化してみます。
 すると、再定義した\texttt{toString}メソッドの返り値が、\texttt{String}コンストラクタ関数の返り値になることがわかります。
 
@@ -627,8 +627,8 @@ const customObject = {
 };
 console.log(String(customObject)); // => "custom value"
 \end{lstlisting}
-
-\begin{tcolorbox}[enhanced jigsaw,breakable,title=オブジェクトのプロパティ名は文字列化される]\label{object-property-is-to-string}\index{ぷろぱてぃ@プロパティ!もじれつか@文字列化}\index{もじれつか@文字列化}
+\vspace{-2mm}
+\enlargethispage{\baselineskip}\begin{tcolorbox}[enhanced jigsaw,breakable,title=オブジェクトのプロパティ名は文字列化される]\label{object-property-is-to-string}\index{ぷろぱてぃ@プロパティ!もじれつか@文字列化}\index{もじれつか@文字列化}
 
 オブジェクトのプロパティへアクセスする際に、指定したプロパティ名は暗黙的に文字列に変換されます。
 ブラケット記法では、オブジェクトをプロパティ名に指定することもできますが、これは意図したようには動作しません。
@@ -647,9 +647,9 @@ obj[keyObject1] = "1";
 obj[keyObject2] = "2";
 console.log(obj); //  { "[object Object]": "2" }
 \end{lstlisting}
-
+\vspace{-1mm}
 唯一の例外として、Symbol\index{Symbol}だけは文字列化されずにオブジェクトのプロパティ名として扱えます。
-
+\vspace{-2mm}
 \begin{lstlisting}
 const obj = {};
 // Symbolは例外的に文字列化されず扱える
@@ -660,8 +660,8 @@ obj[symbolKey2] = "2";
 console.log(obj[symbolKey1]); // => "1"
 console.log(obj[symbolKey2]); // => "2"
 \end{lstlisting}
-
-基本的にはオブジェクトのプロパティ名は文字列として扱われることを覚えておくとよいでしょう。
+\vspace{-1mm}
+\enlargethispage{\baselineskip}基本的にはオブジェクトのプロパティ名は文字列として扱われることを覚えておくとよいでしょう。
 また、\texttt{Map}\index{Map@\texttt{Map}}というビルトインオブジェクトはオブジェクトをキーとして扱えます（詳細は「\hyperlink{map-and-set}{Map/Set}」の章で解説します）。
 そのため、オブジェクトをキーに指定したい場合は\texttt{Map}を利用します。
 \end{tcolorbox}
@@ -714,7 +714,7 @@ console.log(Object.entries(obj)); // => [["one", 1], ["two", 2], ["three", 3]]
 これらのプロパティを列挙する静的メソッドと配列の\texttt{forEach}メソッドなどを組み合わせれば、プロパティに対して反復処理ができます。
 次のコードでは、\texttt{Object.keys}メソッドで取得したプロパティ名の一覧をコンソールへ出力しています。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 const obj = {
     "one": 1,
     "two": 2,
@@ -764,7 +764,7 @@ console.log(merged); // => { a: "a", b: "b" }
 
 次のコードでは、第一引数に指定された\texttt{objectA}に対してプロパティが追加されています。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 const objectA = { a: "a" };
 const objectB = { b: "b" };
 const merged = Object.assign(objectA, objectB);
@@ -791,7 +791,7 @@ console.log(merged); // => { version: "b" }
 \end{lstlisting}
 
 \hypertarget{object-spread-syntax}{%
-\subsubsection{オブジェクトのspread構文でのマージ\,\protect\icon{fig/es2018.eps}}\label{object-spread-syntax}}\index{おぶじぇくと@オブジェクト!まーじ@マージ}\index{おぶじぇくと@オブジェクト!spreadこうぶん@spread構文}\index{spreadこうぶん@spread構文}\index{spreadこうぶん@spread構文!まーじ@マージ}
+\subsubsection{オブジェクトのspread構文でのマージ\,\protect\iconl{fig/es2018.eps}}\label{object-spread-syntax}}\index{おぶじぇくと@オブジェクト!まーじ@マージ}\index{おぶじぇくと@オブジェクト!spreadこうぶん@spread構文}\index{spreadこうぶん@spread構文}\index{spreadこうぶん@spread構文!まーじ@マージ}
 
 ES2018では、オブジェクトのマージを行うオブジェクトの\texttt{...}\index{...@\textbf{\textgt{...}}}（spread構文）が追加されました。
 ES2015で配列の要素を展開する\texttt{...}（spread構文）はサポートされていましたが、オブジェクトに対してもES2018でサポートされました。
@@ -904,7 +904,7 @@ JavaScriptは言語仕様で定義されている機能が最低限であるた�
 それらのライブラリはnpm\index{npm}と呼ばれるJavaScriptのパッケージ管理ツール\index{ぱっけーじかんりつーる@パッケージ管理ツール}で公開され、JavaScriptのエコシステムを築いています。
 ライブラリの利用については「\hyperlink{node-cli}{ユースケース:
 Node.jsでCLIアプリケーション}」の章で紹介します。
-
+\newpage
 \hypertarget{conclusion}{%
 \section{まとめ}\label{conclusion}}
 

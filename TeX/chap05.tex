@@ -39,9 +39,9 @@ JavaScriptでは、文字列も一度作成したら変更できないイミュ�
     文字列（String）: \texttt{"JavaScript"}
     などの文字列のデータ型
   \item
-    undefined: 値が未定義であることを意味するデータ型
+    undefined：値が未定義であることを意味するデータ型
   \item
-    null: 値が存在しないことを意味するデータ型
+    null：値が存在しないことを意味するデータ型
   \item
     シンボル（Symbol）: ES2015から追加された一意で不変な値のデータ型
   \end{itemize}
@@ -76,7 +76,7 @@ console.log(typeof function() {}); // => "function"
 プリミティブ型の値は、それぞれ\texttt{typeof}演算子の評価結果として、その値のデータ型を返します。
 一方で、オブジェクトに分類される値は\texttt{"object"}となります。
 
-配列（\texttt{[]}）とオブジェクト（\texttt{{}}）は、どちらも\texttt{"object"}という判定結果になります。
+配列（\texttt{[]}）とオブジェクト（\texttt{\{\}}）は、どちらも\texttt{"object"}という判定結果になります。
 そのため、\texttt{typeof}演算子ではオブジェクトの詳細な種類を正しく判定することはできません。
 ただし、関数はオブジェクトの中でも特別扱いされているため、\texttt{typeof}演算子の評価結果は\texttt{"function"}となります。
 また、\texttt{typeof null}が\texttt{"object"}となるのは、歴史的経緯のある仕様のバグ\footnote{JavaScriptが最初にNetscapeで実装された際に\texttt{typeof null === "object"}となるバグがありました。このバグを修正するとすでにこの挙動に依存しているコードが壊れるため、修正が見送られ現在の挙動が仕様となりました。 詳しくは\url{https://2ality.com/2013/10/typeof-null.html}を参照。}です。
@@ -104,7 +104,7 @@ const str = "こんにちは";
 そのような冗長な表現を避ける方法として、よく利用される主要なデータ型にはリテラルが用意されています。
 
 次の5つのプリミティブ型は、それぞれリテラル表現を持っています。
-
+\newpage
 \begin{itemize}
 \item
   真偽値
@@ -130,7 +130,7 @@ const str = "こんにちは";
 \end{itemize}
 
 これらのリテラルについて、まずはプリミティブ型から順番に見ていきます。
-
+\vspace{-2mm}
 \hypertarget{boolean}{%
 \subsection{真偽値（Boolean）}\label{boolean}}\index{しんぎち@真偽値}\index{Boolean@\texttt{Boolean}}
 
@@ -141,7 +141,7 @@ const str = "こんにちは";
 true; // => true
 false; // => false
 \end{lstlisting}
-
+\vspace{-2mm}
 \hypertarget{number}{%
 \subsection{数値（Number）}\label{number}}\index{すうち@数値}\index{Number}
 
@@ -159,7 +159,7 @@ false; // => false
 
 \begin{itemize}
 \item
-  10進数: 数字の組み合わせ
+  10進数：数字の組み合わせ
 
   \begin{itemize}
   \item
@@ -168,7 +168,7 @@ false; // => false
     例）\texttt{0}、\texttt{2}、\texttt{10}
   \end{itemize}
 \item
-  2進数:
+  2進数：
   \texttt{0b}（または\texttt{0B}）の後ろに、\texttt{0}または\texttt{1}の数字の組み合わせ
 
   \begin{itemize}
@@ -176,7 +176,7 @@ false; // => false
     例）\texttt{0b0}、\texttt{0b10}、\texttt{0b1010}
   \end{itemize}
 \item
-  8進数:
+  8進数：
   \texttt{0o}（または\texttt{0O}）の後ろに、\texttt{0}から\texttt{7}までの数字の組み合わせ
 
   \begin{itemize}
@@ -187,7 +187,7 @@ false; // => false
     例）\texttt{0o644}、\texttt{0o777}
   \end{itemize}
 \item
-  16進数:
+  16進数：
   \texttt{0x}（または\texttt{0X}）の後ろに、\texttt{0}から\texttt{9}までの数字と\texttt{a}から\texttt{f}または\texttt{A}から\texttt{F}のアルファベットの組み合わせ
 
   \begin{itemize}
@@ -229,7 +229,7 @@ modeではこの書き方は例外が発生するため、次のような8進数
 
 \begin{lstlisting}
 // 非推奨な8進数の書き方
-// strict modeは例外が発生
+// strict modeでは例外が発生
 console.log(0644);  // => 420
 console.log(0777);  // => 511
 \end{lstlisting}
@@ -291,9 +291,9 @@ console.log(0x30A2); // => 12450
 \begin{lstlisting}
 2e8; // => 200000000
 \end{lstlisting}
-
+\vspace{-2mm}
 \hypertarget{bigint-literal}{%
-\subsection{BigInt\index{BigInt}\,\protect\icon{fig/es2020.eps}}\label{bigint-literal}}
+\subsection[BigInt]{BigInt\index{BigInt}\,\protect\icon{fig/es2020.eps}}\label{bigint-literal}}
 
 JavaScriptでは、\texttt{1}や\texttt{3.14159}などの数値リテラルは\href{https://ja.wikipedia.org/wiki/IEEE_754}{IEEE 754}で定義された倍精度浮動小数となります。
 倍精度浮動小数で正確に扱える数値の最大値は$2^{53}-1$（2の53乗から1引いた値である\texttt{9007199254740991}）です。
@@ -324,7 +324,7 @@ BigIntは整数を扱うデータ型であるため、次のように小数点�
 \end{lstlisting}
 
 \hypertarget{numeric-separators}{%
-\subsection{Numeric Separators\index{Numeric Separators}\,\protect\icon{fig/es2021.eps}}\label{numeric-separators}}
+\subsection[Numeric Separators]{Numeric Separators\index{Numeric Separators}\,\protect\icon{fig/es2021.eps}}\label{numeric-separators}}
 
 数値が大きくなるほど、桁数の見間違いなどが発生しやすくなります。
 次のコードは、1兆を数値リテラルで書いていますが、桁数を読み取りにくいです。
@@ -333,7 +333,7 @@ BigIntは整数を扱うデータ型であるため、次のように小数点�
 1000000000000;
 \end{lstlisting}
 
-ES2021から、数値リテラル内の区切り文字として\texttt{\_}を追加できるNumeric Separatorsがサポートされています。
+ES2021から、数値リテラル内の区切り文字として\texttt{\_}\index{_@\texttt{\_}}を追加できるNumeric Separatorsがサポートされています。
 Numeric Separatorsは、数値リテラル内では区切り文字として\texttt{\_}が追加できます。
 次のコードも、1兆を数値リテラルで書いています。数値リテラルを評価する際に\texttt{\_}は単純に無視されるため同じ意味となります。
 
@@ -376,7 +376,7 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は同�
 '8 o\'clock'; // => "8 o'clock"
 \end{lstlisting}
 
-また、文字列内部に出現しない別のクォート記号を使うことで、エスケープをせずに書くこともできます。
+\enlargethispage{\baselineskip}また、文字列内部に出現しない別のクォート記号を使うことで、エスケープをせずに書くこともできます。
 
 \begin{lstlisting}
 "8 o'clock"; // => "8 o'clock"
@@ -538,10 +538,10 @@ object.123
 オブジェクトはとても重要で、これから紹介する配列や正規表現もこのオブジェクトが元となっています。
 詳細は「\hyperlink{object}{オブジェクト}」の章で解説します。
 ここでは、オブジェクトリテラル（\texttt{\{}と\texttt{\}}）が出てきたら、新しいオブジェクトを作成しているんだなと思ってください。
-
+\vspace{-2mm}
 \hypertarget{array-literal}{%
 \subsection{配列リテラル}\label{array-literal}}\index{はいれつりてらる@配列リテラル}
-
+\vspace{-1mm}
 オブジェクトリテラルと並んで、よく使われるリテラルとして配列リテラルがあります。
 配列リテラルは\texttt{[}と\texttt{]}でカンマ区切りの値を囲み、その値を持つArrayオブジェクトを作成します。
 配列\index{はいれつ@配列}（Array\index{Array}オブジェクト）とは、複数の値に順序をつけて格納できるオブジェクトの一種です。
@@ -551,7 +551,7 @@ const emptyArray = []; // 空の配列を作成
 const array = [1, 2, 3]; // 値を持った配列を作成
 \end{lstlisting}
 
-配列は\texttt{0}からはじまるインデックス\index{いんでっくす@インデックス}（添字\index{そえじ@添字}）に、対応した値を保持しています。
+\enlargethispage{\baselineskip}\enlargethispage{\baselineskip}配列は\texttt{0}からはじまるインデックス\index{いんでっくす@インデックス}（添字\index{そえじ@添字}）に、対応した値を保持しています。
 作成した配列の要素を取得するには、配列に対して\texttt{array[index]}という構文で指定したインデックスの値を参照できます。
 
 \begin{lstlisting}
@@ -605,7 +605,7 @@ console.log(typeof str); // => "object"
 // Stringオブジェクトのlengthプロパティは文字列の長さを返す
 console.log(str.length); // => 3
 \end{lstlisting}
-
+\newpage
 しかし、明示的にラッパーオブジェクトを使うべき理由はありません。
 なぜなら、JavaScriptではプリミティブ型のデータに対してもオブジェクトのように参照できる仕組みがあるためです。
 次のコードでは、プリミティブ型の文字列データに対しても\texttt{length}プロパティへアクセスできています。

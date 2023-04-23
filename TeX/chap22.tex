@@ -35,7 +35,8 @@ function taskB() {
 }
 // 指定したtimeoutミリ秒経過するまで同期的にブロックする関数
 function blockTime(timeout) { 
-    // Date.now()は現在の時間をUnix時間（1970年1月1日午前0時0分0秒から経過した時間）のミリ秒を返す
+    // Date.now()は現在の時間をUnix時間（1970年1月1日午前0時0分0秒から経過した
+    // 時間）のミリ秒を返す
     const startTime = Date.now();
     // timeoutミリ秒経過するまで無限ループをする
     while (true) {
@@ -57,7 +58,7 @@ taskB();
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=80mm]{fig/single-thread-tasks.pdf}
+\includegraphics[width=100mm]{fig/single-thread-tasks.pdf}
 \end{figure}
 
 先ほどの例では1秒間も処理をブロックしているため、1秒間スクロールなどの操作が効かないといった悪影響がでます。
@@ -98,10 +99,10 @@ taskB();
 \end{lstlisting}
 
 このように、非同期処理（\texttt{setTimeout}のコールバック関数）は、コードの見た目上の並びとは異なる順番で実行されることがわかります。
-
+\vspace{-4mm}
 \begin{figure}[h]
 \centering
-\includegraphics[width=80mm]{fig/async-single-thread-tasks.pdf}
+\includegraphics[width=100mm]{fig/async-single-thread-tasks.pdf}
 \end{figure}
 
 \hypertarget{async-and-main-thread}{%
@@ -159,12 +160,12 @@ taskB();
 多くの環境では、このときの非同期処理のコールバック関数が呼ばれるまでは1秒以上かかります。
 これは、10ミリ秒後に非同期のコールバック関数を実行するようにタイマーへ登録自体はできていますが、同期的にブロックする処理によって非同期のタスクの実行も後ろにずれてしまうためです。
 このように\textbf{\textgt{非同期処理}}も\textbf{\textgt{同期処理}}の影響を受けることから、同じメインスレッドで実行されていることがわかります。
-
+\vspace{-10mm}
 \begin{figure}[h]
 \centering
-\includegraphics[width=120mm]{fig/block-async-single-thread-tasks.pdf}
+\includegraphics[width=140mm]{fig/block-async-single-thread-tasks.pdf}
 \end{figure}
-
+\vspace{-10mm}
 JavaScriptでは一部の例外を除き非同期処理が\textbf{\textgt{並行処理}}\index{へいこうしょり@並行処理}（Concurrent\index{Concurrent}）として扱われます。
 並行処理とは、処理を一定の単位ごとに分けて処理を切り替えながら実行することです。
 そのため非同期処理の実行前にとても重たい処理があると、非同期処理の実行が遅れるという現象を引き起こします。
@@ -271,7 +272,8 @@ function asyncPromiseTask() {
         // 非同期処理に失敗した場合は、rejectを呼ぶ
     });
 }
-// asyncPromiseTask関数の非同期処理が成功した時、失敗した時に呼ばれる処理をコールバック関数として登録する
+// asyncPromiseTask関数の非同期処理が成功したとき、失敗したときに呼ばれる処理を
+// コールバック関数として登録する
 asyncPromiseTask().then(()=> {
     // 非同期処理が成功したときの処理
 }).catch(() => {
@@ -497,7 +499,7 @@ Promiseの\texttt{then}メソッドや\texttt{catch}メソッドによる処理�
 次のコードでは、\texttt{reject}を呼び出しても状態が変化しないため、\texttt{then}で登録したonRejectedのコールバック関数は呼び出されません。
 \texttt{then}メソッドで登録したコールバック関数は、状態が変化した場合に一度だけ呼び出されます。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 const promise = new Promise((resolve, reject) => {
     // 非同期でresolveする
     setTimeout(() => {
@@ -608,7 +610,7 @@ const rejectedPromise = Promise.reject(new Error("エラー"));
 
 \texttt{Promise.reject}メソッドは\texttt{new Promise}の糖衣構文\index{とういこうぶん@糖衣構文}（シンタックスシュガー\index{しんたっくすしゅがー@シンタックスシュガー}）です。
 そのため、\texttt{Promise.reject}メソッドは次のコードと同じ意味になります。
-
+\newpage
 \begin{lstlisting}
 const rejectedPromise = new Promise((resolve, reject) => {
     reject(new Error("エラー"));
@@ -657,9 +659,9 @@ Promise.resolve()
         console.log(2);
     });
 \end{lstlisting}
-
+\vspace{-1mm}
 このPromiseチェーンは、次のコードのように毎回新しい変数に入れて処理をつなげるのと結果的には同じ意味となります。
-
+\vspace{-1mm}
 \begin{lstlisting}
 // Promiseチェーンを変数に入れた場合
 const firstPromise = Promise.resolve();
@@ -673,14 +675,14 @@ const thirdPromise = secondPromise.then(() => {
 console.log(firstPromise === secondPromise); // => false
 console.log(secondPromise === thirdPromise); // => false
 \end{lstlisting}
-
+\vspace{-1mm}
 もう少し具体的なPromiseチェーンの例を見ていきましょう。
 
 次のコードの\texttt{asyncTask}関数はランダムでFulfilledまたはRejected状態の\texttt{Promise}インスタンスを返します。
 この関数が返す\texttt{Promise}インスタンスに対して、\texttt{then}メソッドで成功時の処理を書いています。
 \texttt{then}メソッドの返り値は新しい\texttt{Promise}インスタンスであるため、続けて\texttt{catch}メソッドで失敗時の処理を書けます。
-
-\begin{lstlisting}
+\vspace{-1mm}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 // ランダムでFulfilledまたはRejectedのPromiseインスタンスを返す関数
 function asyncTask() {
     return Math.random() > 0.5 
@@ -779,7 +781,7 @@ Promise.resolve(1).then((value) => {
     console.log(value); // => undefined
 });
 \end{lstlisting}
-
+\newpage
 ここでは\texttt{then}メソッドを元に解説しますが、\texttt{catch}メソッドは\texttt{then}メソッドの糖衣構文であるため同じ動作となります。
 Promiseチェーンで一度キャッチすると、次に呼ばれるのは成功時の処理となります。
 そのため、\texttt{catch}メソッドで返した値は次の\texttt{then}メソッドのコールバック関数に引数として渡されます。
@@ -822,7 +824,7 @@ Promise.resolve().then(function onFulfilledA() {
 \end{lstlisting}
 
 このコードにおけるPromiseの状態とコールバック関数は次のような処理の流れとなります。
-
+\newpage
 \begin{figure}[h]
 \centering
 \includegraphics[width=65mm]{./fig/then-rejected-promise.eps}
@@ -1003,7 +1005,7 @@ fetchedPromise.then(([responseA, responseB]) => {
 
 渡したPromiseがひとつでも\textbf{Rejected}となった場合は、失敗時の処理が呼び出されます。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 function dummyFetch(path) {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -1227,7 +1229,7 @@ Functionとして定義した関数は必ず\texttt{Promise}インスタンス�
   Function内で例外が発生した場合は、そのエラーを持つ\textbf{Rejected}なPromiseを返す
 \end{enumerate}
 
-次のコードでは、Async
+\enlargethispage{\baselineskip}次のコードでは、Async
 Functionがそれぞれの返り値によってどのような\texttt{Promise}インスタンスを返すかを確認できます。
 この1から3の挙動は、Promiseの\texttt{then}メソッドの返り値とそのコールバック関数の関係とほぼ同じです。
 
@@ -1746,18 +1748,18 @@ Functionとコールバック関数を組み合わせた場合には気をつけ
 また、\texttt{fetchAllResources}関数のように、複数の非同期処理を1つのPromiseにまとめることでループ中に\texttt{await}式を使わないようにする方法があります。
 
 \hypertarget{top-level-await-in-module}{%
-\subsection{Module直下でのawait式\,\protect\icon{fig/es2022.eps}}\label{top-level-await-in-module}}
+\subsection[Module直下での\texttt{await}式]{Module直下でのawait式\,\protect\icon{fig/es2022.eps}}\label{top-level-await-in-module}}\index{Module}\index{awaitしき@\texttt{await}式}
 
 ES2021までは、\texttt{await}式はAsync Functionの直下でのみ利用可能なことを紹介しました。
 ES2022では、これに加えてModuleの直下ではAsync Functionで囲まなくても\texttt{await}式が利用できます。
 
-最初に「\hyperlink{what-is-javascript}{JavaScriptとは}」の章において、JavaScriptには実行コンテキストとして"Script"と"Module"があるという話をしました。
-たとえば、ブラウザでは\texttt{<script>}と書けば"Script"として実行され、\texttt{<script type="module">}と書けば"Module"として実行されます。
+最初に「\hyperlink{what-is-javascript}{JavaScriptとは}」の章において、JavaScriptには実行コンテキストとして``Script''と``Module''があるという話をしました。
+たとえば、ブラウザでは\texttt{<script>}と書けば``Script''として実行され、\texttt{<script type="module">}と書けば``Module''として実行されます。
 
-"Module"としてJavaScriptを実行した時のみ、トップレベル（もっとも外側のスコープ）においてはAsync Functionなしで\texttt{await}式が利用できます。
+``Module''としてJavaScriptを実行したときのみ、トップレベル（もっとも外側のスコープ）においてはAsync Functionなしで\texttt{await}式が利用できます。
 
-たとえば、次のコードを"Module"として実行した場合は、Async Functionなしで\texttt{await}式が利用できていることがわかります。
-これは、"Module"ではトップレベルでの\texttt{await}が許可されているためです。
+たとえば、次のコードを``Module''として実行した場合は、Async Functionなしで\texttt{await}式が利用できていることがわかります。
+これは、``Module''ではトップレベルでの\texttt{await}が許可されているためです。
 
 \begin{lstlisting}
 // このコードはModuleのトップレベルでのみ動作する
@@ -1768,12 +1770,12 @@ await new Promise(resolve => setTimeout(resolve, 1000));
 console.log(`実行終了: ${Date.now() - startTime}ms 経過しました`);
 \end{lstlisting}
 
-このようにModuleのトップレベルにおいて\texttt{await}式が利用できることは、Top-Level \texttt{await}と呼ばれます。
+このようにModuleのトップレベルにおいて\texttt{await}式が利用できることは、Top-Level \texttt{await}\index{Top-Level await@Top-Level \texttt{await}}と呼ばれます。
 
 ES2021まではAsync Functionの直下のみでしか\texttt{await}式が利用できませんでした。
 そのため、メイン処理のように他の処理を呼び出すスクリプトの開始地点で\texttt{await}を使いたい場合は、Async Functionを使った即時実行関数で\texttt{await}を囲むケースがありました。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 // awaitを使うためだけに、Async Functionの即時実行関数を実行している
 (async function() {
     // awaitを使う処理
@@ -1782,31 +1784,31 @@ ES2021まではAsync Functionの直下のみでしか\texttt{await}式が利用�
 })();
 \end{lstlisting}
 
-しかし、ES2022ではTop-Level \texttt{await}が利用できるようになったため、"Module"においてはこのような即時実行関数は不要となります。
-
-\begin{tcolorbox}[enhanced jigsaw,breakable,title=エラーファーストコールバック]\label{error-first-callback}\index{えらーふぁーすとこーるばっく@エラーファーストコールバック}
+しかし、ES2022ではTop-Level \texttt{await}が利用できるようになったため、``Module''においてはこのような即時実行関数は不要となります。
+\hypertarget{error-first-callback}{%
+\begin{tcolorbox}[enhanced jigsaw,breakable,title=エラーファーストコールバック]}\label{error-first-callback}\index{えらーふぁーすとこーるばっく@エラーファーストコールバック}
 
 ECMAScript 2015（ES2015）でPromiseが仕様に入るまで、非同期処理中に発生した例外を扱う仕様はありませんでした。
 このため、ES2015より前までは、\textbf{\textgt{エラーファーストコールバック}}という非同期処理中に発生した例外を扱う方法をコミュニティで決めたルールが広く使われていました。
 
 エラーファーストコールバックとは、非同期処理におけるコールバック関数の呼び出し方を決めた次のようなルールです。
-
+\vspace{-1mm}
 \begin{itemize}
 \item
-  処理が失敗した場合は、コールバック関数の1番目の引数にエラーオブジェクトを渡して呼び出す
+  処理が失敗した場合は、コールバック関数の第一引数にエラーオブジェクトを渡して呼び出す
 \item
-  処理が成功した場合は、コールバック関数の1番目の引数には\texttt{null}を渡し、2番目以降の引数に成功時の結果を渡して呼び出す
+  処理が成功した場合は、コールバック関数の第一引数には\texttt{null}を渡し、それ以降の引数に成功時の結果を渡して呼び出す
 \end{itemize}
-
+\vspace{-1mm}
 つまり、ひとつのコールバック関数で失敗した場合と成功した場合の両方を扱うルールとなります。
 
 たとえば、Node.jsでは\texttt{fs.readFile}関数というファイルシステムからファイルをロードする非同期処理の関数があります。
 指定したパスのファイルを読むため、ファイルが存在しない場合やアクセス権限の問題から読み取りに失敗することがあります。
-そのため、\texttt{fs.readFile}関数の第2引数に渡すコールバック関数にはエラーファーストコールバックスタイルの関数を渡します。
+そのため、\texttt{fs.readFile}関数の第二引数に渡すコールバック関数にはエラーファーストコールバックスタイルの関数を渡します。
 
-ファイルを読み込むことに失敗した場合は、コールバック関数の1番目の引数に\texttt{Error}オブジェクトが渡されます。
-ファイルを読み込むことに成功した場合は、コールバック関数の1番目の引数に\texttt{null}、2番目の引数に読み込んだデータを渡します。
-
+ファイルを読み込むことに失敗した場合は、コールバック関数の第一引数に\texttt{Error}オブジェクトが渡されます。
+ファイルを読み込むことに成功した場合は、コールバック関数の第一引数に\texttt{null}、第二引数に読み込んだデータを渡します。
+\vspace{-1mm}
 \begin{lstlisting}
 fs.readFile("./example.txt", (error, data) => {
     if (error) {
@@ -1816,13 +1818,13 @@ fs.readFile("./example.txt", (error, data) => {
     }
 });
 \end{lstlisting}
-
+\vspace{-1mm}
 このエラーファーストコールバックはNode.jsでは広く使われ、Node.jsの標準APIでも利用されています。
 詳しい扱い方については、「\hyperlink{node-cli}{ユースケース: Node.jsでCLIアプリケーション}」の章にて紹介します。
 
 実際にエラーファーストコールバックで非同期な例外処理を扱うコードを書いてみましょう。
 
-次のコードの\texttt{dummyFetch}関数は、疑似的なリソースの取得をする非同期な処理です。
+\enlargethispage{\baselineskip}次のコードの\texttt{dummyFetch}関数は、疑似的なリソースの取得をする非同期な処理です。
 第一引数に任意のパスを受け取り、第二引数にエラーファーストコールバックスタイルの関数を受け取ります。
 
 この\texttt{dummyFetch}関数は、任意のパスにマッチするリソースがある場合には、第二引数のコールバック関数に\texttt{null}とレスポンスオブジェクトを渡して呼び出します。

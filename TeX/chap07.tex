@@ -85,7 +85,7 @@ console.log(10 == ["10"]); // => true
 \end{lstlisting}
 
 このほかにも等価演算子による予想できない結果は、比較する値と型の組み合わせの数だけあります。
-そのため、等価演算子の比較結果がどうなるかを覚えるのは現実的でありません。
+そのため、等価演算子の比較結果がどうなるかを覚えるのは現実的ではありません。
 
 しかし、等価演算子の暗黙的な型変換を避ける簡単な方法があります。
 
@@ -185,7 +185,7 @@ JavaScriptでは、次の値は\texttt{false}へ変換されます。
   \texttt{""}（空文字列）
 \end{itemize}
 
-暗黙的な型変換によって\texttt{false}に変換されるこれらの値をまとめて\textbf{falsy}な値と呼びます。
+暗黙的な型変換によって\texttt{false}に変換されるこれらの値をまとめて\textbf{falsy}\index{falsy}な値と呼びます。
 falsyではない値は、\texttt{true}へと変換されます。
 
 この変換ルールはif文\index{ifぶん@if文}の条件式の評価と同様です。
@@ -314,7 +314,7 @@ Number("文字列"); // => NaN
 Number(undefined); // => NaN
 \end{lstlisting}
 
-そのため、任意の値から数値へ変換した場合には、\texttt{NaN}になってしまった場合の処理を書く必要があります。
+\enlargethispage{\baselineskip}そのため、任意の値から数値へ変換した場合には、\texttt{NaN}になってしまった場合の処理を書く必要があります。
 変換した結果が\texttt{NaN}であるかは\texttt{Number.isNaN}メソッドで判定できます。
 
 \begin{lstlisting}
@@ -416,7 +416,7 @@ NaN + 10; // => NaN
 
 これは、\texttt{sum}関数において引数を明示的にNumber型へ変換したとしても回避できません。
 つまり、次のように明示的な型変換をしても解決できないことがわかります。
-
+\newpage
 \begin{lstlisting}
 function sum(...values) {
     return values.reduce((total, value) => {
@@ -452,7 +452,7 @@ JavaScriptではコメントで引数の型を記述する書式として\href{h
 
 この２つを利用して\texttt{sum}関数の前提条件を詳細に実装したものは次のようになります。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 /**
  * 数値を合計した値を返します。
  * 1つ以上の数値と共に呼び出す必要があります。
@@ -507,7 +507,7 @@ function isEmptyString(str) {
     // strがfalsyな値なら、isEmptyString関数はtrueを返す
     return !Boolean(str);
 }
-// 空文字列列の場合は、trueを返す
+// 空文字列の場合は、trueを返す
 console.log(isEmptyString("")); // => true
 // falsyな値の場合は、trueを返す
 console.log(isEmptyString(0)); // => true
@@ -520,7 +520,7 @@ console.log(isEmptyString()); // => true
 この場合、空文字列とは「String型で文字長が0の値」であると定義することで、\texttt{isEmptyString}関数をもっと正確に書くことができます。
 次のように実装することで、値が空文字列であるかを正しく判定できるようになりました。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 // 空文字列かどうかを判定
 function isEmptyString(str) {
     // String型でlengthが0の値の場合はtrueを返す

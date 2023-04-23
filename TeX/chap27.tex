@@ -86,7 +86,7 @@ export function bar() { }
 \begin{listtitle}
 named-import.js
 \end{listtitle}
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 // 名前つきエクスポートされたfooとbarをインポートする
 import { foo, bar } from "./my-module.js";
 console.log(foo); // => "foo"
@@ -149,7 +149,7 @@ export default foo;
 // 宣言と同時に関数をデフォルトエクスポートする
 export default function() {}
 \end{lstlisting}
-
+\newpage
 ただし、変数宣言は宣言とデフォルトエクスポートを同時に行うことはできません。
 なぜなら、変数宣言はカンマ区切りで複数の変数を定義できてしまうためです。
 次の例は実行できない不正なコードです。\enlargethispage{\baselineskip}

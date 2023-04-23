@@ -329,7 +329,7 @@ obj = null;
 メソッドに渡された\texttt{listener}は
 \texttt{EventEmitter}
 インスタンスが参照されなくなった際、自動的に解放されます。
-
+\newpage
 \begin{lstlisting}
 // イベントリスナーを管理するマップ
 const listenersMap = new WeakMap();
@@ -419,7 +419,7 @@ console.log(set.size); // => 0
 
 次のコードではiterableオブジェクトである配列を初期値として渡しています。
 また、\texttt{Set}では重複する同じ値を持たないことを保証するため、同じ値は1つのみ格納されます。
-
+\newpage
 \begin{lstlisting}
 // "value2"が重複するため、片方は無視される
 const set = new Set(["value1", "value2", "value2"]);
