@@ -5,7 +5,7 @@
 ここではブラウザで動作するウェブアプリケーションのユースケースとして、Todoアプリケーション（以下Todoアプリ）を作成していきます。
 ここで作成するTodoアプリは、タスクを入力し、そのタスクの完了状態をチェックボックスで管理するというアプリです。
 
-「\hyperlink{usecase-ajax}{Ajax通信}」のユースケースではGitHubからデータを取得して表示するだけであったため、状態を管理する部分はほとんどありませんでした。
+「\hyperlink{usecase-ajax}{ユースケース: Ajax通信}」ではGitHubからデータを取得して表示するだけであったため、状態を管理する部分はほとんどありませんでした。
 しかし、このTodoアプリはタスクの状態管理をするため、アプリとしての状態を管理\index{じょうたい@状態!かんり@管理}する必要があります。
 このユースケースを通して、どのように状態を管理し、表示や処理を変更するかといったアプリを作るにあたって必要になる設計や考え方について見ていきます。
 
@@ -25,7 +25,7 @@
 
 エントリーポイントとは、アプリケーションの中で一番最初に呼び出される部分のことです。
 
-「\hyperlink{usecase-ajax}{Ajax通信}」のユースケースでは、エントリーポイントはHTML（\texttt{index.html}）のみでした。
+「\hyperlink{usecase-ajax}{ユースケース: Ajax通信}」では、エントリーポイントはHTML（\texttt{index.html}）のみでした。
 まずHTMLが読み込まれ、次にHTMLの中に書かれている\texttt{script}要素で指定したJavaScriptファイルが読み込まれます。
 
 今回のTodoアプリはJavaScriptの処理をモジュール化し、それぞれのモジュールを別々のJavaScriptファイルとして作成していきます。
@@ -630,7 +630,7 @@ APIで作成すると見通しが悪くなるため、HTML文字列からHTML要
 
 次の\texttt{html-util.js}というファイルを\texttt{src/view/html-util.js}というパスに作成します。
 
-この\texttt{html-util.js}は「\hyperlink{usecase-ajax}{Ajax通信}」の「\hyperlink{html-to-dom}{HTML文字列をDOMに追加する}」でも利用した\texttt{escapeSpecialChars}をベースにしています。
+この\texttt{html-util.js}は「\hyperlink{usecase-ajax}{ユースケース: Ajax通信}」の「\hyperlink{html-to-dom}{HTML文字列をDOMに追加する}」でも利用した\texttt{escapeSpecialChars}をベースにしています。
 ajaxappでの\texttt{escapeHTML}タグ関数では出力は\textbf{\textgt{HTML文字列}}でしたが、今回作成する\texttt{element}タグ関数の出力は\textbf{\textgt{HTML要素}}（Element）です。
 
 Todoリスト（\texttt{\#js-todo-list}）というすでに存在する要素に対して要素を\textbf{\textgt{追加}}するには、HTML文字列ではなくHTML要素が必要になります。

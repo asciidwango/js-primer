@@ -1515,7 +1515,7 @@ console.log(child instanceof Parent); // => true
 console.log(child instanceof Child); // => true
 \end{lstlisting}
 
-より具体的な継承の使い方については「\hyperlink{todo-app}{ユースケース: Todoアプリ}」の章で見ていきます。
+より具体的な継承の使い方については「\hyperlink{todo-app}{ユースケース: Todoアプリケーション}」の章で見ていきます。
 
 \hypertarget{extends-built-in}{%
 \section{ビルトインオブジェクトの継承}\label{extends-built-in}}\index{びるといんおぶじぇくと@ビルトインオブジェクト!けいしょう@継承}
@@ -1528,7 +1528,7 @@ console.log(child instanceof Child); // => true
 継承した\texttt{MyArray}は\texttt{Array}の性質であるメソッドや状態管理についての仕組みを継承しています。
 継承した性質に加えて、MyArrayクラスへ\texttt{first}や\texttt{last}といったアクセッサプロパティを追加しています。
 
-\begin{lstlisting}
+\enlargethispage{\baselineskip}\begin{lstlisting}
 class MyArray extends Array {
     get first() {
         return this.at(0);
