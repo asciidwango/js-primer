@@ -8,9 +8,9 @@ export class TodoItemView {
     /**
      * todoItemに対応するTodoアイテムのHTML要素を作成して返す
      * @param {TodoItemModel} todoItem
-     * @param {function({id:string, completed: boolean})} onUpdateTodo
+     * @param {function({id:number, completed: boolean})} onUpdateTodo
      * チェックボックスの更新イベントリスナー
-     * @param {function({id:string})} onDeleteTodo 削除ボタンのクリック
+     * @param {function({id:number})} onDeleteTodo 削除ボタンのクリック
      * イベントリスナー
      * @returns {Element}
      */
