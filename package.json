@@ -121,7 +121,7 @@
     "unist-util-find-before": "^2.0.5",
     "unist-util-parents": "^1.0.3",
     "unist-util-select": "^3.0.4",
-    "vm2": "^3.9.17",
+    "vm2": "^3.9.18",
     "wait-on": "^6.0.1",
     "workbox-cli": "^3.6.3"
   }
