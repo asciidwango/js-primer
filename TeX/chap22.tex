@@ -99,7 +99,6 @@ taskB();
 \end{lstlisting}
 
 このように、非同期処理（\texttt{setTimeout}のコールバック関数）は、コードの見た目上の並びとは異なる順番で実行されることがわかります。
-\vspace{-4mm}
 \begin{figure}[h]
 \centering
 \includegraphics[width=100mm]{fig/async-single-thread-tasks.pdf}
@@ -160,12 +159,14 @@ taskB();
 多くの環境では、このときの非同期処理のコールバック関数が呼ばれるまでは1秒以上かかります。
 これは、10ミリ秒後に非同期のコールバック関数を実行するようにタイマーへ登録自体はできていますが、同期的にブロックする処理によって非同期のタスクの実行も後ろにずれてしまうためです。
 このように\textbf{\textgt{非同期処理}}も\textbf{\textgt{同期処理}}の影響を受けることから、同じメインスレッドで実行されていることがわかります。
-\vspace{-10mm}
+
+\vspace{5mm}
 \begin{figure}[h]
 \centering
-\includegraphics[width=140mm]{fig/block-async-single-thread-tasks.pdf}
+\includegraphics[width=148mm]{fig/block-async-single-thread-tasks.pdf}
 \end{figure}
-\vspace{-10mm}
+\vspace{5mm}
+
 JavaScriptでは一部の例外を除き非同期処理が\textbf{\textgt{並行処理}}\index{へいこうしょり@並行処理}（Concurrent\index{Concurrent}）として扱われます。
 並行処理とは、処理を一定の単位ごとに分けて処理を切り替えながら実行することです。
 そのため非同期処理の実行前にとても重たい処理があると、非同期処理の実行が遅れるという現象を引き起こします。
@@ -175,7 +176,7 @@ JavaScriptでは一部の例外を除き非同期処理が\textbf{\textgt{並行
 Worker}\index{Web Worker} APIを使い、メインスレッド以外でJavaScriptを実行できます。
 このWeb Workerにおける非同期処理は\textbf{\textgt{並列処理}}\index{へいれつしょり@並列処理}（Parallel\index{Parallel}）です。
 並列処理とは、排他的に複数の処理を同時に実行することです。
-
+\newpage
 Web Workerではメインスレッドとは異なるWorkerスレッドで実行されるため、Workerスレッド内で同期的にブロックする処理を実行してもメインスレッドは影響を受けにくくなります。
 ただし、Web Workerとメインスレッドでのデータのやり取りには\texttt{postMessage}\index{postMessage@\texttt{postMessage}}というメソッドを利用する必要があります。
 そのため、重たい処理をWorkerに移動できるというメリットはありますが、メインスレッドとWorkerスレッドのデータのやり取りに制限があるというトレードオフの関係になります。
