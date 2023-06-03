@@ -100,7 +100,7 @@ ECMAScript 2015と呼ばれる仕様の大きな更新が行われた際に、Ja
 書籍版は、次のページから購入できます。
 
 - 物理書籍とKindle: [JavaScript Primer 改訂2版 迷わないための入門書 | azu, Suguru Inatomi |本 | 通販 | Amazon](https://www.amazon.co.jp/dp/4048931105/)
-- PDFとepub: [JavaScript Primer 迷わないための入門書【委託】 - 達人出版会](https://tatsu-zine.com/books/javascript-primer) (2023-06-03時点では初版のままです)
+- PDFとepub: [JavaScript Primer 迷わないための入門書【委託】 - 達人出版会](https://tatsu-zine.com/books/javascript-primer) （2023-06-03時点では初版のままです）
 
 ## ウェブ版と書籍版の違い {#diff-with-print-version}
 
