@@ -11,8 +11,8 @@
 
 書籍版は次のページから購入できます。
 
-- 物理書籍とKindle: [JavaScript Primer 迷わないための入門書 | azu, Suguru Inatomi |本 | 通販 | Amazon](https://www.amazon.co.jp/dp/4048930737/)
-- PDFとepub: [JavaScript Primer 迷わないための入門書【委託】 - 達人出版会](https://tatsu-zine.com/books/javascript-primer)
+- 物理書籍とKindle: [JavaScript Primer 改訂2版 迷わないための入門書 | azu, Suguru Inatomi |本 | 通販 | Amazon](https://www.amazon.co.jp/dp/4048931105/)
+- PDFとepub: [JavaScript Primer 迷わないための入門書【委託】 - 達人出版会](https://tatsu-zine.com/books/javascript-primer) (2023-06-03時点では初版のままです)
 
 ウェブ版と書籍版の内容は基本的には同じです。
 詳細は[ウェブ版と書籍版の違い](https://jsprimer.net/intro/#diff-with-print-version)を参照してください。
@@ -30,7 +30,7 @@ GitHub Sponsorsで著者を支援できます。
 
 また、書籍版へのレビューを書くことも支援に繋がります。
 
-- [JavaScript Primer 迷わないための入門書 | azu, Suguru Inatomi |本 | 通販 | Amazon](https://www.amazon.co.jp/dp/4048930737/)
+- [JavaScript Primer 改訂2版 迷わないための入門書 | azu, Suguru Inatomi |本 | 通販 | Amazon](https://www.amazon.co.jp/dp/4048931105/)
 
 GitHubのDiscussions（掲示板）の他の人の質問に答えたり、JSPrimerを読んだ感想を書くことも支援になります。
 
