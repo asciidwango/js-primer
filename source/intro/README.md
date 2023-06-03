@@ -99,8 +99,8 @@ ECMAScript 2015と呼ばれる仕様の大きな更新が行われた際に、Ja
 この書籍は[アスキードワンゴ](https://asciidwango.jp/)から書籍として出版されています。
 書籍版は、次のページから購入できます。
 
-- [JavaScript Primer 迷わないための入門書 | azu, Suguru Inatomi |本 | 通販 | Amazon](https://www.amazon.co.jp/dp/4048930737/)
-- [JavaScript Primer 迷わないための入門書【委託】 - 達人出版会](https://tatsu-zine.com/books/javascript-primer)
+- 物理書籍とKindle: [JavaScript Primer 改訂2版 迷わないための入門書 | azu, Suguru Inatomi |本 | 通販 | Amazon](https://www.amazon.co.jp/dp/4048931105/)
+- PDFとepub: [JavaScript Primer 迷わないための入門書【委託】 - 達人出版会](https://tatsu-zine.com/books/javascript-primer) (2023-06-03時点では初版のままです)
 
 ## ウェブ版と書籍版の違い {#diff-with-print-version}
 
@@ -130,7 +130,7 @@ GitHub Sponsorsで著者を支援できます。
 
 また、書籍版へのレビューを書くことも支援に繋がります。
 
-- [JavaScript Primer 迷わないための入門書 | azu, Suguru Inatomi |本 | 通販 | Amazon](https://www.amazon.co.jp/dp/4048930737/)
+- [JavaScript Primer 改訂2版 迷わないための入門書 | azu, Suguru Inatomi |本 | 通販 | Amazon](https://www.amazon.co.jp/dp/4048931105/)
 
 GitHubのDiscussions（掲示板）の他の人の質問に答えたり、JSPrimerを読んだ感想を書くことも支援になります。
 
