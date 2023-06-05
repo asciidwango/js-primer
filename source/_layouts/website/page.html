@@ -5,12 +5,50 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DWY0DLHWB6"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
 
-    gtag('config', 'G-DWY0DLHWB6');
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag("js", new Date());
+
+    gtag("config", "G-DWY0DLHWB6");
 </script>
-<meta name="google-site-verification" content="bMotEbgYwkzA3k4PkuyK_NUdz0bKh-Phz0oUwNmRSVo" />
+<script type="module">
+    // コンソールUIでコード実行したらイベントとして送信する
+    const config = { childList: true };
+    const onExecuteCode = (scriptType) => {
+        gtag('event','execute_code', {
+            'event_category': 'console',
+            'event_label': 'execute_code',
+            'script_type': scriptType || 'unknown'
+        });
+    };
+    let observer;
+    const observeEvalEvent = () => {
+        if (observer) {
+            observer.disconnect();
+        }
+        const callback = function(mutationsList) {
+            // Use traditional 'for loops' for IE 11
+            for (const mutation of mutationsList) {
+                const mirrorConsole = Array.from(mutation.addedNodes).find(node => Boolean(node.dataset.mirrorConsole));
+                if (mirrorConsole) {
+                    return onExecuteCode(mirrorConsole.dataset.mirrorConsole);
+                }
+            }
+        };
+        observer = new MutationObserver(callback);
+        const targetNode = document.body;
+        observer.observe(targetNode, config);
+    };
+    window.addEventListener("DOMContentLoaded", function() {
+        gitbook.events.on("page.change", function() {
+            observeEvalEvent();
+        });
+    });
+</script>
+<meta name="google-site-verification" content="bMotEbgYwkzA3k4PkuyK_NUdz0bKh-Phz0oUwNmRSVo"/>
 <style>
     /*
      * Disable antialias
@@ -25,7 +63,7 @@
     }
 
     /* deny access chapter */
-    .summary li.chapter>span {
+    .summary li.chapter > span {
         cursor: not-allowed;
         opacity: .3;
     }
