@@ -104,7 +104,7 @@ ECMAScript 2015と呼ばれる仕様の大きな更新が行われた際に、Ja
 
 ## ウェブ版と書籍版の違い {#diff-with-print-version}
 
-書籍版の内容は[JavaScript Primer v1.0.0](https://github.com/asciidwango/js-primer/releases/tag/1.0.0)と同じです。
+書籍版の内容は[JavaScript Primer v4.0.0](https://github.com/asciidwango/js-primer/releases/tag/v4.0.0-publish)と同じです。
 
 ウェブ版と書籍版は次の点が異なります。
 
