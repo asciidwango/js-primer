@@ -252,12 +252,18 @@ console.log(Object.hasOwn(sparseArray, 1)); // => false
 
 {{book.console}}
 ```js
-const array = ["Java", "JavaScript", "Ruby"];
+const array = ["Java", "JavaScript", "Ruby", "JavaScript"];
 const indexOfJS = array.indexOf("JavaScript");
+const lastIndexOfJS = array.lastIndexOf("JavaScript");
+// 先頭から探索して最初に見つかった"JavaScript"のインデックス
 console.log(indexOfJS); // => 1
+// 末尾から探索して最初に見つかった"JavaScript"のインデックス
+console.log(lastIndexOfJS); // => 3
 console.log(array[indexOfJS]); // => "JavaScript"
+console.log(array[lastIndexOfJS]); // => "JavaScript"
 // "JS" という要素はないため `-1` が返される
 console.log(array.indexOf("JS")); // => -1
+console.log(array.lastIndexOf("JS")); // => -1
 ```
 
 `indexOf`メソッドは配列からプリミティブな要素を発見できますが、オブジェクトは持っているプロパティが同じでも別オブジェクトだと異なるものとして扱われます。
@@ -296,6 +302,8 @@ console.log(indexOfBlue); // => 2
 console.log(colors[indexOfBlue]); // => { "color": "blue" }
 ```
 
+Arrayの`findIndex`にも対となる`findLastIndex`メソッドがあり、`findLastIndex`メソッドは末尾から検索した結果が得られます。
+
 ### 条件に一致する要素を取得 {#find}
 
 配列から要素を取得する方法としてインデックスを使うこともできます。
@@ -328,7 +336,9 @@ const whiteColor = colors.find((obj) => {
 console.log(whiteColor); // => undefined
 ```
 
-### 指定範囲の要素を取得 {#slice}
+`find`メソッドにも対となる`findLast`メソッドがあり、`findLast`メソッドは末尾から検索した結果が得られます。
+
+## 指定範囲の要素を取得 {#slice}
 
 配列から指定範囲の要素を取り出す方法としてArrayの`slice`メソッドが利用できます。
 `slice`メソッドは、第一引数の開始位置から第二引数の終了位置（終了位置の要素は含まない）までの範囲を取り出した新しい配列を返します。
