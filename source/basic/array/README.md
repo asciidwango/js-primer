@@ -330,11 +330,11 @@ const records = [
     { date: "2020/12/5", count: 3 },
 ];
 // 10より大きい`count`プロパティを持つオブジェクトの最初のインデックスを取得
-const firstRecordIndex = colors.findIndex((record) => {
+const firstRecordIndex = records.findIndex((record) => {
     return record.count > 10;
 });
 // 10より大きい`count`プロパティを持つオブジェクトの最後のインデックスを取得
-const lastRecordIndex = colors.findLastIndex((record) => {
+const lastRecordIndex = records.findLastIndex((record) => {
     return record.count > 10;
 });
 console.log(firstRecordIndex); // => 1
@@ -391,11 +391,11 @@ const records = [
     { date: "2020/12/5", count: 3 },
 ];
 // 10より大きい`count`プロパティを持つオブジェクトの最初の取得
-const firstRecord = colors.findIndex((record) => {
+const firstRecord = records.findIndex((record) => {
     return record.count > 10;
 });
 // 10より大きい`count`プロパティを持つオブジェクトの最後の取得
-const lastRecord = colors.findLastIndex((record) => {
+const lastRecord = records.findLastIndex((record) => {
     return record.count > 10;
 });
 console.log(firstRecord); // => { date: "2020/12/2", count: 11 }
