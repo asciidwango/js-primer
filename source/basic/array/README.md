@@ -287,7 +287,6 @@ console.log(array.lastIndexOf("JS")); // => -1
 これは、異なる参照を持つオブジェクト同士は`===`で比較しても一致しないためです。
 
 {{book.console}}
-
 ```js
 const obj = { key: "value" };
 const array = ["A", "B", obj];
