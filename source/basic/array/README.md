@@ -338,9 +338,9 @@ const lastRecordIndex = records.findLastIndex((record) => {
     return record.count > 10;
 });
 console.log(firstRecordIndex); // => 1
-console.log(recrods[firstRecordIndex]); // => { date: "2020/12/2", count: 11 }
+console.log(records[firstRecordIndex]); // => { date: "2020/12/2", count: 11 }
 console.log(lastRecordIndex); // => 3
-console.log(recrods[lastRecordIndex]); // => { date: "2020/12/4", count: 12 }
+console.log(records[lastRecordIndex]); // => { date: "2020/12/4", count: 12 }
 ```
 
 
