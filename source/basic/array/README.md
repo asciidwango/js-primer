@@ -245,7 +245,7 @@ console.log(Object.hasOwn(sparseArray, 1)); // => false
 指定した要素が配列のどの位置にあるかを知りたい場合、Arrayの`indexOf`メソッドや`findIndex`メソッド<sup>[ES2015]</sup>を利用します。
 要素の位置のことを**インデックス**（`index`）と呼ぶため、メソッド名にも`index`という名前が入っています。
 
-次のコードでは、Array の`indexOf`メソッドを利用して、配列の中から`"JavaScript"`という文字列のインデックスを取得しています。
+次のコードでは、Arrayの`indexOf`メソッドを利用して、配列の中から`"JavaScript"`という文字列のインデックスを取得しています。
 `indexOf`メソッドは引数と厳密等価演算子（`===`）で一致する要素が先頭から検索しその要素のインデックスを返し、該当する要素がない場合は`-1`を返します。
 `indexOf`メソッドには対となる`lastIndexOf`メソッドがあり、`lastIndexOf`メソッドでは末尾から検索した結果が得られます。
 
@@ -297,7 +297,7 @@ console.log(indexOfBlue); // => 2
 console.log(colors[indexOfBlue]); // => { "color": "blue" }
 ```
 
-Arrayの`findIndex`にも対となる`findLastIndex`メソッド<sup>[ES2023]</sup>があり、`findLastIndex`メソッドは末尾から検索した結果が得られます。
+Arrayの`findIndex`メソッドにも対となる`findLastIndex`メソッド<sup>[ES2023]</sup>があり、`findLastIndex`メソッドは末尾から検索した結果が得られます。
 次のように、`findIndex`は最初に見つけた要素のインデックスを返しますが、`findLastIndex`は最後に見つけた要素のインデックスを返します。
 
 {{book.console}}
