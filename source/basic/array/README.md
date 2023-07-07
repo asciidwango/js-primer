@@ -302,7 +302,7 @@ console.log(colors[indexOfBlue]); // => { "color": "blue" }
 ```
 
 Arrayの`findIndex`メソッドにも対となる`findLastIndex`メソッド<sup>[ES2023]</sup>があり、`findLastIndex`メソッドは末尾から検索した結果が得られます。
-次のように、`findIndex`は最初に見つけた要素のインデックスを返しますが、`findLastIndex`は最後に見つけた要素のインデックスを返します。
+次のように、`findIndex`は条件に一致する最初の要素のインデックスを返しますが、`findLastIndex`は最後の要素のインデックスを返します。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": "2023" } -->
@@ -363,7 +363,7 @@ console.log(whiteColor); // => undefined
 ```
 
 `find`メソッドにも対となる`findLast`メソッド<sup>[ES2023]</sup>があり、`findLast`メソッドは末尾から検索した結果が得られます。
-次のように、`find`は最初に見つけた要素を返しますが、`findLast`は最後に見つけた要素を返します。
+次のように、`find`は条件に一致した最初の要素を返しますが、`findLast`は最後の要素を返します。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": "2023" } -->
