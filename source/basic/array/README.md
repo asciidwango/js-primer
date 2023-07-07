@@ -266,7 +266,6 @@ console.log(Object.hasOwn(sparseArray, 1)); // => false
 `indexOf`メソッドには対となる Array の`lastIndexOf`メソッドがあり、`lastIndexOf`メソッドでは末尾から検索した結果が得られます。
 
 {{book.console}}
-
 ```js
 const array = ["Java", "JavaScript", "Ruby", "JavaScript"];
 // 先頭から探索して最初に見つかった"JavaScript"のインデックスを取得
@@ -303,7 +302,6 @@ console.log(array.indexOf(obj)); // => 2
 これにより、プロパティの値が同じ要素を配列から見つけて、その要素のインデックスを得ることができます。
 
 {{book.console}}
-
 ```js
 // colorプロパティを持つオブジェクトの配列
 const colors = [{ color: "red" }, { color: "green" }, { color: "blue" }];
@@ -318,8 +316,8 @@ console.log(colors[indexOfBlue]); // => { "color": "blue" }
 Arrayの`findIndex`にも対となる`findLastIndex`メソッド<sup>[ES2023]</sup>があり、`findLastIndex`メソッドは末尾から検索した結果が得られます。
 次のように、`findIndex`は最初に見つけた要素のインデックスを返しますが、`findLastIndex`は最後に見つけた要素のインデックスを返します。
 
-<!-- doctest:meta:{ "ECMAScript": "2023" } -->
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2023" } -->
 ```js
 // dateとcountプロパティを持つオブジェクトの配列
 const records = [
@@ -379,8 +377,8 @@ console.log(whiteColor); // => undefined
 `find`メソッドにも対となる`findLast`メソッド<sup>[ES2023]</sup>があり、`findLast`メソッドは末尾から検索した結果が得られます。
 次のように、`find`は最初に見つけた要素を返しますが、`findLast`は最後に見つけた要素を返します。
 
-<!-- doctest:meta:{ "ECMAScript": "2023" } -->
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2023" } -->
 ```js
 // dateとcountプロパティを持つオブジェクトの配列
 const records = [
