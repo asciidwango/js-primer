@@ -288,7 +288,11 @@ console.log(array.indexOf(obj)); // => 2
 {{book.console}}
 ```js
 // colorプロパティを持つオブジェクトの配列
-const colors = [{ color: "red" }, { color: "green" }, { color: "blue" }];
+const colors = [
+    { "color": "red" },
+    { "color": "green" },
+    { "color": "blue" }
+];
 // `color`プロパティが"blue"のオブジェクトのインデックスを取得
 const indexOfBlue = colors.findIndex((obj) => {
     return obj.color === "blue";
