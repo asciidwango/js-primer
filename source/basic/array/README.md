@@ -246,18 +246,23 @@ console.log(Object.hasOwn(sparseArray, 1)); // => false
 要素の位置のことを**インデックス**（`index`）と呼ぶため、メソッド名にも`index`という名前が入っています。
 
 次のコードでは、Arrayの`indexOf`メソッドを利用して、配列の中から`"JavaScript"`という文字列のインデックスを取得しています。
-`indexOf`メソッドは引数と厳密等価演算子（`===`）で一致する要素があるなら、その要素のインデックスを返し、該当する要素がない場合は`-1`を返します。
-`indexOf`メソッドは先頭から検索して見つかった要素のインデックスを返します。
-`indexOf`メソッドには対となるArrayの`lastIndexOf`メソッドがあり、`lastIndexOf`メソッドでは末尾から検索した結果が得られます。
+`indexOf`メソッドは引数と厳密等価演算子（`===`）で一致する要素を先頭から検索して該当する要素のインデックスを返し、該当する要素がない場合は`-1`を返します。
+`indexOf`メソッドには対となる`lastIndexOf`メソッドがあり、`lastIndexOf`メソッドでは末尾から検索した結果が得られます。
 
 {{book.console}}
 ```js
-const array = ["Java", "JavaScript", "Ruby"];
+const array = ["Java", "JavaScript", "Ruby", "JavaScript"];
+// 先頭から探索して最初に見つかった"JavaScript"のインデックスを取得
 const indexOfJS = array.indexOf("JavaScript");
 console.log(indexOfJS); // => 1
+// 末尾から探索して最初に見つかった"JavaScript"のインデックスを取得
+const lastIndexOfJS = array.lastIndexOf("JavaScript");
+console.log(lastIndexOfJS); // => 3
 console.log(array[indexOfJS]); // => "JavaScript"
+console.log(array[lastIndexOfJS]); // => "JavaScript"
 // "JS" という要素はないため `-1` が返される
 console.log(array.indexOf("JS")); // => -1
+console.log(array.lastIndexOf("JS")); // => -1
 ```
 
 `indexOf`メソッドは配列からプリミティブな要素を発見できますが、オブジェクトは持っているプロパティが同じでも別オブジェクトだと異なるものとして扱われます。
@@ -296,6 +301,35 @@ console.log(indexOfBlue); // => 2
 console.log(colors[indexOfBlue]); // => { "color": "blue" }
 ```
 
+Arrayの`findIndex`メソッドにも対となる`findLastIndex`メソッド<sup>[ES2023]</sup>があり、`findLastIndex`メソッドは末尾から検索した結果が得られます。
+次のように、`findIndex`は条件に一致する最初の要素のインデックスを返しますが、`findLastIndex`は最後の要素のインデックスを返します。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2023" } -->
+```js
+// dateとcountプロパティを持つオブジェクトの配列
+const records = [
+    { date: "2020/12/1", count: 5 },
+    { date: "2020/12/2", count: 11 },
+    { date: "2020/12/3", count: 9 },
+    { date: "2020/12/4", count: 12 },
+    { date: "2020/12/5", count: 3 }
+];
+// 10より大きい`count`プロパティを持つ最初のオブジェクトのインデックスを取得
+const firstRecordIndex = records.findIndex((record) => {
+    return record.count > 10;
+});
+// 10より大きい`count`プロパティを持つ最後のオブジェクトのインデックスを取得
+const lastRecordIndex = records.findLastIndex((record) => {
+    return record.count > 10;
+});
+console.log(firstRecordIndex); // => 1
+console.log(records[firstRecordIndex]); // => { date: "2020/12/2", count: 11 }
+console.log(lastRecordIndex); // => 3
+console.log(records[lastRecordIndex]); // => { date: "2020/12/4", count: 12 }
+```
+
+
 ### 条件に一致する要素を取得 {#find}
 
 配列から要素を取得する方法としてインデックスを使うこともできます。
@@ -326,6 +360,32 @@ const whiteColor = colors.find((obj) => {
     return obj.color === "white";
 });
 console.log(whiteColor); // => undefined
+```
+
+`find`メソッドにも対となる`findLast`メソッド<sup>[ES2023]</sup>があり、`findLast`メソッドは末尾から検索した結果が得られます。
+次のように、`find`は条件に一致した最初の要素を返しますが、`findLast`は最後の要素を返します。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2023" } -->
+```js
+// dateとcountプロパティを持つオブジェクトの配列
+const records = [
+    { date: "2020/12/1", count: 5 },
+    { date: "2020/12/2", count: 11 },
+    { date: "2020/12/3", count: 9 },
+    { date: "2020/12/4", count: 12 },
+    { date: "2020/12/5", count: 3 }
+];
+// 10より大きい`count`プロパティを持つ最初のオブジェクトを取得
+const firstRecord = records.find((record) => {
+    return record.count > 10;
+});
+// 10より大きい`count`プロパティを持つ最後のオブジェクトを取得
+const lastRecord = records.findLast((record) => {
+    return record.count > 10;
+});
+console.log(firstRecord); // => { date: "2020/12/2", count: 11 }
+console.log(lastRecord); // => { date: "2020/12/4", count: 12 }
 ```
 
 ### 指定範囲の要素を取得 {#slice}

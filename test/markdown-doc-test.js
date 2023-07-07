@@ -19,9 +19,13 @@ const sourceDir = path.join(__dirname, "..", "source");
  * 最新版のNodeでは無視しない
  * @type {string[]}
  */
-const AllowECMAScriptVersions = (() => {
-    if (semver.cmp(process.version, ">=", "16.0.0")) {
+const IgnoredECMAScriptVersions = (() => {
+    if (semver.cmp(process.version, ">=", "18.0.0")) {
         return []; // すべて通る前提
+    }
+    if (semver.cmp(process.version, ">=", "16.0.0")) {
+        // Array.prototype.findLastIndex をサポートしていない
+        return ["2023"];
     }
     if (semver.cmp(process.version, ">=", "14.0.0")) {
         // String#replaceAll をサポートしていない
@@ -69,7 +73,7 @@ describe("doctest:md", function() {
                             timeout: 1000 * 2
                         }
                     }).catch(error => {
-                        if (error.meta && AllowECMAScriptVersions.some(version => version === String(error.meta.ECMAScript))) {
+                        if (error.meta && IgnoredECMAScriptVersions.some(version => version === String(error.meta.ECMAScript))) {
                             console.log(`ECMAScript ${error.meta.ECMAScript}が指定されているコードは実行環境がサポートしてない場合があるのでスキップします`);
                             this.skip();
                             return;
