@@ -327,7 +327,7 @@ const records = [
     { date: "2020/12/2", count: 11 },
     { date: "2020/12/3", count: 9 },
     { date: "2020/12/4", count: 12 },
-    { date: "2020/12/5", count: 3 },
+    { date: "2020/12/5", count: 3 }
 ];
 // 10より大きい`count`プロパティを持つ最初のオブジェクトのインデックスを取得
 const firstRecordIndex = records.findIndex((record) => {
@@ -388,7 +388,7 @@ const records = [
     { date: "2020/12/2", count: 11 },
     { date: "2020/12/3", count: 9 },
     { date: "2020/12/4", count: 12 },
-    { date: "2020/12/5", count: 3 },
+    { date: "2020/12/5", count: 3 }
 ];
 // 10より大きい`count`プロパティを持つ最初のオブジェクトを取得
 const firstRecord = records.find((record) => {
