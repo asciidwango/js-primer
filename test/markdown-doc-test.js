@@ -24,6 +24,7 @@ const AllowECMAScriptVersions = (() => {
         return []; // すべて通る前提
     }
     if (semver.cmp(process.version, ">=", "16.0.0")) {
+        // Array.prototype.findLastIndex をサポートしていない
         return ["2023"];
     }
     if (semver.cmp(process.version, ">=", "14.0.0")) {
