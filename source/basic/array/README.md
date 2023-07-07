@@ -391,11 +391,11 @@ const records = [
     { date: "2020/12/5", count: 3 },
 ];
 // 10より大きい`count`プロパティを持つオブジェクトの最初の取得
-const firstRecord = records.findIndex((record) => {
+const firstRecord = records.findLast((record) => {
     return record.count > 10;
 });
 // 10より大きい`count`プロパティを持つオブジェクトの最後の取得
-const lastRecord = records.findLastIndex((record) => {
+const lastRecord = records.findLast((record) => {
     return record.count > 10;
 });
 console.log(firstRecord); // => { date: "2020/12/2", count: 11 }
