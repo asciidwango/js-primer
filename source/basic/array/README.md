@@ -269,11 +269,11 @@ console.log(Object.hasOwn(sparseArray, 1)); // => false
 
 ```js
 const array = ["Java", "JavaScript", "Ruby", "JavaScript"];
+// 先頭から探索して最初に見つかった"JavaScript"のインデックスを取得
 const indexOfJS = array.indexOf("JavaScript");
-// 先頭から探索して最初に見つかった"JavaScript"のインデックス
 console.log(indexOfJS); // => 1
+// 末尾から探索して最初に見つかった"JavaScript"のインデックスを取得
 const lastIndexOfJS = array.lastIndexOf("JavaScript");
-// 末尾から探索して最初に見つかった"JavaScript"のインデックス
 console.log(lastIndexOfJS); // => 3
 console.log(array[indexOfJS]); // => "JavaScript"
 console.log(array[lastIndexOfJS]); // => "JavaScript"
