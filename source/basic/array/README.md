@@ -315,7 +315,7 @@ console.log(indexOfBlue); // => 2
 console.log(colors[indexOfBlue]); // => { "color": "blue" }
 ```
 
-Arrayの`findIndex`にも対となる`findLastIndex`メソッドがあり、`findLastIndex`メソッドは末尾から検索した結果が得られます。
+Arrayの`findIndex`にも対となる`findLastIndex`メソッド<sup>[ES2023]</sup>があり、`findLastIndex`メソッドは末尾から検索した結果が得られます。
 次のように、`findIndex`は最初に見つけた要素のインデックスを返しますが、`findLastIndex`は最後に見つけた要素のインデックスを返します。
 
 {{book.console}}
@@ -375,7 +375,7 @@ const whiteColor = colors.find((obj) => {
 console.log(whiteColor); // => undefined
 ```
 
-`find`メソッドにも対となる`findLast`メソッドがあり、`findLast`メソッドは末尾から検索した結果が得られます。
+`find`メソッドにも対となる`findLast`メソッド<sup>[ES2023]</sup>があり、`findLast`メソッドは末尾から検索した結果が得られます。
 次のように、`find`は最初に見つけた要素を返しますが、`findLast`は最後に見つけた要素を返します。
 
 {{book.console}}
