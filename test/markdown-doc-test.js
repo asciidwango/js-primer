@@ -20,8 +20,11 @@ const sourceDir = path.join(__dirname, "..", "source");
  * @type {string[]}
  */
 const AllowECMAScriptVersions = (() => {
-    if (semver.cmp(process.version, ">=", "16.0.0")) {
+    if (semver.cmp(process.version, ">=", "18.0.0")) {
         return []; // すべて通る前提
+    }
+    if (semver.cmp(process.version, ">=", "16.0.0")) {
+        return ["2023"];
     }
     if (semver.cmp(process.version, ">=", "14.0.0")) {
         // String#replaceAll をサポートしていない
