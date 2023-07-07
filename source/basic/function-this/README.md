@@ -567,14 +567,14 @@ Prefixer.prefixArray(["a", "b", "c"]); // => TypeError: Cannot read property 'pr
 ```
 
 なぜコールバック関数の中の`this`が`undefined`となるのかを見ていきます。
-Arrayの`map`メソッドにはコールバック関数として、その場で定義した匿名関数を渡していることに注目してください。
+Arrayの`map`メソッドにはコールバック関数として、その場で定義した無名関数を渡していることに注目してください。
 
 <!-- textlint-disable eslint -->
 <!-- doctest:disable -->
 ```js
 // ...
     prefixArray(strings) {
-        // 匿名関数をコールバック関数として渡している
+        // 無名関数をコールバック関数として渡している
         return strings.map(function(str) {
             return this.prefix + "-" + str;
         });
@@ -589,7 +589,7 @@ Arrayの`map`メソッドにはコールバック関数として、その場で�
 つまり、コールバック関数として呼び出すとき、この関数にはベースオブジェクトはありません。
 そのため`callback`関数の`this`は`undefined`となります。
 
-先ほどの例では匿名関数をコールバック関数として直接メソッドに渡していますが、一度`callback`変数に入れてから渡しても結果は同じです。
+先ほどの例では無名関数をコールバック関数として直接メソッドに渡していますが、一度`callback`変数に入れてから渡しても結果は同じです。
 
 <!-- textlint-enable no-js-function-paren -->
 

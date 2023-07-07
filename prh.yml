@@ -134,8 +134,8 @@ rules:
       - try/catch
   - expected: バッククオート
     patterns: バックティック
-  - expected: 匿名関数
-    patterns: 無名関数
+  - expected: 無名関数
+    patterns: 匿名関数
   - expected: Array-like
     patterns: 配列ライク
   - expected: Promiseチェーン
