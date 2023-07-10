@@ -809,6 +809,7 @@ console.log(array); // => ["A", "B", "C"]
 `toSpliced`メソッドを利用すると、`slice`メソッドを呼び出す必要がなくなります。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2023" } -->
 ```js
 // `array`の`index`番目の要素を削除した配列を返す関数
 function removeAtIndex(array, index) {
@@ -828,6 +829,7 @@ console.log(array); // => ["A", "B", "C"]
 `with`メソッドは、配列を複製してから指定したインデックスの要素を変更した配列を返す非破壊的なメソッドです。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2023" } -->
 ```js
 const array = ["A", "B", "C"];
 // `array`の1番目の要素を変更した配列を返す
