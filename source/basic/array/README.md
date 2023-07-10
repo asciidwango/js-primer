@@ -841,12 +841,12 @@ console.log(newArray); // => ["A", "B2", "C"]
 | 破壊的な方法                                    | 非破壊な方法           |
 | ---------------------------------------- | ------------- |
 | `array[index] = value` | `array.with(index, value)`       |
-| [`Array.prototype.pop`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/pop) | `array.slice(0, -1)`、`array.at(-1)`<sup>[ES2022]</sup>       |
+| [`Array.prototype.pop`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/pop) | `array.slice(0, -1)`と`array.at(-1)`<sup>[ES2022]</sup>       |
 | [`Array.prototype.push`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/push) | `[...array, item]`  |
 | [`Array.prototype.splice`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) | `Array.prototype.toSpliced`<sup>[ES2023]</sup> |
 | [`Array.prototype.reverse`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse) | `Array.prototype.toReversed`<sup>[ES2023]</sup>        |
 | [`Array.prototype.sort`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) | `Array.prototype.toSorted`<sup>[ES2023]</sup>       |
-| [`Array.prototype.shift`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/shift) | `array.slice(1)`または`array.at(0)`<sup>[ES2022]</sup>    |
+| [`Array.prototype.shift`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/shift) | `array.slice(1)`と`array.at(0)`<sup>[ES2022]</sup>    |
 | [`Array.prototype.unshift`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift) | `[item, ...array]`  |
 | [`Array.prototype.copyWithin`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin)<sup>[ES2015]</sup> | なし        |
 | [`Array.prototype.fill`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/fill)<sup>[ES2015]</sup> | なし        |
