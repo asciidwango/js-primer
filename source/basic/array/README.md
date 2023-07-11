@@ -815,7 +815,7 @@ console.log(array); // => ["A", "B", "C"]
 // `array`の`index`番目の要素を削除した配列を返す関数
 function removeAtIndex(array, index) {
     // コピーを作成してから変更する
-    return copiedArray.toSpliced(index, 1);
+    return array.toSpliced(index, 1);
 }
 const array = ["A", "B", "C"];
 // `array`から1番目の要素を削除した配列を取得
