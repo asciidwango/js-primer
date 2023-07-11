@@ -20,8 +20,11 @@ const sourceDir = path.join(__dirname, "..", "source");
  * @type {string[]}
  */
 const IgnoredECMAScriptVersions = (() => {
-    if (semver.cmp(process.version, ">=", "18.0.0")) {
+    if (semver.cmp(process.version, ">=", "20.0.0")) {
         return []; // すべて通る前提
+    }
+    if (semver.cmp(process.version, ">=", "18.0.0")) {
+        return ["2023"]; // Array.prototype.withがサポートされていない
     }
     if (semver.cmp(process.version, ">=", "16.0.0")) {
         // Array.prototype.findLastIndex をサポートしていない
