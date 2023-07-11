@@ -796,6 +796,7 @@ console.log(array); // => ["A", "B", "C"]
 これらのtoから始まる非破壊的メソッドの使い方は、破壊的なメソッドと同じですが、配列を複製してから変更するという違いがあります。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2023" } -->
 ```js
 const array = ["A", "B", "C"];
 // `toSpliced`は`array`を複製してから変更する
