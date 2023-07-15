@@ -1,5 +1,6 @@
-import { NodeVM } from "vm2";
+import vm from "vm";
 import makeConsoleMock from "consolemock";
+
 /**
  * 次のコメントが実際に実行されないことをテストできるように変換する
  *
@@ -75,14 +76,22 @@ export const toTestCode = (code) => {
  * @param {string} filePath
  */
 export const runTestCode = (code, filePath) => {
-    // Run Test Code
-    const vm = new NodeVM({
-        require: {
-            external: true,
-            context: {
-                console: !!process.env.ENABLE_CONSOLE ? console : makeConsoleMock()
-            }
-        }
+    const script = vm.Script(code, { filename: filePath });
+    const HostBuildIns = Object.freeze({
+        __proto__: null,
+        version: parseInt(process.versions.node.split(".")[0]),
+        require,
+        process,
+        console,
+        setTimeout,
+        setInterval,
+        setImmediate,
+        clearTimeout,
+        clearInterval,
+        clearImmediate,
     });
-    vm.run(code, filePath);
+    script.runInNewContext({
+        ...HostBuildIns,
+        console: !!process.env.ENABLE_CONSOLE ? console : makeConsoleMock()
+    });
 };
