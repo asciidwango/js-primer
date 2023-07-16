@@ -226,13 +226,13 @@ Arrow Function以外の関数では、関数の定義だけを見て`this`の値
 
 まずは、関数宣言や関数式の場合を見ていきます。
 
-<!-- textlint-disable no-js-function-paren -->
+<!-- textlint-disable no-js-function-paren, ja-technical-writing/no-doubled-joshi -->
 
 次の例では、関数宣言で関数`fn1`、関数式で関数`fn2`を定義し、それぞれの関数内で`this`を返します。
 定義したそれぞれの関数を`fn1()`と`fn2()`のようにただの関数として呼び出しています。
 このとき、ベースオブジェクトはないため、`this`は`undefined`となります。
 
-<!-- textlint-disable no-js-function-paren -->
+<!-- textlint-disable no-js-function-paren, ja-technical-writing/no-doubled-joshi -->
 
 {{book.console}}
 ```js
