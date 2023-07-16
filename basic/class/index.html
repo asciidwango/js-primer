@@ -6,7 +6,7 @@
         <title>クラス · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptにおけるクラスの定義方法や継承方法を紹介します。プロトタイプベースの言語であるJavaScriptがどのように継承などを実現しているのかを紹介します。">
-        <meta name="generator" content="HonKit 4.0.8">
+        <meta name="generator" content="HonKit 5.0.0">
         
         
         
@@ -1521,8 +1521,8 @@ JavaScriptではES2015より前までは<code>class</code>構文はなく、関�
 コンストラクタとは、そのクラスからインスタンスを作成する際にインスタンスに関する<strong>状態</strong>の初期化を行うメソッドです。
 <code>constructor</code>メソッドに定義した処理は、クラスをインスタンス化したときに自動的に呼び出されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
         <span class="hljs-comment">// コンストラクタ関数の処理</span>
         <span class="hljs-comment">// インスタンス化されるときに自動的に呼び出される</span>
     }
@@ -1530,23 +1530,23 @@ JavaScriptではES2015より前までは<code>class</code>構文はなく、関�
 </code></pre>
 <p>もうひとつの定義方法であるクラス式は、クラスを値として定義する方法です。 クラス式ではクラス名を省略できます。これは関数式における無名関数と同じです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> MyClass = <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {}
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> <span class="hljs-title class_">MyClass</span> = <span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {}
 };
 
-<span class="hljs-keyword">const</span> AnonymousClass = <span class="hljs-class"><span class="hljs-keyword">class</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {}
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">AnonymousClass</span> = <span class="hljs-keyword">class</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {}
 };
 </code></pre>
 <p>コンストラクタ関数内で、何も処理がない場合はコンストラクタの記述を省略できます。
 省略した場合でも自動的に空のコンストラクタが定義されるため、クラスにはコンストラクタが必ず存在します。</p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClassA</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClassA</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
         <span class="hljs-comment">// コンストラクタの処理が必要なら書く</span>
     }
 }
 <span class="hljs-comment">// コンストラクタの処理が不要な場合は省略できる</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClassB</span> </span>{
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClassB</span> {
 }
 </code></pre>
 <h2 id="class-instance"><a name="class-instance" class="plugin-anchor" href="#class-instance"><i class="fa fa-link" aria-hidden="true"></i></a>クラスのインスタンス化 </h2>
@@ -1554,17 +1554,17 @@ JavaScriptではES2015より前までは<code>class</code>構文はなく、関�
 <code>class</code>構文で定義したクラスからインスタンスを作成することを<strong>インスタンス化</strong>と呼びます。
 あるインスタンスが指定したクラスから作成されたものかを判定するには<code>instanceof</code>演算子が利用できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
 }
 <span class="hljs-comment">// `MyClass`をインスタンス化する</span>
-<span class="hljs-keyword">const</span> myClass = <span class="hljs-keyword">new</span> MyClass();
+<span class="hljs-keyword">const</span> myClass = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyClass</span>();
 <span class="hljs-comment">// 毎回新しいインスタンス(オブジェクト)を作成する</span>
-<span class="hljs-keyword">const</span> myClassAnother = <span class="hljs-keyword">new</span> MyClass();
+<span class="hljs-keyword">const</span> myClassAnother = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyClass</span>();
 <span class="hljs-comment">// それぞれのインスタンスは異なるオブジェクト</span>
-<span class="hljs-built_in">console</span>.log(myClass === myClassAnother); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myClass === myClassAnother); <span class="hljs-comment">// =&gt; false</span>
 <span class="hljs-comment">// クラスのインスタンスかどうかは`instanceof`演算子で判定できる</span>
-<span class="hljs-built_in">console</span>.log(myClass <span class="hljs-keyword">instanceof</span> MyClass); <span class="hljs-comment">// =&gt; true</span>
-<span class="hljs-built_in">console</span>.log(myClassAnother <span class="hljs-keyword">instanceof</span> MyClass); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myClass <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">MyClass</span>); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myClassAnother <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">MyClass</span>); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <p>このままでは何も処理がない空のクラスなので、値を持ったクラスを定義してみましょう。</p>
 <p>クラスではインスタンスの初期化処理をコンストラクタ関数で行います。 コンストラクタ関数は<code>new</code>演算子でインスタンス化する際に自動的に呼び出されます。
@@ -1572,13 +1572,13 @@ JavaScriptではES2015より前までは<code>class</code>構文はなく、関�
 <p>次のコードでは、<code>x</code>座標と<code>y</code>座標の値を持つ<code>Point</code>というクラスを定義しています。
 コンストラクタ関数（<code>constructor</code>）の中でインスタンスオブジェクト（<code>this</code>）の<code>x</code>と<code>y</code>プロパティに値を代入して初期化しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Point</span> </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Point</span> {
     <span class="hljs-comment">// コンストラクタ関数の仮引数として`x`と`y`を定義</span>
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">x, y</span>)</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">x, y</span>) {
         <span class="hljs-comment">// コンストラクタ関数における`this`はインスタンスを示すオブジェクト</span>
         <span class="hljs-comment">// インスタンスの`x`と`y`プロパティにそれぞれ値を設定する</span>
-        <span class="hljs-built_in">this</span>.x = x;
-        <span class="hljs-built_in">this</span>.y = y;
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span> = x;
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span> = y;
     }
 }
 </code></pre>
@@ -1586,56 +1586,56 @@ JavaScriptではES2015より前までは<code>class</code>構文はなく、関�
 <code>new</code>演算子の引数はクラスの<code>constructor</code>メソッド（コンストラクタ関数）の仮引数に渡されます。
 そして、コンストラクタの中ではインスタンスオブジェクト（<code>this</code>）の初期化処理を行います。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Point</span> </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Point</span> {
     <span class="hljs-comment">// 2. コンストラクタ関数の仮引数として`x`には`3`、`y`には`4`が渡る</span>
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">x, y</span>)</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">x, y</span>) {
         <span class="hljs-comment">// 3. インスタンス(`this`)の`x`と`y`プロパティにそれぞれ値を設定する</span>
-        <span class="hljs-built_in">this</span>.x = x;
-        <span class="hljs-built_in">this</span>.y = y;
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span> = x;
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span> = y;
         <span class="hljs-comment">// コンストラクタではreturn文は書かない</span>
     }
 }
 
 <span class="hljs-comment">// 1. コンストラクタを`new`演算子で引数とともに呼び出す</span>
-<span class="hljs-keyword">const</span> point = <span class="hljs-keyword">new</span> Point(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>);
+<span class="hljs-keyword">const</span> point = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Point</span>(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>);
 <span class="hljs-comment">// 4. `Point`のインスタンスである`point`の`x`と`y`プロパティには初期化された値が入る</span>
-<span class="hljs-built_in">console</span>.log(point.x); <span class="hljs-comment">// =&gt; 3</span>
-<span class="hljs-built_in">console</span>.log(point.y); <span class="hljs-comment">// =&gt; 4</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(point.<span class="hljs-property">x</span>); <span class="hljs-comment">// =&gt; 3</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(point.<span class="hljs-property">y</span>); <span class="hljs-comment">// =&gt; 4</span>
 </code></pre>
 <p>このようにクラスからインスタンスを作成するには必ず<code>new</code>演算子を使います。</p>
 <p>一方、クラスは通常の関数として呼ぶことができません。
 これは、クラスのコンストラクタはインスタンス（<code>this</code>）を初期化する場所であり、通常の関数とは役割が異なるためです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {}
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {}
 }
 <span class="hljs-comment">// クラスは関数として呼び出すことはできない</span>
-MyClass(); <span class="hljs-comment">// =&gt; TypeError: class constructors must be invoked with |new|</span>
+<span class="hljs-title class_">MyClass</span>(); <span class="hljs-comment">// =&gt; TypeError: class constructors must be invoked with |new|</span>
 </code></pre>
 <p>また、コンストラクタ関数は<code>return</code>文で任意のオブジェクトを返すことが可能ですが、行うべきではありません。
 なぜなら、クラスを<code>new</code>演算子で呼び出し、その評価結果はクラスのインスタンスを期待するのが一般的であるためです。</p>
 <p>次のコードのようにコンストラクタで返した値が<code>new</code>演算子で呼び出した際の返り値となります。 このような書き方は混乱を生むため避けるべきです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 非推奨の例: コンストラクタで値を返すべきではない</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Point</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">x, y</span>)</span> {
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Point</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">x, y</span>) {
         <span class="hljs-comment">// `this`の代わりにただのオブジェクトを返せる</span>
         <span class="hljs-keyword">return</span> { x, y };
     }
 }
 
 <span class="hljs-comment">// `new`演算子の結果はコンストラクタ関数が返したただのオブジェクト</span>
-<span class="hljs-keyword">const</span> point = <span class="hljs-keyword">new</span> Point(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>);
-<span class="hljs-built_in">console</span>.log(point); <span class="hljs-comment">// =&gt; { x: 3, y: 4 }</span>
+<span class="hljs-keyword">const</span> point = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Point</span>(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(point); <span class="hljs-comment">// =&gt; { x: 3, y: 4 }</span>
 <span class="hljs-comment">// Pointクラスのインスタンスではない</span>
-<span class="hljs-built_in">console</span>.log(point <span class="hljs-keyword">instanceof</span> Point); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(point <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Point</span>); <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
 <h3 id="class-name-start-upper-case"><a name="class-name-start-upper-case" class="plugin-anchor" href="#class-name-start-upper-case"><i class="fa fa-link" aria-hidden="true"></i></a>[Note] クラス名は大文字ではじめる </h3>
 <p>JavaScriptでは慣習としてクラス名には大文字ではじまる名前をつけます。
 これは、変数名にキャメルケースを使う慣習があるのと同じで、名前自体に特別なルールがあるわけではありません。
 クラス名を大文字にしておき、そのインスタンスは小文字で開始すれば名前が被らないという合理的な理由で好まれています。</p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Thing</span> </span>{}
-<span class="hljs-keyword">const</span> thing = <span class="hljs-keyword">new</span> Thing();
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Thing</span> {}
+<span class="hljs-keyword">const</span> thing = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thing</span>();
 </code></pre>
 <h3 id="class-vs-function"><a name="class-vs-function" class="plugin-anchor" href="#class-vs-function"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] <code>class</code>構文と関数でのクラスの違い </h3>
 <p>ES2015より前はこれらのクラスを<code>class</code>構文ではなく、関数で表現していました。
@@ -1643,30 +1643,30 @@ MyClass(); <span class="hljs-comment">// =&gt; TypeError: class constructors mus
 <p>次のコードは、関数でクラスを実装した1つの例です。 この関数でのクラス表現は、継承の仕組みなどは省かれていますが、<code>class</code>構文とよく似ています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// コンストラクタ関数</span>
-<span class="hljs-keyword">const</span> Point = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">PointConstructor</span>(<span class="hljs-params">x, y</span>) </span>{
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">Point</span> = <span class="hljs-keyword">function</span> <span class="hljs-title function_">PointConstructor</span>(<span class="hljs-params">x, y</span>) {
     <span class="hljs-comment">// インスタンスの初期化処理</span>
-    <span class="hljs-built_in">this</span>.x = x;
-    <span class="hljs-built_in">this</span>.y = y;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">x</span> = x;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">y</span> = y;
 };
 
 <span class="hljs-comment">// `new`演算子でコンストラクタ関数から新しいインスタンスを作成</span>
-<span class="hljs-keyword">const</span> point = <span class="hljs-keyword">new</span> Point(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>);
+<span class="hljs-keyword">const</span> point = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Point</span>(<span class="hljs-number">3</span>, <span class="hljs-number">4</span>);
 </code></pre>
 <p>大きな違いとして、<code>class</code>構文で定義したクラスは関数として呼び出すことができません。
 クラスは<code>new</code>演算子でインスタンス化して使うものなので、これはクラスの誤用を防ぐ仕様です。
 一方、関数でのクラス表現はただの関数なので、当然関数として呼び出せます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 関数でのクラス表現</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyClassLike</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">MyClassLike</span>(<span class="hljs-params"></span>) {
 }
 <span class="hljs-comment">// 関数なので関数として呼び出せる</span>
-MyClassLike();
+<span class="hljs-title class_">MyClassLike</span>();
 
 <span class="hljs-comment">// `class`構文でのクラス</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
 }
 <span class="hljs-comment">// クラスは関数として呼び出すと例外が発生する</span>
-MyClass(); <span class="hljs-comment">// =&gt; TypeError: class constructors must be invoked with |new|</span>
+<span class="hljs-title class_">MyClass</span>(); <span class="hljs-comment">// =&gt; TypeError: class constructors must be invoked with |new|</span>
 </code></pre>
 <p>このように、関数でクラスのようなものを実装した場合には、関数として呼び出せてしまう問題があります。
 このような問題を避けるためにもクラスは<code>class</code>構文を使って実装します。</p>
@@ -1678,7 +1678,7 @@ MyClass(); <span class="hljs-comment">// =&gt; TypeError: class constructors mus
 メソッドの中からクラスのインスタンスを参照するには、<code>constructor</code>メソッドと同じく<code>this</code>を使います。
 このクラスのメソッドにおける<code>this</code>は「<a href="../function-this/">関数とthis</a>」の章で学んだメソッドと同じくベースオブジェクトを参照します。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> クラス </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> クラス {
     メソッド() {
         <span class="hljs-comment">// ここでの`this`はベースオブジェクトを参照</span>
     }
@@ -1693,11 +1693,11 @@ MyClass(); <span class="hljs-comment">// =&gt; TypeError: class constructors mus
 <!-- textlint-disable -->
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-comment">// クラスでは次のようにメソッドを定義できない</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> クラス </span>{
+<span class="hljs-keyword">class</span> クラス {
    <span class="hljs-comment">// SyntaxError</span>
    メソッド: <span class="hljs-function">() =&gt;</span> {}
    <span class="hljs-comment">// SyntaxError</span>
-   メソッド: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{}
+   メソッド: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>){}
 }
 </code></pre>
 <!-- textlint-enable -->
@@ -1706,45 +1706,45 @@ MyClass(); <span class="hljs-comment">// =&gt; TypeError: class constructors mus
 <p>次のコードでは、<code>Counter</code>クラスに<code>increment</code>メソッドを定義しています。
 このときの<code>Counter</code>クラスのインスタンスは、それぞれ別々の状態（<code>count</code>プロパティ）を持ちます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">this</span>.count = <span class="hljs-number">0</span>;
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Counter</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">count</span> = <span class="hljs-number">0</span>;
     }
     <span class="hljs-comment">// `increment`メソッドをクラスに定義する</span>
-    <span class="hljs-function"><span class="hljs-title">increment</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-title function_">increment</span>(<span class="hljs-params"></span>) {
         <span class="hljs-comment">// `this`は`Counter`のインスタンスを参照する</span>
-        <span class="hljs-built_in">this</span>.count++;
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">count</span>++;
     }
 }
-<span class="hljs-keyword">const</span> counterA = <span class="hljs-keyword">new</span> Counter();
-<span class="hljs-keyword">const</span> counterB = <span class="hljs-keyword">new</span> Counter();
+<span class="hljs-keyword">const</span> counterA = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Counter</span>();
+<span class="hljs-keyword">const</span> counterB = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Counter</span>();
 <span class="hljs-comment">// `counterA.increment()`のベースオブジェクトは`counterA`インスタンス</span>
-counterA.increment();
+counterA.<span class="hljs-title function_">increment</span>();
 <span class="hljs-comment">// 各インスタンスの持つプロパティ(状態)は異なる</span>
-<span class="hljs-built_in">console</span>.log(counterA.count); <span class="hljs-comment">// =&gt; 1</span>
-<span class="hljs-built_in">console</span>.log(counterB.count); <span class="hljs-comment">// =&gt; 0</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(counterA.<span class="hljs-property">count</span>); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(counterB.<span class="hljs-property">count</span>); <span class="hljs-comment">// =&gt; 0</span>
 </code></pre>
 <p>このときの<code>increment</code>メソッドはプロトタイプメソッドとして定義されています。
 プロトタイプメソッドは各インスタンス間(<code>counterA</code>と<code>counterB</code>)で共有されます。
 そのため、次のように各インスタンスの<code>increment</code>メソッドの参照先は同じとなっていることがわかります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">this</span>.count = <span class="hljs-number">0</span>;
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Counter</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">count</span> = <span class="hljs-number">0</span>;
     }
-    <span class="hljs-function"><span class="hljs-title">increment</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">this</span>.count++;
+    <span class="hljs-title function_">increment</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">count</span>++;
     }
 }
-<span class="hljs-keyword">const</span> counterA = <span class="hljs-keyword">new</span> Counter();
-<span class="hljs-keyword">const</span> counterB = <span class="hljs-keyword">new</span> Counter();
+<span class="hljs-keyword">const</span> counterA = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Counter</span>();
+<span class="hljs-keyword">const</span> counterB = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Counter</span>();
 <span class="hljs-comment">// 各インスタンスオブジェクトのメソッドは共有されている(同じ関数を参照している)</span>
-<span class="hljs-built_in">console</span>.log(counterA.increment === counterB.increment); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(counterA.<span class="hljs-property">increment</span> === counterB.<span class="hljs-property">increment</span>); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <p>プロトタイプメソッドがなぜインスタンス間で共有されているのかは、クラスの継承の仕組みと密接に関係しています。
 プロトタイプメソッドの仕組みについては後ほど解説します。</p>
 <p>ここでは、次のような構文でクラスにメソッドを定義すると、各インスタンスで共有されるプロトタイプメソッドとして定義されるということが理解できていれば問題ありません。</p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> クラス </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> クラス {
     メソッド() {
         <span class="hljs-comment">// このメソッドはプロトタイプメソッドとして定義される</span>
     }
@@ -1761,7 +1761,7 @@ counterA.increment();
 getter（<code>get</code>）には仮引数はありませんが、必ず値を返す必要があります。
 setter（<code>set</code>）の仮引数にはプロパティへ代入する値が入りますが、値を返す必要はありません。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> クラス </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> クラス {
     <span class="hljs-comment">// getter</span>
     get プロパティ名() {
         <span class="hljs-keyword">return</span> 値;
@@ -1779,29 +1779,29 @@ setter（<code>set</code>）の仮引数にはプロパティへ代入する値�
 <code>value</code>プロパティへアクセスした際にそれぞれ定義したgetterとsetterが呼ばれているのがわかります。
 このアクセッサプロパティで実際に読み書きされているのは、<code>NumberWrapper</code>インスタンスの<code>_value</code>プロパティとなります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NumberWrapper</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">value</span>)</span> {
-        <span class="hljs-built_in">this</span>._value = value;
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">NumberWrapper</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">value</span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">_value</span> = value;
     }
     <span class="hljs-comment">// `_value`プロパティの値を返すgetter</span>
-    <span class="hljs-keyword">get</span> <span class="hljs-title">value</span>() {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;getter&quot;</span>);
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>._value;
+    <span class="hljs-keyword">get</span> <span class="hljs-title function_">value</span>() {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;getter&quot;</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">_value</span>;
     }
     <span class="hljs-comment">// `_value`プロパティに値を代入するsetter</span>
-    <span class="hljs-keyword">set</span> <span class="hljs-title">value</span>(<span class="hljs-params">newValue</span>) {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;setter&quot;</span>);
-        <span class="hljs-built_in">this</span>._value = newValue;
+    <span class="hljs-keyword">set</span> <span class="hljs-title function_">value</span>(<span class="hljs-params">newValue</span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;setter&quot;</span>);
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">_value</span> = newValue;
     }
 }
 
-<span class="hljs-keyword">const</span> numberWrapper = <span class="hljs-keyword">new</span> NumberWrapper(<span class="hljs-number">1</span>);
+<span class="hljs-keyword">const</span> numberWrapper = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NumberWrapper</span>(<span class="hljs-number">1</span>);
 <span class="hljs-comment">// &quot;getter&quot;とコンソールに表示される</span>
-<span class="hljs-built_in">console</span>.log(numberWrapper.value); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(numberWrapper.<span class="hljs-property">value</span>); <span class="hljs-comment">// =&gt; 1</span>
 <span class="hljs-comment">// &quot;setter&quot;とコンソールに表示される</span>
-numberWrapper.value = <span class="hljs-number">42</span>;
+numberWrapper.<span class="hljs-property">value</span> = <span class="hljs-number">42</span>;
 <span class="hljs-comment">// &quot;getter&quot;とコンソールに表示される</span>
-<span class="hljs-built_in">console</span>.log(numberWrapper.value); <span class="hljs-comment">// =&gt; 42</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(numberWrapper.<span class="hljs-property">value</span>); <span class="hljs-comment">// =&gt; 42</span>
 </code></pre>
 <!-- Note: インスタンスオブジェクトのアクセッサプロパティ
 インスタンスオブジェクトへも定義できるが、メソッドとは異なり意味の違いがでることはないため省略。
@@ -1821,11 +1821,11 @@ Arrayの<code>length</code>プロパティへ値を代入すると、そのイ�
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
 <span class="hljs-comment">// 要素数を減らすと、インデックス以降の要素が削除される</span>
-array.length = <span class="hljs-number">2</span>;
-<span class="hljs-built_in">console</span>.log(array.join(<span class="hljs-string">&quot;, &quot;</span>)); <span class="hljs-comment">// =&gt; &quot;1, 2&quot;</span>
+array.<span class="hljs-property">length</span> = <span class="hljs-number">2</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;, &quot;</span>)); <span class="hljs-comment">// =&gt; &quot;1, 2&quot;</span>
 <span class="hljs-comment">// 要素数だけを増やしても、配列の中身は空要素が増えるだけ</span>
-array.length = <span class="hljs-number">5</span>;
-<span class="hljs-built_in">console</span>.log(array.join(<span class="hljs-string">&quot;, &quot;</span>)); <span class="hljs-comment">// =&gt; &quot;1, 2, , , &quot;</span>
+array.<span class="hljs-property">length</span> = <span class="hljs-number">5</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;, &quot;</span>)); <span class="hljs-comment">// =&gt; &quot;1, 2, , , &quot;</span>
 </code></pre>
 <p>この<code>length</code>プロパティの挙動を再現する<code>ArrayLike</code>クラスを実装してみます。
 Arrayの<code>length</code>プロパティは、<code>length</code>プロパティへ値を代入した際に次のようなことを行っています。</p>
@@ -1844,49 +1844,49 @@ Arrayの<code>length</code>プロパティは、<code>length</code>プロパテ�
 <pre><code class="lang-js"><span class="hljs-comment">/**
  * 配列のようなlengthを持つクラス
  */</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayLike</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">items = []</span>)</span> {
-        <span class="hljs-built_in">this</span>._items = items;
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ArrayLike</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">items = []</span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">_items</span> = items;
     }
 
-    <span class="hljs-keyword">get</span> <span class="hljs-title">items</span>() {
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>._items;
+    <span class="hljs-keyword">get</span> <span class="hljs-title function_">items</span>() {
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">_items</span>;
     }
 
-    <span class="hljs-keyword">get</span> <span class="hljs-title">length</span>() {
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>._items.length;
+    <span class="hljs-keyword">get</span> <span class="hljs-title function_">length</span>() {
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">_items</span>.<span class="hljs-property">length</span>;
     }
 
-    <span class="hljs-keyword">set</span> <span class="hljs-title">length</span>(<span class="hljs-params">newLength</span>) {
-        <span class="hljs-keyword">const</span> currentItemLength = <span class="hljs-built_in">this</span>.items.length;
+    <span class="hljs-keyword">set</span> <span class="hljs-title function_">length</span>(<span class="hljs-params">newLength</span>) {
+        <span class="hljs-keyword">const</span> currentItemLength = <span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span>.<span class="hljs-property">length</span>;
         <span class="hljs-comment">// 現在要素数より小さな`newLength`が指定された場合、指定した要素数となるように末尾を削除する</span>
         <span class="hljs-keyword">if</span> (newLength &lt; currentItemLength) {
-            <span class="hljs-built_in">this</span>._items = <span class="hljs-built_in">this</span>.items.slice(<span class="hljs-number">0</span>, newLength);
+            <span class="hljs-variable language_">this</span>.<span class="hljs-property">_items</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span>.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>, newLength);
         } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (newLength &gt; currentItemLength) {
             <span class="hljs-comment">// 現在要素数より大きな`newLength`が指定された場合、指定した要素数となるように末尾に空要素を追加する</span>
-            <span class="hljs-built_in">this</span>._items = <span class="hljs-built_in">this</span>.items.concat(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(newLength - currentItemLength));
+            <span class="hljs-variable language_">this</span>.<span class="hljs-property">_items</span> = <span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span>.<span class="hljs-title function_">concat</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Array</span>(newLength - currentItemLength));
         }
     }
 }
 
-<span class="hljs-keyword">const</span> arrayLike = <span class="hljs-keyword">new</span> ArrayLike([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]);
+<span class="hljs-keyword">const</span> arrayLike = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayLike</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]);
 <span class="hljs-comment">// 要素数を減らすとインデックス以降の要素が削除される</span>
-arrayLike.length = <span class="hljs-number">2</span>;
-<span class="hljs-built_in">console</span>.log(arrayLike.items.join(<span class="hljs-string">&quot;, &quot;</span>)); <span class="hljs-comment">// =&gt; &quot;1, 2&quot;</span>
+arrayLike.<span class="hljs-property">length</span> = <span class="hljs-number">2</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(arrayLike.<span class="hljs-property">items</span>.<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;, &quot;</span>)); <span class="hljs-comment">// =&gt; &quot;1, 2&quot;</span>
 <span class="hljs-comment">// 要素数を増やすと末尾に空要素が追加される</span>
-arrayLike.length = <span class="hljs-number">5</span>;
-<span class="hljs-built_in">console</span>.log(arrayLike.items.join(<span class="hljs-string">&quot;, &quot;</span>)); <span class="hljs-comment">// =&gt; &quot;1, 2, , , &quot;</span>
+arrayLike.<span class="hljs-property">length</span> = <span class="hljs-number">5</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(arrayLike.<span class="hljs-property">items</span>.<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;, &quot;</span>)); <span class="hljs-comment">// =&gt; &quot;1, 2, , , &quot;</span>
 </code></pre>
 <p>このようにアクセッサプロパティでは、プロパティのようでありながら実際にアクセスした際には他のプロパティと連動する動作を実現できます。</p>
 <h2 id="public-class-fields"><a name="public-class-fields" class="plugin-anchor" href="#public-class-fields"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2022] Publicクラスフィールド </h2>
 <p>クラスでは、<code>constructor</code>メソッドの中でクラスの状態であるインスタンスのプロパティを初期化することを紹介しました。
 先ほども紹介した<code>Counter</code>クラスでは、<code>constructor</code>メソッドの中で<code>count</code>プロパティの初期値を<code>0</code>として定義しています。</p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">this</span>.count = <span class="hljs-number">0</span>;
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Counter</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">count</span> = <span class="hljs-number">0</span>;
     }
-    <span class="hljs-function"><span class="hljs-title">increment</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">this</span>.count++;
+    <span class="hljs-title function_">increment</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">count</span>++;
     }
 }
 </code></pre>
@@ -1894,7 +1894,7 @@ arrayLike.length = <span class="hljs-number">5</span>;
 このような場合でも、<code>constructor</code>メソッドを書かないとプロパティの初期化ができないためわずらわしいという問題がありました。</p>
 <p>ES2022で、クラスのインスタンスが持つプロパティの初期化をわかりやすく宣言的にする構文として、<strong>クラスフィールド</strong>構文が追加されました。</p>
 <p>クラスフィールドは、クラスのインスタンスが持つプロパティを定義する次のような構文です。</p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> クラス </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> クラス {
     プロパティ名 = プロパティの初期値;
 }
 </code></pre>
@@ -1902,15 +1902,15 @@ arrayLike.length = <span class="hljs-number">5</span>;
 <code>count</code>プロパティをクラスフィールドとして定義して、その初期値は<code>0</code>としています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Counter</span> {
     count = <span class="hljs-number">0</span>;
-    <span class="hljs-function"><span class="hljs-title">increment</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">this</span>.count++;
+    <span class="hljs-title function_">increment</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">count</span>++;
     }
 }
-<span class="hljs-keyword">const</span> counter = <span class="hljs-keyword">new</span> Counter();
-counter.increment();
-<span class="hljs-built_in">console</span>.log(counter.count); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-keyword">const</span> counter = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Counter</span>();
+counter.<span class="hljs-title function_">increment</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(counter.<span class="hljs-property">count</span>); <span class="hljs-comment">// =&gt; 1</span>
 </code></pre>
 <p>クラスフィールドで定義するのは、クラスのインスタンスが持つプロパティです。
 そのため、<code>constructor</code>メソッドの中で<code>this.count = 0</code>のように定義した場合と結果的にはほとんど同じ意味となります。
@@ -1920,35 +1920,35 @@ counter.increment();
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 別々のプロパティ名がそれぞれ定義される</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
     publicField = <span class="hljs-number">1</span>;
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">arg</span>)</span> {
-        <span class="hljs-built_in">this</span>.property = arg;
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">arg</span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">property</span> = arg;
     }
 }
-<span class="hljs-keyword">const</span> myClass = <span class="hljs-keyword">new</span> MyClass(<span class="hljs-number">2</span>);
-<span class="hljs-built_in">console</span>.log(myClass.publicField); <span class="hljs-comment">// =&gt; 1</span>
-<span class="hljs-built_in">console</span>.log(myClass.property); <span class="hljs-comment">// =&gt; 2</span>
+<span class="hljs-keyword">const</span> myClass = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyClass</span>(<span class="hljs-number">2</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myClass.<span class="hljs-property">publicField</span>); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myClass.<span class="hljs-property">property</span>); <span class="hljs-comment">// =&gt; 2</span>
 </code></pre>
 <p>また、クラスフィールドでの初期化処理が行われ、そのあと<code>constructor</code>でのプロパティの定義という処理順となります。
 そのため、同じプロパティ名への定義がある場合は、<code>constructor</code>メソッド内での定義でプロパティは上書きされます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 同じプロパティ名の場合は、constructorでの代入が後となる</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">OwnClass</span> </span>{
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">OwnClass</span> {
     publicField = <span class="hljs-number">1</span>;
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">arg</span>)</span> {
-        <span class="hljs-built_in">this</span>.publicField = arg;
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">arg</span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">publicField</span> = arg;
     }
 }
-<span class="hljs-keyword">const</span> ownClass = <span class="hljs-keyword">new</span> OwnClass(<span class="hljs-number">2</span>);
-<span class="hljs-built_in">console</span>.log(ownClass.publicField); <span class="hljs-comment">// =&gt; 2</span>
+<span class="hljs-keyword">const</span> ownClass = <span class="hljs-keyword">new</span> <span class="hljs-title class_">OwnClass</span>(<span class="hljs-number">2</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(ownClass.<span class="hljs-property">publicField</span>); <span class="hljs-comment">// =&gt; 2</span>
 </code></pre>
 <p>この<code>publicField</code>プロパティのように、クラスの外からアクセスできるプロパティを定義するクラスフィールドを<strong>Publicクラスフィールド</strong>と呼びます。</p>
 <h3 id="declare-class-fields"><a name="declare-class-fields" class="plugin-anchor" href="#declare-class-fields"><i class="fa fa-link" aria-hidden="true"></i></a>クラスフィールドを使ってプロパティの存在を宣言する </h3>
 <p>クラスフィールドでは、プロパティの初期値は省略可能となっています。
 そのため、次のように初期値を省略したPublicクラスフィールドも定義できます。</p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
     <span class="hljs-comment">// myPropertyはundefinedで初期化される</span>
     myProperty;
 }
@@ -1959,19 +1959,19 @@ counter.increment();
 クラスフィールドを使えば、<code>Loader</code>クラスのインスタンスは、<code>loadedContent</code>というプロパティを持っていることを宣言的に表現できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Loader</span> </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Loader</span> {
     loadedContent;
-    <span class="hljs-function"><span class="hljs-title">load</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">this</span>.loadedContent = <span class="hljs-string">&quot;読み込んだコンテンツ内容&quot;</span>;
+    <span class="hljs-title function_">load</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">loadedContent</span> = <span class="hljs-string">&quot;読み込んだコンテンツ内容&quot;</span>;
     }
 }
 </code></pre>
 <p>JavaScriptでは、オブジェクトのプロパティは初期化時に存在していなくても、後から代入すれば作成できてしまいます。
 そのため、次のように<code>Loader</code>クラスを実装しても意味は同じです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Loader</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">load</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">this</span>.loadedContent = <span class="hljs-string">&quot;読み込んだコンテンツ内容&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Loader</span> {
+    <span class="hljs-title function_">load</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">loadedContent</span> = <span class="hljs-string">&quot;読み込んだコンテンツ内容&quot;</span>;
     }
 }
 </code></pre>
@@ -1985,17 +1985,17 @@ counter.increment();
 JavaScriptでは関数も値として扱えるため、<code>up</code>メソッドを呼び出すと<code>increment</code>メソッドが呼び出されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Counter</span> {
     count = <span class="hljs-number">0</span>;
     <span class="hljs-comment">// upはincrementメソッドを参照している</span>
-    up = <span class="hljs-built_in">this</span>.increment;
-    <span class="hljs-function"><span class="hljs-title">increment</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">this</span>.count++;
+    up = <span class="hljs-variable language_">this</span>.<span class="hljs-property">increment</span>;
+    <span class="hljs-title function_">increment</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">count</span>++;
     }
 }
-<span class="hljs-keyword">const</span> counter = <span class="hljs-keyword">new</span> Counter();
-counter.up(); <span class="hljs-comment">// 結果的にはincrementメソッドが呼び出される</span>
-<span class="hljs-built_in">console</span>.log(counter.count); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-keyword">const</span> counter = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Counter</span>();
+counter.<span class="hljs-title function_">up</span>(); <span class="hljs-comment">// 結果的にはincrementメソッドが呼び出される</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(counter.<span class="hljs-property">count</span>); <span class="hljs-comment">// =&gt; 1</span>
 </code></pre>
 <p>クラスフィールドでの<code>this</code>は、Arrow Functionと組み合わせると強力です。</p>
 <p>次のコードでは、<code>up</code>メソッドをArrow Functionとして定義し、関数内では<code>this.increment</code>メソッドを呼び出しています。
@@ -2003,38 +2003,38 @@ Arrow Functionで定義した関数における<code>this</code>は、どのよ�
 そのため、<code>up</code>メソッドはどのような呼び方をした場合でも<code>this</code>がクラスのインスタンスとなるため、確実に<code>increment</code>メソッドを呼び出せます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Counter</span> </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Counter</span> {
     count = <span class="hljs-number">0</span>;
     <span class="hljs-comment">// クラスフィールドでの`this`はクラスのインスタンスとなる</span>
     <span class="hljs-comment">// upメソッドは、クラスのインスタンスに定義される</span>
     up = <span class="hljs-function">() =&gt;</span> {
-        <span class="hljs-built_in">this</span>.increment();
+        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">increment</span>();
     };
-    <span class="hljs-function"><span class="hljs-title">increment</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">this</span>.count++;
+    <span class="hljs-title function_">increment</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">count</span>++;
     }
 }
-<span class="hljs-keyword">const</span> counter = <span class="hljs-keyword">new</span> Counter();
+<span class="hljs-keyword">const</span> counter = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Counter</span>();
 <span class="hljs-comment">// Arrow Functionなので、thisはクラスのインスタンスに固定されている</span>
-<span class="hljs-keyword">const</span> up = counter.up;
-up();
-<span class="hljs-built_in">console</span>.log(counter.count); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-keyword">const</span> up = counter.<span class="hljs-property">up</span>;
+<span class="hljs-title function_">up</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(counter.<span class="hljs-property">count</span>); <span class="hljs-comment">// =&gt; 1</span>
 <span class="hljs-comment">// 通常のメソッド定義では、`this`が`undefined`となってしまうため例外が発生する</span>
-<span class="hljs-keyword">const</span> increment = counter.increment;
-increment(); <span class="hljs-comment">// Error: Uncaught TypeError: this is undefined</span>
+<span class="hljs-keyword">const</span> increment = counter.<span class="hljs-property">increment</span>;
+<span class="hljs-title function_">increment</span>(); <span class="hljs-comment">// Error: Uncaught TypeError: this is undefined</span>
 </code></pre>
 <h3 id="difference-between-class-fields-and-instance-property"><a name="difference-between-class-fields-and-instance-property" class="plugin-anchor" href="#difference-between-class-fields-and-instance-property"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] クラスフィールドとインスタンスのプロパティの違い </h3>
 <p>クラスフィールドで定義したプロパティやメソッドは、クラスのインスタンスにプロパティとして定義されます。
 そのため、クラスフィールドは、<code>constructor</code>の中で<code>this</code>に対してプロパティを追加するのと意味的にはほぼ同じで、見た目がわかりやすくなった構文と捉えることができます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExampleClass</span> </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ExampleClass</span> {
     fieldMethod = <span class="hljs-function">() =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;クラスフィールドで定義されたメソッド&quot;</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;クラスフィールドで定義されたメソッド&quot;</span>);
     };
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">this</span>.propertyMethod = <span class="hljs-function">() =&gt;</span> {
-            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;インスタンスにプロパティとして定義されたメソッド&quot;</span>);
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">propertyMethod</span> = <span class="hljs-function">() =&gt;</span> {
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;インスタンスにプロパティとして定義されたメソッド&quot;</span>);
         };
     }
 }
@@ -2043,23 +2043,23 @@ increment(); <span class="hljs-comment">// Error: Uncaught TypeError: this is un
 次のように、クラスフィールドと<code>constructor</code>の中で<code>this</code>に追加するプロパティ名に対するsetterを定義してみるとこの違いがわかります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExampleClass</span> </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ExampleClass</span> {
     field = <span class="hljs-string">&quot;フィールド&quot;</span>;
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">this</span>.property = <span class="hljs-string">&quot;コンストラクタ&quot;</span>;
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">property</span> = <span class="hljs-string">&quot;コンストラクタ&quot;</span>;
     }
     <span class="hljs-comment">// クラスフィールド名に対応するsetter</span>
-    <span class="hljs-keyword">set</span> <span class="hljs-title">field</span>(<span class="hljs-params">value</span>) {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;fieldで定義された値&quot;</span>, value);
+    <span class="hljs-keyword">set</span> <span class="hljs-title function_">field</span>(<span class="hljs-params">value</span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;fieldで定義された値&quot;</span>, value);
     }
     <span class="hljs-comment">// thisのプロパティ名に対応するsetter</span>
-    <span class="hljs-keyword">set</span> <span class="hljs-title">property</span>(<span class="hljs-params">value</span>) {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;consctrutorで代入された値&quot;</span>, value);
+    <span class="hljs-keyword">set</span> <span class="hljs-title function_">property</span>(<span class="hljs-params">value</span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;consctrutorで代入された値&quot;</span>, value);
     }
 }
 <span class="hljs-comment">// set fieldは呼び出されない</span>
 <span class="hljs-comment">// 一方で、set propertyは呼び出される</span>
-<span class="hljs-keyword">const</span> example = <span class="hljs-keyword">new</span> ExampleClass();
+<span class="hljs-keyword">const</span> example = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ExampleClass</span>();
 </code></pre>
 <p>クラスフィールド名に対するsetterは呼び出されないのに対して、<code>this.property</code>への代入に対するsetterは呼び出されています。
 これは、クラスフィールドは<code>=</code>を使った代入で定義されるのではなく、<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank">Object.defineProperty</a>メソッドを使ってプロパティが定義されるという違いがあります。
@@ -2072,15 +2072,15 @@ setterは<code>=</code>での代入に反応します。そのため、<code>con
 <h2 id="private-class-fields"><a name="private-class-fields" class="plugin-anchor" href="#private-class-fields"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2022] Privateクラスフィールド </h2>
 <p>クラスフィールド構文で次のように書くと、定義したプロパティはクラスをインスタンス化した後に外からも参照できます。
 そのため、Publicクラスフィールドと呼ばれます。</p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> クラス </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> クラス {
     プロパティ名 = プロパティの初期値;
 }
 </code></pre>
 <p>一方で外からアクセスされたくないインスタンスのプロパティも存在します。
 そのようなプライベートなプロパティを定義する構文もES2022で追加されています。</p>
 <p>Privateクラスフィールドは、次のように<code>#</code>をフィールド名の前につけたクラスフィールドを定義します。</p>
-<pre><code class="lang-js">class クラス {
-    // プライベートなプロパティは#をつける
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> クラス {
+    <span class="hljs-comment">// プライベートなプロパティは#をつける</span>
     #フィールド名 = プロパティの初期値;
 }
 </code></pre>
@@ -2089,39 +2089,39 @@ PrivateはただのIdentifier。実体的にはプロパティじゃないので
 <p>定義したPrivateクラスフィールドは、<code>this.#フィールド名</code>で参照できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PrivateExampleClass</span> </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">PrivateExampleClass</span> {
     #privateField = <span class="hljs-number">42</span>;
-    <span class="hljs-function"><span class="hljs-title">dump</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-title function_">dump</span>(<span class="hljs-params"></span>) {
         <span class="hljs-comment">// Privateクラスフィールドはクラス内からのみ参照できる</span>
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.#privateField); <span class="hljs-comment">// =&gt; 42</span>
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.#privateField); <span class="hljs-comment">// =&gt; 42</span>
     }
 }
-<span class="hljs-keyword">const</span> privateExample = <span class="hljs-keyword">new</span> PrivateExampleClass();
-privateExample.dump();
+<span class="hljs-keyword">const</span> privateExample = <span class="hljs-keyword">new</span> <span class="hljs-title class_">PrivateExampleClass</span>();
+privateExample.<span class="hljs-title function_">dump</span>();
 </code></pre>
 <p>もう少し具体的なPrivateクラスフィールドの使い方を見ていきます。
 アクセッサプロパティの例でも登場した<code>NumberWrapper</code>をPrivateクラスフィールドを使って書き直してみます。
 元々の<code>NumberWrapper</code>クラスでは、<code>_value</code>プロパティに実際の値を読み書きしていました。
 この場合、<code>_value</code>プロパティは、外からもアクセスできてしまうため、定義したgetterとsetterが無視できてしまいます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NumberWrapper</span> </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">NumberWrapper</span> {
     <span class="hljs-comment">// Publicクラスフィールドなのでクラスの外からアクセスができる</span>
     _value;
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">value</span>)</span> {
-        <span class="hljs-built_in">this</span>._value = value;
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">value</span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">_value</span> = value;
     }
     <span class="hljs-comment">// `_value`プロパティの値を返すgetter</span>
-    <span class="hljs-keyword">get</span> <span class="hljs-title">value</span>() {
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>._value;
+    <span class="hljs-keyword">get</span> <span class="hljs-title function_">value</span>() {
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">_value</span>;
     }
     <span class="hljs-comment">// `_value`プロパティに値を代入するsetter</span>
-    <span class="hljs-keyword">set</span> <span class="hljs-title">value</span>(<span class="hljs-params">newValue</span>) {
-        <span class="hljs-built_in">this</span>._value = newValue;
+    <span class="hljs-keyword">set</span> <span class="hljs-title function_">value</span>(<span class="hljs-params">newValue</span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">_value</span> = newValue;
     }
 }
-<span class="hljs-keyword">const</span> numberWrapper = <span class="hljs-keyword">new</span> NumberWrapper(<span class="hljs-number">1</span>);
+<span class="hljs-keyword">const</span> numberWrapper = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NumberWrapper</span>(<span class="hljs-number">1</span>);
 <span class="hljs-comment">// _valueプロパティは外からもアクセスできる</span>
-<span class="hljs-built_in">console</span>.log(numberWrapper._value); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(numberWrapper.<span class="hljs-property">_value</span>); <span class="hljs-comment">// =&gt; 1</span>
 </code></pre>
 <p>Privateクラスフィールドでは、外からアクセスされたくないプロパティを<code>#</code>をつけてクラスフィールドとして定義します。
 次のコードでは、<code>#value</code>はプライベートプロパティとなっているため、構文エラーが発生し外からアクセスできなくなることが確認できます。
@@ -2129,25 +2129,25 @@ Privateクラスフィールドを使うことで、クラスを利用する際�
 <!-- textlint-disable eslint -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest: SyntaxError --></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NumberWrapper</span> </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">NumberWrapper</span> {
     <span class="hljs-comment">// valueはPrivateクラスフィールドとして定義</span>
     #value;
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">value</span>)</span> {
-        <span class="hljs-built_in">this</span>.#value = value;
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">value</span>) {
+        <span class="hljs-variable language_">this</span>.#value = value;
     }
     <span class="hljs-comment">// `#value`フィールドの値を返すgetter</span>
-    <span class="hljs-keyword">get</span> <span class="hljs-title">value</span>() {
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.#value;
+    <span class="hljs-keyword">get</span> <span class="hljs-title function_">value</span>() {
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.#value;
     }
     <span class="hljs-comment">// `#value`フィールドに値を代入するsetter</span>
-    <span class="hljs-keyword">set</span> <span class="hljs-title">value</span>(<span class="hljs-params">newValue</span>) {
-        <span class="hljs-built_in">this</span>.#value = newValue;
+    <span class="hljs-keyword">set</span> <span class="hljs-title function_">value</span>(<span class="hljs-params">newValue</span>) {
+        <span class="hljs-variable language_">this</span>.#value = newValue;
     }
 }
 
-<span class="hljs-keyword">const</span> numberWrapper = <span class="hljs-keyword">new</span> NumberWrapper(<span class="hljs-number">1</span>);
+<span class="hljs-keyword">const</span> numberWrapper = <span class="hljs-keyword">new</span> <span class="hljs-title class_">NumberWrapper</span>(<span class="hljs-number">1</span>);
 <span class="hljs-comment">// クラスの外からPrivateクラスフィールドには直接はアクセスできない</span>
-<span class="hljs-built_in">console</span>.log(numberWrapper.#value); <span class="hljs-comment">// =&gt; SyntaxError: reference to undeclared private field or method #value</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(numberWrapper.#value); <span class="hljs-comment">// =&gt; SyntaxError: reference to undeclared private field or method #value</span>
 </code></pre>
 <!-- textlint-enable eslint -->
 <p>Privateクラスフィールドを使うことで、クラスの外からアクセスさせたくないプロパティを宣言できます。
@@ -2158,11 +2158,11 @@ Publicクラスフィールドではフィールドの定義は省略可能で�
 言い換えると、Privateクラスフィールドでは、クラスを定義した段階でクラスに存在するすべてのPrivateクラスフィールドを明示する必要があります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PrivateLoader</span> </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">PrivateLoader</span> {
     <span class="hljs-comment">// 途中で値が入る場合でも最初に`undefined`で初期化されるフィールドの定義が必須</span>
     #loadedContent;
-    <span class="hljs-function"><span class="hljs-title">load</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">this</span>.#loadedContent = <span class="hljs-string">&quot;読み込んだコンテンツ内容&quot;</span>;
+    <span class="hljs-title function_">load</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">this</span>.#loadedContent = <span class="hljs-string">&quot;読み込んだコンテンツ内容&quot;</span>;
     }
 }
 </code></pre>
@@ -2171,7 +2171,7 @@ Publicクラスフィールドではフィールドの定義は省略可能で�
 一方、クラスをインスタンス化せずに利用できる静的メソッド（クラスメソッド）もあります。</p>
 <p>静的メソッドの定義方法はメソッド名の前に、<code>static</code>をつけるだけです。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> クラス </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> クラス {
     <span class="hljs-keyword">static</span> メソッド() {
         <span class="hljs-comment">// 静的メソッドの処理</span>
     }
@@ -2183,49 +2183,49 @@ Publicクラスフィールドではフィールドの定義は省略可能で�
 <code>ArrayWrapper</code>はコンストラクタの引数として配列を受け取って初期化しています。
 このクラスに配列ではなく要素そのものを引数に受け取ってインスタンス化できる<code>ArrayWrapper.of</code>という静的メソッドを定義します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayWrapper</span> </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ArrayWrapper</span> {
     <span class="hljs-comment">// new演算子で引数が渡されたなかった場合の初期値は空配列</span>
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">array = []</span>)</span> {
-        <span class="hljs-built_in">this</span>.array = array;
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">array = []</span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span> = array;
     }
 
     <span class="hljs-comment">// rest parametersとして要素を受けつける</span>
-    <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-title">of</span>(<span class="hljs-params">...items</span>)</span> {
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ArrayWrapper(items);
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">of</span>(<span class="hljs-params">...items</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayWrapper</span>(items);
     }
 
-    <span class="hljs-keyword">get</span> <span class="hljs-title">length</span>() {
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.array.length;
+    <span class="hljs-keyword">get</span> <span class="hljs-title function_">length</span>() {
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>.<span class="hljs-property">length</span>;
     }
 }
 
 <span class="hljs-comment">// 配列を引数として渡している</span>
-<span class="hljs-keyword">const</span> arrayWrapperA = <span class="hljs-keyword">new</span> ArrayWrapper([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]);
+<span class="hljs-keyword">const</span> arrayWrapperA = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayWrapper</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]);
 <span class="hljs-comment">// 要素を引数として渡している</span>
-<span class="hljs-keyword">const</span> arrayWrapperB = ArrayWrapper.of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);
-<span class="hljs-built_in">console</span>.log(arrayWrapperA.length); <span class="hljs-comment">// =&gt; 3</span>
-<span class="hljs-built_in">console</span>.log(arrayWrapperB.length); <span class="hljs-comment">// =&gt; 3</span>
+<span class="hljs-keyword">const</span> arrayWrapperB = <span class="hljs-title class_">ArrayWrapper</span>.<span class="hljs-title function_">of</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(arrayWrapperA.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 3</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(arrayWrapperB.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 3</span>
 </code></pre>
 <p>クラスの静的メソッドにおける<code>this</code>は、そのクラス自身を参照します。
 そのため、先ほどのコードは<code>new ArrayWrapper</code>の代わりに<code>new this</code>と書くこともできます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayWrapper</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">array = []</span>)</span> {
-        <span class="hljs-built_in">this</span>.array = array;
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ArrayWrapper</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">array = []</span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span> = array;
     }
 
-    <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-title">of</span>(<span class="hljs-params">...items</span>)</span> {
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">of</span>(<span class="hljs-params">...items</span>) {
         <span class="hljs-comment">// `this`は`ArrayWrapper`を参照する</span>
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">this</span>(items);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">this</span>(items);
     }
 
-    <span class="hljs-keyword">get</span> <span class="hljs-title">length</span>() {
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.array.length;
+    <span class="hljs-keyword">get</span> <span class="hljs-title function_">length</span>() {
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">array</span>.<span class="hljs-property">length</span>;
     }
 }
 
-<span class="hljs-keyword">const</span> arrayWrapper = ArrayWrapper.of(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);
-<span class="hljs-built_in">console</span>.log(arrayWrapper.length); <span class="hljs-comment">// =&gt; 3</span>
+<span class="hljs-keyword">const</span> arrayWrapper = <span class="hljs-title class_">ArrayWrapper</span>.<span class="hljs-title function_">of</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(arrayWrapper.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 3</span>
 </code></pre>
 <p>このように静的メソッドでの<code>this</code>はクラス自身を参照するため、クラスのインスタンスは参照できません。
 そのため静的メソッドは、クラスのインスタンスを作成する処理やクラスに関係する処理を書くために利用されます。</p>
@@ -2236,27 +2236,27 @@ Publicクラスフィールドではフィールドの定義は省略可能で�
 次のコードでは、Public静的クラスフィールドを使って<code>Colors</code>クラス自体にプロパティを定義しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Colors</span> </span>{
-    <span class="hljs-keyword">static</span> GREEN = <span class="hljs-string">&quot;緑&quot;</span>;
-    <span class="hljs-keyword">static</span> RED = <span class="hljs-string">&quot;赤&quot;</span>;
-    <span class="hljs-keyword">static</span> BLUE = <span class="hljs-string">&quot;青&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Colors</span> {
+    <span class="hljs-keyword">static</span> <span class="hljs-variable constant_">GREEN</span> = <span class="hljs-string">&quot;緑&quot;</span>;
+    <span class="hljs-keyword">static</span> <span class="hljs-variable constant_">RED</span> = <span class="hljs-string">&quot;赤&quot;</span>;
+    <span class="hljs-keyword">static</span> <span class="hljs-variable constant_">BLUE</span> = <span class="hljs-string">&quot;青&quot;</span>;
 }
 <span class="hljs-comment">// クラスのプロパティとして参照できる</span>
-<span class="hljs-built_in">console</span>.log(Colors.GREEN); <span class="hljs-comment">// =&gt; &quot;緑&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Colors</span>.<span class="hljs-property">GREEN</span>); <span class="hljs-comment">// =&gt; &quot;緑&quot;</span>
 </code></pre>
 <p>また、Privateクラスフィールドも静的に利用できます。
 Private静的クラスフィールドは、クラス自体にプロパティを定義したいが、そのプロパティを外から参照されたくない場合に利用します。
 Private静的クラスフィールドはフィールドの前に、<code>static</code>をつけるだけです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
     <span class="hljs-keyword">static</span> #privateClassProp = <span class="hljs-string">&quot;This is private&quot;</span>;
-    <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-title">outputPrivate</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">outputPrivate</span>(<span class="hljs-params"></span>) {
         <span class="hljs-comment">// クラス内からはPrivate静的クラスフィールドで定義したプロパティを参照できる</span>
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.#privateClassProp);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.#privateClassProp);
     }
 }
-MyClass.outputPrivate();
+<span class="hljs-title class_">MyClass</span>.<span class="hljs-title function_">outputPrivate</span>();
 </code></pre>
 <!-- Note: static class blocksはユースケースが難しいため省かれている -->
 <h2 id="two-instance-method-definition"><a name="two-instance-method-definition" class="plugin-anchor" href="#two-instance-method-definition"><i class="fa fa-link" aria-hidden="true"></i></a>プロトタイプに定義したメソッドとインスタンスに定義したメソッドの違い </h2>
@@ -2267,59 +2267,59 @@ MyClass.outputPrivate();
 <p>どちらのメソッド定義方法でも、<code>new</code>演算子でインスタンス化したオブジェクトからメソッドを呼び出すことができる点は同じです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExampleClass</span> </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ExampleClass</span> {
     <span class="hljs-comment">// クラスフィールドを使い、インスタンスにメソッドを定義</span>
     instanceMethod = <span class="hljs-function">() =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;インスタンスメソッド&quot;</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;インスタンスメソッド&quot;</span>);
     };
     <span class="hljs-comment">// メソッド構文を使い、プロトタイプオブジェクトにメソッドを定義</span>
-    <span class="hljs-function"><span class="hljs-title">prototypeMethod</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;プロトタイプメソッド&quot;</span>);
+    <span class="hljs-title function_">prototypeMethod</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;プロトタイプメソッド&quot;</span>);
     }
 }
-<span class="hljs-keyword">const</span> example = <span class="hljs-keyword">new</span> ExampleClass();
+<span class="hljs-keyword">const</span> example = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ExampleClass</span>();
 <span class="hljs-comment">// どちらのメソッドもインスタンスから呼び出せる</span>
-example.instanceMethod();
-example.prototypeMethod();
+example.<span class="hljs-title function_">instanceMethod</span>();
+example.<span class="hljs-title function_">prototypeMethod</span>();
 </code></pre>
 <p>しかしこの2つのメソッドの定義方法は、メソッドの定義先となるオブジェクトが異なります。</p>
 <p>まず、この2種類のメソッドがそれぞれ別の場所へと定義されていることを見ていきます。
 次のコードでは、<code>ConflictClass</code>クラスに<code>method</code>という同じ名前のメソッドをプロトタイプメソッドとインスタンスに対してそれぞれ定義しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConflictClass</span> </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ConflictClass</span> {
     <span class="hljs-comment">// インスタンスオブジェクトに`method`を定義</span>
     method = <span class="hljs-function">() =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;インスタンスオブジェクトのメソッド&quot;</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;インスタンスオブジェクトのメソッド&quot;</span>);
     };
 
     <span class="hljs-comment">// クラスのプロトタイプメソッドとして`method`を定義</span>
-    <span class="hljs-function"><span class="hljs-title">method</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;プロトタイプのメソッド&quot;</span>);
+    <span class="hljs-title function_">method</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;プロトタイプのメソッド&quot;</span>);
     }
 }
 
-<span class="hljs-keyword">const</span> conflict = <span class="hljs-keyword">new</span> ConflictClass();
-conflict.method(); <span class="hljs-comment">// どちらの`method`が呼び出される？</span>
+<span class="hljs-keyword">const</span> conflict = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConflictClass</span>();
+conflict.<span class="hljs-title function_">method</span>(); <span class="hljs-comment">// どちらの`method`が呼び出される？</span>
 </code></pre>
 <p>結論から述べると、この場合はインスタンスオブジェクトに定義した<code>method</code>が呼び出されます。
 このとき、インスタンスの<code>method</code>プロパティを<code>delete</code>演算子で削除すると、今度はプロトタイプメソッドの<code>method</code>が呼び出されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ConflictClass</span> </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">ConflictClass</span> {
     <span class="hljs-comment">// インスタンスオブジェクトに`method`を定義</span>
     method = <span class="hljs-function">() =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;インスタンスオブジェクトのメソッド&quot;</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;インスタンスオブジェクトのメソッド&quot;</span>);
     };
 
-    <span class="hljs-function"><span class="hljs-title">method</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;プロトタイプメソッド&quot;</span>);
+    <span class="hljs-title function_">method</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;プロトタイプメソッド&quot;</span>);
     }
 }
 
-<span class="hljs-keyword">const</span> conflict = <span class="hljs-keyword">new</span> ConflictClass();
-conflict.method(); <span class="hljs-comment">// &quot;インスタンスオブジェクトのメソッド&quot;</span>
+<span class="hljs-keyword">const</span> conflict = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConflictClass</span>();
+conflict.<span class="hljs-title function_">method</span>(); <span class="hljs-comment">// &quot;インスタンスオブジェクトのメソッド&quot;</span>
 <span class="hljs-comment">// インスタンスの`method`プロパティを削除</span>
-<span class="hljs-keyword">delete</span> conflict.method;
-conflict.method(); <span class="hljs-comment">// &quot;プロトタイプメソッド&quot;</span>
+<span class="hljs-keyword">delete</span> conflict.<span class="hljs-property">method</span>;
+conflict.<span class="hljs-title function_">method</span>(); <span class="hljs-comment">// &quot;プロトタイプメソッド&quot;</span>
 </code></pre>
 <p>この実行結果から次のことがわかります。</p>
 <ul>
@@ -2338,41 +2338,41 @@ conflict.method(); <span class="hljs-comment">// &quot;プロトタイプメソ�
 クラスも一種の関数オブジェクトであるため、自動的に<code>prototype</code>プロパティにプロトタイプオブジェクトが作成されています。</p>
 <p>次のコードでは、関数やクラス自身の<code>prototype</code>プロパティに、プロトタイプオブジェクトが自動的に作成されていることがわかります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">fn</span>(<span class="hljs-params"></span>) {
 }
 <span class="hljs-comment">// `prototype`プロパティにプロトタイプオブジェクトが存在する</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> fn.prototype === <span class="hljs-string">&quot;object&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> fn.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> === <span class="hljs-string">&quot;object&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
 }
 <span class="hljs-comment">// `prototype`プロパティにプロトタイプオブジェクトが存在する</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> MyClass.prototype === <span class="hljs-string">&quot;object&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-title class_">MyClass</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> === <span class="hljs-string">&quot;object&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <p><code>class</code>構文のメソッド定義は、このプロトタイプオブジェクトのプロパティとして定義されます。</p>
 <p>次のコードでは、クラスのメソッドがプロトタイプオブジェクトに定義されていることを確認できます。
 また、クラスには<code>constructor</code>メソッド（コンストラクタ）が必ず定義されます。
 この<code>constructor</code>メソッドもプロトタイプオブジェクトに定義されており、この<code>constructor</code>プロパティはクラス自身を参照します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">method</span>(<span class="hljs-params"></span>)</span> {}
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
+    <span class="hljs-title function_">method</span>(<span class="hljs-params"></span>) {}
 }
 
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> MyClass.prototype.method === <span class="hljs-string">&quot;function&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-title class_">MyClass</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">method</span> === <span class="hljs-string">&quot;function&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
 <span class="hljs-comment">// クラスのconstructorはクラス自身を参照する</span>
-<span class="hljs-built_in">console</span>.log(MyClass.prototype.constructor === MyClass); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">MyClass</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">constructor</span> === <span class="hljs-title class_">MyClass</span>); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <p>このように、プロトタイプメソッドはプロトタイプオブジェクトに定義され、インスタンスオブジェクトのメソッドとは異なるオブジェクトに定義されています。そのため、それぞれの方法でメソッドを定義しても、上書きされることはありません。</p>
 <h2 id="prototype-chain"><a name="prototype-chain" class="plugin-anchor" href="#prototype-chain"><i class="fa fa-link" aria-hidden="true"></i></a>プロトタイプチェーン </h2>
 <p><code>class</code>構文で定義したプロトタイプメソッドはプロトタイプオブジェクトに定義されます。
 しかし、インスタンス（オブジェクト）にはメソッドが定義されていないのに、インスタンスからクラスのプロトタイプメソッドを呼び出せます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">method</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;プロトタイプのメソッド&quot;</span>);
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
+    <span class="hljs-title function_">method</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;プロトタイプのメソッド&quot;</span>);
     }
 }
-<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> MyClass();
-instance.method(); <span class="hljs-comment">// &quot;プロトタイプのメソッド&quot;</span>
+<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyClass</span>();
+instance.<span class="hljs-title function_">method</span>(); <span class="hljs-comment">// &quot;プロトタイプのメソッド&quot;</span>
 </code></pre>
 <p>インスタンスからプロトタイプメソッドを呼び出せるのは<strong>プロトタイプチェーン</strong>と呼ばれる仕組みによるものです。
 プロトタイプチェーンは2つの処理から成り立ちます。</p>
@@ -2391,15 +2391,15 @@ instance.method(); <span class="hljs-comment">// &quot;プロトタイプのメ�
 <p>次のコードでは、<code>instance</code>オブジェクトの<code>[[Prototype]]</code>内部プロパティを取得しています。
 その取得した結果がクラスのプロトタイプオブジェクトを参照していることを確認できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">method</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;プロトタイプのメソッド&quot;</span>);
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
+    <span class="hljs-title function_">method</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;プロトタイプのメソッド&quot;</span>);
     }
 }
-<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> MyClass();
+<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyClass</span>();
 <span class="hljs-comment">// `instance`の`[[Prototype]]`内部プロパティは`MyClass.prototype`と一致する</span>
-<span class="hljs-keyword">const</span> MyClassPrototype = <span class="hljs-built_in">Object</span>.getPrototypeOf(instance);
-<span class="hljs-built_in">console</span>.log(MyClassPrototype === MyClass.prototype); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">MyClassPrototype</span> = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">getPrototypeOf</span>(instance);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">MyClassPrototype</span> === <span class="hljs-title class_">MyClass</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <p>ここで重要なのは、インスタンスはどのクラスから作られたかやそのクラスのプロトタイプオブジェクトを知っているということです。</p>
 <h4 id="inner-property"><a name="inner-property" class="plugin-anchor" href="#inner-property"><i class="fa fa-link" aria-hidden="true"></i></a>[Note] <code>[[Prototype]]</code>内部プロパティを読み書きする </h4>
@@ -2423,17 +2423,17 @@ instance.method(); <span class="hljs-comment">// &quot;プロトタイプのメ�
 <p>次のコードでは、インスタンスオブジェクト自身は<code>method</code>プロパティを持っていません。
 そのため、実際に参照しているのはクラスのプロトタイプオブジェクトの<code>method</code>プロパティです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">method</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;プロトタイプのメソッド&quot;</span>);
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
+    <span class="hljs-title function_">method</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;プロトタイプのメソッド&quot;</span>);
     }
 }
-<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> MyClass();
+<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyClass</span>();
 <span class="hljs-comment">// インスタンスには`method`プロパティがないため、プロトタイプオブジェクトの`method`が参照される</span>
-instance.method(); <span class="hljs-comment">// &quot;プロトタイプのメソッド&quot;</span>
+instance.<span class="hljs-title function_">method</span>(); <span class="hljs-comment">// &quot;プロトタイプのメソッド&quot;</span>
 <span class="hljs-comment">// `instance.method`の参照はプロトタイプオブジェクトの`method`と一致する</span>
-<span class="hljs-keyword">const</span> Prototype = <span class="hljs-built_in">Object</span>.getPrototypeOf(instance);
-<span class="hljs-built_in">console</span>.log(instance.method === Prototype.method); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">Prototype</span> = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">getPrototypeOf</span>(instance);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(instance.<span class="hljs-property">method</span> === <span class="hljs-title class_">Prototype</span>.<span class="hljs-property">method</span>); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <p>このように、インスタンスオブジェクトに<code>method</code>が定義されていなくても、クラスのプロトタイプオブジェクトの<code>method</code>を呼び出すことができます。
 このプロパティを参照する際に、オブジェクト自身から<code>[[Prototype]]</code>内部プロパティへと順番に探す仕組みのことを<strong>プロトタイプチェーン</strong>と呼びます。</p>
@@ -2441,24 +2441,24 @@ instance.method(); <span class="hljs-comment">// &quot;プロトタイプのメ�
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
 <pre><code class="lang-js"><span class="hljs-comment">// プロトタイプチェーンの動作の疑似的なコード</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">method</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;プロトタイプのメソッド&quot;</span>);
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span> {
+    <span class="hljs-title function_">method</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;プロトタイプのメソッド&quot;</span>);
     }
 }
-<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> MyClass();
+<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyClass</span>();
 <span class="hljs-comment">// `instance.method()`を実行する場合</span>
 <span class="hljs-comment">// 次のような呼び出し処理が行われている</span>
 <span class="hljs-comment">// インスタンスが`method`プロパティを持っている場合</span>
-<span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.hasOwn(instance, <span class="hljs-string">&quot;method&quot;</span>)) {
-    instance.method();
+<span class="hljs-keyword">if</span> (<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">hasOwn</span>(instance, <span class="hljs-string">&quot;method&quot;</span>)) {
+    instance.<span class="hljs-title function_">method</span>();
 } <span class="hljs-keyword">else</span> {
     <span class="hljs-comment">// インスタンスの`[[Prototype]]`の参照先（`MyClass`のプロトタイプオブジェクト）を取り出す</span>
-    <span class="hljs-keyword">const</span> prototypeObject = <span class="hljs-built_in">Object</span>.getPrototypeOf(instance);
+    <span class="hljs-keyword">const</span> prototypeObject = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">getPrototypeOf</span>(instance);
     <span class="hljs-comment">// プロトタイプオブジェクトが`method`プロパティを持っている場合</span>
-    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.hasOwn(prototypeObject, <span class="hljs-string">&quot;method&quot;</span>)) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">hasOwn</span>(prototypeObject, <span class="hljs-string">&quot;method&quot;</span>)) {
         <span class="hljs-comment">// `this`はインスタンス自身を指定して呼び出す</span>
-        prototypeObject.method.call(instance);
+        prototypeObject.<span class="hljs-property">method</span>.<span class="hljs-title function_">call</span>(instance);
     }
 }
 </code></pre>
@@ -2483,17 +2483,17 @@ instance.method(); <span class="hljs-comment">// &quot;プロトタイプのメ�
 <code>class</code>構文の右辺に<code>extends</code>キーワードで継承元となる<strong>親クラス</strong>（基底クラス）を指定することで、
 親クラスを継承した<strong>子クラス</strong>（派生クラス）を定義できます。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> 子クラス <span class="hljs-keyword">extends</span> 親クラス </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> 子クラス <span class="hljs-keyword">extends</span> 親クラス {
 }
 </code></pre>
 <p>次のコードでは、<code>Parent</code>クラスを継承した<code>Child</code>クラスを定義しています。
 子クラスである<code>Child</code>クラスのインスタンス化は通常のクラスと同じく<code>new</code>演算子を使って行います。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Parent</span> {
 }
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>{
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Parent</span> {
 }
-<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> Child();
+<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Child</span>();
 </code></pre>
 <h3 id="class-super"><a name="class-super" class="plugin-anchor" href="#class-super"><i class="fa fa-link" aria-hidden="true"></i></a><code>super</code> </h3>
 <p><code>extends</code>を使って定義した子クラスから親クラスを参照するには<code>super</code>というキーワードを利用します。
@@ -2504,20 +2504,20 @@ instance.method(); <span class="hljs-comment">// &quot;プロトタイプのメ�
 <code>super()</code>は子クラスから親クラスの<code>constructor</code>メソッドを呼び出します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 親クラス</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">...args</span>)</span> {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Parentコンストラクタの処理&quot;</span>, ...args);
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Parent</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">...args</span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Parentコンストラクタの処理&quot;</span>, ...args);
     }
 }
 <span class="hljs-comment">// Parentを継承したChildクラスの定義</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">...args</span>)</span> {
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Parent</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">...args</span>) {
         <span class="hljs-comment">// Parentのコンストラクタ処理を呼び出す</span>
-        <span class="hljs-built_in">super</span>(...args);
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Childコンストラクタの処理&quot;</span>, ...args);
+        <span class="hljs-variable language_">super</span>(...args);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Childコンストラクタの処理&quot;</span>, ...args);
     }
 }
-<span class="hljs-keyword">const</span> child = <span class="hljs-keyword">new</span> Child(<span class="hljs-string">&quot;引数1&quot;</span>, <span class="hljs-string">&quot;引数2&quot;</span>);
+<span class="hljs-keyword">const</span> child = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Child</span>(<span class="hljs-string">&quot;引数1&quot;</span>, <span class="hljs-string">&quot;引数2&quot;</span>);
 <span class="hljs-comment">// &quot;Parentコンストラクタの処理&quot;, &quot;引数1&quot;, &quot;引数2&quot;</span>
 <span class="hljs-comment">// &quot;Childコンストラクタの処理&quot;, &quot;引数1&quot;, &quot;引数2&quot;</span>
 </code></pre>
@@ -2526,16 +2526,16 @@ instance.method(); <span class="hljs-comment">// &quot;プロトタイプのメ�
 <p>次のコードの<code>Child</code>クラスのコンストラクタでは、何も処理を行っていません。
 そのため、<code>Child</code>クラスの<code>constructor</code>メソッドの定義を省略できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>{}
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>{}
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Parent</span> {}
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Parent</span> {}
 </code></pre>
 <p>このように子クラスで<code>constructor</code>を省略した場合は次のように書いた場合と同じ意味になります。
 <code>constructor</code>メソッドの引数をすべて受け取り、そのまま<code>super</code>へ引数の順番を維持して渡します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>{}
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">...args</span>)</span> {
-        <span class="hljs-built_in">super</span>(...args); <span class="hljs-comment">// 親クラスに引数をそのまま渡す</span>
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Parent</span> {}
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Parent</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">...args</span>) {
+        <span class="hljs-variable language_">super</span>(...args); <span class="hljs-comment">// 親クラスに引数をそのまま渡す</span>
     }
 }
 </code></pre>
@@ -2548,24 +2548,24 @@ instance.method(); <span class="hljs-comment">// &quot;プロトタイプのメ�
 そのため、コンストラクタの処理順は<code>Parent</code>から<code>Child</code>という順番に限定されます。</p>
 <!-- textlint-enable no-js-function-paren -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">this</span>.name = <span class="hljs-string">&quot;Parent&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Parent</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = <span class="hljs-string">&quot;Parent&quot;</span>;
     }
 }
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Parent</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
         <span class="hljs-comment">// 子クラスでは`super()`を`this`に触る前に呼び出さなければならない</span>
-        <span class="hljs-built_in">super</span>();
+        <span class="hljs-variable language_">super</span>();
         <span class="hljs-comment">// 子クラスのコンストラクタ処理</span>
         <span class="hljs-comment">// 親クラスで書き込まれた`name`は上書きされる</span>
-        <span class="hljs-built_in">this</span>.name = <span class="hljs-string">&quot;Child&quot;</span>;
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = <span class="hljs-string">&quot;Child&quot;</span>;
     }
 }
-<span class="hljs-keyword">const</span> parent = <span class="hljs-keyword">new</span> Parent();
-<span class="hljs-built_in">console</span>.log(parent.name); <span class="hljs-comment">// =&gt; &quot;Parent&quot;</span>
-<span class="hljs-keyword">const</span> child = <span class="hljs-keyword">new</span> Child();
-<span class="hljs-built_in">console</span>.log(child.name); <span class="hljs-comment">// =&gt; &quot;Child&quot;</span>
+<span class="hljs-keyword">const</span> parent = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Parent</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(parent.<span class="hljs-property">name</span>); <span class="hljs-comment">// =&gt; &quot;Parent&quot;</span>
+<span class="hljs-keyword">const</span> child = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Child</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(child.<span class="hljs-property">name</span>); <span class="hljs-comment">// =&gt; &quot;Child&quot;</span>
 </code></pre>
 <h3 id="class-fields-inheritance"><a name="class-fields-inheritance" class="plugin-anchor" href="#class-fields-inheritance"><i class="fa fa-link" aria-hidden="true"></i></a>クラスフィールドの継承 </h3>
 <p>Publicクラスフィールドもコンストラクタの処理順と同じく親クラスのフィールドが初期化された後に子クラスのフィールドが初期化されます。
@@ -2573,29 +2573,29 @@ Publicクラスフィールドは、インスタンスオブジェクトに対�
 そのため、親クラスで定義されていたフィールドも、実際にインスタンス化したオブジェクトのプロパティとして定義されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Parent</span> {
     parentField = <span class="hljs-string">&quot;親クラスで定義したフィールド&quot;</span>;
 }
 <span class="hljs-comment">// `Parent`を継承した`Child`を定義</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>{
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Parent</span> {
     childField = <span class="hljs-string">&quot;子クラスで定義したフィールド&quot;</span>;
 }
-<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> Child();
-<span class="hljs-built_in">console</span>.log(instance.parentField); <span class="hljs-comment">// =&gt; &quot;親クラスで定義したフィールド&quot;</span>
-<span class="hljs-built_in">console</span>.log(instance.childField); <span class="hljs-comment">// =&gt; &quot;子クラスで定義したフィールド&quot;</span>
+<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Child</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(instance.<span class="hljs-property">parentField</span>); <span class="hljs-comment">// =&gt; &quot;親クラスで定義したフィールド&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(instance.<span class="hljs-property">childField</span>); <span class="hljs-comment">// =&gt; &quot;子クラスで定義したフィールド&quot;</span>
 </code></pre>
 <p>同じ名前のフィールドが定義されている場合は、子クラスのフィールド定義で上書きされます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Parent</span> {
     field = <span class="hljs-string">&quot;親クラスで定義したフィールド&quot;</span>;
 }
 <span class="hljs-comment">// `Parent`を継承した`Child`を定義</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>{
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Parent</span> {
     field = <span class="hljs-string">&quot;子クラスで定義したフィールド&quot;</span>;
 }
-<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> Child();
-<span class="hljs-built_in">console</span>.log(instance.field); <span class="hljs-comment">// =&gt; &quot;子クラスで定義したフィールド&quot;</span>
+<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Child</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(instance.<span class="hljs-property">field</span>); <span class="hljs-comment">// =&gt; &quot;子クラスで定義したフィールド&quot;</span>
 </code></pre>
 <p>Publicクラスフィールドは、このように親クラスで定義したフィールドも子クラスに定義されます。
 一方で、Privateクラスフィールドは、このように親クラスで定義したフィールドは子クラスに定義されません。</p>
@@ -2604,17 +2604,17 @@ Publicクラスフィールドは、インスタンスオブジェクトに対�
 <!-- textlint-disable eslint -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest: SyntaxError --></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Parent</span> {
     #parentField = <span class="hljs-string">&quot;親クラスで定義したPrivateフィールド&quot;</span>;
 }
 <span class="hljs-comment">// `Parent`を継承した`Child`を定義</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">dump</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.#parentField); <span class="hljs-comment">// =&gt; SyntaxError: reference to undeclared private field or method #parentFeild</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Parent</span> {
+    <span class="hljs-title function_">dump</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.#parentField); <span class="hljs-comment">// =&gt; SyntaxError: reference to undeclared private field or method #parentFeild</span>
     }
 }
-<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> Child();
-instance.dump();
+<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Child</span>();
+instance.<span class="hljs-title function_">dump</span>();
 </code></pre>
 <!-- textlint-enable eslint -->
 <p>これは、PrivateクラスフィールドのPrivateとは各クラスごとのPrivateを守る目的であるためです。
@@ -2628,18 +2628,18 @@ JavaScriptでのsoft privateは、WeakMapやWeakSetを使ってユーザー自�
 <p>次のコードでは<code>extends</code>キーワードを使って<code>Parent</code>クラスを継承した<code>Child</code>クラスを定義しています。
 <code>Parent</code>クラスでは<code>method</code>を定義しているため、これを継承している<code>Child</code>クラスのインスタンスからも呼び出せます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">method</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Parent.prototype.method&quot;</span>);
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Parent</span> {
+    <span class="hljs-title function_">method</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Parent.prototype.method&quot;</span>);
     }
 }
 <span class="hljs-comment">// `Parent`を継承した`Child`を定義</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>{
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Parent</span> {
     <span class="hljs-comment">// methodの定義はない</span>
 }
 <span class="hljs-comment">// `Child`のインスタンスは`Parent`のプロトタイプメソッドを継承している</span>
-<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> Child();
-instance.method(); <span class="hljs-comment">// &quot;Parent.prototype.method&quot;</span>
+<span class="hljs-keyword">const</span> instance = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Child</span>();
+instance.<span class="hljs-title function_">method</span>(); <span class="hljs-comment">// &quot;Parent.prototype.method&quot;</span>
 </code></pre>
 <p>このように、子クラスのインスタンスから親クラスのプロトタイプメソッドもプロトタイプチェーンの仕組みによって呼び出せます。</p>
 <p><code>extends</code>によって継承した場合、子クラスのプロトタイプオブジェクトの<code>[[Prototype]]</code>内部プロパティには親クラスのプロトタイプオブジェクトが設定されます。
@@ -2658,13 +2658,13 @@ instance.method(); <span class="hljs-comment">// &quot;Parent.prototype.method&q
 クラス自身（クラスのコンストラクタ）も親クラス自身（親クラスのコンストラクタ）との間にプロトタイプチェーンがあります。</p>
 <p>簡単に言えば、静的メソッドも継承されるということです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>{
-    <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-title">hello</span>(<span class="hljs-params"></span>)</span> {
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Parent</span> {
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">hello</span>(<span class="hljs-params"></span>) {
         <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello&quot;</span>;
     }
 }
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>{}
-<span class="hljs-built_in">console</span>.log(Child.hello()); <span class="hljs-comment">// =&gt; &quot;Hello&quot;</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Parent</span> {}
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Child</span>.<span class="hljs-title function_">hello</span>()); <span class="hljs-comment">// =&gt; &quot;Hello&quot;</span>
 </code></pre>
 <p><code>extends</code>によって継承した場合、子クラスのコンストラクタの<code>[[Prototype]]</code>内部プロパティには親クラスのコンストラクタが設定されます。
 このコードでは、<code>Child</code>コンストラクタの<code>[[Prototype]]</code>内部プロパティに<code>Parent</code>コンストラクタが設定されます。</p>
@@ -2681,21 +2681,21 @@ instance.method(); <span class="hljs-comment">// &quot;Parent.prototype.method&q
 <p>次のコードでは、<code>Child.prototype.method</code>の中で<code>super.method()</code>と書くことで<code>Parent.prototype.method</code>を呼び出しています。
 このように、子クラスから継承元の親クラスのプロトタイプメソッドは<code>super.プロパティ名</code>で参照できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">method</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Parent.prototype.method&quot;</span>);
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Parent</span> {
+    <span class="hljs-title function_">method</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Parent.prototype.method&quot;</span>);
     }
 }
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">method</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Child.prototype.method&quot;</span>);
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Parent</span> {
+    <span class="hljs-title function_">method</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Child.prototype.method&quot;</span>);
         <span class="hljs-comment">// `this.method()`だと自分(`this`)のmethodを呼び出して無限ループする</span>
         <span class="hljs-comment">// そのため明示的に`super.method()`を呼ぶことで、Parent.prototype.methodを呼び出す</span>
-        <span class="hljs-built_in">super</span>.method();
+        <span class="hljs-variable language_">super</span>.<span class="hljs-title function_">method</span>();
     }
 }
-<span class="hljs-keyword">const</span> child = <span class="hljs-keyword">new</span> Child();
-child.method();
+<span class="hljs-keyword">const</span> child = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Child</span>();
+child.<span class="hljs-title function_">method</span>();
 <span class="hljs-comment">// コンソールには次のように出力される</span>
 <span class="hljs-comment">// &quot;Child.prototype.method&quot;</span>
 <span class="hljs-comment">// &quot;Parent.prototype.method&quot;</span>
@@ -2707,19 +2707,19 @@ child.method();
 次のコードでは、<code>Parent</code>を継承した<code>Child</code>から親クラスの静的メソッドを呼び出しています。</p>
 <!-- textlint-enable no-js-function-paren -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>{
-    <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-title">method</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Parent.method&quot;</span>);
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Parent</span> {
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">method</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Parent.method&quot;</span>);
     }
 }
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>{
-    <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-title">method</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Child.method&quot;</span>);
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Parent</span> {
+    <span class="hljs-keyword">static</span> <span class="hljs-title function_">method</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Child.method&quot;</span>);
         <span class="hljs-comment">// `super.method()`で`Parent.method`を呼びだす</span>
-        <span class="hljs-built_in">super</span>.method();
+        <span class="hljs-variable language_">super</span>.<span class="hljs-title function_">method</span>();
     }
 }
-Child.method();
+<span class="hljs-title class_">Child</span>.<span class="hljs-title function_">method</span>();
 <span class="hljs-comment">// コンソールには次のように出力される</span>
 <span class="hljs-comment">// &quot;Child.method&quot;</span>
 <span class="hljs-comment">// &quot;Parent.method&quot;</span>
@@ -2728,17 +2728,17 @@ Child.method();
 <p>あるクラスが指定したクラスをプロトタイプ継承しているかは<code>instanceof</code>演算子を使って判定できます。</p>
 <p>次のコードでは、<code>Child</code>のインスタンスは<code>Child</code>クラスと<code>Parent</code>クラスを継承したオブジェクトであることを確認しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Parent</span> </span>{}
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Parent</span> </span>{}
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Parent</span> {}
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Child</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Parent</span> {}
 
-<span class="hljs-keyword">const</span> parent = <span class="hljs-keyword">new</span> Parent();
-<span class="hljs-keyword">const</span> child = <span class="hljs-keyword">new</span> Child();
+<span class="hljs-keyword">const</span> parent = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Parent</span>();
+<span class="hljs-keyword">const</span> child = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Child</span>();
 <span class="hljs-comment">// `Parent`のインスタンスは`Parent`のみを継承したインスタンス</span>
-<span class="hljs-built_in">console</span>.log(parent <span class="hljs-keyword">instanceof</span> Parent); <span class="hljs-comment">// =&gt; true</span>
-<span class="hljs-built_in">console</span>.log(parent <span class="hljs-keyword">instanceof</span> Child); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(parent <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Parent</span>); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(parent <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Child</span>); <span class="hljs-comment">// =&gt; false</span>
 <span class="hljs-comment">// `Child`のインスタンスは`Child`と`Parent`を継承したインスタンス</span>
-<span class="hljs-built_in">console</span>.log(child <span class="hljs-keyword">instanceof</span> Parent); <span class="hljs-comment">// =&gt; true</span>
-<span class="hljs-built_in">console</span>.log(child <span class="hljs-keyword">instanceof</span> Child); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(child <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Parent</span>); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(child <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Child</span>); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <!-- Note: instanceof演算子とは`[[Prototype]]`プロパティ
 
@@ -2758,22 +2758,22 @@ Child.method();
 継承した性質に加えて、MyArrayクラスへ<code>first</code>や<code>last</code>といったアクセッサプロパティを追加しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
-<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyArray</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Array</span> </span>{
-    <span class="hljs-keyword">get</span> <span class="hljs-title">first</span>() {
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.at(<span class="hljs-number">0</span>);
+<pre><code class="lang-js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyArray</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Array</span> {
+    <span class="hljs-keyword">get</span> <span class="hljs-title function_">first</span>() {
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">at</span>(<span class="hljs-number">0</span>);
     }
 
-    <span class="hljs-keyword">get</span> <span class="hljs-title">last</span>() {
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.at(-<span class="hljs-number">1</span>);
+    <span class="hljs-keyword">get</span> <span class="hljs-title function_">last</span>() {
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">at</span>(-<span class="hljs-number">1</span>);
     }
 }
 
 <span class="hljs-comment">// Arrayを継承しているのでArray.fromも継承している</span>
 <span class="hljs-comment">// Array.fromはIterableなオブジェクトから配列インスタンスを作成する</span>
-<span class="hljs-keyword">const</span> array = MyArray.from([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]);
-<span class="hljs-built_in">console</span>.log(array.length); <span class="hljs-comment">// =&gt; 5</span>
-<span class="hljs-built_in">console</span>.log(array.first); <span class="hljs-comment">// =&gt; 1</span>
-<span class="hljs-built_in">console</span>.log(array.last); <span class="hljs-comment">// =&gt; 5</span>
+<span class="hljs-keyword">const</span> array = <span class="hljs-title class_">MyArray</span>.<span class="hljs-title function_">from</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 5</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-property">first</span>); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-property">last</span>); <span class="hljs-comment">// =&gt; 5</span>
 </code></pre>
 <p><code>Array</code>を継承した<code>MyArray</code>は、<code>Array</code>が元々持つ<code>length</code>プロパティや<code>Array.from</code>メソッドなどを継承しているので利用できます。</p>
 <h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>まとめ </h2>
@@ -2819,7 +2819,7 @@ Child.method();
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおけるクラスの定義方法や継承方法を紹介します。プロトタイプベースの言語であるJavaScriptがどのように継承などを実現しているのかを紹介します。","title":"クラス","level":"1.3.20","depth":2,"next":{"title":"例外処理","level":"1.3.21","depth":2,"path":"basic/error-try-catch/README.md","ref":"./basic/error-try-catch/README.md","articles":[]},"previous":{"title":"関数とthis","level":"1.3.19","depth":2,"path":"basic/function-this/README.md","ref":"./basic/function-this/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/class/README.md","mtime":"2023-07-16T01:53:15.649Z","type":"markdown"},"gitbook":{"version":"4.0.8","time":"2023-07-16T01:53:46.643Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおけるクラスの定義方法や継承方法を紹介します。プロトタイプベースの言語であるJavaScriptがどのように継承などを実現しているのかを紹介します。","title":"クラス","level":"1.3.20","depth":2,"next":{"title":"例外処理","level":"1.3.21","depth":2,"path":"basic/error-try-catch/README.md","ref":"./basic/error-try-catch/README.md","articles":[]},"previous":{"title":"関数とthis","level":"1.3.19","depth":2,"path":"basic/function-this/README.md","ref":"./basic/function-this/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/class/README.md","mtime":"2023-07-16T12:14:13.141Z","type":"markdown"},"gitbook":{"version":"5.0.0","time":"2023-07-16T12:14:45.721Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

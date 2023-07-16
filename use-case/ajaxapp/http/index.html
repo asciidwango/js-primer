@@ -6,7 +6,7 @@
         <title>HTTP通信 · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="Fetch APIを使ってHTTP通信を行ない、GitHubのAPIを呼び出します。">
-        <meta name="generator" content="HonKit 4.0.8">
+        <meta name="generator" content="HonKit 5.0.0">
         
         
         
@@ -1517,7 +1517,7 @@ GitHubのユーザーIDには、英数字と<code>-</code>（ハイフン）以�
 <!-- fetchがないため -->
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> userId = <span class="hljs-string">&quot;任意のGitHubユーザーID&quot;</span>;
-fetch(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(userId)}</span>`</span>);
+<span class="hljs-title function_">fetch</span>(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(userId)}</span>`</span>);
 </code></pre>
 <h2 id="receive-response"><a name="receive-response" class="plugin-anchor" href="#receive-response"><i class="fa fa-link" aria-hidden="true"></i></a>レスポンスの受け取り </h2>
 <p>GitHubのAPIに対してHTTPリクエストを送信しましたが、まだレスポンスを受け取る処理を書いていません。
@@ -1531,12 +1531,12 @@ fetch(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-
 <!-- fetchがないため -->
 <!-- doctest:disable --></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> userId = <span class="hljs-string">&quot;js-primer-example&quot;</span>;
-fetch(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(userId)}</span>`</span>)
-    .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log(response.status); <span class="hljs-comment">// =&gt; 200</span>
-        <span class="hljs-keyword">return</span> response.json().then(<span class="hljs-function"><span class="hljs-params">userInfo</span> =&gt;</span> {
+<span class="hljs-title function_">fetch</span>(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(userId)}</span>`</span>)
+    .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response.<span class="hljs-property">status</span>); <span class="hljs-comment">// =&gt; 200</span>
+        <span class="hljs-keyword">return</span> response.<span class="hljs-title function_">json</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">userInfo</span> =&gt;</span> {
             <span class="hljs-comment">// JSONパースされたオブジェクトが渡される</span>
-            <span class="hljs-built_in">console</span>.log(userInfo); <span class="hljs-comment">// =&gt; {...}</span>
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(userInfo); <span class="hljs-comment">// =&gt; {...}</span>
         });
     });
 </code></pre>
@@ -1549,14 +1549,14 @@ fetch(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-
 <!-- fetchがないため -->
 <!-- doctest:disable --></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> userId = <span class="hljs-string">&quot;js-primer-example&quot;</span>;
-fetch(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(userId)}</span>`</span>)
-    .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log(response.status);
-        <span class="hljs-keyword">return</span> response.json().then(<span class="hljs-function"><span class="hljs-params">userInfo</span> =&gt;</span> {
-            <span class="hljs-built_in">console</span>.log(userInfo);
+<span class="hljs-title function_">fetch</span>(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(userId)}</span>`</span>)
+    .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response.<span class="hljs-property">status</span>);
+        <span class="hljs-keyword">return</span> response.<span class="hljs-title function_">json</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">userInfo</span> =&gt;</span> {
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(userInfo);
         });
-    }).catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error(error);
+    }).<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);
     });
 </code></pre>
 <p>一方で、リクエストが成功したかどうかは<code>Response</code>オブジェクトの<code>ok</code>プロパティで認識できます。
@@ -1574,36 +1574,36 @@ fetch("https://httpbin.org/status/301");
 <!-- fetchがないため -->
 <!-- doctest:disable --></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> userId = <span class="hljs-string">&quot;js-primer-example&quot;</span>;
-fetch(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(userId)}</span>`</span>)
-    .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log(response.status); 
+<span class="hljs-title function_">fetch</span>(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(userId)}</span>`</span>)
+    .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response.<span class="hljs-property">status</span>); 
         <span class="hljs-comment">// エラーレスポンスが返されたことを検知する</span>
-        <span class="hljs-keyword">if</span> (!response.ok) {
-            <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&quot;エラーレスポンス&quot;</span>, response);
+        <span class="hljs-keyword">if</span> (!response.<span class="hljs-property">ok</span>) {
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&quot;エラーレスポンス&quot;</span>, response);
         } <span class="hljs-keyword">else</span> {
-            <span class="hljs-keyword">return</span> response.json().then(<span class="hljs-function"><span class="hljs-params">userInfo</span> =&gt;</span> {
-                <span class="hljs-built_in">console</span>.log(userInfo);
+            <span class="hljs-keyword">return</span> response.<span class="hljs-title function_">json</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">userInfo</span> =&gt;</span> {
+                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(userInfo);
             });
         }
-    }).catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error(error);
+    }).<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);
     });
 </code></pre>
 <p>ここまでの内容をまとめ、GitHubからユーザー情報を取得する関数を<code>fetchUserInfo</code>という名前で定義します。</p>
-<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetchUserInfo</span>(<span class="hljs-params">userId</span>) </span>{
-    fetch(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(userId)}</span>`</span>)
-        .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
-            <span class="hljs-built_in">console</span>.log(response.status);
+<pre><code class="lang-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">fetchUserInfo</span>(<span class="hljs-params">userId</span>) {
+    <span class="hljs-title function_">fetch</span>(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(userId)}</span>`</span>)
+        .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response.<span class="hljs-property">status</span>);
             <span class="hljs-comment">// エラーレスポンスが返されたことを検知する</span>
-            <span class="hljs-keyword">if</span> (!response.ok) {
-                <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&quot;エラーレスポンス&quot;</span>, response);
+            <span class="hljs-keyword">if</span> (!response.<span class="hljs-property">ok</span>) {
+                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&quot;エラーレスポンス&quot;</span>, response);
             } <span class="hljs-keyword">else</span> {
-                <span class="hljs-keyword">return</span> response.json().then(<span class="hljs-function"><span class="hljs-params">userInfo</span> =&gt;</span> {
-                    <span class="hljs-built_in">console</span>.log(userInfo);
+                <span class="hljs-keyword">return</span> response.<span class="hljs-title function_">json</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">userInfo</span> =&gt;</span> {
+                    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(userInfo);
                 });
             }
-        }).catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-            <span class="hljs-built_in">console</span>.error(error);
+        }).<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);
         });
 }
 </code></pre>
@@ -1613,7 +1613,7 @@ fetch(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-
 <p>そのため、HTMLドキュメント側に手動で<code>fetchUserInfo</code>関数を呼び出すためのボタンを追加します。
 ボタンのclickイベントで<code>fetchUserInfo</code>関数を呼び出し、取得したいユーザーIDを引数として与えています。
 例として<code>js-primer-example</code>という書籍用に用意したGitHubアカウントを指定しています。</p>
-<pre><code class="lang-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<pre><code class="lang-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ja&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span> /&gt;</span>
@@ -1636,26 +1636,26 @@ fetch(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-
 <p><a href="https://developer.mozilla.org/ja/docs/Web/API/XMLHttpRequest" target="_blank">XMLHttpRequest</a>（<strong>XHR</strong>）はFetch APIと同じくHTTP通信を行うためのAPIです。
 Fetch APIが標準化される以前は、ブラウザとサーバーの間で通信するにはXHRを使うのが一般的でした。
 このセクションで扱ったFetch APIによる<code>fetchUserInfo</code>関数は、XHRを使うと次のように書けます。</p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetchUserInfo</span>(<span class="hljs-params">userId</span>) </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">fetchUserInfo</span>(<span class="hljs-params">userId</span>) {
     <span class="hljs-comment">// リクエストを作成する</span>
-    <span class="hljs-keyword">const</span> request = <span class="hljs-keyword">new</span> XMLHttpRequest();
-    request.open(<span class="hljs-string">&quot;GET&quot;</span>, <span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(userId)}</span>`</span>);
-    request.addEventListener(<span class="hljs-string">&quot;load&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-keyword">const</span> request = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>();
+    request.<span class="hljs-title function_">open</span>(<span class="hljs-string">&quot;GET&quot;</span>, <span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(userId)}</span>`</span>);
+    request.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;load&quot;</span>, <span class="hljs-function">() =&gt;</span> {
         <span class="hljs-comment">// リクエストが成功したかを判定する</span>
         <span class="hljs-comment">// Fetch APIのresponse.okと同等の意味</span>
-        <span class="hljs-keyword">if</span> (request.status &gt;= <span class="hljs-number">200</span> &amp;&amp; request.status &lt; <span class="hljs-number">300</span>) {
+        <span class="hljs-keyword">if</span> (request.<span class="hljs-property">status</span> &gt;= <span class="hljs-number">200</span> &amp;&amp; request.<span class="hljs-property">status</span> &lt; <span class="hljs-number">300</span>) {
             <span class="hljs-comment">// レスポンス文字列をJSONオブジェクトにパースする</span>
-            <span class="hljs-keyword">const</span> userInfo = <span class="hljs-built_in">JSON</span>.parse(request.responseText);
-            <span class="hljs-built_in">console</span>.log(userInfo);
+            <span class="hljs-keyword">const</span> userInfo = <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(request.<span class="hljs-property">responseText</span>);
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(userInfo);
         } <span class="hljs-keyword">else</span> {
-            <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&quot;エラーレスポンス&quot;</span>, request.statusText);
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&quot;エラーレスポンス&quot;</span>, request.<span class="hljs-property">statusText</span>);
         }
     });
-    request.addEventListener(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs-function">() =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&quot;ネットワークエラー&quot;</span>);
+    request.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&quot;ネットワークエラー&quot;</span>);
     });
     <span class="hljs-comment">// リクエストを送信する</span>
-    request.send();
+    request.<span class="hljs-title function_">send</span>();
 }
 </code></pre>
 <p>Fetch APIはXHRを置き換えるために作られたもので、ほとんどのユースケースではXHRを使う必要はなくなりました。
@@ -1705,7 +1705,7 @@ XHRの詳しい使い方については、<a href="https://developer.mozilla.org
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"Fetch APIを使ってHTTP通信を行ない、GitHubのAPIを呼び出します。","title":"HTTP通信","level":"1.4.2.2","depth":3,"next":{"title":"データを表示する","level":"1.4.2.3","depth":3,"path":"use-case/ajaxapp/display/README.md","ref":"./use-case/ajaxapp/display/README.md","articles":[]},"previous":{"title":"エントリーポイント","level":"1.4.2.1","depth":3,"path":"use-case/ajaxapp/entrypoint/README.md","ref":"./use-case/ajaxapp/entrypoint/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/ajaxapp/http/README.md","mtime":"2023-07-16T01:53:15.669Z","type":"markdown"},"gitbook":{"version":"4.0.8","time":"2023-07-16T01:53:46.643Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"Fetch APIを使ってHTTP通信を行ない、GitHubのAPIを呼び出します。","title":"HTTP通信","level":"1.4.2.2","depth":3,"next":{"title":"データを表示する","level":"1.4.2.3","depth":3,"path":"use-case/ajaxapp/display/README.md","ref":"./use-case/ajaxapp/display/README.md","articles":[]},"previous":{"title":"エントリーポイント","level":"1.4.2.1","depth":3,"path":"use-case/ajaxapp/entrypoint/README.md","ref":"./use-case/ajaxapp/entrypoint/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/ajaxapp/http/README.md","mtime":"2023-07-16T12:14:13.161Z","type":"markdown"},"gitbook":{"version":"5.0.0","time":"2023-07-16T12:14:45.721Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

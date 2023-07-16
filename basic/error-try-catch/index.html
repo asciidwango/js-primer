@@ -6,7 +6,7 @@
         <title>例外処理 · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptにおける例外処理についてを紹介します。try...catch構文の使い方やErrorオブジェクトを紹介します。またエラーが発生した際のエラー文の読み方といったデバッグ方法を紹介します。">
-        <meta name="generator" content="HonKit 4.0.8">
+        <meta name="generator" content="HonKit 5.0.0">
         
         
         
@@ -1511,18 +1511,18 @@
 <p>次のコードでは、<code>try</code>ブロックで例外が発生し、<code>catch</code>節の処理が実行され、最後に<code>finally</code>節の処理が実行されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">try</span> {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;try節:この行は実行されます&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;try節:この行は実行されます&quot;</span>);
     <span class="hljs-comment">// 未定義の関数を呼び出してReferenceError例外が発生する</span>
-    undefinedFunction();
+    <span class="hljs-title function_">undefinedFunction</span>();
     <span class="hljs-comment">// 例外が発生したため、この行は実行されません</span>
 } <span class="hljs-keyword">catch</span> (error) {
     <span class="hljs-comment">// 例外が発生したあとはこのブロックが実行される</span>
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;catch節:この行は実行されます&quot;</span>);
-    <span class="hljs-built_in">console</span>.log(error <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">ReferenceError</span>); <span class="hljs-comment">// =&gt; true</span>
-    <span class="hljs-built_in">console</span>.log(error.message); <span class="hljs-comment">// =&gt; &quot;undefinedFunction is not defined&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;catch節:この行は実行されます&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">ReferenceError</span>); <span class="hljs-comment">// =&gt; true</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; &quot;undefinedFunction is not defined&quot;</span>
 } <span class="hljs-keyword">finally</span> {
     <span class="hljs-comment">// このブロックは例外の発生に関係なく必ず実行される</span>
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;finally節:この行は実行されます&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;finally節:この行は実行されます&quot;</span>);
 }
 </code></pre>
 <p>また、<code>catch</code>節と<code>finally</code>節のうち、片方が存在していれば、もう片方の節は省略できます。
@@ -1531,15 +1531,15 @@
 <!-- doctest: ReferenceError --></p>
 <pre><code class="lang-js"><span class="hljs-comment">// catch節のみ</span>
 <span class="hljs-keyword">try</span> {
-    undefinedFunction();
+    <span class="hljs-title function_">undefinedFunction</span>();
 } <span class="hljs-keyword">catch</span> (error) {
-    <span class="hljs-built_in">console</span>.error(error);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);
 }
 <span class="hljs-comment">// finally節のみ</span>
 <span class="hljs-keyword">try</span> {
-    undefinedFunction();
+    <span class="hljs-title function_">undefinedFunction</span>();
 } <span class="hljs-keyword">finally</span> {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;この行は実行されます&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;この行は実行されます&quot;</span>);
 }
 <span class="hljs-comment">// finally節のみでは例外がキャッチされないため、この行は実行されません</span>
 </code></pre>
@@ -1551,10 +1551,10 @@
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">try</span> {
     <span class="hljs-comment">// 例外を投げる</span>
-    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;例外が投げられました&quot;</span>);
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;例外が投げられました&quot;</span>);
 } <span class="hljs-keyword">catch</span> (error) {
     <span class="hljs-comment">// catch節のスコープでerrorにアクセスできる</span>
-    <span class="hljs-built_in">console</span>.log(error.message); <span class="hljs-comment">// =&gt; &quot;例外が投げられました&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; &quot;例外が投げられました&quot;</span>
 }
 </code></pre>
 <h2 id="error-object"><a name="error-object" class="plugin-anchor" href="#error-object"><i class="fa fa-link" aria-hidden="true"></i></a>エラーオブジェクト </h2>
@@ -1568,18 +1568,18 @@
 投げられたオブジェクトはcatch節の例外識別子（<code>error</code>）から取得でき、エラーメッセージが確認できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 渡された数値が0以上ではない場合に例外を投げる関数</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">assertPositiveNumber</span>(<span class="hljs-params">num</span>) </span>{
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">assertPositiveNumber</span>(<span class="hljs-params">num</span>) {
     <span class="hljs-keyword">if</span> (num &lt; <span class="hljs-number">0</span>) {
-        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">`<span class="hljs-subst">${num}</span> is not positive.`</span>);
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">`<span class="hljs-subst">${num}</span> is not positive.`</span>);
     }
 }
 
 <span class="hljs-keyword">try</span> {
     <span class="hljs-comment">// 0未満の値を渡しているので、関数が例外を投げる</span>
-    assertPositiveNumber(-<span class="hljs-number">1</span>);
+    <span class="hljs-title function_">assertPositiveNumber</span>(-<span class="hljs-number">1</span>);
 } <span class="hljs-keyword">catch</span> (error) {
-    <span class="hljs-built_in">console</span>.log(error <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span>); <span class="hljs-comment">// =&gt; true</span>
-    <span class="hljs-built_in">console</span>.log(error.message); <span class="hljs-comment">// =&gt; &quot;-1 is not positive.&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">Error</span>); <span class="hljs-comment">// =&gt; true</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; &quot;-1 is not positive.&quot;</span>
 }
 </code></pre>
 <p><code>throw</code>文はあらゆるオブジェクトを例外として投げられますが、基本的に<code>Error</code>オブジェクトのインスタンスを投げることを推奨します。
@@ -1593,7 +1593,7 @@
     <span class="hljs-keyword">throw</span> <span class="hljs-string">&quot;例外が投げられました&quot;</span>;
 } <span class="hljs-keyword">catch</span> (error) {
     <span class="hljs-comment">// catch節の例外識別子は、投げられた値を参照する</span>
-    <span class="hljs-built_in">console</span>.log(error); <span class="hljs-comment">// =&gt; &quot;例外が投げられました&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error); <span class="hljs-comment">// =&gt; &quot;例外が投げられました&quot;</span>
 }
 </code></pre>
 <h3 id="built-in-error"><a name="built-in-error" class="plugin-anchor" href="#built-in-error"><i class="fa fa-link" aria-hidden="true"></i></a>ビルトインエラー </h3>
@@ -1608,11 +1608,11 @@
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">try</span> {
     <span class="hljs-comment">// 存在しない変数を参照する</span>
-    <span class="hljs-built_in">console</span>.log(x);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x);
 } <span class="hljs-keyword">catch</span> (error) {
-    <span class="hljs-built_in">console</span>.log(error <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">ReferenceError</span>); <span class="hljs-comment">// =&gt; true</span>
-    <span class="hljs-built_in">console</span>.log(error.name); <span class="hljs-comment">// =&gt; &quot;ReferenceError&quot;</span>
-    <span class="hljs-built_in">console</span>.log(error.message); <span class="hljs-comment">// エラーメッセージが表示される</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">ReferenceError</span>); <span class="hljs-comment">// =&gt; true</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">name</span>); <span class="hljs-comment">// =&gt; &quot;ReferenceError&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// エラーメッセージが表示される</span>
 }
 </code></pre>
 <h4 id="syntax-error"><a name="syntax-error" class="plugin-anchor" href="#syntax-error"><i class="fa fa-link" aria-hidden="true"></i></a>SyntaxError </h4>
@@ -1630,9 +1630,9 @@ foo! bar!
     <span class="hljs-comment">// 正しくない構文をパースさせ、SyntaxErrorを実行時に発生させる</span>
     <span class="hljs-built_in">eval</span>(<span class="hljs-string">&quot;foo! bar!&quot;</span>);
 } <span class="hljs-keyword">catch</span> (error) {
-    <span class="hljs-built_in">console</span>.log(error <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">SyntaxError</span>); <span class="hljs-comment">// =&gt; true</span>
-    <span class="hljs-built_in">console</span>.log(error.name); <span class="hljs-comment">// =&gt; &quot;SyntaxError&quot;</span>
-    <span class="hljs-built_in">console</span>.log(error.message); <span class="hljs-comment">// エラーメッセージが表示される</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">SyntaxError</span>); <span class="hljs-comment">// =&gt; true</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">name</span>); <span class="hljs-comment">// =&gt; &quot;SyntaxError&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// エラーメッセージが表示される</span>
 }
 </code></pre>
 <h4 id="type-error"><a name="type-error" class="plugin-anchor" href="#type-error"><i class="fa fa-link" aria-hidden="true"></i></a>TypeError </h4>
@@ -1642,11 +1642,11 @@ foo! bar!
 <pre><code class="lang-js"><span class="hljs-keyword">try</span> {
     <span class="hljs-comment">// 関数ではないオブジェクトを関数として呼び出す</span>
     <span class="hljs-keyword">const</span> fn = {};
-    fn();
+    <span class="hljs-title function_">fn</span>();
 } <span class="hljs-keyword">catch</span> (error) {
-    <span class="hljs-built_in">console</span>.log(error <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">TypeError</span>); <span class="hljs-comment">// =&gt; true</span>
-    <span class="hljs-built_in">console</span>.log(error.name); <span class="hljs-comment">// =&gt; &quot;TypeError&quot;</span>
-    <span class="hljs-built_in">console</span>.log(error.message); <span class="hljs-comment">// エラーメッセージが表示される</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">TypeError</span>); <span class="hljs-comment">// =&gt; true</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">name</span>); <span class="hljs-comment">// =&gt; &quot;TypeError&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// エラーメッセージが表示される</span>
 }
 </code></pre>
 <h3 id="throw-built-in-error"><a name="throw-built-in-error" class="plugin-anchor" href="#throw-built-in-error"><i class="fa fa-link" aria-hidden="true"></i></a>ビルトインエラーを投げる </h3>
@@ -1656,20 +1656,20 @@ foo! bar!
 メッセージを確認しなくても、エラーの名前だけで型に関する例外だとすぐにわかります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 文字列を反転する関数</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">reverseString</span>(<span class="hljs-params">str</span>) </span>{
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">reverseString</span>(<span class="hljs-params">str</span>) {
     <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> str !== <span class="hljs-string">&quot;string&quot;</span>) {
-        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">`<span class="hljs-subst">${str}</span> is not a string`</span>);
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TypeError</span>(<span class="hljs-string">`<span class="hljs-subst">${str}</span> is not a string`</span>);
     }
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.from(str).reverse().join(<span class="hljs-string">&quot;&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(str).<span class="hljs-title function_">reverse</span>().<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;&quot;</span>);
 }
 
 <span class="hljs-keyword">try</span> {
     <span class="hljs-comment">// 数値を渡す</span>
-    reverseString(<span class="hljs-number">100</span>);
+    <span class="hljs-title function_">reverseString</span>(<span class="hljs-number">100</span>);
 } <span class="hljs-keyword">catch</span> (error) {
-    <span class="hljs-built_in">console</span>.log(error <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">TypeError</span>); <span class="hljs-comment">// =&gt; true</span>
-    <span class="hljs-built_in">console</span>.log(error.name); <span class="hljs-comment">// =&gt; &quot;TypeError&quot;</span>
-    <span class="hljs-built_in">console</span>.log(error.message); <span class="hljs-comment">// =&gt; &quot;100 is not a string&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">TypeError</span>); <span class="hljs-comment">// =&gt; true</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">name</span>); <span class="hljs-comment">// =&gt; &quot;TypeError&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; &quot;100 is not a string&quot;</span>
 }
 </code></pre>
 <h2 id="error-and-debug"><a name="error-and-debug" class="plugin-anchor" href="#error-and-debug"><i class="fa fa-link" aria-hidden="true"></i></a>エラーとデバッグ </h2>
@@ -1680,11 +1680,11 @@ foo! bar!
 この2つのプロパティを確認することで、多くの場面で開発の助けとなるでしょう。</p>
 <p>次のコードでは、<code>try...catch</code>文で囲っていない部分で例外が発生しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>{
+<pre><code class="lang-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">fn</span>(<span class="hljs-params"></span>) {
     <span class="hljs-comment">// 存在しない変数を参照する</span>
     x++;
 }
-fn();
+<span class="hljs-title function_">fn</span>();
 </code></pre>
 <p>このスクリプトを読み込むと、投げられた例外についてのログがコンソールに出力されます。
 ここではFirefoxにおける実行例を示します。</p>
@@ -1722,12 +1722,12 @@ MDNの<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Er
 <p><code>console.error</code>メソッドではメッセージと合わせてスタックトレースをコンソールへ出力できます。</p>
 <p>次のコードを実行して、<code>console.log</code>と<code>console.error</code>の出力結果を見比べてみます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;メッセージ&quot;</span>);
-    <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&quot;エラーメッセージ&quot;</span>);
+<pre><code class="lang-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">fn</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;メッセージ&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&quot;エラーメッセージ&quot;</span>);
 }
 
-fn();
+<span class="hljs-title function_">fn</span>();
 </code></pre>
 <p>このコードをFirefoxで実行するとコンソール出力は次の図のようになります。</p>
 <p><img src="img/console.error.png" alt="console.logとconsole.errorの出力結果"></p>
@@ -1775,7 +1775,7 @@ fn();
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"JavaScriptにおける例外処理についてを紹介します。try...catch構文の使い方やErrorオブジェクトを紹介します。またエラーが発生した際のエラー文の読み方といったデバッグ方法を紹介します。","title":"例外処理","level":"1.3.21","depth":2,"next":{"title":"非同期処理:Promise/Async Function","level":"1.3.22","depth":2,"path":"basic/async/README.md","ref":"./basic/async/README.md","articles":[]},"previous":{"title":"クラス","level":"1.3.20","depth":2,"path":"basic/class/README.md","ref":"./basic/class/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/error-try-catch/README.md","mtime":"2023-07-16T01:53:15.649Z","type":"markdown"},"gitbook":{"version":"4.0.8","time":"2023-07-16T01:53:46.643Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"JavaScriptにおける例外処理についてを紹介します。try...catch構文の使い方やErrorオブジェクトを紹介します。またエラーが発生した際のエラー文の読み方といったデバッグ方法を紹介します。","title":"例外処理","level":"1.3.21","depth":2,"next":{"title":"非同期処理:Promise/Async Function","level":"1.3.22","depth":2,"path":"basic/async/README.md","ref":"./basic/async/README.md","articles":[]},"previous":{"title":"クラス","level":"1.3.20","depth":2,"path":"basic/class/README.md","ref":"./basic/class/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/error-try-catch/README.md","mtime":"2023-07-16T12:14:13.145Z","type":"markdown"},"gitbook":{"version":"5.0.0","time":"2023-07-16T12:14:45.721Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

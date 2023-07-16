@@ -6,7 +6,7 @@
         <title>ラッパーオブジェクト · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptのプリミティブ型の値がビルトインオブジェクトのメソッドなどを呼び出せる仕組みとしてのラッパーオブジェクトを紹介します。プリミティブ型からオブジェクトとどのように実行時に変換されているのを確認できます。">
-        <meta name="generator" content="HonKit 4.0.8">
+        <meta name="generator" content="HonKit 5.0.0">
         
         
         
@@ -1508,7 +1508,7 @@
 しかし、プリミティブ型の文字列においても、<code>String</code>オブジェクトのインスタンスメソッドである<code>toUpperCase</code>メソッドを呼び出せます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// Stringの`toUpperCase`メソッドを呼び出せる</span>
-<span class="hljs-string">&quot;string&quot;</span>.toUpperCase(); <span class="hljs-comment">// =&gt; &quot;STRING&quot;</span>
+<span class="hljs-string">&quot;string&quot;</span>.<span class="hljs-title function_">toUpperCase</span>(); <span class="hljs-comment">// =&gt; &quot;STRING&quot;</span>
 </code></pre>
 <p>プリミティブ型である文字列が<code>String</code>のインスタンスメソッドを呼び出せるのは一見不思議です。</p>
 <p>この章では、プリミティブ型の値がなぜオブジェクトのメソッドを呼び出せるのかについて解説します。</p>
@@ -1519,9 +1519,9 @@
 <!-- textlint-enable -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// &quot;input value&quot;の値をラップしたStringのインスタンスを生成</span>
-<span class="hljs-keyword">const</span> str = <span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>(<span class="hljs-string">&quot;input value&quot;</span>);
+<span class="hljs-keyword">const</span> str = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;input value&quot;</span>);
 <span class="hljs-comment">// StringのインスタンスメソッドであるtoUpperCaseを呼び出す</span>
-str.toUpperCase(); <span class="hljs-comment">// =&gt; &quot;INPUT VALUE&quot;</span>
+str.<span class="hljs-title function_">toUpperCase</span>(); <span class="hljs-comment">// =&gt; &quot;INPUT VALUE&quot;</span>
 </code></pre>
 <p>このようにインスタンス化されたものは、プリミティブ型の値を包んだ（ラップした）オブジェクトと言えます。
 そのため、このようなオブジェクトをプリミティブ型の値に対しての<strong>ラッパーオブジェクト</strong>と呼びます。</p>
@@ -1574,10 +1574,10 @@ str.toUpperCase(); <span class="hljs-comment">// =&gt; &quot;INPUT VALUE&quot;</
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// プリミティブの文字列は&quot;string&quot;型</span>
 <span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;文字列&quot;</span>;
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> str); <span class="hljs-comment">// =&gt; &quot;string&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> str); <span class="hljs-comment">// =&gt; &quot;string&quot;</span>
 <span class="hljs-comment">// ラッパーオブジェクトは&quot;object&quot;型</span>
-<span class="hljs-keyword">const</span> stringWrapper = <span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>(<span class="hljs-string">&quot;文字列&quot;</span>);
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> stringWrapper); <span class="hljs-comment">// =&gt; &quot;object&quot;</span>
+<span class="hljs-keyword">const</span> stringWrapper = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;文字列&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> stringWrapper); <span class="hljs-comment">// =&gt; &quot;object&quot;</span>
 </code></pre>
 <h2 id="convert-primitive-to-wrapper"><a name="convert-primitive-to-wrapper" class="plugin-anchor" href="#convert-primitive-to-wrapper"><i class="fa fa-link" aria-hidden="true"></i></a>プリミティブ型の値からラッパーオブジェクトへの自動変換 </h2>
 <p>JavaScriptでは、プリミティブ型の値に対してプロパティアクセスするとき、自動で対応するラッパーオブジェクトに変換されます。
@@ -1585,20 +1585,20 @@ str.toUpperCase(); <span class="hljs-comment">// =&gt; &quot;INPUT VALUE&quot;</
 これにより、プリミティブ型の値である文字列が<code>String</code>のインスタンスメソッドを呼び出せるようになります。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;string&quot;</span>;
 <span class="hljs-comment">// プリミティブ型の値に対してメソッド呼び出しを行う</span>
-str.toUpperCase();
+str.<span class="hljs-title function_">toUpperCase</span>();
 <span class="hljs-comment">// `str`へアクセスする際に&quot;string&quot;がラッパーオブジェクトへ変換され、</span>
 <span class="hljs-comment">// ラッパーオブジェクトはStringのインスタンスなのでメソッドを呼び出せる</span>
 <span class="hljs-comment">// つまり、上のコードは下のコードと同じ意味である</span>
-(<span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>(str)).toUpperCase();
+(<span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(str)).<span class="hljs-title function_">toUpperCase</span>();
 </code></pre>
 <p>このように、プリミティブ型の値からラッパーオブジェクトへの変換は自動的に行われます。<sup><a href="#fn_1" id="reffn_1">1</a></sup></p>
 <p>一方、明示的に作成したラッパーオブジェクトからプリミティブ型の値を取り出すこともできます。</p>
 <p><code>ラッパーオブジェクト.valueOf</code>メソッドを呼び出すことで、ラッパーオブジェクトから値を取り出せます。
 たとえば、次のように文字列のラッパーオブジェクトから<code>valueOf</code>メソッドで文字列を取り出せます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> stringWrapper = <span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>(<span class="hljs-string">&quot;文字列&quot;</span>);
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> stringWrapper = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;文字列&quot;</span>);
 <span class="hljs-comment">// プリミティブ型の値を取得する</span>
-<span class="hljs-built_in">console</span>.log(stringWrapper.valueOf()); <span class="hljs-comment">// =&gt; &quot;文字列&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(stringWrapper.<span class="hljs-title function_">valueOf</span>()); <span class="hljs-comment">// =&gt; &quot;文字列&quot;</span>
 </code></pre>
 <p>JavaScriptには、リテラルを使ったプリミティブ型の文字列とラッパーオブジェクトを使った文字列オブジェクトがあります（真偽値や数値についても同様です）。
 この2つを明示的に使い分ける利点はないため、常にリテラルを使うことを推奨します。
@@ -1613,7 +1613,7 @@ str.toUpperCase();
 <pre><code class="lang-js"><span class="hljs-comment">// OK: リテラルを使う</span>
 <span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;文字列&quot;</span>;
 <span class="hljs-comment">// NG: ラッパーオブジェクトを使う</span>
-<span class="hljs-keyword">const</span> stringWrapper = <span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>(<span class="hljs-string">&quot;文字列&quot;</span>);
+<span class="hljs-keyword">const</span> stringWrapper = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;文字列&quot;</span>);
 </code></pre>
 <h2 id="wrapper-object-summary"><a name="wrapper-object-summary" class="plugin-anchor" href="#wrapper-object-summary"><i class="fa fa-link" aria-hidden="true"></i></a>まとめ </h2>
 <p>この章では、プリミティブ型の値がなぜメソッド呼び出しできるのかについて解説しました。
@@ -1656,7 +1656,7 @@ str.toUpperCase();
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptのプリミティブ型の値がビルトインオブジェクトのメソッドなどを呼び出せる仕組みとしてのラッパーオブジェクトを紹介します。プリミティブ型からオブジェクトとどのように実行時に変換されているのを確認できます。","title":"ラッパーオブジェクト","level":"1.3.17","depth":2,"next":{"title":"関数とスコープ","level":"1.3.18","depth":2,"path":"basic/function-scope/README.md","ref":"./basic/function-scope/README.md","articles":[]},"previous":{"title":"文字列とUnicode","level":"1.3.16","depth":2,"path":"basic/string-unicode/README.md","ref":"./basic/string-unicode/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/wrapper-object/README.md","mtime":"2023-07-16T01:53:15.665Z","type":"markdown"},"gitbook":{"version":"4.0.8","time":"2023-07-16T01:53:46.643Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptのプリミティブ型の値がビルトインオブジェクトのメソッドなどを呼び出せる仕組みとしてのラッパーオブジェクトを紹介します。プリミティブ型からオブジェクトとどのように実行時に変換されているのを確認できます。","title":"ラッパーオブジェクト","level":"1.3.17","depth":2,"next":{"title":"関数とスコープ","level":"1.3.18","depth":2,"path":"basic/function-scope/README.md","ref":"./basic/function-scope/README.md","articles":[]},"previous":{"title":"文字列とUnicode","level":"1.3.16","depth":2,"path":"basic/string-unicode/README.md","ref":"./basic/string-unicode/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/wrapper-object/README.md","mtime":"2023-07-16T12:14:13.153Z","type":"markdown"},"gitbook":{"version":"5.0.0","time":"2023-07-16T12:14:45.721Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

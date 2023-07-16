@@ -6,7 +6,7 @@
         <title>文字列 · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="文字列リテラルを使った文字列の作成から検索や置換など基本的な文字列操作について紹介します。また正規表現と組み合わせた文字列操作やタグ付きテンプレート関数を使ったテンプレート処理などについても紹介します。">
-        <meta name="generator" content="HonKit 4.0.8">
+        <meta name="generator" content="HonKit 5.0.0">
         
         
         
@@ -1515,11 +1515,11 @@
 <!-- textlint-disable eslint -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> double = <span class="hljs-string">&quot;文字列&quot;</span>;
-<span class="hljs-built_in">console</span>.log(double); <span class="hljs-comment">// =&gt; &quot;文字列&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(double); <span class="hljs-comment">// =&gt; &quot;文字列&quot;</span>
 <span class="hljs-keyword">const</span> single = <span class="hljs-string">&apos;文字列&apos;</span>;
-<span class="hljs-built_in">console</span>.log(single); <span class="hljs-comment">// =&gt; &apos;文字列&apos;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(single); <span class="hljs-comment">// =&gt; &apos;文字列&apos;</span>
 <span class="hljs-comment">// どちらも同じ文字列</span>
-<span class="hljs-built_in">console</span>.log(double === single);<span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(double === single);<span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <!-- textlint-disable ja-technical-writing/sentence-length -->
 <p>ES2015では、テンプレートリテラル <code>`</code>（バッククォート）が追加されました。
@@ -1532,7 +1532,7 @@
 2行目
 3行目`</span>;
 <span class="hljs-comment">// \n は改行を意味する</span>
-<span class="hljs-built_in">console</span>.log(multiline); <span class="hljs-comment">// =&gt; &quot;1行目\n2行目\n3行目&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(multiline); <span class="hljs-comment">// =&gt; &quot;1行目\n2行目\n3行目&quot;</span>
 </code></pre>
 <!-- textlint-enable eslint -->
 <p>どの文字列リテラルでも共通ですが、文字列リテラルは同じ記号が対になります。
@@ -1540,17 +1540,17 @@
 次のコードでは、文字列中の<code>&quot;</code>を<code>\&quot;</code>のようにエスケープしています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;This book is \&quot;js-primer\&quot;&quot;</span>;
-<span class="hljs-built_in">console</span>.log(str); <span class="hljs-comment">// =&gt; &apos;This book is &quot;js-primer&quot;&apos;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str); <span class="hljs-comment">// =&gt; &apos;This book is &quot;js-primer&quot;&apos;</span>
 </code></pre>
 <h2 id="escape-sequence"><a name="escape-sequence" class="plugin-anchor" href="#escape-sequence"><i class="fa fa-link" aria-hidden="true"></i></a>エスケープシーケンス </h2>
 <p>文字列リテラル中にはそのままでは入力できない特殊な文字もあります。
 改行もそのひとつで、<code>&quot;</code>（ダブルクォート）と<code>&apos;</code>（シングルクォート）の文字列リテラルには改行をそのまま入力できません
 （テンプレートリテラル中には例外的に改行をそのまま入力できます）。</p>
 <p>次のコードは、JavaScriptの構文として正しくないため、構文エラー（SyntaxError）となります。</p>
-<pre><code class="lang-javascript">// JavaScriptエンジンが構文として解釈できないため、SyntaxErrorとなる
-const invalidString = &quot;1行目
+<pre><code class="lang-javascript"><span class="hljs-comment">// JavaScriptエンジンが構文として解釈できないため、SyntaxErrorとなる</span>
+<span class="hljs-keyword">const</span> invalidString = <span class="hljs-string">&quot;1行目
 2行目
-3行目&quot;;
+3行目&quot;</span>;
 </code></pre>
 <p>この問題を回避するためには、改行のような特殊な文字をエスケープシーケンスとして書く必要があります。
 エスケープシーケンスは、<code>\</code>と特定の文字を組み合わせることで、特殊文字を表現します。</p>
@@ -1602,7 +1602,7 @@ const invalidString = &quot;1行目
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 改行を\nのエスケープシーケンスとして入力している</span>
 <span class="hljs-keyword">const</span> multiline = <span class="hljs-string">&quot;1行目\n2行目\n3行目&quot;</span>;
-<span class="hljs-built_in">console</span>.log(multiline); 
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(multiline); 
 <span class="hljs-comment">/* 改行した結果が出力される
 1行目
 2行目
@@ -1614,12 +1614,12 @@ const invalidString = &quot;1行目
 これにより、<code>\</code>（バックスラッシュ）そのものを入力していたつもりが、その文字がエスケープシーケンスとして扱われてしまう問題があります。</p>
 <p>次のコードでは、<code>\_</code>という組み合わせのエスケープシーケンスはないため、<code>\</code>が無視された文字列として評価されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;¯\_(ツ)_/¯&quot;</span>);
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;¯\_(ツ)_/¯&quot;</span>);
 <span class="hljs-comment">// ¯_(ツ)_/¯ のように\が無視されて表示される</span>
 </code></pre>
 <p><code>\</code>（バックスラッシュ）そのものを入力したい場合は、<code>\\</code>のようにエスケープする必要があります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;¯\\_(ツ)_/¯&quot;</span>);
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;¯\\_(ツ)_/¯&quot;</span>);
 <span class="hljs-comment">//　¯\_(ツ)_/¯ と表示される</span>
 </code></pre>
 <!-- Note: https://tc39.es/ecma262/#prod-NonEscapeCharacter
@@ -1632,19 +1632,19 @@ const invalidString = &quot;1行目
 <p>文字列を結合する簡単な方法は文字列結合演算子（<code>+</code>）を使う方法です。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;a&quot;</span> + <span class="hljs-string">&quot;b&quot;</span>;
-<span class="hljs-built_in">console</span>.log(str); <span class="hljs-comment">// =&gt; &quot;ab&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str); <span class="hljs-comment">// =&gt; &quot;ab&quot;</span>
 </code></pre>
 <p>変数と文字列を結合したい場合も文字列結合演算子で行えます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> name = <span class="hljs-string">&quot;JavaScript&quot;</span>;
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Hello &quot;</span> + name + <span class="hljs-string">&quot;!&quot;</span>);<span class="hljs-comment">// =&gt; &quot;Hello JavaScript!&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Hello &quot;</span> + name + <span class="hljs-string">&quot;!&quot;</span>);<span class="hljs-comment">// =&gt; &quot;Hello JavaScript!&quot;</span>
 </code></pre>
 <p>特定の書式に文字列を埋め込むには、テンプレートリテラルを使うとより宣言的に書けます。</p>
 <p>テンプレートリテラル中に<code>${変数名}</code>で書かれた変数は評価時に展開されます。
 つまり、先ほどの文字列結合は次のように書けます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> name = <span class="hljs-string">&quot;JavaScript&quot;</span>;
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Hello <span class="hljs-subst">${name}</span>!`</span>);<span class="hljs-comment">// =&gt; &quot;Hello JavaScript!&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Hello <span class="hljs-subst">${name}</span>!`</span>);<span class="hljs-comment">// =&gt; &quot;Hello JavaScript!&quot;</span>
 </code></pre>
 <h2 id="get-char"><a name="get-char" class="plugin-anchor" href="#get-char"><i class="fa fa-link" aria-hidden="true"></i></a>文字へのアクセス </h2>
 <p>文字列の特定の位置にある文字にはインデックスを指定してアクセスできます。
@@ -1654,15 +1654,15 @@ const invalidString = &quot;1行目
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;文字列&quot;</span>;
 <span class="hljs-comment">// 配列と同じようにインデックスでアクセスできる</span>
-<span class="hljs-built_in">console</span>.log(str[<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; &quot;文&quot;</span>
-<span class="hljs-built_in">console</span>.log(str[<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; &quot;字&quot;</span>
-<span class="hljs-built_in">console</span>.log(str[<span class="hljs-number">2</span>]); <span class="hljs-comment">// =&gt; &quot;列&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str[<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; &quot;文&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str[<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; &quot;字&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str[<span class="hljs-number">2</span>]); <span class="hljs-comment">// =&gt; &quot;列&quot;</span>
 </code></pre>
 <p>また、存在しないインデックスへのアクセスでは配列やオブジェクトと同じように<code>undefined</code>を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;文字列&quot;</span>;
 <span class="hljs-comment">// 42番目の要素は存在しない</span>
-<span class="hljs-built_in">console</span>.log(str[<span class="hljs-number">42</span>]); <span class="hljs-comment">// =&gt; undefined</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str[<span class="hljs-number">42</span>]); <span class="hljs-comment">// =&gt; undefined</span>
 </code></pre>
 <h3 id="string-at"><a name="string-at" class="plugin-anchor" href="#string-at"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2022] <code>String.prototype.at</code> </h3>
 <p>ES2022から<code>String.prototype.at</code>メソッドが追加されています。
@@ -1671,10 +1671,10 @@ Stringの<code>at</code>メソッドは、Arrayの<code>at</code>メソッドと
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;文字列&quot;</span>;
-<span class="hljs-built_in">console</span>.log(str.at(<span class="hljs-number">0</span>)); <span class="hljs-comment">// =&gt; &quot;文&quot;</span>
-<span class="hljs-built_in">console</span>.log(str.at(<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;字&quot;</span>
-<span class="hljs-built_in">console</span>.log(str.at(<span class="hljs-number">2</span>)); <span class="hljs-comment">// =&gt; &quot;列&quot;</span>
-<span class="hljs-built_in">console</span>.log(str.at(-<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;列&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">at</span>(<span class="hljs-number">0</span>)); <span class="hljs-comment">// =&gt; &quot;文&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">at</span>(<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;字&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">at</span>(<span class="hljs-number">2</span>)); <span class="hljs-comment">// =&gt; &quot;列&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">at</span>(-<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;列&quot;</span>
 </code></pre>
 <h2 id="what-is-string"><a name="what-is-string" class="plugin-anchor" href="#what-is-string"><i class="fa fa-link" aria-hidden="true"></i></a>文字列とは </h2>
 <p>今まで何気なく「文字列」という言葉を利用していましたが、ここでいう文字列とはどのようなものでしょうか？　コンピュータのメモリ上に文字列の「ア」といった文字をそのまま保存できないため、0と1からなるビット列へ変換する必要があります。
@@ -1779,20 +1779,20 @@ Stringの<code>charCodeAt</code>メソッドは、文字列の指定インデッ
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;アオイ&quot;</span>;
 <span class="hljs-comment">// それぞれの文字をCode Unitのhex値（16進数）に変換する</span>
 <span class="hljs-comment">// toStringの引数に16を渡すと16進数に変換される</span>
-<span class="hljs-built_in">console</span>.log(str.charCodeAt(<span class="hljs-number">0</span>).toString(<span class="hljs-number">16</span>)); <span class="hljs-comment">// =&gt; &quot;30a2&quot;</span>
-<span class="hljs-built_in">console</span>.log(str.charCodeAt(<span class="hljs-number">1</span>).toString(<span class="hljs-number">16</span>)); <span class="hljs-comment">// =&gt; &quot;30aa&quot;</span>
-<span class="hljs-built_in">console</span>.log(str.charCodeAt(<span class="hljs-number">2</span>).toString(<span class="hljs-number">16</span>));  <span class="hljs-comment">// =&gt; &quot;30a4&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">charCodeAt</span>(<span class="hljs-number">0</span>).<span class="hljs-title function_">toString</span>(<span class="hljs-number">16</span>)); <span class="hljs-comment">// =&gt; &quot;30a2&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">charCodeAt</span>(<span class="hljs-number">1</span>).<span class="hljs-title function_">toString</span>(<span class="hljs-number">16</span>)); <span class="hljs-comment">// =&gt; &quot;30aa&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">charCodeAt</span>(<span class="hljs-number">2</span>).<span class="hljs-title function_">toString</span>(<span class="hljs-number">16</span>));  <span class="hljs-comment">// =&gt; &quot;30a4&quot;</span>
 </code></pre>
 <p>逆に、Code Unitをhex値（16進数）から文字へと変換するには<code>String.fromCharCode</code>メソッドを使います。
 次のコードでは、16進数の整数リテラルである<code>0x</code>で記述したCode Unitから文字列へと変換しています
 （<code>0x</code>リテラルについては「<a href="../data-type/">データ型とリテラル</a>」の章を参照）。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-built_in">String</span>.fromCharCode(
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-title class_">String</span>.<span class="hljs-title function_">fromCharCode</span>(
     <span class="hljs-number">0x30a2</span>, <span class="hljs-comment">// アのCode Unit</span>
     <span class="hljs-number">0x30aa</span>, <span class="hljs-comment">// オのCode Unit</span>
     <span class="hljs-number">0x30a4</span>  <span class="hljs-comment">// イのCode Unit</span>
 );
-<span class="hljs-built_in">console</span>.log(str); <span class="hljs-comment">// =&gt; &quot;アオイ&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str); <span class="hljs-comment">// =&gt; &quot;アオイ&quot;</span>
 </code></pre>
 <p>これらの結果をまとめると、この文字列と文字列を構成するUTF-16のCode Unitとの関係は次のようになります。</p>
 <table>
@@ -1832,16 +1832,16 @@ Stringの<code>charCodeAt</code>メソッドは、文字列の指定インデッ
 <p>Stringの<code>split</code>メソッドは、第一引数に指定した区切り文字で文字列を分解した配列を返します。
 次のコードでは、文字列を<code>・</code>で区切った配列を作成しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> strings = <span class="hljs-string">&quot;赤・青・緑&quot;</span>.split(<span class="hljs-string">&quot;・&quot;</span>);
-<span class="hljs-built_in">console</span>.log(strings); <span class="hljs-comment">// =&gt; [&quot;赤&quot;, &quot;青&quot;, &quot;緑&quot;]</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> strings = <span class="hljs-string">&quot;赤・青・緑&quot;</span>.<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot;・&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(strings); <span class="hljs-comment">// =&gt; [&quot;赤&quot;, &quot;青&quot;, &quot;緑&quot;]</span>
 </code></pre>
 <p>分解してできた文字列の配列を結合して文字列を作る際に、Arrayの<code>join</code>メソッドが利用できます。
 Arrayの<code>join</code>メソッドの第一引数には区切り文字を指定し、その区切り文字で結合した文字列を返します。</p>
 <p>この２つを合わせれば、区切り文字を<code>・</code>から<code>、</code>へ変換する処理を次のように書くことができます。
 <code>・</code>で文字列を分割（<code>split</code>）してから、区切り文字を<code>、</code>にして結合（<code>join</code>）すれば変換できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;赤・青・緑&quot;</span>.split(<span class="hljs-string">&quot;・&quot;</span>).join(<span class="hljs-string">&quot;、&quot;</span>);
-<span class="hljs-built_in">console</span>.log(str); <span class="hljs-comment">// =&gt; &quot;赤、青、緑&quot;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;赤・青・緑&quot;</span>.<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot;・&quot;</span>).<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;、&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str); <span class="hljs-comment">// =&gt; &quot;赤、青、緑&quot;</span>
 </code></pre>
 <p>Stringの<code>split</code>メソッドの第一引数には正規表現も指定できます。
 これを利用すると、次のように文字列をスペースで区切るような処理を簡単に書けます。
@@ -1850,19 +1850,19 @@ Arrayの<code>join</code>メソッドの第一引数には区切り文字を指�
 <pre><code class="lang-js"><span class="hljs-comment">// 文字間に1つ以上のスペースがある</span>
 <span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;a     b    c      d&quot;</span>;
 <span class="hljs-comment">// 1つ以上のスペースにマッチして分解する</span>
-<span class="hljs-keyword">const</span> strings = str.split(<span class="hljs-regexp">/\s+/</span>);
-<span class="hljs-built_in">console</span>.log(strings); <span class="hljs-comment">// =&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]</span>
+<span class="hljs-keyword">const</span> strings = str.<span class="hljs-title function_">split</span>(<span class="hljs-regexp">/\s+/</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(strings); <span class="hljs-comment">// =&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]</span>
 </code></pre>
 <h2 id="length"><a name="length" class="plugin-anchor" href="#length"><i class="fa fa-link" aria-hidden="true"></i></a>文字列の長さ </h2>
 <p>Stringの<code>length</code>プロパティは文字列の要素数を返します。
 文字列の構成要素はCode Unitであるため、<code>length</code>プロパティはCode Unitの個数を返します。</p>
 <p>次の文字列は3つの要素（Code Unit）が並んだものであるため、<code>length</code>プロパティは<code>3</code>を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;文字列&quot;</span>.length); <span class="hljs-comment">// =&gt; 3</span>
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;文字列&quot;</span>.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 3</span>
 </code></pre>
 <p>また、空文字列は要素数が<code>0</code>であるため、<code>length</code>プロパティの結果も<code>0</code>となります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;&quot;</span>.length); <span class="hljs-comment">// =&gt; 0</span>
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;&quot;</span>.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 0</span>
 </code></pre>
 <h2 id="compare"><a name="compare" class="plugin-anchor" href="#compare"><i class="fa fa-link" aria-hidden="true"></i></a>文字列の比較 </h2>
 <p>文字列の比較には<code>===</code>（厳密比較演算子）を利用します。
@@ -1873,11 +1873,11 @@ Arrayの<code>join</code>メソッドの第一引数には区切り文字を指�
 </ul>
 <p>難しく書いていますが、同じ文字列同士なら<code>===</code>（厳密比較演算子）の結果は<code>true</code>となります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;文字列&quot;</span> === <span class="hljs-string">&quot;文字列&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;文字列&quot;</span> === <span class="hljs-string">&quot;文字列&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
 <span class="hljs-comment">// 一致しなければfalseとなる</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;JS&quot;</span> === <span class="hljs-string">&quot;ES&quot;</span>); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;JS&quot;</span> === <span class="hljs-string">&quot;ES&quot;</span>); <span class="hljs-comment">// =&gt; false</span>
 <span class="hljs-comment">// 文字列の長さが異なるのでfalseとなる</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;文字列&quot;</span> === <span class="hljs-string">&quot;文字&quot;</span>); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;文字列&quot;</span> === <span class="hljs-string">&quot;文字&quot;</span>); <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
 <p>また、<code>===</code>などの比較演算子だけではなく、
 <code>&gt;</code>、<code>&lt;</code>、<code>&gt;=</code>、<code>&lt;=</code>など大小の関係演算子で文字列同士の比較もできます。</p>
@@ -1886,12 +1886,12 @@ Arrayの<code>join</code>メソッドの第一引数には区切り文字を指�
 <p>次のコードでは、<code>ABC</code>と<code>ABD</code>を比較した場合にどちらが大きい（Code Unitの値が大きい）かを比較しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// &quot;A&quot;と&quot;B&quot;のCode Unitは65と66</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;A&quot;</span>.charCodeAt(<span class="hljs-number">0</span>)); <span class="hljs-comment">// =&gt; 65</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;B&quot;</span>.charCodeAt(<span class="hljs-number">0</span>)); <span class="hljs-comment">// =&gt; 66</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;A&quot;</span>.<span class="hljs-title function_">charCodeAt</span>(<span class="hljs-number">0</span>)); <span class="hljs-comment">// =&gt; 65</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;B&quot;</span>.<span class="hljs-title function_">charCodeAt</span>(<span class="hljs-number">0</span>)); <span class="hljs-comment">// =&gt; 66</span>
 <span class="hljs-comment">// &quot;A&quot;（65）は&quot;B&quot;（66）よりCode Unitの値が小さい</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;A&quot;</span> &gt; <span class="hljs-string">&quot;B&quot;</span>); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;A&quot;</span> &gt; <span class="hljs-string">&quot;B&quot;</span>); <span class="hljs-comment">// =&gt; false</span>
 <span class="hljs-comment">// 先頭から順番に比較し C &gt; D が falseであるため</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;ABC&quot;</span> &gt; <span class="hljs-string">&quot;ABD&quot;</span>); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;ABC&quot;</span> &gt; <span class="hljs-string">&quot;ABD&quot;</span>); <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
 <p>このように、関係演算子での文字列比較はCode Unit同士を比較しています。
 この結果を予測することは難しく、また直感的ではない結果が生まれることも多いです。
@@ -1911,14 +1911,14 @@ Arrayの<code>join</code>メソッドの第一引数には区切り文字を指�
 <p>そのため、メソッドの引数の扱い方は<a href="../array/#slice">配列の<code>slice</code>メソッド</a>と同様です。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;ABCDE&quot;</span>;
-<span class="hljs-built_in">console</span>.log(str.slice(<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;BCDE&quot;</span>
-<span class="hljs-built_in">console</span>.log(str.slice(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>)); <span class="hljs-comment">// =&gt; &quot;BCDE&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;BCDE&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>)); <span class="hljs-comment">// =&gt; &quot;BCDE&quot;</span>
 <span class="hljs-comment">// マイナスを指定すると後ろからの位置となる</span>
-<span class="hljs-built_in">console</span>.log(str.slice(-<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;E&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">slice</span>(-<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;E&quot;</span>
 <span class="hljs-comment">// インデックスが1から4の範囲を取り出す</span>
-<span class="hljs-built_in">console</span>.log(str.slice(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>)); <span class="hljs-comment">// =&gt; &quot;BCD&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>)); <span class="hljs-comment">// =&gt; &quot;BCD&quot;</span>
 <span class="hljs-comment">// 第一引数 &gt; 第二引数の場合、常に空文字列を返す</span>
-<span class="hljs-built_in">console</span>.log(str.slice(<span class="hljs-number">4</span>, <span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">slice</span>(<span class="hljs-number">4</span>, <span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;&quot;</span>
 </code></pre>
 <p>Stringの<code>substring</code>メソッドは、<code>slice</code>メソッドと同じく第一引数に開始位置、第二引数に終了位置を指定し、その範囲を取り出して新しい文字列を返します。
 第二引数を省略した場合の挙動も同様で、省略した場合は文字列の末尾が終了位置となります。</p>
@@ -1926,15 +1926,15 @@ Arrayの<code>join</code>メソッドの第一引数には区切り文字を指�
 また、第一引数の位置が第二引数の位置より大きい場合、第一引数と第二引数が入れ替わるという予想しにくい挙動となります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;ABCDE&quot;</span>;
-<span class="hljs-built_in">console</span>.log(str.substring(<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;BCDE&quot;</span>
-<span class="hljs-built_in">console</span>.log(str.substring(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>)); <span class="hljs-comment">// =&gt; &quot;BCDE&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">substring</span>(<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;BCDE&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">substring</span>(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>)); <span class="hljs-comment">// =&gt; &quot;BCDE&quot;</span>
 <span class="hljs-comment">// マイナスを指定すると0として扱われる</span>
-<span class="hljs-built_in">console</span>.log(str.substring(-<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;ABCDE&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">substring</span>(-<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;ABCDE&quot;</span>
 <span class="hljs-comment">// 位置:1から4の範囲を取り出す</span>
-<span class="hljs-built_in">console</span>.log(str.substring(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>)); <span class="hljs-comment">// =&gt; &quot;BCD&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">substring</span>(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>)); <span class="hljs-comment">// =&gt; &quot;BCD&quot;</span>
 <span class="hljs-comment">// 第一引数 &gt; 第二引数の場合、引数が入れ替わる</span>
 <span class="hljs-comment">// str.substring(1, 4)と同じ結果になる</span>
-<span class="hljs-built_in">console</span>.log(str.substring(<span class="hljs-number">4</span>, <span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;BCD&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">substring</span>(<span class="hljs-number">4</span>, <span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;BCD&quot;</span>
 </code></pre>
 <p>このように、マイナスの位置や引数が交換される挙動はわかりやすいものとは言えません。
 そのため、<code>slice</code>メソッドと<code>substring</code>メソッドに指定する引数は、どちらとも同じ結果となる範囲に限定したほうが直感的な挙動となります。
@@ -1943,9 +1943,9 @@ Arrayの<code>join</code>メソッドの第一引数には区切り文字を指�
 次のコードでは、<code>?</code>の位置を<code>indexOf</code>メソッドで取得し、それ以降の文字列を<code>slice</code>メソッドで切り出しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> url = <span class="hljs-string">&quot;https://example.com?param=1&quot;</span>;
-<span class="hljs-keyword">const</span> indexOfQuery = url.indexOf(<span class="hljs-string">&quot;?&quot;</span>);
-<span class="hljs-keyword">const</span> queryString = url.slice(indexOfQuery);
-<span class="hljs-built_in">console</span>.log(queryString); <span class="hljs-comment">// =&gt; &quot;?param=1&quot;</span>
+<span class="hljs-keyword">const</span> indexOfQuery = url.<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">&quot;?&quot;</span>);
+<span class="hljs-keyword">const</span> queryString = url.<span class="hljs-title function_">slice</span>(indexOfQuery);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(queryString); <span class="hljs-comment">// =&gt; &quot;?param=1&quot;</span>
 </code></pre>
 <p>また、配列とは異なりプリミティブ型の値である文字列は、<code>slice</code>メソッドと<code>substring</code>メソッド共に非破壊的です。
 機能的な違いがほとんどないため、どちらを利用するかは好みの問題となるでしょう。</p>
@@ -1977,11 +1977,11 @@ Arrayの<code>join</code>メソッドの第一引数には区切り文字を指�
 <span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;にわにはにわにわとりがいる&quot;</span>;
 <span class="hljs-comment">// indexOfは先頭から検索しインデックスを返す - &quot;**にわ**にはにわにわとりがいる&quot;</span>
 <span class="hljs-comment">// &quot;にわ&quot;の先頭のインデックスを返すため 0 となる</span>
-<span class="hljs-built_in">console</span>.log(str.indexOf(<span class="hljs-string">&quot;にわ&quot;</span>)); <span class="hljs-comment">// =&gt; 0</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">&quot;にわ&quot;</span>)); <span class="hljs-comment">// =&gt; 0</span>
 <span class="hljs-comment">// lastIndexOfは末尾から検索しインデックスを返す- &quot;にわにはにわ**にわ**とりがいる&quot;</span>
-<span class="hljs-built_in">console</span>.log(str.lastIndexOf(<span class="hljs-string">&quot;にわ&quot;</span>)); <span class="hljs-comment">// =&gt; 6</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">lastIndexOf</span>(<span class="hljs-string">&quot;にわ&quot;</span>)); <span class="hljs-comment">// =&gt; 6</span>
 <span class="hljs-comment">// 指定した文字列が見つからない場合は -1 を返す</span>
-<span class="hljs-built_in">console</span>.log(str.indexOf(<span class="hljs-string">&quot;未知のキーワード&quot;</span>)); <span class="hljs-comment">// =&gt; -1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">&quot;未知のキーワード&quot;</span>)); <span class="hljs-comment">// =&gt; -1</span>
 </code></pre>
 <h3 id="match-by-string"><a name="match-by-string" class="plugin-anchor" href="#match-by-string"><i class="fa fa-link" aria-hidden="true"></i></a>文字列にマッチした文字列の取得 </h3>
 <p>文字列を検索してマッチした文字列は、検索文字列そのものになるので自明です。</p>
@@ -1989,11 +1989,11 @@ Arrayの<code>join</code>メソッドの第一引数には区切り文字を指�
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;JavaScript&quot;</span>;
 <span class="hljs-keyword">const</span> searchWord = <span class="hljs-string">&quot;Script&quot;</span>;
-<span class="hljs-keyword">const</span> index = str.indexOf(searchWord);
+<span class="hljs-keyword">const</span> index = str.<span class="hljs-title function_">indexOf</span>(searchWord);
 <span class="hljs-keyword">if</span> (index !== -<span class="hljs-number">1</span>) {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${searchWord}</span>が見つかりました`</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">${searchWord}</span>が見つかりました`</span>);
 } <span class="hljs-keyword">else</span> {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${searchWord}</span>は見つかりませんでした`</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">${searchWord}</span>は見つかりませんでした`</span>);
 }
 </code></pre>
 <h4 id="test-by-string"><a name="test-by-string" class="plugin-anchor" href="#test-by-string"><i class="fa fa-link" aria-hidden="true"></i></a>真偽値の取得 </h4>
@@ -2009,14 +2009,14 @@ Arrayの<code>join</code>メソッドの第一引数には区切り文字を指�
 <pre><code class="lang-js"><span class="hljs-comment">// 検索対象となる文字列</span>
 <span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;にわにはにわにわとりがいる&quot;</span>;
 <span class="hljs-comment">// startsWith - 検索文字列が先頭ならtrue</span>
-<span class="hljs-built_in">console</span>.log(str.startsWith(<span class="hljs-string">&quot;にわ&quot;</span>)); <span class="hljs-comment">// =&gt; true</span>
-<span class="hljs-built_in">console</span>.log(str.startsWith(<span class="hljs-string">&quot;いる&quot;</span>)); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&quot;にわ&quot;</span>)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&quot;いる&quot;</span>)); <span class="hljs-comment">// =&gt; false</span>
 <span class="hljs-comment">// endsWith - 検索文字列が末尾ならtrue</span>
-<span class="hljs-built_in">console</span>.log(str.endsWith(<span class="hljs-string">&quot;にわ&quot;</span>)); <span class="hljs-comment">// =&gt; false</span>
-<span class="hljs-built_in">console</span>.log(str.endsWith(<span class="hljs-string">&quot;いる&quot;</span>)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">endsWith</span>(<span class="hljs-string">&quot;にわ&quot;</span>)); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">endsWith</span>(<span class="hljs-string">&quot;いる&quot;</span>)); <span class="hljs-comment">// =&gt; true</span>
 <span class="hljs-comment">// includes - 検索文字列が含まれるならtrue</span>
-<span class="hljs-built_in">console</span>.log(str.includes(<span class="hljs-string">&quot;にわ&quot;</span>)); <span class="hljs-comment">// =&gt; true</span>
-<span class="hljs-built_in">console</span>.log(str.includes(<span class="hljs-string">&quot;いる&quot;</span>)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;にわ&quot;</span>)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;いる&quot;</span>)); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <h2 id="regexp-object"><a name="regexp-object" class="plugin-anchor" href="#regexp-object"><i class="fa fa-link" aria-hidden="true"></i></a>正規表現オブジェクト </h2>
 <!-- パターンと正規表現オブジェクトの用語については https://github.com/asciidwango/js-primer/issues/21#issuecomment-293502813 -->
@@ -2032,7 +2032,7 @@ Arrayの<code>join</code>メソッドの第一引数には区切り文字を指�
 <pre><code class="lang-js"><span class="hljs-comment">// 正規表現リテラルで正規表現オブジェクトを作成</span>
 <span class="hljs-keyword">const</span> patternA = <span class="hljs-regexp">/パターン/</span>フラグ;
 <span class="hljs-comment">// `RegExp`コンストラクタで正規表現オブジェクトを作成</span>
-<span class="hljs-keyword">const</span> patternB = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(<span class="hljs-string">&quot;パターン文字列&quot;</span>, <span class="hljs-string">&quot;フラグ&quot;</span>);
+<span class="hljs-keyword">const</span> patternB = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RegExp</span>(<span class="hljs-string">&quot;パターン文字列&quot;</span>, <span class="hljs-string">&quot;フラグ&quot;</span>);
 </code></pre>
 <!-- textlint-enable eslint -->
 <p>正規表現リテラルは、<code>/</code>と<code>/</code>のリテラル内に正規表現のパターンを書くことで、正規表現オブジェクトを作成できます。
@@ -2043,7 +2043,7 @@ Arrayの<code>join</code>メソッドの第一引数には区切り文字を指�
 <code>RegExp</code>コンストラクタでは、文字列から正規表現オブジェクトを作成できます。</p>
 <p>次のコードでは、<code>RegExp</code>コンストラクタを使って<code>a</code>が1文字以上連続している文字列にマッチする正規表現オブジェクトを作成しています。
 これは先ほどの正規表現リテラルで作成した正規表現オブジェクトと同じ意味になります。</p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> pattern = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(<span class="hljs-string">&quot;a+&quot;</span>);
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> pattern = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RegExp</span>(<span class="hljs-string">&quot;a+&quot;</span>);
 </code></pre>
 <h3 id="difference-regexp-literal-regexp-constructor"><a name="difference-regexp-literal-regexp-constructor" class="plugin-anchor" href="#difference-regexp-literal-regexp-constructor"><i class="fa fa-link" aria-hidden="true"></i></a>正規表現リテラルと<code>RegExp</code>コンストラクタの違い </h3>
 <!-- 評価とコンパイルは仕様から来てる用語 https://tc39.es/ecma262/#sec-pattern -->
@@ -2056,7 +2056,7 @@ Arrayの<code>join</code>メソッドの第一引数には区切り文字を指�
 次のように<code>main</code>関数を呼び出していなくても構文エラー（<code>SyntaxError</code>）が発生します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// 正規表現リテラルはロード時にパターンが評価され、例外が発生する</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>) {
     <span class="hljs-comment">// `[`は対となる`]`を組み合わせる特殊文字であるため、単独で書けない</span>
     <span class="hljs-keyword">const</span> invalidPattern = <span class="hljs-regexp">/[/;
 }
@@ -2067,13 +2067,13 @@ Arrayの<code>join</code>メソッドの第一引数には区切り文字を指�
 <code>main</code>関数を呼び出すことで初めて構文エラー（<code>SyntaxError</code>）が発生します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// `RegExp`コンストラクタは実行時にパターンが評価され、例外が発生する</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>) {
     <span class="hljs-comment">// `[`は対となる`]`を組み合わせる特殊文字であるため、単独で書けない</span>
-    <span class="hljs-keyword">const</span> invalidPattern = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(<span class="hljs-string">&quot;[&quot;</span>);
+    <span class="hljs-keyword">const</span> invalidPattern = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RegExp</span>(<span class="hljs-string">&quot;[&quot;</span>);
 }
 
 <span class="hljs-comment">// `main`関数を呼び出すことで初めて例外が発生する</span>
-main();
+<span class="hljs-title function_">main</span>();
 </code></pre>
 <p>これを言い換えると、正規表現リテラルはコードを書いた時点で決まったパターンの正規表現オブジェクトを作成する構文です。
 一方で、<code>RegExp</code>コンストラクタは変数と組み合わせるなど、実行時に変わることがあるパターンの正規表現オブジェクトを作成できます。</p>
@@ -2092,7 +2092,7 @@ main();
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> spaceCount = <span class="hljs-number">3</span>;
 <span class="hljs-comment">// `/\s{3}/`の正規表現を文字列から作成する</span>
 <span class="hljs-comment">// &quot;\&quot;がエスケープ文字であるため、&quot;\&quot;自身を文字列として書くには、&quot;\\&quot;のように2つ書く</span>
-<span class="hljs-keyword">const</span> pattern = <span class="hljs-keyword">new</span> <span class="hljs-built_in">RegExp</span>(<span class="hljs-string">`\\s{<span class="hljs-subst">${spaceCount}</span>}`</span>);
+<span class="hljs-keyword">const</span> pattern = <span class="hljs-keyword">new</span> <span class="hljs-title class_">RegExp</span>(<span class="hljs-string">`\\s{<span class="hljs-subst">${spaceCount}</span>}`</span>);
 </code></pre>
 <p>このように、<code>RegExp</code>コンストラクタは文字列から正規表現オブジェクトを作成できますが、特殊文字のエスケープが必要となります。
 そのため、正規表現リテラルで表現できる場合は、リテラルを利用したほうが簡潔でパフォーマンスもよいです。
@@ -2111,7 +2111,7 @@ main();
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;ABC123EFG&quot;</span>;
 <span class="hljs-keyword">const</span> searchPattern = <span class="hljs-regexp">/\d{3}/</span>;
-<span class="hljs-built_in">console</span>.log(str.search(searchPattern)); <span class="hljs-comment">// =&gt; 3</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">search</span>(searchPattern)); <span class="hljs-comment">// =&gt; 3</span>
 </code></pre>
 <h4 id="match-by-regexp"><a name="match-by-regexp" class="plugin-anchor" href="#match-by-regexp"><i class="fa fa-link" aria-hidden="true"></i></a>正規表現によるマッチした文字列の取得 </h4>
 <p>文字列による検索では、検索した文字列そのものがマッチした文字列になります。
@@ -2121,20 +2121,20 @@ main();
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;abc123def&quot;</span>;
 <span class="hljs-comment">// 連続した数字にマッチする正規表現</span>
 <span class="hljs-keyword">const</span> searchPattern = <span class="hljs-regexp">/\d+/</span>;
-<span class="hljs-keyword">const</span> index = str.search(searchPattern); <span class="hljs-comment">// =&gt; 3</span>
+<span class="hljs-keyword">const</span> index = str.<span class="hljs-title function_">search</span>(searchPattern); <span class="hljs-comment">// =&gt; 3</span>
 <span class="hljs-comment">// `index` だけではマッチした文字列の長さがわからない</span>
-str.slice(index, index + マッチした文字列の長さ); <span class="hljs-comment">// マッチした文字列は取得できない</span>
+str.<span class="hljs-title function_">slice</span>(index, index + マッチした文字列の長さ); <span class="hljs-comment">// マッチした文字列は取得できない</span>
 </code></pre>
 <p>そのため、マッチした文字列を取得するStringの<code>match</code>メソッドと<code>matchAll</code>メソッドが用意されています。
 また、これらのメソッドは正規表現のマッチを文字列の最後まで繰り返す<code>g</code>フラグ（globalの略称）によって挙動が変わります。</p>
 <h5 id="match"><a name="match" class="plugin-anchor" href="#match"><i class="fa fa-link" aria-hidden="true"></i></a>マッチした文字列の取得 </h5>
 <p>まずは、マッチした文字列を取得するStringの<code>match</code>メソッドから見ていきます。
 <code>match</code>メソッドは、正規表現の<code>/パターン/</code>が<code>&quot;文字列&quot;</code>にマッチすると、マッチした文字列に関する情報を返すメソッドです。</p>
-<pre><code class="lang-js"><span class="hljs-string">&quot;文字列&quot;</span>.match(<span class="hljs-regexp">/パターン/</span>);
+<pre><code class="lang-js"><span class="hljs-string">&quot;文字列&quot;</span>.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/パターン/</span>);
 </code></pre>
 <p><code>match</code>メソッドで検索した結果、正規表現にマッチする文字列がなかった場合は<code>null</code>を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;文字列&quot;</span>.match(<span class="hljs-regexp">/マッチしないパターン/</span>)); <span class="hljs-comment">// =&gt; null</span>
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;文字列&quot;</span>.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/マッチしないパターン/</span>)); <span class="hljs-comment">// =&gt; null</span>
 </code></pre>
 <p><code>match</code>メソッドは正規表現の<code>g</code>フラグなしのパターンで検索した場合、最初にマッチしたものが見つかった時点で検索が終了します。
 このときの<code>match</code>メソッドの返り値は、<code>index</code>プロパティと<code>input</code>プロパティをもった特殊な配列となります。
@@ -2146,14 +2146,14 @@ str.slice(index, index + マッチした文字列の長さ); <span class="hljs-c
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;ABC あいう DE えお&quot;</span>;
 <span class="hljs-keyword">const</span> alphabetsPattern = <span class="hljs-regexp">/[a-zA-Z]+/</span>;
 <span class="hljs-comment">// gフラグなしでは、最初の結果のみを含んだ特殊な配列を返す</span>
-<span class="hljs-keyword">const</span> results = str.match(alphabetsPattern);
-<span class="hljs-built_in">console</span>.log(results.length); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-keyword">const</span> results = str.<span class="hljs-title function_">match</span>(alphabetsPattern);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 1</span>
 <span class="hljs-comment">// マッチした文字列はインデックスでアクセスできる</span>
-<span class="hljs-built_in">console</span>.log(results[<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; &quot;ABC&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results[<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; &quot;ABC&quot;</span>
 <span class="hljs-comment">// マッチした文字列の先頭のインデックス</span>
-<span class="hljs-built_in">console</span>.log(results.index); <span class="hljs-comment">// =&gt; 0</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results.<span class="hljs-property">index</span>); <span class="hljs-comment">// =&gt; 0</span>
 <span class="hljs-comment">// 検索対象となった文字列全体</span>
-<span class="hljs-built_in">console</span>.log(results.input); <span class="hljs-comment">// =&gt; &quot;ABC あいう DE えお&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results.<span class="hljs-property">input</span>); <span class="hljs-comment">// =&gt; &quot;ABC あいう DE えお&quot;</span>
 </code></pre>
 <p><code>match</code>メソッドは正規表現の<code>g</code>フラグありのパターンで検索した場合、マッチしたすべての文字列を含んだ配列を返します。</p>
 <p>次のコードの<code>/[a-zA-Z]+/g</code>という正規表現は<code>a</code>から<code>Z</code>のどれかの文字が1つ以上連続しているものに繰り返しマッチします。
@@ -2162,13 +2162,13 @@ str.slice(index, index + マッチした文字列の長さ); <span class="hljs-c
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;ABC あいう DE えお&quot;</span>;
 <span class="hljs-keyword">const</span> alphabetsPattern = <span class="hljs-regexp">/[a-zA-Z]+/g</span>;
 <span class="hljs-comment">// gフラグありでは、すべての検索結果を含む配列を返す</span>
-<span class="hljs-keyword">const</span> resultsWithG = str.match(alphabetsPattern);
-<span class="hljs-built_in">console</span>.log(resultsWithG.length); <span class="hljs-comment">// =&gt; 2</span>
-<span class="hljs-built_in">console</span>.log(resultsWithG[<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; &quot;ABC&quot;</span>
-<span class="hljs-built_in">console</span>.log(resultsWithG[<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; &quot;DE&quot;</span>
+<span class="hljs-keyword">const</span> resultsWithG = str.<span class="hljs-title function_">match</span>(alphabetsPattern);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(resultsWithG.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 2</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(resultsWithG[<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; &quot;ABC&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(resultsWithG[<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; &quot;DE&quot;</span>
 <span class="hljs-comment">// indexとinputはgフラグありの場合は追加されない</span>
-<span class="hljs-built_in">console</span>.log(resultsWithG.index); <span class="hljs-comment">// =&gt; undefined</span>
-<span class="hljs-built_in">console</span>.log(resultsWithG.input); <span class="hljs-comment">// =&gt; undefined</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(resultsWithG.<span class="hljs-property">index</span>); <span class="hljs-comment">// =&gt; undefined</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(resultsWithG.<span class="hljs-property">input</span>); <span class="hljs-comment">// =&gt; undefined</span>
 </code></pre>
 <p>このときの<code>match</code>メソッドの返り値である配列には<code>index</code>と<code>input</code>プロパティはありません。
 なぜなら、複数の箇所にマッチする場合においては、1つの<code>index</code>プロパティでは意味が一意に決まらないためです。</p>
@@ -2193,10 +2193,10 @@ Iteratorオブジェクトは<code>for...of</code>構文で反復処理すると
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;ABC あいう DE えお&quot;</span>;
 <span class="hljs-keyword">const</span> alphabetsPattern = <span class="hljs-regexp">/[a-zA-Z]+/g</span>;
 <span class="hljs-comment">// matchAllはIteratorを返す</span>
-<span class="hljs-keyword">const</span> matchesIterator = str.matchAll(alphabetsPattern);
+<span class="hljs-keyword">const</span> matchesIterator = str.<span class="hljs-title function_">matchAll</span>(alphabetsPattern);
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> match <span class="hljs-keyword">of</span> matchesIterator) {
     <span class="hljs-comment">// マッチした要素ごとの情報を含んでいる</span>
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`match: &quot;<span class="hljs-subst">${match[<span class="hljs-number">0</span>]}</span>&quot;, index: <span class="hljs-subst">${match.index}</span>, input: &quot;<span class="hljs-subst">${match.input}</span>&quot;`</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`match: &quot;<span class="hljs-subst">${match[<span class="hljs-number">0</span>]}</span>&quot;, index: <span class="hljs-subst">${match.index}</span>, input: &quot;<span class="hljs-subst">${match.input}</span>&quot;`</span>);
 }
 <span class="hljs-comment">// 次の順番でコンソールに出力される</span>
 <span class="hljs-comment">// match: &quot;ABC&quot;, index: 0, input: &quot;ABC あいう DE えお&quot;</span>
@@ -2212,7 +2212,7 @@ Iteratorオブジェクトは<code>for...of</code>構文で反復処理すると
 <p>そのマッチしているパターンにキャプチャが含まれている場合は、返り値の配列へキャプチャした部分が追加されていきます。
 配列の先頭にはマッチした文字列全体が入り、順番にキャプチャリング（<code>(</code>と<code>)</code>）で囲んだ範囲が配列に含まれます。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> [マッチした全体の文字列, キャプチャ<span class="hljs-number">1</span>, キャプチャ<span class="hljs-number">2</span>] = 文字列.match(<span class="hljs-regexp">/パターン(キャプチャ1)と(キャプチャ2)/</span>);
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> [マッチした全体の文字列, キャプチャ<span class="hljs-number">1</span>, キャプチャ<span class="hljs-number">2</span>] = 文字列.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/パターン(キャプチャ1)と(キャプチャ2)/</span>);
 </code></pre>
 <p>次のコードでは、<code>ECMAScript 数字</code>の<code>数字</code>部分だけを取り出そうとしています。
 Stringの<code>match</code>メソッドとキャプチャリングによって数字(<code>\d+</code>)にマッチする部分を取り出しています。</p>
@@ -2221,9 +2221,9 @@ Stringの<code>match</code>メソッドとキャプチャリングによって�
 <span class="hljs-keyword">const</span> pattern = <span class="hljs-regexp">/ECMAScript (\d+)/</span>;
 <span class="hljs-comment">// 返り値は0番目がマッチした全体、1番目がキャプチャの1番目というように対応している</span>
 <span class="hljs-comment">// [マッチした全部の文字列, キャプチャの1番目, キャプチャの2番目 ....]</span>
-<span class="hljs-keyword">const</span> [all, capture1] = <span class="hljs-string">&quot;ECMAScript 6&quot;</span>.match(pattern);
-<span class="hljs-built_in">console</span>.log(all); <span class="hljs-comment">// =&gt; &quot;ECMAScript 6&quot;</span>
-<span class="hljs-built_in">console</span>.log(capture1); <span class="hljs-comment">// =&gt; &quot;6&quot;</span>
+<span class="hljs-keyword">const</span> [all, capture1] = <span class="hljs-string">&quot;ECMAScript 6&quot;</span>.<span class="hljs-title function_">match</span>(pattern);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(all); <span class="hljs-comment">// =&gt; &quot;ECMAScript 6&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(capture1); <span class="hljs-comment">// =&gt; &quot;6&quot;</span>
 </code></pre>
 <p>正規表現の<code>g</code>フラグを使い繰り返し文字列にマッチする場合には、<code>matchAll</code>メソッドを利用します。
 先ほども紹介したように、<code>match</code>メソッドは繰り返しマッチした場合に、それぞれ個別のマッチした情報を取得できないためです。</p>
@@ -2234,11 +2234,11 @@ Stringの<code>match</code>メソッドとキャプチャリングによって�
 <pre><code class="lang-js"><span class="hljs-comment">// &quot;ES(数字+)&quot;にマッチするが、欲しい文字列は数字の部分のみ</span>
 <span class="hljs-keyword">const</span> pattern = <span class="hljs-regexp">/ES(\d+)/g</span>;
 <span class="hljs-comment">// iteratorを返す</span>
-<span class="hljs-keyword">const</span> matchesIterator = <span class="hljs-string">&quot;ES2015、ES2016、ES2017&quot;</span>.matchAll(pattern);
+<span class="hljs-keyword">const</span> matchesIterator = <span class="hljs-string">&quot;ES2015、ES2016、ES2017&quot;</span>.<span class="hljs-title function_">matchAll</span>(pattern);
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> match <span class="hljs-keyword">of</span> matchesIterator) {
     <span class="hljs-comment">// マッチした要素ごとの情報を含んでいる</span>
     <span class="hljs-comment">// 0番目はマッチした文字列全体、1番目がキャプチャの1番目である数字</span>
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`match: &quot;<span class="hljs-subst">${match[<span class="hljs-number">0</span>]}</span>&quot;, capture1: <span class="hljs-subst">${match[<span class="hljs-number">1</span>]}</span>, index: <span class="hljs-subst">${match.index}</span>, input: &quot;<span class="hljs-subst">${match.input}</span>&quot;`</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`match: &quot;<span class="hljs-subst">${match[<span class="hljs-number">0</span>]}</span>&quot;, capture1: <span class="hljs-subst">${match[<span class="hljs-number">1</span>]}</span>, index: <span class="hljs-subst">${match.index}</span>, input: &quot;<span class="hljs-subst">${match.input}</span>&quot;`</span>);
 }
 <span class="hljs-comment">// 次の順番でコンソールに出力される</span>
 <span class="hljs-comment">// match: &quot;ES2015&quot;, capture1: 2015, index: 0, input: &quot;ES2015、ES2016、ES2017&quot;</span>
@@ -2249,7 +2249,7 @@ Stringの<code>match</code>メソッドとキャプチャリングによって�
 <p>Stringの<code>matchAll</code>メソッドは、ES2020で導入されたメソッドです。
 それまでは、RegExpの<code>exec</code>メソッドというStringの<code>match</code>メソッドによく似た挙動をするメソッドを利用して、Stringの<code>matchAll</code>メソッド相当の表現を実装していました。</p>
 <p>RegExpの<code>exec</code>メソッドは、引数に文字列を受け取るメソッドです。</p>
-<pre><code class="lang-js">/pattern/.exec(<span class="hljs-string">&quot;文字列&quot;</span>);
+<pre><code class="lang-js">/pattern/.<span class="hljs-title function_">exec</span>(<span class="hljs-string">&quot;文字列&quot;</span>);
 </code></pre>
 <p>RegExpの<code>exec</code>メソッドは<code>g</code>フラグなしのパターンで検索した場合、マッチした最初の結果のみを含む特殊な配列を返します。
 このときの<code>exec</code>メソッドの返り値である配列が<code>index</code>プロパティと<code>input</code>プロパティが追加された特殊な配列となるのは、Stringの<code>match</code>メソッドと同様です。</p>
@@ -2257,13 +2257,13 @@ Stringの<code>match</code>メソッドとキャプチャリングによって�
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;ABC あいう DE えお&quot;</span>;
 <span class="hljs-keyword">const</span> alphabetsPattern = <span class="hljs-regexp">/[a-zA-Z]+/</span>;
 <span class="hljs-comment">// gフラグなしでは、最初の結果のみを持つ配列を返す</span>
-<span class="hljs-keyword">const</span> results = alphabetsPattern.exec(str);
-<span class="hljs-built_in">console</span>.log(results.length); <span class="hljs-comment">// =&gt; 1</span>
-<span class="hljs-built_in">console</span>.log(results[<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; &quot;ABC&quot;</span>
+<span class="hljs-keyword">const</span> results = alphabetsPattern.<span class="hljs-title function_">exec</span>(str);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results[<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; &quot;ABC&quot;</span>
 <span class="hljs-comment">// マッチした文字列の先頭のインデックス</span>
-<span class="hljs-built_in">console</span>.log(results.index); <span class="hljs-comment">// =&gt; 0</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results.<span class="hljs-property">index</span>); <span class="hljs-comment">// =&gt; 0</span>
 <span class="hljs-comment">// 検索対象となった文字列全体</span>
-<span class="hljs-built_in">console</span>.log(results.input); <span class="hljs-comment">// =&gt; &quot;ABC あいう DE えお&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results.<span class="hljs-property">input</span>); <span class="hljs-comment">// =&gt; &quot;ABC あいう DE えお&quot;</span>
 </code></pre>
 <p>RegExpの<code>exec</code>メソッドは<code>g</code>フラグありのパターンで検索した場合も、マッチした最初の結果のみを含む特殊な配列を返します。
 この点はStringの<code>match</code>メソッドとは異なります。
@@ -2273,19 +2273,19 @@ Stringの<code>match</code>メソッドとキャプチャリングによって�
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;ABC あいう DE えお&quot;</span>;
 <span class="hljs-keyword">const</span> alphabetsPattern = <span class="hljs-regexp">/[a-zA-Z]+/g</span>;
 <span class="hljs-comment">// まだ一度も検索していないので、lastIndexは0となり先頭から検索が開始される</span>
-<span class="hljs-built_in">console</span>.log(alphabetsPattern.lastIndex); <span class="hljs-comment">// =&gt; 0</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(alphabetsPattern.<span class="hljs-property">lastIndex</span>); <span class="hljs-comment">// =&gt; 0</span>
 <span class="hljs-comment">// gフラグありでも、一回目の結果は同じだが、`lastIndex`プロパティが更新される</span>
-<span class="hljs-keyword">const</span> result1 = alphabetsPattern.exec(str);
-<span class="hljs-built_in">console</span>.log(result1[<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; &quot;ABC&quot;</span>
-<span class="hljs-built_in">console</span>.log(alphabetsPattern.lastIndex); <span class="hljs-comment">// =&gt; 3</span>
+<span class="hljs-keyword">const</span> result1 = alphabetsPattern.<span class="hljs-title function_">exec</span>(str);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result1[<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; &quot;ABC&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(alphabetsPattern.<span class="hljs-property">lastIndex</span>); <span class="hljs-comment">// =&gt; 3</span>
 <span class="hljs-comment">// 2回目の検索が、`lastIndex`の値のインデックスから開始される</span>
-<span class="hljs-keyword">const</span> result2 = alphabetsPattern.exec(str);
-<span class="hljs-built_in">console</span>.log(result2[<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; &quot;DE&quot;</span>
-<span class="hljs-built_in">console</span>.log(alphabetsPattern.lastIndex); <span class="hljs-comment">// =&gt; 10</span>
+<span class="hljs-keyword">const</span> result2 = alphabetsPattern.<span class="hljs-title function_">exec</span>(str);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result2[<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; &quot;DE&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(alphabetsPattern.<span class="hljs-property">lastIndex</span>); <span class="hljs-comment">// =&gt; 10</span>
 <span class="hljs-comment">// 検索結果が見つからない場合はnullを返し、`lastIndex`プロパティは0にリセットされる</span>
-<span class="hljs-keyword">const</span> result3 = alphabetsPattern.exec(str);
-<span class="hljs-built_in">console</span>.log(result3); <span class="hljs-comment">// =&gt; null</span>
-<span class="hljs-built_in">console</span>.log(alphabetsPattern.lastIndex); <span class="hljs-comment">// =&gt; 0</span>
+<span class="hljs-keyword">const</span> result3 = alphabetsPattern.<span class="hljs-title function_">exec</span>(str);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result3); <span class="hljs-comment">// =&gt; null</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(alphabetsPattern.<span class="hljs-property">lastIndex</span>); <span class="hljs-comment">// =&gt; 0</span>
 </code></pre>
 <p>RegExpの<code>exec</code>メソッドの挙動をまとめると次のようになります。
 正規表現の<code>g</code>フラグがない場合は、Stringの<code>match</code>メソッドと同じ結果です。
@@ -2303,9 +2303,9 @@ Stringの<code>match</code>メソッドとキャプチャリングによって�
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;ABC あいう DE えお&quot;</span>;
 <span class="hljs-keyword">const</span> alphabetsPattern = <span class="hljs-regexp">/[a-zA-Z]+/g</span>;
 <span class="hljs-keyword">let</span> matches;
-<span class="hljs-keyword">while</span> (matches = alphabetsPattern.exec(str)) {
+<span class="hljs-keyword">while</span> (matches = alphabetsPattern.<span class="hljs-title function_">exec</span>(str)) {
     <span class="hljs-comment">// RegExpの`exec`メソッドの返り値は`index`プロパティなどを含む特殊な配列</span>
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`match: <span class="hljs-subst">${matches[<span class="hljs-number">0</span>]}</span>, index: <span class="hljs-subst">${matches.index}</span>, lastIndex: <span class="hljs-subst">${alphabetsPattern.lastIndex}</span>`</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`match: <span class="hljs-subst">${matches[<span class="hljs-number">0</span>]}</span>, index: <span class="hljs-subst">${matches.index}</span>, lastIndex: <span class="hljs-subst">${alphabetsPattern.lastIndex}</span>`</span>);
 }
 <span class="hljs-comment">// 次の順番でコンソールに出力される</span>
 <span class="hljs-comment">// match: ABC, index: 0, lastIndex: 3</span>
@@ -2335,14 +2335,14 @@ RegExpの<code>exec</code>はIteratorオブジェクトという反復処理の�
 <pre><code class="lang-js"><span class="hljs-comment">// 検索対象となる文字列</span>
 <span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;にわにはにわにわとりがいる&quot;</span>;
 <span class="hljs-comment">// ^ - 検索文字列が先頭ならtrue</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-regexp">/^にわ/</span>.test(str)); <span class="hljs-comment">// =&gt; true</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-regexp">/^いる/</span>.test(str)); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-regexp">/^にわ/</span>.<span class="hljs-title function_">test</span>(str)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-regexp">/^いる/</span>.<span class="hljs-title function_">test</span>(str)); <span class="hljs-comment">// =&gt; false</span>
 <span class="hljs-comment">// $ - 検索文字列が末尾ならtrue</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-regexp">/にわ$/</span>.test(str)); <span class="hljs-comment">// =&gt; false</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-regexp">/いる$/</span>.test(str)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-regexp">/にわ$/</span>.<span class="hljs-title function_">test</span>(str)); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-regexp">/いる$/</span>.<span class="hljs-title function_">test</span>(str)); <span class="hljs-comment">// =&gt; true</span>
 <span class="hljs-comment">// 検索文字列が含まれるならtrue</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-regexp">/にわ/</span>.test(str)); <span class="hljs-comment">// =&gt; true</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-regexp">/いる/</span>.test(str)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-regexp">/にわ/</span>.<span class="hljs-title function_">test</span>(str)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-regexp">/いる/</span>.<span class="hljs-title function_">test</span>(str)); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <p>そのほかにも、正規表現では繰り返しや文字の集合などを特殊文字で表現できるため柔軟な検索が可能です。</p>
 <h3 id="string-or-regexp"><a name="string-or-regexp" class="plugin-anchor" href="#string-or-regexp"><i class="fa fa-link" aria-hidden="true"></i></a>文字列と正規表現どちらを使うべきか </h3>
@@ -2360,12 +2360,12 @@ Stringメソッドの場合は、<code>/</code>からはじまり<code>/</code>�
 <span class="hljs-comment">// 正規表現で`/`からはじまり`/`で終わる文字列のパターン</span>
 <span class="hljs-keyword">const</span> regExpLikePattern = <span class="hljs-regexp">/^\/.*\/$/</span>;
 <span class="hljs-comment">// RegExpの`test`メソッドでパターンにマッチするかを判定</span>
-<span class="hljs-built_in">console</span>.log(regExpLikePattern.test(str)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(regExpLikePattern.<span class="hljs-title function_">test</span>(str)); <span class="hljs-comment">// =&gt; true</span>
 <span class="hljs-comment">// Stringメソッドで、`/`からはじまり`/`で終わる文字列かを判定する関数</span>
-<span class="hljs-keyword">const</span> isRegExpLikeString = <span class="hljs-function">(<span class="hljs-params">str</span>) =&gt;</span> {
-    <span class="hljs-keyword">return</span> str.startsWith(<span class="hljs-string">&quot;/&quot;</span>) &amp;&amp; str.endsWith(<span class="hljs-string">&quot;/&quot;</span>);
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">isRegExpLikeString</span> = (<span class="hljs-params">str</span>) =&gt; {
+    <span class="hljs-keyword">return</span> str.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&quot;/&quot;</span>) &amp;&amp; str.<span class="hljs-title function_">endsWith</span>(<span class="hljs-string">&quot;/&quot;</span>);
 };
-<span class="hljs-built_in">console</span>.log(isRegExpLikeString(str)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">isRegExpLikeString</span>(str)); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <p>このように、正規表現は柔軟で便利ですが、コード上から意図が消えてしまいやすいです。
 そのため、正規表現を扱う際にはコメントや変数名で具体的な意図を補足したほうがよいでしょう。</p>
@@ -2389,15 +2389,15 @@ strict modeでない場合は、エラーも発生せず単に無視されます
 <code>replace</code>メソッドは、<strong>文字列</strong>から第一引数の<code>検索文字列</code>または正規表現にマッチする部分を、第二引数の<code>置換文字列</code>へ置換します。
 第一引数には、文字列と正規表現を指定できます。</p>
 <!-- doctest: ReferenceError -->
-<pre><code class="lang-js">文字列.replace(<span class="hljs-string">&quot;検索文字列&quot;</span>, <span class="hljs-string">&quot;置換文字列&quot;</span>);
-文字列.replace(<span class="hljs-regexp">/パターン/</span>, <span class="hljs-string">&quot;置換文字列&quot;</span>);
+<pre><code class="lang-js">文字列.<span class="hljs-title function_">replace</span>(<span class="hljs-string">&quot;検索文字列&quot;</span>, <span class="hljs-string">&quot;置換文字列&quot;</span>);
+文字列.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/パターン/</span>, <span class="hljs-string">&quot;置換文字列&quot;</span>);
 </code></pre>
 <p>次のように、<code>replace</code>メソッドで削除したい部分を空文字列へ置換することで、文字列を削除できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;文字列&quot;</span>;
 <span class="hljs-comment">// &quot;文字&quot;を&quot;&quot;（空文字列）へ置換することで&quot;削除&quot;を表現</span>
-<span class="hljs-keyword">const</span> newStr = str.replace(<span class="hljs-string">&quot;文字&quot;</span>, <span class="hljs-string">&quot;&quot;</span>);
-<span class="hljs-built_in">console</span>.log(newStr); <span class="hljs-comment">// =&gt; &quot;列&quot;</span>
+<span class="hljs-keyword">const</span> newStr = str.<span class="hljs-title function_">replace</span>(<span class="hljs-string">&quot;文字&quot;</span>, <span class="hljs-string">&quot;&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(newStr); <span class="hljs-comment">// =&gt; &quot;列&quot;</span>
 </code></pre>
 <p><code>replace</code>メソッドには正規表現も指定できます。
 <code>g</code>フラグを有効化した正規表現を渡すことで、文字列からパターンにマッチするものをすべて置換できます。</p>
@@ -2405,11 +2405,11 @@ strict modeでない場合は、エラーも発生せず単に無視されます
 <pre><code class="lang-js"><span class="hljs-comment">// 検索対象となる文字列</span>
 <span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;にわにはにわにわとりがいる&quot;</span>;
 <span class="hljs-comment">// 文字列を指定した場合は、最初に一致したものだけが置換される</span>
-<span class="hljs-built_in">console</span>.log(str.replace(<span class="hljs-string">&quot;にわ&quot;</span>, <span class="hljs-string">&quot;niwa&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;niwaにはにわにわとりがいる&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">replace</span>(<span class="hljs-string">&quot;にわ&quot;</span>, <span class="hljs-string">&quot;niwa&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;niwaにはにわにわとりがいる&quot;</span>
 <span class="hljs-comment">// `g`フラグなし正規表現の場合は、最初に一致したものだけが置換される</span>
-<span class="hljs-built_in">console</span>.log(str.replace(<span class="hljs-regexp">/にわ/</span>, <span class="hljs-string">&quot;niwa&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;niwaにはにわにわとりがいる&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/にわ/</span>, <span class="hljs-string">&quot;niwa&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;niwaにはにわにわとりがいる&quot;</span>
 <span class="hljs-comment">// `g`フラグあり正規表現の場合は、繰り返し置換を行う</span>
-<span class="hljs-built_in">console</span>.log(str.replace(<span class="hljs-regexp">/にわ/g</span>, <span class="hljs-string">&quot;niwa&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;niwaにはniwaniwaとりがいる&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/にわ/g</span>, <span class="hljs-string">&quot;niwa&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;niwaにはniwaniwaとりがいる&quot;</span>
 </code></pre>
 <p>文字列から検索文字列にマッチするものをすべて置換する場合には、ES2021で追加されたStringの<code>replaceAll</code>メソッドも利用できます。
 <code>replace</code>メソッドでは、最初に一致したものだけが置換されますが、<code>replaceAll</code>メソッドでは一致したものがすべて置換されます。</p>
@@ -2421,20 +2421,20 @@ Stringの<code>replaceAll</code>メソッドでは、正規表現ではなく文
 <pre><code class="lang-js"><span class="hljs-comment">// 検索対象となる文字列</span>
 <span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;???&quot;</span>;
 <span class="hljs-comment">// replaceメソッドに文字列を指定した場合は、最初に一致したものだけが置換される</span>
-<span class="hljs-built_in">console</span>.log(str.replace(<span class="hljs-string">&quot;?&quot;</span>, <span class="hljs-string">&quot;!&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;!??&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">replace</span>(<span class="hljs-string">&quot;?&quot;</span>, <span class="hljs-string">&quot;!&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;!??&quot;</span>
 <span class="hljs-comment">// replaceAllメソッドに文字列を指定した場合は、一致したものがすべて置換される</span>
-<span class="hljs-built_in">console</span>.log(str.replaceAll(<span class="hljs-string">&quot;?&quot;</span>, <span class="hljs-string">&quot;!&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;!!!&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">replaceAll</span>(<span class="hljs-string">&quot;?&quot;</span>, <span class="hljs-string">&quot;!&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;!!!&quot;</span>
 <span class="hljs-comment">// replaceメソッドの場合は、正規表現の特殊文字はエスケープが必要となる</span>
-<span class="hljs-built_in">console</span>.log(str.replace(<span class="hljs-regexp">/\?/g</span>, <span class="hljs-string">&quot;!&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;!!!&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/\?/g</span>, <span class="hljs-string">&quot;!&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;!!!&quot;</span>
 <span class="hljs-comment">// replaceAllメソッドにも正規表現を渡せるが、この場合はエスケープが必要となるためreplaceと同じ</span>
-<span class="hljs-built_in">console</span>.log(str.replaceAll(<span class="hljs-regexp">/\?/g</span>, <span class="hljs-string">&quot;!&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;!!!&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">replaceAll</span>(<span class="hljs-regexp">/\?/g</span>, <span class="hljs-string">&quot;!&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;!!!&quot;</span>
 </code></pre>
 <p><code>replace</code>メソッドと<code>replaceAll</code>メソッドでは、キャプチャした文字列を利用して複雑な置換処理もできます。</p>
 <p><code>replace</code>メソッドと<code>replaceAll</code>メソッドの第二引数にはコールバック関数を渡せます。
 第一引数の<code>パターン</code>にマッチした部分がコールバック関数の返り値で置換されます。
 コールバック関数の第一引数には<code>パターン</code>に一致した文字列全体、第二引数以降へキャプチャした文字列が順番に入ります。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> 置換した結果の文字列 = 文字列.replace(<span class="hljs-regexp">/(パターン)/</span>, <span class="hljs-function">(<span class="hljs-params">all, ...captures</span>) =&gt;</span> {
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> 置換した結果の文字列 = 文字列.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/(パターン)/</span>, <span class="hljs-function">(<span class="hljs-params">all, ...captures</span>) =&gt;</span> {
     <span class="hljs-keyword">return</span> 置換したい文字列;
 });
 </code></pre>
@@ -2443,18 +2443,18 @@ Stringの<code>replaceAll</code>メソッドでは、正規表現ではなく文
 コールバック関数の<code>year</code>、<code>month</code>、<code>day</code>にはそれぞれキャプチャした文字列が入り、
 マッチした文字列全体がコールバック関数の返り値に置換されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toDateJa</span>(<span class="hljs-params">dateString</span>) </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">toDateJa</span>(<span class="hljs-params">dateString</span>) {
     <span class="hljs-comment">// パターンにマッチしたときのみ、コールバック関数で置換処理が行われる</span>
-    <span class="hljs-keyword">return</span> dateString.replace(<span class="hljs-regexp">/(\d{4})-(\d{2})-(\d{2})/g</span>, <span class="hljs-function">(<span class="hljs-params">all, year, month, day</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> dateString.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/(\d{4})-(\d{2})-(\d{2})/g</span>, <span class="hljs-function">(<span class="hljs-params">all, year, month, day</span>) =&gt;</span> {
         <span class="hljs-comment">// `all`には、マッチした文字列全体が入っているが今回は利用しない</span>
         <span class="hljs-comment">// `all`が次の返す値で置換されるイメージ</span>
         <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${year}</span>年<span class="hljs-subst">${month}</span>月<span class="hljs-subst">${day}</span>日`</span>;
     });
 }
 <span class="hljs-comment">// マッチしない文字列の場合は、そのままの文字列が返る</span>
-<span class="hljs-built_in">console</span>.log(toDateJa(<span class="hljs-string">&quot;本日ハ晴天ナリ&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;本日ハ晴天ナリ&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">toDateJa</span>(<span class="hljs-string">&quot;本日ハ晴天ナリ&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;本日ハ晴天ナリ&quot;</span>
 <span class="hljs-comment">// マッチした場合は置換した結果を返す</span>
-<span class="hljs-built_in">console</span>.log(toDateJa(<span class="hljs-string">&quot;今日は2017-03-01です&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;今日は2017年03月01日です&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">toDateJa</span>(<span class="hljs-string">&quot;今日は2017-03-01です&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;今日は2017年03月01日です&quot;</span>
 </code></pre>
 <h2 id="built"><a name="built" class="plugin-anchor" href="#built"><i class="fa fa-link" aria-hidden="true"></i></a>文字列の組み立て </h2>
 <p>最後に文字列の組み立てについて見ていきましょう。
@@ -2472,29 +2472,29 @@ Stringの<code>replaceAll</code>メソッドでは、正規表現ではなく文
 この<code>getResource</code>関数には、ベースURL(<code>baseURL</code>)とパス（<code>pathname</code>）を引数に渡して利用します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// `baseURL`と`pathname`にあるリソースを取得する</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getResource</span>(<span class="hljs-params">baseURL, pathname</span>) </span>{
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">getResource</span>(<span class="hljs-params">baseURL, pathname</span>) {
     <span class="hljs-keyword">const</span> url = baseURL + pathname;
-    <span class="hljs-built_in">console</span>.log(url); <span class="hljs-comment">// =&gt; &quot;http://example.com/resouces/example.js&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(url); <span class="hljs-comment">// =&gt; &quot;http://example.com/resouces/example.js&quot;</span>
     <span class="hljs-comment">// 省略) リソースを取得する処理...</span>
 }
 <span class="hljs-keyword">const</span> baseURL = <span class="hljs-string">&quot;http://example.com/resouces&quot;</span>;
 <span class="hljs-keyword">const</span> pathname = <span class="hljs-string">&quot;/example.js&quot;</span>;
-getResource(baseURL, pathname);
+<span class="hljs-title function_">getResource</span>(baseURL, pathname);
 </code></pre>
 <p>しかし、人によっては、<code>baseURL</code>の末尾には<code>/</code>が含まれると考える場合もあります。
 <code>getResource</code>関数は、<code>baseURL</code>の末尾に<code>/</code>が含まれているケースを想定していませんでした。
 そのため、意図しないURLからリソースを取得するという問題が発生します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// `baseURL`と`pathname`にあるリソースを取得する</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getResource</span>(<span class="hljs-params">baseURL, pathname</span>) </span>{
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">getResource</span>(<span class="hljs-params">baseURL, pathname</span>) {
     <span class="hljs-keyword">const</span> url = baseURL + pathname;
     <span class="hljs-comment">// `/` と `/` が２つ重なってしまっている</span>
-    <span class="hljs-built_in">console</span>.log(url); <span class="hljs-comment">// =&gt; &quot;http://example.com/resouces//example.js&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(url); <span class="hljs-comment">// =&gt; &quot;http://example.com/resouces//example.js&quot;</span>
     <span class="hljs-comment">// 省略) リソースを取得する処理...</span>
 }
 <span class="hljs-keyword">const</span> baseURL = <span class="hljs-string">&quot;http://example.com/resouces/&quot;</span>;
 <span class="hljs-keyword">const</span> pathname = <span class="hljs-string">&quot;/example.js&quot;</span>;
-getResource(baseURL, pathname);
+<span class="hljs-title function_">getResource</span>(baseURL, pathname);
 </code></pre>
 <p>この問題が難しいところは、結合してできた<code>url</code>は文字列としては正しいため、エラーではないということです。
 つまり、一見すると問題ないように見えますが、実際に動かしてみて初めてわかるような問題が生じやすいのです。</p>
@@ -2503,21 +2503,21 @@ getResource(baseURL, pathname);
 次の<code>baseJoin</code>関数はベースURLとパスを結合した文字列を返しますが、ベースURLの末尾に<code>/</code>があるかの揺れを吸収しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// ベースURLとパスを結合した文字列を返す</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">baseJoin</span>(<span class="hljs-params">baseURL, pathname</span>) </span>{
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">baseJoin</span>(<span class="hljs-params">baseURL, pathname</span>) {
     <span class="hljs-comment">// 末尾に / がある場合は、/ を削除してから結合する</span>
-    <span class="hljs-keyword">const</span> stripSlashBaseURL = baseURL.replace(<span class="hljs-regexp">/\/$/</span>, <span class="hljs-string">&quot;&quot;</span>);
+    <span class="hljs-keyword">const</span> stripSlashBaseURL = baseURL.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/\/$/</span>, <span class="hljs-string">&quot;&quot;</span>);
     <span class="hljs-keyword">return</span> stripSlashBaseURL + pathname;
 }
 <span class="hljs-comment">// `baseURL`と`pathname`にあるリソースを取得する</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getResource</span>(<span class="hljs-params">baseURL, pathname</span>) </span>{
-    <span class="hljs-keyword">const</span> url = baseJoin(baseURL, pathname);
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">getResource</span>(<span class="hljs-params">baseURL, pathname</span>) {
+    <span class="hljs-keyword">const</span> url = <span class="hljs-title function_">baseJoin</span>(baseURL, pathname);
     <span class="hljs-comment">// baseURLの末尾に / があってもなくても同じ結果となる</span>
-    <span class="hljs-built_in">console</span>.log(url); <span class="hljs-comment">// =&gt; &quot;http://example.com/resouces/example.js&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(url); <span class="hljs-comment">// =&gt; &quot;http://example.com/resouces/example.js&quot;</span>
     <span class="hljs-comment">// 省略) リソースを取得する処理...</span>
 }
 <span class="hljs-keyword">const</span> baseURL = <span class="hljs-string">&quot;http://example.com/resouces/&quot;</span>;
 <span class="hljs-keyword">const</span> pathname = <span class="hljs-string">&quot;/example.js&quot;</span>;
-getResource(baseURL, pathname);
+<span class="hljs-title function_">getResource</span>(baseURL, pathname);
 </code></pre>
 <p>ECMAScriptの範囲ではありませんが、URLやファイルパスといった典型的なものに対してはすでに専用のものがあります。
 URLを扱うものとしてウェブ標準APIである<a href="https://developer.mozilla.org/ja/docs/Web/API/URL" title="URL - Web API インターフェイス | MDN" target="_blank">URL</a>オブジェクト、ファイルパスを扱うものとしてはNode.jsのコアモジュールである<a href="https://nodejs.org/api/path.html" title="Path | Node.js v7.9.0 Documentation" target="_blank">Path</a>モジュールなどがあります。専用の仕組みがある場合は、直接<code>+</code>演算子で結合するような文字列処理は避けるべきです。</p>
@@ -2527,23 +2527,23 @@ URLを扱うものとしてウェブ標準APIである<a href="https://developer
 関数の呼び出しに<code>関数(`テンプレート`)</code>ではなく、<code>関数`テンプレート` </code>という書式を使っていることに注意してください。</p>
 <p>通常の関数として呼び出した場合、関数の引数にはただの文字列が渡ってきます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tag</span>(<span class="hljs-params">str</span>) </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">tag</span>(<span class="hljs-params">str</span>) {
     <span class="hljs-comment">// 引数`str`にはただの文字列が渡ってくる</span>
-    <span class="hljs-built_in">console</span>.log(str); <span class="hljs-comment">// =&gt; &quot;template 0 literal 1&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str); <span class="hljs-comment">// =&gt; &quot;template 0 literal 1&quot;</span>
 }
 <span class="hljs-comment">// ()をつけて関数を呼び出す</span>
-tag(<span class="hljs-string">`template <span class="hljs-subst">${<span class="hljs-number">0</span>}</span> literal <span class="hljs-subst">${<span class="hljs-number">1</span>}</span>`</span>);
+<span class="hljs-title function_">tag</span>(<span class="hljs-string">`template <span class="hljs-subst">${<span class="hljs-number">0</span>}</span> literal <span class="hljs-subst">${<span class="hljs-number">1</span>}</span>`</span>);
 </code></pre>
 <p>しかし、<code>()</code>ではなく <code>関数`テンプレート` </code> と記述することで、<code>関数</code>が受け取る引数にはタグつきテンプレート向けの値が渡ってきます。
 このとき、関数の第一引数にはテンプレートの中身が<code>${}</code>で区切られた文字列の配列、第二引数以降は<code>${}</code>の中に書いた式の評価結果が順番に渡されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:disable --></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 呼び出し方によって受け取る引数の形式が変わる</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tag</span>(<span class="hljs-params">strings, ...values</span>) </span>{
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">tag</span>(<span class="hljs-params">strings, ...values</span>) {
     <span class="hljs-comment">// stringsは文字列のパーツが${}で区切られた配列となる</span>
-    <span class="hljs-built_in">console</span>.log(strings); <span class="hljs-comment">// =&gt; [&quot;template &quot;,&quot; literal &quot;,&quot;&quot;]</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(strings); <span class="hljs-comment">// =&gt; [&quot;template &quot;,&quot; literal &quot;,&quot;&quot;]</span>
     <span class="hljs-comment">// valuesには${}の評価値が順番に入る</span>
-    <span class="hljs-built_in">console</span>.log(values); <span class="hljs-comment">// =&gt; [0, 1]</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(values); <span class="hljs-comment">// =&gt; [0, 1]</span>
 }
 <span class="hljs-comment">// ()をつけずにテンプレートを呼び出す</span>
 tag<span class="hljs-string">`template <span class="hljs-subst">${<span class="hljs-number">0</span>}</span> literal <span class="hljs-subst">${<span class="hljs-number">1</span>}</span>`</span>;
@@ -2554,11 +2554,11 @@ tag<span class="hljs-string">`template <span class="hljs-subst">${<span class="h
 Arrayの<code>reduce</code>メソッドを使うことで、テンプレートの文字列と変数を順番に結合できます（<a href="../array/#array-reduce"><code>reduce</code>メソッド</a>については「<a href="../array/">配列</a>」の章を参照）。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// テンプレートを順番どおりに結合した文字列を返すタグ関数</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">stringRaw</span>(<span class="hljs-params">strings, ...values</span>) </span>{
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">stringRaw</span>(<span class="hljs-params">strings, ...values</span>) {
     <span class="hljs-comment">// 配列から文字列を返すためにreduceメソッドを利用する</span>
     <span class="hljs-comment">// resultの初期値はstrings[0]の値となる</span>
-    <span class="hljs-keyword">return</span> strings.reduce(<span class="hljs-function">(<span class="hljs-params">result, str, i</span>) =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log([result, values[i - <span class="hljs-number">1</span>], str]);
+    <span class="hljs-keyword">return</span> strings.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">result, str, i</span>) =&gt;</span> {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>([result, values[i - <span class="hljs-number">1</span>], str]);
         <span class="hljs-comment">// それぞれループで次のような出力となる</span>
         <span class="hljs-comment">// 1度目: [&quot;template &quot;, 0, &quot; literal &quot;]</span>
         <span class="hljs-comment">// 2度目: [&quot;template 0 literal &quot;, 1, &quot;&quot;]</span>
@@ -2566,11 +2566,11 @@ Arrayの<code>reduce</code>メソッドを使うことで、テンプレート�
     });
 }
 <span class="hljs-comment">// 関数`テンプレートリテラル` という形で呼び出す</span>
-<span class="hljs-built_in">console</span>.log(stringRaw<span class="hljs-string">`template <span class="hljs-subst">${<span class="hljs-number">0</span>}</span> literal <span class="hljs-subst">${<span class="hljs-number">1</span>}</span>`</span>); <span class="hljs-comment">// =&gt; &quot;template 0 literal 1&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(stringRaw<span class="hljs-string">`template <span class="hljs-subst">${<span class="hljs-number">0</span>}</span> literal <span class="hljs-subst">${<span class="hljs-number">1</span>}</span>`</span>); <span class="hljs-comment">// =&gt; &quot;template 0 literal 1&quot;</span>
 </code></pre>
 <p>ここで実装した<code>stringRaw</code>タグ関数と同様のものが、<code>String.raw</code>メソッド<sup>[ES2015]</sup>として提供されています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">String</span>.raw<span class="hljs-string">`template <span class="hljs-subst">${<span class="hljs-number">0</span>}</span> literal <span class="hljs-subst">${<span class="hljs-number">1</span>}</span>`</span>); <span class="hljs-comment">// =&gt; &quot;template 0 literal 1&quot;</span>
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">String</span>.<span class="hljs-property">raw</span><span class="hljs-string">`template <span class="hljs-subst">${<span class="hljs-number">0</span>}</span> literal <span class="hljs-subst">${<span class="hljs-number">1</span>}</span>`</span>); <span class="hljs-comment">// =&gt; &quot;template 0 literal 1&quot;</span>
 </code></pre>
 <p>タグつきテンプレート関数を利用することで、テンプレートとなる文字列に対して特定の形式に変換したデータを埋め込むといったテンプレート処理が行えます。</p>
 <p>次のコードでは、テンプレート中の変数をURLエスケープしてから埋め込むタグつきテンプレート関数を定義しています。
@@ -2578,8 +2578,8 @@ Arrayの<code>reduce</code>メソッドを使うことで、テンプレート�
 <code>escapeURL</code>では受け取った変数を<code>encodeURIComponent</code>関数でURLエスケープしてから埋め込んでいます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 変数をURLエスケープするタグ関数</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">escapeURL</span>(<span class="hljs-params">strings, ...values</span>) </span>{
-    <span class="hljs-keyword">return</span> strings.reduce(<span class="hljs-function">(<span class="hljs-params">result, str, i</span>) =&gt;</span> {
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">escapeURL</span>(<span class="hljs-params">strings, ...values</span>) {
+    <span class="hljs-keyword">return</span> strings.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">result, str, i</span>) =&gt;</span> {
         <span class="hljs-keyword">return</span> result + <span class="hljs-built_in">encodeURIComponent</span>(values[i - <span class="hljs-number">1</span>]) + str;
     });
 }
@@ -2587,7 +2587,7 @@ Arrayの<code>reduce</code>メソッドを使うことで、テンプレート�
 <span class="hljs-keyword">const</span> input = <span class="hljs-string">&quot;A&amp;B&quot;</span>;
 <span class="hljs-comment">// escapeURLタグ関数を使ったタグつきテンプレート</span>
 <span class="hljs-keyword">const</span> escapedURL = escapeURL<span class="hljs-string">`https://example.com/search?q=<span class="hljs-subst">${input}</span>&amp;sort=desc`</span>;
-<span class="hljs-built_in">console</span>.log(escapedURL); <span class="hljs-comment">// =&gt; &quot;https://example.com/search?q=A%26B&amp;sort=desc&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(escapedURL); <span class="hljs-comment">// =&gt; &quot;https://example.com/search?q=A%26B&amp;sort=desc&quot;</span>
 </code></pre>
 <p>このようにタグつきテンプレートリテラルを使うことで、コンテキストに応じた処理をつけ加えることができます。
 この機能はJavaScript内にHTMLなどの別の言語やDSL（ドメイン固有言語）を埋め込む際に利用されることが多いです。</p>
@@ -2633,7 +2633,7 @@ Arrayの<code>reduce</code>メソッドを使うことで、テンプレート�
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"文字列リテラルを使った文字列の作成から検索や置換など基本的な文字列操作について紹介します。また正規表現と組み合わせた文字列操作やタグ付きテンプレート関数を使ったテンプレート処理などについても紹介します。","title":"文字列","level":"1.3.15","depth":2,"next":{"title":"文字列とUnicode","level":"1.3.16","depth":2,"path":"basic/string-unicode/README.md","ref":"./basic/string-unicode/README.md","articles":[]},"previous":{"title":"配列","level":"1.3.14","depth":2,"path":"basic/array/README.md","ref":"./basic/array/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/string/README.md","mtime":"2023-07-16T01:53:15.661Z","type":"markdown"},"gitbook":{"version":"4.0.8","time":"2023-07-16T01:53:46.643Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"文字列リテラルを使った文字列の作成から検索や置換など基本的な文字列操作について紹介します。また正規表現と組み合わせた文字列操作やタグ付きテンプレート関数を使ったテンプレート処理などについても紹介します。","title":"文字列","level":"1.3.15","depth":2,"next":{"title":"文字列とUnicode","level":"1.3.16","depth":2,"path":"basic/string-unicode/README.md","ref":"./basic/string-unicode/README.md","articles":[]},"previous":{"title":"配列","level":"1.3.14","depth":2,"path":"basic/array/README.md","ref":"./basic/array/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/string/README.md","mtime":"2023-07-16T12:14:13.153Z","type":"markdown"},"gitbook":{"version":"5.0.0","time":"2023-07-16T12:14:45.721Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

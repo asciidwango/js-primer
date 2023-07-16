@@ -6,7 +6,7 @@
         <title>データを表示する · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="Fetch APIを使って取得したデータをもとにHTMLを組み立ててブラウザ上で表示します。">
-        <meta name="generator" content="HonKit 4.0.8">
+        <meta name="generator" content="HonKit 5.0.0">
         
         
         
@@ -1541,7 +1541,7 @@
     <p class="code-filename">index.html</p>
 </div>
 
-<pre><code class="lang-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<pre><code class="lang-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ja&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span> /&gt;</span>
@@ -1563,8 +1563,8 @@
 <code>div#result</code>要素が取得できたら、先ほど生成したHTML文字列を<code>innerHTML</code>プロパティにセットします。</p>
 <!-- 差分コードなので -->
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> result = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;result&quot;</span>);
-result.innerHTML = view;
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> result = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;result&quot;</span>);
+result.<span class="hljs-property">innerHTML</span> = view;
 </code></pre>
 <p>JavaScriptによってHTML要素をDOMに追加する方法には、大きく分けて２つあります。
 1つは、今回のようにHTML文字列を<a href="https://developer.mozilla.org/ja/docs/Web/API/Element/innerHTML" target="_blank">ElementのinnerHTML</a>プロパティにセットする方法です。
@@ -1580,13 +1580,13 @@ result.innerHTML = view;
 または、<a href="https://github.com/teppeis/htmlspecialchars" target="_blank">HTMLエスケープ用のライブラリ</a>を利用するケースも多いでしょう。
 今回のように独自実装するのは特別なケースで、一般的にはライブラリが提供する機能を使うのがほとんどです。</p>
 <p>次のように、特殊な記号に対するエスケープ処理を<code>escapeSpecialChars</code>関数として宣言します。</p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">escapeSpecialChars</span>(<span class="hljs-params">str</span>) </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">escapeSpecialChars</span>(<span class="hljs-params">str</span>) {
     <span class="hljs-keyword">return</span> str
-        .replace(<span class="hljs-regexp">/&amp;/g</span>, <span class="hljs-string">&quot;&amp;amp;&quot;</span>)
-        .replace(<span class="hljs-regexp">/&lt;/g</span>, <span class="hljs-string">&quot;&amp;lt;&quot;</span>)
-        .replace(<span class="hljs-regexp">/&gt;/g</span>, <span class="hljs-string">&quot;&amp;gt;&quot;</span>)
-        .replace(<span class="hljs-regexp">/&quot;/g</span>, <span class="hljs-string">&quot;&amp;quot;&quot;</span>)
-        .replace(<span class="hljs-regexp">/&apos;/g</span>, <span class="hljs-string">&quot;&amp;#039;&quot;</span>);
+        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&amp;/g</span>, <span class="hljs-string">&quot;&amp;amp;&quot;</span>)
+        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&lt;/g</span>, <span class="hljs-string">&quot;&amp;lt;&quot;</span>)
+        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&gt;/g</span>, <span class="hljs-string">&quot;&amp;gt;&quot;</span>)
+        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&quot;/g</span>, <span class="hljs-string">&quot;&amp;quot;&quot;</span>)
+        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&apos;/g</span>, <span class="hljs-string">&quot;&amp;#039;&quot;</span>);
 }
 </code></pre>
 <p>この<code>escapeSpecialChars</code>関数を、HTML文字列の中で<code>userInfo</code>から値を注入しているすべての箇所で呼び出します。
@@ -1597,13 +1597,13 @@ result.innerHTML = view;
 タグ関数には、第一引数に文字列リテラルの配列、第二引数に埋め込まれる値の配列が与えられます。
 <code>escapeHTML</code>関数では、文字列リテラルと値が元の順番どおりに並ぶように文字列を組み立てつつ、
 値が文字列型であればエスケープするようにしています。</p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">escapeHTML</span>(<span class="hljs-params">strings, ...values</span>) </span>{
-    <span class="hljs-keyword">return</span> strings.reduce(<span class="hljs-function">(<span class="hljs-params">result, str, i</span>) =&gt;</span> {
+<pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">escapeHTML</span>(<span class="hljs-params">strings, ...values</span>) {
+    <span class="hljs-keyword">return</span> strings.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">result, str, i</span>) =&gt;</span> {
         <span class="hljs-keyword">const</span> value = values[i - <span class="hljs-number">1</span>];
         <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> value === <span class="hljs-string">&quot;string&quot;</span>) {
             <span class="hljs-keyword">return</span> result + escapeSpecialChars(value) + str;
         } <span class="hljs-keyword">else</span> {
-            <span class="hljs-keyword">return</span> result + <span class="hljs-built_in">String</span>(value) + str;
+            <span class="hljs-keyword">return</span> result + <span class="hljs-title class_">String</span>(value) + str;
         }
     });
 }
@@ -1623,8 +1623,8 @@ result.innerHTML = view;
 &lt;/dl&gt;
 `</span>;
 
-<span class="hljs-keyword">const</span> result = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;result&quot;</span>);
-result.innerHTML = view;
+<span class="hljs-keyword">const</span> result = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;result&quot;</span>);
+result.<span class="hljs-property">innerHTML</span> = view;
 </code></pre>
 <p>これでHTML文字列の生成とエスケープができました。
 これらの処理を前のセクションで作成した <code>fetchUserInfo</code> 関数の中で呼び出します。
@@ -1633,13 +1633,13 @@ result.innerHTML = view;
     <p class="code-filename">index.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fetchUserInfo</span>(<span class="hljs-params">userId</span>) </span>{
-    fetch(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(userId)}</span>`</span>)
-        .then(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
-            <span class="hljs-keyword">if</span> (!response.ok) {
-                <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&quot;エラーレスポンス&quot;</span>, response);
+<pre><code class="lang-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">fetchUserInfo</span>(<span class="hljs-params">userId</span>) {
+    <span class="hljs-title function_">fetch</span>(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(userId)}</span>`</span>)
+        .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+            <span class="hljs-keyword">if</span> (!response.<span class="hljs-property">ok</span>) {
+                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&quot;エラーレスポンス&quot;</span>, response);
             } <span class="hljs-keyword">else</span> {
-                <span class="hljs-keyword">return</span> response.json().then(<span class="hljs-function"><span class="hljs-params">userInfo</span> =&gt;</span> {
+                <span class="hljs-keyword">return</span> response.<span class="hljs-title function_">json</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">userInfo</span> =&gt;</span> {
                     <span class="hljs-comment">// HTMLの組み立て</span>
                     <span class="hljs-keyword">const</span> view = escapeHTML<span class="hljs-string">`
                     &lt;h4&gt;<span class="hljs-subst">${userInfo.name}</span> (@<span class="hljs-subst">${userInfo.login}</span>)&lt;/h4&gt;
@@ -1652,31 +1652,31 @@ result.innerHTML = view;
                     &lt;/dl&gt;
                     `</span>;
                     <span class="hljs-comment">// HTMLの挿入</span>
-                    <span class="hljs-keyword">const</span> result = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&quot;result&quot;</span>);
-                    result.innerHTML = view;
+                    <span class="hljs-keyword">const</span> result = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;result&quot;</span>);
+                    result.<span class="hljs-property">innerHTML</span> = view;
                 });
             }
-        }).catch(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-            <span class="hljs-built_in">console</span>.error(error);
+        }).<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);
         });
 }
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">escapeSpecialChars</span>(<span class="hljs-params">str</span>) </span>{
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">escapeSpecialChars</span>(<span class="hljs-params">str</span>) {
     <span class="hljs-keyword">return</span> str
-        .replace(<span class="hljs-regexp">/&amp;/g</span>, <span class="hljs-string">&quot;&amp;amp;&quot;</span>)
-        .replace(<span class="hljs-regexp">/&lt;/g</span>, <span class="hljs-string">&quot;&amp;lt;&quot;</span>)
-        .replace(<span class="hljs-regexp">/&gt;/g</span>, <span class="hljs-string">&quot;&amp;gt;&quot;</span>)
-        .replace(<span class="hljs-regexp">/&quot;/g</span>, <span class="hljs-string">&quot;&amp;quot;&quot;</span>)
-        .replace(<span class="hljs-regexp">/&apos;/g</span>, <span class="hljs-string">&quot;&amp;#039;&quot;</span>);
+        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&amp;/g</span>, <span class="hljs-string">&quot;&amp;amp;&quot;</span>)
+        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&lt;/g</span>, <span class="hljs-string">&quot;&amp;lt;&quot;</span>)
+        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&gt;/g</span>, <span class="hljs-string">&quot;&amp;gt;&quot;</span>)
+        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&quot;/g</span>, <span class="hljs-string">&quot;&amp;quot;&quot;</span>)
+        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&apos;/g</span>, <span class="hljs-string">&quot;&amp;#039;&quot;</span>);
 }
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">escapeHTML</span>(<span class="hljs-params">strings, ...values</span>) </span>{
-    <span class="hljs-keyword">return</span> strings.reduce(<span class="hljs-function">(<span class="hljs-params">result, str, i</span>) =&gt;</span> {
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">escapeHTML</span>(<span class="hljs-params">strings, ...values</span>) {
+    <span class="hljs-keyword">return</span> strings.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">result, str, i</span>) =&gt;</span> {
         <span class="hljs-keyword">const</span> value = values[i - <span class="hljs-number">1</span>];
         <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> value === <span class="hljs-string">&quot;string&quot;</span>) {
             <span class="hljs-keyword">return</span> result + escapeSpecialChars(value) + str;
         } <span class="hljs-keyword">else</span> {
-            <span class="hljs-keyword">return</span> result + <span class="hljs-built_in">String</span>(value) + str;
+            <span class="hljs-keyword">return</span> result + <span class="hljs-title class_">String</span>(value) + str;
         }
     });
 }
@@ -1685,7 +1685,7 @@ result.innerHTML = view;
     <p class="code-filename">index.html</p>
 </div>
 
-<pre><code class="lang-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<pre><code class="lang-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ja&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span> /&gt;</span>
@@ -1748,7 +1748,7 @@ result.innerHTML = view;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"Fetch APIを使って取得したデータをもとにHTMLを組み立ててブラウザ上で表示します。","title":"データを表示する","level":"1.4.2.3","depth":3,"next":{"title":"Promiseを活用する","level":"1.4.2.4","depth":3,"path":"use-case/ajaxapp/promise/README.md","ref":"./use-case/ajaxapp/promise/README.md","articles":[]},"previous":{"title":"HTTP通信","level":"1.4.2.2","depth":3,"path":"use-case/ajaxapp/http/README.md","ref":"./use-case/ajaxapp/http/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/ajaxapp/display/README.md","mtime":"2023-07-16T01:53:15.669Z","type":"markdown"},"gitbook":{"version":"4.0.8","time":"2023-07-16T01:53:46.643Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"Fetch APIを使って取得したデータをもとにHTMLを組み立ててブラウザ上で表示します。","title":"データを表示する","level":"1.4.2.3","depth":3,"next":{"title":"Promiseを活用する","level":"1.4.2.4","depth":3,"path":"use-case/ajaxapp/promise/README.md","ref":"./use-case/ajaxapp/promise/README.md","articles":[]},"previous":{"title":"HTTP通信","level":"1.4.2.2","depth":3,"path":"use-case/ajaxapp/http/README.md","ref":"./use-case/ajaxapp/http/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/ajaxapp/display/README.md","mtime":"2023-07-16T12:14:13.157Z","type":"markdown"},"gitbook":{"version":"5.0.0","time":"2023-07-16T12:14:45.721Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

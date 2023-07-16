@@ -6,7 +6,7 @@
         <title>データ型とリテラル · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptの値の種類にあたるデータ型についてを紹介します。データ型には大きく分けてプリミティブ型とオブジェクトがあり、それぞれのデータ型を簡単なコード例とともに紹介していきます。一部のデータ型にはリテラルというデータ型を簡単に記述するための構文が用意されており、リテラルについても合わせて紹介していきます。">
-        <meta name="generator" content="HonKit 4.0.8">
+        <meta name="generator" content="HonKit 5.0.0">
         
         
         
@@ -1535,16 +1535,16 @@ JavaScriptでは、文字列も一度作成したら変更できないイミュ�
 <p>プリミティブ型でないものは、オブジェクトであると覚えていれば問題ありません。</p>
 <p><code>typeof</code>演算子を使うことで、次のようにデータ型を調べることができます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> <span class="hljs-literal">true</span>);<span class="hljs-comment">// =&gt; &quot;boolean&quot;</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> <span class="hljs-number">42</span>); <span class="hljs-comment">// =&gt; &quot;number&quot;</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> <span class="hljs-number">9007199254740992n</span>); <span class="hljs-comment">// =&gt; &quot;bigint&quot;</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> <span class="hljs-string">&quot;JavaScript&quot;</span>); <span class="hljs-comment">// =&gt; &quot;string&quot;</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">Symbol</span>(<span class="hljs-string">&quot;シンボル&quot;</span>));<span class="hljs-comment">// =&gt; &quot;symbol&quot;</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> <span class="hljs-literal">undefined</span>); <span class="hljs-comment">// =&gt; &quot;undefined&quot;</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> <span class="hljs-literal">null</span>); <span class="hljs-comment">// =&gt; &quot;object&quot;</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> [<span class="hljs-string">&quot;配列&quot;</span>]); <span class="hljs-comment">// =&gt; &quot;object&quot;</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> { <span class="hljs-string">&quot;key&quot;</span>: <span class="hljs-string">&quot;value&quot;</span> }); <span class="hljs-comment">// =&gt; &quot;object&quot;</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{}); <span class="hljs-comment">// =&gt; &quot;function&quot;</span>
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-literal">true</span>);<span class="hljs-comment">// =&gt; &quot;boolean&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-number">42</span>); <span class="hljs-comment">// =&gt; &quot;number&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-number">9007199254740992n</span>); <span class="hljs-comment">// =&gt; &quot;bigint&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-string">&quot;JavaScript&quot;</span>); <span class="hljs-comment">// =&gt; &quot;string&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-title class_">Symbol</span>(<span class="hljs-string">&quot;シンボル&quot;</span>));<span class="hljs-comment">// =&gt; &quot;symbol&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-literal">undefined</span>); <span class="hljs-comment">// =&gt; &quot;undefined&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-literal">null</span>); <span class="hljs-comment">// =&gt; &quot;object&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> [<span class="hljs-string">&quot;配列&quot;</span>]); <span class="hljs-comment">// =&gt; &quot;object&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> { <span class="hljs-string">&quot;key&quot;</span>: <span class="hljs-string">&quot;value&quot;</span> }); <span class="hljs-comment">// =&gt; &quot;object&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {}); <span class="hljs-comment">// =&gt; &quot;function&quot;</span>
 </code></pre>
 <p>プリミティブ型の値は、それぞれ<code>typeof</code>演算子の評価結果として、その値のデータ型を返します。
 一方で、オブジェクトに分類される値は<code>&quot;object&quot;</code>となります。</p>
@@ -1620,23 +1620,23 @@ JavaScriptでは、文字列も一度作成したら変更できないイミュ�
 <!-- textlint-enable preset-ja-technical-writing/no-doubled-joshi -->
 <p>0から9の数字のみで書かれた数値は、10進数として扱われます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-number">1</span>); <span class="hljs-comment">// =&gt; 1</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-number">10</span>); <span class="hljs-comment">// =&gt; 10</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-number">255</span>); <span class="hljs-comment">// =&gt; 255</span>
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span>); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">10</span>); <span class="hljs-comment">// =&gt; 10</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">255</span>); <span class="hljs-comment">// =&gt; 255</span>
 </code></pre>
 <p><code>0b</code>からはじまる2進数リテラルは、ビットを表現するのによく利用されています。
 <code>b</code>は2進数を表すbinaryを意味しています。</p>
 <!-- 具体的な言及はないけどSyntaxを参照: https://tc39.es/ecma262/#prod-BinaryIntegerLiteral -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-number">0b1111</span>); <span class="hljs-comment">// =&gt; 15</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-number">0b10000000000</span>); <span class="hljs-comment">// =&gt; 1024</span>
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">0b1111</span>); <span class="hljs-comment">// =&gt; 15</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">0b10000000000</span>); <span class="hljs-comment">// =&gt; 1024</span>
 </code></pre>
 <p><code>0o</code>からはじまる8進数リテラルは、ファイルのパーミッションを表現するのによく利用されています。
 <code>o</code>は8進数を表すoctalを意味しています。</p>
 <!-- https://tc39.es/ecma262/#prod-OctalIntegerLiteral -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-number">0o644</span>);  <span class="hljs-comment">// =&gt; 420</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-number">0o777</span>);  <span class="hljs-comment">// =&gt; 511</span>
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">0o644</span>);  <span class="hljs-comment">// =&gt; 420</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">0o777</span>);  <span class="hljs-comment">// =&gt; 511</span>
 </code></pre>
 <p>次のように、<code>0</code>からはじまり、<code>0</code>から<code>7</code>の数字を組み合わせた場合も8進数として扱われます。
 しかし、この表記は10進数と紛らわしいものであったため、ES2015で<code>0o</code>の8進数リテラルが新たに導入されました。
@@ -1644,17 +1644,17 @@ JavaScriptでは、文字列も一度作成したら変更できないイミュ�
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// 非推奨な8進数の書き方</span>
 <span class="hljs-comment">// strict modeは例外が発生</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-number">0644</span>);  <span class="hljs-comment">// =&gt; 420</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-number">0777</span>);  <span class="hljs-comment">// =&gt; 511</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">0644</span>);  <span class="hljs-comment">// =&gt; 420</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">0777</span>);  <span class="hljs-comment">// =&gt; 511</span>
 </code></pre>
 <p><code>0x</code>からはじまる16進数リテラルは、文字のコードポイントやRGB値の表現などに利用されています。
 <code>x</code>は16進数を表すhexを意味しています。</p>
 <!-- https://tc39.es/ecma262/#prod-HexIntegerLiteral -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-number">0xFF</span>); <span class="hljs-comment">// =&gt; 255</span>
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">0xFF</span>); <span class="hljs-comment">// =&gt; 255</span>
 <span class="hljs-comment">// 小文字で書いても意味は同じ</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-number">0xff</span>); <span class="hljs-comment">// =&gt; 255</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-number">0x30A2</span>); <span class="hljs-comment">// =&gt; 12450</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">0xff</span>); <span class="hljs-comment">// =&gt; 255</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">0x30A2</span>); <span class="hljs-comment">// =&gt; 12450</span>
 </code></pre>
 <table>
 <thead>
@@ -1711,7 +1711,7 @@ JavaScriptでは、文字列も一度作成したら変更できないイミュ�
 <p>JavaScriptでは、<code>1</code>や<code>3.14159</code>などの数値リテラルは<a href="https://ja.wikipedia.org/wiki/IEEE_754" target="_blank">IEEE 754</a>で定義された倍精度浮動小数となります。
 倍精度浮動小数で正確に扱える数値の最大値は<code>2^53-1</code>（2の53乗から1引いた値である<code>9007199254740991</code>）です。
 この数値リテラルで安全に表せる最大の数値は<code>Number.MAX_SAFE_INTEGER</code>として定義されています。</p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Number</span>.MAX_SAFE_INTEGER); <span class="hljs-comment">// =&gt; 9007199254740991</span>
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Number</span>.<span class="hljs-property">MAX_SAFE_INTEGER</span>); <span class="hljs-comment">// =&gt; 9007199254740991</span>
 </code></pre>
 <p>数値リテラルで<code>2^53-1</code>（<code>9007199254740991</code>）よりも大きな値を表現したり計算すると間違った結果となる場合があります。</p>
 <p>この問題を解決するために、ES2020では<code>BigInt</code>という新しい整数型のデータ型とリテラルが追加されました。
@@ -1719,9 +1719,9 @@ JavaScriptでは、文字列も一度作成したら変更できないイミュ�
 そのため、BigIntでは<code>2^53-1</code>（<code>9007199254740991</code>）よりも大きな整数を正しく表現できます。</p>
 <p>BigIntリテラルは、数値の後ろに<code>n</code>をつけます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-number">1n</span>); <span class="hljs-comment">// =&gt; 1n</span>
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1n</span>); <span class="hljs-comment">// =&gt; 1n</span>
 <span class="hljs-comment">// 2^53-1より大きな値も扱える</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-number">9007199254740992n</span>); <span class="hljs-comment">// =&gt; 9007199254740992n</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">9007199254740992n</span>); <span class="hljs-comment">// =&gt; 9007199254740992n</span>
 </code></pre>
 <p>BigIntは整数を扱うデータ型であるため、次のように小数点を含めた場合は構文エラーとなります。</p>
 <!-- textlint-disable -->
@@ -1755,9 +1755,9 @@ Numeric Separatorsは、数値リテラル内では区切り文字として<code
 文字列リテラルとして次の3種類のリテラルがありますが、その評価結果はすべて同じ<code>&quot;文字列&quot;</code>になります。</p>
 <!-- textlint-disable eslint -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;文字列&quot;</span>); <span class="hljs-comment">// =&gt; &quot;文字列&quot;</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;文字列&apos;</span>); <span class="hljs-comment">// =&gt; &quot;文字列&quot;</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`文字列`</span>); <span class="hljs-comment">// =&gt; &quot;文字列&quot;</span>
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;文字列&quot;</span>); <span class="hljs-comment">// =&gt; &quot;文字列&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&apos;文字列&apos;</span>); <span class="hljs-comment">// =&gt; &quot;文字列&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`文字列`</span>); <span class="hljs-comment">// =&gt; &quot;文字列&quot;</span>
 </code></pre>
 <!-- textlint-enable eslint -->
 <h4 id="double-quote-and-single-quote"><a name="double-quote-and-single-quote" class="plugin-anchor" href="#double-quote-and-single-quote"><i class="fa fa-link" aria-hidden="true"></i></a>ダブルクォートとシングルクォート </h4>
@@ -1776,9 +1776,9 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は同�
 </code></pre>
 <p>ダブルクォートとシングルクォートどちらも、改行をそのままでは入力できません。
 次のように改行を含んだ文字列は定義できないため、構文エラー（<code>SyntaxError</code>）となります。</p>
-<pre><code class="lang-javascript">&quot;複数行の
+<pre><code class="lang-javascript"><span class="hljs-string">&quot;複数行の
 文字列を
-入れたい&quot;; // =&gt; SyntaxError: &quot;&quot; string literal contains an unescaped line break
+入れたい&quot;</span>; <span class="hljs-comment">// =&gt; SyntaxError: &quot;&quot; string literal contains an unescaped line break</span>
 </code></pre>
 <p>改行の代わりに改行記号のエスケープシーケンス（<code>\n</code>）を使うことで複数行の文字列を書くことができます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -1801,7 +1801,7 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は同�
 テンプレートリテラル内で<code>${変数名}</code>と書いた場合に、その変数の値を埋め込むことができます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;文字列&quot;</span>;
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`これは<span class="hljs-subst">${str}</span>です`</span>); <span class="hljs-comment">// =&gt; &quot;これは文字列です&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`これは<span class="hljs-subst">${str}</span>です`</span>); <span class="hljs-comment">// =&gt; &quot;これは文字列です&quot;</span>
 </code></pre>
 <p>テンプレートリテラルも他の文字列リテラルと同様に同じリテラル記号を内包したい場合は、<code>\</code>を使ってエスケープする必要があります。</p>
 <!-- textlint-disable eslint -->
@@ -1822,7 +1822,7 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は同�
 これにより、<code>foo</code>を値がない変数として定義し、参照できるようになります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> foo = <span class="hljs-literal">null</span>;
-<span class="hljs-built_in">console</span>.log(foo); <span class="hljs-comment">// =&gt; null</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(foo); <span class="hljs-comment">// =&gt; null</span>
 </code></pre>
 <h2 id="undefined-is-not-literal"><a name="undefined-is-not-literal" class="plugin-anchor" href="#undefined-is-not-literal"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] undefinedはリテラルではない </h2>
 <p>プリミティブ型として紹介した<code>undefined</code>はリテラルではありません。
@@ -1830,11 +1830,11 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は同�
 <p>次のように、<code>undefined</code>はただのグローバル変数であるため、同じ<code>undefined</code>という名前のローカル変数を宣言できます。</p>
 <!-- textlint-disable eslint -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>)</span>{
+<pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">fn</span>(<span class="hljs-params"></span>){
     <span class="hljs-keyword">const</span> <span class="hljs-literal">undefined</span> = <span class="hljs-string">&quot;独自の未定義値&quot;</span>; <span class="hljs-comment">// undefinedという名前の変数をエラーなく定義できる</span>
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-literal">undefined</span>); <span class="hljs-comment">// =&gt; &quot;独自の未定義値&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">undefined</span>); <span class="hljs-comment">// =&gt; &quot;独自の未定義値&quot;</span>
 }
-fn();
+<span class="hljs-title function_">fn</span>();
 </code></pre>
 <!-- textlint-enable eslint -->
 <p>これに対して<code>true</code>、<code>false</code>、<code>null</code>などはグローバル変数ではなくリテラルであるため、同じ名前の変数を定義することはできません。
@@ -1867,9 +1867,9 @@ fn();
     <span class="hljs-string">&quot;key&quot;</span>: <span class="hljs-string">&quot;value&quot;</span>
 };
 <span class="hljs-comment">// ドット記法</span>
-<span class="hljs-built_in">console</span>.log(obj.key); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj.<span class="hljs-property">key</span>); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
 <span class="hljs-comment">// ブラケット記法</span>
-<span class="hljs-built_in">console</span>.log(obj[<span class="hljs-string">&quot;key&quot;</span>]); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj[<span class="hljs-string">&quot;key&quot;</span>]); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
 </code></pre>
 <p>ドット記法では、プロパティ名が変数名と同じく識別子である必要があります。
 そのため、次のように識別子として利用できないプロパティ名はドット記法として書くことができません。</p>
@@ -1879,7 +1879,7 @@ fn();
     <span class="hljs-string">&quot;123&quot;</span>: <span class="hljs-string">&quot;value&quot;</span>
 };
 <span class="hljs-comment">// OK: ブラケット記法では、文字列として書くことができる</span>
-<span class="hljs-built_in">console</span>.log(object[<span class="hljs-string">&quot;123&quot;</span>]); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(object[<span class="hljs-string">&quot;123&quot;</span>]); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
 <span class="hljs-comment">// NG: ドット記法では、数値からはじまる識別子は利用できない</span>
 object<span class="hljs-number">.123</span>
 </code></pre>
@@ -1900,9 +1900,9 @@ object<span class="hljs-number">.123</span>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;index:0&quot;</span>, <span class="hljs-string">&quot;index:1&quot;</span>, <span class="hljs-string">&quot;index:2&quot;</span>];
 <span class="hljs-comment">// 0番目の要素を参照</span>
-<span class="hljs-built_in">console</span>.log(array[<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; &quot;index:0&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array[<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; &quot;index:0&quot;</span>
 <span class="hljs-comment">// 1番目の要素を参照</span>
-<span class="hljs-built_in">console</span>.log(array[<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; &quot;index:1&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array[<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; &quot;index:1&quot;</span>
 </code></pre>
 <p>配列についての詳細は「<a href="../array/">配列</a>」の章で解説します。</p>
 <h3 id="regexp-literal"><a name="regexp-literal" class="plugin-anchor" href="#regexp-literal"><i class="fa fa-link" aria-hidden="true"></i></a>正規表現リテラル </h3>
@@ -1913,7 +1913,7 @@ object<span class="hljs-number">.123</span>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> numberRegExp = <span class="hljs-regexp">/\d+/</span>; <span class="hljs-comment">// 1文字以上の数字にマッチする正規表現</span>
 <span class="hljs-comment">// `numberRegExp`の正規表現が文字列&quot;123&quot;にマッチするかをテストする</span>
-<span class="hljs-built_in">console</span>.log(numberRegExp.test(<span class="hljs-string">&quot;123&quot;</span>)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(numberRegExp.<span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;123&quot;</span>)); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <p><code>RegExp</code>コンストラクタを使うことで、文字列から正規表現オブジェクトを作成できます。
 しかし、特殊文字の二重エスケープが必要になり直感的に書くことが難しくなります。</p>
@@ -1930,11 +1930,11 @@ object<span class="hljs-number">.123</span>
 <!-- textlint-enable -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 文字列をラップしたStringラッパーオブジェクト</span>
-<span class="hljs-keyword">const</span> str = <span class="hljs-keyword">new</span> <span class="hljs-built_in">String</span>(<span class="hljs-string">&quot;文字列&quot;</span>);
+<span class="hljs-keyword">const</span> str = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;文字列&quot;</span>);
 <span class="hljs-comment">// ラッパーオブジェクトは&quot;object&quot;型のデータ</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> str); <span class="hljs-comment">// =&gt; &quot;object&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> str); <span class="hljs-comment">// =&gt; &quot;object&quot;</span>
 <span class="hljs-comment">// Stringオブジェクトの`length`プロパティは文字列の長さを返す</span>
-<span class="hljs-built_in">console</span>.log(str.length); <span class="hljs-comment">// =&gt; 3</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 3</span>
 </code></pre>
 <p>しかし、明示的にラッパーオブジェクトを使うべき理由はありません。
 なぜなら、JavaScriptではプリミティブ型のデータに対してもオブジェクトのように参照できる仕組みがあるためです。
@@ -1943,9 +1943,9 @@ object<span class="hljs-number">.123</span>
 <pre><code class="lang-js"><span class="hljs-comment">// プリミティブ型の文字列データ</span>
 <span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;文字列&quot;</span>;
 <span class="hljs-comment">// プリミティブ型の文字列は&quot;string&quot;型のデータ</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> str); <span class="hljs-comment">// =&gt; &quot;string&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> str); <span class="hljs-comment">// =&gt; &quot;string&quot;</span>
 <span class="hljs-comment">// プリミティブ型の文字列も`length`プロパティを参照できる</span>
-<span class="hljs-built_in">console</span>.log(str.length); <span class="hljs-comment">// =&gt; 3</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 3</span>
 </code></pre>
 <p>これは、プリミティブ型のデータのプロパティへアクセスする際に、対応するラッパーオブジェクトへ暗黙的に変換してからプロパティへアクセスするためです。
 また、ラッパーオブジェクトを明示的に作成するには、リテラルに比べて冗長な書き方が必要になります。
@@ -2005,7 +2005,7 @@ object<span class="hljs-number">.123</span>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptの値の種類にあたるデータ型についてを紹介します。データ型には大きく分けてプリミティブ型とオブジェクトがあり、それぞれのデータ型を簡単なコード例とともに紹介していきます。一部のデータ型にはリテラルというデータ型を簡単に記述するための構文が用意されており、リテラルについても合わせて紹介していきます。","title":"データ型とリテラル","level":"1.3.5","depth":2,"next":{"title":"演算子","level":"1.3.6","depth":2,"path":"basic/operator/README.md","ref":"./basic/operator/README.md","articles":[]},"previous":{"title":"値の評価と表示","level":"1.3.4","depth":2,"path":"basic/read-eval-print/README.md","ref":"./basic/read-eval-print/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/data-type/README.md","mtime":"2023-07-16T01:53:15.649Z","type":"markdown"},"gitbook":{"version":"4.0.8","time":"2023-07-16T01:53:46.643Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptの値の種類にあたるデータ型についてを紹介します。データ型には大きく分けてプリミティブ型とオブジェクトがあり、それぞれのデータ型を簡単なコード例とともに紹介していきます。一部のデータ型にはリテラルというデータ型を簡単に記述するための構文が用意されており、リテラルについても合わせて紹介していきます。","title":"データ型とリテラル","level":"1.3.5","depth":2,"next":{"title":"演算子","level":"1.3.6","depth":2,"path":"basic/operator/README.md","ref":"./basic/operator/README.md","articles":[]},"previous":{"title":"値の評価と表示","level":"1.3.4","depth":2,"path":"basic/read-eval-print/README.md","ref":"./basic/read-eval-print/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/data-type/README.md","mtime":"2023-07-16T12:14:13.141Z","type":"markdown"},"gitbook":{"version":"5.0.0","time":"2023-07-16T12:14:45.721Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

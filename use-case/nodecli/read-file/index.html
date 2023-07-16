@@ -6,7 +6,7 @@
         <title>ファイルを読み込む · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="Node.jsの`fs`モジュールを使ったファイルの読み込みについて学びます。">
-        <meta name="generator" content="HonKit 4.0.8">
+        <meta name="generator" content="HonKit 5.0.0">
         
         
         
@@ -1540,10 +1540,10 @@ Node.jsでファイルの読み書きを行うには、標準モジュールの<
 <pre><code class="lang-js"><span class="hljs-comment">// 非同期APIを提供するfs/promisesモジュールを読み込む</span>
 <span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:fs/promises&quot;</span>;
 
-fs.readFile(<span class="hljs-string">&quot;sample.md&quot;</span>).then(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
-    <span class="hljs-built_in">console</span>.log(file);
-}).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-    <span class="hljs-built_in">console</span>.error(err);
+fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&quot;sample.md&quot;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(file);
+}).<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(err);
 });
 </code></pre>
 <p>そして、次のサンプルコードは、同じく指定したファイルを読み込む<code>fs</code>モジュールの<code>readFileSync</code>メソッドの例です。
@@ -1553,7 +1553,7 @@ Node.jsでは非同期APIと同期APIがどちらもあるAPIには、分かり�
 <span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:fs&quot;</span>;
 
 <span class="hljs-keyword">try</span> {
-    <span class="hljs-keyword">const</span> file = fs.readFileSync(<span class="hljs-string">&quot;sample.md&quot;</span>);
+    <span class="hljs-keyword">const</span> file = fs.<span class="hljs-title function_">readFileSync</span>(<span class="hljs-string">&quot;sample.md&quot;</span>);
 } <span class="hljs-keyword">catch</span> (err) {
     <span class="hljs-comment">// ファイルが読み込めないなどのエラーが発生したときに呼ばれる</span>
 }
@@ -1572,19 +1572,19 @@ Node.jsには<code>fs/promises</code>モジュール以外にも多くの非同�
 <span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:fs/promises&quot;</span>;
 
 <span class="hljs-comment">// コマンドライン引数からファイルパスを取得する</span>
-program.parse(process.argv);
-<span class="hljs-keyword">const</span> filePath = program.args[<span class="hljs-number">0</span>];
+program.<span class="hljs-title function_">parse</span>(process.<span class="hljs-property">argv</span>);
+<span class="hljs-keyword">const</span> filePath = program.<span class="hljs-property">args</span>[<span class="hljs-number">0</span>];
 
 <span class="hljs-comment">// ファイルを非同期で読み込む</span>
-fs.readFile(filePath).then(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
-    <span class="hljs-built_in">console</span>.log(file);
+fs.<span class="hljs-title function_">readFile</span>(filePath).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(file);
 });
 </code></pre>
 <p><code>sample.md</code>を引数に渡した実行結果は次のようになります。
 文字列になっていないのは、コールバック関数の第二引数はファイルの中身を表す<code>Buffer</code>インスタンスだからです。
 <code>Buffer</code>インスタンスはファイルの中身をバイト列として保持しています。
 そのため、そのまま<code>console.log</code>メソッドに渡しても人間が読める文字列にはなりません。</p>
-<pre><code class="lang-shell"><span class="hljs-meta">$</span><span class="bash"> node main.js sample.md</span>
+<pre><code class="lang-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">node main.js sample.md</span>
 &lt;Buffer 23 20 73 61 6d 70 6c 65&gt;
 </code></pre>
 <p><code>fs.readFile</code>関数は引数によってファイルの読み込み方を指定できます。
@@ -1597,18 +1597,18 @@ fs.readFile(filePath).then(<span class="hljs-function"><span class="hljs-params"
 <pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { program } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;commander&quot;</span>;
 <span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:fs/promises&quot;</span>;
 
-program.parse(process.argv);
-<span class="hljs-keyword">const</span> filePath = program.args[<span class="hljs-number">0</span>];
+program.<span class="hljs-title function_">parse</span>(process.<span class="hljs-property">argv</span>);
+<span class="hljs-keyword">const</span> filePath = program.<span class="hljs-property">args</span>[<span class="hljs-number">0</span>];
 
 <span class="hljs-comment">// ファイルをUTF-8として非同期で読み込む</span>
-fs.readFile(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }).then(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
-    <span class="hljs-built_in">console</span>.log(file);
+fs.<span class="hljs-title function_">readFile</span>(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(file);
 });
 </code></pre>
 <p>先ほどと同じコマンドをもう一度実行すると、実行結果は次のようになります。
 <code>sample.md</code>ファイルの中身を文字列として出力できました。</p>
-<pre><code class="lang-shell"><span class="hljs-meta">$</span><span class="bash"> node main.js sample.md</span>
-<span class="hljs-meta">#</span><span class="bash"> sample</span>
+<pre><code class="lang-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">node main.js sample.md</span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">sample</span>
 </code></pre>
 <h3 id="error-handling"><a name="error-handling" class="plugin-anchor" href="#error-handling"><i class="fa fa-link" aria-hidden="true"></i></a>エラーハンドリング </h3>
 <p>ファイルの読み書きは存在の有無や権限、ファイルシステムの違いなどによって例外が発生しやすいので、必ずエラーハンドリング処理を書きましょう。</p>
@@ -1622,20 +1622,20 @@ fs.readFile(filePath, { <span class="hljs-attr">encoding</span>: <span class="hl
 <pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { program } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;commander&quot;</span>;
 <span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:fs/promises&quot;</span>;
 
-program.parse(process.argv);
-<span class="hljs-keyword">const</span> filePath = program.args[<span class="hljs-number">0</span>];
+program.<span class="hljs-title function_">parse</span>(process.<span class="hljs-property">argv</span>);
+<span class="hljs-keyword">const</span> filePath = program.<span class="hljs-property">args</span>[<span class="hljs-number">0</span>];
 
 <span class="hljs-comment">// ファイルを非同期で読み込む</span>
-fs.readFile(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }).then(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
-    <span class="hljs-built_in">console</span>.log(file);
-}).catch(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
-    <span class="hljs-built_in">console</span>.error(err.message);
+fs.<span class="hljs-title function_">readFile</span>(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(file);
+}).<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(err.<span class="hljs-property">message</span>);
     <span class="hljs-comment">// 終了ステータス 1（一般的なエラー）としてプロセスを終了する</span>
-    process.exit(<span class="hljs-number">1</span>);
+    process.<span class="hljs-title function_">exit</span>(<span class="hljs-number">1</span>);
 });
 </code></pre>
 <p>存在しないファイルである<code>notfound.md</code>をコマンドライン引数に渡して実行すると、次のようにエラーが発生して終了します。</p>
-<pre><code class="lang-shell"><span class="hljs-meta">$</span><span class="bash"> node main.js notfound.md</span>
+<pre><code class="lang-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">node main.js notfound.md</span>
 ENOENT: no such file or directory, open &apos;notfound.md&apos;
 </code></pre>
 <p>これでコマンドライン引数に指定したファイルを読み込んで標準出力に表示できました。
@@ -1650,13 +1650,13 @@ ENOENT: no such file or directory, open &apos;notfound.md&apos;
 <span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:fs/promises&quot;</span>;
 
 <span class="hljs-comment">// エラーファーストコールバックの第1引数にはエラー、第2引数 には結果が入るというルール</span>
-fs.readFile(<span class="hljs-string">&quot;sample.md&quot;</span>, <span class="hljs-function">(<span class="hljs-params">err, file</span>) =&gt;</span> {
+fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&quot;sample.md&quot;</span>, <span class="hljs-function">(<span class="hljs-params">err, file</span>) =&gt;</span> {
     <span class="hljs-keyword">if</span> (err) {
-        <span class="hljs-built_in">console</span>.error(err.message);
-        process.exit(<span class="hljs-number">1</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(err.<span class="hljs-property">message</span>);
+        process.<span class="hljs-title function_">exit</span>(<span class="hljs-number">1</span>);
         <span class="hljs-keyword">return</span>;
     }
-    <span class="hljs-built_in">console</span>.log(file);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(file);
 });
 </code></pre>
 <p><a href="../../../basic/async/#error-first-callback">エラーファーストコールバック</a>については、<a href="../../../basic/async/">非同期</a>の章でも紹介しています。
@@ -1705,7 +1705,7 @@ Promiseを扱うAPIには、他のPromiseを扱う処理との連携のしやす
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"Node.jsの`fs`モジュールを使ったファイルの読み込みについて学びます。","title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"next":{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},"previous":{"title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"path":"use-case/nodecli/argument-parse/README.md","ref":"./use-case/nodecli/argument-parse/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/read-file/README.md","mtime":"2023-07-16T01:53:15.677Z","type":"markdown"},"gitbook":{"version":"4.0.8","time":"2023-07-16T01:53:46.643Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"Node.jsの`fs`モジュールを使ったファイルの読み込みについて学びます。","title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"next":{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},"previous":{"title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"path":"use-case/nodecli/argument-parse/README.md","ref":"./use-case/nodecli/argument-parse/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/read-file/README.md","mtime":"2023-07-16T12:14:13.165Z","type":"markdown"},"gitbook":{"version":"5.0.0","time":"2023-07-16T12:14:45.721Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

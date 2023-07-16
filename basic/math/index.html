@@ -6,7 +6,7 @@
         <title>Math · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="数学的な定数や関数を提供するビルトインオブジェクトのMathを紹介します。">
-        <meta name="generator" content="HonKit 4.0.8">
+        <meta name="generator" content="HonKit 5.0.0">
         
         
         
@@ -1510,9 +1510,9 @@
 たとえば、<code>Math.PI</code>プロパティは円周率πを表す定数であり、<code>Math.sin</code>メソッドはラジアン値から正弦を計算する関数です。
 次の例では、90度における正弦を計算しています。90度の正弦は1なので、<code>sin90</code>変数は1を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> rad90 = <span class="hljs-built_in">Math</span>.PI * <span class="hljs-number">90</span> / <span class="hljs-number">180</span>;
-<span class="hljs-keyword">const</span> sin90 = <span class="hljs-built_in">Math</span>.sin(rad90);
-<span class="hljs-built_in">console</span>.log(sin90); <span class="hljs-comment">// =&gt; 1</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> rad90 = <span class="hljs-title class_">Math</span>.<span class="hljs-property">PI</span> * <span class="hljs-number">90</span> / <span class="hljs-number">180</span>;
+<span class="hljs-keyword">const</span> sin90 = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sin</span>(rad90);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(sin90); <span class="hljs-comment">// =&gt; 1</span>
 </code></pre>
 <p>三角関数をはじめとした多くの関数や定数が<code>Math</code>オブジェクトから提供されています。
 この章ではそれらのうちよく使われるものについてユースケースを交えて紹介します。
@@ -1523,31 +1523,31 @@
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) {
     <span class="hljs-comment">// 毎回ランダムな浮動小数点数を返す</span>
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.random());
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>());
 }
 </code></pre>
 <p>次の例では、<code>Math.random</code>メソッドを使って、任意の範囲で乱数を生成しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// minからmaxまでの乱数を返す関数</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getRandom</span>(<span class="hljs-params">min, max</span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.random() * (max - min) + min;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">getRandom</span>(<span class="hljs-params">min, max</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() * (max - min) + min;
 }
 <span class="hljs-comment">// 1以上5未満の浮動小数点数を返す</span>
-<span class="hljs-built_in">console</span>.log(getRandom(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>));
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">getRandom</span>(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>));
 </code></pre>
 <h3 id="compare-number"><a name="compare-number" class="plugin-anchor" href="#compare-number"><i class="fa fa-link" aria-hidden="true"></i></a>数値の大小を比較する </h3>
 <p><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/max" target="_blank">Math.max</a>メソッドは引数として渡された複数の数値のうち、最大のものを返します。
 同様に、<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/min" target="_blank">Math.min</a>メソッドは引数として渡された複数の数値のうち、最小のものを返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.max(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>)); <span class="hljs-comment">// =&gt; 10</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.min(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>)); <span class="hljs-comment">// =&gt; 1</span>
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>)); <span class="hljs-comment">// =&gt; 10</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">min</span>(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>)); <span class="hljs-comment">// =&gt; 1</span>
 </code></pre>
 <p>これらのメソッドは可変長の引数を取るため、任意の個数の数値を比較できます。
 数値の配列の中から最大・最小の値を取り出す際には、<code>...</code>（spread構文）を使うと簡潔に記述できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.max(...numbers)); <span class="hljs-comment">// =&gt; 5</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.min(...numbers)); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(...numbers)); <span class="hljs-comment">// =&gt; 5</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">min</span>(...numbers)); <span class="hljs-comment">// =&gt; 1</span>
 </code></pre>
 <h3 id="convert-to-integer"><a name="convert-to-integer" class="plugin-anchor" href="#convert-to-integer"><i class="fa fa-link" aria-hidden="true"></i></a>数値を整数にする </h3>
 <p><code>Math</code>オブジェクトには数値を整数に丸めるためのメソッドがいくつかあります。
@@ -1560,22 +1560,22 @@
 小数部分が<code>0.5</code>よりも小さな場合は切り捨てられ、それ以外は切り上げられます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 床関数</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.floor(<span class="hljs-number">1.3</span>)); <span class="hljs-comment">// =&gt; 1</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.floor(-<span class="hljs-number">1.3</span>)); <span class="hljs-comment">// =&gt; -2</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(<span class="hljs-number">1.3</span>)); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">floor</span>(-<span class="hljs-number">1.3</span>)); <span class="hljs-comment">// =&gt; -2</span>
 <span class="hljs-comment">// 天井関数</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.ceil(<span class="hljs-number">1.3</span>)); <span class="hljs-comment">// =&gt; 2</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.ceil(-<span class="hljs-number">1.3</span>)); <span class="hljs-comment">// =&gt; -1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">ceil</span>(<span class="hljs-number">1.3</span>)); <span class="hljs-comment">// =&gt; 2</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">ceil</span>(-<span class="hljs-number">1.3</span>)); <span class="hljs-comment">// =&gt; -1</span>
 <span class="hljs-comment">// 四捨五入</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.round(<span class="hljs-number">1.3</span>)); <span class="hljs-comment">// =&gt; 1</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.round(<span class="hljs-number">1.6</span>)); <span class="hljs-comment">// =&gt; 2</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.round(-<span class="hljs-number">1.3</span>)); <span class="hljs-comment">// =&gt; -1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>(<span class="hljs-number">1.3</span>)); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>(<span class="hljs-number">1.6</span>)); <span class="hljs-comment">// =&gt; 2</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>(-<span class="hljs-number">1.3</span>)); <span class="hljs-comment">// =&gt; -1</span>
 </code></pre>
 <p>また、<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc" target="_blank">Math.trunc</a>メソッド<sup>[ES2015]</sup>は、渡された数字の小数点以下を単純に切り落とした整数を返します。
 そのため、引数が正の値の場合は<code>Math.floor</code>メソッドと同じになり、そうでない場合は<code>Math.ceil</code>メソッドと同じになります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 単純に小数部分を切り落とす</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.trunc(<span class="hljs-number">1.3</span>)); <span class="hljs-comment">// =&gt; 1</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Math</span>.trunc(-<span class="hljs-number">1.3</span>)); <span class="hljs-comment">// =&gt; -1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">trunc</span>(<span class="hljs-number">1.3</span>)); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">trunc</span>(-<span class="hljs-number">1.3</span>)); <span class="hljs-comment">// =&gt; -1</span>
 </code></pre>
 <h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>まとめ </h2>
 <p>この章では、<code>Math</code>オブジェクトについて学びました。
@@ -1616,7 +1616,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"数学的な定数や関数を提供するビルトインオブジェクトのMathを紹介します。","title":"Math","level":"1.3.26","depth":2,"next":{"title":"ECMAScriptモジュール","level":"1.3.27","depth":2,"path":"basic/module/README.md","ref":"./basic/module/README.md","articles":[]},"previous":{"title":"Date","level":"1.3.25","depth":2,"path":"basic/date/README.md","ref":"./basic/date/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/math/README.md","mtime":"2023-07-16T01:53:15.657Z","type":"markdown"},"gitbook":{"version":"4.0.8","time":"2023-07-16T01:53:46.643Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"数学的な定数や関数を提供するビルトインオブジェクトのMathを紹介します。","title":"Math","level":"1.3.26","depth":2,"next":{"title":"ECMAScriptモジュール","level":"1.3.27","depth":2,"path":"basic/module/README.md","ref":"./basic/module/README.md","articles":[]},"previous":{"title":"Date","level":"1.3.25","depth":2,"path":"basic/date/README.md","ref":"./basic/date/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/math/README.md","mtime":"2023-07-16T12:14:13.149Z","type":"markdown"},"gitbook":{"version":"5.0.0","time":"2023-07-16T12:14:45.721Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

@@ -6,7 +6,7 @@
         <title>オブジェクト · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptのObjectはオブジェクトの基礎となるものです。オブジェクトとプロパティの作成、更新、削除などの基本的な操作について紹介します。">
-        <meta name="generator" content="HonKit 4.0.8">
+        <meta name="generator" content="HonKit 5.0.0">
         
         
         
@@ -1541,7 +1541,7 @@ JavaScriptには、あらゆるオブジェクトの元となる<code>Object</co
 次の<code>my-prop</code>というプロパティ名は、変数名として利用できない<code>-</code>が含まれているため定義できません（「<a href="../variables/" title="変数と宣言">変数と宣言</a>」の章の「<a href="../variables/#variable-name">変数名に使える名前のルール </a>」を参照）</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> object = {
     <span class="hljs-comment">// キー: 値</span>
-    my-prop: <span class="hljs-string">&quot;value&quot;</span> <span class="hljs-comment">// NG</span>
+    my-<span class="hljs-attr">prop</span>: <span class="hljs-string">&quot;value&quot;</span> <span class="hljs-comment">// NG</span>
 };
 </code></pre>
 <p><code>my-prop</code>というプロパティ名を定義する場合は、クォート（<code>&quot;</code>や<code>&apos;</code>）で囲む必要があります。</p>
@@ -1566,7 +1566,7 @@ JavaScriptには、あらゆるオブジェクトの元となる<code>Object</co
 <span class="hljs-keyword">const</span> obj = {
     <span class="hljs-attr">name</span>: name
 };
-<span class="hljs-built_in">console</span>.log(obj); <span class="hljs-comment">// =&gt; { name: &quot;名前&quot; }</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj); <span class="hljs-comment">// =&gt; { name: &quot;名前&quot; }</span>
 </code></pre>
 <p>またES2015からは、プロパティ名と値に指定する変数名が同じ場合は<code>{ name }</code>のように省略して書けます。
 次のコードは、プロパティ名<code>name</code>に変数<code>name</code>を値にしたプロパティを設定しています。</p>
@@ -1576,7 +1576,7 @@ JavaScriptには、あらゆるオブジェクトの元となる<code>Object</co
 <span class="hljs-keyword">const</span> obj = {
     name
 };
-<span class="hljs-built_in">console</span>.log(obj); <span class="hljs-comment">// =&gt; { name: &quot;名前&quot; }</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj); <span class="hljs-comment">// =&gt; { name: &quot;名前&quot; }</span>
 </code></pre>
 <p>この省略記法は、モジュールや分割代入においても共通した表現です。
 そのため、<code>{}</code>の中でプロパティ名が単独で書かれている場合は、この省略記法を利用していることに注意してください。</p>
@@ -1589,8 +1589,8 @@ JavaScriptには、あらゆるオブジェクトの元となる<code>Object</co
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// プロパティを持たない空のオブジェクトを作成</span>
 <span class="hljs-comment">// = `Object`からインスタンスオブジェクトを作成</span>
-<span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>();
-<span class="hljs-built_in">console</span>.log(obj); <span class="hljs-comment">// =&gt; {}</span>
+<span class="hljs-keyword">const</span> obj = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Object</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj); <span class="hljs-comment">// =&gt; {}</span>
 </code></pre>
 <p>オブジェクトリテラルのほうが明らかに簡潔で、プロパティの初期値も指定できるため、<code>new Object()</code>を使う利点はありません。</p>
 <p><code>new Object()</code>でオブジェクトを作成することは、「<code>Object</code>のインスタンスオブジェクトを作成する」と言います。
@@ -1606,16 +1606,16 @@ JavaScriptには、あらゆるオブジェクトの元となる<code>Object</co
     <span class="hljs-attr">key</span>: <span class="hljs-string">&quot;value&quot;</span>
 };
 <span class="hljs-comment">// ドット記法で参照</span>
-<span class="hljs-built_in">console</span>.log(obj.key); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj.<span class="hljs-property">key</span>); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
 <span class="hljs-comment">// ブラケット記法で参照</span>
-<span class="hljs-built_in">console</span>.log(obj[<span class="hljs-string">&quot;key&quot;</span>]); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj[<span class="hljs-string">&quot;key&quot;</span>]); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
 </code></pre>
 <p>ドット記法（<code>.</code>）では、プロパティ名が変数名と同じく識別子の命名規則を満たす必要があります（「<a href="../variables/" title="変数と宣言">変数と宣言</a>」の章の「<a href="../variables/#variable-name">変数名に使える名前のルール </a>」を参照）。</p>
-<pre><code class="lang-javascript">obj.key; <span class="hljs-comment">// OK</span>
+<pre><code class="lang-javascript">obj.<span class="hljs-property">key</span>; <span class="hljs-comment">// OK</span>
 <span class="hljs-comment">// プロパティ名が数字から始まる識別子は利用できない</span>
 obj<span class="hljs-number">.123</span>; <span class="hljs-comment">// NG</span>
 <span class="hljs-comment">// プロパティ名にハイフンを含む識別子は利用できない</span>
-obj.my-prop; <span class="hljs-comment">// NG</span>
+obj.<span class="hljs-property">my</span>-prop; <span class="hljs-comment">// NG</span>
 </code></pre>
 <p>一方、ブラケット記法では、<code>[</code>と<code>]</code>の間に任意の式を書けます。
 そのため、識別子の命名規則とは関係なく、任意の文字列をプロパティ名として指定できます。
@@ -1627,13 +1627,13 @@ obj.my-prop; <span class="hljs-comment">// NG</span>
     <span class="hljs-string">&quot;my-key&quot;</span>: <span class="hljs-string">&quot;my-value&quot;</span>
 };
 
-<span class="hljs-built_in">console</span>.log(obj[<span class="hljs-string">&quot;key&quot;</span>]); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj[<span class="hljs-string">&quot;key&quot;</span>]); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
 <span class="hljs-comment">// プロパティ名が数字からはじまる識別子も利用できる</span>
-<span class="hljs-built_in">console</span>.log(obj[<span class="hljs-number">123</span>]); <span class="hljs-comment">// =&gt; 456</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj[<span class="hljs-number">123</span>]); <span class="hljs-comment">// =&gt; 456</span>
 <span class="hljs-comment">// プロパティ名は暗黙的に文字列に変換されているため、次も同じプロパティを参照している</span>
-<span class="hljs-built_in">console</span>.log(obj[<span class="hljs-string">&quot;123&quot;</span>]); <span class="hljs-comment">// =&gt; 456</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj[<span class="hljs-string">&quot;123&quot;</span>]); <span class="hljs-comment">// =&gt; 456</span>
 <span class="hljs-comment">// プロパティ名にハイフンを含む識別子も利用できる</span>
-<span class="hljs-built_in">console</span>.log(obj[<span class="hljs-string">&quot;my-key&quot;</span>]); <span class="hljs-comment">// =&gt; &quot;my-value&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj[<span class="hljs-string">&quot;my-key&quot;</span>]); <span class="hljs-comment">// =&gt; &quot;my-value&quot;</span>
 </code></pre>
 <p>また、ブラケット記法ではプロパティ名に変数も利用できます。
 次のコードでは、プロパティ名に<code>myLang</code>という変数をブラケット記法で指定しています。</p>
@@ -1643,7 +1643,7 @@ obj.my-prop; <span class="hljs-comment">// NG</span>
     <span class="hljs-attr">en</span>: <span class="hljs-string">&quot;英語&quot;</span>
 };
 <span class="hljs-keyword">const</span> myLang = <span class="hljs-string">&quot;ja&quot;</span>;
-<span class="hljs-built_in">console</span>.log(languages[myLang]); <span class="hljs-comment">// =&gt; &quot;日本語&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(languages[myLang]); <span class="hljs-comment">// =&gt; &quot;日本語&quot;</span>
 </code></pre>
 <p>ドット記法ではプロパティ名に変数は利用できないため、プロパティ名に変数を指定したい場合はブラケット記法を利用します。
 基本的には簡潔なドット記法（<code>.</code>）を使い、ドット記法で書けない場合はブラケット記法（<code>[]</code>）を使うとよいでしょう。</p>
@@ -1656,10 +1656,10 @@ obj.my-prop; <span class="hljs-comment">// NG</span>
     <span class="hljs-attr">ja</span>: <span class="hljs-string">&quot;日本語&quot;</span>,
     <span class="hljs-attr">en</span>: <span class="hljs-string">&quot;英語&quot;</span>
 };
-<span class="hljs-keyword">const</span> ja = languages.ja;
-<span class="hljs-keyword">const</span> en = languages.en;
-<span class="hljs-built_in">console</span>.log(ja); <span class="hljs-comment">// =&gt; &quot;日本語&quot;</span>
-<span class="hljs-built_in">console</span>.log(en); <span class="hljs-comment">// =&gt; &quot;英語&quot;</span>
+<span class="hljs-keyword">const</span> ja = languages.<span class="hljs-property">ja</span>;
+<span class="hljs-keyword">const</span> en = languages.<span class="hljs-property">en</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(ja); <span class="hljs-comment">// =&gt; &quot;日本語&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(en); <span class="hljs-comment">// =&gt; &quot;英語&quot;</span>
 </code></pre>
 <p>このようにオブジェクトのプロパティを変数として定義し直すときには、分割代入（Destructuring assignment）が利用できます。</p>
 <p>オブジェクトの分割代入では、左辺にオブジェクトリテラルのような構文で変数名を定義します。
@@ -1672,8 +1672,8 @@ obj.my-prop; <span class="hljs-comment">// NG</span>
     <span class="hljs-attr">en</span>: <span class="hljs-string">&quot;英語&quot;</span>
 };
 <span class="hljs-keyword">const</span> { ja, en } = languages;
-<span class="hljs-built_in">console</span>.log(ja); <span class="hljs-comment">// =&gt; &quot;日本語&quot;</span>
-<span class="hljs-built_in">console</span>.log(en); <span class="hljs-comment">// =&gt; &quot;英語&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(ja); <span class="hljs-comment">// =&gt; &quot;日本語&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(en); <span class="hljs-comment">// =&gt; &quot;英語&quot;</span>
 </code></pre>
 <h2 id="add-property"><a name="add-property" class="plugin-anchor" href="#add-property"><i class="fa fa-link" aria-hidden="true"></i></a>プロパティの追加 </h2>
 <p>オブジェクトは、一度作成した後もその値自体を変更できるというミュータブル（mutable）の特性を持ちます。
@@ -1685,8 +1685,8 @@ obj.my-prop; <span class="hljs-comment">// NG</span>
 <pre><code class="lang-js"><span class="hljs-comment">// 空のオブジェクト</span>
 <span class="hljs-keyword">const</span> obj = {};
 <span class="hljs-comment">// `key`プロパティを追加して値を代入</span>
-obj.key = <span class="hljs-string">&quot;value&quot;</span>;
-<span class="hljs-built_in">console</span>.log(obj.key); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
+obj.<span class="hljs-property">key</span> = <span class="hljs-string">&quot;value&quot;</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj.<span class="hljs-property">key</span>); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
 </code></pre>
 <p>先ほども紹介したように、ドット記法は変数の識別子として利用可能なプロパティ名しか利用できません。</p>
 <p>一方、ブラケット記法は<code>object[式]</code>の<code>式</code>の評価結果を文字列にしたものをプロパティ名として利用できます。
@@ -1702,7 +1702,7 @@ obj.key = <span class="hljs-string">&quot;value&quot;</span>;
 <span class="hljs-comment">// `key`の評価結果 &quot;key-string&quot; をプロパティ名に利用</span>
 obj[key] = <span class="hljs-string">&quot;value of key&quot;</span>;
 <span class="hljs-comment">// 取り出すときも同じく`key`変数を利用</span>
-<span class="hljs-built_in">console</span>.log(obj[key]); <span class="hljs-comment">// =&gt; &quot;value of key&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj[key]); <span class="hljs-comment">// =&gt; &quot;value of key&quot;</span>
 </code></pre>
 <p>ブラケット記法を用いたプロパティ定義は、オブジェクトリテラルの中でも利用できます。
 オブジェクトリテラル内でのブラケット記法を使ったプロパティ名は<strong>Computed property names</strong>と呼ばれます。
@@ -1714,19 +1714,19 @@ Computed property namesはES2015から導入された記法ですが、<code>式
 <span class="hljs-keyword">const</span> obj = {
     [key]: <span class="hljs-string">&quot;value&quot;</span>
 };
-<span class="hljs-built_in">console</span>.log(obj[key]); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj[key]); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
 </code></pre>
 <p>JavaScriptのオブジェクトは、作成後にプロパティが変更可能というmutableの特性を持つことを紹介しました。
 そのため、関数が受け取ったオブジェクトに対して、勝手にプロパティを追加できてしまいます。</p>
 <p>次のコードは、<code>changeProperty</code>関数が引数として受け取ったオブジェクトにプロパティを追加している悪い例です。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">changeProperty</span>(<span class="hljs-params">obj</span>) </span>{
-    obj.key = <span class="hljs-string">&quot;value&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">changeProperty</span>(<span class="hljs-params">obj</span>) {
+    obj.<span class="hljs-property">key</span> = <span class="hljs-string">&quot;value&quot;</span>;
     <span class="hljs-comment">// いろいろな処理...</span>
 }
 <span class="hljs-keyword">const</span> obj = {};
-changeProperty(obj); <span class="hljs-comment">// objのプロパティを変更している</span>
-<span class="hljs-built_in">console</span>.log(obj.key); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
+<span class="hljs-title function_">changeProperty</span>(obj); <span class="hljs-comment">// objのプロパティを変更している</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj.<span class="hljs-property">key</span>); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
 </code></pre>
 <p>このように、プロパティを初期化時以外に追加してしまうと、そのオブジェクトがどのようなプロパティを持っているかがわかりにくくなります。
 そのため、できる限り作成後に新しいプロパティは追加しないほうがよいでしょう。
@@ -1740,17 +1740,17 @@ changeProperty(obj); <span class="hljs-comment">// objのプロパティを変�
     <span class="hljs-attr">key2</span>: <span class="hljs-string">&quot;value2&quot;</span>
 };
 <span class="hljs-comment">// key1プロパティを削除</span>
-<span class="hljs-keyword">delete</span> obj.key1;
+<span class="hljs-keyword">delete</span> obj.<span class="hljs-property">key1</span>;
 <span class="hljs-comment">// key1プロパティが削除されている</span>
-<span class="hljs-built_in">console</span>.log(obj); <span class="hljs-comment">// =&gt; { &quot;key2&quot;: &quot;value2&quot; }</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj); <span class="hljs-comment">// =&gt; { &quot;key2&quot;: &quot;value2&quot; }</span>
 </code></pre>
 <h3 id="const-and-object"><a name="const-and-object" class="plugin-anchor" href="#const-and-object"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] constで定義したオブジェクトは変更可能 </h3>
 <p>先ほどのコード例で、<code>const</code>で宣言したオブジェクトのプロパティがエラーなく変更できていることがわかります。
 次のコードを実行してみると、値であるオブジェクトのプロパティが変更できていることがわかります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">key</span>: <span class="hljs-string">&quot;value&quot;</span> };
-obj.key = <span class="hljs-string">&quot;Hi!&quot;</span>; <span class="hljs-comment">// constで定義したオブジェクト(`obj`)が変更できる</span>
-<span class="hljs-built_in">console</span>.log(obj.key); <span class="hljs-comment">// =&gt; &quot;Hi!&quot;</span>
+obj.<span class="hljs-property">key</span> = <span class="hljs-string">&quot;Hi!&quot;</span>; <span class="hljs-comment">// constで定義したオブジェクト(`obj`)が変更できる</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj.<span class="hljs-property">key</span>); <span class="hljs-comment">// =&gt; &quot;Hi!&quot;</span>
 </code></pre>
 <p>JavaScriptの<code>const</code>は値を固定するのではなく、変数への再代入を防ぐためのものです。
 そのため、次のような<code>obj</code>変数への再代入は防げますが、変数に代入された値であるオブジェクトの変更は防げません（「<a href="../variables/" title="変数と宣言">変数と宣言</a>」の<a href="../variables/#const">const</a>を参照）。</p>
@@ -1763,16 +1763,16 @@ obj = {}; <span class="hljs-comment">// =&gt; TypeError</span>
 strict modeではない場合は、凍結されたオブジェクトのプロパティを変更しても例外が発生せずに単純に無視されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-meta">&quot;use strict&quot;</span>;
-<span class="hljs-keyword">const</span> object = <span class="hljs-built_in">Object</span>.freeze({ <span class="hljs-attr">key</span>: <span class="hljs-string">&quot;value&quot;</span> });
+<span class="hljs-keyword">const</span> object = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">freeze</span>({ <span class="hljs-attr">key</span>: <span class="hljs-string">&quot;value&quot;</span> });
 <span class="hljs-comment">// freezeしたオブジェクトにプロパティを追加や変更できない</span>
-object.key = <span class="hljs-string">&quot;value&quot;</span>; <span class="hljs-comment">// =&gt; TypeError: &quot;key&quot; is read-only</span>
+object.<span class="hljs-property">key</span> = <span class="hljs-string">&quot;value&quot;</span>; <span class="hljs-comment">// =&gt; TypeError: &quot;key&quot; is read-only</span>
 </code></pre>
 <h2 id="confirm-property"><a name="confirm-property" class="plugin-anchor" href="#confirm-property"><i class="fa fa-link" aria-hidden="true"></i></a>プロパティの存在を確認する </h2>
 <p>JavaScriptでは、存在しないプロパティに対してアクセスした場合に例外ではなく<code>undefined</code>を返します。
 次のコードは、<code>obj</code>には存在しない<code>notFound</code>プロパティにアクセスしているため、<code>undefined</code>という値が返ってきます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = {};
-<span class="hljs-built_in">console</span>.log(obj.notFound); <span class="hljs-comment">// =&gt; undefined</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj.<span class="hljs-property">notFound</span>); <span class="hljs-comment">// =&gt; undefined</span>
 </code></pre>
 <p>このように、JavaScriptでは存在しないプロパティへアクセスした場合に例外が発生しません。
 プロパティ名を間違えた場合に単に<code>undefined</code>という値を返すため、間違いに気づきにくいという問題があります。</p>
@@ -1785,10 +1785,10 @@ object.key = <span class="hljs-string">&quot;value&quot;</span>; <span class="hl
     }
 };
 <span class="hljs-comment">// `window`を`windw`と間違えているが、例外は発生しない</span>
-<span class="hljs-built_in">console</span>.log(widget.windw); <span class="hljs-comment">// =&gt; undefined</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(widget.<span class="hljs-property">windw</span>); <span class="hljs-comment">// =&gt; undefined</span>
 <span class="hljs-comment">// さらにネストした場合に、例外が発生する</span>
 <span class="hljs-comment">// `undefined.title`と書いたのと同じ意味となるため</span>
-<span class="hljs-built_in">console</span>.log(widget.windw.title); <span class="hljs-comment">// =&gt; TypeError: widget.windw is undefined</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(widget.<span class="hljs-property">windw</span>.<span class="hljs-property">title</span>); <span class="hljs-comment">// =&gt; TypeError: widget.windw is undefined</span>
 <span class="hljs-comment">// 例外が発生した文以降は実行されません</span>
 </code></pre>
 <p><code>undefined</code>や<code>null</code>はオブジェクトではないため、存在しないプロパティへアクセスすると例外が発生してしまいます。
@@ -1807,9 +1807,9 @@ object.key = <span class="hljs-string">&quot;value&quot;</span>; <span class="hl
     <span class="hljs-attr">key</span>: <span class="hljs-string">&quot;value&quot;</span>
 };
 <span class="hljs-comment">// `key`プロパティが`undefined`ではないなら、プロパティが存在する?</span>
-<span class="hljs-keyword">if</span> (obj.key !== <span class="hljs-literal">undefined</span>) {
+<span class="hljs-keyword">if</span> (obj.<span class="hljs-property">key</span> !== <span class="hljs-literal">undefined</span>) {
     <span class="hljs-comment">// `key`プロパティが存在する?ときの処理</span>
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;`key`プロパティの値は`undefined`ではない&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;`key`プロパティの値は`undefined`ではない&quot;</span>);
 }
 </code></pre>
 <p>しかし、この方法はプロパティの値が<code>undefined</code>であった場合に、プロパティそのものが存在するかを区別できないという問題があります。
@@ -1819,7 +1819,7 @@ object.key = <span class="hljs-string">&quot;value&quot;</span>; <span class="hl
     <span class="hljs-attr">key</span>: <span class="hljs-literal">undefined</span>
 };
 <span class="hljs-comment">// `key`プロパティの値が`undefined`である場合</span>
-<span class="hljs-keyword">if</span> (obj.key !== <span class="hljs-literal">undefined</span>) {
+<span class="hljs-keyword">if</span> (obj.<span class="hljs-property">key</span> !== <span class="hljs-literal">undefined</span>) {
     <span class="hljs-comment">// この行は実行されません</span>
 }
 </code></pre>
@@ -1835,7 +1835,7 @@ object.key = <span class="hljs-string">&quot;value&quot;</span>; <span class="hl
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">key</span>: <span class="hljs-literal">undefined</span> };
 <span class="hljs-comment">// `key`プロパティを持っているならtrue</span>
 <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;key&quot;</span> <span class="hljs-keyword">in</span> obj) {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;`key`プロパティは存在する&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;`key`プロパティは存在する&quot;</span>);
 }
 </code></pre>
 <h3 id="object-hasown-method"><a name="object-hasown-method" class="plugin-anchor" href="#object-hasown-method"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2022] プロパティの存在確認: <code>Object.hasOwn</code>静的メソッド </h3>
@@ -1844,7 +1844,7 @@ object.key = <span class="hljs-string">&quot;value&quot;</span>; <span class="hl
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = {};
 <span class="hljs-comment">// objが&quot;プロパティ名&quot;を持っているかを確認する</span>
-<span class="hljs-built_in">Object</span>.hasOwn(obj, <span class="hljs-string">&quot;プロパティ名&quot;</span>); <span class="hljs-comment">// true or false</span>
+<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">hasOwn</span>(obj, <span class="hljs-string">&quot;プロパティ名&quot;</span>); <span class="hljs-comment">// true or false</span>
 </code></pre>
 <p>次のコードでは<code>obj</code>に<code>key</code>プロパティが存在するかを判定しています。
 <code>Object.hasOwn</code>静的メソッドも、プロパティの値は関係なく、オブジェクトが指定したプロパティを持っている場合に<code>true</code>を返します。</p>
@@ -1852,8 +1852,8 @@ object.key = <span class="hljs-string">&quot;value&quot;</span>; <span class="hl
 <!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">key</span>: <span class="hljs-literal">undefined</span> };
 <span class="hljs-comment">// `obj`が`key`プロパティを持っているならtrueとなる</span>
-<span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.hasOwn(obj, <span class="hljs-string">&quot;key&quot;</span>)) {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;`obj`は`key`プロパティを持っている&quot;</span>);
+<span class="hljs-keyword">if</span> (<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">hasOwn</span>(obj, <span class="hljs-string">&quot;key&quot;</span>)) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;`obj`は`key`プロパティを持っている&quot;</span>);
 }
 </code></pre>
 <p><code>in</code>演算子と<code>Object.hasOwn</code>静的メソッドは同じ結果を返していますが、厳密には動作が異なるケースもあります。
@@ -1866,8 +1866,8 @@ ES2022より前では、<code>Object.prototype.hasOwnProperty</code>メソッド
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">key</span>: <span class="hljs-literal">undefined</span> };
 <span class="hljs-comment">// `obj`が`key`プロパティを持っているならtrueとなる</span>
-<span class="hljs-keyword">if</span> (obj.hasOwnProperty(<span class="hljs-string">&quot;key&quot;</span>)) {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;`obj`は`key`プロパティを持っている&quot;</span>);
+<span class="hljs-keyword">if</span> (obj.<span class="hljs-title function_">hasOwnProperty</span>(<span class="hljs-string">&quot;key&quot;</span>)) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;`obj`は`key`プロパティを持っている&quot;</span>);
 }
 </code></pre>
 <p>しかし、<code>hasOwnProperty</code>メソッドには欠点があるため、<code>Object.hasOwn</code>静的メソッドが利用できる状況では使う理由はありません。
@@ -1879,22 +1879,22 @@ ES2022より前では、<code>Object.prototype.hasOwnProperty</code>メソッド
 なぜなら、値を取得したい場合には、プロパティが存在するかどうかとプロパティの値が<code>undefined</code>かどうかの違いを区別する意味はないためです。</p>
 <p>次のコードでは、<code>widget.window.title</code>プロパティに値が定義されているなら(<code>undefined</code>ではないなら)、そのプロパティの値をコンソールに表示しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printWidgetTitle</span>(<span class="hljs-params">widget</span>) </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">printWidgetTitle</span>(<span class="hljs-params">widget</span>) {
     <span class="hljs-comment">// 例外を避けるために`widget`のプロパティの存在を順番に確認してから、値を表示している</span>
-    <span class="hljs-keyword">if</span> (widget.window !== <span class="hljs-literal">undefined</span> &amp;&amp; widget.window.title !== <span class="hljs-literal">undefined</span>) {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`ウィジェットのタイトルは<span class="hljs-subst">${widget.<span class="hljs-built_in">window</span>.title}</span>です`</span>);
+    <span class="hljs-keyword">if</span> (widget.<span class="hljs-property">window</span> !== <span class="hljs-literal">undefined</span> &amp;&amp; widget.<span class="hljs-property">window</span>.<span class="hljs-property">title</span> !== <span class="hljs-literal">undefined</span>) {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`ウィジェットのタイトルは<span class="hljs-subst">${widget.<span class="hljs-variable language_">window</span>.title}</span>です`</span>);
     } <span class="hljs-keyword">else</span> {
-        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;ウィジェットのタイトルは未定義です&quot;</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;ウィジェットのタイトルは未定義です&quot;</span>);
     }
 }
 <span class="hljs-comment">// タイトルが定義されているwidget</span>
-printWidgetTitle({
+<span class="hljs-title function_">printWidgetTitle</span>({
     <span class="hljs-attr">window</span>: {
         <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;Book Viewer&quot;</span>
     }
 });
 <span class="hljs-comment">// タイトルが未定義のwidget</span>
-printWidgetTitle({
+<span class="hljs-title function_">printWidgetTitle</span>({
     <span class="hljs-comment">// タイトルが定義されてない空のオブジェクト</span>
 });
 </code></pre>
@@ -1913,29 +1913,29 @@ Optional chaining演算子（<code>?.</code>）は、ドット記法（<code>.</
     }
 };
 <span class="hljs-comment">// obj.a.b は存在するので、その評価結果を返す</span>
-<span class="hljs-built_in">console</span>.log(obj?.a?.b); <span class="hljs-comment">// =&gt; &quot;objのaプロパティのbプロパティ&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj?.<span class="hljs-property">a</span>?.<span class="hljs-property">b</span>); <span class="hljs-comment">// =&gt; &quot;objのaプロパティのbプロパティ&quot;</span>
 <span class="hljs-comment">// 存在しないプロパティのネストも`undefined`を返す</span>
 <span class="hljs-comment">// ドット記法の場合は例外が発生してしまう</span>
-<span class="hljs-built_in">console</span>.log(obj?.notFound?.notFound); <span class="hljs-comment">// =&gt; undefined</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj?.<span class="hljs-property">notFound</span>?.<span class="hljs-property">notFound</span>); <span class="hljs-comment">// =&gt; undefined</span>
 <span class="hljs-comment">// undefinedやnullはnullishなので、`undefined`を返す</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-literal">undefined</span>?.notFound?.notFound); <span class="hljs-comment">// =&gt; undefined</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-literal">null</span>?.notFound?.notFound); <span class="hljs-comment">// =&gt; undefined</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">undefined</span>?.<span class="hljs-property">notFound</span>?.<span class="hljs-property">notFound</span>); <span class="hljs-comment">// =&gt; undefined</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">null</span>?.<span class="hljs-property">notFound</span>?.<span class="hljs-property">notFound</span>); <span class="hljs-comment">// =&gt; undefined</span>
 </code></pre>
 <p>先ほどのウィジェットのタイトルを表示する関数もOptional chaining演算子（<code>?.</code>）を使うと、if文を使わずに書けます。
 次のコードの<code>printWidgetTitle</code>関数では、<code>widget?.window?.title</code>にアクセスできる場合はその評価結果が変数<code>title</code>に入ります。
 プロパティにアクセスできない場合は<code>undefined</code>を返すため、Nullish coalescing演算子(<code>??</code>)によって右辺の<code>&quot;未定義&quot;</code>が変数<code>title</code>のデフォルト値となります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": 2020 } --></p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printWidgetTitle</span>(<span class="hljs-params">widget</span>) </span>{
-    <span class="hljs-keyword">const</span> title = widget?.window?.title ?? <span class="hljs-string">&quot;未定義&quot;</span>;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`ウィジェットのタイトルは<span class="hljs-subst">${title}</span>です`</span>);
+<pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">printWidgetTitle</span>(<span class="hljs-params">widget</span>) {
+    <span class="hljs-keyword">const</span> title = widget?.<span class="hljs-property">window</span>?.<span class="hljs-property">title</span> ?? <span class="hljs-string">&quot;未定義&quot;</span>;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`ウィジェットのタイトルは<span class="hljs-subst">${title}</span>です`</span>);
 }
-printWidgetTitle({
+<span class="hljs-title function_">printWidgetTitle</span>({
     <span class="hljs-attr">window</span>: {
         <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;Book Viewer&quot;</span>
     }
 }); <span class="hljs-comment">// &quot;ウィジェットのタイトルはBook Viewerです&quot; と出力される</span>
-printWidgetTitle({
+<span class="hljs-title function_">printWidgetTitle</span>({
     <span class="hljs-comment">// タイトルが定義されてない空のオブジェクト</span>
 }); <span class="hljs-comment">// &quot;ウィジェットのタイトルは未定義です&quot; と出力される</span>
 </code></pre>
@@ -1955,9 +1955,9 @@ printWidgetTitle({
 <span class="hljs-keyword">const</span> langKorean = <span class="hljs-string">&quot;ko&quot;</span>;
 <span class="hljs-keyword">const</span> messageKey = <span class="hljs-string">&quot;hello&quot;</span>;
 <span class="hljs-comment">// Optional chaining演算子（`?.`）とブラケット記法を組みわせた書き方</span>
-<span class="hljs-built_in">console</span>.log(languages?.[langJapanese]?.[messageKey]); <span class="hljs-comment">// =&gt; &quot;こんにちは！&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(languages?.[langJapanese]?.[messageKey]); <span class="hljs-comment">// =&gt; &quot;こんにちは！&quot;</span>
 <span class="hljs-comment">// `languages`に`ko`プロパティが定義されていないため、`undefined`を返す</span>
-<span class="hljs-built_in">console</span>.log(languages?.[langKorean]?.[messageKey]); <span class="hljs-comment">// =&gt; undefined</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(languages?.[langKorean]?.[messageKey]); <span class="hljs-comment">// =&gt; undefined</span>
 </code></pre>
 <h2 id="toString-method"><a name="toString-method" class="plugin-anchor" href="#toString-method"><i class="fa fa-link" aria-hidden="true"></i></a><code>toString</code>メソッド </h2>
 <p>オブジェクトの<code>toString</code>メソッドは、オブジェクト自身を文字列化するメソッドです。
@@ -1967,9 +1967,9 @@ printWidgetTitle({
 そのため、<code>String</code>コンストラクタ関数と<code>toString</code>メソッドの結果はどちらも同じになります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">key</span>: <span class="hljs-string">&quot;value&quot;</span> };
-<span class="hljs-built_in">console</span>.log(obj.toString()); <span class="hljs-comment">// =&gt; &quot;[object Object]&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj.<span class="hljs-title function_">toString</span>()); <span class="hljs-comment">// =&gt; &quot;[object Object]&quot;</span>
 <span class="hljs-comment">// `String`コンストラクタ関数は`toString`メソッドを呼んでいる</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">String</span>(obj)); <span class="hljs-comment">// =&gt; &quot;[object Object]&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">String</span>(obj)); <span class="hljs-comment">// =&gt; &quot;[object Object]&quot;</span>
 </code></pre>
 <p>このことは、オブジェクトに<code>toString</code>メソッドを再定義してみるとわかります。
 独自の<code>toString</code>メソッドを定義したオブジェクトを<code>String</code>コンストラクタ関数で文字列化してみます。
@@ -1977,11 +1977,11 @@ printWidgetTitle({
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 独自のtoStringメソッドを定義</span>
 <span class="hljs-keyword">const</span> customObject = {
-    <span class="hljs-function"><span class="hljs-title">toString</span>(<span class="hljs-params"></span>)</span> {
+    <span class="hljs-title function_">toString</span>(<span class="hljs-params"></span>) {
         <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;custom value&quot;</span>;
     }
 };
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">String</span>(customObject)); <span class="hljs-comment">// =&gt; &quot;custom value&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">String</span>(customObject)); <span class="hljs-comment">// =&gt; &quot;custom value&quot;</span>
 </code></pre>
 <h2 id="object-property-is-to-string"><a name="object-property-is-to-string" class="plugin-anchor" href="#object-property-is-to-string"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] オブジェクトのプロパティ名は文字列化される </h2>
 <p>オブジェクトのプロパティへアクセスする際に、指定したプロパティ名は暗黙的に文字列に変換されます。
@@ -1997,18 +1997,18 @@ printWidgetTitle({
 <span class="hljs-comment">// どちらも同じプロパティ名（&quot;[object Object]&quot;）に代入している</span>
 obj[keyObject1] = <span class="hljs-string">&quot;1&quot;</span>;
 obj[keyObject2] = <span class="hljs-string">&quot;2&quot;</span>;
-<span class="hljs-built_in">console</span>.log(obj); <span class="hljs-comment">//  { &quot;[object Object]&quot;: &quot;2&quot; }</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj); <span class="hljs-comment">//  { &quot;[object Object]&quot;: &quot;2&quot; }</span>
 </code></pre>
 <p>唯一の例外として、Symbolだけは文字列化されずにオブジェクトのプロパティ名として扱えます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = {};
 <span class="hljs-comment">// Symbolは例外的に文字列化されず扱える</span>
-<span class="hljs-keyword">const</span> symbolKey1 = <span class="hljs-built_in">Symbol</span>(<span class="hljs-string">&quot;シンボル1&quot;</span>);
-<span class="hljs-keyword">const</span> symbolKey2 = <span class="hljs-built_in">Symbol</span>(<span class="hljs-string">&quot;シンボル2&quot;</span>);
+<span class="hljs-keyword">const</span> symbolKey1 = <span class="hljs-title class_">Symbol</span>(<span class="hljs-string">&quot;シンボル1&quot;</span>);
+<span class="hljs-keyword">const</span> symbolKey2 = <span class="hljs-title class_">Symbol</span>(<span class="hljs-string">&quot;シンボル2&quot;</span>);
 obj[symbolKey1] = <span class="hljs-string">&quot;1&quot;</span>;
 obj[symbolKey2] = <span class="hljs-string">&quot;2&quot;</span>;
-<span class="hljs-built_in">console</span>.log(obj[symbolKey1]); <span class="hljs-comment">// =&gt; &quot;1&quot;</span>
-<span class="hljs-built_in">console</span>.log(obj[symbolKey2]); <span class="hljs-comment">// =&gt; &quot;2&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj[symbolKey1]); <span class="hljs-comment">// =&gt; &quot;1&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj[symbolKey2]); <span class="hljs-comment">// =&gt; &quot;2&quot;</span>
 </code></pre>
 <p>基本的にはオブジェクトのプロパティ名は文字列として扱われることを覚えておくとよいでしょう。
 また、<code>Map</code>というビルトインオブジェクトはオブジェクトをキーとして扱えます（詳細は「<a href="../map-and-set/">Map/Set</a>」の章で解説します）。
@@ -2042,11 +2042,11 @@ obj[symbolKey2] = <span class="hljs-string">&quot;2&quot;</span>;
     <span class="hljs-string">&quot;three&quot;</span>: <span class="hljs-number">3</span>
 };
 <span class="hljs-comment">// `Object.keys`はキーを列挙した配列を返す</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.keys(obj)); <span class="hljs-comment">// =&gt; [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(obj)); <span class="hljs-comment">// =&gt; [&quot;one&quot;, &quot;two&quot;, &quot;three&quot;]</span>
 <span class="hljs-comment">// `Object.values`は値を列挙した配列を返す</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.values(obj)); <span class="hljs-comment">// =&gt; [1, 2, 3]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">values</span>(obj)); <span class="hljs-comment">// =&gt; [1, 2, 3]</span>
 <span class="hljs-comment">// `Object.entries`は[キー, 値]の配列を返す</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.entries(obj)); <span class="hljs-comment">// =&gt; [[&quot;one&quot;, 1], [&quot;two&quot;, 2], [&quot;three&quot;, 3]]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">entries</span>(obj)); <span class="hljs-comment">// =&gt; [[&quot;one&quot;, 1], [&quot;two&quot;, 2], [&quot;three&quot;, 3]]</span>
 </code></pre>
 <p>これらのプロパティを列挙する静的メソッドと配列の<code>forEach</code>メソッドなどを組み合わせれば、プロパティに対して反復処理ができます。
 次のコードでは、<code>Object.keys</code>メソッドで取得したプロパティ名の一覧をコンソールへ出力しています。</p>
@@ -2056,9 +2056,9 @@ obj[symbolKey2] = <span class="hljs-string">&quot;2&quot;</span>;
     <span class="hljs-string">&quot;two&quot;</span>: <span class="hljs-number">2</span>,
     <span class="hljs-string">&quot;three&quot;</span>: <span class="hljs-number">3</span>
 };
-<span class="hljs-keyword">const</span> keys = <span class="hljs-built_in">Object</span>.keys(obj);
-keys.forEach(<span class="hljs-function"><span class="hljs-params">key</span> =&gt;</span> {
-    <span class="hljs-built_in">console</span>.log(key);
+<span class="hljs-keyword">const</span> keys = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(obj);
+keys.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">key</span> =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(key);
 });
 <span class="hljs-comment">// 次の値が順番に出力される</span>
 <span class="hljs-comment">// &quot;one&quot;</span>
@@ -2072,7 +2072,7 @@ keys.forEach(<span class="hljs-function"><span class="hljs-params">key</span> =&
 <code>sources</code>オブジェクト自身が持つ列挙可能なプロパティを第一引数の<code>target</code>オブジェクトに対してコピーします。
 <code>Object.assign</code>メソッドの返り値は、<code>target</code>オブジェクトになります。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = <span class="hljs-built_in">Object</span>.assign(target, ...sources);
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>(target, ...sources);
 </code></pre>
 <h4 id="merge"><a name="merge" class="plugin-anchor" href="#merge"><i class="fa fa-link" aria-hidden="true"></i></a>オブジェクトのマージ </h4>
 <p>具体的なオブジェクトのマージの例を見ていきます。</p>
@@ -2081,8 +2081,8 @@ keys.forEach(<span class="hljs-function"><span class="hljs-params">key</span> =&
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> objectA = { <span class="hljs-attr">a</span>: <span class="hljs-string">&quot;a&quot;</span> };
 <span class="hljs-keyword">const</span> objectB = { <span class="hljs-attr">b</span>: <span class="hljs-string">&quot;b&quot;</span> };
-<span class="hljs-keyword">const</span> merged = <span class="hljs-built_in">Object</span>.assign({}, objectA, objectB);
-<span class="hljs-built_in">console</span>.log(merged); <span class="hljs-comment">// =&gt; { a: &quot;a&quot;, b: &quot;b&quot; }</span>
+<span class="hljs-keyword">const</span> merged = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>({}, objectA, objectB);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(merged); <span class="hljs-comment">// =&gt; { a: &quot;a&quot;, b: &quot;b&quot; }</span>
 </code></pre>
 <p>第一引数には空のオブジェクトではなく、既存のオブジェクトも指定できます。
 第一引数に既存のオブジェクトを指定した場合は、そのオブジェクトのプロパティが変更されます。</p>
@@ -2090,11 +2090,11 @@ keys.forEach(<span class="hljs-function"><span class="hljs-params">key</span> =&
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> objectA = { <span class="hljs-attr">a</span>: <span class="hljs-string">&quot;a&quot;</span> };
 <span class="hljs-keyword">const</span> objectB = { <span class="hljs-attr">b</span>: <span class="hljs-string">&quot;b&quot;</span> };
-<span class="hljs-keyword">const</span> merged = <span class="hljs-built_in">Object</span>.assign(objectA, objectB);
-<span class="hljs-built_in">console</span>.log(merged); <span class="hljs-comment">// =&gt; { a: &quot;a&quot;, b: &quot;b&quot; }</span>
+<span class="hljs-keyword">const</span> merged = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>(objectA, objectB);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(merged); <span class="hljs-comment">// =&gt; { a: &quot;a&quot;, b: &quot;b&quot; }</span>
 <span class="hljs-comment">// `objectA`が変更されている</span>
-<span class="hljs-built_in">console</span>.log(objectA); <span class="hljs-comment">// =&gt; { a: &quot;a&quot;, b: &quot;b&quot; }</span>
-<span class="hljs-built_in">console</span>.log(merged === objectA); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(objectA); <span class="hljs-comment">// =&gt; { a: &quot;a&quot;, b: &quot;b&quot; }</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(merged === objectA); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <p>空のオブジェクトを<code>target</code>にすることで、既存のオブジェクトには影響を与えずマージしたオブジェクトを作ることができます。
 そのため、<code>Object.assign</code>メソッドの第一引数には、空のオブジェクトリテラルを指定するのが典型的な利用方法です。</p>
@@ -2105,9 +2105,9 @@ JavaScriptでは、基本的に処理は先頭から後ろへと順番に行い�
 <pre><code class="lang-js"><span class="hljs-comment">// `version`のプロパティ名が被っている</span>
 <span class="hljs-keyword">const</span> objectA = { <span class="hljs-attr">version</span>: <span class="hljs-string">&quot;a&quot;</span> };
 <span class="hljs-keyword">const</span> objectB = { <span class="hljs-attr">version</span>: <span class="hljs-string">&quot;b&quot;</span> };
-<span class="hljs-keyword">const</span> merged = <span class="hljs-built_in">Object</span>.assign({}, objectA, objectB);
+<span class="hljs-keyword">const</span> merged = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>({}, objectA, objectB);
 <span class="hljs-comment">// 後ろにある`objectB`のプロパティで上書きされる</span>
-<span class="hljs-built_in">console</span>.log(merged); <span class="hljs-comment">// =&gt; { version: &quot;b&quot; }</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(merged); <span class="hljs-comment">// =&gt; { version: &quot;b&quot; }</span>
 </code></pre>
 <h4 id="object-spread-syntax"><a name="object-spread-syntax" class="plugin-anchor" href="#object-spread-syntax"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2018] オブジェクトのspread構文でのマージ </h4>
 <p>ES2018では、オブジェクトのマージを行うオブジェクトの<code>...</code>（spread構文）が追加されました。
@@ -2123,7 +2123,7 @@ ES2015で配列の要素を展開する<code>...</code>（spread構文）はサ�
     ...objectA,
     ...objectB
 };
-<span class="hljs-built_in">console</span>.log(merged); <span class="hljs-comment">// =&gt; { a: &quot;a&quot;, b: &quot;b&quot; }</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(merged); <span class="hljs-comment">// =&gt; { a: &quot;a&quot;, b: &quot;b&quot; }</span>
 </code></pre>
 <p>プロパティ名が被った場合の優先順位は、後ろにあるオブジェクトが優先されます。
 そのため同じプロパティ名を持つオブジェクトをマージした場合には、後ろにあるオブジェクトによってプロパティが上書きされます。</p>
@@ -2138,7 +2138,7 @@ ES2015で配列の要素を展開する<code>...</code>（spread構文）はサ�
     <span class="hljs-attr">other</span>: <span class="hljs-string">&quot;other&quot;</span>
 };
 <span class="hljs-comment">// 後ろにある`objectB`のプロパティで上書きされる</span>
-<span class="hljs-built_in">console</span>.log(merged); <span class="hljs-comment">// =&gt; { version: &quot;b&quot;, other: &quot;other&quot; }</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(merged); <span class="hljs-comment">// =&gt; { version: &quot;b&quot;, other: &quot;other&quot; }</span>
 </code></pre>
 <h4 id="copy"><a name="copy" class="plugin-anchor" href="#copy"><i class="fa fa-link" aria-hidden="true"></i></a>オブジェクトの複製 </h4>
 <!-- textlint-disable preset-ja-technical-writing/max-ten -->
@@ -2149,21 +2149,21 @@ ES2015で配列の要素を展開する<code>...</code>（spread構文）はサ�
 <!-- textlint-enable preset-ja-technical-writing/max-ten -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 引数の`obj`を浅く複製したオブジェクトを返す</span>
-<span class="hljs-keyword">const</span> shallowClone = <span class="hljs-function">(<span class="hljs-params">obj</span>) =&gt;</span> {
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.assign({}, obj);
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">shallowClone</span> = (<span class="hljs-params">obj</span>) =&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>({}, obj);
 };
 <span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">a</span>: <span class="hljs-string">&quot;a&quot;</span> };
-<span class="hljs-keyword">const</span> cloneObj = shallowClone(obj);
-<span class="hljs-built_in">console</span>.log(cloneObj); <span class="hljs-comment">// =&gt; { a: &quot;a&quot; }</span>
+<span class="hljs-keyword">const</span> cloneObj = <span class="hljs-title function_">shallowClone</span>(obj);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(cloneObj); <span class="hljs-comment">// =&gt; { a: &quot;a&quot; }</span>
 <span class="hljs-comment">// オブジェクトを複製しているので、異なるオブジェクトとなる</span>
-<span class="hljs-built_in">console</span>.log(obj === cloneObj); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj === cloneObj); <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
 <p>注意点として、<code>Object.assign</code>メソッドは<code>sources</code>オブジェクトのプロパティを浅くコピー（shallow copy）する点です。
 shallow copyとは、<code>sources</code>オブジェクトの直下にあるプロパティだけをコピーするということです。
 そのプロパティの値がオブジェクトである場合に、ネストした先のオブジェクトまでも複製するわけではありません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> shallowClone = <span class="hljs-function">(<span class="hljs-params">obj</span>) =&gt;</span> {
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.assign({}, obj);
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> <span class="hljs-title function_">shallowClone</span> = (<span class="hljs-params">obj</span>) =&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>({}, obj);
 };
 <span class="hljs-keyword">const</span> obj = {
     <span class="hljs-attr">level</span>: <span class="hljs-number">1</span>,
@@ -2171,25 +2171,25 @@ shallow copyとは、<code>sources</code>オブジェクトの直下にあるプ
         <span class="hljs-attr">level</span>: <span class="hljs-number">2</span>
     },
 };
-<span class="hljs-keyword">const</span> cloneObj = shallowClone(obj);
+<span class="hljs-keyword">const</span> cloneObj = <span class="hljs-title function_">shallowClone</span>(obj);
 <span class="hljs-comment">// `nest`プロパティのオブジェクトは同じオブジェクトのままになる </span>
-<span class="hljs-built_in">console</span>.log(cloneObj.nest === obj.nest); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(cloneObj.<span class="hljs-property">nest</span> === obj.<span class="hljs-property">nest</span>); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <p>逆にプロパティの値までも再帰的に複製してコピーすることを、深いコピー（deep copy）と呼びます。
 deep copyは、再帰的にshallow copyすることで実現できます。
 次のコードでは、<code>deepClone</code>を<code>shallowClone</code>を使うことで実現しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 引数の`obj`を浅く複製したオブジェクトを返す</span>
-<span class="hljs-keyword">const</span> shallowClone = <span class="hljs-function">(<span class="hljs-params">obj</span>) =&gt;</span> {
-    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Object</span>.assign({}, obj);
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">shallowClone</span> = (<span class="hljs-params">obj</span>) =&gt; {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>({}, obj);
 };
 <span class="hljs-comment">// 引数の`obj`を深く複製したオブジェクトを返す</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">deepClone</span>(<span class="hljs-params">obj</span>) </span>{
-    <span class="hljs-keyword">const</span> newObj = shallowClone(obj);
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">deepClone</span>(<span class="hljs-params">obj</span>) {
+    <span class="hljs-keyword">const</span> newObj = <span class="hljs-title function_">shallowClone</span>(obj);
     <span class="hljs-comment">// プロパティがオブジェクト型であるなら、再帰的に複製する</span>
-    <span class="hljs-built_in">Object</span>.keys(newObj)
-        .filter(<span class="hljs-function"><span class="hljs-params">k</span> =&gt;</span> <span class="hljs-keyword">typeof</span> newObj[k] === <span class="hljs-string">&quot;object&quot;</span>)
-        .forEach(<span class="hljs-function"><span class="hljs-params">k</span> =&gt;</span> newObj[k] = deepClone(newObj[k]));
+    <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(newObj)
+        .<span class="hljs-title function_">filter</span>(<span class="hljs-function"><span class="hljs-params">k</span> =&gt;</span> <span class="hljs-keyword">typeof</span> newObj[k] === <span class="hljs-string">&quot;object&quot;</span>)
+        .<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">k</span> =&gt;</span> newObj[k] = <span class="hljs-title function_">deepClone</span>(newObj[k]));
     <span class="hljs-keyword">return</span> newObj;
 }
 <span class="hljs-keyword">const</span> obj = {
@@ -2198,9 +2198,9 @@ deep copyは、再帰的にshallow copyすることで実現できます。
         <span class="hljs-attr">level</span>: <span class="hljs-number">2</span>
     }
 };
-<span class="hljs-keyword">const</span> cloneObj = deepClone(obj);
+<span class="hljs-keyword">const</span> cloneObj = <span class="hljs-title function_">deepClone</span>(obj);
 <span class="hljs-comment">// `nest`オブジェクトも再帰的に複製されている</span>
-<span class="hljs-built_in">console</span>.log(cloneObj.nest === obj.nest); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(cloneObj.<span class="hljs-property">nest</span> === obj.<span class="hljs-property">nest</span>); <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
 <p>このように、JavaScriptのビルトインメソッドは浅い（shallow）実装のみを提供し、深い（deep）実装は提供していないことが多いです。
 言語としては最低限の機能を提供し、より複雑な機能はユーザー側で実装するという形式を取るためです。</p>
@@ -2249,7 +2249,7 @@ deep copyは、再帰的にshallow copyすることで実現できます。
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptのObjectはオブジェクトの基礎となるものです。オブジェクトとプロパティの作成、更新、削除などの基本的な操作について紹介します。","title":"オブジェクト","level":"1.3.12","depth":2,"next":{"title":"プロトタイプオブジェクト","level":"1.3.13","depth":2,"path":"basic/prototype-object/README.md","ref":"./basic/prototype-object/README.md","articles":[]},"previous":{"title":"ループと反復処理","level":"1.3.11","depth":2,"path":"basic/loop/README.md","ref":"./basic/loop/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/object/README.md","mtime":"2023-07-16T01:53:15.657Z","type":"markdown"},"gitbook":{"version":"4.0.8","time":"2023-07-16T01:53:46.643Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptのObjectはオブジェクトの基礎となるものです。オブジェクトとプロパティの作成、更新、削除などの基本的な操作について紹介します。","title":"オブジェクト","level":"1.3.12","depth":2,"next":{"title":"プロトタイプオブジェクト","level":"1.3.13","depth":2,"path":"basic/prototype-object/README.md","ref":"./basic/prototype-object/README.md","articles":[]},"previous":{"title":"ループと反復処理","level":"1.3.11","depth":2,"path":"basic/loop/README.md","ref":"./basic/loop/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/object/README.md","mtime":"2023-07-16T12:14:13.149Z","type":"markdown"},"gitbook":{"version":"5.0.0","time":"2023-07-16T12:14:45.721Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

@@ -6,7 +6,7 @@
         <title>コマンドライン引数を処理する · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="コマンドライン引数を受け取り、アプリケーションから使いやすい形にパースする方法を学びます。">
-        <meta name="generator" content="HonKit 4.0.8">
+        <meta name="generator" content="HonKit 5.0.0">
         
         
         
@@ -1516,10 +1516,10 @@
 </div>
 
 <pre><code class="lang-javascript"><span class="hljs-comment">// コンソールにコマンドライン引数を出力する</span>
-<span class="hljs-built_in">console</span>.log(process.argv);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(process.<span class="hljs-property">argv</span>);
 </code></pre>
 <p>このスクリプトを次のようにコマンドライン引数をつけて実行してみましょう。</p>
-<pre><code class="lang-shell"><span class="hljs-meta">$</span><span class="bash"> node main.js one two=three four</span>
+<pre><code class="lang-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">node main.js one two=three four</span>
 </code></pre>
 <p>このコマンドの実行結果は次のようになります。</p>
 <pre><code>[
@@ -1545,7 +1545,7 @@
 <code>package.json</code>ファイルのひな形は、<code>npm init</code>コマンドで生成できます。
 通常は対話式のプロンプトによって情報を設定しますが、ここではすべてデフォルト値で<code>package.json</code>を作成する<code>--yes</code>オプションを付与します。</p>
 <p><code>nodecli</code>のディレクトリ内で、<code>npm init --yes</code>コマンドを実行して<code>package.json</code>を作成しましょう。</p>
-<pre><code class="lang-shell"><span class="hljs-meta">$</span><span class="bash"> npm init --yes</span>
+<pre><code class="lang-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">npm init --<span class="hljs-built_in">yes</span></span>
 </code></pre>
 <p>生成された<code>package.json</code>ファイルは次のようになっています。</p>
 <div class="code-filename-block">
@@ -1569,7 +1569,7 @@
 このコマンドの引数にはインストールするパッケージの名前とそのバージョンを<code>@</code>記号でつなげて指定できます。
 バージョンを指定せずにインストールすれば、その時点での最新の安定版が自動的に選択されます。
 次のコマンドを実行して、commanderのバージョン9.0をインストールします。<sup><a href="#fn_1" id="reffn_1">1</a></sup></p>
-<pre><code class="lang-shell"><span class="hljs-meta">$</span><span class="bash"> npm install commander@9.0</span>
+<pre><code class="lang-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">npm install commander@9.0</span>
 </code></pre>
 <p>インストールが完了すると、<code>package.json</code>ファイルは次のようになっています。</p>
 <div class="code-filename-block">
@@ -1610,8 +1610,8 @@
 <code>type</code>フィールドが <code>module</code> であればECMAScriptモジュールとして、<code>type</code>フィールドが <code>commonjs</code> であればCommonJSモジュールとして扱われます。<sup><a href="#fn_2" id="reffn_2">2</a></sup>
 また、JavaScriptファイルの拡張子によって明示的に示すこともできます。拡張子が <code>.mjs</code> である場合はECMAScriptモジュールとして、<code>.cjs</code> である場合はCommonJSモジュールであると判別されます。</p>
 <p>今回は <code>main.js</code> を ECMAScriptモジュールとして判別させるために、次のように <code>package.json</code> に<code>type</code> フィールドを追加します。</p>
-<pre><code class="lang-shell"><span class="hljs-meta">#</span><span class="bash"> npm pkg コマンドで <span class="hljs-built_in">type</span> フィールドの値をセットする</span>
-<span class="hljs-meta">$</span><span class="bash"> npm pkg <span class="hljs-built_in">set</span> <span class="hljs-built_in">type</span>=module</span>
+<pre><code class="lang-shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">npm pkg コマンドで <span class="hljs-built_in">type</span> フィールドの値をセットする</span>
+<span class="hljs-meta prompt_">$ </span><span class="language-bash">npm pkg <span class="hljs-built_in">set</span> <span class="hljs-built_in">type</span>=module</span>
 </code></pre>
 <div class="code-filename-block">
     <p class="code-filename">package.json</p>
@@ -1645,7 +1645,7 @@ CommonJSモジュールは<a href="../../../basic/module/">ECMAScriptモジュ�
 Node.jsの標準モジュールはECMAScriptモジュールのJavaScriptファイルからでも利用できますが、それはこの相互運用性によるものです。</p>
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-comment">// lib.cjs</span>
-<span class="hljs-built_in">exports</span>.key = <span class="hljs-string">&quot;value&quot;</span>;
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">key</span> = <span class="hljs-string">&quot;value&quot;</span>;
 
 <span class="hljs-comment">// app.mjs</span>
 <span class="hljs-keyword">import</span> { key } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./lib.cjs&quot;</span>;
@@ -1656,14 +1656,14 @@ Node.jsの標準モジュールはECMAScriptモジュールのJavaScriptファ�
 <h3 id="get-file-path"><a name="get-file-path" class="plugin-anchor" href="#get-file-path"><i class="fa fa-link" aria-hidden="true"></i></a>コマンドライン引数からファイルパスを取得する </h3>
 <p>先ほどインストールした<code>commander</code>パッケージを使って、コマンドライン引数として渡されたファイルパスを取得しましょう。
 このCLIアプリケーションでは、処理の対象とするファイルパスを次のようなコマンドの形式で受け取ります。</p>
-<pre><code class="lang-shell"><span class="hljs-meta">$</span><span class="bash"> node main.js ./sample.md</span>
+<pre><code class="lang-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">node main.js ./sample.md</span>
 </code></pre>
 <p>commanderでコマンドライン引数をパースするためには、インポートした<code>program</code>オブジェクトの<code>parse</code>メソッドにコマンドライン引数を渡します。</p>
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-comment">// commanderモジュールからprogramオブジェクトをインポートする</span>
 <span class="hljs-keyword">import</span> { program } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;commander&quot;</span>;
 <span class="hljs-comment">// コマンドライン引数をcommanderでパースする</span>
-program.parse(process.argv);
+program.<span class="hljs-title function_">parse</span>(process.<span class="hljs-property">argv</span>);
 </code></pre>
 <p><code>parse</code>メソッドを呼び出すと、コマンドライン引数をパースした結果を<code>program</code>オブジェクトから取り出せるようになります。
 今回の例では、ファイルパスは<code>program.args</code>配列に格納されています。
@@ -1677,15 +1677,15 @@ program.parse(process.argv);
 <span class="hljs-keyword">import</span> { program } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;commander&quot;</span>;
 
 <span class="hljs-comment">// コマンドライン引数をcommanderでパースする</span>
-program.parse(process.argv);
+program.<span class="hljs-title function_">parse</span>(process.<span class="hljs-property">argv</span>);
 
 <span class="hljs-comment">// ファイルパスをprogram.args配列から取り出す</span>
-<span class="hljs-keyword">const</span> filePath = program.args[<span class="hljs-number">0</span>];
-<span class="hljs-built_in">console</span>.log(filePath);
+<span class="hljs-keyword">const</span> filePath = program.<span class="hljs-property">args</span>[<span class="hljs-number">0</span>];
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(filePath);
 </code></pre>
 <p>次のコマンドを実行すると、<code>program.args</code>配列に格納された<code>./sample.md</code>文字列が取得されてコンソールに出力されます。
 <code>./sample.md</code>は<code>process.argv</code>配列では3番目に存在していましたが、パース後の<code>program.args</code>配列では1番目になって扱いやすくなっています。</p>
-<pre><code class="lang-shell"><span class="hljs-meta">$</span><span class="bash"> node main.js ./sample.md</span>
+<pre><code class="lang-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">node main.js ./sample.md</span>
 ./sample.md
 </code></pre>
 <p>このように、<code>process.argv</code>配列を直接扱うよりも、commanderのようなライブラリを使うことで宣言的にコマンドライン引数を定義して処理できます。
@@ -1747,7 +1747,7 @@ SyntaxError: Cannot use import statement outside a module
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"コマンドライン引数を受け取り、アプリケーションから使いやすい形にパースする方法を学びます。","title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"next":{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},"previous":{"title":"Node.jsでHello World","level":"1.4.3.1","depth":3,"path":"use-case/nodecli/helloworld/README.md","ref":"./use-case/nodecli/helloworld/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/argument-parse/README.md","mtime":"2023-07-16T01:53:15.673Z","type":"markdown"},"gitbook":{"version":"4.0.8","time":"2023-07-16T01:53:46.643Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"コマンドライン引数を受け取り、アプリケーションから使いやすい形にパースする方法を学びます。","title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"next":{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},"previous":{"title":"Node.jsでHello World","level":"1.4.3.1","depth":3,"path":"use-case/nodecli/helloworld/README.md","ref":"./use-case/nodecli/helloworld/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/argument-parse/README.md","mtime":"2023-07-16T12:14:13.161Z","type":"markdown"},"gitbook":{"version":"5.0.0","time":"2023-07-16T12:14:45.721Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

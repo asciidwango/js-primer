@@ -6,7 +6,7 @@
         <title>配列 · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="配列は値を順番に格納できるオブジェクトです。この配列の作成、更新、削除などの基本的な操作や実際に使い方についてを紹介します。また配列における破壊的なメソッドと非破壊的メソッドの違いについても紹介します。">
-        <meta name="generator" content="HonKit 4.0.8">
+        <meta name="generator" content="HonKit 5.0.0">
         
         
         
@@ -1528,7 +1528,7 @@
 配列の先頭要素のインデックスは<code>0</code>となります。配列のインデックスは、<code>0</code>以上<code>2^32 - 1</code>未満の整数となります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;one&quot;</span>, <span class="hljs-string">&quot;two&quot;</span>, <span class="hljs-string">&quot;three&quot;</span>];
-<span class="hljs-built_in">console</span>.log(array[<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; &quot;one&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array[<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; &quot;one&quot;</span>
 </code></pre>
 <p>2次元配列（配列の配列）からの値の読み取りも同様に<code>配列[インデックス]</code>でアクセスできます。
 <code>配列[0][0]</code>は、配列の<code>0</code>番目の要素である配列（<code>[&quot;a&quot;, &quot;b&quot;]</code>）の<code>0</code>番目の要素を読み取ります。</p>
@@ -1538,21 +1538,21 @@
     [<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>],
     [<span class="hljs-string">&quot;c&quot;</span>, <span class="hljs-string">&quot;d&quot;</span>]
 ];
-<span class="hljs-built_in">console</span>.log(matrix[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; &quot;a&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(matrix[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; &quot;a&quot;</span>
 </code></pre>
 <p>配列の<code>length</code>プロパティは配列の要素の数を返します。
 そのため、配列の最後の要素へアクセスするには <code>array.length - 1</code> をインデックスとして利用できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;one&quot;</span>, <span class="hljs-string">&quot;two&quot;</span>, <span class="hljs-string">&quot;three&quot;</span>];
-<span class="hljs-built_in">console</span>.log(array.length); <span class="hljs-comment">// =&gt; 3</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 3</span>
 <span class="hljs-comment">// 配列の要素数 - 1 が 最後の要素のインデックスとなる</span>
-<span class="hljs-built_in">console</span>.log(array[array.length - <span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; &quot;three&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array[array.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; &quot;three&quot;</span>
 </code></pre>
 <p>一方、存在しないインデックスにアクセスした場合はどうなるでしょうか？ JavaScriptでは、存在しないインデックスに対してアクセスした場合に、例外ではなく<code>undefined</code>を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;one&quot;</span>, <span class="hljs-string">&quot;two&quot;</span>, <span class="hljs-string">&quot;three&quot;</span>];
 <span class="hljs-comment">// `array`にはインデックスが100の要素は定義されていない</span>
-<span class="hljs-built_in">console</span>.log(array[<span class="hljs-number">100</span>]); <span class="hljs-comment">// =&gt; undefined</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array[<span class="hljs-number">100</span>]); <span class="hljs-comment">// =&gt; undefined</span>
 </code></pre>
 <p>これは、配列がオブジェクトであることを考えると、次のように存在しないプロパティへアクセスしているのと原理は同じです。
 オブジェクトでも、存在しないプロパティへアクセスした場合には<code>undefined</code>が返ってきます。</p>
@@ -1564,7 +1564,7 @@
     <span class="hljs-string">&quot;length&quot;</span>: <span class="hljs-number">3</span>
 };
 <span class="hljs-comment">// obj[&quot;100&quot;]は定義されていないため、undefinedが返る</span>
-<span class="hljs-built_in">console</span>.log(obj[<span class="hljs-number">100</span>]); <span class="hljs-comment">// =&gt; undefined</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj[<span class="hljs-number">100</span>]); <span class="hljs-comment">// =&gt; undefined</span>
 </code></pre>
 <p>また、配列は常に<code>length</code>の数だけ要素を持っているとは限りません。
 次のように、配列リテラルでは値を省略することで、未定義の要素を含めることができます。
@@ -1574,9 +1574,9 @@
 <pre><code class="lang-js"><span class="hljs-comment">// 未定義の箇所が1つ含まれる疎な配列</span>
 <span class="hljs-comment">// インデックスが1の値を省略しているので、カンマが2つ続いていることに注意</span>
 <span class="hljs-keyword">const</span> sparseArray = [<span class="hljs-number">1</span>, , <span class="hljs-number">3</span>];
-<span class="hljs-built_in">console</span>.log(sparseArray.length); <span class="hljs-comment">// =&gt; 3</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(sparseArray.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 3</span>
 <span class="hljs-comment">// 1番目の要素は存在しないため undefined が返る</span>
-<span class="hljs-built_in">console</span>.log(sparseArray[<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; undefined</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(sparseArray[<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; undefined</span>
 </code></pre>
 <h3 id="array-at"><a name="array-at" class="plugin-anchor" href="#array-at"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2022] <code>Array.prototype.at</code> </h3>
 <p>配列の要素にアクセスするには<code>配列[インデックス]</code>という構文を使うことを紹介しました。
@@ -1590,17 +1590,17 @@ Arrayの<code>at</code>メソッドは、<code>配列[インデックス]</code>
 <!-- doctest:meta:{ "ECMAScript": "2022" } --></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>];
 <span class="hljs-comment">//</span>
-<span class="hljs-built_in">console</span>.log(array.at(<span class="hljs-number">0</span>)); <span class="hljs-comment">// =&gt; &quot;a&quot;</span>
-<span class="hljs-built_in">console</span>.log(array.at(<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;b&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-title function_">at</span>(<span class="hljs-number">0</span>)); <span class="hljs-comment">// =&gt; &quot;a&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-title function_">at</span>(<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;b&quot;</span>
 <span class="hljs-comment">// 後ろから1つ目の要素にアクセス</span>
-<span class="hljs-built_in">console</span>.log(array.at(-<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;c&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-title function_">at</span>(-<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; &quot;c&quot;</span>
 <span class="hljs-comment">// -1は、次のように書いた場合と同じ結果</span>
-<span class="hljs-built_in">console</span>.log(array[array.length - <span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; &quot;c&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array[array.<span class="hljs-property">length</span> - <span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; &quot;c&quot;</span>
 </code></pre>
 <p><code>配列[インデックス]</code>のインデックスに<code>-1</code>を指定すると、配列オブジェクトの<code>&quot;-1&quot;</code>というプロパティ名へのアクセスとなります。
 そのため<code>配列[-1]</code>と書くと、大抵の場合は<code>undefined</code>が返されます。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>];
-<span class="hljs-built_in">console</span>.log(array[-<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; undefined</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array[-<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; undefined</span>
 </code></pre>
 <h2 id="detect-array"><a name="detect-array" class="plugin-anchor" href="#detect-array"><i class="fa fa-link" aria-hidden="true"></i></a>オブジェクトが配列かどうかを判定する </h2>
 <p>あるオブジェクトが配列かどうかを判定するには<code>Array.isArray</code>メソッドを利用します。
@@ -1608,14 +1608,14 @@ Arrayの<code>at</code>メソッドは、<code>配列[インデックス]</code>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = {};
 <span class="hljs-keyword">const</span> array = [];
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Array</span>.isArray(obj)); <span class="hljs-comment">// =&gt; false</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Array</span>.isArray(array)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(obj)); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(array)); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <p>また、<code>typeof</code>演算子では配列かどうかを判定することはできません。
 配列もオブジェクトの一種であるため、<code>typeof</code>演算子の結果が<code>&quot;object&quot;</code>となるためです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [];
-<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> array); <span class="hljs-comment">// =&gt; &quot;object&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> array); <span class="hljs-comment">// =&gt; &quot;object&quot;</span>
 </code></pre>
 <h3 id="typed-array"><a name="typed-array" class="plugin-anchor" href="#typed-array"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] [ES2015] TypedArray </h3>
 <p>JavaScriptの配列は可変長のみですが、<code>TypedArray</code>という固定長でかつ型つきの配列を扱う別のオブジェクトが存在します。
@@ -1623,8 +1623,8 @@ Arrayの<code>at</code>メソッドは、<code>配列[インデックス]</code>
 文字列や数値などのプリミティブ型の値を直接は利用できないため、通常の配列とは用途や使い勝手が異なります。</p>
 <p>また、TypedArrayは<code>Array.isArray</code>のメソッドの結果が<code>false</code>となることからも別物と考えてよいでしょう。</p>
 <pre><code class="lang-js"><span class="hljs-comment">// TypedArrayを作成</span>
-<span class="hljs-keyword">const</span> typedArray = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int8Array</span>(<span class="hljs-number">8</span>);
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Array</span>.isArray(typedArray)); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-keyword">const</span> typedArray = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Int8Array</span>(<span class="hljs-number">8</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(typedArray)); <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
 <p>そのため、JavaScriptで配列といった場合には<code>Array</code>を示します。</p>
 <h2 id="array-destructuring"><a name="array-destructuring" class="plugin-anchor" href="#array-destructuring"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2015] 配列と分割代入 </h2>
@@ -1636,9 +1636,9 @@ Arrayの<code>at</code>メソッドは、<code>配列[インデックス]</code>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;one&quot;</span>, <span class="hljs-string">&quot;two&quot;</span>, <span class="hljs-string">&quot;three&quot;</span>];
 <span class="hljs-keyword">const</span> [first, second, third] = array;
-<span class="hljs-built_in">console</span>.log(first);  <span class="hljs-comment">// =&gt; &quot;one&quot;</span>
-<span class="hljs-built_in">console</span>.log(second); <span class="hljs-comment">// =&gt; &quot;two&quot;</span>
-<span class="hljs-built_in">console</span>.log(third);  <span class="hljs-comment">// =&gt; &quot;three&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(first);  <span class="hljs-comment">// =&gt; &quot;one&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(second); <span class="hljs-comment">// =&gt; &quot;two&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(third);  <span class="hljs-comment">// =&gt; &quot;three&quot;</span>
 </code></pre>
 <h2 id="diff-undefined-and-no-element"><a name="diff-undefined-and-no-element" class="plugin-anchor" href="#diff-undefined-and-no-element"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] undefinedの要素と未定義の要素の違い </h2>
 <p>疎な配列で該当するインデックスに要素がない場合は<code>undefined</code>を返します。
@@ -1650,8 +1650,8 @@ Arrayの<code>at</code>メソッドは、<code>配列[インデックス]</code>
 <span class="hljs-keyword">const</span> denseArray = [<span class="hljs-number">1</span>, <span class="hljs-literal">undefined</span>, <span class="hljs-number">3</span>];
 <span class="hljs-comment">// 要素そのものがない疎な配列</span>
 <span class="hljs-keyword">const</span> sparseArray = [<span class="hljs-number">1</span>, , <span class="hljs-number">3</span>];
-<span class="hljs-built_in">console</span>.log(denseArray[<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; undefined</span>
-<span class="hljs-built_in">console</span>.log(sparseArray[<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; undefined</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(denseArray[<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; undefined</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(sparseArray[<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; undefined</span>
 </code></pre>
 <p>この違いを見つける方法として利用できるのが、<code>Object.hasOwn</code>静的メソッドです。
 <code>Object.hasOwn</code>静的メソッドを使うことで、配列オブジェクトに対して指定したインデックスに要素自体が存在するかを判定できます。</p>
@@ -1660,9 +1660,9 @@ Arrayの<code>at</code>メソッドは、<code>配列[インデックス]</code>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> denseArray = [<span class="hljs-number">1</span>, <span class="hljs-literal">undefined</span>, <span class="hljs-number">3</span>];
 <span class="hljs-keyword">const</span> sparseArray = [<span class="hljs-number">1</span>, , <span class="hljs-number">3</span>];
 <span class="hljs-comment">// 要素自体は存在し、その値が`undefined`</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.hasOwn(denseArray, <span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">hasOwn</span>(denseArray, <span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; true</span>
 <span class="hljs-comment">// 要素自体が存在しない</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.hasOwn(sparseArray, <span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">hasOwn</span>(sparseArray, <span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
 <h2 id="search-element"><a name="search-element" class="plugin-anchor" href="#search-element"><i class="fa fa-link" aria-hidden="true"></i></a>配列から要素を検索 </h2>
 <p>配列から指定した要素を検索する目的には、
@@ -1682,16 +1682,16 @@ Arrayの<code>at</code>メソッドは、<code>配列[インデックス]</code>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;Java&quot;</span>, <span class="hljs-string">&quot;JavaScript&quot;</span>, <span class="hljs-string">&quot;Ruby&quot;</span>, <span class="hljs-string">&quot;JavaScript&quot;</span>];
 <span class="hljs-comment">// 先頭から探索して最初に見つかった&quot;JavaScript&quot;のインデックスを取得</span>
-<span class="hljs-keyword">const</span> indexOfJS = array.indexOf(<span class="hljs-string">&quot;JavaScript&quot;</span>);
-<span class="hljs-built_in">console</span>.log(indexOfJS); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-keyword">const</span> indexOfJS = array.<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">&quot;JavaScript&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(indexOfJS); <span class="hljs-comment">// =&gt; 1</span>
 <span class="hljs-comment">// 末尾から探索して最初に見つかった&quot;JavaScript&quot;のインデックスを取得</span>
-<span class="hljs-keyword">const</span> lastIndexOfJS = array.lastIndexOf(<span class="hljs-string">&quot;JavaScript&quot;</span>);
-<span class="hljs-built_in">console</span>.log(lastIndexOfJS); <span class="hljs-comment">// =&gt; 3</span>
-<span class="hljs-built_in">console</span>.log(array[indexOfJS]); <span class="hljs-comment">// =&gt; &quot;JavaScript&quot;</span>
-<span class="hljs-built_in">console</span>.log(array[lastIndexOfJS]); <span class="hljs-comment">// =&gt; &quot;JavaScript&quot;</span>
+<span class="hljs-keyword">const</span> lastIndexOfJS = array.<span class="hljs-title function_">lastIndexOf</span>(<span class="hljs-string">&quot;JavaScript&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(lastIndexOfJS); <span class="hljs-comment">// =&gt; 3</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array[indexOfJS]); <span class="hljs-comment">// =&gt; &quot;JavaScript&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array[lastIndexOfJS]); <span class="hljs-comment">// =&gt; &quot;JavaScript&quot;</span>
 <span class="hljs-comment">// &quot;JS&quot; という要素はないため `-1` が返される</span>
-<span class="hljs-built_in">console</span>.log(array.indexOf(<span class="hljs-string">&quot;JS&quot;</span>)); <span class="hljs-comment">// =&gt; -1</span>
-<span class="hljs-built_in">console</span>.log(array.lastIndexOf(<span class="hljs-string">&quot;JS&quot;</span>)); <span class="hljs-comment">// =&gt; -1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">&quot;JS&quot;</span>)); <span class="hljs-comment">// =&gt; -1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-title function_">lastIndexOf</span>(<span class="hljs-string">&quot;JS&quot;</span>)); <span class="hljs-comment">// =&gt; -1</span>
 </code></pre>
 <p><code>indexOf</code>メソッドは配列からプリミティブな要素を発見できますが、オブジェクトは持っているプロパティが同じでも別オブジェクトだと異なるものとして扱われます。
 次のコードを見ると、同じプロパティを持つ異なるオブジェクトは、<code>indexOf</code>メソッドでは見つけることができません。
@@ -1699,11 +1699,11 @@ Arrayの<code>at</code>メソッドは、<code>配列[インデックス]</code>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">key</span>: <span class="hljs-string">&quot;value&quot;</span> };
 <span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, obj];
-<span class="hljs-built_in">console</span>.log(array.indexOf({ <span class="hljs-attr">key</span>: <span class="hljs-string">&quot;value&quot;</span> })); <span class="hljs-comment">// =&gt; -1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-title function_">indexOf</span>({ <span class="hljs-attr">key</span>: <span class="hljs-string">&quot;value&quot;</span> })); <span class="hljs-comment">// =&gt; -1</span>
 <span class="hljs-comment">// リテラルは新しいオブジェクトを作るため、異なるオブジェクトだと判定される</span>
-<span class="hljs-built_in">console</span>.log(obj === { <span class="hljs-attr">key</span>: <span class="hljs-string">&quot;value&quot;</span> }); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj === { <span class="hljs-attr">key</span>: <span class="hljs-string">&quot;value&quot;</span> }); <span class="hljs-comment">// =&gt; false</span>
 <span class="hljs-comment">// 等価のオブジェクトを検索してインデックスを返す</span>
-<span class="hljs-built_in">console</span>.log(array.indexOf(obj)); <span class="hljs-comment">// =&gt; 2</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-title function_">indexOf</span>(obj)); <span class="hljs-comment">// =&gt; 2</span>
 </code></pre>
 <p>このように、異なるオブジェクトだが値は同じものを見つけたい場合には、Arrayの<code>findIndex</code>メソッドが利用できます。
 <code>findIndex</code>メソッドの引数には配列の各要素をテストする関数をコールバック関数として渡します。
@@ -1717,11 +1717,11 @@ Arrayの<code>at</code>メソッドは、<code>配列[インデックス]</code>
     { <span class="hljs-string">&quot;color&quot;</span>: <span class="hljs-string">&quot;blue&quot;</span> }
 ];
 <span class="hljs-comment">// `color`プロパティが&quot;blue&quot;のオブジェクトのインデックスを取得</span>
-<span class="hljs-keyword">const</span> indexOfBlue = colors.findIndex(<span class="hljs-function">(<span class="hljs-params">obj</span>) =&gt;</span> {
-    <span class="hljs-keyword">return</span> obj.color === <span class="hljs-string">&quot;blue&quot;</span>;
+<span class="hljs-keyword">const</span> indexOfBlue = colors.<span class="hljs-title function_">findIndex</span>(<span class="hljs-function">(<span class="hljs-params">obj</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> obj.<span class="hljs-property">color</span> === <span class="hljs-string">&quot;blue&quot;</span>;
 });
-<span class="hljs-built_in">console</span>.log(indexOfBlue); <span class="hljs-comment">// =&gt; 2</span>
-<span class="hljs-built_in">console</span>.log(colors[indexOfBlue]); <span class="hljs-comment">// =&gt; { &quot;color&quot;: &quot;blue&quot; }</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(indexOfBlue); <span class="hljs-comment">// =&gt; 2</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(colors[indexOfBlue]); <span class="hljs-comment">// =&gt; { &quot;color&quot;: &quot;blue&quot; }</span>
 </code></pre>
 <p>Arrayの<code>findIndex</code>メソッドにも対となる<code>findLastIndex</code>メソッド<sup>[ES2023]</sup>があり、<code>findLastIndex</code>メソッドは末尾から検索した結果が得られます。
 次のように、<code>findIndex</code>は条件に一致する最初の要素のインデックスを返しますが、<code>findLastIndex</code>は最後の要素のインデックスを返します。</p>
@@ -1736,17 +1736,17 @@ Arrayの<code>at</code>メソッドは、<code>配列[インデックス]</code>
     { <span class="hljs-attr">date</span>: <span class="hljs-string">&quot;2020/12/5&quot;</span>, <span class="hljs-attr">count</span>: <span class="hljs-number">3</span> }
 ];
 <span class="hljs-comment">// 10より大きい`count`プロパティを持つ最初のオブジェクトのインデックスを取得</span>
-<span class="hljs-keyword">const</span> firstRecordIndex = records.findIndex(<span class="hljs-function">(<span class="hljs-params">record</span>) =&gt;</span> {
-    <span class="hljs-keyword">return</span> record.count &gt; <span class="hljs-number">10</span>;
+<span class="hljs-keyword">const</span> firstRecordIndex = records.<span class="hljs-title function_">findIndex</span>(<span class="hljs-function">(<span class="hljs-params">record</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> record.<span class="hljs-property">count</span> &gt; <span class="hljs-number">10</span>;
 });
 <span class="hljs-comment">// 10より大きい`count`プロパティを持つ最後のオブジェクトのインデックスを取得</span>
-<span class="hljs-keyword">const</span> lastRecordIndex = records.findLastIndex(<span class="hljs-function">(<span class="hljs-params">record</span>) =&gt;</span> {
-    <span class="hljs-keyword">return</span> record.count &gt; <span class="hljs-number">10</span>;
+<span class="hljs-keyword">const</span> lastRecordIndex = records.<span class="hljs-title function_">findLastIndex</span>(<span class="hljs-function">(<span class="hljs-params">record</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> record.<span class="hljs-property">count</span> &gt; <span class="hljs-number">10</span>;
 });
-<span class="hljs-built_in">console</span>.log(firstRecordIndex); <span class="hljs-comment">// =&gt; 1</span>
-<span class="hljs-built_in">console</span>.log(records[firstRecordIndex]); <span class="hljs-comment">// =&gt; { date: &quot;2020/12/2&quot;, count: 11 }</span>
-<span class="hljs-built_in">console</span>.log(lastRecordIndex); <span class="hljs-comment">// =&gt; 3</span>
-<span class="hljs-built_in">console</span>.log(records[lastRecordIndex]); <span class="hljs-comment">// =&gt; { date: &quot;2020/12/4&quot;, count: 12 }</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(firstRecordIndex); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(records[firstRecordIndex]); <span class="hljs-comment">// =&gt; { date: &quot;2020/12/2&quot;, count: 11 }</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(lastRecordIndex); <span class="hljs-comment">// =&gt; 3</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(records[lastRecordIndex]); <span class="hljs-comment">// =&gt; { date: &quot;2020/12/4&quot;, count: 12 }</span>
 </code></pre>
 <h3 id="find"><a name="find" class="plugin-anchor" href="#find"><i class="fa fa-link" aria-hidden="true"></i></a>条件に一致する要素を取得 </h3>
 <p>配列から要素を取得する方法としてインデックスを使うこともできます。
@@ -1764,15 +1764,15 @@ Arrayの<code>at</code>メソッドは、<code>配列[インデックス]</code>
     { <span class="hljs-string">&quot;color&quot;</span>: <span class="hljs-string">&quot;blue&quot;</span> }
 ];
 <span class="hljs-comment">// `color`プロパティが&quot;blue&quot;のオブジェクトを取得</span>
-<span class="hljs-keyword">const</span> blueColor = colors.find(<span class="hljs-function">(<span class="hljs-params">obj</span>) =&gt;</span> {
-    <span class="hljs-keyword">return</span> obj.color === <span class="hljs-string">&quot;blue&quot;</span>;
+<span class="hljs-keyword">const</span> blueColor = colors.<span class="hljs-title function_">find</span>(<span class="hljs-function">(<span class="hljs-params">obj</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> obj.<span class="hljs-property">color</span> === <span class="hljs-string">&quot;blue&quot;</span>;
 });
-<span class="hljs-built_in">console</span>.log(blueColor); <span class="hljs-comment">// =&gt; { &quot;color&quot;: &quot;blue&quot; }</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(blueColor); <span class="hljs-comment">// =&gt; { &quot;color&quot;: &quot;blue&quot; }</span>
 <span class="hljs-comment">// 該当する要素がない場合は`undefined`を返す</span>
-<span class="hljs-keyword">const</span> whiteColor = colors.find(<span class="hljs-function">(<span class="hljs-params">obj</span>) =&gt;</span> {
-    <span class="hljs-keyword">return</span> obj.color === <span class="hljs-string">&quot;white&quot;</span>;
+<span class="hljs-keyword">const</span> whiteColor = colors.<span class="hljs-title function_">find</span>(<span class="hljs-function">(<span class="hljs-params">obj</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> obj.<span class="hljs-property">color</span> === <span class="hljs-string">&quot;white&quot;</span>;
 });
-<span class="hljs-built_in">console</span>.log(whiteColor); <span class="hljs-comment">// =&gt; undefined</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(whiteColor); <span class="hljs-comment">// =&gt; undefined</span>
 </code></pre>
 <p><code>find</code>メソッドにも対となる<code>findLast</code>メソッド<sup>[ES2023]</sup>があり、<code>findLast</code>メソッドは末尾から検索した結果が得られます。
 次のように、<code>find</code>は条件に一致した最初の要素を返しますが、<code>findLast</code>は最後の要素を返します。</p>
@@ -1787,15 +1787,15 @@ Arrayの<code>at</code>メソッドは、<code>配列[インデックス]</code>
     { <span class="hljs-attr">date</span>: <span class="hljs-string">&quot;2020/12/5&quot;</span>, <span class="hljs-attr">count</span>: <span class="hljs-number">3</span> }
 ];
 <span class="hljs-comment">// 10より大きい`count`プロパティを持つ最初のオブジェクトを取得</span>
-<span class="hljs-keyword">const</span> firstRecord = records.find(<span class="hljs-function">(<span class="hljs-params">record</span>) =&gt;</span> {
-    <span class="hljs-keyword">return</span> record.count &gt; <span class="hljs-number">10</span>;
+<span class="hljs-keyword">const</span> firstRecord = records.<span class="hljs-title function_">find</span>(<span class="hljs-function">(<span class="hljs-params">record</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> record.<span class="hljs-property">count</span> &gt; <span class="hljs-number">10</span>;
 });
 <span class="hljs-comment">// 10より大きい`count`プロパティを持つ最後のオブジェクトを取得</span>
-<span class="hljs-keyword">const</span> lastRecord = records.findLast(<span class="hljs-function">(<span class="hljs-params">record</span>) =&gt;</span> {
-    <span class="hljs-keyword">return</span> record.count &gt; <span class="hljs-number">10</span>;
+<span class="hljs-keyword">const</span> lastRecord = records.<span class="hljs-title function_">findLast</span>(<span class="hljs-function">(<span class="hljs-params">record</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> record.<span class="hljs-property">count</span> &gt; <span class="hljs-number">10</span>;
 });
-<span class="hljs-built_in">console</span>.log(firstRecord); <span class="hljs-comment">// =&gt; { date: &quot;2020/12/2&quot;, count: 11 }</span>
-<span class="hljs-built_in">console</span>.log(lastRecord); <span class="hljs-comment">// =&gt; { date: &quot;2020/12/4&quot;, count: 12 }</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(firstRecord); <span class="hljs-comment">// =&gt; { date: &quot;2020/12/2&quot;, count: 11 }</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(lastRecord); <span class="hljs-comment">// =&gt; { date: &quot;2020/12/4&quot;, count: 12 }</span>
 </code></pre>
 <h3 id="slice"><a name="slice" class="plugin-anchor" href="#slice"><i class="fa fa-link" aria-hidden="true"></i></a>指定範囲の要素を取得 </h3>
 <p>配列から指定範囲の要素を取り出す方法としてArrayの<code>slice</code>メソッドが利用できます。
@@ -1804,15 +1804,15 @@ Arrayの<code>at</code>メソッドは、<code>配列[インデックス]</code>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>, <span class="hljs-string">&quot;D&quot;</span>, <span class="hljs-string">&quot;E&quot;</span>];
 <span class="hljs-comment">// インデックス1から4まで(4の要素は含まない)の範囲を取り出す</span>
-<span class="hljs-built_in">console</span>.log(array.slice(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>)); <span class="hljs-comment">// =&gt; [&quot;B&quot;, &quot;C&quot;, &quot;D&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>)); <span class="hljs-comment">// =&gt; [&quot;B&quot;, &quot;C&quot;, &quot;D&quot;]</span>
 <span class="hljs-comment">// 第二引数を省略した場合は、第一引数から末尾の要素までを取り出す</span>
-<span class="hljs-built_in">console</span>.log(array.slice(<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; [&quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; [&quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;]</span>
 <span class="hljs-comment">// マイナスを指定すると後ろから数えた位置となる</span>
-<span class="hljs-built_in">console</span>.log(array.slice(-<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; [&quot;E&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-title function_">slice</span>(-<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; [&quot;E&quot;]</span>
 <span class="hljs-comment">// 第一引数と第二引数が同じ場合は、空の配列を返す</span>
-<span class="hljs-built_in">console</span>.log(array.slice(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; []</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; []</span>
 <span class="hljs-comment">// 第一引数 &gt; 第二引数の場合、常に空配列を返す</span>
-<span class="hljs-built_in">console</span>.log(array.slice(<span class="hljs-number">4</span>, <span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; []</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-title function_">slice</span>(<span class="hljs-number">4</span>, <span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; []</span>
 </code></pre>
 <p><code>slice</code>メソッドと引数の関係を図にすると次のようになります。</p>
 <pre><code> +-----+-----+-----+-----+-----+
@@ -1832,9 +1832,9 @@ Arrayの<code>findIndex</code>メソッドや<code>find</code>メソッドは過
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;Java&quot;</span>, <span class="hljs-string">&quot;JavaScript&quot;</span>, <span class="hljs-string">&quot;Ruby&quot;</span>];
 <span class="hljs-comment">// `indexOf`メソッドは含まれていないときのみ`-1`を返すことを利用</span>
-<span class="hljs-keyword">const</span> indexOfJS = array.indexOf(<span class="hljs-string">&quot;JavaScript&quot;</span>);
+<span class="hljs-keyword">const</span> indexOfJS = array.<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">&quot;JavaScript&quot;</span>);
 <span class="hljs-keyword">if</span> (indexOfJS !== -<span class="hljs-number">1</span>) {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;配列にJavaScriptが含まれている&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;配列にJavaScriptが含まれている&quot;</span>);
     <span class="hljs-comment">// ... いろいろな処理 ...</span>
     <span class="hljs-comment">// `indexOfJS`は、含まれているのかの判定以外には利用してない</span>
 }
@@ -1846,8 +1846,8 @@ Arrayの<code>includes</code>メソッドは配列に指定要素が含まれて
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;Java&quot;</span>, <span class="hljs-string">&quot;JavaScript&quot;</span>, <span class="hljs-string">&quot;Ruby&quot;</span>];
 <span class="hljs-comment">// `includes`は含まれているなら`true`を返す</span>
-<span class="hljs-keyword">if</span> (array.includes(<span class="hljs-string">&quot;JavaScript&quot;</span>)) {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;配列にJavaScriptが含まれている&quot;</span>);
+<span class="hljs-keyword">if</span> (array.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;JavaScript&quot;</span>)) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;配列にJavaScriptが含まれている&quot;</span>);
 }
 </code></pre>
 <p><code>includes</code>メソッドは、<code>indexOf</code>メソッドと同様、異なるオブジェクトだが値が同じものを見つけたい場合には利用できません。
@@ -1862,10 +1862,10 @@ Arrayの<code>find</code>メソッドのようにテストするコールバッ�
     { <span class="hljs-string">&quot;color&quot;</span>: <span class="hljs-string">&quot;blue&quot;</span> }
 ];
 <span class="hljs-comment">// `color`プロパティが&quot;blue&quot;のオブジェクトがあるかどうか</span>
-<span class="hljs-keyword">const</span> isIncludedBlueColor = colors.some(<span class="hljs-function">(<span class="hljs-params">obj</span>) =&gt;</span> {
-    <span class="hljs-keyword">return</span> obj.color === <span class="hljs-string">&quot;blue&quot;</span>;
+<span class="hljs-keyword">const</span> isIncludedBlueColor = colors.<span class="hljs-title function_">some</span>(<span class="hljs-function">(<span class="hljs-params">obj</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> obj.<span class="hljs-property">color</span> === <span class="hljs-string">&quot;blue&quot;</span>;
 });
-<span class="hljs-built_in">console</span>.log(isIncludedBlueColor); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(isIncludedBlueColor); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <h2 id="add-and-delete"><a name="add-and-delete" class="plugin-anchor" href="#add-and-delete"><i class="fa fa-link" aria-hidden="true"></i></a>追加と削除 </h2>
 <p>配列は可変長であるため、作成後の配列に対して要素を追加、削除できます。</p>
@@ -1873,34 +1873,34 @@ Arrayの<code>find</code>メソッドのようにテストするコールバッ�
 一方、末尾から要素を削除するにはArrayの<code>pop</code>が利用できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>];
-array.push(<span class="hljs-string">&quot;D&quot;</span>); <span class="hljs-comment">// &quot;D&quot;を末尾に追加</span>
-<span class="hljs-built_in">console</span>.log(array); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;]</span>
-<span class="hljs-keyword">const</span> poppedItem = array.pop(); <span class="hljs-comment">// 最末尾の要素を削除し、その要素を返す</span>
-<span class="hljs-built_in">console</span>.log(poppedItem); <span class="hljs-comment">// =&gt; &quot;D&quot;</span>
-<span class="hljs-built_in">console</span>.log(array); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
+array.<span class="hljs-title function_">push</span>(<span class="hljs-string">&quot;D&quot;</span>); <span class="hljs-comment">// &quot;D&quot;を末尾に追加</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;]</span>
+<span class="hljs-keyword">const</span> poppedItem = array.<span class="hljs-title function_">pop</span>(); <span class="hljs-comment">// 最末尾の要素を削除し、その要素を返す</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(poppedItem); <span class="hljs-comment">// =&gt; &quot;D&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
 </code></pre>
 <p>要素を配列の先頭へ追加するにはArrayの<code>unshift</code>が利用できます。
 一方、配列の先頭から要素を削除するにはArrayの<code>shift</code>が利用できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>];
-array.unshift(<span class="hljs-string">&quot;S&quot;</span>); <span class="hljs-comment">// &quot;S&quot;を先頭に追加</span>
-<span class="hljs-built_in">console</span>.log(array); <span class="hljs-comment">// =&gt; [&quot;S&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
-<span class="hljs-keyword">const</span> shiftedItem = array.shift(); <span class="hljs-comment">// 先頭の要素を削除</span>
-<span class="hljs-built_in">console</span>.log(shiftedItem); <span class="hljs-comment">// =&gt; &quot;S&quot;</span>
-<span class="hljs-built_in">console</span>.log(array); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
+array.<span class="hljs-title function_">unshift</span>(<span class="hljs-string">&quot;S&quot;</span>); <span class="hljs-comment">// &quot;S&quot;を先頭に追加</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array); <span class="hljs-comment">// =&gt; [&quot;S&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
+<span class="hljs-keyword">const</span> shiftedItem = array.<span class="hljs-title function_">shift</span>(); <span class="hljs-comment">// 先頭の要素を削除</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(shiftedItem); <span class="hljs-comment">// =&gt; &quot;S&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
 </code></pre>
 <h2 id="concat"><a name="concat" class="plugin-anchor" href="#concat"><i class="fa fa-link" aria-hidden="true"></i></a>配列同士を結合 </h2>
 <p>Arrayの<code>concat</code>メソッドを使うことで配列と配列を結合した新しい配列を作成できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>];
-<span class="hljs-keyword">const</span> newArray = array.concat([<span class="hljs-string">&quot;D&quot;</span>, <span class="hljs-string">&quot;E&quot;</span>]);
-<span class="hljs-built_in">console</span>.log(newArray); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;]</span>
+<span class="hljs-keyword">const</span> newArray = array.<span class="hljs-title function_">concat</span>([<span class="hljs-string">&quot;D&quot;</span>, <span class="hljs-string">&quot;E&quot;</span>]);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(newArray); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;]</span>
 </code></pre>
 <p>また、<code>concat</code>メソッドは配列だけではなく任意の値を要素として結合できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>];
-<span class="hljs-keyword">const</span> newArray = array.concat(<span class="hljs-string">&quot;新しい要素&quot;</span>);
-<span class="hljs-built_in">console</span>.log(newArray); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;新しい要素&quot;]</span>
+<span class="hljs-keyword">const</span> newArray = array.<span class="hljs-title function_">concat</span>(<span class="hljs-string">&quot;新しい要素&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(newArray); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;新しい要素&quot;]</span>
 </code></pre>
 <h2 id="spread"><a name="spread" class="plugin-anchor" href="#spread"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2015] 配列の展開 </h2>
 <p><code>...</code>（Spread構文）を使うことで、配列リテラル中に既存の配列を展開できます。</p>
@@ -1911,16 +1911,16 @@ array.unshift(<span class="hljs-string">&quot;S&quot;</span>); <span class="hljs
 <span class="hljs-comment">// Spread構文を使った場合</span>
 <span class="hljs-keyword">const</span> newArray = [<span class="hljs-string">&quot;X&quot;</span>, <span class="hljs-string">&quot;Y&quot;</span>, <span class="hljs-string">&quot;Z&quot;</span>, ...array];
 <span class="hljs-comment">// concatメソッドの場合</span>
-<span class="hljs-keyword">const</span> newArrayConcat = [<span class="hljs-string">&quot;X&quot;</span>, <span class="hljs-string">&quot;Y&quot;</span>, <span class="hljs-string">&quot;Z&quot;</span>].concat(array);
-<span class="hljs-built_in">console</span>.log(newArray); <span class="hljs-comment">// =&gt; [&quot;X&quot;, &quot;Y&quot;, &quot;Z&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
-<span class="hljs-built_in">console</span>.log(newArrayConcat); <span class="hljs-comment">// =&gt; [&quot;X&quot;, &quot;Y&quot;, &quot;Z&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
+<span class="hljs-keyword">const</span> newArrayConcat = [<span class="hljs-string">&quot;X&quot;</span>, <span class="hljs-string">&quot;Y&quot;</span>, <span class="hljs-string">&quot;Z&quot;</span>].<span class="hljs-title function_">concat</span>(array);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(newArray); <span class="hljs-comment">// =&gt; [&quot;X&quot;, &quot;Y&quot;, &quot;Z&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(newArrayConcat); <span class="hljs-comment">// =&gt; [&quot;X&quot;, &quot;Y&quot;, &quot;Z&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
 </code></pre>
 <p>Spread構文は、<code>concat</code>メソッドとは異なり、配列リテラル中の任意の位置に配列を展開できます。
 そのため、次のように要素の途中に配列を展開できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>];
 <span class="hljs-keyword">const</span> newArray = [<span class="hljs-string">&quot;X&quot;</span>, ...array, <span class="hljs-string">&quot;Z&quot;</span>];
-<span class="hljs-built_in">console</span>.log(newArray); <span class="hljs-comment">// =&gt; [&quot;X&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;Z&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(newArray); <span class="hljs-comment">// =&gt; [&quot;X&quot;, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;Z&quot;]</span>
 </code></pre>
 <h2 id="flat"><a name="flat" class="plugin-anchor" href="#flat"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2019] 配列をフラット化 </h2>
 <p>Arrayの<code>flat</code>メソッド<sup>[ES2019]</sup>を使うことで、多次元配列をフラットな配列に変換できます。
@@ -1930,18 +1930,18 @@ array.unshift(<span class="hljs-string">&quot;S&quot;</span>); <span class="hljs
 <!-- doctest:meta:{ "ECMAScript": "2019" } --></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [[[<span class="hljs-string">&quot;A&quot;</span>], <span class="hljs-string">&quot;B&quot;</span>], <span class="hljs-string">&quot;C&quot;</span>];
 <span class="hljs-comment">// 引数なしは1を指定した場合と同じ</span>
-<span class="hljs-built_in">console</span>.log(array.flat()); <span class="hljs-comment">// =&gt; [[&quot;A&quot;], &quot;B&quot;, &quot;C&quot;]</span>
-<span class="hljs-built_in">console</span>.log(array.flat(<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; [[&quot;A&quot;], &quot;B&quot;, &quot;C&quot;]</span>
-<span class="hljs-built_in">console</span>.log(array.flat(<span class="hljs-number">2</span>)); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-title function_">flat</span>()); <span class="hljs-comment">// =&gt; [[&quot;A&quot;], &quot;B&quot;, &quot;C&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-title function_">flat</span>(<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; [[&quot;A&quot;], &quot;B&quot;, &quot;C&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-title function_">flat</span>(<span class="hljs-number">2</span>)); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
 <span class="hljs-comment">// すべてをフラット化するにはInfinityを渡す</span>
-<span class="hljs-built_in">console</span>.log(array.flat(<span class="hljs-literal">Infinity</span>)); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-title function_">flat</span>(<span class="hljs-title class_">Infinity</span>)); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
 </code></pre>
 <p>また、Arrayの<code>flat</code>メソッドは必ず新しい配列を作成して返すメソッドです。
 そのため、これ以上フラット化できない配列をフラット化しても、同じ要素を持つ新しい配列を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2019" } --></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>];
-<span class="hljs-built_in">console</span>.log(array.flat()); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-title function_">flat</span>()); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
 </code></pre>
 <h2 id="delete-element"><a name="delete-element" class="plugin-anchor" href="#delete-element"><i class="fa fa-link" aria-hidden="true"></i></a>配列から要素を削除 </h2>
 <h3 id="splice"><a name="splice" class="plugin-anchor" href="#splice"><i class="fa fa-link" aria-hidden="true"></i></a><code>Array.prototype.splice</code> </h3>
@@ -1952,30 +1952,30 @@ array.unshift(<span class="hljs-string">&quot;S&quot;</span>); <span class="hljs
 <code>splice</code>メソッドは指定したインデックスから、指定した数だけ要素を取り除き、必要ならば要素を同時に追加できます。</p>
 <!-- doctest: ReferenceError -->
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [];
-array.splice(インデックス, 削除する要素数);
+array.<span class="hljs-title function_">splice</span>(インデックス, 削除する要素数);
 <span class="hljs-comment">// 削除と同時に要素の追加もできる</span>
-array.splice(インデックス, 削除する要素数, ...追加する要素);
+array.<span class="hljs-title function_">splice</span>(インデックス, 削除する要素数, ...追加する要素);
 </code></pre>
 <p>たとえば、配列のインデックスが<code>1</code>の要素を削除するには、インデックス<code>1</code>から<code>1</code>つの要素を削除するという指定をする必要があります。
 このとき、削除した要素は自動で詰められるため、疎な配列にはなりません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>];
 <span class="hljs-comment">// 1番目から1つの要素(&quot;b&quot;)を削除</span>
-array.splice(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
-<span class="hljs-built_in">console</span>.log(array); <span class="hljs-comment">// =&gt; [&quot;a&quot;, &quot;c&quot;]</span>
-<span class="hljs-built_in">console</span>.log(array.length); <span class="hljs-comment">// =&gt; 2</span>
-<span class="hljs-built_in">console</span>.log(array[<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; &quot;c&quot;</span>
+array.<span class="hljs-title function_">splice</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array); <span class="hljs-comment">// =&gt; [&quot;a&quot;, &quot;c&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 2</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array[<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; &quot;c&quot;</span>
 <span class="hljs-comment">// すべて削除</span>
-array.splice(<span class="hljs-number">0</span>, array.length);
-<span class="hljs-built_in">console</span>.log(array.length); <span class="hljs-comment">// =&gt; 0</span>
+array.<span class="hljs-title function_">splice</span>(<span class="hljs-number">0</span>, array.<span class="hljs-property">length</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 0</span>
 </code></pre>
 <h3 id="assign-to-length"><a name="assign-to-length" class="plugin-anchor" href="#assign-to-length"><i class="fa fa-link" aria-hidden="true"></i></a><code>length</code>プロパティへの代入 </h3>
 <p>配列のすべての要素を削除することはArrayの<code>splice</code>で行えますが、
 配列の<code>length</code>プロパティへの代入を利用した方法もあります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
-array.length = <span class="hljs-number">0</span>; <span class="hljs-comment">// 配列を空にする</span>
-<span class="hljs-built_in">console</span>.log(array); <span class="hljs-comment">// =&gt; []</span>
+array.<span class="hljs-property">length</span> = <span class="hljs-number">0</span>; <span class="hljs-comment">// 配列を空にする</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array); <span class="hljs-comment">// =&gt; []</span>
 </code></pre>
 <p>配列の<code>length</code>プロパティへ<code>要素数</code>を代入すると、その要素数に配列が切り詰められます。
 つまり、<code>length</code>プロパティへ<code>0</code>を代入すると、インデックスが<code>0</code>以降の要素がすべて削除されます。</p>
@@ -1984,16 +1984,16 @@ array.length = <span class="hljs-number">0</span>; <span class="hljs-comment">//
 次のコードでは、<code>array</code>変数に空の配列を代入することで、<code>array</code>に空の配列を参照させられます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">let</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
-<span class="hljs-built_in">console</span>.log(array.length); <span class="hljs-comment">// =&gt; 3</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 3</span>
 <span class="hljs-comment">// 新しい配列で変数を上書き</span>
 array = [];
-<span class="hljs-built_in">console</span>.log(array.length); <span class="hljs-comment">// =&gt; 0</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 0</span>
 </code></pre>
 <p>元々、<code>array</code>変数が参照していた<code>[1, 2, 3]</code>はどこからも参照されなくなり、ガベージコレクションによりメモリから解放されます。</p>
 <p>また、<code>const</code>で宣言した配列の場合は変数に対して再代入できないため、この手法は使えません。
 そのため、再代入をしたい場合は<code>let</code>または<code>var</code>で変数宣言をする必要があります。</p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
-<span class="hljs-built_in">console</span>.log(array.length); <span class="hljs-comment">// =&gt; 3</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 3</span>
 <span class="hljs-comment">// `const`で宣言された変数には再代入できない</span>
 array = []; <span class="hljs-comment">// TypeError: invalid assignment to const `array&apos; が発生</span>
 </code></pre>
@@ -2007,11 +2007,11 @@ array = []; <span class="hljs-comment">// TypeError: invalid assignment to const
 その結果<code>myArray</code>変数の参照する配列が変更されるため破壊的なメソッドです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> myArray = [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>];
-<span class="hljs-keyword">const</span> result = myArray.push(<span class="hljs-string">&quot;D&quot;</span>);
+<span class="hljs-keyword">const</span> result = myArray.<span class="hljs-title function_">push</span>(<span class="hljs-string">&quot;D&quot;</span>);
 <span class="hljs-comment">// `push`の返り値は配列ではなく、追加後の配列のlength</span>
-<span class="hljs-built_in">console</span>.log(result); <span class="hljs-comment">// =&gt; 4</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result); <span class="hljs-comment">// =&gt; 4</span>
 <span class="hljs-comment">// `myArray`が参照する配列そのものが変更されている</span>
-<span class="hljs-built_in">console</span>.log(myArray); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myArray); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;]</span>
 </code></pre>
 <!-- 具体例:非破壊的メソッド -->
 <p>非破壊的なメソッドの例として、配列に要素を結合するArrayの<code>concat</code>メソッドがあります。
@@ -2020,12 +2020,12 @@ array = []; <span class="hljs-comment">// TypeError: invalid assignment to const
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> myArray = [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>];
 <span class="hljs-comment">// `concat`の返り値は結合済みの新しい配列</span>
-<span class="hljs-keyword">const</span> newArray = myArray.concat(<span class="hljs-string">&quot;D&quot;</span>);
-<span class="hljs-built_in">console</span>.log(newArray); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;]</span>
+<span class="hljs-keyword">const</span> newArray = myArray.<span class="hljs-title function_">concat</span>(<span class="hljs-string">&quot;D&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(newArray); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;]</span>
 <span class="hljs-comment">// `myArray`は変更されていない</span>
-<span class="hljs-built_in">console</span>.log(myArray); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myArray); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
 <span class="hljs-comment">// `newArray`と`myArray`は異なる配列オブジェクト</span>
-<span class="hljs-built_in">console</span>.log(myArray === newArray); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myArray === newArray); <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
 <p>JavaScriptにおいて破壊的なメソッドと非破壊的メソッドを名前から見分ける方法はありません。
 また、配列を返す破壊的なメソッドもあるため、返り値からも判別できません。
@@ -2080,23 +2080,23 @@ array = []; <span class="hljs-comment">// TypeError: invalid assignment to const
 <p>破壊的メソッドは意図せぬ副作用を与えてしまうことがあるため、そのことを意識して利用する必要があります。
 たとえば、配列から特定のインデックスの要素を削除する<code>removeAtIndex</code>という関数を提供したいとします。</p>
 <pre><code class="lang-js"><span class="hljs-comment">// `array`の`index`番目の要素を削除した配列を返す関数</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">removeAtIndex</span>(<span class="hljs-params">array, index</span>) </span>{ <span class="hljs-comment">/* 実装 */</span> }
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">removeAtIndex</span>(<span class="hljs-params">array, index</span>) { <span class="hljs-comment">/* 実装 */</span> }
 </code></pre>
 <p>次のように、破壊的なメソッドであるArrayの<code>splice</code>メソッドで要素を削除すると、引数として受け取った配列にも影響を与えます。
 この場合<code>removeAtIndex</code>関数には副作用があるため、破壊的であることについてのコメントがあると親切です。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// `array`の`index`番目の要素を削除した配列を返す関数</span>
 <span class="hljs-comment">// 引数の`array`は破壊的に変更される</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">removeAtIndex</span>(<span class="hljs-params">array, index</span>) </span>{
-    array.splice(index, <span class="hljs-number">1</span>);
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">removeAtIndex</span>(<span class="hljs-params">array, index</span>) {
+    array.<span class="hljs-title function_">splice</span>(index, <span class="hljs-number">1</span>);
     <span class="hljs-keyword">return</span> array;
 }
 <span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>];
 <span class="hljs-comment">// `array`から1番目の要素を削除した配列を取得</span>
-<span class="hljs-keyword">const</span> newArray = removeAtIndex(array, <span class="hljs-number">1</span>);
-<span class="hljs-built_in">console</span>.log(newArray); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;C&quot;]</span>
+<span class="hljs-keyword">const</span> newArray = <span class="hljs-title function_">removeAtIndex</span>(array, <span class="hljs-number">1</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(newArray); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;C&quot;]</span>
 <span class="hljs-comment">// `array`自体にも影響を与える</span>
-<span class="hljs-built_in">console</span>.log(array); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;C&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;C&quot;]</span>
 </code></pre>
 <p>一方、非破壊的メソッドは配列のコピーを作成するため、元々の配列に対して影響はありません。
 この<code>removeAtIndex</code>関数を非破壊的なものにするには、受け取った配列をコピーしてから変更を加える必要があります。</p>
@@ -2104,30 +2104,30 @@ array = []; <span class="hljs-comment">// TypeError: invalid assignment to const
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> myArray = [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>];
 <span class="hljs-comment">// `slice`は`myArray`のコピーを返す - `myArray.concat()`でも同じ</span>
-<span class="hljs-keyword">const</span> copiedArray = myArray.slice();
-myArray.push(<span class="hljs-string">&quot;D&quot;</span>);
-<span class="hljs-built_in">console</span>.log(myArray); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;]</span>
+<span class="hljs-keyword">const</span> copiedArray = myArray.<span class="hljs-title function_">slice</span>();
+myArray.<span class="hljs-title function_">push</span>(<span class="hljs-string">&quot;D&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myArray); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;]</span>
 <span class="hljs-comment">// `array`のコピーである`copiedArray`には影響がない</span>
-<span class="hljs-built_in">console</span>.log(copiedArray); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(copiedArray); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
 <span class="hljs-comment">// コピーであるため参照は異なる</span>
-<span class="hljs-built_in">console</span>.log(copiedArray === myArray); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(copiedArray === myArray); <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
 <p>コピーした配列に変更を加えることで、<code>removeAtIndex</code>関数を非破壊的な関数として実装できます。
 非破壊的であれば引数の配列への副作用がないので、注意させるようなコメントは不要です。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// `array`の`index`番目の要素を削除した配列を返す関数</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">removeAtIndex</span>(<span class="hljs-params">array, index</span>) </span>{
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">removeAtIndex</span>(<span class="hljs-params">array, index</span>) {
     <span class="hljs-comment">// コピーを作成してから変更する</span>
-    <span class="hljs-keyword">const</span> copiedArray = array.slice();
-    copiedArray.splice(index, <span class="hljs-number">1</span>);
+    <span class="hljs-keyword">const</span> copiedArray = array.<span class="hljs-title function_">slice</span>();
+    copiedArray.<span class="hljs-title function_">splice</span>(index, <span class="hljs-number">1</span>);
     <span class="hljs-keyword">return</span> copiedArray;
 }
 <span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>];
 <span class="hljs-comment">// `array`から1番目の要素を削除した配列を取得</span>
-<span class="hljs-keyword">const</span> newArray = removeAtIndex(array, <span class="hljs-number">1</span>);
-<span class="hljs-built_in">console</span>.log(newArray); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;C&quot;]</span>
+<span class="hljs-keyword">const</span> newArray = <span class="hljs-title function_">removeAtIndex</span>(array, <span class="hljs-number">1</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(newArray); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;C&quot;]</span>
 <span class="hljs-comment">// 元の`array`には影響がない</span>
-<span class="hljs-built_in">console</span>.log(array); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
 </code></pre>
 <p>このようにJavaScriptの配列には破壊的なメソッドと非破壊的メソッドが混在しています。そのため、統一的なインターフェースで扱えないのが現状です。
 このような背景もあるため、JavaScriptには配列を扱うためのさまざまライブラリが存在します。
@@ -2141,8 +2141,8 @@ myArray.push(<span class="hljs-string">&quot;D&quot;</span>);
 <p>次のようにコールバック関数には<code>要素, インデックス, 配列</code>が引数として渡され、配列要素の先頭から順番に反復処理します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
-array.forEach(<span class="hljs-function">(<span class="hljs-params">currentValue, index, array</span>) =&gt;</span> {
-    <span class="hljs-built_in">console</span>.log(currentValue, index, array);
+array.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">currentValue, index, array</span>) =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(currentValue, index, array);
 });
 <span class="hljs-comment">// コンソールの出力</span>
 <span class="hljs-comment">// 1, 0, [1, 2, 3]</span>
@@ -2157,12 +2157,12 @@ array.forEach(<span class="hljs-function">(<span class="hljs-params">currentValu
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
 <span class="hljs-comment">// 各要素に10を乗算した新しい配列を作成する</span>
-<span class="hljs-keyword">const</span> newArray = array.map(<span class="hljs-function">(<span class="hljs-params">currentValue, index, array</span>) =&gt;</span> {
+<span class="hljs-keyword">const</span> newArray = array.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">currentValue, index, array</span>) =&gt;</span> {
     <span class="hljs-keyword">return</span> currentValue * <span class="hljs-number">10</span>;
 });
-<span class="hljs-built_in">console</span>.log(newArray); <span class="hljs-comment">// =&gt; [10, 20, 30]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(newArray); <span class="hljs-comment">// =&gt; [10, 20, 30]</span>
 <span class="hljs-comment">// 元の配列とは異なるインスタンス</span>
-<span class="hljs-built_in">console</span>.log(array === newArray); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array === newArray); <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
 <h3 id="array-filter"><a name="array-filter" class="plugin-anchor" href="#array-filter"><i class="fa fa-link" aria-hidden="true"></i></a><code>Array.prototype.filter</code> </h3>
 <p>Arrayの<code>filter</code>メソッドは配列の要素を順番にコールバック関数へ渡し、コールバック関数が<code>true</code>を返した要素だけを集めた新しい配列を返す非破壊的なメソッドです。
@@ -2172,12 +2172,12 @@ array.forEach(<span class="hljs-function">(<span class="hljs-params">currentValu
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
 <span class="hljs-comment">// 奇数の値を持つ要素だけを集めた配列を返す</span>
-<span class="hljs-keyword">const</span> newArray = array.filter(<span class="hljs-function">(<span class="hljs-params">currentValue, index, array</span>) =&gt;</span> {
+<span class="hljs-keyword">const</span> newArray = array.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">currentValue, index, array</span>) =&gt;</span> {
     <span class="hljs-keyword">return</span> currentValue % <span class="hljs-number">2</span> === <span class="hljs-number">1</span>;
 });
-<span class="hljs-built_in">console</span>.log(newArray); <span class="hljs-comment">// =&gt; [1, 3]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(newArray); <span class="hljs-comment">// =&gt; [1, 3]</span>
 <span class="hljs-comment">// 元の配列とは異なるインスタンス</span>
-<span class="hljs-built_in">console</span>.log(array === newArray); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array === newArray); <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
 <h3 id="array-reduce"><a name="array-reduce" class="plugin-anchor" href="#array-reduce"><i class="fa fa-link" aria-hidden="true"></i></a><code>Array.prototype.reduce</code> </h3>
 <p>Arrayの<code>reduce</code>メソッドは累積値（アキュムレータ）と配列の要素を順番にコールバック関数へ渡し、1つの累積値を返します。
@@ -2190,11 +2190,11 @@ array.forEach(<span class="hljs-function">(<span class="hljs-params">currentValu
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
 <span class="hljs-comment">// すべての要素を加算した値を返す</span>
 <span class="hljs-comment">// accumulatorの初期値は`0`</span>
-<span class="hljs-keyword">const</span> totalValue = array.reduce(<span class="hljs-function">(<span class="hljs-params">accumulator, currentValue, index, array</span>) =&gt;</span> {
+<span class="hljs-keyword">const</span> totalValue = array.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">accumulator, currentValue, index, array</span>) =&gt;</span> {
     <span class="hljs-keyword">return</span> accumulator + currentValue;
 }, <span class="hljs-number">0</span>);
 <span class="hljs-comment">// 0 + 1 + 2 + 3という式の結果が返り値になる</span>
-<span class="hljs-built_in">console</span>.log(totalValue); <span class="hljs-comment">// =&gt; 6</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(totalValue); <span class="hljs-comment">// =&gt; 6</span>
 </code></pre>
 <p><code>reduce</code>メソッドに渡したコールバック関数は配列の要素数である3回呼び出され、それぞれ次のような結果になります。</p>
 <table>
@@ -2234,10 +2234,10 @@ array.forEach(<span class="hljs-function">(<span class="hljs-params">currentValu
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
 <span class="hljs-comment">// 初期値は`0`</span>
 <span class="hljs-keyword">let</span> totalValue = <span class="hljs-number">0</span>;
-array.forEach(<span class="hljs-function">(<span class="hljs-params">currentValue</span>) =&gt;</span> {
+array.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">currentValue</span>) =&gt;</span> {
     totalValue += currentValue;
 });
-<span class="hljs-built_in">console</span>.log(totalValue); <span class="hljs-comment">// =&gt; 6</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(totalValue); <span class="hljs-comment">// =&gt; 6</span>
 </code></pre>
 <p><code>let</code>で宣言した変数は再代入が可能なため、意図しない箇所で変数の値が変更され、バグの原因となることがあります。
 そのため、できる限り変数を<code>const</code>で宣言したい場合には<code>reduce</code>メソッドは有用です。
@@ -2245,12 +2245,12 @@ array.forEach(<span class="hljs-function">(<span class="hljs-params">currentValu
 <p><code>reduce</code>メソッドには利点と可読性のトレードオフがありますが、利用する場合は<code>reduce</code>メソッドを扱う処理を関数で囲むなど処理の意図がわかるように工夫をする必要があります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">array</span>) </span>{
-    <span class="hljs-keyword">return</span> array.reduce(<span class="hljs-function">(<span class="hljs-params">accumulator, currentValue</span>) =&gt;</span> {
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">sum</span>(<span class="hljs-params">array</span>) {
+    <span class="hljs-keyword">return</span> array.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">accumulator, currentValue</span>) =&gt;</span> {
         <span class="hljs-keyword">return</span> accumulator + currentValue;
     }, <span class="hljs-number">0</span>);
 }
-<span class="hljs-built_in">console</span>.log(sum(array)); <span class="hljs-comment">// =&gt; 6</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">sum</span>(array)); <span class="hljs-comment">// =&gt; 6</span>
 </code></pre>
 <h2 id="array-like"><a name="array-like" class="plugin-anchor" href="#array-like"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] Array-likeオブジェクト </h2>
 <p>配列のように扱えるが配列ではないオブジェクトのことを、<strong>Array-likeオブジェクト</strong>と呼びます。
@@ -2285,54 +2285,54 @@ Array-likeオブジェクトとは配列のようにインデックスにアク�
 <code>arguments</code>オブジェクトは、<code>function</code>で宣言した関数の中から参照できる変数です。
 <code>arguments</code>オブジェクトには関数の引数に渡された値が順番に格納されていて、配列のように引数へアクセスできます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myFunc</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">arguments</span>[<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; &quot;a&quot;</span>
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; &quot;b&quot;</span>
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">arguments</span>[<span class="hljs-number">2</span>]); <span class="hljs-comment">// =&gt; &quot;c&quot;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">myFunc</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">arguments</span>[<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; &quot;a&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">arguments</span>[<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; &quot;b&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">arguments</span>[<span class="hljs-number">2</span>]); <span class="hljs-comment">// =&gt; &quot;c&quot;</span>
     <span class="hljs-comment">// 配列ではないため、配列のメソッドは持っていない</span>
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">arguments</span>.forEach); <span class="hljs-comment">// =&gt; &quot;undefined&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-variable language_">arguments</span>.<span class="hljs-property">forEach</span>); <span class="hljs-comment">// =&gt; &quot;undefined&quot;</span>
 }
-myFunc(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>);
+<span class="hljs-title function_">myFunc</span>(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>);
 </code></pre>
 <p>Array-likeオブジェクトか配列なのかを判別するには<code>Array.isArray</code>メソッドを利用できます。
 <code>Array-like</code>オブジェクトは配列ではないので結果は常に<code>false</code>となります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myFunc</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Array</span>.isArray([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])); <span class="hljs-comment">// =&gt; true</span>
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Array</span>.isArray(<span class="hljs-built_in">arguments</span>)); <span class="hljs-comment">// =&gt; false</span>
+<pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">myFunc</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])); <span class="hljs-comment">// =&gt; true</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(<span class="hljs-variable language_">arguments</span>)); <span class="hljs-comment">// =&gt; false</span>
 }
-myFunc(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>);
+<span class="hljs-title function_">myFunc</span>(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>);
 </code></pre>
 <p>Array-likeオブジェクトは配列のようで配列ではないというもどかしさを持つオブジェクトです。<code>Array.from</code>メソッド<sup>[ES2015]</sup>を使うことでArray-likeオブジェクトを配列に変換して扱うことができます。一度配列に変換してしまえばArrayメソッドも利用できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myFunc</span>(<span class="hljs-params"></span>) </span>{
+<pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">myFunc</span>(<span class="hljs-params"></span>) {
     <span class="hljs-comment">// Array-likeオブジェクトを配列へ変換</span>
-    <span class="hljs-keyword">const</span> argumentsArray = <span class="hljs-built_in">Array</span>.from(<span class="hljs-built_in">arguments</span>);
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Array</span>.isArray(argumentsArray)); <span class="hljs-comment">// =&gt; true</span>
+    <span class="hljs-keyword">const</span> argumentsArray = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(<span class="hljs-variable language_">arguments</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(argumentsArray)); <span class="hljs-comment">// =&gt; true</span>
     <span class="hljs-comment">// 配列のメソッドを利用できる</span>
-    argumentsArray.forEach(<span class="hljs-function"><span class="hljs-params">arg</span> =&gt;</span> {
-        <span class="hljs-built_in">console</span>.log(arg);
+    argumentsArray.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">arg</span> =&gt;</span> {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(arg);
     });
 }
-myFunc(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>);
+<span class="hljs-title function_">myFunc</span>(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>);
 </code></pre>
 <h2 id="method-chain-and-high-order-function"><a name="method-chain-and-high-order-function" class="plugin-anchor" href="#method-chain-and-high-order-function"><i class="fa fa-link" aria-hidden="true"></i></a>メソッドチェーンと高階関数 </h2>
 <p>配列で頻出するパターンとしてメソッドチェーンがあります。
 メソッドチェーンとは、メソッドを呼び出した返り値に対してさらにメソッド呼び出しをするパターンのことを言います。</p>
 <p>次のコードでは、Arrayの<code>concat</code>メソッドの返り値、つまり配列に対してさらに<code>concat</code>メソッドを呼び出すというメソッドチェーンが行われています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;a&quot;</span>].concat(<span class="hljs-string">&quot;b&quot;</span>).concat(<span class="hljs-string">&quot;c&quot;</span>);
-<span class="hljs-built_in">console</span>.log(array); <span class="hljs-comment">// =&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;a&quot;</span>].<span class="hljs-title function_">concat</span>(<span class="hljs-string">&quot;b&quot;</span>).<span class="hljs-title function_">concat</span>(<span class="hljs-string">&quot;c&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array); <span class="hljs-comment">// =&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</span>
 </code></pre>
 <p>このコードの<code>concat</code>メソッドの呼び出しを分解してみると何が行われているのかわかりやすいです。
 <code>concat</code>メソッドの返り値は結合した新しい配列です。先ほどのメソッドチェーンでは、その新しい配列に対してさらに<code>concat</code>メソッドで値を結合しているということがわかります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// メソッドチェーンを分解した例</span>
 <span class="hljs-comment">// 一時的な`abArray`という変数が増えている</span>
-<span class="hljs-keyword">const</span> abArray = [<span class="hljs-string">&quot;a&quot;</span>].concat(<span class="hljs-string">&quot;b&quot;</span>);
-<span class="hljs-built_in">console</span>.log(abArray); <span class="hljs-comment">// =&gt; [&quot;a&quot;, &quot;b&quot;]</span>
-<span class="hljs-keyword">const</span> abcArray = abArray.concat(<span class="hljs-string">&quot;c&quot;</span>);
-<span class="hljs-built_in">console</span>.log(abcArray); <span class="hljs-comment">// =&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</span>
+<span class="hljs-keyword">const</span> abArray = [<span class="hljs-string">&quot;a&quot;</span>].<span class="hljs-title function_">concat</span>(<span class="hljs-string">&quot;b&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(abArray); <span class="hljs-comment">// =&gt; [&quot;a&quot;, &quot;b&quot;]</span>
+<span class="hljs-keyword">const</span> abcArray = abArray.<span class="hljs-title function_">concat</span>(<span class="hljs-string">&quot;c&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(abcArray); <span class="hljs-comment">// =&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]</span>
 </code></pre>
 <p>メソッドチェーンを利用することで処理の見た目を簡潔にできます。メソッドチェーンを利用した場合も最終的な処理結果は同じですが、途中の一時的な変数を省略できます。先ほどの例では<code>abArray</code>という一時的な変数をメソッドチェーンでは省略できています。</p>
 <p>メソッドチェーンは配列に限ったものではありませんが、配列では頻出するパターンです。なぜなら、配列に含まれるデータを表示する際には、最終的に文字列や数値など別のデータへ加工することがほとんどであるためです。配列には配列を返す高階関数が多く実装されているため、配列を柔軟に加工できます。</p>
@@ -2342,7 +2342,7 @@ myFunc(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string"
 どちらのメソッドも配列を返すのでメソッドチェーンで処理をつなげられます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// ECMAScriptのバージョン名と発行年</span>
-<span class="hljs-keyword">const</span> ECMAScriptVersions = [
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">ECMAScriptVersions</span> = [
     { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;ECMAScript 1&quot;</span>, <span class="hljs-attr">year</span>: <span class="hljs-number">1997</span> },
     { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;ECMAScript 2&quot;</span>, <span class="hljs-attr">year</span>: <span class="hljs-number">1998</span> },
     { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;ECMAScript 3&quot;</span>, <span class="hljs-attr">year</span>: <span class="hljs-number">1999</span> },
@@ -2353,12 +2353,12 @@ myFunc(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string"
     { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;ECMAScript 2017&quot;</span>, <span class="hljs-attr">year</span>: <span class="hljs-number">2017</span> },
 ];
 <span class="hljs-comment">// メソッドチェーンで必要な加工処理を並べている</span>
-<span class="hljs-keyword">const</span> versionNames = ECMAScriptVersions
+<span class="hljs-keyword">const</span> versionNames = <span class="hljs-title class_">ECMAScriptVersions</span>
     <span class="hljs-comment">// 2000年以下のデータに絞り込み</span>
-    .filter(<span class="hljs-function"><span class="hljs-params">ECMAScript</span> =&gt;</span> ECMAScript.year &lt;= <span class="hljs-number">2000</span>)
+    .<span class="hljs-title function_">filter</span>(<span class="hljs-function"><span class="hljs-params">ECMAScript</span> =&gt;</span> <span class="hljs-title class_">ECMAScript</span>.<span class="hljs-property">year</span> &lt;= <span class="hljs-number">2000</span>)
     <span class="hljs-comment">// それぞれの要素から`name`プロパティを取り出す</span>
-    .map(<span class="hljs-function"><span class="hljs-params">ECMAScript</span> =&gt;</span> ECMAScript.name);
-<span class="hljs-built_in">console</span>.log(versionNames); <span class="hljs-comment">// =&gt; [&quot;ECMAScript 1&quot;, &quot;ECMAScript 2&quot;, &quot;ECMAScript 3&quot;]</span>
+    .<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">ECMAScript</span> =&gt;</span> <span class="hljs-title class_">ECMAScript</span>.<span class="hljs-property">name</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(versionNames); <span class="hljs-comment">// =&gt; [&quot;ECMAScript 1&quot;, &quot;ECMAScript 2&quot;, &quot;ECMAScript 3&quot;]</span>
 </code></pre>
 <p>メソッドチェーンを使うことで複数の処理からなるものをひとつのまとまった処理のように見せることができます。長過ぎるメソッドチェーンは長過ぎる関数と同じように読みにくくなりますが、適度な単位のメソッドチェーンは処理をスッキリ見せるパターンとして利用されています。</p>
 <h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>まとめ </h2>
@@ -2402,7 +2402,7 @@ myFunc(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string"
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"配列は値を順番に格納できるオブジェクトです。この配列の作成、更新、削除などの基本的な操作や実際に使い方についてを紹介します。また配列における破壊的なメソッドと非破壊的メソッドの違いについても紹介します。","title":"配列","level":"1.3.14","depth":2,"next":{"title":"文字列","level":"1.3.15","depth":2,"path":"basic/string/README.md","ref":"./basic/string/README.md","articles":[]},"previous":{"title":"プロトタイプオブジェクト","level":"1.3.13","depth":2,"path":"basic/prototype-object/README.md","ref":"./basic/prototype-object/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/array/README.md","mtime":"2023-07-16T01:53:15.641Z","type":"markdown"},"gitbook":{"version":"4.0.8","time":"2023-07-16T01:53:46.643Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"配列は値を順番に格納できるオブジェクトです。この配列の作成、更新、削除などの基本的な操作や実際に使い方についてを紹介します。また配列における破壊的なメソッドと非破壊的メソッドの違いについても紹介します。","title":"配列","level":"1.3.14","depth":2,"next":{"title":"文字列","level":"1.3.15","depth":2,"path":"basic/string/README.md","ref":"./basic/string/README.md","articles":[]},"previous":{"title":"プロトタイプオブジェクト","level":"1.3.13","depth":2,"path":"basic/prototype-object/README.md","ref":"./basic/prototype-object/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/array/README.md","mtime":"2023-07-16T12:14:13.137Z","type":"markdown"},"gitbook":{"version":"5.0.0","time":"2023-07-16T12:14:45.721Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

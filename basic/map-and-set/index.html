@@ -6,7 +6,7 @@
         <title>Map/Set · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="データの集合を扱うビルトインオブジェクトであるMapとSetについてを紹介します。オブジェクトの作成方法や更新方法から実際にどのようなケースで使うのかを紹介します。">
-        <meta name="generator" content="HonKit 4.0.8">
+        <meta name="generator" content="HonKit 5.0.0">
         
         
         
@@ -1513,17 +1513,17 @@
 作成されたばかりのマップは何も持っていません。
 そのため、マップが持つ要素の数を返す<code>size</code>プロパティは<code>0</code>を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
-<span class="hljs-built_in">console</span>.log(map.size); <span class="hljs-comment">// =&gt; 0</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(map.<span class="hljs-property">size</span>); <span class="hljs-comment">// =&gt; 0</span>
 </code></pre>
 <p><code>Map</code>オブジェクトを<code>new</code>で初期化するときに、コンストラクタに初期値を渡せます。
 コンストラクタ引数として渡せるのは<strong>エントリー</strong>の配列です。
 エントリーとは、1つのキーと値の組み合わせを<code>[キー, 値]</code>という形式の配列で表現したものです。</p>
 <p>次のコードでは、Mapに初期値となるエントリー（配列）の配列を渡しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>], [<span class="hljs-string">&quot;key2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>]]);
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>([[<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>], [<span class="hljs-string">&quot;key2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>]]);
 <span class="hljs-comment">// 2つのエントリーで初期化されている</span>
-<span class="hljs-built_in">console</span>.log(map.size); <span class="hljs-comment">// =&gt; 2</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(map.<span class="hljs-property">size</span>); <span class="hljs-comment">// =&gt; 2</span>
 </code></pre>
 <h3 id="map-read-and-write"><a name="map-read-and-write" class="plugin-anchor" href="#map-read-and-write"><i class="fa fa-link" aria-hidden="true"></i></a>要素の追加と取り出し </h3>
 <p><code>Map</code>には新しい要素を<code>set</code>メソッドで追加でき、追加した要素を<code>get</code>メソッドで取り出せます。</p>
@@ -1532,30 +1532,30 @@
 <p><code>get</code>メソッドは特定のキーにひもづいた値を取り出します。
 また、特定のキーにひもづいた値を持っているかを確認する<code>has</code>メソッドがあります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
 <span class="hljs-comment">// 新しい要素の追加</span>
-map.set(<span class="hljs-string">&quot;key&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>);
-<span class="hljs-built_in">console</span>.log(map.size); <span class="hljs-comment">// =&gt; 1</span>
-<span class="hljs-built_in">console</span>.log(map.get(<span class="hljs-string">&quot;key&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;value1&quot;</span>
+map.<span class="hljs-title function_">set</span>(<span class="hljs-string">&quot;key&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(map.<span class="hljs-property">size</span>); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(map.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;key&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;value1&quot;</span>
 <span class="hljs-comment">// 要素の上書き</span>
-map.set(<span class="hljs-string">&quot;key&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>);
-<span class="hljs-built_in">console</span>.log(map.get(<span class="hljs-string">&quot;key&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;value2&quot;</span>
+map.<span class="hljs-title function_">set</span>(<span class="hljs-string">&quot;key&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(map.<span class="hljs-title function_">get</span>(<span class="hljs-string">&quot;key&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;value2&quot;</span>
 <span class="hljs-comment">// キーの存在確認</span>
-<span class="hljs-built_in">console</span>.log(map.has(<span class="hljs-string">&quot;key&quot;</span>)); <span class="hljs-comment">// =&gt; true</span>
-<span class="hljs-built_in">console</span>.log(map.has(<span class="hljs-string">&quot;foo&quot;</span>)); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(map.<span class="hljs-title function_">has</span>(<span class="hljs-string">&quot;key&quot;</span>)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(map.<span class="hljs-title function_">has</span>(<span class="hljs-string">&quot;foo&quot;</span>)); <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
 <p><code>delete</code>メソッドはマップから要素を削除します。
 <code>delete</code>メソッドに渡されたキーと、そのキーにひもづいた値がマップから削除されます。
 また、マップが持つすべての要素を削除するための<code>clear</code>メソッドがあります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
-map.set(<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>);
-map.set(<span class="hljs-string">&quot;key2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>);
-<span class="hljs-built_in">console</span>.log(map.size); <span class="hljs-comment">// =&gt; 2</span>
-map.delete(<span class="hljs-string">&quot;key1&quot;</span>);
-<span class="hljs-built_in">console</span>.log(map.size); <span class="hljs-comment">// =&gt; 1</span>
-map.clear();
-<span class="hljs-built_in">console</span>.log(map.size); <span class="hljs-comment">// =&gt; 0</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
+map.<span class="hljs-title function_">set</span>(<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>);
+map.<span class="hljs-title function_">set</span>(<span class="hljs-string">&quot;key2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(map.<span class="hljs-property">size</span>); <span class="hljs-comment">// =&gt; 2</span>
+map.<span class="hljs-title function_">delete</span>(<span class="hljs-string">&quot;key1&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(map.<span class="hljs-property">size</span>); <span class="hljs-comment">// =&gt; 1</span>
+map.<span class="hljs-title function_">clear</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(map.<span class="hljs-property">size</span>); <span class="hljs-comment">// =&gt; 0</span>
 </code></pre>
 <h3 id="map-iteration"><a name="map-iteration" class="plugin-anchor" href="#map-iteration"><i class="fa fa-link" aria-hidden="true"></i></a>マップの反復処理 </h3>
 <p>マップが持つ要素を列挙するメソッドとして、<code>forEach</code>、<code>keys</code>、<code>values</code>、<code>entries</code>があります。</p>
@@ -1564,50 +1564,50 @@ map.clear();
 配列の<code>forEach</code>メソッドと似ていますが、インデックスの代わりにキーが渡されます。
 配列はインデックスにより要素を特定しますが、マップはキーにより要素を特定するためです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>], [<span class="hljs-string">&quot;key2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>]]);
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>([[<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>], [<span class="hljs-string">&quot;key2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>]]);
 <span class="hljs-keyword">const</span> results = [];
-map.forEach(<span class="hljs-function">(<span class="hljs-params">value, key</span>) =&gt;</span> {
-    results.push(<span class="hljs-string">`<span class="hljs-subst">${key}</span>:<span class="hljs-subst">${value}</span>`</span>);
+map.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">value, key</span>) =&gt;</span> {
+    results.<span class="hljs-title function_">push</span>(<span class="hljs-string">`<span class="hljs-subst">${key}</span>:<span class="hljs-subst">${value}</span>`</span>);
 });
-<span class="hljs-built_in">console</span>.log(results); <span class="hljs-comment">// =&gt; [&quot;key1:value1&quot;,&quot;key2:value2&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results); <span class="hljs-comment">// =&gt; [&quot;key1:value1&quot;,&quot;key2:value2&quot;]</span>
 </code></pre>
 <p><code>keys</code>メソッドはマップが持つすべての要素のキーを挿入順に並べた<strong>Iterator</strong>オブジェクトを返します。
 同様に、<code>values</code>メソッドはマップが持つすべての要素の値を挿入順に並べたIteratorオブジェクトを返します。
 これらの返り値はIteratorオブジェクトであって配列ではありません。
 そのため、次の例のように<code>for...of</code>文で反復処理を行ったり、<code>Array.from</code>メソッドに渡して配列に変換して使ったりします。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>], [<span class="hljs-string">&quot;key2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>]]);
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>([[<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>], [<span class="hljs-string">&quot;key2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>]]);
 <span class="hljs-keyword">const</span> keys = [];
 <span class="hljs-comment">// keysメソッドの返り値(Iterator)を反復処理する</span>
-<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">of</span> map.keys()) {
-    keys.push(key);
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">of</span> map.<span class="hljs-title function_">keys</span>()) {
+    keys.<span class="hljs-title function_">push</span>(key);
 }
-<span class="hljs-built_in">console</span>.log(keys); <span class="hljs-comment">// =&gt; [&quot;key1&quot;,&quot;key2&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(keys); <span class="hljs-comment">// =&gt; [&quot;key1&quot;,&quot;key2&quot;]</span>
 <span class="hljs-comment">// keysメソッドの返り値(Iterator)から配列を作成する</span>
-<span class="hljs-keyword">const</span> keysArray = <span class="hljs-built_in">Array</span>.from(map.keys());
-<span class="hljs-built_in">console</span>.log(keysArray); <span class="hljs-comment">// =&gt; [&quot;key1&quot;,&quot;key2&quot;]</span>
+<span class="hljs-keyword">const</span> keysArray = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(map.<span class="hljs-title function_">keys</span>());
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(keysArray); <span class="hljs-comment">// =&gt; [&quot;key1&quot;,&quot;key2&quot;]</span>
 </code></pre>
 <p><code>entries</code>メソッドはマップが持つすべての要素をエントリーとして挿入順に並べたIteratorオブジェクトを返します。
 先述のとおりエントリーは<code>[キー, 値]</code>の配列です。
 そのため、配列の分割代入を使うとエントリーからキーと値を簡単に取り出せます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>], [<span class="hljs-string">&quot;key2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>]]);
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>([[<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>], [<span class="hljs-string">&quot;key2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>]]);
 <span class="hljs-keyword">const</span> entries = [];
-<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [key, value] <span class="hljs-keyword">of</span> map.entries()) {
-    entries.push(<span class="hljs-string">`<span class="hljs-subst">${key}</span>:<span class="hljs-subst">${value}</span>`</span>);
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [key, value] <span class="hljs-keyword">of</span> map.<span class="hljs-title function_">entries</span>()) {
+    entries.<span class="hljs-title function_">push</span>(<span class="hljs-string">`<span class="hljs-subst">${key}</span>:<span class="hljs-subst">${value}</span>`</span>);
 }
-<span class="hljs-built_in">console</span>.log(entries); <span class="hljs-comment">// =&gt; [&quot;key1:value1&quot;,&quot;key2:value2&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(entries); <span class="hljs-comment">// =&gt; [&quot;key1:value1&quot;,&quot;key2:value2&quot;]</span>
 </code></pre>
 <p>また、マップ自身もiterableなオブジェクトなので、<code>for...of</code>文で反復処理できます。
 マップを<code>for...of</code>文で反復したときは、すべての要素をエントリーとして挿入順に反復処理します。
 つまり、<code>entries</code>メソッドの返り値を反復処理するときと同じ結果が得られます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>], [<span class="hljs-string">&quot;key2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>]]);
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>([[<span class="hljs-string">&quot;key1&quot;</span>, <span class="hljs-string">&quot;value1&quot;</span>], [<span class="hljs-string">&quot;key2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>]]);
 <span class="hljs-keyword">const</span> results = [];
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [key, value] <span class="hljs-keyword">of</span> map) {
-    results.push(<span class="hljs-string">`<span class="hljs-subst">${key}</span>:<span class="hljs-subst">${value}</span>`</span>);
+    results.<span class="hljs-title function_">push</span>(<span class="hljs-string">`<span class="hljs-subst">${key}</span>:<span class="hljs-subst">${value}</span>`</span>);
 }
-<span class="hljs-built_in">console</span>.log(results); <span class="hljs-comment">// =&gt; [&quot;key1:value1&quot;,&quot;key2:value2&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results); <span class="hljs-comment">// =&gt; [&quot;key1:value1&quot;,&quot;key2:value2&quot;]</span>
 </code></pre>
 <h3 id="object-and-map"><a name="object-and-map" class="plugin-anchor" href="#object-and-map"><i class="fa fa-link" aria-hidden="true"></i></a>マップとしてのObjectとMap </h3>
 <p>ES2015で<code>Map</code>が導入されるまで、JavaScriptにおいてマップ型を実現するために<code>Object</code>が利用されてきました。
@@ -1627,12 +1627,12 @@ map.forEach(<span class="hljs-function">(<span class="hljs-params">value, key</s
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> map = {};
 <span class="hljs-comment">// マップがキーを持つことを確認する</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">has</span>(<span class="hljs-params">key</span>) </span>{
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">has</span>(<span class="hljs-params">key</span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> map[key] !== <span class="hljs-string">&quot;undefined&quot;</span>;
 }
-<span class="hljs-built_in">console</span>.log(has(<span class="hljs-string">&quot;foo&quot;</span>)); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">has</span>(<span class="hljs-string">&quot;foo&quot;</span>)); <span class="hljs-comment">// =&gt; false</span>
 <span class="hljs-comment">// Objectのプロパティが存在する</span>
-<span class="hljs-built_in">console</span>.log(has(<span class="hljs-string">&quot;constructor&quot;</span>)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">has</span>(<span class="hljs-string">&quot;constructor&quot;</span>)); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <p>このマップとして使うオブジェクトの問題は、<code>Object</code>のインスタンスを<code>Object.create(null)</code>のように初期化して作ることで回避されてきました
 （詳細は「<a href="../prototype-object/">プロトタイプオブジェクト</a>」の章の「<a href="../prototype-object/#not-inherit-object"><code>Object.prototype</code>を継承しないオブジェクト</a>」を参照）。</p>
@@ -1650,31 +1650,31 @@ map.forEach(<span class="hljs-function">(<span class="hljs-params">value, key</s
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": 2020 } --></p>
 <pre><code class="lang-js"><span class="hljs-comment">// ショッピングカートを表現するクラス</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ShoppingCart</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params"></span>)</span> {
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">ShoppingCart</span> {
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
         <span class="hljs-comment">// 商品とその数を持つマップ</span>
-        <span class="hljs-built_in">this</span>.items = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
     }
     <span class="hljs-comment">// カートに商品を追加する</span>
-    <span class="hljs-function"><span class="hljs-title">addItem</span>(<span class="hljs-params">item</span>)</span> {
+    <span class="hljs-title function_">addItem</span>(<span class="hljs-params">item</span>) {
         <span class="hljs-comment">// `item`がない場合は`undefined`を返すため、Nullish coalescing演算子(`??`)を使いデフォルト値として`0`を設定する</span>
-        <span class="hljs-keyword">const</span> count = <span class="hljs-built_in">this</span>.items.get(item) ?? <span class="hljs-number">0</span>;
-        <span class="hljs-built_in">this</span>.items.set(item, count + <span class="hljs-number">1</span>);
+        <span class="hljs-keyword">const</span> count = <span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span>.<span class="hljs-title function_">get</span>(item) ?? <span class="hljs-number">0</span>;
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span>.<span class="hljs-title function_">set</span>(item, count + <span class="hljs-number">1</span>);
     }
     <span class="hljs-comment">// カート内の合計金額を返す</span>
-    <span class="hljs-function"><span class="hljs-title">getTotalPrice</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.from(<span class="hljs-built_in">this</span>.items).reduce(<span class="hljs-function">(<span class="hljs-params">total, [item, count]</span>) =&gt;</span> {
-            <span class="hljs-keyword">return</span> total + item.price * count;
+    <span class="hljs-title function_">getTotalPrice</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span>).<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">total, [item, count]</span>) =&gt;</span> {
+            <span class="hljs-keyword">return</span> total + item.<span class="hljs-property">price</span> * count;
         }, <span class="hljs-number">0</span>);
     }
     <span class="hljs-comment">// カートの中身を文字列にして返す</span>
-    <span class="hljs-function"><span class="hljs-title">toString</span>(<span class="hljs-params"></span>)</span> {
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.from(<span class="hljs-built_in">this</span>.items).map(<span class="hljs-function">(<span class="hljs-params">[item, count]</span>) =&gt;</span> {
+    <span class="hljs-title function_">toString</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">items</span>).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">[item, count]</span>) =&gt;</span> {
             <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${item.name}</span>:<span class="hljs-subst">${count}</span>`</span>;
-        }).join(<span class="hljs-string">&quot;,&quot;</span>);
+        }).<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;,&quot;</span>);
     }
 }
-<span class="hljs-keyword">const</span> shoppingCart = <span class="hljs-keyword">new</span> ShoppingCart();
+<span class="hljs-keyword">const</span> shoppingCart = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ShoppingCart</span>();
 <span class="hljs-comment">// 商品一覧</span>
 <span class="hljs-keyword">const</span> shopItems = [
     { <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;みかん&quot;</span>, <span class="hljs-attr">price</span>: <span class="hljs-number">100</span> },
@@ -1682,14 +1682,14 @@ map.forEach(<span class="hljs-function">(<span class="hljs-params">value, key</s
 ];
 
 <span class="hljs-comment">// カートに商品を追加する</span>
-shoppingCart.addItem(shopItems[<span class="hljs-number">0</span>]);
-shoppingCart.addItem(shopItems[<span class="hljs-number">0</span>]);
-shoppingCart.addItem(shopItems[<span class="hljs-number">1</span>]);
+shoppingCart.<span class="hljs-title function_">addItem</span>(shopItems[<span class="hljs-number">0</span>]);
+shoppingCart.<span class="hljs-title function_">addItem</span>(shopItems[<span class="hljs-number">0</span>]);
+shoppingCart.<span class="hljs-title function_">addItem</span>(shopItems[<span class="hljs-number">1</span>]);
 
 <span class="hljs-comment">// 合計金額を表示する</span>
-<span class="hljs-built_in">console</span>.log(shoppingCart.getTotalPrice()); <span class="hljs-comment">// =&gt; 400</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(shoppingCart.<span class="hljs-title function_">getTotalPrice</span>()); <span class="hljs-comment">// =&gt; 400</span>
 <span class="hljs-comment">// カートの中身を表示する</span>
-<span class="hljs-built_in">console</span>.log(shoppingCart.toString()); <span class="hljs-comment">// =&gt; &quot;みかん:2,リンゴ:1&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(shoppingCart.<span class="hljs-title function_">toString</span>()); <span class="hljs-comment">// =&gt; &quot;みかん:2,リンゴ:1&quot;</span>
 </code></pre>
 <p><code>Object</code>をマップとして使うときに起きる多くの問題は、<code>Map</code>オブジェクトを使うことで解決しますが、
 常に<code>Map</code>が<code>Object</code>の代わりになるわけではありません。
@@ -1704,25 +1704,25 @@ shoppingCart.addItem(shopItems[<span class="hljs-number">1</span>]);
 そのため、<code>Object</code>のマップを作ってフォームの入力内容を持たせています。
 このような簡易なマップにおいては、<code>Object</code>を使うほうが適切でしょう。</p>
 <pre><code class="lang-js"><span class="hljs-comment">// URLとObjectのマップを受け取ってPOSTリクエストを送る関数</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendPOSTRequest</span>(<span class="hljs-params">url, data</span>) </span>{
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">sendPOSTRequest</span>(<span class="hljs-params">url, data</span>) {
     <span class="hljs-comment">// fetchを使ってPOSTリクエストを送る</span>
-    fetch(url, {
+    <span class="hljs-title function_">fetch</span>(url, {
         <span class="hljs-attr">method</span>: <span class="hljs-string">&quot;POST&quot;</span>,
         <span class="hljs-attr">headers</span>: { <span class="hljs-string">&quot;Content-Type&quot;</span>: <span class="hljs-string">&quot;application/json&quot;</span> },
-        <span class="hljs-attr">body</span>: <span class="hljs-built_in">JSON</span>.stringify(data),
-    }).catch(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
-        <span class="hljs-built_in">console</span>.error(error);
+        <span class="hljs-attr">body</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(data),
+    }).<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);
     });
 }
 
 <span class="hljs-comment">// formのsubmitイベントを受け取る関数</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onLoginFormSubmit</span>(<span class="hljs-params">event</span>) </span>{
-    <span class="hljs-keyword">const</span> form = event.target;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">onLoginFormSubmit</span>(<span class="hljs-params">event</span>) {
+    <span class="hljs-keyword">const</span> form = event.<span class="hljs-property">target</span>;
     <span class="hljs-keyword">const</span> data = {
-        <span class="hljs-attr">userName</span>: form.elements.userName,
-        <span class="hljs-attr">password</span>: form.elements.password,
+        <span class="hljs-attr">userName</span>: form.<span class="hljs-property">elements</span>.<span class="hljs-property">userName</span>,
+        <span class="hljs-attr">password</span>: form.<span class="hljs-property">elements</span>.<span class="hljs-property">password</span>,
     };
-    sendPOSTRequest(<span class="hljs-string">&quot;/api/login&quot;</span>, data);
+    <span class="hljs-title function_">sendPOSTRequest</span>(<span class="hljs-string">&quot;/api/login&quot;</span>, data);
 }
 </code></pre>
 <h3 id="weakmap"><a name="weakmap" class="plugin-anchor" href="#weakmap"><i class="fa fa-link" aria-hidden="true"></i></a>WeakMap </h3>
@@ -1738,11 +1738,11 @@ shoppingCart.addItem(shopItems[<span class="hljs-number">1</span>]);
 このとき<code>WeakMap</code>は<code>{}</code>への弱い参照を持っていますが、弱い参照はGCを妨げないため、<code>{}</code>は不要になった値としてGCによりメモリから解放されます。</p>
 <p>同時に、<code>WeakMap</code>は解放されたオブジェクト（<code>{}</code>）をキーにしてひもづいていた値（<code>&quot;value&quot;</code>）を破棄できます。
 ただし、どのタイミングで実際にメモリから解放するかは、JavaScriptエンジンの実装に依存します。</p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakMap</span>();
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">WeakMap</span>();
 <span class="hljs-comment">// キーとなるオブジェクト</span>
 <span class="hljs-keyword">let</span> obj = {};
 <span class="hljs-comment">// {} への参照をキーに値をセットする</span>
-map.set(obj, <span class="hljs-string">&quot;value&quot;</span>);
+map.<span class="hljs-title function_">set</span>(obj, <span class="hljs-string">&quot;value&quot;</span>);
 <span class="hljs-comment">// {} への参照を破棄する</span>
 obj = <span class="hljs-literal">null</span>;
 <span class="hljs-comment">// GCが発生するタイミングでWeakMapから値が破棄される</span>
@@ -1759,23 +1759,23 @@ obj = <span class="hljs-literal">null</span>;
 ここで<code>WeakMap</code>を使うと、<code>addListener</code> メソッドに渡された<code>listener</code>は <code>EventEmitter</code> インスタンスが参照されなくなった際、自動的に解放されます。</p>
 <!-- doctest:meta:{ "ECMAScript": 2020 } -->
 <pre><code class="lang-js"><span class="hljs-comment">// イベントリスナーを管理するマップ</span>
-<span class="hljs-keyword">const</span> listenersMap = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakMap</span>();
+<span class="hljs-keyword">const</span> listenersMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">WeakMap</span>();
 
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EventEmitter</span> </span>{
-    <span class="hljs-function"><span class="hljs-title">addListener</span>(<span class="hljs-params">listener</span>)</span> {
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">EventEmitter</span> {
+    <span class="hljs-title function_">addListener</span>(<span class="hljs-params">listener</span>) {
         <span class="hljs-comment">// this(インスタンス)にひもづいたリスナーの配列を取得する</span>
-        <span class="hljs-keyword">const</span> listeners = listenersMap.get(<span class="hljs-built_in">this</span>) ?? [];
-        <span class="hljs-keyword">const</span> newListeners = listeners.concat(listener);
+        <span class="hljs-keyword">const</span> listeners = listenersMap.<span class="hljs-title function_">get</span>(<span class="hljs-variable language_">this</span>) ?? [];
+        <span class="hljs-keyword">const</span> newListeners = listeners.<span class="hljs-title function_">concat</span>(listener);
         <span class="hljs-comment">// this をキーにして、新しいリスナーの配列をセットする</span>
-        listenersMap.set(<span class="hljs-built_in">this</span>, newListeners);
+        listenersMap.<span class="hljs-title function_">set</span>(<span class="hljs-variable language_">this</span>, newListeners);
     }
     <span class="hljs-comment">// ...EventEmitterには他にもメソッドがあるが省略...</span>
 }
 
 <span class="hljs-comment">// `event`は`EventEmitter`のインスタンスへの参照をもつ</span>
-<span class="hljs-keyword">let</span> event = <span class="hljs-keyword">new</span> EventEmitter();
+<span class="hljs-keyword">let</span> event = <span class="hljs-keyword">new</span> <span class="hljs-title class_">EventEmitter</span>();
 <span class="hljs-comment">// `EventEmitter`のインスタンスへイベントリスナーを追加する</span>
-event.addListener(<span class="hljs-function">() =&gt;</span> {
+event.<span class="hljs-title function_">addListener</span>(<span class="hljs-function">() =&gt;</span> {
     <span class="hljs-comment">// `EventEmitter`のインスタンスに紐づくイベントリスナーの処理</span>
 });
 <span class="hljs-comment">// `event`へ`null`を代入することで、`EventEmitter`のインスタンスへの参照がなくなる</span>
@@ -1784,15 +1784,15 @@ event = <span class="hljs-literal">null</span>;
 </code></pre>
 <p>また、あるオブジェクトから計算した結果を一時的に保存する用途でもよく使われます。
 次の例ではHTML要素の高さを計算した結果を保存して、2回目以降に同じ計算をしないようにしています。</p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> cache = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakMap</span>();
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> cache = <span class="hljs-keyword">new</span> <span class="hljs-title class_">WeakMap</span>();
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getHeight</span>(<span class="hljs-params">element</span>) </span>{
-    <span class="hljs-keyword">if</span> (cache.has(element)) {
-        <span class="hljs-keyword">return</span> cache.get(element);
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">getHeight</span>(<span class="hljs-params">element</span>) {
+    <span class="hljs-keyword">if</span> (cache.<span class="hljs-title function_">has</span>(element)) {
+        <span class="hljs-keyword">return</span> cache.<span class="hljs-title function_">get</span>(element);
     }
-    <span class="hljs-keyword">const</span> height = element.getBoundingClientRect().height;
+    <span class="hljs-keyword">const</span> height = element.<span class="hljs-title function_">getBoundingClientRect</span>().<span class="hljs-property">height</span>;
     <span class="hljs-comment">// elementオブジェクトに対して高さをひもづけて保存している</span>
-    cache.set(element, height);
+    cache.<span class="hljs-title function_">set</span>(element, height);
     <span class="hljs-keyword">return</span> height;
 }
 </code></pre>
@@ -1803,13 +1803,13 @@ event = <span class="hljs-literal">null</span>;
 この挙動は<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Equality_comparisons_and_sameness#Same-value-zero_equality" target="_blank">Same-value-zero</a>アルゴリズムと呼ばれます。</p>
 <p>次のコードでは、<code>NaN</code>同士の<code>===</code>の比較結果が<code>false</code>になるのに対して、<code>Map</code>のキーでは<code>NaN</code>同士の比較結果が一致していることがわかります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>();
-map.set(<span class="hljs-literal">NaN</span>, <span class="hljs-string">&quot;value&quot;</span>);
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();
+map.<span class="hljs-title function_">set</span>(<span class="hljs-title class_">NaN</span>, <span class="hljs-string">&quot;value&quot;</span>);
 <span class="hljs-comment">// NaNは===で比較した場合は常にfalse</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-literal">NaN</span> === <span class="hljs-literal">NaN</span>); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">NaN</span> === <span class="hljs-title class_">NaN</span>); <span class="hljs-comment">// =&gt; false</span>
 <span class="hljs-comment">// MapはNaN同士を比較できる</span>
-<span class="hljs-built_in">console</span>.log(map.has(<span class="hljs-literal">NaN</span>)); <span class="hljs-comment">// =&gt; true</span>
-<span class="hljs-built_in">console</span>.log(map.get(<span class="hljs-literal">NaN</span>)); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(map.<span class="hljs-title function_">has</span>(<span class="hljs-title class_">NaN</span>)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(map.<span class="hljs-title function_">get</span>(<span class="hljs-title class_">NaN</span>)); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
 </code></pre>
 <h2 id="set"><a name="set" class="plugin-anchor" href="#set"><i class="fa fa-link" aria-hidden="true"></i></a>Set </h2>
 <p><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Set" target="_blank">Set</a>はセット型のコレクションを扱うためのビルトインオブジェクトです。
@@ -1821,8 +1821,8 @@ map.set(<span class="hljs-literal">NaN</span>, <span class="hljs-string">&quot;v
 作成されたばかりのセットは何も持っていません。
 そのため、セットが持つ要素の数を返す<code>size</code>プロパティは0を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
-<span class="hljs-built_in">console</span>.log(set.size); <span class="hljs-comment">// =&gt; 0</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(set.<span class="hljs-property">size</span>); <span class="hljs-comment">// =&gt; 0</span>
 </code></pre>
 <p><code>Set</code>オブジェクトを<code>new</code>で初期化するときに、コンストラクタに初期値を渡せます。
 コンストラクタ引数として渡せるのはiterableオブジェクトです。</p>
@@ -1830,9 +1830,9 @@ map.set(<span class="hljs-literal">NaN</span>, <span class="hljs-string">&quot;v
 また、<code>Set</code>では重複する同じ値を持たないことを保証するため、同じ値は1つのみ格納されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// &quot;value2&quot;が重複するため、片方は無視される</span>
-<span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-string">&quot;value1&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>]);
+<span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>([<span class="hljs-string">&quot;value1&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>, <span class="hljs-string">&quot;value2&quot;</span>]);
 <span class="hljs-comment">// セットのサイズは2になる</span>
-<span class="hljs-built_in">console</span>.log(set.size); <span class="hljs-comment">// =&gt; 2</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(set.<span class="hljs-property">size</span>); <span class="hljs-comment">// =&gt; 2</span>
 </code></pre>
 <h3 id="set-read-and-write"><a name="set-read-and-write" class="plugin-anchor" href="#set-read-and-write"><i class="fa fa-link" aria-hidden="true"></i></a>値の追加と取り出し </h3>
 <p>作成したセットに値を追加するには、<code>add</code>メソッドを使います。
@@ -1840,71 +1840,71 @@ map.set(<span class="hljs-literal">NaN</span>, <span class="hljs-string">&quot;v
 そのため、すでにセットが持っている値を<code>add</code>メソッドに渡した際は無視されます。</p>
 <p>また、セットが特定の値を持っているかどうかを確認する<code>has</code>メソッドがあります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>();
 <span class="hljs-comment">// 値の追加</span>
-set.add(<span class="hljs-string">&quot;a&quot;</span>);
-<span class="hljs-built_in">console</span>.log(set.size); <span class="hljs-comment">// =&gt; 1</span>
+set.<span class="hljs-title function_">add</span>(<span class="hljs-string">&quot;a&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(set.<span class="hljs-property">size</span>); <span class="hljs-comment">// =&gt; 1</span>
 <span class="hljs-comment">// 重複する値は追加されない</span>
-set.add(<span class="hljs-string">&quot;a&quot;</span>);
-<span class="hljs-built_in">console</span>.log(set.size); <span class="hljs-comment">// =&gt; 1</span>
+set.<span class="hljs-title function_">add</span>(<span class="hljs-string">&quot;a&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(set.<span class="hljs-property">size</span>); <span class="hljs-comment">// =&gt; 1</span>
 <span class="hljs-comment">// 値の存在確認</span>
-<span class="hljs-built_in">console</span>.log(set.has(<span class="hljs-string">&quot;a&quot;</span>)); <span class="hljs-comment">// =&gt; true</span>
-<span class="hljs-built_in">console</span>.log(set.has(<span class="hljs-string">&quot;b&quot;</span>)); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(set.<span class="hljs-title function_">has</span>(<span class="hljs-string">&quot;a&quot;</span>)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(set.<span class="hljs-title function_">has</span>(<span class="hljs-string">&quot;b&quot;</span>)); <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
 <p>セットから値を削除するには、<code>delete</code>メソッドを使います。
 <code>delete</code>メソッドに渡された値がセットから削除されます。
 また、セットが持つすべての値を削除するための<code>clear</code>メソッドがあります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>();
-set.add(<span class="hljs-string">&quot;a&quot;</span>);
-set.add(<span class="hljs-string">&quot;b&quot;</span>);
-<span class="hljs-built_in">console</span>.log(set.size); <span class="hljs-comment">// =&gt; 2</span>
-set.delete(<span class="hljs-string">&quot;a&quot;</span>);
-<span class="hljs-built_in">console</span>.log(set.size); <span class="hljs-comment">// =&gt; 1</span>
-set.clear();
-<span class="hljs-built_in">console</span>.log(set.size); <span class="hljs-comment">// =&gt; 0</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>();
+set.<span class="hljs-title function_">add</span>(<span class="hljs-string">&quot;a&quot;</span>);
+set.<span class="hljs-title function_">add</span>(<span class="hljs-string">&quot;b&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(set.<span class="hljs-property">size</span>); <span class="hljs-comment">// =&gt; 2</span>
+set.<span class="hljs-title function_">delete</span>(<span class="hljs-string">&quot;a&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(set.<span class="hljs-property">size</span>); <span class="hljs-comment">// =&gt; 1</span>
+set.<span class="hljs-title function_">clear</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(set.<span class="hljs-property">size</span>); <span class="hljs-comment">// =&gt; 0</span>
 </code></pre>
 <h3 id="set-iteration"><a name="set-iteration" class="plugin-anchor" href="#set-iteration"><i class="fa fa-link" aria-hidden="true"></i></a>セットの反復処理 </h3>
 <p>セットが持つ値を反復処理するには、<code>forEach</code>メソッドが利用できます。
 <code>forEach</code>メソッドではセットが持つすべての要素を、セットへの挿入順に反復します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>]);
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>([<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>]);
 <span class="hljs-keyword">const</span> results = [];
-set.forEach(<span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> {
-    results.push(value);
+set.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> {
+    results.<span class="hljs-title function_">push</span>(value);
 });
-<span class="hljs-built_in">console</span>.log(results); <span class="hljs-comment">// =&gt; [&quot;a&quot;,&quot;b&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results); <span class="hljs-comment">// =&gt; [&quot;a&quot;,&quot;b&quot;]</span>
 </code></pre>
 <p>セットからIteratorオブジェクトを作成するメソッドとして<code>keys</code>、<code>values</code>、<code>entries</code>があります。
 これらは<code>Map</code>との類似性のために存在しますが、セットにはマップにおけるキー相当のものがありません。
 そのため、<code>keys</code>メソッドは<code>values</code>メソッドのエイリアスになっており、セットが持つすべての値を挿入順に列挙するIteratorオブジェクトを返します。
 また、<code>entries</code>メソッドは<code>[値, 値]</code>という形のエントリーを挿入順に列挙するIteratorオブジェクトを返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>]);
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>([<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>]);
 <span class="hljs-comment">// keysで列挙</span>
 <span class="hljs-keyword">const</span> keysResults = [];
-<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> value <span class="hljs-keyword">of</span> set.keys()) {
-    keysResults.push(value);
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> value <span class="hljs-keyword">of</span> set.<span class="hljs-title function_">keys</span>()) {
+    keysResults.<span class="hljs-title function_">push</span>(value);
 }
-<span class="hljs-built_in">console</span>.log(keysResults); <span class="hljs-comment">// =&gt; [&quot;a&quot;,&quot;b&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(keysResults); <span class="hljs-comment">// =&gt; [&quot;a&quot;,&quot;b&quot;]</span>
 <span class="hljs-comment">// entriesで列挙</span>
 <span class="hljs-keyword">const</span> entryResults = [];
-<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> entry <span class="hljs-keyword">of</span> set.entries()) {
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> entry <span class="hljs-keyword">of</span> set.<span class="hljs-title function_">entries</span>()) {
     <span class="hljs-comment">// entryは[値, 値]という配列</span>
-    entryResults.push(entry);
+    entryResults.<span class="hljs-title function_">push</span>(entry);
 }
-<span class="hljs-built_in">console</span>.log(entryResults); <span class="hljs-comment">// =&gt; [[&quot;a&quot;,&quot;a&quot;], [&quot;b&quot;, &quot;b&quot;]]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(entryResults); <span class="hljs-comment">// =&gt; [[&quot;a&quot;,&quot;a&quot;], [&quot;b&quot;, &quot;b&quot;]]</span>
 </code></pre>
 <p><code>Set</code>オブジェクト自身もiterableなオブジェクトであるため<code>for...of</code>文で反復処理できます。
 <code>for...of</code>文で<code>Set</code>オブジェクトを反復処理したときも、セットへの挿入順に値が取り出されます。
 <code>keys</code>、<code>values</code>、<code>entries</code>メソッドはどれも取得できる情報は同じであるため、基本的には<code>Set</code>オブジェクト自体を反復処理することで代用できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Set</span>([<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>]);
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>([<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>]);
 <span class="hljs-keyword">const</span> results = [];
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> value <span class="hljs-keyword">of</span> set) {
-    results.push(value);
+    results.<span class="hljs-title function_">push</span>(value);
 }
-<span class="hljs-built_in">console</span>.log(results); <span class="hljs-comment">// =&gt; [&quot;a&quot;,&quot;b&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results); <span class="hljs-comment">// =&gt; [&quot;a&quot;,&quot;b&quot;]</span>
 </code></pre>
 <h3 id="weakset"><a name="weakset" class="plugin-anchor" href="#weakset"><i class="fa fa-link" aria-hidden="true"></i></a>WeakSet </h3>
 <p><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/WeakSet" target="_blank">WeakSet</a>は弱い参照で値を持つセットです。
@@ -1952,7 +1952,7 @@ set.forEach(<span class="hljs-function">(<span class="hljs-params">value</span>)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"データの集合を扱うビルトインオブジェクトであるMapとSetについてを紹介します。オブジェクトの作成方法や更新方法から実際にどのようなケースで使うのかを紹介します。","title":"Map/Set","level":"1.3.23","depth":2,"next":{"title":"JSON","level":"1.3.24","depth":2,"path":"basic/json/README.md","ref":"./basic/json/README.md","articles":[]},"previous":{"title":"非同期処理:Promise/Async Function","level":"1.3.22","depth":2,"path":"basic/async/README.md","ref":"./basic/async/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/map-and-set/README.md","mtime":"2023-07-16T01:53:15.657Z","type":"markdown"},"gitbook":{"version":"4.0.8","time":"2023-07-16T01:53:46.643Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"データの集合を扱うビルトインオブジェクトであるMapとSetについてを紹介します。オブジェクトの作成方法や更新方法から実際にどのようなケースで使うのかを紹介します。","title":"Map/Set","level":"1.3.23","depth":2,"next":{"title":"JSON","level":"1.3.24","depth":2,"path":"basic/json/README.md","ref":"./basic/json/README.md","articles":[]},"previous":{"title":"非同期処理:Promise/Async Function","level":"1.3.22","depth":2,"path":"basic/async/README.md","ref":"./basic/async/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/map-and-set/README.md","mtime":"2023-07-16T12:14:13.149Z","type":"markdown"},"gitbook":{"version":"5.0.0","time":"2023-07-16T12:14:45.721Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

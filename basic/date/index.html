@@ -6,7 +6,7 @@
         <title>Date · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="日付や時刻を扱うビルトインオブジェクトのDateを紹介します。">
-        <meta name="generator" content="HonKit 4.0.8">
+        <meta name="generator" content="HonKit 5.0.0">
         
         
         
@@ -1522,14 +1522,14 @@ ISO 8601とは国際規格となっている文字列の形式で、<code>2006-0
 人間が見てもわかりやすい文字列であるため、広く利用されています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 現在の時刻を表すインスタンスを作成する</span>
-<span class="hljs-keyword">const</span> now = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+<span class="hljs-keyword">const</span> now = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>();
 <span class="hljs-comment">// 時刻値だけが欲しい場合にはDate.nowメソッドを使う</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Date</span>.now());
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>());
 
 <span class="hljs-comment">// 時刻値を取得する</span>
-<span class="hljs-built_in">console</span>.log(now.getTime());
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(now.<span class="hljs-title function_">getTime</span>());
 <span class="hljs-comment">// 時刻をISO 8601形式の文字列で表示する</span>
-<span class="hljs-built_in">console</span>.log(now.toISOString());
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(now.<span class="hljs-title function_">toISOString</span>());
 </code></pre>
 <h4 id="instance-any-time"><a name="instance-any-time" class="plugin-anchor" href="#instance-any-time"><i class="fa fa-link" aria-hidden="true"></i></a>任意の時刻をインスタンス化する </h4>
 <p>コンストラクタ引数を渡すことで、任意の時刻を表すインスタンスを作成できます。
@@ -1547,9 +1547,9 @@ ISO 8601とは国際規格となっている文字列の形式で、<code>2006-0
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 時刻のミリ秒値を直接指定する形式</span>
 <span class="hljs-comment">// 1136214245999はUTCにおける&quot;2006年1月2日15時04分05秒999&quot;を表す</span>
-<span class="hljs-keyword">const</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-number">1136214245999</span>);
+<span class="hljs-keyword">const</span> date = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-number">1136214245999</span>);
 <span class="hljs-comment">// 末尾の&apos;Z&apos;はUTCであることを表す</span>
-<span class="hljs-built_in">console</span>.log(date.toISOString()); <span class="hljs-comment">// =&gt; &quot;2006-01-02T15:04:05.999Z&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(date.<span class="hljs-title function_">toISOString</span>()); <span class="hljs-comment">// =&gt; &quot;2006-01-02T15:04:05.999Z&quot;</span>
 </code></pre>
 <p>2つめは、文字列型の引数を渡したときに適用されます。
 <a href="https://www.rfc-editor.org/rfc/rfc2822#section-3.3" target="_blank">RFC2822</a>や<a href="https://ja.wikipedia.org/wiki/ISO_8601" target="_blank">ISO 8601</a>の形式に従った文字列を渡すと、
@@ -1560,17 +1560,17 @@ ISO 8601とは国際規格となっている文字列の形式で、<code>2006-0
 また、ISO 8601形式以外の文字列のパースは、ブラウザごとに異なる結果を返す可能性があるため注意しましょう。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// UTCにおける&quot;2006年1月2日15時04分05秒999&quot;を表すISO 8601形式の文字列</span>
-<span class="hljs-keyword">const</span> inUTC = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">&quot;2006-01-02T15:04:05.999Z&quot;</span>);
-<span class="hljs-built_in">console</span>.log(inUTC.toISOString()); <span class="hljs-comment">// =&gt; &quot;2006-01-02T15:04:05.999Z&quot;</span>
+<span class="hljs-keyword">const</span> inUTC = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-string">&quot;2006-01-02T15:04:05.999Z&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(inUTC.<span class="hljs-title function_">toISOString</span>()); <span class="hljs-comment">// =&gt; &quot;2006-01-02T15:04:05.999Z&quot;</span>
 
 <span class="hljs-comment">// 上記の例とは異なり、UTCであることを表す&apos;Z&apos;がついていないことに注意</span>
 <span class="hljs-comment">// Asia/Tokyo(+09:00)で実行すると、UTCにおける表記は9時間前の06時04分05秒になる</span>
-<span class="hljs-keyword">const</span> inLocal = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">&quot;2006-01-02T15:04:05.999&quot;</span>);
-<span class="hljs-built_in">console</span>.log(inLocal.toISOString()); <span class="hljs-comment">// &quot;2006-01-02T06:04:05.999Z&quot; (Asia/Tokyoの場合)</span>
+<span class="hljs-keyword">const</span> inLocal = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-string">&quot;2006-01-02T15:04:05.999&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(inLocal.<span class="hljs-title function_">toISOString</span>()); <span class="hljs-comment">// &quot;2006-01-02T06:04:05.999Z&quot; (Asia/Tokyoの場合)</span>
 </code></pre>
 <p>3つめは、時刻を次のように、年・月・日などの部分ごとの数値で指定する方法です。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(year, month, day, hour, minutes, seconds, milliseconds);
+<pre><code class="lang-js"><span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(year, month, day, hour, minutes, seconds, milliseconds);
 </code></pre>
 <p>コンストラクタ関数に2つ以上の引数を渡すと、この方法で<code>Date</code>インスタンスが作成されます。
 月内の日を表す第三引数（<code>day</code>）から後ろの引数は省略可能です。
@@ -1586,24 +1586,24 @@ ISO 8601とは国際規格となっている文字列の形式で、<code>2006-0
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 実行環境における&quot;2006年1月2日15時04分05秒999&quot;を表す</span>
 <span class="hljs-comment">// タイムゾーンを指定することはできない</span>
-<span class="hljs-keyword">const</span> date1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-number">2006</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">15</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">999</span>);
-<span class="hljs-built_in">console</span>.log(date1.toISOString()); <span class="hljs-comment">// &quot;2006-01-02T06:04:05.999Z&quot; (Asia/Tokyoの場合)</span>
+<span class="hljs-keyword">const</span> date1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-number">2006</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">15</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">999</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(date1.<span class="hljs-title function_">toISOString</span>()); <span class="hljs-comment">// &quot;2006-01-02T06:04:05.999Z&quot; (Asia/Tokyoの場合)</span>
 
 <span class="hljs-comment">// Date.UTCメソッドを使うとUTCに固定できる</span>
-<span class="hljs-keyword">const</span> ms = <span class="hljs-built_in">Date</span>.UTC(<span class="hljs-number">2006</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">15</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">999</span>);
+<span class="hljs-keyword">const</span> ms = <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">UTC</span>(<span class="hljs-number">2006</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">15</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">999</span>);
 <span class="hljs-comment">// 時刻値を渡すコンストラクタと併用する</span>
-<span class="hljs-keyword">const</span> date2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(ms);
-<span class="hljs-built_in">console</span>.log(date2.toISOString()); <span class="hljs-comment">// =&gt; &quot;2006-01-02T15:04:05.999Z&quot;</span>
+<span class="hljs-keyword">const</span> date2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(ms);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(date2.<span class="hljs-title function_">toISOString</span>()); <span class="hljs-comment">// =&gt; &quot;2006-01-02T15:04:05.999Z&quot;</span>
 </code></pre>
 <p>なお、どのオーバーロードにも当てはまらない引数や、時刻としてパースできない文字列を渡した際にも、<code>Date</code>のインスタンスは作成されます。
 ただし、このインスタンスが持つ時刻は不正であるため、<code>getTime</code>メソッドは<code>NaN</code>を返し、<code>toString</code>メソッドは<code>Invalid Date</code>という文字列を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 不正なDateインスタンスを作成する</span>
-<span class="hljs-keyword">const</span> invalid = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">&quot;&quot;</span>);
-<span class="hljs-built_in">console</span>.log(invalid.getTime()); <span class="hljs-comment">// =&gt; NaN</span>
-<span class="hljs-built_in">console</span>.log(invalid.toString()); <span class="hljs-comment">// =&gt; &quot;Invalid Date&quot;</span>
+<span class="hljs-keyword">const</span> invalid = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-string">&quot;&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(invalid.<span class="hljs-title function_">getTime</span>()); <span class="hljs-comment">// =&gt; NaN</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(invalid.<span class="hljs-title function_">toString</span>()); <span class="hljs-comment">// =&gt; &quot;Invalid Date&quot;</span>
 <span class="hljs-comment">// 不正なDateインスタンスかを判定</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Number</span>.isNaN(invalid.getTime())); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Number</span>.<span class="hljs-built_in">isNaN</span>(invalid.<span class="hljs-title function_">getTime</span>())); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <h3 id="instance-method"><a name="instance-method" class="plugin-anchor" href="#instance-method"><i class="fa fa-link" aria-hidden="true"></i></a>Dateのインスタンスメソッド </h3>
 <p><code>Date</code>オブジェクトのインスタンスは多くのメソッドを持っていますが、
@@ -1613,26 +1613,26 @@ ISO 8601とは国際規格となっている文字列の形式で、<code>2006-0
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": "2017" } --></p>
 <pre><code class="lang-js"><span class="hljs-comment">// YYYY/MM/DD形式の文字列に変換する関数</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">formatDate</span>(<span class="hljs-params">date</span>) </span>{
-    <span class="hljs-keyword">const</span> yyyy = <span class="hljs-built_in">String</span>(date.getFullYear());
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">formatDate</span>(<span class="hljs-params">date</span>) {
+    <span class="hljs-keyword">const</span> yyyy = <span class="hljs-title class_">String</span>(date.<span class="hljs-title function_">getFullYear</span>());
     <span class="hljs-comment">// Stringの`padStart`メソッド（ES2017）で2桁になるように0埋めする</span>
-    <span class="hljs-keyword">const</span> mm = <span class="hljs-built_in">String</span>(date.getMonth() + <span class="hljs-number">1</span>).padStart(<span class="hljs-number">2</span>, <span class="hljs-string">&quot;0&quot;</span>);
-    <span class="hljs-keyword">const</span> dd = <span class="hljs-built_in">String</span>(date.getDate()).padStart(<span class="hljs-number">2</span>, <span class="hljs-string">&quot;0&quot;</span>);
+    <span class="hljs-keyword">const</span> mm = <span class="hljs-title class_">String</span>(date.<span class="hljs-title function_">getMonth</span>() + <span class="hljs-number">1</span>).<span class="hljs-title function_">padStart</span>(<span class="hljs-number">2</span>, <span class="hljs-string">&quot;0&quot;</span>);
+    <span class="hljs-keyword">const</span> dd = <span class="hljs-title class_">String</span>(date.<span class="hljs-title function_">getDate</span>()).<span class="hljs-title function_">padStart</span>(<span class="hljs-number">2</span>, <span class="hljs-string">&quot;0&quot;</span>);
     <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${yyyy}</span>/<span class="hljs-subst">${mm}</span>/<span class="hljs-subst">${dd}</span>`</span>;
 }
 
-<span class="hljs-keyword">const</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(<span class="hljs-string">&quot;2006-01-02T15:04:05.999&quot;</span>);
-<span class="hljs-built_in">console</span>.log(formatDate(date)); <span class="hljs-comment">// =&gt; &quot;2006/01/02&quot;</span>
+<span class="hljs-keyword">const</span> date = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(<span class="hljs-string">&quot;2006-01-02T15:04:05.999&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">formatDate</span>(date)); <span class="hljs-comment">// =&gt; &quot;2006/01/02&quot;</span>
 </code></pre>
 <p><code>getTimezoneOffset</code>メソッドは、実行環境のタイムゾーンのUTC<strong>からの</strong>オフセット値を<strong>分</strong>単位の数値で返します。
 たとえばAsia/TokyoタイムゾーンはUTC+9時間なのでオフセット値は-9時間となり、<code>getTimezoneOffset</code>メソッドの返り値は<code>-540</code>です。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// getTimezoneOffsetはインスタンスメソッドなので、インスタンスが必要</span>
-<span class="hljs-keyword">const</span> now = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+<span class="hljs-keyword">const</span> now = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>();
 <span class="hljs-comment">// 時間単位にしたタイムゾーンオフセット</span>
-<span class="hljs-keyword">const</span> timezoneOffsetInHours = now.getTimezoneOffset() / <span class="hljs-number">60</span>;
+<span class="hljs-keyword">const</span> timezoneOffsetInHours = now.<span class="hljs-title function_">getTimezoneOffset</span>() / <span class="hljs-number">60</span>;
 <span class="hljs-comment">// UTCの現在の時間を計算できる</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Hours in UTC: <span class="hljs-subst">${now.getHours() + timezoneOffsetInHours}</span>`</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`Hours in UTC: <span class="hljs-subst">${now.getHours() + timezoneOffsetInHours}</span>`</span>);
 </code></pre>
 <h2 id="usecase"><a name="usecase" class="plugin-anchor" href="#usecase"><i class="fa fa-link" aria-hidden="true"></i></a>現実のユースケースとDate </h2>
 <p>ここまで<code>Date</code>オブジェクトとインスタンスメソッドについて述べましたが、
@@ -1649,11 +1649,11 @@ ISO 8601とは国際規格となっている文字列の形式で、<code>2006-0
 <!-- Day.jsが参照できない -->
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-comment">// Day.jsで現在時刻のDay.jsオブジェクトを作る</span>
-<span class="hljs-keyword">const</span> now = dayjs();
+<span class="hljs-keyword">const</span> now = <span class="hljs-title function_">dayjs</span>();
 <span class="hljs-comment">// addメソッドで10分進める</span>
-<span class="hljs-keyword">const</span> future = now.add(<span class="hljs-number">10</span>, <span class="hljs-string">&quot;minute&quot;</span>);
+<span class="hljs-keyword">const</span> future = now.<span class="hljs-title function_">add</span>(<span class="hljs-number">10</span>, <span class="hljs-string">&quot;minute&quot;</span>);
 <span class="hljs-comment">// formatメソッドで任意の書式の文字列に変換する</span>
-<span class="hljs-built_in">console</span>.log(future.format(<span class="hljs-string">&quot;YYYY/MM/DD HH:mm&quot;</span>));
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(future.<span class="hljs-title function_">format</span>(<span class="hljs-string">&quot;YYYY/MM/DD HH:mm&quot;</span>));
 </code></pre>
 <!-- ECMA-402 と Temporalについてを書く -->
 <h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>まとめ </h2>
@@ -1696,7 +1696,7 @@ ISO 8601とは国際規格となっている文字列の形式で、<code>2006-0
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"日付や時刻を扱うビルトインオブジェクトのDateを紹介します。","title":"Date","level":"1.3.25","depth":2,"next":{"title":"Math","level":"1.3.26","depth":2,"path":"basic/math/README.md","ref":"./basic/math/README.md","articles":[]},"previous":{"title":"JSON","level":"1.3.24","depth":2,"path":"basic/json/README.md","ref":"./basic/json/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/date/README.md","mtime":"2023-07-16T01:53:15.649Z","type":"markdown"},"gitbook":{"version":"4.0.8","time":"2023-07-16T01:53:46.643Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"日付や時刻を扱うビルトインオブジェクトのDateを紹介します。","title":"Date","level":"1.3.25","depth":2,"next":{"title":"Math","level":"1.3.26","depth":2,"path":"basic/math/README.md","ref":"./basic/math/README.md","articles":[]},"previous":{"title":"JSON","level":"1.3.24","depth":2,"path":"basic/json/README.md","ref":"./basic/json/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/date/README.md","mtime":"2023-07-16T12:14:13.145Z","type":"markdown"},"gitbook":{"version":"5.0.0","time":"2023-07-16T12:14:45.721Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

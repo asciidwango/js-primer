@@ -6,7 +6,7 @@
         <title>ループと反復処理 · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="for文やwhile文を使った反復処理についてを紹介します。また、同等の反復処理がArrayのメソッドでも実現できることについても紹介します。">
-        <meta name="generator" content="HonKit 4.0.8">
+        <meta name="generator" content="HonKit 5.0.0">
         
         
         
@@ -1534,12 +1534,12 @@
 また、<code>実行する文</code>にて、<code>x</code>の値を増やし<code>条件式</code>が<code>false</code>となるようにしています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">let</span> x = <span class="hljs-number">0</span>;
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`ループ開始前のxの値: <span class="hljs-subst">${x}</span>`</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`ループ開始前のxの値: <span class="hljs-subst">${x}</span>`</span>);
 <span class="hljs-keyword">while</span> (x &lt; <span class="hljs-number">10</span>) {
-    <span class="hljs-built_in">console</span>.log(x);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x);
     x += <span class="hljs-number">1</span>;
 }
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">`ループ終了後のxの値: <span class="hljs-subst">${x}</span>`</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`ループ終了後のxの値: <span class="hljs-subst">${x}</span>`</span>);
 </code></pre>
 <p>つまり、<code>実行する文</code>の中で<code>条件式</code>が<code>false</code>となるような処理を書かないと無限ループします。
 JavaScriptにはより安全な反復処理の書き方があるため、while文は使う場面が限られています。</p>
@@ -1551,7 +1551,7 @@ JavaScriptにはより安全な反復処理の書き方があるため、while�
 <pre><code class="lang-js"><span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>;
 <span class="hljs-comment">// 条件式が常にtrueになるため、無限ループする</span>
 <span class="hljs-keyword">while</span> (i &gt; <span class="hljs-number">0</span>) {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${i}</span>回目のループ`</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">${i}</span>回目のループ`</span>);
     i += <span class="hljs-number">1</span>;
 }
 </code></pre>
@@ -1580,7 +1580,7 @@ Node.jsで実行している場合は<code>Ctrl + C</code>を入力し、終了�
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> x = <span class="hljs-number">1000</span>;
 <span class="hljs-keyword">do</span> {
-    <span class="hljs-built_in">console</span>.log(x); <span class="hljs-comment">// =&gt; 1000</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; 1000</span>
 } <span class="hljs-keyword">while</span> (x &lt; <span class="hljs-number">10</span>);
 </code></pre>
 <p>この仕組みをうまく利用し、ループの開始前とループ中の処理をまとめて書くことができます。
@@ -1610,22 +1610,22 @@ Node.jsで実行している場合は<code>Ctrl + C</code>を入力し、終了�
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {
     total += i + <span class="hljs-number">1</span>; <span class="hljs-comment">// 1から10の値をtotalに加算している</span>
 }
-<span class="hljs-built_in">console</span>.log(total); <span class="hljs-comment">// =&gt; 55</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(total); <span class="hljs-comment">// =&gt; 55</span>
 </code></pre>
 <p>このコードは1から10までの合計を電卓で計算すればいいので、普通は必要ありませんね。
 もう少し実用的なものを考えると、任意の数値の入った配列を受け取り、その合計を計算して返すという関数を実装すると良さそうです。</p>
 <p>次のコードでは、任意の数値が入った配列を受け取り、その合計値を返す <code>sum</code> 関数を実装しています。
 <code>numbers</code>配列に含まれている要素を先頭から順番に変数<code>total</code>へ加算することで合計値を計算しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">numbers</span>) </span>{
+<pre><code class="lang-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">sum</span>(<span class="hljs-params">numbers</span>) {
     <span class="hljs-keyword">let</span> total = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; numbers.length; i++) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; numbers.<span class="hljs-property">length</span>; i++) {
         total += numbers[i];
     }
     <span class="hljs-keyword">return</span> total;
 }
 
-<span class="hljs-built_in">console</span>.log(sum([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>])); <span class="hljs-comment">// =&gt; 15</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">sum</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>])); <span class="hljs-comment">// =&gt; 15</span>
 </code></pre>
 <p>JavaScriptの配列である<code>Array</code>オブジェクトには、反復処理のためのメソッドが備わっています。
 そのため、配列のメソッドを使った反復処理も合わせて見ていきます。</p>
@@ -1633,7 +1633,7 @@ Node.jsで実行している場合は<code>Ctrl + C</code>を入力し、終了�
 <p>配列には<code>forEach</code>メソッドというfor文と同じように反復処理を行うメソッドがあります。</p>
 <p><code>forEach</code>メソッドでの反復処理は、次のように書けます。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
-array.forEach(<span class="hljs-function"><span class="hljs-params">currentValue</span> =&gt;</span> {
+array.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">currentValue</span> =&gt;</span> {
     <span class="hljs-comment">// 配列の要素ごとに呼び出される処理</span>
 });
 </code></pre>
@@ -1643,14 +1643,14 @@ array.forEach(<span class="hljs-function"><span class="hljs-params">currentValue
 <!-- doctest: ReferenceError -->
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
 <span class="hljs-comment">// forEachは&quot;コールバック関数&quot;を受け取る高階関数</span>
-array.forEach(コールバック関数);
+array.<span class="hljs-title function_">forEach</span>(コールバック関数);
 </code></pre>
 <p><code>forEach</code>メソッドのコールバック関数には、配列の要素が先頭から順番に渡されて実行されます。
 つまり、コールバック関数の仮引数であるcurrentValueには、1から3の値が順番に渡されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
-array.forEach(<span class="hljs-function"><span class="hljs-params">currentValue</span> =&gt;</span> {
-    <span class="hljs-built_in">console</span>.log(currentValue);
+array.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">currentValue</span> =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(currentValue);
 });
 <span class="hljs-comment">// 1</span>
 <span class="hljs-comment">// 2</span>
@@ -1659,15 +1659,15 @@ array.forEach(<span class="hljs-function"><span class="hljs-params">currentValue
 </code></pre>
 <p>先ほどのfor文の例と同じ数値の合計を返す<code>sum</code> 関数を<code>forEach</code>メソッドで実装してみます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span>(<span class="hljs-params">numbers</span>) </span>{
+<pre><code class="lang-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">sum</span>(<span class="hljs-params">numbers</span>) {
     <span class="hljs-keyword">let</span> total = <span class="hljs-number">0</span>;
-    numbers.forEach(<span class="hljs-function"><span class="hljs-params">num</span> =&gt;</span> {
+    numbers.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">num</span> =&gt;</span> {
         total += num;
     });
     <span class="hljs-keyword">return</span> total;
 }
 
-sum([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]); <span class="hljs-comment">// =&gt; 15</span>
+<span class="hljs-title function_">sum</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]); <span class="hljs-comment">// =&gt; 15</span>
 </code></pre>
 <p><code>forEach</code>はfor文の<code>条件式</code>に相当するものはなく、必ず配列のすべての要素を反復処理します。
 変数<code>i</code>といった一時的な値を定義する必要がないため、シンプルに反復処理を書けます。</p>
@@ -1685,7 +1685,7 @@ while、do-while、forの中で使い、処理中のループを抜けて次の�
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">15</span>, <span class="hljs-number">20</span>];
 <span class="hljs-comment">// 偶数があるかどうか</span>
 <span class="hljs-keyword">let</span> isEvenIncluded = <span class="hljs-literal">false</span>;
-<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; numbers.length; i++) {
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; numbers.<span class="hljs-property">length</span>; i++) {
     <span class="hljs-keyword">const</span> num = numbers[i];
     <span class="hljs-comment">// numが2で割り切れるなら偶数</span>
     <span class="hljs-keyword">if</span> (num % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>) {
@@ -1693,7 +1693,7 @@ while、do-while、forの中で使い、処理中のループを抜けて次の�
         <span class="hljs-keyword">break</span>;
     }
 }
-<span class="hljs-built_in">console</span>.log(isEvenIncluded); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(isEvenIncluded); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <p>1つでも偶数があるかがわかればいいため、配列内から最初の偶数を見つけたらfor文での反復処理を終了します。
 このような処理は、使い回せるように関数として実装するのが一般的です。</p>
@@ -1701,15 +1701,15 @@ while、do-while、forの中で使い、処理中のループを抜けて次の�
 次のコードでは、break文が実行され、ループを抜けた後にreturn文で結果を返しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// 引数の`num`が偶数ならtrueを返す</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isEven</span>(<span class="hljs-params">num</span>) </span>{
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">isEven</span>(<span class="hljs-params">num</span>) {
     <span class="hljs-keyword">return</span> num % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>;
 }
 <span class="hljs-comment">// 引数の`numbers`に偶数が含まれているならtrueを返す</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isEvenIncluded</span>(<span class="hljs-params">numbers</span>) </span>{
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">isEvenIncluded</span>(<span class="hljs-params">numbers</span>) {
     <span class="hljs-keyword">let</span> isEvenIncluded = <span class="hljs-literal">false</span>;
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; numbers.length; i++) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; numbers.<span class="hljs-property">length</span>; i++) {
         <span class="hljs-keyword">const</span> num = numbers[i];
-        <span class="hljs-keyword">if</span> (isEven(num)) {
+        <span class="hljs-keyword">if</span> (<span class="hljs-title function_">isEven</span>(num)) {
             isEvenIncluded = <span class="hljs-literal">true</span>;
             <span class="hljs-keyword">break</span>;
         }
@@ -1717,25 +1717,25 @@ while、do-while、forの中で使い、処理中のループを抜けて次の�
     <span class="hljs-keyword">return</span> isEvenIncluded;
 }
 <span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">15</span>, <span class="hljs-number">20</span>];
-<span class="hljs-built_in">console</span>.log(isEvenIncluded(array)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">isEvenIncluded</span>(array)); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <p>return文は現在の関数を終了させることができるため、次のように書くこともできます。
 <code>numbers</code>に1つでも偶数が含まれていれば結果は<code>true</code>となるため、偶数の値が見つかった時点で<code>true</code>を返しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isEven</span>(<span class="hljs-params">num</span>) </span>{
+<pre><code class="lang-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">isEven</span>(<span class="hljs-params">num</span>) {
     <span class="hljs-keyword">return</span> num % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>;
 }
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isEvenIncluded</span>(<span class="hljs-params">numbers</span>) </span>{
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; numbers.length; i++) {
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">isEvenIncluded</span>(<span class="hljs-params">numbers</span>) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; numbers.<span class="hljs-property">length</span>; i++) {
         <span class="hljs-keyword">const</span> num = numbers[i];
-        <span class="hljs-keyword">if</span> (isEven(num)) {
+        <span class="hljs-keyword">if</span> (<span class="hljs-title function_">isEven</span>(num)) {
             <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
         }
     }
     <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
 }
 <span class="hljs-keyword">const</span> numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">15</span>, <span class="hljs-number">20</span>];
-<span class="hljs-built_in">console</span>.log(isEvenIncluded(numbers)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">isEvenIncluded</span>(numbers)); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <p>偶数を見つけたらすぐにreturnすることで一時的な変数が不要となり、より簡潔に書けました。</p>
 <h3 id="array-some"><a name="array-some" class="plugin-anchor" href="#array-some"><i class="fa fa-link" aria-hidden="true"></i></a>配列の<code>some</code>メソッド </h3>
@@ -1744,18 +1744,18 @@ while、do-while、forの中で使い、処理中のループを抜けて次の�
 <p><code>some</code>メソッドは、配列の各要素をテストする処理をコールバック関数として受け取ります。
 コールバック関数が、一度でも<code>true</code>を返した時点で反復処理を終了し、<code>some</code>メソッドは<code>true</code>を返します。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
-<span class="hljs-keyword">const</span> isPassed = array.some(<span class="hljs-function"><span class="hljs-params">currentValue</span> =&gt;</span> {
+<span class="hljs-keyword">const</span> isPassed = array.<span class="hljs-title function_">some</span>(<span class="hljs-function"><span class="hljs-params">currentValue</span> =&gt;</span> {
     <span class="hljs-comment">// テストをパスするとtrue、そうでないならfalseを返す</span>
 });
 </code></pre>
 <p><code>some</code>メソッドを使うことで、配列に偶数が含まれているかは次のように書くことができます。
 受け取った値が偶数であるかをテストするコールバック関数として<code>isEven</code>関数を渡します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isEven</span>(<span class="hljs-params">num</span>) </span>{
+<pre><code class="lang-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">isEven</span>(<span class="hljs-params">num</span>) {
     <span class="hljs-keyword">return</span> num % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>;
 }
 <span class="hljs-keyword">const</span> numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">15</span>, <span class="hljs-number">20</span>];
-<span class="hljs-built_in">console</span>.log(numbers.some(isEven)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(numbers.<span class="hljs-title function_">some</span>(isEven)); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <h2 id="continue-statement"><a name="continue-statement" class="plugin-anchor" href="#continue-statement"><i class="fa fa-link" aria-hidden="true"></i></a>continue文 </h2>
 <p>continue文は現在の反復処理を終了して、次の反復処理を行います。
@@ -1773,30 +1773,30 @@ continue文は、while、do-while、forの中で使うことができます。</
 偶数ではない場合、処理中のfor文をスキップしています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// `number`が偶数ならtrueを返す</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isEven</span>(<span class="hljs-params">num</span>) </span>{
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">isEven</span>(<span class="hljs-params">num</span>) {
     <span class="hljs-keyword">return</span> num % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>;
 }
 <span class="hljs-comment">// `numbers`に含まれている偶数だけを取り出す</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">filterEven</span>(<span class="hljs-params">numbers</span>) </span>{
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">filterEven</span>(<span class="hljs-params">numbers</span>) {
     <span class="hljs-keyword">const</span> results = [];
-    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; numbers.length; i++) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; numbers.<span class="hljs-property">length</span>; i++) {
         <span class="hljs-keyword">const</span> num = numbers[i];
         <span class="hljs-comment">// 偶数ではないなら、次のループへ</span>
-        <span class="hljs-keyword">if</span> (!isEven(num)) {
+        <span class="hljs-keyword">if</span> (!<span class="hljs-title function_">isEven</span>(num)) {
             <span class="hljs-keyword">continue</span>;
         }
         <span class="hljs-comment">// 偶数を`results`に追加</span>
-        results.push(num);
+        results.<span class="hljs-title function_">push</span>(num);
     }
     <span class="hljs-keyword">return</span> results;
 }
 <span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">15</span>, <span class="hljs-number">20</span>];
-<span class="hljs-built_in">console</span>.log(filterEven(array)); <span class="hljs-comment">// =&gt; [10, 20]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">filterEven</span>(array)); <span class="hljs-comment">// =&gt; [10, 20]</span>
 </code></pre>
 <p>もちろん、次のように<code>continue</code>文を使わずに「偶数なら<code>results</code>へ追加する」という書き方も可能です。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-keyword">if</span> (isEven(number)) {
-    results.push(number);
+<pre><code class="lang-js"><span class="hljs-keyword">if</span> (<span class="hljs-title function_">isEven</span>(number)) {
+    results.<span class="hljs-title function_">push</span>(number);
 }
 </code></pre>
 <p>この場合、条件が複雑になってきた場合にネストが深くなってコードが読みにくくなります。
@@ -1808,19 +1808,19 @@ continue文は、while、do-while、forの中で使うことができます。</
 コールバック関数が<code>true</code>を返した要素のみを集めた新しい配列を返します。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
 <span class="hljs-comment">// テストをパスしたものを集めた配列</span>
-<span class="hljs-keyword">const</span> filteredArray = array.filter(<span class="hljs-function">(<span class="hljs-params">currentValue, index, array</span>) =&gt;</span> {
+<span class="hljs-keyword">const</span> filteredArray = array.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">currentValue, index, array</span>) =&gt;</span> {
     <span class="hljs-comment">// テストをパスするならtrue、そうでないならfalseを返す</span>
 });
 </code></pre>
 <p>先ほどのcontinue文を使った値の絞り込みは<code>filter</code>メソッドを使うとより簡潔に書けます。
 次のコードでは、<code>filter</code>メソッドを使って偶数だけに絞り込んでいます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isEven</span>(<span class="hljs-params">num</span>) </span>{
+<pre><code class="lang-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">isEven</span>(<span class="hljs-params">num</span>) {
     <span class="hljs-keyword">return</span> num % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>;
 }
 
 <span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">15</span>, <span class="hljs-number">20</span>];
-<span class="hljs-built_in">console</span>.log(array.filter(isEven)); <span class="hljs-comment">// =&gt; [10, 20]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-title function_">filter</span>(isEven)); <span class="hljs-comment">// =&gt; [10, 20]</span>
 </code></pre>
 <h2 id="for-in-statement"><a name="for-in-statement" class="plugin-anchor" href="#for-in-statement"><i class="fa fa-link" aria-hidden="true"></i></a>for...in文 </h2>
 <p>for...in文はオブジェクトのプロパティに対して、反復処理を行います。<sup><a href="#fn_1" id="reffn_1">1</a></sup></p>
@@ -1841,7 +1841,7 @@ continue文は、while、do-while、forの中で使うことができます。</
 <span class="hljs-comment">// 注記: ループのたびに毎回新しいブロックに変数keyが定義されるため、再定義エラーが発生しない</span>
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> obj) {
     <span class="hljs-keyword">const</span> value = obj[key];
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`key:<span class="hljs-subst">${key}</span>, value:<span class="hljs-subst">${value}</span>`</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`key:<span class="hljs-subst">${key}</span>, value:<span class="hljs-subst">${value}</span>`</span>);
 }
 <span class="hljs-comment">// &quot;key:a, value:1&quot;</span>
 <span class="hljs-comment">// &quot;key:b, value:2&quot;</span>
@@ -1861,9 +1861,9 @@ for...in文は、対象となるオブジェクトのプロパティを列挙す
     <span class="hljs-string">&quot;b&quot;</span>: <span class="hljs-number">2</span>,
     <span class="hljs-string">&quot;c&quot;</span>: <span class="hljs-number">3</span>
 };
-<span class="hljs-built_in">Object</span>.keys(obj).forEach(<span class="hljs-function"><span class="hljs-params">key</span> =&gt;</span> {
+<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(obj).<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">key</span> =&gt;</span> {
     <span class="hljs-keyword">const</span> value = obj[key];
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`key:<span class="hljs-subst">${key}</span>, value:<span class="hljs-subst">${value}</span>`</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`key:<span class="hljs-subst">${key}</span>, value:<span class="hljs-subst">${value}</span>`</span>);
 });
 <span class="hljs-comment">// &quot;key:a, value:1&quot;</span>
 <span class="hljs-comment">// &quot;key:b, value:2&quot;</span>
@@ -1880,7 +1880,7 @@ for...in文が列挙する配列オブジェクトのプロパティ名は、要
     <span class="hljs-comment">// 0 + &quot;0&quot; + &quot;1&quot; という文字列結合が行われる</span>
     total += num;
 }
-<span class="hljs-built_in">console</span>.log(total); <span class="hljs-comment">// =&gt; &quot;001&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(total); <span class="hljs-comment">// =&gt; &quot;001&quot;</span>
 </code></pre>
 <p>配列の内容に対して反復処理を行う場合は、for文や<code>forEach</code>メソッド、後述するfor...of文を使うべきでしょう。</p>
 <p>このようにfor...in文は正しく扱うのが難しいですが、代わりとなる手段が豊富にあります。
@@ -1902,7 +1902,7 @@ for...in文とは異なり、インデックス値ではなく配列の値を列
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> value <span class="hljs-keyword">of</span> array) {
-    <span class="hljs-built_in">console</span>.log(value);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(value);
 }
 <span class="hljs-comment">// 1</span>
 <span class="hljs-comment">// 2</span>
@@ -1913,7 +1913,7 @@ for...in文とは異なり、インデックス値ではなく配列の値を列
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;𠮷野家&quot;</span>;
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> value <span class="hljs-keyword">of</span> str) {
-    <span class="hljs-built_in">console</span>.log(value);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(value);
 }
 <span class="hljs-comment">// &quot;𠮷&quot;</span>
 <span class="hljs-comment">// &quot;野&quot;</span>
@@ -1962,7 +1962,7 @@ for文などの構文ではcontinue文やbreak文が利用できますが、配�
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"for文やwhile文を使った反復処理についてを紹介します。また、同等の反復処理がArrayのメソッドでも実現できることについても紹介します。","title":"ループと反復処理","level":"1.3.11","depth":2,"next":{"title":"オブジェクト","level":"1.3.12","depth":2,"path":"basic/object/README.md","ref":"./basic/object/README.md","articles":[]},"previous":{"title":"条件分岐","level":"1.3.10","depth":2,"path":"basic/condition/README.md","ref":"./basic/condition/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/loop/README.md","mtime":"2023-07-16T01:53:15.653Z","type":"markdown"},"gitbook":{"version":"4.0.8","time":"2023-07-16T01:53:46.643Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"for文やwhile文を使った反復処理についてを紹介します。また、同等の反復処理がArrayのメソッドでも実現できることについても紹介します。","title":"ループと反復処理","level":"1.3.11","depth":2,"next":{"title":"オブジェクト","level":"1.3.12","depth":2,"path":"basic/object/README.md","ref":"./basic/object/README.md","articles":[]},"previous":{"title":"条件分岐","level":"1.3.10","depth":2,"path":"basic/condition/README.md","ref":"./basic/condition/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/loop/README.md","mtime":"2023-07-16T12:14:13.145Z","type":"markdown"},"gitbook":{"version":"5.0.0","time":"2023-07-16T12:14:45.721Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
