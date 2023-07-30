@@ -1998,9 +1998,10 @@ array = [];
 array = []; <span class="hljs-comment">// TypeError: invalid assignment to const `array&apos; が発生</span>
 </code></pre>
 <h2 id="mutable-immutable"><a name="mutable-immutable" class="plugin-anchor" href="#mutable-immutable"><i class="fa fa-link" aria-hidden="true"></i></a>破壊的なメソッドと非破壊的なメソッド </h2>
-<p>これまで紹介してきた配列を変更するメソッドには、破壊的なメソッドと非破壊的メソッドがあります。この破壊的なメソッドと非破壊的メソッドの違いを知ることは、意図しない結果を避けるために重要です。
-破壊的なメソッドとは、配列オブジェクトそのものを変更し、変更した配列または変更箇所を返すメソッドです。
-非破壊的メソッドとは、配列オブジェクトのコピーを作成してから変更し、そのコピーした配列を返すメソッドです。</p>
+<p>これまで紹介してきた配列を変更するメソッドには、破壊的なメソッドと非破壊的メソッドがあります。
+この破壊的なメソッドと非破壊的メソッドの違いを知ることは、意図しない結果を避けるために重要です。</p>
+<p>破壊的なメソッド（Mutable Method）とは、配列オブジェクトそのものを変更し、変更した配列または変更箇所を返すメソッドです。
+非破壊的メソッド（Immutable Method）とは、配列オブジェクトのコピーを作成してから変更し、そのコピーした配列を返すメソッドです。</p>
 <!-- 具体例:破壊的なメソッド -->
 <p>破壊的なメソッドの例として、配列に要素を追加するArrayの<code>push</code>メソッドがあります。
 <code>push</code>メソッドは、<code>myArray</code>の配列そのものへ要素を追加しています。
@@ -2027,7 +2028,7 @@ array = []; <span class="hljs-comment">// TypeError: invalid assignment to const
 <span class="hljs-comment">// `newArray`と`myArray`は異なる配列オブジェクト</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myArray === newArray); <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
-<p>JavaScriptにおいて破壊的なメソッドと非破壊的メソッドを名前から見分ける方法はありません。
+<p>JavaScriptにおいて破壊的なメソッドと非破壊的メソッドを名前から見分けるのは難しいという問題があります。
 また、配列を返す破壊的なメソッドもあるため、返り値からも判別できません。
 たとえば、Arrayの<code>sort</code>メソッドは返り値がソート済みの配列ですが破壊的メソッドです。</p>
 <p>次の表で紹介するメソッドは破壊的なメソッドです。</p>
@@ -2100,7 +2101,8 @@ array = []; <span class="hljs-comment">// TypeError: invalid assignment to const
 </code></pre>
 <p>一方、非破壊的メソッドは配列のコピーを作成するため、元々の配列に対して影響はありません。
 この<code>removeAtIndex</code>関数を非破壊的なものにするには、受け取った配列をコピーしてから変更を加える必要があります。</p>
-<p>JavaScriptには<code>copy</code>メソッドそのものは存在しませんが、配列をコピーする方法としてArrayの<code>slice</code>メソッドと<code>concat</code>メソッドが利用されています。<code>slice</code>メソッドと<code>concat</code>メソッドは引数なしで呼び出すと、その配列のコピーを返します。</p>
+<p>JavaScriptには<code>copy</code>メソッドそのものは存在しませんが、配列をコピーする方法としてArrayの<code>slice</code>メソッドと<code>concat</code>メソッドが利用されています。
+<code>slice</code>メソッドと<code>concat</code>メソッドは引数なしで呼び出すと、その配列のコピーを返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> myArray = [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>];
 <span class="hljs-comment">// `slice`は`myArray`のコピーを返す - `myArray.concat()`でも同じ</span>
@@ -2129,9 +2131,102 @@ myArray.<span class="hljs-title function_">push</span>(<span class="hljs-string"
 <span class="hljs-comment">// 元の`array`には影響がない</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
 </code></pre>
-<p>このようにJavaScriptの配列には破壊的なメソッドと非破壊的メソッドが混在しています。そのため、統一的なインターフェースで扱えないのが現状です。
-このような背景もあるため、JavaScriptには配列を扱うためのさまざまライブラリが存在します。
-非破壊的な配列を扱うライブラリの例として<a href="https://github.com/azu/immutable-array-prototype" title="azu/immutable-array-prototype: A collection of Immutable Array prototype methods(Per method packages)." target="_blank">immutable-array-prototype</a>や<a href="https://immutable-js.com/" title="Immutable.js" target="_blank">Immutable.js</a>などがあります。</p>
+<p>このようにJavaScriptの配列には破壊的なメソッドと非破壊的メソッドが混在しています。
+名前からも区別することが難しく、副作用を避けるためにコピーを作ってから破壊的メソッドを使うというパターンが利用されていました。</p>
+<p>しかし、ES2023でこの状況を改善する変更が追加されています。
+今まで、破壊的なメソッドしかなかった、<code>splice</code>、<code>reverse</code>、<code>sort</code>に対して、
+非破壊的なバージョンである<code>toSpliced</code>、<code>toReversed</code>、<code>toSorted</code>が追加されました。</p>
+<p>これらの<code>to</code>から始まる非破壊的メソッドが受け取る引数は破壊的なメソッドと同じですが、非破壊的に変更した配列を返す点が異なります。
+次のコードの<code>toSpliced</code>メソッドは、配列を複製してから変更するため、元々の配列である<code>array</code>には影響を与えていないことがわかります。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2023" } --></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>];
+<span class="hljs-comment">// `toSpliced`は`array`を複製してから変更する</span>
+<span class="hljs-keyword">const</span> newArray = array.<span class="hljs-title function_">toSpliced</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(newArray); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;C&quot;]</span>
+<span class="hljs-comment">// コピー元の`array`には影響がない</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
+</code></pre>
+<p>先ほど<code>removeAtIndex</code>関数の実装では、<code>slice</code>メソッドで配列をコピーしてから<code>splice</code>メソッドを呼び出していました。
+次のコードでは、<code>toSpliced</code>メソッドを使うことで、より簡潔に非破壊的な<code>removeAtIndex</code>関数を実装しています。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2023" } --></p>
+<pre><code class="lang-js"><span class="hljs-comment">// `array`の`index`番目の要素を削除した配列を返す関数</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">removeAtIndex</span>(<span class="hljs-params">array, index</span>) {
+    <span class="hljs-comment">// コピーを作成してから変更する</span>
+    <span class="hljs-keyword">return</span> array.<span class="hljs-title function_">toSpliced</span>(index, <span class="hljs-number">1</span>);
+}
+<span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>];
+<span class="hljs-comment">// `array`から1番目の要素を削除した配列を取得</span>
+<span class="hljs-keyword">const</span> newArray = <span class="hljs-title function_">removeAtIndex</span>(array, <span class="hljs-number">1</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(newArray); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;C&quot;]</span>
+<span class="hljs-comment">// 元の`array`には影響がない</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]</span>
+</code></pre>
+<p>また、ES2023では配列の指定したインデックスの要素を非破壊的に変更する<code>with</code>メソッドも追加されました。
+<code>array[index] = value</code>の代入処理は、元々の配列を変更する破壊的な処理です。
+ これに対して<code>with</code>メソッドは、配列を複製してから指定したインデックスの要素を変更した配列を返す非破壊的なメソッドです。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2023" } --></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>];
+<span class="hljs-comment">// `array`の1番目の要素を変更した配列を返す</span>
+<span class="hljs-keyword">const</span> newArray = array.<span class="hljs-title function_">with</span>(<span class="hljs-number">1</span>, <span class="hljs-string">&quot;B2&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(newArray); <span class="hljs-comment">// =&gt; [&quot;A&quot;, &quot;B2&quot;, &quot;C&quot;]</span>
+</code></pre>
+<p>次の表では、破壊的な方法に対応する非破壊的な方法をまとめています。</p>
+<table>
+<thead>
+<tr>
+<th>破壊的な方法</th>
+<th>非破壊な方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>array[index] = item</code></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/with" target="_blank"><code>Array.prototype.with</code></a><sup>[ES2023]</sup></td>
+</tr>
+<tr>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/pop" target="_blank"><code>Array.prototype.pop</code></a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/slice" target="_blank"><code>array.slice(0, -1)</code></a>と<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/at" target="_blank"><code>array.at(-1)</code></a><sup>[ES2022]</sup></td>
+</tr>
+<tr>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/push" target="_blank"><code>Array.prototype.push</code></a></td>
+<td><code>[...array, item]</code><sup>[ES2015]</sup></td>
+</tr>
+<tr>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/splice" target="_blank"><code>Array.prototype.splice</code></a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/toSpliced" target="_blank"><code>Array.prototype.toSpliced</code></a><sup>[ES2023]</sup></td>
+</tr>
+<tr>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse" target="_blank"><code>Array.prototype.reverse</code></a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/toReversed" target="_blank"><code>Array.prototype.toReversed</code></a><sup>[ES2023]</sup></td>
+</tr>
+<tr>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/sort" target="_blank"><code>Array.prototype.sort</code></a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/toSorted" target="_blank"><code>Array.prototype.toSorted</code></a><sup>[ES2023]</sup></td>
+</tr>
+<tr>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/shift" target="_blank"><code>Array.prototype.shift</code></a></td>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/slice" target="_blank"><code>array.slice(1)</code></a>と<a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/at" target="_blank"><code>array.at(0)</code></a><sup>[ES2022]</sup></td>
+</tr>
+<tr>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift" target="_blank"><code>Array.prototype.unshift</code></a></td>
+<td><code>[item, ...array]</code><sup>[ES2015]</sup></td>
+</tr>
+<tr>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin" target="_blank"><code>Array.prototype.copyWithin</code></a><sup>[ES2015]</sup></td>
+<td>なし</td>
+</tr>
+<tr>
+<td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/fill" target="_blank"><code>Array.prototype.fill</code></a><sup>[ES2015]</sup></td>
+<td>なし</td>
+</tr>
+</tbody>
+</table>
+<p>破壊的なメソッドは、シンプルですが元の配列も変更してしまうため、意図しない副作用が発生しバグの原因となる可能性があります。
+非破壊的なメソッドは、使い分けが必要ですが元の配列を変更せずに新しい配列を返すため、副作用が発生することはありません。</p>
+<p>そのため、まず非破壊的な方法で書けるかを検討し、そうではない場合に破壊的な方法を利用するとよいでしょう。</p>
 <h2 id="array-iterate"><a name="array-iterate" class="plugin-anchor" href="#array-iterate"><i class="fa fa-link" aria-hidden="true"></i></a>配列を反復処理するメソッド </h2>
 <p>「<a href="../loop/">ループと反復処理</a>」の章において配列を反復処理する方法を一部解説しましたが、改めて関連するArrayメソッドを見ていきます。
 反復処理の中でもよく利用されるのがArrayの<code>forEach</code>、<code>map</code>、<code>filter</code>、<code>reduce</code>メソッドです。
@@ -2402,7 +2497,7 @@ Array-likeオブジェクトとは配列のようにインデックスにアク�
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"配列は値を順番に格納できるオブジェクトです。この配列の作成、更新、削除などの基本的な操作や実際に使い方についてを紹介します。また配列における破壊的なメソッドと非破壊的メソッドの違いについても紹介します。","title":"配列","level":"1.3.14","depth":2,"next":{"title":"文字列","level":"1.3.15","depth":2,"path":"basic/string/README.md","ref":"./basic/string/README.md","articles":[]},"previous":{"title":"プロトタイプオブジェクト","level":"1.3.13","depth":2,"path":"basic/prototype-object/README.md","ref":"./basic/prototype-object/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/array/README.md","mtime":"2023-07-19T09:55:32.015Z","type":"markdown"},"gitbook":{"version":"5.0.0","time":"2023-07-19T09:55:56.581Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"配列は値を順番に格納できるオブジェクトです。この配列の作成、更新、削除などの基本的な操作や実際に使い方についてを紹介します。また配列における破壊的なメソッドと非破壊的メソッドの違いについても紹介します。","title":"配列","level":"1.3.14","depth":2,"next":{"title":"文字列","level":"1.3.15","depth":2,"path":"basic/string/README.md","ref":"./basic/string/README.md","articles":[]},"previous":{"title":"プロトタイプオブジェクト","level":"1.3.13","depth":2,"path":"basic/prototype-object/README.md","ref":"./basic/prototype-object/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2022","nodeversion":"18.14.0","npmversion":"9.3.1","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/array/README.md","mtime":"2023-07-30T14:49:00.256Z","type":"markdown"},"gitbook":{"version":"5.0.0","time":"2023-07-30T14:49:22.874Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
