@@ -659,9 +659,11 @@ console.log(array.length); // => 0
 
 ## 破壊的なメソッドと非破壊的なメソッド {#mutable-immutable}
 
-これまで紹介してきた配列を変更するメソッドには、破壊的なメソッドと非破壊的メソッドがあります。この破壊的なメソッドと非破壊的メソッドの違いを知ることは、意図しない結果を避けるために重要です。
-破壊的なメソッドとは、配列オブジェクトそのものを変更し、変更した配列または変更箇所を返すメソッドです。
-非破壊的メソッドとは、配列オブジェクトのコピーを作成してから変更し、そのコピーした配列を返すメソッドです。
+これまで紹介してきた配列を変更するメソッドには、破壊的なメソッドと非破壊的メソッドがあります。
+この破壊的なメソッドと非破壊的メソッドの違いを知ることは、意図しない結果を避けるために重要です。
+
+破壊的なメソッド（Mutable Method）とは、配列オブジェクトそのものを変更し、変更した配列または変更箇所を返すメソッドです。
+非破壊的メソッド（Immutable Method）とは、配列オブジェクトのコピーを作成してから変更し、そのコピーした配列を返すメソッドです。
 
 <!-- 具体例:破壊的なメソッド -->
 
@@ -698,7 +700,7 @@ console.log(myArray === newArray); // => false
 ```
 
 
-JavaScriptにおいて破壊的なメソッドと非破壊的メソッドを名前から見分ける方法はありません。
+JavaScriptにおいて破壊的なメソッドと非破壊的メソッドを名前から見分けるのは難しいという問題があります。
 また、配列を返す破壊的なメソッドもあるため、返り値からも判別できません。
 たとえば、Arrayの`sort`メソッドは返り値がソート済みの配列ですが破壊的メソッドです。
 
@@ -748,7 +750,8 @@ console.log(array); // => ["A", "C"]
 一方、非破壊的メソッドは配列のコピーを作成するため、元々の配列に対して影響はありません。
 この`removeAtIndex`関数を非破壊的なものにするには、受け取った配列をコピーしてから変更を加える必要があります。
 
-JavaScriptには`copy`メソッドそのものは存在しませんが、配列をコピーする方法としてArrayの`slice`メソッドと`concat`メソッドが利用されています。`slice`メソッドと`concat`メソッドは引数なしで呼び出すと、その配列のコピーを返します。
+JavaScriptには`copy`メソッドそのものは存在しませんが、配列をコピーする方法としてArrayの`slice`メソッドと`concat`メソッドが利用されています。
+`slice`メソッドと`concat`メソッドは引数なしで呼び出すと、その配列のコピーを返します。
 
 {{book.console}}
 ```js
@@ -783,9 +786,78 @@ console.log(newArray); // => ["A", "C"]
 console.log(array); // => ["A", "B", "C"]
 ```
 
-このようにJavaScriptの配列には破壊的なメソッドと非破壊的メソッドが混在しています。そのため、統一的なインターフェースで扱えないのが現状です。
-このような背景もあるため、JavaScriptには配列を扱うためのさまざまライブラリが存在します。
-非破壊的な配列を扱うライブラリの例として[immutable-array-prototype][]や[Immutable.js][]などがあります。
+このようにJavaScriptの配列には破壊的なメソッドと非破壊的メソッドが混在しています。
+名前からも区別することが難しく、副作用を避けるためにコピーを作ってから破壊的メソッドを使うというパターンが利用されていました。
+
+しかし、ES2023でこの状況を改善する変更が追加されています。
+今まで、破壊的なメソッドしかなかった、`splice`、`reverse`、`sort`に対して、
+非破壊的なバージョンである`toSpliced`、`toReversed`、`toSorted`が追加されました。
+
+これらの`to`から始まる非破壊的メソッドが受け取る引数は破壊的なメソッドと同じですが、非破壊的に変更した配列を返す点が異なります。
+次のコードの`toSpliced`メソッドは、配列を複製してから変更するため、元々の配列である`array`には影響を与えていないことがわかります。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2023" } -->
+```js
+const array = ["A", "B", "C"];
+// `toSpliced`は`array`を複製してから変更する
+const newArray = array.toSpliced(1, 1);
+console.log(newArray); // => ["A", "C"]
+// コピー元の`array`には影響がない
+console.log(array); // => ["A", "B", "C"]
+```
+
+先ほど`removeAtIndex`関数の実装では、`slice`メソッドで配列をコピーしてから`splice`メソッドを呼び出していました。
+次のコードでは、`toSpliced`メソッドを使うことで、より簡潔に非破壊的な`removeAtIndex`関数を実装しています。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2023" } -->
+```js
+// `array`の`index`番目の要素を削除した配列を返す関数
+function removeAtIndex(array, index) {
+    // コピーを作成してから変更する
+    return array.toSpliced(index, 1);
+}
+const array = ["A", "B", "C"];
+// `array`から1番目の要素を削除した配列を取得
+const newArray = removeAtIndex(array, 1);
+console.log(newArray); // => ["A", "C"]
+// 元の`array`には影響がない
+console.log(array); // => ["A", "B", "C"]
+```
+
+また、ES2023では配列の指定したインデックスの要素を非破壊的に変更する`with`メソッドも追加されました。
+`array[index] = value`の代入処理は、元々の配列を変更する破壊的な処理です。
+ これに対して`with`メソッドは、配列を複製してから指定したインデックスの要素を変更した配列を返す非破壊的なメソッドです。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2023" } -->
+```js
+const array = ["A", "B", "C"];
+// `array`の1番目の要素を変更した配列を返す
+const newArray = array.with(1, "B2");
+console.log(newArray); // => ["A", "B2", "C"]
+```
+
+次の表では、破壊的な方法に対応する非破壊的な方法をまとめています。
+
+| 破壊的な方法                                    | 非破壊な方法           |
+| ---------------------------------------- | ------------- |
+| `array[index] = item` | [`Array.prototype.with`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/with)<sup>[ES2023]</sup>      |
+| [`Array.prototype.pop`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/pop) | [`array.slice(0, -1)`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/slice)と[`array.at(-1)`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/at)<sup>[ES2022]</sup>       |
+| [`Array.prototype.push`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/push) | `[...array, item]`<sup>[ES2015]</sup> |
+| [`Array.prototype.splice`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) | [`Array.prototype.toSpliced`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/toSpliced)<sup>[ES2023]</sup> |
+| [`Array.prototype.reverse`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse) | [`Array.prototype.toReversed`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/toReversed)<sup>[ES2023]</sup>        |
+| [`Array.prototype.sort`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) | [`Array.prototype.toSorted`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/toSorted)<sup>[ES2023]</sup>       |
+| [`Array.prototype.shift`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/shift) | [`array.slice(1)`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/slice)と[`array.at(0)`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/at)<sup>[ES2022]</sup>    |
+| [`Array.prototype.unshift`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift) | `[item, ...array]`<sup>[ES2015]</sup>  |
+| [`Array.prototype.copyWithin`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/copyWithin)<sup>[ES2015]</sup> | なし        |
+| [`Array.prototype.fill`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/fill)<sup>[ES2015]</sup> | なし        |
+
+破壊的なメソッドは、シンプルですが元の配列も変更してしまうため、意図しない副作用が発生しバグの原因となる可能性があります。
+非破壊的なメソッドは、使い分けが必要ですが元の配列を変更せずに新しい配列を返すため、副作用が発生することはありません。
+
+そのため、まず非破壊的な方法で書けるかを検討し、そうではない場合に破壊的な方法を利用するとよいでしょう。
 
 ## 配列を反復処理するメソッド {#array-iterate}
 
