@@ -846,7 +846,7 @@ ES2023では、破壊的なメソッドに対応する非破壊的なメソッ�
 
 | 破壊的な方法                                    | 非破壊な方法           |
 | ---------------------------------------- | ------------- |
-| `array[index] = value` | [`array.with`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/with)<sup>[ES2023]</sup>      |
+| `array[index] = value` | [`Array.prototype.with`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/with)<sup>[ES2023]</sup>      |
 | [`Array.prototype.pop`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/pop) | [`array.slice(0, -1)`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/slice)と[`array.at(-1)`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/at)<sup>[ES2022]</sup>       |
 | [`Array.prototype.push`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/push) | `[...array, item]`<sup>[ES2015]</sup> |
 | [`Array.prototype.splice`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) | [`Array.prototype.toSpliced`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/toSpliced)<sup>[ES2023]</sup> |
