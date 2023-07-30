@@ -793,8 +793,8 @@ console.log(array); // => ["A", "B", "C"]
 今まで、破壊的なメソッドしかなかった、`splice`、`reverse`、`sort`に対して、
 非破壊的なバージョンである`toSpliced`、`toReversed`、`toSorted`が追加されました。
 
-これらの`to`から始まる非破壊的メソッドの受け取る引数は、破壊的なメソッドと同じです。
-しかし、配列を複製してから変更し、その複製された配列を返すという違いがあります。
+これらの`to`から始まる非破壊的メソッドが受け取る引数は破壊的なメソッドと同じですが、非破壊的に変更した配列を返す点が異なります。
+次のコードの`toSpliced`メソッドは、配列を複製してから変更するため、元々の配列である`array`には影響を与えていないことがわかります。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": "2023" } -->
@@ -807,8 +807,8 @@ console.log(newArray); // => ["A", "C"]
 console.log(array); // => ["A", "B", "C"]
 ```
 
-先ほどコードでは、`slice`メソッドで配列をコピーしてから`splice`メソッドを呼び出していました。
-`toSpliced`メソッドを利用すると、`slice`メソッドを呼び出す必要がなくなります。
+先ほど`removeAtIndex`関数の実装では、`slice`メソッドで配列をコピーしてから`splice`メソッドを呼び出していました。
+次のコードでは、`toSpliced`メソッドを使うことで、より簡潔に非破壊的な`removeAtIndex`関数を実装しています。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": "2023" } -->
