@@ -513,7 +513,7 @@ console.log(results); // => ["a","b"]
 つまり、`WeakSet`は値の追加と削除、存在確認以外のことができません。
 データの格納ではなく、データの一意性を確認することに特化したセットと言えるでしょう。
 
-また、弱い参照で値を持つ特性上、`WeakSet`の値として使えるのは参照型のオブジェクトと`Symbol`だけです。
+また、弱い参照で値を持つ特性上、`WeakSet`の値として使えるのは参照型のオブジェクトと`Symbol`[^es2023]だけです。
 
 ## まとめ {#conclusion}
 
@@ -536,4 +536,4 @@ console.log(results); // => ["a","b"]
 [プロトタイプオブジェクト]: ../prototype-object/README.md
 [`Object.prototype`を継承しないオブジェクト]: ../prototype-object/README.md#not-inherit-object
 
-[^es2023]: ES2023でSymbolをキーとして扱えるように仕様が変更されています。
+[^es2023]: ES2023でSymbolも扱えるように仕様が変更されています。
