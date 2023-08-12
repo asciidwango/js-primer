@@ -30,7 +30,6 @@
             observer.disconnect();
         }
         const callback = function(mutationsList) {
-            // Use traditional 'for loops' for IE 11
             for (const mutation of mutationsList) {
                 const mirrorConsole = Array.from(mutation.addedNodes).find(node => Boolean(node.dataset.mirrorConsole));
                 if (mirrorConsole) {
