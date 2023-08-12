@@ -19,7 +19,7 @@
     "sandpack"
   ],
   "variables": {
-    "esversion": "2022",
+    "esversion": "2023",
     "nodeversion": "18.14.0",
     "npmversion": "9.3.1",
     "triplebackticks": "```",
