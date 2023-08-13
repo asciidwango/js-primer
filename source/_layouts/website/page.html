@@ -178,8 +178,16 @@
     });
 </script>
 {% endblock %}
-{% block book_inner %} {{ super() }}
+{% block book_inner %}{{ super() }}
 <footer class="book_footer">
     <p>Copyright (c) 2016-present <a href="https://github.com/asciidwango/js-primer" target="_blank">jsprimer project</a></p>
 </footer>
+{% endblock %}
+{% block page %}{% for sponsor in page.sponsors %}
+<ul>
+    <li>Name: {{sponsor.name}}</li>
+    <li>URL: {{sponsor.url}}</li>
+    <li>Description: {{sponsor.description}}</li>
+</ul>
+{% endfor %}{{ super() }}
 {% endblock %}
