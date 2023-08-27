@@ -126,6 +126,8 @@ Copyright (c) 2016-present jsprimer project
 - ソースコード: MITライセンス
 - 文章: [CC BY-NC 4.0](http://creativecommons.org/licenses/by-nc/4.0/)
 
+`TeX/`ディレクトリ以下は、このライセンスの適応外です。
+
 ## Project Member
 
 jsprimerプロジェクトは次のメンバーで構成されています。
