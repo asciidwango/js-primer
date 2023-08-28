@@ -88,11 +88,11 @@ ECMAScript 2015と呼ばれる仕様の大きな更新が行われた際に、Ja
 
 ## ライセンス {#license}
 
-この書籍に記述されているすべてのソースコードは、MITライセンスに基づいたオープンソースソフトウェアとして提供されます。
-また、この書籍の文章はCreative CommonsのAttribution-NonCommercial 4.0（CC BY-NC 4.0）ライセンスに基づいて提供されます。
+この書籍に記述されているすべてのソースコードは、[MITライセンス][]に基づいたオープンソースソフトウェアとして提供されます。
+また、この書籍の文章は[Creative Commons Attribution 4.0][]（CC BY 4.0）ライセンスに基づいて提供されます。
 どちらも、著作権表示がされていればある程度自由に利用できるライセンスとなっています。
 
-ライセンスについての詳細は[ライセンスファイル][]を参照してください。
+詳しくは[ライセンスについて][]を参照してください。
 
 ## 書籍版について {#print-version}
 
@@ -297,6 +297,8 @@ ECMAScriptはアップデートにより、機能が利用できなくなると�
 [asciidwango/js-primer]: https://github.com/asciidwango/js-primer
 [jsprimer.net]: https://jsprimer.net/
 [mdn web docs]: https://developer.mozilla.org/ja/
-[ライセンスファイル]: https://github.com/asciidwango/js-primer/blob/master/LICENSE
+[MITライセンス]: https://github.com/asciidwango/js-primer/blob/master/LICENSE-MIT
+[Creative Commons Attribution 4.0]: https://github.com/asciidwango/js-primer/blob/master/LICENSE-CC-BY
+[ライセンスについて]: https://github.com/asciidwango/js-primer/blob/master/README.md#license
 [第一部:基本文法]: ../basic/README.md
 [第二部:ユースケース]: ../use-case/README.md

@@ -123,8 +123,16 @@ HonKitのbuildかつWatchをします。
 
 Copyright (c) 2016-present jsprimer project
 
-- ソースコード: MITライセンス
-- 文章: [CC BY-NC 4.0](http://creativecommons.org/licenses/by-nc/4.0/)
+jsprimerは次のライセンスで配布されています。
+
+- ソースコード: [MITライセンス](./LICENSE-MIT)
+- 文章: [CC BY 4.0](./LICENSE-CC-BY)
+
+**ソースコード** とは、書籍中のサンプルコードやこのプロジェクトを構成するプログラムのソースコードを示します。
+主にJavaScriptファイルに書かれたコードやMarkdownのコードブロックに書かれているサンプルコードを指します。
+
+**文章**とは、書籍の文章やサイト上の文章を示します。
+主にMarkdownファイル書かれている文章を指します。
 
 ## Project Member
 

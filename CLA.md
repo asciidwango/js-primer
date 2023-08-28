@@ -2,7 +2,7 @@
 
 このドキュメントでは、Contributor License Agreement（貢献者ライセンス同意書、以下 CLA）の取り扱いについて書いています。
 
-jsprimerプロジェクトは[MITライセンスとCC BY-NC 4.0](./LICENSE)の元で公開されています。
+jsprimerプロジェクトは[MITライセンス](./LICENSE-MIT)と[CC BY 4.0](./LICENSE-CC-BY)の元で公開されています。
 CLAはjsprimerプロジェクトの生成物となる書籍を販売するための権利をクリアにするために存在します。
 
 ## 概要
