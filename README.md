@@ -28,6 +28,11 @@ GitHub Sponsorsで著者を支援できます。
 
 - [Sponsor @azu on GitHub Sponsors](https://github.com/sponsors/azu)
 
+Open Collectiveでjsprimerプロジェクトを支援できます。
+Open Collectiveでの支援には、サイト上にロゴを表示するといった企業向けの特典があります。
+
+- [JavaScript Primer - Open Collective](https://opencollective.com/jsprimer)
+
 また、書籍版へのレビューを書くことも支援に繋がります。
 
 - [JavaScript Primer 改訂2版 迷わないための入門書 | azu, Suguru Inatomi |本 | 通販 | Amazon](https://www.amazon.co.jp/dp/4048931105/)

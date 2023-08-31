@@ -128,6 +128,11 @@ GitHub Sponsorsで著者を支援できます。
 
 - [Sponsor @azu on GitHub Sponsors](https://github.com/sponsors/azu)
 
+Open Collectiveでjsprimerプロジェクトを支援できます。
+Open Collectiveでの支援には、サイト上にロゴを表示するといった企業向けの特典があります。
+
+- [JavaScript Primer - Open Collective](https://opencollective.com/jsprimer)
+
 また、書籍版へのレビューを書くことも支援に繋がります。
 
 - [JavaScript Primer 改訂2版 迷わないための入門書 | azu, Suguru Inatomi |本 | 通販 | Amazon](https://www.amazon.co.jp/dp/4048931105/)
@@ -216,6 +221,7 @@ ECMAScriptはアップデートにより、機能が利用できなくなると�
 - [v2.0.0: ECMAScript 2020対応](https://github.com/asciidwango/js-primer/releases/tag/v2.0.0)
 - [v3.0.0: ECMAScript 2021対応](https://github.com/asciidwango/js-primer/releases/tag/v3.0.0)
 - [v4.0.0: ECMAScript 2022対応](https://github.com/asciidwango/js-primer/releases/tag/v4.0.0)
+- [v5.0.0: ECMAScript 2023対応/CC BYライセンスに変更/Open Collective](https://github.com/asciidwango/js-primer/releases/tag/v5.0.0)
 
 新しいバージョンが公開されたときに通知を受け取りたい方は、[GitHubリポジトリ](https://github.com/asciidwango/js-primer)を[Watch](https://github.com/asciidwango/js-primer/watchers)してください。
 
