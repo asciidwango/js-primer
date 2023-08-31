@@ -129,6 +129,7 @@ GitHub Sponsorsで著者を支援できます。
 - [Sponsor @azu on GitHub Sponsors](https://github.com/sponsors/azu)
 
 Open Collectiveでjsprimerプロジェクトを支援できます。
+Open Collectiveでの支援には、サイト上にロゴを表示するといった企業向けの特典があります。
 
 - [JavaScript Primer - Open Collective](https://opencollective.com/jsprimer)
 
