@@ -16,12 +16,11 @@
 </script>
 <script type="module">
     // コンソールUIでコード実行したらイベントとして送信する
-    const config = { childList: true };
     const onExecuteCode = (scriptType) => {
-        gtag('event','execute_code', {
-            'event_category': 'console',
-            'event_label': 'execute_code',
-            'script_type': scriptType || 'unknown'
+        gtag("event", "execute_code", {
+            "event_category": "console",
+            "event_label": "execute_code",
+            "script_type": scriptType || "unknown"
         });
     };
     let observer;
@@ -38,14 +37,35 @@
             }
         };
         observer = new MutationObserver(callback);
-        const targetNode = document.body;
-        observer.observe(targetNode, config);
+        observer.observe(document.body, { childList: true });
+    };
+    const eventMap = new WeakMap();
+    // 問題を報告ボタンを押したらイベントとして送信する
+    const onClickIssueReport = () => {
+        console.log("click_issue_report");
+        gtag("event", "click_issue_report", {
+            "event_category": "contribution",
+            "event_label": "click_issue_report"
+        });
+    };
+    const observeIssueReport = () => {
+        const targetButton = document.querySelector(".gitbook-plugin-github-issue-feedback");
+        // すでにイベントが登録されていたら何もしない
+        if (eventMap.has(targetButton)) {
+            return;
+        }
+        if (targetButton) {
+            targetButton.addEventListener("click", onClickIssueReport);
+            eventMap.set(targetButton, onClickIssueReport);
+        }
     };
     window.addEventListener("DOMContentLoaded", function() {
         gitbook.events.on("page.change", function() {
             observeEvalEvent();
+            observeIssueReport();
         });
     });
+
 </script>
 <meta name="google-site-verification" content="bMotEbgYwkzA3k4PkuyK_NUdz0bKh-Phz0oUwNmRSVo"/>
 <style>
