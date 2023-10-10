@@ -68,7 +68,7 @@ JavaScriptでは、数値は内部的にIEEE 754方式の浮動小数点数と�
 console.log(10 + 0.5); // => 10.5
 ```
 
-## 文字列結合演算子（`+`） {#string-combination-operator}
+### 文字列結合演算子（`+`） {#string-combination-operator}
 
 数値の加算に利用したプラス演算子（`+`）は、文字列の結合に利用できます。
 
