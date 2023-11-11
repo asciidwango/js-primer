@@ -397,12 +397,12 @@
     </div>
 </div>
 
-<script type="text/javascript">
+<script defer>
+    // focus on search box
     document.querySelector(".searchbox [type=\"reset\"]").addEventListener("click", function() {
         this.parentNode.querySelector("input").focus();
     });
-</script>
-<script defer>
+    // init DocSearch
     var search = docsearch({
         apiKey: "fd28ebaba94be0c39fb9fa1b2fed4f23", // use a SEARCH-ONLY api key here
         indexName: "asciidwango",
@@ -414,14 +414,6 @@
     window.addEventListener("DOMContentLoaded", function () {
         gitbook.events.on("page.change", function () {
             setTimeout(() => console.clear(), 1000);
-        });
-    });
-</script>
-<script type="text/javascript">
-    (function(){var t,e,n,r,a;for(t=function(){var t;return t=[],function(){var e,n,r,a;for(n=["init","start","stop","user","track","action","event","goal","chat","buy","page","view","admin","group","alias","ready","link","form","click","submit","cmd","emit","on","send","css","js","style","option","get","set","collection"],e=function(e){return function(){return t.push([e].concat(Array.prototype.slice.call(arguments,0)))}},r=0,a=[];r<n.length;)t[n[r]]=e(n[r]),a.push(r++);return a}(),t.init=function(e,n){var r,a;return t.api_key=e,t.options=n||{},a=document.createElement("script"),a.type="text/javascript",a.async=!0,a.charset="utf-8",a.src=t.options.tracker_url||"https://static.karte.io/libs/tracker.js",r=document.getElementsByTagName("script")[0],r.parentNode.insertBefore(a,r)},t},r=window.karte_tracker_names||["tracker"],e=0,n=r.length;n>e;e++)a=r[e],window[a]||(window[a]=t());tracker.init("a2d22604ec1d1c6d9d53d9d3eb87961d", { spa_mode: { reset_past_actions: true, close_actions: true }})}).call(this);
-    window.addEventListener("DOMContentLoaded", function(){
-        gitbook.events.on("page.change", function() {
-            tracker.view();
         });
     });
 </script>
