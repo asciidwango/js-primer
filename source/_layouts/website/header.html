@@ -416,16 +416,6 @@
             setTimeout(() => console.clear(), 1000);
         });
     });
-    // unregister old service worker
-    navigator.serviceWorker.getRegistrations().then(function(registrations) {
-        for (const registration of registrations) {
-            registration.unregister();
-        }
-    }).catch(function(err) {
-        console.error(new Error("Can not getRegistrations", {
-            cause: err
-        }));
-    });
 </script>
 {% endblock %}
 
