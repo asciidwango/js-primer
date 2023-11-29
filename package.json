@@ -11,13 +11,12 @@
   },
   "scripts": {
     "start": "honkit serve",
-    "build": "npm-run-all build:web build:add-resource build:workbox",
+    "build": "npm-run-all build:web build:add-resource",
     "build:all": "npm-run-all build:web build:pdf build:epub build:mobi",
     "build:web": "honkit build",
     "build:pdf": "honkit pdf ./ _book/javascript-primer.pdf",
     "build:epub": "honkit epub ./ _book/javascript-primer.epub",
     "build:mobi": "honkit mobi ./ _book/javascript-primer.mobi",
-    "build:workbox": "workbox injectManifest workbox-config.cjs",
     "build:add-resource": "node tools/gitbook/copy-favicon.cjs",
     "eslint": "eslint source/ --cache",
     "eslint:fix": "eslint --fix source/ --cache",
@@ -120,7 +119,6 @@
     "unist-util-find-before": "^2.0.5",
     "unist-util-parents": "^1.0.3",
     "unist-util-select": "^3.0.4",
-    "wait-on": "^6.0.1",
-    "workbox-cli": "^3.6.3"
+    "wait-on": "^6.0.1"
   }
 }
