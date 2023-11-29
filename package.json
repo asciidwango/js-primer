@@ -119,6 +119,6 @@
     "unist-util-find-before": "^2.0.5",
     "unist-util-parents": "^1.0.3",
     "unist-util-select": "^3.0.4",
-    "wait-on": "^6.0.1"
+    "wait-on": "^7.2.0"
   }
 }
