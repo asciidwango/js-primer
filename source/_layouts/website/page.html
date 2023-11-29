@@ -164,7 +164,7 @@
 </style>
 <meta name="theme-color" content="#ffffff">
 <link rel="manifest" href="{{ "/manifest.json"|resolveFile }}">
-<script defer>
+<script defer async>
     // unregister old service worker(remove workbox)
     // https://github.com/asciidwango/js-primer/pull/1701
     navigator.serviceWorker.getRegistrations().then(function(registrations) {
