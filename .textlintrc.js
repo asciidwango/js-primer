@@ -39,6 +39,12 @@ module.exports = {
             ]
         },
         "preset-ja-technical-writing": {
+            "no-mix-dearu-desumasu": {
+                "preferInHeader": "",
+                "preferInBody": "ですます",
+                "preferInList": "ですます",
+                "strict": false
+            },
             "ja-no-redundant-expression": {
                 "dictOptions": {
                     // "すること[助詞]できる"
