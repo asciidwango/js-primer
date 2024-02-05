@@ -612,8 +612,8 @@ console.log(typeof foo === "undefined"); // => true
 次の例では`createCounter`関数が、関数内で定義した`increment`関数を返しています。
 その返された`increment`関数を`myCounter`変数に代入しています。この`myCounter`変数を実行するたびに1, 2, 3と1ずつ増えた値を返しています。
 
-さらに、もう一度`createCounter`関数を実行して、その返り値を`newCounter`変数に代入します。
-`newCounter`変数も実行するたびに1ずつ増えていますが、`myCounter`変数とその値を共有しているわけではないことがわかります。
+さらに、もう一度`createCounter`関数を実行して、その返り値を``変数に代入します。
+``変数も実行するたびに1ずつ増えていますが、`myCounter`変数とその値を共有しているわけではないことがわかります。
 
 {{book.console}}
 ```js
@@ -635,7 +635,7 @@ myCounter(); // => 2
 const newCounter = createCounter();
 newCounter(); // => 1
 newCounter(); // => 2
-// `myCounter`と`newCounter`は別々の状態持っている
+// `myCounter`と`newCounter`は別々の状態を持っている
 myCounter(); // => 3
 newCounter(); // => 3
 ```
