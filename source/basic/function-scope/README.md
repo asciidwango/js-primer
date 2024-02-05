@@ -635,7 +635,7 @@ myCounter(); // => 2
 const newCounter = createCounter();
 newCounter(); // => 1
 newCounter(); // => 2
-// `myCounter`と`newCounter`は別々の状態持っている
+// `myCounter`と`newCounter`は別々の状態を持っている
 myCounter(); // => 3
 newCounter(); // => 3
 ```
