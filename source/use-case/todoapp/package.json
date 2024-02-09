@@ -18,7 +18,7 @@
     "cy:run": "cypress run --browser chrome"
   },
   "devDependencies": {
-    "cypress": "^4.9.0",
+    "cypress": "^13.5.0",
     "mocha": "^10.0.0",
     "start-server-and-test": "^1.14.0"
   }
