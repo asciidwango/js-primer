@@ -25,7 +25,8 @@ JavaScript Primerでは、継続的にアップデートするためのスポン
 JavaScript Primerは、毎年のECMAScriptの更新に合わせてアップデートしています。
 継続的にアップデートするには、継続的なサポートが必要だと考えています。
 
-スポンサーの募集には、[JavaScript Primer - Open Collective](https://opencollective.com/jsprimer)を利用することで、誰がどれだけサポートしているか、また誰かどれだけサポートを受けているかを透明性を持って公開できます。
+スポンサーの募集には、[JavaScript Primer - Open Collective](https://opencollective.com/jsprimer)を利用しています。
+Open Collectiveでは誰がどれだけサポートしているか、また誰かどれだけサポートを受けているかを透明性を持って公開できます。
 これによって、JavaScript Primerの継続的な更新にかかってるコストを見える化していくことが目的です。
 
 ## スポンサーの特典 {#benefits}
