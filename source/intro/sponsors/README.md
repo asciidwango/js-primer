@@ -42,7 +42,7 @@ Open Collectiveでは誰がどれだけサポートしているか、また誰�
 - 企業名（ない場合は、Open Collectiveのユーザー名）
 - URL（ない場合は、Open CollectiveのプロフィールURL）
 - 128x128のロゴ画像（ない場合は、Open Collectiveのプロフィール画像）
-- 掲載を希望するページのURLを1つ
+- 掲載を希望するJavaScript PrimerのページURLを1つ
 
 本文がある希望するページの上部にも任意でロゴを掲載できます。
 どのようにロゴが掲載されるかは、このページの上部を参考にしてください。
