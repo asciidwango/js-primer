@@ -19,7 +19,7 @@ ISO/IEC JTC 1/SC 22/ECMAScript Ad Hoc委員会 エキスパートでECMAScript�
 
 ## Suguru Inatomi {#author-suguru-inatomi}
 
-<img src="https://avatars.githubusercontent.com/u/106438?v=4" width="100" height="100" alt="Suguru Inatomi" />
+<img src="https://avatars.githubusercontent.com/u/1529180?v=4" width="100" height="100" alt="Suguru Inatomi" />
 
 長崎生まれ福岡育ち。2016年よりAngular日本ユーザー会の代表を務める。
 2018年に日本で一人目のGoogle Developers Expert for Angularに認定される。
