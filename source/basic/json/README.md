@@ -1,6 +1,7 @@
 ---
 author: laco
 description: "JavaScriptのオブジェクトリテラルをベースに作られたデータフォーマットであるJSONを紹介します。また、JavaScriptからのJSONの読み書きするビルトインオブジェクトの使い方を紹介します。"
+sponsors: []
 ---
 
 # JSON {#json}

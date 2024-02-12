@@ -1,6 +1,7 @@
 ---
 author: azu
 description: "JavaScriptチートシート"
+sponsors: []
 ---
 
 <!-- load script -->

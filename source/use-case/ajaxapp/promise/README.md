@@ -1,6 +1,7 @@
 ---
 author: laco
 description: "Promiseを活用し、ソースコードの整理とエラーハンドリングを行います。"
+sponsors: []
 ---
 
 # Promiseを活用する {#use-promise}

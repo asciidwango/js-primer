@@ -1,6 +1,7 @@
 ---
 author: laco
 description: "日付や時刻を扱うビルトインオブジェクトのDateを紹介します。"
+sponsors: []
 ---
 
 # Date {#date}

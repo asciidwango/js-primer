@@ -1,6 +1,7 @@
 ---
 author: laco
 description: "ここでは本編で取り上げられなかったJavaScriptの周辺ツールやライブラリなどをいくつか紹介します。"
+sponsors: []
 ---
 
 # 付録: 参考リンク集 {#reference-links}

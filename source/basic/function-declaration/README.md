@@ -1,6 +1,7 @@
 ---
 author: azu
 description: "JavaScriptの関数を定義する方法について紹介します。関数やメソッドを定義する方法として関数宣言、関数式、Arrow Functionについて紹介します。また関数の引数の扱い方や関数とメソッドの違いについても紹介します。"
+sponsors: []
 ---
 
 # 関数と宣言 {#function-and-declaration}

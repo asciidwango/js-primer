@@ -1,6 +1,7 @@
 ---
 author: laco 
 description: "アプリケーションの中で一番最初に呼び出されるエントリーポイントを作成します。"
+sponsors: []
 ---
 
 # エントリーポイント {#entrypoint}

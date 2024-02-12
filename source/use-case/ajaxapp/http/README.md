@@ -1,6 +1,7 @@
 ---
 author: laco
 description: "Fetch APIを使ってHTTP通信を行ない、GitHubのAPIを呼び出します。"
+sponsors: []
 ---
 
 # HTTP通信 {#http-communication}

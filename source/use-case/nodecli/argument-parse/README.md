@@ -1,6 +1,7 @@
 ---
 author: laco
 description: "コマンドライン引数を受け取り、アプリケーションから使いやすい形にパースする方法を学びます。"
+sponsors: []
 ---
 
 # コマンドライン引数を処理する {#processing-commandline-args}

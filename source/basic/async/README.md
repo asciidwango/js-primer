@@ -1,6 +1,7 @@
 ---
 author: azu
 description: "JavaScriptにおける非同期処理についてを紹介します。同期処理と非同期処理の違いやなぜ非同期処理が重要になるかを紹介します。非同期処理を扱うPromise、Async Functionについて紹介します。"
+sponsors: []
 ---
 
 # 非同期処理:Promise/Async Function {#async-handling}

@@ -1,6 +1,7 @@
 ---
 author: laco
 description: "データの集合を扱うビルトインオブジェクトであるMapとSetについてを紹介します。オブジェクトの作成方法や更新方法から実際にどのようなケースで使うのかを紹介します。"
+sponsors: []
 ---
 
 # [ES2015] Map/Set {#map-and-set}

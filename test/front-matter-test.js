@@ -38,6 +38,12 @@ describe("front-matter", function() {
                 const attributes = frontMatter.attributes;
                 assert(typeof attributes["description"] === "string", "descriptionは必須です");
             });
+            it(`should have sponsors field: ${normalizeFilePath}`, () => {
+                const content = fs.readFileSync(filePath, "utf-8");
+                const frontMatter = parseFrontMatter(content);
+                const attributes = frontMatter.attributes;
+                assert(typeof attributes["sponsors"] === "string", "sponsorsが未定義です。[] または定義してください");
+            });
         });
     });
 });

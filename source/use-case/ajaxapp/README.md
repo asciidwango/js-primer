@@ -1,6 +1,7 @@
 ---
 author: laco 
 description: "ウェブブラウザ上でAjax通信をするユースケースとして、GitHubのユーザーIDからプロフィール情報を取得するアプリケーションを作成しながら、非同期処理について紹介します。"
+sponsors: []
 ---
 
 # ユースケース: Ajax通信 {#usecase-ajax}

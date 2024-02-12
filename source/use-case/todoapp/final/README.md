@@ -1,6 +1,7 @@
 ---
 author: azu
 description: "1つのファイルに処理が集中するとメンテナンス性が低下するため、Todoアプリの表示要素をコンポーネントという単位に分割するリファクタリングをしていきます。"
+sponsors: []
 ---
 
 # Todoアプリのリファクタリング {#todo-app-refactoring}

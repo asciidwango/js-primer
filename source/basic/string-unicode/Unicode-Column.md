@@ -1,6 +1,7 @@
 ---
 author: azu
 description: "[コラム] Unicodeにまつわる問題"
+sponsors: []
 ---
 
 <!-- このコラムは本文に含めていないけど、メモ的においておく -->

@@ -1,6 +1,7 @@
 ---
 author: laco
 description: "Fetch APIを使って取得したデータをもとにHTMLを組み立ててブラウザ上で表示します。"
+sponsors: []
 ---
 
 # データを表示する {#display-data}

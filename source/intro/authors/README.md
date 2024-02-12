@@ -1,6 +1,7 @@
 ---
 author: laco
 description: "JavaScript Primerの著者紹介"
+sponsors: []
 ---
 
 # 著者紹介 {#authors}

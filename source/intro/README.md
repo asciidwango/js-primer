@@ -1,10 +1,7 @@
 ---
 author: azu
 description: "この書籍はJavaScriptの入門書として書かれています。この書籍の目的、目的外としたこと、読者対象、書籍としての特徴について紹介します。"
-sponsors:
-  - name: "xxx"
-    url: "https://xxx.xxx.com/"
-    message: "印刷費を提供してくれています。"
+sponsors: []
 ---
 
 # はじめに {#prolog}

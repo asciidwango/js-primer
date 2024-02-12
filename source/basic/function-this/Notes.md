@@ -1,6 +1,7 @@
 ---
 author: azu
 description: "Note"
+sponsors: []
 ---
 
 ## Table

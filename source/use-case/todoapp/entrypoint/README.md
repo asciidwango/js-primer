@@ -1,6 +1,7 @@
 ---
 author: azu
 description: "HTMLとJavaScriptモジュールを使い、アプリケーションで一番最初に呼び出されるエントリーポイントを作成します。"
+sponsors: []
 ---
 
 # エントリーポイント {#entrypoint}

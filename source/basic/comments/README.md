@@ -1,6 +1,7 @@
 ---
 author: azu
 description: "JavaScriptにおけるコメントの書き方を紹介します。コメントはプログラムとして評価されないので、ソースコードに対する説明を書くために利用します。"
+sponsors: []
 ---
 
 # コメント {#comment}

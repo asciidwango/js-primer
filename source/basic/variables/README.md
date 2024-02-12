@@ -1,6 +1,7 @@
 ---
 author: azu
 description: "JavaScriptの変数宣言する方法についてを紹介します。変数を宣言する方法にはconst,let,varがあります。これらの動作の違いや使い分けについてを紹介します。"
+sponsors: []
 ---
 
 <!-- textlint-disable eslint -->
