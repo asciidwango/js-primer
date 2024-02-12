@@ -49,5 +49,5 @@ Open Collectiveでは誰がどれだけサポートしているか、また誰�
 
 ## 問い合わせ {#contact}
 
-`info@jsprimer.net` または [JavaScript Primer - Open Collective](https://opencollective.com/jsprimer) の アクション → お問い合わせ からお問い合わせください。
+`info@jsprimer.net` または [JavaScript Primer - Open Collective](https://opencollective.com/jsprimer) の "アクション" → "お問い合わせ" からお問い合わせください。
 
