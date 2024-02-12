@@ -40,7 +40,7 @@ Open Collectiveでは誰がどれだけサポートしているか、また誰�
 スポンサーとなる際に、次の情報を提供してください。
 
 - 企業名（ない場合は、Open Collectiveのユーザー名）
-- URL（ない場合は、Open CollectiveのプロフィールURL）
+- URL（ない場合は、Open CollectiveのプロフィールにあるウェブサイトURL）
 - 128x128のロゴ画像（ない場合は、Open Collectiveのプロフィール画像）
 - 掲載を希望するJavaScript PrimerのページURLを1つ
 
