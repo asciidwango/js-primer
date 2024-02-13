@@ -1,6 +1,7 @@
 ---
 author: azu
 description: "JavaScript Primerのスポンサー"
+sponsorsExample: true
 sponsors:
     - name: "Test A"
       url: "https://example.com/"
