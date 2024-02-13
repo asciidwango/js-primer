@@ -52,3 +52,20 @@ Open Collectiveでは誰がどれだけサポートしているか、また誰�
 
 `info@jsprimer.net` または [JavaScript Primer - Open Collective](https://opencollective.com/jsprimer) の "アクション" → "お問い合わせ" からお問い合わせください。
 
+## 参考資料 {#reference}
+
+JavaScript Primerのスポンサーになるための参考資料です。
+JavaScript Primerのアクセス数やメトリクスは次のダッシュボードから確認できます。
+
+- [JavaScript Primer Dashboard](https://lookerstudio.google.com/u/0/reporting/5079dfdf-681c-4db7-a216-77c842fdae45/page/p_ajx9imd6zc)
+
+<iframe class="iframe-looker" width="600" height="337" src="https://lookerstudio.google.com/embed/reporting/5079dfdf-681c-4db7-a216-77c842fdae45/page/p_ajx9imd6zc" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+
+<!-- モバイルではiframeを非表示 -->
+<style>
+@media (max-width: 600px) {
+    .iframe-looker {
+        display: none;
+    }
+}
+</style>
