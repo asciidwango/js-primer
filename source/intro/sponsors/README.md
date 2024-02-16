@@ -8,10 +8,10 @@ sponsors:
       logo: "https://dummyimage.com/64x64/ffffff/000000.png"
     - name: "Test B"
       url: "https://example.com/"
-      logo: "https://dummyimage.com/64x64/ffffff/000000.png"
+      logo: "https://dummyimage.com/64x64/09f/fff.png"
     - name: "Test C"
       url: "https://example.com/"
-      logo: "https://dummyimage.com/64x64/ffffff/000000.png"
+      logo: "https://dummyimage.com/64x64/F57D1F/fff.png"
 ---
 
 # JavaScript Primerスポンサー {#sponsors}
