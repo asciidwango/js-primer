@@ -23,7 +23,7 @@ JavaScript Primer（jsprimer）では、継続的にアップデートするた�
 
 ## スポンサーを募集する目的 {#purpose}
 
-JavaScript Primerでは、jsprimer自体が変化をし続け、jsprimerを通して「変化に対応できる基礎を身につけること」を継続を目的としています。
+JavaScript Primerでは、jsprimer自体が変化をし続け、jsprimerを通して「変化に対応できる基礎を身につけること」を目的としています。
 そのためjsprimerは、毎年のECMAScriptの更新に合わせてアップデートしています。
 継続的にアップデートするには、継続的なサポートが重要だと考えています。
 
