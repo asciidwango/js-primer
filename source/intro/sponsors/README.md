@@ -17,7 +17,7 @@ sponsors:
 # JavaScript Primerスポンサー {#sponsors}
 
 JavaScript Primerでは、継続的にアップデートするためのスポンサーを募集しています。
-次のOpen Collectiveから、スポンサーになることができます。
+次のOpen Collectiveページから、スポンサーになることができます。
 
 - [JavaScript Primer - Open Collective](https://opencollective.com/jsprimer)
 
