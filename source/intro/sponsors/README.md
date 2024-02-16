@@ -16,19 +16,30 @@ sponsors:
 
 # JavaScript Primerスポンサー {#sponsors}
 
-JavaScript Primerでは、継続的にアップデートするためのスポンサーを募集しています。
+JavaScript Primer（jsprimer）では、継続的にアップデートするためのスポンサーを募集しています。
 次のOpen Collectiveページから、スポンサーになることができます。
 
 - [JavaScript Primer - Open Collective](https://opencollective.com/jsprimer)
 
 ## スポンサーを募集する目的 {#purpose}
 
-JavaScript Primerは、毎年のECMAScriptの更新に合わせてアップデートしています。
+JavaScript Primerでは、jsprimer自体が変化をし続け、jsprimerを通して「変化に対応できる基礎を身につけること」を継続を目的としています。
+そのためjsprimerは、毎年のECMAScriptの更新に合わせてアップデートしています。
 継続的にアップデートするには、継続的なサポートが重要だと考えています。
 
 スポンサーの募集には、[JavaScript Primer - Open Collective](https://opencollective.com/jsprimer)を利用しています。
 Open Collectiveでは誰がどれだけサポートしているか、また誰かどれだけサポートを受けているかを透明性を持って公開できます。
-これによって、JavaScript Primerの継続的な更新にかかってるコストを見える化していくことが目的です。
+これによって、jsprimerの継続的な更新にかかってるコストを見える化していくことが目的です。
+
+Open Collectiveで支援された資金は、JavaScript Primerの運営費用や継続的な更新に利用されます。
+
+## スポンサーになる方法 {#how-to-sponsor}
+
+スポンサーになる方法は次の手順です。
+
+1. [JavaScript Primer - Open Collective](https://opencollective.com/jsprimer) にアクセスします
+2. 支援するプランを選んで支援します
+3. スポンサーの特典
 
 ## スポンサーの特典 {#benefits}
 
