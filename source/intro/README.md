@@ -132,6 +132,7 @@ GitHub Sponsorsで著者を支援できます。
 Open Collectiveでjsprimerプロジェクトを支援できます。
 Open Collectiveでの支援には、サイト上にロゴを表示するといった企業向けの特典があります。
 
+- [JavaScript Primerスポンサー](./sponsors/README.md)
 - [JavaScript Primer - Open Collective](https://opencollective.com/jsprimer)
 
 また、書籍版へのレビューを書くことも支援に繋がります。
