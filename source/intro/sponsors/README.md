@@ -40,11 +40,11 @@ Open Collectiveでは誰がどれだけサポートしているか、また誰�
 
 スポンサーとなる際に、次の情報を提供してください。
 
-- 企業名（ない場合は、Open Collectiveのユーザー名）
-- URL（ない場合は、Open CollectiveのプロフィールにあるウェブサイトURL）
-- ロゴ画像（ない場合は、Open Collectiveのプロフィール画像）
+- 企業名（指定がない場合は、Open Collectiveのユーザー名）
+- URL（指定がない場合は、Open CollectiveのプロフィールにあるウェブサイトURL）
+- ロゴ画像（指定がない場合は、Open Collectiveのプロフィール画像）
   - 📝トップページなどで掲載される画像です
-- 256x256のアイコン画像（ない場合は、Open Collectiveのプロフィール画像）
+- 256x256のアイコン画像（指定がない場合は、Open Collectiveのプロフィール画像）
   - 📝ページスポンサーとして掲載される画像です
 - 掲載を希望するJavaScript PrimerのページURLを1つ
   - 📝ページスポンサーとして掲載されるページのURLです
