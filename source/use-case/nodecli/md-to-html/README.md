@@ -1,6 +1,7 @@
 ---
 author: laco
 description: "markedパッケージを使ってMarkdownファイルをHTMLに変換します。"
+sponsors: []
 ---
 
 # MarkdownをHTMLに変換する {#md-to-html}

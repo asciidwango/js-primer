@@ -1,6 +1,7 @@
 ---
 author: azu
 description: "JavaScriptの仕様であるECMAScriptについてを紹介します。ECMAScriptの歴史や仕様策定がどのようなプロセスで行われているかを紹介します。"
+sponsors: []
 ---
 
 # ECMAScript {#ecmascript}

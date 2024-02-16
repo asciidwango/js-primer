@@ -1,6 +1,7 @@
 ---
 author: laco
 description: "Node.jsの`fs`モジュールを使ったファイルの読み込みについて学びます。"
+sponsors: []
 ---
 
 # ファイルを読み込む {#read-file}

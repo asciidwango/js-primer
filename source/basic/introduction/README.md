@@ -1,6 +1,7 @@
 ---
 author: azu
 description: "JavaScriptとはどのような用途に使われているプログラミング言語なのか、どのような言語的な特性をもっているのかについてを簡単に紹介します。"
+sponsors: []
 ---
 
 # JavaScriptとは {#what-is-javascript}

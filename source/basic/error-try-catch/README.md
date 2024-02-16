@@ -1,6 +1,7 @@
 ---
 author: laco
 description: "JavaScriptにおける例外処理についてを紹介します。try...catch構文の使い方やErrorオブジェクトを紹介します。またエラーが発生した際のエラー文の読み方といったデバッグ方法を紹介します。"
+sponsors: []
 ---
 
 # 例外処理 {#error-handling}

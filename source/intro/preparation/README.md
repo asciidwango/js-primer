@@ -1,6 +1,7 @@
 ---
 author: azu
 description: "この書籍でJavaScriptを学ぶ前に、まずは意味はわからなくてもいいので、JavaScriptを実行できることから確認していきます。"
+sponsors: []
 ---
 
 # 読みはじめる前の事前準備 {#preparation}

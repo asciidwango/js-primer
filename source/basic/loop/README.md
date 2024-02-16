@@ -1,6 +1,7 @@
 ---
 author: azu
 description: "for文やwhile文を使った反復処理についてを紹介します。また、同等の反復処理がArrayのメソッドでも実現できることについても紹介します。"
+sponsors: []
 ---
 
 # ループと反復処理 {#loop-and-iteration}

@@ -1,6 +1,7 @@
 ---
 author: laco
 description: "数学的な定数や関数を提供するビルトインオブジェクトのMathを紹介します。"
+sponsors: []
 ---
 
 # Math {#math}

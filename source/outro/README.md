@@ -1,6 +1,7 @@
 ---
 author: azu
 description: "書籍を読み終わった感想やフィードバックの送り先やリンクの貼り方についての紹介です。"
+sponsors: []
 ---
 
 # おわりに {#outro}

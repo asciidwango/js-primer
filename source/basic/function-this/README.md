@@ -1,6 +1,7 @@
 ---
 author: azu
 description: "JavaScriptにおける`this`というキーワードの動作を紹介します。`this`の参照先は条件によって解決方法が異なるため、`this`の動きについてをそれぞれの条件ごとに紹介します。一見複雑な`this`の動きを予測可能にするにはどうするべきかをコード例とともに紹介します。"
+sponsors: []
 ---
 
 # 関数とthis {#function-this}

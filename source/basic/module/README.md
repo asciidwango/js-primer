@@ -1,6 +1,7 @@
 ---
 author: laco
 description: "JavaScriptのモジュール（ECMAScriptモジュール）について紹介します。"
+sponsors: []
 ---
 
 # [ES2015] ECMAScriptモジュール {#module}

@@ -178,8 +178,50 @@
     });
 </script>
 {% endblock %}
-{% block book_inner %} {{ super() }}
+{% block book_inner %}{{ super() }}
 <footer class="book_footer">
     <p>Copyright (c) 2016-present <a href="https://github.com/asciidwango/js-primer" target="_blank">jsprimer project</a></p>
 </footer>
+{% endblock %}
+{# page.sponsorsが定義されているページのみスポンサーの表示する #}
+{% block page %}{% if page.sponsors %}
+<style>
+    .page-sponsors {
+        background: #fafafa;
+    }
+    .page-sponsors .page-sponsors-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 1em 0;
+        list-style: none;
+        gap: 8px;
+    }
+    .page-sponsors-footer {
+        text-align: center;
+        padding: 0;
+        margin: 0;
+    }
+</style>
+<div class="page-sponsors">
+{% if page.sponsors | length %}
+    <ul class="page-sponsors-list">
+    {% for sponsor in page.sponsors %}
+        <li><a href="{{sponsor.url}}" title="{{sponsor.name}}" target="_blank" rel="noopener"><img src="{{sponsor.logo}}" alt="" width="64" height="64"></a></li>
+    {% endfor %}
+    </ul>
+    <div class="page-sponsors-footer">
+    <p>このページは<a href="https://opencollective.com/jsprimer">ページスポンサー</a>の方々にサポートされています{% if page.sponsorsExample %}
+        <br/>（この表示はサンプルです）
+    {% endif %}
+    </p>
+    </div>
+{% else %}
+    <div class="page-sponsors-footer">
+        JavaScript Primerの<a href="https://jsprimer.net/intro/sponsors/">スポンサーを募集中</a>
+    </div>
+{% endif %}
+</div>
+{% endif %}{{ super() }}
 {% endblock %}
