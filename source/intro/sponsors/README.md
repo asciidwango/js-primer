@@ -54,7 +54,7 @@ Open Collectiveでは誰がどれだけサポートしているか、また誰�
 
 ## 参考資料 {#reference}
 
-JavaScript Primerのスポンサーになるための参考資料です。
+JavaScript Primerのスポンサー用の参考資料です。
 JavaScript Primerのアクセス数やメトリクスは次のダッシュボードから確認できます。
 
 - [JavaScript Primer Dashboard](https://lookerstudio.google.com/u/0/reporting/5079dfdf-681c-4db7-a216-77c842fdae45/page/p_ajx9imd6zc)
