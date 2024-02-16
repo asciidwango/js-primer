@@ -39,7 +39,7 @@ Open Collectiveで支援された資金は、JavaScript Primerの運営費用や
 
 1. [JavaScript Primer - Open Collective](https://opencollective.com/jsprimer) にアクセスします
 2. 支援するプランを選んで支援します
-3. スポンサーの特典
+3. スポンサーの特典を見て、必要な情報を問い合わせから送信してください
 
 ## スポンサーの特典 {#benefits}
 
