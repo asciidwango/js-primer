@@ -73,7 +73,7 @@ Open Collectiveで支援された資金は、JavaScript Primerの運営費用や
 ## 参考資料 {#reference}
 
 JavaScript Primerスポンサー用の参考資料です。
-JavaScript Primerのアクセス数やメトリクスは次のダッシュボードから確認できます。
+<https://jsprimer.net>のアクセス数やメトリクスは次のダッシュボードから確認できます。
 
 - [JavaScript Primer Dashboard](https://lookerstudio.google.com/u/0/reporting/5079dfdf-681c-4db7-a216-77c842fdae45/page/p_ajx9imd6zc)
 
