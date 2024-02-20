@@ -109,6 +109,13 @@
     }
 
     /* Markdown */
+    /* Support horizon scroll */
+    /* https://stackoverflow.com/questions/17770257/scrolling-tables-horizontally-without-wrapping-them-in-div */
+    .markdown-section table {
+        max-width: 100%;
+        overflow-x: auto;
+        display: block;
+    }
     .markdown-section sup,
     .markdown-section sub {
         font-size: 75%;
