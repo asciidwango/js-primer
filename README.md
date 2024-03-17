@@ -73,13 +73,13 @@ IssueやPull Requestについては、次のページを参照してください
 
     npm install
 
-Node.js v18.14.0以上とnpm 9.3.1以上が必要です。
+Node.js v20.11.1以上とnpm 10.2.4以上が必要です。
 
 ```
 $ node -v
-v18.14.0
+v20.11.1
 $ npm -v
-9.3.1
+10.2.4
 ```
 
 ## Usage
