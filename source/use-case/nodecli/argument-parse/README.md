@@ -14,7 +14,7 @@ sponsors: []
 コマンドライン引数を扱う前に、まずは`process`オブジェクトについて触れておきます。
 `process`オブジェクトはNode.js実行環境のグローバル変数のひとつです。
 `process`オブジェクトが提供するのは、現在のNode.jsの実行プロセスについて、情報の取得と操作をするAPIです。
-詳細は[公式ドキュメント](https://nodejs.org/docs/latest-v18.x/api/process.html#process_process)を参照してください。
+詳細は[公式ドキュメント](https://nodejs.org/docs/latest-v20.x/api/process.html#process_process)を参照してください。
 
 コマンドライン引数へのアクセスを提供するのは、`process`オブジェクトの`argv`プロパティで、文字列の配列になっています。
 次のように`main.js`を変更し、`process.argv`をコンソールに出力しましょう。
