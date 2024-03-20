@@ -70,6 +70,10 @@ Open Collectiveで支援された資金は、JavaScript Primerの運営費用や
 
 `info@jsprimer.net` または [JavaScript Primer - Open Collective](https://opencollective.com/jsprimer) の "アクション" → "お問い合わせ" からお問い合わせください。
 
+問い合わせ内容がオープンな方法で問題ない場合は、次のGitHub Discussionsを利用しても問題ありません。
+
+- [JavaScript Primer Sponsors · asciidwango/js-primer · Discussion #1728](https://github.com/asciidwango/js-primer/discussions/1728)
+
 ## 参考資料 {#reference}
 
 JavaScript Primerスポンサー用の参考資料です。
