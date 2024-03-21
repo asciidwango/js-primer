@@ -202,7 +202,7 @@ $ npx --yes @js-primer/local-server --port 8000
 npmでは、すでに多種多様なローカルサーバーモジュールが公開されています。
 この書籍では、利用するローカルサーバーの機能で違いが出ないように`@js-primer/local-server`というこの書籍用のローカルサーバーモジュールを利用します。
 
-[Node.js]: https://nodejs.org/ja/
+[Node.js]: https://nodejs.org/
 [V8]: https://v8.dev/
 [Electron]: https://www.electronjs.org/
 [ダウンロードページ]: https://nodejs.org/ja/download/
