@@ -26,7 +26,7 @@ Node.jsはサーバーサイドで使うために開発されました。
 Node.jsは多くの他のプログラミング言語と同じように、実行環境をマシンにインストールすることで使用できます。
 公式の[ダウンロードページ][]から、開発用のマシンに合わせたインストーラをダウンロードして、インストールしましょう。
 
-- ダウンロードページのURL: <https://nodejs.org/ja/download/>
+- ダウンロードページのURL: <https://nodejs.org/en/download/>
 
 Node.jsには**LTS（Long-Term Support）**版と最新版の2つのリリース版があります。
 **LTS（Long-Term Support）**版は2年間のメンテナンスとサポートが宣言されたバージョンです。
@@ -205,7 +205,7 @@ npmでは、すでに多種多様なローカルサーバーモジュールが�
 [Node.js]: https://nodejs.org/
 [V8]: https://v8.dev/
 [Electron]: https://www.electronjs.org/
-[ダウンロードページ]: https://nodejs.org/ja/download/
+[ダウンロードページ]: https://nodejs.org/en/download/
 [npm]: https://www.npmjs.com/
 [npmの公式ドキュメント]: https://docs.npmjs.com/
 [npmのGitHubリポジトリ]: https://github.com/npm/cli
