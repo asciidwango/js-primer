@@ -208,7 +208,7 @@ SyntaxError: Cannot use import statement outside a module
 [npm]: https://www.npmjs.com/
 [npmのGitHubリポジトリ]: https://github.com/npm/npm
 [CommonJSモジュール]: https://nodejs.org/docs/latest/api/modules.html
-[Node.js]: https://nodejs.org/ja/
+[Node.js]: https://nodejs.org/
 [アプリケーション開発の準備]: ../../setup-local-env/README.md
 [ECMAScriptモジュール]: ../../../basic/module/README.md
 [^1]: --saveオプションをつけてインストールしたのと同じ意味。npm 5.0.0からは--saveがデフォルトオプションとなりました。
