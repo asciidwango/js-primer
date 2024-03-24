@@ -82,6 +82,7 @@ function main() {
         .catch((error) => {
             // Promiseチェーンの中で発生したエラーを受け取る
             console.error(`エラーが発生しました (${error})`);
+            console.error(`詳細 (${error.cause})`);
         });
 }
 
@@ -100,6 +101,9 @@ function fetchUserInfo(userId) {
                     displayView(view);
                 });
             }
+        })
+        .catch(err => {
+            return Promise.reject(new Error(`Failed fetch user(id: ${userId}) info`, { cause: err }))
         });
 }
 ```
@@ -139,6 +143,7 @@ function main() {
         // Promiseチェーンでエラーがあった場合はキャッチされる
         .catch((error) => {
             console.error(`エラーが発生しました (${error})`);
+            console.error(`詳細 (${error.cause})`);
         });
 }
 
@@ -151,6 +156,9 @@ function fetchUserInfo(userId) {
                 // JSONオブジェクトで解決されるPromiseを返す
                 return response.json();
             }
+        })
+        .catch(err => {
+            return Promise.reject(new Error(`Failed fetch user(id: ${userId}) info`, { cause: err }))
         });
 }
 ```
@@ -177,6 +185,7 @@ async function main() {
         displayView(view);
     } catch (error) {
         console.error(`エラーが発生しました (${error})`);
+        console.error(`詳細 (${error.cause})`);
     }
 }
 ```
