@@ -282,6 +282,46 @@ MDNの[JavaScriptエラーリファレンス][]には、ブラウザが投げる
 また、ほとんどのブラウザには`console.log`や`console.error`の出力をフィルタリングできる機能が備わっています。
 ただのログ出力には`console.log`を使い、エラーに関するログ出力には`console.error`を使うことで、ログの重要度が区別しやすくなります。
 
+## Error Cause[^ES2022] {#error-cause}
+
+エラーをキャッチし新しいメッセージや別の `Error` オブジェクトで送出すると、デバッグに有益な情報をエラーに付与することできて便利です。  
+これを実現する時に、新しく `Error` オブジェクトを作成して `throw` すると元のエラーのスタックトレースが失われてしまいます。
+
+この問題を解決するには、`catch` 句で補足した変換元の例外を、新しい `Error` オブジェクトのコンストラクタに渡すことで、変換元のエラーのスタックトレースを保持することができます。
+
+{{book.console}}
+```js
+// 数字の文字列を二つ受け取り、合計を返す関数
+function sumNumStrings(a, b) {
+    try {
+        const aNumber = safeParseInt(a);
+        const bNumber = safeParseInt(b);
+        return aNumber + bNumber;
+    } catch (e) {
+        throw new Error("Failed to sum a and b", { cause: e });
+    }
+}
+
+// 数値の文字列を受け取り数値を返す関数
+// 'text' など数値にはならない文字列を渡された場合は例外を送出する
+function safeParseInt(numStr) {
+    const num = parseInt(numStr, 10);
+    if (Number.isNaN(num)) {
+        throw new Error(`${numStr} is not a numeric`);
+    }
+    return num;
+}
+
+// 数値にならない文字列 'string' を渡しているので例外が送出される
+sumNumStrings("string", "2");
+```
+
+このスクリプトを読み込むと、`sumNumsStrings` の例外に `safeParseInt` から投げられたスタックトレースが付与された状態のエラーログがコンソールに出力されます。
+ここではFirefoxにおける実行例を示します。
+
+
+![safeParseIntのスタックトレースが含まれたconsole.errorの出力結果](./img/error-cause.png)
+
 ## まとめ {#conclusion}
 
 この章では、例外処理とエラーオブジェクトについて学びました。
