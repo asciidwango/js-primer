@@ -312,8 +312,14 @@ function safeParseInt(numStr) {
     return num;
 }
 
-// 数値にならない文字列 'string' を渡しているので例外が送出される
-sumNumStrings("string", "2");
+try {
+    // 数値にならない文字列 'string' を渡しているので例外が送出される
+    sumNumStrings("string", "2");
+} catch (err) {
+    console.error(`エラーが発生しました (${err})`);
+    // `cause` プロパティを参照することで、throwする時に `cause` で渡したエラーにアクセスすることができる
+    console.error(`詳細 (${err.cause})`);
+}
 ```
 
 このスクリプトを読み込むと、`sumNumsStrings` の例外に `safeParseInt` から投げられたスタックトレースが付与された状態のエラーログがコンソールに出力されます。
