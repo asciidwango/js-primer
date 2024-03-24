@@ -103,7 +103,7 @@ function fetchUserInfo(userId) {
             }
         })
         .catch(err => {
-            return Promise.reject(new Error(`Failed fetch user(id: ${userId}) info`, { cause: err }))
+            return Promise.reject(new Error(`Failed fetch user(id: ${userId}) info`, { cause: err }));
         });
 }
 ```
@@ -158,7 +158,7 @@ function fetchUserInfo(userId) {
             }
         })
         .catch(err => {
-            return Promise.reject(new Error(`Failed fetch user(id: ${userId}) info`, { cause: err }))
+            return Promise.reject(new Error(`Failed fetch user(id: ${userId}) info`, { cause: err }));
         });
 }
 ```
