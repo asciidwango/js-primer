@@ -290,37 +290,7 @@ MDNの[JavaScriptエラーリファレンス][]には、ブラウザが投げる
 この問題を解決するには、`catch` 句で補足した変換元の例外を、新しい `Error` オブジェクトのコンストラクタに渡すことで、変換元のエラーのスタックトレースを保持することができます。
 
 {{book.console}}
-```js
-// 数字の文字列を二つ受け取り、合計を返す関数
-function sumNumStrings(a, b) {
-    try {
-        const aNumber = safeParseInt(a);
-        const bNumber = safeParseInt(b);
-        return aNumber + bNumber;
-    } catch (e) {
-        throw new Error("Failed to sum a and b", { cause: e });
-    }
-}
-
-// 数値の文字列を受け取り数値を返す関数
-// 'text' など数値にはならない文字列を渡された場合は例外を投げられる
-function safeParseInt(numStr) {
-    const num = parseInt(numStr, 10);
-    if (Number.isNaN(num)) {
-        throw new Error(`${numStr} is not a numeric`);
-    }
-    return num;
-}
-
-try {
-    // 数値にならない文字列 'string' を渡しているので例外が投げられる
-    sumNumStrings("string", "2");
-} catch (err) {
-    console.error(`エラーが発生しました (${err})`);
-    // `cause` プロパティを参照することで、throwする時に `cause` で渡されたエラーを取得できる
-    console.error(`詳細 (${err.cause})`);
-}
-```
+[import, error-cause/index.js](src/error-cause/index.js)
 
 このスクリプトを読み込むと、`sumNumsStrings` の例外に `safeParseInt` から投げられたスタックトレースが付与された状態のエラーログがコンソールに出力されます。
 ここではFirefoxにおける実行例を示します。
