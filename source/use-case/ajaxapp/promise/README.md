@@ -82,7 +82,6 @@ function main() {
         .catch((error) => {
             // Promiseチェーンの中で発生したエラーを受け取る
             console.error(`エラーが発生しました (${error})`);
-            console.error(`詳細 (${error.cause})`);
         });
 }
 
@@ -143,7 +142,6 @@ function main() {
         // Promiseチェーンでエラーがあった場合はキャッチされる
         .catch((error) => {
             console.error(`エラーが発生しました (${error})`);
-            console.error(`詳細 (${error.cause})`);
         });
 }
 
@@ -185,7 +183,6 @@ async function main() {
         displayView(view);
     } catch (error) {
         console.error(`エラーが発生しました (${error})`);
-        console.error(`詳細 (${error.cause})`);
     }
 }
 ```
