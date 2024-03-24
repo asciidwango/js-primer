@@ -331,6 +331,7 @@ sumNumStrings("string", "2");
 - `throw`文は例外を投げることができ、`Error`オブジェクトを例外として投げる
 - `Error`オブジェクトには、ECMAScript仕様や実行環境で定義されたビルトインエラーがある
 - `Error`オブジェクトには、スタックトレースが記録され、デバッグに役立てられる
+- Error cause を使うことで例外を変換して送出する際に元のスタックトレースを保持できる
 
 [try...catch]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/try...catch
 [throw]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/throw
