@@ -24,6 +24,4 @@ try {
     sumNumStrings("string", "2");
 } catch (err) {
     console.error(`エラーが発生しました (${err})`);
-    // `cause` プロパティを参照することで、throwする時に `cause` で渡されたエラーを取得できる
-    console.error(`詳細 (${err.cause})`);
 }
