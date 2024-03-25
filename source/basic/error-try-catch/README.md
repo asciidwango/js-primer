@@ -293,14 +293,14 @@ MDNの[JavaScriptエラーリファレンス][]には、ブラウザが投げる
 {{book.console}}
 ```js
 function somethingWork() {
-    throw new Error("本来のエラー")
+    throw new Error("本来のエラー");
 }
 
 try {
     somethingWork();
-} catch(error) {
+} catch (error) {
     // `error` が持っていたスタックトレースが失われるため、実際にエラーが発生した場所がわからなくなる 
-    throw new Error("somethingWork関数でエラーが発生しました")
+    throw new Error("somethingWork関数でエラーが発生しました");
 }
 ```
 
