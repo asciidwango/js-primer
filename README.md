@@ -33,7 +33,13 @@ Open Collectiveでの支援には、サイト上にロゴを表示するとい�
 
 - [JavaScript Primer - Open Collective](https://opencollective.com/jsprimer)
 
-[![jsprimer backers](https://opencollective.com/jsprimer/backers.svg?width=890)](https://opencollective.com/jsprimer#backers)
+**Gold Sponsors**
+
+[![jsprimer sponsors](https://opencollective.com/jsprimer/sponsors.svg?width=890&avatarHeight=80)](https://opencollective.com/jsprimer#sponsors)
+
+**Supporters**
+
+[![jsprimer backers](https://opencollective.com/jsprimer/backers.svg?width=890&avatarHeight=40)](https://opencollective.com/jsprimer#backers)
 
 
 また、書籍版へのレビューを書くことも支援に繋がります。
