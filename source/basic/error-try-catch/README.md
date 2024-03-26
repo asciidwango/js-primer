@@ -291,6 +291,7 @@ MDNの[JavaScriptエラーリファレンス][]には、ブラウザが投げる
 しかし、この方法には本来のエラーのスタックトレースが失われるという問題があります。
 
 {{book.console}}
+<!-- doctest:Error -->
 ```js
 function somethingWork() {
     throw new Error("本来のエラー");
