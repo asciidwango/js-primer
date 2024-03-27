@@ -12,7 +12,7 @@ function sumNumStrings(a, b) {
 // 数値の文字列を受け取り数値を返す関数
 // 'text' など数値にはならない文字列を渡された場合は例外を投げられる
 function safeParseInt(numStr) {
-    const num = parseInt(numStr, 10);
+    const num = Number.parseInt(numStr, 10);
     if (Number.isNaN(num)) {
         throw new Error(`${numStr} is not a numeric`);
     }
