@@ -100,6 +100,9 @@ function fetchUserInfo(userId) {
                     displayView(view);
                 });
             }
+        })
+        .catch(err => {
+            return Promise.reject(new Error(`Failed fetch user(id: ${userId}) info`, { cause: err }));
         });
 }
 ```
@@ -151,6 +154,9 @@ function fetchUserInfo(userId) {
                 // JSONオブジェクトで解決されるPromiseを返す
                 return response.json();
             }
+        })
+        .catch(err => {
+            return Promise.reject(new Error(`Failed fetch user(id: ${userId}) info`, { cause: err }));
         });
 }
 ```
