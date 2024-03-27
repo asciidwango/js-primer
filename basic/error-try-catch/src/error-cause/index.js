@@ -23,5 +23,5 @@ try {
     // 数値にならない文字列 'string' を渡しているので例外が投げられる
     sumNumStrings("string", "2");
 } catch (err) {
-    console.error(`エラーが発生しました (${err})`);
+    console.error(err);
 }
