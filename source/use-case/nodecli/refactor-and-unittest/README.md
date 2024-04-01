@@ -237,6 +237,5 @@ npmを使ったパッケージ管理や外部モジュールの利用、`fs`モ�
 
 [ECMAScriptモジュール]: ../../../basic/module/README.md
 [moduleオブジェクト]: https://nodejs.org/api/modules.html#modules_the_module_object
-[Mocha]: https://mochajs.org/
 [testモジュール]: https://nodejs.org/api/test.html
 [assertモジュール]: https://nodejs.org/api/assert.html
