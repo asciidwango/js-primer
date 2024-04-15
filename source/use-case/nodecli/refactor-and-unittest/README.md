@@ -84,9 +84,6 @@ $ npm test
 ℹ skipped 0
 ℹ todo 0
 ℹ duration_ms 7.3243
-
-$ echo $?
-0
 ```
 
 ## ユニットテストを記述する {#write-unit-test}
