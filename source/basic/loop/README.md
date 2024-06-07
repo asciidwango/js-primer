@@ -285,8 +285,8 @@ while (条件式) {
 
 <!-- doctest:disable -->
 ```js
-if (isEven(number)) {
-    results.push(number);
+if (isEven(num)) {
+    results.push(num);
 }
 ```
 
