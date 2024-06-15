@@ -1637,7 +1637,7 @@ Ecma Internationalの中のTechnical Committee 39（TC39）という技術委員
 ES2016以降では、次のような仕様策定のプロセスで議論を進めて仕様が決定されています。<sup><a href="#fn_2" id="reffn_2">2</a></sup></p>
 <p>仕様に追加する機能（API、構文など）をそれぞれ個別の<strong>プロポーザル</strong>（提案書）として進めていきます。
 現在策定中のプロポーザルはGitHub上の<a href="https://github.com/tc39/proposals" title="tc39/proposals: Tracking ECMAScript Proposals" target="_blank">tc39/proposals</a>に一覧が公開されています。
-それぞれのプロポーザルは責任者である<strong>チャンピオン</strong>と<strong>ステージ</strong>（Stage）と呼ばれる<code>0</code>から<code>4</code>の5段階の状態を持ちます。</p>
+それぞれのプロポーザルは責任者である<strong>チャンピオン</strong>と<strong>ステージ</strong>（Stage）と呼ばれる<code>0</code>から<code>4</code>の6段階の状態を持ちます。</p>
 <table>
 <thead>
 <tr>
@@ -1659,8 +1659,12 @@ ES2016以降では、次のような仕様策定のプロセスで議論を進�
 <td>機能の仕様書ドラフトを作成した段階</td>
 </tr>
 <tr>
+<td style="text-align:center">2.7</td>
+<td>仕様としては完成しており、テストやプロトタイプ開発をして検証する段階</td>
+</tr>
+<tr>
 <td style="text-align:center">3</td>
-<td>仕様としては完成しており、ブラウザの実装やフィードバックを求める段階</td>
+<td>ブラウザが実装をはじめて、フィードバックを求める段階</td>
 </tr>
 <tr>
 <td style="text-align:center">4</td>
@@ -1668,6 +1672,9 @@ ES2016以降では、次のような仕様策定のプロセスで議論を進�
 </tr>
 </tbody>
 </table>
+<p>元々は、<code>0</code>/<code>1</code>/<code>2</code>/<code>3</code>/<code>4</code>の5段階でしたが、2023年に<code>2.7</code>が追加されています。
+これは、ブラウザが実装しはじめて見つかる問題などによりステージ2と3を行き来してしまうことがあったためです。
+そのため、実装の前のテストと検証のためのステージとして<code>2.7</code>が追加されました。</p>
 <p>2ヶ月に一度行われるTC39のミーティングにおいて、プロポーザルごとにステージを進めるかどうかを議論します。
 このミーティングの議事録もGitHub上の<a href="https://github.com/tc39/notes" title="tc39/tc39-notes: TC39 Meeting Notes" target="_blank">tc39/tc39-notes</a>にて公開されています。
 ステージ4となったプロポーザルはドラフト版である<a href="https://github.com/tc39/ecma262" title="tc39/ecma262: Status, process, and documents for ECMA262" target="_blank">tc39/ecma262</a>へマージされます。
@@ -1789,7 +1796,7 @@ ECMAScriptにおいては策定プロセスという形でどのような段階�
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptの仕様であるECMAScriptについてを紹介します。ECMAScriptの歴史や仕様策定がどのようなプロセスで行われているかを紹介します。","sponsors":[],"title":"ECMAScript","level":"1.3.28","depth":2,"next":{"title":"第一部: おわりに","level":"1.3.29","depth":2,"path":"basic/other-parts/README.md","ref":"./basic/other-parts/README.md","articles":[]},"previous":{"title":"ECMAScriptモジュール","level":"1.3.27","depth":2,"path":"basic/module/README.md","ref":"./basic/module/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2023","nodeversion":"20.11.1","npmversion":"10.2.4","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/ecmascript/README.md","mtime":"2024-06-07T14:59:21.166Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-06-07T14:59:37.512Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptの仕様であるECMAScriptについてを紹介します。ECMAScriptの歴史や仕様策定がどのようなプロセスで行われているかを紹介します。","sponsors":[],"title":"ECMAScript","level":"1.3.28","depth":2,"next":{"title":"第一部: おわりに","level":"1.3.29","depth":2,"path":"basic/other-parts/README.md","ref":"./basic/other-parts/README.md","articles":[]},"previous":{"title":"ECMAScriptモジュール","level":"1.3.27","depth":2,"path":"basic/module/README.md","ref":"./basic/module/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2023","nodeversion":"20.11.1","npmversion":"10.2.4","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/ecmascript/README.md","mtime":"2024-06-15T12:53:28.391Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-06-15T12:53:44.492Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
