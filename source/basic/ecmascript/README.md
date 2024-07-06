@@ -112,7 +112,7 @@ Transpilerとしては[Babel][]や[TypeScript][]などが有名です。
 Polyfillとは、新しい関数やメソッドなどの仕様を満たすような実装を提供するライブラリのことです。
 たとえば、ES2016ではArrayに`includes`というメソッドが追加されました。
 構文とは異なり`includes`のようなメソッドはビルトインオブジェクトを書き換えることで実装できます。
-Polyfillを提供するものとしては[core-js][]や[polyfill.io][]などが有名です。
+Polyfillを提供するものとしては[core-js][]などが有名です。
 
 注意点としてはTranspilerやPolyfillは、あくまで既存の機能を用いて新しい機能の再現を試みているだけにすぎません。
 そのため、既存の機能で再現ができないプロポーザル（機能）はTranspilerやPolyfillでは再現できません。
@@ -191,7 +191,6 @@ ECMAScriptにおいては策定プロセスという形でどのような段階�
 [Babel]: https://babeljs.io/  "Babel · The compiler for writing next generation JavaScript"
 [TypeScript]: https://www.typescriptlang.org/  "TypeScript - JavaScript that scales."
 [core-js]: https://github.com/zloirock/core-js  "zloirock/core-js: Standard Library"
-[polyfill.io]: https://polyfill.io/v3/  "Polyfill service"
 [MDN Web Docs]: https://developer.mozilla.org/ja/  "MDN Web Docs"
 [^1]: ECMAScript 4は複雑で大きな変更が含まれており、合意を得ることができずに仕様が破棄されました。
 [^2]: この策定プロセスは<https://tc39.es/process-document/>に詳細が書かれています。
