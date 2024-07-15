@@ -1026,6 +1026,7 @@ ES2024では、`Object.groupBy`静的メソッドが追加され、配列から�
 先ほどのコードを`Object.groupBy`静的メソッドを使って書き換えると次のようになります。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2024" } -->
 ```js
 const array = [1, 2, 3, 4, 5];
 const grouped = Object.groupBy(array, (currentValue) => {
