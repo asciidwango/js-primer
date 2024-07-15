@@ -1029,6 +1029,7 @@ ES2024では、`Object.groupBy`静的メソッドが追加され、配列から�
 ```js
 const array = [1, 2, 3, 4, 5];
 const grouped = Object.groupBy(array, (currentValue) => {
+    // currentValueが偶数なら"even"、そうでないなら"odd"の配列に追加される
     return currentValue % 2 === 0 ? "even" : "odd";
 });
 console.log(grouped); // => { odd: [1, 3, 5], even: [2, 4] }
