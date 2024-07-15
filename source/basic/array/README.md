@@ -991,7 +991,7 @@ function sum(array) {
 console.log(sum(array)); // => 6
 ```
 
-###  [ES2024] `Object.groupBy`静的メソッド {#array-group-by}
+###  [ES2024] `Object.groupBy`静的メソッド {#object-group-by}
 
 `Array.prototype.reduce`メソッドを使うことで、配列から数値やオブジェクトなど任意の値を作成できます。
 
