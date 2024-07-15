@@ -1036,7 +1036,6 @@ const grouped = Object.groupBy(array, (currentValue) => {
 });
 console.log(grouped.even); // => [2, 4]
 console.log(grouped.odd); // => [1, 3, 5]
-
 ```
 
 `Object.groupBy`メソッドを使うことで、配列からグループ分けしたオブジェクトを簡潔に作成できます。
