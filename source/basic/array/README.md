@@ -1173,4 +1173,4 @@ console.log(versionNames); // => ["ECMAScript 1", "ECMAScript 2", "ECMAScript 3"
 [Immutable.js]: https://immutable-js.com/  "Immutable.js"
 [Arrayについてのドキュメント]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array
 
-[^1]: `Array.prototype.group`メソッドのようなArrayのメソッドではないのは、同じメソッド名を実装するウェブサイトが多く存在しており後方互換性がなかったためです。
+[^1]: `Array.prototype.groupBy`メソッドのようなArrayのメソッドではないのは、同じメソッド名を実装するウェブサイトが多く存在しており後方互換性がなかったためです。
