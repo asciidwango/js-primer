@@ -1014,7 +1014,8 @@ const grouped = array.reduce((accumulator, currentValue) => {
     accumulator[key].push(currentValue);
     return accumulator;
 }, {});
-console.log(grouped); // => { odd: [1, 3, 5], even: [2, 4] }
+console.log(grouped.even); // => [2, 4]
+console.log(grouped.odd); // => [1, 3, 5]
 ```
 
 しかし、`reduce`メソッドは使い方がやや複雜であるため、可能なら避けたほうが読みやすいコードとなりやすいです。
@@ -1033,7 +1034,9 @@ const grouped = Object.groupBy(array, (currentValue) => {
     // currentValueが偶数なら"even"、そうでないなら"odd"の配列に追加される
     return currentValue % 2 === 0 ? "even" : "odd";
 });
-console.log(grouped); // => { odd: [1, 3, 5], even: [2, 4] }
+console.log(grouped.even); // => [2, 4]
+console.log(grouped.odd); // => [1, 3, 5]
+
 ```
 
 `Object.groupBy`メソッドを使うことで、配列からグループ分けしたオブジェクトを簡潔に作成できます。
