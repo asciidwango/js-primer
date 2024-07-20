@@ -79,13 +79,13 @@ IssueやPull Requestについては、次のページを参照してください
 
     npm install
 
-Node.js v20.11.1以上とnpm 10.2.4以上が必要です。
+Node.js v22.4.1以上とnpm 10.8.2以上が必要です。
 
 ```
 $ node -v
-v20.11.1
+v22.4.1
 $ npm -v
-10.2.4
+10.8.2
 ```
 
 ## Usage

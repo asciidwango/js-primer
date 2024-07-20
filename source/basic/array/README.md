@@ -978,7 +978,7 @@ console.log(totalValue); // => 6
 そのため、できる限り変数を`const`で宣言したい場合には`reduce`メソッドは有用です。
 一方で、`reduce`メソッドは可読性があまりよくないため、コードの意図が伝わりにくいというデメリットもあります。
 
-`reduce`メソッドには利点と可読性のトレードオフがありますが、利用する場合は`reduce`メソッドを扱う処理を関数で囲むなど処理の意図がわかるように工夫をする必要があります。
+`reduce`メソッドには利点と可読性のトレードオフがありますが、利用する場合は`reduce`メソッドを扱う処理を関数にするといった処理の意図がわかるように工夫をする必要があります。
 
 {{book.console}}
 ```js
@@ -990,6 +990,55 @@ function sum(array) {
 }
 console.log(sum(array)); // => 6
 ```
+
+###  [ES2024] `Object.groupBy`静的メソッド {#object-group-by}
+
+`Array.prototype.reduce`メソッドを使うことで、配列から数値やオブジェクトなど任意の値を作成できます。
+
+先ほどは配列の合計の数値を計算する例でしたが、配列からオブジェクトを作成することもできます。
+配列からオブジェクトを作成したいユースケースとして、配列の要素を条件によってグループ分けしたいケースがあります。
+たとえば、数値からなる配列の要素を奇数と偶数の配列に分けたい場合などです。
+
+`Array.prototype.reduce`メソッドを使って、数値からなる配列を奇数と偶数に分けるコードは次のようになります。
+
+{{book.console}}
+```js
+const array = [1, 2, 3, 4, 5];
+const grouped = array.reduce((accumulator, currentValue) => {
+    // 2で割った余りが0なら偶数(even)、そうでないなら奇数(odd)
+    const key = currentValue % 2 === 0 ? "even" : "odd";
+    if (!accumulator[key]) {
+        accumulator[key] = [];
+    }
+    // グループ分けしたキーの配列に要素を追加
+    accumulator[key].push(currentValue);
+    return accumulator;
+}, {});
+console.log(grouped.even); // => [2, 4]
+console.log(grouped.odd); // => [1, 3, 5]
+```
+
+しかし、`reduce`メソッドは使い方がやや複雜であるため、可能なら避けたほうが読みやすいコードとなりやすいです。
+ES2024では、`Object.groupBy`静的メソッドが追加され、配列からグループ分けしたオブジェクトを作成できるようになっています。
+
+`Object.groupBy`静的メソッド[^1]は、第1引数に配列を、第2引数にグループ分けの条件を返すコールバック関数を渡します。
+第2引数のコールバック関数が返した値をキーとして、配列の要素をグループ分けしたオブジェクトが作成されます。
+
+先ほどのコードを`Object.groupBy`静的メソッドを使って書き換えると、次のようになります。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2024" } -->
+```js
+const array = [1, 2, 3, 4, 5];
+const grouped = Object.groupBy(array, (currentValue) => {
+    // currentValueが偶数なら"even"、そうでないなら"odd"の配列に追加される
+    return currentValue % 2 === 0 ? "even" : "odd";
+});
+console.log(grouped.even); // => [2, 4]
+console.log(grouped.odd); // => [1, 3, 5]
+```
+
+`Object.groupBy`静的メソッドを使うことで、配列からグループ分けしたオブジェクトを簡潔に作成できます。
 
 ## [コラム] Array-likeオブジェクト {#array-like}
 
@@ -1030,7 +1079,7 @@ function myFunc() {
 myFunc("a", "b", "c");
 ```
 
-Array-likeオブジェクトは配列のようで配列ではないというもどかしさを持つオブジェクトです。`Array.from`メソッド<sup>[ES2015]</sup>を使うことでArray-likeオブジェクトを配列に変換して扱うことができます。一度配列に変換してしまえばArrayメソッドも利用できます。
+Array-likeオブジェクトは配列のようで配列ではないというもどかしさを持つオブジェクトです。`Array.from`静的メソッド<sup>[ES2015]</sup>を使うことでArray-likeオブジェクトを配列に変換して扱うことができます。一度配列に変換してしまえばArrayメソッドも利用できます。
 
 {{book.console}}
 ```js
@@ -1123,3 +1172,5 @@ console.log(versionNames); // => ["ECMAScript 1", "ECMAScript 2", "ECMAScript 3"
 [Lodash]: https://lodash.com/  "Lodash"
 [Immutable.js]: https://immutable-js.com/  "Immutable.js"
 [Arrayについてのドキュメント]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+[^1]: `Array.prototype.groupBy`メソッドのようなArrayのメソッドではないのは、同じメソッド名を実装するウェブサイトが多く存在しており後方互換性がなかったためです。
