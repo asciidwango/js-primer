@@ -559,5 +559,6 @@ console.log(results); // => ["a","b"]
 [プロパティの存在を確認する]: ../object/README.md#confirm-property
 [プロトタイプオブジェクト]: ../prototype-object/README.md
 [`Object.prototype`を継承しないオブジェクト]: ../prototype-object/README.md#not-inherit-object
+[`Object.groupBy`]: ../array/README.md#object-group-by
 
 [^es2023]: ES2023でSymbolも扱えるように仕様が変更されています。
