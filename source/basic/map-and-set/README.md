@@ -1,7 +1,7 @@
 ---
 author: laco
 description: "データの集合を扱うビルトインオブジェクトであるMapとSetについてを紹介します。オブジェクトの作成方法や更新方法から実際にどのようなケースで使うのかを紹介します。"
-sponsors: [ ]
+sponsors: []
 ---
 
 # [ES2015] Map/Set {#map-and-set}
@@ -22,7 +22,6 @@ JavaScriptでデータの集まり（コレクション）を扱うビルトイ�
 そのため、マップが持つ要素の数を返す`size`プロパティは`0`を返します。
 
 {{book.console}}
-
 ```js
 const map = new Map();
 console.log(map.size); // => 0
@@ -35,7 +34,6 @@ console.log(map.size); // => 0
 次のコードでは、Mapに初期値となるエントリー（配列）の配列を渡しています。
 
 {{book.console}}
-
 ```js
 const map = new Map([["key1", "value1"], ["key2", "value2"]]);
 // 2つのエントリーで初期化されている
@@ -53,7 +51,6 @@ console.log(map.size); // => 2
 また、特定のキーにひもづいた値を持っているかを確認する`has`メソッドがあります。
 
 {{book.console}}
-
 ```js
 const map = new Map();
 // 新しい要素の追加
@@ -73,7 +70,6 @@ console.log(map.has("foo")); // => false
 また、マップが持つすべての要素を削除するための`clear`メソッドがあります。
 
 {{book.console}}
-
 ```js
 const map = new Map();
 map.set("key1", "value1");
@@ -95,7 +91,6 @@ console.log(map.size); // => 0
 配列はインデックスにより要素を特定しますが、マップはキーにより要素を特定するためです。
 
 {{book.console}}
-
 ```js
 const map = new Map([["key1", "value1"], ["key2", "value2"]]);
 const results = [];
@@ -111,7 +106,6 @@ console.log(results); // => ["key1:value1","key2:value2"]
 そのため、次の例のように`for...of`文で反復処理を行ったり、`Array.from`メソッドに渡して配列に変換して使ったりします。
 
 {{book.console}}
-
 ```js
 const map = new Map([["key1", "value1"], ["key2", "value2"]]);
 const keys = [];
@@ -130,7 +124,6 @@ console.log(keysArray); // => ["key1","key2"]
 そのため、配列の分割代入を使うとエントリーからキーと値を簡単に取り出せます。
 
 {{book.console}}
-
 ```js
 const map = new Map([["key1", "value1"], ["key2", "value2"]]);
 const entries = [];
@@ -145,7 +138,6 @@ console.log(entries); // => ["key1:value1","key2:value2"]
 つまり、`entries`メソッドの返り値を反復処理するときと同じ結果が得られます。
 
 {{book.console}}
-
 ```js
 const map = new Map([["key1", "value1"], ["key2", "value2"]]);
 const results = [];
@@ -197,15 +189,12 @@ ES2015で`Map`が導入されるまで、JavaScriptにおいてマップ型を�
 そのため`constructor`のような文字列をオブジェクトのキーに使うことで意図しないマッピングを生じる危険性があります。
 
 {{book.console}}
-
 ```js
 const map = {};
-
 // マップがキーを持つことを確認する
 function has(key) {
     return typeof map[key] !== "undefined";
 }
-
 console.log(has("foo")); // => false
 // Objectのプロパティが存在する
 console.log(has("constructor")); // => true
@@ -229,7 +218,6 @@ ES2015では、これらの問題を根本的に解決する`Map`が導入され
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": 2020 } -->
-
 ```js
 // ショッピングカートを表現するクラス
 class ShoppingCart {
@@ -237,21 +225,18 @@ class ShoppingCart {
         // 商品とその数を持つマップ
         this.items = new Map();
     }
-
     // カートに商品を追加する
     addItem(item) {
         // `item`がない場合は`undefined`を返すため、Nullish coalescing演算子(`??`)を使いデフォルト値として`0`を設定する
         const count = this.items.get(item) ?? 0;
         this.items.set(item, count + 1);
     }
-
     // カート内の合計金額を返す
     getTotalPrice() {
         return Array.from(this.items).reduce((total, [item, count]) => {
             return total + item.price * count;
         }, 0);
     }
-
     // カートの中身を文字列にして返す
     toString() {
         return Array.from(this.items).map(([item, count]) => {
@@ -259,7 +244,6 @@ class ShoppingCart {
         }).join(",");
     }
 }
-
 const shoppingCart = new ShoppingCart();
 // 商品一覧
 const shopItems = [
@@ -359,7 +343,6 @@ obj = null;
 ここで`WeakMap`を使うと、`addListener` メソッドに渡された`listener`は `EventEmitter` インスタンスが参照されなくなった際、自動的に解放されます。
 
 <!-- doctest:meta:{ "ECMAScript": 2020 } -->
-
 ```js
 // イベントリスナーを管理するマップ
 const listenersMap = new WeakMap();
@@ -372,7 +355,6 @@ class EventEmitter {
         // this をキーにして、新しいリスナーの配列をセットする
         listenersMap.set(this, newListeners);
     }
-
     // ...EventEmitterには他にもメソッドがあるが省略...
 }
 
@@ -415,7 +397,6 @@ function getHeight(element) {
 次のコードでは、`NaN`同士の`===`の比較結果が`false`になるのに対して、`Map`のキーでは`NaN`同士の比較結果が一致していることがわかります。
 
 {{book.console}}
-
 ```js
 const map = new Map();
 map.set(NaN, "value");
@@ -440,7 +421,6 @@ console.log(map.get(NaN)); // => "value"
 そのため、セットが持つ要素の数を返す`size`プロパティは0を返します。
 
 {{book.console}}
-
 ```js
 const set = new Set();
 console.log(set.size); // => 0
@@ -453,7 +433,6 @@ console.log(set.size); // => 0
 また、`Set`では重複する同じ値を持たないことを保証するため、同じ値は1つのみ格納されます。
 
 {{book.console}}
-
 ```js
 // "value2"が重複するため、片方は無視される
 const set = new Set(["value1", "value2", "value2"]);
@@ -470,7 +449,6 @@ console.log(set.size); // => 2
 また、セットが特定の値を持っているかどうかを確認する`has`メソッドがあります。
 
 {{book.console}}
-
 ```js
 const set = new Set();
 // 値の追加
@@ -489,7 +467,6 @@ console.log(set.has("b")); // => false
 また、セットが持つすべての値を削除するための`clear`メソッドがあります。
 
 {{book.console}}
-
 ```js
 const set = new Set();
 set.add("a");
@@ -507,7 +484,6 @@ console.log(set.size); // => 0
 `forEach`メソッドではセットが持つすべての要素を、セットへの挿入順に反復します。
 
 {{book.console}}
-
 ```js
 const set = new Set(["a", "b"]);
 const results = [];
@@ -523,7 +499,6 @@ console.log(results); // => ["a","b"]
 また、`entries`メソッドは`[値, 値]`という形のエントリーを挿入順に列挙するIteratorオブジェクトを返します。
 
 {{book.console}}
-
 ```js
 const set = new Set(["a", "b"]);
 // keysで列挙
@@ -546,7 +521,6 @@ console.log(entryResults); // => [["a","a"], ["b", "b"]]
 `keys`、`values`、`entries`メソッドはどれも取得できる情報は同じであるため、基本的には`Set`オブジェクト自体を反復処理することで代用できます。
 
 {{book.console}}
-
 ```js
 const set = new Set(["a", "b"]);
 const results = [];
@@ -576,25 +550,14 @@ console.log(results); // => ["a","b"]
 - `WeakSet`は値を弱い参照で持つ`Set`と同様のビルトインオブジェクト
 
 [Map]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Map
-
 [Same-value-zero]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Equality_comparisons_and_sameness#Same-value-zero_equality
-
 [Set]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Set
-
 [WeakMap]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/WeakMap
-
 [WeakSet]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/WeakSet
-
 [弱い参照]: https://ja.wikipedia.org/wiki/%E5%BC%B1%E3%81%84%E5%8F%82%E7%85%A7
-
 [オブジェクト]: ../object/README.md
-
 [プロパティの存在を確認する]: ../object/README.md#confirm-property
-
 [プロトタイプオブジェクト]: ../prototype-object/README.md
-
 [`Object.prototype`を継承しないオブジェクト]: ../prototype-object/README.md#not-inherit-object
-
-[`Object.groupBy`]: ../array/README.md#object-group-by
 
 [^es2023]: ES2023でSymbolも扱えるように仕様が変更されています。
