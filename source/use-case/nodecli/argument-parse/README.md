@@ -138,7 +138,7 @@ console.log(positionals); // フラグ以外の引数の配列
 `parseArgs`関数は、コマンドライン引数をパースした結果として`values`と`positionals`の2つのプロパティを持つオブジェクトを返します。
 `values`オブジェクトには、`--key=value`のようなオプションや`--flag`のようなフラグをパースした結果が保存されています。
 `positionals`配列には、オプションやフラグ以外の引数が配列として順番に格納されています。
-デフォルトでは、`positionals`配列はパース結果には含まれないため、`allowPositionals`オプションを`true`に設定しています。
+デフォルトでは、`positionals`配列はパース結果には含まれないため、`allowPositionals`オプションを`true`にすることで含まれるようになります。
 
 今回の`main.js`に渡す`./sample.md`引数はオプションやフラグではないので、`positionals`配列に格納されます。
 それでは`main.js`を次のように変更し、コマンドライン引数で渡されたファイルパスを取得しましょう。
