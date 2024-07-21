@@ -12,7 +12,7 @@
 書籍版は次のページから購入できます。
 
 - 物理書籍とKindle: [JavaScript Primer 改訂2版 迷わないための入門書 | azu, Suguru Inatomi |本 | 通販 | Amazon](https://www.amazon.co.jp/dp/4048931105/)
-- PDFとepub: [JavaScript Primer 迷わないための入門書【委託】 - 達人出版会](https://tatsu-zine.com/books/javascript-primer) （2023-06-03時点では初版のままです）
+- PDFとepub: [JavaScript Primer 改訂2版【委託】 - 達人出版会](https://tatsu-zine.com/books/javascript-primer-2ed)
 
 ウェブ版と書籍版の内容は基本的には同じです。
 詳細は[ウェブ版と書籍版の違い](https://jsprimer.net/intro/#diff-with-print-version)を参照してください。
@@ -33,7 +33,13 @@ Open Collectiveでの支援には、サイト上にロゴを表示するとい�
 
 - [JavaScript Primer - Open Collective](https://opencollective.com/jsprimer)
 
-[![jsprimer backers](https://opencollective.com/jsprimer/backers.svg?width=890)](https://opencollective.com/jsprimer#backers)
+**Gold Sponsors**
+
+[![jsprimer sponsors](https://opencollective.com/jsprimer/sponsors.svg?width=890&avatarHeight=80)](https://opencollective.com/jsprimer#sponsors)
+
+**Supporters**
+
+[![jsprimer backers](https://opencollective.com/jsprimer/backers.svg?width=890&avatarHeight=40)](https://opencollective.com/jsprimer#backers)
 
 
 また、書籍版へのレビューを書くことも支援に繋がります。
@@ -73,13 +79,13 @@ IssueやPull Requestについては、次のページを参照してください
 
     npm install
 
-Node.js v20.11.1以上とnpm 10.2.4以上が必要です。
+Node.js v22.4.1以上とnpm 10.8.2以上が必要です。
 
 ```
 $ node -v
-v20.11.1
+v22.4.1
 $ npm -v
-10.2.4
+10.8.2
 ```
 
 ## Usage

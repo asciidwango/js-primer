@@ -17,11 +17,14 @@ const sourceDir = path.join(__dirname, "..", "source");
 /**
  * 指定したECMAScriptバージョンをmetaにもつコードは実行環境によってはサポートされてないので無視する
  * 最新版のNodeでは無視しない
- * @type {string[]}
+ * @type {string[]} サポートしてないECMAScriptバージョン
  */
 const IgnoredECMAScriptVersions = (() => {
-    if (semver.cmp(process.version, ">=", "20.0.0")) {
+    if (semver.cmp(process.version, ">=", "22.0.0")) {
         return []; // すべて通る前提
+    }
+    if (semver.cmp(process.version, ">=", "20.0.0")) {
+        return ["2024"]; // Object.groupByがサポートされていない
     }
     if (semver.cmp(process.version, ">=", "18.0.0")) {
         return ["2023"]; // Array.prototype.withがサポートされていない
@@ -35,7 +38,7 @@ const IgnoredECMAScriptVersions = (() => {
         // Top-Level await をサポートしていない
         return ["2021", "2022"];
     }
-    return ["2017", "2018", "2019", "2020", "2021", "2022"];
+    return ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"];
 })();
 /**
  * Markdownファイルの CodeBlock に対してdoctestを行う
@@ -55,7 +58,7 @@ describe("doctest:md", function() {
     ]);
     files.forEach(filePath => {
         const normalizeFilePath = filePath.replace(sourceDir, "");
-        describe(`${normalizeFilePath}`, function () {
+        describe(`${normalizeFilePath}`, function() {
             const content = fs.readFileSync(filePath, "utf-8");
             const parsedCodes = parse({
                 filePath,
@@ -66,7 +69,7 @@ describe("doctest:md", function() {
             parsedCodes.forEach((parsedCode, index) => {
                 const codeValue = parsedCode.code;
                 const testCaseName = codeValue.slice(0, 32).replace(/[\r\n]/g, "_");
-                it(dirName + ": " + testCaseName, function () {
+                it(dirName + ": " + testCaseName, function() {
                     return test({
                         ...parsedCode,
                         code: toTestCode(parsedCode.code)

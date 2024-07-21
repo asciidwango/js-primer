@@ -282,6 +282,39 @@ MDNの[JavaScriptエラーリファレンス][]には、ブラウザが投げる
 また、ほとんどのブラウザには`console.log`や`console.error`の出力をフィルタリングできる機能が備わっています。
 ただのログ出力には`console.log`を使い、エラーに関するログ出力には`console.error`を使うことで、ログの重要度が区別しやすくなります。
 
+## [ES2022] Error Cause {#error-cause}
+
+エラーをキャッチした際、新しいメッセージを持たせた別のエラーを再度投げ直すことで、デバッグに役立つ情報を付与できます。
+これを実現する時に、新しくErrorオブジェクトを作成してthrowすることで実現できます。
+しかし、この方法には本来のエラーのスタックトレースが失われるという問題があります。
+
+{{book.console}}
+<!-- doctest:Error -->
+```js
+function somethingWork() {
+    throw new Error("本来のエラー");
+}
+
+try {
+    somethingWork();
+} catch (error) {
+    // `error` が持っていたスタックトレースが失われるため、実際にエラーが発生した場所がわからなくなる 
+    throw new Error("somethingWork関数でエラーが発生しました");
+}
+```
+
+このスタックトレースが失われる問題を解決するには、ES2022で追加されたErrorの`cause`オプションが利用できます。
+新しいエラーオブジェクトを作成する際に、第二引数の`cause`オプションに本来のエラーオブジェクトを渡すことで、本来のスタックトレースを保持できます。
+
+{{book.console}}
+[import, error-cause/index.js](src/error-cause/index.js)
+
+このスクリプトを読み込むと、`sumNumsStrings` の例外に `safeParseInt` から投げられたスタックトレースが付与された状態のエラーログがコンソールに出力されます。
+ここではFirefoxにおける実行例を示します。
+
+
+![safeParseIntのスタックトレースが含まれたconsole.errorの出力結果](./img/error-cause.png)
+
 ## まとめ {#conclusion}
 
 この章では、例外処理とエラーオブジェクトについて学びました。
@@ -291,6 +324,7 @@ MDNの[JavaScriptエラーリファレンス][]には、ブラウザが投げる
 - `throw`文は例外を投げることができ、`Error`オブジェクトを例外として投げる
 - `Error`オブジェクトには、ECMAScript仕様や実行環境で定義されたビルトインエラーがある
 - `Error`オブジェクトには、スタックトレースが記録され、デバッグに役立てられる
+- Error Causeを使うことで、別のエラーのスタックトレースを引き継いだ新しいエラーを作成できる
 
 [try...catch]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/try...catch
 [throw]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/throw

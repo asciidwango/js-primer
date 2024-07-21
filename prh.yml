@@ -434,6 +434,16 @@ rules:
   - expected: $1個
     patterns: /([0-9]+)コ/i
     prh: "https://github.com/asciidwango/js-primer/issues/979"
+  - expected: 第一引数
+    patterns: 第1引数
+  - expected: 第二引数
+    patterns: 第2引数
+  - expected: 第三引数
+    patterns: 第3引数
+  - expected: 第四引数
+    patterns: 第4引数
+  - expected: 第五引数
+    patterns: 第5引数
 
   # 漢字開き
   - expected: 呼び出す
