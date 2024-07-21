@@ -17,7 +17,6 @@ const {
     }
 });
 const filePath = positionals[0];
-
 fs.readFile(filePath, { encoding: "utf8" }).then(file => {
     const html = marked.parse(file, {
         // オプションの値を使用する

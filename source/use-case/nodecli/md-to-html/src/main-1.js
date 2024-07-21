@@ -9,7 +9,6 @@ const {
     allowPositionals: true,
 });
 const filePath = positionals[0];
-
 fs.readFile(filePath, { encoding: "utf8" }).then(file => {
     // MarkdownファイルをHTML文字列に変換する
     const html = marked.parse(file);

@@ -8,7 +8,6 @@ const { positionals } = util.parseArgs({
     allowPositionals: true
 });
 const filePath = positionals[0];
-
 // ファイルを非同期で読み込む
 fs.readFile(filePath).then(file => {
     console.log(file);

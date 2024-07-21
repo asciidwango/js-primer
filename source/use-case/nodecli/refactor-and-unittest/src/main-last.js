@@ -19,7 +19,6 @@ const {
 });
 
 const filePath = positionals[0];
-
 fs.readFile(filePath, { encoding: "utf8" }).then(file => {
     // md2htmlモジュールを使ってHTMLに変換する
     const html = md2html(file, {
