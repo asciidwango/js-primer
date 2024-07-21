@@ -172,6 +172,7 @@ Node.jsの標準モジュールは、`node:util`や`node:fs`のように`node:`�
 - コマンドライン引数でmarkedの変換オプションを設定した
 - `--gfm`フラグを使って、Markdownの変換結果が変わることを確認した
 
+[npm]: https://www.npmjs.com/
 [marked]: https://github.com/markedjs/marked
 [変換オプション]: https://marked.js.org/#/USING_ADVANCED.md#options
 [GitHub Flavored Markdown]: https://github.github.com/gfm/

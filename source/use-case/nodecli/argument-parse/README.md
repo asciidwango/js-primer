@@ -176,7 +176,7 @@ SyntaxError: Cannot use import statement outside a module
 - `node:util`モジュールの`parseArgs`関数を使ってコマンドライン引数をパースできることを確認した
 - コマンドライン引数で渡されたファイルパスを取得してコンソールに出力できた
 
-[npm]: https://www.npmjs.com/
+
 [npmのGitHubリポジトリ]: https://github.com/npm/npm
 [CommonJSモジュール]: https://nodejs.org/docs/latest/api/modules.html
 [Node.js]: https://nodejs.org/
