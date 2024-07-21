@@ -1,6 +1,6 @@
 import * as util from "node:util";
 
-// コマンドライン引数をutil.parseArgsメソッドでパースする
+// コマンドライン引数をparseArgs関数でパースする
 const {
     positionals
 } = util.parseArgs({

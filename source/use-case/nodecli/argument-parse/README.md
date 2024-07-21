@@ -122,7 +122,7 @@ $ node main.js ./sample.md
 // `node:util`モジュールを、utilオブジェクトとしてインポートする
 import * as util from "node:util";
 
-// コマンドライン引数をutil.parseArgsメソッドでパースする
+// コマンドライン引数をparseArgs関数でパースする
 const {
     values,
     positionals
