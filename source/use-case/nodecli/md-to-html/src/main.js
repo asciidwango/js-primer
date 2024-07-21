@@ -9,7 +9,7 @@ const {
 } = util.parseArgs({
     allowPositionals: true,
     options: {
-        // gfmオプションを定義する
+        // gfmフラグを定義する
         gfm: {
             type: "boolean",
             default: false,

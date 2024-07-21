@@ -4,7 +4,7 @@ import * as util from "node:util";
 const {
     positionals
 } = util.parseArgs({
-    // フラグ以外の引数を渡すことを許可する
+    // オプションやフラグ以外の引数を渡すことを許可する
     allowPositionals: true
 });
 // ファイルパスをpositionals配列から取り出す

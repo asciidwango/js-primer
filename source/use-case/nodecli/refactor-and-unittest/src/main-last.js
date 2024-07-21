@@ -10,7 +10,7 @@ const {
 } = util.parseArgs({
     allowPositionals: true,
     options: {
-        // gfmオプションを定義する
+        // gfmフラグを定義する
         gfm: {
             type: "boolean",
             default: false,
@@ -23,7 +23,7 @@ const filePath = positionals[0];
 fs.readFile(filePath, { encoding: "utf8" }).then(file => {
     // md2htmlモジュールを使ってHTMLに変換する
     const html = md2html(file, {
-        // コマンドライン引数から受け取ったオプションを渡す
+        // gfmフラグのパース結果をオプションとして渡す
         gfm: values.gfm
     });
     console.log(html);

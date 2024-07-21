@@ -128,7 +128,7 @@ const {
     values,
     positionals
 } = util.parseArgs({
-    // フラグ以外の引数を渡すことを許可する
+    // オプションやフラグ以外の引数を渡すことを許可する
     allowPositionals: true
 });
 console.log(values); // オプションやフラグを含むオブジェクト
@@ -185,6 +185,5 @@ SyntaxError: Cannot use import statement outside a module
 [ECMAScriptモジュール]: ../../../basic/module/README.md
 [parseArgs]: https://nodejs.org/api/util.html#utilparseargsconfig
 [Node.jsプロジェクトのセットアップ]: ../helloworld/README.md#setup-nodejs-project
-[^1]: --saveオプションをつけてインストールしたのと同じ意味。npm 5.0.0からは--saveがデフォルトオプションとなりました。
 [^2]: [package.json and file extensions](https://nodejs.org/api/packages.html#packagejson-and-file-extensions)
 [^3]: [Interoperability with CommonJS](https://nodejs.org/api/esm.html#interoperability-with-commonjs)

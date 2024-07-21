@@ -9,56 +9,30 @@ sponsors: []
 前のセクションではコマンドライン引数で受け取ったファイルを読み込み、標準出力に表示しました。
 次は読み込んだMarkdownファイルをHTMLに変換して、その結果を標準出力に表示してみましょう。
 
-### `commander`パッケージをインストールする {#install-commander}
+## `marked`パッケージをインストールする {#install-marked}
 
-commanderは[npm][]の`npm install`コマンドを使ってインストールできます。
-まだnpmの実行環境を用意できていなければ、先に「[アプリケーション開発の準備][]」の章を参照してください。
-
-## markedパッケージを使う {#use-marked-package}
-
-JavaScriptでMarkdownをHTMLへ変換するために、今回は[marked][]というライブラリを使用します。
+MarkdownをHTMLへ変換するために、今回は[marked][]というライブラリを使用します。
 markedのパッケージは[npm][]で配布されているので、`npm install`コマンドを使ってインストールできます。
 まだnpmの実行環境を用意できていなければ、先に「[アプリケーション開発の準備][]」の章を参照してください。
 
-npmでパッケージをインストールする前に、まずは`package.json`というファイルを作成します。
-`package.json`とは、アプリケーションが依存するパッケージの種類やバージョンなどの情報を記録するJSON形式のファイルです。
-`package.json`ファイルのひな形は、`npm init`コマンドで生成できます。
-通常は対話式のプロンプトによって情報を設定しますが、ここではすべてデフォルト値で`package.json`を作成する`--yes`オプションを付与します。
-
-`nodecli`のディレクトリ内で、`npm init --yes`コマンドを実行して`package.json`を作成しましょう。
-
-```shell
-$ npm init --yes
-```
-
-生成された`package.json`ファイルは次のようになっています。
-
-[import, title:"package.json"](src/package.init.json)
-
-`package.json`ファイルが用意できたら、`npm install`コマンドを使って`commander`パッケージをインストールします。
+`package.json`ファイルが用意できたら、`npm install`コマンドを使って`marked`パッケージをインストールします。
 このコマンドの引数にはインストールするパッケージの名前とそのバージョンを`@`記号でつなげて指定できます。
 バージョンを指定せずにインストールすれば、その時点での最新の安定版が自動的に選択されます。
-次のコマンドを実行して、commanderのバージョン9.0をインストールします。[^1]
-
-```shell
-$ npm install commander@9.0
-```
-
-インストールが完了すると、`package.json`ファイルは次のようになっています。
-
-[import, title:"package.json"](src/package.install.json)
-
-また、`npm install`をすると同時に`package-lock.json`ファイルが生成されています。
-このファイルはnpmがインストールしたパッケージの、実際のバージョンを記録するためのものです。
-先ほどcommanderのバージョンを`9.0`としましたが、実際にインストールされるのは`9.0.x`に一致する最新のバージョンです。
-`package-lock.json`ファイルには実際にインストールされたバージョンが記録されています。
-これによって、再び`npm install`を実行したときに、異なるバージョンがインストールされるのを防ぎます。
-
-
+次のコマンドを実行して、markedのバージョン4.0をインストールします。[^1]
 
 ```shell
 $ npm install marked@4.0
 ```
+
+インストールが完了すると、`package.json`ファイルは次のようになっています。
+
+[import, title:"package.json"](src/package.json)
+
+また、`npm install`をすると同時に`package-lock.json`ファイルが生成されています。
+このファイルはnpmがインストールしたパッケージの、実際のバージョンを記録するためのものです。
+先ほどmarkedのバージョンを`4.0`としましたが、実際にインストールされるのは`4.0.x`に一致する最新のバージョンです。
+`package-lock.json`ファイルには実際にインストールされたバージョンが記録されています。
+これによって、再び`npm install`を実行したときに、異なるバージョンがインストールされるのを防ぎます。
 
 インストールが完了したら、Node.jsのスクリプトから読み込みます。
 前のセクションの最後で書いたスクリプトに、`marked`モジュールの読み込み処理を追加しましょう。
@@ -113,53 +87,43 @@ https://jsprimer.net/</p>
 ### コマンドライン引数からオプションを受け取る {#receive-option}
 
 次に、`gfm`オプションをコマンドライン引数で制御できるようにしましょう。
-アプリケーションのデフォルトでは`gfm`オプションを無効にした上で、次のように`--gfm`オプションを付与してコマンドを実行できるようにします。
+アプリケーションのデフォルトでは`gfm`オプションを無効にした上で、次のように`--gfm`フラグを付与してコマンドを実行できるようにします。
 
 ```shell
 $ node main.js --gfm sample.md
 ```
 
-コマンドライン引数で`--gfm`のようなオプションを扱いたいときには、commanderの`option`メソッドを使います。
-次のように必要なオプションを定義してからコマンドライン引数をパースすると、`program.opts`メソッドでパース結果のオブジェクトを取得できます。
+コマンドライン引数で`--gfm`のようなフラグを扱いたいときには、`parseArg`関数の`options`オブジェクトに定義します。
+`options`オブジェクトでは、`--key=value`のようなオプションを扱う`type: "string"`と、`--flag`のようなフラグを扱う`type: "boolean"`を定義できます。
+今回の`--gfm`フラグは`type: "boolean"`で定義し、`--gfm`フラグがない場合のデフォルト値を`false`に設定します。
+
+次のように`gfm`フラグを定義してからコマンドライン引数をパースすると、返り値の`values`でパース結果のオブジェクトを取得できます。
 
 <!-- 差分コードなので -->
 <!-- doctest:disable -->
 ```js
-// gfmオプションを定義する
-program.option("--gfm", "GFMを有効にする");
-// コマンドライン引数をパースする
-program.parse(process.argv);
-// オプションのパース結果をオブジェクトとして取得する
-const options = program.opts();
-console.log(options.gfm);
+const {
+    values,
+    positionals
+} = util.parseArgs({
+    allowPositionals: true,
+    options: {
+        // gfmフラグを定義する
+        gfm: {
+            // オプションの型をbooleanに指定
+            type: "boolean",
+            // --gfmフラグがあればtrue、なければデフォルト値としてfalseとする
+            default: false,
+        }
+    }
+});
+// valuesにはオプションのパース結果がオブジェクトとして格納される
+console.log(values.gfm);
 ```
 
-`--gfm`オプションはファイルパスを指定する`sample.md`の前後のどちらについていても動作します。
-なぜなら`program.args`配列には`program.option`メソッドで定義したオプションが含まれないためです。
-`process.argv`配列を直接使っているとこのようなオプションの処理が面倒なので、commanderのようなパース処理を挟むのが一般的です。
-
-### デフォルト設定を定義する {#declare-default}
-
-アプリケーション側でデフォルト設定を持っておくことで、将来的にmarkedの挙動が変わったときにも影響を受けにくくなります。
-次のようにオプションを表現した`cliOptions`オブジェクトを作成し、`program.opts`メソッドの返り値から取得した値をセットします。
-コマンドライン引数で指定されなかったオプションには`??`（[Nullish coalescing演算子][]）を使ってデフォルトの値をセットします。
-Nullish coalescing演算子は左辺がnullishであるときにだけ右辺の値を返すため、値が指定されなかった状態と明示的に`false`が与えられた状態を区別したいときに便利です。
-
-<!-- 差分コードなので -->
-<!-- doctest:disable -->
-```js
-// コマンドライン引数のオプションを取得する
-const options = program.opts();
-
-// コマンドライン引数で指定されなかったオプションにデフォルト値を上書きする
-const cliOptions = {
-    gfm: options.gfm ?? false,
-};
-```
-
-こうして作成したcliOptionsオブジェクトを、markedの`parse`関数へオプションとして渡しましょう。`main.js`の全体は次のようになります。
-
-[import title:"main.js"](src/main-3.js)
+`--gfm`フラグは、ファイルパスを指定する`sample.md`の前後のどちらについていても動作します。
+なぜなら`positionals`配列には、`options`オブジェクトで定義したオプションのパース結果は含まれないためです。
+`process.argv`配列を直接使っているとこのようなオプションの処理が面倒なので、`parseArg`関数のようなパース処理を挟むのが一般的です。
 
 定義したコマンドライン引数を使って、Markdownファイルを変換してみましょう。
 
@@ -174,7 +138,7 @@ https://jsprimer.net/</p>
 </ul>
 ```
 
-また、`gfm`オプションを付与して実行すると次のように出力されるはずです。
+また、`--gfm`フラグを付与して実行すると次のように出力されるはずです。
 
 ```shell
 $ node main.js --gfm sample.md
@@ -187,17 +151,18 @@ $ node main.js --gfm sample.md
 </ul>
 ```
 
-これでMarkdown変換の設定をコマンドライン引数でオプションとして与えられるようになりました。
+これでMarkdown変換の設定をコマンドライン引数で与えられるようになりました。
 次のセクションではアプリケーションのコードを整理し、最後にユニットテストを導入します。
 
 ## このセクションのチェックリスト {#section-checklist}
 
 - markedパッケージを使ってMarkdown文字列をHTML文字列に変換した
 - コマンドライン引数でmarkedの変換オプションを設定した
-- デフォルトオプションを定義し、コマンドライン引数で上書きできるようにした
+- `--gfm`フラグを使って、Markdownの変換結果が変わることを確認した
 
 [marked]: https://github.com/markedjs/marked
 [変換オプション]: https://marked.js.org/#/USING_ADVANCED.md#options
 [GitHub Flavored Markdown]: https://github.github.com/gfm/
 [Nullish coalescing演算子]: ../../../basic/operator/README.md#nullish-coalescing-operator
 [オブジェクト]: ../../../basic/object/README.md
+[^1]: --saveオプションをつけてインストールしたのと同じ意味。npm 5.0.0からは--saveがデフォルトオプションとなりました。
