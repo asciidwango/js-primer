@@ -3,7 +3,7 @@ import * as fs from "node:fs/promises";
 // md2htmlモジュールからmd2html関数をインポートする
 import { md2html } from "./md2html.js";
 
-// コマンドライン引数からファイルパスとオプションを受け取る
+// コマンドライン引数からファイルパスとオプション/フラグを受け取る
 const {
     values,
     positionals
