@@ -66,7 +66,7 @@ import * as util from "node:util";
 なぜなら、[Node.js][]は[CommonJSモジュール][]という別のモジュール形式もサポートしており、CommonJSモジュール形式では`import`文は利用できないためです。
 
 Node.jsはもっとも近い上位ディレクトリの `package.json` が持つ `type` フィールドの値によってJavaScriptファイルのモジュール形式を判別します。
-`type`フィールドが `module` であればECMAScriptモジュールとして、`type`フィールドが `commonjs` であればCommonJSモジュールとして扱われます。[^2]
+`type`フィールドが `module` であればECMAScriptモジュールとして、`type`フィールドが `commonjs` であればCommonJSモジュールとして扱われます。[^1]
 また、JavaScriptファイルの拡張子によって明示的に示すこともできます。拡張子が `.mjs` である場合はECMAScriptモジュールとして、`.cjs` である場合はCommonJSモジュールであると判別されます。
 
 今回は `main.js` を ECMAScriptモジュールとして判別させるために、次のコマンドで `package.json` に`type` フィールドを追加します。
@@ -88,7 +88,7 @@ CommonJSモジュールは[ECMAScriptモジュール][]の仕様が策定され�
 
 現在はNode.jsでもECMAScriptモジュールがサポートされていますが、`fs` などの標準モジュールはCommonJSモジュールとして提供されています。
 また、サードパーティ製のライブラリや長く開発が続けられているプロジェクトのソースコードなどでも、CommonJSモジュールを利用する場面は少なくありません。
-そのため、この2つのモジュール形式が共存する場合には、開発者はモジュール形式間の相互運用性（互いを組み合わせた時の動作）に注意する必要があります。[^3]
+そのため、この2つのモジュール形式が共存する場合には、開発者はモジュール形式間の相互運用性（互いを組み合わせた時の動作）に注意する必要があります。[^2]
 
 Node.jsはECMAScriptモジュールからCommonJSモジュールをインポートする方向の相互運用性をサポートしています。
 たとえば、次のようにCommonJSモジュールで`exports`オブジェクトを使ってエクスポートされたオブジェクトは、ECMAScriptモジュールで`import`文を使ってインポートできます。
@@ -185,5 +185,5 @@ SyntaxError: Cannot use import statement outside a module
 [ECMAScriptモジュール]: ../../../basic/module/README.md
 [parseArgs]: https://nodejs.org/api/util.html#utilparseargsconfig
 [Node.jsプロジェクトのセットアップ]: ../helloworld/README.md#setup-nodejs-project
-[^2]: [package.json and file extensions](https://nodejs.org/api/packages.html#packagejson-and-file-extensions)
-[^3]: [Interoperability with CommonJS](https://nodejs.org/api/esm.html#interoperability-with-commonjs)
+[^1]: [package.json and file extensions](https://nodejs.org/api/packages.html#packagejson-and-file-extensions)
+[^2]: [Interoperability with CommonJS](https://nodejs.org/api/esm.html#interoperability-with-commonjs)
