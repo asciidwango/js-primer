@@ -147,6 +147,29 @@ for (const [key, value] of map) {
 console.log(results); // => ["key1:value1","key2:value2"]
 ```
 
+### [ES2024] `Map.groupBy`静的メソッド {#map-group-by}
+
+`Map.groupBy`静的メソッドでは、配列からグループ分けしたマップを作成できます。
+これは配列からグループ分けしたオブジェクトを作成する[`Object.groupBy`][]と同じく、ES2024で追加されたメソッドです。
+
+`Map.groupBy`メソッドは、第一引数に配列などのiterableオブジェクト、第二引数にグループ分けの条件を返すコールバック関数を渡します。
+次のコードでは、配列`votes`の各要素の`vote`プロパティの値を使って、`yes`と`no`にグループ分けしたマップを作成しています。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": 2024 } -->
+```js
+const votes = [
+    { id: 1, vote: "yes" },
+    { id: 2, vote: "no" },
+    { id: 3, vote: "yes" },
+    { id: 4, vote: "yes" },
+    { id: 5, vote: "no" },
+];
+const groupedVotes = Map.groupBy(votes, (vote) => vote.vote);
+console.log(groupedVotes.get("yes")); // => [{ id: 1, vote: "yes" }, { id: 3, vote: "yes" }, { id: 4, vote: "yes" }]
+console.log(groupedVotes.get("no")); // => [{ id: 2, vote: "no" }, { id: 5, vote: "no" }]
+```
+
 ### マップとしてのObjectとMap {#object-and-map}
 
 ES2015で`Map`が導入されるまで、JavaScriptにおいてマップ型を実現するために`Object`が利用されてきました。
@@ -536,5 +559,6 @@ console.log(results); // => ["a","b"]
 [プロパティの存在を確認する]: ../object/README.md#confirm-property
 [プロトタイプオブジェクト]: ../prototype-object/README.md
 [`Object.prototype`を継承しないオブジェクト]: ../prototype-object/README.md#not-inherit-object
+[`Object.groupBy`]: ../array/README.md#object-group-by
 
 [^es2023]: ES2023でSymbolも扱えるように仕様が変更されています。
