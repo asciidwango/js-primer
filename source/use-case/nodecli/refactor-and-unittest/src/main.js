@@ -31,4 +31,3 @@ fs.readFile(filePath, { encoding: "utf8" }).then(file => {
     console.error(err.message);
     process.exit(1);
 });
-a
