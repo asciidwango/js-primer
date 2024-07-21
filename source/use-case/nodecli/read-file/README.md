@@ -25,7 +25,7 @@ Node.jsでファイルの読み書きを行うには、標準モジュールの[
 一方で、`node:fs/promises`モジュールには非同期形式のAPIのみが提供されています。
 この書籍では分かりやすさのために、非同期形式のみのAPIを提供する`node:fs/promises`モジュールを利用します。
 
-次のコードは、ECMAScriptモジュールの`import * as`構文を使って、`node:fs/promises` モジュール全体を`node:fs`オブジェクトとしてインポートしています。
+次のコードは、ECMAScriptモジュールの`import * as`構文を使って、`node:fs/promises` モジュール全体を`fs`オブジェクトとしてインポートしています。
 
 <!-- doctest:disable -->
 ```js
