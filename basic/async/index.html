@@ -1874,7 +1874,7 @@ promise.<span class="hljs-title function_">then</span>(onFulfilled, onRejected);
 });
 </code></pre>
 <p>一方、<code>then</code>メソッドでは失敗時のコールバック関数だけの登録もできます。
-このとき<code>then(undefined, onRejected)</code>のように第1引数には<code>undefined</code>を渡す必要があります。
+このとき<code>then(undefined, onRejected)</code>のように第一引数には<code>undefined</code>を渡す必要があります。
 <code>then(undefined, onRejected)</code>と同様のことを行う方法としてPromiseの<code>catch</code>メソッドが用意されています。</p>
 <p>次のコードでは<code>then</code>メソッドと<code>catch</code>メソッドで失敗時のエラー処理をしていますが、どちらも同じ意味となります。
 <code>then</code>メソッドに<code>undefined</code>を渡すのはわかりにくいため、失敗時の処理だけを登録する場合は<code>catch</code>メソッドの利用を推奨しています。</p>
@@ -2973,7 +2973,7 @@ ES2022では、これに加えてModuleの直下ではAsync Functionで囲まな
 <p>つまり、ひとつのコールバック関数で失敗した場合と成功した場合の両方を扱うルールとなります。</p>
 <p>たとえば、Node.jsでは<code>fs.readFile</code>関数というファイルシステムからファイルをロードする非同期処理の関数があります。
 指定したパスのファイルを読むため、ファイルが存在しない場合やアクセス権限の問題から読み取りに失敗することがあります。
-そのため、<code>fs.readFile</code>関数の第2引数に渡すコールバック関数にはエラーファーストコールバックスタイルの関数を渡します。</p>
+そのため、<code>fs.readFile</code>関数の第二引数に渡すコールバック関数にはエラーファーストコールバックスタイルの関数を渡します。</p>
 <p>ファイルを読み込むことに失敗した場合は、コールバック関数の1番目の引数に<code>Error</code>オブジェクトが渡されます。
 ファイルを読み込むことに成功した場合は、コールバック関数の1番目の引数に<code>null</code>、2番目の引数に読み込んだデータを渡します。</p>
 <!-- doctest:disable -->
@@ -2989,9 +2989,9 @@ ES2022では、これに加えてModuleの直下ではAsync Functionで囲まな
 詳しい扱い方については、「<a href="../../use-case/nodecli/">ユースケース: Node.jsでCLIアプリケーション</a>」の章にて紹介します。</p>
 <p>実際にエラーファーストコールバックで非同期な例外処理を扱うコードを書いてみましょう。</p>
 <p>次のコードの<code>dummyFetch</code>関数は、疑似的なリソースの取得をする非同期な処理です。
-第1引数に任意のパスを受け取り、第2引数にエラーファーストコールバックスタイルの関数を受け取ります。</p>
-<p>この<code>dummyFetch</code>関数は、任意のパスにマッチするリソースがある場合には、第2引数のコールバック関数に<code>null</code>とレスポンスオブジェクトを渡して呼び出します。
-一方、任意のパスにマッチするリソースがない場合には、第2引数のコールバック関数にエラーオブジェクトを渡して呼び出します。</p>
+第一引数に任意のパスを受け取り、第二引数にエラーファーストコールバックスタイルの関数を受け取ります。</p>
+<p>この<code>dummyFetch</code>関数は、任意のパスにマッチするリソースがある場合には、第二引数のコールバック関数に<code>null</code>とレスポンスオブジェクトを渡して呼び出します。
+一方、任意のパスにマッチするリソースがない場合には、第二引数のコールバック関数にエラーオブジェクトを渡して呼び出します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">/**
  * 1000ミリ秒未満のランダムなタイミングでレスポンスを疑似的にデータ取得する関数
@@ -3075,7 +3075,7 @@ ES2022では、これに加えてModuleの直下ではAsync Functionで囲まな
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおける非同期処理についてを紹介します。同期処理と非同期処理の違いやなぜ非同期処理が重要になるかを紹介します。非同期処理を扱うPromise、Async Functionについて紹介します。","sponsors":[],"title":"非同期処理:Promise/Async Function","level":"1.3.22","depth":2,"next":{"title":"Map/Set","level":"1.3.23","depth":2,"path":"basic/map-and-set/README.md","ref":"./basic/map-and-set/README.md","articles":[]},"previous":{"title":"例外処理","level":"1.3.21","depth":2,"path":"basic/error-try-catch/README.md","ref":"./basic/error-try-catch/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2023","nodeversion":"20.11.1","npmversion":"10.2.4","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/async/README.md","mtime":"2024-07-20T13:28:15.005Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-07-20T13:28:29.985Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおける非同期処理についてを紹介します。同期処理と非同期処理の違いやなぜ非同期処理が重要になるかを紹介します。非同期処理を扱うPromise、Async Functionについて紹介します。","sponsors":[],"title":"非同期処理:Promise/Async Function","level":"1.3.22","depth":2,"next":{"title":"Map/Set","level":"1.3.23","depth":2,"path":"basic/map-and-set/README.md","ref":"./basic/map-and-set/README.md","articles":[]},"previous":{"title":"例外処理","level":"1.3.21","depth":2,"path":"basic/error-try-catch/README.md","ref":"./basic/error-try-catch/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2023","nodeversion":"20.11.1","npmversion":"10.2.4","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/async/README.md","mtime":"2024-07-21T05:36:28.035Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-07-21T05:36:43.117Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
