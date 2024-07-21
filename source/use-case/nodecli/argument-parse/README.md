@@ -48,14 +48,13 @@ $ node main.js one two=three four
 また、文字列の配列として渡されるため、フラグのオンオフのような真偽値を受け取るときにも不便です。
 そのため、アプリケーションでコマンドライン引数を扱うときには、一度パースして扱いやすい値に整形するのが一般的です。
 
-今回は、Node.jsの標準モジュールである`node:util`モジュールの[parseArgs][]という関数を使ってコマンドライン引数をパースしてみましょう。
+今回は、Node.jsの標準モジュールである[`node:util`モジュール][]の[parseArgs][]という関数を使ってコマンドライン引数をパースしてみましょう。
 文字列処理を自前で行うこともできますが、このような一般的な処理はNode.jsの標準モジュールやサードパーティ製のライブラリを使うことで簡単に実装できます。
 
 ### ECMAScriptモジュールを使う {#esmodule}
 
 今回のユースケースでは、`node:util`モジュールを利用するにあたって、基本文法で学んだ[ECMAScriptモジュール][]を使います。
 `node:util`モジュールは、次のように`import`文を使ってインポートできます。
-
 <!-- doctest:disable -->
 ```js
 // `node:util`モジュールを、utilオブジェクトとしてインポートする
@@ -109,14 +108,14 @@ import { key } from "./lib.cjs";
 
 ### コマンドライン引数からファイルパスを取得する {#get-file-path}
 
-`node:util`パッケージを使って、コマンドライン引数として渡されたファイルパスを取得しましょう。
+`node:util`モジュールを使って、コマンドライン引数として渡されたファイルパスを取得しましょう。
 このCLIアプリケーションでは、処理の対象とするファイルパスを次のようなコマンドの形式で受け取ります。
 
 ```shell
 $ node main.js ./sample.md
 ```
 
-コマンドライン引数をパースするためには、`node:util`パッケージの`parseArgs`関数を利用します。
+コマンドライン引数をパースするためには、`node:util`モジュールの`parseArgs`関数を利用します。
 
 <!-- doctest:disable -->
 ```js
@@ -183,6 +182,7 @@ SyntaxError: Cannot use import statement outside a module
 [Node.js]: https://nodejs.org/
 [アプリケーション開発の準備]: ../../setup-local-env/README.md
 [ECMAScriptモジュール]: ../../../basic/module/README.md
+[`node:util`モジュール]: https://nodejs.org/api/util.html
 [parseArgs]: https://nodejs.org/api/util.html#utilparseargsconfig
 [Node.jsプロジェクトのセットアップ]: ../helloworld/README.md#setup-nodejs-project
 [^1]: [package.json and file extensions](https://nodejs.org/api/packages.html#packagejson-and-file-extensions)
