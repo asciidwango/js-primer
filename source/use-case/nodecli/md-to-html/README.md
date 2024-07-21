@@ -125,7 +125,11 @@ console.log(values.gfm);
 なぜなら`positionals`配列には、`options`オブジェクトで定義したオプションのパース結果は含まれないためです。
 `process.argv`配列を直接使っているとこのようなオプションの処理が面倒なので、`parseArg`関数のようなパース処理を挟むのが一般的です。
 
-定義したコマンドライン引数を使って、Markdownファイルを変換してみましょう。
+最後に、`main.js`を次のように変更して、`--gfm`フラグを使って`gfm`オプションを切り替えられるようにします。
+
+[import title:"main.js"](src/main-3.js)
+
+実際にMarkdownファイルを渡して、動作を確認してみましょう。
 
 ```shell
 $ node main.js sample.md
@@ -139,6 +143,7 @@ https://jsprimer.net/</p>
 ```
 
 また、`--gfm`フラグを付与して実行すると次のように出力されるはずです。
+GFMが有効になっているため、URLがリンクに変換されていることが確認できます。
 
 ```shell
 $ node main.js --gfm sample.md
