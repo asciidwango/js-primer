@@ -159,7 +159,8 @@ fs.readFile("sample.md", (err, file) => {
 Node.jsの多くのモジュールは、ES2015より前に作られているため、`node:fs`モジュールのようにエラーファーストコールバックを扱うAPIもあります。
 
 一方で、Promiseが非同期APIの主流となったため、Node.jsにもPromiseを扱うためのAPIが追加されました。
-しかし、すでにエラーファーストコールバックを提供する同じ名前のメソッドがあったため、`node:fs`に対して`node:fs/promises`のようにモジュールとして分けて扱えるようになっています。
+しかし、`node:fs`モジュールではエラーファーストコールバックを提供するメソッドと名前が衝突したため、`fs.promises`というプロパティにPromiseのAPIがまとめられています。
+このままではPromiseのAPIが使いにくいため、PromiseのAPIのみをもつモジュールとして`node:fs/promises`が新たに追加されました。
 また、Node.jsではエラーファーストコールバックを受け取る非同期APIをPromiseを返す非同期APIへとラップする`util.promisify`というメソッドも提供しています。
 
 Node.jsでは、歴史的な経緯からエラーファーストコールバックとPromiseのAPIがどちらも提供されていることがあります。
