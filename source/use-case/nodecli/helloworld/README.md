@@ -20,7 +20,6 @@ sponsors: []
 
 ## Hello World {#hello-world}
 
-<!-- textlint-disable preset-ja-technical-writing/no-exclamation-question-mark -->
 
 まずはNode.jsでHello Worldアプリケーションを作ってみましょう。
 具体的には、実行すると標準出力に`"Hello World!"`という文字列を表示するCLIアプリケーションを記述します。
@@ -32,8 +31,6 @@ sponsors: []
 ウェブブラウザの実行環境では、`console.log`メソッドの出力先はブラウザの開発者ツールのコンソールでした。
 Node.js環境では、`console.log`メソッドの出力先は標準出力になります。
 このコードは、標準出力に`"Hello World!"`という文字列を出力するものです。
-
-<!-- textlint-enable preset-ja-technical-writing/no-exclamation-question-mark -->
 
 JavaScriptのコードをNode.jsで実行するには、`node`コマンドを使用します。
 コマンドラインで`nodecli`ディレクトリに移動し、次のコマンドでNode.jsを使い`main.js`を実行します。
@@ -49,6 +46,29 @@ Hello World!
 
 Node.jsでは、エントリーポイントとなるJavaScriptファイルを作成し、そのファイルを`node`コマンドの引数に渡して実行するのが基本です。
 また、ウェブブラウザのJavaScriptと同じく、コードは1行目から順に実行されます。
+
+## Node.jsプロジェクトのセットアップ {#setup-nodejs-project}
+
+今回作成するNode.jsのCLIアプリケーションは、`main.js`ファイル以外にも複数のファイルが必要になります。
+また、外部のnpmパッケージのインストールやテストスクリプトの実行なども行います。
+そのため、Node.jsプロジェクトのセットアップとして`package.json`というファイルを作成します。
+
+`package.json`とは、プロジェクトの情報、プロジェクトが依存するパッケージの種類やバージョンの情報、プロジェクトで実行するスクリプトなどを記録するJSON形式のファイルです。
+`package.json`ファイルのひな形は、`npm init`コマンドで生成できます。
+まだ`npm`コマンドの用意ができていなければ、先に「[アプリケーション開発の準備][]」の章を参照してください。
+
+通常は対話式のプロンプトによって情報を設定しますが、ここではすべてデフォルト値で`package.json`を作成する`--yes`オプションを付与します。
+`nodecli`のディレクトリ内で、`npm init --yes`コマンドを実行して`package.json`を作成しましょう。
+
+```shell
+$ npm init --yes
+```
+
+生成された`package.json`ファイルは次のようになっています。
+
+[import, title:"package.json"](src/package.json)
+
+現時点では`package.json`にはあまり情報が記述されていませんが、後ほどアプリケーションの情報や依存パッケージを追加する際に利用します。
 
 ## Node.jsとブラウザのグローバルオブジェクト {#global-objects}
 
@@ -84,8 +104,10 @@ ECMAScriptで定義されているグローバルオブジェクトはブラウ�
 
 ## このセクションのチェックリスト {#section-checklist}
 
-- `main.js`ファイルを作成した
-- `node`コマンドで`main.js`を実行し、標準出力にログが出力されるのを確認した
+- `nodecli`ディレクトリを作成した
+- `nodecli/main.js`ファイルを作成した
+- `node`コマンドで`nodecli/main.js`を実行し、標準出力にログが出力されるのを確認した
+- `npm init --yes`コマンドで`nodecli/package.json`ファイルを作成した
 - グローバルオブジェクトについて、ウェブブラウザとNode.jsで実行環境による違いがあることを理解した
 
 [document]: https://developer.mozilla.org/ja/docs/Web/API/Document

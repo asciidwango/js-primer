@@ -9,10 +9,52 @@ sponsors: []
 前のセクションではコマンドライン引数で受け取ったファイルを読み込み、標準出力に表示しました。
 次は読み込んだMarkdownファイルをHTMLに変換して、その結果を標準出力に表示してみましょう。
 
+### `commander`パッケージをインストールする {#install-commander}
+
+commanderは[npm][]の`npm install`コマンドを使ってインストールできます。
+まだnpmの実行環境を用意できていなければ、先に「[アプリケーション開発の準備][]」の章を参照してください。
+
 ## markedパッケージを使う {#use-marked-package}
 
 JavaScriptでMarkdownをHTMLへ変換するために、今回は[marked][]というライブラリを使用します。
-markedのパッケージはnpmで配布されているので、commanderと同様に`npm install`コマンドでパッケージをインストールしましょう。
+markedのパッケージは[npm][]で配布されているので、`npm install`コマンドを使ってインストールできます。
+まだnpmの実行環境を用意できていなければ、先に「[アプリケーション開発の準備][]」の章を参照してください。
+
+npmでパッケージをインストールする前に、まずは`package.json`というファイルを作成します。
+`package.json`とは、アプリケーションが依存するパッケージの種類やバージョンなどの情報を記録するJSON形式のファイルです。
+`package.json`ファイルのひな形は、`npm init`コマンドで生成できます。
+通常は対話式のプロンプトによって情報を設定しますが、ここではすべてデフォルト値で`package.json`を作成する`--yes`オプションを付与します。
+
+`nodecli`のディレクトリ内で、`npm init --yes`コマンドを実行して`package.json`を作成しましょう。
+
+```shell
+$ npm init --yes
+```
+
+生成された`package.json`ファイルは次のようになっています。
+
+[import, title:"package.json"](src/package.init.json)
+
+`package.json`ファイルが用意できたら、`npm install`コマンドを使って`commander`パッケージをインストールします。
+このコマンドの引数にはインストールするパッケージの名前とそのバージョンを`@`記号でつなげて指定できます。
+バージョンを指定せずにインストールすれば、その時点での最新の安定版が自動的に選択されます。
+次のコマンドを実行して、commanderのバージョン9.0をインストールします。[^1]
+
+```shell
+$ npm install commander@9.0
+```
+
+インストールが完了すると、`package.json`ファイルは次のようになっています。
+
+[import, title:"package.json"](src/package.install.json)
+
+また、`npm install`をすると同時に`package-lock.json`ファイルが生成されています。
+このファイルはnpmがインストールしたパッケージの、実際のバージョンを記録するためのものです。
+先ほどcommanderのバージョンを`9.0`としましたが、実際にインストールされるのは`9.0.x`に一致する最新のバージョンです。
+`package-lock.json`ファイルには実際にインストールされたバージョンが記録されています。
+これによって、再び`npm install`を実行したときに、異なるバージョンがインストールされるのを防ぎます。
+
+
 
 ```shell
 $ npm install marked@4.0
