@@ -1,7 +1,7 @@
 ---
 author: laco
 description: "markedパッケージを使ってMarkdownファイルをHTMLに変換します。"
-sponsors: [ ]
+sponsors: []
 ---
 
 # MarkdownをHTMLに変換する {#md-to-html}
@@ -61,10 +61,10 @@ markedではこの`gfm`オプションがデフォルトで`true`になってい
 ```html
 <h1 id="サンプルファイル">サンプルファイル</h1>
 <p>これはサンプルです。
-    <a href="https://jsprimer.net/">https://jsprimer.net/</a></p>
+<a href="https://jsprimer.net/">https://jsprimer.net/</a></p>
 <ul>
-    <li>サンプル1</li>
-    <li>サンプル2</li>
+<li>サンプル1</li>
+<li>サンプル2</li>
 </ul>
 ```
 
@@ -75,10 +75,10 @@ markedではこの`gfm`オプションがデフォルトで`true`になってい
 ```html
 <h1 id="サンプルファイル">サンプルファイル</h1>
 <p>これはサンプルです。
-    https://jsprimer.net/</p>
+https://jsprimer.net/</p>
 <ul>
-    <li>サンプル1</li>
-    <li>サンプル2</li>
+<li>サンプル1</li>
+<li>サンプル2</li>
 </ul>
 ```
 
@@ -94,15 +94,13 @@ $ node main.js --gfm sample.md
 ```
 
 コマンドライン引数で`--gfm`のようなフラグを扱いたいときには、`parseArg`関数の`options`オブジェクトに定義します。
-`options`オブジェクトでは、`--key=value`のようなオプションを扱う`type: "string"`と、`--flag`
-のようなフラグを扱う`type: "boolean"`を定義できます。
+`options`オブジェクトでは、`--key=value`のようなオプションを扱う`type: "string"`と、`--flag`のようなフラグを扱う`type: "boolean"`を定義できます。
 今回の`--gfm`フラグは`type: "boolean"`で定義し、`--gfm`フラグがない場合のデフォルト値を`false`に設定します。
 
 次のように`gfm`フラグを定義してからコマンドライン引数をパースすると、返り値の`values`でパース結果のオブジェクトを取得できます。
 
 <!-- 差分コードなので -->
 <!-- doctest:disable -->
-
 ```js
 const {
     values,
@@ -114,7 +112,7 @@ const {
         gfm: {
             // オプションの型をbooleanに指定
             type: "boolean",
-            // --gfmが渡されてない時のデフォルト値をfalseとする
+            // --gfmフラグがない場合のデフォルト値をfalseにする
             default: false,
         }
     }
@@ -175,16 +173,10 @@ Node.jsの標準モジュールは、`node:util`や`node:fs`のように`node:`�
 - `--gfm`フラグを使って、Markdownの変換結果が変わることを確認した
 
 [npm]: https://www.npmjs.com/
-
 [marked]: https://github.com/markedjs/marked
-
 [変換オプション]: https://marked.js.org/#/USING_ADVANCED.md#options
-
 [GitHub Flavored Markdown]: https://github.github.com/gfm/
-
 [Nullish coalescing演算子]: ../../../basic/operator/README.md#nullish-coalescing-operator
-
 [オブジェクト]: ../../../basic/object/README.md
-
 [Node.jsプロジェクトのセットアップ]: ../helloworld/README.md#setup-nodejs-project
 [^1]: --saveオプションをつけてインストールしたのと同じ意味。npm 5.0.0からは--saveがデフォルトオプションとなりました。
