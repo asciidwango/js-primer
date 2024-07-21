@@ -13,9 +13,9 @@ sponsors: []
 
 MarkdownをHTMLへ変換するために、今回は[marked][]というライブラリを使用します。
 markedのパッケージは[npm][]で配布されているので、`npm install`コマンドを使ってインストールできます。
-まだnpmの実行環境を用意できていなければ、先に「[アプリケーション開発の準備][]」の章を参照してください。
+まだ、`package.json`を作成していない場合は、先に「[Node.jsプロジェクトのセットアップ][]」を参照してください。
 
-`package.json`ファイルが用意できたら、`npm install`コマンドを使って`marked`パッケージをインストールします。
+それでは、`npm install`コマンドを使って`marked`パッケージをインストールします。
 このコマンドの引数にはインストールするパッケージの名前とそのバージョンを`@`記号でつなげて指定できます。
 バージョンを指定せずにインストールすれば、その時点での最新の安定版が自動的に選択されます。
 次のコマンドを実行して、markedのバージョン4.0をインストールします。[^1]
@@ -178,4 +178,5 @@ Node.jsの標準モジュールは、`node:util`や`node:fs`のように`node:`�
 [GitHub Flavored Markdown]: https://github.github.com/gfm/
 [Nullish coalescing演算子]: ../../../basic/operator/README.md#nullish-coalescing-operator
 [オブジェクト]: ../../../basic/object/README.md
+[Node.jsプロジェクトのセットアップ]: ../helloworld/README.md#setup-nodejs-project
 [^1]: --saveオプションをつけてインストールしたのと同じ意味。npm 5.0.0からは--saveがデフォルトオプションとなりました。
