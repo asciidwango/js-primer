@@ -1,24 +1,26 @@
-import { program } from "commander";
+import * as util from "node:util";
 import * as fs from "node:fs/promises";
 import { marked } from "marked";
 
-// gfmオプションを定義する
-program.option("--gfm", "GFMを有効にする");
-program.parse(process.argv);
-const filePath = program.args[0];
-
-// コマンドライン引数のオプションを取得する
-const options = program.opts();
-
-// コマンドライン引数で指定されなかったオプションにデフォルト値を上書きする
-const cliOptions = {
-    gfm: options.gfm ?? false,
-};
-
+// コマンドライン引数からファイルパスとオプションを受け取る
+const {
+    values,
+    positionals
+} = util.parseArgs({
+    allowPositionals: true,
+    options: {
+        // gfmフラグを定義する
+        gfm: {
+            type: "boolean",
+            default: false,
+        }
+    }
+});
+const filePath = positionals[0];
 fs.readFile(filePath, { encoding: "utf8" }).then(file => {
     const html = marked.parse(file, {
         // オプションの値を使用する
-        gfm: cliOptions.gfm,
+        gfm: values.gfm,
     });
     console.log(html);
 }).catch(err => {

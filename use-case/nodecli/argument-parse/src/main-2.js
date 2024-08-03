@@ -1,9 +1,12 @@
-// commanderモジュールからprogramオブジェクトをインポートする
-import { program } from "commander";
+import * as util from "node:util";
 
-// コマンドライン引数をcommanderでパースする
-program.parse(process.argv);
-
-// ファイルパスをprogram.args配列から取り出す
-const filePath = program.args[0];
+// コマンドライン引数をparseArgs関数でパースする
+const {
+    positionals
+} = util.parseArgs({
+    // オプションやフラグ以外の引数を渡すことを許可する
+    allowPositionals: true
+});
+// ファイルパスをpositionals配列から取り出す
+const filePath = positionals[0];
 console.log(filePath);

@@ -1610,23 +1610,32 @@
     <p class="code-filename">main.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { program } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;commander&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> util <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:util&quot;</span>;
 <span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:fs/promises&quot;</span>;
 <span class="hljs-comment">// md2htmlモジュールからmd2html関数をインポートする</span>
 <span class="hljs-keyword">import</span> { md2html } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./md2html.js&quot;</span>;
 
-program.<span class="hljs-title function_">option</span>(<span class="hljs-string">&quot;--gfm&quot;</span>, <span class="hljs-string">&quot;GFMを有効にする&quot;</span>);
-program.<span class="hljs-title function_">parse</span>(process.<span class="hljs-property">argv</span>);
-<span class="hljs-keyword">const</span> filePath = program.<span class="hljs-property">args</span>[<span class="hljs-number">0</span>];
-
-<span class="hljs-keyword">const</span> cliOptions = {
-    <span class="hljs-attr">gfm</span>: <span class="hljs-literal">false</span>,
-    ...program.<span class="hljs-title function_">opts</span>(),
-};
-
+<span class="hljs-comment">// コマンドライン引数からファイルパスとオプション/フラグを受け取る</span>
+<span class="hljs-keyword">const</span> {
+    values,
+    positionals
+} = util.<span class="hljs-title function_">parseArgs</span>({
+    <span class="hljs-attr">allowPositionals</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">options</span>: {
+        <span class="hljs-comment">// gfmフラグを定義する</span>
+        <span class="hljs-attr">gfm</span>: {
+            <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+            <span class="hljs-attr">default</span>: <span class="hljs-literal">false</span>,
+        }
+    }
+});
+<span class="hljs-keyword">const</span> filePath = positionals[<span class="hljs-number">0</span>];
 fs.<span class="hljs-title function_">readFile</span>(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
     <span class="hljs-comment">// md2htmlモジュールを使ってHTMLに変換する</span>
-    <span class="hljs-keyword">const</span> html = <span class="hljs-title function_">md2html</span>(file, cliOptions);
+    <span class="hljs-keyword">const</span> html = <span class="hljs-title function_">md2html</span>(file, {
+        <span class="hljs-comment">// gfmフラグのパース結果をオプションとして渡す</span>
+        <span class="hljs-attr">gfm</span>: values.<span class="hljs-property">gfm</span>
+    });
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(html);
 }).<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> {
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(err.<span class="hljs-property">message</span>);
@@ -1637,64 +1646,82 @@ fs.<span class="hljs-title function_">readFile</span>(filePath, { <span class="h
 そして<code>md2html.js</code>はアプリケーションから独立したひとつのモジュールとして切り出され、ユニットテストが可能になりました。</p>
 <h2 id="create-env"><a name="create-env" class="plugin-anchor" href="#create-env"><i class="fa fa-link" aria-hidden="true"></i></a>ユニットテスト実行環境を作る </h2>
 <p>ユニットテストの実行にはさまざまな方法があります。
-このセクションではテスティングフレームワークとして<a href="https://mochajs.org/" target="_blank">Mocha</a>を使って、ユニットテストの実行環境を作成します。
-Mochaが提供するテスト実行環境では、グローバルに<code>it</code>や<code>describe</code>などの関数が定義されます。
-<code>it</code>関数はその内部でエラーが発生したとき、そのテストを失敗として扱います。
+このセクションではNode.jsの標準モジュールのひとつである<a href="https://nodejs.org/api/test.html" target="_blank">testモジュール</a>から提供される<code>test</code>を使って、ユニットテストの実行環境を作成します。
+<code>test</code>関数はその内部でエラーが発生したとき、そのテストを失敗として扱います。
 つまり、期待する結果と異なるならエラーを投げ、期待どおりならエラーを投げないというテストコードを書くことになります。</p>
 <p>今回はNode.jsの標準モジュールのひとつである<a href="https://nodejs.org/api/assert.html" target="_blank">assertモジュール</a>から提供される<code>assert.strictEqual</code>メソッドを利用します。
 <code>assert.strictEqual</code>メソッドは第一引数と第二引数の評価結果が<code>===</code>で比較して異なる場合に、例外を投げる関数です。</p>
-<p>Mochaによるテスト環境を作るために、まずは次のコマンドで<code>mocha</code>パッケージをインストールします。</p>
-<pre><code class="lang-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">npm install --save-dev mocha@10</span>
-</code></pre>
-<p><code>--save-dev</code>オプションは、パッケージを<code>devDependencies</code>としてインストールするためのものです。
-<code>package.json</code>の<code>devDependencies</code>には、そのパッケージを開発するときだけ必要な依存ライブラリを記述します。</p>
-<p>ユニットテストを実行するには、Mochaが提供する<code>mocha</code>コマンドを使います。
-Mochaをインストールした後、<code>package.json</code>の<code>scripts</code>プロパティを次のように記述します。</p>
+<p>ユニットテストを実行するには、Node.jsが提供する<code>node</code>コマンドの<code>--test</code>オプションを使います。
+<code>package.json</code>の<code>scripts</code>プロパティには、次のように記述します。</p>
 <pre><code class="lang-json">{
     ...
     <span class="hljs-string">&quot;scripts&quot;</span>: {
-        <span class="hljs-string">&quot;test&quot;</span>: <span class="hljs-string">&quot;mocha test/&quot;</span>
+        <span class="hljs-string">&quot;test&quot;</span>: <span class="hljs-string">&quot;node --test&quot;</span>
     },
     ...
 }
 </code></pre>
-<p>この記述により、<code>npm test</code>コマンドを実行すると、<code>mocha</code>コマンドで<code>test/</code>ディレクトリにあるテストファイルを実行します。
-試しに<code>npm test</code>コマンドを実行し、Mochaによるテストが行われることを確認しましょう。
-まだテストファイルを作っていないので、<code>Error: No test files found</code>というエラーが表示されます。</p>
+<p>この記述により、<code>npm test</code>コマンドを実行すると、<code>node --test</code>で<code>test/</code>ディレクトリにあるテストファイルを実行します。実行時にディレクトリの指定を省いていますが、<code>node --test</code>はデフォルトで<code>test/</code>ディレクトリを探索するようになってます。
+試しに<code>npm test</code>コマンドを実行し、テストが行われることを確認しましょう。
+まだテストファイルを作っていないので、0個のテストが実行されて正常終了します。</p>
 <pre><code class="lang-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">npm <span class="hljs-built_in">test</span></span>
-<span class="hljs-meta prompt_">&gt; </span><span class="language-bash">mocha</span>
+<span class="hljs-meta prompt_">
+&gt; </span><span class="language-bash"><span class="hljs-built_in">test</span></span>
+<span class="hljs-meta prompt_">&gt; </span><span class="language-bash">node --<span class="hljs-built_in">test</span></span>
 
- Error: No test files found
+ℹ tests 0
+ℹ suites 0
+ℹ pass 0
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7.3243
 </code></pre>
 <h2 id="write-unit-test"><a name="write-unit-test" class="plugin-anchor" href="#write-unit-test"><i class="fa fa-link" aria-hidden="true"></i></a>ユニットテストを記述する </h2>
 <p>テストの実行環境ができたので、実際にユニットテストを記述します。
-Mochaのユニットテストは<code>test</code>ディレクトリの中にJavaScriptファイルを配置して記述します。
+記述する際には、<code>test</code>ディレクトリの中にJavaScriptファイルを配置します。
 <code>test/md2html-test.js</code>ファイルを作成し、<code>md2html.js</code>に対するユニットテストを次のように記述します。</p>
-<p><code>it</code>関数は第一引数にテストのタイトルを入れ、第二引数にテストの内容を記述します。</p>
+<p><code>test</code>関数は第一引数にテストのタイトルを入れ、第二引数にテストの内容を書きます。</p>
 <div class="code-filename-block">
     <p class="code-filename">test/md2html-test.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> assert <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:assert&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { test } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:test&quot;</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> assert <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:assert&quot;</span>;
 <span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:fs/promises&quot;</span>;
 <span class="hljs-keyword">import</span> { md2html } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../md2html.js&quot;</span>;
 
-<span class="hljs-title function_">it</span>(<span class="hljs-string">&quot;converts Markdown to HTML (GFM=false)&quot;</span>, <span class="hljs-title function_">async</span>() =&gt; {
+<span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;converts Markdown to HTML (GFM=false)&quot;</span>, <span class="hljs-title function_">async</span>() =&gt; {
     <span class="hljs-comment">// fs.readFileはPromiseを返すので、`await`式で読み込みが完了するまで待って内容を取得する</span>
-    <span class="hljs-keyword">const</span> sample = <span class="hljs-keyword">await</span> fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&quot;test/fixtures/sample.md&quot;</span>, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> });
-    <span class="hljs-keyword">const</span> expected = <span class="hljs-keyword">await</span> fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&quot;test/fixtures/expected.html&quot;</span>, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> });
+    <span class="hljs-keyword">const</span> sample = <span class="hljs-keyword">await</span> fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&quot;test/fixtures/sample.md&quot;</span>, {
+        <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span>,
+    });
+    <span class="hljs-keyword">const</span> expected = <span class="hljs-keyword">await</span> fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&quot;test/fixtures/expected.html&quot;</span>, {
+        <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span>,
+    });
     <span class="hljs-comment">// 末尾の改行の有無の違いを無視するため、変換後のHTMLのスペースをtrimメソッドで削除してから比較しています</span>
-    assert.<span class="hljs-title function_">strictEqual</span>(<span class="hljs-title function_">md2html</span>(sample, { <span class="hljs-attr">gfm</span>: <span class="hljs-literal">false</span> }).<span class="hljs-title function_">trimEnd</span>(), expected.<span class="hljs-title function_">trimEnd</span>());
+    assert.<span class="hljs-title function_">strictEqual</span>(
+        <span class="hljs-title function_">md2html</span>(sample, { <span class="hljs-attr">gfm</span>: <span class="hljs-literal">false</span> }).<span class="hljs-title function_">trimEnd</span>(),
+        expected.<span class="hljs-title function_">trimEnd</span>(),
+    );
 });
 
-<span class="hljs-title function_">it</span>(<span class="hljs-string">&quot;converts Markdown to HTML (GFM=true)&quot;</span>, <span class="hljs-title function_">async</span>() =&gt; {
-    <span class="hljs-keyword">const</span> sample = <span class="hljs-keyword">await</span> fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&quot;test/fixtures/sample.md&quot;</span>, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> });
-    <span class="hljs-keyword">const</span> expected = <span class="hljs-keyword">await</span> fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&quot;test/fixtures/expected-gfm.html&quot;</span>, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> });
+<span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;converts Markdown to HTML (GFM=true)&quot;</span>, <span class="hljs-title function_">async</span>() =&gt; {
+    <span class="hljs-keyword">const</span> sample = <span class="hljs-keyword">await</span> fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&quot;test/fixtures/sample.md&quot;</span>, {
+        <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span>,
+    });
+    <span class="hljs-keyword">const</span> expected = <span class="hljs-keyword">await</span> fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&quot;test/fixtures/expected-gfm.html&quot;</span>, {
+        <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span>,
+    });
     <span class="hljs-comment">// 末尾の改行の有無の違いを無視するため、変換後のHTMLのスペースをtrimメソッドで削除してから比較しています</span>
-    assert.<span class="hljs-title function_">strictEqual</span>(<span class="hljs-title function_">md2html</span>(sample, { <span class="hljs-attr">gfm</span>: <span class="hljs-literal">true</span> }).<span class="hljs-title function_">trimEnd</span>(), expected.<span class="hljs-title function_">trimEnd</span>());
+    assert.<span class="hljs-title function_">strictEqual</span>(
+        <span class="hljs-title function_">md2html</span>(sample, { <span class="hljs-attr">gfm</span>: <span class="hljs-literal">true</span> }).<span class="hljs-title function_">trimEnd</span>(),
+        expected.<span class="hljs-title function_">trimEnd</span>(),
+    );
 });
 </code></pre>
-<p><code>it</code>関数で定義したユニットテストは、<code>md2html</code>関数の変換結果が期待するものになっているかをテストしています。
+<p><code>test</code>関数で定義したユニットテストは、<code>md2html</code>関数の変換結果が期待するものになっているかをテストしています。
 <code>test/fixtures</code>ディレクトリにはユニットテストで用いるファイルを配置しています。
 今回は変換元のMarkdownファイルと、期待する変換結果のHTMLファイルが存在します。</p>
 <p>次のように変換元のMarkdownファイルを<code>test/fixtures/sample.md</code>に配置します。</p>
@@ -1738,12 +1765,20 @@ https://jsprimer.net/<span class="hljs-tag">&lt;/<span class="hljs-name">p</span
 </code></pre>
 <p>ユニットテストの準備ができたら、もう一度改めて<code>npm test</code>コマンドを実行しましょう。2件のテストが通れば成功です。</p>
 <pre><code class="lang-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">npm <span class="hljs-built_in">test</span></span>
-<span class="hljs-meta prompt_">&gt; </span><span class="language-bash">mocha</span>
+<span class="hljs-meta prompt_">
+&gt; </span><span class="language-bash"><span class="hljs-built_in">test</span></span>
+<span class="hljs-meta prompt_">&gt; </span><span class="language-bash">node --<span class="hljs-built_in">test</span></span>
 
-  ✓ converts Markdown to HTML (GFM=false)
-  ✓ converts Markdown to HTML (GFM=true)
-
-  2 passing (31ms)
+✔ converts Markdown to HTML (GFM=false) (12.2419ms)
+✔ converts Markdown to HTML (GFM=true) (4.4282ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 63.881902
 </code></pre>
 <p>ユニットテストが通らなかった場合は、次のことを確認してみましょう。</p>
 <ul>
@@ -1753,36 +1788,66 @@ https://jsprimer.net/<span class="hljs-tag">&lt;/<span class="hljs-name">p</span
 </ul>
 <p>たとえば、<code>npm test</code>を実行して次のようにテストが失敗している場合のエラーメッセージを見てみましょう。</p>
 <pre><code class="lang-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">npm <span class="hljs-built_in">test</span></span>
-<span class="hljs-meta prompt_">&gt; </span><span class="language-bash">mocha <span class="hljs-built_in">test</span>/</span>
+<span class="hljs-meta prompt_">
+&gt; </span><span class="language-bash"><span class="hljs-built_in">test</span></span>
+<span class="hljs-meta prompt_">&gt; </span><span class="language-bash">node --<span class="hljs-built_in">test</span></span>
 
-  ✔ converts Markdown to HTML (GFM=false)
-  1) converts Markdown to HTML (GFM=true)
+✔ converts Markdown to HTML (GFM=false) (11.568601ms)
+✖ converts Markdown to HTML (GFM=true) (5.6456ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected ... Lines skipped
 
-  1 passing (17ms)
-  1 failing
+    &apos;&lt;h1 id=&quot;サンプルファイル&quot;&gt;サンプルファイル&lt;/h1&gt;\n&apos; +
+      &apos;&lt;p&gt;これはサンプルです。\n&apos; +
+  ...
+      &apos;&lt;li&gt;サンプル1&lt;/li&gt;\n&apos; +
+      &apos;&lt;li&gt;サンプル2&lt;/li&gt;\n&apos; +
+  +   &apos;&lt;/ul&gt;&apos;
+  -   &apos;&lt;/ul&gt;\n&apos; +
+  -   &apos;;;;&apos;
+      at TestContext.&lt;anonymous&gt; (file:///Users/laco/nodecli/test/md2html-test.js:29:10)
+      at async Test.run (node:internal/test_runner/test:632:9)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:374:7) {
+    generatedMessage: true,
+    code: &apos;ERR_ASSERTION&apos;,
+    actual: &apos;&lt;h1 id=&quot;サンプルファイル&quot;&gt;サンプルファイル&lt;/h1&gt;\n&lt;p&gt;これはサンプルです。\n&lt;a href=&quot;https://jsprimer.net/&quot;&gt;https://jsprimer.net/&lt;/a&gt;&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;サンプル1&lt;/li&gt;\n&lt;li&gt;サンプル2&lt;/li&gt;\n&lt;/ul&gt;&apos;,
+    expected: &apos;&lt;h1 id=&quot;サンプルファイル&quot;&gt;サンプルファイル&lt;/h1&gt;\n&lt;p&gt;これはサンプルです。\n&lt;a href=&quot;https://jsprimer.net/&quot;&gt;https://jsprimer.net/&lt;/a&gt;&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;サンプル1&lt;/li&gt;\n&lt;li&gt;サンプル2&lt;/li&gt;\n&lt;/ul&gt;\n;;;&apos;,
+    operator: &apos;strictEqual&apos;
+  }
 
-  1) converts Markdown to HTML (GFM=true):
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 64.548503
 
-      AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
-+ actual - expected ... Lines skipped
+✖ failing tests:
 
-  &apos;&lt;h1 id=&quot;サンプルファイル&quot;&gt;サンプルファイル&lt;/h1&gt;\n&apos; +
-    &apos;&lt;p&gt;これはサンプルです。\n&apos; +
-...
-    &apos;&lt;li&gt;サンプル1&lt;/li&gt;\n&apos; +
-    &apos;&lt;li&gt;サンプル2&lt;/li&gt;\n&apos; +
-+   &apos;&lt;/ul&gt;&apos;
--   &apos;&lt;/ul&gt;\n&apos; +
--   &apos;;;;&apos;
-      + expected - actual
+test at file:/Users/laco/nodecli/test/md2html-test.js:21:1
+✖ converts Markdown to HTML (GFM=true) (5.6456ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected ... Lines skipped
 
-       &lt;a href=&quot;https://jsprimer.net/&quot;&gt;https://jsprimer.net/&lt;/a&gt;&lt;/p&gt;
-       &lt;ul&gt;
-       &lt;li&gt;サンプル1&lt;/li&gt;
-       &lt;li&gt;サンプル2&lt;/li&gt;
-      -&lt;/ul&gt;
-      +&lt;/ul&gt;
-      +;;;
+    &apos;&lt;h1 id=&quot;サンプルファイル&quot;&gt;サンプルファイル&lt;/h1&gt;\n&apos; +
+      &apos;&lt;p&gt;これはサンプルです。\n&apos; +
+  ...
+      &apos;&lt;li&gt;サンプル1&lt;/li&gt;\n&apos; +
+      &apos;&lt;li&gt;サンプル2&lt;/li&gt;\n&apos; +
+  +   &apos;&lt;/ul&gt;&apos;
+  -   &apos;&lt;/ul&gt;\n&apos; +
+  -   &apos;;;;&apos;
+      at TestContext.&lt;anonymous&gt; (file:///Users/laco/nodecli/test/md2html-test.js:29:10)
+      at async Test.run (node:internal/test_runner/test:632:9)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:374:7) {
+    generatedMessage: true,
+    code: &apos;ERR_ASSERTION&apos;,
+    actual: &apos;&lt;h1 id=&quot;サンプルファイル&quot;&gt;サンプルファイル&lt;/h1&gt;\n&lt;p&gt;これはサンプルです。\n&lt;a href=&quot;https://jsprimer.net/&quot;&gt;https://jsprimer.net/&lt;/a&gt;&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;サンプル1&lt;/li&gt;\n&lt;li&gt;サンプル2&lt;/li&gt;\n&lt;/ul&gt;&apos;,
+    expected: &apos;&lt;h1 id=&quot;サンプルファイル&quot;&gt;サンプルファイル&lt;/h1&gt;\n&lt;p&gt;これはサンプルです。\n&lt;a href=&quot;https://jsprimer.net/&quot;&gt;https://jsprimer.net/&lt;/a&gt;&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;サンプル1&lt;/li&gt;\n&lt;li&gt;サンプル2&lt;/li&gt;\n&lt;/ul&gt;\n;;;&apos;,
+    operator: &apos;strictEqual&apos;
+  }
 </code></pre>
 <p>このテスト結果では <code>converts Markdown to HTML (GFM=true)</code> というタイトルのテストが1つ失敗していることがわかります。
 また、<code>+ actual - expected</code>には、<code>assert.strictEqual</code>で比較した結果が一致していない部分が表示されています。
@@ -1806,7 +1871,7 @@ npmを使ったパッケージ管理や外部モジュールの利用、<code>fs
 <h2 id="section-checklist"><a name="section-checklist" class="plugin-anchor" href="#section-checklist"><i class="fa fa-link" aria-hidden="true"></i></a>このセクションのチェックリスト </h2>
 <ul>
 <li>Markdownの変換処理をECMAScriptモジュールとして<code>md2html.js</code>に切り出し、<code>main.js</code>から読み込んだ</li>
-<li>mochaパッケージをインストールし、<code>npm test</code>コマンドで<code>mocha</code>コマンドを実行できることを確認した</li>
+<li><code>npm test</code>コマンドで<code>node --test</code>が実行できることを確認した</li>
 <li><code>md2html</code>関数のユニットテストを作成し、テストの実行結果を確認した</li>
 </ul>
 </body></html>
@@ -1841,7 +1906,7 @@ npmを使ったパッケージ管理や外部モジュールの利用、<code>fs
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"ユニットテストの導入とソースコードのモジュール化を行います。","sponsors":[],"title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"next":{"title":"Todoアプリ","level":"1.4.4","depth":2,"path":"use-case/todoapp/README.md","ref":"./use-case/todoapp/README.md","articles":[{"title":"エントリーポイント","level":"1.4.4.1","depth":3,"path":"use-case/todoapp/entrypoint/README.md","ref":"./use-case/todoapp/entrypoint/README.md","articles":[]},{"title":"アプリの構成要素","level":"1.4.4.2","depth":3,"path":"use-case/todoapp/app-structure/README.md","ref":"./use-case/todoapp/app-structure/README.md","articles":[]},{"title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"path":"use-case/todoapp/form-event/README.md","ref":"./use-case/todoapp/form-event/README.md","articles":[]},{"title":"イベントとモデル","level":"1.4.4.4","depth":3,"path":"use-case/todoapp/event-model/README.md","ref":"./use-case/todoapp/event-model/README.md","articles":[]},{"title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"path":"use-case/todoapp/update-delete/README.md","ref":"./use-case/todoapp/update-delete/README.md","articles":[]},{"title":"Todoアプリのリファクタリング","level":"1.4.4.6","depth":3,"path":"use-case/todoapp/final/README.md","ref":"./use-case/todoapp/final/README.md","articles":[]}]},"previous":{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2023","nodeversion":"20.11.1","npmversion":"10.2.4","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/refactor-and-unittest/README.md","mtime":"2024-07-21T05:48:23.889Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-07-21T05:48:41.756Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"ユニットテストの導入とソースコードのモジュール化を行います。","sponsors":[],"title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"next":{"title":"Todoアプリ","level":"1.4.4","depth":2,"path":"use-case/todoapp/README.md","ref":"./use-case/todoapp/README.md","articles":[{"title":"エントリーポイント","level":"1.4.4.1","depth":3,"path":"use-case/todoapp/entrypoint/README.md","ref":"./use-case/todoapp/entrypoint/README.md","articles":[]},{"title":"アプリの構成要素","level":"1.4.4.2","depth":3,"path":"use-case/todoapp/app-structure/README.md","ref":"./use-case/todoapp/app-structure/README.md","articles":[]},{"title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"path":"use-case/todoapp/form-event/README.md","ref":"./use-case/todoapp/form-event/README.md","articles":[]},{"title":"イベントとモデル","level":"1.4.4.4","depth":3,"path":"use-case/todoapp/event-model/README.md","ref":"./use-case/todoapp/event-model/README.md","articles":[]},{"title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"path":"use-case/todoapp/update-delete/README.md","ref":"./use-case/todoapp/update-delete/README.md","articles":[]},{"title":"Todoアプリのリファクタリング","level":"1.4.4.6","depth":3,"path":"use-case/todoapp/final/README.md","ref":"./use-case/todoapp/final/README.md","articles":[]}]},"previous":{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2023","nodeversion":"20.11.1","npmversion":"10.2.4","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/refactor-and-unittest/README.md","mtime":"2024-08-03T13:40:20.859Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-08-03T13:40:35.753Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>
