@@ -1,22 +1,29 @@
-import { program } from "commander";
+import * as util from "node:util";
 import * as fs from "node:fs/promises";
-import { marked } from "marked";
+// md2htmlモジュールからmd2html関数をインポートする
+import { md2html } from "./md2html.js";
 
-// gfmオプションを定義する
-program.option("--gfm", "GFMを有効にする");
-program.parse(process.argv);
-const filePath = program.args[0];
+// コマンドライン引数からファイルパスとオプション/フラグを受け取る
+const {
+    values,
+    positionals
+} = util.parseArgs({
+    allowPositionals: true,
+    options: {
+        // gfmフラグを定義する
+        gfm: {
+            type: "boolean",
+            default: false,
+        }
+    }
+});
 
-// コマンドライン引数のオプションを取得し、デフォルトのオプションを上書きする
-const cliOptions = {
-    gfm: false,
-    ...program.opts(),
-};
-
+const filePath = positionals[0];
 fs.readFile(filePath, { encoding: "utf8" }).then(file => {
-    const html = marked.parse(file, {
-        // オプションの値を使用する
-        gfm: cliOptions.gfm,
+    // md2htmlモジュールを使ってHTMLに変換する
+    const html = md2html(file, {
+        // gfmフラグのパース結果をオプションとして渡す
+        gfm: values.gfm
     });
     console.log(html);
 }).catch(err => {

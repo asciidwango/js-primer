@@ -5,16 +5,12 @@
   "main": "main.js",
   "type": "module",
   "scripts": {
-    "test": "mocha test/"
+    "test": "node --test"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "commander": "^9.0.0",
-    "marked": "^4.0.00"
-  },
-  "devDependencies": {
-    "mocha": "^10.0.0"
+    "marked": "^4.0.0"
   }
 }
