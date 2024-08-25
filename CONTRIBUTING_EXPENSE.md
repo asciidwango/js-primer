@@ -58,6 +58,14 @@ Pointはやや主観的になってしまうが、既存のIssueを比較して�
 
 ### 金額の計算方法
 
+金額は、次のツールで計算できる。
+
+```bash
+$ node ./tools/calc-contribute-expense.mjs --point <number>
+```
+
+#### 金額の計算式
+
 jsprimerの年間更新コストは、だいたい30日分の作業量になるように設定している。
 
 - [JavaScript Primer 改訂2版をリリースしました！/JavaScript Primerはなぜ更新され続けるのか？ | Web Scratch](https://efcl.info/2023/06/09/jsprimer-v2/)
@@ -92,12 +100,6 @@ console.log({ onePointCost }); // => $39.45
 const costOfPoint = 2; /// 2 Points
 const cost = onePointCost * costOfPoint;
 console.log({ cost }); // => $78.9
-```
-
-次のツールで計算できる
-
-```bash
-$ node ./tools/calc-contribute-expense.mjs --point <number
 ```
 
 ### 金額を確定するタイミング
@@ -136,4 +138,4 @@ Open Collectiveからの支払いは2週間ごとに行われるため、月ご�
 Note:
 
 - 入力した個人情報は公開されません
-- 公開されるのは、Expense titleとDescriptionとOpen Collectiveのアカウント情報飲みです
+- 公開されるのは、Expense titleとDescriptionとOpen Collectiveのアカウント情報のみです
