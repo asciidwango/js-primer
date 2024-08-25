@@ -64,6 +64,12 @@ Pointはやや主観的になってしまうが、既存のIssueを比較して�
 $ node ./tools/calc-contribute-expense.mjs --point <number>
 ```
 
+e.g. 合計のPointが2の場合
+
+```bash
+$ node ./tools/calc-contribute-expense.mjs --point 2
+```
+
 #### 金額の計算式
 
 jsprimerの年間更新コストは、だいたい30日分の作業量になるように設定している。
