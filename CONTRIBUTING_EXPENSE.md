@@ -58,7 +58,7 @@ Pointはやや主観的になってしまうが、既存のIssueを比較して�
 
 ### 金額の計算方法
 
-金額は、次のツールで計算できる。
+金額は次のツールで計算できる。
 
 ```bash
 $ node ./tools/calc-contribute-expense.mjs --point <number>
