@@ -77,13 +77,16 @@ IssueやPull Requestについては、次のページを参照してください
 
 ## Installation
 
-    npm install
+    # corepackを有効化
+    corepack enable
+    # インストール
+    npm ci
 
-Node.js v22.4.1以上とnpm 10.8.2以上が必要です。
+開発は次のバージョンのNode.jsとnpmで行われています。
 
 ```
 $ node -v
-v22.4.1
+v22.7.0
 $ npm -v
 10.8.2
 ```
