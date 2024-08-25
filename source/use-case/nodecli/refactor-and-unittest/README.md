@@ -150,7 +150,7 @@ $ npm test
   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
   + actual - expected ... Lines skipped
   
-    '<h1 id="サンプルファイル">サンプルファイル</h1>\n' +
+    '<h1>サンプルファイル</h1>\n' +
       '<p>これはサンプルです。\n' +
   ...
       '<li>サンプル1</li>\n' +
@@ -163,8 +163,8 @@ $ npm test
       at async Test.processPendingSubtests (node:internal/test_runner/test:374:7) {
     generatedMessage: true,
     code: 'ERR_ASSERTION',
-    actual: '<h1 id="サンプルファイル">サンプルファイル</h1>\n<p>これはサンプルです。\n<a href="https://jsprimer.net/">https://jsprimer.net/</a></p>\n<ul>\n<li>サンプル1</li>\n<li>サンプル2</li>\n</ul>',
-    expected: '<h1 id="サンプルファイル">サンプルファイル</h1>\n<p>これはサンプルです。\n<a href="https://jsprimer.net/">https://jsprimer.net/</a></p>\n<ul>\n<li>サンプル1</li>\n<li>サンプル2</li>\n</ul>\n;;;',
+    actual: '<h1>サンプルファイル</h1>\n<p>これはサンプルです。\n<a href="https://jsprimer.net/">https://jsprimer.net/</a></p>\n<ul>\n<li>サンプル1</li>\n<li>サンプル2</li>\n</ul>',
+    expected: '<h1>サンプルファイル</h1>\n<p>これはサンプルです。\n<a href="https://jsprimer.net/">https://jsprimer.net/</a></p>\n<ul>\n<li>サンプル1</li>\n<li>サンプル2</li>\n</ul>\n;;;',
     operator: 'strictEqual'
   }
 
@@ -184,7 +184,7 @@ test at file:/Users/laco/nodecli/test/md2html-test.js:21:1
   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
   + actual - expected ... Lines skipped
   
-    '<h1 id="サンプルファイル">サンプルファイル</h1>\n' +
+    '<h1>サンプルファイル</h1>\n' +
       '<p>これはサンプルです。\n' +
   ...
       '<li>サンプル1</li>\n' +
@@ -197,8 +197,8 @@ test at file:/Users/laco/nodecli/test/md2html-test.js:21:1
       at async Test.processPendingSubtests (node:internal/test_runner/test:374:7) {
     generatedMessage: true,
     code: 'ERR_ASSERTION',
-    actual: '<h1 id="サンプルファイル">サンプルファイル</h1>\n<p>これはサンプルです。\n<a href="https://jsprimer.net/">https://jsprimer.net/</a></p>\n<ul>\n<li>サンプル1</li>\n<li>サンプル2</li>\n</ul>',
-    expected: '<h1 id="サンプルファイル">サンプルファイル</h1>\n<p>これはサンプルです。\n<a href="https://jsprimer.net/">https://jsprimer.net/</a></p>\n<ul>\n<li>サンプル1</li>\n<li>サンプル2</li>\n</ul>\n;;;',
+    actual: '<h1>サンプルファイル</h1>\n<p>これはサンプルです。\n<a href="https://jsprimer.net/">https://jsprimer.net/</a></p>\n<ul>\n<li>サンプル1</li>\n<li>サンプル2</li>\n</ul>',
+    expected: '<h1>サンプルファイル</h1>\n<p>これはサンプルです。\n<a href="https://jsprimer.net/">https://jsprimer.net/</a></p>\n<ul>\n<li>サンプル1</li>\n<li>サンプル2</li>\n</ul>\n;;;',
     operator: 'strictEqual'
   }
 ```

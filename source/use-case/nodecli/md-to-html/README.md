@@ -21,7 +21,7 @@ markedのパッケージは[npm][]で配布されているので、`npm install`
 次のコマンドを実行して、markedのバージョン4.0をインストールします。[^1]
 
 ```shell
-$ npm install marked@4.0
+$ npm install marked@14.0
 ```
 
 インストールが完了すると、`package.json`ファイルは次のようになっています。
@@ -59,7 +59,7 @@ markedではこの`gfm`オプションがデフォルトで`true`になってい
 `gfm`オプションが有効のときは、URLの文字列が自動的に`<a>`タグのリンクに置き換わります。
 
 ```html
-<h1 id="サンプルファイル">サンプルファイル</h1>
+<h1>サンプルファイル</h1>
 <p>これはサンプルです。
 <a href="https://jsprimer.net/">https://jsprimer.net/</a></p>
 <ul>
@@ -73,7 +73,7 @@ markedではこの`gfm`オプションがデフォルトで`true`になってい
 [import title:"main.js"](src/main-2.js)
 
 ```html
-<h1 id="サンプルファイル">サンプルファイル</h1>
+<h1>サンプルファイル</h1>
 <p>これはサンプルです。
 https://jsprimer.net/</p>
 <ul>
@@ -133,7 +133,7 @@ console.log(values.gfm); // --gfmフラグがあればtrue、なければfalse�
 
 ```shell
 $ node main.js sample.md
-<h1 id="サンプルファイル">サンプルファイル</h1>
+<h1>サンプルファイル</h1>
 <p>これはサンプルです。
 https://jsprimer.net/</p>
 <ul>
@@ -147,7 +147,7 @@ GFMオプションが有効になっているため、URLがリンクに変換�
 
 ```shell
 $ node main.js --gfm sample.md
-<h1 id="サンプルファイル">サンプルファイル</h1>
+<h1>サンプルファイル</h1>
 <p>これはサンプルです。
 <a href="https://jsprimer.net/">https://jsprimer.net/</a></p>
 <ul>
