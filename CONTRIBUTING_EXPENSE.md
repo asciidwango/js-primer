@@ -14,7 +14,8 @@ jsprimerへのContributeしたタスクに対してPointを設定し、そのPoi
 
 ### タスクに対するPoint
 
-作業量に対する基準としてフィボナッチ数列のPointを設定する
+作業量に対する基準としてフィボナッチ数列のPointを設定する。
+Pointの決定は、jsprimerの[Project Member](https://github.com/asciidwango/js-primer?tab=readme-ov-file#project-member)が行う。
 
 | Point | Description           |
 |-------|-----------------------|
