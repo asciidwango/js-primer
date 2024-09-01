@@ -33,7 +33,7 @@ Issueが適切に分割されていれば、5や8はほとんど出てこない�
 
 ### Pointの例
 
-Pointはやや主観的になってしまうが、既存のIssueを比較してどの程度のPointになるかを判断する。
+Pointはやや主観的になってしまうが、既存のIssueを比較してどの程度のPointになるかを[Project Member](https://github.com/asciidwango/js-primer?tab=readme-ov-file#project-member)が判断する。
 
 - Point 1:
     - [fix(nodecli): update to marked@14 by azu · Pull Request #1760 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/1760)
