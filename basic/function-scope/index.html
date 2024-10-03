@@ -6,7 +6,7 @@
         <title>関数とスコープ · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="スコープという変数などを参照できる範囲を決める概念を紹介します。ブロックスコープや関数スコープなどがどのような働きをしているのかや複数のスコープが重なったときにどのように変数の参照先が決まるのかを紹介します。また、スコープに関係する動作としてクロージャーという性質を紹介します。">
-        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="generator" content="HonKit 6.0.0">
         
         
         
@@ -1619,14 +1619,14 @@ JavaScriptでは、新しい関数を定義するとその関数にひもづけ�
 <p>このような、関数によるスコープのことを<strong>関数スコープ</strong>と呼びます。</p>
 <p>「<a href="../variables/">変数と宣言</a>」の章にて、<code>let</code>や<code>const</code>は同じスコープ内に同じ名前の変数を二重に定義できないという話をしました。
 これは、各スコープには同じ名前の変数は1つしか宣言できないためです（<code>var</code>による変数宣言と<code>function</code>による関数宣言は例外的に可能です）。</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// スコープ内に同じ&quot;a&quot;を定義すると SyntaxError となる</span>
+<pre><code class="lang-javascript"><span class="hljs-comment">// スコープ内に同じ"a"を定義すると SyntaxError となる</span>
 <span class="hljs-keyword">let</span> a;
 <span class="hljs-keyword">let</span> a;
 </code></pre>
 <p>一方、スコープが異なれば同じ名前で変数を宣言できます。
 次のコードでは、<code>fnA</code>関数と<code>fnB</code>関数という異なるスコープで、それぞれ変数<code>x</code>を定義できていることがわかります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// 異なる関数のスコープには同じ&quot;x&quot;を定義できる</span>
+<pre><code class="lang-js"><span class="hljs-comment">// 異なる関数のスコープには同じ"x"を定義できる</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">fnA</span>(<span class="hljs-params"></span>) {
     <span class="hljs-keyword">let</span> x;
 }
@@ -1665,8 +1665,8 @@ JavaScriptでは、新しい関数を定義するとその関数にひもづけ�
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// if文のブロック内で定義した変数はブロックスコープの中でのみ参照できる</span>
 <span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) {
-    <span class="hljs-keyword">const</span> x = <span class="hljs-string">&quot;inner&quot;</span>;
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; &quot;inner&quot;</span>
+    <span class="hljs-keyword">const</span> x = <span class="hljs-string">"inner"</span>;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; "inner"</span>
 }
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; ReferenceError: x is not defined</span>
 </code></pre>
@@ -1708,10 +1708,10 @@ JavaScriptでは、新しい関数を定義するとその関数にひもづけ�
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js">{
     <span class="hljs-comment">// OUTERブロックスコープ</span>
-    <span class="hljs-keyword">const</span> x = <span class="hljs-string">&quot;x&quot;</span>;
+    <span class="hljs-keyword">const</span> x = <span class="hljs-string">"x"</span>;
     {
         <span class="hljs-comment">// INNERブロックスコープからOUTERブロックスコープの変数を参照できる</span>
-        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; &quot;x&quot;</span>
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; "x"</span>
     }
 }
 </code></pre>
@@ -1748,15 +1748,15 @@ JavaScriptでは、新しい関数を定義するとその関数にひもづけ�
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js">{
     <span class="hljs-comment">// OUTERブロックスコープ</span>
-    <span class="hljs-keyword">const</span> x = <span class="hljs-string">&quot;outer&quot;</span>;
+    <span class="hljs-keyword">const</span> x = <span class="hljs-string">"outer"</span>;
     {
         <span class="hljs-comment">// INNERブロックスコープ</span>
-        <span class="hljs-keyword">const</span> x = <span class="hljs-string">&quot;inner&quot;</span>;
+        <span class="hljs-keyword">const</span> x = <span class="hljs-string">"inner"</span>;
         <span class="hljs-comment">// 現在のスコープ(INNERブロックスコープ)にある`x`を参照する</span>
-        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; &quot;inner&quot;</span>
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; "inner"</span>
     }
     <span class="hljs-comment">// 現在のスコープ(OUTERブロックスコープ)にある`x`を参照する</span>
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; &quot;outer&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; "outer"</span>
 }
 </code></pre>
 <p>このようにスコープは階層的な構造となっており、変数を参照する際にどの変数が参照できるかはスコープチェーンによって解決されています。</p>
@@ -1765,23 +1765,23 @@ JavaScriptでは、新しい関数を定義するとその関数にひもづけ�
 グローバルスコープとは名前のとおりもっとも外側にあるスコープで、プログラム実行時に暗黙的に作成されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// プログラム直下はグローバルスコープ</span>
-<span class="hljs-keyword">const</span> x = <span class="hljs-string">&quot;x&quot;</span>;
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; &quot;x&quot;</span>
+<span class="hljs-keyword">const</span> x = <span class="hljs-string">"x"</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; "x"</span>
 </code></pre>
 <p>グローバルスコープで定義した変数は<strong>グローバル変数</strong>と呼ばれ、グローバル変数はあらゆるスコープから参照できる変数となります。
 なぜなら、スコープチェーンの仕組みにより、最終的にもっとも外側のグローバルスコープに定義されている変数を参照できるためです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// グローバル変数はどのスコープからも参照できる</span>
-<span class="hljs-keyword">const</span> globalVariable = <span class="hljs-string">&quot;グローバル&quot;</span>;
+<span class="hljs-keyword">const</span> globalVariable = <span class="hljs-string">"グローバル"</span>;
 <span class="hljs-comment">// ブロックスコープ</span>
 {
     <span class="hljs-comment">// ブロックスコープ内には該当する変数が定義されてない -&gt; 外側のスコープへ</span>
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(globalVariable); <span class="hljs-comment">// =&gt; &quot;グローバル&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(globalVariable); <span class="hljs-comment">// =&gt; "グローバル"</span>
 }
 <span class="hljs-comment">// 関数スコープ</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">fn</span>(<span class="hljs-params"></span>) {
     <span class="hljs-comment">// 関数ブロックスコープ内には該当する変数が定義されてない -&gt; 外側のスコープへ</span>
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(globalVariable); <span class="hljs-comment">// =&gt; &quot;グローバル&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(globalVariable); <span class="hljs-comment">// =&gt; "グローバル"</span>
 }
 <span class="hljs-title function_">fn</span>();
 </code></pre>
@@ -1812,7 +1812,7 @@ JavaScriptでは、新しい関数を定義するとその関数にひもづけ�
 <p>自分で定義したグローバル変数とビルトインオブジェクトでは、グローバル変数が優先して参照されます。
 つまり次のようにビルトインオブジェクトと同じ名前の変数を定義すると、定義した変数が参照されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// &quot;Array&quot;という名前の変数を定義</span>
+<pre><code class="lang-js"><span class="hljs-comment">// "Array"という名前の変数を定義</span>
 <span class="hljs-keyword">const</span> <span class="hljs-title class_">Array</span> = <span class="hljs-number">1</span>;
 <span class="hljs-comment">// 自分で定義した変数がビルトインオブジェクトより優先される</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Array</span>); <span class="hljs-comment">// =&gt; 1</span>
@@ -1876,23 +1876,23 @@ JavaScriptでは、新しい関数を定義するとその関数にひもづけ�
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(let_x); <span class="hljs-comment">// =&gt; undefined</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(var_x); <span class="hljs-comment">// =&gt; undefined</span>
 <span class="hljs-comment">// 宣言後に値を代入できる</span>
-let_x = <span class="hljs-string">&quot;letのx&quot;</span>;
-var_x = <span class="hljs-string">&quot;varのx&quot;</span>;
+let_x = <span class="hljs-string">"letのx"</span>;
+var_x = <span class="hljs-string">"varのx"</span>;
 </code></pre>
 <p>次に、<code>let</code>と<code>var</code>で異なる動作を見ていきます。</p>
 <p><code>let</code>では、変数を<strong>宣言する前</strong>にその変数を参照すると<code>ReferenceError</code>の例外が発生して参照できません。
 次のコードでは、変数を宣言する前に変数<code>x</code>を参照したため<code>ReferenceError</code>となっています。
 エラーメッセージから、変数<code>x</code>が存在しないからエラーになっているのではなく、実際に宣言した行より前に参照したためエラーとなっているのがわかります。<sup><a href="#fn_1" id="reffn_1">1</a></sup></p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; ReferenceError: can&apos;t access lexical declaration `x&apos; before initialization</span>
-<span class="hljs-keyword">let</span> x = <span class="hljs-string">&quot;letのx&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; ReferenceError: can't access lexical declaration `x' before initialization</span>
+<span class="hljs-keyword">let</span> x = <span class="hljs-string">"letのx"</span>;
 </code></pre>
 <p>一方<code>var</code>では、変数を<strong>宣言する前</strong>にその変数を参照しても<code>undefined</code>となります。
 次のコードは、変数を宣言する前に参照しているにもかかわらずエラーにはならず、変数<code>x</code>の評価結果は<code>undefined</code>となります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// var宣言より前に参照してもエラーにならない</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; undefined</span>
-<span class="hljs-keyword">var</span> x = <span class="hljs-string">&quot;varのx&quot;</span>;
+<span class="hljs-keyword">var</span> x = <span class="hljs-string">"varのx"</span>;
 </code></pre>
 <p>このように<code>var</code>で宣言された変数が宣言前に参照でき、その値が<code>undefined</code>となる特殊な動きをしていることがわかります。</p>
 <p>この<code>var</code>の振る舞いを理解するために、変数宣言が<strong>宣言</strong>と<strong>代入</strong>の2つの部分から構成されていると考えてみましょう。
@@ -1905,8 +1905,8 @@ var_x = <span class="hljs-string">&quot;varのx&quot;</span>;
 <span class="hljs-keyword">var</span> x;
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; undefined</span>
 <span class="hljs-comment">// 変数への代入はそのままの位置に残る</span>
-x = <span class="hljs-string">&quot;varのx&quot;</span>;
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; &quot;varのx&quot;</span>
+x = <span class="hljs-string">"varのx"</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; "varのx"</span>
 </code></pre>
 <p>さらに、<code>var</code>変数の宣言の巻き上げは、ブロックスコープを無視してもっとも近い関数またはグローバルスコープに変数をひもづけます。
 そのため、次のようにブロック<code>{}</code>で<code>var</code>による変数宣言を囲んでも、もっとも近い関数スコープである<code>fn</code>関数の直下に<strong>宣言</strong>部分が巻き上げられます
@@ -1915,9 +1915,9 @@ x = <span class="hljs-string">&quot;varのx&quot;</span>;
     <span class="hljs-comment">// 内側のスコープにあるはずの変数`x`が参照できる</span>
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; undefined</span>
     {
-        <span class="hljs-keyword">var</span> x = <span class="hljs-string">&quot;varのx&quot;</span>;
+        <span class="hljs-keyword">var</span> x = <span class="hljs-string">"varのx"</span>;
     }
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; &quot;varのx&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; "varのx"</span>
 }
 <span class="hljs-title function_">fn</span>();
 </code></pre>
@@ -1930,9 +1930,9 @@ x = <span class="hljs-string">&quot;varのx&quot;</span>;
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; undefined</span>
     {
         <span class="hljs-comment">// 変数への代入はそのままの位置に残る</span>
-        x = <span class="hljs-string">&quot;varのx&quot;</span>;
+        x = <span class="hljs-string">"varのx"</span>;
     }
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; &quot;varのx&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; "varのx"</span>
 }
 <span class="hljs-title function_">fn</span>();
 </code></pre>
@@ -1947,10 +1947,10 @@ x = <span class="hljs-string">&quot;varのx&quot;</span>;
 次のコードでは、実際に<code>hello</code>関数を宣言した行より前に関数を呼び出せます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// `hello`関数の宣言より前に呼び出せる</span>
-<span class="hljs-title function_">hello</span>(); <span class="hljs-comment">// =&gt; &quot;Hello&quot;</span>
+<span class="hljs-title function_">hello</span>(); <span class="hljs-comment">// =&gt; "Hello"</span>
 
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">hello</span>(<span class="hljs-params"></span>){
-    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello&quot;</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello"</span>;
 }
 </code></pre>
 <p>これは、関数宣言は<strong>宣言</strong>そのものであるため、<code>hello</code>関数そのものがスコープの先頭に巻き上げられます。
@@ -1958,10 +1958,10 @@ x = <span class="hljs-string">&quot;varのx&quot;</span>;
 <pre><code class="lang-js"><span class="hljs-comment">// 解釈されたコード</span>
 <span class="hljs-comment">// `hello`関数の宣言が巻き上げられる</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">hello</span>(<span class="hljs-params"></span>){
-    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello&quot;</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello"</span>;
 }
 
-<span class="hljs-title function_">hello</span>(); <span class="hljs-comment">// =&gt; &quot;Hello&quot;</span>
+<span class="hljs-title function_">hello</span>(); <span class="hljs-comment">// =&gt; "Hello"</span>
 </code></pre>
 <p><code>function</code>キーワードによる関数宣言も巻き上げられます。
 しかし、<code>var</code>による変数宣言の巻き上げとは異なり、問題となることはほとんどありません。
@@ -1978,7 +1978,7 @@ x = <span class="hljs-string">&quot;varのx&quot;</span>;
 
 <span class="hljs-comment">// `hello`変数へ関数を代入している</span>
 <span class="hljs-keyword">var</span> hello = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>){
-    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello&quot;</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello"</span>;
 };
 </code></pre>
 <!-- textlint-enable eslint -->
@@ -1992,22 +1992,22 @@ x = <span class="hljs-string">&quot;varのx&quot;</span>;
 <pre><code class="lang-js"><span class="hljs-comment">// 無名関数を宣言 + 実行を同時に行っている</span>
 (<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
     <span class="hljs-comment">// 関数のスコープ内でfoo変数を宣言している</span>
-    <span class="hljs-keyword">var</span> foo = <span class="hljs-string">&quot;foo&quot;</span>;
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(foo); <span class="hljs-comment">// =&gt; &quot;foo&quot;</span>
+    <span class="hljs-keyword">var</span> foo = <span class="hljs-string">"foo"</span>;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(foo); <span class="hljs-comment">// =&gt; "foo"</span>
 })();
 <span class="hljs-comment">// foo変数のスコープ外</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> foo === <span class="hljs-string">&quot;undefined&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> foo === <span class="hljs-string">"undefined"</span>); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <p>関数を<strong>式</strong>として定義して、そのまま呼び出しています。
 <code>function</code>からはじまってしまうとJavaScriptエンジンが<strong>関数宣言</strong>と解釈してしまうため、無害なカッコなどで囲んで<strong>関数式</strong>として解釈させるのが特徴的な記法です。これは次のように書いた場合と意味は同じですが、無名関数を定義して実行するため短く書くことができ、余計な関数定義がグローバルスコープに残りません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">fn</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">var</span> foo = <span class="hljs-string">&quot;foo&quot;</span>;
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(foo); <span class="hljs-comment">// =&gt; &quot;foo&quot;</span>
+    <span class="hljs-keyword">var</span> foo = <span class="hljs-string">"foo"</span>;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(foo); <span class="hljs-comment">// =&gt; "foo"</span>
 }
 <span class="hljs-title function_">fn</span>();
 <span class="hljs-comment">// foo変数のスコープ外</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> foo === <span class="hljs-string">&quot;undefined&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> foo === <span class="hljs-string">"undefined"</span>); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <p>ECMAScript 5までは、変数を宣言する方法は<code>var</code>しか存在しませんでした。
 そのため、即時実行関数は<code>var</code>によるグローバルスコープの汚染を防ぐために使われていました。</p>
@@ -2018,11 +2018,11 @@ x = <span class="hljs-string">&quot;varのx&quot;</span>;
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js">{
     <span class="hljs-comment">// ブロックスコープ内でfoo変数を宣言している</span>
-    <span class="hljs-keyword">const</span> foo = <span class="hljs-string">&quot;foo&quot;</span>;
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(foo); <span class="hljs-comment">// =&gt; &quot;foo&quot;</span>
+    <span class="hljs-keyword">const</span> foo = <span class="hljs-string">"foo"</span>;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(foo); <span class="hljs-comment">// =&gt; "foo"</span>
 }
 <span class="hljs-comment">// foo変数のスコープ外</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> foo === <span class="hljs-string">&quot;undefined&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> foo === <span class="hljs-string">"undefined"</span>); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <h2 id="closure"><a name="closure" class="plugin-anchor" href="#closure"><i class="fa fa-link" aria-hidden="true"></i></a>クロージャー </h2>
 <p>最後にこの章ではクロージャーと呼ばれる関数とスコープに関わる性質について見ていきます。
@@ -2128,15 +2128,15 @@ run(); // ここでは 20 が出力される
 <p>JavaScriptにはガベージコレクションがあるため、手動でメモリを解放するコードを書く必要はありません。
 しかし、ガベージコレクションといったメモリ管理の仕組みを理解することは、スコープやクロージャーに関係するため大切です。</p>
 <p>どのようなタイミングでメモリ上から不要なデータが解放されるのか、具体的な例を見てみましょう。</p>
-<p>次の例では、最初に<code>&quot;before text&quot;</code>という文字列のデータがメモリ上に確保され、変数<code>x</code>はそのメモリ上のデータを参照しています。
-その後、<code>&quot;after text&quot;</code>という新しい文字列のデータを作り、変数<code>x</code>はその新しいデータへ参照先を変えています。</p>
-<p>このとき、最初にメモリ上へ確保した<code>&quot;before text&quot;</code>という文字列のデータはどこからも参照されなくなっています。
+<p>次の例では、最初に<code>"before text"</code>という文字列のデータがメモリ上に確保され、変数<code>x</code>はそのメモリ上のデータを参照しています。
+その後、<code>"after text"</code>という新しい文字列のデータを作り、変数<code>x</code>はその新しいデータへ参照先を変えています。</p>
+<p>このとき、最初にメモリ上へ確保した<code>"before text"</code>という文字列のデータはどこからも参照されなくなっています。
 どこからも参照されなくなった時点で不要になったデータと判断されるためガベージコレクションの回収対象となります。
 その後、任意のタイミングでガベージコレクションによって回収されてメモリ上から解放されます。<sup><a href="#fn_2" id="reffn_2">2</a></sup></p>
-<pre><code class="lang-js"><span class="hljs-keyword">let</span> x = <span class="hljs-string">&quot;before text&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-keyword">let</span> x = <span class="hljs-string">"before text"</span>;
 <span class="hljs-comment">// 変数`x`に新しいデータを代入する</span>
-x = <span class="hljs-string">&quot;after text&quot;</span>;
-<span class="hljs-comment">// このとき&quot;before text&quot;というデータはどこからも参照されなくなる</span>
+x = <span class="hljs-string">"after text"</span>;
+<span class="hljs-comment">// このとき"before text"というデータはどこからも参照されなくなる</span>
 <span class="hljs-comment">// その後、ガベージコレクションによってメモリ上から解放される</span>
 </code></pre>
 <p>次にこのガベージコレクションと関数の関係性について考えてみましょう。
@@ -2149,12 +2149,12 @@ x = <span class="hljs-string">&quot;after text&quot;</span>;
 どこからも参照されなくなったものは、ガベージコレクションによって回収されてメモリ上から解放されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">printX</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">const</span> x = <span class="hljs-string">&quot;X&quot;</span>;
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; &quot;X&quot;</span>
+    <span class="hljs-keyword">const</span> x = <span class="hljs-string">"X"</span>;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; "X"</span>
 }
 
 <span class="hljs-title function_">printX</span>();
-<span class="hljs-comment">// この時点で`&quot;X&quot;`を参照するものはなくなる -&gt; 解放される</span>
+<span class="hljs-comment">// この時点で`"X"`を参照するものはなくなる -&gt; 解放される</span>
 </code></pre>
 <p>次に、関数の実行が終了しても解放されないデータの例です。</p>
 <p>次のコードでは、<code>createArray</code>関数の中で定義された変数<code>tempArray</code>は、<code>createArray</code>関数の返り値となっています。
@@ -2253,8 +2253,8 @@ x = <span class="hljs-string">&quot;after text&quot;</span>;
     };
 };
 <span class="hljs-keyword">const</span> counter = <span class="hljs-title function_">createCounter</span>();
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">counter</span>()); <span class="hljs-comment">// =&gt; &quot;1回目&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">counter</span>()); <span class="hljs-comment">// =&gt; &quot;2回目&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">counter</span>()); <span class="hljs-comment">// =&gt; "1回目"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">counter</span>()); <span class="hljs-comment">// =&gt; "2回目"</span>
 </code></pre>
 <p>また、関数を返す関数のことを高階関数と呼びますが、クロージャーの性質を使うことで次のように<code>n</code>より大きいかを判定する高階関数を作れます。
 最初から<code>greaterThan5</code>という関数を定義すればよいのですが、高階関数を使うことで条件を後から定義できるなどの柔軟性があります。</p>
@@ -2354,7 +2354,7 @@ countUp.<span class="hljs-property">count</span> = <span class="hljs-number">10<
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"スコープという変数などを参照できる範囲を決める概念を紹介します。ブロックスコープや関数スコープなどがどのような働きをしているのかや複数のスコープが重なったときにどのように変数の参照先が決まるのかを紹介します。また、スコープに関係する動作としてクロージャーという性質を紹介します。","sponsors":[],"title":"関数とスコープ","level":"1.3.18","depth":2,"next":{"title":"関数とthis","level":"1.3.19","depth":2,"path":"basic/function-this/README.md","ref":"./basic/function-this/README.md","articles":[]},"previous":{"title":"ラッパーオブジェクト","level":"1.3.17","depth":2,"path":"basic/wrapper-object/README.md","ref":"./basic/wrapper-object/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/function-scope/README.md","mtime":"2024-09-01T11:18:59.577Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-09-01T11:19:15.872Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"スコープという変数などを参照できる範囲を決める概念を紹介します。ブロックスコープや関数スコープなどがどのような働きをしているのかや複数のスコープが重なったときにどのように変数の参照先が決まるのかを紹介します。また、スコープに関係する動作としてクロージャーという性質を紹介します。","sponsors":[],"title":"関数とスコープ","level":"1.3.18","depth":2,"next":{"title":"関数とthis","level":"1.3.19","depth":2,"path":"basic/function-this/README.md","ref":"./basic/function-this/README.md","articles":[]},"previous":{"title":"ラッパーオブジェクト","level":"1.3.17","depth":2,"path":"basic/wrapper-object/README.md","ref":"./basic/wrapper-object/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/function-scope/README.md","mtime":"2024-10-03T14:54:01.253Z","type":"markdown"},"gitbook":{"version":"6.0.0","time":"2024-10-03T14:54:19.038Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

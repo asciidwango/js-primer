@@ -6,7 +6,7 @@
         <title>アプリの構成要素 · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="これから実装するTodoアプリの機能と構成要素を見ていきます。">
-        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="generator" content="HonKit 6.0.0">
         
         
         
@@ -1597,45 +1597,45 @@ Todoアイテムの追加、更新、削除、現在の状態の表示など複�
 </div>
 
 <pre><code class="lang-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ja&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"ja"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Todo App<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
     <span class="hljs-comment">&lt;!-- 1. CSSファイルを読み込み --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">link</span>
-      <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://jsprimer.net/use-case/todoapp/final/final/index.css&quot;</span>
-      <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span>
+      <span class="hljs-attr">href</span>=<span class="hljs-string">"https://jsprimer.net/use-case/todoapp/final/final/index.css"</span>
+      <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span>
     /&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
     <span class="hljs-comment">&lt;!-- 2. class属性をCSSのために指定 --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;todoapp&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"todoapp"</span>&gt;</span>
       <span class="hljs-comment">&lt;!-- 3. id属性をJavaScriptのために指定 --&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;js-form&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"js-form"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
-          <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;js-form-input&quot;</span>
-          <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;new-todo&quot;</span>
-          <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span>
-          <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;What need to be done?&quot;</span>
-          <span class="hljs-attr">autocomplete</span>=<span class="hljs-string">&quot;off&quot;</span>
+          <span class="hljs-attr">id</span>=<span class="hljs-string">"js-form-input"</span>
+          <span class="hljs-attr">class</span>=<span class="hljs-string">"new-todo"</span>
+          <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span>
+          <span class="hljs-attr">placeholder</span>=<span class="hljs-string">"What need to be done?"</span>
+          <span class="hljs-attr">autocomplete</span>=<span class="hljs-string">"off"</span>
         /&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
       <span class="hljs-comment">&lt;!-- 4. TodoアプリのメインとなるTodoリスト --&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;js-todo-list&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;todo-list&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"js-todo-list"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"todo-list"</span>&gt;</span>
         <span class="hljs-comment">&lt;!-- 動的に更新されるTodoリスト --&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">footer</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;footer&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">footer</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"footer"</span>&gt;</span>
         <span class="hljs-comment">&lt;!-- 5. Todoアイテム数の表示 --&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;js-todo-count&quot;</span>&gt;</span>Todoアイテム数: 0<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"js-todo-count"</span>&gt;</span>Todoアイテム数: 0<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./index.js&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./index.js"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
 <p>HTMLの内容を変更後にブラウザでアクセスすると次のような表示になります。
 まだJavaScriptでTodoアプリの機能は実装していませんが、見た目だけのTodoアプリはこれで完成です。</p>
-<p><img src="img/todo-html.png" alt="todoappのHTMLとCSSによる骨組み"></p>
+<p><img src="img/todo-html.png" alt="todoappのHTMLとCSSによる骨組み"></img></p>
 <p>実際に変更したHTMLを上から順番に見てみましょう。</p>
 <h3 id="comment-css-file-load"><a name="comment-css-file-load" class="plugin-anchor" href="#comment-css-file-load"><i class="fa fa-link" aria-hidden="true"></i></a>1. CSSファイルを読み込み </h3>
 <p><code>head</code>要素の中で<code>link</code>タグを使い、外部のCSSファイルを読み込んでいます。
@@ -1673,10 +1673,10 @@ HTMLの<code>class</code>属性はJavaScriptの<code>class</code>構文とは無
 <p>今回のTodoアプリではJavaScriptから要素を選択するために<code>id</code>属性を設定しています。
 先ほどのCSSセレクタはCSSから要素を指定するだけではなく、JavaScriptから要素を指定する際にも利用できます。
 ブラウザのDOM APIの<code>document.querySelector</code> APIではCSSセレクタを使って要素を選択できます。</p>
-<p>次のコードでは、<code>document.querySelector(&quot;CSSセレクタ&quot;)</code>を利用して特定のid属性名の要素を取得しています。</p>
+<p>次のコードでは、<code>document.querySelector("CSSセレクタ")</code>を利用して特定のid属性名の要素を取得しています。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-comment">// id属性の値が&quot;js-form&quot;である要素を取得する</span>
-<span class="hljs-keyword">const</span> form = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&quot;#js-form&quot;</span>);
+<pre><code class="lang-js"><span class="hljs-comment">// id属性の値が"js-form"である要素を取得する</span>
+<span class="hljs-keyword">const</span> form = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">"#js-form"</span>);
 </code></pre>
 <p>そのため、JavaScriptで参照する要素には<code>id</code>属性を目印としてつけています。
 わかりやすくするために、JavaScriptから扱うid属性は慣習的に<code>js-</code>からはじまる名前にしています。</p>
@@ -1734,7 +1734,7 @@ HTMLの<code>class</code>属性はJavaScriptの<code>class</code>構文とは無
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"これから実装するTodoアプリの機能と構成要素を見ていきます。","sponsors":[],"title":"アプリの構成要素","level":"1.4.4.2","depth":3,"next":{"title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"path":"use-case/todoapp/form-event/README.md","ref":"./use-case/todoapp/form-event/README.md","articles":[]},"previous":{"title":"エントリーポイント","level":"1.4.4.1","depth":3,"path":"use-case/todoapp/entrypoint/README.md","ref":"./use-case/todoapp/entrypoint/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/todoapp/app-structure/README.md","mtime":"2024-09-01T11:18:59.601Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-09-01T11:19:15.872Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"これから実装するTodoアプリの機能と構成要素を見ていきます。","sponsors":[],"title":"アプリの構成要素","level":"1.4.4.2","depth":3,"next":{"title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"path":"use-case/todoapp/form-event/README.md","ref":"./use-case/todoapp/form-event/README.md","articles":[]},"previous":{"title":"エントリーポイント","level":"1.4.4.1","depth":3,"path":"use-case/todoapp/entrypoint/README.md","ref":"./use-case/todoapp/entrypoint/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/todoapp/app-structure/README.md","mtime":"2024-10-03T14:54:01.277Z","type":"markdown"},"gitbook":{"version":"6.0.0","time":"2024-10-03T14:54:19.038Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

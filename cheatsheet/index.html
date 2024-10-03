@@ -6,7 +6,7 @@
         <title>付録: JavaScriptチートシート · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptチートシート">
-        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="generator" content="HonKit 6.0.0">
         
         
         
@@ -1561,7 +1561,7 @@
 </div>
 
                                 <!-- load script --><html><head><script type="text/javascript">
-function loadExt(e,t){var s=this;s.files=e,s.js=[],s.head=document.getElementsByTagName("head")[0],s.after=t||function(){},s.loadStyle=function(e){var t=document.createElement("link");t.rel="stylesheet",t.type="text/css",t.href=e,s.head.appendChild(t)},s.loadScript=function(e){var t=document.createElement("script");t.type="text/javascript",t.src=s.js[e];var a=function(){++e<s.js.length?s.loadScript(e):s.after()};t.onload=function(){a()},s.head.appendChild(t)};for(var a=0;a<s.files.length;a++)/\.js$/.test(s.files[a])&&s.js.push(s.files[a]),/\.css$/.test(s.files[a])&&s.loadStyle(s.files[a]);s.js.length>0?s.loadScript(0):s.after()}
+function loadExt(e,t){var s=this;s.files=e,s.js=[],s.head=document.getElementsByTagName("head")[0],s.after=t||function(){},s.loadStyle=function(e){var t=document.createElement("link");t.rel="stylesheet",t.type="text/css",t.href=e,s.head.appendChild(t)},s.loadScript=function(e){var t=document.createElement("script");t.type="text/javascript",t.src=s.js[e];var a=function(){++e&lt;s.js.length?s.loadScript(e):s.after()};t.onload=function(){a()},s.head.appendChild(t)};for(var a=0;a&lt;s.files.length;a++)/\.js$/.test(s.files[a])&amp;&amp;s.js.push(s.files[a]),/\.css$/.test(s.files[a])&amp;&amp;s.loadStyle(s.files[a]);s.js.length&gt;0?s.loadScript(0):s.after()}
 
 function highlightCheatsheetCodes() {
     document.querySelectorAll('.markdown-section table td:first-child code').forEach(function(block){
@@ -1585,7 +1585,7 @@ function loadSyntaxHighlight(){
 document.addEventListener('DOMContentLoaded', function(){
     loadSyntaxHighlight();
 });
-typeof gitbook === "object" && gitbook.events.one("page.change", function() {
+typeof gitbook === "object" &amp;&amp; gitbook.events.one("page.change", function() {
     loadSyntaxHighlight();
 });
 </script>
@@ -1678,7 +1678,7 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <td><code>&lt;!-- xxx --&gt;</code></td>
 <td>[ES2015] HTML-likeコメント</td>
 <td><a href="../basic/comments/">コメント</a></td>
-<td> </td>
+<td>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -1821,14 +1821,14 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 </thead>
 <tbody>
 <tr>
-<td><code>&quot;xxx&quot;</code></td>
+<td><code>"xxx"</code></td>
 <td>ダブルクォートの<strong>文字列リテラル</strong>。改行などは<code>\</code>と特定の文字を組み合わせたエスケープシーケンスとして表現します。</td>
 <td><a href="../basic/string/">文字列</a></td>
 <td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Grammar_and_types#string_literals" target="_blank">文法とデータ型</a></td>
 </tr>
 <tr>
-<td><code>&apos;xxx&apos;</code></td>
-<td>シングルクォートの<strong>文字列リテラル</strong>。<code>&quot;xxx&quot;</code>と意味は同じ。</td>
+<td><code>'xxx'</code></td>
+<td>シングルクォートの<strong>文字列リテラル</strong>。<code>"xxx"</code>と意味は同じ。</td>
 <td><a href="../basic/string/">文字列</a></td>
 <td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Grammar_and_types#string_literals" target="_blank">文法とデータ型</a></td>
 </tr>
@@ -1868,7 +1868,7 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array#%E6%B7%BB%E5%AD%97%E3%81%AB%E3%82%88%E3%82%8B%E9%85%8D%E5%88%97%E3%81%AE%E8%A6%81%E7%B4%A0%E3%81%B8%E3%81%AE%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9" target="_blank">Array</a></td>
 </tr>
 <tr>
-<td><code>obj[&quot;x&quot;]</code></td>
+<td><code>obj["x"]</code></td>
 <td>オブジェクトへの<strong>プロパティアクセス</strong>（ブラケット記法）</td>
 <td><a href="../basic/object/">オブジェクト</a></td>
 <td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Property_Accessors" target="_blank">プロパティアクセサー</a></td>
@@ -2317,8 +2317,8 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/if...else" target="_blank">if...else</a></td>
 </tr>
 <tr>
-<td><code>switch(x){case &quot;A&quot;:{/*A*/} &quot;B&quot;:{/*B*/}}</code></td>
-<td><strong>switch文</strong>。<code>x</code>が<code>&quot;A&quot;</code>ならAの処理を、&quot;B&quot;ならBの処理を行う</td>
+<td><code>switch(x){case "A":{/*A*/} "B":{/*B*/}}</code></td>
+<td><strong>switch文</strong>。<code>x</code>が<code>"A"</code>ならAの処理を、"B"ならBの処理を行う</td>
 <td><a href="../basic/condition/">条件分岐</a></td>
 <td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/switch" target="_blank">switch</a></td>
 </tr>
@@ -2347,7 +2347,7 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/try...catch" target="_blank">try...catch</a></td>
 </tr>
 <tr>
-<td><code>throw new Error(&quot;xxx&quot;)</code></td>
+<td><code>throw new Error("xxx")</code></td>
 <td><code>throw</code>文</td>
 <td><a href="../basic/error-try-catch/">例外処理</a></td>
 <td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/throw" target="_blank">throw</a></td>
@@ -2370,31 +2370,31 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 </thead>
 <tbody>
 <tr>
-<td><code>import x from &quot;./x.js&quot;</code></td>
+<td><code>import x from "./x.js"</code></td>
 <td>[ES2015] <strong>デフォルトインポート</strong></td>
 <td><a href="../basic/module/">ECMAScriptモジュール</a></td>
 <td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import" target="_blank">Import</a></td>
 </tr>
 <tr>
-<td><code>import { x } from &quot;./x.js&quot;</code></td>
+<td><code>import { x } from "./x.js"</code></td>
 <td>[ES2015] <strong>名前付きインポート</strong></td>
 <td><a href="../basic/module/">ECMAScriptモジュール</a></td>
 <td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import" target="_blank">Import</a></td>
 </tr>
 <tr>
-<td><code>import { x as y } from &quot;./x.js&quot;</code></td>
+<td><code>import { x as y } from "./x.js"</code></td>
 <td>[ES2015] 名前付きインポートの<strong>エイリアス</strong></td>
 <td><a href="../basic/module/">ECMAScriptモジュール</a></td>
 <td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import" target="_blank">Import</a></td>
 </tr>
 <tr>
-<td><code>import * as x from &quot;./x.js&quot;</code></td>
+<td><code>import * as x from "./x.js"</code></td>
 <td>[ES2015] <strong>すべての名前付きエクスポートをインポート</strong>してエイリアス</td>
 <td><a href="../basic/module/">ECMAScriptモジュール</a></td>
 <td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import" target="_blank">Import</a></td>
 </tr>
 <tr>
-<td><code>import &quot;./x.js&quot;</code></td>
+<td><code>import "./x.js"</code></td>
 <td>[ES2015] 副作用のための<strong>インポート</strong></td>
 <td><a href="../basic/module/">ECMAScriptモジュール</a></td>
 <td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import" target="_blank">Import</a></td>
@@ -2418,19 +2418,19 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
 <td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export" target="_blank">Export</a></td>
 </tr>
 <tr>
-<td><code>export { x } from &quot;./x.js&quot;</code></td>
+<td><code>export { x } from "./x.js"</code></td>
 <td>[ES2015] 名前付きエクスポートの<strong>再エクスポート</strong></td>
 <td><a href="../basic/module/">ECMAScriptモジュール</a></td>
 <td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export" target="_blank">Export</a></td>
 </tr>
 <tr>
-<td><code>export * from &quot;./x.js&quot;</code></td>
+<td><code>export * from "./x.js"</code></td>
 <td>[ES2015] すべての名前付きエクスポートの<strong>再エクスポート</strong></td>
 <td><a href="../basic/module/">ECMAScriptモジュール</a></td>
 <td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export" target="_blank">Export</a></td>
 </tr>
 <tr>
-<td><code>export * as ns from &quot;./x.js&quot;</code></td>
+<td><code>export * as ns from "./x.js"</code></td>
 <td>[ES2020] <strong>すべての名前付きエクスポートをインポート</strong>して<code>ns</code>という名前で<strong>再エクスポート</strong></td>
 <td><a href="../basic/module/">ECMAScriptモジュール</a></td>
 <td><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export" target="_blank">Export</a></td>
@@ -2544,7 +2544,7 @@ typeof gitbook === "object" && gitbook.events.one("page.change", function() {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptチートシート","sponsors":[],"title":"付録: JavaScriptチートシート","level":"1.6","depth":1,"next":{"title":"おわりに","level":"1.7","depth":1,"path":"outro/README.md","ref":"./outro/README.md","articles":[]},"previous":{"title":"付録: 参考リンク集","level":"1.5","depth":1,"path":"appendix/links/README.md","ref":"./appendix/links/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"cheatsheet/README.md","mtime":"2024-09-01T11:18:59.589Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-09-01T11:19:15.872Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptチートシート","sponsors":[],"title":"付録: JavaScriptチートシート","level":"1.6","depth":1,"next":{"title":"おわりに","level":"1.7","depth":1,"path":"outro/README.md","ref":"./outro/README.md","articles":[]},"previous":{"title":"付録: 参考リンク集","level":"1.5","depth":1,"path":"appendix/links/README.md","ref":"./appendix/links/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"cheatsheet/README.md","mtime":"2024-10-03T14:54:01.263Z","type":"markdown"},"gitbook":{"version":"6.0.0","time":"2024-10-03T14:54:19.038Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

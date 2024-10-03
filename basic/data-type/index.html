@@ -6,7 +6,7 @@
         <title>データ型とリテラル · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptの値の種類にあたるデータ型についてを紹介します。データ型には大きく分けてプリミティブ型とオブジェクトがあり、それぞれのデータ型を簡単なコード例とともに紹介していきます。一部のデータ型にはリテラルというデータ型を簡単に記述するための構文が用意されており、リテラルについても合わせて紹介していきます。">
-        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="generator" content="HonKit 6.0.0">
         
         
         
@@ -1579,7 +1579,7 @@ JavaScriptでは、文字列も一度作成したら変更できないイミュ�
 <li>真偽値（Boolean）: <code>true</code>または<code>false</code>のデータ型</li>
 <li>数値（Number）: <code>42</code> や <code>3.14159</code> などの数値のデータ型</li>
 <li>巨大な整数（BigInt）: ES2020から追加された<code>9007199254740992n</code>などの任意精度の整数のデータ型</li>
-<li>文字列（String）: <code>&quot;JavaScript&quot;</code> などの文字列のデータ型</li>
+<li>文字列（String）: <code>"JavaScript"</code> などの文字列のデータ型</li>
 <li>undefined: 値が未定義であることを意味するデータ型</li>
 <li>null: 値が存在しないことを意味するデータ型</li>
 <li>シンボル（Symbol）: ES2015から追加された一意で不変な値のデータ型</li>
@@ -1594,33 +1594,33 @@ JavaScriptでは、文字列も一度作成したら変更できないイミュ�
 <p>プリミティブ型でないものは、オブジェクトであると覚えていれば問題ありません。</p>
 <p><code>typeof</code>演算子を使うことで、次のようにデータ型を調べることができます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-literal">true</span>);<span class="hljs-comment">// =&gt; &quot;boolean&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-number">42</span>); <span class="hljs-comment">// =&gt; &quot;number&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-number">9007199254740992n</span>); <span class="hljs-comment">// =&gt; &quot;bigint&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-string">&quot;JavaScript&quot;</span>); <span class="hljs-comment">// =&gt; &quot;string&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-title class_">Symbol</span>(<span class="hljs-string">&quot;シンボル&quot;</span>));<span class="hljs-comment">// =&gt; &quot;symbol&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-literal">undefined</span>); <span class="hljs-comment">// =&gt; &quot;undefined&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-literal">null</span>); <span class="hljs-comment">// =&gt; &quot;object&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> [<span class="hljs-string">&quot;配列&quot;</span>]); <span class="hljs-comment">// =&gt; &quot;object&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> { <span class="hljs-string">&quot;key&quot;</span>: <span class="hljs-string">&quot;value&quot;</span> }); <span class="hljs-comment">// =&gt; &quot;object&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {}); <span class="hljs-comment">// =&gt; &quot;function&quot;</span>
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-literal">true</span>);<span class="hljs-comment">// =&gt; "boolean"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-number">42</span>); <span class="hljs-comment">// =&gt; "number"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-number">9007199254740992n</span>); <span class="hljs-comment">// =&gt; "bigint"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-string">"JavaScript"</span>); <span class="hljs-comment">// =&gt; "string"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-title class_">Symbol</span>(<span class="hljs-string">"シンボル"</span>));<span class="hljs-comment">// =&gt; "symbol"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-literal">undefined</span>); <span class="hljs-comment">// =&gt; "undefined"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-literal">null</span>); <span class="hljs-comment">// =&gt; "object"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> [<span class="hljs-string">"配列"</span>]); <span class="hljs-comment">// =&gt; "object"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> { <span class="hljs-string">"key"</span>: <span class="hljs-string">"value"</span> }); <span class="hljs-comment">// =&gt; "object"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {}); <span class="hljs-comment">// =&gt; "function"</span>
 </code></pre>
 <p>プリミティブ型の値は、それぞれ<code>typeof</code>演算子の評価結果として、その値のデータ型を返します。
-一方で、オブジェクトに分類される値は<code>&quot;object&quot;</code>となります。</p>
-<p>配列(<code>[]</code>)とオブジェクト(<code>{}</code>)は、どちらも<code>&quot;object&quot;</code>という判定結果になります。
+一方で、オブジェクトに分類される値は<code>"object"</code>となります。</p>
+<p>配列(<code>[]</code>)とオブジェクト(<code>{}</code>)は、どちらも<code>"object"</code>という判定結果になります。
 そのため、<code>typeof</code>演算子ではオブジェクトの詳細な種類を正しく判定することはできません。
-ただし、関数はオブジェクトの中でも特別扱いされているため、<code>typeof</code>演算子の評価結果は<code>&quot;function&quot;</code>となります。
-また、<code>typeof null</code>が<code>&quot;object&quot;</code>となるのは、歴史的経緯のある仕様のバグ<sup><a href="#fn_1" id="reffn_1">1</a></sup>です。</p>
+ただし、関数はオブジェクトの中でも特別扱いされているため、<code>typeof</code>演算子の評価結果は<code>"function"</code>となります。
+また、<code>typeof null</code>が<code>"object"</code>となるのは、歴史的経緯のある仕様のバグ<sup><a href="#fn_1" id="reffn_1">1</a></sup>です。</p>
 <p>このことからもわかるように<code>typeof</code>演算子は、プリミティブ型またはオブジェクトかを判別するものです。
 <code>typeof</code>演算子では、オブジェクトの詳細な種類を判定できないことは、覚えておくとよいでしょう。
 各オブジェクトの判定方法については、それぞれのオブジェクトの章で見ていきます。</p>
 <h2 id="literal"><a name="literal" class="plugin-anchor" href="#literal"><i class="fa fa-link" aria-hidden="true"></i></a>リテラル </h2>
 <p>プリミティブ型の値や一部のオブジェクトは、<strong>リテラル</strong>を使うことで簡単に定義できるようになっています。</p>
 <p>リテラルとはプログラム上で数値や文字列など、データ型の値を直接記述できるように構文として定義されたものです。
-たとえば、<code>&quot;</code>と<code>&quot;</code>で囲んだ範囲が文字列リテラルで、これは文字列型のデータを表現しています。</p>
-<p>次のコードでは、<code>&quot;こんにちは&quot;</code>という文字列型のデータを初期値に持つ変数<code>str</code>を定義しています。</p>
-<pre><code class="lang-js"><span class="hljs-comment">// &quot;と&quot;で囲んだ範囲が文字列リテラル</span>
-<span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;こんにちは&quot;</span>;
+たとえば、<code>"</code>と<code>"</code>で囲んだ範囲が文字列リテラルで、これは文字列型のデータを表現しています。</p>
+<p>次のコードでは、<code>"こんにちは"</code>という文字列型のデータを初期値に持つ変数<code>str</code>を定義しています。</p>
+<pre><code class="lang-js"><span class="hljs-comment">// "と"で囲んだ範囲が文字列リテラル</span>
+<span class="hljs-keyword">const</span> str = <span class="hljs-string">"こんにちは"</span>;
 </code></pre>
 <p>リテラル表現がない場合は、その値を作る関数に引数を渡して作成する形になります。
 そのような冗長な表現を避ける方法として、よく利用される主要なデータ型にはリテラルが用意されています。</p>
@@ -1811,37 +1811,37 @@ Numeric Separatorsは、数値リテラル内では区切り文字として<code
 <!-- textlint-enable -->
 <h3 id="string"><a name="string" class="plugin-anchor" href="#string"><i class="fa fa-link" aria-hidden="true"></i></a>文字列（String）</h3>
 <p>文字列リテラル共通のルールとして、同じ記号で囲んだ内容を文字列として扱います。
-文字列リテラルとして次の3種類のリテラルがありますが、その評価結果はすべて同じ<code>&quot;文字列&quot;</code>になります。</p>
+文字列リテラルとして次の3種類のリテラルがありますが、その評価結果はすべて同じ<code>"文字列"</code>になります。</p>
 <!-- textlint-disable eslint -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;文字列&quot;</span>); <span class="hljs-comment">// =&gt; &quot;文字列&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&apos;文字列&apos;</span>); <span class="hljs-comment">// =&gt; &quot;文字列&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`文字列`</span>); <span class="hljs-comment">// =&gt; &quot;文字列&quot;</span>
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"文字列"</span>); <span class="hljs-comment">// =&gt; "文字列"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">'文字列'</span>); <span class="hljs-comment">// =&gt; "文字列"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`文字列`</span>); <span class="hljs-comment">// =&gt; "文字列"</span>
 </code></pre>
 <!-- textlint-enable eslint -->
 <h4 id="double-quote-and-single-quote"><a name="double-quote-and-single-quote" class="plugin-anchor" href="#double-quote-and-single-quote"><i class="fa fa-link" aria-hidden="true"></i></a>ダブルクォートとシングルクォート </h4>
-<p><code>&quot;</code>（ダブルクォート）と<code>&apos;</code>（シングルクォート）はまったく同じ意味となります。
+<p><code>"</code>（ダブルクォート）と<code>'</code>（シングルクォート）はまったく同じ意味となります。
 PHPやRubyなどとは違い、どちらのリテラルでも評価結果は同じとなります。</p>
 <p>文字列リテラルは同じ記号で囲む必要があるため、次のように文字列の中に同じ記号が出現した場合は、
-<code>\&apos;</code>のように<code>\</code>（バックスラッシュ）を使ってエスケープしなければなりません。</p>
+<code>\'</code>のように<code>\</code>（バックスラッシュ）を使ってエスケープしなければなりません。</p>
 <!-- textlint-disable eslint -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-string">&apos;8 o\&apos;clock&apos;</span>; <span class="hljs-comment">// =&gt; &quot;8 o&apos;clock&quot;</span>
+<pre><code class="lang-js"><span class="hljs-string">'8 o\'clock'</span>; <span class="hljs-comment">// =&gt; "8 o'clock"</span>
 </code></pre>
 <!-- textlint-enable eslint -->
 <p>また、文字列内部に出現しない別のクォート記号を使うことで、エスケープをせずに書くこともできます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-string">&quot;8 o&apos;clock&quot;</span>; <span class="hljs-comment">// =&gt; &quot;8 o&apos;clock&quot;</span>
+<pre><code class="lang-js"><span class="hljs-string">"8 o'clock"</span>; <span class="hljs-comment">// =&gt; "8 o'clock"</span>
 </code></pre>
 <p>ダブルクォートとシングルクォートどちらも、改行をそのままでは入力できません。
 次のように改行を含んだ文字列は定義できないため、構文エラー（<code>SyntaxError</code>）となります。</p>
-<pre><code class="lang-javascript"><span class="hljs-string">&quot;複数行の
+<pre><code class="lang-javascript"><span class="hljs-string">"複数行の
 文字列を
-入れたい&quot;</span>; <span class="hljs-comment">// =&gt; SyntaxError: &quot;&quot; string literal contains an unescaped line break</span>
+入れたい"</span>; <span class="hljs-comment">// =&gt; SyntaxError: "" string literal contains an unescaped line break</span>
 </code></pre>
 <p>改行の代わりに改行記号のエスケープシーケンス（<code>\n</code>）を使うことで複数行の文字列を書くことができます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-string">&quot;複数行の\n文字列を\n入れたい&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-string">"複数行の\n文字列を\n入れたい"</span>;
 </code></pre>
 <p>シングルクォートとダブルクォートの文字列リテラルに改行を入れるには、エスケープシーケンスを使わないといけません。
 これに対してES2015から導入されたテンプレートリテラルでは、複数行の文字列を直感的に書くことができます。</p>
@@ -1854,18 +1854,18 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は同�
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-string">`複数行の
 文字列を
-入れたい`</span>; <span class="hljs-comment">// =&gt; &quot;複数行の\n文字列を\n入れたい&quot;</span>
+入れたい`</span>; <span class="hljs-comment">// =&gt; "複数行の\n文字列を\n入れたい"</span>
 </code></pre>
 <p>また、名前のとおりテンプレートのような機能も持っています。
 テンプレートリテラル内で<code>${変数名}</code>と書いた場合に、その変数の値を埋め込むことができます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;文字列&quot;</span>;
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`これは<span class="hljs-subst">${str}</span>です`</span>); <span class="hljs-comment">// =&gt; &quot;これは文字列です&quot;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">"文字列"</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`これは<span class="hljs-subst">${str}</span>です`</span>); <span class="hljs-comment">// =&gt; "これは文字列です"</span>
 </code></pre>
 <p>テンプレートリテラルも他の文字列リテラルと同様に同じリテラル記号を内包したい場合は、<code>\</code>を使ってエスケープする必要があります。</p>
 <!-- textlint-disable eslint -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-string">`This is \`code\``</span>;<span class="hljs-comment">// =&gt; &quot;This is `code`&quot;</span>
+<pre><code class="lang-js"><span class="hljs-string">`This is \`code\``</span>;<span class="hljs-comment">// =&gt; "This is `code`"</span>
 </code></pre>
 <!-- textlint-enable eslint -->
 <h3 id="null-literal"><a name="null-literal" class="plugin-anchor" href="#null-literal"><i class="fa fa-link" aria-hidden="true"></i></a>nullリテラル </h3>
@@ -1874,7 +1874,7 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は同�
 <p>次のように、未定義の変数を参照した場合は、
 参照できないため<code>ReferenceError</code>の例外が投げられます。</p>
 <!-- doctest: ReferenceError -->
-<pre><code class="lang-js">foo;<span class="hljs-comment">// &quot;ReferenceError: foo is not defined&quot;</span>
+<pre><code class="lang-js">foo;<span class="hljs-comment">// "ReferenceError: foo is not defined"</span>
 </code></pre>
 <p><code>foo</code>には値がないということを表現したい場合は、
 <code>null</code>値を代入することで、<code>null</code>値を持つ<code>foo</code>という変数を定義できます。
@@ -1890,8 +1890,8 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は同�
 <!-- textlint-disable eslint -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">fn</span>(<span class="hljs-params"></span>){
-    <span class="hljs-keyword">const</span> <span class="hljs-literal">undefined</span> = <span class="hljs-string">&quot;独自の未定義値&quot;</span>; <span class="hljs-comment">// undefinedという名前の変数をエラーなく定義できる</span>
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">undefined</span>); <span class="hljs-comment">// =&gt; &quot;独自の未定義値&quot;</span>
+    <span class="hljs-keyword">const</span> <span class="hljs-literal">undefined</span> = <span class="hljs-string">"独自の未定義値"</span>; <span class="hljs-comment">// undefinedという名前の変数をエラーなく定義できる</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">undefined</span>); <span class="hljs-comment">// =&gt; "独自の未定義値"</span>
 }
 <span class="hljs-title function_">fn</span>();
 </code></pre>
@@ -1911,10 +1911,10 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は同�
 </code></pre>
 <p>オブジェクトリテラルはオブジェクトの作成と同時に中身を定義できます。
 オブジェクトのキーと値を<code>:</code>で区切ったものを <code>{}</code> の中に書くことで作成と初期化が同時に行えます。</p>
-<p>次のコードで作成したオブジェクトは <code>key</code> というキー名と <code>&quot;value&quot;</code> という文字列の値を持つオブジェクトを作成しています。
+<p>次のコードで作成したオブジェクトは <code>key</code> というキー名と <code>"value"</code> という文字列の値を持つオブジェクトを作成しています。
 キー名には、文字列またはSymbolを指定し、値にはプリミティブ型の値からオブジェクトまで何でも入れることができます。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = {
-    <span class="hljs-string">&quot;key&quot;</span>: <span class="hljs-string">&quot;value&quot;</span>
+    <span class="hljs-string">"key"</span>: <span class="hljs-string">"value"</span>
 };
 </code></pre>
 <p>このとき、オブジェクトが持つキーのことをプロパティ名と呼びます。
@@ -1923,22 +1923,22 @@ PHPやRubyなどとは違い、どちらのリテラルでも評価結果は同�
 <code>[]</code>（ブラケット）で参照する方法があります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = {
-    <span class="hljs-string">&quot;key&quot;</span>: <span class="hljs-string">&quot;value&quot;</span>
+    <span class="hljs-string">"key"</span>: <span class="hljs-string">"value"</span>
 };
 <span class="hljs-comment">// ドット記法</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj.<span class="hljs-property">key</span>); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj.<span class="hljs-property">key</span>); <span class="hljs-comment">// =&gt; "value"</span>
 <span class="hljs-comment">// ブラケット記法</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj[<span class="hljs-string">&quot;key&quot;</span>]); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj[<span class="hljs-string">"key"</span>]); <span class="hljs-comment">// =&gt; "value"</span>
 </code></pre>
 <p>ドット記法では、プロパティ名が変数名と同じく識別子である必要があります。
 そのため、次のように識別子として利用できないプロパティ名はドット記法として書くことができません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-Js"><span class="hljs-comment">// プロパティ名は文字列の&quot;123&quot;</span>
+<pre><code class="lang-Js"><span class="hljs-comment">// プロパティ名は文字列の"123"</span>
 <span class="hljs-keyword">const</span> object = {
-    <span class="hljs-string">&quot;123&quot;</span>: <span class="hljs-string">&quot;value&quot;</span>
+    <span class="hljs-string">"123"</span>: <span class="hljs-string">"value"</span>
 };
 <span class="hljs-comment">// OK: ブラケット記法では、文字列として書くことができる</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(object[<span class="hljs-string">&quot;123&quot;</span>]); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(object[<span class="hljs-string">"123"</span>]); <span class="hljs-comment">// =&gt; "value"</span>
 <span class="hljs-comment">// NG: ドット記法では、数値からはじまる識別子は利用できない</span>
 object<span class="hljs-number">.123</span>
 </code></pre>
@@ -1957,11 +1957,11 @@ object<span class="hljs-number">.123</span>
 作成した配列の要素を取得するには、配列に対して<code>array[index]</code>という構文で指定したインデックスの値を参照できます。</p>
 <!-- textlint-enable prh -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">&quot;index:0&quot;</span>, <span class="hljs-string">&quot;index:1&quot;</span>, <span class="hljs-string">&quot;index:2&quot;</span>];
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-string">"index:0"</span>, <span class="hljs-string">"index:1"</span>, <span class="hljs-string">"index:2"</span>];
 <span class="hljs-comment">// 0番目の要素を参照</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array[<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; &quot;index:0&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array[<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; "index:0"</span>
 <span class="hljs-comment">// 1番目の要素を参照</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array[<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; &quot;index:1&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array[<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; "index:1"</span>
 </code></pre>
 <p>配列についての詳細は「<a href="../array/">配列</a>」の章で解説します。</p>
 <h3 id="regexp-literal"><a name="regexp-literal" class="plugin-anchor" href="#regexp-literal"><i class="fa fa-link" aria-hidden="true"></i></a>正規表現リテラル </h3>
@@ -1971,8 +1971,8 @@ object<span class="hljs-number">.123</span>
 <p>次のコードでは、数字にマッチする特殊文字である<code>\d</code>を使い、1文字以上の数字にマッチする正規表現をリテラルで表現しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> numberRegExp = <span class="hljs-regexp">/\d+/</span>; <span class="hljs-comment">// 1文字以上の数字にマッチする正規表現</span>
-<span class="hljs-comment">// `numberRegExp`の正規表現が文字列&quot;123&quot;にマッチするかをテストする</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(numberRegExp.<span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;123&quot;</span>)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-comment">// `numberRegExp`の正規表現が文字列"123"にマッチするかをテストする</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(numberRegExp.<span class="hljs-title function_">test</span>(<span class="hljs-string">"123"</span>)); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <p><code>RegExp</code>コンストラクタを使うことで、文字列から正規表現オブジェクトを作成できます。
 しかし、特殊文字の二重エスケープが必要になり直感的に書くことが難しくなります。</p>
@@ -1984,14 +1984,14 @@ object<span class="hljs-number">.123</span>
 <p>ラッパーオブジェクトは、<code>new</code>演算子と対応するコンストラクタ関数を利用して作成できます。
 たとえば、文字列のプリミティブ型に対応するコンストラクタ関数は<code>String</code>となります。</p>
 <p>次のコードでは、<code>String</code>のラッパーオブジェクトを作成しています。
-ラッパーオブジェクトは、名前のとおりオブジェクトの一種であるため<code>typeof</code>演算子の結果も<code>&quot;object&quot;</code>です。
+ラッパーオブジェクトは、名前のとおりオブジェクトの一種であるため<code>typeof</code>演算子の結果も<code>"object"</code>です。
 また、オブジェクトであるため<code>length</code>プロパティなどのオブジェクトが持つプロパティを参照できます。</p>
 <!-- textlint-enable -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 文字列をラップしたStringラッパーオブジェクト</span>
-<span class="hljs-keyword">const</span> str = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">&quot;文字列&quot;</span>);
-<span class="hljs-comment">// ラッパーオブジェクトは&quot;object&quot;型のデータ</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> str); <span class="hljs-comment">// =&gt; &quot;object&quot;</span>
+<span class="hljs-keyword">const</span> str = <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(<span class="hljs-string">"文字列"</span>);
+<span class="hljs-comment">// ラッパーオブジェクトは"object"型のデータ</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> str); <span class="hljs-comment">// =&gt; "object"</span>
 <span class="hljs-comment">// Stringオブジェクトの`length`プロパティは文字列の長さを返す</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 3</span>
 </code></pre>
@@ -2000,9 +2000,9 @@ object<span class="hljs-number">.123</span>
 次のコードでは、プリミティブ型の文字列データに対しても<code>length</code>プロパティへアクセスできています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// プリミティブ型の文字列データ</span>
-<span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;文字列&quot;</span>;
-<span class="hljs-comment">// プリミティブ型の文字列は&quot;string&quot;型のデータ</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> str); <span class="hljs-comment">// =&gt; &quot;string&quot;</span>
+<span class="hljs-keyword">const</span> str = <span class="hljs-string">"文字列"</span>;
+<span class="hljs-comment">// プリミティブ型の文字列は"string"型のデータ</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> str); <span class="hljs-comment">// =&gt; "string"</span>
 <span class="hljs-comment">// プリミティブ型の文字列も`length`プロパティを参照できる</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 3</span>
 </code></pre>
@@ -2031,7 +2031,7 @@ object<span class="hljs-number">.123</span>
 
 -->
 <blockquote id="fn_1">
-<sup>1</sup>. JavaScriptが最初にNetscapeで実装された際に<code>typeof null === &quot;object&quot;</code>となるバグがありました。このバグを修正するとすでにこの挙動に依存しているコードが壊れるため、修正が見送られ現在の挙動が仕様となりました。 詳しくは<a href="https://2ality.com/2013/10/typeof-null.html" target="_blank">https://2ality.com/2013/10/typeof-null.html</a>を参照。<a href="#reffn_1" title="Jump back to footnote [1] in the text."> ↩</a>
+<sup>1</sup>. JavaScriptが最初にNetscapeで実装された際に<code>typeof null === "object"</code>となるバグがありました。このバグを修正するとすでにこの挙動に依存しているコードが壊れるため、修正が見送られ現在の挙動が仕様となりました。 詳しくは<a href="https://2ality.com/2013/10/typeof-null.html" target="_blank">https://2ality.com/2013/10/typeof-null.html</a>を参照。<a href="#reffn_1" title="Jump back to footnote [1] in the text."> ↩</a>
 </blockquote>
 </body></html>
                                 
@@ -2065,7 +2065,7 @@ object<span class="hljs-number">.123</span>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptの値の種類にあたるデータ型についてを紹介します。データ型には大きく分けてプリミティブ型とオブジェクトがあり、それぞれのデータ型を簡単なコード例とともに紹介していきます。一部のデータ型にはリテラルというデータ型を簡単に記述するための構文が用意されており、リテラルについても合わせて紹介していきます。","sponsors":[],"title":"データ型とリテラル","level":"1.3.5","depth":2,"next":{"title":"演算子","level":"1.3.6","depth":2,"path":"basic/operator/README.md","ref":"./basic/operator/README.md","articles":[]},"previous":{"title":"値の評価と表示","level":"1.3.4","depth":2,"path":"basic/read-eval-print/README.md","ref":"./basic/read-eval-print/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/data-type/README.md","mtime":"2024-09-01T11:18:59.573Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-09-01T11:19:15.872Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptの値の種類にあたるデータ型についてを紹介します。データ型には大きく分けてプリミティブ型とオブジェクトがあり、それぞれのデータ型を簡単なコード例とともに紹介していきます。一部のデータ型にはリテラルというデータ型を簡単に記述するための構文が用意されており、リテラルについても合わせて紹介していきます。","sponsors":[],"title":"データ型とリテラル","level":"1.3.5","depth":2,"next":{"title":"演算子","level":"1.3.6","depth":2,"path":"basic/operator/README.md","ref":"./basic/operator/README.md","articles":[]},"previous":{"title":"値の評価と表示","level":"1.3.4","depth":2,"path":"basic/read-eval-print/README.md","ref":"./basic/read-eval-print/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/data-type/README.md","mtime":"2024-10-03T14:54:01.251Z","type":"markdown"},"gitbook":{"version":"6.0.0","time":"2024-10-03T14:54:19.038Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

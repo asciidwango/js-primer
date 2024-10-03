@@ -6,7 +6,7 @@
         <title>コマンドライン引数を処理する · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="コマンドライン引数を受け取り、アプリケーションから使いやすい形にパースする方法を学びます。">
-        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="generator" content="HonKit 6.0.0">
         
         
         
@@ -1582,11 +1582,11 @@
 </code></pre>
 <p>このコマンドの実行結果は次のようになります。</p>
 <pre><code>[
-  &apos;/usr/local/bin/node&apos;, // Node.jsの実行プロセスのパス
-  &apos;/Users/laco/nodecli/main.js&apos;, // 実行したスクリプトファイルのパス
-  &apos;one&apos;, // 1番目の引数
-  &apos;two=three&apos;, // 2番目
-  &apos;four&apos;  // 3番目
+  '/usr/local/bin/node', // Node.jsの実行プロセスのパス
+  '/Users/laco/nodecli/main.js', // 実行したスクリプトファイルのパス
+  'one', // 1番目の引数
+  'two=three', // 2番目
+  'four'  // 3番目
 ]
 </code></pre><p>1番目と2番目の要素は常に<code>node</code>コマンドと実行されたスクリプトのファイルパスになります。
 つまりアプリケーションがコマンドライン引数として使うのは、3番目以降の要素です。</p>
@@ -1602,7 +1602,7 @@
 <code>node:util</code>モジュールは、次のように<code>import</code>文を使ってインポートできます。</p>
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-comment">// `node:util`モジュールを、utilオブジェクトとしてインポートする</span>
-<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> util <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:util&quot;</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> util <span class="hljs-keyword">from</span> <span class="hljs-string">"node:util"</span>;
 </code></pre>
 <p>ただし、ECMAScriptモジュールを扱う場合には、Node.jsに対してJavaScriptファイルがどのモジュール形式であるかを明示する必要があります。
 なぜなら、<a href="https://nodejs.org/" target="_blank">Node.js</a>は<a href="https://nodejs.org/docs/latest/api/modules.html" target="_blank">CommonJSモジュール</a>という別のモジュール形式もサポートしており、CommonJSモジュール形式では<code>import</code>文は利用できないためです。</p>
@@ -1620,18 +1620,18 @@
 </div>
 
 <pre><code class="lang-json">{
-  <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;nodecli&quot;</span>,
-  <span class="hljs-string">&quot;version&quot;</span>: <span class="hljs-string">&quot;1.0.0&quot;</span>,
-  <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
-  <span class="hljs-string">&quot;main&quot;</span>: <span class="hljs-string">&quot;main.js&quot;</span>,
-  <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;module&quot;</span>,
-  <span class="hljs-string">&quot;scripts&quot;</span>: {
-    <span class="hljs-string">&quot;test&quot;</span>: <span class="hljs-string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span>
+  <span class="hljs-string">"name"</span>: <span class="hljs-string">"nodecli"</span>,
+  <span class="hljs-string">"version"</span>: <span class="hljs-string">"1.0.0"</span>,
+  <span class="hljs-string">"description"</span>: <span class="hljs-string">""</span>,
+  <span class="hljs-string">"main"</span>: <span class="hljs-string">"main.js"</span>,
+  <span class="hljs-string">"type"</span>: <span class="hljs-string">"module"</span>,
+  <span class="hljs-string">"scripts"</span>: {
+    <span class="hljs-string">"test"</span>: <span class="hljs-string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>
   },
-  <span class="hljs-string">&quot;keywords&quot;</span>: [],
-  <span class="hljs-string">&quot;author&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
-  <span class="hljs-string">&quot;license&quot;</span>: <span class="hljs-string">&quot;ISC&quot;</span>,
-  <span class="hljs-string">&quot;dependencies&quot;</span>: {}
+  <span class="hljs-string">"keywords"</span>: [],
+  <span class="hljs-string">"author"</span>: <span class="hljs-string">""</span>,
+  <span class="hljs-string">"license"</span>: <span class="hljs-string">"ISC"</span>,
+  <span class="hljs-string">"dependencies"</span>: {}
 }
 </code></pre>
 <h4 id="commonjs-module"><a name="commonjs-module" class="plugin-anchor" href="#commonjs-module"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] CommonJSモジュール </h4>
@@ -1645,10 +1645,10 @@ CommonJSモジュールは<a href="../../../basic/module/">ECMAScriptモジュ�
 Node.jsの標準モジュールはECMAScriptモジュールのJavaScriptファイルからでも利用できますが、それはこの相互運用性によるものです。</p>
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-comment">// lib.cjs</span>
-<span class="hljs-built_in">exports</span>.<span class="hljs-property">key</span> = <span class="hljs-string">&quot;value&quot;</span>;
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">key</span> = <span class="hljs-string">"value"</span>;
 
 <span class="hljs-comment">// app.mjs</span>
-<span class="hljs-keyword">import</span> { key } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./lib.cjs&quot;</span>;
+<span class="hljs-keyword">import</span> { key } <span class="hljs-keyword">from</span> <span class="hljs-string">"./lib.cjs"</span>;
 </code></pre>
 <p>一方で、CommonJSモジュールからECMAScriptモジュールをインポートする方向の相互運用性はサポートされていません。
 もし既存のライブラリから提供されるモジュールがECMAScriptモジュールであれば、それを使うアプリケーションもECMAScriptモジュールで書かれている必要があります。
@@ -1661,7 +1661,7 @@ Node.jsの標準モジュールはECMAScriptモジュールのJavaScriptファ�
 <p>コマンドライン引数をパースするためには、<code>node:util</code>モジュールの<code>parseArgs</code>関数を利用します。</p>
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-comment">// `node:util`モジュールを、utilオブジェクトとしてインポートする</span>
-<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> util <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:util&quot;</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> util <span class="hljs-keyword">from</span> <span class="hljs-string">"node:util"</span>;
 
 <span class="hljs-comment">// コマンドライン引数をparseArgs関数でパースする</span>
 <span class="hljs-keyword">const</span> {
@@ -1684,7 +1684,7 @@ Node.jsの標準モジュールはECMAScriptモジュールのJavaScriptファ�
     <p class="code-filename">main.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> util <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:util&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> util <span class="hljs-keyword">from</span> <span class="hljs-string">"node:util"</span>;
 
 <span class="hljs-comment">// コマンドライン引数をparseArgs関数でパースする</span>
 <span class="hljs-keyword">const</span> {
@@ -1707,7 +1707,7 @@ Node.jsの標準モジュールはECMAScriptモジュールのJavaScriptファ�
 <h4 id="syntax-error-import-statement"><a name="syntax-error-import-statement" class="plugin-anchor" href="#syntax-error-import-statement"><i class="fa fa-link" aria-hidden="true"></i></a>[エラー例] SyntaxError: Cannot use import statement outside a module </h4>
 <p>「<code>import</code>文をECMAScriptモジュールの外で使うことはできません」というエラーが出ています。<code>main.js</code> の実行でこのエラーが出る場合は、Node.jsが<code>main.js</code>ファイルをECMAScriptモジュールだと判別できていないことを意味します。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-shell">import * as util from &quot;node:util&quot;;
+<pre><code class="lang-shell">import * as util from "node:util";
 ^^^^^^
 
 SyntaxError: Cannot use import statement outside a module
@@ -1758,7 +1758,7 @@ SyntaxError: Cannot use import statement outside a module
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"コマンドライン引数を受け取り、アプリケーションから使いやすい形にパースする方法を学びます。","sponsors":[],"title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"next":{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},"previous":{"title":"Node.jsでHello World","level":"1.4.3.1","depth":3,"path":"use-case/nodecli/helloworld/README.md","ref":"./use-case/nodecli/helloworld/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/argument-parse/README.md","mtime":"2024-09-01T11:18:59.593Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-09-01T11:19:15.872Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"コマンドライン引数を受け取り、アプリケーションから使いやすい形にパースする方法を学びます。","sponsors":[],"title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"next":{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},"previous":{"title":"Node.jsでHello World","level":"1.4.3.1","depth":3,"path":"use-case/nodecli/helloworld/README.md","ref":"./use-case/nodecli/helloworld/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/argument-parse/README.md","mtime":"2024-10-03T14:54:01.270Z","type":"markdown"},"gitbook":{"version":"6.0.0","time":"2024-10-03T14:54:19.038Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

@@ -6,7 +6,7 @@
         <title>Promiseを活用する · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="Promiseを活用し、ソースコードの整理とエラーハンドリングを行います。">
-        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="generator" content="HonKit 6.0.0">
         
         
         
@@ -1570,14 +1570,14 @@
 <p>また、後述するエラーハンドリングを行いやすくするため、アプリケーションにエントリーポイントを設けます。
 <code>index.js</code>に新しく<code>main</code>関数を作り、<code>main</code>関数から<code>fetchUserInfo</code>関数を呼び出すようにします。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-title function_">fetchUserInfo</span>(<span class="hljs-string">&quot;js-primer-example&quot;</span>);
+    <span class="hljs-title function_">fetchUserInfo</span>(<span class="hljs-string">"js-primer-example"</span>);
 }
 
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">fetchUserInfo</span>(<span class="hljs-params">userId</span>) {
     <span class="hljs-title function_">fetch</span>(<span class="hljs-string">`https://api.github.com/users/<span class="hljs-subst">${<span class="hljs-built_in">encodeURIComponent</span>(userId)}</span>`</span>)
         .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
             <span class="hljs-keyword">if</span> (!response.<span class="hljs-property">ok</span>) {
-                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&quot;エラーレスポンス&quot;</span>, response);
+                <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">"エラーレスポンス"</span>, response);
             } <span class="hljs-keyword">else</span> {
                 <span class="hljs-keyword">return</span> response.<span class="hljs-title function_">json</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">userInfo</span> =&gt;</span> {
                     <span class="hljs-comment">// HTMLの組み立て</span>
@@ -1594,7 +1594,7 @@
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">createView</span>(<span class="hljs-params">userInfo</span>) {
     <span class="hljs-keyword">return</span> escapeHTML<span class="hljs-string">`
     &lt;h4&gt;<span class="hljs-subst">${userInfo.name}</span> (@<span class="hljs-subst">${userInfo.login}</span>)&lt;/h4&gt;
-    &lt;img src=&quot;<span class="hljs-subst">${userInfo.avatar_url}</span>&quot; alt=&quot;<span class="hljs-subst">${userInfo.login}</span>&quot; height=&quot;100&quot;&gt;
+    &lt;img src="<span class="hljs-subst">${userInfo.avatar_url}</span>" alt="<span class="hljs-subst">${userInfo.login}</span>" height="100"&gt;
     &lt;dl&gt;
         &lt;dt&gt;Location&lt;/dt&gt;
         &lt;dd&gt;<span class="hljs-subst">${userInfo.location}</span>&lt;/dd&gt;
@@ -1605,7 +1605,7 @@
 }
 
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">displayView</span>(<span class="hljs-params">view</span>) {
-    <span class="hljs-keyword">const</span> result = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;result&quot;</span>);
+    <span class="hljs-keyword">const</span> result = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">"result"</span>);
     result.<span class="hljs-property">innerHTML</span> = view;
 }
 </code></pre>
@@ -1615,20 +1615,20 @@
 </div>
 
 <pre><code class="lang-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ja&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"ja"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Ajax Example<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>GitHub User Info<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;userId&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;js-primer-example&quot;</span> /&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;main();&quot;</span>&gt;</span>Get user info<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"userId"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"js-primer-example"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"main();"</span>&gt;</span>Get user info<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;result&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"result"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;index.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"index.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
@@ -1642,7 +1642,7 @@ Promiseチェーンの中で投げられたエラーは、Promiseの<code>catch<
 そこで、<code>Promise.reject</code>メソッドを使ってRejectedなPromiseを返し、Promiseチェーンをエラーの状態にします。
 Promiseチェーンがエラーとなるため、<code>main</code>関数の<code>catch</code>でハンドリングできます。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-title function_">fetchUserInfo</span>(<span class="hljs-string">&quot;js-primer-example&quot;</span>)
+    <span class="hljs-title function_">fetchUserInfo</span>(<span class="hljs-string">"js-primer-example"</span>)
         .<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
             <span class="hljs-comment">// Promiseチェーンの中で発生したエラーを受け取る</span>
             <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">`エラーが発生しました (<span class="hljs-subst">${error}</span>)`</span>);
@@ -1689,7 +1689,7 @@ Promiseチェーンで処理を分けることで、それぞれの処理が簡�
 Responseの<code>json</code>メソッドの返り値はJSONオブジェクトで解決されるPromiseなので、次の<code>then</code>ではユーザー情報のJSONオブジェクトが渡されます。
 次に、<code>main</code>関数が<code>fetchUserInfo</code>関数のPromiseチェーンで、HTMLの組み立て（<code>createView</code>）と表示（<code>displayView</code>）を行うように変更します。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-title function_">fetchUserInfo</span>(<span class="hljs-string">&quot;js-primer-example&quot;</span>)
+    <span class="hljs-title function_">fetchUserInfo</span>(<span class="hljs-string">"js-primer-example"</span>)
         <span class="hljs-comment">// ここではJSONオブジェクトで解決されるPromise</span>
         .<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">userInfo</span>) =&gt;</span> <span class="hljs-title function_">createView</span>(userInfo))
         <span class="hljs-comment">// ここではHTML文字列で解決されるPromise</span>
@@ -1727,7 +1727,7 @@ Promiseの<code>then</code>メソッドによるコールバック関数の入�
 このように、あらかじめ非同期処理の関数がPromiseを返すようにしておくと、Async Functionにリファクタリングしやすくなります。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>) {
     <span class="hljs-keyword">try</span> {
-        <span class="hljs-keyword">const</span> userInfo = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetchUserInfo</span>(<span class="hljs-string">&quot;js-primer-example&quot;</span>);
+        <span class="hljs-keyword">const</span> userInfo = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fetchUserInfo</span>(<span class="hljs-string">"js-primer-example"</span>);
         <span class="hljs-keyword">const</span> view = <span class="hljs-title function_">createView</span>(userInfo);
         <span class="hljs-title function_">displayView</span>(view);
     } <span class="hljs-keyword">catch</span> (error) {
@@ -1743,20 +1743,20 @@ index.htmlに<code>&lt;input&gt;</code>タグを追加し、JavaScriptから値�
 </div>
 
 <pre><code class="lang-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ja&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"ja"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Ajax Example<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>GitHub User Info<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;userId&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;js-primer-example&quot;</span> /&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;main();&quot;</span>&gt;</span>Get user info<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"userId"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"js-primer-example"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"main();"</span>&gt;</span>Get user info<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;result&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"result"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;index.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"index.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
@@ -1788,13 +1788,13 @@ index.htmlに<code>&lt;input&gt;</code>タグを追加し、JavaScriptから値�
 }
 
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">getUserId</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;userId&quot;</span>).<span class="hljs-property">value</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">"userId"</span>).<span class="hljs-property">value</span>;
 }
 
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">createView</span>(<span class="hljs-params">userInfo</span>) {
     <span class="hljs-keyword">return</span> escapeHTML<span class="hljs-string">`
     &lt;h4&gt;<span class="hljs-subst">${userInfo.name}</span> (@<span class="hljs-subst">${userInfo.login}</span>)&lt;/h4&gt;
-    &lt;img src=&quot;<span class="hljs-subst">${userInfo.avatar_url}</span>&quot; alt=&quot;<span class="hljs-subst">${userInfo.login}</span>&quot; height=&quot;100&quot;&gt;
+    &lt;img src="<span class="hljs-subst">${userInfo.avatar_url}</span>" alt="<span class="hljs-subst">${userInfo.login}</span>" height="100"&gt;
     &lt;dl&gt;
         &lt;dt&gt;Location&lt;/dt&gt;
         &lt;dd&gt;<span class="hljs-subst">${userInfo.location}</span>&lt;/dd&gt;
@@ -1805,24 +1805,24 @@ index.htmlに<code>&lt;input&gt;</code>タグを追加し、JavaScriptから値�
 }
 
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">displayView</span>(<span class="hljs-params">view</span>) {
-    <span class="hljs-keyword">const</span> result = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;result&quot;</span>);
+    <span class="hljs-keyword">const</span> result = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">"result"</span>);
     result.<span class="hljs-property">innerHTML</span> = view;
 }
 
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">escapeSpecialChars</span>(<span class="hljs-params">str</span>) {
     <span class="hljs-keyword">return</span> str
-        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&amp;/g</span>, <span class="hljs-string">&quot;&amp;amp;&quot;</span>)
-        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&lt;/g</span>, <span class="hljs-string">&quot;&amp;lt;&quot;</span>)
-        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&gt;/g</span>, <span class="hljs-string">&quot;&amp;gt;&quot;</span>)
-        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&quot;/g</span>, <span class="hljs-string">&quot;&amp;quot;&quot;</span>)
-        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&apos;/g</span>, <span class="hljs-string">&quot;&amp;#039;&quot;</span>);
+        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&amp;/g</span>, <span class="hljs-string">"&amp;amp;"</span>)
+        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&lt;/g</span>, <span class="hljs-string">"&amp;lt;"</span>)
+        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&gt;/g</span>, <span class="hljs-string">"&amp;gt;"</span>)
+        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/"/g</span>, <span class="hljs-string">"&amp;quot;"</span>)
+        .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/'/g</span>, <span class="hljs-string">"&amp;#039;"</span>);
 }
 
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">escapeHTML</span>(<span class="hljs-params">strings, ...values</span>) {
     <span class="hljs-keyword">return</span> strings.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">result, str, i</span>) =&gt;</span> {
         <span class="hljs-keyword">const</span> value = values[i - <span class="hljs-number">1</span>];
-        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> value === <span class="hljs-string">&quot;string&quot;</span>) {
-            <span class="hljs-keyword">return</span> result + escapeSpecialChars(value) + str;
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> value === <span class="hljs-string">"string"</span>) {
+            <span class="hljs-keyword">return</span> result + <span class="hljs-title function_">escapeSpecialChars</span>(value) + str;
         } <span class="hljs-keyword">else</span> {
             <span class="hljs-keyword">return</span> result + <span class="hljs-title class_">String</span>(value) + str;
         }
@@ -1831,7 +1831,7 @@ index.htmlに<code>&lt;input&gt;</code>タグを追加し、JavaScriptから値�
 </code></pre>
 <p>アプリケーションを実行すると、次のようになります。
 要件を満たすことができたので、このアプリケーションはこれで完成です。</p>
-<p><img src="img/fig-1.png" alt="完成したアプリケーション"></p>
+<p><img src="img/fig-1.png" alt="完成したアプリケーション"></img></p>
 <h2 id="section-checklist"><a name="section-checklist" class="plugin-anchor" href="#section-checklist"><i class="fa fa-link" aria-hidden="true"></i></a>このセクションのチェックリスト </h2>
 <ul>
 <li>HTMLの組み立てと表示の処理を<code>createView</code>関数と<code>displayView</code>関数に分離した</li>
@@ -1878,7 +1878,7 @@ index.htmlに<code>&lt;input&gt;</code>タグを追加し、JavaScriptから値�
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"Promiseを活用し、ソースコードの整理とエラーハンドリングを行います。","sponsors":[],"title":"Promiseを活用する","level":"1.4.2.4","depth":3,"next":{"title":"Node.jsでCLIアプリ","level":"1.4.3","depth":2,"path":"use-case/nodecli/README.md","ref":"./use-case/nodecli/README.md","articles":[{"title":"Node.jsでHello World","level":"1.4.3.1","depth":3,"path":"use-case/nodecli/helloworld/README.md","ref":"./use-case/nodecli/helloworld/README.md","articles":[]},{"title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"path":"use-case/nodecli/argument-parse/README.md","ref":"./use-case/nodecli/argument-parse/README.md","articles":[]},{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},{"title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"path":"use-case/nodecli/refactor-and-unittest/README.md","ref":"./use-case/nodecli/refactor-and-unittest/README.md","articles":[]}]},"previous":{"title":"データを表示する","level":"1.4.2.3","depth":3,"path":"use-case/ajaxapp/display/README.md","ref":"./use-case/ajaxapp/display/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/ajaxapp/promise/README.md","mtime":"2024-09-01T11:18:59.593Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-09-01T11:19:15.872Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"Promiseを活用し、ソースコードの整理とエラーハンドリングを行います。","sponsors":[],"title":"Promiseを活用する","level":"1.4.2.4","depth":3,"next":{"title":"Node.jsでCLIアプリ","level":"1.4.3","depth":2,"path":"use-case/nodecli/README.md","ref":"./use-case/nodecli/README.md","articles":[{"title":"Node.jsでHello World","level":"1.4.3.1","depth":3,"path":"use-case/nodecli/helloworld/README.md","ref":"./use-case/nodecli/helloworld/README.md","articles":[]},{"title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"path":"use-case/nodecli/argument-parse/README.md","ref":"./use-case/nodecli/argument-parse/README.md","articles":[]},{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},{"title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"path":"use-case/nodecli/refactor-and-unittest/README.md","ref":"./use-case/nodecli/refactor-and-unittest/README.md","articles":[]}]},"previous":{"title":"データを表示する","level":"1.4.2.3","depth":3,"path":"use-case/ajaxapp/display/README.md","ref":"./use-case/ajaxapp/display/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/ajaxapp/promise/README.md","mtime":"2024-10-03T14:54:01.269Z","type":"markdown"},"gitbook":{"version":"6.0.0","time":"2024-10-03T14:54:19.038Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

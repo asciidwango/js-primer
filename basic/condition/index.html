@@ -6,7 +6,7 @@
         <title>条件分岐 · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptで条件分岐を扱うためのif文やswitch文を紹介します。またネストした条件分岐が読みやすさを妨げる問題をどのように解決するについてを紹介します。">
-        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="generator" content="HonKit 6.0.0">
         
         
         
@@ -1575,21 +1575,21 @@
 <p>次のコードでは<code>条件式</code>が<code>true</code>であるため、ifの中身が実行されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;この行は実行されます&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"この行は実行されます"</span>);
 }
 </code></pre>
 <p><code>実行する文</code>が1つのみの場合は、<code>{</code> と <code>}</code> のブロックを省略できます。
 しかし、どこまでがif文かがわかりにくくなるため、常にブロックで囲むことを推奨します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>)
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;この行は実行されます&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"この行は実行されます"</span>);
 </code></pre>
 <p>if文は<code>条件式</code>に比較演算子などを使い、その比較結果によって処理を分岐するためによく使われます。
 次のコードでは、<code>x</code>が<code>10</code>よりも大きな値である場合に、if文の中身が実行されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> x = <span class="hljs-number">42</span>;
 <span class="hljs-keyword">if</span> (x &gt; <span class="hljs-number">10</span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;xは10より大きな値です&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"xは10より大きな値です"</span>);
 }
 </code></pre>
 <p>if文の<code>条件式</code>には<code>true</code>または<code>false</code>といった真偽値以外の値も指定できます。
@@ -1603,26 +1603,26 @@
 <li><code>0</code></li>
 <li><code>0n</code></li>
 <li><code>NaN</code></li>
-<li><code>&quot;&quot;</code>（空文字列）</li>
+<li><code>""</code>（空文字列）</li>
 </ul>
 <p>falsyではない値は、<code>true</code>へと変換されます。
-そのため、<code>&quot;文字列&quot;</code>や0以外の数値などを<code>条件式</code>に指定した場合は、<code>true</code>へと変換してから条件式として判定します。</p>
+そのため、<code>"文字列"</code>や0以外の数値などを<code>条件式</code>に指定した場合は、<code>true</code>へと変換してから条件式として判定します。</p>
 <p>次のコードは、条件式が<code>true</code>へと変換されるため、if文の中身が実行されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;この行は実行されます&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"この行は実行されます"</span>);
 }
-<span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;文字列&quot;</span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;この行は実行されます&quot;</span>);
+<span class="hljs-keyword">if</span> (<span class="hljs-string">"文字列"</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"この行は実行されます"</span>);
 }
 <span class="hljs-keyword">if</span> (<span class="hljs-number">42</span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;この行は実行されます&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"この行は実行されます"</span>);
 }
-<span class="hljs-keyword">if</span> ([<span class="hljs-string">&quot;配列&quot;</span>]) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;この行は実行されます&quot;</span>);
+<span class="hljs-keyword">if</span> ([<span class="hljs-string">"配列"</span>]) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"この行は実行されます"</span>);
 }
-<span class="hljs-keyword">if</span> ({ <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;オブジェクト&quot;</span> }) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;この行は実行されます&quot;</span>);
+<span class="hljs-keyword">if</span> ({ <span class="hljs-attr">name</span>: <span class="hljs-string">"オブジェクト"</span> }) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"この行は実行されます"</span>);
 }
 </code></pre>
 <p>falsyな値を<code>条件式</code>に指定した場合は、<code>false</code>へと変換されます。
@@ -1631,7 +1631,7 @@
 <pre><code class="lang-js"><span class="hljs-keyword">if</span> (<span class="hljs-literal">false</span>) {
     <span class="hljs-comment">// この行は実行されません</span>
 }
-<span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;&quot;</span>) {
+<span class="hljs-keyword">if</span> (<span class="hljs-string">""</span>) {
     <span class="hljs-comment">// この行は実行されません</span>
 }
 <span class="hljs-keyword">if</span> (<span class="hljs-number">0</span>) {
@@ -1648,20 +1648,20 @@
 <p>複数の条件分岐を書く場合は、if文に続けてelse if文を使うことで書けます。
 たとえば、次の3つの条件分岐するプログラムを考えます。</p>
 <ul>
-<li><code>version</code> が <code>&quot;ES5&quot;</code> ならば <code>&quot;ECMAScript 5&quot;</code> と出力</li>
-<li><code>version</code> が <code>&quot;ES6&quot;</code> ならば <code>&quot;ECMAScript 2015&quot;</code> と出力</li>
-<li><code>version</code> が <code>&quot;ES7&quot;</code> ならば <code>&quot;ECMAScript 2016&quot;</code> と出力</li>
+<li><code>version</code> が <code>"ES5"</code> ならば <code>"ECMAScript 5"</code> と出力</li>
+<li><code>version</code> が <code>"ES6"</code> ならば <code>"ECMAScript 2015"</code> と出力</li>
+<li><code>version</code> が <code>"ES7"</code> ならば <code>"ECMAScript 2016"</code> と出力</li>
 </ul>
 <p>次のコードでは、if文とelse if文を使うことで3つの条件を書いています。
-変数<code>version</code>の値が<code>&quot;ES6&quot;</code>であるため、コンソールには<code>&quot;ECMAScript 2015&quot;</code>が出力されます。</p>
+変数<code>version</code>の値が<code>"ES6"</code>であるため、コンソールには<code>"ECMAScript 2015"</code>が出力されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> version = <span class="hljs-string">&quot;ES6&quot;</span>;
-<span class="hljs-keyword">if</span> (version === <span class="hljs-string">&quot;ES5&quot;</span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;ECMAScript 5&quot;</span>);
-} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (version === <span class="hljs-string">&quot;ES6&quot;</span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;ECMAScript 2015&quot;</span>);
-} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (version === <span class="hljs-string">&quot;ES7&quot;</span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;ECMAScript 2016&quot;</span>);
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> version = <span class="hljs-string">"ES6"</span>;
+<span class="hljs-keyword">if</span> (version === <span class="hljs-string">"ES5"</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"ECMAScript 5"</span>);
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (version === <span class="hljs-string">"ES6"</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"ECMAScript 2015"</span>);
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (version === <span class="hljs-string">"ES7"</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"ECMAScript 2016"</span>);
 }
 </code></pre>
 <h3 id="else-statement"><a name="else-statement" class="plugin-anchor" href="#else-statement"><i class="fa fa-link" aria-hidden="true"></i></a>else文 </h3>
@@ -1748,36 +1748,36 @@
 </code></pre>
 <p>switch文はif文と同様に<code>式</code>の評価結果に基づく条件分岐を扱います。
 またbreak文は、switch文から抜けてswitch文の次の文から実行するためのものです。
-次のコードでは、<code>version</code>の評価結果は<code>&quot;ES6&quot;</code>となるため、<code>case &quot;ES6&quot;:</code>に続く文が実行されます。</p>
+次のコードでは、<code>version</code>の評価結果は<code>"ES6"</code>となるため、<code>case "ES6":</code>に続く文が実行されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> version = <span class="hljs-string">&quot;ES6&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> version = <span class="hljs-string">"ES6"</span>;
 <span class="hljs-keyword">switch</span> (version) {
-    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;ES5&quot;</span>:
-        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;ECMAScript 5&quot;</span>);
+    <span class="hljs-keyword">case</span> <span class="hljs-string">"ES5"</span>:
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"ECMAScript 5"</span>);
         <span class="hljs-keyword">break</span>;
-    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;ES6&quot;</span>:
-        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;ECMAScript 2015&quot;</span>);
+    <span class="hljs-keyword">case</span> <span class="hljs-string">"ES6"</span>:
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"ECMAScript 2015"</span>);
         <span class="hljs-keyword">break</span>;
-    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;ES7&quot;</span>:
-        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;ECMAScript 2016&quot;</span>);
+    <span class="hljs-keyword">case</span> <span class="hljs-string">"ES7"</span>:
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"ECMAScript 2016"</span>);
         <span class="hljs-keyword">break</span>;
     <span class="hljs-attr">default</span>:
-        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;しらないバージョンです&quot;</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"しらないバージョンです"</span>);
         <span class="hljs-keyword">break</span>;
 }
-<span class="hljs-comment">// &quot;ECMAScript 2015&quot; と出力される</span>
+<span class="hljs-comment">// "ECMAScript 2015" と出力される</span>
 </code></pre>
 <p>これはif文で次のように書いた場合と同じ結果になります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> version = <span class="hljs-string">&quot;ES6&quot;</span>;
-<span class="hljs-keyword">if</span> (version === <span class="hljs-string">&quot;ES5&quot;</span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;ECMAScript 5&quot;</span>);
-} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (version === <span class="hljs-string">&quot;ES6&quot;</span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;ECMAScript 2015&quot;</span>);
-} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (version === <span class="hljs-string">&quot;ES7&quot;</span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;ECMAScript 2016&quot;</span>);
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> version = <span class="hljs-string">"ES6"</span>;
+<span class="hljs-keyword">if</span> (version === <span class="hljs-string">"ES5"</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"ECMAScript 5"</span>);
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (version === <span class="hljs-string">"ES6"</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"ECMAScript 2015"</span>);
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (version === <span class="hljs-string">"ES7"</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"ECMAScript 2016"</span>);
 } <span class="hljs-keyword">else</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;しらないバージョンです&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"しらないバージョンです"</span>);
 }
 </code></pre>
 <p>switch文はやや複雑な仕組みであるため、どのように処理されているかを見ていきます。
@@ -1792,11 +1792,11 @@
 一致する<code>ラベル</code>が存在しない場合は、default節が実行されます。</p>
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-keyword">switch</span> (式) {
-    <span class="hljs-comment">// if (式 === &quot;ラベル1&quot;)</span>
-    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;ラベル1&quot;</span>:
+    <span class="hljs-comment">// if (式 === "ラベル1")</span>
+    <span class="hljs-keyword">case</span> <span class="hljs-string">"ラベル1"</span>:
         <span class="hljs-keyword">break</span>;
-    <span class="hljs-comment">// else if (式 === &quot;ラベル2&quot;)</span>
-    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;ラベル2&quot;</span>:
+    <span class="hljs-comment">// else if (式 === "ラベル2")</span>
+    <span class="hljs-keyword">case</span> <span class="hljs-string">"ラベル2"</span>:
         <span class="hljs-keyword">break</span>;
     <span class="hljs-comment">// else</span>
     <span class="hljs-attr">default</span>:
@@ -1807,21 +1807,21 @@
 <p>switch文のcase節では基本的に<code>break;</code>を使ってswitch文を抜けるようにします。
 この<code>break;</code>は省略が可能ですが、省略した場合、後ろに続くcase節が条件に関係なく実行されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> version = <span class="hljs-string">&quot;ES6&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> version = <span class="hljs-string">"ES6"</span>;
 <span class="hljs-keyword">switch</span> (version) {
-    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;ES5&quot;</span>:
-        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;ECMAScript 5&quot;</span>);
-    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;ES6&quot;</span>: <span class="hljs-comment">// 一致するケース</span>
-        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;ECMAScript 2015&quot;</span>);
-    <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;ES7&quot;</span>: <span class="hljs-comment">// breakされないため条件無視して実行</span>
-        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;ECMAScript 2016&quot;</span>);
+    <span class="hljs-keyword">case</span> <span class="hljs-string">"ES5"</span>:
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"ECMAScript 5"</span>);
+    <span class="hljs-keyword">case</span> <span class="hljs-string">"ES6"</span>: <span class="hljs-comment">// 一致するケース</span>
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"ECMAScript 2015"</span>);
+    <span class="hljs-keyword">case</span> <span class="hljs-string">"ES7"</span>: <span class="hljs-comment">// breakされないため条件無視して実行</span>
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"ECMAScript 2016"</span>);
     <span class="hljs-attr">default</span>:    <span class="hljs-comment">// breakされないため条件無視して実行</span>
-        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;しらないバージョンです&quot;</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"しらないバージョンです"</span>);
 }
 <span class="hljs-comment">/*
- &quot;ECMAScript 2015&quot;
- &quot;ECMAScript 2016&quot;
- &quot;しらないバージョンです&quot;
+ "ECMAScript 2015"
+ "ECMAScript 2016"
+ "しらないバージョンです"
  と出力される
  */</span>
 </code></pre>
@@ -1833,18 +1833,18 @@
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">getECMAScriptName</span>(<span class="hljs-params">version</span>) {
     <span class="hljs-keyword">switch</span> (version) {
-        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;ES5&quot;</span>:
-            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;ECMAScript 5&quot;</span>;
-        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;ES6&quot;</span>:
-            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;ECMAScript 2015&quot;</span>;
-        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;ES7&quot;</span>:
-            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;ECMAScript 2016&quot;</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"ES5"</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"ECMAScript 5"</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"ES6"</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"ECMAScript 2015"</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"ES7"</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"ECMAScript 2016"</span>;
         <span class="hljs-attr">default</span>:
-            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;しらないバージョンです&quot;</span>;
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"しらないバージョンです"</span>;
     }
 }
 <span class="hljs-comment">// 関数を実行して`return`された値を得る</span>
-<span class="hljs-title function_">getECMAScriptName</span>(<span class="hljs-string">&quot;ES6&quot;</span>); <span class="hljs-comment">// =&gt; &quot;ECMAScript 2015&quot;</span>
+<span class="hljs-title function_">getECMAScriptName</span>(<span class="hljs-string">"ES6"</span>); <span class="hljs-comment">// =&gt; "ECMAScript 2015"</span>
 </code></pre>
 <h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>まとめ </h2>
 <p>この章では条件分岐について学びました。</p>
@@ -1899,7 +1899,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptで条件分岐を扱うためのif文やswitch文を紹介します。またネストした条件分岐が読みやすさを妨げる問題をどのように解決するについてを紹介します。","sponsors":[],"title":"条件分岐","level":"1.3.10","depth":2,"next":{"title":"ループと反復処理","level":"1.3.11","depth":2,"path":"basic/loop/README.md","ref":"./basic/loop/README.md","articles":[]},"previous":{"title":"文と式","level":"1.3.9","depth":2,"path":"basic/statement-expression/README.md","ref":"./basic/statement-expression/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/condition/README.md","mtime":"2024-09-01T11:18:59.573Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-09-01T11:19:15.872Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptで条件分岐を扱うためのif文やswitch文を紹介します。またネストした条件分岐が読みやすさを妨げる問題をどのように解決するについてを紹介します。","sponsors":[],"title":"条件分岐","level":"1.3.10","depth":2,"next":{"title":"ループと反復処理","level":"1.3.11","depth":2,"path":"basic/loop/README.md","ref":"./basic/loop/README.md","articles":[]},"previous":{"title":"文と式","level":"1.3.9","depth":2,"path":"basic/statement-expression/README.md","ref":"./basic/statement-expression/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/condition/README.md","mtime":"2024-10-03T14:54:01.250Z","type":"markdown"},"gitbook":{"version":"6.0.0","time":"2024-10-03T14:54:19.038Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

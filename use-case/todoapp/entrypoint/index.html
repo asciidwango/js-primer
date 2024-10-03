@@ -6,7 +6,7 @@
         <title>エントリーポイント · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="HTMLとJavaScriptモジュールを使い、アプリケーションで一番最初に呼び出されるエントリーポイントを作成します。">
-        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="generator" content="HonKit 6.0.0">
         
         
         
@@ -1565,22 +1565,22 @@
 <p>「<a href="../../ajaxapp/entrypoint/">Ajax通信:エントリーポイント</a>」のユースケースでは、エントリーポイントはHTML（<code>index.html</code>）のみでした。
 まずHTMLが読み込まれ、次にHTMLの中に書かれている<code>script</code>要素で指定したJavaScriptファイルが読み込まれます。</p>
 <p>今回のTodoアプリはJavaScriptの処理をモジュール化し、それぞれのモジュールを別々のJavaScriptファイルとして作成していきます。
-JavaScriptモジュールはHTMLから<code>&lt;script type=&quot;module&quot;&gt;</code>で読み込むことができますが、<code>script</code>要素ごとに別々のモジュールスコープを持ちます。
+JavaScriptモジュールはHTMLから<code>&lt;script type="module"&gt;</code>で読み込むことができますが、<code>script</code>要素ごとに別々のモジュールスコープを持ちます。
 モジュールスコープとは、モジュールのトップレベルに自動的に作成されるスコープで、グローバルスコープの下に作られます。
 JavaScriptモジュールを別々の<code>script</code>要素で読み込むと、モジュール同士でスコープが異なるため、モジュール同士で連携できません。</p>
-<p>次のコードは、それぞれの<code>&lt;script type=&quot;module&quot;&gt;</code>同士のスコープが異なるため、別の<code>script</code>要素で定義した変数にアクセスできないことを示しています。
+<p>次のコードは、それぞれの<code>&lt;script type="module"&gt;</code>同士のスコープが異なるため、別の<code>script</code>要素で定義した変数にアクセスできないことを示しています。
 これはJavaScriptモジュールをファイルにして<code>src</code>属性で読み込んだ場合も同様です。</p>
-<pre><code class="lang-html">  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span>&gt;</span><span class="language-javascript">
-    <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> scopeA = <span class="hljs-string">&quot;A&quot;</span>;
+<pre><code class="lang-html">  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span>&gt;</span><span class="language-javascript">
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> scopeA = <span class="hljs-string">"A"</span>;
   </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span>&gt;</span><span class="language-javascript">
+  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span>&gt;</span><span class="language-javascript">
     <span class="hljs-comment">// 異なるmoduleスコープの変数には直接アクセスできない</span>
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(scopeA); <span class="hljs-comment">// =&gt; ReferenceError: scopeA is not defined</span>
   </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
 <p>このようにモジュールを別々の<code>script</code>要素で扱うとモジュール同士は連携できません。
 そのため、HTMLでは<code>script</code>要素で<code>index.js</code>のみを読み込み、この<code>index.js</code>から<code>import</code>文で他のモジュールを読み込みます。
-<code>import</code>文を使うことで、モジュール間は1つの<code>&lt;script type=&quot;module&quot;&gt;</code>のスコープ内に収まるため、モジュール同士で連携できます。
+<code>import</code>文を使うことで、モジュール間は1つの<code>&lt;script type="module"&gt;</code>のスコープ内に収まるため、モジュール同士で連携できます。
 このHTMLから読み込むJavaScriptファイル（<code>index.js</code>）をJavaScriptにおけるエントリーポイントとします。</p>
 <p>つまり、今回作成するTodoアプリではエントリーポイントとしてHTMLとJavaScriptの2つを用意します。</p>
 <ul>
@@ -1603,14 +1603,14 @@ JavaScriptモジュールを別々の<code>script</code>要素で読み込むと
 </div>
 
 <pre><code class="lang-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ja&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"ja"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Todo App<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Todo App<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;index.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"index.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
@@ -1620,7 +1620,7 @@ JavaScriptモジュールを別々の<code>script</code>要素で読み込むと
     <p class="code-filename">index.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;index.js: loaded&quot;</span>);
+<pre><code class="lang-javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"index.js: loaded"</span>);
 </code></pre>
 <p>ここまでの<code>todoapp</code>ディレクトリのファイル配置は次のようになっています。</p>
 <pre><code>todoapp
@@ -1647,14 +1647,14 @@ todoappのローカルサーバーを起動しました。
 </code></pre>
 <p>起動したローカルサーバーのURL（<code>http://localhost:3000</code>）へブラウザでアクセスしてみましょう。
 ブラウザには<code>index.html</code>の内容が表示され、開発者ツールのコンソールに<code>index.js: loaded</code>というログが出力されていることが確認できます。</p>
-<p><img src="img/first-entry.png" alt="Webコンソールにログが表示されている"></p>
+<p><img src="img/first-entry.png" alt="Webコンソールにログが表示されている"></img></p>
 <h3 id="view-console-log-in-dev-tools"><a name="view-console-log-in-dev-tools" class="plugin-anchor" href="#view-console-log-in-dev-tools"><i class="fa fa-link" aria-hidden="true"></i></a>開発者ツールでのコンソールログの確認方法 </h3>
 <p>Console APIで出力したログを確認するには、ウェブブラウザの開発者ツールを開く必要があります。
 ほとんどのブラウザに開発者ツールが同梱されていますが、本章ではFirefoxを使って確認します。
 開発者ツールの<strong>コンソール</strong>タブを開くとConsole APIで出力したログを確認できます。</p>
 <p>Firefoxの開発者ツールは次のいずれかの方法で開きます。</p>
 <ul>
-<li>Firefox メニュー（メニューバーがある場合や macOS では、ツールメニュー）の &quot;ブラウザーツール&quot;のサブメニューから &quot;ウェブ開発ツール&quot; を選択する</li>
+<li>Firefox メニュー（メニューバーがある場合や macOS では、ツールメニュー）の "ブラウザーツール"のサブメニューから "ウェブ開発ツール" を選択する</li>
 <li>キーボードショートカット<code>Ctrl+Shift+K</code>（macOSでは<code>Command+Option+K</code>）を押下する</li>
 </ul>
 <p>詳細は「<a href="https://developer.mozilla.org/ja/docs/Learn/Common_questions/What_are_browser_developer_tools" target="_blank">ブラウザーの開発者ツールとは？</a>」を参照してください。</p>
@@ -1662,7 +1662,7 @@ todoappのローカルサーバーを起動しました。
 <p>HTMLは表示されるがコンソールログに<code>index.js: loaded</code>が表示されない場合は、次のような問題に該当してないかを確認してください。</p>
 <h4 id="fail-to-load-javascript-module"><a name="fail-to-load-javascript-module" class="plugin-anchor" href="#fail-to-load-javascript-module"><i class="fa fa-link" aria-hidden="true"></i></a>[エラー例] <code>index.js</code>の読み込みに失敗している </h4>
 <p><code>script</code>要素の<code>src</code>属性に指定した<code>index.js</code>のパスにファイルが存在しているかを確認してください。
-<code>&lt;script type=&quot;module&quot; src=&quot;index.js&quot;&gt;</code>とした場合は<code>index.html</code>と<code>index.js</code>は同じディレクトリに配置する必要があります。</p>
+<code>&lt;script type="module" src="index.js"&gt;</code>とした場合は<code>index.html</code>と<code>index.js</code>は同じディレクトリに配置する必要があります。</p>
 <p>また、<em>CORS policy Invalid</em>のようなエラーがコンソールに表示されている場合は、<a href="https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy" target="_blank">Same Origin Policy</a>により<code>index.js</code>の読み込みが失敗しています。
 先ほども紹介したように、<code>file:</code>からはじまるページ上からはJavaScriptモジュールは正しく動作しません。
 そのため、ローカルサーバーを起動し、ローカルサーバー（<code>http:</code>からはじまるURL）にアクセスしていることを確認してください。</p>
@@ -1672,7 +1672,7 @@ todoappのローカルサーバーを起動しました。
 <p>今回のTodoアプリでは、ネイティブでJavaScriptモジュールに対応しているブラウザが必要です。
 <a href="https://caniuse.com/#feat=es6-module" target="_blank">Can I Use</a>にネイティブでJavaScriptモジュールに対応しているブラウザがまとめられています。
 非対応のブラウザでもBundlerと呼ばれるツールを使うことで対応できますが、本章では省略します。</p>
-<hr>
+<hr></hr>
 <h2 id="module-entry-point"><a name="module-entry-point" class="plugin-anchor" href="#module-entry-point"><i class="fa fa-link" aria-hidden="true"></i></a>モジュールのエントリーポイントの作成 </h2>
 <!-- ソースコードは module-entry/ -->
 <p>最後にエントリーポイントとなる<code>index.js</code>から別のJavaScriptファイルをモジュールとして読み込んでみましょう。
@@ -1691,10 +1691,10 @@ todoappのローカルサーバーを起動しました。
     <p class="code-filename">src/App.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;App.js: loaded&quot;</span>);
+<pre><code class="lang-javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"App.js: loaded"</span>);
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">App</span> {
     <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span>) {
-        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;App initialized&quot;</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"App initialized"</span>);
     }
 }
 </code></pre>
@@ -1704,7 +1704,7 @@ todoappのローカルサーバーを起動しました。
     <p class="code-filename">index.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">App</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./src/App.js&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">App</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"./src/App.js"</span>;
 <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">new</span> <span class="hljs-title class_">App</span>();
 </code></pre>
 <p>再度ローカルサーバーのURL（<code>http://localhost:3000</code>）にブラウザでアクセスし、リロードしてみましょう。
@@ -1729,7 +1729,7 @@ App initialized
 JavaScriptには実行コンテキストとしてScriptとModuleがあります。
 <code>import</code>文は実行コンテキストがModuleでないと利用できません。
 そのため、<code>script</code>要素の<code>type</code>属性に<code>module</code>指定を忘れていないかをチェックしてみてください。</p>
-<p>実行コンテキストをモジュールとして実行するには<code>&lt;script type=&quot;module&quot; src=&quot;index.js&quot;&gt;</code>のように<code>type=module</code>を指定する必要があります
+<p>実行コンテキストをモジュールとして実行するには<code>&lt;script type="module" src="index.js"&gt;</code>のように<code>type=module</code>を指定する必要があります
 （<code>index.js</code>から<code>import</code>文で読み込んだ<code>App.js</code>は実行コンテキストを引き継ぐため、モジュールの実行コンテキストで処理されます）。</p>
 <h4 id="fail-to-load-src-app"><a name="fail-to-load-src-app" class="plugin-anchor" href="#fail-to-load-src-app"><i class="fa fa-link" aria-hidden="true"></i></a>[エラー例] モジュールのソース “<a href="http://localhost:3000/src/App”" target="_blank">http://localhost:3000/src/App”</a> の読み込みに失敗しました。 </h4>
 <p><code>App.js</code>を読み込めないというエラーが出ています。
@@ -1738,13 +1738,13 @@ JavaScriptには実行コンテキストとしてScriptとModuleがあります�
 そのため、<code>App</code>のように拡張子（<code>.js</code>）を省略して書いている場合はこのエラーが発生します。</p>
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-comment">// エラーとなる例</span>
-<span class="hljs-keyword">import</span> { <span class="hljs-title class_">App</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./src/App&quot;</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">App</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"./src/App"</span>;
 </code></pre>
 <p>正しくは次のように拡張子まで含めたパスを記述します。
 また指定したパス（<code>./src/App.js</code>）にファイルが存在するかを確認してください。</p>
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-comment">// 正しい例</span>
-<span class="hljs-keyword">import</span> { <span class="hljs-title class_">App</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./src/App.js&quot;</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">App</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"./src/App.js"</span>;
 </code></pre>
 <h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>まとめ </h2>
 <p>このセクションでは、エントリーポイントとなるHTMLを作成し、JavaScriptモジュールのエントリーポイントとなるJavaScriptファイルを読み込むところまでを実装しました。</p>
@@ -1793,7 +1793,7 @@ JavaScriptには実行コンテキストとしてScriptとModuleがあります�
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"HTMLとJavaScriptモジュールを使い、アプリケーションで一番最初に呼び出されるエントリーポイントを作成します。","sponsors":[],"title":"エントリーポイント","level":"1.4.4.1","depth":3,"next":{"title":"アプリの構成要素","level":"1.4.4.2","depth":3,"path":"use-case/todoapp/app-structure/README.md","ref":"./use-case/todoapp/app-structure/README.md","articles":[]},"previous":{"title":"Todoアプリ","level":"1.4.4","depth":2,"path":"use-case/todoapp/README.md","ref":"./use-case/todoapp/README.md","articles":[{"title":"エントリーポイント","level":"1.4.4.1","depth":3,"path":"use-case/todoapp/entrypoint/README.md","ref":"./use-case/todoapp/entrypoint/README.md","articles":[]},{"title":"アプリの構成要素","level":"1.4.4.2","depth":3,"path":"use-case/todoapp/app-structure/README.md","ref":"./use-case/todoapp/app-structure/README.md","articles":[]},{"title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"path":"use-case/todoapp/form-event/README.md","ref":"./use-case/todoapp/form-event/README.md","articles":[]},{"title":"イベントとモデル","level":"1.4.4.4","depth":3,"path":"use-case/todoapp/event-model/README.md","ref":"./use-case/todoapp/event-model/README.md","articles":[]},{"title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"path":"use-case/todoapp/update-delete/README.md","ref":"./use-case/todoapp/update-delete/README.md","articles":[]},{"title":"Todoアプリのリファクタリング","level":"1.4.4.6","depth":3,"path":"use-case/todoapp/final/README.md","ref":"./use-case/todoapp/final/README.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/todoapp/entrypoint/README.md","mtime":"2024-09-01T11:18:59.601Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-09-01T11:19:15.872Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"HTMLとJavaScriptモジュールを使い、アプリケーションで一番最初に呼び出されるエントリーポイントを作成します。","sponsors":[],"title":"エントリーポイント","level":"1.4.4.1","depth":3,"next":{"title":"アプリの構成要素","level":"1.4.4.2","depth":3,"path":"use-case/todoapp/app-structure/README.md","ref":"./use-case/todoapp/app-structure/README.md","articles":[]},"previous":{"title":"Todoアプリ","level":"1.4.4","depth":2,"path":"use-case/todoapp/README.md","ref":"./use-case/todoapp/README.md","articles":[{"title":"エントリーポイント","level":"1.4.4.1","depth":3,"path":"use-case/todoapp/entrypoint/README.md","ref":"./use-case/todoapp/entrypoint/README.md","articles":[]},{"title":"アプリの構成要素","level":"1.4.4.2","depth":3,"path":"use-case/todoapp/app-structure/README.md","ref":"./use-case/todoapp/app-structure/README.md","articles":[]},{"title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"path":"use-case/todoapp/form-event/README.md","ref":"./use-case/todoapp/form-event/README.md","articles":[]},{"title":"イベントとモデル","level":"1.4.4.4","depth":3,"path":"use-case/todoapp/event-model/README.md","ref":"./use-case/todoapp/event-model/README.md","articles":[]},{"title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"path":"use-case/todoapp/update-delete/README.md","ref":"./use-case/todoapp/update-delete/README.md","articles":[]},{"title":"Todoアプリのリファクタリング","level":"1.4.4.6","depth":3,"path":"use-case/todoapp/final/README.md","ref":"./use-case/todoapp/final/README.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/todoapp/entrypoint/README.md","mtime":"2024-10-03T14:54:01.280Z","type":"markdown"},"gitbook":{"version":"6.0.0","time":"2024-10-03T14:54:19.038Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

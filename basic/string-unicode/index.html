@@ -6,7 +6,7 @@
         <title>文字列とUnicode · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptが採用している文字コードであるUnicodeと関連するStringのメソッドについて紹介します。Stringのメソッドや文字列を扱う上で、UTF-16でエンコードされていることを意識する場面について紹介します。">
-        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="generator" content="HonKit 6.0.0">
         
         
         
@@ -1578,28 +1578,28 @@
 ES2015で追加されたStringの<code>codePointAt</code>メソッドや<code>String.fromCodePoint</code>静的メソッドを使うことで、文字列とCode Pointを相互変換できます。</p>
 <p>Stringの<code>codePointAt</code>メソッド<sup>[ES2015]</sup>は、文字列の指定インデックスにある文字のCode Pointの値を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// 文字列&quot;あ&quot;のCode Pointを取得</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;あ&quot;</span>.<span class="hljs-title function_">codePointAt</span>(<span class="hljs-number">0</span>)); <span class="hljs-comment">// =&gt; 12354</span>
+<pre><code class="lang-js"><span class="hljs-comment">// 文字列"あ"のCode Pointを取得</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"あ"</span>.<span class="hljs-title function_">codePointAt</span>(<span class="hljs-number">0</span>)); <span class="hljs-comment">// =&gt; 12354</span>
 </code></pre>
 <p>一方の<code>String.fromCodePoint</code>メソッド<sup>[ES2015]</sup>は、指定したCode Pointに対応する文字を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// Code Pointが`12354`の文字を取得する</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">String</span>.<span class="hljs-title function_">fromCodePoint</span>(<span class="hljs-number">12354</span>)); <span class="hljs-comment">// =&gt; &quot;あ&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">String</span>.<span class="hljs-title function_">fromCodePoint</span>(<span class="hljs-number">12354</span>)); <span class="hljs-comment">// =&gt; "あ"</span>
 <span class="hljs-comment">// `12354`を16進数リテラルで表記しても同じ結果</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">String</span>.<span class="hljs-title function_">fromCodePoint</span>(<span class="hljs-number">0x3042</span>)); <span class="hljs-comment">// =&gt; &quot;あ&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">String</span>.<span class="hljs-title function_">fromCodePoint</span>(<span class="hljs-number">0x3042</span>)); <span class="hljs-comment">// =&gt; "あ"</span>
 </code></pre>
 <p>また、文字列リテラル中にはUnicodeエスケープシーケンスで、直接Code Pointを書くこともできます。
 Code Pointは<code>\u{Code Pointの16進数の値}</code>のようにエスケープシーケンスとして記述できます。
 Unicodeエスケープシーケンスでは、Code Pointの16進数の値が必要となります。
 Numberの<code>toString</code>メソッドの引数に基数となる<code>16</code>を渡すことで、16進数の文字列を取得できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-comment">// &quot;あ&quot;のCode Pointは12354</span>
-<span class="hljs-keyword">const</span> codePointOfあ = <span class="hljs-string">&quot;あ&quot;</span>.<span class="hljs-title function_">codePointAt</span>(<span class="hljs-number">0</span>);
-<span class="hljs-comment">// 12354の16進数表現は&quot;3042&quot;</span>
+<pre><code class="lang-js"><span class="hljs-comment">// "あ"のCode Pointは12354</span>
+<span class="hljs-keyword">const</span> codePointOfあ = <span class="hljs-string">"あ"</span>.<span class="hljs-title function_">codePointAt</span>(<span class="hljs-number">0</span>);
+<span class="hljs-comment">// 12354の16進数表現は"3042"</span>
 <span class="hljs-keyword">const</span> hexOfあ = codePointOfあ.<span class="hljs-title function_">toString</span>(<span class="hljs-number">16</span>);
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(hexOfあ);<span class="hljs-comment">// =&gt; &quot;3042&quot;</span>
-<span class="hljs-comment">// Unicodeエスケープで&quot;あ&quot;を表現できる</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;\u{3042}&quot;</span>); <span class="hljs-comment">// =&gt; &quot;あ&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(hexOfあ);<span class="hljs-comment">// =&gt; "3042"</span>
+<span class="hljs-comment">// Unicodeエスケープで"あ"を表現できる</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"\u{3042}"</span>); <span class="hljs-comment">// =&gt; "あ"</span>
 </code></pre>
 <h2 id="code-point-is-not-code-unit"><a name="code-point-is-not-code-unit" class="plugin-anchor" href="#code-point-is-not-code-unit"><i class="fa fa-link" aria-hidden="true"></i></a>Code PointとCode Unitの違い </h2>
 <p>Code Point（符号位置）について紹介しましたが、JavaScriptの文字列の構成要素はUTF-16で変換されたCode Unit（符号単位）です（詳細は「<a href="../string/">文字列</a>」の章を参照）。
@@ -1622,14 +1622,14 @@ Numberの<code>toString</code>メソッドの引数に基数となる<code>16</c
     });
 }
 
-<span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;アオイ&quot;</span>;
+<span class="hljs-keyword">const</span> str = <span class="hljs-string">"アオイ"</span>;
 <span class="hljs-keyword">const</span> codeUnits = <span class="hljs-title function_">convertCodeUnits</span>(str);
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(codeUnits); <span class="hljs-comment">// =&gt; [&quot;30a2&quot;, &quot;30aa&quot;, &quot;30a4&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(codeUnits); <span class="hljs-comment">// =&gt; ["30a2", "30aa", "30a4"]</span>
 <span class="hljs-keyword">const</span> codePoints = <span class="hljs-title function_">convertCodePoints</span>(str);
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(codePoints); <span class="hljs-comment">// =&gt; [&quot;30a2&quot;, &quot;30aa&quot;, &quot;30a4&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(codePoints); <span class="hljs-comment">// =&gt; ["30a2", "30aa", "30a4"]</span>
 </code></pre>
 <p>実行した結果をまとめてみると、この文字列においてはCode PointとCode Unitが同じ値になっていることがわかります。</p>
-<p><img src="img/codeunit-codepoint-table.png" alt="文字列におけるCode UnitとCode Pointの表"></p>
+<p><img src="img/codeunit-codepoint-table.png" alt="文字列におけるCode UnitとCode Pointの表"></img></p>
 <p>しかし、文字列によってはCode PointとCode Unitが異なる値となる場合があります。</p>
 <p>先ほどと同じ関数を使い、<code>リンゴ🍎</code>（リンゴの絵文字）という文字列を構成するCode UnitとCode Pointを見比べてみます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -1648,14 +1648,14 @@ Numberの<code>toString</code>メソッドの引数に基数となる<code>16</c
     });
 }
 
-<span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;リンゴ🍎&quot;</span>;
+<span class="hljs-keyword">const</span> str = <span class="hljs-string">"リンゴ🍎"</span>;
 <span class="hljs-keyword">const</span> codeUnits = <span class="hljs-title function_">convertCodeUnits</span>(str);
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(codeUnits); <span class="hljs-comment">// =&gt; [&quot;30ea&quot;, &quot;30f3&quot;, &quot;30b4&quot;, &quot;d83c&quot;, &quot;df4e&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(codeUnits); <span class="hljs-comment">// =&gt; ["30ea", "30f3", "30b4", "d83c", "df4e"]</span>
 <span class="hljs-keyword">const</span> codePoints = <span class="hljs-title function_">convertCodePoints</span>(str);
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(codePoints); <span class="hljs-comment">// =&gt; [&quot;30ea&quot;, &quot;30f3&quot;, &quot;30b4&quot;, &quot;1f34e&quot;]</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(codePoints); <span class="hljs-comment">// =&gt; ["30ea", "30f3", "30b4", "1f34e"]</span>
 </code></pre>
 <p>実行した結果をまとめてみると、この絵文字を含む文字列においてはCode PointとCode Unitが異なる値となることがわかります。</p>
-<p><img src="img/emoji-codeunit-codepoint-table.png" alt="絵文字を含んだ文字列におけるCode UnitとCode Pointの表"></p>
+<p><img src="img/emoji-codeunit-codepoint-table.png" alt="絵文字を含んだ文字列におけるCode UnitとCode Pointの表"></img></p>
 <p>具体的には、Code Pointの要素数が4つなのに対して、Code Unitの要素数が5つになっています。
 また、Code Pointでは1つのCode Pointが<code>🍎</code>に対応していますが、Code Unitでは2つのCode Unitで<code>🍎</code>に対応しています。JavaScriptでは「文字列はCode Unitが順番に並んだもの」として扱われるためこの文字列の要素数（長さ）はCode Unitの個数である5つとなっています。</p>
 <p>ある1つの文字に対応するIDであるCode Pointを、16ビット（2バイト）のCode Unitで表現するのがUTF-16というエンコード方式です。しかし、16ビット（2バイト）で表現できる範囲は、65536種類（2の16乗）です。
@@ -1673,30 +1673,30 @@ Code Unitのエスケープシーケンス（<code>\uXXXX</code>）を2つ並べ
 一方で、ES2015からはCode Pointのエスケープシーケンス（<code>\u{XXXX}</code>）も書けるため、1つのCode Pointで<code>𩸽</code>という文字を表現できることもわかります。しかし、Code Pointのエスケープシーケンスで書いた場合でも、内部的にCode Unitに変換された値で保持されることは変わりません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 上位サロゲート + 下位サロゲートの組み合わせ</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;\uD867\uDE3D&quot;</span>); <span class="hljs-comment">// =&gt; &quot;𩸽&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"\uD867\uDE3D"</span>); <span class="hljs-comment">// =&gt; "𩸽"</span>
 <span class="hljs-comment">// Code Pointでの表現</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;\u{29e3d}&quot;</span>); <span class="hljs-comment">// =&gt; &quot;𩸽&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"\u{29e3d}"</span>); <span class="hljs-comment">// =&gt; "𩸽"</span>
 </code></pre>
 <p>先ほどの例で登場した<code>🍎</code>（リンゴの絵文字）もサロゲートペアで表現される文字です。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// Code Unit（上位サロゲート + 下位サロゲート）</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;\uD83C\uDF4E&quot;</span>); <span class="hljs-comment">// =&gt; &quot;🍎&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"\uD83C\uDF4E"</span>); <span class="hljs-comment">// =&gt; "🍎"</span>
 <span class="hljs-comment">// Code Point</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;\u{1F34E}&quot;</span>); <span class="hljs-comment">// =&gt; &quot;🍎&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"\u{1F34E}"</span>); <span class="hljs-comment">// =&gt; "🍎"</span>
 </code></pre>
 <p>このようにサロゲートペアでは、2つのCode Unitで1つのCode Pointを表現します。</p>
 <p>基本的には、文字列はCode Unitが順番に並んでいるものとして扱われるため、多くの<code>String</code>のメソッドはCode Unitごとに作用します。
 また、インデックスアクセスもCode Unitごととなります。そのため、サロゲートペアで表現している文字列では、上位サロゲート（0番目）と下位サロゲート（1番目）へのインデックスアクセスになります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 内部的にはCode Unitが並んでいるものとして扱われている</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;\uD867\uDE3D&quot;</span>); <span class="hljs-comment">// =&gt; &quot;𩸽&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"\uD867\uDE3D"</span>); <span class="hljs-comment">// =&gt; "𩸽"</span>
 <span class="hljs-comment">// インデックスアクセスもCode Unitごととなる</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;𩸽&quot;</span>[<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; &quot;\uD867&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;𩸽&quot;</span>[<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; &quot;\uDE3D&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"𩸽"</span>[<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; "\uD867"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"𩸽"</span>[<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; "\uDE3D"</span>
 </code></pre>
 <p>絵文字や「𩸽（ほっけ）」などのサロゲートペアで表現される文字が文字列中に含まれると、Code Unitごとに扱う文字列処理は複雑になります。</p>
-<p>たとえば、Stringの<code>length</code>プロパティは文字列におけるCode Unitの要素数を数えるため、<code>&quot;🍎&quot;.length</code>の結果は<code>2</code>となります。</p>
-<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;🍎&quot;</span>.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 2</span>
+<p>たとえば、Stringの<code>length</code>プロパティは文字列におけるCode Unitの要素数を数えるため、<code>"🍎".length</code>の結果は<code>2</code>となります。</p>
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"🍎"</span>.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 2</span>
 </code></pre>
 <p>このような場合には、文字列をCode Pointごとに処理することを考える必要があります。</p>
 <h2 id="handle-code-point"><a name="handle-code-point" class="plugin-anchor" href="#handle-code-point"><i class="fa fa-link" aria-hidden="true"></i></a>Code Pointを扱う </h2>
@@ -1718,18 +1718,18 @@ Code Unitのエスケープシーケンス（<code>\uXXXX</code>）を2つ並べ
 <code>match</code>メソッドの返す値は<code>[マッチした全体の文字列, キャプチャされた文字列]</code>です（詳細は「<a href="../string/">文字列</a>」の章を参照）。</p>
 <p>実際にマッチした結果を見てみると、<code>.</code>は<code>𩸽</code>の下位サロゲートである<code>\ude3d</code>にマッチしていることがわかります（<code>\ude3d</code>は単独では表示できないため、文字化けのように表示されます）。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> [all, fish] = <span class="hljs-string">&quot;𩸽のひらき&quot;</span>.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/(.)のひらき/</span>);
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(all); <span class="hljs-comment">// =&gt; &quot;\ude3dのひらき&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(fish); <span class="hljs-comment">// =&gt; &quot;\ude3d&quot;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> [all, fish] = <span class="hljs-string">"𩸽のひらき"</span>.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/(.)のひらき/</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(all); <span class="hljs-comment">// =&gt; "\ude3dのひらき"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(fish); <span class="hljs-comment">// =&gt; "\ude3d"</span>
 </code></pre>
 <p>つまり、<code>u</code>フラグをつけていない正規表現は、文字列をCode Unitが順番に並んだものとして扱っています。</p>
 <p>このような意図しない結果を避けるには、正規表現に<code>u</code>フラグをつけます。
 <code>u</code>フラグがついた正規表現は、文字列をCode Pointごとに扱います。
 そのため、任意の1文字にマッチする<code>.</code>が<code>𩸽</code>という文字（Code Point）にマッチします。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> [all, fish] = <span class="hljs-string">&quot;𩸽のひらき&quot;</span>.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/(.)のひらき/u</span>);
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(all); <span class="hljs-comment">// =&gt; &quot;𩸽のひらき&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(fish); <span class="hljs-comment">// =&gt; &quot;𩸽&quot;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> [all, fish] = <span class="hljs-string">"𩸽のひらき"</span>.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/(.)のひらき/u</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(all); <span class="hljs-comment">// =&gt; "𩸽のひらき"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(fish); <span class="hljs-comment">// =&gt; "𩸽"</span>
 </code></pre>
 <p>基本的には正規表現に<code>u</code>フラグをつけて問題となるケースは少ないはずです。
 なぜなら、サロゲートペアの片方だけにマッチしたい正規表現を書くケースはまれであるためです。</p>
@@ -1739,9 +1739,9 @@ Code Unitのエスケープシーケンス（<code>\uXXXX</code>）を2つ並べ
 そのためサロゲートペアを含む文字列では、<code>length</code>の結果が見た目より大きな値となる場合があります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// Code Unitの個数を返す</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;🍎&quot;</span>.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 2</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;\uD83C\uDF4E&quot;</span>); <span class="hljs-comment">// =&gt; &quot;🍎&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;\uD83C\uDF4E&quot;</span>.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 2</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"🍎"</span>.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 2</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"\uD83C\uDF4E"</span>); <span class="hljs-comment">// =&gt; "🍎"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"\uD83C\uDF4E"</span>.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 2</span>
 </code></pre>
 <p>JavaScriptには、文字列におけるCode Pointの個数を数えるメソッドは用意されていません。
 これを行うには、文字列をCode Pointごとに区切った配列へ変換して、配列の長さを数えるのが簡潔です。</p>
@@ -1751,8 +1751,8 @@ iterableオブジェクトとは<code>Symbol.iterator</code>という特別な�
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// Code Pointごとの配列にする</span>
 <span class="hljs-comment">// Array.fromメソッドはIteratorを配列にする</span>
-<span class="hljs-keyword">const</span> codePoints = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(<span class="hljs-string">&quot;リンゴ🍎&quot;</span>);
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(codePoints); <span class="hljs-comment">// =&gt; [&quot;リ&quot;, &quot;ン&quot;, &quot;ゴ&quot;, &quot;🍎&quot;]</span>
+<span class="hljs-keyword">const</span> codePoints = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(<span class="hljs-string">"リンゴ🍎"</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(codePoints); <span class="hljs-comment">// =&gt; ["リ", "ン", "ゴ", "🍎"]</span>
 <span class="hljs-comment">// Code Pointの個数を数える</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(codePoints.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 4</span>
 </code></pre>
@@ -1772,7 +1772,7 @@ iterableオブジェクトとは<code>Symbol.iterator</code>という特別な�
         <span class="hljs-keyword">return</span> item === codePoint;
     }).<span class="hljs-property">length</span>;
 }
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">countOfCodePoints</span>(<span class="hljs-string">&quot;🍎🍇🍎🥕🍒&quot;</span>, <span class="hljs-string">&quot;🍎&quot;</span>)); <span class="hljs-comment">// =&gt; 2</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">countOfCodePoints</span>(<span class="hljs-string">"🍎🍇🍎🥕🍒"</span>, <span class="hljs-string">"🍎"</span>)); <span class="hljs-comment">// =&gt; 2</span>
 </code></pre>
 <p><code>for...of</code>による反復処理も文字列をCode Pointごとに扱えます。
 これは、<code>for...of</code>文が対象をIteratorとして列挙するためです。</p>
@@ -1788,7 +1788,7 @@ iterableオブジェクトとは<code>Symbol.iterator</code>という特別な�
     }
     <span class="hljs-keyword">return</span> count;
 }
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">countOfCodePoints</span>(<span class="hljs-string">&quot;🍎🍇🍎🥕🍒&quot;</span>, <span class="hljs-string">&quot;🍎&quot;</span>)); <span class="hljs-comment">// =&gt; 2</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">countOfCodePoints</span>(<span class="hljs-string">"🍎🍇🍎🥕🍒"</span>, <span class="hljs-string">"🍎"</span>)); <span class="hljs-comment">// =&gt; 2</span>
 </code></pre>
 <h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>終わりに </h2>
 <p>この章では、文字列とUnicodeの関係について簡潔に紹介しました。
@@ -1831,7 +1831,7 @@ Unicodeにはこの章で紹介しきれなかった表現もあります。
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptが採用している文字コードであるUnicodeと関連するStringのメソッドについて紹介します。Stringのメソッドや文字列を扱う上で、UTF-16でエンコードされていることを意識する場面について紹介します。","sponsors":[],"title":"文字列とUnicode","level":"1.3.16","depth":2,"next":{"title":"ラッパーオブジェクト","level":"1.3.17","depth":2,"path":"basic/wrapper-object/README.md","ref":"./basic/wrapper-object/README.md","articles":[]},"previous":{"title":"文字列","level":"1.3.15","depth":2,"path":"basic/string/README.md","ref":"./basic/string/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/string-unicode/README.md","mtime":"2024-09-01T11:18:59.585Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-09-01T11:19:15.872Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptが採用している文字コードであるUnicodeと関連するStringのメソッドについて紹介します。Stringのメソッドや文字列を扱う上で、UTF-16でエンコードされていることを意識する場面について紹介します。","sponsors":[],"title":"文字列とUnicode","level":"1.3.16","depth":2,"next":{"title":"ラッパーオブジェクト","level":"1.3.17","depth":2,"path":"basic/wrapper-object/README.md","ref":"./basic/wrapper-object/README.md","articles":[]},"previous":{"title":"文字列","level":"1.3.15","depth":2,"path":"basic/string/README.md","ref":"./basic/string/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/string-unicode/README.md","mtime":"2024-10-03T14:54:01.261Z","type":"markdown"},"gitbook":{"version":"6.0.0","time":"2024-10-03T14:54:19.038Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

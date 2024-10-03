@@ -6,7 +6,7 @@
         <title>演算子 · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptにおける演算子についてを紹介します。演算子は記号で表現されるため、検索しにくいです。この章では主要な演算子をまとめて紹介しています。知らない演算子が出てきたときに読み直せばよいため、すべてを1つずつ読む必要はありません。">
-        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="generator" content="HonKit 6.0.0">
         
         
         
@@ -1604,8 +1604,8 @@ num++;
 <p>数値の加算に利用したプラス演算子（<code>+</code>）は、文字列の結合に利用できます。</p>
 <p>文字列結合演算子（<code>+</code>）は、2つの文字列を結合した文字列を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> value = <span class="hljs-string">&quot;文字列&quot;</span> + <span class="hljs-string">&quot;結合&quot;</span>;
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(value); <span class="hljs-comment">// =&gt; &quot;文字列結合&quot;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> value = <span class="hljs-string">"文字列"</span> + <span class="hljs-string">"結合"</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(value); <span class="hljs-comment">// =&gt; "文字列結合"</span>
 </code></pre>
 <p>つまり、プラス演算子（<code>+</code>）は数値同士と文字列同士の演算をします。</p>
 <h3 id="minus-operator"><a name="minus-operator" class="plugin-anchor" href="#minus-operator"><i class="fa fa-link" aria-hidden="true"></i></a>マイナス演算子（<code>-</code>） </h3>
@@ -1663,20 +1663,20 @@ num++;
 <p>また、単項プラス演算子は、数値以外も数値へと変換します。
 次のコードでは、数字（文字列）を数値へ変換しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(+<span class="hljs-string">&quot;1&quot;</span>); <span class="hljs-comment">// =&gt; 1</span>
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(+<span class="hljs-string">"1"</span>); <span class="hljs-comment">// =&gt; 1</span>
 </code></pre>
 <p>一方、数値に変換できない文字列などは<code>NaN</code>という特殊な値へと変換されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 数値ではない文字列はNaNという値に変換される</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(+<span class="hljs-string">&quot;文字列&quot;</span>); <span class="hljs-comment">// =&gt; NaN</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(+<span class="hljs-string">"文字列"</span>); <span class="hljs-comment">// =&gt; NaN</span>
 </code></pre>
-<p><code>NaN</code>は&quot;Not-a-Number&quot;の略称で、数値ではないがNumber型の値を表現しています。
+<p><code>NaN</code>は"Not-a-Number"の略称で、数値ではないがNumber型の値を表現しています。
 <code>NaN</code>はどの値とも（NaN自身に対しても）一致しない特性があり、<code>Number.isNaN</code>メソッドを使うことで<code>NaN</code>の判定を行えます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 自分自身とも一致しない</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">NaN</span> === <span class="hljs-title class_">NaN</span>); <span class="hljs-comment">// =&gt; false</span>
 <span class="hljs-comment">// Number型である</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-title class_">NaN</span>); <span class="hljs-comment">// =&gt; &quot;number&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">typeof</span> <span class="hljs-title class_">NaN</span>); <span class="hljs-comment">// =&gt; "number"</span>
 <span class="hljs-comment">// Number.isNaNでNaNかどうかを判定</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Number</span>.<span class="hljs-built_in">isNaN</span>(<span class="hljs-title class_">NaN</span>)); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
@@ -1690,18 +1690,18 @@ num++;
 <pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(-<span class="hljs-number">1</span>); <span class="hljs-comment">// =&gt; -1</span>
 </code></pre>
 <p>また、単項マイナス演算子はマイナスの数値を反転できます。
-そのため、&quot;マイナスのマイナスの数値&quot;はプラスの数値となります。</p>
+そのため、"マイナスのマイナスの数値"はプラスの数値となります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(-(-<span class="hljs-number">1</span>)); <span class="hljs-comment">// =&gt; 1</span>
 </code></pre>
 <p>単項マイナス演算子も文字列などを数値へ変換します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(-<span class="hljs-string">&quot;1&quot;</span>); <span class="hljs-comment">// =&gt; -1</span>
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(-<span class="hljs-string">"1"</span>); <span class="hljs-comment">// =&gt; -1</span>
 </code></pre>
 <p>また、数値へ変換できない文字列などをオペランドに指定した場合は、<code>NaN</code>という特殊な値になります。
 そのため、単項プラス演算子と同じく、文字列から数値への変換に単項マイナス演算子を使うべきではありません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(-<span class="hljs-string">&quot;文字列&quot;</span>); <span class="hljs-comment">// =&gt; NaN</span>
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(-<span class="hljs-string">"文字列"</span>); <span class="hljs-comment">// =&gt; NaN</span>
 </code></pre>
 <h3 id="increment-operator"><a name="increment-operator" class="plugin-anchor" href="#increment-operator"><i class="fa fa-link" aria-hidden="true"></i></a>インクリメント演算子（<code>++</code>） </h3>
 <p>インクリメント演算子（<code>++</code>）は、オペランドの数値を<code>+1</code>する演算子です。
@@ -1766,7 +1766,7 @@ num--;
 同じ型で同じ値である場合に、<code>true</code>を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span> === <span class="hljs-number">1</span>); <span class="hljs-comment">// =&gt; true</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span> === <span class="hljs-string">&quot;1&quot;</span>); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span> === <span class="hljs-string">"1"</span>); <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
 <p>また、オペランドがどちらもオブジェクトであるときは、
 オブジェクトの参照が同じである場合に、<code>true</code>を返します。</p>
@@ -1787,7 +1787,7 @@ num--;
 異なる型または異なる値である場合に、<code>true</code>を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span> !== <span class="hljs-number">1</span>); <span class="hljs-comment">// =&gt; false</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span> !== <span class="hljs-string">&quot;1&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span> !== <span class="hljs-string">"1"</span>); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <p><code>===</code>を反転した結果を返す演算子となります。</p>
 <h3 id="equal-operator"><a name="equal-operator" class="plugin-anchor" href="#equal-operator"><i class="fa fa-link" aria-hidden="true"></i></a>等価演算子（<code>==</code>）</h3>
@@ -1795,8 +1795,8 @@ num--;
 同じデータ型のオペランドを比較する場合は、厳密等価演算子（<code>===</code>）と同じ結果になります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span> == <span class="hljs-number">1</span>); <span class="hljs-comment">// =&gt; true</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;str&quot;</span> == <span class="hljs-string">&quot;str&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;JavaScript&quot;</span> == <span class="hljs-string">&quot;ECMAScript&quot;</span>); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"str"</span> == <span class="hljs-string">"str"</span>); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"JavaScript"</span> == <span class="hljs-string">"ECMAScript"</span>); <span class="hljs-comment">// =&gt; false</span>
 <span class="hljs-comment">// オブジェクトは参照が一致しているならtrueを返す</span>
 <span class="hljs-comment">// {} は新しいオブジェクトを作成している</span>
 <span class="hljs-keyword">const</span> objA = {};
@@ -1809,9 +1809,9 @@ num--;
 <p>そのため、次のような、見た目からは結果を予測できない挙動が多く存在します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 文字列を数値に変換してから比較</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span> == <span class="hljs-string">&quot;1&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
-<span class="hljs-comment">// &quot;01&quot;を数値にすると`1`となる</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span> == <span class="hljs-string">&quot;01&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span> == <span class="hljs-string">"1"</span>); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-comment">// "01"を数値にすると`1`となる</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span> == <span class="hljs-string">"01"</span>); <span class="hljs-comment">// =&gt; true</span>
 <span class="hljs-comment">// 真偽値を数値に変換してから比較</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">0</span> == <span class="hljs-literal">false</span>); <span class="hljs-comment">// =&gt; true</span>
 <span class="hljs-comment">// nullの比較はfalseを返す</span>
@@ -1829,11 +1829,11 @@ num--;
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> value = <span class="hljs-literal">undefined</span>; <span class="hljs-comment">/* または null */</span>
 <span class="hljs-comment">// === では2つの値と比較しないといけない</span>
 <span class="hljs-keyword">if</span> (value === <span class="hljs-literal">null</span> || value === <span class="hljs-literal">undefined</span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;valueがnullまたはundefinedである場合の処理&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"valueがnullまたはundefinedである場合の処理"</span>);
 }
 <span class="hljs-comment">// == では null と比較するだけでよい</span>
 <span class="hljs-keyword">if</span> (value == <span class="hljs-literal">null</span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;valueがnullまたはundefinedである場合の処理&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"valueがnullまたはundefinedである場合の処理"</span>);
 }
 </code></pre>
 <p>このように等価演算子（<code>==</code>）を使う例外的なケースはありますが、
@@ -1843,8 +1843,8 @@ num--;
 <p>不等価演算子（<code>!=</code>）は、2つのオペランドを比較し、等しくないなら<code>true</code>を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span> != <span class="hljs-number">1</span>); <span class="hljs-comment">// =&gt; false</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;str&quot;</span> != <span class="hljs-string">&quot;str&quot;</span>); <span class="hljs-comment">// =&gt; false</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;JavaScript&quot;</span> != <span class="hljs-string">&quot;ECMAScript&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"str"</span> != <span class="hljs-string">"str"</span>); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"JavaScript"</span> != <span class="hljs-string">"ECMAScript"</span>); <span class="hljs-comment">// =&gt; true</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">true</span> != <span class="hljs-literal">true</span>);<span class="hljs-comment">// =&gt; false</span>
 <span class="hljs-comment">// オブジェクトは参照が一致していないならtrueを返す</span>
 <span class="hljs-keyword">const</span> objA = {};
@@ -1854,7 +1854,7 @@ num--;
 </code></pre>
 <p>不等価演算子も、等価演算子（<code>==</code>）と同様に異なる型のオペランドを比較する際に、暗黙的な型変換をしてから比較します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span> != <span class="hljs-string">&quot;1&quot;</span>); <span class="hljs-comment">// =&gt; false</span>
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span> != <span class="hljs-string">"1"</span>); <span class="hljs-comment">// =&gt; false</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">0</span> != <span class="hljs-literal">false</span>); <span class="hljs-comment">// =&gt; false</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">0</span> != <span class="hljs-literal">null</span>); <span class="hljs-comment">// =&gt; true</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">null</span> != <span class="hljs-literal">undefined</span>); <span class="hljs-comment">// =&gt; false</span>
@@ -1892,7 +1892,7 @@ num--;
 <p>たとえば、<code>1</code>という数値は符号付き32ビット整数のビットでは、<code>00000000000000000000000000000001</code> として表現されます。
 わかりやすく4ビットごとに区切ると <code>0000_0000_0000_0000_0000_0000_0000_0001</code> のような32ビットの集合となります。
 符号付き32ビット整数では、先頭の最上位ビット（一番左のビット）は符号を表し、<code>0</code>の場合は正の値、<code>1</code>の場合は負の値であることを示しています。</p>
-<p><img src="img/0000_0000_0000_0000_0000_0000_0000_0001.png" alt="1の符号付き32bit整数での表現"></p>
+<p><img src="img/0000_0000_0000_0000_0000_0000_0000_0001.png" alt="1の符号付き32bit整数での表現"></img></p>
 <p>符号付き32ビット整数では負の数値は、2の補数形式という形式で表現されます。
 2の補数とは、それぞれのビットを反転して1ビットを足した値となります。</p>
 <p>たとえば、<code>-1</code> という数値の符号付き32ビット整数は、次のように2の補数で求められます。</p>
@@ -1902,7 +1902,7 @@ num--;
 <li>これに1ビットを足すと <code>1111_1111_1111_1111_1111_1111_1111_1111</code> となる</li>
 </ul>
 <p>これによって、<code>-1</code>の符号付き32ビット整数は <code>1111_1111_1111_1111_1111_1111_1111_1111</code> となります。</p>
-<p><img src="img/1111_1111_1111_1111_1111_1111_1111_1111.png" alt="-1の符号付き32ビット整数での表現"></p>
+<p><img src="img/1111_1111_1111_1111_1111_1111_1111_1111.png" alt="-1の符号付き32ビット整数での表現"></img></p>
 <!-- textlint-disable ja-technical-writing/sentence-length -->
 <p>符号付き32ビット整数で表現できる数値の範囲は、<code>1000_0000_0000_0000_0000_0000_0000_0000</code>から<code>0111_1111_1111_1111_1111_1111_1111_1111</code>までとなります。
 10進数に直すと<code>-(2^31)</code>（2の31乗の負の数）から <code>(2^31) - 1</code>（2の31乗から1引いた数）までとなります。
@@ -1963,12 +1963,12 @@ XOR演算では、オペランドのビットが異なるなら<code>1</code>、
 <p>文字列（Stringオブジェクト）が持つ<code>indexOf</code>メソッドは、マッチする文字列を見つけて、そのインデックス（位置）を返すメソッドです。
 この<code>indexOf</code>メソッドは、検索対象が見つからない場合には<code>-1</code>を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;森森本森森&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">"森森本森森"</span>;
 <span class="hljs-comment">// 見つかった場合はインデックスを返す</span>
 <span class="hljs-comment">// JavaScriptのインデックスは0から開始するので2を返す</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">&quot;本&quot;</span>)); <span class="hljs-comment">// =&gt; 2</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">"本"</span>)); <span class="hljs-comment">// =&gt; 2</span>
 <span class="hljs-comment">// 見つからない場合は-1を返す</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">&quot;火&quot;</span>)); <span class="hljs-comment">// =&gt; -1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">"火"</span>)); <span class="hljs-comment">// =&gt; -1</span>
 </code></pre>
 <p>否定演算子（<code>~</code>）は1の補数を返すため、<code>~(-1)</code>は<code>0</code>となります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -1979,23 +1979,23 @@ XOR演算では、オペランドのビットが異なるなら<code>1</code>、
 そのため、<code>~indexOfの結果</code>が<code>0</code>となるのは、その文字列が見つからなかった場合だけとなります。
 次のコードのように否定演算子（<code>~</code>）と<code>indexOf</code>メソッドを使ったイディオムが一部では使われていました。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;森森木森森&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">"森森木森森"</span>;
 <span class="hljs-comment">// indexOfメソッドは見つからなかった場合は -1 を返す</span>
-<span class="hljs-keyword">if</span> (str.<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">&quot;木&quot;</span>) !== -<span class="hljs-number">1</span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;木を見つけました&quot;</span>);
+<span class="hljs-keyword">if</span> (str.<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">"木"</span>) !== -<span class="hljs-number">1</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"木を見つけました"</span>);
 }
 <span class="hljs-comment">// 否定演算子（`~`）で同じ動作を実装</span>
 <span class="hljs-comment">// (~(-1)) は 0 となるため、見つからなかった場合はif文の中身は実行されない</span>
-<span class="hljs-keyword">if</span> (~str.<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">&quot;木&quot;</span>)) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;木を見つけました&quot;</span>);
+<span class="hljs-keyword">if</span> (~str.<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">"木"</span>)) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"木を見つけました"</span>);
 }
 </code></pre>
 <p>ES2015では、文字列（Stringオブジェクト）に<code>includes</code>メソッドが実装されました。
 <code>includes</code>メソッドは指定した文字列が含まれているかを真偽値で返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;森森木森森&quot;</span>;
-<span class="hljs-keyword">if</span> (str.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&quot;木&quot;</span>)) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;木を見つけました&quot;</span>);
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">"森森木森森"</span>;
+<span class="hljs-keyword">if</span> (str.<span class="hljs-title function_">includes</span>(<span class="hljs-string">"木"</span>)) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"木を見つけました"</span>);
 }
 </code></pre>
 <p>そのため、否定演算子（<code>~</code>）と<code>indexOf</code>メソッドを使ったイディオムは、<code>includes</code>メソッドに置き換えられます。</p>
@@ -2071,15 +2071,15 @@ num += <span class="hljs-number">10</span>; <span class="hljs-comment">// num = 
 オブジェクトの場合は、右辺のオブジェクトのプロパティ値を、左辺に対応するプロパティ名へ代入します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = {
-    <span class="hljs-string">&quot;key&quot;</span>: <span class="hljs-string">&quot;value&quot;</span>
+    <span class="hljs-string">"key"</span>: <span class="hljs-string">"value"</span>
 };
 <span class="hljs-comment">// プロパティ名`key`の値を、変数`key`として定義する</span>
 <span class="hljs-keyword">const</span> { key } = obj;
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(key); <span class="hljs-comment">// =&gt; &quot;value&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(key); <span class="hljs-comment">// =&gt; "value"</span>
 </code></pre>
 <p>これは、次のように書いたのと同じ結果になります。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = {
-    <span class="hljs-string">&quot;key&quot;</span>: <span class="hljs-string">&quot;value&quot;</span>
+    <span class="hljs-string">"key"</span>: <span class="hljs-string">"value"</span>
 };
 <span class="hljs-keyword">const</span> key = obj.<span class="hljs-property">key</span>;
 </code></pre>
@@ -2090,18 +2090,18 @@ num += <span class="hljs-number">10</span>; <span class="hljs-comment">// num = 
 一方で、左辺の値の評価結果が<code>false</code>ならば、そのまま左辺の値を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 左辺はtrueであるため、右辺の評価結果を返す</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">true</span> &amp;&amp; <span class="hljs-string">&quot;右辺の値&quot;</span>); <span class="hljs-comment">// =&gt; &quot;右辺の値&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">true</span> &amp;&amp; <span class="hljs-string">"右辺の値"</span>); <span class="hljs-comment">// =&gt; "右辺の値"</span>
 <span class="hljs-comment">// 左辺がfalseであるなら、その時点でfalseを返す</span>
 <span class="hljs-comment">// 右辺は評価されない</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">false</span> &amp;&amp; <span class="hljs-string">&quot;右辺の値&quot;</span>); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">false</span> &amp;&amp; <span class="hljs-string">"右辺の値"</span>); <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
 <p>AND演算子（<code>&amp;&amp;</code>）は、左辺の評価が<code>false</code>の場合、オペランドの右辺は評価されません。
 次のように、左辺が<code>false</code>の場合は、右辺に書いた<code>console.log</code>関数自体が実行されません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 左辺がtrueなので、右辺は評価される</span>
-<span class="hljs-literal">true</span> &amp;&amp; <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;このコンソールログは実行されます&quot;</span>);
+<span class="hljs-literal">true</span> &amp;&amp; <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"このコンソールログは実行されます"</span>);
 <span class="hljs-comment">// 左辺がfalseなので、右辺は評価されない</span>
-<span class="hljs-literal">false</span> &amp;&amp; <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;このコンソールログは実行されません&quot;</span>);
+<span class="hljs-literal">false</span> &amp;&amp; <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"このコンソールログは実行されません"</span>);
 </code></pre>
 <p>このような値が決まった時点でそれ以上評価しないことを<strong>短絡評価</strong>と呼びます。</p>
 <p>また、AND演算子は左辺を評価する際に、左辺を真偽値へと<a href="../implicit-coercion/" title="暗黙的な型変換について解説する章">暗黙的な型変換</a>をしてから判定します。
@@ -2113,7 +2113,7 @@ num += <span class="hljs-number">10</span>; <span class="hljs-comment">// num = 
 <li><code>0</code></li>
 <li><code>0n</code></li>
 <li><code>NaN</code></li>
-<li><code>&quot;&quot;</code>（空文字列）</li>
+<li><code>""</code>（空文字列）</li>
 </ul>
 <p>暗黙的な型変換によって<code>false</code>に変換されるこれらの値をまとめて<strong>falsy</strong>な値と呼びます。
 falsyではない値は、<code>true</code>へと変換されます。
@@ -2123,23 +2123,23 @@ falsyではない値は、<code>true</code>へと変換されます。
 つまり、左辺がfalsyの場合は、右辺は評価されません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 左辺はfalsyではないため、評価結果として右辺を返す</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;文字列&quot;</span> &amp;&amp; <span class="hljs-string">&quot;右辺の値&quot;</span>); <span class="hljs-comment">// =&gt; &quot;右辺の値&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">42</span> &amp;&amp; <span class="hljs-string">&quot;右辺の値&quot;</span>); <span class="hljs-comment">// =&gt; &quot;右辺の値&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"文字列"</span> &amp;&amp; <span class="hljs-string">"右辺の値"</span>); <span class="hljs-comment">// =&gt; "右辺の値"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">42</span> &amp;&amp; <span class="hljs-string">"右辺の値"</span>); <span class="hljs-comment">// =&gt; "右辺の値"</span>
 <span class="hljs-comment">// 左辺がfalsyであるため、評価結果として左辺を返す</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;&quot;</span> &amp;&amp; <span class="hljs-string">&quot;右辺の値&quot;</span>); <span class="hljs-comment">// =&gt; &quot;&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">0</span> &amp;&amp; <span class="hljs-string">&quot;右辺の値&quot;</span>); <span class="hljs-comment">// =&gt; 0</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-string">&quot;右辺の値&quot;</span>); <span class="hljs-comment">// =&gt; null</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">""</span> &amp;&amp; <span class="hljs-string">"右辺の値"</span>); <span class="hljs-comment">// =&gt; ""</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">0</span> &amp;&amp; <span class="hljs-string">"右辺の値"</span>); <span class="hljs-comment">// =&gt; 0</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-string">"右辺の値"</span>); <span class="hljs-comment">// =&gt; null</span>
 </code></pre>
 <p>AND演算子は、if文と組み合わせて利用することが多い演算子です。</p>
-<p>次のように、<code>value</code>がString型で <strong>かつ</strong> 値が<code>&quot;str&quot;</code>である場合という条件をひとつの式として書くことができます。</p>
+<p>次のように、<code>value</code>がString型で <strong>かつ</strong> 値が<code>"str"</code>である場合という条件をひとつの式として書くことができます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> value = <span class="hljs-string">&quot;str&quot;</span>;
-<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> value === <span class="hljs-string">&quot;string&quot;</span> &amp;&amp; value === <span class="hljs-string">&quot;str&quot;</span>) {
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> value = <span class="hljs-string">"str"</span>;
+<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> value === <span class="hljs-string">"string"</span> &amp;&amp; value === <span class="hljs-string">"str"</span>) {
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">${value}</span> is string value`</span>);
 }
 <span class="hljs-comment">// if文のネストで書いた場合と結果は同じとなる</span>
-<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> value === <span class="hljs-string">&quot;string&quot;</span>) {
-    <span class="hljs-keyword">if</span> (value === <span class="hljs-string">&quot;str&quot;</span>) {
+<span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> value === <span class="hljs-string">"string"</span>) {
+    <span class="hljs-keyword">if</span> (value === <span class="hljs-string">"str"</span>) {
         <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`<span class="hljs-subst">${value}</span> is string value`</span>);
     }
 }
@@ -2155,35 +2155,35 @@ AND演算子やOR演算子が3つ4つ連続すると複雑で読みにくいコ�
 一方で、左辺の値の評価結果が<code>false</code>であるならば、右辺の評価結果を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 左辺がtrueなので、左辺の値が返される</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">true</span> || <span class="hljs-string">&quot;右辺の値&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">true</span> || <span class="hljs-string">"右辺の値"</span>); <span class="hljs-comment">// =&gt; true</span>
 <span class="hljs-comment">// 左辺がfalseなので、右辺の値が返される</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">false</span> || <span class="hljs-string">&quot;右辺の値&quot;</span>); <span class="hljs-comment">// =&gt; &quot;右辺の値&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">false</span> || <span class="hljs-string">"右辺の値"</span>); <span class="hljs-comment">// =&gt; "右辺の値"</span>
 </code></pre>
 <p>OR演算子（<code>||</code>）は、左辺の評価が<code>true</code>の場合、オペランドの右辺を評価しません。
 これは、AND演算子（<code>&amp;&amp;</code>）と同様の短絡評価となるためです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 左辺がtrueなので、右辺は評価されない</span>
-<span class="hljs-literal">true</span> || <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;このコンソールログは実行されません&quot;</span>);
+<span class="hljs-literal">true</span> || <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"このコンソールログは実行されません"</span>);
 <span class="hljs-comment">// 左辺がfalseなので、右辺は評価される</span>
-<span class="hljs-literal">false</span> || <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;このコンソールログは実行されます&quot;</span>);
+<span class="hljs-literal">false</span> || <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"このコンソールログは実行されます"</span>);
 </code></pre>
 <p>また、OR演算子は左辺を評価する際に、左辺を真偽値へと暗黙的な型変換をします。
 次のように、OR演算子は左辺がfalsyの場合には右辺の値を返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 左辺がfalsyなので、右辺の値が返される</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">0</span> || <span class="hljs-string">&quot;左辺はfalsy&quot;</span>); <span class="hljs-comment">// =&gt; &quot;左辺はfalsy&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;&quot;</span> || <span class="hljs-string">&quot;左辺はfalsy&quot;</span>); <span class="hljs-comment">// =&gt; &quot;左辺はfalsy&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">null</span> || <span class="hljs-string">&quot;左辺はfalsy&quot;</span>); <span class="hljs-comment">// =&gt; &quot;左辺はfalsy&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">0</span> || <span class="hljs-string">"左辺はfalsy"</span>); <span class="hljs-comment">// =&gt; "左辺はfalsy"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">""</span> || <span class="hljs-string">"左辺はfalsy"</span>); <span class="hljs-comment">// =&gt; "左辺はfalsy"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">null</span> || <span class="hljs-string">"左辺はfalsy"</span>); <span class="hljs-comment">// =&gt; "左辺はfalsy"</span>
 <span class="hljs-comment">// 左辺はfalsyではないため、左辺の値が返される</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">42</span> || <span class="hljs-string">&quot;右辺の値&quot;</span>); <span class="hljs-comment">// =&gt; 42</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;文字列&quot;</span> || <span class="hljs-string">&quot;右辺の値&quot;</span>); <span class="hljs-comment">// =&gt; &quot;文字列&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">42</span> || <span class="hljs-string">"右辺の値"</span>); <span class="hljs-comment">// =&gt; 42</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"文字列"</span> || <span class="hljs-string">"右辺の値"</span>); <span class="hljs-comment">// =&gt; "文字列"</span>
 </code></pre>
 <p>OR演算子は、if文と組み合わせて利用することが多い演算子です。</p>
 <p>次のように、<code>value</code>が<code>0</code><strong>または</strong><code>1</code>の場合にif文の中身が実行されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> value = <span class="hljs-number">1</span>;
 <span class="hljs-keyword">if</span> (value === <span class="hljs-number">0</span> || value === <span class="hljs-number">1</span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;valueは0または1です。&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"valueは0または1です。"</span>);
 }
 </code></pre>
 <h3 id="not-operator"><a name="not-operator" class="plugin-anchor" href="#not-operator"><i class="fa fa-link" aria-hidden="true"></i></a>NOT演算子（<code>!</code>） </h3>
@@ -2199,23 +2199,23 @@ falsyである値は<code>true</code>へ変換され、falsyではない値は<c
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// falsyな値は`true`となる</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(!<span class="hljs-number">0</span>); <span class="hljs-comment">// =&gt; true</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(!<span class="hljs-string">&quot;&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(!<span class="hljs-string">""</span>); <span class="hljs-comment">// =&gt; true</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(!<span class="hljs-literal">null</span>); <span class="hljs-comment">// =&gt; true</span>
 <span class="hljs-comment">// falsyではない値は`false`となる</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(!<span class="hljs-number">42</span>);  <span class="hljs-comment">// =&gt; false</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(!<span class="hljs-string">&quot;文字列&quot;</span>);  <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(!<span class="hljs-string">"文字列"</span>);  <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
 <p>NOT演算子は必ず真偽値を返すため、次のように2つNOT演算子を重ねて真偽値へ変換するという使い方も見かけます。
 たとえば、<code>!!falsyな値</code>のように2度反転すれば<code>false</code>になります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">""</span>;
 <span class="hljs-comment">// 空文字列はfalsyであるため、true -&gt; falseへと変換される</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(!!str); <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
 <p>このようなケースの多くは、比較演算子を使うなどより明示的な方法で、真偽値を得ることができます。
 安易に<code>!!</code>による変換に頼るよりは別の方法を探してみるのがいいでしょう。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> str = <span class="hljs-string">""</span>;
 <span class="hljs-comment">// 空文字列(長さが0より大きな文字列)でないことを判定</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(str.<span class="hljs-property">length</span> &gt; <span class="hljs-number">0</span>); <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
@@ -2225,13 +2225,13 @@ falsyである値は<code>true</code>へ変換され、falsyではない値は<c
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:meta:{ "ECMAScript": 2020 } --></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 左辺がnullishであるため、右辺の値の評価結果を返す</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">null</span> ?? <span class="hljs-string">&quot;右辺の値&quot;</span>); <span class="hljs-comment">// =&gt; &quot;右辺の値&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">undefined</span> ?? <span class="hljs-string">&quot;右辺の値&quot;</span>); <span class="hljs-comment">// =&gt; &quot;右辺の値&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">null</span> ?? <span class="hljs-string">"右辺の値"</span>); <span class="hljs-comment">// =&gt; "右辺の値"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">undefined</span> ?? <span class="hljs-string">"右辺の値"</span>); <span class="hljs-comment">// =&gt; "右辺の値"</span>
 <span class="hljs-comment">// 左辺がnullishではないため、左辺の値の評価結果を返す</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">true</span> ?? <span class="hljs-string">&quot;右辺の値&quot;</span>); <span class="hljs-comment">// =&gt; true</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">false</span> ?? <span class="hljs-string">&quot;右辺の値&quot;</span>); <span class="hljs-comment">// =&gt; false</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">0</span> ?? <span class="hljs-string">&quot;右辺の値&quot;</span>); <span class="hljs-comment">// =&gt; 0</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;文字列&quot;</span> ?? <span class="hljs-string">&quot;右辺の値&quot;</span>); <span class="hljs-comment">// =&gt; &quot;文字列&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">true</span> ?? <span class="hljs-string">"右辺の値"</span>); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-literal">false</span> ?? <span class="hljs-string">"右辺の値"</span>); <span class="hljs-comment">// =&gt; false</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">0</span> ?? <span class="hljs-string">"右辺の値"</span>); <span class="hljs-comment">// =&gt; 0</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"文字列"</span> ?? <span class="hljs-string">"右辺の値"</span>); <span class="hljs-comment">// =&gt; "文字列"</span>
 </code></pre>
 <p>Nullish coalescing演算子(<code>??</code>)とOR演算子（<code>||</code>）は、値のデフォルト値を指定する場合によく利用されています。
 OR演算子（<code>||</code>）は左辺がfalsyの場合に右辺を評価するため、意図しない結果となる場合があります。</p>
@@ -2264,12 +2264,12 @@ OR演算子（<code>||</code>）は左辺がfalsyの場合に右辺を評価す�
 <pre><code class="lang-js">条件式 ? <span class="hljs-title class_">True</span>のとき処理する式 : <span class="hljs-title class_">False</span>のとき処理する式;
 </code></pre>
 <p>if文との違いは、条件演算子は式として書くことができるため値を返すという点です。
-たとえば、次のように<code>条件式</code>の評価結果により<code>&quot;A&quot;</code> または <code>&quot;B&quot;</code> どちらかを返します。</p>
+たとえば、次のように<code>条件式</code>の評価結果により<code>"A"</code> または <code>"B"</code> どちらかを返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> valueA = <span class="hljs-literal">true</span> ? <span class="hljs-string">&quot;A&quot;</span> : <span class="hljs-string">&quot;B&quot;</span>;
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(valueA); <span class="hljs-comment">// =&gt; &quot;A&quot;</span>
-<span class="hljs-keyword">const</span> valueB = <span class="hljs-literal">false</span> ? <span class="hljs-string">&quot;A&quot;</span> : <span class="hljs-string">&quot;B&quot;</span>;
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(valueB); <span class="hljs-comment">// =&gt; &quot;B&quot;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> valueA = <span class="hljs-literal">true</span> ? <span class="hljs-string">"A"</span> : <span class="hljs-string">"B"</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(valueA); <span class="hljs-comment">// =&gt; "A"</span>
+<span class="hljs-keyword">const</span> valueB = <span class="hljs-literal">false</span> ? <span class="hljs-string">"A"</span> : <span class="hljs-string">"B"</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(valueB); <span class="hljs-comment">// =&gt; "B"</span>
 </code></pre>
 <p>条件分岐による値を返せるため、条件によって変数の初期値が違う場合などに使われます。</p>
 <p>次の例では、<code>text</code>文字列に<code>prefix</code>となる文字列を先頭につける関数を書いています。
@@ -2278,26 +2278,26 @@ OR演算子（<code>||</code>）は左辺がfalsyの場合に右辺を評価す�
 <p>条件演算子の評価結果は値を返すので、<code>const</code>を使って宣言と同時に代入できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">addPrefix</span>(<span class="hljs-params">text, prefix</span>) {
-    <span class="hljs-comment">// `prefix`が指定されていない場合は&quot;デフォルト:&quot;を付ける</span>
-    <span class="hljs-keyword">const</span> pre = <span class="hljs-keyword">typeof</span> prefix === <span class="hljs-string">&quot;string&quot;</span> ? prefix : <span class="hljs-string">&quot;デフォルト:&quot;</span>;
+    <span class="hljs-comment">// `prefix`が指定されていない場合は"デフォルト:"を付ける</span>
+    <span class="hljs-keyword">const</span> pre = <span class="hljs-keyword">typeof</span> prefix === <span class="hljs-string">"string"</span> ? prefix : <span class="hljs-string">"デフォルト:"</span>;
     <span class="hljs-keyword">return</span> pre + text;
 }
 
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">addPrefix</span>(<span class="hljs-string">&quot;文字列&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;デフォルト:文字列&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">addPrefix</span>(<span class="hljs-string">&quot;文字列&quot;</span>, <span class="hljs-string">&quot;カスタム:&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;カスタム:文字列&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">addPrefix</span>(<span class="hljs-string">"文字列"</span>)); <span class="hljs-comment">// =&gt; "デフォルト:文字列"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">addPrefix</span>(<span class="hljs-string">"文字列"</span>, <span class="hljs-string">"カスタム:"</span>)); <span class="hljs-comment">// =&gt; "カスタム:文字列"</span>
 </code></pre>
 <p>if文を使った場合は、宣言と代入を分ける必要があるため、<code>const</code>を使うことができません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">addPrefix</span>(<span class="hljs-params">text, prefix</span>) {
-    <span class="hljs-keyword">let</span> pre = <span class="hljs-string">&quot;デフォルト:&quot;</span>;
-    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> prefix === <span class="hljs-string">&quot;string&quot;</span>) {
+    <span class="hljs-keyword">let</span> pre = <span class="hljs-string">"デフォルト:"</span>;
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> prefix === <span class="hljs-string">"string"</span>) {
         pre = prefix;
     }
     <span class="hljs-keyword">return</span> pre + text;
 }
 
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">addPrefix</span>(<span class="hljs-string">&quot;文字列&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;デフォルト:文字列&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">addPrefix</span>(<span class="hljs-string">&quot;文字列&quot;</span>, <span class="hljs-string">&quot;カスタム:&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;カスタム:文字列&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">addPrefix</span>(<span class="hljs-string">"文字列"</span>)); <span class="hljs-comment">// =&gt; "デフォルト:文字列"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">addPrefix</span>(<span class="hljs-string">"文字列"</span>, <span class="hljs-string">"カスタム:"</span>)); <span class="hljs-comment">// =&gt; "カスタム:文字列"</span>
 </code></pre>
 <h2 id="group-operator"><a name="group-operator" class="plugin-anchor" href="#group-operator"><i class="fa fa-link" aria-hidden="true"></i></a>グループ化演算子（<code>(</code>と<code>)</code>） </h2>
 <p>グループ化演算子は複数の二項演算子が組み合わさった場合に、演算子の優先順位を明示できる演算子です。</p>
@@ -2331,15 +2331,15 @@ OR演算子（<code>||</code>）は左辺がfalsyの場合に右辺を評価す�
 <p>次のように<code>a</code>と<code>b</code>が文字列型 または <code>x</code>と<code>y</code>が数値型の場合に処理するif文を考えてみます。
 グループ化演算子を使い、そのまま1つの条件式で書くことも可能ですが、読みにくくなってしまいます。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-keyword">if</span> ((<span class="hljs-keyword">typeof</span> a === <span class="hljs-string">&quot;string&quot;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> b === <span class="hljs-string">&quot;string&quot;</span>) || (<span class="hljs-keyword">typeof</span> x === <span class="hljs-string">&quot;number&quot;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> y === <span class="hljs-string">&quot;number&quot;</span>)) {
+<pre><code class="lang-js"><span class="hljs-keyword">if</span> ((<span class="hljs-keyword">typeof</span> a === <span class="hljs-string">"string"</span> &amp;&amp; <span class="hljs-keyword">typeof</span> b === <span class="hljs-string">"string"</span>) || (<span class="hljs-keyword">typeof</span> x === <span class="hljs-string">"number"</span> &amp;&amp; <span class="hljs-keyword">typeof</span> y === <span class="hljs-string">"number"</span>)) {
     <span class="hljs-comment">// `a`と`b`が文字列型 または</span>
     <span class="hljs-comment">// `x`と`y`が数値型</span>
 }
 </code></pre>
 <p>このように無理して1つの式（1行）で書くよりも、条件式を分解してそれぞれの結果を変数として定義したほうが読みやすくなる場合もあります。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> isAbString = <span class="hljs-keyword">typeof</span> a === <span class="hljs-string">&quot;string&quot;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> b === <span class="hljs-string">&quot;string&quot;</span>;
-<span class="hljs-keyword">const</span> isXyNumber = <span class="hljs-keyword">typeof</span> x === <span class="hljs-string">&quot;number&quot;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> y === <span class="hljs-string">&quot;number&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> isAbString = <span class="hljs-keyword">typeof</span> a === <span class="hljs-string">"string"</span> &amp;&amp; <span class="hljs-keyword">typeof</span> b === <span class="hljs-string">"string"</span>;
+<span class="hljs-keyword">const</span> isXyNumber = <span class="hljs-keyword">typeof</span> x === <span class="hljs-string">"number"</span> &amp;&amp; <span class="hljs-keyword">typeof</span> y === <span class="hljs-string">"number"</span>;
 <span class="hljs-keyword">if</span> (isAbString || isXyNumber) {
     <span class="hljs-comment">// `a`と`b`が文字列型 または</span>
     <span class="hljs-comment">// `x`と`y`が数値型</span>
@@ -2401,7 +2401,7 @@ OR演算子（<code>||</code>）は左辺がfalsyの場合に右辺を評価す�
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおける演算子についてを紹介します。演算子は記号で表現されるため、検索しにくいです。この章では主要な演算子をまとめて紹介しています。知らない演算子が出てきたときに読み直せばよいため、すべてを1つずつ読む必要はありません。","sponsors":[],"title":"演算子","level":"1.3.6","depth":2,"next":{"title":"暗黙的な型変換","level":"1.3.7","depth":2,"path":"basic/implicit-coercion/README.md","ref":"./basic/implicit-coercion/README.md","articles":[]},"previous":{"title":"データ型とリテラル","level":"1.3.5","depth":2,"path":"basic/data-type/README.md","ref":"./basic/data-type/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/operator/README.md","mtime":"2024-09-01T11:18:59.581Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-09-01T11:19:15.872Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおける演算子についてを紹介します。演算子は記号で表現されるため、検索しにくいです。この章では主要な演算子をまとめて紹介しています。知らない演算子が出てきたときに読み直せばよいため、すべてを1つずつ読む必要はありません。","sponsors":[],"title":"演算子","level":"1.3.6","depth":2,"next":{"title":"暗黙的な型変換","level":"1.3.7","depth":2,"path":"basic/implicit-coercion/README.md","ref":"./basic/implicit-coercion/README.md","articles":[]},"previous":{"title":"データ型とリテラル","level":"1.3.5","depth":2,"path":"basic/data-type/README.md","ref":"./basic/data-type/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/operator/README.md","mtime":"2024-10-03T14:54:01.258Z","type":"markdown"},"gitbook":{"version":"6.0.0","time":"2024-10-03T14:54:19.038Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

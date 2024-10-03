@@ -6,7 +6,7 @@
         <title>Node.jsでHello World · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="Hello Worldアプリケーションを通じてNode.jsのCLIアプリケーションの基本を学びます。">
-        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="generator" content="HonKit 6.0.0">
         
         
         
@@ -1570,18 +1570,18 @@
 <p>またこのプロジェクトで作成するファイルは、必ず文字コード（エンコーディング）を<strong>UTF-8</strong>、改行コードを<strong>LF</strong>にしてファイルを保存します。</p>
 <h2 id="hello-world"><a name="hello-world" class="plugin-anchor" href="#hello-world"><i class="fa fa-link" aria-hidden="true"></i></a>Hello World </h2>
 <p>まずはNode.jsでHello Worldアプリケーションを作ってみましょう。
-具体的には、実行すると標準出力に<code>&quot;Hello World!&quot;</code>という文字列を表示するCLIアプリケーションを記述します。
+具体的には、実行すると標準出力に<code>"Hello World!"</code>という文字列を表示するCLIアプリケーションを記述します。
 はじめに用意するのは、アプリケーションのエントリーポイントとなるJavaScriptファイルです。
 <code>nodecli</code>ディレクトリに<code>main.js</code>という名前でファイルを作成し、次のように記述します。</p>
 <div class="code-filename-block">
     <p class="code-filename">main.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Hello World!&quot;</span>);
+<pre><code class="lang-javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"Hello World!"</span>);
 </code></pre>
 <p>ウェブブラウザの実行環境では、<code>console.log</code>メソッドの出力先はブラウザの開発者ツールのコンソールでした。
 Node.js環境では、<code>console.log</code>メソッドの出力先は標準出力になります。
-このコードは、標準出力に<code>&quot;Hello World!&quot;</code>という文字列を出力するものです。</p>
+このコードは、標準出力に<code>"Hello World!"</code>という文字列を出力するものです。</p>
 <p>JavaScriptのコードをNode.jsで実行するには、<code>node</code>コマンドを使用します。
 コマンドラインで<code>nodecli</code>ディレクトリに移動し、次のコマンドでNode.jsを使い<code>main.js</code>を実行します。
 まだ<code>node</code>コマンドの用意ができていなければ、先に「<a href="../../setup-local-env/">アプリケーション開発の準備</a>」の章を参照してください。</p>
@@ -1610,16 +1610,16 @@ Hello World!
 </div>
 
 <pre><code class="lang-json">{
-  <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;nodecli&quot;</span>,
-  <span class="hljs-string">&quot;version&quot;</span>: <span class="hljs-string">&quot;1.0.0&quot;</span>,
-  <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
-  <span class="hljs-string">&quot;main&quot;</span>: <span class="hljs-string">&quot;main.js&quot;</span>,
-  <span class="hljs-string">&quot;scripts&quot;</span>: {
-    <span class="hljs-string">&quot;test&quot;</span>: <span class="hljs-string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span>
+  <span class="hljs-string">"name"</span>: <span class="hljs-string">"nodecli"</span>,
+  <span class="hljs-string">"version"</span>: <span class="hljs-string">"1.0.0"</span>,
+  <span class="hljs-string">"description"</span>: <span class="hljs-string">""</span>,
+  <span class="hljs-string">"main"</span>: <span class="hljs-string">"main.js"</span>,
+  <span class="hljs-string">"scripts"</span>: {
+    <span class="hljs-string">"test"</span>: <span class="hljs-string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>
   },
-  <span class="hljs-string">&quot;keywords&quot;</span>: [],
-  <span class="hljs-string">&quot;author&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
-  <span class="hljs-string">&quot;license&quot;</span>: <span class="hljs-string">&quot;ISC&quot;</span>
+  <span class="hljs-string">"keywords"</span>: [],
+  <span class="hljs-string">"author"</span>: <span class="hljs-string">""</span>,
+  <span class="hljs-string">"license"</span>: <span class="hljs-string">"ISC"</span>
 }
 </code></pre>
 <p>現時点では<code>package.json</code>にはあまり情報が記述されていませんが、後ほどアプリケーションの情報や依存パッケージを追加する際に利用します。</p>
@@ -1690,7 +1690,7 @@ Hello World!
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"Hello Worldアプリケーションを通じてNode.jsのCLIアプリケーションの基本を学びます。","sponsors":[],"title":"Node.jsでHello World","level":"1.4.3.1","depth":3,"next":{"title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"path":"use-case/nodecli/argument-parse/README.md","ref":"./use-case/nodecli/argument-parse/README.md","articles":[]},"previous":{"title":"Node.jsでCLIアプリ","level":"1.4.3","depth":2,"path":"use-case/nodecli/README.md","ref":"./use-case/nodecli/README.md","articles":[{"title":"Node.jsでHello World","level":"1.4.3.1","depth":3,"path":"use-case/nodecli/helloworld/README.md","ref":"./use-case/nodecli/helloworld/README.md","articles":[]},{"title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"path":"use-case/nodecli/argument-parse/README.md","ref":"./use-case/nodecli/argument-parse/README.md","articles":[]},{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},{"title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"path":"use-case/nodecli/refactor-and-unittest/README.md","ref":"./use-case/nodecli/refactor-and-unittest/README.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/helloworld/README.md","mtime":"2024-09-01T11:18:59.593Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-09-01T11:19:15.872Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"Hello Worldアプリケーションを通じてNode.jsのCLIアプリケーションの基本を学びます。","sponsors":[],"title":"Node.jsでHello World","level":"1.4.3.1","depth":3,"next":{"title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"path":"use-case/nodecli/argument-parse/README.md","ref":"./use-case/nodecli/argument-parse/README.md","articles":[]},"previous":{"title":"Node.jsでCLIアプリ","level":"1.4.3","depth":2,"path":"use-case/nodecli/README.md","ref":"./use-case/nodecli/README.md","articles":[{"title":"Node.jsでHello World","level":"1.4.3.1","depth":3,"path":"use-case/nodecli/helloworld/README.md","ref":"./use-case/nodecli/helloworld/README.md","articles":[]},{"title":"コマンドライン引数を処理する","level":"1.4.3.2","depth":3,"path":"use-case/nodecli/argument-parse/README.md","ref":"./use-case/nodecli/argument-parse/README.md","articles":[]},{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},{"title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"path":"use-case/nodecli/refactor-and-unittest/README.md","ref":"./use-case/nodecli/refactor-and-unittest/README.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/helloworld/README.md","mtime":"2024-10-03T14:54:01.270Z","type":"markdown"},"gitbook":{"version":"6.0.0","time":"2024-10-03T14:54:19.038Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

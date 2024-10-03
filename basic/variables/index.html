@@ -6,7 +6,7 @@
         <title>変数と宣言 · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptの変数宣言する方法についてを紹介します。変数を宣言する方法にはconst,let,varがあります。これらの動作の違いや使い分けについてを紹介します。">
-        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="generator" content="HonKit 6.0.0">
         
         
         
@@ -1573,24 +1573,24 @@
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> 変数名 = 初期値;
 </code></pre>
-<p>次のコードでは<code>bookTitle</code>という変数を宣言し、初期値が<code>&quot;JavaScript Primer&quot;</code>という文字列であることを定義しています。</p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> bookTitle = <span class="hljs-string">&quot;JavaScript Primer&quot;</span>;
+<p>次のコードでは<code>bookTitle</code>という変数を宣言し、初期値が<code>"JavaScript Primer"</code>という文字列であることを定義しています。</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> bookTitle = <span class="hljs-string">"JavaScript Primer"</span>;
 </code></pre>
 <p><code>const</code>、<code>let</code>、<code>var</code>どのキーワードも共通の仕組みですが、変数同士を<code>,</code>（カンマ）で区切ることにより、同時に複数の変数を定義できます。</p>
 <p>次のコードでは、<code>bookTitle</code>と<code>bookCategory</code>という変数を順番に定義しています。</p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> bookTitle = <span class="hljs-string">&quot;JavaScript Primer&quot;</span>,
-      bookCategory = <span class="hljs-string">&quot;プログラミング&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> bookTitle = <span class="hljs-string">"JavaScript Primer"</span>,
+      bookCategory = <span class="hljs-string">"プログラミング"</span>;
 </code></pre>
 <p>これは次のように書いた場合と同じ意味になります。</p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> bookTitle = <span class="hljs-string">&quot;JavaScript Primer&quot;</span>;
-<span class="hljs-keyword">const</span> bookCategory = <span class="hljs-string">&quot;プログラミング&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> bookTitle = <span class="hljs-string">"JavaScript Primer"</span>;
+<span class="hljs-keyword">const</span> bookCategory = <span class="hljs-string">"プログラミング"</span>;
 </code></pre>
 <p>また、<code>const</code>は再代入できない変数を宣言するキーワードです。
 そのため、<code>const</code>キーワードで宣言した変数に対して、後から値を代入することはできません。</p>
 <p>次のコードでは、<code>const</code>で宣言した変数<code>bookTitle</code>に対して値を再代入しているため、次のようなエラー（<code>TypeError</code>）が発生します。
 エラーが発生するとそれ以降の処理は実行されなくなります。</p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> bookTitle = <span class="hljs-string">&quot;JavaScript Primer&quot;</span>;
-bookTitle = <span class="hljs-string">&quot;新しいタイトル&quot;</span>; <span class="hljs-comment">// =&gt; TypeError: invalid assignment to const &apos;bookTitle&apos;</span>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> bookTitle = <span class="hljs-string">"JavaScript Primer"</span>;
+bookTitle = <span class="hljs-string">"新しいタイトル"</span>; <span class="hljs-comment">// =&gt; TypeError: invalid assignment to const 'bookTitle'</span>
 </code></pre>
 <p>一般的に変数への再代入は「変数の値は最初に定義した値と常に同じである」という参照透過性と呼ばれるルールを壊すため、バグを発生させやすい要因として知られています。そのため、変数に対して値を再代入する必要がない場合は、<code>const</code>キーワードで変数宣言することを推奨しています。</p>
 <p>変数に値を再代入したいケースとして、ループなどの反復処理の途中で特定の変数が参照する値を変化させたい場合があります。
@@ -1598,8 +1598,8 @@ bookTitle = <span class="hljs-string">&quot;新しいタイトル&quot;</span>; 
 <h2 id="let"><a name="let" class="plugin-anchor" href="#let"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2015] <code>let</code> </h2>
 <p><code>let</code>キーワードでは、値の再代入が可能な変数を宣言できます。
 <code>let</code>の使い方は<code>const</code>とほとんど同じです。</p>
-<p>次のコードでは、<code>bookTitle</code>という変数を宣言し、初期値が<code>&quot;JavaScript Primer&quot;</code>という文字列であることを定義しています。</p>
-<pre><code class="lang-js"><span class="hljs-keyword">let</span> bookTitle = <span class="hljs-string">&quot;JavaScript Primer&quot;</span>;
+<p>次のコードでは、<code>bookTitle</code>という変数を宣言し、初期値が<code>"JavaScript Primer"</code>という文字列であることを定義しています。</p>
+<pre><code class="lang-js"><span class="hljs-keyword">let</span> bookTitle = <span class="hljs-string">"JavaScript Primer"</span>;
 </code></pre>
 <p><code>let</code>は<code>const</code>とは異なり、初期値を指定しない変数も定義できます。
 初期値が指定されなかった変数はデフォルト値として<code>undefined</code>という値で初期化されます（<code>undefined</code>は値が未定義ということを表す値です）。</p>
@@ -1609,9 +1609,9 @@ bookTitle = <span class="hljs-string">&quot;新しいタイトル&quot;</span>; 
 <span class="hljs-comment">// `bookTitle`は自動的に`undefined`という値になる</span>
 </code></pre>
 <p>この<code>let</code>で宣言された<code>bookTitle</code>という変数には、代入演算子（<code>=</code>）を使うことで値を代入できます。 
-代入演算子（<code>=</code>）の右側には変数へ代入する値を書きますが、ここでは<code>&quot;JavaScript Primer&quot;</code>という文字列を代入しています。</p>
+代入演算子（<code>=</code>）の右側には変数へ代入する値を書きますが、ここでは<code>"JavaScript Primer"</code>という文字列を代入しています。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">let</span> bookTitle;
-bookTitle = <span class="hljs-string">&quot;JavaScript Primer&quot;</span>;
+bookTitle = <span class="hljs-string">"JavaScript Primer"</span>;
 </code></pre>
 <p><code>let</code>で宣言した変数に対しては何度でも値の代入が可能です。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;
@@ -1622,27 +1622,27 @@ count = <span class="hljs-number">3</span>;
 <h2 id="var"><a name="var" class="plugin-anchor" href="#var"><i class="fa fa-link" aria-hidden="true"></i></a><code>var</code> </h2>
 <p><code>var</code>キーワードでは、値の再代入が可能な変数を宣言できます。
 <code>var</code>の使い方は<code>let</code>とほとんど同じです。</p>
-<pre><code class="lang-js"><span class="hljs-keyword">var</span> bookTitle = <span class="hljs-string">&quot;JavaScript Primer&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> bookTitle = <span class="hljs-string">"JavaScript Primer"</span>;
 </code></pre>
 <p><code>var</code>では、<code>let</code>と同じように初期値がない変数を宣言でき、変数に対して値の再代入もできます。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">var</span> bookTitle;
-bookTitle = <span class="hljs-string">&quot;JavaScript Primer&quot;</span>;
-bookTitle = <span class="hljs-string">&quot;新しいタイトル&quot;</span>;
+bookTitle = <span class="hljs-string">"JavaScript Primer"</span>;
+bookTitle = <span class="hljs-string">"新しいタイトル"</span>;
 </code></pre>
 <h3 id="var-issues"><a name="var-issues" class="plugin-anchor" href="#var-issues"><i class="fa fa-link" aria-hidden="true"></i></a><code>var</code>の問題 </h3>
 <p><code>var</code>は<code>let</code>とよく似ていますが、<code>var</code>キーワードには同じ名前の変数を再定義できてしまう問題があります。</p>
 <p><code>let</code>や<code>const</code>では、同じ名前の変数を再定義しようとすると、次のような構文エラー（<code>SyntaxError</code>）が発生します。
 そのため、間違えて変数を二重に定義してしまうというミスを防ぐことができます。</p>
-<pre><code class="lang-javascript"><span class="hljs-comment">// &quot;x&quot;という変数名で変数を定義する</span>
+<pre><code class="lang-javascript"><span class="hljs-comment">// "x"という変数名で変数を定義する</span>
 <span class="hljs-keyword">let</span> x;
-<span class="hljs-comment">// 同じ名前の変数&quot;x&quot;を定義するとSyntaxErrorとなる</span>
+<span class="hljs-comment">// 同じ名前の変数"x"を定義するとSyntaxErrorとなる</span>
 <span class="hljs-keyword">let</span> x; <span class="hljs-comment">// =&gt; SyntaxError: redeclaration of let x</span>
 </code></pre>
 <p>一方、<code>var</code>は同じ名前の変数を再定義できます。
 これは意図せずに同じ変数名で定義してもエラーとならずに、値を上書きしてしまいます。</p>
-<pre><code class="lang-js"><span class="hljs-comment">// &quot;x&quot;という変数を定義する</span>
+<pre><code class="lang-js"><span class="hljs-comment">// "x"という変数を定義する</span>
 <span class="hljs-keyword">var</span> x = <span class="hljs-number">1</span>;
-<span class="hljs-comment">// 同じ名前の変数&quot;x&quot;を定義できる</span>
+<span class="hljs-comment">// 同じ名前の変数"x"を定義できる</span>
 <span class="hljs-keyword">var</span> x = <span class="hljs-number">2</span>;
 <span class="hljs-comment">// 変数xは2となる</span>
 </code></pre>
@@ -1704,10 +1704,10 @@ JavaScriptでは、アルファベットの大文字と小文字は区別され�
 次のコードのように、オブジェクトという値そのものは、初期化したあとでも変更できます。</p>
 <pre><code class="lang-js"><span class="hljs-comment">// `const`でオブジェクトを定義している</span>
 <span class="hljs-keyword">const</span> object = {
-    <span class="hljs-attr">key</span>: <span class="hljs-string">&quot;値&quot;</span>
+    <span class="hljs-attr">key</span>: <span class="hljs-string">"値"</span>
 };
 <span class="hljs-comment">// オブジェクトそのものは変更できてしまう</span>
-object.<span class="hljs-property">key</span> = <span class="hljs-string">&quot;新しい値&quot;</span>;
+object.<span class="hljs-property">key</span> = <span class="hljs-string">"新しい値"</span>;
 </code></pre>
 <p>このように、<code>const</code>で宣言した変数が常に同じ値を示すとは限らないため、定数とは呼べません
 （詳細は「<a href="../object/#const-and-object">オブジェクト</a>」の章で解説します）。</p>
@@ -1760,7 +1760,7 @@ object.<span class="hljs-property">key</span> = <span class="hljs-string">&quot;
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptの変数宣言する方法についてを紹介します。変数を宣言する方法にはconst,let,varがあります。これらの動作の違いや使い分けについてを紹介します。","sponsors":[],"title":"変数と宣言","level":"1.3.3","depth":2,"next":{"title":"値の評価と表示","level":"1.3.4","depth":2,"path":"basic/read-eval-print/README.md","ref":"./basic/read-eval-print/README.md","articles":[]},"previous":{"title":"コメント","level":"1.3.2","depth":2,"path":"basic/comments/README.md","ref":"./basic/comments/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/variables/README.md","mtime":"2024-09-01T11:18:59.589Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-09-01T11:19:15.872Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptの変数宣言する方法についてを紹介します。変数を宣言する方法にはconst,let,varがあります。これらの動作の違いや使い分けについてを紹介します。","sponsors":[],"title":"変数と宣言","level":"1.3.3","depth":2,"next":{"title":"値の評価と表示","level":"1.3.4","depth":2,"path":"basic/read-eval-print/README.md","ref":"./basic/read-eval-print/README.md","articles":[]},"previous":{"title":"コメント","level":"1.3.2","depth":2,"path":"basic/comments/README.md","ref":"./basic/comments/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/variables/README.md","mtime":"2024-10-03T14:54:01.262Z","type":"markdown"},"gitbook":{"version":"6.0.0","time":"2024-10-03T14:54:19.038Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

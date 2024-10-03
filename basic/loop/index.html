@@ -6,7 +6,7 @@
         <title>ループと反復処理 · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="for文やwhile文を使った反復処理についてを紹介します。また、同等の反復処理がArrayのメソッドでも実現できることについても紹介します。">
-        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="generator" content="HonKit 6.0.0">
         
         
         
@@ -1701,7 +1701,7 @@ array.<span class="hljs-title function_">forEach</span>(<span class="hljs-functi
 また、コールバック関数を引数として受け取る関数やメソッドのことを<strong>高階関数</strong>と呼びます。</p>
 <!-- doctest: ReferenceError -->
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
-<span class="hljs-comment">// forEachは&quot;コールバック関数&quot;を受け取る高階関数</span>
+<span class="hljs-comment">// forEachは"コールバック関数"を受け取る高階関数</span>
 array.<span class="hljs-title function_">forEach</span>(コールバック関数);
 </code></pre>
 <p><code>forEach</code>メソッドのコールバック関数には、配列の要素が先頭から順番に渡されて実行されます。
@@ -1893,18 +1893,18 @@ continue文は、while、do-while、forの中で使うことができます。</
 （ループのたびに毎回新しいブロックを作成しているため、ループごとに定義する変数<code>key</code>は再定義エラーになりません。詳細は「<a href="../function-scope/">関数とスコープ</a>」の章の「<a href="../function-scope/#block-scope">ブロックスコープ</a>」で解説します）。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> obj = {
-    <span class="hljs-string">&quot;a&quot;</span>: <span class="hljs-number">1</span>,
-    <span class="hljs-string">&quot;b&quot;</span>: <span class="hljs-number">2</span>,
-    <span class="hljs-string">&quot;c&quot;</span>: <span class="hljs-number">3</span>
+    <span class="hljs-string">"a"</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">"b"</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-string">"c"</span>: <span class="hljs-number">3</span>
 };
 <span class="hljs-comment">// 注記: ループのたびに毎回新しいブロックに変数keyが定義されるため、再定義エラーが発生しない</span>
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> key <span class="hljs-keyword">in</span> obj) {
     <span class="hljs-keyword">const</span> value = obj[key];
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`key:<span class="hljs-subst">${key}</span>, value:<span class="hljs-subst">${value}</span>`</span>);
 }
-<span class="hljs-comment">// &quot;key:a, value:1&quot;</span>
-<span class="hljs-comment">// &quot;key:b, value:2&quot;</span>
-<span class="hljs-comment">// &quot;key:c, value:3&quot;</span>
+<span class="hljs-comment">// "key:a, value:1"</span>
+<span class="hljs-comment">// "key:b, value:2"</span>
+<span class="hljs-comment">// "key:c, value:3"</span>
 </code></pre>
 <p>オブジェクトに対する反復処理のためにfor...in文は有用に見えますが、多くの問題を持っています。</p>
 <p>JavaScriptでは、オブジェクトは何らかのオブジェクトを継承しています。
@@ -1916,30 +1916,30 @@ for...in文は、対象となるオブジェクトのプロパティを列挙す
 そのためfor...in文とは違い、親オブジェクトのプロパティは列挙されません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> obj = {
-    <span class="hljs-string">&quot;a&quot;</span>: <span class="hljs-number">1</span>,
-    <span class="hljs-string">&quot;b&quot;</span>: <span class="hljs-number">2</span>,
-    <span class="hljs-string">&quot;c&quot;</span>: <span class="hljs-number">3</span>
+    <span class="hljs-string">"a"</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">"b"</span>: <span class="hljs-number">2</span>,
+    <span class="hljs-string">"c"</span>: <span class="hljs-number">3</span>
 };
 <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">keys</span>(obj).<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">key</span> =&gt;</span> {
     <span class="hljs-keyword">const</span> value = obj[key];
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`key:<span class="hljs-subst">${key}</span>, value:<span class="hljs-subst">${value}</span>`</span>);
 });
-<span class="hljs-comment">// &quot;key:a, value:1&quot;</span>
-<span class="hljs-comment">// &quot;key:b, value:2&quot;</span>
-<span class="hljs-comment">// &quot;key:c, value:3&quot;</span>
+<span class="hljs-comment">// "key:a, value:1"</span>
+<span class="hljs-comment">// "key:b, value:2"</span>
+<span class="hljs-comment">// "key:c, value:3"</span>
 </code></pre>
 <p>また、for...in文は配列に対しても利用できますが、こちらも期待した結果にはなりません。</p>
 <p>次のコードでは、配列の要素が列挙されそうですが、実際には配列のプロパティ名が列挙されます。
-for...in文が列挙する配列オブジェクトのプロパティ名は、要素のインデックスを文字列化した&quot;0&quot;、&quot;1&quot;となるため、その文字列が<code>num</code>へと順番に代入されます。
+for...in文が列挙する配列オブジェクトのプロパティ名は、要素のインデックスを文字列化した"0"、"1"となるため、その文字列が<code>num</code>へと順番に代入されます。
 そのため、数値と文字列の加算が行われ、意図した結果にはなりません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> numbers = [<span class="hljs-number">5</span>, <span class="hljs-number">10</span>];
 <span class="hljs-keyword">let</span> total = <span class="hljs-number">0</span>;
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> num <span class="hljs-keyword">in</span> numbers) {
-    <span class="hljs-comment">// 0 + &quot;0&quot; + &quot;1&quot; という文字列結合が行われる</span>
+    <span class="hljs-comment">// 0 + "0" + "1" という文字列結合が行われる</span>
     total += num;
 }
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(total); <span class="hljs-comment">// =&gt; &quot;001&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(total); <span class="hljs-comment">// =&gt; "001"</span>
 </code></pre>
 <p>配列の内容に対して反復処理を行う場合は、for文や<code>forEach</code>メソッド、後述するfor...of文を使うべきでしょう。</p>
 <p>このようにfor...in文は正しく扱うのが難しいですが、代わりとなる手段が豊富にあります。
@@ -1970,13 +1970,13 @@ for...in文とは異なり、インデックス値ではなく配列の値を列
 <p>JavaScriptではStringオブジェクトもiterableです。
 そのため、文字列を1文字ずつ列挙できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">&quot;𠮷野家&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> str = <span class="hljs-string">"𠮷野家"</span>;
 <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> value <span class="hljs-keyword">of</span> str) {
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(value);
 }
-<span class="hljs-comment">// &quot;𠮷&quot;</span>
-<span class="hljs-comment">// &quot;野&quot;</span>
-<span class="hljs-comment">// &quot;家&quot;</span>
+<span class="hljs-comment">// "𠮷"</span>
+<span class="hljs-comment">// "野"</span>
+<span class="hljs-comment">// "家"</span>
 </code></pre>
 <p>そのほかにも、<code>TypedArray</code>、<code>Map</code>、<code>Set</code>、DOM NodeListなど、<code>Symbol.iterator</code>が実装されているオブジェクトは多いです。
 for...of文は、それらのiterableオブジェクトで反復処理に利用できます。</p>
@@ -2022,7 +2022,7 @@ for文などの構文ではcontinue文やbreak文が利用できますが、配�
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"for文やwhile文を使った反復処理についてを紹介します。また、同等の反復処理がArrayのメソッドでも実現できることについても紹介します。","sponsors":[],"title":"ループと反復処理","level":"1.3.11","depth":2,"next":{"title":"オブジェクト","level":"1.3.12","depth":2,"path":"basic/object/README.md","ref":"./basic/object/README.md","articles":[]},"previous":{"title":"条件分岐","level":"1.3.10","depth":2,"path":"basic/condition/README.md","ref":"./basic/condition/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/loop/README.md","mtime":"2024-09-01T11:18:59.581Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-09-01T11:19:15.872Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"for文やwhile文を使った反復処理についてを紹介します。また、同等の反復処理がArrayのメソッドでも実現できることについても紹介します。","sponsors":[],"title":"ループと反復処理","level":"1.3.11","depth":2,"next":{"title":"オブジェクト","level":"1.3.12","depth":2,"path":"basic/object/README.md","ref":"./basic/object/README.md","articles":[]},"previous":{"title":"条件分岐","level":"1.3.10","depth":2,"path":"basic/condition/README.md","ref":"./basic/condition/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/loop/README.md","mtime":"2024-10-03T14:54:01.255Z","type":"markdown"},"gitbook":{"version":"6.0.0","time":"2024-10-03T14:54:19.038Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

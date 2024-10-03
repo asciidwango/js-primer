@@ -6,7 +6,7 @@
         <title>MarkdownをHTMLに変換する · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="markedパッケージを使ってMarkdownファイルをHTMLに変換します。">
-        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="generator" content="HonKit 6.0.0">
         
         
         
@@ -1579,19 +1579,19 @@ markedのパッケージは<a href="https://www.npmjs.com/" target="_blank">npm<
 </div>
 
 <pre><code class="lang-json">{
-  <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;nodecli&quot;</span>,
-  <span class="hljs-string">&quot;version&quot;</span>: <span class="hljs-string">&quot;1.0.0&quot;</span>,
-  <span class="hljs-string">&quot;description&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
-  <span class="hljs-string">&quot;main&quot;</span>: <span class="hljs-string">&quot;main.js&quot;</span>,
-  <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;module&quot;</span>,
-  <span class="hljs-string">&quot;scripts&quot;</span>: {
-    <span class="hljs-string">&quot;test&quot;</span>: <span class="hljs-string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span>
+  <span class="hljs-string">"name"</span>: <span class="hljs-string">"nodecli"</span>,
+  <span class="hljs-string">"version"</span>: <span class="hljs-string">"1.0.0"</span>,
+  <span class="hljs-string">"description"</span>: <span class="hljs-string">""</span>,
+  <span class="hljs-string">"main"</span>: <span class="hljs-string">"main.js"</span>,
+  <span class="hljs-string">"type"</span>: <span class="hljs-string">"module"</span>,
+  <span class="hljs-string">"scripts"</span>: {
+    <span class="hljs-string">"test"</span>: <span class="hljs-string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>
   },
-  <span class="hljs-string">&quot;keywords&quot;</span>: [],
-  <span class="hljs-string">&quot;author&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,
-  <span class="hljs-string">&quot;license&quot;</span>: <span class="hljs-string">&quot;ISC&quot;</span>,
-  <span class="hljs-string">&quot;dependencies&quot;</span>: {
-    <span class="hljs-string">&quot;marked&quot;</span>: <span class="hljs-string">&quot;^14.0.0&quot;</span>
+  <span class="hljs-string">"keywords"</span>: [],
+  <span class="hljs-string">"author"</span>: <span class="hljs-string">""</span>,
+  <span class="hljs-string">"license"</span>: <span class="hljs-string">"ISC"</span>,
+  <span class="hljs-string">"dependencies"</span>: {
+    <span class="hljs-string">"marked"</span>: <span class="hljs-string">"^14.0.0"</span>
   }
 }
 </code></pre>
@@ -1608,10 +1608,10 @@ markedのパッケージは<a href="https://www.npmjs.com/" target="_blank">npm<
     <p class="code-filename">main.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> util <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:util&quot;</span>;
-<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:fs/promises&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> util <span class="hljs-keyword">from</span> <span class="hljs-string">"node:util"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">"node:fs/promises"</span>;
 <span class="hljs-comment">// markedモジュールからmarkedオブジェクトをインポートする</span>
-<span class="hljs-keyword">import</span> { marked } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;marked&quot;</span>;
+<span class="hljs-keyword">import</span> { marked } <span class="hljs-keyword">from</span> <span class="hljs-string">"marked"</span>;
 
 <span class="hljs-keyword">const</span> {
     positionals
@@ -1619,7 +1619,7 @@ markedのパッケージは<a href="https://www.npmjs.com/" target="_blank">npm<
     <span class="hljs-attr">allowPositionals</span>: <span class="hljs-literal">true</span>,
 });
 <span class="hljs-keyword">const</span> filePath = positionals[<span class="hljs-number">0</span>];
-fs.<span class="hljs-title function_">readFile</span>(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
+fs.<span class="hljs-title function_">readFile</span>(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">"utf8"</span> }).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
     <span class="hljs-comment">// MarkdownファイルをHTML文字列に変換する</span>
     <span class="hljs-keyword">const</span> html = marked.<span class="hljs-title function_">parse</span>(file);
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(html);
@@ -1651,7 +1651,7 @@ https://jsprimer.net/
 <p><code>gfm</code>オプションが有効のときは、URLの文字列が自動的に<code>&lt;a&gt;</code>タグのリンクに置き換わります。</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>サンプルファイル<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>これはサンプルです。
-<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://jsprimer.net/&quot;</span>&gt;</span>https://jsprimer.net/<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://jsprimer.net/"</span>&gt;</span>https://jsprimer.net/<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>サンプル1<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>サンプル2<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
@@ -1662,9 +1662,9 @@ https://jsprimer.net/
     <p class="code-filename">main.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> util <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:util&quot;</span>;
-<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:fs/promises&quot;</span>;
-<span class="hljs-keyword">import</span> { marked } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;marked&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> util <span class="hljs-keyword">from</span> <span class="hljs-string">"node:util"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">"node:fs/promises"</span>;
+<span class="hljs-keyword">import</span> { marked } <span class="hljs-keyword">from</span> <span class="hljs-string">"marked"</span>;
 
 <span class="hljs-keyword">const</span> {
     positionals
@@ -1672,7 +1672,7 @@ https://jsprimer.net/
     <span class="hljs-attr">allowPositionals</span>: <span class="hljs-literal">true</span>,
 });
 <span class="hljs-keyword">const</span> filePath = positionals[<span class="hljs-number">0</span>];
-fs.<span class="hljs-title function_">readFile</span>(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
+fs.<span class="hljs-title function_">readFile</span>(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">"utf8"</span> }).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
     <span class="hljs-comment">// gfmオプションを無効にする</span>
     <span class="hljs-keyword">const</span> html = marked.<span class="hljs-title function_">parse</span>(file, {
         <span class="hljs-attr">gfm</span>: <span class="hljs-literal">false</span>
@@ -1698,8 +1698,8 @@ https://jsprimer.net/<span class="hljs-tag">&lt;/<span class="hljs-name">p</span
 <pre><code class="lang-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">node main.js --gfm sample.md</span>
 </code></pre>
 <p>コマンドライン引数で<code>--gfm</code>のようなフラグを扱いたいときには、<code>parseArg</code>関数の<code>options</code>オブジェクトに定義します。
-<code>options</code>オブジェクトでは、<code>--key=value</code>のようなオプションを扱う<code>type: &quot;string&quot;</code>と、<code>--flag</code>のようなフラグを扱う<code>type: &quot;boolean&quot;</code>を定義できます。
-今回の<code>--gfm</code>フラグは<code>type: &quot;boolean&quot;</code>で定義し、<code>--gfm</code>フラグがない場合のデフォルト値を<code>false</code>に設定します。</p>
+<code>options</code>オブジェクトでは、<code>--key=value</code>のようなオプションを扱う<code>type: "string"</code>と、<code>--flag</code>のようなフラグを扱う<code>type: "boolean"</code>を定義できます。
+今回の<code>--gfm</code>フラグは<code>type: "boolean"</code>で定義し、<code>--gfm</code>フラグがない場合のデフォルト値を<code>false</code>に設定します。</p>
 <p>次のように<code>gfm</code>フラグを定義してからコマンドライン引数をパースすると、返り値の<code>values</code>でパース結果のオブジェクトを取得できます。</p>
 <!-- 差分コードなので -->
 <!-- doctest:disable -->
@@ -1712,7 +1712,7 @@ https://jsprimer.net/<span class="hljs-tag">&lt;/<span class="hljs-name">p</span
         <span class="hljs-comment">// gfmフラグを定義する</span>
         <span class="hljs-attr">gfm</span>: {
             <span class="hljs-comment">// オプションの型をbooleanに指定</span>
-            <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+            <span class="hljs-attr">type</span>: <span class="hljs-string">"boolean"</span>,
             <span class="hljs-comment">// --gfmフラグがない場合のデフォルト値をfalseにする</span>
             <span class="hljs-attr">default</span>: <span class="hljs-literal">false</span>,
         }
@@ -1729,9 +1729,9 @@ https://jsprimer.net/<span class="hljs-tag">&lt;/<span class="hljs-name">p</span
     <p class="code-filename">main.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> util <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:util&quot;</span>;
-<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:fs/promises&quot;</span>;
-<span class="hljs-keyword">import</span> { marked } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;marked&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> util <span class="hljs-keyword">from</span> <span class="hljs-string">"node:util"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">"node:fs/promises"</span>;
+<span class="hljs-keyword">import</span> { marked } <span class="hljs-keyword">from</span> <span class="hljs-string">"marked"</span>;
 
 <span class="hljs-keyword">const</span> {
     values,
@@ -1740,13 +1740,13 @@ https://jsprimer.net/<span class="hljs-tag">&lt;/<span class="hljs-name">p</span
     <span class="hljs-attr">allowPositionals</span>: <span class="hljs-literal">true</span>,
     <span class="hljs-attr">options</span>: {
         <span class="hljs-attr">gfm</span>: {
-            <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+            <span class="hljs-attr">type</span>: <span class="hljs-string">"boolean"</span>,
             <span class="hljs-attr">default</span>: <span class="hljs-literal">false</span>,
         }
     }
 });
 <span class="hljs-keyword">const</span> filePath = positionals[<span class="hljs-number">0</span>];
-fs.<span class="hljs-title function_">readFile</span>(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
+fs.<span class="hljs-title function_">readFile</span>(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">"utf8"</span> }).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
     <span class="hljs-keyword">const</span> html = marked.<span class="hljs-title function_">parse</span>(file, {
         <span class="hljs-comment">// gfmフラグのパース結果をオプションとして渡す</span>
         <span class="hljs-attr">gfm</span>: values.<span class="hljs-property">gfm</span>
@@ -1772,7 +1772,7 @@ GFMオプションが有効になっているため、URLがリンクに変換�
 <pre><code class="lang-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">node main.js --gfm sample.md</span>
 &lt;h1&gt;サンプルファイル&lt;/h1&gt;
 &lt;p&gt;これはサンプルです。
-&lt;a href=&quot;https://jsprimer.net/&quot;&gt;https://jsprimer.net/&lt;/a&gt;&lt;/p&gt;
+&lt;a href="https://jsprimer.net/"&gt;https://jsprimer.net/&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;サンプル1&lt;/li&gt;
 &lt;li&gt;サンプル2&lt;/li&gt;
@@ -1825,7 +1825,7 @@ GFMオプションが有効になっているため、URLがリンクに変換�
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"markedパッケージを使ってMarkdownファイルをHTMLに変換します。","sponsors":[],"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"next":{"title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"path":"use-case/nodecli/refactor-and-unittest/README.md","ref":"./use-case/nodecli/refactor-and-unittest/README.md","articles":[]},"previous":{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/md-to-html/README.md","mtime":"2024-09-01T11:18:59.593Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-09-01T11:19:15.872Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"markedパッケージを使ってMarkdownファイルをHTMLに変換します。","sponsors":[],"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"next":{"title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"path":"use-case/nodecli/refactor-and-unittest/README.md","ref":"./use-case/nodecli/refactor-and-unittest/README.md","articles":[]},"previous":{"title":"ファイルを読み込む","level":"1.4.3.3","depth":3,"path":"use-case/nodecli/read-file/README.md","ref":"./use-case/nodecli/read-file/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/md-to-html/README.md","mtime":"2024-10-03T14:54:01.271Z","type":"markdown"},"gitbook":{"version":"6.0.0","time":"2024-10-03T14:54:19.038Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

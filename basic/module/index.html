@@ -6,7 +6,7 @@
         <title>ECMAScriptモジュール · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptのモジュール（ECMAScriptモジュール）について紹介します。">
-        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="generator" content="HonKit 6.0.0">
         
         
         
@@ -1590,7 +1590,7 @@ ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルを
     <p class="code-filename">named-export.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> foo = <span class="hljs-string">&quot;foo&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> foo = <span class="hljs-string">"foo"</span>;
 <span class="hljs-comment">// 宣言済みのオブジェクトを名前つきエクスポートする</span>
 <span class="hljs-keyword">export</span> { foo };
 </code></pre>
@@ -1610,7 +1610,7 @@ ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルを
     <p class="code-filename">my-module.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> foo = <span class="hljs-string">&quot;foo&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> foo = <span class="hljs-string">"foo"</span>;
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">bar</span>(<span class="hljs-params"></span>) { }
 </code></pre>
 <div class="code-filename-block">
@@ -1618,8 +1618,8 @@ ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルを
 </div>
 
 <pre><code class="lang-javascript"><span class="hljs-comment">// 名前つきエクスポートされたfooとbarをインポートする</span>
-<span class="hljs-keyword">import</span> { foo, bar } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./my-module.js&quot;</span>;
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(foo); <span class="hljs-comment">// =&gt; &quot;foo&quot;</span>
+<span class="hljs-keyword">import</span> { foo, bar } <span class="hljs-keyword">from</span> <span class="hljs-string">"./my-module.js"</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(foo); <span class="hljs-comment">// =&gt; "foo"</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(bar); <span class="hljs-comment">// =&gt; function bar()</span>
 </code></pre>
 <h4 id="named-export-import-alias"><a name="named-export-import-alias" class="plugin-anchor" href="#named-export-import-alias"><i class="fa fa-link" aria-hidden="true"></i></a>名前つきエクスポート／インポートのエイリアス </h4>
@@ -1630,7 +1630,7 @@ ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルを
     <p class="code-filename">named-export-alias.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> internalFoo = <span class="hljs-string">&quot;foo&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> internalFoo = <span class="hljs-string">"foo"</span>;
 <span class="hljs-comment">// internalFoo変数をfooとして名前つきエクスポートする</span>
 <span class="hljs-keyword">export</span> { internalFoo <span class="hljs-keyword">as</span> foo };
 </code></pre>
@@ -1641,8 +1641,8 @@ ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルを
 </div>
 
 <pre><code class="lang-javascript"><span class="hljs-comment">// fooとして名前つきエクスポートされた変数をmyFooとしてインポートする</span>
-<span class="hljs-keyword">import</span> { foo <span class="hljs-keyword">as</span> myFoo } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./named-export-alias.js&quot;</span>;
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myFoo); <span class="hljs-comment">// =&gt; &quot;foo&quot;</span>
+<span class="hljs-keyword">import</span> { foo <span class="hljs-keyword">as</span> myFoo } <span class="hljs-keyword">from</span> <span class="hljs-string">"./named-export-alias.js"</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myFoo); <span class="hljs-comment">// =&gt; "foo"</span>
 </code></pre>
 <h3 id="default-export-import"><a name="default-export-import" class="plugin-anchor" href="#default-export-import"><i class="fa fa-link" aria-hidden="true"></i></a>デフォルトエクスポート／インポート </h3>
 <p>次に、デフォルトエクスポート／インポートについて見ていきましょう。
@@ -1653,7 +1653,7 @@ ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルを
     <p class="code-filename">default-export.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> foo = <span class="hljs-string">&quot;foo&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> foo = <span class="hljs-string">"foo"</span>;
 <span class="hljs-comment">// foo変数の値をデフォルトエクスポートする</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> foo;
 </code></pre>
@@ -1669,7 +1669,7 @@ ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルを
 なぜなら、変数宣言はカンマ区切りで複数の変数を定義できてしまうためです。
 次の例は実行できない不正なコードです。</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// 変数宣言と同時にデフォルトエクスポートはできない</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> foo = <span class="hljs-string">&quot;foo&quot;</span>, bar = <span class="hljs-string">&quot;bar&quot;</span>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">const</span> foo = <span class="hljs-string">"foo"</span>, bar = <span class="hljs-string">"bar"</span>;
 </code></pre>
 <p><strong>デフォルトインポート</strong>は、指定したモジュールのデフォルトエクスポートに名前をつけてインポートします。
 次の例では <code>my-module.js</code>のデフォルトエクスポートに<code>myModule</code>という名前をつけてインポートしています。
@@ -1679,7 +1679,7 @@ ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルを
 </div>
 
 <pre><code class="lang-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-    <span class="hljs-attr">baz</span>: <span class="hljs-string">&quot;baz&quot;</span>
+    <span class="hljs-attr">baz</span>: <span class="hljs-string">"baz"</span>
 };
 </code></pre>
 <div class="code-filename-block">
@@ -1687,8 +1687,8 @@ ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルを
 </div>
 
 <pre><code class="lang-javascript"><span class="hljs-comment">// デフォルトエクスポートをmyModuleとしてインポートする</span>
-<span class="hljs-keyword">import</span> myModule <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./my-module.js&quot;</span>;
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myModule); <span class="hljs-comment">// =&gt; { baz: &quot;baz&quot; }</span>
+<span class="hljs-keyword">import</span> myModule <span class="hljs-keyword">from</span> <span class="hljs-string">"./my-module.js"</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myModule); <span class="hljs-comment">// =&gt; { baz: "baz" }</span>
 </code></pre>
 <p>実はデフォルトエクスポートは、<code>default</code>という固有の名前による名前つきエクスポートと同じものです。
 そのため、名前つきエクスポートで<code>as default</code>とエイリアスをつけることでデフォルトエクスポートすることもできます。</p>
@@ -1696,7 +1696,7 @@ ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルを
     <p class="code-filename">default-export-alias.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> foo = <span class="hljs-string">&quot;foo&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> foo = <span class="hljs-string">"foo"</span>;
 <span class="hljs-comment">// foo変数の値をデフォルトエクスポートする</span>
 <span class="hljs-keyword">export</span> { foo <span class="hljs-keyword">as</span> <span class="hljs-keyword">default</span> };
 </code></pre>
@@ -1708,8 +1708,8 @@ ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルを
 </div>
 
 <pre><code class="lang-javascript"><span class="hljs-comment">// デフォルトエクスポートをmyModuleとしてインポートする</span>
-<span class="hljs-keyword">import</span> { <span class="hljs-keyword">default</span> <span class="hljs-keyword">as</span> myModule } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./my-module.js&quot;</span>;
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myModule); <span class="hljs-comment">// =&gt; { baz: &quot;baz&quot; }</span>
+<span class="hljs-keyword">import</span> { <span class="hljs-keyword">default</span> <span class="hljs-keyword">as</span> myModule } <span class="hljs-keyword">from</span> <span class="hljs-string">"./my-module.js"</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myModule); <span class="hljs-comment">// =&gt; { baz: "baz" }</span>
 </code></pre>
 <p>また、名前つきインポートとデフォルトインポートの構文は同時に記述できます。
 次のように2つの構文をカンマでつなげます。</p>
@@ -1719,9 +1719,9 @@ ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルを
 
 <pre><code class="lang-javascript"><span class="hljs-comment">// myModuleとしてデフォルトインポートし、</span>
 <span class="hljs-comment">// fooを名前つきインポートする</span>
-<span class="hljs-keyword">import</span> myModule, { foo } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./my-module.js&quot;</span>;
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(foo); <span class="hljs-comment">// =&gt; &quot;foo&quot;</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myModule); <span class="hljs-comment">// =&gt; { baz: &quot;baz&quot; }</span>
+<span class="hljs-keyword">import</span> myModule, { foo } <span class="hljs-keyword">from</span> <span class="hljs-string">"./my-module.js"</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(foo); <span class="hljs-comment">// =&gt; "foo"</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myModule); <span class="hljs-comment">// =&gt; { baz: "baz" }</span>
 </code></pre>
 <p>ECMAScriptモジュールでは、エクスポートされていないものはインポートできません。
 なぜならECMAScriptモジュールはJavaScriptのパース段階で依存関係が解決され、インポートする対象が存在しない場合はパースエラーとなるためです。
@@ -1734,19 +1734,19 @@ ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルを
 複数のモジュールからエクスポートされたものをまとめたモジュールを作るときなどに使われます。</p>
 <p>再エクスポートは次のように<code>export</code>文のあとに<code>from</code>を続けて、別のモジュール名を指定します。</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// ./my-module.jsのすべての名前つきエクスポートを再エクスポートする</span>
-<span class="hljs-keyword">export</span> * <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./my-module.js&quot;</span>;
+<span class="hljs-keyword">export</span> * <span class="hljs-keyword">from</span> <span class="hljs-string">"./my-module.js"</span>;
 <span class="hljs-comment">// [ES2020] ./my-module.jsのすべての名前つきエクスポートを名前空間オブジェクトとして再エクスポートする</span>
-<span class="hljs-keyword">export</span> * <span class="hljs-keyword">as</span> myNameSpace <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./my-module.js&quot;</span>;
+<span class="hljs-keyword">export</span> * <span class="hljs-keyword">as</span> myNameSpace <span class="hljs-keyword">from</span> <span class="hljs-string">"./my-module.js"</span>;
 <span class="hljs-comment">// ./my-module.jsの名前つきエクスポートを選んで再エクスポートする</span>
-<span class="hljs-keyword">export</span> { foo, bar } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./my-module.js&quot;</span>;
+<span class="hljs-keyword">export</span> { foo, bar } <span class="hljs-keyword">from</span> <span class="hljs-string">"./my-module.js"</span>;
 <span class="hljs-comment">// ./my-module.jsの名前つきエクスポートにエイリアスをつけて再エクスポートする</span>
-<span class="hljs-keyword">export</span> { foo <span class="hljs-keyword">as</span> myModuleFoo, bar <span class="hljs-keyword">as</span> myModuleBar } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./my-module.js&quot;</span>;
+<span class="hljs-keyword">export</span> { foo <span class="hljs-keyword">as</span> myModuleFoo, bar <span class="hljs-keyword">as</span> myModuleBar } <span class="hljs-keyword">from</span> <span class="hljs-string">"./my-module.js"</span>;
 <span class="hljs-comment">// ./my-module.jsのデフォルトエクスポートをデフォルトエクスポートとして再エクスポートする</span>
-<span class="hljs-keyword">export</span> { <span class="hljs-keyword">default</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./my-module.js&quot;</span>;
+<span class="hljs-keyword">export</span> { <span class="hljs-keyword">default</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"./my-module.js"</span>;
 <span class="hljs-comment">// ./my-module.jsのデフォルトエクスポートを名前つきエクスポートとして再エクスポートする</span>
-<span class="hljs-keyword">export</span> { <span class="hljs-keyword">default</span> <span class="hljs-keyword">as</span> myModuleDefault } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./my-module.js&quot;</span>;
+<span class="hljs-keyword">export</span> { <span class="hljs-keyword">default</span> <span class="hljs-keyword">as</span> myModuleDefault } <span class="hljs-keyword">from</span> <span class="hljs-string">"./my-module.js"</span>;
 <span class="hljs-comment">// ./my-module.jsの名前つきエクスポートをデフォルトエクスポートとして再エクスポートする</span>
-<span class="hljs-keyword">export</span> { foo <span class="hljs-keyword">as</span> <span class="hljs-keyword">default</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./my-module.js&quot;</span>;
+<span class="hljs-keyword">export</span> { foo <span class="hljs-keyword">as</span> <span class="hljs-keyword">default</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"./my-module.js"</span>;
 </code></pre>
 <h4 id="namespace-import"><a name="namespace-import" class="plugin-anchor" href="#namespace-import"><i class="fa fa-link" aria-hidden="true"></i></a>すべてをインポート </h4>
 <p><code>import * as</code>構文は、すべての名前つきエクスポートをまとめてインポートします。
@@ -1757,10 +1757,10 @@ ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルを
     <p class="code-filename">my-module.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> foo = <span class="hljs-string">&quot;foo&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> foo = <span class="hljs-string">"foo"</span>;
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">bar</span>(<span class="hljs-params"></span>) { }
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-    <span class="hljs-attr">baz</span>: <span class="hljs-string">&quot;baz&quot;</span>
+    <span class="hljs-attr">baz</span>: <span class="hljs-string">"baz"</span>
 };
 </code></pre>
 <div class="code-filename-block">
@@ -1768,11 +1768,11 @@ ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルを
 </div>
 
 <pre><code class="lang-javascript"><span class="hljs-comment">// すべての名前つきエクスポートをmyModuleオブジェクトとしてまとめてインポートする</span>
-<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> myModule <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./my-module.js&quot;</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> myModule <span class="hljs-keyword">from</span> <span class="hljs-string">"./my-module.js"</span>;
 <span class="hljs-comment">// fooとして名前つきエクスポートされた値にアクセスする</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myModule.<span class="hljs-property">foo</span>); <span class="hljs-comment">// =&gt; &quot;foo&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myModule.<span class="hljs-property">foo</span>); <span class="hljs-comment">// =&gt; "foo"</span>
 <span class="hljs-comment">// defaultとしてデフォルトエクスポートされた値にアクセスする</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myModule.<span class="hljs-property">default</span>); <span class="hljs-comment">// =&gt; { baz: &quot;baz&quot; }</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(myModule.<span class="hljs-property">default</span>); <span class="hljs-comment">// =&gt; { baz: "baz" }</span>
 </code></pre>
 <h4 id="import-for-side-effect"><a name="import-for-side-effect" class="plugin-anchor" href="#import-for-side-effect"><i class="fa fa-link" aria-hidden="true"></i></a>副作用のためのインポート </h4>
 <p>モジュールの中には、グローバルのコードを実行するだけで何もエクスポートしないものがあります。
@@ -1782,25 +1782,25 @@ ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルを
 </div>
 
 <pre><code class="lang-javascript"><span class="hljs-comment">// グローバル変数を操作する(副作用)</span>
-<span class="hljs-variable language_">window</span>.<span class="hljs-property">foo</span> = <span class="hljs-string">&quot;foo&quot;</span>;
+<span class="hljs-variable language_">window</span>.<span class="hljs-property">foo</span> = <span class="hljs-string">"foo"</span>;
 </code></pre>
 <p>このようなモジュールをインポートするには、副作用のためのインポート構文を使います。
 この構文では、指定したモジュールを読み込んで実行するだけで、何もインポートしません。</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// ./side-effects.jsのグローバルコードが実行される</span>
-<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;./side-effects.js&quot;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">"./side-effects.js"</span>;
 </code></pre>
 <h2 id="run-es-modules"><a name="run-es-modules" class="plugin-anchor" href="#run-es-modules"><i class="fa fa-link" aria-hidden="true"></i></a>ECMAScriptモジュールを実行する </h2>
 <p>作成したECMAScriptモジュールを実行するためには、起点となるJavaScriptファイルをECMAScriptモジュールとしてウェブブラウザに読み込ませる必要があります。
 ウェブブラウザは<code>script</code>要素によってJavaScriptファイルを読み込み、実行します。
-次のように<code>script</code>要素に<code>type=&quot;module&quot;</code>属性を付与すると、ウェブブラウザはJavaScriptファイルをECMAScriptモジュールとして読み込みます。</p>
+次のように<code>script</code>要素に<code>type="module"</code>属性を付与すると、ウェブブラウザはJavaScriptファイルをECMAScriptモジュールとして読み込みます。</p>
 <pre><code class="lang-html"><span class="hljs-comment">&lt;!-- my-module.jsをECMAScriptモジュールとして読み込む --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./my-module.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./my-module.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-comment">&lt;!-- インラインでも同じ --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span>&gt;</span><span class="language-javascript">
-<span class="hljs-keyword">import</span> { foo } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./my-module.js&quot;</span>;
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">import</span> { foo } <span class="hljs-keyword">from</span> <span class="hljs-string">"./my-module.js"</span>;
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
-<p><code>type=&quot;module&quot;</code>属性が付与されない場合は通常のスクリプトとして扱われ、ECMAScriptモジュールの機能は使えません。
+<p><code>type="module"</code>属性が付与されない場合は通常のスクリプトとして扱われ、ECMAScriptモジュールの機能は使えません。
 スクリプトとして読み込まれたJavaScriptで<code>import</code>文や<code>export</code>文を使用すると、構文エラーが発生します。</p>
 <p>ウェブブラウザの環境では、インポートされるモジュールの取得はネットワーク経由で解決されます。
 そのため、モジュール名はJavaScriptファイルの絶対URLあるいは相対URLを指定します。
@@ -1837,7 +1837,7 @@ ECMAScriptモジュールは、ES2015で導入されたJavaScriptファイルを
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"JavaScriptのモジュール（ECMAScriptモジュール）について紹介します。","sponsors":[],"title":"ECMAScriptモジュール","level":"1.3.27","depth":2,"next":{"title":"ECMAScript","level":"1.3.28","depth":2,"path":"basic/ecmascript/README.md","ref":"./basic/ecmascript/README.md","articles":[]},"previous":{"title":"Math","level":"1.3.26","depth":2,"path":"basic/math/README.md","ref":"./basic/math/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/module/README.md","mtime":"2024-09-01T11:18:59.581Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-09-01T11:19:15.872Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"JavaScriptのモジュール（ECMAScriptモジュール）について紹介します。","sponsors":[],"title":"ECMAScriptモジュール","level":"1.3.27","depth":2,"next":{"title":"ECMAScript","level":"1.3.28","depth":2,"path":"basic/ecmascript/README.md","ref":"./basic/ecmascript/README.md","articles":[]},"previous":{"title":"Math","level":"1.3.26","depth":2,"path":"basic/math/README.md","ref":"./basic/math/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/module/README.md","mtime":"2024-10-03T14:54:01.256Z","type":"markdown"},"gitbook":{"version":"6.0.0","time":"2024-10-03T14:54:19.038Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

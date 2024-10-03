@@ -6,7 +6,7 @@
         <title>エントリーポイント · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="アプリケーションの中で一番最初に呼び出されるエントリーポイントを作成します。">
-        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="generator" content="HonKit 6.0.0">
         
         
         
@@ -1578,14 +1578,14 @@
 </div>
 
 <pre><code class="lang-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ja&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"ja"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Ajax Example<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>GitHub User Info<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;index.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"index.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
@@ -1595,7 +1595,7 @@
     <p class="code-filename">index.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;index.js: loaded&quot;</span>);
+<pre><code class="lang-javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"index.js: loaded"</span>);
 </code></pre>
 <p>ここでの<code>ajaxapp</code>ディレクトリのファイル配置は次のようになっていれば問題ありません。</p>
 <pre><code>ajaxapp
@@ -1615,16 +1615,16 @@
 <span class="hljs-meta prompt_"># </span><span class="language-bash">ajaxapp/をルートにしたローカルサーバーを起動する</span>
 <span class="hljs-meta prompt_">$ </span><span class="language-bash">npx --<span class="hljs-built_in">yes</span> @js-primer/local-server</span>
 </code></pre>
-<p>起動したローカルサーバーのURL（<code>http://localhost:3000</code>）へブラウザでアクセスすると、<code>&quot;index.js: loaded&quot;</code>とコンソールにログが出力されます。
+<p>起動したローカルサーバーのURL（<code>http://localhost:3000</code>）へブラウザでアクセスすると、<code>"index.js: loaded"</code>とコンソールにログが出力されます。
 Console APIで出力したログを確認するには、ウェブブラウザの開発者ツールを開く必要があります。
 ほとんどのブラウザで開発者ツールが同梱されていますが、本章ではFirefoxを使って確認します。
 Firefoxの開発者ツールは次のいずれかの方法で開きます。</p>
 <ul>
-<li>Firefox メニュー（メニューバーがある場合や macOS では、ツールメニュー）の &quot;ブラウザーツール&quot;のサブメニューから &quot;ウェブ開発ツール&quot; を選択する</li>
+<li>Firefox メニュー（メニューバーがある場合や macOS では、ツールメニュー）の "ブラウザーツール"のサブメニューから "ウェブ開発ツール" を選択する</li>
 <li>キーボードショートカット Ctrl+Shift+K（macOS では Command+Option+K）を押下する</li>
 </ul>
 <p>詳細は「<a href="https://developer.mozilla.org/ja/docs/Learn/Common_questions/What_are_browser_developer_tools" target="_blank">ブラウザーの開発者ツールとは？</a>」を参照してください。</p>
-<p><img src="img/fig-1.png" alt="ログが表示されているWebコンソール"></p>
+<p><img src="img/fig-1.png" alt="ログが表示されているWebコンソール"></img></p>
 <h2 id="web-browsers-and-dom"><a name="web-browsers-and-dom" class="plugin-anchor" href="#web-browsers-and-dom"><i class="fa fa-link" aria-hidden="true"></i></a>ウェブブラウザとDOM </h2>
 <p>HTMLドキュメントをブラウザで読み込むとき、<a href="https://developer.mozilla.org/ja/docs/Web/API/Document_Object_Model/Introduction" target="_blank">DOM</a>と呼ばれるプログラミング用のデータ表現が生成されます。
 <strong>DOM（Document Object Model）</strong> とは、HTMLドキュメントのコンテンツと構造をJavaScriptから操作できるオブジェクトです。
@@ -1635,13 +1635,13 @@ DOMではHTMLドキュメントのタグの入れ子関係を木構造で表現�
 <!-- DOMがないため -->
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-comment">// CSSセレクタを使ってDOMツリー中のh2要素を取得する</span>
-<span class="hljs-keyword">const</span> heading = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&quot;h2&quot;</span>);
+<span class="hljs-keyword">const</span> heading = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">"h2"</span>);
 <span class="hljs-comment">// h2要素に含まれるテキストコンテンツを取得する</span>
 <span class="hljs-keyword">const</span> headingText = heading.<span class="hljs-property">textContent</span>;
 
 <span class="hljs-comment">// button要素を作成する</span>
-<span class="hljs-keyword">const</span> button = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&quot;button&quot;</span>);
-button.<span class="hljs-property">textContent</span> = <span class="hljs-string">&quot;Push Me&quot;</span>;
+<span class="hljs-keyword">const</span> button = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">"button"</span>);
+button.<span class="hljs-property">textContent</span> = <span class="hljs-string">"Push Me"</span>;
 <span class="hljs-comment">// body要素の子要素としてbuttonを挿入する</span>
 <span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>.<span class="hljs-title function_">appendChild</span>(button);
 </code></pre>
@@ -1698,7 +1698,7 @@ button.<span class="hljs-property">textContent</span> = <span class="hljs-string
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"アプリケーションの中で一番最初に呼び出されるエントリーポイントを作成します。","sponsors":[],"title":"エントリーポイント","level":"1.4.2.1","depth":3,"next":{"title":"HTTP通信","level":"1.4.2.2","depth":3,"path":"use-case/ajaxapp/http/README.md","ref":"./use-case/ajaxapp/http/README.md","articles":[]},"previous":{"title":"Ajax通信","level":"1.4.2","depth":2,"path":"use-case/ajaxapp/README.md","ref":"./use-case/ajaxapp/README.md","articles":[{"title":"エントリーポイント","level":"1.4.2.1","depth":3,"path":"use-case/ajaxapp/entrypoint/README.md","ref":"./use-case/ajaxapp/entrypoint/README.md","articles":[]},{"title":"HTTP通信","level":"1.4.2.2","depth":3,"path":"use-case/ajaxapp/http/README.md","ref":"./use-case/ajaxapp/http/README.md","articles":[]},{"title":"データを表示する","level":"1.4.2.3","depth":3,"path":"use-case/ajaxapp/display/README.md","ref":"./use-case/ajaxapp/display/README.md","articles":[]},{"title":"Promiseを活用する","level":"1.4.2.4","depth":3,"path":"use-case/ajaxapp/promise/README.md","ref":"./use-case/ajaxapp/promise/README.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/ajaxapp/entrypoint/README.md","mtime":"2024-09-01T11:18:59.593Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-09-01T11:19:15.872Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"アプリケーションの中で一番最初に呼び出されるエントリーポイントを作成します。","sponsors":[],"title":"エントリーポイント","level":"1.4.2.1","depth":3,"next":{"title":"HTTP通信","level":"1.4.2.2","depth":3,"path":"use-case/ajaxapp/http/README.md","ref":"./use-case/ajaxapp/http/README.md","articles":[]},"previous":{"title":"Ajax通信","level":"1.4.2","depth":2,"path":"use-case/ajaxapp/README.md","ref":"./use-case/ajaxapp/README.md","articles":[{"title":"エントリーポイント","level":"1.4.2.1","depth":3,"path":"use-case/ajaxapp/entrypoint/README.md","ref":"./use-case/ajaxapp/entrypoint/README.md","articles":[]},{"title":"HTTP通信","level":"1.4.2.2","depth":3,"path":"use-case/ajaxapp/http/README.md","ref":"./use-case/ajaxapp/http/README.md","articles":[]},{"title":"データを表示する","level":"1.4.2.3","depth":3,"path":"use-case/ajaxapp/display/README.md","ref":"./use-case/ajaxapp/display/README.md","articles":[]},{"title":"Promiseを活用する","level":"1.4.2.4","depth":3,"path":"use-case/ajaxapp/promise/README.md","ref":"./use-case/ajaxapp/promise/README.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/ajaxapp/entrypoint/README.md","mtime":"2024-10-03T14:54:01.267Z","type":"markdown"},"gitbook":{"version":"6.0.0","time":"2024-10-03T14:54:19.038Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

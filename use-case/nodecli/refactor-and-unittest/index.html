@@ -6,7 +6,7 @@
         <title>ユニットテストを記述する · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="ユニットテストの導入とソースコードのモジュール化を行います。">
-        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="generator" content="HonKit 6.0.0">
         
         
         
@@ -1585,8 +1585,8 @@
     <p class="code-filename">greet-main.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { greet } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./greet.js&quot;</span>;
-<span class="hljs-title function_">greet</span>(<span class="hljs-string">&quot;World&quot;</span>); <span class="hljs-comment">// =&gt; &quot;Hello World!&quot;</span>
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { greet } <span class="hljs-keyword">from</span> <span class="hljs-string">"./greet.js"</span>;
+<span class="hljs-title function_">greet</span>(<span class="hljs-string">"World"</span>); <span class="hljs-comment">// =&gt; "Hello World!"</span>
 </code></pre>
 <p>これから行うアプリケーションのモジュール化とは、このようにアプリケーションの一部分を別のファイルに切り出した上で、必要なオブジェクトをエクスポートして外部から利用可能にするということです。
 機能をモジュールとして切り出すことで、アプリケーションとユニットテストの両方から利用できるようになります。</p>
@@ -1596,7 +1596,7 @@
     <p class="code-filename">md2html.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { marked } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;marked&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { marked } <span class="hljs-keyword">from</span> <span class="hljs-string">"marked"</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">md2html</span>(<span class="hljs-params">markdown, cliOptions</span>) {
     <span class="hljs-keyword">return</span> marked.<span class="hljs-title function_">parse</span>(markdown, {
@@ -1610,10 +1610,10 @@
     <p class="code-filename">main.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> util <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:util&quot;</span>;
-<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:fs/promises&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> util <span class="hljs-keyword">from</span> <span class="hljs-string">"node:util"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">"node:fs/promises"</span>;
 <span class="hljs-comment">// md2htmlモジュールからmd2html関数をインポートする</span>
-<span class="hljs-keyword">import</span> { md2html } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./md2html.js&quot;</span>;
+<span class="hljs-keyword">import</span> { md2html } <span class="hljs-keyword">from</span> <span class="hljs-string">"./md2html.js"</span>;
 
 <span class="hljs-comment">// コマンドライン引数からファイルパスとオプション/フラグを受け取る</span>
 <span class="hljs-keyword">const</span> {
@@ -1624,13 +1624,13 @@
     <span class="hljs-attr">options</span>: {
         <span class="hljs-comment">// gfmフラグを定義する</span>
         <span class="hljs-attr">gfm</span>: {
-            <span class="hljs-attr">type</span>: <span class="hljs-string">&quot;boolean&quot;</span>,
+            <span class="hljs-attr">type</span>: <span class="hljs-string">"boolean"</span>,
             <span class="hljs-attr">default</span>: <span class="hljs-literal">false</span>,
         }
     }
 });
 <span class="hljs-keyword">const</span> filePath = positionals[<span class="hljs-number">0</span>];
-fs.<span class="hljs-title function_">readFile</span>(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span> }).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
+fs.<span class="hljs-title function_">readFile</span>(filePath, { <span class="hljs-attr">encoding</span>: <span class="hljs-string">"utf8"</span> }).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">file</span> =&gt;</span> {
     <span class="hljs-comment">// md2htmlモジュールを使ってHTMLに変換する</span>
     <span class="hljs-keyword">const</span> html = <span class="hljs-title function_">md2html</span>(file, {
         <span class="hljs-comment">// gfmフラグのパース結果をオプションとして渡す</span>
@@ -1655,8 +1655,8 @@ fs.<span class="hljs-title function_">readFile</span>(filePath, { <span class="h
 <code>package.json</code>の<code>scripts</code>プロパティには、次のように記述します。</p>
 <pre><code class="lang-json">{
     ...
-    <span class="hljs-string">&quot;scripts&quot;</span>: {
-        <span class="hljs-string">&quot;test&quot;</span>: <span class="hljs-string">&quot;node --test&quot;</span>
+    <span class="hljs-string">"scripts"</span>: {
+        <span class="hljs-string">"test"</span>: <span class="hljs-string">"node --test"</span>
     },
     ...
 }
@@ -1687,18 +1687,18 @@ fs.<span class="hljs-title function_">readFile</span>(filePath, { <span class="h
     <p class="code-filename">test/md2html-test.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { test } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:test&quot;</span>;
-<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> assert <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:assert&quot;</span>;
-<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;node:fs/promises&quot;</span>;
-<span class="hljs-keyword">import</span> { md2html } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../md2html.js&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { test } <span class="hljs-keyword">from</span> <span class="hljs-string">"node:test"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> assert <span class="hljs-keyword">from</span> <span class="hljs-string">"node:assert"</span>;
+<span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">"node:fs/promises"</span>;
+<span class="hljs-keyword">import</span> { md2html } <span class="hljs-keyword">from</span> <span class="hljs-string">"../md2html.js"</span>;
 
-<span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;converts Markdown to HTML (GFM=false)&quot;</span>, <span class="hljs-title function_">async</span>() =&gt; {
+<span class="hljs-title function_">test</span>(<span class="hljs-string">"converts Markdown to HTML (GFM=false)"</span>, <span class="hljs-title function_">async</span>() =&gt; {
     <span class="hljs-comment">// fs.readFileはPromiseを返すので、`await`式で読み込みが完了するまで待って内容を取得する</span>
-    <span class="hljs-keyword">const</span> sample = <span class="hljs-keyword">await</span> fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&quot;test/fixtures/sample.md&quot;</span>, {
-        <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span>,
+    <span class="hljs-keyword">const</span> sample = <span class="hljs-keyword">await</span> fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">"test/fixtures/sample.md"</span>, {
+        <span class="hljs-attr">encoding</span>: <span class="hljs-string">"utf8"</span>,
     });
-    <span class="hljs-keyword">const</span> expected = <span class="hljs-keyword">await</span> fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&quot;test/fixtures/expected.html&quot;</span>, {
-        <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span>,
+    <span class="hljs-keyword">const</span> expected = <span class="hljs-keyword">await</span> fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">"test/fixtures/expected.html"</span>, {
+        <span class="hljs-attr">encoding</span>: <span class="hljs-string">"utf8"</span>,
     });
     <span class="hljs-comment">// 末尾の改行の有無の違いを無視するため、変換後のHTMLのスペースをtrimメソッドで削除してから比較しています</span>
     assert.<span class="hljs-title function_">strictEqual</span>(
@@ -1707,12 +1707,12 @@ fs.<span class="hljs-title function_">readFile</span>(filePath, { <span class="h
     );
 });
 
-<span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;converts Markdown to HTML (GFM=true)&quot;</span>, <span class="hljs-title function_">async</span>() =&gt; {
-    <span class="hljs-keyword">const</span> sample = <span class="hljs-keyword">await</span> fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&quot;test/fixtures/sample.md&quot;</span>, {
-        <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span>,
+<span class="hljs-title function_">test</span>(<span class="hljs-string">"converts Markdown to HTML (GFM=true)"</span>, <span class="hljs-title function_">async</span>() =&gt; {
+    <span class="hljs-keyword">const</span> sample = <span class="hljs-keyword">await</span> fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">"test/fixtures/sample.md"</span>, {
+        <span class="hljs-attr">encoding</span>: <span class="hljs-string">"utf8"</span>,
     });
-    <span class="hljs-keyword">const</span> expected = <span class="hljs-keyword">await</span> fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&quot;test/fixtures/expected-gfm.html&quot;</span>, {
-        <span class="hljs-attr">encoding</span>: <span class="hljs-string">&quot;utf8&quot;</span>,
+    <span class="hljs-keyword">const</span> expected = <span class="hljs-keyword">await</span> fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">"test/fixtures/expected-gfm.html"</span>, {
+        <span class="hljs-attr">encoding</span>: <span class="hljs-string">"utf8"</span>,
     });
     <span class="hljs-comment">// 末尾の改行の有無の違いを無視するため、変換後のHTMLのスペースをtrimメソッドで削除してから比較しています</span>
     assert.<span class="hljs-title function_">strictEqual</span>(
@@ -1757,7 +1757,7 @@ https://jsprimer.net/<span class="hljs-tag">&lt;/<span class="hljs-name">p</span
 
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>サンプルファイル<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>これはサンプルです。
-<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://jsprimer.net/&quot;</span>&gt;</span>https://jsprimer.net/<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://jsprimer.net/"</span>&gt;</span>https://jsprimer.net/<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>サンプル1<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>サンプル2<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
@@ -1797,22 +1797,22 @@ https://jsprimer.net/<span class="hljs-tag">&lt;/<span class="hljs-name">p</span
   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
   + actual - expected ... Lines skipped
 
-    &apos;&lt;h1&gt;サンプルファイル&lt;/h1&gt;\n&apos; +
-      &apos;&lt;p&gt;これはサンプルです。\n&apos; +
+    '&lt;h1&gt;サンプルファイル&lt;/h1&gt;\n' +
+      '&lt;p&gt;これはサンプルです。\n' +
   ...
-      &apos;&lt;li&gt;サンプル1&lt;/li&gt;\n&apos; +
-      &apos;&lt;li&gt;サンプル2&lt;/li&gt;\n&apos; +
-  +   &apos;&lt;/ul&gt;&apos;
-  -   &apos;&lt;/ul&gt;\n&apos; +
-  -   &apos;;;;&apos;
+      '&lt;li&gt;サンプル1&lt;/li&gt;\n' +
+      '&lt;li&gt;サンプル2&lt;/li&gt;\n' +
+  +   '&lt;/ul&gt;'
+  -   '&lt;/ul&gt;\n' +
+  -   ';;;'
       at TestContext.&lt;anonymous&gt; (file:///Users/laco/nodecli/test/md2html-test.js:29:10)
       at async Test.run (node:internal/test_runner/test:632:9)
       at async Test.processPendingSubtests (node:internal/test_runner/test:374:7) {
     generatedMessage: true,
-    code: &apos;ERR_ASSERTION&apos;,
-    actual: &apos;&lt;h1&gt;サンプルファイル&lt;/h1&gt;\n&lt;p&gt;これはサンプルです。\n&lt;a href=&quot;https://jsprimer.net/&quot;&gt;https://jsprimer.net/&lt;/a&gt;&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;サンプル1&lt;/li&gt;\n&lt;li&gt;サンプル2&lt;/li&gt;\n&lt;/ul&gt;&apos;,
-    expected: &apos;&lt;h1&gt;サンプルファイル&lt;/h1&gt;\n&lt;p&gt;これはサンプルです。\n&lt;a href=&quot;https://jsprimer.net/&quot;&gt;https://jsprimer.net/&lt;/a&gt;&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;サンプル1&lt;/li&gt;\n&lt;li&gt;サンプル2&lt;/li&gt;\n&lt;/ul&gt;\n;;;&apos;,
-    operator: &apos;strictEqual&apos;
+    code: 'ERR_ASSERTION',
+    actual: '&lt;h1&gt;サンプルファイル&lt;/h1&gt;\n&lt;p&gt;これはサンプルです。\n&lt;a href="https://jsprimer.net/"&gt;https://jsprimer.net/&lt;/a&gt;&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;サンプル1&lt;/li&gt;\n&lt;li&gt;サンプル2&lt;/li&gt;\n&lt;/ul&gt;',
+    expected: '&lt;h1&gt;サンプルファイル&lt;/h1&gt;\n&lt;p&gt;これはサンプルです。\n&lt;a href="https://jsprimer.net/"&gt;https://jsprimer.net/&lt;/a&gt;&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;サンプル1&lt;/li&gt;\n&lt;li&gt;サンプル2&lt;/li&gt;\n&lt;/ul&gt;\n;;;',
+    operator: 'strictEqual'
   }
 
 ℹ tests 2
@@ -1831,22 +1831,22 @@ test at file:/Users/laco/nodecli/test/md2html-test.js:21:1
   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
   + actual - expected ... Lines skipped
 
-    &apos;&lt;h1&gt;サンプルファイル&lt;/h1&gt;\n&apos; +
-      &apos;&lt;p&gt;これはサンプルです。\n&apos; +
+    '&lt;h1&gt;サンプルファイル&lt;/h1&gt;\n' +
+      '&lt;p&gt;これはサンプルです。\n' +
   ...
-      &apos;&lt;li&gt;サンプル1&lt;/li&gt;\n&apos; +
-      &apos;&lt;li&gt;サンプル2&lt;/li&gt;\n&apos; +
-  +   &apos;&lt;/ul&gt;&apos;
-  -   &apos;&lt;/ul&gt;\n&apos; +
-  -   &apos;;;;&apos;
+      '&lt;li&gt;サンプル1&lt;/li&gt;\n' +
+      '&lt;li&gt;サンプル2&lt;/li&gt;\n' +
+  +   '&lt;/ul&gt;'
+  -   '&lt;/ul&gt;\n' +
+  -   ';;;'
       at TestContext.&lt;anonymous&gt; (file:///Users/laco/nodecli/test/md2html-test.js:29:10)
       at async Test.run (node:internal/test_runner/test:632:9)
       at async Test.processPendingSubtests (node:internal/test_runner/test:374:7) {
     generatedMessage: true,
-    code: &apos;ERR_ASSERTION&apos;,
-    actual: &apos;&lt;h1&gt;サンプルファイル&lt;/h1&gt;\n&lt;p&gt;これはサンプルです。\n&lt;a href=&quot;https://jsprimer.net/&quot;&gt;https://jsprimer.net/&lt;/a&gt;&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;サンプル1&lt;/li&gt;\n&lt;li&gt;サンプル2&lt;/li&gt;\n&lt;/ul&gt;&apos;,
-    expected: &apos;&lt;h1&gt;サンプルファイル&lt;/h1&gt;\n&lt;p&gt;これはサンプルです。\n&lt;a href=&quot;https://jsprimer.net/&quot;&gt;https://jsprimer.net/&lt;/a&gt;&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;サンプル1&lt;/li&gt;\n&lt;li&gt;サンプル2&lt;/li&gt;\n&lt;/ul&gt;\n;;;&apos;,
-    operator: &apos;strictEqual&apos;
+    code: 'ERR_ASSERTION',
+    actual: '&lt;h1&gt;サンプルファイル&lt;/h1&gt;\n&lt;p&gt;これはサンプルです。\n&lt;a href="https://jsprimer.net/"&gt;https://jsprimer.net/&lt;/a&gt;&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;サンプル1&lt;/li&gt;\n&lt;li&gt;サンプル2&lt;/li&gt;\n&lt;/ul&gt;',
+    expected: '&lt;h1&gt;サンプルファイル&lt;/h1&gt;\n&lt;p&gt;これはサンプルです。\n&lt;a href="https://jsprimer.net/"&gt;https://jsprimer.net/&lt;/a&gt;&lt;/p&gt;\n&lt;ul&gt;\n&lt;li&gt;サンプル1&lt;/li&gt;\n&lt;li&gt;サンプル2&lt;/li&gt;\n&lt;/ul&gt;\n;;;',
+    operator: 'strictEqual'
   }
 </code></pre>
 <p>このテスト結果では <code>converts Markdown to HTML (GFM=true)</code> というタイトルのテストが1つ失敗していることがわかります。
@@ -1906,7 +1906,7 @@ npmを使ったパッケージ管理や外部モジュールの利用、<code>fs
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"ユニットテストの導入とソースコードのモジュール化を行います。","sponsors":[],"title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"next":{"title":"Todoアプリ","level":"1.4.4","depth":2,"path":"use-case/todoapp/README.md","ref":"./use-case/todoapp/README.md","articles":[{"title":"エントリーポイント","level":"1.4.4.1","depth":3,"path":"use-case/todoapp/entrypoint/README.md","ref":"./use-case/todoapp/entrypoint/README.md","articles":[]},{"title":"アプリの構成要素","level":"1.4.4.2","depth":3,"path":"use-case/todoapp/app-structure/README.md","ref":"./use-case/todoapp/app-structure/README.md","articles":[]},{"title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"path":"use-case/todoapp/form-event/README.md","ref":"./use-case/todoapp/form-event/README.md","articles":[]},{"title":"イベントとモデル","level":"1.4.4.4","depth":3,"path":"use-case/todoapp/event-model/README.md","ref":"./use-case/todoapp/event-model/README.md","articles":[]},{"title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"path":"use-case/todoapp/update-delete/README.md","ref":"./use-case/todoapp/update-delete/README.md","articles":[]},{"title":"Todoアプリのリファクタリング","level":"1.4.4.6","depth":3,"path":"use-case/todoapp/final/README.md","ref":"./use-case/todoapp/final/README.md","articles":[]}]},"previous":{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/refactor-and-unittest/README.md","mtime":"2024-09-01T11:18:59.597Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-09-01T11:19:15.872Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"ユニットテストの導入とソースコードのモジュール化を行います。","sponsors":[],"title":"ユニットテストを記述する","level":"1.4.3.5","depth":3,"next":{"title":"Todoアプリ","level":"1.4.4","depth":2,"path":"use-case/todoapp/README.md","ref":"./use-case/todoapp/README.md","articles":[{"title":"エントリーポイント","level":"1.4.4.1","depth":3,"path":"use-case/todoapp/entrypoint/README.md","ref":"./use-case/todoapp/entrypoint/README.md","articles":[]},{"title":"アプリの構成要素","level":"1.4.4.2","depth":3,"path":"use-case/todoapp/app-structure/README.md","ref":"./use-case/todoapp/app-structure/README.md","articles":[]},{"title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"path":"use-case/todoapp/form-event/README.md","ref":"./use-case/todoapp/form-event/README.md","articles":[]},{"title":"イベントとモデル","level":"1.4.4.4","depth":3,"path":"use-case/todoapp/event-model/README.md","ref":"./use-case/todoapp/event-model/README.md","articles":[]},{"title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"path":"use-case/todoapp/update-delete/README.md","ref":"./use-case/todoapp/update-delete/README.md","articles":[]},{"title":"Todoアプリのリファクタリング","level":"1.4.4.6","depth":3,"path":"use-case/todoapp/final/README.md","ref":"./use-case/todoapp/final/README.md","articles":[]}]},"previous":{"title":"MarkdownをHTMLに変換する","level":"1.4.3.4","depth":3,"path":"use-case/nodecli/md-to-html/README.md","ref":"./use-case/nodecli/md-to-html/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/nodecli/refactor-and-unittest/README.md","mtime":"2024-10-03T14:54:01.274Z","type":"markdown"},"gitbook":{"version":"6.0.0","time":"2024-10-03T14:54:19.038Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

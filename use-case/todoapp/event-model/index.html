@@ -6,7 +6,7 @@
         <title>イベントとモデル · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="操作と更新が密結合になってしまい変更がしにくくなる問題を「モデル」と「イベント」を用いて改善する方法を見ていきます。">
-        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="generator" content="HonKit 6.0.0">
         
         
         
@@ -1763,16 +1763,16 @@ Node.jsでは、<code>events</code>と呼ばれる組み込みのモジュール
     <p class="code-filename">EventEmitterの実行サンプル</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">EventEmitter</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./EventEmitter.js&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">EventEmitter</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"./EventEmitter.js"</span>;
 <span class="hljs-keyword">const</span> event = <span class="hljs-keyword">new</span> <span class="hljs-title class_">EventEmitter</span>();
 <span class="hljs-comment">// イベントリスナー（コールバック関数）を登録</span>
-event.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;test-event&quot;</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;One!&quot;</span>));
-event.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;test-event&quot;</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Two!&quot;</span>));
+event.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">"test-event"</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"One!"</span>));
+event.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">"test-event"</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"Two!"</span>));
 <span class="hljs-comment">// イベントをディスパッチする</span>
-event.<span class="hljs-title function_">emit</span>(<span class="hljs-string">&quot;test-event&quot;</span>);
+event.<span class="hljs-title function_">emit</span>(<span class="hljs-string">"test-event"</span>);
 <span class="hljs-comment">// コールバック関数がそれぞれ呼びだされ、コンソールには次のように出力される</span>
-<span class="hljs-comment">// &quot;One!&quot;</span>
-<span class="hljs-comment">// &quot;Two!&quot;</span>
+<span class="hljs-comment">// "One!"</span>
+<span class="hljs-comment">// "Two!"</span>
 </code></pre>
 <h2 id="event-emitter-todolist-model"><a name="event-emitter-todolist-model" class="plugin-anchor" href="#event-emitter-todolist-model"><i class="fa fa-link" aria-hidden="true"></i></a>EventEmitterを継承したTodoListモデル </h2>
 <p>次は作成した<code>EventEmitter</code>クラスを継承した<code>TodoListModel</code>クラスを作成しています。
@@ -1820,13 +1820,13 @@ event.<span class="hljs-title function_">emit</span>(<span class="hljs-string">&
     <p class="code-filename">TodoItemModel.jsを利用するサンプルコード</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">TodoItemModel</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./TodoItemModel.js&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">TodoItemModel</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"./TodoItemModel.js"</span>;
 <span class="hljs-keyword">const</span> item = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TodoItemModel</span>({
-    <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;未完了のTodoアイテム&quot;</span>,
+    <span class="hljs-attr">title</span>: <span class="hljs-string">"未完了のTodoアイテム"</span>,
     <span class="hljs-attr">completed</span>: <span class="hljs-literal">false</span>
 });
 <span class="hljs-keyword">const</span> completedItem = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TodoItemModel</span>({
-    <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;完了済みのTodoアイテム&quot;</span>,
+    <span class="hljs-attr">title</span>: <span class="hljs-string">"完了済みのTodoアイテム"</span>,
     <span class="hljs-attr">completed</span>: <span class="hljs-literal">true</span>
 });
 <span class="hljs-comment">// それぞれの`id`は異なる</span>
@@ -1840,7 +1840,7 @@ event.<span class="hljs-title function_">emit</span>(<span class="hljs-string">&
     <p class="code-filename">src/model/TodoListModel.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">EventEmitter</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;../EventEmitter.js&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">EventEmitter</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"../EventEmitter.js"</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TodoListModel</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">EventEmitter</span> {
     #items;
@@ -1873,14 +1873,14 @@ event.<span class="hljs-title function_">emit</span>(<span class="hljs-string">&
      * <span class="hljs-doctag">@param</span> {<span class="hljs-type">Function</span>} <span class="hljs-variable">listener</span>
      */</span>
     <span class="hljs-title function_">onChange</span>(<span class="hljs-params">listener</span>) {
-        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;change&quot;</span>, listener);
+        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">"change"</span>, listener);
     }
 
     <span class="hljs-comment">/**
      * 状態が変更されたときに呼ぶ。登録済みのリスナー関数を呼び出す
      */</span>
     <span class="hljs-title function_">emitChange</span>(<span class="hljs-params"></span>) {
-        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">emit</span>(<span class="hljs-string">&quot;change&quot;</span>);
+        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">emit</span>(<span class="hljs-string">"change"</span>);
     }
 
     <span class="hljs-comment">/**
@@ -1899,20 +1899,20 @@ TodoListModelの<code>addTodo</code>メソッドで新しいTodoアイテムを�
     <p class="code-filename">TodoListModel.jsを利用するサンプルコード</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">TodoItemModel</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./TodoItemModel.js&quot;</span>;
-<span class="hljs-keyword">import</span> { <span class="hljs-title class_">TodoListModel</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./TodoListModel.js&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">TodoItemModel</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"./TodoItemModel.js"</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">TodoListModel</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"./TodoListModel.js"</span>;
 <span class="hljs-comment">// 新しいTodoリストを作成する</span>
 <span class="hljs-keyword">const</span> todoListModel = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TodoListModel</span>();
 <span class="hljs-comment">// 現在のTodoアイテム数は0</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(todoListModel.<span class="hljs-title function_">getTotalCount</span>()); <span class="hljs-comment">// =&gt; 0</span>
 <span class="hljs-comment">// Todoリストが変更されたら呼ばれるイベントリスナーを登録する</span>
 todoListModel.<span class="hljs-title function_">onChange</span>(<span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;TodoListの状態が変わりました&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"TodoListの状態が変わりました"</span>);
 });
 <span class="hljs-comment">// 新しいTodoアイテムを追加する</span>
 <span class="hljs-comment">// =&gt; `onChange`で登録したイベントリスナーが呼び出される</span>
 todoListModel.<span class="hljs-title function_">addTodo</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">TodoItemModel</span>({
-    <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;新しいTodoアイテム&quot;</span>,
+    <span class="hljs-attr">title</span>: <span class="hljs-string">"新しいTodoアイテム"</span>,
     <span class="hljs-attr">completed</span>: <span class="hljs-literal">false</span>
 }));
 <span class="hljs-comment">// Todoリストにアイテムが増える</span>
@@ -1931,19 +1931,19 @@ todoListModel.<span class="hljs-title function_">addTodo</span>(<span class="hlj
     <p class="code-filename">src/App.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">TodoListModel</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./model/TodoListModel.js&quot;</span>;
-<span class="hljs-keyword">import</span> { <span class="hljs-title class_">TodoItemModel</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./model/TodoItemModel.js&quot;</span>;
-<span class="hljs-keyword">import</span> { element, render } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./view/html-util.js&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">TodoListModel</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"./model/TodoListModel.js"</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">TodoItemModel</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"./model/TodoItemModel.js"</span>;
+<span class="hljs-keyword">import</span> { element, render } <span class="hljs-keyword">from</span> <span class="hljs-string">"./view/html-util.js"</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">App</span> {
     <span class="hljs-comment">// 1. TodoListModelの初期化</span>
     #todoListModel = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TodoListModel</span>();
 
     <span class="hljs-title function_">mount</span>(<span class="hljs-params"></span>) {
-        <span class="hljs-keyword">const</span> formElement = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&quot;#js-form&quot;</span>);
-        <span class="hljs-keyword">const</span> inputElement = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&quot;#js-form-input&quot;</span>);
-        <span class="hljs-keyword">const</span> containerElement = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&quot;#js-todo-list&quot;</span>);
-        <span class="hljs-keyword">const</span> todoItemCountElement = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&quot;#js-todo-count&quot;</span>);
+        <span class="hljs-keyword">const</span> formElement = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">"#js-form"</span>);
+        <span class="hljs-keyword">const</span> inputElement = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">"#js-form-input"</span>);
+        <span class="hljs-keyword">const</span> containerElement = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">"#js-todo-list"</span>);
+        <span class="hljs-keyword">const</span> todoItemCountElement = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">"#js-todo-count"</span>);
         <span class="hljs-comment">// 2. TodoListModelの状態が更新されたら表示を更新する</span>
         <span class="hljs-variable language_">this</span>.#todoListModel.<span class="hljs-title function_">onChange</span>(<span class="hljs-function">() =&gt;</span> {
             <span class="hljs-comment">// TodoリストをまとめるList要素</span>
@@ -1960,14 +1960,14 @@ todoListModel.<span class="hljs-title function_">addTodo</span>(<span class="hlj
             todoItemCountElement.<span class="hljs-property">textContent</span> = <span class="hljs-string">`Todoアイテム数: <span class="hljs-subst">${<span class="hljs-variable language_">this</span>.#todoListModel.getTotalCount()}</span>`</span>;
         });
         <span class="hljs-comment">// 3. フォームを送信したら、新しいTodoItemModelを追加する</span>
-        formElement.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;submit&quot;</span>, <span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> {
+        formElement.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">"submit"</span>, <span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> {
             event.<span class="hljs-title function_">preventDefault</span>();
             <span class="hljs-comment">// 新しいTodoItemをTodoListへ追加する</span>
             <span class="hljs-variable language_">this</span>.#todoListModel.<span class="hljs-title function_">addTodo</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">TodoItemModel</span>({
                 <span class="hljs-attr">title</span>: inputElement.<span class="hljs-property">value</span>,
                 <span class="hljs-attr">completed</span>: <span class="hljs-literal">false</span>
             }));
-            inputElement.<span class="hljs-property">value</span> = <span class="hljs-string">&quot;&quot;</span>;
+            inputElement.<span class="hljs-property">value</span> = <span class="hljs-string">""</span>;
         });
     }
 }
@@ -1976,8 +1976,8 @@ todoListModel.<span class="hljs-title function_">addTodo</span>(<span class="hlj
 <h3 id="app-todolist-initialize"><a name="app-todolist-initialize" class="plugin-anchor" href="#app-todolist-initialize"><i class="fa fa-link" aria-hidden="true"></i></a>1. TodoListModelの初期化 </h3>
 <p>作成した<code>TodoListModel</code>と<code>TodoItemModel</code>をインポートしています。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">TodoListModel</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./model/TodoListModel.js&quot;</span>;
-<span class="hljs-keyword">import</span> { <span class="hljs-title class_">TodoItemModel</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./model/TodoItemModel.js&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">TodoListModel</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"./model/TodoListModel.js"</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">TodoItemModel</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"./model/TodoItemModel.js"</span>;
 </code></pre>
 <p>そして、<code>App</code>クラスにPrivateクラスフィールドで<code>TodoListModel</code>を初期化したものを定義しています。
 TodoListModelは<code>App</code>クラスの外からは触る必要がないため、<code>#todoListModel</code>というPrivateクラスフィールドとして定義しています。
@@ -2008,9 +2008,9 @@ TodoListModelの<code>onChange</code>メソッドで登録したリスナー関�
 <div class="code-filename-block"><p class="code-filename">src/App.jsより抜粋</p></div>
 
 <!-- doctest:disable -->
-<pre><code class="lang-js"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">TodoListModel</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./model/TodoListModel.js&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">TodoListModel</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">"./model/TodoListModel.js"</span>;
 <span class="hljs-comment">// render関数をimportに追加する</span>
-<span class="hljs-keyword">import</span> { element, render } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./view/html-util.js&quot;</span>;
+<span class="hljs-keyword">import</span> { element, render } <span class="hljs-keyword">from</span> <span class="hljs-string">"./view/html-util.js"</span>;
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">App</span> {
     #todoListModel = <span class="hljs-keyword">new</span> <span class="hljs-title class_">TodoListModel</span>();
 
@@ -2082,7 +2082,7 @@ TodoListModelの<code>onChange</code>メソッドで登録したリスナー関�
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"操作と更新が密結合になってしまい変更がしにくくなる問題を「モデル」と「イベント」を用いて改善する方法を見ていきます。","sponsors":[],"title":"イベントとモデル","level":"1.4.4.4","depth":3,"next":{"title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"path":"use-case/todoapp/update-delete/README.md","ref":"./use-case/todoapp/update-delete/README.md","articles":[]},"previous":{"title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"path":"use-case/todoapp/form-event/README.md","ref":"./use-case/todoapp/form-event/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/todoapp/event-model/README.md","mtime":"2024-09-01T11:18:59.601Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-09-01T11:19:15.872Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"操作と更新が密結合になってしまい変更がしにくくなる問題を「モデル」と「イベント」を用いて改善する方法を見ていきます。","sponsors":[],"title":"イベントとモデル","level":"1.4.4.4","depth":3,"next":{"title":"Todoアイテムの更新と削除を実装する","level":"1.4.4.5","depth":3,"path":"use-case/todoapp/update-delete/README.md","ref":"./use-case/todoapp/update-delete/README.md","articles":[]},"previous":{"title":"Todoアイテムの追加を実装する","level":"1.4.4.3","depth":3,"path":"use-case/todoapp/form-event/README.md","ref":"./use-case/todoapp/form-event/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"use-case/todoapp/event-model/README.md","mtime":"2024-10-03T14:54:01.282Z","type":"markdown"},"gitbook":{"version":"6.0.0","time":"2024-10-03T14:54:19.038Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

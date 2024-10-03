@@ -6,7 +6,7 @@
         <title>関数とthis · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptにおける`this`というキーワードの動作を紹介します。`this`の参照先は条件によって解決方法が異なるため、`this`の動きについてをそれぞれの条件ごとに紹介します。一見複雑な`this`の動きを予測可能にするにはどうするべきかをコード例とともに紹介します。">
-        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="generator" content="HonKit 6.0.0">
         
         
         
@@ -1577,29 +1577,29 @@
 <p>この章では、さまざまな条件下で変わる<code>this</code>の参照先と関数やArrow Functionとの関係を見ていきます。
 また、実際にどのような状況で問題が発生するかを知り、<code>this</code>の動きを予測可能にするにはどのようにするかを見ていきます。</p>
 <h2 id="execution-context-this"><a name="execution-context-this" class="plugin-anchor" href="#execution-context-this"><i class="fa fa-link" aria-hidden="true"></i></a>実行コンテキストと<code>this</code> </h2>
-<p>最初に「<a href="../introduction/">JavaScriptとは</a>」の章において、JavaScriptには実行コンテキストとして&quot;Script&quot;と&quot;Module&quot;があるという話をしました。
+<p>最初に「<a href="../introduction/">JavaScriptとは</a>」の章において、JavaScriptには実行コンテキストとして"Script"と"Module"があるという話をしました。
 どの実行コンテキストでJavaScriptのコードを評価するかは、実行環境によってやり方が異なります。
 この章では、ブラウザの<code>script</code>要素と<code>type</code>属性を使い、それぞれの実行コンテキストを明示しながら<code>this</code>の動きを見ていきます。</p>
 <p>トップレベル（もっとも外側のスコープ）にある<code>this</code>は、実行コンテキストによって値が異なります。
 実行コンテキストの違いは意識しにくい部分であり、トップレベルで<code>this</code>を使うと混乱を生むことになります。
 そのため、コードのトップレベルにおいては<code>this</code>を使うべきではありませんが、それぞれの実行コンテキストにおける動作を紹介します。</p>
 <h3 id="script-this"><a name="script-this" class="plugin-anchor" href="#script-this"><i class="fa fa-link" aria-hidden="true"></i></a>スクリプトにおける<code>this</code> </h3>
-<p>実行コンテキストが&quot;Script&quot;である場合、トップレベルのスコープに書かれた<code>this</code>はグローバルオブジェクトを参照します。
+<p>実行コンテキストが"Script"である場合、トップレベルのスコープに書かれた<code>this</code>はグローバルオブジェクトを参照します。
 グローバルオブジェクトは、実行環境ごとに異なるものが定義されています。
 ブラウザのグローバルオブジェクトは<code>window</code>オブジェクト、Node.jsのグローバルオブジェクトは<code>global</code>オブジェクトとなります。</p>
-<p>ブラウザでは、<code>script</code>要素の<code>type</code>属性を指定していない場合は、実行コンテキストが&quot;Script&quot;として実行されます。
+<p>ブラウザでは、<code>script</code>要素の<code>type</code>属性を指定していない場合は、実行コンテキストが"Script"として実行されます。
 この<code>script</code>要素の直下に書いた<code>this</code>はグローバルオブジェクトである<code>window</code>オブジェクトとなります。</p>
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">
-<span class="hljs-comment">// 実行コンテキストは&quot;Script&quot;</span>
+<span class="hljs-comment">// 実行コンテキストは"Script"</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>); <span class="hljs-comment">// =&gt; window</span>
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
 <h3 id="module-this"><a name="module-this" class="plugin-anchor" href="#module-this"><i class="fa fa-link" aria-hidden="true"></i></a>モジュールにおける<code>this</code> </h3>
-<p>実行コンテキストが&quot;Module&quot;である場合、そのトップレベルのスコープに書かれた<code>this</code>は常に<code>undefined</code>となります。</p>
-<p>ブラウザで、<code>script</code>要素に<code>type=&quot;module&quot;</code>属性がついた場合は、実行コンテキストが&quot;Module&quot;として実行されます。
+<p>実行コンテキストが"Module"である場合、そのトップレベルのスコープに書かれた<code>this</code>は常に<code>undefined</code>となります。</p>
+<p>ブラウザで、<code>script</code>要素に<code>type="module"</code>属性がついた場合は、実行コンテキストが"Module"として実行されます。
 この<code>script</code>要素の直下に書いた<code>this</code>は<code>undefined</code>となります。</p>
-<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;module&quot;</span>&gt;</span><span class="language-javascript">
-<span class="hljs-comment">// 実行コンテキストは&quot;Module&quot;</span>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"module"</span>&gt;</span><span class="language-javascript">
+<span class="hljs-comment">// 実行コンテキストは"Module"</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>); <span class="hljs-comment">// =&gt; undefined</span>
 </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
@@ -1737,7 +1737,7 @@ obj.<span class="hljs-title function_">method</span>();
 <span class="hljs-comment">// `obj1.obj2.method`メソッドのベースオブジェクトは`obj2`</span>
 <span class="hljs-comment">// ドット演算子、ブラケット演算子どちらも結果は同じ</span>
 obj1.<span class="hljs-property">obj2</span>.<span class="hljs-title function_">method</span>();
-obj1[<span class="hljs-string">&quot;obj2&quot;</span>][<span class="hljs-string">&quot;method&quot;</span>]();
+obj1[<span class="hljs-string">"obj2"</span>][<span class="hljs-string">"method"</span>]();
 </code></pre>
 <p><code>this</code>は関数の定義ではなく呼び出し方で参照する値が異なります。これは、後述する「<code>this</code>が問題となるパターン」で詳しく紹介します。
 Arrow Function以外の関数では、関数の定義だけを見て<code>this</code>の値が何かということは決定できない点に注意が必要です。</p>
@@ -1749,7 +1749,7 @@ Arrow Function以外の関数では、関数の定義だけを見て<code>this</
 このとき、ベースオブジェクトはないため、<code>this</code>は<code>undefined</code>となります。</p>
 <!-- textlint-disable no-js-function-paren -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-meta">&quot;use strict&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-meta">"use strict"</span>;
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">fn1</span>(<span class="hljs-params"></span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>;
 }
@@ -1765,7 +1765,7 @@ Arrow Function以外の関数では、関数の定義だけを見て<code>this</
 </code></pre>
 <p>これは、関数の中に関数を定義して呼び出す場合も同じです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-meta">&quot;use strict&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-meta">"use strict"</span>;
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">outer</span>(<span class="hljs-params"></span>) {
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>); <span class="hljs-comment">// =&gt; undefined</span>
     <span class="hljs-keyword">function</span> <span class="hljs-title function_">inner</span>(<span class="hljs-params"></span>) {
@@ -1777,7 +1777,7 @@ Arrow Function以外の関数では、関数の定義だけを見て<code>this</
 <span class="hljs-comment">// `outer`関数呼び出しのベースオブジェクトはない</span>
 <span class="hljs-title function_">outer</span>();
 </code></pre>
-<p>この書籍では注釈がないコードはstrict modeとして扱いますが、コード例に<code>&quot;use strict&quot;;</code>と改めてstrict modeを明示しています（詳細は「<a href="../introduction/">JavaScriptとは</a>」の<a href="../introduction/#strict-mode">strict mode</a>を参照）。
+<p>この書籍では注釈がないコードはstrict modeとして扱いますが、コード例に<code>"use strict";</code>と改めてstrict modeを明示しています（詳細は「<a href="../introduction/">JavaScriptとは</a>」の<a href="../introduction/#strict-mode">strict mode</a>を参照）。
 なぜなら、strict modeではない状況で<code>this</code>が<code>undefined</code>の場合は、<code>this</code>がグローバルオブジェクトを参照するように変換される問題があるためです。</p>
 <p>strict modeは、このような意図しにくい動作を防止するために導入されています。
 しかしながら、strict modeのメソッド以外の関数における<code>this</code>は<code>undefined</code>となるため使い道がありません。
@@ -1807,14 +1807,14 @@ Arrow Function以外の関数では、関数の定義だけを見て<code>this</
 <p>これを利用すれば、メソッドの中から同じオブジェクトに所属する別のプロパティを<code>this</code>で参照できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> person = {
-    <span class="hljs-attr">fullName</span>: <span class="hljs-string">&quot;Brendan Eich&quot;</span>,
+    <span class="hljs-attr">fullName</span>: <span class="hljs-string">"Brendan Eich"</span>,
     <span class="hljs-attr">sayName</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
         <span class="hljs-comment">// `person.fullName`と書いているのと同じ</span>
         <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">fullName</span>;
     }
 };
 <span class="hljs-comment">// `person.fullName`を出力する</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(person.<span class="hljs-title function_">sayName</span>()); <span class="hljs-comment">// =&gt; &quot;Brendan Eich&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(person.<span class="hljs-title function_">sayName</span>()); <span class="hljs-comment">// =&gt; "Brendan Eich"</span>
 </code></pre>
 <p>このようにメソッドが所属するオブジェクトのプロパティを、<code>オブジェクト名.プロパティ名</code>の代わりに<code>this.プロパティ名</code>で参照できます。</p>
 <p>オブジェクトは何重にもネストできますが、<code>this</code>はベースオブジェクトを参照するというルールは同じです。</p>
@@ -1849,9 +1849,9 @@ Arrow Function以外の関数では、関数の定義だけを見て<code>this</
 このときの<code>say</code>関数（<code>sayName</code>メソッドを参照）のベースオブジェクトはありません。
 そのため、<code>this</code>は<code>undefined</code>となり、<code>undefined.fullName</code>は参照できずに例外を投げます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-meta">&quot;use strict&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-meta">"use strict"</span>;
 <span class="hljs-keyword">const</span> person = {
-    <span class="hljs-attr">fullName</span>: <span class="hljs-string">&quot;Brendan Eich&quot;</span>,
+    <span class="hljs-attr">fullName</span>: <span class="hljs-string">"Brendan Eich"</span>,
     <span class="hljs-attr">sayName</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
         <span class="hljs-comment">// `this`は呼び出し元によって異なる</span>
         <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">fullName</span>;
@@ -1859,24 +1859,24 @@ Arrow Function以外の関数では、関数の定義だけを見て<code>this</
 };
 <span class="hljs-comment">// `sayName`メソッドは`person`オブジェクトに所属する</span>
 <span class="hljs-comment">// `this`は`person`オブジェクトとなる</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(person.<span class="hljs-title function_">sayName</span>()); <span class="hljs-comment">// =&gt; &quot;Brendan Eich&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(person.<span class="hljs-title function_">sayName</span>()); <span class="hljs-comment">// =&gt; "Brendan Eich"</span>
 <span class="hljs-comment">// `person.sayName`を`say`変数に代入する</span>
 <span class="hljs-keyword">const</span> say = person.<span class="hljs-property">sayName</span>;
 <span class="hljs-comment">// 代入したメソッドを関数として呼ぶ</span>
 <span class="hljs-comment">// この`say`関数はどのオブジェクトにも所属していない</span>
 <span class="hljs-comment">// `this`はundefinedとなるため例外を投げる</span>
-<span class="hljs-title function_">say</span>(); <span class="hljs-comment">// =&gt; TypeError: Cannot read property &apos;fullName&apos; of undefined</span>
+<span class="hljs-title function_">say</span>(); <span class="hljs-comment">// =&gt; TypeError: Cannot read property 'fullName' of undefined</span>
 </code></pre>
 <p>結果的には、次のようなコードが実行されているのと同じです。
 次のコードでは、<code>undefined.fullName</code>を参照しようとして例外が発生しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-meta">&quot;use strict&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-meta">"use strict"</span>;
 <span class="hljs-comment">// const say = person.sayName; は次のようなイメージ</span>
 <span class="hljs-keyword">const</span> say = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">fullName</span>;
 };
 <span class="hljs-comment">// `this`は`undefined`となるため例外を投げる</span>
-<span class="hljs-title function_">say</span>(); <span class="hljs-comment">// =&gt; TypeError: Cannot read property &apos;fullName&apos; of undefined</span>
+<span class="hljs-title function_">say</span>(); <span class="hljs-comment">// =&gt; TypeError: Cannot read property 'fullName' of undefined</span>
 </code></pre>
 <p>このように、Arrow Function以外の関数において、<code>this</code>は定義したときではなく実行したときに決定されます。
 そのため、関数に<code>this</code>を含んでいる場合、その関数は意図した呼ばれ方がされないと間違った結果が発生するという問題があります。</p>
@@ -1895,17 +1895,17 @@ Arrow Function以外の関数では、関数の定義だけを見て<code>this</
 <p>次の例では<code>this</code>に<code>person</code>オブジェクトを指定した状態で<code>say</code>関数を呼び出しています。
 <code>call</code>メソッドの第二引数で指定した値が、<code>say</code>関数の仮引数<code>message</code>に入ります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-meta">&quot;use strict&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-meta">"use strict"</span>;
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">say</span>(<span class="hljs-params">message</span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${message}</span> <span class="hljs-subst">${<span class="hljs-variable language_">this</span>.fullName}</span>！`</span>;
 }
 <span class="hljs-keyword">const</span> person = {
-    <span class="hljs-attr">fullName</span>: <span class="hljs-string">&quot;Brendan Eich&quot;</span>
+    <span class="hljs-attr">fullName</span>: <span class="hljs-string">"Brendan Eich"</span>
 };
 <span class="hljs-comment">// `this`を`person`にして`say`関数を呼びだす</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(say.<span class="hljs-title function_">call</span>(person, <span class="hljs-string">&quot;こんにちは&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;こんにちは Brendan Eich！&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(say.<span class="hljs-title function_">call</span>(person, <span class="hljs-string">"こんにちは"</span>)); <span class="hljs-comment">// =&gt; "こんにちは Brendan Eich！"</span>
 <span class="hljs-comment">// `say`関数をそのまま呼び出すと`this`は`undefined`となるため例外が発生</span>
-<span class="hljs-title function_">say</span>(<span class="hljs-string">&quot;こんにちは&quot;</span>); <span class="hljs-comment">// =&gt; TypeError: Cannot read property &apos;fullName&apos; of undefined</span>
+<span class="hljs-title function_">say</span>(<span class="hljs-string">"こんにちは"</span>); <span class="hljs-comment">// =&gt; TypeError: Cannot read property 'fullName' of undefined</span>
 </code></pre>
 <!--
 この例を見ると`this`が暗黙的に関数に渡される仮引数の一種のよう扱われていることが分かります。
@@ -1918,18 +1918,18 @@ Arrow Function以外の関数では、関数の定義だけを見て<code>this</
 <p>次の例では<code>this</code>に<code>person</code>オブジェクトを指定した状態で<code>say</code>関数を呼び出しています。
 <code>apply</code>メソッドの第二引数で指定した配列は、自動的に展開されて<code>say</code>関数の仮引数<code>message</code>に入ります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-meta">&quot;use strict&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-meta">"use strict"</span>;
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">say</span>(<span class="hljs-params">message</span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${message}</span> <span class="hljs-subst">${<span class="hljs-variable language_">this</span>.fullName}</span>！`</span>;
 }
 <span class="hljs-keyword">const</span> person = {
-    <span class="hljs-attr">fullName</span>: <span class="hljs-string">&quot;Brendan Eich&quot;</span>
+    <span class="hljs-attr">fullName</span>: <span class="hljs-string">"Brendan Eich"</span>
 };
 <span class="hljs-comment">// `this`を`person`にして`say`関数を呼びだす</span>
 <span class="hljs-comment">// callとは異なり引数を配列として渡す</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(say.<span class="hljs-title function_">apply</span>(person, [<span class="hljs-string">&quot;こんにちは&quot;</span>])); <span class="hljs-comment">// =&gt; &quot;こんにちは Brendan Eich！&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(say.<span class="hljs-title function_">apply</span>(person, [<span class="hljs-string">"こんにちは"</span>])); <span class="hljs-comment">// =&gt; "こんにちは Brendan Eich！"</span>
 <span class="hljs-comment">// `say`関数をそのまま呼び出すと`this`は`undefined`となるため例外が発生</span>
-<span class="hljs-title function_">say</span>(<span class="hljs-string">&quot;こんにちは&quot;</span>); <span class="hljs-comment">// =&gt; TypeError: Cannot read property &apos;fullName&apos; of undefined</span>
+<span class="hljs-title function_">say</span>(<span class="hljs-string">"こんにちは"</span>); <span class="hljs-comment">// =&gt; TypeError: Cannot read property 'fullName' of undefined</span>
 </code></pre>
 <p><code>call</code>メソッドと<code>apply</code>メソッドの違いは、関数の引数への値の渡し方が異なるだけです。
 また、どちらのメソッドも<code>this</code>の値が不要な場合は<code>null</code>を渡すのが一般的です。</p>
@@ -1953,11 +1953,11 @@ Arrow Function以外の関数では、関数の定義だけを見て<code>this</
     <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${message}</span> <span class="hljs-subst">${<span class="hljs-variable language_">this</span>.fullName}</span>！`</span>;
 }
 <span class="hljs-keyword">const</span> person = {
-    <span class="hljs-attr">fullName</span>: <span class="hljs-string">&quot;Brendan Eich&quot;</span>
+    <span class="hljs-attr">fullName</span>: <span class="hljs-string">"Brendan Eich"</span>
 };
 <span class="hljs-comment">// `this`を`person`に束縛した`say`関数をラップした関数を作る</span>
-<span class="hljs-keyword">const</span> sayPerson = say.<span class="hljs-title function_">bind</span>(person, <span class="hljs-string">&quot;こんにちは&quot;</span>);
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">sayPerson</span>()); <span class="hljs-comment">// =&gt; &quot;こんにちは Brendan Eich！&quot;</span>
+<span class="hljs-keyword">const</span> sayPerson = say.<span class="hljs-title function_">bind</span>(person, <span class="hljs-string">"こんにちは"</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">sayPerson</span>()); <span class="hljs-comment">// =&gt; "こんにちは Brendan Eich！"</span>
 </code></pre>
 <p>この<code>bind</code>メソッドをただの関数で表現すると次のように書けます。
 <code>bind</code>は<code>this</code>や引数を束縛した関数を作るメソッドだということがわかります。</p>
@@ -1966,14 +1966,14 @@ Arrow Function以外の関数では、関数の定義だけを見て<code>this</
     <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${message}</span> <span class="hljs-subst">${<span class="hljs-variable language_">this</span>.fullName}</span>！`</span>;
 }
 <span class="hljs-keyword">const</span> person = {
-    <span class="hljs-attr">fullName</span>: <span class="hljs-string">&quot;Brendan Eich&quot;</span>
+    <span class="hljs-attr">fullName</span>: <span class="hljs-string">"Brendan Eich"</span>
 };
 <span class="hljs-comment">// `this`を`person`に束縛した`say`関数をラップした関数を作る</span>
-<span class="hljs-comment">//  say.bind(person, &quot;こんにちは&quot;); は次のようなラップ関数を作る</span>
+<span class="hljs-comment">//  say.bind(person, "こんにちは"); は次のようなラップ関数を作る</span>
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">sayPerson</span> = (<span class="hljs-params"></span>) =&gt; {
-    <span class="hljs-keyword">return</span> say.<span class="hljs-title function_">call</span>(person, <span class="hljs-string">&quot;こんにちは&quot;</span>);
+    <span class="hljs-keyword">return</span> say.<span class="hljs-title function_">call</span>(person, <span class="hljs-string">"こんにちは"</span>);
 };
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">sayPerson</span>()); <span class="hljs-comment">// =&gt; &quot;こんにちは Brendan Eich！&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">sayPerson</span>()); <span class="hljs-comment">// =&gt; "こんにちは Brendan Eich！"</span>
 </code></pre>
 <p>このように<code>call</code>、<code>apply</code>、<code>bind</code>メソッドを使うことで<code>this</code>を明示的に指定した状態で関数を呼び出せます。
 しかし、毎回関数を呼び出すたびにこれらのメソッドを使うのは、関数を呼び出すための関数が必要になってしまい手間がかかります。
@@ -1991,10 +1991,10 @@ Arrow Function以外の関数では、関数の定義だけを見て<code>this</
 このとき、<code>map</code>メソッドのコールバック関数の中で、<code>Prefixer</code>オブジェクトを参照するつもりで<code>this</code>を参照しています。</p>
 <p>しかし、このコールバック関数における<code>this</code>は<code>undefined</code>となり、<code>undefined.prefix</code>は参照できないためTypeErrorの例外が発生します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-meta">&quot;use strict&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-meta">"use strict"</span>;
 <span class="hljs-comment">// strict modeを明示しているのは、thisがグローバルオブジェクトに暗黙的に変換されるのを防止するため</span>
 <span class="hljs-keyword">const</span> <span class="hljs-title class_">Prefixer</span> = {
-    <span class="hljs-attr">prefix</span>: <span class="hljs-string">&quot;pre&quot;</span>,
+    <span class="hljs-attr">prefix</span>: <span class="hljs-string">"pre"</span>,
     <span class="hljs-comment">/**
      * `strings`配列の各要素にprefixをつける
      */</span>
@@ -2002,12 +2002,12 @@ Arrow Function以外の関数では、関数の定義だけを見て<code>this</
         <span class="hljs-keyword">return</span> strings.<span class="hljs-title function_">map</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">str</span>) {
             <span class="hljs-comment">// コールバック関数における`this`は`undefined`となる(strict mode)</span>
             <span class="hljs-comment">// そのため`this.prefix`は`undefined.prefix`となり例外が発生する</span>
-            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prefix</span> + <span class="hljs-string">&quot;-&quot;</span> + str;
+            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prefix</span> + <span class="hljs-string">"-"</span> + str;
         });
     }
 };
 <span class="hljs-comment">// `prefixArray`メソッドにおける`this`は`Prefixer`</span>
-<span class="hljs-title class_">Prefixer</span>.<span class="hljs-title function_">prefixArray</span>([<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>]); <span class="hljs-comment">// =&gt; TypeError: Cannot read property &apos;prefix&apos; of undefined</span>
+<span class="hljs-title class_">Prefixer</span>.<span class="hljs-title function_">prefixArray</span>([<span class="hljs-string">"a"</span>, <span class="hljs-string">"b"</span>, <span class="hljs-string">"c"</span>]); <span class="hljs-comment">// =&gt; TypeError: Cannot read property 'prefix' of undefined</span>
 </code></pre>
 <p>なぜコールバック関数の中の<code>this</code>が<code>undefined</code>となるのかを見ていきます。
 Arrayの<code>map</code>メソッドにはコールバック関数として、その場で定義した無名関数を渡していることに注目してください。</p>
@@ -2017,7 +2017,7 @@ Arrayの<code>map</code>メソッドにはコールバック関数として、�
     <span class="hljs-title function_">prefixArray</span>(<span class="hljs-params">strings</span>) {
         <span class="hljs-comment">// 無名関数をコールバック関数として渡している</span>
         <span class="hljs-keyword">return</span> strings.<span class="hljs-title function_">map</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">str</span>) {
-            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prefix</span> + <span class="hljs-string">&quot;-&quot;</span> + str;
+            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prefix</span> + <span class="hljs-string">"-"</span> + str;
         });
     }
 <span class="hljs-comment">// ...</span>
@@ -2030,21 +2030,21 @@ Arrayの<code>map</code>メソッドにはコールバック関数として、�
 <p>先ほどの例では無名関数をコールバック関数として直接メソッドに渡していますが、一度<code>callback</code>変数に入れてから渡しても結果は同じです。</p>
 <!-- textlint-enable no-js-function-paren -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-meta">&quot;use strict&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-meta">"use strict"</span>;
 <span class="hljs-comment">// strict modeを明示しているのは、thisがグローバルオブジェクトに暗黙的に変換されるのを防止するため</span>
 <span class="hljs-keyword">const</span> <span class="hljs-title class_">Prefixer</span> = {
-    <span class="hljs-attr">prefix</span>: <span class="hljs-string">&quot;pre&quot;</span>,
+    <span class="hljs-attr">prefix</span>: <span class="hljs-string">"pre"</span>,
     <span class="hljs-title function_">prefixArray</span>(<span class="hljs-params">strings</span>) {
         <span class="hljs-comment">// コールバック関数は`callback()`のように呼び出される</span>
         <span class="hljs-comment">// そのためコールバック関数における`this`は`undefined`となる(strict mode)</span>
         <span class="hljs-keyword">const</span> callback = <span class="hljs-keyword">function</span>(<span class="hljs-params">str</span>) {
-            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prefix</span> + <span class="hljs-string">&quot;-&quot;</span> + str;
+            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prefix</span> + <span class="hljs-string">"-"</span> + str;
         };
         <span class="hljs-keyword">return</span> strings.<span class="hljs-title function_">map</span>(callback);
     }
 };
 <span class="hljs-comment">// `prefixArray`メソッドにおける`this`は`Prefixer`</span>
-<span class="hljs-title class_">Prefixer</span>.<span class="hljs-title function_">prefixArray</span>([<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>]); <span class="hljs-comment">// =&gt; TypeError: Cannot read property &apos;prefix&apos; of undefined</span>
+<span class="hljs-title class_">Prefixer</span>.<span class="hljs-title function_">prefixArray</span>([<span class="hljs-string">"a"</span>, <span class="hljs-string">"b"</span>, <span class="hljs-string">"c"</span>]); <span class="hljs-comment">// =&gt; TypeError: Cannot read property 'prefix' of undefined</span>
 </code></pre>
 <h4 id="substitute-this"><a name="substitute-this" class="plugin-anchor" href="#substitute-this"><i class="fa fa-link" aria-hidden="true"></i></a>対処法: <code>this</code>を一時変数へ代入する </h4>
 <p>コールバック関数内での<code>this</code>の参照先が変わる問題への対処法として、<code>this</code>を別の変数に代入し、その<code>this</code>の参照先を保持するという方法があります。</p>
@@ -2055,42 +2055,42 @@ Arrayの<code>map</code>メソッドにはコールバック関数として、�
 次のコードでは、<code>prefixArray</code>メソッドの<code>this</code>を<code>that</code>変数に保持しています。
 コールバック関数からは<code>this</code>の代わりに<code>that</code>変数を参照することで、コールバック関数からも<code>prefixArray</code>メソッド呼び出しと同じ<code>this</code>を参照できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-meta">&quot;use strict&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-meta">"use strict"</span>;
 <span class="hljs-keyword">const</span> <span class="hljs-title class_">Prefixer</span> = {
-    <span class="hljs-attr">prefix</span>: <span class="hljs-string">&quot;pre&quot;</span>,
+    <span class="hljs-attr">prefix</span>: <span class="hljs-string">"pre"</span>,
     <span class="hljs-title function_">prefixArray</span>(<span class="hljs-params">strings</span>) {
         <span class="hljs-comment">// `that`は`prefixArray`メソッド呼び出しにおける`this`となる</span>
         <span class="hljs-comment">// つまり`that`は`Prefixer`オブジェクトを参照する</span>
         <span class="hljs-keyword">const</span> that = <span class="hljs-variable language_">this</span>;
         <span class="hljs-keyword">return</span> strings.<span class="hljs-title function_">map</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">str</span>) {
             <span class="hljs-comment">// `this`ではなく`that`を参照する</span>
-            <span class="hljs-keyword">return</span> that.<span class="hljs-property">prefix</span> + <span class="hljs-string">&quot;-&quot;</span> + str;
+            <span class="hljs-keyword">return</span> that.<span class="hljs-property">prefix</span> + <span class="hljs-string">"-"</span> + str;
         });
     }
 };
 <span class="hljs-comment">// `prefixArray`メソッドにおける`this`は`Prefixer`</span>
-<span class="hljs-keyword">const</span> prefixedStrings = <span class="hljs-title class_">Prefixer</span>.<span class="hljs-title function_">prefixArray</span>([<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>]);
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(prefixedStrings); <span class="hljs-comment">// =&gt; [&quot;pre-a&quot;, &quot;pre-b&quot;, &quot;pre-c&quot;]</span>
+<span class="hljs-keyword">const</span> prefixedStrings = <span class="hljs-title class_">Prefixer</span>.<span class="hljs-title function_">prefixArray</span>([<span class="hljs-string">"a"</span>, <span class="hljs-string">"b"</span>, <span class="hljs-string">"c"</span>]);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(prefixedStrings); <span class="hljs-comment">// =&gt; ["pre-a", "pre-b", "pre-c"]</span>
 </code></pre>
 <p>もちろんFunctionの<code>call</code>メソッドなどで明示的に<code>this</code>を渡して関数を呼び出すこともできます。
 また、Arrayの<code>map</code>メソッドなどは<code>this</code>となる値を引数として渡せる仕組みを持っています。
 そのため、次のように第二引数に<code>this</code>となる値を渡すことでも解決できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-meta">&quot;use strict&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-meta">"use strict"</span>;
 <span class="hljs-keyword">const</span> <span class="hljs-title class_">Prefixer</span> = {
-    <span class="hljs-attr">prefix</span>: <span class="hljs-string">&quot;pre&quot;</span>,
+    <span class="hljs-attr">prefix</span>: <span class="hljs-string">"pre"</span>,
     <span class="hljs-title function_">prefixArray</span>(<span class="hljs-params">strings</span>) {
         <span class="hljs-comment">// Arrayの`map`メソッドは第二引数に`this`となる値を渡せる</span>
         <span class="hljs-keyword">return</span> strings.<span class="hljs-title function_">map</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">str</span>) {
             <span class="hljs-comment">// `this`が第二引数の値と同じになる</span>
             <span class="hljs-comment">// つまり`prefixArray`メソッドと同じ`this`となる</span>
-            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prefix</span> + <span class="hljs-string">&quot;-&quot;</span> + str;
+            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prefix</span> + <span class="hljs-string">"-"</span> + str;
         }, <span class="hljs-variable language_">this</span>);
     }
 };
 <span class="hljs-comment">// `prefixArray`メソッドにおける`this`は`Prefixer`</span>
-<span class="hljs-keyword">const</span> prefixedStrings = <span class="hljs-title class_">Prefixer</span>.<span class="hljs-title function_">prefixArray</span>([<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>]);
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(prefixedStrings); <span class="hljs-comment">// =&gt; [&quot;pre-a&quot;, &quot;pre-b&quot;, &quot;pre-c&quot;]</span>
+<span class="hljs-keyword">const</span> prefixedStrings = <span class="hljs-title class_">Prefixer</span>.<span class="hljs-title function_">prefixArray</span>([<span class="hljs-string">"a"</span>, <span class="hljs-string">"b"</span>, <span class="hljs-string">"c"</span>]);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(prefixedStrings); <span class="hljs-comment">// =&gt; ["pre-a", "pre-b", "pre-c"]</span>
 </code></pre>
 <p>しかし、これらの解決方法はコールバック関数において<code>this</code>が変わることを意識して書く必要があります。
 そもそもメソッド呼び出しとその中でのコールバック関数における<code>this</code>が変わってしまうのが問題でした。
@@ -2102,22 +2102,22 @@ ES2015では<code>this</code>を変えずにコールバック関数を定義す
 これにより、Arrow Functionで定義したコールバック関数は呼び出し方には関係なく、常に外側の関数の<code>this</code>をそのまま利用します。</p>
 <p>Arrow Functionを使うことで、先ほどのコードは次のように書けます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-meta">&quot;use strict&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-meta">"use strict"</span>;
 <span class="hljs-keyword">const</span> <span class="hljs-title class_">Prefixer</span> = {
-    <span class="hljs-attr">prefix</span>: <span class="hljs-string">&quot;pre&quot;</span>,
+    <span class="hljs-attr">prefix</span>: <span class="hljs-string">"pre"</span>,
     <span class="hljs-title function_">prefixArray</span>(<span class="hljs-params">strings</span>) {
         <span class="hljs-keyword">return</span> strings.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">str</span>) =&gt;</span> {
             <span class="hljs-comment">// Arrow Function自体は`this`を持たない</span>
             <span class="hljs-comment">// `this`は外側の`prefixArray`関数が持つ`this`を参照する</span>
-            <span class="hljs-comment">// そのため`this.prefix`は&quot;pre&quot;となる</span>
-            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prefix</span> + <span class="hljs-string">&quot;-&quot;</span> + str;
+            <span class="hljs-comment">// そのため`this.prefix`は"pre"となる</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prefix</span> + <span class="hljs-string">"-"</span> + str;
         });
     }
 };
 <span class="hljs-comment">// このとき、`prefixArray`のベースオブジェクトは`Prefixer`となる</span>
 <span class="hljs-comment">// つまり、`prefixArray`メソッド内の`this`は`Prefixer`を参照する</span>
-<span class="hljs-keyword">const</span> prefixedStrings = <span class="hljs-title class_">Prefixer</span>.<span class="hljs-title function_">prefixArray</span>([<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>]);
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(prefixedStrings); <span class="hljs-comment">// =&gt; [&quot;pre-a&quot;, &quot;pre-b&quot;, &quot;pre-c&quot;]</span>
+<span class="hljs-keyword">const</span> prefixedStrings = <span class="hljs-title class_">Prefixer</span>.<span class="hljs-title function_">prefixArray</span>([<span class="hljs-string">"a"</span>, <span class="hljs-string">"b"</span>, <span class="hljs-string">"c"</span>]);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(prefixedStrings); <span class="hljs-comment">// =&gt; ["pre-a", "pre-b", "pre-c"]</span>
 </code></pre>
 <p>このように、Arrow Functionでのコールバック関数における<code>this</code>は簡潔です。
 コールバック関数内での<code>this</code>の対処法として<code>this</code>を代入する方法を紹介しましたが、
@@ -2132,7 +2132,7 @@ ES2015からはArrow Functionを使うのがもっとも簡潔です。</p>
 そのため、Arrow Function内の<code>this</code>の参照で、常に外側のスコープ（関数）へと<code>this</code>の定義を探索しに行きます（詳細は<a href="../function-scope/##scope-chain%7D">スコープチェーン</a>を参照）。
 また、<code>this</code>はECMAScriptのキーワードであるため、ユーザーは<code>this</code>という変数を定義できません。</p>
 <pre><code class="lang-javascript"><span class="hljs-comment">// thisはキーワードであるため、ユーザーは`this`という名前の変数を定義できない</span>
-<span class="hljs-keyword">const</span> <span class="hljs-variable language_">this</span> = <span class="hljs-string">&quot;thisは読み取り専用&quot;</span>; <span class="hljs-comment">// =&gt; SyntaxError: Unexpected token this</span>
+<span class="hljs-keyword">const</span> <span class="hljs-variable language_">this</span> = <span class="hljs-string">"thisは読み取り専用"</span>; <span class="hljs-comment">// =&gt; SyntaxError: Unexpected token this</span>
 </code></pre>
 <p>これにより、通常の変数のように<code>this</code>がどの値を参照するかは静的（定義時）に決定されます（詳細は<a href="../function-scope/#static-scope">静的スコープ</a>を参照）。
 つまり、Arrow Functionにおける<code>this</code>は「Arrow Function自身の外側のスコープに定義されたもっとも近い関数の<code>this</code>の値」となります。</p>
@@ -2153,11 +2153,11 @@ ES2015からはArrow Functionを使うのがもっとも簡潔です。</p>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">fn</span>() === <span class="hljs-variable language_">this</span>); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <p>トップレベルに書かれた<code>this</code>の値は<a href="#execution-context-this">実行コンテキスト</a>によって異なることを紹介しました。
-<code>this</code>の値は、実行コンテキストが&quot;Script&quot;ならばグローバルオブジェクトとなり、&quot;Module&quot;ならば<code>undefined</code>となります。</p>
+<code>this</code>の値は、実行コンテキストが"Script"ならばグローバルオブジェクトとなり、"Module"ならば<code>undefined</code>となります。</p>
 <p>次の例のように、Arrow Functionを包むように通常の関数が定義されている場合はどうでしょうか。
 Arrow Functionにおける<code>this</code>は「自身の外側のスコープにあるもっとも近い関数の<code>this</code>の値」となるのは同じです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-meta">&quot;use strict&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-meta">"use strict"</span>;
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">outer</span>(<span class="hljs-params"></span>) {
     <span class="hljs-comment">// Arrow Functionで定義した関数を返す</span>
     <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> {
@@ -2172,7 +2172,7 @@ Arrow Functionにおける<code>this</code>は「自身の外側のスコープ�
 </code></pre>
 <p>つまり、このArrow Functionにおける<code>this</code>は<code>outer</code>関数で<code>this</code>を参照した場合と同じ値になります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-meta">&quot;use strict&quot;</span>;
+<pre><code class="lang-js"><span class="hljs-meta">"use strict"</span>;
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">outer</span>(<span class="hljs-params"></span>) {
     <span class="hljs-comment">// `outer`関数直下の`this`</span>
     <span class="hljs-keyword">const</span> that = <span class="hljs-variable language_">this</span>;
@@ -2229,17 +2229,17 @@ Arrow Functionにおける<code>this</code>は「自身の外側のスコープ�
 つまり、コールバック関数がどのように呼ばれるかという実装についてを考えることなく<code>this</code>を扱えます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> <span class="hljs-title class_">Prefixer</span> = {
-    <span class="hljs-attr">prefix</span>: <span class="hljs-string">&quot;pre&quot;</span>,
+    <span class="hljs-attr">prefix</span>: <span class="hljs-string">"pre"</span>,
     <span class="hljs-title function_">prefixArray</span>(<span class="hljs-params">strings</span>) {
         <span class="hljs-keyword">return</span> strings.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">str</span>) =&gt;</span> {
             <span class="hljs-comment">// `Prefixer.prefixArray()` と呼び出されたとき</span>
             <span class="hljs-comment">// `this`は常に`Prefixer`を参照する</span>
-            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prefix</span> + <span class="hljs-string">&quot;-&quot;</span> + str;
+            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">prefix</span> + <span class="hljs-string">"-"</span> + str;
         });
     }
 };
-<span class="hljs-keyword">const</span> prefixedStrings = <span class="hljs-title class_">Prefixer</span>.<span class="hljs-title function_">prefixArray</span>([<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>]);
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(prefixedStrings); <span class="hljs-comment">// =&gt; [&quot;pre-a&quot;, &quot;pre-b&quot;, &quot;pre-c&quot;]</span>
+<span class="hljs-keyword">const</span> prefixedStrings = <span class="hljs-title class_">Prefixer</span>.<span class="hljs-title function_">prefixArray</span>([<span class="hljs-string">"a"</span>, <span class="hljs-string">"b"</span>, <span class="hljs-string">"c"</span>]);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(prefixedStrings); <span class="hljs-comment">// =&gt; ["pre-a", "pre-b", "pre-c"]</span>
 </code></pre>
 <h3 id="not-bind-arrow-function"><a name="not-bind-arrow-function" class="plugin-anchor" href="#not-bind-arrow-function"><i class="fa fa-link" aria-hidden="true"></i></a>Arrow Functionは<code>this</code>をbindできない </h3>
 <p>Arrow Functionで定義した関数では<code>call</code>、<code>apply</code>、<code>bind</code>を使った<code>this</code>の指定は単に無視されます。
@@ -2273,7 +2273,7 @@ Arrow Functionにおける<code>this</code>は「自身の外側のスコープ�
 <span class="hljs-comment">// 通常の`this`は`obj.method`の`this`と同じ</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj.<span class="hljs-title function_">method</span>()); <span class="hljs-comment">// =&gt; obj</span>
 <span class="hljs-comment">// `obj.method`の`this`を変更すれば、Arrow Functionの`this`も変更される</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj.<span class="hljs-property">method</span>.<span class="hljs-title function_">call</span>(<span class="hljs-string">&quot;THAT&quot;</span>)); <span class="hljs-comment">// =&gt; &quot;THAT&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj.<span class="hljs-property">method</span>.<span class="hljs-title function_">call</span>(<span class="hljs-string">"THAT"</span>)); <span class="hljs-comment">// =&gt; "THAT"</span>
 </code></pre>
 <h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>まとめ </h2>
 <p><code>this</code>は状況によって異なる値を参照する性質を持ったキーワードであることを紹介しました。
@@ -2401,7 +2401,7 @@ Arrow Functionにおける<code>this</code>は「自身の外側のスコープ�
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおける`this`というキーワードの動作を紹介します。`this`の参照先は条件によって解決方法が異なるため、`this`の動きについてをそれぞれの条件ごとに紹介します。一見複雑な`this`の動きを予測可能にするにはどうするべきかをコード例とともに紹介します。","sponsors":[],"title":"関数とthis","level":"1.3.19","depth":2,"next":{"title":"クラス","level":"1.3.20","depth":2,"path":"basic/class/README.md","ref":"./basic/class/README.md","articles":[]},"previous":{"title":"関数とスコープ","level":"1.3.18","depth":2,"path":"basic/function-scope/README.md","ref":"./basic/function-scope/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/function-this/README.md","mtime":"2024-09-01T11:18:59.577Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-09-01T11:19:15.872Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおける`this`というキーワードの動作を紹介します。`this`の参照先は条件によって解決方法が異なるため、`this`の動きについてをそれぞれの条件ごとに紹介します。一見複雑な`this`の動きを予測可能にするにはどうするべきかをコード例とともに紹介します。","sponsors":[],"title":"関数とthis","level":"1.3.19","depth":2,"next":{"title":"クラス","level":"1.3.20","depth":2,"path":"basic/class/README.md","ref":"./basic/class/README.md","articles":[]},"previous":{"title":"関数とスコープ","level":"1.3.18","depth":2,"path":"basic/function-scope/README.md","ref":"./basic/function-scope/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/function-this/README.md","mtime":"2024-10-03T14:54:01.254Z","type":"markdown"},"gitbook":{"version":"6.0.0","time":"2024-10-03T14:54:19.038Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

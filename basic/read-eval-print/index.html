@@ -6,7 +6,7 @@
         <title>値の評価と表示 · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="ブラウザでJavaScriptコードを実行する方法について紹介します。またプログラムを実行すると遭遇するエラーをどのように解決していくかを紹介します。エラーを大きく2種類に分けて構文エラーと実行時エラーについてそれぞれの問題点と解決の糸口を紹介します。">
-        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="generator" content="HonKit 6.0.0">
         
         
         
@@ -1593,12 +1593,12 @@ Firefoxでは、開発者ツールの<strong>Webコンソール</strong>と呼�
 REPL機能を使うことで、試したいコードをその場で実行できるため、JavaScriptの動作を理解するのに役立ちます。</p>
 <p>REPL機能を使うには、まずFirefoxの開発者ツールを次のいずれかの方法で開きます。</p>
 <ul>
-<li>Firefox メニュー（メニューバーがある場合や macOS では、ツールメニュー）の &quot;ブラウザーツール&quot;のサブメニューから &quot;ウェブ開発ツール&quot; を選択する</li>
+<li>Firefox メニュー（メニューバーがある場合や macOS では、ツールメニュー）の "ブラウザーツール"のサブメニューから "ウェブ開発ツール" を選択する</li>
 <li>キーボードショートカット Ctrl+Shift+K（macOS では Command+Option+K）を押下する</li>
 </ul>
-<p>詳細は&quot;<a href="https://firefox-source-docs.mozilla.org/devtools-user/" target="_blank">Firefox DevTools User Docs</a>&quot;を参照してください。</p>
-<p><img src="img/web-console.png" alt="FirefoxでWebコンソールを開いた状態"></p>
-<p>開発者ツールの&quot;コンソール&quot;タブを選択すると、コマンドライン（二重山カッコ<code>»</code>からはじまる欄）に任意のコードを入力し評価できます。
+<p>詳細は"<a href="https://firefox-source-docs.mozilla.org/devtools-user/" target="_blank">Firefox DevTools User Docs</a>"を参照してください。</p>
+<p><img src="img/web-console.png" alt="FirefoxでWebコンソールを開いた状態"></img></p>
+<p>開発者ツールの"コンソール"タブを選択すると、コマンドライン（二重山カッコ<code>»</code>からはじまる欄）に任意のコードを入力し評価できます。
 このコマンドラインがブラウザにおけるREPL機能です。</p>
 <p>REPLに<code>1</code>という値を入力しEnterキーを押すと、その評価結果である<code>1</code>が次の行に表示されます。</p>
 <pre><code>» 1
@@ -1608,20 +1608,20 @@ REPL機能を使うことで、試したいコードをその場で実行でき�
 2
 </code></pre><p>次に<code>const</code>キーワードを使って<code>bookTitle</code>という変数を宣言してみると、<code>undefined</code>という結果が次の行に表示されます。
 変数宣言は変数名と値を関連づけるだけであるため、変数宣言自体は何も値を返さないという意味で<code>undefined</code>が結果になります。
-REPLではそのまま次の入力ができるため、<code>bookTitle</code>という入力をすると、先ほど変数に入れた<code>&quot;JavaScript Primer&quot;</code>という結果が次の行に表示されます。</p>
-<pre><code>» const bookTitle = &quot;JavaScript Primer&quot;;
+REPLではそのまま次の入力ができるため、<code>bookTitle</code>という入力をすると、先ほど変数に入れた<code>"JavaScript Primer"</code>という結果が次の行に表示されます。</p>
+<pre><code>» const bookTitle = "JavaScript Primer";
 undefined
 » bookTitle
-&quot;JavaScript Primer&quot;
+"JavaScript Primer"
 </code></pre><p>このようにコマンドラインのREPL機能では、JavaScriptのコードを1行ごとに実行できます。
 Shift + Enterで改行して複数行の入力もできます。
 好きな単位でJavaScriptのコードを評価できるため、コードの動きを簡単に試したい場合などに利用できます。</p>
 <p>注意点としては、REPLではそのREPLを終了するまで<code>const</code>キーワードなどで宣言した変数が残り続けます。
 たとえば、<code>const</code>での変数宣言は同じ変数名を二度定義できないというルールでした。
 そのため1行ずつ実行しても、同じ変数名を定義したことになるため構文エラー（<code>SyntaxError</code>）となります。</p>
-<pre><code>» const bookTitle = &quot;JavaScript Primer&quot;;
+<pre><code>» const bookTitle = "JavaScript Primer";
 undefined
-» const bookTitle = &quot;JavaScript Primer&quot;;
+» const bookTitle = "JavaScript Primer";
 SyntaxError: redeclaration of const bookTitle
 </code></pre><p>ブラウザでは、開発者ツールを開いているウェブページでリロードするとREPLの実行状態もリセットされます。
 <code>redeclaration</code>（再定義）に関するエラーメッセージが出た際にはページをリロードしてみてください。</p>
@@ -1650,19 +1650,19 @@ SyntaxError: redeclaration of const bookTitle
 
 <pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Example<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./index.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"./index.js"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
-<p>重要なのは<code>&lt;script src=&quot;./index.js&quot;&gt;&lt;/script&gt;</code>という記述です。
+<p>重要なのは<code>&lt;script src="./index.js"&gt;&lt;/script&gt;</code>という記述です。
 これは同じディレクトリにある<code>index.js</code>という名前のJavaScriptファイルをスクリプトとして読み込むという意味になります。</p>
 <p>最後にブラウザで作成した<code>index.html</code>を開きます。
-HTMLファイルを開くには、ブラウザにHTMLファイルをドラッグアンドドロップするかまたはファイルメニューから&quot;ファイルを開く&quot;でHTMLファイルを選択します。
+HTMLファイルを開くには、ブラウザにHTMLファイルをドラッグアンドドロップするかまたはファイルメニューから"ファイルを開く"でHTMLファイルを選択します。
 HTMLファイルを開いた際に、ブラウザのアドレスバーには<code>file:///</code>からはじまるローカルファイルのファイルパスが表示されます。</p>
-<p>先ほどと同じ手順で&quot;Web コンソール&quot;を開いてみると、コンソールには何も表示されていないはずです。
+<p>先ほどと同じ手順で"Web コンソール"を開いてみると、コンソールには何も表示されていないはずです。
 REPLでは自動で評価結果のコンソール表示まで行いますが、JavaScriptコードとして読み込んだ場合は勝手に評価結果を表示することはありません。
 あくまで自動表示はREPLの機能です。そのため多くの実行環境では<strong>コンソール表示</strong>するためのAPI（機能）が存在しています。</p>
 <h2 id="console-api"><a name="console-api" class="plugin-anchor" href="#console-api"><i class="fa fa-link" aria-hidden="true"></i></a>Console API </h2>
@@ -1709,7 +1709,7 @@ REPLでは自動で評価結果のコンソール表示まで行いますが、J
 <span class="hljs-comment">// 変数の評価結果の例（コンソールには表示されない）</span>
 total; <span class="hljs-comment">// =&gt; 84</span>
 <span class="hljs-comment">// Console APIでコンソールに表示する例</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;JavaScript&quot;</span>); <span class="hljs-comment">// =&gt; &quot;JavaScript&quot;</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"JavaScript"</span>); <span class="hljs-comment">// =&gt; "JavaScript"</span>
 </code></pre>
 <h2 id="execute-on-web"><a name="execute-on-web" class="plugin-anchor" href="#execute-on-web"><i class="fa fa-link" aria-hidden="true"></i></a>ウェブ版の書籍でコードを実行する </h2>
 <!-- TODO: Web版のみ表示する -->
@@ -1718,7 +1718,7 @@ total; <span class="hljs-comment">// =&gt; 84</span>
 <p>一方で、REPLと同じように<code>1</code>というコードを実行すると<code>1</code>という評価結果を得られます。
 またConsole APIにも対応しています。サンプルコードを改変して実行するなど、よりコードへの理解を深めるために利用できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Console APIで表示&quot;</span>);
+<pre><code class="lang-js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"Console APIで表示"</span>);
 <span class="hljs-comment">// 値を評価した場合は最後の結果が表示される</span>
 <span class="hljs-number">42</span>; <span class="hljs-comment">// =&gt; 42</span>
 </code></pre>
@@ -1742,7 +1742,7 @@ total; <span class="hljs-comment">// =&gt; 84</span>
 
 <pre><code class="lang-javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span>; <span class="hljs-comment">// =&gt; SyntaxError: missing ) after argument list</span>
 </code></pre>
-<p><img src="img/syntax-error.png" alt="SyntaxError in Console"></p>
+<p><img src="img/syntax-error.png" alt="SyntaxError in Console"></img></p>
 <p>Firefoxでこのコードを実行すると次のようなエラーメッセージがコンソールに表示されます。</p>
 <blockquote>
 <p>SyntaxError: missing ) after argument list[詳細] index.js:1:13</p>
@@ -1836,7 +1836,7 @@ APIに渡す値のデータ型の問題から起きる<code>TypeError</code>や�
     <p class="code-filename">index.js</p>
 </div>
 
-<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> value = <span class="hljs-string">&quot;値&quot;</span>;
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> value = <span class="hljs-string">"値"</span>;
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(x); <span class="hljs-comment">// =&gt; ReferenceError: x is not defined</span>
 </code></pre>
 <blockquote>
@@ -1865,8 +1865,8 @@ APIに渡す値のデータ型の問題から起きる<code>TypeError</code>や�
 <p>この例では、<code>value</code>変数を参照しているつもりで、<code>x</code>という存在しない変数を参照していたのが原因のようです。
 先ほどのコードは、次のように参照する変数を<code>value</code>に変更すれば、エラーが修正できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> value = <span class="hljs-string">&quot;値&quot;</span>;
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(value); <span class="hljs-comment">// =&gt; &quot;値&quot;</span>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> value = <span class="hljs-string">"値"</span>;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(value); <span class="hljs-comment">// =&gt; "値"</span>
 </code></pre>
 <p>このように、実行時エラーは該当する箇所を実行するまで、エラーになるかがわからない場合も多いのです。
 そのため、どこまではちゃんと実行できたか順番に追っていくような、エラーの原因を特定する作業が必要になる場合があります。
@@ -1919,7 +1919,7 @@ APIに渡す値のデータ型の問題から起きる<code>TypeError</code>や�
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"ブラウザでJavaScriptコードを実行する方法について紹介します。またプログラムを実行すると遭遇するエラーをどのように解決していくかを紹介します。エラーを大きく2種類に分けて構文エラーと実行時エラーについてそれぞれの問題点と解決の糸口を紹介します。","sponsors":[],"title":"値の評価と表示","level":"1.3.4","depth":2,"next":{"title":"データ型とリテラル","level":"1.3.5","depth":2,"path":"basic/data-type/README.md","ref":"./basic/data-type/README.md","articles":[]},"previous":{"title":"変数と宣言","level":"1.3.3","depth":2,"path":"basic/variables/README.md","ref":"./basic/variables/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/read-eval-print/README.md","mtime":"2024-09-01T11:18:59.585Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-09-01T11:19:15.872Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"ブラウザでJavaScriptコードを実行する方法について紹介します。またプログラムを実行すると遭遇するエラーをどのように解決していくかを紹介します。エラーを大きく2種類に分けて構文エラーと実行時エラーについてそれぞれの問題点と解決の糸口を紹介します。","sponsors":[],"title":"値の評価と表示","level":"1.3.4","depth":2,"next":{"title":"データ型とリテラル","level":"1.3.5","depth":2,"path":"basic/data-type/README.md","ref":"./basic/data-type/README.md","articles":[]},"previous":{"title":"変数と宣言","level":"1.3.3","depth":2,"path":"basic/variables/README.md","ref":"./basic/variables/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/read-eval-print/README.md","mtime":"2024-10-03T14:54:01.260Z","type":"markdown"},"gitbook":{"version":"6.0.0","time":"2024-10-03T14:54:19.038Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

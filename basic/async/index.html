@@ -6,7 +6,7 @@
         <title>非同期処理:Promise/Async Function · JavaScript Primer #jsprimer</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="JavaScriptにおける非同期処理についてを紹介します。同期処理と非同期処理の違いやなぜ非同期処理が重要になるかを紹介します。非同期処理を扱うPromise、Async Functionについて紹介します。">
-        <meta name="generator" content="HonKit 5.1.4">
+        <meta name="generator" content="HonKit 6.0.0">
         
         
         
@@ -1578,10 +1578,10 @@ JavaScriptには非同期処理を扱うためのPromiseというビルトイン
 この<code>blockTime</code>関数を呼び出すと、指定時間が経過するまで次の処理（タスクB）は呼ばれません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">taskA</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;タスクAを実行 at &quot;</span> + <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>());
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"タスクAを実行 at "</span> + <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>());
 }
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">taskB</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;タスクBを実行 at &quot;</span> + <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>());
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"タスクBを実行 at "</span> + <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>());
 }
 <span class="hljs-comment">// 指定した`timeout`ミリ秒経過するまで同期的にブロックする関数</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">blockTime</span>(<span class="hljs-params">timeout</span>) {
@@ -1603,7 +1603,7 @@ JavaScriptには非同期処理を扱うためのPromiseというビルトイン
 なぜなら、JavaScriptは基本的にブラウザのメインスレッド（UIスレッドとも呼ばれる）で実行されるためです。
 メインスレッドは表示の更新といったUIに関する処理も行っています。
 そのため、メインスレッドがJavaScriptの処理で専有されると、表示が更新されなくなりフリーズしたようになります。</p>
-<p><img src="img/single-thread-tasks.png" alt="single-thread-tasks"></p>
+<p><img src="img/single-thread-tasks.png" alt="single-thread-tasks"></img></p>
 <p>先ほどの例では1秒間も処理をブロックしているため、1秒間スクロールなどの操作が効かないといった悪影響がでます。</p>
 <h2 id="async-processing"><a name="async-processing" class="plugin-anchor" href="#async-processing"><i class="fa fa-link" aria-hidden="true"></i></a>非同期処理 </h2>
 <p>非同期処理はコードを順番に処理していきますが、ひとつの非同期処理が終わるのを待たずに次の処理を評価します。
@@ -1618,13 +1618,13 @@ JavaScriptには非同期処理を扱うためのPromiseというビルトイン
 そのため、実際にはタスクA → タスクB → 非同期のタスクという順番で実行されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">taskA</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;タスクAを実行 at &quot;</span> + <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>());
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"タスクAを実行 at "</span> + <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>());
 }
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">taskB</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;タスクBを実行 at &quot;</span> + <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>());
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"タスクBを実行 at "</span> + <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>());
 }
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">taskAsync</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;非同期のタスクを実行 at &quot;</span> + <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>());
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"非同期のタスクを実行 at "</span> + <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>());
 }
 
 <span class="hljs-title function_">taskA</span>();
@@ -1634,7 +1634,7 @@ JavaScriptには非同期処理を扱うためのPromiseというビルトイン
 <span class="hljs-title function_">taskB</span>();
 </code></pre>
 <p>このように、非同期処理（<code>setTimeout</code>のコールバック関数）は、コードの見た目上の並びとは異なる順番で実行されることがわかります。</p>
-<p><img src="img/async-single-thread-tasks.png" alt="非同期処理とタイマー"></p>
+<p><img src="img/async-single-thread-tasks.png" alt="非同期処理とタイマー"></img></p>
 <h2 id="async-and-main-thread"><a name="async-and-main-thread" class="plugin-anchor" href="#async-and-main-thread"><i class="fa fa-link" aria-hidden="true"></i></a>非同期処理はメインスレッドで実行される </h2>
 <p>メインスレッドはUIスレッドとも呼ばれ、重たいJavaScriptの同期処理はメインスレッドで実行する他の処理（画面の更新など）をブロックする問題について紹介しました。
 これは非同期処理においても同様の問題があります。なぜならJavaScriptにおける非同期処理の大部分はメインスレッドで実行されるためです。</p>
@@ -1646,13 +1646,13 @@ JavaScriptには非同期処理を扱うためのPromiseというビルトイン
 このコードを実行してみると、同期的にブロックする処理により、非同期のタスクはタイマーに登録した時間（10ミリ秒後）よりも大きく遅れて呼び出されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">taskA</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;タスクAを実行 at &quot;</span> + <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>());
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"タスクAを実行 at "</span> + <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>());
 }
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">taskB</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;タスクBを実行 at &quot;</span> + <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>());
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"タスクBを実行 at "</span> + <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>());
 }
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">taskAsync</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;非同期のタスクを実行 at &quot;</span> + <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>());
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"非同期のタスクを実行 at "</span> + <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>());
 }
 <span class="hljs-comment">// 指定した`timeout`ミリ秒経過するまで同期的にブロックする関数</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">blockTime</span>(<span class="hljs-params">timeout</span>) {
@@ -1682,7 +1682,7 @@ JavaScriptには非同期処理を扱うためのPromiseというビルトイン
 <p>多くの環境では、このときの非同期処理のコールバック関数が呼ばれるまでは1秒以上かかります。
 これは、10ミリ秒後に非同期のコールバック関数を実行するようにタイマーへ登録自体はできていますが、同期的にブロックする処理によって非同期のタスクの実行も後ろにずれてしまうためです。
 このように<strong>非同期処理</strong>も<strong>同期処理</strong>の影響を受けることから、同じメインスレッドで実行されていることがわかります。</p>
-<p><img src="img/block--async-single-thread-tasks.png" alt="非同期処理とブロックする同期処理"></p>
+<p><img src="img/block--async-single-thread-tasks.png" alt="非同期処理とブロックする同期処理"></img></p>
 <p>JavaScriptでは一部の例外を除き非同期処理が<strong>並行処理（Concurrent）</strong>として扱われます。
 並行処理とは、処理を一定の単位ごとに分けて処理を切り替えながら実行することです。
 そのため非同期処理の実行前にとても重たい処理があると、非同期処理の実行が遅れるという現象を引き起こします。</p>
@@ -1703,11 +1703,11 @@ JavaScriptには非同期処理を扱うためのPromiseというビルトイン
 <!-- textlint-enable --></p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">try</span> {
-    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;同期的なエラー&quot;</span>);
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"同期的なエラー"</span>);
 } <span class="hljs-keyword">catch</span> (error) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;同期的なエラーをキャッチできる&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"同期的なエラーをキャッチできる"</span>);
 }
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;この行は実行されます&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"この行は実行されます"</span>);
 </code></pre>
 <p>非同期処理では、<code>try...catch</code>構文を使っても非同期的に発生した例外をキャッチできません。
 次のコードでは、10ミリ秒後に非同期的なエラーを発生させています。
@@ -1716,12 +1716,12 @@ JavaScriptには非同期処理を扱うためのPromiseというビルトイン
 <!-- doctest:disable --></p>
 <pre><code class="lang-js"><span class="hljs-keyword">try</span> {
     <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
-        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;非同期的なエラー&quot;</span>);
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"非同期的なエラー"</span>);
     }, <span class="hljs-number">10</span>);
 } <span class="hljs-keyword">catch</span> (error) {
     <span class="hljs-comment">// 非同期エラーはキャッチできないため、この行は実行されません</span>
 }
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;この行は実行されます&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"この行は実行されます"</span>);
 </code></pre>
 <p><code>try</code>ブロックはそのブロック内で発生した例外をキャッチする構文です。
 しかし、<code>setTimeout</code>関数で登録されたコールバック関数が実際に実行されて例外を投げるのは、すべての同期処理が終わった後となります。
@@ -1733,12 +1733,12 @@ JavaScriptには非同期処理を扱うためのPromiseというビルトイン
 <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
     <span class="hljs-comment">// 非同期処理の中</span>
     <span class="hljs-keyword">try</span> {
-        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;エラー&quot;</span>);
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"エラー"</span>);
     } <span class="hljs-keyword">catch</span> (error) {
-        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;エラーをキャッチできる&quot;</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"エラーをキャッチできる"</span>);
     }
 }, <span class="hljs-number">10</span>);
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;この行は実行されます&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"この行は実行されます"</span>);
 </code></pre>
 <p>このようにコールバック関数内でエラーをキャッチできますが、<strong>非同期処理の外</strong>からは<strong>非同期処理の中</strong>で例外が発生したかがわかりません。
 非同期処理の外から例外が起きたことを知るためには、非同期処理の中で例外が発生したことを非同期処理の外へ伝える方法が必要です。</p>
@@ -1800,10 +1800,10 @@ JavaScriptには非同期処理を扱うためのPromiseというビルトイン
     <span class="hljs-comment">// 非同期の処理が失敗したときにはreject()を呼ぶ</span>
 });
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">onFulfilled</span> = (<span class="hljs-params"></span>) =&gt; {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;resolveされたときに呼ばれる&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"resolveされたときに呼ばれる"</span>);
 };
 <span class="hljs-keyword">const</span> <span class="hljs-title function_">onRejected</span> = (<span class="hljs-params"></span>) =&gt; {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;rejectされたときに呼ばれる&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"rejectされたときに呼ばれる"</span>);
 };
 <span class="hljs-comment">// `then`メソッドで成功時と失敗時に呼ばれるコールバック関数を登録</span>
 promise.<span class="hljs-title function_">then</span>(onFulfilled, onRejected);
@@ -1835,26 +1835,26 @@ promise.<span class="hljs-title function_">then</span>(onFulfilled, onRejected);
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-params">path</span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
         <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
-            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&quot;/success&quot;</span>)) {
+            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">"/success"</span>)) {
                 <span class="hljs-title function_">resolve</span>({ <span class="hljs-attr">body</span>: <span class="hljs-string">`Response body of <span class="hljs-subst">${path}</span>`</span> });
             } <span class="hljs-keyword">else</span> {
-                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;NOT FOUND&quot;</span>));
+                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"NOT FOUND"</span>));
             }
         }, <span class="hljs-number">1000</span> * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>());
     });
 }
 <span class="hljs-comment">// `then`メソッドで成功時と失敗時に呼ばれるコールバック関数を登録</span>
 <span class="hljs-comment">// /success/data のリソースは存在するので成功しonFulfilledが呼ばれる</span>
-<span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">&quot;/success/data&quot;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span> <span class="hljs-title function_">onFulfilled</span>(<span class="hljs-params">response</span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response); <span class="hljs-comment">// =&gt; { body: &quot;Response body of /success/data&quot; }</span>
+<span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">"/success/data"</span>).<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span> <span class="hljs-title function_">onFulfilled</span>(<span class="hljs-params">response</span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response); <span class="hljs-comment">// =&gt; { body: "Response body of /success/data" }</span>
 }, <span class="hljs-keyword">function</span> <span class="hljs-title function_">onRejected</span>(<span class="hljs-params">error</span>) {
     <span class="hljs-comment">// この行は実行されません</span>
 });
 <span class="hljs-comment">// /failure/data のリソースは存在しないのでonRejectedが呼ばれる</span>
-<span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">&quot;/failure/data&quot;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span> <span class="hljs-title function_">onFulfilled</span>(<span class="hljs-params">response</span>) {
+<span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">"/failure/data"</span>).<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span> <span class="hljs-title function_">onFulfilled</span>(<span class="hljs-params">response</span>) {
     <span class="hljs-comment">// この行は実行されません</span>
 }, <span class="hljs-keyword">function</span> <span class="hljs-title function_">onRejected</span>(<span class="hljs-params">error</span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error); <span class="hljs-comment">// Error: &quot;NOT FOUND&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error); <span class="hljs-comment">// Error: "NOT FOUND"</span>
 });
 </code></pre>
 <p>Promiseの<code>then</code>メソッドは成功（<code>onFulfilled</code>）と失敗（<code>onRejected</code>）のコールバック関数の2つを受け取りますが、どちらの引数も省略できます。</p>
@@ -1870,7 +1870,7 @@ promise.<span class="hljs-title function_">then</span>(onFulfilled, onRejected);
 }
 <span class="hljs-comment">// `then`メソッドで成功時のコールバック関数だけを登録</span>
 <span class="hljs-title function_">delay</span>(<span class="hljs-number">10</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;10ミリ秒後に呼ばれる&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"10ミリ秒後に呼ばれる"</span>);
 });
 </code></pre>
 <p>一方、<code>then</code>メソッドでは失敗時のコールバック関数だけの登録もできます。
@@ -1885,12 +1885,12 @@ promise.<span class="hljs-title function_">then</span>(onFulfilled, onRejected);
     });
 }
 <span class="hljs-comment">// 非推奨: `then`メソッドで失敗時のコールバック関数だけを登録</span>
-<span class="hljs-title function_">errorPromise</span>(<span class="hljs-string">&quot;thenでエラーハンドリング&quot;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-literal">undefined</span>, <span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; &quot;thenでエラーハンドリング&quot;</span>
+<span class="hljs-title function_">errorPromise</span>(<span class="hljs-string">"thenでエラーハンドリング"</span>).<span class="hljs-title function_">then</span>(<span class="hljs-literal">undefined</span>, <span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; "thenでエラーハンドリング"</span>
 });
 <span class="hljs-comment">// 推奨: `catch`メソッドで失敗時のコールバック関数を登録</span>
-<span class="hljs-title function_">errorPromise</span>(<span class="hljs-string">&quot;catchでエラーハンドリング&quot;</span>).<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; &quot;catchでエラーハンドリング&quot;</span>
+<span class="hljs-title function_">errorPromise</span>(<span class="hljs-string">"catchでエラーハンドリング"</span>).<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; "catchでエラーハンドリング"</span>
 });
 </code></pre>
 <h3 id="promise-exception"><a name="promise-exception" class="plugin-anchor" href="#promise-exception"><i class="fa fa-link" aria-hidden="true"></i></a>Promiseと例外 </h3>
@@ -1901,13 +1901,13 @@ promise.<span class="hljs-title function_">then</span>(onFulfilled, onRejected);
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">throwPromise</span>(<span class="hljs-params"></span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
         <span class="hljs-comment">// Promiseコンストラクタの中で例外は自動的にキャッチされrejectを呼ぶ</span>
-        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;例外が発生&quot;</span>);
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"例外が発生"</span>);
         <span class="hljs-comment">// 例外が発生すると、これ以降のコンストラクタの処理は実行されません</span>
     });
 }
 
 <span class="hljs-title function_">throwPromise</span>().<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; &quot;例外が発生&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; "例外が発生"</span>
 });
 </code></pre>
 <p>このようにPromiseにおける処理では<code>try...catch</code>構文を使わなくても、自動的に例外がキャッチされます。</p>
@@ -1946,11 +1946,11 @@ promise.<span class="hljs-title function_">then</span>(onFulfilled, onRejected);
     <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
         <span class="hljs-title function_">resolve</span>();
         <span class="hljs-comment">// すでにresolveされているため無視される</span>
-        <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;エラー&quot;</span>));
+        <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"エラー"</span>));
     }, <span class="hljs-number">16</span>);
 });
 promise.<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Fulfilledとなった&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"Fulfilledとなった"</span>);
 }, <span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
     <span class="hljs-comment">// この行は呼び出されない</span>
 });
@@ -1965,7 +1965,7 @@ promise.<span class="hljs-title function_">then</span>(<span class="hljs-functio
     }, <span class="hljs-number">16</span>);
 });
 promise.<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;最初のresolve時に一度だけ呼ばれる&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"最初のresolve時に一度だけ呼ばれる"</span>);
 }, <span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
     <span class="hljs-comment">// この行は呼び出されない</span>
 });
@@ -2000,44 +2000,44 @@ fulfilledPromise.<span class="hljs-title function_">then</span>(<span class="hlj
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> promise = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>();
 promise.<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;2. コールバック関数が実行されました&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"2. コールバック関数が実行されました"</span>);
 });
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;1. 同期的な処理が実行されました&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"1. 同期的な処理が実行されました"</span>);
 </code></pre>
 <p><code>Promise.resolve</code>メソッドは<code>new Promise</code>の糖衣構文であるため、この実行順序は<code>new Promise</code>を使った場合も同じです。
 次のコードは、先ほどの<code>Promise.resolve</code>メソッドを使ったものと同じ動作になります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> promise = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;1. resolveします&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"1. resolveします"</span>);
     <span class="hljs-title function_">resolve</span>();
 });
 promise.<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;3. コールバック関数が実行されました&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"3. コールバック関数が実行されました"</span>);
 });
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;2. 同期的な処理が実行されました&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"2. 同期的な処理が実行されました"</span>);
 </code></pre>
 <p>このコードを実行すると、まず<code>Promise</code>のコンストラクタ関数が実行され、続いて同期的な処理が実行されます。最後に<code>then</code>メソッドで登録していたコールバック関数が非同期的に呼ばれることがわかります。</p>
 <h3 id="promise-reject"><a name="promise-reject" class="plugin-anchor" href="#promise-reject"><i class="fa fa-link" aria-hidden="true"></i></a><code>Promise.reject</code> </h3>
 <p><code>Promise.reject</code>メソッドは <strong>Rejected</strong>の状態となった<code>Promise</code>インスタンスを作成します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:disable --></p>
-<pre><code class="lang-js"><span class="hljs-keyword">const</span> rejectedPromise = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;エラー&quot;</span>));
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> rejectedPromise = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"エラー"</span>));
 </code></pre>
 <p><code>Promise.reject</code>メソッドは<code>new Promise</code>の糖衣構文（シンタックスシュガー）です。
 そのため、<code>Promise.reject</code>メソッドは次のコードと同じ意味になります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:disable --></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> rejectedPromise = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
-    <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;エラー&quot;</span>));
+    <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"エラー"</span>));
 });
 </code></pre>
 <p><code>Promise.reject</code>メソッドで作成した<strong>Rejected</strong>状態の<code>Promise</code>インスタンスに対しても<code>then</code>や<code>catch</code>メソッドでコールバック関数を登録できます。
  <strong>Rejected</strong>状態へ変化済みの<code>Promise</code>インスタンスに登録したコールバック関数は、常に非同期なタイミングで実行されます。これは<strong>Fulfilled</strong>の場合と同様です。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;エラー&quot;</span>)).<span class="hljs-title function_">catch</span>(<span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;2. コールバック関数が実行されました&quot;</span>);
+<pre><code class="lang-js"><span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"エラー"</span>)).<span class="hljs-title function_">catch</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"2. コールバック関数が実行されました"</span>);
 });
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;1. 同期的な処理が実行されました&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"1. 同期的な処理が実行されました"</span>);
 </code></pre>
 <p><code>Promise.resolve</code>や<code>Promise.reject</code>は短く書けるため、テストコードなどで利用されることがあります。
 また、<code>Promise.reject</code>は次に解説するPromiseチェーンにおいて、Promiseの状態を操作するのに利用できます。</p>
@@ -2087,38 +2087,38 @@ Promiseチェーンでは、Promiseが失敗（<strong>Rejected</strong>な状�
 <pre><code class="lang-js"><span class="hljs-comment">// ランダムでFulfilledまたはRejectedの`Promise`インスタンスを返す関数</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">asyncTask</span>(<span class="hljs-params"></span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() &gt; <span class="hljs-number">0.5</span>
-        ? <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-string">&quot;成功&quot;</span>)
-        : <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;失敗&quot;</span>));
+        ? <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-string">"成功"</span>)
+        : <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"失敗"</span>));
 }
 
 <span class="hljs-comment">// asyncTask関数は新しい`Promise`インスタンスを返す</span>
 <span class="hljs-title function_">asyncTask</span>()
     <span class="hljs-comment">// thenメソッドは新しい`Promise`インスタンスを返す</span>
     .<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span> <span class="hljs-title function_">onFulfilled</span>(<span class="hljs-params">value</span>) {　
-        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(value); <span class="hljs-comment">// =&gt; &quot;成功&quot;</span>
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(value); <span class="hljs-comment">// =&gt; "成功"</span>
     })
     <span class="hljs-comment">// catchメソッドは新しい`Promise`インスタンスを返す</span>
     .<span class="hljs-title function_">catch</span>(<span class="hljs-keyword">function</span> <span class="hljs-title function_">onRejected</span>(<span class="hljs-params">error</span>) {
-        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; &quot;失敗&quot;</span>
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; "失敗"</span>
     });
 </code></pre>
 <p><code>asyncTask</code>関数が成功（resolve）した場合は<code>then</code>メソッドで登録した成功時の処理だけが呼び出され、<code>catch</code>メソッドで登録した失敗時の処理は呼び出されません。
 一方、<code>asyncTask</code>関数が失敗（reject）した場合は<code>then</code>メソッドで登録した成功時の処理は呼び出されずに、<code>catch</code>メソッドで登録した失敗時の処理だけが呼び出されます。</p>
 <p>先ほどのコードにおけるPromiseの状態とコールバック関数は次のような処理の流れとなります。</p>
-<p><img src="img/promise-chain.png" alt="promise-chain"></p>
+<p><img src="img/promise-chain.png" alt="promise-chain"></img></p>
 <p>Promiseの状態が<strong>Rejected</strong>となった場合は、もっとも近い失敗時の処理（<code>catch</code>または<code>then</code>の第二引数）が呼び出されます。
 このとき間にある成功時の処理（<code>then</code>の第一引数）はスキップされます。</p>
 <p>次のコードでは、<strong>Rejected</strong>のPromiseに対して<code>then</code> → <code>then</code> → <code>catch</code>とPromiseチェーンで処理を記述しています。
 このときもっとも近い失敗時の処理（<code>catch</code>）が呼び出されますが、間にある2つの成功時の処理（<code>then</code>）は実行されません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// RejectedなPromiseは次の失敗時の処理までスキップする</span>
-<span class="hljs-keyword">const</span> rejectedPromise = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;失敗&quot;</span>));
+<span class="hljs-keyword">const</span> rejectedPromise = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"失敗"</span>));
 rejectedPromise.<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> {
     <span class="hljs-comment">// このthenのコールバック関数は呼び出されません</span>
 }).<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> {
     <span class="hljs-comment">// このthenのコールバック関数は呼び出されません</span>
 }).<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; &quot;失敗&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; "失敗"</span>
 });
 </code></pre>
 <p>Promiseのコンストラクタの処理の場合と同様に、<code>then</code>や<code>catch</code>のコールバック関数内で発生した例外は自動的にキャッチされます。
@@ -2127,21 +2127,21 @@ rejectedPromise.<span class="hljs-title function_">then</span>(<span class="hljs
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> {
     <span class="hljs-comment">// 例外が発生すると、thenメソッドはRejectedなPromiseを返す</span>
-    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;例外&quot;</span>);
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"例外"</span>);
 }).<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> {
     <span class="hljs-comment">// このthenのコールバック関数は呼び出されません</span>
 }).<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; &quot;例外&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; "例外"</span>
 });
 </code></pre>
 <p>また、Promiseチェーンで失敗を<code>catch</code>メソッドなどで一度キャッチすると、次に呼ばれるのは成功時の処理です。
 これは、<code>then</code>や<code>catch</code>メソッドは<strong>Fulfilled</strong>状態のPromiseインスタンスを作成して返すためです。
 そのため、一度キャッチするとそこからは次の<code>then</code>で登録した処理が呼ばれるPromiseチェーンに戻ります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;エラー&quot;</span>)).<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+<pre><code class="lang-js"><span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"エラー"</span>)).<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error); <span class="hljs-comment">// Error: エラー</span>
 }).<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;thenのコールバック関数が呼び出される&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"thenのコールバック関数が呼び出される"</span>);
 });
 </code></pre>
 <p>このようにPromiseの<code>then</code>メソッドや<code>catch</code>メソッドをつないで、成功時や失敗時の処理を書いていくことをPromiseチェーンと呼びます。</p>
@@ -2167,7 +2167,7 @@ rejectedPromise.<span class="hljs-title function_">then</span>(<span class="hljs
 Promiseチェーンで一度キャッチすると、次に呼ばれるのは成功時の処理となります。
 そのため、<code>catch</code>メソッドで返した値は次の<code>then</code>メソッドのコールバック関数に引数として渡されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
-<pre><code class="lang-js"><span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;失敗&quot;</span>)).<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
+<pre><code class="lang-js"><span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"失敗"</span>)).<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
     <span class="hljs-comment">// 一度catchすれば、次に呼ばれるのは成功時のコールバック</span>
     <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
 }).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> {
@@ -2187,24 +2187,24 @@ Promiseチェーンで一度キャッチすると、次に呼ばれるのは成�
 <strong>Rejected</strong>な<code>Promise</code>インスタンスは、次の<code>catch</code>メソッドで登録した失敗時の処理を呼び出すまで、<code>then</code>メソッドの成功時の処理をスキップします。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>().<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span> <span class="hljs-title function_">onFulfilledA</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;失敗&quot;</span>));
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"失敗"</span>));
 }).<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span> <span class="hljs-title function_">onFulfilledB</span>(<span class="hljs-params"></span>) {
     <span class="hljs-comment">// onFulfilledBは呼び出されません</span>
 }).<span class="hljs-title function_">catch</span>(<span class="hljs-keyword">function</span> <span class="hljs-title function_">onRejected</span>(<span class="hljs-params">error</span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; &quot;失敗&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; "失敗"</span>
 }).<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span> <span class="hljs-title function_">onFulfilledC</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;onFulfilledCは呼び出されます&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"onFulfilledCは呼び出されます"</span>);
 });
 </code></pre>
 <p>このコードにおけるPromiseの状態とコールバック関数は次のような処理の流れとなります。</p>
-<p><img src="img/then-rejected-promise.png" alt="then-rejected-promise.png"></p>
+<p><img src="img/then-rejected-promise.png" alt="then-rejected-promise.png"></img></p>
 <p>通常は一度<code>catch</code>すると次に呼び出されるのは成功時の処理でした。
 この<code>Promise</code>インスタンスを返す仕組みを使うことで、<code>catch</code>してもそのまま<strong>Rejected</strong>な状態を継続できます。</p>
 <p>次のコードでは<code>catch</code>メソッドでログを出力しつつ<code>Promise.reject</code>メソッドを使って<strong>Rejected</strong>な<code>Promise</code>インスタンスを返しています。
 これによって、<code>main</code>で発生したエラーのログを取りながら、Promiseチェーンはエラーのまま処理を継続できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;エラー&quot;</span>));
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"エラー"</span>));
 }
 <span class="hljs-comment">// mainはRejectedなPromiseを返す</span>
 <span class="hljs-title function_">main</span>().<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
@@ -2215,7 +2215,7 @@ Promiseチェーンで一度キャッチすると、次に呼ばれるのは成�
 }).<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> {
     <span class="hljs-comment">// 前のcatchでRejectedなPromiseが返されたため、この行は実行されません</span>
 }).<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;メインの処理が失敗した&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"メインの処理が失敗した"</span>);
 });
 </code></pre>
 <h4 id="promise-finally"><a name="promise-finally" class="plugin-anchor" href="#promise-finally"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2018] Promiseチェーンの最後に処理を書く </h4>
@@ -2226,12 +2226,12 @@ Promiseチェーンで一度キャッチすると、次に呼ばれるのは成�
 <pre><code class="lang-js"><span class="hljs-comment">// `promise`にはResolvedまたはRejectedなPromiseインスタンスがランダムで入る</span>
 <span class="hljs-keyword">const</span> promise = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>() &lt; <span class="hljs-number">0.5</span> ? <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>() : <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>();
 promise.<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Promiseのthenメソッド&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"Promiseのthenメソッド"</span>);
 }).<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Promiseのcatchメソッド&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"Promiseのcatchメソッド"</span>);
 }).<span class="hljs-title function_">finally</span>(<span class="hljs-function">() =&gt;</span> {
     <span class="hljs-comment">// 成功、失敗どちらの場合でも呼び出される</span>
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Promiseのfinallyメソッド&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"Promiseのfinallyメソッド"</span>);
 });
 </code></pre>
 <p>次のコードでは、リソースを取得して<code>then</code>で成功時の処理、<code>catch</code>で失敗時の処理を登録しています。
@@ -2243,23 +2243,23 @@ promise.<span class="hljs-title function_">then</span>(<span class="hljs-functio
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-params">path</span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
         <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
-            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&quot;/resource&quot;</span>)) {
+            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">"/resource"</span>)) {
                 <span class="hljs-title function_">resolve</span>({ <span class="hljs-attr">body</span>: <span class="hljs-string">`Response body of <span class="hljs-subst">${path}</span>`</span> });
             } <span class="hljs-keyword">else</span> {
-                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;NOT FOUND&quot;</span>));
+                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"NOT FOUND"</span>));
             }
         }, <span class="hljs-number">1000</span> * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>());
     });
 }
 <span class="hljs-comment">// リソースを取得中かどうかのフラグ</span>
 <span class="hljs-keyword">let</span> isLoading = <span class="hljs-literal">true</span>;
-<span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">&quot;/resource/A&quot;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+<span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">"/resource/A"</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response);
 }).<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(error);
 }).<span class="hljs-title function_">finally</span>(<span class="hljs-function">() =&gt;</span> {
     isLoading = <span class="hljs-literal">false</span>;
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Promiseのfinallyメソッド&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"Promiseのfinallyメソッド"</span>);
 });
 </code></pre>
 <h3 id="promise-sequential"><a name="promise-sequential" class="plugin-anchor" href="#promise-sequential"><i class="fa fa-link" aria-hidden="true"></i></a>Promiseチェーンで逐次処理 </h3>
@@ -2272,10 +2272,10 @@ Promiseで逐次的な処理といっても難しいことはなく、単純に<
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-params">path</span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
         <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
-            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&quot;/resource&quot;</span>)) {
+            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">"/resource"</span>)) {
                 <span class="hljs-title function_">resolve</span>({ <span class="hljs-attr">body</span>: <span class="hljs-string">`Response body of <span class="hljs-subst">${path}</span>`</span> });
             } <span class="hljs-keyword">else</span> {
-                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;NOT FOUND&quot;</span>));
+                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"NOT FOUND"</span>));
             }
         }, <span class="hljs-number">1000</span> * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>());
     });
@@ -2283,14 +2283,14 @@ Promiseで逐次的な処理といっても難しいことはなく、単純に<
 
 <span class="hljs-keyword">const</span> results = [];
 <span class="hljs-comment">// Resource Aを取得する</span>
-<span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">&quot;/resource/A&quot;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+<span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">"/resource/A"</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
     results.<span class="hljs-title function_">push</span>(response.<span class="hljs-property">body</span>);
     <span class="hljs-comment">// Resource Bを取得する</span>
-    <span class="hljs-keyword">return</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">&quot;/resource/B&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">"/resource/B"</span>);
 }).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
     results.<span class="hljs-title function_">push</span>(response.<span class="hljs-property">body</span>);
 }).<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results); <span class="hljs-comment">// =&gt; [&quot;Response body of /resource/A&quot;, &quot;Response body of /resource/B&quot;]</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results); <span class="hljs-comment">// =&gt; ["Response body of /resource/A", "Response body of /resource/B"]</span>
 });
 </code></pre>
 <h3 id="promise-all"><a name="promise-all" class="plugin-anchor" href="#promise-all"><i class="fa fa-link" aria-hidden="true"></i></a><code>Promise.all</code>で複数のPromiseをまとめる </h3>
@@ -2326,23 +2326,23 @@ Promiseで逐次的な処理といっても難しいことはなく、単純に<
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-params">path</span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
         <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
-            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&quot;/resource&quot;</span>)) {
+            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">"/resource"</span>)) {
                 <span class="hljs-title function_">resolve</span>({ <span class="hljs-attr">body</span>: <span class="hljs-string">`Response body of <span class="hljs-subst">${path}</span>`</span> });
             } <span class="hljs-keyword">else</span> {
-                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;NOT FOUND&quot;</span>));
+                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"NOT FOUND"</span>));
             }
         }, <span class="hljs-number">1000</span> * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>());
     });
 }
 
 <span class="hljs-keyword">const</span> fetchedPromise = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>([
-    <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">&quot;/resource/A&quot;</span>),
-    <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">&quot;/resource/B&quot;</span>)
+    <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">"/resource/A"</span>),
+    <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">"/resource/B"</span>)
 ]);
 <span class="hljs-comment">// fetchedPromiseの結果をDestructuringでresponseA, responseBに代入している</span>
 fetchedPromise.<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">[responseA, responseB]</span>) =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(responseA.<span class="hljs-property">body</span>); <span class="hljs-comment">// =&gt; &quot;Response body of /resource/A&quot;</span>
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(responseB.<span class="hljs-property">body</span>); <span class="hljs-comment">// =&gt; &quot;Response body of /resource/B&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(responseA.<span class="hljs-property">body</span>); <span class="hljs-comment">// =&gt; "Response body of /resource/A"</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(responseB.<span class="hljs-property">body</span>); <span class="hljs-comment">// =&gt; "Response body of /resource/B"</span>
 });
 </code></pre>
 <p>渡したPromiseがひとつでも<strong>Rejected</strong>となった場合は、失敗時の処理が呼び出されます。</p>
@@ -2350,18 +2350,18 @@ fetchedPromise.<span class="hljs-title function_">then</span>(<span class="hljs-
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-params">path</span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
         <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
-            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&quot;/resource&quot;</span>)) {
+            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">"/resource"</span>)) {
                 <span class="hljs-title function_">resolve</span>({ <span class="hljs-attr">body</span>: <span class="hljs-string">`Response body of <span class="hljs-subst">${path}</span>`</span> });
             } <span class="hljs-keyword">else</span> {
-                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;NOT FOUND&quot;</span>));
+                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"NOT FOUND"</span>));
             }
         }, <span class="hljs-number">1000</span> * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>());
     });
 }
 
 <span class="hljs-keyword">const</span> fetchedPromise = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>([
-    <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">&quot;/resource/A&quot;</span>),
-    <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">&quot;/not_found/B&quot;</span>) <span class="hljs-comment">// Bは存在しないため失敗する</span>
+    <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">"/resource/A"</span>),
+    <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">"/not_found/B"</span>) <span class="hljs-comment">// Bは存在しないため失敗する</span>
 ]);
 fetchedPromise.<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">[responseA, responseB]</span>) =&gt;</span> {
     <span class="hljs-comment">// この行は実行されません</span>
@@ -2429,22 +2429,22 @@ racePromise.<span class="hljs-title function_">then</span>(<span class="hljs-fun
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-params">path</span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
         <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
-            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&quot;/resource&quot;</span>)) {
+            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">"/resource"</span>)) {
                 <span class="hljs-title function_">resolve</span>({ <span class="hljs-attr">body</span>: <span class="hljs-string">`Response body of <span class="hljs-subst">${path}</span>`</span> });
             } <span class="hljs-keyword">else</span> {
-                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;NOT FOUND&quot;</span>));
+                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"NOT FOUND"</span>));
             }
         }, <span class="hljs-number">1000</span> * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>());
     });
 }
 <span class="hljs-comment">// 500ミリ秒以内に取得できなければ失敗時の処理が呼ばれる</span>
 <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">race</span>([
-    <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">&quot;/resource/data&quot;</span>),
+    <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">"/resource/data"</span>),
     <span class="hljs-title function_">timeout</span>(<span class="hljs-number">500</span>),
 ]).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response.<span class="hljs-property">body</span>); <span class="hljs-comment">// =&gt; &quot;Response body of /resource/data&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response.<span class="hljs-property">body</span>); <span class="hljs-comment">// =&gt; "Response body of /resource/data"</span>
 }).<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; &quot;Timeout: 500ミリ秒経過&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; "Timeout: 500ミリ秒経過"</span>
 });
 </code></pre>
 <p>このようにPromiseを使うことで非同期処理のさまざまなパターンが形成できます。
@@ -2460,11 +2460,11 @@ Async Functionは通常の関数とは異なり、必ず<code>Promise</code>イ�
 この<code>doAsync</code>関数は常に<code>Promise</code>インスタンスを返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">doAsync</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;値&quot;</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"値"</span>;
 }
 <span class="hljs-comment">// doAsync関数はPromiseを返す</span>
 <span class="hljs-title function_">doAsync</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(value); <span class="hljs-comment">// =&gt; &quot;値&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(value); <span class="hljs-comment">// =&gt; "値"</span>
 });
 </code></pre>
 <p>このAsync Functionは次のように書いた場合と同じ意味になります。
@@ -2472,10 +2472,10 @@ Async Functionでは<code>return</code>した値の代わりに、<code>Promise.
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 通常の関数でPromiseインスタンスを返している</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">doAsync</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-string">&quot;値&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-string">"値"</span>);
 }
 <span class="hljs-title function_">doAsync</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(value); <span class="hljs-comment">// =&gt; &quot;値&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(value); <span class="hljs-comment">// =&gt; "値"</span>
 });
 </code></pre>
 <p>重要なこととしてAsync FunctionはPromiseの上に作られた構文です。
@@ -2523,31 +2523,31 @@ Promiseを返した場合は、その返したPromiseの状態とAsync Function�
 <pre><code class="lang-js"><span class="hljs-comment">// 1. resolveFnは値を返している</span>
 <span class="hljs-comment">// 何もreturnしていない場合はundefinedを返したのと同じ扱いとなる</span>
 <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">resolveFn</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;返り値&quot;</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"返り値"</span>;
 }
 <span class="hljs-title function_">resolveFn</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(value); <span class="hljs-comment">// =&gt; &quot;返り値&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(value); <span class="hljs-comment">// =&gt; "返り値"</span>
 });
 
 <span class="hljs-comment">// 2. rejectFnはPromiseインスタンスを返している</span>
 <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">rejectFn</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;エラーメッセージ&quot;</span>));
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"エラーメッセージ"</span>));
 }
 
 <span class="hljs-comment">// rejectFnはRejectedなPromiseを返すのでcatchできる</span>
 <span class="hljs-title function_">rejectFn</span>().<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; &quot;エラーメッセージ&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; "エラーメッセージ"</span>
 });
 
 <span class="hljs-comment">// 3. exceptionFnは例外を投げている</span>
 <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">exceptionFn</span>(<span class="hljs-params"></span>) {
-    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;例外が発生しました&quot;</span>);
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"例外が発生しました"</span>);
     <span class="hljs-comment">// 例外が発生したため、この行は実行されません</span>
 }
 
 <span class="hljs-comment">// Async Functionで例外が発生するとRejectedなPromiseが返される</span>
 <span class="hljs-title function_">exceptionFn</span>().<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; &quot;例外が発生しました&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; "例外が発生しました"</span>
 });
 </code></pre>
 <p>どの場合でもAsync Functionは必ずPromiseを返すことがわかります。
@@ -2581,7 +2581,7 @@ Promiseを返した場合は、その返したPromiseの状態とAsync Function�
     <span class="hljs-comment">// doAsyncの非同期処理が完了するまでまつ</span>
     <span class="hljs-keyword">await</span> <span class="hljs-title function_">doAsync</span>();
     <span class="hljs-comment">// 次の行はdoAsyncの非同期処理が完了されるまで実行されない</span>
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;この行は非同期処理が完了後に実行される&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"この行は非同期処理が完了後に実行される"</span>);
 }
 </code></pre>
 <p><code>await</code>式は、<code>await</code>の右辺（<code>Promise</code>インスタンス）の評価結果を値として返します（<strong>式</strong>については「<a href="../statement-expression/">文と式</a>」の章を参照）。
@@ -2614,12 +2614,12 @@ Promiseを返した場合は、その返したPromiseの状態とAsync Function�
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">asyncMain</span>(<span class="hljs-params"></span>) {
     <span class="hljs-comment">// `await`式で評価した右辺のPromiseがRejectedとなったため、例外がthrowされる</span>
-    <span class="hljs-keyword">const</span> value = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;エラーメッセージ&quot;</span>));
+    <span class="hljs-keyword">const</span> value = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"エラーメッセージ"</span>));
     <span class="hljs-comment">// await式で例外が発生したため、この行は実行されません</span>
 }
 <span class="hljs-comment">// Async Functionは自動的に例外をキャッチできる</span>
 <span class="hljs-title function_">asyncMain</span>().<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; &quot;エラーメッセージ&quot;</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; "エラーメッセージ"</span>
 });
 </code></pre>
 <p><code>await</code>式がエラーを<code>throw</code>するということは、そのエラーは<code>try...catch</code>構文でキャッチできます（詳細は「<a href="../error-try-catch/">例外処理</a>」の章の「<a href="../error-try-catch/#try-catch">try...catch構文</a>」を参照）。
@@ -2632,10 +2632,10 @@ Promiseを返した場合は、その返したPromiseの状態とAsync Function�
     <span class="hljs-comment">// await式のエラーはtry...catchできる</span>
     <span class="hljs-keyword">try</span> {
         <span class="hljs-comment">// `await`式で評価した右辺のPromiseがRejectedとなったため、例外がthrowされる</span>
-        <span class="hljs-keyword">const</span> value = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;エラーメッセージ&quot;</span>));
+        <span class="hljs-keyword">const</span> value = <span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"エラーメッセージ"</span>));
         <span class="hljs-comment">// await式で例外が発生したため、この行は実行されません</span>
     } <span class="hljs-keyword">catch</span> (error) {
-        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; &quot;エラーメッセージ&quot;</span>
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; "エラーメッセージ"</span>
     }
 }
 <span class="hljs-comment">// asyncMainはResolvedなPromiseを返す</span>
@@ -2655,10 +2655,10 @@ Promiseを返した場合は、その返したPromiseの状態とAsync Function�
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-params">path</span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
         <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
-            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&quot;/resource&quot;</span>)) {
+            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">"/resource"</span>)) {
                 <span class="hljs-title function_">resolve</span>({ <span class="hljs-attr">body</span>: <span class="hljs-string">`Response body of <span class="hljs-subst">${path}</span>`</span> });
             } <span class="hljs-keyword">else</span> {
-                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;NOT FOUND&quot;</span>));
+                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"NOT FOUND"</span>));
             }
         }, <span class="hljs-number">1000</span> * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>());
     });
@@ -2666,9 +2666,9 @@ Promiseを返した場合は、その返したPromiseの状態とAsync Function�
 <span class="hljs-comment">// リソースAとリソースBを順番に取得する</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">fetchAB</span>(<span class="hljs-params"></span>) {
     <span class="hljs-keyword">const</span> results = [];
-    <span class="hljs-keyword">return</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">&quot;/resource/A&quot;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">"/resource/A"</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
         results.<span class="hljs-title function_">push</span>(response.<span class="hljs-property">body</span>);
-        <span class="hljs-keyword">return</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">&quot;/resource/B&quot;</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">"/resource/B"</span>);
     }).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
         results.<span class="hljs-title function_">push</span>(response.<span class="hljs-property">body</span>);
         <span class="hljs-keyword">return</span> results;
@@ -2676,7 +2676,7 @@ Promiseを返した場合は、その返したPromiseの状態とAsync Function�
 }
 <span class="hljs-comment">// リソースを取得して出力する</span>
 <span class="hljs-title function_">fetchAB</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">results</span>) =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results); <span class="hljs-comment">// =&gt; [&quot;Response body of /resource/A&quot;, &quot;Response body of /resource/B&quot;]</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results); <span class="hljs-comment">// =&gt; ["Response body of /resource/A", "Response body of /resource/B"]</span>
 });
 </code></pre>
 <p>同様の処理をAsync Functionと<code>await</code>式で書くと次のように書けます。
@@ -2685,10 +2685,10 @@ Promiseを返した場合は、その返したPromiseの状態とAsync Function�
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-params">path</span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
         <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
-            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&quot;/resource&quot;</span>)) {
+            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">"/resource"</span>)) {
                 <span class="hljs-title function_">resolve</span>({ <span class="hljs-attr">body</span>: <span class="hljs-string">`Response body of <span class="hljs-subst">${path}</span>`</span> });
             } <span class="hljs-keyword">else</span> {
-                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;NOT FOUND&quot;</span>));
+                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"NOT FOUND"</span>));
             }
         }, <span class="hljs-number">1000</span> * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>());
     });
@@ -2696,15 +2696,15 @@ Promiseを返した場合は、その返したPromiseの状態とAsync Function�
 <span class="hljs-comment">// リソースAとリソースBを順番に取得する</span>
 <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">fetchAB</span>(<span class="hljs-params"></span>) {
     <span class="hljs-keyword">const</span> results = [];
-    <span class="hljs-keyword">const</span> responseA = <span class="hljs-keyword">await</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">&quot;/resource/A&quot;</span>);
+    <span class="hljs-keyword">const</span> responseA = <span class="hljs-keyword">await</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">"/resource/A"</span>);
     results.<span class="hljs-title function_">push</span>(responseA.<span class="hljs-property">body</span>);
-    <span class="hljs-keyword">const</span> responseB = <span class="hljs-keyword">await</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">&quot;/resource/B&quot;</span>);
+    <span class="hljs-keyword">const</span> responseB = <span class="hljs-keyword">await</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">"/resource/B"</span>);
     results.<span class="hljs-title function_">push</span>(responseB.<span class="hljs-property">body</span>);
     <span class="hljs-keyword">return</span> results;
 }
 <span class="hljs-comment">// リソースを取得して出力する</span>
 <span class="hljs-title function_">fetchAB</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">results</span>) =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results); <span class="hljs-comment">// =&gt; [&quot;Response body of /resource/A&quot;, &quot;Response body of /resource/B&quot;]</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results); <span class="hljs-comment">// =&gt; ["Response body of /resource/A", "Response body of /resource/B"]</span>
 });
 </code></pre>
 <p>Promiseチェーンで<code>fetchAB</code>関数を書いた場合は、コールバックの中で処理するためややこしい見た目になりがちです。
@@ -2721,10 +2721,10 @@ Async Function内でfor文を使った反復処理を行い、forループの中
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-params">path</span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
         <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
-            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&quot;/resource&quot;</span>)) {
+            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">"/resource"</span>)) {
                 <span class="hljs-title function_">resolve</span>({ <span class="hljs-attr">body</span>: <span class="hljs-string">`Response body of <span class="hljs-subst">${path}</span>`</span> });
             } <span class="hljs-keyword">else</span> {
-                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;NOT FOUND&quot;</span>));
+                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"NOT FOUND"</span>));
             }
         }, <span class="hljs-number">1000</span> * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>());
     });
@@ -2743,12 +2743,12 @@ Async Function内でfor文を使った反復処理を行い、forループの中
 }
 <span class="hljs-comment">// 取得したいリソースのパス配列</span>
 <span class="hljs-keyword">const</span> resources = [
-    <span class="hljs-string">&quot;/resource/A&quot;</span>,
-    <span class="hljs-string">&quot;/resource/B&quot;</span>
+    <span class="hljs-string">"/resource/A"</span>,
+    <span class="hljs-string">"/resource/B"</span>
 ];
 <span class="hljs-comment">// リソースを取得して出力する</span>
 <span class="hljs-title function_">fetchResources</span>(resources).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">results</span>) =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results); <span class="hljs-comment">// =&gt; [&quot;Response body of /resource/A&quot;, &quot;Response body of /resource/B&quot;]</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results); <span class="hljs-comment">// =&gt; ["Response body of /resource/A", "Response body of /resource/B"]</span>
 });
 </code></pre>
 <p>Async Functionでは、非同期処理であってもforループのような既存の構文と組み合わせて利用することが簡単です。
@@ -2770,10 +2770,10 @@ Promiseのみの場合は、Promiseチェーンでコールバック関数を使
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-params">path</span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
         <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
-            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&quot;/resource&quot;</span>)) {
+            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">"/resource"</span>)) {
                 <span class="hljs-title function_">resolve</span>({ <span class="hljs-attr">body</span>: <span class="hljs-string">`Response body of <span class="hljs-subst">${path}</span>`</span> });
             } <span class="hljs-keyword">else</span> {
-                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;NOT FOUND&quot;</span>));
+                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"NOT FOUND"</span>));
             }
         }, <span class="hljs-number">1000</span> * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>());
     });
@@ -2793,12 +2793,12 @@ Promiseのみの場合は、Promiseチェーンでコールバック関数を使
     });
 }
 <span class="hljs-keyword">const</span> resources = [
-    <span class="hljs-string">&quot;/resource/A&quot;</span>,
-    <span class="hljs-string">&quot;/resource/B&quot;</span>
+    <span class="hljs-string">"/resource/A"</span>,
+    <span class="hljs-string">"/resource/B"</span>
 ];
 <span class="hljs-comment">// リソースを取得して出力する</span>
 <span class="hljs-title function_">fetchAllResources</span>(resources).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">results</span>) =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results); <span class="hljs-comment">// =&gt; [&quot;Response body of /resource/A&quot;, &quot;Response body of /resource/B&quot;]</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results); <span class="hljs-comment">// =&gt; ["Response body of /resource/A", "Response body of /resource/B"]</span>
 });
 </code></pre>
 <p>このようにAsync Functionや<code>await</code>式は既存のPromise APIと組み合わせて利用できます。
@@ -2826,13 +2826,13 @@ Async Functionも内部的にPromiseの仕組みを利用しているため、�
         <span class="hljs-built_in">setTimeout</span>(resolve, <span class="hljs-number">16</span>);
     });
 }
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;1. asyncMain関数を呼び出します&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"1. asyncMain関数を呼び出します"</span>);
 <span class="hljs-comment">// Async Functionは外から見れば単なるPromiseを返す関数</span>
 <span class="hljs-title function_">asyncMain</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;3. asyncMain関数が完了しました&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"3. asyncMain関数が完了しました"</span>);
 });
 <span class="hljs-comment">// Async Functionの外側の処理はそのまま進む</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;2. asyncMain関数外では、次の行が同期的に呼び出される&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"2. asyncMain関数外では、次の行が同期的に呼び出される"</span>);
 </code></pre>
 <p>このように<code>await</code>式でAsync Function内の非同期処理を一時停止しても、Async Function外の処理が停止するわけではありません。
 Async Function外の処理も停止できてしまうと、JavaScriptでは基本的にメインスレッドで多くの処理をするため、UIを含めた他の処理が止まってしまいます。
@@ -2865,10 +2865,10 @@ Async Function外の処理も停止できてしまうと、JavaScriptでは基�
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-params">path</span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
         <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
-            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&quot;/resource&quot;</span>)) {
+            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">"/resource"</span>)) {
                 <span class="hljs-title function_">resolve</span>({ <span class="hljs-attr">body</span>: <span class="hljs-string">`Response body of <span class="hljs-subst">${path}</span>`</span> });
             } <span class="hljs-keyword">else</span> {
-                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;NOT FOUND&quot;</span>));
+                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"NOT FOUND"</span>));
             }
         }, <span class="hljs-number">1000</span> * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>());
     });
@@ -2884,7 +2884,7 @@ Async Function外の処理も停止できてしまうと、JavaScriptでは基�
     });
     <span class="hljs-keyword">return</span> results;
 }
-<span class="hljs-keyword">const</span> resources = [<span class="hljs-string">&quot;/resource/A&quot;</span>, <span class="hljs-string">&quot;/resource/B&quot;</span>];
+<span class="hljs-keyword">const</span> resources = [<span class="hljs-string">"/resource/A"</span>, <span class="hljs-string">"/resource/B"</span>];
 <span class="hljs-comment">// リソースを取得して出力する</span>
 <span class="hljs-title function_">fetchResources</span>(resources).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">results</span>) =&gt;</span> {
     <span class="hljs-comment">// しかし、resultsは空になってしまう</span>
@@ -2901,10 +2901,10 @@ Async Function外の処理も停止できてしまうと、JavaScriptでは基�
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-params">path</span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
         <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
-            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&quot;/resource&quot;</span>)) {
+            <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">"/resource"</span>)) {
                 <span class="hljs-title function_">resolve</span>({ <span class="hljs-attr">body</span>: <span class="hljs-string">`Response body of <span class="hljs-subst">${path}</span>`</span> });
             } <span class="hljs-keyword">else</span> {
-                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;NOT FOUND&quot;</span>));
+                <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"NOT FOUND"</span>));
             }
         }, <span class="hljs-number">1000</span> * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>());
     });
@@ -2912,7 +2912,7 @@ Async Function外の処理も停止できてしまうと、JavaScriptでは基�
 <span class="hljs-comment">// リソースを順番に取得する</span>
 <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">fetchResources</span>(<span class="hljs-params">resources</span>) {
     <span class="hljs-keyword">const</span> results = [];
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;1. fetchResourcesを開始&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"1. fetchResourcesを開始"</span>);
     resources.<span class="hljs-title function_">forEach</span>(<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span>(<span class="hljs-params">resource</span>) {
         <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`2. <span class="hljs-subst">${resource}</span>の取得開始`</span>);
         <span class="hljs-keyword">const</span> response = <span class="hljs-keyword">await</span> <span class="hljs-title function_">dummyFetch</span>(resource);
@@ -2920,13 +2920,13 @@ Async Function外の処理も停止できてしまうと、JavaScriptでは基�
         <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`5. <span class="hljs-subst">${resource}</span>の取得完了`</span>);
         results.<span class="hljs-title function_">push</span>(response.<span class="hljs-property">body</span>);
     });
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;3. fetchResourcesを終了&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"3. fetchResourcesを終了"</span>);
     <span class="hljs-keyword">return</span> results;
 }
-<span class="hljs-keyword">const</span> resources = [<span class="hljs-string">&quot;/resource/A&quot;</span>, <span class="hljs-string">&quot;/resource/B&quot;</span>];
+<span class="hljs-keyword">const</span> resources = [<span class="hljs-string">"/resource/A"</span>, <span class="hljs-string">"/resource/B"</span>];
 <span class="hljs-comment">// リソースを取得して出力する</span>
 <span class="hljs-title function_">fetchResources</span>(resources).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">results</span>) =&gt;</span> {
-    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;4. fetchResourcesの結果を取得&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"4. fetchResourcesの結果を取得"</span>);
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results); <span class="hljs-comment">// =&gt; []</span>
 });
 </code></pre>
@@ -2936,16 +2936,16 @@ Async Function外の処理も停止できてしまうと、JavaScriptでは基�
 <h3 id="top-level-await-in-module"><a name="top-level-await-in-module" class="plugin-anchor" href="#top-level-await-in-module"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2022] Module直下での<code>await</code>式 </h3>
 <p>ES2021までは、<code>await</code>式はAsync Functionの直下でのみ利用可能なことを紹介しました。
 ES2022では、これに加えてModuleの直下ではAsync Functionで囲まなくても<code>await</code>式が利用できます。</p>
-<p>最初に「<a href="../introduction/">JavaScriptとは</a>」の章において、JavaScriptには実行コンテキストとして&quot;Script&quot;と&quot;Module&quot;があるという話をしました。
-たとえば、ブラウザでは<code>&lt;script&gt;</code>と書けば&quot;Script&quot;として実行され、<code>&lt;script type=&quot;module&quot;&gt;</code>と書けば&quot;Module&quot;として実行されます。</p>
-<p>&quot;Module&quot;としてJavaScriptを実行した時のみ、トップレベル（もっとも外側のスコープ）においてはAsync Functionなしで<code>await</code>式が利用できます。</p>
-<p>たとえば、次のコードを&quot;Module&quot;として実行した場合は、Async Functionなしで<code>await</code>式が利用できていることがわかります。
-これは、&quot;Module&quot;ではトップレベルでの<code>await</code>が許可されているためです。</p>
+<p>最初に「<a href="../introduction/">JavaScriptとは</a>」の章において、JavaScriptには実行コンテキストとして"Script"と"Module"があるという話をしました。
+たとえば、ブラウザでは<code>&lt;script&gt;</code>と書けば"Script"として実行され、<code>&lt;script type="module"&gt;</code>と書けば"Module"として実行されます。</p>
+<p>"Module"としてJavaScriptを実行した時のみ、トップレベル（もっとも外側のスコープ）においてはAsync Functionなしで<code>await</code>式が利用できます。</p>
+<p>たとえば、次のコードを"Module"として実行した場合は、Async Functionなしで<code>await</code>式が利用できていることがわかります。
+これは、"Module"ではトップレベルでの<code>await</code>が許可されているためです。</p>
 <!-- Top-Level awaitをVM2がサポートしていないため -->
 <!-- js-console:{ "type": "module" } -->
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-comment">// このコードはModuleのトップレベルでのみ動作する</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;実行開始&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"実行開始"</span>);
 <span class="hljs-keyword">const</span> startTime = <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>();
 <span class="hljs-comment">// awaitを使って1秒待つ</span>
 <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> <span class="hljs-built_in">setTimeout</span>(resolve, <span class="hljs-number">1000</span>));
@@ -2961,7 +2961,7 @@ ES2022では、これに加えてModuleの直下ではAsync Functionで囲まな
     <span class="hljs-comment">// ...</span>
 })();
 </code></pre>
-<p>しかし、ES2022ではTop-Level <code>await</code>が利用できるようになったため、&quot;Module&quot;においてはこのような即時実行関数は不要となります。</p>
+<p>しかし、ES2022ではTop-Level <code>await</code>が利用できるようになったため、"Module"においてはこのような即時実行関数は不要となります。</p>
 <h2 id="error-first-callback"><a name="error-first-callback" class="plugin-anchor" href="#error-first-callback"><i class="fa fa-link" aria-hidden="true"></i></a>[コラム] エラーファーストコールバック </h2>
 <p>ECMAScript 2015（ES2015）でPromiseが仕様に入るまで、非同期処理中に発生した例外を扱う仕様はありませんでした。
 このため、ES2015より前までは、<strong>エラーファーストコールバック</strong>という非同期処理中に発生した例外を扱う方法をコミュニティで決めたルールが広く使われていました。</p>
@@ -2977,7 +2977,7 @@ ES2022では、これに加えてModuleの直下ではAsync Functionで囲まな
 <p>ファイルを読み込むことに失敗した場合は、コールバック関数の1番目の引数に<code>Error</code>オブジェクトが渡されます。
 ファイルを読み込むことに成功した場合は、コールバック関数の1番目の引数に<code>null</code>、2番目の引数に読み込んだデータを渡します。</p>
 <!-- doctest:disable -->
-<pre><code class="lang-js">fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">&quot;./example.txt&quot;</span>, <span class="hljs-function">(<span class="hljs-params">error, data</span>) =&gt;</span> {
+<pre><code class="lang-js">fs.<span class="hljs-title function_">readFile</span>(<span class="hljs-string">"./example.txt"</span>, <span class="hljs-function">(<span class="hljs-params">error, data</span>) =&gt;</span> {
     <span class="hljs-keyword">if</span> (error) {
         <span class="hljs-comment">// 読み込み中にエラーが発生しました</span>
     } <span class="hljs-keyword">else</span> {
@@ -3001,25 +3001,25 @@ ES2022では、これに加えてModuleの直下ではAsync Functionで囲まな
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-params">path, callback</span>) {
     <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> {
         <span class="hljs-comment">// /success からはじまるパスにはリソースがあるという設定</span>
-        <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">&quot;/success&quot;</span>)) {
+        <span class="hljs-keyword">if</span> (path.<span class="hljs-title function_">startsWith</span>(<span class="hljs-string">"/success"</span>)) {
             <span class="hljs-title function_">callback</span>(<span class="hljs-literal">null</span>, { <span class="hljs-attr">body</span>: <span class="hljs-string">`Response body of <span class="hljs-subst">${path}</span>`</span> });
         } <span class="hljs-keyword">else</span> {
-            <span class="hljs-title function_">callback</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&quot;NOT FOUND&quot;</span>));
+            <span class="hljs-title function_">callback</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"NOT FOUND"</span>));
         }
     }, <span class="hljs-number">1000</span> * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>());
 }
 <span class="hljs-comment">// /success/data にリソースが存在するので、`response`にはデータが入る</span>
-<span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">&quot;/success/data&quot;</span>, <span class="hljs-function">(<span class="hljs-params">error, response</span>) =&gt;</span> {
+<span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">"/success/data"</span>, <span class="hljs-function">(<span class="hljs-params">error, response</span>) =&gt;</span> {
     <span class="hljs-keyword">if</span> (error) {
         <span class="hljs-comment">// この行は実行されません</span>
     } <span class="hljs-keyword">else</span> {
-        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response); <span class="hljs-comment">// =&gt; { body: &quot;Response body of /success/data&quot; }</span>
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(response); <span class="hljs-comment">// =&gt; { body: "Response body of /success/data" }</span>
     }
 });
 <span class="hljs-comment">// /failure/data にリソースは存在しないので、`error`にはエラーオブジェクトが入る</span>
-<span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">&quot;/failure/data&quot;</span>, <span class="hljs-function">(<span class="hljs-params">error, response</span>) =&gt;</span> {
+<span class="hljs-title function_">dummyFetch</span>(<span class="hljs-string">"/failure/data"</span>, <span class="hljs-function">(<span class="hljs-params">error, response</span>) =&gt;</span> {
     <span class="hljs-keyword">if</span> (error) {
-        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; &quot;NOT FOUND&quot;</span>
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">message</span>); <span class="hljs-comment">// =&gt; "NOT FOUND"</span>
     } <span class="hljs-keyword">else</span> {
         <span class="hljs-comment">// この行は実行されません</span>
     }
@@ -3075,7 +3075,7 @@ ES2022では、これに加えてModuleの直下ではAsync Functionで囲まな
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおける非同期処理についてを紹介します。同期処理と非同期処理の違いやなぜ非同期処理が重要になるかを紹介します。非同期処理を扱うPromise、Async Functionについて紹介します。","sponsors":[],"title":"非同期処理:Promise/Async Function","level":"1.3.22","depth":2,"next":{"title":"Map/Set","level":"1.3.23","depth":2,"path":"basic/map-and-set/README.md","ref":"./basic/map-and-set/README.md","articles":[]},"previous":{"title":"例外処理","level":"1.3.21","depth":2,"path":"basic/error-try-catch/README.md","ref":"./basic/error-try-catch/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/async/README.md","mtime":"2024-09-01T11:18:59.569Z","type":"markdown"},"gitbook":{"version":"5.1.4","time":"2024-09-01T11:19:15.872Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおける非同期処理についてを紹介します。同期処理と非同期処理の違いやなぜ非同期処理が重要になるかを紹介します。非同期処理を扱うPromise、Async Functionについて紹介します。","sponsors":[],"title":"非同期処理:Promise/Async Function","level":"1.3.22","depth":2,"next":{"title":"Map/Set","level":"1.3.23","depth":2,"path":"basic/map-and-set/README.md","ref":"./basic/map-and-set/README.md","articles":[]},"previous":{"title":"例外処理","level":"1.3.21","depth":2,"path":"basic/error-try-catch/README.md","ref":"./basic/error-try-catch/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/async/README.md","mtime":"2024-10-03T14:54:01.245Z","type":"markdown"},"gitbook":{"version":"6.0.0","time":"2024-10-03T14:54:19.038Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
