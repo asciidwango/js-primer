@@ -90,7 +90,7 @@
     "meow": "^7.1.1",
     "micromatch": "^4.0.5",
     "mocha": "^10.0.0",
-    "npm-run-all": "^4.1.5",
+    "npm-run-all2": "^7.0.2",
     "power-assert": "^1.6.1",
     "prettier": "^2.7.1",
     "remark": "^12.0.1",
