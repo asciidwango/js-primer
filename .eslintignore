@@ -1,8 +1,0 @@
-node_modules/
-build.js
-build/
-# HTMLコメントは無視する
-html-like-comments-example.js
-# *-invalid.js はパースエラーとなるため無視する
-*-invalid.js
-**/invalid/**/*.js
