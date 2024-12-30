@@ -97,7 +97,7 @@ module.exports = {
             }
         },
         "eslint": {
-            "configFile": "./config/markdown.eslintrc.cjs"
+            "configFile": "./eslint.config.mjs"
         },
         "prh": {
             "rulePaths": [
