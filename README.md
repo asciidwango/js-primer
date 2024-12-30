@@ -1,4 +1,4 @@
-# JavaScript Primer [![Actions Status](https://github.com/asciidwango/js-primer/workflows/test/badge.svg)](https://github.com/asciidwango/js-primer/actions?query=workflow%3A"test")
+# JavaScript Primer [![test](https://github.com/asciidwango/js-primer/actions/workflows/test.yml/badge.svg)](https://github.com/asciidwango/js-primer/actions/workflows/test.yml)
 
 この書籍はECMAScript 2015以降をベースとしたJavaScriptの入門書です。
 
