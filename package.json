@@ -100,7 +100,7 @@
     "textlint": "^14.4.2",
     "textlint-filter-rule-allowlist": "^4.0.0",
     "textlint-filter-rule-comments": "^1.2.2",
-    "textlint-rule-eslint": "^5.0.0",
+    "textlint-rule-eslint": "^5.0.1",
     "textlint-rule-footnote-order": "^1.0.3",
     "textlint-rule-inline-code-denylist": "workspace:textlint-rule-inline-code-denylist",
     "textlint-rule-no-dead-link": "^5.2.0",
