@@ -14,6 +14,6 @@
   "license": "MIT",
   "devDependencies": {
     "execa": "^4.0.0",
-    "mocha": "^10.1.0"
+    "mocha": "^10.8.2"
   }
 }
