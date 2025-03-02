@@ -86,7 +86,6 @@
     "js-levenshtein": "^1.1.6",
     "jsdom": "^20.0.0",
     "jsdom-global": "3.0.2",
-    "lodash": "^4.17.21",
     "meow": "^7.1.1",
     "micromatch": "^4.0.5",
     "mocha": "^10.0.0",

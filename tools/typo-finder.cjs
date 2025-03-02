@@ -6,7 +6,6 @@ const path = require("path");
 const sourceDir = path.join(__dirname, "..", "source");
 const remark = require("remark")();
 const { selectAll } = require("unist-util-select");
-const lodash = require("lodash");
 const levenshtein = require("js-levenshtein");
 /**
  * Usage: node typo-finder.js
@@ -32,7 +31,8 @@ files.forEach(filePath => {
 class Typo {
     constructor(strings) {
         this.strings = strings;
-        this.groupByKey = lodash.groupBy(strings);
+        // Object.groupBy を使用して文字列自身をキーとしてグループ化
+        this.groupByKey = Object.groupBy(strings, (item) => item);
     }
 
     keys() {
