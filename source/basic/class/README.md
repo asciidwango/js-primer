@@ -1408,7 +1408,7 @@ class Parent {
 // `Parent`を継承した`Child`を定義
 class Child extends Parent {
     dump() {
-        console.log(this.#parentField); // => SyntaxError: reference to undeclared private field or method #parentFeild
+        console.log(this.#parentField); // => SyntaxError: reference to undeclared private field or method #parentField
     }
 }
 const instance = new Child();
