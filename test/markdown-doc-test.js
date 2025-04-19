@@ -20,8 +20,12 @@ const sourceDir = path.join(__dirname, "..", "source");
  * @type {string[]} サポートしてないECMAScriptバージョン
  */
 const IgnoredECMAScriptVersions = (() => {
-    if (semver.cmp(process.version, ">=", "22.0.0")) {
+    // https://node.green/#ES2025
+    if (semver.cmp(process.version, ">=", "24.0.0")) {
         return []; // すべて通る前提
+    }
+    if (semver.cmp(process.version, ">=", "22.0.0")) {
+        return ["2025"]; // RegExp Pattern Modifiersは通らない
     }
     if (semver.cmp(process.version, ">=", "20.0.0")) {
         return ["2024"]; // Object.groupByがサポートされていない
@@ -38,7 +42,7 @@ const IgnoredECMAScriptVersions = (() => {
         // Top-Level await をサポートしていない
         return ["2021", "2022"];
     }
-    return ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"];
+    return ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"];
 })();
 /**
  * Markdownファイルの CodeBlock に対してdoctestを行う
