@@ -21,7 +21,7 @@ const sourceDir = path.join(__dirname, "..", "source");
  */
 const IgnoredECMAScriptVersions = (() => {
     // https://node.green/#ES2025
-    if(semver.cmp(process.versions, ">=", "24.0.0")) {
+    if (semver.cmp(process.versions, ">=", "24.0.0")) {
         return []; // すべて通る前提
     }
     if (semver.cmp(process.version, ">=", "22.0.0")) {
