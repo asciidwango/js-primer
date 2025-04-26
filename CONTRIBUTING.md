@@ -1,6 +1,6 @@
 # Contribution Guide
 
-この書籍へのコントリビュート方法についてガイドです。
+この書籍へのコントリビュート方法についてのガイドです。
 
 ## HonKit
 
@@ -41,7 +41,7 @@ Pull Requestはいつでも歓迎しています。
 - テストの改善
 
 :memo: **Note:** Pull Requestを受け入れるとあなたの貢献が[Contributorsリスト](https://github.com/asciidwango/js-primer/graphs/contributors)に追加されます。
-また、Pull Requestを送った内容はこの書籍の[ライセンス](./LICENSE)（MIT and CC BY-NC）が適応されます。
+また、Pull Requestを送った内容はこの書籍の[ライセンス](./LICENSE)（MIT and CC BY-NC）が適用されます。
 これは、あなたの貢献がこの書籍への努力的な寄付となることを意味しています。
 
 **受け入れていないPull Request**
@@ -96,8 +96,8 @@ IssueやPull Requestでやりとりしそのエラーを直すか無視するか
 - [textlint](https://textlint.github.io/) + [ESLint](http://eslint.org/ "ESLint")によるMarkdown中のインラインコードブロックのLint
 - Markdown中のインラインコードブロックへのDoctest
 - [Mocha](http://mochajs.org/ "Mocha")による`*-test.js`ファイルのユニットテスト
-- `*-example.js`がJavaScriptとして実行できるかのテスト
-- `*-invalid.js`がJavaScriptとして実行できないかのテスト
+- `*-example.js`がJavaScriptとして実行できることのテスト
+- `*-invalid.js`がJavaScriptとして実行できないことのテスト
 
 
 Markdown中のインラインコードブロックとは次のような`js`言語指定がされたCodeBlockを示しています。
@@ -162,7 +162,7 @@ const a = 42;
 console.log(a); // => 42
 ```
 
-このコードは、は次のようなテストコードに変換されます。
+このコードは、次のようなテストコードに変換されます。
 
 ```js
 const assert = requite("assert");
@@ -214,9 +214,9 @@ Doctestの正常系は実行結果と期待結果が一致することです。
     ```
 
 
-#### 複数のDoctestを扱うケースケース
+#### 複数のDoctestを扱うケース
 
-デフォルトでは、コード上の全てのDoctestが実行されまで結果を待ちます。
+デフォルトでは、コード上の全てのDoctestが実行されるまで結果を待ちます。
 次のコードでは、3つのassertが実行されるまでテストコードの終了を待ちます。
 
     ```js
@@ -295,7 +295,7 @@ Node.jsで実行できないビルドインオブジェクトを使うパター�
 ファイル名が`*-invalid.js`のコードは実行できないことを検証できます。(エラーになるとテストが通る)
 これを`[include]`することでより正確に表現できます。
 
-- `*-invalid.js`がJavaScriptとして実行できないかのテスト
+- `*-invalid.js`がJavaScriptとして実行できないことのテスト
 
 **関連**
 
@@ -411,14 +411,14 @@ chore: コミットメッセージ
 
 ### 「次の」 or 「下記の」 or 「以下の」
 
-出版される書籍では、版組などの関係から「下」に書いた文章が右や次のページに表示されることがある。
-そのため、基本的に「次の」を利用する。
+出版される書籍では、版組などの関係から「下」に書いた文章が右や次のページに表示されることがあります。
+そのため、基本的に「次の」を利用します。
 
 文章に対する相対的な位置の指し示す場合は、
-できるかぎり「次のコード」というように事前に説明する。
+できるかぎり「次のコード」というように事前に説明します。
 
-読んでいる人がサンプルコードのどこに注目すればいいかが、事前にわかるように書いてからコードを説明する。
-そのため、多くのケースでは「前」よりも「次」を優先して利用する。
+読んでいる人がサンプルコードのどこに注目すればいいかが、事前にわかるように書いてからコードを説明します。
+そのため、多くのケースでは「前」よりも「次」を優先して利用します。
 
 -----
 
@@ -430,16 +430,16 @@ code
 
 ----
 
-「上記」も同じ理由でできるだけ避ける。
-「先ほど」や「その結果」といったように説明した直後を参照する言葉を使う。
+「上記」も同じ理由でできるだけ避けます。
+「先ほど」や「その結果」といったように説明した直後を参照する言葉を使います。
 
-文章との距離が離れている場合(章をまたぐ場合)は、リンクとして参照する。
-詳細は、[章へのリンク](#章へのリンク)を参照。
+文章との距離が離れている場合(章をまたぐ場合)は、リンクとして参照します。
+詳細は、[章へのリンク](#章へのリンク)を参照してください。
 
 ### コードの参照方法
 
 事前に説明した特定のコードを参照したい場合は、
-サンプルコードのファイル名を参照に利用する。
+サンプルコードのファイル名を参照に利用します。
 
 ```markdown
 [import, example.js](src/example.js)
@@ -536,8 +536,8 @@ ES2015は正式な名称ですが、ES6も一般によく使われている名�
 
 ### 章へのリンク
 
-別の章へのリンクを書くときは`「[章のタイトル][]」の章`という形でリンクする。
-章の途中の場合は`「[章のタイトル][]」の[#付きのリンク][]`という形にする。
+別の章へのリンクを書くときは`「[章のタイトル][]」の章`という形でリンクします。
+章の途中の場合は`「[章のタイトル][]」の[#付きのリンク][]`という形にします。
 
 ```
 真偽値へ変換した結果が`true`となる値の種類は多いため、逆に変換した結果が`false`となる値を覚えるのが簡単です。JavaScriptでは次の値は`false`に変換され、これらの値は**falsy** と呼ばれます。（「[暗黙的な型変換][]」の章を参照）
@@ -548,29 +548,29 @@ ES2015は正式な名称ですが、ES6も一般によく使われている名�
 
 ## リリースフロー
 
-次の2種類のリリースフローが存在する。
+次の2種類のリリースフローが存在します。
 
 - ウェブ版
 - 書籍版
 
 ### ウェブ版
 
-変更予定を事前にIssueを作り、対応箇所をまとめる。
+変更予定のIssueを事前に作り、対応箇所をまとめます。
 
 - [ECMAScript 2022対応 · Issue #1337 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1337)
 - [ES2021の対応 · Issue #1220 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1220)
 - [ECMAScript 2020の対応 · Issue #1145 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1145)
 
-毎年のECMAScriptの対応が終わったらメジャーバージョンをアップデートし、リリースノートに変更点をまとめる。
+毎年のECMAScriptの対応が終わったらメジャーバージョンをアップデートし、リリースノートに変更点をまとめます。
 
 - [Releases · asciidwango/js-primer](https://github.com/asciidwango/js-primer/releases)
 
-リリースが終わったら、[変更点](https://github.com/asciidwango/js-primer/tree/master/source/intro#%E5%A4%89%E6%9B%B4%E7%82%B9-version)にリリースノートへのリンクを追加する
+リリースが終わったら、[変更点](https://github.com/asciidwango/js-primer/tree/master/source/intro#%E5%A4%89%E6%9B%B4%E7%82%B9-version)にリリースノートへのリンクを追加します
 
 - <https://github.com/asciidwango/js-primer/tree/master/source/intro#%E5%A4%89%E6%9B%B4%E7%82%B9-version>
 
 ### 書籍版
 
-書籍版の差分を[変更点](https://github.com/asciidwango/js-primer/tree/master/source/intro#%E5%A4%89%E6%9B%B4%E7%82%B9-version)に追加する。
+書籍版の差分を[変更点](https://github.com/asciidwango/js-primer/tree/master/source/intro#%E5%A4%89%E6%9B%B4%E7%82%B9-version)に追加します。
 
 - <https://github.com/asciidwango/js-primer/tree/master/source/intro#%E5%A4%89%E6%9B%B4%E7%82%B9-version>

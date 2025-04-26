@@ -14,8 +14,8 @@ jsprimerへのContributeしたタスクに対してPointを設定し、そのPoi
 
 ### タスクに対するPoint
 
-作業量に対する基準としてフィボナッチ数列のPointを設定する。
-Pointの決定は、jsprimerの[Project Member](https://github.com/asciidwango/js-primer?tab=readme-ov-file#project-member)が行う。
+作業量に対する基準としてフィボナッチ数列のPointを設定します。
+Pointの決定は、jsprimerの[Project Member](https://github.com/asciidwango/js-primer?tab=readme-ov-file#project-member)が行います。
 
 | Point | Description           |
 |-------|-----------------------|
@@ -33,7 +33,7 @@ Issueが適切に分割されていれば、5や8はほとんど出てこない�
 
 ### Pointの例
 
-Pointはやや主観的になってしまうが、既存のIssueを比較してどの程度のPointになるかを[Project Member](https://github.com/asciidwango/js-primer?tab=readme-ov-file#project-member)が判断する。
+Pointはやや主観的になってしまいますが、既存のIssueと比較してどの程度のPointになるかを[Project Member](https://github.com/asciidwango/js-primer?tab=readme-ov-file#project-member)が判断します。
 
 - Point 1:
     - [fix(nodecli): update to marked@14 by azu · Pull Request #1760 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/1760)
@@ -59,7 +59,7 @@ Pointはやや主観的になってしまうが、既存のIssueを比較して�
 
 ### 金額の計算方法
 
-金額は次のツールで計算できる。
+金額は次のツールで計算できます。
 
 ```bash
 $ node ./tools/calc-contribute-expense.mjs --point <number>
@@ -73,17 +73,17 @@ $ node ./tools/calc-contribute-expense.mjs --point 2
 
 #### 金額の計算式
 
-jsprimerの年間更新コストは、だいたい30日分の作業量になるように設定している。
+jsprimerの年間更新コストは、だいたい30日分の作業量になるように設定しています。
 
 - [JavaScript Primer 改訂2版をリリースしました！/JavaScript Primerはなぜ更新され続けるのか？ | Web Scratch](https://efcl.info/2023/06/09/jsprimer-v2/)
 
-Pointに直すと、年間の作業量のPointは60 Point程度になる。
+Pointに直すと、年間の作業量のPointは60 Point程度になります。
 
-年間の予算はOpen Collectiveの"推定年間予算(Estimated annual budget)"を参照する
+年間の予算はOpen Collectiveの"推定年間予算(Estimated annual budget)"を参照します
 
 - [JavaScript Primer - Open Collective](https://opencollective.com/jsprimer)
 
-1 Pointあたりの金額は次の計算式で求める。
+1 Pointあたりの金額は次の計算式で求めます。
 
 ```js
 const yearlyEstimatedBudget = _; // Open Collectiveの推定年間予算($ドル)
@@ -111,8 +111,8 @@ console.log({ cost }); // => $78.9
 
 ### 金額を確定するタイミング
 
-作業が終わったタイミングで計算して、その月のコストをまとめて申請する。
-Open Collectiveからの支払いは2週間ごとに行われるため、月ごとにまとめて請求する。
+作業が終わったタイミングで計算して、その月のコストをまとめて申請します。
+Open Collectiveからの支払いは2週間ごとに行われるため、月ごとにまとめて請求します。
 
 ## 費用の請求方法
 
