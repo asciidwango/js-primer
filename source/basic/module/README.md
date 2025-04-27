@@ -164,37 +164,15 @@ ECMAScriptモジュールには名前つきとデフォルト以外にもいく�
 
 次のコード例では、`data.json`ファイルをJSONモジュールとしてインポートしています。`import`文のモジュール指定子の後ろに `with { type: "json" }` を付けて、読み込むファイルがJSONデータであることを明示します。
 
-data.json
+[import, title="data.json"](src/data.json)
 
-```json
-{
-    "name": "John",
-    "age": 30
-}
-```
-
-main.js
-
-```js
-// [ES2025] JSONモジュールをインポート
-import userData from "./data.json" with { type: "json" };
-console.log(userData.name); // => "John"
-console.log(userData.age); // => 30
-```
+[import, title="main.js"](src/import-attributes-1.js)
 
 インポート属性の構文は、`with`キーワードに続くオブジェクトリテラルで、キーと値を指定します。現在標準化されている属性キーは`type`のみで、値にはモジュールの種類を表す文字列（例：`"json"`）を指定します。
 
 インポート属性は静的インポートだけでなく、`export ... from ...`による再エクスポート文にも付加できます。また、動的インポート（`import`を用いたモジュール読み込み）でも、第二引数で同様に属性オブジェクトの指定が可能です。
 
-```js
-// 静的インポート
-import value from "./data.json" with { type: "json" };
-// 再エクスポート
-export { default as data } from "./data.json" with { type: "json" };
-// 動的インポート
-const mod = import("./data.json", { with: { type: "json" } });
-console.log(mod.default.age); // => 30
-```
+[import, importAttributesExample.js](src/import-attributes-2.js)
 
 ウェブブラウザではモジュールの種類はサーバーから送られてくるMIMEタイプによって判断されます。しかし、拡張子だけではモジュールの種類を判断できず、エラーやセキュリティ上の問題につながります。インポート属性を使ってモジュールの種別（たとえばJSONであること）を明示することで、実行環境は応答の内容を検証し、意図しないコード実行を防止できます。
 
