@@ -3,7 +3,6 @@
  * Description: This script updates the package-lock.json for aligned with npm version
  */
 import globby from "globby";
-import { readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFile } from "node:child_process";
@@ -22,7 +21,7 @@ const files = await globby([
 for (const file of files) {
     const dir = dirname(file);
     console.info(`Updating package-lock.json in ${dir}`);
-    await execFile("npm", ["install"], {
+    execFile("npm", ["install"], {
         cwd: join(projectRoot, dir)
     });
     console.info(`Updated package-lock.json in ${dir}`);

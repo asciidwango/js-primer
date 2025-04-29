@@ -29,11 +29,11 @@ CLAに同意すると次のことが明確になります。
 - 同意して寄付した貢献を後から取り下げないこと
 - jsprimerプロジェクトがあなたの貢献を含んだものを商用利用できること
 
-CLAによってあいまいさや不確実性が排除できます。
+CLAによって曖昧さや不確実性が排除できます。
 それによってjsprimerプロジェクトが継続してコンテンツを提供でき、読む人も安心して読めます。
 
 CLAを求めること自体は多くのOpen Sourceプロジェクトでも行われています。
-ECMAScript、Apache Software Foundation、Facebook、Google、HashicorpなどさまざまなOopen SourceプロジェクトがCLAを求めています。
+ECMAScript、Apache Software Foundation、Meta、Google、HashiCorpなどさまざまなOpen SourceプロジェクトがCLAを求めています。
 
 ## CLAに同意する方法
 
