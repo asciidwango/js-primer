@@ -26,7 +26,7 @@ module.exports = (context, options = {}) => {
                     if (plugOne === "[コラム]") {
                         return;
                     }
-                    report(node, new RuleError("「コラム」という表現は文中では使わわないでください", {
+                    report(node, new RuleError("「コラム」という表現は文中では使わないでください", {
                         index
                     }));
                 }
