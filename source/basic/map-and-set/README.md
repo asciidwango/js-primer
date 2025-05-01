@@ -208,61 +208,26 @@ ES2015では、これらの問題を根本的に解決する`Map`が導入され
 そのため、`Map`のプロトタイプが持つメソッドやプロパティとキーが衝突することはありません。
 また、`Map`ではマップのキーとしてあらゆるオブジェクトを使えます。
 
-ほかにも`Map`には次のような利点があります。
-
-- マップのサイズを簡単に知ることができる
-- マップが持つ要素を簡単に列挙できる
-- オブジェクトをキーにすると参照ごとに違うマッピングができる
-
-たとえばショッピングカートのような仕組みを作るとき、次のように`Map`を使って商品のオブジェクトと注文数をマッピングできます。
+たとえば、オブジェクトを`Map`のキーとして利用する場合、それぞれのオブジェクトは参照によって区別されます。
+そのため、見た目が同じでも参照が異なるオブジェクトは、`Map`内では異なるキーとして扱われます。
 
 {{book.console}}
-<!-- doctest:meta:{ "ECMAScript": 2020 } -->
 ```js
-// ショッピングカートを表現するクラス
-class ShoppingCart {
-    constructor() {
-        // 商品とその数を持つマップ
-        this.items = new Map();
-    }
-    // カートに商品を追加する
-    addItem(item) {
-        // `item`がない場合は`undefined`を返すため、Nullish coalescing演算子(`??`)を使いデフォルト値として`0`を設定する
-        const count = this.items.get(item) ?? 0;
-        this.items.set(item, count + 1);
-    }
-    // カート内の合計金額を返す
-    getTotalPrice() {
-        return Array.from(this.items).reduce((total, [item, count]) => {
-            return total + item.price * count;
-        }, 0);
-    }
-    // カートの中身を文字列にして返す
-    toString() {
-        return Array.from(this.items).map(([item, count]) => {
-            return `${item.name}:${count}`;
-        }).join(",");
-    }
-}
-const shoppingCart = new ShoppingCart();
-// 商品一覧
-const shopItems = [
-    { name: "みかん", price: 100 },
-    { name: "リンゴ", price: 200 },
-];
-
-// カートに商品を追加する
-shoppingCart.addItem(shopItems[0]);
-shoppingCart.addItem(shopItems[0]);
-shoppingCart.addItem(shopItems[1]);
-
-// 合計金額を表示する
-console.log(shoppingCart.getTotalPrice()); // => 400
-// カートの中身を表示する
-console.log(shoppingCart.toString()); // => "みかん:2,リンゴ:1"
+const map = new Map();
+// 2つの異なるオブジェクトを作成
+const keyObj1 = {};
+const keyObj2 = {};
+// それぞれのオブジェクトを`Map`のキーにして値をセットする
+map.set(keyObj1, "value for keyObj1");
+map.set(keyObj2, "value for keyObj2");
+// オブジェクトの参照がキーとなるため、異なる値を取得できる
+console.log(map.get(keyObj1)); // => "value for keyObj1"
+console.log(map.get(keyObj2)); // => "value for keyObj2"
+// Mapのサイズは2
+console.log(map.size); // => 2
 ```
 
-`Object`をマップとして使うときに起きる多くの問題は、`Map`オブジェクトを使うことで解決しますが、
+`Object`自体をマップとして使うときに起きる多くの問題は、`Map`オブジェクトを使うことで解決しますが、
 常に`Map`が`Object`の代わりになるわけではありません。
 マップとしての`Object`には次のような利点があります。
 
