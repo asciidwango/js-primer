@@ -102,9 +102,9 @@ JavaScriptによってプラグインを書くことができ、さまざまな�
 [PageSpeed Insights][]はGoogleが提供するウェブパフォーマンス計測ツールです。
 計測したいページのURLを入力すると読み込みにかかっている時間や、改善できる項目を提示してくれます。
 
-#### WebPagetest {#webpagetest}
+#### WebPageTest {#webpagetest}
 
-[WebPagetest][]は、ブラウザを利用したウェブパフォーマンス計測ツールです。
+[WebPageTest][]は、ブラウザを利用したウェブパフォーマンス計測ツールです。
 さまざまな条件下のブラウザでウェブサイトにアクセスし、パフォーマンスを計測できます。
 BSDライセンスの下でオープンソース化されており、任意のサーバーにインストールして実行することもできます。
 
@@ -190,7 +190,7 @@ NW.jsはブラウザの中からNode.jsの開発エコシステムを直接利�
 [Safari Developer Help]: https://support.apple.com/ja-jp/guide/safari-developer/welcome/mac
 
 [PageSpeed Insights]: https://pagespeed.web.dev/
-[WebPagetest]: https://www.webpagetest.org/
+[WebPageTest]: https://www.webpagetest.org/
 [Lighthouse]: https://developer.chrome.com/docs/lighthouse/overview/
 
 [GitHub Pages]: https://pages.github.com/
