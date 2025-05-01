@@ -144,7 +144,7 @@ console.log(10 % 4.5); // => 1
 console.log(2 ** 4); // => 16
 ```
 
-べき乗演算子と同じ動作をする`Math.pow`メソッドがあります。
+べき乗演算子と同じ動作をする`Math.pow`静的メソッドがあります。
 
 {{book.console}}
 ```js
@@ -187,7 +187,7 @@ console.log(+"文字列"); // => NaN
 ```
 
 `NaN`は"Not-a-Number"の略称で、数値ではないがNumber型の値を表現しています。
-`NaN`はどの値とも（NaN自身に対しても）一致しない特性があり、`Number.isNaN`メソッドを使うことで`NaN`の判定を行えます。
+`NaN`はどの値とも（NaN自身に対しても）一致しない特性があり、`Number.isNaN`静的メソッドを使うことで`NaN`の判定を行えます。
 
 {{book.console}}
 ```js

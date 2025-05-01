@@ -7,7 +7,7 @@ module.exports = {
                 "/{#[a-z.-]*?}/g",
                 "/{{[a-zA-Z.]*?}}/g",
                 "と考えるかもしれません",
-                "ブラウザーの開発者ツールとは？",
+                "ブラウザーの開発者ツールとは？"
             ]
         }
     },
@@ -20,6 +20,8 @@ module.exports = {
         "inline-code-denylist": {
             "denylist": ["string", "number", "object", "boolean", "symbol"]
         },
+        // 静的メソッドの書き方
+        "static-method-syntax": true,
         "no-use-column": true,
         "footnote-order": true,
         "no-use-prototype-hash": {
@@ -59,7 +61,7 @@ module.exports = {
                             // デフォルトの許可リストは上書きされるので、維持したい場合は追加する
                             "/^処理を行[ぁ-ん]/",
                             "/^[ァ-ヶ]+を.?行[ぁ-ん]/",
-                            "/^[a-zA-Z]+を.?行[ぁ-ん]/",
+                            "/^[a-zA-Z]+を.?行[ぁ-ん]/"
                         ]
                     }
                 }

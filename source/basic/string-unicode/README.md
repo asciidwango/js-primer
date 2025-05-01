@@ -36,7 +36,7 @@ Stringの`codePointAt`メソッド<sup>[ES2015]</sup>は、文字列の指定イ
 console.log("あ".codePointAt(0)); // => 12354
 ```
 
-一方の`String.fromCodePoint`メソッド<sup>[ES2015]</sup>は、指定したCode Pointに対応する文字を返します。
+一方の`String.fromCodePoint`静的メソッド<sup>[ES2015]</sup>は、指定したCode Pointに対応する文字を返します。
 
 {{book.console}}
 ```js
@@ -202,7 +202,7 @@ ES2015から文字列をCode Pointごとに扱うメソッドや構文が追加�
 
 - `CodePoint`を名前に含むメソッド
 - `u`（Unicode）フラグが有効化されている正規表現
-- 文字列のIteratorを扱うもの（Destructuring、`for...of`、`Array.from`メソッドなど）
+- 文字列のIteratorを扱うもの（Destructuring、`for...of`、`Array.from`静的メソッドなど）
 
 これらのCode Pointを扱う処理と具体的な使い方を見ていきます。
 
@@ -261,10 +261,10 @@ console.log("\uD83C\uDF4E".length); // => 2
 JavaScriptには、文字列におけるCode Pointの個数を数えるメソッドは用意されていません。
 これを行うには、文字列をCode Pointごとに区切った配列へ変換して、配列の長さを数えるのが簡潔です。
 
-`Array.from`メソッド<sup>[ES2015]</sup>は、引数にiterableなオブジェクトを受け取り、それを元にした新しい配列を返します。
+`Array.from`静的メソッド<sup>[ES2015]</sup>は、引数にiterableなオブジェクトを受け取り、それを元にした新しい配列を返します。
 iterableオブジェクトとは`Symbol.iterator`という特別な名前のメソッドを実装したオブジェクトの総称で、`for...of`文などで反復処理が可能なオブジェクトです（詳細は「[ループと反復処理のfor...of文][]」を参照）。
 
-文字列もiterableオブジェクトであるため、`Array.from`メソッドによって1文字（厳密にはCode Point）ごとに区切った配列へと変換できます。先ほども紹介したように、文字列をiterableとして扱う場合はCode Pointごとに処理を行います。
+文字列もiterableオブジェクトであるため、`Array.from`静的メソッドによって1文字（厳密にはCode Point）ごとに区切った配列へと変換できます。先ほども紹介したように、文字列をiterableとして扱う場合はCode Pointごとに処理を行います。
 
 {{book.console}}
 ```js
@@ -284,7 +284,7 @@ console.log(codePoints.length); // => 4
 
 ### Code Pointごとに反復処理をする {#loop-each-code-point}
 
-先ほど紹介した`Array.from`メソッドを使えば、文字列をCode Pointで区切った文字の配列へと変換できます。
+先ほど紹介した`Array.from`静的メソッドを使えば、文字列をCode Pointで区切った文字の配列へと変換できます。
 配列にすれば、あとは「[ループと反復処理][]」の章で学んだ方法を使って、Code Pointごとに反復処理ができます。
 
 次のコードでは、文字列中に登場する`🍎`の個数を数えています。

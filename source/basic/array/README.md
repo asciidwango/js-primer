@@ -143,8 +143,8 @@ console.log(array[-1]); // => undefined
 
 ## オブジェクトが配列かどうかを判定する {#detect-array}
 
-あるオブジェクトが配列かどうかを判定するには`Array.isArray`メソッドを利用します。
-`Array.isArray`メソッドは引数が配列ならば`true`を返します。
+あるオブジェクトが配列かどうかを判定するには`Array.isArray`静的メソッドを利用します。
+`Array.isArray`静的メソッドは引数が配列ならば`true`を返します。
 
 {{book.console}}
 ```js
@@ -1067,7 +1067,7 @@ function myFunc() {
 myFunc("a", "b", "c");
 ```
 
-Array-likeオブジェクトか配列なのかを判別するには`Array.isArray`メソッドを利用できます。
+Array-likeオブジェクトか配列なのかを判別するには`Array.isArray`静的メソッドを利用できます。
 `Array-like`オブジェクトは配列ではないので結果は常に`false`となります。
 
 {{book.console}}
