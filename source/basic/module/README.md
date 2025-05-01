@@ -158,6 +158,20 @@ ECMAScriptモジュールには名前つきとデフォルト以外にもいく�
 
 [import, importExample.js](src/import-side-effects.js)
 
+#### [ES2025] インポート属性 {#import-attributes}
+
+インポート属性（Import attributes）とは、モジュールをインポートするときに追加の属性情報を指定できる、ES2025で追加された構文です。インポートするモジュールに関する情報をコード上に明示でき、読み込み方法を制御できます。
+
+インポート属性では任意のオブジェクトを指定できますが、典型的なユースケースとしてモジュールの種類を表す`type`について紹介します。
+
+次のコードでは、`data.json`ファイルをJSONモジュールとしてインポートしています。`import ... from ...`の後に `with { type: "json" }` を付けて、読み込むファイルがJSONデータであることを明示します。
+
+[import, title="data.json"](src/data.json)
+
+[import, title="main.js"](src/import-attributes.js)
+
+実行環境によってサポートしているインポート属性の`type`は異なりますが、ブラウザではJSON以外にCSSなどもサポートしています。
+
 ## ECMAScriptモジュールを実行する {#run-es-modules}
 
 作成したECMAScriptモジュールを実行するためには、起点となるJavaScriptファイルをECMAScriptモジュールとしてウェブブラウザに読み込ませる必要があります。
