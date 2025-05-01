@@ -412,6 +412,12 @@ console.log(array.slice(4, 1)); // => []
 
 `slice`メソッドと引数の関係を図にすると次のようになります。
 
+![array.prototype.sliceの範囲](./img/array.prototype.slice.png)
+
+<!-- array.prototype.sliceの範囲の図
+
+https://excalidraw.com/#json=Yl00BrMu1mB8zm8NoTQ7b,7gRFO41-cvxklopZZrIscg
+
 ```
  +-----+-----+-----+-----+-----+
  | "A" | "B" | "C" | "D" | "E" |
@@ -419,6 +425,8 @@ console.log(array.slice(4, 1)); // => []
  0     1     2     3     4     5
 -5    -4    -3    -2    -1
 ```
+
+-->
 
 ### 真偽値を取得 {#get-boolean}
 
