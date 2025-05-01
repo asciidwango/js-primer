@@ -416,7 +416,7 @@ console.log(array.slice(4, 1)); // => []
 
 <!-- array.prototype.sliceの範囲の図
 
-https://excalidraw.com/#json=Yl00BrMu1mB8zm8NoTQ7b,7gRFO41-cvxklopZZrIscg
+https://excalidraw.com/#json=HmFhZhUi1mqoIHtA7L0Hs,9L4U0WLBxLParj6eUiulTQ
 
 ```
  +-----+-----+-----+-----+-----+
