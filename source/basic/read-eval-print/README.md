@@ -27,7 +27,6 @@ sponsors: []
 - Firefox: <https://www.mozilla.org/ja/firefox/new/>
 
 この書籍で紹介するサンプルコードのほとんどは、Google Chrome、Microsoft Edge、Safariなどのブラウザの最新版でも動作します。
-一方で、古いJavaScriptしかサポートしていないInternet Explorerでは多くのコードは動作しません。
 
 また、ブラウザによっては標準化されていないエラーメッセージの細かな違いや開発者ツールの使い方の違いなどもあります。
 この書籍ではFirefoxで実行した結果を記載しています。
