@@ -106,6 +106,7 @@
     "textlint-rule-no-js-function-paren": "^1.0.1",
     "textlint-rule-no-use-column": "workspace:textlint-rule-no-use-column",
     "textlint-rule-no-use-prototype-hash": "workspace:textlint-rule-no-use-prototype-hash",
+    "textlint-rule-static-method-syntax": "workspace:textlint-rule-static-method-syntax",
     "textlint-rule-period-in-list-item": "^1.0.1",
     "textlint-rule-preset-ja-technical-writing": "^12.0.2",
     "textlint-rule-prh": "^6.0.0",

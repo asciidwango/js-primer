@@ -1,0 +1,17 @@
+{
+  "name": "textlint-rule-static-method-syntax",
+  "version": "1.0.0",
+  "description": "静的メソッドの書き方",
+  "type": "module",
+  "main": "./index.js",
+  "exports": "./index.js",
+  "keywords": [],
+  "author": "azu",
+  "license": "MIT",
+  "scripts": {
+    "update-data": "node ./update-static-method.js"
+  },
+  "dependencies": {
+    "@textlint/types": "^14.6.0"
+  }
+}
