@@ -1816,9 +1816,9 @@ obj.<span class="hljs-property">key</span> = <span class="hljs-string">"Hi!"</sp
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = { <span class="hljs-attr">key</span>: <span class="hljs-string">"value"</span> };
 obj = {}; <span class="hljs-comment">// =&gt; TypeError</span>
 </code></pre>
-<p>作成したオブジェクトのプロパティの変更を防止するには<code>Object.freeze</code>メソッドを利用する必要があります。
+<p>作成したオブジェクトのプロパティの変更を防止するには<code>Object.freeze</code>静的メソッドを利用する必要があります。
 <code>Object.freeze</code>はオブジェクトを凍結します。凍結されたオブジェクトでプロパティの追加や変更をすると例外が発生するようになります。</p>
-<p>ただし、<code>Object.freeze</code>メソッドを利用する場合は必ずstrict modeと合わせて使います（詳細は「<a href="../introduction/">JavaScriptとは</a>」の<a href="../introduction/#strict-mode">strict mode</a>を参照）。
+<p>ただし、<code>Object.freeze</code>静的メソッドを利用する場合は必ずstrict modeと合わせて使います（詳細は「<a href="../introduction/">JavaScriptとは</a>」の<a href="../introduction/#strict-mode">strict mode</a>を参照）。
 strict modeではない場合は、凍結されたオブジェクトのプロパティを変更しても例外が発生せずに単純に無視されます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-javascript"><span class="hljs-meta">"use strict"</span>;
@@ -2088,9 +2088,9 @@ obj[symbolKey2] = <span class="hljs-string">"2"</span>;
 <p>最初に紹介したように、オブジェクトはプロパティの集合です。
 そのオブジェクトのプロパティを列挙する方法として、次の3つの静的メソッドがあります。</p>
 <ul>
-<li><code>Object.keys</code>メソッド: オブジェクトのプロパティ名の配列にして返す</li>
-<li><code>Object.values</code>メソッド<sup>[ES2017]</sup>: オブジェクトの値の配列にして返す</li>
-<li><code>Object.entries</code>メソッド<sup>[ES2017]</sup>: オブジェクトのプロパティ名と値の配列の配列を返す</li>
+<li><code>Object.keys</code>静的メソッド: オブジェクトのプロパティ名の配列にして返す</li>
+<li><code>Object.values</code>静的メソッド<sup>[ES2017]</sup>: オブジェクトの値の配列にして返す</li>
+<li><code>Object.entries</code>静的メソッド<sup>[ES2017]</sup>: オブジェクトのプロパティ名と値の配列の配列を返す</li>
 </ul>
 <p>それぞれ、オブジェクトのキー、値、キーと値の組み合わせを配列にして返します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
@@ -2108,7 +2108,7 @@ obj[symbolKey2] = <span class="hljs-string">"2"</span>;
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">entries</span>(obj)); <span class="hljs-comment">// =&gt; [["one", 1], ["two", 2], ["three", 3]]</span>
 </code></pre>
 <p>これらのプロパティを列挙する静的メソッドと配列の<code>forEach</code>メソッドなどを組み合わせれば、プロパティに対して反復処理ができます。
-次のコードでは、<code>Object.keys</code>メソッドで取得したプロパティ名の一覧をコンソールへ出力しています。</p>
+次のコードでは、<code>Object.keys</code>静的メソッドで取得したプロパティ名の一覧をコンソールへ出力しています。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = {
     <span class="hljs-string">"one"</span>: <span class="hljs-number">1</span>,
@@ -2125,18 +2125,18 @@ keys.<span class="hljs-title function_">forEach</span>(<span class="hljs-functio
 <span class="hljs-comment">// "three"</span>
 </code></pre>
 <h3 id="copy-and-merge"><a name="copy-and-merge" class="plugin-anchor" href="#copy-and-merge"><i class="fa fa-link" aria-hidden="true"></i></a>オブジェクトのマージと複製 </h3>
-<p><code>Object.assign</code>メソッド<sup>[ES2015]</sup>は、あるオブジェクトを別のオブジェクトに代入（assign）できます。
+<p><code>Object.assign</code>静的メソッド<sup>[ES2015]</sup>は、あるオブジェクトを別のオブジェクトに代入（assign）できます。
 このメソッドを使うことで、オブジェクトの複製やオブジェクト同士のマージができます。</p>
-<p><code>Object.assign</code>メソッドは、<code>target</code>オブジェクトに対して、1つ以上の<code>sources</code>オブジェクトを指定します。
+<p><code>Object.assign</code>静的メソッドは、<code>target</code>オブジェクトに対して、1つ以上の<code>sources</code>オブジェクトを指定します。
 <code>sources</code>オブジェクト自身が持つ列挙可能なプロパティを第一引数の<code>target</code>オブジェクトに対してコピーします。
-<code>Object.assign</code>メソッドの返り値は、<code>target</code>オブジェクトになります。</p>
+<code>Object.assign</code>静的メソッドの返り値は、<code>target</code>オブジェクトになります。</p>
 <!-- doctest:disable -->
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> obj = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>(target, ...sources);
 </code></pre>
 <h4 id="merge"><a name="merge" class="plugin-anchor" href="#merge"><i class="fa fa-link" aria-hidden="true"></i></a>オブジェクトのマージ </h4>
 <p>具体的なオブジェクトのマージの例を見ていきます。</p>
 <p>次のコードでは、新しく作った空のオブジェクトを<code>target</code>にしています。
-この空のオブジェクト（<code>target</code>）に<code>objectA</code>と<code>objectB</code>をマージしたものが、<code>Object.assign</code>メソッドの返り値となります。</p>
+この空のオブジェクト（<code>target</code>）に<code>objectA</code>と<code>objectB</code>をマージしたものが、<code>Object.assign</code>静的メソッドの返り値となります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> objectA = { <span class="hljs-attr">a</span>: <span class="hljs-string">"a"</span> };
 <span class="hljs-keyword">const</span> objectB = { <span class="hljs-attr">b</span>: <span class="hljs-string">"b"</span> };
@@ -2156,7 +2156,7 @@ keys.<span class="hljs-title function_">forEach</span>(<span class="hljs-functio
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(merged === objectA); <span class="hljs-comment">// =&gt; true</span>
 </code></pre>
 <p>空のオブジェクトを<code>target</code>にすることで、既存のオブジェクトには影響を与えずマージしたオブジェクトを作ることができます。
-そのため、<code>Object.assign</code>メソッドの第一引数には、空のオブジェクトリテラルを指定するのが典型的な利用方法です。</p>
+そのため、<code>Object.assign</code>静的メソッドの第一引数には、空のオブジェクトリテラルを指定するのが典型的な利用方法です。</p>
 <p>このとき、プロパティ名が重複した場合は、後ろのオブジェクトのプロパティにより上書きされます。
 JavaScriptでは、基本的に処理は先頭から後ろへと順番に行います。
 そのため、空のオブジェクトへ<code>objectA</code>を代入してから、その結果に<code>objectB</code>を代入するという形になります。</p>
@@ -2204,7 +2204,7 @@ ES2015で配列の要素を展開する<code>...</code>（spread構文）はサ�
 <!-- Object.assignの引数と、で並び順を合わせるため例外的に許可 -->
 <p>JavaScriptには、オブジェクトを複製する関数は用意されていません。
 しかし、新しく空のオブジェクトを作成し、そこへ既存のオブジェクトのプロパティをコピーすれば、それはオブジェクトの複製をしていると言えます。
-次のように、<code>Object.assign</code>メソッドを使うことでオブジェクトを複製できます。</p>
+次のように、<code>Object.assign</code>静的メソッドを使うことでオブジェクトを複製できます。</p>
 <!-- textlint-enable preset-ja-technical-writing/max-ten -->
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// 引数の`obj`を浅く複製したオブジェクトを返す</span>
@@ -2217,7 +2217,7 @@ ES2015で配列の要素を展開する<code>...</code>（spread構文）はサ�
 <span class="hljs-comment">// オブジェクトを複製しているので、異なるオブジェクトとなる</span>
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(obj === cloneObj); <span class="hljs-comment">// =&gt; false</span>
 </code></pre>
-<p>注意点として、<code>Object.assign</code>メソッドは<code>sources</code>オブジェクトのプロパティを浅くコピー（shallow copy）する点です。
+<p>注意点として、<code>Object.assign</code>静的メソッドは<code>sources</code>オブジェクトのプロパティを浅くコピー（shallow copy）する点です。
 shallow copyとは、<code>sources</code>オブジェクトの直下にあるプロパティだけをコピーするということです。
 そのプロパティの値がオブジェクトである場合に、ネストした先のオブジェクトまでも複製するわけではありません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -2309,7 +2309,7 @@ deep copyは、再帰的にshallow copyすることで実現できます。
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptのObjectはオブジェクトの基礎となるものです。オブジェクトとプロパティの作成、更新、削除などの基本的な操作について紹介します。","sponsors":[],"title":"オブジェクト","level":"1.3.12","depth":2,"next":{"title":"プロトタイプオブジェクト","level":"1.3.13","depth":2,"path":"basic/prototype-object/README.md","ref":"./basic/prototype-object/README.md","articles":[]},"previous":{"title":"ループと反復処理","level":"1.3.11","depth":2,"path":"basic/loop/README.md","ref":"./basic/loop/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/object/README.md","mtime":"2025-05-01T06:00:38.773Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-05-01T06:00:52.215Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptのObjectはオブジェクトの基礎となるものです。オブジェクトとプロパティの作成、更新、削除などの基本的な操作について紹介します。","sponsors":[],"title":"オブジェクト","level":"1.3.12","depth":2,"next":{"title":"プロトタイプオブジェクト","level":"1.3.13","depth":2,"path":"basic/prototype-object/README.md","ref":"./basic/prototype-object/README.md","articles":[]},"previous":{"title":"ループと反復処理","level":"1.3.11","depth":2,"path":"basic/loop/README.md","ref":"./basic/loop/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/object/README.md","mtime":"2025-05-01T07:02:20.516Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-05-01T07:02:38.240Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

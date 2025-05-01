@@ -1574,7 +1574,7 @@ JavaScriptには非同期処理を扱うためのPromiseというビルトイン
 <p>一方、同期的にブロックする処理が行われていた場合には問題があります。
 同期処理ではひとつの処理が終わるまで、次の処理へ進むことができないためです。</p>
 <p>次のコードの<code>blockTime</code>関数は指定した<code>timeout</code>ミリ秒だけ無限ループを実行し、同期的にブロックする処理です。
-<code>timeout</code>ミリ秒経過したかの判定には、無限ループの中でUnix時間（1970年1月1日午前0時0分0秒から経過した時間）のミリ秒を返す<code>Date.now</code>メソッドを利用しています。
+<code>timeout</code>ミリ秒経過したかの判定には、無限ループの中でUnix時間（1970年1月1日午前0時0分0秒から経過した時間）のミリ秒を返す<code>Date.now</code>静的メソッドを利用しています。
 この<code>blockTime</code>関数を呼び出すと、指定時間が経過するまで次の処理（タスクB）は呼ばれません。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">taskA</span>(<span class="hljs-params"></span>) {
@@ -1973,20 +1973,20 @@ promise.<span class="hljs-title function_">then</span>(<span class="hljs-functio
 <p>このように<code>Promise</code>インスタンスの状態が変化したときに、一度だけ呼ばれるコールバック関数を登録するのが<code>then</code>や<code>catch</code>メソッドとなります。</p>
 <p>また<code>then</code>や<code>catch</code>メソッドはすでにSettledへと状態が変化済みの<code>Promise</code>インスタンスに対してもコールバック関数を後から登録できます。
 状態が変化済みの<code>Promise</code>インスタンスに<code>then</code>や<code>catch</code>メソッドで登録したコールバック関数も同じように非同期処理として呼び出されます。</p>
-<p>具体的にどうなるかを、状態が変化済みの<code>Promise</code>インスタンスを作成できる<code>Promise.resolve</code>と<code>Promise.reject</code>メソッドと一緒に見ていきます。</p>
+<p>具体的にどうなるかを、状態が変化済みの<code>Promise</code>インスタンスを作成できる<code>Promise.resolve</code>と<code>Promise.reject</code>静的メソッドと一緒に見ていきます。</p>
 <h3 id="promise-resolve"><a name="promise-resolve" class="plugin-anchor" href="#promise-resolve"><i class="fa fa-link" aria-hidden="true"></i></a><code>Promise.resolve</code> </h3>
-<p><code>Promise.resolve</code>メソッドは<strong>Fulfilled</strong>の状態となった<code>Promise</code>インスタンスを作成します。</p>
+<p><code>Promise.resolve</code>静的メソッドは<strong>Fulfilled</strong>の状態となった<code>Promise</code>インスタンスを作成します。</p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> fulfilledPromise = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>();
 </code></pre>
-<p><code>Promise.resolve</code>メソッドは<code>new Promise</code>の糖衣構文（シンタックスシュガー）です。
+<p><code>Promise.resolve</code>静的メソッドは<code>new Promise</code>の糖衣構文（シンタックスシュガー）です。
 糖衣構文とは、同じ意味の処理を元の構文よりシンプルに書ける別の書き方のことです。
-<code>Promise.resolve</code>メソッドは次のコードの糖衣構文です。</p>
+<code>Promise.resolve</code>静的メソッドは次のコードの糖衣構文です。</p>
 <pre><code class="lang-js"><span class="hljs-comment">// const fulfilledPromise = Promise.resolve(); と同じ意味</span>
 <span class="hljs-keyword">const</span> fulfilledPromise = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =&gt;</span> {
     <span class="hljs-title function_">resolve</span>();
 });
 </code></pre>
-<p><code>Promise.resolve</code>メソッドは引数に<code>resolve</code>される値を渡すこともできます。</p>
+<p><code>Promise.resolve</code>静的メソッドは引数に<code>resolve</code>される値を渡すこともできます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// `resolve(42)`された`Promise`インスタンスを作成する</span>
 <span class="hljs-keyword">const</span> fulfilledPromise = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(<span class="hljs-number">42</span>);
@@ -1994,7 +1994,7 @@ fulfilledPromise.<span class="hljs-title function_">then</span>(<span class="hlj
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(value); <span class="hljs-comment">// =&gt; 42</span>
 });
 </code></pre>
-<p><code>Promise.resolve</code>メソッドで作成した<strong>Fulfilled</strong>の状態となった<code>Promise</code>インスタンスに対しても<code>then</code>メソッドでコールバック関数を登録できます。
+<p><code>Promise.resolve</code>静的メソッドで作成した<strong>Fulfilled</strong>の状態となった<code>Promise</code>インスタンスに対しても<code>then</code>メソッドでコールバック関数を登録できます。
 状態が変化済みの<code>Promise</code>インスタンスに<code>then</code>メソッドで登録したコールバック関数は、常に非同期なタイミングで実行されます。</p>
 <p>次のコードを実行すると、すべての同期的な処理が実行された後に、<code>then</code>メソッドのコールバック関数が非同期なタイミングで実行されることがわかります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
@@ -2004,8 +2004,8 @@ promise.<span class="hljs-title function_">then</span>(<span class="hljs-functio
 });
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"1. 同期的な処理が実行されました"</span>);
 </code></pre>
-<p><code>Promise.resolve</code>メソッドは<code>new Promise</code>の糖衣構文であるため、この実行順序は<code>new Promise</code>を使った場合も同じです。
-次のコードは、先ほどの<code>Promise.resolve</code>メソッドを使ったものと同じ動作になります。</p>
+<p><code>Promise.resolve</code>静的メソッドは<code>new Promise</code>の糖衣構文であるため、この実行順序は<code>new Promise</code>を使った場合も同じです。
+次のコードは、先ほどの<code>Promise.resolve</code>静的メソッドを使ったものと同じ動作になります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> promise = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =&gt;</span> {
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"1. resolveします"</span>);
@@ -2018,20 +2018,20 @@ promise.<span class="hljs-title function_">then</span>(<span class="hljs-functio
 </code></pre>
 <p>このコードを実行すると、まず<code>Promise</code>のコンストラクタ関数が実行され、続いて同期的な処理が実行されます。最後に<code>then</code>メソッドで登録していたコールバック関数が非同期的に呼ばれることがわかります。</p>
 <h3 id="promise-reject"><a name="promise-reject" class="plugin-anchor" href="#promise-reject"><i class="fa fa-link" aria-hidden="true"></i></a><code>Promise.reject</code> </h3>
-<p><code>Promise.reject</code>メソッドは <strong>Rejected</strong>の状態となった<code>Promise</code>インスタンスを作成します。</p>
+<p><code>Promise.reject</code>静的メソッドは <strong>Rejected</strong>の状態となった<code>Promise</code>インスタンスを作成します。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:disable --></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> rejectedPromise = <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"エラー"</span>));
 </code></pre>
-<p><code>Promise.reject</code>メソッドは<code>new Promise</code>の糖衣構文（シンタックスシュガー）です。
-そのため、<code>Promise.reject</code>メソッドは次のコードと同じ意味になります。</p>
+<p><code>Promise.reject</code>静的メソッドは<code>new Promise</code>の糖衣構文（シンタックスシュガー）です。
+そのため、<code>Promise.reject</code>静的メソッドは次のコードと同じ意味になります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
 <!-- doctest:disable --></p>
 <pre><code class="lang-js"><span class="hljs-keyword">const</span> rejectedPromise = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
     <span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"エラー"</span>));
 });
 </code></pre>
-<p><code>Promise.reject</code>メソッドで作成した<strong>Rejected</strong>状態の<code>Promise</code>インスタンスに対しても<code>then</code>や<code>catch</code>メソッドでコールバック関数を登録できます。
+<p><code>Promise.reject</code>静的メソッドで作成した<strong>Rejected</strong>状態の<code>Promise</code>インスタンスに対しても<code>then</code>や<code>catch</code>メソッドでコールバック関数を登録できます。
  <strong>Rejected</strong>状態へ変化済みの<code>Promise</code>インスタンスに登録したコールバック関数は、常に非同期なタイミングで実行されます。これは<strong>Fulfilled</strong>の場合と同様です。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">"エラー"</span>)).<span class="hljs-title function_">catch</span>(<span class="hljs-function">() =&gt;</span> {
@@ -2183,7 +2183,7 @@ Promiseチェーンで一度キャッチすると、次に呼ばれるのは成�
 しかし、コールバック関数で<code>Promise</code>インスタンスを返した場合は例外的に異なります。</p>
 <p>コールバック関数で<code>Promise</code>インスタンスを返した場合は、同じ状態を持つ<code>Promise</code>インスタンスが<code>then</code>や<code>catch</code>メソッドの返り値となります。
 つまり<code>then</code>メソッドで<strong>Rejected</strong>状態の<code>Promise</code>インスタンスを返した場合は、次に呼ばれるのは失敗時の処理です。</p>
-<p>次のコードでは、<code>then</code>メソッドのコールバック関数で<code>Promise.reject</code>メソッドを使って<strong>Rejected</strong>な<code>Promise</code>インスタンスを返しています。
+<p>次のコードでは、<code>then</code>メソッドのコールバック関数で<code>Promise.reject</code>静的メソッドを使って<strong>Rejected</strong>な<code>Promise</code>インスタンスを返しています。
 <strong>Rejected</strong>な<code>Promise</code>インスタンスは、次の<code>catch</code>メソッドで登録した失敗時の処理を呼び出すまで、<code>then</code>メソッドの成功時の処理をスキップします。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>().<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span> <span class="hljs-title function_">onFulfilledA</span>(<span class="hljs-params"></span>) {
@@ -2200,7 +2200,7 @@ Promiseチェーンで一度キャッチすると、次に呼ばれるのは成�
 <p><img src="img/then-rejected-promise.png" alt="then-rejected-promise.png"></img></p>
 <p>通常は一度<code>catch</code>すると次に呼び出されるのは成功時の処理でした。
 この<code>Promise</code>インスタンスを返す仕組みを使うことで、<code>catch</code>してもそのまま<strong>Rejected</strong>な状態を継続できます。</p>
-<p>次のコードでは<code>catch</code>メソッドでログを出力しつつ<code>Promise.reject</code>メソッドを使って<strong>Rejected</strong>な<code>Promise</code>インスタンスを返しています。
+<p>次のコードでは<code>catch</code>メソッドでログを出力しつつ<code>Promise.reject</code>静的メソッドを使って<strong>Rejected</strong>な<code>Promise</code>インスタンスを返しています。
 これによって、<code>main</code>で発生したエラーのログを取りながら、Promiseチェーンはエラーのまま処理を継続できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">main</span>(<span class="hljs-params"></span>) {
@@ -2295,11 +2295,11 @@ Promiseで逐次的な処理といっても難しいことはなく、単純に<
 </code></pre>
 <h3 id="promise-all"><a name="promise-all" class="plugin-anchor" href="#promise-all"><i class="fa fa-link" aria-hidden="true"></i></a><code>Promise.all</code>で複数のPromiseをまとめる </h3>
 <p><code>Promise.all</code>を使うことで複数のPromiseを使った非同期処理をひとつのPromiseとして扱えます。</p>
-<p><code>Promise.all</code>メソッドは <code>Promise</code>インスタンスの配列を受け取り、新しい<code>Promise</code>インスタンスを返します。
+<p><code>Promise.all</code>静的メソッドは <code>Promise</code>インスタンスの配列を受け取り、新しい<code>Promise</code>インスタンスを返します。
 その配列のすべての<code>Promise</code>インスタンスが<strong>Fulfilled</strong>となった場合は、返り値の<code>Promise</code>インスタンスも<strong>Fulfilled</strong>となります。
 一方で、ひとつでも<strong>Rejected</strong>となった場合は、返り値の<code>Promise</code>インスタンスも<strong>Rejected</strong>となります。</p>
 <p>返り値の<code>Promise</code>インスタンスに<code>then</code>メソッドで登録したコールバック関数には、Promiseの結果をまとめた配列が渡されます。
-このときの配列の要素の順番は<code>Promise.all</code>メソッドに渡した配列のPromiseの要素の順番と同じになります。</p>
+このときの配列の要素の順番は<code>Promise.all</code>静的メソッドに渡した配列のPromiseの要素の順番と同じになります。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// `timeoutMs`ミリ秒後にresolveする</span>
 <span class="hljs-keyword">function</span> <span class="hljs-title function_">delay</span>(<span class="hljs-params">timeoutMs</span>) {
@@ -2318,7 +2318,7 @@ Promiseで逐次的な処理といっても難しいことはなく、単純に<
 });
 </code></pre>
 <p>先ほどのPromiseチェーンでリソースを取得する例では、Resource Aを取得し終わってからResource Bを取得というように逐次的でした。
-しかし、Resource AとBどちらを先に取得しても問題ない場合は、<code>Promise.all</code>メソッドを使って複数のPromiseを1つのPromiseとしてまとめられます。
+しかし、Resource AとBどちらを先に取得しても問題ない場合は、<code>Promise.all</code>静的メソッドを使って複数のPromiseを1つのPromiseとしてまとめられます。
 また、Resource AとBを同時に取得すればより早い時間で処理が完了します。</p>
 <p>次のコードでは、Resource AとBを同時に取得開始しています。
 両方のリソースの取得が完了すると、<code>then</code>のコールバック関数にはAとBの結果が配列として渡されます。</p>
@@ -2370,9 +2370,9 @@ fetchedPromise.<span class="hljs-title function_">then</span>(<span class="hljs-
 });
 </code></pre>
 <h3 id="promise-race"><a name="promise-race" class="plugin-anchor" href="#promise-race"><i class="fa fa-link" aria-hidden="true"></i></a><code>Promise.race</code> </h3>
-<p><code>Promise.all</code>メソッドは複数のPromiseがすべて完了するまで待つ処理でした。
-<code>Promise.race</code>メソッドでは複数のPromiseを受け取りますが、Promiseが1つでも完了した（Settled状態となった）時点で次の処理を実行します。</p>
-<p><code>Promise.race</code>メソッドは<code>Promise</code>インスタンスの配列を受け取り、新しい<code>Promise</code>インスタンスを返します。
+<p><code>Promise.all</code>静的メソッドは複数のPromiseがすべて完了するまで待つ処理でした。
+<code>Promise.race</code>静的メソッドでは複数のPromiseを受け取りますが、Promiseが1つでも完了した（Settled状態となった）時点で次の処理を実行します。</p>
+<p><code>Promise.race</code>静的メソッドは<code>Promise</code>インスタンスの配列を受け取り、新しい<code>Promise</code>インスタンスを返します。
 <!-- textlint-disable -->
 この新しい<code>Promise</code>インスタンスは、配列の中で一番最初に<strong>Settled</strong>状態となった<code>Promise</code>インスタンスと同じ状態になります。
 <!-- textlint-enable --></p>
@@ -2382,7 +2382,7 @@ fetchedPromise.<span class="hljs-title function_">then</span>(<span class="hljs-
 </ul>
 <p>つまり、複数のPromiseによる非同期処理を同時に実行して競争（race）させて、一番最初に完了した<code>Promise</code>インスタンスに対する次の処理を呼び出します。</p>
 <p>次のコードでは、<code>delay</code>関数という<code>timeoutMs</code>ミリ秒後に<strong>Fulfilled</strong>となる<code>Promise</code>インスタンスを返す関数を定義しています。
-<code>Promise.race</code>メソッドは1ミリ秒、32ミリ秒、64ミリ秒、128ミリ秒後に完了する<code>Promise</code>インスタンスの配列を受け取っています。
+<code>Promise.race</code>静的メソッドは1ミリ秒、32ミリ秒、64ミリ秒、128ミリ秒後に完了する<code>Promise</code>インスタンスの配列を受け取っています。
 この配列の中で一番最初に完了するのは、1ミリ秒後に<strong>Fulfilled</strong>となる<code>Promise</code>インスタンスです。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-comment">// `timeoutMs`ミリ秒後にresolveする</span>
@@ -2410,9 +2410,9 @@ racePromise.<span class="hljs-title function_">then</span>(<span class="hljs-fun
 <p>他の<code>delay</code>関数が作成した<code>Promise</code>インスタンスも32ミリ秒、64ミリ秒、128ミリ秒後に<code>resolve</code>されます。
 しかし、<code>Promise</code>インスタンスは一度<strong>Settled</strong>（<strong>Fulfilled</strong>または<strong>Rejected</strong>）となると、それ以降は状態も変化せず<code>then</code>のコールバック関数も呼び出しません。
 そのため、<code>racePromise</code>は何度も<code>resolve</code>されますが、初回以外は無視されるため<code>then</code>のコールバック関数は一度しか呼び出されません。</p>
-<p><code>Promise.race</code>メソッドを使うことでPromiseを使った非同期処理のタイムアウトが実装できます。
+<p><code>Promise.race</code>静的メソッドを使うことでPromiseを使った非同期処理のタイムアウトが実装できます。
 ここでのタイムアウトとは、一定時間経過しても処理が終わっていないならエラーとして扱う処理のことです。</p>
-<p>次のコードでは<code>timeout</code>関数と<code>dummyFetch</code>関数が返す<code>Promise</code>インスタンスを<code>Promise.race</code>メソッドで競争させています。
+<p>次のコードでは<code>timeout</code>関数と<code>dummyFetch</code>関数が返す<code>Promise</code>インスタンスを<code>Promise.race</code>静的メソッドで競争させています。
 <code>dummyFetch</code>関数ではランダムな時間をかけてリソースを取得し<code>resolve</code>する<code>Promise</code>インスタンスを返します。
 <code>timeout</code>関数は指定ミリ秒経過すると<code>reject</code>する<code>Promise</code>インスタンスを返します。</p>
 <p>この2つの<code>Promise</code>インスタンスを競争させて、<code>dummyFetch</code>が先に完了すれば処理は成功、<code>timeout</code>が先に完了すれば処理は失敗というタイムアウト処理が実現できます。</p>
@@ -2761,11 +2761,11 @@ Promiseのみの場合は、Promiseチェーンでコールバック関数を使
 このとき、リソースAに1秒、リソースBに2秒かかるとした場合、すべてのリソースを取得するのに3秒かかります。</p>
 <p>取得する順番に意味がない場合は、複数のリソースを同時に取得することで余計な待ち時間を解消できます。
 先ほどの例ならば、リソースAとBを同時に取得すれば、最大でもリソースBの取得にかかる2秒程度ですべてのリソースが取得できるはずです。</p>
-<p>Promiseチェーンでは<code>Promise.all</code>メソッドを使って、複数の非同期処理を1つの<code>Promise</code>インスタンスにまとめることで同時に取得していました。
-<code>await</code>式が評価するのは<code>Promise</code>インスタンスであるため、<code>await</code>式も<code>Promise.all</code>メソッドと組み合わせて利用できます。</p>
-<p>次のコードでは、<code>Promise.all</code>メソッドとAsync Functionを組み合わせて、同時にリソースを取得する<code>fetchAllResources</code>関数を実装しています。
-<code>Promise.all</code>メソッドは複数のPromiseを配列で受け取り、それを1つのPromiseとしてまとめたものを返す関数です。
-<code>Promise.all</code>メソッドの返す<code>Promise</code>インスタンスを<code>await</code>することで、非同期処理の結果を配列としてまとめて取得できます。</p>
+<p>Promiseチェーンでは<code>Promise.all</code>静的メソッドを使って、複数の非同期処理を1つの<code>Promise</code>インスタンスにまとめることで同時に取得していました。
+<code>await</code>式が評価するのは<code>Promise</code>インスタンスであるため、<code>await</code>式も<code>Promise.all</code>静的メソッドと組み合わせて利用できます。</p>
+<p>次のコードでは、<code>Promise.all</code>静的メソッドとAsync Functionを組み合わせて、同時にリソースを取得する<code>fetchAllResources</code>関数を実装しています。
+<code>Promise.all</code>静的メソッドは複数のPromiseを配列で受け取り、それを1つのPromiseとしてまとめたものを返す関数です。
+<code>Promise.all</code>静的メソッドの返す<code>Promise</code>インスタンスを<code>await</code>することで、非同期処理の結果を配列としてまとめて取得できます。</p>
 <p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
 <pre><code class="lang-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">dummyFetch</span>(<span class="hljs-params">path</span>) {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> {
@@ -3075,7 +3075,7 @@ ES2022では、これに加えてModuleの直下ではAsync Functionで囲まな
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおける非同期処理についてを紹介します。同期処理と非同期処理の違いやなぜ非同期処理が重要になるかを紹介します。非同期処理を扱うPromise、Async Functionについて紹介します。","sponsors":[],"title":"非同期処理:Promise/Async Function","level":"1.3.22","depth":2,"next":{"title":"Map/Set","level":"1.3.23","depth":2,"path":"basic/map-and-set/README.md","ref":"./basic/map-and-set/README.md","articles":[]},"previous":{"title":"例外処理","level":"1.3.21","depth":2,"path":"basic/error-try-catch/README.md","ref":"./basic/error-try-catch/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/async/README.md","mtime":"2025-05-01T06:00:38.761Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-05-01T06:00:52.215Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおける非同期処理についてを紹介します。同期処理と非同期処理の違いやなぜ非同期処理が重要になるかを紹介します。非同期処理を扱うPromise、Async Functionについて紹介します。","sponsors":[],"title":"非同期処理:Promise/Async Function","level":"1.3.22","depth":2,"next":{"title":"Map/Set","level":"1.3.23","depth":2,"path":"basic/map-and-set/README.md","ref":"./basic/map-and-set/README.md","articles":[]},"previous":{"title":"例外処理","level":"1.3.21","depth":2,"path":"basic/error-try-catch/README.md","ref":"./basic/error-try-catch/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/async/README.md","mtime":"2025-05-01T07:02:20.504Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-05-01T07:02:38.240Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
