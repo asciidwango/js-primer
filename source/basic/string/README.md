@@ -244,7 +244,7 @@ console.log(str.charCodeAt(1).toString(16)); // => "30aa"
 console.log(str.charCodeAt(2).toString(16));  // => "30a4"
 ```
 
-逆に、Code Unitをhex値（16進数）から文字へと変換するには`String.fromCharCode`メソッドを使います。
+逆に、Code Unitをhex値（16進数）から文字へと変換するには`String.fromCharCode`静的メソッドを使います。
 次のコードでは、16進数の整数リテラルである`0x`で記述したCode Unitから文字列へと変換しています
 （`0x`リテラルについては「[データ型とリテラル][]」の章を参照）。
 
@@ -1240,7 +1240,7 @@ function stringRaw(strings, ...values) {
 console.log(stringRaw`template ${0} literal ${1}`); // => "template 0 literal 1"
 ```
 
-ここで実装した`stringRaw`タグ関数と同様のものが、`String.raw`メソッド<sup>[ES2015]</sup>として提供されています。
+ここで実装した`stringRaw`タグ関数と同様のものが、`String.raw`静的メソッド<sup>[ES2015]</sup>として提供されています。
 
 {{book.console}}
 ```js

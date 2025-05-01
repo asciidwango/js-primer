@@ -25,7 +25,7 @@ JavaScriptには非同期処理を扱うためのPromiseというビルトイン
 同期処理ではひとつの処理が終わるまで、次の処理へ進むことができないためです。
 
 次のコードの`blockTime`関数は指定した`timeout`ミリ秒だけ無限ループを実行し、同期的にブロックする処理です。
-`timeout`ミリ秒経過したかの判定には、無限ループの中でUnix時間（1970年1月1日午前0時0分0秒から経過した時間）のミリ秒を返す`Date.now`メソッドを利用しています。
+`timeout`ミリ秒経過したかの判定には、無限ループの中でUnix時間（1970年1月1日午前0時0分0秒から経過した時間）のミリ秒を返す`Date.now`静的メソッドを利用しています。
 この`blockTime`関数を呼び出すと、指定時間が経過するまで次の処理（タスクB）は呼ばれません。
 
 {{book.console}}
@@ -507,19 +507,19 @@ promise.then(() => {
 また`then`や`catch`メソッドはすでにSettledへと状態が変化済みの`Promise`インスタンスに対してもコールバック関数を後から登録できます。
 状態が変化済みの`Promise`インスタンスに`then`や`catch`メソッドで登録したコールバック関数も同じように非同期処理として呼び出されます。
 
-具体的にどうなるかを、状態が変化済みの`Promise`インスタンスを作成できる`Promise.resolve`と`Promise.reject`メソッドと一緒に見ていきます。
+具体的にどうなるかを、状態が変化済みの`Promise`インスタンスを作成できる`Promise.resolve`と`Promise.reject`静的メソッドと一緒に見ていきます。
 
 ### `Promise.resolve` {#promise-resolve}
 
-`Promise.resolve`メソッドは**Fulfilled**の状態となった`Promise`インスタンスを作成します。
+`Promise.resolve`静的メソッドは**Fulfilled**の状態となった`Promise`インスタンスを作成します。
 
 ```js
 const fulfilledPromise = Promise.resolve();
 ```
 
-`Promise.resolve`メソッドは`new Promise`の糖衣構文（シンタックスシュガー）です。
+`Promise.resolve`静的メソッドは`new Promise`の糖衣構文（シンタックスシュガー）です。
 糖衣構文とは、同じ意味の処理を元の構文よりシンプルに書ける別の書き方のことです。
-`Promise.resolve`メソッドは次のコードの糖衣構文です。
+`Promise.resolve`静的メソッドは次のコードの糖衣構文です。
 
 ```js
 // const fulfilledPromise = Promise.resolve(); と同じ意味
@@ -528,7 +528,7 @@ const fulfilledPromise = new Promise((resolve) => {
 });
 ```
 
-`Promise.resolve`メソッドは引数に`resolve`される値を渡すこともできます。
+`Promise.resolve`静的メソッドは引数に`resolve`される値を渡すこともできます。
 
 {{book.console}}
 ```js
@@ -539,7 +539,7 @@ fulfilledPromise.then(value => {
 });
 ```
 
-`Promise.resolve`メソッドで作成した**Fulfilled**の状態となった`Promise`インスタンスに対しても`then`メソッドでコールバック関数を登録できます。
+`Promise.resolve`静的メソッドで作成した**Fulfilled**の状態となった`Promise`インスタンスに対しても`then`メソッドでコールバック関数を登録できます。
 状態が変化済みの`Promise`インスタンスに`then`メソッドで登録したコールバック関数は、常に非同期なタイミングで実行されます。
 
 次のコードを実行すると、すべての同期的な処理が実行された後に、`then`メソッドのコールバック関数が非同期なタイミングで実行されることがわかります。
@@ -553,8 +553,8 @@ promise.then(() => {
 console.log("1. 同期的な処理が実行されました");
 ```
 
-`Promise.resolve`メソッドは`new Promise`の糖衣構文であるため、この実行順序は`new Promise`を使った場合も同じです。
-次のコードは、先ほどの`Promise.resolve`メソッドを使ったものと同じ動作になります。
+`Promise.resolve`静的メソッドは`new Promise`の糖衣構文であるため、この実行順序は`new Promise`を使った場合も同じです。
+次のコードは、先ほどの`Promise.resolve`静的メソッドを使ったものと同じ動作になります。
 
 {{book.console}}
 ```js
@@ -572,7 +572,7 @@ console.log("2. 同期的な処理が実行されました");
 
 ### `Promise.reject` {#promise-reject}
 
-`Promise.reject`メソッドは **Rejected**の状態となった`Promise`インスタンスを作成します。
+`Promise.reject`静的メソッドは **Rejected**の状態となった`Promise`インスタンスを作成します。
 
 {{book.console}}
 <!-- doctest:disable -->
@@ -580,8 +580,8 @@ console.log("2. 同期的な処理が実行されました");
 const rejectedPromise = Promise.reject(new Error("エラー"));
 ```
 
-`Promise.reject`メソッドは`new Promise`の糖衣構文（シンタックスシュガー）です。
-そのため、`Promise.reject`メソッドは次のコードと同じ意味になります。
+`Promise.reject`静的メソッドは`new Promise`の糖衣構文（シンタックスシュガー）です。
+そのため、`Promise.reject`静的メソッドは次のコードと同じ意味になります。
 
 {{book.console}}
 <!-- doctest:disable -->
@@ -591,7 +591,7 @@ const rejectedPromise = new Promise((resolve, reject) => {
 });
 ```
 
-`Promise.reject`メソッドで作成した**Rejected**状態の`Promise`インスタンスに対しても`then`や`catch`メソッドでコールバック関数を登録できます。
+`Promise.reject`静的メソッドで作成した**Rejected**状態の`Promise`インスタンスに対しても`then`や`catch`メソッドでコールバック関数を登録できます。
  **Rejected**状態へ変化済みの`Promise`インスタンスに登録したコールバック関数は、常に非同期なタイミングで実行されます。これは**Fulfilled**の場合と同様です。
 
 {{book.console}}
@@ -786,7 +786,7 @@ Promiseチェーンで一度キャッチすると、次に呼ばれるのは成�
 コールバック関数で`Promise`インスタンスを返した場合は、同じ状態を持つ`Promise`インスタンスが`then`や`catch`メソッドの返り値となります。
 つまり`then`メソッドで**Rejected**状態の`Promise`インスタンスを返した場合は、次に呼ばれるのは失敗時の処理です。
 
-次のコードでは、`then`メソッドのコールバック関数で`Promise.reject`メソッドを使って**Rejected**な`Promise`インスタンスを返しています。
+次のコードでは、`then`メソッドのコールバック関数で`Promise.reject`静的メソッドを使って**Rejected**な`Promise`インスタンスを返しています。
 **Rejected**な`Promise`インスタンスは、次の`catch`メソッドで登録した失敗時の処理を呼び出すまで、`then`メソッドの成功時の処理をスキップします。
 
 {{book.console}}
@@ -809,7 +809,7 @@ Promise.resolve().then(function onFulfilledA() {
 通常は一度`catch`すると次に呼び出されるのは成功時の処理でした。
 この`Promise`インスタンスを返す仕組みを使うことで、`catch`してもそのまま**Rejected**な状態を継続できます。
 
-次のコードでは`catch`メソッドでログを出力しつつ`Promise.reject`メソッドを使って**Rejected**な`Promise`インスタンスを返しています。
+次のコードでは`catch`メソッドでログを出力しつつ`Promise.reject`静的メソッドを使って**Rejected**な`Promise`インスタンスを返しています。
 これによって、`main`で発生したエラーのログを取りながら、Promiseチェーンはエラーのまま処理を継続できます。
 
 {{book.console}}
@@ -923,12 +923,12 @@ dummyFetch("/resource/A").then(response => {
 
 `Promise.all`を使うことで複数のPromiseを使った非同期処理をひとつのPromiseとして扱えます。
 
-`Promise.all`メソッドは `Promise`インスタンスの配列を受け取り、新しい`Promise`インスタンスを返します。
+`Promise.all`静的メソッドは `Promise`インスタンスの配列を受け取り、新しい`Promise`インスタンスを返します。
 その配列のすべての`Promise`インスタンスが**Fulfilled**となった場合は、返り値の`Promise`インスタンスも**Fulfilled**となります。
 一方で、ひとつでも**Rejected**となった場合は、返り値の`Promise`インスタンスも**Rejected**となります。
 
 返り値の`Promise`インスタンスに`then`メソッドで登録したコールバック関数には、Promiseの結果をまとめた配列が渡されます。
-このときの配列の要素の順番は`Promise.all`メソッドに渡した配列のPromiseの要素の順番と同じになります。
+このときの配列の要素の順番は`Promise.all`静的メソッドに渡した配列のPromiseの要素の順番と同じになります。
 
 {{book.console}}
 ```js
@@ -950,7 +950,7 @@ Promise.all([promise1, promise2, promise3]).then(function(values) {
 ```
 
 先ほどのPromiseチェーンでリソースを取得する例では、Resource Aを取得し終わってからResource Bを取得というように逐次的でした。
-しかし、Resource AとBどちらを先に取得しても問題ない場合は、`Promise.all`メソッドを使って複数のPromiseを1つのPromiseとしてまとめられます。
+しかし、Resource AとBどちらを先に取得しても問題ない場合は、`Promise.all`静的メソッドを使って複数のPromiseを1つのPromiseとしてまとめられます。
 また、Resource AとBを同時に取得すればより早い時間で処理が完了します。
 
 次のコードでは、Resource AとBを同時に取得開始しています。
@@ -1010,10 +1010,10 @@ fetchedPromise.then(([responseA, responseB]) => {
 
 ### `Promise.race` {#promise-race}
 
-`Promise.all`メソッドは複数のPromiseがすべて完了するまで待つ処理でした。
-`Promise.race`メソッドでは複数のPromiseを受け取りますが、Promiseが1つでも完了した（Settled状態となった）時点で次の処理を実行します。
+`Promise.all`静的メソッドは複数のPromiseがすべて完了するまで待つ処理でした。
+`Promise.race`静的メソッドでは複数のPromiseを受け取りますが、Promiseが1つでも完了した（Settled状態となった）時点で次の処理を実行します。
 
-`Promise.race`メソッドは`Promise`インスタンスの配列を受け取り、新しい`Promise`インスタンスを返します。
+`Promise.race`静的メソッドは`Promise`インスタンスの配列を受け取り、新しい`Promise`インスタンスを返します。
 <!-- textlint-disable -->
 この新しい`Promise`インスタンスは、配列の中で一番最初に**Settled**状態となった`Promise`インスタンスと同じ状態になります。
 <!-- textlint-enable -->
@@ -1024,7 +1024,7 @@ fetchedPromise.then(([responseA, responseB]) => {
 つまり、複数のPromiseによる非同期処理を同時に実行して競争（race）させて、一番最初に完了した`Promise`インスタンスに対する次の処理を呼び出します。
 
 次のコードでは、`delay`関数という`timeoutMs`ミリ秒後に**Fulfilled**となる`Promise`インスタンスを返す関数を定義しています。
-`Promise.race`メソッドは1ミリ秒、32ミリ秒、64ミリ秒、128ミリ秒後に完了する`Promise`インスタンスの配列を受け取っています。
+`Promise.race`静的メソッドは1ミリ秒、32ミリ秒、64ミリ秒、128ミリ秒後に完了する`Promise`インスタンスの配列を受け取っています。
 この配列の中で一番最初に完了するのは、1ミリ秒後に**Fulfilled**となる`Promise`インスタンスです。
 
 {{book.console}}
@@ -1057,10 +1057,10 @@ racePromise.then(value => {
 しかし、`Promise`インスタンスは一度**Settled**（**Fulfilled**または**Rejected**）となると、それ以降は状態も変化せず`then`のコールバック関数も呼び出しません。
 そのため、`racePromise`は何度も`resolve`されますが、初回以外は無視されるため`then`のコールバック関数は一度しか呼び出されません。
 
-`Promise.race`メソッドを使うことでPromiseを使った非同期処理のタイムアウトが実装できます。
+`Promise.race`静的メソッドを使うことでPromiseを使った非同期処理のタイムアウトが実装できます。
 ここでのタイムアウトとは、一定時間経過しても処理が終わっていないならエラーとして扱う処理のことです。
 
-次のコードでは`timeout`関数と`dummyFetch`関数が返す`Promise`インスタンスを`Promise.race`メソッドで競争させています。
+次のコードでは`timeout`関数と`dummyFetch`関数が返す`Promise`インスタンスを`Promise.race`静的メソッドで競争させています。
 `dummyFetch`関数ではランダムな時間をかけてリソースを取得し`resolve`する`Promise`インスタンスを返します。
 `timeout`関数は指定ミリ秒経過すると`reject`する`Promise`インスタンスを返します。
 
@@ -1484,12 +1484,12 @@ Async Functionと`await`式を使うことで、非同期処理を同期処理�
 取得する順番に意味がない場合は、複数のリソースを同時に取得することで余計な待ち時間を解消できます。
 先ほどの例ならば、リソースAとBを同時に取得すれば、最大でもリソースBの取得にかかる2秒程度ですべてのリソースが取得できるはずです。
 
-Promiseチェーンでは`Promise.all`メソッドを使って、複数の非同期処理を1つの`Promise`インスタンスにまとめることで同時に取得していました。
-`await`式が評価するのは`Promise`インスタンスであるため、`await`式も`Promise.all`メソッドと組み合わせて利用できます。
+Promiseチェーンでは`Promise.all`静的メソッドを使って、複数の非同期処理を1つの`Promise`インスタンスにまとめることで同時に取得していました。
+`await`式が評価するのは`Promise`インスタンスであるため、`await`式も`Promise.all`静的メソッドと組み合わせて利用できます。
 
-次のコードでは、`Promise.all`メソッドとAsync Functionを組み合わせて、同時にリソースを取得する`fetchAllResources`関数を実装しています。
-`Promise.all`メソッドは複数のPromiseを配列で受け取り、それを1つのPromiseとしてまとめたものを返す関数です。
-`Promise.all`メソッドの返す`Promise`インスタンスを`await`することで、非同期処理の結果を配列としてまとめて取得できます。
+次のコードでは、`Promise.all`静的メソッドとAsync Functionを組み合わせて、同時にリソースを取得する`fetchAllResources`関数を実装しています。
+`Promise.all`静的メソッドは複数のPromiseを配列で受け取り、それを1つのPromiseとしてまとめたものを返す関数です。
+`Promise.all`静的メソッドの返す`Promise`インスタンスを`await`することで、非同期処理の結果を配列としてまとめて取得できます。
 
 {{book.console}}
 ```js

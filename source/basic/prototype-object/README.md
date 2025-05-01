@@ -147,12 +147,12 @@ console.log(Object.hasOwn(obj, "toString")); // => true
 console.log("toString" in obj); // => true
 ```
 
-### オブジェクトの継承元を明示する`Object.create`メソッド {#create-method}
+### オブジェクトの継承元を明示する`Object.create`静的メソッド {#create-method}
 
-`Object.create`メソッドを使うと、第一引数に指定した`prototype`オブジェクトを継承した新しいオブジェクトを作成できます。
+`Object.create`静的メソッドを使うと、第一引数に指定した`prototype`オブジェクトを継承した新しいオブジェクトを作成できます。
 
 これまでの説明で、オブジェクトリテラルは`Object.prototype`オブジェクトを自動的に継承したオブジェクトを作成していることがわかりました。
-オブジェクトリテラルで作成する新しいオブジェクトは、`Object.create`メソッドを使うことで次のように書けます。
+オブジェクトリテラルで作成する新しいオブジェクトは、`Object.create`静的メソッドを使うことで次のように書けます。
 
 {{book.console}}
 ```js
@@ -171,7 +171,7 @@ console.log(obj.toString === Object.prototype.toString); // => true
 
 > `Array`のインスタンス → `Array.prototype` → `Object.prototype`
 
-`Object.create`メソッドを使って`Array`と`Object`の関係をコードとして表現してみます。
+`Object.create`静的メソッドを使って`Array`と`Object`の関係をコードとして表現してみます。
 この疑似コードは、`Array`コンストラクタの実装など、実際のものとは異なる部分があるため、あくまでイメージであることに注意してください。
 
 ```js
@@ -229,8 +229,8 @@ const obj = Object.create(null);
 console.log(obj.hasOwnProperty); // => undefined
 ```
 
-`Object.create`メソッドはES5から導入されました。
-`Object.create`メソッドは`Object.create(null)`というイディオムで、一部ライブラリなどで`Map`オブジェクトの代わりとして利用されていました。
+`Object.create`静的メソッドはES5から導入されました。
+`Object.create`静的メソッドは`Object.create(null)`というイディオムで、一部ライブラリなどで`Map`オブジェクトの代わりとして利用されていました。
 Mapとはキーと値の組み合わせを保持するためのオブジェクトです。
 
 ただのオブジェクトもMapとよく似た性質を持っていますが、最初からいくつかのプロパティが存在しアクセスできてしまいます。
@@ -286,7 +286,7 @@ console.log(Object.hasOwn(mapLike, "key")); // => false
 - `Object`のプロトタイプオブジェクトには`toString`などのプロトタイプメソッドが定義されている
 - ほとんどのオブジェクトは`Object.prototype`を継承することで`toString`メソッドなどを呼び出せる
 - プロトタイプメソッドとインスタンスメソッドではインスタンスメソッドが優先される
-- `Object.create`メソッドを使うことでプロトタイプオブジェクトを継承しないオブジェクトを作成できる
+- `Object.create`静的メソッドを使うことでプロトタイプオブジェクトを継承しないオブジェクトを作成できる
 
 プロトタイプオブジェクトに定義されているメソッドがどのように参照されているかを確認しました。
 このプロトタイプの詳しい仕組みについては「[クラス][]」の章で改めて解説します。

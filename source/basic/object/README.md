@@ -343,10 +343,10 @@ const obj = { key: "value" };
 obj = {}; // => TypeError
 ```
 
-作成したオブジェクトのプロパティの変更を防止するには`Object.freeze`メソッドを利用する必要があります。
+作成したオブジェクトのプロパティの変更を防止するには`Object.freeze`静的メソッドを利用する必要があります。
 `Object.freeze`はオブジェクトを凍結します。凍結されたオブジェクトでプロパティの追加や変更をすると例外が発生するようになります。
 
-ただし、`Object.freeze`メソッドを利用する場合は必ずstrict modeと合わせて使います（詳細は「[JavaScriptとは][]」の[strict mode][]を参照）。
+ただし、`Object.freeze`静的メソッドを利用する場合は必ずstrict modeと合わせて使います（詳細は「[JavaScriptとは][]」の[strict mode][]を参照）。
 strict modeではない場合は、凍結されたオブジェクトのプロパティを変更しても例外が発生せずに単純に無視されます。
 
 {{book.console}}
@@ -692,9 +692,9 @@ Objectの`toString`メソッドなどは、`Object`のインスタンスオブ�
 最初に紹介したように、オブジェクトはプロパティの集合です。
 そのオブジェクトのプロパティを列挙する方法として、次の3つの静的メソッドがあります。
 
-- `Object.keys`メソッド: オブジェクトのプロパティ名の配列にして返す
-- `Object.values`メソッド<sup>[ES2017]</sup>: オブジェクトの値の配列にして返す
-- `Object.entries`メソッド<sup>[ES2017]</sup>: オブジェクトのプロパティ名と値の配列の配列を返す
+- `Object.keys`静的メソッド: オブジェクトのプロパティ名の配列にして返す
+- `Object.values`静的メソッド<sup>[ES2017]</sup>: オブジェクトの値の配列にして返す
+- `Object.entries`静的メソッド<sup>[ES2017]</sup>: オブジェクトのプロパティ名と値の配列の配列を返す
 
 それぞれ、オブジェクトのキー、値、キーと値の組み合わせを配列にして返します。
 
@@ -715,7 +715,7 @@ console.log(Object.entries(obj)); // => [["one", 1], ["two", 2], ["three", 3]]
 ```
 
 これらのプロパティを列挙する静的メソッドと配列の`forEach`メソッドなどを組み合わせれば、プロパティに対して反復処理ができます。
-次のコードでは、`Object.keys`メソッドで取得したプロパティ名の一覧をコンソールへ出力しています。
+次のコードでは、`Object.keys`静的メソッドで取得したプロパティ名の一覧をコンソールへ出力しています。
 
 {{book.console}}
 ```js
@@ -736,12 +736,12 @@ keys.forEach(key => {
 
 ### オブジェクトのマージと複製 {#copy-and-merge}
 
-`Object.assign`メソッド<sup>[ES2015]</sup>は、あるオブジェクトを別のオブジェクトに代入（assign）できます。
+`Object.assign`静的メソッド<sup>[ES2015]</sup>は、あるオブジェクトを別のオブジェクトに代入（assign）できます。
 このメソッドを使うことで、オブジェクトの複製やオブジェクト同士のマージができます。
 
-`Object.assign`メソッドは、`target`オブジェクトに対して、1つ以上の`sources`オブジェクトを指定します。
+`Object.assign`静的メソッドは、`target`オブジェクトに対して、1つ以上の`sources`オブジェクトを指定します。
 `sources`オブジェクト自身が持つ列挙可能なプロパティを第一引数の`target`オブジェクトに対してコピーします。
-`Object.assign`メソッドの返り値は、`target`オブジェクトになります。
+`Object.assign`静的メソッドの返り値は、`target`オブジェクトになります。
 
 <!-- doctest:disable -->
 ```js
@@ -753,7 +753,7 @@ const obj = Object.assign(target, ...sources);
 具体的なオブジェクトのマージの例を見ていきます。
 
 次のコードでは、新しく作った空のオブジェクトを`target`にしています。
-この空のオブジェクト（`target`）に`objectA`と`objectB`をマージしたものが、`Object.assign`メソッドの返り値となります。
+この空のオブジェクト（`target`）に`objectA`と`objectB`をマージしたものが、`Object.assign`静的メソッドの返り値となります。
 
 {{book.console}}
 ```js
@@ -780,7 +780,7 @@ console.log(merged === objectA); // => true
 ```
 
 空のオブジェクトを`target`にすることで、既存のオブジェクトには影響を与えずマージしたオブジェクトを作ることができます。
-そのため、`Object.assign`メソッドの第一引数には、空のオブジェクトリテラルを指定するのが典型的な利用方法です。
+そのため、`Object.assign`静的メソッドの第一引数には、空のオブジェクトリテラルを指定するのが典型的な利用方法です。
 
 このとき、プロパティ名が重複した場合は、後ろのオブジェクトのプロパティにより上書きされます。
 JavaScriptでは、基本的に処理は先頭から後ろへと順番に行います。
@@ -843,7 +843,7 @@ console.log(merged); // => { version: "b", other: "other" }
 
 JavaScriptには、オブジェクトを複製する関数は用意されていません。
 しかし、新しく空のオブジェクトを作成し、そこへ既存のオブジェクトのプロパティをコピーすれば、それはオブジェクトの複製をしていると言えます。
-次のように、`Object.assign`メソッドを使うことでオブジェクトを複製できます。
+次のように、`Object.assign`静的メソッドを使うことでオブジェクトを複製できます。
 
 <!-- textlint-enable preset-ja-technical-writing/max-ten -->
 
@@ -860,7 +860,7 @@ console.log(cloneObj); // => { a: "a" }
 console.log(obj === cloneObj); // => false
 ```
 
-注意点として、`Object.assign`メソッドは`sources`オブジェクトのプロパティを浅くコピー（shallow copy）する点です。
+注意点として、`Object.assign`静的メソッドは`sources`オブジェクトのプロパティを浅くコピー（shallow copy）する点です。
 shallow copyとは、`sources`オブジェクトの直下にあるプロパティだけをコピーするということです。
 そのプロパティの値がオブジェクトである場合に、ネストした先のオブジェクトまでも複製するわけではありません。
 

@@ -1119,7 +1119,7 @@ instance.method(); // "プロトタイプのメソッド"
 
 <!-- textlint-disable ja-technical-writing/sentence-length -->
 
-`[[Prototype]]`内部プロパティへプロパティのようにはアクセスできませんが、`Object.getPrototypeOf`メソッドで`[[Prototype]]`内部プロパティを参照できます。
+`[[Prototype]]`内部プロパティへプロパティのようにはアクセスできませんが、`Object.getPrototypeOf`静的メソッドで`[[Prototype]]`内部プロパティを参照できます。
 
 <!-- textlint-enable ja-technical-writing/sentence-length -->
 
@@ -1617,7 +1617,7 @@ console.log(array.first); // => 1
 console.log(array.last); // => 5
 ```
 
-`Array`を継承した`MyArray`は、`Array`が元々持つ`length`プロパティや`Array.from`メソッドなどを継承しているので利用できます。
+`Array`を継承した`MyArray`は、`Array`が元々持つ`length`プロパティや`Array.from`静的メソッドなどを継承しているので利用できます。
 
 ## まとめ {#conclusion}
 

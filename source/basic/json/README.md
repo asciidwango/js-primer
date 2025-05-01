@@ -58,7 +58,7 @@ console.log(obj.name); // => "js-primer"
 
 <!-- textlint-enable eslint -->
 
-文字列がJSONの配列を表す場合は、`JSON.parse`メソッドの返り値も配列になります。
+文字列がJSONの配列を表す場合は、`JSON.parse`静的メソッドの返り値も配列になります。
 
 {{book.console}}
 ```js
@@ -69,7 +69,7 @@ console.log(JSON.parse(json)); // => [1, 2, 3]
 与えられた文字列がJSON形式でパースできない場合は例外が投げられます。
 また、実際のアプリケーションでJSONを扱うのは、外部のプログラムとデータを交換する用途がほとんどです。
 外部のプログラムが送ってくるデータが常にJSONとして正しい保証はありません。
-そのため、`JSON.parse`メソッドは基本的に`try...catch`構文で例外処理をするべきです。
+そのため、`JSON.parse`静的メソッドは基本的に`try...catch`構文で例外処理をするべきです。
 
 {{book.console}}
 ```js
@@ -94,7 +94,7 @@ const obj = { id: 1, name: "js-primer", bio: null };
 console.log(JSON.stringify(obj)); // => '{"id":1,"name":"js-primer","bio":null}'
 ```
 
-`JSON.stringify`メソッドにはオプショナルな引数が2つあります。
+`JSON.stringify`静的メソッドにはオプショナルな引数が2つあります。
 第二引数はreplacer引数とも呼ばれ、関数あるいは配列を渡せます。
 関数を渡した場合は引数にプロパティのキーと値が渡され、その返り値によって文字列に変換される際の挙動をコントロールできます。
 次の例は値がnullであるプロパティを除外してJSONに変換するreplacer引数の例です。
@@ -155,7 +155,7 @@ console.log(JSON.stringify(obj, null, "\t"));
 
 ## JSONにシリアライズできないオブジェクト {#not-serialization-object}
 
-`JSON.stringify`メソッドはJSONで表現可能な値だけをシリアライズします。
+`JSON.stringify`静的メソッドはJSONで表現可能な値だけをシリアライズします。
 そのため、値が関数や`Symbol`、あるいは`undefined`であるプロパティなどは変換されません。
 ただし、配列の値としてそれらが見つかったときには例外的に`null`に置き換えられます。
 またキーが`Symbol`である場合にもシリアライズの対象外になります。
@@ -197,16 +197,16 @@ console.log(JSON.stringify({ x: map })); // => '{"x":{}}'
 オブジェクトがシリアライズされる際は、そのオブジェクトの列挙可能なプロパティだけが再帰的にシリアライズされます。
 `RegExp`や`Map`、`Set`などのインスタンスは列挙可能なプロパティを持たないため、空のオブジェクトに変換されます。
 
-また、`JSON.stringify`メソッドがシリアライズに失敗することもあります。
+また、`JSON.stringify`静的メソッドがシリアライズに失敗することもあります。
 よくあるのは、参照が循環しているオブジェクトをシリアライズしようとしたときに例外が投げられるケースです。
 たとえば次の例のように、あるオブジェクトのプロパティを再帰的にたどって自分自身が見つかるような場合はシリアライズが不可能となります。
-`JSON.parse`メソッドだけでなく、`JSON.stringify`メソッドも例外処理を行って安全に使いましょう。
+`JSON.parse`静的メソッドだけでなく、`JSON.stringify`静的メソッドも例外処理を行って安全に使いましょう。
 
 [import circular-reference.js](src/circular-reference.js)
 
 ## `toJSON`メソッドを使ったシリアライズ {#serialization-by-toJSON}
 
-オブジェクトが`toJSON`メソッドを持っている場合、`JSON.stringify`メソッドは既定の文字列変換ではなく`toJSON`メソッドの返り値を使います。
+オブジェクトが`toJSON`メソッドを持っている場合、`JSON.stringify`静的メソッドは既定の文字列変換ではなく`toJSON`メソッドの返り値を使います。
 次の例のように、引数に直接渡されたときだけでなく引数のプロパティとして登場したときにも再帰的に処理されます。
 
 {{book.console}}
