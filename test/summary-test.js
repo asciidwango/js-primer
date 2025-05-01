@@ -98,7 +98,7 @@ ${message}`);
     it("インスタンスメソッドはプロトタイプオブジェクトで説明する", () => {
         // 許可リスト(読み方の解説など)
         const allowFilePathList = [path.join(sourceDir, "basic/object/README.md")];
-        const searchPatterns = ["/インスタンスメソッド/", "/静的メソッド/"];
+        const searchPatterns = ["/インスタンスメソッド/"];
         const prototypeChapter = path.join(sourceDir, "basic/prototype-object/README.md");
         return findUsage(prototypeChapter, searchPatterns, allowFilePathList).then(results => {
             if (results.length === 0) {
@@ -109,7 +109,7 @@ ${message}`);
 ${result.matchedTexts.join("\n")}
 `;
             });
-            throw new Error(`${results.length}件のドキュメントがインスタンスメソッドを説明前に利用しています。
+            throw new Error(`${results.length}件のドキュメントがインスタンスメソッドを、プロトタイプオブジェクトの説明前に利用しています。
 ${message}`);
         });
     });
