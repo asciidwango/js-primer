@@ -20,10 +20,7 @@ const isIncludeVariableInExpression = (AST) => {
     // 例外
     // call({ x : 1})
     const Identifiers = esquery(AST, "*:not(Property) Identifier");
-    if (Identifiers.length > 0) {
-        return true;
-    }
-    return false;
+    return Identifiers.length > 0;
 };
 /**
  * コードで `評価式; // => 評価値` を利用している箇所で

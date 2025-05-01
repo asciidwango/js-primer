@@ -29,7 +29,7 @@ JavaScript Primerでは、jsprimer自体が変化をし続け、jsprimerを通�
 
 スポンサーの募集には、[JavaScript Primer - Open Collective](https://opencollective.com/jsprimer)を利用しています。
 Open Collectiveでは誰がどれだけサポートしているか、また誰かどれだけサポートを受けているかを透明性を持って公開できます。
-これによって、jsprimerの継続的な更新にかかってるコストを見える化していくことが目的です。
+これによって、jsprimerの継続的な更新にかかっているコストを見える化していくことが目的です。
 
 Open Collectiveで支援された資金は、JavaScript Primerの運営費用や継続的な更新に利用されます。
 
@@ -46,7 +46,7 @@ Open Collectiveで支援された資金は、JavaScript Primerの運営費用や
 企業向けのプランでスポンサーになると、次のような特典があります。
 
 - トップページへのロゴの掲載
-- リリースノートでのロゴの掲載
+- リリースノートへのロゴの掲載
 - 好きなページへのアイコンの掲載/ページスポンサー（任意）
 
 スポンサーとなる際に、次の情報を提供してください。
