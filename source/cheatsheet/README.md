@@ -283,6 +283,7 @@ ECMAScriptモジュールについて。
 | `import { x as y } from "./x.js"` | [ES2015] 名前付きインポートの**エイリアス** | [ECMAScriptモジュール][] | [Import](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import) |
 | `import * as x from "./x.js"` | [ES2015] **すべての名前付きエクスポートをインポート**してエイリアス | [ECMAScriptモジュール][] | [Import](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import) |
 | `import "./x.js"` | [ES2015] 副作用のための**インポート** |[ECMAScriptモジュール][] | [Import](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import) |
+| `import x from "./x.json" with { type: "json" }` | [ES2025] **インポート属性**を指定する | [ECMAScriptモジュール][] | [インポート属性](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/import/with) |
 | `export default x` | [ES2015] **デフォルトエクスポート** | [ECMAScriptモジュール][] | [Export](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export) |
 | `export { x }` | [ES2015] **名前付きエクスポート** | [ECMAScriptモジュール][] | [Export](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export) |
 | `export { x as y }` | [ES2015] 名前付きエクスポートの**エイリアス** | [ECMAScriptモジュール][] | [Export](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/export) |
