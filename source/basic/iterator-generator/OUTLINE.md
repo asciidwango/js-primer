@@ -109,10 +109,11 @@ console.log("LLM応答(擬似):", fullResponse);
     ```
     - `function*`構文
     - `yield`式
-5.  **イテレータの新しいメソッド (ES2025)**:
+5.  **イテレータのメソッド (ES2025+)**:
     - 目的： Iteratorは配列と同じように便利に使えるよという紹介
     - 導入の背景とメリット
     - 基本的なメソッドの紹介 (`.map`, `.filter`, `.take`, `.drop`, `.flatMap`, `.reduce`, `.toArray`, `.forEach`, `.some`, `.every`, `.find`)
+    - メソッドごとにセクションを切って紹介するイメージ
     - メソッドを使ったコード例
     ```js
     Iterator.from([1, 2, 3, 4, 5])  
