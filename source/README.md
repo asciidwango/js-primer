@@ -4,7 +4,7 @@
 - [はじめに](./intro/README.md)
   - [著者紹介](./intro/authors/README.md)
   - [JavaScript Primerスポンサー](./intro/sponsors/README.md)
-  - [読み始める前の事前準備](./intro/preparation/README.md)
+  - [読みはじめる前の事前準備](./intro/preparation/README.md)
   - [文章の間違いに気づいたら](./intro/feedback/README.md)
 - [第一部: 基本文法](./basic/README.md)
     - [JavaScriptとは](./basic/introduction/README.md)
