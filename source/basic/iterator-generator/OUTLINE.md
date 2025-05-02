@@ -18,18 +18,35 @@
 <!-- なぜこの章を追加するのか、技術的な背景や必要性を記述 -->
 
 - ES2015でのイテレータとジェネレータ導入後、JavaScript Primerでは基本的な解説に留まっていた
-- 近年の非同期処理の普及やデータストリーミング技術（例: LLMのServer-Sent Events）利用増加に伴う、イテレータやジェネレータの重要性の増大
+- 近年の非同期処理の普及やデータストリーミング技術（例: LLMのServer-Sent Events）利用増加に伴う、イテレータやジェネレータの重要性のあがってくる
 - ES2025でのイテレータの新しいメソッド導入によるイテレータ操作の簡便化・宣言的記述への対応。基礎となるイテレータとジェネレータの解説の必要性
+
+```js
+// 擬似的な応答チャンクを生成するジェネレータ関数
+function* generateLlmChunks() {
+  yield "応答チャンク1 ";
+  yield "応答チャンク2 ";
+  yield "応答チャンク3";
+}
+
+// ジェネレータからチャンクを取得し、結合して表示
+let fullResponse = "";
+for (const chunk of generateLlmChunks()) { fullResponse += chunk; }
+console.log("LLM応答(擬似):", fullResponse);
+```
 
 ## 目的
 
 <!-- この章を読むことで読者が何を学べるか、達成できることを記述 -->
 
+- Iterator/Generatorを見た時になんだこれ?と思わないようにする
 - IterableプロトコルとIteratorプロトコルの仕組みの理解
 - `for...of`ループの動作原理の理解
+- なぜイテレータが必要なのか、どのように使うのかの理解
 - ジェネレータ関数（`function*`と`yield`）の基本的な使い方の習得
 - イテレータやジェネレータの有用なユースケースの理解
 - ES2025で導入されるイテレータの新しいメソッドの基本的な使い方と利用のための基礎知識の習得
+    - ここで実用性がだいぶ上がってきている
 
 ## 目的ではないこと
 
@@ -60,26 +77,52 @@
 <!-- 章全体の構成案 -->
 
 1.  **はじめに**: イテレーションの重要性とこの章の概要
+    - 目的: Iteratorはなぜあるのかを知ってもらう
+    - Iteratorと配列の違い
+       - 遅延評価
+       - 無限リスト
+    - Iteratorは無限リストや巨大なデータを扱う場合に配列に比べて有利
+    - Why: Iteratorを処理する際に、配列は毎回全ての要素をメモリに読み込む必要があるが、Iteratorは必要な要素だけを逐次的に処理できるため、メモリ効率が良いという利点がある
+      - ここはあんまり細かい理論はしなくて、 n + n + n + n + ... みたいなイメージで説明したい
+      - ここは概念的な説明
 2.  **IterableプロトコルとIteratorプロトコル**:
+    - 目的: Iterator/Generator/Iterator Protocolのややこしい概念を簡単に知る。理解はしなくていいと思う
+    - シンプルなRangeのIteratorを作っての実装
     - `Symbol.iterator`とは
     - Iteratorオブジェクトの`next`メソッド
     - `for...of`ループの仕組み
 3.  **組み込みIterableオブジェクト**:
-    - Array, String, Map, Setなど
+    - 目的: IteratorはJavaScriptの色々なところに組み込まれていることを知ってもらう
+    - Array, String, Map, SetなどからIteratorを取得する方法を簡潔
 4.  **ジェネレータ関数**:
+    - 目的: 独自のIteratorを作る方法、ややAdvancedな気がする?
+    - サンプルコード: 無限リストを使ったもの?
+    - 無限リストを生成するジェネレータ関数の例:
+    ```js
+    function* infiniteNumbers() {
+        let index = 0;
+        while (true) {
+            yield index++;
+        }
+    }
+    console.log(infiniteNumbers().filter(n => n % 2 === 0).take(5).toArray()); // [0, 2, 4, 6, 8]
+    ```
     - `function*`構文
     - `yield`式
-    - ジェネレータオブジェクト (`Generator`)
-    - `yield*`式
 5.  **イテレータの新しいメソッド (ES2025)**:
+    - 目的： Iteratorは配列と同じように便利に使えるよという紹介
     - 導入の背景とメリット
     - 基本的なメソッドの紹介 (`.map`, `.filter`, `.take`, `.drop`, `.flatMap`, `.reduce`, `.toArray`, `.forEach`, `.some`, `.every`, `.find`)
     - メソッドを使ったコード例
-6.  **ユースケース**:
-    - 遅延評価（Lazy Evaluation）
-    - 無限シーケンスの生成
-    - データストリームの処理（概念）
-7.  **まとめ**
+    ```js
+    Iterator.from([1, 2, 3, 4, 5])  
+        .filter(x => x % 2 === 0)  // 偶数をフィルタリング  
+        .map(x => x * x)           // 2乗する  
+        .toArray();                // [4, 16]
+    ```
+6.  **まとめ**
+
+:memo: 2,3,4は順番を入れ替えるかミックスするかもしれない
 
 ## 参考
 
