@@ -1948,10 +1948,75 @@ set.<span class="hljs-title function_">forEach</span>(<span class="hljs-function
 }
 <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results); <span class="hljs-comment">// =&gt; ["a","b"]</span>
 </code></pre>
+<h3 id="set-operation-methods"><a name="set-operation-methods" class="plugin-anchor" href="#set-operation-methods"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2025] 集合演算メソッド </h3>
+<p>ES2025では、<code>Set</code>オブジェクトに集合演算を行うためのメソッドが追加されました。これらのメソッドは大きく2種類に分けられます。</p>
+<h4 id="set-creation-methods"><a name="set-creation-methods" class="plugin-anchor" href="#set-creation-methods"><i class="fa fa-link" aria-hidden="true"></i></a>新しい集合を返すメソッド </h4>
+<p>次のメソッドは、2つの集合から新しい<code>Set</code>オブジェクトを作成して返します。</p>
+<ul>
+<li><code>Set.prototype.union(other)</code><sup>[ES2025]</sup>: 和集合を返す（両方の集合のすべての要素を含む集合）</li>
+<li><code>Set.prototype.intersection(other)</code><sup>[ES2025]</sup>: 積集合を返す（両方の集合に共通する要素のみの集合）</li>
+<li><code>Set.prototype.difference(other)</code><sup>[ES2025]</sup>: 差集合を返す（元の集合から、引数の集合に含まれる要素を除いた集合）</li>
+<li><code>Set.prototype.symmetricDifference(other)</code><sup>[ES2025]</sup>: 対称差集合を返す（どちらか一方の集合にのみ含まれる要素の集合）</li>
+</ul>
+<p>具体的な例を見てみましょう。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2025" } --></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> setA = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]);
+<span class="hljs-keyword">const</span> setB = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>([<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>]);
+
+<span class="hljs-comment">// 和集合 (A∪B): セットAとセットBのすべての要素を含む集合</span>
+<span class="hljs-keyword">const</span> unionSet = setA.<span class="hljs-title function_">union</span>(setB);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>([...unionSet]); <span class="hljs-comment">// =&gt; [1, 2, 3, 4, 5, 6, 7]</span>
+
+<span class="hljs-comment">// 積集合 (A∩B): セットAとセットBの両方に存在する要素のみの集合</span>
+<span class="hljs-keyword">const</span> intersectionSet = setA.<span class="hljs-title function_">intersection</span>(setB);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>([...intersectionSet]); <span class="hljs-comment">// =&gt; [3, 4, 5]</span>
+
+<span class="hljs-comment">// 差集合 (A-B): セットAからセットBに含まれる要素を除いた集合</span>
+<span class="hljs-keyword">const</span> differenceSet = setA.<span class="hljs-title function_">difference</span>(setB);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>([...differenceSet]); <span class="hljs-comment">// =&gt; [1, 2]</span>
+
+<span class="hljs-comment">// 対称差集合 (A△B): セットAとセットBのどちらか一方にのみ存在する要素の集合</span>
+<span class="hljs-keyword">const</span> symmetricDifferenceSet = setA.<span class="hljs-title function_">symmetricDifference</span>(setB);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>([...symmetricDifferenceSet]); <span class="hljs-comment">// =&gt; [1, 2, 6, 7]</span>
+</code></pre>
+<p>これらの集合演算を視覚的に表すと次のようになります。</p>
+<p><img src="set-creation-methods.excalidraw.svg" alt="集合演算の図：和集合・積集合・差集合・対称差集合"></img></p>
+<h4 id="set-relation-methods"><a name="set-relation-methods" class="plugin-anchor" href="#set-relation-methods"><i class="fa fa-link" aria-hidden="true"></i></a>集合の関係を判定するメソッド </h4>
+<p>次のメソッドは、2つの集合の関係性を判定し、真偽値を返します。</p>
+<ul>
+<li><code>Set.prototype.isSubsetOf(other)</code><sup>[ES2025]</sup>: このセットが引数のセットの部分集合であるかの真偽値を返す</li>
+<li><code>Set.prototype.isSupersetOf(other)</code><sup>[ES2025]</sup>: このセットが引数のセットの上位集合であるかの真偽値を返す</li>
+<li><code>Set.prototype.isDisjointFrom(other)</code><sup>[ES2025]</sup>: このセットと引数のセットが互いに素（共通要素がない）であるかの真偽値を返す</li>
+</ul>
+<p>具体的な例を見てみましょう。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2025" } --></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> superSet = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]);
+<span class="hljs-keyword">const</span> subSet = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>([<span class="hljs-number">2</span>, <span class="hljs-number">3</span>]);
+<span class="hljs-keyword">const</span> overlappingSet = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>([<span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>]);
+<span class="hljs-keyword">const</span> disjointSet = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>([<span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>]);
+
+<span class="hljs-comment">// 部分集合の判定</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(subSet.<span class="hljs-title function_">isSubsetOf</span>(superSet)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(overlappingSet.<span class="hljs-title function_">isSubsetOf</span>(superSet)); <span class="hljs-comment">// =&gt; false</span>
+
+<span class="hljs-comment">// 上位集合の判定</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(superSet.<span class="hljs-title function_">isSupersetOf</span>(subSet)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(superSet.<span class="hljs-title function_">isSupersetOf</span>(overlappingSet)); <span class="hljs-comment">// =&gt; false</span>
+
+<span class="hljs-comment">// 互いに素（共通要素がない）の判定</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(superSet.<span class="hljs-title function_">isDisjointFrom</span>(disjointSet)); <span class="hljs-comment">// =&gt; true</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(superSet.<span class="hljs-title function_">isDisjointFrom</span>(overlappingSet)); <span class="hljs-comment">// =&gt; false</span>
+</code></pre>
+<p>これらの集合演算を視覚的に表すと次のようになります。</p>
+<p><img src="set-relation-methods.excalidraw.svg" alt="集合の関係の図：部分集合・上位集合・互いに素"></img></p>
+<p>これらのメソッドを使うことで、数学的な集合操作をより簡単かつ効率的に行えるようになります。</p>
 <h3 id="weakset"><a name="weakset" class="plugin-anchor" href="#weakset"><i class="fa fa-link" aria-hidden="true"></i></a>WeakSet </h3>
 <p><a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/WeakSet" target="_blank">WeakSet</a>は弱い参照で値を持つセットです。
 <code>WeakSet</code>は<code>Set</code>と似ていますが、iterableではないので追加した値を反復処理できません。
 つまり、<code>WeakSet</code>は値の追加と削除、存在確認以外のことができません。
+また、ES2025で<code>Set</code>に追加された集合演算メソッドも<code>WeakSet</code>では利用できません。
 データの格納ではなく、データの一意性を確認することに特化したセットと言えるでしょう。</p>
 <p>また、弱い参照で値を持つ特性上、<code>WeakSet</code>の値として使えるのは参照型のオブジェクトと<code>Symbol</code><sup><a href="#fn_es2023" id="reffn_es2023">es2023</a></sup>だけです。</p>
 <h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>まとめ </h2>
@@ -1998,7 +2063,7 @@ set.<span class="hljs-title function_">forEach</span>(<span class="hljs-function
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"author":"laco","description":"データの集合を扱うビルトインオブジェクトであるMapとSetについてを紹介します。オブジェクトの作成方法や更新方法から実際にどのようなケースで使うのかを紹介します。","sponsors":[],"title":"Map/Set","level":"1.3.23","depth":2,"next":{"title":"JSON","level":"1.3.24","depth":2,"path":"basic/json/README.md","ref":"./basic/json/README.md","articles":[]},"previous":{"title":"非同期処理:Promise/Async Function","level":"1.3.22","depth":2,"path":"basic/async/README.md","ref":"./basic/async/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/map-and-set/README.md","mtime":"2025-05-19T02:26:41.521Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-05-19T02:26:56.554Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"author":"laco","description":"データの集合を扱うビルトインオブジェクトであるMapとSetについてを紹介します。オブジェクトの作成方法や更新方法から実際にどのようなケースで使うのかを紹介します。","sponsors":[],"title":"Map/Set","level":"1.3.23","depth":2,"next":{"title":"JSON","level":"1.3.24","depth":2,"path":"basic/json/README.md","ref":"./basic/json/README.md","articles":[]},"previous":{"title":"非同期処理:Promise/Async Function","level":"1.3.22","depth":2,"path":"basic/async/README.md","ref":"./basic/async/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/map-and-set/README.md","mtime":"2025-05-19T14:46:16.685Z","type":"markdown"},"gitbook":{"version":"6.0.2","time":"2025-05-19T14:46:28.920Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
