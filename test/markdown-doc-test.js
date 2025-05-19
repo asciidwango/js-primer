@@ -28,19 +28,19 @@ const IgnoredECMAScriptVersions = (() => {
         return ["2025"]; // RegExp Pattern Modifiersは通らない
     }
     if (semver.cmp(process.version, ">=", "20.0.0")) {
-        return ["2024"]; // Object.groupByがサポートされていない
+        return ["2024", "2025"]; // Object.groupByがサポートされていない
     }
     if (semver.cmp(process.version, ">=", "18.0.0")) {
-        return ["2023"]; // Array.prototype.withがサポートされていない
+        return ["2023", "2024", "2025"]; // Array.prototype.withがサポートされていない
     }
     if (semver.cmp(process.version, ">=", "16.0.0")) {
         // Array.prototype.findLastIndex をサポートしていない
-        return ["2023"];
+        return ["2023", "2024", "2025"];
     }
     if (semver.cmp(process.version, ">=", "14.0.0")) {
         // String#replaceAll をサポートしていない
         // Top-Level await をサポートしていない
-        return ["2021", "2022"];
+        return ["2021", "2022", "2023", "2024", "2025"];
     }
     return ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"];
 })();

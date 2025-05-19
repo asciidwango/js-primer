@@ -495,11 +495,91 @@ for (const value of set) {
 console.log(results); // => ["a","b"]
 ```
 
+### [ES2025] 集合演算メソッド {#set-operation-methods}
+
+ES2025では、`Set`オブジェクトに集合演算を行うためのメソッドが追加されました。これらのメソッドは大きく2種類に分けられます。
+
+#### 新しい集合を返すメソッド {#set-creation-methods}
+
+次のメソッドは、2つの集合から新しい`Set`オブジェクトを作成して返します。
+
+- `Set.prototype.union(other)`<sup>[ES2025]</sup>: 和集合を返す（両方の集合のすべての要素を含む集合）
+- `Set.prototype.intersection(other)`<sup>[ES2025]</sup>: 積集合を返す（両方の集合に共通する要素のみの集合）
+- `Set.prototype.difference(other)`<sup>[ES2025]</sup>: 差集合を返す（元の集合から、引数の集合に含まれる要素を除いた集合）
+- `Set.prototype.symmetricDifference(other)`<sup>[ES2025]</sup>: 対称差集合を返す（どちらか一方の集合にのみ含まれる要素の集合）
+
+具体的な例を見てみましょう。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
+```js
+const setA = new Set([1, 2, 3, 4, 5]);
+const setB = new Set([3, 4, 5, 6, 7]);
+
+// 和集合 (A∪B): セットAとセットBのすべての要素を含む集合
+const unionSet = setA.union(setB);
+console.log([...unionSet]); // => [1, 2, 3, 4, 5, 6, 7]
+
+// 積集合 (A∩B): セットAとセットBの両方に存在する要素のみの集合
+const intersectionSet = setA.intersection(setB);
+console.log([...intersectionSet]); // => [3, 4, 5]
+
+// 差集合 (A-B): セットAからセットBに含まれる要素を除いた集合
+const differenceSet = setA.difference(setB);
+console.log([...differenceSet]); // => [1, 2]
+
+// 対称差集合 (A△B): セットAとセットBのどちらか一方にのみ存在する要素の集合
+const symmetricDifferenceSet = setA.symmetricDifference(setB);
+console.log([...symmetricDifferenceSet]); // => [1, 2, 6, 7]
+```
+
+これらの集合演算を視覚的に表すと次のようになります。
+
+![集合演算の図：和集合・積集合・差集合・対称差集合](./set-creation-methods.excalidraw.svg)
+
+#### 集合の関係を判定するメソッド {#set-relation-methods}
+
+次のメソッドは、2つの集合の関係性を判定し、真偽値を返します。
+
+- `Set.prototype.isSubsetOf(other)`<sup>[ES2025]</sup>: このセットが引数のセットの部分集合であるかの真偽値を返す
+- `Set.prototype.isSupersetOf(other)`<sup>[ES2025]</sup>: このセットが引数のセットの上位集合であるかの真偽値を返す
+- `Set.prototype.isDisjointFrom(other)`<sup>[ES2025]</sup>: このセットと引数のセットが互いに素（共通要素がない）であるかの真偽値を返す
+
+具体的な例を見てみましょう。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
+```js
+const superSet = new Set([1, 2, 3, 4, 5]);
+const subSet = new Set([2, 3]);
+const overlappingSet = new Set([3, 4, 5, 6]);
+const disjointSet = new Set([6, 7, 8]);
+
+// 部分集合の判定
+console.log(subSet.isSubsetOf(superSet)); // => true
+console.log(overlappingSet.isSubsetOf(superSet)); // => false
+
+// 上位集合の判定
+console.log(superSet.isSupersetOf(subSet)); // => true
+console.log(superSet.isSupersetOf(overlappingSet)); // => false
+
+// 互いに素（共通要素がない）の判定
+console.log(superSet.isDisjointFrom(disjointSet)); // => true
+console.log(superSet.isDisjointFrom(overlappingSet)); // => false
+```
+
+これらの集合演算を視覚的に表すと次のようになります。
+
+![集合の関係の図：部分集合・上位集合・互いに素](./set-relation-methods.excalidraw.svg)
+
+これらのメソッドを使うことで、数学的な集合操作をより簡単かつ効率的に行えるようになります。
+
 ### WeakSet {#weakset}
 
 [WeakSet][]は弱い参照で値を持つセットです。
 `WeakSet`は`Set`と似ていますが、iterableではないので追加した値を反復処理できません。
 つまり、`WeakSet`は値の追加と削除、存在確認以外のことができません。
+また、ES2025で`Set`に追加された集合演算メソッドも`WeakSet`では利用できません。
 データの格納ではなく、データの一意性を確認することに特化したセットと言えるでしょう。
 
 また、弱い参照で値を持つ特性上、`WeakSet`の値として使えるのは参照型のオブジェクトと`Symbol`[^es2023]だけです。
