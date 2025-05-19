@@ -147,6 +147,19 @@ for (const [key, value] of map) {
 console.log(results); // => ["key1:value1","key2:value2"]
 ```
 
+また、iterableなオブジェクトはSpread構文での展開も可能であるため、次のように`Map`を配列に展開できます。
+
+{{book.console}}
+```js
+const map = new Map([["key1", "value1"], ["key2", "value2"]]);
+// MapオブジェクトをSpread構文で展開すると[キー, 値]のペア（エントリー）からなる配列になる
+console.log([...map]); // => [["key1", "value1"], ["key2", "value2"]]
+
+// キーだけや値だけを取り出すこともできる
+console.log([...map.keys()]); // => ["key1", "key2"]
+console.log([...map.values()]); // => ["value1", "value2"]
+```
+
 ### [ES2024] `Map.groupBy`静的メソッド {#map-group-by}
 
 `Map.groupBy`静的メソッドでは、配列からグループ分けしたマップを作成できます。
@@ -493,6 +506,15 @@ for (const value of set) {
     results.push(value);
 }
 console.log(results); // => ["a","b"]
+```
+
+また、iterableなオブジェクトはSpread構文での展開も可能であるため、次のように`Set`を配列に展開できます。
+
+{{book.console}}
+```js
+const set = new Set(["a", "b"]);
+// SetオブジェクトをSpread構文で展開できる
+console.log([...set]); // => ["a", "b"]
 ```
 
 ### [ES2025] 集合演算メソッド {#set-operation-methods}
