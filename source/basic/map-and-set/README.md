@@ -511,6 +511,7 @@ ES2025では、`Set`オブジェクトに集合演算を行うためのメソッ
 具体的な例を見てみましょう。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
 ```js
 const setA = new Set([1, 2, 3, 4, 5]);
 const setB = new Set([3, 4, 5, 6, 7]);
@@ -547,6 +548,7 @@ console.log([...symmetricDifferenceSet]); // => [1, 2, 6, 7]
 具体的な例を見てみましょう。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
 ```js
 const superSet = new Set([1, 2, 3, 4, 5]);
 const subSet = new Set([2, 3]);
