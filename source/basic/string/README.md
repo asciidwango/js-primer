@@ -1124,10 +1124,10 @@ console.log(toDateJa("今日は2017-03-01です")); // => "今日は2017年03月
 // `baseURL`と`pathname`にあるリソースを取得する
 function getResource(baseURL, pathname) {
     const url = baseURL + pathname;
-    console.log(url); // => "http://example.com/resouces/example.js"
+    console.log(url); // => "http://example.com/resources/example.js"
     // 省略) リソースを取得する処理...
 }
-const baseURL = "http://example.com/resouces";
+const baseURL = "http://example.com/resources";
 const pathname = "/example.js";
 getResource(baseURL, pathname);
 ```
@@ -1142,10 +1142,10 @@ getResource(baseURL, pathname);
 function getResource(baseURL, pathname) {
     const url = baseURL + pathname;
     // `/` と `/` が２つ重なってしまっている
-    console.log(url); // => "http://example.com/resouces//example.js"
+    console.log(url); // => "http://example.com/resources//example.js"
     // 省略) リソースを取得する処理...
 }
-const baseURL = "http://example.com/resouces/";
+const baseURL = "http://example.com/resources/";
 const pathname = "/example.js";
 getResource(baseURL, pathname);
 ```
@@ -1170,10 +1170,10 @@ function baseJoin(baseURL, pathname) {
 function getResource(baseURL, pathname) {
     const url = baseJoin(baseURL, pathname);
     // baseURLの末尾に / があってもなくても同じ結果となる
-    console.log(url); // => "http://example.com/resouces/example.js"
+    console.log(url); // => "http://example.com/resources/example.js"
     // 省略) リソースを取得する処理...
 }
-const baseURL = "http://example.com/resouces/";
+const baseURL = "http://example.com/resources/";
 const pathname = "/example.js";
 getResource(baseURL, pathname);
 ```
