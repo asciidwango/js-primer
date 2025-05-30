@@ -230,6 +230,13 @@ const { namedExport } = module;
 
 [import, title="main.js"](src/import-attributes.js)
 
+また、Dynamic Importでも、第二引数で同様に属性オブジェクトの指定が可能です。
+
+<!-- doctest:disable -->
+```js
+const jsonData = await import("./data.json", { with: { type: "json" } });
+```
+
 実行環境によってサポートしているインポート属性の`type`は異なりますが、ブラウザではJSON以外にCSSなどもサポートしています。
 
 ## ECMAScriptモジュールを実行する {#run-es-modules}
