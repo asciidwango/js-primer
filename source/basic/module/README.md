@@ -165,8 +165,8 @@ Dynamic Importとは、ES2020で追加された、実行時に動的にモジュ
 
 Dynamic Importを使うと、ユーザーがボタンをクリックしたときのみ機能を読み込んだり、大きなライブラリを必要になったタイミングで読み込んだりなどが可能になります。
 
-Dynamic Importは、`import()`演算子という関数呼び出しによく似た構文を使って行います。
-この関数はPromiseを返すため、`.then()`メソッドや`async`/`await`構文と組み合わせて使います。
+Dynamic Importは、`import`演算子という関数呼び出しによく似た構文を使って行います。
+この関数はPromiseを返すため、`.then`メソッドや`async`/`await`構文と組み合わせて使います。
 
 次の例では、条件に応じて異なるモジュールを動的にインポートしています。
 
@@ -177,11 +177,11 @@ Dynamic Importは、`import()`演算子という関数呼び出しによく似�
 const condition = true;
 
 if (condition) {
-    import('./math-utils.js')
+    import("./math-utils.js")
         .then((module) => {
             // インポートしたモジュールを使用
             console.log(module.add(1, 2));
-        })
+        });
 }
 ```
 
@@ -192,7 +192,7 @@ if (condition) {
 // async関数内でawaitを使用
 async function loadModule() {
     try {
-        const module = await import('./math-utils.js');
+        const module = await import("./math-utils.js");
         console.log(module.add(1, 2)); // => 3
     } catch (error) {
         console.error(error);
@@ -203,7 +203,7 @@ async function loadModule() {
 <!-- doctest:disable -->
 ```js
 // ES2022のTop-Level Awaitを使用（モジュールのトップレベルで直接await）
-const module = await import('./math-utils.js');
+const module = await import("./math-utils.js");
 console.log(module.add(1, 2)); // => 3
 ```
 
@@ -211,7 +211,7 @@ Dynamic Importで読み込まれたモジュールは、通常のインポート
 
 <!-- doctest:disable -->
 ```js
-const module = await import('./my-module.js');
+const module = await import("./my-module.js");
 // デフォルトエクスポートにアクセス
 const defaultValue = module.default;
 // 名前つきエクスポートにアクセス
