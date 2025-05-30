@@ -16,17 +16,17 @@ const duplicateGfm = (item) => {
     ];
 };
 const flatten = (array, depth) => {
-    const flattend = [];
+    const flattened = [];
     (function flat(array, depth) {
         for (const el of array) {
             if (Array.isArray(el) && depth > 0) {
                 flat(el, depth - 1);
             } else {
-                flattend.push(el);
+                flattened.push(el);
             }
         }
     })(array, Math.floor(depth) || 1);
-    return flattend;
+    return flattened;
 };
 /**
  * --gfm を実装してるファイルは--gfm版もテスト対象にする
