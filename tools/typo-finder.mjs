@@ -1,14 +1,13 @@
 // LICENSE : MIT
-"use strict";
-const globby = require("globby");
-const fs = require("fs");
-const path = require("path");
-const sourceDir = path.join(__dirname, "..", "source");
-const remark = require("remark")();
-const { selectAll } = require("unist-util-select");
-const levenshtein = require("js-levenshtein");
+import { remark } from "remark";
+import globby from "globby";
+import fs from "fs";
+import path from "path";
+import { selectAll } from "unist-util-select";
+import levenshtein from "js-levenshtein";
+const sourceDir = path.join(import.meta.dirname, "..", "source");
 /**
- * Usage: node typo-finder.js
+ * Usage: node typo-finder.mjs
  *
  * Find typo using levenshtein algorithm.
  */
