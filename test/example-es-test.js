@@ -1,4 +1,4 @@
-import globby from "globby";
+import { globbySync } from "globby";
 import path from "node:path";
 import url from "node:url";
 
@@ -11,7 +11,7 @@ const sourceDir = path.join(__dirname, "..", "source");
  * Note: ESMには対応していない
  **/
 describe("example:es", function() {
-    const esmFiles = globby.sync([
+    const esmFiles = globbySync([
         `${sourceDir}/use-case/todoapp/**/*-example.js`, // *-example.js
         `${sourceDir}/use-case/todoapp/**/*.example.js`, // *.example.js
         `${sourceDir}/use-case/nodecli/**/example/**/*.js`,

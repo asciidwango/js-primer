@@ -2,7 +2,7 @@
  * Usage: node tools/update-package-lock.mjs
  * Description: This script updates the package-lock.json for aligned with npm version
  */
-import globby from "globby";
+import { globby } from "globby";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFile } from "node:child_process";

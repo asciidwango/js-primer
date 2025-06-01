@@ -3,7 +3,7 @@
 import { test } from "@power-doctest/tester";
 import { parse } from "@power-doctest/markdown";
 import { toTestCode } from "./lib/testing-code.js";
-import globby from "globby";
+import { globbySync } from "globby";
 import fs from "node:fs";
 import path from "node:path";
 import semver from "semver";
@@ -55,7 +55,7 @@ const IgnoredECMAScriptVersions = (() => {
  * その他詳細は CONTRIBUTING.md を読む
  **/
 describe("doctest:md", function() {
-    const files = globby.sync([
+    const files = globbySync([
         `${sourceDir}/**/*.md`,
         `!${sourceDir}/**/node_modules{,/**}`,
         `!**/OUTLINE.md`
