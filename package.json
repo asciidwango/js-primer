@@ -112,7 +112,7 @@
     "textlint-rule-static-method-syntax": "workspace:textlint-rule-static-method-syntax",
     "textstat": "^0.8.0",
     "typescript": "^5.8.3",
-    "unist-util-select": "^3.0.4",
+    "unist-util-select": "^5.1.0",
     "wait-on": "^8.0.3"
   }
 }
