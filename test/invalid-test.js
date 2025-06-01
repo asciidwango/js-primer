@@ -1,7 +1,7 @@
 import { runTestCode, toStrictIfNeeded } from "./lib/testing-code.js";
 
 import assert from "node:assert";
-import globby from "globby";
+import { globbySync } from "globby";
 import fs from "node:fs";
 import url from "node:url";
 import path from "node:path";
@@ -12,7 +12,7 @@ const sourceDir = path.join(__dirname, "..", "source");
  * `*-invalid.js` が実行 または パースエラーとなることをテストする
  **/
 describe("invalid:js", function() {
-    const files = globby.sync([
+    const files = globbySync([
         `${sourceDir}/**/*-invalid.js`,
         `${sourceDir}/**/invalid/**/*.js`,
         `!${sourceDir}/**/node_modules{,/**}`

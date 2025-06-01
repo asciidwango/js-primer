@@ -1,6 +1,6 @@
 // LICENSE : MIT
 import { remark } from "remark";
-import globby from "globby";
+import { globbySync } from "globby";
 import fs from "fs";
 import path from "path";
 import { selectAll } from "unist-util-select";
@@ -11,7 +11,7 @@ const sourceDir = path.join(import.meta.dirname, "..", "source");
  *
  * Find typo using levenshtein algorithm.
  */
-const files = globby.sync([
+const files = globbySync([
     `${sourceDir}/**/*.md`,
     `!${sourceDir}/**/node_modules{,/**}`,
     `!**/OUTLINE.md`

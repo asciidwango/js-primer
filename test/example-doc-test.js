@@ -1,4 +1,4 @@
-import globby from "globby";
+import { globbySync } from "globby";
 import fs from "node:fs";
 import path from "node:path";
 import { test } from "@power-doctest/tester";
@@ -19,7 +19,7 @@ const sourceDir = path.join(__dirname, "..", "source");
  * Note: ESMには対応していない
  **/
 describe("example:js", function() {
-    const files = globby.sync([
+    const files = globbySync([
         `${sourceDir}/**/*-example.js`, // *-example.js
         `${sourceDir}/**/*.example.js`, // *.example.js
         `${sourceDir}/**/example/*.js`, // example/*.js

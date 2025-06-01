@@ -3,14 +3,14 @@
 import fs from "node:fs";
 import assert from "node:assert";
 import path from "node:path";
-import globby from "globby";
+import { globbySync } from "globby";
 import parseFrontMatter from "front-matter";
 import url from "node:url";
 const __filename__ = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename__);
 const sourceDir = path.join(__dirname, "..", "source");
 describe("front-matter", function() {
-    const files = globby.sync([
+    const files = globbySync([
         `${sourceDir}/**/*.md`,
         `!${sourceDir}/**/node_modules{,/**}`,
         // 目次は除く
