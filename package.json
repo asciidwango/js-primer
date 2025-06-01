@@ -112,9 +112,6 @@
     "textlint-rule-static-method-syntax": "workspace:textlint-rule-static-method-syntax",
     "textstat": "^0.8.0",
     "typescript": "^5.8.3",
-    "unist-util-find-all-between": "^2.1.0",
-    "unist-util-find-before": "^2.0.5",
-    "unist-util-parents": "^1.0.3",
     "unist-util-select": "^3.0.4",
     "wait-on": "^8.0.3"
   }
