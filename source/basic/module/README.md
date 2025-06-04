@@ -215,7 +215,7 @@ const module = await import("./my-module.js");
 // デフォルトエクスポートにアクセス
 const defaultValue = module.default;
 // 名前つきエクスポートにアクセス
-const { namedExport } = module;
+const namedExport = module.namedExport
 ```
 
 #### [ES2025] インポート属性 {#import-attributes}
