@@ -168,7 +168,7 @@ Dynamic Importを使うと、ユーザーがボタンをクリックしたとき
 Dynamic Importは、`import`演算子という関数呼び出しによく似た構文を使って行います。
 この関数はPromiseを返すため、`.then`メソッドや`async`/`await`構文と組み合わせて使います。
 
-次の例では、条件に応じて異なるモジュールを動的にインポートしています。
+次のコードでは、`condition`変数が`true`の時に、`./math-utils.js`というモジュールを動的にインポートしています。
 
 [import, title="math-utils.js"](src/math-utils.js)
 
