@@ -185,7 +185,7 @@ if (condition) {
 }
 ```
 
-また、Top-Level Awaitと組み合わせることで、より簡潔に書くこともできます。
+Dynamic Importの結果はPromiseであるため、await式と組み合わせることで、より簡潔に書くこともできます。
 
 <!-- doctest:disable -->
 ```js
