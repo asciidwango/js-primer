@@ -230,7 +230,7 @@ const namedExport = module.namedExport
 
 [import, title="main.js"](src/import-attributes.js)
 
-また、Dynamic Importでも、第二引数で同様に属性オブジェクトの指定が可能です。
+また、Dynamic Importでも、第二引数で同様に属性をオブジェクトとして指定できます。
 
 <!-- doctest:disable -->
 ```js
