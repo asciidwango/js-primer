@@ -200,6 +200,8 @@ async function loadModule() {
 }
 ```
 
+また、Top-Level awaitと組みわせることで、静的な`import`文とよく似た書き方もできます。
+
 <!-- doctest:disable -->
 ```js
 // ES2022のTop-Level Awaitを使用（モジュールのトップレベルで直接await）
