@@ -168,7 +168,7 @@ Dynamic Importを使うと、ユーザーがボタンをクリックしたとき
 Dynamic Importは、`import`演算子という関数呼び出しによく似た構文を使って行います。
 この関数はPromiseを返すため、`.then`メソッドや`async`/`await`構文と組み合わせて使います。
 
-次のコードでは、`condition`変数が`true`の時に、`./math-utils.js`というモジュールを動的にインポートしています。
+次のコードでは、`condition`変数が`true`のときに、`./math-utils.js`というモジュールを動的にインポートしています。
 
 [import, title="math-utils.js"](src/math-utils.js)
 
@@ -217,7 +217,7 @@ const module = await import("./my-module.js");
 // デフォルトエクスポートにアクセス
 const defaultValue = module.default;
 // 名前つきエクスポートにアクセス
-const namedExport = module.namedExport
+const namedExport = module.namedExport;
 ```
 
 #### [ES2025] インポート属性 {#import-attributes}
