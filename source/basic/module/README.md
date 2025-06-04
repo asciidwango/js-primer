@@ -207,7 +207,7 @@ const module = await import("./math-utils.js");
 console.log(module.add(1, 2)); // => 3
 ```
 
-Dynamic Importで読み込まれたモジュールは、通常のインポートと同じように名前つきエクスポートやデフォルトエクスポートにアクセスできます。
+Dynamic Importで読み込まれたモジュールは、`import`文で読み込んだ場合と同じようにデフォルトエクスポートや名前つきエクスポートにアクセスできます。
 
 <!-- doctest:disable -->
 ```js
