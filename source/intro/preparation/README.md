@@ -114,6 +114,22 @@ JavaScriptという言語は、常に変化している言語としても知ら�
 
  -->
 
+## 学習リソース {#learning-resources}
+
+この書籍の学習を補完するリソースとして、次のNotebookLMのページを用意しています。
+NotebookLMでは、自然言語で書籍について質問をしたり、対話しながら学習を進めることができます。
+
+- [JavaScript Primer - NotebookLM](https://notebooklm.google.com/notebook/99f77ebb-4c13-411d-9474-ec18b2278098)
+
+たとえば、NotebookLMは次のような質問をしたりできます。
+
+- 「JavaScriptのクロージャーとは何ですか？」
+- 「Promiseとasync/awaitの違いは何ですか？」
+- 「オブジェクトの章の内容を要約してください」
+- 「配列の操作方法について書かれている章はどこですか？」
+
+内容について疑問があるときや、理解を深めたいときに活用してください。
+
 [Microsoft Edge]: https://www.microsoft.com/ja-jp/edge/home?form=MA13FJ
 [Firefox]: https://www.mozilla.org/ja/firefox/new/
 [Google Chrome]: https://www.google.com/intl/ja_ALL/chrome/
