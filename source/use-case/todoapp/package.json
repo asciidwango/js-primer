@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "cypress": "^4.9.0",
-    "mocha": "^10.8.2",
+    "mocha": "^11.5.0",
     "start-server-and-test": "^2.0.3"
   }
 }
