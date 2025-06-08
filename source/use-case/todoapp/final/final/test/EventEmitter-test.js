@@ -1,10 +1,10 @@
 import assert from "node:assert";
-import { suite, test } from "node:test";
+import { describe, it } from "node:test";
 import { EventEmitter } from "../src/EventEmitter.js";
 
-suite("EventEmitter", function() {
-    suite("#addEventListener", function() {
-        test("should set event listener to the key", () => {
+describe("EventEmitter", function() {
+    describe("#addEventListener", function() {
+        it("should set event listener to the key", () => {
             return new Promise((resolve) => {
                 const emitter = new EventEmitter();
                 const key = "event-key";
@@ -15,8 +15,8 @@ suite("EventEmitter", function() {
             });
         });
     });
-    suite("#emit", function() {
-        test("should pass data to the listeners", () => {
+    describe("#emit", function() {
+        it("should pass data to the listeners", () => {
             const emitter = new EventEmitter();
             const key = "event-key";
             let isListenerCalled = false;
@@ -27,8 +27,8 @@ suite("EventEmitter", function() {
             assert.ok(isListenerCalled, "listener should be called");
         });
     });
-    suite("#removeEventListener", () => {
-        test("should unset event listener ", () => {
+    describe("#removeEventListener", () => {
+        it("should unset event listener ", () => {
             return new Promise((resolve, reject) => {
                 const emitter = new EventEmitter();
                 const key = "event-key";
