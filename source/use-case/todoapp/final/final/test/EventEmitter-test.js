@@ -1,19 +1,22 @@
 import assert from "node:assert";
+import { describe, it } from "node:test";
 import { EventEmitter } from "../src/EventEmitter.js";
 
 describe("EventEmitter", function() {
     describe("#addEventListener", function() {
-        it("should set event listener to the key", function(done) {
-            const emitter = new EventEmitter();
-            const key = "event-key";
-            emitter.addEventListener(key, function() {
-                done();
+        it("should set event listener to the key", () => {
+            return new Promise((resolve) => {
+                const emitter = new EventEmitter();
+                const key = "event-key";
+                emitter.addEventListener(key, function() {
+                    resolve();
+                });
+                emitter.emit(key);
             });
-            emitter.emit(key);
         });
     });
     describe("#emit", function() {
-        it("should pass data to the listeners", function() {
+        it("should pass data to the listeners", () => {
             const emitter = new EventEmitter();
             const key = "event-key";
             let isListenerCalled = false;
@@ -24,18 +27,20 @@ describe("EventEmitter", function() {
             assert.ok(isListenerCalled, "listener should be called");
         });
     });
-    describe("#removeEventListener", function() {
-        it("should unset event listener ", function(done) {
-            const emitter = new EventEmitter();
-            const key = "event-key";
-            const listener = function() {
-                done(new Error("should not called"));
-            };
-            emitter.addEventListener(key, listener);
-            emitter.removeEventListener(key, listener);
-            emitter.emit(key);
-            emitter.addEventListener(key, done);
-            emitter.emit(key);
+    describe("#removeEventListener", () => {
+        it("should unset event listener ", () => {
+            return new Promise((resolve, reject) => {
+                const emitter = new EventEmitter();
+                const key = "event-key";
+                const listener = function() {
+                    reject(new Error("should not called"));
+                };
+                emitter.addEventListener(key, listener);
+                emitter.removeEventListener(key, listener);
+                emitter.emit(key);
+                emitter.addEventListener(key, resolve);
+                emitter.emit(key);
+            });
         });
     });
 });

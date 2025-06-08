@@ -1,4 +1,5 @@
 import assert from "node:assert";
+import { describe, it } from "node:test";
 import { TodoItemModel } from "../src/model/TodoItemModel.js";
 import { TodoListModel } from "../src/model/TodoListModel.js";
 
@@ -9,7 +10,7 @@ const assertTodo = (todo) => {
     assert.ok(typeof todo.completed === "boolean");
 };
 
-describe("TodoList", function() {
+describe("TodoList", () => {
     describe("#add", () => {
         it("should add new Todo Item", () => {
             const list = new TodoListModel();
