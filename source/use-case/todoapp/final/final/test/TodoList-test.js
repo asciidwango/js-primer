@@ -1,4 +1,5 @@
 import assert from "node:assert";
+import { suite, test } from "node:test";
 import { TodoItemModel } from "../src/model/TodoItemModel.js";
 import { TodoListModel } from "../src/model/TodoListModel.js";
 
@@ -9,9 +10,9 @@ const assertTodo = (todo) => {
     assert.ok(typeof todo.completed === "boolean");
 };
 
-describe("TodoList", function() {
-    describe("#add", () => {
-        it("should add new Todo Item", () => {
+suite("TodoList", () => {
+    suite("#add", () => {
+        test("should add new Todo Item", () => {
             const list = new TodoListModel();
             list.addTodo(new TodoItemModel({ title: "test", completed: false }));
             const todoItems = list.getTodoItems();
@@ -19,8 +20,8 @@ describe("TodoList", function() {
             assertTodo(todoItems[0]);
         });
     });
-    describe("#update", () => {
-        it("should update new Todo Item", () => {
+    suite("#update", () => {
+        test("should update new Todo Item", () => {
             const list = new TodoListModel();
             const todoItem = new TodoItemModel({ title: "test", completed: false });
             list.addTodo(todoItem);
@@ -29,8 +30,8 @@ describe("TodoList", function() {
             assert.strictEqual(todoItems[0].completed, true);
         });
     });
-    describe("#delete", () => {
-        it("should remove new Todo Item", () => {
+    suite("#delete", () => {
+        test("should remove new Todo Item", () => {
             const list = new TodoListModel();
             const todoItem = new TodoItemModel({ title: "test", completed: false });
             list.addTodo(todoItem);
