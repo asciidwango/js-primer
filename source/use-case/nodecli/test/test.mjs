@@ -95,7 +95,7 @@ const testTargetFileList = [
 
 describe("use-case/nodecli", () => {
     testTargetFileList.forEach(({ filePath, args, outputId }) => {
-        const testFileId = outputId || filePath;
+        const testFileId = outputId ?? filePath;
         const testFileName = path.relative(nodecliDir, testFileId);
         it(`snapshot test ${testFileName}`, async() => {
             const fileArgs = args || [];
