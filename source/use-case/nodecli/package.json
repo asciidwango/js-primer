@@ -7,12 +7,12 @@
     "pretest": "bash bootstrap.sh",
     "updateSnapshot": "UPDATE_SNAPSHOT=1 npm run unitest",
     "test": "npm run unitest",
-    "unitest": "node --test test/test.js"
+    "unitest": "node --test test/test.mjs"
   },
   "keywords": [],
   "author": "azu",
   "license": "MIT",
   "devDependencies": {
-    "execa": "^4.0.0"
+    "execa": "^9.6.0"
   }
 }

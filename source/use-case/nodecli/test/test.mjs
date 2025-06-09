@@ -1,10 +1,10 @@
-const fs = require("fs");
-const path = require("path");
-const assert = require("assert");
-const { describe, it } = require("node:test");
-const execa = require("execa");
-const nodecliDir = path.join(__dirname, "../");
-const snapshotDir = path.join(__dirname, "snapshots");
+import fs from "fs";
+import path from "path";
+import { describe, it } from "node:test";
+import { execa } from "execa";
+import assert from "assert";
+const nodecliDir = path.join(import.meta.dirname, "../");
+const snapshotDir = path.join(import.meta.dirname, "snapshots");
 const duplicateGfm = (item) => {
     return [
         item,
@@ -95,10 +95,10 @@ const testTargetFileList = [
 
 describe("use-case/nodecli", () => {
     testTargetFileList.forEach(({ filePath, args, outputId }) => {
-        const testFileId = outputId ? outputId : filePath;
+        const testFileId = outputId ?? filePath;
         const testFileName = path.relative(nodecliDir, testFileId);
         it(`snapshot test ${testFileName}`, async() => {
-            const fileArgs = args ? args : [];
+            const fileArgs = args ?? [];
             const { stdout } = await execa("node", [filePath].concat(fileArgs), {
                 cwd: path.dirname(filePath)
             });
