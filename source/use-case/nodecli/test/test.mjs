@@ -98,7 +98,7 @@ describe("use-case/nodecli", () => {
         const testFileId = outputId ?? filePath;
         const testFileName = path.relative(nodecliDir, testFileId);
         it(`snapshot test ${testFileName}`, async() => {
-            const fileArgs = args || [];
+            const fileArgs = args ?? [];
             const { stdout } = await execa("node", [filePath].concat(fileArgs), {
                 cwd: path.dirname(filePath)
             });
