@@ -158,6 +158,68 @@ ECMAScriptモジュールには名前つきとデフォルト以外にもいく�
 
 [import, importExample.js](src/import-side-effects.js)
 
+#### [ES2020] Dynamic Import {#dynamic-import}
+
+Dynamic Importとは、ES2020で追加された、動的にモジュールをインポートできる機能です。
+通常の`import`文は静的に解析されるため、ファイルの先頭で書く必要があり、条件分岐の中でモジュールをインポートすることはできません。
+
+Dynamic Importを使うと、ユーザーがボタンをクリックしたときにモジュールを読み込んだり、大きなライブラリを必要になったタイミングで読み込めます。
+
+Dynamic Importは、`import`演算子という関数呼び出しによく似た構文を使って行います。
+この関数はPromiseを返すため、`.then`メソッドや`async`/`await`構文と組み合わせて使います。
+
+次のコードでは、`condition`変数が`true`のときに、`./math-utils.js`というモジュールを動的にインポートしています。
+
+[import, title="math-utils.js"](src/math-utils.js)
+
+```js
+// 条件分岐でモジュールを動的にインポート
+const condition = true;
+
+if (condition) {
+    import("./math-utils.js")
+        .then((module) => {
+            // インポートしたモジュールを使用
+            console.log(module.add(1, 2));
+        });
+}
+```
+
+Dynamic Importの結果はPromiseであるため、await式と組み合わせることで、より簡潔に書くこともできます。
+
+<!-- doctest:disable -->
+```js
+// async関数内でawaitを使用
+async function loadModule() {
+    try {
+        const module = await import("./math-utils.js");
+        console.log(module.add(1, 2)); // => 3
+    } catch (error) {
+        console.error(error);
+    }
+}
+```
+
+また、Top-Level awaitと組みわせることで、静的な`import`文とよく似た書き方もできます。
+
+<!-- doctest:disable -->
+```js
+// ES2022のTop-Level Awaitを使用（モジュールのトップレベルで直接await）
+const module = await import("./math-utils.js");
+console.log(module.add(1, 2)); // => 3
+```
+
+Dynamic Importで読み込まれたモジュールは、`import`文で読み込んだ場合と同じようにデフォルトエクスポートや名前つきエクスポートにアクセスできます。
+
+<!-- doctest:disable -->
+```js
+const module = await import("./my-module.js");
+// デフォルトエクスポートにアクセス
+const defaultValue = module.default;
+// 名前つきエクスポートにアクセス
+const namedExport = module.namedExport;
+```
+
 #### [ES2025] インポート属性 {#import-attributes}
 
 インポート属性（Import attributes）とは、モジュールをインポートするときに追加の属性情報を指定できる、ES2025で追加された構文です。インポートするモジュールに関する情報をコード上に明示でき、読み込み方法を制御できます。
@@ -169,6 +231,13 @@ ECMAScriptモジュールには名前つきとデフォルト以外にもいく�
 [import, title="data.json"](src/data.json)
 
 [import, title="main.js"](src/import-attributes.js)
+
+また、Dynamic Importでも、第二引数で同様に属性をオブジェクトとして指定できます。
+
+<!-- doctest:disable -->
+```js
+const jsonData = await import("./data.json", { with: { type: "json" } });
+```
 
 実行環境によってサポートしているインポート属性の`type`は異なりますが、ブラウザではJSON以外にCSSなどもサポートしています。
 
