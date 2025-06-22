@@ -96,7 +96,7 @@
     "semver": "^7.7.2",
     "strict-eval": "^1.0.2",
     "sudachi-synonyms-dictionary": "^14.0.0",
-    "textlint": "^14.8.4",
+    "textlint": "^15.0.0",
     "textlint-filter-rule-allowlist": "^4.0.0",
     "textlint-filter-rule-comments": "^1.2.2",
     "textlint-rule-eslint": "^5.0.1",
