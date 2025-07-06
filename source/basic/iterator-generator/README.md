@@ -23,49 +23,88 @@ JavaScriptでデータを処理する場合、多くの場面で配列を使用�
 たとえば、1から1万までの数値を処理する場合を考えてみましょう。
 配列を使う場合、まずすべての数値をメモリに格納してから処理を開始します。
 
-{{book.console}}
-```js
-// 配列を使った場合：すべての数値を一度にメモリに作成
-const numbers = [];
-for (let i = 1; i <= 5000; i++) {
-    numbers.push(i);
-}
-console.log("配列のサイズ:", numbers.length); // => 5000
-
-// すべてのデータがメモリに存在している
-console.log("最初の5つ:", numbers.slice(0, 5)); // => [1, 2, 3, 4, 5]
-```
+[import, title="配列を使った場合"](./examples/basic/array-vs-iterator.example.js)
 
 一方、イテレータを使う場合は、必要になったタイミングで値を生成します。
-これにより、メモリ使用量を削減できます。
+これを**遅延評価**（lazy evaluation）と呼びます。
 
-{{book.console}}
+[import, title="イテレータを使った場合"](./examples/basic/iterator.example.js)
+
+#### 遅延評価とは {#lazy-evaluation-concept}
+
+遅延評価とは、値が実際に要求されるまで計算を遅らせる仕組みです。
+配列の場合は「即座評価」で、すべての値を事前に計算してメモリに保存します。
+一方、イテレータは「遅延評価」で、`next`を呼び出したタイミングで初めて値を計算します。
+
 ```js
-// イテレータを使った場合：必要な時に値を生成
+// 配列（即座評価）：すべての値を事前に計算
+const numbers = [1, 2, 3, 4, 5];
+console.log("配列作成完了"); // すぐに出力される
+console.log(numbers[0]); // => 1（既に計算済み）
+
+// イテレータ（遅延評価）：必要な時に計算
 function* numberGenerator() {
-    for (let i = 1; i <= 5000; i++) {
-        yield i; // 値を一つずつ生成
-    }
+    console.log("1を生成");
+    yield 1;
+    console.log("2を生成"); 
+    yield 2;
 }
 
 const iterator = numberGenerator();
-console.log("最初の値:", iterator.next().value); // => 1
-console.log("次の値:", iterator.next().value); // => 2
-// 必要な分だけメモリを使用
+console.log("ジェネレータ作成完了"); // まだ値は生成されていない
+console.log(iterator.next().value); // "1を生成"が出力されてから => 1
 ```
 
 この違いは、特に無限に続くデータや非常に大きなデータセットを扱う場合において重要になります。
 
 ### イテレータの利点 {#iterator-benefits}
 
-イテレータには次のような利点があります。
+遅延評価により、イテレータには次のような利点があります。
 
-- メモリ効率： 必要な時に値を生成するため、大量のデータでもメモリ使用量を抑制できます
-- 遅延評価： 実際に値が必要になるまで処理を遅延できます
-- 無限データ： 無限に続くデータシーケンスを表現できます
-- 処理の中断と再開： 処理を途中で止めて、後から続きを実行できます
+#### 1. メモリ効率 {#memory-efficiency}
 
-次のセクションでは、イテレータとジェネレータの具体的な仕組みについて学習していきます。
+必要な時に値を生成するため、大量のデータでもメモリ使用量を抑制できます。
+
+```js
+// 配列：100万件のデータを一度にメモリに保存
+const bigArray = Array.from({ length: 1000000 }, (_, i) => i);
+console.log("100万件の配列を作成完了"); // メモリを大量使用
+
+// イテレータ：必要な分だけメモリを使用
+function* bigNumberGenerator() {
+    for (let i = 0; i < 1000000; i++) {
+        yield i; // 1つずつ生成
+    }
+}
+const iterator = bigNumberGenerator();
+console.log("ジェネレータ作成完了"); // メモリ使用量は最小
+```
+
+#### 2. 無限データの表現 {#infinite-data-representation}
+
+遅延評価により、理論上無限に続くデータシーケンスを表現できます。
+
+```js
+// 無限に数値を生成するイテレータ
+function* infiniteNumbers() {
+    let num = 1;
+    while (true) { // 無限ループ
+        yield num++;
+    }
+}
+
+const infinite = infiniteNumbers();
+console.log(infinite.next().value); // => 1
+console.log(infinite.next().value); // => 2
+// 配列では無限データを表現できない
+```
+
+#### 3. 処理の中断と再開 {#interruption-and-resumption}
+
+処理を途中で止めて、後から続きを実行できます。
+
+このように、遅延評価はメモリ効率や無限データの扱いにおいて強力な機能です。
+次のセクションでは、この遅延評価を実現するイテレータとジェネレータの具体的な仕組みについて学習していきます。
 
 ## IterableプロトコルとIteratorプロトコル {#iterable-and-iterator}
 
@@ -96,69 +135,24 @@ Iteratorオブジェクトは、`next`メソッドを持つ必要があります
 
 `next`メソッドは、次の形式のオブジェクトを返します。
 
-- `value`: 現在の値
-- `done`: 反復が完了したかどうかを示すboolean値
+```js
+{
+    value: 現在の値,        // 現在のIteratorが生成する値
+    done: boolean値        // 反復が完了したかどうか（true: 完了、false: 継続）
+}
+```
 
 ### シンプルなIteratorの実装 {#simple-iterator-implementation}
 
 具体例として、指定された範囲の数値を生成するRangeIteratorを実装してみましょう。
 
-{{book.console}}
-```js
-// 範囲の数値を生成するIterable/Iteratorの実装
-function createRange(start, end) {
-    return {
-        // Iterableプロトコル: Symbol.iteratorメソッドを実装
-        [Symbol.iterator]() {
-            let current = start;
-            
-            // Iteratorプロトコル: nextメソッドを持つオブジェクトを返す
-            return {
-                next() {
-                    if (current <= end) {
-                        return { value: current++, done: false };
-                    } else {
-                        return { value: undefined, done: true };
-                    }
-                }
-            };
-        }
-    };
-}
-
-// 使用例
-const range = createRange(1, 3);
-
-// for...of ループで使用
-for (const num of range) {
-    console.log(num);
-}
-// => 1
-// => 2
-// => 3
-```
+[import, title="範囲の数値を生成するIterable/Iteratorの実装"](./examples/protocol/create-range.example.js)
 
 ### for...ofループの動作原理 {#how-for-of-works}
 
 `for...of`ループは、内部的に次のような処理を行っています。
 
-{{book.console}}
-```js
-const range = createRange(1, 3);
-
-// for...of ループと同等の処理を手動で実装
-const iterator = range[Symbol.iterator](); // Iteratorを取得
-
-let result = iterator.next();
-while (!result.done) {
-    const value = result.value;
-    console.log(value); // ループ内の処理
-    result = iterator.next(); // 次の値を取得
-}
-// => 1
-// => 2
-// => 3
-```
+[import, title="for...ofループと同等の処理を手動で実装"](./examples/protocol/manual-iteration.example.js)
 
 この仕組みにより、`for...of`ループは配列だけでなく、Iterableプロトコルを実装したすべてのオブジェクトで動作できます。
 
@@ -171,6 +165,7 @@ JavaScriptには、Iterableプロトコルを実装している組み込みオ�
 
 配列はもっとも基本的なIterableオブジェクトです。
 
+<!-- doctest:meta -->
 {{book.console}}
 ```js
 const fruits = ["apple", "banana", "orange"];
@@ -182,7 +177,11 @@ for (const fruit of fruits) {
 // => "apple"
 // => "banana"
 // => "orange"
+```
 
+{{book.console}}
+```js
+const fruits = ["apple", "banana", "orange"];
 // 配列のIteratorを直接使用
 const iterator = fruits[Symbol.iterator]();
 console.log(iterator.next()); // => { value: "apple", done: false }
@@ -193,6 +192,7 @@ console.log(iterator.next()); // => { value: "banana", done: false }
 
 文字列もIterableオブジェクトで、各文字を順番に反復できます。
 
+<!-- doctest:meta -->
 {{book.console}}
 ```js
 const text = "Hello";
@@ -219,6 +219,7 @@ for (const char of emoji) {
 
 MapオブジェクトはIterableで、キーと値のペアを順番に反復できます。
 
+<!-- doctest:meta -->
 {{book.console}}
 ```js
 const userMap = new Map([
@@ -248,6 +249,7 @@ for (const key of userMap.keys()) {
 
 SetオブジェクトもIterableで、要素を順番に反復できます。
 
+<!-- doctest:meta -->
 {{book.console}}
 ```js
 const uniqueNumbers = new Set([1, 2, 3, 2, 1]);
@@ -286,6 +288,35 @@ showArguments("a", "b", "c");
 // => "c"
 ```
 
+### IterableかつIteratorの性質 {#iterable-and-iterator}
+
+これらの組み込みオブジェクトの多くは、Iterableプロトコルを実装すると同時に、そのIteratorもIterableプロトコルを実装しています。
+つまり、オブジェクト自体がIterableであり、そのIteratorもIterableです。
+
+{{book.console}}
+```js
+const array = [1, 2, 3];
+
+// 配列はIterable
+console.log(typeof array[Symbol.iterator]); // => "function"
+
+// 配列のIteratorを取得
+const iterator = array[Symbol.iterator]();
+
+// IteratorもIterable（自分自身を返す）
+console.log(iterator === iterator[Symbol.iterator]()); // => true
+
+// そのため、IteratorをIterableとして扱える
+for (const value of iterator) {
+    console.log(value);
+}
+// => 1
+// => 2
+// => 3
+```
+
+この性質により、Iteratorを`for...of`文で直接使用したり、他のIterableを期待する場所で利用できます。
+
 これらの組み込みIterableオブジェクトを理解することで、JavaScriptにおけるデータ処理の幅が大きく広がります。
 
 ## ジェネレータ関数 {#generator-functions}
@@ -318,16 +349,17 @@ console.log(generator.next()); // => { value: undefined, done: true }
 
 ジェネレータ関数から返されるGeneratorオブジェクトは、IterableプロトコルとIteratorプロトコルの両方を実装しています。
 
+<!-- doctest:meta -->
 {{book.console}}
 ```js
-function* countToThree() {
+function* numbers() {
     yield 1;
     yield 2;
     yield 3;
 }
 
-// for...of ループで使用
-for (const num of countToThree()) {
+// for...ofループで使用
+for (const num of numbers()) {
     console.log(num);
 }
 // => 1
@@ -363,11 +395,11 @@ console.log("3回目のnext()");
 console.log(gen.next()); // "終了" が出力され、{ value: "最終値", done: true }
 ```
 
-### 実用的なジェネレータの例 {#practical-generator-examples}
-
-#### 無限シーケンスの生成 {#infinite-sequence-generation}
+### 無限シーケンスの生成 {#infinite-sequence-generation}
 
 ジェネレータを使うと、無限に続くシーケンスを効率的に表現できます。
+
+次のコードでは、無限に数値を生成するジェネレータを定義し、必要な分だけ値を取得しています。
 
 {{book.console}}
 ```js
@@ -389,47 +421,6 @@ console.log(numbers.next().value); // => 3
 // 後のセクションで学習するtake()メソッドなどで制限する
 ```
 
-#### フィボナッチ数列の生成 {#fibonacci-sequence-generation}
-
-{{book.console}}
-```js
-// フィボナッチ数列を生成するジェネレータ
-function* fibonacci() {
-    let a = 0, b = 1;
-    while (true) {
-        yield a;
-        [a, b] = [b, a + b];
-    }
-}
-
-// 最初の10個のフィボナッチ数を取得
-const fib = fibonacci();
-for (let i = 0; i < 10; i++) {
-    console.log(fib.next().value);
-}
-// => 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
-```
-
-#### 配列の遅延処理 {#lazy-array-processing}
-
-{{book.console}}
-```js
-// 配列を遅延評価で処理するジェネレータ
-function* processLazy(array) {
-    for (const item of array) {
-        console.log(`処理中: ${item}`);
-        yield item * 2; // 何らかの処理を施す
-    }
-}
-
-const data = [1, 2, 3, 4, 5];
-const processor = processLazy(data);
-
-// 必要な時だけ処理が実行される
-console.log("最初の結果:", processor.next().value); // "処理中: 1" と "最初の結果: 2"
-console.log("2番目の結果:", processor.next().value); // "処理中: 2" と "2番目の結果: 4"
-```
-
 ジェネレータ関数により、複雑なIteratorを簡潔に記述できるようになります。
 特に、状態を持つシーケンスや無限データの表現において、その威力を発揮します。
 
@@ -440,8 +431,8 @@ ES2025では、Iteratorプロトタイプに新しいメソッドが追加され
 宣言的なデータ処理が可能になります。
 
 多くのメソッドは[配列のメソッド][配列のメソッド]と同じ名前で同じ動作をしますが、
-Iteratorメソッドの重要な違いは**遅延評価**される点です。
-配列では全要素を一度に処理しますが、Iteratorでは必要になったタイミングで各要素を処理します。
+Iteratorメソッドは前章で説明した**遅延評価**により、
+配列では全要素を一度に処理するのに対し、Iteratorでは必要になったタイミングで各要素を処理します。
 
 <!-- doctest:disable -->
 
@@ -457,6 +448,37 @@ const iterator = Iterator.from([1, 2, 3, 4, 5]);
 console.log(iterator.next()); // => { value: 1, done: false }
 console.log(iterator.next()); // => { value: 2, done: false }
 ```
+
+### take メソッド {#iterator-take}
+
+`take`メソッドは、指定した数の要素のみを取得するIteratorを返します。
+これは配列にはないIterator特有のメソッドで、無限シーケンスから有限の要素を取得する際に特に有用です。
+
+{{book.console}}
+```js
+// 無限に数値を生成するジェネレータ
+function* infiniteNumbers() {
+    let num = 1;
+    while (true) {
+        yield num++;
+    }
+}
+
+// 最初の5つだけを取得
+const first5 = Iterator.from(infiniteNumbers()).take(5);
+
+for (const value of first5) {
+    console.log(value);
+}
+// => 1
+// => 2
+// => 3
+// => 4
+// => 5
+```
+
+配列でこのような無限シーケンスを表現することは現実的ではありません。
+`take`メソッドの遅延評価により、必要な分だけが計算されます。
 
 ### map メソッド {#iterator-map}
 
@@ -500,34 +522,6 @@ for (const value of evenNumbers) {
 // => 6
 // => 8
 // => 10
-```
-
-### take メソッド {#iterator-take}
-
-`take`メソッドは、指定した数の要素のみを取得するIteratorを返します。
-無限Iteratorから有限の要素を取得する際に特に有用です。
-
-{{book.console}}
-```js
-// 無限に数値を生成するジェネレータ
-function* infiniteNumbers() {
-    let num = 1;
-    while (true) {
-        yield num++;
-    }
-}
-
-// 最初の5つだけを取得
-const first5 = Iterator.from(infiniteNumbers()).take(5);
-
-for (const value of first5) {
-    console.log(value);
-}
-// => 1
-// => 2
-// => 3
-// => 4
-// => 5
 ```
 
 ### drop メソッド {#iterator-drop}
@@ -623,30 +617,41 @@ const result = Iterator.from([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 console.log(result); // => [4, 16, 36]
 ```
 
-### 遅延評価の利点 {#lazy-evaluation-benefits}
+### 遅延評価による効率性 {#efficient-processing}
 
-Iteratorのメソッドは遅延評価されるため、大量のデータや無限シーケンスに対しても効率的に動作します。
+Iteratorのメソッドは遅延評価されるため、配列による処理と比較して効率的です。
 
 {{book.console}}
 ```js
-function* largeDataSet() {
-    for (let i = 1; i <= 1000000; i++) {
-        console.log(`生成中: ${i}`); // この出力で遅延評価を確認
+// 配列での処理：全要素を事前に処理
+console.log("=== 配列での処理 ===");
+const arrayResult = Array.from({ length: 100 }, (_, i) => {
+    console.log(`配列処理: ${i + 1}`);
+    return i + 1;
+}).filter(x => x % 10 === 0).slice(0, 2);
+
+console.log("配列結果:", arrayResult); // => [10, 20]
+
+// Iterator処理：必要な分だけ処理
+console.log("=== Iterator処理 ===");
+function* dataSet() {
+    for (let i = 1; i <= 100; i++) {
+        console.log(`Iterator処理: ${i}`);
         yield i;
     }
 }
 
-// 実際に必要な要素だけが処理される
-const result = Iterator.from(largeDataSet())
-    .filter(x => x % 1000 === 0)  // 1000の倍数のみ
-    .take(3)                      // 最初の3つだけ
+const iteratorResult = Iterator.from(dataSet())
+    .filter(x => x % 10 === 0)  // 10の倍数のみ
+    .take(2)                    // 最初の2つだけ
     .toArray();
 
-console.log(result); // => [1000, 2000, 3000]
-// "生成中: ..." は3000までしか出力されない
+console.log("Iterator結果:", iteratorResult); // => [10, 20]
+// 配列：100個すべて処理、Iterator：20個だけ処理
 ```
 
-これらのメソッドにより、Iteratorは配列と同等の表現力を持ちながら、メモリ効率や処理効率の面で優れた特性を維持できます。
+この例では、配列は100個すべての要素を処理しますが、Iteratorは必要な20個だけを処理します。
+大量のデータでは、この差が処理時間とメモリ使用量に大きく影響します。
 
 <!-- doctest:enable -->
 
