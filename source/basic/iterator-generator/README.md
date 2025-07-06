@@ -45,7 +45,7 @@ JavaScriptでデータを処理する場合、多くの場面で配列を使用�
 
 {{book.console}}
 ```js
-// 配列）：すべての値を事前に計算
+// 配列（先行評価）：すべての値を事前に計算
 const numbers = [1, 2, 3];
 console.log("配列作成完了"); // すぐに出力される
 console.log(numbers[0]); // => 1（既に計算済み）
