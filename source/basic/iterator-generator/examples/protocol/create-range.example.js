@@ -26,6 +26,3 @@ const range = createRange(1, 3);
 for (const num of range) {
     console.log(num);
 }
-// => 1
-// => 2
-// => 3

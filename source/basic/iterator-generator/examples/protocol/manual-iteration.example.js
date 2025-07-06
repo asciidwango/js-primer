@@ -23,9 +23,6 @@ const iterator = range[Symbol.iterator](); // Iteratorを取得
 let result = iterator.next();
 while (!result.done) {
     const value = result.value;
-    console.log(value); // ループ内の処理
+    console.log(value);
     result = iterator.next(); // 次の値を取得
 }
-// => 1
-// => 2
-// => 3

@@ -6,6 +6,7 @@ function* numberGenerator() {
 }
 
 const iterator = numberGenerator();
-console.log("最初の値: " + iterator.next().value); // => 最初の値: 1
-console.log("次の値: " + iterator.next().value); // => 次の値: 2
-// 必要な分だけメモリを使用
+// nextメソッドを呼ぶと最初の値を返す
+console.log(iterator.next().value); // => 1
+// nextメソッドを呼ぶと次の値を返す
+console.log("次の値: " + iterator.next().value);// => 2
