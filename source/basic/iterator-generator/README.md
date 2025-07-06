@@ -271,12 +271,8 @@ const uniqueNumbers = new Set([1, 2, 3, 2, 1]);
 
 // Setの要素を反復（重複は除去される）
 for (const num of uniqueNumbers) {
-    console.log(num);
+    console.log(num); // 1, 2, 3
 }
-// => 1
-// => 2
-// => 3
-
 console.log(uniqueNumbers.size); // => 3
 ```
 
@@ -298,9 +294,9 @@ function showArguments() {
 }
 
 showArguments("a", "b", "c");
-// => "a"
-// => "b"
-// => "c"
+// "a"
+// "b"
+// "c"
 ```
 
 ### IterableかつIteratorの性質 {#iterable-and-iterator}
@@ -325,9 +321,9 @@ console.log(iterator === iterator[Symbol.iterator]()); // => true
 for (const value of iterator) {
     console.log(value);
 }
-// => 1
-// => 2
-// => 3
+// 1
+// 2
+// 3
 ```
 
 この性質により、Iteratorを`for...of`文で直接使用したり、他のIterableを期待する場所で利用できます。
@@ -377,9 +373,9 @@ function* numbers() {
 for (const num of numbers()) {
     console.log(num);
 }
-// => 1
-// => 2
-// => 3
+// 1
+// 2
+// 3
 ```
 
 ### yield式と関数の実行 {#yield-and-execution}
@@ -484,11 +480,7 @@ const first5 = Iterator.from(infiniteNumbers()).take(5);
 for (const value of first5) {
     console.log(value);
 }
-// => 1
-// => 2
-// => 3
-// => 4
-// => 5
+// 1, 2, 3, 4, 5
 ```
 
 配列ではこのような無限シーケンスを表現することが現実的ではありません。
@@ -510,11 +502,7 @@ const doubled = numbers.map(x => x * 2);
 for (const value of doubled) {
     console.log(value);
 }
-// => 2
-// => 4
-// => 6
-// => 8
-// => 10
+// 2, 4, 6, 8, 10
 ```
 
 ### filter メソッド {#iterator-filter}

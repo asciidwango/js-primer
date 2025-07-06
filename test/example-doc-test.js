@@ -1,10 +1,11 @@
 import { globbySync } from "globby";
 import fs from "node:fs";
 import path from "node:path";
-import { test } from "@power-doctest/tester";
+import { test as powerDoctest } from "@power-doctest/tester";
 import { parse } from "@power-doctest/javascript";
 import { toTestCode } from "./lib/testing-code.js";
 import url from "node:url";
+import { describe, it } from "node:test";
 
 const __filename__ = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename__);
@@ -29,22 +30,24 @@ describe("example:js", function() {
     ]);
     files.forEach(filePath => {
         const normalizeFilePath = filePath.replace(sourceDir, "");
-        it(`doctest:js ${normalizeFilePath}`, function() {
+        it(`doctest:js ${normalizeFilePath}`, { timeout: 5000 }, async function() {
             const content = fs.readFileSync(filePath, "utf-8");
             const parsedResults = parse({
                 content,
                 filePath
             });
             const parsedCode = parsedResults[0];
-            return test({
-                ...parsedCode,
-                code: toTestCode(parsedCode.code)
-            }).catch(error => {
+            try {
+                await powerDoctest({
+                    ...parsedCode,
+                    code: toTestCode(parsedCode.code)
+                });
+            } catch (error) {
                 // Stack Trace like
                 console.error(`StrictEvalError: strict eval is failed
     at strictEval (${filePath}:1:1)`);
-                return Promise.reject(error);
-            });
+                throw error;
+            }
         });
     });
 });

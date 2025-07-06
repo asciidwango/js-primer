@@ -29,7 +29,7 @@
     "textlint-link:fix": "summary-to-path ./source/README.md | LINK_CHECK=true xargs textlint --fix",
     "lint": "npm-run-all --parallel textlint eslint",
     "lint:fix": "npm-run-all --parallel textlint:fix eslint:fix",
-    "test:example": "mocha test/",
+    "test:example": "node --test --test-concurrency=1 \"test/*.js\"",
     "test:basic": "mocha \"./source/basic/**/*-test.js\"",
     "test:nodecli": "cd ./source/use-case/nodecli && npm install && npm test",
     "test:nodecli-unittest": "cd ./source/use-case/nodecli/refactor-and-unittest/src/test && npm install && npm test",
