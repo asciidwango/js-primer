@@ -48,9 +48,9 @@ JavaScriptでデータを処理する場合、多くの場面で配列を使用�
 // 配列（先行評価）：すべての値を事前に計算
 const numbers = [1, 2, 3];
 console.log("配列作成完了"); // すぐに出力される
-console.log(numbers[0]); // => 1（既に計算済み）
-console.log(numbers[1]); // => 2（既に計算済み）
-console.log(numbers[2]); // => 3（既に計算済み）
+console.log(numbers[0]); // => 1
+console.log(numbers[1]); // => 2
+console.log(numbers[2]); // => 3
 
 // イテレータ（遅延評価）: 値は必要な時に計算
 function* numberGenerator() {
@@ -60,9 +60,9 @@ function* numberGenerator() {
 }
 const iterator = numberGenerator();
 console.log("イテレータ作成完了"); // ここではまだ計算されない
-console.log(iterator.next().value); // => 1（ここで初めて計算される）
-console.log(iterator.next().value); // => 2（次の値が計算される）
-console.log(iterator.next().value); // => 3（さらに次の値が計算される）
+console.log(iterator.next().value); // => 1
+console.log(iterator.next().value); // => 2
+console.log(iterator.next().value); // => 3
 ```
 
 この違いは、特に無限に続くデータや非常に大きなデータセットを扱う場合において重要になります。
@@ -453,6 +453,7 @@ ES2025では、Iteratorプロトタイプに新しいメソッドが追加され
 `Iterator.from`メソッドは、Iterableオブジェクトからイテレータを作成します。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
 ```js
 // 配列からIteratorを作成
 const iterator = Iterator.from([1, 2, 3, 4, 5]);
@@ -467,6 +468,7 @@ console.log(iterator.next()); // => { value: 2, done: false }
 これは配列にはないIterator特有のメソッドで、無限シーケンスから有限の要素を取得する際に特に有用です。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
 ```js
 // 無限に数値を生成するジェネレータ
 function* infiniteNumbers() {
@@ -498,6 +500,7 @@ for (const value of first5) {
 このメソッドは、[配列の`map`メソッド][配列のmap]と同じように動作しますが、遅延評価される点が異なります。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
 ```js
 const numbers = Iterator.from([1, 2, 3, 4, 5]);
 
@@ -520,6 +523,7 @@ for (const value of doubled) {
 このメソッドは、[配列の`filter`メソッド][配列のfilter]と同じように動作しますが、遅延評価される点が異なります。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
 ```js
 const numbers = Iterator.from([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
@@ -541,6 +545,7 @@ for (const value of evenNumbers) {
 `drop`メソッドは、指定した数の要素をスキップした新しいIteratorを返します。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
 ```js
 const numbers = Iterator.from([1, 2, 3, 4, 5]);
 
@@ -561,6 +566,7 @@ for (const value of skipped) {
 このメソッドは、[配列の`flatMap`メソッド][配列のflatMap]と同じように動作しますが、遅延評価される点が異なります。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
 ```js
 const words = Iterator.from(["hello", "world"]);
 
@@ -588,6 +594,7 @@ for (const char of chars) {
 このメソッドは、[配列の`reduce`メソッド][配列のreduce]と同じように動作します。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
 ```js
 const numbers = Iterator.from([1, 2, 3, 4, 5]);
 
@@ -606,6 +613,7 @@ console.log(sentence); // => Hello Iterator Methods
 `toArray`メソッドは、Iteratorのすべての要素を配列として取得します。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
 ```js
 const iterator = Iterator.from([1, 2, 3]).map(x => x * 2);
 const array = iterator.toArray();
@@ -618,6 +626,7 @@ console.log(array); // => [2, 4, 6]
 これらのメソッドをチェーンすることで、複雑なデータ処理を宣言的に記述できます。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
 ```js
 // 複数のメソッドを組み合わせた例
 const result = Iterator.from([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
@@ -634,6 +643,7 @@ console.log(result); // => [4, 16, 36]
 Iteratorのメソッドは遅延評価されるため、配列による処理と比較して効率的です。
 
 {{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
 ```js
 // 配列での処理：全要素を事前に処理
 console.log("=== 配列での処理 ===");
