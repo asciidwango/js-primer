@@ -24,6 +24,7 @@ JavaScriptでデータを処理する場合、多くの場面で配列を使用�
 配列を使う場合、まずすべての数値をメモリに格納してから処理を開始します。
 つまり5000個の要素をもつ配列が必要となります。
 
+{{book.console}}
 [import, title="配列を使った場合"](./examples/basic/array-vs-iterator.example.js)
 
 一方、イテレータを使う場合は、必要になったタイミングで値を生成します。
@@ -33,6 +34,7 @@ JavaScriptでデータを処理する場合、多くの場面で配列を使用�
 次のコードでは、イテレータを使った例を示しています。
 （`function*`の詳しい使い方は、後のセクションで説明します）
 
+{{book.console}}
 [import, title="イテレータを使った場合"](./examples/basic/iterator.example.js)
 
 #### 遅延評価とは {#lazy-evaluation-concept}
@@ -41,6 +43,7 @@ JavaScriptでデータを処理する場合、多くの場面で配列を使用�
 配列の場合は「先行評価（eager evaluation）」で、すべての値を即座に計算してメモリに保存します。
 一方、イテレータは「遅延評価（lazy evaluation）」で、`next`メソッドを呼び出したタイミングで初めて値を計算します。
 
+{{book.console}}
 ```js
 // 配列）：すべての値を事前に計算
 const numbers = [1, 2, 3];
@@ -72,6 +75,7 @@ console.log(iterator.next().value); // => 3（さらに次の値が計算され�
 
 必要な時に値を生成するため、大量のデータでもメモリ使用量を抑制できます。
 
+{{book.console}}
 ```js
 // 配列：100万件のデータを一度にメモリに保存
 const bigArray = Array.from({ length: 1000000 }, (_, i) => i);
@@ -91,6 +95,7 @@ console.log("ジェネレータ作成完了"); // メモリ使用量は最小
 
 遅延評価により、理論上無限に続くデータシーケンスを表現できます。
 
+{{book.console}}
 ```js
 // 無限に数値を生成するイテレータ
 function* infiniteNumbers() {
@@ -154,12 +159,14 @@ console.log(result.done);  // 反復が完了したかどうか（true: 完了�
 
 具体例として、指定された範囲の数値を生成するRangeIteratorを実装してみましょう。
 
+{{book.console}}
 [import, title="範囲の数値を生成するIterable/Iteratorの実装"](./examples/protocol/create-range.example.js)
 
 ### for...ofループの動作原理 {#how-for-of-works}
 
 `for...of`ループは、内部的に次のような処理を行っています。
 
+{{book.console}}
 [import, title="for...ofループと同等の処理を手動で実装"](./examples/protocol/manual-iteration.example.js)
 
 この仕組みにより、`for...of`ループは配列だけでなく、Iterableプロトコルを実装したすべてのオブジェクトで動作できます。
