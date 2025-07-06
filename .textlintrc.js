@@ -1,4 +1,6 @@
 const IS_LINK_CHECK = !!process.env.LINK_CHECK;
+// TEXTLINT_MCP=true なら、AI向けのルールを有効にする
+const IS_AI_RULE_ENABLED = !!process.env.TEXTLINT_MCP;
 module.exports = {
     filters: {
         comments: true,
@@ -12,7 +14,7 @@ module.exports = {
         },
     },
     rules: {
-        "@textlint-ja/preset-ai-writing": true,
+        "@textlint-ja/preset-ai-writing": IS_AI_RULE_ENABLED,
         "@textlint-ja/no-synonyms": {
             allows: ["アプリ", "ウェブアプリ", "極め", "決め"],
         },
