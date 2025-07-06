@@ -623,12 +623,13 @@ Iteratorのメソッドは遅延評価されるため、配列による処理と
 ```js
 // 配列での処理：全要素を事前に処理
 console.log("=== 配列での処理 ===");
-const arrayResult = Array.from({ length: 100 }, (_, i) => {
+// 1, 2, ..., 100までの配列を作成
+const arrayData = Array.from({ length: 100 }, (_, i) => {
     console.log(`配列処理: ${i + 1}`);
     return i + 1;
-}).filter(x => x % 10 === 0).slice(0, 2);
-
-console.log("配列結果:", arrayResult); // => [10, 20]
+});
+const arrayResult = arrayData.filter(x => x % 10 === 0).slice(0, 2);
+console.log(arrayResult); // => [10, 20]
 
 // Iterator処理：必要な分だけ処理
 console.log("=== Iterator処理 ===");
@@ -644,7 +645,7 @@ const iteratorResult = Iterator.from(dataSet())
     .take(2)                    // 最初の2つだけ
     .toArray();
 
-console.log("Iterator結果:", iteratorResult); // => [10, 20]
+console.log(iteratorResult); // => [10, 20]
 // 配列：100個すべて処理、Iterator：20個だけ処理
 ```
 
