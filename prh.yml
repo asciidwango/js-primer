@@ -799,3 +799,9 @@ rules:
     prh: C87でざきさんがやらかした思い出
   - expected: superset
     pattern: super set
+  
+  # 文体統一
+  - expected: 紹介します
+    patterns:
+      - 学習します
+    prh: JavaScript Primerの文体統一のため「紹介します」を使います
