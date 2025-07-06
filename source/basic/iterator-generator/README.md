@@ -1,16 +1,16 @@
 ---
 author: azu
-description: "JavaScriptにおけるイテレータとジェネレータの基本概念と使い方について学習します。ES2025で導入される新しいイテレータメソッドについても解説します。"
+description: "JavaScriptにおけるイテレータとジェネレータの基本概念と使い方について紹介します。ES2025で導入される新しいイテレータメソッドについても解説します。"
 sponsors: []
 ---
 
 # イテレータとジェネレータ {#iterator-generator}
 
-この章では、JavaScriptにおけるイテレータ（Iterator）とジェネレータ（Generator）について学習します。
+この章では、JavaScriptにおけるイテレータ（Iterator）とジェネレータ（Generator）について紹介します。
 イテレータは、データを順番に処理するための仕組みで、`for...of`ループの背後で動作している重要な概念です。
 ジェネレータは、イテレータを簡単に作成するための仕組みです。
 
-また、ES2025で導入される新しいイテレータメソッドについても解説し、宣言的なデータ処理の方法を学習します。
+また、ES2025で導入される新しいイテレータメソッドについても解説し、宣言的なデータ処理の方法を紹介します。
 
 ## はじめに {#introduction}
 
@@ -28,6 +28,9 @@ JavaScriptでデータを処理する場合、多くの場面で配列を使用�
 一方、イテレータを使う場合は、必要になったタイミングで値を生成します。
 これを**遅延評価**（lazy evaluation）と呼びます。
 
+次のコードでは、イテレータを使った例を示しています。
+（`function*`の詳しい説明は後の章で行います）
+
 [import, title="イテレータを使った場合"](./examples/basic/iterator.example.js)
 
 #### 遅延評価とは {#lazy-evaluation-concept}
@@ -42,17 +45,11 @@ const numbers = [1, 2, 3, 4, 5];
 console.log("配列作成完了"); // すぐに出力される
 console.log(numbers[0]); // => 1（既に計算済み）
 
-// イテレータ（遅延評価）：必要な時に計算
-function* numberGenerator() {
-    console.log("1を生成");
-    yield 1;
-    console.log("2を生成"); 
-    yield 2;
-}
-
-const iterator = numberGenerator();
-console.log("ジェネレータ作成完了"); // まだ値は生成されていない
-console.log(iterator.next().value); // "1を生成"が出力されてから => 1
+// イテレータ（遅延評価）の概念例
+// ※ここではイメージを示すためのサンプルです
+// 詳細な実装方法は後の章で説明します
+console.log("イテレータ作成完了"); // まだ値は生成されていない
+console.log("必要な時に1を生成"); // 値が要求されたときに計算
 ```
 
 この違いは、特に無限に続くデータや非常に大きなデータセットを扱う場合において重要になります。
@@ -96,7 +93,6 @@ function* infiniteNumbers() {
 const infinite = infiniteNumbers();
 console.log(infinite.next().value); // => 1
 console.log(infinite.next().value); // => 2
-// 配列では無限データを表現できない
 ```
 
 #### 3. 処理の中断と再開 {#interruption-and-resumption}
@@ -104,7 +100,7 @@ console.log(infinite.next().value); // => 2
 処理を途中で止めて、後から続きを実行できます。
 
 このように、遅延評価はメモリ効率や無限データの扱いにおいて強力な機能です。
-次のセクションでは、この遅延評価を実現するイテレータとジェネレータの具体的な仕組みについて学習していきます。
+次のセクションでは、この遅延評価を実現するイテレータとジェネレータの具体的な仕組みについて紹介していきます。
 
 ## IterableプロトコルとIteratorプロトコル {#iterable-and-iterator}
 
@@ -116,6 +112,8 @@ JavaScriptにおけるイテレーション（反復処理）は、**Iterableプ
 
 Iterableプロトコルは、オブジェクトが反復可能であることを示すプロトコルです。
 オブジェクトがIterableになるためには、`Symbol.iterator`というメソッドを持つ必要があります。
+
+`Symbol.iterator`は、JavaScriptの組み込みSymbolの1つで、オブジェクトがIterableであることを示す特殊なキーです。
 
 ```js
 const iterableObject = {
@@ -136,10 +134,10 @@ Iteratorオブジェクトは、`next`メソッドを持つ必要があります
 `next`メソッドは、次の形式のオブジェクトを返します。
 
 ```js
-{
-    value: 現在の値,        // 現在のIteratorが生成する値
-    done: boolean値        // 反復が完了したかどうか（true: 完了、false: 継続）
-}
+// nextメソッドの戻り値の形式
+const result = iterator.next();
+console.log(result.value); // 現在のIteratorが生成する値
+console.log(result.done);  // 反復が完了したかどうか（true: 完了、false: 継続）
 ```
 
 ### シンプルなIteratorの実装 {#simple-iterator-implementation}
@@ -418,7 +416,7 @@ console.log(numbers.next().value); // => 2
 console.log(numbers.next().value); // => 3
 
 // for...of で使用する場合は注意が必要（無限ループになる）
-// 後のセクションで学習するtake()メソッドなどで制限する
+// 後のセクションで紹介するtake()メソッドなどで制限する
 ```
 
 ジェネレータ関数により、複雑なIteratorを簡潔に記述できるようになります。
@@ -430,8 +428,8 @@ ES2025では、Iteratorプロトタイプに新しいメソッドが追加され
 これらのメソッドにより、配列のメソッドと同様の操作をIteratorに対して行えるようになり、
 宣言的なデータ処理が可能になります。
 
-多くのメソッドは[配列のメソッド][配列のメソッド]と同じ名前で同じ動作をしますが、
-Iteratorメソッドは前章で説明した**遅延評価**により、
+多くのメソッドは[配列のメソッド][配列のメソッド]と同じ名前で同じ動作をします。
+ただし、Iteratorメソッドは前章で説明した**遅延評価**により、配列とは処理方法が異なります。
 配列では全要素を一度に処理するのに対し、Iteratorでは必要になったタイミングで各要素を処理します。
 
 <!-- doctest:disable -->
@@ -477,8 +475,8 @@ for (const value of first5) {
 // => 5
 ```
 
-配列でこのような無限シーケンスを表現することは現実的ではありません。
-`take`メソッドの遅延評価により、必要な分だけが計算されます。
+配列ではこのような無限シーケンスを表現することが現実的ではありません。
+`take`メソッドの遅延評価により、必要な分だけ計算されます。
 
 ### map メソッド {#iterator-map}
 
@@ -657,7 +655,7 @@ console.log("Iterator結果:", iteratorResult); // => [10, 20]
 
 ## まとめ {#conclusion}
 
-この章では、JavaScriptにおけるイテレータとジェネレータについて学習しました。
+この章では、JavaScriptにおけるイテレータとジェネレータについて紹介しました。
 
 - **Iterableプロトコル**と**Iteratorプロトコル**は、JavaScriptのイテレーション（反復処理）の基盤となる仕組みです
 - `for...of`ループは、これらのプロトコルを利用してさまざまなオブジェクトを反復処理できます
@@ -668,7 +666,7 @@ console.log("Iterator結果:", iteratorResult); // => [10, 20]
 イテレータとジェネレータを理解することで、より効率的で表現力豊かなJavaScriptコードを書けるようになります。
 特に、大量のデータを扱うアプリケーションやストリーミング処理において、これらの概念は重要な役割を果たします。
 
-次のステップとして、非同期イテレータ（Async Iterator）や、実際のWebアプリケーションでのイテレータの活用例について学習することをお勧めします。
+次のステップとして、非同期イテレータ（Async Iterator）や、実際のWebアプリケーションでのイテレータの活用例について調べてみることをお勧めします。
 
 [配列]: ../array/README.md
 [配列のmap]: ../array/README.md#array-map
