@@ -38,20 +38,28 @@ JavaScriptでデータを処理する場合、多くの場面で配列を使用�
 #### 遅延評価とは {#lazy-evaluation-concept}
 
 遅延評価とは、値が実際に要求されるまで計算を遅らせる仕組みです。
-配列の場合は「即座評価」で、すべての値を事前に計算してメモリに保存します。
-一方、イテレータは「遅延評価」で、`next`を呼び出したタイミングで初めて値を計算します。
+配列の場合は「先行評価（eager evaluation）」で、すべての値を即座に計算してメモリに保存します。
+一方、イテレータは「遅延評価（lazy evaluation）」で、`next`メソッドを呼び出したタイミングで初めて値を計算します。
 
 ```js
-// 配列（即座評価）：すべての値を事前に計算
-const numbers = [1, 2, 3, 4, 5];
+// 配列）：すべての値を事前に計算
+const numbers = [1, 2, 3];
 console.log("配列作成完了"); // すぐに出力される
 console.log(numbers[0]); // => 1（既に計算済み）
+console.log(numbers[1]); // => 2（既に計算済み）
+console.log(numbers[2]); // => 3（既に計算済み）
 
-// イテレータ（遅延評価）の概念例
-// ※ここではイメージを示すためのサンプルです
-// 詳細な実装方法は後の章で説明します
-console.log("イテレータ作成完了"); // まだ値は生成されていない
-console.log("必要な時に1を生成"); // 値が要求されたときに計算
+// イテレータ（遅延評価）: 値は必要な時に計算
+function* numberGenerator() {
+    yield 1; // 初めてnext()が呼ばれた時に評価される
+    yield 2; // 次のnext()が呼ばれた時に評価される
+    yield 3; // さらに次のnext()が呼ばれた時に評価される
+}
+const iterator = numberGenerator();
+console.log("イテレータ作成完了"); // ここではまだ計算されない
+console.log(iterator.next().value); // => 1（ここで初めて計算される）
+console.log(iterator.next().value); // => 2（次の値が計算される）
+console.log(iterator.next().value); // => 3（さらに次の値が計算される）
 ```
 
 この違いは、特に無限に続くデータや非常に大きなデータセットを扱う場合において重要になります。
