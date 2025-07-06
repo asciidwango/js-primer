@@ -1,6 +1,6 @@
 const IS_LINK_CHECK = !!process.env.LINK_CHECK;
 // TEXTLINT_MCP=true なら、AI向けのルールを有効にする
-const IS_AI_RULE_ENABLED = !!process.env.TEXTLINT_MCP;
+const IS_AI_RULE_ENABLED = process.env.TEXTLINT_MCP === "true";
 module.exports = {
     filters: {
         comments: true,
@@ -108,16 +108,16 @@ module.exports = {
         // npm run textlint-linkでのみ外部URLをチェックする
         "no-dead-link": IS_LINK_CHECK
             ? {
-                  concurrency: 4,
-                  ignore: [
-                      "https://github.com/asciidwango/js-primer/issues/new?*",
-                      "ttps://help.github.com/articles/about-pull-requests/", // 言語にリダイレクトがある
-                      "https://goo.gl/**",
-                      "https://forms.gle/**",
-                      "http://localhost:3000/**",
-                  ],
-                  maxRetryAfterTime: 60,
-              }
+                concurrency: 4,
+                ignore: [
+                    "https://github.com/asciidwango/js-primer/issues/new?*",
+                    "ttps://help.github.com/articles/about-pull-requests/", // 言語にリダイレクトがある
+                    "https://goo.gl/**",
+                    "https://forms.gle/**",
+                    "http://localhost:3000/**",
+                ],
+                maxRetryAfterTime: 60,
+            }
             : false,
     },
 };
