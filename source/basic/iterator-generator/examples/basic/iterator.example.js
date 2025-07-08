@@ -6,7 +6,7 @@ function* numberGenerator() {
 }
 
 const iterator = numberGenerator();
-// nextメソッドを呼ぶと最初の値を返す
+// 最初の値
 console.log(iterator.next().value); // => 1
-// nextメソッドを呼ぶと次の値を返す
-console.log("次の値: " + iterator.next().value); // => "次の値: 2"
+// 次の値
+console.log(iterator.next().value); // => 2

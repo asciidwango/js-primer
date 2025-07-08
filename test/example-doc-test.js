@@ -19,7 +19,7 @@ const sourceDir = path.join(__dirname, "..", "source");
  *
  * Note: ESMには対応していない
  **/
-describe("example:js", function() {
+describe("example:js", function () {
     const files = globbySync([
         `${sourceDir}/**/*-example.js`, // *-example.js
         `${sourceDir}/**/*.example.js`, // *.example.js
@@ -30,7 +30,7 @@ describe("example:js", function() {
     ]);
     files.forEach(filePath => {
         const normalizeFilePath = filePath.replace(sourceDir, "");
-        it(`doctest:js ${normalizeFilePath}`, { timeout: 5000 }, async function() {
+        it(`doctest:js ${normalizeFilePath}`, { timeout: 5000 }, async function () {
             const content = fs.readFileSync(filePath, "utf-8");
             const parsedResults = parse({
                 content,
@@ -43,8 +43,35 @@ describe("example:js", function() {
                     code: toTestCode(parsedCode.code)
                 });
             } catch (error) {
+                /*
+                export type PowerDocTestError = Error & {
+                    // file path of the code
+                    fileName?: string;
+                    // line number of the code
+                    lineNumber?: number;
+                    // column number of the code
+                    columnNumber?: number;
+                    // metadata of the code
+                    meta?: {
+                        [index: string]: unknown;
+                    };
+                };*/
+
+                if (error.lineNumber !== undefined && error.columnNumber !== undefined) {
+                    const line = content.split("\n")[error.lineNumber - 1];
+                    const column = error.columnNumber - 1;
+                    const errorLine = line.slice(0, column) + "↑" + line.slice(column);
+                    console.error(`Error in ${filePath} at line ${error.lineNumber}, column ${error.columnNumber}:
+${errorLine}
+
+${parsedCode.code}
+    at strictEval (${filePath}:${error.lineNumber}:${error.columnNumber})
+
+`);
+                }
                 // Stack Trace like
-                console.error(`StrictEvalError: strict eval is failed
+                console.error(`PowerDoctest Error: ${error.message}
+${parsedCode.code}
     at strictEval (${filePath}:1:1)`);
                 throw error;
             }

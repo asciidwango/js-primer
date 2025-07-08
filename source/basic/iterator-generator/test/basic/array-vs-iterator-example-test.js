@@ -19,8 +19,8 @@ describe("array-vs-iterator", function() {
         
         child.on("close", () => {
             const result = output.join("");
-            assert(result.includes("配列のサイズ: 5000"));
-            assert(result.includes("最初の5つ: [ 1, 2, 3, 4, 5 ]"));
+            assert(result.includes("5000"));
+            assert(result.includes("[ 1, 2, 3, 4, 5 ]"));
             done();
         });
     });

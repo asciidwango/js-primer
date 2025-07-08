@@ -19,6 +19,6 @@ describe("iterator-example", function() {
         strictEval(Code, {
             console
         });
-        assert.deepEqual(actualLogs, ["最初の値: 1", "次の値: 2"]);
+        assert.deepEqual(actualLogs, [1, 2]);
     });
 });
