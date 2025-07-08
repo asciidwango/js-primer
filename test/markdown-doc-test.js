@@ -69,6 +69,7 @@ describe("doctest:md", function() {
                 filePath,
                 content
             });
+            console.log("parsedCodes",parsedCodes)
             // try to eval
             const dirName = path.dirname(filePath).split(path.sep).pop();
             parsedCodes.forEach((parsedCode, index) => {
@@ -76,6 +77,7 @@ describe("doctest:md", function() {
                 const testCaseName = codeValue.slice(0, 32).replace(/[\r\n]/g, "_");
                 it(dirName + ": " + testCaseName, { timeout: 5000 }, async function() {
                     try {
+                        console.log("start to test", normalizeFilePath, index + 1, "/", parsedCodes.length, ":", testCaseName);
                         await powerDoctest({
                             ...parsedCode,
                             code: toTestCode(parsedCode.code)
@@ -85,6 +87,7 @@ describe("doctest:md", function() {
                                 timeout: 1000 * 2
                             }
                         });
+                        console.log("success to test", normalizeFilePath, index + 1, "/", parsedCodes.length, ":", testCaseName);
                     } catch (error) {
                         if (error.meta && IgnoredECMAScriptVersions.some(version => version === String(error.meta.ECMAScript))) {
                             console.log(`ECMAScript ${error.meta.ECMAScript}が指定されているコードは実行環境がサポートしてない場合があるのでスキップします`);

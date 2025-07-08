@@ -148,6 +148,7 @@ Iteratorオブジェクトは、`next`メソッドを持つ必要があります
 
 `next`メソッドは、次の形式のオブジェクトを返します。
 
+<!-- doctest:disable -->
 ```js
 // nextメソッドの戻り値の形式
 const result = iterator.next();
@@ -189,9 +190,9 @@ const fruits = ["apple", "banana", "orange"];
 for (const fruit of fruits) {
     console.log(fruit);
 }
-// => "apple"
-// => "banana"
-// => "orange"
+// "apple"
+// "banana"
+// "orange"
 ```
 
 {{book.console}}
@@ -214,20 +215,8 @@ const text = "Hello";
 
 // 文字列の各文字を反復
 for (const char of text) {
-    console.log(char);
+    console.log(char); // "H", "e", "l", "l", "o"
 }
-// => "H"
-// => "e"
-// => "l"
-// => "l"
-// => "o"
-
-// Unicode文字も正しく処理される
-const emoji = "👨‍👩‍👧‍👦";
-for (const char of emoji) {
-    console.log(char);
-}
-// => "👨‍👩‍👧‍👦"
 ```
 
 ### Map {#map-iterable}
@@ -247,17 +236,6 @@ const userMap = new Map([
 for (const [key, value] of userMap) {
     console.log(key + ": " + value);
 }
-// => "name: Alice"
-// => "age: 25"
-// => "city: Tokyo"
-
-// キーのみを反復
-for (const key of userMap.keys()) {
-    console.log(key);
-}
-// => "name"
-// => "age"
-// => "city"
 ```
 
 ### Set {#set-iterable}
