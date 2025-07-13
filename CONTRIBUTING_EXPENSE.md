@@ -1,6 +1,6 @@
 # Contributing Expenses Policy
 
-JavaScript Primer(jsprimer)はOpen Collectiveを通じて資金を募っています。
+JavaScript Primer（jsprimer）はOpen Collectiveを通じて資金を募っています。
 この資金は、jsprimerへContributeしてくれた方々に対して、費用を支払うために使われます。
 
 - [JavaScript Primer - Open Collective](https://opencollective.com/jsprimer)
@@ -79,7 +79,7 @@ jsprimerの年間更新コストは、だいたい30日分の作業量になる�
 
 Pointに直すと、年間の作業量のPointは60 Point程度になります。
 
-年間の予算はOpen Collectiveの"推定年間予算(Estimated annual budget)"を参照します
+年間の予算はOpen Collectiveの"推定年間予算（Estimated annual budget）"を参照します
 
 - [JavaScript Primer - Open Collective](https://opencollective.com/jsprimer)
 
@@ -90,7 +90,7 @@ const yearlyEstimatedBudget = _; // Open Collectiveの推定年間予算($ドル
 const yearlyWorkloadPoints = 60; // 1年間のPoints
 const onePointCost = yearlyEstimatedBudget / yearlyWorkloadPoints;
 console.log({ onePointCost }); // => 1 Pointあたりの金額($ドル)
-const taskPoint = _; /// タスクのPoint
+const taskPoint = _; // / タスクのPoint
 const cost = onePointCost * taskPoint;
 console.log({ cost }); // => タスクの金額($ドル)
 ```
@@ -104,7 +104,7 @@ const yearlyWorkloadPoints = 60; // 1年間のPoints
 const onePointCost = yearlyEstimatedBudget / yearlyWorkloadPoints;
 console.log({ onePointCost }); // => $39.45
 
-const costOfPoint = 2; /// 2 Points
+const costOfPoint = 2; // / 2 Points
 const cost = onePointCost * costOfPoint;
 console.log({ cost }); // => $78.9
 ```
@@ -120,11 +120,11 @@ ContributorはPointに基づいた金額を、次の2つの方法から選択で
 
 ### 1. 経費申請して受け取る
 
-計算式に基づいた金額を自分で受け取る場合は、「費用の請求方法」に従って経費申請を行います。
+計算式に基づいた金額を自分で受け取る場合は、「費用の請求方法」にしたがって経費申請を行います。
 
 ### 2. 指定されたCollectiveに寄付する
 
-受け取る代わりに、他のCollectiveに寄付することも可能です。
+受け取る代わりに、他のCollectiveに寄付することもできます。
 jsprimerから直接、指定されたCollectiveへ同じ金額を寄付します。
 
 寄付先の例：
@@ -139,7 +139,7 @@ jsprimerから直接、指定されたCollectiveへ同じ金額を寄付しま�
 
 1. <https://opencollective.com/jsprimer/expenses/new> にアクセス
 2. "Invoice"を選択
-3. 請求者の情報と支払い先(銀行口座またはPayPal)を入力
+3. 請求者の情報と支払い先（銀行口座またはPayPal）を入力
 4. "Next"をクリック
 5. 請求書の画面で "Expense title" に `Development and maintenance (YYYY-DD)` と入力
 6. 請求書の画面で "Set invoice details"の "Description" に `Contribute to jsprimer (YYYY-DD)` と入力
