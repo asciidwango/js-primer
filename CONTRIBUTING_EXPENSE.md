@@ -114,6 +114,25 @@ console.log({ cost }); // => $78.9
 作業が終わったタイミングで計算して、その月のコストをまとめて申請します。
 Open Collectiveからの支払いは2週間ごとに行われるため、月ごとにまとめて請求します。
 
+## 支払い方法の選択
+
+ContributorはPointに基づいた金額を、次の2つの方法から選択できます。
+
+### 1. 経費申請して受け取る
+
+計算式に基づいた金額を自分で受け取る場合は、「費用の請求方法」に従って経費申請を行います。
+
+### 2. 指定されたCollectiveに寄付する
+
+受け取る代わりに、他のCollectiveに寄付することも可能です。
+jsprimerから直接、指定されたCollectiveへ同じ金額を寄付します。
+
+寄付先の例：
+- [Babel](https://opencollective.com/babel)
+- その他、Open Collective上の任意のCollective
+
+寄付を希望する場合は、IssueまたはPull Requestで寄付先のCollectiveを指定してください。
+
 ## 費用の請求方法
 
 計算式に基づいた金額をOpen Collectiveで請求する手順
