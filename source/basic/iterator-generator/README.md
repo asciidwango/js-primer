@@ -132,7 +132,7 @@ console.log(iterator === iterator[Symbol.iterator]()); // => true
 ```
 
 このように、IterableとIteratorの両方のプロトコルを実装するオブジェクトのことを**Iterable Iterator**と呼びます。
-IterableとIteratorはほとんどセットで扱われるため、単純にイテレータと呼んだオブジェクトはIterable Iteratorであることが多いです。
+IterableとIteratorはほとんどセットで扱われるため、単純にイテレータと呼ばれるオブジェクトはIterable Iteratorであることが多いです。
 
 ### シンプルなIterable Iteratorの実装 {#simple-iterable-iterator}
 
