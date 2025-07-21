@@ -234,6 +234,7 @@ function* generatorFunction() {
     yield value1; // 最初の値を生成
     yield value2; // 次の値を生成
     // ...
+    return value3; // 最後の値を生成
 }
 ```
 
