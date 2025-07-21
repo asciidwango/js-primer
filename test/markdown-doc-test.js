@@ -74,9 +74,8 @@ describe("doctest:md", function() {
             const dirName = path.dirname(filePath).split(path.sep).pop();
             parsedCodes.forEach((parsedCode, index) => {
                 const codeValue = parsedCode.code;
-                const testCaseName = codeValue.slice(0, 32).replace(/[\r\n]/g, "_");
-                const testlines = `L${parsedCode.location.start.line}-L${parsedCode.location.end.line}`;
-                it(dirName + ": " + testlines, async function() {
+                const testLines = `L${parsedCode.location.start.line}-L${parsedCode.location.end.line}`;
+                it(dirName + ": " + testLines, async function() {
                     try {
                         await powerDoctest({
                             ...parsedCode,
