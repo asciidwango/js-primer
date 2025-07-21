@@ -47,7 +47,6 @@ JavaScriptでデータを処理する場合、多くの場面で配列を使用�
 ```js
 // 配列（先行評価）：すべての値を事前に計算
 const numbers = [1, 2, 3];
-console.log("配列作成完了"); // すぐに出力される
 console.log(numbers[0]); // => 1
 console.log(numbers[1]); // => 2
 console.log(numbers[2]); // => 3
@@ -59,7 +58,6 @@ function* numberGenerator() {
     yield 3; // さらに次のnext()が呼ばれた時に評価される
 }
 const iterator = numberGenerator();
-console.log("イテレータ作成完了"); // ここではまだ計算されない
 console.log(iterator.next().value); // => 1
 console.log(iterator.next().value); // => 2
 console.log(iterator.next().value); // => 3
