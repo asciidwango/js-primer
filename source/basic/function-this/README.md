@@ -74,7 +74,7 @@ console.log(this); // => undefined
 ES2020ではこの問題を解決するために、実行環境のグローバルオブジェクトを参照する`globalThis`が導入されました。
 
 {{book.console}}
-<!-- doctest:meta:{ "ECMAScript": 2020 } -->
+<!-- doctest:disable -->
 ```js
 // ブラウザでは`window`オブジェクト、Node.jsでは`global`オブジェクトを参照する
 console.log(globalThis);

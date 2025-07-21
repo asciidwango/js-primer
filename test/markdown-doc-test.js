@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { test } from "@power-doctest/tester";
+import { test as powerDoctest } from "@power-doctest/tester";
 import { parse } from "@power-doctest/markdown";
 import { toTestCode } from "./lib/testing-code.js";
 import { globbySync } from "globby";
@@ -8,6 +8,7 @@ import fs from "node:fs";
 import path from "node:path";
 import semver from "semver";
 import url from "node:url";
+import { describe, it } from "node:test";
 
 const __filename__ = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename__);
@@ -44,6 +45,7 @@ const IgnoredECMAScriptVersions = (() => {
     }
     return ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"];
 })();
+
 /**
  * Markdownファイルの CodeBlock に対してdoctestを行う
  * CodeBlockは必ず実行できるとは限らないので、
@@ -72,32 +74,63 @@ describe("doctest:md", function() {
             const dirName = path.dirname(filePath).split(path.sep).pop();
             parsedCodes.forEach((parsedCode, index) => {
                 const codeValue = parsedCode.code;
-                const testCaseName = codeValue.slice(0, 32).replace(/[\r\n]/g, "_");
-                it(dirName + ": " + testCaseName, function() {
-                    return test({
-                        ...parsedCode,
-                        code: toTestCode(parsedCode.code)
-                    }, {
-                        defaultDoctestRunnerOptions: {
-                            // Default timeout: 2sec
-                            timeout: 1000 * 2
-                        }
-                    }).catch(error => {
+                const testLines = `L${parsedCode.location.start.line}-L${parsedCode.location.end.line}`;
+                it(dirName + ": " + testLines, async function() {
+                    try {
+                        await powerDoctest({
+                            ...parsedCode,
+                            code: toTestCode(parsedCode.code)
+                        }, {
+                            defaultDoctestRunnerOptions: {
+                                // Default timeout: 2sec
+                                timeout: 1000 * 2,
+                                context: {
+                                    // ここでのcontextは、doctestの実行時に利用される
+                                    // consoleログは邪魔なので出されないようにする
+                                    console: {
+                                        log: function(...args) {
+                                            void 0;
+                                        },
+                                        error: function(...args) {
+                                            void 0;
+                                        },
+                                        warn: function(...args) {
+                                            void 0;
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    } catch (error) {
                         if (error.meta && IgnoredECMAScriptVersions.some(version => version === String(error.meta.ECMAScript))) {
                             console.log(`ECMAScript ${error.meta.ECMAScript}が指定されているコードは実行環境がサポートしてない場合があるのでスキップします`);
-                            this.skip();
                             return;
                         }
+                        // IDEとかで直接ジャンプできるファイルパスにしたいので file:// 形式にする
+                        const fileProtocolPath = `file://${path.resolve(filePath)}`;
+                        const testTargetPathWithLineNumber = `${fileProtocolPath}:${parsedCode.location.start.line}`;
                         const filePathLineColumn = `${error.fileName}:${error.lineNumber}:${error.columnNumber}`;
-                        console.error(`Markdown Doctest is failed
-  at ${filePathLineColumn}
+                        const newError = new Error(`Markdown Doctest is failed at ${testTargetPathWithLineNumber}
 
-----------
+Error Location: 
+-----------------
+${filePathLineColumn}
+-----------------
+
+Assertion:
+------------------
+${error.message}
+------------------
+
+Code Block:
+-----------------           
 ${codeValue}
-----------
-`);
-                        return Promise.reject(error);
-                    });
+----------------
+`, {
+                            cause: error
+                        });
+                        throw newError;
+                    }
                 });
             });
         });

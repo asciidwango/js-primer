@@ -5,6 +5,7 @@ import { globbySync } from "globby";
 import fs from "node:fs";
 import url from "node:url";
 import path from "node:path";
+import { describe, it } from "node:test";
 const __filename__ = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename__);
 const sourceDir = path.join(__dirname, "..", "source");
