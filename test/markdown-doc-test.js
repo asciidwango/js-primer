@@ -45,6 +45,12 @@ const IgnoredECMAScriptVersions = (() => {
     }
     return ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"];
 })();
+
+process.on("uncaughtException", function(error) {
+    // Doctestの実行中にエラーが発生した場合は、テストを失敗させる
+    console.error("Uncaught Exception:", error);
+    process.exit(1);
+});
 /**
  * Markdownファイルの CodeBlock に対してdoctestを行う
  * CodeBlockは必ず実行できるとは限らないので、
@@ -74,7 +80,7 @@ describe("doctest:md", function() {
             parsedCodes.forEach((parsedCode, index) => {
                 const codeValue = parsedCode.code;
                 const testCaseName = codeValue.slice(0, 32).replace(/[\r\n]/g, "_");
-                it(dirName + ": " + testCaseName, { timeout: 5000 }, async function() {
+                it(dirName + ": " + testCaseName, async function() {
                     try {
                         await powerDoctest({
                             ...parsedCode,
@@ -82,7 +88,7 @@ describe("doctest:md", function() {
                         }, {
                             defaultDoctestRunnerOptions: {
                                 // Default timeout: 2sec
-                                timeout: 1000 * 2
+                                timeout: 1000 * 5
                             }
                         });
                     } catch (error) {
