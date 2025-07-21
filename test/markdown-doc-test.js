@@ -46,11 +46,6 @@ const IgnoredECMAScriptVersions = (() => {
     return ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"];
 })();
 
-process.on("uncaughtException", function(error) {
-    // Doctestの実行中にエラーが発生した場合は、テストを失敗させる
-    console.error("Uncaught Exception:", error);
-    process.exit(1);
-});
 /**
  * Markdownファイルの CodeBlock に対してdoctestを行う
  * CodeBlockは必ず実行できるとは限らないので、
@@ -80,7 +75,8 @@ describe("doctest:md", function() {
             parsedCodes.forEach((parsedCode, index) => {
                 const codeValue = parsedCode.code;
                 const testCaseName = codeValue.slice(0, 32).replace(/[\r\n]/g, "_");
-                it(dirName + ": " + testCaseName, async function() {
+                const testlines = `L${parsedCode.location.start.line}-L${parsedCode.location.end.line}`;
+                it(dirName + ": " + testlines, async function() {
                     try {
                         await powerDoctest({
                             ...parsedCode,
@@ -88,7 +84,24 @@ describe("doctest:md", function() {
                         }, {
                             defaultDoctestRunnerOptions: {
                                 // Default timeout: 2sec
-                                timeout: 1000 * 5
+                                timeout: 1000 * 2,
+                                context: {
+                                    // ここでのcontextは、doctestの実行時に利用される
+                                    // なので、グローバルな変数を定義することができる
+                                    // 例えば、console.logを定義しておくと、
+                                    // console.log(式); // => 結果 の形式で書かれたコードを実行できる
+                                    console: {
+                                        log: function(...args) {
+                                            void 0;
+                                        },
+                                        error: function(...args) {
+                                            void 0;
+                                        },
+                                        warn: function(...args) {
+                                            void 0;
+                                        }
+                                    }
+                                }
                             }
                         });
                     } catch (error) {
@@ -96,15 +109,32 @@ describe("doctest:md", function() {
                             console.log(`ECMAScript ${error.meta.ECMAScript}が指定されているコードは実行環境がサポートしてない場合があるのでスキップします`);
                             return;
                         }
+                        // IDEとかで直接ジャンプできるファイルパスの書き方
+                        // file://absolute/path/to/file.md:line-column
+                        const fileProtocolPath = `file://${path.resolve(filePath)}`;
+                        const testTargetPathWithLineNumber = `${fileProtocolPath}:${parsedCode.location.start.line}`;
                         const filePathLineColumn = `${error.fileName}:${error.lineNumber}:${error.columnNumber}`;
-                        console.error(`Markdown Doctest is failed
-  at ${filePathLineColumn}
+                        const newError = new Error(`Markdown Doctest is failed at ${testTargetPathWithLineNumber}
 
-----------
+Error Location: 
+-----------------
+${filePathLineColumn}
+-----------------
+
+Assertion:
+------------------
+${error.message}
+------------------
+
+Code Block:
+-----------------           
 ${codeValue}
-----------
-`);
-                        throw error;
+----------------
+`, {
+                            cause: error
+                        });
+                        console.error(newError);
+                        throw newError;
                     }
                 });
             });
