@@ -357,16 +357,15 @@ console.log(numbers.next().value); // => 3
 
 ## [ES2025] イテレータのメソッド {#iterator-methods}
 
-ES2025では、Iteratorプロトタイプに新しいメソッドが追加されました。
-これらのメソッドにより、配列のメソッドと同様の操作をIteratorに対して行えるようになり、
-宣言的なデータ処理が可能になります。
+ES2025では、`Iterator.prototype`に新しいメソッドが追加されました。
+ジェネレータオブジェクトやビルトインオブジェクトのIterable Iteratorは`Iterator.prototype`を継承しているため、これらのメソッドを利用できます。
 
-多くのメソッドは[配列のメソッド][配列のメソッド]と同じ名前で同じ動作をします。
+多くのメソッドは[配列のメソッド][配列のメソッド]と同じ名前で、ほぼ同様の動作をします。
 ただし、配列では全要素を一度に処理するのに対し、Iteratorでは必要になったタイミングで各要素を処理します。
 
 ### Iterator.from メソッド {#iterator-from}
 
-`Iterator.from`メソッドは、Iterableオブジェクトからイテレータを作成します。
+`Iterator.from`メソッドは、ジェンレータオブジェクトやIterableオブジェクトからイテレータを作成します。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": "2025" } -->
@@ -377,6 +376,8 @@ const iterator = Iterator.from([1, 2, 3, 4, 5]);
 console.log(iterator.next()); // => { value: 1, done: false }
 console.log(iterator.next()); // => { value: 2, done: false }
 ```
+
+IterableプロトコルまたはIteratorプロトコルを実装しているオブジェクトであれば、`Iterator.from`メソッドを使って簡単にイテレータを作成できます。
 
 ### take メソッド {#iterator-take}
 
@@ -394,8 +395,9 @@ function* infiniteNumbers() {
     }
 }
 
-// 最初の5つだけを取得
-const first5 = Iterator.from(infiniteNumbers()).take(5);
+// ジェネレータオブジェクトはIterator.prototypeを継承しているため、takeメソッドが使える
+// ジェネレータオブジェクトを反復処理して、最初の5つだけを取得
+const first5 = infiniteNumbers().take(5);
 
 for (const value of first5) {
     console.log(value); // 1, 2, 3, 4, 5
