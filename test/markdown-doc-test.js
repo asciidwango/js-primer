@@ -132,7 +132,6 @@ ${codeValue}
 `, {
                             cause: error
                         });
-                        console.error(newError);
                         throw newError;
                     }
                 });
