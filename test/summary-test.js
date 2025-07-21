@@ -3,6 +3,7 @@ import path from "node:path";
 import { getFilePathListAsync } from "gitbook-summary-to-path";
 import { matchPatterns } from "@textlint/regexp-string-matcher";
 import url from "node:url";
+import { describe, it } from "node:test";
 
 const __filename__ = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename__);
@@ -40,95 +41,90 @@ function findUsage(actualUseChapter, searchPatterns, allowFilePathList) {
 }
 
 describe("SUMMARY", function() {
-    it("falsyの説明をする前にfalsyの表記を利用してはいけない", () => {
+    it("falsyの説明をする前にfalsyの表記を利用してはいけない", async () => {
         // 許可リスト(読み方の解説など)
         const allowFilePathList = [];
         const searchPatterns = ["/falsy/gi"];
         const falsyChapter = path.join(sourceDir, "basic/operator/README.md");
-        return findUsage(falsyChapter, searchPatterns, allowFilePathList).then(results => {
-            if (results.length === 0) {
-                return;
-            }
-            const message = results.map(result => {
-                return `${result.normalizedFilePath} が利用しているので、確認してください。
+        const results = await findUsage(falsyChapter, searchPatterns, allowFilePathList);
+        if (results.length === 0) {
+            return;
+        }
+        const message = results.map(result => {
+            return `${result.normalizedFilePath} が利用しているので、確認してください。
 ${result.matchedTexts.join("\n")}
 `;
-            });
-            throw new Error(`${results.length}件のドキュメントがfalsyを説明前に利用しています。
-${message}`);
         });
+        throw new Error(`${results.length}件のドキュメントがfalsyを説明前に利用しています。
+${message}`);
     });
 
-    it("nullishの説明をする前にnullishの表記を利用してはいけない", () => {
+    it("nullishの説明をする前にnullishの表記を利用してはいけない", async () => {
         // 許可リスト(読み方の解説など)
         const allowFilePathList = [];
         const searchPatterns = ["/nullish/gi"];
         const nullishChapter = path.join(sourceDir, "basic/operator/README.md");
-        return findUsage(nullishChapter, searchPatterns, allowFilePathList).then(results => {
-            if (results.length === 0) {
-                return;
-            }
-            const message = results.map(result => {
-                return `${result.normalizedFilePath} が利用しているので、確認してください。
+        const results = await findUsage(nullishChapter, searchPatterns, allowFilePathList);
+        if (results.length === 0) {
+            return;
+        }
+        const message = results.map(result => {
+            return `${result.normalizedFilePath} が利用しているので、確認してください。
 ${result.matchedTexts.join("\n")}
 `;
-            });
-            throw new Error(`${results.length}件のドキュメントがnullishを説明前に利用しています。
-${message}`);
         });
+        throw new Error(`${results.length}件のドキュメントがnullishを説明前に利用しています。
+${message}`);
     });
-    it("インスタンスは`Objectのインスタンス`が初出", () => {
+    it("インスタンスは`Objectのインスタンス`が初出", async () => {
         // 許可リスト(読み方の解説など)
         const allowFilePathList = [];
         const searchPatterns = ["/インスタンス/"];
         const prototypeChapter = path.join(sourceDir, "basic/object/README.md");
-        return findUsage(prototypeChapter, searchPatterns, allowFilePathList).then(results => {
-            if (results.length === 0) {
-                return;
-            }
-            const message = results.map(result => {
-                return `${result.normalizedFilePath} が利用しているので、確認してください。
+        const results = await findUsage(prototypeChapter, searchPatterns, allowFilePathList);
+        if (results.length === 0) {
+            return;
+        }
+        const message = results.map(result => {
+            return `${result.normalizedFilePath} が利用しているので、確認してください。
 ${result.matchedTexts.join("\n")}
 `;
-            });
-            throw new Error(`${results.length}件のドキュメントがインスタンスを説明前に利用しています。
-${message}`);
         });
+        throw new Error(`${results.length}件のドキュメントがインスタンスを説明前に利用しています。
+${message}`);
     });
-    it("インスタンスメソッドはプロトタイプオブジェクトで説明する", () => {
+    it("インスタンスメソッドはプロトタイプオブジェクトで説明する", async () => {
         // 許可リスト(読み方の解説など)
         const allowFilePathList = [path.join(sourceDir, "basic/object/README.md")];
         const searchPatterns = ["/インスタンスメソッド/"];
         const prototypeChapter = path.join(sourceDir, "basic/prototype-object/README.md");
-        return findUsage(prototypeChapter, searchPatterns, allowFilePathList).then(results => {
-            if (results.length === 0) {
-                return;
-            }
-            const message = results.map(result => {
-                return `${result.normalizedFilePath} が利用しているので、確認してください。
+        const results = await findUsage(prototypeChapter, searchPatterns, allowFilePathList);
+        if (results.length === 0) {
+            return;
+        }
+        const message = results.map(result => {
+            return `${result.normalizedFilePath} が利用しているので、確認してください。
 ${result.matchedTexts.join("\n")}
 `;
-            });
-            throw new Error(`${results.length}件のドキュメントがインスタンスメソッドを、プロトタイプオブジェクトの説明前に利用しています。
-${message}`);
         });
+        throw new Error(`${results.length}件のドキュメントがインスタンスメソッドを、プロトタイプオブジェクトの説明前に利用しています。
+${message}`);
     });
-    it("try-catchより前にconsole.errorを利用してはいけない", () => {
+    it("try-catchより前にconsole.errorを利用してはいけない", async () => {
         // 許可リスト(読み方の解説など)
         const allowFilePathList = [];
         const searchPatterns = ["console.error"];
         const tryCatchCahpter = path.join(sourceDir, "basic/error-try-catch/README.md");
-        return findUsage(tryCatchCahpter, searchPatterns, allowFilePathList).then(results => {
-            if (results.length === 0) {
-                return;
-            }
-            const message = results.map(result => {
-                return `${result.normalizedFilePath} が利用しているので、確認してください。
+        const results = await findUsage(tryCatchCahpter, searchPatterns, allowFilePathList);
+        if (results.length === 0) {
+            return;
+        }
+        const message = results.map(result => {
+            return `${result.normalizedFilePath} が利用しているので、確認してください。
 ${result.matchedTexts.join("\n")}
 `;
-            });
-            throw new Error(`${results.length}件のドキュメントがconsole.errorメソッドを説明前に利用しています。
-${message}`);
         });
+        throw new Error(`${results.length}件のドキュメントがconsole.errorメソッドを説明前に利用しています。
+${message}`);
     });
 });

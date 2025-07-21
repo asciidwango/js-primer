@@ -6,6 +6,7 @@ import path from "node:path";
 import { globbySync } from "globby";
 import parseFrontMatter from "front-matter";
 import url from "node:url";
+import { describe, it } from "node:test";
 const __filename__ = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename__);
 const sourceDir = path.join(__dirname, "..", "source");
@@ -22,7 +23,7 @@ describe("front-matter", function() {
         // サンプルコードの一部
         `!${sourceDir}/use-case/nodecli/**/src/**/sample*.md`,
     ]);
-    context("author", function() {
+    describe("author", function() {
         files.forEach(filePath => {
             const normalizeFilePath = filePath.replace(sourceDir, "");
             it(`should have author field: ${normalizeFilePath}`, () => {

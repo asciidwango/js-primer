@@ -1,6 +1,6 @@
 // LICENSE : MIT
 "use strict";
-import { test } from "@power-doctest/tester";
+import { test as powerDoctest } from "@power-doctest/tester";
 import { parse } from "@power-doctest/markdown";
 import { toTestCode } from "./lib/testing-code.js";
 import { globbySync } from "globby";
@@ -8,6 +8,7 @@ import fs from "node:fs";
 import path from "node:path";
 import semver from "semver";
 import url from "node:url";
+import { describe, it } from "node:test";
 
 const __filename__ = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename__);
@@ -73,19 +74,20 @@ describe("doctest:md", function() {
             parsedCodes.forEach((parsedCode, index) => {
                 const codeValue = parsedCode.code;
                 const testCaseName = codeValue.slice(0, 32).replace(/[\r\n]/g, "_");
-                it(dirName + ": " + testCaseName, function() {
-                    return test({
-                        ...parsedCode,
-                        code: toTestCode(parsedCode.code)
-                    }, {
-                        defaultDoctestRunnerOptions: {
-                            // Default timeout: 2sec
-                            timeout: 1000 * 2
-                        }
-                    }).catch(error => {
+                it(dirName + ": " + testCaseName, { timeout: 5000 }, async function() {
+                    try {
+                        await powerDoctest({
+                            ...parsedCode,
+                            code: toTestCode(parsedCode.code)
+                        }, {
+                            defaultDoctestRunnerOptions: {
+                                // Default timeout: 2sec
+                                timeout: 1000 * 2
+                            }
+                        });
+                    } catch (error) {
                         if (error.meta && IgnoredECMAScriptVersions.some(version => version === String(error.meta.ECMAScript))) {
                             console.log(`ECMAScript ${error.meta.ECMAScript}が指定されているコードは実行環境がサポートしてない場合があるのでスキップします`);
-                            this.skip();
                             return;
                         }
                         const filePathLineColumn = `${error.fileName}:${error.lineNumber}:${error.columnNumber}`;
@@ -96,8 +98,8 @@ describe("doctest:md", function() {
 ${codeValue}
 ----------
 `);
-                        return Promise.reject(error);
-                    });
+                        throw error;
+                    }
                 });
             });
         });

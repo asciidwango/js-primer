@@ -1,10 +1,11 @@
 import { globbySync } from "globby";
 import fs from "node:fs";
 import path from "node:path";
-import { test } from "@power-doctest/tester";
+import { test as powerDoctest } from "@power-doctest/tester";
 import { parse } from "@power-doctest/javascript";
 import { toTestCode } from "./lib/testing-code.js";
 import url from "node:url";
+import { describe, it } from "node:test";
 
 const __filename__ = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename__);
@@ -18,7 +19,7 @@ const sourceDir = path.join(__dirname, "..", "source");
  *
  * Note: ESMには対応していない
  **/
-describe("example:js", function() {
+describe("example:js", function () {
     const files = globbySync([
         `${sourceDir}/**/*-example.js`, // *-example.js
         `${sourceDir}/**/*.example.js`, // *.example.js
@@ -29,22 +30,51 @@ describe("example:js", function() {
     ]);
     files.forEach(filePath => {
         const normalizeFilePath = filePath.replace(sourceDir, "");
-        it(`doctest:js ${normalizeFilePath}`, function() {
+        it(`doctest:js ${normalizeFilePath}`, { timeout: 5000 }, async function () {
             const content = fs.readFileSync(filePath, "utf-8");
             const parsedResults = parse({
                 content,
                 filePath
             });
             const parsedCode = parsedResults[0];
-            return test({
-                ...parsedCode,
-                code: toTestCode(parsedCode.code)
-            }).catch(error => {
+            try {
+                await powerDoctest({
+                    ...parsedCode,
+                    code: toTestCode(parsedCode.code)
+                });
+            } catch (error) {
+                /*
+                export type PowerDocTestError = Error & {
+                    // file path of the code
+                    fileName?: string;
+                    // line number of the code
+                    lineNumber?: number;
+                    // column number of the code
+                    columnNumber?: number;
+                    // metadata of the code
+                    meta?: {
+                        [index: string]: unknown;
+                    };
+                };*/
+
+                if (error.lineNumber !== undefined && error.columnNumber !== undefined) {
+                    const line = content.split("\n")[error.lineNumber - 1];
+                    const column = error.columnNumber - 1;
+                    const errorLine = line.slice(0, column) + "↑" + line.slice(column);
+                    console.error(`Error in ${filePath} at line ${error.lineNumber}, column ${error.columnNumber}:
+${errorLine}
+
+${parsedCode.code}
+    at strictEval (${filePath}:${error.lineNumber}:${error.columnNumber})
+
+`);
+                }
                 // Stack Trace like
-                console.error(`StrictEvalError: strict eval is failed
+                console.error(`PowerDoctest Error: ${error.message}
+${parsedCode.code}
     at strictEval (${filePath}:1:1)`);
-                return Promise.reject(error);
-            });
+                throw error;
+            }
         });
     });
 });
