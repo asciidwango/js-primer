@@ -86,9 +86,7 @@ describe("doctest:md", function() {
                                 timeout: 1000 * 2,
                                 context: {
                                     // ここでのcontextは、doctestの実行時に利用される
-                                    // なので、グローバルな変数を定義することができる
-                                    // 例えば、console.logを定義しておくと、
-                                    // console.log(式); // => 結果 の形式で書かれたコードを実行できる
+                                    // consoleログは邪魔なので出されないようにする
                                     console: {
                                         log: function(...args) {
                                             void 0;
@@ -108,8 +106,7 @@ describe("doctest:md", function() {
                             console.log(`ECMAScript ${error.meta.ECMAScript}が指定されているコードは実行環境がサポートしてない場合があるのでスキップします`);
                             return;
                         }
-                        // IDEとかで直接ジャンプできるファイルパスの書き方
-                        // file://absolute/path/to/file.md:line-column
+                        // IDEとかで直接ジャンプできるファイルパスにしたいので file:// 形式にする
                         const fileProtocolPath = `file://${path.resolve(filePath)}`;
                         const testTargetPathWithLineNumber = `${fileProtocolPath}:${parsedCode.location.start.line}`;
                         const filePathLineColumn = `${error.fileName}:${error.lineNumber}:${error.columnNumber}`;
