@@ -1720,6 +1720,7 @@ console.log(`実行終了: ${Date.now() - startTime}ms 経過しました`);
 ES2021まではAsync Functionの直下のみでしか`await`式が利用できませんでした。
 そのため、メイン処理のように他の処理を呼び出すスクリプトの開始地点で`await`を使いたい場合は、Async Functionを使った即時実行関数で`await`を囲むケースがありました。
 
+<!-- doctest:disable -->
 ```js
 // awaitを使うためだけに、Async Functionの即時実行関数を実行している
 (async function() {
