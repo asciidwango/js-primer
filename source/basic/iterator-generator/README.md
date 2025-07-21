@@ -524,7 +524,7 @@ Iteratorメソッドをチェーンすることで、複雑なデータ処理を
 const result = Iterator.from([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
     .filter(x => x % 2 === 0)  // 偶数をフィルタリング
     .take(3)                   // 最初の3つを取得
-　　 .map(x => x * x)           // 2乗する
+    .map(x => x * x)           // 2乗する
     .toArray();                // 配列に変換
 
 console.log(result); // => [4, 16, 36]
