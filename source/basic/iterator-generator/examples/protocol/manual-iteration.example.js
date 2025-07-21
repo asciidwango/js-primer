@@ -1,28 +1,22 @@
 function createRange(start, end) {
+    let current = start;
     return {
+        next() {
+            if (current <= end) {
+                return { value: current++, done: false };
+            } else {
+                return { value: undefined, done: true };
+            }
+        },
         [Symbol.iterator]() {
-            let current = start;
-            return {
-                next() {
-                    if (current <= end) {
-                        return { value: current++, done: false };
-                    } else {
-                        return { value: undefined, done: true };
-                    }
-                }
-            };
+            return this;
         }
     };
 }
 
 const range = createRange(1, 3);
 
-// for...of ループと同等の処理を手動で実装
-const iterator = range[Symbol.iterator](); // Iteratorを取得
-
-let result = iterator.next();
-while (!result.done) {
-    const value = result.value;
-    console.log(value);
-    result = iterator.next(); // 次の値を取得
+// Iteratorが{ done: true }を返すまで、`next`メソッドし、その`value`を取得する
+for (const num of range) {
+    console.log(num); // 1, 2, 3
 }

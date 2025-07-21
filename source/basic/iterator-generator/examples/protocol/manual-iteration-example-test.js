@@ -6,10 +6,10 @@ import url from "node:url";
 
 const __filename__ = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename__);
-const Code = fs.readFileSync(path.join(__dirname, "../../examples/protocol/create-range.example.js"), "utf-8");
+const Code = fs.readFileSync(path.join(__dirname, "../../examples/protocol/manual-iteration.example.js"), "utf-8");
 
-describe("create-range", function() {
-    it("範囲の数値が正しく生成される", function() {
+describe("manual-iteration", function() {
+    it("手動でIteratorを操作して値を取得できる", function() {
         const actualLogs = [];
         const console = {
             log(message) {
@@ -19,6 +19,6 @@ describe("create-range", function() {
         strictEval(Code, {
             console
         });
-        assert.deepEqual(actualLogs, [1, 2, 3]);
+        assert.deepStrictEqual(actualLogs, [1, 2, 3]);
     });
 });

@@ -1,28 +1,29 @@
-// 範囲の数値を生成するIterable/Iteratorの実装
+// 範囲の数値を生成するIterable Iteratorの実装
 function createRange(start, end) {
+    let current = start;
     return {
+        // `current`が`end`以下の間、次の値を返し、`current`をインクリメントする
+        // `end`を超えた場合は、doneをtrueにして終了
+        next() {
+            if (current <= end) {
+                return { value: current++, done: false };
+            } else {
+                return { value: undefined, done: true };
+            }
+        },
         // Iterableプロトコル: Symbol.iteratorメソッドを実装
         [Symbol.iterator]() {
-            let current = start;
-            
-            // Iteratorプロトコル: nextメソッドを持つオブジェクトを返す
-            return {
-                next() {
-                    if (current <= end) {
-                        return { value: current++, done: false };
-                    } else {
-                        return { value: undefined, done: true };
-                    }
-                }
-            };
+            return this;
         }
     };
 }
 
-// 使用例
+// Iterable Iteratorを取得
 const range = createRange(1, 3);
-
-// for...of ループで使用
-for (const num of range) {
-    console.log(num);
-}
+// Iteratorを取得
+const iterator = range[Symbol.iterator]();
+// Iteratorを使って、値を順番に取得
+console.log(iterator.next().value); // => 1
+console.log(iterator.next().value); // => 2
+console.log(iterator.next().value); // => 3
+console.log(iterator.next().value); // => undefined
