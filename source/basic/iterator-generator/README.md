@@ -499,11 +499,11 @@ const evenNumbers = numbers.filter(x => x % 2 === 0);
 for (const value of evenNumbers) {
     console.log(value);
 }
-// => 2
-// => 4
-// => 6
-// => 8
-// => 10
+// 2
+// 4
+// 6
+// 8
+// 10
 ```
 
 ### drop メソッド {#iterator-drop}
@@ -521,9 +521,9 @@ const skipped = numbers.drop(2);
 for (const value of skipped) {
     console.log(value);
 }
-// => 3
-// => 4
-// => 5
+// 3
+// 4
+// 5
 ```
 
 ### flatMap メソッド {#iterator-flatmap}
@@ -542,16 +542,16 @@ const chars = words.flatMap(word => word.split(""));
 for (const char of chars) {
     console.log(char);
 }
-// => h
-// => e
-// => l
-// => l
-// => o
-// => w
-// => o
-// => r
-// => l
-// => d
+// h
+// e
+// l
+// l
+// o
+// w
+// o
+// r
+// l
+// d
 ```
 
 ### reduce メソッド {#iterator-reduce}
@@ -571,7 +571,7 @@ console.log(sum); // => 15
 // 文字列を連結
 const words = Iterator.from(["Hello", "Iterator", "Methods"]);
 const sentence = words.reduce((acc, word) => acc + " " + word);
-console.log(sentence); // => Hello Iterator Methods
+console.log(sentence); // "Hello Iterator Methods"
 ```
 
 ### toArray メソッド {#iterator-toarray}
