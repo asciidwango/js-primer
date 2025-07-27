@@ -395,7 +395,7 @@ function* infiniteNumbers() {
     }
 }
 
-// ジェネレータオブジェクトはIterator.prototypeを継承しているため、takeメソッドが使える
+// ジェネレータオブジェクトはIterator.prototypeを継承しているため、takeメソッドが使えるe
 // ジェネレータオブジェクトを反復処理して、最初の5つだけを取得
 const first5 = infiniteNumbers().take(5);
 
