@@ -56,8 +56,8 @@ GitHubのアカウントを持っていない方は、次のフォームから�
 
 ## 参考 {#reference}
 
-- [専門書には間違いもある：柴田 芳樹 (Yoshiki Shibata)：So-netブログ](https://yshibata.blog.ss-blog.jp/2015-12-23)
-- [技術書の間違いに気付いたら：柴田 芳樹 (Yoshiki Shibata)：So-netブログ](https://yshibata.blog.ss-blog.jp/2018-06-09)
+- [専門書には間違いもある：柴田 芳樹 (Yoshiki Shibata)：So-netブログ](https://yoshikishibata.seesaa.net/article/2015-12-23.html)
+- [技術書の間違いに気付いたら：柴田 芳樹 (Yoshiki Shibata)：So-netブログ](https://yoshikishibata.seesaa.net/article/2018-06-09.html)
 
 [Pull Request]: https://help.github.com/articles/about-pull-requests/
 [CONTRIBUTING.md]: https://github.com/asciidwango/js-primer/blob/master/CONTRIBUTING.md
