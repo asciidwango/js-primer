@@ -42,7 +42,6 @@ JavaScriptで複数のデータを処理する場合、多くの場面で配列�
 一方、イテレータは「遅延評価（lazy evaluation）」で、`next`メソッドを呼び出したタイミングで初めて値を計算します。
 
 {{book.console}}
-
 ```js
 // 配列（先行評価）：すべての値を事前に計算
 const numbers = [1, 2, 3];
@@ -170,7 +169,6 @@ JavaScriptには、Iterableプロトコルを実装したビルトインオブ�
 配列はもっとも基本的なIterableで、各要素を順番に反復できます。
 
 {{book.console}}
-
 ```js
 const fruits = ["apple", "banana", "orange"];
 
@@ -186,7 +184,6 @@ for (const fruit of fruits) {
 このときの文字は、Code Pointごとに反復されます。
 
 {{book.console}}
-
 ```js
 const text = "Hello";
 
@@ -201,7 +198,6 @@ for (const char of text) {
 MapオブジェクトもIterableで、キーと値のペアを順番に反復できます。
 
 {{book.console}}
-
 ```js
 const userMap = new Map([
     ["name", "Alice"],
@@ -220,7 +216,6 @@ for (const [key, value] of userMap) {
 SetオブジェクトもIterableで、Setの重複のない値を順番に反復できます。
 
 {{book.console}}
-
 ```js
 const uniqueNumbers = new Set([1, 2, 3, 2, 1]);
 
@@ -253,7 +248,6 @@ function* generatorFunction() {
 `simpleGenerator`関数で作成したジェネレータオブジェクトの`next`メソッドを呼び出すことで、次の`yield`まで関数の実行が進み、その値を取得できます。
 
 {{book.console}}
-
 ```js
 // ジェネレータ関数の定義
 function* simpleGenerator() {
@@ -277,7 +271,6 @@ console.log(generator.next()); // => { value: undefined, done: true }
 つまり、GeneratorオブジェクトもIterable Iteratorであり、`for...of`ループで反復処理が可能です。
 
 {{book.console}}
-
 ```js
 function* simpleGenerator() {
     yield 1;
@@ -300,7 +293,6 @@ for (const num of simpleGenerator()) {
 そのため、次のように`next`メソッドを呼ぶまで、ジェネレータ関数の処理は実行されません。
 
 {{book.console}}
-
 ```js
 function* createGenerator() {
     console.log("a. 開始");
@@ -323,6 +315,72 @@ console.log(generator.next()); // => { value: undefined, done: true }
 IteratorプロトコルとIterableプロトコルを手で書いて同様の実装も可能ですが、かなり複雑になります。
 ジェネレータ関数と`yield`式を使うことで、イテレータの実装が簡潔に書けるようになるのがジェネレータ関数の大きな利点です。
 
+### イテレータは一度しか列挙できない {#iterator-single-consume}
+
+Iteratorは「現在どこまで読んだか」という内部状態を持つため、一度すべてを列挙し終えると同じIteratorをもう一度は列挙できません。
+次のコードでは、`iterator`変数を`for...of`ループで2回列挙しようとしていますが、最初のループで`iterator`はすべての値を列挙してしまい、2回目のループでは何も出力されません。
+
+{{book.console}}
+```js
+function* createNumbers() {
+    yield 1;
+    yield 2;
+}
+// Iteratorを作成
+const iterator = createNumbers();
+const results = [];
+for (const value of iterator) {
+    results.push(value);
+}
+console.log(results); // => [1, 2]
+// 列挙済みの`iterator`を再利用することはできない
+for (const value of iterator) {
+    results.push(value);
+    // この行は実行されません
+}
+console.log(results); // => [1, 2]
+```
+
+同じIteratorオブジェクトを再利用することはできないため、何度も列挙したい場合は新しいIteratorオブジェクトを作成する必要があります。
+ジェネレータ関数は呼び出すたびに新しいIteratorを返すため、同じジェネレータ関数を呼び出すことで新しいIteratorを得ることができます。
+
+{{book.console}}
+```js
+function* createNumbers() {
+    yield 1;
+    yield 2;
+}
+const results = [];
+// 新しいIteratorを作成して列挙
+for (const value of createNumbers()) {
+    results.push(value);
+}
+console.log(results); // => [1, 2]
+// 新しいIteratorを作成して列挙
+for (const value of createNumbers()) {
+    results.push(value);
+}
+console.log(results); // => [1, 2, 1, 2]
+```
+
+配列などのビルドインオブジェクトは`[Symbol.iterator]`メソッドを呼び出すたびに新しいIteratorを返すため、何度でも列挙できます。
+次のコードでは、配列である`array`変数を列挙しているように見えます。
+しかし、実際には`for...of`ループでは`array[Symbol.iterator]`メソッドが呼び出され、新しいIteratorが作成されているため、2回目のループでも列挙できています。
+
+{{book.console}}
+```js
+const array = [1, 2];
+const results = [];
+for (const value of array) {
+    results.push(value);
+}
+console.log(results); // => [1, 2]
+for (const value of array) {
+    results.push(value);
+}
+console.log(results); // => [1, 2, 1, 2]
+```
+
 ### 無限シーケンスの生成 {#infinite-sequence-generation}
 
 ジェネレータを使うと、無限に連続した数値を出力し続けるIterable Iteratorを簡単に定義できます。
@@ -330,7 +388,6 @@ IteratorプロトコルとIterableプロトコルを手で書いて同様の実�
 このジェネレータは、`next`メソッドが呼ばれるたびに次の数値を返すため、必要な分だけ数値を生成できます。
 
 {{book.console}}
-
 ```js
 // 無限に数値を生成するジェネレータ
 function* infiniteNumbers() {
@@ -369,9 +426,7 @@ ES2025では、`Iterator.prototype`に新しいメソッドが追加されまし
 次のコードでは、`Iterator.from`を使って配列からイテレータを作成し、`next`メソッドでイテレータから要素を取り出しています。
 
 {{book.console}}
-
 <!-- doctest:meta:{ "ECMAScript": "2025" } -->
-
 ```js
 // 配列からIteratorを作成
 const iterator = Iterator.from([1, 2, 3, 4, 5]);
@@ -388,9 +443,7 @@ Array/Map/Setでは`keys`/`values`/`entries`メソッドが、新しいイテレ
 次のコードでは、各ビルトインオブジェクトの`values`メソッドを使って、それぞれの値を返すイテレータを取得し、`map`メソッドを使って各値を2倍にした配列を作成しています。
 
 {{book.console}}
-
 <!-- doctest:meta:{ "ECMAScript": "2025" } -->
-
 ```js
 // Iterator.from を使って配列からイテレータを作成
 const iterator = Iterator.from([1, 2, 3]);
@@ -406,74 +459,6 @@ const set = new Set([1, 2, 3]);
 console.log(set.values().map((x) => x * 2).toArray()); // => [2, 4, 6]
 ```
 
-### Iterator.prototype.toArray メソッド {#iterator-toarray}
-
-`Iterator.prototype.toArray`メソッドは、Iteratorのすべての要素を列挙した配列を返します。
-
-{{book.console}}
-
-<!-- doctest:meta:{ "ECMAScript": "2025" } -->
-
-```js
-const iterator = Iterator.from([1, 2, 3]).map((x) => x * 2);
-const array = iterator.toArray();
-
-console.log(array); // => [2, 4, 6]
-```
-
-`Iterator.prototype.toArray`メソッド以外にも、スプレッド構文（`...`）や`Array.from`でもイテレータを配列に変換できます。
-
-{{book.console}}
-
-<!-- doctest:meta:{ "ECMAScript": "2025" } -->
-
-```js
-// スプレッド構文で列挙して配列化
-const a = [...Iterator.from([1, 2, 3])];
-console.log(a); // => [1, 2, 3]
-
-// Array.from で列挙して配列化
-const b = Array.from(Iterator.from([1, 2, 3]));
-console.log(b); // => [1, 2, 3]
-```
-
-注意するべき点としてイテレータが列挙できるのは一度きりです。反復し終えると再利用できません。
-そのため、次のように同じイテレータを2回以上列挙しようとすると、2回目は空の配列が返されます。
-
-{{book.console}}
-
-<!-- doctest:meta:{ "ECMAScript": "2025" } -->
-
-```js
-const iterator = Iterator.from([1, 2]).map((x) => x);
-// 全ての要素を列挙
-console.log([...iterator]); // => [1, 2]
-// すべての要素を列挙済みなので、2回目は空となる
-console.log([...iterator]); // => []
-```
-
-これは、`for...of`ループでも同じで、イテレータを列挙した後は、再度列挙できません。
-
-{{book.console}}
-
-<!-- doctest:meta:{ "ECMAScript": "2025" } -->
-
-```js
-const iterator = Iterator.from([1, 2]);
-const results = [];
-// イテレータをすべて列挙
-for (const value of iterator) {
-    results.push(value);
-}
-console.log(results); // => [1, 2]
-// 列挙済みのイテレータを再度列挙
-for (const value of iterator) {
-    results.push(value);
-}
-console.log(results); // => [1, 2]
-```
-
-これは、`for...of`ループでも同じで、イテレータを列挙した後は、再度列挙できません。
 
 ### Iterator.prototype.take メソッド {#iterator-take}
 
@@ -481,9 +466,7 @@ console.log(results); // => [1, 2]
 これは配列にはないIterator特有のメソッドで、無限シーケンスから有限の要素を取得する際に特に有用です。
 
 {{book.console}}
-
 <!-- doctest:meta:{ "ECMAScript": "2025" } -->
-
 ```js
 // 無限に数値を生成するジェネレータ
 function* infiniteNumbers() {
@@ -511,9 +494,7 @@ for (const value of first5) {
 このメソッドは、[配列の`map`メソッド][配列のmap]と同じように動作しますが、遅延評価される点が異なります。
 
 {{book.console}}
-
 <!-- doctest:meta:{ "ECMAScript": "2025" } -->
-
 ```js
 const numbers = Iterator.from([1, 2, 3, 4, 5]);
 
@@ -531,9 +512,7 @@ for (const value of doubled) {
 このメソッドは、[配列の`filter`メソッド][配列のfilter]と同じように動作しますが、遅延評価される点が異なります。
 
 {{book.console}}
-
 <!-- doctest:meta:{ "ECMAScript": "2025" } -->
-
 ```js
 const numbers = Iterator.from([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
@@ -550,9 +529,7 @@ for (const value of evenNumbers) {
 `Iterator.prototype.drop`メソッドは、指定した数の要素をスキップした新しいIteratorを返します。
 
 {{book.console}}
-
 <!-- doctest:meta:{ "ECMAScript": "2025" } -->
-
 ```js
 const numbers = Iterator.from([1, 2, 3, 4, 5]);
 
@@ -570,9 +547,7 @@ for (const value of skipped) {
 このメソッドは、[配列の`flatMap`メソッド][配列のflatMap]と同じように動作しますが、遅延評価される点が異なります。
 
 {{book.console}}
-
 <!-- doctest:meta:{ "ECMAScript": "2025" } -->
-
 ```js
 const words = Iterator.from(["hi", "fi"]);
 
@@ -590,9 +565,7 @@ for (const char of chars) {
 このメソッドは、[配列の`reduce`メソッド][配列のreduce]と同じように動作します。
 
 {{book.console}}
-
 <!-- doctest:meta:{ "ECMAScript": "2025" } -->
-
 ```js
 const numbers = Iterator.from([1, 2, 3, 4, 5]);
 
@@ -606,16 +579,44 @@ const sentence = words.reduce((acc, word) => acc + " " + word);
 console.log(sentence); // => "Hello Iterator Methods"
 ```
 
+### Iterator.prototype.toArray メソッド {#iterator-toarray}
+
+`Iterator.prototype.toArray`メソッドは、Iteratorのすべての要素を列挙した配列を返します。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
+```js
+const iterator = Iterator.from([1, 2, 3]).map((x) => x * 2);
+const array = iterator.toArray();
+
+console.log(array); // => [2, 4, 6]
+```
+
+`Iterator.prototype.toArray`メソッド以外にも、スプレッド構文（`...`）や`Array.from`静的メソッドでもイテレータを配列に変換できます。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
+```js
+// スプレッド構文で列挙して配列化
+const a = [...Iterator.from([1, 2, 3])];
+console.log(a); // => [1, 2, 3]
+
+// Array.from で列挙して配列化
+const b = Array.from(Iterator.from([1, 2, 3]));
+console.log(b); // => [1, 2, 3]
+```
+
+`Iterator.prototype.toArray`メソッドとスプレッド構文（`...`）や`Array.from`静的メソッドによる配列への変換の結果には違いはありません。
+一方で、`toArray`メソッドはIteratorのメソッドであるため、他のメソッドと組み合わせてメソッドチェーンとして書く場合に便利です。
+
 ### メソッドチェーンによる宣言的な処理 {#method-chaining}
 
 Iteratorメソッドをチェーンすることで、複雑なデータ処理を宣言的に記述できます。
 
-次のコードでは、10個の数値から偶数をフィルタリングし、最初の3つを取得して2乗する処理を行っています。
+次のコードでは、10個の数値から偶数をフィルタリングし、最初の3つを取得して2乗して配列に変換しています。
 
 {{book.console}}
-
 <!-- doctest:meta:{ "ECMAScript": "2025" } -->
-
 ```js
 // 複数のメソッドを組み合わせた例
 const result = Iterator.from([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
@@ -642,8 +643,8 @@ console.log(result); // => [4, 16, 36]
 この章では、JavaScriptにおけるイテレータとジェネレータについて紹介しました。
 
 - **Iterableプロトコル**と**Iteratorプロトコル**は、JavaScriptのイテレーション（反復処理）の基盤となる仕組み
-- `for...of`ループは、これらのプロトコルを利用してさまざまなオブジェクトを反復処理できる
-- **ジェネレータ関数**（`function*`と`yield`）を使うことで、Iteratorを簡潔に作成できる
+- `for...of`ループは、これらのプロトコルを利用してIterableオブジェクトを反復処理できる
+- **ジェネレータ関数**（`function*`と`yield`）を使うことで、Iterable Iteratorを簡潔に作成できる
 - **ES2025の新しいイテレータメソッド**により、配列と同様の宣言的なデータ処理ができる
 - イテレータの**遅延評価**特性により、大量のデータや無限シーケンスを効率的に処理できる
 
