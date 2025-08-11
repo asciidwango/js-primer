@@ -165,7 +165,7 @@ JavaScriptには、Iterableプロトコルを実装したビルトインオブ�
 これらのビルトインオブジェクトはIterableであるため、`for...of`ループで反復処理が可能です。
 これらのビルトインオブジェクトが返すイテレータの多くがIterable Iteratorです。
 
-いくつかの代表的なIterableのビルトインオブジェクトを紹介します。
+いくつかの代表的なIterableなビルトインオブジェクトを紹介します。
 
 ### 配列（Array） {#array-iterable}
 
