@@ -333,15 +333,16 @@ function* createNumbers() {
 // GeneratorオブジェクトはIterable Iterator
 const iterator = createNumbers();
 const results = [];
+// 1度目の列挙: `iterator`を列挙して値を取得
 for (const value of iterator) {
     results.push(value);
 }
 console.log(results); // => [1, 2]
-// 列挙済みの`iterator`を再利用することはできない
+// 2度目の列挙: 列挙済みの`iterator`を再利用することはできない
 for (const value of iterator) {
-    results.push(value);
-    // この行は実行されません
+    results.push(value); // この行は実行されません
 }
+// 2度目の列挙後では何も追加されないので、resultsは最初の列挙結果のみ
 console.log(results); // => [1, 2]
 ```
 
