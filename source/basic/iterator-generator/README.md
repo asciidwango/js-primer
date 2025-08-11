@@ -391,9 +391,9 @@ console.log(results); // => [1, 2, 1, 2]
 ## [ES2025] イテレータのメソッド {#iterator-methods}
 
 ES2025では、`Iterator.prototype`に新しいメソッドが追加されました。
-GeneratorオブジェクトやビルトインオブジェクトのIterable Iteratorは`Iterator.prototype`を継承しているため、これらのメソッドを利用できます。
+Iterableの`[Symbol.iterator]`メソッドが返すIteratorは`Iterator.prototype`を継承しているため、これらのメソッドを利用できます。
 
-多くのメソッドは[配列のメソッド][配列のメソッド]と同じ名前で、ほぼ同様の動作をします。
+多くのメソッドは[配列のメソッド][]と同じ名前で、ほぼ同様の動作をします。
 ただし、配列では全要素を一度に処理するのに対し、Iteratorでは必要になったタイミングで各要素を処理します。
 
 ### Iterator.from メソッド {#iterator-from}
