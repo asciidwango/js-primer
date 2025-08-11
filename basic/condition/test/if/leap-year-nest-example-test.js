@@ -3,6 +3,7 @@ import strictEval from "strict-eval";
 import fs from "fs";
 import path from "path";
 import url from "url";
+import { describe, it } from "node:test";
 const __filename__ = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename__);
 const Code = fs.readFileSync(path.join(__dirname, "../../src/if/leap-year-nest-example.js"), "utf-8");
@@ -23,7 +24,7 @@ const testLeapYear = (year, expectedMessage) => {
     });
 };
 describe("leap-year-nest", function() {
-    context("うるう年であるならば", function() {
+    describe("うるう年であるならば", function() {
         it("should return \"うるう年です\"", function() {
             const message = (year) => `${year}年はうるう年です`;
             testLeapYear(0, message);
@@ -34,7 +35,7 @@ describe("leap-year-nest", function() {
             testLeapYear(1289031804, message);
         });
     });
-    context("うるう年でないならば", function() {
+    describe("うるう年でないならば", function() {
         it("should return \"うるう年ではありません\"", function() {
             const message = (year) => `${year}年はうるう年ではありません`;
             testLeapYear(100, message);
