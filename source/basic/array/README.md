@@ -567,34 +567,6 @@ const newArray = ["X", ...array, "Z"];
 console.log(newArray); // => ["X", "A", "B", "C", "Z"]
 ```
 
-## [ES2019] 配列をフラット化 {#flat}
-
-Arrayの`flat`メソッド<sup>[ES2019]</sup>を使うことで、多次元配列をフラットな配列に変換できます。
-引数を指定しなかった場合は1段階のみのフラット化ですが、引数に渡す数値でフラット化する深さを指定できます。
-配列をすべてフラット化する場合には、無限を意味する`Infinity`を値として渡すことで実現できます。
-
-{{book.console}}
-<!-- doctest:meta:{ "ECMAScript": "2019" } -->
-```js
-const array = [[["A"], "B"], "C"];
-// 引数なしは1を指定した場合と同じ
-console.log(array.flat()); // => [["A"], "B", "C"]
-console.log(array.flat(1)); // => [["A"], "B", "C"]
-console.log(array.flat(2)); // => ["A", "B", "C"]
-// すべてをフラット化するにはInfinityを渡す
-console.log(array.flat(Infinity)); // => ["A", "B", "C"]
-```
-
-また、Arrayの`flat`メソッドは必ず新しい配列を作成して返すメソッドです。
-そのため、これ以上フラット化できない配列をフラット化しても、同じ要素を持つ新しい配列を返します。
-
-{{book.console}}
-<!-- doctest:meta:{ "ECMAScript": "2019" } -->
-```js
-const array = ["A", "B", "C"];
-console.log(array.flat()); // => ["A", "B", "C"]
-```
-
 ## 配列から要素を削除 {#delete-element}
 
 ### `Array.prototype.splice` {#splice}
@@ -997,6 +969,52 @@ function sum(array) {
     }, 0);
 }
 console.log(sum(array)); // => 6
+```
+
+### [ES2019] `Array.prototype.flat`メソッド {#flat}
+
+Arrayの`flat`メソッド<sup>[ES2019]</sup>を使うことで、多次元配列をフラットな配列に変換できます。
+引数を指定しなかった場合は1段階のみのフラット化ですが、引数に渡す数値でフラット化する深さを指定できます。
+配列をすべてフラット化する場合には、無限を意味する`Infinity`を値として渡すことで実現できます。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2019" } -->
+```js
+const array = [[["A"], "B"], "C"];
+// 引数なしは1を指定した場合と同じ
+console.log(array.flat()); // => [["A"], "B", "C"]
+console.log(array.flat(1)); // => [["A"], "B", "C"]
+console.log(array.flat(2)); // => ["A", "B", "C"]
+// すべてをフラット化するにはInfinityを渡す
+console.log(array.flat(Infinity)); // => ["A", "B", "C"]
+```
+
+また、Arrayの`flat`メソッドは必ず新しい配列を作成して返すメソッドです。
+そのため、これ以上フラット化できない配列をフラット化しても、同じ要素を持つ新しい配列を返します。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2019" } -->
+```js
+const array = ["A", "B", "C"];
+console.log(array.flat()); // => ["A", "B", "C"]
+```
+
+### [ES2019] `Array.prototype.flatMap`メソッド {#array-flatmap}
+
+Arrayの`flatMap`メソッド<sup>[ES2019]</sup>は、配列の各要素に対してコールバック関数を適用し、その結果を1段階フラット化した新しい配列を返します。
+つまり、`flatMap`メソッドは、`map`してから`flat(1)`するのと同じ結果になります。
+
+`flatMap`メソッドのコールバック関数には`map`メソッドと同様に`要素, インデックス, 配列`が引数として渡されます。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2019" } -->
+```js
+const array = [1, 2, 3];
+// 各要素を2倍にしてから、その値を配列として返す
+const doubled = array.flatMap((value) => {
+    return [value, value * 2];
+});
+console.log(doubled); // => [1, 2, 2, 4, 3, 6]
 ```
 
 ###  [ES2024] `Object.groupBy`静的メソッド {#object-group-by}
