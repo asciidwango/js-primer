@@ -1,13 +1,14 @@
-import assert from "assert";
-import { spawn } from "child_process";
-import path from "path";
+import { describe, it } from "node:test";
+import assert from "node:assert";
+import { spawn } from "node:child_process";
+import path from "node:path";
 import url from "node:url";
 
 const __filename__ = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename__);
 
-describe("array-vs-iterator", function() {
-    it("配列のサイズと最初の5つの要素が正しい", function(done) {
+describe("array-vs-iterator", () => {
+    it("配列のサイズと最初の5つの要素が正しい", (t, done) => {
         const output = [];
         const child = spawn("node", [path.join(__dirname, "../../examples/basic/array-vs-iterator.example.js")], {
             cwd: path.join(__dirname, "../../")
