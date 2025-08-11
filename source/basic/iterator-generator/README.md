@@ -148,7 +148,7 @@ Iteratorの`next`メソッドを呼び出すことで、`start`から`end`まで
 
 Iteratorの`next`メソッドを直接呼び出すことで、値を1つずつ取得できますが、通常は`for...of`ループを使ってIterable Iteratorを反復処理します。
 `for...of`ループは、Iterableの`[Symbol.iterator]`メソッドを呼び出し取得したIteratorの`next`メソッドを自動的に繰り返し呼び出します。
-つまり、先ほどの手動で`[Symbol.iterator]`メソッドを呼び出して、`next`メソッドを繰り返し呼び出す処理を自動的に行います。
+つまり、先ほどの手動で`[Symbol.iterator]`メソッドを呼び出して取得したIteratorの`next`メソッドを繰り返し呼び出すという処理を自動的に行います。
 
 {{book.console}}
 [import, title="for...ofループでIterable Iteratorを反復処理"](./examples/protocol/manual-iteration.example.js)
