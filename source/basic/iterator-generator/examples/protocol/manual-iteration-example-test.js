@@ -3,6 +3,7 @@ import strictEval from "strict-eval";
 import fs from "fs";
 import path from "path";
 import url from "node:url";
+import { describe, it } from "node:test";
 
 const __filename__ = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename__);
