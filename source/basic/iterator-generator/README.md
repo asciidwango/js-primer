@@ -137,6 +137,7 @@ console.log(iterator === iterator[Symbol.iterator]()); // => true
 ### シンプルなIterable Iteratorの実装 {#simple-iterable-iterator}
 
 具体例として、指定された範囲の数値を生成するIterable Iteratorを実装してみましょう。
+
 次の`createRange`関数は、指定された`start`から`end`までの数値を順番に生成するIterable Iteratorを返します。
 Iteratorの`next`メソッドを呼び出すことで、`start`から`end`までの数値を1つずつ取得できます。
 
