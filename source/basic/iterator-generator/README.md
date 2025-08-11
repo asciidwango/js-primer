@@ -219,11 +219,12 @@ for (const [key, value] of userMap) {
 SetオブジェクトもIterableで、Setの重複のない値を順番に反復できます。
 
 {{book.console}}
+
 ```js
-const uniqueNumbers = new Set([1, 2, 3, 2, 1]);
+const numberSet = new Set([1, 2, 3, 2, 1]);
 
 // Setの要素を反復（重複は除去されている）
-for (const num of uniqueNumbers) {
+for (const num of numberSet) {
     console.log(num); // 1, 2, 3
 }
 ```
