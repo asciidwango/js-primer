@@ -381,32 +381,6 @@ for (const value of array) {
 console.log(results); // => [1, 2, 1, 2]
 ```
 
-### 無限シーケンスの生成 {#infinite-sequence-generation}
-
-ジェネレータを使うと、無限に連続した数値を出力し続けるIterable Iteratorを簡単に定義できます。
-次のコードでは、無限シーケンスを生成するジェネレータを定義しています。
-このジェネレータは、`next`メソッドが呼ばれるたびに次の数値を返すため、必要な分だけ数値を生成できます。
-
-{{book.console}}
-```js
-// 無限に数値を生成するジェネレータ
-function* infiniteNumbers() {
-    let num = 1;
-    while (true) {
-        yield num++;
-    }
-}
-
-// 必要な分だけ取得
-const numbers = infiniteNumbers();
-console.log(numbers.next().value); // => 1
-console.log(numbers.next().value); // => 2
-console.log(numbers.next().value); // => 3
-// ... 無限に続く
-```
-
-無限に連続した数値を生成するジェネレータであるため、条件分岐なしに`for...of`ループで列挙すると無限ループとなるため注意が必要です。
-
 ## [ES2025] イテレータのメソッド {#iterator-methods}
 
 ES2025では、`Iterator.prototype`に新しいメソッドが追加されました。
@@ -463,7 +437,11 @@ console.log(set.values().map((x) => x * 2).toArray()); // => [2, 4, 6]
 ### Iterator.prototype.take メソッド {#iterator-take}
 
 `Iterator.prototype.take`メソッドは、指定した数の要素のみを取得するIteratorを返します。
-これは配列にはないIterator特有のメソッドで、無限シーケンスから有限の要素を取得する際に特に有用です。
+
+ジェネレータは無限シーケンスも表現できます。
+そのような終わりのない列は、必要な分だけ取り出す `take` メソッドで指定した数の要素を取得できます。
+
+次のコードでは、無限に数値を生成する`infiniteNumbers`ジェネレータ関数から、最初の5つの数値を取得しています。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": "2025" } -->
@@ -476,8 +454,7 @@ function* infiniteNumbers() {
     }
 }
 
-// ジェネレータオブジェクトはIterator.prototypeを継承しているため、Iterator.prototype.takeが使える
-// ジェネレータオブジェクトを反復処理して、最初の5つだけを取得
+// 無限に数値を生成するジェネレータから最初の5つの数値を取得
 const first5 = infiniteNumbers().take(5);
 
 for (const value of first5) {
@@ -485,7 +462,7 @@ for (const value of first5) {
 }
 ```
 
-配列でこのような無限シーケンスを表現するとメモリなどの色々な制限があるため、かなり難しいです。
+配列でこのような無限シーケンスを表現するとメモリなどの色々な制限があるため、かなり扱いにくいです。
 一方で、イテレータとジェネレータを使った場合は簡単に表現でき、`take`メソッドを使うことで最初の5つといったように必要な分だけを取得できます。
 
 ### Iterator.prototype.map メソッド {#iterator-map}
