@@ -598,7 +598,9 @@ console.log(array.flat()); // => ["A", "B", "C"]
 ## [ES2019] `Array.prototype.flatMap` {#array-flatmap}
 
 Arrayの`flatMap`メソッド<sup>[ES2019]</sup>は、配列の各要素に対してコールバック関数を適用し、その結果を1段階フラット化した新しい配列を返します。
-これは`map`メソッドと`flat`メソッドを組み合わせたような動作をします。
+つまり、`flatMap`メソッドは、`map`してから`flat(1)`するのと同じ結果になります。  
+
+
 
 `flatMap`メソッドのコールバック関数には`map`メソッドと同様に`要素, インデックス, 配列`が引数として渡されます。
 
@@ -611,39 +613,6 @@ const doubled = array.flatMap((value) => {
     return [value, value * 2];
 });
 console.log(doubled); // => [1, 2, 2, 4, 3, 6]
-```
-
-`flatMap`メソッドは、`map`してから`flat(1)`するのと同じ結果になりますが、より効率的に処理されます。
-
-{{book.console}}
-<!-- doctest:meta:{ "ECMAScript": "2019" } -->
-```js
-const array = [1, 2, 3];
-// mapしてからflatする場合
-const mapThenFlat = array.map((value) => {
-    return [value, value * 2];
-}).flat();
-console.log(mapThenFlat); // => [1, 2, 2, 4, 3, 6]
-
-// flatMapを使う場合（同じ結果）
-const flatMapped = array.flatMap((value) => {
-    return [value, value * 2];
-});
-console.log(flatMapped); // => [1, 2, 2, 4, 3, 6]
-```
-
-`flatMap`メソッドは1段階のみのフラット化を行うため、多次元配列を返すコールバック関数の場合は完全にフラット化されません。
-
-{{book.console}}
-<!-- doctest:meta:{ "ECMAScript": "2019" } -->
-```js
-const words = ["Hello", "World"];
-// 各単語を文字の配列に分割し、それぞれの文字を配列でラップする
-const wrapped = words.flatMap((word) => {
-    return word.split("").map(char => [char]);
-});
-// 1段階のみフラット化されるため、まだ配列が残る
-console.log(wrapped); // => [["H"], ["e"], ["l"], ["l"], ["o"], ["W"], ["o"], ["r"], ["l"], ["d"]]
 ```
 
 ## 配列から要素を削除 {#delete-element}
