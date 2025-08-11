@@ -398,6 +398,34 @@ rules:
   - expected: 挿入順
     patterns:
       - 追加順
+
+  # 用語統一: Iterator/Generator 関連（誤検知を避けつつ統一）
+  # - 「イテレータオブジェクト」などの和製表記は「Iteratorオブジェクト」に統一
+  # - 「ジェネレータオブジェクト」などは「Generatorオブジェクト」に統一
+  # - カタカナの揺れも補正（ジェネレーター→ジェネレータ、イテレーター→イテレータ）
+  - expected: Iteratorオブジェクト
+    patterns:
+      - イテレータオブジェクト
+      - Iteartorオブジェクト # typo: Iteartor
+      - iteratorオブジェクト
+    prh: Iterator object の表記に統一します
+  - expected: Generatorオブジェクト
+    patterns:
+      - ジェネレータオブジェクト
+      - ジェネレーターオブジェクト
+    prh: Generator object の表記に統一します（関数は「ジェネレータ関数」）
+  - expected: ジェネレータ
+    patterns:
+      - ジェネレーター
+    prh: カタカナ表記はジェネレータに統一します（関数名など）
+  - expected: イテレータ
+    patterns:
+      - イテレーター
+    prh: カタカナ表記はイテレータに統一します
+  - expected: ジェネレータ関数
+    patterns:
+      - ジェネレーター関数
+    prh: 関数の用語はジェネレータ関数に統一します
 # 文体
   - expected: どのように
     patterns:

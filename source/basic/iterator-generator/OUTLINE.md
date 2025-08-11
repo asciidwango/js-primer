@@ -76,6 +76,62 @@ console.log("LLM応答(擬似):", fullResponse);
 ## アウトライン
 <!-- 章全体の構成案 -->
 
+1.  はじめに（配列とイテレータの違い／遅延評価の導入）
+    - 目的: Iteratorはなぜあるのかを知ってもらう
+    - 配列は先行評価、イテレータは遅延評価
+    - 例: 配列版とジェネレータ版の対比、遅延評価の簡単なデモ
+2.  IterableプロトコルとIteratorプロトコル
+    - 目的: Iterator/Generator/Iterator Protocolのややこしい概念を簡単に知る（理解まではしなくてよい）
+    - Iterableプロトコル（`Symbol.iterator`）
+    - Iteratorプロトコル（`next` の返り値: `{ value, done }`）
+    - Iterable Iterator の説明（自分自身を返すイテレータ）
+    - シンプルな範囲イテレータの実装例
+    - for...of ループでの利用（手動反復との対比）
+3.  組み込みIterableオブジェクト
+    - 目的: IteratorはJavaScriptの色々なところに組み込まれていることを知ってもらう
+    - Array / String / Map / Set は Iterable（for...of で列挙可能）
+    - それぞれの簡単な使用例
+4.  ジェネレータ関数
+    - 目的: 独自のIteratorを作る方法（ややAdvancedな内容）
+    - `function*` と `yield` の基本
+    - 実行の一時停止と再開（`next`により進む）
+    - イテレータは一度しか列挙できない（消費される）
+5.  [ES2025] イテレータのメソッド
+    - 目的: Iteratorが配列のように扱えることを示す
+    - `Iterator.from`（Iterable からイテレータ化）
+    - `take` / `map` / `filter` / `drop` / `flatMap` / `reduce` / `toArray`
+    - メソッドチェーンによる宣言的な処理
+6.  まとめ
+
+## Note {#note}
+
+- Generatorの`return`文については、説明上その機能を使っていないため省略している。Iteratorの説明のためのGeneratorなので特に使わずに終わっている
+
+## 参考 {#references}
+
+<!-- 関連する仕様やドキュメントへのリンク -->
+
+- [ECMAScript Language Specification - Iteration](https://tc39.es/ecma262/#sec-iteration)
+- [MDN Web Docs - Iteration protocols](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Iteration_protocols)
+- [MDN Web Docs - Generator](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Generator)
+- [Proposal: Iterator Helpers](https://github.com/tc39/proposal-iterator-helpers) （※ この文書内では「イテレータの新しいメソッド」として参照）
+- [JavaScript Primer - 配列](https://jsprimer.net/basic/array/) （Iterableの例として）
+- [JavaScript Primer - 非同期処理:Promise/Async Function](https://jsprimer.net/basic/async/) （関連する非同期の概念）
+
+## この章ではやらなかったこと {#out-of-scope}
+
+以下は今回の章では扱わない、もしくは記述を見送りました。必要に応じて将来の改訂で検討します。
+
+- IteratorClose（反復の途中終了時のクリーンアップ）に関する注記の追加
+- ジェネレータの双方向通信（`next(value)` / `throw` / `return`）の詳細。今回は範囲外とする断り書きの追加
+- 導入〜プロトコル〜ビルトイン〜ジェネレータ〜ヘルパーの流れのさらなる軽微な整理（必要なら）
+- 疑似コード（value1/2/3 など）のスニペットを、完全に実行可能な例へ置換、もしくは疑似コードである旨の注記の追加
+
+---
+
+original outline
+
+
 1.  **はじめに**: イテレーションの重要性とこの章の概要
     - 目的: Iteratorはなぜあるのかを知ってもらう
     - Iteratorと配列の違い
@@ -124,14 +180,3 @@ console.log("LLM応答(擬似):", fullResponse);
 6.  **まとめ**
 
 :memo: 2,3,4は順番を入れ替えるかミックスするかもしれない
-
-## 参考
-
-<!-- 関連する仕様やドキュメントへのリンク -->
-
-- [ECMAScript Language Specification - Iteration](https://tc39.es/ecma262/#sec-iteration)
-- [MDN Web Docs - Iteration protocols](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Iteration_protocols)
-- [MDN Web Docs - Generator](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Generator)
-- [Proposal: Iterator Helpers](https://github.com/tc39/proposal-iterator-helpers) (※ この文書内では「イテレータの新しいメソッド」として参照)
-- [JavaScript Primer - 配列](https://jsprimer.net/basic/array/) (Iterableの例として)
-- [JavaScript Primer - 非同期処理:Promise/Async Function](https://jsprimer.net/basic/async/) (関連する非同期の概念)
