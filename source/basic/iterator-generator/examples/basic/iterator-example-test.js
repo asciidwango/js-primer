@@ -7,7 +7,7 @@ import url from "node:url";
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const Code = fs.readFileSync(path.join(__dirname, "../../examples/basic/iterator.example.js"), "utf-8");
+const Code = fs.readFileSync(path.join(__dirname, "./iterator.example.js"), "utf-8");
 
 describe("iterator-example", () => {
     it("イテレータから最初の2つの値を取得できる", () => {

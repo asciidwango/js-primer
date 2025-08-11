@@ -7,7 +7,7 @@ import url from "node:url";
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const Code = fs.readFileSync(path.join(__dirname, "../../examples/basic/array-vs-iterator.example.js"), "utf-8");
+const Code = fs.readFileSync(path.join(__dirname, "./array-vs-iterator.example.js"), "utf-8");
 
 describe("array-vs-iterator", () => {
     it("配列のサイズと最初の5つの要素が正しい", () => {
