@@ -245,7 +245,7 @@ function* generatorFunction() {
 
 次のコードでは、`function*`キーワードで`simpleGenerator`というジェネレータ関数を定義しています。
 `simpleGenerator`関数は、`yield`式を使って1, 2, 3の値を順番に生成します。
-`simpleGenerator`関数で作成したジェネレータオブジェクトの`next`メソッドを呼び出すことで、次の`yield`まで関数の実行が進み、その値を取得できます。
+`simpleGenerator`関数で作成したGeneratorオブジェクトの`next`メソッドを呼び出すことで、次の`yield`まで関数の実行が進み、その値を取得できます。
 
 {{book.console}}
 ```js
@@ -257,7 +257,7 @@ function* simpleGenerator() {
     // 以降のnext()呼び出しで { value: undefined, done: true } を返して終了する
 }
 
-// ジェネレータオブジェクトを作成
+// Generatorオブジェクトを作成
 const generator = simpleGenerator();
 
 // Iteratorとして使用
@@ -267,8 +267,8 @@ console.log(generator.next()); // => { value: 3, done: false }
 console.log(generator.next()); // => { value: undefined, done: true }
 ```
 
-ジェネレータ関数から返されるジェネレータオブジェクトは、IterableプロトコルとIteratorプロトコルの両方を実装しています。
-つまり、ジェネレータオブジェクトもIterable Iteratorであり、`for...of`ループで反復処理が可能です。
+ジェネレータ関数から返されるGeneratorオブジェクトは、IterableプロトコルとIteratorプロトコルの両方を実装しています。
+つまり、GeneratorオブジェクトもIterable Iteratorであり、`for...of`ループで反復処理が可能です。
 
 {{book.console}}
 ```js
@@ -326,7 +326,7 @@ function* createNumbers() {
     yield 1;
     yield 2;
 }
-// ジェネレータオブジェクトはIteratb
+// GeneratorオブジェクトはIterable Iterator
 const iterator = createNumbers();
 const results = [];
 for (const value of iterator) {
@@ -363,7 +363,7 @@ for (const value of createNumbers()) {
 console.log(results); // => [1, 2, 1, 2]
 ```
 
-配列などのビルドインオブジェクトは`[Symbol.iterator]`メソッドを呼び出すたびに新しいIteratorを返すため、何度でも列挙できます。
+配列などのビルトインオブジェクトは`[Symbol.iterator]`メソッドを呼び出すたびに新しいIteratorを返すため、何度でも列挙できます。
 次のコードでは、配列である`array`変数を列挙しているように見えます。
 しかし、実際には`for...of`ループでは`array[Symbol.iterator]`メソッドが呼び出され、新しいIteratorが作成されているため、2回目のループでも列挙できています。
 
@@ -384,14 +384,14 @@ console.log(results); // => [1, 2, 1, 2]
 ## [ES2025] イテレータのメソッド {#iterator-methods}
 
 ES2025では、`Iterator.prototype`に新しいメソッドが追加されました。
-ジェネレータオブジェクトやビルトインオブジェクトのIterable Iteratorは`Iterator.prototype`を継承しているため、これらのメソッドを利用できます。
+GeneratorオブジェクトやビルトインオブジェクトのIterable Iteratorは`Iterator.prototype`を継承しているため、これらのメソッドを利用できます。
 
 多くのメソッドは[配列のメソッド][配列のメソッド]と同じ名前で、ほぼ同様の動作をします。
 ただし、配列では全要素を一度に処理するのに対し、Iteratorでは必要になったタイミングで各要素を処理します。
 
 ### Iterator.from メソッド {#iterator-from}
 
-`Iterator.from`メソッドは、ジェネレータオブジェクトやIterableオブジェクトからイテレータを作成します。
+`Iterator.from`メソッドは、GeneratorオブジェクトやIterableオブジェクトからイテレータを作成します。
 
 配列などはIterableプロトコルは実装していますが、Iteratorそのものではありません。
 そのため、`Iterator.prototype.take`や`Iterator.prototype.drop`などのイテレータメソッドを配列で使うことはできません。
