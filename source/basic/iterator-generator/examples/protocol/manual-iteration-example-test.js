@@ -7,7 +7,7 @@ import { describe, it } from "node:test";
 
 const __filename__ = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename__);
-const Code = fs.readFileSync(path.join(__dirname, "../../examples/protocol/manual-iteration.example.js"), "utf-8");
+const Code = fs.readFileSync(path.join(__dirname, "./manual-iteration.example.js"), "utf-8");
 
 describe("manual-iteration", function() {
     it("手動でIteratorを操作して値を取得できる", function() {
