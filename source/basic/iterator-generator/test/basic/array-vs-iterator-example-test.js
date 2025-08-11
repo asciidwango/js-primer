@@ -12,15 +12,16 @@ const Code = fs.readFileSync(path.join(__dirname, "../../examples/basic/array-vs
 describe("array-vs-iterator", () => {
     it("配列のサイズと最初の5つの要素が正しい", () => {
         const actualLogs = [];
-        const console = {
+        const consoleMock = {
             log(message) {
                 actualLogs.push(message);
             }
         };
         strictEval(Code, {
-            console
+            console: consoleMock
         });
         assert.strictEqual(actualLogs[0], 5000);
-        assert.deepStrictEqual(actualLogs[1], [1, 2, 3, 4, 5]);
+        // 配列のRealmが異なるのでstrictEqualは使えない
+        assert.deepEqual(actualLogs[1], [1, 2, 3, 4, 5]);
     });
 });
