@@ -159,7 +159,7 @@ Iterable Iteratorを扱うときは、基本的には`for...of`ループを使�
 `for...of`などの構文を使うと、両プロトコルを意識する機会は多くありません。
 ただし内部では、この2つのプロトコルが動いていることを理解しておくとよいでしょう。
 
-## 組み込みIterableオブジェクト {#built-in-iterables}
+## Iterableなビルトインオブジェクト {#built-in-iterables}
 
 JavaScriptには、Iterableプロトコルを実装したビルトインオブジェクトが多数存在します。
 これらのビルトインオブジェクトはIterableであるため、`for...of`ループで反復処理が可能です。
