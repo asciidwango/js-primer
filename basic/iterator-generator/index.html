@@ -1,0 +1,2230 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <title>イテレータとジェネレータ · JavaScript Primer #jsprimer</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="JavaScriptにおけるイテレータとジェネレータの基本概念と使い方について紹介します。ES2025で導入される新しいイテレータメソッドについても解説します。">
+        <meta name="generator" content="HonKit 6.0.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-page-toc-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/@honkit/honkit-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/@honkit/honkit-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+         
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../json/" />
+    
+    
+    <link rel="prev" href="../map-and-set/" />
+    
+
+    <link rel="canonical" href="https://jsprimer.net/basic/iterator-generator/">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DWY0DLHWB6"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag("js", new Date());
+
+    gtag("config", "G-DWY0DLHWB6");
+</script>
+<script type="module">
+    // コンソールUIでコード実行したらイベントとして送信する
+    const onExecuteCode = (scriptType) => {
+        gtag("event", "execute_code", {
+            "event_category": "console",
+            "event_label": "execute_code",
+            "script_type": scriptType || "unknown"
+        });
+    };
+    let observer;
+    const observeEvalEvent = () => {
+        if (observer) {
+            observer.disconnect();
+        }
+        const callback = function(mutationsList) {
+            for (const mutation of mutationsList) {
+                const mirrorConsole = Array.from(mutation.addedNodes).find(node => Boolean(node.dataset.mirrorConsole));
+                if (mirrorConsole) {
+                    return onExecuteCode(mirrorConsole.dataset.mirrorConsole);
+                }
+            }
+        };
+        observer = new MutationObserver(callback);
+        observer.observe(document.body, { childList: true });
+    };
+    const eventMap = new WeakMap();
+    // 問題を報告ボタンを押したらイベントとして送信する
+    const onClickIssueReport = () => {
+        console.log("click_issue_report");
+        gtag("event", "click_issue_report", {
+            "event_category": "contribution",
+            "event_label": "click_issue_report"
+        });
+    };
+    const observeIssueReport = () => {
+        const targetButton = document.querySelector(".gitbook-plugin-github-issue-feedback");
+        // すでにイベントが登録されていたら何もしない
+        if (eventMap.has(targetButton)) {
+            return;
+        }
+        if (targetButton) {
+            targetButton.addEventListener("click", onClickIssueReport);
+            eventMap.set(targetButton, onClickIssueReport);
+        }
+    };
+    window.addEventListener("DOMContentLoaded", function() {
+        gitbook.events.on("page.change", function() {
+            observeEvalEvent();
+            observeIssueReport();
+        });
+    });
+
+</script>
+<meta name="google-site-verification" content="bMotEbgYwkzA3k4PkuyK_NUdz0bKh-Phz0oUwNmRSVo"/>
+<style>
+    /*
+     * Disable antialias
+     */
+    * {
+        -webkit-font-smoothing: initial !important
+    }
+
+    body {
+        text-rendering: initial !important;
+        font-smoothing: initial !important;
+    }
+
+    /* deny access chapter */
+    .summary li.chapter > span {
+        cursor: not-allowed;
+        opacity: .3;
+    }
+
+    /* console ui */
+
+    .mirror-console-attach-button-wrapper {
+        margin-top: -1.275em;
+        margin-bottom: 1.275em
+    }
+
+    .mirror-console-wrapper {
+        margin-top: 1.275em;
+        margin-bottom: 1.275em
+    }
+
+    /* file name for codeblock */
+    .code-filename {
+        background-color: #eee;
+        display: inline-block;
+        padding: 2px 8px;
+        line-height: inherit;
+        margin-bottom: 0px !important;
+    }
+
+    /* Markdown */
+    /* Support horizon scroll */
+    /* https://stackoverflow.com/questions/17770257/scrolling-tables-horizontally-without-wrapping-them-in-div */
+    .markdown-section table {
+        max-width: 100%;
+        overflow-x: auto;
+        display: block;
+    }
+    .markdown-section sup,
+    .markdown-section sub {
+        font-size: 75%;
+    }
+
+    .book_footer {
+        text-align: center;
+        color: #000000;
+        background: #ddd;
+        font-size: 16px;
+        margin-top: 16px;
+        padding: 16px;
+    }
+
+    /* github-issue-feedback */
+    .gitbook-plugin-github-issue-feedback {
+        background-color: #333;
+        color: #fff;
+        opacity: 0.8;
+        padding: 4px;
+        margin-right: 24px;
+        margin-bottom: 4px;
+        border-radius: 6px;
+    }
+
+    .gitbook-plugin-github-issue-feedback:hover {
+        opacity: 1;
+    }
+
+    /* Hide footer on mobile */
+    /* Use navigation width */
+    @media (max-width: 1240px) {
+        .book_footer {
+            display: none;
+        }
+    }
+
+    .navigation {
+        min-width: 50px;
+    }
+
+    @media (min-width: 1240px) {
+        .honkit-plugin-sandpack {
+            width: calc(100% + 180px);
+            margin: 0 0 1em -90px;
+        }
+    }
+
+    .honkit-plugin-sandpack, .honkit-plugin-sandpack--buttonContainer {
+        margin-bottom: 1em;
+    }
+
+</style>
+<meta name="theme-color" content="#ffffff">
+<link rel="manifest" href="../../manifest.json">
+<script defer async>
+    // unregister old service worker(remove workbox)
+    // https://github.com/asciidwango/js-primer/pull/1701
+    navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for (const registration of registrations) {
+            registration.unregister();
+        }
+    }).catch(function(err) {
+        console.error(new Error("Can not getRegistrations", {
+            cause: err
+        }));
+    });
+</script>
+
+    </head>
+    <body>
+        
+<div class="book honkit-cloak">
+    <div class="book-summary">
+        
+            
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    この書籍について
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../intro/">
+            
+                <a href="../../intro/">
+            
+                    
+                    はじめに
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../../intro/authors/">
+            
+                <a href="../../intro/authors/">
+            
+                    
+                    著者紹介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../../intro/sponsors/">
+            
+                <a href="../../intro/sponsors/">
+            
+                    
+                    JavaScript Primerスポンサー
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../../intro/preparation/">
+            
+                <a href="../../intro/preparation/">
+            
+                    
+                    読みはじめる前の事前準備
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../../intro/feedback/">
+            
+                <a href="../../intro/feedback/">
+            
+                    
+                    文章の間違いに気づいたら
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    第一部: 基本文法
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../introduction/">
+            
+                <a href="../introduction/">
+            
+                    
+                    JavaScriptとは
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../comments/">
+            
+                <a href="../comments/">
+            
+                    
+                    コメント
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../variables/">
+            
+                <a href="../variables/">
+            
+                    
+                    変数と宣言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../read-eval-print/">
+            
+                <a href="../read-eval-print/">
+            
+                    
+                    値の評価と表示
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../data-type/">
+            
+                <a href="../data-type/">
+            
+                    
+                    データ型とリテラル
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../operator/">
+            
+                <a href="../operator/">
+            
+                    
+                    演算子
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../implicit-coercion/">
+            
+                <a href="../implicit-coercion/">
+            
+                    
+                    暗黙的な型変換
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="../function-declaration/">
+            
+                <a href="../function-declaration/">
+            
+                    
+                    関数と宣言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="../statement-expression/">
+            
+                <a href="../statement-expression/">
+            
+                    
+                    文と式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="../condition/">
+            
+                <a href="../condition/">
+            
+                    
+                    条件分岐
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.11" data-path="../loop/">
+            
+                <a href="../loop/">
+            
+                    
+                    ループと反復処理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.12" data-path="../object/">
+            
+                <a href="../object/">
+            
+                    
+                    オブジェクト
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.13" data-path="../prototype-object/">
+            
+                <a href="../prototype-object/">
+            
+                    
+                    プロトタイプオブジェクト
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.14" data-path="../array/">
+            
+                <a href="../array/">
+            
+                    
+                    配列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.15" data-path="../string/">
+            
+                <a href="../string/">
+            
+                    
+                    文字列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.16" data-path="../string-unicode/">
+            
+                <a href="../string-unicode/">
+            
+                    
+                    文字列とUnicode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.17" data-path="../wrapper-object/">
+            
+                <a href="../wrapper-object/">
+            
+                    
+                    ラッパーオブジェクト
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.18" data-path="../function-scope/">
+            
+                <a href="../function-scope/">
+            
+                    
+                    関数とスコープ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.19" data-path="../function-this/">
+            
+                <a href="../function-this/">
+            
+                    
+                    関数とthis
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.20" data-path="../class/">
+            
+                <a href="../class/">
+            
+                    
+                    クラス
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.21" data-path="../error-try-catch/">
+            
+                <a href="../error-try-catch/">
+            
+                    
+                    例外処理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.22" data-path="../async/">
+            
+                <a href="../async/">
+            
+                    
+                    非同期処理:Promise/Async Function
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.23" data-path="../map-and-set/">
+            
+                <a href="../map-and-set/">
+            
+                    
+                    Map/Set
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.24" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    イテレータとジェネレータ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.25" data-path="../json/">
+            
+                <a href="../json/">
+            
+                    
+                    JSON
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.26" data-path="../date/">
+            
+                <a href="../date/">
+            
+                    
+                    Date
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.27" data-path="../math/">
+            
+                <a href="../math/">
+            
+                    
+                    Math
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.28" data-path="../module/">
+            
+                <a href="../module/">
+            
+                    
+                    ECMAScriptモジュール
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.29" data-path="../ecmascript/">
+            
+                <a href="../ecmascript/">
+            
+                    
+                    ECMAScript
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.30" data-path="../other-parts/">
+            
+                <a href="../other-parts/">
+            
+                    
+                    第一部: おわりに
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../../use-case/">
+            
+                <a href="../../use-case/">
+            
+                    
+                    第二部: 応用編（ユースケース）
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../../use-case/setup-local-env/">
+            
+                <a href="../../use-case/setup-local-env/">
+            
+                    
+                    アプリケーション開発の準備
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../../use-case/ajaxapp/">
+            
+                <a href="../../use-case/ajaxapp/">
+            
+                    
+                    Ajax通信
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.1" data-path="../../use-case/ajaxapp/entrypoint/">
+            
+                <a href="../../use-case/ajaxapp/entrypoint/">
+            
+                    
+                    エントリーポイント
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.2" data-path="../../use-case/ajaxapp/http/">
+            
+                <a href="../../use-case/ajaxapp/http/">
+            
+                    
+                    HTTP通信
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.3" data-path="../../use-case/ajaxapp/display/">
+            
+                <a href="../../use-case/ajaxapp/display/">
+            
+                    
+                    データを表示する
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.4" data-path="../../use-case/ajaxapp/promise/">
+            
+                <a href="../../use-case/ajaxapp/promise/">
+            
+                    
+                    Promiseを活用する
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../../use-case/nodecli/">
+            
+                <a href="../../use-case/nodecli/">
+            
+                    
+                    Node.jsでCLIアプリ
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.3.1" data-path="../../use-case/nodecli/helloworld/">
+            
+                <a href="../../use-case/nodecli/helloworld/">
+            
+                    
+                    Node.jsでHello World
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.2" data-path="../../use-case/nodecli/argument-parse/">
+            
+                <a href="../../use-case/nodecli/argument-parse/">
+            
+                    
+                    コマンドライン引数を処理する
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.3" data-path="../../use-case/nodecli/read-file/">
+            
+                <a href="../../use-case/nodecli/read-file/">
+            
+                    
+                    ファイルを読み込む
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.4" data-path="../../use-case/nodecli/md-to-html/">
+            
+                <a href="../../use-case/nodecli/md-to-html/">
+            
+                    
+                    MarkdownをHTMLに変換する
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3.5" data-path="../../use-case/nodecli/refactor-and-unittest/">
+            
+                <a href="../../use-case/nodecli/refactor-and-unittest/">
+            
+                    
+                    ユニットテストを記述する
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../../use-case/todoapp/">
+            
+                <a href="../../use-case/todoapp/">
+            
+                    
+                    Todoアプリ
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.4.1" data-path="../../use-case/todoapp/entrypoint/">
+            
+                <a href="../../use-case/todoapp/entrypoint/">
+            
+                    
+                    エントリーポイント
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.2" data-path="../../use-case/todoapp/app-structure/">
+            
+                <a href="../../use-case/todoapp/app-structure/">
+            
+                    
+                    アプリの構成要素
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.3" data-path="../../use-case/todoapp/form-event/">
+            
+                <a href="../../use-case/todoapp/form-event/">
+            
+                    
+                    Todoアイテムの追加を実装する
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.4" data-path="../../use-case/todoapp/event-model/">
+            
+                <a href="../../use-case/todoapp/event-model/">
+            
+                    
+                    イベントとモデル
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.5" data-path="../../use-case/todoapp/update-delete/">
+            
+                <a href="../../use-case/todoapp/update-delete/">
+            
+                    
+                    Todoアイテムの更新と削除を実装する
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4.6" data-path="../../use-case/todoapp/final/">
+            
+                <a href="../../use-case/todoapp/final/">
+            
+                    
+                    Todoアプリのリファクタリング
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../../appendix/links/">
+            
+                <a href="../../appendix/links/">
+            
+                    
+                    付録: 参考リンク集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../../cheatsheet/">
+            
+                <a href="../../cheatsheet/">
+            
+                    
+                    付録: JavaScriptチートシート
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../../outro/">
+            
+                <a href="../../outro/">
+            
+                    
+                    おわりに
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://github.com/honkit/honkit" target="blank" class="gitbook-link">
+            Published with HonKit
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<!-- Header -->
+<meta name="keywords" content="JavaScript,ECMAScript,JS,入門,チュートリアル,書籍,本,無料,Node.js,ブラウザ"/>
+<link rel="author" href="https://www.hatena.ne.jp/efcl/"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<!-- OGP -->
+<meta property="og:title" content="JavaScript Primer - 迷わないための入門書"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://jsprimer.net/"/>
+<meta property="og:image" content="https://jsprimer.net/landing/img/cover-optimized.jpg"/>
+<meta property="og:site_name" content="JavaScript Primer"/>
+<meta property="og:description" content="JavaScript Primerは、JavaScriptの基礎から応用までを一貫して学べる入門書です。"/>
+<style>
+    .book-header {
+        display: flex;
+        flex-direction: row;
+        background-color: #333;
+    }
+
+    /* link color */
+    .book-header a {
+        color: #fff;
+    }
+
+    /* hover color */
+    .book-header .btn:hover, .book-header .btn:focus, .book-header a:focus, .book-header a:hover {
+        color: hsla(0, 0%, 100%, 0.75) !important;
+    }
+
+    /* Mobile header fixed */
+    @media (max-width: 768px) {
+        /* Headerを固定する */
+        .book-header {
+            position: fixed;
+            width: 100%;
+        }
+
+        /* Icon only */
+        .book-header-title-img {
+            margin: auto 18px auto 0 !important;
+        }
+
+        .book-header-title-h {
+            display: none;
+        }
+
+        /* Header分のズレを入れる */
+        .page-wrapper {
+            padding-top: 60px;
+        }
+
+        /* github-issue-feedbackを非表示にする */
+        .gitbook-plugin-github-issue-feedback {
+            display: none;
+        }
+    }
+
+    /* Dynamic created by GitBook*/
+    .btn.pull-left.js-toolbar-action {
+        order: 1;
+    }
+
+    .book-header-title {
+        order: 2;
+        display: inline-flex;
+        flex-direction: row;
+        color: #fff;
+    }
+
+    .book-header-title:hover {
+        color: hsla(0, 0%, 100%, 0.75);
+    }
+
+    .book-header-title-img {
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        margin: auto 10px auto 0;
+    }
+
+    .book-header-title-h {
+        font-size: 20px;
+        margin: auto;
+        padding: 0;
+    }
+
+    .header-center {
+        order: 3;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        /* self */
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: auto;
+    }
+
+    .header-right {
+        order: 4;
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        /* icon size */
+        font-size: 24px;
+    }
+
+    .amazon-link, .github-link {
+        color: #fff;
+        /* Padding and make Vertical */
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    /* Desktop */
+    @media (min-width: 768px) {
+        .header-center {
+            align-items: center;
+        }
+
+        .header-right {
+            margin-right: 24px;
+        }
+    }
+
+    /* DocSearch */
+    @media (max-width: 768px) {
+        .algolia-autocomplete .ds-dropdown-menu {
+            max-width: calc(100vw - 32px) !important;
+            min-width: calc(100vw - 32px) !important;
+            width: calc(100vw - 32px) !important;
+            /* negative margin
+              This is absolute element
+              */
+            margin-left: -32px !important;
+        }
+
+        .algolia-autocomplete .algolia-docsearch-suggestion--content {
+            width: 100% !important;
+            padding-left: 0 !important;
+        }
+
+        .algolia-autocomplete .algolia-docsearch-suggestion--content:before {
+            display: none !important;
+        }
+
+        .algolia-autocomplete .algolia-docsearch-suggestion--subcategory-column {
+            display: none !important;
+        }
+
+        .algolia-autocomplete.algolia-autocomplete-right .ds-dropdown-menu {
+            right: inherit !important
+        }
+
+        .algolia-autocomplete.algolia-autocomplete-right .ds-dropdown-menu::before {
+            right: 50%;
+        }
+
+        .sbx-custom {
+            width: 92px !important;
+            padding: initial !important;
+        }
+
+        .amazon-link {
+            display: none;
+        }
+    }
+
+    /* SearchBox */
+    .searchbarWrapper {
+        height: 50px;
+    }
+
+
+    .sbx-custom {
+        display: inline-block;
+        position: relative;
+        min-width: 150px;
+        width: 300px;
+        max-width: 300px;
+        height: 33px;
+        white-space: nowrap;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+
+    .sbx-custom__wrapper {
+        width: 100%;
+        height: 100%;
+    }
+
+    .sbx-custom__input {
+        display: inline-block;
+        -webkit-transition: box-shadow .4s ease, background .4s ease;
+        transition: box-shadow .4s ease, background .4s ease;
+        border: 0;
+        border-radius: 5px;
+        box-shadow: inset 0 0 0 2px #CCCCCC;
+        background: #FFFFFF;
+        padding: 0 27px 0 33px;
+        width: 100%;
+        height: 100%;
+        vertical-align: middle;
+        white-space: normal;
+        font-size: inherit;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+
+    .sbx-custom__input::-webkit-search-decoration, .sbx-custom__input::-webkit-search-cancel-button, .sbx-custom__input::-webkit-search-results-button, .sbx-custom__input::-webkit-search-results-decoration {
+        display: none;
+    }
+
+    .sbx-custom__input:hover {
+        box-shadow: inset 0 0 0 2px #b3b3b3;
+    }
+
+    .sbx-custom__input:focus, .sbx-custom__input:active {
+        outline: 0;
+        box-shadow: inset 0 0 0 2px #4B54DE;
+        background: #FFFFFF;
+    }
+
+    .sbx-custom__input::-webkit-input-placeholder {
+        color: #BBBBBB;
+    }
+
+    .sbx-custom__input::-moz-placeholder {
+        color: #BBBBBB;
+    }
+
+    .sbx-custom__input:-ms-input-placeholder {
+        color: #BBBBBB;
+    }
+
+    .sbx-custom__input::placeholder {
+        color: #BBBBBB;
+    }
+
+    .sbx-custom__submit {
+        position: absolute;
+        top: 0;
+        right: inherit;
+        left: 0;
+        margin: 0;
+        border: 0;
+        border-radius: 4px 0 0 4px;
+        background-color: rgba(255, 255, 255, 0);
+        padding: 0;
+        width: 33px;
+        height: 100%;
+        vertical-align: middle;
+        text-align: center;
+        font-size: inherit;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .sbx-custom__submit::before {
+        display: inline-block;
+        margin-right: -4px;
+        height: 100%;
+        vertical-align: middle;
+        content: '';
+    }
+
+    .sbx-custom__submit:hover, .sbx-custom__submit:active {
+        cursor: pointer;
+    }
+
+    .sbx-custom__submit:focus {
+        outline: 0;
+    }
+
+    .sbx-custom__submit svg {
+        width: 17px;
+        height: 17px;
+        vertical-align: middle;
+        fill: #3A33D1;
+    }
+
+    .sbx-custom__reset {
+        display: none;
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        margin: 0;
+        border: 0;
+        background: none;
+        cursor: pointer;
+        padding: 0;
+        font-size: inherit;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        fill: rgba(0, 0, 0, 0.5);
+    }
+
+    .sbx-custom__reset:focus {
+        outline: 0;
+    }
+
+    .sbx-custom__reset svg {
+        display: block;
+        margin: 4px;
+        width: 17px;
+        height: 17px;
+    }
+
+    .sbx-custom__input:valid ~ .sbx-custom__reset {
+        display: block;
+        -webkit-animation-name: sbx-reset-in;
+        animation-name: sbx-reset-in;
+        -webkit-animation-duration: .15s;
+        animation-duration: .15s;
+    }
+
+    @-webkit-keyframes sbx-reset-in {
+        0% {
+            -webkit-transform: translate3d(-20%, 0, 0);
+            transform: translate3d(-20%, 0, 0);
+            opacity: 0;
+        }
+        100% {
+            -webkit-transform: none;
+            transform: none;
+            opacity: 1;
+        }
+    }
+
+    @keyframes sbx-reset-in {
+        0% {
+            -webkit-transform: translate3d(-20%, 0, 0);
+            transform: translate3d(-20%, 0, 0);
+            opacity: 0;
+        }
+        100% {
+            -webkit-transform: none;
+            transform: none;
+            opacity: 1;
+        }
+    }
+</style>
+<div class="book-header" role="navigation">
+    
+    <a class="book-header-title" href="../..">
+        <img class="book-header-title-img" alt="JavaScript Primer"
+             src="../../gitbook/icons/icon-128x128.png"/>
+        <h2 class="book-header-title-h" title="JavaScript Primer - 迷わないための入門書">JavaScript Primer</h2>
+    </a>
+    <div class="searchbarWrapper header-center">
+        <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+            <symbol xmlns="http://www.w3.org/2000/svg" id="sbx-icon-search-8" viewBox="0 0 40 40">
+                <path d="M16 32c8.835 0 16-7.165 16-16 0-8.837-7.165-16-16-16C7.162 0 0 7.163 0 16c0 8.835 7.163 16 16 16zm0-5.76c5.654 0 10.24-4.586 10.24-10.24 0-5.656-4.586-10.24-10.24-10.24-5.656 0-10.24 4.584-10.24 10.24 0 5.654 4.584 10.24 10.24 10.24zM28.156 32.8c-1.282-1.282-1.278-3.363.002-4.643 1.282-1.284 3.365-1.28 4.642-.003l6.238 6.238c1.282 1.282 1.278 3.363-.002 4.643-1.283 1.283-3.366 1.28-4.643.002l-6.238-6.238z"
+                      fill-rule="evenodd"></path>
+            </symbol>
+            <symbol xmlns="http://www.w3.org/2000/svg" id="sbx-icon-clear-5" viewBox="0 0 20 20">
+                <path d="M10 20c5.523 0 10-4.477 10-10S15.523 0 10 0 0 4.477 0 10s4.477 10 10 10zm1.35-10.123l3.567 3.568-1.225 1.226-3.57-3.568-3.567 3.57-1.226-1.227 3.568-3.568-3.57-3.57 1.227-1.224 3.568 3.568 3.57-3.567 1.224 1.225-3.568 3.57zM10 18.272c4.568 0 8.272-3.704 8.272-8.272S14.568 1.728 10 1.728 1.728 5.432 1.728 10 5.432 18.272 10 18.272z"
+                      fill-rule="evenodd"></path>
+            </symbol>
+        </svg>
+
+        <form novalidate="novalidate" onsubmit="return false;" class="searchbox sbx-custom">
+            <div role="search" class="sbx-custom__wrapper">
+                <input name="search" placeholder="Search words" autocomplete="off" required="required"
+                       class="sbx-custom__input" type="search">
+                <button type="submit" title="Submit your search query." class="sbx-custom__submit">
+                    <svg role="img" aria-label="Search">
+                        <use xlink:href="#sbx-icon-search-8"></use>
+                    </svg>
+                </button>
+                <button type="reset" title="Clear the search query." class="sbx-custom__reset">
+                    <svg role="img" aria-label="Reset">
+                        <use xlink:href="#sbx-icon-clear-5"></use>
+                    </svg>
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="header-right">
+        <!-- Icon: https://www.iconfinder.com/iconsets/circle-payment -->
+        <a class="amazon-link" title="Amazon: JavaScript Primer 改訂2版 迷わないための入門書"
+           href="https://www.amazon.co.jp/dp/4048931105/" target="_blank"><img
+                width="22"
+                height="22"
+                style="margin: 1px;"
+                src="../../gitbook/icons/amazon-icon.png" alt=""></a>
+        <a class="github-link" title="GitHub: asciidwango/js-primer" href="https://github.com/asciidwango/js-primer"
+           target="_blank"><i
+                class="fa fa-github fa-fw"></i></a>
+    </div>
+</div>
+
+<script defer>
+    // focus on search box
+    document.querySelector(".searchbox [type=\"reset\"]").addEventListener("click", function() {
+        this.parentNode.querySelector("input").focus();
+    });
+    // init DocSearch
+    var search = docsearch({
+        apiKey: "fd28ebaba94be0c39fb9fa1b2fed4f23", // use a SEARCH-ONLY api key here
+        indexName: "asciidwango",
+        inputSelector: ".sbx-custom__input",
+        debug: false // set to `true` if you want to inspect the dropdown menu's CSS
+    });
+</script>
+<script>
+    window.addEventListener("DOMContentLoaded", function() {
+        gitbook.events.on("page.change", function() {
+            setTimeout(() => console.clear(), 1000);
+        });
+    });
+</script>
+
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+                                <section class="normal markdown-section">
+                                
+<style>
+    .page-sponsors {
+        background: #fafafa;
+    }
+    .page-sponsors .page-sponsors-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 1em 0;
+        list-style: none;
+        gap: 8px;
+    }
+    .page-sponsors-footer {
+        text-align: center;
+        padding: 0;
+        margin: 0;
+    }
+</style>
+<div class="page-sponsors">
+
+    <div class="page-sponsors-footer">
+        JavaScript Primerの<a href="https://jsprimer.net/intro/sponsors/">スポンサーを募集中</a>
+    </div>
+
+</div>
+
+                                <html><head></head><body><h1 id="iterator-generator"><a name="iterator-generator" class="plugin-anchor" href="#iterator-generator"><i class="fa fa-link" aria-hidden="true"></i></a>イテレータとジェネレータ </h1>
+<p>本章では、JavaScriptのイテレータ（Iterator）とジェネレータ（Generator）を扱います。
+イテレータは<code>for...of</code>の背後で動く「順に値を取り出す」仕組み、ジェネレータは順番に値を返せる関数を定義するための構文です。
+あわせて、ES2025で追加されたIteratorメソッドを使ったデータ処理についても紹介します。</p>
+<h2 id="introduction"><a name="introduction" class="plugin-anchor" href="#introduction"><i class="fa fa-link" aria-hidden="true"></i></a>はじめに </h2>
+<p>JavaScriptで複数のデータを処理する場合、多くの場面で配列を使用します。
+しかし、大量のデータや無限に続くデータを扱う場合には、配列で扱うのが適切ではない場合があります。
+なぜなら、利用できるメモリの限界や処理効率の観点から配列で扱うと問題となることがあるためです。</p>
+<h3 id="array-vs-iterator"><a name="array-vs-iterator" class="plugin-anchor" href="#array-vs-iterator"><i class="fa fa-link" aria-hidden="true"></i></a>配列とイテレータの違い </h3>
+<p>たとえば、1から5000までの数値を処理する場合を考えてみましょう。
+配列を使う場合、まずすべての数値をメモリに格納してから処理を開始します。
+つまり5000個の要素をもつ配列が必要となります。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<div class="code-filename-block">
+    <p class="code-filename">配列を使った場合</p>
+</div>
+
+<pre><code class="lang-javascript"><span class="hljs-comment">// 配列を使った場合：すべての数値を一度にメモリに作成</span>
+<span class="hljs-keyword">const</span> numbers = [];
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5000</span>; i++) {
+    numbers.<span class="hljs-title function_">push</span>(i);
+}
+<span class="hljs-comment">// 配列のサイズ</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(numbers.<span class="hljs-property">length</span>); <span class="hljs-comment">// =&gt; 5000</span>
+
+<span class="hljs-comment">// すべてのデータがメモリに存在している</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(numbers.<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>, <span class="hljs-number">5</span>)); <span class="hljs-comment">// =&gt; [1, 2, 3, 4, 5]</span>
+</code></pre>
+<p>一方、イテレータを使う場合は、必要になったタイミングで値を生成します。
+そのため、最初から5000個の要素をメモリに格納する必要はなく、必要な分だけを生成して処理できます。</p>
+<p>次のコードでは、イテレータを使った例を示しています。
+（<code>function*</code>はジェネレータ関数を定義するための構文で、詳しい使い方は後のセクションで説明します）</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<div class="code-filename-block">
+    <p class="code-filename">イテレータを使った場合</p>
+</div>
+
+<pre><code class="lang-javascript"><span class="hljs-comment">// イテレータを使った場合：必要な時に値を生成</span>
+<span class="hljs-keyword">function</span>* <span class="hljs-title function_">numberGenerator</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5000</span>; i++) {
+        <span class="hljs-keyword">yield</span> i; <span class="hljs-comment">// 値を一つずつ生成</span>
+    }
+}
+
+<span class="hljs-keyword">const</span> iterator = <span class="hljs-title function_">numberGenerator</span>();
+<span class="hljs-comment">// 最初の値</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(iterator.<span class="hljs-title function_">next</span>().<span class="hljs-property">value</span>); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-comment">// 次の値</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(iterator.<span class="hljs-title function_">next</span>().<span class="hljs-property">value</span>); <span class="hljs-comment">// =&gt; 2</span>
+</code></pre>
+<p>このような必要なタイミングで値を評価できる仕組みを<strong>遅延評価（lazy evaluation）</strong>と呼びます。</p>
+<h4 id="lazy-evaluation-concept"><a name="lazy-evaluation-concept" class="plugin-anchor" href="#lazy-evaluation-concept"><i class="fa fa-link" aria-hidden="true"></i></a>遅延評価とは </h4>
+<p>遅延評価とは、値が実際に要求されるまで計算を遅らせる仕組みです。
+配列の場合は「先行評価（eager evaluation）」で、すべての値を即座に計算してメモリに保存します。
+一方、イテレータは「遅延評価（lazy evaluation）」で、<code>next</code>メソッドを呼び出したタイミングで初めて値を計算します。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-comment">// 配列（先行評価）：すべての値を事前に計算</span>
+<span class="hljs-keyword">const</span> numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(numbers[<span class="hljs-number">0</span>]); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(numbers[<span class="hljs-number">1</span>]); <span class="hljs-comment">// =&gt; 2</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(numbers[<span class="hljs-number">2</span>]); <span class="hljs-comment">// =&gt; 3</span>
+
+<span class="hljs-comment">// イテレータ（遅延評価）: 値は必要な時に計算</span>
+<span class="hljs-keyword">function</span>* <span class="hljs-title function_">numberGenerator</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">1</span>; <span class="hljs-comment">// 初めてnext()が呼ばれた時に評価される</span>
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">2</span>; <span class="hljs-comment">// 次のnext()が呼ばれた時に評価される</span>
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">3</span>; <span class="hljs-comment">// さらに次のnext()が呼ばれた時に評価される</span>
+}
+<span class="hljs-keyword">const</span> iterator = <span class="hljs-title function_">numberGenerator</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(iterator.<span class="hljs-title function_">next</span>().<span class="hljs-property">value</span>); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(iterator.<span class="hljs-title function_">next</span>().<span class="hljs-property">value</span>); <span class="hljs-comment">// =&gt; 2</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(iterator.<span class="hljs-title function_">next</span>().<span class="hljs-property">value</span>); <span class="hljs-comment">// =&gt; 3</span>
+</code></pre>
+<p>この必要なタイミングで処理を行うという点は、無限に続くデータや非常に大きなデータセットを扱う場合において重要になります。</p>
+<h2 id="iterable-and-iterator"><a name="iterable-and-iterator" class="plugin-anchor" href="#iterable-and-iterator"><i class="fa fa-link" aria-hidden="true"></i></a>IterableプロトコルとIteratorプロトコル </h2>
+<p>JavaScriptにおけるイテレーション（反復処理）は、<strong>Iterableプロトコル</strong>と<strong>Iteratorプロトコル</strong>という2つのプロトコルによって定義されています。</p>
+<p>この2つのプロトコルは、<code>for...of</code>ループの背後で動作する仕組みとなっています。</p>
+<h3 id="iterable-protocol"><a name="iterable-protocol" class="plugin-anchor" href="#iterable-protocol"><i class="fa fa-link" aria-hidden="true"></i></a>Iterableプロトコル </h3>
+<p>Iterableプロトコルは、オブジェクトが反復可能であることを示すプロトコルです。
+オブジェクトがIterableになるためには、<code>Symbol.iterator</code>というメソッドを持つ必要があります。</p>
+<p><code>Symbol.iterator</code>は、JavaScriptの組み込みSymbolの1つで、オブジェクトがIterableであることを示す特殊なキーです。
+次のコードでは、Iterableプロトコルを実装した<code>iterableObject</code>を定義しています。</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> iterableObject = {
+    <span class="hljs-comment">// Symbol.iteratorメソッドの定義</span>
+    [<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">iterator</span>]() {
+        <span class="hljs-comment">// Iteratorオブジェクトを返す</span>
+        <span class="hljs-keyword">return</span> {
+            <span class="hljs-comment">// Iterator プロトコルを実装</span>
+        };
+    },
+};
+</code></pre>
+<h3 id="iterator-protocol"><a name="iterator-protocol" class="plugin-anchor" href="#iterator-protocol"><i class="fa fa-link" aria-hidden="true"></i></a>Iteratorプロトコル </h3>
+<p>Iteratorプロトコルは、反復処理時に次の値を取得するためのプロトコルです。
+Iteratorプロトコルを実装するオブジェクトは、<code>next</code>メソッドを持つ必要があります。</p>
+<p><code>next</code>メソッドは、<code>{ value: 次の値, done: 完了かどうか }</code>という形式のオブジェクトを返します。</p>
+<!-- doctest:disable -->
+<pre><code class="lang-js"><span class="hljs-comment">// nextメソッドの戻り値の形式</span>
+<span class="hljs-keyword">const</span> result = iterator.<span class="hljs-title function_">next</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result.<span class="hljs-property">value</span>); <span class="hljs-comment">// 現在のIteratorが生成する値</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result.<span class="hljs-property">done</span>); <span class="hljs-comment">// 反復が完了したかどうか（true: 完了、false: 継続）</span>
+</code></pre>
+<h3 id="iterable-iterator"><a name="iterable-iterator" class="plugin-anchor" href="#iterable-iterator"><i class="fa fa-link" aria-hidden="true"></i></a>Iterable Iterator </h3>
+<p>IterableとIteratorはよく似ていますが、次の点が分かれば十分です。</p>
+<ul>
+<li>Iterable: <code>[Symbol.iterator]</code>メソッドでIteratorを返す</li>
+<li>Iterator: <code>next</code>メソッドで値を1つずつ取り出せるオブジェクト</li>
+</ul>
+<p>次は、2つのプロトコルを両方とも実装したオブジェクトのコード例です。</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> iterableObject = {
+    <span class="hljs-comment">// Iteratorプロトコルを実装</span>
+    <span class="hljs-title function_">next</span>(<span class="hljs-params"></span>) {
+        <span class="hljs-comment">// { value: 次の値, done: false } または { value: undefined, done: true } を返す</span>
+    },
+    <span class="hljs-comment">// Iterableプロトコルを実装</span>
+    [<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">iterator</span>]() {
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>; <span class="hljs-comment">// 自分自身を返す（= 自分もIterable）</span>
+    },
+};
+<span class="hljs-comment">// Iteratorを取得</span>
+<span class="hljs-keyword">const</span> iterator = iterableObject[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">iterator</span>]();
+<span class="hljs-comment">// IteratorもIterable（自分自身を返す）</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(iterator === iterator[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">iterator</span>]()); <span class="hljs-comment">// =&gt; true</span>
+</code></pre>
+<p>このように、IterableとIteratorの両方のプロトコルを実装するオブジェクトを<strong>Iterable Iterator</strong>と呼びます。
+基本的には「Iterableが新しいIteratorを返す」ため、この2つのプロトコルはセットで使われます。</p>
+<h3 id="simple-iterable-iterator"><a name="simple-iterable-iterator" class="plugin-anchor" href="#simple-iterable-iterator"><i class="fa fa-link" aria-hidden="true"></i></a>シンプルなIterable Iteratorの実装 </h3>
+<p>具体例として、指定された範囲の数値を生成するIterable Iteratorを実装してみましょう。</p>
+<p>次の<code>createRange</code>関数は、指定された<code>start</code>から<code>end</code>までの数値を順番に生成するIterable Iteratorを返します。
+Iteratorの<code>next</code>メソッドを呼び出すことで、<code>start</code>から<code>end</code>までの数値を1つずつ取得できます。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<div class="code-filename-block">
+    <p class="code-filename">指定範囲の数値を生成するIterable/Iteratorの実装</p>
+</div>
+
+<pre><code class="lang-javascript"><span class="hljs-comment">// 範囲の数値を生成するIterable Iteratorの実装</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">createRange</span>(<span class="hljs-params">start, end</span>) {
+    <span class="hljs-keyword">let</span> current = start;
+    <span class="hljs-keyword">return</span> {
+        <span class="hljs-comment">// `current`が`end`以下の間、次の値を返し、`current`をインクリメントする</span>
+        <span class="hljs-comment">// `end`を超えた場合は、doneをtrueにして終了</span>
+        <span class="hljs-title function_">next</span>(<span class="hljs-params"></span>) {
+            <span class="hljs-keyword">if</span> (current &lt;= end) {
+                <span class="hljs-keyword">return</span> { <span class="hljs-attr">value</span>: current++, <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span> };
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-keyword">return</span> { <span class="hljs-attr">value</span>: <span class="hljs-literal">undefined</span>, <span class="hljs-attr">done</span>: <span class="hljs-literal">true</span> };
+            }
+        },
+        <span class="hljs-comment">// Iterableプロトコル: Symbol.iteratorメソッドを実装</span>
+        [<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">iterator</span>]() {
+            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>;
+        }
+    };
+}
+
+<span class="hljs-comment">// Iterable Iteratorを取得</span>
+<span class="hljs-keyword">const</span> range = <span class="hljs-title function_">createRange</span>(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>);
+<span class="hljs-comment">// Iteratorを取得</span>
+<span class="hljs-keyword">const</span> iterator = range[<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">iterator</span>]();
+<span class="hljs-comment">// Iteratorを使って、値を順番に取得</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(iterator.<span class="hljs-title function_">next</span>().<span class="hljs-property">value</span>); <span class="hljs-comment">// =&gt; 1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(iterator.<span class="hljs-title function_">next</span>().<span class="hljs-property">value</span>); <span class="hljs-comment">// =&gt; 2</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(iterator.<span class="hljs-title function_">next</span>().<span class="hljs-property">value</span>); <span class="hljs-comment">// =&gt; 3</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(iterator.<span class="hljs-title function_">next</span>().<span class="hljs-property">value</span>); <span class="hljs-comment">// =&gt; undefined</span>
+</code></pre>
+<h3 id="for-of-usage"><a name="for-of-usage" class="plugin-anchor" href="#for-of-usage"><i class="fa fa-link" aria-hidden="true"></i></a>for...ofループでIterable Iteratorを使用する </h3>
+<p>Iteratorの<code>next</code>メソッドを直接呼び出すことで、値を1つずつ取得できますが、通常は<code>for...of</code>ループを使ってIterable Iteratorを反復処理します。
+<code>for...of</code>ループは、Iterableの<code>[Symbol.iterator]</code>メソッドを呼び出し取得したIteratorの<code>next</code>メソッドを自動的に繰り返し呼び出します。
+つまり、先ほどの手動で<code>[Symbol.iterator]</code>メソッドを呼び出して取得したIteratorの<code>next</code>メソッドを繰り返し呼び出すという処理を自動的に行います。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<div class="code-filename-block">
+    <p class="code-filename">for...ofループでIterable Iteratorを反復処理</p>
+</div>
+
+<pre><code class="lang-javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">createRange</span>(<span class="hljs-params">start, end</span>) {
+    <span class="hljs-keyword">let</span> current = start;
+    <span class="hljs-keyword">return</span> {
+        <span class="hljs-title function_">next</span>(<span class="hljs-params"></span>) {
+            <span class="hljs-keyword">if</span> (current &lt;= end) {
+                <span class="hljs-keyword">return</span> { <span class="hljs-attr">value</span>: current++, <span class="hljs-attr">done</span>: <span class="hljs-literal">false</span> };
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-keyword">return</span> { <span class="hljs-attr">value</span>: <span class="hljs-literal">undefined</span>, <span class="hljs-attr">done</span>: <span class="hljs-literal">true</span> };
+            }
+        },
+        [<span class="hljs-title class_">Symbol</span>.<span class="hljs-property">iterator</span>]() {
+            <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>;
+        }
+    };
+}
+
+<span class="hljs-keyword">const</span> range = <span class="hljs-title function_">createRange</span>(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>);
+
+<span class="hljs-comment">// Iteratorが{ done: true }を返すまで、`next`メソッドし、その`value`を取得する</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> num <span class="hljs-keyword">of</span> range) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(num); <span class="hljs-comment">// 1, 2, 3</span>
+}
+</code></pre>
+<p>Iterable Iteratorを扱うときは、基本的には<code>for...of</code>ループを使用します。
+そのため、<code>[Symbol.iterator]</code>メソッドや<code>next</code>メソッドを直接呼び出すケースはあまりありません。</p>
+<p><code>for...of</code>などの構文を使うと、両プロトコルを意識する機会は多くありません。
+ただし内部では、この2つのプロトコルが動いていることを理解しておくとよいでしょう。</p>
+<h2 id="built-in-iterables"><a name="built-in-iterables" class="plugin-anchor" href="#built-in-iterables"><i class="fa fa-link" aria-hidden="true"></i></a>Iterableなビルトインオブジェクト </h2>
+<p>JavaScriptには、Iterableプロトコルを実装したビルトインオブジェクトが多数存在します。
+これらのビルトインオブジェクトはIterableであるため、<code>for...of</code>ループで反復処理が可能です。
+これらのビルトインオブジェクトが返すイテレータの多くがIterable Iteratorです。</p>
+<p>いくつかの代表的なIterableなビルトインオブジェクトを紹介します。</p>
+<h3 id="array-iterable"><a name="array-iterable" class="plugin-anchor" href="#array-iterable"><i class="fa fa-link" aria-hidden="true"></i></a>配列（Array） </h3>
+<p>配列はもっとも基本的なIterableで、各要素を順番に反復できます。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> fruits = [<span class="hljs-string">"apple"</span>, <span class="hljs-string">"banana"</span>, <span class="hljs-string">"orange"</span>];
+
+<span class="hljs-comment">// for...of ループで配列を反復</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> fruit <span class="hljs-keyword">of</span> fruits) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(fruit); <span class="hljs-comment">// "apple", "banana", "orange"</span>
+}
+</code></pre>
+<h3 id="string-iterable"><a name="string-iterable" class="plugin-anchor" href="#string-iterable"><i class="fa fa-link" aria-hidden="true"></i></a>文字列（String） </h3>
+<p>文字列もIterableであり、各文字を順番に反復できます。
+このときの文字は、Code Pointごとに反復されます。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> text = <span class="hljs-string">"Hello"</span>;
+
+<span class="hljs-comment">// 文字列の各文字を反復</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> char <span class="hljs-keyword">of</span> text) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(char); <span class="hljs-comment">// "H", "e", "l", "l", "o"</span>
+}
+</code></pre>
+<h3 id="map-iterable"><a name="map-iterable" class="plugin-anchor" href="#map-iterable"><i class="fa fa-link" aria-hidden="true"></i></a>Map </h3>
+<p>MapオブジェクトもIterableで、キーと値のペアを順番に反復できます。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> userMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>([
+    [<span class="hljs-string">"name"</span>, <span class="hljs-string">"Alice"</span>],
+    [<span class="hljs-string">"age"</span>, <span class="hljs-number">25</span>],
+    [<span class="hljs-string">"city"</span>, <span class="hljs-string">"Tokyo"</span>],
+]);
+
+<span class="hljs-comment">// Mapのエントリ（キーと値のペア）を反復</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> [key, value] <span class="hljs-keyword">of</span> userMap) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(key + <span class="hljs-string">": "</span> + value); <span class="hljs-comment">// "name: Alice", "age: 25", "city: Tokyo"</span>
+}
+</code></pre>
+<h3 id="set-iterable"><a name="set-iterable" class="plugin-anchor" href="#set-iterable"><i class="fa fa-link" aria-hidden="true"></i></a>Set </h3>
+<p>SetオブジェクトもIterableで、Setの重複のない値を順番に反復できます。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> numberSet = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>]);
+
+<span class="hljs-comment">// Setの要素を反復（重複は除去されている）</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> num <span class="hljs-keyword">of</span> numberSet) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(num); <span class="hljs-comment">// 1, 2, 3</span>
+}
+</code></pre>
+<h2 id="generator-functions"><a name="generator-functions" class="plugin-anchor" href="#generator-functions"><i class="fa fa-link" aria-hidden="true"></i></a>ジェネレータ関数 </h2>
+<p>今まではIterable Iteratorを手動で実装してきましたが、JavaScriptには<strong>ジェネレータ関数</strong>というIterable Iteratorを定義するための構文があります。</p>
+<p>ジェネレータ関数は、<code>function*</code>キーワードを使って定義し、<code>yield</code>式を使って値を生成します。</p>
+<pre><code class="lang-js"><span class="hljs-keyword">function</span>* <span class="hljs-title function_">generatorFunction</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">1</span>; <span class="hljs-comment">// 最初の値を生成</span>
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">2</span>; <span class="hljs-comment">// 次の値を生成</span>
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">3</span>; <span class="hljs-comment">// 最後の値を生成</span>
+}
+</code></pre>
+<p>値を返しているように見える点で<code>yield</code>式は、関数の<code>return</code>文と似ています。
+一方で、ジェネレータ関数では<code>next</code>メソッドが呼ばれるたびに、<code>yield</code>式の位置で関数の実行が一時停止し、その右辺の値を返します。
+この<code>yield</code>式の特性は、通常の関数とは異なるので具体的なコードで確認してみましょう。</p>
+<p>次のコードでは、<code>function*</code>キーワードで<code>simpleGenerator</code>というジェネレータ関数を定義しています。
+<code>simpleGenerator</code>関数は、<code>yield</code>式を使って1, 2, 3の値を順番に生成します。
+<code>simpleGenerator</code>関数で作成したGeneratorオブジェクトの<code>next</code>メソッドを呼び出すことで、次の<code>yield</code>まで関数の実行が進み、その値を取得できます。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-comment">// ジェネレータ関数の定義</span>
+<span class="hljs-keyword">function</span>* <span class="hljs-title function_">simpleGenerator</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">1</span>; <span class="hljs-comment">// 1度目のnext()が呼ばれたときに、ここまで実行され1を返す</span>
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">2</span>; <span class="hljs-comment">// 2度目のnext()が呼ばれたときに、ここまで実行され2を返す</span>
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">3</span>; <span class="hljs-comment">// 3度目のnext()が呼ばれたときに、ここまで実行され3を返す</span>
+    <span class="hljs-comment">// 以降のnext()呼び出しで { value: undefined, done: true } を返して終了する</span>
+}
+
+<span class="hljs-comment">// Generatorオブジェクトを作成</span>
+<span class="hljs-keyword">const</span> generator = <span class="hljs-title function_">simpleGenerator</span>();
+
+<span class="hljs-comment">// Iteratorとして使用</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(generator.<span class="hljs-title function_">next</span>()); <span class="hljs-comment">// =&gt; { value: 1, done: false }</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(generator.<span class="hljs-title function_">next</span>()); <span class="hljs-comment">// =&gt; { value: 2, done: false }</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(generator.<span class="hljs-title function_">next</span>()); <span class="hljs-comment">// =&gt; { value: 3, done: false }</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(generator.<span class="hljs-title function_">next</span>()); <span class="hljs-comment">// =&gt; { value: undefined, done: true }</span>
+</code></pre>
+<p>ジェネレータ関数から返されるGeneratorオブジェクトは、IterableプロトコルとIteratorプロトコルの両方を実装しています。
+つまり、GeneratorオブジェクトもIterable Iteratorであり、<code>for...of</code>ループで反復処理が可能です。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-keyword">function</span>* <span class="hljs-title function_">simpleGenerator</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-comment">// for...ofループでIterable Iteratorとして利用</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> num <span class="hljs-keyword">of</span> <span class="hljs-title function_">simpleGenerator</span>()) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(num); <span class="hljs-comment">// 1, 2, 3</span>
+}
+</code></pre>
+<h3 id="generator-benefits"><a name="generator-benefits" class="plugin-anchor" href="#generator-benefits"><i class="fa fa-link" aria-hidden="true"></i></a>ジェネレータ関数の利点 </h3>
+<p>ジェネレータ関数では、通常の関数とは異なり、関数の途中で実行を一時停止し、値を返すことができます。
+<code>yield</code>式は、関数の実行を一時停止し、値を呼び出し元に返します。
+<code>next</code>メソッドが呼ばれると、次の<code>yield</code>まで関数の実行が再開されます。</p>
+<p>そのため、次のように<code>next</code>メソッドを呼ぶまで、ジェネレータ関数の処理は実行されません。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-keyword">function</span>* <span class="hljs-title function_">createGenerator</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"a. 開始"</span>);
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">1</span>;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"b. 中間"</span>);
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">2</span>;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">"c. 終了"</span>);
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">3</span>;
+}
+
+<span class="hljs-keyword">const</span> generator = <span class="hljs-title function_">createGenerator</span>();
+<span class="hljs-comment">// ここではまだ何も出力されない</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(generator.<span class="hljs-title function_">next</span>()); <span class="hljs-comment">// "a. 開始" が出力され、{ value: 1, done: false }が返される</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(generator.<span class="hljs-title function_">next</span>()); <span class="hljs-comment">// "b. 中間" が出力され、{ value: 2, done: false }が返される</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(generator.<span class="hljs-title function_">next</span>()); <span class="hljs-comment">// "c. 終了" が出力され、{ value: 3, done: false }が返される</span>
+<span class="hljs-comment">// 列挙が完了したので、次のnext()ではdoneがtrueになる</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(generator.<span class="hljs-title function_">next</span>()); <span class="hljs-comment">// =&gt; { value: undefined, done: true }</span>
+</code></pre>
+<p>IteratorプロトコルとIterableプロトコルを手で書いて同様の実装も可能ですが、かなり複雑になります。
+ジェネレータ関数と<code>yield</code>式を使うことで、イテレータの実装が簡潔に書けるようになるのがジェネレータ関数の大きな利点です。</p>
+<h3 id="iterator-single-consume"><a name="iterator-single-consume" class="plugin-anchor" href="#iterator-single-consume"><i class="fa fa-link" aria-hidden="true"></i></a>イテレータは一度しか列挙できない </h3>
+<p>Iteratorは「現在どこまで読んだか」という内部状態を持つため、一度すべてを列挙し終えると同じIteratorをもう一度は列挙できません。
+次のコードでは、<code>iterator</code>変数を<code>for...of</code>ループで2回列挙しようとしていますが、最初のループで<code>iterator</code>はすべての値を列挙してしまい、2回目のループでは何も出力されません。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-keyword">function</span>* <span class="hljs-title function_">createNumbers</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">2</span>;
+}
+<span class="hljs-comment">// GeneratorオブジェクトはIterable Iterator</span>
+<span class="hljs-keyword">const</span> iterator = <span class="hljs-title function_">createNumbers</span>();
+<span class="hljs-keyword">const</span> results = [];
+<span class="hljs-comment">// 1度目の列挙: `iterator`を列挙して値を取得</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> value <span class="hljs-keyword">of</span> iterator) {
+    results.<span class="hljs-title function_">push</span>(value);
+}
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results); <span class="hljs-comment">// =&gt; [1, 2]</span>
+<span class="hljs-comment">// 2度目の列挙: 列挙済みの`iterator`を再利用することはできない</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> value <span class="hljs-keyword">of</span> iterator) {
+    results.<span class="hljs-title function_">push</span>(value); <span class="hljs-comment">// この行は実行されません</span>
+}
+<span class="hljs-comment">// 2度目の列挙後では何も追加されないので、resultsは最初の列挙結果のみ</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results); <span class="hljs-comment">// =&gt; [1, 2]</span>
+</code></pre>
+<p>同じIteratorオブジェクトを再利用することはできないため、何度も列挙したい場合は新しいIteratorオブジェクトを作成する必要があります。
+ジェネレータ関数は呼び出すたびに新しいIteratorを返すため、同じジェネレータ関数を呼び出すことで新しいIteratorを得ることができます。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-keyword">function</span>* <span class="hljs-title function_">createNumbers</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">yield</span> <span class="hljs-number">2</span>;
+}
+<span class="hljs-keyword">const</span> results = [];
+<span class="hljs-comment">// 1度目の列挙: 新しいIteratorを作成して列挙</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> value <span class="hljs-keyword">of</span> <span class="hljs-title function_">createNumbers</span>()) {
+    results.<span class="hljs-title function_">push</span>(value);
+}
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results); <span class="hljs-comment">// =&gt; [1, 2]</span>
+<span class="hljs-comment">// 2度目の列挙: 新しいIteratorを作成して列挙</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> value <span class="hljs-keyword">of</span> <span class="hljs-title function_">createNumbers</span>()) {
+    results.<span class="hljs-title function_">push</span>(value);
+}
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results); <span class="hljs-comment">// =&gt; [1, 2, 1, 2]</span>
+</code></pre>
+<p>配列などのビルトインオブジェクトは<code>[Symbol.iterator]</code>メソッドを呼び出すたびに新しいIteratorを返すため、何度でも列挙できます。
+次のコードでは、配列である<code>array</code>変数を列挙しているように見えます。
+しかし、実際には<code>for...of</code>ループでは<code>array[Symbol.iterator]</code>メソッドが呼び出され、新しいIteratorが作成されているため、2回目のループでも列挙できています。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>];
+<span class="hljs-keyword">const</span> results = [];
+<span class="hljs-comment">// 1度目の列挙: `array`から新しいIteratorを作成して列挙</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> value <span class="hljs-keyword">of</span> array) {
+    results.<span class="hljs-title function_">push</span>(value);
+}
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results); <span class="hljs-comment">// =&gt; [1, 2]</span>
+<span class="hljs-comment">// 2度目の列挙: `array`から新しいIteratorを作成して列挙</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> value <span class="hljs-keyword">of</span> array) {
+    results.<span class="hljs-title function_">push</span>(value);
+}
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(results); <span class="hljs-comment">// =&gt; [1, 2, 1, 2]</span>
+</code></pre>
+<h2 id="iterator-methods"><a name="iterator-methods" class="plugin-anchor" href="#iterator-methods"><i class="fa fa-link" aria-hidden="true"></i></a>[ES2025] イテレータのメソッド </h2>
+<p>ES2025では、<code>Iterator.prototype</code>に新しいメソッドが追加されました。
+Iterableの<code>[Symbol.iterator]</code>メソッドが返すIteratorは<code>Iterator.prototype</code>を継承しているため、これらのメソッドを利用できます。</p>
+<p>多くのメソッドは<a href="../array/#array-prototype-method">配列のメソッド</a>と同じ名前で、ほぼ同様の動作をします。
+ただし、配列では全要素を一度に処理するのに対し、Iteratorでは必要になったタイミングで各要素を処理します。</p>
+<h3 id="iterator-from"><a name="iterator-from" class="plugin-anchor" href="#iterator-from"><i class="fa fa-link" aria-hidden="true"></i></a><code>Iterator.from</code>静的メソッド </h3>
+<p><code>Iterator.from</code>メソッドは、GeneratorオブジェクトやIterableオブジェクトからイテレータを作成します。</p>
+<p>配列などはIterableプロトコルは実装していますが、Iteratorそのものではありません。
+そのため、<code>Iterator.prototype.take</code>や<code>Iterator.prototype.drop</code>などのイテレータメソッドを配列で使うことはできません。
+配列に対して利用したい場合は、まずイテレータへ変換する必要があります。</p>
+<p>次のコードでは、<code>Iterator.from</code>を使って配列からイテレータを作成し、<code>next</code>メソッドでイテレータから要素を取り出しています。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2025" } --></p>
+<pre><code class="lang-js"><span class="hljs-comment">// 配列からIteratorを作成</span>
+<span class="hljs-keyword">const</span> iterator = <span class="hljs-title class_">Iterator</span>.<span class="hljs-title function_">from</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]);
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(iterator.<span class="hljs-title function_">next</span>()); <span class="hljs-comment">// =&gt; { value: 1, done: false }</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(iterator.<span class="hljs-title function_">next</span>()); <span class="hljs-comment">// =&gt; { value: 2, done: false }</span>
+</code></pre>
+<p>Iterableプロトコルを実装しているオブジェクトであれば、<code>Iterator.from</code>メソッドを使ってイテレータを作成できます。</p>
+<p>あわせて、ビルトインオブジェクトにはイテレータを直接返すメソッドを持つものもあります。
+Array/Map/Setでは<code>keys</code>/<code>values</code>/<code>entries</code>メソッドが、新しいイテレータを返します。</p>
+<p>次のコードでは、各ビルトインオブジェクトの<code>values</code>メソッドを使って、それぞれの値を返すイテレータを取得し、<code>map</code>メソッドを使って各値を2倍にした配列を作成しています。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2025" } --></p>
+<pre><code class="lang-js"><span class="hljs-comment">// Iterator.from を使って配列からイテレータを作成</span>
+<span class="hljs-keyword">const</span> iterator = <span class="hljs-title class_">Iterator</span>.<span class="hljs-title function_">from</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(iterator.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x * <span class="hljs-number">2</span>).<span class="hljs-title function_">toArray</span>()); <span class="hljs-comment">// =&gt; [2, 4, 6]</span>
+<span class="hljs-comment">// Array.prototype.values メソッドはイテレータを返す</span>
+<span class="hljs-keyword">const</span> array = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array.<span class="hljs-title function_">values</span>().<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x * <span class="hljs-number">2</span>).<span class="hljs-title function_">toArray</span>()); <span class="hljs-comment">// =&gt; [2, 4, 6]</span>
+<span class="hljs-comment">// Map.prototype.values メソッドはイテレータを返す</span>
+<span class="hljs-keyword">const</span> map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>([[<span class="hljs-string">"a"</span>, <span class="hljs-number">1</span>], [<span class="hljs-string">"b"</span>, <span class="hljs-number">2</span>], [<span class="hljs-string">"c"</span>, <span class="hljs-number">3</span>]]);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(map.<span class="hljs-title function_">values</span>().<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x * <span class="hljs-number">2</span>).<span class="hljs-title function_">toArray</span>()); <span class="hljs-comment">// =&gt; [2, 4, 6]</span>
+<span class="hljs-comment">// Set.prototype.values メソッドはvalueのイテレータを返す</span>
+<span class="hljs-keyword">const</span> set = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Set</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(set.<span class="hljs-title function_">values</span>().<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x * <span class="hljs-number">2</span>).<span class="hljs-title function_">toArray</span>()); <span class="hljs-comment">// =&gt; [2, 4, 6]</span>
+</code></pre>
+<h3 id="iterator-toarray"><a name="iterator-toarray" class="plugin-anchor" href="#iterator-toarray"><i class="fa fa-link" aria-hidden="true"></i></a><code>Iterator.prototype.toArray</code>メソッド </h3>
+<p><code>Iterator.prototype.toArray</code>メソッドは、Iteratorのすべての要素を列挙した配列を返します。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2025" } --></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> iterator = <span class="hljs-title class_">Iterator</span>.<span class="hljs-title function_">from</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]).<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x * <span class="hljs-number">2</span>);
+<span class="hljs-comment">// Iteratorを配列に変換</span>
+<span class="hljs-keyword">const</span> array = iterator.<span class="hljs-title function_">toArray</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(array); <span class="hljs-comment">// =&gt; [2, 4, 6]</span>
+</code></pre>
+<p><code>Iterator.prototype.toArray</code>メソッド以外にも、スプレッド構文（<code>...</code>）や<code>Array.from</code>静的メソッドでもイテレータを配列に変換できます。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2025" } --></p>
+<pre><code class="lang-js"><span class="hljs-comment">// スプレッド構文で列挙して配列化</span>
+<span class="hljs-keyword">const</span> a = [...<span class="hljs-title class_">Iterator</span>.<span class="hljs-title function_">from</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>])];
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(a); <span class="hljs-comment">// =&gt; [1, 2, 3]</span>
+
+<span class="hljs-comment">// Array.from で列挙して配列化</span>
+<span class="hljs-keyword">const</span> b = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">from</span>(<span class="hljs-title class_">Iterator</span>.<span class="hljs-title function_">from</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]));
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(b); <span class="hljs-comment">// =&gt; [1, 2, 3]</span>
+</code></pre>
+<p><code>Iterator.prototype.toArray</code>メソッドとスプレッド構文（<code>...</code>）や<code>Array.from</code>静的メソッドによる配列への変換の結果には違いはありません。
+一方で、<code>toArray</code>メソッドはIteratorのメソッドであるため、他のメソッドと組み合わせてメソッドチェーンとして書く場合に便利です。</p>
+<h3 id="iterator-take"><a name="iterator-take" class="plugin-anchor" href="#iterator-take"><i class="fa fa-link" aria-hidden="true"></i></a><code>Iterator.prototype.take</code>メソッド </h3>
+<p><code>Iterator.prototype.take</code>メソッドは、指定した数の要素のみを取得するIteratorを返します。</p>
+<p>ジェネレータでは、無限シーケンスのイテレータを作成することができます。
+そのような終わりのないイテレータから、必要な分だけ取り出す <code>take</code>メソッドで指定した数の要素を取得できます。</p>
+<p>次のコードでは、無限に数値を生成する<code>infiniteNumbers</code>ジェネレータ関数から、最初の5つの数値を取得しています。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2025" } --></p>
+<pre><code class="lang-js"><span class="hljs-comment">// 無限に数値を生成するジェネレータ</span>
+<span class="hljs-keyword">function</span>* <span class="hljs-title function_">infiniteNumbers</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">let</span> num = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+        <span class="hljs-keyword">yield</span> num++;
+    }
+}
+<span class="hljs-comment">// 無限に数値を生成するジェネレータから最初の5つの数値を取得</span>
+<span class="hljs-keyword">const</span> first5 = <span class="hljs-title function_">infiniteNumbers</span>().<span class="hljs-title function_">take</span>(<span class="hljs-number">5</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(first5.<span class="hljs-title function_">toArray</span>()); <span class="hljs-comment">// =&gt; [1, 2, 3, 4, 5]</span>
+</code></pre>
+<p>配列でこのような無限シーケンスを表現すると利用できるメモリなどの色々な制限があるため、かなり扱いにくいです。
+一方で、イテレータとジェネレータを使った場合は無限シーケンスが簡単に作成でき、<code>take</code>メソッドを使うことで最初の5つといったように必要な分だけを取得できます。</p>
+<h3 id="iterator-map"><a name="iterator-map" class="plugin-anchor" href="#iterator-map"><i class="fa fa-link" aria-hidden="true"></i></a><code>Iterator.prototype.map</code>メソッド </h3>
+<p><code>Iterator.prototype.map</code>メソッドは、各要素を変換した新しいIteratorを返します。
+このメソッドは、<a href="../array/#array-map">配列の<code>map</code>メソッド</a>と同じように動作します。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2025" } --></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> numbers = <span class="hljs-title class_">Iterator</span>.<span class="hljs-title function_">from</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]);
+<span class="hljs-comment">// 各数値を2倍にする</span>
+<span class="hljs-keyword">const</span> doubled = numbers.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x * <span class="hljs-number">2</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(doubled.<span class="hljs-title function_">toArray</span>()); <span class="hljs-comment">// =&gt; [2, 4, 6, 8, 10]</span>
+</code></pre>
+<h3 id="iterator-filter"><a name="iterator-filter" class="plugin-anchor" href="#iterator-filter"><i class="fa fa-link" aria-hidden="true"></i></a><code>Iterator.prototype.filter</code>メソッド </h3>
+<p><code>Iterator.prototype.filter</code>メソッドは、条件に一致する要素のみを含む新しいIteratorを返します。
+このメソッドは、<a href="../array/#array-filter">配列の<code>filter</code>メソッド</a>と同じように動作します。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2025" } --></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> numbers = <span class="hljs-title class_">Iterator</span>.<span class="hljs-title function_">from</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>]);
+<span class="hljs-comment">// 偶数のみを抽出</span>
+<span class="hljs-keyword">const</span> evenNumbers = numbers.<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(evenNumbers.<span class="hljs-title function_">toArray</span>()); <span class="hljs-comment">// =&gt; [2, 4, 6, 8, 10]</span>
+</code></pre>
+<h3 id="iterator-drop"><a name="iterator-drop" class="plugin-anchor" href="#iterator-drop"><i class="fa fa-link" aria-hidden="true"></i></a><code>Iterator.prototype.drop</code>メソッド </h3>
+<p><code>Iterator.prototype.drop</code>メソッドは、指定した数の要素をスキップした新しいIteratorを返します。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2025" } --></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> numbers = <span class="hljs-title class_">Iterator</span>.<span class="hljs-title function_">from</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]);
+<span class="hljs-comment">// 最初の2つの要素をスキップ</span>
+<span class="hljs-keyword">const</span> skipped = numbers.<span class="hljs-title function_">drop</span>(<span class="hljs-number">2</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(skipped.<span class="hljs-title function_">toArray</span>()); <span class="hljs-comment">// =&gt; [3, 4, 5]</span>
+</code></pre>
+<h3 id="iterator-flatmap"><a name="iterator-flatmap" class="plugin-anchor" href="#iterator-flatmap"><i class="fa fa-link" aria-hidden="true"></i></a><code>Iterator.prototype.flatMap</code>メソッド </h3>
+<p><code>Iterator.prototype.flatMap</code>メソッドは、各要素をマップしてから結果をフラット化します。
+このメソッドは、<a href="../array/#array-flatmap">配列の<code>flatMap</code>メソッド</a>と同じように動作します。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2025" } --></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> words = <span class="hljs-title class_">Iterator</span>.<span class="hljs-title function_">from</span>([<span class="hljs-string">"hi"</span>, <span class="hljs-string">"fi"</span>]);
+<span class="hljs-comment">// 各文字列を文字の配列に分割してフラット化</span>
+<span class="hljs-keyword">const</span> chars = words.<span class="hljs-title function_">flatMap</span>(<span class="hljs-function">(<span class="hljs-params">word</span>) =&gt;</span> word.<span class="hljs-title function_">split</span>(<span class="hljs-string">""</span>));
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(chars.<span class="hljs-title function_">toArray</span>()); <span class="hljs-comment">// =&gt; ["h", "i", "f", "i"]</span>
+</code></pre>
+<h3 id="iterator-reduce"><a name="iterator-reduce" class="plugin-anchor" href="#iterator-reduce"><i class="fa fa-link" aria-hidden="true"></i></a><code>Iterator.prototype.reduce</code>メソッド </h3>
+<p><code>Iterator.prototype.reduce</code>メソッドは、すべての要素を単一の値に集約します。
+このメソッドは、<a href="../array/#array-reduce">配列の<code>reduce</code>メソッド</a>と同じように動作します。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2025" } --></p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> numbers = <span class="hljs-title class_">Iterator</span>.<span class="hljs-title function_">from</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]);
+<span class="hljs-comment">// 合計を計算</span>
+<span class="hljs-keyword">const</span> sum = numbers.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">acc, num</span>) =&gt;</span> acc + num, <span class="hljs-number">0</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(sum); <span class="hljs-comment">// =&gt; 15</span>
+<span class="hljs-comment">// 文字列を連結</span>
+<span class="hljs-keyword">const</span> words = <span class="hljs-title class_">Iterator</span>.<span class="hljs-title function_">from</span>([<span class="hljs-string">"Hello"</span>, <span class="hljs-string">"Iterator"</span>, <span class="hljs-string">"Methods"</span>]);
+<span class="hljs-keyword">const</span> sentence = words.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">acc, word</span>) =&gt;</span> acc + <span class="hljs-string">" "</span> + word);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(sentence); <span class="hljs-comment">// =&gt; "Hello Iterator Methods"</span>
+</code></pre>
+<h3 id="method-chaining"><a name="method-chaining" class="plugin-anchor" href="#method-chaining"><i class="fa fa-link" aria-hidden="true"></i></a>メソッドチェーンによる宣言的な処理 </h3>
+<p>Iteratorメソッドをチェーンすることで、複雑なデータ処理を宣言的に記述できます。</p>
+<p>次のコードでは、10個の数値から偶数をフィルタリングし、最初の3つを取得して2乗して配列に変換しています。</p>
+<p><a class="gitbook-plugin-js-console" aria-hidden="true"></a>
+<!-- doctest:meta:{ "ECMAScript": "2025" } --></p>
+<pre><code class="lang-js"><span class="hljs-comment">// 複数のメソッドを組み合わせた例</span>
+<span class="hljs-keyword">const</span> result = <span class="hljs-title class_">Iterator</span>.<span class="hljs-title function_">from</span>([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>])
+    .<span class="hljs-title function_">filter</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x % <span class="hljs-number">2</span> === <span class="hljs-number">0</span>) <span class="hljs-comment">// 偶数をフィルタリング</span>
+    .<span class="hljs-title function_">take</span>(<span class="hljs-number">3</span>) <span class="hljs-comment">// 最初の3つを取得</span>
+    .<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> x * x) <span class="hljs-comment">// 2乗する</span>
+    .<span class="hljs-title function_">toArray</span>(); <span class="hljs-comment">// 配列に変換</span>
+
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(result); <span class="hljs-comment">// =&gt; [4, 16, 36]</span>
+</code></pre>
+<p>配列では、<code>filter</code>メソッドが配列のすべての要素に対して適用されます。
+そのため、必ず<code>1</code>から<code>10</code>までのすべての要素を処理します。</p>
+<p>一方で、Iteratorでは必要な分だけを処理します。
+そのため、<code>filter</code>メソッドは、最初の3つの偶数(<code>2,4,6</code>)を見つけた時点で処理を終了します。</p>
+<p>要素数が少ない場合は、配列とIteratorの違いはあまり感じられませんが、要素数が多い場合や無限シーケンスを扱う場合は、Iteratorの方が効率的に処理できます。</p>
+<!-- doctest:enable -->
+<h2 id="conclusion"><a name="conclusion" class="plugin-anchor" href="#conclusion"><i class="fa fa-link" aria-hidden="true"></i></a>まとめ </h2>
+<p>この章では、JavaScriptにおけるイテレータとジェネレータについて紹介しました。</p>
+<ul>
+<li><strong>Iterableプロトコル</strong>と<strong>Iteratorプロトコル</strong>は、JavaScriptのイテレーション（反復処理）の基盤となる仕組み</li>
+<li><code>for...of</code>ループは、これらのプロトコルを利用してIterableオブジェクトを反復処理できる</li>
+<li><strong>ジェネレータ関数</strong>（<code>function*</code>と<code>yield</code>）を使うことで、Iterable Iteratorを簡潔に作成できる</li>
+<li>ES2025で追加された新しいイテレータメソッドにより、配列と同様の宣言的なデータ処理ができる</li>
+<li>イテレータの<strong>遅延評価</strong>特性により、大量のデータや無限シーケンスを効率的に処理できる</li>
+</ul>
+<p>イテレータとジェネレータを理解することで、配列では扱うのが難しい大規模なデータなどを効率的に処理できるようになります。
+特に実際のアプリケーションでは、一度にメモリへ載せられない大きなデータや、サーバーからのストリーミングのように終わりが見えないデータを扱う場面で有効です。</p>
+</body></html>
+                                
+
+                                </section>
+                            
+                        </div>
+                    </div>
+                
+<footer class="book_footer">
+    <p>Copyright (c) 2016-present <a href="https://github.com/asciidwango/js-primer" target="_blank">jsprimer project</a></p>
+</footer>
+
+            </div>
+
+            
+                
+                <a href="../map-and-set/" class="navigation navigation-prev " aria-label="Previous page: Map/Set">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../json/" class="navigation navigation-next " aria-label="Next page: JSON">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"author":"azu","description":"JavaScriptにおけるイテレータとジェネレータの基本概念と使い方について紹介します。ES2025で導入される新しいイテレータメソッドについても解説します。","sponsors":[],"title":"イテレータとジェネレータ","level":"1.3.24","depth":2,"next":{"title":"JSON","level":"1.3.25","depth":2,"path":"basic/json/README.md","ref":"./basic/json/README.md","articles":[]},"previous":{"title":"Map/Set","level":"1.3.23","depth":2,"path":"basic/map-and-set/README.md","ref":"./basic/map-and-set/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-search","-lunr","page-toc-button","include-codeblock","anchors","canonical-link","js-console","github-issue-feedback","sandpack"],"root":"./source/","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"docSearch":{"index":"83I8JIFICQ","apiKey":"9169ce4cd84fcf2376f29d9585c89254"},"github-issue-feedback":{"repo":"asciidwango/js-primer","label":"問題を報告する"},"fontsettings":{"theme":"white","family":"sans","size":2},"js-console":{},"canonical-link":{"baseURL":"https://jsprimer.net"},"highlight":{},"page-toc-button":{"maxTocDepth":2,"minTocSize":2},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"./resources/gitbook-plugin-include-codeblock.hbs","theme":"chrome","unindent":false},"sandpack":{},"edit-link":{"base":"https://github.com/asciidwango/js-primer/edit/master/source/","label":"Edit"},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"IPAexMincho","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56},"embedFonts":false},"structure":{"langs":"LANGS.md","readme":"index.md","glossary":"GLOSSARY.md","summary":"README.md"},"variables":{"esversion":"2024","nodeversion":"22.7.0","npmversion":"10.8.2","triplebackticks":"```","console":"<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"},"title":"JavaScript Primer #jsprimer","gitbook":">=3.0.0","description":"JavaScriptの基本的な書き方からアプリケーションの作成などのユースケースを学ぶための入門書です"},"file":{"path":"basic/iterator-generator/README.md","mtime":"2025-08-11T14:37:23.911Z","type":"markdown"},"gitbook":{"version":"6.0.3","time":"2025-08-11T14:37:50.557Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <noscript>
+        <style>
+            .honkit-cloak {
+                display: block !important;
+            }
+        </style>
+    </noscript>
+    <script>
+        // Restore sidebar state as critical path for prevent layout shift
+        function __init__getSidebarState(defaultValue){
+            var baseKey = "";
+            var key = baseKey + ":sidebar";
+            try {
+                var value = localStorage[key];
+                if (value === undefined) {
+                    return defaultValue;
+                }
+                var parsed = JSON.parse(value);
+                return parsed == null ? defaultValue : parsed;
+            } catch (e) {
+                return defaultValue;
+            }
+        }
+        function __init__restoreLastSidebarState() {
+            var isMobile = window.matchMedia("(max-width: 600px)").matches;
+            if (isMobile) {
+                // Init last state if not mobile
+                return;
+            }
+            var sidebarState = __init__getSidebarState(true);
+            var book = document.querySelector(".book");
+            // Show sidebar if it enabled
+            if (sidebarState && book) {
+                book.classList.add("without-animation", "with-summary");
+            }
+        }
+
+        try {
+            __init__restoreLastSidebarState();
+        } finally {
+            var book = document.querySelector(".book");
+            book.classList.remove("honkit-cloak");
+        }
+    </script>
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-page-toc-button/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-js-console/console-ui.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github-issue-feedback/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/honkit-plugin-sandpack/honkit-plugin-sandpack.js"></script>
+        
+    
+        
+        <script src="../../gitbook/@honkit/honkit-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
