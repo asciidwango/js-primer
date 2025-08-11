@@ -356,12 +356,12 @@ function* createNumbers() {
     yield 2;
 }
 const results = [];
-// 新しいIteratorを作成して列挙
+// 1度目の列挙: 新しいIteratorを作成して列挙
 for (const value of createNumbers()) {
     results.push(value);
 }
 console.log(results); // => [1, 2]
-// 新しいIteratorを作成して列挙
+// 2度目の列挙: 新しいIteratorを作成して列挙
 for (const value of createNumbers()) {
     results.push(value);
 }
@@ -376,10 +376,12 @@ console.log(results); // => [1, 2, 1, 2]
 ```js
 const array = [1, 2];
 const results = [];
+// 1度目の列挙: `array`から新しいIteratorを作成して列挙
 for (const value of array) {
     results.push(value);
 }
 console.log(results); // => [1, 2]
+// 2度目の列挙: `array`から新しいIteratorを作成して列挙
 for (const value of array) {
     results.push(value);
 }
