@@ -257,7 +257,7 @@ function* simpleGenerator() {
     // 以降のnext()呼び出しで { value: undefined, done: true } を返して終了する
 }
 
-// ジェネレータオブジェクトを取得
+// ジェネレータオブジェクトを作成
 const generator = simpleGenerator();
 
 // Iteratorとして使用
@@ -267,8 +267,8 @@ console.log(generator.next()); // => { value: 3, done: false }
 console.log(generator.next()); // => { value: undefined, done: true }
 ```
 
-ジェネレータ関数から返されるGeneratorオブジェクトは、IterableプロトコルとIteratorプロトコルの両方を実装しています。
-つまり、GeneratorオブジェクトもIterable Iteratorであり、`for...of`ループで反復処理が可能です。
+ジェネレータ関数から返されるジェネレータオブジェクトは、IterableプロトコルとIteratorプロトコルの両方を実装しています。
+つまり、ジェネレータオブジェクトもIterable Iteratorであり、`for...of`ループで反復処理が可能です。
 
 {{book.console}}
 ```js
@@ -326,7 +326,7 @@ function* createNumbers() {
     yield 1;
     yield 2;
 }
-// Iteratorを作成
+// ジェネレータオブジェクトはIteratb
 const iterator = createNumbers();
 const results = [];
 for (const value of iterator) {
