@@ -111,7 +111,7 @@ Iterableプロトコルは反復可能なオブジェクトという定義で、
 そのため、IterableとIteratorは常にセットで考えることができます。
 
 どのような実装になるかというと、`[Symbol.iterator]`メソッドと`next`メソッドを持つオブジェクトとなります。
-次のコードでは、Iterableプロトコルである`[Symbol.iterator]`メソッドと、Iteratorプロトコルである`next`メソッドを持つオブジェクトの定義しています。
+次のコードでは、Iterableプロトコルである`[Symbol.iterator]`メソッドと、Iteratorプロトコルである`next`メソッドを持つオブジェクトを定義しています。
 `[Symbol.iterator]`メソッドは、`this`で自分自身(`iterableObject`)を返すことで、IterableかつIteratorの両方のプロトコルを実装しています。
 
 ```js
@@ -150,21 +150,21 @@ Iteratorの`next`メソッドを直接呼び出すことで、値を1つずつ�
 つまり、先ほどの手動で`[Symbol.iterator]`メソッドを呼び出して、`next`メソッドを繰り返し呼び出す処理を自動的に行います。
 
 {{book.console}}
-[import, title="for...ofループとIterator Iterableを反復処理"](./examples/protocol/manual-iteration.example.js)
+[import, title="for...ofループでIterable Iteratorを反復処理"](./examples/protocol/manual-iteration.example.js)
 
 Iterable Iteratorを扱うときは、基本的には`for...of`ループを使用します。
 そのため、`[Symbol.iterator]`メソッドや`next`メソッドを直接呼び出すケースはあまりありません。
 
 ## 組み込みIterableオブジェクト {#built-in-iterables}
 
-JavaScriptには、IterableプロトコルとIteratorプロトコルを実装したビルトインオブジェクトが多数存在します。
-これらのビルトインオブジェクトはIterable Iteratorであるため、`for...of`ループで反復処理が可能です。
+JavaScriptには、Iterableプロトコルを実装したビルトインオブジェクトが多数存在します。
+これらのビルトインオブジェクトはIterableであるため、`for...of`ループで反復処理が可能です（それらが返す各イテレータは多くがIterable Iteratorです）。
 
-いくつかの代表的なIterable Iteratorであるビルトインオブジェクトを紹介します。
+いくつかの代表的なIterableのビルトインオブジェクトを紹介します。
 
 ### 配列（Array） {#array-iterable}
 
-配列はもっとも基本的なIterable Iteratorで、各要素を順番に反復できます。
+配列はもっとも基本的なIterableで、各要素を順番に反復できます。
 
 {{book.console}}
 ```js
@@ -178,7 +178,7 @@ for (const fruit of fruits) {
 
 ### 文字列（String） {#string-iterable}
 
-文字列もIterable Iteratorであり、各文字を順番に反復できます。
+文字列もIterableであり、各文字を順番に反復できます。
 このときの文字は、Code Pointごとに反復されます。
 
 {{book.console}}
@@ -193,7 +193,7 @@ for (const char of text) {
 
 ### Map {#map-iterable}
 
-MapオブジェクトもIterable Iteratorで、キーと値のペアを順番に反復できます。
+MapオブジェクトもIterableで、キーと値のペアを順番に反復できます。
 
 {{book.console}}
 ```js
@@ -211,7 +211,7 @@ for (const [key, value] of userMap) {
 
 ### Set {#set-iterable}
 
-SetオブジェクトもIterable Iteratorで、Setの重複のない値を順番に反復できます。
+SetオブジェクトもIterableで、Setの重複のない値を順番に反復できます。
 
 {{book.console}}
 ```js
@@ -231,9 +231,9 @@ for (const num of uniqueNumbers) {
 
 ```js
 function* generatorFunction() {
-    yield value1; // 最初の値を生成
-    yield value2; // 次の値を生成
-    return value3; // 最後の値を生成
+    yield 1; // 最初の値を生成
+    yield 2; // 次の値を生成
+    return 3; // 反復を終了し、done: true かつ value: 3 を返す（for...ofはこのvalueを列挙しない）
 }
 ```
 
@@ -251,8 +251,8 @@ function* generatorFunction() {
 function* simpleGenerator() {
     yield 1; // 1度目のnext()が呼ばれたときに、ここまで実行され1を返す
     yield 2; // 2度目のnext()が呼ばれたときに、ここまで実行され2を返す
-    yield 3; // 3度目のnext()が呼ばれたときに。ここまで実行され3を返す
-    return;  // 4度目のnext()が呼ばれたときに。ここまで実行されdone: trueを返し終了する
+    yield 3; // 3度目のnext()が呼ばれたときに、ここまで実行され3を返す
+    // 以降のnext()呼び出しで { value: undefined, done: true } を返して終了する
 }
 
 // ジェネレータオブジェクトを取得
@@ -283,9 +283,10 @@ for (const num of simpleGenerator()) {
 }
 ```
 
-ジェネレータ関数も、通常の関数と同じく`return`文までくるとそこで関数は終了します。
-先ほどの例では、明示的に`return`文を使って終了していますが、通常の関数と同じくジェネレータ関数でも`return`文は省略可能です。
-`return`文を省略した場合、最後の`yield`まで実行され、`{ value: undefined, done: true }`が返されます。
+補足: 本章では、ジェネレータの双方向通信（`next(value)`で値を渡す、`throw`/`return`を外部から呼ぶ等）は扱いません。基本的な一方向の使い方に絞って説明しています。
+
+ジェネレータ関数も、通常の関数と同じく`return`文で明示的に終了できます。
+一方で`return`文は省略可能で、省略した場合は最後の`yield`の後に`{ value: undefined, done: true }`が返されます。
 
 {{book.console}}
 ```js
@@ -333,7 +334,7 @@ IteratorプロトコルとIterableプロトコルを手で書いて同様の実�
 
 ### 無限シーケンスの生成 {#infinite-sequence-generation}
 
-ジェネレータを使うと、無限に連続した数値を出力し続けるIteable Iteratorを簡単に定義できます。
+ジェネレータを使うと、無限に連続した数値を出力し続けるIterable Iteratorを簡単に定義できます。
 次のコードでは、無限シーケンスを生成するジェネレータを定義しています。
 このジェネレータは、`next`メソッドが呼ばれるたびに次の数値を返すため、必要な分だけ数値を生成できます。
 
@@ -365,7 +366,13 @@ ES2025では、`Iterator.prototype`に新しいメソッドが追加されまし
 
 ### Iterator.from メソッド {#iterator-from}
 
-`Iterator.from`メソッドは、ジェンレータオブジェクトやIterableオブジェクトからイテレータを作成します。
+`Iterator.from`メソッドは、ジェネレータオブジェクトやIterableオブジェクトからイテレータを作成します。
+
+- 配列などはIterableプロトコルは実装していますが、Iteratorそのものではありません
+- そのため、これから紹介する`take`や`map`などのIteratorのメソッドを配列に対して使うには、まずイテレータへ変換する必要があります
+- 次のコードでは、`Iterator.from`を使って配列をイテレータに変換しています
+
+次のコードでは、配列からイテレータを作成し、`next`で要素を取り出しています。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": "2025" } -->
@@ -378,6 +385,16 @@ console.log(iterator.next()); // => { value: 2, done: false }
 ```
 
 IterableプロトコルまたはIteratorプロトコルを実装しているオブジェクトであれば、`Iterator.from`メソッドを使って簡単にイテレータを作成できます。
+
+配列などのIterableでこれらのメソッドを使うには、まずイテレータに変換します（`Iterator.from(iterable)` または `iterable.values`）。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
+```js
+// Iterable（配列）からイテレータ化して利用する例
+Iterator.from([1, 2, 3]).map(x => x * 2).toArray(); // => [2, 4, 6]
+[1, 2, 3].values().map(x => x * 2).toArray();       // => [2, 4, 6]
+```
 
 ### take メソッド {#iterator-take}
 
@@ -395,7 +412,7 @@ function* infiniteNumbers() {
     }
 }
 
-// ジェネレータオブジェクトはIterator.prototypeを継承しているため、takeメソッドが使えるe
+// ジェネレータオブジェクトはIterator.prototypeを継承しているため、takeメソッドが使える
 // ジェネレータオブジェクトを反復処理して、最初の5つだけを取得
 const first5 = infiniteNumbers().take(5);
 
@@ -509,6 +526,18 @@ const iterator = Iterator.from([1, 2, 3]).map(x => x * 2);
 const array = iterator.toArray();
 
 console.log(array); // => [2, 4, 6]
+```
+
+イテレータは「一度きり」です。反復し終えると再利用できません。
+同じデータをもう一度使いたい場合は、`toArray`などで配列に変換してからにします。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
+```js
+const it = Iterator.from([1, 2]).map(x => x);
+console.log([...it]); // => [1, 2]
+console.log([...it]); // => [] 2回目は空
+```
 ```
 
 ### メソッドチェーンによる宣言的な処理 {#method-chaining}
