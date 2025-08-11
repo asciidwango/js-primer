@@ -76,6 +76,7 @@ Iterableプロトコルは、オブジェクトが反復可能であることを
 オブジェクトがIterableになるためには、`Symbol.iterator`というメソッドを持つ必要があります。
 
 `Symbol.iterator`は、JavaScriptの組み込みSymbolの1つで、オブジェクトがIterableであることを示す特殊なキーです。
+次のコードでは、Iterableプロトコルを実装した`iterableObject`を定義しています。
 
 ```js
 const iterableObject = {
@@ -91,13 +92,12 @@ const iterableObject = {
 
 ### Iteratorプロトコル {#iterator-protocol}
 
-Iteratorプロトコルは、値のシーケンスを生成する方法を定義します。
-Iteratorオブジェクトは、`next`メソッドを持つ必要があります。
+Iteratorプロトコルは、反復処理時に次の値を取得するためのプロトコルです。
+Iteratorプロトコルを実装するオブジェクトは、`next`メソッドを持つ必要があります。
 
-`next`メソッドは、次の形式のオブジェクトを返します。
+`next`メソッドは、`{ value: 次の値, done: 完了かどうか }`という形式のオブジェクトを返します。
 
 <!-- doctest:disable -->
-
 ```js
 // nextメソッドの戻り値の形式
 const result = iterator.next();
@@ -110,7 +110,7 @@ console.log(result.done); // 反復が完了したかどうか（true: 完了、
 IterableとIteratorはよく似ていますが、次の点が分かれば十分です。
 
 - Iterable: `[Symbol.iterator]`メソッドでIteratorを返す
-- Iterator: `next`で値を1つずつ取り出すオブジェクト
+- Iterator: `next`メソッドで値を1つずつ取り出せるオブジェクト
 
 次は、2つのプロトコルを両方とも実装したオブジェクトのコード例です。
 
