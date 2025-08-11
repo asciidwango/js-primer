@@ -107,10 +107,10 @@ console.log(result.done); // 反復が完了したかどうか（true: 完了、
 
 IterableとIteratorはよく似ていますが、次の点が分かれば十分です。
 
-- Iterable: `[Symbol.iterator]`で毎回「新しいIterator」を返す
+- Iterable: `[Symbol.iterator]`メソッドでIteratorを返す
 - Iterator: `next`で値を1つずつ取り出すオブジェクト
 
-次は、両プロトコルを同時に実装したオブジェクトの例です。
+次は、2つのプロトコルを両方とも実装したオブジェクトのコード例です。
 
 ```js
 const iterableObject = {
