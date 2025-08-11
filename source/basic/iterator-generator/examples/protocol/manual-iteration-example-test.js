@@ -12,13 +12,13 @@ const Code = fs.readFileSync(path.join(__dirname, "../../examples/protocol/manua
 describe("manual-iteration", function() {
     it("手動でIteratorを操作して値を取得できる", function() {
         const actualLogs = [];
-        const console = {
+        const consoleMock = {
             log(message) {
                 actualLogs.push(message);
             }
         };
         strictEval(Code, {
-            console
+            console: consoleMock
         });
         assert.deepStrictEqual(actualLogs, [1, 2, 3]);
     });
