@@ -396,7 +396,7 @@ Iterableの`[Symbol.iterator]`メソッドが返すIteratorは`Iterator.prototyp
 多くのメソッドは[配列のメソッド][]と同じ名前で、ほぼ同様の動作をします。
 ただし、配列では全要素を一度に処理するのに対し、Iteratorでは必要になったタイミングで各要素を処理します。
 
-### Iterator.from メソッド {#iterator-from}
+### `Iterator.from`静的メソッド {#iterator-from}
 
 `Iterator.from`メソッドは、GeneratorオブジェクトやIterableオブジェクトからイテレータを作成します。
 
@@ -440,130 +440,7 @@ const set = new Set([1, 2, 3]);
 console.log(set.values().map((x) => x * 2).toArray()); // => [2, 4, 6]
 ```
 
-
-### Iterator.prototype.take メソッド {#iterator-take}
-
-`Iterator.prototype.take`メソッドは、指定した数の要素のみを取得するIteratorを返します。
-
-ジェネレータでは、無限シーケンスのイテレータを作成することができます。
-そのような終わりのないイテレータから、必要な分だけ取り出す `take` メソッドで指定した数の要素を取得できます。
-
-次のコードでは、無限に数値を生成する`infiniteNumbers`ジェネレータ関数から、最初の5つの数値を取得しています。
-
-{{book.console}}
-<!-- doctest:meta:{ "ECMAScript": "2025" } -->
-```js
-// 無限に数値を生成するジェネレータ
-function* infiniteNumbers() {
-    let num = 1;
-    while (true) {
-        yield num++;
-    }
-}
-
-// 無限に数値を生成するジェネレータから最初の5つの数値を取得
-const first5 = infiniteNumbers().take(5);
-
-for (const value of first5) {
-    console.log(value); // 1, 2, 3, 4, 5
-}
-```
-
-配列でこのような無限シーケンスを表現すると利用できるメモリなどの色々な制限があるため、かなり扱いにくいです。
-一方で、イテレータとジェネレータを使った場合は無限シーケンスが簡単に作成でき、`take`メソッドを使うことで最初の5つといったように必要な分だけを取得できます。
-
-### Iterator.prototype.map メソッド {#iterator-map}
-
-`Iterator.prototype.map`メソッドは、各要素を変換した新しいIteratorを返します。
-このメソッドは、[配列の`map`メソッド][配列のmap]と同じように動作しますが、遅延評価される点が異なります。
-
-{{book.console}}
-<!-- doctest:meta:{ "ECMAScript": "2025" } -->
-```js
-const numbers = Iterator.from([1, 2, 3, 4, 5]);
-
-// 各数値を2倍にする
-const doubled = numbers.map((x) => x * 2);
-
-for (const value of doubled) {
-    console.log(value); // 2, 4, 6, 8, 10
-}
-```
-
-### Iterator.prototype.filter メソッド {#iterator-filter}
-
-`Iterator.prototype.filter`メソッドは、条件に合致する要素のみを含む新しいIteratorを返します。
-このメソッドは、[配列の`filter`メソッド][配列のfilter]と同じように動作しますが、遅延評価される点が異なります。
-
-{{book.console}}
-<!-- doctest:meta:{ "ECMAScript": "2025" } -->
-```js
-const numbers = Iterator.from([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-
-// 偶数のみを抽出
-const evenNumbers = numbers.filter((x) => x % 2 === 0);
-
-for (const value of evenNumbers) {
-    console.log(value); // 2, 4, 6, 8, 10
-}
-```
-
-### Iterator.prototype.drop メソッド {#iterator-drop}
-
-`Iterator.prototype.drop`メソッドは、指定した数の要素をスキップした新しいIteratorを返します。
-
-{{book.console}}
-<!-- doctest:meta:{ "ECMAScript": "2025" } -->
-```js
-const numbers = Iterator.from([1, 2, 3, 4, 5]);
-
-// 最初の2つの要素をスキップ
-const skipped = numbers.drop(2);
-
-for (const value of skipped) {
-    console.log(value); // 3, 4, 5
-}
-```
-
-### Iterator.prototype.flatMap メソッド {#iterator-flatmap}
-
-`Iterator.prototype.flatMap`メソッドは、各要素をマップしてから結果を平坦化します。
-このメソッドは、[配列の`flatMap`メソッド][配列のflatMap]と同じように動作しますが、遅延評価される点が異なります。
-
-{{book.console}}
-<!-- doctest:meta:{ "ECMAScript": "2025" } -->
-```js
-const words = Iterator.from(["hi", "fi"]);
-
-// 各文字列を文字の配列に分割して平坦化
-const chars = words.flatMap((word) => word.split(""));
-
-for (const char of chars) {
-    console.log(char); // h, i, f, i
-}
-```
-
-### Iterator.prototype.reduce メソッド {#iterator-reduce}
-
-`Iterator.prototype.reduce`メソッドは、すべての要素を単一の値に集約します。
-このメソッドは、[配列の`reduce`メソッド][配列のreduce]と同じように動作します。
-
-{{book.console}}
-<!-- doctest:meta:{ "ECMAScript": "2025" } -->
-```js
-const numbers = Iterator.from([1, 2, 3, 4, 5]);
-
-// 合計を計算
-const sum = numbers.reduce((acc, num) => acc + num, 0);
-console.log(sum); // => 15
-
-// 文字列を連結
-const words = Iterator.from(["Hello", "Iterator", "Methods"]);
-const sentence = words.reduce((acc, word) => acc + " " + word);
-console.log(sentence); // => "Hello Iterator Methods"
-```
-
-### Iterator.prototype.toArray メソッド {#iterator-toarray}
+### `Iterator.prototype.toArray`メソッド {#iterator-toarray}
 
 `Iterator.prototype.toArray`メソッドは、Iteratorのすべての要素を列挙した配列を返します。
 
@@ -592,6 +469,114 @@ console.log(b); // => [1, 2, 3]
 
 `Iterator.prototype.toArray`メソッドとスプレッド構文（`...`）や`Array.from`静的メソッドによる配列への変換の結果には違いはありません。
 一方で、`toArray`メソッドはIteratorのメソッドであるため、他のメソッドと組み合わせてメソッドチェーンとして書く場合に便利です。
+
+
+### `Iterator.prototype.take`メソッド {#iterator-take}
+
+`Iterator.prototype.take`メソッドは、指定した数の要素のみを取得するIteratorを返します。
+
+ジェネレータでは、無限シーケンスのイテレータを作成することができます。
+そのような終わりのないイテレータから、必要な分だけ取り出す `take`メソッドで指定した数の要素を取得できます。
+
+次のコードでは、無限に数値を生成する`infiniteNumbers`ジェネレータ関数から、最初の5つの数値を取得しています。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
+```js
+// 無限に数値を生成するジェネレータ
+function* infiniteNumbers() {
+    let num = 1;
+    while (true) {
+        yield num++;
+    }
+}
+
+// 無限に数値を生成するジェネレータから最初の5つの数値を取得
+const first5 = infiniteNumbers().take(5);
+console.log(first5.toArray()); // => [1, 2, 3, 4, 5]
+```
+
+配列でこのような無限シーケンスを表現すると利用できるメモリなどの色々な制限があるため、かなり扱いにくいです。
+一方で、イテレータとジェネレータを使った場合は無限シーケンスが簡単に作成でき、`take`メソッドを使うことで最初の5つといったように必要な分だけを取得できます。
+
+### `Iterator.prototype.map`メソッド {#iterator-map}
+
+`Iterator.prototype.map`メソッドは、各要素を変換した新しいIteratorを返します。
+このメソッドは、[配列の`map`メソッド][配列のmap]と同じように動作しますが、遅延評価される点が異なります。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
+```js
+const numbers = Iterator.from([1, 2, 3, 4, 5]);
+
+// 各数値を2倍にする
+const doubled = numbers.map((x) => x * 2);
+console.log(doubled.toArray()); // => [2, 4, 6, 8, 10]
+```
+
+### `Iterator.prototype.filter`メソッド {#iterator-filter}
+
+`Iterator.prototype.filter`メソッドは、条件に合致する要素のみを含む新しいIteratorを返します。
+このメソッドは、[配列の`filter`メソッド][配列のfilter]と同じように動作しますが、遅延評価される点が異なります。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
+```js
+const numbers = Iterator.from([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+
+// 偶数のみを抽出
+const evenNumbers = numbers.filter((x) => x % 2 === 0);
+console.log(evenNumbers.toArray()); // => [2, 4, 6, 8, 10]
+```
+
+### `Iterator.prototype.drop`メソッド {#iterator-drop}
+
+`Iterator.prototype.drop`メソッドは、指定した数の要素をスキップした新しいIteratorを返します。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
+```js
+const numbers = Iterator.from([1, 2, 3, 4, 5]);
+
+// 最初の2つの要素をスキップ
+const skipped = numbers.drop(2);
+console.log(skipped.toArray()); // => [3, 4, 5]
+```
+
+### `Iterator.prototype.flatMap`メソッド {#iterator-flatmap}
+
+`Iterator.prototype.flatMap`メソッドは、各要素をマップしてから結果を平坦化します。
+このメソッドは、[配列の`flatMap`メソッド][配列のflatMap]と同じように動作しますが、遅延評価される点が異なります。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
+```js
+const words = Iterator.from(["hi", "fi"]);
+
+// 各文字列を文字の配列に分割してフラット化
+const chars = words.flatMap((word) => word.split(""));
+console.log(chars.toArray()); // => ["h", "i", "f", "i"]
+```
+
+### `Iterator.prototype.reduce`メソッド {#iterator-reduce}
+
+`Iterator.prototype.reduce`メソッドは、すべての要素を単一の値に集約します。
+このメソッドは、[配列の`reduce`メソッド][配列のreduce]と同じように動作します。
+
+{{book.console}}
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
+```js
+const numbers = Iterator.from([1, 2, 3, 4, 5]);
+
+// 合計を計算
+const sum = numbers.reduce((acc, num) => acc + num, 0);
+console.log(sum); // => 15
+
+// 文字列を連結
+const words = Iterator.from(["Hello", "Iterator", "Methods"]);
+const sentence = words.reduce((acc, word) => acc + " " + word);
+console.log(sentence); // => "Hello Iterator Methods"
+```
 
 ### メソッドチェーンによる宣言的な処理 {#method-chaining}
 
