@@ -68,7 +68,7 @@ console.log(iterator.next().value); // => 3
 
 JavaScriptにおけるイテレーション（反復処理）は、**Iterableプロトコル**と**Iteratorプロトコル**という2つのプロトコルによって定義されています。
 
-これらのプロトコルは、`for...of`ループの背後で動作する仕組みを定義しています。
+この2つのプロトコルは、`for...of`ループの背後で動作する仕組みとなっています。
 
 ### Iterableプロトコル {#iterable-protocol}
 
