@@ -150,7 +150,7 @@ Iteratorの`next`メソッドを直接呼び出すことで、値を1つずつ�
 [import, title="for...ofループでIterable Iteratorを反復処理"](./examples/protocol/manual-iteration.example.js)
 
 Iterable Iteratorを扱うときは、基本的には`for...of`ループを使用します。
-そのため、`[Symbol.iterator]`メソッドや`next`メソッドを直接呼び出すケースはほとんどありません。
+そのため、`[Symbol.iterator]`メソッドや`next`メソッドを直接呼び出すケースはあまりありません。
 
 ジェネレータ関数や`for...of`ループを使うと、両プロトコルを意識する機会は少なくなります。
 ただし内部では、この2つのプロトコルが使われていることを理解しておくとよいでしょう。
@@ -384,15 +384,26 @@ console.log(iterator.next()); // => { value: 2, done: false }
 
 Iterableプロトコルを実装しているオブジェクトであれば、`Iterator.from`メソッドを使ってイテレータを作成できます。
 
-配列からイテレータを作成する場合は、`Array.prototype.values`メソッドを使うこともできます。
+あわせて、ビルトインオブジェクトにはイテレータを直接返すメソッドを持つものもあります。
+Array/Map/Setでは`keys`/`values`/`entries`メソッドが、新しいイテレータを返します。
+
+次のコードでは、各ビルトインオブジェクトの`values`メソッドを使って、それぞれの値を返すイテレータを取得し、`map`メソッドを使って各値を2倍にした配列を作成しています。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": "2025" } -->
 ```js
-// Iterator.fromを使って配列をイテレータを作成
-Iterator.from([1, 2, 3]).map(x => x * 2).toArray(); // => [2, 4, 6]
-// Array.prototype.valuesメソッドはイテレータを返す
-[1, 2, 3].values().map(x => x * 2).toArray();       // => [2, 4, 6]
+// Iterator.from を使って配列からイテレータを作成
+const iterator = Iterator.from([1, 2, 3]);
+console.log(iterator.map(x => x * 2).toArray()); // => [2, 4, 6]
+// Array.prototype.values メソッドはイテレータを返す
+const array = [1, 2, 3];
+console.log(array.values().map(x => x * 2).toArray()); // => [2, 4, 6]
+// Map.prototype.values メソッドはイテレータを返す
+const map = new Map([["a", 1], ["b", 2], ["c", 3]]);
+console.log(map.values().map(x => x * 2).toArray()); // => [2, 4, 6]
+// Set.prototype.values メソッドはvalueのイテレータを返す
+const set = new Set([1, 2, 3]);
+console.log(set.values().map(x => x * 2).toArray()); // => [2, 4, 6]
 ```
 
 ### Iterator.prototype.take メソッド {#iterator-take}
@@ -525,18 +536,6 @@ const iterator = Iterator.from([1, 2, 3]).map(x => x * 2);
 const array = iterator.toArray();
 
 console.log(array); // => [2, 4, 6]
-```
-
-イテレータは「一度きり」です。反復し終えると再利用できません。
-同じデータをもう一度使いたい場合は、`toArray`などで配列に変換してからにします。
-
-{{book.console}}
-<!-- doctest:meta:{ "ECMAScript": "2025" } -->
-```js
-const it = Iterator.from([1, 2]).map(x => x);
-console.log([...it]); // => [1, 2]
-console.log([...it]); // => [] 2回目は空
-```
 ```
 
 ### メソッドチェーンによる宣言的な処理 {#method-chaining}
