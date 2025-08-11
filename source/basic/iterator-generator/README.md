@@ -490,7 +490,6 @@ function* infiniteNumbers() {
         yield num++;
     }
 }
-
 // 無限に数値を生成するジェネレータから最初の5つの数値を取得
 const first5 = infiniteNumbers().take(5);
 console.log(first5.toArray()); // => [1, 2, 3, 4, 5]
@@ -502,13 +501,12 @@ console.log(first5.toArray()); // => [1, 2, 3, 4, 5]
 ### `Iterator.prototype.map`メソッド {#iterator-map}
 
 `Iterator.prototype.map`メソッドは、各要素を変換した新しいIteratorを返します。
-このメソッドは、[配列の`map`メソッド][配列のmap]と同じように動作しますが、遅延評価される点が異なります。
+このメソッドは、[配列の`map`メソッド][配列のmap]と同じように動作します。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": "2025" } -->
 ```js
 const numbers = Iterator.from([1, 2, 3, 4, 5]);
-
 // 各数値を2倍にする
 const doubled = numbers.map((x) => x * 2);
 console.log(doubled.toArray()); // => [2, 4, 6, 8, 10]
@@ -516,14 +514,13 @@ console.log(doubled.toArray()); // => [2, 4, 6, 8, 10]
 
 ### `Iterator.prototype.filter`メソッド {#iterator-filter}
 
-`Iterator.prototype.filter`メソッドは、条件に合致する要素のみを含む新しいIteratorを返します。
-このメソッドは、[配列の`filter`メソッド][配列のfilter]と同じように動作しますが、遅延評価される点が異なります。
+`Iterator.prototype.filter`メソッドは、条件に一致する要素のみを含む新しいIteratorを返します。
+このメソッドは、[配列の`filter`メソッド][配列のfilter]と同じように動作します。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": "2025" } -->
 ```js
 const numbers = Iterator.from([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-
 // 偶数のみを抽出
 const evenNumbers = numbers.filter((x) => x % 2 === 0);
 console.log(evenNumbers.toArray()); // => [2, 4, 6, 8, 10]
@@ -537,7 +534,6 @@ console.log(evenNumbers.toArray()); // => [2, 4, 6, 8, 10]
 <!-- doctest:meta:{ "ECMAScript": "2025" } -->
 ```js
 const numbers = Iterator.from([1, 2, 3, 4, 5]);
-
 // 最初の2つの要素をスキップ
 const skipped = numbers.drop(2);
 console.log(skipped.toArray()); // => [3, 4, 5]
@@ -545,14 +541,13 @@ console.log(skipped.toArray()); // => [3, 4, 5]
 
 ### `Iterator.prototype.flatMap`メソッド {#iterator-flatmap}
 
-`Iterator.prototype.flatMap`メソッドは、各要素をマップしてから結果を平坦化します。
-このメソッドは、[配列の`flatMap`メソッド][配列のflatMap]と同じように動作しますが、遅延評価される点が異なります。
+`Iterator.prototype.flatMap`メソッドは、各要素をマップしてから結果をフラット化します。
+このメソッドは、[配列の`flatMap`メソッド][配列のflatMap]と同じように動作します。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": "2025" } -->
 ```js
 const words = Iterator.from(["hi", "fi"]);
-
 // 各文字列を文字の配列に分割してフラット化
 const chars = words.flatMap((word) => word.split(""));
 console.log(chars.toArray()); // => ["h", "i", "f", "i"]
@@ -567,11 +562,9 @@ console.log(chars.toArray()); // => ["h", "i", "f", "i"]
 <!-- doctest:meta:{ "ECMAScript": "2025" } -->
 ```js
 const numbers = Iterator.from([1, 2, 3, 4, 5]);
-
 // 合計を計算
 const sum = numbers.reduce((acc, num) => acc + num, 0);
 console.log(sum); // => 15
-
 // 文字列を連結
 const words = Iterator.from(["Hello", "Iterator", "Methods"]);
 const sentence = words.reduce((acc, word) => acc + " " + word);
