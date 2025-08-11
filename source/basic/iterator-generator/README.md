@@ -79,6 +79,7 @@ Iterableプロトコルは、オブジェクトが反復可能であることを
 
 ```js
 const iterableObject = {
+    // Symbol.iteratorメソッドの定義
     [Symbol.iterator]() {
         // Iteratorオブジェクトを返す
         return {
