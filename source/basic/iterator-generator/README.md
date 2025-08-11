@@ -448,8 +448,8 @@ console.log(set.values().map((x) => x * 2).toArray()); // => [2, 4, 6]
 <!-- doctest:meta:{ "ECMAScript": "2025" } -->
 ```js
 const iterator = Iterator.from([1, 2, 3]).map((x) => x * 2);
+// Iteratorを配列に変換
 const array = iterator.toArray();
-
 console.log(array); // => [2, 4, 6]
 ```
 
