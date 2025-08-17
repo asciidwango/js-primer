@@ -593,8 +593,8 @@ const pattern = new RegExp("a+");
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": "2025" } -->
 ```js
-const escaped = RegExp.escape("a+b?c");
-console.log(escaped); // => "a\\+b\\?c"
+const escaped = RegExp.escape("+");
+console.log(escaped); // => "\\+"
 ```
 
 ### 正規表現リテラルと`RegExp`コンストラクタの違い {#difference-regexp-literal-regexp-constructor}
