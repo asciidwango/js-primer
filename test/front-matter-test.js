@@ -22,6 +22,8 @@ describe("front-matter", function() {
         `!${sourceDir}/**/SCREENSHOT.md`,
         // サンプルコードの一部
         `!${sourceDir}/use-case/nodecli/**/src/**/sample*.md`,
+        // specsディレクトリは除く
+        `!${sourceDir}/**/specs/**/*.md`,
     ]);
     describe("author", function() {
         files.forEach(filePath => {

@@ -60,6 +60,7 @@ describe("doctest:md", function() {
     const files = globbySync([
         `${sourceDir}/**/*.md`,
         `!${sourceDir}/**/node_modules{,/**}`,
+        `!${sourceDir}/**/specs/**/*.md`,
         `!**/OUTLINE.md`
     ]);
     files.forEach(filePath => {
