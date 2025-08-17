@@ -588,9 +588,7 @@ const pattern = new RegExp("a+");
 
 たとえば、`+`という特殊文字をそのまま文字として扱いたい場合は、`\+`のようにバックスラッシュでエスケープします。
 
-### [ES2025] RegExp.escape {#regexp-escape}
-
-ES2025では、`RegExp.escape`メソッドが追加され、正規表現の特殊文字を簡単にエスケープできるようになりました。このメソッドを使うことで、手動でエスケープする手間が省けます。
+また、ES2025では、`RegExp.escape`メソッドが追加され、正規表現の特殊文字を安全にエスケープできます。`RegExp.escape`メソッドを使うことで、文字列の中に正規表現として意味を持つ特殊文字が含まれていても、自動的にエスケープできます。
 
 {{book.console}}
 <!-- doctest:meta:{ "ECMAScript": "2025" } -->
@@ -1065,7 +1063,7 @@ Stringの`replaceAll`メソッドでは、正規表現ではなく文字列を�
 そのため、正規表現では特殊な意味を持つ`?`のような文字列も検索文字列にそのまま書いて置換ができます。
 
 {{book.console}}
-<!-- doctest:meta:{ "ECMAScript": "2021" } -->
+<!-- doctest:meta:{ "ECMAScript": "2025" } -->
 ```js
 // 検索対象となる文字列
 const str = "???";
@@ -1073,11 +1071,11 @@ const str = "???";
 console.log(str.replace("?", "!")); // => "!??"
 // replaceAllメソッドに文字列を指定した場合は、一致したものがすべて置換される
 console.log(str.replaceAll("?", "!")); // => "!!!"
-// replaceメソッドの場合は、正規表現の特殊文字はエスケープが必要となる
+// replaceメソッドに正規表現を渡す場合、正規表現の特殊文字はエスケープが必要
 console.log(str.replace(/\?/g, "!")); // => "!!!"
-// RegExp.escapeを使った場合（ES2025）
+// RegExp.escapeとreplaceメソッドを使った場合（ES2025）
 console.log(str.replace(new RegExp(RegExp.escape("?"), "g"), "!")); // => "!!!"
-// replaceAllメソッドにも正規表現を渡せるが、この場合はエスケープが必要となるためreplaceと同じ
+// replaceAllメソッドにも正規表現を渡せるが、この場合もエスケープが必要（replaceと同様）
 console.log(str.replaceAll(/\?/g, "!")); // => "!!!"
 ```
 
