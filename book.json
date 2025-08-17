@@ -19,8 +19,8 @@
     "sandpack"
   ],
   "variables": {
-    "esversion": "2024",
-    "nodeversion": "22.7.0",
+    "esversion": "2025",
+    "nodeversion": "22.18.0",
     "npmversion": "10.8.2",
     "triplebackticks": "```",
     "console": "<a class=\"gitbook-plugin-js-console\" aria-hidden=\"true\"></a>"
