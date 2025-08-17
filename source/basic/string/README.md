@@ -594,8 +594,10 @@ const pattern = new RegExp("a+");
 <!-- doctest:meta:{ "ECMAScript": "2025" } -->
 ```js
 const escaped = RegExp.escape("+");
-console.log(escaped); // => "\\+"
+console.log(escaped); // \+
 ```
+
+<!-- "\\+" と書きたいけど、見た目が微妙なので\+にしている -->
 
 ### 正規表現リテラルと`RegExp`コンストラクタの違い {#difference-regexp-literal-regexp-constructor}
 
