@@ -224,6 +224,8 @@ ECMAScriptはアップデートにより、機能が利用できなくなると�
 - [v3.0.0: ECMAScript 2021対応](https://github.com/asciidwango/js-primer/releases/tag/v3.0.0)
 - [v4.0.0: ECMAScript 2022対応](https://github.com/asciidwango/js-primer/releases/tag/v4.0.0)
 - [v5.0.0: ECMAScript 2023対応/CC BYライセンスに変更/Open Collective](https://github.com/asciidwango/js-primer/releases/tag/v5.0.0)
+- [v6.0.0: ECMAScript 2024対応](https://github.com/asciidwango/js-primer/releases/tag/v6.0.0)
+- [v7.0.0: ECMAScript 2025対応](https://github.com/asciidwango/js-primer/releases/tag/v7.0.0)
 
 新しいバージョンが公開されたときに通知を受け取りたい方は、[GitHubリポジトリ](https://github.com/asciidwango/js-primer)を[Watch](https://github.com/asciidwango/js-primer/watchers)してください。
 
