@@ -119,7 +119,7 @@ JavaScriptという言語は、常に変化している言語としても知ら�
 この書籍の学習を補完するリソースとして、次のNotebookLMのページを用意しています。
 NotebookLMでは、自然言語で書籍について質問をしたり、対話しながら学習を進めることができます。
 
-- [JavaScript Primer - NotebookLM](https://notebooklm.google.com/notebook/99f77ebb-4c13-411d-9474-ec18b2278098)
+- [JavaScript Primer - NotebookLM](https://notebooklm.google.com/notebook/295f7def-145e-4393-9e06-afb4e6e23781)
 
 たとえば、NotebookLMは次のような質問をしたりできます。
 
