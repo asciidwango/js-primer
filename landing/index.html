@@ -14,6 +14,35 @@
         border-color: #280000;
         margin: 12px 0;
     }
+
+    .sponsor-card {
+        display: inline-block;
+        border: 1px solid #e5e5e5;
+        border-radius: 4px;
+        padding: 20px;
+        margin: 8px;
+        background-color: #ffffff;
+        text-align: center;
+        vertical-align: top;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        transition: box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .sponsor-card:hover {
+        border-color: #d0d0d0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .sponsor-card img {
+        display: block;
+        margin: 0 auto 12px;
+    }
+
+    .sponsor-card-name {
+        font-size: 14px;
+        color: #333;
+        font-weight: 500;
+    }
 </style>
 
 <!-- Main container -->
@@ -67,7 +96,18 @@
             </p>
             <p class="mg-sm">
                 <h3>Gold Sponsors</h3>
-                <a href="https://kokuchou.net/" title="株式会社コクチョウ"><img src="https://images.opencollective.com/kokuchou/4241e96/logo/256.png?height=166" height="166" alt="" loading="lazy"></a>
+                <div class="sponsor-card">
+                    <a href="https://kokuchou.net/" title="株式会社コクチョウ">
+                        <img src="https://images.opencollective.com/kokuchou/4241e96/logo/256.png?height=166" height="128" alt="株式会社コクチョウ" loading="lazy">
+                        <div class="sponsor-card-name">株式会社コクチョウ</div>
+                    </a>
+                </div>
+                <div class="sponsor-card">
+                    <a href="https://being-i.sh" title="株式会社 being-ish">
+                        <img src="/gitbook/sponsors/being-ish.png" height="128" alt="株式会社 being-ish" loading="lazy">
+                        <div class="sponsor-card-name">株式会社 being-ish</div>
+                    </a>
+                </div>
                 <h4>Supporters</h4>
                 <a href="https://opencollective.com/jsprimer"><img src="https://opencollective.com/jsprimer/backers.svg?avatarHeight=88&width=890" alt="jsprimer backers" loading="lazy"/>
                 </a>
