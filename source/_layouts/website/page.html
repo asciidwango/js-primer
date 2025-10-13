@@ -193,9 +193,6 @@
 {# page.sponsorsが定義されているページのみスポンサーの表示する #}
 {% block page %}{% if page.sponsors %}
 <style>
-    .page-sponsors {
-        background: #fafafa;
-    }
     .page-sponsors .page-sponsors-list {
         display: flex;
         justify-content: center;
@@ -203,11 +200,41 @@
         margin: 0;
         padding: 1em 0;
         list-style: none;
-        gap: 8px;
+        gap: 16px;
+    }
+    .page-sponsors-list .sponsor-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid #e5e5e5;
+        border-radius: 4px;
+        padding: 16px;
+        background-color: #ffffff;
+        text-decoration: none;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .page-sponsors-list .sponsor-item:hover {
+        border-color: #d0d0d0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .page-sponsors-list .sponsor-item img {
+        display: block;
+        margin-bottom: 8px;
+    }
+    .page-sponsors-list .sponsor-name {
+        font-size: 12px;
+        color: #333;
+        font-weight: 500;
+        text-align: center;
     }
     .page-sponsors-footer {
         text-align: center;
-        padding: 0;
+        padding: 0.8em 1em;
+        margin: 0;
+        border-bottom: 1px solid #eee;
+    }
+    .page-sponsors-footer p {
         margin: 0;
     }
 </style>
@@ -215,7 +242,12 @@
 {% if page.sponsors | length %}
     <ul class="page-sponsors-list">
     {% for sponsor in page.sponsors %}
-        <li><a href="{{sponsor.url}}" title="{{sponsor.name}}" target="_blank" rel="noopener"><img src="{{sponsor.logo}}" alt="" width="64" height="64"></a></li>
+        <li>
+            <a href="{{sponsor.url}}" title="{{sponsor.name}}" target="_blank" rel="noopener" class="sponsor-item">
+                <img src="{{sponsor.logo}}" alt="{{sponsor.name}}" width="64" height="64">
+                <div class="sponsor-name">{{sponsor.name}}</div>
+            </a>
+        </li>
     {% endfor %}
     </ul>
     <div class="page-sponsors-footer">
