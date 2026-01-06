@@ -147,6 +147,6 @@ console.log(wrapText("文字列", { suffix: ":カスタム" })); // => "undefine
 
 ## Issues
 
-* [Destructuring · Issue #113 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/113 "Destructuring · Issue #113 · asciidwango/js-primer")
-* [関数と宣言: 引数の個数について · Issue #588 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/588 "関数と宣言: 引数の個数について · Issue #588 · asciidwango/js-primer")
-* [非推奨の章: arguments を削除する · Issue #590 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/590 "非推奨の章: arguments を削除する · Issue #590 · asciidwango/js-primer")
+* [Destructuring · Issue #113 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/113 "Destructuring · Issue #113 · js-primer/js-primer")
+* [関数と宣言: 引数の個数について · Issue #588 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/588 "関数と宣言: 引数の個数について · Issue #588 · js-primer/js-primer")
+* [非推奨の章: arguments を削除する · Issue #590 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/590 "非推奨の章: arguments を削除する · Issue #590 · js-primer/js-primer")

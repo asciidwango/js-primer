@@ -8,7 +8,7 @@
 
 ## ミーティングアジェンダ
 
-- [2019年9月9日 ミーティングアジェンダ · Issue #956 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/956)
+- [2019年9月9日 ミーティングアジェンダ · Issue #956 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/956)
 
 ----
 
@@ -26,8 +26,8 @@
 ## チートシート
 
 - @azu: 全体像をざっくりつかめるものが欲しくてチートシートを書いた
-- [ボキャブラリーシート · Issue #738 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/738)
-- [feat(cheetsheet): チートシートの追加 by azu · Pull Request #955 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/955)
+- [ボキャブラリーシート · Issue #738 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/738)
+- [feat(cheetsheet): チートシートの追加 by azu · Pull Request #955 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/955)
 - @azu: https://cheats.rs/ をイメージして書いた
 - @kahei: これも付録に?
 - @azu: 書いてていて意外とページ数的には少なさそう
@@ -83,19 +83,19 @@
 ### 結論
 
 - @azu: エッセイを考える
-- https://github.com/asciidwango/js-primer/issues/957
+- https://github.com/js-primer/js-primer/issues/957
 
 ----
 
 ## サブタイトル
 
-- https://github.com/asciidwango/js-primer/issues/865
+- https://github.com/js-primer/js-primer/issues/865
 - @azu: 既存の書籍のサブタイトルを列挙してみた
 - @azu: 基礎 が入ってることは多いね ぐらい
 - @kahei: それはわかります。
 - @kahei: 前回言っていた用に迷わないとか
 - 〜 案を出し合う 〜
-- https://github.com/asciidwango/js-primer/issues/956#issuecomment-529421600
+- https://github.com/js-primer/js-primer/issues/956#issuecomment-529421600
 - @azu: JavaScript + 基礎 + 入門 あたりはだいたい
 - @kahei: 「 ずっと役立つ基礎を身につける！」みたいのは帯に近いところにいれるとか
 - @laco: よさそう
@@ -129,7 +129,7 @@
 ### 結論
 
 - @azu: Spread Syntaxの説明を追加する
-- https://github.com/asciidwango/js-primer/issues/958
+- https://github.com/js-primer/js-primer/issues/958
 
 ----
 

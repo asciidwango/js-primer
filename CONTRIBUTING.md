@@ -15,12 +15,12 @@
 
 次のIssueを受け付けています。
 
-- 書籍や内容に対する質問 => [こちらから質問できます](https://github.com/asciidwango/js-primer/issues/new?template=question.md)
-- 内容のエラーや問題の報告 => [こちらからバグ報告できます](https://github.com/asciidwango/js-primer/issues/new?template=bug_report.md)
-- 解説の改善を提案 => [こちらから提案できます](https://github.com/asciidwango/js-primer/issues/new?template=feature_request.md)
-- 新しいトピックなどの提案 => [こちらから提案できます](https://github.com/asciidwango/js-primer/issues/new?template=feature_request.md)
+- 書籍や内容に対する質問 => [こちらから質問できます](https://github.com/js-primer/js-primer/issues/new?template=question.md)
+- 内容のエラーや問題の報告 => [こちらからバグ報告できます](https://github.com/js-primer/js-primer/issues/new?template=bug_report.md)
+- 解説の改善を提案 => [こちらから提案できます](https://github.com/js-primer/js-primer/issues/new?template=feature_request.md)
+- 新しいトピックなどの提案 => [こちらから提案できます](https://github.com/js-primer/js-primer/issues/new?template=feature_request.md)
 
-[その他のIssue](https://github.com/asciidwango/js-primer/issues/new?template=other.md)も歓迎しています。
+[その他のIssue](https://github.com/js-primer/js-primer/issues/new?template=other.md)も歓迎しています。
 
 ## Pull Request
 
@@ -40,7 +40,7 @@ Pull Requestはいつでも歓迎しています。
 - ウェブサイトの改善
 - テストの改善
 
-:memo: **Note:** Pull Requestを受け入れるとあなたの貢献が[Contributorsリスト](https://github.com/asciidwango/js-primer/graphs/contributors)に追加されます。
+:memo: **Note:** Pull Requestを受け入れるとあなたの貢献が[Contributorsリスト](https://github.com/js-primer/js-primer/graphs/contributors)に追加されます。
 また、Pull Requestを送った内容はこの書籍のライセンス（[MIT](./LICENSE-MIT)と[CC BY 4.0](./LICENSE-CC-BY)）が適用されます。
 これは、あなたの貢献がこの書籍への努力的な寄付となることを意味しています。
 
@@ -299,7 +299,7 @@ Node.jsで実行できないビルドインオブジェクトを使うパター�
 
 **関連**
 
-- [console.logと// => の使い分け · Issue #195 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/195 "console.logと// =&gt; の使い分け · Issue #195 · asciidwango/js-primer")
+- [console.logと// => の使い分け · Issue #195 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/195 "console.logと// =&gt; の使い分け · Issue #195 · js-primer/js-primer")
 - [power-assertを使ったDoctestツール power-doctestを書き直した | Web Scratch](http://efcl.info/2015/08/10/power-doctest1.0/)
 - [JavaScriptでdoctestを行う power-doctest を作った | Web Scratch](http://efcl.info/2013/1201/res3494/)
 - [25.2. doctest — 対話的な実行例をテストする — Python 2.7.x ドキュメント](http://docs.python.jp/2/library/doctest.html "25.2. doctest — 対話的な実行例をテストする — Python 2.7.x ドキュメント")
@@ -511,7 +511,7 @@ ES2015は正式な名称ですが、ES6も一般によく使われている名�
 どちらの表記をメインに利用するかは以下のIssueで議論した結果、ES2015という表記をメインとしています。
 これから出てくる仕様はES2016、ES2017と年号形式であるためそちらに揃えていこうという形です。
 
-- [ES2015 or ES6 どちらを使う? #22](https://github.com/asciidwango/ES6book/issues/22 "ES2015 or ES6 どちらを使う? #22")
+- [ES2015 or ES6 どちらを使う? #22](https://github.com/js-primer/js-primer/issues/22 "ES2015 or ES6 どちらを使う? #22")
 
 ### 現在のECMAScriptバージョンを参照するとき
 
@@ -531,7 +531,7 @@ ES2015は正式な名称ですが、ES6も一般によく使われている名�
 基本的にコードでは`let`または`const`を利用します。
 `var`の機能を説明する場合においては`var`を利用します。
 
-- [サンプルコードを `var` から `const` に置き換える · Issue #264 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/264 "サンプルコードを `var` から `const` に置き換える · Issue #264 · asciidwango/js-primer")
+- [サンプルコードを `var` から `const` に置き換える · Issue #264 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/264 "サンプルコードを `var` から `const` に置き換える · Issue #264 · js-primer/js-primer")
 
 
 ### 章へのリンク
@@ -543,7 +543,7 @@ ES2015は正式な名称ですが、ES6も一般によく使われている名�
 真偽値へ変換した結果が`true`となる値の種類は多いため、逆に変換した結果が`false`となる値を覚えるのが簡単です。JavaScriptでは次の値は`false`に変換され、これらの値は**falsy** と呼ばれます。（「[暗黙的な型変換][]」の章を参照）
 ```
 
-- [別の章へのリンクの仕方を統一 · Issue #173 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/173)
+- [別の章へのリンクの仕方を統一 · Issue #173 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/173)
 
 
 ## リリースフロー
@@ -557,20 +557,20 @@ ES2015は正式な名称ですが、ES6も一般によく使われている名�
 
 変更予定のIssueを事前に作り、対応箇所をまとめます。
 
-- [ECMAScript 2022対応 · Issue #1337 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1337)
-- [ES2021の対応 · Issue #1220 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1220)
-- [ECMAScript 2020の対応 · Issue #1145 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1145)
+- [ECMAScript 2022対応 · Issue #1337 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1337)
+- [ES2021の対応 · Issue #1220 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1220)
+- [ECMAScript 2020の対応 · Issue #1145 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1145)
 
 毎年のECMAScriptの対応が終わったらメジャーバージョンをアップデートし、リリースノートに変更点をまとめます。
 
-- [Releases · asciidwango/js-primer](https://github.com/asciidwango/js-primer/releases)
+- [Releases · js-primer/js-primer](https://github.com/js-primer/js-primer/releases)
 
-リリースが終わったら、[変更点](https://github.com/asciidwango/js-primer/tree/master/source/intro#%E5%A4%89%E6%9B%B4%E7%82%B9-version)にリリースノートへのリンクを追加します
+リリースが終わったら、[変更点](https://github.com/js-primer/js-primer/tree/master/source/intro#%E5%A4%89%E6%9B%B4%E7%82%B9-version)にリリースノートへのリンクを追加します
 
-- <https://github.com/asciidwango/js-primer/tree/master/source/intro#%E5%A4%89%E6%9B%B4%E7%82%B9-version>
+- <https://github.com/js-primer/js-primer/tree/master/source/intro#%E5%A4%89%E6%9B%B4%E7%82%B9-version>
 
 ### 書籍版
 
-書籍版の差分を[変更点](https://github.com/asciidwango/js-primer/tree/master/source/intro#%E5%A4%89%E6%9B%B4%E7%82%B9-version)に追加します。
+書籍版の差分を[変更点](https://github.com/js-primer/js-primer/tree/master/source/intro#%E5%A4%89%E6%9B%B4%E7%82%B9-version)に追加します。
 
-- <https://github.com/asciidwango/js-primer/tree/master/source/intro#%E5%A4%89%E6%9B%B4%E7%82%B9-version>
+- <https://github.com/js-primer/js-primer/tree/master/source/intro#%E5%A4%89%E6%9B%B4%E7%82%B9-version>

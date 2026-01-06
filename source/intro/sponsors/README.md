@@ -72,7 +72,7 @@ Open Collectiveで支援された資金は、JavaScript Primerの運営費用や
 
 問い合わせ内容がオープンな方法で問題ない場合は、次のGitHub Discussionsを利用しても問題ありません。
 
-- [JavaScript Primer Sponsors · asciidwango/js-primer · Discussion #1728](https://github.com/asciidwango/js-primer/discussions/1728)
+- [JavaScript Primer Sponsors · js-primer/js-primer · Discussion #1728](https://github.com/js-primer/js-primer/discussions/1728)
 
 ## 参考資料 {#reference}
 

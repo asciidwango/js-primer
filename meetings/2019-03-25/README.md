@@ -8,7 +8,7 @@
 
 ## ミーティングアジェンダ
 
-- [2019-03-25のミーティングアジェンダ · Issue #734 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/734)
+- [2019-03-25のミーティングアジェンダ · Issue #734 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/734)
 
 ----
 
@@ -20,27 +20,27 @@
 - azu: 図を追加したりしたのだけど、これって図は印刷時にモノクロ?
 - kahei: そうですね
 - kahei: イラストを起こしてもらうとかできるので、調整できます
-- [`// この行は実行{されません,されます}` に統一する #673](https://github.com/asciidwango/js-primer/issues/673)
+- [`// この行は実行{されません,されます}` に統一する #673](https://github.com/js-primer/js-primer/issues/673)
 - azu: これは前回話したように統一した
 - azu: コメントは実行されない書き方
-- [データ型とリテラル: ラッパーオブジェクトについてのコラム #674](https://github.com/asciidwango/js-primer/issues/674)
+- [データ型とリテラル: ラッパーオブジェクトについてのコラム #674](https://github.com/js-primer/js-primer/issues/674)
 - azu: データ型とリテラル -> ラッパーオブジェクトの関係を追加した
-- [ユースケースに目次とdescriptionを追加する · Issue #676 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/676)
+- [ユースケースに目次とdescriptionを追加する · Issue #676 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/676)
 - azu: これは各部に目次を追加した
 - azu: 書籍にするときにはこの目次はなくてもいいかもしれない
-- [別の章へのリンクの仕方を統一 #173 ](https://github.com/asciidwango/js-primer/issues/173)
+- [別の章へのリンクの仕方を統一 #173 ](https://github.com/js-primer/js-primer/issues/173)
 - azu: リンク方法を統一した
-- azu: <https://github.com/asciidwango/js-primer/blob/master/CONTRIBUTING.md#%E7%AB%A0%E3%81%B8%E3%81%AE%E3%83%AA%E3%83%B3%E3%82%AF>にも追加した
+- azu: <https://github.com/js-primer/js-primer/blob/master/CONTRIBUTING.md#%E7%AB%A0%E3%81%B8%E3%81%AE%E3%83%AA%E3%83%B3%E3%82%AF>にも追加した
 - azu: "まえがき"を追加しました
   - https://jsprimer.net/intro/ を追加
-- azu: プロジェクトは <https://github.com/asciidwango/js-primer/projects/5>にあります
+- azu: プロジェクトは <https://github.com/js-primer/js-primer/projects/5>にあります
 - azu: あとは謝辞とかはまだないです
 - azu: 基本的に章は書き終わっているので、今はリファクタリングをやってます。
 - azu: 基本文法は非同期以外を大体、昨日はTodoappをやってました
 
 ## 解決しないといけないやつ 
 
-- azu: [nodcli: npm test の実行結果がちょっと違います · Issue #723 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/723)はもう解決してる?
+- azu: [nodcli: npm test の実行結果がちょっと違います · Issue #723 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/723)はもう解決してる?
 - laco: してる
 - azu: 他のnpmモジュールは固定してる?
 - azu: commanderと...?
@@ -49,7 +49,7 @@
 - azu: markedはしてないっぽい
 - laco: します。
 - azu: markedは0.5系か。。。 1.xだといいんだけど
-- azu: あとは、[ループ: コラム 無限ループの対処 #695](https://github.com/asciidwango/js-primer/issues/695)をやりたい
+- azu: あとは、[ループ: コラム 無限ループの対処 #695](https://github.com/js-primer/js-primer/issues/695)をやりたい
 - azu: かんたんRubyでもあったし、コード書いてたら起こしそうなので同対処するか
 - azu: あと流行りだし
 - laco: 無限ループ書いてリロードしてもキャッシュが残っていて、反映されないとか
@@ -59,7 +59,7 @@
 - azu: Firefoxで無限ループしたときの挙動と対処を書くとかしたい
 - azu: あとは Meta: "参考" を本文から外す #690 をやりたい
 - azu: 文字列とかの参考を外す
-- azu: あとは[次に何をするか: 参考リンク集 · Issue #510 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/510)?
+- azu: あとは[次に何をするか: 参考リンク集 · Issue #510 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/510)?
 - azu :これの進捗は?
 - laco: 今書いているところですが、これでいいですか?
 - ...見てる...
@@ -71,22 +71,22 @@
 - laco: リンク切れもしやすそう
 - azu: 載せるなら古くなってるかもという注意書きが必要
 - azu: 後はタイトルでぐぐってとか
-- azu: [リンク切れをチェックする · Issue #285 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/285)を後でやる
+- azu: [リンク切れをチェックする · Issue #285 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/285)を後でやる
 
 
 ## 結論
 
-- laco: [nodecli: npmモジュールのバージョンを固定する #739](https://github.com/asciidwango/js-primer/issues/739)
-- azu: [ループ: コラム 無限ループの対処 #695](https://github.com/asciidwango/js-primer/issues/695)
-- laco: [次に何をするか: 参考リンク集 · Issue #510 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/510)
-- azu: [リンク切れをチェックする · Issue #285 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/285)
+- laco: [nodecli: npmモジュールのバージョンを固定する #739](https://github.com/js-primer/js-primer/issues/739)
+- azu: [ループ: コラム 無限ループの対処 #695](https://github.com/js-primer/js-primer/issues/695)
+- laco: [次に何をするか: 参考リンク集 · Issue #510 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/510)
+- azu: [リンク切れをチェックする · Issue #285 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/285)
 
 ----
 
 ## 特典やプロモーション
 
 - azu: 他に特典で書きたいものはある?
-- azu: https://github.com/asciidwango/js-primer/issues/734#issuecomment-476015676 に書き出してみたけど
+- azu: https://github.com/js-primer/js-primer/issues/734#issuecomment-476015676 に書き出してみたけど
 - laco: チートシート
 - azu: なるほど。物理本だと欲しいかも
 - laco: 検索しにくい記号とかをまとめたもの
@@ -140,13 +140,13 @@
 
 ## 結論
 
-- laco: [ボキャブラリーシート · Issue #738 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/738)作る
+- laco: [ボキャブラリーシート · Issue #738 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/738)作る
 
 ----
 
 ## CLA
 
-- azu: [オブジェクトリテラルのハイフンを含むプロパティ名の説明及びサンプルの追加 by sekky0905 · Pull Request #679 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/679)のような追加をどう取り込むか
+- azu: [オブジェクトリテラルのハイフンを含むプロパティ名の説明及びサンプルの追加 by sekky0905 · Pull Request #679 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/679)のような追加をどう取り込むか
 - azu: 今はCLAみたいなものがないので
 - kahei: CLAって権利を移譲するという話ですよね
 - azu: OSSのLICENSEで似たようなものがアレばいいのだけど
@@ -188,7 +188,7 @@
 ## 結論
 
 - azu, laco: レビューアを何人かリストアップ(合計10人)
-- azu: [レビューフィードバックフォームを作成する · Issue #740 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/740 "レビューフィードバックフォームを作成する · Issue #740 · asciidwango/js-primer")
+- azu: [レビューフィードバックフォームを作成する · Issue #740 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/740 "レビューフィードバックフォームを作成する · Issue #740 · js-primer/js-primer")
 
 ----
 

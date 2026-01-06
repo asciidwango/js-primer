@@ -8,9 +8,9 @@
 
 ## アジェンダ
 
-- [2016年5月27日MTG アジェンダ #30](https://github.com/asciidwango/ES6book/issues/30 "2016年5月27日MTG アジェンダ #30")
+- [2016年5月27日MTG アジェンダ #30](https://github.com/js-primer/js-primer/issues/30 "2016年5月27日MTG アジェンダ #30")
 
-## [CIを回す #11](https://github.com/asciidwango/ES6book/issues/11 "CIを回す #11")
+## [CIを回す #11](https://github.com/js-primer/js-primer/issues/11 "CIを回す #11")
 
 - リポジトリがprivateだと使える無料サービスが限られる
     - publicに変更
@@ -21,7 +21,7 @@
 
 - Travis CIでテストが回るようになった
 
-## [敬体(ですます調)と常体(である調) #19](https://github.com/asciidwango/ES6book/issues/19 "敬体(ですます調)と常体(である調) #19")
+## [敬体(ですます調)と常体(である調) #19](https://github.com/js-primer/js-primer/issues/19 "敬体(ですます調)と常体(である調) #19")
 
 - 本文の文体は敬体と常体どっちがメインとなる?
 - @kahei
@@ -34,7 +34,7 @@
 - 本文: 敬体(ですます調)
 - 箇条書き: 常体(である調)
     
-## [ES2015 or ES6 どちらを使う? #22](https://github.com/asciidwango/ES6book/issues/22 "ES2015 or ES6 どちらを使う? #22")
+## [ES2015 or ES6 どちらを使う? #22](https://github.com/js-primer/js-primer/issues/22 "ES2015 or ES6 どちらを使う? #22")
 
 - ECMAScriptの歴史的なものは基本文法の前?で増える
 - ES6はECMAScript 2015のエイリアスであるという話はする
@@ -112,7 +112,7 @@ ES2015をメインにする
 ## Ajaxユースケース
 https://github.com/lacolaco/plain-ajax
 
-関連: [Ajaxで何か #9](https://github.com/asciidwango/ES6book/issues/9 "Ajaxで何か #9")
+関連: [Ajaxで何か #9](https://github.com/js-primer/js-primer/issues/9 "Ajaxで何か #9")
 
 - XHR
 - Promise
@@ -138,7 +138,7 @@ https://github.com/lacolaco/plain-ajax
 ## Node.js CLI ユースケース
 https://github.com/lacolaco/plain-node-cli
 
-関連: [Node.jsのCLIアプリ #7](https://github.com/asciidwango/ES6book/issues/7 "Node.jsのCLIアプリ #7")
+関連: [Node.jsのCLIアプリ #7](https://github.com/js-primer/js-primer/issues/7 "Node.jsのCLIアプリ #7")
 
 - Markdownを読み込んでファイルを読みこんでHTMLを吐き出す
 - commander
@@ -170,7 +170,7 @@ https://github.com/lacolaco/plain-node-cli
 
 ## Todoアプリ
 
-関連: [TODOアプリ · Issue #4 · asciidwango/ES6book](https://github.com/asciidwango/ES6book/issues/4 "TODOアプリ · Issue #4 · asciidwango/ES6book")
+関連: [TODOアプリ · Issue #4 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/4 "TODOアプリ · Issue #4 · js-primer/js-primer")
 
 - @laco: あれは完成形?
 - @azu: 最近いじってない

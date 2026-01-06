@@ -142,7 +142,7 @@ rules:
     patterns:
       - /thenチェーン/i
       - /promise chain/i
-    prh: https://github.com/asciidwango/js-primer/pull/116
+    prh: https://github.com/js-primer/js-primer/pull/116
     specs:
       - from: thenチェーンと言います
         to  : Promiseチェーンと言います
@@ -182,7 +182,7 @@ rules:
     patterns:
       - 部分文字列
       - 指定文字列
-    prh: https://github.com/asciidwango/js-primer/issues/208
+    prh: https://github.com/js-primer/js-primer/issues/208
   - expected: テンプレートリテラル
     patterns: /Template\s*Literal/i
   - expected: テンプレート文字列
@@ -254,11 +254,11 @@ rules:
   - expected: イベントをリッスン
     patterns:
       - イベントを監視
-    prh: https://github.com/asciidwango/js-primer/issues/455
+    prh: https://github.com/js-primer/js-primer/issues/455
   - expected: イベントをディスパッチ
     patterns:
       - イベントを発火
-    prh: https://github.com/asciidwango/js-primer/issues/455
+    prh: https://github.com/js-primer/js-primer/issues/455
   - expected: イベントが発生
     patterns:
       - イベントが発火
@@ -461,7 +461,7 @@ rules:
     patterns: 実装ができました
   - expected: $1個
     patterns: /([0-9]+)コ/i
-    prh: "https://github.com/asciidwango/js-primer/issues/979"
+    prh: "https://github.com/js-primer/js-primer/issues/979"
   - expected: 第一引数
     patterns: 第1引数
   - expected: 第二引数
@@ -489,10 +489,10 @@ rules:
   # techbooster.ymlでは'時刻'が認められないので'刻'を追加
   - expected: $1とき
     pattern:  /(の)時(?!点|代|々|間|刻|期)/
-  # https://github.com/asciidwango/js-primer/issues/1011 の追加
+  # https://github.com/js-primer/js-primer/issues/1011 の追加
   - expected: わかる
     pattern:  分かる
-    prh: ひらがなに統一します https://github.com/asciidwango/js-primer/issues/1011
+    prh: ひらがなに統一します https://github.com/js-primer/js-primer/issues/1011
   - expected: エディター
     patterns: /エディタ(?!ー)/
   - expected: エントリー
@@ -647,7 +647,7 @@ rules:
     patterns: かならず
   - expected: すでに
     patterns: 既に
-    prh: ひらがなに統一します https://github.com/asciidwango/js-primer/issues/1011
+    prh: ひらがなに統一します https://github.com/js-primer/js-primer/issues/1011
   - expected: 再び
     patterns: ふたたび
   - expected: ほとんど

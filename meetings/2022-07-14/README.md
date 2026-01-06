@@ -8,7 +8,7 @@
 
 ## ミーティングアジェンダ
 
-[2022-07-14のミーティングアジェンダ · Discussion #1449 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/discussions/1449)
+[2022-07-14のミーティングアジェンダ · Discussion #1449 · js-primer/js-primer](https://github.com/js-primer/js-primer/discussions/1449)
 
 ----
 
@@ -22,7 +22,7 @@
 
 ----
 
-## [非同期の章の改善案を募集 #1444](https://github.com/asciidwango/js-primer/discussions/1444)
+## [非同期の章の改善案を募集 #1444](https://github.com/js-primer/js-primer/discussions/1444)
 
 - azu: フィードバック募集して非同期まわりの話
 - azu: 並列と並行の話は、"非同期"というと他の言語だとプロセス的に分かれてるのを想像してしまう人がいるので、それを回避するために入れてた
@@ -90,7 +90,7 @@
 ### 結論
 
 - `node:assert`などに置き換える
-  - https://github.com/asciidwango/js-primer/issues/1451
+  - https://github.com/js-primer/js-primer/issues/1451
 - Mochaはそのまま、アップデートする
 
 ----
@@ -98,7 +98,7 @@
 ## function キーワードと関数式
 
 - function キーワードと関数式のうち推奨はどっち?
-- https://github.com/asciidwango/js-primer/discussions/1449#discussioncomment-3145099
+- https://github.com/js-primer/js-primer/discussions/1449#discussioncomment-3145099
 - azu: 実用は `const` だけど、表記は `function` の方がわかりやすい
 - laco: `const fn = () => {}`は記号が多くなってちょっと読みにくい
 - laco: 今のところどっちに統一されてるんだっけ?

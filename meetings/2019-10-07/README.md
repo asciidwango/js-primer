@@ -8,11 +8,11 @@
 
 ## ミーティングアジェンダ
 
-- [2019-10-07: ミーティングアジャンダ · Issue #968 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/968)
+- [2019-10-07: ミーティングアジャンダ · Issue #968 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/968)
 
 ----
 
-## [付録C: エッセイ #957](https://github.com/asciidwango/js-primer/issues/957)
+## [付録C: エッセイ #957](https://github.com/js-primer/js-primer/issues/957)
 
 - @azu: エッセイを少し書き出してみた
 - @azu: けど、歴史をたどるのはなんか違うなーという感じ
@@ -82,7 +82,7 @@
 
 ### 結論
 
-- 本文のフリーズ日: [11月5日](https://github.com/asciidwango/js-primer/issues/972)
+- 本文のフリーズ日: [11月5日](https://github.com/js-primer/js-primer/issues/972)
 - @azu: PDF出力する
 
 ----
@@ -92,7 +92,7 @@
 - @kahei: 表紙はそういえばまだきまってないですね
 - @kahei: asciidwango.jpに入るやつ
 - ... 色々案を出し合う ...
-- https://github.com/asciidwango/js-primer/issues/968#issuecomment-538959199
+- https://github.com/js-primer/js-primer/issues/968#issuecomment-538959199
 
 ----
 

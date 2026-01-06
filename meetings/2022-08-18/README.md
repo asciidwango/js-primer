@@ -8,7 +8,7 @@
 
 ## ミーティングアジェンダ
 
-[2022-08-18 ミーティングアジェンダ · Discussion #1460 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/discussions/1460)
+[2022-08-18 ミーティングアジェンダ · Discussion #1460 · js-primer/js-primer](https://github.com/js-primer/js-primer/discussions/1460)
 
 ----
 
@@ -17,7 +17,7 @@
 - azu: 非同期の章を書き直してる
 - azu: エラーファーストコールバックをコラムに移動
 - azu: Node CLIもpromiseベースに変更して、エラーファーストコールバックをコラムに移動した
-- [fix(async): エラーファーストコールバックをコラムへ移動 by azu · Pull Request #1457 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/1457)
+- [fix(async): エラーファーストコールバックをコラムへ移動 by azu · Pull Request #1457 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/1457)
 - azu: あと書いてて、Unit Test でfs syncが出てる
 - https://deploy-preview-1457--js-primer.netlify.app/use-case/nodecli/refactor-and-unittest/
 - azu: これはawaitにしてもいい気はするけどどうだろ?
@@ -25,7 +25,7 @@
 - azu: mochaの第二引数がpromiseを返した時の挙動とかはいいかな?
 - azu: jestとかnode:testとかも同じだし、いらないか
 - azu: あとは、並行と並列の図を書く
-- [非同期: 並行、並列の説明を整理する · Issue #1459 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1459)
+- [非同期: 並行、並列の説明を整理する · Issue #1459 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1459)
 - azu: 横にバーがあって、setTimeoutで登録、ながいブロックする処理、発火が遅れるという感じの図
 - azu: 昔どっかで見て、これで自分も理解した気がする
 
@@ -33,8 +33,8 @@
 ### 結論
 
 - azu: 非同期の処理の書き換えを進める
-  - [fix(async): エラーファーストコールバックをコラムへ移動 by azu · Pull Request #1457 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/1457)
-  - [非同期: 並行、並列の説明を整理する · Issue #1459 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1459)
+  - [fix(async): エラーファーストコールバックをコラムへ移動 by azu · Pull Request #1457 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/1457)
+  - [非同期: 並行、並列の説明を整理する · Issue #1459 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1459)
 
 ----
 
@@ -58,16 +58,16 @@
 
 ## 残りのタスク
 
-- https://github.com/asciidwango/js-primer/discussions/1460#discussioncomment-3421497
+- https://github.com/js-primer/js-primer/discussions/1460#discussioncomment-3421497
 - azu: 残りのタスク、来月ぐらいまでに、本文的な追加要素は片づけたい。
 - 10月は直しにしたい。
-  - [Node.js ESMの対応 · Issue #1355 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1355)
-  - [Node.js 16 LTSに更新する · Issue #1437 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1437)
-  - [ユースケース: `node:assert` などのnode prefixを使うようにする · Issue #1451 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1451)
-  - [`typeof` 演算子で `function` が返ることについて補足する · Issue #1455 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1455)
+  - [Node.js ESMの対応 · Issue #1355 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1355)
+  - [Node.js 16 LTSに更新する · Issue #1437 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1437)
+  - [ユースケース: `node:assert` などのnode prefixを使うようにする · Issue #1451 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1451)
+  - [`typeof` 演算子で `function` が返ることについて補足する · Issue #1455 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1455)
 - azu: でかいのはNodeのESM対応
 - azu: これは3でCJSの方向にするんだっけ?
-- https://github.com/asciidwango/js-primer/issues/1355#issuecomment-998571399
+- https://github.com/js-primer/js-primer/issues/1355#issuecomment-998571399
 - azu: "このユースケースで今後登場するモジュールはすべてCommonJSモジュールです。 Node.jsではES Moduleもサポートされる予定ですが、現在はまだ安定した機能としてサポートされていません。" この辺は書き換える必要がある
 - laco: いっそESMベースにした方が長く持つ気がする
 - azu: 確かに。CJSからESMは大変だけど、ESMからCJSはそうでもない
@@ -88,7 +88,7 @@
 
 ### 結論
 
-- laco: [Node.js ESMの対応 · Issue #1355 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1355)
+- laco: [Node.js ESMの対応 · Issue #1355 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1355)
   - ESMベースに書き直す
 - azu: そのほかのやつをやる
 
@@ -98,7 +98,7 @@
 
 - azu: レビューアーどうしようかあん
 - azu: Node ESMのところとかは改めてレビューして欲しい気がする
-- azu: https://github.com/asciidwango/js-primer/discussions/1445 特にやりたい人来てない。
+- azu: https://github.com/js-primer/js-primer/discussions/1445 特にやりたい人来てない。
 - azu: ESMの完成したらもう一度投げよう
 
 ## 次回

@@ -8,7 +8,7 @@
 
 ## ミーティングアジェンダ
 
-- [2018-12-17 ミーティングアジェンダ · Issue #592 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/592)
+- [2018-12-17 ミーティングアジェンダ · Issue #592 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/592)
 
 ----
 
@@ -22,7 +22,7 @@
     - 1. Destructuringの章を作る
     - 2. それぞれの項目でちょこちょこDestructuringについて紹介する(配列、オブジェクト、関数)
     - 現在は2の方をやっている
-    - <https://github.com/asciidwango/js-primer/pull/593>
+    - <https://github.com/js-primer/js-primer/pull/593>
 - azu: Destructuringは深掘りするとaliasとかネストとかrest parameterとか色々出てくる
 - azu: 正直、Destructuringがないと実現できない機能はないと思っている
 - laco: aliasが必要となった時点で少し変な構造となっていることが多い
@@ -31,14 +31,14 @@
 
 ### 結論
 
-- azu: <https://github.com/asciidwango/js-primer/pull/593> をマージする
+- azu: <https://github.com/js-primer/js-primer/pull/593> をマージする
 
 ----
 
 ## 非推奨の章 - azu
 
 - azu: 非推奨を削除する方針について
-- [\[meta\] 関数と宣言/非推奨の章: リファクタリング · Issue #590 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/590) にまとめた
+- [\[meta\] 関数と宣言/非推奨の章: リファクタリング · Issue #590 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/590) にまとめた
     - argumentsの記述を[関数と宣言](https://jsprimer.net/basic/function-declaration/)へ移動する
     - いくつかIssueで出た内容を反映するために、関数と宣言をリファクタリングする
 - azu: Blockerになるほどの問題ではないが、Array-likeの記述が配列に書かれている
@@ -48,7 +48,7 @@
 
 ### 結論
 
-- azu: [\[meta\] 関数と宣言/非推奨の章: リファクタリング · Issue #590 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/590)を書く
+- azu: [\[meta\] 関数と宣言/非推奨の章: リファクタリング · Issue #590 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/590)を書く
 
 ----
 
@@ -94,13 +94,13 @@
 
 - `npm i -g`はコマンド実行のコラム的な位置へ
 - グローバルにインストールして実行するという説明はする
-- <https://github.com/asciidwango/js-primer/pull/591
+- <https://github.com/js-primer/js-primer/pull/591
 
 ----
 
 ## 章の再構成
 
-- azu: <https://github.com/asciidwango/js-primer/issues/592#issuecomment-447727204>
+- azu: <https://github.com/js-primer/js-primer/issues/592#issuecomment-447727204>
 - azu: このviewerってとこで現在の状態を見られる
 - <https://textstat-viewer.netlify.com/?gist=d9cd929e87cbd7b3e015eee22b864d48>
 - azu: 演算子は多い
@@ -138,7 +138,7 @@
 
 ### 結論
 
-- [オブジェクト: プロトタイプを切り出してみる · Issue #597 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/597)
+- [オブジェクト: プロトタイプを切り出してみる · Issue #597 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/597)
 
 ----
 
@@ -184,7 +184,7 @@
 
 ### 結論
 
-- azu: [文字列: 章の再構成 · Issue #598 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/598)
+- azu: [文字列: 章の再構成 · Issue #598 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/598)
 
 ----
 
@@ -234,8 +234,8 @@
 
 ## 結論
 
-- laco: [Math: round/ceil/floorの説明を追加する · Issue #599 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/599)
-- azu: [章構成の入れ替え · Issue #600 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/600)
+- laco: [Math: round/ceil/floorの説明を追加する · Issue #599 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/599)
+- azu: [章構成の入れ替え · Issue #600 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/600)
 
 ----
 

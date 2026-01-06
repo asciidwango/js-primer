@@ -8,7 +8,7 @@
 
 ## ミーティングアジェンダ
 
-- [2023-01-12のミーティングアジェンダ · Discussion #1544 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/discussions/1544)
+- [2023-01-12のミーティングアジェンダ · Discussion #1544 · js-primer/js-primer](https://github.com/js-primer/js-primer/discussions/1544)
 
 ----
 
@@ -23,7 +23,7 @@
 ### 結論
 
 - azu: 2/14 までに Node.js npm9 backportが出たら入れる
-  - [Node v18.14.0/npm 9へのアップデート · Issue #1545 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1545)
+  - [Node v18.14.0/npm 9へのアップデート · Issue #1545 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1545)
 
 ----
 

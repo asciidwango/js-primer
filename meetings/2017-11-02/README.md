@@ -6,7 +6,7 @@
 
 ## アジェンダ
 
-- [2017-11-02 ミーティングアジェンダ · Issue #301 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/301 "2017-11-02 ミーティングアジェンダ · Issue #301 · asciidwango/js-primer")
+- [2017-11-02 ミーティングアジェンダ · Issue #301 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/301 "2017-11-02 ミーティングアジェンダ · Issue #301 · js-primer/js-primer")
 
 ## Node.jsとPromise
 
@@ -30,7 +30,7 @@
 
 - https://jsprimer.net/use-case/nodecli/read-file/
 - fsのreadFileの紹介のところでさくっと util/promisify を紹介しておいて、NodeにもPromiseがあることを述べておく
-- [node-cli: util.promisifyについて触れる · Issue #311 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/311 "node-cli: util.promisifyについて触れる · Issue #311 · asciidwango/js-primer")
+- [node-cli: util.promisifyについて触れる · Issue #311 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/311 "node-cli: util.promisifyについて触れる · Issue #311 · js-primer/js-primer")
 - Assign: @laco
 
 
@@ -53,7 +53,7 @@
 ### 結論
 
 - Travis CIのnode_jsを6,8,stableにする
-- [Travis CIのnode_jsを6,8,stableにする · Issue #312 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/312 "Travis CIのnode_jsを6,8,stableにする · Issue #312 · asciidwango/js-primer")
+- [Travis CIのnode_jsを6,8,stableにする · Issue #312 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/312 "Travis CIのnode_jsを6,8,stableにする · Issue #312 · js-primer/js-primer")
 
 
 ## npm v5
@@ -73,12 +73,12 @@
 ### 結論
 
 - package-lock.jsonについてを簡単に触れる
-    - [node-cli: npm v5のpackage-lock.jsonについて · Issue #313 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/313 "node-cli: npm v5のpackage-lock.jsonについて · Issue #313 · asciidwango/js-primer")
+    - [node-cli: npm v5のpackage-lock.jsonについて · Issue #313 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/313 "node-cli: npm v5のpackage-lock.jsonについて · Issue #313 · js-primer/js-primer")
 - `--save`は残す
 
 ## サンプルコードの間違い問題
 
-- https://github.com/asciidwango/js-primer/issues/301#issuecomment-341352061
+- https://github.com/js-primer/js-primer/issues/301#issuecomment-341352061
 - @azu: サンプルコードでたまに間違ってるコードがある
 - 自動テストは実行しているけど`ReferenceError`は無視している
 - そのため変数名の間違いとかが拾えていない
@@ -97,7 +97,7 @@
 ### 結論
 
 - GitBookではどうなるかを確かめる
-- [langがついていないCodeBlock · Issue #309 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/309 "langがついていないCodeBlock · Issue #309 · asciidwango/js-primer")
+- [langがついていないCodeBlock · Issue #309 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/309 "langがついていないCodeBlock · Issue #309 · js-primer/js-primer")
 - もし大丈夫なら、`js noerror`というlangは無視するテストを作る
 - すべてのコードを確認する => ユースケースが多そう
 
@@ -105,7 +105,7 @@
 
 - @laco: エラーの話を次に書く予定
 - エラーがおもったより難しい
-- [Error/try...catch文 · Issue #93 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/93 "Error/try...catch文 · Issue #93 · asciidwango/js-primer")
+- [Error/try...catch文 · Issue #93 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/93 "Error/try...catch文 · Issue #93 · js-primer/js-primer")
 - @azu: エラーハンドリングになると深そう
 - @laco: できるだけライトな感じにしないと深くなる
 - 構文、エラーの種類、エラーの読み方
@@ -129,7 +129,7 @@
 - @kahei: うーん
 - @azu: なので、コンソールのところにエラーの章への誘導みたいのはいるのかもしれない
 - 今のFirefoxは開発者ツールにエラーの説明の `[詳細]` リンクがでる
-    - <https://github.com/asciidwango/js-primer/issues/301#issuecomment-341387593>
+    - <https://github.com/js-primer/js-primer/issues/301#issuecomment-341387593>
 - [JavaScript エラーリファレンス - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Errors "JavaScript エラーリファレンス - JavaScript | MDN")
 - これを説明すると結構手がかりとして良さそう
 
@@ -137,7 +137,7 @@
 
 - エラーの章は深く書くと深みがあるので表面的に
 - 一方、エラーが出て困ったときに読むと足がかりになる章となることを目指す
-- [Error/try...catch文 · Issue #93 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/93 "Error/try...catch文 · Issue #93 · asciidwango/js-primer")
+- [Error/try...catch文 · Issue #93 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/93 "Error/try...catch文 · Issue #93 · js-primer/js-primer")
 
 ## 関数オブジェクトとthis
 
@@ -145,7 +145,7 @@
 - スコープは後は整えたら終わり
 - 関数オブジェクトの章は半分は`this`についてなりそう
 
-〜 <https://github.com/asciidwango/js-primer/issues/301#issuecomment-341387807>を見ながら 〜
+〜 <https://github.com/js-primer/js-primer/issues/301#issuecomment-341387807>を見ながら 〜
 
 - @azu: `Function`自体が持つメソッドやプロパティは殆どデバッグ用
 - `this`が中心となってしまう
@@ -154,7 +154,7 @@
 - `this`の章と割り切ってもいいかも
 - @kahei: `this`の章…
 - @azu: たしか開眼JavaScriptとかも`this`の章があったはず
-    - <https://github.com/asciidwango/js-primer/issues/301#issuecomment-341390041>
+    - <https://github.com/js-primer/js-primer/issues/301#issuecomment-341390041>
 - @kahei: なるほど
 - @azu: thisの例はなにがいいのか難しい(classじゃないthis)
 - thisを使うのVueぐらいしか思いつかない
@@ -197,7 +197,7 @@
 - @azu: Bad Parts?
 - @laco: たしかに
 - @azu: リネームしておこ
-- [Bad Partsの章 · Issue #142 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/142#issuecomment-341391004 "Bad Partsの章 · Issue #142 · asciidwango/js-primer")
+- [Bad Partsの章 · Issue #142 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/142#issuecomment-341391004 "Bad Partsの章 · Issue #142 · js-primer/js-primer")
 - @laco: エラーが終わると次にやることがないから非推奨の章をやる?
 - @azu: Effective系みたいに項目ごとに全く別な事を書くような章だと思う
 - そのテンプレートがあるといいのでは?

@@ -8,7 +8,7 @@
 
 ## ミーティングアジェンダ
 
-[2020-04-27のミーティングアジェンダ · Issue #1154 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1154)
+[2020-04-27のミーティングアジェンダ · Issue #1154 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1154)
 
 ----
 
@@ -28,7 +28,7 @@
 ### 結論
 
 - azu: 電子版が買えるようになったらサイトからリンクを貼る
-- [JavaScript Primer 発売開始 · Issue #1152 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1152)
+- [JavaScript Primer 発売開始 · Issue #1152 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1152)
 
 ## `publish1` ブランチ
 
@@ -52,7 +52,7 @@
 - azu: markedは一昨日ぐらいに1.0になったので、きりが良いし
 - laco: そのv1との差分を知りたいという人にはどう対応する?
 - azu: 今一応タグは貼ってあります
-- https://github.com/asciidwango/js-primer/releases
+- https://github.com/js-primer/js-primer/releases
 - azu: masterはそのまま追加していく
 - azu: Promise本のときはGitHubのReleaseにリリースノートを書いていた
 - azu: 基本的にPRベースだったので、PRのリンクを一覧する感じ

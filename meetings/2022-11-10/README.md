@@ -8,7 +8,7 @@
 
 ## ミーティングアジェンダ
 
-- [2022年11月10日のミーティングアジェンダ · Discussion #1495 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/discussions/1495)
+- [2022年11月10日のミーティングアジェンダ · Discussion #1495 · js-primer/js-primer](https://github.com/js-primer/js-primer/discussions/1495)
 
 ----
 
@@ -16,21 +16,21 @@
 
 - azu: 前回のやつ
   - @azu:
-      - [x] [`letではなくconstで反復処理をする` のタイトルと内容の組み合わせは意図的なものでしょうか · Issue #1288 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1288)
-      - [x] [ECMAScript: ECMA262のURL変更 · Issue #1479 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1479)
-      - [x] [Array#sliceの説明について · Issue #1163 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1163)
+      - [x] [`letではなくconstで反復処理をする` のタイトルと内容の組み合わせは意図的なものでしょうか · Issue #1288 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1288)
+      - [x] [ECMAScript: ECMA262のURL変更 · Issue #1479 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1479)
+      - [x] [Array#sliceの説明について · Issue #1163 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1163)
   - @lacolaco :
-      - [x] [falsyな値の一覧の不足 · Issue #1378 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1378)
+      - [x] [falsyな値の一覧の不足 · Issue #1378 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1378)
 - azu: だいたいできた
 - azu: あとはリンク切れがあった
 - azu: 429が多いけど、MDN系 #1497 がちょこちょこ
-  - https://github.com/asciidwango/js-primer/security/code-scanning
+  - https://github.com/js-primer/js-primer/security/code-scanning
 - azu: あと一つだけなので修正する
 
 ## Node.js 18 LTSへの更新
 
 - azu: Node.js 18に更新した
-  - [Node.js 18 LTSに更新する · Issue #1437 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1437)
+  - [Node.js 18 LTSに更新する · Issue #1437 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1437)
 - azu: ただし1月18日水曜日 に npm 9がNode 18にバックポートされる予定というのが困ってる
   - [npm v9.0.0 released | GitHub Changelog](https://github.blog/changelog/2022-10-24-npm-v9-0-0-released/)
 - kahei: ギリギリ
@@ -62,7 +62,7 @@
 ## ajaxのURL
 
 - azu: ajaxのページのエディタとURLを足した
-- https://github.com/asciidwango/js-primer/pull/1423
+- https://github.com/js-primer/js-primer/pull/1423
 - azu: URLが書籍に入ってる `https://jsprimer.net/use-case/ajaxapp/promise/src/`
 - azu: これを変えるなら今なので、どうかな?
 - laco: TODOの方はsrc入ってないんでしたっけ?
@@ -72,14 +72,14 @@
 ### 結論
 
 - @laco ajaxのURLをsrc/なしに変更する
-- https://github.com/asciidwango/js-primer/issues/1532
+- https://github.com/js-primer/js-primer/issues/1532
 
 ---
 
 ## 1版からの差分
 
 - azu: 読んでて1版からの差分があった方が良さそうと思った
-- [第1版からの差分をまとめる · Issue #1528 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1528)
+- [第1版からの差分をまとめる · Issue #1528 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1528)
 - azu: 文章だと長いので箇条書きでいいかな?
 - kahei: 読者もあった方がわかりやすいと思います
 - azu: ウェブ版と書籍版でちょっと差分が違う
@@ -92,7 +92,7 @@
 ### 結論
 
 - @azu: https://jsprimer.net/intro/ にセクションを追加する
-- [第1版からの差分をまとめる · Issue #1528 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1528)
+- [第1版からの差分をまとめる · Issue #1528 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1528)
 
 ---
 

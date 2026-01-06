@@ -6,7 +6,7 @@
 
 ## アジェンダ
 
-- [2018-07-26 ミーティングアジェンダ · Issue #525 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/525)
+- [2018-07-26 ミーティングアジェンダ · Issue #525 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/525)
 
 ----
 
@@ -79,13 +79,13 @@ a().then(r => console.log("result", r))
 - azu: ユースケースはmoduleが終わると環境の章ぐらい?
 - laco: yes
 - 環境の章のローカルサーバって結局?
-- auz: [ `npx @js-primer/local-server` #462 ](https://github.com/asciidwango/js-primer/issues/462)を使う
+- auz: [ `npx @js-primer/local-server` #462 ](https://github.com/js-primer/js-primer/issues/462)を使う
 - laco: なるほど
 
 
 ### 結論
 
-- laco: [2章の序章: 環境ごとのオブジェクト · Issue #267 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/267#issuecomment-389861593)を書く
+- laco: [2章の序章: 環境ごとのオブジェクト · Issue #267 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/267#issuecomment-389861593)を書く
 
 ----
 
@@ -101,7 +101,7 @@ a().then(r => console.log("result", r))
 
 ### 結論
 
-- [2章の序章: 環境ごとのオブジェクト · Issue #267 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/267#issuecomment-389861593)のnpmには「アップデート通知がでることがあります」という注記を入れる
+- [2章の序章: 環境ごとのオブジェクト · Issue #267 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/267#issuecomment-389861593)のnpmには「アップデート通知がでることがあります」という注記を入れる
 
 ----
 

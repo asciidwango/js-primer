@@ -19,7 +19,7 @@ module.exports = {
             allows: ["アプリ", "ウェブアプリ", "極め", "決め"],
         },
         // 使っては行けない変数、関数名
-        // 詳細: https://github.com/asciidwango/js-primer/issues/804
+        // 詳細: https://github.com/js-primer/js-primer/issues/804
         "inline-code-denylist": {
             denylist: ["string", "number", "object", "boolean", "symbol"],
         },
@@ -110,7 +110,7 @@ module.exports = {
             ? {
                 concurrency: 4,
                 ignore: [
-                    "https://github.com/asciidwango/js-primer/issues/new?*",
+                    "https://github.com/js-primer/js-primer/issues/new?*",
                     "ttps://help.github.com/articles/about-pull-requests/", // 言語にリダイレクトがある
                     "https://goo.gl/**",
                     "https://forms.gle/**",

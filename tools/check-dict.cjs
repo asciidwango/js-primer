@@ -1,4 +1,4 @@
-// https://github.com/asciidwango/js-primer/issues/1011 の重複辞書チェック
+// https://github.com/js-primer/js-primer/issues/1011 の重複辞書チェック
 const pattern = [
     "エディタ",
     "エントリ",

@@ -1,7 +1,7 @@
 const { wrapReportHandler } = require("textlint-rule-helper");
 /**
  * 文中で"コラム"という表現を使わないルール
- * @see https://github.com/asciidwango/js-primer/issues/1076
+ * @see https://github.com/js-primer/js-primer/issues/1076
  * @param context
  * @param options
  * @returns {{}}

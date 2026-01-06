@@ -8,14 +8,14 @@
 
 ## ミーティングアジェンダ
 
-- [2019-04-22のミーティングアジェンダ · Issue #759 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/759)
+- [2019-04-22のミーティングアジェンダ · Issue #759 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/759)
 ----
 
 ## CLA 
 
 - kahei: CLAを作成してきました
 - ~ CLAの文章を見ながら ~
-- https://github.com/asciidwango/js-primer/issues/759#issuecomment-485392817
+- https://github.com/js-primer/js-primer/issues/759#issuecomment-485392817
 - kahei: この ○○ という部分に著者者の名前を入れる形に
 - kahei: アスキードワンゴから出版しますが、著作権はもらうわけじゃなくて出版権だけなので
 - kahei: なのでこの部分はお二人の名前を入れるぐらいになるかな
@@ -26,7 +26,7 @@
 - azu: 今は自分とlacoの名義
 - azu: これもプロジェクト名義にして、CLAもプロジェクトへ著作権の譲渡とするのがよさそう
 - laco: 今の所このCLAが必要なのは?
-- azu: https://github.com/asciidwango/js-primer/pull/679
+- azu: https://github.com/js-primer/js-primer/pull/679
 - kahei: typoとかは著作権は発生しないので、追加的なものですね。
 - azu: あとはcla-assistantにこの設定をして同意をもらう
 - azu: 何行以上の変更ならCLA必要だと?
@@ -36,7 +36,7 @@
 ### 結論
 
 - azu: CLAをプロジェクトに設定する
-- https://github.com/asciidwango/js-primer/issues/761
+- https://github.com/js-primer/js-primer/issues/761
 
 ----
 

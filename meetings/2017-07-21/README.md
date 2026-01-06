@@ -6,12 +6,12 @@
              
 ## アジェンダ
 
-- [2017-07-21 MTGアジェンダ · Issue #263 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/263 "2017-07-21 MTGアジェンダ · Issue #263 · asciidwango/js-primer")
+- [2017-07-21 MTGアジェンダ · Issue #263 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/263 "2017-07-21 MTGアジェンダ · Issue #263 · js-primer/js-primer")
 
 ## JSON
 
-- [JSONの章 · Issue #237 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/237)
-- [feat(basic): JSONの章 by lacolaco · Pull Request #259 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/259)
+- [JSONの章 · Issue #237 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/237)
+- [feat(basic): JSONの章 by lacolaco · Pull Request #259 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/259)
 - @laco: JSONの章でどこまで扱うかについて
 - stringify、parse
 
@@ -224,7 +224,7 @@ $.each(function (){
 #### 結論
 
 - サンプルコードを `var` から `const` に置き換える
-- [サンプルコードを `var` から `const` に置き換える · Issue #264 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/264 "サンプルコードを `var` から `const` に置き換える · Issue #264 · asciidwango/js-primer")
+- [サンプルコードを `var` から `const` に置き換える · Issue #264 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/264 "サンプルコードを `var` から `const` に置き換える · Issue #264 · js-primer/js-primer")
 
 ----
 
@@ -232,7 +232,7 @@ $.each(function (){
 
 - @azu: hoistingは書く?
 - @laco: 今ならconstとか使うのであんまり
-- @azu: [サンプルコードを `var` から `const` に置き換える · Issue #264 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/264 "サンプルコードを `var` から `const` に置き換える · Issue #264 · asciidwango/js-primer")でコードがconstベースならメインとしてはいらないかも
+- @azu: [サンプルコードを `var` から `const` に置き換える · Issue #264 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/264 "サンプルコードを `var` から `const` に置き換える · Issue #264 · js-primer/js-primer")でコードがconstベースならメインとしてはいらないかも
 - コラムベース?
 - @laco: varが異常なだけ
 - 他の言語を一応かける人向けのJS本なので、むしろvarの説明を理解してもらうのが難しそう
@@ -256,7 +256,7 @@ $.each(function (){
 - Dateはあんまり細かいメソッド触れなくてもよさそう
 - i18nとの関連?
 - i18n APIについては簡単には書いてる
-- [Date/i18n · Issue #125 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/125 "Date/i18n · Issue #125 · asciidwango/js-primer")
+- [Date/i18n · Issue #125 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/125 "Date/i18n · Issue #125 · js-primer/js-primer")
 - @laco: この辺だけで一冊になりそう
 - @azu: 最近この辺の本あんまりない
 - 最近達人出版からアプリケーションを作る英語の人が書いてた気がする

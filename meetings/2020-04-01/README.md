@@ -8,7 +8,7 @@
 
 ## ミーティングアジェンダ
 
-[2020-04-01: MTGアジェンダ · Issue #1116 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1116)
+[2020-04-01: MTGアジェンダ · Issue #1116 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1116)
 
 ----
 
@@ -39,13 +39,13 @@
 
 ## 残り
 
-* [ユニットテストを記述する: mocha 7へアップデート · Issue #1106 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1106)
-* [nodecli: commander@5の変更を確認する · Issue #1111 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1111)
-* [nodecli: marked@0.8へアップデート · Issue #1112 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1112)
+* [ユニットテストを記述する: mocha 7へアップデート · Issue #1106 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1106)
+* [nodecli: commander@5の変更を確認する · Issue #1111 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1111)
+* [nodecli: marked@0.8へアップデート · Issue #1112 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1112)
 - laco: これアップデートして動くの確認しました
 - azu: じゃあマージする感じでいきましょ
 - azu: core-jsの方はどうします?
-- https://github.com/asciidwango/js-primer/issues/1089
+- https://github.com/js-primer/js-primer/issues/1089
 - azu: 本文で使っているわけじゃんくて紹介ぐらいだからそのままでもいいかなー
 - azu: 今週話し合いがあるらしいけど
 - kahei: 問題があったらアップデートで、今はこのままでいきましょう

@@ -8,17 +8,17 @@
 
 ## アジェンダ
 
-- [2016年7月29日 MTG アジェンダ · Issue #96 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/96 "2016年7月29日 MTG アジェンダ · Issue #96 · asciidwango/js-primer")
+- [2016年7月29日 MTG アジェンダ · Issue #96 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/96 "2016年7月29日 MTG アジェンダ · Issue #96 · js-primer/js-primer")
 
 ## 吉野家問題 - @azu
 
-- @azu: https://github.com/asciidwango/js-primer/pull/95#discussion_r71451112
+- @azu: https://github.com/js-primer/js-primer/pull/95#discussion_r71451112
 - "吉野家" じゃないサロゲートペアな文字列が欲しい
 - 商標などで問題が起きたりしないか不安
 - @kahei: 多分問題ないと思う
 - @azu: "吉野家"以外だと"𩸽定食"など
 - 国際的にも"吉"はよく例として使われているのを見る
-- そもそも[ここの記述が間違っている](https://github.com/asciidwango/js-primer/issues/106)のfor...ofの話ではないかも
+- そもそも[ここの記述が間違っている](https://github.com/js-primer/js-primer/issues/106)のfor...ofの話ではないかも
 - ただし、ES2015ではコードポイントの話はでてくるのでサロゲートペアは触れる必要がある
 - とりあえず、"吉野家"を例に使うで問題なさそう
 
@@ -46,7 +46,7 @@
 
 ## ローカルサーバ - @laco
 
-- [ブラウザアプリユースケース用の開発サーバ · Issue #79 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/79 "ブラウザアプリユースケース用の開発サーバ · Issue #79 · asciidwango/js-primer")
+- [ブラウザアプリユースケース用の開発サーバ · Issue #79 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/79 "ブラウザアプリユースケース用の開発サーバ · Issue #79 · js-primer/js-primer")
 - @laco: ローカルサーバ何を使うかは決定してないが、とりあえず[node-static](https://github.com/cloudhead/node-static "node-static")を使っている
 - @azu: 次に書いた要件を満たせるなら何でもいい
 
@@ -77,7 +77,7 @@
 
 ## この書籍の目的の確認 - @azu
 
-- [はじめに/本書の目的 · Issue #103 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/103 "はじめに/本書の目的 · Issue #103 · asciidwango/js-primer")
+- [はじめに/本書の目的 · Issue #103 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/103 "はじめに/本書の目的 · Issue #103 · js-primer/js-primer")
 - @azu: このIssueに自分なりの目的や読者対象をまとめた
 - 完全なプログラミング初心者は対象ではない という点は明記したい
 - JavaScriptは色々取り入れて変化していく言語
@@ -91,13 +91,13 @@
 
 ### 結論
 
-- [はじめに/本書の目的 · Issue #103 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/103 "はじめに/本書の目的 · Issue #103 · asciidwango/js-primer")
+- [はじめに/本書の目的 · Issue #103 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/103 "はじめに/本書の目的 · Issue #103 · js-primer/js-primer")
 - ひとまずまとめて文章として参照できるようにする
 - "はじめに"は多分本が書き終わってから書くようなもの
 
 ###  スクリーンショットのサイズと枠線について
 
-- @laco: 現状は1280 x 720 - https://github.com/asciidwango/js-primer/blob/cd5f4b34c6bb233b828e365dd7326c433fdc93d3/source/ajaxapp/firefox-launch.applescript
+- @laco: 現状は1280 x 720 - https://github.com/js-primer/js-primer/blob/cd5f4b34c6bb233b828e365dd7326c433fdc93d3/source/ajaxapp/firefox-launch.applescript
 - 画面全体(コンソールを含めて)のスクリーンショットのサイズをどうするか
 - @kahei: 図版の中の文字サイズが大きさが一定となるように調整できるとベスト
 - 現実的には難しい
@@ -116,7 +116,7 @@
 - スクリーンショットのサイズは特に決定せず
 - スクリーンショットの画像は枠線や影を含めない
 
-## [Promise #94](https://github.com/asciidwango/js-primer/issues/94 "Promise #94") - @laco
+## [Promise #94](https://github.com/js-primer/js-primer/issues/94 "Promise #94") - @laco
 
 - @laco: ユースケースでPromiseを扱うが基本文法ではどこまで?
 - @azu: ユースケースで書かれてるものをカバーできるように書く
@@ -127,7 +127,7 @@
 
 ## Tagged Template - @laco
 
-- @laco: [Ajax](https://github.com/asciidwango/js-primer/issues/9 "Ajax")でTagged Templateを使ってる
+- @laco: [Ajax](https://github.com/js-primer/js-primer/issues/9 "Ajax")でTagged Templateを使ってる
 - エスケープの例として使ってる
 - @azu: Tagged Templateの定番はまだいまいち決まってない
 - Tagged Templateの使い方としてエスケープの使い方はよくある使い方としてはありそう
@@ -158,9 +158,9 @@
 
 ## 使わなくていいイディオム/文法
 
-- [はじめに/本書の目的 · Issue #103 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/103 "はじめに/本書の目的 · Issue #103 · asciidwango/js-primer")で使わなくていい表現は使わなくていいことを学ぶ必要があるという話
+- [はじめに/本書の目的 · Issue #103 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/103 "はじめに/本書の目的 · Issue #103 · js-primer/js-primer")で使わなくていい表現は使わなくていいことを学ぶ必要があるという話
 - 使わなくていいものをとりあえずまとめておきたい
-- => [既に使わなくていいイディオム/文法 · Issue #108 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/108 "既に使わなくていいイディオム/文法 · Issue #108 · asciidwango/js-primer")
+- => [既に使わなくていいイディオム/文法 · Issue #108 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/108 "既に使わなくていいイディオム/文法 · Issue #108 · js-primer/js-primer")
     - ここに書いていく
 - これについて話す場合は
 - 「何故使われていたのか」
@@ -175,10 +175,10 @@
 - ESLintのドキュメントを見たりするとそういうのも見ていけるかも
 - 更新されているプラクティスなドキュメントは少ない
 - @kahei: そういう話があると面白いかも
-- @azu: => [ESLintで学ぶプラクティス](https://github.com/asciidwango/js-primer/issues/102#issuecomment-236162759 "ESLintで学ぶプラクティス")
+- @azu: => [ESLintで学ぶプラクティス](https://github.com/js-primer/js-primer/issues/102#issuecomment-236162759 "ESLintで学ぶプラクティス")
 
 ## 次回
 
-- https://github.com/asciidwango/js-primer/milestone/3
+- https://github.com/js-primer/js-primer/milestone/3
 
 2016年9月9日 @ 株式会社ドワンゴ

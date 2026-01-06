@@ -9,7 +9,7 @@
 
 ## アジェンダ
 
-- [2017-01-20 ミーティングアジェンダ · Issue #178 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/178 "2017-01-20 ミーティングアジェンダ · Issue #178 · asciidwango/js-primer")
+- [2017-01-20 ミーティングアジェンダ · Issue #178 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/178 "2017-01-20 ミーティングアジェンダ · Issue #178 · js-primer/js-primer")
 
 -----
 
@@ -39,7 +39,7 @@
 ## ES2017について
 
 - @azu: `**`や`Object.values`などLTSだとまだ動かない
-- [[ES2016] Node.js LTS(v6)だと動かないコードがある点について · Issue #174 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/174 "[ES2016] Node.js LTS(v6)だと動かないコードがある点について · Issue #174 · asciidwango/js-primer")
+- [[ES2016] Node.js LTS(v6)だと動かないコードがある点について · Issue #174 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/174 "[ES2016] Node.js LTS(v6)だと動かないコードがある点について · Issue #174 · js-primer/js-primer")
 - 今日発売の[O'Reilly Japan - 初めてのJavaScript 第3版](https://www.oreilly.co.jp/books/9784873117836/ "O&#39;Reilly Japan - 初めてのJavaScript 第3版")は付録でES2017を扱っている
 - ES2017についてはどうする?
 - @vvakame: async/awaitは現実的に使いたそう

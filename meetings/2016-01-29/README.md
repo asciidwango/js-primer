@@ -69,7 +69,7 @@
 
 - TODOアプリをユースケースとして作ってみる
 - @lacolaco: アイデアを書くリポジトリ/Issueなどが欲しい
-- => https://github.com/asciidwango/ES6book
+- => https://github.com/js-primer/js-primer
 - ひとまず、アイデアなどはここへ書き込む
 
 ## 次回
