@@ -11,7 +11,7 @@ module.exports = (context, options = {}) => {
                 const rawString = getSource(node);
                 report(node, new RuleError(`インラインコード: ${rawString} の利用を禁止しています。
 
-詳細: https://github.com/asciidwango/js-primer/issues/804`));
+詳細: https://github.com/js-primer/js-primer/issues/804`));
             }
         }
     };

@@ -6,14 +6,14 @@
              
 ## アジェンダ
 
-- [2017-05-26 ミーティングアジェンダ · Issue #233 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/233 "2017-05-26 ミーティングアジェンダ · Issue #233 · asciidwango/js-primer")
+- [2017-05-26 ミーティングアジェンダ · Issue #233 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/233 "2017-05-26 ミーティングアジェンダ · Issue #233 · js-primer/js-primer")
 
-## [String](https://github.com/asciidwango/js-primer/issues/121 "String · Issue #121 · asciidwango/js-primer")
+## [String](https://github.com/js-primer/js-primer/issues/121 "String · Issue #121 · js-primer/js-primer")
 
-- @azu: [String · Issue #121 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/121 "String · Issue #121 · asciidwango/js-primer")
+- @azu: [String · Issue #121 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/121 "String · Issue #121 · js-primer/js-primer")
 - ひとまず書き終わり
 - 後は用語の整理とかをすれば完了
-- [String: 構造的文字列 -> ??? · Issue #228 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/228 "String: 構造的文字列 -&gt; ??? · Issue #228 · asciidwango/js-primer")が悩ましい
+- [String: 構造的文字列 -> ??? · Issue #228 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/228 "String: 構造的文字列 -&gt; ??? · Issue #228 · js-primer/js-primer")が悩ましい
 
 ### 結論
 
@@ -26,12 +26,12 @@
 - @azu: Stringの章ではreduceを使ってタグ関数を書いた
 - ユースケースではmapを使って書いてる
 - 書き方を統一したい
-- [String + ajaxapp: tagged template literalの書き方を揃える · Issue #214 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/214 "String + ajaxapp: tagged template literalの書き方を揃える · Issue #214 · asciidwango/js-primer")
+- [String + ajaxapp: tagged template literalの書き方を揃える · Issue #214 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/214 "String + ajaxapp: tagged template literalの書き方を揃える · Issue #214 · js-primer/js-primer")
 - @laco: OK
 
 ### 結論
 
-- [String + ajaxapp: tagged template literalの書き方を揃える · Issue #214 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/214 "String + ajaxapp: tagged template literalの書き方を揃える · Issue #214 · asciidwango/js-primer")でユースケースと基本文法で書き方を揃える
+- [String + ajaxapp: tagged template literalの書き方を揃える · Issue #214 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/214 "String + ajaxapp: tagged template literalの書き方を揃える · Issue #214 · js-primer/js-primer")でユースケースと基本文法で書き方を揃える
 
 -----
 
@@ -50,12 +50,12 @@
 
 -----
 
-## [Node.jsのCLIアプリ #7](https://github.com/asciidwango/js-primer/issues/7 "Node.jsのCLIアプリ #7")
+## [Node.jsのCLIアプリ #7](https://github.com/js-primer/js-primer/issues/7 "Node.jsのCLIアプリ #7")
 
 - @laco: Node.js CLIがひとまつ完了
 - @azu: まとめ的なのはないの?
 - 結構唐突に終わってる感じがする
-- @laco: [nodecli: 終わりました感 のあるまとめ · Issue #235 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/235 "nodecli: 終わりました感 のあるまとめ · Issue #235 · asciidwango/js-primer")
+- @laco: [nodecli: 終わりました感 のあるまとめ · Issue #235 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/235 "nodecli: 終わりました感 のあるまとめ · Issue #235 · js-primer/js-primer")
 - @azu: あとはユニットテストの意義的な説明がないかも
 - いきなり当然のようにユニットテストでてきてるので、なぜするのかが薄い感じがする
 - リファクタリングがしやすくなるとか
@@ -68,8 +68,8 @@
 
 ### 結論
 
-- [nodecli: 終わりました感 のあるまとめ · Issue #235 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/235 "nodecli: 終わりました感 のあるまとめ · Issue #235 · asciidwango/js-primer")
-- [nodecli: ユニットテストの意義について追記 · Issue #236 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/236 "nodecli: ユニットテストの意義について追記 · Issue #236 · asciidwango/js-primer")
+- [nodecli: 終わりました感 のあるまとめ · Issue #235 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/235 "nodecli: 終わりました感 のあるまとめ · Issue #235 · js-primer/js-primer")
+- [nodecli: ユニットテストの意義について追記 · Issue #236 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/236 "nodecli: ユニットテストの意義について追記 · Issue #236 · js-primer/js-primer")
 - @laco: それぞれを簡単に追加する
 
 ----
@@ -78,7 +78,7 @@
 
 - @azu: 主にこの本を書く人向けに用語の根拠を記録しておきたい
 - なぜこの用語なのかということをメモっておきたい
-- とりあえずは[[meta] 用語集 · Issue #231 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/231 "[meta] 用語集 · Issue #231 · asciidwango/js-primer")に書いてる
+- とりあえずは[[meta] 用語集 · Issue #231 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/231 "[meta] 用語集 · Issue #231 · js-primer/js-primer")に書いてる
 
 
 > JavaScriptの文脈で「クラスを作って、そのインスタンスを作る。」とかいう人までいますし。
@@ -101,7 +101,7 @@
 
 ### 結論
 
-- とりあえずの用語は[[meta] 用語集 · Issue #231 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/231 "[meta] 用語集 · Issue #231 · asciidwango/js-primer")に書いていく
+- とりあえずの用語は[[meta] 用語集 · Issue #231 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/231 "[meta] 用語集 · Issue #231 · js-primer/js-primer")に書いていく
 - prhからリンク貼れる
 - 一冊読んで嘘じゃないことが分かるような作りにする
 
@@ -120,17 +120,17 @@
 - [ECMAScript 2017 (ES8): the final feature set](http://2ality.com/2016/02/ecmascript-2017.html "ECMAScript 2017 (ES8): the final feature set")
 - @laco: asyncの説明する?
 - @azu: 恐らくPromiseとこで
-- [Promise · Issue #94 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/94 "Promise · Issue #94 · asciidwango/js-primer")
+- [Promise · Issue #94 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/94 "Promise · Issue #94 · js-primer/js-primer")
 - @laco: function trailing commaも入る
 - 関数は,で区切るという話してる?
 - @azu: して無さそう
 - @azu: カンマで区切らない言語もあるので一応書いておこ
-- [関数と宣言: カンマで引数を区切る · Issue #239 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/239 "関数と宣言: カンマで引数を区切る · Issue #239 · asciidwango/js-primer")
+- [関数と宣言: カンマで引数を区切る · Issue #239 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/239 "関数と宣言: カンマで引数を区切る · Issue #239 · js-primer/js-primer")
 
 ### 結論
 
 - npmに関して変更は特にいらなそう
-- [関数と宣言: カンマで引数を区切る · Issue #239 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/239 "関数と宣言: カンマで引数を区切る · Issue #239 · asciidwango/js-primer")の修正をする
+- [関数と宣言: カンマで引数を区切る · Issue #239 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/239 "関数と宣言: カンマで引数を区切る · Issue #239 · js-primer/js-primer")の修正をする
 
 ----
 
@@ -160,7 +160,7 @@
 - @azu: 次 @laco はどれを書く
 - @laco: Promise?
 - Promiseはなんかコンテキストがありそう
-- [Promise · Issue #94 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/94 "Promise · Issue #94 · asciidwango/js-primer")
+- [Promise · Issue #94 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/94 "Promise · Issue #94 · js-primer/js-primer")
 - エラーハンドリング -> Promise
 - @azu: try-catchは多分普通の説明するだけだと思う
 - @laco: 他だと Map/WeakMap Set/WeakSet?
@@ -168,8 +168,8 @@
 - @azu: データ構造?
 - WeakSetとかは使い道はほぼ一つ
 - MapとSetはセットな気がする
-- [Map/Set · Issue #148 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/148 "Map/Set · Issue #148 · asciidwango/js-primer")
-- @laco: [Map/Setの章 · Issue #238 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/238 "Map/Setの章 · Issue #238 · asciidwango/js-primer")
+- [Map/Set · Issue #148 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/148 "Map/Set · Issue #148 · js-primer/js-primer")
+- @laco: [Map/Setの章 · Issue #238 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/238 "Map/Setの章 · Issue #238 · js-primer/js-primer")
 - @laco: ビルトインオブジェクト系から攻めていきたい
 - 他のだとJSON
 - @azu: JSONは「JSONとは、JSONのパース、JSONのシリアライズについて」みたいなことかな
@@ -181,8 +181,8 @@
 ### 結論
 
 - @laco: 次はここをやっていく
-- [Map/Setの章 · Issue #238 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/238 "Map/Setの章 · Issue #238 · asciidwango/js-primer")をやる
-- [JSONの章 · Issue #237 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/237 "JSONの章 · Issue #237 · asciidwango/js-primer")
+- [Map/Setの章 · Issue #238 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/238 "Map/Setの章 · Issue #238 · js-primer/js-primer")をやる
+- [JSONの章 · Issue #237 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/237 "JSONの章 · Issue #237 · js-primer/js-primer")
 ----
 
 ## ページ数

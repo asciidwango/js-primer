@@ -8,28 +8,28 @@
 
 ## ミーティングアジェンダ
 
-- [2019-07-01のミーティングアジェンダ · Issue #860 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/860)
+- [2019-07-01のミーティングアジェンダ · Issue #860 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/860)
 
 ---
 
 ## 進捗確認
 
 - azu: 前回のミーティングのレビューフィードバックのIssueを修正している。
-- [x] [all: typeof 演算子の結果とか被る変数名は避ける · Issue #804 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/804)
-- [ ] [モジュールの章を移動する · Issue #644 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/644)
-- [ ] [アプリケーション開発の準備 に ローカルサーバの立ち上げ方法を追加する · Issue #805 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/805) 
+- [x] [all: typeof 演算子の結果とか被る変数名は避ける · Issue #804 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/804)
+- [ ] [モジュールの章を移動する · Issue #644 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/644)
+- [ ] [アプリケーション開発の準備 に ローカルサーバの立ち上げ方法を追加する · Issue #805 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/805) 
   - => #845 
-- [x] [変数と宣言: const, let, varの順番で解説を書きなおす · Issue #806 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/806)
-- [ ] [strict modeについて補足/リンクを入れる · Issue #807 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/807)
+- [x] [変数と宣言: const, let, varの順番で解説を書きなおす · Issue #806 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/806)
+- [ ] [strict modeについて補足/リンクを入れる · Issue #807 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/807)
   - ちょっと補足いれたけど
-- [x] [プロトタイプオブジェクト: 章の最初に目的を入れる · Issue #809 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/809)
-- [x] [暗黙的な型変換: 章の最初に目的を入れる · Issue #808 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/808)
-- [ ] [GCについての図がほしい · Issue #810 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/810)
-- [x] [非同期処理: タイトルの変更 · Issue #811 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/811)
-- [x] [Ajax: Fetch APIベースに書き換える · Issue #812 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/812)
-- [ ] [All: 章の末尾をチェックリストで統一する · Issue #813 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/813)
+- [x] [プロトタイプオブジェクト: 章の最初に目的を入れる · Issue #809 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/809)
+- [x] [暗黙的な型変換: 章の最初に目的を入れる · Issue #808 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/808)
+- [ ] [GCについての図がほしい · Issue #810 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/810)
+- [x] [非同期処理: タイトルの変更 · Issue #811 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/811)
+- [x] [Ajax: Fetch APIベースに書き換える · Issue #812 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/812)
+- [ ] [All: 章の末尾をチェックリストで統一する · Issue #813 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/813)
   - 進行中(↓と一緒に進んでる)
-- [ ] [All: エラーの表記を統一する · Issue #814 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/814)
+- [ ] [All: エラーの表記を統一する · Issue #814 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/814)
   - 進行中
 
 ---
@@ -37,7 +37,7 @@
 ## モジュール
 
 - azu: モジュールの移動って結局どうするんだっけ?
-- [モジュールの章を移動する · Issue #644 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/644)
+- [モジュールの章を移動する · Issue #644 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/644)
 - azu: モジュールを基本文法に持ってくるという話
 - azu: 動作を確認できない基本文法の章って初めてなので、どうにかしないといけない
 - azu: モジュールの章 単独だとどうしてもイメージがつかみにくい
@@ -82,7 +82,7 @@
     
 ## 結論
 
-- laco: [モジュールの章を移動する · Issue #644 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/644)
+- laco: [モジュールの章を移動する · Issue #644 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/644)
 - タイトルをモジュールから"ES Module"に変更
 - モジュールの章の導入に注釈(ここでは動作が確認できないのでイメージを掴むことが目的)
 - モジュールの章の内部で並び替え #860 (comment)
@@ -122,9 +122,9 @@
 ## 結論
 
 - azu: Array#flatを入れる
-- https://github.com/asciidwango/js-primer/issues/847
+- https://github.com/js-primer/js-primer/issues/847
 - azu: ECMAScriptの表を更新 
-- https://github.com/asciidwango/js-primer/issues/861
+- https://github.com/js-primer/js-primer/issues/861
 
 ----
 

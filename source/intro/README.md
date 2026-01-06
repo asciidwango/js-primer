@@ -80,7 +80,7 @@ ECMAScript 2015と呼ばれる仕様の大きな更新が行われた際に、Ja
 なぜなら、それは未来の話であるため不確定な部分が多く、実際の使われ方も予測できないためです。
 この書籍は、基本を学びつつ現実のユースケースから離れすぎないことを目的としています。
 
-この書籍の文章やソースコードは、オープンソースとしてGitHubの[asciidwango/js-primer][]で公開されています。
+この書籍の文章やソースコードは、オープンソースとしてGitHubの[js-primer/js-primer][]で公開されています。
 また書籍の内容が[jsprimer.net][]というURLで公開されているため、ウェブブラウザで読めます。
 ウェブ版では、その場でサンプルコードを実行してJavaScriptを学べます。
 
@@ -105,7 +105,7 @@ ECMAScript 2015と呼ばれる仕様の大きな更新が行われた際に、Ja
 
 ## ウェブ版と書籍版の違い {#diff-with-print-version}
 
-書籍版の内容は[JavaScript Primer v4.0.0](https://github.com/asciidwango/js-primer/releases/tag/v4.0.0-publish)と同じです。
+書籍版の内容は[JavaScript Primer v4.0.0](https://github.com/js-primer/js-primer/releases/tag/v4.0.0-publish)と同じです。
 
 ウェブ版と書籍版は次の点が異なります。
 
@@ -141,11 +141,11 @@ Open Collectiveでの支援には、サイト上にロゴを表示するとい�
 
 GitHubのDiscussions（掲示板）の他の人の質問に答えたり、JSPrimerを読んだ感想を書くことも支援になります。
 
-- [Discussions](https://github.com/asciidwango/js-primer/discussions)
+- [Discussions](https://github.com/js-primer/js-primer/discussions)
 
 Discussionsのガイドラインは次のスレッドにまとめられています。
 
-- [👋 ようこそ JavaScript Primer へ ! · Discussion #1304](https://github.com/asciidwango/js-primer/discussions/1304)
+- [👋 ようこそ JavaScript Primer へ ! · Discussion #1304](https://github.com/js-primer/js-primer/discussions/1304)
 
 書籍に対してIssueを立てたり、Pull Requestを送ったりして直接的に支援もできます。
 IssueやPull Requestについては、次のページを参照してください。
@@ -219,17 +219,17 @@ ECMAScriptはアップデートにより、機能が利用できなくなると�
 ウェブ版は、常に最新のECMAScriptに対応するように更新しています。
 それぞれ新しいECMAScriptバージョンへ対応するときに、変更点をまとめたリリースノートを作成しています。
 
-- [v1.0.0: 初版のリリース](https://github.com/asciidwango/js-primer/releases/tag/1.0.0)
-- [v2.0.0: ECMAScript 2020対応](https://github.com/asciidwango/js-primer/releases/tag/v2.0.0)
-- [v3.0.0: ECMAScript 2021対応](https://github.com/asciidwango/js-primer/releases/tag/v3.0.0)
-- [v4.0.0: ECMAScript 2022対応](https://github.com/asciidwango/js-primer/releases/tag/v4.0.0)
-- [v5.0.0: ECMAScript 2023対応/CC BYライセンスに変更/Open Collective](https://github.com/asciidwango/js-primer/releases/tag/v5.0.0)
-- [v6.0.0: ECMAScript 2024対応](https://github.com/asciidwango/js-primer/releases/tag/v6.0.0)
-- [v7.0.0: ECMAScript 2025対応](https://github.com/asciidwango/js-primer/releases/tag/v7.0.0)
+- [v1.0.0: 初版のリリース](https://github.com/js-primer/js-primer/releases/tag/1.0.0)
+- [v2.0.0: ECMAScript 2020対応](https://github.com/js-primer/js-primer/releases/tag/v2.0.0)
+- [v3.0.0: ECMAScript 2021対応](https://github.com/js-primer/js-primer/releases/tag/v3.0.0)
+- [v4.0.0: ECMAScript 2022対応](https://github.com/js-primer/js-primer/releases/tag/v4.0.0)
+- [v5.0.0: ECMAScript 2023対応/CC BYライセンスに変更/Open Collective](https://github.com/js-primer/js-primer/releases/tag/v5.0.0)
+- [v6.0.0: ECMAScript 2024対応](https://github.com/js-primer/js-primer/releases/tag/v6.0.0)
+- [v7.0.0: ECMAScript 2025対応](https://github.com/js-primer/js-primer/releases/tag/v7.0.0)
 
-新しいバージョンが公開されたときに通知を受け取りたい方は、[GitHubリポジトリ](https://github.com/asciidwango/js-primer)を[Watch](https://github.com/asciidwango/js-primer/watchers)してください。
+新しいバージョンが公開されたときに通知を受け取りたい方は、[GitHubリポジトリ](https://github.com/js-primer/js-primer)を[Watch](https://github.com/js-primer/js-primer/watchers)してください。
 
-[![Watch button](../landing/img/repo-actions-watch.png)](https://github.com/asciidwango/js-primer/watchers)
+[![Watch button](../landing/img/repo-actions-watch.png)](https://github.com/js-primer/js-primer/watchers)
 
 また、次のフォームからメールアドレスを登録しておくと更新情報をメールで受け取れます。
 
@@ -304,11 +304,11 @@ ECMAScriptはアップデートにより、機能が利用できなくなると�
 {% endif %}
 
 
-[asciidwango/js-primer]: https://github.com/asciidwango/js-primer
+[js-primer/js-primer]: https://github.com/js-primer/js-primer
 [jsprimer.net]: https://jsprimer.net/
 [mdn web docs]: https://developer.mozilla.org/ja/
-[MITライセンス]: https://github.com/asciidwango/js-primer/blob/master/LICENSE-MIT
-[Creative Commons Attribution 4.0]: https://github.com/asciidwango/js-primer/blob/master/LICENSE-CC-BY
-[ライセンスについて]: https://github.com/asciidwango/js-primer/blob/master/README.md#license
+[MITライセンス]: https://github.com/js-primer/js-primer/blob/master/LICENSE-MIT
+[Creative Commons Attribution 4.0]: https://github.com/js-primer/js-primer/blob/master/LICENSE-CC-BY
+[ライセンスについて]: https://github.com/js-primer/js-primer/blob/master/README.md#license
 [第一部:基本文法]: ../basic/README.md
 [第二部:ユースケース]: ../use-case/README.md

@@ -6,7 +6,7 @@
 
 ## アジェンダ
 
-- [2018-02-01 ミーティングアジェンダ · Issue #343 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/343 "2018-02-01 ミーティングアジェンダ · Issue #343 · asciidwango/js-primer")
+- [2018-02-01 ミーティングアジェンダ · Issue #343 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/343 "2018-02-01 ミーティングアジェンダ · Issue #343 · js-primer/js-primer")
 
 ## 進捗(azu)
 
@@ -36,7 +36,7 @@
 
 > 現時点（ES2018）には外から原理的に見ることができないプライベートプロパティ（hard private）を定義する構文はありません。 プライベートプロパティについてはECMAScriptの提案が行われており導入が検討Proposalされています。 また、現時点でもWeakSetなどを使うことで擬似的なプライベートプロパティ（soft private）を実現できます。 擬似的なプライベートプロパティ（soft private）については「Map/Set」の章について解説しま
 
-- [WeakSetを使ったsoft private · Issue #347 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/347 "WeakSetを使ったsoft private · Issue #347 · asciidwango/js-primer")というIssueを作った
+- [WeakSetを使ったsoft private · Issue #347 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/347 "WeakSetを使ったsoft private · Issue #347 · js-primer/js-primer")というIssueを作った
 - 将来的にprivateがくるとprototypeオブジェクトってますます意識しにくい(クラスでしかできないことが増える?)ものになる気がする
 - なのでバランスが難しいけど、そこまで大きくはprototypeの詳細にふれない
 - 継承の仕組みとしてのprototypeを上手くやっていきたい
@@ -73,20 +73,20 @@
 
 ### 結論
 
-- 気になったものを [Bad Partsの章 · Issue #142 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/142 "Bad Partsの章 · Issue #142 · asciidwango/js-primer") に追加する
+- 気になったものを [Bad Partsの章 · Issue #142 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/142 "Bad Partsの章 · Issue #142 · js-primer/js-primer") に追加する
 
 -----
 
 ##  2章の序章: 環境ごとのオブジェクト #267 
 
-- azu: [2章の序章: 環境ごとのオブジェクト · Issue #267 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/267 "2章の序章: 環境ごとのオブジェクト · Issue #267 · asciidwango/js-primer")はどうなんっけ?
+- azu: [2章の序章: 環境ごとのオブジェクト · Issue #267 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/267 "2章の序章: 環境ごとのオブジェクト · Issue #267 · js-primer/js-primer")はどうなんっけ?
 - laco: 今回忙しくてやれない
 - azu: ココは雰囲気的には扉ページのような説明なので、フワッとしてる
 
 ## 高度なAPI
 
 - azu: 結局前回話した「高度なAPI」ってどうするんだっけ?
-- <https://github.com/asciidwango/js-primer/tree/master/meetings/2017-12-07#%E9%AB%98%E5%BA%A6%E3%81%AAapi>
+- <https://github.com/js-primer/js-primer/tree/master/meetings/2017-12-07#%E9%AB%98%E5%BA%A6%E3%81%AAapi>
 - ObjectとかProxyとかメタ的なもの
 - laco: 特に
 - azu: 雰囲気的には、ここで紹介したJavaScriptの基本文法がJavaScriptの全てではありませんってことが伝わればいいかなと思ってる
@@ -99,7 +99,7 @@
 ### 結論
 
 - 1章の末尾にあとがき的な「その他のAPI」についてを書く
-- [1章の終章: その他の高度なAPI · Issue #348 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/348 "1章の終章: その他の高度なAPI · Issue #348 · asciidwango/js-primer")
+- [1章の終章: その他の高度なAPI · Issue #348 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/348 "1章の終章: その他の高度なAPI · Issue #348 · js-primer/js-primer")
 
 ----
 
@@ -116,8 +116,8 @@
 
 ### 結論
 
-- azu: [オブジェクト: spread operatorについてを追加する · Issue #349 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/349 "オブジェクト: spread operatorについてを追加する · Issue #349 · asciidwango/js-primer")
-- laco: [Node.jsのCLIアプリ · Issue #7 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/7#issuecomment-362233264 "Node.jsのCLIアプリ · Issue #7 · asciidwango/js-primer")の修正
+- azu: [オブジェクト: spread operatorについてを追加する · Issue #349 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/349 "オブジェクト: spread operatorについてを追加する · Issue #349 · js-primer/js-primer")
+- laco: [Node.jsのCLIアプリ · Issue #7 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/7#issuecomment-362233264 "Node.jsのCLIアプリ · Issue #7 · js-primer/js-primer")の修正
 
 ----
 
@@ -125,7 +125,7 @@
 
 - azu: TODOアプリの目的がまだ曖昧
 - この間moduleに書き換えてbabelとかを消した
-- [refactor(todoapp): Refactor to plain ES module by azu · Pull Request #344 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/344 "refactor(todoapp): Refactor to plain ES module by azu · Pull Request #344 · asciidwango/js-primer")
+- [refactor(todoapp): Refactor to plain ES module by azu · Pull Request #344 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/344 "refactor(todoapp): Refactor to plain ES module by azu · Pull Request #344 · js-primer/js-primer")
 - laco: クラスとモジュールの使い方的な
 - オブジェクト指向的なアプリケーションの作り方ユースケース
 - azu: たしかにモジュールの使い方的なところは大きそう
@@ -155,7 +155,7 @@
 
 - モジュールは文法より
 - dynamic importは省く
-- [モジュール · Issue #329 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/329 "モジュール · Issue #329 · asciidwango/js-primer")
+- [モジュール · Issue #329 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/329 "モジュール · Issue #329 · js-primer/js-primer")
 
 ----
 

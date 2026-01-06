@@ -1,5 +1,5 @@
 /**
- * @see https://github.com/asciidwango/js-primer/issues/1368
+ * @see https://github.com/js-primer/js-primer/issues/1368
  * @param context
  * @param options
  * @returns {{}}
@@ -27,7 +27,7 @@ const report = (context, options = {}) => {
                 
 Array#push は「Arrayの\`push\`メソッド」と表現します。
 
-See https://github.com/asciidwango/js-primer/issues/1368
+See https://github.com/js-primer/js-primer/issues/1368
 `, {
                     index,
                     fix: fixer.replaceText(node, replacedText)
@@ -49,7 +49,7 @@ See https://github.com/asciidwango/js-primer/issues/1368
                 
 Array#push は「Arrayの\`push\`メソッド」と表現します。
 
-See https://github.com/asciidwango/js-primer/issues/1368
+See https://github.com/js-primer/js-primer/issues/1368
 `, {
                     index,
                 }));

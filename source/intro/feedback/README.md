@@ -21,19 +21,19 @@ sponsors: []
 
 この書籍はGitHub上で公開されているため、GitHubリポジトリのIssueとしてあなたの疑問を報告できます。
 
-- 書籍や内容に対する質問 → [こちらから質問できます](https://github.com/asciidwango/js-primer/issues/new?template=question.md)
-- 内容のエラーや問題の報告 → [こちらからバグ報告できます](https://github.com/asciidwango/js-primer/issues/new?template=bug_report.md)
-- 内容をもっと詳細に解説する提案 → [こちらから提案できます](https://github.com/asciidwango/js-primer/issues/new?template=feature_request.md)
-- 新しいトピックなどの提案 → [こちらから提案できます](https://github.com/asciidwango/js-primer/issues/new?template=feature_request.md)
-- その他のIssue → [その他のIssueはこちらから](https://github.com/asciidwango/js-primer/issues/new?template=other.md)
+- 書籍や内容に対する質問 → [こちらから質問できます](https://github.com/js-primer/js-primer/issues/new?template=question.md)
+- 内容のエラーや問題の報告 → [こちらからバグ報告できます](https://github.com/js-primer/js-primer/issues/new?template=bug_report.md)
+- 内容をもっと詳細に解説する提案 → [こちらから提案できます](https://github.com/js-primer/js-primer/issues/new?template=feature_request.md)
+- 新しいトピックなどの提案 → [こちらから提案できます](https://github.com/js-primer/js-primer/issues/new?template=feature_request.md)
+- その他のIssue → [その他のIssueはこちらから](https://github.com/js-primer/js-primer/issues/new?template=other.md)
 
 また、GitHub Discussions（掲示板）へIssueにするのは気が引けると思った質問を書いたり、JavaScript Primerを読んだ感想などを書き込めます。
 
-- [Discussions · asciidwango/js-primer](https://github.com/asciidwango/js-primer/discussions)
+- [Discussions · js-primer/js-primer](https://github.com/js-primer/js-primer/discussions)
 
 GitHub Discussions（掲示板）の使い方については、次のスレッドにまとめています。
 
-- [👋 ようこそ JavaScript Primer へ ! · Discussion #1304 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/discussions/1304)
+- [👋 ようこそ JavaScript Primer へ ! · Discussion #1304 · js-primer/js-primer](https://github.com/js-primer/js-primer/discussions/1304)
 
 GitHubのアカウントを持っていない方は、次のフォームから報告できます。
 
@@ -43,13 +43,13 @@ GitHubのアカウントを持っていない方は、次のフォームから�
 
 この書籍はGitHub上で文章やサンプルのソースコードがすべて公開されています。
 
-- <https://github.com/asciidwango/js-primer>
+- <https://github.com/js-primer/js-primer>
 
 そのため、問題を報告するだけではなく、修正内容を[Pull Request][]することで問題を修正できます。
 
 詳しいPull Requestの送り方は[CONTRIBUTING.md][]に書かれているので参考にしてください。
 
-- <https://github.com/asciidwango/js-primer/blob/master/CONTRIBUTING.md>
+- <https://github.com/js-primer/js-primer/blob/master/CONTRIBUTING.md>
 
 誤字を1文字修正するものから技術的な間違いを修正するものまで、どのような修正であっても感謝いたします。
 問題を見つけたら、ぜひ修正することにも挑戦してみてください。
@@ -60,4 +60,4 @@ GitHubのアカウントを持っていない方は、次のフォームから�
 - [技術書の間違いに気付いたら：柴田 芳樹 (Yoshiki Shibata)：So-netブログ](https://yoshikishibata.seesaa.net/article/2018-06-09.html)
 
 [Pull Request]: https://help.github.com/articles/about-pull-requests/
-[CONTRIBUTING.md]: https://github.com/asciidwango/js-primer/blob/master/CONTRIBUTING.md
+[CONTRIBUTING.md]: https://github.com/js-primer/js-primer/blob/master/CONTRIBUTING.md

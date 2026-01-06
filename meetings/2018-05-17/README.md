@@ -6,16 +6,16 @@
 
 ## アジェンダ
 
-- [2018-05-17: ミーティングアジェンダ · Issue #454 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/454)
+- [2018-05-17: ミーティングアジェンダ · Issue #454 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/454)
 
 
 ----
 
-## [TODOアプリ #4](https://github.com/asciidwango/js-primer/issues/4) - azu
+## [TODOアプリ #4](https://github.com/js-primer/js-primer/issues/4) - azu
 
 - azu: 今6-7割ぐらいは書き終わった
 - 各セクションで完動品となってるサンプルで進めてる
-- <https://github.com/asciidwango/js-primer/blob/master/source/use-case/todoapp/event-model/README.md#%E3%81%BE%E3%81%A8%E3%82%81-conclusion>
+- <https://github.com/js-primer/js-primer/blob/master/source/use-case/todoapp/event-model/README.md#%E3%81%BE%E3%81%A8%E3%82%81-conclusion>
 - 各セクションの末尾にディレクトリとURLを貼ってる
 - これが紙面だとちょっとノイズかもと思った
 - laco: ディレクトリだけ貼られてもたしかにわからないかも
@@ -57,7 +57,7 @@ EventEmitter
 ----
 
 
-## [ ajax: fetchの利用について #434 ](https://github.com/asciidwango/js-primer/issues/434)
+## [ ajax: fetchの利用について #434 ](https://github.com/js-primer/js-primer/issues/434)
 
 - laco: 最初からfetchでもよさそう
 - azu: でも古典的なイベントとコールバック、Promiseがでてくるユースケースとして成立してる
@@ -70,24 +70,24 @@ EventEmitter
 ### 結論
 
 - fetch apiについてのコラムを追加する
-- [ajax: fetchの利用について · Issue #434 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/434)
+- [ajax: fetchの利用について · Issue #434 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/434)
 
 -----
 
-## [ajax: ローカルサーバの立て方について · Issue #433 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/433)
+## [ajax: ローカルサーバの立て方について · Issue #433 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/433)
 
 - azu: Todoを書いていてajaxではローカルサーバについては触れてないのに突然でてきた
-- <https://github.com/asciidwango/js-primer/issues/433>
+- <https://github.com/js-primer/js-primer/issues/433>
 - ローカルサーバの使い方については触れたほうがよさそう
 - azu: Todoではかいてあるけど、どこに書くべきか(同じならまとめたい)
 - そもそもpackage.jsonに書いてstartするかという話もある
 - その場合はajax -> Node.js -> todoとなってるのを順番変えたほうがよさそう
-- 〜<https://github.com/asciidwango/js-primer/issues/433>をみながら〜
+- 〜<https://github.com/js-primer/js-primer/issues/433>をみながら〜
 - azu: staticは0.x系だった
 - laco: ローカルサーバのバージョンがイマイチ安定したものがない
 - azu: 機能殆ど必要ないし作ってしまうのもあり
 - 以前必須要件は書いた
-- <https://github.com/asciidwango/js-primer/blob/3d9e4e84ab83d36c9f2dec4a169da07b8f07b82c/meetings/2016-07-29/README.md#%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%82%B5%E3%83%BC%E3%83%90---laco>
+- <https://github.com/js-primer/js-primer/blob/3d9e4e84ab83d36c9f2dec4a169da07b8f07b82c/meetings/2016-07-29/README.md#%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E3%82%B5%E3%83%BC%E3%83%90---laco>
 - laco: npx でいれるとか
 - scoped moduleで
 - azu: `npx @js-primer/server` ?
@@ -109,7 +109,7 @@ EventEmitter
 ### 結論
 
 - `@js-primer/local-server` を作る
-- <https://github.com/asciidwango/js-primer/issues/462>
+- <https://github.com/js-primer/js-primer/issues/462>
 - https://github.com/js-primer/ へ置く
 - `npx @js-primer/local-server`で入るようにする
 - binは `js-primer-local-server`
@@ -124,8 +124,8 @@ EventEmitter
 - laco: LTSは8.x
 - インストールの説明ではnode 8.9+を指定する。(npm 5.2以上を保証したい）
 - npxコマンドの簡単な説明を追加する
-- [2章の序章: 環境ごとのオブジェクト · Issue #267 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/267)でこれを含めるとか
-- azu: [2章の序章: 環境ごとのオブジェクト · Issue #267 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/267)に
+- [2章の序章: 環境ごとのオブジェクト · Issue #267 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/267)でこれを含めるとか
+- azu: [2章の序章: 環境ごとのオブジェクト · Issue #267 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/267)に
     - ブラウザのバージョン
     - Node.jsのバージョン
     - npxのバージョン
@@ -135,12 +135,12 @@ EventEmitter
 ### 結論
 
 - 以下を追加する
-- [2章の序章: 環境ごとのオブジェクト · Issue #267 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/267)
+- [2章の序章: 環境ごとのオブジェクト · Issue #267 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/267)
     - ブラウザのバージョン
     - Node.jsのバージョン
     - npxのバージョン
 - ajaxとtodoアプリにnpxでローカルサーバを起動できるようにする
-- <https://github.com/asciidwango/js-primer/issues/462>
+- <https://github.com/js-primer/js-primer/issues/462>
 
 
 ----
@@ -162,7 +162,7 @@ EventEmitter
 
 ----
 
-## [用語: イベントを~する · Issue #455 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/455)
+## [用語: イベントを~する · Issue #455 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/455)
 
 - azu: イベントを??する?
 - 今は発火とか
@@ -183,7 +183,7 @@ EventEmitter
 - ディスパッチはA -> B -> Cとなって途中で止められるのか
 - emitは同列に投げるから止められない
 - DOMはバブリングあるしディスパッチ、Nodeは止まらないのでemit
-- [用語: イベントを~する · Issue #455 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/455)
+- [用語: イベントを~する · Issue #455 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/455)
 - Dispatchの訳語とか思い浮かばない
 - azu: カタカナでいくか
 
@@ -192,7 +192,7 @@ EventEmitter
 - ディスパッチ
 - リッスン
 - イベントハンドラ
-- <https://github.com/asciidwango/js-primer/issues/454>
+- <https://github.com/js-primer/js-primer/issues/454>
 - カタカナで統一する
 
 ----
@@ -202,7 +202,7 @@ EventEmitter
 - azu: moduleのscopeについて
 - モジュールの章で触れるかについて
 - ajaxのコードはscriptでしか動かない書き方になってる
-- <https://github.com/asciidwango/js-primer/issues/454#issuecomment-389838487>
+- <https://github.com/js-primer/js-primer/issues/454#issuecomment-389838487>
 - これを統一するか、モジュールのスコープについての説明をするか
 - 今はtodoappのエントリーポイントで説明を書いてる
 - laco: `as` のところ同じ識別がモジュール間で重複しない話をする
@@ -223,20 +223,20 @@ import { foo as fooB } from './module-b.js';
 
 ### 結論
 
-- <https://github.com/asciidwango/js-primer/issues/329>
+- <https://github.com/js-primer/js-primer/issues/329>
 - モジュールの章にはモジュールのスコープの話を含める
 - Todoappでの説明は簡略化
 
 ----
 
-## [読者対象 · Issue #461 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/461)
+## [読者対象 · Issue #461 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/461)
 
-- azu: [読者対象 · Issue #461 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/461)について
+- azu: [読者対象 · Issue #461 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/461)について
 - 序章に入れる
 
 ----
 
-## [getElementByIdとquerySelector · Issue #437 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/437)
+## [getElementByIdとquerySelector · Issue #437 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/437)
 
 - azu: ajaxとtodoappでそれぞれ違う
 - laco: 揃える?

@@ -8,7 +8,7 @@
 
 ## ミーティングアジェンダ
 
-- [2019-01-24 ミーティングアジェンダ · Issue #623 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/62)
+- [2019-01-24 ミーティングアジェンダ · Issue #623 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/62)
 
 ----
 
@@ -37,21 +37,21 @@
 
 - azu: 前回いっていたリファクタリング
 - [x] 章の並び順を変更
-    - <https://github.com/asciidwango/js-primer/issues/600>
-    - [refactor(SUMMARY): 章の並び順を変更 by azu · Pull Request #603 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/603)
+    - <https://github.com/js-primer/js-primer/issues/600>
+    - [refactor(SUMMARY): 章の並び順を変更 by azu · Pull Request #603 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/603)
     - Mathが後ろに移動した
 - [x] TODOが簡潔した
-    - <https://github.com/asciidwango/js-primer/issues/4>
-    - 自分でやってみよう的な課題を足した <https://github.com/asciidwango/js-primer/pull/620>
+    - <https://github.com/js-primer/js-primer/issues/4>
+    - 自分でやってみよう的な課題を足した <https://github.com/js-primer/js-primer/pull/620>
 - [x] 関数と宣言
     - いくつかのIssueを元にリファクタリングした
-    - <https://github.com/asciidwango/js-primer/pull/605>
+    - <https://github.com/js-primer/js-primer/pull/605>
 - [x] オブジェクト -> プロトタイプとの分離
     - オブジェクトとプロトタイプオブジェクトを分離した
-    - <https://github.com/asciidwango/js-primer/pull/633>
+    - <https://github.com/js-primer/js-primer/pull/633>
 - [ ] 文字列
-    - [\[WIP\] refactor(string): 文字列とUnicode by azu · Pull Request #643 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/643)
-    - [文字列: 章の再構成 · Issue #598 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/598)
+    - [\[WIP\] refactor(string): 文字列とUnicode by azu · Pull Request #643 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/643)
+    - [文字列: 章の再構成 · Issue #598 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/598)
     - 作業中
 - azu: 文字列は今ただの文字列とUnicode的な話でファイルを分けている
 - azu: Unicode的な話はどうやっても面白くはなりにくい。(初心者にとって）楽しい話ではないのでスキップ出来るように分けている
@@ -83,13 +83,13 @@
 ### 結論
 
 - jsprimer.net/use-case/module をNode.jsの前に移動する
-- [モジュールの章を移動する · Issue #644 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/644)
+- [モジュールの章を移動する · Issue #644 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/644)
 
 ----
 
 ## WeakMapの例
 
-- azu: [WeakMap の例について · Issue #627 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/627)
+- azu: [WeakMap の例について · Issue #627 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/627)
 - azu: WeakMapの最初の例が複雑というか長い感じ
 - laco: 考えたけどいい例が
 - azu: WeakMapはやっぱり観測できないのが正しい気がする
@@ -114,7 +114,7 @@
 ## 残りの章
 
 - azu: 残ってるのは。。。
-- 文字列、まえがき、[次に何をするか: 参考リンク集 · Issue #510 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/510)
+- 文字列、まえがき、[次に何をするか: 参考リンク集 · Issue #510 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/510)
 - kahei: あとどれぐらいで揃いそう?
 - azu: 1ヶ月もあれば揃うような気がする
 - kahei: それが揃った編集などでレビューをする感じで
@@ -130,7 +130,7 @@
 ## その他
 
 - azu: Node.jsバージョン assignした
-    - [Node.jsでHello World: Node.jsのバージョン · Issue #475 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/475)
+    - [Node.jsでHello World: Node.jsのバージョン · Issue #475 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/475)
 - laco: ES2019でBigInt
 - azu: 今月話をする
 - azu: [agendas/01.md at master · tc39/agendas](https://github.com/tc39/agendas/blob/master/2019/01.md)

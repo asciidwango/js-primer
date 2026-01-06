@@ -7,7 +7,7 @@
 
 ## アジェンダ
 
-- [2017-08-24 ミーティングアジェンダ · Issue #275 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/275 "2017-08-24 ミーティングアジェンダ · Issue #275 · asciidwango/js-primer")
+- [2017-08-24 ミーティングアジェンダ · Issue #275 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/275 "2017-08-24 ミーティングアジェンダ · Issue #275 · js-primer/js-primer")
 
 ## 非同期処理のイベント @azu
 
@@ -22,7 +22,7 @@
 - @azu: DOM APIの説明に混ぜてしまう?
 - DOMなどのホスト環境依存のAPIについて2部のユースケース直前で軽く触れたい
 - ブラウザにはDOMがあり、NodeにはCoreAPIがあるという簡単な概要
-- [2章: ユースケース · Issue #267 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/267 "2章: ユースケース · Issue #267 · asciidwango/js-primer")
+- [2章: ユースケース · Issue #267 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/267 "2章: ユースケース · Issue #267 · js-primer/js-primer")
 - ここにイベントをまぜる?
 - @laco: https://jsprimer.net/basic/function-declaration/#コールバック関数
 
@@ -45,7 +45,7 @@
 - 最終的にクロージャーが理解できるようになるという目標で書く
 - @azu: `this`はどこにかくのかを迷っている
 - 関数やオブジェクトの中でthisって普通は使わないから
-- https://github.com/asciidwango/js-primer/issues/275#issuecomment-324397122
+- https://github.com/js-primer/js-primer/issues/275#issuecomment-324397122
 - @laco: 非推奨の章？
 - @vvakame: `this`はオブジェクトの中使うケースも見かけるので説明はしないとダメそう
 - @azu: `this`の説明は必要ではあるけど、基本的にはクラスで使うものという印象
@@ -137,7 +137,7 @@ const y = 3;
 
 ----
 
-## Map/Set [#270](https://github.com/asciidwango/js-primer/pull/270)
+## Map/Set [#270](https://github.com/js-primer/js-primer/pull/270)
 
 - @laco: 抽象データ型としてのマップ・セットの説明の加減
 - WeakSetのユースケース
@@ -150,7 +150,7 @@ const y = 3;
 - Setは配列をUniqueにするとか
 - @laco : MapとWeakMapを重点的に説明して、実際の使いみちみたいなのが浮かぶような説明をする
 - @laco same-valueについては?
-- https://github.com/asciidwango/js-primer/pull/270/files#r134085301
+- https://github.com/js-primer/js-primer/pull/270/files#r134085301
 - @azu: Mapだと`===`と比較方法が違うよということが分かれば良さそう。
 - なので今の説明(NaNの挙動は違う)でいいのでは、その比較アルゴリズムはsame-valueですという感じ
 - @laco: MDNの個別の説明間違ってる?

@@ -173,7 +173,7 @@
 <link rel="manifest" href="{{ "/manifest.json"|resolveFile }}">
 <script defer async>
     // unregister old service worker(remove workbox)
-    // https://github.com/asciidwango/js-primer/pull/1701
+    // https://github.com/js-primer/js-primer/pull/1701
     navigator.serviceWorker.getRegistrations().then(function(registrations) {
         for (const registration of registrations) {
             registration.unregister();
@@ -187,7 +187,7 @@
 {% endblock %}
 {% block book_inner %}{{ super() }}
 <footer class="book_footer">
-    <p>Copyright (c) 2016-present <a href="https://github.com/asciidwango/js-primer" target="_blank">jsprimer project</a></p>
+    <p>Copyright (c) 2016-present <a href="https://github.com/js-primer/js-primer" target="_blank">jsprimer project</a></p>
 </footer>
 {% endblock %}
 {# page.sponsorsが定義されているページのみスポンサーの表示する #}

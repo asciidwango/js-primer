@@ -8,7 +8,7 @@
 
 ## ミーティングアジェンダ
 
-- [2023-02-16のミーティングアジェンダ · Discussion #1589 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/discussions/1589)
+- [2023-02-16のミーティングアジェンダ · Discussion #1589 · js-primer/js-primer](https://github.com/js-primer/js-primer/discussions/1589)
 
 ----
 
@@ -24,7 +24,7 @@
 ## Node.js 18/npmの更新
 
 - azu: Node.js 18.14.0がリリースされたので更新しました
-- [refactor: Update to Node.js 18.14.0 and npm 9.3.1 by azu · Pull Request #1567 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/1567)
+- [refactor: Update to Node.js 18.14.0 and npm 9.3.1 by azu · Pull Request #1567 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/1567)
 - npmにバグがあるので、もう一回ぐらいはアップデートあるかもしれないですが、npm 9.xのメジャーバージョンは同じなので、これが最終系かもしれないです
 
 ----
@@ -47,9 +47,9 @@
 ### 結論
 
 - azu: レビューアーへの謝辞を追加する
-  - [第二版のレビューアーを追加する · Issue #1590 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1590)
+  - [第二版のレビューアーを追加する · Issue #1590 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1590)
 - kahei: レビューの差分を反映する
-  - [書籍版へ差分を反映 · Issue #1591 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1591)
+  - [書籍版へ差分を反映 · Issue #1591 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1591)
 
 ----
 

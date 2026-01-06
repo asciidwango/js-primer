@@ -6,14 +6,14 @@
 
 ## アジェンダ
 
-- [2018-03-22 MTGアジェンダ · Issue #420 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/420 "2018-03-22 MTGアジェンダ · Issue #420 · asciidwango/js-primer")
+- [2018-03-22 MTGアジェンダ · Issue #420 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/420 "2018-03-22 MTGアジェンダ · Issue #420 · js-primer/js-primer")
 
 
 ----
 
 ## セクションタイトルのID振り直し
 
-- 完了: [セクションのパーマネントURLに日本語を含まないようにする #359](https://github.com/asciidwango/js-primer/issues/359 "セクションのパーマネントURLに日本語を含まないようにする #359")
+- 完了: [セクションのパーマネントURLに日本語を含まないようにする #359](https://github.com/js-primer/js-primer/issues/359 "セクションのパーマネントURLに日本語を含まないようにする #359")
 - textlintルールを追加したので、これから書くときにIDを追加する
 - Thanks to @nd-02110114 @yumetodo
 - azu: レビューしててきになったところ
@@ -29,20 +29,20 @@
 ### 結論
 
 - `map-read-and-write`にする
-- [map-and-setのlink修正 · Issue #423 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/423 "map-and-setのlink修正 · Issue #423 · asciidwango/js-primer")
+- [map-and-setのlink修正 · Issue #423 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/423 "map-and-setのlink修正 · Issue #423 · js-primer/js-primer")
 
 ----
 
 ## ECMAScript proposal
 
-- azu: [コラム: ECMAScript/JavaScript策定プロセス · Issue #54 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/54 "コラム: ECMAScript/JavaScript策定プロセス · Issue #54 · asciidwango/js-primer")書いた
+- azu: [コラム: ECMAScript/JavaScript策定プロセス · Issue #54 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/54 "コラム: ECMAScript/JavaScript策定プロセス · Issue #54 · js-primer/js-primer")書いた
 - azu: 章として独立させた
 - kahei: 長くなった? 
 - azu: 3-4ページ程度
     - 今は後ろの方に置くイメージで書いた。
     - クラスよりも後ろにしないと行けない依存がある
 - azu: 今はまだJavaScriptとECMAScriptの明確な区別の話はあっさりとしてやってない
-    - [introduction: JavaScriptとECMAScriptの区別について · Issue #123 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/123 "introduction: JavaScriptとECMAScriptの区別について · Issue #123 · asciidwango/js-primer")
+    - [introduction: JavaScriptとECMAScriptの区別について · Issue #123 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/123 "introduction: JavaScriptとECMAScriptの区別について · Issue #123 · js-primer/js-primer")
 - azu: このECMAScriptのコラムを合わせやるのはどうかなーと思った
 - azu: けど前半にやるにはちょっと重たいかなと思った
 - azu: ECMAScript Proposalの方は付録みたいな感じ
@@ -58,14 +58,14 @@
 ## Todoアプリについて – azu
 
 - azu: 次にTODOアプリをやろうとしてる
-- [TODOアプリ · Issue #4 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/4 "TODOアプリ · Issue #4 · asciidwango/js-primer")
+- [TODOアプリ · Issue #4 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/4 "TODOアプリ · Issue #4 · js-primer/js-primer")
 - 最近やったリファクタリング
-    - [refactor(todoapp): Viewをテンプレートベースに by azu · Pull Request #381 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/381)
-    - [js-primer/OUTLINE.md at master · asciidwango/js-primer](https://github.com/asciidwango/js-primer/blob/master/source/use-case/todoapp/OUTLINE.md)
+    - [refactor(todoapp): Viewをテンプレートベースに by azu · Pull Request #381 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/381)
+    - [js-primer/OUTLINE.md at master · js-primer/js-primer](https://github.com/js-primer/js-primer/blob/master/source/use-case/todoapp/OUTLINE.md)
 
 ### Todoアプリ足りない機能    
 
-- 機能としては 〜 [OUTLINE.md](https://github.com/asciidwango/js-primer/blob/7c573188d93b24de496b716c5483f5535f0251df/source/use-case/todoapp/OUTLINE.md) を見ながら 〜
+- 機能としては 〜 [OUTLINE.md](https://github.com/js-primer/js-primer/blob/7c573188d93b24de496b716c5483f5535f0251df/source/use-case/todoapp/OUTLINE.md) を見ながら 〜
     - TODOアイテムの追加
     - TODOアイテムの削除
     - TODOアイテムの更新(✓)
@@ -89,7 +89,7 @@
 ### Todoとイベント駆動
 
 - laco: イベントの扱い的なユースケース
-- azu: [OUTLINE.md](https://github.com/asciidwango/js-primer/blob/7c573188d93b24de496b716c5483f5535f0251df/source/use-case/todoapp/OUTLINE.md) にも書いたけどTodoはイベント駆動のサンプルっぽい
+- azu: [OUTLINE.md](https://github.com/js-primer/js-primer/blob/7c573188d93b24de496b716c5483f5535f0251df/source/use-case/todoapp/OUTLINE.md) にも書いたけどTodoはイベント駆動のサンプルっぽい
 - DOMのイベント、自作のイベント
 
 ### EventEmitter
@@ -97,11 +97,11 @@
 - azu: イベントと言えばEventEmitterを使ってる
 - laco: EventEmitterはWeakMapを使ってる?
 - azu: あれ？そういえば使ってない
-    - これクラスでも[継承のユースケース {#extends-usecase}](https://github.com/asciidwango/js-primer/blob/7c573188d93b24de496b716c5483f5535f0251df/source/basic/class/README.md#%E7%B6%99%E6%89%BF%E3%81%AE%E3%83%A6%E3%83%BC%E3%82%B9%E3%82%B1%E3%83%BC%E3%82%B9-extends-usecase "継承のユースケース {#extends-usecase}")として書いてる
+    - これクラスでも[継承のユースケース {#extends-usecase}](https://github.com/js-primer/js-primer/blob/7c573188d93b24de496b716c5483f5535f0251df/source/basic/class/README.md#%E7%B6%99%E6%89%BF%E3%81%AE%E3%83%A6%E3%83%BC%E3%82%B9%E3%82%B1%E3%83%BC%E3%82%B9-extends-usecase "継承のユースケース {#extends-usecase}")として書いてる
     - なんか複数の実装がある
-- laco: [WeakMap {#weakmap}](https://github.com/asciidwango/js-primer/tree/7c573188d93b24de496b716c5483f5535f0251df/source/basic/map-and-set "WeakMap {#weakmap}")でも何か似たようなことしてる
+- laco: [WeakMap {#weakmap}](https://github.com/js-primer/js-primer/tree/7c573188d93b24de496b716c5483f5535f0251df/source/basic/map-and-set "WeakMap {#weakmap}")でも何か似たようなことしてる
 - azu: `EventEmitter` という言葉に一貫性がない
-- => Issue: [EventEmitterの一貫性 · Issue #424 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/424 "EventEmitterの一貫性 · Issue #424 · asciidwango/js-primer")
+- => Issue: [EventEmitterの一貫性 · Issue #424 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/424 "EventEmitterの一貫性 · Issue #424 · js-primer/js-primer")
 - azu: 一貫性ある形にしないとダメそう。同じ言葉なのに実装が色々ある
 - kahei: それは確かに不親切そう
 - azu: 今の実装をまとめると
@@ -133,28 +133,28 @@
 - Todoアプリにフィルターをいれる
 - Todoアプリに最低限のスタイルを当てる
 - クラスのEventEmitterをTodoアプリの方に移動する
-    - <https://github.com/asciidwango/js-primer/issues/424>
+    - <https://github.com/js-primer/js-primer/issues/424>
 - Todoアプリのソースは最終形と断片を読み込んで書く
 
 ## Spread Operator???
 
 - azu: 「Spread演算子」をどうするか
 - [「スプレッド演算子」という表現を使わない - Qiita](https://qiita.com/hoo-chan/items/784f103e4d26747c89f0)
-- [[meta] 用語集 · Issue #231 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/231#issuecomment-333352753)
+- [[meta] 用語集 · Issue #231 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/231#issuecomment-333352753)
 - azu: 結局これ `...array` の正式名称がなくて困ってるから spread operatorとか書いてた記憶
 - azu: `...` じたいの名前はElementだけど、それと変数名とかexpressionを含めた名前ががない
 - kahei: スプレッド演算子というのはよく言われそう
 - azu: 実際には演算子ではないけど、他の呼び方が「スプレッド構文」ぐらいしかない
 - laco: spread operatorって使ってる?
     - いくつか使っているらしい
-    - https://github.com/asciidwango/js-primer/issues/420#issuecomment-375268588
-    - https://github.com/asciidwango/js-primer/issues/420#issuecomment-375268783
+    - https://github.com/js-primer/js-primer/issues/420#issuecomment-375268588
+    - https://github.com/js-primer/js-primer/issues/420#issuecomment-375268783
 - laco: [Object Rest/Spread Properties for ECMAScript](https://github.com/tc39/proposal-object-rest-spread#object-restspread-properties-for-ecmascript "Object Rest/Spread Properties for ECMAScript")
 - azu: objectのやつはspread propertyとか言ったりしてる。
     - ただし `...array` がなー
 - azu: spread 構文というしかない気がしている
 - laco: TypeScriptは言うのを諦めてる
-    - <https://github.com/asciidwango/js-primer/issues/420#issuecomment-375270007>
+    - <https://github.com/js-primer/js-primer/issues/420#issuecomment-375270007>
 - laco: 引数のは rest parameterか
 - azu: 以下に方針にする
     - 引数: `fn(...args)` : rest/spreadパラメータ
@@ -168,7 +168,7 @@
 - 引数: `fn(...args)` : restパラメータ
 - 配列/文字列: `...array` : spread 構文
 - オブジェクト: `{ ...obj }` : spreadプロパティ
-- [spread operator -> spread syntax · Issue #425 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/425 "spread operator -&gt; spread syntax · Issue #425 · asciidwango/js-primer")
+- [spread operator -> spread syntax · Issue #425 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/425 "spread operator -&gt; spread syntax · Issue #425 · js-primer/js-primer")
 
 
 ----
@@ -176,14 +176,14 @@
 ## 残りタスク – モジュール
 
 - azu: projectにまだ書く必要がある章をまとめた
-- [基本文法](https://github.com/asciidwango/js-primer/projects/1)
-- [ユースケース](https://github.com/asciidwango/js-primer/projects/3)
+- [基本文法](https://github.com/js-primer/js-primer/projects/1)
+- [ユースケース](https://github.com/js-primer/js-primer/projects/3)
 - azu: 自分は次 TODOを演る予定
-    - https://github.com/asciidwango/js-primer/issues/4
+    - https://github.com/js-primer/js-primer/issues/4
 - azu: moduleは担当きまってたけ?
-    - [モジュール(module) · Issue #329 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/329 "モジュール(module) · Issue #329 · asciidwango/js-primer")
+    - [モジュール(module) · Issue #329 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/329 "モジュール(module) · Issue #329 · js-primer/js-primer")
 - azu: 前回やることは大体決めた
-    - [js-primer/meetings/2017-12-07 at master · asciidwango/js-primer](https://github.com/asciidwango/js-primer/tree/master/meetings/2017-12-07#%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB "js-primer/meetings/2017-12-07 at master · asciidwango/js-primer")
+    - [js-primer/meetings/2017-12-07 at master · js-primer/js-primer](https://github.com/js-primer/js-primer/tree/master/meetings/2017-12-07#%E3%83%A2%E3%82%B8%E3%83%A5%E3%83%BC%E3%83%AB "js-primer/meetings/2017-12-07 at master · js-primer/js-primer")
 - azu: @laco アサインしていい?
 - laco: yes
 - azu: モジュールは `.js` を付けないといけないことにハマりそう
@@ -196,7 +196,7 @@
 
 ### 結論
 
-- laco: [モジュール(module) · Issue #329 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/329 "モジュール(module) · Issue #329 · asciidwango/js-primer")
+- laco: [モジュール(module) · Issue #329 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/329 "モジュール(module) · Issue #329 · js-primer/js-primer")
 - azu: TODOアプリでモジュールの読み込み失敗パターン
 
 
@@ -204,7 +204,7 @@
 
 ## fsとpromise
 
-- [node-cli: util.promisifyについて触れる · Issue #311 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/311 "node-cli: util.promisifyについて触れる · Issue #311 · asciidwango/js-primer")
+- [node-cli: util.promisifyについて触れる · Issue #311 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/311 "node-cli: util.promisifyについて触れる · Issue #311 · js-primer/js-primer")
 - laco: `fs.promise`の具体的な使い方がない
 - azu: マージはされたけどNode 10だっけ?
 - laco: Node 10は 5月?
@@ -222,7 +222,7 @@
 ### 結論
 
 - `fs.promise`、NodeとPromiseは必要になったら書く
-- [node-cli: util.promisifyについて触れる · Issue #311 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/311 "node-cli: util.promisifyについて触れる · Issue #311 · asciidwango/js-primer")
+- [node-cli: util.promisifyについて触れる · Issue #311 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/311 "node-cli: util.promisifyについて触れる · Issue #311 · js-primer/js-primer")
 
 
 ----
@@ -230,7 +230,7 @@
 ## privateについて
 
 - azu: privateについてまた一悶着ありそう
-- <https://github.com/asciidwango/js-primer/issues/422#issuecomment-375278092>
+- <https://github.com/js-primer/js-primer/issues/422#issuecomment-375278092>
 - azu: 完全に消した方が安全そうな気がする
 - azu: 現時点(ES2018)にはprivateはありませんと書けば嘘ではない気がする
 - kahei: たしかに
@@ -240,13 +240,13 @@
 
 - privateについてはクラスから消す
 - 現時点ではprivate修飾子のようなものはありませんと書く
-- <https://github.com/asciidwango/js-primer/issues/422#issuecomment-375278092>
+- <https://github.com/js-primer/js-primer/issues/422#issuecomment-375278092>
 
 -----
 
 ## エスケープシーケンス
 
-- [無効なエスケープシーケンスについてどこかに書けないか #372](https://github.com/asciidwango/js-primer/issues/372 "無効なエスケープシーケンスについてどこかに書けないか #372")
+- [無効なエスケープシーケンスについてどこかに書けないか #372](https://github.com/js-primer/js-primer/issues/372 "無効なエスケープシーケンスについてどこかに書けないか #372")
 - azu: 今エスケープシーケンスについて書いてたっけ?
 - `\u{}`ぐらいかな
 - laco: `\"`もエスケープシーケンスという扱いになってるらしい

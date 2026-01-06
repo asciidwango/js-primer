@@ -10,7 +10,7 @@ sponsors: []
 
 この文章は、まだ不完全な状態であるため、次のIssueを参照してください。
 
-See [はじめに/本書の目的 · Issue #103 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/103 "はじめに/本書の目的 · Issue #103 · asciidwango/js-primer")
+See [はじめに/本書の目的 · Issue #103 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/103 "はじめに/本書の目的 · Issue #103 · js-primer/js-primer")
 
 - 本書がやらないこと
     - すべての文法や機能を網羅するのが目的ではない

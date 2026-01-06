@@ -6,7 +6,7 @@
 
 ## アジェンダ
 
-- [2017-09-28ミーティングアジェンダ · Issue #299 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/299 "2017-09-28ミーティングアジェンダ · Issue #299 · asciidwango/js-primer")
+- [2017-09-28ミーティングアジェンダ · Issue #299 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/299 "2017-09-28ミーティングアジェンダ · Issue #299 · js-primer/js-primer")
 
 -----
 
@@ -14,14 +14,14 @@
 
 - @azu: netlify連携を追加した
 - PR出すとプレビューできる環境が立つようになった
-- <https://github.com/asciidwango/js-primer/pull/298#issuecomment-331711441>
+- <https://github.com/js-primer/js-primer/pull/298#issuecomment-331711441>
 
 -----
 
 ## [スコープの進捗] - @azu
 
 - @azu: スコープの進捗
-- <https://github.com/asciidwango/js-primer/issues/299#issuecomment-332694750>
+- <https://github.com/js-primer/js-primer/issues/299#issuecomment-332694750>
 - スコープ自体の説明は大体おわり
 - 後はクロージャーの解説をする
 - クロージャーの分かりやすい解説が難しい
@@ -41,7 +41,7 @@
 - @laco: 他に残っているビルトインオブジェクトは
 - – <https://jsprimer.net/> をみながら –
 - Promise、エラーハンドリング、Math/Number
-- [Math · Issue #100 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/100 "Math · Issue #100 · asciidwango/js-primer")
+- [Math · Issue #100 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/100 "Math · Issue #100 · js-primer/js-primer")
 - Mathはどうします?
 - @azu: うーん
 - @laco: Dateみたいに概要だけの説明をするとか
@@ -62,7 +62,7 @@
 ### 結論
 
 - @laco: Mathの章を各
-- [Math · Issue #100 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/100 "Math · Issue #100 · asciidwango/js-primer")
+- [Math · Issue #100 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/100 "Math · Issue #100 · js-primer/js-primer")
 
 
 -----
@@ -72,11 +72,11 @@
 - @laco: Symbolとかって単独の章になります?
 - @azu: Well-known Symbolとか触れないと章にはできないんじゃないかな
 - 正直いらない気はする
-- [Symbolの章 · Issue #290 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/290 "Symbolの章 · Issue #290 · asciidwango/js-primer")
+- [Symbolの章 · Issue #290 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/290 "Symbolの章 · Issue #290 · js-primer/js-primer")
 - @laco: 紹介してないビルトインオブジェクトをまとめる場所が欲しい
 - タイミングが難しそう
 - @azu: ビルトインオブジェクトの概要と名前をテーブルにするとか
-- <https://github.com/asciidwango/js-primer/issues/299#issuecomment-332801889>
+- <https://github.com/js-primer/js-primer/issues/299#issuecomment-332801889>
 - ECMAScriptのビルトインオブジェクト、ブラウザ、Nodeなどの環境ごとのビルトインオブジェクトをまとめるとか
 - @laco: よさそう
 - @azu: 紹介のタイミングが"オブジェクト"の章の前とか
@@ -86,23 +86,23 @@
 - @kahei: 間にappendxがあるのは聞いたことない
 - @azu: じゃあ2部の最初かな
 - 以前2部序章のIssueを建てたのでそこにまとめよう
-- [2章の序章: 環境ごとのオブジェクト · Issue #267 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/267 "2章の序章: 環境ごとのオブジェクト · Issue #267 · asciidwango/js-primer")
+- [2章の序章: 環境ごとのオブジェクト · Issue #267 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/267 "2章の序章: 環境ごとのオブジェクト · Issue #267 · js-primer/js-primer")
 - @azu: 自分のアサインする
 - ここにAtomics、Math, Symbol, Proxy, Reflect、TypedArrayとかの概要を入れる
 
 
 ### 結論
 
-- [2章の序章: 環境ごとのオブジェクト · Issue #267 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/267 "2章の序章: 環境ごとのオブジェクト · Issue #267 · asciidwango/js-primer")
+- [2章の序章: 環境ごとのオブジェクト · Issue #267 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/267 "2章の序章: 環境ごとのオブジェクト · Issue #267 · js-primer/js-primer")
 - ここで基本文法では紹介しなかったビルトインオブジェクトや環境ごとの違いについてを書く
 - @azu 担当
 
 -----
 
-## [Lint/非推奨の章 · Issue #142](https://github.com/asciidwango/js-primer/issues/142 "Lint/非推奨の章 · Issue #142 · asciidwango/js-primer")
+## [Lint/非推奨の章 · Issue #142](https://github.com/js-primer/js-primer/issues/142 "Lint/非推奨の章 · Issue #142 · js-primer/js-primer")
 
 - @azu: やっぱり初心者ほどコーディングスタイルとか文化的なものがよくわからない問題がある
-- [Lint/非推奨の章 · Issue #142 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/142 "Lint/非推奨の章 · Issue #142 · asciidwango/js-primer")はやっぱり必要な気がする
+- [Lint/非推奨の章 · Issue #142 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/142 "Lint/非推奨の章 · Issue #142 · js-primer/js-primer")はやっぱり必要な気がする
 - コーディングとかの環境
 - @kahei: プログラミング環境の章
 - @laco : Lintとか

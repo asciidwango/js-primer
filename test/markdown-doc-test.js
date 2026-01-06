@@ -52,7 +52,7 @@ const IgnoredECMAScriptVersions = (() => {
  * AssertionError(doctestにおける失敗)以外は成功したことにして無視する
  *
  * `console.log(式); // => 結果` の書式で書かれているをチェックする
- * https://github.com/asciidwango/js-primer/issues/195
+ * https://github.com/js-primer/js-primer/issues/195
  *
  * その他詳細は CONTRIBUTING.md を読む
  **/

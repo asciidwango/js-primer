@@ -21,7 +21,7 @@ export default [{
         // サンプルコードで console を使うことがあるため
         "no-console": "off",
         // 名前の分かりやすさのために制限する
-        // 詳細: https://github.com/asciidwango/js-primer/issues/804
+        // 詳細: https://github.com/js-primer/js-primer/issues/804
         "id-blacklist": ["error", "string", "number", "object", "boolean", "symbol"],
 
         indent: ["error", 4, {

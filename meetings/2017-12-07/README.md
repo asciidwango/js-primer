@@ -7,12 +7,12 @@
 
 ## アジェンダ
 
-- [2017-12-07のミーティングアジェンダ · Issue #328 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/328 "2017-12-07のミーティングアジェンダ · Issue #328 · asciidwango/js-primer")
+- [2017-12-07のミーティングアジェンダ · Issue #328 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/328 "2017-12-07のミーティングアジェンダ · Issue #328 · js-primer/js-primer")
 
 ## `this`の章 - azu
 
-- [[WIP] 関数とthis by azu · Pull Request #324 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/324)
-- [関数とthis · Issue #316 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/316)
+- [[WIP] 関数とthis by azu · Pull Request #324 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/324)
+- [関数とthis · Issue #316 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/316)
 - @azu: thisについて書いている
 - メソッドではない関数の`this`はやたら複雑でバグ多い
 - ChromeもModule Context + Arrow Functionでバグってる
@@ -40,8 +40,8 @@
 
 ### 結論
 
-- [[WIP] 関数とthis by azu · Pull Request #324 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/324)
-- [関数とthis · Issue #316 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/316)
+- [[WIP] 関数とthis by azu · Pull Request #324 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/324)
+- [関数とthis · Issue #316 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/316)
 - メソッドに絞った内容にする
 - this -> クラスの順
 
@@ -70,7 +70,7 @@
 
 ## Iterator、Generator、Well-Known Symbols
 
-<https://github.com/asciidwango/js-primer/blob/master/source/README.md>を見ながら
+<https://github.com/js-primer/js-primer/blob/master/source/README.md>を見ながら
 
 - @laco: クラス、プロミス、TODO(ユースケース)
 - @laco: 残りはIteratorとGeneratorか
@@ -109,7 +109,7 @@
 
 ### 結論
 
-- [Bad Partsの章 · Issue #142 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/142#issuecomment-348702858 "Bad Partsの章 · Issue #142 · asciidwango/js-primer")
+- [Bad Partsの章 · Issue #142 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/142#issuecomment-348702858 "Bad Partsの章 · Issue #142 · js-primer/js-primer")
 
 ----
 
@@ -137,7 +137,7 @@
 - 読んでいってIssueを拾っていく感じ?
 - @azu: そんな感じかも?
 - 後は環境の章か
-- [2章の序章: 環境ごとのオブジェクト · Issue #267 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/267 "2章の序章: 環境ごとのオブジェクト · Issue #267 · asciidwango/js-primer")
+- [2章の序章: 環境ごとのオブジェクト · Issue #267 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/267 "2章の序章: 環境ごとのオブジェクト · Issue #267 · js-primer/js-primer")
 
 ----
 
@@ -185,7 +185,7 @@ export default
 
 ### 結論
 
-- [モジュール · Issue #329 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/329 "モジュール · Issue #329 · asciidwango/js-primer")
+- [モジュール · Issue #329 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/329 "モジュール · Issue #329 · js-primer/js-primer")
 - モジュールはユースケースで使うものを中心に説明
 - ユースケースの章で混ぜてススメていく
 

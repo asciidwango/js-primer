@@ -8,7 +8,7 @@
 
 ## ミーティングアジェンダ
 
-- [2019-08-05のミーティングアジェンダ · Issue #924 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/924)
+- [2019-08-05のミーティングアジェンダ · Issue #924 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/924)
 
 ---
 
@@ -18,7 +18,7 @@
 - azu: まとめとかの追加とか、エラー文の合わせとか
 - azu: Todoはあんまり直すところがないので一通りという感じ
 - azu: ユースケース読んでいてDiffと理解のための説明のためのコードの区別がつかないという問題がみえたきた
-    - https://github.com/asciidwango/js-primer/pull/919
+    - https://github.com/js-primer/js-primer/pull/919
 - azu: 説明のためのコードなのか、アプリケーションのためのコードなのか
 - azu: この辺を区別するいい感じの方法が欲しい
 - laco: `title:`記法って最初からありましたっけ?
@@ -43,7 +43,7 @@
 - ユースケースのソースコードのタイトル記法を統一する
 - 断片には"〜の抜粋"とつける
 - サンプルコードにはサンプルとわかるタイトル or なにもつけない
-- https://github.com/asciidwango/js-primer/issues/927
+- https://github.com/js-primer/js-primer/issues/927
 
 ----
 
@@ -63,7 +63,7 @@
 - azu: そのままだとslice(2)になるので
 - azu: `--bar <text>` の例がなくなるな
 - azu: sanitizeが廃止になるなら別のオプションを入れるとか?
-    - https://github.com/asciidwango/js-primer/issues/918
+    - https://github.com/js-primer/js-primer/issues/918
 - azu: https://marked.js.org/#/USING_ADVANCED.md#options 別のだと〜
 - azu: headingIdsPrefixとか?
 - laco: 真偽値もありかな
@@ -93,14 +93,14 @@
 ### 結論
 
 - Node CLIの流れを書き直す
-- @laco https://github.com/asciidwango/js-primer/issues/928
+- @laco https://github.com/js-primer/js-primer/issues/928
 
 ----
 
 ## bundler
 
 - azu: moduleは後bundlerとまとめ?
-- https://github.com/asciidwango/js-primer/issues/644
+- https://github.com/js-primer/js-primer/issues/644
 - azu: bundlerってどんなんだっけ?
 - azu: 参考リンク集にtranspilerはないんだ
 - laco: transpiler, compiler?
@@ -113,14 +113,14 @@
 ### 結論
 
 - 参考リンク集にtranspilerとbundler足す
-- https://github.com/asciidwango/js-primer/issues/644
+- https://github.com/js-primer/js-primer/issues/644
 
 ---
 
 ## サブタイトル
 
 - azu: あとはサブタイトル?
-- https://github.com/asciidwango/js-primer/issues/865
+- https://github.com/js-primer/js-primer/issues/865
 - kahei: 次回で大体直す所はなくなる感じですかね?
 - kahei: サブタイトルはなしでも
 - azu: サブタイトルはどっちでもよくて、帯?あたりに書いてアレばいいかな

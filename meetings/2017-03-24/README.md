@@ -6,14 +6,14 @@
              
 ## アジェンダ
 
-- [2017-03-24 ミーティングアジェンダ · Issue #209 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/209 "2017-03-24 ミーティング · Issue #209 · asciidwango/js-primer")
+- [2017-03-24 ミーティングアジェンダ · Issue #209 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/209 "2017-03-24 ミーティング · Issue #209 · js-primer/js-primer")
 
 ## StringのTagged Template Literalのサンプルどうするか
 
 - @azu: Tagged Template Literalのサンプルをどうするか
 - 引数が特殊すぎるのであんまり詳しくは説明したくない
 - こういうパターンでタグ関数を書くことができるよということだけにしたい
-- 既に[use-case/ajaxapp/display](https://github.com/asciidwango/js-primer/blob/master/source/use-case/ajaxapp/display/README.md "use-case/ajaxapp/display")で使っている
+- 既に[use-case/ajaxapp/display](https://github.com/js-primer/js-primer/blob/master/source/use-case/ajaxapp/display/README.md "use-case/ajaxapp/display")で使っている
     - ここではTagged Template Literalの細かい解説はしてない
 - そのため基本文法で解説が必要
 - いくつか候補をだしたけど、エスケープ?
@@ -34,16 +34,16 @@ path`/tags/${tagName}`
 - ajaxのAPI叩くパスでもでてきてたかも
 - それの布石的なのでよさそうかも
 - https://jsprimer.net/use-case/ajaxapp/promise/
-- 後、[use-case/ajaxapp/display](https://github.com/asciidwango/js-primer/blob/master/source/use-case/ajaxapp/display/README.md "use-case/ajaxapp/display")の方も書き方を揃えたい
+- 後、[use-case/ajaxapp/display](https://github.com/js-primer/js-primer/blob/master/source/use-case/ajaxapp/display/README.md "use-case/ajaxapp/display")の方も書き方を揃えたい
 - Array#reduceがまさにこれにマッチした使い方
 - `strings`が空配列にならないから`Arrry#reduce`で例外にならなくてすごい
 
 ### 結論
 
 - URLのパスをエスケープするタグ関数を例にしてみる
-- [use-case/ajaxapp/display](https://github.com/asciidwango/js-primer/blob/master/source/use-case/ajaxapp/display/README.md "use-case/ajaxapp/display")の方も書き方を揃えたい
+- [use-case/ajaxapp/display](https://github.com/js-primer/js-primer/blob/master/source/use-case/ajaxapp/display/README.md "use-case/ajaxapp/display")の方も書き方を揃えたい
 - Stringの章が終わったら揃える
-- => [String + ajaxapp: tagged template literalの書き方を揃える · Issue #214 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/214 "String + ajaxapp: tagged template literalの書き方を揃える · Issue #214 · asciidwango/js-primer")
+- => [String + ajaxapp: tagged template literalの書き方を揃える · Issue #214 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/214 "String + ajaxapp: tagged template literalの書き方を揃える · Issue #214 · js-primer/js-primer")
 
 ```js
 function escapeHTML(strings, ...values) {
@@ -57,7 +57,7 @@ function escapeHTML(strings, ...values) {
 
 - @azu: `評価式; // => 評価結果` という構文を使ってる
 - `console.log(評価式); // => 評価結果` というパターンもある
-- [console.logと// => の使い分け · Issue #195 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/195 "console.logと// =&gt; の使い分け · Issue #195 · asciidwango/js-primer")
+- [console.logと// => の使い分け · Issue #195 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/195 "console.logと// =&gt; の使い分け · Issue #195 · js-primer/js-primer")
 - できれば揃えたい
 - ウェブだとあった方が便利。だけど書籍だと邪魔な可能性もある
 - @kahei: 場合によって使い分けでもいいのでは
@@ -97,7 +97,7 @@ undefined
 ### 結論
 
 - コメントのところに評価コメントの書式についてをちゃんと説明を書く
-    - [comment: => についてを説明する · Issue #215 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/215 "comment: =&gt; についてを説明する · Issue #215 · asciidwango/js-primer")
+    - [comment: => についてを説明する · Issue #215 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/215 "comment: =&gt; についてを説明する · Issue #215 · js-primer/js-primer")
 - 不要なところについてはconsole.logは省いても良い
     - 場合によって使いわけ
     - 明確な使い分けは見えず
@@ -106,20 +106,20 @@ undefined
 ## ラベルの管理方法について
 
 - @azu: ラベルを色々追加した
-- [Labels · asciidwango/js-primer](https://github.com/asciidwango/js-primer/labels "Labels · asciidwango/js-primer")
+- [Labels · js-primer/js-primer](https://github.com/js-primer/js-primer/labels "Labels · js-primer/js-primer")
 - 自分しかつけてないので気にしなくていいけど
 - 議論で方針が決まったIssueは`Status: Ready for PR`をつけるか閉じるかしていきたい。
-- [Status: Ready for PR](https://github.com/asciidwango/js-primer/labels/Status%3A%20Ready%20for%20PR "Issues · asciidwango/js-primer")
+- [Status: Ready for PR](https://github.com/js-primer/js-primer/labels/Status%3A%20Ready%20for%20PR "Issues · js-primer/js-primer")
 
 ### 結論
 
-- 結論が出たものは[Status: Ready for PR](https://github.com/asciidwango/js-primer/labels/Status%3A%20Ready%20for%20PR "Issues · asciidwango/js-primer")を付ける
+- 結論が出たものは[Status: Ready for PR](https://github.com/js-primer/js-primer/labels/Status%3A%20Ready%20for%20PR "Issues · js-primer/js-primer")を付ける
 - コミットができてPRがでたら閉じる
 
 ## console.error の使い方について
 
 - @laco: `console.error`に何を渡すか
-- https://github.com/asciidwango/js-primer/pull/202/files/246a42967bfa5dc4f6724639927ae1bbe313504e#diff-e17432ce26c5c47f53bf2a852cf2f57a
+- https://github.com/js-primer/js-primer/pull/202/files/246a42967bfa5dc4f6724639927ae1bbe313504e#diff-e17432ce26c5c47f53bf2a852cf2f57a
 - @azu: Node.jsに公式な方法ってある?
 - @laco: わからない
 - @azu: Nodeも最近のブラウザなら`error`オブジェクトをちゃんと出してくれる感じがする
@@ -132,11 +132,11 @@ undefined
 ### 結論
 
 - `console.error(error)` に統一
-- [console.errorの使い方を統一する · Issue #216 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/216 "console.errorの使い方を統一する · Issue #216 · asciidwango/js-primer")
+- [console.errorの使い方を統一する · Issue #216 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/216 "console.errorの使い方を統一する · Issue #216 · js-primer/js-primer")
 
 ## string: 「文字列」「部分文字列」「検索文字列」 使い分け
 
-- @azu: [string: 「文字列」「部分文字列」「検索文字列」 · Issue #208 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/208 "string: 「文字列」「部分文字列」「検索文字列」 · Issue #208 · asciidwango/js-primer")
+- @azu: [string: 「文字列」「部分文字列」「検索文字列」 · Issue #208 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/208 "string: 「文字列」「部分文字列」「検索文字列」 · Issue #208 · js-primer/js-primer")
 - `"文字列".indexOf("部分文字列")` がなんか気持ち悪い
 - どうやって書くのが良いのだろうか?
 - @kahei: 先人たちはあんまりきにしてなさそう。
@@ -158,7 +158,7 @@ undefined
 - @laco: 目次で被ってるものとか既に解決してるやつがありそう
 - @azu: なるほど。整理必要そう
 - 半分ぐらいという感じっぽい
-- [目次を整理する · Issue #217 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/217 "目次を整理する · Issue #217 · asciidwango/js-primer")
+- [目次を整理する · Issue #217 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/217 "目次を整理する · Issue #217 · js-primer/js-primer")
 - @laco: cliが終わったらビルトインオブジェクトあたりにてをつけるかも
 - @azu: JSONは必須。Dateはいらないかも…
 - MapとSetは欲しい感じがする
@@ -169,7 +169,7 @@ undefined
 
 ### 結論
 
-- [目次を整理する · Issue #217 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/217 "目次を整理する · Issue #217 · asciidwango/js-primer")
+- [目次を整理する · Issue #217 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/217 "目次を整理する · Issue #217 · js-primer/js-primer")
 - Assign @laco to JSON
 
 ## 新しい本

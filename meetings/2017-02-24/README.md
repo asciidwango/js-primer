@@ -6,13 +6,13 @@
              
 ## アジェンダ
 
-- [2017-02-24 ミーティングアジェンダ · Issue #191 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/191 "2017-02-24 ミーティングアジェンダ · Issue #191 · asciidwango/js-primer")
+- [2017-02-24 ミーティングアジェンダ · Issue #191 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/191 "2017-02-24 ミーティングアジェンダ · Issue #191 · js-primer/js-primer")
 
 ## String
 
-- @azu: [String #121](https://github.com/asciidwango/js-primer/issues/121 "String #121")の難所は書けた
-    - [feat(string): 文字列の長さ by azu · Pull Request #190 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/190)
-    - [feat(string): 文字列と文字とCode PointとCode Unitについて by azu · Pull Request #188 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/188)
+- @azu: [String #121](https://github.com/js-primer/js-primer/issues/121 "String #121")の難所は書けた
+    - [feat(string): 文字列の長さ by azu · Pull Request #190 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/190)
+    - [feat(string): 文字列と文字とCode PointとCode Unitについて by azu · Pull Request #188 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/188)
 - 後は書いていくだけ
 
 ## ファイルI/O周りの用語 読み書きとI/Oの使い分け
@@ -114,7 +114,7 @@ or
 ## Node.jsの動かないサンプル
 
 - @laco: Node.jsのfsのサンプル 実際にファイルがないと動かない.
-- https://github.com/asciidwango/js-primer/blob/master/test/markdown-doc-test.js のテストが落ちる
+- https://github.com/js-primer/js-primer/blob/master/test/markdown-doc-test.js のテストが落ちる
 - @azu: globでファイル指定してるから除外をしてしまうとか?
 - コードブロックを `node` にするとか回避方法がありそう
 - @laco: `node`はGitBookだと効かないっぽい

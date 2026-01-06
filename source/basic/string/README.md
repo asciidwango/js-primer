@@ -539,7 +539,7 @@ console.log(str.includes("いる")); // => true
 
 ## 正規表現オブジェクト {#regexp-object}
 
-<!-- パターンと正規表現オブジェクトの用語については https://github.com/asciidwango/js-primer/issues/21#issuecomment-293502813 -->
+<!-- パターンと正規表現オブジェクトの用語については https://github.com/js-primer/js-primer/issues/21#issuecomment-293502813 -->
 
 文字列による検索では、固定の文字列にマッチするものしか検索できません。
 一方で正規表現による検索では、あるパターン（規則性）にマッチするという柔軟な検索ができます。

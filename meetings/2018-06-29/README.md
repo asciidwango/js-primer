@@ -6,7 +6,7 @@
 
 ## アジェンダ
 
-- [2018-06-29: ミーティングアジェンダ · Issue #492 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/492)
+- [2018-06-29: ミーティングアジェンダ · Issue #492 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/492)
 
 ----
 
@@ -21,7 +21,7 @@
 - ソフトウェア的にはブラウザだけでいい
 - @kahei: エディタはコラム的なのでもいいのでは
 - @azu: あと実行環境の方も迷ってる
-- <https://github.com/asciidwango/js-primer/issues/85#issuecomment-399644697>
+- <https://github.com/js-primer/js-primer/issues/85#issuecomment-399644697>
 - Firefoxのスクラッチパッドはコンソールの結果が一緒にでてこない
 - なので微妙な使いにくさがある
 - 他
@@ -49,7 +49,7 @@
 
 ### 結論
 
-- [read-eval-print: コンソールの開き方について · Issue #85 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/85)で次の内容を書く
+- [read-eval-print: コンソールの開き方について · Issue #85 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/85)で次の内容を書く
     - index.html + コンソール 
         - index.htmlにscriptタグを書いて、コンソール実行。リロード方式
         - script のtypeなしで書く 
@@ -64,14 +64,14 @@
 
 - @azu: Todoアプリは一通りかけた
 - 後はローカルサーバのところをどうするか
-- [ `npx @js-primer/local-server` #462 ](https://github.com/asciidwango/js-primer/issues/462)の紹介自体は2章の最初で行うであってる?
+- [ `npx @js-primer/local-server` #462 ](https://github.com/js-primer/js-primer/issues/462)の紹介自体は2章の最初で行うであってる?
 - Todoアプリ側はその章を参照するという形
 - @laco: それであってそう
 - ajaxもそこの章を参照する
 
 ### 結論
 
-- [ `npx @js-primer/local-server` #462 ](https://github.com/asciidwango/js-primer/issues/462)でのローカルサーバについては[ 2章の序章: 環境ごとのオブジェクト #267 ](https://github.com/asciidwango/js-primer/issues/267)に書く
+- [ `npx @js-primer/local-server` #462 ](https://github.com/js-primer/js-primer/issues/462)でのローカルサーバについては[ 2章の序章: 環境ごとのオブジェクト #267 ](https://github.com/js-primer/js-primer/issues/267)に書く
 - Todoアプリとajaxはこの章を参照する(ローカルサーバの立て方や意味について)
 
 ----
@@ -79,9 +79,9 @@
 ## イベントの用語統一 - azu
 
 
-- @azu: 前回の[2018-05-17: ミーティング](https://github.com/asciidwango/js-primer/issues/454)でイベント用語の統一案をだした。
+- @azu: 前回の[2018-05-17: ミーティング](https://github.com/js-primer/js-primer/issues/454)でイベント用語の統一案をだした。
 - 実際にやってみた。
-- [refactor: イベントの用語の整理 by azu · Pull Request #488 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/488)
+- [refactor: イベントの用語の整理 by azu · Pull Request #488 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/488)
 - イベントハンドラとイベントリスナーの用語の問題がでてきた
 - 感覚的には使い分けるけど、意味の違いは区別しないよという話をしたい
 - @laco: 最初にイベントリスナーの説明をしてるのはどこだっけ
@@ -96,7 +96,7 @@
 ### 結論
 
 - assign: @azu
-- [用語: イベントを~する · Issue #455 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/455)
+- [用語: イベントを~する · Issue #455 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/455)
 - イベントハンドラは イベントリスナーに 統一する  #488
 - イベントリスナーは イベントハンドラーともよばれることがありますが、この書籍では区別しませんと入れる
 - prh統一する辞書を入れる
@@ -118,7 +118,7 @@
 ## moduleの進捗 #329 #505 - laco
 
 - @laco: モジュールを書いてる
-- [ WIP feat(usecase): モジュール #505 ](https://github.com/asciidwango/js-primer/pull/505)
+- [ WIP feat(usecase): モジュール #505 ](https://github.com/js-primer/js-primer/pull/505)
 -  構文は大体できて、ファイルシステムとかbundlerとかの話をどうするかが悩む
 - 構文だけなら基本文法の方に移すべき?
 - @azu: でも先に文法だけだと動かし確認があったほうがよさそう
@@ -137,7 +137,7 @@
 - 大体逆になっている
 - @laco: Node.jsとCommonJSは nodecliで使う範囲の最小限に留めるでよさそう
 - @azu: 動かし方はそこで説明するなら
-- 最初の index.html [read-eval-print: コンソールの開き方について · Issue #85 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/85) は `type=module` なしでいい?
+- 最初の index.html [read-eval-print: コンソールの開き方について · Issue #85 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/85) は `type=module` なしでいい?
 - @laco: よさそう
 
 ### 結論
@@ -178,14 +178,14 @@
 - あんまり盛り上がらなかった
 - 統合するのが良さそう
 - @azu: 今のバッドパーツは各章のコラムに移動させる
-- [Bad Partsの章 · Issue #142 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/142)はなくす
+- [Bad Partsの章 · Issue #142 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/142)はなくす
 
 ### 結論
 
 
 - 次に何をするべきかというリンク集を作る
-- [ 次に何をするか: 参考リンク集 #510 ](https://github.com/asciidwango/js-primer/issues/510)
-- [Bad Partsの章 · Issue #142 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/142)はやめて、各章のコラムに移動させる
+- [ 次に何をするか: 参考リンク集 #510 ](https://github.com/js-primer/js-primer/issues/510)
+- [Bad Partsの章 · Issue #142 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/142)はやめて、各章のコラムに移動させる
 
 ----
 
@@ -205,7 +205,7 @@
 
 ## その他
 
-- @azu: [ GitBookでファイル名を表示 #241 ](https://github.com/asciidwango/js-primer/issues/241) これやる
+- @azu: [ GitBookでファイル名を表示 #241 ](https://github.com/js-primer/js-primer/issues/241) これやる
 - `[import, title:"filename.js"](path) `でファイル名でるようにする
 - `title`必要なら入れておいて。moduleとか
 - @laco: OK

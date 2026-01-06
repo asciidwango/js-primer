@@ -8,7 +8,7 @@
 
 ## アジェンダ
 
-- [2016-11-30 ミーティングアジェンダ · Issue #169 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/169 "2016-11-30 ミーティングアジェンダ · Issue #169 · asciidwango/js-primer")
+- [2016-11-30 ミーティングアジェンダ · Issue #169 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/169 "2016-11-30 ミーティングアジェンダ · Issue #169 · js-primer/js-primer")
 
 ## 進捗
 
@@ -23,7 +23,7 @@ function foo() {
 
 - @laco: 上にみたいな自動セミコロン挿入による問題って触れてる?
 - @azu: 文はセミコロンをつけろという話しか書いてない
-- 書くなら、コラム的な位置か[Lint/非推奨の章](https://github.com/asciidwango/js-primer/issues/142 "Lint/非推奨の章")?
+- 書くなら、コラム的な位置か[Lint/非推奨の章](https://github.com/js-primer/js-primer/issues/142 "Lint/非推奨の章")?
 - 改行で自動セミコロンが入る問題は、関数を出さないとできない。
 - セミコロンは[文と式](https://jsprimer.net/basic/statement-expression/ "文と式 · JavaScriptの入門書 #jsprimer")の段階で出てくるので、まだ関数がでてきてない場所。
 - なのでコラムはちょっと厳しそうな気がする
@@ -58,7 +58,7 @@ or
 
 ## 章内リンク
 
-- @azu: [ヘッダーにリンク用の id を振る機能がGitBookにあるので指定していきたい](https://github.com/asciidwango/js-primer/issues/169#issuecomment-263162949 "ヘッダーにリンク用の id を振る機能がGitBookにあるので指定していきたい。")
+- @azu: [ヘッダーにリンク用の id を振る機能がGitBookにあるので指定していきたい](https://github.com/js-primer/js-primer/issues/169#issuecomment-263162949 "ヘッダーにリンク用の id を振る機能がGitBookにあるので指定していきたい。")
 - `# タイトル {#id-id}` でセクション内にもidを振ることができる
 - プラグインはちゃんと確認してないけど、GitHubみたいなanchorも付けられそう
 - 多分自動的に抜けもチェックできるようにするはず
@@ -69,9 +69,9 @@ or
 
 -----
 
-## [Node.jsのインストール](https://github.com/asciidwango/js-primer/issues/169#issuecomment-263191630 "Node.jsのインストール")
+## [Node.jsのインストール](https://github.com/js-primer/js-primer/issues/169#issuecomment-263191630 "Node.jsのインストール")
 
-- @laco: Node.jsのインストールは[#162](https://github.com/asciidwango/js-primer/pull/162)で十分?
+- @laco: Node.jsのインストールは[#162](https://github.com/js-primer/js-primer/pull/162)で十分?
 - 公式に丁寧なインストールガイドがあればな…
 - Macだとインストーラーじゃんくてnvmとかnodebrewなどのバージョン管理ツールを使うだろうし…
 - 検索中
@@ -93,7 +93,7 @@ or
 
 ![objects](https://cloud.githubusercontent.com/assets/19714/20735513/ec5a1012-b6e3-11e6-9c5b-4ce5e609c18a.png)
 
-- @azu: [#126](https://github.com/asciidwango/js-primer/issues/126) を書いていて、objectオブジェクトなのか、Objectインスタンスなのかとかその辺の用語が気になってきた
+- @azu: [#126](https://github.com/js-primer/js-primer/issues/126) を書いていて、objectオブジェクトなのか、Objectインスタンスなのかとかその辺の用語が気になってきた
 - すべてオブジェクトなのは正しいけど、用語がごちゃごちゃ分かりにくい
 - `Object`オブジェクトと`object`オブジェクトとなってしまう
 - @laco: `Object`はObjectコンストラクタで良いような気がする
@@ -125,9 +125,9 @@ or
 
 ---
 
-## [OUTLINE.md](https://github.com/asciidwango/js-primer/blob/master/source/OUTLINE.md)
+## [OUTLINE.md](https://github.com/js-primer/js-primer/blob/master/source/OUTLINE.md)
 
-- @azu: 一枚の[OUTLINE.md](https://github.com/asciidwango/js-primer/blob/master/source/OUTLINE.md)にアウトラインをだーと書いてる
+- @azu: 一枚の[OUTLINE.md](https://github.com/js-primer/js-primer/blob/master/source/OUTLINE.md)にアウトラインをだーと書いてる
 - どこで何がでてきて、何が出てきてないのかを整理する方法が必要になった
 - 一元管理する的な意図や使ってないものを明記するためのもの
 - 本文の流れを反映し続けるメンテコストがあるけど、しょうがない感じ

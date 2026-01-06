@@ -27,7 +27,7 @@
 - どのようなライブラリが登場するだろうか?
     - ライブラリは流行り廃れがあるため必然性があるライブラリ
 - vvakme: moment.jsのような日付処理のライブラリは必然的にでてくるのではないか
-- [TODOアプリ](https://github.com/asciidwango/ES6book/issues/4 "TODOアプリ")以外にどのようなユースケースがあるか?
+- [TODOアプリ](https://github.com/js-primer/js-primer/issues/4 "TODOアプリ")以外にどのようなユースケースがあるか?
 - azu: Node.jsのCLIアプリとか
     - ライブラリを扱うなら必然的にNode.js/npmがツールとして登場する
     - なのでNode.jsを使った何かを作るというのは学ぶ上のステップとして必要になりそう

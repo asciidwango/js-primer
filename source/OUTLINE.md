@@ -365,7 +365,7 @@ array = [10,2,3,0];
 - instanceof
 	- instanceofは同一性に近いチェック
 - プリミティブと参照型について
-	- [data-type: プリミティブと参照型についてを追加する · Issue #145 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/145 "data-type: プリミティブと参照型についてを追加する · Issue #145 · asciidwango/js-primer")
+	- [data-type: プリミティブと参照型についてを追加する · Issue #145 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/145 "data-type: プリミティブと参照型についてを追加する · Issue #145 · js-primer/js-primer")
 	- 値自体の特性 @done
 		- プリミティブ型はImmutable
 		- オブジェクトはMutable
@@ -476,7 +476,7 @@ console.log(array.slice(4, 1)); // => []
 関数の宣言については[関数と宣言 · JavaScriptの入門書 #jsprimer](https://jsprimer.net/basic/function-method/ "関数と宣言 · JavaScriptの入門書 #jsprimer")で紹介している。
 宣言は単なるシンタックスなので、関数の機能や挙動についてを目的にした章。
 
-- [[meta] function/関数 · Issue #112 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/112 "[meta] function/関数 · Issue #112 · asciidwango/js-primer")
+- [[meta] function/関数 · Issue #112 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/112 "[meta] function/関数 · Issue #112 · js-primer/js-primer")
 - [関数の役割](https://github.com/bpesquet/thejsway/blob/master/manuscript/chapter05.md#introduction-the-role-of-functions)
 
 

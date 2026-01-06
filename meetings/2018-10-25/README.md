@@ -9,7 +9,7 @@
 
 ## ミーティングアジェンダ
 
-- [2018年10月25日 ミーティングアジェンダ · Issue #537 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/537)
+- [2018年10月25日 ミーティングアジェンダ · Issue #537 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/537)
 
 -----
 
@@ -40,9 +40,9 @@
 ## 残り
 
 - azu: 残っているプロジェクト
-- [基本文法](https://github.com/asciidwango/js-primer/projects/1 "基本文法")
-- [ユースケース](https://github.com/asciidwango/js-primer/projects/3 "ユースケース")
-- 基本文法は- [ feat(other-parts): その他の高度なAPI #549 ](https://github.com/asciidwango/js-primer/pull/549)を入れると大体終わり
+- [基本文法](https://github.com/js-primer/js-primer/projects/1 "基本文法")
+- [ユースケース](https://github.com/js-primer/js-primer/projects/3 "ユースケース")
+- 基本文法は- [ feat(other-parts): その他の高度なAPI #549 ](https://github.com/js-primer/js-primer/pull/549)を入れると大体終わり
 - あとはリファクタリングや最初の導入だけ
 - azu: ユースケースはNode.jsのインストール?
 - laco:  Node.js実行環境のセクション、ラフに書いたけどどこを掘り進めるべきかわからなくて止まってます
@@ -110,8 +110,8 @@
 ### 結論
 
 - 章のバランスを分析する => 必要なら章を並び替え、リファクタリング
-- [章間の依存関係を分析する · Issue #555 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/555 "章間の依存関係を分析する · Issue #555 · asciidwango/js-primer")
-- [章ごとのページ量を可視化する · Issue #554 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/554 "章ごとのページ量を可視化する · Issue #554 · asciidwango/js-primer")
+- [章間の依存関係を分析する · Issue #555 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/555 "章間の依存関係を分析する · Issue #555 · js-primer/js-primer")
+- [章ごとのページ量を可視化する · Issue #554 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/554 "章ごとのページ量を可視化する · Issue #554 · js-primer/js-primer")
 
 ----
 

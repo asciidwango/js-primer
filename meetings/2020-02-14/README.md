@@ -8,13 +8,13 @@
 
 ## ミーティングアジェンダ
 
-- [2020-02-14 ミーティングアジェンダ · Issue #1073 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1073)
+- [2020-02-14 ミーティングアジェンダ · Issue #1073 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1073)
 
 ----
 
 ## レイアウトの確認
 
-- [書籍用レイアウト/著者校正用PDF · Issue #1070 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1070)
+- [書籍用レイアウト/著者校正用PDF · Issue #1070 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1070)
 - kahei: レイアウトの確認について
 - kahei: ES2015のラベルはこんな感じはどうですかね?
 - azu: もうちょっと枠になって幅とっていいかもしれない
@@ -52,14 +52,14 @@
 - kahei: 毎回コラムって出ちゃうので
 - azu: 文中に"コラム"って書いてたっけ?
 - azu: 一箇所だけあった。これ修正すれば大丈夫そうです
-- [コラムという言葉を文中に使わないようにする · Issue #1076 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1076)
+- [コラムという言葉を文中に使わないようにする · Issue #1076 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1076)
 - kahei: あとは[はじめに · JavaScript Primer #jsprimer](https://jsprimer.net/intro/)はどうします?
 - kahei: これ書き直します?
 - azu: 見た感じそのままでも大体は良さそうな気がしますね。
 - azu: 本書の目的ではないこと はちょっと冗長ではあるけど
 - laco: js primerらしさはある
 - azu: 前回ここに未来のECMAScriptについては触れてないという話をいれるというのをいったぐらいですね
-- [はじめに: 未来(ES.next)についても書いていないことを書く · Issue #1029 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1029)
+- [はじめに: 未来(ES.next)についても書いていないことを書く · Issue #1029 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1029)
 - azu: きほんてきにはこれぐらいかな。
 - azu: セクションはこれでたります? 本書の目的 、目的ではないこと ...
 - azu: ライセンスのあとに修正方法の話?かも
@@ -70,7 +70,7 @@
 - azu: これははじめにの最後ですかね?
 - kahei: はじめに -> 文章の間違いに気づいたら -> 著者紹介 なのでどこにいれるかですね
 - azu: はじめに -> 文章の間違いに気づいたら -> 謝辞 -> 著者紹介ですかね
-- [はじめに: 謝辞 · Issue #1075 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1075)
+- [はじめに: 謝辞 · Issue #1075 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1075)
 - azu: レビューアーとコントリビューターに対する謝辞を書く
 - azu: セクションタイトルは"謝辞"
 - laco: 他の書籍も謝辞ぽい
@@ -80,7 +80,7 @@
 - kahei: 画面の解像度を下げてとるというテクニックがありますね
 - azu: 1024 x 640までさげられるっぽい
 - laco: 解像度を下げて撮影ですかね
-- [Firefoxのスクショを更新する · Issue #1028 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1028)
+- [Firefoxのスクショを更新する · Issue #1028 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1028)
 
 ## サブタイトル 
 
@@ -105,7 +105,7 @@
 - azu: 「迷う」の対義語ってなんだろ
 - azu: 「悟る」
 - kahei: それ開眼ですね…
-- laco: イメージ図 https://github.com/asciidwango/js-primer/issues/1073#issuecomment-586213225
+- laco: イメージ図 https://github.com/js-primer/js-primer/issues/1073#issuecomment-586213225
 - azu: 「迷わず学べる入門書」と「迷わないための入門書 」だと迷わないための入門書の方がバランスいいですね。
 - azu: 迷うの感じが画数多いのでひらがなだといい
 - kahei: とりあえず「迷わないための入門書」ですすめる感じでいいですかね?

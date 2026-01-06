@@ -1,4 +1,4 @@
-# JavaScript Primer [![test](https://github.com/asciidwango/js-primer/actions/workflows/test.yml/badge.svg)](https://github.com/asciidwango/js-primer/actions/workflows/test.yml)
+# JavaScript Primer [![test](https://github.com/js-primer/js-primer/actions/workflows/test.yml/badge.svg)](https://github.com/js-primer/js-primer/actions/workflows/test.yml)
 
 この書籍はECMAScript 2015以降をベースとしたJavaScriptの入門書です。
 
@@ -48,11 +48,11 @@ Open Collectiveでの支援には、サイト上にロゴを表示するとい�
 
 GitHubのDiscussions（掲示板）の他の人の質問に答えたり、JSPrimerを読んだ感想を書くことも支援になります。
 
-- [Discussions · asciidwango/js-primer](https://github.com/asciidwango/js-primer/discussions)
+- [Discussions · js-primer/js-primer](https://github.com/js-primer/js-primer/discussions)
 
 Discussionsのガイドラインは次のスレッドにまとめられています。
 
-- [👋 ようこそ JavaScript Primer へ ! · Discussion #1304 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/discussions/1304)
+- [👋 ようこそ JavaScript Primer へ ! · Discussion #1304 · js-primer/js-primer](https://github.com/js-primer/js-primer/discussions/1304)
 
 書籍に対してIssueを立てたり、Pull Requestを送ったりして直接的に支援もできます。
 IssueやPull Requestについては、次のページを参照してください。
@@ -65,11 +65,11 @@ IssueやPull Requestについては、次のページを参照してください
 
 どのような経緯で動いているかはミーティングノートを参照してください。
 
-- [Meeting Notes](https://github.com/asciidwango/js-primer/tree/master/meetings "Meeting Notes")
+- [Meeting Notes](https://github.com/js-primer/js-primer/tree/master/meetings "Meeting Notes")
 
 リポジトリの更新を追いたい方はリポジトリをWatchしてください。
 
-[![Watch button](./source/landing/img/repo-actions-watch.png)](https://github.com/asciidwango/js-primer/watchers)
+[![Watch button](./source/landing/img/repo-actions-watch.png)](https://github.com/js-primer/js-primer/watchers)
 
 また、下記フォームからメールアドレスを登録しておくと更新情報を受け取れます。
 
@@ -134,7 +134,7 @@ HonKitのbuildかつWatchをします。
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request :D
 
-[CODE_OF_CONDUCT](https://github.com/asciidwango/js-primer/blob/master/.github/CODE_OF_CONDUCT.md)もあわせて参照してください。
+[CODE_OF_CONDUCT](https://github.com/js-primer/js-primer/blob/master/.github/CODE_OF_CONDUCT.md)もあわせて参照してください。
 
 ## License
 

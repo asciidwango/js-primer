@@ -9,12 +9,12 @@
 
 ## アジェンダ
 
-- [2016-06-28 ミーティングアジェンダ · Issue #55 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/55 "2016-06-28 ミーティングアジェンダ · Issue #55 · asciidwango/js-primer")
+- [2016-06-28 ミーティングアジェンダ · Issue #55 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/55 "2016-06-28 ミーティングアジェンダ · Issue #55 · js-primer/js-primer")
 
 ## 前回のミーティングからの変更点 @ azu
 
-- [ランディングページを用意する · Issue #42 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/42)
-- [リリース時に通知を受け取れるフォーム · Issue #33 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/33)
+- [ランディングページを用意する · Issue #42 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/42)
+- [リリース時に通知を受け取れるフォーム · Issue #33 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/33)
 
 Travis CIでビルドしてGitBookをgh-pagesとして公開するようになった。
 
@@ -22,11 +22,11 @@ Travis CIでビルドしてGitBookをgh-pagesとして公開するようにな�
 
 masterにマージされると自動的にgh-pagesへデプロイされる。
 
-- [リポジトリ名をjs-primerにリネーム · Issue #50 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/50)
+- [リポジトリ名をjs-primerにリネーム · Issue #50 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/50)
 
 年号や大文字を入れたくないため `js-primer` にリポジトリをリネームした
 
-- [Docテストの追加 · Issue #41 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/41)
+- [Docテストの追加 · Issue #41 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/41)
 
 ```js
 a; // => 1
@@ -40,7 +40,7 @@ a; // => 1
 がそれぞれ対象となって自動的にテストされる。
 コードとコメントの齟齬や、動かないコードを減らすため。
 
-## [基本文法では`var`を使う #46](https://github.com/asciidwango/js-primer/issues/46 "基本文法では`var`を使う #46")
+## [基本文法では`var`を使う #46](https://github.com/js-primer/js-primer/issues/46 "基本文法では`var`を使う #46")
 
 @azu: 基本文法などREPLで繰り返し実行するコードは、`let`や`const`よりも`var`の方が柔軟となる。
 そのため、基本文法では`var`を使いたいという話
@@ -53,7 +53,7 @@ a; // => 1
 - ユースケースでは`const`を利用
 
 
-## [ライセンス #37Open](https://github.com/asciidwango/js-primer/issues/37 "ライセンス #37Open")
+## [ライセンス #37Open](https://github.com/js-primer/js-primer/issues/37 "ライセンス #37Open")
 
 - @azu: Pull Requestを受け入れるあたってライセンスについて明記したい
 - 取り込まれたものはどういう扱いになるのかを明記したい
@@ -104,9 +104,9 @@ a; // => 1
 - @kahei: 01, 02 みたいのをディレクトリのprefixに入れる?
 - @azu: GitBookだとディレクトリ名がURLにでてくる
 - `source`というのがURLにでてくるのはよくなさそう
-    - [sourceディレクトリをrootディレクトリにする #57](https://github.com/asciidwango/js-primer/issues/57 "sourceディレクトリをrootディレクトリにする #57")
+    - [sourceディレクトリをrootディレクトリにする #57](https://github.com/js-primer/js-primer/issues/57 "sourceディレクトリをrootディレクトリにする #57")
 
-### [Front Matterにメタ情報を入れる #40](https://github.com/asciidwango/js-primer/issues/40 "Front Matterにメタ情報を入れる #40")
+### [Front Matterにメタ情報を入れる #40](https://github.com/js-primer/js-primer/issues/40 "Front Matterにメタ情報を入れる #40")
 
 - @azu: Front MatterというYAMLでメタ情報をmdに書ける
 - 何か入れたい情報がある?
@@ -117,7 +117,7 @@ a; // => 1
 
 ### 結論
 
-- [sourceディレクトリをrootディレクトリにする #57](https://github.com/asciidwango/js-primer/issues/57 "sourceディレクトリをrootディレクトリにする #57")
+- [sourceディレクトリをrootディレクトリにする #57](https://github.com/js-primer/js-primer/issues/57 "sourceディレクトリをrootディレクトリにする #57")
 - `author` をメタ情報として入れる
 
 ## 次回

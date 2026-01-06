@@ -8,7 +8,7 @@
 
 ## ミーティングアジェンダ
 
-[2020-03-13: ミーティングアジェンダ · Issue #1085 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1085)
+[2020-03-13: ミーティングアジェンダ · Issue #1085 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1085)
 ----
 
 ## スケジュール
@@ -16,8 +16,8 @@
 - kahei: スケジュールですが、3月に大体表示とかレイアウトを固めて、本文はその次の週ぐらいで
 - kahei: なので、それまでにpublish1にあるものを見てもらえると
 - kahei: はじめにはまだ謝辞とか反映されてないですが、1章からは既に読める感じです
-- https://github.com/asciidwango/js-primer/tree/publish1
-- azu: レビューしたら https://github.com/asciidwango/js-primer/issues/1070 に書くか publish 1に出す感じでいいですかね
+- https://github.com/js-primer/js-primer/tree/publish1
+- azu: レビューしたら https://github.com/js-primer/js-primer/issues/1070 に書くか publish 1に出す感じでいいですかね
 - kahei: はい
 - kahei: TeXの方で修正色々してるので、原稿が固まったらMarkdownの方にまとめて反映しようと思っています
 

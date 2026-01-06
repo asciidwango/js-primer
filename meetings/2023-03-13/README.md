@@ -8,19 +8,19 @@
 
 ## ミーティングアジェンダ
 
-- [2023-03-13のミーティングアジェンダ · asciidwango/js-primer · Discussion #1648](https://github.com/asciidwango/js-primer/discussions/1648)
+- [2023-03-13のミーティングアジェンダ · js-primer/js-primer · Discussion #1648](https://github.com/js-primer/js-primer/discussions/1648)
 
 ----
 
 ## PDFのレビュー
 
 - azu: 一通り読んで、見つかったものをIssue化してあります。
-- [Issues · asciidwango/js-primer](https://github.com/asciidwango/js-primer/labels/Type%3A%20Need%20to%20Publish)
+- [Issues · js-primer/js-primer](https://github.com/js-primer/js-primer/labels/Type%3A%20Need%20to%20Publish)
 - azu: ErrataがついてるのはMarkdown側で間違ってたので、Markdownの方は修正しました
-- [fix: レビューで見つかったMarkdown側の修正 by azu · Pull Request #1647 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/1647)
+- [fix: レビューで見つかったMarkdown側の修正 by azu · Pull Request #1647 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/1647)
 - azu: あとは自動リンクとかLaTeX的な問題のものがほとんど
 - azu: レイアウトがズレてるやつは次のところにまとめてあります
-- [Publish: 細かいレイアウト崩れ · Issue #1645 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1645)
+- [Publish: 細かいレイアウト崩れ · Issue #1645 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1645)
 - kahei: 文字数でずれてしまうので、まだ改ページを入れてないためですね。
 - azu: なるほど
 - azu: 他は問題なさそう

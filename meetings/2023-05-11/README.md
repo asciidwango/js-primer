@@ -8,7 +8,7 @@
 
 ## ミーティングアジェンダ
 
-- [2023-05-11 ミーティングアジェンダ · asciidwango/js-primer · Discussion #1663](https://github.com/asciidwango/js-primer/discussions/1663)
+- [2023-05-11 ミーティングアジェンダ · js-primer/js-primer · Discussion #1663](https://github.com/js-primer/js-primer/discussions/1663)
 
 ----
 
@@ -36,7 +36,7 @@
 - azu: けど4のままでもいいかなーと
 - azu: オプションが色々Deprecatedになったり、まだ出たばかりなのでminorで変わりそうなので
 - azu: あとはファイルパスに名前に入ってるやつ
-- https://github.com/asciidwango/js-primer/blob/ecd2e66c12d5aed5e843ca4326e36e3cb11fb0dd/source/use-case/nodecli/argument-parse/README.md?plain=1#LL34C5-L34C5
+- https://github.com/js-primer/js-primer/blob/ecd2e66c12d5aed5e843ca4326e36e3cb11fb0dd/source/use-case/nodecli/argument-parse/README.md?plain=1#LL34C5-L34C5
 - laco: 確かに
 - azu: まあどちらでもいいかなーと
 - laco: このままでいいか
@@ -98,7 +98,7 @@
 ## ES2023
 
 - azu: ES2023の対応をまとめてました
-- [ECMAScript 2023の対応 · Issue #1658 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1658)
+- [ECMAScript 2023の対応 · Issue #1658 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1658)
 - azu: 前に言ってたように配列がほとんどになる
 - azu: 非破壊と破壊的な部分とかが結構どうするか悩みどころ
 - laco: コレクション系にまとめるとかがありそう

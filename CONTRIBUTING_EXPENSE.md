@@ -15,7 +15,7 @@ jsprimerへのContributeしたタスクに対してPointを設定し、そのPoi
 ### タスクに対するPoint
 
 作業量に対する基準としてフィボナッチ数列のPointを設定します。
-Pointの決定は、jsprimerの[Project Member](https://github.com/asciidwango/js-primer?tab=readme-ov-file#project-member)が行います。
+Pointの決定は、jsprimerの[Project Member](https://github.com/js-primer/js-primer?tab=readme-ov-file#project-member)が行います。
 
 | Point | Description           |
 |-------|-----------------------|
@@ -33,27 +33,27 @@ Issueが適切に分割されていれば、5や8はほとんど出てこない�
 
 ### Pointの例
 
-Pointはやや主観的になってしまいますが、既存のIssueと比較してどの程度のPointになるかを[Project Member](https://github.com/asciidwango/js-primer?tab=readme-ov-file#project-member)が判断します。
+Pointはやや主観的になってしまいますが、既存のIssueと比較してどの程度のPointになるかを[Project Member](https://github.com/js-primer/js-primer?tab=readme-ov-file#project-member)が判断します。
 
 - Point 1:
-    - [fix(nodecli): update to marked@14 by azu · Pull Request #1760 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/1760)
+    - [fix(nodecli): update to marked@14 by azu · Pull Request #1760 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/1760)
         - ほとんど置換で終わるような変更
-    - [fix: Node.js v18.12.0 LTSにアップデート by azu · Pull Request #1496 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/1496)
+    - [fix: Node.js v18.12.0 LTSにアップデート by azu · Pull Request #1496 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/1496)
         - やり方がだいたい定型化されてる変更
 - Point 2:
-    - [feat(ecmascript): Stage 2.7を追加 by azu · Pull Request #1743 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/1743)
+    - [feat(ecmascript): Stage 2.7を追加 by azu · Pull Request #1743 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/1743)
         - 文章自体はほとんどないが、多少調べる必要がある
-    - [mocha を`node:test`に変更する by windchime-yk · Pull Request #1737 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/1737)
+    - [mocha を`node:test`に変更する by windchime-yk · Pull Request #1737 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/1737)
         - 1 つのセクションを書き直すような変更
-    - [feat(map-and-set): `Map.groupBy`静的メソッドの追加 by azu · Pull Request #1751 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/1751)
+    - [feat(map-and-set): `Map.groupBy`静的メソッドの追加 by azu · Pull Request #1751 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/1751)
         - 1 つのセクションを追加する変更
-    - [feat: ErrorCause への対応 by himanoa · Pull Request #1732 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/1732)
+    - [feat: ErrorCause への対応 by himanoa · Pull Request #1732 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/1732)
         - 1 つのセクションを追加する変更
 - Point 3:
-    - [feat(array): Change Array by copy の対応 by azu · Pull Request #1679 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/1679)
+    - [feat(array): Change Array by copy の対応 by azu · Pull Request #1679 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/1679)
         - 複数のセクションにまたがる変更
 - Point 5:
-    - [fix(nodecli): commander パッケージ を `node:util` の `parseArg` に変更 by azu · Pull Request #1757 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/1757)
+    - [fix(nodecli): commander パッケージ を `node:util` の `parseArg` に変更 by azu · Pull Request #1757 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/1757)
         - 章全体にまたがる変更
         - かなり影響範囲が広く、書き直しも多い変更
 
@@ -150,12 +150,12 @@ jsprimerから直接、指定されたCollectiveへ同じ金額を寄付しま�
 10. Add notesに次の内容を入力
    ```
    Contribute to jsprimer 
-   - Commits: https://github.com/asciidwango/js-primer/commits?author=<GitHubアカウント>&since=月の初めの日&until=月の最終日
+   - Commits: https://github.com/js-primer/js-primer/commits?author=<GitHubアカウント>&since=月の初めの日&until=月の最終日
    ```
    例
    ```
    Contribute to jsprimer 
-   - Commits: https://github.com/asciidwango/js-primer/commits?author=azu&since=2024-08-01&until=2024-08-31
+   - Commits: https://github.com/js-primer/js-primer/commits?author=azu&since=2024-08-01&until=2024-08-31
    ```
 11. 確認して "Submit expense"をクリック
 

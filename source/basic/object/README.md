@@ -672,7 +672,7 @@ console.log(obj[symbolKey2]); // => "2"
 
 <!-- 仕様: ToPropertyKeyによって文字列化されている
 
-- https://github.com/asciidwango/js-primer/pull/854
+- https://github.com/js-primer/js-primer/pull/854
 - https://tc39.es/ecma262/#sec-topropertykey
 
  -->

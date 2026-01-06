@@ -8,7 +8,7 @@
 
 ## ミーティングアジェンダ
 
-- [2020-01-16のミーティングアジェンダ · Issue #1026 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/1026)
+- [2020-01-16のミーティングアジェンダ · Issue #1026 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/1026)
 
 ----
 
@@ -22,8 +22,8 @@
 - @azu: 後でCONTRIBUTING.mdに載せておきます。
 - @kahei: 手元に変更がストックされてるので来週の月曜ぐらいには出し終わります。
 - @azu: prh関係でてるエラーはおかしいなら辞書をコメントアウトしていいです。 
-    - https://github.com/asciidwango/js-primer/blob/master/test/techbooster.yml
-    - https://github.com/asciidwango/js-primer/blob/master/prh.yml
+    - https://github.com/js-primer/js-primer/blob/master/test/techbooster.yml
+    - https://github.com/js-primer/js-primer/blob/master/prh.yml
 
 ### 結論
 
@@ -47,14 +47,14 @@
 ### まとめ
 
 - azu: スクリーンショットを更新する
-- https://github.com/asciidwango/js-primer/issues/1028
+- https://github.com/js-primer/js-primer/issues/1028
 
 ----
 
 ## 付録
 
 - @azu: 忘れ去られた付録について
-- https://github.com/asciidwango/js-primer/issues/957
+- https://github.com/js-primer/js-primer/issues/957
 - @azu: 「なぜこの書籍が書かれたのか」というテーマが浮かんだので書いてる
 - @azu: 書籍に含めるかは別として、書籍発売時の紹介にも使えそうなので一応書いておく
 
@@ -79,7 +79,7 @@
 ### 結論
 
 - azu: はじめに追加する
-- https://github.com/asciidwango/js-primer/issues/1029
+- https://github.com/js-primer/js-primer/issues/1029
 
 ----
 
@@ -99,7 +99,7 @@
 - @azu: アイコンは○か
 - @kaheo: 一応はみ出しても大丈夫ですね
 - @azu: コントラストを考えると白か黄色な気がする
-- 〜 https://github.com/asciidwango/js-primer/issues/1026#issuecomment-575091793 〜
+- 〜 https://github.com/js-primer/js-primer/issues/1026#issuecomment-575091793 〜
 - 〜　色々見ながら案を出す 〜
 - @azu: まとめると
     - 花(2つに開いているわかば)

@@ -7,7 +7,7 @@
 
 @ 株式会社ドワンゴ会議室
 
-## [文法の基本解説をどうするか · Issue #8 · asciidwango/ES6book](https://github.com/asciidwango/ES6book/issues/8 "文法の基本解説をどうするか · Issue #8 · asciidwango/ES6book")
+## [文法の基本解説をどうするか · Issue #8 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/8 "文法の基本解説をどうするか · Issue #8 · js-primer/js-primer")
 
 - 最初に文法の解説があるといいのでは
 - 配列はどれくらい?
@@ -40,7 +40,7 @@
 ### Mathはどうするか?
 
 > Math系と数字と浮動小数点数とparseInt系の上手く扱うケースとして計算機を作ってみるというのはありがちだけど、ありそう。  
-> https://github.com/asciidwango/ES6book/issues/6#issuecomment-211386682
+> https://github.com/js-primer/js-primer/issues/6#issuecomment-211386682
 
 あらゆるものが載ってる本じゃなくて、必要な物を書こうとした時に無駄にはまらないようにするのが目的。
 Matchははまりやすいけど、書くときにしらべて書くようなものが中心。
@@ -54,12 +54,12 @@ Matchははまりやすいけど、書くときにしらべて書くようなも
 
 ## 担当
 
-- azu: [文法の基本解説をどうするか · Issue #8 · asciidwango/ES6book](https://github.com/asciidwango/ES6book/issues/8)
-- laco: [Ajaxで何か · Issue #9 · asciidwango/ES6book](https://github.com/asciidwango/ES6book/issues/9)
-- laco: [Node.jsのCLIアプリ · Issue #7 · asciidwango/ES6book](https://github.com/asciidwango/ES6book/issues/7)
-- azu: [TODOアプリ · Issue #4 · asciidwango/ES6book](https://github.com/asciidwango/ES6book/issues/4)
+- azu: [文法の基本解説をどうするか · Issue #8 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/8)
+- laco: [Ajaxで何か · Issue #9 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/9)
+- laco: [Node.jsのCLIアプリ · Issue #7 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/7)
+- azu: [TODOアプリ · Issue #4 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/4)
 
-## [実行環境について #2](https://github.com/asciidwango/ES6book/issues/2 "実行環境について #2")
+## [実行環境について #2](https://github.com/js-primer/js-primer/issues/2 "実行環境について #2")
 
 - どうせウェブサイトでも公開するなら、ウェブ上にREPLを置いて実行させる
     - [JavaScript Promiseの本](http://azu.github.io/promises-book/ "JavaScript Promiseの本")の形式
@@ -72,10 +72,10 @@ Matchははまりやすいけど、書くときにしらべて書くようなも
 
 - Markdownで
 - ローカルでプレビューとかしやすいようにGitBookで見れるようにする
-- [feat(gitbook): gitbookのセットアップ by azu · Pull Request #10 · asciidwango/ES6book](https://github.com/asciidwango/ES6book/pull/10 "feat(gitbook): gitbookのセットアップ by azu · Pull Request #10 · asciidwango/ES6book")
+- [feat(gitbook): gitbookのセットアップ by azu · Pull Request #10 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/10 "feat(gitbook): gitbookのセットアップ by azu · Pull Request #10 · js-primer/js-primer")
     - Publicでいいならいつでもウェブから確認できるようにできる
 
-## [CIを回す #11](https://github.com/asciidwango/ES6book/issues/11 "CIを回す #11")
+## [CIを回す #11](https://github.com/js-primer/js-primer/issues/11 "CIを回す #11")
 
 - サンプルコードはつねにCIのテストを通った状態にしたい
 - CIがプライベートリポジトリだと使えるサービスが限られていそう

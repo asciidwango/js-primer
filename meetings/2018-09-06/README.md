@@ -6,7 +6,7 @@
 
 ## アジェンダ
 
-- [2018-09-06 ミーティングアジャンダ · Issue #531 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/531)
+- [2018-09-06 ミーティングアジャンダ · Issue #531 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/531)
 
 ## Travisが動かない
 
@@ -37,7 +37,7 @@
 - Googleドメインをとって共同管理する by @azu
     - GitHub Pageでドメインを設定する
 - リポジトリとのズレは修正したくなったら直す
-- <https://github.com/asciidwango/js-primer/issues/528>
+- <https://github.com/js-primer/js-primer/issues/528>
 
 ----
 
@@ -47,7 +47,7 @@
 - @azu: そろそろおわりに近いので、残ってる細かいものをIssue化する
 - ...Issueを見ている...
 - @kahei: 付録的なものって何か書くんでしたっけ?
-- @azu: [次に何をするか: 参考リンク集](https://github.com/asciidwango/js-primer/issues/510)ぐらい?
+- @azu: [次に何をするか: 参考リンク集](https://github.com/js-primer/js-primer/issues/510)ぐらい?
 - @azu: ほかは…
 
     学び方
@@ -67,7 +67,7 @@
 
 ### 結論
 
-- [次に何をするか: 参考リンク集 · Issue #510 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/510)を付録する
+- [次に何をするか: 参考リンク集 · Issue #510 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/510)を付録する
 - そのままリンク + コメントで紹介する
 
 
@@ -75,7 +75,7 @@
 
 ## 環境ごとのオブジェクトの章
 
-- @laco: [wip 実行環境 by lacolaco · Pull Request #534 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/pull/534)を書いているけど書けない
+- @laco: [wip 実行環境 by lacolaco · Pull Request #534 · js-primer/js-primer](https://github.com/js-primer/js-primer/pull/534)を書いているけど書けない
 - @laco: オブジェクトの違いは書けるけどlocalhostうんぬんが異物な感じがする
 - しわよせが来ている感じ
 - @azu: Node.jsを中心に見直してみるとか
@@ -85,12 +85,12 @@
 - @azu: `node main.js` `node index.js` ` node script.js` ?
 - laco: main.js
 - @azu: REPLとnode main.jsどっちがいいんだろ?
-- [read-eval-print: コンソールの開き方について · Issue #85 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/85)でもscriptタグで外部ファイルを中心にするから`node main.js`か
+- [read-eval-print: コンソールの開き方について · Issue #85 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/85)でもscriptタグで外部ファイルを中心にするから`node main.js`か
 
 ### 結論
 
 - 環境ごとのオブジェクトの章 -> Node.js インストールの章へと変更
-- [2章の序章: Node.jsのインストール · Issue #267 · asciidwango/js-primer](https://github.com/asciidwango/js-primer/issues/267)
+- [2章の序章: Node.jsのインストール · Issue #267 · js-primer/js-primer](https://github.com/js-primer/js-primer/issues/267)
 
 ----
 

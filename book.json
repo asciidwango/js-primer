@@ -38,11 +38,11 @@
       "apiKey": "9169ce4cd84fcf2376f29d9585c89254"
     },
     "github-issue-feedback": {
-      "repo": "asciidwango/js-primer",
+      "repo": "js-primer/js-primer",
       "label": "問題を報告する"
     },
     "edit-link": {
-      "base": "https://github.com/asciidwango/js-primer/edit/master/source/",
+      "base": "https://github.com/js-primer/js-primer/edit/master/source/",
       "label": "Edit"
     },
     "canonical-link": {
