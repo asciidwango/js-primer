@@ -12,13 +12,10 @@
   },
   "scripts": {
     "test": "node --test final/final/test/*.js",
-    "e2e": "start-server-and-test start http://localhost:3000/README.md cy:run",
-    "start": "npx --yes @js-primer/local-server --port 3000",
-    "cy:open": "cypress open",
-    "cy:run": "cypress run --browser chrome"
+    "e2e": "playwright test",
+    "start": "npx --yes @js-primer/local-server --port 3000"
   },
   "devDependencies": {
-    "cypress": "^4.9.0",
-    "start-server-and-test": "^2.0.3"
+    "@playwright/test": "^1.49.1"
   }
 }
