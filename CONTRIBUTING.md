@@ -165,7 +165,7 @@ console.log(a); // => 42
 このコードは、次のようなテストコードに変換されます。
 
 ```js
-const assert = requite("assert");
+const assert = require("assert");
 const a = 42;
 assert.strictEqual(a, 42); // => 42
 ```
