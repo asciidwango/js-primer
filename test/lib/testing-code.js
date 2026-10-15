@@ -1,5 +1,8 @@
 import vm from "vm";
+import { createRequire } from "node:module";
 import makeConsoleMock from "consolemock";
+
+const require = createRequire(import.meta.url);
 
 /**
  * 次のコメントが実際に実行されないことをテストできるように変換する
@@ -14,7 +17,9 @@ import makeConsoleMock from "consolemock";
  * @returns {string}
  */
 export const toUnreachableCode = (code) => {
-    return code.replace(/^\s*?\/\/(.*)この行は実行されません$/g, `$1throw new Error("$1この行は実行されません");`);
+    return code.replace(/^([\t ]*)\/\/(.*この行は実行されません)[\t ]*$/gm, (_, indent, message) => {
+        return `${indent}throw new Error(${JSON.stringify(message)});`;
+    });
 };
 
 
@@ -76,7 +81,7 @@ export const toTestCode = (code) => {
  * @param {string} filePath
  */
 export const runTestCode = (code, filePath) => {
-    const script = vm.Script(code, { filename: filePath });
+    const script = new vm.Script(code, { filename: filePath });
     const HostBuildIns = Object.freeze({
         __proto__: null,
         version: parseInt(process.versions.node.split(".")[0]),
